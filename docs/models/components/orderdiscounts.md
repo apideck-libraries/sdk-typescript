@@ -1,0 +1,25 @@
+# OrderDiscounts
+
+## Example Usage
+
+```typescript
+import { OrderDiscounts } from "apideck/models/components";
+
+let value: OrderDiscounts = {
+  name: "10% off",
+  type: "percentage",
+  amount: 27500,
+  currency: "USD",
+  scope: "order",
+};
+```
+
+## Fields
+
+| Field                                                                                                                              | Type                                                                                                                               | Required                                                                                                                           | Description                                                                                                                        | Example                                                                                                                            |
+| ---------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
+| `name`                                                                                                                             | *string*                                                                                                                           | :heavy_minus_sign:                                                                                                                 | N/A                                                                                                                                | 10% off                                                                                                                            |
+| `type`                                                                                                                             | [components.OrderDiscountsType](../../models/components/orderdiscountstype.md)                                                     | :heavy_check_mark:                                                                                                                 | N/A                                                                                                                                | percentage                                                                                                                         |
+| `amount`                                                                                                                           | *number*                                                                                                                           | :heavy_minus_sign:                                                                                                                 | N/A                                                                                                                                | 27500                                                                                                                              |
+| `currency`                                                                                                                         | [components.Currency](../../models/components/currency.md)                                                                         | :heavy_minus_sign:                                                                                                                 | Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217). | USD                                                                                                                                |
+| `scope`                                                                                                                            | [components.OrderDiscountsScope](../../models/components/orderdiscountsscope.md)                                                   | :heavy_minus_sign:                                                                                                                 | N/A                                                                                                                                | order                                                                                                                              |

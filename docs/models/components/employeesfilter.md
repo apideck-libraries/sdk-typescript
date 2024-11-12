@@ -1,0 +1,33 @@
+# EmployeesFilter
+
+## Example Usage
+
+```typescript
+import { EmployeesFilter } from "apideck/models/components";
+
+let value: EmployeesFilter = {
+  companyId: "1234",
+  email: "elon@tesla.com",
+  firstName: "Elon",
+  title: "Manager",
+  lastName: "Musk",
+  managerId: "1234",
+  employmentStatus: "active",
+  employeeNumber: "123456-AB",
+  departmentId: "1234",
+};
+```
+
+## Fields
+
+| Field                                                                                                    | Type                                                                                                     | Required                                                                                                 | Description                                                                                              | Example                                                                                                  |
+| -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
+| `companyId`                                                                                              | *string*                                                                                                 | :heavy_minus_sign:                                                                                       | Company ID to filter on                                                                                  | 1234                                                                                                     |
+| `email`                                                                                                  | *string*                                                                                                 | :heavy_minus_sign:                                                                                       | Email to filter on                                                                                       | elon@tesla.com                                                                                           |
+| `firstName`                                                                                              | *string*                                                                                                 | :heavy_minus_sign:                                                                                       | First Name to filter on                                                                                  | Elon                                                                                                     |
+| `title`                                                                                                  | *string*                                                                                                 | :heavy_minus_sign:                                                                                       | Job title to filter on                                                                                   | Manager                                                                                                  |
+| `lastName`                                                                                               | *string*                                                                                                 | :heavy_minus_sign:                                                                                       | Last Name to filter on                                                                                   | Musk                                                                                                     |
+| `managerId`                                                                                              | *string*                                                                                                 | :heavy_minus_sign:                                                                                       | Manager id to filter on                                                                                  | 1234                                                                                                     |
+| `employmentStatus`                                                                                       | [components.EmployeesFilterEmploymentStatus](../../models/components/employeesfilteremploymentstatus.md) | :heavy_minus_sign:                                                                                       | Employment status to filter on                                                                           | active                                                                                                   |
+| `employeeNumber`                                                                                         | *string*                                                                                                 | :heavy_minus_sign:                                                                                       | Employee number to filter on                                                                             | 123456-AB                                                                                                |
+| `departmentId`                                                                                           | *string*                                                                                                 | :heavy_minus_sign:                                                                                       | ID of the department to filter on                                                                        | 1234                                                                                                     |

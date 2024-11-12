@@ -1,0 +1,22 @@
+# OrderRefunds
+
+## Example Usage
+
+```typescript
+import { OrderRefunds } from "apideck/models/components";
+
+let value: OrderRefunds = {
+  amount: 27500,
+  currency: "USD",
+  reason: "The reason for the refund being issued.",
+};
+```
+
+## Fields
+
+| Field                                                                                                                              | Type                                                                                                                               | Required                                                                                                                           | Description                                                                                                                        | Example                                                                                                                            |
+| ---------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
+| `amount`                                                                                                                           | *number*                                                                                                                           | :heavy_minus_sign:                                                                                                                 | N/A                                                                                                                                | 27500                                                                                                                              |
+| `currency`                                                                                                                         | [components.Currency](../../models/components/currency.md)                                                                         | :heavy_minus_sign:                                                                                                                 | Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217). | USD                                                                                                                                |
+| `reason`                                                                                                                           | *string*                                                                                                                           | :heavy_minus_sign:                                                                                                                 | N/A                                                                                                                                | The reason for the refund being issued.                                                                                            |
+| `status`                                                                                                                           | [components.OrderRefundsStatus](../../models/components/orderrefundsstatus.md)                                                     | :heavy_minus_sign:                                                                                                                 | N/A                                                                                                                                |                                                                                                                                    |

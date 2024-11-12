@@ -1,0 +1,33 @@
+speakeasyVersion: 1.438.1
+sources:
+    Apideck-OAS:
+        sourceNamespace: apideck-oas
+        sourceRevisionDigest: sha256:9a9671600a63f2811dd80cd3acd585bd1b8826496e92140b2c7cea01a067f70f
+        sourceBlobDigest: sha256:143a0046abf2bebd7edd5b5b65b5c457d1924432bf917f936effde99c8cebc17
+        tags:
+            - latest
+targets:
+    apideck:
+        source: Apideck-OAS
+        sourceNamespace: apideck-oas
+        sourceRevisionDigest: sha256:9a9671600a63f2811dd80cd3acd585bd1b8826496e92140b2c7cea01a067f70f
+        sourceBlobDigest: sha256:143a0046abf2bebd7edd5b5b65b5c457d1924432bf917f936effde99c8cebc17
+        codeSamplesNamespace: apideck-oas-code-samples
+        codeSamplesRevisionDigest: sha256:1764802bb105599a69fe1003f6fd0fb87a3b64f93a72a3cddc828692536f75c0
+workflow:
+    workflowVersion: 1.0.0
+    speakeasyVersion: latest
+    sources:
+        Apideck-OAS:
+            inputs:
+                - location: ../unify/speakeasy-spec.yml
+            registry:
+                location: registry.speakeasyapi.dev/apideck-k2o/apideck/apideck-oas
+    targets:
+        apideck:
+            target: typescript
+            source: Apideck-OAS
+            codeSamples:
+                registry:
+                    location: registry.speakeasyapi.dev/apideck-k2o/apideck/apideck-oas-code-samples
+                blocking: false

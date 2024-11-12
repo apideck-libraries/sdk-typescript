@@ -1,0 +1,50 @@
+# MessageInput
+
+## Example Usage
+
+```typescript
+import { MessageInput } from "apideck/models/components";
+
+let value: MessageInput = {
+  from: "+15017122661",
+  to: "+15017122662",
+  subject: "Picture",
+  body: "Hi! How are you doing?",
+  type: "sms",
+  scheduledAt: new Date("2020-09-30T07:43:32.000Z"),
+  webhookUrl:
+    "https://unify.apideck.com/webhook/webhooks/eyz329dkffdl4949/x/sms",
+  reference: "CUST001",
+  messagingServiceId: "123456",
+  passThrough: [
+    {
+      serviceId: "<id>",
+      extendPaths: [
+        {
+          path: "$.nested.property",
+          value: {
+            "TaxClassificationRef": {
+              "value": "EUC-99990201-V1-00020000",
+            },
+          },
+        },
+      ],
+    },
+  ],
+};
+```
+
+## Fields
+
+| Field                                                                                                                                                   | Type                                                                                                                                                    | Required                                                                                                                                                | Description                                                                                                                                             | Example                                                                                                                                                 |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `from`                                                                                                                                                  | *string*                                                                                                                                                | :heavy_check_mark:                                                                                                                                      | The phone number that initiated the message.                                                                                                            | +15017122661                                                                                                                                            |
+| `to`                                                                                                                                                    | *string*                                                                                                                                                | :heavy_check_mark:                                                                                                                                      | The phone number that received the message.                                                                                                             | +15017122662                                                                                                                                            |
+| `subject`                                                                                                                                               | *string*                                                                                                                                                | :heavy_minus_sign:                                                                                                                                      | N/A                                                                                                                                                     | Picture                                                                                                                                                 |
+| `body`                                                                                                                                                  | *string*                                                                                                                                                | :heavy_check_mark:                                                                                                                                      | The message text.                                                                                                                                       | Hi! How are you doing?                                                                                                                                  |
+| `type`                                                                                                                                                  | [components.MessageType](../../models/components/messagetype.md)                                                                                        | :heavy_minus_sign:                                                                                                                                      | Set to sms for SMS messages and mms for MMS messages.                                                                                                   | sms                                                                                                                                                     |
+| `scheduledAt`                                                                                                                                           | [Date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date)                                                           | :heavy_minus_sign:                                                                                                                                      | The scheduled date and time of the message.                                                                                                             | 2020-09-30T07:43:32.000Z                                                                                                                                |
+| `webhookUrl`                                                                                                                                            | *string*                                                                                                                                                | :heavy_minus_sign:                                                                                                                                      | Define a webhook to receive delivery notifications.                                                                                                     | https://unify.apideck.com/webhook/webhooks/eyz329dkffdl4949/x/sms                                                                                       |
+| `reference`                                                                                                                                             | *string*                                                                                                                                                | :heavy_minus_sign:                                                                                                                                      | A client reference.                                                                                                                                     | CUST001                                                                                                                                                 |
+| `messagingServiceId`                                                                                                                                    | *string*                                                                                                                                                | :heavy_minus_sign:                                                                                                                                      | The ID of the Messaging Service used with the message. In case of Plivo this links to the Powerpack ID.                                                 | 123456                                                                                                                                                  |
+| `passThrough`                                                                                                                                           | [components.PassThroughBody](../../models/components/passthroughbody.md)[]                                                                              | :heavy_minus_sign:                                                                                                                                      | The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources. |                                                                                                                                                         |

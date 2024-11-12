@@ -1,0 +1,26 @@
+# ValidateConnectionStateResponse
+
+Connection access token refreshed
+
+## Example Usage
+
+```typescript
+import { ValidateConnectionStateResponse } from "apideck/models/components";
+
+let value: ValidateConnectionStateResponse = {
+  statusCode: 200,
+  status: "OK",
+  data: {
+    id: "crm+salesforce",
+    state: "authorized",
+  },
+};
+```
+
+## Fields
+
+| Field                                                                                                            | Type                                                                                                             | Required                                                                                                         | Description                                                                                                      | Example                                                                                                          |
+| ---------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
+| `statusCode`                                                                                                     | *number*                                                                                                         | :heavy_check_mark:                                                                                               | HTTP Response Status Code                                                                                        | 200                                                                                                              |
+| `status`                                                                                                         | *string*                                                                                                         | :heavy_check_mark:                                                                                               | HTTP Response Status                                                                                             | OK                                                                                                               |
+| `data`                                                                                                           | [components.ValidateConnectionStateResponseData](../../models/components/validateconnectionstateresponsedata.md) | :heavy_check_mark:                                                                                               | N/A                                                                                                              |                                                                                                                  |
