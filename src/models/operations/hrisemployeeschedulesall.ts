@@ -40,9 +40,19 @@ export type HrisEmployeeSchedulesAllRequest = {
   fields?: string | null | undefined;
 };
 
-export type HrisEmployeeSchedulesAllResponse =
-  | components.GetEmployeeSchedulesResponse
-  | components.UnexpectedErrorResponse;
+export type HrisEmployeeSchedulesAllResponse = {
+  httpMeta: components.HTTPMetadata;
+  /**
+   * EmployeeSchedules
+   */
+  getEmployeeSchedulesResponse?:
+    | components.GetEmployeeSchedulesResponse
+    | undefined;
+  /**
+   * Unexpected error
+   */
+  unexpectedErrorResponse?: components.UnexpectedErrorResponse | undefined;
+};
 
 /** @internal */
 export const HrisEmployeeSchedulesAllGlobals$inboundSchema: z.ZodType<
@@ -146,25 +156,49 @@ export const HrisEmployeeSchedulesAllResponse$inboundSchema: z.ZodType<
   HrisEmployeeSchedulesAllResponse,
   z.ZodTypeDef,
   unknown
-> = z.union([
-  components.GetEmployeeSchedulesResponse$inboundSchema,
-  components.UnexpectedErrorResponse$inboundSchema,
-]);
+> = z.object({
+  HttpMeta: components.HTTPMetadata$inboundSchema,
+  GetEmployeeSchedulesResponse: components
+    .GetEmployeeSchedulesResponse$inboundSchema.optional(),
+  UnexpectedErrorResponse: components.UnexpectedErrorResponse$inboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "HttpMeta": "httpMeta",
+    "GetEmployeeSchedulesResponse": "getEmployeeSchedulesResponse",
+    "UnexpectedErrorResponse": "unexpectedErrorResponse",
+  });
+});
 
 /** @internal */
-export type HrisEmployeeSchedulesAllResponse$Outbound =
-  | components.GetEmployeeSchedulesResponse$Outbound
-  | components.UnexpectedErrorResponse$Outbound;
+export type HrisEmployeeSchedulesAllResponse$Outbound = {
+  HttpMeta: components.HTTPMetadata$Outbound;
+  GetEmployeeSchedulesResponse?:
+    | components.GetEmployeeSchedulesResponse$Outbound
+    | undefined;
+  UnexpectedErrorResponse?:
+    | components.UnexpectedErrorResponse$Outbound
+    | undefined;
+};
 
 /** @internal */
 export const HrisEmployeeSchedulesAllResponse$outboundSchema: z.ZodType<
   HrisEmployeeSchedulesAllResponse$Outbound,
   z.ZodTypeDef,
   HrisEmployeeSchedulesAllResponse
-> = z.union([
-  components.GetEmployeeSchedulesResponse$outboundSchema,
-  components.UnexpectedErrorResponse$outboundSchema,
-]);
+> = z.object({
+  httpMeta: components.HTTPMetadata$outboundSchema,
+  getEmployeeSchedulesResponse: components
+    .GetEmployeeSchedulesResponse$outboundSchema.optional(),
+  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    httpMeta: "HttpMeta",
+    getEmployeeSchedulesResponse: "GetEmployeeSchedulesResponse",
+    unexpectedErrorResponse: "UnexpectedErrorResponse",
+  });
+});
 
 /**
  * @internal

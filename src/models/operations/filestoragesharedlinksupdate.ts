@@ -33,9 +33,17 @@ export type FileStorageSharedLinksUpdateRequest = {
   sharedLink: components.SharedLinkInput;
 };
 
-export type FileStorageSharedLinksUpdateResponse =
-  | components.UpdateSharedLinkResponse
-  | components.UnexpectedErrorResponse;
+export type FileStorageSharedLinksUpdateResponse = {
+  httpMeta: components.HTTPMetadata;
+  /**
+   * Shared Links
+   */
+  updateSharedLinkResponse?: components.UpdateSharedLinkResponse | undefined;
+  /**
+   * Unexpected error
+   */
+  unexpectedErrorResponse?: components.UnexpectedErrorResponse | undefined;
+};
 
 /** @internal */
 export const FileStorageSharedLinksUpdateGlobals$inboundSchema: z.ZodType<
@@ -138,25 +146,49 @@ export const FileStorageSharedLinksUpdateResponse$inboundSchema: z.ZodType<
   FileStorageSharedLinksUpdateResponse,
   z.ZodTypeDef,
   unknown
-> = z.union([
-  components.UpdateSharedLinkResponse$inboundSchema,
-  components.UnexpectedErrorResponse$inboundSchema,
-]);
+> = z.object({
+  HttpMeta: components.HTTPMetadata$inboundSchema,
+  UpdateSharedLinkResponse: components.UpdateSharedLinkResponse$inboundSchema
+    .optional(),
+  UnexpectedErrorResponse: components.UnexpectedErrorResponse$inboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "HttpMeta": "httpMeta",
+    "UpdateSharedLinkResponse": "updateSharedLinkResponse",
+    "UnexpectedErrorResponse": "unexpectedErrorResponse",
+  });
+});
 
 /** @internal */
-export type FileStorageSharedLinksUpdateResponse$Outbound =
-  | components.UpdateSharedLinkResponse$Outbound
-  | components.UnexpectedErrorResponse$Outbound;
+export type FileStorageSharedLinksUpdateResponse$Outbound = {
+  HttpMeta: components.HTTPMetadata$Outbound;
+  UpdateSharedLinkResponse?:
+    | components.UpdateSharedLinkResponse$Outbound
+    | undefined;
+  UnexpectedErrorResponse?:
+    | components.UnexpectedErrorResponse$Outbound
+    | undefined;
+};
 
 /** @internal */
 export const FileStorageSharedLinksUpdateResponse$outboundSchema: z.ZodType<
   FileStorageSharedLinksUpdateResponse$Outbound,
   z.ZodTypeDef,
   FileStorageSharedLinksUpdateResponse
-> = z.union([
-  components.UpdateSharedLinkResponse$outboundSchema,
-  components.UnexpectedErrorResponse$outboundSchema,
-]);
+> = z.object({
+  httpMeta: components.HTTPMetadata$outboundSchema,
+  updateSharedLinkResponse: components.UpdateSharedLinkResponse$outboundSchema
+    .optional(),
+  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    httpMeta: "HttpMeta",
+    updateSharedLinkResponse: "UpdateSharedLinkResponse",
+    unexpectedErrorResponse: "UnexpectedErrorResponse",
+  });
+});
 
 /**
  * @internal

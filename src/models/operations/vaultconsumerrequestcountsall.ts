@@ -28,9 +28,19 @@ export type VaultConsumerRequestCountsAllRequest = {
   endDatetime: string;
 };
 
-export type VaultConsumerRequestCountsAllResponse =
-  | components.ConsumerRequestCountsInDateRangeResponse
-  | components.UnexpectedErrorResponse;
+export type VaultConsumerRequestCountsAllResponse = {
+  httpMeta: components.HTTPMetadata;
+  /**
+   * Consumers Request Counts within Date Range
+   */
+  consumerRequestCountsInDateRangeResponse?:
+    | components.ConsumerRequestCountsInDateRangeResponse
+    | undefined;
+  /**
+   * Unexpected error
+   */
+  unexpectedErrorResponse?: components.UnexpectedErrorResponse | undefined;
+};
 
 /** @internal */
 export const VaultConsumerRequestCountsAllGlobals$inboundSchema: z.ZodType<
@@ -131,25 +141,51 @@ export const VaultConsumerRequestCountsAllResponse$inboundSchema: z.ZodType<
   VaultConsumerRequestCountsAllResponse,
   z.ZodTypeDef,
   unknown
-> = z.union([
-  components.ConsumerRequestCountsInDateRangeResponse$inboundSchema,
-  components.UnexpectedErrorResponse$inboundSchema,
-]);
+> = z.object({
+  HttpMeta: components.HTTPMetadata$inboundSchema,
+  ConsumerRequestCountsInDateRangeResponse: components
+    .ConsumerRequestCountsInDateRangeResponse$inboundSchema.optional(),
+  UnexpectedErrorResponse: components.UnexpectedErrorResponse$inboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "HttpMeta": "httpMeta",
+    "ConsumerRequestCountsInDateRangeResponse":
+      "consumerRequestCountsInDateRangeResponse",
+    "UnexpectedErrorResponse": "unexpectedErrorResponse",
+  });
+});
 
 /** @internal */
-export type VaultConsumerRequestCountsAllResponse$Outbound =
-  | components.ConsumerRequestCountsInDateRangeResponse$Outbound
-  | components.UnexpectedErrorResponse$Outbound;
+export type VaultConsumerRequestCountsAllResponse$Outbound = {
+  HttpMeta: components.HTTPMetadata$Outbound;
+  ConsumerRequestCountsInDateRangeResponse?:
+    | components.ConsumerRequestCountsInDateRangeResponse$Outbound
+    | undefined;
+  UnexpectedErrorResponse?:
+    | components.UnexpectedErrorResponse$Outbound
+    | undefined;
+};
 
 /** @internal */
 export const VaultConsumerRequestCountsAllResponse$outboundSchema: z.ZodType<
   VaultConsumerRequestCountsAllResponse$Outbound,
   z.ZodTypeDef,
   VaultConsumerRequestCountsAllResponse
-> = z.union([
-  components.ConsumerRequestCountsInDateRangeResponse$outboundSchema,
-  components.UnexpectedErrorResponse$outboundSchema,
-]);
+> = z.object({
+  httpMeta: components.HTTPMetadata$outboundSchema,
+  consumerRequestCountsInDateRangeResponse: components
+    .ConsumerRequestCountsInDateRangeResponse$outboundSchema.optional(),
+  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    httpMeta: "HttpMeta",
+    consumerRequestCountsInDateRangeResponse:
+      "ConsumerRequestCountsInDateRangeResponse",
+    unexpectedErrorResponse: "UnexpectedErrorResponse",
+  });
+});
 
 /**
  * @internal

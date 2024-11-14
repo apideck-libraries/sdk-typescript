@@ -109,7 +109,7 @@ export async function connectorConnectorApisOne(
     path: path,
     headers: headers,
     body: body,
-    timeoutMs: options?.timeoutMs || client._options.timeoutMs || 1000,
+    timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
   }, options);
   if (!requestRes.ok) {
     return requestRes;
@@ -144,13 +144,17 @@ export async function connectorConnectorApisOne(
     | RequestTimeoutError
     | ConnectionError
   >(
-    M.json(200, operations.ConnectorApisOneResponse$inboundSchema),
+    M.json(200, operations.ConnectorApisOneResponse$inboundSchema, {
+      key: "GetApiResponse",
+    }),
     M.jsonErr(401, errors.UnauthorizedResponse$inboundSchema),
     M.jsonErr(402, errors.PaymentRequiredResponse$inboundSchema),
     M.jsonErr(404, errors.NotFoundResponse$inboundSchema),
     M.fail(["4XX", "5XX"]),
-    M.json("default", operations.ConnectorApisOneResponse$inboundSchema),
-  )(response, { extraFields: responseFields });
+    M.json("default", operations.ConnectorApisOneResponse$inboundSchema, {
+      key: "UnexpectedErrorResponse",
+    }),
+  )(response, req, { extraFields: responseFields });
   if (!result.ok) {
     return result;
   }

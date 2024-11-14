@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod";
+import { remap as remap$ } from "../../lib/primitives.js";
 import * as components from "../components/index.js";
 
 export type SmsMessagesAllGlobals = {
@@ -39,9 +40,17 @@ export type SmsMessagesAllRequest = {
   fields?: string | null | undefined;
 };
 
-export type SmsMessagesAllResponse =
-  | components.UnexpectedErrorResponse
-  | components.GetMessagesResponse;
+export type SmsMessagesAllResponse = {
+  httpMeta: components.HTTPMetadata;
+  /**
+   * Messages
+   */
+  getMessagesResponse?: components.GetMessagesResponse | undefined;
+  /**
+   * Unexpected error
+   */
+  unexpectedErrorResponse?: components.UnexpectedErrorResponse | undefined;
+};
 
 /** @internal */
 export const SmsMessagesAllGlobals$inboundSchema: z.ZodType<
@@ -135,25 +144,45 @@ export const SmsMessagesAllResponse$inboundSchema: z.ZodType<
   SmsMessagesAllResponse,
   z.ZodTypeDef,
   unknown
-> = z.union([
-  components.UnexpectedErrorResponse$inboundSchema,
-  components.GetMessagesResponse$inboundSchema,
-]);
+> = z.object({
+  HttpMeta: components.HTTPMetadata$inboundSchema,
+  GetMessagesResponse: components.GetMessagesResponse$inboundSchema.optional(),
+  UnexpectedErrorResponse: components.UnexpectedErrorResponse$inboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "HttpMeta": "httpMeta",
+    "GetMessagesResponse": "getMessagesResponse",
+    "UnexpectedErrorResponse": "unexpectedErrorResponse",
+  });
+});
 
 /** @internal */
-export type SmsMessagesAllResponse$Outbound =
-  | components.UnexpectedErrorResponse$Outbound
-  | components.GetMessagesResponse$Outbound;
+export type SmsMessagesAllResponse$Outbound = {
+  HttpMeta: components.HTTPMetadata$Outbound;
+  GetMessagesResponse?: components.GetMessagesResponse$Outbound | undefined;
+  UnexpectedErrorResponse?:
+    | components.UnexpectedErrorResponse$Outbound
+    | undefined;
+};
 
 /** @internal */
 export const SmsMessagesAllResponse$outboundSchema: z.ZodType<
   SmsMessagesAllResponse$Outbound,
   z.ZodTypeDef,
   SmsMessagesAllResponse
-> = z.union([
-  components.UnexpectedErrorResponse$outboundSchema,
-  components.GetMessagesResponse$outboundSchema,
-]);
+> = z.object({
+  httpMeta: components.HTTPMetadata$outboundSchema,
+  getMessagesResponse: components.GetMessagesResponse$outboundSchema.optional(),
+  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    httpMeta: "HttpMeta",
+    getMessagesResponse: "GetMessagesResponse",
+    unexpectedErrorResponse: "UnexpectedErrorResponse",
+  });
+});
 
 /**
  * @internal

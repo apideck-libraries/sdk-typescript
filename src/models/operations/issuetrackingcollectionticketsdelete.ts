@@ -36,9 +36,17 @@ export type IssueTrackingCollectionTicketsDeleteRequest = {
   collectionId: string;
 };
 
-export type IssueTrackingCollectionTicketsDeleteResponse =
-  | components.DeleteTicketResponse
-  | components.UnexpectedErrorResponse;
+export type IssueTrackingCollectionTicketsDeleteResponse = {
+  httpMeta: components.HTTPMetadata;
+  /**
+   * Delete a Ticket
+   */
+  deleteTicketResponse?: components.DeleteTicketResponse | undefined;
+  /**
+   * Unexpected error
+   */
+  unexpectedErrorResponse?: components.UnexpectedErrorResponse | undefined;
+};
 
 /** @internal */
 export const IssueTrackingCollectionTicketsDeleteGlobals$inboundSchema:
@@ -148,15 +156,28 @@ export const IssueTrackingCollectionTicketsDeleteResponse$inboundSchema:
     IssueTrackingCollectionTicketsDeleteResponse,
     z.ZodTypeDef,
     unknown
-  > = z.union([
-    components.DeleteTicketResponse$inboundSchema,
-    components.UnexpectedErrorResponse$inboundSchema,
-  ]);
+  > = z.object({
+    HttpMeta: components.HTTPMetadata$inboundSchema,
+    DeleteTicketResponse: components.DeleteTicketResponse$inboundSchema
+      .optional(),
+    UnexpectedErrorResponse: components.UnexpectedErrorResponse$inboundSchema
+      .optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "HttpMeta": "httpMeta",
+      "DeleteTicketResponse": "deleteTicketResponse",
+      "UnexpectedErrorResponse": "unexpectedErrorResponse",
+    });
+  });
 
 /** @internal */
-export type IssueTrackingCollectionTicketsDeleteResponse$Outbound =
-  | components.DeleteTicketResponse$Outbound
-  | components.UnexpectedErrorResponse$Outbound;
+export type IssueTrackingCollectionTicketsDeleteResponse$Outbound = {
+  HttpMeta: components.HTTPMetadata$Outbound;
+  DeleteTicketResponse?: components.DeleteTicketResponse$Outbound | undefined;
+  UnexpectedErrorResponse?:
+    | components.UnexpectedErrorResponse$Outbound
+    | undefined;
+};
 
 /** @internal */
 export const IssueTrackingCollectionTicketsDeleteResponse$outboundSchema:
@@ -164,10 +185,19 @@ export const IssueTrackingCollectionTicketsDeleteResponse$outboundSchema:
     IssueTrackingCollectionTicketsDeleteResponse$Outbound,
     z.ZodTypeDef,
     IssueTrackingCollectionTicketsDeleteResponse
-  > = z.union([
-    components.DeleteTicketResponse$outboundSchema,
-    components.UnexpectedErrorResponse$outboundSchema,
-  ]);
+  > = z.object({
+    httpMeta: components.HTTPMetadata$outboundSchema,
+    deleteTicketResponse: components.DeleteTicketResponse$outboundSchema
+      .optional(),
+    unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
+      .optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      httpMeta: "HttpMeta",
+      deleteTicketResponse: "DeleteTicketResponse",
+      unexpectedErrorResponse: "UnexpectedErrorResponse",
+    });
+  });
 
 /**
  * @internal

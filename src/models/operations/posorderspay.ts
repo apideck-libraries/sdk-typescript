@@ -37,9 +37,17 @@ export type PosOrdersPayRequest = {
   order: components.OrderInput;
 };
 
-export type PosOrdersPayResponse =
-  | components.CreateOrderResponse
-  | components.UnexpectedErrorResponse;
+export type PosOrdersPayResponse = {
+  httpMeta: components.HTTPMetadata;
+  /**
+   * Orders
+   */
+  createOrderResponse?: components.CreateOrderResponse | undefined;
+  /**
+   * Unexpected error
+   */
+  unexpectedErrorResponse?: components.UnexpectedErrorResponse | undefined;
+};
 
 /** @internal */
 export const PosOrdersPayGlobals$inboundSchema: z.ZodType<
@@ -141,25 +149,45 @@ export const PosOrdersPayResponse$inboundSchema: z.ZodType<
   PosOrdersPayResponse,
   z.ZodTypeDef,
   unknown
-> = z.union([
-  components.CreateOrderResponse$inboundSchema,
-  components.UnexpectedErrorResponse$inboundSchema,
-]);
+> = z.object({
+  HttpMeta: components.HTTPMetadata$inboundSchema,
+  CreateOrderResponse: components.CreateOrderResponse$inboundSchema.optional(),
+  UnexpectedErrorResponse: components.UnexpectedErrorResponse$inboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "HttpMeta": "httpMeta",
+    "CreateOrderResponse": "createOrderResponse",
+    "UnexpectedErrorResponse": "unexpectedErrorResponse",
+  });
+});
 
 /** @internal */
-export type PosOrdersPayResponse$Outbound =
-  | components.CreateOrderResponse$Outbound
-  | components.UnexpectedErrorResponse$Outbound;
+export type PosOrdersPayResponse$Outbound = {
+  HttpMeta: components.HTTPMetadata$Outbound;
+  CreateOrderResponse?: components.CreateOrderResponse$Outbound | undefined;
+  UnexpectedErrorResponse?:
+    | components.UnexpectedErrorResponse$Outbound
+    | undefined;
+};
 
 /** @internal */
 export const PosOrdersPayResponse$outboundSchema: z.ZodType<
   PosOrdersPayResponse$Outbound,
   z.ZodTypeDef,
   PosOrdersPayResponse
-> = z.union([
-  components.CreateOrderResponse$outboundSchema,
-  components.UnexpectedErrorResponse$outboundSchema,
-]);
+> = z.object({
+  httpMeta: components.HTTPMetadata$outboundSchema,
+  createOrderResponse: components.CreateOrderResponse$outboundSchema.optional(),
+  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    httpMeta: "HttpMeta",
+    createOrderResponse: "CreateOrderResponse",
+    unexpectedErrorResponse: "UnexpectedErrorResponse",
+  });
+});
 
 /**
  * @internal

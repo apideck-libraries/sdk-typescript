@@ -129,7 +129,7 @@ export async function accountingAccountingPurchaseOrdersDelete(
     headers: headers,
     query: query,
     body: body,
-    timeoutMs: options?.timeoutMs || client._options.timeoutMs || 1000,
+    timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
   }, options);
   if (!requestRes.ok) {
     return requestRes;
@@ -169,6 +169,7 @@ export async function accountingAccountingPurchaseOrdersDelete(
     M.json(
       200,
       operations.AccountingPurchaseOrdersDeleteResponse$inboundSchema,
+      { key: "DeletePurchaseOrderResponse" },
     ),
     M.jsonErr(400, errors.BadRequestResponse$inboundSchema),
     M.jsonErr(401, errors.UnauthorizedResponse$inboundSchema),
@@ -179,8 +180,9 @@ export async function accountingAccountingPurchaseOrdersDelete(
     M.json(
       "default",
       operations.AccountingPurchaseOrdersDeleteResponse$inboundSchema,
+      { key: "UnexpectedErrorResponse" },
     ),
-  )(response, { extraFields: responseFields });
+  )(response, req, { extraFields: responseFields });
   if (!result.ok) {
     return result;
   }

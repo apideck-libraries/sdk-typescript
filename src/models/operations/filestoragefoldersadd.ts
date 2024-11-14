@@ -33,9 +33,17 @@ export type FileStorageFoldersAddRequest = {
   createFolderRequest: components.CreateFolderRequest;
 };
 
-export type FileStorageFoldersAddResponse =
-  | components.CreateFolderResponse
-  | components.UnexpectedErrorResponse;
+export type FileStorageFoldersAddResponse = {
+  httpMeta: components.HTTPMetadata;
+  /**
+   * Folders
+   */
+  createFolderResponse?: components.CreateFolderResponse | undefined;
+  /**
+   * Unexpected error
+   */
+  unexpectedErrorResponse?: components.UnexpectedErrorResponse | undefined;
+};
 
 /** @internal */
 export const FileStorageFoldersAddGlobals$inboundSchema: z.ZodType<
@@ -134,25 +142,47 @@ export const FileStorageFoldersAddResponse$inboundSchema: z.ZodType<
   FileStorageFoldersAddResponse,
   z.ZodTypeDef,
   unknown
-> = z.union([
-  components.CreateFolderResponse$inboundSchema,
-  components.UnexpectedErrorResponse$inboundSchema,
-]);
+> = z.object({
+  HttpMeta: components.HTTPMetadata$inboundSchema,
+  CreateFolderResponse: components.CreateFolderResponse$inboundSchema
+    .optional(),
+  UnexpectedErrorResponse: components.UnexpectedErrorResponse$inboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "HttpMeta": "httpMeta",
+    "CreateFolderResponse": "createFolderResponse",
+    "UnexpectedErrorResponse": "unexpectedErrorResponse",
+  });
+});
 
 /** @internal */
-export type FileStorageFoldersAddResponse$Outbound =
-  | components.CreateFolderResponse$Outbound
-  | components.UnexpectedErrorResponse$Outbound;
+export type FileStorageFoldersAddResponse$Outbound = {
+  HttpMeta: components.HTTPMetadata$Outbound;
+  CreateFolderResponse?: components.CreateFolderResponse$Outbound | undefined;
+  UnexpectedErrorResponse?:
+    | components.UnexpectedErrorResponse$Outbound
+    | undefined;
+};
 
 /** @internal */
 export const FileStorageFoldersAddResponse$outboundSchema: z.ZodType<
   FileStorageFoldersAddResponse$Outbound,
   z.ZodTypeDef,
   FileStorageFoldersAddResponse
-> = z.union([
-  components.CreateFolderResponse$outboundSchema,
-  components.UnexpectedErrorResponse$outboundSchema,
-]);
+> = z.object({
+  httpMeta: components.HTTPMetadata$outboundSchema,
+  createFolderResponse: components.CreateFolderResponse$outboundSchema
+    .optional(),
+  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    httpMeta: "HttpMeta",
+    createFolderResponse: "CreateFolderResponse",
+    unexpectedErrorResponse: "UnexpectedErrorResponse",
+  });
+});
 
 /**
  * @internal

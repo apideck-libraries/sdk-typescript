@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod";
+import { remap as remap$ } from "../../lib/primitives.js";
 import * as components from "../components/index.js";
 
 export type AccountingDepartmentsAllGlobals = {
@@ -43,9 +44,19 @@ export type AccountingDepartmentsAllRequest = {
   filter?: components.AccountingDepartmentsFilter | undefined;
 };
 
-export type AccountingDepartmentsAllResponse =
-  | components.UnexpectedErrorResponse
-  | components.GetAccountingDepartmentsResponse;
+export type AccountingDepartmentsAllResponse = {
+  httpMeta: components.HTTPMetadata;
+  /**
+   * Departments
+   */
+  getAccountingDepartmentsResponse?:
+    | components.GetAccountingDepartmentsResponse
+    | undefined;
+  /**
+   * Unexpected error
+   */
+  unexpectedErrorResponse?: components.UnexpectedErrorResponse | undefined;
+};
 
 /** @internal */
 export const AccountingDepartmentsAllGlobals$inboundSchema: z.ZodType<
@@ -142,25 +153,49 @@ export const AccountingDepartmentsAllResponse$inboundSchema: z.ZodType<
   AccountingDepartmentsAllResponse,
   z.ZodTypeDef,
   unknown
-> = z.union([
-  components.UnexpectedErrorResponse$inboundSchema,
-  components.GetAccountingDepartmentsResponse$inboundSchema,
-]);
+> = z.object({
+  HttpMeta: components.HTTPMetadata$inboundSchema,
+  GetAccountingDepartmentsResponse: components
+    .GetAccountingDepartmentsResponse$inboundSchema.optional(),
+  UnexpectedErrorResponse: components.UnexpectedErrorResponse$inboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "HttpMeta": "httpMeta",
+    "GetAccountingDepartmentsResponse": "getAccountingDepartmentsResponse",
+    "UnexpectedErrorResponse": "unexpectedErrorResponse",
+  });
+});
 
 /** @internal */
-export type AccountingDepartmentsAllResponse$Outbound =
-  | components.UnexpectedErrorResponse$Outbound
-  | components.GetAccountingDepartmentsResponse$Outbound;
+export type AccountingDepartmentsAllResponse$Outbound = {
+  HttpMeta: components.HTTPMetadata$Outbound;
+  GetAccountingDepartmentsResponse?:
+    | components.GetAccountingDepartmentsResponse$Outbound
+    | undefined;
+  UnexpectedErrorResponse?:
+    | components.UnexpectedErrorResponse$Outbound
+    | undefined;
+};
 
 /** @internal */
 export const AccountingDepartmentsAllResponse$outboundSchema: z.ZodType<
   AccountingDepartmentsAllResponse$Outbound,
   z.ZodTypeDef,
   AccountingDepartmentsAllResponse
-> = z.union([
-  components.UnexpectedErrorResponse$outboundSchema,
-  components.GetAccountingDepartmentsResponse$outboundSchema,
-]);
+> = z.object({
+  httpMeta: components.HTTPMetadata$outboundSchema,
+  getAccountingDepartmentsResponse: components
+    .GetAccountingDepartmentsResponse$outboundSchema.optional(),
+  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    httpMeta: "HttpMeta",
+    getAccountingDepartmentsResponse: "GetAccountingDepartmentsResponse",
+    unexpectedErrorResponse: "UnexpectedErrorResponse",
+  });
+});
 
 /**
  * @internal

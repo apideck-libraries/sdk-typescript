@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod";
+import { remap as remap$ } from "../../lib/primitives.js";
 import * as components from "../components/index.js";
 
 export type AtsJobsOneGlobals = {
@@ -35,9 +36,17 @@ export type AtsJobsOneRequest = {
   fields?: string | null | undefined;
 };
 
-export type AtsJobsOneResponse =
-  | components.GetJobResponse
-  | components.UnexpectedErrorResponse;
+export type AtsJobsOneResponse = {
+  httpMeta: components.HTTPMetadata;
+  /**
+   * Jobs
+   */
+  getJobResponse?: components.GetJobResponse | undefined;
+  /**
+   * Unexpected error
+   */
+  unexpectedErrorResponse?: components.UnexpectedErrorResponse | undefined;
+};
 
 /** @internal */
 export const AtsJobsOneGlobals$inboundSchema: z.ZodType<
@@ -128,25 +137,45 @@ export const AtsJobsOneResponse$inboundSchema: z.ZodType<
   AtsJobsOneResponse,
   z.ZodTypeDef,
   unknown
-> = z.union([
-  components.GetJobResponse$inboundSchema,
-  components.UnexpectedErrorResponse$inboundSchema,
-]);
+> = z.object({
+  HttpMeta: components.HTTPMetadata$inboundSchema,
+  GetJobResponse: components.GetJobResponse$inboundSchema.optional(),
+  UnexpectedErrorResponse: components.UnexpectedErrorResponse$inboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "HttpMeta": "httpMeta",
+    "GetJobResponse": "getJobResponse",
+    "UnexpectedErrorResponse": "unexpectedErrorResponse",
+  });
+});
 
 /** @internal */
-export type AtsJobsOneResponse$Outbound =
-  | components.GetJobResponse$Outbound
-  | components.UnexpectedErrorResponse$Outbound;
+export type AtsJobsOneResponse$Outbound = {
+  HttpMeta: components.HTTPMetadata$Outbound;
+  GetJobResponse?: components.GetJobResponse$Outbound | undefined;
+  UnexpectedErrorResponse?:
+    | components.UnexpectedErrorResponse$Outbound
+    | undefined;
+};
 
 /** @internal */
 export const AtsJobsOneResponse$outboundSchema: z.ZodType<
   AtsJobsOneResponse$Outbound,
   z.ZodTypeDef,
   AtsJobsOneResponse
-> = z.union([
-  components.GetJobResponse$outboundSchema,
-  components.UnexpectedErrorResponse$outboundSchema,
-]);
+> = z.object({
+  httpMeta: components.HTTPMetadata$outboundSchema,
+  getJobResponse: components.GetJobResponse$outboundSchema.optional(),
+  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    httpMeta: "HttpMeta",
+    getJobResponse: "GetJobResponse",
+    unexpectedErrorResponse: "UnexpectedErrorResponse",
+  });
+});
 
 /**
  * @internal

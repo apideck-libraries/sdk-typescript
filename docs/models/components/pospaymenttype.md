@@ -19,7 +19,7 @@ The type of external payment the seller received. It can be one of the following
 ```typescript
 import { PosPaymentType } from "apideck/models/components";
 
-let value: PosPaymentType = "crypto";
+let value: PosPaymentType = "square_cash";
 ```
 
 ## Values

@@ -29,9 +29,17 @@ export type PosMerchantsAddRequest = {
   merchant: components.MerchantInput;
 };
 
-export type PosMerchantsAddResponse =
-  | components.CreateMerchantResponse
-  | components.UnexpectedErrorResponse;
+export type PosMerchantsAddResponse = {
+  httpMeta: components.HTTPMetadata;
+  /**
+   * Merchants
+   */
+  createMerchantResponse?: components.CreateMerchantResponse | undefined;
+  /**
+   * Unexpected error
+   */
+  unexpectedErrorResponse?: components.UnexpectedErrorResponse | undefined;
+};
 
 /** @internal */
 export const PosMerchantsAddGlobals$inboundSchema: z.ZodType<
@@ -127,25 +135,49 @@ export const PosMerchantsAddResponse$inboundSchema: z.ZodType<
   PosMerchantsAddResponse,
   z.ZodTypeDef,
   unknown
-> = z.union([
-  components.CreateMerchantResponse$inboundSchema,
-  components.UnexpectedErrorResponse$inboundSchema,
-]);
+> = z.object({
+  HttpMeta: components.HTTPMetadata$inboundSchema,
+  CreateMerchantResponse: components.CreateMerchantResponse$inboundSchema
+    .optional(),
+  UnexpectedErrorResponse: components.UnexpectedErrorResponse$inboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "HttpMeta": "httpMeta",
+    "CreateMerchantResponse": "createMerchantResponse",
+    "UnexpectedErrorResponse": "unexpectedErrorResponse",
+  });
+});
 
 /** @internal */
-export type PosMerchantsAddResponse$Outbound =
-  | components.CreateMerchantResponse$Outbound
-  | components.UnexpectedErrorResponse$Outbound;
+export type PosMerchantsAddResponse$Outbound = {
+  HttpMeta: components.HTTPMetadata$Outbound;
+  CreateMerchantResponse?:
+    | components.CreateMerchantResponse$Outbound
+    | undefined;
+  UnexpectedErrorResponse?:
+    | components.UnexpectedErrorResponse$Outbound
+    | undefined;
+};
 
 /** @internal */
 export const PosMerchantsAddResponse$outboundSchema: z.ZodType<
   PosMerchantsAddResponse$Outbound,
   z.ZodTypeDef,
   PosMerchantsAddResponse
-> = z.union([
-  components.CreateMerchantResponse$outboundSchema,
-  components.UnexpectedErrorResponse$outboundSchema,
-]);
+> = z.object({
+  httpMeta: components.HTTPMetadata$outboundSchema,
+  createMerchantResponse: components.CreateMerchantResponse$outboundSchema
+    .optional(),
+  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    httpMeta: "HttpMeta",
+    createMerchantResponse: "CreateMerchantResponse",
+    unexpectedErrorResponse: "UnexpectedErrorResponse",
+  });
+});
 
 /**
  * @internal

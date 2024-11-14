@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod";
+import { remap as remap$ } from "../../lib/primitives.js";
 import * as components from "../components/index.js";
 
 export type AccountingPurchaseOrdersDeleteGlobals = {
@@ -31,9 +32,19 @@ export type AccountingPurchaseOrdersDeleteRequest = {
   raw?: boolean | undefined;
 };
 
-export type AccountingPurchaseOrdersDeleteResponse =
-  | components.DeletePurchaseOrderResponse
-  | components.UnexpectedErrorResponse;
+export type AccountingPurchaseOrdersDeleteResponse = {
+  httpMeta: components.HTTPMetadata;
+  /**
+   * PurchaseOrders
+   */
+  deletePurchaseOrderResponse?:
+    | components.DeletePurchaseOrderResponse
+    | undefined;
+  /**
+   * Unexpected error
+   */
+  unexpectedErrorResponse?: components.UnexpectedErrorResponse | undefined;
+};
 
 /** @internal */
 export const AccountingPurchaseOrdersDeleteGlobals$inboundSchema: z.ZodType<
@@ -125,25 +136,49 @@ export const AccountingPurchaseOrdersDeleteResponse$inboundSchema: z.ZodType<
   AccountingPurchaseOrdersDeleteResponse,
   z.ZodTypeDef,
   unknown
-> = z.union([
-  components.DeletePurchaseOrderResponse$inboundSchema,
-  components.UnexpectedErrorResponse$inboundSchema,
-]);
+> = z.object({
+  HttpMeta: components.HTTPMetadata$inboundSchema,
+  DeletePurchaseOrderResponse: components
+    .DeletePurchaseOrderResponse$inboundSchema.optional(),
+  UnexpectedErrorResponse: components.UnexpectedErrorResponse$inboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "HttpMeta": "httpMeta",
+    "DeletePurchaseOrderResponse": "deletePurchaseOrderResponse",
+    "UnexpectedErrorResponse": "unexpectedErrorResponse",
+  });
+});
 
 /** @internal */
-export type AccountingPurchaseOrdersDeleteResponse$Outbound =
-  | components.DeletePurchaseOrderResponse$Outbound
-  | components.UnexpectedErrorResponse$Outbound;
+export type AccountingPurchaseOrdersDeleteResponse$Outbound = {
+  HttpMeta: components.HTTPMetadata$Outbound;
+  DeletePurchaseOrderResponse?:
+    | components.DeletePurchaseOrderResponse$Outbound
+    | undefined;
+  UnexpectedErrorResponse?:
+    | components.UnexpectedErrorResponse$Outbound
+    | undefined;
+};
 
 /** @internal */
 export const AccountingPurchaseOrdersDeleteResponse$outboundSchema: z.ZodType<
   AccountingPurchaseOrdersDeleteResponse$Outbound,
   z.ZodTypeDef,
   AccountingPurchaseOrdersDeleteResponse
-> = z.union([
-  components.DeletePurchaseOrderResponse$outboundSchema,
-  components.UnexpectedErrorResponse$outboundSchema,
-]);
+> = z.object({
+  httpMeta: components.HTTPMetadata$outboundSchema,
+  deletePurchaseOrderResponse: components
+    .DeletePurchaseOrderResponse$outboundSchema.optional(),
+  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    httpMeta: "HttpMeta",
+    deletePurchaseOrderResponse: "DeletePurchaseOrderResponse",
+    unexpectedErrorResponse: "UnexpectedErrorResponse",
+  });
+});
 
 /**
  * @internal

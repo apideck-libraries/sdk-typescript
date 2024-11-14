@@ -29,9 +29,19 @@ export type AccountingTrackingCategoriesAddRequest = {
   trackingCategory: components.TrackingCategoryInput;
 };
 
-export type AccountingTrackingCategoriesAddResponse =
-  | components.CreateTrackingCategoryResponse
-  | components.UnexpectedErrorResponse;
+export type AccountingTrackingCategoriesAddResponse = {
+  httpMeta: components.HTTPMetadata;
+  /**
+   * Tracking category created
+   */
+  createTrackingCategoryResponse?:
+    | components.CreateTrackingCategoryResponse
+    | undefined;
+  /**
+   * Unexpected error
+   */
+  unexpectedErrorResponse?: components.UnexpectedErrorResponse | undefined;
+};
 
 /** @internal */
 export const AccountingTrackingCategoriesAddGlobals$inboundSchema: z.ZodType<
@@ -131,25 +141,49 @@ export const AccountingTrackingCategoriesAddResponse$inboundSchema: z.ZodType<
   AccountingTrackingCategoriesAddResponse,
   z.ZodTypeDef,
   unknown
-> = z.union([
-  components.CreateTrackingCategoryResponse$inboundSchema,
-  components.UnexpectedErrorResponse$inboundSchema,
-]);
+> = z.object({
+  HttpMeta: components.HTTPMetadata$inboundSchema,
+  CreateTrackingCategoryResponse: components
+    .CreateTrackingCategoryResponse$inboundSchema.optional(),
+  UnexpectedErrorResponse: components.UnexpectedErrorResponse$inboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "HttpMeta": "httpMeta",
+    "CreateTrackingCategoryResponse": "createTrackingCategoryResponse",
+    "UnexpectedErrorResponse": "unexpectedErrorResponse",
+  });
+});
 
 /** @internal */
-export type AccountingTrackingCategoriesAddResponse$Outbound =
-  | components.CreateTrackingCategoryResponse$Outbound
-  | components.UnexpectedErrorResponse$Outbound;
+export type AccountingTrackingCategoriesAddResponse$Outbound = {
+  HttpMeta: components.HTTPMetadata$Outbound;
+  CreateTrackingCategoryResponse?:
+    | components.CreateTrackingCategoryResponse$Outbound
+    | undefined;
+  UnexpectedErrorResponse?:
+    | components.UnexpectedErrorResponse$Outbound
+    | undefined;
+};
 
 /** @internal */
 export const AccountingTrackingCategoriesAddResponse$outboundSchema: z.ZodType<
   AccountingTrackingCategoriesAddResponse$Outbound,
   z.ZodTypeDef,
   AccountingTrackingCategoriesAddResponse
-> = z.union([
-  components.CreateTrackingCategoryResponse$outboundSchema,
-  components.UnexpectedErrorResponse$outboundSchema,
-]);
+> = z.object({
+  httpMeta: components.HTTPMetadata$outboundSchema,
+  createTrackingCategoryResponse: components
+    .CreateTrackingCategoryResponse$outboundSchema.optional(),
+  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    httpMeta: "HttpMeta",
+    createTrackingCategoryResponse: "CreateTrackingCategoryResponse",
+    unexpectedErrorResponse: "UnexpectedErrorResponse",
+  });
+});
 
 /**
  * @internal

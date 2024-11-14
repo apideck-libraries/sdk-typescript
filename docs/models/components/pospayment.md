@@ -84,7 +84,7 @@ let value: PosPayment = {
     country: "US",
   },
   externalDetails: {
-    type: "square_cash",
+    type: "crypto",
     source: "<value>",
     sourceFeeAmount: 2.5,
   },

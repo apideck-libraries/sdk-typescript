@@ -31,13 +31,12 @@ let value: VaultConnectionSettingsUpdateRequest = {
             options: [
               {
                 label: "General Channel",
-                value: [
-                  "team",
-                  "general",
-                ],
+                value: 123,
               },
             ],
-            value: 10,
+            value: [
+              "GC6000 series",
+            ],
           },
         ],
       },

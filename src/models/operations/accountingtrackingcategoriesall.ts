@@ -44,9 +44,19 @@ export type AccountingTrackingCategoriesAllRequest = {
   fields?: string | null | undefined;
 };
 
-export type AccountingTrackingCategoriesAllResponse =
-  | components.UnexpectedErrorResponse
-  | components.GetTrackingCategoriesResponse;
+export type AccountingTrackingCategoriesAllResponse = {
+  httpMeta: components.HTTPMetadata;
+  /**
+   * Tracking categories
+   */
+  getTrackingCategoriesResponse?:
+    | components.GetTrackingCategoriesResponse
+    | undefined;
+  /**
+   * Unexpected error
+   */
+  unexpectedErrorResponse?: components.UnexpectedErrorResponse | undefined;
+};
 
 /** @internal */
 export const AccountingTrackingCategoriesAllGlobals$inboundSchema: z.ZodType<
@@ -155,25 +165,49 @@ export const AccountingTrackingCategoriesAllResponse$inboundSchema: z.ZodType<
   AccountingTrackingCategoriesAllResponse,
   z.ZodTypeDef,
   unknown
-> = z.union([
-  components.UnexpectedErrorResponse$inboundSchema,
-  components.GetTrackingCategoriesResponse$inboundSchema,
-]);
+> = z.object({
+  HttpMeta: components.HTTPMetadata$inboundSchema,
+  GetTrackingCategoriesResponse: components
+    .GetTrackingCategoriesResponse$inboundSchema.optional(),
+  UnexpectedErrorResponse: components.UnexpectedErrorResponse$inboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "HttpMeta": "httpMeta",
+    "GetTrackingCategoriesResponse": "getTrackingCategoriesResponse",
+    "UnexpectedErrorResponse": "unexpectedErrorResponse",
+  });
+});
 
 /** @internal */
-export type AccountingTrackingCategoriesAllResponse$Outbound =
-  | components.UnexpectedErrorResponse$Outbound
-  | components.GetTrackingCategoriesResponse$Outbound;
+export type AccountingTrackingCategoriesAllResponse$Outbound = {
+  HttpMeta: components.HTTPMetadata$Outbound;
+  GetTrackingCategoriesResponse?:
+    | components.GetTrackingCategoriesResponse$Outbound
+    | undefined;
+  UnexpectedErrorResponse?:
+    | components.UnexpectedErrorResponse$Outbound
+    | undefined;
+};
 
 /** @internal */
 export const AccountingTrackingCategoriesAllResponse$outboundSchema: z.ZodType<
   AccountingTrackingCategoriesAllResponse$Outbound,
   z.ZodTypeDef,
   AccountingTrackingCategoriesAllResponse
-> = z.union([
-  components.UnexpectedErrorResponse$outboundSchema,
-  components.GetTrackingCategoriesResponse$outboundSchema,
-]);
+> = z.object({
+  httpMeta: components.HTTPMetadata$outboundSchema,
+  getTrackingCategoriesResponse: components
+    .GetTrackingCategoriesResponse$outboundSchema.optional(),
+  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    httpMeta: "HttpMeta",
+    getTrackingCategoriesResponse: "GetTrackingCategoriesResponse",
+    unexpectedErrorResponse: "UnexpectedErrorResponse",
+  });
+});
 
 /**
  * @internal

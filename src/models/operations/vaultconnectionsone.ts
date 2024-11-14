@@ -28,9 +28,17 @@ export type VaultConnectionsOneRequest = {
   unifiedApi: string;
 };
 
-export type VaultConnectionsOneResponse =
-  | components.GetConnectionResponse
-  | components.UnexpectedErrorResponse;
+export type VaultConnectionsOneResponse = {
+  httpMeta: components.HTTPMetadata;
+  /**
+   * Connection
+   */
+  getConnectionResponse?: components.GetConnectionResponse | undefined;
+  /**
+   * Unexpected error
+   */
+  unexpectedErrorResponse?: components.UnexpectedErrorResponse | undefined;
+};
 
 /** @internal */
 export const VaultConnectionsOneGlobals$inboundSchema: z.ZodType<
@@ -125,25 +133,47 @@ export const VaultConnectionsOneResponse$inboundSchema: z.ZodType<
   VaultConnectionsOneResponse,
   z.ZodTypeDef,
   unknown
-> = z.union([
-  components.GetConnectionResponse$inboundSchema,
-  components.UnexpectedErrorResponse$inboundSchema,
-]);
+> = z.object({
+  HttpMeta: components.HTTPMetadata$inboundSchema,
+  GetConnectionResponse: components.GetConnectionResponse$inboundSchema
+    .optional(),
+  UnexpectedErrorResponse: components.UnexpectedErrorResponse$inboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "HttpMeta": "httpMeta",
+    "GetConnectionResponse": "getConnectionResponse",
+    "UnexpectedErrorResponse": "unexpectedErrorResponse",
+  });
+});
 
 /** @internal */
-export type VaultConnectionsOneResponse$Outbound =
-  | components.GetConnectionResponse$Outbound
-  | components.UnexpectedErrorResponse$Outbound;
+export type VaultConnectionsOneResponse$Outbound = {
+  HttpMeta: components.HTTPMetadata$Outbound;
+  GetConnectionResponse?: components.GetConnectionResponse$Outbound | undefined;
+  UnexpectedErrorResponse?:
+    | components.UnexpectedErrorResponse$Outbound
+    | undefined;
+};
 
 /** @internal */
 export const VaultConnectionsOneResponse$outboundSchema: z.ZodType<
   VaultConnectionsOneResponse$Outbound,
   z.ZodTypeDef,
   VaultConnectionsOneResponse
-> = z.union([
-  components.GetConnectionResponse$outboundSchema,
-  components.UnexpectedErrorResponse$outboundSchema,
-]);
+> = z.object({
+  httpMeta: components.HTTPMetadata$outboundSchema,
+  getConnectionResponse: components.GetConnectionResponse$outboundSchema
+    .optional(),
+  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    httpMeta: "HttpMeta",
+    getConnectionResponse: "GetConnectionResponse",
+    unexpectedErrorResponse: "UnexpectedErrorResponse",
+  });
+});
 
 /**
  * @internal

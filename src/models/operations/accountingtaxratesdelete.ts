@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod";
+import { remap as remap$ } from "../../lib/primitives.js";
 import * as components from "../components/index.js";
 
 export type AccountingTaxRatesDeleteGlobals = {
@@ -31,9 +32,17 @@ export type AccountingTaxRatesDeleteRequest = {
   raw?: boolean | undefined;
 };
 
-export type AccountingTaxRatesDeleteResponse =
-  | components.DeleteTaxRateResponse
-  | components.UnexpectedErrorResponse;
+export type AccountingTaxRatesDeleteResponse = {
+  httpMeta: components.HTTPMetadata;
+  /**
+   * TaxRates deleted
+   */
+  deleteTaxRateResponse?: components.DeleteTaxRateResponse | undefined;
+  /**
+   * Unexpected error
+   */
+  unexpectedErrorResponse?: components.UnexpectedErrorResponse | undefined;
+};
 
 /** @internal */
 export const AccountingTaxRatesDeleteGlobals$inboundSchema: z.ZodType<
@@ -121,25 +130,47 @@ export const AccountingTaxRatesDeleteResponse$inboundSchema: z.ZodType<
   AccountingTaxRatesDeleteResponse,
   z.ZodTypeDef,
   unknown
-> = z.union([
-  components.DeleteTaxRateResponse$inboundSchema,
-  components.UnexpectedErrorResponse$inboundSchema,
-]);
+> = z.object({
+  HttpMeta: components.HTTPMetadata$inboundSchema,
+  DeleteTaxRateResponse: components.DeleteTaxRateResponse$inboundSchema
+    .optional(),
+  UnexpectedErrorResponse: components.UnexpectedErrorResponse$inboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "HttpMeta": "httpMeta",
+    "DeleteTaxRateResponse": "deleteTaxRateResponse",
+    "UnexpectedErrorResponse": "unexpectedErrorResponse",
+  });
+});
 
 /** @internal */
-export type AccountingTaxRatesDeleteResponse$Outbound =
-  | components.DeleteTaxRateResponse$Outbound
-  | components.UnexpectedErrorResponse$Outbound;
+export type AccountingTaxRatesDeleteResponse$Outbound = {
+  HttpMeta: components.HTTPMetadata$Outbound;
+  DeleteTaxRateResponse?: components.DeleteTaxRateResponse$Outbound | undefined;
+  UnexpectedErrorResponse?:
+    | components.UnexpectedErrorResponse$Outbound
+    | undefined;
+};
 
 /** @internal */
 export const AccountingTaxRatesDeleteResponse$outboundSchema: z.ZodType<
   AccountingTaxRatesDeleteResponse$Outbound,
   z.ZodTypeDef,
   AccountingTaxRatesDeleteResponse
-> = z.union([
-  components.DeleteTaxRateResponse$outboundSchema,
-  components.UnexpectedErrorResponse$outboundSchema,
-]);
+> = z.object({
+  httpMeta: components.HTTPMetadata$outboundSchema,
+  deleteTaxRateResponse: components.DeleteTaxRateResponse$outboundSchema
+    .optional(),
+  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    httpMeta: "HttpMeta",
+    deleteTaxRateResponse: "DeleteTaxRateResponse",
+    unexpectedErrorResponse: "UnexpectedErrorResponse",
+  });
+});
 
 /**
  * @internal

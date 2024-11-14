@@ -137,7 +137,7 @@ export async function fileStorageFileStorageUploadSessionsOne(
     headers: headers,
     query: query,
     body: body,
-    timeoutMs: options?.timeoutMs || client._options.timeoutMs || 1000,
+    timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
   }, options);
   if (!requestRes.ok) {
     return requestRes;
@@ -174,7 +174,9 @@ export async function fileStorageFileStorageUploadSessionsOne(
     | RequestTimeoutError
     | ConnectionError
   >(
-    M.json(200, operations.FileStorageUploadSessionsOneResponse$inboundSchema),
+    M.json(200, operations.FileStorageUploadSessionsOneResponse$inboundSchema, {
+      key: "GetUploadSessionResponse",
+    }),
     M.jsonErr(400, errors.BadRequestResponse$inboundSchema),
     M.jsonErr(401, errors.UnauthorizedResponse$inboundSchema),
     M.jsonErr(402, errors.PaymentRequiredResponse$inboundSchema),
@@ -184,8 +186,9 @@ export async function fileStorageFileStorageUploadSessionsOne(
     M.json(
       "default",
       operations.FileStorageUploadSessionsOneResponse$inboundSchema,
+      { key: "UnexpectedErrorResponse" },
     ),
-  )(response, { extraFields: responseFields });
+  )(response, req, { extraFields: responseFields });
   if (!result.ok) {
     return result;
   }

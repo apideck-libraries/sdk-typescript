@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod";
+import { remap as remap$ } from "../../lib/primitives.js";
 import * as components from "../components/index.js";
 
 export type HrisDepartmentsOneGlobals = {
@@ -35,9 +36,17 @@ export type HrisDepartmentsOneRequest = {
   fields?: string | null | undefined;
 };
 
-export type HrisDepartmentsOneResponse =
-  | components.GetDepartmentResponse
-  | components.UnexpectedErrorResponse;
+export type HrisDepartmentsOneResponse = {
+  httpMeta: components.HTTPMetadata;
+  /**
+   * Departments
+   */
+  getDepartmentResponse?: components.GetDepartmentResponse | undefined;
+  /**
+   * Unexpected error
+   */
+  unexpectedErrorResponse?: components.UnexpectedErrorResponse | undefined;
+};
 
 /** @internal */
 export const HrisDepartmentsOneGlobals$inboundSchema: z.ZodType<
@@ -128,25 +137,47 @@ export const HrisDepartmentsOneResponse$inboundSchema: z.ZodType<
   HrisDepartmentsOneResponse,
   z.ZodTypeDef,
   unknown
-> = z.union([
-  components.GetDepartmentResponse$inboundSchema,
-  components.UnexpectedErrorResponse$inboundSchema,
-]);
+> = z.object({
+  HttpMeta: components.HTTPMetadata$inboundSchema,
+  GetDepartmentResponse: components.GetDepartmentResponse$inboundSchema
+    .optional(),
+  UnexpectedErrorResponse: components.UnexpectedErrorResponse$inboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "HttpMeta": "httpMeta",
+    "GetDepartmentResponse": "getDepartmentResponse",
+    "UnexpectedErrorResponse": "unexpectedErrorResponse",
+  });
+});
 
 /** @internal */
-export type HrisDepartmentsOneResponse$Outbound =
-  | components.GetDepartmentResponse$Outbound
-  | components.UnexpectedErrorResponse$Outbound;
+export type HrisDepartmentsOneResponse$Outbound = {
+  HttpMeta: components.HTTPMetadata$Outbound;
+  GetDepartmentResponse?: components.GetDepartmentResponse$Outbound | undefined;
+  UnexpectedErrorResponse?:
+    | components.UnexpectedErrorResponse$Outbound
+    | undefined;
+};
 
 /** @internal */
 export const HrisDepartmentsOneResponse$outboundSchema: z.ZodType<
   HrisDepartmentsOneResponse$Outbound,
   z.ZodTypeDef,
   HrisDepartmentsOneResponse
-> = z.union([
-  components.GetDepartmentResponse$outboundSchema,
-  components.UnexpectedErrorResponse$outboundSchema,
-]);
+> = z.object({
+  httpMeta: components.HTTPMetadata$outboundSchema,
+  getDepartmentResponse: components.GetDepartmentResponse$outboundSchema
+    .optional(),
+  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    httpMeta: "HttpMeta",
+    getDepartmentResponse: "GetDepartmentResponse",
+    unexpectedErrorResponse: "UnexpectedErrorResponse",
+  });
+});
 
 /**
  * @internal

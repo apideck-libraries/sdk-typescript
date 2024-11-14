@@ -40,9 +40,19 @@ export type HrisEmployeePayrollsOneRequest = {
   fields?: string | null | undefined;
 };
 
-export type HrisEmployeePayrollsOneResponse =
-  | components.GetEmployeePayrollResponse
-  | components.UnexpectedErrorResponse;
+export type HrisEmployeePayrollsOneResponse = {
+  httpMeta: components.HTTPMetadata;
+  /**
+   * Payrolls
+   */
+  getEmployeePayrollResponse?:
+    | components.GetEmployeePayrollResponse
+    | undefined;
+  /**
+   * Unexpected error
+   */
+  unexpectedErrorResponse?: components.UnexpectedErrorResponse | undefined;
+};
 
 /** @internal */
 export const HrisEmployeePayrollsOneGlobals$inboundSchema: z.ZodType<
@@ -146,25 +156,49 @@ export const HrisEmployeePayrollsOneResponse$inboundSchema: z.ZodType<
   HrisEmployeePayrollsOneResponse,
   z.ZodTypeDef,
   unknown
-> = z.union([
-  components.GetEmployeePayrollResponse$inboundSchema,
-  components.UnexpectedErrorResponse$inboundSchema,
-]);
+> = z.object({
+  HttpMeta: components.HTTPMetadata$inboundSchema,
+  GetEmployeePayrollResponse: components
+    .GetEmployeePayrollResponse$inboundSchema.optional(),
+  UnexpectedErrorResponse: components.UnexpectedErrorResponse$inboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "HttpMeta": "httpMeta",
+    "GetEmployeePayrollResponse": "getEmployeePayrollResponse",
+    "UnexpectedErrorResponse": "unexpectedErrorResponse",
+  });
+});
 
 /** @internal */
-export type HrisEmployeePayrollsOneResponse$Outbound =
-  | components.GetEmployeePayrollResponse$Outbound
-  | components.UnexpectedErrorResponse$Outbound;
+export type HrisEmployeePayrollsOneResponse$Outbound = {
+  HttpMeta: components.HTTPMetadata$Outbound;
+  GetEmployeePayrollResponse?:
+    | components.GetEmployeePayrollResponse$Outbound
+    | undefined;
+  UnexpectedErrorResponse?:
+    | components.UnexpectedErrorResponse$Outbound
+    | undefined;
+};
 
 /** @internal */
 export const HrisEmployeePayrollsOneResponse$outboundSchema: z.ZodType<
   HrisEmployeePayrollsOneResponse$Outbound,
   z.ZodTypeDef,
   HrisEmployeePayrollsOneResponse
-> = z.union([
-  components.GetEmployeePayrollResponse$outboundSchema,
-  components.UnexpectedErrorResponse$outboundSchema,
-]);
+> = z.object({
+  httpMeta: components.HTTPMetadata$outboundSchema,
+  getEmployeePayrollResponse: components
+    .GetEmployeePayrollResponse$outboundSchema.optional(),
+  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    httpMeta: "HttpMeta",
+    getEmployeePayrollResponse: "GetEmployeePayrollResponse",
+    unexpectedErrorResponse: "UnexpectedErrorResponse",
+  });
+});
 
 /**
  * @internal

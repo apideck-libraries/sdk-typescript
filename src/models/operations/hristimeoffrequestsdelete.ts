@@ -36,9 +36,19 @@ export type HrisTimeOffRequestsDeleteRequest = {
   employeeId: string;
 };
 
-export type HrisTimeOffRequestsDeleteResponse =
-  | components.DeleteTimeOffRequestResponse
-  | components.UnexpectedErrorResponse;
+export type HrisTimeOffRequestsDeleteResponse = {
+  httpMeta: components.HTTPMetadata;
+  /**
+   * TimeOffRequests
+   */
+  deleteTimeOffRequestResponse?:
+    | components.DeleteTimeOffRequestResponse
+    | undefined;
+  /**
+   * Unexpected error
+   */
+  unexpectedErrorResponse?: components.UnexpectedErrorResponse | undefined;
+};
 
 /** @internal */
 export const HrisTimeOffRequestsDeleteGlobals$inboundSchema: z.ZodType<
@@ -137,25 +147,49 @@ export const HrisTimeOffRequestsDeleteResponse$inboundSchema: z.ZodType<
   HrisTimeOffRequestsDeleteResponse,
   z.ZodTypeDef,
   unknown
-> = z.union([
-  components.DeleteTimeOffRequestResponse$inboundSchema,
-  components.UnexpectedErrorResponse$inboundSchema,
-]);
+> = z.object({
+  HttpMeta: components.HTTPMetadata$inboundSchema,
+  DeleteTimeOffRequestResponse: components
+    .DeleteTimeOffRequestResponse$inboundSchema.optional(),
+  UnexpectedErrorResponse: components.UnexpectedErrorResponse$inboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "HttpMeta": "httpMeta",
+    "DeleteTimeOffRequestResponse": "deleteTimeOffRequestResponse",
+    "UnexpectedErrorResponse": "unexpectedErrorResponse",
+  });
+});
 
 /** @internal */
-export type HrisTimeOffRequestsDeleteResponse$Outbound =
-  | components.DeleteTimeOffRequestResponse$Outbound
-  | components.UnexpectedErrorResponse$Outbound;
+export type HrisTimeOffRequestsDeleteResponse$Outbound = {
+  HttpMeta: components.HTTPMetadata$Outbound;
+  DeleteTimeOffRequestResponse?:
+    | components.DeleteTimeOffRequestResponse$Outbound
+    | undefined;
+  UnexpectedErrorResponse?:
+    | components.UnexpectedErrorResponse$Outbound
+    | undefined;
+};
 
 /** @internal */
 export const HrisTimeOffRequestsDeleteResponse$outboundSchema: z.ZodType<
   HrisTimeOffRequestsDeleteResponse$Outbound,
   z.ZodTypeDef,
   HrisTimeOffRequestsDeleteResponse
-> = z.union([
-  components.DeleteTimeOffRequestResponse$outboundSchema,
-  components.UnexpectedErrorResponse$outboundSchema,
-]);
+> = z.object({
+  httpMeta: components.HTTPMetadata$outboundSchema,
+  deleteTimeOffRequestResponse: components
+    .DeleteTimeOffRequestResponse$outboundSchema.optional(),
+  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    httpMeta: "HttpMeta",
+    deleteTimeOffRequestResponse: "DeleteTimeOffRequestResponse",
+    unexpectedErrorResponse: "UnexpectedErrorResponse",
+  });
+});
 
 /**
  * @internal

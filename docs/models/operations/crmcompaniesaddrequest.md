@@ -113,7 +113,7 @@ let value: CrmCompaniesAddRequest = {
         name: "employee_level",
         description: "Employee Level",
         value: [
-          "<value>",
+          {},
         ],
       },
     ],

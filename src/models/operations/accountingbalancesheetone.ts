@@ -36,9 +36,17 @@ export type AccountingBalanceSheetOneRequest = {
   raw?: boolean | undefined;
 };
 
-export type AccountingBalanceSheetOneResponse =
-  | components.GetBalanceSheetResponse
-  | components.UnexpectedErrorResponse;
+export type AccountingBalanceSheetOneResponse = {
+  httpMeta: components.HTTPMetadata;
+  /**
+   * BalanceSheet
+   */
+  getBalanceSheetResponse?: components.GetBalanceSheetResponse | undefined;
+  /**
+   * Unexpected error
+   */
+  unexpectedErrorResponse?: components.UnexpectedErrorResponse | undefined;
+};
 
 /** @internal */
 export const AccountingBalanceSheetOneGlobals$inboundSchema: z.ZodType<
@@ -137,25 +145,49 @@ export const AccountingBalanceSheetOneResponse$inboundSchema: z.ZodType<
   AccountingBalanceSheetOneResponse,
   z.ZodTypeDef,
   unknown
-> = z.union([
-  components.GetBalanceSheetResponse$inboundSchema,
-  components.UnexpectedErrorResponse$inboundSchema,
-]);
+> = z.object({
+  HttpMeta: components.HTTPMetadata$inboundSchema,
+  GetBalanceSheetResponse: components.GetBalanceSheetResponse$inboundSchema
+    .optional(),
+  UnexpectedErrorResponse: components.UnexpectedErrorResponse$inboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "HttpMeta": "httpMeta",
+    "GetBalanceSheetResponse": "getBalanceSheetResponse",
+    "UnexpectedErrorResponse": "unexpectedErrorResponse",
+  });
+});
 
 /** @internal */
-export type AccountingBalanceSheetOneResponse$Outbound =
-  | components.GetBalanceSheetResponse$Outbound
-  | components.UnexpectedErrorResponse$Outbound;
+export type AccountingBalanceSheetOneResponse$Outbound = {
+  HttpMeta: components.HTTPMetadata$Outbound;
+  GetBalanceSheetResponse?:
+    | components.GetBalanceSheetResponse$Outbound
+    | undefined;
+  UnexpectedErrorResponse?:
+    | components.UnexpectedErrorResponse$Outbound
+    | undefined;
+};
 
 /** @internal */
 export const AccountingBalanceSheetOneResponse$outboundSchema: z.ZodType<
   AccountingBalanceSheetOneResponse$Outbound,
   z.ZodTypeDef,
   AccountingBalanceSheetOneResponse
-> = z.union([
-  components.GetBalanceSheetResponse$outboundSchema,
-  components.UnexpectedErrorResponse$outboundSchema,
-]);
+> = z.object({
+  httpMeta: components.HTTPMetadata$outboundSchema,
+  getBalanceSheetResponse: components.GetBalanceSheetResponse$outboundSchema
+    .optional(),
+  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    httpMeta: "HttpMeta",
+    getBalanceSheetResponse: "GetBalanceSheetResponse",
+    unexpectedErrorResponse: "UnexpectedErrorResponse",
+  });
+});
 
 /**
  * @internal

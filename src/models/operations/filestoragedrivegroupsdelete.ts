@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod";
+import { remap as remap$ } from "../../lib/primitives.js";
 import * as components from "../components/index.js";
 
 export type FileStorageDriveGroupsDeleteGlobals = {
@@ -31,9 +32,17 @@ export type FileStorageDriveGroupsDeleteRequest = {
   raw?: boolean | undefined;
 };
 
-export type FileStorageDriveGroupsDeleteResponse =
-  | components.DeleteDriveGroupResponse
-  | components.UnexpectedErrorResponse;
+export type FileStorageDriveGroupsDeleteResponse = {
+  httpMeta: components.HTTPMetadata;
+  /**
+   * DriveGroups
+   */
+  deleteDriveGroupResponse?: components.DeleteDriveGroupResponse | undefined;
+  /**
+   * Unexpected error
+   */
+  unexpectedErrorResponse?: components.UnexpectedErrorResponse | undefined;
+};
 
 /** @internal */
 export const FileStorageDriveGroupsDeleteGlobals$inboundSchema: z.ZodType<
@@ -125,25 +134,49 @@ export const FileStorageDriveGroupsDeleteResponse$inboundSchema: z.ZodType<
   FileStorageDriveGroupsDeleteResponse,
   z.ZodTypeDef,
   unknown
-> = z.union([
-  components.DeleteDriveGroupResponse$inboundSchema,
-  components.UnexpectedErrorResponse$inboundSchema,
-]);
+> = z.object({
+  HttpMeta: components.HTTPMetadata$inboundSchema,
+  DeleteDriveGroupResponse: components.DeleteDriveGroupResponse$inboundSchema
+    .optional(),
+  UnexpectedErrorResponse: components.UnexpectedErrorResponse$inboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "HttpMeta": "httpMeta",
+    "DeleteDriveGroupResponse": "deleteDriveGroupResponse",
+    "UnexpectedErrorResponse": "unexpectedErrorResponse",
+  });
+});
 
 /** @internal */
-export type FileStorageDriveGroupsDeleteResponse$Outbound =
-  | components.DeleteDriveGroupResponse$Outbound
-  | components.UnexpectedErrorResponse$Outbound;
+export type FileStorageDriveGroupsDeleteResponse$Outbound = {
+  HttpMeta: components.HTTPMetadata$Outbound;
+  DeleteDriveGroupResponse?:
+    | components.DeleteDriveGroupResponse$Outbound
+    | undefined;
+  UnexpectedErrorResponse?:
+    | components.UnexpectedErrorResponse$Outbound
+    | undefined;
+};
 
 /** @internal */
 export const FileStorageDriveGroupsDeleteResponse$outboundSchema: z.ZodType<
   FileStorageDriveGroupsDeleteResponse$Outbound,
   z.ZodTypeDef,
   FileStorageDriveGroupsDeleteResponse
-> = z.union([
-  components.DeleteDriveGroupResponse$outboundSchema,
-  components.UnexpectedErrorResponse$outboundSchema,
-]);
+> = z.object({
+  httpMeta: components.HTTPMetadata$outboundSchema,
+  deleteDriveGroupResponse: components.DeleteDriveGroupResponse$outboundSchema
+    .optional(),
+  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    httpMeta: "HttpMeta",
+    deleteDriveGroupResponse: "DeleteDriveGroupResponse",
+    unexpectedErrorResponse: "UnexpectedErrorResponse",
+  });
+});
 
 /**
  * @internal

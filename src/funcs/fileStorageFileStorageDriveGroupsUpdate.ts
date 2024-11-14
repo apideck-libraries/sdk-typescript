@@ -130,7 +130,7 @@ export async function fileStorageFileStorageDriveGroupsUpdate(
     headers: headers,
     query: query,
     body: body,
-    timeoutMs: options?.timeoutMs || client._options.timeoutMs || 1000,
+    timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
   }, options);
   if (!requestRes.ok) {
     return requestRes;
@@ -167,7 +167,9 @@ export async function fileStorageFileStorageDriveGroupsUpdate(
     | RequestTimeoutError
     | ConnectionError
   >(
-    M.json(200, operations.FileStorageDriveGroupsUpdateResponse$inboundSchema),
+    M.json(200, operations.FileStorageDriveGroupsUpdateResponse$inboundSchema, {
+      key: "UpdateDriveGroupResponse",
+    }),
     M.jsonErr(400, errors.BadRequestResponse$inboundSchema),
     M.jsonErr(401, errors.UnauthorizedResponse$inboundSchema),
     M.jsonErr(402, errors.PaymentRequiredResponse$inboundSchema),
@@ -177,8 +179,9 @@ export async function fileStorageFileStorageDriveGroupsUpdate(
     M.json(
       "default",
       operations.FileStorageDriveGroupsUpdateResponse$inboundSchema,
+      { key: "UnexpectedErrorResponse" },
     ),
-  )(response, { extraFields: responseFields });
+  )(response, req, { extraFields: responseFields });
   if (!result.ok) {
     return result;
   }

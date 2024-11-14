@@ -24,9 +24,19 @@ export type ConnectorApiResourceCoverageOneRequest = {
   resourceId: string;
 };
 
-export type ConnectorApiResourceCoverageOneResponse =
-  | components.GetApiResourceCoverageResponse
-  | components.UnexpectedErrorResponse;
+export type ConnectorApiResourceCoverageOneResponse = {
+  httpMeta: components.HTTPMetadata;
+  /**
+   * ApiResources
+   */
+  getApiResourceCoverageResponse?:
+    | components.GetApiResourceCoverageResponse
+    | undefined;
+  /**
+   * Unexpected error
+   */
+  unexpectedErrorResponse?: components.UnexpectedErrorResponse | undefined;
+};
 
 /** @internal */
 export const ConnectorApiResourceCoverageOneGlobals$inboundSchema: z.ZodType<
@@ -120,25 +130,49 @@ export const ConnectorApiResourceCoverageOneResponse$inboundSchema: z.ZodType<
   ConnectorApiResourceCoverageOneResponse,
   z.ZodTypeDef,
   unknown
-> = z.union([
-  components.GetApiResourceCoverageResponse$inboundSchema,
-  components.UnexpectedErrorResponse$inboundSchema,
-]);
+> = z.object({
+  HttpMeta: components.HTTPMetadata$inboundSchema,
+  GetApiResourceCoverageResponse: components
+    .GetApiResourceCoverageResponse$inboundSchema.optional(),
+  UnexpectedErrorResponse: components.UnexpectedErrorResponse$inboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "HttpMeta": "httpMeta",
+    "GetApiResourceCoverageResponse": "getApiResourceCoverageResponse",
+    "UnexpectedErrorResponse": "unexpectedErrorResponse",
+  });
+});
 
 /** @internal */
-export type ConnectorApiResourceCoverageOneResponse$Outbound =
-  | components.GetApiResourceCoverageResponse$Outbound
-  | components.UnexpectedErrorResponse$Outbound;
+export type ConnectorApiResourceCoverageOneResponse$Outbound = {
+  HttpMeta: components.HTTPMetadata$Outbound;
+  GetApiResourceCoverageResponse?:
+    | components.GetApiResourceCoverageResponse$Outbound
+    | undefined;
+  UnexpectedErrorResponse?:
+    | components.UnexpectedErrorResponse$Outbound
+    | undefined;
+};
 
 /** @internal */
 export const ConnectorApiResourceCoverageOneResponse$outboundSchema: z.ZodType<
   ConnectorApiResourceCoverageOneResponse$Outbound,
   z.ZodTypeDef,
   ConnectorApiResourceCoverageOneResponse
-> = z.union([
-  components.GetApiResourceCoverageResponse$outboundSchema,
-  components.UnexpectedErrorResponse$outboundSchema,
-]);
+> = z.object({
+  httpMeta: components.HTTPMetadata$outboundSchema,
+  getApiResourceCoverageResponse: components
+    .GetApiResourceCoverageResponse$outboundSchema.optional(),
+  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    httpMeta: "HttpMeta",
+    getApiResourceCoverageResponse: "GetApiResourceCoverageResponse",
+    unexpectedErrorResponse: "UnexpectedErrorResponse",
+  });
+});
 
 /**
  * @internal

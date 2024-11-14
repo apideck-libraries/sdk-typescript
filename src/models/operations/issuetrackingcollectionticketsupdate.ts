@@ -37,9 +37,17 @@ export type IssueTrackingCollectionTicketsUpdateRequest = {
   ticket: components.TicketInput;
 };
 
-export type IssueTrackingCollectionTicketsUpdateResponse =
-  | components.UpdateTicketResponse
-  | components.UnexpectedErrorResponse;
+export type IssueTrackingCollectionTicketsUpdateResponse = {
+  httpMeta: components.HTTPMetadata;
+  /**
+   * Update a Ticket
+   */
+  updateTicketResponse?: components.UpdateTicketResponse | undefined;
+  /**
+   * Unexpected error
+   */
+  unexpectedErrorResponse?: components.UnexpectedErrorResponse | undefined;
+};
 
 /** @internal */
 export const IssueTrackingCollectionTicketsUpdateGlobals$inboundSchema:
@@ -154,15 +162,28 @@ export const IssueTrackingCollectionTicketsUpdateResponse$inboundSchema:
     IssueTrackingCollectionTicketsUpdateResponse,
     z.ZodTypeDef,
     unknown
-  > = z.union([
-    components.UpdateTicketResponse$inboundSchema,
-    components.UnexpectedErrorResponse$inboundSchema,
-  ]);
+  > = z.object({
+    HttpMeta: components.HTTPMetadata$inboundSchema,
+    UpdateTicketResponse: components.UpdateTicketResponse$inboundSchema
+      .optional(),
+    UnexpectedErrorResponse: components.UnexpectedErrorResponse$inboundSchema
+      .optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "HttpMeta": "httpMeta",
+      "UpdateTicketResponse": "updateTicketResponse",
+      "UnexpectedErrorResponse": "unexpectedErrorResponse",
+    });
+  });
 
 /** @internal */
-export type IssueTrackingCollectionTicketsUpdateResponse$Outbound =
-  | components.UpdateTicketResponse$Outbound
-  | components.UnexpectedErrorResponse$Outbound;
+export type IssueTrackingCollectionTicketsUpdateResponse$Outbound = {
+  HttpMeta: components.HTTPMetadata$Outbound;
+  UpdateTicketResponse?: components.UpdateTicketResponse$Outbound | undefined;
+  UnexpectedErrorResponse?:
+    | components.UnexpectedErrorResponse$Outbound
+    | undefined;
+};
 
 /** @internal */
 export const IssueTrackingCollectionTicketsUpdateResponse$outboundSchema:
@@ -170,10 +191,19 @@ export const IssueTrackingCollectionTicketsUpdateResponse$outboundSchema:
     IssueTrackingCollectionTicketsUpdateResponse$Outbound,
     z.ZodTypeDef,
     IssueTrackingCollectionTicketsUpdateResponse
-  > = z.union([
-    components.UpdateTicketResponse$outboundSchema,
-    components.UnexpectedErrorResponse$outboundSchema,
-  ]);
+  > = z.object({
+    httpMeta: components.HTTPMetadata$outboundSchema,
+    updateTicketResponse: components.UpdateTicketResponse$outboundSchema
+      .optional(),
+    unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
+      .optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      httpMeta: "HttpMeta",
+      updateTicketResponse: "UpdateTicketResponse",
+      unexpectedErrorResponse: "UnexpectedErrorResponse",
+    });
+  });
 
 /**
  * @internal

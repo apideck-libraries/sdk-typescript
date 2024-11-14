@@ -29,9 +29,17 @@ export type FileStorageDrivesAddRequest = {
   drive: components.DriveInput;
 };
 
-export type FileStorageDrivesAddResponse =
-  | components.CreateDriveResponse
-  | components.UnexpectedErrorResponse;
+export type FileStorageDrivesAddResponse = {
+  httpMeta: components.HTTPMetadata;
+  /**
+   * Drives
+   */
+  createDriveResponse?: components.CreateDriveResponse | undefined;
+  /**
+   * Unexpected error
+   */
+  unexpectedErrorResponse?: components.UnexpectedErrorResponse | undefined;
+};
 
 /** @internal */
 export const FileStorageDrivesAddGlobals$inboundSchema: z.ZodType<
@@ -127,25 +135,45 @@ export const FileStorageDrivesAddResponse$inboundSchema: z.ZodType<
   FileStorageDrivesAddResponse,
   z.ZodTypeDef,
   unknown
-> = z.union([
-  components.CreateDriveResponse$inboundSchema,
-  components.UnexpectedErrorResponse$inboundSchema,
-]);
+> = z.object({
+  HttpMeta: components.HTTPMetadata$inboundSchema,
+  CreateDriveResponse: components.CreateDriveResponse$inboundSchema.optional(),
+  UnexpectedErrorResponse: components.UnexpectedErrorResponse$inboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "HttpMeta": "httpMeta",
+    "CreateDriveResponse": "createDriveResponse",
+    "UnexpectedErrorResponse": "unexpectedErrorResponse",
+  });
+});
 
 /** @internal */
-export type FileStorageDrivesAddResponse$Outbound =
-  | components.CreateDriveResponse$Outbound
-  | components.UnexpectedErrorResponse$Outbound;
+export type FileStorageDrivesAddResponse$Outbound = {
+  HttpMeta: components.HTTPMetadata$Outbound;
+  CreateDriveResponse?: components.CreateDriveResponse$Outbound | undefined;
+  UnexpectedErrorResponse?:
+    | components.UnexpectedErrorResponse$Outbound
+    | undefined;
+};
 
 /** @internal */
 export const FileStorageDrivesAddResponse$outboundSchema: z.ZodType<
   FileStorageDrivesAddResponse$Outbound,
   z.ZodTypeDef,
   FileStorageDrivesAddResponse
-> = z.union([
-  components.CreateDriveResponse$outboundSchema,
-  components.UnexpectedErrorResponse$outboundSchema,
-]);
+> = z.object({
+  httpMeta: components.HTTPMetadata$outboundSchema,
+  createDriveResponse: components.CreateDriveResponse$outboundSchema.optional(),
+  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    httpMeta: "HttpMeta",
+    createDriveResponse: "CreateDriveResponse",
+    unexpectedErrorResponse: "UnexpectedErrorResponse",
+  });
+});
 
 /**
  * @internal

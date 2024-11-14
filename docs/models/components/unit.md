@@ -7,7 +7,7 @@ The window unit for the rate.
 ```typescript
 import { Unit } from "apideck/models/components";
 
-let value: Unit = "minute";
+let value: Unit = "hour";
 ```
 
 ## Values

@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod";
+import { remap as remap$ } from "../../lib/primitives.js";
 import * as components from "../components/index.js";
 
 export type PosOrderTypesDeleteGlobals = {
@@ -31,9 +32,17 @@ export type PosOrderTypesDeleteRequest = {
   raw?: boolean | undefined;
 };
 
-export type PosOrderTypesDeleteResponse =
-  | components.DeleteOrderTypeResponse
-  | components.UnexpectedErrorResponse;
+export type PosOrderTypesDeleteResponse = {
+  httpMeta: components.HTTPMetadata;
+  /**
+   * OrderTypes
+   */
+  deleteOrderTypeResponse?: components.DeleteOrderTypeResponse | undefined;
+  /**
+   * Unexpected error
+   */
+  unexpectedErrorResponse?: components.UnexpectedErrorResponse | undefined;
+};
 
 /** @internal */
 export const PosOrderTypesDeleteGlobals$inboundSchema: z.ZodType<
@@ -121,25 +130,49 @@ export const PosOrderTypesDeleteResponse$inboundSchema: z.ZodType<
   PosOrderTypesDeleteResponse,
   z.ZodTypeDef,
   unknown
-> = z.union([
-  components.DeleteOrderTypeResponse$inboundSchema,
-  components.UnexpectedErrorResponse$inboundSchema,
-]);
+> = z.object({
+  HttpMeta: components.HTTPMetadata$inboundSchema,
+  DeleteOrderTypeResponse: components.DeleteOrderTypeResponse$inboundSchema
+    .optional(),
+  UnexpectedErrorResponse: components.UnexpectedErrorResponse$inboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "HttpMeta": "httpMeta",
+    "DeleteOrderTypeResponse": "deleteOrderTypeResponse",
+    "UnexpectedErrorResponse": "unexpectedErrorResponse",
+  });
+});
 
 /** @internal */
-export type PosOrderTypesDeleteResponse$Outbound =
-  | components.DeleteOrderTypeResponse$Outbound
-  | components.UnexpectedErrorResponse$Outbound;
+export type PosOrderTypesDeleteResponse$Outbound = {
+  HttpMeta: components.HTTPMetadata$Outbound;
+  DeleteOrderTypeResponse?:
+    | components.DeleteOrderTypeResponse$Outbound
+    | undefined;
+  UnexpectedErrorResponse?:
+    | components.UnexpectedErrorResponse$Outbound
+    | undefined;
+};
 
 /** @internal */
 export const PosOrderTypesDeleteResponse$outboundSchema: z.ZodType<
   PosOrderTypesDeleteResponse$Outbound,
   z.ZodTypeDef,
   PosOrderTypesDeleteResponse
-> = z.union([
-  components.DeleteOrderTypeResponse$outboundSchema,
-  components.UnexpectedErrorResponse$outboundSchema,
-]);
+> = z.object({
+  httpMeta: components.HTTPMetadata$outboundSchema,
+  deleteOrderTypeResponse: components.DeleteOrderTypeResponse$outboundSchema
+    .optional(),
+  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    httpMeta: "HttpMeta",
+    deleteOrderTypeResponse: "DeleteOrderTypeResponse",
+    unexpectedErrorResponse: "UnexpectedErrorResponse",
+  });
+});
 
 /**
  * @internal

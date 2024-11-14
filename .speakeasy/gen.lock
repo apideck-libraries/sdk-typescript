@@ -1,18 +1,18 @@
 lockVersion: 2.0.0
 id: 7bffa198-5d29-4efa-9942-d549cc832085
 management:
-  docChecksum: e23b238bcad8ba38b546b8f838faa4b5
+  docChecksum: 6ce964cb41263a906f2ffe3ffa9330c1
   docVersion: 10.8.0
-  speakeasyVersion: 1.438.1
-  generationVersion: 2.457.2
-  releaseVersion: 0.6.1
-  configChecksum: a2c945dd1ed619971f1c9652836f7426
+  speakeasyVersion: 1.439.0
+  generationVersion: 2.457.9
+  releaseVersion: 0.7.2
+  configChecksum: 8ed54e55689ca5ed93014d7947543028
 features:
   typescript:
     acceptHeaders: 2.81.2
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.11
-    core: 3.18.3
+    core: 3.18.4
     deepObjectParams: 0.1.0
     defaultEnabledRetries: 0.1.0
     deprecations: 2.81.1
@@ -30,7 +30,6 @@ features:
     methodServerURLs: 2.82.1
     nameOverrides: 2.81.2
     nullables: 0.1.0
-    operationTimeout: 0.2.0
     responseFormat: 0.2.3
     retries: 2.83.0
     sdkHooks: 0.2.0
@@ -545,6 +544,7 @@ generatedFiles:
   - docs/models/components/hriscompany.md
   - docs/models/components/hriscompanyinput.md
   - docs/models/components/hriscompanystatus.md
+  - docs/models/components/httpmetadata.md
   - docs/models/components/images.md
   - docs/models/components/income.md
   - docs/models/components/indicateswhethermultipleoptionsfromthemodifiergroupcanbeappliedtoasingleormultiplemodifiers.md
@@ -1790,6 +1790,7 @@ generatedFiles:
   - docs/models/operations/vaultconnectionsallresponse.md
   - docs/models/operations/vaultconnectionsdeleteglobals.md
   - docs/models/operations/vaultconnectionsdeleterequest.md
+  - docs/models/operations/vaultconnectionsdeleteresponse.md
   - docs/models/operations/vaultconnectionsettingsallglobals.md
   - docs/models/operations/vaultconnectionsettingsallrequest.md
   - docs/models/operations/vaultconnectionsettingsallresponse.md
@@ -2580,6 +2581,7 @@ generatedFiles:
   - src/models/components/getwebhookresponse.ts
   - src/models/components/getwebhooksresponse.ts
   - src/models/components/hriscompany.ts
+  - src/models/components/httpmetadata.ts
   - src/models/components/index.ts
   - src/models/components/integrationstate.ts
   - src/models/components/invoice.ts

@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod";
+import { remap as remap$ } from "../../lib/primitives.js";
 import * as components from "../components/index.js";
 
 export type HrisDepartmentsDeleteGlobals = {
@@ -31,9 +32,17 @@ export type HrisDepartmentsDeleteRequest = {
   raw?: boolean | undefined;
 };
 
-export type HrisDepartmentsDeleteResponse =
-  | components.DeleteDepartmentResponse
-  | components.UnexpectedErrorResponse;
+export type HrisDepartmentsDeleteResponse = {
+  httpMeta: components.HTTPMetadata;
+  /**
+   * Departments
+   */
+  deleteDepartmentResponse?: components.DeleteDepartmentResponse | undefined;
+  /**
+   * Unexpected error
+   */
+  unexpectedErrorResponse?: components.UnexpectedErrorResponse | undefined;
+};
 
 /** @internal */
 export const HrisDepartmentsDeleteGlobals$inboundSchema: z.ZodType<
@@ -121,25 +130,49 @@ export const HrisDepartmentsDeleteResponse$inboundSchema: z.ZodType<
   HrisDepartmentsDeleteResponse,
   z.ZodTypeDef,
   unknown
-> = z.union([
-  components.DeleteDepartmentResponse$inboundSchema,
-  components.UnexpectedErrorResponse$inboundSchema,
-]);
+> = z.object({
+  HttpMeta: components.HTTPMetadata$inboundSchema,
+  DeleteDepartmentResponse: components.DeleteDepartmentResponse$inboundSchema
+    .optional(),
+  UnexpectedErrorResponse: components.UnexpectedErrorResponse$inboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "HttpMeta": "httpMeta",
+    "DeleteDepartmentResponse": "deleteDepartmentResponse",
+    "UnexpectedErrorResponse": "unexpectedErrorResponse",
+  });
+});
 
 /** @internal */
-export type HrisDepartmentsDeleteResponse$Outbound =
-  | components.DeleteDepartmentResponse$Outbound
-  | components.UnexpectedErrorResponse$Outbound;
+export type HrisDepartmentsDeleteResponse$Outbound = {
+  HttpMeta: components.HTTPMetadata$Outbound;
+  DeleteDepartmentResponse?:
+    | components.DeleteDepartmentResponse$Outbound
+    | undefined;
+  UnexpectedErrorResponse?:
+    | components.UnexpectedErrorResponse$Outbound
+    | undefined;
+};
 
 /** @internal */
 export const HrisDepartmentsDeleteResponse$outboundSchema: z.ZodType<
   HrisDepartmentsDeleteResponse$Outbound,
   z.ZodTypeDef,
   HrisDepartmentsDeleteResponse
-> = z.union([
-  components.DeleteDepartmentResponse$outboundSchema,
-  components.UnexpectedErrorResponse$outboundSchema,
-]);
+> = z.object({
+  httpMeta: components.HTTPMetadata$outboundSchema,
+  deleteDepartmentResponse: components.DeleteDepartmentResponse$outboundSchema
+    .optional(),
+  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    httpMeta: "HttpMeta",
+    deleteDepartmentResponse: "DeleteDepartmentResponse",
+    unexpectedErrorResponse: "UnexpectedErrorResponse",
+  });
+});
 
 /**
  * @internal

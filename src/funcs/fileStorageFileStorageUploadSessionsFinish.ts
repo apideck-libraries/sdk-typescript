@@ -143,7 +143,7 @@ export async function fileStorageFileStorageUploadSessionsFinish(
     headers: headers,
     query: query,
     body: body,
-    timeoutMs: options?.timeoutMs || client._options.timeoutMs || 1000,
+    timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
   }, options);
   if (!requestRes.ok) {
     return requestRes;
@@ -183,6 +183,7 @@ export async function fileStorageFileStorageUploadSessionsFinish(
     M.json(
       201,
       operations.FileStorageUploadSessionsFinishResponse$inboundSchema,
+      { key: "GetFileResponse" },
     ),
     M.jsonErr(400, errors.BadRequestResponse$inboundSchema),
     M.jsonErr(401, errors.UnauthorizedResponse$inboundSchema),
@@ -193,8 +194,9 @@ export async function fileStorageFileStorageUploadSessionsFinish(
     M.json(
       "default",
       operations.FileStorageUploadSessionsFinishResponse$inboundSchema,
+      { key: "UnexpectedErrorResponse" },
     ),
-  )(response, { extraFields: responseFields });
+  )(response, req, { extraFields: responseFields });
   if (!result.ok) {
     return result;
   }

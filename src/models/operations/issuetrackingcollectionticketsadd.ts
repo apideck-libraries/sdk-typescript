@@ -33,9 +33,17 @@ export type IssueTrackingCollectionTicketsAddRequest = {
   ticket: components.TicketInput;
 };
 
-export type IssueTrackingCollectionTicketsAddResponse =
-  | components.CreateTicketResponse
-  | components.UnexpectedErrorResponse;
+export type IssueTrackingCollectionTicketsAddResponse = {
+  httpMeta: components.HTTPMetadata;
+  /**
+   * Create a Ticket
+   */
+  createTicketResponse?: components.CreateTicketResponse | undefined;
+  /**
+   * Unexpected error
+   */
+  unexpectedErrorResponse?: components.UnexpectedErrorResponse | undefined;
+};
 
 /** @internal */
 export const IssueTrackingCollectionTicketsAddGlobals$inboundSchema: z.ZodType<
@@ -140,15 +148,28 @@ export const IssueTrackingCollectionTicketsAddResponse$inboundSchema: z.ZodType<
   IssueTrackingCollectionTicketsAddResponse,
   z.ZodTypeDef,
   unknown
-> = z.union([
-  components.CreateTicketResponse$inboundSchema,
-  components.UnexpectedErrorResponse$inboundSchema,
-]);
+> = z.object({
+  HttpMeta: components.HTTPMetadata$inboundSchema,
+  CreateTicketResponse: components.CreateTicketResponse$inboundSchema
+    .optional(),
+  UnexpectedErrorResponse: components.UnexpectedErrorResponse$inboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "HttpMeta": "httpMeta",
+    "CreateTicketResponse": "createTicketResponse",
+    "UnexpectedErrorResponse": "unexpectedErrorResponse",
+  });
+});
 
 /** @internal */
-export type IssueTrackingCollectionTicketsAddResponse$Outbound =
-  | components.CreateTicketResponse$Outbound
-  | components.UnexpectedErrorResponse$Outbound;
+export type IssueTrackingCollectionTicketsAddResponse$Outbound = {
+  HttpMeta: components.HTTPMetadata$Outbound;
+  CreateTicketResponse?: components.CreateTicketResponse$Outbound | undefined;
+  UnexpectedErrorResponse?:
+    | components.UnexpectedErrorResponse$Outbound
+    | undefined;
+};
 
 /** @internal */
 export const IssueTrackingCollectionTicketsAddResponse$outboundSchema:
@@ -156,10 +177,19 @@ export const IssueTrackingCollectionTicketsAddResponse$outboundSchema:
     IssueTrackingCollectionTicketsAddResponse$Outbound,
     z.ZodTypeDef,
     IssueTrackingCollectionTicketsAddResponse
-  > = z.union([
-    components.CreateTicketResponse$outboundSchema,
-    components.UnexpectedErrorResponse$outboundSchema,
-  ]);
+  > = z.object({
+    httpMeta: components.HTTPMetadata$outboundSchema,
+    createTicketResponse: components.CreateTicketResponse$outboundSchema
+      .optional(),
+    unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
+      .optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      httpMeta: "HttpMeta",
+      createTicketResponse: "CreateTicketResponse",
+      unexpectedErrorResponse: "UnexpectedErrorResponse",
+    });
+  });
 
 /**
  * @internal

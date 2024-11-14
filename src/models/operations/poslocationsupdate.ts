@@ -33,9 +33,17 @@ export type PosLocationsUpdateRequest = {
   location: components.LocationInput;
 };
 
-export type PosLocationsUpdateResponse =
-  | components.UpdateLocationResponse
-  | components.UnexpectedErrorResponse;
+export type PosLocationsUpdateResponse = {
+  httpMeta: components.HTTPMetadata;
+  /**
+   * Locations
+   */
+  updateLocationResponse?: components.UpdateLocationResponse | undefined;
+  /**
+   * Unexpected error
+   */
+  unexpectedErrorResponse?: components.UnexpectedErrorResponse | undefined;
+};
 
 /** @internal */
 export const PosLocationsUpdateGlobals$inboundSchema: z.ZodType<
@@ -134,25 +142,49 @@ export const PosLocationsUpdateResponse$inboundSchema: z.ZodType<
   PosLocationsUpdateResponse,
   z.ZodTypeDef,
   unknown
-> = z.union([
-  components.UpdateLocationResponse$inboundSchema,
-  components.UnexpectedErrorResponse$inboundSchema,
-]);
+> = z.object({
+  HttpMeta: components.HTTPMetadata$inboundSchema,
+  UpdateLocationResponse: components.UpdateLocationResponse$inboundSchema
+    .optional(),
+  UnexpectedErrorResponse: components.UnexpectedErrorResponse$inboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "HttpMeta": "httpMeta",
+    "UpdateLocationResponse": "updateLocationResponse",
+    "UnexpectedErrorResponse": "unexpectedErrorResponse",
+  });
+});
 
 /** @internal */
-export type PosLocationsUpdateResponse$Outbound =
-  | components.UpdateLocationResponse$Outbound
-  | components.UnexpectedErrorResponse$Outbound;
+export type PosLocationsUpdateResponse$Outbound = {
+  HttpMeta: components.HTTPMetadata$Outbound;
+  UpdateLocationResponse?:
+    | components.UpdateLocationResponse$Outbound
+    | undefined;
+  UnexpectedErrorResponse?:
+    | components.UnexpectedErrorResponse$Outbound
+    | undefined;
+};
 
 /** @internal */
 export const PosLocationsUpdateResponse$outboundSchema: z.ZodType<
   PosLocationsUpdateResponse$Outbound,
   z.ZodTypeDef,
   PosLocationsUpdateResponse
-> = z.union([
-  components.UpdateLocationResponse$outboundSchema,
-  components.UnexpectedErrorResponse$outboundSchema,
-]);
+> = z.object({
+  httpMeta: components.HTTPMetadata$outboundSchema,
+  updateLocationResponse: components.UpdateLocationResponse$outboundSchema
+    .optional(),
+  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    httpMeta: "HttpMeta",
+    updateLocationResponse: "UpdateLocationResponse",
+    unexpectedErrorResponse: "UnexpectedErrorResponse",
+  });
+});
 
 /**
  * @internal

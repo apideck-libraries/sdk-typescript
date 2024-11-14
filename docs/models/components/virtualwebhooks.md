@@ -9,9 +9,9 @@ import { VirtualWebhooks } from "apideck/models/components";
 
 let value: VirtualWebhooks = {
   requestRate: {
-    rate: 924159,
-    size: 862319,
-    unit: "second",
+    rate: 750595,
+    size: 333507,
+    unit: "day",
   },
 };
 ```

@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod";
+import { remap as remap$ } from "../../lib/primitives.js";
 import * as components from "../components/index.js";
 
 export type VaultConsumersAllGlobals = {
@@ -23,9 +24,17 @@ export type VaultConsumersAllRequest = {
   limit?: number | undefined;
 };
 
-export type VaultConsumersAllResponse =
-  | components.GetConsumersResponse
-  | components.UnexpectedErrorResponse;
+export type VaultConsumersAllResponse = {
+  httpMeta: components.HTTPMetadata;
+  /**
+   * Consumers
+   */
+  getConsumersResponse?: components.GetConsumersResponse | undefined;
+  /**
+   * Unexpected error
+   */
+  unexpectedErrorResponse?: components.UnexpectedErrorResponse | undefined;
+};
 
 /** @internal */
 export const VaultConsumersAllGlobals$inboundSchema: z.ZodType<
@@ -107,25 +116,47 @@ export const VaultConsumersAllResponse$inboundSchema: z.ZodType<
   VaultConsumersAllResponse,
   z.ZodTypeDef,
   unknown
-> = z.union([
-  components.GetConsumersResponse$inboundSchema,
-  components.UnexpectedErrorResponse$inboundSchema,
-]);
+> = z.object({
+  HttpMeta: components.HTTPMetadata$inboundSchema,
+  GetConsumersResponse: components.GetConsumersResponse$inboundSchema
+    .optional(),
+  UnexpectedErrorResponse: components.UnexpectedErrorResponse$inboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "HttpMeta": "httpMeta",
+    "GetConsumersResponse": "getConsumersResponse",
+    "UnexpectedErrorResponse": "unexpectedErrorResponse",
+  });
+});
 
 /** @internal */
-export type VaultConsumersAllResponse$Outbound =
-  | components.GetConsumersResponse$Outbound
-  | components.UnexpectedErrorResponse$Outbound;
+export type VaultConsumersAllResponse$Outbound = {
+  HttpMeta: components.HTTPMetadata$Outbound;
+  GetConsumersResponse?: components.GetConsumersResponse$Outbound | undefined;
+  UnexpectedErrorResponse?:
+    | components.UnexpectedErrorResponse$Outbound
+    | undefined;
+};
 
 /** @internal */
 export const VaultConsumersAllResponse$outboundSchema: z.ZodType<
   VaultConsumersAllResponse$Outbound,
   z.ZodTypeDef,
   VaultConsumersAllResponse
-> = z.union([
-  components.GetConsumersResponse$outboundSchema,
-  components.UnexpectedErrorResponse$outboundSchema,
-]);
+> = z.object({
+  httpMeta: components.HTTPMetadata$outboundSchema,
+  getConsumersResponse: components.GetConsumersResponse$outboundSchema
+    .optional(),
+  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    httpMeta: "HttpMeta",
+    getConsumersResponse: "GetConsumersResponse",
+    unexpectedErrorResponse: "UnexpectedErrorResponse",
+  });
+});
 
 /**
  * @internal

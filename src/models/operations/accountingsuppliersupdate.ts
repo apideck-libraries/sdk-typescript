@@ -33,9 +33,17 @@ export type AccountingSuppliersUpdateRequest = {
   supplier: components.SupplierInput;
 };
 
-export type AccountingSuppliersUpdateResponse =
-  | components.UpdateSupplierResponse
-  | components.UnexpectedErrorResponse;
+export type AccountingSuppliersUpdateResponse = {
+  httpMeta: components.HTTPMetadata;
+  /**
+   * Supplier updated
+   */
+  updateSupplierResponse?: components.UpdateSupplierResponse | undefined;
+  /**
+   * Unexpected error
+   */
+  unexpectedErrorResponse?: components.UnexpectedErrorResponse | undefined;
+};
 
 /** @internal */
 export const AccountingSuppliersUpdateGlobals$inboundSchema: z.ZodType<
@@ -134,25 +142,49 @@ export const AccountingSuppliersUpdateResponse$inboundSchema: z.ZodType<
   AccountingSuppliersUpdateResponse,
   z.ZodTypeDef,
   unknown
-> = z.union([
-  components.UpdateSupplierResponse$inboundSchema,
-  components.UnexpectedErrorResponse$inboundSchema,
-]);
+> = z.object({
+  HttpMeta: components.HTTPMetadata$inboundSchema,
+  UpdateSupplierResponse: components.UpdateSupplierResponse$inboundSchema
+    .optional(),
+  UnexpectedErrorResponse: components.UnexpectedErrorResponse$inboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "HttpMeta": "httpMeta",
+    "UpdateSupplierResponse": "updateSupplierResponse",
+    "UnexpectedErrorResponse": "unexpectedErrorResponse",
+  });
+});
 
 /** @internal */
-export type AccountingSuppliersUpdateResponse$Outbound =
-  | components.UpdateSupplierResponse$Outbound
-  | components.UnexpectedErrorResponse$Outbound;
+export type AccountingSuppliersUpdateResponse$Outbound = {
+  HttpMeta: components.HTTPMetadata$Outbound;
+  UpdateSupplierResponse?:
+    | components.UpdateSupplierResponse$Outbound
+    | undefined;
+  UnexpectedErrorResponse?:
+    | components.UnexpectedErrorResponse$Outbound
+    | undefined;
+};
 
 /** @internal */
 export const AccountingSuppliersUpdateResponse$outboundSchema: z.ZodType<
   AccountingSuppliersUpdateResponse$Outbound,
   z.ZodTypeDef,
   AccountingSuppliersUpdateResponse
-> = z.union([
-  components.UpdateSupplierResponse$outboundSchema,
-  components.UnexpectedErrorResponse$outboundSchema,
-]);
+> = z.object({
+  httpMeta: components.HTTPMetadata$outboundSchema,
+  updateSupplierResponse: components.UpdateSupplierResponse$outboundSchema
+    .optional(),
+  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    httpMeta: "HttpMeta",
+    updateSupplierResponse: "UpdateSupplierResponse",
+    unexpectedErrorResponse: "UnexpectedErrorResponse",
+  });
+});
 
 /**
  * @internal

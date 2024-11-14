@@ -7,7 +7,7 @@ Type of entity this payment should be attributed to.
 ```typescript
 import { AllocationType } from "apideck/models/components";
 
-let value: AllocationType = "expense";
+let value: AllocationType = "invoice";
 ```
 
 ## Values

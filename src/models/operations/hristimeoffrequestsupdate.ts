@@ -37,9 +37,19 @@ export type HrisTimeOffRequestsUpdateRequest = {
   timeOffRequest: components.TimeOffRequestInput;
 };
 
-export type HrisTimeOffRequestsUpdateResponse =
-  | components.UpdateTimeOffRequestResponse
-  | components.UnexpectedErrorResponse;
+export type HrisTimeOffRequestsUpdateResponse = {
+  httpMeta: components.HTTPMetadata;
+  /**
+   * TimeOffRequests
+   */
+  updateTimeOffRequestResponse?:
+    | components.UpdateTimeOffRequestResponse
+    | undefined;
+  /**
+   * Unexpected error
+   */
+  unexpectedErrorResponse?: components.UnexpectedErrorResponse | undefined;
+};
 
 /** @internal */
 export const HrisTimeOffRequestsUpdateGlobals$inboundSchema: z.ZodType<
@@ -143,25 +153,49 @@ export const HrisTimeOffRequestsUpdateResponse$inboundSchema: z.ZodType<
   HrisTimeOffRequestsUpdateResponse,
   z.ZodTypeDef,
   unknown
-> = z.union([
-  components.UpdateTimeOffRequestResponse$inboundSchema,
-  components.UnexpectedErrorResponse$inboundSchema,
-]);
+> = z.object({
+  HttpMeta: components.HTTPMetadata$inboundSchema,
+  UpdateTimeOffRequestResponse: components
+    .UpdateTimeOffRequestResponse$inboundSchema.optional(),
+  UnexpectedErrorResponse: components.UnexpectedErrorResponse$inboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "HttpMeta": "httpMeta",
+    "UpdateTimeOffRequestResponse": "updateTimeOffRequestResponse",
+    "UnexpectedErrorResponse": "unexpectedErrorResponse",
+  });
+});
 
 /** @internal */
-export type HrisTimeOffRequestsUpdateResponse$Outbound =
-  | components.UpdateTimeOffRequestResponse$Outbound
-  | components.UnexpectedErrorResponse$Outbound;
+export type HrisTimeOffRequestsUpdateResponse$Outbound = {
+  HttpMeta: components.HTTPMetadata$Outbound;
+  UpdateTimeOffRequestResponse?:
+    | components.UpdateTimeOffRequestResponse$Outbound
+    | undefined;
+  UnexpectedErrorResponse?:
+    | components.UnexpectedErrorResponse$Outbound
+    | undefined;
+};
 
 /** @internal */
 export const HrisTimeOffRequestsUpdateResponse$outboundSchema: z.ZodType<
   HrisTimeOffRequestsUpdateResponse$Outbound,
   z.ZodTypeDef,
   HrisTimeOffRequestsUpdateResponse
-> = z.union([
-  components.UpdateTimeOffRequestResponse$outboundSchema,
-  components.UnexpectedErrorResponse$outboundSchema,
-]);
+> = z.object({
+  httpMeta: components.HTTPMetadata$outboundSchema,
+  updateTimeOffRequestResponse: components
+    .UpdateTimeOffRequestResponse$outboundSchema.optional(),
+  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    httpMeta: "HttpMeta",
+    updateTimeOffRequestResponse: "UpdateTimeOffRequestResponse",
+    unexpectedErrorResponse: "UnexpectedErrorResponse",
+  });
+});
 
 /**
  * @internal

@@ -49,7 +49,7 @@ let value: ExpenseInput = {
       name: "employee_level",
       description: "Employee Level",
       value: [
-        {},
+        "<value>",
       ],
     },
   ],

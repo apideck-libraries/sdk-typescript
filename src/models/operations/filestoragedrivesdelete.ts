@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod";
+import { remap as remap$ } from "../../lib/primitives.js";
 import * as components from "../components/index.js";
 
 export type FileStorageDrivesDeleteGlobals = {
@@ -31,9 +32,17 @@ export type FileStorageDrivesDeleteRequest = {
   raw?: boolean | undefined;
 };
 
-export type FileStorageDrivesDeleteResponse =
-  | components.DeleteDriveResponse
-  | components.UnexpectedErrorResponse;
+export type FileStorageDrivesDeleteResponse = {
+  httpMeta: components.HTTPMetadata;
+  /**
+   * Drives
+   */
+  deleteDriveResponse?: components.DeleteDriveResponse | undefined;
+  /**
+   * Unexpected error
+   */
+  unexpectedErrorResponse?: components.UnexpectedErrorResponse | undefined;
+};
 
 /** @internal */
 export const FileStorageDrivesDeleteGlobals$inboundSchema: z.ZodType<
@@ -121,25 +130,45 @@ export const FileStorageDrivesDeleteResponse$inboundSchema: z.ZodType<
   FileStorageDrivesDeleteResponse,
   z.ZodTypeDef,
   unknown
-> = z.union([
-  components.DeleteDriveResponse$inboundSchema,
-  components.UnexpectedErrorResponse$inboundSchema,
-]);
+> = z.object({
+  HttpMeta: components.HTTPMetadata$inboundSchema,
+  DeleteDriveResponse: components.DeleteDriveResponse$inboundSchema.optional(),
+  UnexpectedErrorResponse: components.UnexpectedErrorResponse$inboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "HttpMeta": "httpMeta",
+    "DeleteDriveResponse": "deleteDriveResponse",
+    "UnexpectedErrorResponse": "unexpectedErrorResponse",
+  });
+});
 
 /** @internal */
-export type FileStorageDrivesDeleteResponse$Outbound =
-  | components.DeleteDriveResponse$Outbound
-  | components.UnexpectedErrorResponse$Outbound;
+export type FileStorageDrivesDeleteResponse$Outbound = {
+  HttpMeta: components.HTTPMetadata$Outbound;
+  DeleteDriveResponse?: components.DeleteDriveResponse$Outbound | undefined;
+  UnexpectedErrorResponse?:
+    | components.UnexpectedErrorResponse$Outbound
+    | undefined;
+};
 
 /** @internal */
 export const FileStorageDrivesDeleteResponse$outboundSchema: z.ZodType<
   FileStorageDrivesDeleteResponse$Outbound,
   z.ZodTypeDef,
   FileStorageDrivesDeleteResponse
-> = z.union([
-  components.DeleteDriveResponse$outboundSchema,
-  components.UnexpectedErrorResponse$outboundSchema,
-]);
+> = z.object({
+  httpMeta: components.HTTPMetadata$outboundSchema,
+  deleteDriveResponse: components.DeleteDriveResponse$outboundSchema.optional(),
+  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    httpMeta: "HttpMeta",
+    deleteDriveResponse: "DeleteDriveResponse",
+    unexpectedErrorResponse: "UnexpectedErrorResponse",
+  });
+});
 
 /**
  * @internal

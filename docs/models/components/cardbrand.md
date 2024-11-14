@@ -7,7 +7,7 @@ The first six digits of the card number, known as the Bank Identification Number
 ```typescript
 import { CardBrand } from "apideck/models/components";
 
-let value: CardBrand = "discover";
+let value: CardBrand = "other";
 ```
 
 ## Values

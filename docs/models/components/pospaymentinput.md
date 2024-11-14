@@ -82,7 +82,7 @@ let value: PosPaymentInput = {
     country: "US",
   },
   externalDetails: {
-    type: "other_gift_card",
+    type: "social",
     source: "<value>",
     sourceFeeAmount: 2.5,
   },

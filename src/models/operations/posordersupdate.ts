@@ -33,9 +33,17 @@ export type PosOrdersUpdateRequest = {
   order: components.OrderInput;
 };
 
-export type PosOrdersUpdateResponse =
-  | components.UpdateOrderResponse
-  | components.UnexpectedErrorResponse;
+export type PosOrdersUpdateResponse = {
+  httpMeta: components.HTTPMetadata;
+  /**
+   * Orders
+   */
+  updateOrderResponse?: components.UpdateOrderResponse | undefined;
+  /**
+   * Unexpected error
+   */
+  unexpectedErrorResponse?: components.UnexpectedErrorResponse | undefined;
+};
 
 /** @internal */
 export const PosOrdersUpdateGlobals$inboundSchema: z.ZodType<
@@ -134,25 +142,45 @@ export const PosOrdersUpdateResponse$inboundSchema: z.ZodType<
   PosOrdersUpdateResponse,
   z.ZodTypeDef,
   unknown
-> = z.union([
-  components.UpdateOrderResponse$inboundSchema,
-  components.UnexpectedErrorResponse$inboundSchema,
-]);
+> = z.object({
+  HttpMeta: components.HTTPMetadata$inboundSchema,
+  UpdateOrderResponse: components.UpdateOrderResponse$inboundSchema.optional(),
+  UnexpectedErrorResponse: components.UnexpectedErrorResponse$inboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "HttpMeta": "httpMeta",
+    "UpdateOrderResponse": "updateOrderResponse",
+    "UnexpectedErrorResponse": "unexpectedErrorResponse",
+  });
+});
 
 /** @internal */
-export type PosOrdersUpdateResponse$Outbound =
-  | components.UpdateOrderResponse$Outbound
-  | components.UnexpectedErrorResponse$Outbound;
+export type PosOrdersUpdateResponse$Outbound = {
+  HttpMeta: components.HTTPMetadata$Outbound;
+  UpdateOrderResponse?: components.UpdateOrderResponse$Outbound | undefined;
+  UnexpectedErrorResponse?:
+    | components.UnexpectedErrorResponse$Outbound
+    | undefined;
+};
 
 /** @internal */
 export const PosOrdersUpdateResponse$outboundSchema: z.ZodType<
   PosOrdersUpdateResponse$Outbound,
   z.ZodTypeDef,
   PosOrdersUpdateResponse
-> = z.union([
-  components.UpdateOrderResponse$outboundSchema,
-  components.UnexpectedErrorResponse$outboundSchema,
-]);
+> = z.object({
+  httpMeta: components.HTTPMetadata$outboundSchema,
+  updateOrderResponse: components.UpdateOrderResponse$outboundSchema.optional(),
+  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    httpMeta: "HttpMeta",
+    updateOrderResponse: "UpdateOrderResponse",
+    unexpectedErrorResponse: "UnexpectedErrorResponse",
+  });
+});
 
 /**
  * @internal

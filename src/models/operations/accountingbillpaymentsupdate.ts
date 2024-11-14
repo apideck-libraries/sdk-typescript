@@ -33,9 +33,17 @@ export type AccountingBillPaymentsUpdateRequest = {
   billPayment: components.BillPaymentInput;
 };
 
-export type AccountingBillPaymentsUpdateResponse =
-  | components.UpdateBillPaymentResponse
-  | components.UnexpectedErrorResponse;
+export type AccountingBillPaymentsUpdateResponse = {
+  httpMeta: components.HTTPMetadata;
+  /**
+   * Bill Payment updated
+   */
+  updateBillPaymentResponse?: components.UpdateBillPaymentResponse | undefined;
+  /**
+   * Unexpected error
+   */
+  unexpectedErrorResponse?: components.UnexpectedErrorResponse | undefined;
+};
 
 /** @internal */
 export const AccountingBillPaymentsUpdateGlobals$inboundSchema: z.ZodType<
@@ -138,25 +146,49 @@ export const AccountingBillPaymentsUpdateResponse$inboundSchema: z.ZodType<
   AccountingBillPaymentsUpdateResponse,
   z.ZodTypeDef,
   unknown
-> = z.union([
-  components.UpdateBillPaymentResponse$inboundSchema,
-  components.UnexpectedErrorResponse$inboundSchema,
-]);
+> = z.object({
+  HttpMeta: components.HTTPMetadata$inboundSchema,
+  UpdateBillPaymentResponse: components.UpdateBillPaymentResponse$inboundSchema
+    .optional(),
+  UnexpectedErrorResponse: components.UnexpectedErrorResponse$inboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "HttpMeta": "httpMeta",
+    "UpdateBillPaymentResponse": "updateBillPaymentResponse",
+    "UnexpectedErrorResponse": "unexpectedErrorResponse",
+  });
+});
 
 /** @internal */
-export type AccountingBillPaymentsUpdateResponse$Outbound =
-  | components.UpdateBillPaymentResponse$Outbound
-  | components.UnexpectedErrorResponse$Outbound;
+export type AccountingBillPaymentsUpdateResponse$Outbound = {
+  HttpMeta: components.HTTPMetadata$Outbound;
+  UpdateBillPaymentResponse?:
+    | components.UpdateBillPaymentResponse$Outbound
+    | undefined;
+  UnexpectedErrorResponse?:
+    | components.UnexpectedErrorResponse$Outbound
+    | undefined;
+};
 
 /** @internal */
 export const AccountingBillPaymentsUpdateResponse$outboundSchema: z.ZodType<
   AccountingBillPaymentsUpdateResponse$Outbound,
   z.ZodTypeDef,
   AccountingBillPaymentsUpdateResponse
-> = z.union([
-  components.UpdateBillPaymentResponse$outboundSchema,
-  components.UnexpectedErrorResponse$outboundSchema,
-]);
+> = z.object({
+  httpMeta: components.HTTPMetadata$outboundSchema,
+  updateBillPaymentResponse: components.UpdateBillPaymentResponse$outboundSchema
+    .optional(),
+  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    httpMeta: "HttpMeta",
+    updateBillPaymentResponse: "UpdateBillPaymentResponse",
+    unexpectedErrorResponse: "UnexpectedErrorResponse",
+  });
+});
 
 /**
  * @internal

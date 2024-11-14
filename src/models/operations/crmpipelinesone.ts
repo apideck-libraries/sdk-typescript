@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod";
+import { remap as remap$ } from "../../lib/primitives.js";
 import * as components from "../components/index.js";
 
 export type CrmPipelinesOneGlobals = {
@@ -35,9 +36,17 @@ export type CrmPipelinesOneRequest = {
   fields?: string | null | undefined;
 };
 
-export type CrmPipelinesOneResponse =
-  | components.GetPipelineResponse
-  | components.UnexpectedErrorResponse;
+export type CrmPipelinesOneResponse = {
+  httpMeta: components.HTTPMetadata;
+  /**
+   * Pipeline
+   */
+  getPipelineResponse?: components.GetPipelineResponse | undefined;
+  /**
+   * Unexpected error
+   */
+  unexpectedErrorResponse?: components.UnexpectedErrorResponse | undefined;
+};
 
 /** @internal */
 export const CrmPipelinesOneGlobals$inboundSchema: z.ZodType<
@@ -128,25 +137,45 @@ export const CrmPipelinesOneResponse$inboundSchema: z.ZodType<
   CrmPipelinesOneResponse,
   z.ZodTypeDef,
   unknown
-> = z.union([
-  components.GetPipelineResponse$inboundSchema,
-  components.UnexpectedErrorResponse$inboundSchema,
-]);
+> = z.object({
+  HttpMeta: components.HTTPMetadata$inboundSchema,
+  GetPipelineResponse: components.GetPipelineResponse$inboundSchema.optional(),
+  UnexpectedErrorResponse: components.UnexpectedErrorResponse$inboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "HttpMeta": "httpMeta",
+    "GetPipelineResponse": "getPipelineResponse",
+    "UnexpectedErrorResponse": "unexpectedErrorResponse",
+  });
+});
 
 /** @internal */
-export type CrmPipelinesOneResponse$Outbound =
-  | components.GetPipelineResponse$Outbound
-  | components.UnexpectedErrorResponse$Outbound;
+export type CrmPipelinesOneResponse$Outbound = {
+  HttpMeta: components.HTTPMetadata$Outbound;
+  GetPipelineResponse?: components.GetPipelineResponse$Outbound | undefined;
+  UnexpectedErrorResponse?:
+    | components.UnexpectedErrorResponse$Outbound
+    | undefined;
+};
 
 /** @internal */
 export const CrmPipelinesOneResponse$outboundSchema: z.ZodType<
   CrmPipelinesOneResponse$Outbound,
   z.ZodTypeDef,
   CrmPipelinesOneResponse
-> = z.union([
-  components.GetPipelineResponse$outboundSchema,
-  components.UnexpectedErrorResponse$outboundSchema,
-]);
+> = z.object({
+  httpMeta: components.HTTPMetadata$outboundSchema,
+  getPipelineResponse: components.GetPipelineResponse$outboundSchema.optional(),
+  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    httpMeta: "HttpMeta",
+    getPipelineResponse: "GetPipelineResponse",
+    unexpectedErrorResponse: "UnexpectedErrorResponse",
+  });
+});
 
 /**
  * @internal

@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod";
+import { remap as remap$ } from "../../lib/primitives.js";
 import * as components from "../components/index.js";
 
 export type AccountingTrackingCategoriesDeleteGlobals = {
@@ -31,9 +32,19 @@ export type AccountingTrackingCategoriesDeleteRequest = {
   raw?: boolean | undefined;
 };
 
-export type AccountingTrackingCategoriesDeleteResponse =
-  | components.DeleteTrackingCategoryResponse
-  | components.UnexpectedErrorResponse;
+export type AccountingTrackingCategoriesDeleteResponse = {
+  httpMeta: components.HTTPMetadata;
+  /**
+   * Tracking category deleted
+   */
+  deleteTrackingCategoryResponse?:
+    | components.DeleteTrackingCategoryResponse
+    | undefined;
+  /**
+   * Unexpected error
+   */
+  unexpectedErrorResponse?: components.UnexpectedErrorResponse | undefined;
+};
 
 /** @internal */
 export const AccountingTrackingCategoriesDeleteGlobals$inboundSchema: z.ZodType<
@@ -125,15 +136,30 @@ export namespace AccountingTrackingCategoriesDeleteRequest$ {
 /** @internal */
 export const AccountingTrackingCategoriesDeleteResponse$inboundSchema:
   z.ZodType<AccountingTrackingCategoriesDeleteResponse, z.ZodTypeDef, unknown> =
-    z.union([
-      components.DeleteTrackingCategoryResponse$inboundSchema,
-      components.UnexpectedErrorResponse$inboundSchema,
-    ]);
+    z.object({
+      HttpMeta: components.HTTPMetadata$inboundSchema,
+      DeleteTrackingCategoryResponse: components
+        .DeleteTrackingCategoryResponse$inboundSchema.optional(),
+      UnexpectedErrorResponse: components.UnexpectedErrorResponse$inboundSchema
+        .optional(),
+    }).transform((v) => {
+      return remap$(v, {
+        "HttpMeta": "httpMeta",
+        "DeleteTrackingCategoryResponse": "deleteTrackingCategoryResponse",
+        "UnexpectedErrorResponse": "unexpectedErrorResponse",
+      });
+    });
 
 /** @internal */
-export type AccountingTrackingCategoriesDeleteResponse$Outbound =
-  | components.DeleteTrackingCategoryResponse$Outbound
-  | components.UnexpectedErrorResponse$Outbound;
+export type AccountingTrackingCategoriesDeleteResponse$Outbound = {
+  HttpMeta: components.HTTPMetadata$Outbound;
+  DeleteTrackingCategoryResponse?:
+    | components.DeleteTrackingCategoryResponse$Outbound
+    | undefined;
+  UnexpectedErrorResponse?:
+    | components.UnexpectedErrorResponse$Outbound
+    | undefined;
+};
 
 /** @internal */
 export const AccountingTrackingCategoriesDeleteResponse$outboundSchema:
@@ -141,10 +167,19 @@ export const AccountingTrackingCategoriesDeleteResponse$outboundSchema:
     AccountingTrackingCategoriesDeleteResponse$Outbound,
     z.ZodTypeDef,
     AccountingTrackingCategoriesDeleteResponse
-  > = z.union([
-    components.DeleteTrackingCategoryResponse$outboundSchema,
-    components.UnexpectedErrorResponse$outboundSchema,
-  ]);
+  > = z.object({
+    httpMeta: components.HTTPMetadata$outboundSchema,
+    deleteTrackingCategoryResponse: components
+      .DeleteTrackingCategoryResponse$outboundSchema.optional(),
+    unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
+      .optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      httpMeta: "HttpMeta",
+      deleteTrackingCategoryResponse: "DeleteTrackingCategoryResponse",
+      unexpectedErrorResponse: "UnexpectedErrorResponse",
+    });
+  });
 
 /**
  * @internal

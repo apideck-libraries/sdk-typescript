@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod";
+import { remap as remap$ } from "../../lib/primitives.js";
 import * as components from "../components/index.js";
 
 export type FileStorageSharedLinksOneGlobals = {
@@ -35,9 +36,17 @@ export type FileStorageSharedLinksOneRequest = {
   fields?: string | null | undefined;
 };
 
-export type FileStorageSharedLinksOneResponse =
-  | components.GetSharedLinkResponse
-  | components.UnexpectedErrorResponse;
+export type FileStorageSharedLinksOneResponse = {
+  httpMeta: components.HTTPMetadata;
+  /**
+   * Shared Link
+   */
+  getSharedLinkResponse?: components.GetSharedLinkResponse | undefined;
+  /**
+   * Unexpected error
+   */
+  unexpectedErrorResponse?: components.UnexpectedErrorResponse | undefined;
+};
 
 /** @internal */
 export const FileStorageSharedLinksOneGlobals$inboundSchema: z.ZodType<
@@ -128,25 +137,47 @@ export const FileStorageSharedLinksOneResponse$inboundSchema: z.ZodType<
   FileStorageSharedLinksOneResponse,
   z.ZodTypeDef,
   unknown
-> = z.union([
-  components.GetSharedLinkResponse$inboundSchema,
-  components.UnexpectedErrorResponse$inboundSchema,
-]);
+> = z.object({
+  HttpMeta: components.HTTPMetadata$inboundSchema,
+  GetSharedLinkResponse: components.GetSharedLinkResponse$inboundSchema
+    .optional(),
+  UnexpectedErrorResponse: components.UnexpectedErrorResponse$inboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "HttpMeta": "httpMeta",
+    "GetSharedLinkResponse": "getSharedLinkResponse",
+    "UnexpectedErrorResponse": "unexpectedErrorResponse",
+  });
+});
 
 /** @internal */
-export type FileStorageSharedLinksOneResponse$Outbound =
-  | components.GetSharedLinkResponse$Outbound
-  | components.UnexpectedErrorResponse$Outbound;
+export type FileStorageSharedLinksOneResponse$Outbound = {
+  HttpMeta: components.HTTPMetadata$Outbound;
+  GetSharedLinkResponse?: components.GetSharedLinkResponse$Outbound | undefined;
+  UnexpectedErrorResponse?:
+    | components.UnexpectedErrorResponse$Outbound
+    | undefined;
+};
 
 /** @internal */
 export const FileStorageSharedLinksOneResponse$outboundSchema: z.ZodType<
   FileStorageSharedLinksOneResponse$Outbound,
   z.ZodTypeDef,
   FileStorageSharedLinksOneResponse
-> = z.union([
-  components.GetSharedLinkResponse$outboundSchema,
-  components.UnexpectedErrorResponse$outboundSchema,
-]);
+> = z.object({
+  httpMeta: components.HTTPMetadata$outboundSchema,
+  getSharedLinkResponse: components.GetSharedLinkResponse$outboundSchema
+    .optional(),
+  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    httpMeta: "HttpMeta",
+    getSharedLinkResponse: "GetSharedLinkResponse",
+    unexpectedErrorResponse: "UnexpectedErrorResponse",
+  });
+});
 
 /**
  * @internal

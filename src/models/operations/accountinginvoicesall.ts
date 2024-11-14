@@ -52,9 +52,17 @@ export type AccountingInvoicesAllRequest = {
   fields?: string | null | undefined;
 };
 
-export type AccountingInvoicesAllResponse =
-  | components.UnexpectedErrorResponse
-  | components.GetInvoicesResponse;
+export type AccountingInvoicesAllResponse = {
+  httpMeta: components.HTTPMetadata;
+  /**
+   * Invoices
+   */
+  getInvoicesResponse?: components.GetInvoicesResponse | undefined;
+  /**
+   * Unexpected error
+   */
+  unexpectedErrorResponse?: components.UnexpectedErrorResponse | undefined;
+};
 
 /** @internal */
 export const AccountingInvoicesAllGlobals$inboundSchema: z.ZodType<
@@ -165,25 +173,45 @@ export const AccountingInvoicesAllResponse$inboundSchema: z.ZodType<
   AccountingInvoicesAllResponse,
   z.ZodTypeDef,
   unknown
-> = z.union([
-  components.UnexpectedErrorResponse$inboundSchema,
-  components.GetInvoicesResponse$inboundSchema,
-]);
+> = z.object({
+  HttpMeta: components.HTTPMetadata$inboundSchema,
+  GetInvoicesResponse: components.GetInvoicesResponse$inboundSchema.optional(),
+  UnexpectedErrorResponse: components.UnexpectedErrorResponse$inboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "HttpMeta": "httpMeta",
+    "GetInvoicesResponse": "getInvoicesResponse",
+    "UnexpectedErrorResponse": "unexpectedErrorResponse",
+  });
+});
 
 /** @internal */
-export type AccountingInvoicesAllResponse$Outbound =
-  | components.UnexpectedErrorResponse$Outbound
-  | components.GetInvoicesResponse$Outbound;
+export type AccountingInvoicesAllResponse$Outbound = {
+  HttpMeta: components.HTTPMetadata$Outbound;
+  GetInvoicesResponse?: components.GetInvoicesResponse$Outbound | undefined;
+  UnexpectedErrorResponse?:
+    | components.UnexpectedErrorResponse$Outbound
+    | undefined;
+};
 
 /** @internal */
 export const AccountingInvoicesAllResponse$outboundSchema: z.ZodType<
   AccountingInvoicesAllResponse$Outbound,
   z.ZodTypeDef,
   AccountingInvoicesAllResponse
-> = z.union([
-  components.UnexpectedErrorResponse$outboundSchema,
-  components.GetInvoicesResponse$outboundSchema,
-]);
+> = z.object({
+  httpMeta: components.HTTPMetadata$outboundSchema,
+  getInvoicesResponse: components.GetInvoicesResponse$outboundSchema.optional(),
+  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    httpMeta: "HttpMeta",
+    getInvoicesResponse: "GetInvoicesResponse",
+    unexpectedErrorResponse: "UnexpectedErrorResponse",
+  });
+});
 
 /**
  * @internal

@@ -36,9 +36,17 @@ export type VaultConnectionCustomMappingsAllRequest = {
   resourceId?: string | undefined;
 };
 
-export type VaultConnectionCustomMappingsAllResponse =
-  | components.GetCustomMappingsResponse
-  | components.UnexpectedErrorResponse;
+export type VaultConnectionCustomMappingsAllResponse = {
+  httpMeta: components.HTTPMetadata;
+  /**
+   * Custom mapping
+   */
+  getCustomMappingsResponse?: components.GetCustomMappingsResponse | undefined;
+  /**
+   * Unexpected error
+   */
+  unexpectedErrorResponse?: components.UnexpectedErrorResponse | undefined;
+};
 
 /** @internal */
 export const VaultConnectionCustomMappingsAllGlobals$inboundSchema: z.ZodType<
@@ -145,25 +153,49 @@ export const VaultConnectionCustomMappingsAllResponse$inboundSchema: z.ZodType<
   VaultConnectionCustomMappingsAllResponse,
   z.ZodTypeDef,
   unknown
-> = z.union([
-  components.GetCustomMappingsResponse$inboundSchema,
-  components.UnexpectedErrorResponse$inboundSchema,
-]);
+> = z.object({
+  HttpMeta: components.HTTPMetadata$inboundSchema,
+  GetCustomMappingsResponse: components.GetCustomMappingsResponse$inboundSchema
+    .optional(),
+  UnexpectedErrorResponse: components.UnexpectedErrorResponse$inboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "HttpMeta": "httpMeta",
+    "GetCustomMappingsResponse": "getCustomMappingsResponse",
+    "UnexpectedErrorResponse": "unexpectedErrorResponse",
+  });
+});
 
 /** @internal */
-export type VaultConnectionCustomMappingsAllResponse$Outbound =
-  | components.GetCustomMappingsResponse$Outbound
-  | components.UnexpectedErrorResponse$Outbound;
+export type VaultConnectionCustomMappingsAllResponse$Outbound = {
+  HttpMeta: components.HTTPMetadata$Outbound;
+  GetCustomMappingsResponse?:
+    | components.GetCustomMappingsResponse$Outbound
+    | undefined;
+  UnexpectedErrorResponse?:
+    | components.UnexpectedErrorResponse$Outbound
+    | undefined;
+};
 
 /** @internal */
 export const VaultConnectionCustomMappingsAllResponse$outboundSchema: z.ZodType<
   VaultConnectionCustomMappingsAllResponse$Outbound,
   z.ZodTypeDef,
   VaultConnectionCustomMappingsAllResponse
-> = z.union([
-  components.GetCustomMappingsResponse$outboundSchema,
-  components.UnexpectedErrorResponse$outboundSchema,
-]);
+> = z.object({
+  httpMeta: components.HTTPMetadata$outboundSchema,
+  getCustomMappingsResponse: components.GetCustomMappingsResponse$outboundSchema
+    .optional(),
+  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    httpMeta: "HttpMeta",
+    getCustomMappingsResponse: "GetCustomMappingsResponse",
+    unexpectedErrorResponse: "UnexpectedErrorResponse",
+  });
+});
 
 /**
  * @internal

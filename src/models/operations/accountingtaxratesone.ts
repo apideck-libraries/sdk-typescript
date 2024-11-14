@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod";
+import { remap as remap$ } from "../../lib/primitives.js";
 import * as components from "../components/index.js";
 
 export type AccountingTaxRatesOneGlobals = {
@@ -35,9 +36,17 @@ export type AccountingTaxRatesOneRequest = {
   fields?: string | null | undefined;
 };
 
-export type AccountingTaxRatesOneResponse =
-  | components.GetTaxRateResponse
-  | components.UnexpectedErrorResponse;
+export type AccountingTaxRatesOneResponse = {
+  httpMeta: components.HTTPMetadata;
+  /**
+   * TaxRate
+   */
+  getTaxRateResponse?: components.GetTaxRateResponse | undefined;
+  /**
+   * Unexpected error
+   */
+  unexpectedErrorResponse?: components.UnexpectedErrorResponse | undefined;
+};
 
 /** @internal */
 export const AccountingTaxRatesOneGlobals$inboundSchema: z.ZodType<
@@ -128,25 +137,45 @@ export const AccountingTaxRatesOneResponse$inboundSchema: z.ZodType<
   AccountingTaxRatesOneResponse,
   z.ZodTypeDef,
   unknown
-> = z.union([
-  components.GetTaxRateResponse$inboundSchema,
-  components.UnexpectedErrorResponse$inboundSchema,
-]);
+> = z.object({
+  HttpMeta: components.HTTPMetadata$inboundSchema,
+  GetTaxRateResponse: components.GetTaxRateResponse$inboundSchema.optional(),
+  UnexpectedErrorResponse: components.UnexpectedErrorResponse$inboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "HttpMeta": "httpMeta",
+    "GetTaxRateResponse": "getTaxRateResponse",
+    "UnexpectedErrorResponse": "unexpectedErrorResponse",
+  });
+});
 
 /** @internal */
-export type AccountingTaxRatesOneResponse$Outbound =
-  | components.GetTaxRateResponse$Outbound
-  | components.UnexpectedErrorResponse$Outbound;
+export type AccountingTaxRatesOneResponse$Outbound = {
+  HttpMeta: components.HTTPMetadata$Outbound;
+  GetTaxRateResponse?: components.GetTaxRateResponse$Outbound | undefined;
+  UnexpectedErrorResponse?:
+    | components.UnexpectedErrorResponse$Outbound
+    | undefined;
+};
 
 /** @internal */
 export const AccountingTaxRatesOneResponse$outboundSchema: z.ZodType<
   AccountingTaxRatesOneResponse$Outbound,
   z.ZodTypeDef,
   AccountingTaxRatesOneResponse
-> = z.union([
-  components.GetTaxRateResponse$outboundSchema,
-  components.UnexpectedErrorResponse$outboundSchema,
-]);
+> = z.object({
+  httpMeta: components.HTTPMetadata$outboundSchema,
+  getTaxRateResponse: components.GetTaxRateResponse$outboundSchema.optional(),
+  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    httpMeta: "HttpMeta",
+    getTaxRateResponse: "GetTaxRateResponse",
+    unexpectedErrorResponse: "UnexpectedErrorResponse",
+  });
+});
 
 /**
  * @internal

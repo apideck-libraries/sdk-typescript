@@ -92,7 +92,7 @@ let value: GetPosPaymentResponse = {
       country: "US",
     },
     externalDetails: {
-      type: "external",
+      type: "square_cash",
       source: "<value>",
       sourceFeeAmount: 2.5,
     },

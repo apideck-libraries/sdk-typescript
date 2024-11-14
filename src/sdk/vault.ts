@@ -193,7 +193,7 @@ export class Vault extends ClientSDK {
   async vaultConnectionsDelete(
     request: operations.VaultConnectionsDeleteRequest,
     options?: RequestOptions,
-  ): Promise<components.UnexpectedErrorResponse | undefined> {
+  ): Promise<operations.VaultConnectionsDeleteResponse> {
     return unwrapAsync(vaultVaultConnectionsDelete(
       this,
       request,

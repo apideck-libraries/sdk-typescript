@@ -52,9 +52,17 @@ export type FileStorageFilesAllRequest = {
   fields?: string | null | undefined;
 };
 
-export type FileStorageFilesAllResponse =
-  | components.UnexpectedErrorResponse
-  | components.GetFilesResponse;
+export type FileStorageFilesAllResponse = {
+  httpMeta: components.HTTPMetadata;
+  /**
+   * Files
+   */
+  getFilesResponse?: components.GetFilesResponse | undefined;
+  /**
+   * Unexpected error
+   */
+  unexpectedErrorResponse?: components.UnexpectedErrorResponse | undefined;
+};
 
 /** @internal */
 export const FileStorageFilesAllGlobals$inboundSchema: z.ZodType<
@@ -165,25 +173,45 @@ export const FileStorageFilesAllResponse$inboundSchema: z.ZodType<
   FileStorageFilesAllResponse,
   z.ZodTypeDef,
   unknown
-> = z.union([
-  components.UnexpectedErrorResponse$inboundSchema,
-  components.GetFilesResponse$inboundSchema,
-]);
+> = z.object({
+  HttpMeta: components.HTTPMetadata$inboundSchema,
+  GetFilesResponse: components.GetFilesResponse$inboundSchema.optional(),
+  UnexpectedErrorResponse: components.UnexpectedErrorResponse$inboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "HttpMeta": "httpMeta",
+    "GetFilesResponse": "getFilesResponse",
+    "UnexpectedErrorResponse": "unexpectedErrorResponse",
+  });
+});
 
 /** @internal */
-export type FileStorageFilesAllResponse$Outbound =
-  | components.UnexpectedErrorResponse$Outbound
-  | components.GetFilesResponse$Outbound;
+export type FileStorageFilesAllResponse$Outbound = {
+  HttpMeta: components.HTTPMetadata$Outbound;
+  GetFilesResponse?: components.GetFilesResponse$Outbound | undefined;
+  UnexpectedErrorResponse?:
+    | components.UnexpectedErrorResponse$Outbound
+    | undefined;
+};
 
 /** @internal */
 export const FileStorageFilesAllResponse$outboundSchema: z.ZodType<
   FileStorageFilesAllResponse$Outbound,
   z.ZodTypeDef,
   FileStorageFilesAllResponse
-> = z.union([
-  components.UnexpectedErrorResponse$outboundSchema,
-  components.GetFilesResponse$outboundSchema,
-]);
+> = z.object({
+  httpMeta: components.HTTPMetadata$outboundSchema,
+  getFilesResponse: components.GetFilesResponse$outboundSchema.optional(),
+  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    httpMeta: "HttpMeta",
+    getFilesResponse: "GetFilesResponse",
+    unexpectedErrorResponse: "UnexpectedErrorResponse",
+  });
+});
 
 /**
  * @internal

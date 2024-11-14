@@ -127,7 +127,7 @@ export async function accountingAccountingCustomersDelete(
     headers: headers,
     query: query,
     body: body,
-    timeoutMs: options?.timeoutMs || client._options.timeoutMs || 1000,
+    timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
   }, options);
   if (!requestRes.ok) {
     return requestRes;
@@ -164,7 +164,9 @@ export async function accountingAccountingCustomersDelete(
     | RequestTimeoutError
     | ConnectionError
   >(
-    M.json(200, operations.AccountingCustomersDeleteResponse$inboundSchema),
+    M.json(200, operations.AccountingCustomersDeleteResponse$inboundSchema, {
+      key: "DeleteCustomerResponse",
+    }),
     M.jsonErr(400, errors.BadRequestResponse$inboundSchema),
     M.jsonErr(401, errors.UnauthorizedResponse$inboundSchema),
     M.jsonErr(402, errors.PaymentRequiredResponse$inboundSchema),
@@ -174,8 +176,9 @@ export async function accountingAccountingCustomersDelete(
     M.json(
       "default",
       operations.AccountingCustomersDeleteResponse$inboundSchema,
+      { key: "UnexpectedErrorResponse" },
     ),
-  )(response, { extraFields: responseFields });
+  )(response, req, { extraFields: responseFields });
   if (!result.ok) {
     return result;
   }

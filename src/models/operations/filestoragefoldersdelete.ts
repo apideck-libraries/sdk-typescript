@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod";
+import { remap as remap$ } from "../../lib/primitives.js";
 import * as components from "../components/index.js";
 
 export type FileStorageFoldersDeleteGlobals = {
@@ -31,9 +32,17 @@ export type FileStorageFoldersDeleteRequest = {
   raw?: boolean | undefined;
 };
 
-export type FileStorageFoldersDeleteResponse =
-  | components.DeleteFolderResponse
-  | components.UnexpectedErrorResponse;
+export type FileStorageFoldersDeleteResponse = {
+  httpMeta: components.HTTPMetadata;
+  /**
+   * Folders
+   */
+  deleteFolderResponse?: components.DeleteFolderResponse | undefined;
+  /**
+   * Unexpected error
+   */
+  unexpectedErrorResponse?: components.UnexpectedErrorResponse | undefined;
+};
 
 /** @internal */
 export const FileStorageFoldersDeleteGlobals$inboundSchema: z.ZodType<
@@ -121,25 +130,47 @@ export const FileStorageFoldersDeleteResponse$inboundSchema: z.ZodType<
   FileStorageFoldersDeleteResponse,
   z.ZodTypeDef,
   unknown
-> = z.union([
-  components.DeleteFolderResponse$inboundSchema,
-  components.UnexpectedErrorResponse$inboundSchema,
-]);
+> = z.object({
+  HttpMeta: components.HTTPMetadata$inboundSchema,
+  DeleteFolderResponse: components.DeleteFolderResponse$inboundSchema
+    .optional(),
+  UnexpectedErrorResponse: components.UnexpectedErrorResponse$inboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "HttpMeta": "httpMeta",
+    "DeleteFolderResponse": "deleteFolderResponse",
+    "UnexpectedErrorResponse": "unexpectedErrorResponse",
+  });
+});
 
 /** @internal */
-export type FileStorageFoldersDeleteResponse$Outbound =
-  | components.DeleteFolderResponse$Outbound
-  | components.UnexpectedErrorResponse$Outbound;
+export type FileStorageFoldersDeleteResponse$Outbound = {
+  HttpMeta: components.HTTPMetadata$Outbound;
+  DeleteFolderResponse?: components.DeleteFolderResponse$Outbound | undefined;
+  UnexpectedErrorResponse?:
+    | components.UnexpectedErrorResponse$Outbound
+    | undefined;
+};
 
 /** @internal */
 export const FileStorageFoldersDeleteResponse$outboundSchema: z.ZodType<
   FileStorageFoldersDeleteResponse$Outbound,
   z.ZodTypeDef,
   FileStorageFoldersDeleteResponse
-> = z.union([
-  components.DeleteFolderResponse$outboundSchema,
-  components.UnexpectedErrorResponse$outboundSchema,
-]);
+> = z.object({
+  httpMeta: components.HTTPMetadata$outboundSchema,
+  deleteFolderResponse: components.DeleteFolderResponse$outboundSchema
+    .optional(),
+  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    httpMeta: "HttpMeta",
+    deleteFolderResponse: "DeleteFolderResponse",
+    unexpectedErrorResponse: "UnexpectedErrorResponse",
+  });
+});
 
 /**
  * @internal

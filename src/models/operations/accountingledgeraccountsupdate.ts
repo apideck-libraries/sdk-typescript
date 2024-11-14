@@ -33,9 +33,19 @@ export type AccountingLedgerAccountsUpdateRequest = {
   ledgerAccount: components.LedgerAccountInput;
 };
 
-export type AccountingLedgerAccountsUpdateResponse =
-  | components.UpdateLedgerAccountResponse
-  | components.UnexpectedErrorResponse;
+export type AccountingLedgerAccountsUpdateResponse = {
+  httpMeta: components.HTTPMetadata;
+  /**
+   * LedgerAccount updated
+   */
+  updateLedgerAccountResponse?:
+    | components.UpdateLedgerAccountResponse
+    | undefined;
+  /**
+   * Unexpected error
+   */
+  unexpectedErrorResponse?: components.UnexpectedErrorResponse | undefined;
+};
 
 /** @internal */
 export const AccountingLedgerAccountsUpdateGlobals$inboundSchema: z.ZodType<
@@ -138,25 +148,49 @@ export const AccountingLedgerAccountsUpdateResponse$inboundSchema: z.ZodType<
   AccountingLedgerAccountsUpdateResponse,
   z.ZodTypeDef,
   unknown
-> = z.union([
-  components.UpdateLedgerAccountResponse$inboundSchema,
-  components.UnexpectedErrorResponse$inboundSchema,
-]);
+> = z.object({
+  HttpMeta: components.HTTPMetadata$inboundSchema,
+  UpdateLedgerAccountResponse: components
+    .UpdateLedgerAccountResponse$inboundSchema.optional(),
+  UnexpectedErrorResponse: components.UnexpectedErrorResponse$inboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "HttpMeta": "httpMeta",
+    "UpdateLedgerAccountResponse": "updateLedgerAccountResponse",
+    "UnexpectedErrorResponse": "unexpectedErrorResponse",
+  });
+});
 
 /** @internal */
-export type AccountingLedgerAccountsUpdateResponse$Outbound =
-  | components.UpdateLedgerAccountResponse$Outbound
-  | components.UnexpectedErrorResponse$Outbound;
+export type AccountingLedgerAccountsUpdateResponse$Outbound = {
+  HttpMeta: components.HTTPMetadata$Outbound;
+  UpdateLedgerAccountResponse?:
+    | components.UpdateLedgerAccountResponse$Outbound
+    | undefined;
+  UnexpectedErrorResponse?:
+    | components.UnexpectedErrorResponse$Outbound
+    | undefined;
+};
 
 /** @internal */
 export const AccountingLedgerAccountsUpdateResponse$outboundSchema: z.ZodType<
   AccountingLedgerAccountsUpdateResponse$Outbound,
   z.ZodTypeDef,
   AccountingLedgerAccountsUpdateResponse
-> = z.union([
-  components.UpdateLedgerAccountResponse$outboundSchema,
-  components.UnexpectedErrorResponse$outboundSchema,
-]);
+> = z.object({
+  httpMeta: components.HTTPMetadata$outboundSchema,
+  updateLedgerAccountResponse: components
+    .UpdateLedgerAccountResponse$outboundSchema.optional(),
+  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    httpMeta: "HttpMeta",
+    updateLedgerAccountResponse: "UpdateLedgerAccountResponse",
+    unexpectedErrorResponse: "UnexpectedErrorResponse",
+  });
+});
 
 /**
  * @internal

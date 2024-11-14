@@ -32,9 +32,19 @@ export type VaultCreateCallbackStateRequest = {
   createCallbackStateData: components.CreateCallbackStateData;
 };
 
-export type VaultCreateCallbackStateResponse =
-  | components.CreateCallbackStateResponse
-  | components.UnexpectedErrorResponse;
+export type VaultCreateCallbackStateResponse = {
+  httpMeta: components.HTTPMetadata;
+  /**
+   * Callback state created
+   */
+  createCallbackStateResponse?:
+    | components.CreateCallbackStateResponse
+    | undefined;
+  /**
+   * Unexpected error
+   */
+  unexpectedErrorResponse?: components.UnexpectedErrorResponse | undefined;
+};
 
 /** @internal */
 export const VaultCreateCallbackStateGlobals$inboundSchema: z.ZodType<
@@ -134,25 +144,49 @@ export const VaultCreateCallbackStateResponse$inboundSchema: z.ZodType<
   VaultCreateCallbackStateResponse,
   z.ZodTypeDef,
   unknown
-> = z.union([
-  components.CreateCallbackStateResponse$inboundSchema,
-  components.UnexpectedErrorResponse$inboundSchema,
-]);
+> = z.object({
+  HttpMeta: components.HTTPMetadata$inboundSchema,
+  CreateCallbackStateResponse: components
+    .CreateCallbackStateResponse$inboundSchema.optional(),
+  UnexpectedErrorResponse: components.UnexpectedErrorResponse$inboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "HttpMeta": "httpMeta",
+    "CreateCallbackStateResponse": "createCallbackStateResponse",
+    "UnexpectedErrorResponse": "unexpectedErrorResponse",
+  });
+});
 
 /** @internal */
-export type VaultCreateCallbackStateResponse$Outbound =
-  | components.CreateCallbackStateResponse$Outbound
-  | components.UnexpectedErrorResponse$Outbound;
+export type VaultCreateCallbackStateResponse$Outbound = {
+  HttpMeta: components.HTTPMetadata$Outbound;
+  CreateCallbackStateResponse?:
+    | components.CreateCallbackStateResponse$Outbound
+    | undefined;
+  UnexpectedErrorResponse?:
+    | components.UnexpectedErrorResponse$Outbound
+    | undefined;
+};
 
 /** @internal */
 export const VaultCreateCallbackStateResponse$outboundSchema: z.ZodType<
   VaultCreateCallbackStateResponse$Outbound,
   z.ZodTypeDef,
   VaultCreateCallbackStateResponse
-> = z.union([
-  components.CreateCallbackStateResponse$outboundSchema,
-  components.UnexpectedErrorResponse$outboundSchema,
-]);
+> = z.object({
+  httpMeta: components.HTTPMetadata$outboundSchema,
+  createCallbackStateResponse: components
+    .CreateCallbackStateResponse$outboundSchema.optional(),
+  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    httpMeta: "HttpMeta",
+    createCallbackStateResponse: "CreateCallbackStateResponse",
+    unexpectedErrorResponse: "UnexpectedErrorResponse",
+  });
+});
 
 /**
  * @internal

@@ -5,7 +5,7 @@
 ```typescript
 import { OrderScope } from "apideck/models/components";
 
-let value: OrderScope = "line_item";
+let value: OrderScope = "order";
 ```
 
 ## Values

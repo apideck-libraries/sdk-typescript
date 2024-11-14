@@ -52,9 +52,17 @@ export type CrmOpportunitiesAllRequest = {
   fields?: string | null | undefined;
 };
 
-export type CrmOpportunitiesAllResponse =
-  | components.UnexpectedErrorResponse
-  | components.GetOpportunitiesResponse;
+export type CrmOpportunitiesAllResponse = {
+  httpMeta: components.HTTPMetadata;
+  /**
+   * Opportunities
+   */
+  getOpportunitiesResponse?: components.GetOpportunitiesResponse | undefined;
+  /**
+   * Unexpected error
+   */
+  unexpectedErrorResponse?: components.UnexpectedErrorResponse | undefined;
+};
 
 /** @internal */
 export const CrmOpportunitiesAllGlobals$inboundSchema: z.ZodType<
@@ -165,25 +173,49 @@ export const CrmOpportunitiesAllResponse$inboundSchema: z.ZodType<
   CrmOpportunitiesAllResponse,
   z.ZodTypeDef,
   unknown
-> = z.union([
-  components.UnexpectedErrorResponse$inboundSchema,
-  components.GetOpportunitiesResponse$inboundSchema,
-]);
+> = z.object({
+  HttpMeta: components.HTTPMetadata$inboundSchema,
+  GetOpportunitiesResponse: components.GetOpportunitiesResponse$inboundSchema
+    .optional(),
+  UnexpectedErrorResponse: components.UnexpectedErrorResponse$inboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "HttpMeta": "httpMeta",
+    "GetOpportunitiesResponse": "getOpportunitiesResponse",
+    "UnexpectedErrorResponse": "unexpectedErrorResponse",
+  });
+});
 
 /** @internal */
-export type CrmOpportunitiesAllResponse$Outbound =
-  | components.UnexpectedErrorResponse$Outbound
-  | components.GetOpportunitiesResponse$Outbound;
+export type CrmOpportunitiesAllResponse$Outbound = {
+  HttpMeta: components.HTTPMetadata$Outbound;
+  GetOpportunitiesResponse?:
+    | components.GetOpportunitiesResponse$Outbound
+    | undefined;
+  UnexpectedErrorResponse?:
+    | components.UnexpectedErrorResponse$Outbound
+    | undefined;
+};
 
 /** @internal */
 export const CrmOpportunitiesAllResponse$outboundSchema: z.ZodType<
   CrmOpportunitiesAllResponse$Outbound,
   z.ZodTypeDef,
   CrmOpportunitiesAllResponse
-> = z.union([
-  components.UnexpectedErrorResponse$outboundSchema,
-  components.GetOpportunitiesResponse$outboundSchema,
-]);
+> = z.object({
+  httpMeta: components.HTTPMetadata$outboundSchema,
+  getOpportunitiesResponse: components.GetOpportunitiesResponse$outboundSchema
+    .optional(),
+  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    httpMeta: "HttpMeta",
+    getOpportunitiesResponse: "GetOpportunitiesResponse",
+    unexpectedErrorResponse: "UnexpectedErrorResponse",
+  });
+});
 
 /**
  * @internal

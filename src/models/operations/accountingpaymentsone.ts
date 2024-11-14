@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod";
+import { remap as remap$ } from "../../lib/primitives.js";
 import * as components from "../components/index.js";
 
 export type AccountingPaymentsOneGlobals = {
@@ -35,9 +36,17 @@ export type AccountingPaymentsOneRequest = {
   fields?: string | null | undefined;
 };
 
-export type AccountingPaymentsOneResponse =
-  | components.GetPaymentResponse
-  | components.UnexpectedErrorResponse;
+export type AccountingPaymentsOneResponse = {
+  httpMeta: components.HTTPMetadata;
+  /**
+   * Payment
+   */
+  getPaymentResponse?: components.GetPaymentResponse | undefined;
+  /**
+   * Unexpected error
+   */
+  unexpectedErrorResponse?: components.UnexpectedErrorResponse | undefined;
+};
 
 /** @internal */
 export const AccountingPaymentsOneGlobals$inboundSchema: z.ZodType<
@@ -128,25 +137,45 @@ export const AccountingPaymentsOneResponse$inboundSchema: z.ZodType<
   AccountingPaymentsOneResponse,
   z.ZodTypeDef,
   unknown
-> = z.union([
-  components.GetPaymentResponse$inboundSchema,
-  components.UnexpectedErrorResponse$inboundSchema,
-]);
+> = z.object({
+  HttpMeta: components.HTTPMetadata$inboundSchema,
+  GetPaymentResponse: components.GetPaymentResponse$inboundSchema.optional(),
+  UnexpectedErrorResponse: components.UnexpectedErrorResponse$inboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "HttpMeta": "httpMeta",
+    "GetPaymentResponse": "getPaymentResponse",
+    "UnexpectedErrorResponse": "unexpectedErrorResponse",
+  });
+});
 
 /** @internal */
-export type AccountingPaymentsOneResponse$Outbound =
-  | components.GetPaymentResponse$Outbound
-  | components.UnexpectedErrorResponse$Outbound;
+export type AccountingPaymentsOneResponse$Outbound = {
+  HttpMeta: components.HTTPMetadata$Outbound;
+  GetPaymentResponse?: components.GetPaymentResponse$Outbound | undefined;
+  UnexpectedErrorResponse?:
+    | components.UnexpectedErrorResponse$Outbound
+    | undefined;
+};
 
 /** @internal */
 export const AccountingPaymentsOneResponse$outboundSchema: z.ZodType<
   AccountingPaymentsOneResponse$Outbound,
   z.ZodTypeDef,
   AccountingPaymentsOneResponse
-> = z.union([
-  components.GetPaymentResponse$outboundSchema,
-  components.UnexpectedErrorResponse$outboundSchema,
-]);
+> = z.object({
+  httpMeta: components.HTTPMetadata$outboundSchema,
+  getPaymentResponse: components.GetPaymentResponse$outboundSchema.optional(),
+  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    httpMeta: "HttpMeta",
+    getPaymentResponse: "GetPaymentResponse",
+    unexpectedErrorResponse: "UnexpectedErrorResponse",
+  });
+});
 
 /**
  * @internal

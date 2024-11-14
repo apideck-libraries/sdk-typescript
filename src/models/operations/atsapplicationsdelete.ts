@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod";
+import { remap as remap$ } from "../../lib/primitives.js";
 import * as components from "../components/index.js";
 
 export type AtsApplicationsDeleteGlobals = {
@@ -31,9 +32,17 @@ export type AtsApplicationsDeleteRequest = {
   raw?: boolean | undefined;
 };
 
-export type AtsApplicationsDeleteResponse =
-  | components.DeleteApplicationResponse
-  | components.UnexpectedErrorResponse;
+export type AtsApplicationsDeleteResponse = {
+  httpMeta: components.HTTPMetadata;
+  /**
+   * Applications
+   */
+  deleteApplicationResponse?: components.DeleteApplicationResponse | undefined;
+  /**
+   * Unexpected error
+   */
+  unexpectedErrorResponse?: components.UnexpectedErrorResponse | undefined;
+};
 
 /** @internal */
 export const AtsApplicationsDeleteGlobals$inboundSchema: z.ZodType<
@@ -121,25 +130,49 @@ export const AtsApplicationsDeleteResponse$inboundSchema: z.ZodType<
   AtsApplicationsDeleteResponse,
   z.ZodTypeDef,
   unknown
-> = z.union([
-  components.DeleteApplicationResponse$inboundSchema,
-  components.UnexpectedErrorResponse$inboundSchema,
-]);
+> = z.object({
+  HttpMeta: components.HTTPMetadata$inboundSchema,
+  DeleteApplicationResponse: components.DeleteApplicationResponse$inboundSchema
+    .optional(),
+  UnexpectedErrorResponse: components.UnexpectedErrorResponse$inboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "HttpMeta": "httpMeta",
+    "DeleteApplicationResponse": "deleteApplicationResponse",
+    "UnexpectedErrorResponse": "unexpectedErrorResponse",
+  });
+});
 
 /** @internal */
-export type AtsApplicationsDeleteResponse$Outbound =
-  | components.DeleteApplicationResponse$Outbound
-  | components.UnexpectedErrorResponse$Outbound;
+export type AtsApplicationsDeleteResponse$Outbound = {
+  HttpMeta: components.HTTPMetadata$Outbound;
+  DeleteApplicationResponse?:
+    | components.DeleteApplicationResponse$Outbound
+    | undefined;
+  UnexpectedErrorResponse?:
+    | components.UnexpectedErrorResponse$Outbound
+    | undefined;
+};
 
 /** @internal */
 export const AtsApplicationsDeleteResponse$outboundSchema: z.ZodType<
   AtsApplicationsDeleteResponse$Outbound,
   z.ZodTypeDef,
   AtsApplicationsDeleteResponse
-> = z.union([
-  components.DeleteApplicationResponse$outboundSchema,
-  components.UnexpectedErrorResponse$outboundSchema,
-]);
+> = z.object({
+  httpMeta: components.HTTPMetadata$outboundSchema,
+  deleteApplicationResponse: components.DeleteApplicationResponse$outboundSchema
+    .optional(),
+  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    httpMeta: "HttpMeta",
+    deleteApplicationResponse: "DeleteApplicationResponse",
+    unexpectedErrorResponse: "UnexpectedErrorResponse",
+  });
+});
 
 /**
  * @internal

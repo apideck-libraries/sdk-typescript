@@ -8,7 +8,7 @@ Details about an external payment.
 import { ExternalDetails } from "apideck/models/components";
 
 let value: ExternalDetails = {
-  type: "social",
+  type: "external",
   source: "<value>",
   sourceFeeAmount: 2.5,
 };

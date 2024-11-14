@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod";
+import { remap as remap$ } from "../../lib/primitives.js";
 import * as components from "../components/index.js";
 
 export type PosLocationsAllGlobals = {
@@ -39,9 +40,17 @@ export type PosLocationsAllRequest = {
   fields?: string | null | undefined;
 };
 
-export type PosLocationsAllResponse =
-  | components.UnexpectedErrorResponse
-  | components.GetLocationsResponse;
+export type PosLocationsAllResponse = {
+  httpMeta: components.HTTPMetadata;
+  /**
+   * Locations
+   */
+  getLocationsResponse?: components.GetLocationsResponse | undefined;
+  /**
+   * Unexpected error
+   */
+  unexpectedErrorResponse?: components.UnexpectedErrorResponse | undefined;
+};
 
 /** @internal */
 export const PosLocationsAllGlobals$inboundSchema: z.ZodType<
@@ -135,25 +144,47 @@ export const PosLocationsAllResponse$inboundSchema: z.ZodType<
   PosLocationsAllResponse,
   z.ZodTypeDef,
   unknown
-> = z.union([
-  components.UnexpectedErrorResponse$inboundSchema,
-  components.GetLocationsResponse$inboundSchema,
-]);
+> = z.object({
+  HttpMeta: components.HTTPMetadata$inboundSchema,
+  GetLocationsResponse: components.GetLocationsResponse$inboundSchema
+    .optional(),
+  UnexpectedErrorResponse: components.UnexpectedErrorResponse$inboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "HttpMeta": "httpMeta",
+    "GetLocationsResponse": "getLocationsResponse",
+    "UnexpectedErrorResponse": "unexpectedErrorResponse",
+  });
+});
 
 /** @internal */
-export type PosLocationsAllResponse$Outbound =
-  | components.UnexpectedErrorResponse$Outbound
-  | components.GetLocationsResponse$Outbound;
+export type PosLocationsAllResponse$Outbound = {
+  HttpMeta: components.HTTPMetadata$Outbound;
+  GetLocationsResponse?: components.GetLocationsResponse$Outbound | undefined;
+  UnexpectedErrorResponse?:
+    | components.UnexpectedErrorResponse$Outbound
+    | undefined;
+};
 
 /** @internal */
 export const PosLocationsAllResponse$outboundSchema: z.ZodType<
   PosLocationsAllResponse$Outbound,
   z.ZodTypeDef,
   PosLocationsAllResponse
-> = z.union([
-  components.UnexpectedErrorResponse$outboundSchema,
-  components.GetLocationsResponse$outboundSchema,
-]);
+> = z.object({
+  httpMeta: components.HTTPMetadata$outboundSchema,
+  getLocationsResponse: components.GetLocationsResponse$outboundSchema
+    .optional(),
+  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    httpMeta: "HttpMeta",
+    getLocationsResponse: "GetLocationsResponse",
+    unexpectedErrorResponse: "UnexpectedErrorResponse",
+  });
+});
 
 /**
  * @internal

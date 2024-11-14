@@ -84,7 +84,7 @@ let value: PosPaymentsAddRequest = {
       country: "US",
     },
     externalDetails: {
-      type: "social",
+      type: "square_cash",
       source: "<value>",
       sourceFeeAmount: 2.5,
     },

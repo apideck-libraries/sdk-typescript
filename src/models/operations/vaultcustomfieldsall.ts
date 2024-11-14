@@ -36,9 +36,17 @@ export type VaultCustomFieldsAllRequest = {
   resourceId?: string | undefined;
 };
 
-export type VaultCustomFieldsAllResponse =
-  | components.GetCustomFieldsResponse
-  | components.UnexpectedErrorResponse;
+export type VaultCustomFieldsAllResponse = {
+  httpMeta: components.HTTPMetadata;
+  /**
+   * Custom mapping
+   */
+  getCustomFieldsResponse?: components.GetCustomFieldsResponse | undefined;
+  /**
+   * Unexpected error
+   */
+  unexpectedErrorResponse?: components.UnexpectedErrorResponse | undefined;
+};
 
 /** @internal */
 export const VaultCustomFieldsAllGlobals$inboundSchema: z.ZodType<
@@ -141,25 +149,49 @@ export const VaultCustomFieldsAllResponse$inboundSchema: z.ZodType<
   VaultCustomFieldsAllResponse,
   z.ZodTypeDef,
   unknown
-> = z.union([
-  components.GetCustomFieldsResponse$inboundSchema,
-  components.UnexpectedErrorResponse$inboundSchema,
-]);
+> = z.object({
+  HttpMeta: components.HTTPMetadata$inboundSchema,
+  GetCustomFieldsResponse: components.GetCustomFieldsResponse$inboundSchema
+    .optional(),
+  UnexpectedErrorResponse: components.UnexpectedErrorResponse$inboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "HttpMeta": "httpMeta",
+    "GetCustomFieldsResponse": "getCustomFieldsResponse",
+    "UnexpectedErrorResponse": "unexpectedErrorResponse",
+  });
+});
 
 /** @internal */
-export type VaultCustomFieldsAllResponse$Outbound =
-  | components.GetCustomFieldsResponse$Outbound
-  | components.UnexpectedErrorResponse$Outbound;
+export type VaultCustomFieldsAllResponse$Outbound = {
+  HttpMeta: components.HTTPMetadata$Outbound;
+  GetCustomFieldsResponse?:
+    | components.GetCustomFieldsResponse$Outbound
+    | undefined;
+  UnexpectedErrorResponse?:
+    | components.UnexpectedErrorResponse$Outbound
+    | undefined;
+};
 
 /** @internal */
 export const VaultCustomFieldsAllResponse$outboundSchema: z.ZodType<
   VaultCustomFieldsAllResponse$Outbound,
   z.ZodTypeDef,
   VaultCustomFieldsAllResponse
-> = z.union([
-  components.GetCustomFieldsResponse$outboundSchema,
-  components.UnexpectedErrorResponse$outboundSchema,
-]);
+> = z.object({
+  httpMeta: components.HTTPMetadata$outboundSchema,
+  getCustomFieldsResponse: components.GetCustomFieldsResponse$outboundSchema
+    .optional(),
+  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    httpMeta: "HttpMeta",
+    getCustomFieldsResponse: "GetCustomFieldsResponse",
+    unexpectedErrorResponse: "UnexpectedErrorResponse",
+  });
+});
 
 /**
  * @internal

@@ -130,7 +130,7 @@ export async function vaultVaultConnectionSettingsUpdate(
     path: path,
     headers: headers,
     body: body,
-    timeoutMs: options?.timeoutMs || client._options.timeoutMs || 1000,
+    timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
   }, options);
   if (!requestRes.ok) {
     return requestRes;
@@ -167,7 +167,11 @@ export async function vaultVaultConnectionSettingsUpdate(
     | RequestTimeoutError
     | ConnectionError
   >(
-    M.json(200, operations.VaultConnectionSettingsUpdateResponse$inboundSchema),
+    M.json(
+      200,
+      operations.VaultConnectionSettingsUpdateResponse$inboundSchema,
+      { key: "UpdateConnectionResponse" },
+    ),
     M.jsonErr(400, errors.BadRequestResponse$inboundSchema),
     M.jsonErr(401, errors.UnauthorizedResponse$inboundSchema),
     M.jsonErr(402, errors.PaymentRequiredResponse$inboundSchema),
@@ -177,8 +181,9 @@ export async function vaultVaultConnectionSettingsUpdate(
     M.json(
       "default",
       operations.VaultConnectionSettingsUpdateResponse$inboundSchema,
+      { key: "UnexpectedErrorResponse" },
     ),
-  )(response, { extraFields: responseFields });
+  )(response, req, { extraFields: responseFields });
   if (!result.ok) {
     return result;
   }

@@ -29,9 +29,17 @@ export type CrmNotesAddRequest = {
   note: components.NoteInput;
 };
 
-export type CrmNotesAddResponse =
-  | components.CreateNoteResponse
-  | components.UnexpectedErrorResponse;
+export type CrmNotesAddResponse = {
+  httpMeta: components.HTTPMetadata;
+  /**
+   * Note created
+   */
+  createNoteResponse?: components.CreateNoteResponse | undefined;
+  /**
+   * Unexpected error
+   */
+  unexpectedErrorResponse?: components.UnexpectedErrorResponse | undefined;
+};
 
 /** @internal */
 export const CrmNotesAddGlobals$inboundSchema: z.ZodType<
@@ -127,25 +135,45 @@ export const CrmNotesAddResponse$inboundSchema: z.ZodType<
   CrmNotesAddResponse,
   z.ZodTypeDef,
   unknown
-> = z.union([
-  components.CreateNoteResponse$inboundSchema,
-  components.UnexpectedErrorResponse$inboundSchema,
-]);
+> = z.object({
+  HttpMeta: components.HTTPMetadata$inboundSchema,
+  CreateNoteResponse: components.CreateNoteResponse$inboundSchema.optional(),
+  UnexpectedErrorResponse: components.UnexpectedErrorResponse$inboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "HttpMeta": "httpMeta",
+    "CreateNoteResponse": "createNoteResponse",
+    "UnexpectedErrorResponse": "unexpectedErrorResponse",
+  });
+});
 
 /** @internal */
-export type CrmNotesAddResponse$Outbound =
-  | components.CreateNoteResponse$Outbound
-  | components.UnexpectedErrorResponse$Outbound;
+export type CrmNotesAddResponse$Outbound = {
+  HttpMeta: components.HTTPMetadata$Outbound;
+  CreateNoteResponse?: components.CreateNoteResponse$Outbound | undefined;
+  UnexpectedErrorResponse?:
+    | components.UnexpectedErrorResponse$Outbound
+    | undefined;
+};
 
 /** @internal */
 export const CrmNotesAddResponse$outboundSchema: z.ZodType<
   CrmNotesAddResponse$Outbound,
   z.ZodTypeDef,
   CrmNotesAddResponse
-> = z.union([
-  components.CreateNoteResponse$outboundSchema,
-  components.UnexpectedErrorResponse$outboundSchema,
-]);
+> = z.object({
+  httpMeta: components.HTTPMetadata$outboundSchema,
+  createNoteResponse: components.CreateNoteResponse$outboundSchema.optional(),
+  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    httpMeta: "HttpMeta",
+    createNoteResponse: "CreateNoteResponse",
+    unexpectedErrorResponse: "UnexpectedErrorResponse",
+  });
+});
 
 /**
  * @internal

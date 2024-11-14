@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod";
+import { remap as remap$ } from "../../lib/primitives.js";
 import * as components from "../components/index.js";
 
 export type CrmNotesDeleteGlobals = {
@@ -31,9 +32,17 @@ export type CrmNotesDeleteRequest = {
   raw?: boolean | undefined;
 };
 
-export type CrmNotesDeleteResponse =
-  | components.DeleteNoteResponse
-  | components.UnexpectedErrorResponse;
+export type CrmNotesDeleteResponse = {
+  httpMeta: components.HTTPMetadata;
+  /**
+   * Note deleted
+   */
+  deleteNoteResponse?: components.DeleteNoteResponse | undefined;
+  /**
+   * Unexpected error
+   */
+  unexpectedErrorResponse?: components.UnexpectedErrorResponse | undefined;
+};
 
 /** @internal */
 export const CrmNotesDeleteGlobals$inboundSchema: z.ZodType<
@@ -121,25 +130,45 @@ export const CrmNotesDeleteResponse$inboundSchema: z.ZodType<
   CrmNotesDeleteResponse,
   z.ZodTypeDef,
   unknown
-> = z.union([
-  components.DeleteNoteResponse$inboundSchema,
-  components.UnexpectedErrorResponse$inboundSchema,
-]);
+> = z.object({
+  HttpMeta: components.HTTPMetadata$inboundSchema,
+  DeleteNoteResponse: components.DeleteNoteResponse$inboundSchema.optional(),
+  UnexpectedErrorResponse: components.UnexpectedErrorResponse$inboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "HttpMeta": "httpMeta",
+    "DeleteNoteResponse": "deleteNoteResponse",
+    "UnexpectedErrorResponse": "unexpectedErrorResponse",
+  });
+});
 
 /** @internal */
-export type CrmNotesDeleteResponse$Outbound =
-  | components.DeleteNoteResponse$Outbound
-  | components.UnexpectedErrorResponse$Outbound;
+export type CrmNotesDeleteResponse$Outbound = {
+  HttpMeta: components.HTTPMetadata$Outbound;
+  DeleteNoteResponse?: components.DeleteNoteResponse$Outbound | undefined;
+  UnexpectedErrorResponse?:
+    | components.UnexpectedErrorResponse$Outbound
+    | undefined;
+};
 
 /** @internal */
 export const CrmNotesDeleteResponse$outboundSchema: z.ZodType<
   CrmNotesDeleteResponse$Outbound,
   z.ZodTypeDef,
   CrmNotesDeleteResponse
-> = z.union([
-  components.DeleteNoteResponse$outboundSchema,
-  components.UnexpectedErrorResponse$outboundSchema,
-]);
+> = z.object({
+  httpMeta: components.HTTPMetadata$outboundSchema,
+  deleteNoteResponse: components.DeleteNoteResponse$outboundSchema.optional(),
+  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    httpMeta: "HttpMeta",
+    deleteNoteResponse: "DeleteNoteResponse",
+    unexpectedErrorResponse: "UnexpectedErrorResponse",
+  });
+});
 
 /**
  * @internal

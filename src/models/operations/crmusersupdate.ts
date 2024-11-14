@@ -33,9 +33,17 @@ export type CrmUsersUpdateRequest = {
   user: components.UserInput;
 };
 
-export type CrmUsersUpdateResponse =
-  | components.UpdateUserResponse
-  | components.UnexpectedErrorResponse;
+export type CrmUsersUpdateResponse = {
+  httpMeta: components.HTTPMetadata;
+  /**
+   * User updated
+   */
+  updateUserResponse?: components.UpdateUserResponse | undefined;
+  /**
+   * Unexpected error
+   */
+  unexpectedErrorResponse?: components.UnexpectedErrorResponse | undefined;
+};
 
 /** @internal */
 export const CrmUsersUpdateGlobals$inboundSchema: z.ZodType<
@@ -134,25 +142,45 @@ export const CrmUsersUpdateResponse$inboundSchema: z.ZodType<
   CrmUsersUpdateResponse,
   z.ZodTypeDef,
   unknown
-> = z.union([
-  components.UpdateUserResponse$inboundSchema,
-  components.UnexpectedErrorResponse$inboundSchema,
-]);
+> = z.object({
+  HttpMeta: components.HTTPMetadata$inboundSchema,
+  UpdateUserResponse: components.UpdateUserResponse$inboundSchema.optional(),
+  UnexpectedErrorResponse: components.UnexpectedErrorResponse$inboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "HttpMeta": "httpMeta",
+    "UpdateUserResponse": "updateUserResponse",
+    "UnexpectedErrorResponse": "unexpectedErrorResponse",
+  });
+});
 
 /** @internal */
-export type CrmUsersUpdateResponse$Outbound =
-  | components.UpdateUserResponse$Outbound
-  | components.UnexpectedErrorResponse$Outbound;
+export type CrmUsersUpdateResponse$Outbound = {
+  HttpMeta: components.HTTPMetadata$Outbound;
+  UpdateUserResponse?: components.UpdateUserResponse$Outbound | undefined;
+  UnexpectedErrorResponse?:
+    | components.UnexpectedErrorResponse$Outbound
+    | undefined;
+};
 
 /** @internal */
 export const CrmUsersUpdateResponse$outboundSchema: z.ZodType<
   CrmUsersUpdateResponse$Outbound,
   z.ZodTypeDef,
   CrmUsersUpdateResponse
-> = z.union([
-  components.UpdateUserResponse$outboundSchema,
-  components.UnexpectedErrorResponse$outboundSchema,
-]);
+> = z.object({
+  httpMeta: components.HTTPMetadata$outboundSchema,
+  updateUserResponse: components.UpdateUserResponse$outboundSchema.optional(),
+  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    httpMeta: "HttpMeta",
+    updateUserResponse: "UpdateUserResponse",
+    unexpectedErrorResponse: "UnexpectedErrorResponse",
+  });
+});
 
 /**
  * @internal

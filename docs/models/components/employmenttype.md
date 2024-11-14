@@ -7,7 +7,7 @@ The type of employment relationship the employee has with the organization.
 ```typescript
 import { EmploymentType } from "apideck/models/components";
 
-let value: EmploymentType = "other";
+let value: EmploymentType = "internship";
 ```
 
 ## Values

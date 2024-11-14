@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod";
+import { remap as remap$ } from "../../lib/primitives.js";
 import * as components from "../components/index.js";
 
 export type WebhookWebhooksAllGlobals = {
@@ -23,9 +24,17 @@ export type WebhookWebhooksAllRequest = {
   limit?: number | undefined;
 };
 
-export type WebhookWebhooksAllResponse =
-  | components.GetWebhooksResponse
-  | components.UnexpectedErrorResponse;
+export type WebhookWebhooksAllResponse = {
+  httpMeta: components.HTTPMetadata;
+  /**
+   * Webhooks
+   */
+  getWebhooksResponse?: components.GetWebhooksResponse | undefined;
+  /**
+   * Unexpected error
+   */
+  unexpectedErrorResponse?: components.UnexpectedErrorResponse | undefined;
+};
 
 /** @internal */
 export const WebhookWebhooksAllGlobals$inboundSchema: z.ZodType<
@@ -107,25 +116,45 @@ export const WebhookWebhooksAllResponse$inboundSchema: z.ZodType<
   WebhookWebhooksAllResponse,
   z.ZodTypeDef,
   unknown
-> = z.union([
-  components.GetWebhooksResponse$inboundSchema,
-  components.UnexpectedErrorResponse$inboundSchema,
-]);
+> = z.object({
+  HttpMeta: components.HTTPMetadata$inboundSchema,
+  GetWebhooksResponse: components.GetWebhooksResponse$inboundSchema.optional(),
+  UnexpectedErrorResponse: components.UnexpectedErrorResponse$inboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "HttpMeta": "httpMeta",
+    "GetWebhooksResponse": "getWebhooksResponse",
+    "UnexpectedErrorResponse": "unexpectedErrorResponse",
+  });
+});
 
 /** @internal */
-export type WebhookWebhooksAllResponse$Outbound =
-  | components.GetWebhooksResponse$Outbound
-  | components.UnexpectedErrorResponse$Outbound;
+export type WebhookWebhooksAllResponse$Outbound = {
+  HttpMeta: components.HTTPMetadata$Outbound;
+  GetWebhooksResponse?: components.GetWebhooksResponse$Outbound | undefined;
+  UnexpectedErrorResponse?:
+    | components.UnexpectedErrorResponse$Outbound
+    | undefined;
+};
 
 /** @internal */
 export const WebhookWebhooksAllResponse$outboundSchema: z.ZodType<
   WebhookWebhooksAllResponse$Outbound,
   z.ZodTypeDef,
   WebhookWebhooksAllResponse
-> = z.union([
-  components.GetWebhooksResponse$outboundSchema,
-  components.UnexpectedErrorResponse$outboundSchema,
-]);
+> = z.object({
+  httpMeta: components.HTTPMetadata$outboundSchema,
+  getWebhooksResponse: components.GetWebhooksResponse$outboundSchema.optional(),
+  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    httpMeta: "HttpMeta",
+    getWebhooksResponse: "GetWebhooksResponse",
+    unexpectedErrorResponse: "UnexpectedErrorResponse",
+  });
+});
 
 /**
  * @internal

@@ -93,7 +93,7 @@ let value: GetPosPaymentsResponse = {
         country: "US",
       },
       externalDetails: {
-        type: "food_voucher",
+        type: "crypto",
         source: "<value>",
         sourceFeeAmount: 2.5,
       },

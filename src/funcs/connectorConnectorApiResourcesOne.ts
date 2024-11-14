@@ -116,7 +116,7 @@ export async function connectorConnectorApiResourcesOne(
     path: path,
     headers: headers,
     body: body,
-    timeoutMs: options?.timeoutMs || client._options.timeoutMs || 1000,
+    timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
   }, options);
   if (!requestRes.ok) {
     return requestRes;
@@ -151,7 +151,9 @@ export async function connectorConnectorApiResourcesOne(
     | RequestTimeoutError
     | ConnectionError
   >(
-    M.json(200, operations.ConnectorApiResourcesOneResponse$inboundSchema),
+    M.json(200, operations.ConnectorApiResourcesOneResponse$inboundSchema, {
+      key: "GetApiResourceResponse",
+    }),
     M.jsonErr(401, errors.UnauthorizedResponse$inboundSchema),
     M.jsonErr(402, errors.PaymentRequiredResponse$inboundSchema),
     M.jsonErr(404, errors.NotFoundResponse$inboundSchema),
@@ -159,8 +161,9 @@ export async function connectorConnectorApiResourcesOne(
     M.json(
       "default",
       operations.ConnectorApiResourcesOneResponse$inboundSchema,
+      { key: "UnexpectedErrorResponse" },
     ),
-  )(response, { extraFields: responseFields });
+  )(response, req, { extraFields: responseFields });
   if (!result.ok) {
     return result;
   }

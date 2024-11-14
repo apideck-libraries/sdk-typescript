@@ -14,7 +14,7 @@ let value: ConnectionDefaults = {
       options: [
         {
           label: "General Channel",
-          value: "general",
+          value: true,
         },
       ],
     },

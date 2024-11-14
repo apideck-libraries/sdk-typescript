@@ -78,7 +78,7 @@ let value: ActivityInput = {
       name: "employee_level",
       description: "Employee Level",
       value: [
-        "<value>",
+        {},
       ],
     },
   ],

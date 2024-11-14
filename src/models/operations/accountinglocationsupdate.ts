@@ -33,9 +33,19 @@ export type AccountingLocationsUpdateRequest = {
   accountingLocation: components.AccountingLocationInput;
 };
 
-export type AccountingLocationsUpdateResponse =
-  | components.UpdateAccountingLocationResponse
-  | components.UnexpectedErrorResponse;
+export type AccountingLocationsUpdateResponse = {
+  httpMeta: components.HTTPMetadata;
+  /**
+   * Location
+   */
+  updateAccountingLocationResponse?:
+    | components.UpdateAccountingLocationResponse
+    | undefined;
+  /**
+   * Unexpected error
+   */
+  unexpectedErrorResponse?: components.UnexpectedErrorResponse | undefined;
+};
 
 /** @internal */
 export const AccountingLocationsUpdateGlobals$inboundSchema: z.ZodType<
@@ -134,25 +144,49 @@ export const AccountingLocationsUpdateResponse$inboundSchema: z.ZodType<
   AccountingLocationsUpdateResponse,
   z.ZodTypeDef,
   unknown
-> = z.union([
-  components.UpdateAccountingLocationResponse$inboundSchema,
-  components.UnexpectedErrorResponse$inboundSchema,
-]);
+> = z.object({
+  HttpMeta: components.HTTPMetadata$inboundSchema,
+  UpdateAccountingLocationResponse: components
+    .UpdateAccountingLocationResponse$inboundSchema.optional(),
+  UnexpectedErrorResponse: components.UnexpectedErrorResponse$inboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "HttpMeta": "httpMeta",
+    "UpdateAccountingLocationResponse": "updateAccountingLocationResponse",
+    "UnexpectedErrorResponse": "unexpectedErrorResponse",
+  });
+});
 
 /** @internal */
-export type AccountingLocationsUpdateResponse$Outbound =
-  | components.UpdateAccountingLocationResponse$Outbound
-  | components.UnexpectedErrorResponse$Outbound;
+export type AccountingLocationsUpdateResponse$Outbound = {
+  HttpMeta: components.HTTPMetadata$Outbound;
+  UpdateAccountingLocationResponse?:
+    | components.UpdateAccountingLocationResponse$Outbound
+    | undefined;
+  UnexpectedErrorResponse?:
+    | components.UnexpectedErrorResponse$Outbound
+    | undefined;
+};
 
 /** @internal */
 export const AccountingLocationsUpdateResponse$outboundSchema: z.ZodType<
   AccountingLocationsUpdateResponse$Outbound,
   z.ZodTypeDef,
   AccountingLocationsUpdateResponse
-> = z.union([
-  components.UpdateAccountingLocationResponse$outboundSchema,
-  components.UnexpectedErrorResponse$outboundSchema,
-]);
+> = z.object({
+  httpMeta: components.HTTPMetadata$outboundSchema,
+  updateAccountingLocationResponse: components
+    .UpdateAccountingLocationResponse$outboundSchema.optional(),
+  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    httpMeta: "HttpMeta",
+    updateAccountingLocationResponse: "UpdateAccountingLocationResponse",
+    unexpectedErrorResponse: "UnexpectedErrorResponse",
+  });
+});
 
 /**
  * @internal

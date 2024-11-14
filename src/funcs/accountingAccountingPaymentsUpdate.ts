@@ -128,7 +128,7 @@ export async function accountingAccountingPaymentsUpdate(
     headers: headers,
     query: query,
     body: body,
-    timeoutMs: options?.timeoutMs || client._options.timeoutMs || 1000,
+    timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
   }, options);
   if (!requestRes.ok) {
     return requestRes;
@@ -165,7 +165,9 @@ export async function accountingAccountingPaymentsUpdate(
     | RequestTimeoutError
     | ConnectionError
   >(
-    M.json(200, operations.AccountingPaymentsUpdateResponse$inboundSchema),
+    M.json(200, operations.AccountingPaymentsUpdateResponse$inboundSchema, {
+      key: "UpdatePaymentResponse",
+    }),
     M.jsonErr(400, errors.BadRequestResponse$inboundSchema),
     M.jsonErr(401, errors.UnauthorizedResponse$inboundSchema),
     M.jsonErr(402, errors.PaymentRequiredResponse$inboundSchema),
@@ -175,8 +177,9 @@ export async function accountingAccountingPaymentsUpdate(
     M.json(
       "default",
       operations.AccountingPaymentsUpdateResponse$inboundSchema,
+      { key: "UnexpectedErrorResponse" },
     ),
-  )(response, { extraFields: responseFields });
+  )(response, req, { extraFields: responseFields });
   if (!result.ok) {
     return result;
   }

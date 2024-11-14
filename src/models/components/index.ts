@@ -370,6 +370,7 @@ export * from "./getwebhookeventlogsresponse.js";
 export * from "./getwebhookresponse.js";
 export * from "./getwebhooksresponse.js";
 export * from "./hriscompany.js";
+export * from "./httpmetadata.js";
 export * from "./integrationstate.js";
 export * from "./invoice.js";
 export * from "./invoiceitem.js";

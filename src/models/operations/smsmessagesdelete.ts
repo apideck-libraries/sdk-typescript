@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod";
+import { remap as remap$ } from "../../lib/primitives.js";
 import * as components from "../components/index.js";
 
 export type SmsMessagesDeleteGlobals = {
@@ -31,9 +32,17 @@ export type SmsMessagesDeleteRequest = {
   raw?: boolean | undefined;
 };
 
-export type SmsMessagesDeleteResponse =
-  | components.DeleteMessageResponse
-  | components.UnexpectedErrorResponse;
+export type SmsMessagesDeleteResponse = {
+  httpMeta: components.HTTPMetadata;
+  /**
+   * Messages
+   */
+  deleteMessageResponse?: components.DeleteMessageResponse | undefined;
+  /**
+   * Unexpected error
+   */
+  unexpectedErrorResponse?: components.UnexpectedErrorResponse | undefined;
+};
 
 /** @internal */
 export const SmsMessagesDeleteGlobals$inboundSchema: z.ZodType<
@@ -121,25 +130,47 @@ export const SmsMessagesDeleteResponse$inboundSchema: z.ZodType<
   SmsMessagesDeleteResponse,
   z.ZodTypeDef,
   unknown
-> = z.union([
-  components.DeleteMessageResponse$inboundSchema,
-  components.UnexpectedErrorResponse$inboundSchema,
-]);
+> = z.object({
+  HttpMeta: components.HTTPMetadata$inboundSchema,
+  DeleteMessageResponse: components.DeleteMessageResponse$inboundSchema
+    .optional(),
+  UnexpectedErrorResponse: components.UnexpectedErrorResponse$inboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "HttpMeta": "httpMeta",
+    "DeleteMessageResponse": "deleteMessageResponse",
+    "UnexpectedErrorResponse": "unexpectedErrorResponse",
+  });
+});
 
 /** @internal */
-export type SmsMessagesDeleteResponse$Outbound =
-  | components.DeleteMessageResponse$Outbound
-  | components.UnexpectedErrorResponse$Outbound;
+export type SmsMessagesDeleteResponse$Outbound = {
+  HttpMeta: components.HTTPMetadata$Outbound;
+  DeleteMessageResponse?: components.DeleteMessageResponse$Outbound | undefined;
+  UnexpectedErrorResponse?:
+    | components.UnexpectedErrorResponse$Outbound
+    | undefined;
+};
 
 /** @internal */
 export const SmsMessagesDeleteResponse$outboundSchema: z.ZodType<
   SmsMessagesDeleteResponse$Outbound,
   z.ZodTypeDef,
   SmsMessagesDeleteResponse
-> = z.union([
-  components.DeleteMessageResponse$outboundSchema,
-  components.UnexpectedErrorResponse$outboundSchema,
-]);
+> = z.object({
+  httpMeta: components.HTTPMetadata$outboundSchema,
+  deleteMessageResponse: components.DeleteMessageResponse$outboundSchema
+    .optional(),
+  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    httpMeta: "HttpMeta",
+    deleteMessageResponse: "DeleteMessageResponse",
+    unexpectedErrorResponse: "UnexpectedErrorResponse",
+  });
+});
 
 /**
  * @internal

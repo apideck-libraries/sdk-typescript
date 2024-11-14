@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod";
+import { remap as remap$ } from "../../lib/primitives.js";
 import * as components from "../components/index.js";
 
 export type VaultSessionsCreateGlobals = {
@@ -16,9 +17,17 @@ export type VaultSessionsCreateGlobals = {
   appId?: string | undefined;
 };
 
-export type VaultSessionsCreateResponse =
-  | components.CreateSessionResponse
-  | components.UnexpectedErrorResponse;
+export type VaultSessionsCreateResponse = {
+  httpMeta: components.HTTPMetadata;
+  /**
+   * Session created
+   */
+  createSessionResponse?: components.CreateSessionResponse | undefined;
+  /**
+   * Unexpected error
+   */
+  unexpectedErrorResponse?: components.UnexpectedErrorResponse | undefined;
+};
 
 /** @internal */
 export const VaultSessionsCreateGlobals$inboundSchema: z.ZodType<
@@ -64,25 +73,47 @@ export const VaultSessionsCreateResponse$inboundSchema: z.ZodType<
   VaultSessionsCreateResponse,
   z.ZodTypeDef,
   unknown
-> = z.union([
-  components.CreateSessionResponse$inboundSchema,
-  components.UnexpectedErrorResponse$inboundSchema,
-]);
+> = z.object({
+  HttpMeta: components.HTTPMetadata$inboundSchema,
+  CreateSessionResponse: components.CreateSessionResponse$inboundSchema
+    .optional(),
+  UnexpectedErrorResponse: components.UnexpectedErrorResponse$inboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "HttpMeta": "httpMeta",
+    "CreateSessionResponse": "createSessionResponse",
+    "UnexpectedErrorResponse": "unexpectedErrorResponse",
+  });
+});
 
 /** @internal */
-export type VaultSessionsCreateResponse$Outbound =
-  | components.CreateSessionResponse$Outbound
-  | components.UnexpectedErrorResponse$Outbound;
+export type VaultSessionsCreateResponse$Outbound = {
+  HttpMeta: components.HTTPMetadata$Outbound;
+  CreateSessionResponse?: components.CreateSessionResponse$Outbound | undefined;
+  UnexpectedErrorResponse?:
+    | components.UnexpectedErrorResponse$Outbound
+    | undefined;
+};
 
 /** @internal */
 export const VaultSessionsCreateResponse$outboundSchema: z.ZodType<
   VaultSessionsCreateResponse$Outbound,
   z.ZodTypeDef,
   VaultSessionsCreateResponse
-> = z.union([
-  components.CreateSessionResponse$outboundSchema,
-  components.UnexpectedErrorResponse$outboundSchema,
-]);
+> = z.object({
+  httpMeta: components.HTTPMetadata$outboundSchema,
+  createSessionResponse: components.CreateSessionResponse$outboundSchema
+    .optional(),
+  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    httpMeta: "HttpMeta",
+    createSessionResponse: "CreateSessionResponse",
+    unexpectedErrorResponse: "UnexpectedErrorResponse",
+  });
+});
 
 /**
  * @internal

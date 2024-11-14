@@ -21,9 +21,17 @@ export type WebhookWebhooksUpdateRequest = {
   updateWebhookRequest: components.UpdateWebhookRequest;
 };
 
-export type WebhookWebhooksUpdateResponse =
-  | components.UpdateWebhookResponse
-  | components.UnexpectedErrorResponse;
+export type WebhookWebhooksUpdateResponse = {
+  httpMeta: components.HTTPMetadata;
+  /**
+   * Webhooks
+   */
+  updateWebhookResponse?: components.UpdateWebhookResponse | undefined;
+  /**
+   * Unexpected error
+   */
+  unexpectedErrorResponse?: components.UnexpectedErrorResponse | undefined;
+};
 
 /** @internal */
 export const WebhookWebhooksUpdateGlobals$inboundSchema: z.ZodType<
@@ -113,25 +121,47 @@ export const WebhookWebhooksUpdateResponse$inboundSchema: z.ZodType<
   WebhookWebhooksUpdateResponse,
   z.ZodTypeDef,
   unknown
-> = z.union([
-  components.UpdateWebhookResponse$inboundSchema,
-  components.UnexpectedErrorResponse$inboundSchema,
-]);
+> = z.object({
+  HttpMeta: components.HTTPMetadata$inboundSchema,
+  UpdateWebhookResponse: components.UpdateWebhookResponse$inboundSchema
+    .optional(),
+  UnexpectedErrorResponse: components.UnexpectedErrorResponse$inboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "HttpMeta": "httpMeta",
+    "UpdateWebhookResponse": "updateWebhookResponse",
+    "UnexpectedErrorResponse": "unexpectedErrorResponse",
+  });
+});
 
 /** @internal */
-export type WebhookWebhooksUpdateResponse$Outbound =
-  | components.UpdateWebhookResponse$Outbound
-  | components.UnexpectedErrorResponse$Outbound;
+export type WebhookWebhooksUpdateResponse$Outbound = {
+  HttpMeta: components.HTTPMetadata$Outbound;
+  UpdateWebhookResponse?: components.UpdateWebhookResponse$Outbound | undefined;
+  UnexpectedErrorResponse?:
+    | components.UnexpectedErrorResponse$Outbound
+    | undefined;
+};
 
 /** @internal */
 export const WebhookWebhooksUpdateResponse$outboundSchema: z.ZodType<
   WebhookWebhooksUpdateResponse$Outbound,
   z.ZodTypeDef,
   WebhookWebhooksUpdateResponse
-> = z.union([
-  components.UpdateWebhookResponse$outboundSchema,
-  components.UnexpectedErrorResponse$outboundSchema,
-]);
+> = z.object({
+  httpMeta: components.HTTPMetadata$outboundSchema,
+  updateWebhookResponse: components.UpdateWebhookResponse$outboundSchema
+    .optional(),
+  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    httpMeta: "HttpMeta",
+    updateWebhookResponse: "UpdateWebhookResponse",
+    unexpectedErrorResponse: "UnexpectedErrorResponse",
+  });
+});
 
 /**
  * @internal

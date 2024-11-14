@@ -52,9 +52,17 @@ export type CrmContactsAllRequest = {
   fields?: string | null | undefined;
 };
 
-export type CrmContactsAllResponse =
-  | components.UnexpectedErrorResponse
-  | components.GetContactsResponse;
+export type CrmContactsAllResponse = {
+  httpMeta: components.HTTPMetadata;
+  /**
+   * Contacts
+   */
+  getContactsResponse?: components.GetContactsResponse | undefined;
+  /**
+   * Unexpected error
+   */
+  unexpectedErrorResponse?: components.UnexpectedErrorResponse | undefined;
+};
 
 /** @internal */
 export const CrmContactsAllGlobals$inboundSchema: z.ZodType<
@@ -165,25 +173,45 @@ export const CrmContactsAllResponse$inboundSchema: z.ZodType<
   CrmContactsAllResponse,
   z.ZodTypeDef,
   unknown
-> = z.union([
-  components.UnexpectedErrorResponse$inboundSchema,
-  components.GetContactsResponse$inboundSchema,
-]);
+> = z.object({
+  HttpMeta: components.HTTPMetadata$inboundSchema,
+  GetContactsResponse: components.GetContactsResponse$inboundSchema.optional(),
+  UnexpectedErrorResponse: components.UnexpectedErrorResponse$inboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "HttpMeta": "httpMeta",
+    "GetContactsResponse": "getContactsResponse",
+    "UnexpectedErrorResponse": "unexpectedErrorResponse",
+  });
+});
 
 /** @internal */
-export type CrmContactsAllResponse$Outbound =
-  | components.UnexpectedErrorResponse$Outbound
-  | components.GetContactsResponse$Outbound;
+export type CrmContactsAllResponse$Outbound = {
+  HttpMeta: components.HTTPMetadata$Outbound;
+  GetContactsResponse?: components.GetContactsResponse$Outbound | undefined;
+  UnexpectedErrorResponse?:
+    | components.UnexpectedErrorResponse$Outbound
+    | undefined;
+};
 
 /** @internal */
 export const CrmContactsAllResponse$outboundSchema: z.ZodType<
   CrmContactsAllResponse$Outbound,
   z.ZodTypeDef,
   CrmContactsAllResponse
-> = z.union([
-  components.UnexpectedErrorResponse$outboundSchema,
-  components.GetContactsResponse$outboundSchema,
-]);
+> = z.object({
+  httpMeta: components.HTTPMetadata$outboundSchema,
+  getContactsResponse: components.GetContactsResponse$outboundSchema.optional(),
+  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    httpMeta: "HttpMeta",
+    getContactsResponse: "GetContactsResponse",
+    unexpectedErrorResponse: "UnexpectedErrorResponse",
+  });
+});
 
 /**
  * @internal

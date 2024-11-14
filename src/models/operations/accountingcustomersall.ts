@@ -52,9 +52,17 @@ export type AccountingCustomersAllRequest = {
   fields?: string | null | undefined;
 };
 
-export type AccountingCustomersAllResponse =
-  | components.UnexpectedErrorResponse
-  | components.GetCustomersResponse;
+export type AccountingCustomersAllResponse = {
+  httpMeta: components.HTTPMetadata;
+  /**
+   * Customers
+   */
+  getCustomersResponse?: components.GetCustomersResponse | undefined;
+  /**
+   * Unexpected error
+   */
+  unexpectedErrorResponse?: components.UnexpectedErrorResponse | undefined;
+};
 
 /** @internal */
 export const AccountingCustomersAllGlobals$inboundSchema: z.ZodType<
@@ -165,25 +173,47 @@ export const AccountingCustomersAllResponse$inboundSchema: z.ZodType<
   AccountingCustomersAllResponse,
   z.ZodTypeDef,
   unknown
-> = z.union([
-  components.UnexpectedErrorResponse$inboundSchema,
-  components.GetCustomersResponse$inboundSchema,
-]);
+> = z.object({
+  HttpMeta: components.HTTPMetadata$inboundSchema,
+  GetCustomersResponse: components.GetCustomersResponse$inboundSchema
+    .optional(),
+  UnexpectedErrorResponse: components.UnexpectedErrorResponse$inboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "HttpMeta": "httpMeta",
+    "GetCustomersResponse": "getCustomersResponse",
+    "UnexpectedErrorResponse": "unexpectedErrorResponse",
+  });
+});
 
 /** @internal */
-export type AccountingCustomersAllResponse$Outbound =
-  | components.UnexpectedErrorResponse$Outbound
-  | components.GetCustomersResponse$Outbound;
+export type AccountingCustomersAllResponse$Outbound = {
+  HttpMeta: components.HTTPMetadata$Outbound;
+  GetCustomersResponse?: components.GetCustomersResponse$Outbound | undefined;
+  UnexpectedErrorResponse?:
+    | components.UnexpectedErrorResponse$Outbound
+    | undefined;
+};
 
 /** @internal */
 export const AccountingCustomersAllResponse$outboundSchema: z.ZodType<
   AccountingCustomersAllResponse$Outbound,
   z.ZodTypeDef,
   AccountingCustomersAllResponse
-> = z.union([
-  components.UnexpectedErrorResponse$outboundSchema,
-  components.GetCustomersResponse$outboundSchema,
-]);
+> = z.object({
+  httpMeta: components.HTTPMetadata$outboundSchema,
+  getCustomersResponse: components.GetCustomersResponse$outboundSchema
+    .optional(),
+  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    httpMeta: "HttpMeta",
+    getCustomersResponse: "GetCustomersResponse",
+    unexpectedErrorResponse: "UnexpectedErrorResponse",
+  });
+});
 
 /**
  * @internal

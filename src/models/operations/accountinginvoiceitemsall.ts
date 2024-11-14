@@ -48,9 +48,17 @@ export type AccountingInvoiceItemsAllRequest = {
   fields?: string | null | undefined;
 };
 
-export type AccountingInvoiceItemsAllResponse =
-  | components.UnexpectedErrorResponse
-  | components.GetInvoiceItemsResponse;
+export type AccountingInvoiceItemsAllResponse = {
+  httpMeta: components.HTTPMetadata;
+  /**
+   * InvoiceItems
+   */
+  getInvoiceItemsResponse?: components.GetInvoiceItemsResponse | undefined;
+  /**
+   * Unexpected error
+   */
+  unexpectedErrorResponse?: components.UnexpectedErrorResponse | undefined;
+};
 
 /** @internal */
 export const AccountingInvoiceItemsAllGlobals$inboundSchema: z.ZodType<
@@ -158,25 +166,49 @@ export const AccountingInvoiceItemsAllResponse$inboundSchema: z.ZodType<
   AccountingInvoiceItemsAllResponse,
   z.ZodTypeDef,
   unknown
-> = z.union([
-  components.UnexpectedErrorResponse$inboundSchema,
-  components.GetInvoiceItemsResponse$inboundSchema,
-]);
+> = z.object({
+  HttpMeta: components.HTTPMetadata$inboundSchema,
+  GetInvoiceItemsResponse: components.GetInvoiceItemsResponse$inboundSchema
+    .optional(),
+  UnexpectedErrorResponse: components.UnexpectedErrorResponse$inboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "HttpMeta": "httpMeta",
+    "GetInvoiceItemsResponse": "getInvoiceItemsResponse",
+    "UnexpectedErrorResponse": "unexpectedErrorResponse",
+  });
+});
 
 /** @internal */
-export type AccountingInvoiceItemsAllResponse$Outbound =
-  | components.UnexpectedErrorResponse$Outbound
-  | components.GetInvoiceItemsResponse$Outbound;
+export type AccountingInvoiceItemsAllResponse$Outbound = {
+  HttpMeta: components.HTTPMetadata$Outbound;
+  GetInvoiceItemsResponse?:
+    | components.GetInvoiceItemsResponse$Outbound
+    | undefined;
+  UnexpectedErrorResponse?:
+    | components.UnexpectedErrorResponse$Outbound
+    | undefined;
+};
 
 /** @internal */
 export const AccountingInvoiceItemsAllResponse$outboundSchema: z.ZodType<
   AccountingInvoiceItemsAllResponse$Outbound,
   z.ZodTypeDef,
   AccountingInvoiceItemsAllResponse
-> = z.union([
-  components.UnexpectedErrorResponse$outboundSchema,
-  components.GetInvoiceItemsResponse$outboundSchema,
-]);
+> = z.object({
+  httpMeta: components.HTTPMetadata$outboundSchema,
+  getInvoiceItemsResponse: components.GetInvoiceItemsResponse$outboundSchema
+    .optional(),
+  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    httpMeta: "HttpMeta",
+    getInvoiceItemsResponse: "GetInvoiceItemsResponse",
+    unexpectedErrorResponse: "UnexpectedErrorResponse",
+  });
+});
 
 /**
  * @internal

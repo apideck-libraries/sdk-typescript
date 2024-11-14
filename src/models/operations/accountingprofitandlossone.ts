@@ -40,9 +40,17 @@ export type AccountingProfitAndLossOneRequest = {
   fields?: string | null | undefined;
 };
 
-export type AccountingProfitAndLossOneResponse =
-  | components.GetProfitAndLossResponse
-  | components.UnexpectedErrorResponse;
+export type AccountingProfitAndLossOneResponse = {
+  httpMeta: components.HTTPMetadata;
+  /**
+   * Profit & Loss Report
+   */
+  getProfitAndLossResponse?: components.GetProfitAndLossResponse | undefined;
+  /**
+   * Unexpected error
+   */
+  unexpectedErrorResponse?: components.UnexpectedErrorResponse | undefined;
+};
 
 /** @internal */
 export const AccountingProfitAndLossOneGlobals$inboundSchema: z.ZodType<
@@ -146,25 +154,49 @@ export const AccountingProfitAndLossOneResponse$inboundSchema: z.ZodType<
   AccountingProfitAndLossOneResponse,
   z.ZodTypeDef,
   unknown
-> = z.union([
-  components.GetProfitAndLossResponse$inboundSchema,
-  components.UnexpectedErrorResponse$inboundSchema,
-]);
+> = z.object({
+  HttpMeta: components.HTTPMetadata$inboundSchema,
+  GetProfitAndLossResponse: components.GetProfitAndLossResponse$inboundSchema
+    .optional(),
+  UnexpectedErrorResponse: components.UnexpectedErrorResponse$inboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "HttpMeta": "httpMeta",
+    "GetProfitAndLossResponse": "getProfitAndLossResponse",
+    "UnexpectedErrorResponse": "unexpectedErrorResponse",
+  });
+});
 
 /** @internal */
-export type AccountingProfitAndLossOneResponse$Outbound =
-  | components.GetProfitAndLossResponse$Outbound
-  | components.UnexpectedErrorResponse$Outbound;
+export type AccountingProfitAndLossOneResponse$Outbound = {
+  HttpMeta: components.HTTPMetadata$Outbound;
+  GetProfitAndLossResponse?:
+    | components.GetProfitAndLossResponse$Outbound
+    | undefined;
+  UnexpectedErrorResponse?:
+    | components.UnexpectedErrorResponse$Outbound
+    | undefined;
+};
 
 /** @internal */
 export const AccountingProfitAndLossOneResponse$outboundSchema: z.ZodType<
   AccountingProfitAndLossOneResponse$Outbound,
   z.ZodTypeDef,
   AccountingProfitAndLossOneResponse
-> = z.union([
-  components.GetProfitAndLossResponse$outboundSchema,
-  components.UnexpectedErrorResponse$outboundSchema,
-]);
+> = z.object({
+  httpMeta: components.HTTPMetadata$outboundSchema,
+  getProfitAndLossResponse: components.GetProfitAndLossResponse$outboundSchema
+    .optional(),
+  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    httpMeta: "HttpMeta",
+    getProfitAndLossResponse: "GetProfitAndLossResponse",
+    unexpectedErrorResponse: "UnexpectedErrorResponse",
+  });
+});
 
 /**
  * @internal

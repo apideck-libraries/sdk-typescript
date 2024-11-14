@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod";
+import { remap as remap$ } from "../../lib/primitives.js";
 import * as components from "../components/index.js";
 
 export type AccountingCompanyInfoOneGlobals = {
@@ -31,9 +32,17 @@ export type AccountingCompanyInfoOneRequest = {
   fields?: string | null | undefined;
 };
 
-export type AccountingCompanyInfoOneResponse =
-  | components.GetCompanyInfoResponse
-  | components.UnexpectedErrorResponse;
+export type AccountingCompanyInfoOneResponse = {
+  httpMeta: components.HTTPMetadata;
+  /**
+   * CompanyInfo
+   */
+  getCompanyInfoResponse?: components.GetCompanyInfoResponse | undefined;
+  /**
+   * Unexpected error
+   */
+  unexpectedErrorResponse?: components.UnexpectedErrorResponse | undefined;
+};
 
 /** @internal */
 export const AccountingCompanyInfoOneGlobals$inboundSchema: z.ZodType<
@@ -121,25 +130,49 @@ export const AccountingCompanyInfoOneResponse$inboundSchema: z.ZodType<
   AccountingCompanyInfoOneResponse,
   z.ZodTypeDef,
   unknown
-> = z.union([
-  components.GetCompanyInfoResponse$inboundSchema,
-  components.UnexpectedErrorResponse$inboundSchema,
-]);
+> = z.object({
+  HttpMeta: components.HTTPMetadata$inboundSchema,
+  GetCompanyInfoResponse: components.GetCompanyInfoResponse$inboundSchema
+    .optional(),
+  UnexpectedErrorResponse: components.UnexpectedErrorResponse$inboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "HttpMeta": "httpMeta",
+    "GetCompanyInfoResponse": "getCompanyInfoResponse",
+    "UnexpectedErrorResponse": "unexpectedErrorResponse",
+  });
+});
 
 /** @internal */
-export type AccountingCompanyInfoOneResponse$Outbound =
-  | components.GetCompanyInfoResponse$Outbound
-  | components.UnexpectedErrorResponse$Outbound;
+export type AccountingCompanyInfoOneResponse$Outbound = {
+  HttpMeta: components.HTTPMetadata$Outbound;
+  GetCompanyInfoResponse?:
+    | components.GetCompanyInfoResponse$Outbound
+    | undefined;
+  UnexpectedErrorResponse?:
+    | components.UnexpectedErrorResponse$Outbound
+    | undefined;
+};
 
 /** @internal */
 export const AccountingCompanyInfoOneResponse$outboundSchema: z.ZodType<
   AccountingCompanyInfoOneResponse$Outbound,
   z.ZodTypeDef,
   AccountingCompanyInfoOneResponse
-> = z.union([
-  components.GetCompanyInfoResponse$outboundSchema,
-  components.UnexpectedErrorResponse$outboundSchema,
-]);
+> = z.object({
+  httpMeta: components.HTTPMetadata$outboundSchema,
+  getCompanyInfoResponse: components.GetCompanyInfoResponse$outboundSchema
+    .optional(),
+  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    httpMeta: "HttpMeta",
+    getCompanyInfoResponse: "GetCompanyInfoResponse",
+    unexpectedErrorResponse: "UnexpectedErrorResponse",
+  });
+});
 
 /**
  * @internal

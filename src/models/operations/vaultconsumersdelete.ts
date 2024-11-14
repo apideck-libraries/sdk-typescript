@@ -20,9 +20,17 @@ export type VaultConsumersDeleteRequest = {
   consumerId: string;
 };
 
-export type VaultConsumersDeleteResponse =
-  | components.DeleteConsumerResponse
-  | components.UnexpectedErrorResponse;
+export type VaultConsumersDeleteResponse = {
+  httpMeta: components.HTTPMetadata;
+  /**
+   * Consumer deleted
+   */
+  deleteConsumerResponse?: components.DeleteConsumerResponse | undefined;
+  /**
+   * Unexpected error
+   */
+  unexpectedErrorResponse?: components.UnexpectedErrorResponse | undefined;
+};
 
 /** @internal */
 export const VaultConsumersDeleteGlobals$inboundSchema: z.ZodType<
@@ -109,25 +117,49 @@ export const VaultConsumersDeleteResponse$inboundSchema: z.ZodType<
   VaultConsumersDeleteResponse,
   z.ZodTypeDef,
   unknown
-> = z.union([
-  components.DeleteConsumerResponse$inboundSchema,
-  components.UnexpectedErrorResponse$inboundSchema,
-]);
+> = z.object({
+  HttpMeta: components.HTTPMetadata$inboundSchema,
+  DeleteConsumerResponse: components.DeleteConsumerResponse$inboundSchema
+    .optional(),
+  UnexpectedErrorResponse: components.UnexpectedErrorResponse$inboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "HttpMeta": "httpMeta",
+    "DeleteConsumerResponse": "deleteConsumerResponse",
+    "UnexpectedErrorResponse": "unexpectedErrorResponse",
+  });
+});
 
 /** @internal */
-export type VaultConsumersDeleteResponse$Outbound =
-  | components.DeleteConsumerResponse$Outbound
-  | components.UnexpectedErrorResponse$Outbound;
+export type VaultConsumersDeleteResponse$Outbound = {
+  HttpMeta: components.HTTPMetadata$Outbound;
+  DeleteConsumerResponse?:
+    | components.DeleteConsumerResponse$Outbound
+    | undefined;
+  UnexpectedErrorResponse?:
+    | components.UnexpectedErrorResponse$Outbound
+    | undefined;
+};
 
 /** @internal */
 export const VaultConsumersDeleteResponse$outboundSchema: z.ZodType<
   VaultConsumersDeleteResponse$Outbound,
   z.ZodTypeDef,
   VaultConsumersDeleteResponse
-> = z.union([
-  components.DeleteConsumerResponse$outboundSchema,
-  components.UnexpectedErrorResponse$outboundSchema,
-]);
+> = z.object({
+  httpMeta: components.HTTPMetadata$outboundSchema,
+  deleteConsumerResponse: components.DeleteConsumerResponse$outboundSchema
+    .optional(),
+  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    httpMeta: "HttpMeta",
+    deleteConsumerResponse: "DeleteConsumerResponse",
+    unexpectedErrorResponse: "UnexpectedErrorResponse",
+  });
+});
 
 /**
  * @internal

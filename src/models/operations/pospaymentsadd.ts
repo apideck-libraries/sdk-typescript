@@ -29,9 +29,17 @@ export type PosPaymentsAddRequest = {
   posPayment: components.PosPaymentInput;
 };
 
-export type PosPaymentsAddResponse =
-  | components.CreatePosPaymentResponse
-  | components.UnexpectedErrorResponse;
+export type PosPaymentsAddResponse = {
+  httpMeta: components.HTTPMetadata;
+  /**
+   * PosPayments
+   */
+  createPosPaymentResponse?: components.CreatePosPaymentResponse | undefined;
+  /**
+   * Unexpected error
+   */
+  unexpectedErrorResponse?: components.UnexpectedErrorResponse | undefined;
+};
 
 /** @internal */
 export const PosPaymentsAddGlobals$inboundSchema: z.ZodType<
@@ -127,25 +135,49 @@ export const PosPaymentsAddResponse$inboundSchema: z.ZodType<
   PosPaymentsAddResponse,
   z.ZodTypeDef,
   unknown
-> = z.union([
-  components.CreatePosPaymentResponse$inboundSchema,
-  components.UnexpectedErrorResponse$inboundSchema,
-]);
+> = z.object({
+  HttpMeta: components.HTTPMetadata$inboundSchema,
+  CreatePosPaymentResponse: components.CreatePosPaymentResponse$inboundSchema
+    .optional(),
+  UnexpectedErrorResponse: components.UnexpectedErrorResponse$inboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "HttpMeta": "httpMeta",
+    "CreatePosPaymentResponse": "createPosPaymentResponse",
+    "UnexpectedErrorResponse": "unexpectedErrorResponse",
+  });
+});
 
 /** @internal */
-export type PosPaymentsAddResponse$Outbound =
-  | components.CreatePosPaymentResponse$Outbound
-  | components.UnexpectedErrorResponse$Outbound;
+export type PosPaymentsAddResponse$Outbound = {
+  HttpMeta: components.HTTPMetadata$Outbound;
+  CreatePosPaymentResponse?:
+    | components.CreatePosPaymentResponse$Outbound
+    | undefined;
+  UnexpectedErrorResponse?:
+    | components.UnexpectedErrorResponse$Outbound
+    | undefined;
+};
 
 /** @internal */
 export const PosPaymentsAddResponse$outboundSchema: z.ZodType<
   PosPaymentsAddResponse$Outbound,
   z.ZodTypeDef,
   PosPaymentsAddResponse
-> = z.union([
-  components.CreatePosPaymentResponse$outboundSchema,
-  components.UnexpectedErrorResponse$outboundSchema,
-]);
+> = z.object({
+  httpMeta: components.HTTPMetadata$outboundSchema,
+  createPosPaymentResponse: components.CreatePosPaymentResponse$outboundSchema
+    .optional(),
+  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    httpMeta: "HttpMeta",
+    createPosPaymentResponse: "CreatePosPaymentResponse",
+    unexpectedErrorResponse: "UnexpectedErrorResponse",
+  });
+});
 
 /**
  * @internal

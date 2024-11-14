@@ -118,7 +118,7 @@ export async function connectorConnectorApisAll(
     headers: headers,
     query: query,
     body: body,
-    timeoutMs: options?.timeoutMs || client._options.timeoutMs || 1000,
+    timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
   }, options);
   if (!requestRes.ok) {
     return requestRes;
@@ -153,13 +153,17 @@ export async function connectorConnectorApisAll(
     | RequestTimeoutError
     | ConnectionError
   >(
-    M.json(200, operations.ConnectorApisAllResponse$inboundSchema),
+    M.json(200, operations.ConnectorApisAllResponse$inboundSchema, {
+      key: "GetApisResponse",
+    }),
     M.jsonErr(400, errors.BadRequestResponse$inboundSchema),
     M.jsonErr(401, errors.UnauthorizedResponse$inboundSchema),
     M.jsonErr(402, errors.PaymentRequiredResponse$inboundSchema),
     M.fail(["4XX", "5XX"]),
-    M.json("default", operations.ConnectorApisAllResponse$inboundSchema),
-  )(response, { extraFields: responseFields });
+    M.json("default", operations.ConnectorApisAllResponse$inboundSchema, {
+      key: "UnexpectedErrorResponse",
+    }),
+  )(response, req, { extraFields: responseFields });
   if (!result.ok) {
     return result;
   }

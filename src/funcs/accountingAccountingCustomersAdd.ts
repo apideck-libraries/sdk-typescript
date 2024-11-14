@@ -121,7 +121,7 @@ export async function accountingAccountingCustomersAdd(
     headers: headers,
     query: query,
     body: body,
-    timeoutMs: options?.timeoutMs || client._options.timeoutMs || 1000,
+    timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
   }, options);
   if (!requestRes.ok) {
     return requestRes;
@@ -158,15 +158,19 @@ export async function accountingAccountingCustomersAdd(
     | RequestTimeoutError
     | ConnectionError
   >(
-    M.json(201, operations.AccountingCustomersAddResponse$inboundSchema),
+    M.json(201, operations.AccountingCustomersAddResponse$inboundSchema, {
+      key: "CreateCustomerResponse",
+    }),
     M.jsonErr(400, errors.BadRequestResponse$inboundSchema),
     M.jsonErr(401, errors.UnauthorizedResponse$inboundSchema),
     M.jsonErr(402, errors.PaymentRequiredResponse$inboundSchema),
     M.jsonErr(404, errors.NotFoundResponse$inboundSchema),
     M.jsonErr(422, errors.UnprocessableResponse$inboundSchema),
     M.fail(["4XX", "5XX"]),
-    M.json("default", operations.AccountingCustomersAddResponse$inboundSchema),
-  )(response, { extraFields: responseFields });
+    M.json("default", operations.AccountingCustomersAddResponse$inboundSchema, {
+      key: "UnexpectedErrorResponse",
+    }),
+  )(response, req, { extraFields: responseFields });
   if (!result.ok) {
     return result;
   }

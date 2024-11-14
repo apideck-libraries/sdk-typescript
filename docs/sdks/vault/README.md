@@ -1246,7 +1246,7 @@ run();
 
 ### Response
 
-**Promise\<[components.UnexpectedErrorResponse](../../models/components/unexpectederrorresponse.md)\>**
+**Promise\<[operations.VaultConnectionsDeleteResponse](../../models/operations/vaultconnectionsdeleteresponse.md)\>**
 
 ### Errors
 

@@ -24,9 +24,17 @@ export type ConnectorConnectorDocsOneRequest = {
   docId: string;
 };
 
-export type ConnectorConnectorDocsOneResponse =
-  | components.UnexpectedErrorResponse
-  | string;
+export type ConnectorConnectorDocsOneResponse = {
+  httpMeta: components.HTTPMetadata;
+  /**
+   * Connectors
+   */
+  getConnectorDocResponse?: string | undefined;
+  /**
+   * Unexpected error
+   */
+  unexpectedErrorResponse?: components.UnexpectedErrorResponse | undefined;
+};
 
 /** @internal */
 export const ConnectorConnectorDocsOneGlobals$inboundSchema: z.ZodType<
@@ -116,19 +124,45 @@ export const ConnectorConnectorDocsOneResponse$inboundSchema: z.ZodType<
   ConnectorConnectorDocsOneResponse,
   z.ZodTypeDef,
   unknown
-> = z.union([components.UnexpectedErrorResponse$inboundSchema, z.string()]);
+> = z.object({
+  HttpMeta: components.HTTPMetadata$inboundSchema,
+  GetConnectorDocResponse: z.string().optional(),
+  UnexpectedErrorResponse: components.UnexpectedErrorResponse$inboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "HttpMeta": "httpMeta",
+    "GetConnectorDocResponse": "getConnectorDocResponse",
+    "UnexpectedErrorResponse": "unexpectedErrorResponse",
+  });
+});
 
 /** @internal */
-export type ConnectorConnectorDocsOneResponse$Outbound =
-  | components.UnexpectedErrorResponse$Outbound
-  | string;
+export type ConnectorConnectorDocsOneResponse$Outbound = {
+  HttpMeta: components.HTTPMetadata$Outbound;
+  GetConnectorDocResponse?: string | undefined;
+  UnexpectedErrorResponse?:
+    | components.UnexpectedErrorResponse$Outbound
+    | undefined;
+};
 
 /** @internal */
 export const ConnectorConnectorDocsOneResponse$outboundSchema: z.ZodType<
   ConnectorConnectorDocsOneResponse$Outbound,
   z.ZodTypeDef,
   ConnectorConnectorDocsOneResponse
-> = z.union([components.UnexpectedErrorResponse$outboundSchema, z.string()]);
+> = z.object({
+  httpMeta: components.HTTPMetadata$outboundSchema,
+  getConnectorDocResponse: z.string().optional(),
+  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    httpMeta: "HttpMeta",
+    getConnectorDocResponse: "GetConnectorDocResponse",
+    unexpectedErrorResponse: "UnexpectedErrorResponse",
+  });
+});
 
 /**
  * @internal

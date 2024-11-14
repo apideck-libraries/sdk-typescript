@@ -5,7 +5,7 @@
 ```typescript
 import { PosPaymentProcessingFeesType } from "apideck/models/components";
 
-let value: PosPaymentProcessingFeesType = "initial";
+let value: PosPaymentProcessingFeesType = "adjustment";
 ```
 
 ## Values

@@ -136,7 +136,7 @@ export async function accountingAccountingAttachmentsAll(
     headers: headers,
     query: query,
     body: body,
-    timeoutMs: options?.timeoutMs || client._options.timeoutMs || 1000,
+    timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
   }, options);
   if (!requestRes.ok) {
     return requestRes;
@@ -173,7 +173,9 @@ export async function accountingAccountingAttachmentsAll(
     | RequestTimeoutError
     | ConnectionError
   >(
-    M.json(200, operations.AccountingAttachmentsAllResponse$inboundSchema),
+    M.json(200, operations.AccountingAttachmentsAllResponse$inboundSchema, {
+      key: "GetAttachmentsResponse",
+    }),
     M.jsonErr(400, errors.BadRequestResponse$inboundSchema),
     M.jsonErr(401, errors.UnauthorizedResponse$inboundSchema),
     M.jsonErr(402, errors.PaymentRequiredResponse$inboundSchema),
@@ -183,8 +185,9 @@ export async function accountingAccountingAttachmentsAll(
     M.json(
       "default",
       operations.AccountingAttachmentsAllResponse$inboundSchema,
+      { key: "UnexpectedErrorResponse" },
     ),
-  )(response, { extraFields: responseFields });
+  )(response, req, { extraFields: responseFields });
   if (!result.ok) {
     return result;
   }

@@ -52,9 +52,17 @@ export type AccountingBillsAllRequest = {
   fields?: string | null | undefined;
 };
 
-export type AccountingBillsAllResponse =
-  | components.UnexpectedErrorResponse
-  | components.GetBillsResponse;
+export type AccountingBillsAllResponse = {
+  httpMeta: components.HTTPMetadata;
+  /**
+   * Bills
+   */
+  getBillsResponse?: components.GetBillsResponse | undefined;
+  /**
+   * Unexpected error
+   */
+  unexpectedErrorResponse?: components.UnexpectedErrorResponse | undefined;
+};
 
 /** @internal */
 export const AccountingBillsAllGlobals$inboundSchema: z.ZodType<
@@ -165,25 +173,45 @@ export const AccountingBillsAllResponse$inboundSchema: z.ZodType<
   AccountingBillsAllResponse,
   z.ZodTypeDef,
   unknown
-> = z.union([
-  components.UnexpectedErrorResponse$inboundSchema,
-  components.GetBillsResponse$inboundSchema,
-]);
+> = z.object({
+  HttpMeta: components.HTTPMetadata$inboundSchema,
+  GetBillsResponse: components.GetBillsResponse$inboundSchema.optional(),
+  UnexpectedErrorResponse: components.UnexpectedErrorResponse$inboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "HttpMeta": "httpMeta",
+    "GetBillsResponse": "getBillsResponse",
+    "UnexpectedErrorResponse": "unexpectedErrorResponse",
+  });
+});
 
 /** @internal */
-export type AccountingBillsAllResponse$Outbound =
-  | components.UnexpectedErrorResponse$Outbound
-  | components.GetBillsResponse$Outbound;
+export type AccountingBillsAllResponse$Outbound = {
+  HttpMeta: components.HTTPMetadata$Outbound;
+  GetBillsResponse?: components.GetBillsResponse$Outbound | undefined;
+  UnexpectedErrorResponse?:
+    | components.UnexpectedErrorResponse$Outbound
+    | undefined;
+};
 
 /** @internal */
 export const AccountingBillsAllResponse$outboundSchema: z.ZodType<
   AccountingBillsAllResponse$Outbound,
   z.ZodTypeDef,
   AccountingBillsAllResponse
-> = z.union([
-  components.UnexpectedErrorResponse$outboundSchema,
-  components.GetBillsResponse$outboundSchema,
-]);
+> = z.object({
+  httpMeta: components.HTTPMetadata$outboundSchema,
+  getBillsResponse: components.GetBillsResponse$outboundSchema.optional(),
+  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    httpMeta: "HttpMeta",
+    getBillsResponse: "GetBillsResponse",
+    unexpectedErrorResponse: "UnexpectedErrorResponse",
+  });
+});
 
 /**
  * @internal

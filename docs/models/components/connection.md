@@ -93,10 +93,10 @@ let value: Connection = {
           options: [
             {
               label: "General Channel",
-              value: 123,
+              value: "general",
             },
           ],
-          value: 10.5,
+          value: true,
         },
       ],
     },

@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod";
+import { remap as remap$ } from "../../lib/primitives.js";
 import * as components from "../components/index.js";
 
 export type PosModifiersOneGlobals = {
@@ -39,9 +40,17 @@ export type PosModifiersOneRequest = {
   fields?: string | null | undefined;
 };
 
-export type PosModifiersOneResponse =
-  | components.GetModifierResponse
-  | components.UnexpectedErrorResponse;
+export type PosModifiersOneResponse = {
+  httpMeta: components.HTTPMetadata;
+  /**
+   * Modifiers
+   */
+  getModifierResponse?: components.GetModifierResponse | undefined;
+  /**
+   * Unexpected error
+   */
+  unexpectedErrorResponse?: components.UnexpectedErrorResponse | undefined;
+};
 
 /** @internal */
 export const PosModifiersOneGlobals$inboundSchema: z.ZodType<
@@ -135,25 +144,45 @@ export const PosModifiersOneResponse$inboundSchema: z.ZodType<
   PosModifiersOneResponse,
   z.ZodTypeDef,
   unknown
-> = z.union([
-  components.GetModifierResponse$inboundSchema,
-  components.UnexpectedErrorResponse$inboundSchema,
-]);
+> = z.object({
+  HttpMeta: components.HTTPMetadata$inboundSchema,
+  GetModifierResponse: components.GetModifierResponse$inboundSchema.optional(),
+  UnexpectedErrorResponse: components.UnexpectedErrorResponse$inboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "HttpMeta": "httpMeta",
+    "GetModifierResponse": "getModifierResponse",
+    "UnexpectedErrorResponse": "unexpectedErrorResponse",
+  });
+});
 
 /** @internal */
-export type PosModifiersOneResponse$Outbound =
-  | components.GetModifierResponse$Outbound
-  | components.UnexpectedErrorResponse$Outbound;
+export type PosModifiersOneResponse$Outbound = {
+  HttpMeta: components.HTTPMetadata$Outbound;
+  GetModifierResponse?: components.GetModifierResponse$Outbound | undefined;
+  UnexpectedErrorResponse?:
+    | components.UnexpectedErrorResponse$Outbound
+    | undefined;
+};
 
 /** @internal */
 export const PosModifiersOneResponse$outboundSchema: z.ZodType<
   PosModifiersOneResponse$Outbound,
   z.ZodTypeDef,
   PosModifiersOneResponse
-> = z.union([
-  components.GetModifierResponse$outboundSchema,
-  components.UnexpectedErrorResponse$outboundSchema,
-]);
+> = z.object({
+  httpMeta: components.HTTPMetadata$outboundSchema,
+  getModifierResponse: components.GetModifierResponse$outboundSchema.optional(),
+  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    httpMeta: "HttpMeta",
+    getModifierResponse: "GetModifierResponse",
+    unexpectedErrorResponse: "UnexpectedErrorResponse",
+  });
+});
 
 /**
  * @internal

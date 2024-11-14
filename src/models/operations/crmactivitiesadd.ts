@@ -29,9 +29,17 @@ export type CrmActivitiesAddRequest = {
   activity: components.ActivityInput;
 };
 
-export type CrmActivitiesAddResponse =
-  | components.CreateActivityResponse
-  | components.UnexpectedErrorResponse;
+export type CrmActivitiesAddResponse = {
+  httpMeta: components.HTTPMetadata;
+  /**
+   * Activity created
+   */
+  createActivityResponse?: components.CreateActivityResponse | undefined;
+  /**
+   * Unexpected error
+   */
+  unexpectedErrorResponse?: components.UnexpectedErrorResponse | undefined;
+};
 
 /** @internal */
 export const CrmActivitiesAddGlobals$inboundSchema: z.ZodType<
@@ -127,25 +135,49 @@ export const CrmActivitiesAddResponse$inboundSchema: z.ZodType<
   CrmActivitiesAddResponse,
   z.ZodTypeDef,
   unknown
-> = z.union([
-  components.CreateActivityResponse$inboundSchema,
-  components.UnexpectedErrorResponse$inboundSchema,
-]);
+> = z.object({
+  HttpMeta: components.HTTPMetadata$inboundSchema,
+  CreateActivityResponse: components.CreateActivityResponse$inboundSchema
+    .optional(),
+  UnexpectedErrorResponse: components.UnexpectedErrorResponse$inboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "HttpMeta": "httpMeta",
+    "CreateActivityResponse": "createActivityResponse",
+    "UnexpectedErrorResponse": "unexpectedErrorResponse",
+  });
+});
 
 /** @internal */
-export type CrmActivitiesAddResponse$Outbound =
-  | components.CreateActivityResponse$Outbound
-  | components.UnexpectedErrorResponse$Outbound;
+export type CrmActivitiesAddResponse$Outbound = {
+  HttpMeta: components.HTTPMetadata$Outbound;
+  CreateActivityResponse?:
+    | components.CreateActivityResponse$Outbound
+    | undefined;
+  UnexpectedErrorResponse?:
+    | components.UnexpectedErrorResponse$Outbound
+    | undefined;
+};
 
 /** @internal */
 export const CrmActivitiesAddResponse$outboundSchema: z.ZodType<
   CrmActivitiesAddResponse$Outbound,
   z.ZodTypeDef,
   CrmActivitiesAddResponse
-> = z.union([
-  components.CreateActivityResponse$outboundSchema,
-  components.UnexpectedErrorResponse$outboundSchema,
-]);
+> = z.object({
+  httpMeta: components.HTTPMetadata$outboundSchema,
+  createActivityResponse: components.CreateActivityResponse$outboundSchema
+    .optional(),
+  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    httpMeta: "HttpMeta",
+    createActivityResponse: "CreateActivityResponse",
+    unexpectedErrorResponse: "UnexpectedErrorResponse",
+  });
+});
 
 /**
  * @internal

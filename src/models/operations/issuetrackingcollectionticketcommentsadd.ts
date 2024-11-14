@@ -37,9 +37,17 @@ export type IssueTrackingCollectionTicketCommentsAddRequest = {
   collectionTicketComment: components.CollectionTicketCommentInput;
 };
 
-export type IssueTrackingCollectionTicketCommentsAddResponse =
-  | components.CreateCommentResponse
-  | components.UnexpectedErrorResponse;
+export type IssueTrackingCollectionTicketCommentsAddResponse = {
+  httpMeta: components.HTTPMetadata;
+  /**
+   * Create a Comment
+   */
+  createCommentResponse?: components.CreateCommentResponse | undefined;
+  /**
+   * Unexpected error
+   */
+  unexpectedErrorResponse?: components.UnexpectedErrorResponse | undefined;
+};
 
 /** @internal */
 export const IssueTrackingCollectionTicketCommentsAddGlobals$inboundSchema:
@@ -158,15 +166,28 @@ export const IssueTrackingCollectionTicketCommentsAddResponse$inboundSchema:
     IssueTrackingCollectionTicketCommentsAddResponse,
     z.ZodTypeDef,
     unknown
-  > = z.union([
-    components.CreateCommentResponse$inboundSchema,
-    components.UnexpectedErrorResponse$inboundSchema,
-  ]);
+  > = z.object({
+    HttpMeta: components.HTTPMetadata$inboundSchema,
+    CreateCommentResponse: components.CreateCommentResponse$inboundSchema
+      .optional(),
+    UnexpectedErrorResponse: components.UnexpectedErrorResponse$inboundSchema
+      .optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "HttpMeta": "httpMeta",
+      "CreateCommentResponse": "createCommentResponse",
+      "UnexpectedErrorResponse": "unexpectedErrorResponse",
+    });
+  });
 
 /** @internal */
-export type IssueTrackingCollectionTicketCommentsAddResponse$Outbound =
-  | components.CreateCommentResponse$Outbound
-  | components.UnexpectedErrorResponse$Outbound;
+export type IssueTrackingCollectionTicketCommentsAddResponse$Outbound = {
+  HttpMeta: components.HTTPMetadata$Outbound;
+  CreateCommentResponse?: components.CreateCommentResponse$Outbound | undefined;
+  UnexpectedErrorResponse?:
+    | components.UnexpectedErrorResponse$Outbound
+    | undefined;
+};
 
 /** @internal */
 export const IssueTrackingCollectionTicketCommentsAddResponse$outboundSchema:
@@ -174,10 +195,19 @@ export const IssueTrackingCollectionTicketCommentsAddResponse$outboundSchema:
     IssueTrackingCollectionTicketCommentsAddResponse$Outbound,
     z.ZodTypeDef,
     IssueTrackingCollectionTicketCommentsAddResponse
-  > = z.union([
-    components.CreateCommentResponse$outboundSchema,
-    components.UnexpectedErrorResponse$outboundSchema,
-  ]);
+  > = z.object({
+    httpMeta: components.HTTPMetadata$outboundSchema,
+    createCommentResponse: components.CreateCommentResponse$outboundSchema
+      .optional(),
+    unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
+      .optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      httpMeta: "HttpMeta",
+      createCommentResponse: "CreateCommentResponse",
+      unexpectedErrorResponse: "UnexpectedErrorResponse",
+    });
+  });
 
 /**
  * @internal

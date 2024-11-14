@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod";
+import { remap as remap$ } from "../../lib/primitives.js";
 import * as components from "../components/index.js";
 
 export type FileStorageUploadSessionsDeleteGlobals = {
@@ -31,9 +32,19 @@ export type FileStorageUploadSessionsDeleteRequest = {
   raw?: boolean | undefined;
 };
 
-export type FileStorageUploadSessionsDeleteResponse =
-  | components.DeleteUploadSessionResponse
-  | components.UnexpectedErrorResponse;
+export type FileStorageUploadSessionsDeleteResponse = {
+  httpMeta: components.HTTPMetadata;
+  /**
+   * UploadSessions
+   */
+  deleteUploadSessionResponse?:
+    | components.DeleteUploadSessionResponse
+    | undefined;
+  /**
+   * Unexpected error
+   */
+  unexpectedErrorResponse?: components.UnexpectedErrorResponse | undefined;
+};
 
 /** @internal */
 export const FileStorageUploadSessionsDeleteGlobals$inboundSchema: z.ZodType<
@@ -125,25 +136,49 @@ export const FileStorageUploadSessionsDeleteResponse$inboundSchema: z.ZodType<
   FileStorageUploadSessionsDeleteResponse,
   z.ZodTypeDef,
   unknown
-> = z.union([
-  components.DeleteUploadSessionResponse$inboundSchema,
-  components.UnexpectedErrorResponse$inboundSchema,
-]);
+> = z.object({
+  HttpMeta: components.HTTPMetadata$inboundSchema,
+  DeleteUploadSessionResponse: components
+    .DeleteUploadSessionResponse$inboundSchema.optional(),
+  UnexpectedErrorResponse: components.UnexpectedErrorResponse$inboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "HttpMeta": "httpMeta",
+    "DeleteUploadSessionResponse": "deleteUploadSessionResponse",
+    "UnexpectedErrorResponse": "unexpectedErrorResponse",
+  });
+});
 
 /** @internal */
-export type FileStorageUploadSessionsDeleteResponse$Outbound =
-  | components.DeleteUploadSessionResponse$Outbound
-  | components.UnexpectedErrorResponse$Outbound;
+export type FileStorageUploadSessionsDeleteResponse$Outbound = {
+  HttpMeta: components.HTTPMetadata$Outbound;
+  DeleteUploadSessionResponse?:
+    | components.DeleteUploadSessionResponse$Outbound
+    | undefined;
+  UnexpectedErrorResponse?:
+    | components.UnexpectedErrorResponse$Outbound
+    | undefined;
+};
 
 /** @internal */
 export const FileStorageUploadSessionsDeleteResponse$outboundSchema: z.ZodType<
   FileStorageUploadSessionsDeleteResponse$Outbound,
   z.ZodTypeDef,
   FileStorageUploadSessionsDeleteResponse
-> = z.union([
-  components.DeleteUploadSessionResponse$outboundSchema,
-  components.UnexpectedErrorResponse$outboundSchema,
-]);
+> = z.object({
+  httpMeta: components.HTTPMetadata$outboundSchema,
+  deleteUploadSessionResponse: components
+    .DeleteUploadSessionResponse$outboundSchema.optional(),
+  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    httpMeta: "HttpMeta",
+    deleteUploadSessionResponse: "DeleteUploadSessionResponse",
+    unexpectedErrorResponse: "UnexpectedErrorResponse",
+  });
+});
 
 /**
  * @internal

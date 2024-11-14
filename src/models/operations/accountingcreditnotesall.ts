@@ -52,9 +52,17 @@ export type AccountingCreditNotesAllRequest = {
   fields?: string | null | undefined;
 };
 
-export type AccountingCreditNotesAllResponse =
-  | components.UnexpectedErrorResponse
-  | components.GetCreditNotesResponse;
+export type AccountingCreditNotesAllResponse = {
+  httpMeta: components.HTTPMetadata;
+  /**
+   * Credit Notes
+   */
+  getCreditNotesResponse?: components.GetCreditNotesResponse | undefined;
+  /**
+   * Unexpected error
+   */
+  unexpectedErrorResponse?: components.UnexpectedErrorResponse | undefined;
+};
 
 /** @internal */
 export const AccountingCreditNotesAllGlobals$inboundSchema: z.ZodType<
@@ -165,25 +173,49 @@ export const AccountingCreditNotesAllResponse$inboundSchema: z.ZodType<
   AccountingCreditNotesAllResponse,
   z.ZodTypeDef,
   unknown
-> = z.union([
-  components.UnexpectedErrorResponse$inboundSchema,
-  components.GetCreditNotesResponse$inboundSchema,
-]);
+> = z.object({
+  HttpMeta: components.HTTPMetadata$inboundSchema,
+  GetCreditNotesResponse: components.GetCreditNotesResponse$inboundSchema
+    .optional(),
+  UnexpectedErrorResponse: components.UnexpectedErrorResponse$inboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "HttpMeta": "httpMeta",
+    "GetCreditNotesResponse": "getCreditNotesResponse",
+    "UnexpectedErrorResponse": "unexpectedErrorResponse",
+  });
+});
 
 /** @internal */
-export type AccountingCreditNotesAllResponse$Outbound =
-  | components.UnexpectedErrorResponse$Outbound
-  | components.GetCreditNotesResponse$Outbound;
+export type AccountingCreditNotesAllResponse$Outbound = {
+  HttpMeta: components.HTTPMetadata$Outbound;
+  GetCreditNotesResponse?:
+    | components.GetCreditNotesResponse$Outbound
+    | undefined;
+  UnexpectedErrorResponse?:
+    | components.UnexpectedErrorResponse$Outbound
+    | undefined;
+};
 
 /** @internal */
 export const AccountingCreditNotesAllResponse$outboundSchema: z.ZodType<
   AccountingCreditNotesAllResponse$Outbound,
   z.ZodTypeDef,
   AccountingCreditNotesAllResponse
-> = z.union([
-  components.UnexpectedErrorResponse$outboundSchema,
-  components.GetCreditNotesResponse$outboundSchema,
-]);
+> = z.object({
+  httpMeta: components.HTTPMetadata$outboundSchema,
+  getCreditNotesResponse: components.GetCreditNotesResponse$outboundSchema
+    .optional(),
+  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    httpMeta: "HttpMeta",
+    getCreditNotesResponse: "GetCreditNotesResponse",
+    unexpectedErrorResponse: "UnexpectedErrorResponse",
+  });
+});
 
 /**
  * @internal

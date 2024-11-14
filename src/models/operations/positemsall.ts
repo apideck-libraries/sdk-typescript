@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod";
+import { remap as remap$ } from "../../lib/primitives.js";
 import * as components from "../components/index.js";
 
 export type PosItemsAllGlobals = {
@@ -39,9 +40,17 @@ export type PosItemsAllRequest = {
   fields?: string | null | undefined;
 };
 
-export type PosItemsAllResponse =
-  | components.UnexpectedErrorResponse
-  | components.GetItemsResponse;
+export type PosItemsAllResponse = {
+  httpMeta: components.HTTPMetadata;
+  /**
+   * Items
+   */
+  getItemsResponse?: components.GetItemsResponse | undefined;
+  /**
+   * Unexpected error
+   */
+  unexpectedErrorResponse?: components.UnexpectedErrorResponse | undefined;
+};
 
 /** @internal */
 export const PosItemsAllGlobals$inboundSchema: z.ZodType<
@@ -135,25 +144,45 @@ export const PosItemsAllResponse$inboundSchema: z.ZodType<
   PosItemsAllResponse,
   z.ZodTypeDef,
   unknown
-> = z.union([
-  components.UnexpectedErrorResponse$inboundSchema,
-  components.GetItemsResponse$inboundSchema,
-]);
+> = z.object({
+  HttpMeta: components.HTTPMetadata$inboundSchema,
+  GetItemsResponse: components.GetItemsResponse$inboundSchema.optional(),
+  UnexpectedErrorResponse: components.UnexpectedErrorResponse$inboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "HttpMeta": "httpMeta",
+    "GetItemsResponse": "getItemsResponse",
+    "UnexpectedErrorResponse": "unexpectedErrorResponse",
+  });
+});
 
 /** @internal */
-export type PosItemsAllResponse$Outbound =
-  | components.UnexpectedErrorResponse$Outbound
-  | components.GetItemsResponse$Outbound;
+export type PosItemsAllResponse$Outbound = {
+  HttpMeta: components.HTTPMetadata$Outbound;
+  GetItemsResponse?: components.GetItemsResponse$Outbound | undefined;
+  UnexpectedErrorResponse?:
+    | components.UnexpectedErrorResponse$Outbound
+    | undefined;
+};
 
 /** @internal */
 export const PosItemsAllResponse$outboundSchema: z.ZodType<
   PosItemsAllResponse$Outbound,
   z.ZodTypeDef,
   PosItemsAllResponse
-> = z.union([
-  components.UnexpectedErrorResponse$outboundSchema,
-  components.GetItemsResponse$outboundSchema,
-]);
+> = z.object({
+  httpMeta: components.HTTPMetadata$outboundSchema,
+  getItemsResponse: components.GetItemsResponse$outboundSchema.optional(),
+  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    httpMeta: "HttpMeta",
+    getItemsResponse: "GetItemsResponse",
+    unexpectedErrorResponse: "UnexpectedErrorResponse",
+  });
+});
 
 /**
  * @internal

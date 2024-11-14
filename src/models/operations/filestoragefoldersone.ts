@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod";
+import { remap as remap$ } from "../../lib/primitives.js";
 import * as components from "../components/index.js";
 
 export type FileStorageFoldersOneGlobals = {
@@ -35,9 +36,17 @@ export type FileStorageFoldersOneRequest = {
   fields?: string | null | undefined;
 };
 
-export type FileStorageFoldersOneResponse =
-  | components.GetFolderResponse
-  | components.UnexpectedErrorResponse;
+export type FileStorageFoldersOneResponse = {
+  httpMeta: components.HTTPMetadata;
+  /**
+   * Folders
+   */
+  getFolderResponse?: components.GetFolderResponse | undefined;
+  /**
+   * Unexpected error
+   */
+  unexpectedErrorResponse?: components.UnexpectedErrorResponse | undefined;
+};
 
 /** @internal */
 export const FileStorageFoldersOneGlobals$inboundSchema: z.ZodType<
@@ -128,25 +137,45 @@ export const FileStorageFoldersOneResponse$inboundSchema: z.ZodType<
   FileStorageFoldersOneResponse,
   z.ZodTypeDef,
   unknown
-> = z.union([
-  components.GetFolderResponse$inboundSchema,
-  components.UnexpectedErrorResponse$inboundSchema,
-]);
+> = z.object({
+  HttpMeta: components.HTTPMetadata$inboundSchema,
+  GetFolderResponse: components.GetFolderResponse$inboundSchema.optional(),
+  UnexpectedErrorResponse: components.UnexpectedErrorResponse$inboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "HttpMeta": "httpMeta",
+    "GetFolderResponse": "getFolderResponse",
+    "UnexpectedErrorResponse": "unexpectedErrorResponse",
+  });
+});
 
 /** @internal */
-export type FileStorageFoldersOneResponse$Outbound =
-  | components.GetFolderResponse$Outbound
-  | components.UnexpectedErrorResponse$Outbound;
+export type FileStorageFoldersOneResponse$Outbound = {
+  HttpMeta: components.HTTPMetadata$Outbound;
+  GetFolderResponse?: components.GetFolderResponse$Outbound | undefined;
+  UnexpectedErrorResponse?:
+    | components.UnexpectedErrorResponse$Outbound
+    | undefined;
+};
 
 /** @internal */
 export const FileStorageFoldersOneResponse$outboundSchema: z.ZodType<
   FileStorageFoldersOneResponse$Outbound,
   z.ZodTypeDef,
   FileStorageFoldersOneResponse
-> = z.union([
-  components.GetFolderResponse$outboundSchema,
-  components.UnexpectedErrorResponse$outboundSchema,
-]);
+> = z.object({
+  httpMeta: components.HTTPMetadata$outboundSchema,
+  getFolderResponse: components.GetFolderResponse$outboundSchema.optional(),
+  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    httpMeta: "HttpMeta",
+    getFolderResponse: "GetFolderResponse",
+    unexpectedErrorResponse: "UnexpectedErrorResponse",
+  });
+});
 
 /**
  * @internal

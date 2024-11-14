@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod";
+import { remap as remap$ } from "../../lib/primitives.js";
 import * as components from "../components/index.js";
 
 export type PosTendersDeleteGlobals = {
@@ -31,9 +32,17 @@ export type PosTendersDeleteRequest = {
   raw?: boolean | undefined;
 };
 
-export type PosTendersDeleteResponse =
-  | components.DeleteTenderResponse
-  | components.UnexpectedErrorResponse;
+export type PosTendersDeleteResponse = {
+  httpMeta: components.HTTPMetadata;
+  /**
+   * Tenders
+   */
+  deleteTenderResponse?: components.DeleteTenderResponse | undefined;
+  /**
+   * Unexpected error
+   */
+  unexpectedErrorResponse?: components.UnexpectedErrorResponse | undefined;
+};
 
 /** @internal */
 export const PosTendersDeleteGlobals$inboundSchema: z.ZodType<
@@ -121,25 +130,47 @@ export const PosTendersDeleteResponse$inboundSchema: z.ZodType<
   PosTendersDeleteResponse,
   z.ZodTypeDef,
   unknown
-> = z.union([
-  components.DeleteTenderResponse$inboundSchema,
-  components.UnexpectedErrorResponse$inboundSchema,
-]);
+> = z.object({
+  HttpMeta: components.HTTPMetadata$inboundSchema,
+  DeleteTenderResponse: components.DeleteTenderResponse$inboundSchema
+    .optional(),
+  UnexpectedErrorResponse: components.UnexpectedErrorResponse$inboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "HttpMeta": "httpMeta",
+    "DeleteTenderResponse": "deleteTenderResponse",
+    "UnexpectedErrorResponse": "unexpectedErrorResponse",
+  });
+});
 
 /** @internal */
-export type PosTendersDeleteResponse$Outbound =
-  | components.DeleteTenderResponse$Outbound
-  | components.UnexpectedErrorResponse$Outbound;
+export type PosTendersDeleteResponse$Outbound = {
+  HttpMeta: components.HTTPMetadata$Outbound;
+  DeleteTenderResponse?: components.DeleteTenderResponse$Outbound | undefined;
+  UnexpectedErrorResponse?:
+    | components.UnexpectedErrorResponse$Outbound
+    | undefined;
+};
 
 /** @internal */
 export const PosTendersDeleteResponse$outboundSchema: z.ZodType<
   PosTendersDeleteResponse$Outbound,
   z.ZodTypeDef,
   PosTendersDeleteResponse
-> = z.union([
-  components.DeleteTenderResponse$outboundSchema,
-  components.UnexpectedErrorResponse$outboundSchema,
-]);
+> = z.object({
+  httpMeta: components.HTTPMetadata$outboundSchema,
+  deleteTenderResponse: components.DeleteTenderResponse$outboundSchema
+    .optional(),
+  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    httpMeta: "HttpMeta",
+    deleteTenderResponse: "DeleteTenderResponse",
+    unexpectedErrorResponse: "UnexpectedErrorResponse",
+  });
+});
 
 /**
  * @internal

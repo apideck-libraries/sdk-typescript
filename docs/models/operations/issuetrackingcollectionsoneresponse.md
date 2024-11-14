@@ -1,39 +1,48 @@
 # IssueTrackingCollectionsOneResponse
 
-
-## Supported Types
-
-### `components.GetCollectionResponse`
+## Example Usage
 
 ```typescript
-const value: components.GetCollectionResponse = {
-  statusCode: 200,
-  status: "OK",
-  service: "jira",
-  resource: "Tickets",
-  operation: "one",
-  data: {
-    id: "12345",
-    parentId: "12345",
-    type: "Technical",
-    name: "Main IT Issues",
-    description: "IT Issues",
-    updatedAt: new Date("2020-09-30T07:43:32.000Z"),
-    createdAt: new Date("2020-09-30T07:43:32.000Z"),
+import { IssueTrackingCollectionsOneResponse } from "apideck/models/operations";
+
+let value: IssueTrackingCollectionsOneResponse = {
+  httpMeta: {
+    response: new Response("{\"message\": \"hello world\"}", {
+      headers: { "Content-Type": "application/json" },
+    }),
+    request: new Request("https://example.com"),
+  },
+  getCollectionResponse: {
+    statusCode: 200,
+    status: "OK",
+    service: "jira",
+    resource: "Tickets",
+    operation: "one",
+    data: {
+      id: "12345",
+      parentId: "12345",
+      type: "Technical",
+      name: "Main IT Issues",
+      description: "IT Issues",
+      updatedAt: new Date("2020-09-30T07:43:32.000Z"),
+      createdAt: new Date("2020-09-30T07:43:32.000Z"),
+    },
+  },
+  unexpectedErrorResponse: {
+    statusCode: 400,
+    error: "Bad Request",
+    typeName: "RequestHeadersValidationError",
+    message: "Invalid Params",
+    detail: "Missing Header: x-apideck-consumer-id",
+    ref: "https://developers.apideck.com/errors#unauthorizederror",
   },
 };
 ```
 
-### `components.UnexpectedErrorResponse`
+## Fields
 
-```typescript
-const value: components.UnexpectedErrorResponse = {
-  statusCode: 400,
-  error: "Bad Request",
-  typeName: "RequestHeadersValidationError",
-  message: "Invalid Params",
-  detail: {},
-  ref: "https://developers.apideck.com/errors#unauthorizederror",
-};
-```
-
+| Field                                                                                    | Type                                                                                     | Required                                                                                 | Description                                                                              |
+| ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| `httpMeta`                                                                               | [components.HTTPMetadata](../../models/components/httpmetadata.md)                       | :heavy_check_mark:                                                                       | N/A                                                                                      |
+| `getCollectionResponse`                                                                  | [components.GetCollectionResponse](../../models/components/getcollectionresponse.md)     | :heavy_minus_sign:                                                                       | Get a Collection                                                                         |
+| `unexpectedErrorResponse`                                                                | [components.UnexpectedErrorResponse](../../models/components/unexpectederrorresponse.md) | :heavy_minus_sign:                                                                       | Unexpected error                                                                         |

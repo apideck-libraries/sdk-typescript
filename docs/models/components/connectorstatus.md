@@ -7,7 +7,7 @@ Status of the connector. Connectors with status live or beta are callable.
 ```typescript
 import { ConnectorStatus } from "apideck/models/components";
 
-let value: ConnectorStatus = "beta";
+let value: ConnectorStatus = "live";
 ```
 
 ## Values

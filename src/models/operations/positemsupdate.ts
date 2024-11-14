@@ -33,9 +33,17 @@ export type PosItemsUpdateRequest = {
   item: components.ItemInput;
 };
 
-export type PosItemsUpdateResponse =
-  | components.UpdateItemResponse
-  | components.UnexpectedErrorResponse;
+export type PosItemsUpdateResponse = {
+  httpMeta: components.HTTPMetadata;
+  /**
+   * Items
+   */
+  updateItemResponse?: components.UpdateItemResponse | undefined;
+  /**
+   * Unexpected error
+   */
+  unexpectedErrorResponse?: components.UnexpectedErrorResponse | undefined;
+};
 
 /** @internal */
 export const PosItemsUpdateGlobals$inboundSchema: z.ZodType<
@@ -134,25 +142,45 @@ export const PosItemsUpdateResponse$inboundSchema: z.ZodType<
   PosItemsUpdateResponse,
   z.ZodTypeDef,
   unknown
-> = z.union([
-  components.UpdateItemResponse$inboundSchema,
-  components.UnexpectedErrorResponse$inboundSchema,
-]);
+> = z.object({
+  HttpMeta: components.HTTPMetadata$inboundSchema,
+  UpdateItemResponse: components.UpdateItemResponse$inboundSchema.optional(),
+  UnexpectedErrorResponse: components.UnexpectedErrorResponse$inboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "HttpMeta": "httpMeta",
+    "UpdateItemResponse": "updateItemResponse",
+    "UnexpectedErrorResponse": "unexpectedErrorResponse",
+  });
+});
 
 /** @internal */
-export type PosItemsUpdateResponse$Outbound =
-  | components.UpdateItemResponse$Outbound
-  | components.UnexpectedErrorResponse$Outbound;
+export type PosItemsUpdateResponse$Outbound = {
+  HttpMeta: components.HTTPMetadata$Outbound;
+  UpdateItemResponse?: components.UpdateItemResponse$Outbound | undefined;
+  UnexpectedErrorResponse?:
+    | components.UnexpectedErrorResponse$Outbound
+    | undefined;
+};
 
 /** @internal */
 export const PosItemsUpdateResponse$outboundSchema: z.ZodType<
   PosItemsUpdateResponse$Outbound,
   z.ZodTypeDef,
   PosItemsUpdateResponse
-> = z.union([
-  components.UpdateItemResponse$outboundSchema,
-  components.UnexpectedErrorResponse$outboundSchema,
-]);
+> = z.object({
+  httpMeta: components.HTTPMetadata$outboundSchema,
+  updateItemResponse: components.UpdateItemResponse$outboundSchema.optional(),
+  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    httpMeta: "HttpMeta",
+    updateItemResponse: "UpdateItemResponse",
+    unexpectedErrorResponse: "UnexpectedErrorResponse",
+  });
+});
 
 /**
  * @internal

@@ -132,7 +132,7 @@ export async function accountingAccountingProfitAndLossOne(
     headers: headers,
     query: query,
     body: body,
-    timeoutMs: options?.timeoutMs || client._options.timeoutMs || 1000,
+    timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
   }, options);
   if (!requestRes.ok) {
     return requestRes;
@@ -169,7 +169,9 @@ export async function accountingAccountingProfitAndLossOne(
     | RequestTimeoutError
     | ConnectionError
   >(
-    M.json(200, operations.AccountingProfitAndLossOneResponse$inboundSchema),
+    M.json(200, operations.AccountingProfitAndLossOneResponse$inboundSchema, {
+      key: "GetProfitAndLossResponse",
+    }),
     M.jsonErr(400, errors.BadRequestResponse$inboundSchema),
     M.jsonErr(401, errors.UnauthorizedResponse$inboundSchema),
     M.jsonErr(402, errors.PaymentRequiredResponse$inboundSchema),
@@ -179,8 +181,9 @@ export async function accountingAccountingProfitAndLossOne(
     M.json(
       "default",
       operations.AccountingProfitAndLossOneResponse$inboundSchema,
+      { key: "UnexpectedErrorResponse" },
     ),
-  )(response, { extraFields: responseFields });
+  )(response, req, { extraFields: responseFields });
   if (!result.ok) {
     return result;
   }

@@ -97,17 +97,11 @@ let value: UpdateConnectionResponse = {
             id: "ProductInterest",
             options: [
               {
-                id: "1234",
                 label: "General Channel",
-                options: [
-                  {
-                    label: "General Channel",
-                    value: true,
-                  },
-                ],
+                value: 123,
               },
             ],
-            value: true,
+            value: "GC5000 series",
           },
         ],
       },

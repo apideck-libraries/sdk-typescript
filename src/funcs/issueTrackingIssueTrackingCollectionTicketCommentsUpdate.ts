@@ -142,7 +142,7 @@ export async function issueTrackingIssueTrackingCollectionTicketCommentsUpdate(
     headers: headers,
     query: query,
     body: body,
-    timeoutMs: options?.timeoutMs || client._options.timeoutMs || 1000,
+    timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
   }, options);
   if (!requestRes.ok) {
     return requestRes;
@@ -183,6 +183,7 @@ export async function issueTrackingIssueTrackingCollectionTicketCommentsUpdate(
       200,
       operations
         .IssueTrackingCollectionTicketCommentsUpdateResponse$inboundSchema,
+      { key: "UpdateCommentResponse" },
     ),
     M.jsonErr(400, errors.BadRequestResponse$inboundSchema),
     M.jsonErr(401, errors.UnauthorizedResponse$inboundSchema),
@@ -194,8 +195,9 @@ export async function issueTrackingIssueTrackingCollectionTicketCommentsUpdate(
       "default",
       operations
         .IssueTrackingCollectionTicketCommentsUpdateResponse$inboundSchema,
+      { key: "UnexpectedErrorResponse" },
     ),
-  )(response, { extraFields: responseFields });
+  )(response, req, { extraFields: responseFields });
   if (!result.ok) {
     return result;
   }

@@ -1,35 +1,44 @@
 # VaultCustomFieldsAllResponse
 
-
-## Supported Types
-
-### `components.GetCustomFieldsResponse`
+## Example Usage
 
 ```typescript
-const value: components.GetCustomFieldsResponse = {
-  statusCode: 200,
-  status: "OK",
-  data: [
-    {
-      id: "123456",
-      name: "SSN",
-      description: "Employee Level",
-      value: "495172776",
-    },
-  ],
+import { VaultCustomFieldsAllResponse } from "apideck/models/operations";
+
+let value: VaultCustomFieldsAllResponse = {
+  httpMeta: {
+    response: new Response("{\"message\": \"hello world\"}", {
+      headers: { "Content-Type": "application/json" },
+    }),
+    request: new Request("https://example.com"),
+  },
+  getCustomFieldsResponse: {
+    statusCode: 200,
+    status: "OK",
+    data: [
+      {
+        id: "123456",
+        name: "SSN",
+        description: "Employee Level",
+        value: "495172776",
+      },
+    ],
+  },
+  unexpectedErrorResponse: {
+    statusCode: 400,
+    error: "Bad Request",
+    typeName: "RequestHeadersValidationError",
+    message: "Invalid Params",
+    detail: "Missing Header: x-apideck-consumer-id",
+    ref: "https://developers.apideck.com/errors#unauthorizederror",
+  },
 };
 ```
 
-### `components.UnexpectedErrorResponse`
+## Fields
 
-```typescript
-const value: components.UnexpectedErrorResponse = {
-  statusCode: 400,
-  error: "Bad Request",
-  typeName: "RequestHeadersValidationError",
-  message: "Invalid Params",
-  detail: {},
-  ref: "https://developers.apideck.com/errors#unauthorizederror",
-};
-```
-
+| Field                                                                                    | Type                                                                                     | Required                                                                                 | Description                                                                              |
+| ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| `httpMeta`                                                                               | [components.HTTPMetadata](../../models/components/httpmetadata.md)                       | :heavy_check_mark:                                                                       | N/A                                                                                      |
+| `getCustomFieldsResponse`                                                                | [components.GetCustomFieldsResponse](../../models/components/getcustomfieldsresponse.md) | :heavy_minus_sign:                                                                       | Custom mapping                                                                           |
+| `unexpectedErrorResponse`                                                                | [components.UnexpectedErrorResponse](../../models/components/unexpectederrorresponse.md) | :heavy_minus_sign:                                                                       | Unexpected error                                                                         |

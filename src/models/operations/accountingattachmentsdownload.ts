@@ -40,9 +40,17 @@ export type AccountingAttachmentsDownloadRequest = {
   fields?: string | null | undefined;
 };
 
-export type AccountingAttachmentsDownloadResponse =
-  | components.UnexpectedErrorResponse
-  | ReadableStream<Uint8Array>;
+export type AccountingAttachmentsDownloadResponse = {
+  httpMeta: components.HTTPMetadata;
+  /**
+   * Attachment Download
+   */
+  getAttachmentDownloadResponse?: ReadableStream<Uint8Array> | undefined;
+  /**
+   * Unexpected error
+   */
+  unexpectedErrorResponse?: components.UnexpectedErrorResponse | undefined;
+};
 
 /** @internal */
 export const AccountingAttachmentsDownloadGlobals$inboundSchema: z.ZodType<
@@ -150,25 +158,47 @@ export const AccountingAttachmentsDownloadResponse$inboundSchema: z.ZodType<
   AccountingAttachmentsDownloadResponse,
   z.ZodTypeDef,
   unknown
-> = z.union([
-  components.UnexpectedErrorResponse$inboundSchema,
-  z.instanceof(ReadableStream<Uint8Array>),
-]);
+> = z.object({
+  HttpMeta: components.HTTPMetadata$inboundSchema,
+  GetAttachmentDownloadResponse: z.instanceof(ReadableStream<Uint8Array>)
+    .optional(),
+  UnexpectedErrorResponse: components.UnexpectedErrorResponse$inboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "HttpMeta": "httpMeta",
+    "GetAttachmentDownloadResponse": "getAttachmentDownloadResponse",
+    "UnexpectedErrorResponse": "unexpectedErrorResponse",
+  });
+});
 
 /** @internal */
-export type AccountingAttachmentsDownloadResponse$Outbound =
-  | components.UnexpectedErrorResponse$Outbound
-  | ReadableStream<Uint8Array>;
+export type AccountingAttachmentsDownloadResponse$Outbound = {
+  HttpMeta: components.HTTPMetadata$Outbound;
+  GetAttachmentDownloadResponse?: ReadableStream<Uint8Array> | undefined;
+  UnexpectedErrorResponse?:
+    | components.UnexpectedErrorResponse$Outbound
+    | undefined;
+};
 
 /** @internal */
 export const AccountingAttachmentsDownloadResponse$outboundSchema: z.ZodType<
   AccountingAttachmentsDownloadResponse$Outbound,
   z.ZodTypeDef,
   AccountingAttachmentsDownloadResponse
-> = z.union([
-  components.UnexpectedErrorResponse$outboundSchema,
-  z.instanceof(ReadableStream<Uint8Array>),
-]);
+> = z.object({
+  httpMeta: components.HTTPMetadata$outboundSchema,
+  getAttachmentDownloadResponse: z.instanceof(ReadableStream<Uint8Array>)
+    .optional(),
+  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    httpMeta: "HttpMeta",
+    getAttachmentDownloadResponse: "GetAttachmentDownloadResponse",
+    unexpectedErrorResponse: "UnexpectedErrorResponse",
+  });
+});
 
 /**
  * @internal

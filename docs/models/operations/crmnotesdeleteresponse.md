@@ -1,33 +1,42 @@
 # CrmNotesDeleteResponse
 
-
-## Supported Types
-
-### `components.DeleteNoteResponse`
+## Example Usage
 
 ```typescript
-const value: components.DeleteNoteResponse = {
-  statusCode: 200,
-  status: "OK",
-  service: "zoho-crm",
-  resource: "notes",
-  operation: "delete",
-  data: {
-    id: "12345",
+import { CrmNotesDeleteResponse } from "apideck/models/operations";
+
+let value: CrmNotesDeleteResponse = {
+  httpMeta: {
+    response: new Response("{\"message\": \"hello world\"}", {
+      headers: { "Content-Type": "application/json" },
+    }),
+    request: new Request("https://example.com"),
+  },
+  deleteNoteResponse: {
+    statusCode: 200,
+    status: "OK",
+    service: "zoho-crm",
+    resource: "notes",
+    operation: "delete",
+    data: {
+      id: "12345",
+    },
+  },
+  unexpectedErrorResponse: {
+    statusCode: 400,
+    error: "Bad Request",
+    typeName: "RequestHeadersValidationError",
+    message: "Invalid Params",
+    detail: {},
+    ref: "https://developers.apideck.com/errors#unauthorizederror",
   },
 };
 ```
 
-### `components.UnexpectedErrorResponse`
+## Fields
 
-```typescript
-const value: components.UnexpectedErrorResponse = {
-  statusCode: 400,
-  error: "Bad Request",
-  typeName: "RequestHeadersValidationError",
-  message: "Invalid Params",
-  detail: {},
-  ref: "https://developers.apideck.com/errors#unauthorizederror",
-};
-```
-
+| Field                                                                                    | Type                                                                                     | Required                                                                                 | Description                                                                              |
+| ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| `httpMeta`                                                                               | [components.HTTPMetadata](../../models/components/httpmetadata.md)                       | :heavy_check_mark:                                                                       | N/A                                                                                      |
+| `deleteNoteResponse`                                                                     | [components.DeleteNoteResponse](../../models/components/deletenoteresponse.md)           | :heavy_minus_sign:                                                                       | Note deleted                                                                             |
+| `unexpectedErrorResponse`                                                                | [components.UnexpectedErrorResponse](../../models/components/unexpectederrorresponse.md) | :heavy_minus_sign:                                                                       | Unexpected error                                                                         |

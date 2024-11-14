@@ -5,7 +5,7 @@
 ```typescript
 import { OrderTaxesType } from "apideck/models/components";
 
-let value: OrderTaxesType = "additive";
+let value: OrderTaxesType = "inclusive";
 ```
 
 ## Values

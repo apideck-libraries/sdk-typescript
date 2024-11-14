@@ -1,24 +1,17 @@
 # FileStorageFilesExportResponse
 
-
-## Supported Types
-
-### `ReadableStream<Uint8Array>`
+## Example Usage
 
 ```typescript
-const value: ReadableStream<Uint8Array> = await openAsBlob("example.file");
+import { FileStorageFilesExportResponse } from "apideck/models/operations";
+
+// No examples available for this model
 ```
 
-### `components.UnexpectedErrorResponse`
+## Fields
 
-```typescript
-const value: components.UnexpectedErrorResponse = {
-  statusCode: 400,
-  error: "Bad Request",
-  typeName: "RequestHeadersValidationError",
-  message: "Invalid Params",
-  detail: {},
-  ref: "https://developers.apideck.com/errors#unauthorizederror",
-};
-```
-
+| Field                                                                                    | Type                                                                                     | Required                                                                                 | Description                                                                              |
+| ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| `httpMeta`                                                                               | [components.HTTPMetadata](../../models/components/httpmetadata.md)                       | :heavy_check_mark:                                                                       | N/A                                                                                      |
+| `getFileDownloadResponse`                                                                | *ReadableStream<Uint8Array>*                                                             | :heavy_minus_sign:                                                                       | File Download                                                                            |
+| `unexpectedErrorResponse`                                                                | [components.UnexpectedErrorResponse](../../models/components/unexpectederrorresponse.md) | :heavy_minus_sign:                                                                       | Unexpected error                                                                         |

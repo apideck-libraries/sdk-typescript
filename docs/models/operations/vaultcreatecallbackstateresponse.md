@@ -1,30 +1,39 @@
 # VaultCreateCallbackStateResponse
 
-
-## Supported Types
-
-### `components.CreateCallbackStateResponse`
+## Example Usage
 
 ```typescript
-const value: components.CreateCallbackStateResponse = {
-  statusCode: 200,
-  status: "OK",
-  data: {
-    state: "123e4567-e89b-12d3-a456-426614174000",
+import { VaultCreateCallbackStateResponse } from "apideck/models/operations";
+
+let value: VaultCreateCallbackStateResponse = {
+  httpMeta: {
+    response: new Response("{\"message\": \"hello world\"}", {
+      headers: { "Content-Type": "application/json" },
+    }),
+    request: new Request("https://example.com"),
+  },
+  createCallbackStateResponse: {
+    statusCode: 200,
+    status: "OK",
+    data: {
+      state: "123e4567-e89b-12d3-a456-426614174000",
+    },
+  },
+  unexpectedErrorResponse: {
+    statusCode: 400,
+    error: "Bad Request",
+    typeName: "RequestHeadersValidationError",
+    message: "Invalid Params",
+    detail: {},
+    ref: "https://developers.apideck.com/errors#unauthorizederror",
   },
 };
 ```
 
-### `components.UnexpectedErrorResponse`
+## Fields
 
-```typescript
-const value: components.UnexpectedErrorResponse = {
-  statusCode: 400,
-  error: "Bad Request",
-  typeName: "RequestHeadersValidationError",
-  message: "Invalid Params",
-  detail: "Missing Header: x-apideck-consumer-id",
-  ref: "https://developers.apideck.com/errors#unauthorizederror",
-};
-```
-
+| Field                                                                                            | Type                                                                                             | Required                                                                                         | Description                                                                                      |
+| ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ |
+| `httpMeta`                                                                                       | [components.HTTPMetadata](../../models/components/httpmetadata.md)                               | :heavy_check_mark:                                                                               | N/A                                                                                              |
+| `createCallbackStateResponse`                                                                    | [components.CreateCallbackStateResponse](../../models/components/createcallbackstateresponse.md) | :heavy_minus_sign:                                                                               | Callback state created                                                                           |
+| `unexpectedErrorResponse`                                                                        | [components.UnexpectedErrorResponse](../../models/components/unexpectederrorresponse.md)         | :heavy_minus_sign:                                                                               | Unexpected error                                                                                 |

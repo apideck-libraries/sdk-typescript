@@ -33,9 +33,17 @@ export type CrmOpportunitiesUpdateRequest = {
   opportunity: components.OpportunityInput;
 };
 
-export type CrmOpportunitiesUpdateResponse =
-  | components.UpdateOpportunityResponse
-  | components.UnexpectedErrorResponse;
+export type CrmOpportunitiesUpdateResponse = {
+  httpMeta: components.HTTPMetadata;
+  /**
+   * Opportunity updated
+   */
+  updateOpportunityResponse?: components.UpdateOpportunityResponse | undefined;
+  /**
+   * Unexpected error
+   */
+  unexpectedErrorResponse?: components.UnexpectedErrorResponse | undefined;
+};
 
 /** @internal */
 export const CrmOpportunitiesUpdateGlobals$inboundSchema: z.ZodType<
@@ -134,25 +142,49 @@ export const CrmOpportunitiesUpdateResponse$inboundSchema: z.ZodType<
   CrmOpportunitiesUpdateResponse,
   z.ZodTypeDef,
   unknown
-> = z.union([
-  components.UpdateOpportunityResponse$inboundSchema,
-  components.UnexpectedErrorResponse$inboundSchema,
-]);
+> = z.object({
+  HttpMeta: components.HTTPMetadata$inboundSchema,
+  UpdateOpportunityResponse: components.UpdateOpportunityResponse$inboundSchema
+    .optional(),
+  UnexpectedErrorResponse: components.UnexpectedErrorResponse$inboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "HttpMeta": "httpMeta",
+    "UpdateOpportunityResponse": "updateOpportunityResponse",
+    "UnexpectedErrorResponse": "unexpectedErrorResponse",
+  });
+});
 
 /** @internal */
-export type CrmOpportunitiesUpdateResponse$Outbound =
-  | components.UpdateOpportunityResponse$Outbound
-  | components.UnexpectedErrorResponse$Outbound;
+export type CrmOpportunitiesUpdateResponse$Outbound = {
+  HttpMeta: components.HTTPMetadata$Outbound;
+  UpdateOpportunityResponse?:
+    | components.UpdateOpportunityResponse$Outbound
+    | undefined;
+  UnexpectedErrorResponse?:
+    | components.UnexpectedErrorResponse$Outbound
+    | undefined;
+};
 
 /** @internal */
 export const CrmOpportunitiesUpdateResponse$outboundSchema: z.ZodType<
   CrmOpportunitiesUpdateResponse$Outbound,
   z.ZodTypeDef,
   CrmOpportunitiesUpdateResponse
-> = z.union([
-  components.UpdateOpportunityResponse$outboundSchema,
-  components.UnexpectedErrorResponse$outboundSchema,
-]);
+> = z.object({
+  httpMeta: components.HTTPMetadata$outboundSchema,
+  updateOpportunityResponse: components.UpdateOpportunityResponse$outboundSchema
+    .optional(),
+  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    httpMeta: "HttpMeta",
+    updateOpportunityResponse: "UpdateOpportunityResponse",
+    unexpectedErrorResponse: "UnexpectedErrorResponse",
+  });
+});
 
 /**
  * @internal

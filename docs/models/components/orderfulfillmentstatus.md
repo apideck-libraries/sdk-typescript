@@ -7,7 +7,7 @@ The state of the fulfillment.
 ```typescript
 import { OrderFulfillmentStatus } from "apideck/models/components";
 
-let value: OrderFulfillmentStatus = "prepared";
+let value: OrderFulfillmentStatus = "proposed";
 ```
 
 ## Values

@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod";
+import { remap as remap$ } from "../../lib/primitives.js";
 import * as components from "../components/index.js";
 
 export type FileStorageSharedLinksDeleteGlobals = {
@@ -31,9 +32,17 @@ export type FileStorageSharedLinksDeleteRequest = {
   raw?: boolean | undefined;
 };
 
-export type FileStorageSharedLinksDeleteResponse =
-  | components.DeleteSharedLinkResponse
-  | components.UnexpectedErrorResponse;
+export type FileStorageSharedLinksDeleteResponse = {
+  httpMeta: components.HTTPMetadata;
+  /**
+   * Shared Links
+   */
+  deleteSharedLinkResponse?: components.DeleteSharedLinkResponse | undefined;
+  /**
+   * Unexpected error
+   */
+  unexpectedErrorResponse?: components.UnexpectedErrorResponse | undefined;
+};
 
 /** @internal */
 export const FileStorageSharedLinksDeleteGlobals$inboundSchema: z.ZodType<
@@ -125,25 +134,49 @@ export const FileStorageSharedLinksDeleteResponse$inboundSchema: z.ZodType<
   FileStorageSharedLinksDeleteResponse,
   z.ZodTypeDef,
   unknown
-> = z.union([
-  components.DeleteSharedLinkResponse$inboundSchema,
-  components.UnexpectedErrorResponse$inboundSchema,
-]);
+> = z.object({
+  HttpMeta: components.HTTPMetadata$inboundSchema,
+  DeleteSharedLinkResponse: components.DeleteSharedLinkResponse$inboundSchema
+    .optional(),
+  UnexpectedErrorResponse: components.UnexpectedErrorResponse$inboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "HttpMeta": "httpMeta",
+    "DeleteSharedLinkResponse": "deleteSharedLinkResponse",
+    "UnexpectedErrorResponse": "unexpectedErrorResponse",
+  });
+});
 
 /** @internal */
-export type FileStorageSharedLinksDeleteResponse$Outbound =
-  | components.DeleteSharedLinkResponse$Outbound
-  | components.UnexpectedErrorResponse$Outbound;
+export type FileStorageSharedLinksDeleteResponse$Outbound = {
+  HttpMeta: components.HTTPMetadata$Outbound;
+  DeleteSharedLinkResponse?:
+    | components.DeleteSharedLinkResponse$Outbound
+    | undefined;
+  UnexpectedErrorResponse?:
+    | components.UnexpectedErrorResponse$Outbound
+    | undefined;
+};
 
 /** @internal */
 export const FileStorageSharedLinksDeleteResponse$outboundSchema: z.ZodType<
   FileStorageSharedLinksDeleteResponse$Outbound,
   z.ZodTypeDef,
   FileStorageSharedLinksDeleteResponse
-> = z.union([
-  components.DeleteSharedLinkResponse$outboundSchema,
-  components.UnexpectedErrorResponse$outboundSchema,
-]);
+> = z.object({
+  httpMeta: components.HTTPMetadata$outboundSchema,
+  deleteSharedLinkResponse: components.DeleteSharedLinkResponse$outboundSchema
+    .optional(),
+  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    httpMeta: "HttpMeta",
+    deleteSharedLinkResponse: "DeleteSharedLinkResponse",
+    unexpectedErrorResponse: "UnexpectedErrorResponse",
+  });
+});
 
 /**
  * @internal

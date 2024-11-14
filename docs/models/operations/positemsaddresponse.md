@@ -1,33 +1,42 @@
 # PosItemsAddResponse
 
-
-## Supported Types
-
-### `components.CreateItemResponse`
+## Example Usage
 
 ```typescript
-const value: components.CreateItemResponse = {
-  statusCode: 200,
-  status: "OK",
-  service: "square",
-  resource: "Items",
-  operation: "add",
-  data: {
-    id: "12345",
+import { PosItemsAddResponse } from "apideck/models/operations";
+
+let value: PosItemsAddResponse = {
+  httpMeta: {
+    response: new Response("{\"message\": \"hello world\"}", {
+      headers: { "Content-Type": "application/json" },
+    }),
+    request: new Request("https://example.com"),
+  },
+  createItemResponse: {
+    statusCode: 200,
+    status: "OK",
+    service: "square",
+    resource: "Items",
+    operation: "add",
+    data: {
+      id: "12345",
+    },
+  },
+  unexpectedErrorResponse: {
+    statusCode: 400,
+    error: "Bad Request",
+    typeName: "RequestHeadersValidationError",
+    message: "Invalid Params",
+    detail: "Missing Header: x-apideck-consumer-id",
+    ref: "https://developers.apideck.com/errors#unauthorizederror",
   },
 };
 ```
 
-### `components.UnexpectedErrorResponse`
+## Fields
 
-```typescript
-const value: components.UnexpectedErrorResponse = {
-  statusCode: 400,
-  error: "Bad Request",
-  typeName: "RequestHeadersValidationError",
-  message: "Invalid Params",
-  detail: "Missing Header: x-apideck-consumer-id",
-  ref: "https://developers.apideck.com/errors#unauthorizederror",
-};
-```
-
+| Field                                                                                    | Type                                                                                     | Required                                                                                 | Description                                                                              |
+| ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| `httpMeta`                                                                               | [components.HTTPMetadata](../../models/components/httpmetadata.md)                       | :heavy_check_mark:                                                                       | N/A                                                                                      |
+| `createItemResponse`                                                                     | [components.CreateItemResponse](../../models/components/createitemresponse.md)           | :heavy_minus_sign:                                                                       | Items                                                                                    |
+| `unexpectedErrorResponse`                                                                | [components.UnexpectedErrorResponse](../../models/components/unexpectederrorresponse.md) | :heavy_minus_sign:                                                                       | Unexpected error                                                                         |

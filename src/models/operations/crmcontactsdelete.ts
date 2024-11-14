@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod";
+import { remap as remap$ } from "../../lib/primitives.js";
 import * as components from "../components/index.js";
 
 export type CrmContactsDeleteGlobals = {
@@ -31,9 +32,17 @@ export type CrmContactsDeleteRequest = {
   raw?: boolean | undefined;
 };
 
-export type CrmContactsDeleteResponse =
-  | components.DeleteContactResponse
-  | components.UnexpectedErrorResponse;
+export type CrmContactsDeleteResponse = {
+  httpMeta: components.HTTPMetadata;
+  /**
+   * Contact deleted
+   */
+  deleteContactResponse?: components.DeleteContactResponse | undefined;
+  /**
+   * Unexpected error
+   */
+  unexpectedErrorResponse?: components.UnexpectedErrorResponse | undefined;
+};
 
 /** @internal */
 export const CrmContactsDeleteGlobals$inboundSchema: z.ZodType<
@@ -121,25 +130,47 @@ export const CrmContactsDeleteResponse$inboundSchema: z.ZodType<
   CrmContactsDeleteResponse,
   z.ZodTypeDef,
   unknown
-> = z.union([
-  components.DeleteContactResponse$inboundSchema,
-  components.UnexpectedErrorResponse$inboundSchema,
-]);
+> = z.object({
+  HttpMeta: components.HTTPMetadata$inboundSchema,
+  DeleteContactResponse: components.DeleteContactResponse$inboundSchema
+    .optional(),
+  UnexpectedErrorResponse: components.UnexpectedErrorResponse$inboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "HttpMeta": "httpMeta",
+    "DeleteContactResponse": "deleteContactResponse",
+    "UnexpectedErrorResponse": "unexpectedErrorResponse",
+  });
+});
 
 /** @internal */
-export type CrmContactsDeleteResponse$Outbound =
-  | components.DeleteContactResponse$Outbound
-  | components.UnexpectedErrorResponse$Outbound;
+export type CrmContactsDeleteResponse$Outbound = {
+  HttpMeta: components.HTTPMetadata$Outbound;
+  DeleteContactResponse?: components.DeleteContactResponse$Outbound | undefined;
+  UnexpectedErrorResponse?:
+    | components.UnexpectedErrorResponse$Outbound
+    | undefined;
+};
 
 /** @internal */
 export const CrmContactsDeleteResponse$outboundSchema: z.ZodType<
   CrmContactsDeleteResponse$Outbound,
   z.ZodTypeDef,
   CrmContactsDeleteResponse
-> = z.union([
-  components.DeleteContactResponse$outboundSchema,
-  components.UnexpectedErrorResponse$outboundSchema,
-]);
+> = z.object({
+  httpMeta: components.HTTPMetadata$outboundSchema,
+  deleteContactResponse: components.DeleteContactResponse$outboundSchema
+    .optional(),
+  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    httpMeta: "HttpMeta",
+    deleteContactResponse: "DeleteContactResponse",
+    unexpectedErrorResponse: "UnexpectedErrorResponse",
+  });
+});
 
 /**
  * @internal

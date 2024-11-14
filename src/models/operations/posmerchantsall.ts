@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod";
+import { remap as remap$ } from "../../lib/primitives.js";
 import * as components from "../components/index.js";
 
 export type PosMerchantsAllGlobals = {
@@ -39,9 +40,17 @@ export type PosMerchantsAllRequest = {
   fields?: string | null | undefined;
 };
 
-export type PosMerchantsAllResponse =
-  | components.UnexpectedErrorResponse
-  | components.GetMerchantsResponse;
+export type PosMerchantsAllResponse = {
+  httpMeta: components.HTTPMetadata;
+  /**
+   * Merchants
+   */
+  getMerchantsResponse?: components.GetMerchantsResponse | undefined;
+  /**
+   * Unexpected error
+   */
+  unexpectedErrorResponse?: components.UnexpectedErrorResponse | undefined;
+};
 
 /** @internal */
 export const PosMerchantsAllGlobals$inboundSchema: z.ZodType<
@@ -135,25 +144,47 @@ export const PosMerchantsAllResponse$inboundSchema: z.ZodType<
   PosMerchantsAllResponse,
   z.ZodTypeDef,
   unknown
-> = z.union([
-  components.UnexpectedErrorResponse$inboundSchema,
-  components.GetMerchantsResponse$inboundSchema,
-]);
+> = z.object({
+  HttpMeta: components.HTTPMetadata$inboundSchema,
+  GetMerchantsResponse: components.GetMerchantsResponse$inboundSchema
+    .optional(),
+  UnexpectedErrorResponse: components.UnexpectedErrorResponse$inboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "HttpMeta": "httpMeta",
+    "GetMerchantsResponse": "getMerchantsResponse",
+    "UnexpectedErrorResponse": "unexpectedErrorResponse",
+  });
+});
 
 /** @internal */
-export type PosMerchantsAllResponse$Outbound =
-  | components.UnexpectedErrorResponse$Outbound
-  | components.GetMerchantsResponse$Outbound;
+export type PosMerchantsAllResponse$Outbound = {
+  HttpMeta: components.HTTPMetadata$Outbound;
+  GetMerchantsResponse?: components.GetMerchantsResponse$Outbound | undefined;
+  UnexpectedErrorResponse?:
+    | components.UnexpectedErrorResponse$Outbound
+    | undefined;
+};
 
 /** @internal */
 export const PosMerchantsAllResponse$outboundSchema: z.ZodType<
   PosMerchantsAllResponse$Outbound,
   z.ZodTypeDef,
   PosMerchantsAllResponse
-> = z.union([
-  components.UnexpectedErrorResponse$outboundSchema,
-  components.GetMerchantsResponse$outboundSchema,
-]);
+> = z.object({
+  httpMeta: components.HTTPMetadata$outboundSchema,
+  getMerchantsResponse: components.GetMerchantsResponse$outboundSchema
+    .optional(),
+  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    httpMeta: "HttpMeta",
+    getMerchantsResponse: "GetMerchantsResponse",
+    unexpectedErrorResponse: "UnexpectedErrorResponse",
+  });
+});
 
 /**
  * @internal

@@ -129,7 +129,7 @@ export async function fileStorageFileStorageDriveGroupsDelete(
     headers: headers,
     query: query,
     body: body,
-    timeoutMs: options?.timeoutMs || client._options.timeoutMs || 1000,
+    timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
   }, options);
   if (!requestRes.ok) {
     return requestRes;
@@ -166,7 +166,9 @@ export async function fileStorageFileStorageDriveGroupsDelete(
     | RequestTimeoutError
     | ConnectionError
   >(
-    M.json(200, operations.FileStorageDriveGroupsDeleteResponse$inboundSchema),
+    M.json(200, operations.FileStorageDriveGroupsDeleteResponse$inboundSchema, {
+      key: "DeleteDriveGroupResponse",
+    }),
     M.jsonErr(400, errors.BadRequestResponse$inboundSchema),
     M.jsonErr(401, errors.UnauthorizedResponse$inboundSchema),
     M.jsonErr(402, errors.PaymentRequiredResponse$inboundSchema),
@@ -176,8 +178,9 @@ export async function fileStorageFileStorageDriveGroupsDelete(
     M.json(
       "default",
       operations.FileStorageDriveGroupsDeleteResponse$inboundSchema,
+      { key: "UnexpectedErrorResponse" },
     ),
-  )(response, { extraFields: responseFields });
+  )(response, req, { extraFields: responseFields });
   if (!result.ok) {
     return result;
   }

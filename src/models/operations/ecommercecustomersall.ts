@@ -48,9 +48,19 @@ export type EcommerceCustomersAllRequest = {
   fields?: string | null | undefined;
 };
 
-export type EcommerceCustomersAllResponse =
-  | components.UnexpectedErrorResponse
-  | components.GetEcommerceCustomersResponse;
+export type EcommerceCustomersAllResponse = {
+  httpMeta: components.HTTPMetadata;
+  /**
+   * Customers
+   */
+  getEcommerceCustomersResponse?:
+    | components.GetEcommerceCustomersResponse
+    | undefined;
+  /**
+   * Unexpected error
+   */
+  unexpectedErrorResponse?: components.UnexpectedErrorResponse | undefined;
+};
 
 /** @internal */
 export const EcommerceCustomersAllGlobals$inboundSchema: z.ZodType<
@@ -158,25 +168,49 @@ export const EcommerceCustomersAllResponse$inboundSchema: z.ZodType<
   EcommerceCustomersAllResponse,
   z.ZodTypeDef,
   unknown
-> = z.union([
-  components.UnexpectedErrorResponse$inboundSchema,
-  components.GetEcommerceCustomersResponse$inboundSchema,
-]);
+> = z.object({
+  HttpMeta: components.HTTPMetadata$inboundSchema,
+  GetEcommerceCustomersResponse: components
+    .GetEcommerceCustomersResponse$inboundSchema.optional(),
+  UnexpectedErrorResponse: components.UnexpectedErrorResponse$inboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "HttpMeta": "httpMeta",
+    "GetEcommerceCustomersResponse": "getEcommerceCustomersResponse",
+    "UnexpectedErrorResponse": "unexpectedErrorResponse",
+  });
+});
 
 /** @internal */
-export type EcommerceCustomersAllResponse$Outbound =
-  | components.UnexpectedErrorResponse$Outbound
-  | components.GetEcommerceCustomersResponse$Outbound;
+export type EcommerceCustomersAllResponse$Outbound = {
+  HttpMeta: components.HTTPMetadata$Outbound;
+  GetEcommerceCustomersResponse?:
+    | components.GetEcommerceCustomersResponse$Outbound
+    | undefined;
+  UnexpectedErrorResponse?:
+    | components.UnexpectedErrorResponse$Outbound
+    | undefined;
+};
 
 /** @internal */
 export const EcommerceCustomersAllResponse$outboundSchema: z.ZodType<
   EcommerceCustomersAllResponse$Outbound,
   z.ZodTypeDef,
   EcommerceCustomersAllResponse
-> = z.union([
-  components.UnexpectedErrorResponse$outboundSchema,
-  components.GetEcommerceCustomersResponse$outboundSchema,
-]);
+> = z.object({
+  httpMeta: components.HTTPMetadata$outboundSchema,
+  getEcommerceCustomersResponse: components
+    .GetEcommerceCustomersResponse$outboundSchema.optional(),
+  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    httpMeta: "HttpMeta",
+    getEcommerceCustomersResponse: "GetEcommerceCustomersResponse",
+    unexpectedErrorResponse: "UnexpectedErrorResponse",
+  });
+});
 
 /**
  * @internal

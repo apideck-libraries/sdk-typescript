@@ -10,13 +10,17 @@ let value: Defaults = {
   id: "ProductInterest",
   options: [
     {
+      id: "1234",
       label: "General Channel",
-      value: true,
+      options: [
+        {
+          label: "General Channel",
+          value: 123,
+        },
+      ],
     },
   ],
-  value: [
-    10,
-  ],
+  value: 10,
 };
 ```
 

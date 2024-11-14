@@ -1,33 +1,42 @@
 # PosOrderTypesDeleteResponse
 
-
-## Supported Types
-
-### `components.DeleteOrderTypeResponse`
+## Example Usage
 
 ```typescript
-const value: components.DeleteOrderTypeResponse = {
-  statusCode: 200,
-  status: "OK",
-  service: "clover",
-  resource: "OrderTypes",
-  operation: "delete",
-  data: {
-    id: "12345",
+import { PosOrderTypesDeleteResponse } from "apideck/models/operations";
+
+let value: PosOrderTypesDeleteResponse = {
+  httpMeta: {
+    response: new Response("{\"message\": \"hello world\"}", {
+      headers: { "Content-Type": "application/json" },
+    }),
+    request: new Request("https://example.com"),
+  },
+  deleteOrderTypeResponse: {
+    statusCode: 200,
+    status: "OK",
+    service: "clover",
+    resource: "OrderTypes",
+    operation: "delete",
+    data: {
+      id: "12345",
+    },
+  },
+  unexpectedErrorResponse: {
+    statusCode: 400,
+    error: "Bad Request",
+    typeName: "RequestHeadersValidationError",
+    message: "Invalid Params",
+    detail: "Missing Header: x-apideck-consumer-id",
+    ref: "https://developers.apideck.com/errors#unauthorizederror",
   },
 };
 ```
 
-### `components.UnexpectedErrorResponse`
+## Fields
 
-```typescript
-const value: components.UnexpectedErrorResponse = {
-  statusCode: 400,
-  error: "Bad Request",
-  typeName: "RequestHeadersValidationError",
-  message: "Invalid Params",
-  detail: "Missing Header: x-apideck-consumer-id",
-  ref: "https://developers.apideck.com/errors#unauthorizederror",
-};
-```
-
+| Field                                                                                    | Type                                                                                     | Required                                                                                 | Description                                                                              |
+| ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| `httpMeta`                                                                               | [components.HTTPMetadata](../../models/components/httpmetadata.md)                       | :heavy_check_mark:                                                                       | N/A                                                                                      |
+| `deleteOrderTypeResponse`                                                                | [components.DeleteOrderTypeResponse](../../models/components/deleteordertyperesponse.md) | :heavy_minus_sign:                                                                       | OrderTypes                                                                               |
+| `unexpectedErrorResponse`                                                                | [components.UnexpectedErrorResponse](../../models/components/unexpectederrorresponse.md) | :heavy_minus_sign:                                                                       | Unexpected error                                                                         |

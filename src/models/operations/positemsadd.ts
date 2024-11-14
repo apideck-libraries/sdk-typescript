@@ -29,9 +29,17 @@ export type PosItemsAddRequest = {
   item: components.ItemInput;
 };
 
-export type PosItemsAddResponse =
-  | components.CreateItemResponse
-  | components.UnexpectedErrorResponse;
+export type PosItemsAddResponse = {
+  httpMeta: components.HTTPMetadata;
+  /**
+   * Items
+   */
+  createItemResponse?: components.CreateItemResponse | undefined;
+  /**
+   * Unexpected error
+   */
+  unexpectedErrorResponse?: components.UnexpectedErrorResponse | undefined;
+};
 
 /** @internal */
 export const PosItemsAddGlobals$inboundSchema: z.ZodType<
@@ -127,25 +135,45 @@ export const PosItemsAddResponse$inboundSchema: z.ZodType<
   PosItemsAddResponse,
   z.ZodTypeDef,
   unknown
-> = z.union([
-  components.CreateItemResponse$inboundSchema,
-  components.UnexpectedErrorResponse$inboundSchema,
-]);
+> = z.object({
+  HttpMeta: components.HTTPMetadata$inboundSchema,
+  CreateItemResponse: components.CreateItemResponse$inboundSchema.optional(),
+  UnexpectedErrorResponse: components.UnexpectedErrorResponse$inboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "HttpMeta": "httpMeta",
+    "CreateItemResponse": "createItemResponse",
+    "UnexpectedErrorResponse": "unexpectedErrorResponse",
+  });
+});
 
 /** @internal */
-export type PosItemsAddResponse$Outbound =
-  | components.CreateItemResponse$Outbound
-  | components.UnexpectedErrorResponse$Outbound;
+export type PosItemsAddResponse$Outbound = {
+  HttpMeta: components.HTTPMetadata$Outbound;
+  CreateItemResponse?: components.CreateItemResponse$Outbound | undefined;
+  UnexpectedErrorResponse?:
+    | components.UnexpectedErrorResponse$Outbound
+    | undefined;
+};
 
 /** @internal */
 export const PosItemsAddResponse$outboundSchema: z.ZodType<
   PosItemsAddResponse$Outbound,
   z.ZodTypeDef,
   PosItemsAddResponse
-> = z.union([
-  components.CreateItemResponse$outboundSchema,
-  components.UnexpectedErrorResponse$outboundSchema,
-]);
+> = z.object({
+  httpMeta: components.HTTPMetadata$outboundSchema,
+  createItemResponse: components.CreateItemResponse$outboundSchema.optional(),
+  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    httpMeta: "HttpMeta",
+    createItemResponse: "CreateItemResponse",
+    unexpectedErrorResponse: "UnexpectedErrorResponse",
+  });
+});
 
 /**
  * @internal

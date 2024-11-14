@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod";
+import { remap as remap$ } from "../../lib/primitives.js";
 import * as components from "../components/index.js";
 
 export type EcommerceOrdersOneGlobals = {
@@ -35,9 +36,17 @@ export type EcommerceOrdersOneRequest = {
   fields?: string | null | undefined;
 };
 
-export type EcommerceOrdersOneResponse =
-  | components.GetEcommerceOrderResponse
-  | components.UnexpectedErrorResponse;
+export type EcommerceOrdersOneResponse = {
+  httpMeta: components.HTTPMetadata;
+  /**
+   * Orders
+   */
+  getEcommerceOrderResponse?: components.GetEcommerceOrderResponse | undefined;
+  /**
+   * Unexpected error
+   */
+  unexpectedErrorResponse?: components.UnexpectedErrorResponse | undefined;
+};
 
 /** @internal */
 export const EcommerceOrdersOneGlobals$inboundSchema: z.ZodType<
@@ -128,25 +137,49 @@ export const EcommerceOrdersOneResponse$inboundSchema: z.ZodType<
   EcommerceOrdersOneResponse,
   z.ZodTypeDef,
   unknown
-> = z.union([
-  components.GetEcommerceOrderResponse$inboundSchema,
-  components.UnexpectedErrorResponse$inboundSchema,
-]);
+> = z.object({
+  HttpMeta: components.HTTPMetadata$inboundSchema,
+  GetEcommerceOrderResponse: components.GetEcommerceOrderResponse$inboundSchema
+    .optional(),
+  UnexpectedErrorResponse: components.UnexpectedErrorResponse$inboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "HttpMeta": "httpMeta",
+    "GetEcommerceOrderResponse": "getEcommerceOrderResponse",
+    "UnexpectedErrorResponse": "unexpectedErrorResponse",
+  });
+});
 
 /** @internal */
-export type EcommerceOrdersOneResponse$Outbound =
-  | components.GetEcommerceOrderResponse$Outbound
-  | components.UnexpectedErrorResponse$Outbound;
+export type EcommerceOrdersOneResponse$Outbound = {
+  HttpMeta: components.HTTPMetadata$Outbound;
+  GetEcommerceOrderResponse?:
+    | components.GetEcommerceOrderResponse$Outbound
+    | undefined;
+  UnexpectedErrorResponse?:
+    | components.UnexpectedErrorResponse$Outbound
+    | undefined;
+};
 
 /** @internal */
 export const EcommerceOrdersOneResponse$outboundSchema: z.ZodType<
   EcommerceOrdersOneResponse$Outbound,
   z.ZodTypeDef,
   EcommerceOrdersOneResponse
-> = z.union([
-  components.GetEcommerceOrderResponse$outboundSchema,
-  components.UnexpectedErrorResponse$outboundSchema,
-]);
+> = z.object({
+  httpMeta: components.HTTPMetadata$outboundSchema,
+  getEcommerceOrderResponse: components.GetEcommerceOrderResponse$outboundSchema
+    .optional(),
+  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    httpMeta: "HttpMeta",
+    getEcommerceOrderResponse: "GetEcommerceOrderResponse",
+    unexpectedErrorResponse: "UnexpectedErrorResponse",
+  });
+});
 
 /**
  * @internal

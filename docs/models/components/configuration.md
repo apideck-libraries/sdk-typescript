@@ -13,11 +13,20 @@ let value: Configuration = {
       id: "ProductInterest",
       options: [
         {
+          id: "1234",
           label: "General Channel",
-          value: "general",
+          options: [
+            {
+              label: "General Channel",
+              value: [
+                "team",
+                "general",
+              ],
+            },
+          ],
         },
       ],
-      value: true,
+      value: 10.5,
     },
   ],
 };

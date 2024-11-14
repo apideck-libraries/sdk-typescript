@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod";
+import { remap as remap$ } from "../../lib/primitives.js";
 import * as components from "../components/index.js";
 
 export type FileStorageDriveGroupsOneGlobals = {
@@ -35,9 +36,17 @@ export type FileStorageDriveGroupsOneRequest = {
   fields?: string | null | undefined;
 };
 
-export type FileStorageDriveGroupsOneResponse =
-  | components.GetDriveGroupResponse
-  | components.UnexpectedErrorResponse;
+export type FileStorageDriveGroupsOneResponse = {
+  httpMeta: components.HTTPMetadata;
+  /**
+   * DriveGroups
+   */
+  getDriveGroupResponse?: components.GetDriveGroupResponse | undefined;
+  /**
+   * Unexpected error
+   */
+  unexpectedErrorResponse?: components.UnexpectedErrorResponse | undefined;
+};
 
 /** @internal */
 export const FileStorageDriveGroupsOneGlobals$inboundSchema: z.ZodType<
@@ -128,25 +137,47 @@ export const FileStorageDriveGroupsOneResponse$inboundSchema: z.ZodType<
   FileStorageDriveGroupsOneResponse,
   z.ZodTypeDef,
   unknown
-> = z.union([
-  components.GetDriveGroupResponse$inboundSchema,
-  components.UnexpectedErrorResponse$inboundSchema,
-]);
+> = z.object({
+  HttpMeta: components.HTTPMetadata$inboundSchema,
+  GetDriveGroupResponse: components.GetDriveGroupResponse$inboundSchema
+    .optional(),
+  UnexpectedErrorResponse: components.UnexpectedErrorResponse$inboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "HttpMeta": "httpMeta",
+    "GetDriveGroupResponse": "getDriveGroupResponse",
+    "UnexpectedErrorResponse": "unexpectedErrorResponse",
+  });
+});
 
 /** @internal */
-export type FileStorageDriveGroupsOneResponse$Outbound =
-  | components.GetDriveGroupResponse$Outbound
-  | components.UnexpectedErrorResponse$Outbound;
+export type FileStorageDriveGroupsOneResponse$Outbound = {
+  HttpMeta: components.HTTPMetadata$Outbound;
+  GetDriveGroupResponse?: components.GetDriveGroupResponse$Outbound | undefined;
+  UnexpectedErrorResponse?:
+    | components.UnexpectedErrorResponse$Outbound
+    | undefined;
+};
 
 /** @internal */
 export const FileStorageDriveGroupsOneResponse$outboundSchema: z.ZodType<
   FileStorageDriveGroupsOneResponse$Outbound,
   z.ZodTypeDef,
   FileStorageDriveGroupsOneResponse
-> = z.union([
-  components.GetDriveGroupResponse$outboundSchema,
-  components.UnexpectedErrorResponse$outboundSchema,
-]);
+> = z.object({
+  httpMeta: components.HTTPMetadata$outboundSchema,
+  getDriveGroupResponse: components.GetDriveGroupResponse$outboundSchema
+    .optional(),
+  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    httpMeta: "HttpMeta",
+    getDriveGroupResponse: "GetDriveGroupResponse",
+    unexpectedErrorResponse: "UnexpectedErrorResponse",
+  });
+});
 
 /**
  * @internal

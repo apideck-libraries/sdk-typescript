@@ -101,7 +101,7 @@ let value: GetConnectionResponse = {
                 value: 123,
               },
             ],
-            value: "GC5000 series",
+            value: true,
           },
         ],
       },

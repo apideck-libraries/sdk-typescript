@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod";
+import { remap as remap$ } from "../../lib/primitives.js";
 import * as components from "../components/index.js";
 
 export type VaultConnectionsAllGlobals = {
@@ -27,9 +28,17 @@ export type VaultConnectionsAllRequest = {
   configured?: boolean | undefined;
 };
 
-export type VaultConnectionsAllResponse =
-  | components.GetConnectionsResponse
-  | components.UnexpectedErrorResponse;
+export type VaultConnectionsAllResponse = {
+  httpMeta: components.HTTPMetadata;
+  /**
+   * Connections
+   */
+  getConnectionsResponse?: components.GetConnectionsResponse | undefined;
+  /**
+   * Unexpected error
+   */
+  unexpectedErrorResponse?: components.UnexpectedErrorResponse | undefined;
+};
 
 /** @internal */
 export const VaultConnectionsAllGlobals$inboundSchema: z.ZodType<
@@ -114,25 +123,49 @@ export const VaultConnectionsAllResponse$inboundSchema: z.ZodType<
   VaultConnectionsAllResponse,
   z.ZodTypeDef,
   unknown
-> = z.union([
-  components.GetConnectionsResponse$inboundSchema,
-  components.UnexpectedErrorResponse$inboundSchema,
-]);
+> = z.object({
+  HttpMeta: components.HTTPMetadata$inboundSchema,
+  GetConnectionsResponse: components.GetConnectionsResponse$inboundSchema
+    .optional(),
+  UnexpectedErrorResponse: components.UnexpectedErrorResponse$inboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "HttpMeta": "httpMeta",
+    "GetConnectionsResponse": "getConnectionsResponse",
+    "UnexpectedErrorResponse": "unexpectedErrorResponse",
+  });
+});
 
 /** @internal */
-export type VaultConnectionsAllResponse$Outbound =
-  | components.GetConnectionsResponse$Outbound
-  | components.UnexpectedErrorResponse$Outbound;
+export type VaultConnectionsAllResponse$Outbound = {
+  HttpMeta: components.HTTPMetadata$Outbound;
+  GetConnectionsResponse?:
+    | components.GetConnectionsResponse$Outbound
+    | undefined;
+  UnexpectedErrorResponse?:
+    | components.UnexpectedErrorResponse$Outbound
+    | undefined;
+};
 
 /** @internal */
 export const VaultConnectionsAllResponse$outboundSchema: z.ZodType<
   VaultConnectionsAllResponse$Outbound,
   z.ZodTypeDef,
   VaultConnectionsAllResponse
-> = z.union([
-  components.GetConnectionsResponse$outboundSchema,
-  components.UnexpectedErrorResponse$outboundSchema,
-]);
+> = z.object({
+  httpMeta: components.HTTPMetadata$outboundSchema,
+  getConnectionsResponse: components.GetConnectionsResponse$outboundSchema
+    .optional(),
+  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    httpMeta: "HttpMeta",
+    getConnectionsResponse: "GetConnectionsResponse",
+    unexpectedErrorResponse: "UnexpectedErrorResponse",
+  });
+});
 
 /**
  * @internal

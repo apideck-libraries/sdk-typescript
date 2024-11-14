@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod";
+import { remap as remap$ } from "../../lib/primitives.js";
 import * as components from "../components/index.js";
 
 export type ConnectorConnectorsOneGlobals = {
@@ -19,9 +20,17 @@ export type ConnectorConnectorsOneRequest = {
   id: string;
 };
 
-export type ConnectorConnectorsOneResponse =
-  | components.GetConnectorResponse
-  | components.UnexpectedErrorResponse;
+export type ConnectorConnectorsOneResponse = {
+  httpMeta: components.HTTPMetadata;
+  /**
+   * Connectors
+   */
+  getConnectorResponse?: components.GetConnectorResponse | undefined;
+  /**
+   * Unexpected error
+   */
+  unexpectedErrorResponse?: components.UnexpectedErrorResponse | undefined;
+};
 
 /** @internal */
 export const ConnectorConnectorsOneGlobals$inboundSchema: z.ZodType<
@@ -100,25 +109,47 @@ export const ConnectorConnectorsOneResponse$inboundSchema: z.ZodType<
   ConnectorConnectorsOneResponse,
   z.ZodTypeDef,
   unknown
-> = z.union([
-  components.GetConnectorResponse$inboundSchema,
-  components.UnexpectedErrorResponse$inboundSchema,
-]);
+> = z.object({
+  HttpMeta: components.HTTPMetadata$inboundSchema,
+  GetConnectorResponse: components.GetConnectorResponse$inboundSchema
+    .optional(),
+  UnexpectedErrorResponse: components.UnexpectedErrorResponse$inboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "HttpMeta": "httpMeta",
+    "GetConnectorResponse": "getConnectorResponse",
+    "UnexpectedErrorResponse": "unexpectedErrorResponse",
+  });
+});
 
 /** @internal */
-export type ConnectorConnectorsOneResponse$Outbound =
-  | components.GetConnectorResponse$Outbound
-  | components.UnexpectedErrorResponse$Outbound;
+export type ConnectorConnectorsOneResponse$Outbound = {
+  HttpMeta: components.HTTPMetadata$Outbound;
+  GetConnectorResponse?: components.GetConnectorResponse$Outbound | undefined;
+  UnexpectedErrorResponse?:
+    | components.UnexpectedErrorResponse$Outbound
+    | undefined;
+};
 
 /** @internal */
 export const ConnectorConnectorsOneResponse$outboundSchema: z.ZodType<
   ConnectorConnectorsOneResponse$Outbound,
   z.ZodTypeDef,
   ConnectorConnectorsOneResponse
-> = z.union([
-  components.GetConnectorResponse$outboundSchema,
-  components.UnexpectedErrorResponse$outboundSchema,
-]);
+> = z.object({
+  httpMeta: components.HTTPMetadata$outboundSchema,
+  getConnectorResponse: components.GetConnectorResponse$outboundSchema
+    .optional(),
+  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    httpMeta: "HttpMeta",
+    getConnectorResponse: "GetConnectorResponse",
+    unexpectedErrorResponse: "UnexpectedErrorResponse",
+  });
+});
 
 /**
  * @internal

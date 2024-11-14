@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod";
+import { remap as remap$ } from "../../lib/primitives.js";
 import * as components from "../components/index.js";
 
 export type PosOrderTypesOneGlobals = {
@@ -35,9 +36,17 @@ export type PosOrderTypesOneRequest = {
   fields?: string | null | undefined;
 };
 
-export type PosOrderTypesOneResponse =
-  | components.GetOrderTypeResponse
-  | components.UnexpectedErrorResponse;
+export type PosOrderTypesOneResponse = {
+  httpMeta: components.HTTPMetadata;
+  /**
+   * OrderTypes
+   */
+  getOrderTypeResponse?: components.GetOrderTypeResponse | undefined;
+  /**
+   * Unexpected error
+   */
+  unexpectedErrorResponse?: components.UnexpectedErrorResponse | undefined;
+};
 
 /** @internal */
 export const PosOrderTypesOneGlobals$inboundSchema: z.ZodType<
@@ -128,25 +137,47 @@ export const PosOrderTypesOneResponse$inboundSchema: z.ZodType<
   PosOrderTypesOneResponse,
   z.ZodTypeDef,
   unknown
-> = z.union([
-  components.GetOrderTypeResponse$inboundSchema,
-  components.UnexpectedErrorResponse$inboundSchema,
-]);
+> = z.object({
+  HttpMeta: components.HTTPMetadata$inboundSchema,
+  GetOrderTypeResponse: components.GetOrderTypeResponse$inboundSchema
+    .optional(),
+  UnexpectedErrorResponse: components.UnexpectedErrorResponse$inboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "HttpMeta": "httpMeta",
+    "GetOrderTypeResponse": "getOrderTypeResponse",
+    "UnexpectedErrorResponse": "unexpectedErrorResponse",
+  });
+});
 
 /** @internal */
-export type PosOrderTypesOneResponse$Outbound =
-  | components.GetOrderTypeResponse$Outbound
-  | components.UnexpectedErrorResponse$Outbound;
+export type PosOrderTypesOneResponse$Outbound = {
+  HttpMeta: components.HTTPMetadata$Outbound;
+  GetOrderTypeResponse?: components.GetOrderTypeResponse$Outbound | undefined;
+  UnexpectedErrorResponse?:
+    | components.UnexpectedErrorResponse$Outbound
+    | undefined;
+};
 
 /** @internal */
 export const PosOrderTypesOneResponse$outboundSchema: z.ZodType<
   PosOrderTypesOneResponse$Outbound,
   z.ZodTypeDef,
   PosOrderTypesOneResponse
-> = z.union([
-  components.GetOrderTypeResponse$outboundSchema,
-  components.UnexpectedErrorResponse$outboundSchema,
-]);
+> = z.object({
+  httpMeta: components.HTTPMetadata$outboundSchema,
+  getOrderTypeResponse: components.GetOrderTypeResponse$outboundSchema
+    .optional(),
+  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    httpMeta: "HttpMeta",
+    getOrderTypeResponse: "GetOrderTypeResponse",
+    unexpectedErrorResponse: "UnexpectedErrorResponse",
+  });
+});
 
 /**
  * @internal

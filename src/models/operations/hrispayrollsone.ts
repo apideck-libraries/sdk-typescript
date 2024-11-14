@@ -36,9 +36,17 @@ export type HrisPayrollsOneRequest = {
   fields?: string | null | undefined;
 };
 
-export type HrisPayrollsOneResponse =
-  | components.GetPayrollResponse
-  | components.UnexpectedErrorResponse;
+export type HrisPayrollsOneResponse = {
+  httpMeta: components.HTTPMetadata;
+  /**
+   * Payrolls
+   */
+  getPayrollResponse?: components.GetPayrollResponse | undefined;
+  /**
+   * Unexpected error
+   */
+  unexpectedErrorResponse?: components.UnexpectedErrorResponse | undefined;
+};
 
 /** @internal */
 export const HrisPayrollsOneGlobals$inboundSchema: z.ZodType<
@@ -137,25 +145,45 @@ export const HrisPayrollsOneResponse$inboundSchema: z.ZodType<
   HrisPayrollsOneResponse,
   z.ZodTypeDef,
   unknown
-> = z.union([
-  components.GetPayrollResponse$inboundSchema,
-  components.UnexpectedErrorResponse$inboundSchema,
-]);
+> = z.object({
+  HttpMeta: components.HTTPMetadata$inboundSchema,
+  GetPayrollResponse: components.GetPayrollResponse$inboundSchema.optional(),
+  UnexpectedErrorResponse: components.UnexpectedErrorResponse$inboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "HttpMeta": "httpMeta",
+    "GetPayrollResponse": "getPayrollResponse",
+    "UnexpectedErrorResponse": "unexpectedErrorResponse",
+  });
+});
 
 /** @internal */
-export type HrisPayrollsOneResponse$Outbound =
-  | components.GetPayrollResponse$Outbound
-  | components.UnexpectedErrorResponse$Outbound;
+export type HrisPayrollsOneResponse$Outbound = {
+  HttpMeta: components.HTTPMetadata$Outbound;
+  GetPayrollResponse?: components.GetPayrollResponse$Outbound | undefined;
+  UnexpectedErrorResponse?:
+    | components.UnexpectedErrorResponse$Outbound
+    | undefined;
+};
 
 /** @internal */
 export const HrisPayrollsOneResponse$outboundSchema: z.ZodType<
   HrisPayrollsOneResponse$Outbound,
   z.ZodTypeDef,
   HrisPayrollsOneResponse
-> = z.union([
-  components.GetPayrollResponse$outboundSchema,
-  components.UnexpectedErrorResponse$outboundSchema,
-]);
+> = z.object({
+  httpMeta: components.HTTPMetadata$outboundSchema,
+  getPayrollResponse: components.GetPayrollResponse$outboundSchema.optional(),
+  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    httpMeta: "HttpMeta",
+    getPayrollResponse: "GetPayrollResponse",
+    unexpectedErrorResponse: "UnexpectedErrorResponse",
+  });
+});
 
 /**
  * @internal

@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod";
+import { remap as remap$ } from "../../lib/primitives.js";
 import * as components from "../components/index.js";
 
 export type WebhookWebhooksDeleteGlobals = {
@@ -19,9 +20,17 @@ export type WebhookWebhooksDeleteRequest = {
   id: string;
 };
 
-export type WebhookWebhooksDeleteResponse =
-  | components.DeleteWebhookResponse
-  | components.UnexpectedErrorResponse;
+export type WebhookWebhooksDeleteResponse = {
+  httpMeta: components.HTTPMetadata;
+  /**
+   * Webhooks
+   */
+  deleteWebhookResponse?: components.DeleteWebhookResponse | undefined;
+  /**
+   * Unexpected error
+   */
+  unexpectedErrorResponse?: components.UnexpectedErrorResponse | undefined;
+};
 
 /** @internal */
 export const WebhookWebhooksDeleteGlobals$inboundSchema: z.ZodType<
@@ -100,25 +109,47 @@ export const WebhookWebhooksDeleteResponse$inboundSchema: z.ZodType<
   WebhookWebhooksDeleteResponse,
   z.ZodTypeDef,
   unknown
-> = z.union([
-  components.DeleteWebhookResponse$inboundSchema,
-  components.UnexpectedErrorResponse$inboundSchema,
-]);
+> = z.object({
+  HttpMeta: components.HTTPMetadata$inboundSchema,
+  DeleteWebhookResponse: components.DeleteWebhookResponse$inboundSchema
+    .optional(),
+  UnexpectedErrorResponse: components.UnexpectedErrorResponse$inboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "HttpMeta": "httpMeta",
+    "DeleteWebhookResponse": "deleteWebhookResponse",
+    "UnexpectedErrorResponse": "unexpectedErrorResponse",
+  });
+});
 
 /** @internal */
-export type WebhookWebhooksDeleteResponse$Outbound =
-  | components.DeleteWebhookResponse$Outbound
-  | components.UnexpectedErrorResponse$Outbound;
+export type WebhookWebhooksDeleteResponse$Outbound = {
+  HttpMeta: components.HTTPMetadata$Outbound;
+  DeleteWebhookResponse?: components.DeleteWebhookResponse$Outbound | undefined;
+  UnexpectedErrorResponse?:
+    | components.UnexpectedErrorResponse$Outbound
+    | undefined;
+};
 
 /** @internal */
 export const WebhookWebhooksDeleteResponse$outboundSchema: z.ZodType<
   WebhookWebhooksDeleteResponse$Outbound,
   z.ZodTypeDef,
   WebhookWebhooksDeleteResponse
-> = z.union([
-  components.DeleteWebhookResponse$outboundSchema,
-  components.UnexpectedErrorResponse$outboundSchema,
-]);
+> = z.object({
+  httpMeta: components.HTTPMetadata$outboundSchema,
+  deleteWebhookResponse: components.DeleteWebhookResponse$outboundSchema
+    .optional(),
+  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    httpMeta: "HttpMeta",
+    deleteWebhookResponse: "DeleteWebhookResponse",
+    unexpectedErrorResponse: "UnexpectedErrorResponse",
+  });
+});
 
 /**
  * @internal

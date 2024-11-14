@@ -41,9 +41,17 @@ export type IssueTrackingCollectionTicketCommentsUpdateRequest = {
   collectionTicketComment: components.CollectionTicketCommentInput;
 };
 
-export type IssueTrackingCollectionTicketCommentsUpdateResponse =
-  | components.UpdateCommentResponse
-  | components.UnexpectedErrorResponse;
+export type IssueTrackingCollectionTicketCommentsUpdateResponse = {
+  httpMeta: components.HTTPMetadata;
+  /**
+   * Update a Comment
+   */
+  updateCommentResponse?: components.UpdateCommentResponse | undefined;
+  /**
+   * Unexpected error
+   */
+  unexpectedErrorResponse?: components.UnexpectedErrorResponse | undefined;
+};
 
 /** @internal */
 export const IssueTrackingCollectionTicketCommentsUpdateGlobals$inboundSchema:
@@ -165,15 +173,28 @@ export const IssueTrackingCollectionTicketCommentsUpdateResponse$inboundSchema:
     IssueTrackingCollectionTicketCommentsUpdateResponse,
     z.ZodTypeDef,
     unknown
-  > = z.union([
-    components.UpdateCommentResponse$inboundSchema,
-    components.UnexpectedErrorResponse$inboundSchema,
-  ]);
+  > = z.object({
+    HttpMeta: components.HTTPMetadata$inboundSchema,
+    UpdateCommentResponse: components.UpdateCommentResponse$inboundSchema
+      .optional(),
+    UnexpectedErrorResponse: components.UnexpectedErrorResponse$inboundSchema
+      .optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "HttpMeta": "httpMeta",
+      "UpdateCommentResponse": "updateCommentResponse",
+      "UnexpectedErrorResponse": "unexpectedErrorResponse",
+    });
+  });
 
 /** @internal */
-export type IssueTrackingCollectionTicketCommentsUpdateResponse$Outbound =
-  | components.UpdateCommentResponse$Outbound
-  | components.UnexpectedErrorResponse$Outbound;
+export type IssueTrackingCollectionTicketCommentsUpdateResponse$Outbound = {
+  HttpMeta: components.HTTPMetadata$Outbound;
+  UpdateCommentResponse?: components.UpdateCommentResponse$Outbound | undefined;
+  UnexpectedErrorResponse?:
+    | components.UnexpectedErrorResponse$Outbound
+    | undefined;
+};
 
 /** @internal */
 export const IssueTrackingCollectionTicketCommentsUpdateResponse$outboundSchema:
@@ -181,10 +202,19 @@ export const IssueTrackingCollectionTicketCommentsUpdateResponse$outboundSchema:
     IssueTrackingCollectionTicketCommentsUpdateResponse$Outbound,
     z.ZodTypeDef,
     IssueTrackingCollectionTicketCommentsUpdateResponse
-  > = z.union([
-    components.UpdateCommentResponse$outboundSchema,
-    components.UnexpectedErrorResponse$outboundSchema,
-  ]);
+  > = z.object({
+    httpMeta: components.HTTPMetadata$outboundSchema,
+    updateCommentResponse: components.UpdateCommentResponse$outboundSchema
+      .optional(),
+    unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
+      .optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      httpMeta: "HttpMeta",
+      updateCommentResponse: "UpdateCommentResponse",
+      unexpectedErrorResponse: "UnexpectedErrorResponse",
+    });
+  });
 
 /**
  * @internal

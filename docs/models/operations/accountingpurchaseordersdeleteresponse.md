@@ -1,33 +1,42 @@
 # AccountingPurchaseOrdersDeleteResponse
 
-
-## Supported Types
-
-### `components.DeletePurchaseOrderResponse`
+## Example Usage
 
 ```typescript
-const value: components.DeletePurchaseOrderResponse = {
-  statusCode: 200,
-  status: "OK",
-  service: "quickbooks",
-  resource: "PurchaseOrders",
-  operation: "delete",
-  data: {
-    id: "12345",
+import { AccountingPurchaseOrdersDeleteResponse } from "apideck/models/operations";
+
+let value: AccountingPurchaseOrdersDeleteResponse = {
+  httpMeta: {
+    response: new Response("{\"message\": \"hello world\"}", {
+      headers: { "Content-Type": "application/json" },
+    }),
+    request: new Request("https://example.com"),
+  },
+  deletePurchaseOrderResponse: {
+    statusCode: 200,
+    status: "OK",
+    service: "quickbooks",
+    resource: "PurchaseOrders",
+    operation: "delete",
+    data: {
+      id: "12345",
+    },
+  },
+  unexpectedErrorResponse: {
+    statusCode: 400,
+    error: "Bad Request",
+    typeName: "RequestHeadersValidationError",
+    message: "Invalid Params",
+    detail: "Missing Header: x-apideck-consumer-id",
+    ref: "https://developers.apideck.com/errors#unauthorizederror",
   },
 };
 ```
 
-### `components.UnexpectedErrorResponse`
+## Fields
 
-```typescript
-const value: components.UnexpectedErrorResponse = {
-  statusCode: 400,
-  error: "Bad Request",
-  typeName: "RequestHeadersValidationError",
-  message: "Invalid Params",
-  detail: "Missing Header: x-apideck-consumer-id",
-  ref: "https://developers.apideck.com/errors#unauthorizederror",
-};
-```
-
+| Field                                                                                            | Type                                                                                             | Required                                                                                         | Description                                                                                      |
+| ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ |
+| `httpMeta`                                                                                       | [components.HTTPMetadata](../../models/components/httpmetadata.md)                               | :heavy_check_mark:                                                                               | N/A                                                                                              |
+| `deletePurchaseOrderResponse`                                                                    | [components.DeletePurchaseOrderResponse](../../models/components/deletepurchaseorderresponse.md) | :heavy_minus_sign:                                                                               | PurchaseOrders                                                                                   |
+| `unexpectedErrorResponse`                                                                        | [components.UnexpectedErrorResponse](../../models/components/unexpectederrorresponse.md)         | :heavy_minus_sign:                                                                               | Unexpected error                                                                                 |

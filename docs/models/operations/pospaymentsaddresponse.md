@@ -1,33 +1,42 @@
 # PosPaymentsAddResponse
 
-
-## Supported Types
-
-### `components.CreatePosPaymentResponse`
+## Example Usage
 
 ```typescript
-const value: components.CreatePosPaymentResponse = {
-  statusCode: 200,
-  status: "OK",
-  service: "square",
-  resource: "PosPayments",
-  operation: "add",
-  data: {
-    id: "12345",
+import { PosPaymentsAddResponse } from "apideck/models/operations";
+
+let value: PosPaymentsAddResponse = {
+  httpMeta: {
+    response: new Response("{\"message\": \"hello world\"}", {
+      headers: { "Content-Type": "application/json" },
+    }),
+    request: new Request("https://example.com"),
+  },
+  createPosPaymentResponse: {
+    statusCode: 200,
+    status: "OK",
+    service: "square",
+    resource: "PosPayments",
+    operation: "add",
+    data: {
+      id: "12345",
+    },
+  },
+  unexpectedErrorResponse: {
+    statusCode: 400,
+    error: "Bad Request",
+    typeName: "RequestHeadersValidationError",
+    message: "Invalid Params",
+    detail: "Missing Header: x-apideck-consumer-id",
+    ref: "https://developers.apideck.com/errors#unauthorizederror",
   },
 };
 ```
 
-### `components.UnexpectedErrorResponse`
+## Fields
 
-```typescript
-const value: components.UnexpectedErrorResponse = {
-  statusCode: 400,
-  error: "Bad Request",
-  typeName: "RequestHeadersValidationError",
-  message: "Invalid Params",
-  detail: "Missing Header: x-apideck-consumer-id",
-  ref: "https://developers.apideck.com/errors#unauthorizederror",
-};
-```
-
+| Field                                                                                      | Type                                                                                       | Required                                                                                   | Description                                                                                |
+| ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
+| `httpMeta`                                                                                 | [components.HTTPMetadata](../../models/components/httpmetadata.md)                         | :heavy_check_mark:                                                                         | N/A                                                                                        |
+| `createPosPaymentResponse`                                                                 | [components.CreatePosPaymentResponse](../../models/components/createpospaymentresponse.md) | :heavy_minus_sign:                                                                         | PosPayments                                                                                |
+| `unexpectedErrorResponse`                                                                  | [components.UnexpectedErrorResponse](../../models/components/unexpectederrorresponse.md)   | :heavy_minus_sign:                                                                         | Unexpected error                                                                           |

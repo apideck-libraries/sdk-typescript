@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod";
+import { remap as remap$ } from "../../lib/primitives.js";
 import * as components from "../components/index.js";
 
 export type FileStorageDrivesAllGlobals = {
@@ -43,9 +44,17 @@ export type FileStorageDrivesAllRequest = {
   fields?: string | null | undefined;
 };
 
-export type FileStorageDrivesAllResponse =
-  | components.UnexpectedErrorResponse
-  | components.GetDrivesResponse;
+export type FileStorageDrivesAllResponse = {
+  httpMeta: components.HTTPMetadata;
+  /**
+   * Drives
+   */
+  getDrivesResponse?: components.GetDrivesResponse | undefined;
+  /**
+   * Unexpected error
+   */
+  unexpectedErrorResponse?: components.UnexpectedErrorResponse | undefined;
+};
 
 /** @internal */
 export const FileStorageDrivesAllGlobals$inboundSchema: z.ZodType<
@@ -142,25 +151,45 @@ export const FileStorageDrivesAllResponse$inboundSchema: z.ZodType<
   FileStorageDrivesAllResponse,
   z.ZodTypeDef,
   unknown
-> = z.union([
-  components.UnexpectedErrorResponse$inboundSchema,
-  components.GetDrivesResponse$inboundSchema,
-]);
+> = z.object({
+  HttpMeta: components.HTTPMetadata$inboundSchema,
+  GetDrivesResponse: components.GetDrivesResponse$inboundSchema.optional(),
+  UnexpectedErrorResponse: components.UnexpectedErrorResponse$inboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "HttpMeta": "httpMeta",
+    "GetDrivesResponse": "getDrivesResponse",
+    "UnexpectedErrorResponse": "unexpectedErrorResponse",
+  });
+});
 
 /** @internal */
-export type FileStorageDrivesAllResponse$Outbound =
-  | components.UnexpectedErrorResponse$Outbound
-  | components.GetDrivesResponse$Outbound;
+export type FileStorageDrivesAllResponse$Outbound = {
+  HttpMeta: components.HTTPMetadata$Outbound;
+  GetDrivesResponse?: components.GetDrivesResponse$Outbound | undefined;
+  UnexpectedErrorResponse?:
+    | components.UnexpectedErrorResponse$Outbound
+    | undefined;
+};
 
 /** @internal */
 export const FileStorageDrivesAllResponse$outboundSchema: z.ZodType<
   FileStorageDrivesAllResponse$Outbound,
   z.ZodTypeDef,
   FileStorageDrivesAllResponse
-> = z.union([
-  components.UnexpectedErrorResponse$outboundSchema,
-  components.GetDrivesResponse$outboundSchema,
-]);
+> = z.object({
+  httpMeta: components.HTTPMetadata$outboundSchema,
+  getDrivesResponse: components.GetDrivesResponse$outboundSchema.optional(),
+  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    httpMeta: "HttpMeta",
+    getDrivesResponse: "GetDrivesResponse",
+    unexpectedErrorResponse: "UnexpectedErrorResponse",
+  });
+});
 
 /**
  * @internal

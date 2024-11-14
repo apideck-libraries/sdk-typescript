@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod";
+import { remap as remap$ } from "../../lib/primitives.js";
 import * as components from "../components/index.js";
 
 export type LeadLeadsDeleteGlobals = {
@@ -31,9 +32,17 @@ export type LeadLeadsDeleteRequest = {
   raw?: boolean | undefined;
 };
 
-export type LeadLeadsDeleteResponse =
-  | components.DeleteLeadResponse
-  | components.UnexpectedErrorResponse;
+export type LeadLeadsDeleteResponse = {
+  httpMeta: components.HTTPMetadata;
+  /**
+   * Lead deleted
+   */
+  deleteLeadResponse?: components.DeleteLeadResponse | undefined;
+  /**
+   * Unexpected error
+   */
+  unexpectedErrorResponse?: components.UnexpectedErrorResponse | undefined;
+};
 
 /** @internal */
 export const LeadLeadsDeleteGlobals$inboundSchema: z.ZodType<
@@ -121,25 +130,45 @@ export const LeadLeadsDeleteResponse$inboundSchema: z.ZodType<
   LeadLeadsDeleteResponse,
   z.ZodTypeDef,
   unknown
-> = z.union([
-  components.DeleteLeadResponse$inboundSchema,
-  components.UnexpectedErrorResponse$inboundSchema,
-]);
+> = z.object({
+  HttpMeta: components.HTTPMetadata$inboundSchema,
+  DeleteLeadResponse: components.DeleteLeadResponse$inboundSchema.optional(),
+  UnexpectedErrorResponse: components.UnexpectedErrorResponse$inboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "HttpMeta": "httpMeta",
+    "DeleteLeadResponse": "deleteLeadResponse",
+    "UnexpectedErrorResponse": "unexpectedErrorResponse",
+  });
+});
 
 /** @internal */
-export type LeadLeadsDeleteResponse$Outbound =
-  | components.DeleteLeadResponse$Outbound
-  | components.UnexpectedErrorResponse$Outbound;
+export type LeadLeadsDeleteResponse$Outbound = {
+  HttpMeta: components.HTTPMetadata$Outbound;
+  DeleteLeadResponse?: components.DeleteLeadResponse$Outbound | undefined;
+  UnexpectedErrorResponse?:
+    | components.UnexpectedErrorResponse$Outbound
+    | undefined;
+};
 
 /** @internal */
 export const LeadLeadsDeleteResponse$outboundSchema: z.ZodType<
   LeadLeadsDeleteResponse$Outbound,
   z.ZodTypeDef,
   LeadLeadsDeleteResponse
-> = z.union([
-  components.DeleteLeadResponse$outboundSchema,
-  components.UnexpectedErrorResponse$outboundSchema,
-]);
+> = z.object({
+  httpMeta: components.HTTPMetadata$outboundSchema,
+  deleteLeadResponse: components.DeleteLeadResponse$outboundSchema.optional(),
+  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    httpMeta: "HttpMeta",
+    deleteLeadResponse: "DeleteLeadResponse",
+    unexpectedErrorResponse: "UnexpectedErrorResponse",
+  });
+});
 
 /**
  * @internal

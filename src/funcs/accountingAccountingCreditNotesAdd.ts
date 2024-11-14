@@ -121,7 +121,7 @@ export async function accountingAccountingCreditNotesAdd(
     headers: headers,
     query: query,
     body: body,
-    timeoutMs: options?.timeoutMs || client._options.timeoutMs || 1000,
+    timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
   }, options);
   if (!requestRes.ok) {
     return requestRes;
@@ -158,7 +158,9 @@ export async function accountingAccountingCreditNotesAdd(
     | RequestTimeoutError
     | ConnectionError
   >(
-    M.json(201, operations.AccountingCreditNotesAddResponse$inboundSchema),
+    M.json(201, operations.AccountingCreditNotesAddResponse$inboundSchema, {
+      key: "CreateCreditNoteResponse",
+    }),
     M.jsonErr(400, errors.BadRequestResponse$inboundSchema),
     M.jsonErr(401, errors.UnauthorizedResponse$inboundSchema),
     M.jsonErr(402, errors.PaymentRequiredResponse$inboundSchema),
@@ -168,8 +170,9 @@ export async function accountingAccountingCreditNotesAdd(
     M.json(
       "default",
       operations.AccountingCreditNotesAddResponse$inboundSchema,
+      { key: "UnexpectedErrorResponse" },
     ),
-  )(response, { extraFields: responseFields });
+  )(response, req, { extraFields: responseFields });
   if (!result.ok) {
     return result;
   }

@@ -48,9 +48,17 @@ export type AccountingAttachmentsAllRequest = {
   fields?: string | null | undefined;
 };
 
-export type AccountingAttachmentsAllResponse =
-  | components.UnexpectedErrorResponse
-  | components.GetAttachmentsResponse;
+export type AccountingAttachmentsAllResponse = {
+  httpMeta: components.HTTPMetadata;
+  /**
+   * Attachments
+   */
+  getAttachmentsResponse?: components.GetAttachmentsResponse | undefined;
+  /**
+   * Unexpected error
+   */
+  unexpectedErrorResponse?: components.UnexpectedErrorResponse | undefined;
+};
 
 /** @internal */
 export const AccountingAttachmentsAllGlobals$inboundSchema: z.ZodType<
@@ -160,25 +168,49 @@ export const AccountingAttachmentsAllResponse$inboundSchema: z.ZodType<
   AccountingAttachmentsAllResponse,
   z.ZodTypeDef,
   unknown
-> = z.union([
-  components.UnexpectedErrorResponse$inboundSchema,
-  components.GetAttachmentsResponse$inboundSchema,
-]);
+> = z.object({
+  HttpMeta: components.HTTPMetadata$inboundSchema,
+  GetAttachmentsResponse: components.GetAttachmentsResponse$inboundSchema
+    .optional(),
+  UnexpectedErrorResponse: components.UnexpectedErrorResponse$inboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "HttpMeta": "httpMeta",
+    "GetAttachmentsResponse": "getAttachmentsResponse",
+    "UnexpectedErrorResponse": "unexpectedErrorResponse",
+  });
+});
 
 /** @internal */
-export type AccountingAttachmentsAllResponse$Outbound =
-  | components.UnexpectedErrorResponse$Outbound
-  | components.GetAttachmentsResponse$Outbound;
+export type AccountingAttachmentsAllResponse$Outbound = {
+  HttpMeta: components.HTTPMetadata$Outbound;
+  GetAttachmentsResponse?:
+    | components.GetAttachmentsResponse$Outbound
+    | undefined;
+  UnexpectedErrorResponse?:
+    | components.UnexpectedErrorResponse$Outbound
+    | undefined;
+};
 
 /** @internal */
 export const AccountingAttachmentsAllResponse$outboundSchema: z.ZodType<
   AccountingAttachmentsAllResponse$Outbound,
   z.ZodTypeDef,
   AccountingAttachmentsAllResponse
-> = z.union([
-  components.UnexpectedErrorResponse$outboundSchema,
-  components.GetAttachmentsResponse$outboundSchema,
-]);
+> = z.object({
+  httpMeta: components.HTTPMetadata$outboundSchema,
+  getAttachmentsResponse: components.GetAttachmentsResponse$outboundSchema
+    .optional(),
+  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    httpMeta: "HttpMeta",
+    getAttachmentsResponse: "GetAttachmentsResponse",
+    unexpectedErrorResponse: "UnexpectedErrorResponse",
+  });
+});
 
 /**
  * @internal

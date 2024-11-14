@@ -4,6 +4,7 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import * as components from "../components/index.js";
 
 export type VaultConnectionsDeleteGlobals = {
   /**
@@ -25,6 +26,14 @@ export type VaultConnectionsDeleteRequest = {
    * Unified API
    */
   unifiedApi: string;
+};
+
+export type VaultConnectionsDeleteResponse = {
+  httpMeta: components.HTTPMetadata;
+  /**
+   * Unexpected error
+   */
+  unexpectedErrorResponse?: components.UnexpectedErrorResponse | undefined;
 };
 
 /** @internal */
@@ -113,4 +122,57 @@ export namespace VaultConnectionsDeleteRequest$ {
   export const outboundSchema = VaultConnectionsDeleteRequest$outboundSchema;
   /** @deprecated use `VaultConnectionsDeleteRequest$Outbound` instead. */
   export type Outbound = VaultConnectionsDeleteRequest$Outbound;
+}
+
+/** @internal */
+export const VaultConnectionsDeleteResponse$inboundSchema: z.ZodType<
+  VaultConnectionsDeleteResponse,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  HttpMeta: components.HTTPMetadata$inboundSchema,
+  UnexpectedErrorResponse: components.UnexpectedErrorResponse$inboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "HttpMeta": "httpMeta",
+    "UnexpectedErrorResponse": "unexpectedErrorResponse",
+  });
+});
+
+/** @internal */
+export type VaultConnectionsDeleteResponse$Outbound = {
+  HttpMeta: components.HTTPMetadata$Outbound;
+  UnexpectedErrorResponse?:
+    | components.UnexpectedErrorResponse$Outbound
+    | undefined;
+};
+
+/** @internal */
+export const VaultConnectionsDeleteResponse$outboundSchema: z.ZodType<
+  VaultConnectionsDeleteResponse$Outbound,
+  z.ZodTypeDef,
+  VaultConnectionsDeleteResponse
+> = z.object({
+  httpMeta: components.HTTPMetadata$outboundSchema,
+  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    httpMeta: "HttpMeta",
+    unexpectedErrorResponse: "UnexpectedErrorResponse",
+  });
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace VaultConnectionsDeleteResponse$ {
+  /** @deprecated use `VaultConnectionsDeleteResponse$inboundSchema` instead. */
+  export const inboundSchema = VaultConnectionsDeleteResponse$inboundSchema;
+  /** @deprecated use `VaultConnectionsDeleteResponse$outboundSchema` instead. */
+  export const outboundSchema = VaultConnectionsDeleteResponse$outboundSchema;
+  /** @deprecated use `VaultConnectionsDeleteResponse$Outbound` instead. */
+  export type Outbound = VaultConnectionsDeleteResponse$Outbound;
 }

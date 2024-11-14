@@ -44,9 +44,17 @@ export type AtsJobsAllRequest = {
   fields?: string | null | undefined;
 };
 
-export type AtsJobsAllResponse =
-  | components.UnexpectedErrorResponse
-  | components.GetJobsResponse;
+export type AtsJobsAllResponse = {
+  httpMeta: components.HTTPMetadata;
+  /**
+   * Jobs
+   */
+  getJobsResponse?: components.GetJobsResponse | undefined;
+  /**
+   * Unexpected error
+   */
+  unexpectedErrorResponse?: components.UnexpectedErrorResponse | undefined;
+};
 
 /** @internal */
 export const AtsJobsAllGlobals$inboundSchema: z.ZodType<
@@ -151,25 +159,45 @@ export const AtsJobsAllResponse$inboundSchema: z.ZodType<
   AtsJobsAllResponse,
   z.ZodTypeDef,
   unknown
-> = z.union([
-  components.UnexpectedErrorResponse$inboundSchema,
-  components.GetJobsResponse$inboundSchema,
-]);
+> = z.object({
+  HttpMeta: components.HTTPMetadata$inboundSchema,
+  GetJobsResponse: components.GetJobsResponse$inboundSchema.optional(),
+  UnexpectedErrorResponse: components.UnexpectedErrorResponse$inboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "HttpMeta": "httpMeta",
+    "GetJobsResponse": "getJobsResponse",
+    "UnexpectedErrorResponse": "unexpectedErrorResponse",
+  });
+});
 
 /** @internal */
-export type AtsJobsAllResponse$Outbound =
-  | components.UnexpectedErrorResponse$Outbound
-  | components.GetJobsResponse$Outbound;
+export type AtsJobsAllResponse$Outbound = {
+  HttpMeta: components.HTTPMetadata$Outbound;
+  GetJobsResponse?: components.GetJobsResponse$Outbound | undefined;
+  UnexpectedErrorResponse?:
+    | components.UnexpectedErrorResponse$Outbound
+    | undefined;
+};
 
 /** @internal */
 export const AtsJobsAllResponse$outboundSchema: z.ZodType<
   AtsJobsAllResponse$Outbound,
   z.ZodTypeDef,
   AtsJobsAllResponse
-> = z.union([
-  components.UnexpectedErrorResponse$outboundSchema,
-  components.GetJobsResponse$outboundSchema,
-]);
+> = z.object({
+  httpMeta: components.HTTPMetadata$outboundSchema,
+  getJobsResponse: components.GetJobsResponse$outboundSchema.optional(),
+  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    httpMeta: "HttpMeta",
+    getJobsResponse: "GetJobsResponse",
+    unexpectedErrorResponse: "UnexpectedErrorResponse",
+  });
+});
 
 /**
  * @internal

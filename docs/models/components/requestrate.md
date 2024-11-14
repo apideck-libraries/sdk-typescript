@@ -8,9 +8,9 @@ The rate at which requests for resources will be made to downstream.
 import { RequestRate } from "apideck/models/components";
 
 let value: RequestRate = {
-  rate: 524970,
-  size: 750595,
-  unit: "minute",
+  rate: 310381,
+  size: 373035,
+  unit: "hour",
 };
 ```
 

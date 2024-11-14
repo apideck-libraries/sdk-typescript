@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod";
+import { remap as remap$ } from "../../lib/primitives.js";
 import * as components from "../components/index.js";
 
 export type PosTendersOneGlobals = {
@@ -35,9 +36,17 @@ export type PosTendersOneRequest = {
   fields?: string | null | undefined;
 };
 
-export type PosTendersOneResponse =
-  | components.GetTenderResponse
-  | components.UnexpectedErrorResponse;
+export type PosTendersOneResponse = {
+  httpMeta: components.HTTPMetadata;
+  /**
+   * Tenders
+   */
+  getTenderResponse?: components.GetTenderResponse | undefined;
+  /**
+   * Unexpected error
+   */
+  unexpectedErrorResponse?: components.UnexpectedErrorResponse | undefined;
+};
 
 /** @internal */
 export const PosTendersOneGlobals$inboundSchema: z.ZodType<
@@ -128,25 +137,45 @@ export const PosTendersOneResponse$inboundSchema: z.ZodType<
   PosTendersOneResponse,
   z.ZodTypeDef,
   unknown
-> = z.union([
-  components.GetTenderResponse$inboundSchema,
-  components.UnexpectedErrorResponse$inboundSchema,
-]);
+> = z.object({
+  HttpMeta: components.HTTPMetadata$inboundSchema,
+  GetTenderResponse: components.GetTenderResponse$inboundSchema.optional(),
+  UnexpectedErrorResponse: components.UnexpectedErrorResponse$inboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "HttpMeta": "httpMeta",
+    "GetTenderResponse": "getTenderResponse",
+    "UnexpectedErrorResponse": "unexpectedErrorResponse",
+  });
+});
 
 /** @internal */
-export type PosTendersOneResponse$Outbound =
-  | components.GetTenderResponse$Outbound
-  | components.UnexpectedErrorResponse$Outbound;
+export type PosTendersOneResponse$Outbound = {
+  HttpMeta: components.HTTPMetadata$Outbound;
+  GetTenderResponse?: components.GetTenderResponse$Outbound | undefined;
+  UnexpectedErrorResponse?:
+    | components.UnexpectedErrorResponse$Outbound
+    | undefined;
+};
 
 /** @internal */
 export const PosTendersOneResponse$outboundSchema: z.ZodType<
   PosTendersOneResponse$Outbound,
   z.ZodTypeDef,
   PosTendersOneResponse
-> = z.union([
-  components.GetTenderResponse$outboundSchema,
-  components.UnexpectedErrorResponse$outboundSchema,
-]);
+> = z.object({
+  httpMeta: components.HTTPMetadata$outboundSchema,
+  getTenderResponse: components.GetTenderResponse$outboundSchema.optional(),
+  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    httpMeta: "HttpMeta",
+    getTenderResponse: "GetTenderResponse",
+    unexpectedErrorResponse: "UnexpectedErrorResponse",
+  });
+});
 
 /**
  * @internal

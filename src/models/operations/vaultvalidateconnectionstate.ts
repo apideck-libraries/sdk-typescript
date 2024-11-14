@@ -31,9 +31,19 @@ export type VaultValidateConnectionStateRequest = {
   requestBody?: VaultValidateConnectionStateRequestBody | undefined;
 };
 
-export type VaultValidateConnectionStateResponse =
-  | components.ValidateConnectionStateResponse
-  | components.UnexpectedErrorResponse;
+export type VaultValidateConnectionStateResponse = {
+  httpMeta: components.HTTPMetadata;
+  /**
+   * Connection access token refreshed
+   */
+  validateConnectionStateResponse?:
+    | components.ValidateConnectionStateResponse
+    | undefined;
+  /**
+   * Unexpected error
+   */
+  unexpectedErrorResponse?: components.UnexpectedErrorResponse | undefined;
+};
 
 /** @internal */
 export const VaultValidateConnectionStateGlobals$inboundSchema: z.ZodType<
@@ -173,25 +183,49 @@ export const VaultValidateConnectionStateResponse$inboundSchema: z.ZodType<
   VaultValidateConnectionStateResponse,
   z.ZodTypeDef,
   unknown
-> = z.union([
-  components.ValidateConnectionStateResponse$inboundSchema,
-  components.UnexpectedErrorResponse$inboundSchema,
-]);
+> = z.object({
+  HttpMeta: components.HTTPMetadata$inboundSchema,
+  ValidateConnectionStateResponse: components
+    .ValidateConnectionStateResponse$inboundSchema.optional(),
+  UnexpectedErrorResponse: components.UnexpectedErrorResponse$inboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "HttpMeta": "httpMeta",
+    "ValidateConnectionStateResponse": "validateConnectionStateResponse",
+    "UnexpectedErrorResponse": "unexpectedErrorResponse",
+  });
+});
 
 /** @internal */
-export type VaultValidateConnectionStateResponse$Outbound =
-  | components.ValidateConnectionStateResponse$Outbound
-  | components.UnexpectedErrorResponse$Outbound;
+export type VaultValidateConnectionStateResponse$Outbound = {
+  HttpMeta: components.HTTPMetadata$Outbound;
+  ValidateConnectionStateResponse?:
+    | components.ValidateConnectionStateResponse$Outbound
+    | undefined;
+  UnexpectedErrorResponse?:
+    | components.UnexpectedErrorResponse$Outbound
+    | undefined;
+};
 
 /** @internal */
 export const VaultValidateConnectionStateResponse$outboundSchema: z.ZodType<
   VaultValidateConnectionStateResponse$Outbound,
   z.ZodTypeDef,
   VaultValidateConnectionStateResponse
-> = z.union([
-  components.ValidateConnectionStateResponse$outboundSchema,
-  components.UnexpectedErrorResponse$outboundSchema,
-]);
+> = z.object({
+  httpMeta: components.HTTPMetadata$outboundSchema,
+  validateConnectionStateResponse: components
+    .ValidateConnectionStateResponse$outboundSchema.optional(),
+  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    httpMeta: "HttpMeta",
+    validateConnectionStateResponse: "ValidateConnectionStateResponse",
+    unexpectedErrorResponse: "UnexpectedErrorResponse",
+  });
+});
 
 /**
  * @internal

@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod";
+import { remap as remap$ } from "../../lib/primitives.js";
 import * as components from "../components/index.js";
 
 export type FileStorageFilesExportGlobals = {
@@ -35,9 +36,17 @@ export type FileStorageFilesExportRequest = {
   format: string;
 };
 
-export type FileStorageFilesExportResponse =
-  | components.UnexpectedErrorResponse
-  | ReadableStream<Uint8Array>;
+export type FileStorageFilesExportResponse = {
+  httpMeta: components.HTTPMetadata;
+  /**
+   * File Download
+   */
+  getFileDownloadResponse?: ReadableStream<Uint8Array> | undefined;
+  /**
+   * Unexpected error
+   */
+  unexpectedErrorResponse?: components.UnexpectedErrorResponse | undefined;
+};
 
 /** @internal */
 export const FileStorageFilesExportGlobals$inboundSchema: z.ZodType<
@@ -128,25 +137,45 @@ export const FileStorageFilesExportResponse$inboundSchema: z.ZodType<
   FileStorageFilesExportResponse,
   z.ZodTypeDef,
   unknown
-> = z.union([
-  components.UnexpectedErrorResponse$inboundSchema,
-  z.instanceof(ReadableStream<Uint8Array>),
-]);
+> = z.object({
+  HttpMeta: components.HTTPMetadata$inboundSchema,
+  GetFileDownloadResponse: z.instanceof(ReadableStream<Uint8Array>).optional(),
+  UnexpectedErrorResponse: components.UnexpectedErrorResponse$inboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "HttpMeta": "httpMeta",
+    "GetFileDownloadResponse": "getFileDownloadResponse",
+    "UnexpectedErrorResponse": "unexpectedErrorResponse",
+  });
+});
 
 /** @internal */
-export type FileStorageFilesExportResponse$Outbound =
-  | components.UnexpectedErrorResponse$Outbound
-  | ReadableStream<Uint8Array>;
+export type FileStorageFilesExportResponse$Outbound = {
+  HttpMeta: components.HTTPMetadata$Outbound;
+  GetFileDownloadResponse?: ReadableStream<Uint8Array> | undefined;
+  UnexpectedErrorResponse?:
+    | components.UnexpectedErrorResponse$Outbound
+    | undefined;
+};
 
 /** @internal */
 export const FileStorageFilesExportResponse$outboundSchema: z.ZodType<
   FileStorageFilesExportResponse$Outbound,
   z.ZodTypeDef,
   FileStorageFilesExportResponse
-> = z.union([
-  components.UnexpectedErrorResponse$outboundSchema,
-  z.instanceof(ReadableStream<Uint8Array>),
-]);
+> = z.object({
+  httpMeta: components.HTTPMetadata$outboundSchema,
+  getFileDownloadResponse: z.instanceof(ReadableStream<Uint8Array>).optional(),
+  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    httpMeta: "HttpMeta",
+    getFileDownloadResponse: "GetFileDownloadResponse",
+    unexpectedErrorResponse: "UnexpectedErrorResponse",
+  });
+});
 
 /**
  * @internal

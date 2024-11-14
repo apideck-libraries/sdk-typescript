@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod";
+import { remap as remap$ } from "../../lib/primitives.js";
 import * as components from "../components/index.js";
 
 export type PosMerchantsDeleteGlobals = {
@@ -31,9 +32,17 @@ export type PosMerchantsDeleteRequest = {
   raw?: boolean | undefined;
 };
 
-export type PosMerchantsDeleteResponse =
-  | components.DeleteMerchantResponse
-  | components.UnexpectedErrorResponse;
+export type PosMerchantsDeleteResponse = {
+  httpMeta: components.HTTPMetadata;
+  /**
+   * Merchants
+   */
+  deleteMerchantResponse?: components.DeleteMerchantResponse | undefined;
+  /**
+   * Unexpected error
+   */
+  unexpectedErrorResponse?: components.UnexpectedErrorResponse | undefined;
+};
 
 /** @internal */
 export const PosMerchantsDeleteGlobals$inboundSchema: z.ZodType<
@@ -121,25 +130,49 @@ export const PosMerchantsDeleteResponse$inboundSchema: z.ZodType<
   PosMerchantsDeleteResponse,
   z.ZodTypeDef,
   unknown
-> = z.union([
-  components.DeleteMerchantResponse$inboundSchema,
-  components.UnexpectedErrorResponse$inboundSchema,
-]);
+> = z.object({
+  HttpMeta: components.HTTPMetadata$inboundSchema,
+  DeleteMerchantResponse: components.DeleteMerchantResponse$inboundSchema
+    .optional(),
+  UnexpectedErrorResponse: components.UnexpectedErrorResponse$inboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "HttpMeta": "httpMeta",
+    "DeleteMerchantResponse": "deleteMerchantResponse",
+    "UnexpectedErrorResponse": "unexpectedErrorResponse",
+  });
+});
 
 /** @internal */
-export type PosMerchantsDeleteResponse$Outbound =
-  | components.DeleteMerchantResponse$Outbound
-  | components.UnexpectedErrorResponse$Outbound;
+export type PosMerchantsDeleteResponse$Outbound = {
+  HttpMeta: components.HTTPMetadata$Outbound;
+  DeleteMerchantResponse?:
+    | components.DeleteMerchantResponse$Outbound
+    | undefined;
+  UnexpectedErrorResponse?:
+    | components.UnexpectedErrorResponse$Outbound
+    | undefined;
+};
 
 /** @internal */
 export const PosMerchantsDeleteResponse$outboundSchema: z.ZodType<
   PosMerchantsDeleteResponse$Outbound,
   z.ZodTypeDef,
   PosMerchantsDeleteResponse
-> = z.union([
-  components.DeleteMerchantResponse$outboundSchema,
-  components.UnexpectedErrorResponse$outboundSchema,
-]);
+> = z.object({
+  httpMeta: components.HTTPMetadata$outboundSchema,
+  deleteMerchantResponse: components.DeleteMerchantResponse$outboundSchema
+    .optional(),
+  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    httpMeta: "HttpMeta",
+    deleteMerchantResponse: "DeleteMerchantResponse",
+    unexpectedErrorResponse: "UnexpectedErrorResponse",
+  });
+});
 
 /**
  * @internal

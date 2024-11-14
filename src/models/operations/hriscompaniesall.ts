@@ -44,9 +44,17 @@ export type HrisCompaniesAllRequest = {
   fields?: string | null | undefined;
 };
 
-export type HrisCompaniesAllResponse =
-  | components.UnexpectedErrorResponse
-  | components.GetHrisCompaniesResponse;
+export type HrisCompaniesAllResponse = {
+  httpMeta: components.HTTPMetadata;
+  /**
+   * Companies
+   */
+  getHrisCompaniesResponse?: components.GetHrisCompaniesResponse | undefined;
+  /**
+   * Unexpected error
+   */
+  unexpectedErrorResponse?: components.UnexpectedErrorResponse | undefined;
+};
 
 /** @internal */
 export const HrisCompaniesAllGlobals$inboundSchema: z.ZodType<
@@ -151,25 +159,49 @@ export const HrisCompaniesAllResponse$inboundSchema: z.ZodType<
   HrisCompaniesAllResponse,
   z.ZodTypeDef,
   unknown
-> = z.union([
-  components.UnexpectedErrorResponse$inboundSchema,
-  components.GetHrisCompaniesResponse$inboundSchema,
-]);
+> = z.object({
+  HttpMeta: components.HTTPMetadata$inboundSchema,
+  GetHrisCompaniesResponse: components.GetHrisCompaniesResponse$inboundSchema
+    .optional(),
+  UnexpectedErrorResponse: components.UnexpectedErrorResponse$inboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "HttpMeta": "httpMeta",
+    "GetHrisCompaniesResponse": "getHrisCompaniesResponse",
+    "UnexpectedErrorResponse": "unexpectedErrorResponse",
+  });
+});
 
 /** @internal */
-export type HrisCompaniesAllResponse$Outbound =
-  | components.UnexpectedErrorResponse$Outbound
-  | components.GetHrisCompaniesResponse$Outbound;
+export type HrisCompaniesAllResponse$Outbound = {
+  HttpMeta: components.HTTPMetadata$Outbound;
+  GetHrisCompaniesResponse?:
+    | components.GetHrisCompaniesResponse$Outbound
+    | undefined;
+  UnexpectedErrorResponse?:
+    | components.UnexpectedErrorResponse$Outbound
+    | undefined;
+};
 
 /** @internal */
 export const HrisCompaniesAllResponse$outboundSchema: z.ZodType<
   HrisCompaniesAllResponse$Outbound,
   z.ZodTypeDef,
   HrisCompaniesAllResponse
-> = z.union([
-  components.UnexpectedErrorResponse$outboundSchema,
-  components.GetHrisCompaniesResponse$outboundSchema,
-]);
+> = z.object({
+  httpMeta: components.HTTPMetadata$outboundSchema,
+  getHrisCompaniesResponse: components.GetHrisCompaniesResponse$outboundSchema
+    .optional(),
+  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    httpMeta: "HttpMeta",
+    getHrisCompaniesResponse: "GetHrisCompaniesResponse",
+    unexpectedErrorResponse: "UnexpectedErrorResponse",
+  });
+});
 
 /**
  * @internal

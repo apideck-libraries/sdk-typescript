@@ -135,7 +135,7 @@ export async function issueTrackingIssueTrackingCollectionTicketsUpdate(
     headers: headers,
     query: query,
     body: body,
-    timeoutMs: options?.timeoutMs || client._options.timeoutMs || 1000,
+    timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
   }, options);
   if (!requestRes.ok) {
     return requestRes;
@@ -175,6 +175,7 @@ export async function issueTrackingIssueTrackingCollectionTicketsUpdate(
     M.json(
       200,
       operations.IssueTrackingCollectionTicketsUpdateResponse$inboundSchema,
+      { key: "UpdateTicketResponse" },
     ),
     M.jsonErr(400, errors.BadRequestResponse$inboundSchema),
     M.jsonErr(401, errors.UnauthorizedResponse$inboundSchema),
@@ -185,8 +186,9 @@ export async function issueTrackingIssueTrackingCollectionTicketsUpdate(
     M.json(
       "default",
       operations.IssueTrackingCollectionTicketsUpdateResponse$inboundSchema,
+      { key: "UnexpectedErrorResponse" },
     ),
-  )(response, { extraFields: responseFields });
+  )(response, req, { extraFields: responseFields });
   if (!result.ok) {
     return result;
   }

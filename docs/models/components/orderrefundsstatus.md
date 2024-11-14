@@ -5,7 +5,7 @@
 ```typescript
 import { OrderRefundsStatus } from "apideck/models/components";
 
-let value: OrderRefundsStatus = "failed";
+let value: OrderRefundsStatus = "rejected";
 ```
 
 ## Values

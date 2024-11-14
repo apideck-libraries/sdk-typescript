@@ -43,9 +43,17 @@ export type FileStorageUploadSessionsFinishRequest = {
   requestBody?: FileStorageUploadSessionsFinishRequestBody | undefined;
 };
 
-export type FileStorageUploadSessionsFinishResponse =
-  | components.GetFileResponse
-  | components.UnexpectedErrorResponse;
+export type FileStorageUploadSessionsFinishResponse = {
+  httpMeta: components.HTTPMetadata;
+  /**
+   * File
+   */
+  getFileResponse?: components.GetFileResponse | undefined;
+  /**
+   * Unexpected error
+   */
+  unexpectedErrorResponse?: components.UnexpectedErrorResponse | undefined;
+};
 
 /** @internal */
 export const FileStorageUploadSessionsFinishGlobals$inboundSchema: z.ZodType<
@@ -186,25 +194,45 @@ export const FileStorageUploadSessionsFinishResponse$inboundSchema: z.ZodType<
   FileStorageUploadSessionsFinishResponse,
   z.ZodTypeDef,
   unknown
-> = z.union([
-  components.GetFileResponse$inboundSchema,
-  components.UnexpectedErrorResponse$inboundSchema,
-]);
+> = z.object({
+  HttpMeta: components.HTTPMetadata$inboundSchema,
+  GetFileResponse: components.GetFileResponse$inboundSchema.optional(),
+  UnexpectedErrorResponse: components.UnexpectedErrorResponse$inboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "HttpMeta": "httpMeta",
+    "GetFileResponse": "getFileResponse",
+    "UnexpectedErrorResponse": "unexpectedErrorResponse",
+  });
+});
 
 /** @internal */
-export type FileStorageUploadSessionsFinishResponse$Outbound =
-  | components.GetFileResponse$Outbound
-  | components.UnexpectedErrorResponse$Outbound;
+export type FileStorageUploadSessionsFinishResponse$Outbound = {
+  HttpMeta: components.HTTPMetadata$Outbound;
+  GetFileResponse?: components.GetFileResponse$Outbound | undefined;
+  UnexpectedErrorResponse?:
+    | components.UnexpectedErrorResponse$Outbound
+    | undefined;
+};
 
 /** @internal */
 export const FileStorageUploadSessionsFinishResponse$outboundSchema: z.ZodType<
   FileStorageUploadSessionsFinishResponse$Outbound,
   z.ZodTypeDef,
   FileStorageUploadSessionsFinishResponse
-> = z.union([
-  components.GetFileResponse$outboundSchema,
-  components.UnexpectedErrorResponse$outboundSchema,
-]);
+> = z.object({
+  httpMeta: components.HTTPMetadata$outboundSchema,
+  getFileResponse: components.GetFileResponse$outboundSchema.optional(),
+  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    httpMeta: "HttpMeta",
+    getFileResponse: "GetFileResponse",
+    unexpectedErrorResponse: "UnexpectedErrorResponse",
+  });
+});
 
 /**
  * @internal

@@ -48,9 +48,17 @@ export type IssueTrackingCollectionTagsAllRequest = {
   fields?: string | null | undefined;
 };
 
-export type IssueTrackingCollectionTagsAllResponse =
-  | components.UnexpectedErrorResponse
-  | components.GetCollectionTagsResponse;
+export type IssueTrackingCollectionTagsAllResponse = {
+  httpMeta: components.HTTPMetadata;
+  /**
+   * List Tags
+   */
+  getCollectionTagsResponse?: components.GetCollectionTagsResponse | undefined;
+  /**
+   * Unexpected error
+   */
+  unexpectedErrorResponse?: components.UnexpectedErrorResponse | undefined;
+};
 
 /** @internal */
 export const IssueTrackingCollectionTagsAllGlobals$inboundSchema: z.ZodType<
@@ -164,25 +172,49 @@ export const IssueTrackingCollectionTagsAllResponse$inboundSchema: z.ZodType<
   IssueTrackingCollectionTagsAllResponse,
   z.ZodTypeDef,
   unknown
-> = z.union([
-  components.UnexpectedErrorResponse$inboundSchema,
-  components.GetCollectionTagsResponse$inboundSchema,
-]);
+> = z.object({
+  HttpMeta: components.HTTPMetadata$inboundSchema,
+  GetCollectionTagsResponse: components.GetCollectionTagsResponse$inboundSchema
+    .optional(),
+  UnexpectedErrorResponse: components.UnexpectedErrorResponse$inboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "HttpMeta": "httpMeta",
+    "GetCollectionTagsResponse": "getCollectionTagsResponse",
+    "UnexpectedErrorResponse": "unexpectedErrorResponse",
+  });
+});
 
 /** @internal */
-export type IssueTrackingCollectionTagsAllResponse$Outbound =
-  | components.UnexpectedErrorResponse$Outbound
-  | components.GetCollectionTagsResponse$Outbound;
+export type IssueTrackingCollectionTagsAllResponse$Outbound = {
+  HttpMeta: components.HTTPMetadata$Outbound;
+  GetCollectionTagsResponse?:
+    | components.GetCollectionTagsResponse$Outbound
+    | undefined;
+  UnexpectedErrorResponse?:
+    | components.UnexpectedErrorResponse$Outbound
+    | undefined;
+};
 
 /** @internal */
 export const IssueTrackingCollectionTagsAllResponse$outboundSchema: z.ZodType<
   IssueTrackingCollectionTagsAllResponse$Outbound,
   z.ZodTypeDef,
   IssueTrackingCollectionTagsAllResponse
-> = z.union([
-  components.UnexpectedErrorResponse$outboundSchema,
-  components.GetCollectionTagsResponse$outboundSchema,
-]);
+> = z.object({
+  httpMeta: components.HTTPMetadata$outboundSchema,
+  getCollectionTagsResponse: components.GetCollectionTagsResponse$outboundSchema
+    .optional(),
+  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    httpMeta: "HttpMeta",
+    getCollectionTagsResponse: "GetCollectionTagsResponse",
+    unexpectedErrorResponse: "UnexpectedErrorResponse",
+  });
+});
 
 /**
  * @internal

@@ -29,9 +29,19 @@ export type PosModifierGroupsAddRequest = {
   modifierGroup: components.ModifierGroupInput;
 };
 
-export type PosModifierGroupsAddResponse =
-  | components.CreateModifierGroupResponse
-  | components.UnexpectedErrorResponse;
+export type PosModifierGroupsAddResponse = {
+  httpMeta: components.HTTPMetadata;
+  /**
+   * ModifierGroups
+   */
+  createModifierGroupResponse?:
+    | components.CreateModifierGroupResponse
+    | undefined;
+  /**
+   * Unexpected error
+   */
+  unexpectedErrorResponse?: components.UnexpectedErrorResponse | undefined;
+};
 
 /** @internal */
 export const PosModifierGroupsAddGlobals$inboundSchema: z.ZodType<
@@ -127,25 +137,49 @@ export const PosModifierGroupsAddResponse$inboundSchema: z.ZodType<
   PosModifierGroupsAddResponse,
   z.ZodTypeDef,
   unknown
-> = z.union([
-  components.CreateModifierGroupResponse$inboundSchema,
-  components.UnexpectedErrorResponse$inboundSchema,
-]);
+> = z.object({
+  HttpMeta: components.HTTPMetadata$inboundSchema,
+  CreateModifierGroupResponse: components
+    .CreateModifierGroupResponse$inboundSchema.optional(),
+  UnexpectedErrorResponse: components.UnexpectedErrorResponse$inboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "HttpMeta": "httpMeta",
+    "CreateModifierGroupResponse": "createModifierGroupResponse",
+    "UnexpectedErrorResponse": "unexpectedErrorResponse",
+  });
+});
 
 /** @internal */
-export type PosModifierGroupsAddResponse$Outbound =
-  | components.CreateModifierGroupResponse$Outbound
-  | components.UnexpectedErrorResponse$Outbound;
+export type PosModifierGroupsAddResponse$Outbound = {
+  HttpMeta: components.HTTPMetadata$Outbound;
+  CreateModifierGroupResponse?:
+    | components.CreateModifierGroupResponse$Outbound
+    | undefined;
+  UnexpectedErrorResponse?:
+    | components.UnexpectedErrorResponse$Outbound
+    | undefined;
+};
 
 /** @internal */
 export const PosModifierGroupsAddResponse$outboundSchema: z.ZodType<
   PosModifierGroupsAddResponse$Outbound,
   z.ZodTypeDef,
   PosModifierGroupsAddResponse
-> = z.union([
-  components.CreateModifierGroupResponse$outboundSchema,
-  components.UnexpectedErrorResponse$outboundSchema,
-]);
+> = z.object({
+  httpMeta: components.HTTPMetadata$outboundSchema,
+  createModifierGroupResponse: components
+    .CreateModifierGroupResponse$outboundSchema.optional(),
+  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    httpMeta: "HttpMeta",
+    createModifierGroupResponse: "CreateModifierGroupResponse",
+    unexpectedErrorResponse: "UnexpectedErrorResponse",
+  });
+});
 
 /**
  * @internal

@@ -20,9 +20,17 @@ export type VaultConsumersOneRequest = {
   consumerId: string;
 };
 
-export type VaultConsumersOneResponse =
-  | components.GetConsumerResponse
-  | components.UnexpectedErrorResponse;
+export type VaultConsumersOneResponse = {
+  httpMeta: components.HTTPMetadata;
+  /**
+   * Consumer
+   */
+  getConsumerResponse?: components.GetConsumerResponse | undefined;
+  /**
+   * Unexpected error
+   */
+  unexpectedErrorResponse?: components.UnexpectedErrorResponse | undefined;
+};
 
 /** @internal */
 export const VaultConsumersOneGlobals$inboundSchema: z.ZodType<
@@ -109,25 +117,45 @@ export const VaultConsumersOneResponse$inboundSchema: z.ZodType<
   VaultConsumersOneResponse,
   z.ZodTypeDef,
   unknown
-> = z.union([
-  components.GetConsumerResponse$inboundSchema,
-  components.UnexpectedErrorResponse$inboundSchema,
-]);
+> = z.object({
+  HttpMeta: components.HTTPMetadata$inboundSchema,
+  GetConsumerResponse: components.GetConsumerResponse$inboundSchema.optional(),
+  UnexpectedErrorResponse: components.UnexpectedErrorResponse$inboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "HttpMeta": "httpMeta",
+    "GetConsumerResponse": "getConsumerResponse",
+    "UnexpectedErrorResponse": "unexpectedErrorResponse",
+  });
+});
 
 /** @internal */
-export type VaultConsumersOneResponse$Outbound =
-  | components.GetConsumerResponse$Outbound
-  | components.UnexpectedErrorResponse$Outbound;
+export type VaultConsumersOneResponse$Outbound = {
+  HttpMeta: components.HTTPMetadata$Outbound;
+  GetConsumerResponse?: components.GetConsumerResponse$Outbound | undefined;
+  UnexpectedErrorResponse?:
+    | components.UnexpectedErrorResponse$Outbound
+    | undefined;
+};
 
 /** @internal */
 export const VaultConsumersOneResponse$outboundSchema: z.ZodType<
   VaultConsumersOneResponse$Outbound,
   z.ZodTypeDef,
   VaultConsumersOneResponse
-> = z.union([
-  components.GetConsumerResponse$outboundSchema,
-  components.UnexpectedErrorResponse$outboundSchema,
-]);
+> = z.object({
+  httpMeta: components.HTTPMetadata$outboundSchema,
+  getConsumerResponse: components.GetConsumerResponse$outboundSchema.optional(),
+  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    httpMeta: "HttpMeta",
+    getConsumerResponse: "GetConsumerResponse",
+    unexpectedErrorResponse: "UnexpectedErrorResponse",
+  });
+});
 
 /**
  * @internal

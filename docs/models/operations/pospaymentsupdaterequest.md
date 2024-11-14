@@ -85,7 +85,7 @@ let value: PosPaymentsUpdateRequest = {
       country: "US",
     },
     externalDetails: {
-      type: "bank_transfer",
+      type: "social",
       source: "<value>",
       sourceFeeAmount: 2.5,
     },

@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod";
+import { remap as remap$ } from "../../lib/primitives.js";
 import * as components from "../components/index.js";
 
 export type AtsApplicantsDeleteGlobals = {
@@ -31,9 +32,17 @@ export type AtsApplicantsDeleteRequest = {
   raw?: boolean | undefined;
 };
 
-export type AtsApplicantsDeleteResponse =
-  | components.DeleteApplicantResponse
-  | components.UnexpectedErrorResponse;
+export type AtsApplicantsDeleteResponse = {
+  httpMeta: components.HTTPMetadata;
+  /**
+   * Applicants
+   */
+  deleteApplicantResponse?: components.DeleteApplicantResponse | undefined;
+  /**
+   * Unexpected error
+   */
+  unexpectedErrorResponse?: components.UnexpectedErrorResponse | undefined;
+};
 
 /** @internal */
 export const AtsApplicantsDeleteGlobals$inboundSchema: z.ZodType<
@@ -121,25 +130,49 @@ export const AtsApplicantsDeleteResponse$inboundSchema: z.ZodType<
   AtsApplicantsDeleteResponse,
   z.ZodTypeDef,
   unknown
-> = z.union([
-  components.DeleteApplicantResponse$inboundSchema,
-  components.UnexpectedErrorResponse$inboundSchema,
-]);
+> = z.object({
+  HttpMeta: components.HTTPMetadata$inboundSchema,
+  DeleteApplicantResponse: components.DeleteApplicantResponse$inboundSchema
+    .optional(),
+  UnexpectedErrorResponse: components.UnexpectedErrorResponse$inboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "HttpMeta": "httpMeta",
+    "DeleteApplicantResponse": "deleteApplicantResponse",
+    "UnexpectedErrorResponse": "unexpectedErrorResponse",
+  });
+});
 
 /** @internal */
-export type AtsApplicantsDeleteResponse$Outbound =
-  | components.DeleteApplicantResponse$Outbound
-  | components.UnexpectedErrorResponse$Outbound;
+export type AtsApplicantsDeleteResponse$Outbound = {
+  HttpMeta: components.HTTPMetadata$Outbound;
+  DeleteApplicantResponse?:
+    | components.DeleteApplicantResponse$Outbound
+    | undefined;
+  UnexpectedErrorResponse?:
+    | components.UnexpectedErrorResponse$Outbound
+    | undefined;
+};
 
 /** @internal */
 export const AtsApplicantsDeleteResponse$outboundSchema: z.ZodType<
   AtsApplicantsDeleteResponse$Outbound,
   z.ZodTypeDef,
   AtsApplicantsDeleteResponse
-> = z.union([
-  components.DeleteApplicantResponse$outboundSchema,
-  components.UnexpectedErrorResponse$outboundSchema,
-]);
+> = z.object({
+  httpMeta: components.HTTPMetadata$outboundSchema,
+  deleteApplicantResponse: components.DeleteApplicantResponse$outboundSchema
+    .optional(),
+  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    httpMeta: "HttpMeta",
+    deleteApplicantResponse: "DeleteApplicantResponse",
+    unexpectedErrorResponse: "UnexpectedErrorResponse",
+  });
+});
 
 /**
  * @internal

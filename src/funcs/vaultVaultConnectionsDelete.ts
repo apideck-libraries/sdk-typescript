@@ -9,7 +9,6 @@ import { safeParse } from "../lib/schemas.js";
 import { RequestOptions } from "../lib/sdks.js";
 import { extractSecurity, resolveGlobalSecurity } from "../lib/security.js";
 import { pathToFunc } from "../lib/url.js";
-import * as components from "../models/components/index.js";
 import { APIError } from "../models/errors/apierror.js";
 import {
   ConnectionError,
@@ -35,7 +34,7 @@ export async function vaultVaultConnectionsDelete(
   options?: RequestOptions,
 ): Promise<
   Result<
-    components.UnexpectedErrorResponse | undefined,
+    operations.VaultConnectionsDeleteResponse,
     | errors.BadRequestResponse
     | errors.UnauthorizedResponse
     | errors.PaymentRequiredResponse
@@ -124,7 +123,7 @@ export async function vaultVaultConnectionsDelete(
     path: path,
     headers: headers,
     body: body,
-    timeoutMs: options?.timeoutMs || client._options.timeoutMs || 1000,
+    timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
   }, options);
   if (!requestRes.ok) {
     return requestRes;
@@ -147,7 +146,7 @@ export async function vaultVaultConnectionsDelete(
   };
 
   const [result] = await M.match<
-    components.UnexpectedErrorResponse | undefined,
+    operations.VaultConnectionsDeleteResponse,
     | errors.BadRequestResponse
     | errors.UnauthorizedResponse
     | errors.PaymentRequiredResponse
@@ -161,18 +160,17 @@ export async function vaultVaultConnectionsDelete(
     | RequestTimeoutError
     | ConnectionError
   >(
-    M.nil(204, components.UnexpectedErrorResponse$inboundSchema.optional()),
+    M.nil(204, operations.VaultConnectionsDeleteResponse$inboundSchema),
     M.jsonErr(400, errors.BadRequestResponse$inboundSchema),
     M.jsonErr(401, errors.UnauthorizedResponse$inboundSchema),
     M.jsonErr(402, errors.PaymentRequiredResponse$inboundSchema),
     M.jsonErr(404, errors.NotFoundResponse$inboundSchema),
     M.jsonErr(422, errors.UnprocessableResponse$inboundSchema),
     M.fail(["4XX", "5XX"]),
-    M.json(
-      "default",
-      components.UnexpectedErrorResponse$inboundSchema.optional(),
-    ),
-  )(response, { extraFields: responseFields });
+    M.json("default", operations.VaultConnectionsDeleteResponse$inboundSchema, {
+      key: "UnexpectedErrorResponse",
+    }),
+  )(response, req, { extraFields: responseFields });
   if (!result.ok) {
     return result;
   }

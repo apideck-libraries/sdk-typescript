@@ -33,9 +33,17 @@ export type AccountingTaxRatesUpdateRequest = {
   taxRate: components.TaxRateInput;
 };
 
-export type AccountingTaxRatesUpdateResponse =
-  | components.UpdateTaxRateResponse
-  | components.UnexpectedErrorResponse;
+export type AccountingTaxRatesUpdateResponse = {
+  httpMeta: components.HTTPMetadata;
+  /**
+   * TaxRate updated
+   */
+  updateTaxRateResponse?: components.UpdateTaxRateResponse | undefined;
+  /**
+   * Unexpected error
+   */
+  unexpectedErrorResponse?: components.UnexpectedErrorResponse | undefined;
+};
 
 /** @internal */
 export const AccountingTaxRatesUpdateGlobals$inboundSchema: z.ZodType<
@@ -134,25 +142,47 @@ export const AccountingTaxRatesUpdateResponse$inboundSchema: z.ZodType<
   AccountingTaxRatesUpdateResponse,
   z.ZodTypeDef,
   unknown
-> = z.union([
-  components.UpdateTaxRateResponse$inboundSchema,
-  components.UnexpectedErrorResponse$inboundSchema,
-]);
+> = z.object({
+  HttpMeta: components.HTTPMetadata$inboundSchema,
+  UpdateTaxRateResponse: components.UpdateTaxRateResponse$inboundSchema
+    .optional(),
+  UnexpectedErrorResponse: components.UnexpectedErrorResponse$inboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "HttpMeta": "httpMeta",
+    "UpdateTaxRateResponse": "updateTaxRateResponse",
+    "UnexpectedErrorResponse": "unexpectedErrorResponse",
+  });
+});
 
 /** @internal */
-export type AccountingTaxRatesUpdateResponse$Outbound =
-  | components.UpdateTaxRateResponse$Outbound
-  | components.UnexpectedErrorResponse$Outbound;
+export type AccountingTaxRatesUpdateResponse$Outbound = {
+  HttpMeta: components.HTTPMetadata$Outbound;
+  UpdateTaxRateResponse?: components.UpdateTaxRateResponse$Outbound | undefined;
+  UnexpectedErrorResponse?:
+    | components.UnexpectedErrorResponse$Outbound
+    | undefined;
+};
 
 /** @internal */
 export const AccountingTaxRatesUpdateResponse$outboundSchema: z.ZodType<
   AccountingTaxRatesUpdateResponse$Outbound,
   z.ZodTypeDef,
   AccountingTaxRatesUpdateResponse
-> = z.union([
-  components.UpdateTaxRateResponse$outboundSchema,
-  components.UnexpectedErrorResponse$outboundSchema,
-]);
+> = z.object({
+  httpMeta: components.HTTPMetadata$outboundSchema,
+  updateTaxRateResponse: components.UpdateTaxRateResponse$outboundSchema
+    .optional(),
+  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    httpMeta: "HttpMeta",
+    updateTaxRateResponse: "UpdateTaxRateResponse",
+    unexpectedErrorResponse: "UnexpectedErrorResponse",
+  });
+});
 
 /**
  * @internal

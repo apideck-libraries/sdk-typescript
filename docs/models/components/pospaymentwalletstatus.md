@@ -7,7 +7,7 @@ The status of the wallet payment. The status can be AUTHORIZED, CAPTURED, VOIDED
 ```typescript
 import { PosPaymentWalletStatus } from "apideck/models/components";
 
-let value: PosPaymentWalletStatus = "voided";
+let value: PosPaymentWalletStatus = "other";
 ```
 
 ## Values

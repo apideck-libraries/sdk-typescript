@@ -1,7 +1,7 @@
 configVersion: 2.0.0
 generation:
   devContainers:
-    enabled: true
+    enabled: false
     schemaPath: ./speakeasy-spec.yml
   sdkClassName: Apideck
   maintainOpenAPIOrder: true
@@ -16,7 +16,7 @@ generation:
     oAuth2ClientCredentialsEnabled: true
     oAuth2PasswordEnabled: true
 typescript:
-  version: 0.6.1
+  version: 0.7.2
   additionalDependencies:
     dependencies: {}
     devDependencies: {}
@@ -43,6 +43,6 @@ typescript:
   moduleFormat: commonjs
   outputModelSuffix: output
   packageName: apideck
-  responseFormat: flat
+  responseFormat: envelope-http
   templateVersion: v2
   useIndexModules: true

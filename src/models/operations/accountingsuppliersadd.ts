@@ -29,9 +29,17 @@ export type AccountingSuppliersAddRequest = {
   supplier: components.SupplierInput;
 };
 
-export type AccountingSuppliersAddResponse =
-  | components.CreateSupplierResponse
-  | components.UnexpectedErrorResponse;
+export type AccountingSuppliersAddResponse = {
+  httpMeta: components.HTTPMetadata;
+  /**
+   * Supplier created
+   */
+  createSupplierResponse?: components.CreateSupplierResponse | undefined;
+  /**
+   * Unexpected error
+   */
+  unexpectedErrorResponse?: components.UnexpectedErrorResponse | undefined;
+};
 
 /** @internal */
 export const AccountingSuppliersAddGlobals$inboundSchema: z.ZodType<
@@ -127,25 +135,49 @@ export const AccountingSuppliersAddResponse$inboundSchema: z.ZodType<
   AccountingSuppliersAddResponse,
   z.ZodTypeDef,
   unknown
-> = z.union([
-  components.CreateSupplierResponse$inboundSchema,
-  components.UnexpectedErrorResponse$inboundSchema,
-]);
+> = z.object({
+  HttpMeta: components.HTTPMetadata$inboundSchema,
+  CreateSupplierResponse: components.CreateSupplierResponse$inboundSchema
+    .optional(),
+  UnexpectedErrorResponse: components.UnexpectedErrorResponse$inboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "HttpMeta": "httpMeta",
+    "CreateSupplierResponse": "createSupplierResponse",
+    "UnexpectedErrorResponse": "unexpectedErrorResponse",
+  });
+});
 
 /** @internal */
-export type AccountingSuppliersAddResponse$Outbound =
-  | components.CreateSupplierResponse$Outbound
-  | components.UnexpectedErrorResponse$Outbound;
+export type AccountingSuppliersAddResponse$Outbound = {
+  HttpMeta: components.HTTPMetadata$Outbound;
+  CreateSupplierResponse?:
+    | components.CreateSupplierResponse$Outbound
+    | undefined;
+  UnexpectedErrorResponse?:
+    | components.UnexpectedErrorResponse$Outbound
+    | undefined;
+};
 
 /** @internal */
 export const AccountingSuppliersAddResponse$outboundSchema: z.ZodType<
   AccountingSuppliersAddResponse$Outbound,
   z.ZodTypeDef,
   AccountingSuppliersAddResponse
-> = z.union([
-  components.CreateSupplierResponse$outboundSchema,
-  components.UnexpectedErrorResponse$outboundSchema,
-]);
+> = z.object({
+  httpMeta: components.HTTPMetadata$outboundSchema,
+  createSupplierResponse: components.CreateSupplierResponse$outboundSchema
+    .optional(),
+  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    httpMeta: "HttpMeta",
+    createSupplierResponse: "CreateSupplierResponse",
+    unexpectedErrorResponse: "UnexpectedErrorResponse",
+  });
+});
 
 /**
  * @internal

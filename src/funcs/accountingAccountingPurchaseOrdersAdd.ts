@@ -121,7 +121,7 @@ export async function accountingAccountingPurchaseOrdersAdd(
     headers: headers,
     query: query,
     body: body,
-    timeoutMs: options?.timeoutMs || client._options.timeoutMs || 1000,
+    timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
   }, options);
   if (!requestRes.ok) {
     return requestRes;
@@ -158,7 +158,9 @@ export async function accountingAccountingPurchaseOrdersAdd(
     | RequestTimeoutError
     | ConnectionError
   >(
-    M.json(201, operations.AccountingPurchaseOrdersAddResponse$inboundSchema),
+    M.json(201, operations.AccountingPurchaseOrdersAddResponse$inboundSchema, {
+      key: "CreatePurchaseOrderResponse",
+    }),
     M.jsonErr(400, errors.BadRequestResponse$inboundSchema),
     M.jsonErr(401, errors.UnauthorizedResponse$inboundSchema),
     M.jsonErr(402, errors.PaymentRequiredResponse$inboundSchema),
@@ -168,8 +170,9 @@ export async function accountingAccountingPurchaseOrdersAdd(
     M.json(
       "default",
       operations.AccountingPurchaseOrdersAddResponse$inboundSchema,
+      { key: "UnexpectedErrorResponse" },
     ),
-  )(response, { extraFields: responseFields });
+  )(response, req, { extraFields: responseFields });
   if (!result.ok) {
     return result;
   }

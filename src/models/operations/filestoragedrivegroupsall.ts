@@ -48,9 +48,17 @@ export type FileStorageDriveGroupsAllRequest = {
   fields?: string | null | undefined;
 };
 
-export type FileStorageDriveGroupsAllResponse =
-  | components.UnexpectedErrorResponse
-  | components.GetDriveGroupsResponse;
+export type FileStorageDriveGroupsAllResponse = {
+  httpMeta: components.HTTPMetadata;
+  /**
+   * DriveGroups
+   */
+  getDriveGroupsResponse?: components.GetDriveGroupsResponse | undefined;
+  /**
+   * Unexpected error
+   */
+  unexpectedErrorResponse?: components.UnexpectedErrorResponse | undefined;
+};
 
 /** @internal */
 export const FileStorageDriveGroupsAllGlobals$inboundSchema: z.ZodType<
@@ -158,25 +166,49 @@ export const FileStorageDriveGroupsAllResponse$inboundSchema: z.ZodType<
   FileStorageDriveGroupsAllResponse,
   z.ZodTypeDef,
   unknown
-> = z.union([
-  components.UnexpectedErrorResponse$inboundSchema,
-  components.GetDriveGroupsResponse$inboundSchema,
-]);
+> = z.object({
+  HttpMeta: components.HTTPMetadata$inboundSchema,
+  GetDriveGroupsResponse: components.GetDriveGroupsResponse$inboundSchema
+    .optional(),
+  UnexpectedErrorResponse: components.UnexpectedErrorResponse$inboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "HttpMeta": "httpMeta",
+    "GetDriveGroupsResponse": "getDriveGroupsResponse",
+    "UnexpectedErrorResponse": "unexpectedErrorResponse",
+  });
+});
 
 /** @internal */
-export type FileStorageDriveGroupsAllResponse$Outbound =
-  | components.UnexpectedErrorResponse$Outbound
-  | components.GetDriveGroupsResponse$Outbound;
+export type FileStorageDriveGroupsAllResponse$Outbound = {
+  HttpMeta: components.HTTPMetadata$Outbound;
+  GetDriveGroupsResponse?:
+    | components.GetDriveGroupsResponse$Outbound
+    | undefined;
+  UnexpectedErrorResponse?:
+    | components.UnexpectedErrorResponse$Outbound
+    | undefined;
+};
 
 /** @internal */
 export const FileStorageDriveGroupsAllResponse$outboundSchema: z.ZodType<
   FileStorageDriveGroupsAllResponse$Outbound,
   z.ZodTypeDef,
   FileStorageDriveGroupsAllResponse
-> = z.union([
-  components.UnexpectedErrorResponse$outboundSchema,
-  components.GetDriveGroupsResponse$outboundSchema,
-]);
+> = z.object({
+  httpMeta: components.HTTPMetadata$outboundSchema,
+  getDriveGroupsResponse: components.GetDriveGroupsResponse$outboundSchema
+    .optional(),
+  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
+    .optional(),
+}).transform((v) => {
+  return remap$(v, {
+    httpMeta: "HttpMeta",
+    getDriveGroupsResponse: "GetDriveGroupsResponse",
+    unexpectedErrorResponse: "UnexpectedErrorResponse",
+  });
+});
 
 /**
  * @internal
