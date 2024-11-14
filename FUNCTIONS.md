@@ -20,7 +20,7 @@ specific category of applications.
 
 ```typescript
 import { ApideckCore } from "apideck/core.js";
-import { accountingAccountingTaxRatesAll } from "apideck/funcs/accountingAccountingTaxRatesAll.js";
+import { accountingTaxRatesList } from "apideck/funcs/accountingTaxRatesList.js";
 import { SDKValidationError } from "apideck/models/errors/sdkvalidationerror.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
@@ -32,7 +32,7 @@ const apideck = new ApideckCore({
 });
 
 async function run() {
-  const res = await accountingAccountingTaxRatesAll(apideck, {
+  const res = await accountingTaxRatesList(apideck, {
     serviceId: "salesforce",
     filter: {
       assets: true,

@@ -1,6 +1,6 @@
 {
   "name": "apideck",
-  "version": "0.7.2",
+  "version": "0.9.5",
   "author": "Speakeasy",
   "main": "./index.js",
   "sideEffects": false,

@@ -97,6 +97,7 @@ let value: GetEmployeeSchedulesResponse = {
           hiredAt: new RFCDate("2020-08-12"),
           isPrimary: true,
           isManager: true,
+          status: "active",
           location: {
             id: "123",
             type: "primary",

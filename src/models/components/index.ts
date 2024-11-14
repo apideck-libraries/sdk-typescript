@@ -213,7 +213,6 @@ export * from "./email.js";
 export * from "./employee.js";
 export * from "./employeecompensation.js";
 export * from "./employeejob.js";
-export * from "./employeejobinput.js";
 export * from "./employeepayroll.js";
 export * from "./employeeschedules.js";
 export * from "./employeesfilter.js";

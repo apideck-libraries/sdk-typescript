@@ -51,13 +51,11 @@ import {
   EmployeeJob$inboundSchema,
   EmployeeJob$Outbound,
   EmployeeJob$outboundSchema,
-} from "./employeejob.js";
-import {
   EmployeeJobInput,
   EmployeeJobInput$inboundSchema,
   EmployeeJobInput$Outbound,
   EmployeeJobInput$outboundSchema,
-} from "./employeejobinput.js";
+} from "./employeejob.js";
 import {
   EmploymentStatus,
   EmploymentStatus$inboundSchema,
