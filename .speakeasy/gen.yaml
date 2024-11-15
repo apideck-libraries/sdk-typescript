@@ -42,7 +42,7 @@ typescript:
   methodArguments: require-security-and-request
   moduleFormat: commonjs
   outputModelSuffix: output
-  packageName: apideck
+  packageName: Apideck Typescript SDK
   responseFormat: envelope-http
   templateVersion: v2
   useIndexModules: true
