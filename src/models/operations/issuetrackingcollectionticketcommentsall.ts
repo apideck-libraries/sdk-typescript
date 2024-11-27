@@ -4,13 +4,16 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type IssueTrackingCollectionTicketCommentsAllGlobals = {
   /**
    * ID of the consumer which you want to get or push data from
    */
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   /**
    * The ID of your Unify application
    */
@@ -75,13 +78,13 @@ export const IssueTrackingCollectionTicketCommentsAllGlobals$inboundSchema:
     z.ZodTypeDef,
     unknown
   > = z.object({
-    customerId: z.string().optional(),
+    consumerId: z.string().optional(),
     appId: z.string().optional(),
   });
 
 /** @internal */
 export type IssueTrackingCollectionTicketCommentsAllGlobals$Outbound = {
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   appId?: string | undefined;
 };
 
@@ -92,7 +95,7 @@ export const IssueTrackingCollectionTicketCommentsAllGlobals$outboundSchema:
     z.ZodTypeDef,
     IssueTrackingCollectionTicketCommentsAllGlobals
   > = z.object({
-    customerId: z.string().optional(),
+    consumerId: z.string().optional(),
     appId: z.string().optional(),
   });
 
@@ -110,6 +113,33 @@ export namespace IssueTrackingCollectionTicketCommentsAllGlobals$ {
   /** @deprecated use `IssueTrackingCollectionTicketCommentsAllGlobals$Outbound` instead. */
   export type Outbound =
     IssueTrackingCollectionTicketCommentsAllGlobals$Outbound;
+}
+
+export function issueTrackingCollectionTicketCommentsAllGlobalsToJSON(
+  issueTrackingCollectionTicketCommentsAllGlobals:
+    IssueTrackingCollectionTicketCommentsAllGlobals,
+): string {
+  return JSON.stringify(
+    IssueTrackingCollectionTicketCommentsAllGlobals$outboundSchema.parse(
+      issueTrackingCollectionTicketCommentsAllGlobals,
+    ),
+  );
+}
+
+export function issueTrackingCollectionTicketCommentsAllGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<
+  IssueTrackingCollectionTicketCommentsAllGlobals,
+  SDKValidationError
+> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      IssueTrackingCollectionTicketCommentsAllGlobals$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'IssueTrackingCollectionTicketCommentsAllGlobals' from JSON`,
+  );
 }
 
 /** @internal */
@@ -189,6 +219,33 @@ export namespace IssueTrackingCollectionTicketCommentsAllRequest$ {
     IssueTrackingCollectionTicketCommentsAllRequest$Outbound;
 }
 
+export function issueTrackingCollectionTicketCommentsAllRequestToJSON(
+  issueTrackingCollectionTicketCommentsAllRequest:
+    IssueTrackingCollectionTicketCommentsAllRequest,
+): string {
+  return JSON.stringify(
+    IssueTrackingCollectionTicketCommentsAllRequest$outboundSchema.parse(
+      issueTrackingCollectionTicketCommentsAllRequest,
+    ),
+  );
+}
+
+export function issueTrackingCollectionTicketCommentsAllRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<
+  IssueTrackingCollectionTicketCommentsAllRequest,
+  SDKValidationError
+> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      IssueTrackingCollectionTicketCommentsAllRequest$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'IssueTrackingCollectionTicketCommentsAllRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const IssueTrackingCollectionTicketCommentsAllResponse$inboundSchema:
   z.ZodType<
@@ -252,4 +309,31 @@ export namespace IssueTrackingCollectionTicketCommentsAllResponse$ {
   /** @deprecated use `IssueTrackingCollectionTicketCommentsAllResponse$Outbound` instead. */
   export type Outbound =
     IssueTrackingCollectionTicketCommentsAllResponse$Outbound;
+}
+
+export function issueTrackingCollectionTicketCommentsAllResponseToJSON(
+  issueTrackingCollectionTicketCommentsAllResponse:
+    IssueTrackingCollectionTicketCommentsAllResponse,
+): string {
+  return JSON.stringify(
+    IssueTrackingCollectionTicketCommentsAllResponse$outboundSchema.parse(
+      issueTrackingCollectionTicketCommentsAllResponse,
+    ),
+  );
+}
+
+export function issueTrackingCollectionTicketCommentsAllResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<
+  IssueTrackingCollectionTicketCommentsAllResponse,
+  SDKValidationError
+> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      IssueTrackingCollectionTicketCommentsAllResponse$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'IssueTrackingCollectionTicketCommentsAllResponse' from JSON`,
+  );
 }

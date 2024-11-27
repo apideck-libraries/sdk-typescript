@@ -3,8 +3,8 @@
 ## Example Usage
 
 ```typescript
-import { HrisEmployeesAllResponse } from "apideck/models/operations";
-import { RFCDate } from "apideck/types";
+import { HrisEmployeesAllResponse } from "@apideck/sdk/models/operations";
+import { RFCDate } from "@apideck/sdk/types";
 
 let value: HrisEmployeesAllResponse = {
   httpMeta: {
@@ -137,10 +137,8 @@ let value: HrisEmployeesAllResponse = {
             jobId: "3490439050957906679",
             rate: 50,
             paymentUnit: "hour",
-            currency: "USD",
             flsaStatus: "nonexempt",
             effectiveDate: "2021-06-11",
-            paymentFrequency: "monthly",
           },
         ],
         worksRemote: true,

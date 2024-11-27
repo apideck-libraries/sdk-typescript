@@ -5,7 +5,7 @@ Credit Notes
 ## Example Usage
 
 ```typescript
-import { GetCreditNotesResponse } from "apideck/models/components";
+import { GetCreditNotesResponse } from "@apideck/sdk/models/components";
 
 let value: GetCreditNotesResponse = {
   statusCode: 200,
@@ -91,7 +91,7 @@ let value: GetCreditNotesResponse = {
               id: "2389328923893298",
               name: "employee_level",
               description: "Employee Level",
-              value: "Uses Salesforce and Marketo",
+              value: {},
             },
           ],
           rowVersion: "1-12345",
@@ -174,7 +174,7 @@ let value: GetCreditNotesResponse = {
           id: "2389328923893298",
           name: "employee_level",
           description: "Employee Level",
-          value: {},
+          value: true,
         },
       ],
       rowVersion: "1-12345",

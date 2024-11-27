@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   CustomMappings,
   CustomMappings$inboundSchema,
@@ -120,4 +123,22 @@ export namespace CollectionTicketComment$ {
   export const outboundSchema = CollectionTicketComment$outboundSchema;
   /** @deprecated use `CollectionTicketComment$Outbound` instead. */
   export type Outbound = CollectionTicketComment$Outbound;
+}
+
+export function collectionTicketCommentToJSON(
+  collectionTicketComment: CollectionTicketComment,
+): string {
+  return JSON.stringify(
+    CollectionTicketComment$outboundSchema.parse(collectionTicketComment),
+  );
+}
+
+export function collectionTicketCommentFromJSON(
+  jsonString: string,
+): SafeParseResult<CollectionTicketComment, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CollectionTicketComment$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CollectionTicketComment' from JSON`,
+  );
 }

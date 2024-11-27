@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   TaxRate,
   TaxRate$inboundSchema,
@@ -95,4 +98,22 @@ export namespace GetTaxRateResponse$ {
   export const outboundSchema = GetTaxRateResponse$outboundSchema;
   /** @deprecated use `GetTaxRateResponse$Outbound` instead. */
   export type Outbound = GetTaxRateResponse$Outbound;
+}
+
+export function getTaxRateResponseToJSON(
+  getTaxRateResponse: GetTaxRateResponse,
+): string {
+  return JSON.stringify(
+    GetTaxRateResponse$outboundSchema.parse(getTaxRateResponse),
+  );
+}
+
+export function getTaxRateResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<GetTaxRateResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetTaxRateResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetTaxRateResponse' from JSON`,
+  );
 }

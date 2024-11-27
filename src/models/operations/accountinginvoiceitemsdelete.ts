@@ -4,13 +4,16 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type AccountingInvoiceItemsDeleteGlobals = {
   /**
    * ID of the consumer which you want to get or push data from
    */
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   /**
    * The ID of your Unify application
    */
@@ -50,13 +53,13 @@ export const AccountingInvoiceItemsDeleteGlobals$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
 /** @internal */
 export type AccountingInvoiceItemsDeleteGlobals$Outbound = {
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   appId?: string | undefined;
 };
 
@@ -66,7 +69,7 @@ export const AccountingInvoiceItemsDeleteGlobals$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   AccountingInvoiceItemsDeleteGlobals
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
@@ -83,6 +86,27 @@ export namespace AccountingInvoiceItemsDeleteGlobals$ {
     AccountingInvoiceItemsDeleteGlobals$outboundSchema;
   /** @deprecated use `AccountingInvoiceItemsDeleteGlobals$Outbound` instead. */
   export type Outbound = AccountingInvoiceItemsDeleteGlobals$Outbound;
+}
+
+export function accountingInvoiceItemsDeleteGlobalsToJSON(
+  accountingInvoiceItemsDeleteGlobals: AccountingInvoiceItemsDeleteGlobals,
+): string {
+  return JSON.stringify(
+    AccountingInvoiceItemsDeleteGlobals$outboundSchema.parse(
+      accountingInvoiceItemsDeleteGlobals,
+    ),
+  );
+}
+
+export function accountingInvoiceItemsDeleteGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<AccountingInvoiceItemsDeleteGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      AccountingInvoiceItemsDeleteGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AccountingInvoiceItemsDeleteGlobals' from JSON`,
+  );
 }
 
 /** @internal */
@@ -127,6 +151,27 @@ export namespace AccountingInvoiceItemsDeleteRequest$ {
     AccountingInvoiceItemsDeleteRequest$outboundSchema;
   /** @deprecated use `AccountingInvoiceItemsDeleteRequest$Outbound` instead. */
   export type Outbound = AccountingInvoiceItemsDeleteRequest$Outbound;
+}
+
+export function accountingInvoiceItemsDeleteRequestToJSON(
+  accountingInvoiceItemsDeleteRequest: AccountingInvoiceItemsDeleteRequest,
+): string {
+  return JSON.stringify(
+    AccountingInvoiceItemsDeleteRequest$outboundSchema.parse(
+      accountingInvoiceItemsDeleteRequest,
+    ),
+  );
+}
+
+export function accountingInvoiceItemsDeleteRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<AccountingInvoiceItemsDeleteRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      AccountingInvoiceItemsDeleteRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AccountingInvoiceItemsDeleteRequest' from JSON`,
+  );
 }
 
 /** @internal */
@@ -189,4 +234,25 @@ export namespace AccountingInvoiceItemsDeleteResponse$ {
     AccountingInvoiceItemsDeleteResponse$outboundSchema;
   /** @deprecated use `AccountingInvoiceItemsDeleteResponse$Outbound` instead. */
   export type Outbound = AccountingInvoiceItemsDeleteResponse$Outbound;
+}
+
+export function accountingInvoiceItemsDeleteResponseToJSON(
+  accountingInvoiceItemsDeleteResponse: AccountingInvoiceItemsDeleteResponse,
+): string {
+  return JSON.stringify(
+    AccountingInvoiceItemsDeleteResponse$outboundSchema.parse(
+      accountingInvoiceItemsDeleteResponse,
+    ),
+  );
+}
+
+export function accountingInvoiceItemsDeleteResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<AccountingInvoiceItemsDeleteResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      AccountingInvoiceItemsDeleteResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AccountingInvoiceItemsDeleteResponse' from JSON`,
+  );
 }

@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   PassThroughBody,
   PassThroughBody$inboundSchema,
@@ -67,4 +70,24 @@ export namespace CollectionTicketCommentInput$ {
   export const outboundSchema = CollectionTicketCommentInput$outboundSchema;
   /** @deprecated use `CollectionTicketCommentInput$Outbound` instead. */
   export type Outbound = CollectionTicketCommentInput$Outbound;
+}
+
+export function collectionTicketCommentInputToJSON(
+  collectionTicketCommentInput: CollectionTicketCommentInput,
+): string {
+  return JSON.stringify(
+    CollectionTicketCommentInput$outboundSchema.parse(
+      collectionTicketCommentInput,
+    ),
+  );
+}
+
+export function collectionTicketCommentInputFromJSON(
+  jsonString: string,
+): SafeParseResult<CollectionTicketCommentInput, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CollectionTicketCommentInput$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CollectionTicketCommentInput' from JSON`,
+  );
 }

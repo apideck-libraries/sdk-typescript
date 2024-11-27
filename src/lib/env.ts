@@ -11,9 +11,9 @@ export interface Env {
   APIDECK_API_KEY?: string | undefined;
 
   /**
-   * Sets the customerId parameter for all supported operations
+   * Sets the consumerId parameter for all supported operations
    */
-  APIDECK_CUSTOMER_ID?: string | undefined;
+  APIDECK_CONSUMER_ID?: string | undefined;
 
   /**
    * Sets the appId parameter for all supported operations
@@ -26,7 +26,7 @@ export interface Env {
 export const envSchema: z.ZodType<Env, z.ZodTypeDef, unknown> = z.object({
   APIDECK_API_KEY: z.string().optional(),
 
-  APIDECK_CUSTOMER_ID: z.string().optional(),
+  APIDECK_CONSUMER_ID: z.string().optional(),
   APIDECK_APP_ID: z.string().optional(),
 
   APIDECK_DEBUG: z.coerce.boolean().optional(),
@@ -62,8 +62,8 @@ export function fillGlobals(options: SDKOptions): SDKOptions {
 
   const envVars = env();
 
-  if (typeof envVars.APIDECK_CUSTOMER_ID !== "undefined") {
-    clone.customerId ??= envVars.APIDECK_CUSTOMER_ID;
+  if (typeof envVars.APIDECK_CONSUMER_ID !== "undefined") {
+    clone.consumerId ??= envVars.APIDECK_CONSUMER_ID;
   }
   if (typeof envVars.APIDECK_APP_ID !== "undefined") {
     clone.appId ??= envVars.APIDECK_APP_ID;

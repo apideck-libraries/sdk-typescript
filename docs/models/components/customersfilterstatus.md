@@ -5,7 +5,7 @@ Status of customer to filter on
 ## Example Usage
 
 ```typescript
-import { CustomersFilterStatus } from "apideck/models/components";
+import { CustomersFilterStatus } from "@apideck/sdk/models/components";
 
 let value: CustomersFilterStatus = "active";
 ```

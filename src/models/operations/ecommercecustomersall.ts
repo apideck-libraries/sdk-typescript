@@ -4,13 +4,16 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type EcommerceCustomersAllGlobals = {
   /**
    * ID of the consumer which you want to get or push data from
    */
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   /**
    * The ID of your Unify application
    */
@@ -68,13 +71,13 @@ export const EcommerceCustomersAllGlobals$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
 /** @internal */
 export type EcommerceCustomersAllGlobals$Outbound = {
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   appId?: string | undefined;
 };
 
@@ -84,7 +87,7 @@ export const EcommerceCustomersAllGlobals$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   EcommerceCustomersAllGlobals
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
@@ -99,6 +102,26 @@ export namespace EcommerceCustomersAllGlobals$ {
   export const outboundSchema = EcommerceCustomersAllGlobals$outboundSchema;
   /** @deprecated use `EcommerceCustomersAllGlobals$Outbound` instead. */
   export type Outbound = EcommerceCustomersAllGlobals$Outbound;
+}
+
+export function ecommerceCustomersAllGlobalsToJSON(
+  ecommerceCustomersAllGlobals: EcommerceCustomersAllGlobals,
+): string {
+  return JSON.stringify(
+    EcommerceCustomersAllGlobals$outboundSchema.parse(
+      ecommerceCustomersAllGlobals,
+    ),
+  );
+}
+
+export function ecommerceCustomersAllGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<EcommerceCustomersAllGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => EcommerceCustomersAllGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'EcommerceCustomersAllGlobals' from JSON`,
+  );
 }
 
 /** @internal */
@@ -163,6 +186,26 @@ export namespace EcommerceCustomersAllRequest$ {
   export type Outbound = EcommerceCustomersAllRequest$Outbound;
 }
 
+export function ecommerceCustomersAllRequestToJSON(
+  ecommerceCustomersAllRequest: EcommerceCustomersAllRequest,
+): string {
+  return JSON.stringify(
+    EcommerceCustomersAllRequest$outboundSchema.parse(
+      ecommerceCustomersAllRequest,
+    ),
+  );
+}
+
+export function ecommerceCustomersAllRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<EcommerceCustomersAllRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => EcommerceCustomersAllRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'EcommerceCustomersAllRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const EcommerceCustomersAllResponse$inboundSchema: z.ZodType<
   EcommerceCustomersAllResponse,
@@ -223,4 +266,24 @@ export namespace EcommerceCustomersAllResponse$ {
   export const outboundSchema = EcommerceCustomersAllResponse$outboundSchema;
   /** @deprecated use `EcommerceCustomersAllResponse$Outbound` instead. */
   export type Outbound = EcommerceCustomersAllResponse$Outbound;
+}
+
+export function ecommerceCustomersAllResponseToJSON(
+  ecommerceCustomersAllResponse: EcommerceCustomersAllResponse,
+): string {
+  return JSON.stringify(
+    EcommerceCustomersAllResponse$outboundSchema.parse(
+      ecommerceCustomersAllResponse,
+    ),
+  );
+}
+
+export function ecommerceCustomersAllResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<EcommerceCustomersAllResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => EcommerceCustomersAllResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'EcommerceCustomersAllResponse' from JSON`,
+  );
 }

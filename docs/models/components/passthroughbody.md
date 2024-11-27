@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { PassThroughBody } from "apideck/models/components";
+import { PassThroughBody } from "@apideck/sdk/models/components";
 
 let value: PassThroughBody = {
   serviceId: "<id>",

@@ -4,13 +4,16 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type VaultCustomMappingsAllGlobals = {
   /**
    * ID of the consumer which you want to get or push data from
    */
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   /**
    * The ID of your Unify application
    */
@@ -46,13 +49,13 @@ export const VaultCustomMappingsAllGlobals$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
 /** @internal */
 export type VaultCustomMappingsAllGlobals$Outbound = {
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   appId?: string | undefined;
 };
 
@@ -62,7 +65,7 @@ export const VaultCustomMappingsAllGlobals$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   VaultCustomMappingsAllGlobals
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
@@ -77,6 +80,26 @@ export namespace VaultCustomMappingsAllGlobals$ {
   export const outboundSchema = VaultCustomMappingsAllGlobals$outboundSchema;
   /** @deprecated use `VaultCustomMappingsAllGlobals$Outbound` instead. */
   export type Outbound = VaultCustomMappingsAllGlobals$Outbound;
+}
+
+export function vaultCustomMappingsAllGlobalsToJSON(
+  vaultCustomMappingsAllGlobals: VaultCustomMappingsAllGlobals,
+): string {
+  return JSON.stringify(
+    VaultCustomMappingsAllGlobals$outboundSchema.parse(
+      vaultCustomMappingsAllGlobals,
+    ),
+  );
+}
+
+export function vaultCustomMappingsAllGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<VaultCustomMappingsAllGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => VaultCustomMappingsAllGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'VaultCustomMappingsAllGlobals' from JSON`,
+  );
 }
 
 /** @internal */
@@ -126,6 +149,26 @@ export namespace VaultCustomMappingsAllRequest$ {
   export const outboundSchema = VaultCustomMappingsAllRequest$outboundSchema;
   /** @deprecated use `VaultCustomMappingsAllRequest$Outbound` instead. */
   export type Outbound = VaultCustomMappingsAllRequest$Outbound;
+}
+
+export function vaultCustomMappingsAllRequestToJSON(
+  vaultCustomMappingsAllRequest: VaultCustomMappingsAllRequest,
+): string {
+  return JSON.stringify(
+    VaultCustomMappingsAllRequest$outboundSchema.parse(
+      vaultCustomMappingsAllRequest,
+    ),
+  );
+}
+
+export function vaultCustomMappingsAllRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<VaultCustomMappingsAllRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => VaultCustomMappingsAllRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'VaultCustomMappingsAllRequest' from JSON`,
+  );
 }
 
 /** @internal */
@@ -188,4 +231,24 @@ export namespace VaultCustomMappingsAllResponse$ {
   export const outboundSchema = VaultCustomMappingsAllResponse$outboundSchema;
   /** @deprecated use `VaultCustomMappingsAllResponse$Outbound` instead. */
   export type Outbound = VaultCustomMappingsAllResponse$Outbound;
+}
+
+export function vaultCustomMappingsAllResponseToJSON(
+  vaultCustomMappingsAllResponse: VaultCustomMappingsAllResponse,
+): string {
+  return JSON.stringify(
+    VaultCustomMappingsAllResponse$outboundSchema.parse(
+      vaultCustomMappingsAllResponse,
+    ),
+  );
+}
+
+export function vaultCustomMappingsAllResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<VaultCustomMappingsAllResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => VaultCustomMappingsAllResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'VaultCustomMappingsAllResponse' from JSON`,
+  );
 }

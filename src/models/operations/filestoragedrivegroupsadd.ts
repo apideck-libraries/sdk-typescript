@@ -4,13 +4,16 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type FileStorageDriveGroupsAddGlobals = {
   /**
    * ID of the consumer which you want to get or push data from
    */
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   /**
    * The ID of your Unify application
    */
@@ -47,13 +50,13 @@ export const FileStorageDriveGroupsAddGlobals$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
 /** @internal */
 export type FileStorageDriveGroupsAddGlobals$Outbound = {
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   appId?: string | undefined;
 };
 
@@ -63,7 +66,7 @@ export const FileStorageDriveGroupsAddGlobals$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   FileStorageDriveGroupsAddGlobals
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
@@ -78,6 +81,26 @@ export namespace FileStorageDriveGroupsAddGlobals$ {
   export const outboundSchema = FileStorageDriveGroupsAddGlobals$outboundSchema;
   /** @deprecated use `FileStorageDriveGroupsAddGlobals$Outbound` instead. */
   export type Outbound = FileStorageDriveGroupsAddGlobals$Outbound;
+}
+
+export function fileStorageDriveGroupsAddGlobalsToJSON(
+  fileStorageDriveGroupsAddGlobals: FileStorageDriveGroupsAddGlobals,
+): string {
+  return JSON.stringify(
+    FileStorageDriveGroupsAddGlobals$outboundSchema.parse(
+      fileStorageDriveGroupsAddGlobals,
+    ),
+  );
+}
+
+export function fileStorageDriveGroupsAddGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<FileStorageDriveGroupsAddGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => FileStorageDriveGroupsAddGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'FileStorageDriveGroupsAddGlobals' from JSON`,
+  );
 }
 
 /** @internal */
@@ -128,6 +151,26 @@ export namespace FileStorageDriveGroupsAddRequest$ {
   export const outboundSchema = FileStorageDriveGroupsAddRequest$outboundSchema;
   /** @deprecated use `FileStorageDriveGroupsAddRequest$Outbound` instead. */
   export type Outbound = FileStorageDriveGroupsAddRequest$Outbound;
+}
+
+export function fileStorageDriveGroupsAddRequestToJSON(
+  fileStorageDriveGroupsAddRequest: FileStorageDriveGroupsAddRequest,
+): string {
+  return JSON.stringify(
+    FileStorageDriveGroupsAddRequest$outboundSchema.parse(
+      fileStorageDriveGroupsAddRequest,
+    ),
+  );
+}
+
+export function fileStorageDriveGroupsAddRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<FileStorageDriveGroupsAddRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => FileStorageDriveGroupsAddRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'FileStorageDriveGroupsAddRequest' from JSON`,
+  );
 }
 
 /** @internal */
@@ -191,4 +234,24 @@ export namespace FileStorageDriveGroupsAddResponse$ {
     FileStorageDriveGroupsAddResponse$outboundSchema;
   /** @deprecated use `FileStorageDriveGroupsAddResponse$Outbound` instead. */
   export type Outbound = FileStorageDriveGroupsAddResponse$Outbound;
+}
+
+export function fileStorageDriveGroupsAddResponseToJSON(
+  fileStorageDriveGroupsAddResponse: FileStorageDriveGroupsAddResponse,
+): string {
+  return JSON.stringify(
+    FileStorageDriveGroupsAddResponse$outboundSchema.parse(
+      fileStorageDriveGroupsAddResponse,
+    ),
+  );
+}
+
+export function fileStorageDriveGroupsAddResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<FileStorageDriveGroupsAddResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => FileStorageDriveGroupsAddResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'FileStorageDriveGroupsAddResponse' from JSON`,
+  );
 }

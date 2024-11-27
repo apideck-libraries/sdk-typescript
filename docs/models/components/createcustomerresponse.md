@@ -5,7 +5,7 @@ Customers
 ## Example Usage
 
 ```typescript
-import { CreateCustomerResponse } from "apideck/models/components";
+import { CreateCustomerResponse } from "@apideck/sdk/models/components";
 
 let value: CreateCustomerResponse = {
   statusCode: 200,

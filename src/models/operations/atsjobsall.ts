@@ -4,13 +4,16 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type AtsJobsAllGlobals = {
   /**
    * ID of the consumer which you want to get or push data from
    */
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   /**
    * The ID of your Unify application
    */
@@ -62,13 +65,13 @@ export const AtsJobsAllGlobals$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
 /** @internal */
 export type AtsJobsAllGlobals$Outbound = {
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   appId?: string | undefined;
 };
 
@@ -78,7 +81,7 @@ export const AtsJobsAllGlobals$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   AtsJobsAllGlobals
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
@@ -93,6 +96,24 @@ export namespace AtsJobsAllGlobals$ {
   export const outboundSchema = AtsJobsAllGlobals$outboundSchema;
   /** @deprecated use `AtsJobsAllGlobals$Outbound` instead. */
   export type Outbound = AtsJobsAllGlobals$Outbound;
+}
+
+export function atsJobsAllGlobalsToJSON(
+  atsJobsAllGlobals: AtsJobsAllGlobals,
+): string {
+  return JSON.stringify(
+    AtsJobsAllGlobals$outboundSchema.parse(atsJobsAllGlobals),
+  );
+}
+
+export function atsJobsAllGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<AtsJobsAllGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => AtsJobsAllGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AtsJobsAllGlobals' from JSON`,
+  );
 }
 
 /** @internal */
@@ -154,6 +175,24 @@ export namespace AtsJobsAllRequest$ {
   export type Outbound = AtsJobsAllRequest$Outbound;
 }
 
+export function atsJobsAllRequestToJSON(
+  atsJobsAllRequest: AtsJobsAllRequest,
+): string {
+  return JSON.stringify(
+    AtsJobsAllRequest$outboundSchema.parse(atsJobsAllRequest),
+  );
+}
+
+export function atsJobsAllRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<AtsJobsAllRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => AtsJobsAllRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AtsJobsAllRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const AtsJobsAllResponse$inboundSchema: z.ZodType<
   AtsJobsAllResponse,
@@ -210,4 +249,22 @@ export namespace AtsJobsAllResponse$ {
   export const outboundSchema = AtsJobsAllResponse$outboundSchema;
   /** @deprecated use `AtsJobsAllResponse$Outbound` instead. */
   export type Outbound = AtsJobsAllResponse$Outbound;
+}
+
+export function atsJobsAllResponseToJSON(
+  atsJobsAllResponse: AtsJobsAllResponse,
+): string {
+  return JSON.stringify(
+    AtsJobsAllResponse$outboundSchema.parse(atsJobsAllResponse),
+  );
+}
+
+export function atsJobsAllResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<AtsJobsAllResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => AtsJobsAllResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AtsJobsAllResponse' from JSON`,
+  );
 }

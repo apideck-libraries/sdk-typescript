@@ -4,7 +4,10 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type WebhookWebhooksAddGlobals = {
   /**
@@ -59,6 +62,24 @@ export namespace WebhookWebhooksAddGlobals$ {
   export const outboundSchema = WebhookWebhooksAddGlobals$outboundSchema;
   /** @deprecated use `WebhookWebhooksAddGlobals$Outbound` instead. */
   export type Outbound = WebhookWebhooksAddGlobals$Outbound;
+}
+
+export function webhookWebhooksAddGlobalsToJSON(
+  webhookWebhooksAddGlobals: WebhookWebhooksAddGlobals,
+): string {
+  return JSON.stringify(
+    WebhookWebhooksAddGlobals$outboundSchema.parse(webhookWebhooksAddGlobals),
+  );
+}
+
+export function webhookWebhooksAddGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<WebhookWebhooksAddGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => WebhookWebhooksAddGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'WebhookWebhooksAddGlobals' from JSON`,
+  );
 }
 
 /** @internal */
@@ -119,4 +140,22 @@ export namespace WebhookWebhooksAddResponse$ {
   export const outboundSchema = WebhookWebhooksAddResponse$outboundSchema;
   /** @deprecated use `WebhookWebhooksAddResponse$Outbound` instead. */
   export type Outbound = WebhookWebhooksAddResponse$Outbound;
+}
+
+export function webhookWebhooksAddResponseToJSON(
+  webhookWebhooksAddResponse: WebhookWebhooksAddResponse,
+): string {
+  return JSON.stringify(
+    WebhookWebhooksAddResponse$outboundSchema.parse(webhookWebhooksAddResponse),
+  );
+}
+
+export function webhookWebhooksAddResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<WebhookWebhooksAddResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => WebhookWebhooksAddResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'WebhookWebhooksAddResponse' from JSON`,
+  );
 }

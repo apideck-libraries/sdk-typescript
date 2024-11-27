@@ -3,10 +3,9 @@
 ## Example Usage
 
 ```typescript
-import { LeadsFilter } from "apideck/models/components";
+import { LeadsFilter } from "@apideck/sdk/models/components";
 
 let value: LeadsFilter = {
-  name: "Elon Musk",
   firstName: "Elon",
   lastName: "Musk",
   email: "elon@tesla.com",

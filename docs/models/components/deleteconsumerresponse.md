@@ -5,7 +5,7 @@ Consumer deleted
 ## Example Usage
 
 ```typescript
-import { DeleteConsumerResponse } from "apideck/models/components";
+import { DeleteConsumerResponse } from "@apideck/sdk/models/components";
 
 let value: DeleteConsumerResponse = {
   statusCode: 200,

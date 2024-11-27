@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   PassThroughBody,
   PassThroughBody$inboundSchema,
@@ -74,4 +77,18 @@ export namespace DriveInput$ {
   export const outboundSchema = DriveInput$outboundSchema;
   /** @deprecated use `DriveInput$Outbound` instead. */
   export type Outbound = DriveInput$Outbound;
+}
+
+export function driveInputToJSON(driveInput: DriveInput): string {
+  return JSON.stringify(DriveInput$outboundSchema.parse(driveInput));
+}
+
+export function driveInputFromJSON(
+  jsonString: string,
+): SafeParseResult<DriveInput, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => DriveInput$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'DriveInput' from JSON`,
+  );
 }

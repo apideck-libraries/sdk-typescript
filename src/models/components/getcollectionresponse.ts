@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   Collection,
   Collection$inboundSchema,
@@ -95,4 +98,22 @@ export namespace GetCollectionResponse$ {
   export const outboundSchema = GetCollectionResponse$outboundSchema;
   /** @deprecated use `GetCollectionResponse$Outbound` instead. */
   export type Outbound = GetCollectionResponse$Outbound;
+}
+
+export function getCollectionResponseToJSON(
+  getCollectionResponse: GetCollectionResponse,
+): string {
+  return JSON.stringify(
+    GetCollectionResponse$outboundSchema.parse(getCollectionResponse),
+  );
+}
+
+export function getCollectionResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<GetCollectionResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetCollectionResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetCollectionResponse' from JSON`,
+  );
 }

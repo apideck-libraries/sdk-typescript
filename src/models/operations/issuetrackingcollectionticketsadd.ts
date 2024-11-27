@@ -4,13 +4,16 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type IssueTrackingCollectionTicketsAddGlobals = {
   /**
    * ID of the consumer which you want to get or push data from
    */
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   /**
    * The ID of your Unify application
    */
@@ -51,13 +54,13 @@ export const IssueTrackingCollectionTicketsAddGlobals$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
 /** @internal */
 export type IssueTrackingCollectionTicketsAddGlobals$Outbound = {
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   appId?: string | undefined;
 };
 
@@ -67,7 +70,7 @@ export const IssueTrackingCollectionTicketsAddGlobals$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   IssueTrackingCollectionTicketsAddGlobals
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
@@ -84,6 +87,33 @@ export namespace IssueTrackingCollectionTicketsAddGlobals$ {
     IssueTrackingCollectionTicketsAddGlobals$outboundSchema;
   /** @deprecated use `IssueTrackingCollectionTicketsAddGlobals$Outbound` instead. */
   export type Outbound = IssueTrackingCollectionTicketsAddGlobals$Outbound;
+}
+
+export function issueTrackingCollectionTicketsAddGlobalsToJSON(
+  issueTrackingCollectionTicketsAddGlobals:
+    IssueTrackingCollectionTicketsAddGlobals,
+): string {
+  return JSON.stringify(
+    IssueTrackingCollectionTicketsAddGlobals$outboundSchema.parse(
+      issueTrackingCollectionTicketsAddGlobals,
+    ),
+  );
+}
+
+export function issueTrackingCollectionTicketsAddGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<
+  IssueTrackingCollectionTicketsAddGlobals,
+  SDKValidationError
+> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      IssueTrackingCollectionTicketsAddGlobals$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'IssueTrackingCollectionTicketsAddGlobals' from JSON`,
+  );
 }
 
 /** @internal */
@@ -141,6 +171,33 @@ export namespace IssueTrackingCollectionTicketsAddRequest$ {
     IssueTrackingCollectionTicketsAddRequest$outboundSchema;
   /** @deprecated use `IssueTrackingCollectionTicketsAddRequest$Outbound` instead. */
   export type Outbound = IssueTrackingCollectionTicketsAddRequest$Outbound;
+}
+
+export function issueTrackingCollectionTicketsAddRequestToJSON(
+  issueTrackingCollectionTicketsAddRequest:
+    IssueTrackingCollectionTicketsAddRequest,
+): string {
+  return JSON.stringify(
+    IssueTrackingCollectionTicketsAddRequest$outboundSchema.parse(
+      issueTrackingCollectionTicketsAddRequest,
+    ),
+  );
+}
+
+export function issueTrackingCollectionTicketsAddRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<
+  IssueTrackingCollectionTicketsAddRequest,
+  SDKValidationError
+> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      IssueTrackingCollectionTicketsAddRequest$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'IssueTrackingCollectionTicketsAddRequest' from JSON`,
+  );
 }
 
 /** @internal */
@@ -204,4 +261,31 @@ export namespace IssueTrackingCollectionTicketsAddResponse$ {
     IssueTrackingCollectionTicketsAddResponse$outboundSchema;
   /** @deprecated use `IssueTrackingCollectionTicketsAddResponse$Outbound` instead. */
   export type Outbound = IssueTrackingCollectionTicketsAddResponse$Outbound;
+}
+
+export function issueTrackingCollectionTicketsAddResponseToJSON(
+  issueTrackingCollectionTicketsAddResponse:
+    IssueTrackingCollectionTicketsAddResponse,
+): string {
+  return JSON.stringify(
+    IssueTrackingCollectionTicketsAddResponse$outboundSchema.parse(
+      issueTrackingCollectionTicketsAddResponse,
+    ),
+  );
+}
+
+export function issueTrackingCollectionTicketsAddResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<
+  IssueTrackingCollectionTicketsAddResponse,
+  SDKValidationError
+> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      IssueTrackingCollectionTicketsAddResponse$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'IssueTrackingCollectionTicketsAddResponse' from JSON`,
+  );
 }

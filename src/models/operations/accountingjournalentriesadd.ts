@@ -4,13 +4,16 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type AccountingJournalEntriesAddGlobals = {
   /**
    * ID of the consumer which you want to get or push data from
    */
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   /**
    * The ID of your Unify application
    */
@@ -49,13 +52,13 @@ export const AccountingJournalEntriesAddGlobals$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
 /** @internal */
 export type AccountingJournalEntriesAddGlobals$Outbound = {
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   appId?: string | undefined;
 };
 
@@ -65,7 +68,7 @@ export const AccountingJournalEntriesAddGlobals$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   AccountingJournalEntriesAddGlobals
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
@@ -81,6 +84,27 @@ export namespace AccountingJournalEntriesAddGlobals$ {
     AccountingJournalEntriesAddGlobals$outboundSchema;
   /** @deprecated use `AccountingJournalEntriesAddGlobals$Outbound` instead. */
   export type Outbound = AccountingJournalEntriesAddGlobals$Outbound;
+}
+
+export function accountingJournalEntriesAddGlobalsToJSON(
+  accountingJournalEntriesAddGlobals: AccountingJournalEntriesAddGlobals,
+): string {
+  return JSON.stringify(
+    AccountingJournalEntriesAddGlobals$outboundSchema.parse(
+      accountingJournalEntriesAddGlobals,
+    ),
+  );
+}
+
+export function accountingJournalEntriesAddGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<AccountingJournalEntriesAddGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      AccountingJournalEntriesAddGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AccountingJournalEntriesAddGlobals' from JSON`,
+  );
 }
 
 /** @internal */
@@ -132,6 +156,27 @@ export namespace AccountingJournalEntriesAddRequest$ {
     AccountingJournalEntriesAddRequest$outboundSchema;
   /** @deprecated use `AccountingJournalEntriesAddRequest$Outbound` instead. */
   export type Outbound = AccountingJournalEntriesAddRequest$Outbound;
+}
+
+export function accountingJournalEntriesAddRequestToJSON(
+  accountingJournalEntriesAddRequest: AccountingJournalEntriesAddRequest,
+): string {
+  return JSON.stringify(
+    AccountingJournalEntriesAddRequest$outboundSchema.parse(
+      accountingJournalEntriesAddRequest,
+    ),
+  );
+}
+
+export function accountingJournalEntriesAddRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<AccountingJournalEntriesAddRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      AccountingJournalEntriesAddRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AccountingJournalEntriesAddRequest' from JSON`,
+  );
 }
 
 /** @internal */
@@ -196,4 +241,25 @@ export namespace AccountingJournalEntriesAddResponse$ {
     AccountingJournalEntriesAddResponse$outboundSchema;
   /** @deprecated use `AccountingJournalEntriesAddResponse$Outbound` instead. */
   export type Outbound = AccountingJournalEntriesAddResponse$Outbound;
+}
+
+export function accountingJournalEntriesAddResponseToJSON(
+  accountingJournalEntriesAddResponse: AccountingJournalEntriesAddResponse,
+): string {
+  return JSON.stringify(
+    AccountingJournalEntriesAddResponse$outboundSchema.parse(
+      accountingJournalEntriesAddResponse,
+    ),
+  );
+}
+
+export function accountingJournalEntriesAddResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<AccountingJournalEntriesAddResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      AccountingJournalEntriesAddResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AccountingJournalEntriesAddResponse' from JSON`,
+  );
 }

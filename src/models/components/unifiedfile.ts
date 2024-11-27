@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   CustomMappings,
   CustomMappings$inboundSchema,
@@ -154,6 +157,20 @@ export namespace Permissions$ {
   export type Outbound = Permissions$Outbound;
 }
 
+export function permissionsToJSON(permissions: Permissions): string {
+  return JSON.stringify(Permissions$outboundSchema.parse(permissions));
+}
+
+export function permissionsFromJSON(
+  jsonString: string,
+): SafeParseResult<Permissions, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Permissions$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Permissions' from JSON`,
+  );
+}
+
 /** @internal */
 export const UnifiedFile$inboundSchema: z.ZodType<
   UnifiedFile,
@@ -275,4 +292,18 @@ export namespace UnifiedFile$ {
   export const outboundSchema = UnifiedFile$outboundSchema;
   /** @deprecated use `UnifiedFile$Outbound` instead. */
   export type Outbound = UnifiedFile$Outbound;
+}
+
+export function unifiedFileToJSON(unifiedFile: UnifiedFile): string {
+  return JSON.stringify(UnifiedFile$outboundSchema.parse(unifiedFile));
+}
+
+export function unifiedFileFromJSON(
+  jsonString: string,
+): SafeParseResult<UnifiedFile, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => UnifiedFile$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'UnifiedFile' from JSON`,
+  );
 }

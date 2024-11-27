@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   ConnectorResource,
   ConnectorResource$inboundSchema,
@@ -100,4 +103,24 @@ export namespace GetConnectorResourceResponse$ {
   export const outboundSchema = GetConnectorResourceResponse$outboundSchema;
   /** @deprecated use `GetConnectorResourceResponse$Outbound` instead. */
   export type Outbound = GetConnectorResourceResponse$Outbound;
+}
+
+export function getConnectorResourceResponseToJSON(
+  getConnectorResourceResponse: GetConnectorResourceResponse,
+): string {
+  return JSON.stringify(
+    GetConnectorResourceResponse$outboundSchema.parse(
+      getConnectorResourceResponse,
+    ),
+  );
+}
+
+export function getConnectorResourceResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<GetConnectorResourceResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetConnectorResourceResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetConnectorResourceResponse' from JSON`,
+  );
 }

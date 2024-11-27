@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type PayrollsFilter = {
   /**
@@ -63,4 +66,18 @@ export namespace PayrollsFilter$ {
   export const outboundSchema = PayrollsFilter$outboundSchema;
   /** @deprecated use `PayrollsFilter$Outbound` instead. */
   export type Outbound = PayrollsFilter$Outbound;
+}
+
+export function payrollsFilterToJSON(payrollsFilter: PayrollsFilter): string {
+  return JSON.stringify(PayrollsFilter$outboundSchema.parse(payrollsFilter));
+}
+
+export function payrollsFilterFromJSON(
+  jsonString: string,
+): SafeParseResult<PayrollsFilter, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => PayrollsFilter$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'PayrollsFilter' from JSON`,
+  );
 }

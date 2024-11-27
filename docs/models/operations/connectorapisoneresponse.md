@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { ConnectorApisOneResponse } from "apideck/models/operations";
+import { ConnectorApisOneResponse } from "@apideck/sdk/models/operations";
 
 let value: ConnectorApisOneResponse = {
   httpMeta: {
@@ -63,7 +63,13 @@ let value: ConnectorApisOneResponse = {
     error: "Bad Request",
     typeName: "RequestHeadersValidationError",
     message: "Invalid Params",
-    detail: "Missing Header: x-apideck-consumer-id",
+    detail: {
+      "missing": [
+        {
+          "x-apideck-consumer-id": "required",
+        },
+      ],
+    },
     ref: "https://developers.apideck.com/errors#unauthorizederror",
   },
 };

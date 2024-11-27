@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   Folder,
   Folder$inboundSchema,
@@ -95,4 +98,22 @@ export namespace GetFolderResponse$ {
   export const outboundSchema = GetFolderResponse$outboundSchema;
   /** @deprecated use `GetFolderResponse$Outbound` instead. */
   export type Outbound = GetFolderResponse$Outbound;
+}
+
+export function getFolderResponseToJSON(
+  getFolderResponse: GetFolderResponse,
+): string {
+  return JSON.stringify(
+    GetFolderResponse$outboundSchema.parse(getFolderResponse),
+  );
+}
+
+export function getFolderResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<GetFolderResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetFolderResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetFolderResponse' from JSON`,
+  );
 }

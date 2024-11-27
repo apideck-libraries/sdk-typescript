@@ -5,7 +5,7 @@ Profit & Loss Report
 ## Example Usage
 
 ```typescript
-import { GetProfitAndLossResponse } from "apideck/models/components";
+import { GetProfitAndLossResponse } from "@apideck/sdk/models/components";
 
 let value: GetProfitAndLossResponse = {
   statusCode: 200,

@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { WebhookWebhooksDeleteGlobals } from "apideck/models/operations";
+import { WebhookWebhooksDeleteGlobals } from "@apideck/sdk/models/operations";
 
 let value: WebhookWebhooksDeleteGlobals = {};
 ```

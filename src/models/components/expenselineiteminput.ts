@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   LinkedTaxRateInput,
   LinkedTaxRateInput$inboundSchema,
@@ -136,4 +139,22 @@ export namespace ExpenseLineItemInput$ {
   export const outboundSchema = ExpenseLineItemInput$outboundSchema;
   /** @deprecated use `ExpenseLineItemInput$Outbound` instead. */
   export type Outbound = ExpenseLineItemInput$Outbound;
+}
+
+export function expenseLineItemInputToJSON(
+  expenseLineItemInput: ExpenseLineItemInput,
+): string {
+  return JSON.stringify(
+    ExpenseLineItemInput$outboundSchema.parse(expenseLineItemInput),
+  );
+}
+
+export function expenseLineItemInputFromJSON(
+  jsonString: string,
+): SafeParseResult<ExpenseLineItemInput, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ExpenseLineItemInput$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ExpenseLineItemInput' from JSON`,
+  );
 }

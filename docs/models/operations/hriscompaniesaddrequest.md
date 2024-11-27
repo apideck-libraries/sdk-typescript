@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { HrisCompaniesAddRequest } from "apideck/models/operations";
+import { HrisCompaniesAddRequest } from "@apideck/sdk/models/operations";
 
 let value: HrisCompaniesAddRequest = {
   serviceId: "salesforce",

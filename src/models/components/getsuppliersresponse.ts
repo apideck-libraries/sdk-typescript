@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   Links,
   Links$inboundSchema,
@@ -121,4 +124,22 @@ export namespace GetSuppliersResponse$ {
   export const outboundSchema = GetSuppliersResponse$outboundSchema;
   /** @deprecated use `GetSuppliersResponse$Outbound` instead. */
   export type Outbound = GetSuppliersResponse$Outbound;
+}
+
+export function getSuppliersResponseToJSON(
+  getSuppliersResponse: GetSuppliersResponse,
+): string {
+  return JSON.stringify(
+    GetSuppliersResponse$outboundSchema.parse(getSuppliersResponse),
+  );
+}
+
+export function getSuppliersResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<GetSuppliersResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetSuppliersResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetSuppliersResponse' from JSON`,
+  );
 }

@@ -4,13 +4,16 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type CrmNotesAddGlobals = {
   /**
    * ID of the consumer which you want to get or push data from
    */
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   /**
    * The ID of your Unify application
    */
@@ -47,13 +50,13 @@ export const CrmNotesAddGlobals$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
 /** @internal */
 export type CrmNotesAddGlobals$Outbound = {
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   appId?: string | undefined;
 };
 
@@ -63,7 +66,7 @@ export const CrmNotesAddGlobals$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   CrmNotesAddGlobals
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
@@ -78,6 +81,24 @@ export namespace CrmNotesAddGlobals$ {
   export const outboundSchema = CrmNotesAddGlobals$outboundSchema;
   /** @deprecated use `CrmNotesAddGlobals$Outbound` instead. */
   export type Outbound = CrmNotesAddGlobals$Outbound;
+}
+
+export function crmNotesAddGlobalsToJSON(
+  crmNotesAddGlobals: CrmNotesAddGlobals,
+): string {
+  return JSON.stringify(
+    CrmNotesAddGlobals$outboundSchema.parse(crmNotesAddGlobals),
+  );
+}
+
+export function crmNotesAddGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<CrmNotesAddGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CrmNotesAddGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CrmNotesAddGlobals' from JSON`,
+  );
 }
 
 /** @internal */
@@ -128,6 +149,24 @@ export namespace CrmNotesAddRequest$ {
   export const outboundSchema = CrmNotesAddRequest$outboundSchema;
   /** @deprecated use `CrmNotesAddRequest$Outbound` instead. */
   export type Outbound = CrmNotesAddRequest$Outbound;
+}
+
+export function crmNotesAddRequestToJSON(
+  crmNotesAddRequest: CrmNotesAddRequest,
+): string {
+  return JSON.stringify(
+    CrmNotesAddRequest$outboundSchema.parse(crmNotesAddRequest),
+  );
+}
+
+export function crmNotesAddRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<CrmNotesAddRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CrmNotesAddRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CrmNotesAddRequest' from JSON`,
+  );
 }
 
 /** @internal */
@@ -186,4 +225,22 @@ export namespace CrmNotesAddResponse$ {
   export const outboundSchema = CrmNotesAddResponse$outboundSchema;
   /** @deprecated use `CrmNotesAddResponse$Outbound` instead. */
   export type Outbound = CrmNotesAddResponse$Outbound;
+}
+
+export function crmNotesAddResponseToJSON(
+  crmNotesAddResponse: CrmNotesAddResponse,
+): string {
+  return JSON.stringify(
+    CrmNotesAddResponse$outboundSchema.parse(crmNotesAddResponse),
+  );
+}
+
+export function crmNotesAddResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<CrmNotesAddResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CrmNotesAddResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CrmNotesAddResponse' from JSON`,
+  );
 }

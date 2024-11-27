@@ -5,7 +5,7 @@ Invoice type
 ## Example Usage
 
 ```typescript
-import { InvoiceType } from "apideck/models/components";
+import { InvoiceType } from "@apideck/sdk/models/components";
 
 let value: InvoiceType = "service";
 ```

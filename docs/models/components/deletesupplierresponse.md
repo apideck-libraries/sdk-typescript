@@ -5,7 +5,7 @@ Supplier deleted
 ## Example Usage
 
 ```typescript
-import { DeleteSupplierResponse } from "apideck/models/components";
+import { DeleteSupplierResponse } from "@apideck/sdk/models/components";
 
 let value: DeleteSupplierResponse = {
   statusCode: 200,

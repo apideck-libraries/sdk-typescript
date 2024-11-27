@@ -4,13 +4,16 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type AtsJobsOneGlobals = {
   /**
    * ID of the consumer which you want to get or push data from
    */
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   /**
    * The ID of your Unify application
    */
@@ -54,13 +57,13 @@ export const AtsJobsOneGlobals$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
 /** @internal */
 export type AtsJobsOneGlobals$Outbound = {
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   appId?: string | undefined;
 };
 
@@ -70,7 +73,7 @@ export const AtsJobsOneGlobals$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   AtsJobsOneGlobals
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
@@ -85,6 +88,24 @@ export namespace AtsJobsOneGlobals$ {
   export const outboundSchema = AtsJobsOneGlobals$outboundSchema;
   /** @deprecated use `AtsJobsOneGlobals$Outbound` instead. */
   export type Outbound = AtsJobsOneGlobals$Outbound;
+}
+
+export function atsJobsOneGlobalsToJSON(
+  atsJobsOneGlobals: AtsJobsOneGlobals,
+): string {
+  return JSON.stringify(
+    AtsJobsOneGlobals$outboundSchema.parse(atsJobsOneGlobals),
+  );
+}
+
+export function atsJobsOneGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<AtsJobsOneGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => AtsJobsOneGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AtsJobsOneGlobals' from JSON`,
+  );
 }
 
 /** @internal */
@@ -130,6 +151,24 @@ export namespace AtsJobsOneRequest$ {
   export const outboundSchema = AtsJobsOneRequest$outboundSchema;
   /** @deprecated use `AtsJobsOneRequest$Outbound` instead. */
   export type Outbound = AtsJobsOneRequest$Outbound;
+}
+
+export function atsJobsOneRequestToJSON(
+  atsJobsOneRequest: AtsJobsOneRequest,
+): string {
+  return JSON.stringify(
+    AtsJobsOneRequest$outboundSchema.parse(atsJobsOneRequest),
+  );
+}
+
+export function atsJobsOneRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<AtsJobsOneRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => AtsJobsOneRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AtsJobsOneRequest' from JSON`,
+  );
 }
 
 /** @internal */
@@ -188,4 +227,22 @@ export namespace AtsJobsOneResponse$ {
   export const outboundSchema = AtsJobsOneResponse$outboundSchema;
   /** @deprecated use `AtsJobsOneResponse$Outbound` instead. */
   export type Outbound = AtsJobsOneResponse$Outbound;
+}
+
+export function atsJobsOneResponseToJSON(
+  atsJobsOneResponse: AtsJobsOneResponse,
+): string {
+  return JSON.stringify(
+    AtsJobsOneResponse$outboundSchema.parse(atsJobsOneResponse),
+  );
+}
+
+export function atsJobsOneResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<AtsJobsOneResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => AtsJobsOneResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AtsJobsOneResponse' from JSON`,
+  );
 }

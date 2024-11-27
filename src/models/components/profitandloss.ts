@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   CustomMappings,
   CustomMappings$inboundSchema,
@@ -120,6 +123,20 @@ export namespace Income$ {
   export type Outbound = Income$Outbound;
 }
 
+export function incomeToJSON(income: Income): string {
+  return JSON.stringify(Income$outboundSchema.parse(income));
+}
+
+export function incomeFromJSON(
+  jsonString: string,
+): SafeParseResult<Income, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Income$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Income' from JSON`,
+  );
+}
+
 /** @internal */
 export const Expenses$inboundSchema: z.ZodType<
   Expenses,
@@ -157,6 +174,20 @@ export namespace Expenses$ {
   export const outboundSchema = Expenses$outboundSchema;
   /** @deprecated use `Expenses$Outbound` instead. */
   export type Outbound = Expenses$Outbound;
+}
+
+export function expensesToJSON(expenses: Expenses): string {
+  return JSON.stringify(Expenses$outboundSchema.parse(expenses));
+}
+
+export function expensesFromJSON(
+  jsonString: string,
+): SafeParseResult<Expenses, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Expenses$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Expenses' from JSON`,
+  );
 }
 
 /** @internal */
@@ -198,6 +229,20 @@ export namespace NetIncome$ {
   export type Outbound = NetIncome$Outbound;
 }
 
+export function netIncomeToJSON(netIncome: NetIncome): string {
+  return JSON.stringify(NetIncome$outboundSchema.parse(netIncome));
+}
+
+export function netIncomeFromJSON(
+  jsonString: string,
+): SafeParseResult<NetIncome, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => NetIncome$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'NetIncome' from JSON`,
+  );
+}
+
 /** @internal */
 export const NetOperatingIncome$inboundSchema: z.ZodType<
   NetOperatingIncome,
@@ -237,6 +282,24 @@ export namespace NetOperatingIncome$ {
   export type Outbound = NetOperatingIncome$Outbound;
 }
 
+export function netOperatingIncomeToJSON(
+  netOperatingIncome: NetOperatingIncome,
+): string {
+  return JSON.stringify(
+    NetOperatingIncome$outboundSchema.parse(netOperatingIncome),
+  );
+}
+
+export function netOperatingIncomeFromJSON(
+  jsonString: string,
+): SafeParseResult<NetOperatingIncome, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => NetOperatingIncome$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'NetOperatingIncome' from JSON`,
+  );
+}
+
 /** @internal */
 export const GrossProfit$inboundSchema: z.ZodType<
   GrossProfit,
@@ -274,6 +337,20 @@ export namespace GrossProfit$ {
   export const outboundSchema = GrossProfit$outboundSchema;
   /** @deprecated use `GrossProfit$Outbound` instead. */
   export type Outbound = GrossProfit$Outbound;
+}
+
+export function grossProfitToJSON(grossProfit: GrossProfit): string {
+  return JSON.stringify(GrossProfit$outboundSchema.parse(grossProfit));
+}
+
+export function grossProfitFromJSON(
+  jsonString: string,
+): SafeParseResult<GrossProfit, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GrossProfit$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GrossProfit' from JSON`,
+  );
 }
 
 /** @internal */
@@ -369,4 +446,18 @@ export namespace ProfitAndLoss$ {
   export const outboundSchema = ProfitAndLoss$outboundSchema;
   /** @deprecated use `ProfitAndLoss$Outbound` instead. */
   export type Outbound = ProfitAndLoss$Outbound;
+}
+
+export function profitAndLossToJSON(profitAndLoss: ProfitAndLoss): string {
+  return JSON.stringify(ProfitAndLoss$outboundSchema.parse(profitAndLoss));
+}
+
+export function profitAndLossFromJSON(
+  jsonString: string,
+): SafeParseResult<ProfitAndLoss, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ProfitAndLoss$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ProfitAndLoss' from JSON`,
+  );
 }

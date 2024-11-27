@@ -5,7 +5,7 @@ The type of request
 ## Example Usage
 
 ```typescript
-import { RequestType } from "apideck/models/components";
+import { RequestType } from "@apideck/sdk/models/components";
 
 let value: RequestType = "vacation";
 ```

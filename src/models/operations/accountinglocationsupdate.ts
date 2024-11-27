@@ -4,13 +4,16 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type AccountingLocationsUpdateGlobals = {
   /**
    * ID of the consumer which you want to get or push data from
    */
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   /**
    * The ID of your Unify application
    */
@@ -53,13 +56,13 @@ export const AccountingLocationsUpdateGlobals$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
 /** @internal */
 export type AccountingLocationsUpdateGlobals$Outbound = {
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   appId?: string | undefined;
 };
 
@@ -69,7 +72,7 @@ export const AccountingLocationsUpdateGlobals$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   AccountingLocationsUpdateGlobals
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
@@ -84,6 +87,26 @@ export namespace AccountingLocationsUpdateGlobals$ {
   export const outboundSchema = AccountingLocationsUpdateGlobals$outboundSchema;
   /** @deprecated use `AccountingLocationsUpdateGlobals$Outbound` instead. */
   export type Outbound = AccountingLocationsUpdateGlobals$Outbound;
+}
+
+export function accountingLocationsUpdateGlobalsToJSON(
+  accountingLocationsUpdateGlobals: AccountingLocationsUpdateGlobals,
+): string {
+  return JSON.stringify(
+    AccountingLocationsUpdateGlobals$outboundSchema.parse(
+      accountingLocationsUpdateGlobals,
+    ),
+  );
+}
+
+export function accountingLocationsUpdateGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<AccountingLocationsUpdateGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => AccountingLocationsUpdateGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AccountingLocationsUpdateGlobals' from JSON`,
+  );
 }
 
 /** @internal */
@@ -137,6 +160,26 @@ export namespace AccountingLocationsUpdateRequest$ {
   export const outboundSchema = AccountingLocationsUpdateRequest$outboundSchema;
   /** @deprecated use `AccountingLocationsUpdateRequest$Outbound` instead. */
   export type Outbound = AccountingLocationsUpdateRequest$Outbound;
+}
+
+export function accountingLocationsUpdateRequestToJSON(
+  accountingLocationsUpdateRequest: AccountingLocationsUpdateRequest,
+): string {
+  return JSON.stringify(
+    AccountingLocationsUpdateRequest$outboundSchema.parse(
+      accountingLocationsUpdateRequest,
+    ),
+  );
+}
+
+export function accountingLocationsUpdateRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<AccountingLocationsUpdateRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => AccountingLocationsUpdateRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AccountingLocationsUpdateRequest' from JSON`,
+  );
 }
 
 /** @internal */
@@ -200,4 +243,24 @@ export namespace AccountingLocationsUpdateResponse$ {
     AccountingLocationsUpdateResponse$outboundSchema;
   /** @deprecated use `AccountingLocationsUpdateResponse$Outbound` instead. */
   export type Outbound = AccountingLocationsUpdateResponse$Outbound;
+}
+
+export function accountingLocationsUpdateResponseToJSON(
+  accountingLocationsUpdateResponse: AccountingLocationsUpdateResponse,
+): string {
+  return JSON.stringify(
+    AccountingLocationsUpdateResponse$outboundSchema.parse(
+      accountingLocationsUpdateResponse,
+    ),
+  );
+}
+
+export function accountingLocationsUpdateResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<AccountingLocationsUpdateResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => AccountingLocationsUpdateResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AccountingLocationsUpdateResponse' from JSON`,
+  );
 }

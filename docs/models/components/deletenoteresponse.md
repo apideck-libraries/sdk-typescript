@@ -5,7 +5,7 @@ Note deleted
 ## Example Usage
 
 ```typescript
-import { DeleteNoteResponse } from "apideck/models/components";
+import { DeleteNoteResponse } from "@apideck/sdk/models/components";
 
 let value: DeleteNoteResponse = {
   statusCode: 200,

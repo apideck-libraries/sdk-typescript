@@ -4,13 +4,14 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
-
-export type Detail2 = {};
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "./sdkvalidationerror.js";
 
 /**
  * Contains parameter or domain specific information related to the error and why it occurred.
  */
-export type UnauthorizedResponseDetail = Detail2 | string;
+export type UnauthorizedResponseDetail = string | { [k: string]: any };
 
 /**
  * Unauthorized
@@ -35,7 +36,7 @@ export type UnauthorizedResponseData = {
   /**
    * Contains parameter or domain specific information related to the error and why it occurred.
    */
-  detail?: Detail2 | string | undefined;
+  detail?: string | { [k: string]: any } | undefined;
   /**
    * Link to documentation of error type
    */
@@ -61,7 +62,7 @@ export class UnauthorizedResponse extends Error {
   /**
    * Contains parameter or domain specific information related to the error and why it occurred.
    */
-  detail?: Detail2 | string | undefined;
+  detail?: string | { [k: string]: any } | undefined;
   /**
    * Link to documentation of error type
    */
@@ -71,9 +72,7 @@ export class UnauthorizedResponse extends Error {
   data$: UnauthorizedResponseData;
 
   constructor(err: UnauthorizedResponseData) {
-    const message = "message" in err && typeof err.message === "string"
-      ? err.message
-      : `API error occurred: ${JSON.stringify(err)}`;
+    const message = err.message || "API error occurred";
     super(message);
     this.data$ = err;
 
@@ -88,48 +87,21 @@ export class UnauthorizedResponse extends Error {
 }
 
 /** @internal */
-export const Detail2$inboundSchema: z.ZodType<Detail2, z.ZodTypeDef, unknown> =
-  z.object({});
-
-/** @internal */
-export type Detail2$Outbound = {};
-
-/** @internal */
-export const Detail2$outboundSchema: z.ZodType<
-  Detail2$Outbound,
-  z.ZodTypeDef,
-  Detail2
-> = z.object({});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Detail2$ {
-  /** @deprecated use `Detail2$inboundSchema` instead. */
-  export const inboundSchema = Detail2$inboundSchema;
-  /** @deprecated use `Detail2$outboundSchema` instead. */
-  export const outboundSchema = Detail2$outboundSchema;
-  /** @deprecated use `Detail2$Outbound` instead. */
-  export type Outbound = Detail2$Outbound;
-}
-
-/** @internal */
 export const UnauthorizedResponseDetail$inboundSchema: z.ZodType<
   UnauthorizedResponseDetail,
   z.ZodTypeDef,
   unknown
-> = z.union([z.lazy(() => Detail2$inboundSchema), z.string()]);
+> = z.union([z.string(), z.record(z.any())]);
 
 /** @internal */
-export type UnauthorizedResponseDetail$Outbound = Detail2$Outbound | string;
+export type UnauthorizedResponseDetail$Outbound = string | { [k: string]: any };
 
 /** @internal */
 export const UnauthorizedResponseDetail$outboundSchema: z.ZodType<
   UnauthorizedResponseDetail$Outbound,
   z.ZodTypeDef,
   UnauthorizedResponseDetail
-> = z.union([z.lazy(() => Detail2$outboundSchema), z.string()]);
+> = z.union([z.string(), z.record(z.any())]);
 
 /**
  * @internal
@@ -144,6 +116,24 @@ export namespace UnauthorizedResponseDetail$ {
   export type Outbound = UnauthorizedResponseDetail$Outbound;
 }
 
+export function unauthorizedResponseDetailToJSON(
+  unauthorizedResponseDetail: UnauthorizedResponseDetail,
+): string {
+  return JSON.stringify(
+    UnauthorizedResponseDetail$outboundSchema.parse(unauthorizedResponseDetail),
+  );
+}
+
+export function unauthorizedResponseDetailFromJSON(
+  jsonString: string,
+): SafeParseResult<UnauthorizedResponseDetail, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => UnauthorizedResponseDetail$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'UnauthorizedResponseDetail' from JSON`,
+  );
+}
+
 /** @internal */
 export const UnauthorizedResponse$inboundSchema: z.ZodType<
   UnauthorizedResponse,
@@ -154,7 +144,7 @@ export const UnauthorizedResponse$inboundSchema: z.ZodType<
   error: z.string().optional(),
   type_name: z.string().optional(),
   message: z.string().optional(),
-  detail: z.union([z.lazy(() => Detail2$inboundSchema), z.string()]).optional(),
+  detail: z.union([z.string(), z.record(z.any())]).optional(),
   ref: z.string().optional(),
 })
   .transform((v) => {
@@ -172,7 +162,7 @@ export type UnauthorizedResponse$Outbound = {
   error?: string | undefined;
   type_name?: string | undefined;
   message?: string | undefined;
-  detail?: Detail2$Outbound | string | undefined;
+  detail?: string | { [k: string]: any } | undefined;
   ref?: string | undefined;
 };
 
@@ -189,8 +179,7 @@ export const UnauthorizedResponse$outboundSchema: z.ZodType<
       error: z.string().optional(),
       typeName: z.string().optional(),
       message: z.string().optional(),
-      detail: z.union([z.lazy(() => Detail2$outboundSchema), z.string()])
-        .optional(),
+      detail: z.union([z.string(), z.record(z.any())]).optional(),
       ref: z.string().optional(),
     }).transform((v) => {
       return remap$(v, {

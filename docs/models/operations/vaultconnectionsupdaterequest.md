@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { VaultConnectionsUpdateRequest } from "apideck/models/operations";
+import { VaultConnectionsUpdateRequest } from "@apideck/sdk/models/operations";
 
 let value: VaultConnectionsUpdateRequest = {
   serviceId: "pipedrive",
@@ -29,17 +29,11 @@ let value: VaultConnectionsUpdateRequest = {
             id: "ProductInterest",
             options: [
               {
-                id: "1234",
                 label: "General Channel",
-                options: [
-                  {
-                    label: "General Channel",
-                    value: true,
-                  },
-                ],
+                value: true,
               },
             ],
-            value: true,
+            value: "GC5000 series",
           },
         ],
       },

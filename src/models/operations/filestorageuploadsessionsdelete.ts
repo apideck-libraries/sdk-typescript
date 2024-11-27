@@ -4,13 +4,16 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type FileStorageUploadSessionsDeleteGlobals = {
   /**
    * ID of the consumer which you want to get or push data from
    */
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   /**
    * The ID of your Unify application
    */
@@ -52,13 +55,13 @@ export const FileStorageUploadSessionsDeleteGlobals$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
 /** @internal */
 export type FileStorageUploadSessionsDeleteGlobals$Outbound = {
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   appId?: string | undefined;
 };
 
@@ -68,7 +71,7 @@ export const FileStorageUploadSessionsDeleteGlobals$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   FileStorageUploadSessionsDeleteGlobals
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
@@ -85,6 +88,28 @@ export namespace FileStorageUploadSessionsDeleteGlobals$ {
     FileStorageUploadSessionsDeleteGlobals$outboundSchema;
   /** @deprecated use `FileStorageUploadSessionsDeleteGlobals$Outbound` instead. */
   export type Outbound = FileStorageUploadSessionsDeleteGlobals$Outbound;
+}
+
+export function fileStorageUploadSessionsDeleteGlobalsToJSON(
+  fileStorageUploadSessionsDeleteGlobals:
+    FileStorageUploadSessionsDeleteGlobals,
+): string {
+  return JSON.stringify(
+    FileStorageUploadSessionsDeleteGlobals$outboundSchema.parse(
+      fileStorageUploadSessionsDeleteGlobals,
+    ),
+  );
+}
+
+export function fileStorageUploadSessionsDeleteGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<FileStorageUploadSessionsDeleteGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      FileStorageUploadSessionsDeleteGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'FileStorageUploadSessionsDeleteGlobals' from JSON`,
+  );
 }
 
 /** @internal */
@@ -129,6 +154,28 @@ export namespace FileStorageUploadSessionsDeleteRequest$ {
     FileStorageUploadSessionsDeleteRequest$outboundSchema;
   /** @deprecated use `FileStorageUploadSessionsDeleteRequest$Outbound` instead. */
   export type Outbound = FileStorageUploadSessionsDeleteRequest$Outbound;
+}
+
+export function fileStorageUploadSessionsDeleteRequestToJSON(
+  fileStorageUploadSessionsDeleteRequest:
+    FileStorageUploadSessionsDeleteRequest,
+): string {
+  return JSON.stringify(
+    FileStorageUploadSessionsDeleteRequest$outboundSchema.parse(
+      fileStorageUploadSessionsDeleteRequest,
+    ),
+  );
+}
+
+export function fileStorageUploadSessionsDeleteRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<FileStorageUploadSessionsDeleteRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      FileStorageUploadSessionsDeleteRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'FileStorageUploadSessionsDeleteRequest' from JSON`,
+  );
 }
 
 /** @internal */
@@ -193,4 +240,31 @@ export namespace FileStorageUploadSessionsDeleteResponse$ {
     FileStorageUploadSessionsDeleteResponse$outboundSchema;
   /** @deprecated use `FileStorageUploadSessionsDeleteResponse$Outbound` instead. */
   export type Outbound = FileStorageUploadSessionsDeleteResponse$Outbound;
+}
+
+export function fileStorageUploadSessionsDeleteResponseToJSON(
+  fileStorageUploadSessionsDeleteResponse:
+    FileStorageUploadSessionsDeleteResponse,
+): string {
+  return JSON.stringify(
+    FileStorageUploadSessionsDeleteResponse$outboundSchema.parse(
+      fileStorageUploadSessionsDeleteResponse,
+    ),
+  );
+}
+
+export function fileStorageUploadSessionsDeleteResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<
+  FileStorageUploadSessionsDeleteResponse,
+  SDKValidationError
+> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      FileStorageUploadSessionsDeleteResponse$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'FileStorageUploadSessionsDeleteResponse' from JSON`,
+  );
 }

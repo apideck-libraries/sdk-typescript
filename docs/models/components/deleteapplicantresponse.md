@@ -5,7 +5,7 @@ Applicants
 ## Example Usage
 
 ```typescript
-import { DeleteApplicantResponse } from "apideck/models/components";
+import { DeleteApplicantResponse } from "@apideck/sdk/models/components";
 
 let value: DeleteApplicantResponse = {
   statusCode: 200,

@@ -4,13 +4,16 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type AccountingBillsDeleteGlobals = {
   /**
    * ID of the consumer which you want to get or push data from
    */
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   /**
    * The ID of your Unify application
    */
@@ -50,13 +53,13 @@ export const AccountingBillsDeleteGlobals$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
 /** @internal */
 export type AccountingBillsDeleteGlobals$Outbound = {
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   appId?: string | undefined;
 };
 
@@ -66,7 +69,7 @@ export const AccountingBillsDeleteGlobals$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   AccountingBillsDeleteGlobals
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
@@ -81,6 +84,26 @@ export namespace AccountingBillsDeleteGlobals$ {
   export const outboundSchema = AccountingBillsDeleteGlobals$outboundSchema;
   /** @deprecated use `AccountingBillsDeleteGlobals$Outbound` instead. */
   export type Outbound = AccountingBillsDeleteGlobals$Outbound;
+}
+
+export function accountingBillsDeleteGlobalsToJSON(
+  accountingBillsDeleteGlobals: AccountingBillsDeleteGlobals,
+): string {
+  return JSON.stringify(
+    AccountingBillsDeleteGlobals$outboundSchema.parse(
+      accountingBillsDeleteGlobals,
+    ),
+  );
+}
+
+export function accountingBillsDeleteGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<AccountingBillsDeleteGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => AccountingBillsDeleteGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AccountingBillsDeleteGlobals' from JSON`,
+  );
 }
 
 /** @internal */
@@ -123,6 +146,26 @@ export namespace AccountingBillsDeleteRequest$ {
   export const outboundSchema = AccountingBillsDeleteRequest$outboundSchema;
   /** @deprecated use `AccountingBillsDeleteRequest$Outbound` instead. */
   export type Outbound = AccountingBillsDeleteRequest$Outbound;
+}
+
+export function accountingBillsDeleteRequestToJSON(
+  accountingBillsDeleteRequest: AccountingBillsDeleteRequest,
+): string {
+  return JSON.stringify(
+    AccountingBillsDeleteRequest$outboundSchema.parse(
+      accountingBillsDeleteRequest,
+    ),
+  );
+}
+
+export function accountingBillsDeleteRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<AccountingBillsDeleteRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => AccountingBillsDeleteRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AccountingBillsDeleteRequest' from JSON`,
+  );
 }
 
 /** @internal */
@@ -181,4 +224,24 @@ export namespace AccountingBillsDeleteResponse$ {
   export const outboundSchema = AccountingBillsDeleteResponse$outboundSchema;
   /** @deprecated use `AccountingBillsDeleteResponse$Outbound` instead. */
   export type Outbound = AccountingBillsDeleteResponse$Outbound;
+}
+
+export function accountingBillsDeleteResponseToJSON(
+  accountingBillsDeleteResponse: AccountingBillsDeleteResponse,
+): string {
+  return JSON.stringify(
+    AccountingBillsDeleteResponse$outboundSchema.parse(
+      accountingBillsDeleteResponse,
+    ),
+  );
+}
+
+export function accountingBillsDeleteResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<AccountingBillsDeleteResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => AccountingBillsDeleteResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AccountingBillsDeleteResponse' from JSON`,
+  );
 }

@@ -3,14 +3,10 @@
 ## Example Usage
 
 ```typescript
-import { ActivitiesFilter } from "apideck/models/components";
+import { ActivitiesFilter } from "@apideck/sdk/models/components";
 
 let value: ActivitiesFilter = {
-  companyId: "1234",
-  ownerId: "1234",
-  contactId: "1234",
   updatedSince: new Date("2020-09-30T07:43:32.000Z"),
-  type: "Task",
 };
 ```
 

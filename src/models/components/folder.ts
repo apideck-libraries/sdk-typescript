@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   CustomMappings,
   CustomMappings$inboundSchema,
@@ -166,4 +169,18 @@ export namespace Folder$ {
   export const outboundSchema = Folder$outboundSchema;
   /** @deprecated use `Folder$Outbound` instead. */
   export type Outbound = Folder$Outbound;
+}
+
+export function folderToJSON(folder: Folder): string {
+  return JSON.stringify(Folder$outboundSchema.parse(folder));
+}
+
+export function folderFromJSON(
+  jsonString: string,
+): SafeParseResult<Folder, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Folder$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Folder' from JSON`,
+  );
 }

@@ -12,9 +12,13 @@ const value: string =
   "Unprocessable request, please verify your request headers and body.";
 ```
 
-### `errors.DetailUnprocessableResponse2`
+### `{ [k: string]: any }`
 
 ```typescript
-const value: errors.DetailUnprocessableResponse2 = {};
+const value: { [k: string]: any } = {
+  "error": "Unprocessable",
+  "message":
+    "Unprocessable request, please verify your request headers and body.",
+};
 ```
 

@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { JobType } from "apideck/models/components";
+import { JobType } from "@apideck/sdk/models/components";
 
 let value: JobType = "job_portal";
 ```

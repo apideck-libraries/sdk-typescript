@@ -4,13 +4,16 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type AccountingCreditNotesOneGlobals = {
   /**
    * ID of the consumer which you want to get or push data from
    */
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   /**
    * The ID of your Unify application
    */
@@ -54,13 +57,13 @@ export const AccountingCreditNotesOneGlobals$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
 /** @internal */
 export type AccountingCreditNotesOneGlobals$Outbound = {
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   appId?: string | undefined;
 };
 
@@ -70,7 +73,7 @@ export const AccountingCreditNotesOneGlobals$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   AccountingCreditNotesOneGlobals
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
@@ -85,6 +88,26 @@ export namespace AccountingCreditNotesOneGlobals$ {
   export const outboundSchema = AccountingCreditNotesOneGlobals$outboundSchema;
   /** @deprecated use `AccountingCreditNotesOneGlobals$Outbound` instead. */
   export type Outbound = AccountingCreditNotesOneGlobals$Outbound;
+}
+
+export function accountingCreditNotesOneGlobalsToJSON(
+  accountingCreditNotesOneGlobals: AccountingCreditNotesOneGlobals,
+): string {
+  return JSON.stringify(
+    AccountingCreditNotesOneGlobals$outboundSchema.parse(
+      accountingCreditNotesOneGlobals,
+    ),
+  );
+}
+
+export function accountingCreditNotesOneGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<AccountingCreditNotesOneGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => AccountingCreditNotesOneGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AccountingCreditNotesOneGlobals' from JSON`,
+  );
 }
 
 /** @internal */
@@ -130,6 +153,26 @@ export namespace AccountingCreditNotesOneRequest$ {
   export const outboundSchema = AccountingCreditNotesOneRequest$outboundSchema;
   /** @deprecated use `AccountingCreditNotesOneRequest$Outbound` instead. */
   export type Outbound = AccountingCreditNotesOneRequest$Outbound;
+}
+
+export function accountingCreditNotesOneRequestToJSON(
+  accountingCreditNotesOneRequest: AccountingCreditNotesOneRequest,
+): string {
+  return JSON.stringify(
+    AccountingCreditNotesOneRequest$outboundSchema.parse(
+      accountingCreditNotesOneRequest,
+    ),
+  );
+}
+
+export function accountingCreditNotesOneRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<AccountingCreditNotesOneRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => AccountingCreditNotesOneRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AccountingCreditNotesOneRequest' from JSON`,
+  );
 }
 
 /** @internal */
@@ -190,4 +233,24 @@ export namespace AccountingCreditNotesOneResponse$ {
   export const outboundSchema = AccountingCreditNotesOneResponse$outboundSchema;
   /** @deprecated use `AccountingCreditNotesOneResponse$Outbound` instead. */
   export type Outbound = AccountingCreditNotesOneResponse$Outbound;
+}
+
+export function accountingCreditNotesOneResponseToJSON(
+  accountingCreditNotesOneResponse: AccountingCreditNotesOneResponse,
+): string {
+  return JSON.stringify(
+    AccountingCreditNotesOneResponse$outboundSchema.parse(
+      accountingCreditNotesOneResponse,
+    ),
+  );
+}
+
+export function accountingCreditNotesOneResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<AccountingCreditNotesOneResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => AccountingCreditNotesOneResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AccountingCreditNotesOneResponse' from JSON`,
+  );
 }

@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { IssueTrackingCollectionTicketsAllRequest } from "apideck/models/operations";
+import { IssueTrackingCollectionTicketsAllRequest } from "@apideck/sdk/models/operations";
 
 let value: IssueTrackingCollectionTicketsAllRequest = {
   serviceId: "salesforce",
@@ -16,8 +16,6 @@ let value: IssueTrackingCollectionTicketsAllRequest = {
     status: [
       "open",
     ],
-    since: new Date("2020-09-30T07:43:32.000Z"),
-    assigneeId: "2332bd9c2eaaa5dcfa14721c",
   },
   passThrough: {
     "search": "San Francisco",

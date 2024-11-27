@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { UpdateFolderRequest } from "apideck/models/components";
+import { UpdateFolderRequest } from "@apideck/sdk/models/components";
 
 let value: UpdateFolderRequest = {
   name: "Documents",

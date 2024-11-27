@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { VaultConnectionSettingsAllResponse } from "apideck/models/operations";
+import { VaultConnectionSettingsAllResponse } from "@apideck/sdk/models/operations";
 
 let value: VaultConnectionSettingsAllResponse = {
   httpMeta: {
@@ -52,45 +52,21 @@ let value: VaultConnectionSettingsAllResponse = {
           id: "instance_url",
           label: "Instance url",
           placeholder: "",
-          description: "Slack channel to push notification to",
           type: "text",
           required: true,
           customField: false,
-          allowCustomValues: false,
           disabled: false,
-          hidden: false,
-          deprecated: false,
           sensitive: false,
-          prefix: "https://",
-          suffix: ".shopify.com",
-          options: [
-            {
-              label: "General Channel",
-              value: "general",
-            },
-          ],
         },
         {
           id: "api_key",
           label: "API Key",
           placeholder: "",
-          description: "Slack channel to push notification to",
           type: "text",
           required: true,
           customField: false,
-          allowCustomValues: false,
           disabled: false,
-          hidden: false,
-          deprecated: false,
           sensitive: true,
-          prefix: "https://",
-          suffix: ".shopify.com",
-          options: [
-            {
-              label: "General Channel",
-              value: "general",
-            },
-          ],
         },
       ],
       configuration: [
@@ -102,8 +78,14 @@ let value: VaultConnectionSettingsAllResponse = {
               id: "ProductInterest",
               options: [
                 {
+                  id: "1234",
                   label: "General Channel",
-                  value: true,
+                  options: [
+                    {
+                      label: "General Channel",
+                      value: 123,
+                    },
+                  ],
                 },
               ],
               value: 10,

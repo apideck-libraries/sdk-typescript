@@ -4,13 +4,16 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type HrisDepartmentsDeleteGlobals = {
   /**
    * ID of the consumer which you want to get or push data from
    */
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   /**
    * The ID of your Unify application
    */
@@ -50,13 +53,13 @@ export const HrisDepartmentsDeleteGlobals$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
 /** @internal */
 export type HrisDepartmentsDeleteGlobals$Outbound = {
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   appId?: string | undefined;
 };
 
@@ -66,7 +69,7 @@ export const HrisDepartmentsDeleteGlobals$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   HrisDepartmentsDeleteGlobals
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
@@ -81,6 +84,26 @@ export namespace HrisDepartmentsDeleteGlobals$ {
   export const outboundSchema = HrisDepartmentsDeleteGlobals$outboundSchema;
   /** @deprecated use `HrisDepartmentsDeleteGlobals$Outbound` instead. */
   export type Outbound = HrisDepartmentsDeleteGlobals$Outbound;
+}
+
+export function hrisDepartmentsDeleteGlobalsToJSON(
+  hrisDepartmentsDeleteGlobals: HrisDepartmentsDeleteGlobals,
+): string {
+  return JSON.stringify(
+    HrisDepartmentsDeleteGlobals$outboundSchema.parse(
+      hrisDepartmentsDeleteGlobals,
+    ),
+  );
+}
+
+export function hrisDepartmentsDeleteGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<HrisDepartmentsDeleteGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => HrisDepartmentsDeleteGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'HrisDepartmentsDeleteGlobals' from JSON`,
+  );
 }
 
 /** @internal */
@@ -123,6 +146,26 @@ export namespace HrisDepartmentsDeleteRequest$ {
   export const outboundSchema = HrisDepartmentsDeleteRequest$outboundSchema;
   /** @deprecated use `HrisDepartmentsDeleteRequest$Outbound` instead. */
   export type Outbound = HrisDepartmentsDeleteRequest$Outbound;
+}
+
+export function hrisDepartmentsDeleteRequestToJSON(
+  hrisDepartmentsDeleteRequest: HrisDepartmentsDeleteRequest,
+): string {
+  return JSON.stringify(
+    HrisDepartmentsDeleteRequest$outboundSchema.parse(
+      hrisDepartmentsDeleteRequest,
+    ),
+  );
+}
+
+export function hrisDepartmentsDeleteRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<HrisDepartmentsDeleteRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => HrisDepartmentsDeleteRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'HrisDepartmentsDeleteRequest' from JSON`,
+  );
 }
 
 /** @internal */
@@ -185,4 +228,24 @@ export namespace HrisDepartmentsDeleteResponse$ {
   export const outboundSchema = HrisDepartmentsDeleteResponse$outboundSchema;
   /** @deprecated use `HrisDepartmentsDeleteResponse$Outbound` instead. */
   export type Outbound = HrisDepartmentsDeleteResponse$Outbound;
+}
+
+export function hrisDepartmentsDeleteResponseToJSON(
+  hrisDepartmentsDeleteResponse: HrisDepartmentsDeleteResponse,
+): string {
+  return JSON.stringify(
+    HrisDepartmentsDeleteResponse$outboundSchema.parse(
+      hrisDepartmentsDeleteResponse,
+    ),
+  );
+}
+
+export function hrisDepartmentsDeleteResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<HrisDepartmentsDeleteResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => HrisDepartmentsDeleteResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'HrisDepartmentsDeleteResponse' from JSON`,
+  );
 }

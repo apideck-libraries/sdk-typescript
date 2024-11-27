@@ -4,13 +4,16 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type AccountingDepartmentsAllGlobals = {
   /**
    * ID of the consumer which you want to get or push data from
    */
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   /**
    * The ID of your Unify application
    */
@@ -64,13 +67,13 @@ export const AccountingDepartmentsAllGlobals$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
 /** @internal */
 export type AccountingDepartmentsAllGlobals$Outbound = {
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   appId?: string | undefined;
 };
 
@@ -80,7 +83,7 @@ export const AccountingDepartmentsAllGlobals$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   AccountingDepartmentsAllGlobals
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
@@ -95,6 +98,26 @@ export namespace AccountingDepartmentsAllGlobals$ {
   export const outboundSchema = AccountingDepartmentsAllGlobals$outboundSchema;
   /** @deprecated use `AccountingDepartmentsAllGlobals$Outbound` instead. */
   export type Outbound = AccountingDepartmentsAllGlobals$Outbound;
+}
+
+export function accountingDepartmentsAllGlobalsToJSON(
+  accountingDepartmentsAllGlobals: AccountingDepartmentsAllGlobals,
+): string {
+  return JSON.stringify(
+    AccountingDepartmentsAllGlobals$outboundSchema.parse(
+      accountingDepartmentsAllGlobals,
+    ),
+  );
+}
+
+export function accountingDepartmentsAllGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<AccountingDepartmentsAllGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => AccountingDepartmentsAllGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AccountingDepartmentsAllGlobals' from JSON`,
+  );
 }
 
 /** @internal */
@@ -146,6 +169,26 @@ export namespace AccountingDepartmentsAllRequest$ {
   export const outboundSchema = AccountingDepartmentsAllRequest$outboundSchema;
   /** @deprecated use `AccountingDepartmentsAllRequest$Outbound` instead. */
   export type Outbound = AccountingDepartmentsAllRequest$Outbound;
+}
+
+export function accountingDepartmentsAllRequestToJSON(
+  accountingDepartmentsAllRequest: AccountingDepartmentsAllRequest,
+): string {
+  return JSON.stringify(
+    AccountingDepartmentsAllRequest$outboundSchema.parse(
+      accountingDepartmentsAllRequest,
+    ),
+  );
+}
+
+export function accountingDepartmentsAllRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<AccountingDepartmentsAllRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => AccountingDepartmentsAllRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AccountingDepartmentsAllRequest' from JSON`,
+  );
 }
 
 /** @internal */
@@ -208,4 +251,24 @@ export namespace AccountingDepartmentsAllResponse$ {
   export const outboundSchema = AccountingDepartmentsAllResponse$outboundSchema;
   /** @deprecated use `AccountingDepartmentsAllResponse$Outbound` instead. */
   export type Outbound = AccountingDepartmentsAllResponse$Outbound;
+}
+
+export function accountingDepartmentsAllResponseToJSON(
+  accountingDepartmentsAllResponse: AccountingDepartmentsAllResponse,
+): string {
+  return JSON.stringify(
+    AccountingDepartmentsAllResponse$outboundSchema.parse(
+      accountingDepartmentsAllResponse,
+    ),
+  );
+}
+
+export function accountingDepartmentsAllResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<AccountingDepartmentsAllResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => AccountingDepartmentsAllResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AccountingDepartmentsAllResponse' from JSON`,
+  );
 }

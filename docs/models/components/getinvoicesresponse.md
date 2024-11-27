@@ -5,8 +5,8 @@ Invoices
 ## Example Usage
 
 ```typescript
-import { GetInvoicesResponse } from "apideck/models/components";
-import { RFCDate } from "apideck/types";
+import { GetInvoicesResponse } from "@apideck/sdk/models/components";
+import { RFCDate } from "@apideck/sdk/types";
 
 let value: GetInvoicesResponse = {
   statusCode: 200,
@@ -191,7 +191,7 @@ let value: GetInvoicesResponse = {
           id: "2389328923893298",
           name: "employee_level",
           description: "Employee Level",
-          value: 10,
+          value: true,
         },
       ],
       rowVersion: "1-12345",

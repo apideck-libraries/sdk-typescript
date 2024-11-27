@@ -5,7 +5,7 @@ Bill Payments
 ## Example Usage
 
 ```typescript
-import { GetBillPaymentsResponse } from "apideck/models/components";
+import { GetBillPaymentsResponse } from "@apideck/sdk/models/components";
 
 let value: GetBillPaymentsResponse = {
   statusCode: 200,
@@ -89,7 +89,7 @@ let value: GetBillPaymentsResponse = {
           id: "2389328923893298",
           name: "employee_level",
           description: "Employee Level",
-          value: true,
+          value: {},
         },
       ],
       rowVersion: "1-12345",

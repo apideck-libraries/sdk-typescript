@@ -20,11 +20,11 @@ List Files
 ### Example Usage
 
 ```typescript
-import { Apideck } from "apideck";
+import { Apideck } from "@apideck/sdk";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
-  customerId: "test-consumer",
+  consumerId: "test-consumer",
   appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
 });
 
@@ -58,14 +58,14 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "apideck/core.js";
-import { fileStorageFilesList } from "apideck/funcs/fileStorageFilesList.js";
+import { ApideckCore } from "@apideck/sdk/core.js";
+import { fileStorageFilesList } from "@apideck/sdk/funcs/fileStorageFilesList.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const apideck = new ApideckCore({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
-  customerId: "test-consumer",
+  consumerId: "test-consumer",
   appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
 });
 
@@ -131,11 +131,11 @@ Search Files
 ### Example Usage
 
 ```typescript
-import { Apideck } from "apideck";
+import { Apideck } from "@apideck/sdk";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
-  customerId: "test-consumer",
+  consumerId: "test-consumer",
   appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
 });
 
@@ -184,14 +184,14 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "apideck/core.js";
-import { fileStorageFilesSearch } from "apideck/funcs/fileStorageFilesSearch.js";
+import { ApideckCore } from "@apideck/sdk/core.js";
+import { fileStorageFilesSearch } from "@apideck/sdk/funcs/fileStorageFilesSearch.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const apideck = new ApideckCore({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
-  customerId: "test-consumer",
+  consumerId: "test-consumer",
   appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
 });
 
@@ -272,11 +272,11 @@ Get File
 ### Example Usage
 
 ```typescript
-import { Apideck } from "apideck";
+import { Apideck } from "@apideck/sdk";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
-  customerId: "test-consumer",
+  consumerId: "test-consumer",
   appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
 });
 
@@ -299,14 +299,14 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "apideck/core.js";
-import { fileStorageFilesGet } from "apideck/funcs/fileStorageFilesGet.js";
+import { ApideckCore } from "@apideck/sdk/core.js";
+import { fileStorageFilesGet } from "@apideck/sdk/funcs/fileStorageFilesGet.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const apideck = new ApideckCore({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
-  customerId: "test-consumer",
+  consumerId: "test-consumer",
   appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
 });
 
@@ -361,11 +361,11 @@ Rename or move File
 ### Example Usage
 
 ```typescript
-import { Apideck } from "apideck";
+import { Apideck } from "@apideck/sdk";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
-  customerId: "test-consumer",
+  consumerId: "test-consumer",
   appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
 });
 
@@ -407,14 +407,14 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "apideck/core.js";
-import { fileStorageFilesUpdate } from "apideck/funcs/fileStorageFilesUpdate.js";
+import { ApideckCore } from "@apideck/sdk/core.js";
+import { fileStorageFilesUpdate } from "@apideck/sdk/funcs/fileStorageFilesUpdate.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const apideck = new ApideckCore({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
-  customerId: "test-consumer",
+  consumerId: "test-consumer",
   appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
 });
 
@@ -488,11 +488,11 @@ Delete File
 ### Example Usage
 
 ```typescript
-import { Apideck } from "apideck";
+import { Apideck } from "@apideck/sdk";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
-  customerId: "test-consumer",
+  consumerId: "test-consumer",
   appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
 });
 
@@ -514,14 +514,14 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "apideck/core.js";
-import { fileStorageFilesDelete } from "apideck/funcs/fileStorageFilesDelete.js";
+import { ApideckCore } from "@apideck/sdk/core.js";
+import { fileStorageFilesDelete } from "@apideck/sdk/funcs/fileStorageFilesDelete.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const apideck = new ApideckCore({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
-  customerId: "test-consumer",
+  consumerId: "test-consumer",
   appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
 });
 
@@ -575,11 +575,11 @@ Download File
 ### Example Usage
 
 ```typescript
-import { Apideck } from "apideck";
+import { Apideck } from "@apideck/sdk";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
-  customerId: "test-consumer",
+  consumerId: "test-consumer",
   appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
 });
 
@@ -602,14 +602,14 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "apideck/core.js";
-import { fileStorageFilesDownload } from "apideck/funcs/fileStorageFilesDownload.js";
+import { ApideckCore } from "@apideck/sdk/core.js";
+import { fileStorageFilesDownload } from "@apideck/sdk/funcs/fileStorageFilesDownload.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const apideck = new ApideckCore({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
-  customerId: "test-consumer",
+  consumerId: "test-consumer",
   appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
 });
 
@@ -664,11 +664,11 @@ Export File
 ### Example Usage
 
 ```typescript
-import { Apideck } from "apideck";
+import { Apideck } from "@apideck/sdk";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
-  customerId: "test-consumer",
+  consumerId: "test-consumer",
   appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
 });
 
@@ -692,14 +692,14 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "apideck/core.js";
-import { fileStorageFilesExport } from "apideck/funcs/fileStorageFilesExport.js";
+import { ApideckCore } from "@apideck/sdk/core.js";
+import { fileStorageFilesExport } from "@apideck/sdk/funcs/fileStorageFilesExport.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const apideck = new ApideckCore({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
-  customerId: "test-consumer",
+  consumerId: "test-consumer",
   appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
 });
 

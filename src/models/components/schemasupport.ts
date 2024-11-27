@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
  * When a connector has schema_support, a call can be made to retrieve a json schema that describes a downstream resource.
@@ -48,4 +51,18 @@ export namespace SchemaSupport$ {
   export const outboundSchema = SchemaSupport$outboundSchema;
   /** @deprecated use `SchemaSupport$Outbound` instead. */
   export type Outbound = SchemaSupport$Outbound;
+}
+
+export function schemaSupportToJSON(schemaSupport: SchemaSupport): string {
+  return JSON.stringify(SchemaSupport$outboundSchema.parse(schemaSupport));
+}
+
+export function schemaSupportFromJSON(
+  jsonString: string,
+): SafeParseResult<SchemaSupport, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => SchemaSupport$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'SchemaSupport' from JSON`,
+  );
 }

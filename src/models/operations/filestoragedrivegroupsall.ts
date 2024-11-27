@@ -4,13 +4,16 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type FileStorageDriveGroupsAllGlobals = {
   /**
    * ID of the consumer which you want to get or push data from
    */
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   /**
    * The ID of your Unify application
    */
@@ -66,13 +69,13 @@ export const FileStorageDriveGroupsAllGlobals$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
 /** @internal */
 export type FileStorageDriveGroupsAllGlobals$Outbound = {
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   appId?: string | undefined;
 };
 
@@ -82,7 +85,7 @@ export const FileStorageDriveGroupsAllGlobals$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   FileStorageDriveGroupsAllGlobals
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
@@ -97,6 +100,26 @@ export namespace FileStorageDriveGroupsAllGlobals$ {
   export const outboundSchema = FileStorageDriveGroupsAllGlobals$outboundSchema;
   /** @deprecated use `FileStorageDriveGroupsAllGlobals$Outbound` instead. */
   export type Outbound = FileStorageDriveGroupsAllGlobals$Outbound;
+}
+
+export function fileStorageDriveGroupsAllGlobalsToJSON(
+  fileStorageDriveGroupsAllGlobals: FileStorageDriveGroupsAllGlobals,
+): string {
+  return JSON.stringify(
+    FileStorageDriveGroupsAllGlobals$outboundSchema.parse(
+      fileStorageDriveGroupsAllGlobals,
+    ),
+  );
+}
+
+export function fileStorageDriveGroupsAllGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<FileStorageDriveGroupsAllGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => FileStorageDriveGroupsAllGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'FileStorageDriveGroupsAllGlobals' from JSON`,
+  );
 }
 
 /** @internal */
@@ -161,6 +184,26 @@ export namespace FileStorageDriveGroupsAllRequest$ {
   export type Outbound = FileStorageDriveGroupsAllRequest$Outbound;
 }
 
+export function fileStorageDriveGroupsAllRequestToJSON(
+  fileStorageDriveGroupsAllRequest: FileStorageDriveGroupsAllRequest,
+): string {
+  return JSON.stringify(
+    FileStorageDriveGroupsAllRequest$outboundSchema.parse(
+      fileStorageDriveGroupsAllRequest,
+    ),
+  );
+}
+
+export function fileStorageDriveGroupsAllRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<FileStorageDriveGroupsAllRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => FileStorageDriveGroupsAllRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'FileStorageDriveGroupsAllRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const FileStorageDriveGroupsAllResponse$inboundSchema: z.ZodType<
   FileStorageDriveGroupsAllResponse,
@@ -222,4 +265,24 @@ export namespace FileStorageDriveGroupsAllResponse$ {
     FileStorageDriveGroupsAllResponse$outboundSchema;
   /** @deprecated use `FileStorageDriveGroupsAllResponse$Outbound` instead. */
   export type Outbound = FileStorageDriveGroupsAllResponse$Outbound;
+}
+
+export function fileStorageDriveGroupsAllResponseToJSON(
+  fileStorageDriveGroupsAllResponse: FileStorageDriveGroupsAllResponse,
+): string {
+  return JSON.stringify(
+    FileStorageDriveGroupsAllResponse$outboundSchema.parse(
+      fileStorageDriveGroupsAllResponse,
+    ),
+  );
+}
+
+export function fileStorageDriveGroupsAllResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<FileStorageDriveGroupsAllResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => FileStorageDriveGroupsAllResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'FileStorageDriveGroupsAllResponse' from JSON`,
+  );
 }

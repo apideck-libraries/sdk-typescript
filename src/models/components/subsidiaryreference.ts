@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type SubsidiaryReference = {
   /**
@@ -52,4 +55,22 @@ export namespace SubsidiaryReference$ {
   export const outboundSchema = SubsidiaryReference$outboundSchema;
   /** @deprecated use `SubsidiaryReference$Outbound` instead. */
   export type Outbound = SubsidiaryReference$Outbound;
+}
+
+export function subsidiaryReferenceToJSON(
+  subsidiaryReference: SubsidiaryReference,
+): string {
+  return JSON.stringify(
+    SubsidiaryReference$outboundSchema.parse(subsidiaryReference),
+  );
+}
+
+export function subsidiaryReferenceFromJSON(
+  jsonString: string,
+): SafeParseResult<SubsidiaryReference, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => SubsidiaryReference$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'SubsidiaryReference' from JSON`,
+  );
 }

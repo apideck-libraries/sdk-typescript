@@ -3,16 +3,11 @@
 ## Example Usage
 
 ```typescript
-import { OpportunitiesFilter } from "apideck/models/components";
+import { OpportunitiesFilter } from "@apideck/sdk/models/components";
 
 let value: OpportunitiesFilter = {
-  title: "Tesla deal",
   status: "Completed",
   monetaryAmount: 75000,
-  winProbability: 50,
-  companyId: "1234",
-  ownerId: "1234",
-  primaryContactId: "1234",
 };
 ```
 

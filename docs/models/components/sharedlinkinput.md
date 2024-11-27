@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { SharedLinkInput } from "apideck/models/components";
+import { SharedLinkInput } from "@apideck/sdk/models/components";
 
 let value: SharedLinkInput = {
   downloadUrl: "https://www.box.com/shared/static/rh935iit6ewrmw0unyul.jpeg",

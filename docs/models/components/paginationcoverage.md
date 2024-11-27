@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { PaginationCoverage } from "apideck/models/components";
+import { PaginationCoverage } from "@apideck/sdk/models/components";
 
 let value: PaginationCoverage = {
   mode: "native",

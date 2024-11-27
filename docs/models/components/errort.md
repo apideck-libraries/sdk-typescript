@@ -5,7 +5,7 @@ The error returned if your message status is failed or undelivered.
 ## Example Usage
 
 ```typescript
-import { ErrorT } from "apideck/models/components";
+import { ErrorT } from "@apideck/sdk/models/components";
 
 let value: ErrorT = {
   code: "X1",

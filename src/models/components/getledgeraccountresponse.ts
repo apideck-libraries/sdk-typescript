@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   LedgerAccount,
   LedgerAccount$inboundSchema,
@@ -95,4 +98,22 @@ export namespace GetLedgerAccountResponse$ {
   export const outboundSchema = GetLedgerAccountResponse$outboundSchema;
   /** @deprecated use `GetLedgerAccountResponse$Outbound` instead. */
   export type Outbound = GetLedgerAccountResponse$Outbound;
+}
+
+export function getLedgerAccountResponseToJSON(
+  getLedgerAccountResponse: GetLedgerAccountResponse,
+): string {
+  return JSON.stringify(
+    GetLedgerAccountResponse$outboundSchema.parse(getLedgerAccountResponse),
+  );
+}
+
+export function getLedgerAccountResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<GetLedgerAccountResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetLedgerAccountResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetLedgerAccountResponse' from JSON`,
+  );
 }

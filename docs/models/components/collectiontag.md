@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { CollectionTag } from "apideck/models/components";
+import { CollectionTag } from "@apideck/sdk/models/components";
 
 let value: CollectionTag = {
   id: "12345",

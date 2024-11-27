@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { WebhookEventType } from "apideck/models/components";
+import { WebhookEventType } from "@apideck/sdk/models/components";
 
 let value: WebhookEventType = "crm.company.created";
 ```

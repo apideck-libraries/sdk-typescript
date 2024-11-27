@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { CustomFieldFinder } from "apideck/models/components";
+import { CustomFieldFinder } from "@apideck/sdk/models/components";
 
 let value: CustomFieldFinder = {
   id: "123456",

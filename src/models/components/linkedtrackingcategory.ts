@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type LinkedTrackingCategory = {
   /**
@@ -52,4 +55,22 @@ export namespace LinkedTrackingCategory$ {
   export const outboundSchema = LinkedTrackingCategory$outboundSchema;
   /** @deprecated use `LinkedTrackingCategory$Outbound` instead. */
   export type Outbound = LinkedTrackingCategory$Outbound;
+}
+
+export function linkedTrackingCategoryToJSON(
+  linkedTrackingCategory: LinkedTrackingCategory,
+): string {
+  return JSON.stringify(
+    LinkedTrackingCategory$outboundSchema.parse(linkedTrackingCategory),
+  );
+}
+
+export function linkedTrackingCategoryFromJSON(
+  jsonString: string,
+): SafeParseResult<LinkedTrackingCategory, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => LinkedTrackingCategory$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'LinkedTrackingCategory' from JSON`,
+  );
 }

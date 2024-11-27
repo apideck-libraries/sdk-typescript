@@ -5,7 +5,7 @@ Item type
 ## Example Usage
 
 ```typescript
-import { InvoiceItemType } from "apideck/models/components";
+import { InvoiceItemType } from "@apideck/sdk/models/components";
 
 let value: InvoiceItemType = "inventory";
 ```

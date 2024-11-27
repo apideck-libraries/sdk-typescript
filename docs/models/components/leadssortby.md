@@ -5,7 +5,7 @@ The field on which to sort the Leads
 ## Example Usage
 
 ```typescript
-import { LeadsSortBy } from "apideck/models/components";
+import { LeadsSortBy } from "@apideck/sdk/models/components";
 
 let value: LeadsSortBy = "created_at";
 ```

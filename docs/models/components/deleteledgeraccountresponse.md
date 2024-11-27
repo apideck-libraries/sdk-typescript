@@ -5,7 +5,7 @@ LedgerAccount deleted
 ## Example Usage
 
 ```typescript
-import { DeleteLedgerAccountResponse } from "apideck/models/components";
+import { DeleteLedgerAccountResponse } from "@apideck/sdk/models/components";
 
 let value: DeleteLedgerAccountResponse = {
   statusCode: 200,

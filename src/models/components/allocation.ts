@@ -4,7 +4,10 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
  * Type of entity this payment should be attributed to.
@@ -141,6 +144,20 @@ export namespace Allocation$ {
   export type Outbound = Allocation$Outbound;
 }
 
+export function allocationToJSON(allocation: Allocation): string {
+  return JSON.stringify(Allocation$outboundSchema.parse(allocation));
+}
+
+export function allocationFromJSON(
+  jsonString: string,
+): SafeParseResult<Allocation, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Allocation$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Allocation' from JSON`,
+  );
+}
+
 /** @internal */
 export const AllocationInput$inboundSchema: z.ZodType<
   AllocationInput,
@@ -192,4 +209,20 @@ export namespace AllocationInput$ {
   export const outboundSchema = AllocationInput$outboundSchema;
   /** @deprecated use `AllocationInput$Outbound` instead. */
   export type Outbound = AllocationInput$Outbound;
+}
+
+export function allocationInputToJSON(
+  allocationInput: AllocationInput,
+): string {
+  return JSON.stringify(AllocationInput$outboundSchema.parse(allocationInput));
+}
+
+export function allocationInputFromJSON(
+  jsonString: string,
+): SafeParseResult<AllocationInput, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => AllocationInput$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AllocationInput' from JSON`,
+  );
 }

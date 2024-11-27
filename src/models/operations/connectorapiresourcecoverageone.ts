@@ -4,7 +4,10 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type ConnectorApiResourceCoverageOneGlobals = {
   /**
@@ -76,6 +79,28 @@ export namespace ConnectorApiResourceCoverageOneGlobals$ {
   export type Outbound = ConnectorApiResourceCoverageOneGlobals$Outbound;
 }
 
+export function connectorApiResourceCoverageOneGlobalsToJSON(
+  connectorApiResourceCoverageOneGlobals:
+    ConnectorApiResourceCoverageOneGlobals,
+): string {
+  return JSON.stringify(
+    ConnectorApiResourceCoverageOneGlobals$outboundSchema.parse(
+      connectorApiResourceCoverageOneGlobals,
+    ),
+  );
+}
+
+export function connectorApiResourceCoverageOneGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<ConnectorApiResourceCoverageOneGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      ConnectorApiResourceCoverageOneGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ConnectorApiResourceCoverageOneGlobals' from JSON`,
+  );
+}
+
 /** @internal */
 export const ConnectorApiResourceCoverageOneRequest$inboundSchema: z.ZodType<
   ConnectorApiResourceCoverageOneRequest,
@@ -123,6 +148,28 @@ export namespace ConnectorApiResourceCoverageOneRequest$ {
     ConnectorApiResourceCoverageOneRequest$outboundSchema;
   /** @deprecated use `ConnectorApiResourceCoverageOneRequest$Outbound` instead. */
   export type Outbound = ConnectorApiResourceCoverageOneRequest$Outbound;
+}
+
+export function connectorApiResourceCoverageOneRequestToJSON(
+  connectorApiResourceCoverageOneRequest:
+    ConnectorApiResourceCoverageOneRequest,
+): string {
+  return JSON.stringify(
+    ConnectorApiResourceCoverageOneRequest$outboundSchema.parse(
+      connectorApiResourceCoverageOneRequest,
+    ),
+  );
+}
+
+export function connectorApiResourceCoverageOneRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<ConnectorApiResourceCoverageOneRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      ConnectorApiResourceCoverageOneRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ConnectorApiResourceCoverageOneRequest' from JSON`,
+  );
 }
 
 /** @internal */
@@ -187,4 +234,31 @@ export namespace ConnectorApiResourceCoverageOneResponse$ {
     ConnectorApiResourceCoverageOneResponse$outboundSchema;
   /** @deprecated use `ConnectorApiResourceCoverageOneResponse$Outbound` instead. */
   export type Outbound = ConnectorApiResourceCoverageOneResponse$Outbound;
+}
+
+export function connectorApiResourceCoverageOneResponseToJSON(
+  connectorApiResourceCoverageOneResponse:
+    ConnectorApiResourceCoverageOneResponse,
+): string {
+  return JSON.stringify(
+    ConnectorApiResourceCoverageOneResponse$outboundSchema.parse(
+      connectorApiResourceCoverageOneResponse,
+    ),
+  );
+}
+
+export function connectorApiResourceCoverageOneResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<
+  ConnectorApiResourceCoverageOneResponse,
+  SDKValidationError
+> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      ConnectorApiResourceCoverageOneResponse$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'ConnectorApiResourceCoverageOneResponse' from JSON`,
+  );
 }

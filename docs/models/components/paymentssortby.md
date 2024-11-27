@@ -5,7 +5,7 @@ The field on which to sort the Payments
 ## Example Usage
 
 ```typescript
-import { PaymentsSortBy } from "apideck/models/components";
+import { PaymentsSortBy } from "@apideck/sdk/models/components";
 
 let value: PaymentsSortBy = "updated_at";
 ```

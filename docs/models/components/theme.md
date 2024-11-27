@@ -5,7 +5,7 @@ Theming options to change the look and feel of Vault.
 ## Example Usage
 
 ```typescript
-import { Theme } from "apideck/models/components";
+import { Theme } from "@apideck/sdk/models/components";
 
 let value: Theme = {
   favicon: "https://res.cloudinary.com/apideck/icons/intercom",

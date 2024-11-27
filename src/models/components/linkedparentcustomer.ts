@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
  * The parent customer this entity is linked to.
@@ -55,4 +58,22 @@ export namespace LinkedParentCustomer$ {
   export const outboundSchema = LinkedParentCustomer$outboundSchema;
   /** @deprecated use `LinkedParentCustomer$Outbound` instead. */
   export type Outbound = LinkedParentCustomer$Outbound;
+}
+
+export function linkedParentCustomerToJSON(
+  linkedParentCustomer: LinkedParentCustomer,
+): string {
+  return JSON.stringify(
+    LinkedParentCustomer$outboundSchema.parse(linkedParentCustomer),
+  );
+}
+
+export function linkedParentCustomerFromJSON(
+  jsonString: string,
+): SafeParseResult<LinkedParentCustomer, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => LinkedParentCustomer$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'LinkedParentCustomer' from JSON`,
+  );
 }

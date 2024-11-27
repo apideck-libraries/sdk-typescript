@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { ParentAccount } from "apideck/models/components";
+import { ParentAccount } from "@apideck/sdk/models/components";
 
 let value: ParentAccount = {
   id: "12345",

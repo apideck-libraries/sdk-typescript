@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { EcommerceCustomerType } from "apideck/models/components";
+import { EcommerceCustomerType } from "@apideck/sdk/models/components";
 
 let value: EcommerceCustomerType = "billing";
 ```

@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
  * The team the person is currently in.
@@ -49,4 +52,18 @@ export namespace Team$ {
   export const outboundSchema = Team$outboundSchema;
   /** @deprecated use `Team$Outbound` instead. */
   export type Outbound = Team$Outbound;
+}
+
+export function teamToJSON(team: Team): string {
+  return JSON.stringify(Team$outboundSchema.parse(team));
+}
+
+export function teamFromJSON(
+  jsonString: string,
+): SafeParseResult<Team, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Team$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Team' from JSON`,
+  );
 }

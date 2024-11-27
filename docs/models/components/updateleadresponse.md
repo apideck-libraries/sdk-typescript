@@ -5,7 +5,7 @@ Lead updated
 ## Example Usage
 
 ```typescript
-import { UpdateLeadResponse } from "apideck/models/components";
+import { UpdateLeadResponse } from "@apideck/sdk/models/components";
 
 let value: UpdateLeadResponse = {
   statusCode: 200,

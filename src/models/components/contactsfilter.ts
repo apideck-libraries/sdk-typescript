@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type ContactsFilter = {
   /**
@@ -104,4 +107,18 @@ export namespace ContactsFilter$ {
   export const outboundSchema = ContactsFilter$outboundSchema;
   /** @deprecated use `ContactsFilter$Outbound` instead. */
   export type Outbound = ContactsFilter$Outbound;
+}
+
+export function contactsFilterToJSON(contactsFilter: ContactsFilter): string {
+  return JSON.stringify(ContactsFilter$outboundSchema.parse(contactsFilter));
+}
+
+export function contactsFilterFromJSON(
+  jsonString: string,
+): SafeParseResult<ContactsFilter, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ContactsFilter$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ContactsFilter' from JSON`,
+  );
 }

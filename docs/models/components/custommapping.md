@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { CustomMapping } from "apideck/models/components";
+import { CustomMapping } from "@apideck/sdk/models/components";
 
 let value: CustomMapping = {
   id: "hris+employees+first_aid_training",

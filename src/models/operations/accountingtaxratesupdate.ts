@@ -4,13 +4,16 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type AccountingTaxRatesUpdateGlobals = {
   /**
    * ID of the consumer which you want to get or push data from
    */
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   /**
    * The ID of your Unify application
    */
@@ -51,13 +54,13 @@ export const AccountingTaxRatesUpdateGlobals$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
 /** @internal */
 export type AccountingTaxRatesUpdateGlobals$Outbound = {
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   appId?: string | undefined;
 };
 
@@ -67,7 +70,7 @@ export const AccountingTaxRatesUpdateGlobals$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   AccountingTaxRatesUpdateGlobals
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
@@ -82,6 +85,26 @@ export namespace AccountingTaxRatesUpdateGlobals$ {
   export const outboundSchema = AccountingTaxRatesUpdateGlobals$outboundSchema;
   /** @deprecated use `AccountingTaxRatesUpdateGlobals$Outbound` instead. */
   export type Outbound = AccountingTaxRatesUpdateGlobals$Outbound;
+}
+
+export function accountingTaxRatesUpdateGlobalsToJSON(
+  accountingTaxRatesUpdateGlobals: AccountingTaxRatesUpdateGlobals,
+): string {
+  return JSON.stringify(
+    AccountingTaxRatesUpdateGlobals$outboundSchema.parse(
+      accountingTaxRatesUpdateGlobals,
+    ),
+  );
+}
+
+export function accountingTaxRatesUpdateGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<AccountingTaxRatesUpdateGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => AccountingTaxRatesUpdateGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AccountingTaxRatesUpdateGlobals' from JSON`,
+  );
 }
 
 /** @internal */
@@ -135,6 +158,26 @@ export namespace AccountingTaxRatesUpdateRequest$ {
   export const outboundSchema = AccountingTaxRatesUpdateRequest$outboundSchema;
   /** @deprecated use `AccountingTaxRatesUpdateRequest$Outbound` instead. */
   export type Outbound = AccountingTaxRatesUpdateRequest$Outbound;
+}
+
+export function accountingTaxRatesUpdateRequestToJSON(
+  accountingTaxRatesUpdateRequest: AccountingTaxRatesUpdateRequest,
+): string {
+  return JSON.stringify(
+    AccountingTaxRatesUpdateRequest$outboundSchema.parse(
+      accountingTaxRatesUpdateRequest,
+    ),
+  );
+}
+
+export function accountingTaxRatesUpdateRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<AccountingTaxRatesUpdateRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => AccountingTaxRatesUpdateRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AccountingTaxRatesUpdateRequest' from JSON`,
+  );
 }
 
 /** @internal */
@@ -195,4 +238,24 @@ export namespace AccountingTaxRatesUpdateResponse$ {
   export const outboundSchema = AccountingTaxRatesUpdateResponse$outboundSchema;
   /** @deprecated use `AccountingTaxRatesUpdateResponse$Outbound` instead. */
   export type Outbound = AccountingTaxRatesUpdateResponse$Outbound;
+}
+
+export function accountingTaxRatesUpdateResponseToJSON(
+  accountingTaxRatesUpdateResponse: AccountingTaxRatesUpdateResponse,
+): string {
+  return JSON.stringify(
+    AccountingTaxRatesUpdateResponse$outboundSchema.parse(
+      accountingTaxRatesUpdateResponse,
+    ),
+  );
+}
+
+export function accountingTaxRatesUpdateResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<AccountingTaxRatesUpdateResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => AccountingTaxRatesUpdateResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AccountingTaxRatesUpdateResponse' from JSON`,
+  );
 }

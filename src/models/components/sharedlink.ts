@@ -4,7 +4,10 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   PassThroughBody,
   PassThroughBody$inboundSchema,
@@ -190,6 +193,20 @@ export namespace SharedLink$ {
   export type Outbound = SharedLink$Outbound;
 }
 
+export function sharedLinkToJSON(sharedLink: SharedLink): string {
+  return JSON.stringify(SharedLink$outboundSchema.parse(sharedLink));
+}
+
+export function sharedLinkFromJSON(
+  jsonString: string,
+): SafeParseResult<SharedLink, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => SharedLink$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'SharedLink' from JSON`,
+  );
+}
+
 /** @internal */
 export const SharedLinkInput$inboundSchema: z.ZodType<
   SharedLinkInput,
@@ -248,4 +265,20 @@ export namespace SharedLinkInput$ {
   export const outboundSchema = SharedLinkInput$outboundSchema;
   /** @deprecated use `SharedLinkInput$Outbound` instead. */
   export type Outbound = SharedLinkInput$Outbound;
+}
+
+export function sharedLinkInputToJSON(
+  sharedLinkInput: SharedLinkInput,
+): string {
+  return JSON.stringify(SharedLinkInput$outboundSchema.parse(sharedLinkInput));
+}
+
+export function sharedLinkInputFromJSON(
+  jsonString: string,
+): SafeParseResult<SharedLinkInput, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => SharedLinkInput$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'SharedLinkInput' from JSON`,
+  );
 }

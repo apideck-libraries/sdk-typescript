@@ -5,7 +5,7 @@ Opportunity created
 ## Example Usage
 
 ```typescript
-import { CreateOpportunityResponse } from "apideck/models/components";
+import { CreateOpportunityResponse } from "@apideck/sdk/models/components";
 
 let value: CreateOpportunityResponse = {
   statusCode: 200,

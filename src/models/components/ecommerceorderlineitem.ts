@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   EcommerceDiscount,
   EcommerceDiscount$inboundSchema,
@@ -133,6 +136,20 @@ export namespace Options$ {
   export type Outbound = Options$Outbound;
 }
 
+export function optionsToJSON(options: Options): string {
+  return JSON.stringify(Options$outboundSchema.parse(options));
+}
+
+export function optionsFromJSON(
+  jsonString: string,
+): SafeParseResult<Options, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Options$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Options' from JSON`,
+  );
+}
+
 /** @internal */
 export const EcommerceOrderLineItem$inboundSchema: z.ZodType<
   EcommerceOrderLineItem,
@@ -241,4 +258,22 @@ export namespace EcommerceOrderLineItem$ {
   export const outboundSchema = EcommerceOrderLineItem$outboundSchema;
   /** @deprecated use `EcommerceOrderLineItem$Outbound` instead. */
   export type Outbound = EcommerceOrderLineItem$Outbound;
+}
+
+export function ecommerceOrderLineItemToJSON(
+  ecommerceOrderLineItem: EcommerceOrderLineItem,
+): string {
+  return JSON.stringify(
+    EcommerceOrderLineItem$outboundSchema.parse(ecommerceOrderLineItem),
+  );
+}
+
+export function ecommerceOrderLineItemFromJSON(
+  jsonString: string,
+): SafeParseResult<EcommerceOrderLineItem, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => EcommerceOrderLineItem$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'EcommerceOrderLineItem' from JSON`,
+  );
 }

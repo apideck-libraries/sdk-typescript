@@ -4,13 +4,16 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type VaultConnectionSettingsAllGlobals = {
   /**
    * ID of the consumer which you want to get or push data from
    */
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   /**
    * The ID of your Unify application
    */
@@ -50,13 +53,13 @@ export const VaultConnectionSettingsAllGlobals$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
 /** @internal */
 export type VaultConnectionSettingsAllGlobals$Outbound = {
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   appId?: string | undefined;
 };
 
@@ -66,7 +69,7 @@ export const VaultConnectionSettingsAllGlobals$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   VaultConnectionSettingsAllGlobals
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
@@ -82,6 +85,26 @@ export namespace VaultConnectionSettingsAllGlobals$ {
     VaultConnectionSettingsAllGlobals$outboundSchema;
   /** @deprecated use `VaultConnectionSettingsAllGlobals$Outbound` instead. */
   export type Outbound = VaultConnectionSettingsAllGlobals$Outbound;
+}
+
+export function vaultConnectionSettingsAllGlobalsToJSON(
+  vaultConnectionSettingsAllGlobals: VaultConnectionSettingsAllGlobals,
+): string {
+  return JSON.stringify(
+    VaultConnectionSettingsAllGlobals$outboundSchema.parse(
+      vaultConnectionSettingsAllGlobals,
+    ),
+  );
+}
+
+export function vaultConnectionSettingsAllGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<VaultConnectionSettingsAllGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => VaultConnectionSettingsAllGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'VaultConnectionSettingsAllGlobals' from JSON`,
+  );
 }
 
 /** @internal */
@@ -135,6 +158,26 @@ export namespace VaultConnectionSettingsAllRequest$ {
     VaultConnectionSettingsAllRequest$outboundSchema;
   /** @deprecated use `VaultConnectionSettingsAllRequest$Outbound` instead. */
   export type Outbound = VaultConnectionSettingsAllRequest$Outbound;
+}
+
+export function vaultConnectionSettingsAllRequestToJSON(
+  vaultConnectionSettingsAllRequest: VaultConnectionSettingsAllRequest,
+): string {
+  return JSON.stringify(
+    VaultConnectionSettingsAllRequest$outboundSchema.parse(
+      vaultConnectionSettingsAllRequest,
+    ),
+  );
+}
+
+export function vaultConnectionSettingsAllRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<VaultConnectionSettingsAllRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => VaultConnectionSettingsAllRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'VaultConnectionSettingsAllRequest' from JSON`,
+  );
 }
 
 /** @internal */
@@ -196,4 +239,25 @@ export namespace VaultConnectionSettingsAllResponse$ {
     VaultConnectionSettingsAllResponse$outboundSchema;
   /** @deprecated use `VaultConnectionSettingsAllResponse$Outbound` instead. */
   export type Outbound = VaultConnectionSettingsAllResponse$Outbound;
+}
+
+export function vaultConnectionSettingsAllResponseToJSON(
+  vaultConnectionSettingsAllResponse: VaultConnectionSettingsAllResponse,
+): string {
+  return JSON.stringify(
+    VaultConnectionSettingsAllResponse$outboundSchema.parse(
+      vaultConnectionSettingsAllResponse,
+    ),
+  );
+}
+
+export function vaultConnectionSettingsAllResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<VaultConnectionSettingsAllResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      VaultConnectionSettingsAllResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'VaultConnectionSettingsAllResponse' from JSON`,
+  );
 }

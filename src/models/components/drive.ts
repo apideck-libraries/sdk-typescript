@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   CustomMappings,
   CustomMappings$inboundSchema,
@@ -133,4 +136,18 @@ export namespace Drive$ {
   export const outboundSchema = Drive$outboundSchema;
   /** @deprecated use `Drive$Outbound` instead. */
   export type Outbound = Drive$Outbound;
+}
+
+export function driveToJSON(drive: Drive): string {
+  return JSON.stringify(Drive$outboundSchema.parse(drive));
+}
+
+export function driveFromJSON(
+  jsonString: string,
+): SafeParseResult<Drive, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Drive$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Drive' from JSON`,
+  );
 }

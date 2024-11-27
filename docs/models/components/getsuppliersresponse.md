@@ -5,7 +5,7 @@ Suppliers
 ## Example Usage
 
 ```typescript
-import { GetSuppliersResponse } from "apideck/models/components";
+import { GetSuppliersResponse } from "@apideck/sdk/models/components";
 
 let value: GetSuppliersResponse = {
   statusCode: 200,

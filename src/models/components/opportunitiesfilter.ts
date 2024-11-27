@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type OpportunitiesFilter = {
   /**
@@ -104,4 +107,22 @@ export namespace OpportunitiesFilter$ {
   export const outboundSchema = OpportunitiesFilter$outboundSchema;
   /** @deprecated use `OpportunitiesFilter$Outbound` instead. */
   export type Outbound = OpportunitiesFilter$Outbound;
+}
+
+export function opportunitiesFilterToJSON(
+  opportunitiesFilter: OpportunitiesFilter,
+): string {
+  return JSON.stringify(
+    OpportunitiesFilter$outboundSchema.parse(opportunitiesFilter),
+  );
+}
+
+export function opportunitiesFilterFromJSON(
+  jsonString: string,
+): SafeParseResult<OpportunitiesFilter, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => OpportunitiesFilter$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'OpportunitiesFilter' from JSON`,
+  );
 }

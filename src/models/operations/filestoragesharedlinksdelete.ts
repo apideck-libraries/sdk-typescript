@@ -4,13 +4,16 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type FileStorageSharedLinksDeleteGlobals = {
   /**
    * ID of the consumer which you want to get or push data from
    */
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   /**
    * The ID of your Unify application
    */
@@ -50,13 +53,13 @@ export const FileStorageSharedLinksDeleteGlobals$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
 /** @internal */
 export type FileStorageSharedLinksDeleteGlobals$Outbound = {
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   appId?: string | undefined;
 };
 
@@ -66,7 +69,7 @@ export const FileStorageSharedLinksDeleteGlobals$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   FileStorageSharedLinksDeleteGlobals
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
@@ -83,6 +86,27 @@ export namespace FileStorageSharedLinksDeleteGlobals$ {
     FileStorageSharedLinksDeleteGlobals$outboundSchema;
   /** @deprecated use `FileStorageSharedLinksDeleteGlobals$Outbound` instead. */
   export type Outbound = FileStorageSharedLinksDeleteGlobals$Outbound;
+}
+
+export function fileStorageSharedLinksDeleteGlobalsToJSON(
+  fileStorageSharedLinksDeleteGlobals: FileStorageSharedLinksDeleteGlobals,
+): string {
+  return JSON.stringify(
+    FileStorageSharedLinksDeleteGlobals$outboundSchema.parse(
+      fileStorageSharedLinksDeleteGlobals,
+    ),
+  );
+}
+
+export function fileStorageSharedLinksDeleteGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<FileStorageSharedLinksDeleteGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      FileStorageSharedLinksDeleteGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'FileStorageSharedLinksDeleteGlobals' from JSON`,
+  );
 }
 
 /** @internal */
@@ -127,6 +151,27 @@ export namespace FileStorageSharedLinksDeleteRequest$ {
     FileStorageSharedLinksDeleteRequest$outboundSchema;
   /** @deprecated use `FileStorageSharedLinksDeleteRequest$Outbound` instead. */
   export type Outbound = FileStorageSharedLinksDeleteRequest$Outbound;
+}
+
+export function fileStorageSharedLinksDeleteRequestToJSON(
+  fileStorageSharedLinksDeleteRequest: FileStorageSharedLinksDeleteRequest,
+): string {
+  return JSON.stringify(
+    FileStorageSharedLinksDeleteRequest$outboundSchema.parse(
+      fileStorageSharedLinksDeleteRequest,
+    ),
+  );
+}
+
+export function fileStorageSharedLinksDeleteRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<FileStorageSharedLinksDeleteRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      FileStorageSharedLinksDeleteRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'FileStorageSharedLinksDeleteRequest' from JSON`,
+  );
 }
 
 /** @internal */
@@ -191,4 +236,25 @@ export namespace FileStorageSharedLinksDeleteResponse$ {
     FileStorageSharedLinksDeleteResponse$outboundSchema;
   /** @deprecated use `FileStorageSharedLinksDeleteResponse$Outbound` instead. */
   export type Outbound = FileStorageSharedLinksDeleteResponse$Outbound;
+}
+
+export function fileStorageSharedLinksDeleteResponseToJSON(
+  fileStorageSharedLinksDeleteResponse: FileStorageSharedLinksDeleteResponse,
+): string {
+  return JSON.stringify(
+    FileStorageSharedLinksDeleteResponse$outboundSchema.parse(
+      fileStorageSharedLinksDeleteResponse,
+    ),
+  );
+}
+
+export function fileStorageSharedLinksDeleteResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<FileStorageSharedLinksDeleteResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      FileStorageSharedLinksDeleteResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'FileStorageSharedLinksDeleteResponse' from JSON`,
+  );
 }

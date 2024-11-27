@@ -5,7 +5,7 @@ Department deleted
 ## Example Usage
 
 ```typescript
-import { DeleteAccountingDepartmentResponse } from "apideck/models/components";
+import { DeleteAccountingDepartmentResponse } from "@apideck/sdk/models/components";
 
 let value: DeleteAccountingDepartmentResponse = {
   statusCode: 200,

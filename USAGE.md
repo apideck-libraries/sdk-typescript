@@ -1,10 +1,10 @@
 <!-- Start SDK Example Usage [usage] -->
 ```typescript
-import { Apideck } from "apideck";
+import { Apideck } from "@apideck/sdk";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
-  customerId: "test-consumer",
+  consumerId: "test-consumer",
   appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
 });
 

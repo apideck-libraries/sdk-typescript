@@ -18,11 +18,11 @@ List activities
 ### Example Usage
 
 ```typescript
-import { Apideck } from "apideck";
+import { Apideck } from "@apideck/sdk";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
-  customerId: "test-consumer",
+  consumerId: "test-consumer",
   appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
 });
 
@@ -58,14 +58,14 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "apideck/core.js";
-import { crmActivitiesList } from "apideck/funcs/crmActivitiesList.js";
+import { ApideckCore } from "@apideck/sdk/core.js";
+import { crmActivitiesList } from "@apideck/sdk/funcs/crmActivitiesList.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const apideck = new ApideckCore({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
-  customerId: "test-consumer",
+  consumerId: "test-consumer",
   appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
 });
 
@@ -133,11 +133,11 @@ Create activity
 ### Example Usage
 
 ```typescript
-import { Apideck } from "apideck";
+import { Apideck } from "@apideck/sdk";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
-  customerId: "test-consumer",
+  consumerId: "test-consumer",
   appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
 });
 
@@ -318,14 +318,14 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "apideck/core.js";
-import { crmActivitiesCreate } from "apideck/funcs/crmActivitiesCreate.js";
+import { ApideckCore } from "@apideck/sdk/core.js";
+import { crmActivitiesCreate } from "@apideck/sdk/funcs/crmActivitiesCreate.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const apideck = new ApideckCore({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
-  customerId: "test-consumer",
+  consumerId: "test-consumer",
   appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
 });
 
@@ -538,11 +538,11 @@ Get activity
 ### Example Usage
 
 ```typescript
-import { Apideck } from "apideck";
+import { Apideck } from "@apideck/sdk";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
-  customerId: "test-consumer",
+  consumerId: "test-consumer",
   appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
 });
 
@@ -565,14 +565,14 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "apideck/core.js";
-import { crmActivitiesGet } from "apideck/funcs/crmActivitiesGet.js";
+import { ApideckCore } from "@apideck/sdk/core.js";
+import { crmActivitiesGet } from "@apideck/sdk/funcs/crmActivitiesGet.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const apideck = new ApideckCore({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
-  customerId: "test-consumer",
+  consumerId: "test-consumer",
   appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
 });
 
@@ -627,11 +627,11 @@ Update activity
 ### Example Usage
 
 ```typescript
-import { Apideck } from "apideck";
+import { Apideck } from "@apideck/sdk";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
-  customerId: "test-consumer",
+  consumerId: "test-consumer",
   appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
 });
 
@@ -840,14 +840,14 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "apideck/core.js";
-import { crmActivitiesUpdate } from "apideck/funcs/crmActivitiesUpdate.js";
+import { ApideckCore } from "@apideck/sdk/core.js";
+import { crmActivitiesUpdate } from "@apideck/sdk/funcs/crmActivitiesUpdate.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const apideck = new ApideckCore({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
-  customerId: "test-consumer",
+  consumerId: "test-consumer",
   appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
 });
 
@@ -1088,11 +1088,11 @@ Delete activity
 ### Example Usage
 
 ```typescript
-import { Apideck } from "apideck";
+import { Apideck } from "@apideck/sdk";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
-  customerId: "test-consumer",
+  consumerId: "test-consumer",
   appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
 });
 
@@ -1114,14 +1114,14 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "apideck/core.js";
-import { crmActivitiesDelete } from "apideck/funcs/crmActivitiesDelete.js";
+import { ApideckCore } from "@apideck/sdk/core.js";
+import { crmActivitiesDelete } from "@apideck/sdk/funcs/crmActivitiesDelete.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const apideck = new ApideckCore({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
-  customerId: "test-consumer",
+  consumerId: "test-consumer",
   appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
 });
 

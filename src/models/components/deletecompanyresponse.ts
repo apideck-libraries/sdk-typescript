@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   UnifiedId,
   UnifiedId$inboundSchema,
@@ -95,4 +98,22 @@ export namespace DeleteCompanyResponse$ {
   export const outboundSchema = DeleteCompanyResponse$outboundSchema;
   /** @deprecated use `DeleteCompanyResponse$Outbound` instead. */
   export type Outbound = DeleteCompanyResponse$Outbound;
+}
+
+export function deleteCompanyResponseToJSON(
+  deleteCompanyResponse: DeleteCompanyResponse,
+): string {
+  return JSON.stringify(
+    DeleteCompanyResponse$outboundSchema.parse(deleteCompanyResponse),
+  );
+}
+
+export function deleteCompanyResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<DeleteCompanyResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => DeleteCompanyResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'DeleteCompanyResponse' from JSON`,
+  );
 }

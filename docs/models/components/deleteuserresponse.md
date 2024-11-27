@@ -5,7 +5,7 @@ User deleted
 ## Example Usage
 
 ```typescript
-import { DeleteUserResponse } from "apideck/models/components";
+import { DeleteUserResponse } from "@apideck/sdk/models/components";
 
 let value: DeleteUserResponse = {
   statusCode: 200,

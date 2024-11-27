@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type LinkedInvoiceItem = {
   /**
@@ -59,4 +62,22 @@ export namespace LinkedInvoiceItem$ {
   export const outboundSchema = LinkedInvoiceItem$outboundSchema;
   /** @deprecated use `LinkedInvoiceItem$Outbound` instead. */
   export type Outbound = LinkedInvoiceItem$Outbound;
+}
+
+export function linkedInvoiceItemToJSON(
+  linkedInvoiceItem: LinkedInvoiceItem,
+): string {
+  return JSON.stringify(
+    LinkedInvoiceItem$outboundSchema.parse(linkedInvoiceItem),
+  );
+}
+
+export function linkedInvoiceItemFromJSON(
+  jsonString: string,
+): SafeParseResult<LinkedInvoiceItem, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => LinkedInvoiceItem$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'LinkedInvoiceItem' from JSON`,
+  );
 }

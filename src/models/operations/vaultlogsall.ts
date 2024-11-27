@@ -4,7 +4,10 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type VaultLogsAllGlobals = {
   /**
@@ -14,7 +17,7 @@ export type VaultLogsAllGlobals = {
   /**
    * ID of the consumer which you want to get or push data from
    */
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
 };
 
 export type VaultLogsAllRequest = {
@@ -51,13 +54,13 @@ export const VaultLogsAllGlobals$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   appId: z.string().optional(),
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
 });
 
 /** @internal */
 export type VaultLogsAllGlobals$Outbound = {
   appId?: string | undefined;
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
 };
 
 /** @internal */
@@ -67,7 +70,7 @@ export const VaultLogsAllGlobals$outboundSchema: z.ZodType<
   VaultLogsAllGlobals
 > = z.object({
   appId: z.string().optional(),
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
 });
 
 /**
@@ -81,6 +84,24 @@ export namespace VaultLogsAllGlobals$ {
   export const outboundSchema = VaultLogsAllGlobals$outboundSchema;
   /** @deprecated use `VaultLogsAllGlobals$Outbound` instead. */
   export type Outbound = VaultLogsAllGlobals$Outbound;
+}
+
+export function vaultLogsAllGlobalsToJSON(
+  vaultLogsAllGlobals: VaultLogsAllGlobals,
+): string {
+  return JSON.stringify(
+    VaultLogsAllGlobals$outboundSchema.parse(vaultLogsAllGlobals),
+  );
+}
+
+export function vaultLogsAllGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<VaultLogsAllGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => VaultLogsAllGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'VaultLogsAllGlobals' from JSON`,
+  );
 }
 
 /** @internal */
@@ -123,6 +144,24 @@ export namespace VaultLogsAllRequest$ {
   export const outboundSchema = VaultLogsAllRequest$outboundSchema;
   /** @deprecated use `VaultLogsAllRequest$Outbound` instead. */
   export type Outbound = VaultLogsAllRequest$Outbound;
+}
+
+export function vaultLogsAllRequestToJSON(
+  vaultLogsAllRequest: VaultLogsAllRequest,
+): string {
+  return JSON.stringify(
+    VaultLogsAllRequest$outboundSchema.parse(vaultLogsAllRequest),
+  );
+}
+
+export function vaultLogsAllRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<VaultLogsAllRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => VaultLogsAllRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'VaultLogsAllRequest' from JSON`,
+  );
 }
 
 /** @internal */
@@ -181,4 +220,22 @@ export namespace VaultLogsAllResponse$ {
   export const outboundSchema = VaultLogsAllResponse$outboundSchema;
   /** @deprecated use `VaultLogsAllResponse$Outbound` instead. */
   export type Outbound = VaultLogsAllResponse$Outbound;
+}
+
+export function vaultLogsAllResponseToJSON(
+  vaultLogsAllResponse: VaultLogsAllResponse,
+): string {
+  return JSON.stringify(
+    VaultLogsAllResponse$outboundSchema.parse(vaultLogsAllResponse),
+  );
+}
+
+export function vaultLogsAllResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<VaultLogsAllResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => VaultLogsAllResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'VaultLogsAllResponse' from JSON`,
+  );
 }

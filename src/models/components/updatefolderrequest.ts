@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   PassThroughBody,
   PassThroughBody$inboundSchema,
@@ -83,4 +86,22 @@ export namespace UpdateFolderRequest$ {
   export const outboundSchema = UpdateFolderRequest$outboundSchema;
   /** @deprecated use `UpdateFolderRequest$Outbound` instead. */
   export type Outbound = UpdateFolderRequest$Outbound;
+}
+
+export function updateFolderRequestToJSON(
+  updateFolderRequest: UpdateFolderRequest,
+): string {
+  return JSON.stringify(
+    UpdateFolderRequest$outboundSchema.parse(updateFolderRequest),
+  );
+}
+
+export function updateFolderRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<UpdateFolderRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => UpdateFolderRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'UpdateFolderRequest' from JSON`,
+  );
 }

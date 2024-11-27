@@ -3,18 +3,13 @@
 ## Example Usage
 
 ```typescript
-import { CrmOpportunitiesAllRequest } from "apideck/models/operations";
+import { CrmOpportunitiesAllRequest } from "@apideck/sdk/models/operations";
 
 let value: CrmOpportunitiesAllRequest = {
   serviceId: "salesforce",
   filter: {
-    title: "Tesla deal",
     status: "Completed",
     monetaryAmount: 75000,
-    winProbability: 50,
-    companyId: "1234",
-    ownerId: "1234",
-    primaryContactId: "1234",
   },
   sort: {
     by: "created_at",

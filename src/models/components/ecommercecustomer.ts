@@ -4,7 +4,10 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   Currency,
   Currency$inboundSchema,
@@ -249,6 +252,20 @@ export namespace Addresses$ {
   export type Outbound = Addresses$Outbound;
 }
 
+export function addressesToJSON(addresses: Addresses): string {
+  return JSON.stringify(Addresses$outboundSchema.parse(addresses));
+}
+
+export function addressesFromJSON(
+  jsonString: string,
+): SafeParseResult<Addresses, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Addresses$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Addresses' from JSON`,
+  );
+}
+
 /** @internal */
 export const EcommerceCustomer$inboundSchema: z.ZodType<
   EcommerceCustomer,
@@ -346,4 +363,22 @@ export namespace EcommerceCustomer$ {
   export const outboundSchema = EcommerceCustomer$outboundSchema;
   /** @deprecated use `EcommerceCustomer$Outbound` instead. */
   export type Outbound = EcommerceCustomer$Outbound;
+}
+
+export function ecommerceCustomerToJSON(
+  ecommerceCustomer: EcommerceCustomer,
+): string {
+  return JSON.stringify(
+    EcommerceCustomer$outboundSchema.parse(ecommerceCustomer),
+  );
+}
+
+export function ecommerceCustomerFromJSON(
+  jsonString: string,
+): SafeParseResult<EcommerceCustomer, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => EcommerceCustomer$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'EcommerceCustomer' from JSON`,
+  );
 }

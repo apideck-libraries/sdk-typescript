@@ -4,13 +4,16 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type AccountingTaxRatesDeleteGlobals = {
   /**
    * ID of the consumer which you want to get or push data from
    */
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   /**
    * The ID of your Unify application
    */
@@ -50,13 +53,13 @@ export const AccountingTaxRatesDeleteGlobals$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
 /** @internal */
 export type AccountingTaxRatesDeleteGlobals$Outbound = {
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   appId?: string | undefined;
 };
 
@@ -66,7 +69,7 @@ export const AccountingTaxRatesDeleteGlobals$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   AccountingTaxRatesDeleteGlobals
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
@@ -81,6 +84,26 @@ export namespace AccountingTaxRatesDeleteGlobals$ {
   export const outboundSchema = AccountingTaxRatesDeleteGlobals$outboundSchema;
   /** @deprecated use `AccountingTaxRatesDeleteGlobals$Outbound` instead. */
   export type Outbound = AccountingTaxRatesDeleteGlobals$Outbound;
+}
+
+export function accountingTaxRatesDeleteGlobalsToJSON(
+  accountingTaxRatesDeleteGlobals: AccountingTaxRatesDeleteGlobals,
+): string {
+  return JSON.stringify(
+    AccountingTaxRatesDeleteGlobals$outboundSchema.parse(
+      accountingTaxRatesDeleteGlobals,
+    ),
+  );
+}
+
+export function accountingTaxRatesDeleteGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<AccountingTaxRatesDeleteGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => AccountingTaxRatesDeleteGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AccountingTaxRatesDeleteGlobals' from JSON`,
+  );
 }
 
 /** @internal */
@@ -123,6 +146,26 @@ export namespace AccountingTaxRatesDeleteRequest$ {
   export const outboundSchema = AccountingTaxRatesDeleteRequest$outboundSchema;
   /** @deprecated use `AccountingTaxRatesDeleteRequest$Outbound` instead. */
   export type Outbound = AccountingTaxRatesDeleteRequest$Outbound;
+}
+
+export function accountingTaxRatesDeleteRequestToJSON(
+  accountingTaxRatesDeleteRequest: AccountingTaxRatesDeleteRequest,
+): string {
+  return JSON.stringify(
+    AccountingTaxRatesDeleteRequest$outboundSchema.parse(
+      accountingTaxRatesDeleteRequest,
+    ),
+  );
+}
+
+export function accountingTaxRatesDeleteRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<AccountingTaxRatesDeleteRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => AccountingTaxRatesDeleteRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AccountingTaxRatesDeleteRequest' from JSON`,
+  );
 }
 
 /** @internal */
@@ -183,4 +226,24 @@ export namespace AccountingTaxRatesDeleteResponse$ {
   export const outboundSchema = AccountingTaxRatesDeleteResponse$outboundSchema;
   /** @deprecated use `AccountingTaxRatesDeleteResponse$Outbound` instead. */
   export type Outbound = AccountingTaxRatesDeleteResponse$Outbound;
+}
+
+export function accountingTaxRatesDeleteResponseToJSON(
+  accountingTaxRatesDeleteResponse: AccountingTaxRatesDeleteResponse,
+): string {
+  return JSON.stringify(
+    AccountingTaxRatesDeleteResponse$outboundSchema.parse(
+      accountingTaxRatesDeleteResponse,
+    ),
+  );
+}
+
+export function accountingTaxRatesDeleteResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<AccountingTaxRatesDeleteResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => AccountingTaxRatesDeleteResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AccountingTaxRatesDeleteResponse' from JSON`,
+  );
 }

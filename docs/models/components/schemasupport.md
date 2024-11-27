@@ -5,7 +5,7 @@ When a connector has schema_support, a call can be made to retrieve a json schem
 ## Example Usage
 
 ```typescript
-import { SchemaSupport } from "apideck/models/components";
+import { SchemaSupport } from "@apideck/sdk/models/components";
 
 let value: SchemaSupport = {
   supported: true,

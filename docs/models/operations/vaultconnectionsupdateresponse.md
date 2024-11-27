@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { VaultConnectionsUpdateResponse } from "apideck/models/operations";
+import { VaultConnectionsUpdateResponse } from "@apideck/sdk/models/operations";
 
 let value: VaultConnectionsUpdateResponse = {
   httpMeta: {
@@ -52,45 +52,21 @@ let value: VaultConnectionsUpdateResponse = {
           id: "instance_url",
           label: "Instance url",
           placeholder: "",
-          description: "Slack channel to push notification to",
           type: "text",
           required: true,
           customField: false,
-          allowCustomValues: false,
           disabled: false,
-          hidden: false,
-          deprecated: false,
           sensitive: false,
-          prefix: "https://",
-          suffix: ".shopify.com",
-          options: [
-            {
-              label: "General Channel",
-              value: "general",
-            },
-          ],
         },
         {
           id: "api_key",
           label: "API Key",
           placeholder: "",
-          description: "Slack channel to push notification to",
           type: "text",
           required: true,
           customField: false,
-          allowCustomValues: false,
           disabled: false,
-          hidden: false,
-          deprecated: false,
           sensitive: true,
-          prefix: "https://",
-          suffix: ".shopify.com",
-          options: [
-            {
-              label: "General Channel",
-              value: "general",
-            },
-          ],
         },
       ],
       configuration: [
@@ -103,7 +79,7 @@ let value: VaultConnectionsUpdateResponse = {
               options: [
                 {
                   label: "General Channel",
-                  value: true,
+                  value: "general",
                 },
               ],
               value: true,

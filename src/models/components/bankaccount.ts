@@ -4,7 +4,10 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   Currency,
   Currency$inboundSchema,
@@ -176,4 +179,18 @@ export namespace BankAccount$ {
   export const outboundSchema = BankAccount$outboundSchema;
   /** @deprecated use `BankAccount$Outbound` instead. */
   export type Outbound = BankAccount$Outbound;
+}
+
+export function bankAccountToJSON(bankAccount: BankAccount): string {
+  return JSON.stringify(BankAccount$outboundSchema.parse(bankAccount));
+}
+
+export function bankAccountFromJSON(
+  jsonString: string,
+): SafeParseResult<BankAccount, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => BankAccount$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'BankAccount' from JSON`,
+  );
 }

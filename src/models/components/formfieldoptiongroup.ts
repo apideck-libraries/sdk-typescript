@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   SimpleFormFieldOption,
   SimpleFormFieldOption$inboundSchema,
@@ -56,4 +59,22 @@ export namespace FormFieldOptionGroup$ {
   export const outboundSchema = FormFieldOptionGroup$outboundSchema;
   /** @deprecated use `FormFieldOptionGroup$Outbound` instead. */
   export type Outbound = FormFieldOptionGroup$Outbound;
+}
+
+export function formFieldOptionGroupToJSON(
+  formFieldOptionGroup: FormFieldOptionGroup,
+): string {
+  return JSON.stringify(
+    FormFieldOptionGroup$outboundSchema.parse(formFieldOptionGroup),
+  );
+}
+
+export function formFieldOptionGroupFromJSON(
+  jsonString: string,
+): SafeParseResult<FormFieldOptionGroup, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => FormFieldOptionGroup$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'FormFieldOptionGroup' from JSON`,
+  );
 }

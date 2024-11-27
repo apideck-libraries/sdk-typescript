@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { VaultConsumerRequestCountsAllResponse } from "apideck/models/operations";
+import { VaultConsumerRequestCountsAllResponse } from "@apideck/sdk/models/operations";
 
 let value: VaultConsumerRequestCountsAllResponse = {
   httpMeta: {
@@ -33,7 +33,13 @@ let value: VaultConsumerRequestCountsAllResponse = {
     error: "Bad Request",
     typeName: "RequestHeadersValidationError",
     message: "Invalid Params",
-    detail: {},
+    detail: {
+      "missing": [
+        {
+          "x-apideck-consumer-id": "required",
+        },
+      ],
+    },
     ref: "https://developers.apideck.com/errors#unauthorizederror",
   },
 };

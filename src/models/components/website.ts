@@ -3,7 +3,10 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
  * The type of website
@@ -91,4 +94,18 @@ export namespace Website$ {
   export const outboundSchema = Website$outboundSchema;
   /** @deprecated use `Website$Outbound` instead. */
   export type Outbound = Website$Outbound;
+}
+
+export function websiteToJSON(website: Website): string {
+  return JSON.stringify(Website$outboundSchema.parse(website));
+}
+
+export function websiteFromJSON(
+  jsonString: string,
+): SafeParseResult<Website, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Website$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Website' from JSON`,
+  );
 }

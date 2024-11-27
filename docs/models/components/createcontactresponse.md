@@ -5,7 +5,7 @@ Contact created
 ## Example Usage
 
 ```typescript
-import { CreateContactResponse } from "apideck/models/components";
+import { CreateContactResponse } from "@apideck/sdk/models/components";
 
 let value: CreateContactResponse = {
   statusCode: 200,

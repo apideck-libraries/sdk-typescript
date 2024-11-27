@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
  * Represents the tracking information associated with an ecommerce order.
@@ -80,4 +83,18 @@ export namespace TrackingItem$ {
   export const outboundSchema = TrackingItem$outboundSchema;
   /** @deprecated use `TrackingItem$Outbound` instead. */
   export type Outbound = TrackingItem$Outbound;
+}
+
+export function trackingItemToJSON(trackingItem: TrackingItem): string {
+  return JSON.stringify(TrackingItem$outboundSchema.parse(trackingItem));
+}
+
+export function trackingItemFromJSON(
+  jsonString: string,
+): SafeParseResult<TrackingItem, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => TrackingItem$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'TrackingItem' from JSON`,
+  );
 }

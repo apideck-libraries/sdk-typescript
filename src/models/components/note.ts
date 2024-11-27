@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   CustomMappings,
   CustomMappings$inboundSchema,
@@ -178,4 +181,18 @@ export namespace Note$ {
   export const outboundSchema = Note$outboundSchema;
   /** @deprecated use `Note$Outbound` instead. */
   export type Outbound = Note$Outbound;
+}
+
+export function noteToJSON(note: Note): string {
+  return JSON.stringify(Note$outboundSchema.parse(note));
+}
+
+export function noteFromJSON(
+  jsonString: string,
+): SafeParseResult<Note, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Note$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Note' from JSON`,
+  );
 }

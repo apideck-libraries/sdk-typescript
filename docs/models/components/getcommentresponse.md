@@ -5,7 +5,7 @@ Get a Comment
 ## Example Usage
 
 ```typescript
-import { GetCommentResponse } from "apideck/models/components";
+import { GetCommentResponse } from "@apideck/sdk/models/components";
 
 let value: GetCommentResponse = {
   statusCode: 200,

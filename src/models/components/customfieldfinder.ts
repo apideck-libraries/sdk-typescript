@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type CustomFieldFinder = {
   /**
@@ -73,4 +76,22 @@ export namespace CustomFieldFinder$ {
   export const outboundSchema = CustomFieldFinder$outboundSchema;
   /** @deprecated use `CustomFieldFinder$Outbound` instead. */
   export type Outbound = CustomFieldFinder$Outbound;
+}
+
+export function customFieldFinderToJSON(
+  customFieldFinder: CustomFieldFinder,
+): string {
+  return JSON.stringify(
+    CustomFieldFinder$outboundSchema.parse(customFieldFinder),
+  );
+}
+
+export function customFieldFinderFromJSON(
+  jsonString: string,
+): SafeParseResult<CustomFieldFinder, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CustomFieldFinder$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CustomFieldFinder' from JSON`,
+  );
 }

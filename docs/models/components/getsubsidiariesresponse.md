@@ -5,7 +5,7 @@ Subsidiaries
 ## Example Usage
 
 ```typescript
-import { GetSubsidiariesResponse } from "apideck/models/components";
+import { GetSubsidiariesResponse } from "@apideck/sdk/models/components";
 
 let value: GetSubsidiariesResponse = {
   statusCode: 200,

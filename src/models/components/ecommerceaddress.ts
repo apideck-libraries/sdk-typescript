@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
  * An object representing a shipping or billing address.
@@ -101,4 +104,22 @@ export namespace EcommerceAddress$ {
   export const outboundSchema = EcommerceAddress$outboundSchema;
   /** @deprecated use `EcommerceAddress$Outbound` instead. */
   export type Outbound = EcommerceAddress$Outbound;
+}
+
+export function ecommerceAddressToJSON(
+  ecommerceAddress: EcommerceAddress,
+): string {
+  return JSON.stringify(
+    EcommerceAddress$outboundSchema.parse(ecommerceAddress),
+  );
+}
+
+export function ecommerceAddressFromJSON(
+  jsonString: string,
+): SafeParseResult<EcommerceAddress, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => EcommerceAddress$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'EcommerceAddress' from JSON`,
+  );
 }

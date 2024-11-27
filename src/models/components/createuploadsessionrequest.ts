@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   PassThroughBody,
   PassThroughBody$inboundSchema,
@@ -92,4 +95,22 @@ export namespace CreateUploadSessionRequest$ {
   export const outboundSchema = CreateUploadSessionRequest$outboundSchema;
   /** @deprecated use `CreateUploadSessionRequest$Outbound` instead. */
   export type Outbound = CreateUploadSessionRequest$Outbound;
+}
+
+export function createUploadSessionRequestToJSON(
+  createUploadSessionRequest: CreateUploadSessionRequest,
+): string {
+  return JSON.stringify(
+    CreateUploadSessionRequest$outboundSchema.parse(createUploadSessionRequest),
+  );
+}
+
+export function createUploadSessionRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<CreateUploadSessionRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CreateUploadSessionRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CreateUploadSessionRequest' from JSON`,
+  );
 }

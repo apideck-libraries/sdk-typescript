@@ -4,13 +4,16 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type AccountingLocationsAllGlobals = {
   /**
    * ID of the consumer which you want to get or push data from
    */
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   /**
    * The ID of your Unify application
    */
@@ -64,13 +67,13 @@ export const AccountingLocationsAllGlobals$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
 /** @internal */
 export type AccountingLocationsAllGlobals$Outbound = {
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   appId?: string | undefined;
 };
 
@@ -80,7 +83,7 @@ export const AccountingLocationsAllGlobals$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   AccountingLocationsAllGlobals
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
@@ -95,6 +98,26 @@ export namespace AccountingLocationsAllGlobals$ {
   export const outboundSchema = AccountingLocationsAllGlobals$outboundSchema;
   /** @deprecated use `AccountingLocationsAllGlobals$Outbound` instead. */
   export type Outbound = AccountingLocationsAllGlobals$Outbound;
+}
+
+export function accountingLocationsAllGlobalsToJSON(
+  accountingLocationsAllGlobals: AccountingLocationsAllGlobals,
+): string {
+  return JSON.stringify(
+    AccountingLocationsAllGlobals$outboundSchema.parse(
+      accountingLocationsAllGlobals,
+    ),
+  );
+}
+
+export function accountingLocationsAllGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<AccountingLocationsAllGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => AccountingLocationsAllGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AccountingLocationsAllGlobals' from JSON`,
+  );
 }
 
 /** @internal */
@@ -146,6 +169,26 @@ export namespace AccountingLocationsAllRequest$ {
   export const outboundSchema = AccountingLocationsAllRequest$outboundSchema;
   /** @deprecated use `AccountingLocationsAllRequest$Outbound` instead. */
   export type Outbound = AccountingLocationsAllRequest$Outbound;
+}
+
+export function accountingLocationsAllRequestToJSON(
+  accountingLocationsAllRequest: AccountingLocationsAllRequest,
+): string {
+  return JSON.stringify(
+    AccountingLocationsAllRequest$outboundSchema.parse(
+      accountingLocationsAllRequest,
+    ),
+  );
+}
+
+export function accountingLocationsAllRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<AccountingLocationsAllRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => AccountingLocationsAllRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AccountingLocationsAllRequest' from JSON`,
+  );
 }
 
 /** @internal */
@@ -208,4 +251,24 @@ export namespace AccountingLocationsAllResponse$ {
   export const outboundSchema = AccountingLocationsAllResponse$outboundSchema;
   /** @deprecated use `AccountingLocationsAllResponse$Outbound` instead. */
   export type Outbound = AccountingLocationsAllResponse$Outbound;
+}
+
+export function accountingLocationsAllResponseToJSON(
+  accountingLocationsAllResponse: AccountingLocationsAllResponse,
+): string {
+  return JSON.stringify(
+    AccountingLocationsAllResponse$outboundSchema.parse(
+      accountingLocationsAllResponse,
+    ),
+  );
+}
+
+export function accountingLocationsAllResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<AccountingLocationsAllResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => AccountingLocationsAllResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AccountingLocationsAllResponse' from JSON`,
+  );
 }

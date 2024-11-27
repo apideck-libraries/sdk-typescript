@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type SubsidiaryReferenceInput = {
   /**
@@ -45,4 +48,22 @@ export namespace SubsidiaryReferenceInput$ {
   export const outboundSchema = SubsidiaryReferenceInput$outboundSchema;
   /** @deprecated use `SubsidiaryReferenceInput$Outbound` instead. */
   export type Outbound = SubsidiaryReferenceInput$Outbound;
+}
+
+export function subsidiaryReferenceInputToJSON(
+  subsidiaryReferenceInput: SubsidiaryReferenceInput,
+): string {
+  return JSON.stringify(
+    SubsidiaryReferenceInput$outboundSchema.parse(subsidiaryReferenceInput),
+  );
+}
+
+export function subsidiaryReferenceInputFromJSON(
+  jsonString: string,
+): SafeParseResult<SubsidiaryReferenceInput, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => SubsidiaryReferenceInput$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'SubsidiaryReferenceInput' from JSON`,
+  );
 }

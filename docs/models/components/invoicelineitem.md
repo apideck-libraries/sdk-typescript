@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { InvoiceLineItem } from "apideck/models/components";
+import { InvoiceLineItem } from "@apideck/sdk/models/components";
 
 let value: InvoiceLineItem = {
   id: "12345",
@@ -50,7 +50,7 @@ let value: InvoiceLineItem = {
       id: "2389328923893298",
       name: "employee_level",
       description: "Employee Level",
-      value: "Uses Salesforce and Marketo",
+      value: 10,
     },
   ],
   rowVersion: "1-12345",

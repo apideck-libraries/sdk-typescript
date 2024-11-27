@@ -5,7 +5,7 @@ Indicates if the webhook has has been disabled as it reached its retry limit or 
 ## Example Usage
 
 ```typescript
-import { DisabledReason } from "apideck/models/components";
+import { DisabledReason } from "@apideck/sdk/models/components";
 
 let value: DisabledReason = "retry_limit";
 ```

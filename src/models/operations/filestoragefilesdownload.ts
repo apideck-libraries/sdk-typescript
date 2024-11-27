@@ -4,13 +4,16 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type FileStorageFilesDownloadGlobals = {
   /**
    * ID of the consumer which you want to get or push data from
    */
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   /**
    * The ID of your Unify application
    */
@@ -50,13 +53,13 @@ export const FileStorageFilesDownloadGlobals$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
 /** @internal */
 export type FileStorageFilesDownloadGlobals$Outbound = {
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   appId?: string | undefined;
 };
 
@@ -66,7 +69,7 @@ export const FileStorageFilesDownloadGlobals$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   FileStorageFilesDownloadGlobals
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
@@ -81,6 +84,26 @@ export namespace FileStorageFilesDownloadGlobals$ {
   export const outboundSchema = FileStorageFilesDownloadGlobals$outboundSchema;
   /** @deprecated use `FileStorageFilesDownloadGlobals$Outbound` instead. */
   export type Outbound = FileStorageFilesDownloadGlobals$Outbound;
+}
+
+export function fileStorageFilesDownloadGlobalsToJSON(
+  fileStorageFilesDownloadGlobals: FileStorageFilesDownloadGlobals,
+): string {
+  return JSON.stringify(
+    FileStorageFilesDownloadGlobals$outboundSchema.parse(
+      fileStorageFilesDownloadGlobals,
+    ),
+  );
+}
+
+export function fileStorageFilesDownloadGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<FileStorageFilesDownloadGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => FileStorageFilesDownloadGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'FileStorageFilesDownloadGlobals' from JSON`,
+  );
 }
 
 /** @internal */
@@ -123,6 +146,26 @@ export namespace FileStorageFilesDownloadRequest$ {
   export const outboundSchema = FileStorageFilesDownloadRequest$outboundSchema;
   /** @deprecated use `FileStorageFilesDownloadRequest$Outbound` instead. */
   export type Outbound = FileStorageFilesDownloadRequest$Outbound;
+}
+
+export function fileStorageFilesDownloadRequestToJSON(
+  fileStorageFilesDownloadRequest: FileStorageFilesDownloadRequest,
+): string {
+  return JSON.stringify(
+    FileStorageFilesDownloadRequest$outboundSchema.parse(
+      fileStorageFilesDownloadRequest,
+    ),
+  );
+}
+
+export function fileStorageFilesDownloadRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<FileStorageFilesDownloadRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => FileStorageFilesDownloadRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'FileStorageFilesDownloadRequest' from JSON`,
+  );
 }
 
 /** @internal */
@@ -181,4 +224,24 @@ export namespace FileStorageFilesDownloadResponse$ {
   export const outboundSchema = FileStorageFilesDownloadResponse$outboundSchema;
   /** @deprecated use `FileStorageFilesDownloadResponse$Outbound` instead. */
   export type Outbound = FileStorageFilesDownloadResponse$Outbound;
+}
+
+export function fileStorageFilesDownloadResponseToJSON(
+  fileStorageFilesDownloadResponse: FileStorageFilesDownloadResponse,
+): string {
+  return JSON.stringify(
+    FileStorageFilesDownloadResponse$outboundSchema.parse(
+      fileStorageFilesDownloadResponse,
+    ),
+  );
+}
+
+export function fileStorageFilesDownloadResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<FileStorageFilesDownloadResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => FileStorageFilesDownloadResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'FileStorageFilesDownloadResponse' from JSON`,
+  );
 }

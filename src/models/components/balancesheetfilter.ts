@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type BalanceSheetFilter = {
   /**
@@ -63,4 +66,22 @@ export namespace BalanceSheetFilter$ {
   export const outboundSchema = BalanceSheetFilter$outboundSchema;
   /** @deprecated use `BalanceSheetFilter$Outbound` instead. */
   export type Outbound = BalanceSheetFilter$Outbound;
+}
+
+export function balanceSheetFilterToJSON(
+  balanceSheetFilter: BalanceSheetFilter,
+): string {
+  return JSON.stringify(
+    BalanceSheetFilter$outboundSchema.parse(balanceSheetFilter),
+  );
+}
+
+export function balanceSheetFilterFromJSON(
+  jsonString: string,
+): SafeParseResult<BalanceSheetFilter, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => BalanceSheetFilter$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'BalanceSheetFilter' from JSON`,
+  );
 }

@@ -5,7 +5,7 @@ Customer status
 ## Example Usage
 
 ```typescript
-import { CustomerStatusStatus } from "apideck/models/components";
+import { CustomerStatusStatus } from "@apideck/sdk/models/components";
 
 let value: CustomerStatusStatus = "active";
 ```

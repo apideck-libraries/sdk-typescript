@@ -5,8 +5,8 @@ Companies
 ## Example Usage
 
 ```typescript
-import { GetCompaniesResponse } from "apideck/models/components";
-import { RFCDate } from "apideck/types";
+import { GetCompaniesResponse } from "@apideck/sdk/models/components";
+import { RFCDate } from "@apideck/sdk/types";
 
 let value: GetCompaniesResponse = {
   statusCode: 200,
@@ -122,7 +122,7 @@ let value: GetCompaniesResponse = {
           id: "2389328923893298",
           name: "employee_level",
           description: "Employee Level",
-          value: 10,
+          value: "Uses Salesforce and Marketo",
         },
       ],
       tags: [

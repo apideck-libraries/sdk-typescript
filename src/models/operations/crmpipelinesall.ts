@@ -4,13 +4,16 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type CrmPipelinesAllGlobals = {
   /**
    * ID of the consumer which you want to get or push data from
    */
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   /**
    * The ID of your Unify application
    */
@@ -62,13 +65,13 @@ export const CrmPipelinesAllGlobals$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
 /** @internal */
 export type CrmPipelinesAllGlobals$Outbound = {
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   appId?: string | undefined;
 };
 
@@ -78,7 +81,7 @@ export const CrmPipelinesAllGlobals$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   CrmPipelinesAllGlobals
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
@@ -93,6 +96,24 @@ export namespace CrmPipelinesAllGlobals$ {
   export const outboundSchema = CrmPipelinesAllGlobals$outboundSchema;
   /** @deprecated use `CrmPipelinesAllGlobals$Outbound` instead. */
   export type Outbound = CrmPipelinesAllGlobals$Outbound;
+}
+
+export function crmPipelinesAllGlobalsToJSON(
+  crmPipelinesAllGlobals: CrmPipelinesAllGlobals,
+): string {
+  return JSON.stringify(
+    CrmPipelinesAllGlobals$outboundSchema.parse(crmPipelinesAllGlobals),
+  );
+}
+
+export function crmPipelinesAllGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<CrmPipelinesAllGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CrmPipelinesAllGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CrmPipelinesAllGlobals' from JSON`,
+  );
 }
 
 /** @internal */
@@ -154,6 +175,24 @@ export namespace CrmPipelinesAllRequest$ {
   export type Outbound = CrmPipelinesAllRequest$Outbound;
 }
 
+export function crmPipelinesAllRequestToJSON(
+  crmPipelinesAllRequest: CrmPipelinesAllRequest,
+): string {
+  return JSON.stringify(
+    CrmPipelinesAllRequest$outboundSchema.parse(crmPipelinesAllRequest),
+  );
+}
+
+export function crmPipelinesAllRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<CrmPipelinesAllRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CrmPipelinesAllRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CrmPipelinesAllRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const CrmPipelinesAllResponse$inboundSchema: z.ZodType<
   CrmPipelinesAllResponse,
@@ -212,4 +251,22 @@ export namespace CrmPipelinesAllResponse$ {
   export const outboundSchema = CrmPipelinesAllResponse$outboundSchema;
   /** @deprecated use `CrmPipelinesAllResponse$Outbound` instead. */
   export type Outbound = CrmPipelinesAllResponse$Outbound;
+}
+
+export function crmPipelinesAllResponseToJSON(
+  crmPipelinesAllResponse: CrmPipelinesAllResponse,
+): string {
+  return JSON.stringify(
+    CrmPipelinesAllResponse$outboundSchema.parse(crmPipelinesAllResponse),
+  );
+}
+
+export function crmPipelinesAllResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<CrmPipelinesAllResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CrmPipelinesAllResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CrmPipelinesAllResponse' from JSON`,
+  );
 }

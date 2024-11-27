@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { AccountingLocationInput } from "apideck/models/components";
+import { AccountingLocationInput } from "@apideck/sdk/models/components";
 
 let value: AccountingLocationInput = {
   parentId: "12345",

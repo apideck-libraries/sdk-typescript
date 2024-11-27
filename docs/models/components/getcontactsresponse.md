@@ -5,7 +5,7 @@ Contacts
 ## Example Usage
 
 ```typescript
-import { GetContactsResponse } from "apideck/models/components";
+import { GetContactsResponse } from "@apideck/sdk/models/components";
 
 let value: GetContactsResponse = {
   statusCode: 200,
@@ -104,9 +104,7 @@ let value: GetContactsResponse = {
           id: "2389328923893298",
           name: "employee_level",
           description: "Employee Level",
-          value: [
-            {},
-          ],
+          value: "Uses Salesforce and Marketo",
         },
       ],
       tags: [

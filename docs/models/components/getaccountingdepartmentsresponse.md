@@ -5,7 +5,7 @@ Departments
 ## Example Usage
 
 ```typescript
-import { GetAccountingDepartmentsResponse } from "apideck/models/components";
+import { GetAccountingDepartmentsResponse } from "@apideck/sdk/models/components";
 
 let value: GetAccountingDepartmentsResponse = {
   statusCode: 200,

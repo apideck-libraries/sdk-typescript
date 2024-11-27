@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type OddWeeks = {
   hoursMonday?: number | undefined;
@@ -120,6 +123,20 @@ export namespace OddWeeks$ {
   export type Outbound = OddWeeks$Outbound;
 }
 
+export function oddWeeksToJSON(oddWeeks: OddWeeks): string {
+  return JSON.stringify(OddWeeks$outboundSchema.parse(oddWeeks));
+}
+
+export function oddWeeksFromJSON(
+  jsonString: string,
+): SafeParseResult<OddWeeks, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => OddWeeks$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'OddWeeks' from JSON`,
+  );
+}
+
 /** @internal */
 export const EvenWeeks$inboundSchema: z.ZodType<
   EvenWeeks,
@@ -194,6 +211,20 @@ export namespace EvenWeeks$ {
   export type Outbound = EvenWeeks$Outbound;
 }
 
+export function evenWeeksToJSON(evenWeeks: EvenWeeks): string {
+  return JSON.stringify(EvenWeeks$outboundSchema.parse(evenWeeks));
+}
+
+export function evenWeeksFromJSON(
+  jsonString: string,
+): SafeParseResult<EvenWeeks, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => EvenWeeks$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'EvenWeeks' from JSON`,
+  );
+}
+
 /** @internal */
 export const WorkPattern$inboundSchema: z.ZodType<
   WorkPattern,
@@ -241,6 +272,20 @@ export namespace WorkPattern$ {
   export const outboundSchema = WorkPattern$outboundSchema;
   /** @deprecated use `WorkPattern$Outbound` instead. */
   export type Outbound = WorkPattern$Outbound;
+}
+
+export function workPatternToJSON(workPattern: WorkPattern): string {
+  return JSON.stringify(WorkPattern$outboundSchema.parse(workPattern));
+}
+
+export function workPatternFromJSON(
+  jsonString: string,
+): SafeParseResult<WorkPattern, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => WorkPattern$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'WorkPattern' from JSON`,
+  );
 }
 
 /** @internal */
@@ -298,4 +343,18 @@ export namespace Schedule$ {
   export const outboundSchema = Schedule$outboundSchema;
   /** @deprecated use `Schedule$Outbound` instead. */
   export type Outbound = Schedule$Outbound;
+}
+
+export function scheduleToJSON(schedule: Schedule): string {
+  return JSON.stringify(Schedule$outboundSchema.parse(schedule));
+}
+
+export function scheduleFromJSON(
+  jsonString: string,
+): SafeParseResult<Schedule, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Schedule$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Schedule' from JSON`,
+  );
 }

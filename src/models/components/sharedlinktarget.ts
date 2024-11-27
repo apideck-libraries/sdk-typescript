@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   FileType,
   FileType$inboundSchema,
@@ -64,4 +67,22 @@ export namespace SharedLinkTarget$ {
   export const outboundSchema = SharedLinkTarget$outboundSchema;
   /** @deprecated use `SharedLinkTarget$Outbound` instead. */
   export type Outbound = SharedLinkTarget$Outbound;
+}
+
+export function sharedLinkTargetToJSON(
+  sharedLinkTarget: SharedLinkTarget,
+): string {
+  return JSON.stringify(
+    SharedLinkTarget$outboundSchema.parse(sharedLinkTarget),
+  );
+}
+
+export function sharedLinkTargetFromJSON(
+  jsonString: string,
+): SafeParseResult<SharedLinkTarget, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => SharedLinkTarget$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'SharedLinkTarget' from JSON`,
+  );
 }

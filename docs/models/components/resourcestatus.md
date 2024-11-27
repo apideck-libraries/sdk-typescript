@@ -5,9 +5,9 @@ Status of the resource. Resources with status live or beta are callable.
 ## Example Usage
 
 ```typescript
-import { ResourceStatus } from "apideck/models/components";
+import { ResourceStatus } from "@apideck/sdk/models/components";
 
-let value: ResourceStatus = "considering";
+let value: ResourceStatus = "upcoming";
 ```
 
 ## Values

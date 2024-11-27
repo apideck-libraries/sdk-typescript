@@ -5,7 +5,7 @@ The field on which to sort the Companies
 ## Example Usage
 
 ```typescript
-import { CompaniesSortBy } from "apideck/models/components";
+import { CompaniesSortBy } from "@apideck/sdk/models/components";
 
 let value: CompaniesSortBy = "created_at";
 ```

@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   CustomMapping,
   CustomMapping$inboundSchema,
@@ -74,4 +77,22 @@ export namespace GetCustomMappingsResponse$ {
   export const outboundSchema = GetCustomMappingsResponse$outboundSchema;
   /** @deprecated use `GetCustomMappingsResponse$Outbound` instead. */
   export type Outbound = GetCustomMappingsResponse$Outbound;
+}
+
+export function getCustomMappingsResponseToJSON(
+  getCustomMappingsResponse: GetCustomMappingsResponse,
+): string {
+  return JSON.stringify(
+    GetCustomMappingsResponse$outboundSchema.parse(getCustomMappingsResponse),
+  );
+}
+
+export function getCustomMappingsResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<GetCustomMappingsResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetCustomMappingsResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetCustomMappingsResponse' from JSON`,
+  );
 }

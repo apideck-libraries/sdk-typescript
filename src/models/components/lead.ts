@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   Address,
   Address$inboundSchema,
@@ -303,4 +306,18 @@ export namespace Lead$ {
   export const outboundSchema = Lead$outboundSchema;
   /** @deprecated use `Lead$Outbound` instead. */
   export type Outbound = Lead$Outbound;
+}
+
+export function leadToJSON(lead: Lead): string {
+  return JSON.stringify(Lead$outboundSchema.parse(lead));
+}
+
+export function leadFromJSON(
+  jsonString: string,
+): SafeParseResult<Lead, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Lead$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Lead' from JSON`,
+  );
 }

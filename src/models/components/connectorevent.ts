@@ -4,7 +4,10 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
  * Unify event source
@@ -120,4 +123,18 @@ export namespace ConnectorEvent$ {
   export const outboundSchema = ConnectorEvent$outboundSchema;
   /** @deprecated use `ConnectorEvent$Outbound` instead. */
   export type Outbound = ConnectorEvent$Outbound;
+}
+
+export function connectorEventToJSON(connectorEvent: ConnectorEvent): string {
+  return JSON.stringify(ConnectorEvent$outboundSchema.parse(connectorEvent));
+}
+
+export function connectorEventFromJSON(
+  jsonString: string,
+): SafeParseResult<ConnectorEvent, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ConnectorEvent$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ConnectorEvent' from JSON`,
+  );
 }

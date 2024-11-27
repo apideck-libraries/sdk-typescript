@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   Compensation,
   Compensation$inboundSchema,
@@ -139,4 +142,20 @@ export namespace EmployeePayroll$ {
   export const outboundSchema = EmployeePayroll$outboundSchema;
   /** @deprecated use `EmployeePayroll$Outbound` instead. */
   export type Outbound = EmployeePayroll$Outbound;
+}
+
+export function employeePayrollToJSON(
+  employeePayroll: EmployeePayroll,
+): string {
+  return JSON.stringify(EmployeePayroll$outboundSchema.parse(employeePayroll));
+}
+
+export function employeePayrollFromJSON(
+  jsonString: string,
+): SafeParseResult<EmployeePayroll, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => EmployeePayroll$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'EmployeePayroll' from JSON`,
+  );
 }

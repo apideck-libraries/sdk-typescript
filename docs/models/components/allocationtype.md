@@ -5,9 +5,9 @@ Type of entity this payment should be attributed to.
 ## Example Usage
 
 ```typescript
-import { AllocationType } from "apideck/models/components";
+import { AllocationType } from "@apideck/sdk/models/components";
 
-let value: AllocationType = "invoice";
+let value: AllocationType = "journal_entry";
 ```
 
 ## Values

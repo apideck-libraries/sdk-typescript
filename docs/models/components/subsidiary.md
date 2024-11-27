@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { Subsidiary } from "apideck/models/components";
+import { Subsidiary } from "@apideck/sdk/models/components";
 
 let value: Subsidiary = {
   id: "12345",

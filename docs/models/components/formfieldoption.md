@@ -8,7 +8,10 @@
 ```typescript
 const value: components.SimpleFormFieldOption = {
   label: "General Channel",
-  value: "general",
+  value: [
+    "team",
+    "general",
+  ],
 };
 ```
 

@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   EcommerceCustomer,
   EcommerceCustomer$inboundSchema,
@@ -95,4 +98,24 @@ export namespace GetEcommerceCustomerResponse$ {
   export const outboundSchema = GetEcommerceCustomerResponse$outboundSchema;
   /** @deprecated use `GetEcommerceCustomerResponse$Outbound` instead. */
   export type Outbound = GetEcommerceCustomerResponse$Outbound;
+}
+
+export function getEcommerceCustomerResponseToJSON(
+  getEcommerceCustomerResponse: GetEcommerceCustomerResponse,
+): string {
+  return JSON.stringify(
+    GetEcommerceCustomerResponse$outboundSchema.parse(
+      getEcommerceCustomerResponse,
+    ),
+  );
+}
+
+export function getEcommerceCustomerResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<GetEcommerceCustomerResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetEcommerceCustomerResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetEcommerceCustomerResponse' from JSON`,
+  );
 }

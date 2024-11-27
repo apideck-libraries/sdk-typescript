@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { ConnectorApiResourceCoverageOneGlobals } from "apideck/models/operations";
+import { ConnectorApiResourceCoverageOneGlobals } from "@apideck/sdk/models/operations";
 
 let value: ConnectorApiResourceCoverageOneGlobals = {};
 ```

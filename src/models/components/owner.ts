@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type Owner = {
   /**
@@ -56,4 +59,18 @@ export namespace Owner$ {
   export const outboundSchema = Owner$outboundSchema;
   /** @deprecated use `Owner$Outbound` instead. */
   export type Outbound = Owner$Outbound;
+}
+
+export function ownerToJSON(owner: Owner): string {
+  return JSON.stringify(Owner$outboundSchema.parse(owner));
+}
+
+export function ownerFromJSON(
+  jsonString: string,
+): SafeParseResult<Owner, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Owner$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Owner' from JSON`,
+  );
 }

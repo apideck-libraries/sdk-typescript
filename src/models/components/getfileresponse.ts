@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   UnifiedFile,
   UnifiedFile$inboundSchema,
@@ -95,4 +98,20 @@ export namespace GetFileResponse$ {
   export const outboundSchema = GetFileResponse$outboundSchema;
   /** @deprecated use `GetFileResponse$Outbound` instead. */
   export type Outbound = GetFileResponse$Outbound;
+}
+
+export function getFileResponseToJSON(
+  getFileResponse: GetFileResponse,
+): string {
+  return JSON.stringify(GetFileResponse$outboundSchema.parse(getFileResponse));
+}
+
+export function getFileResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<GetFileResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetFileResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetFileResponse' from JSON`,
+  );
 }

@@ -4,13 +4,16 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type FileStorageDriveGroupsDeleteGlobals = {
   /**
    * ID of the consumer which you want to get or push data from
    */
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   /**
    * The ID of your Unify application
    */
@@ -50,13 +53,13 @@ export const FileStorageDriveGroupsDeleteGlobals$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
 /** @internal */
 export type FileStorageDriveGroupsDeleteGlobals$Outbound = {
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   appId?: string | undefined;
 };
 
@@ -66,7 +69,7 @@ export const FileStorageDriveGroupsDeleteGlobals$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   FileStorageDriveGroupsDeleteGlobals
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
@@ -83,6 +86,27 @@ export namespace FileStorageDriveGroupsDeleteGlobals$ {
     FileStorageDriveGroupsDeleteGlobals$outboundSchema;
   /** @deprecated use `FileStorageDriveGroupsDeleteGlobals$Outbound` instead. */
   export type Outbound = FileStorageDriveGroupsDeleteGlobals$Outbound;
+}
+
+export function fileStorageDriveGroupsDeleteGlobalsToJSON(
+  fileStorageDriveGroupsDeleteGlobals: FileStorageDriveGroupsDeleteGlobals,
+): string {
+  return JSON.stringify(
+    FileStorageDriveGroupsDeleteGlobals$outboundSchema.parse(
+      fileStorageDriveGroupsDeleteGlobals,
+    ),
+  );
+}
+
+export function fileStorageDriveGroupsDeleteGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<FileStorageDriveGroupsDeleteGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      FileStorageDriveGroupsDeleteGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'FileStorageDriveGroupsDeleteGlobals' from JSON`,
+  );
 }
 
 /** @internal */
@@ -127,6 +151,27 @@ export namespace FileStorageDriveGroupsDeleteRequest$ {
     FileStorageDriveGroupsDeleteRequest$outboundSchema;
   /** @deprecated use `FileStorageDriveGroupsDeleteRequest$Outbound` instead. */
   export type Outbound = FileStorageDriveGroupsDeleteRequest$Outbound;
+}
+
+export function fileStorageDriveGroupsDeleteRequestToJSON(
+  fileStorageDriveGroupsDeleteRequest: FileStorageDriveGroupsDeleteRequest,
+): string {
+  return JSON.stringify(
+    FileStorageDriveGroupsDeleteRequest$outboundSchema.parse(
+      fileStorageDriveGroupsDeleteRequest,
+    ),
+  );
+}
+
+export function fileStorageDriveGroupsDeleteRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<FileStorageDriveGroupsDeleteRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      FileStorageDriveGroupsDeleteRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'FileStorageDriveGroupsDeleteRequest' from JSON`,
+  );
 }
 
 /** @internal */
@@ -191,4 +236,25 @@ export namespace FileStorageDriveGroupsDeleteResponse$ {
     FileStorageDriveGroupsDeleteResponse$outboundSchema;
   /** @deprecated use `FileStorageDriveGroupsDeleteResponse$Outbound` instead. */
   export type Outbound = FileStorageDriveGroupsDeleteResponse$Outbound;
+}
+
+export function fileStorageDriveGroupsDeleteResponseToJSON(
+  fileStorageDriveGroupsDeleteResponse: FileStorageDriveGroupsDeleteResponse,
+): string {
+  return JSON.stringify(
+    FileStorageDriveGroupsDeleteResponse$outboundSchema.parse(
+      fileStorageDriveGroupsDeleteResponse,
+    ),
+  );
+}
+
+export function fileStorageDriveGroupsDeleteResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<FileStorageDriveGroupsDeleteResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      FileStorageDriveGroupsDeleteResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'FileStorageDriveGroupsDeleteResponse' from JSON`,
+  );
 }

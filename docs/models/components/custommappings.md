@@ -5,7 +5,7 @@ When custom mappings are configured on the resource, the result is included here
 ## Example Usage
 
 ```typescript
-import { CustomMappings } from "apideck/models/components";
+import { CustomMappings } from "@apideck/sdk/models/components";
 
 let value: CustomMappings = {};
 ```

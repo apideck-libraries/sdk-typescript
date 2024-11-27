@@ -3,8 +3,8 @@
 ## Example Usage
 
 ```typescript
-import { OpportunityInput } from "apideck/models/components";
-import { RFCDate } from "apideck/types";
+import { OpportunityInput } from "@apideck/sdk/models/components";
+import { RFCDate } from "@apideck/sdk/types";
 
 let value: OpportunityInput = {
   title: "New Rocket",
@@ -43,7 +43,9 @@ let value: OpportunityInput = {
       id: "2389328923893298",
       name: "employee_level",
       description: "Employee Level",
-      value: 10,
+      value: [
+        {},
+      ],
     },
   ],
   stageLastChangedAt: new Date("2020-09-30T07:43:32.000Z"),

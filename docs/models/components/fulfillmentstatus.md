@@ -5,7 +5,7 @@ Current fulfillment status of the order.
 ## Example Usage
 
 ```typescript
-import { FulfillmentStatus } from "apideck/models/components";
+import { FulfillmentStatus } from "@apideck/sdk/models/components";
 
 let value: FulfillmentStatus = "shipped";
 ```

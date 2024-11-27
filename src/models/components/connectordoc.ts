@@ -3,7 +3,10 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
  * Audience for the doc.
@@ -135,4 +138,18 @@ export namespace ConnectorDoc$ {
   export const outboundSchema = ConnectorDoc$outboundSchema;
   /** @deprecated use `ConnectorDoc$Outbound` instead. */
   export type Outbound = ConnectorDoc$Outbound;
+}
+
+export function connectorDocToJSON(connectorDoc: ConnectorDoc): string {
+  return JSON.stringify(ConnectorDoc$outboundSchema.parse(connectorDoc));
+}
+
+export function connectorDocFromJSON(
+  jsonString: string,
+): SafeParseResult<ConnectorDoc, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ConnectorDoc$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ConnectorDoc' from JSON`,
+  );
 }

@@ -11,9 +11,15 @@ Contains parameter or domain specific information related to the error and why i
 const value: string = "Missing Header: x-apideck-consumer-id";
 ```
 
-### `components.Two`
+### `{ [k: string]: any }`
 
 ```typescript
-const value: components.Two = {};
+const value: { [k: string]: any } = {
+  "missing": [
+    {
+      "x-apideck-consumer-id": "required",
+    },
+  ],
+};
 ```
 

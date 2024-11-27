@@ -4,13 +4,16 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type FileStorageFilesAllGlobals = {
   /**
    * ID of the consumer which you want to get or push data from
    */
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   /**
    * The ID of your Unify application
    */
@@ -70,13 +73,13 @@ export const FileStorageFilesAllGlobals$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
 /** @internal */
 export type FileStorageFilesAllGlobals$Outbound = {
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   appId?: string | undefined;
 };
 
@@ -86,7 +89,7 @@ export const FileStorageFilesAllGlobals$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   FileStorageFilesAllGlobals
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
@@ -101,6 +104,24 @@ export namespace FileStorageFilesAllGlobals$ {
   export const outboundSchema = FileStorageFilesAllGlobals$outboundSchema;
   /** @deprecated use `FileStorageFilesAllGlobals$Outbound` instead. */
   export type Outbound = FileStorageFilesAllGlobals$Outbound;
+}
+
+export function fileStorageFilesAllGlobalsToJSON(
+  fileStorageFilesAllGlobals: FileStorageFilesAllGlobals,
+): string {
+  return JSON.stringify(
+    FileStorageFilesAllGlobals$outboundSchema.parse(fileStorageFilesAllGlobals),
+  );
+}
+
+export function fileStorageFilesAllGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<FileStorageFilesAllGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => FileStorageFilesAllGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'FileStorageFilesAllGlobals' from JSON`,
+  );
 }
 
 /** @internal */
@@ -168,6 +189,24 @@ export namespace FileStorageFilesAllRequest$ {
   export type Outbound = FileStorageFilesAllRequest$Outbound;
 }
 
+export function fileStorageFilesAllRequestToJSON(
+  fileStorageFilesAllRequest: FileStorageFilesAllRequest,
+): string {
+  return JSON.stringify(
+    FileStorageFilesAllRequest$outboundSchema.parse(fileStorageFilesAllRequest),
+  );
+}
+
+export function fileStorageFilesAllRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<FileStorageFilesAllRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => FileStorageFilesAllRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'FileStorageFilesAllRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const FileStorageFilesAllResponse$inboundSchema: z.ZodType<
   FileStorageFilesAllResponse,
@@ -224,4 +263,24 @@ export namespace FileStorageFilesAllResponse$ {
   export const outboundSchema = FileStorageFilesAllResponse$outboundSchema;
   /** @deprecated use `FileStorageFilesAllResponse$Outbound` instead. */
   export type Outbound = FileStorageFilesAllResponse$Outbound;
+}
+
+export function fileStorageFilesAllResponseToJSON(
+  fileStorageFilesAllResponse: FileStorageFilesAllResponse,
+): string {
+  return JSON.stringify(
+    FileStorageFilesAllResponse$outboundSchema.parse(
+      fileStorageFilesAllResponse,
+    ),
+  );
+}
+
+export function fileStorageFilesAllResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<FileStorageFilesAllResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => FileStorageFilesAllResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'FileStorageFilesAllResponse' from JSON`,
+  );
 }

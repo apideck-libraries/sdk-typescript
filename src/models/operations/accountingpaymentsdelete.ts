@@ -4,13 +4,16 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type AccountingPaymentsDeleteGlobals = {
   /**
    * ID of the consumer which you want to get or push data from
    */
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   /**
    * The ID of your Unify application
    */
@@ -50,13 +53,13 @@ export const AccountingPaymentsDeleteGlobals$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
 /** @internal */
 export type AccountingPaymentsDeleteGlobals$Outbound = {
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   appId?: string | undefined;
 };
 
@@ -66,7 +69,7 @@ export const AccountingPaymentsDeleteGlobals$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   AccountingPaymentsDeleteGlobals
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
@@ -81,6 +84,26 @@ export namespace AccountingPaymentsDeleteGlobals$ {
   export const outboundSchema = AccountingPaymentsDeleteGlobals$outboundSchema;
   /** @deprecated use `AccountingPaymentsDeleteGlobals$Outbound` instead. */
   export type Outbound = AccountingPaymentsDeleteGlobals$Outbound;
+}
+
+export function accountingPaymentsDeleteGlobalsToJSON(
+  accountingPaymentsDeleteGlobals: AccountingPaymentsDeleteGlobals,
+): string {
+  return JSON.stringify(
+    AccountingPaymentsDeleteGlobals$outboundSchema.parse(
+      accountingPaymentsDeleteGlobals,
+    ),
+  );
+}
+
+export function accountingPaymentsDeleteGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<AccountingPaymentsDeleteGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => AccountingPaymentsDeleteGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AccountingPaymentsDeleteGlobals' from JSON`,
+  );
 }
 
 /** @internal */
@@ -123,6 +146,26 @@ export namespace AccountingPaymentsDeleteRequest$ {
   export const outboundSchema = AccountingPaymentsDeleteRequest$outboundSchema;
   /** @deprecated use `AccountingPaymentsDeleteRequest$Outbound` instead. */
   export type Outbound = AccountingPaymentsDeleteRequest$Outbound;
+}
+
+export function accountingPaymentsDeleteRequestToJSON(
+  accountingPaymentsDeleteRequest: AccountingPaymentsDeleteRequest,
+): string {
+  return JSON.stringify(
+    AccountingPaymentsDeleteRequest$outboundSchema.parse(
+      accountingPaymentsDeleteRequest,
+    ),
+  );
+}
+
+export function accountingPaymentsDeleteRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<AccountingPaymentsDeleteRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => AccountingPaymentsDeleteRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AccountingPaymentsDeleteRequest' from JSON`,
+  );
 }
 
 /** @internal */
@@ -183,4 +226,24 @@ export namespace AccountingPaymentsDeleteResponse$ {
   export const outboundSchema = AccountingPaymentsDeleteResponse$outboundSchema;
   /** @deprecated use `AccountingPaymentsDeleteResponse$Outbound` instead. */
   export type Outbound = AccountingPaymentsDeleteResponse$Outbound;
+}
+
+export function accountingPaymentsDeleteResponseToJSON(
+  accountingPaymentsDeleteResponse: AccountingPaymentsDeleteResponse,
+): string {
+  return JSON.stringify(
+    AccountingPaymentsDeleteResponse$outboundSchema.parse(
+      accountingPaymentsDeleteResponse,
+    ),
+  );
+}
+
+export function accountingPaymentsDeleteResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<AccountingPaymentsDeleteResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => AccountingPaymentsDeleteResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AccountingPaymentsDeleteResponse' from JSON`,
+  );
 }

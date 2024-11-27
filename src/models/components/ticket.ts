@@ -4,7 +4,10 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   Assignee,
   Assignee$inboundSchema,
@@ -290,6 +293,20 @@ export namespace Ticket$ {
   export type Outbound = Ticket$Outbound;
 }
 
+export function ticketToJSON(ticket: Ticket): string {
+  return JSON.stringify(Ticket$outboundSchema.parse(ticket));
+}
+
+export function ticketFromJSON(
+  jsonString: string,
+): SafeParseResult<Ticket, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Ticket$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Ticket' from JSON`,
+  );
+}
+
 /** @internal */
 export const TicketInput$inboundSchema: z.ZodType<
   TicketInput,
@@ -365,4 +382,18 @@ export namespace TicketInput$ {
   export const outboundSchema = TicketInput$outboundSchema;
   /** @deprecated use `TicketInput$Outbound` instead. */
   export type Outbound = TicketInput$Outbound;
+}
+
+export function ticketInputToJSON(ticketInput: TicketInput): string {
+  return JSON.stringify(TicketInput$outboundSchema.parse(ticketInput));
+}
+
+export function ticketInputFromJSON(
+  jsonString: string,
+): SafeParseResult<TicketInput, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => TicketInput$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'TicketInput' from JSON`,
+  );
 }

@@ -5,7 +5,7 @@ Email type
 ## Example Usage
 
 ```typescript
-import { EmailType } from "apideck/models/components";
+import { EmailType } from "@apideck/sdk/models/components";
 
 let value: EmailType = "primary";
 ```

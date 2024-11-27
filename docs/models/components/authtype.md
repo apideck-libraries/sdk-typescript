@@ -5,7 +5,7 @@ Type of authorization used by the connector
 ## Example Usage
 
 ```typescript
-import { AuthType } from "apideck/models/components";
+import { AuthType } from "@apideck/sdk/models/components";
 
 let value: AuthType = "oauth2";
 ```

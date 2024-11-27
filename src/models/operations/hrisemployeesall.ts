@@ -4,13 +4,16 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type HrisEmployeesAllGlobals = {
   /**
    * ID of the consumer which you want to get or push data from
    */
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   /**
    * The ID of your Unify application
    */
@@ -70,13 +73,13 @@ export const HrisEmployeesAllGlobals$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
 /** @internal */
 export type HrisEmployeesAllGlobals$Outbound = {
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   appId?: string | undefined;
 };
 
@@ -86,7 +89,7 @@ export const HrisEmployeesAllGlobals$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   HrisEmployeesAllGlobals
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
@@ -101,6 +104,24 @@ export namespace HrisEmployeesAllGlobals$ {
   export const outboundSchema = HrisEmployeesAllGlobals$outboundSchema;
   /** @deprecated use `HrisEmployeesAllGlobals$Outbound` instead. */
   export type Outbound = HrisEmployeesAllGlobals$Outbound;
+}
+
+export function hrisEmployeesAllGlobalsToJSON(
+  hrisEmployeesAllGlobals: HrisEmployeesAllGlobals,
+): string {
+  return JSON.stringify(
+    HrisEmployeesAllGlobals$outboundSchema.parse(hrisEmployeesAllGlobals),
+  );
+}
+
+export function hrisEmployeesAllGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<HrisEmployeesAllGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => HrisEmployeesAllGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'HrisEmployeesAllGlobals' from JSON`,
+  );
 }
 
 /** @internal */
@@ -168,6 +189,24 @@ export namespace HrisEmployeesAllRequest$ {
   export type Outbound = HrisEmployeesAllRequest$Outbound;
 }
 
+export function hrisEmployeesAllRequestToJSON(
+  hrisEmployeesAllRequest: HrisEmployeesAllRequest,
+): string {
+  return JSON.stringify(
+    HrisEmployeesAllRequest$outboundSchema.parse(hrisEmployeesAllRequest),
+  );
+}
+
+export function hrisEmployeesAllRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<HrisEmployeesAllRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => HrisEmployeesAllRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'HrisEmployeesAllRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const HrisEmployeesAllResponse$inboundSchema: z.ZodType<
   HrisEmployeesAllResponse,
@@ -226,4 +265,22 @@ export namespace HrisEmployeesAllResponse$ {
   export const outboundSchema = HrisEmployeesAllResponse$outboundSchema;
   /** @deprecated use `HrisEmployeesAllResponse$Outbound` instead. */
   export type Outbound = HrisEmployeesAllResponse$Outbound;
+}
+
+export function hrisEmployeesAllResponseToJSON(
+  hrisEmployeesAllResponse: HrisEmployeesAllResponse,
+): string {
+  return JSON.stringify(
+    HrisEmployeesAllResponse$outboundSchema.parse(hrisEmployeesAllResponse),
+  );
+}
+
+export function hrisEmployeesAllResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<HrisEmployeesAllResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => HrisEmployeesAllResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'HrisEmployeesAllResponse' from JSON`,
+  );
 }

@@ -5,7 +5,7 @@ Employment status to filter on
 ## Example Usage
 
 ```typescript
-import { EmployeesFilterEmploymentStatus } from "apideck/models/components";
+import { EmployeesFilterEmploymentStatus } from "@apideck/sdk/models/components";
 
 let value: EmployeesFilterEmploymentStatus = "active";
 ```

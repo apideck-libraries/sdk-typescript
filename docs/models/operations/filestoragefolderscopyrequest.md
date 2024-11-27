@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { FileStorageFoldersCopyRequest } from "apideck/models/operations";
+import { FileStorageFoldersCopyRequest } from "@apideck/sdk/models/operations";
 
 let value: FileStorageFoldersCopyRequest = {
   id: "<id>",

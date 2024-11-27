@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { FileStorageDrivesAddResponse } from "apideck/models/operations";
+import { FileStorageDrivesAddResponse } from "@apideck/sdk/models/operations";
 
 let value: FileStorageDrivesAddResponse = {
   httpMeta: {
@@ -27,7 +27,13 @@ let value: FileStorageDrivesAddResponse = {
     error: "Bad Request",
     typeName: "RequestHeadersValidationError",
     message: "Invalid Params",
-    detail: {},
+    detail: {
+      "missing": [
+        {
+          "x-apideck-consumer-id": "required",
+        },
+      ],
+    },
     ref: "https://developers.apideck.com/errors#unauthorizederror",
   },
 };

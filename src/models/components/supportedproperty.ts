@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type SupportedProperty = {
   /**
@@ -65,4 +68,22 @@ export namespace SupportedProperty$ {
   export const outboundSchema = SupportedProperty$outboundSchema;
   /** @deprecated use `SupportedProperty$Outbound` instead. */
   export type Outbound = SupportedProperty$Outbound;
+}
+
+export function supportedPropertyToJSON(
+  supportedProperty: SupportedProperty,
+): string {
+  return JSON.stringify(
+    SupportedProperty$outboundSchema.parse(supportedProperty),
+  );
+}
+
+export function supportedPropertyFromJSON(
+  jsonString: string,
+): SafeParseResult<SupportedProperty, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => SupportedProperty$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'SupportedProperty' from JSON`,
+  );
 }

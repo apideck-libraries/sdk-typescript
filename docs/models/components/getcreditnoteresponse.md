@@ -5,7 +5,7 @@ Credit Note
 ## Example Usage
 
 ```typescript
-import { GetCreditNoteResponse } from "apideck/models/components";
+import { GetCreditNoteResponse } from "@apideck/sdk/models/components";
 
 let value: GetCreditNoteResponse = {
   statusCode: 200,
@@ -90,7 +90,9 @@ let value: GetCreditNoteResponse = {
             id: "2389328923893298",
             name: "employee_level",
             description: "Employee Level",
-            value: 10,
+            value: [
+              "<value>",
+            ],
           },
         ],
         rowVersion: "1-12345",
@@ -173,7 +175,9 @@ let value: GetCreditNoteResponse = {
         id: "2389328923893298",
         name: "employee_level",
         description: "Employee Level",
-        value: {},
+        value: [
+          "<value>",
+        ],
       },
     ],
     rowVersion: "1-12345",

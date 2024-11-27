@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { WebhookSubscription } from "apideck/models/components";
+import { WebhookSubscription } from "@apideck/sdk/models/components";
 
 let value: WebhookSubscription = {
   downstreamId: "5f5f5f5f5f5f5f5f5f5f5f5f",

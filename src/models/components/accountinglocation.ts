@@ -4,7 +4,10 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   Address,
   Address$inboundSchema,
@@ -256,6 +259,24 @@ export namespace AccountingLocation$ {
   export type Outbound = AccountingLocation$Outbound;
 }
 
+export function accountingLocationToJSON(
+  accountingLocation: AccountingLocation,
+): string {
+  return JSON.stringify(
+    AccountingLocation$outboundSchema.parse(accountingLocation),
+  );
+}
+
+export function accountingLocationFromJSON(
+  jsonString: string,
+): SafeParseResult<AccountingLocation, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => AccountingLocation$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AccountingLocation' from JSON`,
+  );
+}
+
 /** @internal */
 export const AccountingLocationInput$inboundSchema: z.ZodType<
   AccountingLocationInput,
@@ -327,4 +348,22 @@ export namespace AccountingLocationInput$ {
   export const outboundSchema = AccountingLocationInput$outboundSchema;
   /** @deprecated use `AccountingLocationInput$Outbound` instead. */
   export type Outbound = AccountingLocationInput$Outbound;
+}
+
+export function accountingLocationInputToJSON(
+  accountingLocationInput: AccountingLocationInput,
+): string {
+  return JSON.stringify(
+    AccountingLocationInput$outboundSchema.parse(accountingLocationInput),
+  );
+}
+
+export function accountingLocationInputFromJSON(
+  jsonString: string,
+): SafeParseResult<AccountingLocationInput, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => AccountingLocationInput$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AccountingLocationInput' from JSON`,
+  );
 }

@@ -4,13 +4,16 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type AccountingExpensesDeleteGlobals = {
   /**
    * ID of the consumer which you want to get or push data from
    */
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   /**
    * The ID of your Unify application
    */
@@ -50,13 +53,13 @@ export const AccountingExpensesDeleteGlobals$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
 /** @internal */
 export type AccountingExpensesDeleteGlobals$Outbound = {
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   appId?: string | undefined;
 };
 
@@ -66,7 +69,7 @@ export const AccountingExpensesDeleteGlobals$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   AccountingExpensesDeleteGlobals
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
@@ -81,6 +84,26 @@ export namespace AccountingExpensesDeleteGlobals$ {
   export const outboundSchema = AccountingExpensesDeleteGlobals$outboundSchema;
   /** @deprecated use `AccountingExpensesDeleteGlobals$Outbound` instead. */
   export type Outbound = AccountingExpensesDeleteGlobals$Outbound;
+}
+
+export function accountingExpensesDeleteGlobalsToJSON(
+  accountingExpensesDeleteGlobals: AccountingExpensesDeleteGlobals,
+): string {
+  return JSON.stringify(
+    AccountingExpensesDeleteGlobals$outboundSchema.parse(
+      accountingExpensesDeleteGlobals,
+    ),
+  );
+}
+
+export function accountingExpensesDeleteGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<AccountingExpensesDeleteGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => AccountingExpensesDeleteGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AccountingExpensesDeleteGlobals' from JSON`,
+  );
 }
 
 /** @internal */
@@ -123,6 +146,26 @@ export namespace AccountingExpensesDeleteRequest$ {
   export const outboundSchema = AccountingExpensesDeleteRequest$outboundSchema;
   /** @deprecated use `AccountingExpensesDeleteRequest$Outbound` instead. */
   export type Outbound = AccountingExpensesDeleteRequest$Outbound;
+}
+
+export function accountingExpensesDeleteRequestToJSON(
+  accountingExpensesDeleteRequest: AccountingExpensesDeleteRequest,
+): string {
+  return JSON.stringify(
+    AccountingExpensesDeleteRequest$outboundSchema.parse(
+      accountingExpensesDeleteRequest,
+    ),
+  );
+}
+
+export function accountingExpensesDeleteRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<AccountingExpensesDeleteRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => AccountingExpensesDeleteRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AccountingExpensesDeleteRequest' from JSON`,
+  );
 }
 
 /** @internal */
@@ -183,4 +226,24 @@ export namespace AccountingExpensesDeleteResponse$ {
   export const outboundSchema = AccountingExpensesDeleteResponse$outboundSchema;
   /** @deprecated use `AccountingExpensesDeleteResponse$Outbound` instead. */
   export type Outbound = AccountingExpensesDeleteResponse$Outbound;
+}
+
+export function accountingExpensesDeleteResponseToJSON(
+  accountingExpensesDeleteResponse: AccountingExpensesDeleteResponse,
+): string {
+  return JSON.stringify(
+    AccountingExpensesDeleteResponse$outboundSchema.parse(
+      accountingExpensesDeleteResponse,
+    ),
+  );
+}
+
+export function accountingExpensesDeleteResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<AccountingExpensesDeleteResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => AccountingExpensesDeleteResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AccountingExpensesDeleteResponse' from JSON`,
+  );
 }

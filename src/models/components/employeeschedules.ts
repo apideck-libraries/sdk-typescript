@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   Employee,
   Employee$inboundSchema,
@@ -58,4 +61,22 @@ export namespace EmployeeSchedules$ {
   export const outboundSchema = EmployeeSchedules$outboundSchema;
   /** @deprecated use `EmployeeSchedules$Outbound` instead. */
   export type Outbound = EmployeeSchedules$Outbound;
+}
+
+export function employeeSchedulesToJSON(
+  employeeSchedules: EmployeeSchedules,
+): string {
+  return JSON.stringify(
+    EmployeeSchedules$outboundSchema.parse(employeeSchedules),
+  );
+}
+
+export function employeeSchedulesFromJSON(
+  jsonString: string,
+): SafeParseResult<EmployeeSchedules, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => EmployeeSchedules$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'EmployeeSchedules' from JSON`,
+  );
 }

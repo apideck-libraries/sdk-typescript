@@ -92,7 +92,7 @@ export async function vaultConnectionSettingsUpdate(
     ),
     "x-apideck-consumer-id": encodeSimple(
       "x-apideck-consumer-id",
-      client._options.customerId,
+      client._options.consumerId,
       { explode: false, charEncoding: "none" },
     ),
   });

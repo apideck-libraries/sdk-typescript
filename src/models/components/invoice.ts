@@ -4,8 +4,11 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import { RFCDate } from "../../types/rfcdate.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   Address,
   Address$inboundSchema,
@@ -731,6 +734,20 @@ export namespace Invoice$ {
   export type Outbound = Invoice$Outbound;
 }
 
+export function invoiceToJSON(invoice: Invoice): string {
+  return JSON.stringify(Invoice$outboundSchema.parse(invoice));
+}
+
+export function invoiceFromJSON(
+  jsonString: string,
+): SafeParseResult<Invoice, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Invoice$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Invoice' from JSON`,
+  );
+}
+
 /** @internal */
 export const InvoiceInput$inboundSchema: z.ZodType<
   InvoiceInput,
@@ -952,4 +969,18 @@ export namespace InvoiceInput$ {
   export const outboundSchema = InvoiceInput$outboundSchema;
   /** @deprecated use `InvoiceInput$Outbound` instead. */
   export type Outbound = InvoiceInput$Outbound;
+}
+
+export function invoiceInputToJSON(invoiceInput: InvoiceInput): string {
+  return JSON.stringify(InvoiceInput$outboundSchema.parse(invoiceInput));
+}
+
+export function invoiceInputFromJSON(
+  jsonString: string,
+): SafeParseResult<InvoiceInput, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => InvoiceInput$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'InvoiceInput' from JSON`,
+  );
 }

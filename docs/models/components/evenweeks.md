@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { EvenWeeks } from "apideck/models/components";
+import { EvenWeeks } from "@apideck/sdk/models/components";
 
 let value: EvenWeeks = {
   hoursMonday: 8,

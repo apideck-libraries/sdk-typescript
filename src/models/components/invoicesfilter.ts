@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type InvoicesFilter = {
   updatedSince?: Date | undefined;
@@ -68,4 +71,18 @@ export namespace InvoicesFilter$ {
   export const outboundSchema = InvoicesFilter$outboundSchema;
   /** @deprecated use `InvoicesFilter$Outbound` instead. */
   export type Outbound = InvoicesFilter$Outbound;
+}
+
+export function invoicesFilterToJSON(invoicesFilter: InvoicesFilter): string {
+  return JSON.stringify(InvoicesFilter$outboundSchema.parse(invoicesFilter));
+}
+
+export function invoicesFilterFromJSON(
+  jsonString: string,
+): SafeParseResult<InvoicesFilter, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => InvoicesFilter$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'InvoicesFilter' from JSON`,
+  );
 }

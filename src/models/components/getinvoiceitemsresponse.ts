@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   InvoiceItem,
   InvoiceItem$inboundSchema,
@@ -121,4 +124,22 @@ export namespace GetInvoiceItemsResponse$ {
   export const outboundSchema = GetInvoiceItemsResponse$outboundSchema;
   /** @deprecated use `GetInvoiceItemsResponse$Outbound` instead. */
   export type Outbound = GetInvoiceItemsResponse$Outbound;
+}
+
+export function getInvoiceItemsResponseToJSON(
+  getInvoiceItemsResponse: GetInvoiceItemsResponse,
+): string {
+  return JSON.stringify(
+    GetInvoiceItemsResponse$outboundSchema.parse(getInvoiceItemsResponse),
+  );
+}
+
+export function getInvoiceItemsResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<GetInvoiceItemsResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetInvoiceItemsResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetInvoiceItemsResponse' from JSON`,
+  );
 }

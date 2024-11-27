@@ -5,7 +5,7 @@ Webhooks
 ## Example Usage
 
 ```typescript
-import { DeleteWebhookResponse } from "apideck/models/components";
+import { DeleteWebhookResponse } from "@apideck/sdk/models/components";
 
 let value: DeleteWebhookResponse = {
   statusCode: 200,

@@ -5,7 +5,7 @@ Name of Apideck Unified API
 ## Example Usage
 
 ```typescript
-import { UnifiedApiId } from "apideck/models/components";
+import { UnifiedApiId } from "@apideck/sdk/models/components";
 
 let value: UnifiedApiId = "crm";
 ```

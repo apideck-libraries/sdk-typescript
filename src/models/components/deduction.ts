@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type Deduction = {
   /**
@@ -52,4 +55,18 @@ export namespace Deduction$ {
   export const outboundSchema = Deduction$outboundSchema;
   /** @deprecated use `Deduction$Outbound` instead. */
   export type Outbound = Deduction$Outbound;
+}
+
+export function deductionToJSON(deduction: Deduction): string {
+  return JSON.stringify(Deduction$outboundSchema.parse(deduction));
+}
+
+export function deductionFromJSON(
+  jsonString: string,
+): SafeParseResult<Deduction, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Deduction$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Deduction' from JSON`,
+  );
 }

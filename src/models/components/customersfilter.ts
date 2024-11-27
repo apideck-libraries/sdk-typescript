@@ -4,7 +4,10 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
  * Status of customer to filter on
@@ -139,4 +142,20 @@ export namespace CustomersFilter$ {
   export const outboundSchema = CustomersFilter$outboundSchema;
   /** @deprecated use `CustomersFilter$Outbound` instead. */
   export type Outbound = CustomersFilter$Outbound;
+}
+
+export function customersFilterToJSON(
+  customersFilter: CustomersFilter,
+): string {
+  return JSON.stringify(CustomersFilter$outboundSchema.parse(customersFilter));
+}
+
+export function customersFilterFromJSON(
+  jsonString: string,
+): SafeParseResult<CustomersFilter, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CustomersFilter$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CustomersFilter' from JSON`,
+  );
 }

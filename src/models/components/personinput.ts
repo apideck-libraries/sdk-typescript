@@ -4,7 +4,10 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import { RFCDate } from "../../types/rfcdate.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   Gender,
   Gender$inboundSchema,
@@ -110,4 +113,18 @@ export namespace PersonInput$ {
   export const outboundSchema = PersonInput$outboundSchema;
   /** @deprecated use `PersonInput$Outbound` instead. */
   export type Outbound = PersonInput$Outbound;
+}
+
+export function personInputToJSON(personInput: PersonInput): string {
+  return JSON.stringify(PersonInput$outboundSchema.parse(personInput));
+}
+
+export function personInputFromJSON(
+  jsonString: string,
+): SafeParseResult<PersonInput, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => PersonInput$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'PersonInput' from JSON`,
+  );
 }

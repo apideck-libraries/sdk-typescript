@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { ConnectionConfiguration } from "apideck/models/components";
+import { ConnectionConfiguration } from "@apideck/sdk/models/components";
 
 let value: ConnectionConfiguration = {
   resource: "leads",
@@ -12,17 +12,14 @@ let value: ConnectionConfiguration = {
       id: "ProductInterest",
       options: [
         {
-          id: "1234",
           label: "General Channel",
-          options: [
-            {
-              label: "General Channel",
-              value: "general",
-            },
+          value: [
+            "team",
+            "general",
           ],
         },
       ],
-      value: true,
+      value: 10,
     },
   ],
 };

@@ -4,13 +4,16 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type AccountingAttachmentsOneGlobals = {
   /**
    * ID of the consumer which you want to get or push data from
    */
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   /**
    * The ID of your Unify application
    */
@@ -62,13 +65,13 @@ export const AccountingAttachmentsOneGlobals$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
 /** @internal */
 export type AccountingAttachmentsOneGlobals$Outbound = {
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   appId?: string | undefined;
 };
 
@@ -78,7 +81,7 @@ export const AccountingAttachmentsOneGlobals$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   AccountingAttachmentsOneGlobals
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
@@ -93,6 +96,26 @@ export namespace AccountingAttachmentsOneGlobals$ {
   export const outboundSchema = AccountingAttachmentsOneGlobals$outboundSchema;
   /** @deprecated use `AccountingAttachmentsOneGlobals$Outbound` instead. */
   export type Outbound = AccountingAttachmentsOneGlobals$Outbound;
+}
+
+export function accountingAttachmentsOneGlobalsToJSON(
+  accountingAttachmentsOneGlobals: AccountingAttachmentsOneGlobals,
+): string {
+  return JSON.stringify(
+    AccountingAttachmentsOneGlobals$outboundSchema.parse(
+      accountingAttachmentsOneGlobals,
+    ),
+  );
+}
+
+export function accountingAttachmentsOneGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<AccountingAttachmentsOneGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => AccountingAttachmentsOneGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AccountingAttachmentsOneGlobals' from JSON`,
+  );
 }
 
 /** @internal */
@@ -156,6 +179,26 @@ export namespace AccountingAttachmentsOneRequest$ {
   export type Outbound = AccountingAttachmentsOneRequest$Outbound;
 }
 
+export function accountingAttachmentsOneRequestToJSON(
+  accountingAttachmentsOneRequest: AccountingAttachmentsOneRequest,
+): string {
+  return JSON.stringify(
+    AccountingAttachmentsOneRequest$outboundSchema.parse(
+      accountingAttachmentsOneRequest,
+    ),
+  );
+}
+
+export function accountingAttachmentsOneRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<AccountingAttachmentsOneRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => AccountingAttachmentsOneRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AccountingAttachmentsOneRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const AccountingAttachmentsOneResponse$inboundSchema: z.ZodType<
   AccountingAttachmentsOneResponse,
@@ -214,4 +257,24 @@ export namespace AccountingAttachmentsOneResponse$ {
   export const outboundSchema = AccountingAttachmentsOneResponse$outboundSchema;
   /** @deprecated use `AccountingAttachmentsOneResponse$Outbound` instead. */
   export type Outbound = AccountingAttachmentsOneResponse$Outbound;
+}
+
+export function accountingAttachmentsOneResponseToJSON(
+  accountingAttachmentsOneResponse: AccountingAttachmentsOneResponse,
+): string {
+  return JSON.stringify(
+    AccountingAttachmentsOneResponse$outboundSchema.parse(
+      accountingAttachmentsOneResponse,
+    ),
+  );
+}
+
+export function accountingAttachmentsOneResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<AccountingAttachmentsOneResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => AccountingAttachmentsOneResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AccountingAttachmentsOneResponse' from JSON`,
+  );
 }

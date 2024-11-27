@@ -5,7 +5,7 @@ The field on which to sort the Collections
 ## Example Usage
 
 ```typescript
-import { CollectionsSortBy } from "apideck/models/components";
+import { CollectionsSortBy } from "@apideck/sdk/models/components";
 
 let value: CollectionsSortBy = "name";
 ```

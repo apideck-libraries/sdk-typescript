@@ -3,7 +3,10 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   SortDirection,
   SortDirection$inboundSchema,
@@ -95,4 +98,22 @@ export namespace OpportunitiesSort$ {
   export const outboundSchema = OpportunitiesSort$outboundSchema;
   /** @deprecated use `OpportunitiesSort$Outbound` instead. */
   export type Outbound = OpportunitiesSort$Outbound;
+}
+
+export function opportunitiesSortToJSON(
+  opportunitiesSort: OpportunitiesSort,
+): string {
+  return JSON.stringify(
+    OpportunitiesSort$outboundSchema.parse(opportunitiesSort),
+  );
+}
+
+export function opportunitiesSortFromJSON(
+  jsonString: string,
+): SafeParseResult<OpportunitiesSort, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => OpportunitiesSort$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'OpportunitiesSort' from JSON`,
+  );
 }

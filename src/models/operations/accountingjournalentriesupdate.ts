@@ -4,13 +4,16 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type AccountingJournalEntriesUpdateGlobals = {
   /**
    * ID of the consumer which you want to get or push data from
    */
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   /**
    * The ID of your Unify application
    */
@@ -53,13 +56,13 @@ export const AccountingJournalEntriesUpdateGlobals$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
 /** @internal */
 export type AccountingJournalEntriesUpdateGlobals$Outbound = {
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   appId?: string | undefined;
 };
 
@@ -69,7 +72,7 @@ export const AccountingJournalEntriesUpdateGlobals$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   AccountingJournalEntriesUpdateGlobals
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
@@ -86,6 +89,27 @@ export namespace AccountingJournalEntriesUpdateGlobals$ {
     AccountingJournalEntriesUpdateGlobals$outboundSchema;
   /** @deprecated use `AccountingJournalEntriesUpdateGlobals$Outbound` instead. */
   export type Outbound = AccountingJournalEntriesUpdateGlobals$Outbound;
+}
+
+export function accountingJournalEntriesUpdateGlobalsToJSON(
+  accountingJournalEntriesUpdateGlobals: AccountingJournalEntriesUpdateGlobals,
+): string {
+  return JSON.stringify(
+    AccountingJournalEntriesUpdateGlobals$outboundSchema.parse(
+      accountingJournalEntriesUpdateGlobals,
+    ),
+  );
+}
+
+export function accountingJournalEntriesUpdateGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<AccountingJournalEntriesUpdateGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      AccountingJournalEntriesUpdateGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AccountingJournalEntriesUpdateGlobals' from JSON`,
+  );
 }
 
 /** @internal */
@@ -141,6 +165,27 @@ export namespace AccountingJournalEntriesUpdateRequest$ {
     AccountingJournalEntriesUpdateRequest$outboundSchema;
   /** @deprecated use `AccountingJournalEntriesUpdateRequest$Outbound` instead. */
   export type Outbound = AccountingJournalEntriesUpdateRequest$Outbound;
+}
+
+export function accountingJournalEntriesUpdateRequestToJSON(
+  accountingJournalEntriesUpdateRequest: AccountingJournalEntriesUpdateRequest,
+): string {
+  return JSON.stringify(
+    AccountingJournalEntriesUpdateRequest$outboundSchema.parse(
+      accountingJournalEntriesUpdateRequest,
+    ),
+  );
+}
+
+export function accountingJournalEntriesUpdateRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<AccountingJournalEntriesUpdateRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      AccountingJournalEntriesUpdateRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AccountingJournalEntriesUpdateRequest' from JSON`,
+  );
 }
 
 /** @internal */
@@ -205,4 +250,26 @@ export namespace AccountingJournalEntriesUpdateResponse$ {
     AccountingJournalEntriesUpdateResponse$outboundSchema;
   /** @deprecated use `AccountingJournalEntriesUpdateResponse$Outbound` instead. */
   export type Outbound = AccountingJournalEntriesUpdateResponse$Outbound;
+}
+
+export function accountingJournalEntriesUpdateResponseToJSON(
+  accountingJournalEntriesUpdateResponse:
+    AccountingJournalEntriesUpdateResponse,
+): string {
+  return JSON.stringify(
+    AccountingJournalEntriesUpdateResponse$outboundSchema.parse(
+      accountingJournalEntriesUpdateResponse,
+    ),
+  );
+}
+
+export function accountingJournalEntriesUpdateResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<AccountingJournalEntriesUpdateResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      AccountingJournalEntriesUpdateResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AccountingJournalEntriesUpdateResponse' from JSON`,
+  );
 }

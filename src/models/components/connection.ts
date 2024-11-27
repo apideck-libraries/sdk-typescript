@@ -4,7 +4,10 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   AuthType,
   AuthType$inboundSchema,
@@ -303,6 +306,20 @@ export namespace Value5$ {
   export type Outbound = Value5$Outbound;
 }
 
+export function value5ToJSON(value5: Value5): string {
+  return JSON.stringify(Value5$outboundSchema.parse(value5));
+}
+
+export function value5FromJSON(
+  jsonString: string,
+): SafeParseResult<Value5, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Value5$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Value5' from JSON`,
+  );
+}
+
 /** @internal */
 export const ConnectionValue$inboundSchema: z.ZodType<
   ConnectionValue,
@@ -348,6 +365,22 @@ export namespace ConnectionValue$ {
   export const outboundSchema = ConnectionValue$outboundSchema;
   /** @deprecated use `ConnectionValue$Outbound` instead. */
   export type Outbound = ConnectionValue$Outbound;
+}
+
+export function connectionValueToJSON(
+  connectionValue: ConnectionValue,
+): string {
+  return JSON.stringify(ConnectionValue$outboundSchema.parse(connectionValue));
+}
+
+export function connectionValueFromJSON(
+  jsonString: string,
+): SafeParseResult<ConnectionValue, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ConnectionValue$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ConnectionValue' from JSON`,
+  );
 }
 
 /** @internal */
@@ -413,6 +446,20 @@ export namespace Defaults$ {
   export type Outbound = Defaults$Outbound;
 }
 
+export function defaultsToJSON(defaults: Defaults): string {
+  return JSON.stringify(Defaults$outboundSchema.parse(defaults));
+}
+
+export function defaultsFromJSON(
+  jsonString: string,
+): SafeParseResult<Defaults, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Defaults$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Defaults' from JSON`,
+  );
+}
+
 /** @internal */
 export const Configuration$inboundSchema: z.ZodType<
   Configuration,
@@ -450,6 +497,20 @@ export namespace Configuration$ {
   export const outboundSchema = Configuration$outboundSchema;
   /** @deprecated use `Configuration$Outbound` instead. */
   export type Outbound = Configuration$Outbound;
+}
+
+export function configurationToJSON(configuration: Configuration): string {
+  return JSON.stringify(Configuration$outboundSchema.parse(configuration));
+}
+
+export function configurationFromJSON(
+  jsonString: string,
+): SafeParseResult<Configuration, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Configuration$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Configuration' from JSON`,
+  );
 }
 
 /** @internal */
@@ -622,6 +683,20 @@ export namespace Connection$ {
   export type Outbound = Connection$Outbound;
 }
 
+export function connectionToJSON(connection: Connection): string {
+  return JSON.stringify(Connection$outboundSchema.parse(connection));
+}
+
+export function connectionFromJSON(
+  jsonString: string,
+): SafeParseResult<Connection, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Connection$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Connection' from JSON`,
+  );
+}
+
 /** @internal */
 export const ConnectionDefaults$inboundSchema: z.ZodType<
   ConnectionDefaults,
@@ -682,6 +757,24 @@ export namespace ConnectionDefaults$ {
   export type Outbound = ConnectionDefaults$Outbound;
 }
 
+export function connectionDefaultsToJSON(
+  connectionDefaults: ConnectionDefaults,
+): string {
+  return JSON.stringify(
+    ConnectionDefaults$outboundSchema.parse(connectionDefaults),
+  );
+}
+
+export function connectionDefaultsFromJSON(
+  jsonString: string,
+): SafeParseResult<ConnectionDefaults, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ConnectionDefaults$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ConnectionDefaults' from JSON`,
+  );
+}
+
 /** @internal */
 export const ConnectionConfiguration$inboundSchema: z.ZodType<
   ConnectionConfiguration,
@@ -719,6 +812,24 @@ export namespace ConnectionConfiguration$ {
   export const outboundSchema = ConnectionConfiguration$outboundSchema;
   /** @deprecated use `ConnectionConfiguration$Outbound` instead. */
   export type Outbound = ConnectionConfiguration$Outbound;
+}
+
+export function connectionConfigurationToJSON(
+  connectionConfiguration: ConnectionConfiguration,
+): string {
+  return JSON.stringify(
+    ConnectionConfiguration$outboundSchema.parse(connectionConfiguration),
+  );
+}
+
+export function connectionConfigurationFromJSON(
+  jsonString: string,
+): SafeParseResult<ConnectionConfiguration, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ConnectionConfiguration$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ConnectionConfiguration' from JSON`,
+  );
 }
 
 /** @internal */
@@ -777,4 +888,20 @@ export namespace ConnectionInput$ {
   export const outboundSchema = ConnectionInput$outboundSchema;
   /** @deprecated use `ConnectionInput$Outbound` instead. */
   export type Outbound = ConnectionInput$Outbound;
+}
+
+export function connectionInputToJSON(
+  connectionInput: ConnectionInput,
+): string {
+  return JSON.stringify(ConnectionInput$outboundSchema.parse(connectionInput));
+}
+
+export function connectionInputFromJSON(
+  jsonString: string,
+): SafeParseResult<ConnectionInput, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ConnectionInput$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ConnectionInput' from JSON`,
+  );
 }

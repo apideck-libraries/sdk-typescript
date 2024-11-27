@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { DrivesFilter } from "apideck/models/components";
+import { DrivesFilter } from "@apideck/sdk/models/components";
 
 let value: DrivesFilter = {
   groupId: "1234",

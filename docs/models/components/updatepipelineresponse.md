@@ -5,7 +5,7 @@ Pipeline updated
 ## Example Usage
 
 ```typescript
-import { UpdatePipelineResponse } from "apideck/models/components";
+import { UpdatePipelineResponse } from "@apideck/sdk/models/components";
 
 let value: UpdatePipelineResponse = {
   statusCode: 200,

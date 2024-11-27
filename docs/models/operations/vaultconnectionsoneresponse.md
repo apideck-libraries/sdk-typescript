@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { VaultConnectionsOneResponse } from "apideck/models/operations";
+import { VaultConnectionsOneResponse } from "@apideck/sdk/models/operations";
 
 let value: VaultConnectionsOneResponse = {
   httpMeta: {
@@ -52,45 +52,21 @@ let value: VaultConnectionsOneResponse = {
           id: "instance_url",
           label: "Instance url",
           placeholder: "",
-          description: "Slack channel to push notification to",
           type: "text",
           required: true,
           customField: false,
-          allowCustomValues: false,
           disabled: false,
-          hidden: false,
-          deprecated: false,
           sensitive: false,
-          prefix: "https://",
-          suffix: ".shopify.com",
-          options: [
-            {
-              label: "General Channel",
-              value: "general",
-            },
-          ],
         },
         {
           id: "api_key",
           label: "API Key",
           placeholder: "",
-          description: "Slack channel to push notification to",
           type: "text",
           required: true,
           customField: false,
-          allowCustomValues: false,
           disabled: false,
-          hidden: false,
-          deprecated: false,
           sensitive: true,
-          prefix: "https://",
-          suffix: ".shopify.com",
-          options: [
-            {
-              label: "General Channel",
-              value: "general",
-            },
-          ],
         },
       ],
       configuration: [
@@ -102,17 +78,11 @@ let value: VaultConnectionsOneResponse = {
               id: "ProductInterest",
               options: [
                 {
-                  id: "1234",
                   label: "General Channel",
-                  options: [
-                    {
-                      label: "General Channel",
-                      value: 12.5,
-                    },
-                  ],
+                  value: "general",
                 },
               ],
-              value: true,
+              value: "GC5000 series",
             },
           ],
         },
@@ -170,7 +140,13 @@ let value: VaultConnectionsOneResponse = {
     error: "Bad Request",
     typeName: "RequestHeadersValidationError",
     message: "Invalid Params",
-    detail: "Missing Header: x-apideck-consumer-id",
+    detail: {
+      "missing": [
+        {
+          "x-apideck-consumer-id": "required",
+        },
+      ],
+    },
     ref: "https://developers.apideck.com/errors#unauthorizederror",
   },
 };

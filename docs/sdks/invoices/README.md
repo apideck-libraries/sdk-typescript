@@ -18,11 +18,11 @@ List Invoices
 ### Example Usage
 
 ```typescript
-import { Apideck } from "apideck";
+import { Apideck } from "@apideck/sdk";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
-  customerId: "test-consumer",
+  consumerId: "test-consumer",
   appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
 });
 
@@ -56,14 +56,14 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "apideck/core.js";
-import { accountingInvoicesList } from "apideck/funcs/accountingInvoicesList.js";
+import { ApideckCore } from "@apideck/sdk/core.js";
+import { accountingInvoicesList } from "@apideck/sdk/funcs/accountingInvoicesList.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const apideck = new ApideckCore({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
-  customerId: "test-consumer",
+  consumerId: "test-consumer",
   appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
 });
 
@@ -129,12 +129,12 @@ Create Invoice
 ### Example Usage
 
 ```typescript
-import { Apideck } from "apideck";
-import { RFCDate } from "apideck/types";
+import { Apideck } from "@apideck/sdk";
+import { RFCDate } from "@apideck/sdk/types";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
-  customerId: "test-consumer",
+  consumerId: "test-consumer",
   appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
 });
 
@@ -472,15 +472,15 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "apideck/core.js";
-import { accountingInvoicesCreate } from "apideck/funcs/accountingInvoicesCreate.js";
-import { RFCDate } from "apideck/types";
+import { ApideckCore } from "@apideck/sdk/core.js";
+import { accountingInvoicesCreate } from "@apideck/sdk/funcs/accountingInvoicesCreate.js";
+import { RFCDate } from "@apideck/sdk/types";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const apideck = new ApideckCore({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
-  customerId: "test-consumer",
+  consumerId: "test-consumer",
   appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
 });
 
@@ -850,11 +850,11 @@ Get Invoice
 ### Example Usage
 
 ```typescript
-import { Apideck } from "apideck";
+import { Apideck } from "@apideck/sdk";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
-  customerId: "test-consumer",
+  consumerId: "test-consumer",
   appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
 });
 
@@ -877,14 +877,14 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "apideck/core.js";
-import { accountingInvoicesGet } from "apideck/funcs/accountingInvoicesGet.js";
+import { ApideckCore } from "@apideck/sdk/core.js";
+import { accountingInvoicesGet } from "@apideck/sdk/funcs/accountingInvoicesGet.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const apideck = new ApideckCore({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
-  customerId: "test-consumer",
+  consumerId: "test-consumer",
   appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
 });
 
@@ -939,12 +939,12 @@ Update Invoice
 ### Example Usage
 
 ```typescript
-import { Apideck } from "apideck";
-import { RFCDate } from "apideck/types";
+import { Apideck } from "@apideck/sdk";
+import { RFCDate } from "@apideck/sdk/types";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
-  customerId: "test-consumer",
+  consumerId: "test-consumer",
   appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
 });
 
@@ -1157,15 +1157,15 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "apideck/core.js";
-import { accountingInvoicesUpdate } from "apideck/funcs/accountingInvoicesUpdate.js";
-import { RFCDate } from "apideck/types";
+import { ApideckCore } from "@apideck/sdk/core.js";
+import { accountingInvoicesUpdate } from "@apideck/sdk/funcs/accountingInvoicesUpdate.js";
+import { RFCDate } from "@apideck/sdk/types";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const apideck = new ApideckCore({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
-  customerId: "test-consumer",
+  consumerId: "test-consumer",
   appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
 });
 
@@ -1408,11 +1408,11 @@ Delete Invoice
 ### Example Usage
 
 ```typescript
-import { Apideck } from "apideck";
+import { Apideck } from "@apideck/sdk";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
-  customerId: "test-consumer",
+  consumerId: "test-consumer",
   appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
 });
 
@@ -1434,14 +1434,14 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "apideck/core.js";
-import { accountingInvoicesDelete } from "apideck/funcs/accountingInvoicesDelete.js";
+import { ApideckCore } from "@apideck/sdk/core.js";
+import { accountingInvoicesDelete } from "@apideck/sdk/funcs/accountingInvoicesDelete.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const apideck = new ApideckCore({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
-  customerId: "test-consumer",
+  consumerId: "test-consumer",
   appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
 });
 

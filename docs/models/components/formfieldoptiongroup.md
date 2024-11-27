@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { FormFieldOptionGroup } from "apideck/models/components";
+import { FormFieldOptionGroup } from "@apideck/sdk/models/components";
 
 let value: FormFieldOptionGroup = {
   id: "1234",
@@ -11,7 +11,7 @@ let value: FormFieldOptionGroup = {
   options: [
     {
       label: "General Channel",
-      value: 12.5,
+      value: true,
     },
   ],
 };

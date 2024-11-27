@@ -5,7 +5,7 @@ Tracking category
 ## Example Usage
 
 ```typescript
-import { GetTrackingCategoryResponse } from "apideck/models/components";
+import { GetTrackingCategoryResponse } from "@apideck/sdk/models/components";
 
 let value: GetTrackingCategoryResponse = {
   statusCode: 200,

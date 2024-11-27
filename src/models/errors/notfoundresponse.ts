@@ -4,13 +4,14 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
-
-export type DetailNotFoundResponse2 = {};
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "./sdkvalidationerror.js";
 
 /**
  * Contains parameter or domain specific information related to the error and why it occurred.
  */
-export type NotFoundResponseDetail = DetailNotFoundResponse2 | string;
+export type NotFoundResponseDetail = string | { [k: string]: any };
 
 /**
  * The specified resource was not found
@@ -35,7 +36,7 @@ export type NotFoundResponseData = {
   /**
    * Contains parameter or domain specific information related to the error and why it occurred.
    */
-  detail?: DetailNotFoundResponse2 | string | undefined;
+  detail?: string | { [k: string]: any } | undefined;
   /**
    * Link to documentation of error type
    */
@@ -61,7 +62,7 @@ export class NotFoundResponse extends Error {
   /**
    * Contains parameter or domain specific information related to the error and why it occurred.
    */
-  detail?: DetailNotFoundResponse2 | string | undefined;
+  detail?: string | { [k: string]: any } | undefined;
   /**
    * Link to documentation of error type
    */
@@ -71,9 +72,7 @@ export class NotFoundResponse extends Error {
   data$: NotFoundResponseData;
 
   constructor(err: NotFoundResponseData) {
-    const message = "message" in err && typeof err.message === "string"
-      ? err.message
-      : `API error occurred: ${JSON.stringify(err)}`;
+    const message = err.message || "API error occurred";
     super(message);
     this.data$ = err;
 
@@ -88,53 +87,21 @@ export class NotFoundResponse extends Error {
 }
 
 /** @internal */
-export const DetailNotFoundResponse2$inboundSchema: z.ZodType<
-  DetailNotFoundResponse2,
-  z.ZodTypeDef,
-  unknown
-> = z.object({});
-
-/** @internal */
-export type DetailNotFoundResponse2$Outbound = {};
-
-/** @internal */
-export const DetailNotFoundResponse2$outboundSchema: z.ZodType<
-  DetailNotFoundResponse2$Outbound,
-  z.ZodTypeDef,
-  DetailNotFoundResponse2
-> = z.object({});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DetailNotFoundResponse2$ {
-  /** @deprecated use `DetailNotFoundResponse2$inboundSchema` instead. */
-  export const inboundSchema = DetailNotFoundResponse2$inboundSchema;
-  /** @deprecated use `DetailNotFoundResponse2$outboundSchema` instead. */
-  export const outboundSchema = DetailNotFoundResponse2$outboundSchema;
-  /** @deprecated use `DetailNotFoundResponse2$Outbound` instead. */
-  export type Outbound = DetailNotFoundResponse2$Outbound;
-}
-
-/** @internal */
 export const NotFoundResponseDetail$inboundSchema: z.ZodType<
   NotFoundResponseDetail,
   z.ZodTypeDef,
   unknown
-> = z.union([z.lazy(() => DetailNotFoundResponse2$inboundSchema), z.string()]);
+> = z.union([z.string(), z.record(z.any())]);
 
 /** @internal */
-export type NotFoundResponseDetail$Outbound =
-  | DetailNotFoundResponse2$Outbound
-  | string;
+export type NotFoundResponseDetail$Outbound = string | { [k: string]: any };
 
 /** @internal */
 export const NotFoundResponseDetail$outboundSchema: z.ZodType<
   NotFoundResponseDetail$Outbound,
   z.ZodTypeDef,
   NotFoundResponseDetail
-> = z.union([z.lazy(() => DetailNotFoundResponse2$outboundSchema), z.string()]);
+> = z.union([z.string(), z.record(z.any())]);
 
 /**
  * @internal
@@ -149,6 +116,24 @@ export namespace NotFoundResponseDetail$ {
   export type Outbound = NotFoundResponseDetail$Outbound;
 }
 
+export function notFoundResponseDetailToJSON(
+  notFoundResponseDetail: NotFoundResponseDetail,
+): string {
+  return JSON.stringify(
+    NotFoundResponseDetail$outboundSchema.parse(notFoundResponseDetail),
+  );
+}
+
+export function notFoundResponseDetailFromJSON(
+  jsonString: string,
+): SafeParseResult<NotFoundResponseDetail, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => NotFoundResponseDetail$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'NotFoundResponseDetail' from JSON`,
+  );
+}
+
 /** @internal */
 export const NotFoundResponse$inboundSchema: z.ZodType<
   NotFoundResponse,
@@ -159,10 +144,7 @@ export const NotFoundResponse$inboundSchema: z.ZodType<
   error: z.string().optional(),
   type_name: z.string().optional(),
   message: z.string().optional(),
-  detail: z.union([
-    z.lazy(() => DetailNotFoundResponse2$inboundSchema),
-    z.string(),
-  ]).optional(),
+  detail: z.union([z.string(), z.record(z.any())]).optional(),
   ref: z.string().optional(),
 })
   .transform((v) => {
@@ -180,7 +162,7 @@ export type NotFoundResponse$Outbound = {
   error?: string | undefined;
   type_name?: string | undefined;
   message?: string | undefined;
-  detail?: DetailNotFoundResponse2$Outbound | string | undefined;
+  detail?: string | { [k: string]: any } | undefined;
   ref?: string | undefined;
 };
 
@@ -197,10 +179,7 @@ export const NotFoundResponse$outboundSchema: z.ZodType<
       error: z.string().optional(),
       typeName: z.string().optional(),
       message: z.string().optional(),
-      detail: z.union([
-        z.lazy(() => DetailNotFoundResponse2$outboundSchema),
-        z.string(),
-      ]).optional(),
+      detail: z.union([z.string(), z.record(z.any())]).optional(),
       ref: z.string().optional(),
     }).transform((v) => {
       return remap$(v, {

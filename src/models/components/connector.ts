@@ -4,7 +4,10 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   ConnectorDoc,
   ConnectorDoc$inboundSchema,
@@ -378,6 +381,20 @@ export namespace OauthScopes$ {
   export type Outbound = OauthScopes$Outbound;
 }
 
+export function oauthScopesToJSON(oauthScopes: OauthScopes): string {
+  return JSON.stringify(OauthScopes$outboundSchema.parse(oauthScopes));
+}
+
+export function oauthScopesFromJSON(
+  jsonString: string,
+): SafeParseResult<OauthScopes, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => OauthScopes$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'OauthScopes' from JSON`,
+  );
+}
+
 /** @internal */
 export const ConnectorOauthScopes$inboundSchema: z.ZodType<
   ConnectorOauthScopes,
@@ -415,6 +432,24 @@ export namespace ConnectorOauthScopes$ {
   export const outboundSchema = ConnectorOauthScopes$outboundSchema;
   /** @deprecated use `ConnectorOauthScopes$Outbound` instead. */
   export type Outbound = ConnectorOauthScopes$Outbound;
+}
+
+export function connectorOauthScopesToJSON(
+  connectorOauthScopes: ConnectorOauthScopes,
+): string {
+  return JSON.stringify(
+    ConnectorOauthScopes$outboundSchema.parse(connectorOauthScopes),
+  );
+}
+
+export function connectorOauthScopesFromJSON(
+  jsonString: string,
+): SafeParseResult<ConnectorOauthScopes, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ConnectorOauthScopes$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ConnectorOauthScopes' from JSON`,
+  );
 }
 
 /** @internal */
@@ -491,6 +526,20 @@ export namespace UnifiedApis$ {
   export type Outbound = UnifiedApis$Outbound;
 }
 
+export function unifiedApisToJSON(unifiedApis: UnifiedApis): string {
+  return JSON.stringify(UnifiedApis$outboundSchema.parse(unifiedApis));
+}
+
+export function unifiedApisFromJSON(
+  jsonString: string,
+): SafeParseResult<UnifiedApis, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => UnifiedApis$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'UnifiedApis' from JSON`,
+  );
+}
+
 /** @internal */
 export const TlsSupport$inboundSchema: z.ZodType<
   TlsSupport,
@@ -528,6 +577,20 @@ export namespace TlsSupport$ {
   export const outboundSchema = TlsSupport$outboundSchema;
   /** @deprecated use `TlsSupport$Outbound` instead. */
   export type Outbound = TlsSupport$Outbound;
+}
+
+export function tlsSupportToJSON(tlsSupport: TlsSupport): string {
+  return JSON.stringify(TlsSupport$outboundSchema.parse(tlsSupport));
+}
+
+export function tlsSupportFromJSON(
+  jsonString: string,
+): SafeParseResult<TlsSupport, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => TlsSupport$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'TlsSupport' from JSON`,
+  );
 }
 
 /** @internal */
@@ -697,4 +760,18 @@ export namespace Connector$ {
   export const outboundSchema = Connector$outboundSchema;
   /** @deprecated use `Connector$Outbound` instead. */
   export type Outbound = Connector$Outbound;
+}
+
+export function connectorToJSON(connector: Connector): string {
+  return JSON.stringify(Connector$outboundSchema.parse(connector));
+}
+
+export function connectorFromJSON(
+  jsonString: string,
+): SafeParseResult<Connector, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Connector$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Connector' from JSON`,
+  );
 }

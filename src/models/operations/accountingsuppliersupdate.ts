@@ -4,13 +4,16 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type AccountingSuppliersUpdateGlobals = {
   /**
    * ID of the consumer which you want to get or push data from
    */
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   /**
    * The ID of your Unify application
    */
@@ -51,13 +54,13 @@ export const AccountingSuppliersUpdateGlobals$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
 /** @internal */
 export type AccountingSuppliersUpdateGlobals$Outbound = {
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   appId?: string | undefined;
 };
 
@@ -67,7 +70,7 @@ export const AccountingSuppliersUpdateGlobals$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   AccountingSuppliersUpdateGlobals
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
@@ -82,6 +85,26 @@ export namespace AccountingSuppliersUpdateGlobals$ {
   export const outboundSchema = AccountingSuppliersUpdateGlobals$outboundSchema;
   /** @deprecated use `AccountingSuppliersUpdateGlobals$Outbound` instead. */
   export type Outbound = AccountingSuppliersUpdateGlobals$Outbound;
+}
+
+export function accountingSuppliersUpdateGlobalsToJSON(
+  accountingSuppliersUpdateGlobals: AccountingSuppliersUpdateGlobals,
+): string {
+  return JSON.stringify(
+    AccountingSuppliersUpdateGlobals$outboundSchema.parse(
+      accountingSuppliersUpdateGlobals,
+    ),
+  );
+}
+
+export function accountingSuppliersUpdateGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<AccountingSuppliersUpdateGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => AccountingSuppliersUpdateGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AccountingSuppliersUpdateGlobals' from JSON`,
+  );
 }
 
 /** @internal */
@@ -135,6 +158,26 @@ export namespace AccountingSuppliersUpdateRequest$ {
   export const outboundSchema = AccountingSuppliersUpdateRequest$outboundSchema;
   /** @deprecated use `AccountingSuppliersUpdateRequest$Outbound` instead. */
   export type Outbound = AccountingSuppliersUpdateRequest$Outbound;
+}
+
+export function accountingSuppliersUpdateRequestToJSON(
+  accountingSuppliersUpdateRequest: AccountingSuppliersUpdateRequest,
+): string {
+  return JSON.stringify(
+    AccountingSuppliersUpdateRequest$outboundSchema.parse(
+      accountingSuppliersUpdateRequest,
+    ),
+  );
+}
+
+export function accountingSuppliersUpdateRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<AccountingSuppliersUpdateRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => AccountingSuppliersUpdateRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AccountingSuppliersUpdateRequest' from JSON`,
+  );
 }
 
 /** @internal */
@@ -198,4 +241,24 @@ export namespace AccountingSuppliersUpdateResponse$ {
     AccountingSuppliersUpdateResponse$outboundSchema;
   /** @deprecated use `AccountingSuppliersUpdateResponse$Outbound` instead. */
   export type Outbound = AccountingSuppliersUpdateResponse$Outbound;
+}
+
+export function accountingSuppliersUpdateResponseToJSON(
+  accountingSuppliersUpdateResponse: AccountingSuppliersUpdateResponse,
+): string {
+  return JSON.stringify(
+    AccountingSuppliersUpdateResponse$outboundSchema.parse(
+      accountingSuppliersUpdateResponse,
+    ),
+  );
+}
+
+export function accountingSuppliersUpdateResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<AccountingSuppliersUpdateResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => AccountingSuppliersUpdateResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AccountingSuppliersUpdateResponse' from JSON`,
+  );
 }

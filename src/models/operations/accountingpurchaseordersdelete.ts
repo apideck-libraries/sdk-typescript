@@ -4,13 +4,16 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type AccountingPurchaseOrdersDeleteGlobals = {
   /**
    * ID of the consumer which you want to get or push data from
    */
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   /**
    * The ID of your Unify application
    */
@@ -52,13 +55,13 @@ export const AccountingPurchaseOrdersDeleteGlobals$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
 /** @internal */
 export type AccountingPurchaseOrdersDeleteGlobals$Outbound = {
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   appId?: string | undefined;
 };
 
@@ -68,7 +71,7 @@ export const AccountingPurchaseOrdersDeleteGlobals$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   AccountingPurchaseOrdersDeleteGlobals
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
@@ -85,6 +88,27 @@ export namespace AccountingPurchaseOrdersDeleteGlobals$ {
     AccountingPurchaseOrdersDeleteGlobals$outboundSchema;
   /** @deprecated use `AccountingPurchaseOrdersDeleteGlobals$Outbound` instead. */
   export type Outbound = AccountingPurchaseOrdersDeleteGlobals$Outbound;
+}
+
+export function accountingPurchaseOrdersDeleteGlobalsToJSON(
+  accountingPurchaseOrdersDeleteGlobals: AccountingPurchaseOrdersDeleteGlobals,
+): string {
+  return JSON.stringify(
+    AccountingPurchaseOrdersDeleteGlobals$outboundSchema.parse(
+      accountingPurchaseOrdersDeleteGlobals,
+    ),
+  );
+}
+
+export function accountingPurchaseOrdersDeleteGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<AccountingPurchaseOrdersDeleteGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      AccountingPurchaseOrdersDeleteGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AccountingPurchaseOrdersDeleteGlobals' from JSON`,
+  );
 }
 
 /** @internal */
@@ -129,6 +153,27 @@ export namespace AccountingPurchaseOrdersDeleteRequest$ {
     AccountingPurchaseOrdersDeleteRequest$outboundSchema;
   /** @deprecated use `AccountingPurchaseOrdersDeleteRequest$Outbound` instead. */
   export type Outbound = AccountingPurchaseOrdersDeleteRequest$Outbound;
+}
+
+export function accountingPurchaseOrdersDeleteRequestToJSON(
+  accountingPurchaseOrdersDeleteRequest: AccountingPurchaseOrdersDeleteRequest,
+): string {
+  return JSON.stringify(
+    AccountingPurchaseOrdersDeleteRequest$outboundSchema.parse(
+      accountingPurchaseOrdersDeleteRequest,
+    ),
+  );
+}
+
+export function accountingPurchaseOrdersDeleteRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<AccountingPurchaseOrdersDeleteRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      AccountingPurchaseOrdersDeleteRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AccountingPurchaseOrdersDeleteRequest' from JSON`,
+  );
 }
 
 /** @internal */
@@ -193,4 +238,26 @@ export namespace AccountingPurchaseOrdersDeleteResponse$ {
     AccountingPurchaseOrdersDeleteResponse$outboundSchema;
   /** @deprecated use `AccountingPurchaseOrdersDeleteResponse$Outbound` instead. */
   export type Outbound = AccountingPurchaseOrdersDeleteResponse$Outbound;
+}
+
+export function accountingPurchaseOrdersDeleteResponseToJSON(
+  accountingPurchaseOrdersDeleteResponse:
+    AccountingPurchaseOrdersDeleteResponse,
+): string {
+  return JSON.stringify(
+    AccountingPurchaseOrdersDeleteResponse$outboundSchema.parse(
+      accountingPurchaseOrdersDeleteResponse,
+    ),
+  );
+}
+
+export function accountingPurchaseOrdersDeleteResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<AccountingPurchaseOrdersDeleteResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      AccountingPurchaseOrdersDeleteResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AccountingPurchaseOrdersDeleteResponse' from JSON`,
+  );
 }

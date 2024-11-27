@@ -5,8 +5,8 @@ LedgerAccount
 ## Example Usage
 
 ```typescript
-import { GetLedgerAccountResponse } from "apideck/models/components";
-import { RFCDate } from "apideck/types";
+import { GetLedgerAccountResponse } from "@apideck/sdk/models/components";
+import { RFCDate } from "@apideck/sdk/types";
 
 let value: GetLedgerAccountResponse = {
   statusCode: 200,

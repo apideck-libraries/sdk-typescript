@@ -4,7 +4,10 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   Currency,
   Currency$inboundSchema,
@@ -369,4 +372,18 @@ export namespace EcommerceOrder$ {
   export const outboundSchema = EcommerceOrder$outboundSchema;
   /** @deprecated use `EcommerceOrder$Outbound` instead. */
   export type Outbound = EcommerceOrder$Outbound;
+}
+
+export function ecommerceOrderToJSON(ecommerceOrder: EcommerceOrder): string {
+  return JSON.stringify(EcommerceOrder$outboundSchema.parse(ecommerceOrder));
+}
+
+export function ecommerceOrderFromJSON(
+  jsonString: string,
+): SafeParseResult<EcommerceOrder, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => EcommerceOrder$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'EcommerceOrder' from JSON`,
+  );
 }

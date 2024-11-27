@@ -5,7 +5,7 @@ Lead
 ## Example Usage
 
 ```typescript
-import { GetLeadResponse } from "apideck/models/components";
+import { GetLeadResponse } from "@apideck/sdk/models/components";
 
 let value: GetLeadResponse = {
   statusCode: 200,
@@ -96,7 +96,7 @@ let value: GetLeadResponse = {
         id: "2389328923893298",
         name: "employee_level",
         description: "Employee Level",
-        value: {},
+        value: "Uses Salesforce and Marketo",
       },
     ],
     tags: [

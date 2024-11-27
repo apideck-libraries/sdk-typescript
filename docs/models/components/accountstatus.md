@@ -5,7 +5,7 @@ The status of the account.
 ## Example Usage
 
 ```typescript
-import { AccountStatus } from "apideck/models/components";
+import { AccountStatus } from "@apideck/sdk/models/components";
 
 let value: AccountStatus = "active";
 ```

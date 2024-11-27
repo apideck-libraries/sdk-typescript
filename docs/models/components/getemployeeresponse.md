@@ -5,8 +5,8 @@ Employees
 ## Example Usage
 
 ```typescript
-import { GetEmployeeResponse } from "apideck/models/components";
-import { RFCDate } from "apideck/types";
+import { GetEmployeeResponse } from "@apideck/sdk/models/components";
+import { RFCDate } from "@apideck/sdk/types";
 
 let value: GetEmployeeResponse = {
   statusCode: 200,
@@ -131,10 +131,8 @@ let value: GetEmployeeResponse = {
         jobId: "3490439050957906679",
         rate: 50,
         paymentUnit: "hour",
-        currency: "USD",
         flsaStatus: "nonexempt",
         effectiveDate: "2021-06-11",
-        paymentFrequency: "monthly",
       },
     ],
     worksRemote: true,
@@ -188,7 +186,9 @@ let value: GetEmployeeResponse = {
         id: "2389328923893298",
         name: "employee_level",
         description: "Employee Level",
-        value: 10,
+        value: [
+          {},
+        ],
       },
     ],
     socialLinks: [

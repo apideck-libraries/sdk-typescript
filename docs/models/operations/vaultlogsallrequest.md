@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { VaultLogsAllRequest } from "apideck/models/operations";
+import { VaultLogsAllRequest } from "@apideck/sdk/models/operations";
 
 let value: VaultLogsAllRequest = {
   filter: {

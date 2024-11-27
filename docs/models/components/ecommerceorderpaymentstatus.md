@@ -5,7 +5,7 @@ Current payment status of the order.
 ## Example Usage
 
 ```typescript
-import { EcommerceOrderPaymentStatus } from "apideck/models/components";
+import { EcommerceOrderPaymentStatus } from "@apideck/sdk/models/components";
 
 let value: EcommerceOrderPaymentStatus = "paid";
 ```

@@ -5,7 +5,7 @@ Custom mapping
 ## Example Usage
 
 ```typescript
-import { GetCustomMappingsResponse } from "apideck/models/components";
+import { GetCustomMappingsResponse } from "@apideck/sdk/models/components";
 
 let value: GetCustomMappingsResponse = {
   statusCode: 200,

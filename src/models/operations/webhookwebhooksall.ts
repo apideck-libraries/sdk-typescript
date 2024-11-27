@@ -4,7 +4,10 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type WebhookWebhooksAllGlobals = {
   /**
@@ -72,6 +75,24 @@ export namespace WebhookWebhooksAllGlobals$ {
   export type Outbound = WebhookWebhooksAllGlobals$Outbound;
 }
 
+export function webhookWebhooksAllGlobalsToJSON(
+  webhookWebhooksAllGlobals: WebhookWebhooksAllGlobals,
+): string {
+  return JSON.stringify(
+    WebhookWebhooksAllGlobals$outboundSchema.parse(webhookWebhooksAllGlobals),
+  );
+}
+
+export function webhookWebhooksAllGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<WebhookWebhooksAllGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => WebhookWebhooksAllGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'WebhookWebhooksAllGlobals' from JSON`,
+  );
+}
+
 /** @internal */
 export const WebhookWebhooksAllRequest$inboundSchema: z.ZodType<
   WebhookWebhooksAllRequest,
@@ -109,6 +130,24 @@ export namespace WebhookWebhooksAllRequest$ {
   export const outboundSchema = WebhookWebhooksAllRequest$outboundSchema;
   /** @deprecated use `WebhookWebhooksAllRequest$Outbound` instead. */
   export type Outbound = WebhookWebhooksAllRequest$Outbound;
+}
+
+export function webhookWebhooksAllRequestToJSON(
+  webhookWebhooksAllRequest: WebhookWebhooksAllRequest,
+): string {
+  return JSON.stringify(
+    WebhookWebhooksAllRequest$outboundSchema.parse(webhookWebhooksAllRequest),
+  );
+}
+
+export function webhookWebhooksAllRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<WebhookWebhooksAllRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => WebhookWebhooksAllRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'WebhookWebhooksAllRequest' from JSON`,
+  );
 }
 
 /** @internal */
@@ -167,4 +206,22 @@ export namespace WebhookWebhooksAllResponse$ {
   export const outboundSchema = WebhookWebhooksAllResponse$outboundSchema;
   /** @deprecated use `WebhookWebhooksAllResponse$Outbound` instead. */
   export type Outbound = WebhookWebhooksAllResponse$Outbound;
+}
+
+export function webhookWebhooksAllResponseToJSON(
+  webhookWebhooksAllResponse: WebhookWebhooksAllResponse,
+): string {
+  return JSON.stringify(
+    WebhookWebhooksAllResponse$outboundSchema.parse(webhookWebhooksAllResponse),
+  );
+}
+
+export function webhookWebhooksAllResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<WebhookWebhooksAllResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => WebhookWebhooksAllResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'WebhookWebhooksAllResponse' from JSON`,
+  );
 }

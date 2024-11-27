@@ -4,7 +4,10 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type VaultConsumersAddGlobals = {
   /**
@@ -59,6 +62,24 @@ export namespace VaultConsumersAddGlobals$ {
   export const outboundSchema = VaultConsumersAddGlobals$outboundSchema;
   /** @deprecated use `VaultConsumersAddGlobals$Outbound` instead. */
   export type Outbound = VaultConsumersAddGlobals$Outbound;
+}
+
+export function vaultConsumersAddGlobalsToJSON(
+  vaultConsumersAddGlobals: VaultConsumersAddGlobals,
+): string {
+  return JSON.stringify(
+    VaultConsumersAddGlobals$outboundSchema.parse(vaultConsumersAddGlobals),
+  );
+}
+
+export function vaultConsumersAddGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<VaultConsumersAddGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => VaultConsumersAddGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'VaultConsumersAddGlobals' from JSON`,
+  );
 }
 
 /** @internal */
@@ -121,4 +142,22 @@ export namespace VaultConsumersAddResponse$ {
   export const outboundSchema = VaultConsumersAddResponse$outboundSchema;
   /** @deprecated use `VaultConsumersAddResponse$Outbound` instead. */
   export type Outbound = VaultConsumersAddResponse$Outbound;
+}
+
+export function vaultConsumersAddResponseToJSON(
+  vaultConsumersAddResponse: VaultConsumersAddResponse,
+): string {
+  return JSON.stringify(
+    VaultConsumersAddResponse$outboundSchema.parse(vaultConsumersAddResponse),
+  );
+}
+
+export function vaultConsumersAddResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<VaultConsumersAddResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => VaultConsumersAddResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'VaultConsumersAddResponse' from JSON`,
+  );
 }

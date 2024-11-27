@@ -5,7 +5,7 @@ Activity updated
 ## Example Usage
 
 ```typescript
-import { UpdateActivityResponse } from "apideck/models/components";
+import { UpdateActivityResponse } from "@apideck/sdk/models/components";
 
 let value: UpdateActivityResponse = {
   statusCode: 200,

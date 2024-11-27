@@ -4,13 +4,16 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type FileStorageFoldersCopyGlobals = {
   /**
    * ID of the consumer which you want to get or push data from
    */
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   /**
    * The ID of your Unify application
    */
@@ -55,13 +58,13 @@ export const FileStorageFoldersCopyGlobals$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
 /** @internal */
 export type FileStorageFoldersCopyGlobals$Outbound = {
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   appId?: string | undefined;
 };
 
@@ -71,7 +74,7 @@ export const FileStorageFoldersCopyGlobals$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   FileStorageFoldersCopyGlobals
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
@@ -86,6 +89,26 @@ export namespace FileStorageFoldersCopyGlobals$ {
   export const outboundSchema = FileStorageFoldersCopyGlobals$outboundSchema;
   /** @deprecated use `FileStorageFoldersCopyGlobals$Outbound` instead. */
   export type Outbound = FileStorageFoldersCopyGlobals$Outbound;
+}
+
+export function fileStorageFoldersCopyGlobalsToJSON(
+  fileStorageFoldersCopyGlobals: FileStorageFoldersCopyGlobals,
+): string {
+  return JSON.stringify(
+    FileStorageFoldersCopyGlobals$outboundSchema.parse(
+      fileStorageFoldersCopyGlobals,
+    ),
+  );
+}
+
+export function fileStorageFoldersCopyGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<FileStorageFoldersCopyGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => FileStorageFoldersCopyGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'FileStorageFoldersCopyGlobals' from JSON`,
+  );
 }
 
 /** @internal */
@@ -142,6 +165,26 @@ export namespace FileStorageFoldersCopyRequest$ {
   export const outboundSchema = FileStorageFoldersCopyRequest$outboundSchema;
   /** @deprecated use `FileStorageFoldersCopyRequest$Outbound` instead. */
   export type Outbound = FileStorageFoldersCopyRequest$Outbound;
+}
+
+export function fileStorageFoldersCopyRequestToJSON(
+  fileStorageFoldersCopyRequest: FileStorageFoldersCopyRequest,
+): string {
+  return JSON.stringify(
+    FileStorageFoldersCopyRequest$outboundSchema.parse(
+      fileStorageFoldersCopyRequest,
+    ),
+  );
+}
+
+export function fileStorageFoldersCopyRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<FileStorageFoldersCopyRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => FileStorageFoldersCopyRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'FileStorageFoldersCopyRequest' from JSON`,
+  );
 }
 
 /** @internal */
@@ -202,4 +245,24 @@ export namespace FileStorageFoldersCopyResponse$ {
   export const outboundSchema = FileStorageFoldersCopyResponse$outboundSchema;
   /** @deprecated use `FileStorageFoldersCopyResponse$Outbound` instead. */
   export type Outbound = FileStorageFoldersCopyResponse$Outbound;
+}
+
+export function fileStorageFoldersCopyResponseToJSON(
+  fileStorageFoldersCopyResponse: FileStorageFoldersCopyResponse,
+): string {
+  return JSON.stringify(
+    FileStorageFoldersCopyResponse$outboundSchema.parse(
+      fileStorageFoldersCopyResponse,
+    ),
+  );
+}
+
+export function fileStorageFoldersCopyResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<FileStorageFoldersCopyResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => FileStorageFoldersCopyResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'FileStorageFoldersCopyResponse' from JSON`,
+  );
 }

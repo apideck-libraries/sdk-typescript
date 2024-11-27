@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type Credentials = {
   /**
@@ -102,6 +105,20 @@ export namespace Credentials$ {
   export type Outbound = Credentials$Outbound;
 }
 
+export function credentialsToJSON(credentials: Credentials): string {
+  return JSON.stringify(Credentials$outboundSchema.parse(credentials));
+}
+
+export function credentialsFromJSON(
+  jsonString: string,
+): SafeParseResult<Credentials, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Credentials$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Credentials' from JSON`,
+  );
+}
+
 /** @internal */
 export const ConnectionImportDataSettings$inboundSchema: z.ZodType<
   ConnectionImportDataSettings,
@@ -130,6 +147,26 @@ export namespace ConnectionImportDataSettings$ {
   export const outboundSchema = ConnectionImportDataSettings$outboundSchema;
   /** @deprecated use `ConnectionImportDataSettings$Outbound` instead. */
   export type Outbound = ConnectionImportDataSettings$Outbound;
+}
+
+export function connectionImportDataSettingsToJSON(
+  connectionImportDataSettings: ConnectionImportDataSettings,
+): string {
+  return JSON.stringify(
+    ConnectionImportDataSettings$outboundSchema.parse(
+      connectionImportDataSettings,
+    ),
+  );
+}
+
+export function connectionImportDataSettingsFromJSON(
+  jsonString: string,
+): SafeParseResult<ConnectionImportDataSettings, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ConnectionImportDataSettings$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ConnectionImportDataSettings' from JSON`,
+  );
 }
 
 /** @internal */
@@ -175,4 +212,22 @@ export namespace ConnectionImportData$ {
   export const outboundSchema = ConnectionImportData$outboundSchema;
   /** @deprecated use `ConnectionImportData$Outbound` instead. */
   export type Outbound = ConnectionImportData$Outbound;
+}
+
+export function connectionImportDataToJSON(
+  connectionImportData: ConnectionImportData,
+): string {
+  return JSON.stringify(
+    ConnectionImportData$outboundSchema.parse(connectionImportData),
+  );
+}
+
+export function connectionImportDataFromJSON(
+  jsonString: string,
+): SafeParseResult<ConnectionImportData, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ConnectionImportData$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ConnectionImportData' from JSON`,
+  );
 }

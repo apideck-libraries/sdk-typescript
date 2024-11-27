@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type CustomMapping = {
   /**
@@ -112,4 +115,18 @@ export namespace CustomMapping$ {
   export const outboundSchema = CustomMapping$outboundSchema;
   /** @deprecated use `CustomMapping$Outbound` instead. */
   export type Outbound = CustomMapping$Outbound;
+}
+
+export function customMappingToJSON(customMapping: CustomMapping): string {
+  return JSON.stringify(CustomMapping$outboundSchema.parse(customMapping));
+}
+
+export function customMappingFromJSON(
+  jsonString: string,
+): SafeParseResult<CustomMapping, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CustomMapping$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CustomMapping' from JSON`,
+  );
 }

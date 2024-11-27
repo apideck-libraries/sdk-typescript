@@ -4,7 +4,10 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   ActivityAttendee,
   ActivityAttendee$inboundSchema,
@@ -748,6 +751,20 @@ export namespace Activity$ {
   export type Outbound = Activity$Outbound;
 }
 
+export function activityToJSON(activity: Activity): string {
+  return JSON.stringify(Activity$outboundSchema.parse(activity));
+}
+
+export function activityFromJSON(
+  jsonString: string,
+): SafeParseResult<Activity, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Activity$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Activity' from JSON`,
+  );
+}
+
 /** @internal */
 export const ActivityInput$inboundSchema: z.ZodType<
   ActivityInput,
@@ -981,4 +998,18 @@ export namespace ActivityInput$ {
   export const outboundSchema = ActivityInput$outboundSchema;
   /** @deprecated use `ActivityInput$Outbound` instead. */
   export type Outbound = ActivityInput$Outbound;
+}
+
+export function activityInputToJSON(activityInput: ActivityInput): string {
+  return JSON.stringify(ActivityInput$outboundSchema.parse(activityInput));
+}
+
+export function activityInputFromJSON(
+  jsonString: string,
+): SafeParseResult<ActivityInput, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ActivityInput$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ActivityInput' from JSON`,
+  );
 }

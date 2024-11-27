@@ -5,7 +5,7 @@ Stores
 ## Example Usage
 
 ```typescript
-import { GetStoreResponse } from "apideck/models/components";
+import { GetStoreResponse } from "@apideck/sdk/models/components";
 
 let value: GetStoreResponse = {
   statusCode: 200,

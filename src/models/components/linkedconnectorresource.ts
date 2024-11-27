@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   ResourceStatus,
   ResourceStatus$inboundSchema,
@@ -89,4 +92,22 @@ export namespace LinkedConnectorResource$ {
   export const outboundSchema = LinkedConnectorResource$outboundSchema;
   /** @deprecated use `LinkedConnectorResource$Outbound` instead. */
   export type Outbound = LinkedConnectorResource$Outbound;
+}
+
+export function linkedConnectorResourceToJSON(
+  linkedConnectorResource: LinkedConnectorResource,
+): string {
+  return JSON.stringify(
+    LinkedConnectorResource$outboundSchema.parse(linkedConnectorResource),
+  );
+}
+
+export function linkedConnectorResourceFromJSON(
+  jsonString: string,
+): SafeParseResult<LinkedConnectorResource, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => LinkedConnectorResource$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'LinkedConnectorResource' from JSON`,
+  );
 }

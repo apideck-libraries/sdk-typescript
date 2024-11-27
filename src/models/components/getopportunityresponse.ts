@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   Opportunity,
   Opportunity$inboundSchema,
@@ -95,4 +98,22 @@ export namespace GetOpportunityResponse$ {
   export const outboundSchema = GetOpportunityResponse$outboundSchema;
   /** @deprecated use `GetOpportunityResponse$Outbound` instead. */
   export type Outbound = GetOpportunityResponse$Outbound;
+}
+
+export function getOpportunityResponseToJSON(
+  getOpportunityResponse: GetOpportunityResponse,
+): string {
+  return JSON.stringify(
+    GetOpportunityResponse$outboundSchema.parse(getOpportunityResponse),
+  );
+}
+
+export function getOpportunityResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<GetOpportunityResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetOpportunityResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetOpportunityResponse' from JSON`,
+  );
 }

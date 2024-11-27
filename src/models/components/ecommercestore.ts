@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   CustomMappings,
   CustomMappings$inboundSchema,
@@ -114,4 +117,18 @@ export namespace EcommerceStore$ {
   export const outboundSchema = EcommerceStore$outboundSchema;
   /** @deprecated use `EcommerceStore$Outbound` instead. */
   export type Outbound = EcommerceStore$Outbound;
+}
+
+export function ecommerceStoreToJSON(ecommerceStore: EcommerceStore): string {
+  return JSON.stringify(EcommerceStore$outboundSchema.parse(ecommerceStore));
+}
+
+export function ecommerceStoreFromJSON(
+  jsonString: string,
+): SafeParseResult<EcommerceStore, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => EcommerceStore$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'EcommerceStore' from JSON`,
+  );
 }

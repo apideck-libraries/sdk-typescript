@@ -4,13 +4,16 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type AccountingSubsidiariesOneGlobals = {
   /**
    * ID of the consumer which you want to get or push data from
    */
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   /**
    * The ID of your Unify application
    */
@@ -54,13 +57,13 @@ export const AccountingSubsidiariesOneGlobals$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
 /** @internal */
 export type AccountingSubsidiariesOneGlobals$Outbound = {
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   appId?: string | undefined;
 };
 
@@ -70,7 +73,7 @@ export const AccountingSubsidiariesOneGlobals$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   AccountingSubsidiariesOneGlobals
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
@@ -85,6 +88,26 @@ export namespace AccountingSubsidiariesOneGlobals$ {
   export const outboundSchema = AccountingSubsidiariesOneGlobals$outboundSchema;
   /** @deprecated use `AccountingSubsidiariesOneGlobals$Outbound` instead. */
   export type Outbound = AccountingSubsidiariesOneGlobals$Outbound;
+}
+
+export function accountingSubsidiariesOneGlobalsToJSON(
+  accountingSubsidiariesOneGlobals: AccountingSubsidiariesOneGlobals,
+): string {
+  return JSON.stringify(
+    AccountingSubsidiariesOneGlobals$outboundSchema.parse(
+      accountingSubsidiariesOneGlobals,
+    ),
+  );
+}
+
+export function accountingSubsidiariesOneGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<AccountingSubsidiariesOneGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => AccountingSubsidiariesOneGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AccountingSubsidiariesOneGlobals' from JSON`,
+  );
 }
 
 /** @internal */
@@ -130,6 +153,26 @@ export namespace AccountingSubsidiariesOneRequest$ {
   export const outboundSchema = AccountingSubsidiariesOneRequest$outboundSchema;
   /** @deprecated use `AccountingSubsidiariesOneRequest$Outbound` instead. */
   export type Outbound = AccountingSubsidiariesOneRequest$Outbound;
+}
+
+export function accountingSubsidiariesOneRequestToJSON(
+  accountingSubsidiariesOneRequest: AccountingSubsidiariesOneRequest,
+): string {
+  return JSON.stringify(
+    AccountingSubsidiariesOneRequest$outboundSchema.parse(
+      accountingSubsidiariesOneRequest,
+    ),
+  );
+}
+
+export function accountingSubsidiariesOneRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<AccountingSubsidiariesOneRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => AccountingSubsidiariesOneRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AccountingSubsidiariesOneRequest' from JSON`,
+  );
 }
 
 /** @internal */
@@ -191,4 +234,24 @@ export namespace AccountingSubsidiariesOneResponse$ {
     AccountingSubsidiariesOneResponse$outboundSchema;
   /** @deprecated use `AccountingSubsidiariesOneResponse$Outbound` instead. */
   export type Outbound = AccountingSubsidiariesOneResponse$Outbound;
+}
+
+export function accountingSubsidiariesOneResponseToJSON(
+  accountingSubsidiariesOneResponse: AccountingSubsidiariesOneResponse,
+): string {
+  return JSON.stringify(
+    AccountingSubsidiariesOneResponse$outboundSchema.parse(
+      accountingSubsidiariesOneResponse,
+    ),
+  );
+}
+
+export function accountingSubsidiariesOneResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<AccountingSubsidiariesOneResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => AccountingSubsidiariesOneResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AccountingSubsidiariesOneResponse' from JSON`,
+  );
 }

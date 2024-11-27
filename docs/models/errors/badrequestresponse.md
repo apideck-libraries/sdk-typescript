@@ -5,7 +5,7 @@ Bad Request
 ## Example Usage
 
 ```typescript
-import { BadRequestResponse } from "apideck/models/errors";
+import { BadRequestResponse } from "@apideck/sdk/models/errors";
 
 // No examples available for this model
 ```

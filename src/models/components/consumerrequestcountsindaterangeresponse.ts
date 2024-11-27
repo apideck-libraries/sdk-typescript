@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   RequestCountAllocation,
   RequestCountAllocation$inboundSchema,
@@ -108,6 +111,33 @@ export namespace ConsumerRequestCountsInDateRangeResponseData$ {
   export type Outbound = ConsumerRequestCountsInDateRangeResponseData$Outbound;
 }
 
+export function consumerRequestCountsInDateRangeResponseDataToJSON(
+  consumerRequestCountsInDateRangeResponseData:
+    ConsumerRequestCountsInDateRangeResponseData,
+): string {
+  return JSON.stringify(
+    ConsumerRequestCountsInDateRangeResponseData$outboundSchema.parse(
+      consumerRequestCountsInDateRangeResponseData,
+    ),
+  );
+}
+
+export function consumerRequestCountsInDateRangeResponseDataFromJSON(
+  jsonString: string,
+): SafeParseResult<
+  ConsumerRequestCountsInDateRangeResponseData,
+  SDKValidationError
+> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      ConsumerRequestCountsInDateRangeResponseData$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'ConsumerRequestCountsInDateRangeResponseData' from JSON`,
+  );
+}
+
 /** @internal */
 export const ConsumerRequestCountsInDateRangeResponse$inboundSchema: z.ZodType<
   ConsumerRequestCountsInDateRangeResponse,
@@ -162,4 +192,31 @@ export namespace ConsumerRequestCountsInDateRangeResponse$ {
     ConsumerRequestCountsInDateRangeResponse$outboundSchema;
   /** @deprecated use `ConsumerRequestCountsInDateRangeResponse$Outbound` instead. */
   export type Outbound = ConsumerRequestCountsInDateRangeResponse$Outbound;
+}
+
+export function consumerRequestCountsInDateRangeResponseToJSON(
+  consumerRequestCountsInDateRangeResponse:
+    ConsumerRequestCountsInDateRangeResponse,
+): string {
+  return JSON.stringify(
+    ConsumerRequestCountsInDateRangeResponse$outboundSchema.parse(
+      consumerRequestCountsInDateRangeResponse,
+    ),
+  );
+}
+
+export function consumerRequestCountsInDateRangeResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<
+  ConsumerRequestCountsInDateRangeResponse,
+  SDKValidationError
+> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      ConsumerRequestCountsInDateRangeResponse$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'ConsumerRequestCountsInDateRangeResponse' from JSON`,
+  );
 }

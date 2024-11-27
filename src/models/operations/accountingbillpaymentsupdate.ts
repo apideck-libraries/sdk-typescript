@@ -4,13 +4,16 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type AccountingBillPaymentsUpdateGlobals = {
   /**
    * ID of the consumer which you want to get or push data from
    */
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   /**
    * The ID of your Unify application
    */
@@ -51,13 +54,13 @@ export const AccountingBillPaymentsUpdateGlobals$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
 /** @internal */
 export type AccountingBillPaymentsUpdateGlobals$Outbound = {
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   appId?: string | undefined;
 };
 
@@ -67,7 +70,7 @@ export const AccountingBillPaymentsUpdateGlobals$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   AccountingBillPaymentsUpdateGlobals
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
@@ -84,6 +87,27 @@ export namespace AccountingBillPaymentsUpdateGlobals$ {
     AccountingBillPaymentsUpdateGlobals$outboundSchema;
   /** @deprecated use `AccountingBillPaymentsUpdateGlobals$Outbound` instead. */
   export type Outbound = AccountingBillPaymentsUpdateGlobals$Outbound;
+}
+
+export function accountingBillPaymentsUpdateGlobalsToJSON(
+  accountingBillPaymentsUpdateGlobals: AccountingBillPaymentsUpdateGlobals,
+): string {
+  return JSON.stringify(
+    AccountingBillPaymentsUpdateGlobals$outboundSchema.parse(
+      accountingBillPaymentsUpdateGlobals,
+    ),
+  );
+}
+
+export function accountingBillPaymentsUpdateGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<AccountingBillPaymentsUpdateGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      AccountingBillPaymentsUpdateGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AccountingBillPaymentsUpdateGlobals' from JSON`,
+  );
 }
 
 /** @internal */
@@ -139,6 +163,27 @@ export namespace AccountingBillPaymentsUpdateRequest$ {
     AccountingBillPaymentsUpdateRequest$outboundSchema;
   /** @deprecated use `AccountingBillPaymentsUpdateRequest$Outbound` instead. */
   export type Outbound = AccountingBillPaymentsUpdateRequest$Outbound;
+}
+
+export function accountingBillPaymentsUpdateRequestToJSON(
+  accountingBillPaymentsUpdateRequest: AccountingBillPaymentsUpdateRequest,
+): string {
+  return JSON.stringify(
+    AccountingBillPaymentsUpdateRequest$outboundSchema.parse(
+      accountingBillPaymentsUpdateRequest,
+    ),
+  );
+}
+
+export function accountingBillPaymentsUpdateRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<AccountingBillPaymentsUpdateRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      AccountingBillPaymentsUpdateRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AccountingBillPaymentsUpdateRequest' from JSON`,
+  );
 }
 
 /** @internal */
@@ -203,4 +248,25 @@ export namespace AccountingBillPaymentsUpdateResponse$ {
     AccountingBillPaymentsUpdateResponse$outboundSchema;
   /** @deprecated use `AccountingBillPaymentsUpdateResponse$Outbound` instead. */
   export type Outbound = AccountingBillPaymentsUpdateResponse$Outbound;
+}
+
+export function accountingBillPaymentsUpdateResponseToJSON(
+  accountingBillPaymentsUpdateResponse: AccountingBillPaymentsUpdateResponse,
+): string {
+  return JSON.stringify(
+    AccountingBillPaymentsUpdateResponse$outboundSchema.parse(
+      accountingBillPaymentsUpdateResponse,
+    ),
+  );
+}
+
+export function accountingBillPaymentsUpdateResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<AccountingBillPaymentsUpdateResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      AccountingBillPaymentsUpdateResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AccountingBillPaymentsUpdateResponse' from JSON`,
+  );
 }

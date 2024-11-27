@@ -59,7 +59,7 @@ export async function vaultCreateCallbackState(
     return parsed;
   }
   const payload = parsed.value;
-  const body = encodeJSON("body", payload.CreateCallbackStateData, {
+  const body = encodeJSON("body", payload.CreateCallbackState, {
     explode: true,
   });
 
@@ -88,7 +88,7 @@ export async function vaultCreateCallbackState(
     ),
     "x-apideck-consumer-id": encodeSimple(
       "x-apideck-consumer-id",
-      client._options.customerId,
+      client._options.consumerId,
       { explode: false, charEncoding: "none" },
     ),
   });

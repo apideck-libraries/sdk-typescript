@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { VaultConnectionsImportResponse } from "apideck/models/operations";
+import { VaultConnectionsImportResponse } from "@apideck/sdk/models/operations";
 
 let value: VaultConnectionsImportResponse = {
   httpMeta: {
@@ -52,45 +52,21 @@ let value: VaultConnectionsImportResponse = {
           id: "instance_url",
           label: "Instance url",
           placeholder: "",
-          description: "Slack channel to push notification to",
           type: "text",
           required: true,
           customField: false,
-          allowCustomValues: false,
           disabled: false,
-          hidden: false,
-          deprecated: false,
           sensitive: false,
-          prefix: "https://",
-          suffix: ".shopify.com",
-          options: [
-            {
-              label: "General Channel",
-              value: "general",
-            },
-          ],
         },
         {
           id: "api_key",
           label: "API Key",
           placeholder: "",
-          description: "Slack channel to push notification to",
           type: "text",
           required: true,
           customField: false,
-          allowCustomValues: false,
           disabled: false,
-          hidden: false,
-          deprecated: false,
           sensitive: true,
-          prefix: "https://",
-          suffix: ".shopify.com",
-          options: [
-            {
-              label: "General Channel",
-              value: "general",
-            },
-          ],
         },
       ],
       configuration: [
@@ -115,7 +91,7 @@ let value: VaultConnectionsImportResponse = {
                   ],
                 },
               ],
-              value: 10.5,
+              value: true,
             },
           ],
         },
@@ -173,7 +149,7 @@ let value: VaultConnectionsImportResponse = {
     error: "Bad Request",
     typeName: "RequestHeadersValidationError",
     message: "Invalid Params",
-    detail: {},
+    detail: "Missing Header: x-apideck-consumer-id",
     ref: "https://developers.apideck.com/errors#unauthorizederror",
   },
 };

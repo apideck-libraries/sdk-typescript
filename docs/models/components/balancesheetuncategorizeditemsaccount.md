@@ -5,7 +5,7 @@ A balance sheet uncategorized items account represents the financial position of
 ## Example Usage
 
 ```typescript
-import { BalanceSheetUncategorizedItemsAccount } from "apideck/models/components";
+import { BalanceSheetUncategorizedItemsAccount } from "@apideck/sdk/models/components";
 
 let value: BalanceSheetUncategorizedItemsAccount = {
   accountId: "3",
@@ -17,7 +17,7 @@ let value: BalanceSheetUncategorizedItemsAccount = {
       "account_id": "301",
       "code": "3100",
       "name": "not linked account",
-      "amount": 1000,
+      "value": 1000,
     },
   ],
 };

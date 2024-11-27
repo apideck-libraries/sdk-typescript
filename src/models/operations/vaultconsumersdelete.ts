@@ -4,7 +4,10 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type VaultConsumersDeleteGlobals = {
   /**
@@ -68,6 +71,26 @@ export namespace VaultConsumersDeleteGlobals$ {
   export type Outbound = VaultConsumersDeleteGlobals$Outbound;
 }
 
+export function vaultConsumersDeleteGlobalsToJSON(
+  vaultConsumersDeleteGlobals: VaultConsumersDeleteGlobals,
+): string {
+  return JSON.stringify(
+    VaultConsumersDeleteGlobals$outboundSchema.parse(
+      vaultConsumersDeleteGlobals,
+    ),
+  );
+}
+
+export function vaultConsumersDeleteGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<VaultConsumersDeleteGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => VaultConsumersDeleteGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'VaultConsumersDeleteGlobals' from JSON`,
+  );
+}
+
 /** @internal */
 export const VaultConsumersDeleteRequest$inboundSchema: z.ZodType<
   VaultConsumersDeleteRequest,
@@ -110,6 +133,26 @@ export namespace VaultConsumersDeleteRequest$ {
   export const outboundSchema = VaultConsumersDeleteRequest$outboundSchema;
   /** @deprecated use `VaultConsumersDeleteRequest$Outbound` instead. */
   export type Outbound = VaultConsumersDeleteRequest$Outbound;
+}
+
+export function vaultConsumersDeleteRequestToJSON(
+  vaultConsumersDeleteRequest: VaultConsumersDeleteRequest,
+): string {
+  return JSON.stringify(
+    VaultConsumersDeleteRequest$outboundSchema.parse(
+      vaultConsumersDeleteRequest,
+    ),
+  );
+}
+
+export function vaultConsumersDeleteRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<VaultConsumersDeleteRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => VaultConsumersDeleteRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'VaultConsumersDeleteRequest' from JSON`,
+  );
 }
 
 /** @internal */
@@ -172,4 +215,24 @@ export namespace VaultConsumersDeleteResponse$ {
   export const outboundSchema = VaultConsumersDeleteResponse$outboundSchema;
   /** @deprecated use `VaultConsumersDeleteResponse$Outbound` instead. */
   export type Outbound = VaultConsumersDeleteResponse$Outbound;
+}
+
+export function vaultConsumersDeleteResponseToJSON(
+  vaultConsumersDeleteResponse: VaultConsumersDeleteResponse,
+): string {
+  return JSON.stringify(
+    VaultConsumersDeleteResponse$outboundSchema.parse(
+      vaultConsumersDeleteResponse,
+    ),
+  );
+}
+
+export function vaultConsumersDeleteResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<VaultConsumersDeleteResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => VaultConsumersDeleteResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'VaultConsumersDeleteResponse' from JSON`,
+  );
 }

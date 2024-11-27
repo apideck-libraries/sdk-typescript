@@ -5,7 +5,7 @@ The field on which to sort the Tickets
 ## Example Usage
 
 ```typescript
-import { TicketsSortBy } from "apideck/models/components";
+import { TicketsSortBy } from "@apideck/sdk/models/components";
 
 let value: TicketsSortBy = "created_at";
 ```

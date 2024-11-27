@@ -4,13 +4,16 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type HrisEmployeeSchedulesAllGlobals = {
   /**
    * ID of the consumer which you want to get or push data from
    */
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   /**
    * The ID of your Unify application
    */
@@ -60,13 +63,13 @@ export const HrisEmployeeSchedulesAllGlobals$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
 /** @internal */
 export type HrisEmployeeSchedulesAllGlobals$Outbound = {
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   appId?: string | undefined;
 };
 
@@ -76,7 +79,7 @@ export const HrisEmployeeSchedulesAllGlobals$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   HrisEmployeeSchedulesAllGlobals
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
@@ -91,6 +94,26 @@ export namespace HrisEmployeeSchedulesAllGlobals$ {
   export const outboundSchema = HrisEmployeeSchedulesAllGlobals$outboundSchema;
   /** @deprecated use `HrisEmployeeSchedulesAllGlobals$Outbound` instead. */
   export type Outbound = HrisEmployeeSchedulesAllGlobals$Outbound;
+}
+
+export function hrisEmployeeSchedulesAllGlobalsToJSON(
+  hrisEmployeeSchedulesAllGlobals: HrisEmployeeSchedulesAllGlobals,
+): string {
+  return JSON.stringify(
+    HrisEmployeeSchedulesAllGlobals$outboundSchema.parse(
+      hrisEmployeeSchedulesAllGlobals,
+    ),
+  );
+}
+
+export function hrisEmployeeSchedulesAllGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<HrisEmployeeSchedulesAllGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => HrisEmployeeSchedulesAllGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'HrisEmployeeSchedulesAllGlobals' from JSON`,
+  );
 }
 
 /** @internal */
@@ -149,6 +172,26 @@ export namespace HrisEmployeeSchedulesAllRequest$ {
   export const outboundSchema = HrisEmployeeSchedulesAllRequest$outboundSchema;
   /** @deprecated use `HrisEmployeeSchedulesAllRequest$Outbound` instead. */
   export type Outbound = HrisEmployeeSchedulesAllRequest$Outbound;
+}
+
+export function hrisEmployeeSchedulesAllRequestToJSON(
+  hrisEmployeeSchedulesAllRequest: HrisEmployeeSchedulesAllRequest,
+): string {
+  return JSON.stringify(
+    HrisEmployeeSchedulesAllRequest$outboundSchema.parse(
+      hrisEmployeeSchedulesAllRequest,
+    ),
+  );
+}
+
+export function hrisEmployeeSchedulesAllRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<HrisEmployeeSchedulesAllRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => HrisEmployeeSchedulesAllRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'HrisEmployeeSchedulesAllRequest' from JSON`,
+  );
 }
 
 /** @internal */
@@ -211,4 +254,24 @@ export namespace HrisEmployeeSchedulesAllResponse$ {
   export const outboundSchema = HrisEmployeeSchedulesAllResponse$outboundSchema;
   /** @deprecated use `HrisEmployeeSchedulesAllResponse$Outbound` instead. */
   export type Outbound = HrisEmployeeSchedulesAllResponse$Outbound;
+}
+
+export function hrisEmployeeSchedulesAllResponseToJSON(
+  hrisEmployeeSchedulesAllResponse: HrisEmployeeSchedulesAllResponse,
+): string {
+  return JSON.stringify(
+    HrisEmployeeSchedulesAllResponse$outboundSchema.parse(
+      hrisEmployeeSchedulesAllResponse,
+    ),
+  );
+}
+
+export function hrisEmployeeSchedulesAllResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<HrisEmployeeSchedulesAllResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => HrisEmployeeSchedulesAllResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'HrisEmployeeSchedulesAllResponse' from JSON`,
+  );
 }

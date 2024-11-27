@@ -4,13 +4,16 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type VaultConnectionCustomMappingsAllGlobals = {
   /**
    * ID of the consumer which you want to get or push data from
    */
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   /**
    * The ID of your Unify application
    */
@@ -54,13 +57,13 @@ export const VaultConnectionCustomMappingsAllGlobals$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
 /** @internal */
 export type VaultConnectionCustomMappingsAllGlobals$Outbound = {
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   appId?: string | undefined;
 };
 
@@ -70,7 +73,7 @@ export const VaultConnectionCustomMappingsAllGlobals$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   VaultConnectionCustomMappingsAllGlobals
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
@@ -87,6 +90,33 @@ export namespace VaultConnectionCustomMappingsAllGlobals$ {
     VaultConnectionCustomMappingsAllGlobals$outboundSchema;
   /** @deprecated use `VaultConnectionCustomMappingsAllGlobals$Outbound` instead. */
   export type Outbound = VaultConnectionCustomMappingsAllGlobals$Outbound;
+}
+
+export function vaultConnectionCustomMappingsAllGlobalsToJSON(
+  vaultConnectionCustomMappingsAllGlobals:
+    VaultConnectionCustomMappingsAllGlobals,
+): string {
+  return JSON.stringify(
+    VaultConnectionCustomMappingsAllGlobals$outboundSchema.parse(
+      vaultConnectionCustomMappingsAllGlobals,
+    ),
+  );
+}
+
+export function vaultConnectionCustomMappingsAllGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<
+  VaultConnectionCustomMappingsAllGlobals,
+  SDKValidationError
+> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      VaultConnectionCustomMappingsAllGlobals$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'VaultConnectionCustomMappingsAllGlobals' from JSON`,
+  );
 }
 
 /** @internal */
@@ -146,6 +176,33 @@ export namespace VaultConnectionCustomMappingsAllRequest$ {
     VaultConnectionCustomMappingsAllRequest$outboundSchema;
   /** @deprecated use `VaultConnectionCustomMappingsAllRequest$Outbound` instead. */
   export type Outbound = VaultConnectionCustomMappingsAllRequest$Outbound;
+}
+
+export function vaultConnectionCustomMappingsAllRequestToJSON(
+  vaultConnectionCustomMappingsAllRequest:
+    VaultConnectionCustomMappingsAllRequest,
+): string {
+  return JSON.stringify(
+    VaultConnectionCustomMappingsAllRequest$outboundSchema.parse(
+      vaultConnectionCustomMappingsAllRequest,
+    ),
+  );
+}
+
+export function vaultConnectionCustomMappingsAllRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<
+  VaultConnectionCustomMappingsAllRequest,
+  SDKValidationError
+> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      VaultConnectionCustomMappingsAllRequest$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'VaultConnectionCustomMappingsAllRequest' from JSON`,
+  );
 }
 
 /** @internal */
@@ -210,4 +267,31 @@ export namespace VaultConnectionCustomMappingsAllResponse$ {
     VaultConnectionCustomMappingsAllResponse$outboundSchema;
   /** @deprecated use `VaultConnectionCustomMappingsAllResponse$Outbound` instead. */
   export type Outbound = VaultConnectionCustomMappingsAllResponse$Outbound;
+}
+
+export function vaultConnectionCustomMappingsAllResponseToJSON(
+  vaultConnectionCustomMappingsAllResponse:
+    VaultConnectionCustomMappingsAllResponse,
+): string {
+  return JSON.stringify(
+    VaultConnectionCustomMappingsAllResponse$outboundSchema.parse(
+      vaultConnectionCustomMappingsAllResponse,
+    ),
+  );
+}
+
+export function vaultConnectionCustomMappingsAllResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<
+  VaultConnectionCustomMappingsAllResponse,
+  SDKValidationError
+> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      VaultConnectionCustomMappingsAllResponse$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'VaultConnectionCustomMappingsAllResponse' from JSON`,
+  );
 }

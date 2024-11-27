@@ -5,7 +5,7 @@ The field on which to sort the Opportunities
 ## Example Usage
 
 ```typescript
-import { OpportunitiesSortBy } from "apideck/models/components";
+import { OpportunitiesSortBy } from "@apideck/sdk/models/components";
 
 let value: OpportunitiesSortBy = "created_at";
 ```

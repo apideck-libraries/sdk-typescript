@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type WebhookSubscription = {
   /**
@@ -90,4 +93,22 @@ export namespace WebhookSubscription$ {
   export const outboundSchema = WebhookSubscription$outboundSchema;
   /** @deprecated use `WebhookSubscription$Outbound` instead. */
   export type Outbound = WebhookSubscription$Outbound;
+}
+
+export function webhookSubscriptionToJSON(
+  webhookSubscription: WebhookSubscription,
+): string {
+  return JSON.stringify(
+    WebhookSubscription$outboundSchema.parse(webhookSubscription),
+  );
+}
+
+export function webhookSubscriptionFromJSON(
+  jsonString: string,
+): SafeParseResult<WebhookSubscription, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => WebhookSubscription$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'WebhookSubscription' from JSON`,
+  );
 }

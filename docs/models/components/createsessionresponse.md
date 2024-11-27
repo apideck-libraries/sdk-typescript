@@ -5,7 +5,7 @@ Session created
 ## Example Usage
 
 ```typescript
-import { CreateSessionResponse } from "apideck/models/components";
+import { CreateSessionResponse } from "@apideck/sdk/models/components";
 
 let value: CreateSessionResponse = {
   statusCode: 200,

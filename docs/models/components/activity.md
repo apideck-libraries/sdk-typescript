@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { Activity } from "apideck/models/components";
+import { Activity } from "@apideck/sdk/models/components";
 
 let value: Activity = {
   id: "12345",
@@ -80,7 +80,7 @@ let value: Activity = {
       id: "2389328923893298",
       name: "employee_level",
       description: "Employee Level",
-      value: {},
+      value: true,
     },
   ],
   attendees: [

@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   UnifiedId,
   UnifiedId$inboundSchema,
@@ -96,4 +99,25 @@ export namespace CreateAccountingDepartmentResponse$ {
     CreateAccountingDepartmentResponse$outboundSchema;
   /** @deprecated use `CreateAccountingDepartmentResponse$Outbound` instead. */
   export type Outbound = CreateAccountingDepartmentResponse$Outbound;
+}
+
+export function createAccountingDepartmentResponseToJSON(
+  createAccountingDepartmentResponse: CreateAccountingDepartmentResponse,
+): string {
+  return JSON.stringify(
+    CreateAccountingDepartmentResponse$outboundSchema.parse(
+      createAccountingDepartmentResponse,
+    ),
+  );
+}
+
+export function createAccountingDepartmentResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<CreateAccountingDepartmentResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      CreateAccountingDepartmentResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CreateAccountingDepartmentResponse' from JSON`,
+  );
 }

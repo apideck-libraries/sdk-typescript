@@ -5,7 +5,7 @@ An object representing a shipping or billing address.
 ## Example Usage
 
 ```typescript
-import { EcommerceAddress } from "apideck/models/components";
+import { EcommerceAddress } from "@apideck/sdk/models/components";
 
 let value: EcommerceAddress = {
   line1: "123 Main Street",

@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   Currency,
   Currency$inboundSchema,
@@ -243,6 +246,24 @@ export namespace BalanceSheetAssetsAccount$ {
   export type Outbound = BalanceSheetAssetsAccount$Outbound;
 }
 
+export function balanceSheetAssetsAccountToJSON(
+  balanceSheetAssetsAccount: BalanceSheetAssetsAccount,
+): string {
+  return JSON.stringify(
+    BalanceSheetAssetsAccount$outboundSchema.parse(balanceSheetAssetsAccount),
+  );
+}
+
+export function balanceSheetAssetsAccountFromJSON(
+  jsonString: string,
+): SafeParseResult<BalanceSheetAssetsAccount, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => BalanceSheetAssetsAccount$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'BalanceSheetAssetsAccount' from JSON`,
+  );
+}
+
 /** @internal */
 export const BalanceSheetLiabilitiesAccount$inboundSchema: z.ZodType<
   BalanceSheetLiabilitiesAccount,
@@ -297,6 +318,26 @@ export namespace BalanceSheetLiabilitiesAccount$ {
   export const outboundSchema = BalanceSheetLiabilitiesAccount$outboundSchema;
   /** @deprecated use `BalanceSheetLiabilitiesAccount$Outbound` instead. */
   export type Outbound = BalanceSheetLiabilitiesAccount$Outbound;
+}
+
+export function balanceSheetLiabilitiesAccountToJSON(
+  balanceSheetLiabilitiesAccount: BalanceSheetLiabilitiesAccount,
+): string {
+  return JSON.stringify(
+    BalanceSheetLiabilitiesAccount$outboundSchema.parse(
+      balanceSheetLiabilitiesAccount,
+    ),
+  );
+}
+
+export function balanceSheetLiabilitiesAccountFromJSON(
+  jsonString: string,
+): SafeParseResult<BalanceSheetLiabilitiesAccount, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => BalanceSheetLiabilitiesAccount$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'BalanceSheetLiabilitiesAccount' from JSON`,
+  );
 }
 
 /** @internal */
@@ -355,6 +396,24 @@ export namespace BalanceSheetEquityAccount$ {
   export type Outbound = BalanceSheetEquityAccount$Outbound;
 }
 
+export function balanceSheetEquityAccountToJSON(
+  balanceSheetEquityAccount: BalanceSheetEquityAccount,
+): string {
+  return JSON.stringify(
+    BalanceSheetEquityAccount$outboundSchema.parse(balanceSheetEquityAccount),
+  );
+}
+
+export function balanceSheetEquityAccountFromJSON(
+  jsonString: string,
+): SafeParseResult<BalanceSheetEquityAccount, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => BalanceSheetEquityAccount$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'BalanceSheetEquityAccount' from JSON`,
+  );
+}
+
 /** @internal */
 export const BalanceSheetUncategorizedItemsAccount$inboundSchema: z.ZodType<
   BalanceSheetUncategorizedItemsAccount,
@@ -411,6 +470,27 @@ export namespace BalanceSheetUncategorizedItemsAccount$ {
     BalanceSheetUncategorizedItemsAccount$outboundSchema;
   /** @deprecated use `BalanceSheetUncategorizedItemsAccount$Outbound` instead. */
   export type Outbound = BalanceSheetUncategorizedItemsAccount$Outbound;
+}
+
+export function balanceSheetUncategorizedItemsAccountToJSON(
+  balanceSheetUncategorizedItemsAccount: BalanceSheetUncategorizedItemsAccount,
+): string {
+  return JSON.stringify(
+    BalanceSheetUncategorizedItemsAccount$outboundSchema.parse(
+      balanceSheetUncategorizedItemsAccount,
+    ),
+  );
+}
+
+export function balanceSheetUncategorizedItemsAccountFromJSON(
+  jsonString: string,
+): SafeParseResult<BalanceSheetUncategorizedItemsAccount, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      BalanceSheetUncategorizedItemsAccount$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'BalanceSheetUncategorizedItemsAccount' from JSON`,
+  );
 }
 
 /** @internal */
@@ -524,6 +604,20 @@ export namespace Reports$ {
   export type Outbound = Reports$Outbound;
 }
 
+export function reportsToJSON(reports: Reports): string {
+  return JSON.stringify(Reports$outboundSchema.parse(reports));
+}
+
+export function reportsFromJSON(
+  jsonString: string,
+): SafeParseResult<Reports, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Reports$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Reports' from JSON`,
+  );
+}
+
 /** @internal */
 export const BalanceSheet$inboundSchema: z.ZodType<
   BalanceSheet,
@@ -558,4 +652,18 @@ export namespace BalanceSheet$ {
   export const outboundSchema = BalanceSheet$outboundSchema;
   /** @deprecated use `BalanceSheet$Outbound` instead. */
   export type Outbound = BalanceSheet$Outbound;
+}
+
+export function balanceSheetToJSON(balanceSheet: BalanceSheet): string {
+  return JSON.stringify(BalanceSheet$outboundSchema.parse(balanceSheet));
+}
+
+export function balanceSheetFromJSON(
+  jsonString: string,
+): SafeParseResult<BalanceSheet, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => BalanceSheet$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'BalanceSheet' from JSON`,
+  );
 }

@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type DrivesFilter = {
   /**
@@ -54,4 +57,18 @@ export namespace DrivesFilter$ {
   export const outboundSchema = DrivesFilter$outboundSchema;
   /** @deprecated use `DrivesFilter$Outbound` instead. */
   export type Outbound = DrivesFilter$Outbound;
+}
+
+export function drivesFilterToJSON(drivesFilter: DrivesFilter): string {
+  return JSON.stringify(DrivesFilter$outboundSchema.parse(drivesFilter));
+}
+
+export function drivesFilterFromJSON(
+  jsonString: string,
+): SafeParseResult<DrivesFilter, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => DrivesFilter$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'DrivesFilter' from JSON`,
+  );
 }

@@ -4,13 +4,16 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type AccountingSubsidiariesDeleteGlobals = {
   /**
    * ID of the consumer which you want to get or push data from
    */
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   /**
    * The ID of your Unify application
    */
@@ -50,13 +53,13 @@ export const AccountingSubsidiariesDeleteGlobals$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
 /** @internal */
 export type AccountingSubsidiariesDeleteGlobals$Outbound = {
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   appId?: string | undefined;
 };
 
@@ -66,7 +69,7 @@ export const AccountingSubsidiariesDeleteGlobals$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   AccountingSubsidiariesDeleteGlobals
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
@@ -83,6 +86,27 @@ export namespace AccountingSubsidiariesDeleteGlobals$ {
     AccountingSubsidiariesDeleteGlobals$outboundSchema;
   /** @deprecated use `AccountingSubsidiariesDeleteGlobals$Outbound` instead. */
   export type Outbound = AccountingSubsidiariesDeleteGlobals$Outbound;
+}
+
+export function accountingSubsidiariesDeleteGlobalsToJSON(
+  accountingSubsidiariesDeleteGlobals: AccountingSubsidiariesDeleteGlobals,
+): string {
+  return JSON.stringify(
+    AccountingSubsidiariesDeleteGlobals$outboundSchema.parse(
+      accountingSubsidiariesDeleteGlobals,
+    ),
+  );
+}
+
+export function accountingSubsidiariesDeleteGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<AccountingSubsidiariesDeleteGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      AccountingSubsidiariesDeleteGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AccountingSubsidiariesDeleteGlobals' from JSON`,
+  );
 }
 
 /** @internal */
@@ -127,6 +151,27 @@ export namespace AccountingSubsidiariesDeleteRequest$ {
     AccountingSubsidiariesDeleteRequest$outboundSchema;
   /** @deprecated use `AccountingSubsidiariesDeleteRequest$Outbound` instead. */
   export type Outbound = AccountingSubsidiariesDeleteRequest$Outbound;
+}
+
+export function accountingSubsidiariesDeleteRequestToJSON(
+  accountingSubsidiariesDeleteRequest: AccountingSubsidiariesDeleteRequest,
+): string {
+  return JSON.stringify(
+    AccountingSubsidiariesDeleteRequest$outboundSchema.parse(
+      accountingSubsidiariesDeleteRequest,
+    ),
+  );
+}
+
+export function accountingSubsidiariesDeleteRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<AccountingSubsidiariesDeleteRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      AccountingSubsidiariesDeleteRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AccountingSubsidiariesDeleteRequest' from JSON`,
+  );
 }
 
 /** @internal */
@@ -191,4 +236,25 @@ export namespace AccountingSubsidiariesDeleteResponse$ {
     AccountingSubsidiariesDeleteResponse$outboundSchema;
   /** @deprecated use `AccountingSubsidiariesDeleteResponse$Outbound` instead. */
   export type Outbound = AccountingSubsidiariesDeleteResponse$Outbound;
+}
+
+export function accountingSubsidiariesDeleteResponseToJSON(
+  accountingSubsidiariesDeleteResponse: AccountingSubsidiariesDeleteResponse,
+): string {
+  return JSON.stringify(
+    AccountingSubsidiariesDeleteResponse$outboundSchema.parse(
+      accountingSubsidiariesDeleteResponse,
+    ),
+  );
+}
+
+export function accountingSubsidiariesDeleteResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<AccountingSubsidiariesDeleteResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      AccountingSubsidiariesDeleteResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AccountingSubsidiariesDeleteResponse' from JSON`,
+  );
 }

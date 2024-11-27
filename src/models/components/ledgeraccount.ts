@@ -4,8 +4,11 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import { RFCDate } from "../../types/rfcdate.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   BankAccount,
   BankAccount$inboundSchema,
@@ -466,6 +469,20 @@ export namespace Categories$ {
   export type Outbound = Categories$Outbound;
 }
 
+export function categoriesToJSON(categories: Categories): string {
+  return JSON.stringify(Categories$outboundSchema.parse(categories));
+}
+
+export function categoriesFromJSON(
+  jsonString: string,
+): SafeParseResult<Categories, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Categories$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Categories' from JSON`,
+  );
+}
+
 /** @internal */
 export const ParentAccount$inboundSchema: z.ZodType<
   ParentAccount,
@@ -516,6 +533,20 @@ export namespace ParentAccount$ {
   export type Outbound = ParentAccount$Outbound;
 }
 
+export function parentAccountToJSON(parentAccount: ParentAccount): string {
+  return JSON.stringify(ParentAccount$outboundSchema.parse(parentAccount));
+}
+
+export function parentAccountFromJSON(
+  jsonString: string,
+): SafeParseResult<ParentAccount, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ParentAccount$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ParentAccount' from JSON`,
+  );
+}
+
 /** @internal */
 export const SubAccounts$inboundSchema: z.ZodType<
   SubAccounts,
@@ -563,6 +594,20 @@ export namespace SubAccounts$ {
   export type Outbound = SubAccounts$Outbound;
 }
 
+export function subAccountsToJSON(subAccounts: SubAccounts): string {
+  return JSON.stringify(SubAccounts$outboundSchema.parse(subAccounts));
+}
+
+export function subAccountsFromJSON(
+  jsonString: string,
+): SafeParseResult<SubAccounts, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => SubAccounts$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'SubAccounts' from JSON`,
+  );
+}
+
 /** @internal */
 export const Subsidiaries$inboundSchema: z.ZodType<
   Subsidiaries,
@@ -597,6 +642,20 @@ export namespace Subsidiaries$ {
   export const outboundSchema = Subsidiaries$outboundSchema;
   /** @deprecated use `Subsidiaries$Outbound` instead. */
   export type Outbound = Subsidiaries$Outbound;
+}
+
+export function subsidiariesToJSON(subsidiaries: Subsidiaries): string {
+  return JSON.stringify(Subsidiaries$outboundSchema.parse(subsidiaries));
+}
+
+export function subsidiariesFromJSON(
+  jsonString: string,
+): SafeParseResult<Subsidiaries, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Subsidiaries$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Subsidiaries' from JSON`,
+  );
 }
 
 /** @internal */
@@ -785,6 +844,20 @@ export namespace LedgerAccount$ {
   export type Outbound = LedgerAccount$Outbound;
 }
 
+export function ledgerAccountToJSON(ledgerAccount: LedgerAccount): string {
+  return JSON.stringify(LedgerAccount$outboundSchema.parse(ledgerAccount));
+}
+
+export function ledgerAccountFromJSON(
+  jsonString: string,
+): SafeParseResult<LedgerAccount, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => LedgerAccount$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'LedgerAccount' from JSON`,
+  );
+}
+
 /** @internal */
 export const LedgerAccountInput$inboundSchema: z.ZodType<
   LedgerAccountInput,
@@ -929,4 +1002,22 @@ export namespace LedgerAccountInput$ {
   export const outboundSchema = LedgerAccountInput$outboundSchema;
   /** @deprecated use `LedgerAccountInput$Outbound` instead. */
   export type Outbound = LedgerAccountInput$Outbound;
+}
+
+export function ledgerAccountInputToJSON(
+  ledgerAccountInput: LedgerAccountInput,
+): string {
+  return JSON.stringify(
+    LedgerAccountInput$outboundSchema.parse(ledgerAccountInput),
+  );
+}
+
+export function ledgerAccountInputFromJSON(
+  jsonString: string,
+): SafeParseResult<LedgerAccountInput, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => LedgerAccountInput$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'LedgerAccountInput' from JSON`,
+  );
 }

@@ -4,7 +4,10 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   CustomMappings,
   CustomMappings$inboundSchema,
@@ -223,6 +226,20 @@ export namespace Components$ {
   export type Outbound = Components$Outbound;
 }
 
+export function componentsToJSON(components: Components): string {
+  return JSON.stringify(Components$outboundSchema.parse(components));
+}
+
+export function componentsFromJSON(
+  jsonString: string,
+): SafeParseResult<Components, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Components$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Components' from JSON`,
+  );
+}
+
 /** @internal */
 export const TaxRateStatus$inboundSchema: z.ZodNativeEnum<
   typeof TaxRateStatus
@@ -372,6 +389,20 @@ export namespace TaxRate$ {
   export type Outbound = TaxRate$Outbound;
 }
 
+export function taxRateToJSON(taxRate: TaxRate): string {
+  return JSON.stringify(TaxRate$outboundSchema.parse(taxRate));
+}
+
+export function taxRateFromJSON(
+  jsonString: string,
+): SafeParseResult<TaxRate, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => TaxRate$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'TaxRate' from JSON`,
+  );
+}
+
 /** @internal */
 export const TaxRateInput$inboundSchema: z.ZodType<
   TaxRateInput,
@@ -472,4 +503,18 @@ export namespace TaxRateInput$ {
   export const outboundSchema = TaxRateInput$outboundSchema;
   /** @deprecated use `TaxRateInput$Outbound` instead. */
   export type Outbound = TaxRateInput$Outbound;
+}
+
+export function taxRateInputToJSON(taxRateInput: TaxRateInput): string {
+  return JSON.stringify(TaxRateInput$outboundSchema.parse(taxRateInput));
+}
+
+export function taxRateInputFromJSON(
+  jsonString: string,
+): SafeParseResult<TaxRateInput, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => TaxRateInput$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'TaxRateInput' from JSON`,
+  );
 }

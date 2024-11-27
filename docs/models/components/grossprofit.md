@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { GrossProfit } from "apideck/models/components";
+import { GrossProfit } from "@apideck/sdk/models/components";
 
 let value: GrossProfit = {
   total: 200000,

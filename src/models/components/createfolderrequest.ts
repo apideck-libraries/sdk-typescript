@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   PassThroughBody,
   PassThroughBody$inboundSchema,
@@ -92,4 +95,22 @@ export namespace CreateFolderRequest$ {
   export const outboundSchema = CreateFolderRequest$outboundSchema;
   /** @deprecated use `CreateFolderRequest$Outbound` instead. */
   export type Outbound = CreateFolderRequest$Outbound;
+}
+
+export function createFolderRequestToJSON(
+  createFolderRequest: CreateFolderRequest,
+): string {
+  return JSON.stringify(
+    CreateFolderRequest$outboundSchema.parse(createFolderRequest),
+  );
+}
+
+export function createFolderRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<CreateFolderRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CreateFolderRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CreateFolderRequest' from JSON`,
+  );
 }

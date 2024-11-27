@@ -5,8 +5,8 @@ Company
 ## Example Usage
 
 ```typescript
-import { GetCompanyResponse } from "apideck/models/components";
-import { RFCDate } from "apideck/types";
+import { GetCompanyResponse } from "@apideck/sdk/models/components";
+import { RFCDate } from "@apideck/sdk/types";
 
 let value: GetCompanyResponse = {
   statusCode: 200,
@@ -121,9 +121,7 @@ let value: GetCompanyResponse = {
         id: "2389328923893298",
         name: "employee_level",
         description: "Employee Level",
-        value: [
-          "<value>",
-        ],
+        value: true,
       },
     ],
     tags: [

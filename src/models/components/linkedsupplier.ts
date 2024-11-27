@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   Address,
   Address$inboundSchema,
@@ -92,4 +95,18 @@ export namespace LinkedSupplier$ {
   export const outboundSchema = LinkedSupplier$outboundSchema;
   /** @deprecated use `LinkedSupplier$Outbound` instead. */
   export type Outbound = LinkedSupplier$Outbound;
+}
+
+export function linkedSupplierToJSON(linkedSupplier: LinkedSupplier): string {
+  return JSON.stringify(LinkedSupplier$outboundSchema.parse(linkedSupplier));
+}
+
+export function linkedSupplierFromJSON(
+  jsonString: string,
+): SafeParseResult<LinkedSupplier, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => LinkedSupplier$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'LinkedSupplier' from JSON`,
+  );
 }

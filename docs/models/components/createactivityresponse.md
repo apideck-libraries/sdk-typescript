@@ -5,7 +5,7 @@ Activity created
 ## Example Usage
 
 ```typescript
-import { CreateActivityResponse } from "apideck/models/components";
+import { CreateActivityResponse } from "@apideck/sdk/models/components";
 
 let value: CreateActivityResponse = {
   statusCode: 200,

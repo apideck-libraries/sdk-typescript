@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   ConsumerMetadata,
   ConsumerMetadata$inboundSchema,
@@ -137,6 +140,20 @@ export namespace Data$ {
   export type Outbound = Data$Outbound;
 }
 
+export function dataToJSON(data: Data): string {
+  return JSON.stringify(Data$outboundSchema.parse(data));
+}
+
+export function dataFromJSON(
+  jsonString: string,
+): SafeParseResult<Data, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Data$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Data' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetConsumersResponse$inboundSchema: z.ZodType<
   GetConsumersResponse,
@@ -191,4 +208,22 @@ export namespace GetConsumersResponse$ {
   export const outboundSchema = GetConsumersResponse$outboundSchema;
   /** @deprecated use `GetConsumersResponse$Outbound` instead. */
   export type Outbound = GetConsumersResponse$Outbound;
+}
+
+export function getConsumersResponseToJSON(
+  getConsumersResponse: GetConsumersResponse,
+): string {
+  return JSON.stringify(
+    GetConsumersResponse$outboundSchema.parse(getConsumersResponse),
+  );
+}
+
+export function getConsumersResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<GetConsumersResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetConsumersResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetConsumersResponse' from JSON`,
+  );
 }

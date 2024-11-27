@@ -5,7 +5,7 @@ The field on which to sort the Invoices
 ## Example Usage
 
 ```typescript
-import { InvoicesSortBy } from "apideck/models/components";
+import { InvoicesSortBy } from "@apideck/sdk/models/components";
 
 let value: InvoicesSortBy = "updated_at";
 ```

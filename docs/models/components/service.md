@@ -5,7 +5,7 @@ Apideck service provider associated with request.
 ## Example Usage
 
 ```typescript
-import { Service } from "apideck/models/components";
+import { Service } from "@apideck/sdk/models/components";
 
 let value: Service = {
   id: "apideck-vault",

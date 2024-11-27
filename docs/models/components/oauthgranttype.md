@@ -5,7 +5,7 @@ OAuth grant type used by the connector. More info: https://oauth.net/2/grant-typ
 ## Example Usage
 
 ```typescript
-import { OAuthGrantType } from "apideck/models/components";
+import { OAuthGrantType } from "@apideck/sdk/models/components";
 
 let value: OAuthGrantType = "authorization_code";
 ```

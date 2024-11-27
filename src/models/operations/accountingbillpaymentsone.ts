@@ -4,13 +4,16 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type AccountingBillPaymentsOneGlobals = {
   /**
    * ID of the consumer which you want to get or push data from
    */
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   /**
    * The ID of your Unify application
    */
@@ -54,13 +57,13 @@ export const AccountingBillPaymentsOneGlobals$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
 /** @internal */
 export type AccountingBillPaymentsOneGlobals$Outbound = {
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   appId?: string | undefined;
 };
 
@@ -70,7 +73,7 @@ export const AccountingBillPaymentsOneGlobals$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   AccountingBillPaymentsOneGlobals
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
@@ -85,6 +88,26 @@ export namespace AccountingBillPaymentsOneGlobals$ {
   export const outboundSchema = AccountingBillPaymentsOneGlobals$outboundSchema;
   /** @deprecated use `AccountingBillPaymentsOneGlobals$Outbound` instead. */
   export type Outbound = AccountingBillPaymentsOneGlobals$Outbound;
+}
+
+export function accountingBillPaymentsOneGlobalsToJSON(
+  accountingBillPaymentsOneGlobals: AccountingBillPaymentsOneGlobals,
+): string {
+  return JSON.stringify(
+    AccountingBillPaymentsOneGlobals$outboundSchema.parse(
+      accountingBillPaymentsOneGlobals,
+    ),
+  );
+}
+
+export function accountingBillPaymentsOneGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<AccountingBillPaymentsOneGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => AccountingBillPaymentsOneGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AccountingBillPaymentsOneGlobals' from JSON`,
+  );
 }
 
 /** @internal */
@@ -130,6 +153,26 @@ export namespace AccountingBillPaymentsOneRequest$ {
   export const outboundSchema = AccountingBillPaymentsOneRequest$outboundSchema;
   /** @deprecated use `AccountingBillPaymentsOneRequest$Outbound` instead. */
   export type Outbound = AccountingBillPaymentsOneRequest$Outbound;
+}
+
+export function accountingBillPaymentsOneRequestToJSON(
+  accountingBillPaymentsOneRequest: AccountingBillPaymentsOneRequest,
+): string {
+  return JSON.stringify(
+    AccountingBillPaymentsOneRequest$outboundSchema.parse(
+      accountingBillPaymentsOneRequest,
+    ),
+  );
+}
+
+export function accountingBillPaymentsOneRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<AccountingBillPaymentsOneRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => AccountingBillPaymentsOneRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AccountingBillPaymentsOneRequest' from JSON`,
+  );
 }
 
 /** @internal */
@@ -193,4 +236,24 @@ export namespace AccountingBillPaymentsOneResponse$ {
     AccountingBillPaymentsOneResponse$outboundSchema;
   /** @deprecated use `AccountingBillPaymentsOneResponse$Outbound` instead. */
   export type Outbound = AccountingBillPaymentsOneResponse$Outbound;
+}
+
+export function accountingBillPaymentsOneResponseToJSON(
+  accountingBillPaymentsOneResponse: AccountingBillPaymentsOneResponse,
+): string {
+  return JSON.stringify(
+    AccountingBillPaymentsOneResponse$outboundSchema.parse(
+      accountingBillPaymentsOneResponse,
+    ),
+  );
+}
+
+export function accountingBillPaymentsOneResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<AccountingBillPaymentsOneResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => AccountingBillPaymentsOneResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AccountingBillPaymentsOneResponse' from JSON`,
+  );
 }

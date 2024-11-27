@@ -5,7 +5,7 @@ Expenses
 ## Example Usage
 
 ```typescript
-import { UpdateExpenseResponse } from "apideck/models/components";
+import { UpdateExpenseResponse } from "@apideck/sdk/models/components";
 
 let value: UpdateExpenseResponse = {
   statusCode: 200,

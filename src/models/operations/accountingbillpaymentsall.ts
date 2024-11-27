@@ -4,13 +4,16 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type AccountingBillPaymentsAllGlobals = {
   /**
    * ID of the consumer which you want to get or push data from
    */
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   /**
    * The ID of your Unify application
    */
@@ -70,13 +73,13 @@ export const AccountingBillPaymentsAllGlobals$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
 /** @internal */
 export type AccountingBillPaymentsAllGlobals$Outbound = {
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   appId?: string | undefined;
 };
 
@@ -86,7 +89,7 @@ export const AccountingBillPaymentsAllGlobals$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   AccountingBillPaymentsAllGlobals
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
@@ -101,6 +104,26 @@ export namespace AccountingBillPaymentsAllGlobals$ {
   export const outboundSchema = AccountingBillPaymentsAllGlobals$outboundSchema;
   /** @deprecated use `AccountingBillPaymentsAllGlobals$Outbound` instead. */
   export type Outbound = AccountingBillPaymentsAllGlobals$Outbound;
+}
+
+export function accountingBillPaymentsAllGlobalsToJSON(
+  accountingBillPaymentsAllGlobals: AccountingBillPaymentsAllGlobals,
+): string {
+  return JSON.stringify(
+    AccountingBillPaymentsAllGlobals$outboundSchema.parse(
+      accountingBillPaymentsAllGlobals,
+    ),
+  );
+}
+
+export function accountingBillPaymentsAllGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<AccountingBillPaymentsAllGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => AccountingBillPaymentsAllGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AccountingBillPaymentsAllGlobals' from JSON`,
+  );
 }
 
 /** @internal */
@@ -168,6 +191,26 @@ export namespace AccountingBillPaymentsAllRequest$ {
   export type Outbound = AccountingBillPaymentsAllRequest$Outbound;
 }
 
+export function accountingBillPaymentsAllRequestToJSON(
+  accountingBillPaymentsAllRequest: AccountingBillPaymentsAllRequest,
+): string {
+  return JSON.stringify(
+    AccountingBillPaymentsAllRequest$outboundSchema.parse(
+      accountingBillPaymentsAllRequest,
+    ),
+  );
+}
+
+export function accountingBillPaymentsAllRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<AccountingBillPaymentsAllRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => AccountingBillPaymentsAllRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AccountingBillPaymentsAllRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const AccountingBillPaymentsAllResponse$inboundSchema: z.ZodType<
   AccountingBillPaymentsAllResponse,
@@ -229,4 +272,24 @@ export namespace AccountingBillPaymentsAllResponse$ {
     AccountingBillPaymentsAllResponse$outboundSchema;
   /** @deprecated use `AccountingBillPaymentsAllResponse$Outbound` instead. */
   export type Outbound = AccountingBillPaymentsAllResponse$Outbound;
+}
+
+export function accountingBillPaymentsAllResponseToJSON(
+  accountingBillPaymentsAllResponse: AccountingBillPaymentsAllResponse,
+): string {
+  return JSON.stringify(
+    AccountingBillPaymentsAllResponse$outboundSchema.parse(
+      accountingBillPaymentsAllResponse,
+    ),
+  );
+}
+
+export function accountingBillPaymentsAllResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<AccountingBillPaymentsAllResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => AccountingBillPaymentsAllResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AccountingBillPaymentsAllResponse' from JSON`,
+  );
 }

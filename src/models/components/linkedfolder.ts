@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type LinkedFolder = {
   /**
@@ -52,4 +55,18 @@ export namespace LinkedFolder$ {
   export const outboundSchema = LinkedFolder$outboundSchema;
   /** @deprecated use `LinkedFolder$Outbound` instead. */
   export type Outbound = LinkedFolder$Outbound;
+}
+
+export function linkedFolderToJSON(linkedFolder: LinkedFolder): string {
+  return JSON.stringify(LinkedFolder$outboundSchema.parse(linkedFolder));
+}
+
+export function linkedFolderFromJSON(
+  jsonString: string,
+): SafeParseResult<LinkedFolder, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => LinkedFolder$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'LinkedFolder' from JSON`,
+  );
 }

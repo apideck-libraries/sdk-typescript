@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   CustomFieldFinder,
   CustomFieldFinder$inboundSchema,
@@ -74,4 +77,22 @@ export namespace GetCustomFieldsResponse$ {
   export const outboundSchema = GetCustomFieldsResponse$outboundSchema;
   /** @deprecated use `GetCustomFieldsResponse$Outbound` instead. */
   export type Outbound = GetCustomFieldsResponse$Outbound;
+}
+
+export function getCustomFieldsResponseToJSON(
+  getCustomFieldsResponse: GetCustomFieldsResponse,
+): string {
+  return JSON.stringify(
+    GetCustomFieldsResponse$outboundSchema.parse(getCustomFieldsResponse),
+  );
+}
+
+export function getCustomFieldsResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<GetCustomFieldsResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetCustomFieldsResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetCustomFieldsResponse' from JSON`,
+  );
 }

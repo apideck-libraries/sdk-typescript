@@ -4,7 +4,10 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
  * Time off request status to filter on
@@ -137,4 +140,22 @@ export namespace TimeOffRequestsFilter$ {
   export const outboundSchema = TimeOffRequestsFilter$outboundSchema;
   /** @deprecated use `TimeOffRequestsFilter$Outbound` instead. */
   export type Outbound = TimeOffRequestsFilter$Outbound;
+}
+
+export function timeOffRequestsFilterToJSON(
+  timeOffRequestsFilter: TimeOffRequestsFilter,
+): string {
+  return JSON.stringify(
+    TimeOffRequestsFilter$outboundSchema.parse(timeOffRequestsFilter),
+  );
+}
+
+export function timeOffRequestsFilterFromJSON(
+  jsonString: string,
+): SafeParseResult<TimeOffRequestsFilter, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => TimeOffRequestsFilter$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'TimeOffRequestsFilter' from JSON`,
+  );
 }

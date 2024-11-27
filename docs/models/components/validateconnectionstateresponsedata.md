@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { ValidateConnectionStateResponseData } from "apideck/models/components";
+import { ValidateConnectionStateResponseData } from "@apideck/sdk/models/components";
 
 let value: ValidateConnectionStateResponseData = {
   id: "crm+salesforce",

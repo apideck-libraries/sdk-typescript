@@ -4,13 +4,16 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type AtsApplicationsDeleteGlobals = {
   /**
    * ID of the consumer which you want to get or push data from
    */
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   /**
    * The ID of your Unify application
    */
@@ -50,13 +53,13 @@ export const AtsApplicationsDeleteGlobals$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
 /** @internal */
 export type AtsApplicationsDeleteGlobals$Outbound = {
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   appId?: string | undefined;
 };
 
@@ -66,7 +69,7 @@ export const AtsApplicationsDeleteGlobals$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   AtsApplicationsDeleteGlobals
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
@@ -81,6 +84,26 @@ export namespace AtsApplicationsDeleteGlobals$ {
   export const outboundSchema = AtsApplicationsDeleteGlobals$outboundSchema;
   /** @deprecated use `AtsApplicationsDeleteGlobals$Outbound` instead. */
   export type Outbound = AtsApplicationsDeleteGlobals$Outbound;
+}
+
+export function atsApplicationsDeleteGlobalsToJSON(
+  atsApplicationsDeleteGlobals: AtsApplicationsDeleteGlobals,
+): string {
+  return JSON.stringify(
+    AtsApplicationsDeleteGlobals$outboundSchema.parse(
+      atsApplicationsDeleteGlobals,
+    ),
+  );
+}
+
+export function atsApplicationsDeleteGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<AtsApplicationsDeleteGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => AtsApplicationsDeleteGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AtsApplicationsDeleteGlobals' from JSON`,
+  );
 }
 
 /** @internal */
@@ -123,6 +146,26 @@ export namespace AtsApplicationsDeleteRequest$ {
   export const outboundSchema = AtsApplicationsDeleteRequest$outboundSchema;
   /** @deprecated use `AtsApplicationsDeleteRequest$Outbound` instead. */
   export type Outbound = AtsApplicationsDeleteRequest$Outbound;
+}
+
+export function atsApplicationsDeleteRequestToJSON(
+  atsApplicationsDeleteRequest: AtsApplicationsDeleteRequest,
+): string {
+  return JSON.stringify(
+    AtsApplicationsDeleteRequest$outboundSchema.parse(
+      atsApplicationsDeleteRequest,
+    ),
+  );
+}
+
+export function atsApplicationsDeleteRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<AtsApplicationsDeleteRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => AtsApplicationsDeleteRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AtsApplicationsDeleteRequest' from JSON`,
+  );
 }
 
 /** @internal */
@@ -185,4 +228,24 @@ export namespace AtsApplicationsDeleteResponse$ {
   export const outboundSchema = AtsApplicationsDeleteResponse$outboundSchema;
   /** @deprecated use `AtsApplicationsDeleteResponse$Outbound` instead. */
   export type Outbound = AtsApplicationsDeleteResponse$Outbound;
+}
+
+export function atsApplicationsDeleteResponseToJSON(
+  atsApplicationsDeleteResponse: AtsApplicationsDeleteResponse,
+): string {
+  return JSON.stringify(
+    AtsApplicationsDeleteResponse$outboundSchema.parse(
+      atsApplicationsDeleteResponse,
+    ),
+  );
+}
+
+export function atsApplicationsDeleteResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<AtsApplicationsDeleteResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => AtsApplicationsDeleteResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AtsApplicationsDeleteResponse' from JSON`,
+  );
 }

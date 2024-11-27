@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { WebhookWebhooksAllGlobals } from "apideck/models/operations";
+import { WebhookWebhooksAllGlobals } from "@apideck/sdk/models/operations";
 
 let value: WebhookWebhooksAllGlobals = {};
 ```

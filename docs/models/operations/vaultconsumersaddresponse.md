@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { VaultConsumersAddResponse } from "apideck/models/operations";
+import { VaultConsumersAddResponse } from "@apideck/sdk/models/operations";
 
 let value: VaultConsumersAddResponse = {
   httpMeta: {
@@ -73,7 +73,7 @@ let value: VaultConsumersAddResponse = {
     error: "Bad Request",
     typeName: "RequestHeadersValidationError",
     message: "Invalid Params",
-    detail: {},
+    detail: "Missing Header: x-apideck-consumer-id",
     ref: "https://developers.apideck.com/errors#unauthorizederror",
   },
 };

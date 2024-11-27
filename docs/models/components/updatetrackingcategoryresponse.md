@@ -5,7 +5,7 @@ Tracking category updated
 ## Example Usage
 
 ```typescript
-import { UpdateTrackingCategoryResponse } from "apideck/models/components";
+import { UpdateTrackingCategoryResponse } from "@apideck/sdk/models/components";
 
 let value: UpdateTrackingCategoryResponse = {
   statusCode: 200,

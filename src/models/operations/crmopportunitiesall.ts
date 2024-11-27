@@ -4,13 +4,16 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type CrmOpportunitiesAllGlobals = {
   /**
    * ID of the consumer which you want to get or push data from
    */
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   /**
    * The ID of your Unify application
    */
@@ -70,13 +73,13 @@ export const CrmOpportunitiesAllGlobals$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
 /** @internal */
 export type CrmOpportunitiesAllGlobals$Outbound = {
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   appId?: string | undefined;
 };
 
@@ -86,7 +89,7 @@ export const CrmOpportunitiesAllGlobals$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   CrmOpportunitiesAllGlobals
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
@@ -101,6 +104,24 @@ export namespace CrmOpportunitiesAllGlobals$ {
   export const outboundSchema = CrmOpportunitiesAllGlobals$outboundSchema;
   /** @deprecated use `CrmOpportunitiesAllGlobals$Outbound` instead. */
   export type Outbound = CrmOpportunitiesAllGlobals$Outbound;
+}
+
+export function crmOpportunitiesAllGlobalsToJSON(
+  crmOpportunitiesAllGlobals: CrmOpportunitiesAllGlobals,
+): string {
+  return JSON.stringify(
+    CrmOpportunitiesAllGlobals$outboundSchema.parse(crmOpportunitiesAllGlobals),
+  );
+}
+
+export function crmOpportunitiesAllGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<CrmOpportunitiesAllGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CrmOpportunitiesAllGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CrmOpportunitiesAllGlobals' from JSON`,
+  );
 }
 
 /** @internal */
@@ -168,6 +189,24 @@ export namespace CrmOpportunitiesAllRequest$ {
   export type Outbound = CrmOpportunitiesAllRequest$Outbound;
 }
 
+export function crmOpportunitiesAllRequestToJSON(
+  crmOpportunitiesAllRequest: CrmOpportunitiesAllRequest,
+): string {
+  return JSON.stringify(
+    CrmOpportunitiesAllRequest$outboundSchema.parse(crmOpportunitiesAllRequest),
+  );
+}
+
+export function crmOpportunitiesAllRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<CrmOpportunitiesAllRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CrmOpportunitiesAllRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CrmOpportunitiesAllRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const CrmOpportunitiesAllResponse$inboundSchema: z.ZodType<
   CrmOpportunitiesAllResponse,
@@ -228,4 +267,24 @@ export namespace CrmOpportunitiesAllResponse$ {
   export const outboundSchema = CrmOpportunitiesAllResponse$outboundSchema;
   /** @deprecated use `CrmOpportunitiesAllResponse$Outbound` instead. */
   export type Outbound = CrmOpportunitiesAllResponse$Outbound;
+}
+
+export function crmOpportunitiesAllResponseToJSON(
+  crmOpportunitiesAllResponse: CrmOpportunitiesAllResponse,
+): string {
+  return JSON.stringify(
+    CrmOpportunitiesAllResponse$outboundSchema.parse(
+      crmOpportunitiesAllResponse,
+    ),
+  );
+}
+
+export function crmOpportunitiesAllResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<CrmOpportunitiesAllResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CrmOpportunitiesAllResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CrmOpportunitiesAllResponse' from JSON`,
+  );
 }

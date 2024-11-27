@@ -5,7 +5,7 @@ Apis
 ## Example Usage
 
 ```typescript
-import { GetApiResponse } from "apideck/models/components";
+import { GetApiResponse } from "@apideck/sdk/models/components";
 
 let value: GetApiResponse = {
   statusCode: 200,

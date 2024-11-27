@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { InvoiceItemsFilter } from "apideck/models/components";
+import { InvoiceItemsFilter } from "@apideck/sdk/models/components";
 
 let value: InvoiceItemsFilter = {
   name: "Widgets Large",

@@ -4,7 +4,10 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   ApiStatus,
   ApiStatus$inboundSchema,
@@ -166,6 +169,20 @@ export namespace Resources$ {
   export type Outbound = Resources$Outbound;
 }
 
+export function resourcesToJSON(resources: Resources): string {
+  return JSON.stringify(Resources$outboundSchema.parse(resources));
+}
+
+export function resourcesFromJSON(
+  jsonString: string,
+): SafeParseResult<Resources, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Resources$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Resources' from JSON`,
+  );
+}
+
 /** @internal */
 export const Api$inboundSchema: z.ZodType<Api, z.ZodTypeDef, unknown> = z
   .object({
@@ -236,4 +253,18 @@ export namespace Api$ {
   export const outboundSchema = Api$outboundSchema;
   /** @deprecated use `Api$Outbound` instead. */
   export type Outbound = Api$Outbound;
+}
+
+export function apiToJSON(api: Api): string {
+  return JSON.stringify(Api$outboundSchema.parse(api));
+}
+
+export function apiFromJSON(
+  jsonString: string,
+): SafeParseResult<Api, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Api$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Api' from JSON`,
+  );
 }

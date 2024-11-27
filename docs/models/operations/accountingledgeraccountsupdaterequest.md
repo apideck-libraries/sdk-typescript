@@ -3,8 +3,8 @@
 ## Example Usage
 
 ```typescript
-import { AccountingLedgerAccountsUpdateRequest } from "apideck/models/operations";
-import { RFCDate } from "apideck/types";
+import { AccountingLedgerAccountsUpdateRequest } from "@apideck/sdk/models/operations";
+import { RFCDate } from "@apideck/sdk/types";
 
 let value: AccountingLedgerAccountsUpdateRequest = {
   id: "<id>",

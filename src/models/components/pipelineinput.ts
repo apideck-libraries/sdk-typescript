@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   Currency,
   Currency$inboundSchema,
@@ -129,6 +132,20 @@ export namespace PipelineStages$ {
   export type Outbound = PipelineStages$Outbound;
 }
 
+export function pipelineStagesToJSON(pipelineStages: PipelineStages): string {
+  return JSON.stringify(PipelineStages$outboundSchema.parse(pipelineStages));
+}
+
+export function pipelineStagesFromJSON(
+  jsonString: string,
+): SafeParseResult<PipelineStages, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => PipelineStages$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'PipelineStages' from JSON`,
+  );
+}
+
 /** @internal */
 export const PipelineInput$inboundSchema: z.ZodType<
   PipelineInput,
@@ -199,4 +216,18 @@ export namespace PipelineInput$ {
   export const outboundSchema = PipelineInput$outboundSchema;
   /** @deprecated use `PipelineInput$Outbound` instead. */
   export type Outbound = PipelineInput$Outbound;
+}
+
+export function pipelineInputToJSON(pipelineInput: PipelineInput): string {
+  return JSON.stringify(PipelineInput$outboundSchema.parse(pipelineInput));
+}
+
+export function pipelineInputFromJSON(
+  jsonString: string,
+): SafeParseResult<PipelineInput, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => PipelineInput$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'PipelineInput' from JSON`,
+  );
 }

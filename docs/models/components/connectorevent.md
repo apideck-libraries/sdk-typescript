@@ -5,7 +5,7 @@ Unify event that is supported on the connector. Events are delivered via Webhook
 ## Example Usage
 
 ```typescript
-import { ConnectorEvent } from "apideck/models/components";
+import { ConnectorEvent } from "@apideck/sdk/models/components";
 
 let value: ConnectorEvent = {
   eventType: "employee.created",

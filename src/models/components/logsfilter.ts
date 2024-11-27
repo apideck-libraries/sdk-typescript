@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type LogsFilter = {
   connectorId?: string | null | undefined;
@@ -63,4 +66,18 @@ export namespace LogsFilter$ {
   export const outboundSchema = LogsFilter$outboundSchema;
   /** @deprecated use `LogsFilter$Outbound` instead. */
   export type Outbound = LogsFilter$Outbound;
+}
+
+export function logsFilterToJSON(logsFilter: LogsFilter): string {
+  return JSON.stringify(LogsFilter$outboundSchema.parse(logsFilter));
+}
+
+export function logsFilterFromJSON(
+  jsonString: string,
+): SafeParseResult<LogsFilter, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => LogsFilter$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'LogsFilter' from JSON`,
+  );
 }

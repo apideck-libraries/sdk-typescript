@@ -5,7 +5,7 @@ Bill Payment deleted
 ## Example Usage
 
 ```typescript
-import { DeleteBillPaymentResponse } from "apideck/models/components";
+import { DeleteBillPaymentResponse } from "@apideck/sdk/models/components";
 
 let value: DeleteBillPaymentResponse = {
   statusCode: 200,

@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { VaultConsumersDeleteRequest } from "apideck/models/operations";
+import { VaultConsumersDeleteRequest } from "@apideck/sdk/models/operations";
 
 let value: VaultConsumersDeleteRequest = {
   consumerId: "test_user_id",

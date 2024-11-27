@@ -4,7 +4,10 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
  * How pagination is implemented on this connector. Native mode means Apideck is using the pagination parameters of the connector. With virtual pagination, the connector does not support pagination, but Apideck emulates it.
@@ -104,4 +107,22 @@ export namespace PaginationCoverage$ {
   export const outboundSchema = PaginationCoverage$outboundSchema;
   /** @deprecated use `PaginationCoverage$Outbound` instead. */
   export type Outbound = PaginationCoverage$Outbound;
+}
+
+export function paginationCoverageToJSON(
+  paginationCoverage: PaginationCoverage,
+): string {
+  return JSON.stringify(
+    PaginationCoverage$outboundSchema.parse(paginationCoverage),
+  );
+}
+
+export function paginationCoverageFromJSON(
+  jsonString: string,
+): SafeParseResult<PaginationCoverage, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => PaginationCoverage$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'PaginationCoverage' from JSON`,
+  );
 }

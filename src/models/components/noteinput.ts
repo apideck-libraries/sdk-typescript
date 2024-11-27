@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   PassThroughBody,
   PassThroughBody$inboundSchema,
@@ -126,4 +129,18 @@ export namespace NoteInput$ {
   export const outboundSchema = NoteInput$outboundSchema;
   /** @deprecated use `NoteInput$Outbound` instead. */
   export type Outbound = NoteInput$Outbound;
+}
+
+export function noteInputToJSON(noteInput: NoteInput): string {
+  return JSON.stringify(NoteInput$outboundSchema.parse(noteInput));
+}
+
+export function noteInputFromJSON(
+  jsonString: string,
+): SafeParseResult<NoteInput, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => NoteInput$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'NoteInput' from JSON`,
+  );
 }

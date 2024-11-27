@@ -5,7 +5,7 @@ Employees
 ## Example Usage
 
 ```typescript
-import { DeleteEmployeeResponse } from "apideck/models/components";
+import { DeleteEmployeeResponse } from "@apideck/sdk/models/components";
 
 let value: DeleteEmployeeResponse = {
   statusCode: 200,

@@ -4,7 +4,10 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type VaultConsumerRequestCountsAllGlobals = {
   /**
@@ -80,6 +83,27 @@ export namespace VaultConsumerRequestCountsAllGlobals$ {
   export type Outbound = VaultConsumerRequestCountsAllGlobals$Outbound;
 }
 
+export function vaultConsumerRequestCountsAllGlobalsToJSON(
+  vaultConsumerRequestCountsAllGlobals: VaultConsumerRequestCountsAllGlobals,
+): string {
+  return JSON.stringify(
+    VaultConsumerRequestCountsAllGlobals$outboundSchema.parse(
+      vaultConsumerRequestCountsAllGlobals,
+    ),
+  );
+}
+
+export function vaultConsumerRequestCountsAllGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<VaultConsumerRequestCountsAllGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      VaultConsumerRequestCountsAllGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'VaultConsumerRequestCountsAllGlobals' from JSON`,
+  );
+}
+
 /** @internal */
 export const VaultConsumerRequestCountsAllRequest$inboundSchema: z.ZodType<
   VaultConsumerRequestCountsAllRequest,
@@ -134,6 +158,27 @@ export namespace VaultConsumerRequestCountsAllRequest$ {
     VaultConsumerRequestCountsAllRequest$outboundSchema;
   /** @deprecated use `VaultConsumerRequestCountsAllRequest$Outbound` instead. */
   export type Outbound = VaultConsumerRequestCountsAllRequest$Outbound;
+}
+
+export function vaultConsumerRequestCountsAllRequestToJSON(
+  vaultConsumerRequestCountsAllRequest: VaultConsumerRequestCountsAllRequest,
+): string {
+  return JSON.stringify(
+    VaultConsumerRequestCountsAllRequest$outboundSchema.parse(
+      vaultConsumerRequestCountsAllRequest,
+    ),
+  );
+}
+
+export function vaultConsumerRequestCountsAllRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<VaultConsumerRequestCountsAllRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      VaultConsumerRequestCountsAllRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'VaultConsumerRequestCountsAllRequest' from JSON`,
+  );
 }
 
 /** @internal */
@@ -200,4 +245,25 @@ export namespace VaultConsumerRequestCountsAllResponse$ {
     VaultConsumerRequestCountsAllResponse$outboundSchema;
   /** @deprecated use `VaultConsumerRequestCountsAllResponse$Outbound` instead. */
   export type Outbound = VaultConsumerRequestCountsAllResponse$Outbound;
+}
+
+export function vaultConsumerRequestCountsAllResponseToJSON(
+  vaultConsumerRequestCountsAllResponse: VaultConsumerRequestCountsAllResponse,
+): string {
+  return JSON.stringify(
+    VaultConsumerRequestCountsAllResponse$outboundSchema.parse(
+      vaultConsumerRequestCountsAllResponse,
+    ),
+  );
+}
+
+export function vaultConsumerRequestCountsAllResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<VaultConsumerRequestCountsAllResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      VaultConsumerRequestCountsAllResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'VaultConsumerRequestCountsAllResponse' from JSON`,
+  );
 }

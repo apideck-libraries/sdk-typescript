@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { TlsSupport } from "apideck/models/components";
+import { TlsSupport } from "@apideck/sdk/models/components";
 
 let value: TlsSupport = {};
 ```

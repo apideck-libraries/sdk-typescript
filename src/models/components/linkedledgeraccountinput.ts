@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type LinkedLedgerAccountInput = {
   /**
@@ -68,4 +71,22 @@ export namespace LinkedLedgerAccountInput$ {
   export const outboundSchema = LinkedLedgerAccountInput$outboundSchema;
   /** @deprecated use `LinkedLedgerAccountInput$Outbound` instead. */
   export type Outbound = LinkedLedgerAccountInput$Outbound;
+}
+
+export function linkedLedgerAccountInputToJSON(
+  linkedLedgerAccountInput: LinkedLedgerAccountInput,
+): string {
+  return JSON.stringify(
+    LinkedLedgerAccountInput$outboundSchema.parse(linkedLedgerAccountInput),
+  );
+}
+
+export function linkedLedgerAccountInputFromJSON(
+  jsonString: string,
+): SafeParseResult<LinkedLedgerAccountInput, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => LinkedLedgerAccountInput$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'LinkedLedgerAccountInput' from JSON`,
+  );
 }

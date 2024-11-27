@@ -3,12 +3,12 @@
 ## Example Usage
 
 ```typescript
-import { VaultCreateCallbackStateRequest } from "apideck/models/operations";
+import { VaultCreateCallbackStateRequest } from "@apideck/sdk/models/operations";
 
 let value: VaultCreateCallbackStateRequest = {
   serviceId: "pipedrive",
   unifiedApi: "crm",
-  createCallbackStateData: {
+  createCallbackState: {
     redirectUri: "https://example.com/callback",
   },
 };
@@ -16,8 +16,8 @@ let value: VaultCreateCallbackStateRequest = {
 
 ## Fields
 
-| Field                                                                                    | Type                                                                                     | Required                                                                                 | Description                                                                              | Example                                                                                  |
-| ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
-| `serviceId`                                                                              | *string*                                                                                 | :heavy_check_mark:                                                                       | Service ID of the resource to return                                                     | pipedrive                                                                                |
-| `unifiedApi`                                                                             | *string*                                                                                 | :heavy_check_mark:                                                                       | Unified API                                                                              | crm                                                                                      |
-| `createCallbackStateData`                                                                | [components.CreateCallbackStateData](../../models/components/createcallbackstatedata.md) | :heavy_check_mark:                                                                       | Callback state data                                                                      |                                                                                          |
+| Field                                                                            | Type                                                                             | Required                                                                         | Description                                                                      | Example                                                                          |
+| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| `serviceId`                                                                      | *string*                                                                         | :heavy_check_mark:                                                               | Service ID of the resource to return                                             | pipedrive                                                                        |
+| `unifiedApi`                                                                     | *string*                                                                         | :heavy_check_mark:                                                               | Unified API                                                                      | crm                                                                              |
+| `createCallbackState`                                                            | [components.CreateCallbackState](../../models/components/createcallbackstate.md) | :heavy_check_mark:                                                               | Callback state data                                                              |                                                                                  |

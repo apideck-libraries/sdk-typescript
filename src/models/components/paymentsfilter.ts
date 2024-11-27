@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type PaymentsFilter = {
   updatedSince?: Date | undefined;
@@ -53,4 +56,18 @@ export namespace PaymentsFilter$ {
   export const outboundSchema = PaymentsFilter$outboundSchema;
   /** @deprecated use `PaymentsFilter$Outbound` instead. */
   export type Outbound = PaymentsFilter$Outbound;
+}
+
+export function paymentsFilterToJSON(paymentsFilter: PaymentsFilter): string {
+  return JSON.stringify(PaymentsFilter$outboundSchema.parse(paymentsFilter));
+}
+
+export function paymentsFilterFromJSON(
+  jsonString: string,
+): SafeParseResult<PaymentsFilter, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => PaymentsFilter$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'PaymentsFilter' from JSON`,
+  );
 }

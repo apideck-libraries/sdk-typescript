@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type CreateSessionResponseData = {
   sessionUri: string;
@@ -74,6 +77,24 @@ export namespace CreateSessionResponseData$ {
   export type Outbound = CreateSessionResponseData$Outbound;
 }
 
+export function createSessionResponseDataToJSON(
+  createSessionResponseData: CreateSessionResponseData,
+): string {
+  return JSON.stringify(
+    CreateSessionResponseData$outboundSchema.parse(createSessionResponseData),
+  );
+}
+
+export function createSessionResponseDataFromJSON(
+  jsonString: string,
+): SafeParseResult<CreateSessionResponseData, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CreateSessionResponseData$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CreateSessionResponseData' from JSON`,
+  );
+}
+
 /** @internal */
 export const CreateSessionResponse$inboundSchema: z.ZodType<
   CreateSessionResponse,
@@ -122,4 +143,22 @@ export namespace CreateSessionResponse$ {
   export const outboundSchema = CreateSessionResponse$outboundSchema;
   /** @deprecated use `CreateSessionResponse$Outbound` instead. */
   export type Outbound = CreateSessionResponse$Outbound;
+}
+
+export function createSessionResponseToJSON(
+  createSessionResponse: CreateSessionResponse,
+): string {
+  return JSON.stringify(
+    CreateSessionResponse$outboundSchema.parse(createSessionResponse),
+  );
+}
+
+export function createSessionResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<CreateSessionResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CreateSessionResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CreateSessionResponse' from JSON`,
+  );
 }

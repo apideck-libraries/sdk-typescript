@@ -3,8 +3,8 @@
 ## Example Usage
 
 ```typescript
-import { HrisEmployeesUpdateRequest } from "apideck/models/operations";
-import { RFCDate } from "apideck/types";
+import { HrisEmployeesUpdateRequest } from "@apideck/sdk/models/operations";
+import { RFCDate } from "@apideck/sdk/types";
 
 let value: HrisEmployeesUpdateRequest = {
   id: "<id>",
@@ -121,10 +121,8 @@ let value: HrisEmployeesUpdateRequest = {
       {
         rate: 50,
         paymentUnit: "hour",
-        currency: "USD",
         flsaStatus: "nonexempt",
         effectiveDate: "2021-06-11",
-        paymentFrequency: "monthly",
       },
     ],
     worksRemote: true,

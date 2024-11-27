@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   ConsumerMetadata,
   ConsumerMetadata$inboundSchema,
@@ -51,4 +54,22 @@ export namespace UpdateConsumerRequest$ {
   export const outboundSchema = UpdateConsumerRequest$outboundSchema;
   /** @deprecated use `UpdateConsumerRequest$Outbound` instead. */
   export type Outbound = UpdateConsumerRequest$Outbound;
+}
+
+export function updateConsumerRequestToJSON(
+  updateConsumerRequest: UpdateConsumerRequest,
+): string {
+  return JSON.stringify(
+    UpdateConsumerRequest$outboundSchema.parse(updateConsumerRequest),
+  );
+}
+
+export function updateConsumerRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<UpdateConsumerRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => UpdateConsumerRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'UpdateConsumerRequest' from JSON`,
+  );
 }

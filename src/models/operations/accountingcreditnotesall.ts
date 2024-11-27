@@ -4,13 +4,16 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type AccountingCreditNotesAllGlobals = {
   /**
    * ID of the consumer which you want to get or push data from
    */
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   /**
    * The ID of your Unify application
    */
@@ -70,13 +73,13 @@ export const AccountingCreditNotesAllGlobals$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
 /** @internal */
 export type AccountingCreditNotesAllGlobals$Outbound = {
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   appId?: string | undefined;
 };
 
@@ -86,7 +89,7 @@ export const AccountingCreditNotesAllGlobals$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   AccountingCreditNotesAllGlobals
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
@@ -101,6 +104,26 @@ export namespace AccountingCreditNotesAllGlobals$ {
   export const outboundSchema = AccountingCreditNotesAllGlobals$outboundSchema;
   /** @deprecated use `AccountingCreditNotesAllGlobals$Outbound` instead. */
   export type Outbound = AccountingCreditNotesAllGlobals$Outbound;
+}
+
+export function accountingCreditNotesAllGlobalsToJSON(
+  accountingCreditNotesAllGlobals: AccountingCreditNotesAllGlobals,
+): string {
+  return JSON.stringify(
+    AccountingCreditNotesAllGlobals$outboundSchema.parse(
+      accountingCreditNotesAllGlobals,
+    ),
+  );
+}
+
+export function accountingCreditNotesAllGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<AccountingCreditNotesAllGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => AccountingCreditNotesAllGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AccountingCreditNotesAllGlobals' from JSON`,
+  );
 }
 
 /** @internal */
@@ -168,6 +191,26 @@ export namespace AccountingCreditNotesAllRequest$ {
   export type Outbound = AccountingCreditNotesAllRequest$Outbound;
 }
 
+export function accountingCreditNotesAllRequestToJSON(
+  accountingCreditNotesAllRequest: AccountingCreditNotesAllRequest,
+): string {
+  return JSON.stringify(
+    AccountingCreditNotesAllRequest$outboundSchema.parse(
+      accountingCreditNotesAllRequest,
+    ),
+  );
+}
+
+export function accountingCreditNotesAllRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<AccountingCreditNotesAllRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => AccountingCreditNotesAllRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AccountingCreditNotesAllRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const AccountingCreditNotesAllResponse$inboundSchema: z.ZodType<
   AccountingCreditNotesAllResponse,
@@ -228,4 +271,24 @@ export namespace AccountingCreditNotesAllResponse$ {
   export const outboundSchema = AccountingCreditNotesAllResponse$outboundSchema;
   /** @deprecated use `AccountingCreditNotesAllResponse$Outbound` instead. */
   export type Outbound = AccountingCreditNotesAllResponse$Outbound;
+}
+
+export function accountingCreditNotesAllResponseToJSON(
+  accountingCreditNotesAllResponse: AccountingCreditNotesAllResponse,
+): string {
+  return JSON.stringify(
+    AccountingCreditNotesAllResponse$outboundSchema.parse(
+      accountingCreditNotesAllResponse,
+    ),
+  );
+}
+
+export function accountingCreditNotesAllResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<AccountingCreditNotesAllResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => AccountingCreditNotesAllResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AccountingCreditNotesAllResponse' from JSON`,
+  );
 }

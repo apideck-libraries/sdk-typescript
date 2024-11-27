@@ -4,8 +4,11 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import { RFCDate } from "../../types/rfcdate.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   BankAccount,
   BankAccount$inboundSchema,
@@ -589,6 +592,20 @@ export namespace Bill$ {
   export type Outbound = Bill$Outbound;
 }
 
+export function billToJSON(bill: Bill): string {
+  return JSON.stringify(Bill$outboundSchema.parse(bill));
+}
+
+export function billFromJSON(
+  jsonString: string,
+): SafeParseResult<Bill, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Bill$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Bill' from JSON`,
+  );
+}
+
 /** @internal */
 export const BillInput$inboundSchema: z.ZodType<
   BillInput,
@@ -770,4 +787,18 @@ export namespace BillInput$ {
   export const outboundSchema = BillInput$outboundSchema;
   /** @deprecated use `BillInput$Outbound` instead. */
   export type Outbound = BillInput$Outbound;
+}
+
+export function billInputToJSON(billInput: BillInput): string {
+  return JSON.stringify(BillInput$outboundSchema.parse(billInput));
+}
+
+export function billInputFromJSON(
+  jsonString: string,
+): SafeParseResult<BillInput, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => BillInput$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'BillInput' from JSON`,
+  );
 }

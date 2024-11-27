@@ -5,7 +5,7 @@ Callback state created
 ## Example Usage
 
 ```typescript
-import { CreateCallbackStateResponse } from "apideck/models/components";
+import { CreateCallbackStateResponse } from "@apideck/sdk/models/components";
 
 let value: CreateCallbackStateResponse = {
   statusCode: 200,

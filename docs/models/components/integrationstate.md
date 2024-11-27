@@ -5,7 +5,7 @@ The current state of the Integration.
 ## Example Usage
 
 ```typescript
-import { IntegrationState } from "apideck/models/components";
+import { IntegrationState } from "@apideck/sdk/models/components";
 
 let value: IntegrationState = "configured";
 ```

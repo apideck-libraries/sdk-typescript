@@ -5,7 +5,7 @@ Delete a Comment
 ## Example Usage
 
 ```typescript
-import { DeleteCommentResponse } from "apideck/models/components";
+import { DeleteCommentResponse } from "@apideck/sdk/models/components";
 
 let value: DeleteCommentResponse = {
   statusCode: 200,

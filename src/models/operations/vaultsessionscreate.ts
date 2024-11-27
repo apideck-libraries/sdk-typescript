@@ -4,13 +4,16 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type VaultSessionsCreateGlobals = {
   /**
    * ID of the consumer which you want to get or push data from
    */
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   /**
    * The ID of your Unify application
    */
@@ -35,13 +38,13 @@ export const VaultSessionsCreateGlobals$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
 /** @internal */
 export type VaultSessionsCreateGlobals$Outbound = {
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   appId?: string | undefined;
 };
 
@@ -51,7 +54,7 @@ export const VaultSessionsCreateGlobals$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   VaultSessionsCreateGlobals
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
@@ -66,6 +69,24 @@ export namespace VaultSessionsCreateGlobals$ {
   export const outboundSchema = VaultSessionsCreateGlobals$outboundSchema;
   /** @deprecated use `VaultSessionsCreateGlobals$Outbound` instead. */
   export type Outbound = VaultSessionsCreateGlobals$Outbound;
+}
+
+export function vaultSessionsCreateGlobalsToJSON(
+  vaultSessionsCreateGlobals: VaultSessionsCreateGlobals,
+): string {
+  return JSON.stringify(
+    VaultSessionsCreateGlobals$outboundSchema.parse(vaultSessionsCreateGlobals),
+  );
+}
+
+export function vaultSessionsCreateGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<VaultSessionsCreateGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => VaultSessionsCreateGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'VaultSessionsCreateGlobals' from JSON`,
+  );
 }
 
 /** @internal */
@@ -126,4 +147,24 @@ export namespace VaultSessionsCreateResponse$ {
   export const outboundSchema = VaultSessionsCreateResponse$outboundSchema;
   /** @deprecated use `VaultSessionsCreateResponse$Outbound` instead. */
   export type Outbound = VaultSessionsCreateResponse$Outbound;
+}
+
+export function vaultSessionsCreateResponseToJSON(
+  vaultSessionsCreateResponse: VaultSessionsCreateResponse,
+): string {
+  return JSON.stringify(
+    VaultSessionsCreateResponse$outboundSchema.parse(
+      vaultSessionsCreateResponse,
+    ),
+  );
+}
+
+export function vaultSessionsCreateResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<VaultSessionsCreateResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => VaultSessionsCreateResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'VaultSessionsCreateResponse' from JSON`,
+  );
 }

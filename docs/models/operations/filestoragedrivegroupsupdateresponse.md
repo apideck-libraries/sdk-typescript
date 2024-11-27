@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { FileStorageDriveGroupsUpdateResponse } from "apideck/models/operations";
+import { FileStorageDriveGroupsUpdateResponse } from "@apideck/sdk/models/operations";
 
 let value: FileStorageDriveGroupsUpdateResponse = {
   httpMeta: {

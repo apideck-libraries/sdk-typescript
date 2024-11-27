@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type Five = string | number | number;
 
@@ -46,6 +49,20 @@ export namespace Five$ {
   export const outboundSchema = Five$outboundSchema;
   /** @deprecated use `Five$Outbound` instead. */
   export type Outbound = Five$Outbound;
+}
+
+export function fiveToJSON(five: Five): string {
+  return JSON.stringify(Five$outboundSchema.parse(five));
+}
+
+export function fiveFromJSON(
+  jsonString: string,
+): SafeParseResult<Five, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Five$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Five' from JSON`,
+  );
 }
 
 /** @internal */
@@ -93,6 +110,24 @@ export namespace SimpleFormFieldOptionValue$ {
   export const outboundSchema = SimpleFormFieldOptionValue$outboundSchema;
   /** @deprecated use `SimpleFormFieldOptionValue$Outbound` instead. */
   export type Outbound = SimpleFormFieldOptionValue$Outbound;
+}
+
+export function simpleFormFieldOptionValueToJSON(
+  simpleFormFieldOptionValue: SimpleFormFieldOptionValue,
+): string {
+  return JSON.stringify(
+    SimpleFormFieldOptionValue$outboundSchema.parse(simpleFormFieldOptionValue),
+  );
+}
+
+export function simpleFormFieldOptionValueFromJSON(
+  jsonString: string,
+): SafeParseResult<SimpleFormFieldOptionValue, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => SimpleFormFieldOptionValue$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'SimpleFormFieldOptionValue' from JSON`,
+  );
 }
 
 /** @internal */
@@ -150,4 +185,22 @@ export namespace SimpleFormFieldOption$ {
   export const outboundSchema = SimpleFormFieldOption$outboundSchema;
   /** @deprecated use `SimpleFormFieldOption$Outbound` instead. */
   export type Outbound = SimpleFormFieldOption$Outbound;
+}
+
+export function simpleFormFieldOptionToJSON(
+  simpleFormFieldOption: SimpleFormFieldOption,
+): string {
+  return JSON.stringify(
+    SimpleFormFieldOption$outboundSchema.parse(simpleFormFieldOption),
+  );
+}
+
+export function simpleFormFieldOptionFromJSON(
+  jsonString: string,
+): SafeParseResult<SimpleFormFieldOption, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => SimpleFormFieldOption$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'SimpleFormFieldOption' from JSON`,
+  );
 }

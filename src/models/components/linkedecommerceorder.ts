@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   EcommerceOrderStatus,
   EcommerceOrderStatus$inboundSchema,
@@ -67,4 +70,22 @@ export namespace LinkedEcommerceOrder$ {
   export const outboundSchema = LinkedEcommerceOrder$outboundSchema;
   /** @deprecated use `LinkedEcommerceOrder$Outbound` instead. */
   export type Outbound = LinkedEcommerceOrder$Outbound;
+}
+
+export function linkedEcommerceOrderToJSON(
+  linkedEcommerceOrder: LinkedEcommerceOrder,
+): string {
+  return JSON.stringify(
+    LinkedEcommerceOrder$outboundSchema.parse(linkedEcommerceOrder),
+  );
+}
+
+export function linkedEcommerceOrderFromJSON(
+  jsonString: string,
+): SafeParseResult<LinkedEcommerceOrder, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => LinkedEcommerceOrder$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'LinkedEcommerceOrder' from JSON`,
+  );
 }

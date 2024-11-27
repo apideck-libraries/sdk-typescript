@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   AttachmentReferenceType,
   AttachmentReferenceType$inboundSchema,
@@ -54,4 +57,22 @@ export namespace AttachmentReference$ {
   export const outboundSchema = AttachmentReference$outboundSchema;
   /** @deprecated use `AttachmentReference$Outbound` instead. */
   export type Outbound = AttachmentReference$Outbound;
+}
+
+export function attachmentReferenceToJSON(
+  attachmentReference: AttachmentReference,
+): string {
+  return JSON.stringify(
+    AttachmentReference$outboundSchema.parse(attachmentReference),
+  );
+}
+
+export function attachmentReferenceFromJSON(
+  jsonString: string,
+): SafeParseResult<AttachmentReference, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => AttachmentReference$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AttachmentReference' from JSON`,
+  );
 }

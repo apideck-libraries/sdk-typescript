@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type LinkedTaxRate = {
   /**
@@ -66,4 +69,18 @@ export namespace LinkedTaxRate$ {
   export const outboundSchema = LinkedTaxRate$outboundSchema;
   /** @deprecated use `LinkedTaxRate$Outbound` instead. */
   export type Outbound = LinkedTaxRate$Outbound;
+}
+
+export function linkedTaxRateToJSON(linkedTaxRate: LinkedTaxRate): string {
+  return JSON.stringify(LinkedTaxRate$outboundSchema.parse(linkedTaxRate));
+}
+
+export function linkedTaxRateFromJSON(
+  jsonString: string,
+): SafeParseResult<LinkedTaxRate, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => LinkedTaxRate$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'LinkedTaxRate' from JSON`,
+  );
 }

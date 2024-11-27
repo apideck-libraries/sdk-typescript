@@ -64,9 +64,7 @@ export class PaymentRequiredResponse extends Error {
   data$: PaymentRequiredResponseData;
 
   constructor(err: PaymentRequiredResponseData) {
-    const message = "message" in err && typeof err.message === "string"
-      ? err.message
-      : `API error occurred: ${JSON.stringify(err)}`;
+    const message = err.message || "API error occurred";
     super(message);
     this.data$ = err;
 

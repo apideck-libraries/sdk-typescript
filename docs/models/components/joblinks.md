@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { JobLinks } from "apideck/models/components";
+import { JobLinks } from "@apideck/sdk/models/components";
 
 let value: JobLinks = {
   type: "job_portal",

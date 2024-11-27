@@ -5,7 +5,7 @@ Connections
 ## Example Usage
 
 ```typescript
-import { GetConnectionsResponse } from "apideck/models/components";
+import { GetConnectionsResponse } from "@apideck/sdk/models/components";
 
 let value: GetConnectionsResponse = {
   statusCode: 200,
@@ -48,45 +48,21 @@ let value: GetConnectionsResponse = {
           id: "instance_url",
           label: "Instance url",
           placeholder: "",
-          description: "Slack channel to push notification to",
           type: "text",
           required: true,
           customField: false,
-          allowCustomValues: false,
           disabled: false,
-          hidden: false,
-          deprecated: false,
           sensitive: false,
-          prefix: "https://",
-          suffix: ".shopify.com",
-          options: [
-            {
-              label: "General Channel",
-              value: "general",
-            },
-          ],
         },
         {
           id: "api_key",
           label: "API Key",
           placeholder: "",
-          description: "Slack channel to push notification to",
           type: "text",
           required: true,
           customField: false,
-          allowCustomValues: false,
           disabled: false,
-          hidden: false,
-          deprecated: false,
           sensitive: true,
-          prefix: "https://",
-          suffix: ".shopify.com",
-          options: [
-            {
-              label: "General Channel",
-              value: "general",
-            },
-          ],
         },
       ],
       configuration: [
@@ -99,10 +75,10 @@ let value: GetConnectionsResponse = {
               options: [
                 {
                   label: "General Channel",
-                  value: 123,
+                  value: 12.5,
                 },
               ],
-              value: true,
+              value: 10,
             },
           ],
         },

@@ -4,7 +4,10 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type ConnectorConnectorDocsOneGlobals = {
   /**
@@ -72,6 +75,26 @@ export namespace ConnectorConnectorDocsOneGlobals$ {
   export type Outbound = ConnectorConnectorDocsOneGlobals$Outbound;
 }
 
+export function connectorConnectorDocsOneGlobalsToJSON(
+  connectorConnectorDocsOneGlobals: ConnectorConnectorDocsOneGlobals,
+): string {
+  return JSON.stringify(
+    ConnectorConnectorDocsOneGlobals$outboundSchema.parse(
+      connectorConnectorDocsOneGlobals,
+    ),
+  );
+}
+
+export function connectorConnectorDocsOneGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<ConnectorConnectorDocsOneGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ConnectorConnectorDocsOneGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ConnectorConnectorDocsOneGlobals' from JSON`,
+  );
+}
+
 /** @internal */
 export const ConnectorConnectorDocsOneRequest$inboundSchema: z.ZodType<
   ConnectorConnectorDocsOneRequest,
@@ -117,6 +140,26 @@ export namespace ConnectorConnectorDocsOneRequest$ {
   export const outboundSchema = ConnectorConnectorDocsOneRequest$outboundSchema;
   /** @deprecated use `ConnectorConnectorDocsOneRequest$Outbound` instead. */
   export type Outbound = ConnectorConnectorDocsOneRequest$Outbound;
+}
+
+export function connectorConnectorDocsOneRequestToJSON(
+  connectorConnectorDocsOneRequest: ConnectorConnectorDocsOneRequest,
+): string {
+  return JSON.stringify(
+    ConnectorConnectorDocsOneRequest$outboundSchema.parse(
+      connectorConnectorDocsOneRequest,
+    ),
+  );
+}
+
+export function connectorConnectorDocsOneRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<ConnectorConnectorDocsOneRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ConnectorConnectorDocsOneRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ConnectorConnectorDocsOneRequest' from JSON`,
+  );
 }
 
 /** @internal */
@@ -176,4 +219,24 @@ export namespace ConnectorConnectorDocsOneResponse$ {
     ConnectorConnectorDocsOneResponse$outboundSchema;
   /** @deprecated use `ConnectorConnectorDocsOneResponse$Outbound` instead. */
   export type Outbound = ConnectorConnectorDocsOneResponse$Outbound;
+}
+
+export function connectorConnectorDocsOneResponseToJSON(
+  connectorConnectorDocsOneResponse: ConnectorConnectorDocsOneResponse,
+): string {
+  return JSON.stringify(
+    ConnectorConnectorDocsOneResponse$outboundSchema.parse(
+      connectorConnectorDocsOneResponse,
+    ),
+  );
+}
+
+export function connectorConnectorDocsOneResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<ConnectorConnectorDocsOneResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ConnectorConnectorDocsOneResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ConnectorConnectorDocsOneResponse' from JSON`,
+  );
 }

@@ -5,7 +5,7 @@ Bill Payment
 ## Example Usage
 
 ```typescript
-import { GetBillPaymentResponse } from "apideck/models/components";
+import { GetBillPaymentResponse } from "@apideck/sdk/models/components";
 
 let value: GetBillPaymentResponse = {
   statusCode: 200,
@@ -88,7 +88,9 @@ let value: GetBillPaymentResponse = {
         id: "2389328923893298",
         name: "employee_level",
         description: "Employee Level",
-        value: "Uses Salesforce and Marketo",
+        value: [
+          {},
+        ],
       },
     ],
     rowVersion: "1-12345",

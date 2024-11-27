@@ -4,13 +4,16 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type AccountingInvoiceItemsOneGlobals = {
   /**
    * ID of the consumer which you want to get or push data from
    */
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   /**
    * The ID of your Unify application
    */
@@ -54,13 +57,13 @@ export const AccountingInvoiceItemsOneGlobals$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
 /** @internal */
 export type AccountingInvoiceItemsOneGlobals$Outbound = {
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   appId?: string | undefined;
 };
 
@@ -70,7 +73,7 @@ export const AccountingInvoiceItemsOneGlobals$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   AccountingInvoiceItemsOneGlobals
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
@@ -85,6 +88,26 @@ export namespace AccountingInvoiceItemsOneGlobals$ {
   export const outboundSchema = AccountingInvoiceItemsOneGlobals$outboundSchema;
   /** @deprecated use `AccountingInvoiceItemsOneGlobals$Outbound` instead. */
   export type Outbound = AccountingInvoiceItemsOneGlobals$Outbound;
+}
+
+export function accountingInvoiceItemsOneGlobalsToJSON(
+  accountingInvoiceItemsOneGlobals: AccountingInvoiceItemsOneGlobals,
+): string {
+  return JSON.stringify(
+    AccountingInvoiceItemsOneGlobals$outboundSchema.parse(
+      accountingInvoiceItemsOneGlobals,
+    ),
+  );
+}
+
+export function accountingInvoiceItemsOneGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<AccountingInvoiceItemsOneGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => AccountingInvoiceItemsOneGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AccountingInvoiceItemsOneGlobals' from JSON`,
+  );
 }
 
 /** @internal */
@@ -130,6 +153,26 @@ export namespace AccountingInvoiceItemsOneRequest$ {
   export const outboundSchema = AccountingInvoiceItemsOneRequest$outboundSchema;
   /** @deprecated use `AccountingInvoiceItemsOneRequest$Outbound` instead. */
   export type Outbound = AccountingInvoiceItemsOneRequest$Outbound;
+}
+
+export function accountingInvoiceItemsOneRequestToJSON(
+  accountingInvoiceItemsOneRequest: AccountingInvoiceItemsOneRequest,
+): string {
+  return JSON.stringify(
+    AccountingInvoiceItemsOneRequest$outboundSchema.parse(
+      accountingInvoiceItemsOneRequest,
+    ),
+  );
+}
+
+export function accountingInvoiceItemsOneRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<AccountingInvoiceItemsOneRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => AccountingInvoiceItemsOneRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AccountingInvoiceItemsOneRequest' from JSON`,
+  );
 }
 
 /** @internal */
@@ -193,4 +236,24 @@ export namespace AccountingInvoiceItemsOneResponse$ {
     AccountingInvoiceItemsOneResponse$outboundSchema;
   /** @deprecated use `AccountingInvoiceItemsOneResponse$Outbound` instead. */
   export type Outbound = AccountingInvoiceItemsOneResponse$Outbound;
+}
+
+export function accountingInvoiceItemsOneResponseToJSON(
+  accountingInvoiceItemsOneResponse: AccountingInvoiceItemsOneResponse,
+): string {
+  return JSON.stringify(
+    AccountingInvoiceItemsOneResponse$outboundSchema.parse(
+      accountingInvoiceItemsOneResponse,
+    ),
+  );
+}
+
+export function accountingInvoiceItemsOneResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<AccountingInvoiceItemsOneResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => AccountingInvoiceItemsOneResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AccountingInvoiceItemsOneResponse' from JSON`,
+  );
 }

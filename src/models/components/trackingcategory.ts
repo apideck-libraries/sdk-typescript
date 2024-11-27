@@ -4,7 +4,10 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   CustomMappings,
   CustomMappings$inboundSchema,
@@ -224,6 +227,24 @@ export namespace TrackingCategory$ {
   export type Outbound = TrackingCategory$Outbound;
 }
 
+export function trackingCategoryToJSON(
+  trackingCategory: TrackingCategory,
+): string {
+  return JSON.stringify(
+    TrackingCategory$outboundSchema.parse(trackingCategory),
+  );
+}
+
+export function trackingCategoryFromJSON(
+  jsonString: string,
+): SafeParseResult<TrackingCategory, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => TrackingCategory$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'TrackingCategory' from JSON`,
+  );
+}
+
 /** @internal */
 export const TrackingCategoryInput$inboundSchema: z.ZodType<
   TrackingCategoryInput,
@@ -285,4 +306,22 @@ export namespace TrackingCategoryInput$ {
   export const outboundSchema = TrackingCategoryInput$outboundSchema;
   /** @deprecated use `TrackingCategoryInput$Outbound` instead. */
   export type Outbound = TrackingCategoryInput$Outbound;
+}
+
+export function trackingCategoryInputToJSON(
+  trackingCategoryInput: TrackingCategoryInput,
+): string {
+  return JSON.stringify(
+    TrackingCategoryInput$outboundSchema.parse(trackingCategoryInput),
+  );
+}
+
+export function trackingCategoryInputFromJSON(
+  jsonString: string,
+): SafeParseResult<TrackingCategoryInput, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => TrackingCategoryInput$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'TrackingCategoryInput' from JSON`,
+  );
 }

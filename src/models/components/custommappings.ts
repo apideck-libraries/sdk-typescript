@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
  * When custom mappings are configured on the resource, the result is included here.
@@ -37,4 +40,18 @@ export namespace CustomMappings$ {
   export const outboundSchema = CustomMappings$outboundSchema;
   /** @deprecated use `CustomMappings$Outbound` instead. */
   export type Outbound = CustomMappings$Outbound;
+}
+
+export function customMappingsToJSON(customMappings: CustomMappings): string {
+  return JSON.stringify(CustomMappings$outboundSchema.parse(customMappings));
+}
+
+export function customMappingsFromJSON(
+  jsonString: string,
+): SafeParseResult<CustomMappings, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CustomMappings$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CustomMappings' from JSON`,
+  );
 }

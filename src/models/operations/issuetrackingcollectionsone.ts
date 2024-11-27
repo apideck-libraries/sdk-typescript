@@ -4,13 +4,16 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type IssueTrackingCollectionsOneGlobals = {
   /**
    * ID of the consumer which you want to get or push data from
    */
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   /**
    * The ID of your Unify application
    */
@@ -54,13 +57,13 @@ export const IssueTrackingCollectionsOneGlobals$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
 /** @internal */
 export type IssueTrackingCollectionsOneGlobals$Outbound = {
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   appId?: string | undefined;
 };
 
@@ -70,7 +73,7 @@ export const IssueTrackingCollectionsOneGlobals$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   IssueTrackingCollectionsOneGlobals
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
@@ -86,6 +89,27 @@ export namespace IssueTrackingCollectionsOneGlobals$ {
     IssueTrackingCollectionsOneGlobals$outboundSchema;
   /** @deprecated use `IssueTrackingCollectionsOneGlobals$Outbound` instead. */
   export type Outbound = IssueTrackingCollectionsOneGlobals$Outbound;
+}
+
+export function issueTrackingCollectionsOneGlobalsToJSON(
+  issueTrackingCollectionsOneGlobals: IssueTrackingCollectionsOneGlobals,
+): string {
+  return JSON.stringify(
+    IssueTrackingCollectionsOneGlobals$outboundSchema.parse(
+      issueTrackingCollectionsOneGlobals,
+    ),
+  );
+}
+
+export function issueTrackingCollectionsOneGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<IssueTrackingCollectionsOneGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      IssueTrackingCollectionsOneGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'IssueTrackingCollectionsOneGlobals' from JSON`,
+  );
 }
 
 /** @internal */
@@ -140,6 +164,27 @@ export namespace IssueTrackingCollectionsOneRequest$ {
     IssueTrackingCollectionsOneRequest$outboundSchema;
   /** @deprecated use `IssueTrackingCollectionsOneRequest$Outbound` instead. */
   export type Outbound = IssueTrackingCollectionsOneRequest$Outbound;
+}
+
+export function issueTrackingCollectionsOneRequestToJSON(
+  issueTrackingCollectionsOneRequest: IssueTrackingCollectionsOneRequest,
+): string {
+  return JSON.stringify(
+    IssueTrackingCollectionsOneRequest$outboundSchema.parse(
+      issueTrackingCollectionsOneRequest,
+    ),
+  );
+}
+
+export function issueTrackingCollectionsOneRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<IssueTrackingCollectionsOneRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      IssueTrackingCollectionsOneRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'IssueTrackingCollectionsOneRequest' from JSON`,
+  );
 }
 
 /** @internal */
@@ -202,4 +247,25 @@ export namespace IssueTrackingCollectionsOneResponse$ {
     IssueTrackingCollectionsOneResponse$outboundSchema;
   /** @deprecated use `IssueTrackingCollectionsOneResponse$Outbound` instead. */
   export type Outbound = IssueTrackingCollectionsOneResponse$Outbound;
+}
+
+export function issueTrackingCollectionsOneResponseToJSON(
+  issueTrackingCollectionsOneResponse: IssueTrackingCollectionsOneResponse,
+): string {
+  return JSON.stringify(
+    IssueTrackingCollectionsOneResponse$outboundSchema.parse(
+      issueTrackingCollectionsOneResponse,
+    ),
+  );
+}
+
+export function issueTrackingCollectionsOneResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<IssueTrackingCollectionsOneResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      IssueTrackingCollectionsOneResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'IssueTrackingCollectionsOneResponse' from JSON`,
+  );
 }

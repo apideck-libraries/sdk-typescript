@@ -46,25 +46,25 @@ The SDK can be installed with either [npm](https://www.npmjs.com/), [pnpm](https
 ### NPM
 
 ```bash
-npm add <UNSET>
+npm add @apideck/sdk
 ```
 
 ### PNPM
 
 ```bash
-pnpm add <UNSET>
+pnpm add @apideck/sdk
 ```
 
 ### Bun
 
 ```bash
-bun add <UNSET>
+bun add @apideck/sdk
 ```
 
 ### Yarn
 
 ```bash
-yarn add <UNSET> zod
+yarn add @apideck/sdk zod
 
 # Note that Yarn does not install peer dependencies automatically. You will need
 # to install zod as shown above.
@@ -83,11 +83,11 @@ For supported JavaScript runtimes, please consult [RUNTIMES.md](RUNTIMES.md).
 ### Example
 
 ```typescript
-import { Apideck } from "apideck";
+import { Apideck } from "@apideck/sdk";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
-  customerId: "test-consumer",
+  consumerId: "test-consumer",
   appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
 });
 
@@ -557,93 +557,6 @@ run();
 * [list](docs/sdks/collectionusers/README.md#list) - List Users
 * [get](docs/sdks/collectionusers/README.md#get) - Get user
 
-### [lead](docs/sdks/lead/README.md)
-
-
-#### [lead.leads](docs/sdks/apideckleads/README.md)
-
-* [list](docs/sdks/apideckleads/README.md#list) - List leads
-* [create](docs/sdks/apideckleads/README.md#create) - Create lead
-* [get](docs/sdks/apideckleads/README.md#get) - Get lead
-* [update](docs/sdks/apideckleads/README.md#update) - Update lead
-* [delete](docs/sdks/apideckleads/README.md#delete) - Delete lead
-
-### [pos](docs/sdks/pos/README.md)
-
-
-#### [pos.items](docs/sdks/items/README.md)
-
-* [list](docs/sdks/items/README.md#list) - List Items
-* [create](docs/sdks/items/README.md#create) - Create Item
-* [get](docs/sdks/items/README.md#get) - Get Item
-* [update](docs/sdks/items/README.md#update) - Update Item
-* [delete](docs/sdks/items/README.md#delete) - Delete Item
-
-#### [pos.locations](docs/sdks/apidecklocations/README.md)
-
-* [list](docs/sdks/apidecklocations/README.md#list) - List Locations
-* [create](docs/sdks/apidecklocations/README.md#create) - Create Location
-* [get](docs/sdks/apidecklocations/README.md#get) - Get Location
-* [update](docs/sdks/apidecklocations/README.md#update) - Update Location
-* [delete](docs/sdks/apidecklocations/README.md#delete) - Delete Location
-
-#### [pos.merchants](docs/sdks/merchants/README.md)
-
-* [list](docs/sdks/merchants/README.md#list) - List Merchants
-* [create](docs/sdks/merchants/README.md#create) - Create Merchant
-* [get](docs/sdks/merchants/README.md#get) - Get Merchant
-* [update](docs/sdks/merchants/README.md#update) - Update Merchant
-* [delete](docs/sdks/merchants/README.md#delete) - Delete Merchant
-
-#### [pos.modifierGroups](docs/sdks/modifiergroups/README.md)
-
-* [list](docs/sdks/modifiergroups/README.md#list) - List Modifier Groups
-* [create](docs/sdks/modifiergroups/README.md#create) - Create Modifier Group
-* [get](docs/sdks/modifiergroups/README.md#get) - Get Modifier Group
-* [update](docs/sdks/modifiergroups/README.md#update) - Update Modifier Group
-* [delete](docs/sdks/modifiergroups/README.md#delete) - Delete Modifier Group
-
-#### [pos.modifiers](docs/sdks/modifiers/README.md)
-
-* [list](docs/sdks/modifiers/README.md#list) - List Modifiers
-* [create](docs/sdks/modifiers/README.md#create) - Create Modifier
-* [get](docs/sdks/modifiers/README.md#get) - Get Modifier
-* [update](docs/sdks/modifiers/README.md#update) - Update Modifier
-* [delete](docs/sdks/modifiers/README.md#delete) - Delete Modifier
-
-#### [pos.orders](docs/sdks/apideckorders/README.md)
-
-* [list](docs/sdks/apideckorders/README.md#list) - List Orders
-* [create](docs/sdks/apideckorders/README.md#create) - Create Order
-* [get](docs/sdks/apideckorders/README.md#get) - Get Order
-* [update](docs/sdks/apideckorders/README.md#update) - Update Order
-* [delete](docs/sdks/apideckorders/README.md#delete) - Delete Order
-* [pay](docs/sdks/apideckorders/README.md#pay) - Pay Order
-
-#### [pos.orderTypes](docs/sdks/ordertypes/README.md)
-
-* [list](docs/sdks/ordertypes/README.md#list) - List Order Types
-* [create](docs/sdks/ordertypes/README.md#create) - Create Order Type
-* [get](docs/sdks/ordertypes/README.md#get) - Get Order Type
-* [update](docs/sdks/ordertypes/README.md#update) - Update Order Type
-* [delete](docs/sdks/ordertypes/README.md#delete) - Delete Order Type
-
-#### [pos.payments](docs/sdks/apideckpayments/README.md)
-
-* [list](docs/sdks/apideckpayments/README.md#list) - List Payments
-* [create](docs/sdks/apideckpayments/README.md#create) - Create Payment
-* [get](docs/sdks/apideckpayments/README.md#get) - Get Payment
-* [update](docs/sdks/apideckpayments/README.md#update) - Update Payment
-* [delete](docs/sdks/apideckpayments/README.md#delete) - Delete Payment
-
-#### [pos.tenders](docs/sdks/tenders/README.md)
-
-* [list](docs/sdks/tenders/README.md#list) - List Tenders
-* [create](docs/sdks/tenders/README.md#create) - Create Tender
-* [get](docs/sdks/tenders/README.md#get) - Get Tender
-* [update](docs/sdks/tenders/README.md#update) - Update Tender
-* [delete](docs/sdks/tenders/README.md#delete) - Delete Tender
-
 ### [sms](docs/sdks/sms/README.md)
 
 
@@ -668,7 +581,7 @@ run();
 * [get](docs/sdks/connections/README.md#get) - Get connection
 * [update](docs/sdks/connections/README.md#update) - Update connection
 * [delete](docs/sdks/connections/README.md#delete) - Deletes a connection
-* [import](docs/sdks/connections/README.md#import) - Import connection
+* [imports](docs/sdks/connections/README.md#imports) - Import connection
 * [token](docs/sdks/connections/README.md#token) - Authorize Access Token
 
 #### [vault.connectionSettings](docs/sdks/connectionsettings/README.md)
@@ -975,57 +888,6 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`issueTrackingCollectionTicketsUpdate`](docs/sdks/collectiontickets/README.md#update) - Update Ticket
 - [`issueTrackingCollectionUsersGet`](docs/sdks/collectionusers/README.md#get) - Get user
 - [`issueTrackingCollectionUsersList`](docs/sdks/collectionusers/README.md#list) - List Users
-- [`leadLeadsCreate`](docs/sdks/apideckleads/README.md#create) - Create lead
-- [`leadLeadsDelete`](docs/sdks/apideckleads/README.md#delete) - Delete lead
-- [`leadLeadsGet`](docs/sdks/apideckleads/README.md#get) - Get lead
-- [`leadLeadsList`](docs/sdks/apideckleads/README.md#list) - List leads
-- [`leadLeadsUpdate`](docs/sdks/apideckleads/README.md#update) - Update lead
-- [`posItemsCreate`](docs/sdks/items/README.md#create) - Create Item
-- [`posItemsDelete`](docs/sdks/items/README.md#delete) - Delete Item
-- [`posItemsGet`](docs/sdks/items/README.md#get) - Get Item
-- [`posItemsList`](docs/sdks/items/README.md#list) - List Items
-- [`posItemsUpdate`](docs/sdks/items/README.md#update) - Update Item
-- [`posLocationsCreate`](docs/sdks/apidecklocations/README.md#create) - Create Location
-- [`posLocationsDelete`](docs/sdks/apidecklocations/README.md#delete) - Delete Location
-- [`posLocationsGet`](docs/sdks/apidecklocations/README.md#get) - Get Location
-- [`posLocationsList`](docs/sdks/apidecklocations/README.md#list) - List Locations
-- [`posLocationsUpdate`](docs/sdks/apidecklocations/README.md#update) - Update Location
-- [`posMerchantsCreate`](docs/sdks/merchants/README.md#create) - Create Merchant
-- [`posMerchantsDelete`](docs/sdks/merchants/README.md#delete) - Delete Merchant
-- [`posMerchantsGet`](docs/sdks/merchants/README.md#get) - Get Merchant
-- [`posMerchantsList`](docs/sdks/merchants/README.md#list) - List Merchants
-- [`posMerchantsUpdate`](docs/sdks/merchants/README.md#update) - Update Merchant
-- [`posModifierGroupsCreate`](docs/sdks/modifiergroups/README.md#create) - Create Modifier Group
-- [`posModifierGroupsDelete`](docs/sdks/modifiergroups/README.md#delete) - Delete Modifier Group
-- [`posModifierGroupsGet`](docs/sdks/modifiergroups/README.md#get) - Get Modifier Group
-- [`posModifierGroupsList`](docs/sdks/modifiergroups/README.md#list) - List Modifier Groups
-- [`posModifierGroupsUpdate`](docs/sdks/modifiergroups/README.md#update) - Update Modifier Group
-- [`posModifiersCreate`](docs/sdks/modifiers/README.md#create) - Create Modifier
-- [`posModifiersDelete`](docs/sdks/modifiers/README.md#delete) - Delete Modifier
-- [`posModifiersGet`](docs/sdks/modifiers/README.md#get) - Get Modifier
-- [`posModifiersList`](docs/sdks/modifiers/README.md#list) - List Modifiers
-- [`posModifiersUpdate`](docs/sdks/modifiers/README.md#update) - Update Modifier
-- [`posOrdersCreate`](docs/sdks/apideckorders/README.md#create) - Create Order
-- [`posOrdersDelete`](docs/sdks/apideckorders/README.md#delete) - Delete Order
-- [`posOrdersGet`](docs/sdks/apideckorders/README.md#get) - Get Order
-- [`posOrdersList`](docs/sdks/apideckorders/README.md#list) - List Orders
-- [`posOrdersPay`](docs/sdks/apideckorders/README.md#pay) - Pay Order
-- [`posOrdersUpdate`](docs/sdks/apideckorders/README.md#update) - Update Order
-- [`posOrderTypesCreate`](docs/sdks/ordertypes/README.md#create) - Create Order Type
-- [`posOrderTypesDelete`](docs/sdks/ordertypes/README.md#delete) - Delete Order Type
-- [`posOrderTypesGet`](docs/sdks/ordertypes/README.md#get) - Get Order Type
-- [`posOrderTypesList`](docs/sdks/ordertypes/README.md#list) - List Order Types
-- [`posOrderTypesUpdate`](docs/sdks/ordertypes/README.md#update) - Update Order Type
-- [`posPaymentsCreate`](docs/sdks/apideckpayments/README.md#create) - Create Payment
-- [`posPaymentsDelete`](docs/sdks/apideckpayments/README.md#delete) - Delete Payment
-- [`posPaymentsGet`](docs/sdks/apideckpayments/README.md#get) - Get Payment
-- [`posPaymentsList`](docs/sdks/apideckpayments/README.md#list) - List Payments
-- [`posPaymentsUpdate`](docs/sdks/apideckpayments/README.md#update) - Update Payment
-- [`posTendersCreate`](docs/sdks/tenders/README.md#create) - Create Tender
-- [`posTendersDelete`](docs/sdks/tenders/README.md#delete) - Delete Tender
-- [`posTendersGet`](docs/sdks/tenders/README.md#get) - Get Tender
-- [`posTendersList`](docs/sdks/tenders/README.md#list) - List Tenders
-- [`posTendersUpdate`](docs/sdks/tenders/README.md#update) - Update Tender
 - [`smsMessagesCreate`](docs/sdks/messages/README.md#create) - Create Message
 - [`smsMessagesDelete`](docs/sdks/messages/README.md#delete) - Delete Message
 - [`smsMessagesGet`](docs/sdks/messages/README.md#get) - Get Message
@@ -1036,7 +898,7 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`vaultConnectionSettingsList`](docs/sdks/connectionsettings/README.md#list) - Get resource settings
 - [`vaultConnectionSettingsUpdate`](docs/sdks/connectionsettings/README.md#update) - Update settings
 - [`vaultConnectionsGet`](docs/sdks/connections/README.md#get) - Get connection
-- [`vaultConnectionsImport`](docs/sdks/connections/README.md#import) - Import connection
+- [`vaultConnectionsImports`](docs/sdks/connections/README.md#imports) - Import connection
 - [`vaultConnectionsList`](docs/sdks/connections/README.md#list) - Get all connections
 - [`vaultConnectionsToken`](docs/sdks/connections/README.md#token) - Authorize Access Token
 - [`vaultConnectionsUpdate`](docs/sdks/connections/README.md#update) - Update connection
@@ -1069,11 +931,11 @@ Some of the endpoints in this SDK support retries.  If you use the SDK without a
 
 To change the default retry strategy for a single API call, simply provide a retryConfig object to the call:
 ```typescript
-import { Apideck } from "apideck";
+import { Apideck } from "@apideck/sdk";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
-  customerId: "test-consumer",
+  consumerId: "test-consumer",
   appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
 });
 
@@ -1114,7 +976,7 @@ run();
 
 If you'd like to override the default retry strategy for all operations that support retries, you can provide a retryConfig at SDK initialization:
 ```typescript
-import { Apideck } from "apideck";
+import { Apideck } from "@apideck/sdk";
 
 const apideck = new Apideck({
   retryConfig: {
@@ -1128,7 +990,7 @@ const apideck = new Apideck({
     retryConnectionErrors: false,
   },
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
-  customerId: "test-consumer",
+  consumerId: "test-consumer",
   appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
 });
 
@@ -1184,7 +1046,7 @@ In addition, when custom error responses are specified for an operation, the SDK
 | errors.APIError                | 4XX, 5XX    | \*/\*            |
 
 ```typescript
-import { Apideck } from "apideck";
+import { Apideck } from "@apideck/sdk";
 import {
   BadRequestResponse,
   NotFoundResponse,
@@ -1192,11 +1054,11 @@ import {
   SDKValidationError,
   UnauthorizedResponse,
   UnprocessableResponse,
-} from "apideck/models/errors";
+} from "@apideck/sdk/models/errors";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
-  customerId: "test-consumer",
+  consumerId: "test-consumer",
   appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
 });
 
@@ -1275,12 +1137,12 @@ Validation errors can also occur when either method arguments or data returned f
 
 The default server can also be overridden globally by passing a URL to the `serverURL: string` optional parameter when initializing the SDK client instance. For example:
 ```typescript
-import { Apideck } from "apideck";
+import { Apideck } from "@apideck/sdk";
 
 const apideck = new Apideck({
   serverURL: "https://unify.apideck.com",
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
-  customerId: "test-consumer",
+  consumerId: "test-consumer",
   appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
 });
 
@@ -1312,11 +1174,11 @@ run();
 
 The server URL can also be overridden on a per-operation basis, provided a server list was specified for the operation. For example:
 ```typescript
-import { Apideck } from "apideck";
+import { Apideck } from "@apideck/sdk";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
-  customerId: "test-consumer",
+  consumerId: "test-consumer",
   appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
 });
 
@@ -1375,8 +1237,8 @@ custom header and a timeout to requests and how to use the `"requestError"` hook
 to log errors:
 
 ```typescript
-import { Apideck } from "apideck";
-import { HTTPClient } from "apideck/lib/http";
+import { Apideck } from "@apideck/sdk";
+import { HTTPClient } from "@apideck/sdk/lib/http";
 
 const httpClient = new HTTPClient({
   // fetcher takes a function that has the same signature as native `fetch`.
@@ -1419,11 +1281,11 @@ This SDK supports the following security scheme globally:
 
 To authenticate with the API the `apiKey` parameter must be set when initializing the SDK client instance. For example:
 ```typescript
-import { Apideck } from "apideck";
+import { Apideck } from "@apideck/sdk";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
-  customerId: "test-consumer",
+  consumerId: "test-consumer",
   appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
 });
 
@@ -1463,7 +1325,7 @@ You can pass a logger that matches `console`'s interface as an SDK option.
 > Beware that debug logging will reveal secrets, like API tokens in headers, in log messages printed to a console or files. It's recommended to use this feature only during local development and not in production.
 
 ```typescript
-import { Apideck } from "apideck";
+import { Apideck } from "@apideck/sdk";
 
 const sdk = new Apideck({ debugLogger: console });
 ```

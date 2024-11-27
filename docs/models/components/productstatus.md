@@ -5,7 +5,7 @@ The current status of the product (active or archived).
 ## Example Usage
 
 ```typescript
-import { ProductStatus } from "apideck/models/components";
+import { ProductStatus } from "@apideck/sdk/models/components";
 
 let value: ProductStatus = "active";
 ```

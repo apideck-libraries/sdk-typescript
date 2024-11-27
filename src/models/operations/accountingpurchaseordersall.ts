@@ -4,13 +4,16 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type AccountingPurchaseOrdersAllGlobals = {
   /**
    * ID of the consumer which you want to get or push data from
    */
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   /**
    * The ID of your Unify application
    */
@@ -66,13 +69,13 @@ export const AccountingPurchaseOrdersAllGlobals$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
 /** @internal */
 export type AccountingPurchaseOrdersAllGlobals$Outbound = {
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   appId?: string | undefined;
 };
 
@@ -82,7 +85,7 @@ export const AccountingPurchaseOrdersAllGlobals$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   AccountingPurchaseOrdersAllGlobals
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
@@ -98,6 +101,27 @@ export namespace AccountingPurchaseOrdersAllGlobals$ {
     AccountingPurchaseOrdersAllGlobals$outboundSchema;
   /** @deprecated use `AccountingPurchaseOrdersAllGlobals$Outbound` instead. */
   export type Outbound = AccountingPurchaseOrdersAllGlobals$Outbound;
+}
+
+export function accountingPurchaseOrdersAllGlobalsToJSON(
+  accountingPurchaseOrdersAllGlobals: AccountingPurchaseOrdersAllGlobals,
+): string {
+  return JSON.stringify(
+    AccountingPurchaseOrdersAllGlobals$outboundSchema.parse(
+      accountingPurchaseOrdersAllGlobals,
+    ),
+  );
+}
+
+export function accountingPurchaseOrdersAllGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<AccountingPurchaseOrdersAllGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      AccountingPurchaseOrdersAllGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AccountingPurchaseOrdersAllGlobals' from JSON`,
+  );
 }
 
 /** @internal */
@@ -163,6 +187,27 @@ export namespace AccountingPurchaseOrdersAllRequest$ {
   export type Outbound = AccountingPurchaseOrdersAllRequest$Outbound;
 }
 
+export function accountingPurchaseOrdersAllRequestToJSON(
+  accountingPurchaseOrdersAllRequest: AccountingPurchaseOrdersAllRequest,
+): string {
+  return JSON.stringify(
+    AccountingPurchaseOrdersAllRequest$outboundSchema.parse(
+      accountingPurchaseOrdersAllRequest,
+    ),
+  );
+}
+
+export function accountingPurchaseOrdersAllRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<AccountingPurchaseOrdersAllRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      AccountingPurchaseOrdersAllRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AccountingPurchaseOrdersAllRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const AccountingPurchaseOrdersAllResponse$inboundSchema: z.ZodType<
   AccountingPurchaseOrdersAllResponse,
@@ -225,4 +270,25 @@ export namespace AccountingPurchaseOrdersAllResponse$ {
     AccountingPurchaseOrdersAllResponse$outboundSchema;
   /** @deprecated use `AccountingPurchaseOrdersAllResponse$Outbound` instead. */
   export type Outbound = AccountingPurchaseOrdersAllResponse$Outbound;
+}
+
+export function accountingPurchaseOrdersAllResponseToJSON(
+  accountingPurchaseOrdersAllResponse: AccountingPurchaseOrdersAllResponse,
+): string {
+  return JSON.stringify(
+    AccountingPurchaseOrdersAllResponse$outboundSchema.parse(
+      accountingPurchaseOrdersAllResponse,
+    ),
+  );
+}
+
+export function accountingPurchaseOrdersAllResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<AccountingPurchaseOrdersAllResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      AccountingPurchaseOrdersAllResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AccountingPurchaseOrdersAllResponse' from JSON`,
+  );
 }

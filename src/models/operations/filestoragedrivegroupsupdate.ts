@@ -4,13 +4,16 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type FileStorageDriveGroupsUpdateGlobals = {
   /**
    * ID of the consumer which you want to get or push data from
    */
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   /**
    * The ID of your Unify application
    */
@@ -51,13 +54,13 @@ export const FileStorageDriveGroupsUpdateGlobals$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
 /** @internal */
 export type FileStorageDriveGroupsUpdateGlobals$Outbound = {
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   appId?: string | undefined;
 };
 
@@ -67,7 +70,7 @@ export const FileStorageDriveGroupsUpdateGlobals$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   FileStorageDriveGroupsUpdateGlobals
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
@@ -84,6 +87,27 @@ export namespace FileStorageDriveGroupsUpdateGlobals$ {
     FileStorageDriveGroupsUpdateGlobals$outboundSchema;
   /** @deprecated use `FileStorageDriveGroupsUpdateGlobals$Outbound` instead. */
   export type Outbound = FileStorageDriveGroupsUpdateGlobals$Outbound;
+}
+
+export function fileStorageDriveGroupsUpdateGlobalsToJSON(
+  fileStorageDriveGroupsUpdateGlobals: FileStorageDriveGroupsUpdateGlobals,
+): string {
+  return JSON.stringify(
+    FileStorageDriveGroupsUpdateGlobals$outboundSchema.parse(
+      fileStorageDriveGroupsUpdateGlobals,
+    ),
+  );
+}
+
+export function fileStorageDriveGroupsUpdateGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<FileStorageDriveGroupsUpdateGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      FileStorageDriveGroupsUpdateGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'FileStorageDriveGroupsUpdateGlobals' from JSON`,
+  );
 }
 
 /** @internal */
@@ -139,6 +163,27 @@ export namespace FileStorageDriveGroupsUpdateRequest$ {
     FileStorageDriveGroupsUpdateRequest$outboundSchema;
   /** @deprecated use `FileStorageDriveGroupsUpdateRequest$Outbound` instead. */
   export type Outbound = FileStorageDriveGroupsUpdateRequest$Outbound;
+}
+
+export function fileStorageDriveGroupsUpdateRequestToJSON(
+  fileStorageDriveGroupsUpdateRequest: FileStorageDriveGroupsUpdateRequest,
+): string {
+  return JSON.stringify(
+    FileStorageDriveGroupsUpdateRequest$outboundSchema.parse(
+      fileStorageDriveGroupsUpdateRequest,
+    ),
+  );
+}
+
+export function fileStorageDriveGroupsUpdateRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<FileStorageDriveGroupsUpdateRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      FileStorageDriveGroupsUpdateRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'FileStorageDriveGroupsUpdateRequest' from JSON`,
+  );
 }
 
 /** @internal */
@@ -203,4 +248,25 @@ export namespace FileStorageDriveGroupsUpdateResponse$ {
     FileStorageDriveGroupsUpdateResponse$outboundSchema;
   /** @deprecated use `FileStorageDriveGroupsUpdateResponse$Outbound` instead. */
   export type Outbound = FileStorageDriveGroupsUpdateResponse$Outbound;
+}
+
+export function fileStorageDriveGroupsUpdateResponseToJSON(
+  fileStorageDriveGroupsUpdateResponse: FileStorageDriveGroupsUpdateResponse,
+): string {
+  return JSON.stringify(
+    FileStorageDriveGroupsUpdateResponse$outboundSchema.parse(
+      fileStorageDriveGroupsUpdateResponse,
+    ),
+  );
+}
+
+export function fileStorageDriveGroupsUpdateResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<FileStorageDriveGroupsUpdateResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      FileStorageDriveGroupsUpdateResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'FileStorageDriveGroupsUpdateResponse' from JSON`,
+  );
 }

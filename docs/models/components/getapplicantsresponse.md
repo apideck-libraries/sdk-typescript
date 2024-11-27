@@ -5,8 +5,8 @@ Applicants
 ## Example Usage
 
 ```typescript
-import { GetApplicantsResponse } from "apideck/models/components";
-import { RFCDate } from "apideck/types";
+import { GetApplicantsResponse } from "@apideck/sdk/models/components";
+import { RFCDate } from "@apideck/sdk/types";
 
 let value: GetApplicantsResponse = {
   statusCode: 200,
@@ -41,9 +41,7 @@ let value: GetApplicantsResponse = {
           id: "2389328923893298",
           name: "employee_level",
           description: "Employee Level",
-          value: [
-            {},
-          ],
+          value: "Uses Salesforce and Marketo",
         },
       ],
       phoneNumbers: [

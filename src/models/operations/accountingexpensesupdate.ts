@@ -4,13 +4,16 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type AccountingExpensesUpdateGlobals = {
   /**
    * ID of the consumer which you want to get or push data from
    */
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   /**
    * The ID of your Unify application
    */
@@ -51,13 +54,13 @@ export const AccountingExpensesUpdateGlobals$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
 /** @internal */
 export type AccountingExpensesUpdateGlobals$Outbound = {
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   appId?: string | undefined;
 };
 
@@ -67,7 +70,7 @@ export const AccountingExpensesUpdateGlobals$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   AccountingExpensesUpdateGlobals
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
@@ -82,6 +85,26 @@ export namespace AccountingExpensesUpdateGlobals$ {
   export const outboundSchema = AccountingExpensesUpdateGlobals$outboundSchema;
   /** @deprecated use `AccountingExpensesUpdateGlobals$Outbound` instead. */
   export type Outbound = AccountingExpensesUpdateGlobals$Outbound;
+}
+
+export function accountingExpensesUpdateGlobalsToJSON(
+  accountingExpensesUpdateGlobals: AccountingExpensesUpdateGlobals,
+): string {
+  return JSON.stringify(
+    AccountingExpensesUpdateGlobals$outboundSchema.parse(
+      accountingExpensesUpdateGlobals,
+    ),
+  );
+}
+
+export function accountingExpensesUpdateGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<AccountingExpensesUpdateGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => AccountingExpensesUpdateGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AccountingExpensesUpdateGlobals' from JSON`,
+  );
 }
 
 /** @internal */
@@ -135,6 +158,26 @@ export namespace AccountingExpensesUpdateRequest$ {
   export const outboundSchema = AccountingExpensesUpdateRequest$outboundSchema;
   /** @deprecated use `AccountingExpensesUpdateRequest$Outbound` instead. */
   export type Outbound = AccountingExpensesUpdateRequest$Outbound;
+}
+
+export function accountingExpensesUpdateRequestToJSON(
+  accountingExpensesUpdateRequest: AccountingExpensesUpdateRequest,
+): string {
+  return JSON.stringify(
+    AccountingExpensesUpdateRequest$outboundSchema.parse(
+      accountingExpensesUpdateRequest,
+    ),
+  );
+}
+
+export function accountingExpensesUpdateRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<AccountingExpensesUpdateRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => AccountingExpensesUpdateRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AccountingExpensesUpdateRequest' from JSON`,
+  );
 }
 
 /** @internal */
@@ -195,4 +238,24 @@ export namespace AccountingExpensesUpdateResponse$ {
   export const outboundSchema = AccountingExpensesUpdateResponse$outboundSchema;
   /** @deprecated use `AccountingExpensesUpdateResponse$Outbound` instead. */
   export type Outbound = AccountingExpensesUpdateResponse$Outbound;
+}
+
+export function accountingExpensesUpdateResponseToJSON(
+  accountingExpensesUpdateResponse: AccountingExpensesUpdateResponse,
+): string {
+  return JSON.stringify(
+    AccountingExpensesUpdateResponse$outboundSchema.parse(
+      accountingExpensesUpdateResponse,
+    ),
+  );
+}
+
+export function accountingExpensesUpdateResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<AccountingExpensesUpdateResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => AccountingExpensesUpdateResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AccountingExpensesUpdateResponse' from JSON`,
+  );
 }

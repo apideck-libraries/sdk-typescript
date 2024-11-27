@@ -4,13 +4,16 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type AccountingLedgerAccountsDeleteGlobals = {
   /**
    * ID of the consumer which you want to get or push data from
    */
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   /**
    * The ID of your Unify application
    */
@@ -52,13 +55,13 @@ export const AccountingLedgerAccountsDeleteGlobals$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
 /** @internal */
 export type AccountingLedgerAccountsDeleteGlobals$Outbound = {
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   appId?: string | undefined;
 };
 
@@ -68,7 +71,7 @@ export const AccountingLedgerAccountsDeleteGlobals$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   AccountingLedgerAccountsDeleteGlobals
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
@@ -85,6 +88,27 @@ export namespace AccountingLedgerAccountsDeleteGlobals$ {
     AccountingLedgerAccountsDeleteGlobals$outboundSchema;
   /** @deprecated use `AccountingLedgerAccountsDeleteGlobals$Outbound` instead. */
   export type Outbound = AccountingLedgerAccountsDeleteGlobals$Outbound;
+}
+
+export function accountingLedgerAccountsDeleteGlobalsToJSON(
+  accountingLedgerAccountsDeleteGlobals: AccountingLedgerAccountsDeleteGlobals,
+): string {
+  return JSON.stringify(
+    AccountingLedgerAccountsDeleteGlobals$outboundSchema.parse(
+      accountingLedgerAccountsDeleteGlobals,
+    ),
+  );
+}
+
+export function accountingLedgerAccountsDeleteGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<AccountingLedgerAccountsDeleteGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      AccountingLedgerAccountsDeleteGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AccountingLedgerAccountsDeleteGlobals' from JSON`,
+  );
 }
 
 /** @internal */
@@ -129,6 +153,27 @@ export namespace AccountingLedgerAccountsDeleteRequest$ {
     AccountingLedgerAccountsDeleteRequest$outboundSchema;
   /** @deprecated use `AccountingLedgerAccountsDeleteRequest$Outbound` instead. */
   export type Outbound = AccountingLedgerAccountsDeleteRequest$Outbound;
+}
+
+export function accountingLedgerAccountsDeleteRequestToJSON(
+  accountingLedgerAccountsDeleteRequest: AccountingLedgerAccountsDeleteRequest,
+): string {
+  return JSON.stringify(
+    AccountingLedgerAccountsDeleteRequest$outboundSchema.parse(
+      accountingLedgerAccountsDeleteRequest,
+    ),
+  );
+}
+
+export function accountingLedgerAccountsDeleteRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<AccountingLedgerAccountsDeleteRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      AccountingLedgerAccountsDeleteRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AccountingLedgerAccountsDeleteRequest' from JSON`,
+  );
 }
 
 /** @internal */
@@ -193,4 +238,26 @@ export namespace AccountingLedgerAccountsDeleteResponse$ {
     AccountingLedgerAccountsDeleteResponse$outboundSchema;
   /** @deprecated use `AccountingLedgerAccountsDeleteResponse$Outbound` instead. */
   export type Outbound = AccountingLedgerAccountsDeleteResponse$Outbound;
+}
+
+export function accountingLedgerAccountsDeleteResponseToJSON(
+  accountingLedgerAccountsDeleteResponse:
+    AccountingLedgerAccountsDeleteResponse,
+): string {
+  return JSON.stringify(
+    AccountingLedgerAccountsDeleteResponse$outboundSchema.parse(
+      accountingLedgerAccountsDeleteResponse,
+    ),
+  );
+}
+
+export function accountingLedgerAccountsDeleteResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<AccountingLedgerAccountsDeleteResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      AccountingLedgerAccountsDeleteResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AccountingLedgerAccountsDeleteResponse' from JSON`,
+  );
 }

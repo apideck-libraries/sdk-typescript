@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { ApiResourceCoverage } from "apideck/models/components";
+import { ApiResourceCoverage } from "@apideck/sdk/models/components";
 
 let value: ApiResourceCoverage = {
   id: "companies",

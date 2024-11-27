@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type AccountingLocationsFilter = {
   /**
@@ -45,4 +48,22 @@ export namespace AccountingLocationsFilter$ {
   export const outboundSchema = AccountingLocationsFilter$outboundSchema;
   /** @deprecated use `AccountingLocationsFilter$Outbound` instead. */
   export type Outbound = AccountingLocationsFilter$Outbound;
+}
+
+export function accountingLocationsFilterToJSON(
+  accountingLocationsFilter: AccountingLocationsFilter,
+): string {
+  return JSON.stringify(
+    AccountingLocationsFilter$outboundSchema.parse(accountingLocationsFilter),
+  );
+}
+
+export function accountingLocationsFilterFromJSON(
+  jsonString: string,
+): SafeParseResult<AccountingLocationsFilter, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => AccountingLocationsFilter$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AccountingLocationsFilter' from JSON`,
+  );
 }

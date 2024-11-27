@@ -4,7 +4,10 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import { RFCDate } from "../../types/rfcdate.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   CustomMappings,
   CustomMappings$inboundSchema,
@@ -130,4 +133,18 @@ export namespace Person$ {
   export const outboundSchema = Person$outboundSchema;
   /** @deprecated use `Person$Outbound` instead. */
   export type Outbound = Person$Outbound;
+}
+
+export function personToJSON(person: Person): string {
+  return JSON.stringify(Person$outboundSchema.parse(person));
+}
+
+export function personFromJSON(
+  jsonString: string,
+): SafeParseResult<Person, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Person$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Person' from JSON`,
+  );
 }

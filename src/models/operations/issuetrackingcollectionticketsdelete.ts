@@ -4,13 +4,16 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type IssueTrackingCollectionTicketsDeleteGlobals = {
   /**
    * ID of the consumer which you want to get or push data from
    */
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   /**
    * The ID of your Unify application
    */
@@ -55,13 +58,13 @@ export const IssueTrackingCollectionTicketsDeleteGlobals$inboundSchema:
     z.ZodTypeDef,
     unknown
   > = z.object({
-    customerId: z.string().optional(),
+    consumerId: z.string().optional(),
     appId: z.string().optional(),
   });
 
 /** @internal */
 export type IssueTrackingCollectionTicketsDeleteGlobals$Outbound = {
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   appId?: string | undefined;
 };
 
@@ -72,7 +75,7 @@ export const IssueTrackingCollectionTicketsDeleteGlobals$outboundSchema:
     z.ZodTypeDef,
     IssueTrackingCollectionTicketsDeleteGlobals
   > = z.object({
-    customerId: z.string().optional(),
+    consumerId: z.string().optional(),
     appId: z.string().optional(),
   });
 
@@ -89,6 +92,33 @@ export namespace IssueTrackingCollectionTicketsDeleteGlobals$ {
     IssueTrackingCollectionTicketsDeleteGlobals$outboundSchema;
   /** @deprecated use `IssueTrackingCollectionTicketsDeleteGlobals$Outbound` instead. */
   export type Outbound = IssueTrackingCollectionTicketsDeleteGlobals$Outbound;
+}
+
+export function issueTrackingCollectionTicketsDeleteGlobalsToJSON(
+  issueTrackingCollectionTicketsDeleteGlobals:
+    IssueTrackingCollectionTicketsDeleteGlobals,
+): string {
+  return JSON.stringify(
+    IssueTrackingCollectionTicketsDeleteGlobals$outboundSchema.parse(
+      issueTrackingCollectionTicketsDeleteGlobals,
+    ),
+  );
+}
+
+export function issueTrackingCollectionTicketsDeleteGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<
+  IssueTrackingCollectionTicketsDeleteGlobals,
+  SDKValidationError
+> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      IssueTrackingCollectionTicketsDeleteGlobals$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'IssueTrackingCollectionTicketsDeleteGlobals' from JSON`,
+  );
 }
 
 /** @internal */
@@ -148,6 +178,33 @@ export namespace IssueTrackingCollectionTicketsDeleteRequest$ {
     IssueTrackingCollectionTicketsDeleteRequest$outboundSchema;
   /** @deprecated use `IssueTrackingCollectionTicketsDeleteRequest$Outbound` instead. */
   export type Outbound = IssueTrackingCollectionTicketsDeleteRequest$Outbound;
+}
+
+export function issueTrackingCollectionTicketsDeleteRequestToJSON(
+  issueTrackingCollectionTicketsDeleteRequest:
+    IssueTrackingCollectionTicketsDeleteRequest,
+): string {
+  return JSON.stringify(
+    IssueTrackingCollectionTicketsDeleteRequest$outboundSchema.parse(
+      issueTrackingCollectionTicketsDeleteRequest,
+    ),
+  );
+}
+
+export function issueTrackingCollectionTicketsDeleteRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<
+  IssueTrackingCollectionTicketsDeleteRequest,
+  SDKValidationError
+> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      IssueTrackingCollectionTicketsDeleteRequest$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'IssueTrackingCollectionTicketsDeleteRequest' from JSON`,
+  );
 }
 
 /** @internal */
@@ -212,4 +269,31 @@ export namespace IssueTrackingCollectionTicketsDeleteResponse$ {
     IssueTrackingCollectionTicketsDeleteResponse$outboundSchema;
   /** @deprecated use `IssueTrackingCollectionTicketsDeleteResponse$Outbound` instead. */
   export type Outbound = IssueTrackingCollectionTicketsDeleteResponse$Outbound;
+}
+
+export function issueTrackingCollectionTicketsDeleteResponseToJSON(
+  issueTrackingCollectionTicketsDeleteResponse:
+    IssueTrackingCollectionTicketsDeleteResponse,
+): string {
+  return JSON.stringify(
+    IssueTrackingCollectionTicketsDeleteResponse$outboundSchema.parse(
+      issueTrackingCollectionTicketsDeleteResponse,
+    ),
+  );
+}
+
+export function issueTrackingCollectionTicketsDeleteResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<
+  IssueTrackingCollectionTicketsDeleteResponse,
+  SDKValidationError
+> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      IssueTrackingCollectionTicketsDeleteResponse$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'IssueTrackingCollectionTicketsDeleteResponse' from JSON`,
+  );
 }

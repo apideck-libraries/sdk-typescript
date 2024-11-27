@@ -4,7 +4,10 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   CustomMappings,
   CustomMappings$inboundSchema,
@@ -311,6 +314,20 @@ export namespace Notes$ {
   export type Outbound = Notes$Outbound;
 }
 
+export function notesToJSON(notes: Notes): string {
+  return JSON.stringify(Notes$outboundSchema.parse(notes));
+}
+
+export function notesFromJSON(
+  jsonString: string,
+): SafeParseResult<Notes, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Notes$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Notes' from JSON`,
+  );
+}
+
 /** @internal */
 export const TimeOffRequest$inboundSchema: z.ZodType<
   TimeOffRequest,
@@ -447,6 +464,20 @@ export namespace TimeOffRequest$ {
   export type Outbound = TimeOffRequest$Outbound;
 }
 
+export function timeOffRequestToJSON(timeOffRequest: TimeOffRequest): string {
+  return JSON.stringify(TimeOffRequest$outboundSchema.parse(timeOffRequest));
+}
+
+export function timeOffRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<TimeOffRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => TimeOffRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'TimeOffRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const TimeOffRequestInput$inboundSchema: z.ZodType<
   TimeOffRequestInput,
@@ -549,4 +580,22 @@ export namespace TimeOffRequestInput$ {
   export const outboundSchema = TimeOffRequestInput$outboundSchema;
   /** @deprecated use `TimeOffRequestInput$Outbound` instead. */
   export type Outbound = TimeOffRequestInput$Outbound;
+}
+
+export function timeOffRequestInputToJSON(
+  timeOffRequestInput: TimeOffRequestInput,
+): string {
+  return JSON.stringify(
+    TimeOffRequestInput$outboundSchema.parse(timeOffRequestInput),
+  );
+}
+
+export function timeOffRequestInputFromJSON(
+  jsonString: string,
+): SafeParseResult<TimeOffRequestInput, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => TimeOffRequestInput$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'TimeOffRequestInput' from JSON`,
+  );
 }

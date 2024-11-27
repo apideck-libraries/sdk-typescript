@@ -3,8 +3,8 @@
 ## Example Usage
 
 ```typescript
-import { EmployeeInput } from "apideck/models/components";
-import { RFCDate } from "apideck/types";
+import { EmployeeInput } from "@apideck/sdk/models/components";
+import { RFCDate } from "@apideck/sdk/types";
 
 let value: EmployeeInput = {
   id: "12345",
@@ -118,10 +118,8 @@ let value: EmployeeInput = {
     {
       rate: 50,
       paymentUnit: "hour",
-      currency: "USD",
       flsaStatus: "nonexempt",
       effectiveDate: "2021-06-11",
-      paymentFrequency: "monthly",
     },
   ],
   worksRemote: true,
@@ -175,7 +173,7 @@ let value: EmployeeInput = {
       id: "2389328923893298",
       name: "employee_level",
       description: "Employee Level",
-      value: "Uses Salesforce and Marketo",
+      value: {},
     },
   ],
   socialLinks: [

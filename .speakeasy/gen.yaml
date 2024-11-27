@@ -16,7 +16,7 @@ generation:
     oAuth2ClientCredentialsEnabled: true
     oAuth2PasswordEnabled: true
 typescript:
-  version: 0.9.5
+  version: 0.11.3
   additionalDependencies:
     dependencies: {}
     devDependencies: {}
@@ -25,6 +25,7 @@ typescript:
   author: Speakeasy
   clientServerStatusCodesAsErrors: true
   defaultErrorName: APIError
+  enableReactQuery: false
   enumFormat: union
   envVarPrefix: APIDECK
   flattenGlobalSecurity: true
@@ -42,7 +43,7 @@ typescript:
   methodArguments: require-security-and-request
   moduleFormat: commonjs
   outputModelSuffix: output
-  packageName: Apideck Typescript SDK
+  packageName: '@apideck/sdk'
   responseFormat: envelope-http
   templateVersion: v2
   useIndexModules: true

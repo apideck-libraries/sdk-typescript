@@ -5,7 +5,7 @@ Connectors
 ## Example Usage
 
 ```typescript
-import { GetConnectorsResponse } from "apideck/models/components";
+import { GetConnectorsResponse } from "@apideck/sdk/models/components";
 
 let value: GetConnectorsResponse = {
   statusCode: 200,

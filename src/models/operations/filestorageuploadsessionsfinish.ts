@@ -4,7 +4,10 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export const FileStorageUploadSessionsFinishServerList = [
   "https://upload.apideck.com",
@@ -14,7 +17,7 @@ export type FileStorageUploadSessionsFinishGlobals = {
   /**
    * ID of the consumer which you want to get or push data from
    */
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   /**
    * The ID of your Unify application
    */
@@ -61,13 +64,13 @@ export const FileStorageUploadSessionsFinishGlobals$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
 /** @internal */
 export type FileStorageUploadSessionsFinishGlobals$Outbound = {
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   appId?: string | undefined;
 };
 
@@ -77,7 +80,7 @@ export const FileStorageUploadSessionsFinishGlobals$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   FileStorageUploadSessionsFinishGlobals
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
@@ -94,6 +97,28 @@ export namespace FileStorageUploadSessionsFinishGlobals$ {
     FileStorageUploadSessionsFinishGlobals$outboundSchema;
   /** @deprecated use `FileStorageUploadSessionsFinishGlobals$Outbound` instead. */
   export type Outbound = FileStorageUploadSessionsFinishGlobals$Outbound;
+}
+
+export function fileStorageUploadSessionsFinishGlobalsToJSON(
+  fileStorageUploadSessionsFinishGlobals:
+    FileStorageUploadSessionsFinishGlobals,
+): string {
+  return JSON.stringify(
+    FileStorageUploadSessionsFinishGlobals$outboundSchema.parse(
+      fileStorageUploadSessionsFinishGlobals,
+    ),
+  );
+}
+
+export function fileStorageUploadSessionsFinishGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<FileStorageUploadSessionsFinishGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      FileStorageUploadSessionsFinishGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'FileStorageUploadSessionsFinishGlobals' from JSON`,
+  );
 }
 
 /** @internal */
@@ -125,6 +150,33 @@ export namespace FileStorageUploadSessionsFinishRequestBody$ {
     FileStorageUploadSessionsFinishRequestBody$outboundSchema;
   /** @deprecated use `FileStorageUploadSessionsFinishRequestBody$Outbound` instead. */
   export type Outbound = FileStorageUploadSessionsFinishRequestBody$Outbound;
+}
+
+export function fileStorageUploadSessionsFinishRequestBodyToJSON(
+  fileStorageUploadSessionsFinishRequestBody:
+    FileStorageUploadSessionsFinishRequestBody,
+): string {
+  return JSON.stringify(
+    FileStorageUploadSessionsFinishRequestBody$outboundSchema.parse(
+      fileStorageUploadSessionsFinishRequestBody,
+    ),
+  );
+}
+
+export function fileStorageUploadSessionsFinishRequestBodyFromJSON(
+  jsonString: string,
+): SafeParseResult<
+  FileStorageUploadSessionsFinishRequestBody,
+  SDKValidationError
+> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      FileStorageUploadSessionsFinishRequestBody$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'FileStorageUploadSessionsFinishRequestBody' from JSON`,
+  );
 }
 
 /** @internal */
@@ -189,6 +241,28 @@ export namespace FileStorageUploadSessionsFinishRequest$ {
   export type Outbound = FileStorageUploadSessionsFinishRequest$Outbound;
 }
 
+export function fileStorageUploadSessionsFinishRequestToJSON(
+  fileStorageUploadSessionsFinishRequest:
+    FileStorageUploadSessionsFinishRequest,
+): string {
+  return JSON.stringify(
+    FileStorageUploadSessionsFinishRequest$outboundSchema.parse(
+      fileStorageUploadSessionsFinishRequest,
+    ),
+  );
+}
+
+export function fileStorageUploadSessionsFinishRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<FileStorageUploadSessionsFinishRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      FileStorageUploadSessionsFinishRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'FileStorageUploadSessionsFinishRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const FileStorageUploadSessionsFinishResponse$inboundSchema: z.ZodType<
   FileStorageUploadSessionsFinishResponse,
@@ -247,4 +321,31 @@ export namespace FileStorageUploadSessionsFinishResponse$ {
     FileStorageUploadSessionsFinishResponse$outboundSchema;
   /** @deprecated use `FileStorageUploadSessionsFinishResponse$Outbound` instead. */
   export type Outbound = FileStorageUploadSessionsFinishResponse$Outbound;
+}
+
+export function fileStorageUploadSessionsFinishResponseToJSON(
+  fileStorageUploadSessionsFinishResponse:
+    FileStorageUploadSessionsFinishResponse,
+): string {
+  return JSON.stringify(
+    FileStorageUploadSessionsFinishResponse$outboundSchema.parse(
+      fileStorageUploadSessionsFinishResponse,
+    ),
+  );
+}
+
+export function fileStorageUploadSessionsFinishResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<
+  FileStorageUploadSessionsFinishResponse,
+  SDKValidationError
+> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      FileStorageUploadSessionsFinishResponse$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'FileStorageUploadSessionsFinishResponse' from JSON`,
+  );
 }

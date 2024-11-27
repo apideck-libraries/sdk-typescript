@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   Currency,
   Currency$inboundSchema,
@@ -201,4 +204,22 @@ export namespace JournalEntryInput$ {
   export const outboundSchema = JournalEntryInput$outboundSchema;
   /** @deprecated use `JournalEntryInput$Outbound` instead. */
   export type Outbound = JournalEntryInput$Outbound;
+}
+
+export function journalEntryInputToJSON(
+  journalEntryInput: JournalEntryInput,
+): string {
+  return JSON.stringify(
+    JournalEntryInput$outboundSchema.parse(journalEntryInput),
+  );
+}
+
+export function journalEntryInputFromJSON(
+  jsonString: string,
+): SafeParseResult<JournalEntryInput, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => JournalEntryInput$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'JournalEntryInput' from JSON`,
+  );
 }

@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   TrackingCategory,
   TrackingCategory$inboundSchema,
@@ -95,4 +98,24 @@ export namespace GetTrackingCategoryResponse$ {
   export const outboundSchema = GetTrackingCategoryResponse$outboundSchema;
   /** @deprecated use `GetTrackingCategoryResponse$Outbound` instead. */
   export type Outbound = GetTrackingCategoryResponse$Outbound;
+}
+
+export function getTrackingCategoryResponseToJSON(
+  getTrackingCategoryResponse: GetTrackingCategoryResponse,
+): string {
+  return JSON.stringify(
+    GetTrackingCategoryResponse$outboundSchema.parse(
+      getTrackingCategoryResponse,
+    ),
+  );
+}
+
+export function getTrackingCategoryResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<GetTrackingCategoryResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetTrackingCategoryResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetTrackingCategoryResponse' from JSON`,
+  );
 }

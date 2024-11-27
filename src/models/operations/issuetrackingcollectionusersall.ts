@@ -4,13 +4,16 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type IssueTrackingCollectionUsersAllGlobals = {
   /**
    * ID of the consumer which you want to get or push data from
    */
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   /**
    * The ID of your Unify application
    */
@@ -68,13 +71,13 @@ export const IssueTrackingCollectionUsersAllGlobals$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
 /** @internal */
 export type IssueTrackingCollectionUsersAllGlobals$Outbound = {
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   appId?: string | undefined;
 };
 
@@ -84,7 +87,7 @@ export const IssueTrackingCollectionUsersAllGlobals$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   IssueTrackingCollectionUsersAllGlobals
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
@@ -101,6 +104,28 @@ export namespace IssueTrackingCollectionUsersAllGlobals$ {
     IssueTrackingCollectionUsersAllGlobals$outboundSchema;
   /** @deprecated use `IssueTrackingCollectionUsersAllGlobals$Outbound` instead. */
   export type Outbound = IssueTrackingCollectionUsersAllGlobals$Outbound;
+}
+
+export function issueTrackingCollectionUsersAllGlobalsToJSON(
+  issueTrackingCollectionUsersAllGlobals:
+    IssueTrackingCollectionUsersAllGlobals,
+): string {
+  return JSON.stringify(
+    IssueTrackingCollectionUsersAllGlobals$outboundSchema.parse(
+      issueTrackingCollectionUsersAllGlobals,
+    ),
+  );
+}
+
+export function issueTrackingCollectionUsersAllGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<IssueTrackingCollectionUsersAllGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      IssueTrackingCollectionUsersAllGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'IssueTrackingCollectionUsersAllGlobals' from JSON`,
+  );
 }
 
 /** @internal */
@@ -169,6 +194,28 @@ export namespace IssueTrackingCollectionUsersAllRequest$ {
   export type Outbound = IssueTrackingCollectionUsersAllRequest$Outbound;
 }
 
+export function issueTrackingCollectionUsersAllRequestToJSON(
+  issueTrackingCollectionUsersAllRequest:
+    IssueTrackingCollectionUsersAllRequest,
+): string {
+  return JSON.stringify(
+    IssueTrackingCollectionUsersAllRequest$outboundSchema.parse(
+      issueTrackingCollectionUsersAllRequest,
+    ),
+  );
+}
+
+export function issueTrackingCollectionUsersAllRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<IssueTrackingCollectionUsersAllRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      IssueTrackingCollectionUsersAllRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'IssueTrackingCollectionUsersAllRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const IssueTrackingCollectionUsersAllResponse$inboundSchema: z.ZodType<
   IssueTrackingCollectionUsersAllResponse,
@@ -231,4 +278,31 @@ export namespace IssueTrackingCollectionUsersAllResponse$ {
     IssueTrackingCollectionUsersAllResponse$outboundSchema;
   /** @deprecated use `IssueTrackingCollectionUsersAllResponse$Outbound` instead. */
   export type Outbound = IssueTrackingCollectionUsersAllResponse$Outbound;
+}
+
+export function issueTrackingCollectionUsersAllResponseToJSON(
+  issueTrackingCollectionUsersAllResponse:
+    IssueTrackingCollectionUsersAllResponse,
+): string {
+  return JSON.stringify(
+    IssueTrackingCollectionUsersAllResponse$outboundSchema.parse(
+      issueTrackingCollectionUsersAllResponse,
+    ),
+  );
+}
+
+export function issueTrackingCollectionUsersAllResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<
+  IssueTrackingCollectionUsersAllResponse,
+  SDKValidationError
+> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      IssueTrackingCollectionUsersAllResponse$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'IssueTrackingCollectionUsersAllResponse' from JSON`,
+  );
 }

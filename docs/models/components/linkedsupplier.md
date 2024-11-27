@@ -5,7 +5,7 @@ The supplier this entity is linked to.
 ## Example Usage
 
 ```typescript
-import { LinkedSupplier } from "apideck/models/components";
+import { LinkedSupplier } from "@apideck/sdk/models/components";
 
 let value: LinkedSupplier = {
   id: "12345",

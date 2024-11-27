@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type CustomMappingInput = {
   /**
@@ -45,4 +48,22 @@ export namespace CustomMappingInput$ {
   export const outboundSchema = CustomMappingInput$outboundSchema;
   /** @deprecated use `CustomMappingInput$Outbound` instead. */
   export type Outbound = CustomMappingInput$Outbound;
+}
+
+export function customMappingInputToJSON(
+  customMappingInput: CustomMappingInput,
+): string {
+  return JSON.stringify(
+    CustomMappingInput$outboundSchema.parse(customMappingInput),
+  );
+}
+
+export function customMappingInputFromJSON(
+  jsonString: string,
+): SafeParseResult<CustomMappingInput, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CustomMappingInput$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CustomMappingInput' from JSON`,
+  );
 }

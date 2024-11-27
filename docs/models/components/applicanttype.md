@@ -5,7 +5,7 @@ The type of website
 ## Example Usage
 
 ```typescript
-import { ApplicantType } from "apideck/models/components";
+import { ApplicantType } from "@apideck/sdk/models/components";
 
 let value: ApplicantType = "primary";
 ```

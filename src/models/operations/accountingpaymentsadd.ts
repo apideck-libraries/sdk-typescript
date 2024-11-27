@@ -4,13 +4,16 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type AccountingPaymentsAddGlobals = {
   /**
    * ID of the consumer which you want to get or push data from
    */
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   /**
    * The ID of your Unify application
    */
@@ -47,13 +50,13 @@ export const AccountingPaymentsAddGlobals$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
 /** @internal */
 export type AccountingPaymentsAddGlobals$Outbound = {
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   appId?: string | undefined;
 };
 
@@ -63,7 +66,7 @@ export const AccountingPaymentsAddGlobals$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   AccountingPaymentsAddGlobals
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
@@ -78,6 +81,26 @@ export namespace AccountingPaymentsAddGlobals$ {
   export const outboundSchema = AccountingPaymentsAddGlobals$outboundSchema;
   /** @deprecated use `AccountingPaymentsAddGlobals$Outbound` instead. */
   export type Outbound = AccountingPaymentsAddGlobals$Outbound;
+}
+
+export function accountingPaymentsAddGlobalsToJSON(
+  accountingPaymentsAddGlobals: AccountingPaymentsAddGlobals,
+): string {
+  return JSON.stringify(
+    AccountingPaymentsAddGlobals$outboundSchema.parse(
+      accountingPaymentsAddGlobals,
+    ),
+  );
+}
+
+export function accountingPaymentsAddGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<AccountingPaymentsAddGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => AccountingPaymentsAddGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AccountingPaymentsAddGlobals' from JSON`,
+  );
 }
 
 /** @internal */
@@ -128,6 +151,26 @@ export namespace AccountingPaymentsAddRequest$ {
   export const outboundSchema = AccountingPaymentsAddRequest$outboundSchema;
   /** @deprecated use `AccountingPaymentsAddRequest$Outbound` instead. */
   export type Outbound = AccountingPaymentsAddRequest$Outbound;
+}
+
+export function accountingPaymentsAddRequestToJSON(
+  accountingPaymentsAddRequest: AccountingPaymentsAddRequest,
+): string {
+  return JSON.stringify(
+    AccountingPaymentsAddRequest$outboundSchema.parse(
+      accountingPaymentsAddRequest,
+    ),
+  );
+}
+
+export function accountingPaymentsAddRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<AccountingPaymentsAddRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => AccountingPaymentsAddRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AccountingPaymentsAddRequest' from JSON`,
+  );
 }
 
 /** @internal */
@@ -188,4 +231,24 @@ export namespace AccountingPaymentsAddResponse$ {
   export const outboundSchema = AccountingPaymentsAddResponse$outboundSchema;
   /** @deprecated use `AccountingPaymentsAddResponse$Outbound` instead. */
   export type Outbound = AccountingPaymentsAddResponse$Outbound;
+}
+
+export function accountingPaymentsAddResponseToJSON(
+  accountingPaymentsAddResponse: AccountingPaymentsAddResponse,
+): string {
+  return JSON.stringify(
+    AccountingPaymentsAddResponse$outboundSchema.parse(
+      accountingPaymentsAddResponse,
+    ),
+  );
+}
+
+export function accountingPaymentsAddResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<AccountingPaymentsAddResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => AccountingPaymentsAddResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AccountingPaymentsAddResponse' from JSON`,
+  );
 }

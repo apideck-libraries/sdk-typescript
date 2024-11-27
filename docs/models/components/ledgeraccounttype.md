@@ -5,7 +5,7 @@ The type of account.
 ## Example Usage
 
 ```typescript
-import { LedgerAccountType } from "apideck/models/components";
+import { LedgerAccountType } from "@apideck/sdk/models/components";
 
 let value: LedgerAccountType = "bank";
 ```

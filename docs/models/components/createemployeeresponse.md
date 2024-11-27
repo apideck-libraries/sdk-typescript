@@ -5,7 +5,7 @@ Employees
 ## Example Usage
 
 ```typescript
-import { CreateEmployeeResponse } from "apideck/models/components";
+import { CreateEmployeeResponse } from "@apideck/sdk/models/components";
 
 let value: CreateEmployeeResponse = {
   statusCode: 200,

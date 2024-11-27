@@ -5,7 +5,7 @@ The visibility of the job
 ## Example Usage
 
 ```typescript
-import { Visibility } from "apideck/models/components";
+import { Visibility } from "@apideck/sdk/models/components";
 
 let value: Visibility = "internal";
 ```

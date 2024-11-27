@@ -3,11 +3,11 @@
 ## Example Usage
 
 ```typescript
-import { SimpleFormFieldOption } from "apideck/models/components";
+import { SimpleFormFieldOption } from "@apideck/sdk/models/components";
 
 let value: SimpleFormFieldOption = {
   label: "General Channel",
-  value: "general",
+  value: 123,
 };
 ```
 

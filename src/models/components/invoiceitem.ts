@@ -4,8 +4,11 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import { RFCDate } from "../../types/rfcdate.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   CustomMappings,
   CustomMappings$inboundSchema,
@@ -350,6 +353,20 @@ export namespace SalesDetails$ {
   export type Outbound = SalesDetails$Outbound;
 }
 
+export function salesDetailsToJSON(salesDetails: SalesDetails): string {
+  return JSON.stringify(SalesDetails$outboundSchema.parse(salesDetails));
+}
+
+export function salesDetailsFromJSON(
+  jsonString: string,
+): SafeParseResult<SalesDetails, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => SalesDetails$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'SalesDetails' from JSON`,
+  );
+}
+
 /** @internal */
 export const PurchaseDetails$inboundSchema: z.ZodType<
   PurchaseDetails,
@@ -407,6 +424,22 @@ export namespace PurchaseDetails$ {
   export const outboundSchema = PurchaseDetails$outboundSchema;
   /** @deprecated use `PurchaseDetails$Outbound` instead. */
   export type Outbound = PurchaseDetails$Outbound;
+}
+
+export function purchaseDetailsToJSON(
+  purchaseDetails: PurchaseDetails,
+): string {
+  return JSON.stringify(PurchaseDetails$outboundSchema.parse(purchaseDetails));
+}
+
+export function purchaseDetailsFromJSON(
+  jsonString: string,
+): SafeParseResult<PurchaseDetails, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => PurchaseDetails$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'PurchaseDetails' from JSON`,
+  );
 }
 
 /** @internal */
@@ -577,6 +610,20 @@ export namespace InvoiceItem$ {
   export type Outbound = InvoiceItem$Outbound;
 }
 
+export function invoiceItemToJSON(invoiceItem: InvoiceItem): string {
+  return JSON.stringify(InvoiceItem$outboundSchema.parse(invoiceItem));
+}
+
+export function invoiceItemFromJSON(
+  jsonString: string,
+): SafeParseResult<InvoiceItem, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => InvoiceItem$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'InvoiceItem' from JSON`,
+  );
+}
+
 /** @internal */
 export const InvoiceItemSalesDetails$inboundSchema: z.ZodType<
   InvoiceItemSalesDetails,
@@ -636,6 +683,24 @@ export namespace InvoiceItemSalesDetails$ {
   export type Outbound = InvoiceItemSalesDetails$Outbound;
 }
 
+export function invoiceItemSalesDetailsToJSON(
+  invoiceItemSalesDetails: InvoiceItemSalesDetails,
+): string {
+  return JSON.stringify(
+    InvoiceItemSalesDetails$outboundSchema.parse(invoiceItemSalesDetails),
+  );
+}
+
+export function invoiceItemSalesDetailsFromJSON(
+  jsonString: string,
+): SafeParseResult<InvoiceItemSalesDetails, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => InvoiceItemSalesDetails$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'InvoiceItemSalesDetails' from JSON`,
+  );
+}
+
 /** @internal */
 export const InvoiceItemPurchaseDetails$inboundSchema: z.ZodType<
   InvoiceItemPurchaseDetails,
@@ -693,6 +758,24 @@ export namespace InvoiceItemPurchaseDetails$ {
   export const outboundSchema = InvoiceItemPurchaseDetails$outboundSchema;
   /** @deprecated use `InvoiceItemPurchaseDetails$Outbound` instead. */
   export type Outbound = InvoiceItemPurchaseDetails$Outbound;
+}
+
+export function invoiceItemPurchaseDetailsToJSON(
+  invoiceItemPurchaseDetails: InvoiceItemPurchaseDetails,
+): string {
+  return JSON.stringify(
+    InvoiceItemPurchaseDetails$outboundSchema.parse(invoiceItemPurchaseDetails),
+  );
+}
+
+export function invoiceItemPurchaseDetailsFromJSON(
+  jsonString: string,
+): SafeParseResult<InvoiceItemPurchaseDetails, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => InvoiceItemPurchaseDetails$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'InvoiceItemPurchaseDetails' from JSON`,
+  );
 }
 
 /** @internal */
@@ -833,4 +916,22 @@ export namespace InvoiceItemInput$ {
   export const outboundSchema = InvoiceItemInput$outboundSchema;
   /** @deprecated use `InvoiceItemInput$Outbound` instead. */
   export type Outbound = InvoiceItemInput$Outbound;
+}
+
+export function invoiceItemInputToJSON(
+  invoiceItemInput: InvoiceItemInput,
+): string {
+  return JSON.stringify(
+    InvoiceItemInput$outboundSchema.parse(invoiceItemInput),
+  );
+}
+
+export function invoiceItemInputFromJSON(
+  jsonString: string,
+): SafeParseResult<InvoiceItemInput, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => InvoiceItemInput$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'InvoiceItemInput' from JSON`,
+  );
 }

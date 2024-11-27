@@ -5,7 +5,7 @@ Settings to change the way the Vault is displayed.
 ## Example Usage
 
 ```typescript
-import { SessionSettings } from "apideck/models/components";
+import { SessionSettings } from "@apideck/sdk/models/components";
 
 let value: SessionSettings = {
   unifiedApis: [

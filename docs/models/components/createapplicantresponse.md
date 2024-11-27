@@ -5,7 +5,7 @@ Applicants
 ## Example Usage
 
 ```typescript
-import { CreateApplicantResponse } from "apideck/models/components";
+import { CreateApplicantResponse } from "@apideck/sdk/models/components";
 
 let value: CreateApplicantResponse = {
   statusCode: 200,

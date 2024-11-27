@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { AccountingAttachmentsDeleteRequest } from "apideck/models/operations";
+import { AccountingAttachmentsDeleteRequest } from "@apideck/sdk/models/operations";
 
 let value: AccountingAttachmentsDeleteRequest = {
   referenceType: "invoice",

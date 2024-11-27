@@ -5,7 +5,7 @@ Lead deleted
 ## Example Usage
 
 ```typescript
-import { DeleteLeadResponse } from "apideck/models/components";
+import { DeleteLeadResponse } from "@apideck/sdk/models/components";
 
 let value: DeleteLeadResponse = {
   statusCode: 200,

@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type ApplicantsFilter = {
   /**
@@ -54,4 +57,22 @@ export namespace ApplicantsFilter$ {
   export const outboundSchema = ApplicantsFilter$outboundSchema;
   /** @deprecated use `ApplicantsFilter$Outbound` instead. */
   export type Outbound = ApplicantsFilter$Outbound;
+}
+
+export function applicantsFilterToJSON(
+  applicantsFilter: ApplicantsFilter,
+): string {
+  return JSON.stringify(
+    ApplicantsFilter$outboundSchema.parse(applicantsFilter),
+  );
+}
+
+export function applicantsFilterFromJSON(
+  jsonString: string,
+): SafeParseResult<ApplicantsFilter, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ApplicantsFilter$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ApplicantsFilter' from JSON`,
+  );
 }

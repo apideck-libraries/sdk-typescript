@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   UnifiedId,
   UnifiedId$inboundSchema,
@@ -95,4 +98,22 @@ export namespace CreateHrisCompanyResponse$ {
   export const outboundSchema = CreateHrisCompanyResponse$outboundSchema;
   /** @deprecated use `CreateHrisCompanyResponse$Outbound` instead. */
   export type Outbound = CreateHrisCompanyResponse$Outbound;
+}
+
+export function createHrisCompanyResponseToJSON(
+  createHrisCompanyResponse: CreateHrisCompanyResponse,
+): string {
+  return JSON.stringify(
+    CreateHrisCompanyResponse$outboundSchema.parse(createHrisCompanyResponse),
+  );
+}
+
+export function createHrisCompanyResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<CreateHrisCompanyResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CreateHrisCompanyResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CreateHrisCompanyResponse' from JSON`,
+  );
 }

@@ -5,7 +5,7 @@ Time off request status to filter on
 ## Example Usage
 
 ```typescript
-import { TimeOffRequestStatus } from "apideck/models/components";
+import { TimeOffRequestStatus } from "@apideck/sdk/models/components";
 
 let value: TimeOffRequestStatus = "requested";
 ```

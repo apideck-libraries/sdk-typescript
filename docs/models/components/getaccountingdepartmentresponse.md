@@ -5,7 +5,7 @@ Location
 ## Example Usage
 
 ```typescript
-import { GetAccountingDepartmentResponse } from "apideck/models/components";
+import { GetAccountingDepartmentResponse } from "@apideck/sdk/models/components";
 
 let value: GetAccountingDepartmentResponse = {
   statusCode: 200,

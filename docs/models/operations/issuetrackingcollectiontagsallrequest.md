@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { IssueTrackingCollectionTagsAllRequest } from "apideck/models/operations";
+import { IssueTrackingCollectionTagsAllRequest } from "@apideck/sdk/models/operations";
 
 let value: IssueTrackingCollectionTagsAllRequest = {
   collectionId: "apideck-io",

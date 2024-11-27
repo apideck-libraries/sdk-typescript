@@ -4,13 +4,16 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type VaultCustomFieldsAllGlobals = {
   /**
    * ID of the consumer which you want to get or push data from
    */
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   /**
    * The ID of your Unify application
    */
@@ -54,13 +57,13 @@ export const VaultCustomFieldsAllGlobals$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
 /** @internal */
 export type VaultCustomFieldsAllGlobals$Outbound = {
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   appId?: string | undefined;
 };
 
@@ -70,7 +73,7 @@ export const VaultCustomFieldsAllGlobals$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   VaultCustomFieldsAllGlobals
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
@@ -85,6 +88,26 @@ export namespace VaultCustomFieldsAllGlobals$ {
   export const outboundSchema = VaultCustomFieldsAllGlobals$outboundSchema;
   /** @deprecated use `VaultCustomFieldsAllGlobals$Outbound` instead. */
   export type Outbound = VaultCustomFieldsAllGlobals$Outbound;
+}
+
+export function vaultCustomFieldsAllGlobalsToJSON(
+  vaultCustomFieldsAllGlobals: VaultCustomFieldsAllGlobals,
+): string {
+  return JSON.stringify(
+    VaultCustomFieldsAllGlobals$outboundSchema.parse(
+      vaultCustomFieldsAllGlobals,
+    ),
+  );
+}
+
+export function vaultCustomFieldsAllGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<VaultCustomFieldsAllGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => VaultCustomFieldsAllGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'VaultCustomFieldsAllGlobals' from JSON`,
+  );
 }
 
 /** @internal */
@@ -142,6 +165,26 @@ export namespace VaultCustomFieldsAllRequest$ {
   export const outboundSchema = VaultCustomFieldsAllRequest$outboundSchema;
   /** @deprecated use `VaultCustomFieldsAllRequest$Outbound` instead. */
   export type Outbound = VaultCustomFieldsAllRequest$Outbound;
+}
+
+export function vaultCustomFieldsAllRequestToJSON(
+  vaultCustomFieldsAllRequest: VaultCustomFieldsAllRequest,
+): string {
+  return JSON.stringify(
+    VaultCustomFieldsAllRequest$outboundSchema.parse(
+      vaultCustomFieldsAllRequest,
+    ),
+  );
+}
+
+export function vaultCustomFieldsAllRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<VaultCustomFieldsAllRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => VaultCustomFieldsAllRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'VaultCustomFieldsAllRequest' from JSON`,
+  );
 }
 
 /** @internal */
@@ -204,4 +247,24 @@ export namespace VaultCustomFieldsAllResponse$ {
   export const outboundSchema = VaultCustomFieldsAllResponse$outboundSchema;
   /** @deprecated use `VaultCustomFieldsAllResponse$Outbound` instead. */
   export type Outbound = VaultCustomFieldsAllResponse$Outbound;
+}
+
+export function vaultCustomFieldsAllResponseToJSON(
+  vaultCustomFieldsAllResponse: VaultCustomFieldsAllResponse,
+): string {
+  return JSON.stringify(
+    VaultCustomFieldsAllResponse$outboundSchema.parse(
+      vaultCustomFieldsAllResponse,
+    ),
+  );
+}
+
+export function vaultCustomFieldsAllResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<VaultCustomFieldsAllResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => VaultCustomFieldsAllResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'VaultCustomFieldsAllResponse' from JSON`,
+  );
 }

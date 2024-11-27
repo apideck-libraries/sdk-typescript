@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type CreateCallbackStateResponseData = {
   /**
@@ -63,6 +66,26 @@ export namespace CreateCallbackStateResponseData$ {
   export type Outbound = CreateCallbackStateResponseData$Outbound;
 }
 
+export function createCallbackStateResponseDataToJSON(
+  createCallbackStateResponseData: CreateCallbackStateResponseData,
+): string {
+  return JSON.stringify(
+    CreateCallbackStateResponseData$outboundSchema.parse(
+      createCallbackStateResponseData,
+    ),
+  );
+}
+
+export function createCallbackStateResponseDataFromJSON(
+  jsonString: string,
+): SafeParseResult<CreateCallbackStateResponseData, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CreateCallbackStateResponseData$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CreateCallbackStateResponseData' from JSON`,
+  );
+}
+
 /** @internal */
 export const CreateCallbackStateResponse$inboundSchema: z.ZodType<
   CreateCallbackStateResponse,
@@ -111,4 +134,24 @@ export namespace CreateCallbackStateResponse$ {
   export const outboundSchema = CreateCallbackStateResponse$outboundSchema;
   /** @deprecated use `CreateCallbackStateResponse$Outbound` instead. */
   export type Outbound = CreateCallbackStateResponse$Outbound;
+}
+
+export function createCallbackStateResponseToJSON(
+  createCallbackStateResponse: CreateCallbackStateResponse,
+): string {
+  return JSON.stringify(
+    CreateCallbackStateResponse$outboundSchema.parse(
+      createCallbackStateResponse,
+    ),
+  );
+}
+
+export function createCallbackStateResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<CreateCallbackStateResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CreateCallbackStateResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CreateCallbackStateResponse' from JSON`,
+  );
 }

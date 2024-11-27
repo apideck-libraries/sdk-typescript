@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { CreateSessionResponseData } from "apideck/models/components";
+import { CreateSessionResponseData } from "@apideck/sdk/models/components";
 
 let value: CreateSessionResponseData = {
   sessionUri:

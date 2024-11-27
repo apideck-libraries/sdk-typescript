@@ -3,16 +3,12 @@
 ## Example Usage
 
 ```typescript
-import { CrmActivitiesAllRequest } from "apideck/models/operations";
+import { CrmActivitiesAllRequest } from "@apideck/sdk/models/operations";
 
 let value: CrmActivitiesAllRequest = {
   serviceId: "salesforce",
   filter: {
-    companyId: "1234",
-    ownerId: "1234",
-    contactId: "1234",
     updatedSince: new Date("2020-09-30T07:43:32.000Z"),
-    type: "Task",
   },
   sort: {
     by: "created_at",

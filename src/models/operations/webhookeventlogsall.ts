@@ -4,7 +4,10 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type WebhookEventLogsAllGlobals = {
   /**
@@ -78,6 +81,24 @@ export namespace WebhookEventLogsAllGlobals$ {
   export type Outbound = WebhookEventLogsAllGlobals$Outbound;
 }
 
+export function webhookEventLogsAllGlobalsToJSON(
+  webhookEventLogsAllGlobals: WebhookEventLogsAllGlobals,
+): string {
+  return JSON.stringify(
+    WebhookEventLogsAllGlobals$outboundSchema.parse(webhookEventLogsAllGlobals),
+  );
+}
+
+export function webhookEventLogsAllGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<WebhookEventLogsAllGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => WebhookEventLogsAllGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'WebhookEventLogsAllGlobals' from JSON`,
+  );
+}
+
 /** @internal */
 export const WebhookEventLogsAllRequest$inboundSchema: z.ZodType<
   WebhookEventLogsAllRequest,
@@ -118,6 +139,24 @@ export namespace WebhookEventLogsAllRequest$ {
   export const outboundSchema = WebhookEventLogsAllRequest$outboundSchema;
   /** @deprecated use `WebhookEventLogsAllRequest$Outbound` instead. */
   export type Outbound = WebhookEventLogsAllRequest$Outbound;
+}
+
+export function webhookEventLogsAllRequestToJSON(
+  webhookEventLogsAllRequest: WebhookEventLogsAllRequest,
+): string {
+  return JSON.stringify(
+    WebhookEventLogsAllRequest$outboundSchema.parse(webhookEventLogsAllRequest),
+  );
+}
+
+export function webhookEventLogsAllRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<WebhookEventLogsAllRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => WebhookEventLogsAllRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'WebhookEventLogsAllRequest' from JSON`,
+  );
 }
 
 /** @internal */
@@ -180,4 +219,24 @@ export namespace WebhookEventLogsAllResponse$ {
   export const outboundSchema = WebhookEventLogsAllResponse$outboundSchema;
   /** @deprecated use `WebhookEventLogsAllResponse$Outbound` instead. */
   export type Outbound = WebhookEventLogsAllResponse$Outbound;
+}
+
+export function webhookEventLogsAllResponseToJSON(
+  webhookEventLogsAllResponse: WebhookEventLogsAllResponse,
+): string {
+  return JSON.stringify(
+    WebhookEventLogsAllResponse$outboundSchema.parse(
+      webhookEventLogsAllResponse,
+    ),
+  );
+}
+
+export function webhookEventLogsAllResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<WebhookEventLogsAllResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => WebhookEventLogsAllResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'WebhookEventLogsAllResponse' from JSON`,
+  );
 }

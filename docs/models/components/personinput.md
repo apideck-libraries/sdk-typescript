@@ -3,8 +3,8 @@
 ## Example Usage
 
 ```typescript
-import { PersonInput } from "apideck/models/components";
-import { RFCDate } from "apideck/types";
+import { PersonInput } from "@apideck/sdk/models/components";
+import { RFCDate } from "@apideck/sdk/types";
 
 let value: PersonInput = {
   firstName: "Elon",

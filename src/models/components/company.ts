@@ -4,7 +4,10 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import { RFCDate } from "../../types/rfcdate.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   Address,
   Address$inboundSchema,
@@ -357,6 +360,20 @@ export namespace CompanyRowType$ {
   export type Outbound = CompanyRowType$Outbound;
 }
 
+export function companyRowTypeToJSON(companyRowType: CompanyRowType): string {
+  return JSON.stringify(CompanyRowType$outboundSchema.parse(companyRowType));
+}
+
+export function companyRowTypeFromJSON(
+  jsonString: string,
+): SafeParseResult<CompanyRowType, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CompanyRowType$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CompanyRowType' from JSON`,
+  );
+}
+
 /** @internal */
 export const Company$inboundSchema: z.ZodType<Company, z.ZodTypeDef, unknown> =
   z.object({
@@ -577,6 +594,20 @@ export namespace Company$ {
   export type Outbound = Company$Outbound;
 }
 
+export function companyToJSON(company: Company): string {
+  return JSON.stringify(Company$outboundSchema.parse(company));
+}
+
+export function companyFromJSON(
+  jsonString: string,
+): SafeParseResult<Company, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Company$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Company' from JSON`,
+  );
+}
+
 /** @internal */
 export const CompanyInput$inboundSchema: z.ZodType<
   CompanyInput,
@@ -745,4 +776,18 @@ export namespace CompanyInput$ {
   export const outboundSchema = CompanyInput$outboundSchema;
   /** @deprecated use `CompanyInput$Outbound` instead. */
   export type Outbound = CompanyInput$Outbound;
+}
+
+export function companyInputToJSON(companyInput: CompanyInput): string {
+  return JSON.stringify(CompanyInput$outboundSchema.parse(companyInput));
+}
+
+export function companyInputFromJSON(
+  jsonString: string,
+): SafeParseResult<CompanyInput, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CompanyInput$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CompanyInput' from JSON`,
+  );
 }

@@ -4,13 +4,16 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type VaultConnectionsTokenGlobals = {
   /**
    * ID of the consumer which you want to get or push data from
    */
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   /**
    * The ID of your Unify application
    */
@@ -49,13 +52,13 @@ export const VaultConnectionsTokenGlobals$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
 /** @internal */
 export type VaultConnectionsTokenGlobals$Outbound = {
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   appId?: string | undefined;
 };
 
@@ -65,7 +68,7 @@ export const VaultConnectionsTokenGlobals$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   VaultConnectionsTokenGlobals
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
@@ -80,6 +83,26 @@ export namespace VaultConnectionsTokenGlobals$ {
   export const outboundSchema = VaultConnectionsTokenGlobals$outboundSchema;
   /** @deprecated use `VaultConnectionsTokenGlobals$Outbound` instead. */
   export type Outbound = VaultConnectionsTokenGlobals$Outbound;
+}
+
+export function vaultConnectionsTokenGlobalsToJSON(
+  vaultConnectionsTokenGlobals: VaultConnectionsTokenGlobals,
+): string {
+  return JSON.stringify(
+    VaultConnectionsTokenGlobals$outboundSchema.parse(
+      vaultConnectionsTokenGlobals,
+    ),
+  );
+}
+
+export function vaultConnectionsTokenGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<VaultConnectionsTokenGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => VaultConnectionsTokenGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'VaultConnectionsTokenGlobals' from JSON`,
+  );
 }
 
 /** @internal */
@@ -110,6 +133,26 @@ export namespace VaultConnectionsTokenRequestBody$ {
   export const outboundSchema = VaultConnectionsTokenRequestBody$outboundSchema;
   /** @deprecated use `VaultConnectionsTokenRequestBody$Outbound` instead. */
   export type Outbound = VaultConnectionsTokenRequestBody$Outbound;
+}
+
+export function vaultConnectionsTokenRequestBodyToJSON(
+  vaultConnectionsTokenRequestBody: VaultConnectionsTokenRequestBody,
+): string {
+  return JSON.stringify(
+    VaultConnectionsTokenRequestBody$outboundSchema.parse(
+      vaultConnectionsTokenRequestBody,
+    ),
+  );
+}
+
+export function vaultConnectionsTokenRequestBodyFromJSON(
+  jsonString: string,
+): SafeParseResult<VaultConnectionsTokenRequestBody, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => VaultConnectionsTokenRequestBody$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'VaultConnectionsTokenRequestBody' from JSON`,
+  );
 }
 
 /** @internal */
@@ -166,6 +209,26 @@ export namespace VaultConnectionsTokenRequest$ {
   export const outboundSchema = VaultConnectionsTokenRequest$outboundSchema;
   /** @deprecated use `VaultConnectionsTokenRequest$Outbound` instead. */
   export type Outbound = VaultConnectionsTokenRequest$Outbound;
+}
+
+export function vaultConnectionsTokenRequestToJSON(
+  vaultConnectionsTokenRequest: VaultConnectionsTokenRequest,
+): string {
+  return JSON.stringify(
+    VaultConnectionsTokenRequest$outboundSchema.parse(
+      vaultConnectionsTokenRequest,
+    ),
+  );
+}
+
+export function vaultConnectionsTokenRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<VaultConnectionsTokenRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => VaultConnectionsTokenRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'VaultConnectionsTokenRequest' from JSON`,
+  );
 }
 
 /** @internal */
@@ -226,4 +289,24 @@ export namespace VaultConnectionsTokenResponse$ {
   export const outboundSchema = VaultConnectionsTokenResponse$outboundSchema;
   /** @deprecated use `VaultConnectionsTokenResponse$Outbound` instead. */
   export type Outbound = VaultConnectionsTokenResponse$Outbound;
+}
+
+export function vaultConnectionsTokenResponseToJSON(
+  vaultConnectionsTokenResponse: VaultConnectionsTokenResponse,
+): string {
+  return JSON.stringify(
+    VaultConnectionsTokenResponse$outboundSchema.parse(
+      vaultConnectionsTokenResponse,
+    ),
+  );
+}
+
+export function vaultConnectionsTokenResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<VaultConnectionsTokenResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => VaultConnectionsTokenResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'VaultConnectionsTokenResponse' from JSON`,
+  );
 }

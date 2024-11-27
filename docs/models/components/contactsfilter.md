@@ -3,14 +3,12 @@
 ## Example Usage
 
 ```typescript
-import { ContactsFilter } from "apideck/models/components";
+import { ContactsFilter } from "@apideck/sdk/models/components";
 
 let value: ContactsFilter = {
-  name: "Elon Musk",
   firstName: "Elon",
   lastName: "Musk",
   email: "elon@tesla.com",
-  phoneNumber: "111-111-1111",
   companyId: "12345",
   ownerId: "12345",
 };

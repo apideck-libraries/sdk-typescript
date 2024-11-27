@@ -4,13 +4,16 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type AccountingBalanceSheetOneGlobals = {
   /**
    * ID of the consumer which you want to get or push data from
    */
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   /**
    * The ID of your Unify application
    */
@@ -54,13 +57,13 @@ export const AccountingBalanceSheetOneGlobals$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
 /** @internal */
 export type AccountingBalanceSheetOneGlobals$Outbound = {
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   appId?: string | undefined;
 };
 
@@ -70,7 +73,7 @@ export const AccountingBalanceSheetOneGlobals$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   AccountingBalanceSheetOneGlobals
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
@@ -85,6 +88,26 @@ export namespace AccountingBalanceSheetOneGlobals$ {
   export const outboundSchema = AccountingBalanceSheetOneGlobals$outboundSchema;
   /** @deprecated use `AccountingBalanceSheetOneGlobals$Outbound` instead. */
   export type Outbound = AccountingBalanceSheetOneGlobals$Outbound;
+}
+
+export function accountingBalanceSheetOneGlobalsToJSON(
+  accountingBalanceSheetOneGlobals: AccountingBalanceSheetOneGlobals,
+): string {
+  return JSON.stringify(
+    AccountingBalanceSheetOneGlobals$outboundSchema.parse(
+      accountingBalanceSheetOneGlobals,
+    ),
+  );
+}
+
+export function accountingBalanceSheetOneGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<AccountingBalanceSheetOneGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => AccountingBalanceSheetOneGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AccountingBalanceSheetOneGlobals' from JSON`,
+  );
 }
 
 /** @internal */
@@ -138,6 +161,26 @@ export namespace AccountingBalanceSheetOneRequest$ {
   export const outboundSchema = AccountingBalanceSheetOneRequest$outboundSchema;
   /** @deprecated use `AccountingBalanceSheetOneRequest$Outbound` instead. */
   export type Outbound = AccountingBalanceSheetOneRequest$Outbound;
+}
+
+export function accountingBalanceSheetOneRequestToJSON(
+  accountingBalanceSheetOneRequest: AccountingBalanceSheetOneRequest,
+): string {
+  return JSON.stringify(
+    AccountingBalanceSheetOneRequest$outboundSchema.parse(
+      accountingBalanceSheetOneRequest,
+    ),
+  );
+}
+
+export function accountingBalanceSheetOneRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<AccountingBalanceSheetOneRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => AccountingBalanceSheetOneRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AccountingBalanceSheetOneRequest' from JSON`,
+  );
 }
 
 /** @internal */
@@ -201,4 +244,24 @@ export namespace AccountingBalanceSheetOneResponse$ {
     AccountingBalanceSheetOneResponse$outboundSchema;
   /** @deprecated use `AccountingBalanceSheetOneResponse$Outbound` instead. */
   export type Outbound = AccountingBalanceSheetOneResponse$Outbound;
+}
+
+export function accountingBalanceSheetOneResponseToJSON(
+  accountingBalanceSheetOneResponse: AccountingBalanceSheetOneResponse,
+): string {
+  return JSON.stringify(
+    AccountingBalanceSheetOneResponse$outboundSchema.parse(
+      accountingBalanceSheetOneResponse,
+    ),
+  );
+}
+
+export function accountingBalanceSheetOneResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<AccountingBalanceSheetOneResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => AccountingBalanceSheetOneResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AccountingBalanceSheetOneResponse' from JSON`,
+  );
 }

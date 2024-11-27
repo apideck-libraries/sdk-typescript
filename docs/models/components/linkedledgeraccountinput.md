@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { LinkedLedgerAccountInput } from "apideck/models/components";
+import { LinkedLedgerAccountInput } from "@apideck/sdk/models/components";
 
 let value: LinkedLedgerAccountInput = {
   id: "123456",

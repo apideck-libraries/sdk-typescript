@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type CollectionTagInput = {
   /**
@@ -45,4 +48,22 @@ export namespace CollectionTagInput$ {
   export const outboundSchema = CollectionTagInput$outboundSchema;
   /** @deprecated use `CollectionTagInput$Outbound` instead. */
   export type Outbound = CollectionTagInput$Outbound;
+}
+
+export function collectionTagInputToJSON(
+  collectionTagInput: CollectionTagInput,
+): string {
+  return JSON.stringify(
+    CollectionTagInput$outboundSchema.parse(collectionTagInput),
+  );
+}
+
+export function collectionTagInputFromJSON(
+  jsonString: string,
+): SafeParseResult<CollectionTagInput, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CollectionTagInput$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CollectionTagInput' from JSON`,
+  );
 }

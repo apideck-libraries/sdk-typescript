@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   Address,
   Address$inboundSchema,
@@ -269,4 +272,18 @@ export namespace LeadInput$ {
   export const outboundSchema = LeadInput$outboundSchema;
   /** @deprecated use `LeadInput$Outbound` instead. */
   export type Outbound = LeadInput$Outbound;
+}
+
+export function leadInputToJSON(leadInput: LeadInput): string {
+  return JSON.stringify(LeadInput$outboundSchema.parse(leadInput));
+}
+
+export function leadInputFromJSON(
+  jsonString: string,
+): SafeParseResult<LeadInput, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => LeadInput$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'LeadInput' from JSON`,
+  );
 }

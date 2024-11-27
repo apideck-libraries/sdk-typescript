@@ -4,7 +4,10 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import { RFCDate } from "../../types/rfcdate.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   Currency,
   Currency$inboundSchema,
@@ -440,4 +443,18 @@ export namespace Opportunity$ {
   export const outboundSchema = Opportunity$outboundSchema;
   /** @deprecated use `Opportunity$Outbound` instead. */
   export type Outbound = Opportunity$Outbound;
+}
+
+export function opportunityToJSON(opportunity: Opportunity): string {
+  return JSON.stringify(Opportunity$outboundSchema.parse(opportunity));
+}
+
+export function opportunityFromJSON(
+  jsonString: string,
+): SafeParseResult<Opportunity, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Opportunity$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Opportunity' from JSON`,
+  );
 }

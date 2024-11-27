@@ -4,7 +4,10 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   Currency,
   Currency$inboundSchema,
@@ -367,6 +370,20 @@ export namespace Expense$ {
   export type Outbound = Expense$Outbound;
 }
 
+export function expenseToJSON(expense: Expense): string {
+  return JSON.stringify(Expense$outboundSchema.parse(expense));
+}
+
+export function expenseFromJSON(
+  jsonString: string,
+): SafeParseResult<Expense, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Expense$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Expense' from JSON`,
+  );
+}
+
 /** @internal */
 export const ExpenseInput$inboundSchema: z.ZodType<
   ExpenseInput,
@@ -483,4 +500,18 @@ export namespace ExpenseInput$ {
   export const outboundSchema = ExpenseInput$outboundSchema;
   /** @deprecated use `ExpenseInput$Outbound` instead. */
   export type Outbound = ExpenseInput$Outbound;
+}
+
+export function expenseInputToJSON(expenseInput: ExpenseInput): string {
+  return JSON.stringify(ExpenseInput$outboundSchema.parse(expenseInput));
+}
+
+export function expenseInputFromJSON(
+  jsonString: string,
+): SafeParseResult<ExpenseInput, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ExpenseInput$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ExpenseInput' from JSON`,
+  );
 }

@@ -4,13 +4,16 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type CrmActivitiesUpdateGlobals = {
   /**
    * ID of the consumer which you want to get or push data from
    */
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   /**
    * The ID of your Unify application
    */
@@ -51,13 +54,13 @@ export const CrmActivitiesUpdateGlobals$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
 /** @internal */
 export type CrmActivitiesUpdateGlobals$Outbound = {
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   appId?: string | undefined;
 };
 
@@ -67,7 +70,7 @@ export const CrmActivitiesUpdateGlobals$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   CrmActivitiesUpdateGlobals
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
@@ -82,6 +85,24 @@ export namespace CrmActivitiesUpdateGlobals$ {
   export const outboundSchema = CrmActivitiesUpdateGlobals$outboundSchema;
   /** @deprecated use `CrmActivitiesUpdateGlobals$Outbound` instead. */
   export type Outbound = CrmActivitiesUpdateGlobals$Outbound;
+}
+
+export function crmActivitiesUpdateGlobalsToJSON(
+  crmActivitiesUpdateGlobals: CrmActivitiesUpdateGlobals,
+): string {
+  return JSON.stringify(
+    CrmActivitiesUpdateGlobals$outboundSchema.parse(crmActivitiesUpdateGlobals),
+  );
+}
+
+export function crmActivitiesUpdateGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<CrmActivitiesUpdateGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CrmActivitiesUpdateGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CrmActivitiesUpdateGlobals' from JSON`,
+  );
 }
 
 /** @internal */
@@ -135,6 +156,24 @@ export namespace CrmActivitiesUpdateRequest$ {
   export const outboundSchema = CrmActivitiesUpdateRequest$outboundSchema;
   /** @deprecated use `CrmActivitiesUpdateRequest$Outbound` instead. */
   export type Outbound = CrmActivitiesUpdateRequest$Outbound;
+}
+
+export function crmActivitiesUpdateRequestToJSON(
+  crmActivitiesUpdateRequest: CrmActivitiesUpdateRequest,
+): string {
+  return JSON.stringify(
+    CrmActivitiesUpdateRequest$outboundSchema.parse(crmActivitiesUpdateRequest),
+  );
+}
+
+export function crmActivitiesUpdateRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<CrmActivitiesUpdateRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CrmActivitiesUpdateRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CrmActivitiesUpdateRequest' from JSON`,
+  );
 }
 
 /** @internal */
@@ -197,4 +236,24 @@ export namespace CrmActivitiesUpdateResponse$ {
   export const outboundSchema = CrmActivitiesUpdateResponse$outboundSchema;
   /** @deprecated use `CrmActivitiesUpdateResponse$Outbound` instead. */
   export type Outbound = CrmActivitiesUpdateResponse$Outbound;
+}
+
+export function crmActivitiesUpdateResponseToJSON(
+  crmActivitiesUpdateResponse: CrmActivitiesUpdateResponse,
+): string {
+  return JSON.stringify(
+    CrmActivitiesUpdateResponse$outboundSchema.parse(
+      crmActivitiesUpdateResponse,
+    ),
+  );
+}
+
+export function crmActivitiesUpdateResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<CrmActivitiesUpdateResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CrmActivitiesUpdateResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CrmActivitiesUpdateResponse' from JSON`,
+  );
 }

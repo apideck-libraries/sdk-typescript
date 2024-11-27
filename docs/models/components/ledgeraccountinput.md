@@ -3,8 +3,8 @@
 ## Example Usage
 
 ```typescript
-import { LedgerAccountInput } from "apideck/models/components";
-import { RFCDate } from "apideck/types";
+import { LedgerAccountInput } from "@apideck/sdk/models/components";
+import { RFCDate } from "@apideck/sdk/types";
 
 let value: LedgerAccountInput = {
   displayId: "1-12345",

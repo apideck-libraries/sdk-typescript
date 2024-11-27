@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   AuthType,
   AuthType$inboundSchema,
@@ -79,6 +82,20 @@ export namespace Settings$ {
   export const outboundSchema = Settings$outboundSchema;
   /** @deprecated use `Settings$Outbound` instead. */
   export type Outbound = Settings$Outbound;
+}
+
+export function settingsToJSON(settings: Settings): string {
+  return JSON.stringify(Settings$outboundSchema.parse(settings));
+}
+
+export function settingsFromJSON(
+  jsonString: string,
+): SafeParseResult<Settings, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Settings$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Settings' from JSON`,
+  );
 }
 
 /** @internal */
@@ -180,4 +197,22 @@ export namespace ConsumerConnection$ {
   export const outboundSchema = ConsumerConnection$outboundSchema;
   /** @deprecated use `ConsumerConnection$Outbound` instead. */
   export type Outbound = ConsumerConnection$Outbound;
+}
+
+export function consumerConnectionToJSON(
+  consumerConnection: ConsumerConnection,
+): string {
+  return JSON.stringify(
+    ConsumerConnection$outboundSchema.parse(consumerConnection),
+  );
+}
+
+export function consumerConnectionFromJSON(
+  jsonString: string,
+): SafeParseResult<ConsumerConnection, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ConsumerConnection$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ConsumerConnection' from JSON`,
+  );
 }

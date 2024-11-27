@@ -5,7 +5,7 @@ Price of the message.
 ## Example Usage
 
 ```typescript
-import { Price } from "apideck/models/components";
+import { Price } from "@apideck/sdk/models/components";
 
 let value: Price = {
   perUnit: "0.01",

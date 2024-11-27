@@ -3,8 +3,8 @@
 ## Example Usage
 
 ```typescript
-import { AccountingLedgerAccountsOneResponse } from "apideck/models/operations";
-import { RFCDate } from "apideck/types";
+import { AccountingLedgerAccountsOneResponse } from "@apideck/sdk/models/operations";
+import { RFCDate } from "@apideck/sdk/types";
 
 let value: AccountingLedgerAccountsOneResponse = {
   httpMeta: {
@@ -102,7 +102,13 @@ let value: AccountingLedgerAccountsOneResponse = {
     error: "Bad Request",
     typeName: "RequestHeadersValidationError",
     message: "Invalid Params",
-    detail: {},
+    detail: {
+      "missing": [
+        {
+          "x-apideck-consumer-id": "required",
+        },
+      ],
+    },
     ref: "https://developers.apideck.com/errors#unauthorizederror",
   },
 };

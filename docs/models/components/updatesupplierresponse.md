@@ -5,7 +5,7 @@ Supplier updated
 ## Example Usage
 
 ```typescript
-import { UpdateSupplierResponse } from "apideck/models/components";
+import { UpdateSupplierResponse } from "@apideck/sdk/models/components";
 
 let value: UpdateSupplierResponse = {
   statusCode: 200,

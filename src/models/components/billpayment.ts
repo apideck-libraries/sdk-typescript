@@ -4,7 +4,10 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   Currency,
   Currency$inboundSchema,
@@ -426,6 +429,20 @@ export namespace Allocations$ {
   export type Outbound = Allocations$Outbound;
 }
 
+export function allocationsToJSON(allocations: Allocations): string {
+  return JSON.stringify(Allocations$outboundSchema.parse(allocations));
+}
+
+export function allocationsFromJSON(
+  jsonString: string,
+): SafeParseResult<Allocations, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Allocations$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Allocations' from JSON`,
+  );
+}
+
 /** @internal */
 export const BillPayment$inboundSchema: z.ZodType<
   BillPayment,
@@ -599,6 +616,20 @@ export namespace BillPayment$ {
   export type Outbound = BillPayment$Outbound;
 }
 
+export function billPaymentToJSON(billPayment: BillPayment): string {
+  return JSON.stringify(BillPayment$outboundSchema.parse(billPayment));
+}
+
+export function billPaymentFromJSON(
+  jsonString: string,
+): SafeParseResult<BillPayment, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => BillPayment$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'BillPayment' from JSON`,
+  );
+}
+
 /** @internal */
 export const BillPaymentAllocations$inboundSchema: z.ZodType<
   BillPaymentAllocations,
@@ -650,6 +681,24 @@ export namespace BillPaymentAllocations$ {
   export const outboundSchema = BillPaymentAllocations$outboundSchema;
   /** @deprecated use `BillPaymentAllocations$Outbound` instead. */
   export type Outbound = BillPaymentAllocations$Outbound;
+}
+
+export function billPaymentAllocationsToJSON(
+  billPaymentAllocations: BillPaymentAllocations,
+): string {
+  return JSON.stringify(
+    BillPaymentAllocations$outboundSchema.parse(billPaymentAllocations),
+  );
+}
+
+export function billPaymentAllocationsFromJSON(
+  jsonString: string,
+): SafeParseResult<BillPaymentAllocations, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => BillPaymentAllocations$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'BillPaymentAllocations' from JSON`,
+  );
 }
 
 /** @internal */
@@ -788,4 +837,22 @@ export namespace BillPaymentInput$ {
   export const outboundSchema = BillPaymentInput$outboundSchema;
   /** @deprecated use `BillPaymentInput$Outbound` instead. */
   export type Outbound = BillPaymentInput$Outbound;
+}
+
+export function billPaymentInputToJSON(
+  billPaymentInput: BillPaymentInput,
+): string {
+  return JSON.stringify(
+    BillPaymentInput$outboundSchema.parse(billPaymentInput),
+  );
+}
+
+export function billPaymentInputFromJSON(
+  jsonString: string,
+): SafeParseResult<BillPaymentInput, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => BillPaymentInput$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'BillPaymentInput' from JSON`,
+  );
 }

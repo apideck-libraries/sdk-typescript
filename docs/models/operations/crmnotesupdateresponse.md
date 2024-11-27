@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { CrmNotesUpdateResponse } from "apideck/models/operations";
+import { CrmNotesUpdateResponse } from "@apideck/sdk/models/operations";
 
 let value: CrmNotesUpdateResponse = {
   httpMeta: {
@@ -27,7 +27,13 @@ let value: CrmNotesUpdateResponse = {
     error: "Bad Request",
     typeName: "RequestHeadersValidationError",
     message: "Invalid Params",
-    detail: {},
+    detail: {
+      "missing": [
+        {
+          "x-apideck-consumer-id": "required",
+        },
+      ],
+    },
     ref: "https://developers.apideck.com/errors#unauthorizederror",
   },
 };

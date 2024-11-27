@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { TimeOffRequest } from "apideck/models/components";
+import { TimeOffRequest } from "@apideck/sdk/models/components";
 
 let value: TimeOffRequest = {
   id: "12345",

@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type PurchaseOrdersFilter = {
   updatedSince?: Date | undefined;
@@ -59,4 +62,22 @@ export namespace PurchaseOrdersFilter$ {
   export const outboundSchema = PurchaseOrdersFilter$outboundSchema;
   /** @deprecated use `PurchaseOrdersFilter$Outbound` instead. */
   export type Outbound = PurchaseOrdersFilter$Outbound;
+}
+
+export function purchaseOrdersFilterToJSON(
+  purchaseOrdersFilter: PurchaseOrdersFilter,
+): string {
+  return JSON.stringify(
+    PurchaseOrdersFilter$outboundSchema.parse(purchaseOrdersFilter),
+  );
+}
+
+export function purchaseOrdersFilterFromJSON(
+  jsonString: string,
+): SafeParseResult<PurchaseOrdersFilter, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => PurchaseOrdersFilter$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'PurchaseOrdersFilter' from JSON`,
+  );
 }

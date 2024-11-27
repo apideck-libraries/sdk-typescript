@@ -4,7 +4,10 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   Currency,
   Currency$inboundSchema,
@@ -190,6 +193,24 @@ export namespace EmployeeCompensation$ {
   export type Outbound = EmployeeCompensation$Outbound;
 }
 
+export function employeeCompensationToJSON(
+  employeeCompensation: EmployeeCompensation,
+): string {
+  return JSON.stringify(
+    EmployeeCompensation$outboundSchema.parse(employeeCompensation),
+  );
+}
+
+export function employeeCompensationFromJSON(
+  jsonString: string,
+): SafeParseResult<EmployeeCompensation, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => EmployeeCompensation$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'EmployeeCompensation' from JSON`,
+  );
+}
+
 /** @internal */
 export const EmployeeCompensationInput$inboundSchema: z.ZodType<
   EmployeeCompensationInput,
@@ -253,4 +274,22 @@ export namespace EmployeeCompensationInput$ {
   export const outboundSchema = EmployeeCompensationInput$outboundSchema;
   /** @deprecated use `EmployeeCompensationInput$Outbound` instead. */
   export type Outbound = EmployeeCompensationInput$Outbound;
+}
+
+export function employeeCompensationInputToJSON(
+  employeeCompensationInput: EmployeeCompensationInput,
+): string {
+  return JSON.stringify(
+    EmployeeCompensationInput$outboundSchema.parse(employeeCompensationInput),
+  );
+}
+
+export function employeeCompensationInputFromJSON(
+  jsonString: string,
+): SafeParseResult<EmployeeCompensationInput, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => EmployeeCompensationInput$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'EmployeeCompensationInput' from JSON`,
+  );
 }

@@ -9,7 +9,7 @@
 * [get](#get) - Get connection
 * [update](#update) - Update connection
 * [delete](#delete) - Deletes a connection
-* [import](#import) - Import connection
+* [imports](#imports) - Import connection
 * [token](#token) - Authorize Access Token
 
 ## list
@@ -22,11 +22,11 @@ OAuth2 supported integrations will contain authorize and revoke links to handle 
 ### Example Usage
 
 ```typescript
-import { Apideck } from "apideck";
+import { Apideck } from "@apideck/sdk";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
-  customerId: "test-consumer",
+  consumerId: "test-consumer",
   appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
 });
 
@@ -48,14 +48,14 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "apideck/core.js";
-import { vaultConnectionsList } from "apideck/funcs/vaultConnectionsList.js";
+import { ApideckCore } from "@apideck/sdk/core.js";
+import { vaultConnectionsList } from "@apideck/sdk/funcs/vaultConnectionsList.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const apideck = new ApideckCore({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
-  customerId: "test-consumer",
+  consumerId: "test-consumer",
   appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
 });
 
@@ -109,11 +109,11 @@ Get a connection
 ### Example Usage
 
 ```typescript
-import { Apideck } from "apideck";
+import { Apideck } from "@apideck/sdk";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
-  customerId: "test-consumer",
+  consumerId: "test-consumer",
   appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
 });
 
@@ -135,14 +135,14 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "apideck/core.js";
-import { vaultConnectionsGet } from "apideck/funcs/vaultConnectionsGet.js";
+import { ApideckCore } from "@apideck/sdk/core.js";
+import { vaultConnectionsGet } from "@apideck/sdk/funcs/vaultConnectionsGet.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const apideck = new ApideckCore({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
-  customerId: "test-consumer",
+  consumerId: "test-consumer",
   appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
 });
 
@@ -196,11 +196,11 @@ Update a connection
 ### Example Usage
 
 ```typescript
-import { Apideck } from "apideck";
+import { Apideck } from "@apideck/sdk";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
-  customerId: "test-consumer",
+  consumerId: "test-consumer",
   appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
 });
 
@@ -395,14 +395,14 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "apideck/core.js";
-import { vaultConnectionsUpdate } from "apideck/funcs/vaultConnectionsUpdate.js";
+import { ApideckCore } from "@apideck/sdk/core.js";
+import { vaultConnectionsUpdate } from "@apideck/sdk/funcs/vaultConnectionsUpdate.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const apideck = new ApideckCore({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
-  customerId: "test-consumer",
+  consumerId: "test-consumer",
   appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
 });
 
@@ -626,11 +626,11 @@ Deletes a connection
 ### Example Usage
 
 ```typescript
-import { Apideck } from "apideck";
+import { Apideck } from "@apideck/sdk";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
-  customerId: "test-consumer",
+  consumerId: "test-consumer",
   appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
 });
 
@@ -652,14 +652,14 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "apideck/core.js";
-import { vaultConnectionsDelete } from "apideck/funcs/vaultConnectionsDelete.js";
+import { ApideckCore } from "@apideck/sdk/core.js";
+import { vaultConnectionsDelete } from "@apideck/sdk/funcs/vaultConnectionsDelete.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const apideck = new ApideckCore({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
-  customerId: "test-consumer",
+  consumerId: "test-consumer",
   appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
 });
 
@@ -706,7 +706,7 @@ run();
 | errors.UnprocessableResponse   | 422                            | application/json               |
 | errors.APIError                | 4XX, 5XX                       | \*/\*                          |
 
-## import
+## imports
 
 Import an authorized connection.
 
@@ -714,16 +714,16 @@ Import an authorized connection.
 ### Example Usage
 
 ```typescript
-import { Apideck } from "apideck";
+import { Apideck } from "@apideck/sdk";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
-  customerId: "test-consumer",
+  consumerId: "test-consumer",
   appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
 });
 
 async function run() {
-  const result = await apideck.vault.connections.import({
+  const result = await apideck.vault.connections.imports({
     serviceId: "pipedrive",
     unifiedApi: "crm",
     connectionImportData: {
@@ -733,7 +733,6 @@ async function run() {
         issuedAt: new Date("2020-01-01T00:00:00Z"),
         expiresIn: 3600,
       },
-      settings: {},
       metadata: {
         "account": {
           "name": "My Company",
@@ -756,19 +755,19 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "apideck/core.js";
-import { vaultConnectionsImport } from "apideck/funcs/vaultConnectionsImport.js";
+import { ApideckCore } from "@apideck/sdk/core.js";
+import { vaultConnectionsImports } from "@apideck/sdk/funcs/vaultConnectionsImports.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const apideck = new ApideckCore({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
-  customerId: "test-consumer",
+  consumerId: "test-consumer",
   appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
 });
 
 async function run() {
-  const res = await vaultConnectionsImport(apideck, {
+  const res = await vaultConnectionsImports(apideck, {
     serviceId: "pipedrive",
     unifiedApi: "crm",
     connectionImportData: {
@@ -778,7 +777,6 @@ async function run() {
         issuedAt: new Date("2020-01-01T00:00:00Z"),
         expiresIn: 3600,
       },
-      settings: {},
       metadata: {
         "account": {
           "name": "My Company",
@@ -839,11 +837,11 @@ Note:
 ### Example Usage
 
 ```typescript
-import { Apideck } from "apideck";
+import { Apideck } from "@apideck/sdk";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
-  customerId: "test-consumer",
+  consumerId: "test-consumer",
   appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
 });
 
@@ -865,14 +863,14 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "apideck/core.js";
-import { vaultConnectionsToken } from "apideck/funcs/vaultConnectionsToken.js";
+import { ApideckCore } from "@apideck/sdk/core.js";
+import { vaultConnectionsToken } from "@apideck/sdk/funcs/vaultConnectionsToken.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const apideck = new ApideckCore({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
-  customerId: "test-consumer",
+  consumerId: "test-consumer",
   appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
 });
 

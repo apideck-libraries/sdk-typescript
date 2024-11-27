@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type DeleteConsumerResponseData = {
   /**
@@ -71,6 +74,24 @@ export namespace DeleteConsumerResponseData$ {
   export type Outbound = DeleteConsumerResponseData$Outbound;
 }
 
+export function deleteConsumerResponseDataToJSON(
+  deleteConsumerResponseData: DeleteConsumerResponseData,
+): string {
+  return JSON.stringify(
+    DeleteConsumerResponseData$outboundSchema.parse(deleteConsumerResponseData),
+  );
+}
+
+export function deleteConsumerResponseDataFromJSON(
+  jsonString: string,
+): SafeParseResult<DeleteConsumerResponseData, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => DeleteConsumerResponseData$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'DeleteConsumerResponseData' from JSON`,
+  );
+}
+
 /** @internal */
 export const DeleteConsumerResponse$inboundSchema: z.ZodType<
   DeleteConsumerResponse,
@@ -119,4 +140,22 @@ export namespace DeleteConsumerResponse$ {
   export const outboundSchema = DeleteConsumerResponse$outboundSchema;
   /** @deprecated use `DeleteConsumerResponse$Outbound` instead. */
   export type Outbound = DeleteConsumerResponse$Outbound;
+}
+
+export function deleteConsumerResponseToJSON(
+  deleteConsumerResponse: DeleteConsumerResponse,
+): string {
+  return JSON.stringify(
+    DeleteConsumerResponse$outboundSchema.parse(deleteConsumerResponse),
+  );
+}
+
+export function deleteConsumerResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<DeleteConsumerResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => DeleteConsumerResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'DeleteConsumerResponse' from JSON`,
+  );
 }

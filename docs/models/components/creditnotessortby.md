@@ -5,7 +5,7 @@ The field on which to sort the Customers
 ## Example Usage
 
 ```typescript
-import { CreditNotesSortBy } from "apideck/models/components";
+import { CreditNotesSortBy } from "@apideck/sdk/models/components";
 
 let value: CreditNotesSortBy = "updated_at";
 ```

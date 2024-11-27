@@ -4,13 +4,16 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type AtsApplicantsUpdateGlobals = {
   /**
    * ID of the consumer which you want to get or push data from
    */
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   /**
    * The ID of your Unify application
    */
@@ -51,13 +54,13 @@ export const AtsApplicantsUpdateGlobals$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
 /** @internal */
 export type AtsApplicantsUpdateGlobals$Outbound = {
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   appId?: string | undefined;
 };
 
@@ -67,7 +70,7 @@ export const AtsApplicantsUpdateGlobals$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   AtsApplicantsUpdateGlobals
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
@@ -82,6 +85,24 @@ export namespace AtsApplicantsUpdateGlobals$ {
   export const outboundSchema = AtsApplicantsUpdateGlobals$outboundSchema;
   /** @deprecated use `AtsApplicantsUpdateGlobals$Outbound` instead. */
   export type Outbound = AtsApplicantsUpdateGlobals$Outbound;
+}
+
+export function atsApplicantsUpdateGlobalsToJSON(
+  atsApplicantsUpdateGlobals: AtsApplicantsUpdateGlobals,
+): string {
+  return JSON.stringify(
+    AtsApplicantsUpdateGlobals$outboundSchema.parse(atsApplicantsUpdateGlobals),
+  );
+}
+
+export function atsApplicantsUpdateGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<AtsApplicantsUpdateGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => AtsApplicantsUpdateGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AtsApplicantsUpdateGlobals' from JSON`,
+  );
 }
 
 /** @internal */
@@ -135,6 +156,24 @@ export namespace AtsApplicantsUpdateRequest$ {
   export const outboundSchema = AtsApplicantsUpdateRequest$outboundSchema;
   /** @deprecated use `AtsApplicantsUpdateRequest$Outbound` instead. */
   export type Outbound = AtsApplicantsUpdateRequest$Outbound;
+}
+
+export function atsApplicantsUpdateRequestToJSON(
+  atsApplicantsUpdateRequest: AtsApplicantsUpdateRequest,
+): string {
+  return JSON.stringify(
+    AtsApplicantsUpdateRequest$outboundSchema.parse(atsApplicantsUpdateRequest),
+  );
+}
+
+export function atsApplicantsUpdateRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<AtsApplicantsUpdateRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => AtsApplicantsUpdateRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AtsApplicantsUpdateRequest' from JSON`,
+  );
 }
 
 /** @internal */
@@ -197,4 +236,24 @@ export namespace AtsApplicantsUpdateResponse$ {
   export const outboundSchema = AtsApplicantsUpdateResponse$outboundSchema;
   /** @deprecated use `AtsApplicantsUpdateResponse$Outbound` instead. */
   export type Outbound = AtsApplicantsUpdateResponse$Outbound;
+}
+
+export function atsApplicantsUpdateResponseToJSON(
+  atsApplicantsUpdateResponse: AtsApplicantsUpdateResponse,
+): string {
+  return JSON.stringify(
+    AtsApplicantsUpdateResponse$outboundSchema.parse(
+      atsApplicantsUpdateResponse,
+    ),
+  );
+}
+
+export function atsApplicantsUpdateResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<AtsApplicantsUpdateResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => AtsApplicantsUpdateResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AtsApplicantsUpdateResponse' from JSON`,
+  );
 }

@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   UnifiedId,
   UnifiedId$inboundSchema,
@@ -95,4 +98,24 @@ export namespace CreateUploadSessionResponse$ {
   export const outboundSchema = CreateUploadSessionResponse$outboundSchema;
   /** @deprecated use `CreateUploadSessionResponse$Outbound` instead. */
   export type Outbound = CreateUploadSessionResponse$Outbound;
+}
+
+export function createUploadSessionResponseToJSON(
+  createUploadSessionResponse: CreateUploadSessionResponse,
+): string {
+  return JSON.stringify(
+    CreateUploadSessionResponse$outboundSchema.parse(
+      createUploadSessionResponse,
+    ),
+  );
+}
+
+export function createUploadSessionResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<CreateUploadSessionResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CreateUploadSessionResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CreateUploadSessionResponse' from JSON`,
+  );
 }

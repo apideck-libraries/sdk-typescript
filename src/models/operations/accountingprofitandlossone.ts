@@ -4,13 +4,16 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type AccountingProfitAndLossOneGlobals = {
   /**
    * ID of the consumer which you want to get or push data from
    */
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   /**
    * The ID of your Unify application
    */
@@ -58,13 +61,13 @@ export const AccountingProfitAndLossOneGlobals$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
 /** @internal */
 export type AccountingProfitAndLossOneGlobals$Outbound = {
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   appId?: string | undefined;
 };
 
@@ -74,7 +77,7 @@ export const AccountingProfitAndLossOneGlobals$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   AccountingProfitAndLossOneGlobals
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
@@ -90,6 +93,26 @@ export namespace AccountingProfitAndLossOneGlobals$ {
     AccountingProfitAndLossOneGlobals$outboundSchema;
   /** @deprecated use `AccountingProfitAndLossOneGlobals$Outbound` instead. */
   export type Outbound = AccountingProfitAndLossOneGlobals$Outbound;
+}
+
+export function accountingProfitAndLossOneGlobalsToJSON(
+  accountingProfitAndLossOneGlobals: AccountingProfitAndLossOneGlobals,
+): string {
+  return JSON.stringify(
+    AccountingProfitAndLossOneGlobals$outboundSchema.parse(
+      accountingProfitAndLossOneGlobals,
+    ),
+  );
+}
+
+export function accountingProfitAndLossOneGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<AccountingProfitAndLossOneGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => AccountingProfitAndLossOneGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AccountingProfitAndLossOneGlobals' from JSON`,
+  );
 }
 
 /** @internal */
@@ -147,6 +170,26 @@ export namespace AccountingProfitAndLossOneRequest$ {
     AccountingProfitAndLossOneRequest$outboundSchema;
   /** @deprecated use `AccountingProfitAndLossOneRequest$Outbound` instead. */
   export type Outbound = AccountingProfitAndLossOneRequest$Outbound;
+}
+
+export function accountingProfitAndLossOneRequestToJSON(
+  accountingProfitAndLossOneRequest: AccountingProfitAndLossOneRequest,
+): string {
+  return JSON.stringify(
+    AccountingProfitAndLossOneRequest$outboundSchema.parse(
+      accountingProfitAndLossOneRequest,
+    ),
+  );
+}
+
+export function accountingProfitAndLossOneRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<AccountingProfitAndLossOneRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => AccountingProfitAndLossOneRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AccountingProfitAndLossOneRequest' from JSON`,
+  );
 }
 
 /** @internal */
@@ -210,4 +253,25 @@ export namespace AccountingProfitAndLossOneResponse$ {
     AccountingProfitAndLossOneResponse$outboundSchema;
   /** @deprecated use `AccountingProfitAndLossOneResponse$Outbound` instead. */
   export type Outbound = AccountingProfitAndLossOneResponse$Outbound;
+}
+
+export function accountingProfitAndLossOneResponseToJSON(
+  accountingProfitAndLossOneResponse: AccountingProfitAndLossOneResponse,
+): string {
+  return JSON.stringify(
+    AccountingProfitAndLossOneResponse$outboundSchema.parse(
+      accountingProfitAndLossOneResponse,
+    ),
+  );
+}
+
+export function accountingProfitAndLossOneResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<AccountingProfitAndLossOneResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      AccountingProfitAndLossOneResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AccountingProfitAndLossOneResponse' from JSON`,
+  );
 }

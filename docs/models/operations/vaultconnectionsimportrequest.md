@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { VaultConnectionsImportRequest } from "apideck/models/operations";
+import { VaultConnectionsImportRequest } from "@apideck/sdk/models/operations";
 
 let value: VaultConnectionsImportRequest = {
   serviceId: "pipedrive",
@@ -14,8 +14,6 @@ let value: VaultConnectionsImportRequest = {
         "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.cThIIoDvwdueQB468K5xDc5633seEFoqwxjF_xSJyQQ",
       accessToken:
         "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c",
-      issuedAt: new Date("2020-01-01T00:00:00Z"),
-      expiresIn: 3600,
     },
     settings: {},
     metadata: {

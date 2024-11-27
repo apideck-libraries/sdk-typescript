@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
  * @deprecated class: This will be removed in a future release, please migrate away from it as soon as possible.
@@ -55,4 +58,24 @@ export namespace DeprecatedLinkedTrackingCategory$ {
   export const outboundSchema = DeprecatedLinkedTrackingCategory$outboundSchema;
   /** @deprecated use `DeprecatedLinkedTrackingCategory$Outbound` instead. */
   export type Outbound = DeprecatedLinkedTrackingCategory$Outbound;
+}
+
+export function deprecatedLinkedTrackingCategoryToJSON(
+  deprecatedLinkedTrackingCategory: DeprecatedLinkedTrackingCategory,
+): string {
+  return JSON.stringify(
+    DeprecatedLinkedTrackingCategory$outboundSchema.parse(
+      deprecatedLinkedTrackingCategory,
+    ),
+  );
+}
+
+export function deprecatedLinkedTrackingCategoryFromJSON(
+  jsonString: string,
+): SafeParseResult<DeprecatedLinkedTrackingCategory, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => DeprecatedLinkedTrackingCategory$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'DeprecatedLinkedTrackingCategory' from JSON`,
+  );
 }

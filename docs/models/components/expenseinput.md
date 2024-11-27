@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { ExpenseInput } from "apideck/models/components";
+import { ExpenseInput } from "@apideck/sdk/models/components";
 
 let value: ExpenseInput = {
   number: "OIT00546",
@@ -49,7 +49,7 @@ let value: ExpenseInput = {
       name: "employee_level",
       description: "Employee Level",
       value: [
-        "<value>",
+        {},
       ],
     },
   ],

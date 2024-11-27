@@ -4,13 +4,16 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type AccountingAttachmentsAllGlobals = {
   /**
    * ID of the consumer which you want to get or push data from
    */
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   /**
    * The ID of your Unify application
    */
@@ -66,13 +69,13 @@ export const AccountingAttachmentsAllGlobals$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
 /** @internal */
 export type AccountingAttachmentsAllGlobals$Outbound = {
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   appId?: string | undefined;
 };
 
@@ -82,7 +85,7 @@ export const AccountingAttachmentsAllGlobals$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   AccountingAttachmentsAllGlobals
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
@@ -97,6 +100,26 @@ export namespace AccountingAttachmentsAllGlobals$ {
   export const outboundSchema = AccountingAttachmentsAllGlobals$outboundSchema;
   /** @deprecated use `AccountingAttachmentsAllGlobals$Outbound` instead. */
   export type Outbound = AccountingAttachmentsAllGlobals$Outbound;
+}
+
+export function accountingAttachmentsAllGlobalsToJSON(
+  accountingAttachmentsAllGlobals: AccountingAttachmentsAllGlobals,
+): string {
+  return JSON.stringify(
+    AccountingAttachmentsAllGlobals$outboundSchema.parse(
+      accountingAttachmentsAllGlobals,
+    ),
+  );
+}
+
+export function accountingAttachmentsAllGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<AccountingAttachmentsAllGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => AccountingAttachmentsAllGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AccountingAttachmentsAllGlobals' from JSON`,
+  );
 }
 
 /** @internal */
@@ -163,6 +186,26 @@ export namespace AccountingAttachmentsAllRequest$ {
   export type Outbound = AccountingAttachmentsAllRequest$Outbound;
 }
 
+export function accountingAttachmentsAllRequestToJSON(
+  accountingAttachmentsAllRequest: AccountingAttachmentsAllRequest,
+): string {
+  return JSON.stringify(
+    AccountingAttachmentsAllRequest$outboundSchema.parse(
+      accountingAttachmentsAllRequest,
+    ),
+  );
+}
+
+export function accountingAttachmentsAllRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<AccountingAttachmentsAllRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => AccountingAttachmentsAllRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AccountingAttachmentsAllRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const AccountingAttachmentsAllResponse$inboundSchema: z.ZodType<
   AccountingAttachmentsAllResponse,
@@ -223,4 +266,24 @@ export namespace AccountingAttachmentsAllResponse$ {
   export const outboundSchema = AccountingAttachmentsAllResponse$outboundSchema;
   /** @deprecated use `AccountingAttachmentsAllResponse$Outbound` instead. */
   export type Outbound = AccountingAttachmentsAllResponse$Outbound;
+}
+
+export function accountingAttachmentsAllResponseToJSON(
+  accountingAttachmentsAllResponse: AccountingAttachmentsAllResponse,
+): string {
+  return JSON.stringify(
+    AccountingAttachmentsAllResponse$outboundSchema.parse(
+      accountingAttachmentsAllResponse,
+    ),
+  );
+}
+
+export function accountingAttachmentsAllResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<AccountingAttachmentsAllResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => AccountingAttachmentsAllResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AccountingAttachmentsAllResponse' from JSON`,
+  );
 }

@@ -5,7 +5,7 @@ Expenses
 ## Example Usage
 
 ```typescript
-import { GetExpenseResponse } from "apideck/models/components";
+import { GetExpenseResponse } from "@apideck/sdk/models/components";
 
 let value: GetExpenseResponse = {
   statusCode: 200,
@@ -63,7 +63,7 @@ let value: GetExpenseResponse = {
         name: "employee_level",
         description: "Employee Level",
         value: [
-          {},
+          "<value>",
         ],
       },
     ],

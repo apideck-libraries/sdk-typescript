@@ -4,13 +4,16 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type SmsMessagesUpdateGlobals = {
   /**
    * ID of the consumer which you want to get or push data from
    */
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   /**
    * The ID of your Unify application
    */
@@ -51,13 +54,13 @@ export const SmsMessagesUpdateGlobals$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
 /** @internal */
 export type SmsMessagesUpdateGlobals$Outbound = {
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   appId?: string | undefined;
 };
 
@@ -67,7 +70,7 @@ export const SmsMessagesUpdateGlobals$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   SmsMessagesUpdateGlobals
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
@@ -82,6 +85,24 @@ export namespace SmsMessagesUpdateGlobals$ {
   export const outboundSchema = SmsMessagesUpdateGlobals$outboundSchema;
   /** @deprecated use `SmsMessagesUpdateGlobals$Outbound` instead. */
   export type Outbound = SmsMessagesUpdateGlobals$Outbound;
+}
+
+export function smsMessagesUpdateGlobalsToJSON(
+  smsMessagesUpdateGlobals: SmsMessagesUpdateGlobals,
+): string {
+  return JSON.stringify(
+    SmsMessagesUpdateGlobals$outboundSchema.parse(smsMessagesUpdateGlobals),
+  );
+}
+
+export function smsMessagesUpdateGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<SmsMessagesUpdateGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => SmsMessagesUpdateGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'SmsMessagesUpdateGlobals' from JSON`,
+  );
 }
 
 /** @internal */
@@ -135,6 +156,24 @@ export namespace SmsMessagesUpdateRequest$ {
   export const outboundSchema = SmsMessagesUpdateRequest$outboundSchema;
   /** @deprecated use `SmsMessagesUpdateRequest$Outbound` instead. */
   export type Outbound = SmsMessagesUpdateRequest$Outbound;
+}
+
+export function smsMessagesUpdateRequestToJSON(
+  smsMessagesUpdateRequest: SmsMessagesUpdateRequest,
+): string {
+  return JSON.stringify(
+    SmsMessagesUpdateRequest$outboundSchema.parse(smsMessagesUpdateRequest),
+  );
+}
+
+export function smsMessagesUpdateRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<SmsMessagesUpdateRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => SmsMessagesUpdateRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'SmsMessagesUpdateRequest' from JSON`,
+  );
 }
 
 /** @internal */
@@ -195,4 +234,22 @@ export namespace SmsMessagesUpdateResponse$ {
   export const outboundSchema = SmsMessagesUpdateResponse$outboundSchema;
   /** @deprecated use `SmsMessagesUpdateResponse$Outbound` instead. */
   export type Outbound = SmsMessagesUpdateResponse$Outbound;
+}
+
+export function smsMessagesUpdateResponseToJSON(
+  smsMessagesUpdateResponse: SmsMessagesUpdateResponse,
+): string {
+  return JSON.stringify(
+    SmsMessagesUpdateResponse$outboundSchema.parse(smsMessagesUpdateResponse),
+  );
+}
+
+export function smsMessagesUpdateResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<SmsMessagesUpdateResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => SmsMessagesUpdateResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'SmsMessagesUpdateResponse' from JSON`,
+  );
 }

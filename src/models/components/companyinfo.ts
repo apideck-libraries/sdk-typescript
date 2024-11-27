@@ -4,8 +4,11 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import { RFCDate } from "../../types/rfcdate.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   Address,
   Address$inboundSchema,
@@ -334,4 +337,18 @@ export namespace CompanyInfo$ {
   export const outboundSchema = CompanyInfo$outboundSchema;
   /** @deprecated use `CompanyInfo$Outbound` instead. */
   export type Outbound = CompanyInfo$Outbound;
+}
+
+export function companyInfoToJSON(companyInfo: CompanyInfo): string {
+  return JSON.stringify(CompanyInfo$outboundSchema.parse(companyInfo));
+}
+
+export function companyInfoFromJSON(
+  jsonString: string,
+): SafeParseResult<CompanyInfo, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CompanyInfo$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CompanyInfo' from JSON`,
+  );
 }

@@ -4,7 +4,10 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type WebhookWebhooksUpdateGlobals = {
   /**
@@ -69,6 +72,26 @@ export namespace WebhookWebhooksUpdateGlobals$ {
   export type Outbound = WebhookWebhooksUpdateGlobals$Outbound;
 }
 
+export function webhookWebhooksUpdateGlobalsToJSON(
+  webhookWebhooksUpdateGlobals: WebhookWebhooksUpdateGlobals,
+): string {
+  return JSON.stringify(
+    WebhookWebhooksUpdateGlobals$outboundSchema.parse(
+      webhookWebhooksUpdateGlobals,
+    ),
+  );
+}
+
+export function webhookWebhooksUpdateGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<WebhookWebhooksUpdateGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => WebhookWebhooksUpdateGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'WebhookWebhooksUpdateGlobals' from JSON`,
+  );
+}
+
 /** @internal */
 export const WebhookWebhooksUpdateRequest$inboundSchema: z.ZodType<
   WebhookWebhooksUpdateRequest,
@@ -114,6 +137,26 @@ export namespace WebhookWebhooksUpdateRequest$ {
   export const outboundSchema = WebhookWebhooksUpdateRequest$outboundSchema;
   /** @deprecated use `WebhookWebhooksUpdateRequest$Outbound` instead. */
   export type Outbound = WebhookWebhooksUpdateRequest$Outbound;
+}
+
+export function webhookWebhooksUpdateRequestToJSON(
+  webhookWebhooksUpdateRequest: WebhookWebhooksUpdateRequest,
+): string {
+  return JSON.stringify(
+    WebhookWebhooksUpdateRequest$outboundSchema.parse(
+      webhookWebhooksUpdateRequest,
+    ),
+  );
+}
+
+export function webhookWebhooksUpdateRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<WebhookWebhooksUpdateRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => WebhookWebhooksUpdateRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'WebhookWebhooksUpdateRequest' from JSON`,
+  );
 }
 
 /** @internal */
@@ -174,4 +217,24 @@ export namespace WebhookWebhooksUpdateResponse$ {
   export const outboundSchema = WebhookWebhooksUpdateResponse$outboundSchema;
   /** @deprecated use `WebhookWebhooksUpdateResponse$Outbound` instead. */
   export type Outbound = WebhookWebhooksUpdateResponse$Outbound;
+}
+
+export function webhookWebhooksUpdateResponseToJSON(
+  webhookWebhooksUpdateResponse: WebhookWebhooksUpdateResponse,
+): string {
+  return JSON.stringify(
+    WebhookWebhooksUpdateResponse$outboundSchema.parse(
+      webhookWebhooksUpdateResponse,
+    ),
+  );
+}
+
+export function webhookWebhooksUpdateResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<WebhookWebhooksUpdateResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => WebhookWebhooksUpdateResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'WebhookWebhooksUpdateResponse' from JSON`,
+  );
 }

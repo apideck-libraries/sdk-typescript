@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type CreditNotesFilter = {
   updatedSince?: Date | undefined;
@@ -53,4 +56,22 @@ export namespace CreditNotesFilter$ {
   export const outboundSchema = CreditNotesFilter$outboundSchema;
   /** @deprecated use `CreditNotesFilter$Outbound` instead. */
   export type Outbound = CreditNotesFilter$Outbound;
+}
+
+export function creditNotesFilterToJSON(
+  creditNotesFilter: CreditNotesFilter,
+): string {
+  return JSON.stringify(
+    CreditNotesFilter$outboundSchema.parse(creditNotesFilter),
+  );
+}
+
+export function creditNotesFilterFromJSON(
+  jsonString: string,
+): SafeParseResult<CreditNotesFilter, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CreditNotesFilter$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CreditNotesFilter' from JSON`,
+  );
 }

@@ -4,13 +4,16 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type HrisPayrollsOneGlobals = {
   /**
    * ID of the consumer which you want to get or push data from
    */
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   /**
    * The ID of your Unify application
    */
@@ -54,13 +57,13 @@ export const HrisPayrollsOneGlobals$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
 /** @internal */
 export type HrisPayrollsOneGlobals$Outbound = {
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   appId?: string | undefined;
 };
 
@@ -70,7 +73,7 @@ export const HrisPayrollsOneGlobals$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   HrisPayrollsOneGlobals
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
@@ -85,6 +88,24 @@ export namespace HrisPayrollsOneGlobals$ {
   export const outboundSchema = HrisPayrollsOneGlobals$outboundSchema;
   /** @deprecated use `HrisPayrollsOneGlobals$Outbound` instead. */
   export type Outbound = HrisPayrollsOneGlobals$Outbound;
+}
+
+export function hrisPayrollsOneGlobalsToJSON(
+  hrisPayrollsOneGlobals: HrisPayrollsOneGlobals,
+): string {
+  return JSON.stringify(
+    HrisPayrollsOneGlobals$outboundSchema.parse(hrisPayrollsOneGlobals),
+  );
+}
+
+export function hrisPayrollsOneGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<HrisPayrollsOneGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => HrisPayrollsOneGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'HrisPayrollsOneGlobals' from JSON`,
+  );
 }
 
 /** @internal */
@@ -138,6 +159,24 @@ export namespace HrisPayrollsOneRequest$ {
   export const outboundSchema = HrisPayrollsOneRequest$outboundSchema;
   /** @deprecated use `HrisPayrollsOneRequest$Outbound` instead. */
   export type Outbound = HrisPayrollsOneRequest$Outbound;
+}
+
+export function hrisPayrollsOneRequestToJSON(
+  hrisPayrollsOneRequest: HrisPayrollsOneRequest,
+): string {
+  return JSON.stringify(
+    HrisPayrollsOneRequest$outboundSchema.parse(hrisPayrollsOneRequest),
+  );
+}
+
+export function hrisPayrollsOneRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<HrisPayrollsOneRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => HrisPayrollsOneRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'HrisPayrollsOneRequest' from JSON`,
+  );
 }
 
 /** @internal */
@@ -196,4 +235,22 @@ export namespace HrisPayrollsOneResponse$ {
   export const outboundSchema = HrisPayrollsOneResponse$outboundSchema;
   /** @deprecated use `HrisPayrollsOneResponse$Outbound` instead. */
   export type Outbound = HrisPayrollsOneResponse$Outbound;
+}
+
+export function hrisPayrollsOneResponseToJSON(
+  hrisPayrollsOneResponse: HrisPayrollsOneResponse,
+): string {
+  return JSON.stringify(
+    HrisPayrollsOneResponse$outboundSchema.parse(hrisPayrollsOneResponse),
+  );
+}
+
+export function hrisPayrollsOneResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<HrisPayrollsOneResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => HrisPayrollsOneResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'HrisPayrollsOneResponse' from JSON`,
+  );
 }

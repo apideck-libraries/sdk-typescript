@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { ConnectionInput } from "apideck/models/components";
+import { ConnectionInput } from "@apideck/sdk/models/components";
 
 let value: ConnectionInput = {
   enabled: true,
@@ -31,14 +31,15 @@ let value: ConnectionInput = {
               options: [
                 {
                   label: "General Channel",
-                  value: 12.5,
+                  value: [
+                    "team",
+                    "general",
+                  ],
                 },
               ],
             },
           ],
-          value: [
-            "GC6000 series",
-          ],
+          value: true,
         },
       ],
     },

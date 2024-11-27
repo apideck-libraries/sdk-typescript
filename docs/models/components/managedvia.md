@@ -5,7 +5,7 @@ How the subscription is managed in the downstream.
 ## Example Usage
 
 ```typescript
-import { ManagedVia } from "apideck/models/components";
+import { ManagedVia } from "@apideck/sdk/models/components";
 
 let value: ManagedVia = "api";
 ```

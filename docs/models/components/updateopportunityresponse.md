@@ -5,7 +5,7 @@ Opportunity updated
 ## Example Usage
 
 ```typescript
-import { UpdateOpportunityResponse } from "apideck/models/components";
+import { UpdateOpportunityResponse } from "@apideck/sdk/models/components";
 
 let value: UpdateOpportunityResponse = {
   statusCode: 200,

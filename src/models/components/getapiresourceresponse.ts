@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   ApiResource,
   ApiResource$inboundSchema,
@@ -100,4 +103,22 @@ export namespace GetApiResourceResponse$ {
   export const outboundSchema = GetApiResourceResponse$outboundSchema;
   /** @deprecated use `GetApiResourceResponse$Outbound` instead. */
   export type Outbound = GetApiResourceResponse$Outbound;
+}
+
+export function getApiResourceResponseToJSON(
+  getApiResourceResponse: GetApiResourceResponse,
+): string {
+  return JSON.stringify(
+    GetApiResourceResponse$outboundSchema.parse(getApiResourceResponse),
+  );
+}
+
+export function getApiResourceResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<GetApiResourceResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetApiResourceResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetApiResourceResponse' from JSON`,
+  );
 }

@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   Applicant,
   Applicant$inboundSchema,
@@ -95,4 +98,22 @@ export namespace GetApplicantResponse$ {
   export const outboundSchema = GetApplicantResponse$outboundSchema;
   /** @deprecated use `GetApplicantResponse$Outbound` instead. */
   export type Outbound = GetApplicantResponse$Outbound;
+}
+
+export function getApplicantResponseToJSON(
+  getApplicantResponse: GetApplicantResponse,
+): string {
+  return JSON.stringify(
+    GetApplicantResponse$outboundSchema.parse(getApplicantResponse),
+  );
+}
+
+export function getApplicantResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<GetApplicantResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetApplicantResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetApplicantResponse' from JSON`,
+  );
 }

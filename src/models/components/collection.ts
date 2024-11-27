@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   CustomMappings,
   CustomMappings$inboundSchema,
@@ -119,4 +122,18 @@ export namespace Collection$ {
   export const outboundSchema = Collection$outboundSchema;
   /** @deprecated use `Collection$Outbound` instead. */
   export type Outbound = Collection$Outbound;
+}
+
+export function collectionToJSON(collection: Collection): string {
+  return JSON.stringify(Collection$outboundSchema.parse(collection));
+}
+
+export function collectionFromJSON(
+  jsonString: string,
+): SafeParseResult<Collection, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Collection$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Collection' from JSON`,
+  );
 }

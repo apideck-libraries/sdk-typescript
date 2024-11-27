@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type CompaniesFilter = {
   /**
@@ -45,4 +48,20 @@ export namespace CompaniesFilter$ {
   export const outboundSchema = CompaniesFilter$outboundSchema;
   /** @deprecated use `CompaniesFilter$Outbound` instead. */
   export type Outbound = CompaniesFilter$Outbound;
+}
+
+export function companiesFilterToJSON(
+  companiesFilter: CompaniesFilter,
+): string {
+  return JSON.stringify(CompaniesFilter$outboundSchema.parse(companiesFilter));
+}
+
+export function companiesFilterFromJSON(
+  jsonString: string,
+): SafeParseResult<CompaniesFilter, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CompaniesFilter$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CompaniesFilter' from JSON`,
+  );
 }

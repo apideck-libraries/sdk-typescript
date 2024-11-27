@@ -5,8 +5,8 @@ Applicants
 ## Example Usage
 
 ```typescript
-import { GetApplicantResponse } from "apideck/models/components";
-import { RFCDate } from "apideck/types";
+import { GetApplicantResponse } from "@apideck/sdk/models/components";
+import { RFCDate } from "@apideck/sdk/types";
 
 let value: GetApplicantResponse = {
   statusCode: 200,

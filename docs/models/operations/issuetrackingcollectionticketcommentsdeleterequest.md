@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { IssueTrackingCollectionTicketCommentsDeleteRequest } from "apideck/models/operations";
+import { IssueTrackingCollectionTicketCommentsDeleteRequest } from "@apideck/sdk/models/operations";
 
 let value: IssueTrackingCollectionTicketCommentsDeleteRequest = {
   id: "<id>",

@@ -4,8 +4,11 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import { RFCDate } from "../../types/rfcdate.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   Address,
   Address$inboundSchema,
@@ -317,6 +320,20 @@ export namespace Branch$ {
   export type Outbound = Branch$Outbound;
 }
 
+export function branchToJSON(branch: Branch): string {
+  return JSON.stringify(Branch$outboundSchema.parse(branch));
+}
+
+export function branchFromJSON(
+  jsonString: string,
+): SafeParseResult<Branch, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Branch$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Branch' from JSON`,
+  );
+}
+
 /** @internal */
 export const Blocks$inboundSchema: z.ZodType<Blocks, z.ZodTypeDef, unknown> = z
   .object({
@@ -351,6 +368,20 @@ export namespace Blocks$ {
   export const outboundSchema = Blocks$outboundSchema;
   /** @deprecated use `Blocks$Outbound` instead. */
   export type Outbound = Blocks$Outbound;
+}
+
+export function blocksToJSON(blocks: Blocks): string {
+  return JSON.stringify(Blocks$outboundSchema.parse(blocks));
+}
+
+export function blocksFromJSON(
+  jsonString: string,
+): SafeParseResult<Blocks, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Blocks$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Blocks' from JSON`,
+  );
 }
 
 /** @internal */
@@ -393,6 +424,20 @@ export namespace Salary$ {
   export const outboundSchema = Salary$outboundSchema;
   /** @deprecated use `Salary$Outbound` instead. */
   export type Outbound = Salary$Outbound;
+}
+
+export function salaryToJSON(salary: Salary): string {
+  return JSON.stringify(Salary$outboundSchema.parse(salary));
+}
+
+export function salaryFromJSON(
+  jsonString: string,
+): SafeParseResult<Salary, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Salary$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Salary' from JSON`,
+  );
 }
 
 /** @internal */
@@ -451,6 +496,20 @@ export namespace JobLinks$ {
   export const outboundSchema = JobLinks$outboundSchema;
   /** @deprecated use `JobLinks$Outbound` instead. */
   export type Outbound = JobLinks$Outbound;
+}
+
+export function jobLinksToJSON(jobLinks: JobLinks): string {
+  return JSON.stringify(JobLinks$outboundSchema.parse(jobLinks));
+}
+
+export function jobLinksFromJSON(
+  jsonString: string,
+): SafeParseResult<JobLinks, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => JobLinks$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'JobLinks' from JSON`,
+  );
 }
 
 /** @internal */
@@ -653,4 +712,18 @@ export namespace Job$ {
   export const outboundSchema = Job$outboundSchema;
   /** @deprecated use `Job$Outbound` instead. */
   export type Outbound = Job$Outbound;
+}
+
+export function jobToJSON(job: Job): string {
+  return JSON.stringify(Job$outboundSchema.parse(job));
+}
+
+export function jobFromJSON(
+  jsonString: string,
+): SafeParseResult<Job, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Job$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Job' from JSON`,
+  );
 }

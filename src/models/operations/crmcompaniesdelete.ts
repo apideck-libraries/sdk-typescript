@@ -4,13 +4,16 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type CrmCompaniesDeleteGlobals = {
   /**
    * ID of the consumer which you want to get or push data from
    */
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   /**
    * The ID of your Unify application
    */
@@ -50,13 +53,13 @@ export const CrmCompaniesDeleteGlobals$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
 /** @internal */
 export type CrmCompaniesDeleteGlobals$Outbound = {
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   appId?: string | undefined;
 };
 
@@ -66,7 +69,7 @@ export const CrmCompaniesDeleteGlobals$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   CrmCompaniesDeleteGlobals
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
@@ -81,6 +84,24 @@ export namespace CrmCompaniesDeleteGlobals$ {
   export const outboundSchema = CrmCompaniesDeleteGlobals$outboundSchema;
   /** @deprecated use `CrmCompaniesDeleteGlobals$Outbound` instead. */
   export type Outbound = CrmCompaniesDeleteGlobals$Outbound;
+}
+
+export function crmCompaniesDeleteGlobalsToJSON(
+  crmCompaniesDeleteGlobals: CrmCompaniesDeleteGlobals,
+): string {
+  return JSON.stringify(
+    CrmCompaniesDeleteGlobals$outboundSchema.parse(crmCompaniesDeleteGlobals),
+  );
+}
+
+export function crmCompaniesDeleteGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<CrmCompaniesDeleteGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CrmCompaniesDeleteGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CrmCompaniesDeleteGlobals' from JSON`,
+  );
 }
 
 /** @internal */
@@ -123,6 +144,24 @@ export namespace CrmCompaniesDeleteRequest$ {
   export const outboundSchema = CrmCompaniesDeleteRequest$outboundSchema;
   /** @deprecated use `CrmCompaniesDeleteRequest$Outbound` instead. */
   export type Outbound = CrmCompaniesDeleteRequest$Outbound;
+}
+
+export function crmCompaniesDeleteRequestToJSON(
+  crmCompaniesDeleteRequest: CrmCompaniesDeleteRequest,
+): string {
+  return JSON.stringify(
+    CrmCompaniesDeleteRequest$outboundSchema.parse(crmCompaniesDeleteRequest),
+  );
+}
+
+export function crmCompaniesDeleteRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<CrmCompaniesDeleteRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CrmCompaniesDeleteRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CrmCompaniesDeleteRequest' from JSON`,
+  );
 }
 
 /** @internal */
@@ -183,4 +222,22 @@ export namespace CrmCompaniesDeleteResponse$ {
   export const outboundSchema = CrmCompaniesDeleteResponse$outboundSchema;
   /** @deprecated use `CrmCompaniesDeleteResponse$Outbound` instead. */
   export type Outbound = CrmCompaniesDeleteResponse$Outbound;
+}
+
+export function crmCompaniesDeleteResponseToJSON(
+  crmCompaniesDeleteResponse: CrmCompaniesDeleteResponse,
+): string {
+  return JSON.stringify(
+    CrmCompaniesDeleteResponse$outboundSchema.parse(crmCompaniesDeleteResponse),
+  );
+}
+
+export function crmCompaniesDeleteResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<CrmCompaniesDeleteResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CrmCompaniesDeleteResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CrmCompaniesDeleteResponse' from JSON`,
+  );
 }

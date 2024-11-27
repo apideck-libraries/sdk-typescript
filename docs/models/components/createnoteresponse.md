@@ -5,7 +5,7 @@ Note created
 ## Example Usage
 
 ```typescript
-import { CreateNoteResponse } from "apideck/models/components";
+import { CreateNoteResponse } from "@apideck/sdk/models/components";
 
 let value: CreateNoteResponse = {
   statusCode: 200,

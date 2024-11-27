@@ -5,7 +5,7 @@ Consumers
 ## Example Usage
 
 ```typescript
-import { GetConsumersResponse } from "apideck/models/components";
+import { GetConsumersResponse } from "@apideck/sdk/models/components";
 
 let value: GetConsumersResponse = {
   statusCode: 200,

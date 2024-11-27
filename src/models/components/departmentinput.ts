@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   PassThroughBody,
   PassThroughBody$inboundSchema,
@@ -75,4 +78,20 @@ export namespace DepartmentInput$ {
   export const outboundSchema = DepartmentInput$outboundSchema;
   /** @deprecated use `DepartmentInput$Outbound` instead. */
   export type Outbound = DepartmentInput$Outbound;
+}
+
+export function departmentInputToJSON(
+  departmentInput: DepartmentInput,
+): string {
+  return JSON.stringify(DepartmentInput$outboundSchema.parse(departmentInput));
+}
+
+export function departmentInputFromJSON(
+  jsonString: string,
+): SafeParseResult<DepartmentInput, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => DepartmentInput$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'DepartmentInput' from JSON`,
+  );
 }

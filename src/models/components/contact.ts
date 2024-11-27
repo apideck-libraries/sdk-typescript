@@ -4,7 +4,10 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   Address,
   Address$inboundSchema,
@@ -593,6 +596,20 @@ export namespace Contact$ {
   export type Outbound = Contact$Outbound;
 }
 
+export function contactToJSON(contact: Contact): string {
+  return JSON.stringify(Contact$outboundSchema.parse(contact));
+}
+
+export function contactFromJSON(
+  jsonString: string,
+): SafeParseResult<Contact, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Contact$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Contact' from JSON`,
+  );
+}
+
 /** @internal */
 export const ContactInput$inboundSchema: z.ZodType<
   ContactInput,
@@ -764,4 +781,18 @@ export namespace ContactInput$ {
   export const outboundSchema = ContactInput$outboundSchema;
   /** @deprecated use `ContactInput$Outbound` instead. */
   export type Outbound = ContactInput$Outbound;
+}
+
+export function contactInputToJSON(contactInput: ContactInput): string {
+  return JSON.stringify(ContactInput$outboundSchema.parse(contactInput));
+}
+
+export function contactInputFromJSON(
+  jsonString: string,
+): SafeParseResult<ContactInput, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ContactInput$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ContactInput' from JSON`,
+  );
 }

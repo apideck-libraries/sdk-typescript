@@ -4,13 +4,16 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type AccountingCreditNotesDeleteGlobals = {
   /**
    * ID of the consumer which you want to get or push data from
    */
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   /**
    * The ID of your Unify application
    */
@@ -50,13 +53,13 @@ export const AccountingCreditNotesDeleteGlobals$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
 /** @internal */
 export type AccountingCreditNotesDeleteGlobals$Outbound = {
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   appId?: string | undefined;
 };
 
@@ -66,7 +69,7 @@ export const AccountingCreditNotesDeleteGlobals$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   AccountingCreditNotesDeleteGlobals
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
@@ -82,6 +85,27 @@ export namespace AccountingCreditNotesDeleteGlobals$ {
     AccountingCreditNotesDeleteGlobals$outboundSchema;
   /** @deprecated use `AccountingCreditNotesDeleteGlobals$Outbound` instead. */
   export type Outbound = AccountingCreditNotesDeleteGlobals$Outbound;
+}
+
+export function accountingCreditNotesDeleteGlobalsToJSON(
+  accountingCreditNotesDeleteGlobals: AccountingCreditNotesDeleteGlobals,
+): string {
+  return JSON.stringify(
+    AccountingCreditNotesDeleteGlobals$outboundSchema.parse(
+      accountingCreditNotesDeleteGlobals,
+    ),
+  );
+}
+
+export function accountingCreditNotesDeleteGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<AccountingCreditNotesDeleteGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      AccountingCreditNotesDeleteGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AccountingCreditNotesDeleteGlobals' from JSON`,
+  );
 }
 
 /** @internal */
@@ -125,6 +149,27 @@ export namespace AccountingCreditNotesDeleteRequest$ {
     AccountingCreditNotesDeleteRequest$outboundSchema;
   /** @deprecated use `AccountingCreditNotesDeleteRequest$Outbound` instead. */
   export type Outbound = AccountingCreditNotesDeleteRequest$Outbound;
+}
+
+export function accountingCreditNotesDeleteRequestToJSON(
+  accountingCreditNotesDeleteRequest: AccountingCreditNotesDeleteRequest,
+): string {
+  return JSON.stringify(
+    AccountingCreditNotesDeleteRequest$outboundSchema.parse(
+      accountingCreditNotesDeleteRequest,
+    ),
+  );
+}
+
+export function accountingCreditNotesDeleteRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<AccountingCreditNotesDeleteRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      AccountingCreditNotesDeleteRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AccountingCreditNotesDeleteRequest' from JSON`,
+  );
 }
 
 /** @internal */
@@ -189,4 +234,25 @@ export namespace AccountingCreditNotesDeleteResponse$ {
     AccountingCreditNotesDeleteResponse$outboundSchema;
   /** @deprecated use `AccountingCreditNotesDeleteResponse$Outbound` instead. */
   export type Outbound = AccountingCreditNotesDeleteResponse$Outbound;
+}
+
+export function accountingCreditNotesDeleteResponseToJSON(
+  accountingCreditNotesDeleteResponse: AccountingCreditNotesDeleteResponse,
+): string {
+  return JSON.stringify(
+    AccountingCreditNotesDeleteResponse$outboundSchema.parse(
+      accountingCreditNotesDeleteResponse,
+    ),
+  );
+}
+
+export function accountingCreditNotesDeleteResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<AccountingCreditNotesDeleteResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      AccountingCreditNotesDeleteResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AccountingCreditNotesDeleteResponse' from JSON`,
+  );
 }

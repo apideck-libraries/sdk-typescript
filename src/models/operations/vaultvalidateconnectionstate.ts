@@ -4,13 +4,16 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type VaultValidateConnectionStateGlobals = {
   /**
    * ID of the consumer which you want to get or push data from
    */
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   /**
    * The ID of your Unify application
    */
@@ -51,13 +54,13 @@ export const VaultValidateConnectionStateGlobals$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
 /** @internal */
 export type VaultValidateConnectionStateGlobals$Outbound = {
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   appId?: string | undefined;
 };
 
@@ -67,7 +70,7 @@ export const VaultValidateConnectionStateGlobals$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   VaultValidateConnectionStateGlobals
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
@@ -84,6 +87,27 @@ export namespace VaultValidateConnectionStateGlobals$ {
     VaultValidateConnectionStateGlobals$outboundSchema;
   /** @deprecated use `VaultValidateConnectionStateGlobals$Outbound` instead. */
   export type Outbound = VaultValidateConnectionStateGlobals$Outbound;
+}
+
+export function vaultValidateConnectionStateGlobalsToJSON(
+  vaultValidateConnectionStateGlobals: VaultValidateConnectionStateGlobals,
+): string {
+  return JSON.stringify(
+    VaultValidateConnectionStateGlobals$outboundSchema.parse(
+      vaultValidateConnectionStateGlobals,
+    ),
+  );
+}
+
+export function vaultValidateConnectionStateGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<VaultValidateConnectionStateGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      VaultValidateConnectionStateGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'VaultValidateConnectionStateGlobals' from JSON`,
+  );
 }
 
 /** @internal */
@@ -116,6 +140,33 @@ export namespace VaultValidateConnectionStateRequestBody$ {
     VaultValidateConnectionStateRequestBody$outboundSchema;
   /** @deprecated use `VaultValidateConnectionStateRequestBody$Outbound` instead. */
   export type Outbound = VaultValidateConnectionStateRequestBody$Outbound;
+}
+
+export function vaultValidateConnectionStateRequestBodyToJSON(
+  vaultValidateConnectionStateRequestBody:
+    VaultValidateConnectionStateRequestBody,
+): string {
+  return JSON.stringify(
+    VaultValidateConnectionStateRequestBody$outboundSchema.parse(
+      vaultValidateConnectionStateRequestBody,
+    ),
+  );
+}
+
+export function vaultValidateConnectionStateRequestBodyFromJSON(
+  jsonString: string,
+): SafeParseResult<
+  VaultValidateConnectionStateRequestBody,
+  SDKValidationError
+> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      VaultValidateConnectionStateRequestBody$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'VaultValidateConnectionStateRequestBody' from JSON`,
+  );
 }
 
 /** @internal */
@@ -176,6 +227,27 @@ export namespace VaultValidateConnectionStateRequest$ {
     VaultValidateConnectionStateRequest$outboundSchema;
   /** @deprecated use `VaultValidateConnectionStateRequest$Outbound` instead. */
   export type Outbound = VaultValidateConnectionStateRequest$Outbound;
+}
+
+export function vaultValidateConnectionStateRequestToJSON(
+  vaultValidateConnectionStateRequest: VaultValidateConnectionStateRequest,
+): string {
+  return JSON.stringify(
+    VaultValidateConnectionStateRequest$outboundSchema.parse(
+      vaultValidateConnectionStateRequest,
+    ),
+  );
+}
+
+export function vaultValidateConnectionStateRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<VaultValidateConnectionStateRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      VaultValidateConnectionStateRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'VaultValidateConnectionStateRequest' from JSON`,
+  );
 }
 
 /** @internal */
@@ -240,4 +312,25 @@ export namespace VaultValidateConnectionStateResponse$ {
     VaultValidateConnectionStateResponse$outboundSchema;
   /** @deprecated use `VaultValidateConnectionStateResponse$Outbound` instead. */
   export type Outbound = VaultValidateConnectionStateResponse$Outbound;
+}
+
+export function vaultValidateConnectionStateResponseToJSON(
+  vaultValidateConnectionStateResponse: VaultValidateConnectionStateResponse,
+): string {
+  return JSON.stringify(
+    VaultValidateConnectionStateResponse$outboundSchema.parse(
+      vaultValidateConnectionStateResponse,
+    ),
+  );
+}
+
+export function vaultValidateConnectionStateResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<VaultValidateConnectionStateResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      VaultValidateConnectionStateResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'VaultValidateConnectionStateResponse' from JSON`,
+  );
 }

@@ -5,7 +5,7 @@ Connection access token refreshed
 ## Example Usage
 
 ```typescript
-import { ValidateConnectionStateResponse } from "apideck/models/components";
+import { ValidateConnectionStateResponse } from "@apideck/sdk/models/components";
 
 let value: ValidateConnectionStateResponse = {
   statusCode: 200,

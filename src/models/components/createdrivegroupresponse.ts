@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   UnifiedId,
   UnifiedId$inboundSchema,
@@ -95,4 +98,22 @@ export namespace CreateDriveGroupResponse$ {
   export const outboundSchema = CreateDriveGroupResponse$outboundSchema;
   /** @deprecated use `CreateDriveGroupResponse$Outbound` instead. */
   export type Outbound = CreateDriveGroupResponse$Outbound;
+}
+
+export function createDriveGroupResponseToJSON(
+  createDriveGroupResponse: CreateDriveGroupResponse,
+): string {
+  return JSON.stringify(
+    CreateDriveGroupResponse$outboundSchema.parse(createDriveGroupResponse),
+  );
+}
+
+export function createDriveGroupResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<CreateDriveGroupResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CreateDriveGroupResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CreateDriveGroupResponse' from JSON`,
+  );
 }

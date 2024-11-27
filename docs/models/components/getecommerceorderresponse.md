@@ -5,7 +5,7 @@ Orders
 ## Example Usage
 
 ```typescript
-import { GetEcommerceOrderResponse } from "apideck/models/components";
+import { GetEcommerceOrderResponse } from "@apideck/sdk/models/components";
 
 let value: GetEcommerceOrderResponse = {
   statusCode: 200,

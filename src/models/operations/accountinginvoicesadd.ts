@@ -4,13 +4,16 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type AccountingInvoicesAddGlobals = {
   /**
    * ID of the consumer which you want to get or push data from
    */
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   /**
    * The ID of your Unify application
    */
@@ -47,13 +50,13 @@ export const AccountingInvoicesAddGlobals$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
 /** @internal */
 export type AccountingInvoicesAddGlobals$Outbound = {
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   appId?: string | undefined;
 };
 
@@ -63,7 +66,7 @@ export const AccountingInvoicesAddGlobals$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   AccountingInvoicesAddGlobals
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
@@ -78,6 +81,26 @@ export namespace AccountingInvoicesAddGlobals$ {
   export const outboundSchema = AccountingInvoicesAddGlobals$outboundSchema;
   /** @deprecated use `AccountingInvoicesAddGlobals$Outbound` instead. */
   export type Outbound = AccountingInvoicesAddGlobals$Outbound;
+}
+
+export function accountingInvoicesAddGlobalsToJSON(
+  accountingInvoicesAddGlobals: AccountingInvoicesAddGlobals,
+): string {
+  return JSON.stringify(
+    AccountingInvoicesAddGlobals$outboundSchema.parse(
+      accountingInvoicesAddGlobals,
+    ),
+  );
+}
+
+export function accountingInvoicesAddGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<AccountingInvoicesAddGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => AccountingInvoicesAddGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AccountingInvoicesAddGlobals' from JSON`,
+  );
 }
 
 /** @internal */
@@ -128,6 +151,26 @@ export namespace AccountingInvoicesAddRequest$ {
   export const outboundSchema = AccountingInvoicesAddRequest$outboundSchema;
   /** @deprecated use `AccountingInvoicesAddRequest$Outbound` instead. */
   export type Outbound = AccountingInvoicesAddRequest$Outbound;
+}
+
+export function accountingInvoicesAddRequestToJSON(
+  accountingInvoicesAddRequest: AccountingInvoicesAddRequest,
+): string {
+  return JSON.stringify(
+    AccountingInvoicesAddRequest$outboundSchema.parse(
+      accountingInvoicesAddRequest,
+    ),
+  );
+}
+
+export function accountingInvoicesAddRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<AccountingInvoicesAddRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => AccountingInvoicesAddRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AccountingInvoicesAddRequest' from JSON`,
+  );
 }
 
 /** @internal */
@@ -188,4 +231,24 @@ export namespace AccountingInvoicesAddResponse$ {
   export const outboundSchema = AccountingInvoicesAddResponse$outboundSchema;
   /** @deprecated use `AccountingInvoicesAddResponse$Outbound` instead. */
   export type Outbound = AccountingInvoicesAddResponse$Outbound;
+}
+
+export function accountingInvoicesAddResponseToJSON(
+  accountingInvoicesAddResponse: AccountingInvoicesAddResponse,
+): string {
+  return JSON.stringify(
+    AccountingInvoicesAddResponse$outboundSchema.parse(
+      accountingInvoicesAddResponse,
+    ),
+  );
+}
+
+export function accountingInvoicesAddResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<AccountingInvoicesAddResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => AccountingInvoicesAddResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AccountingInvoicesAddResponse' from JSON`,
+  );
 }

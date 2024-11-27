@@ -4,13 +4,16 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type AccountingCreditNotesUpdateGlobals = {
   /**
    * ID of the consumer which you want to get or push data from
    */
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   /**
    * The ID of your Unify application
    */
@@ -51,13 +54,13 @@ export const AccountingCreditNotesUpdateGlobals$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
 /** @internal */
 export type AccountingCreditNotesUpdateGlobals$Outbound = {
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   appId?: string | undefined;
 };
 
@@ -67,7 +70,7 @@ export const AccountingCreditNotesUpdateGlobals$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   AccountingCreditNotesUpdateGlobals
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
@@ -83,6 +86,27 @@ export namespace AccountingCreditNotesUpdateGlobals$ {
     AccountingCreditNotesUpdateGlobals$outboundSchema;
   /** @deprecated use `AccountingCreditNotesUpdateGlobals$Outbound` instead. */
   export type Outbound = AccountingCreditNotesUpdateGlobals$Outbound;
+}
+
+export function accountingCreditNotesUpdateGlobalsToJSON(
+  accountingCreditNotesUpdateGlobals: AccountingCreditNotesUpdateGlobals,
+): string {
+  return JSON.stringify(
+    AccountingCreditNotesUpdateGlobals$outboundSchema.parse(
+      accountingCreditNotesUpdateGlobals,
+    ),
+  );
+}
+
+export function accountingCreditNotesUpdateGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<AccountingCreditNotesUpdateGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      AccountingCreditNotesUpdateGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AccountingCreditNotesUpdateGlobals' from JSON`,
+  );
 }
 
 /** @internal */
@@ -137,6 +161,27 @@ export namespace AccountingCreditNotesUpdateRequest$ {
     AccountingCreditNotesUpdateRequest$outboundSchema;
   /** @deprecated use `AccountingCreditNotesUpdateRequest$Outbound` instead. */
   export type Outbound = AccountingCreditNotesUpdateRequest$Outbound;
+}
+
+export function accountingCreditNotesUpdateRequestToJSON(
+  accountingCreditNotesUpdateRequest: AccountingCreditNotesUpdateRequest,
+): string {
+  return JSON.stringify(
+    AccountingCreditNotesUpdateRequest$outboundSchema.parse(
+      accountingCreditNotesUpdateRequest,
+    ),
+  );
+}
+
+export function accountingCreditNotesUpdateRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<AccountingCreditNotesUpdateRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      AccountingCreditNotesUpdateRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AccountingCreditNotesUpdateRequest' from JSON`,
+  );
 }
 
 /** @internal */
@@ -201,4 +246,25 @@ export namespace AccountingCreditNotesUpdateResponse$ {
     AccountingCreditNotesUpdateResponse$outboundSchema;
   /** @deprecated use `AccountingCreditNotesUpdateResponse$Outbound` instead. */
   export type Outbound = AccountingCreditNotesUpdateResponse$Outbound;
+}
+
+export function accountingCreditNotesUpdateResponseToJSON(
+  accountingCreditNotesUpdateResponse: AccountingCreditNotesUpdateResponse,
+): string {
+  return JSON.stringify(
+    AccountingCreditNotesUpdateResponse$outboundSchema.parse(
+      accountingCreditNotesUpdateResponse,
+    ),
+  );
+}
+
+export function accountingCreditNotesUpdateResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<AccountingCreditNotesUpdateResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      AccountingCreditNotesUpdateResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AccountingCreditNotesUpdateResponse' from JSON`,
+  );
 }

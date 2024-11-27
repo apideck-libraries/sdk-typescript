@@ -3,8 +3,8 @@
 ## Example Usage
 
 ```typescript
-import { CompanyInput } from "apideck/models/components";
-import { RFCDate } from "apideck/types";
+import { CompanyInput } from "@apideck/sdk/models/components";
+import { RFCDate } from "@apideck/sdk/types";
 
 let value: CompanyInput = {
   name: "SpaceX",
@@ -110,7 +110,7 @@ let value: CompanyInput = {
       id: "2389328923893298",
       name: "employee_level",
       description: "Employee Level",
-      value: "Uses Salesforce and Marketo",
+      value: true,
     },
   ],
   tags: [

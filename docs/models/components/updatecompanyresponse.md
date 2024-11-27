@@ -5,7 +5,7 @@ Company updated
 ## Example Usage
 
 ```typescript
-import { UpdateCompanyResponse } from "apideck/models/components";
+import { UpdateCompanyResponse } from "@apideck/sdk/models/components";
 
 let value: UpdateCompanyResponse = {
   statusCode: 200,

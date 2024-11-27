@@ -4,13 +4,16 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type AccountingAttachmentsDownloadGlobals = {
   /**
    * ID of the consumer which you want to get or push data from
    */
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   /**
    * The ID of your Unify application
    */
@@ -58,13 +61,13 @@ export const AccountingAttachmentsDownloadGlobals$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
 /** @internal */
 export type AccountingAttachmentsDownloadGlobals$Outbound = {
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   appId?: string | undefined;
 };
 
@@ -74,7 +77,7 @@ export const AccountingAttachmentsDownloadGlobals$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   AccountingAttachmentsDownloadGlobals
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
@@ -91,6 +94,27 @@ export namespace AccountingAttachmentsDownloadGlobals$ {
     AccountingAttachmentsDownloadGlobals$outboundSchema;
   /** @deprecated use `AccountingAttachmentsDownloadGlobals$Outbound` instead. */
   export type Outbound = AccountingAttachmentsDownloadGlobals$Outbound;
+}
+
+export function accountingAttachmentsDownloadGlobalsToJSON(
+  accountingAttachmentsDownloadGlobals: AccountingAttachmentsDownloadGlobals,
+): string {
+  return JSON.stringify(
+    AccountingAttachmentsDownloadGlobals$outboundSchema.parse(
+      accountingAttachmentsDownloadGlobals,
+    ),
+  );
+}
+
+export function accountingAttachmentsDownloadGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<AccountingAttachmentsDownloadGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      AccountingAttachmentsDownloadGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AccountingAttachmentsDownloadGlobals' from JSON`,
+  );
 }
 
 /** @internal */
@@ -153,6 +177,27 @@ export namespace AccountingAttachmentsDownloadRequest$ {
   export type Outbound = AccountingAttachmentsDownloadRequest$Outbound;
 }
 
+export function accountingAttachmentsDownloadRequestToJSON(
+  accountingAttachmentsDownloadRequest: AccountingAttachmentsDownloadRequest,
+): string {
+  return JSON.stringify(
+    AccountingAttachmentsDownloadRequest$outboundSchema.parse(
+      accountingAttachmentsDownloadRequest,
+    ),
+  );
+}
+
+export function accountingAttachmentsDownloadRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<AccountingAttachmentsDownloadRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      AccountingAttachmentsDownloadRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AccountingAttachmentsDownloadRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const AccountingAttachmentsDownloadResponse$inboundSchema: z.ZodType<
   AccountingAttachmentsDownloadResponse,
@@ -213,4 +258,25 @@ export namespace AccountingAttachmentsDownloadResponse$ {
     AccountingAttachmentsDownloadResponse$outboundSchema;
   /** @deprecated use `AccountingAttachmentsDownloadResponse$Outbound` instead. */
   export type Outbound = AccountingAttachmentsDownloadResponse$Outbound;
+}
+
+export function accountingAttachmentsDownloadResponseToJSON(
+  accountingAttachmentsDownloadResponse: AccountingAttachmentsDownloadResponse,
+): string {
+  return JSON.stringify(
+    AccountingAttachmentsDownloadResponse$outboundSchema.parse(
+      accountingAttachmentsDownloadResponse,
+    ),
+  );
+}
+
+export function accountingAttachmentsDownloadResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<AccountingAttachmentsDownloadResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      AccountingAttachmentsDownloadResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AccountingAttachmentsDownloadResponse' from JSON`,
+  );
 }

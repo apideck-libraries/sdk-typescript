@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type JournalEntriesFilter = {
   updatedSince?: Date | undefined;
@@ -53,4 +56,22 @@ export namespace JournalEntriesFilter$ {
   export const outboundSchema = JournalEntriesFilter$outboundSchema;
   /** @deprecated use `JournalEntriesFilter$Outbound` instead. */
   export type Outbound = JournalEntriesFilter$Outbound;
+}
+
+export function journalEntriesFilterToJSON(
+  journalEntriesFilter: JournalEntriesFilter,
+): string {
+  return JSON.stringify(
+    JournalEntriesFilter$outboundSchema.parse(journalEntriesFilter),
+  );
+}
+
+export function journalEntriesFilterFromJSON(
+  jsonString: string,
+): SafeParseResult<JournalEntriesFilter, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => JournalEntriesFilter$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'JournalEntriesFilter' from JSON`,
+  );
 }

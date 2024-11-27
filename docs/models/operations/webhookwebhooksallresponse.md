@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { WebhookWebhooksAllResponse } from "apideck/models/operations";
+import { WebhookWebhooksAllResponse } from "@apideck/sdk/models/operations";
 
 let value: WebhookWebhooksAllResponse = {
   httpMeta: {
@@ -54,7 +54,7 @@ let value: WebhookWebhooksAllResponse = {
     error: "Bad Request",
     typeName: "RequestHeadersValidationError",
     message: "Invalid Params",
-    detail: {},
+    detail: "Missing Header: x-apideck-consumer-id",
     ref: "https://developers.apideck.com/errors#unauthorizederror",
   },
 };

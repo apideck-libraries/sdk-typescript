@@ -4,13 +4,16 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type AccountingTrackingCategoriesDeleteGlobals = {
   /**
    * ID of the consumer which you want to get or push data from
    */
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   /**
    * The ID of your Unify application
    */
@@ -52,13 +55,13 @@ export const AccountingTrackingCategoriesDeleteGlobals$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
 /** @internal */
 export type AccountingTrackingCategoriesDeleteGlobals$Outbound = {
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   appId?: string | undefined;
 };
 
@@ -69,7 +72,7 @@ export const AccountingTrackingCategoriesDeleteGlobals$outboundSchema:
     z.ZodTypeDef,
     AccountingTrackingCategoriesDeleteGlobals
   > = z.object({
-    customerId: z.string().optional(),
+    consumerId: z.string().optional(),
     appId: z.string().optional(),
   });
 
@@ -86,6 +89,33 @@ export namespace AccountingTrackingCategoriesDeleteGlobals$ {
     AccountingTrackingCategoriesDeleteGlobals$outboundSchema;
   /** @deprecated use `AccountingTrackingCategoriesDeleteGlobals$Outbound` instead. */
   export type Outbound = AccountingTrackingCategoriesDeleteGlobals$Outbound;
+}
+
+export function accountingTrackingCategoriesDeleteGlobalsToJSON(
+  accountingTrackingCategoriesDeleteGlobals:
+    AccountingTrackingCategoriesDeleteGlobals,
+): string {
+  return JSON.stringify(
+    AccountingTrackingCategoriesDeleteGlobals$outboundSchema.parse(
+      accountingTrackingCategoriesDeleteGlobals,
+    ),
+  );
+}
+
+export function accountingTrackingCategoriesDeleteGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<
+  AccountingTrackingCategoriesDeleteGlobals,
+  SDKValidationError
+> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      AccountingTrackingCategoriesDeleteGlobals$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'AccountingTrackingCategoriesDeleteGlobals' from JSON`,
+  );
 }
 
 /** @internal */
@@ -131,6 +161,33 @@ export namespace AccountingTrackingCategoriesDeleteRequest$ {
     AccountingTrackingCategoriesDeleteRequest$outboundSchema;
   /** @deprecated use `AccountingTrackingCategoriesDeleteRequest$Outbound` instead. */
   export type Outbound = AccountingTrackingCategoriesDeleteRequest$Outbound;
+}
+
+export function accountingTrackingCategoriesDeleteRequestToJSON(
+  accountingTrackingCategoriesDeleteRequest:
+    AccountingTrackingCategoriesDeleteRequest,
+): string {
+  return JSON.stringify(
+    AccountingTrackingCategoriesDeleteRequest$outboundSchema.parse(
+      accountingTrackingCategoriesDeleteRequest,
+    ),
+  );
+}
+
+export function accountingTrackingCategoriesDeleteRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<
+  AccountingTrackingCategoriesDeleteRequest,
+  SDKValidationError
+> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      AccountingTrackingCategoriesDeleteRequest$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'AccountingTrackingCategoriesDeleteRequest' from JSON`,
+  );
 }
 
 /** @internal */
@@ -194,4 +251,31 @@ export namespace AccountingTrackingCategoriesDeleteResponse$ {
     AccountingTrackingCategoriesDeleteResponse$outboundSchema;
   /** @deprecated use `AccountingTrackingCategoriesDeleteResponse$Outbound` instead. */
   export type Outbound = AccountingTrackingCategoriesDeleteResponse$Outbound;
+}
+
+export function accountingTrackingCategoriesDeleteResponseToJSON(
+  accountingTrackingCategoriesDeleteResponse:
+    AccountingTrackingCategoriesDeleteResponse,
+): string {
+  return JSON.stringify(
+    AccountingTrackingCategoriesDeleteResponse$outboundSchema.parse(
+      accountingTrackingCategoriesDeleteResponse,
+    ),
+  );
+}
+
+export function accountingTrackingCategoriesDeleteResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<
+  AccountingTrackingCategoriesDeleteResponse,
+  SDKValidationError
+> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      AccountingTrackingCategoriesDeleteResponse$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'AccountingTrackingCategoriesDeleteResponse' from JSON`,
+  );
 }

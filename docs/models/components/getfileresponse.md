@@ -5,7 +5,7 @@ File
 ## Example Usage
 
 ```typescript
-import { GetFileResponse } from "apideck/models/components";
+import { GetFileResponse } from "@apideck/sdk/models/components";
 
 let value: GetFileResponse = {
   statusCode: 200,

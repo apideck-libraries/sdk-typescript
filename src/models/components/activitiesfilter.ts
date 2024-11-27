@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type ActivitiesFilter = {
   /**
@@ -87,4 +90,22 @@ export namespace ActivitiesFilter$ {
   export const outboundSchema = ActivitiesFilter$outboundSchema;
   /** @deprecated use `ActivitiesFilter$Outbound` instead. */
   export type Outbound = ActivitiesFilter$Outbound;
+}
+
+export function activitiesFilterToJSON(
+  activitiesFilter: ActivitiesFilter,
+): string {
+  return JSON.stringify(
+    ActivitiesFilter$outboundSchema.parse(activitiesFilter),
+  );
+}
+
+export function activitiesFilterFromJSON(
+  jsonString: string,
+): SafeParseResult<ActivitiesFilter, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ActivitiesFilter$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ActivitiesFilter' from JSON`,
+  );
 }

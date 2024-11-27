@@ -5,7 +5,7 @@ PurchaseOrders
 ## Example Usage
 
 ```typescript
-import { DeletePurchaseOrderResponse } from "apideck/models/components";
+import { DeletePurchaseOrderResponse } from "@apideck/sdk/models/components";
 
 let value: DeletePurchaseOrderResponse = {
   statusCode: 200,

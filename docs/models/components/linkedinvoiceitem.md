@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { LinkedInvoiceItem } from "apideck/models/components";
+import { LinkedInvoiceItem } from "@apideck/sdk/models/components";
 
 let value: LinkedInvoiceItem = {
   id: "12344",

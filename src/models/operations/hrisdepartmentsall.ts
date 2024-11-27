@@ -4,13 +4,16 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type HrisDepartmentsAllGlobals = {
   /**
    * ID of the consumer which you want to get or push data from
    */
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   /**
    * The ID of your Unify application
    */
@@ -62,13 +65,13 @@ export const HrisDepartmentsAllGlobals$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
 /** @internal */
 export type HrisDepartmentsAllGlobals$Outbound = {
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   appId?: string | undefined;
 };
 
@@ -78,7 +81,7 @@ export const HrisDepartmentsAllGlobals$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   HrisDepartmentsAllGlobals
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
@@ -93,6 +96,24 @@ export namespace HrisDepartmentsAllGlobals$ {
   export const outboundSchema = HrisDepartmentsAllGlobals$outboundSchema;
   /** @deprecated use `HrisDepartmentsAllGlobals$Outbound` instead. */
   export type Outbound = HrisDepartmentsAllGlobals$Outbound;
+}
+
+export function hrisDepartmentsAllGlobalsToJSON(
+  hrisDepartmentsAllGlobals: HrisDepartmentsAllGlobals,
+): string {
+  return JSON.stringify(
+    HrisDepartmentsAllGlobals$outboundSchema.parse(hrisDepartmentsAllGlobals),
+  );
+}
+
+export function hrisDepartmentsAllGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<HrisDepartmentsAllGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => HrisDepartmentsAllGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'HrisDepartmentsAllGlobals' from JSON`,
+  );
 }
 
 /** @internal */
@@ -152,6 +173,24 @@ export namespace HrisDepartmentsAllRequest$ {
   export const outboundSchema = HrisDepartmentsAllRequest$outboundSchema;
   /** @deprecated use `HrisDepartmentsAllRequest$Outbound` instead. */
   export type Outbound = HrisDepartmentsAllRequest$Outbound;
+}
+
+export function hrisDepartmentsAllRequestToJSON(
+  hrisDepartmentsAllRequest: HrisDepartmentsAllRequest,
+): string {
+  return JSON.stringify(
+    HrisDepartmentsAllRequest$outboundSchema.parse(hrisDepartmentsAllRequest),
+  );
+}
+
+export function hrisDepartmentsAllRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<HrisDepartmentsAllRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => HrisDepartmentsAllRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'HrisDepartmentsAllRequest' from JSON`,
+  );
 }
 
 /** @internal */
@@ -214,4 +253,22 @@ export namespace HrisDepartmentsAllResponse$ {
   export const outboundSchema = HrisDepartmentsAllResponse$outboundSchema;
   /** @deprecated use `HrisDepartmentsAllResponse$Outbound` instead. */
   export type Outbound = HrisDepartmentsAllResponse$Outbound;
+}
+
+export function hrisDepartmentsAllResponseToJSON(
+  hrisDepartmentsAllResponse: HrisDepartmentsAllResponse,
+): string {
+  return JSON.stringify(
+    HrisDepartmentsAllResponse$outboundSchema.parse(hrisDepartmentsAllResponse),
+  );
+}
+
+export function hrisDepartmentsAllResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<HrisDepartmentsAllResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => HrisDepartmentsAllResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'HrisDepartmentsAllResponse' from JSON`,
+  );
 }

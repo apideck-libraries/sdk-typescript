@@ -5,7 +5,7 @@ The status of the time off request.
 ## Example Usage
 
 ```typescript
-import { TimeOffRequestStatusStatus } from "apideck/models/components";
+import { TimeOffRequestStatusStatus } from "@apideck/sdk/models/components";
 
 let value: TimeOffRequestStatusStatus = "approved";
 ```

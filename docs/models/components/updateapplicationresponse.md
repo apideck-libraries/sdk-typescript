@@ -5,7 +5,7 @@ Applications
 ## Example Usage
 
 ```typescript
-import { UpdateApplicationResponse } from "apideck/models/components";
+import { UpdateApplicationResponse } from "@apideck/sdk/models/components";
 
 let value: UpdateApplicationResponse = {
   statusCode: 200,

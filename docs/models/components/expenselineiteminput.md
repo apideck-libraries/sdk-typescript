@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { ExpenseLineItemInput } from "apideck/models/components";
+import { ExpenseLineItemInput } from "@apideck/sdk/models/components";
 
 let value: ExpenseLineItemInput = {
   trackingCategories: [

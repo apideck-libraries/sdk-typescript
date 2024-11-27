@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { LogsFilter } from "apideck/models/components";
+import { LogsFilter } from "@apideck/sdk/models/components";
 
 let value: LogsFilter = {
   connectorId: "crm+salesforce",

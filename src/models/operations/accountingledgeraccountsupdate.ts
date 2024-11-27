@@ -4,13 +4,16 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type AccountingLedgerAccountsUpdateGlobals = {
   /**
    * ID of the consumer which you want to get or push data from
    */
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   /**
    * The ID of your Unify application
    */
@@ -53,13 +56,13 @@ export const AccountingLedgerAccountsUpdateGlobals$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
 /** @internal */
 export type AccountingLedgerAccountsUpdateGlobals$Outbound = {
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   appId?: string | undefined;
 };
 
@@ -69,7 +72,7 @@ export const AccountingLedgerAccountsUpdateGlobals$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   AccountingLedgerAccountsUpdateGlobals
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
@@ -86,6 +89,27 @@ export namespace AccountingLedgerAccountsUpdateGlobals$ {
     AccountingLedgerAccountsUpdateGlobals$outboundSchema;
   /** @deprecated use `AccountingLedgerAccountsUpdateGlobals$Outbound` instead. */
   export type Outbound = AccountingLedgerAccountsUpdateGlobals$Outbound;
+}
+
+export function accountingLedgerAccountsUpdateGlobalsToJSON(
+  accountingLedgerAccountsUpdateGlobals: AccountingLedgerAccountsUpdateGlobals,
+): string {
+  return JSON.stringify(
+    AccountingLedgerAccountsUpdateGlobals$outboundSchema.parse(
+      accountingLedgerAccountsUpdateGlobals,
+    ),
+  );
+}
+
+export function accountingLedgerAccountsUpdateGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<AccountingLedgerAccountsUpdateGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      AccountingLedgerAccountsUpdateGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AccountingLedgerAccountsUpdateGlobals' from JSON`,
+  );
 }
 
 /** @internal */
@@ -141,6 +165,27 @@ export namespace AccountingLedgerAccountsUpdateRequest$ {
     AccountingLedgerAccountsUpdateRequest$outboundSchema;
   /** @deprecated use `AccountingLedgerAccountsUpdateRequest$Outbound` instead. */
   export type Outbound = AccountingLedgerAccountsUpdateRequest$Outbound;
+}
+
+export function accountingLedgerAccountsUpdateRequestToJSON(
+  accountingLedgerAccountsUpdateRequest: AccountingLedgerAccountsUpdateRequest,
+): string {
+  return JSON.stringify(
+    AccountingLedgerAccountsUpdateRequest$outboundSchema.parse(
+      accountingLedgerAccountsUpdateRequest,
+    ),
+  );
+}
+
+export function accountingLedgerAccountsUpdateRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<AccountingLedgerAccountsUpdateRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      AccountingLedgerAccountsUpdateRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AccountingLedgerAccountsUpdateRequest' from JSON`,
+  );
 }
 
 /** @internal */
@@ -205,4 +250,26 @@ export namespace AccountingLedgerAccountsUpdateResponse$ {
     AccountingLedgerAccountsUpdateResponse$outboundSchema;
   /** @deprecated use `AccountingLedgerAccountsUpdateResponse$Outbound` instead. */
   export type Outbound = AccountingLedgerAccountsUpdateResponse$Outbound;
+}
+
+export function accountingLedgerAccountsUpdateResponseToJSON(
+  accountingLedgerAccountsUpdateResponse:
+    AccountingLedgerAccountsUpdateResponse,
+): string {
+  return JSON.stringify(
+    AccountingLedgerAccountsUpdateResponse$outboundSchema.parse(
+      accountingLedgerAccountsUpdateResponse,
+    ),
+  );
+}
+
+export function accountingLedgerAccountsUpdateResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<AccountingLedgerAccountsUpdateResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      AccountingLedgerAccountsUpdateResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AccountingLedgerAccountsUpdateResponse' from JSON`,
+  );
 }

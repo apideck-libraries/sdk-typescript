@@ -4,13 +4,16 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type FileStorageDrivesAddGlobals = {
   /**
    * ID of the consumer which you want to get or push data from
    */
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   /**
    * The ID of your Unify application
    */
@@ -47,13 +50,13 @@ export const FileStorageDrivesAddGlobals$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
 /** @internal */
 export type FileStorageDrivesAddGlobals$Outbound = {
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   appId?: string | undefined;
 };
 
@@ -63,7 +66,7 @@ export const FileStorageDrivesAddGlobals$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   FileStorageDrivesAddGlobals
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
@@ -78,6 +81,26 @@ export namespace FileStorageDrivesAddGlobals$ {
   export const outboundSchema = FileStorageDrivesAddGlobals$outboundSchema;
   /** @deprecated use `FileStorageDrivesAddGlobals$Outbound` instead. */
   export type Outbound = FileStorageDrivesAddGlobals$Outbound;
+}
+
+export function fileStorageDrivesAddGlobalsToJSON(
+  fileStorageDrivesAddGlobals: FileStorageDrivesAddGlobals,
+): string {
+  return JSON.stringify(
+    FileStorageDrivesAddGlobals$outboundSchema.parse(
+      fileStorageDrivesAddGlobals,
+    ),
+  );
+}
+
+export function fileStorageDrivesAddGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<FileStorageDrivesAddGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => FileStorageDrivesAddGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'FileStorageDrivesAddGlobals' from JSON`,
+  );
 }
 
 /** @internal */
@@ -128,6 +151,26 @@ export namespace FileStorageDrivesAddRequest$ {
   export const outboundSchema = FileStorageDrivesAddRequest$outboundSchema;
   /** @deprecated use `FileStorageDrivesAddRequest$Outbound` instead. */
   export type Outbound = FileStorageDrivesAddRequest$Outbound;
+}
+
+export function fileStorageDrivesAddRequestToJSON(
+  fileStorageDrivesAddRequest: FileStorageDrivesAddRequest,
+): string {
+  return JSON.stringify(
+    FileStorageDrivesAddRequest$outboundSchema.parse(
+      fileStorageDrivesAddRequest,
+    ),
+  );
+}
+
+export function fileStorageDrivesAddRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<FileStorageDrivesAddRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => FileStorageDrivesAddRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'FileStorageDrivesAddRequest' from JSON`,
+  );
 }
 
 /** @internal */
@@ -186,4 +229,24 @@ export namespace FileStorageDrivesAddResponse$ {
   export const outboundSchema = FileStorageDrivesAddResponse$outboundSchema;
   /** @deprecated use `FileStorageDrivesAddResponse$Outbound` instead. */
   export type Outbound = FileStorageDrivesAddResponse$Outbound;
+}
+
+export function fileStorageDrivesAddResponseToJSON(
+  fileStorageDrivesAddResponse: FileStorageDrivesAddResponse,
+): string {
+  return JSON.stringify(
+    FileStorageDrivesAddResponse$outboundSchema.parse(
+      fileStorageDrivesAddResponse,
+    ),
+  );
+}
+
+export function fileStorageDrivesAddResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<FileStorageDrivesAddResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => FileStorageDrivesAddResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'FileStorageDrivesAddResponse' from JSON`,
+  );
 }

@@ -3,7 +3,10 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export const ConnectorSettingType = {
   Text: "text",
@@ -90,4 +93,22 @@ export namespace ConnectorSetting$ {
   export const outboundSchema = ConnectorSetting$outboundSchema;
   /** @deprecated use `ConnectorSetting$Outbound` instead. */
   export type Outbound = ConnectorSetting$Outbound;
+}
+
+export function connectorSettingToJSON(
+  connectorSetting: ConnectorSetting,
+): string {
+  return JSON.stringify(
+    ConnectorSetting$outboundSchema.parse(connectorSetting),
+  );
+}
+
+export function connectorSettingFromJSON(
+  jsonString: string,
+): SafeParseResult<ConnectorSetting, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ConnectorSetting$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ConnectorSetting' from JSON`,
+  );
 }

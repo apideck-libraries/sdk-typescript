@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type ExtendPaths = {
   /**
@@ -74,6 +77,20 @@ export namespace ExtendPaths$ {
   export type Outbound = ExtendPaths$Outbound;
 }
 
+export function extendPathsToJSON(extendPaths: ExtendPaths): string {
+  return JSON.stringify(ExtendPaths$outboundSchema.parse(extendPaths));
+}
+
+export function extendPathsFromJSON(
+  jsonString: string,
+): SafeParseResult<ExtendPaths, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ExtendPaths$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ExtendPaths' from JSON`,
+  );
+}
+
 /** @internal */
 export const PassThroughBody$inboundSchema: z.ZodType<
   PassThroughBody,
@@ -131,4 +148,20 @@ export namespace PassThroughBody$ {
   export const outboundSchema = PassThroughBody$outboundSchema;
   /** @deprecated use `PassThroughBody$Outbound` instead. */
   export type Outbound = PassThroughBody$Outbound;
+}
+
+export function passThroughBodyToJSON(
+  passThroughBody: PassThroughBody,
+): string {
+  return JSON.stringify(PassThroughBody$outboundSchema.parse(passThroughBody));
+}
+
+export function passThroughBodyFromJSON(
+  jsonString: string,
+): SafeParseResult<PassThroughBody, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => PassThroughBody$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'PassThroughBody' from JSON`,
+  );
 }

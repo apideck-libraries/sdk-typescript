@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type AccountingDepartmentsFilter = {
   /**
@@ -45,4 +48,24 @@ export namespace AccountingDepartmentsFilter$ {
   export const outboundSchema = AccountingDepartmentsFilter$outboundSchema;
   /** @deprecated use `AccountingDepartmentsFilter$Outbound` instead. */
   export type Outbound = AccountingDepartmentsFilter$Outbound;
+}
+
+export function accountingDepartmentsFilterToJSON(
+  accountingDepartmentsFilter: AccountingDepartmentsFilter,
+): string {
+  return JSON.stringify(
+    AccountingDepartmentsFilter$outboundSchema.parse(
+      accountingDepartmentsFilter,
+    ),
+  );
+}
+
+export function accountingDepartmentsFilterFromJSON(
+  jsonString: string,
+): SafeParseResult<AccountingDepartmentsFilter, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => AccountingDepartmentsFilter$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AccountingDepartmentsFilter' from JSON`,
+  );
 }

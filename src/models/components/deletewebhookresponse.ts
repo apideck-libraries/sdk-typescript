@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   Webhook,
   Webhook$inboundSchema,
@@ -74,4 +77,22 @@ export namespace DeleteWebhookResponse$ {
   export const outboundSchema = DeleteWebhookResponse$outboundSchema;
   /** @deprecated use `DeleteWebhookResponse$Outbound` instead. */
   export type Outbound = DeleteWebhookResponse$Outbound;
+}
+
+export function deleteWebhookResponseToJSON(
+  deleteWebhookResponse: DeleteWebhookResponse,
+): string {
+  return JSON.stringify(
+    DeleteWebhookResponse$outboundSchema.parse(deleteWebhookResponse),
+  );
+}
+
+export function deleteWebhookResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<DeleteWebhookResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => DeleteWebhookResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'DeleteWebhookResponse' from JSON`,
+  );
 }

@@ -5,9 +5,9 @@ Status of the API. APIs with status live or beta are callable.
 ## Example Usage
 
 ```typescript
-import { ApiStatus } from "apideck/models/components";
+import { ApiStatus } from "@apideck/sdk/models/components";
 
-let value: ApiStatus = "beta";
+let value: ApiStatus = "development";
 ```
 
 ## Values

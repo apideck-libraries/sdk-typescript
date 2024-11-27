@@ -4,13 +4,16 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type HrisEmployeePayrollsOneGlobals = {
   /**
    * ID of the consumer which you want to get or push data from
    */
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   /**
    * The ID of your Unify application
    */
@@ -60,13 +63,13 @@ export const HrisEmployeePayrollsOneGlobals$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
 /** @internal */
 export type HrisEmployeePayrollsOneGlobals$Outbound = {
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   appId?: string | undefined;
 };
 
@@ -76,7 +79,7 @@ export const HrisEmployeePayrollsOneGlobals$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   HrisEmployeePayrollsOneGlobals
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
@@ -91,6 +94,26 @@ export namespace HrisEmployeePayrollsOneGlobals$ {
   export const outboundSchema = HrisEmployeePayrollsOneGlobals$outboundSchema;
   /** @deprecated use `HrisEmployeePayrollsOneGlobals$Outbound` instead. */
   export type Outbound = HrisEmployeePayrollsOneGlobals$Outbound;
+}
+
+export function hrisEmployeePayrollsOneGlobalsToJSON(
+  hrisEmployeePayrollsOneGlobals: HrisEmployeePayrollsOneGlobals,
+): string {
+  return JSON.stringify(
+    HrisEmployeePayrollsOneGlobals$outboundSchema.parse(
+      hrisEmployeePayrollsOneGlobals,
+    ),
+  );
+}
+
+export function hrisEmployeePayrollsOneGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<HrisEmployeePayrollsOneGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => HrisEmployeePayrollsOneGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'HrisEmployeePayrollsOneGlobals' from JSON`,
+  );
 }
 
 /** @internal */
@@ -149,6 +172,26 @@ export namespace HrisEmployeePayrollsOneRequest$ {
   export const outboundSchema = HrisEmployeePayrollsOneRequest$outboundSchema;
   /** @deprecated use `HrisEmployeePayrollsOneRequest$Outbound` instead. */
   export type Outbound = HrisEmployeePayrollsOneRequest$Outbound;
+}
+
+export function hrisEmployeePayrollsOneRequestToJSON(
+  hrisEmployeePayrollsOneRequest: HrisEmployeePayrollsOneRequest,
+): string {
+  return JSON.stringify(
+    HrisEmployeePayrollsOneRequest$outboundSchema.parse(
+      hrisEmployeePayrollsOneRequest,
+    ),
+  );
+}
+
+export function hrisEmployeePayrollsOneRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<HrisEmployeePayrollsOneRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => HrisEmployeePayrollsOneRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'HrisEmployeePayrollsOneRequest' from JSON`,
+  );
 }
 
 /** @internal */
@@ -211,4 +254,24 @@ export namespace HrisEmployeePayrollsOneResponse$ {
   export const outboundSchema = HrisEmployeePayrollsOneResponse$outboundSchema;
   /** @deprecated use `HrisEmployeePayrollsOneResponse$Outbound` instead. */
   export type Outbound = HrisEmployeePayrollsOneResponse$Outbound;
+}
+
+export function hrisEmployeePayrollsOneResponseToJSON(
+  hrisEmployeePayrollsOneResponse: HrisEmployeePayrollsOneResponse,
+): string {
+  return JSON.stringify(
+    HrisEmployeePayrollsOneResponse$outboundSchema.parse(
+      hrisEmployeePayrollsOneResponse,
+    ),
+  );
+}
+
+export function hrisEmployeePayrollsOneResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<HrisEmployeePayrollsOneResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => HrisEmployeePayrollsOneResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'HrisEmployeePayrollsOneResponse' from JSON`,
+  );
 }

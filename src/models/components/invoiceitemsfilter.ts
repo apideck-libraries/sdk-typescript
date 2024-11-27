@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type InvoiceItemsFilter = {
   /**
@@ -45,4 +48,22 @@ export namespace InvoiceItemsFilter$ {
   export const outboundSchema = InvoiceItemsFilter$outboundSchema;
   /** @deprecated use `InvoiceItemsFilter$Outbound` instead. */
   export type Outbound = InvoiceItemsFilter$Outbound;
+}
+
+export function invoiceItemsFilterToJSON(
+  invoiceItemsFilter: InvoiceItemsFilter,
+): string {
+  return JSON.stringify(
+    InvoiceItemsFilter$outboundSchema.parse(invoiceItemsFilter),
+  );
+}
+
+export function invoiceItemsFilterFromJSON(
+  jsonString: string,
+): SafeParseResult<InvoiceItemsFilter, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => InvoiceItemsFilter$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'InvoiceItemsFilter' from JSON`,
+  );
 }

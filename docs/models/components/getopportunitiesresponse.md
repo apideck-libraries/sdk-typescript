@@ -5,8 +5,8 @@ Opportunities
 ## Example Usage
 
 ```typescript
-import { GetOpportunitiesResponse } from "apideck/models/components";
-import { RFCDate } from "apideck/types";
+import { GetOpportunitiesResponse } from "@apideck/sdk/models/components";
+import { RFCDate } from "@apideck/sdk/types";
 
 let value: GetOpportunitiesResponse = {
   statusCode: 200,
@@ -55,9 +55,7 @@ let value: GetOpportunitiesResponse = {
           id: "2389328923893298",
           name: "employee_level",
           description: "Employee Level",
-          value: [
-            "<value>",
-          ],
+          value: "Uses Salesforce and Marketo",
         },
       ],
       stageLastChangedAt: new Date("2020-09-30T07:43:32.000Z"),

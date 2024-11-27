@@ -11,8 +11,6 @@ import { Ecommerce } from "./ecommerce.js";
 import { FileStorage } from "./filestorage.js";
 import { Hris } from "./hris.js";
 import { IssueTracking } from "./issuetracking.js";
-import { Lead } from "./lead.js";
-import { Pos } from "./pos.js";
 import { Sms } from "./sms.js";
 import { Vault } from "./vault.js";
 import { Webhook } from "./webhook.js";
@@ -46,16 +44,6 @@ export class Apideck extends ClientSDK {
   private _hris?: Hris;
   get hris(): Hris {
     return (this._hris ??= new Hris(this._options));
-  }
-
-  private _lead?: Lead;
-  get lead(): Lead {
-    return (this._lead ??= new Lead(this._options));
-  }
-
-  private _pos?: Pos;
-  get pos(): Pos {
-    return (this._pos ??= new Pos(this._options));
   }
 
   private _sms?: Sms;

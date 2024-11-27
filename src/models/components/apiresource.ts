@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   ResourceStatus,
   ResourceStatus$inboundSchema,
@@ -96,6 +99,22 @@ export namespace LinkedResources$ {
   export type Outbound = LinkedResources$Outbound;
 }
 
+export function linkedResourcesToJSON(
+  linkedResources: LinkedResources,
+): string {
+  return JSON.stringify(LinkedResources$outboundSchema.parse(linkedResources));
+}
+
+export function linkedResourcesFromJSON(
+  jsonString: string,
+): SafeParseResult<LinkedResources, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => LinkedResources$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'LinkedResources' from JSON`,
+  );
+}
+
 /** @internal */
 export const Schema$inboundSchema: z.ZodType<Schema, z.ZodTypeDef, unknown> = z
   .object({});
@@ -121,6 +140,20 @@ export namespace Schema$ {
   export const outboundSchema = Schema$outboundSchema;
   /** @deprecated use `Schema$Outbound` instead. */
   export type Outbound = Schema$Outbound;
+}
+
+export function schemaToJSON(schema: Schema): string {
+  return JSON.stringify(Schema$outboundSchema.parse(schema));
+}
+
+export function schemaFromJSON(
+  jsonString: string,
+): SafeParseResult<Schema, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Schema$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Schema' from JSON`,
+  );
 }
 
 /** @internal */
@@ -179,4 +212,18 @@ export namespace ApiResource$ {
   export const outboundSchema = ApiResource$outboundSchema;
   /** @deprecated use `ApiResource$Outbound` instead. */
   export type Outbound = ApiResource$Outbound;
+}
+
+export function apiResourceToJSON(apiResource: ApiResource): string {
+  return JSON.stringify(ApiResource$outboundSchema.parse(apiResource));
+}
+
+export function apiResourceFromJSON(
+  jsonString: string,
+): SafeParseResult<ApiResource, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ApiResource$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ApiResource' from JSON`,
+  );
 }

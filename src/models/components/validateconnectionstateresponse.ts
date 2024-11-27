@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   ConnectionState,
   ConnectionState$inboundSchema,
@@ -77,6 +80,27 @@ export namespace ValidateConnectionStateResponseData$ {
   export type Outbound = ValidateConnectionStateResponseData$Outbound;
 }
 
+export function validateConnectionStateResponseDataToJSON(
+  validateConnectionStateResponseData: ValidateConnectionStateResponseData,
+): string {
+  return JSON.stringify(
+    ValidateConnectionStateResponseData$outboundSchema.parse(
+      validateConnectionStateResponseData,
+    ),
+  );
+}
+
+export function validateConnectionStateResponseDataFromJSON(
+  jsonString: string,
+): SafeParseResult<ValidateConnectionStateResponseData, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      ValidateConnectionStateResponseData$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ValidateConnectionStateResponseData' from JSON`,
+  );
+}
+
 /** @internal */
 export const ValidateConnectionStateResponse$inboundSchema: z.ZodType<
   ValidateConnectionStateResponse,
@@ -125,4 +149,24 @@ export namespace ValidateConnectionStateResponse$ {
   export const outboundSchema = ValidateConnectionStateResponse$outboundSchema;
   /** @deprecated use `ValidateConnectionStateResponse$Outbound` instead. */
   export type Outbound = ValidateConnectionStateResponse$Outbound;
+}
+
+export function validateConnectionStateResponseToJSON(
+  validateConnectionStateResponse: ValidateConnectionStateResponse,
+): string {
+  return JSON.stringify(
+    ValidateConnectionStateResponse$outboundSchema.parse(
+      validateConnectionStateResponse,
+    ),
+  );
+}
+
+export function validateConnectionStateResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<ValidateConnectionStateResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ValidateConnectionStateResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ValidateConnectionStateResponse' from JSON`,
+  );
 }

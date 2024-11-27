@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   BalanceSheet,
   BalanceSheet$inboundSchema,
@@ -95,4 +98,22 @@ export namespace GetBalanceSheetResponse$ {
   export const outboundSchema = GetBalanceSheetResponse$outboundSchema;
   /** @deprecated use `GetBalanceSheetResponse$Outbound` instead. */
   export type Outbound = GetBalanceSheetResponse$Outbound;
+}
+
+export function getBalanceSheetResponseToJSON(
+  getBalanceSheetResponse: GetBalanceSheetResponse,
+): string {
+  return JSON.stringify(
+    GetBalanceSheetResponse$outboundSchema.parse(getBalanceSheetResponse),
+  );
+}
+
+export function getBalanceSheetResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<GetBalanceSheetResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetBalanceSheetResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetBalanceSheetResponse' from JSON`,
+  );
 }

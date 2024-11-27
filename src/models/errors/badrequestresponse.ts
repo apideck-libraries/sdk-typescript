@@ -4,13 +4,14 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
-
-export type Two = {};
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "./sdkvalidationerror.js";
 
 /**
  * Contains parameter or domain specific information related to the error and why it occurred.
  */
-export type Detail = Two | string;
+export type Detail = string | { [k: string]: any };
 
 /**
  * Bad Request
@@ -35,7 +36,7 @@ export type BadRequestResponseData = {
   /**
    * Contains parameter or domain specific information related to the error and why it occurred.
    */
-  detail?: Two | string | undefined;
+  detail?: string | { [k: string]: any } | undefined;
   /**
    * Link to documentation of error type
    */
@@ -61,7 +62,7 @@ export class BadRequestResponse extends Error {
   /**
    * Contains parameter or domain specific information related to the error and why it occurred.
    */
-  detail?: Two | string | undefined;
+  detail?: string | { [k: string]: any } | undefined;
   /**
    * Link to documentation of error type
    */
@@ -71,9 +72,7 @@ export class BadRequestResponse extends Error {
   data$: BadRequestResponseData;
 
   constructor(err: BadRequestResponseData) {
-    const message = "message" in err && typeof err.message === "string"
-      ? err.message
-      : `API error occurred: ${JSON.stringify(err)}`;
+    const message = err.message || "API error occurred";
     super(message);
     this.data$ = err;
 
@@ -88,42 +87,18 @@ export class BadRequestResponse extends Error {
 }
 
 /** @internal */
-export const Two$inboundSchema: z.ZodType<Two, z.ZodTypeDef, unknown> = z
-  .object({});
-
-/** @internal */
-export type Two$Outbound = {};
-
-/** @internal */
-export const Two$outboundSchema: z.ZodType<Two$Outbound, z.ZodTypeDef, Two> = z
-  .object({});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Two$ {
-  /** @deprecated use `Two$inboundSchema` instead. */
-  export const inboundSchema = Two$inboundSchema;
-  /** @deprecated use `Two$outboundSchema` instead. */
-  export const outboundSchema = Two$outboundSchema;
-  /** @deprecated use `Two$Outbound` instead. */
-  export type Outbound = Two$Outbound;
-}
-
-/** @internal */
 export const Detail$inboundSchema: z.ZodType<Detail, z.ZodTypeDef, unknown> = z
-  .union([z.lazy(() => Two$inboundSchema), z.string()]);
+  .union([z.string(), z.record(z.any())]);
 
 /** @internal */
-export type Detail$Outbound = Two$Outbound | string;
+export type Detail$Outbound = string | { [k: string]: any };
 
 /** @internal */
 export const Detail$outboundSchema: z.ZodType<
   Detail$Outbound,
   z.ZodTypeDef,
   Detail
-> = z.union([z.lazy(() => Two$outboundSchema), z.string()]);
+> = z.union([z.string(), z.record(z.any())]);
 
 /**
  * @internal
@@ -138,6 +113,20 @@ export namespace Detail$ {
   export type Outbound = Detail$Outbound;
 }
 
+export function detailToJSON(detail: Detail): string {
+  return JSON.stringify(Detail$outboundSchema.parse(detail));
+}
+
+export function detailFromJSON(
+  jsonString: string,
+): SafeParseResult<Detail, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Detail$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Detail' from JSON`,
+  );
+}
+
 /** @internal */
 export const BadRequestResponse$inboundSchema: z.ZodType<
   BadRequestResponse,
@@ -148,7 +137,7 @@ export const BadRequestResponse$inboundSchema: z.ZodType<
   error: z.string().optional(),
   type_name: z.string().optional(),
   message: z.string().optional(),
-  detail: z.union([z.lazy(() => Two$inboundSchema), z.string()]).optional(),
+  detail: z.union([z.string(), z.record(z.any())]).optional(),
   ref: z.string().optional(),
 })
   .transform((v) => {
@@ -166,7 +155,7 @@ export type BadRequestResponse$Outbound = {
   error?: string | undefined;
   type_name?: string | undefined;
   message?: string | undefined;
-  detail?: Two$Outbound | string | undefined;
+  detail?: string | { [k: string]: any } | undefined;
   ref?: string | undefined;
 };
 
@@ -183,8 +172,7 @@ export const BadRequestResponse$outboundSchema: z.ZodType<
       error: z.string().optional(),
       typeName: z.string().optional(),
       message: z.string().optional(),
-      detail: z.union([z.lazy(() => Two$outboundSchema), z.string()])
-        .optional(),
+      detail: z.union([z.string(), z.record(z.any())]).optional(),
       ref: z.string().optional(),
     }).transform((v) => {
       return remap$(v, {

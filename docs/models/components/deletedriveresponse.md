@@ -5,7 +5,7 @@ Drives
 ## Example Usage
 
 ```typescript
-import { DeleteDriveResponse } from "apideck/models/components";
+import { DeleteDriveResponse } from "@apideck/sdk/models/components";
 
 let value: DeleteDriveResponse = {
   statusCode: 200,

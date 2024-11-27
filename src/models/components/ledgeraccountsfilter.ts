@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type LedgerAccountsFilter = {
   updatedSince?: Date | undefined;
@@ -53,4 +56,22 @@ export namespace LedgerAccountsFilter$ {
   export const outboundSchema = LedgerAccountsFilter$outboundSchema;
   /** @deprecated use `LedgerAccountsFilter$Outbound` instead. */
   export type Outbound = LedgerAccountsFilter$Outbound;
+}
+
+export function ledgerAccountsFilterToJSON(
+  ledgerAccountsFilter: LedgerAccountsFilter,
+): string {
+  return JSON.stringify(
+    LedgerAccountsFilter$outboundSchema.parse(ledgerAccountsFilter),
+  );
+}
+
+export function ledgerAccountsFilterFromJSON(
+  jsonString: string,
+): SafeParseResult<LedgerAccountsFilter, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => LedgerAccountsFilter$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'LedgerAccountsFilter' from JSON`,
+  );
 }

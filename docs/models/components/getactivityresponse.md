@@ -5,7 +5,7 @@ Activity
 ## Example Usage
 
 ```typescript
-import { GetActivityResponse } from "apideck/models/components";
+import { GetActivityResponse } from "@apideck/sdk/models/components";
 
 let value: GetActivityResponse = {
   statusCode: 200,
@@ -88,9 +88,7 @@ let value: GetActivityResponse = {
         id: "2389328923893298",
         name: "employee_level",
         description: "Employee Level",
-        value: [
-          {},
-        ],
+        value: 10,
       },
     ],
     attendees: [

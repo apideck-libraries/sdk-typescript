@@ -5,7 +5,7 @@ Which Unified Api request was made to.
 ## Example Usage
 
 ```typescript
-import { UnifiedApi } from "apideck/models/components";
+import { UnifiedApi } from "@apideck/sdk/models/components";
 
 let value: UnifiedApi = "vault";
 ```

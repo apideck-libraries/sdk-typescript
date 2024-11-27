@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   Links,
   Links$inboundSchema,
@@ -100,4 +103,22 @@ export namespace GetWebhooksResponse$ {
   export const outboundSchema = GetWebhooksResponse$outboundSchema;
   /** @deprecated use `GetWebhooksResponse$Outbound` instead. */
   export type Outbound = GetWebhooksResponse$Outbound;
+}
+
+export function getWebhooksResponseToJSON(
+  getWebhooksResponse: GetWebhooksResponse,
+): string {
+  return JSON.stringify(
+    GetWebhooksResponse$outboundSchema.parse(getWebhooksResponse),
+  );
+}
+
+export function getWebhooksResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<GetWebhooksResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetWebhooksResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetWebhooksResponse' from JSON`,
+  );
 }

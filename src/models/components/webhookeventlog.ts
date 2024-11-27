@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   UnifiedApiId,
   UnifiedApiId$inboundSchema,
@@ -150,6 +153,24 @@ export namespace WebhookEventLogService$ {
   export type Outbound = WebhookEventLogService$Outbound;
 }
 
+export function webhookEventLogServiceToJSON(
+  webhookEventLogService: WebhookEventLogService,
+): string {
+  return JSON.stringify(
+    WebhookEventLogService$outboundSchema.parse(webhookEventLogService),
+  );
+}
+
+export function webhookEventLogServiceFromJSON(
+  jsonString: string,
+): SafeParseResult<WebhookEventLogService, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => WebhookEventLogService$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'WebhookEventLogService' from JSON`,
+  );
+}
+
 /** @internal */
 export const Attempts$inboundSchema: z.ZodType<
   Attempts,
@@ -203,6 +224,20 @@ export namespace Attempts$ {
   export const outboundSchema = Attempts$outboundSchema;
   /** @deprecated use `Attempts$Outbound` instead. */
   export type Outbound = Attempts$Outbound;
+}
+
+export function attemptsToJSON(attempts: Attempts): string {
+  return JSON.stringify(Attempts$outboundSchema.parse(attempts));
+}
+
+export function attemptsFromJSON(
+  jsonString: string,
+): SafeParseResult<Attempts, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Attempts$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Attempts' from JSON`,
+  );
 }
 
 /** @internal */
@@ -315,4 +350,20 @@ export namespace WebhookEventLog$ {
   export const outboundSchema = WebhookEventLog$outboundSchema;
   /** @deprecated use `WebhookEventLog$Outbound` instead. */
   export type Outbound = WebhookEventLog$Outbound;
+}
+
+export function webhookEventLogToJSON(
+  webhookEventLog: WebhookEventLog,
+): string {
+  return JSON.stringify(WebhookEventLog$outboundSchema.parse(webhookEventLog));
+}
+
+export function webhookEventLogFromJSON(
+  jsonString: string,
+): SafeParseResult<WebhookEventLog, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => WebhookEventLog$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'WebhookEventLog' from JSON`,
+  );
 }

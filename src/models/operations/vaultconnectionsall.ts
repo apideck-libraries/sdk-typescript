@@ -4,13 +4,16 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type VaultConnectionsAllGlobals = {
   /**
    * ID of the consumer which you want to get or push data from
    */
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   /**
    * The ID of your Unify application
    */
@@ -46,13 +49,13 @@ export const VaultConnectionsAllGlobals$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
 /** @internal */
 export type VaultConnectionsAllGlobals$Outbound = {
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   appId?: string | undefined;
 };
 
@@ -62,7 +65,7 @@ export const VaultConnectionsAllGlobals$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   VaultConnectionsAllGlobals
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
@@ -77,6 +80,24 @@ export namespace VaultConnectionsAllGlobals$ {
   export const outboundSchema = VaultConnectionsAllGlobals$outboundSchema;
   /** @deprecated use `VaultConnectionsAllGlobals$Outbound` instead. */
   export type Outbound = VaultConnectionsAllGlobals$Outbound;
+}
+
+export function vaultConnectionsAllGlobalsToJSON(
+  vaultConnectionsAllGlobals: VaultConnectionsAllGlobals,
+): string {
+  return JSON.stringify(
+    VaultConnectionsAllGlobals$outboundSchema.parse(vaultConnectionsAllGlobals),
+  );
+}
+
+export function vaultConnectionsAllGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<VaultConnectionsAllGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => VaultConnectionsAllGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'VaultConnectionsAllGlobals' from JSON`,
+  );
 }
 
 /** @internal */
@@ -116,6 +137,24 @@ export namespace VaultConnectionsAllRequest$ {
   export const outboundSchema = VaultConnectionsAllRequest$outboundSchema;
   /** @deprecated use `VaultConnectionsAllRequest$Outbound` instead. */
   export type Outbound = VaultConnectionsAllRequest$Outbound;
+}
+
+export function vaultConnectionsAllRequestToJSON(
+  vaultConnectionsAllRequest: VaultConnectionsAllRequest,
+): string {
+  return JSON.stringify(
+    VaultConnectionsAllRequest$outboundSchema.parse(vaultConnectionsAllRequest),
+  );
+}
+
+export function vaultConnectionsAllRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<VaultConnectionsAllRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => VaultConnectionsAllRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'VaultConnectionsAllRequest' from JSON`,
+  );
 }
 
 /** @internal */
@@ -178,4 +217,24 @@ export namespace VaultConnectionsAllResponse$ {
   export const outboundSchema = VaultConnectionsAllResponse$outboundSchema;
   /** @deprecated use `VaultConnectionsAllResponse$Outbound` instead. */
   export type Outbound = VaultConnectionsAllResponse$Outbound;
+}
+
+export function vaultConnectionsAllResponseToJSON(
+  vaultConnectionsAllResponse: VaultConnectionsAllResponse,
+): string {
+  return JSON.stringify(
+    VaultConnectionsAllResponse$outboundSchema.parse(
+      vaultConnectionsAllResponse,
+    ),
+  );
+}
+
+export function vaultConnectionsAllResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<VaultConnectionsAllResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => VaultConnectionsAllResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'VaultConnectionsAllResponse' from JSON`,
+  );
 }

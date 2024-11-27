@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
  * Cursors to navigate to previous or next pages through the API
@@ -76,6 +79,20 @@ export namespace Cursors$ {
   export type Outbound = Cursors$Outbound;
 }
 
+export function cursorsToJSON(cursors: Cursors): string {
+  return JSON.stringify(Cursors$outboundSchema.parse(cursors));
+}
+
+export function cursorsFromJSON(
+  jsonString: string,
+): SafeParseResult<Cursors, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Cursors$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Cursors' from JSON`,
+  );
+}
+
 /** @internal */
 export const Meta$inboundSchema: z.ZodType<Meta, z.ZodTypeDef, unknown> = z
   .object({
@@ -115,4 +132,18 @@ export namespace Meta$ {
   export const outboundSchema = Meta$outboundSchema;
   /** @deprecated use `Meta$Outbound` instead. */
   export type Outbound = Meta$Outbound;
+}
+
+export function metaToJSON(meta: Meta): string {
+  return JSON.stringify(Meta$outboundSchema.parse(meta));
+}
+
+export function metaFromJSON(
+  jsonString: string,
+): SafeParseResult<Meta, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Meta$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Meta' from JSON`,
+  );
 }

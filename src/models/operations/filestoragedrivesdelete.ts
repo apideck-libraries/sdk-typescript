@@ -4,13 +4,16 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type FileStorageDrivesDeleteGlobals = {
   /**
    * ID of the consumer which you want to get or push data from
    */
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   /**
    * The ID of your Unify application
    */
@@ -50,13 +53,13 @@ export const FileStorageDrivesDeleteGlobals$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
 /** @internal */
 export type FileStorageDrivesDeleteGlobals$Outbound = {
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   appId?: string | undefined;
 };
 
@@ -66,7 +69,7 @@ export const FileStorageDrivesDeleteGlobals$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   FileStorageDrivesDeleteGlobals
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
@@ -81,6 +84,26 @@ export namespace FileStorageDrivesDeleteGlobals$ {
   export const outboundSchema = FileStorageDrivesDeleteGlobals$outboundSchema;
   /** @deprecated use `FileStorageDrivesDeleteGlobals$Outbound` instead. */
   export type Outbound = FileStorageDrivesDeleteGlobals$Outbound;
+}
+
+export function fileStorageDrivesDeleteGlobalsToJSON(
+  fileStorageDrivesDeleteGlobals: FileStorageDrivesDeleteGlobals,
+): string {
+  return JSON.stringify(
+    FileStorageDrivesDeleteGlobals$outboundSchema.parse(
+      fileStorageDrivesDeleteGlobals,
+    ),
+  );
+}
+
+export function fileStorageDrivesDeleteGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<FileStorageDrivesDeleteGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => FileStorageDrivesDeleteGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'FileStorageDrivesDeleteGlobals' from JSON`,
+  );
 }
 
 /** @internal */
@@ -123,6 +146,26 @@ export namespace FileStorageDrivesDeleteRequest$ {
   export const outboundSchema = FileStorageDrivesDeleteRequest$outboundSchema;
   /** @deprecated use `FileStorageDrivesDeleteRequest$Outbound` instead. */
   export type Outbound = FileStorageDrivesDeleteRequest$Outbound;
+}
+
+export function fileStorageDrivesDeleteRequestToJSON(
+  fileStorageDrivesDeleteRequest: FileStorageDrivesDeleteRequest,
+): string {
+  return JSON.stringify(
+    FileStorageDrivesDeleteRequest$outboundSchema.parse(
+      fileStorageDrivesDeleteRequest,
+    ),
+  );
+}
+
+export function fileStorageDrivesDeleteRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<FileStorageDrivesDeleteRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => FileStorageDrivesDeleteRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'FileStorageDrivesDeleteRequest' from JSON`,
+  );
 }
 
 /** @internal */
@@ -181,4 +224,24 @@ export namespace FileStorageDrivesDeleteResponse$ {
   export const outboundSchema = FileStorageDrivesDeleteResponse$outboundSchema;
   /** @deprecated use `FileStorageDrivesDeleteResponse$Outbound` instead. */
   export type Outbound = FileStorageDrivesDeleteResponse$Outbound;
+}
+
+export function fileStorageDrivesDeleteResponseToJSON(
+  fileStorageDrivesDeleteResponse: FileStorageDrivesDeleteResponse,
+): string {
+  return JSON.stringify(
+    FileStorageDrivesDeleteResponse$outboundSchema.parse(
+      fileStorageDrivesDeleteResponse,
+    ),
+  );
+}
+
+export function fileStorageDrivesDeleteResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<FileStorageDrivesDeleteResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => FileStorageDrivesDeleteResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'FileStorageDrivesDeleteResponse' from JSON`,
+  );
 }

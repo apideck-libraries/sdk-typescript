@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { FileStorageFilesSearchRequest } from "apideck/models/operations";
+import { FileStorageFilesSearchRequest } from "@apideck/sdk/models/operations";
 
 let value: FileStorageFilesSearchRequest = {
   serviceId: "salesforce",
@@ -18,22 +18,6 @@ let value: FileStorageFilesSearchRequest = {
   },
   filesSearch: {
     query: "logo jpg",
-    driveId: "1234",
-    passThrough: [
-      {
-        serviceId: "<id>",
-        extendPaths: [
-          {
-            path: "$.nested.property",
-            value: {
-              "TaxClassificationRef": {
-                "value": "EUC-99990201-V1-00020000",
-              },
-            },
-          },
-        ],
-      },
-    ],
   },
 };
 ```

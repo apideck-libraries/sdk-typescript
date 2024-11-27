@@ -4,13 +4,16 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type HrisTimeOffRequestsUpdateGlobals = {
   /**
    * ID of the consumer which you want to get or push data from
    */
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   /**
    * The ID of your Unify application
    */
@@ -57,13 +60,13 @@ export const HrisTimeOffRequestsUpdateGlobals$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
 /** @internal */
 export type HrisTimeOffRequestsUpdateGlobals$Outbound = {
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   appId?: string | undefined;
 };
 
@@ -73,7 +76,7 @@ export const HrisTimeOffRequestsUpdateGlobals$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   HrisTimeOffRequestsUpdateGlobals
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
@@ -88,6 +91,26 @@ export namespace HrisTimeOffRequestsUpdateGlobals$ {
   export const outboundSchema = HrisTimeOffRequestsUpdateGlobals$outboundSchema;
   /** @deprecated use `HrisTimeOffRequestsUpdateGlobals$Outbound` instead. */
   export type Outbound = HrisTimeOffRequestsUpdateGlobals$Outbound;
+}
+
+export function hrisTimeOffRequestsUpdateGlobalsToJSON(
+  hrisTimeOffRequestsUpdateGlobals: HrisTimeOffRequestsUpdateGlobals,
+): string {
+  return JSON.stringify(
+    HrisTimeOffRequestsUpdateGlobals$outboundSchema.parse(
+      hrisTimeOffRequestsUpdateGlobals,
+    ),
+  );
+}
+
+export function hrisTimeOffRequestsUpdateGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<HrisTimeOffRequestsUpdateGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => HrisTimeOffRequestsUpdateGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'HrisTimeOffRequestsUpdateGlobals' from JSON`,
+  );
 }
 
 /** @internal */
@@ -146,6 +169,26 @@ export namespace HrisTimeOffRequestsUpdateRequest$ {
   export const outboundSchema = HrisTimeOffRequestsUpdateRequest$outboundSchema;
   /** @deprecated use `HrisTimeOffRequestsUpdateRequest$Outbound` instead. */
   export type Outbound = HrisTimeOffRequestsUpdateRequest$Outbound;
+}
+
+export function hrisTimeOffRequestsUpdateRequestToJSON(
+  hrisTimeOffRequestsUpdateRequest: HrisTimeOffRequestsUpdateRequest,
+): string {
+  return JSON.stringify(
+    HrisTimeOffRequestsUpdateRequest$outboundSchema.parse(
+      hrisTimeOffRequestsUpdateRequest,
+    ),
+  );
+}
+
+export function hrisTimeOffRequestsUpdateRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<HrisTimeOffRequestsUpdateRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => HrisTimeOffRequestsUpdateRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'HrisTimeOffRequestsUpdateRequest' from JSON`,
+  );
 }
 
 /** @internal */
@@ -209,4 +252,24 @@ export namespace HrisTimeOffRequestsUpdateResponse$ {
     HrisTimeOffRequestsUpdateResponse$outboundSchema;
   /** @deprecated use `HrisTimeOffRequestsUpdateResponse$Outbound` instead. */
   export type Outbound = HrisTimeOffRequestsUpdateResponse$Outbound;
+}
+
+export function hrisTimeOffRequestsUpdateResponseToJSON(
+  hrisTimeOffRequestsUpdateResponse: HrisTimeOffRequestsUpdateResponse,
+): string {
+  return JSON.stringify(
+    HrisTimeOffRequestsUpdateResponse$outboundSchema.parse(
+      hrisTimeOffRequestsUpdateResponse,
+    ),
+  );
+}
+
+export function hrisTimeOffRequestsUpdateResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<HrisTimeOffRequestsUpdateResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => HrisTimeOffRequestsUpdateResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'HrisTimeOffRequestsUpdateResponse' from JSON`,
+  );
 }

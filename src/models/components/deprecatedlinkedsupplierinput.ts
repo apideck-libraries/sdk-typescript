@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   Address,
   Address$inboundSchema,
@@ -69,4 +72,24 @@ export namespace DeprecatedLinkedSupplierInput$ {
   export const outboundSchema = DeprecatedLinkedSupplierInput$outboundSchema;
   /** @deprecated use `DeprecatedLinkedSupplierInput$Outbound` instead. */
   export type Outbound = DeprecatedLinkedSupplierInput$Outbound;
+}
+
+export function deprecatedLinkedSupplierInputToJSON(
+  deprecatedLinkedSupplierInput: DeprecatedLinkedSupplierInput,
+): string {
+  return JSON.stringify(
+    DeprecatedLinkedSupplierInput$outboundSchema.parse(
+      deprecatedLinkedSupplierInput,
+    ),
+  );
+}
+
+export function deprecatedLinkedSupplierInputFromJSON(
+  jsonString: string,
+): SafeParseResult<DeprecatedLinkedSupplierInput, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => DeprecatedLinkedSupplierInput$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'DeprecatedLinkedSupplierInput' from JSON`,
+  );
 }

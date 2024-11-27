@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { JournalEntryInput } from "apideck/models/components";
+import { JournalEntryInput } from "@apideck/sdk/models/components";
 
 let value: JournalEntryInput = {
   title: "Purchase Invoice-Inventory (USD): 2019/02/01 Batch Summary Entry",

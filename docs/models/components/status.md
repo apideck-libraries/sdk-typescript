@@ -5,7 +5,7 @@ The status of the webhook.
 ## Example Usage
 
 ```typescript
-import { Status } from "apideck/models/components";
+import { Status } from "@apideck/sdk/models/components";
 
 let value: Status = "enabled";
 ```

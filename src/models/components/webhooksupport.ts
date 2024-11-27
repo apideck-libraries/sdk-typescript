@@ -4,7 +4,10 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
  * Mode of the webhook support.
@@ -237,6 +240,20 @@ export namespace RequestRate$ {
   export type Outbound = RequestRate$Outbound;
 }
 
+export function requestRateToJSON(requestRate: RequestRate): string {
+  return JSON.stringify(RequestRate$outboundSchema.parse(requestRate));
+}
+
+export function requestRateFromJSON(
+  jsonString: string,
+): SafeParseResult<RequestRate, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => RequestRate$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'RequestRate' from JSON`,
+  );
+}
+
 /** @internal */
 export const WebhookSupportResources$inboundSchema: z.ZodType<
   WebhookSupportResources,
@@ -271,6 +288,24 @@ export namespace WebhookSupportResources$ {
   export const outboundSchema = WebhookSupportResources$outboundSchema;
   /** @deprecated use `WebhookSupportResources$Outbound` instead. */
   export type Outbound = WebhookSupportResources$Outbound;
+}
+
+export function webhookSupportResourcesToJSON(
+  webhookSupportResources: WebhookSupportResources,
+): string {
+  return JSON.stringify(
+    WebhookSupportResources$outboundSchema.parse(webhookSupportResources),
+  );
+}
+
+export function webhookSupportResourcesFromJSON(
+  jsonString: string,
+): SafeParseResult<WebhookSupportResources, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => WebhookSupportResources$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'WebhookSupportResources' from JSON`,
+  );
 }
 
 /** @internal */
@@ -320,6 +355,22 @@ export namespace VirtualWebhooks$ {
   export const outboundSchema = VirtualWebhooks$outboundSchema;
   /** @deprecated use `VirtualWebhooks$Outbound` instead. */
   export type Outbound = VirtualWebhooks$Outbound;
+}
+
+export function virtualWebhooksToJSON(
+  virtualWebhooks: VirtualWebhooks,
+): string {
+  return JSON.stringify(VirtualWebhooks$outboundSchema.parse(virtualWebhooks));
+}
+
+export function virtualWebhooksFromJSON(
+  jsonString: string,
+): SafeParseResult<VirtualWebhooks, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => VirtualWebhooks$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'VirtualWebhooks' from JSON`,
+  );
 }
 
 /** @internal */
@@ -377,4 +428,18 @@ export namespace WebhookSupport$ {
   export const outboundSchema = WebhookSupport$outboundSchema;
   /** @deprecated use `WebhookSupport$Outbound` instead. */
   export type Outbound = WebhookSupport$Outbound;
+}
+
+export function webhookSupportToJSON(webhookSupport: WebhookSupport): string {
+  return JSON.stringify(WebhookSupport$outboundSchema.parse(webhookSupport));
+}
+
+export function webhookSupportFromJSON(
+  jsonString: string,
+): SafeParseResult<WebhookSupport, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => WebhookSupport$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'WebhookSupport' from JSON`,
+  );
 }

@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   PaginationCoverage,
   PaginationCoverage$inboundSchema,
@@ -177,4 +180,22 @@ export namespace ConnectorResource$ {
   export const outboundSchema = ConnectorResource$outboundSchema;
   /** @deprecated use `ConnectorResource$Outbound` instead. */
   export type Outbound = ConnectorResource$Outbound;
+}
+
+export function connectorResourceToJSON(
+  connectorResource: ConnectorResource,
+): string {
+  return JSON.stringify(
+    ConnectorResource$outboundSchema.parse(connectorResource),
+  );
+}
+
+export function connectorResourceFromJSON(
+  jsonString: string,
+): SafeParseResult<ConnectorResource, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ConnectorResource$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ConnectorResource' from JSON`,
+  );
 }

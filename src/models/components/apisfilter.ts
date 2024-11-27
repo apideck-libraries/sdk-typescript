@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   ApiStatus,
   ApiStatus$inboundSchema,
@@ -50,4 +53,18 @@ export namespace ApisFilter$ {
   export const outboundSchema = ApisFilter$outboundSchema;
   /** @deprecated use `ApisFilter$Outbound` instead. */
   export type Outbound = ApisFilter$Outbound;
+}
+
+export function apisFilterToJSON(apisFilter: ApisFilter): string {
+  return JSON.stringify(ApisFilter$outboundSchema.parse(apisFilter));
+}
+
+export function apisFilterFromJSON(
+  jsonString: string,
+): SafeParseResult<ApisFilter, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ApisFilter$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ApisFilter' from JSON`,
+  );
 }

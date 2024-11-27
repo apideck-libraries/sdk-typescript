@@ -4,7 +4,10 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   LinkedInvoiceItem,
   LinkedInvoiceItem$inboundSchema,
@@ -380,6 +383,20 @@ export namespace BillLineItem$ {
   export type Outbound = BillLineItem$Outbound;
 }
 
+export function billLineItemToJSON(billLineItem: BillLineItem): string {
+  return JSON.stringify(BillLineItem$outboundSchema.parse(billLineItem));
+}
+
+export function billLineItemFromJSON(
+  jsonString: string,
+): SafeParseResult<BillLineItem, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => BillLineItem$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'BillLineItem' from JSON`,
+  );
+}
+
 /** @internal */
 export const BillLineItemInput$inboundSchema: z.ZodType<
   BillLineItemInput,
@@ -507,4 +524,22 @@ export namespace BillLineItemInput$ {
   export const outboundSchema = BillLineItemInput$outboundSchema;
   /** @deprecated use `BillLineItemInput$Outbound` instead. */
   export type Outbound = BillLineItemInput$Outbound;
+}
+
+export function billLineItemInputToJSON(
+  billLineItemInput: BillLineItemInput,
+): string {
+  return JSON.stringify(
+    BillLineItemInput$outboundSchema.parse(billLineItemInput),
+  );
+}
+
+export function billLineItemInputFromJSON(
+  jsonString: string,
+): SafeParseResult<BillLineItemInput, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => BillLineItemInput$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'BillLineItemInput' from JSON`,
+  );
 }

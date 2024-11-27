@@ -4,13 +4,16 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type CrmUsersAllGlobals = {
   /**
    * ID of the consumer which you want to get or push data from
    */
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   /**
    * The ID of your Unify application
    */
@@ -62,13 +65,13 @@ export const CrmUsersAllGlobals$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
 /** @internal */
 export type CrmUsersAllGlobals$Outbound = {
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   appId?: string | undefined;
 };
 
@@ -78,7 +81,7 @@ export const CrmUsersAllGlobals$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   CrmUsersAllGlobals
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
@@ -93,6 +96,24 @@ export namespace CrmUsersAllGlobals$ {
   export const outboundSchema = CrmUsersAllGlobals$outboundSchema;
   /** @deprecated use `CrmUsersAllGlobals$Outbound` instead. */
   export type Outbound = CrmUsersAllGlobals$Outbound;
+}
+
+export function crmUsersAllGlobalsToJSON(
+  crmUsersAllGlobals: CrmUsersAllGlobals,
+): string {
+  return JSON.stringify(
+    CrmUsersAllGlobals$outboundSchema.parse(crmUsersAllGlobals),
+  );
+}
+
+export function crmUsersAllGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<CrmUsersAllGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CrmUsersAllGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CrmUsersAllGlobals' from JSON`,
+  );
 }
 
 /** @internal */
@@ -154,6 +175,24 @@ export namespace CrmUsersAllRequest$ {
   export type Outbound = CrmUsersAllRequest$Outbound;
 }
 
+export function crmUsersAllRequestToJSON(
+  crmUsersAllRequest: CrmUsersAllRequest,
+): string {
+  return JSON.stringify(
+    CrmUsersAllRequest$outboundSchema.parse(crmUsersAllRequest),
+  );
+}
+
+export function crmUsersAllRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<CrmUsersAllRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CrmUsersAllRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CrmUsersAllRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const CrmUsersAllResponse$inboundSchema: z.ZodType<
   CrmUsersAllResponse,
@@ -210,4 +249,22 @@ export namespace CrmUsersAllResponse$ {
   export const outboundSchema = CrmUsersAllResponse$outboundSchema;
   /** @deprecated use `CrmUsersAllResponse$Outbound` instead. */
   export type Outbound = CrmUsersAllResponse$Outbound;
+}
+
+export function crmUsersAllResponseToJSON(
+  crmUsersAllResponse: CrmUsersAllResponse,
+): string {
+  return JSON.stringify(
+    CrmUsersAllResponse$outboundSchema.parse(crmUsersAllResponse),
+  );
+}
+
+export function crmUsersAllResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<CrmUsersAllResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CrmUsersAllResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CrmUsersAllResponse' from JSON`,
+  );
 }

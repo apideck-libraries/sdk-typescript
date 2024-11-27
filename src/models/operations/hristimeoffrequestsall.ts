@@ -4,13 +4,16 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type HrisTimeOffRequestsAllGlobals = {
   /**
    * ID of the consumer which you want to get or push data from
    */
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   /**
    * The ID of your Unify application
    */
@@ -68,13 +71,13 @@ export const HrisTimeOffRequestsAllGlobals$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
 /** @internal */
 export type HrisTimeOffRequestsAllGlobals$Outbound = {
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   appId?: string | undefined;
 };
 
@@ -84,7 +87,7 @@ export const HrisTimeOffRequestsAllGlobals$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   HrisTimeOffRequestsAllGlobals
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
@@ -99,6 +102,26 @@ export namespace HrisTimeOffRequestsAllGlobals$ {
   export const outboundSchema = HrisTimeOffRequestsAllGlobals$outboundSchema;
   /** @deprecated use `HrisTimeOffRequestsAllGlobals$Outbound` instead. */
   export type Outbound = HrisTimeOffRequestsAllGlobals$Outbound;
+}
+
+export function hrisTimeOffRequestsAllGlobalsToJSON(
+  hrisTimeOffRequestsAllGlobals: HrisTimeOffRequestsAllGlobals,
+): string {
+  return JSON.stringify(
+    HrisTimeOffRequestsAllGlobals$outboundSchema.parse(
+      hrisTimeOffRequestsAllGlobals,
+    ),
+  );
+}
+
+export function hrisTimeOffRequestsAllGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<HrisTimeOffRequestsAllGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => HrisTimeOffRequestsAllGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'HrisTimeOffRequestsAllGlobals' from JSON`,
+  );
 }
 
 /** @internal */
@@ -163,6 +186,26 @@ export namespace HrisTimeOffRequestsAllRequest$ {
   export type Outbound = HrisTimeOffRequestsAllRequest$Outbound;
 }
 
+export function hrisTimeOffRequestsAllRequestToJSON(
+  hrisTimeOffRequestsAllRequest: HrisTimeOffRequestsAllRequest,
+): string {
+  return JSON.stringify(
+    HrisTimeOffRequestsAllRequest$outboundSchema.parse(
+      hrisTimeOffRequestsAllRequest,
+    ),
+  );
+}
+
+export function hrisTimeOffRequestsAllRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<HrisTimeOffRequestsAllRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => HrisTimeOffRequestsAllRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'HrisTimeOffRequestsAllRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const HrisTimeOffRequestsAllResponse$inboundSchema: z.ZodType<
   HrisTimeOffRequestsAllResponse,
@@ -223,4 +266,24 @@ export namespace HrisTimeOffRequestsAllResponse$ {
   export const outboundSchema = HrisTimeOffRequestsAllResponse$outboundSchema;
   /** @deprecated use `HrisTimeOffRequestsAllResponse$Outbound` instead. */
   export type Outbound = HrisTimeOffRequestsAllResponse$Outbound;
+}
+
+export function hrisTimeOffRequestsAllResponseToJSON(
+  hrisTimeOffRequestsAllResponse: HrisTimeOffRequestsAllResponse,
+): string {
+  return JSON.stringify(
+    HrisTimeOffRequestsAllResponse$outboundSchema.parse(
+      hrisTimeOffRequestsAllResponse,
+    ),
+  );
+}
+
+export function hrisTimeOffRequestsAllResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<HrisTimeOffRequestsAllResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => HrisTimeOffRequestsAllResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'HrisTimeOffRequestsAllResponse' from JSON`,
+  );
 }

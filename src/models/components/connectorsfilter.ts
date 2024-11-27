@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   ConnectorStatus,
   ConnectorStatus$inboundSchema,
@@ -71,4 +74,22 @@ export namespace ConnectorsFilter$ {
   export const outboundSchema = ConnectorsFilter$outboundSchema;
   /** @deprecated use `ConnectorsFilter$Outbound` instead. */
   export type Outbound = ConnectorsFilter$Outbound;
+}
+
+export function connectorsFilterToJSON(
+  connectorsFilter: ConnectorsFilter,
+): string {
+  return JSON.stringify(
+    ConnectorsFilter$outboundSchema.parse(connectorsFilter),
+  );
+}
+
+export function connectorsFilterFromJSON(
+  jsonString: string,
+): SafeParseResult<ConnectorsFilter, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ConnectorsFilter$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ConnectorsFilter' from JSON`,
+  );
 }

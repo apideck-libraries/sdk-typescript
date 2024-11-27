@@ -3,8 +3,8 @@
 ## Example Usage
 
 ```typescript
-import { CrmOpportunitiesUpdateRequest } from "apideck/models/operations";
-import { RFCDate } from "apideck/types";
+import { CrmOpportunitiesUpdateRequest } from "@apideck/sdk/models/operations";
+import { RFCDate } from "@apideck/sdk/types";
 
 let value: CrmOpportunitiesUpdateRequest = {
   id: "<id>",

@@ -5,7 +5,7 @@ The field on which to sort the Journal Entries.
 ## Example Usage
 
 ```typescript
-import { JournalEntriesSortBy } from "apideck/models/components";
+import { JournalEntriesSortBy } from "@apideck/sdk/models/components";
 
 let value: JournalEntriesSortBy = "updated_at";
 ```

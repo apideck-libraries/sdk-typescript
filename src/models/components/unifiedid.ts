@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type UnifiedId = {
   /**
@@ -45,4 +48,18 @@ export namespace UnifiedId$ {
   export const outboundSchema = UnifiedId$outboundSchema;
   /** @deprecated use `UnifiedId$Outbound` instead. */
   export type Outbound = UnifiedId$Outbound;
+}
+
+export function unifiedIdToJSON(unifiedId: UnifiedId): string {
+  return JSON.stringify(UnifiedId$outboundSchema.parse(unifiedId));
+}
+
+export function unifiedIdFromJSON(
+  jsonString: string,
+): SafeParseResult<UnifiedId, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => UnifiedId$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'UnifiedId' from JSON`,
+  );
 }

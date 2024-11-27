@@ -4,7 +4,10 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   Address,
   Address$inboundSchema,
@@ -569,6 +572,20 @@ export namespace CreditNote$ {
   export type Outbound = CreditNote$Outbound;
 }
 
+export function creditNoteToJSON(creditNote: CreditNote): string {
+  return JSON.stringify(CreditNote$outboundSchema.parse(creditNote));
+}
+
+export function creditNoteFromJSON(
+  jsonString: string,
+): SafeParseResult<CreditNote, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CreditNote$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CreditNote' from JSON`,
+  );
+}
+
 /** @internal */
 export const CreditNoteInput$inboundSchema: z.ZodType<
   CreditNoteInput,
@@ -732,4 +749,20 @@ export namespace CreditNoteInput$ {
   export const outboundSchema = CreditNoteInput$outboundSchema;
   /** @deprecated use `CreditNoteInput$Outbound` instead. */
   export type Outbound = CreditNoteInput$Outbound;
+}
+
+export function creditNoteInputToJSON(
+  creditNoteInput: CreditNoteInput,
+): string {
+  return JSON.stringify(CreditNoteInput$outboundSchema.parse(creditNoteInput));
+}
+
+export function creditNoteInputFromJSON(
+  jsonString: string,
+): SafeParseResult<CreditNoteInput, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CreditNoteInput$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CreditNoteInput' from JSON`,
+  );
 }

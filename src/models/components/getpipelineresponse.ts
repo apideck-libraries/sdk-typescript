@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   Pipeline,
   Pipeline$inboundSchema,
@@ -95,4 +98,22 @@ export namespace GetPipelineResponse$ {
   export const outboundSchema = GetPipelineResponse$outboundSchema;
   /** @deprecated use `GetPipelineResponse$Outbound` instead. */
   export type Outbound = GetPipelineResponse$Outbound;
+}
+
+export function getPipelineResponseToJSON(
+  getPipelineResponse: GetPipelineResponse,
+): string {
+  return JSON.stringify(
+    GetPipelineResponse$outboundSchema.parse(getPipelineResponse),
+  );
+}
+
+export function getPipelineResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<GetPipelineResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetPipelineResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetPipelineResponse' from JSON`,
+  );
 }

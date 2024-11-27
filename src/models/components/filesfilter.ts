@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type FilesFilter = {
   /**
@@ -70,4 +73,18 @@ export namespace FilesFilter$ {
   export const outboundSchema = FilesFilter$outboundSchema;
   /** @deprecated use `FilesFilter$Outbound` instead. */
   export type Outbound = FilesFilter$Outbound;
+}
+
+export function filesFilterToJSON(filesFilter: FilesFilter): string {
+  return JSON.stringify(FilesFilter$outboundSchema.parse(filesFilter));
+}
+
+export function filesFilterFromJSON(
+  jsonString: string,
+): SafeParseResult<FilesFilter, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => FilesFilter$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'FilesFilter' from JSON`,
+  );
 }

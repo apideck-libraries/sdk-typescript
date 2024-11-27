@@ -11,9 +11,15 @@ Contains parameter or domain specific information related to the error and why i
 const value: string = "Missing property foobar";
 ```
 
-### `errors.Two`
+### `{ [k: string]: any }`
 
 ```typescript
-const value: errors.Two = {};
+const value: { [k: string]: any } = {
+  "missing": [
+    {
+      "foobar": "required",
+    },
+  ],
+};
 ```
 

@@ -5,7 +5,7 @@ Drives
 ## Example Usage
 
 ```typescript
-import { GetDrivesResponse } from "apideck/models/components";
+import { GetDrivesResponse } from "@apideck/sdk/models/components";
 
 let value: GetDrivesResponse = {
   statusCode: 200,

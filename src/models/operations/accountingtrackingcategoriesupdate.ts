@@ -4,13 +4,16 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type AccountingTrackingCategoriesUpdateGlobals = {
   /**
    * ID of the consumer which you want to get or push data from
    */
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   /**
    * The ID of your Unify application
    */
@@ -53,13 +56,13 @@ export const AccountingTrackingCategoriesUpdateGlobals$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
 /** @internal */
 export type AccountingTrackingCategoriesUpdateGlobals$Outbound = {
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   appId?: string | undefined;
 };
 
@@ -70,7 +73,7 @@ export const AccountingTrackingCategoriesUpdateGlobals$outboundSchema:
     z.ZodTypeDef,
     AccountingTrackingCategoriesUpdateGlobals
   > = z.object({
-    customerId: z.string().optional(),
+    consumerId: z.string().optional(),
     appId: z.string().optional(),
   });
 
@@ -87,6 +90,33 @@ export namespace AccountingTrackingCategoriesUpdateGlobals$ {
     AccountingTrackingCategoriesUpdateGlobals$outboundSchema;
   /** @deprecated use `AccountingTrackingCategoriesUpdateGlobals$Outbound` instead. */
   export type Outbound = AccountingTrackingCategoriesUpdateGlobals$Outbound;
+}
+
+export function accountingTrackingCategoriesUpdateGlobalsToJSON(
+  accountingTrackingCategoriesUpdateGlobals:
+    AccountingTrackingCategoriesUpdateGlobals,
+): string {
+  return JSON.stringify(
+    AccountingTrackingCategoriesUpdateGlobals$outboundSchema.parse(
+      accountingTrackingCategoriesUpdateGlobals,
+    ),
+  );
+}
+
+export function accountingTrackingCategoriesUpdateGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<
+  AccountingTrackingCategoriesUpdateGlobals,
+  SDKValidationError
+> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      AccountingTrackingCategoriesUpdateGlobals$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'AccountingTrackingCategoriesUpdateGlobals' from JSON`,
+  );
 }
 
 /** @internal */
@@ -143,6 +173,33 @@ export namespace AccountingTrackingCategoriesUpdateRequest$ {
     AccountingTrackingCategoriesUpdateRequest$outboundSchema;
   /** @deprecated use `AccountingTrackingCategoriesUpdateRequest$Outbound` instead. */
   export type Outbound = AccountingTrackingCategoriesUpdateRequest$Outbound;
+}
+
+export function accountingTrackingCategoriesUpdateRequestToJSON(
+  accountingTrackingCategoriesUpdateRequest:
+    AccountingTrackingCategoriesUpdateRequest,
+): string {
+  return JSON.stringify(
+    AccountingTrackingCategoriesUpdateRequest$outboundSchema.parse(
+      accountingTrackingCategoriesUpdateRequest,
+    ),
+  );
+}
+
+export function accountingTrackingCategoriesUpdateRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<
+  AccountingTrackingCategoriesUpdateRequest,
+  SDKValidationError
+> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      AccountingTrackingCategoriesUpdateRequest$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'AccountingTrackingCategoriesUpdateRequest' from JSON`,
+  );
 }
 
 /** @internal */
@@ -206,4 +263,31 @@ export namespace AccountingTrackingCategoriesUpdateResponse$ {
     AccountingTrackingCategoriesUpdateResponse$outboundSchema;
   /** @deprecated use `AccountingTrackingCategoriesUpdateResponse$Outbound` instead. */
   export type Outbound = AccountingTrackingCategoriesUpdateResponse$Outbound;
+}
+
+export function accountingTrackingCategoriesUpdateResponseToJSON(
+  accountingTrackingCategoriesUpdateResponse:
+    AccountingTrackingCategoriesUpdateResponse,
+): string {
+  return JSON.stringify(
+    AccountingTrackingCategoriesUpdateResponse$outboundSchema.parse(
+      accountingTrackingCategoriesUpdateResponse,
+    ),
+  );
+}
+
+export function accountingTrackingCategoriesUpdateResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<
+  AccountingTrackingCategoriesUpdateResponse,
+  SDKValidationError
+> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      AccountingTrackingCategoriesUpdateResponse$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'AccountingTrackingCategoriesUpdateResponse' from JSON`,
+  );
 }

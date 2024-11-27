@@ -5,7 +5,7 @@ Status of the connection.
 ## Example Usage
 
 ```typescript
-import { ConnectionStatus } from "apideck/models/components";
+import { ConnectionStatus } from "@apideck/sdk/models/components";
 
 let value: ConnectionStatus = "requested";
 ```

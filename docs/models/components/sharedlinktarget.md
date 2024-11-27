@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { SharedLinkTarget } from "apideck/models/components";
+import { SharedLinkTarget } from "@apideck/sdk/models/components";
 
 let value: SharedLinkTarget = {
   id: "12345",

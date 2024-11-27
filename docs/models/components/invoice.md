@@ -3,8 +3,8 @@
 ## Example Usage
 
 ```typescript
-import { Invoice } from "apideck/models/components";
-import { RFCDate } from "apideck/types";
+import { Invoice } from "@apideck/sdk/models/components";
+import { RFCDate } from "@apideck/sdk/types";
 
 let value: Invoice = {
   id: "12345",
@@ -90,7 +90,7 @@ let value: Invoice = {
           id: "2389328923893298",
           name: "employee_level",
           description: "Employee Level",
-          value: 10,
+          value: {},
         },
       ],
       rowVersion: "1-12345",
@@ -182,7 +182,7 @@ let value: Invoice = {
       id: "2389328923893298",
       name: "employee_level",
       description: "Employee Level",
-      value: 10,
+      value: {},
     },
   ],
   rowVersion: "1-12345",

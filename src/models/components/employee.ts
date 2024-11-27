@@ -4,8 +4,11 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import { RFCDate } from "../../types/rfcdate.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   Address,
   Address$inboundSchema,
@@ -717,6 +720,20 @@ export namespace EmploymentRole$ {
   export type Outbound = EmploymentRole$Outbound;
 }
 
+export function employmentRoleToJSON(employmentRole: EmploymentRole): string {
+  return JSON.stringify(EmploymentRole$outboundSchema.parse(employmentRole));
+}
+
+export function employmentRoleFromJSON(
+  jsonString: string,
+): SafeParseResult<EmploymentRole, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => EmploymentRole$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'EmploymentRole' from JSON`,
+  );
+}
+
 /** @internal */
 export const Manager$inboundSchema: z.ZodType<Manager, z.ZodTypeDef, unknown> =
   z.object({
@@ -777,6 +794,20 @@ export namespace Manager$ {
   export type Outbound = Manager$Outbound;
 }
 
+export function managerToJSON(manager: Manager): string {
+  return JSON.stringify(Manager$outboundSchema.parse(manager));
+}
+
+export function managerFromJSON(
+  jsonString: string,
+): SafeParseResult<Manager, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Manager$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Manager' from JSON`,
+  );
+}
+
 /** @internal */
 export const ProbationPeriod$inboundSchema: z.ZodType<
   ProbationPeriod,
@@ -826,6 +857,22 @@ export namespace ProbationPeriod$ {
   export const outboundSchema = ProbationPeriod$outboundSchema;
   /** @deprecated use `ProbationPeriod$Outbound` instead. */
   export type Outbound = ProbationPeriod$Outbound;
+}
+
+export function probationPeriodToJSON(
+  probationPeriod: ProbationPeriod,
+): string {
+  return JSON.stringify(ProbationPeriod$outboundSchema.parse(probationPeriod));
+}
+
+export function probationPeriodFromJSON(
+  jsonString: string,
+): SafeParseResult<ProbationPeriod, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ProbationPeriod$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ProbationPeriod' from JSON`,
+  );
 }
 
 /** @internal */
@@ -1157,6 +1204,20 @@ export namespace Employee$ {
   export type Outbound = Employee$Outbound;
 }
 
+export function employeeToJSON(employee: Employee): string {
+  return JSON.stringify(Employee$outboundSchema.parse(employee));
+}
+
+export function employeeFromJSON(
+  jsonString: string,
+): SafeParseResult<Employee, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Employee$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Employee' from JSON`,
+  );
+}
+
 /** @internal */
 export const EmployeeInput$inboundSchema: z.ZodType<
   EmployeeInput,
@@ -1455,4 +1516,18 @@ export namespace EmployeeInput$ {
   export const outboundSchema = EmployeeInput$outboundSchema;
   /** @deprecated use `EmployeeInput$Outbound` instead. */
   export type Outbound = EmployeeInput$Outbound;
+}
+
+export function employeeInputToJSON(employeeInput: EmployeeInput): string {
+  return JSON.stringify(EmployeeInput$outboundSchema.parse(employeeInput));
+}
+
+export function employeeInputFromJSON(
+  jsonString: string,
+): SafeParseResult<EmployeeInput, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => EmployeeInput$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'EmployeeInput' from JSON`,
+  );
 }

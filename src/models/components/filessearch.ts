@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   PassThroughBody,
   PassThroughBody$inboundSchema,
@@ -76,4 +79,18 @@ export namespace FilesSearch$ {
   export const outboundSchema = FilesSearch$outboundSchema;
   /** @deprecated use `FilesSearch$Outbound` instead. */
   export type Outbound = FilesSearch$Outbound;
+}
+
+export function filesSearchToJSON(filesSearch: FilesSearch): string {
+  return JSON.stringify(FilesSearch$outboundSchema.parse(filesSearch));
+}
+
+export function filesSearchFromJSON(
+  jsonString: string,
+): SafeParseResult<FilesSearch, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => FilesSearch$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'FilesSearch' from JSON`,
+  );
 }

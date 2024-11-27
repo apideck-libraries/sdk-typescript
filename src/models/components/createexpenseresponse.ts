@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   UnifiedId,
   UnifiedId$inboundSchema,
@@ -95,4 +98,22 @@ export namespace CreateExpenseResponse$ {
   export const outboundSchema = CreateExpenseResponse$outboundSchema;
   /** @deprecated use `CreateExpenseResponse$Outbound` instead. */
   export type Outbound = CreateExpenseResponse$Outbound;
+}
+
+export function createExpenseResponseToJSON(
+  createExpenseResponse: CreateExpenseResponse,
+): string {
+  return JSON.stringify(
+    CreateExpenseResponse$outboundSchema.parse(createExpenseResponse),
+  );
+}
+
+export function createExpenseResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<CreateExpenseResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CreateExpenseResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CreateExpenseResponse' from JSON`,
+  );
 }

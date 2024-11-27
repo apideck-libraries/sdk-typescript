@@ -4,13 +4,16 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type HrisTimeOffRequestsDeleteGlobals = {
   /**
    * ID of the consumer which you want to get or push data from
    */
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   /**
    * The ID of your Unify application
    */
@@ -56,13 +59,13 @@ export const HrisTimeOffRequestsDeleteGlobals$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
 /** @internal */
 export type HrisTimeOffRequestsDeleteGlobals$Outbound = {
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   appId?: string | undefined;
 };
 
@@ -72,7 +75,7 @@ export const HrisTimeOffRequestsDeleteGlobals$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   HrisTimeOffRequestsDeleteGlobals
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
@@ -87,6 +90,26 @@ export namespace HrisTimeOffRequestsDeleteGlobals$ {
   export const outboundSchema = HrisTimeOffRequestsDeleteGlobals$outboundSchema;
   /** @deprecated use `HrisTimeOffRequestsDeleteGlobals$Outbound` instead. */
   export type Outbound = HrisTimeOffRequestsDeleteGlobals$Outbound;
+}
+
+export function hrisTimeOffRequestsDeleteGlobalsToJSON(
+  hrisTimeOffRequestsDeleteGlobals: HrisTimeOffRequestsDeleteGlobals,
+): string {
+  return JSON.stringify(
+    HrisTimeOffRequestsDeleteGlobals$outboundSchema.parse(
+      hrisTimeOffRequestsDeleteGlobals,
+    ),
+  );
+}
+
+export function hrisTimeOffRequestsDeleteGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<HrisTimeOffRequestsDeleteGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => HrisTimeOffRequestsDeleteGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'HrisTimeOffRequestsDeleteGlobals' from JSON`,
+  );
 }
 
 /** @internal */
@@ -140,6 +163,26 @@ export namespace HrisTimeOffRequestsDeleteRequest$ {
   export const outboundSchema = HrisTimeOffRequestsDeleteRequest$outboundSchema;
   /** @deprecated use `HrisTimeOffRequestsDeleteRequest$Outbound` instead. */
   export type Outbound = HrisTimeOffRequestsDeleteRequest$Outbound;
+}
+
+export function hrisTimeOffRequestsDeleteRequestToJSON(
+  hrisTimeOffRequestsDeleteRequest: HrisTimeOffRequestsDeleteRequest,
+): string {
+  return JSON.stringify(
+    HrisTimeOffRequestsDeleteRequest$outboundSchema.parse(
+      hrisTimeOffRequestsDeleteRequest,
+    ),
+  );
+}
+
+export function hrisTimeOffRequestsDeleteRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<HrisTimeOffRequestsDeleteRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => HrisTimeOffRequestsDeleteRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'HrisTimeOffRequestsDeleteRequest' from JSON`,
+  );
 }
 
 /** @internal */
@@ -203,4 +246,24 @@ export namespace HrisTimeOffRequestsDeleteResponse$ {
     HrisTimeOffRequestsDeleteResponse$outboundSchema;
   /** @deprecated use `HrisTimeOffRequestsDeleteResponse$Outbound` instead. */
   export type Outbound = HrisTimeOffRequestsDeleteResponse$Outbound;
+}
+
+export function hrisTimeOffRequestsDeleteResponseToJSON(
+  hrisTimeOffRequestsDeleteResponse: HrisTimeOffRequestsDeleteResponse,
+): string {
+  return JSON.stringify(
+    HrisTimeOffRequestsDeleteResponse$outboundSchema.parse(
+      hrisTimeOffRequestsDeleteResponse,
+    ),
+  );
+}
+
+export function hrisTimeOffRequestsDeleteResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<HrisTimeOffRequestsDeleteResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => HrisTimeOffRequestsDeleteResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'HrisTimeOffRequestsDeleteResponse' from JSON`,
+  );
 }

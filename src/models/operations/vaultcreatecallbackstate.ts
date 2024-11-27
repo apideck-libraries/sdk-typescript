@@ -4,13 +4,16 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type VaultCreateCallbackStateGlobals = {
   /**
    * ID of the consumer which you want to get or push data from
    */
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   /**
    * The ID of your Unify application
    */
@@ -29,7 +32,7 @@ export type VaultCreateCallbackStateRequest = {
   /**
    * Callback state data
    */
-  createCallbackStateData: components.CreateCallbackStateData;
+  createCallbackState: components.CreateCallbackState;
 };
 
 export type VaultCreateCallbackStateResponse = {
@@ -52,13 +55,13 @@ export const VaultCreateCallbackStateGlobals$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
 /** @internal */
 export type VaultCreateCallbackStateGlobals$Outbound = {
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   appId?: string | undefined;
 };
 
@@ -68,7 +71,7 @@ export const VaultCreateCallbackStateGlobals$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   VaultCreateCallbackStateGlobals
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
@@ -85,6 +88,26 @@ export namespace VaultCreateCallbackStateGlobals$ {
   export type Outbound = VaultCreateCallbackStateGlobals$Outbound;
 }
 
+export function vaultCreateCallbackStateGlobalsToJSON(
+  vaultCreateCallbackStateGlobals: VaultCreateCallbackStateGlobals,
+): string {
+  return JSON.stringify(
+    VaultCreateCallbackStateGlobals$outboundSchema.parse(
+      vaultCreateCallbackStateGlobals,
+    ),
+  );
+}
+
+export function vaultCreateCallbackStateGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<VaultCreateCallbackStateGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => VaultCreateCallbackStateGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'VaultCreateCallbackStateGlobals' from JSON`,
+  );
+}
+
 /** @internal */
 export const VaultCreateCallbackStateRequest$inboundSchema: z.ZodType<
   VaultCreateCallbackStateRequest,
@@ -93,12 +116,12 @@ export const VaultCreateCallbackStateRequest$inboundSchema: z.ZodType<
 > = z.object({
   service_id: z.string(),
   unified_api: z.string(),
-  CreateCallbackStateData: components.CreateCallbackStateData$inboundSchema,
+  CreateCallbackState: components.CreateCallbackState$inboundSchema,
 }).transform((v) => {
   return remap$(v, {
     "service_id": "serviceId",
     "unified_api": "unifiedApi",
-    "CreateCallbackStateData": "createCallbackStateData",
+    "CreateCallbackState": "createCallbackState",
   });
 });
 
@@ -106,7 +129,7 @@ export const VaultCreateCallbackStateRequest$inboundSchema: z.ZodType<
 export type VaultCreateCallbackStateRequest$Outbound = {
   service_id: string;
   unified_api: string;
-  CreateCallbackStateData: components.CreateCallbackStateData$Outbound;
+  CreateCallbackState: components.CreateCallbackState$Outbound;
 };
 
 /** @internal */
@@ -117,12 +140,12 @@ export const VaultCreateCallbackStateRequest$outboundSchema: z.ZodType<
 > = z.object({
   serviceId: z.string(),
   unifiedApi: z.string(),
-  createCallbackStateData: components.CreateCallbackStateData$outboundSchema,
+  createCallbackState: components.CreateCallbackState$outboundSchema,
 }).transform((v) => {
   return remap$(v, {
     serviceId: "service_id",
     unifiedApi: "unified_api",
-    createCallbackStateData: "CreateCallbackStateData",
+    createCallbackState: "CreateCallbackState",
   });
 });
 
@@ -137,6 +160,26 @@ export namespace VaultCreateCallbackStateRequest$ {
   export const outboundSchema = VaultCreateCallbackStateRequest$outboundSchema;
   /** @deprecated use `VaultCreateCallbackStateRequest$Outbound` instead. */
   export type Outbound = VaultCreateCallbackStateRequest$Outbound;
+}
+
+export function vaultCreateCallbackStateRequestToJSON(
+  vaultCreateCallbackStateRequest: VaultCreateCallbackStateRequest,
+): string {
+  return JSON.stringify(
+    VaultCreateCallbackStateRequest$outboundSchema.parse(
+      vaultCreateCallbackStateRequest,
+    ),
+  );
+}
+
+export function vaultCreateCallbackStateRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<VaultCreateCallbackStateRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => VaultCreateCallbackStateRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'VaultCreateCallbackStateRequest' from JSON`,
+  );
 }
 
 /** @internal */
@@ -199,4 +242,24 @@ export namespace VaultCreateCallbackStateResponse$ {
   export const outboundSchema = VaultCreateCallbackStateResponse$outboundSchema;
   /** @deprecated use `VaultCreateCallbackStateResponse$Outbound` instead. */
   export type Outbound = VaultCreateCallbackStateResponse$Outbound;
+}
+
+export function vaultCreateCallbackStateResponseToJSON(
+  vaultCreateCallbackStateResponse: VaultCreateCallbackStateResponse,
+): string {
+  return JSON.stringify(
+    VaultCreateCallbackStateResponse$outboundSchema.parse(
+      vaultCreateCallbackStateResponse,
+    ),
+  );
+}
+
+export function vaultCreateCallbackStateResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<VaultCreateCallbackStateResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => VaultCreateCallbackStateResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'VaultCreateCallbackStateResponse' from JSON`,
+  );
 }

@@ -4,7 +4,10 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
  * The request as defined in OpenApi Spec.
@@ -182,6 +185,20 @@ export namespace Operation$ {
   export type Outbound = Operation$Outbound;
 }
 
+export function operationToJSON(operation: Operation): string {
+  return JSON.stringify(Operation$outboundSchema.parse(operation));
+}
+
+export function operationFromJSON(
+  jsonString: string,
+): SafeParseResult<Operation, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Operation$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Operation' from JSON`,
+  );
+}
+
 /** @internal */
 export const Service$inboundSchema: z.ZodType<Service, z.ZodTypeDef, unknown> =
   z.object({
@@ -216,6 +233,20 @@ export namespace Service$ {
   export const outboundSchema = Service$outboundSchema;
   /** @deprecated use `Service$Outbound` instead. */
   export type Outbound = Service$Outbound;
+}
+
+export function serviceToJSON(service: Service): string {
+  return JSON.stringify(Service$outboundSchema.parse(service));
+}
+
+export function serviceFromJSON(
+  jsonString: string,
+): SafeParseResult<Service, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Service$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Service' from JSON`,
+  );
 }
 
 /** @internal */
@@ -353,4 +384,18 @@ export namespace Log$ {
   export const outboundSchema = Log$outboundSchema;
   /** @deprecated use `Log$Outbound` instead. */
   export type Outbound = Log$Outbound;
+}
+
+export function logToJSON(log: Log): string {
+  return JSON.stringify(Log$outboundSchema.parse(log));
+}
+
+export function logFromJSON(
+  jsonString: string,
+): SafeParseResult<Log, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Log$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Log' from JSON`,
+  );
 }

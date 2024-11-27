@@ -4,7 +4,10 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type ConnectorConnectorResourcesOneGlobals = {
   /**
@@ -80,6 +83,27 @@ export namespace ConnectorConnectorResourcesOneGlobals$ {
   export type Outbound = ConnectorConnectorResourcesOneGlobals$Outbound;
 }
 
+export function connectorConnectorResourcesOneGlobalsToJSON(
+  connectorConnectorResourcesOneGlobals: ConnectorConnectorResourcesOneGlobals,
+): string {
+  return JSON.stringify(
+    ConnectorConnectorResourcesOneGlobals$outboundSchema.parse(
+      connectorConnectorResourcesOneGlobals,
+    ),
+  );
+}
+
+export function connectorConnectorResourcesOneGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<ConnectorConnectorResourcesOneGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      ConnectorConnectorResourcesOneGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ConnectorConnectorResourcesOneGlobals' from JSON`,
+  );
+}
+
 /** @internal */
 export const ConnectorConnectorResourcesOneRequest$inboundSchema: z.ZodType<
   ConnectorConnectorResourcesOneRequest,
@@ -132,6 +156,27 @@ export namespace ConnectorConnectorResourcesOneRequest$ {
     ConnectorConnectorResourcesOneRequest$outboundSchema;
   /** @deprecated use `ConnectorConnectorResourcesOneRequest$Outbound` instead. */
   export type Outbound = ConnectorConnectorResourcesOneRequest$Outbound;
+}
+
+export function connectorConnectorResourcesOneRequestToJSON(
+  connectorConnectorResourcesOneRequest: ConnectorConnectorResourcesOneRequest,
+): string {
+  return JSON.stringify(
+    ConnectorConnectorResourcesOneRequest$outboundSchema.parse(
+      connectorConnectorResourcesOneRequest,
+    ),
+  );
+}
+
+export function connectorConnectorResourcesOneRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<ConnectorConnectorResourcesOneRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      ConnectorConnectorResourcesOneRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ConnectorConnectorResourcesOneRequest' from JSON`,
+  );
 }
 
 /** @internal */
@@ -196,4 +241,26 @@ export namespace ConnectorConnectorResourcesOneResponse$ {
     ConnectorConnectorResourcesOneResponse$outboundSchema;
   /** @deprecated use `ConnectorConnectorResourcesOneResponse$Outbound` instead. */
   export type Outbound = ConnectorConnectorResourcesOneResponse$Outbound;
+}
+
+export function connectorConnectorResourcesOneResponseToJSON(
+  connectorConnectorResourcesOneResponse:
+    ConnectorConnectorResourcesOneResponse,
+): string {
+  return JSON.stringify(
+    ConnectorConnectorResourcesOneResponse$outboundSchema.parse(
+      connectorConnectorResourcesOneResponse,
+    ),
+  );
+}
+
+export function connectorConnectorResourcesOneResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<ConnectorConnectorResourcesOneResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      ConnectorConnectorResourcesOneResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ConnectorConnectorResourcesOneResponse' from JSON`,
+  );
 }

@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type RequestCountAllocation = {
   unify?: number | undefined;
@@ -50,4 +53,22 @@ export namespace RequestCountAllocation$ {
   export const outboundSchema = RequestCountAllocation$outboundSchema;
   /** @deprecated use `RequestCountAllocation$Outbound` instead. */
   export type Outbound = RequestCountAllocation$Outbound;
+}
+
+export function requestCountAllocationToJSON(
+  requestCountAllocation: RequestCountAllocation,
+): string {
+  return JSON.stringify(
+    RequestCountAllocation$outboundSchema.parse(requestCountAllocation),
+  );
+}
+
+export function requestCountAllocationFromJSON(
+  jsonString: string,
+): SafeParseResult<RequestCountAllocation, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => RequestCountAllocation$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'RequestCountAllocation' from JSON`,
+  );
 }

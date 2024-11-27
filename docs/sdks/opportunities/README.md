@@ -18,11 +18,11 @@ List opportunities
 ### Example Usage
 
 ```typescript
-import { Apideck } from "apideck";
+import { Apideck } from "@apideck/sdk";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
-  customerId: "test-consumer",
+  consumerId: "test-consumer",
   appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
 });
 
@@ -60,14 +60,14 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "apideck/core.js";
-import { crmOpportunitiesList } from "apideck/funcs/crmOpportunitiesList.js";
+import { ApideckCore } from "@apideck/sdk/core.js";
+import { crmOpportunitiesList } from "@apideck/sdk/funcs/crmOpportunitiesList.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const apideck = new ApideckCore({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
-  customerId: "test-consumer",
+  consumerId: "test-consumer",
   appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
 });
 
@@ -137,12 +137,12 @@ Create opportunity
 ### Example Usage
 
 ```typescript
-import { Apideck } from "apideck";
-import { RFCDate } from "apideck/types";
+import { Apideck } from "@apideck/sdk";
+import { RFCDate } from "@apideck/sdk/types";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
-  customerId: "test-consumer",
+  consumerId: "test-consumer",
   appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
 });
 
@@ -264,15 +264,15 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "apideck/core.js";
-import { crmOpportunitiesCreate } from "apideck/funcs/crmOpportunitiesCreate.js";
-import { RFCDate } from "apideck/types";
+import { ApideckCore } from "@apideck/sdk/core.js";
+import { crmOpportunitiesCreate } from "@apideck/sdk/funcs/crmOpportunitiesCreate.js";
+import { RFCDate } from "@apideck/sdk/types";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const apideck = new ApideckCore({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
-  customerId: "test-consumer",
+  consumerId: "test-consumer",
   appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
 });
 
@@ -426,11 +426,11 @@ Get opportunity
 ### Example Usage
 
 ```typescript
-import { Apideck } from "apideck";
+import { Apideck } from "@apideck/sdk";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
-  customerId: "test-consumer",
+  consumerId: "test-consumer",
   appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
 });
 
@@ -453,14 +453,14 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "apideck/core.js";
-import { crmOpportunitiesGet } from "apideck/funcs/crmOpportunitiesGet.js";
+import { ApideckCore } from "@apideck/sdk/core.js";
+import { crmOpportunitiesGet } from "@apideck/sdk/funcs/crmOpportunitiesGet.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const apideck = new ApideckCore({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
-  customerId: "test-consumer",
+  consumerId: "test-consumer",
   appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
 });
 
@@ -515,12 +515,12 @@ Update opportunity
 ### Example Usage
 
 ```typescript
-import { Apideck } from "apideck";
-import { RFCDate } from "apideck/types";
+import { Apideck } from "@apideck/sdk";
+import { RFCDate } from "@apideck/sdk/types";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
-  customerId: "test-consumer",
+  consumerId: "test-consumer",
   appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
 });
 
@@ -648,15 +648,15 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "apideck/core.js";
-import { crmOpportunitiesUpdate } from "apideck/funcs/crmOpportunitiesUpdate.js";
-import { RFCDate } from "apideck/types";
+import { ApideckCore } from "@apideck/sdk/core.js";
+import { crmOpportunitiesUpdate } from "@apideck/sdk/funcs/crmOpportunitiesUpdate.js";
+import { RFCDate } from "@apideck/sdk/types";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const apideck = new ApideckCore({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
-  customerId: "test-consumer",
+  consumerId: "test-consumer",
   appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
 });
 
@@ -816,11 +816,11 @@ Delete opportunity
 ### Example Usage
 
 ```typescript
-import { Apideck } from "apideck";
+import { Apideck } from "@apideck/sdk";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
-  customerId: "test-consumer",
+  consumerId: "test-consumer",
   appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
 });
 
@@ -842,14 +842,14 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "apideck/core.js";
-import { crmOpportunitiesDelete } from "apideck/funcs/crmOpportunitiesDelete.js";
+import { ApideckCore } from "@apideck/sdk/core.js";
+import { crmOpportunitiesDelete } from "@apideck/sdk/funcs/crmOpportunitiesDelete.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const apideck = new ApideckCore({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
-  customerId: "test-consumer",
+  consumerId: "test-consumer",
   appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
 });
 

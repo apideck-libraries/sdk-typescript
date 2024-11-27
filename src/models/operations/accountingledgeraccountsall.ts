@@ -4,13 +4,16 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type AccountingLedgerAccountsAllGlobals = {
   /**
    * ID of the consumer which you want to get or push data from
    */
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   /**
    * The ID of your Unify application
    */
@@ -70,13 +73,13 @@ export const AccountingLedgerAccountsAllGlobals$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
 /** @internal */
 export type AccountingLedgerAccountsAllGlobals$Outbound = {
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   appId?: string | undefined;
 };
 
@@ -86,7 +89,7 @@ export const AccountingLedgerAccountsAllGlobals$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   AccountingLedgerAccountsAllGlobals
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
@@ -102,6 +105,27 @@ export namespace AccountingLedgerAccountsAllGlobals$ {
     AccountingLedgerAccountsAllGlobals$outboundSchema;
   /** @deprecated use `AccountingLedgerAccountsAllGlobals$Outbound` instead. */
   export type Outbound = AccountingLedgerAccountsAllGlobals$Outbound;
+}
+
+export function accountingLedgerAccountsAllGlobalsToJSON(
+  accountingLedgerAccountsAllGlobals: AccountingLedgerAccountsAllGlobals,
+): string {
+  return JSON.stringify(
+    AccountingLedgerAccountsAllGlobals$outboundSchema.parse(
+      accountingLedgerAccountsAllGlobals,
+    ),
+  );
+}
+
+export function accountingLedgerAccountsAllGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<AccountingLedgerAccountsAllGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      AccountingLedgerAccountsAllGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AccountingLedgerAccountsAllGlobals' from JSON`,
+  );
 }
 
 /** @internal */
@@ -170,6 +194,27 @@ export namespace AccountingLedgerAccountsAllRequest$ {
   export type Outbound = AccountingLedgerAccountsAllRequest$Outbound;
 }
 
+export function accountingLedgerAccountsAllRequestToJSON(
+  accountingLedgerAccountsAllRequest: AccountingLedgerAccountsAllRequest,
+): string {
+  return JSON.stringify(
+    AccountingLedgerAccountsAllRequest$outboundSchema.parse(
+      accountingLedgerAccountsAllRequest,
+    ),
+  );
+}
+
+export function accountingLedgerAccountsAllRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<AccountingLedgerAccountsAllRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      AccountingLedgerAccountsAllRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AccountingLedgerAccountsAllRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const AccountingLedgerAccountsAllResponse$inboundSchema: z.ZodType<
   AccountingLedgerAccountsAllResponse,
@@ -232,4 +277,25 @@ export namespace AccountingLedgerAccountsAllResponse$ {
     AccountingLedgerAccountsAllResponse$outboundSchema;
   /** @deprecated use `AccountingLedgerAccountsAllResponse$Outbound` instead. */
   export type Outbound = AccountingLedgerAccountsAllResponse$Outbound;
+}
+
+export function accountingLedgerAccountsAllResponseToJSON(
+  accountingLedgerAccountsAllResponse: AccountingLedgerAccountsAllResponse,
+): string {
+  return JSON.stringify(
+    AccountingLedgerAccountsAllResponse$outboundSchema.parse(
+      accountingLedgerAccountsAllResponse,
+    ),
+  );
+}
+
+export function accountingLedgerAccountsAllResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<AccountingLedgerAccountsAllResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      AccountingLedgerAccountsAllResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AccountingLedgerAccountsAllResponse' from JSON`,
+  );
 }

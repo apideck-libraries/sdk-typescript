@@ -5,13 +5,13 @@ Virtual webhook config for the connector.
 ## Example Usage
 
 ```typescript
-import { VirtualWebhooks } from "apideck/models/components";
+import { VirtualWebhooks } from "@apideck/sdk/models/components";
 
 let value: VirtualWebhooks = {
   requestRate: {
-    rate: 750595,
-    size: 333507,
-    unit: "day",
+    rate: 783235,
+    size: 288398,
+    unit: "second",
   },
 };
 ```

@@ -4,7 +4,10 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
  * Employment status to filter on
@@ -160,4 +163,20 @@ export namespace EmployeesFilter$ {
   export const outboundSchema = EmployeesFilter$outboundSchema;
   /** @deprecated use `EmployeesFilter$Outbound` instead. */
   export type Outbound = EmployeesFilter$Outbound;
+}
+
+export function employeesFilterToJSON(
+  employeesFilter: EmployeesFilter,
+): string {
+  return JSON.stringify(EmployeesFilter$outboundSchema.parse(employeesFilter));
+}
+
+export function employeesFilterFromJSON(
+  jsonString: string,
+): SafeParseResult<EmployeesFilter, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => EmployeesFilter$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'EmployeesFilter' from JSON`,
+  );
 }

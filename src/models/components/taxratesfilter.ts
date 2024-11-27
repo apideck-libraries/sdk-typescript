@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type TaxRatesFilter = {
   /**
@@ -73,4 +76,18 @@ export namespace TaxRatesFilter$ {
   export const outboundSchema = TaxRatesFilter$outboundSchema;
   /** @deprecated use `TaxRatesFilter$Outbound` instead. */
   export type Outbound = TaxRatesFilter$Outbound;
+}
+
+export function taxRatesFilterToJSON(taxRatesFilter: TaxRatesFilter): string {
+  return JSON.stringify(TaxRatesFilter$outboundSchema.parse(taxRatesFilter));
+}
+
+export function taxRatesFilterFromJSON(
+  jsonString: string,
+): SafeParseResult<TaxRatesFilter, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => TaxRatesFilter$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'TaxRatesFilter' from JSON`,
+  );
 }

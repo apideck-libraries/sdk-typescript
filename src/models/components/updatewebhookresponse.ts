@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   Webhook,
   Webhook$inboundSchema,
@@ -74,4 +77,22 @@ export namespace UpdateWebhookResponse$ {
   export const outboundSchema = UpdateWebhookResponse$outboundSchema;
   /** @deprecated use `UpdateWebhookResponse$Outbound` instead. */
   export type Outbound = UpdateWebhookResponse$Outbound;
+}
+
+export function updateWebhookResponseToJSON(
+  updateWebhookResponse: UpdateWebhookResponse,
+): string {
+  return JSON.stringify(
+    UpdateWebhookResponse$outboundSchema.parse(updateWebhookResponse),
+  );
+}
+
+export function updateWebhookResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<UpdateWebhookResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => UpdateWebhookResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'UpdateWebhookResponse' from JSON`,
+  );
 }

@@ -4,13 +4,16 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type AccountingDepartmentsUpdateGlobals = {
   /**
    * ID of the consumer which you want to get or push data from
    */
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   /**
    * The ID of your Unify application
    */
@@ -53,13 +56,13 @@ export const AccountingDepartmentsUpdateGlobals$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
 /** @internal */
 export type AccountingDepartmentsUpdateGlobals$Outbound = {
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   appId?: string | undefined;
 };
 
@@ -69,7 +72,7 @@ export const AccountingDepartmentsUpdateGlobals$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   AccountingDepartmentsUpdateGlobals
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
@@ -85,6 +88,27 @@ export namespace AccountingDepartmentsUpdateGlobals$ {
     AccountingDepartmentsUpdateGlobals$outboundSchema;
   /** @deprecated use `AccountingDepartmentsUpdateGlobals$Outbound` instead. */
   export type Outbound = AccountingDepartmentsUpdateGlobals$Outbound;
+}
+
+export function accountingDepartmentsUpdateGlobalsToJSON(
+  accountingDepartmentsUpdateGlobals: AccountingDepartmentsUpdateGlobals,
+): string {
+  return JSON.stringify(
+    AccountingDepartmentsUpdateGlobals$outboundSchema.parse(
+      accountingDepartmentsUpdateGlobals,
+    ),
+  );
+}
+
+export function accountingDepartmentsUpdateGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<AccountingDepartmentsUpdateGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      AccountingDepartmentsUpdateGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AccountingDepartmentsUpdateGlobals' from JSON`,
+  );
 }
 
 /** @internal */
@@ -139,6 +163,27 @@ export namespace AccountingDepartmentsUpdateRequest$ {
     AccountingDepartmentsUpdateRequest$outboundSchema;
   /** @deprecated use `AccountingDepartmentsUpdateRequest$Outbound` instead. */
   export type Outbound = AccountingDepartmentsUpdateRequest$Outbound;
+}
+
+export function accountingDepartmentsUpdateRequestToJSON(
+  accountingDepartmentsUpdateRequest: AccountingDepartmentsUpdateRequest,
+): string {
+  return JSON.stringify(
+    AccountingDepartmentsUpdateRequest$outboundSchema.parse(
+      accountingDepartmentsUpdateRequest,
+    ),
+  );
+}
+
+export function accountingDepartmentsUpdateRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<AccountingDepartmentsUpdateRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      AccountingDepartmentsUpdateRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AccountingDepartmentsUpdateRequest' from JSON`,
+  );
 }
 
 /** @internal */
@@ -203,4 +248,25 @@ export namespace AccountingDepartmentsUpdateResponse$ {
     AccountingDepartmentsUpdateResponse$outboundSchema;
   /** @deprecated use `AccountingDepartmentsUpdateResponse$Outbound` instead. */
   export type Outbound = AccountingDepartmentsUpdateResponse$Outbound;
+}
+
+export function accountingDepartmentsUpdateResponseToJSON(
+  accountingDepartmentsUpdateResponse: AccountingDepartmentsUpdateResponse,
+): string {
+  return JSON.stringify(
+    AccountingDepartmentsUpdateResponse$outboundSchema.parse(
+      accountingDepartmentsUpdateResponse,
+    ),
+  );
+}
+
+export function accountingDepartmentsUpdateResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<AccountingDepartmentsUpdateResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      AccountingDepartmentsUpdateResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AccountingDepartmentsUpdateResponse' from JSON`,
+  );
 }

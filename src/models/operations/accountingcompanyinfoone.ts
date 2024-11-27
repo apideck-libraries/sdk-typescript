@@ -4,13 +4,16 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type AccountingCompanyInfoOneGlobals = {
   /**
    * ID of the consumer which you want to get or push data from
    */
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   /**
    * The ID of your Unify application
    */
@@ -50,13 +53,13 @@ export const AccountingCompanyInfoOneGlobals$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
 /** @internal */
 export type AccountingCompanyInfoOneGlobals$Outbound = {
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   appId?: string | undefined;
 };
 
@@ -66,7 +69,7 @@ export const AccountingCompanyInfoOneGlobals$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   AccountingCompanyInfoOneGlobals
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
@@ -81,6 +84,26 @@ export namespace AccountingCompanyInfoOneGlobals$ {
   export const outboundSchema = AccountingCompanyInfoOneGlobals$outboundSchema;
   /** @deprecated use `AccountingCompanyInfoOneGlobals$Outbound` instead. */
   export type Outbound = AccountingCompanyInfoOneGlobals$Outbound;
+}
+
+export function accountingCompanyInfoOneGlobalsToJSON(
+  accountingCompanyInfoOneGlobals: AccountingCompanyInfoOneGlobals,
+): string {
+  return JSON.stringify(
+    AccountingCompanyInfoOneGlobals$outboundSchema.parse(
+      accountingCompanyInfoOneGlobals,
+    ),
+  );
+}
+
+export function accountingCompanyInfoOneGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<AccountingCompanyInfoOneGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => AccountingCompanyInfoOneGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AccountingCompanyInfoOneGlobals' from JSON`,
+  );
 }
 
 /** @internal */
@@ -123,6 +146,26 @@ export namespace AccountingCompanyInfoOneRequest$ {
   export const outboundSchema = AccountingCompanyInfoOneRequest$outboundSchema;
   /** @deprecated use `AccountingCompanyInfoOneRequest$Outbound` instead. */
   export type Outbound = AccountingCompanyInfoOneRequest$Outbound;
+}
+
+export function accountingCompanyInfoOneRequestToJSON(
+  accountingCompanyInfoOneRequest: AccountingCompanyInfoOneRequest,
+): string {
+  return JSON.stringify(
+    AccountingCompanyInfoOneRequest$outboundSchema.parse(
+      accountingCompanyInfoOneRequest,
+    ),
+  );
+}
+
+export function accountingCompanyInfoOneRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<AccountingCompanyInfoOneRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => AccountingCompanyInfoOneRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AccountingCompanyInfoOneRequest' from JSON`,
+  );
 }
 
 /** @internal */
@@ -185,4 +228,24 @@ export namespace AccountingCompanyInfoOneResponse$ {
   export const outboundSchema = AccountingCompanyInfoOneResponse$outboundSchema;
   /** @deprecated use `AccountingCompanyInfoOneResponse$Outbound` instead. */
   export type Outbound = AccountingCompanyInfoOneResponse$Outbound;
+}
+
+export function accountingCompanyInfoOneResponseToJSON(
+  accountingCompanyInfoOneResponse: AccountingCompanyInfoOneResponse,
+): string {
+  return JSON.stringify(
+    AccountingCompanyInfoOneResponse$outboundSchema.parse(
+      accountingCompanyInfoOneResponse,
+    ),
+  );
+}
+
+export function accountingCompanyInfoOneResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<AccountingCompanyInfoOneResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => AccountingCompanyInfoOneResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AccountingCompanyInfoOneResponse' from JSON`,
+  );
 }

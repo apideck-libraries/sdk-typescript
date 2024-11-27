@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { Session } from "apideck/models/components";
+import { Session } from "@apideck/sdk/models/components";
 
 let value: Session = {
   consumerMetadata: {

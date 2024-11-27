@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { ConnectorsFilter } from "apideck/models/components";
+import { ConnectorsFilter } from "@apideck/sdk/models/components";
 
 let value: ConnectorsFilter = {
   unifiedApi: "file-storage",

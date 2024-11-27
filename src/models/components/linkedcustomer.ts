@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
  * The customer this entity is linked to.
@@ -98,4 +101,18 @@ export namespace LinkedCustomer$ {
   export const outboundSchema = LinkedCustomer$outboundSchema;
   /** @deprecated use `LinkedCustomer$Outbound` instead. */
   export type Outbound = LinkedCustomer$Outbound;
+}
+
+export function linkedCustomerToJSON(linkedCustomer: LinkedCustomer): string {
+  return JSON.stringify(LinkedCustomer$outboundSchema.parse(linkedCustomer));
+}
+
+export function linkedCustomerFromJSON(
+  jsonString: string,
+): SafeParseResult<LinkedCustomer, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => LinkedCustomer$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'LinkedCustomer' from JSON`,
+  );
 }

@@ -4,7 +4,10 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type VaultConsumersUpdateGlobals = {
   /**
@@ -69,6 +72,26 @@ export namespace VaultConsumersUpdateGlobals$ {
   export type Outbound = VaultConsumersUpdateGlobals$Outbound;
 }
 
+export function vaultConsumersUpdateGlobalsToJSON(
+  vaultConsumersUpdateGlobals: VaultConsumersUpdateGlobals,
+): string {
+  return JSON.stringify(
+    VaultConsumersUpdateGlobals$outboundSchema.parse(
+      vaultConsumersUpdateGlobals,
+    ),
+  );
+}
+
+export function vaultConsumersUpdateGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<VaultConsumersUpdateGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => VaultConsumersUpdateGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'VaultConsumersUpdateGlobals' from JSON`,
+  );
+}
+
 /** @internal */
 export const VaultConsumersUpdateRequest$inboundSchema: z.ZodType<
   VaultConsumersUpdateRequest,
@@ -116,6 +139,26 @@ export namespace VaultConsumersUpdateRequest$ {
   export const outboundSchema = VaultConsumersUpdateRequest$outboundSchema;
   /** @deprecated use `VaultConsumersUpdateRequest$Outbound` instead. */
   export type Outbound = VaultConsumersUpdateRequest$Outbound;
+}
+
+export function vaultConsumersUpdateRequestToJSON(
+  vaultConsumersUpdateRequest: VaultConsumersUpdateRequest,
+): string {
+  return JSON.stringify(
+    VaultConsumersUpdateRequest$outboundSchema.parse(
+      vaultConsumersUpdateRequest,
+    ),
+  );
+}
+
+export function vaultConsumersUpdateRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<VaultConsumersUpdateRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => VaultConsumersUpdateRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'VaultConsumersUpdateRequest' from JSON`,
+  );
 }
 
 /** @internal */
@@ -178,4 +221,24 @@ export namespace VaultConsumersUpdateResponse$ {
   export const outboundSchema = VaultConsumersUpdateResponse$outboundSchema;
   /** @deprecated use `VaultConsumersUpdateResponse$Outbound` instead. */
   export type Outbound = VaultConsumersUpdateResponse$Outbound;
+}
+
+export function vaultConsumersUpdateResponseToJSON(
+  vaultConsumersUpdateResponse: VaultConsumersUpdateResponse,
+): string {
+  return JSON.stringify(
+    VaultConsumersUpdateResponse$outboundSchema.parse(
+      vaultConsumersUpdateResponse,
+    ),
+  );
+}
+
+export function vaultConsumersUpdateResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<VaultConsumersUpdateResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => VaultConsumersUpdateResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'VaultConsumersUpdateResponse' from JSON`,
+  );
 }

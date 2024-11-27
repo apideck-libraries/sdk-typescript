@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { VaultConnectionsTokenRequestBody } from "apideck/models/operations";
+import { VaultConnectionsTokenRequestBody } from "@apideck/sdk/models/operations";
 
 let value: VaultConnectionsTokenRequestBody = {};
 ```

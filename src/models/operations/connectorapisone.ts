@@ -4,7 +4,10 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type ConnectorApisOneGlobals = {
   /**
@@ -68,6 +71,24 @@ export namespace ConnectorApisOneGlobals$ {
   export type Outbound = ConnectorApisOneGlobals$Outbound;
 }
 
+export function connectorApisOneGlobalsToJSON(
+  connectorApisOneGlobals: ConnectorApisOneGlobals,
+): string {
+  return JSON.stringify(
+    ConnectorApisOneGlobals$outboundSchema.parse(connectorApisOneGlobals),
+  );
+}
+
+export function connectorApisOneGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<ConnectorApisOneGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ConnectorApisOneGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ConnectorApisOneGlobals' from JSON`,
+  );
+}
+
 /** @internal */
 export const ConnectorApisOneRequest$inboundSchema: z.ZodType<
   ConnectorApisOneRequest,
@@ -102,6 +123,24 @@ export namespace ConnectorApisOneRequest$ {
   export const outboundSchema = ConnectorApisOneRequest$outboundSchema;
   /** @deprecated use `ConnectorApisOneRequest$Outbound` instead. */
   export type Outbound = ConnectorApisOneRequest$Outbound;
+}
+
+export function connectorApisOneRequestToJSON(
+  connectorApisOneRequest: ConnectorApisOneRequest,
+): string {
+  return JSON.stringify(
+    ConnectorApisOneRequest$outboundSchema.parse(connectorApisOneRequest),
+  );
+}
+
+export function connectorApisOneRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<ConnectorApisOneRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ConnectorApisOneRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ConnectorApisOneRequest' from JSON`,
+  );
 }
 
 /** @internal */
@@ -160,4 +199,22 @@ export namespace ConnectorApisOneResponse$ {
   export const outboundSchema = ConnectorApisOneResponse$outboundSchema;
   /** @deprecated use `ConnectorApisOneResponse$Outbound` instead. */
   export type Outbound = ConnectorApisOneResponse$Outbound;
+}
+
+export function connectorApisOneResponseToJSON(
+  connectorApisOneResponse: ConnectorApisOneResponse,
+): string {
+  return JSON.stringify(
+    ConnectorApisOneResponse$outboundSchema.parse(connectorApisOneResponse),
+  );
+}
+
+export function connectorApisOneResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<ConnectorApisOneResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ConnectorApisOneResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ConnectorApisOneResponse' from JSON`,
+  );
 }

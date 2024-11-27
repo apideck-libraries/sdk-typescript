@@ -4,7 +4,10 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   DeprecatedLinkedTrackingCategory,
   DeprecatedLinkedTrackingCategory$inboundSchema,
@@ -317,6 +320,24 @@ export namespace JournalEntryLineItem$ {
   export type Outbound = JournalEntryLineItem$Outbound;
 }
 
+export function journalEntryLineItemToJSON(
+  journalEntryLineItem: JournalEntryLineItem,
+): string {
+  return JSON.stringify(
+    JournalEntryLineItem$outboundSchema.parse(journalEntryLineItem),
+  );
+}
+
+export function journalEntryLineItemFromJSON(
+  jsonString: string,
+): SafeParseResult<JournalEntryLineItem, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => JournalEntryLineItem$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'JournalEntryLineItem' from JSON`,
+  );
+}
+
 /** @internal */
 export const JournalEntryLineItemInput$inboundSchema: z.ZodType<
   JournalEntryLineItemInput,
@@ -416,4 +437,22 @@ export namespace JournalEntryLineItemInput$ {
   export const outboundSchema = JournalEntryLineItemInput$outboundSchema;
   /** @deprecated use `JournalEntryLineItemInput$Outbound` instead. */
   export type Outbound = JournalEntryLineItemInput$Outbound;
+}
+
+export function journalEntryLineItemInputToJSON(
+  journalEntryLineItemInput: JournalEntryLineItemInput,
+): string {
+  return JSON.stringify(
+    JournalEntryLineItemInput$outboundSchema.parse(journalEntryLineItemInput),
+  );
+}
+
+export function journalEntryLineItemInputFromJSON(
+  jsonString: string,
+): SafeParseResult<JournalEntryLineItemInput, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => JournalEntryLineItemInput$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'JournalEntryLineItemInput' from JSON`,
+  );
 }

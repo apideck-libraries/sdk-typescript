@@ -3,12 +3,11 @@
 ## Example Usage
 
 ```typescript
-import { CrmLeadsAllRequest } from "apideck/models/operations";
+import { CrmLeadsAllRequest } from "@apideck/sdk/models/operations";
 
 let value: CrmLeadsAllRequest = {
   serviceId: "salesforce",
   filter: {
-    name: "Elon Musk",
     firstName: "Elon",
     lastName: "Musk",
     email: "elon@tesla.com",

@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { UnifiedApis } from "apideck/models/components";
+import { UnifiedApis } from "@apideck/sdk/models/components";
 
 let value: UnifiedApis = {
   id: "crm",

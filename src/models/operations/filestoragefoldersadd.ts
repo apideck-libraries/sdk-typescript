@@ -4,13 +4,16 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type FileStorageFoldersAddGlobals = {
   /**
    * ID of the consumer which you want to get or push data from
    */
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   /**
    * The ID of your Unify application
    */
@@ -51,13 +54,13 @@ export const FileStorageFoldersAddGlobals$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
 /** @internal */
 export type FileStorageFoldersAddGlobals$Outbound = {
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   appId?: string | undefined;
 };
 
@@ -67,7 +70,7 @@ export const FileStorageFoldersAddGlobals$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   FileStorageFoldersAddGlobals
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
@@ -82,6 +85,26 @@ export namespace FileStorageFoldersAddGlobals$ {
   export const outboundSchema = FileStorageFoldersAddGlobals$outboundSchema;
   /** @deprecated use `FileStorageFoldersAddGlobals$Outbound` instead. */
   export type Outbound = FileStorageFoldersAddGlobals$Outbound;
+}
+
+export function fileStorageFoldersAddGlobalsToJSON(
+  fileStorageFoldersAddGlobals: FileStorageFoldersAddGlobals,
+): string {
+  return JSON.stringify(
+    FileStorageFoldersAddGlobals$outboundSchema.parse(
+      fileStorageFoldersAddGlobals,
+    ),
+  );
+}
+
+export function fileStorageFoldersAddGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<FileStorageFoldersAddGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => FileStorageFoldersAddGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'FileStorageFoldersAddGlobals' from JSON`,
+  );
 }
 
 /** @internal */
@@ -135,6 +158,26 @@ export namespace FileStorageFoldersAddRequest$ {
   export const outboundSchema = FileStorageFoldersAddRequest$outboundSchema;
   /** @deprecated use `FileStorageFoldersAddRequest$Outbound` instead. */
   export type Outbound = FileStorageFoldersAddRequest$Outbound;
+}
+
+export function fileStorageFoldersAddRequestToJSON(
+  fileStorageFoldersAddRequest: FileStorageFoldersAddRequest,
+): string {
+  return JSON.stringify(
+    FileStorageFoldersAddRequest$outboundSchema.parse(
+      fileStorageFoldersAddRequest,
+    ),
+  );
+}
+
+export function fileStorageFoldersAddRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<FileStorageFoldersAddRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => FileStorageFoldersAddRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'FileStorageFoldersAddRequest' from JSON`,
+  );
 }
 
 /** @internal */
@@ -195,4 +238,24 @@ export namespace FileStorageFoldersAddResponse$ {
   export const outboundSchema = FileStorageFoldersAddResponse$outboundSchema;
   /** @deprecated use `FileStorageFoldersAddResponse$Outbound` instead. */
   export type Outbound = FileStorageFoldersAddResponse$Outbound;
+}
+
+export function fileStorageFoldersAddResponseToJSON(
+  fileStorageFoldersAddResponse: FileStorageFoldersAddResponse,
+): string {
+  return JSON.stringify(
+    FileStorageFoldersAddResponse$outboundSchema.parse(
+      fileStorageFoldersAddResponse,
+    ),
+  );
+}
+
+export function fileStorageFoldersAddResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<FileStorageFoldersAddResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => FileStorageFoldersAddResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'FileStorageFoldersAddResponse' from JSON`,
+  );
 }

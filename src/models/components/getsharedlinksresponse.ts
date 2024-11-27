@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   Links,
   Links$inboundSchema,
@@ -121,4 +124,22 @@ export namespace GetSharedLinksResponse$ {
   export const outboundSchema = GetSharedLinksResponse$outboundSchema;
   /** @deprecated use `GetSharedLinksResponse$Outbound` instead. */
   export type Outbound = GetSharedLinksResponse$Outbound;
+}
+
+export function getSharedLinksResponseToJSON(
+  getSharedLinksResponse: GetSharedLinksResponse,
+): string {
+  return JSON.stringify(
+    GetSharedLinksResponse$outboundSchema.parse(getSharedLinksResponse),
+  );
+}
+
+export function getSharedLinksResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<GetSharedLinksResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetSharedLinksResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetSharedLinksResponse' from JSON`,
+  );
 }

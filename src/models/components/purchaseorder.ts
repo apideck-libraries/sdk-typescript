@@ -4,8 +4,11 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import { RFCDate } from "../../types/rfcdate.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   Address,
   Address$inboundSchema,
@@ -561,6 +564,20 @@ export namespace PurchaseOrder$ {
   export type Outbound = PurchaseOrder$Outbound;
 }
 
+export function purchaseOrderToJSON(purchaseOrder: PurchaseOrder): string {
+  return JSON.stringify(PurchaseOrder$outboundSchema.parse(purchaseOrder));
+}
+
+export function purchaseOrderFromJSON(
+  jsonString: string,
+): SafeParseResult<PurchaseOrder, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => PurchaseOrder$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'PurchaseOrder' from JSON`,
+  );
+}
+
 /** @internal */
 export const PurchaseOrderInput$inboundSchema: z.ZodType<
   PurchaseOrderInput,
@@ -740,4 +757,22 @@ export namespace PurchaseOrderInput$ {
   export const outboundSchema = PurchaseOrderInput$outboundSchema;
   /** @deprecated use `PurchaseOrderInput$Outbound` instead. */
   export type Outbound = PurchaseOrderInput$Outbound;
+}
+
+export function purchaseOrderInputToJSON(
+  purchaseOrderInput: PurchaseOrderInput,
+): string {
+  return JSON.stringify(
+    PurchaseOrderInput$outboundSchema.parse(purchaseOrderInput),
+  );
+}
+
+export function purchaseOrderInputFromJSON(
+  jsonString: string,
+): SafeParseResult<PurchaseOrderInput, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => PurchaseOrderInput$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'PurchaseOrderInput' from JSON`,
+  );
 }

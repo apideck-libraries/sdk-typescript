@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { CrmNotesOneRequest } from "apideck/models/operations";
+import { CrmNotesOneRequest } from "@apideck/sdk/models/operations";
 
 let value: CrmNotesOneRequest = {
   id: "<id>",

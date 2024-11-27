@@ -4,7 +4,10 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   Address,
   Address$inboundSchema,
@@ -472,6 +475,20 @@ export namespace Supplier$ {
   export type Outbound = Supplier$Outbound;
 }
 
+export function supplierToJSON(supplier: Supplier): string {
+  return JSON.stringify(Supplier$outboundSchema.parse(supplier));
+}
+
+export function supplierFromJSON(
+  jsonString: string,
+): SafeParseResult<Supplier, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Supplier$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Supplier' from JSON`,
+  );
+}
+
 /** @internal */
 export const SupplierInput$inboundSchema: z.ZodType<
   SupplierInput,
@@ -612,4 +629,18 @@ export namespace SupplierInput$ {
   export const outboundSchema = SupplierInput$outboundSchema;
   /** @deprecated use `SupplierInput$Outbound` instead. */
   export type Outbound = SupplierInput$Outbound;
+}
+
+export function supplierInputToJSON(supplierInput: SupplierInput): string {
+  return JSON.stringify(SupplierInput$outboundSchema.parse(supplierInput));
+}
+
+export function supplierInputFromJSON(
+  jsonString: string,
+): SafeParseResult<SupplierInput, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => SupplierInput$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'SupplierInput' from JSON`,
+  );
 }

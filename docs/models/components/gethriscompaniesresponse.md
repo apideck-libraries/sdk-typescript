@@ -5,7 +5,7 @@ Companies
 ## Example Usage
 
 ```typescript
-import { GetHrisCompaniesResponse } from "apideck/models/components";
+import { GetHrisCompaniesResponse } from "@apideck/sdk/models/components";
 
 let value: GetHrisCompaniesResponse = {
   statusCode: 200,

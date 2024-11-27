@@ -5,7 +5,7 @@ Lead created
 ## Example Usage
 
 ```typescript
-import { CreateLeadResponse } from "apideck/models/components";
+import { CreateLeadResponse } from "@apideck/sdk/models/components";
 
 let value: CreateLeadResponse = {
   statusCode: 200,

@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { RequestCountAllocation } from "apideck/models/components";
+import { RequestCountAllocation } from "@apideck/sdk/models/components";
 
 let value: RequestCountAllocation = {
   unify: 100,

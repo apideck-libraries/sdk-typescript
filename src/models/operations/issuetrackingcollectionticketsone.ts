@@ -4,13 +4,16 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type IssueTrackingCollectionTicketsOneGlobals = {
   /**
    * ID of the consumer which you want to get or push data from
    */
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   /**
    * The ID of your Unify application
    */
@@ -58,13 +61,13 @@ export const IssueTrackingCollectionTicketsOneGlobals$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
 /** @internal */
 export type IssueTrackingCollectionTicketsOneGlobals$Outbound = {
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   appId?: string | undefined;
 };
 
@@ -74,7 +77,7 @@ export const IssueTrackingCollectionTicketsOneGlobals$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   IssueTrackingCollectionTicketsOneGlobals
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
@@ -91,6 +94,33 @@ export namespace IssueTrackingCollectionTicketsOneGlobals$ {
     IssueTrackingCollectionTicketsOneGlobals$outboundSchema;
   /** @deprecated use `IssueTrackingCollectionTicketsOneGlobals$Outbound` instead. */
   export type Outbound = IssueTrackingCollectionTicketsOneGlobals$Outbound;
+}
+
+export function issueTrackingCollectionTicketsOneGlobalsToJSON(
+  issueTrackingCollectionTicketsOneGlobals:
+    IssueTrackingCollectionTicketsOneGlobals,
+): string {
+  return JSON.stringify(
+    IssueTrackingCollectionTicketsOneGlobals$outboundSchema.parse(
+      issueTrackingCollectionTicketsOneGlobals,
+    ),
+  );
+}
+
+export function issueTrackingCollectionTicketsOneGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<
+  IssueTrackingCollectionTicketsOneGlobals,
+  SDKValidationError
+> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      IssueTrackingCollectionTicketsOneGlobals$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'IssueTrackingCollectionTicketsOneGlobals' from JSON`,
+  );
 }
 
 /** @internal */
@@ -153,6 +183,33 @@ export namespace IssueTrackingCollectionTicketsOneRequest$ {
   export type Outbound = IssueTrackingCollectionTicketsOneRequest$Outbound;
 }
 
+export function issueTrackingCollectionTicketsOneRequestToJSON(
+  issueTrackingCollectionTicketsOneRequest:
+    IssueTrackingCollectionTicketsOneRequest,
+): string {
+  return JSON.stringify(
+    IssueTrackingCollectionTicketsOneRequest$outboundSchema.parse(
+      issueTrackingCollectionTicketsOneRequest,
+    ),
+  );
+}
+
+export function issueTrackingCollectionTicketsOneRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<
+  IssueTrackingCollectionTicketsOneRequest,
+  SDKValidationError
+> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      IssueTrackingCollectionTicketsOneRequest$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'IssueTrackingCollectionTicketsOneRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const IssueTrackingCollectionTicketsOneResponse$inboundSchema: z.ZodType<
   IssueTrackingCollectionTicketsOneResponse,
@@ -212,4 +269,31 @@ export namespace IssueTrackingCollectionTicketsOneResponse$ {
     IssueTrackingCollectionTicketsOneResponse$outboundSchema;
   /** @deprecated use `IssueTrackingCollectionTicketsOneResponse$Outbound` instead. */
   export type Outbound = IssueTrackingCollectionTicketsOneResponse$Outbound;
+}
+
+export function issueTrackingCollectionTicketsOneResponseToJSON(
+  issueTrackingCollectionTicketsOneResponse:
+    IssueTrackingCollectionTicketsOneResponse,
+): string {
+  return JSON.stringify(
+    IssueTrackingCollectionTicketsOneResponse$outboundSchema.parse(
+      issueTrackingCollectionTicketsOneResponse,
+    ),
+  );
+}
+
+export function issueTrackingCollectionTicketsOneResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<
+  IssueTrackingCollectionTicketsOneResponse,
+  SDKValidationError
+> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      IssueTrackingCollectionTicketsOneResponse$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'IssueTrackingCollectionTicketsOneResponse' from JSON`,
+  );
 }

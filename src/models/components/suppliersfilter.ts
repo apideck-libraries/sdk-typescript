@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type SuppliersFilter = {
   /**
@@ -96,4 +99,20 @@ export namespace SuppliersFilter$ {
   export const outboundSchema = SuppliersFilter$outboundSchema;
   /** @deprecated use `SuppliersFilter$Outbound` instead. */
   export type Outbound = SuppliersFilter$Outbound;
+}
+
+export function suppliersFilterToJSON(
+  suppliersFilter: SuppliersFilter,
+): string {
+  return JSON.stringify(SuppliersFilter$outboundSchema.parse(suppliersFilter));
+}
+
+export function suppliersFilterFromJSON(
+  jsonString: string,
+): SafeParseResult<SuppliersFilter, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => SuppliersFilter$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'SuppliersFilter' from JSON`,
+  );
 }

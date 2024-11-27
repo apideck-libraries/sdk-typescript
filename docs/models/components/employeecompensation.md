@@ -3,17 +3,15 @@
 ## Example Usage
 
 ```typescript
-import { EmployeeCompensation } from "apideck/models/components";
+import { EmployeeCompensation } from "@apideck/sdk/models/components";
 
 let value: EmployeeCompensation = {
   id: "3404301363494309004",
   jobId: "3490439050957906679",
   rate: 50,
   paymentUnit: "hour",
-  currency: "USD",
   flsaStatus: "nonexempt",
   effectiveDate: "2021-06-11",
-  paymentFrequency: "monthly",
 };
 ```
 

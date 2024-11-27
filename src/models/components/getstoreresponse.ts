@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   EcommerceStore,
   EcommerceStore$inboundSchema,
@@ -95,4 +98,22 @@ export namespace GetStoreResponse$ {
   export const outboundSchema = GetStoreResponse$outboundSchema;
   /** @deprecated use `GetStoreResponse$Outbound` instead. */
   export type Outbound = GetStoreResponse$Outbound;
+}
+
+export function getStoreResponseToJSON(
+  getStoreResponse: GetStoreResponse,
+): string {
+  return JSON.stringify(
+    GetStoreResponse$outboundSchema.parse(getStoreResponse),
+  );
+}
+
+export function getStoreResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<GetStoreResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetStoreResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetStoreResponse' from JSON`,
+  );
 }

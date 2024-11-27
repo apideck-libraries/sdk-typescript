@@ -5,8 +5,8 @@ Jobs
 ## Example Usage
 
 ```typescript
-import { GetJobsResponse } from "apideck/models/components";
-import { RFCDate } from "apideck/types";
+import { GetJobsResponse } from "@apideck/sdk/models/components";
+import { RFCDate } from "@apideck/sdk/types";
 
 let value: GetJobsResponse = {
   statusCode: 200,
@@ -128,9 +128,7 @@ let value: GetJobsResponse = {
           id: "2389328923893298",
           name: "employee_level",
           description: "Employee Level",
-          value: [
-            {},
-          ],
+          value: "Uses Salesforce and Marketo",
         },
       ],
       deleted: true,

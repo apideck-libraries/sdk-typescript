@@ -4,7 +4,10 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   CustomMappings,
   CustomMappings$inboundSchema,
@@ -242,6 +245,20 @@ export namespace Images$ {
   export type Outbound = Images$Outbound;
 }
 
+export function imagesToJSON(images: Images): string {
+  return JSON.stringify(Images$outboundSchema.parse(images));
+}
+
+export function imagesFromJSON(
+  jsonString: string,
+): SafeParseResult<Images, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Images$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Images' from JSON`,
+  );
+}
+
 /** @internal */
 export const EcommerceProductOptions$inboundSchema: z.ZodType<
   EcommerceProductOptions,
@@ -282,6 +299,24 @@ export namespace EcommerceProductOptions$ {
   export const outboundSchema = EcommerceProductOptions$outboundSchema;
   /** @deprecated use `EcommerceProductOptions$Outbound` instead. */
   export type Outbound = EcommerceProductOptions$Outbound;
+}
+
+export function ecommerceProductOptionsToJSON(
+  ecommerceProductOptions: EcommerceProductOptions,
+): string {
+  return JSON.stringify(
+    EcommerceProductOptions$outboundSchema.parse(ecommerceProductOptions),
+  );
+}
+
+export function ecommerceProductOptionsFromJSON(
+  jsonString: string,
+): SafeParseResult<EcommerceProductOptions, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => EcommerceProductOptions$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'EcommerceProductOptions' from JSON`,
+  );
 }
 
 /** @internal */
@@ -326,6 +361,26 @@ export namespace EcommerceProductVariantsOptions$ {
   export type Outbound = EcommerceProductVariantsOptions$Outbound;
 }
 
+export function ecommerceProductVariantsOptionsToJSON(
+  ecommerceProductVariantsOptions: EcommerceProductVariantsOptions,
+): string {
+  return JSON.stringify(
+    EcommerceProductVariantsOptions$outboundSchema.parse(
+      ecommerceProductVariantsOptions,
+    ),
+  );
+}
+
+export function ecommerceProductVariantsOptionsFromJSON(
+  jsonString: string,
+): SafeParseResult<EcommerceProductVariantsOptions, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => EcommerceProductVariantsOptions$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'EcommerceProductVariantsOptions' from JSON`,
+  );
+}
+
 /** @internal */
 export const EcommerceProductImages$inboundSchema: z.ZodType<
   EcommerceProductImages,
@@ -363,6 +418,24 @@ export namespace EcommerceProductImages$ {
   export const outboundSchema = EcommerceProductImages$outboundSchema;
   /** @deprecated use `EcommerceProductImages$Outbound` instead. */
   export type Outbound = EcommerceProductImages$Outbound;
+}
+
+export function ecommerceProductImagesToJSON(
+  ecommerceProductImages: EcommerceProductImages,
+): string {
+  return JSON.stringify(
+    EcommerceProductImages$outboundSchema.parse(ecommerceProductImages),
+  );
+}
+
+export function ecommerceProductImagesFromJSON(
+  jsonString: string,
+): SafeParseResult<EcommerceProductImages, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => EcommerceProductImages$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'EcommerceProductImages' from JSON`,
+  );
 }
 
 /** @internal */
@@ -439,6 +512,20 @@ export namespace Variants$ {
   export type Outbound = Variants$Outbound;
 }
 
+export function variantsToJSON(variants: Variants): string {
+  return JSON.stringify(Variants$outboundSchema.parse(variants));
+}
+
+export function variantsFromJSON(
+  jsonString: string,
+): SafeParseResult<Variants, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Variants$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Variants' from JSON`,
+  );
+}
+
 /** @internal */
 export const EcommerceProductCategories$inboundSchema: z.ZodType<
   EcommerceProductCategories,
@@ -476,6 +563,24 @@ export namespace EcommerceProductCategories$ {
   export const outboundSchema = EcommerceProductCategories$outboundSchema;
   /** @deprecated use `EcommerceProductCategories$Outbound` instead. */
   export type Outbound = EcommerceProductCategories$Outbound;
+}
+
+export function ecommerceProductCategoriesToJSON(
+  ecommerceProductCategories: EcommerceProductCategories,
+): string {
+  return JSON.stringify(
+    EcommerceProductCategories$outboundSchema.parse(ecommerceProductCategories),
+  );
+}
+
+export function ecommerceProductCategoriesFromJSON(
+  jsonString: string,
+): SafeParseResult<EcommerceProductCategories, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => EcommerceProductCategories$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'EcommerceProductCategories' from JSON`,
+  );
 }
 
 /** @internal */
@@ -584,4 +689,22 @@ export namespace EcommerceProduct$ {
   export const outboundSchema = EcommerceProduct$outboundSchema;
   /** @deprecated use `EcommerceProduct$Outbound` instead. */
   export type Outbound = EcommerceProduct$Outbound;
+}
+
+export function ecommerceProductToJSON(
+  ecommerceProduct: EcommerceProduct,
+): string {
+  return JSON.stringify(
+    EcommerceProduct$outboundSchema.parse(ecommerceProduct),
+  );
+}
+
+export function ecommerceProductFromJSON(
+  jsonString: string,
+): SafeParseResult<EcommerceProduct, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => EcommerceProduct$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'EcommerceProduct' from JSON`,
+  );
 }

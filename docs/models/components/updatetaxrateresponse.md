@@ -5,7 +5,7 @@ TaxRate updated
 ## Example Usage
 
 ```typescript
-import { UpdateTaxRateResponse } from "apideck/models/components";
+import { UpdateTaxRateResponse } from "@apideck/sdk/models/components";
 
 let value: UpdateTaxRateResponse = {
   statusCode: 200,

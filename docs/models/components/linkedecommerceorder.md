@@ -5,7 +5,7 @@ The order this entity is linked to.
 ## Example Usage
 
 ```typescript
-import { LinkedEcommerceOrder } from "apideck/models/components";
+import { LinkedEcommerceOrder } from "@apideck/sdk/models/components";
 
 let value: LinkedEcommerceOrder = {
   id: "12345",

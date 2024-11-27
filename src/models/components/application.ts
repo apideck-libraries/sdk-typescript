@@ -4,7 +4,10 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   CustomMappings,
   CustomMappings$inboundSchema,
@@ -138,6 +141,20 @@ export namespace Stage$ {
   export type Outbound = Stage$Outbound;
 }
 
+export function stageToJSON(stage: Stage): string {
+  return JSON.stringify(Stage$outboundSchema.parse(stage));
+}
+
+export function stageFromJSON(
+  jsonString: string,
+): SafeParseResult<Stage, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Stage$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Stage' from JSON`,
+  );
+}
+
 /** @internal */
 export const Application$inboundSchema: z.ZodType<
   Application,
@@ -230,6 +247,20 @@ export namespace Application$ {
   export type Outbound = Application$Outbound;
 }
 
+export function applicationToJSON(application: Application): string {
+  return JSON.stringify(Application$outboundSchema.parse(application));
+}
+
+export function applicationFromJSON(
+  jsonString: string,
+): SafeParseResult<Application, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Application$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Application' from JSON`,
+  );
+}
+
 /** @internal */
 export const ApplicationInput$inboundSchema: z.ZodType<
   ApplicationInput,
@@ -288,4 +319,22 @@ export namespace ApplicationInput$ {
   export const outboundSchema = ApplicationInput$outboundSchema;
   /** @deprecated use `ApplicationInput$Outbound` instead. */
   export type Outbound = ApplicationInput$Outbound;
+}
+
+export function applicationInputToJSON(
+  applicationInput: ApplicationInput,
+): string {
+  return JSON.stringify(
+    ApplicationInput$outboundSchema.parse(applicationInput),
+  );
+}
+
+export function applicationInputFromJSON(
+  jsonString: string,
+): SafeParseResult<ApplicationInput, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ApplicationInput$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ApplicationInput' from JSON`,
+  );
 }

@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   PaginationCoverage,
   PaginationCoverage$inboundSchema,
@@ -156,6 +159,20 @@ export namespace Coverage$ {
   export type Outbound = Coverage$Outbound;
 }
 
+export function coverageToJSON(coverage: Coverage): string {
+  return JSON.stringify(Coverage$outboundSchema.parse(coverage));
+}
+
+export function coverageFromJSON(
+  jsonString: string,
+): SafeParseResult<Coverage, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Coverage$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Coverage' from JSON`,
+  );
+}
+
 /** @internal */
 export const ApiResourceCoverage$inboundSchema: z.ZodType<
   ApiResourceCoverage,
@@ -199,4 +216,22 @@ export namespace ApiResourceCoverage$ {
   export const outboundSchema = ApiResourceCoverage$outboundSchema;
   /** @deprecated use `ApiResourceCoverage$Outbound` instead. */
   export type Outbound = ApiResourceCoverage$Outbound;
+}
+
+export function apiResourceCoverageToJSON(
+  apiResourceCoverage: ApiResourceCoverage,
+): string {
+  return JSON.stringify(
+    ApiResourceCoverage$outboundSchema.parse(apiResourceCoverage),
+  );
+}
+
+export function apiResourceCoverageFromJSON(
+  jsonString: string,
+): SafeParseResult<ApiResourceCoverage, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ApiResourceCoverage$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ApiResourceCoverage' from JSON`,
+  );
 }

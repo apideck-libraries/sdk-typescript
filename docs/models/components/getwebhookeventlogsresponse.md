@@ -5,7 +5,7 @@ EventLogs
 ## Example Usage
 
 ```typescript
-import { GetWebhookEventLogsResponse } from "apideck/models/components";
+import { GetWebhookEventLogsResponse } from "@apideck/sdk/models/components";
 
 let value: GetWebhookEventLogsResponse = {
   statusCode: 200,

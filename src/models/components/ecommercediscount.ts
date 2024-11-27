@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
  * An object representing a discount applied to an ecommerce order or product.
@@ -62,4 +65,22 @@ export namespace EcommerceDiscount$ {
   export const outboundSchema = EcommerceDiscount$outboundSchema;
   /** @deprecated use `EcommerceDiscount$Outbound` instead. */
   export type Outbound = EcommerceDiscount$Outbound;
+}
+
+export function ecommerceDiscountToJSON(
+  ecommerceDiscount: EcommerceDiscount,
+): string {
+  return JSON.stringify(
+    EcommerceDiscount$outboundSchema.parse(ecommerceDiscount),
+  );
+}
+
+export function ecommerceDiscountFromJSON(
+  jsonString: string,
+): SafeParseResult<EcommerceDiscount, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => EcommerceDiscount$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'EcommerceDiscount' from JSON`,
+  );
 }

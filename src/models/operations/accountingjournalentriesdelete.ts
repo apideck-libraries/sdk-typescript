@@ -4,13 +4,16 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type AccountingJournalEntriesDeleteGlobals = {
   /**
    * ID of the consumer which you want to get or push data from
    */
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   /**
    * The ID of your Unify application
    */
@@ -52,13 +55,13 @@ export const AccountingJournalEntriesDeleteGlobals$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
 /** @internal */
 export type AccountingJournalEntriesDeleteGlobals$Outbound = {
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   appId?: string | undefined;
 };
 
@@ -68,7 +71,7 @@ export const AccountingJournalEntriesDeleteGlobals$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   AccountingJournalEntriesDeleteGlobals
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
@@ -85,6 +88,27 @@ export namespace AccountingJournalEntriesDeleteGlobals$ {
     AccountingJournalEntriesDeleteGlobals$outboundSchema;
   /** @deprecated use `AccountingJournalEntriesDeleteGlobals$Outbound` instead. */
   export type Outbound = AccountingJournalEntriesDeleteGlobals$Outbound;
+}
+
+export function accountingJournalEntriesDeleteGlobalsToJSON(
+  accountingJournalEntriesDeleteGlobals: AccountingJournalEntriesDeleteGlobals,
+): string {
+  return JSON.stringify(
+    AccountingJournalEntriesDeleteGlobals$outboundSchema.parse(
+      accountingJournalEntriesDeleteGlobals,
+    ),
+  );
+}
+
+export function accountingJournalEntriesDeleteGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<AccountingJournalEntriesDeleteGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      AccountingJournalEntriesDeleteGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AccountingJournalEntriesDeleteGlobals' from JSON`,
+  );
 }
 
 /** @internal */
@@ -129,6 +153,27 @@ export namespace AccountingJournalEntriesDeleteRequest$ {
     AccountingJournalEntriesDeleteRequest$outboundSchema;
   /** @deprecated use `AccountingJournalEntriesDeleteRequest$Outbound` instead. */
   export type Outbound = AccountingJournalEntriesDeleteRequest$Outbound;
+}
+
+export function accountingJournalEntriesDeleteRequestToJSON(
+  accountingJournalEntriesDeleteRequest: AccountingJournalEntriesDeleteRequest,
+): string {
+  return JSON.stringify(
+    AccountingJournalEntriesDeleteRequest$outboundSchema.parse(
+      accountingJournalEntriesDeleteRequest,
+    ),
+  );
+}
+
+export function accountingJournalEntriesDeleteRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<AccountingJournalEntriesDeleteRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      AccountingJournalEntriesDeleteRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AccountingJournalEntriesDeleteRequest' from JSON`,
+  );
 }
 
 /** @internal */
@@ -193,4 +238,26 @@ export namespace AccountingJournalEntriesDeleteResponse$ {
     AccountingJournalEntriesDeleteResponse$outboundSchema;
   /** @deprecated use `AccountingJournalEntriesDeleteResponse$Outbound` instead. */
   export type Outbound = AccountingJournalEntriesDeleteResponse$Outbound;
+}
+
+export function accountingJournalEntriesDeleteResponseToJSON(
+  accountingJournalEntriesDeleteResponse:
+    AccountingJournalEntriesDeleteResponse,
+): string {
+  return JSON.stringify(
+    AccountingJournalEntriesDeleteResponse$outboundSchema.parse(
+      accountingJournalEntriesDeleteResponse,
+    ),
+  );
+}
+
+export function accountingJournalEntriesDeleteResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<AccountingJournalEntriesDeleteResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      AccountingJournalEntriesDeleteResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AccountingJournalEntriesDeleteResponse' from JSON`,
+  );
 }

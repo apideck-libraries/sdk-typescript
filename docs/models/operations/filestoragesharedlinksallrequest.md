@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { FileStorageSharedLinksAllRequest } from "apideck/models/operations";
+import { FileStorageSharedLinksAllRequest } from "@apideck/sdk/models/operations";
 
 let value: FileStorageSharedLinksAllRequest = {
   serviceId: "salesforce",

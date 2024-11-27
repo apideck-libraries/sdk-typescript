@@ -5,7 +5,7 @@ PurchaseOrders
 ## Example Usage
 
 ```typescript
-import { UpdatePurchaseOrderResponse } from "apideck/models/components";
+import { UpdatePurchaseOrderResponse } from "@apideck/sdk/models/components";
 
 let value: UpdatePurchaseOrderResponse = {
   statusCode: 200,

@@ -4,7 +4,10 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   CustomMappings,
   CustomMappings$inboundSchema,
@@ -230,6 +233,24 @@ export namespace AccountingDepartment$ {
   export type Outbound = AccountingDepartment$Outbound;
 }
 
+export function accountingDepartmentToJSON(
+  accountingDepartment: AccountingDepartment,
+): string {
+  return JSON.stringify(
+    AccountingDepartment$outboundSchema.parse(accountingDepartment),
+  );
+}
+
+export function accountingDepartmentFromJSON(
+  jsonString: string,
+): SafeParseResult<AccountingDepartment, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => AccountingDepartment$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AccountingDepartment' from JSON`,
+  );
+}
+
 /** @internal */
 export const AccountingDepartmentInput$inboundSchema: z.ZodType<
   AccountingDepartmentInput,
@@ -291,4 +312,22 @@ export namespace AccountingDepartmentInput$ {
   export const outboundSchema = AccountingDepartmentInput$outboundSchema;
   /** @deprecated use `AccountingDepartmentInput$Outbound` instead. */
   export type Outbound = AccountingDepartmentInput$Outbound;
+}
+
+export function accountingDepartmentInputToJSON(
+  accountingDepartmentInput: AccountingDepartmentInput,
+): string {
+  return JSON.stringify(
+    AccountingDepartmentInput$outboundSchema.parse(accountingDepartmentInput),
+  );
+}
+
+export function accountingDepartmentInputFromJSON(
+  jsonString: string,
+): SafeParseResult<AccountingDepartmentInput, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => AccountingDepartmentInput$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AccountingDepartmentInput' from JSON`,
+  );
 }

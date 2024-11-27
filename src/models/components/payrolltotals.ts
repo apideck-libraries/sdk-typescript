@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
  * The overview of the payroll totals.
@@ -129,4 +132,18 @@ export namespace PayrollTotals$ {
   export const outboundSchema = PayrollTotals$outboundSchema;
   /** @deprecated use `PayrollTotals$Outbound` instead. */
   export type Outbound = PayrollTotals$Outbound;
+}
+
+export function payrollTotalsToJSON(payrollTotals: PayrollTotals): string {
+  return JSON.stringify(PayrollTotals$outboundSchema.parse(payrollTotals));
+}
+
+export function payrollTotalsFromJSON(
+  jsonString: string,
+): SafeParseResult<PayrollTotals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => PayrollTotals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'PayrollTotals' from JSON`,
+  );
 }

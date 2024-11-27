@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { DeleteConsumerResponseData } from "apideck/models/components";
+import { DeleteConsumerResponseData } from "@apideck/sdk/models/components";
 
 let value: DeleteConsumerResponseData = {
   consumerId: "test_consumer_id",

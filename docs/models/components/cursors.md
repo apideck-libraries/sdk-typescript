@@ -5,7 +5,7 @@ Cursors to navigate to previous or next pages through the API
 ## Example Usage
 
 ```typescript
-import { Cursors } from "apideck/models/components";
+import { Cursors } from "@apideck/sdk/models/components";
 
 let value: Cursors = {
   previous: "em9oby1jcm06OnBhZ2U6OjE=",

@@ -19,15 +19,15 @@ specific category of applications.
 ## Example
 
 ```typescript
-import { ApideckCore } from "apideck/core.js";
-import { accountingTaxRatesList } from "apideck/funcs/accountingTaxRatesList.js";
-import { SDKValidationError } from "apideck/models/errors/sdkvalidationerror.js";
+import { ApideckCore } from "@apideck/sdk/core.js";
+import { accountingTaxRatesList } from "@apideck/sdk/funcs/accountingTaxRatesList.js";
+import { SDKValidationError } from "@apideck/sdk/models/errors/sdkvalidationerror.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const apideck = new ApideckCore({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
-  customerId: "test-consumer",
+  consumerId: "test-consumer",
   appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
 });
 

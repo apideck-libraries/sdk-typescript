@@ -4,7 +4,10 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type VaultConsumersAllGlobals = {
   /**
@@ -72,6 +75,24 @@ export namespace VaultConsumersAllGlobals$ {
   export type Outbound = VaultConsumersAllGlobals$Outbound;
 }
 
+export function vaultConsumersAllGlobalsToJSON(
+  vaultConsumersAllGlobals: VaultConsumersAllGlobals,
+): string {
+  return JSON.stringify(
+    VaultConsumersAllGlobals$outboundSchema.parse(vaultConsumersAllGlobals),
+  );
+}
+
+export function vaultConsumersAllGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<VaultConsumersAllGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => VaultConsumersAllGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'VaultConsumersAllGlobals' from JSON`,
+  );
+}
+
 /** @internal */
 export const VaultConsumersAllRequest$inboundSchema: z.ZodType<
   VaultConsumersAllRequest,
@@ -109,6 +130,24 @@ export namespace VaultConsumersAllRequest$ {
   export const outboundSchema = VaultConsumersAllRequest$outboundSchema;
   /** @deprecated use `VaultConsumersAllRequest$Outbound` instead. */
   export type Outbound = VaultConsumersAllRequest$Outbound;
+}
+
+export function vaultConsumersAllRequestToJSON(
+  vaultConsumersAllRequest: VaultConsumersAllRequest,
+): string {
+  return JSON.stringify(
+    VaultConsumersAllRequest$outboundSchema.parse(vaultConsumersAllRequest),
+  );
+}
+
+export function vaultConsumersAllRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<VaultConsumersAllRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => VaultConsumersAllRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'VaultConsumersAllRequest' from JSON`,
+  );
 }
 
 /** @internal */
@@ -169,4 +208,22 @@ export namespace VaultConsumersAllResponse$ {
   export const outboundSchema = VaultConsumersAllResponse$outboundSchema;
   /** @deprecated use `VaultConsumersAllResponse$Outbound` instead. */
   export type Outbound = VaultConsumersAllResponse$Outbound;
+}
+
+export function vaultConsumersAllResponseToJSON(
+  vaultConsumersAllResponse: VaultConsumersAllResponse,
+): string {
+  return JSON.stringify(
+    VaultConsumersAllResponse$outboundSchema.parse(vaultConsumersAllResponse),
+  );
+}
+
+export function vaultConsumersAllResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<VaultConsumersAllResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => VaultConsumersAllResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'VaultConsumersAllResponse' from JSON`,
+  );
 }

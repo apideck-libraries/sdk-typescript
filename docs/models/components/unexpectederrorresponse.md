@@ -5,14 +5,20 @@ Unexpected error
 ## Example Usage
 
 ```typescript
-import { UnexpectedErrorResponse } from "apideck/models/components";
+import { UnexpectedErrorResponse } from "@apideck/sdk/models/components";
 
 let value: UnexpectedErrorResponse = {
   statusCode: 400,
   error: "Bad Request",
   typeName: "RequestHeadersValidationError",
   message: "Invalid Params",
-  detail: "Missing Header: x-apideck-consumer-id",
+  detail: {
+    "missing": [
+      {
+        "x-apideck-consumer-id": "required",
+      },
+    ],
+  },
   ref: "https://developers.apideck.com/errors#unauthorizederror",
 };
 ```

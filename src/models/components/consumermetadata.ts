@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
  * The metadata of the consumer. This is used to display the consumer in the sidebar. This is optional, but recommended.
@@ -80,4 +83,22 @@ export namespace ConsumerMetadata$ {
   export const outboundSchema = ConsumerMetadata$outboundSchema;
   /** @deprecated use `ConsumerMetadata$Outbound` instead. */
   export type Outbound = ConsumerMetadata$Outbound;
+}
+
+export function consumerMetadataToJSON(
+  consumerMetadata: ConsumerMetadata,
+): string {
+  return JSON.stringify(
+    ConsumerMetadata$outboundSchema.parse(consumerMetadata),
+  );
+}
+
+export function consumerMetadataFromJSON(
+  jsonString: string,
+): SafeParseResult<ConsumerMetadata, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ConsumerMetadata$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ConsumerMetadata' from JSON`,
+  );
 }

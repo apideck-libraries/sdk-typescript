@@ -5,7 +5,7 @@ Files
 ## Example Usage
 
 ```typescript
-import { DeleteFileResponse } from "apideck/models/components";
+import { DeleteFileResponse } from "@apideck/sdk/models/components";
 
 let value: DeleteFileResponse = {
   statusCode: 200,

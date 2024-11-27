@@ -5,8 +5,8 @@ CompanyInfo
 ## Example Usage
 
 ```typescript
-import { GetCompanyInfoResponse } from "apideck/models/components";
-import { RFCDate } from "apideck/types";
+import { GetCompanyInfoResponse } from "@apideck/sdk/models/components";
+import { RFCDate } from "@apideck/sdk/types";
 
 let value: GetCompanyInfoResponse = {
   statusCode: 200,

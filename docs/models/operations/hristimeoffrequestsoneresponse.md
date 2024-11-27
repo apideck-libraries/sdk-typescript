@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { HrisTimeOffRequestsOneResponse } from "apideck/models/operations";
+import { HrisTimeOffRequestsOneResponse } from "@apideck/sdk/models/operations";
 
 let value: HrisTimeOffRequestsOneResponse = {
   httpMeta: {
@@ -63,7 +63,13 @@ let value: HrisTimeOffRequestsOneResponse = {
     error: "Bad Request",
     typeName: "RequestHeadersValidationError",
     message: "Invalid Params",
-    detail: {},
+    detail: {
+      "missing": [
+        {
+          "x-apideck-consumer-id": "required",
+        },
+      ],
+    },
     ref: "https://developers.apideck.com/errors#unauthorizederror",
   },
 };

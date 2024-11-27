@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { Connection } from "apideck/models/components";
+import { Connection } from "@apideck/sdk/models/components";
 
 let value: Connection = {
   id: "crm+salesforce",
@@ -42,45 +42,21 @@ let value: Connection = {
       id: "instance_url",
       label: "Instance url",
       placeholder: "",
-      description: "Slack channel to push notification to",
       type: "text",
       required: true,
       customField: false,
-      allowCustomValues: false,
       disabled: false,
-      hidden: false,
-      deprecated: false,
       sensitive: false,
-      prefix: "https://",
-      suffix: ".shopify.com",
-      options: [
-        {
-          label: "General Channel",
-          value: "general",
-        },
-      ],
     },
     {
       id: "api_key",
       label: "API Key",
       placeholder: "",
-      description: "Slack channel to push notification to",
       type: "text",
       required: true,
       customField: false,
-      allowCustomValues: false,
       disabled: false,
-      hidden: false,
-      deprecated: false,
       sensitive: true,
-      prefix: "https://",
-      suffix: ".shopify.com",
-      options: [
-        {
-          label: "General Channel",
-          value: "general",
-        },
-      ],
     },
   ],
   configuration: [
@@ -92,11 +68,20 @@ let value: Connection = {
           id: "ProductInterest",
           options: [
             {
+              id: "1234",
               label: "General Channel",
-              value: "general",
+              options: [
+                {
+                  label: "General Channel",
+                  value: [
+                    "team",
+                    "general",
+                  ],
+                },
+              ],
             },
           ],
-          value: true,
+          value: 10,
         },
       ],
     },

@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   CreditNote,
   CreditNote$inboundSchema,
@@ -95,4 +98,22 @@ export namespace GetCreditNoteResponse$ {
   export const outboundSchema = GetCreditNoteResponse$outboundSchema;
   /** @deprecated use `GetCreditNoteResponse$Outbound` instead. */
   export type Outbound = GetCreditNoteResponse$Outbound;
+}
+
+export function getCreditNoteResponseToJSON(
+  getCreditNoteResponse: GetCreditNoteResponse,
+): string {
+  return JSON.stringify(
+    GetCreditNoteResponse$outboundSchema.parse(getCreditNoteResponse),
+  );
+}
+
+export function getCreditNoteResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<GetCreditNoteResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetCreditNoteResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetCreditNoteResponse' from JSON`,
+  );
 }

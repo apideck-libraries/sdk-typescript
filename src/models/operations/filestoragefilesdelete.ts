@@ -4,13 +4,16 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type FileStorageFilesDeleteGlobals = {
   /**
    * ID of the consumer which you want to get or push data from
    */
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   /**
    * The ID of your Unify application
    */
@@ -50,13 +53,13 @@ export const FileStorageFilesDeleteGlobals$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
 /** @internal */
 export type FileStorageFilesDeleteGlobals$Outbound = {
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   appId?: string | undefined;
 };
 
@@ -66,7 +69,7 @@ export const FileStorageFilesDeleteGlobals$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   FileStorageFilesDeleteGlobals
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
@@ -81,6 +84,26 @@ export namespace FileStorageFilesDeleteGlobals$ {
   export const outboundSchema = FileStorageFilesDeleteGlobals$outboundSchema;
   /** @deprecated use `FileStorageFilesDeleteGlobals$Outbound` instead. */
   export type Outbound = FileStorageFilesDeleteGlobals$Outbound;
+}
+
+export function fileStorageFilesDeleteGlobalsToJSON(
+  fileStorageFilesDeleteGlobals: FileStorageFilesDeleteGlobals,
+): string {
+  return JSON.stringify(
+    FileStorageFilesDeleteGlobals$outboundSchema.parse(
+      fileStorageFilesDeleteGlobals,
+    ),
+  );
+}
+
+export function fileStorageFilesDeleteGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<FileStorageFilesDeleteGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => FileStorageFilesDeleteGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'FileStorageFilesDeleteGlobals' from JSON`,
+  );
 }
 
 /** @internal */
@@ -123,6 +146,26 @@ export namespace FileStorageFilesDeleteRequest$ {
   export const outboundSchema = FileStorageFilesDeleteRequest$outboundSchema;
   /** @deprecated use `FileStorageFilesDeleteRequest$Outbound` instead. */
   export type Outbound = FileStorageFilesDeleteRequest$Outbound;
+}
+
+export function fileStorageFilesDeleteRequestToJSON(
+  fileStorageFilesDeleteRequest: FileStorageFilesDeleteRequest,
+): string {
+  return JSON.stringify(
+    FileStorageFilesDeleteRequest$outboundSchema.parse(
+      fileStorageFilesDeleteRequest,
+    ),
+  );
+}
+
+export function fileStorageFilesDeleteRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<FileStorageFilesDeleteRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => FileStorageFilesDeleteRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'FileStorageFilesDeleteRequest' from JSON`,
+  );
 }
 
 /** @internal */
@@ -181,4 +224,24 @@ export namespace FileStorageFilesDeleteResponse$ {
   export const outboundSchema = FileStorageFilesDeleteResponse$outboundSchema;
   /** @deprecated use `FileStorageFilesDeleteResponse$Outbound` instead. */
   export type Outbound = FileStorageFilesDeleteResponse$Outbound;
+}
+
+export function fileStorageFilesDeleteResponseToJSON(
+  fileStorageFilesDeleteResponse: FileStorageFilesDeleteResponse,
+): string {
+  return JSON.stringify(
+    FileStorageFilesDeleteResponse$outboundSchema.parse(
+      fileStorageFilesDeleteResponse,
+    ),
+  );
+}
+
+export function fileStorageFilesDeleteResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<FileStorageFilesDeleteResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => FileStorageFilesDeleteResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'FileStorageFilesDeleteResponse' from JSON`,
+  );
 }

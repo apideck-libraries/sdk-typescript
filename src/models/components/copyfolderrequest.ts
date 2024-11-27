@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   PassThroughBody,
   PassThroughBody$inboundSchema,
@@ -76,4 +79,22 @@ export namespace CopyFolderRequest$ {
   export const outboundSchema = CopyFolderRequest$outboundSchema;
   /** @deprecated use `CopyFolderRequest$Outbound` instead. */
   export type Outbound = CopyFolderRequest$Outbound;
+}
+
+export function copyFolderRequestToJSON(
+  copyFolderRequest: CopyFolderRequest,
+): string {
+  return JSON.stringify(
+    CopyFolderRequest$outboundSchema.parse(copyFolderRequest),
+  );
+}
+
+export function copyFolderRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<CopyFolderRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CopyFolderRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CopyFolderRequest' from JSON`,
+  );
 }

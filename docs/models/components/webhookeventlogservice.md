@@ -5,7 +5,7 @@ Apideck service provider associated with event.
 ## Example Usage
 
 ```typescript
-import { WebhookEventLogService } from "apideck/models/components";
+import { WebhookEventLogService } from "@apideck/sdk/models/components";
 
 let value: WebhookEventLogService = {
   id: "101-data-solution",

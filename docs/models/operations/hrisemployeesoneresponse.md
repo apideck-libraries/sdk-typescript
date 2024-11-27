@@ -3,8 +3,8 @@
 ## Example Usage
 
 ```typescript
-import { HrisEmployeesOneResponse } from "apideck/models/operations";
-import { RFCDate } from "apideck/types";
+import { HrisEmployeesOneResponse } from "@apideck/sdk/models/operations";
+import { RFCDate } from "@apideck/sdk/types";
 
 let value: HrisEmployeesOneResponse = {
   httpMeta: {
@@ -136,10 +136,8 @@ let value: HrisEmployeesOneResponse = {
           jobId: "3490439050957906679",
           rate: 50,
           paymentUnit: "hour",
-          currency: "USD",
           flsaStatus: "nonexempt",
           effectiveDate: "2021-06-11",
-          paymentFrequency: "monthly",
         },
       ],
       worksRemote: true,
@@ -259,7 +257,13 @@ let value: HrisEmployeesOneResponse = {
     error: "Bad Request",
     typeName: "RequestHeadersValidationError",
     message: "Invalid Params",
-    detail: {},
+    detail: {
+      "missing": [
+        {
+          "x-apideck-consumer-id": "required",
+        },
+      ],
+    },
     ref: "https://developers.apideck.com/errors#unauthorizederror",
   },
 };

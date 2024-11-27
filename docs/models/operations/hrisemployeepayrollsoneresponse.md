@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { HrisEmployeePayrollsOneResponse } from "apideck/models/operations";
+import { HrisEmployeePayrollsOneResponse } from "@apideck/sdk/models/operations";
 
 let value: HrisEmployeePayrollsOneResponse = {
   httpMeta: {

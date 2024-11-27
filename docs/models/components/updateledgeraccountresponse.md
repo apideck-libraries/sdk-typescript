@@ -5,7 +5,7 @@ LedgerAccount updated
 ## Example Usage
 
 ```typescript
-import { UpdateLedgerAccountResponse } from "apideck/models/components";
+import { UpdateLedgerAccountResponse } from "@apideck/sdk/models/components";
 
 let value: UpdateLedgerAccountResponse = {
   statusCode: 200,

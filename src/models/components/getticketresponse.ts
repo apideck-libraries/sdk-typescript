@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   Ticket,
   Ticket$inboundSchema,
@@ -95,4 +98,22 @@ export namespace GetTicketResponse$ {
   export const outboundSchema = GetTicketResponse$outboundSchema;
   /** @deprecated use `GetTicketResponse$Outbound` instead. */
   export type Outbound = GetTicketResponse$Outbound;
+}
+
+export function getTicketResponseToJSON(
+  getTicketResponse: GetTicketResponse,
+): string {
+  return JSON.stringify(
+    GetTicketResponse$outboundSchema.parse(getTicketResponse),
+  );
+}
+
+export function getTicketResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<GetTicketResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetTicketResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetTicketResponse' from JSON`,
+  );
 }

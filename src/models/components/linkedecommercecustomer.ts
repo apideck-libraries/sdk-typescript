@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   Email,
   Email$inboundSchema,
@@ -111,4 +114,22 @@ export namespace LinkedEcommerceCustomer$ {
   export const outboundSchema = LinkedEcommerceCustomer$outboundSchema;
   /** @deprecated use `LinkedEcommerceCustomer$Outbound` instead. */
   export type Outbound = LinkedEcommerceCustomer$Outbound;
+}
+
+export function linkedEcommerceCustomerToJSON(
+  linkedEcommerceCustomer: LinkedEcommerceCustomer,
+): string {
+  return JSON.stringify(
+    LinkedEcommerceCustomer$outboundSchema.parse(linkedEcommerceCustomer),
+  );
+}
+
+export function linkedEcommerceCustomerFromJSON(
+  jsonString: string,
+): SafeParseResult<LinkedEcommerceCustomer, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => LinkedEcommerceCustomer$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'LinkedEcommerceCustomer' from JSON`,
+  );
 }

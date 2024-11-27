@@ -5,9 +5,9 @@ The work schedule of the employee.
 ## Example Usage
 
 ```typescript
-import { EmploymentSubType } from "apideck/models/components";
+import { EmploymentSubType } from "@apideck/sdk/models/components";
 
-let value: EmploymentSubType = "not_specified";
+let value: EmploymentSubType = "full_time";
 ```
 
 ## Values

@@ -5,7 +5,7 @@ Activities
 ## Example Usage
 
 ```typescript
-import { GetActivitiesResponse } from "apideck/models/components";
+import { GetActivitiesResponse } from "@apideck/sdk/models/components";
 
 let value: GetActivitiesResponse = {
   statusCode: 200,
@@ -89,9 +89,7 @@ let value: GetActivitiesResponse = {
           id: "2389328923893298",
           name: "employee_level",
           description: "Employee Level",
-          value: [
-            {},
-          ],
+          value: "Uses Salesforce and Marketo",
         },
       ],
       attendees: [

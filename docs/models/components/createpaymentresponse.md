@@ -5,7 +5,7 @@ Payment created
 ## Example Usage
 
 ```typescript
-import { CreatePaymentResponse } from "apideck/models/components";
+import { CreatePaymentResponse } from "@apideck/sdk/models/components";
 
 let value: CreatePaymentResponse = {
   statusCode: 200,

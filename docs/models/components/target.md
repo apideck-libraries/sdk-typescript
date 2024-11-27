@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { Target } from "apideck/models/components";
+import { Target } from "@apideck/sdk/models/components";
 
 let value: Target = "custom_fields";
 ```

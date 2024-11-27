@@ -5,7 +5,7 @@ Update a Ticket
 ## Example Usage
 
 ```typescript
-import { UpdateTicketResponse } from "apideck/models/components";
+import { UpdateTicketResponse } from "@apideck/sdk/models/components";
 
 let value: UpdateTicketResponse = {
   statusCode: 200,

@@ -4,8 +4,11 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import { RFCDate } from "../../types/rfcdate.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   Address,
   Address$inboundSchema,
@@ -261,6 +264,20 @@ export namespace EmployeeJob$ {
   export type Outbound = EmployeeJob$Outbound;
 }
 
+export function employeeJobToJSON(employeeJob: EmployeeJob): string {
+  return JSON.stringify(EmployeeJob$outboundSchema.parse(employeeJob));
+}
+
+export function employeeJobFromJSON(
+  jsonString: string,
+): SafeParseResult<EmployeeJob, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => EmployeeJob$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'EmployeeJob' from JSON`,
+  );
+}
+
 /** @internal */
 export const EmployeeJobInput$inboundSchema: z.ZodType<
   EmployeeJobInput,
@@ -351,4 +368,22 @@ export namespace EmployeeJobInput$ {
   export const outboundSchema = EmployeeJobInput$outboundSchema;
   /** @deprecated use `EmployeeJobInput$Outbound` instead. */
   export type Outbound = EmployeeJobInput$Outbound;
+}
+
+export function employeeJobInputToJSON(
+  employeeJobInput: EmployeeJobInput,
+): string {
+  return JSON.stringify(
+    EmployeeJobInput$outboundSchema.parse(employeeJobInput),
+  );
+}
+
+export function employeeJobInputFromJSON(
+  jsonString: string,
+): SafeParseResult<EmployeeJobInput, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => EmployeeJobInput$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'EmployeeJobInput' from JSON`,
+  );
 }

@@ -5,7 +5,7 @@ TaxRate created
 ## Example Usage
 
 ```typescript
-import { CreateTaxRateResponse } from "apideck/models/components";
+import { CreateTaxRateResponse } from "@apideck/sdk/models/components";
 
 let value: CreateTaxRateResponse = {
   statusCode: 200,

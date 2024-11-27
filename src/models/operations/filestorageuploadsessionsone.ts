@@ -4,7 +4,10 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export const FileStorageUploadSessionsOneServerList = [
   "https://upload.apideck.com",
@@ -14,7 +17,7 @@ export type FileStorageUploadSessionsOneGlobals = {
   /**
    * ID of the consumer which you want to get or push data from
    */
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   /**
    * The ID of your Unify application
    */
@@ -58,13 +61,13 @@ export const FileStorageUploadSessionsOneGlobals$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
 /** @internal */
 export type FileStorageUploadSessionsOneGlobals$Outbound = {
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   appId?: string | undefined;
 };
 
@@ -74,7 +77,7 @@ export const FileStorageUploadSessionsOneGlobals$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   FileStorageUploadSessionsOneGlobals
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
@@ -91,6 +94,27 @@ export namespace FileStorageUploadSessionsOneGlobals$ {
     FileStorageUploadSessionsOneGlobals$outboundSchema;
   /** @deprecated use `FileStorageUploadSessionsOneGlobals$Outbound` instead. */
   export type Outbound = FileStorageUploadSessionsOneGlobals$Outbound;
+}
+
+export function fileStorageUploadSessionsOneGlobalsToJSON(
+  fileStorageUploadSessionsOneGlobals: FileStorageUploadSessionsOneGlobals,
+): string {
+  return JSON.stringify(
+    FileStorageUploadSessionsOneGlobals$outboundSchema.parse(
+      fileStorageUploadSessionsOneGlobals,
+    ),
+  );
+}
+
+export function fileStorageUploadSessionsOneGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<FileStorageUploadSessionsOneGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      FileStorageUploadSessionsOneGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'FileStorageUploadSessionsOneGlobals' from JSON`,
+  );
 }
 
 /** @internal */
@@ -138,6 +162,27 @@ export namespace FileStorageUploadSessionsOneRequest$ {
     FileStorageUploadSessionsOneRequest$outboundSchema;
   /** @deprecated use `FileStorageUploadSessionsOneRequest$Outbound` instead. */
   export type Outbound = FileStorageUploadSessionsOneRequest$Outbound;
+}
+
+export function fileStorageUploadSessionsOneRequestToJSON(
+  fileStorageUploadSessionsOneRequest: FileStorageUploadSessionsOneRequest,
+): string {
+  return JSON.stringify(
+    FileStorageUploadSessionsOneRequest$outboundSchema.parse(
+      fileStorageUploadSessionsOneRequest,
+    ),
+  );
+}
+
+export function fileStorageUploadSessionsOneRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<FileStorageUploadSessionsOneRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      FileStorageUploadSessionsOneRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'FileStorageUploadSessionsOneRequest' from JSON`,
+  );
 }
 
 /** @internal */
@@ -202,4 +247,25 @@ export namespace FileStorageUploadSessionsOneResponse$ {
     FileStorageUploadSessionsOneResponse$outboundSchema;
   /** @deprecated use `FileStorageUploadSessionsOneResponse$Outbound` instead. */
   export type Outbound = FileStorageUploadSessionsOneResponse$Outbound;
+}
+
+export function fileStorageUploadSessionsOneResponseToJSON(
+  fileStorageUploadSessionsOneResponse: FileStorageUploadSessionsOneResponse,
+): string {
+  return JSON.stringify(
+    FileStorageUploadSessionsOneResponse$outboundSchema.parse(
+      fileStorageUploadSessionsOneResponse,
+    ),
+  );
+}
+
+export function fileStorageUploadSessionsOneResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<FileStorageUploadSessionsOneResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      FileStorageUploadSessionsOneResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'FileStorageUploadSessionsOneResponse' from JSON`,
+  );
 }

@@ -5,12 +5,12 @@ The rate at which requests for resources will be made to downstream.
 ## Example Usage
 
 ```typescript
-import { RequestRate } from "apideck/models/components";
+import { RequestRate } from "@apideck/sdk/models/components";
 
 let value: RequestRate = {
-  rate: 310381,
-  size: 373035,
-  unit: "hour",
+  rate: 490305,
+  size: 989410,
+  unit: "second",
 };
 ```
 

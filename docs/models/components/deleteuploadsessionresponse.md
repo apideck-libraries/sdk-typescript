@@ -5,7 +5,7 @@ UploadSessions
 ## Example Usage
 
 ```typescript
-import { DeleteUploadSessionResponse } from "apideck/models/components";
+import { DeleteUploadSessionResponse } from "@apideck/sdk/models/components";
 
 let value: DeleteUploadSessionResponse = {
   statusCode: 200,

@@ -3,24 +3,23 @@
 ## Example Usage
 
 ```typescript
-import { Defaults } from "apideck/models/components";
+import { Defaults } from "@apideck/sdk/models/components";
 
 let value: Defaults = {
   target: "custom_fields",
   id: "ProductInterest",
   options: [
     {
-      id: "1234",
       label: "General Channel",
-      options: [
-        {
-          label: "General Channel",
-          value: 123,
-        },
+      value: [
+        "team",
+        "general",
       ],
     },
   ],
-  value: 10,
+  value: [
+    "GC6000 series",
+  ],
 };
 ```
 

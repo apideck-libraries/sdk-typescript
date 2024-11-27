@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   ApiResourceCoverage,
   ApiResourceCoverage$inboundSchema,
@@ -100,4 +103,24 @@ export namespace GetApiResourceCoverageResponse$ {
   export const outboundSchema = GetApiResourceCoverageResponse$outboundSchema;
   /** @deprecated use `GetApiResourceCoverageResponse$Outbound` instead. */
   export type Outbound = GetApiResourceCoverageResponse$Outbound;
+}
+
+export function getApiResourceCoverageResponseToJSON(
+  getApiResourceCoverageResponse: GetApiResourceCoverageResponse,
+): string {
+  return JSON.stringify(
+    GetApiResourceCoverageResponse$outboundSchema.parse(
+      getApiResourceCoverageResponse,
+    ),
+  );
+}
+
+export function getApiResourceCoverageResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<GetApiResourceCoverageResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetApiResourceCoverageResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetApiResourceCoverageResponse' from JSON`,
+  );
 }

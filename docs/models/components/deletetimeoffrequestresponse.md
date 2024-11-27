@@ -5,7 +5,7 @@ TimeOffRequests
 ## Example Usage
 
 ```typescript
-import { DeleteTimeOffRequestResponse } from "apideck/models/components";
+import { DeleteTimeOffRequestResponse } from "@apideck/sdk/models/components";
 
 let value: DeleteTimeOffRequestResponse = {
   statusCode: 200,

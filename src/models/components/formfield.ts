@@ -4,7 +4,10 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   FormFieldOption,
   FormFieldOption$inboundSchema,
@@ -190,4 +193,18 @@ export namespace FormField$ {
   export const outboundSchema = FormField$outboundSchema;
   /** @deprecated use `FormField$Outbound` instead. */
   export type Outbound = FormField$Outbound;
+}
+
+export function formFieldToJSON(formField: FormField): string {
+  return JSON.stringify(FormField$outboundSchema.parse(formField));
+}
+
+export function formFieldFromJSON(
+  jsonString: string,
+): SafeParseResult<FormField, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => FormField$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'FormField' from JSON`,
+  );
 }

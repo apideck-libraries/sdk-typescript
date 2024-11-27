@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { ConnectorApiResourceCoverageOneResponse } from "apideck/models/operations";
+import { ConnectorApiResourceCoverageOneResponse } from "@apideck/sdk/models/operations";
 
 let value: ConnectorApiResourceCoverageOneResponse = {
   httpMeta: {
@@ -41,7 +41,13 @@ let value: ConnectorApiResourceCoverageOneResponse = {
     error: "Bad Request",
     typeName: "RequestHeadersValidationError",
     message: "Invalid Params",
-    detail: {},
+    detail: {
+      "missing": [
+        {
+          "x-apideck-consumer-id": "required",
+        },
+      ],
+    },
     ref: "https://developers.apideck.com/errors#unauthorizederror",
   },
 };

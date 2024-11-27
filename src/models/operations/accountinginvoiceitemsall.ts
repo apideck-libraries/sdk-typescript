@@ -4,13 +4,16 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type AccountingInvoiceItemsAllGlobals = {
   /**
    * ID of the consumer which you want to get or push data from
    */
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   /**
    * The ID of your Unify application
    */
@@ -66,13 +69,13 @@ export const AccountingInvoiceItemsAllGlobals$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
 /** @internal */
 export type AccountingInvoiceItemsAllGlobals$Outbound = {
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   appId?: string | undefined;
 };
 
@@ -82,7 +85,7 @@ export const AccountingInvoiceItemsAllGlobals$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   AccountingInvoiceItemsAllGlobals
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
@@ -97,6 +100,26 @@ export namespace AccountingInvoiceItemsAllGlobals$ {
   export const outboundSchema = AccountingInvoiceItemsAllGlobals$outboundSchema;
   /** @deprecated use `AccountingInvoiceItemsAllGlobals$Outbound` instead. */
   export type Outbound = AccountingInvoiceItemsAllGlobals$Outbound;
+}
+
+export function accountingInvoiceItemsAllGlobalsToJSON(
+  accountingInvoiceItemsAllGlobals: AccountingInvoiceItemsAllGlobals,
+): string {
+  return JSON.stringify(
+    AccountingInvoiceItemsAllGlobals$outboundSchema.parse(
+      accountingInvoiceItemsAllGlobals,
+    ),
+  );
+}
+
+export function accountingInvoiceItemsAllGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<AccountingInvoiceItemsAllGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => AccountingInvoiceItemsAllGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AccountingInvoiceItemsAllGlobals' from JSON`,
+  );
 }
 
 /** @internal */
@@ -161,6 +184,26 @@ export namespace AccountingInvoiceItemsAllRequest$ {
   export type Outbound = AccountingInvoiceItemsAllRequest$Outbound;
 }
 
+export function accountingInvoiceItemsAllRequestToJSON(
+  accountingInvoiceItemsAllRequest: AccountingInvoiceItemsAllRequest,
+): string {
+  return JSON.stringify(
+    AccountingInvoiceItemsAllRequest$outboundSchema.parse(
+      accountingInvoiceItemsAllRequest,
+    ),
+  );
+}
+
+export function accountingInvoiceItemsAllRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<AccountingInvoiceItemsAllRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => AccountingInvoiceItemsAllRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AccountingInvoiceItemsAllRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const AccountingInvoiceItemsAllResponse$inboundSchema: z.ZodType<
   AccountingInvoiceItemsAllResponse,
@@ -222,4 +265,24 @@ export namespace AccountingInvoiceItemsAllResponse$ {
     AccountingInvoiceItemsAllResponse$outboundSchema;
   /** @deprecated use `AccountingInvoiceItemsAllResponse$Outbound` instead. */
   export type Outbound = AccountingInvoiceItemsAllResponse$Outbound;
+}
+
+export function accountingInvoiceItemsAllResponseToJSON(
+  accountingInvoiceItemsAllResponse: AccountingInvoiceItemsAllResponse,
+): string {
+  return JSON.stringify(
+    AccountingInvoiceItemsAllResponse$outboundSchema.parse(
+      accountingInvoiceItemsAllResponse,
+    ),
+  );
+}
+
+export function accountingInvoiceItemsAllResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<AccountingInvoiceItemsAllResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => AccountingInvoiceItemsAllResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AccountingInvoiceItemsAllResponse' from JSON`,
+  );
 }

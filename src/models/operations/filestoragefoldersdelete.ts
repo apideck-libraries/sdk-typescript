@@ -4,13 +4,16 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type FileStorageFoldersDeleteGlobals = {
   /**
    * ID of the consumer which you want to get or push data from
    */
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   /**
    * The ID of your Unify application
    */
@@ -50,13 +53,13 @@ export const FileStorageFoldersDeleteGlobals$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
 /** @internal */
 export type FileStorageFoldersDeleteGlobals$Outbound = {
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   appId?: string | undefined;
 };
 
@@ -66,7 +69,7 @@ export const FileStorageFoldersDeleteGlobals$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   FileStorageFoldersDeleteGlobals
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
@@ -81,6 +84,26 @@ export namespace FileStorageFoldersDeleteGlobals$ {
   export const outboundSchema = FileStorageFoldersDeleteGlobals$outboundSchema;
   /** @deprecated use `FileStorageFoldersDeleteGlobals$Outbound` instead. */
   export type Outbound = FileStorageFoldersDeleteGlobals$Outbound;
+}
+
+export function fileStorageFoldersDeleteGlobalsToJSON(
+  fileStorageFoldersDeleteGlobals: FileStorageFoldersDeleteGlobals,
+): string {
+  return JSON.stringify(
+    FileStorageFoldersDeleteGlobals$outboundSchema.parse(
+      fileStorageFoldersDeleteGlobals,
+    ),
+  );
+}
+
+export function fileStorageFoldersDeleteGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<FileStorageFoldersDeleteGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => FileStorageFoldersDeleteGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'FileStorageFoldersDeleteGlobals' from JSON`,
+  );
 }
 
 /** @internal */
@@ -123,6 +146,26 @@ export namespace FileStorageFoldersDeleteRequest$ {
   export const outboundSchema = FileStorageFoldersDeleteRequest$outboundSchema;
   /** @deprecated use `FileStorageFoldersDeleteRequest$Outbound` instead. */
   export type Outbound = FileStorageFoldersDeleteRequest$Outbound;
+}
+
+export function fileStorageFoldersDeleteRequestToJSON(
+  fileStorageFoldersDeleteRequest: FileStorageFoldersDeleteRequest,
+): string {
+  return JSON.stringify(
+    FileStorageFoldersDeleteRequest$outboundSchema.parse(
+      fileStorageFoldersDeleteRequest,
+    ),
+  );
+}
+
+export function fileStorageFoldersDeleteRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<FileStorageFoldersDeleteRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => FileStorageFoldersDeleteRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'FileStorageFoldersDeleteRequest' from JSON`,
+  );
 }
 
 /** @internal */
@@ -183,4 +226,24 @@ export namespace FileStorageFoldersDeleteResponse$ {
   export const outboundSchema = FileStorageFoldersDeleteResponse$outboundSchema;
   /** @deprecated use `FileStorageFoldersDeleteResponse$Outbound` instead. */
   export type Outbound = FileStorageFoldersDeleteResponse$Outbound;
+}
+
+export function fileStorageFoldersDeleteResponseToJSON(
+  fileStorageFoldersDeleteResponse: FileStorageFoldersDeleteResponse,
+): string {
+  return JSON.stringify(
+    FileStorageFoldersDeleteResponse$outboundSchema.parse(
+      fileStorageFoldersDeleteResponse,
+    ),
+  );
+}
+
+export function fileStorageFoldersDeleteResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<FileStorageFoldersDeleteResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => FileStorageFoldersDeleteResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'FileStorageFoldersDeleteResponse' from JSON`,
+  );
 }

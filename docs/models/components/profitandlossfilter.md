@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { ProfitAndLossFilter } from "apideck/models/components";
+import { ProfitAndLossFilter } from "@apideck/sdk/models/components";
 
 let value: ProfitAndLossFilter = {
   customerId: "123abc",

@@ -4,13 +4,16 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type SmsMessagesDeleteGlobals = {
   /**
    * ID of the consumer which you want to get or push data from
    */
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   /**
    * The ID of your Unify application
    */
@@ -50,13 +53,13 @@ export const SmsMessagesDeleteGlobals$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
 /** @internal */
 export type SmsMessagesDeleteGlobals$Outbound = {
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   appId?: string | undefined;
 };
 
@@ -66,7 +69,7 @@ export const SmsMessagesDeleteGlobals$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   SmsMessagesDeleteGlobals
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
@@ -81,6 +84,24 @@ export namespace SmsMessagesDeleteGlobals$ {
   export const outboundSchema = SmsMessagesDeleteGlobals$outboundSchema;
   /** @deprecated use `SmsMessagesDeleteGlobals$Outbound` instead. */
   export type Outbound = SmsMessagesDeleteGlobals$Outbound;
+}
+
+export function smsMessagesDeleteGlobalsToJSON(
+  smsMessagesDeleteGlobals: SmsMessagesDeleteGlobals,
+): string {
+  return JSON.stringify(
+    SmsMessagesDeleteGlobals$outboundSchema.parse(smsMessagesDeleteGlobals),
+  );
+}
+
+export function smsMessagesDeleteGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<SmsMessagesDeleteGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => SmsMessagesDeleteGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'SmsMessagesDeleteGlobals' from JSON`,
+  );
 }
 
 /** @internal */
@@ -123,6 +144,24 @@ export namespace SmsMessagesDeleteRequest$ {
   export const outboundSchema = SmsMessagesDeleteRequest$outboundSchema;
   /** @deprecated use `SmsMessagesDeleteRequest$Outbound` instead. */
   export type Outbound = SmsMessagesDeleteRequest$Outbound;
+}
+
+export function smsMessagesDeleteRequestToJSON(
+  smsMessagesDeleteRequest: SmsMessagesDeleteRequest,
+): string {
+  return JSON.stringify(
+    SmsMessagesDeleteRequest$outboundSchema.parse(smsMessagesDeleteRequest),
+  );
+}
+
+export function smsMessagesDeleteRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<SmsMessagesDeleteRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => SmsMessagesDeleteRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'SmsMessagesDeleteRequest' from JSON`,
+  );
 }
 
 /** @internal */
@@ -183,4 +222,22 @@ export namespace SmsMessagesDeleteResponse$ {
   export const outboundSchema = SmsMessagesDeleteResponse$outboundSchema;
   /** @deprecated use `SmsMessagesDeleteResponse$Outbound` instead. */
   export type Outbound = SmsMessagesDeleteResponse$Outbound;
+}
+
+export function smsMessagesDeleteResponseToJSON(
+  smsMessagesDeleteResponse: SmsMessagesDeleteResponse,
+): string {
+  return JSON.stringify(
+    SmsMessagesDeleteResponse$outboundSchema.parse(smsMessagesDeleteResponse),
+  );
+}
+
+export function smsMessagesDeleteResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<SmsMessagesDeleteResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => SmsMessagesDeleteResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'SmsMessagesDeleteResponse' from JSON`,
+  );
 }

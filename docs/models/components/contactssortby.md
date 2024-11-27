@@ -5,7 +5,7 @@ The field on which to sort the Contacts
 ## Example Usage
 
 ```typescript
-import { ContactsSortBy } from "apideck/models/components";
+import { ContactsSortBy } from "@apideck/sdk/models/components";
 
 let value: ContactsSortBy = "created_at";
 ```

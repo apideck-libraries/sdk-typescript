@@ -4,13 +4,16 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type VaultConnectionsDeleteGlobals = {
   /**
    * ID of the consumer which you want to get or push data from
    */
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   /**
    * The ID of your Unify application
    */
@@ -42,13 +45,13 @@ export const VaultConnectionsDeleteGlobals$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
 /** @internal */
 export type VaultConnectionsDeleteGlobals$Outbound = {
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   appId?: string | undefined;
 };
 
@@ -58,7 +61,7 @@ export const VaultConnectionsDeleteGlobals$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   VaultConnectionsDeleteGlobals
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
@@ -73,6 +76,26 @@ export namespace VaultConnectionsDeleteGlobals$ {
   export const outboundSchema = VaultConnectionsDeleteGlobals$outboundSchema;
   /** @deprecated use `VaultConnectionsDeleteGlobals$Outbound` instead. */
   export type Outbound = VaultConnectionsDeleteGlobals$Outbound;
+}
+
+export function vaultConnectionsDeleteGlobalsToJSON(
+  vaultConnectionsDeleteGlobals: VaultConnectionsDeleteGlobals,
+): string {
+  return JSON.stringify(
+    VaultConnectionsDeleteGlobals$outboundSchema.parse(
+      vaultConnectionsDeleteGlobals,
+    ),
+  );
+}
+
+export function vaultConnectionsDeleteGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<VaultConnectionsDeleteGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => VaultConnectionsDeleteGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'VaultConnectionsDeleteGlobals' from JSON`,
+  );
 }
 
 /** @internal */
@@ -122,6 +145,26 @@ export namespace VaultConnectionsDeleteRequest$ {
   export const outboundSchema = VaultConnectionsDeleteRequest$outboundSchema;
   /** @deprecated use `VaultConnectionsDeleteRequest$Outbound` instead. */
   export type Outbound = VaultConnectionsDeleteRequest$Outbound;
+}
+
+export function vaultConnectionsDeleteRequestToJSON(
+  vaultConnectionsDeleteRequest: VaultConnectionsDeleteRequest,
+): string {
+  return JSON.stringify(
+    VaultConnectionsDeleteRequest$outboundSchema.parse(
+      vaultConnectionsDeleteRequest,
+    ),
+  );
+}
+
+export function vaultConnectionsDeleteRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<VaultConnectionsDeleteRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => VaultConnectionsDeleteRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'VaultConnectionsDeleteRequest' from JSON`,
+  );
 }
 
 /** @internal */
@@ -175,4 +218,24 @@ export namespace VaultConnectionsDeleteResponse$ {
   export const outboundSchema = VaultConnectionsDeleteResponse$outboundSchema;
   /** @deprecated use `VaultConnectionsDeleteResponse$Outbound` instead. */
   export type Outbound = VaultConnectionsDeleteResponse$Outbound;
+}
+
+export function vaultConnectionsDeleteResponseToJSON(
+  vaultConnectionsDeleteResponse: VaultConnectionsDeleteResponse,
+): string {
+  return JSON.stringify(
+    VaultConnectionsDeleteResponse$outboundSchema.parse(
+      vaultConnectionsDeleteResponse,
+    ),
+  );
+}
+
+export function vaultConnectionsDeleteResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<VaultConnectionsDeleteResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => VaultConnectionsDeleteResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'VaultConnectionsDeleteResponse' from JSON`,
+  );
 }

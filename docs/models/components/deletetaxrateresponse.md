@@ -5,7 +5,7 @@ TaxRates deleted
 ## Example Usage
 
 ```typescript
-import { DeleteTaxRateResponse } from "apideck/models/components";
+import { DeleteTaxRateResponse } from "@apideck/sdk/models/components";
 
 let value: DeleteTaxRateResponse = {
   statusCode: 200,

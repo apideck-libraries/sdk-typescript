@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   UploadSession,
   UploadSession$inboundSchema,
@@ -95,4 +98,22 @@ export namespace GetUploadSessionResponse$ {
   export const outboundSchema = GetUploadSessionResponse$outboundSchema;
   /** @deprecated use `GetUploadSessionResponse$Outbound` instead. */
   export type Outbound = GetUploadSessionResponse$Outbound;
+}
+
+export function getUploadSessionResponseToJSON(
+  getUploadSessionResponse: GetUploadSessionResponse,
+): string {
+  return JSON.stringify(
+    GetUploadSessionResponse$outboundSchema.parse(getUploadSessionResponse),
+  );
+}
+
+export function getUploadSessionResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<GetUploadSessionResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetUploadSessionResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetUploadSessionResponse' from JSON`,
+  );
 }

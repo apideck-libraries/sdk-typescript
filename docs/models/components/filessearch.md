@@ -3,26 +3,10 @@
 ## Example Usage
 
 ```typescript
-import { FilesSearch } from "apideck/models/components";
+import { FilesSearch } from "@apideck/sdk/models/components";
 
 let value: FilesSearch = {
   query: "logo jpg",
-  driveId: "1234",
-  passThrough: [
-    {
-      serviceId: "<id>",
-      extendPaths: [
-        {
-          path: "$.nested.property",
-          value: {
-            "TaxClassificationRef": {
-              "value": "EUC-99990201-V1-00020000",
-            },
-          },
-        },
-      ],
-    },
-  ],
 };
 ```
 

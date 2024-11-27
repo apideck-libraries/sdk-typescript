@@ -5,7 +5,7 @@
 ## Example Usage
 
 ```typescript
-import { ConnectionState } from "apideck/models/components";
+import { ConnectionState } from "@apideck/sdk/models/components";
 
 let value: ConnectionState = "authorized";
 ```

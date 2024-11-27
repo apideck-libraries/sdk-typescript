@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { ActivityInput } from "apideck/models/components";
+import { ActivityInput } from "@apideck/sdk/models/components";
 
 let value: ActivityInput = {
   activityDatetime: "2021-05-01T12:00:00.000Z",
@@ -77,9 +77,7 @@ let value: ActivityInput = {
       id: "2389328923893298",
       name: "employee_level",
       description: "Employee Level",
-      value: [
-        {},
-      ],
+      value: "Uses Salesforce and Marketo",
     },
   ],
   attendees: [

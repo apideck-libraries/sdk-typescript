@@ -5,7 +5,7 @@ Unprocessable
 ## Example Usage
 
 ```typescript
-import { UnprocessableResponse } from "apideck/models/errors";
+import { UnprocessableResponse } from "@apideck/sdk/models/errors";
 
 // No examples available for this model
 ```

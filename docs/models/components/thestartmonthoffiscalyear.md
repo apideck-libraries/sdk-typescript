@@ -5,7 +5,7 @@ The start month of fiscal year.
 ## Example Usage
 
 ```typescript
-import { TheStartMonthOfFiscalYear } from "apideck/models/components";
+import { TheStartMonthOfFiscalYear } from "@apideck/sdk/models/components";
 
 let value: TheStartMonthOfFiscalYear = "January";
 ```

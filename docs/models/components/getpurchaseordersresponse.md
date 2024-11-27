@@ -5,8 +5,8 @@ PurchaseOrders
 ## Example Usage
 
 ```typescript
-import { GetPurchaseOrdersResponse } from "apideck/models/components";
-import { RFCDate } from "apideck/types";
+import { GetPurchaseOrdersResponse } from "@apideck/sdk/models/components";
+import { RFCDate } from "@apideck/sdk/types";
 
 let value: GetPurchaseOrdersResponse = {
   statusCode: 200,
@@ -109,7 +109,7 @@ let value: GetPurchaseOrdersResponse = {
               id: "2389328923893298",
               name: "employee_level",
               description: "Employee Level",
-              value: {},
+              value: "Uses Salesforce and Marketo",
             },
           ],
           rowVersion: "1-12345",

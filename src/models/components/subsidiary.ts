@@ -4,7 +4,10 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   CustomMappings,
   CustomMappings$inboundSchema,
@@ -213,6 +216,20 @@ export namespace Subsidiary$ {
   export type Outbound = Subsidiary$Outbound;
 }
 
+export function subsidiaryToJSON(subsidiary: Subsidiary): string {
+  return JSON.stringify(Subsidiary$outboundSchema.parse(subsidiary));
+}
+
+export function subsidiaryFromJSON(
+  jsonString: string,
+): SafeParseResult<Subsidiary, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Subsidiary$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Subsidiary' from JSON`,
+  );
+}
+
 /** @internal */
 export const SubsidiaryInput$inboundSchema: z.ZodType<
   SubsidiaryInput,
@@ -271,4 +288,20 @@ export namespace SubsidiaryInput$ {
   export const outboundSchema = SubsidiaryInput$outboundSchema;
   /** @deprecated use `SubsidiaryInput$Outbound` instead. */
   export type Outbound = SubsidiaryInput$Outbound;
+}
+
+export function subsidiaryInputToJSON(
+  subsidiaryInput: SubsidiaryInput,
+): string {
+  return JSON.stringify(SubsidiaryInput$outboundSchema.parse(subsidiaryInput));
+}
+
+export function subsidiaryInputFromJSON(
+  jsonString: string,
+): SafeParseResult<SubsidiaryInput, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => SubsidiaryInput$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'SubsidiaryInput' from JSON`,
+  );
 }

@@ -4,7 +4,10 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   Address,
   Address$inboundSchema,
@@ -271,6 +274,20 @@ export namespace HrisCompany$ {
   export type Outbound = HrisCompany$Outbound;
 }
 
+export function hrisCompanyToJSON(hrisCompany: HrisCompany): string {
+  return JSON.stringify(HrisCompany$outboundSchema.parse(hrisCompany));
+}
+
+export function hrisCompanyFromJSON(
+  jsonString: string,
+): SafeParseResult<HrisCompany, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => HrisCompany$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'HrisCompany' from JSON`,
+  );
+}
+
 /** @internal */
 export const HrisCompanyInput$inboundSchema: z.ZodType<
   HrisCompanyInput,
@@ -356,4 +373,22 @@ export namespace HrisCompanyInput$ {
   export const outboundSchema = HrisCompanyInput$outboundSchema;
   /** @deprecated use `HrisCompanyInput$Outbound` instead. */
   export type Outbound = HrisCompanyInput$Outbound;
+}
+
+export function hrisCompanyInputToJSON(
+  hrisCompanyInput: HrisCompanyInput,
+): string {
+  return JSON.stringify(
+    HrisCompanyInput$outboundSchema.parse(hrisCompanyInput),
+  );
+}
+
+export function hrisCompanyInputFromJSON(
+  jsonString: string,
+): SafeParseResult<HrisCompanyInput, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => HrisCompanyInput$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'HrisCompanyInput' from JSON`,
+  );
 }

@@ -5,8 +5,8 @@ PurchaseOrders
 ## Example Usage
 
 ```typescript
-import { GetPurchaseOrderResponse } from "apideck/models/components";
-import { RFCDate } from "apideck/types";
+import { GetPurchaseOrderResponse } from "@apideck/sdk/models/components";
+import { RFCDate } from "@apideck/sdk/types";
 
 let value: GetPurchaseOrderResponse = {
   statusCode: 200,

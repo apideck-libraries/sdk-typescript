@@ -4,7 +4,10 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   ConsumerMetadata,
   ConsumerMetadata$inboundSchema,
@@ -253,6 +256,22 @@ export namespace SessionSettings$ {
   export type Outbound = SessionSettings$Outbound;
 }
 
+export function sessionSettingsToJSON(
+  sessionSettings: SessionSettings,
+): string {
+  return JSON.stringify(SessionSettings$outboundSchema.parse(sessionSettings));
+}
+
+export function sessionSettingsFromJSON(
+  jsonString: string,
+): SafeParseResult<SessionSettings, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => SessionSettings$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'SessionSettings' from JSON`,
+  );
+}
+
 /** @internal */
 export const Theme$inboundSchema: z.ZodType<Theme, z.ZodTypeDef, unknown> = z
   .object({
@@ -325,6 +344,20 @@ export namespace Theme$ {
   export type Outbound = Theme$Outbound;
 }
 
+export function themeToJSON(theme: Theme): string {
+  return JSON.stringify(Theme$outboundSchema.parse(theme));
+}
+
+export function themeFromJSON(
+  jsonString: string,
+): SafeParseResult<Theme, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Theme$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Theme' from JSON`,
+  );
+}
+
 /** @internal */
 export const Session$inboundSchema: z.ZodType<Session, z.ZodTypeDef, unknown> =
   z.object({
@@ -380,4 +413,18 @@ export namespace Session$ {
   export const outboundSchema = Session$outboundSchema;
   /** @deprecated use `Session$Outbound` instead. */
   export type Outbound = Session$Outbound;
+}
+
+export function sessionToJSON(session: Session): string {
+  return JSON.stringify(Session$outboundSchema.parse(session));
+}
+
+export function sessionFromJSON(
+  jsonString: string,
+): SafeParseResult<Session, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Session$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Session' from JSON`,
+  );
 }

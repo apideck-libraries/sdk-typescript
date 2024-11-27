@@ -5,7 +5,7 @@ The type of the activity
 ## Example Usage
 
 ```typescript
-import { ActivityType } from "apideck/models/components";
+import { ActivityType } from "@apideck/sdk/models/components";
 
 let value: ActivityType = "meeting";
 ```

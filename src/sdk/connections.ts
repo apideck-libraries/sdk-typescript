@@ -4,7 +4,7 @@
 
 import { vaultConnectionsDelete } from "../funcs/vaultConnectionsDelete.js";
 import { vaultConnectionsGet } from "../funcs/vaultConnectionsGet.js";
-import { vaultConnectionsImport } from "../funcs/vaultConnectionsImport.js";
+import { vaultConnectionsImports } from "../funcs/vaultConnectionsImports.js";
 import { vaultConnectionsList } from "../funcs/vaultConnectionsList.js";
 import { vaultConnectionsToken } from "../funcs/vaultConnectionsToken.js";
 import { vaultConnectionsUpdate } from "../funcs/vaultConnectionsUpdate.js";
@@ -89,11 +89,11 @@ export class Connections extends ClientSDK {
    * @remarks
    * Import an authorized connection.
    */
-  async import(
+  async imports(
     request: operations.VaultConnectionsImportRequest,
     options?: RequestOptions,
   ): Promise<operations.VaultConnectionsImportResponse> {
-    return unwrapAsync(vaultConnectionsImport(
+    return unwrapAsync(vaultConnectionsImports(
       this,
       request,
       options,

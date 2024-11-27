@@ -11,9 +11,14 @@ Contains parameter or domain specific information related to the error and why i
 const value: string = "Could not find widget with id: '123'";
 ```
 
-### `errors.DetailNotFoundResponse2`
+### `{ [k: string]: any }`
 
 ```typescript
-const value: errors.DetailNotFoundResponse2 = {};
+const value: { [k: string]: any } = {
+  "not_found": {
+    "entity": "widget",
+    "id": "123",
+  },
+};
 ```
 

@@ -4,13 +4,16 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type FileStorageSharedLinksUpdateGlobals = {
   /**
    * ID of the consumer which you want to get or push data from
    */
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   /**
    * The ID of your Unify application
    */
@@ -51,13 +54,13 @@ export const FileStorageSharedLinksUpdateGlobals$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
 /** @internal */
 export type FileStorageSharedLinksUpdateGlobals$Outbound = {
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   appId?: string | undefined;
 };
 
@@ -67,7 +70,7 @@ export const FileStorageSharedLinksUpdateGlobals$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   FileStorageSharedLinksUpdateGlobals
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
@@ -84,6 +87,27 @@ export namespace FileStorageSharedLinksUpdateGlobals$ {
     FileStorageSharedLinksUpdateGlobals$outboundSchema;
   /** @deprecated use `FileStorageSharedLinksUpdateGlobals$Outbound` instead. */
   export type Outbound = FileStorageSharedLinksUpdateGlobals$Outbound;
+}
+
+export function fileStorageSharedLinksUpdateGlobalsToJSON(
+  fileStorageSharedLinksUpdateGlobals: FileStorageSharedLinksUpdateGlobals,
+): string {
+  return JSON.stringify(
+    FileStorageSharedLinksUpdateGlobals$outboundSchema.parse(
+      fileStorageSharedLinksUpdateGlobals,
+    ),
+  );
+}
+
+export function fileStorageSharedLinksUpdateGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<FileStorageSharedLinksUpdateGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      FileStorageSharedLinksUpdateGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'FileStorageSharedLinksUpdateGlobals' from JSON`,
+  );
 }
 
 /** @internal */
@@ -139,6 +163,27 @@ export namespace FileStorageSharedLinksUpdateRequest$ {
     FileStorageSharedLinksUpdateRequest$outboundSchema;
   /** @deprecated use `FileStorageSharedLinksUpdateRequest$Outbound` instead. */
   export type Outbound = FileStorageSharedLinksUpdateRequest$Outbound;
+}
+
+export function fileStorageSharedLinksUpdateRequestToJSON(
+  fileStorageSharedLinksUpdateRequest: FileStorageSharedLinksUpdateRequest,
+): string {
+  return JSON.stringify(
+    FileStorageSharedLinksUpdateRequest$outboundSchema.parse(
+      fileStorageSharedLinksUpdateRequest,
+    ),
+  );
+}
+
+export function fileStorageSharedLinksUpdateRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<FileStorageSharedLinksUpdateRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      FileStorageSharedLinksUpdateRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'FileStorageSharedLinksUpdateRequest' from JSON`,
+  );
 }
 
 /** @internal */
@@ -203,4 +248,25 @@ export namespace FileStorageSharedLinksUpdateResponse$ {
     FileStorageSharedLinksUpdateResponse$outboundSchema;
   /** @deprecated use `FileStorageSharedLinksUpdateResponse$Outbound` instead. */
   export type Outbound = FileStorageSharedLinksUpdateResponse$Outbound;
+}
+
+export function fileStorageSharedLinksUpdateResponseToJSON(
+  fileStorageSharedLinksUpdateResponse: FileStorageSharedLinksUpdateResponse,
+): string {
+  return JSON.stringify(
+    FileStorageSharedLinksUpdateResponse$outboundSchema.parse(
+      fileStorageSharedLinksUpdateResponse,
+    ),
+  );
+}
+
+export function fileStorageSharedLinksUpdateResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<FileStorageSharedLinksUpdateResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      FileStorageSharedLinksUpdateResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'FileStorageSharedLinksUpdateResponse' from JSON`,
+  );
 }

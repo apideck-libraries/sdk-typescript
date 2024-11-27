@@ -4,7 +4,10 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type WebhookWebhooksDeleteGlobals = {
   /**
@@ -68,6 +71,26 @@ export namespace WebhookWebhooksDeleteGlobals$ {
   export type Outbound = WebhookWebhooksDeleteGlobals$Outbound;
 }
 
+export function webhookWebhooksDeleteGlobalsToJSON(
+  webhookWebhooksDeleteGlobals: WebhookWebhooksDeleteGlobals,
+): string {
+  return JSON.stringify(
+    WebhookWebhooksDeleteGlobals$outboundSchema.parse(
+      webhookWebhooksDeleteGlobals,
+    ),
+  );
+}
+
+export function webhookWebhooksDeleteGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<WebhookWebhooksDeleteGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => WebhookWebhooksDeleteGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'WebhookWebhooksDeleteGlobals' from JSON`,
+  );
+}
+
 /** @internal */
 export const WebhookWebhooksDeleteRequest$inboundSchema: z.ZodType<
   WebhookWebhooksDeleteRequest,
@@ -102,6 +125,26 @@ export namespace WebhookWebhooksDeleteRequest$ {
   export const outboundSchema = WebhookWebhooksDeleteRequest$outboundSchema;
   /** @deprecated use `WebhookWebhooksDeleteRequest$Outbound` instead. */
   export type Outbound = WebhookWebhooksDeleteRequest$Outbound;
+}
+
+export function webhookWebhooksDeleteRequestToJSON(
+  webhookWebhooksDeleteRequest: WebhookWebhooksDeleteRequest,
+): string {
+  return JSON.stringify(
+    WebhookWebhooksDeleteRequest$outboundSchema.parse(
+      webhookWebhooksDeleteRequest,
+    ),
+  );
+}
+
+export function webhookWebhooksDeleteRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<WebhookWebhooksDeleteRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => WebhookWebhooksDeleteRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'WebhookWebhooksDeleteRequest' from JSON`,
+  );
 }
 
 /** @internal */
@@ -162,4 +205,24 @@ export namespace WebhookWebhooksDeleteResponse$ {
   export const outboundSchema = WebhookWebhooksDeleteResponse$outboundSchema;
   /** @deprecated use `WebhookWebhooksDeleteResponse$Outbound` instead. */
   export type Outbound = WebhookWebhooksDeleteResponse$Outbound;
+}
+
+export function webhookWebhooksDeleteResponseToJSON(
+  webhookWebhooksDeleteResponse: WebhookWebhooksDeleteResponse,
+): string {
+  return JSON.stringify(
+    WebhookWebhooksDeleteResponse$outboundSchema.parse(
+      webhookWebhooksDeleteResponse,
+    ),
+  );
+}
+
+export function webhookWebhooksDeleteResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<WebhookWebhooksDeleteResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => WebhookWebhooksDeleteResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'WebhookWebhooksDeleteResponse' from JSON`,
+  );
 }

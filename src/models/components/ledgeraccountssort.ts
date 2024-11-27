@@ -3,7 +3,10 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   SortDirection,
   SortDirection$inboundSchema,
@@ -91,4 +94,22 @@ export namespace LedgerAccountsSort$ {
   export const outboundSchema = LedgerAccountsSort$outboundSchema;
   /** @deprecated use `LedgerAccountsSort$Outbound` instead. */
   export type Outbound = LedgerAccountsSort$Outbound;
+}
+
+export function ledgerAccountsSortToJSON(
+  ledgerAccountsSort: LedgerAccountsSort,
+): string {
+  return JSON.stringify(
+    LedgerAccountsSort$outboundSchema.parse(ledgerAccountsSort),
+  );
+}
+
+export function ledgerAccountsSortFromJSON(
+  jsonString: string,
+): SafeParseResult<LedgerAccountsSort, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => LedgerAccountsSort$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'LedgerAccountsSort' from JSON`,
+  );
 }

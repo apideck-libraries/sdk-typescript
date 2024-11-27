@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { LeadInput } from "apideck/models/components";
+import { LeadInput } from "@apideck/sdk/models/components";
 
 let value: LeadInput = {
   name: "Elon Musk",
@@ -87,7 +87,7 @@ let value: LeadInput = {
       id: "2389328923893298",
       name: "employee_level",
       description: "Employee Level",
-      value: 10,
+      value: {},
     },
   ],
   tags: [

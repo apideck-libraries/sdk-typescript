@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   Links,
   Links$inboundSchema,
@@ -121,4 +124,22 @@ export namespace GetTimeOffRequestsResponse$ {
   export const outboundSchema = GetTimeOffRequestsResponse$outboundSchema;
   /** @deprecated use `GetTimeOffRequestsResponse$Outbound` instead. */
   export type Outbound = GetTimeOffRequestsResponse$Outbound;
+}
+
+export function getTimeOffRequestsResponseToJSON(
+  getTimeOffRequestsResponse: GetTimeOffRequestsResponse,
+): string {
+  return JSON.stringify(
+    GetTimeOffRequestsResponse$outboundSchema.parse(getTimeOffRequestsResponse),
+  );
+}
+
+export function getTimeOffRequestsResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<GetTimeOffRequestsResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetTimeOffRequestsResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetTimeOffRequestsResponse' from JSON`,
+  );
 }

@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type LeadsFilter = {
   /**
@@ -86,4 +89,18 @@ export namespace LeadsFilter$ {
   export const outboundSchema = LeadsFilter$outboundSchema;
   /** @deprecated use `LeadsFilter$Outbound` instead. */
   export type Outbound = LeadsFilter$Outbound;
+}
+
+export function leadsFilterToJSON(leadsFilter: LeadsFilter): string {
+  return JSON.stringify(LeadsFilter$outboundSchema.parse(leadsFilter));
+}
+
+export function leadsFilterFromJSON(
+  jsonString: string,
+): SafeParseResult<LeadsFilter, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => LeadsFilter$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'LeadsFilter' from JSON`,
+  );
 }

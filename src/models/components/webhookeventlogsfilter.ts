@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type WebhookEventLogsFilterService = {
   id?: string | undefined;
@@ -51,6 +54,26 @@ export namespace WebhookEventLogsFilterService$ {
   export const outboundSchema = WebhookEventLogsFilterService$outboundSchema;
   /** @deprecated use `WebhookEventLogsFilterService$Outbound` instead. */
   export type Outbound = WebhookEventLogsFilterService$Outbound;
+}
+
+export function webhookEventLogsFilterServiceToJSON(
+  webhookEventLogsFilterService: WebhookEventLogsFilterService,
+): string {
+  return JSON.stringify(
+    WebhookEventLogsFilterService$outboundSchema.parse(
+      webhookEventLogsFilterService,
+    ),
+  );
+}
+
+export function webhookEventLogsFilterServiceFromJSON(
+  jsonString: string,
+): SafeParseResult<WebhookEventLogsFilterService, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => WebhookEventLogsFilterService$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'WebhookEventLogsFilterService' from JSON`,
+  );
 }
 
 /** @internal */
@@ -116,4 +139,22 @@ export namespace WebhookEventLogsFilter$ {
   export const outboundSchema = WebhookEventLogsFilter$outboundSchema;
   /** @deprecated use `WebhookEventLogsFilter$Outbound` instead. */
   export type Outbound = WebhookEventLogsFilter$Outbound;
+}
+
+export function webhookEventLogsFilterToJSON(
+  webhookEventLogsFilter: WebhookEventLogsFilter,
+): string {
+  return JSON.stringify(
+    WebhookEventLogsFilter$outboundSchema.parse(webhookEventLogsFilter),
+  );
+}
+
+export function webhookEventLogsFilterFromJSON(
+  jsonString: string,
+): SafeParseResult<WebhookEventLogsFilter, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => WebhookEventLogsFilter$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'WebhookEventLogsFilter' from JSON`,
+  );
 }

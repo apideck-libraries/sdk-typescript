@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type ProfitAndLossFilter = {
   /**
@@ -72,4 +75,22 @@ export namespace ProfitAndLossFilter$ {
   export const outboundSchema = ProfitAndLossFilter$outboundSchema;
   /** @deprecated use `ProfitAndLossFilter$Outbound` instead. */
   export type Outbound = ProfitAndLossFilter$Outbound;
+}
+
+export function profitAndLossFilterToJSON(
+  profitAndLossFilter: ProfitAndLossFilter,
+): string {
+  return JSON.stringify(
+    ProfitAndLossFilter$outboundSchema.parse(profitAndLossFilter),
+  );
+}
+
+export function profitAndLossFilterFromJSON(
+  jsonString: string,
+): SafeParseResult<ProfitAndLossFilter, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ProfitAndLossFilter$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ProfitAndLossFilter' from JSON`,
+  );
 }

@@ -3,14 +3,12 @@
 ## Example Usage
 
 ```typescript
-import { IssuesFilter } from "apideck/models/components";
+import { IssuesFilter } from "@apideck/sdk/models/components";
 
 let value: IssuesFilter = {
   status: [
     "open",
   ],
-  since: new Date("2020-09-30T07:43:32.000Z"),
-  assigneeId: "2332bd9c2eaaa5dcfa14721c",
 };
 ```
 

@@ -5,7 +5,7 @@ Applicants
 ## Example Usage
 
 ```typescript
-import { UpdateApplicantResponse } from "apideck/models/components";
+import { UpdateApplicantResponse } from "@apideck/sdk/models/components";
 
 let value: UpdateApplicantResponse = {
   statusCode: 200,

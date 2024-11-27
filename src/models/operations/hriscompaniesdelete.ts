@@ -4,13 +4,16 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type HrisCompaniesDeleteGlobals = {
   /**
    * ID of the consumer which you want to get or push data from
    */
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   /**
    * The ID of your Unify application
    */
@@ -50,13 +53,13 @@ export const HrisCompaniesDeleteGlobals$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
 /** @internal */
 export type HrisCompaniesDeleteGlobals$Outbound = {
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   appId?: string | undefined;
 };
 
@@ -66,7 +69,7 @@ export const HrisCompaniesDeleteGlobals$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   HrisCompaniesDeleteGlobals
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
@@ -81,6 +84,24 @@ export namespace HrisCompaniesDeleteGlobals$ {
   export const outboundSchema = HrisCompaniesDeleteGlobals$outboundSchema;
   /** @deprecated use `HrisCompaniesDeleteGlobals$Outbound` instead. */
   export type Outbound = HrisCompaniesDeleteGlobals$Outbound;
+}
+
+export function hrisCompaniesDeleteGlobalsToJSON(
+  hrisCompaniesDeleteGlobals: HrisCompaniesDeleteGlobals,
+): string {
+  return JSON.stringify(
+    HrisCompaniesDeleteGlobals$outboundSchema.parse(hrisCompaniesDeleteGlobals),
+  );
+}
+
+export function hrisCompaniesDeleteGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<HrisCompaniesDeleteGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => HrisCompaniesDeleteGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'HrisCompaniesDeleteGlobals' from JSON`,
+  );
 }
 
 /** @internal */
@@ -123,6 +144,24 @@ export namespace HrisCompaniesDeleteRequest$ {
   export const outboundSchema = HrisCompaniesDeleteRequest$outboundSchema;
   /** @deprecated use `HrisCompaniesDeleteRequest$Outbound` instead. */
   export type Outbound = HrisCompaniesDeleteRequest$Outbound;
+}
+
+export function hrisCompaniesDeleteRequestToJSON(
+  hrisCompaniesDeleteRequest: HrisCompaniesDeleteRequest,
+): string {
+  return JSON.stringify(
+    HrisCompaniesDeleteRequest$outboundSchema.parse(hrisCompaniesDeleteRequest),
+  );
+}
+
+export function hrisCompaniesDeleteRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<HrisCompaniesDeleteRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => HrisCompaniesDeleteRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'HrisCompaniesDeleteRequest' from JSON`,
+  );
 }
 
 /** @internal */
@@ -185,4 +224,24 @@ export namespace HrisCompaniesDeleteResponse$ {
   export const outboundSchema = HrisCompaniesDeleteResponse$outboundSchema;
   /** @deprecated use `HrisCompaniesDeleteResponse$Outbound` instead. */
   export type Outbound = HrisCompaniesDeleteResponse$Outbound;
+}
+
+export function hrisCompaniesDeleteResponseToJSON(
+  hrisCompaniesDeleteResponse: HrisCompaniesDeleteResponse,
+): string {
+  return JSON.stringify(
+    HrisCompaniesDeleteResponse$outboundSchema.parse(
+      hrisCompaniesDeleteResponse,
+    ),
+  );
+}
+
+export function hrisCompaniesDeleteResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<HrisCompaniesDeleteResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => HrisCompaniesDeleteResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'HrisCompaniesDeleteResponse' from JSON`,
+  );
 }

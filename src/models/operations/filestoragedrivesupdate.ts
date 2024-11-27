@@ -4,13 +4,16 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type FileStorageDrivesUpdateGlobals = {
   /**
    * ID of the consumer which you want to get or push data from
    */
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   /**
    * The ID of your Unify application
    */
@@ -51,13 +54,13 @@ export const FileStorageDrivesUpdateGlobals$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
 /** @internal */
 export type FileStorageDrivesUpdateGlobals$Outbound = {
-  customerId?: string | undefined;
+  consumerId?: string | undefined;
   appId?: string | undefined;
 };
 
@@ -67,7 +70,7 @@ export const FileStorageDrivesUpdateGlobals$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   FileStorageDrivesUpdateGlobals
 > = z.object({
-  customerId: z.string().optional(),
+  consumerId: z.string().optional(),
   appId: z.string().optional(),
 });
 
@@ -82,6 +85,26 @@ export namespace FileStorageDrivesUpdateGlobals$ {
   export const outboundSchema = FileStorageDrivesUpdateGlobals$outboundSchema;
   /** @deprecated use `FileStorageDrivesUpdateGlobals$Outbound` instead. */
   export type Outbound = FileStorageDrivesUpdateGlobals$Outbound;
+}
+
+export function fileStorageDrivesUpdateGlobalsToJSON(
+  fileStorageDrivesUpdateGlobals: FileStorageDrivesUpdateGlobals,
+): string {
+  return JSON.stringify(
+    FileStorageDrivesUpdateGlobals$outboundSchema.parse(
+      fileStorageDrivesUpdateGlobals,
+    ),
+  );
+}
+
+export function fileStorageDrivesUpdateGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<FileStorageDrivesUpdateGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => FileStorageDrivesUpdateGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'FileStorageDrivesUpdateGlobals' from JSON`,
+  );
 }
 
 /** @internal */
@@ -135,6 +158,26 @@ export namespace FileStorageDrivesUpdateRequest$ {
   export const outboundSchema = FileStorageDrivesUpdateRequest$outboundSchema;
   /** @deprecated use `FileStorageDrivesUpdateRequest$Outbound` instead. */
   export type Outbound = FileStorageDrivesUpdateRequest$Outbound;
+}
+
+export function fileStorageDrivesUpdateRequestToJSON(
+  fileStorageDrivesUpdateRequest: FileStorageDrivesUpdateRequest,
+): string {
+  return JSON.stringify(
+    FileStorageDrivesUpdateRequest$outboundSchema.parse(
+      fileStorageDrivesUpdateRequest,
+    ),
+  );
+}
+
+export function fileStorageDrivesUpdateRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<FileStorageDrivesUpdateRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => FileStorageDrivesUpdateRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'FileStorageDrivesUpdateRequest' from JSON`,
+  );
 }
 
 /** @internal */
@@ -193,4 +236,24 @@ export namespace FileStorageDrivesUpdateResponse$ {
   export const outboundSchema = FileStorageDrivesUpdateResponse$outboundSchema;
   /** @deprecated use `FileStorageDrivesUpdateResponse$Outbound` instead. */
   export type Outbound = FileStorageDrivesUpdateResponse$Outbound;
+}
+
+export function fileStorageDrivesUpdateResponseToJSON(
+  fileStorageDrivesUpdateResponse: FileStorageDrivesUpdateResponse,
+): string {
+  return JSON.stringify(
+    FileStorageDrivesUpdateResponse$outboundSchema.parse(
+      fileStorageDrivesUpdateResponse,
+    ),
+  );
+}
+
+export function fileStorageDrivesUpdateResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<FileStorageDrivesUpdateResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => FileStorageDrivesUpdateResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'FileStorageDrivesUpdateResponse' from JSON`,
+  );
 }
