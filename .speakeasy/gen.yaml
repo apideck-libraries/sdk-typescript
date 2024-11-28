@@ -43,7 +43,7 @@ typescript:
   methodArguments: require-security-and-request
   moduleFormat: commonjs
   outputModelSuffix: output
-  packageName: '@apideck/sdk'
+  packageName: '@apideck/unify'
   responseFormat: envelope-http
   templateVersion: v2
   useIndexModules: true
