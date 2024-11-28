@@ -5,7 +5,7 @@ Pipeline deleted
 ## Example Usage
 
 ```typescript
-import { DeletePipelineResponse } from "@apideck/sdk/models/components";
+import { DeletePipelineResponse } from "@apideck/unify/models/components";
 
 let value: DeletePipelineResponse = {
   statusCode: 200,

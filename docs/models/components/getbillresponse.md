@@ -5,8 +5,8 @@ Bill
 ## Example Usage
 
 ```typescript
-import { GetBillResponse } from "@apideck/sdk/models/components";
-import { RFCDate } from "@apideck/sdk/types";
+import { GetBillResponse } from "@apideck/unify/models/components";
+import { RFCDate } from "@apideck/unify/types";
 
 let value: GetBillResponse = {
   statusCode: 200,

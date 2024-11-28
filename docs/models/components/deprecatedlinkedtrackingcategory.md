@@ -5,7 +5,7 @@
 ## Example Usage
 
 ```typescript
-import { DeprecatedLinkedTrackingCategory } from "@apideck/sdk/models/components";
+import { DeprecatedLinkedTrackingCategory } from "@apideck/unify/models/components";
 
 let value: DeprecatedLinkedTrackingCategory = {
   id: "123456",

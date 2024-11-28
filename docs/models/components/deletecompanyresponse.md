@@ -5,7 +5,7 @@ Company deleted
 ## Example Usage
 
 ```typescript
-import { DeleteCompanyResponse } from "@apideck/sdk/models/components";
+import { DeleteCompanyResponse } from "@apideck/unify/models/components";
 
 let value: DeleteCompanyResponse = {
   statusCode: 200,

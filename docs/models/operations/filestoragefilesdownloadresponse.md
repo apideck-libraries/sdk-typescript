@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { FileStorageFilesDownloadResponse } from "@apideck/sdk/models/operations";
+import { FileStorageFilesDownloadResponse } from "@apideck/unify/models/operations";
 
 // No examples available for this model
 ```

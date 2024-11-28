@@ -5,7 +5,7 @@ Invoice status
 ## Example Usage
 
 ```typescript
-import { InvoiceStatus } from "@apideck/sdk/models/components";
+import { InvoiceStatus } from "@apideck/unify/models/components";
 
 let value: InvoiceStatus = "draft";
 ```

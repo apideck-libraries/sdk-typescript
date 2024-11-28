@@ -17,7 +17,7 @@ List Attachments
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -45,8 +45,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { accountingAttachmentsList } from "@apideck/sdk/funcs/accountingAttachmentsList.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { accountingAttachmentsList } from "@apideck/unify/funcs/accountingAttachmentsList.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -108,7 +108,7 @@ Get Attachment
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -137,8 +137,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { accountingAttachmentsGet } from "@apideck/sdk/funcs/accountingAttachmentsGet.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { accountingAttachmentsGet } from "@apideck/unify/funcs/accountingAttachmentsGet.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -201,7 +201,7 @@ Delete Attachment
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -229,8 +229,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { accountingAttachmentsDelete } from "@apideck/sdk/funcs/accountingAttachmentsDelete.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { accountingAttachmentsDelete } from "@apideck/unify/funcs/accountingAttachmentsDelete.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -292,7 +292,7 @@ Download Attachment
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -321,8 +321,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { accountingAttachmentsDownload } from "@apideck/sdk/funcs/accountingAttachmentsDownload.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { accountingAttachmentsDownload } from "@apideck/unify/funcs/accountingAttachmentsDownload.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.

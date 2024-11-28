@@ -5,7 +5,7 @@ Location deleted
 ## Example Usage
 
 ```typescript
-import { DeleteAccountingLocationResponse } from "@apideck/sdk/models/components";
+import { DeleteAccountingLocationResponse } from "@apideck/unify/models/components";
 
 let value: DeleteAccountingLocationResponse = {
   statusCode: 200,

@@ -5,7 +5,7 @@ Connection updated
 ## Example Usage
 
 ```typescript
-import { UpdateConnectionResponse } from "@apideck/sdk/models/components";
+import { UpdateConnectionResponse } from "@apideck/unify/models/components";
 
 let value: UpdateConnectionResponse = {
   statusCode: 200,

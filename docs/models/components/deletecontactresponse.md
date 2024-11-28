@@ -5,7 +5,7 @@ Contact deleted
 ## Example Usage
 
 ```typescript
-import { DeleteContactResponse } from "@apideck/sdk/models/components";
+import { DeleteContactResponse } from "@apideck/unify/models/components";
 
 let value: DeleteContactResponse = {
   statusCode: 200,

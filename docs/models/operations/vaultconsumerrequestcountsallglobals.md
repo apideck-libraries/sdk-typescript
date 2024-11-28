@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { VaultConsumerRequestCountsAllGlobals } from "@apideck/sdk/models/operations";
+import { VaultConsumerRequestCountsAllGlobals } from "@apideck/unify/models/operations";
 
 let value: VaultConsumerRequestCountsAllGlobals = {};
 ```

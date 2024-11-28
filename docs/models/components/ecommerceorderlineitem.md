@@ -5,7 +5,7 @@ A single line item of an ecommerce order, representing a product or variant with
 ## Example Usage
 
 ```typescript
-import { EcommerceOrderLineItem } from "@apideck/sdk/models/components";
+import { EcommerceOrderLineItem } from "@apideck/unify/models/components";
 
 let value: EcommerceOrderLineItem = {
   id: "12345",

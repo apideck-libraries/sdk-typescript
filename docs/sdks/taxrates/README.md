@@ -19,7 +19,7 @@ List Tax Rates. Note: Not all connectors return the actual rate/percentage value
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -55,8 +55,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { accountingTaxRatesList } from "@apideck/sdk/funcs/accountingTaxRatesList.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { accountingTaxRatesList } from "@apideck/unify/funcs/accountingTaxRatesList.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -126,7 +126,7 @@ Create Tax Rate
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -231,8 +231,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { accountingTaxRatesCreate } from "@apideck/sdk/funcs/accountingTaxRatesCreate.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { accountingTaxRatesCreate } from "@apideck/unify/funcs/accountingTaxRatesCreate.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -372,7 +372,7 @@ Get Tax Rate. Note: Not all connectors return the actual rate/percentage value. 
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -399,8 +399,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { accountingTaxRatesGet } from "@apideck/sdk/funcs/accountingTaxRatesGet.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { accountingTaxRatesGet } from "@apideck/unify/funcs/accountingTaxRatesGet.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -461,7 +461,7 @@ Update Tax Rate
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -537,8 +537,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { accountingTaxRatesUpdate } from "@apideck/sdk/funcs/accountingTaxRatesUpdate.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { accountingTaxRatesUpdate } from "@apideck/unify/funcs/accountingTaxRatesUpdate.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -648,7 +648,7 @@ Delete Tax Rate
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -674,8 +674,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { accountingTaxRatesDelete } from "@apideck/sdk/funcs/accountingTaxRatesDelete.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { accountingTaxRatesDelete } from "@apideck/unify/funcs/accountingTaxRatesDelete.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.

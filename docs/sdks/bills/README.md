@@ -18,7 +18,7 @@ List Bills
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -54,8 +54,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { accountingBillsList } from "@apideck/sdk/funcs/accountingBillsList.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { accountingBillsList } from "@apideck/unify/funcs/accountingBillsList.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -125,8 +125,8 @@ Create Bill
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
-import { RFCDate } from "@apideck/sdk/types";
+import { Apideck } from "@apideck/unify";
+import { RFCDate } from "@apideck/unify/types";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -402,9 +402,9 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { accountingBillsCreate } from "@apideck/sdk/funcs/accountingBillsCreate.js";
-import { RFCDate } from "@apideck/sdk/types";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { accountingBillsCreate } from "@apideck/unify/funcs/accountingBillsCreate.js";
+import { RFCDate } from "@apideck/unify/types";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -714,7 +714,7 @@ Get Bill
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -741,8 +741,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { accountingBillsGet } from "@apideck/sdk/funcs/accountingBillsGet.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { accountingBillsGet } from "@apideck/unify/funcs/accountingBillsGet.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -803,8 +803,8 @@ Update Bill
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
-import { RFCDate } from "@apideck/sdk/types";
+import { Apideck } from "@apideck/unify";
+import { RFCDate } from "@apideck/unify/types";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -1089,9 +1089,9 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { accountingBillsUpdate } from "@apideck/sdk/funcs/accountingBillsUpdate.js";
-import { RFCDate } from "@apideck/sdk/types";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { accountingBillsUpdate } from "@apideck/unify/funcs/accountingBillsUpdate.js";
+import { RFCDate } from "@apideck/unify/types";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -1410,7 +1410,7 @@ Delete Bill
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -1436,8 +1436,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { accountingBillsDelete } from "@apideck/sdk/funcs/accountingBillsDelete.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { accountingBillsDelete } from "@apideck/unify/funcs/accountingBillsDelete.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.

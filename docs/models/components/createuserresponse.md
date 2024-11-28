@@ -5,7 +5,7 @@ User created
 ## Example Usage
 
 ```typescript
-import { CreateUserResponse } from "@apideck/sdk/models/components";
+import { CreateUserResponse } from "@apideck/unify/models/components";
 
 let value: CreateUserResponse = {
   statusCode: 200,

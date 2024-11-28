@@ -5,7 +5,7 @@ Tracking category deleted
 ## Example Usage
 
 ```typescript
-import { DeleteTrackingCategoryResponse } from "@apideck/sdk/models/components";
+import { DeleteTrackingCategoryResponse } from "@apideck/unify/models/components";
 
 let value: DeleteTrackingCategoryResponse = {
   statusCode: 200,

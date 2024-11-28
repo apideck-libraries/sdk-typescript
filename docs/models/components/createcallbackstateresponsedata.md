@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { CreateCallbackStateResponseData } from "@apideck/sdk/models/components";
+import { CreateCallbackStateResponseData } from "@apideck/unify/models/components";
 
 let value: CreateCallbackStateResponseData = {
   state: "123e4567-e89b-12d3-a456-426614174000",

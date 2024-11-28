@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { VaultConsumerRequestCountsAllRequest } from "@apideck/sdk/models/operations";
+import { VaultConsumerRequestCountsAllRequest } from "@apideck/unify/models/operations";
 
 let value: VaultConsumerRequestCountsAllRequest = {
   consumerId: "test_user_id",

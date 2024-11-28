@@ -5,7 +5,7 @@ InvoiceItems
 ## Example Usage
 
 ```typescript
-import { CreateInvoiceItemResponse } from "@apideck/sdk/models/components";
+import { CreateInvoiceItemResponse } from "@apideck/unify/models/components";
 
 let value: CreateInvoiceItemResponse = {
   statusCode: 200,

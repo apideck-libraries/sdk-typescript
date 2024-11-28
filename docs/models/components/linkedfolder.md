@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { LinkedFolder } from "@apideck/sdk/models/components";
+import { LinkedFolder } from "@apideck/unify/models/components";
 
 let value: LinkedFolder = {
   id: "12345",

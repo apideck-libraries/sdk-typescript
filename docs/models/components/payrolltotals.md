@@ -5,7 +5,7 @@ The overview of the payroll totals.
 ## Example Usage
 
 ```typescript
-import { PayrollTotals } from "@apideck/sdk/models/components";
+import { PayrollTotals } from "@apideck/unify/models/components";
 
 let value: PayrollTotals = {
   companyDebit: 27992.49,

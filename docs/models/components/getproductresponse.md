@@ -5,7 +5,7 @@ Products
 ## Example Usage
 
 ```typescript
-import { GetProductResponse } from "@apideck/sdk/models/components";
+import { GetProductResponse } from "@apideck/unify/models/components";
 
 let value: GetProductResponse = {
   statusCode: 200,

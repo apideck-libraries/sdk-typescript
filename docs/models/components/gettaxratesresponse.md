@@ -5,7 +5,7 @@ TaxRates
 ## Example Usage
 
 ```typescript
-import { GetTaxRatesResponse } from "@apideck/sdk/models/components";
+import { GetTaxRatesResponse } from "@apideck/unify/models/components";
 
 let value: GetTaxRatesResponse = {
   statusCode: 200,

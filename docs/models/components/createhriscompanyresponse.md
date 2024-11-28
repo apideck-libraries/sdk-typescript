@@ -5,7 +5,7 @@ Companies
 ## Example Usage
 
 ```typescript
-import { CreateHrisCompanyResponse } from "@apideck/sdk/models/components";
+import { CreateHrisCompanyResponse } from "@apideck/unify/models/components";
 
 let value: CreateHrisCompanyResponse = {
   statusCode: 200,

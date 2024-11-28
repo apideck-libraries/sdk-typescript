@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { DriveGroup } from "@apideck/sdk/models/components";
+import { DriveGroup } from "@apideck/unify/models/components";
 
 let value: DriveGroup = {
   id: "12345",

@@ -5,7 +5,7 @@ DriveGroups
 ## Example Usage
 
 ```typescript
-import { GetDriveGroupsResponse } from "@apideck/sdk/models/components";
+import { GetDriveGroupsResponse } from "@apideck/unify/models/components";
 
 let value: GetDriveGroupsResponse = {
   statusCode: 200,

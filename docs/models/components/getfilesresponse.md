@@ -5,7 +5,7 @@ Files
 ## Example Usage
 
 ```typescript
-import { GetFilesResponse } from "@apideck/sdk/models/components";
+import { GetFilesResponse } from "@apideck/unify/models/components";
 
 let value: GetFilesResponse = {
   statusCode: 200,

@@ -5,7 +5,7 @@ The classification of account.
 ## Example Usage
 
 ```typescript
-import { Classification } from "@apideck/sdk/models/components";
+import { Classification } from "@apideck/unify/models/components";
 
 let value: Classification = "asset";
 ```

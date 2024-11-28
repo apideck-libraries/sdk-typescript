@@ -5,7 +5,7 @@ Activity
 ## Example Usage
 
 ```typescript
-import { GetActivityResponse } from "@apideck/sdk/models/components";
+import { GetActivityResponse } from "@apideck/unify/models/components";
 
 let value: GetActivityResponse = {
   statusCode: 200,

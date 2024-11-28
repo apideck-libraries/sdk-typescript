@@ -5,7 +5,7 @@ Permissions the current user has on this file.
 ## Example Usage
 
 ```typescript
-import { Permissions } from "@apideck/sdk/models/components";
+import { Permissions } from "@apideck/unify/models/components";
 
 let value: Permissions = {};
 ```

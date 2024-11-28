@@ -18,7 +18,7 @@ List Suppliers
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -59,8 +59,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { accountingSuppliersList } from "@apideck/sdk/funcs/accountingSuppliersList.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { accountingSuppliersList } from "@apideck/unify/funcs/accountingSuppliersList.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -135,7 +135,7 @@ Create Supplier
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -350,8 +350,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { accountingSuppliersCreate } from "@apideck/sdk/funcs/accountingSuppliersCreate.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { accountingSuppliersCreate } from "@apideck/unify/funcs/accountingSuppliersCreate.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -600,7 +600,7 @@ Get Supplier
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -627,8 +627,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { accountingSuppliersGet } from "@apideck/sdk/funcs/accountingSuppliersGet.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { accountingSuppliersGet } from "@apideck/unify/funcs/accountingSuppliersGet.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -689,7 +689,7 @@ Update Supplier
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -953,8 +953,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { accountingSuppliersUpdate } from "@apideck/sdk/funcs/accountingSuppliersUpdate.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { accountingSuppliersUpdate } from "@apideck/unify/funcs/accountingSuppliersUpdate.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -1252,7 +1252,7 @@ Delete Supplier
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -1278,8 +1278,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { accountingSuppliersDelete } from "@apideck/sdk/funcs/accountingSuppliersDelete.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { accountingSuppliersDelete } from "@apideck/unify/funcs/accountingSuppliersDelete.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.

@@ -1,8 +1,8 @@
 
 
 {
-  "name": "@apideck/sdk",
-  "version": "0.11.3",
+  "name": "@apideck/unify",
+  "version": "0.11.4",
   "exports": {
     ".": "./src/index.ts",    
     "./models/errors": "./src/models/errors/index.ts",    

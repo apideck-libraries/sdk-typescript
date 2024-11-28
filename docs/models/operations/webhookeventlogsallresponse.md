@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { WebhookEventLogsAllResponse } from "@apideck/sdk/models/operations";
+import { WebhookEventLogsAllResponse } from "@apideck/unify/models/operations";
 
 let value: WebhookEventLogsAllResponse = {
   httpMeta: {

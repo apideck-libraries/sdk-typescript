@@ -5,7 +5,7 @@ How webhooks are supported for the connector. Sometimes the connector natively s
 ## Example Usage
 
 ```typescript
-import { WebhookSupport } from "@apideck/sdk/models/components";
+import { WebhookSupport } from "@apideck/unify/models/components";
 
 let value: WebhookSupport = {
   mode: "native",

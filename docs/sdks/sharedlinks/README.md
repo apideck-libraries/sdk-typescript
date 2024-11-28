@@ -18,7 +18,7 @@ List SharedLinks
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -47,8 +47,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { fileStorageSharedLinksList } from "@apideck/sdk/funcs/fileStorageSharedLinksList.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { fileStorageSharedLinksList } from "@apideck/unify/funcs/fileStorageSharedLinksList.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -111,7 +111,7 @@ Create Shared Link
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -156,8 +156,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { fileStorageSharedLinksCreate } from "@apideck/sdk/funcs/fileStorageSharedLinksCreate.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { fileStorageSharedLinksCreate } from "@apideck/unify/funcs/fileStorageSharedLinksCreate.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -236,7 +236,7 @@ Get Shared Link
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -263,8 +263,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { fileStorageSharedLinksGet } from "@apideck/sdk/funcs/fileStorageSharedLinksGet.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { fileStorageSharedLinksGet } from "@apideck/unify/funcs/fileStorageSharedLinksGet.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -325,7 +325,7 @@ Update Shared Link
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -371,8 +371,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { fileStorageSharedLinksUpdate } from "@apideck/sdk/funcs/fileStorageSharedLinksUpdate.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { fileStorageSharedLinksUpdate } from "@apideck/unify/funcs/fileStorageSharedLinksUpdate.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -452,7 +452,7 @@ Delete Shared Link
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -478,8 +478,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { fileStorageSharedLinksDelete } from "@apideck/sdk/funcs/fileStorageSharedLinksDelete.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { fileStorageSharedLinksDelete } from "@apideck/unify/funcs/fileStorageSharedLinksDelete.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.

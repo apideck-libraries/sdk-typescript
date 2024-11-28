@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { SubsidiaryReference } from "@apideck/sdk/models/components";
+import { SubsidiaryReference } from "@apideck/unify/models/components";
 
 let value: SubsidiaryReference = {
   id: "12345",

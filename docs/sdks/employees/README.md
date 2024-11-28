@@ -18,7 +18,7 @@ Apideck operates as a stateless Unified API, which means that the list endpoint 
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -62,8 +62,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { hrisEmployeesList } from "@apideck/sdk/funcs/hrisEmployeesList.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { hrisEmployeesList } from "@apideck/unify/funcs/hrisEmployeesList.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -141,8 +141,8 @@ Create Employee
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
-import { RFCDate } from "@apideck/sdk/types";
+import { Apideck } from "@apideck/unify";
+import { RFCDate } from "@apideck/unify/types";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -470,9 +470,9 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { hrisEmployeesCreate } from "@apideck/sdk/funcs/hrisEmployeesCreate.js";
-import { RFCDate } from "@apideck/sdk/types";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { hrisEmployeesCreate } from "@apideck/unify/funcs/hrisEmployeesCreate.js";
+import { RFCDate } from "@apideck/unify/types";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -834,7 +834,7 @@ Get Employee
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -867,8 +867,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { hrisEmployeesGet } from "@apideck/sdk/funcs/hrisEmployeesGet.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { hrisEmployeesGet } from "@apideck/unify/funcs/hrisEmployeesGet.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -935,8 +935,8 @@ Update Employee
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
-import { RFCDate } from "@apideck/sdk/types";
+import { Apideck } from "@apideck/unify";
+import { RFCDate } from "@apideck/unify/types";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -1309,9 +1309,9 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { hrisEmployeesUpdate } from "@apideck/sdk/funcs/hrisEmployeesUpdate.js";
-import { RFCDate } from "@apideck/sdk/types";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { hrisEmployeesUpdate } from "@apideck/unify/funcs/hrisEmployeesUpdate.js";
+import { RFCDate } from "@apideck/unify/types";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -1716,7 +1716,7 @@ Delete Employee
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -1742,8 +1742,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { hrisEmployeesDelete } from "@apideck/sdk/funcs/hrisEmployeesDelete.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { hrisEmployeesDelete } from "@apideck/unify/funcs/hrisEmployeesDelete.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.

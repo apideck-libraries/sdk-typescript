@@ -5,7 +5,7 @@ Custom mapping
 ## Example Usage
 
 ```typescript
-import { GetCustomFieldsResponse } from "@apideck/sdk/models/components";
+import { GetCustomFieldsResponse } from "@apideck/unify/models/components";
 
 let value: GetCustomFieldsResponse = {
   statusCode: 200,

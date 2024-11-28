@@ -18,7 +18,7 @@ List Departments
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -47,8 +47,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { hrisDepartmentsList } from "@apideck/sdk/funcs/hrisDepartmentsList.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { hrisDepartmentsList } from "@apideck/unify/funcs/hrisDepartmentsList.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -111,7 +111,7 @@ Create Department
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -214,8 +214,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { hrisDepartmentsCreate } from "@apideck/sdk/funcs/hrisDepartmentsCreate.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { hrisDepartmentsCreate } from "@apideck/unify/funcs/hrisDepartmentsCreate.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -352,7 +352,7 @@ Get Department
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -379,8 +379,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { hrisDepartmentsGet } from "@apideck/sdk/funcs/hrisDepartmentsGet.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { hrisDepartmentsGet } from "@apideck/unify/funcs/hrisDepartmentsGet.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -441,7 +441,7 @@ Update Department
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -495,8 +495,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { hrisDepartmentsUpdate } from "@apideck/sdk/funcs/hrisDepartmentsUpdate.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { hrisDepartmentsUpdate } from "@apideck/unify/funcs/hrisDepartmentsUpdate.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -584,7 +584,7 @@ Delete Department
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -610,8 +610,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { hrisDepartmentsDelete } from "@apideck/sdk/funcs/hrisDepartmentsDelete.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { hrisDepartmentsDelete } from "@apideck/unify/funcs/hrisDepartmentsDelete.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.

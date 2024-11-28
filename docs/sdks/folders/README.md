@@ -18,7 +18,7 @@ Create Folder
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -73,8 +73,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { fileStorageFoldersCreate } from "@apideck/sdk/funcs/fileStorageFoldersCreate.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { fileStorageFoldersCreate } from "@apideck/unify/funcs/fileStorageFoldersCreate.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -163,7 +163,7 @@ Get Folder
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -190,8 +190,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { fileStorageFoldersGet } from "@apideck/sdk/funcs/fileStorageFoldersGet.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { fileStorageFoldersGet } from "@apideck/unify/funcs/fileStorageFoldersGet.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -252,7 +252,7 @@ Rename or move Folder
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -298,8 +298,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { fileStorageFoldersUpdate } from "@apideck/sdk/funcs/fileStorageFoldersUpdate.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { fileStorageFoldersUpdate } from "@apideck/unify/funcs/fileStorageFoldersUpdate.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -379,7 +379,7 @@ Delete Folder
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -405,8 +405,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { fileStorageFoldersDelete } from "@apideck/sdk/funcs/fileStorageFoldersDelete.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { fileStorageFoldersDelete } from "@apideck/unify/funcs/fileStorageFoldersDelete.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -466,7 +466,7 @@ Copy Folder
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -533,8 +533,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { fileStorageFoldersCopy } from "@apideck/sdk/funcs/fileStorageFoldersCopy.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { fileStorageFoldersCopy } from "@apideck/unify/funcs/fileStorageFoldersCopy.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.

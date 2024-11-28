@@ -5,7 +5,7 @@ Invoice updated
 ## Example Usage
 
 ```typescript
-import { UpdateInvoiceResponse } from "@apideck/sdk/models/components";
+import { UpdateInvoiceResponse } from "@apideck/unify/models/components";
 
 let value: UpdateInvoiceResponse = {
   statusCode: 200,

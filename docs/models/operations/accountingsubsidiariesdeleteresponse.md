@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { AccountingSubsidiariesDeleteResponse } from "@apideck/sdk/models/operations";
+import { AccountingSubsidiariesDeleteResponse } from "@apideck/unify/models/operations";
 
 let value: AccountingSubsidiariesDeleteResponse = {
   httpMeta: {

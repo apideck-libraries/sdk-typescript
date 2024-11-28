@@ -5,7 +5,7 @@ A balance sheet equity account represents the financial position of a company at
 ## Example Usage
 
 ```typescript
-import { BalanceSheetEquityAccount } from "@apideck/sdk/models/components";
+import { BalanceSheetEquityAccount } from "@apideck/unify/models/components";
 
 let value: BalanceSheetEquityAccount = {
   accountId: "3",

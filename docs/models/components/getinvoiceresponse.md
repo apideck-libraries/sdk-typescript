@@ -5,8 +5,8 @@ Invoice
 ## Example Usage
 
 ```typescript
-import { GetInvoiceResponse } from "@apideck/sdk/models/components";
-import { RFCDate } from "@apideck/sdk/types";
+import { GetInvoiceResponse } from "@apideck/unify/models/components";
+import { RFCDate } from "@apideck/unify/types";
 
 let value: GetInvoiceResponse = {
   statusCode: 200,

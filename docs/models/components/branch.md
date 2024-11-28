@@ -5,7 +5,7 @@ Details of the branch for which the job is created.
 ## Example Usage
 
 ```typescript
-import { Branch } from "@apideck/sdk/models/components";
+import { Branch } from "@apideck/unify/models/components";
 
 let value: Branch = {
   id: "123",

@@ -5,7 +5,7 @@ The specified resource was not found
 ## Example Usage
 
 ```typescript
-import { NotFoundResponse } from "@apideck/sdk/models/errors";
+import { NotFoundResponse } from "@apideck/unify/models/errors";
 
 // No examples available for this model
 ```

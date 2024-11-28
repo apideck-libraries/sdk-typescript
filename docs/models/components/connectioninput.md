@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { ConnectionInput } from "@apideck/sdk/models/components";
+import { ConnectionInput } from "@apideck/unify/models/components";
 
 let value: ConnectionInput = {
   enabled: true,

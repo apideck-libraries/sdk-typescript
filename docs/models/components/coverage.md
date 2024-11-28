@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { Coverage } from "@apideck/sdk/models/components";
+import { Coverage } from "@apideck/unify/models/components";
 
 let value: Coverage = {
   downstreamId: "accounts",

@@ -5,7 +5,7 @@ Type of payment
 ## Example Usage
 
 ```typescript
-import { BillPaymentType } from "@apideck/sdk/models/components";
+import { BillPaymentType } from "@apideck/unify/models/components";
 
 let value: BillPaymentType = "accounts_payable";
 ```

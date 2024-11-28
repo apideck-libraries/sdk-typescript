@@ -3,8 +3,8 @@
 ## Example Usage
 
 ```typescript
-import { AccountingInvoiceItemsAddRequest } from "@apideck/sdk/models/operations";
-import { RFCDate } from "@apideck/sdk/types";
+import { AccountingInvoiceItemsAddRequest } from "@apideck/unify/models/operations";
+import { RFCDate } from "@apideck/unify/types";
 
 let value: AccountingInvoiceItemsAddRequest = {
   serviceId: "salesforce",

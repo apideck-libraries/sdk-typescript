@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { AllowActions } from "@apideck/sdk/models/components";
+import { AllowActions } from "@apideck/unify/models/components";
 
 let value: AllowActions = "reauthorize";
 ```

@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { WebhookEventLog } from "@apideck/sdk/models/components";
+import { WebhookEventLog } from "@apideck/unify/models/components";
 
 let value: WebhookEventLog = {
   id: "1d174c4d-fe9e-4377-a76c-6da22fe9cd87",

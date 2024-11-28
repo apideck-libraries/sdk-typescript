@@ -18,7 +18,7 @@ List Tracking Categories
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -47,8 +47,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { accountingTrackingCategoriesList } from "@apideck/sdk/funcs/accountingTrackingCategoriesList.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { accountingTrackingCategoriesList } from "@apideck/unify/funcs/accountingTrackingCategoriesList.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -111,7 +111,7 @@ Create Tracking Category
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -158,8 +158,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { accountingTrackingCategoriesCreate } from "@apideck/sdk/funcs/accountingTrackingCategoriesCreate.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { accountingTrackingCategoriesCreate } from "@apideck/unify/funcs/accountingTrackingCategoriesCreate.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -240,7 +240,7 @@ Get Tracking Category
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -267,8 +267,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { accountingTrackingCategoriesGet } from "@apideck/sdk/funcs/accountingTrackingCategoriesGet.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { accountingTrackingCategoriesGet } from "@apideck/unify/funcs/accountingTrackingCategoriesGet.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -329,7 +329,7 @@ Update Tracking Category
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -385,8 +385,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { accountingTrackingCategoriesUpdate } from "@apideck/sdk/funcs/accountingTrackingCategoriesUpdate.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { accountingTrackingCategoriesUpdate } from "@apideck/unify/funcs/accountingTrackingCategoriesUpdate.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -476,7 +476,7 @@ Delete Tracking Category
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -502,8 +502,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { accountingTrackingCategoriesDelete } from "@apideck/sdk/funcs/accountingTrackingCategoriesDelete.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { accountingTrackingCategoriesDelete } from "@apideck/unify/funcs/accountingTrackingCategoriesDelete.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.

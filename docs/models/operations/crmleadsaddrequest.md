@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { CrmLeadsAddRequest } from "@apideck/sdk/models/operations";
+import { CrmLeadsAddRequest } from "@apideck/unify/models/operations";
 
 let value: CrmLeadsAddRequest = {
   serviceId: "salesforce",

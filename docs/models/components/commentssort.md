@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { CommentsSort } from "@apideck/sdk/models/components";
+import { CommentsSort } from "@apideck/unify/models/components";
 
 let value: CommentsSort = {
   by: "created_at",

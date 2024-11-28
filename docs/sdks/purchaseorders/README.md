@@ -18,7 +18,7 @@ List Purchase Orders
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -54,8 +54,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { accountingPurchaseOrdersList } from "@apideck/sdk/funcs/accountingPurchaseOrdersList.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { accountingPurchaseOrdersList } from "@apideck/unify/funcs/accountingPurchaseOrdersList.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -125,8 +125,8 @@ Create Purchase Order
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
-import { RFCDate } from "@apideck/sdk/types";
+import { Apideck } from "@apideck/unify";
+import { RFCDate } from "@apideck/unify/types";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -392,9 +392,9 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { accountingPurchaseOrdersCreate } from "@apideck/sdk/funcs/accountingPurchaseOrdersCreate.js";
-import { RFCDate } from "@apideck/sdk/types";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { accountingPurchaseOrdersCreate } from "@apideck/unify/funcs/accountingPurchaseOrdersCreate.js";
+import { RFCDate } from "@apideck/unify/types";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -694,7 +694,7 @@ Get Purchase Order
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -720,8 +720,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { accountingPurchaseOrdersGet } from "@apideck/sdk/funcs/accountingPurchaseOrdersGet.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { accountingPurchaseOrdersGet } from "@apideck/unify/funcs/accountingPurchaseOrdersGet.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -781,8 +781,8 @@ Update Purchase Order
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
-import { RFCDate } from "@apideck/sdk/types";
+import { Apideck } from "@apideck/unify";
+import { RFCDate } from "@apideck/unify/types";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -1114,9 +1114,9 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { accountingPurchaseOrdersUpdate } from "@apideck/sdk/funcs/accountingPurchaseOrdersUpdate.js";
-import { RFCDate } from "@apideck/sdk/types";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { accountingPurchaseOrdersUpdate } from "@apideck/unify/funcs/accountingPurchaseOrdersUpdate.js";
+import { RFCDate } from "@apideck/unify/types";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -1480,7 +1480,7 @@ Delete Purchase Order
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -1506,8 +1506,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { accountingPurchaseOrdersDelete } from "@apideck/sdk/funcs/accountingPurchaseOrdersDelete.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { accountingPurchaseOrdersDelete } from "@apideck/unify/funcs/accountingPurchaseOrdersDelete.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.

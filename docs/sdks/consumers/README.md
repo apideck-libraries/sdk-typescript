@@ -18,7 +18,7 @@ Create a consumer
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -49,8 +49,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { vaultConsumersCreate } from "@apideck/sdk/funcs/vaultConsumersCreate.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { vaultConsumersCreate } from "@apideck/unify/funcs/vaultConsumersCreate.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -116,7 +116,7 @@ This endpoint includes all application consumers, along with an aggregated count
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -139,8 +139,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { vaultConsumersList } from "@apideck/sdk/funcs/vaultConsumersList.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { vaultConsumersList } from "@apideck/unify/funcs/vaultConsumersList.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -198,7 +198,7 @@ Consumer detail including their aggregated counts with the connections they have
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -223,8 +223,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { vaultConsumersGet } from "@apideck/sdk/funcs/vaultConsumersGet.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { vaultConsumersGet } from "@apideck/unify/funcs/vaultConsumersGet.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -283,7 +283,7 @@ Update consumer metadata such as name and email.
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -316,8 +316,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { vaultConsumersUpdate } from "@apideck/sdk/funcs/vaultConsumersUpdate.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { vaultConsumersUpdate } from "@apideck/unify/funcs/vaultConsumersUpdate.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -384,7 +384,7 @@ Delete consumer and all their connections, including credentials.
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -409,8 +409,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { vaultConsumersDelete } from "@apideck/sdk/funcs/vaultConsumersDelete.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { vaultConsumersDelete } from "@apideck/unify/funcs/vaultConsumersDelete.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.

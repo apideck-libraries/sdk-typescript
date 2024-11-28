@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { LinkedTaxRateInput } from "@apideck/sdk/models/components";
+import { LinkedTaxRateInput } from "@apideck/unify/models/components";
 
 let value: LinkedTaxRateInput = {
   id: "123456",

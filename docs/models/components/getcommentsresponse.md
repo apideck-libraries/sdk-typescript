@@ -5,7 +5,7 @@ List Comments
 ## Example Usage
 
 ```typescript
-import { GetCommentsResponse } from "@apideck/sdk/models/components";
+import { GetCommentsResponse } from "@apideck/unify/models/components";
 
 let value: GetCommentsResponse = {
   statusCode: 200,

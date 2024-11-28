@@ -18,7 +18,7 @@ List Invoice Items
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -50,8 +50,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { accountingInvoiceItemsList } from "@apideck/sdk/funcs/accountingInvoiceItemsList.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { accountingInvoiceItemsList } from "@apideck/unify/funcs/accountingInvoiceItemsList.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -117,8 +117,8 @@ Create Invoice Item
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
-import { RFCDate } from "@apideck/sdk/types";
+import { Apideck } from "@apideck/unify";
+import { RFCDate } from "@apideck/unify/types";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -233,9 +233,9 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { accountingInvoiceItemsCreate } from "@apideck/sdk/funcs/accountingInvoiceItemsCreate.js";
-import { RFCDate } from "@apideck/sdk/types";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { accountingInvoiceItemsCreate } from "@apideck/unify/funcs/accountingInvoiceItemsCreate.js";
+import { RFCDate } from "@apideck/unify/types";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -384,7 +384,7 @@ Get Invoice Item
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -411,8 +411,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { accountingInvoiceItemsGet } from "@apideck/sdk/funcs/accountingInvoiceItemsGet.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { accountingInvoiceItemsGet } from "@apideck/unify/funcs/accountingInvoiceItemsGet.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -473,8 +473,8 @@ Update Invoice Item
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
-import { RFCDate } from "@apideck/sdk/types";
+import { Apideck } from "@apideck/unify";
+import { RFCDate } from "@apideck/unify/types";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -619,9 +619,9 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { accountingInvoiceItemsUpdate } from "@apideck/sdk/funcs/accountingInvoiceItemsUpdate.js";
-import { RFCDate } from "@apideck/sdk/types";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { accountingInvoiceItemsUpdate } from "@apideck/unify/funcs/accountingInvoiceItemsUpdate.js";
+import { RFCDate } from "@apideck/unify/types";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -800,7 +800,7 @@ Delete Invoice Item
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -826,8 +826,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { accountingInvoiceItemsDelete } from "@apideck/sdk/funcs/accountingInvoiceItemsDelete.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { accountingInvoiceItemsDelete } from "@apideck/unify/funcs/accountingInvoiceItemsDelete.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.

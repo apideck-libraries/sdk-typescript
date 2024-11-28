@@ -18,7 +18,7 @@ List Bill Payments
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -54,8 +54,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { accountingBillPaymentsList } from "@apideck/sdk/funcs/accountingBillPaymentsList.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { accountingBillPaymentsList } from "@apideck/unify/funcs/accountingBillPaymentsList.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -125,7 +125,7 @@ Create Bill Payment
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -287,8 +287,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { accountingBillPaymentsCreate } from "@apideck/sdk/funcs/accountingBillPaymentsCreate.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { accountingBillPaymentsCreate } from "@apideck/unify/funcs/accountingBillPaymentsCreate.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -484,7 +484,7 @@ Get Bill Payment
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -511,8 +511,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { accountingBillPaymentsGet } from "@apideck/sdk/funcs/accountingBillPaymentsGet.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { accountingBillPaymentsGet } from "@apideck/unify/funcs/accountingBillPaymentsGet.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -573,7 +573,7 @@ Update Bill Payment
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -729,8 +729,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { accountingBillPaymentsUpdate } from "@apideck/sdk/funcs/accountingBillPaymentsUpdate.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { accountingBillPaymentsUpdate } from "@apideck/unify/funcs/accountingBillPaymentsUpdate.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -920,7 +920,7 @@ Delete Bill Payment
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -946,8 +946,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { accountingBillPaymentsDelete } from "@apideck/sdk/funcs/accountingBillPaymentsDelete.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { accountingBillPaymentsDelete } from "@apideck/unify/funcs/accountingBillPaymentsDelete.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.

@@ -5,7 +5,7 @@ Status of credit notes
 ## Example Usage
 
 ```typescript
-import { CreditNoteStatus } from "@apideck/sdk/models/components";
+import { CreditNoteStatus } from "@apideck/unify/models/components";
 
 let value: CreditNoteStatus = "authorised";
 ```

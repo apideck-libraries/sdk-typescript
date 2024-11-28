@@ -18,7 +18,7 @@ List Journal Entries
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -54,8 +54,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { accountingJournalEntriesList } from "@apideck/sdk/funcs/accountingJournalEntriesList.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { accountingJournalEntriesList } from "@apideck/unify/funcs/accountingJournalEntriesList.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -125,7 +125,7 @@ Create Journal Entry
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -307,8 +307,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { accountingJournalEntriesCreate } from "@apideck/sdk/funcs/accountingJournalEntriesCreate.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { accountingJournalEntriesCreate } from "@apideck/unify/funcs/accountingJournalEntriesCreate.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -524,7 +524,7 @@ Get Journal Entry
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -551,8 +551,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { accountingJournalEntriesGet } from "@apideck/sdk/funcs/accountingJournalEntriesGet.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { accountingJournalEntriesGet } from "@apideck/unify/funcs/accountingJournalEntriesGet.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -613,7 +613,7 @@ Update Journal Entry
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -742,8 +742,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { accountingJournalEntriesUpdate } from "@apideck/sdk/funcs/accountingJournalEntriesUpdate.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { accountingJournalEntriesUpdate } from "@apideck/unify/funcs/accountingJournalEntriesUpdate.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -906,7 +906,7 @@ Delete Journal Entry
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -932,8 +932,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { accountingJournalEntriesDelete } from "@apideck/sdk/funcs/accountingJournalEntriesDelete.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { accountingJournalEntriesDelete } from "@apideck/unify/funcs/accountingJournalEntriesDelete.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.

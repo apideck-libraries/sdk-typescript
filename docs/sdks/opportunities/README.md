@@ -18,7 +18,7 @@ List opportunities
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -60,8 +60,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { crmOpportunitiesList } from "@apideck/sdk/funcs/crmOpportunitiesList.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { crmOpportunitiesList } from "@apideck/unify/funcs/crmOpportunitiesList.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -137,8 +137,8 @@ Create opportunity
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
-import { RFCDate } from "@apideck/sdk/types";
+import { Apideck } from "@apideck/unify";
+import { RFCDate } from "@apideck/unify/types";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -264,9 +264,9 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { crmOpportunitiesCreate } from "@apideck/sdk/funcs/crmOpportunitiesCreate.js";
-import { RFCDate } from "@apideck/sdk/types";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { crmOpportunitiesCreate } from "@apideck/unify/funcs/crmOpportunitiesCreate.js";
+import { RFCDate } from "@apideck/unify/types";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -426,7 +426,7 @@ Get opportunity
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -453,8 +453,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { crmOpportunitiesGet } from "@apideck/sdk/funcs/crmOpportunitiesGet.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { crmOpportunitiesGet } from "@apideck/unify/funcs/crmOpportunitiesGet.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -515,8 +515,8 @@ Update opportunity
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
-import { RFCDate } from "@apideck/sdk/types";
+import { Apideck } from "@apideck/unify";
+import { RFCDate } from "@apideck/unify/types";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -648,9 +648,9 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { crmOpportunitiesUpdate } from "@apideck/sdk/funcs/crmOpportunitiesUpdate.js";
-import { RFCDate } from "@apideck/sdk/types";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { crmOpportunitiesUpdate } from "@apideck/unify/funcs/crmOpportunitiesUpdate.js";
+import { RFCDate } from "@apideck/unify/types";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -816,7 +816,7 @@ Delete opportunity
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -842,8 +842,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { crmOpportunitiesDelete } from "@apideck/sdk/funcs/crmOpportunitiesDelete.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { crmOpportunitiesDelete } from "@apideck/unify/funcs/crmOpportunitiesDelete.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.

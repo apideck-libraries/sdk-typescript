@@ -5,7 +5,7 @@ BalanceSheet
 ## Example Usage
 
 ```typescript
-import { GetBalanceSheetResponse } from "@apideck/sdk/models/components";
+import { GetBalanceSheetResponse } from "@apideck/unify/models/components";
 
 let value: GetBalanceSheetResponse = {
   statusCode: 200,

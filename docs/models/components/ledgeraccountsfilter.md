@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { LedgerAccountsFilter } from "@apideck/sdk/models/components";
+import { LedgerAccountsFilter } from "@apideck/unify/models/components";
 
 let value: LedgerAccountsFilter = {
   updatedSince: new Date("2020-09-30T07:43:32.000Z"),

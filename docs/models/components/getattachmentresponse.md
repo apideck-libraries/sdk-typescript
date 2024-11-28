@@ -5,7 +5,7 @@ Attachments
 ## Example Usage
 
 ```typescript
-import { GetAttachmentResponse } from "@apideck/sdk/models/components";
+import { GetAttachmentResponse } from "@apideck/unify/models/components";
 
 let value: GetAttachmentResponse = {
   statusCode: 200,

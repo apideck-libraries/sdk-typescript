@@ -5,8 +5,8 @@ Jobs
 ## Example Usage
 
 ```typescript
-import { GetJobsResponse } from "@apideck/sdk/models/components";
-import { RFCDate } from "@apideck/sdk/types";
+import { GetJobsResponse } from "@apideck/unify/models/components";
+import { RFCDate } from "@apideck/unify/types";
 
 let value: GetJobsResponse = {
   statusCode: 200,

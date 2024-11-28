@@ -7,7 +7,7 @@ The supplier this entity is linked to.
 ## Example Usage
 
 ```typescript
-import { DeprecatedLinkedSupplier } from "@apideck/sdk/models/components";
+import { DeprecatedLinkedSupplier } from "@apideck/unify/models/components";
 
 let value: DeprecatedLinkedSupplier = {
   id: "12345",

@@ -18,7 +18,7 @@ List DriveGroups
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -50,8 +50,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { fileStorageDriveGroupsList } from "@apideck/sdk/funcs/fileStorageDriveGroupsList.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { fileStorageDriveGroupsList } from "@apideck/unify/funcs/fileStorageDriveGroupsList.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -117,7 +117,7 @@ Create DriveGroup
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -162,8 +162,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { fileStorageDriveGroupsCreate } from "@apideck/sdk/funcs/fileStorageDriveGroupsCreate.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { fileStorageDriveGroupsCreate } from "@apideck/unify/funcs/fileStorageDriveGroupsCreate.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -242,7 +242,7 @@ Get DriveGroup
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -269,8 +269,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { fileStorageDriveGroupsGet } from "@apideck/sdk/funcs/fileStorageDriveGroupsGet.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { fileStorageDriveGroupsGet } from "@apideck/unify/funcs/fileStorageDriveGroupsGet.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -331,7 +331,7 @@ Update DriveGroup
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -419,8 +419,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { fileStorageDriveGroupsUpdate } from "@apideck/sdk/funcs/fileStorageDriveGroupsUpdate.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { fileStorageDriveGroupsUpdate } from "@apideck/unify/funcs/fileStorageDriveGroupsUpdate.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -542,7 +542,7 @@ Delete DriveGroup
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -568,8 +568,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { fileStorageDriveGroupsDelete } from "@apideck/sdk/funcs/fileStorageDriveGroupsDelete.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { fileStorageDriveGroupsDelete } from "@apideck/unify/funcs/fileStorageDriveGroupsDelete.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.

@@ -5,7 +5,7 @@ List Tickets
 ## Example Usage
 
 ```typescript
-import { GetTicketsResponse } from "@apideck/sdk/models/components";
+import { GetTicketsResponse } from "@apideck/unify/models/components";
 
 let value: GetTicketsResponse = {
   statusCode: 200,

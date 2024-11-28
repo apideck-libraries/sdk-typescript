@@ -5,7 +5,7 @@ Indicates the associated currency for an amount of money. Values correspond to [
 ## Example Usage
 
 ```typescript
-import { Currency } from "@apideck/sdk/models/components";
+import { Currency } from "@apideck/unify/models/components";
 
 let value: Currency = "USD";
 ```

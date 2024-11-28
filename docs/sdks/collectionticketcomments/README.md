@@ -18,7 +18,7 @@ List Comments
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -53,8 +53,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { issueTrackingCollectionTicketCommentsList } from "@apideck/sdk/funcs/issueTrackingCollectionTicketCommentsList.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { issueTrackingCollectionTicketCommentsList } from "@apideck/unify/funcs/issueTrackingCollectionTicketCommentsList.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -123,7 +123,7 @@ Create Comment
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -176,8 +176,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { issueTrackingCollectionTicketCommentsCreate } from "@apideck/sdk/funcs/issueTrackingCollectionTicketCommentsCreate.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { issueTrackingCollectionTicketCommentsCreate } from "@apideck/unify/funcs/issueTrackingCollectionTicketCommentsCreate.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -264,7 +264,7 @@ Get Comment
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -293,8 +293,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { issueTrackingCollectionTicketCommentsGet } from "@apideck/sdk/funcs/issueTrackingCollectionTicketCommentsGet.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { issueTrackingCollectionTicketCommentsGet } from "@apideck/unify/funcs/issueTrackingCollectionTicketCommentsGet.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -357,7 +357,7 @@ Update Comment
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -440,8 +440,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { issueTrackingCollectionTicketCommentsUpdate } from "@apideck/sdk/funcs/issueTrackingCollectionTicketCommentsUpdate.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { issueTrackingCollectionTicketCommentsUpdate } from "@apideck/unify/funcs/issueTrackingCollectionTicketCommentsUpdate.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -558,7 +558,7 @@ Delete Comment
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -586,8 +586,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { issueTrackingCollectionTicketCommentsDelete } from "@apideck/sdk/funcs/issueTrackingCollectionTicketCommentsDelete.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { issueTrackingCollectionTicketCommentsDelete } from "@apideck/unify/funcs/issueTrackingCollectionTicketCommentsDelete.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.

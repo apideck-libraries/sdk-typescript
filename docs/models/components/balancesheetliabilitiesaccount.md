@@ -5,7 +5,7 @@ A balance sheet liabilities account represents the financial position of a compa
 ## Example Usage
 
 ```typescript
-import { BalanceSheetLiabilitiesAccount } from "@apideck/sdk/models/components";
+import { BalanceSheetLiabilitiesAccount } from "@apideck/unify/models/components";
 
 let value: BalanceSheetLiabilitiesAccount = {
   accountId: "2",

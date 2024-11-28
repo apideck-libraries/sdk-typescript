@@ -18,7 +18,7 @@ List Locations
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -47,8 +47,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { accountingLocationsList } from "@apideck/sdk/funcs/accountingLocationsList.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { accountingLocationsList } from "@apideck/unify/funcs/accountingLocationsList.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -111,7 +111,7 @@ Create Location
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -220,8 +220,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { accountingLocationsCreate } from "@apideck/sdk/funcs/accountingLocationsCreate.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { accountingLocationsCreate } from "@apideck/unify/funcs/accountingLocationsCreate.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -364,7 +364,7 @@ Get Location
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -391,8 +391,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { accountingLocationsGet } from "@apideck/sdk/funcs/accountingLocationsGet.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { accountingLocationsGet } from "@apideck/unify/funcs/accountingLocationsGet.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -453,7 +453,7 @@ Update Location
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -534,8 +534,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { accountingLocationsUpdate } from "@apideck/sdk/funcs/accountingLocationsUpdate.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { accountingLocationsUpdate } from "@apideck/unify/funcs/accountingLocationsUpdate.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -650,7 +650,7 @@ Delete Location
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -676,8 +676,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { accountingLocationsDelete } from "@apideck/sdk/funcs/accountingLocationsDelete.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { accountingLocationsDelete } from "@apideck/unify/funcs/accountingLocationsDelete.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.

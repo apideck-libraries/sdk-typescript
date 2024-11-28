@@ -18,7 +18,7 @@ List Messages
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -44,8 +44,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { smsMessagesList } from "@apideck/sdk/funcs/smsMessagesList.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { smsMessagesList } from "@apideck/unify/funcs/smsMessagesList.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -105,7 +105,7 @@ Create Message
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -230,8 +230,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { smsMessagesCreate } from "@apideck/sdk/funcs/smsMessagesCreate.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { smsMessagesCreate } from "@apideck/unify/funcs/smsMessagesCreate.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -390,7 +390,7 @@ Get Message
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -417,8 +417,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { smsMessagesGet } from "@apideck/sdk/funcs/smsMessagesGet.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { smsMessagesGet } from "@apideck/unify/funcs/smsMessagesGet.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -479,7 +479,7 @@ Update Message
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -589,8 +589,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { smsMessagesUpdate } from "@apideck/sdk/funcs/smsMessagesUpdate.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { smsMessagesUpdate } from "@apideck/unify/funcs/smsMessagesUpdate.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -734,7 +734,7 @@ Delete Message
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -760,8 +760,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { smsMessagesDelete } from "@apideck/sdk/funcs/smsMessagesDelete.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { smsMessagesDelete } from "@apideck/unify/funcs/smsMessagesDelete.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.

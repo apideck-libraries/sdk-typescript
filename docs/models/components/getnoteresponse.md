@@ -5,7 +5,7 @@ Note
 ## Example Usage
 
 ```typescript
-import { GetNoteResponse } from "@apideck/sdk/models/components";
+import { GetNoteResponse } from "@apideck/unify/models/components";
 
 let value: GetNoteResponse = {
   statusCode: 200,

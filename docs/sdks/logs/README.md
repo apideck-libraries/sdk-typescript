@@ -15,7 +15,7 @@ This endpoint includes all consumer request logs.
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -44,8 +44,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { vaultLogsList } from "@apideck/sdk/funcs/vaultLogsList.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { vaultLogsList } from "@apideck/unify/funcs/vaultLogsList.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.

@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { FileStorageSharedLinksOneResponse } from "@apideck/sdk/models/operations";
+import { FileStorageSharedLinksOneResponse } from "@apideck/unify/models/operations";
 
 let value: FileStorageSharedLinksOneResponse = {
   httpMeta: {

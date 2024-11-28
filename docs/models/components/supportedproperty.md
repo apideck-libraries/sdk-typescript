@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { SupportedProperty } from "@apideck/sdk/models/components";
+import { SupportedProperty } from "@apideck/unify/models/components";
 
 let value: SupportedProperty = {
   unifiedProperty: "owner_id",

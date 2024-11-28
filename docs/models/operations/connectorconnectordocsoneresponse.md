@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { ConnectorConnectorDocsOneResponse } from "@apideck/sdk/models/operations";
+import { ConnectorConnectorDocsOneResponse } from "@apideck/unify/models/operations";
 
 let value: ConnectorConnectorDocsOneResponse = {
   httpMeta: {

@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { WorkPattern } from "@apideck/sdk/models/components";
+import { WorkPattern } from "@apideck/unify/models/components";
 
 let value: WorkPattern = {
   oddWeeks: {

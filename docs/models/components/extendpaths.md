@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { ExtendPaths } from "@apideck/sdk/models/components";
+import { ExtendPaths } from "@apideck/unify/models/components";
 
 let value: ExtendPaths = {
   path: "$.nested.property",

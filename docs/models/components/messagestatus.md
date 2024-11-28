@@ -5,7 +5,7 @@ Status of the delivery of the message.
 ## Example Usage
 
 ```typescript
-import { MessageStatus } from "@apideck/sdk/models/components";
+import { MessageStatus } from "@apideck/unify/models/components";
 
 let value: MessageStatus = "sent";
 ```

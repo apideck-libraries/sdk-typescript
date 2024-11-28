@@ -5,7 +5,7 @@ DriveGroups
 ## Example Usage
 
 ```typescript
-import { CreateDriveGroupResponse } from "@apideck/sdk/models/components";
+import { CreateDriveGroupResponse } from "@apideck/unify/models/components";
 
 let value: CreateDriveGroupResponse = {
   statusCode: 200,

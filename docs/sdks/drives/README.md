@@ -18,7 +18,7 @@ List Drives
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -47,8 +47,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { fileStorageDrivesList } from "@apideck/sdk/funcs/fileStorageDrivesList.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { fileStorageDrivesList } from "@apideck/unify/funcs/fileStorageDrivesList.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -111,7 +111,7 @@ Create Drive
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -184,8 +184,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { fileStorageDrivesCreate } from "@apideck/sdk/funcs/fileStorageDrivesCreate.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { fileStorageDrivesCreate } from "@apideck/unify/funcs/fileStorageDrivesCreate.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -292,7 +292,7 @@ Get Drive
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -319,8 +319,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { fileStorageDrivesGet } from "@apideck/sdk/funcs/fileStorageDrivesGet.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { fileStorageDrivesGet } from "@apideck/unify/funcs/fileStorageDrivesGet.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -381,7 +381,7 @@ Update Drive
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -468,8 +468,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { fileStorageDrivesUpdate } from "@apideck/sdk/funcs/fileStorageDrivesUpdate.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { fileStorageDrivesUpdate } from "@apideck/unify/funcs/fileStorageDrivesUpdate.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -590,7 +590,7 @@ Delete Drive
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -616,8 +616,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { fileStorageDrivesDelete } from "@apideck/sdk/funcs/fileStorageDrivesDelete.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { fileStorageDrivesDelete } from "@apideck/unify/funcs/fileStorageDrivesDelete.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.

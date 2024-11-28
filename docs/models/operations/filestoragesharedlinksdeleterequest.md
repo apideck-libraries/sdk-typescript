@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { FileStorageSharedLinksDeleteRequest } from "@apideck/sdk/models/operations";
+import { FileStorageSharedLinksDeleteRequest } from "@apideck/unify/models/operations";
 
 let value: FileStorageSharedLinksDeleteRequest = {
   id: "<id>",

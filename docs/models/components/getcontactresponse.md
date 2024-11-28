@@ -5,7 +5,7 @@ Contact
 ## Example Usage
 
 ```typescript
-import { GetContactResponse } from "@apideck/sdk/models/components";
+import { GetContactResponse } from "@apideck/unify/models/components";
 
 let value: GetContactResponse = {
   statusCode: 200,

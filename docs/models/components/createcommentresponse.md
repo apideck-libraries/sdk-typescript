@@ -5,7 +5,7 @@ Create a Comment
 ## Example Usage
 
 ```typescript
-import { CreateCommentResponse } from "@apideck/sdk/models/components";
+import { CreateCommentResponse } from "@apideck/unify/models/components";
 
 let value: CreateCommentResponse = {
   statusCode: 200,

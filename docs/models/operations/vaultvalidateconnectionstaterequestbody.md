@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { VaultValidateConnectionStateRequestBody } from "@apideck/sdk/models/operations";
+import { VaultValidateConnectionStateRequestBody } from "@apideck/unify/models/operations";
 
 let value: VaultValidateConnectionStateRequestBody = {};
 ```

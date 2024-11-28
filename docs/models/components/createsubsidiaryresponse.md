@@ -5,7 +5,7 @@ Subsidiaries
 ## Example Usage
 
 ```typescript
-import { CreateSubsidiaryResponse } from "@apideck/sdk/models/components";
+import { CreateSubsidiaryResponse } from "@apideck/unify/models/components";
 
 let value: CreateSubsidiaryResponse = {
   statusCode: 200,

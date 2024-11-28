@@ -15,7 +15,7 @@ List Orders
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -54,8 +54,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { ecommerceOrdersList } from "@apideck/sdk/funcs/ecommerceOrdersList.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { ecommerceOrdersList } from "@apideck/unify/funcs/ecommerceOrdersList.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -128,7 +128,7 @@ Get Order
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -155,8 +155,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { ecommerceOrdersGet } from "@apideck/sdk/funcs/ecommerceOrdersGet.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { ecommerceOrdersGet } from "@apideck/unify/funcs/ecommerceOrdersGet.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.

@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { BillsSort } from "@apideck/sdk/models/components";
+import { BillsSort } from "@apideck/unify/models/components";
 
 let value: BillsSort = {
   by: "updated_at",

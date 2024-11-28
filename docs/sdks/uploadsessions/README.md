@@ -17,7 +17,7 @@ Start an Upload Session. Upload sessions are used to upload large files, use the
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -63,8 +63,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { fileStorageUploadSessionsCreate } from "@apideck/sdk/funcs/fileStorageUploadSessionsCreate.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { fileStorageUploadSessionsCreate } from "@apideck/unify/funcs/fileStorageUploadSessionsCreate.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -145,7 +145,7 @@ Get Upload Session. Use the `part_size` to split your file into parts. Upload th
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -172,8 +172,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { fileStorageUploadSessionsGet } from "@apideck/sdk/funcs/fileStorageUploadSessionsGet.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { fileStorageUploadSessionsGet } from "@apideck/unify/funcs/fileStorageUploadSessionsGet.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -235,7 +235,7 @@ Abort Upload Session. Note that the base URL is upload.apideck.com instead of un
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -261,8 +261,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { fileStorageUploadSessionsDelete } from "@apideck/sdk/funcs/fileStorageUploadSessionsDelete.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { fileStorageUploadSessionsDelete } from "@apideck/unify/funcs/fileStorageUploadSessionsDelete.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -322,7 +322,7 @@ Finish Upload Session. Only call this endpoint after all File parts have been up
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -349,8 +349,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { fileStorageUploadSessionsFinish } from "@apideck/sdk/funcs/fileStorageUploadSessionsFinish.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { fileStorageUploadSessionsFinish } from "@apideck/unify/funcs/fileStorageUploadSessionsFinish.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.

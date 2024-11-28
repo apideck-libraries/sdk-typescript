@@ -5,7 +5,7 @@ Links to navigate to previous or next pages through the API
 ## Example Usage
 
 ```typescript
-import { Links } from "@apideck/sdk/models/components";
+import { Links } from "@apideck/unify/models/components";
 
 let value: Links = {
   previous:

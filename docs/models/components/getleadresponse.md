@@ -5,7 +5,7 @@ Lead
 ## Example Usage
 
 ```typescript
-import { GetLeadResponse } from "@apideck/sdk/models/components";
+import { GetLeadResponse } from "@apideck/unify/models/components";
 
 let value: GetLeadResponse = {
   statusCode: 200,

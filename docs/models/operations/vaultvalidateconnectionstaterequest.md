@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { VaultValidateConnectionStateRequest } from "@apideck/sdk/models/operations";
+import { VaultValidateConnectionStateRequest } from "@apideck/unify/models/operations";
 
 let value: VaultValidateConnectionStateRequest = {
   serviceId: "pipedrive",

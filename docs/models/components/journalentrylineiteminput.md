@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { JournalEntryLineItemInput } from "@apideck/sdk/models/components";
+import { JournalEntryLineItemInput } from "@apideck/unify/models/components";
 
 let value: JournalEntryLineItemInput = {
   description:

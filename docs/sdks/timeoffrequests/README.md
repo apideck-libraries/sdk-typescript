@@ -18,7 +18,7 @@ List Time Off Requests
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -55,8 +55,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { hrisTimeOffRequestsList } from "@apideck/sdk/funcs/hrisTimeOffRequestsList.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { hrisTimeOffRequestsList } from "@apideck/unify/funcs/hrisTimeOffRequestsList.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -127,7 +127,7 @@ Create Time Off Request
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -186,8 +186,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { hrisTimeOffRequestsCreate } from "@apideck/sdk/funcs/hrisTimeOffRequestsCreate.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { hrisTimeOffRequestsCreate } from "@apideck/unify/funcs/hrisTimeOffRequestsCreate.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -280,7 +280,7 @@ Get Time Off Request
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -308,8 +308,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { hrisTimeOffRequestsGet } from "@apideck/sdk/funcs/hrisTimeOffRequestsGet.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { hrisTimeOffRequestsGet } from "@apideck/unify/funcs/hrisTimeOffRequestsGet.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -371,7 +371,7 @@ Update Time Off Request
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -466,8 +466,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { hrisTimeOffRequestsUpdate } from "@apideck/sdk/funcs/hrisTimeOffRequestsUpdate.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { hrisTimeOffRequestsUpdate } from "@apideck/unify/funcs/hrisTimeOffRequestsUpdate.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -596,7 +596,7 @@ Delete Time Off Request
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -623,8 +623,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { hrisTimeOffRequestsDelete } from "@apideck/sdk/funcs/hrisTimeOffRequestsDelete.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { hrisTimeOffRequestsDelete } from "@apideck/unify/funcs/hrisTimeOffRequestsDelete.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.

@@ -18,7 +18,7 @@ List Expenses
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -43,8 +43,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { accountingExpensesList } from "@apideck/sdk/funcs/accountingExpensesList.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { accountingExpensesList } from "@apideck/unify/funcs/accountingExpensesList.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -103,7 +103,7 @@ Create Expense
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -203,8 +203,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { accountingExpensesCreate } from "@apideck/sdk/funcs/accountingExpensesCreate.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { accountingExpensesCreate } from "@apideck/unify/funcs/accountingExpensesCreate.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -338,7 +338,7 @@ Get Expense
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -364,8 +364,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { accountingExpensesGet } from "@apideck/sdk/funcs/accountingExpensesGet.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { accountingExpensesGet } from "@apideck/unify/funcs/accountingExpensesGet.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -425,7 +425,7 @@ Update Expense
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -520,8 +520,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { accountingExpensesUpdate } from "@apideck/sdk/funcs/accountingExpensesUpdate.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { accountingExpensesUpdate } from "@apideck/unify/funcs/accountingExpensesUpdate.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -650,7 +650,7 @@ Delete Expense
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -676,8 +676,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { accountingExpensesDelete } from "@apideck/sdk/funcs/accountingExpensesDelete.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { accountingExpensesDelete } from "@apideck/unify/funcs/accountingExpensesDelete.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.

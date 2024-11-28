@@ -5,7 +5,7 @@ ConnectorResources
 ## Example Usage
 
 ```typescript
-import { GetConnectorResourceResponse } from "@apideck/sdk/models/components";
+import { GetConnectorResourceResponse } from "@apideck/unify/models/components";
 
 let value: GetConnectorResourceResponse = {
   statusCode: 200,

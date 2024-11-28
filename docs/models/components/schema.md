@@ -5,7 +5,7 @@ JSON Schema of the resource in our Unified API
 ## Example Usage
 
 ```typescript
-import { Schema } from "@apideck/sdk/models/components";
+import { Schema } from "@apideck/unify/models/components";
 
 let value: Schema = {};
 ```

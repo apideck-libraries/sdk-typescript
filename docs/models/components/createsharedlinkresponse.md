@@ -5,7 +5,7 @@ Shared Links
 ## Example Usage
 
 ```typescript
-import { CreateSharedLinkResponse } from "@apideck/sdk/models/components";
+import { CreateSharedLinkResponse } from "@apideck/unify/models/components";
 
 let value: CreateSharedLinkResponse = {
   statusCode: 200,

@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { IssueTrackingCollectionsAllRequest } from "@apideck/sdk/models/operations";
+import { IssueTrackingCollectionsAllRequest } from "@apideck/unify/models/operations";
 
 let value: IssueTrackingCollectionsAllRequest = {
   serviceId: "salesforce",

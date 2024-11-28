@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { VaultCreateCallbackStateRequest } from "@apideck/sdk/models/operations";
+import { VaultCreateCallbackStateRequest } from "@apideck/unify/models/operations";
 
 let value: VaultCreateCallbackStateRequest = {
   serviceId: "pipedrive",

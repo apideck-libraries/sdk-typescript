@@ -5,7 +5,7 @@ Credit Note created
 ## Example Usage
 
 ```typescript
-import { CreateCreditNoteResponse } from "@apideck/sdk/models/components";
+import { CreateCreditNoteResponse } from "@apideck/unify/models/components";
 
 let value: CreateCreditNoteResponse = {
   statusCode: 200,

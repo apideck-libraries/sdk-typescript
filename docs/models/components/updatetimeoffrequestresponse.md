@@ -5,7 +5,7 @@ TimeOffRequests
 ## Example Usage
 
 ```typescript
-import { UpdateTimeOffRequestResponse } from "@apideck/sdk/models/components";
+import { UpdateTimeOffRequestResponse } from "@apideck/unify/models/components";
 
 let value: UpdateTimeOffRequestResponse = {
   statusCode: 200,

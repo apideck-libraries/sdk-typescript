@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { PaymentInput } from "@apideck/sdk/models/components";
+import { PaymentInput } from "@apideck/unify/models/components";
 
 let value: PaymentInput = {
   currency: "USD",

@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { CrmPipelinesDeleteGlobals } from "@apideck/sdk/models/operations";
+import { CrmPipelinesDeleteGlobals } from "@apideck/unify/models/operations";
 
 let value: CrmPipelinesDeleteGlobals = {};
 ```

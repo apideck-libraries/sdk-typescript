@@ -5,7 +5,7 @@ Credit Note deleted
 ## Example Usage
 
 ```typescript
-import { DeleteCreditNoteResponse } from "@apideck/sdk/models/components";
+import { DeleteCreditNoteResponse } from "@apideck/unify/models/components";
 
 let value: DeleteCreditNoteResponse = {
   statusCode: 200,

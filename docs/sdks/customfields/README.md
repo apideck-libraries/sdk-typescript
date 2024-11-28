@@ -15,7 +15,7 @@ This endpoint returns an custom fields on a connection resource.
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -43,8 +43,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { vaultCustomFieldsList } from "@apideck/sdk/funcs/vaultCustomFieldsList.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { vaultCustomFieldsList } from "@apideck/unify/funcs/vaultCustomFieldsList.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.

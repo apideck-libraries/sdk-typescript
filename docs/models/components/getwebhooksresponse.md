@@ -5,7 +5,7 @@ Webhooks
 ## Example Usage
 
 ```typescript
-import { GetWebhooksResponse } from "@apideck/sdk/models/components";
+import { GetWebhooksResponse } from "@apideck/unify/models/components";
 
 let value: GetWebhooksResponse = {
   statusCode: 200,

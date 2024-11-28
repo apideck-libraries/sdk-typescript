@@ -5,7 +5,7 @@ Messages
 ## Example Usage
 
 ```typescript
-import { DeleteMessageResponse } from "@apideck/sdk/models/components";
+import { DeleteMessageResponse } from "@apideck/unify/models/components";
 
 let value: DeleteMessageResponse = {
   statusCode: 200,

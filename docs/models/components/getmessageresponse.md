@@ -5,7 +5,7 @@ Messages
 ## Example Usage
 
 ```typescript
-import { GetMessageResponse } from "@apideck/sdk/models/components";
+import { GetMessageResponse } from "@apideck/unify/models/components";
 
 let value: GetMessageResponse = {
   statusCode: 200,

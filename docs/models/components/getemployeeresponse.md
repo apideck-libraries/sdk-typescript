@@ -5,8 +5,8 @@ Employees
 ## Example Usage
 
 ```typescript
-import { GetEmployeeResponse } from "@apideck/sdk/models/components";
-import { RFCDate } from "@apideck/sdk/types";
+import { GetEmployeeResponse } from "@apideck/unify/models/components";
+import { RFCDate } from "@apideck/unify/types";
 
 let value: GetEmployeeResponse = {
   statusCode: 200,

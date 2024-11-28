@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { VaultCreateCallbackStateGlobals } from "@apideck/sdk/models/operations";
+import { VaultCreateCallbackStateGlobals } from "@apideck/unify/models/operations";
 
 let value: VaultCreateCallbackStateGlobals = {};
 ```

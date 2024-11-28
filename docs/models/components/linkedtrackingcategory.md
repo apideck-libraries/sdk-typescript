@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { LinkedTrackingCategory } from "@apideck/sdk/models/components";
+import { LinkedTrackingCategory } from "@apideck/unify/models/components";
 
 let value: LinkedTrackingCategory = {
   id: "123456",

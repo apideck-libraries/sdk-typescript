@@ -5,7 +5,7 @@ Activity deleted
 ## Example Usage
 
 ```typescript
-import { DeleteActivityResponse } from "@apideck/sdk/models/components";
+import { DeleteActivityResponse } from "@apideck/unify/models/components";
 
 let value: DeleteActivityResponse = {
   statusCode: 200,

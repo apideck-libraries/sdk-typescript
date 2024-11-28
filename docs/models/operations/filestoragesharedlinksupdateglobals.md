@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { FileStorageSharedLinksUpdateGlobals } from "@apideck/sdk/models/operations";
+import { FileStorageSharedLinksUpdateGlobals } from "@apideck/unify/models/operations";
 
 let value: FileStorageSharedLinksUpdateGlobals = {};
 ```

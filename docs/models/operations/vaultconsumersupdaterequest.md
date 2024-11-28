@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { VaultConsumersUpdateRequest } from "@apideck/sdk/models/operations";
+import { VaultConsumersUpdateRequest } from "@apideck/unify/models/operations";
 
 let value: VaultConsumersUpdateRequest = {
   consumerId: "test_user_id",

@@ -5,7 +5,7 @@ Payrolls
 ## Example Usage
 
 ```typescript
-import { GetEmployeePayrollResponse } from "@apideck/sdk/models/components";
+import { GetEmployeePayrollResponse } from "@apideck/unify/models/components";
 
 let value: GetEmployeePayrollResponse = {
   statusCode: 200,

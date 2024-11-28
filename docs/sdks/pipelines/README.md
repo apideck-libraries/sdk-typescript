@@ -18,7 +18,7 @@ List pipelines
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -47,8 +47,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { crmPipelinesList } from "@apideck/sdk/funcs/crmPipelinesList.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { crmPipelinesList } from "@apideck/unify/funcs/crmPipelinesList.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -111,7 +111,7 @@ Create pipeline
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -180,8 +180,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { crmPipelinesCreate } from "@apideck/sdk/funcs/crmPipelinesCreate.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { crmPipelinesCreate } from "@apideck/unify/funcs/crmPipelinesCreate.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -284,7 +284,7 @@ Get pipeline
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -311,8 +311,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { crmPipelinesGet } from "@apideck/sdk/funcs/crmPipelinesGet.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { crmPipelinesGet } from "@apideck/unify/funcs/crmPipelinesGet.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -373,7 +373,7 @@ Update pipeline
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -450,8 +450,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { crmPipelinesUpdate } from "@apideck/sdk/funcs/crmPipelinesUpdate.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { crmPipelinesUpdate } from "@apideck/unify/funcs/crmPipelinesUpdate.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -562,7 +562,7 @@ Delete pipeline
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -588,8 +588,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { crmPipelinesDelete } from "@apideck/sdk/funcs/crmPipelinesDelete.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { crmPipelinesDelete } from "@apideck/unify/funcs/crmPipelinesDelete.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.

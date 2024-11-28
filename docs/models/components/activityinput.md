@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { ActivityInput } from "@apideck/sdk/models/components";
+import { ActivityInput } from "@apideck/unify/models/components";
 
 let value: ActivityInput = {
   activityDatetime: "2021-05-01T12:00:00.000Z",

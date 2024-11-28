@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { CreateCallbackState } from "@apideck/sdk/models/components";
+import { CreateCallbackState } from "@apideck/unify/models/components";
 
 let value: CreateCallbackState = {
   redirectUri: "https://example.com/callback",

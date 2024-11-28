@@ -5,7 +5,7 @@ Delete a Ticket
 ## Example Usage
 
 ```typescript
-import { DeleteTicketResponse } from "@apideck/sdk/models/components";
+import { DeleteTicketResponse } from "@apideck/unify/models/components";
 
 let value: DeleteTicketResponse = {
   statusCode: 200,

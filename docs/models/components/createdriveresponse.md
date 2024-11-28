@@ -5,7 +5,7 @@ Drives
 ## Example Usage
 
 ```typescript
-import { CreateDriveResponse } from "@apideck/sdk/models/components";
+import { CreateDriveResponse } from "@apideck/unify/models/components";
 
 let value: CreateDriveResponse = {
   statusCode: 200,

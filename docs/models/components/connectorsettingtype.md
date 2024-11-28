@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { ConnectorSettingType } from "@apideck/sdk/models/components";
+import { ConnectorSettingType } from "@apideck/unify/models/components";
 
 let value: ConnectorSettingType = "select";
 ```

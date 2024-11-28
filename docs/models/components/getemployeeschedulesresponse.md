@@ -5,8 +5,8 @@ EmployeeSchedules
 ## Example Usage
 
 ```typescript
-import { GetEmployeeSchedulesResponse } from "@apideck/sdk/models/components";
-import { RFCDate } from "@apideck/sdk/types";
+import { GetEmployeeSchedulesResponse } from "@apideck/unify/models/components";
+import { RFCDate } from "@apideck/unify/types";
 
 let value: GetEmployeeSchedulesResponse = {
   statusCode: 200,

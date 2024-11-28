@@ -3,8 +3,8 @@
 ## Example Usage
 
 ```typescript
-import { ProbationPeriod } from "@apideck/sdk/models/components";
-import { RFCDate } from "@apideck/sdk/types";
+import { ProbationPeriod } from "@apideck/unify/models/components";
+import { RFCDate } from "@apideck/unify/types";
 
 let value: ProbationPeriod = {
   startDate: new RFCDate("2021-10-01"),

@@ -5,7 +5,7 @@ The request as defined in OpenApi Spec.
 ## Example Usage
 
 ```typescript
-import { Operation } from "@apideck/sdk/models/components";
+import { Operation } from "@apideck/unify/models/components";
 
 let value: Operation = {
   id: "connectionsAll",

@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { AccountingBillPaymentsDeleteRequest } from "@apideck/sdk/models/operations";
+import { AccountingBillPaymentsDeleteRequest } from "@apideck/unify/models/operations";
 
 let value: AccountingBillPaymentsDeleteRequest = {
   id: "<id>",

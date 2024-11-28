@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { ConnectionImportData } from "@apideck/sdk/models/components";
+import { ConnectionImportData } from "@apideck/unify/models/components";
 
 let value: ConnectionImportData = {
   credentials: {

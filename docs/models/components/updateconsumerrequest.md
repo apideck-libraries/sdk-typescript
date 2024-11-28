@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { UpdateConsumerRequest } from "@apideck/sdk/models/components";
+import { UpdateConsumerRequest } from "@apideck/unify/models/components";
 
 let value: UpdateConsumerRequest = {
   metadata: {

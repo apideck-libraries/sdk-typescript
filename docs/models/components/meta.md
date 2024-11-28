@@ -5,7 +5,7 @@ Response metadata
 ## Example Usage
 
 ```typescript
-import { Meta } from "@apideck/sdk/models/components";
+import { Meta } from "@apideck/unify/models/components";
 
 let value: Meta = {
   itemsOnPage: 50,

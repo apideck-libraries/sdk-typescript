@@ -20,7 +20,7 @@ List Files
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -58,8 +58,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { fileStorageFilesList } from "@apideck/sdk/funcs/fileStorageFilesList.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { fileStorageFilesList } from "@apideck/unify/funcs/fileStorageFilesList.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -131,7 +131,7 @@ Search Files
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -184,8 +184,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { fileStorageFilesSearch } from "@apideck/sdk/funcs/fileStorageFilesSearch.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { fileStorageFilesSearch } from "@apideck/unify/funcs/fileStorageFilesSearch.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -272,7 +272,7 @@ Get File
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -299,8 +299,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { fileStorageFilesGet } from "@apideck/sdk/funcs/fileStorageFilesGet.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { fileStorageFilesGet } from "@apideck/unify/funcs/fileStorageFilesGet.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -361,7 +361,7 @@ Rename or move File
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -407,8 +407,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { fileStorageFilesUpdate } from "@apideck/sdk/funcs/fileStorageFilesUpdate.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { fileStorageFilesUpdate } from "@apideck/unify/funcs/fileStorageFilesUpdate.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -488,7 +488,7 @@ Delete File
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -514,8 +514,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { fileStorageFilesDelete } from "@apideck/sdk/funcs/fileStorageFilesDelete.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { fileStorageFilesDelete } from "@apideck/unify/funcs/fileStorageFilesDelete.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -575,7 +575,7 @@ Download File
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -602,8 +602,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { fileStorageFilesDownload } from "@apideck/sdk/funcs/fileStorageFilesDownload.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { fileStorageFilesDownload } from "@apideck/unify/funcs/fileStorageFilesDownload.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -664,7 +664,7 @@ Export File
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -692,8 +692,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { fileStorageFilesExport } from "@apideck/sdk/funcs/fileStorageFilesExport.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { fileStorageFilesExport } from "@apideck/unify/funcs/fileStorageFilesExport.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.

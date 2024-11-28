@@ -5,7 +5,7 @@ Connection created
 ## Example Usage
 
 ```typescript
-import { CreateConnectionResponse } from "@apideck/sdk/models/components";
+import { CreateConnectionResponse } from "@apideck/unify/models/components";
 
 let value: CreateConnectionResponse = {
   statusCode: 201,

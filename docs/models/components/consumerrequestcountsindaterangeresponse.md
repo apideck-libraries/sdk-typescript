@@ -5,7 +5,7 @@ Consumers Request Counts within Date Range
 ## Example Usage
 
 ```typescript
-import { ConsumerRequestCountsInDateRangeResponse } from "@apideck/sdk/models/components";
+import { ConsumerRequestCountsInDateRangeResponse } from "@apideck/unify/models/components";
 
 let value: ConsumerRequestCountsInDateRangeResponse = {
   statusCode: 200,

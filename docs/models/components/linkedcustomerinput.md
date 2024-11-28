@@ -5,7 +5,7 @@ The customer this entity is linked to.
 ## Example Usage
 
 ```typescript
-import { LinkedCustomerInput } from "@apideck/sdk/models/components";
+import { LinkedCustomerInput } from "@apideck/unify/models/components";
 
 let value: LinkedCustomerInput = {
   id: "12345",

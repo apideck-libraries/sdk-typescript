@@ -5,7 +5,7 @@ JournalEntries
 ## Example Usage
 
 ```typescript
-import { CreateJournalEntryResponse } from "@apideck/sdk/models/components";
+import { CreateJournalEntryResponse } from "@apideck/unify/models/components";
 
 let value: CreateJournalEntryResponse = {
   statusCode: 200,

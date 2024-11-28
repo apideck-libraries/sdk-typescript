@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { FileStorageUploadSessionsFinishRequestBody } from "@apideck/sdk/models/operations";
+import { FileStorageUploadSessionsFinishRequestBody } from "@apideck/unify/models/operations";
 
 let value: FileStorageUploadSessionsFinishRequestBody = {};
 ```
