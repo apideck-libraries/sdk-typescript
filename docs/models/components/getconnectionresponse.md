@@ -5,7 +5,7 @@ Connection
 ## Example Usage
 
 ```typescript
-import { GetConnectionResponse } from "@apideck/sdk/models/components";
+import { GetConnectionResponse } from "@apideck/unify/models/components";
 
 let value: GetConnectionResponse = {
   statusCode: 200,

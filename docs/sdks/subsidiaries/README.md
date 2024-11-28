@@ -18,7 +18,7 @@ List Subsidiaries
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -44,8 +44,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { accountingSubsidiariesList } from "@apideck/sdk/funcs/accountingSubsidiariesList.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { accountingSubsidiariesList } from "@apideck/unify/funcs/accountingSubsidiariesList.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -105,7 +105,7 @@ Create Subsidiary
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -151,8 +151,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { accountingSubsidiariesCreate } from "@apideck/sdk/funcs/accountingSubsidiariesCreate.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { accountingSubsidiariesCreate } from "@apideck/unify/funcs/accountingSubsidiariesCreate.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -232,7 +232,7 @@ Get Subsidiary
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -259,8 +259,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { accountingSubsidiariesGet } from "@apideck/sdk/funcs/accountingSubsidiariesGet.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { accountingSubsidiariesGet } from "@apideck/unify/funcs/accountingSubsidiariesGet.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -321,7 +321,7 @@ Update Subsidiary
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -434,8 +434,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { accountingSubsidiariesUpdate } from "@apideck/sdk/funcs/accountingSubsidiariesUpdate.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { accountingSubsidiariesUpdate } from "@apideck/unify/funcs/accountingSubsidiariesUpdate.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -582,7 +582,7 @@ Delete Subsidiary
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -608,8 +608,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { accountingSubsidiariesDelete } from "@apideck/sdk/funcs/accountingSubsidiariesDelete.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { accountingSubsidiariesDelete } from "@apideck/unify/funcs/accountingSubsidiariesDelete.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.

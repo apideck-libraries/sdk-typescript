@@ -5,7 +5,7 @@ Payments
 ## Example Usage
 
 ```typescript
-import { GetPaymentsResponse } from "@apideck/sdk/models/components";
+import { GetPaymentsResponse } from "@apideck/unify/models/components";
 
 let value: GetPaymentsResponse = {
   statusCode: 200,

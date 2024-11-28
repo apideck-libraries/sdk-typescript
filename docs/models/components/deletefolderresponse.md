@@ -5,7 +5,7 @@ Folders
 ## Example Usage
 
 ```typescript
-import { DeleteFolderResponse } from "@apideck/sdk/models/components";
+import { DeleteFolderResponse } from "@apideck/unify/models/components";
 
 let value: DeleteFolderResponse = {
   statusCode: 200,

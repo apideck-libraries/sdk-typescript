@@ -15,5 +15,5 @@ targets:
                 token: $npm_token
         codeSamples:
             registry:
-                location: registry.speakeasyapi.dev/apideck-k2o/apideck/apideck-oas-code-samples
+                location: registry.speakeasyapi.dev/apideck-k2o/apideck/apideck-oas-typescript-code-samples
             blocking: false

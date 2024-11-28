@@ -18,7 +18,7 @@ List users
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -47,8 +47,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { crmUsersList } from "@apideck/sdk/funcs/crmUsersList.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { crmUsersList } from "@apideck/unify/funcs/crmUsersList.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -111,7 +111,7 @@ Create user
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -316,8 +316,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { crmUsersCreate } from "@apideck/sdk/funcs/crmUsersCreate.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { crmUsersCreate } from "@apideck/unify/funcs/crmUsersCreate.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -556,7 +556,7 @@ Get user
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -583,8 +583,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { crmUsersGet } from "@apideck/sdk/funcs/crmUsersGet.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { crmUsersGet } from "@apideck/unify/funcs/crmUsersGet.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -645,7 +645,7 @@ Update user
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -832,8 +832,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { crmUsersUpdate } from "@apideck/sdk/funcs/crmUsersUpdate.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { crmUsersUpdate } from "@apideck/unify/funcs/crmUsersUpdate.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -1054,7 +1054,7 @@ Delete user
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -1080,8 +1080,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { crmUsersDelete } from "@apideck/sdk/funcs/crmUsersDelete.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { crmUsersDelete } from "@apideck/unify/funcs/crmUsersDelete.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.

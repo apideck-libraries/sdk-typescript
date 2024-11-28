@@ -5,7 +5,7 @@ Note updated
 ## Example Usage
 
 ```typescript
-import { UpdateNoteResponse } from "@apideck/sdk/models/components";
+import { UpdateNoteResponse } from "@apideck/unify/models/components";
 
 let value: UpdateNoteResponse = {
   statusCode: 200,

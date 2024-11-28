@@ -5,7 +5,7 @@ Department
 ## Example Usage
 
 ```typescript
-import { CreateAccountingDepartmentResponse } from "@apideck/sdk/models/components";
+import { CreateAccountingDepartmentResponse } from "@apideck/unify/models/components";
 
 let value: CreateAccountingDepartmentResponse = {
   statusCode: 200,

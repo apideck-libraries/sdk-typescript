@@ -5,7 +5,7 @@ Tracking category created
 ## Example Usage
 
 ```typescript
-import { CreateTrackingCategoryResponse } from "@apideck/sdk/models/components";
+import { CreateTrackingCategoryResponse } from "@apideck/unify/models/components";
 
 let value: CreateTrackingCategoryResponse = {
   statusCode: 200,

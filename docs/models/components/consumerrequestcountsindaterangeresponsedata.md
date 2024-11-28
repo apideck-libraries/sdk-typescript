@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { ConsumerRequestCountsInDateRangeResponseData } from "@apideck/sdk/models/components";
+import { ConsumerRequestCountsInDateRangeResponseData } from "@apideck/unify/models/components";
 
 let value: ConsumerRequestCountsInDateRangeResponseData = {
   applicationId: "1111",

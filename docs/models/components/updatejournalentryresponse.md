@@ -5,7 +5,7 @@ JournalEntries
 ## Example Usage
 
 ```typescript
-import { UpdateJournalEntryResponse } from "@apideck/sdk/models/components";
+import { UpdateJournalEntryResponse } from "@apideck/unify/models/components";
 
 let value: UpdateJournalEntryResponse = {
   statusCode: 200,

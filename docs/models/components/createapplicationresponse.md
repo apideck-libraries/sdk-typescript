@@ -5,7 +5,7 @@ Applications
 ## Example Usage
 
 ```typescript
-import { CreateApplicationResponse } from "@apideck/sdk/models/components";
+import { CreateApplicationResponse } from "@apideck/unify/models/components";
 
 let value: CreateApplicationResponse = {
   statusCode: 200,

@@ -18,7 +18,7 @@ List Applications
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -46,8 +46,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { atsApplicationsList } from "@apideck/sdk/funcs/atsApplicationsList.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { atsApplicationsList } from "@apideck/unify/funcs/atsApplicationsList.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -109,7 +109,7 @@ Create Application
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -158,8 +158,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { atsApplicationsCreate } from "@apideck/sdk/funcs/atsApplicationsCreate.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { atsApplicationsCreate } from "@apideck/unify/funcs/atsApplicationsCreate.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -242,7 +242,7 @@ Get Application
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -268,8 +268,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { atsApplicationsGet } from "@apideck/sdk/funcs/atsApplicationsGet.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { atsApplicationsGet } from "@apideck/unify/funcs/atsApplicationsGet.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -329,7 +329,7 @@ Update Application
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -379,8 +379,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { atsApplicationsUpdate } from "@apideck/sdk/funcs/atsApplicationsUpdate.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { atsApplicationsUpdate } from "@apideck/unify/funcs/atsApplicationsUpdate.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -464,7 +464,7 @@ Delete Application
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -490,8 +490,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { atsApplicationsDelete } from "@apideck/sdk/funcs/atsApplicationsDelete.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { atsApplicationsDelete } from "@apideck/unify/funcs/atsApplicationsDelete.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.

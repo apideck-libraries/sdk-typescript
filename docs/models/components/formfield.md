@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { FormField } from "@apideck/sdk/models/components";
+import { FormField } from "@apideck/unify/models/components";
 
 let value: FormField = {
   id: "channel",

@@ -5,8 +5,8 @@ Opportunity
 ## Example Usage
 
 ```typescript
-import { GetOpportunityResponse } from "@apideck/sdk/models/components";
-import { RFCDate } from "@apideck/sdk/types";
+import { GetOpportunityResponse } from "@apideck/unify/models/components";
+import { RFCDate } from "@apideck/unify/types";
 
 let value: GetOpportunityResponse = {
   statusCode: 200,

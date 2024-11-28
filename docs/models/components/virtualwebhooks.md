@@ -5,7 +5,7 @@ Virtual webhook config for the connector.
 ## Example Usage
 
 ```typescript
-import { VirtualWebhooks } from "@apideck/sdk/models/components";
+import { VirtualWebhooks } from "@apideck/unify/models/components";
 
 let value: VirtualWebhooks = {
   requestRate: {

@@ -15,7 +15,7 @@ List payrolls for employee
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -49,8 +49,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { hrisEmployeePayrollsList } from "@apideck/sdk/funcs/hrisEmployeePayrollsList.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { hrisEmployeePayrollsList } from "@apideck/unify/funcs/hrisEmployeePayrollsList.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -118,7 +118,7 @@ Get payroll for employee
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -146,8 +146,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { hrisEmployeePayrollsGet } from "@apideck/sdk/funcs/hrisEmployeePayrollsGet.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { hrisEmployeePayrollsGet } from "@apideck/unify/funcs/hrisEmployeePayrollsGet.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.

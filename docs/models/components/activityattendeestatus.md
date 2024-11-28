@@ -5,7 +5,7 @@ Status of the attendee
 ## Example Usage
 
 ```typescript
-import { ActivityAttendeeStatus } from "@apideck/sdk/models/components";
+import { ActivityAttendeeStatus } from "@apideck/unify/models/components";
 
 let value: ActivityAttendeeStatus = "accepted";
 ```

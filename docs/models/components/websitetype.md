@@ -5,7 +5,7 @@ The type of website
 ## Example Usage
 
 ```typescript
-import { WebsiteType } from "@apideck/sdk/models/components";
+import { WebsiteType } from "@apideck/unify/models/components";
 
 let value: WebsiteType = "primary";
 ```

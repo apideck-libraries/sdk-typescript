@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { AttachmentReferenceType } from "@apideck/sdk/models/components";
+import { AttachmentReferenceType } from "@apideck/unify/models/components";
 
 let value: AttachmentReferenceType = "invoice";
 ```

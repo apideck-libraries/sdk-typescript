@@ -18,7 +18,7 @@ List Ledger Accounts
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -54,8 +54,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { accountingLedgerAccountsList } from "@apideck/sdk/funcs/accountingLedgerAccountsList.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { accountingLedgerAccountsList } from "@apideck/unify/funcs/accountingLedgerAccountsList.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -125,8 +125,8 @@ Create Ledger Account
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
-import { RFCDate } from "@apideck/sdk/types";
+import { Apideck } from "@apideck/unify";
+import { RFCDate } from "@apideck/unify/types";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -246,9 +246,9 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { accountingLedgerAccountsCreate } from "@apideck/sdk/funcs/accountingLedgerAccountsCreate.js";
-import { RFCDate } from "@apideck/sdk/types";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { accountingLedgerAccountsCreate } from "@apideck/unify/funcs/accountingLedgerAccountsCreate.js";
+import { RFCDate } from "@apideck/unify/types";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -402,7 +402,7 @@ Get Ledger Account
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -429,8 +429,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { accountingLedgerAccountsGet } from "@apideck/sdk/funcs/accountingLedgerAccountsGet.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { accountingLedgerAccountsGet } from "@apideck/unify/funcs/accountingLedgerAccountsGet.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -491,8 +491,8 @@ Update Ledger Account
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
-import { RFCDate } from "@apideck/sdk/types";
+import { Apideck } from "@apideck/unify";
+import { RFCDate } from "@apideck/unify/types";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -576,9 +576,9 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { accountingLedgerAccountsUpdate } from "@apideck/sdk/funcs/accountingLedgerAccountsUpdate.js";
-import { RFCDate } from "@apideck/sdk/types";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { accountingLedgerAccountsUpdate } from "@apideck/unify/funcs/accountingLedgerAccountsUpdate.js";
+import { RFCDate } from "@apideck/unify/types";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -696,7 +696,7 @@ Delete Ledger Account
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -722,8 +722,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { accountingLedgerAccountsDelete } from "@apideck/sdk/funcs/accountingLedgerAccountsDelete.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { accountingLedgerAccountsDelete } from "@apideck/unify/funcs/accountingLedgerAccountsDelete.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.

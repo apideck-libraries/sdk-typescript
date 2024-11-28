@@ -5,7 +5,7 @@ DriveGroups
 ## Example Usage
 
 ```typescript
-import { DeleteDriveGroupResponse } from "@apideck/sdk/models/components";
+import { DeleteDriveGroupResponse } from "@apideck/unify/models/components";
 
 let value: DeleteDriveGroupResponse = {
   statusCode: 200,

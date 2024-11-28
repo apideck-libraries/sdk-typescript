@@ -5,7 +5,7 @@ Location of the OAuth client credentials. For most connectors the OAuth client c
 ## Example Usage
 
 ```typescript
-import { OauthCredentialsSource } from "@apideck/sdk/models/components";
+import { OauthCredentialsSource } from "@apideck/unify/models/components";
 
 let value: OauthCredentialsSource = "integration";
 ```

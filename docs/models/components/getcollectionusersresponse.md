@@ -5,7 +5,7 @@ Users
 ## Example Usage
 
 ```typescript
-import { GetCollectionUsersResponse } from "@apideck/sdk/models/components";
+import { GetCollectionUsersResponse } from "@apideck/unify/models/components";
 
 let value: GetCollectionUsersResponse = {
   statusCode: 200,

@@ -5,7 +5,7 @@ Opportunity deleted
 ## Example Usage
 
 ```typescript
-import { DeleteOpportunityResponse } from "@apideck/sdk/models/components";
+import { DeleteOpportunityResponse } from "@apideck/unify/models/components";
 
 let value: DeleteOpportunityResponse = {
   statusCode: 200,

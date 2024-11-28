@@ -15,7 +15,7 @@ List Users
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -45,8 +45,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { issueTrackingCollectionUsersList } from "@apideck/sdk/funcs/issueTrackingCollectionUsersList.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { issueTrackingCollectionUsersList } from "@apideck/unify/funcs/issueTrackingCollectionUsersList.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -110,7 +110,7 @@ Get user
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -138,8 +138,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { issueTrackingCollectionUsersGet } from "@apideck/sdk/funcs/issueTrackingCollectionUsersGet.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { issueTrackingCollectionUsersGet } from "@apideck/unify/funcs/issueTrackingCollectionUsersGet.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.

@@ -5,7 +5,7 @@ The field on which to sort the Comments
 ## Example Usage
 
 ```typescript
-import { CommentsSortBy } from "@apideck/sdk/models/components";
+import { CommentsSortBy } from "@apideck/unify/models/components";
 
 let value: CommentsSortBy = "created_at";
 ```

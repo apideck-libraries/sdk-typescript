@@ -5,7 +5,7 @@ Audience for the doc.
 ## Example Usage
 
 ```typescript
-import { Audience } from "@apideck/sdk/models/components";
+import { Audience } from "@apideck/unify/models/components";
 
 let value: Audience = "application_owner";
 ```

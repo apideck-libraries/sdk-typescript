@@ -18,7 +18,7 @@ List Companies
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -47,8 +47,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { hrisCompaniesList } from "@apideck/sdk/funcs/hrisCompaniesList.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { hrisCompaniesList } from "@apideck/unify/funcs/hrisCompaniesList.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -111,7 +111,7 @@ Create Company
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -238,8 +238,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { hrisCompaniesCreate } from "@apideck/sdk/funcs/hrisCompaniesCreate.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { hrisCompaniesCreate } from "@apideck/unify/funcs/hrisCompaniesCreate.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -400,7 +400,7 @@ Get Company
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -427,8 +427,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { hrisCompaniesGet } from "@apideck/sdk/funcs/hrisCompaniesGet.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { hrisCompaniesGet } from "@apideck/unify/funcs/hrisCompaniesGet.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -489,7 +489,7 @@ Update Company
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -622,8 +622,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { hrisCompaniesUpdate } from "@apideck/sdk/funcs/hrisCompaniesUpdate.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { hrisCompaniesUpdate } from "@apideck/unify/funcs/hrisCompaniesUpdate.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -790,7 +790,7 @@ Delete Company
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -816,8 +816,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { hrisCompaniesDelete } from "@apideck/sdk/funcs/hrisCompaniesDelete.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { hrisCompaniesDelete } from "@apideck/unify/funcs/hrisCompaniesDelete.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.

@@ -5,7 +5,7 @@ Represents the tracking information associated with an ecommerce order.
 ## Example Usage
 
 ```typescript
-import { TrackingItem } from "@apideck/sdk/models/components";
+import { TrackingItem } from "@apideck/unify/models/components";
 
 let value: TrackingItem = {
   provider: "UPS",

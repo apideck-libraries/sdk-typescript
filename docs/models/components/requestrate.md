@@ -5,7 +5,7 @@ The rate at which requests for resources will be made to downstream.
 ## Example Usage
 
 ```typescript
-import { RequestRate } from "@apideck/sdk/models/components";
+import { RequestRate } from "@apideck/unify/models/components";
 
 let value: RequestRate = {
   rate: 490305,

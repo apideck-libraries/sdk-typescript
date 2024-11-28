@@ -18,7 +18,7 @@ List Departments
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -47,8 +47,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { accountingDepartmentsList } from "@apideck/sdk/funcs/accountingDepartmentsList.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { accountingDepartmentsList } from "@apideck/unify/funcs/accountingDepartmentsList.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -111,7 +111,7 @@ Create Department
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -173,8 +173,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { accountingDepartmentsCreate } from "@apideck/sdk/funcs/accountingDepartmentsCreate.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { accountingDepartmentsCreate } from "@apideck/unify/funcs/accountingDepartmentsCreate.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -270,7 +270,7 @@ Get Department
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -297,8 +297,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { accountingDepartmentsGet } from "@apideck/sdk/funcs/accountingDepartmentsGet.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { accountingDepartmentsGet } from "@apideck/unify/funcs/accountingDepartmentsGet.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -359,7 +359,7 @@ Update Department
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -411,8 +411,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { accountingDepartmentsUpdate } from "@apideck/sdk/funcs/accountingDepartmentsUpdate.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { accountingDepartmentsUpdate } from "@apideck/unify/funcs/accountingDepartmentsUpdate.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -498,7 +498,7 @@ Delete Department
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -524,8 +524,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { accountingDepartmentsDelete } from "@apideck/sdk/funcs/accountingDepartmentsDelete.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { accountingDepartmentsDelete } from "@apideck/unify/funcs/accountingDepartmentsDelete.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.

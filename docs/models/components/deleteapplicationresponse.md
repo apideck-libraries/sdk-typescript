@@ -5,7 +5,7 @@ Applications
 ## Example Usage
 
 ```typescript
-import { DeleteApplicationResponse } from "@apideck/sdk/models/components";
+import { DeleteApplicationResponse } from "@apideck/unify/models/components";
 
 let value: DeleteApplicationResponse = {
   statusCode: 200,

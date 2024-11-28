@@ -5,7 +5,7 @@ Debit entries are considered positive, and credit entries are considered negativ
 ## Example Usage
 
 ```typescript
-import { JournalEntryLineItemType } from "@apideck/sdk/models/components";
+import { JournalEntryLineItemType } from "@apideck/unify/models/components";
 
 let value: JournalEntryLineItemType = "debit";
 ```

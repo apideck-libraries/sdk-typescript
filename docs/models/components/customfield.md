@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { CustomField } from "@apideck/sdk/models/components";
+import { CustomField } from "@apideck/unify/models/components";
 
 let value: CustomField = {
   id: "2389328923893298",

@@ -5,7 +5,7 @@ The field on which to sort the Purchase Orders
 ## Example Usage
 
 ```typescript
-import { PurchaseOrdersSortBy } from "@apideck/sdk/models/components";
+import { PurchaseOrdersSortBy } from "@apideck/unify/models/components";
 
 let value: PurchaseOrdersSortBy = "updated_at";
 ```

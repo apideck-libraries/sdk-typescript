@@ -5,7 +5,7 @@ Type of entity this payment should be attributed to.
 ## Example Usage
 
 ```typescript
-import { BillPaymentAllocationType } from "@apideck/sdk/models/components";
+import { BillPaymentAllocationType } from "@apideck/unify/models/components";
 
 let value: BillPaymentAllocationType = "bill";
 ```

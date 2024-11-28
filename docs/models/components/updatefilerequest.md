@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { UpdateFileRequest } from "@apideck/sdk/models/components";
+import { UpdateFileRequest } from "@apideck/unify/models/components";
 
 let value: UpdateFileRequest = {
   name: "New Name.pdf",

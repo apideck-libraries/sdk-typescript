@@ -5,7 +5,7 @@ The type of address.
 ## Example Usage
 
 ```typescript
-import { Type } from "@apideck/sdk/models/components";
+import { Type } from "@apideck/unify/models/components";
 
 let value: Type = "primary";
 ```

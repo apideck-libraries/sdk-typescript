@@ -5,7 +5,7 @@ Credit Note updated
 ## Example Usage
 
 ```typescript
-import { UpdateCreditNoteResponse } from "@apideck/sdk/models/components";
+import { UpdateCreditNoteResponse } from "@apideck/unify/models/components";
 
 let value: UpdateCreditNoteResponse = {
   statusCode: 200,

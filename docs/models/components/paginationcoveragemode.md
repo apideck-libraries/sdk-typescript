@@ -5,7 +5,7 @@ How pagination is implemented on this connector. Native mode means Apideck is us
 ## Example Usage
 
 ```typescript
-import { PaginationCoverageMode } from "@apideck/sdk/models/components";
+import { PaginationCoverageMode } from "@apideck/unify/models/components";
 
 let value: PaginationCoverageMode = "native";
 ```

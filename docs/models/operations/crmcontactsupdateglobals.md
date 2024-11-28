@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { CrmContactsUpdateGlobals } from "@apideck/sdk/models/operations";
+import { CrmContactsUpdateGlobals } from "@apideck/unify/models/operations";
 
 let value: CrmContactsUpdateGlobals = {};
 ```

@@ -5,7 +5,7 @@ Indicates whether the API is a Unified API. If unified_api is false, the API is 
 ## Example Usage
 
 ```typescript
-import { ApiType } from "@apideck/sdk/models/components";
+import { ApiType } from "@apideck/unify/models/components";
 
 let value: ApiType = "unified";
 ```

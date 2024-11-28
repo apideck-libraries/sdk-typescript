@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { WebhookEventLogsFilter } from "@apideck/sdk/models/components";
+import { WebhookEventLogsFilter } from "@apideck/unify/models/components";
 
 let value: WebhookEventLogsFilter = {
   excludeApis: "vault,proxy",

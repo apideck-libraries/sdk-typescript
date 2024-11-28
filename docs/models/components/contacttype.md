@@ -5,7 +5,7 @@ The type of the contact.
 ## Example Usage
 
 ```typescript
-import { ContactType } from "@apideck/sdk/models/components";
+import { ContactType } from "@apideck/unify/models/components";
 
 let value: ContactType = "personal";
 ```

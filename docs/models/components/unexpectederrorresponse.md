@@ -5,7 +5,7 @@ Unexpected error
 ## Example Usage
 
 ```typescript
-import { UnexpectedErrorResponse } from "@apideck/sdk/models/components";
+import { UnexpectedErrorResponse } from "@apideck/unify/models/components";
 
 let value: UnexpectedErrorResponse = {
   statusCode: 400,

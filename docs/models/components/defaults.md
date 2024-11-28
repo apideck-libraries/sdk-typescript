@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { Defaults } from "@apideck/sdk/models/components";
+import { Defaults } from "@apideck/unify/models/components";
 
 let value: Defaults = {
   target: "custom_fields",

@@ -16,7 +16,7 @@ This endpoint returns custom settings and their defaults required by connection 
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -43,8 +43,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { vaultConnectionSettingsList } from "@apideck/sdk/funcs/vaultConnectionSettingsList.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { vaultConnectionSettingsList } from "@apideck/unify/funcs/vaultConnectionSettingsList.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -105,7 +105,7 @@ Update default values for a connection's resource settings
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -174,8 +174,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { vaultConnectionSettingsUpdate } from "@apideck/sdk/funcs/vaultConnectionSettingsUpdate.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { vaultConnectionSettingsUpdate } from "@apideck/unify/funcs/vaultConnectionSettingsUpdate.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.

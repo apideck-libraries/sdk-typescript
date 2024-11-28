@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { Tax } from "@apideck/sdk/models/components";
+import { Tax } from "@apideck/unify/models/components";
 
 let value: Tax = {
   name: "CA State Income Tax",

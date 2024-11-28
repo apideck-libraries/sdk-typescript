@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { FileStorageDrivesUpdateRequest } from "@apideck/sdk/models/operations";
+import { FileStorageDrivesUpdateRequest } from "@apideck/unify/models/operations";
 
 let value: FileStorageDrivesUpdateRequest = {
   id: "<id>",

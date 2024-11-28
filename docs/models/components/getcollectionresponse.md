@@ -5,7 +5,7 @@ Get a Collection
 ## Example Usage
 
 ```typescript
-import { GetCollectionResponse } from "@apideck/sdk/models/components";
+import { GetCollectionResponse } from "@apideck/unify/models/components";
 
 let value: GetCollectionResponse = {
   statusCode: 200,

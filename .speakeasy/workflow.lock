@@ -1,27 +1,28 @@
-speakeasyVersion: 1.448.1
+speakeasyVersion: 1.448.2
 sources:
     Apideck-OAS:
         sourceNamespace: apideck-oas
-        sourceRevisionDigest: sha256:cc19290fc5d81c7594ef590548f7abcbe675c2db8945152a76a3d6d42561b088
-        sourceBlobDigest: sha256:b6b8a8a94b070fcbb65739c646056e11cd2b47031888af5348c130db4f68251d
+        sourceRevisionDigest: sha256:90d69058c46ac0c2802fb58ecda38db61a8b5c12b2a951eedd59d5e2ba690e6f
+        sourceBlobDigest: sha256:c3ee1e7fee0a43d2700c1bad102e747820d3e74509b9ab3f5d080b9018935ce7
         tags:
             - latest
+            - speakeasy-sdk-regen-1732805012
             - 10.8.1
 targets:
     apideck:
         source: Apideck-OAS
         sourceNamespace: apideck-oas
-        sourceRevisionDigest: sha256:cc19290fc5d81c7594ef590548f7abcbe675c2db8945152a76a3d6d42561b088
-        sourceBlobDigest: sha256:b6b8a8a94b070fcbb65739c646056e11cd2b47031888af5348c130db4f68251d
-        codeSamplesNamespace: apideck-oas-code-samples
-        codeSamplesRevisionDigest: sha256:2f16aa208b4aaf4b2c4b9f2312e150e24a60e52439f2f97ced0581087e7cdd5c
+        sourceRevisionDigest: sha256:90d69058c46ac0c2802fb58ecda38db61a8b5c12b2a951eedd59d5e2ba690e6f
+        sourceBlobDigest: sha256:c3ee1e7fee0a43d2700c1bad102e747820d3e74509b9ab3f5d080b9018935ce7
+        codeSamplesNamespace: apideck-oas-typescript-code-samples
+        codeSamplesRevisionDigest: sha256:07feae5750436ea22e16691607d99a77fc9f0e86b32f61c06ba670e6fcbdcc1c
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest
     sources:
         Apideck-OAS:
             inputs:
-                - location: ../unify/speakeasy-spec.yml
+                - location: https://ci-spec-unify.s3.eu-central-1.amazonaws.com/speakeasy-spec.yml
             registry:
                 location: registry.speakeasyapi.dev/apideck-k2o/apideck/apideck-oas
     targets:
@@ -33,5 +34,5 @@ workflow:
                     token: $npm_token
             codeSamples:
                 registry:
-                    location: registry.speakeasyapi.dev/apideck-k2o/apideck/apideck-oas-code-samples
+                    location: registry.speakeasyapi.dev/apideck-k2o/apideck/apideck-oas-typescript-code-samples
                 blocking: false

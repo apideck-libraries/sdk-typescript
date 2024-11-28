@@ -5,7 +5,7 @@ Frequency of employee compensation.
 ## Example Usage
 
 ```typescript
-import { PaymentFrequency } from "@apideck/sdk/models/components";
+import { PaymentFrequency } from "@apideck/unify/models/components";
 
 let value: PaymentFrequency = "monthly";
 ```

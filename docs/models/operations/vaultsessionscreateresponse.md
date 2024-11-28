@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { VaultSessionsCreateResponse } from "@apideck/sdk/models/operations";
+import { VaultSessionsCreateResponse } from "@apideck/unify/models/operations";
 
 let value: VaultSessionsCreateResponse = {
   httpMeta: {

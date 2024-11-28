@@ -5,7 +5,7 @@ Companies
 ## Example Usage
 
 ```typescript
-import { DeleteHrisCompanyResponse } from "@apideck/sdk/models/components";
+import { DeleteHrisCompanyResponse } from "@apideck/unify/models/components";
 
 let value: DeleteHrisCompanyResponse = {
   statusCode: 200,

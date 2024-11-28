@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { SubsidiaryInput } from "@apideck/sdk/models/components";
+import { SubsidiaryInput } from "@apideck/unify/models/components";
 
 let value: SubsidiaryInput = {
   parentId: "12345",

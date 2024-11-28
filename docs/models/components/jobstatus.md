@@ -5,7 +5,7 @@ The status of the job.
 ## Example Usage
 
 ```typescript
-import { JobStatus } from "@apideck/sdk/models/components";
+import { JobStatus } from "@apideck/unify/models/components";
 
 let value: JobStatus = "completed";
 ```

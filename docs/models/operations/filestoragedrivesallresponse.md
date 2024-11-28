@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { FileStorageDrivesAllResponse } from "@apideck/sdk/models/operations";
+import { FileStorageDrivesAllResponse } from "@apideck/unify/models/operations";
 
 let value: FileStorageDrivesAllResponse = {
   httpMeta: {

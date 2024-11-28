@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { OauthScopes } from "@apideck/sdk/models/components";
+import { OauthScopes } from "@apideck/unify/models/components";
 
 let value: OauthScopes = {
   id: "contacts:all",

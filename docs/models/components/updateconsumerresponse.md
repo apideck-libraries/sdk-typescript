@@ -5,7 +5,7 @@ Consumer updated
 ## Example Usage
 
 ```typescript
-import { UpdateConsumerResponse } from "@apideck/sdk/models/components";
+import { UpdateConsumerResponse } from "@apideck/unify/models/components";
 
 let value: UpdateConsumerResponse = {
   statusCode: 200,

@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { PipelineInput } from "@apideck/sdk/models/components";
+import { PipelineInput } from "@apideck/unify/models/components";
 
 let value: PipelineInput = {
   id: "default",

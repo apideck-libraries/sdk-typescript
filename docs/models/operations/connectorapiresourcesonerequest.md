@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { ConnectorApiResourcesOneRequest } from "@apideck/sdk/models/operations";
+import { ConnectorApiResourcesOneRequest } from "@apideck/unify/models/operations";
 
 let value: ConnectorApiResourcesOneRequest = {
   id: "<id>",

@@ -5,7 +5,7 @@ Supplier status
 ## Example Usage
 
 ```typescript
-import { SupplierStatus } from "@apideck/sdk/models/components";
+import { SupplierStatus } from "@apideck/unify/models/components";
 
 let value: SupplierStatus = "active";
 ```

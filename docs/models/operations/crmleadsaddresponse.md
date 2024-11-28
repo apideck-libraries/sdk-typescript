@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { CrmLeadsAddResponse } from "@apideck/sdk/models/operations";
+import { CrmLeadsAddResponse } from "@apideck/unify/models/operations";
 
 let value: CrmLeadsAddResponse = {
   httpMeta: {

@@ -15,7 +15,7 @@ This endpoint creates a callback state that can be used to issue requests to the
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -44,8 +44,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { vaultCreateCallbackState } from "@apideck/sdk/funcs/vaultCreateCallbackState.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { vaultCreateCallbackState } from "@apideck/unify/funcs/vaultCreateCallbackState.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.

@@ -5,7 +5,7 @@ Unauthorized
 ## Example Usage
 
 ```typescript
-import { UnauthorizedResponse } from "@apideck/sdk/models/errors";
+import { UnauthorizedResponse } from "@apideck/unify/models/errors";
 
 // No examples available for this model
 ```

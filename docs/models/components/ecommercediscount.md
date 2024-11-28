@@ -5,7 +5,7 @@ An object representing a discount applied to an ecommerce order or product.
 ## Example Usage
 
 ```typescript
-import { EcommerceDiscount } from "@apideck/sdk/models/components";
+import { EcommerceDiscount } from "@apideck/unify/models/components";
 
 let value: EcommerceDiscount = {
   code: "SUMMER20",

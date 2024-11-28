@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { VaultCreateCallbackStateResponse } from "@apideck/sdk/models/operations";
+import { VaultCreateCallbackStateResponse } from "@apideck/unify/models/operations";
 
 let value: VaultCreateCallbackStateResponse = {
   httpMeta: {

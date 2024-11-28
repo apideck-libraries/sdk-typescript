@@ -5,7 +5,7 @@ Attachments
 ## Example Usage
 
 ```typescript
-import { DeleteAttachmentResponse } from "@apideck/sdk/models/components";
+import { DeleteAttachmentResponse } from "@apideck/unify/models/components";
 
 let value: DeleteAttachmentResponse = {
   statusCode: 200,

@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { ShowAs } from "@apideck/sdk/models/components";
+import { ShowAs } from "@apideck/unify/models/components";
 
 let value: ShowAs = "busy";
 ```

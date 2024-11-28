@@ -5,7 +5,7 @@ Create a Ticket
 ## Example Usage
 
 ```typescript
-import { CreateTicketResponse } from "@apideck/sdk/models/components";
+import { CreateTicketResponse } from "@apideck/unify/models/components";
 
 let value: CreateTicketResponse = {
   statusCode: 200,

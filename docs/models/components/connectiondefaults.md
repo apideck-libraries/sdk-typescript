@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { ConnectionDefaults } from "@apideck/sdk/models/components";
+import { ConnectionDefaults } from "@apideck/unify/models/components";
 
 let value: ConnectionDefaults = {
   id: "ProductInterest",

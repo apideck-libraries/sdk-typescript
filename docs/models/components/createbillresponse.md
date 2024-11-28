@@ -5,7 +5,7 @@ Bill created
 ## Example Usage
 
 ```typescript
-import { CreateBillResponse } from "@apideck/sdk/models/components";
+import { CreateBillResponse } from "@apideck/unify/models/components";
 
 let value: CreateBillResponse = {
   statusCode: 200,

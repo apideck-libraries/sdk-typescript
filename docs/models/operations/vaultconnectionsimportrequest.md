@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { VaultConnectionsImportRequest } from "@apideck/sdk/models/operations";
+import { VaultConnectionsImportRequest } from "@apideck/unify/models/operations";
 
 let value: VaultConnectionsImportRequest = {
   serviceId: "pipedrive",

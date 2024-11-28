@@ -3,8 +3,8 @@
 ## Example Usage
 
 ```typescript
-import { AccountingPurchaseOrdersOneResponse } from "@apideck/sdk/models/operations";
-import { RFCDate } from "@apideck/sdk/types";
+import { AccountingPurchaseOrdersOneResponse } from "@apideck/unify/models/operations";
+import { RFCDate } from "@apideck/unify/types";
 
 let value: AccountingPurchaseOrdersOneResponse = {
   httpMeta: {

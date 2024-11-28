@@ -5,7 +5,7 @@ Payment Updated
 ## Example Usage
 
 ```typescript
-import { UpdatePaymentResponse } from "@apideck/sdk/models/components";
+import { UpdatePaymentResponse } from "@apideck/unify/models/components";
 
 let value: UpdatePaymentResponse = {
   statusCode: 200,

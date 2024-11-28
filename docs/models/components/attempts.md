@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { Attempts } from "@apideck/sdk/models/components";
+import { Attempts } from "@apideck/unify/models/components";
 
 let value: Attempts = {
   timestamp: "2021-07-12T14:26:17.420Z",

@@ -5,7 +5,7 @@ JournalEntries
 ## Example Usage
 
 ```typescript
-import { DeleteJournalEntryResponse } from "@apideck/sdk/models/components";
+import { DeleteJournalEntryResponse } from "@apideck/unify/models/components";
 
 let value: DeleteJournalEntryResponse = {
   statusCode: 200,

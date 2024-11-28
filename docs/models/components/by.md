@@ -5,7 +5,7 @@ The field on which to sort the Bills
 ## Example Usage
 
 ```typescript
-import { By } from "@apideck/sdk/models/components";
+import { By } from "@apideck/unify/models/components";
 
 let value: By = "updated_at";
 ```

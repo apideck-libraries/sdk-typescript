@@ -5,7 +5,7 @@ Update a Comment
 ## Example Usage
 
 ```typescript
-import { UpdateCommentResponse } from "@apideck/sdk/models/components";
+import { UpdateCommentResponse } from "@apideck/unify/models/components";
 
 let value: UpdateCommentResponse = {
   statusCode: 200,

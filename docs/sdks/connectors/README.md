@@ -15,7 +15,7 @@ List Connectors
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -42,8 +42,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { connectorConnectorsList } from "@apideck/sdk/funcs/connectorConnectorsList.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { connectorConnectorsList } from "@apideck/unify/funcs/connectorConnectorsList.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -102,7 +102,7 @@ Get Connector
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -127,8 +127,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { connectorConnectorsGet } from "@apideck/sdk/funcs/connectorConnectorsGet.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { connectorConnectorsGet } from "@apideck/unify/funcs/connectorConnectorsGet.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.

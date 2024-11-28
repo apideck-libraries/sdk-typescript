@@ -3,8 +3,8 @@
 ## Example Usage
 
 ```typescript
-import { OpportunityInput } from "@apideck/sdk/models/components";
-import { RFCDate } from "@apideck/sdk/types";
+import { OpportunityInput } from "@apideck/unify/models/components";
+import { RFCDate } from "@apideck/unify/types";
 
 let value: OpportunityInput = {
   title: "New Rocket",

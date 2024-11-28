@@ -5,7 +5,7 @@ Shared Links
 ## Example Usage
 
 ```typescript
-import { DeleteSharedLinkResponse } from "@apideck/sdk/models/components";
+import { DeleteSharedLinkResponse } from "@apideck/unify/models/components";
 
 let value: DeleteSharedLinkResponse = {
   statusCode: 200,

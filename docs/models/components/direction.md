@@ -5,7 +5,7 @@ The direction of the message.
 ## Example Usage
 
 ```typescript
-import { Direction } from "@apideck/sdk/models/components";
+import { Direction } from "@apideck/unify/models/components";
 
 let value: Direction = "outbound-api";
 ```

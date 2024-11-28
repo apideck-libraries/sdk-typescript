@@ -5,7 +5,7 @@ Expenses
 ## Example Usage
 
 ```typescript
-import { DeleteExpenseResponse } from "@apideck/sdk/models/components";
+import { DeleteExpenseResponse } from "@apideck/unify/models/components";
 
 let value: DeleteExpenseResponse = {
   statusCode: 200,

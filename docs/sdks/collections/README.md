@@ -15,7 +15,7 @@ List Collections
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -48,8 +48,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { issueTrackingCollectionsList } from "@apideck/sdk/funcs/issueTrackingCollectionsList.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { issueTrackingCollectionsList } from "@apideck/unify/funcs/issueTrackingCollectionsList.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -116,7 +116,7 @@ Get Collection
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -143,8 +143,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { issueTrackingCollectionsGet } from "@apideck/sdk/funcs/issueTrackingCollectionsGet.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { issueTrackingCollectionsGet } from "@apideck/unify/funcs/issueTrackingCollectionsGet.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.

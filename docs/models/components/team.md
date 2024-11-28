@@ -5,7 +5,7 @@ The team the person is currently in.
 ## Example Usage
 
 ```typescript
-import { Team } from "@apideck/sdk/models/components";
+import { Team } from "@apideck/unify/models/components";
 
 let value: Team = {
   id: "1234",

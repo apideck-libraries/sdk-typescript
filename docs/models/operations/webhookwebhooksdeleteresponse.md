@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { WebhookWebhooksDeleteResponse } from "@apideck/sdk/models/operations";
+import { WebhookWebhooksDeleteResponse } from "@apideck/unify/models/operations";
 
 let value: WebhookWebhooksDeleteResponse = {
   httpMeta: {

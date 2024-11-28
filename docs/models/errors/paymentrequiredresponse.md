@@ -5,7 +5,7 @@ Payment Required
 ## Example Usage
 
 ```typescript
-import { PaymentRequiredResponse } from "@apideck/sdk/models/errors";
+import { PaymentRequiredResponse } from "@apideck/unify/models/errors";
 
 // No examples available for this model
 ```

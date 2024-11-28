@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { ConnectorApiResourceCoverageOneResponse } from "@apideck/sdk/models/operations";
+import { ConnectorApiResourceCoverageOneResponse } from "@apideck/unify/models/operations";
 
 let value: ConnectorApiResourceCoverageOneResponse = {
   httpMeta: {

@@ -5,7 +5,7 @@ The metadata of the consumer. This is used to display the consumer in the sideba
 ## Example Usage
 
 ```typescript
-import { ConsumerMetadata } from "@apideck/sdk/models/components";
+import { ConsumerMetadata } from "@apideck/unify/models/components";
 
 let value: ConsumerMetadata = {
   accountName: "SpaceX",

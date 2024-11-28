@@ -18,7 +18,7 @@ List Tickets
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -59,8 +59,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { issueTrackingCollectionTicketsList } from "@apideck/sdk/funcs/issueTrackingCollectionTicketsList.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { issueTrackingCollectionTicketsList } from "@apideck/unify/funcs/issueTrackingCollectionTicketsList.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -135,7 +135,7 @@ Create Ticket
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -232,8 +232,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { issueTrackingCollectionTicketsCreate } from "@apideck/sdk/funcs/issueTrackingCollectionTicketsCreate.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { issueTrackingCollectionTicketsCreate } from "@apideck/unify/funcs/issueTrackingCollectionTicketsCreate.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -364,7 +364,7 @@ Get Ticket
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -392,8 +392,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { issueTrackingCollectionTicketsGet } from "@apideck/sdk/funcs/issueTrackingCollectionTicketsGet.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { issueTrackingCollectionTicketsGet } from "@apideck/unify/funcs/issueTrackingCollectionTicketsGet.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -455,7 +455,7 @@ Update Ticket
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -522,8 +522,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { issueTrackingCollectionTicketsUpdate } from "@apideck/sdk/funcs/issueTrackingCollectionTicketsUpdate.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { issueTrackingCollectionTicketsUpdate } from "@apideck/unify/funcs/issueTrackingCollectionTicketsUpdate.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -624,7 +624,7 @@ Delete Ticket
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -651,8 +651,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { issueTrackingCollectionTicketsDelete } from "@apideck/sdk/funcs/issueTrackingCollectionTicketsDelete.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { issueTrackingCollectionTicketsDelete } from "@apideck/unify/funcs/issueTrackingCollectionTicketsDelete.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.

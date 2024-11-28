@@ -5,7 +5,7 @@ Logs
 ## Example Usage
 
 ```typescript
-import { GetLogsResponse } from "@apideck/sdk/models/components";
+import { GetLogsResponse } from "@apideck/unify/models/components";
 
 let value: GetLogsResponse = {
   statusCode: 200,

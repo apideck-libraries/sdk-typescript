@@ -5,7 +5,7 @@ Files
 ## Example Usage
 
 ```typescript
-import { UpdateFileResponse } from "@apideck/sdk/models/components";
+import { UpdateFileResponse } from "@apideck/unify/models/components";
 
 let value: UpdateFileResponse = {
   statusCode: 200,

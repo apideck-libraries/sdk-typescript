@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { FileStorageDrivesAllRequest } from "@apideck/sdk/models/operations";
+import { FileStorageDrivesAllRequest } from "@apideck/unify/models/operations";
 
 let value: FileStorageDrivesAllRequest = {
   serviceId: "salesforce",

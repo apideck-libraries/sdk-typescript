@@ -1,12 +1,14 @@
 lockVersion: 2.0.0
 id: 7bffa198-5d29-4efa-9942-d549cc832085
 management:
-  docChecksum: ba8967439df737aeb09b5ff1bd198151
+  docChecksum: 04f7a68234ccb558106e0c6d7e7c1310
   docVersion: 10.8.1
-  speakeasyVersion: 1.448.1
-  generationVersion: 2.466.1
-  releaseVersion: 0.11.3
-  configChecksum: 3ae450a41352e9d57b5fe063220988e2
+  speakeasyVersion: 1.448.2
+  generationVersion: 2.467.4
+  releaseVersion: 0.11.4
+  configChecksum: 16e18f8f47040cad20cf3febc7f006f5
+  repoURL: https://github.com/apideck-libraries/sdk-typescript.git
+  installationURL: https://github.com/apideck-libraries/sdk-typescript
   published: true
 features:
   typescript:
@@ -602,6 +604,7 @@ generatedFiles:
   - docs/models/components/payroll.md
   - docs/models/components/payrollsfilter.md
   - docs/models/components/payrolltotals.md
+  - docs/models/components/periodtype.md
   - docs/models/components/permissions.md
   - docs/models/components/person.md
   - docs/models/components/personinput.md
@@ -4000,7 +4003,7 @@ examples:
       parameters:
         query:
           pass_through: {"search": "San Francisco"}
-          filter: {"start_date": "2021-01-01", "end_date": "2021-12-31"}
+          filter: {"start_date": "2021-01-01", "end_date": "2021-12-31", "period_count": 3, "period_type": "month"}
         header:
           x-apideck-consumer-id: "test-consumer"
           x-apideck-app-id: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"

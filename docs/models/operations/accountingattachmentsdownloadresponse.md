@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { AccountingAttachmentsDownloadResponse } from "@apideck/sdk/models/operations";
+import { AccountingAttachmentsDownloadResponse } from "@apideck/unify/models/operations";
 
 // No examples available for this model
 ```

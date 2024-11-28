@@ -18,7 +18,7 @@ List Credit Notes
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -54,8 +54,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { accountingCreditNotesList } from "@apideck/sdk/funcs/accountingCreditNotesList.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { accountingCreditNotesList } from "@apideck/unify/funcs/accountingCreditNotesList.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -125,7 +125,7 @@ Create Credit Note
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -441,8 +441,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { accountingCreditNotesCreate } from "@apideck/sdk/funcs/accountingCreditNotesCreate.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { accountingCreditNotesCreate } from "@apideck/unify/funcs/accountingCreditNotesCreate.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -792,7 +792,7 @@ Get Credit Note
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -819,8 +819,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { accountingCreditNotesGet } from "@apideck/sdk/funcs/accountingCreditNotesGet.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { accountingCreditNotesGet } from "@apideck/unify/funcs/accountingCreditNotesGet.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -881,7 +881,7 @@ Update Credit Note
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -1231,8 +1231,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { accountingCreditNotesUpdate } from "@apideck/sdk/funcs/accountingCreditNotesUpdate.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { accountingCreditNotesUpdate } from "@apideck/unify/funcs/accountingCreditNotesUpdate.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -1614,7 +1614,7 @@ Delete Credit Note
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -1640,8 +1640,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { accountingCreditNotesDelete } from "@apideck/sdk/funcs/accountingCreditNotesDelete.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { accountingCreditNotesDelete } from "@apideck/unify/funcs/accountingCreditNotesDelete.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.

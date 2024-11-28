@@ -5,7 +5,7 @@ Subsidiarys
 ## Example Usage
 
 ```typescript
-import { DeleteSubsidiaryResponse } from "@apideck/sdk/models/components";
+import { DeleteSubsidiaryResponse } from "@apideck/unify/models/components";
 
 let value: DeleteSubsidiaryResponse = {
   statusCode: 200,

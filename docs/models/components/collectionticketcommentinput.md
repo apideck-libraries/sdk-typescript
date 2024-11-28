@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { CollectionTicketCommentInput } from "@apideck/sdk/models/components";
+import { CollectionTicketCommentInput } from "@apideck/unify/models/components";
 
 let value: CollectionTicketCommentInput = {
   body: "What internet provider do you use?",

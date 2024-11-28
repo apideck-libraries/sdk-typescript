@@ -5,7 +5,7 @@ Folders
 ## Example Usage
 
 ```typescript
-import { GetFolderResponse } from "@apideck/sdk/models/components";
+import { GetFolderResponse } from "@apideck/unify/models/components";
 
 let value: GetFolderResponse = {
   statusCode: 200,

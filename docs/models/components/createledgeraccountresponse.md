@@ -5,7 +5,7 @@ LedgerAccount created
 ## Example Usage
 
 ```typescript
-import { CreateLedgerAccountResponse } from "@apideck/sdk/models/components";
+import { CreateLedgerAccountResponse } from "@apideck/unify/models/components";
 
 let value: CreateLedgerAccountResponse = {
   statusCode: 200,

@@ -5,7 +5,7 @@ Departments
 ## Example Usage
 
 ```typescript
-import { DeleteDepartmentResponse } from "@apideck/sdk/models/components";
+import { DeleteDepartmentResponse } from "@apideck/unify/models/components";
 
 let value: DeleteDepartmentResponse = {
   statusCode: 200,

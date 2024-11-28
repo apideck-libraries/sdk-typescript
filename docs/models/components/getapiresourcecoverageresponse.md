@@ -5,7 +5,7 @@ ApiResources
 ## Example Usage
 
 ```typescript
-import { GetApiResourceCoverageResponse } from "@apideck/sdk/models/components";
+import { GetApiResourceCoverageResponse } from "@apideck/unify/models/components";
 
 let value: GetApiResourceCoverageResponse = {
   statusCode: 200,

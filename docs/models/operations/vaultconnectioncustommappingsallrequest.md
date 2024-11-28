@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { VaultConnectionCustomMappingsAllRequest } from "@apideck/sdk/models/operations";
+import { VaultConnectionCustomMappingsAllRequest } from "@apideck/unify/models/operations";
 
 let value: VaultConnectionCustomMappingsAllRequest = {
   unifiedApi: "crm",

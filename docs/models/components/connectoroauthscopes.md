@@ -5,7 +5,7 @@ OAuth scopes required for the connector. Add these scopes to your OAuth app.
 ## Example Usage
 
 ```typescript
-import { ConnectorOauthScopes } from "@apideck/sdk/models/components";
+import { ConnectorOauthScopes } from "@apideck/unify/models/components";
 
 let value: ConnectorOauthScopes = {
   id: "contacts:all",

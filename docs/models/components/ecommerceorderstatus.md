@@ -5,7 +5,7 @@ Current status of the order.
 ## Example Usage
 
 ```typescript
-import { EcommerceOrderStatus } from "@apideck/sdk/models/components";
+import { EcommerceOrderStatus } from "@apideck/unify/models/components";
 
 let value: EcommerceOrderStatus = "active";
 ```

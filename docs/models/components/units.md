@@ -5,7 +5,7 @@ The unit of time off requested. Possible values include: `hours`, `days`, or `ot
 ## Example Usage
 
 ```typescript
-import { Units } from "@apideck/sdk/models/components";
+import { Units } from "@apideck/unify/models/components";
 
 let value: Units = "hours";
 ```

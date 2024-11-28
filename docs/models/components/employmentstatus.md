@@ -5,7 +5,7 @@ The employment status of the employee, indicating whether they are currently emp
 ## Example Usage
 
 ```typescript
-import { EmploymentStatus } from "@apideck/sdk/models/components";
+import { EmploymentStatus } from "@apideck/unify/models/components";
 
 let value: EmploymentStatus = "active";
 ```

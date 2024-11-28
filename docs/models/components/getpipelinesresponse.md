@@ -5,7 +5,7 @@ Pipelines
 ## Example Usage
 
 ```typescript
-import { GetPipelinesResponse } from "@apideck/sdk/models/components";
+import { GetPipelinesResponse } from "@apideck/unify/models/components";
 
 let value: GetPipelinesResponse = {
   statusCode: 200,

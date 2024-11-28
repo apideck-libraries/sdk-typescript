@@ -18,7 +18,7 @@ List all webhook subscriptions
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -41,8 +41,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { webhookWebhooksList } from "@apideck/sdk/funcs/webhookWebhooksList.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { webhookWebhooksList } from "@apideck/unify/funcs/webhookWebhooksList.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -99,7 +99,7 @@ Create a webhook subscription to receive events
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -131,8 +131,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { webhookWebhooksCreate } from "@apideck/sdk/funcs/webhookWebhooksCreate.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { webhookWebhooksCreate } from "@apideck/unify/funcs/webhookWebhooksCreate.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -198,7 +198,7 @@ Get the webhook subscription details
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -223,8 +223,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { webhookWebhooksGet } from "@apideck/sdk/funcs/webhookWebhooksGet.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { webhookWebhooksGet } from "@apideck/unify/funcs/webhookWebhooksGet.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -283,7 +283,7 @@ Update a webhook subscription
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -317,8 +317,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { webhookWebhooksUpdate } from "@apideck/sdk/funcs/webhookWebhooksUpdate.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { webhookWebhooksUpdate } from "@apideck/unify/funcs/webhookWebhooksUpdate.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -386,7 +386,7 @@ Delete a webhook subscription
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -411,8 +411,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { webhookWebhooksDelete } from "@apideck/sdk/funcs/webhookWebhooksDelete.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { webhookWebhooksDelete } from "@apideck/unify/funcs/webhookWebhooksDelete.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.

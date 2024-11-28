@@ -5,7 +5,7 @@ List Tags
 ## Example Usage
 
 ```typescript
-import { GetCollectionTagsResponse } from "@apideck/sdk/models/components";
+import { GetCollectionTagsResponse } from "@apideck/unify/models/components";
 
 let value: GetCollectionTagsResponse = {
   statusCode: 200,

@@ -5,7 +5,7 @@ UploadSessions
 ## Example Usage
 
 ```typescript
-import { CreateUploadSessionResponse } from "@apideck/sdk/models/components";
+import { CreateUploadSessionResponse } from "@apideck/unify/models/components";
 
 let value: CreateUploadSessionResponse = {
   statusCode: 200,

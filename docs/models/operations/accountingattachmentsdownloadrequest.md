@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { AccountingAttachmentsDownloadRequest } from "@apideck/sdk/models/operations";
+import { AccountingAttachmentsDownloadRequest } from "@apideck/unify/models/operations";
 
 let value: AccountingAttachmentsDownloadRequest = {
   referenceType: "invoice",

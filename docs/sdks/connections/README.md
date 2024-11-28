@@ -22,7 +22,7 @@ OAuth2 supported integrations will contain authorize and revoke links to handle 
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -48,8 +48,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { vaultConnectionsList } from "@apideck/sdk/funcs/vaultConnectionsList.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { vaultConnectionsList } from "@apideck/unify/funcs/vaultConnectionsList.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -109,7 +109,7 @@ Get a connection
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -135,8 +135,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { vaultConnectionsGet } from "@apideck/sdk/funcs/vaultConnectionsGet.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { vaultConnectionsGet } from "@apideck/unify/funcs/vaultConnectionsGet.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -196,7 +196,7 @@ Update a connection
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -395,8 +395,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { vaultConnectionsUpdate } from "@apideck/sdk/funcs/vaultConnectionsUpdate.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { vaultConnectionsUpdate } from "@apideck/unify/funcs/vaultConnectionsUpdate.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -626,7 +626,7 @@ Deletes a connection
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -652,8 +652,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { vaultConnectionsDelete } from "@apideck/sdk/funcs/vaultConnectionsDelete.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { vaultConnectionsDelete } from "@apideck/unify/funcs/vaultConnectionsDelete.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -714,7 +714,7 @@ Import an authorized connection.
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -755,8 +755,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { vaultConnectionsImports } from "@apideck/sdk/funcs/vaultConnectionsImports.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { vaultConnectionsImports } from "@apideck/unify/funcs/vaultConnectionsImports.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -837,7 +837,7 @@ Note:
 ### Example Usage
 
 ```typescript
-import { Apideck } from "@apideck/sdk";
+import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -863,8 +863,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { ApideckCore } from "@apideck/sdk/core.js";
-import { vaultConnectionsToken } from "@apideck/sdk/funcs/vaultConnectionsToken.js";
+import { ApideckCore } from "@apideck/unify/core.js";
+import { vaultConnectionsToken } from "@apideck/unify/funcs/vaultConnectionsToken.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.

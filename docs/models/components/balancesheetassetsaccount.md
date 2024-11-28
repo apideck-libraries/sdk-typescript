@@ -5,7 +5,7 @@ A balance sheet assets account represents the financial position of a company at
 ## Example Usage
 
 ```typescript
-import { BalanceSheetAssetsAccount } from "@apideck/sdk/models/components";
+import { BalanceSheetAssetsAccount } from "@apideck/unify/models/components";
 
 let value: BalanceSheetAssetsAccount = {
   accountId: "1",

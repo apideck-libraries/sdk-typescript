@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { HTTPMetadata } from "@apideck/sdk/models/components";
+import { HTTPMetadata } from "@apideck/unify/models/components";
 
 let value: HTTPMetadata = {
   response: new Response("{\"message\": \"hello world\"}", {

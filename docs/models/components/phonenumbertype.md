@@ -5,7 +5,7 @@ The type of phone number
 ## Example Usage
 
 ```typescript
-import { PhoneNumberType } from "@apideck/sdk/models/components";
+import { PhoneNumberType } from "@apideck/unify/models/components";
 
 let value: PhoneNumberType = "primary";
 ```
