@@ -142,7 +142,7 @@ export type SubAccounts = {
   accountSubName?: string | undefined;
 };
 
-export type Subsidiaries = {
+export type LedgerAccountSubsidiaries = {
   /**
    * The ID of the subsidiary.
    */
@@ -243,7 +243,7 @@ export type LedgerAccount = {
   /**
    * The subsidiaries the account belongs to.
    */
-  subsidiaries?: Array<Subsidiaries> | undefined;
+  subsidiaries?: Array<LedgerAccountSubsidiaries> | undefined;
   /**
    * When custom mappings are configured on the resource, the result is included here.
    */
@@ -356,7 +356,7 @@ export type LedgerAccountInput = {
   /**
    * The subsidiaries the account belongs to.
    */
-  subsidiaries?: Array<Subsidiaries> | undefined;
+  subsidiaries?: Array<LedgerAccountSubsidiaries> | undefined;
   /**
    * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
    */
@@ -609,8 +609,8 @@ export function subAccountsFromJSON(
 }
 
 /** @internal */
-export const Subsidiaries$inboundSchema: z.ZodType<
-  Subsidiaries,
+export const LedgerAccountSubsidiaries$inboundSchema: z.ZodType<
+  LedgerAccountSubsidiaries,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -618,15 +618,15 @@ export const Subsidiaries$inboundSchema: z.ZodType<
 });
 
 /** @internal */
-export type Subsidiaries$Outbound = {
+export type LedgerAccountSubsidiaries$Outbound = {
   id?: string | undefined;
 };
 
 /** @internal */
-export const Subsidiaries$outboundSchema: z.ZodType<
-  Subsidiaries$Outbound,
+export const LedgerAccountSubsidiaries$outboundSchema: z.ZodType<
+  LedgerAccountSubsidiaries$Outbound,
   z.ZodTypeDef,
-  Subsidiaries
+  LedgerAccountSubsidiaries
 > = z.object({
   id: z.string().optional(),
 });
@@ -635,26 +635,30 @@ export const Subsidiaries$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace Subsidiaries$ {
-  /** @deprecated use `Subsidiaries$inboundSchema` instead. */
-  export const inboundSchema = Subsidiaries$inboundSchema;
-  /** @deprecated use `Subsidiaries$outboundSchema` instead. */
-  export const outboundSchema = Subsidiaries$outboundSchema;
-  /** @deprecated use `Subsidiaries$Outbound` instead. */
-  export type Outbound = Subsidiaries$Outbound;
+export namespace LedgerAccountSubsidiaries$ {
+  /** @deprecated use `LedgerAccountSubsidiaries$inboundSchema` instead. */
+  export const inboundSchema = LedgerAccountSubsidiaries$inboundSchema;
+  /** @deprecated use `LedgerAccountSubsidiaries$outboundSchema` instead. */
+  export const outboundSchema = LedgerAccountSubsidiaries$outboundSchema;
+  /** @deprecated use `LedgerAccountSubsidiaries$Outbound` instead. */
+  export type Outbound = LedgerAccountSubsidiaries$Outbound;
 }
 
-export function subsidiariesToJSON(subsidiaries: Subsidiaries): string {
-  return JSON.stringify(Subsidiaries$outboundSchema.parse(subsidiaries));
+export function ledgerAccountSubsidiariesToJSON(
+  ledgerAccountSubsidiaries: LedgerAccountSubsidiaries,
+): string {
+  return JSON.stringify(
+    LedgerAccountSubsidiaries$outboundSchema.parse(ledgerAccountSubsidiaries),
+  );
 }
 
-export function subsidiariesFromJSON(
+export function ledgerAccountSubsidiariesFromJSON(
   jsonString: string,
-): SafeParseResult<Subsidiaries, SDKValidationError> {
+): SafeParseResult<LedgerAccountSubsidiaries, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => Subsidiaries$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Subsidiaries' from JSON`,
+    (x) => LedgerAccountSubsidiaries$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'LedgerAccountSubsidiaries' from JSON`,
   );
 }
 
@@ -691,7 +695,8 @@ export const LedgerAccount$inboundSchema: z.ZodType<
   last_reconciliation_date: z.nullable(
     z.string().transform(v => new RFCDate(v)),
   ).optional(),
-  subsidiaries: z.array(z.lazy(() => Subsidiaries$inboundSchema)).optional(),
+  subsidiaries: z.array(z.lazy(() => LedgerAccountSubsidiaries$inboundSchema))
+    .optional(),
   custom_mappings: z.nullable(CustomMappings$inboundSchema).optional(),
   row_version: z.nullable(z.string()).optional(),
   updated_by: z.nullable(z.string()).optional(),
@@ -755,7 +760,7 @@ export type LedgerAccount$Outbound = {
   sub_account?: boolean | null | undefined;
   sub_accounts?: Array<SubAccounts$Outbound> | undefined;
   last_reconciliation_date?: string | null | undefined;
-  subsidiaries?: Array<Subsidiaries$Outbound> | undefined;
+  subsidiaries?: Array<LedgerAccountSubsidiaries$Outbound> | undefined;
   custom_mappings?: CustomMappings$Outbound | null | undefined;
   row_version?: string | null | undefined;
   updated_by?: string | null | undefined;
@@ -798,7 +803,8 @@ export const LedgerAccount$outboundSchema: z.ZodType<
   lastReconciliationDate: z.nullable(
     z.instanceof(RFCDate).transform(v => v.toString()),
   ).optional(),
-  subsidiaries: z.array(z.lazy(() => Subsidiaries$outboundSchema)).optional(),
+  subsidiaries: z.array(z.lazy(() => LedgerAccountSubsidiaries$outboundSchema))
+    .optional(),
   customMappings: z.nullable(CustomMappings$outboundSchema).optional(),
   rowVersion: z.nullable(z.string()).optional(),
   updatedBy: z.nullable(z.string()).optional(),
@@ -888,7 +894,8 @@ export const LedgerAccountInput$inboundSchema: z.ZodType<
   last_reconciliation_date: z.nullable(
     z.string().transform(v => new RFCDate(v)),
   ).optional(),
-  subsidiaries: z.array(z.lazy(() => Subsidiaries$inboundSchema)).optional(),
+  subsidiaries: z.array(z.lazy(() => LedgerAccountSubsidiaries$inboundSchema))
+    .optional(),
   row_version: z.nullable(z.string()).optional(),
   pass_through: z.array(PassThroughBody$inboundSchema).optional(),
 }).transform((v) => {
@@ -934,7 +941,7 @@ export type LedgerAccountInput$Outbound = {
   parent_account?: ParentAccount$Outbound | undefined;
   sub_account?: boolean | null | undefined;
   last_reconciliation_date?: string | null | undefined;
-  subsidiaries?: Array<Subsidiaries$Outbound> | undefined;
+  subsidiaries?: Array<LedgerAccountSubsidiaries$Outbound> | undefined;
   row_version?: string | null | undefined;
   pass_through?: Array<PassThroughBody$Outbound> | undefined;
 };
@@ -969,7 +976,8 @@ export const LedgerAccountInput$outboundSchema: z.ZodType<
   lastReconciliationDate: z.nullable(
     z.instanceof(RFCDate).transform(v => v.toString()),
   ).optional(),
-  subsidiaries: z.array(z.lazy(() => Subsidiaries$outboundSchema)).optional(),
+  subsidiaries: z.array(z.lazy(() => LedgerAccountSubsidiaries$outboundSchema))
+    .optional(),
   rowVersion: z.nullable(z.string()).optional(),
   passThrough: z.array(PassThroughBody$outboundSchema).optional(),
 }).transform((v) => {

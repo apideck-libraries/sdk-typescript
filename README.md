@@ -1280,9 +1280,9 @@ const sdk = new Apideck({ httpClient });
 
 This SDK supports the following security scheme globally:
 
-| Name     | Type   | Scheme  | Environment Variable |
-| -------- | ------ | ------- | -------------------- |
-| `apiKey` | apiKey | API key | `APIDECK_API_KEY`    |
+| Name     | Type | Scheme      | Environment Variable |
+| -------- | ---- | ----------- | -------------------- |
+| `apiKey` | http | HTTP Bearer | `APIDECK_API_KEY`    |
 
 To authenticate with the API the `apiKey` parameter must be set when initializing the SDK client instance. For example:
 ```typescript

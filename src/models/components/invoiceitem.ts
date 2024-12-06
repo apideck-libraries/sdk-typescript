@@ -61,7 +61,7 @@ import {
 /**
  * Item type
  */
-export const InvoiceItemType = {
+export const InvoiceItemTypeType = {
   Inventory: "inventory",
   Service: "service",
   Other: "other",
@@ -69,7 +69,7 @@ export const InvoiceItemType = {
 /**
  * Item type
  */
-export type InvoiceItemType = ClosedEnum<typeof InvoiceItemType>;
+export type InvoiceItemTypeType = ClosedEnum<typeof InvoiceItemTypeType>;
 
 export type SalesDetails = {
   unitPrice?: number | null | undefined;
@@ -137,7 +137,7 @@ export type InvoiceItem = {
   /**
    * Item type
    */
-  type?: InvoiceItemType | null | undefined;
+  type?: InvoiceItemTypeType | null | undefined;
   salesDetails?: SalesDetails | undefined;
   purchaseDetails?: PurchaseDetails | undefined;
   quantity?: number | null | undefined;
@@ -246,7 +246,7 @@ export type InvoiceItemInput = {
   /**
    * Item type
    */
-  type?: InvoiceItemType | null | undefined;
+  type?: InvoiceItemTypeType | null | undefined;
   salesDetails?: InvoiceItemSalesDetails | undefined;
   purchaseDetails?: InvoiceItemPurchaseDetails | undefined;
   quantity?: number | null | undefined;
@@ -274,24 +274,24 @@ export type InvoiceItemInput = {
 };
 
 /** @internal */
-export const InvoiceItemType$inboundSchema: z.ZodNativeEnum<
-  typeof InvoiceItemType
-> = z.nativeEnum(InvoiceItemType);
+export const InvoiceItemTypeType$inboundSchema: z.ZodNativeEnum<
+  typeof InvoiceItemTypeType
+> = z.nativeEnum(InvoiceItemTypeType);
 
 /** @internal */
-export const InvoiceItemType$outboundSchema: z.ZodNativeEnum<
-  typeof InvoiceItemType
-> = InvoiceItemType$inboundSchema;
+export const InvoiceItemTypeType$outboundSchema: z.ZodNativeEnum<
+  typeof InvoiceItemTypeType
+> = InvoiceItemTypeType$inboundSchema;
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace InvoiceItemType$ {
-  /** @deprecated use `InvoiceItemType$inboundSchema` instead. */
-  export const inboundSchema = InvoiceItemType$inboundSchema;
-  /** @deprecated use `InvoiceItemType$outboundSchema` instead. */
-  export const outboundSchema = InvoiceItemType$outboundSchema;
+export namespace InvoiceItemTypeType$ {
+  /** @deprecated use `InvoiceItemTypeType$inboundSchema` instead. */
+  export const inboundSchema = InvoiceItemTypeType$inboundSchema;
+  /** @deprecated use `InvoiceItemTypeType$outboundSchema` instead. */
+  export const outboundSchema = InvoiceItemTypeType$outboundSchema;
 }
 
 /** @internal */
@@ -458,7 +458,7 @@ export const InvoiceItem$inboundSchema: z.ZodType<
   taxable: z.nullable(z.boolean()).optional(),
   inventory_date: z.nullable(z.string().transform(v => new RFCDate(v)))
     .optional(),
-  type: z.nullable(InvoiceItemType$inboundSchema).optional(),
+  type: z.nullable(InvoiceItemTypeType$inboundSchema).optional(),
   sales_details: z.lazy(() => SalesDetails$inboundSchema).optional(),
   purchase_details: z.lazy(() => PurchaseDetails$inboundSchema).optional(),
   quantity: z.nullable(z.number()).optional(),
@@ -556,7 +556,7 @@ export const InvoiceItem$outboundSchema: z.ZodType<
   taxable: z.nullable(z.boolean()).optional(),
   inventoryDate: z.nullable(z.instanceof(RFCDate).transform(v => v.toString()))
     .optional(),
-  type: z.nullable(InvoiceItemType$outboundSchema).optional(),
+  type: z.nullable(InvoiceItemTypeType$outboundSchema).optional(),
   salesDetails: z.lazy(() => SalesDetails$outboundSchema).optional(),
   purchaseDetails: z.lazy(() => PurchaseDetails$outboundSchema).optional(),
   quantity: z.nullable(z.number()).optional(),
@@ -793,7 +793,7 @@ export const InvoiceItemInput$inboundSchema: z.ZodType<
   taxable: z.nullable(z.boolean()).optional(),
   inventory_date: z.nullable(z.string().transform(v => new RFCDate(v)))
     .optional(),
-  type: z.nullable(InvoiceItemType$inboundSchema).optional(),
+  type: z.nullable(InvoiceItemTypeType$inboundSchema).optional(),
   sales_details: z.lazy(() => InvoiceItemSalesDetails$inboundSchema).optional(),
   purchase_details: z.lazy(() => InvoiceItemPurchaseDetails$inboundSchema)
     .optional(),
@@ -872,7 +872,7 @@ export const InvoiceItemInput$outboundSchema: z.ZodType<
   taxable: z.nullable(z.boolean()).optional(),
   inventoryDate: z.nullable(z.instanceof(RFCDate).transform(v => v.toString()))
     .optional(),
-  type: z.nullable(InvoiceItemType$outboundSchema).optional(),
+  type: z.nullable(InvoiceItemTypeType$outboundSchema).optional(),
   salesDetails: z.lazy(() => InvoiceItemSalesDetails$outboundSchema).optional(),
   purchaseDetails: z.lazy(() => InvoiceItemPurchaseDetails$outboundSchema)
     .optional(),

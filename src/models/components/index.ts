@@ -337,6 +337,7 @@ export * from "./httpmetadata.js";
 export * from "./integrationstate.js";
 export * from "./invoice.js";
 export * from "./invoiceitem.js";
+export * from "./invoiceitemfilter.js";
 export * from "./invoiceitemsfilter.js";
 export * from "./invoicelineitem.js";
 export * from "./invoiceresponse.js";

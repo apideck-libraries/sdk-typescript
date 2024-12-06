@@ -132,6 +132,7 @@ let value: GetSuppliersResponse = {
           ],
         },
       ],
+      subsidiaryId: "12345",
     },
   ],
   meta: {

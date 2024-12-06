@@ -22,6 +22,7 @@ let value: GetExpenseResponse = {
     supplierId: "12345",
     companyId: "12345",
     departmentId: "12345",
+    paymentType: "cash",
     currency: "USD",
     currencyRate: 0.69,
     type: "expense",

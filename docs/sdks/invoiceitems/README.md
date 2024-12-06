@@ -31,6 +31,7 @@ async function run() {
     serviceId: "salesforce",
     filter: {
       name: "Widgets Large",
+      type: "service",
     },
     passThrough: {
       "search": "San Francisco",
@@ -66,6 +67,7 @@ async function run() {
     serviceId: "salesforce",
     filter: {
       name: "Widgets Large",
+      type: "service",
     },
     passThrough: {
       "search": "San Francisco",
@@ -397,6 +399,9 @@ async function run() {
     id: "<id>",
     serviceId: "salesforce",
     fields: "id,updated_at",
+    filter: {
+      type: "service",
+    },
   });
 
   // Handle the result
@@ -427,6 +432,9 @@ async function run() {
     id: "<id>",
     serviceId: "salesforce",
     fields: "id,updated_at",
+    filter: {
+      type: "service",
+    },
   });
 
   if (!res.ok) {

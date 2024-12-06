@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 7bffa198-5d29-4efa-9942-d549cc832085
 management:
-  docChecksum: 04f7a68234ccb558106e0c6d7e7c1310
-  docVersion: 10.8.1
-  speakeasyVersion: 1.448.2
-  generationVersion: 2.467.4
-  releaseVersion: 0.11.4
-  configChecksum: 16e18f8f47040cad20cf3febc7f006f5
+  docChecksum: 5a3c61710af05ae5c21380b118217322
+  docVersion: 10.8.3
+  speakeasyVersion: 1.453.0
+  generationVersion: 2.472.1
+  releaseVersion: 0.11.5
+  configChecksum: d9ffa28acce0e0234fa93ee06ae8a376
   repoURL: https://github.com/apideck-libraries/sdk-typescript.git
   installationURL: https://github.com/apideck-libraries/sdk-typescript
   published: true
@@ -15,7 +15,7 @@ features:
     acceptHeaders: 2.81.2
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.11
-    core: 3.18.7
+    core: 3.18.8
     deepObjectParams: 0.1.0
     defaultEnabledRetries: 0.1.0
     deprecations: 2.81.1
@@ -353,6 +353,7 @@ generatedFiles:
   - docs/models/components/expenseinput.md
   - docs/models/components/expenselineitem.md
   - docs/models/components/expenselineiteminput.md
+  - docs/models/components/expensepaymenttype.md
   - docs/models/components/expenses.md
   - docs/models/components/expensetype.md
   - docs/models/components/extendpaths.md
@@ -502,11 +503,14 @@ generatedFiles:
   - docs/models/components/invoice.md
   - docs/models/components/invoiceinput.md
   - docs/models/components/invoiceitem.md
+  - docs/models/components/invoiceitemfilter.md
+  - docs/models/components/invoiceitemfilterinvoiceitemtype.md
   - docs/models/components/invoiceiteminput.md
   - docs/models/components/invoiceitempurchasedetails.md
   - docs/models/components/invoiceitemsalesdetails.md
   - docs/models/components/invoiceitemsfilter.md
   - docs/models/components/invoiceitemtype.md
+  - docs/models/components/invoiceitemtypetype.md
   - docs/models/components/invoicelineitem.md
   - docs/models/components/invoicelineiteminput.md
   - docs/models/components/invoicelineitemtype.md
@@ -540,6 +544,7 @@ generatedFiles:
   - docs/models/components/ledgeraccountsfilter.md
   - docs/models/components/ledgeraccountssort.md
   - docs/models/components/ledgeraccountssortby.md
+  - docs/models/components/ledgeraccountsubsidiaries.md
   - docs/models/components/ledgeraccounttype.md
   - docs/models/components/linkedconnectorresource.md
   - docs/models/components/linkedcustomer.md
@@ -693,6 +698,7 @@ generatedFiles:
   - docs/models/components/trackingcategory.md
   - docs/models/components/trackingcategoryinput.md
   - docs/models/components/trackingcategorystatus.md
+  - docs/models/components/trackingcategorysubsidiaries.md
   - docs/models/components/trackingitem.md
   - docs/models/components/type.md
   - docs/models/components/unexpectederrorresponse.md
@@ -2275,6 +2281,7 @@ generatedFiles:
   - src/models/components/integrationstate.ts
   - src/models/components/invoice.ts
   - src/models/components/invoiceitem.ts
+  - src/models/components/invoiceitemfilter.ts
   - src/models/components/invoiceitemsfilter.ts
   - src/models/components/invoicelineitem.ts
   - src/models/components/invoiceresponse.ts
@@ -3329,7 +3336,7 @@ examples:
     "":
       parameters:
         query:
-          filter: {"name": "Widgets Large"}
+          filter: {"name": "Widgets Large", "type": "service"}
           pass_through: {"search": "San Francisco"}
           fields: "id,updated_at"
         header:
@@ -3383,6 +3390,7 @@ examples:
           id: "<id>"
         query:
           fields: "id,updated_at"
+          filter: {"type": "service"}
         header:
           x-apideck-consumer-id: "test-consumer"
           x-apideck-app-id: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
