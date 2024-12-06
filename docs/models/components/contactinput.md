@@ -1,0 +1,161 @@
+# ContactInput
+
+## Example Usage
+
+```typescript
+import { ContactInput } from "@apideck/unify/models/components";
+
+let value: ContactInput = {
+  name: "Elon Musk",
+  ownerId: "54321",
+  type: "personal",
+  companyId: "23456",
+  companyName: "23456",
+  leadId: "34567",
+  firstName: "Elon",
+  middleName: "D.",
+  lastName: "Musk",
+  prefix: "Mr.",
+  suffix: "PhD",
+  title: "CEO",
+  department: "Engineering",
+  language: "EN",
+  gender: "female",
+  birthday: "2000-08-12",
+  photoUrl: "https://unavatar.io/elon-musk",
+  leadSource: "Cold Call",
+  fax: "+12129876543",
+  description: "Internal champion",
+  currentBalance: 10.5,
+  status: "open",
+  active: true,
+  websites: [
+    {
+      id: "12345",
+      url: "http://example.com",
+      type: "primary",
+    },
+  ],
+  addresses: [
+    {
+      id: "123",
+      type: "primary",
+      string: "25 Spring Street, Blackburn, VIC 3130",
+      name: "HQ US",
+      line1: "Main street",
+      line2: "apt #",
+      line3: "Suite #",
+      line4: "delivery instructions",
+      streetNumber: "25",
+      city: "San Francisco",
+      state: "CA",
+      postalCode: "94104",
+      country: "US",
+      latitude: "40.759211",
+      longitude: "-73.984638",
+      county: "Santa Clara",
+      contactName: "Elon Musk",
+      salutation: "Mr",
+      phoneNumber: "111-111-1111",
+      fax: "122-111-1111",
+      email: "elon@musk.com",
+      website: "https://elonmusk.com",
+      notes: "Address notes or delivery instructions.",
+      rowVersion: "1-12345",
+    },
+  ],
+  socialLinks: [
+    {
+      id: "12345",
+      url: "https://www.twitter.com/apideck",
+      type: "twitter",
+    },
+  ],
+  phoneNumbers: [
+    {
+      id: "12345",
+      countryCode: "1",
+      areaCode: "323",
+      number: "111-111-1111",
+      extension: "105",
+      type: "primary",
+    },
+  ],
+  emails: [
+    {
+      id: "123",
+      email: "elon@musk.com",
+      type: "primary",
+    },
+  ],
+  emailDomain: "gmail.com",
+  customFields: [
+    {
+      id: "2389328923893298",
+      name: "employee_level",
+      description: "Employee Level",
+      value: true,
+    },
+  ],
+  tags: [
+    "New",
+  ],
+  opportunityIds: [
+    "12345",
+  ],
+  passThrough: [
+    {
+      serviceId: "<id>",
+      extendPaths: [
+        {
+          path: "$.nested.property",
+          value: {
+            "TaxClassificationRef": {
+              "value": "EUC-99990201-V1-00020000",
+            },
+          },
+        },
+      ],
+    },
+  ],
+};
+```
+
+## Fields
+
+| Field                                                                                                                                                   | Type                                                                                                                                                    | Required                                                                                                                                                | Description                                                                                                                                             | Example                                                                                                                                                 |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `name`                                                                                                                                                  | *string*                                                                                                                                                | :heavy_check_mark:                                                                                                                                      | Full name of the contact.                                                                                                                               | Elon Musk                                                                                                                                               |
+| `ownerId`                                                                                                                                               | *string*                                                                                                                                                | :heavy_minus_sign:                                                                                                                                      | The owner of the contact.                                                                                                                               | 54321                                                                                                                                                   |
+| `type`                                                                                                                                                  | [components.ContactType](../../models/components/contacttype.md)                                                                                        | :heavy_minus_sign:                                                                                                                                      | The type of the contact.                                                                                                                                | personal                                                                                                                                                |
+| `companyId`                                                                                                                                             | *string*                                                                                                                                                | :heavy_minus_sign:                                                                                                                                      | The company the contact is associated with.                                                                                                             | 23456                                                                                                                                                   |
+| `companyName`                                                                                                                                           | *string*                                                                                                                                                | :heavy_minus_sign:                                                                                                                                      | The name of the company the contact is associated with.                                                                                                 | 23456                                                                                                                                                   |
+| `leadId`                                                                                                                                                | *string*                                                                                                                                                | :heavy_minus_sign:                                                                                                                                      | The lead the contact is associated with.                                                                                                                | 34567                                                                                                                                                   |
+| `firstName`                                                                                                                                             | *string*                                                                                                                                                | :heavy_minus_sign:                                                                                                                                      | The first name of the contact.                                                                                                                          | Elon                                                                                                                                                    |
+| `middleName`                                                                                                                                            | *string*                                                                                                                                                | :heavy_minus_sign:                                                                                                                                      | The middle name of the contact.                                                                                                                         | D.                                                                                                                                                      |
+| `lastName`                                                                                                                                              | *string*                                                                                                                                                | :heavy_minus_sign:                                                                                                                                      | The last name of the contact.                                                                                                                           | Musk                                                                                                                                                    |
+| `prefix`                                                                                                                                                | *string*                                                                                                                                                | :heavy_minus_sign:                                                                                                                                      | The prefix of the contact.                                                                                                                              | Mr.                                                                                                                                                     |
+| `suffix`                                                                                                                                                | *string*                                                                                                                                                | :heavy_minus_sign:                                                                                                                                      | The suffix of the contact.                                                                                                                              | PhD                                                                                                                                                     |
+| `title`                                                                                                                                                 | *string*                                                                                                                                                | :heavy_minus_sign:                                                                                                                                      | The job title of the contact.                                                                                                                           | CEO                                                                                                                                                     |
+| `department`                                                                                                                                            | *string*                                                                                                                                                | :heavy_minus_sign:                                                                                                                                      | The department of the contact.                                                                                                                          | Engineering                                                                                                                                             |
+| `language`                                                                                                                                              | *string*                                                                                                                                                | :heavy_minus_sign:                                                                                                                                      | language code according to ISO 639-1. For the United States - EN                                                                                        | EN                                                                                                                                                      |
+| `gender`                                                                                                                                                | [components.ContactGender](../../models/components/contactgender.md)                                                                                    | :heavy_minus_sign:                                                                                                                                      | The gender of the contact.                                                                                                                              | female                                                                                                                                                  |
+| `birthday`                                                                                                                                              | *string*                                                                                                                                                | :heavy_minus_sign:                                                                                                                                      | The birthday of the contact.                                                                                                                            | 2000-08-12                                                                                                                                              |
+| ~~`image`~~                                                                                                                                             | *string*                                                                                                                                                | :heavy_minus_sign:                                                                                                                                      | : warning: ** DEPRECATED **: This will be removed in a future release, please migrate away from it as soon as possible.                                 | https://unavatar.io/elon-musk                                                                                                                           |
+| `photoUrl`                                                                                                                                              | *string*                                                                                                                                                | :heavy_minus_sign:                                                                                                                                      | The URL of the photo of a person.                                                                                                                       | https://unavatar.io/elon-musk                                                                                                                           |
+| `leadSource`                                                                                                                                            | *string*                                                                                                                                                | :heavy_minus_sign:                                                                                                                                      | The lead source of the contact.                                                                                                                         | Cold Call                                                                                                                                               |
+| `fax`                                                                                                                                                   | *string*                                                                                                                                                | :heavy_minus_sign:                                                                                                                                      | The fax number of the contact.                                                                                                                          | +12129876543                                                                                                                                            |
+| `description`                                                                                                                                           | *string*                                                                                                                                                | :heavy_minus_sign:                                                                                                                                      | The description of the contact.                                                                                                                         | Internal champion                                                                                                                                       |
+| `currentBalance`                                                                                                                                        | *number*                                                                                                                                                | :heavy_minus_sign:                                                                                                                                      | The current balance of the contact.                                                                                                                     | 10.5                                                                                                                                                    |
+| `status`                                                                                                                                                | *string*                                                                                                                                                | :heavy_minus_sign:                                                                                                                                      | The status of the contact.                                                                                                                              | open                                                                                                                                                    |
+| `active`                                                                                                                                                | *boolean*                                                                                                                                               | :heavy_minus_sign:                                                                                                                                      | The active status of the contact.                                                                                                                       | true                                                                                                                                                    |
+| `websites`                                                                                                                                              | [components.Website](../../models/components/website.md)[]                                                                                              | :heavy_minus_sign:                                                                                                                                      | N/A                                                                                                                                                     |                                                                                                                                                         |
+| `addresses`                                                                                                                                             | [components.Address](../../models/components/address.md)[]                                                                                              | :heavy_minus_sign:                                                                                                                                      | N/A                                                                                                                                                     |                                                                                                                                                         |
+| `socialLinks`                                                                                                                                           | [components.SocialLink](../../models/components/sociallink.md)[]                                                                                        | :heavy_minus_sign:                                                                                                                                      | N/A                                                                                                                                                     |                                                                                                                                                         |
+| `phoneNumbers`                                                                                                                                          | [components.PhoneNumber](../../models/components/phonenumber.md)[]                                                                                      | :heavy_minus_sign:                                                                                                                                      | N/A                                                                                                                                                     |                                                                                                                                                         |
+| `emails`                                                                                                                                                | [components.Email](../../models/components/email.md)[]                                                                                                  | :heavy_minus_sign:                                                                                                                                      | N/A                                                                                                                                                     |                                                                                                                                                         |
+| `emailDomain`                                                                                                                                           | *string*                                                                                                                                                | :heavy_minus_sign:                                                                                                                                      | N/A                                                                                                                                                     | gmail.com                                                                                                                                               |
+| `customFields`                                                                                                                                          | [components.CustomField](../../models/components/customfield.md)[]                                                                                      | :heavy_minus_sign:                                                                                                                                      | N/A                                                                                                                                                     |                                                                                                                                                         |
+| `tags`                                                                                                                                                  | *string*[]                                                                                                                                              | :heavy_minus_sign:                                                                                                                                      | N/A                                                                                                                                                     | [<br/>"New"<br/>]                                                                                                                                       |
+| `opportunityIds`                                                                                                                                        | *string*[]                                                                                                                                              | :heavy_minus_sign:                                                                                                                                      | The opportunity ids of the contact.                                                                                                                     |                                                                                                                                                         |
+| `passThrough`                                                                                                                                           | [components.PassThroughBody](../../models/components/passthroughbody.md)[]                                                                              | :heavy_minus_sign:                                                                                                                                      | The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources. |                                                                                                                                                         |

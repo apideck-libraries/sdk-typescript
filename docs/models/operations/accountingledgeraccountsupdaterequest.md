@@ -1,0 +1,80 @@
+# AccountingLedgerAccountsUpdateRequest
+
+## Example Usage
+
+```typescript
+import { AccountingLedgerAccountsUpdateRequest } from "@apideck/unify/models/operations";
+import { RFCDate } from "@apideck/unify/types";
+
+let value: AccountingLedgerAccountsUpdateRequest = {
+  id: "<id>",
+  serviceId: "salesforce",
+  ledgerAccount: {
+    displayId: "1-12345",
+    code: "453",
+    classification: "asset",
+    type: "bank",
+    subType: "CHECKING_ACCOUNT",
+    name: "Bank account",
+    fullyQualifiedName: "Asset.Bank.Checking_Account",
+    description: "Main checking account",
+    openingBalance: 75000,
+    currentBalance: 20000,
+    currency: "USD",
+    taxType: "NONE",
+    taxRate: {
+      id: "123456",
+      rate: 10,
+    },
+    level: 1,
+    active: true,
+    status: "active",
+    header: true,
+    bankAccount: {
+      bankName: "Monzo",
+      accountNumber: "123465",
+      accountName: "SPACEX LLC",
+      accountType: "credit_card",
+      iban: "CH2989144532982975332",
+      bic: "AUDSCHGGXXX",
+      routingNumber: "012345678",
+      bsbNumber: "062-001",
+      branchIdentifier: "001",
+      bankCode: "BNH",
+      currency: "USD",
+    },
+    parentAccount: {
+      id: "12345",
+      name: "Bank Accounts",
+      displayId: "1-1100",
+    },
+    subAccount: false,
+    lastReconciliationDate: new RFCDate("2020-09-30"),
+    rowVersion: "1-12345",
+    passThrough: [
+      {
+        serviceId: "<id>",
+        extendPaths: [
+          {
+            path: "$.nested.property",
+            value: {
+              "TaxClassificationRef": {
+                "value": "EUC-99990201-V1-00020000",
+              },
+            },
+          },
+        ],
+      },
+    ],
+  },
+};
+```
+
+## Fields
+
+| Field                                                                                                                                         | Type                                                                                                                                          | Required                                                                                                                                      | Description                                                                                                                                   | Example                                                                                                                                       |
+| --------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`                                                                                                                                          | *string*                                                                                                                                      | :heavy_check_mark:                                                                                                                            | ID of the record you are acting upon.                                                                                                         |                                                                                                                                               |
+| `serviceId`                                                                                                                                   | *string*                                                                                                                                      | :heavy_minus_sign:                                                                                                                            | Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API. | salesforce                                                                                                                                    |
+| `raw`                                                                                                                                         | *boolean*                                                                                                                                     | :heavy_minus_sign:                                                                                                                            | Include raw response. Mostly used for debugging purposes                                                                                      |                                                                                                                                               |
+| `ledgerAccount`                                                                                                                               | [components.LedgerAccountInput](../../models/components/ledgeraccountinput.md)                                                                | :heavy_check_mark:                                                                                                                            | N/A                                                                                                                                           |                                                                                                                                               |

@@ -1,0 +1,15 @@
+# WebhookEventType
+
+## Example Usage
+
+```typescript
+import { WebhookEventType } from "@apideck/unify/models/components";
+
+let value: WebhookEventType = "crm.company.created";
+```
+
+## Values
+
+```typescript
+"*" | "crm.activity.created" | "crm.activity.updated" | "crm.activity.deleted" | "crm.company.created" | "crm.company.updated" | "crm.company.deleted" | "crm.contact.created" | "crm.contact.updated" | "crm.contact.deleted" | "crm.lead.created" | "crm.lead.updated" | "crm.lead.deleted" | "crm.note.created" | "crm.notes.updated" | "crm.notes.deleted" | "crm.opportunity.created" | "crm.opportunity.updated" | "crm.opportunity.deleted" | "lead.lead.created" | "lead.lead.updated" | "lead.lead.deleted" | "vault.connection.created" | "vault.connection.updated" | "vault.connection.disabled" | "vault.connection.deleted" | "vault.connection.callable" | "vault.connection.revoked" | "vault.connection.token_refresh.failed" | "ats.job.created" | "ats.job.updated" | "ats.job.deleted" | "ats.applicant.created" | "ats.applicant.updated" | "ats.applicant.deleted" | "accounting.customer.created" | "accounting.customer.updated" | "accounting.customer.deleted" | "accounting.invoice.created" | "accounting.invoice.updated" | "accounting.invoice.deleted" | "accounting.invoice_item.created" | "accounting.invoice_item.updated" | "accounting.invoice_item.deleted" | "accounting.ledger_account.created" | "accounting.ledger_account.updated" | "accounting.ledger_account.deleted" | "accounting.tax_rate.created" | "accounting.tax_rate.updated" | "accounting.tax_rate.deleted" | "accounting.bill.created" | "accounting.bill.updated" | "accounting.bill.deleted" | "accounting.payment.created" | "accounting.payment.updated" | "accounting.payment.deleted" | "accounting.supplier.created" | "accounting.supplier.updated" | "accounting.supplier.deleted" | "accounting.purchase_order.created" | "accounting.purchase_order.updated" | "accounting.purchase_order.deleted" | "pos.order.created" | "pos.order.updated" | "pos.order.deleted" | "pos.product.created" | "pos.product.updated" | "pos.product.deleted" | "pos.payment.created" | "pos.payment.updated" | "pos.payment.deleted" | "pos.merchant.created" | "pos.merchant.updated" | "pos.merchant.deleted" | "pos.location.created" | "pos.location.updated" | "pos.location.deleted" | "pos.item.created" | "pos.item.updated" | "pos.item.deleted" | "pos.modifier.created" | "pos.modifier.updated" | "pos.modifier.deleted" | "pos.modifier-group.created" | "pos.modifier-group.updated" | "pos.modifier-group.deleted" | "hris.employee.created" | "hris.employee.updated" | "hris.employee.deleted" | "hris.employee.terminated" | "hris.company.created" | "hris.company.updated" | "hris.company.deleted" | "file-storage.file.created" | "file-storage.file.updated" | "file-storage.file.deleted" | "issue-tracking.ticket.created" | "issue-tracking.ticket.updated" | "issue-tracking.ticket.deleted" | "ats.application.created" | "ats.application.updated" | "ats.application.deleted" | "accounting.expense.created" | "accounting.expense.updated" | "accounting.expense.deleted"
+```

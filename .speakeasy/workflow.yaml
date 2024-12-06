@@ -1,0 +1,19 @@
+workflowVersion: 1.0.0
+speakeasyVersion: latest
+sources:
+    Apideck-OAS:
+        inputs:
+            - location: https://ci-spec-unify.s3.eu-central-1.amazonaws.com/speakeasy-spec.yml
+        registry:
+            location: registry.speakeasyapi.dev/apideck-k2o/apideck/apideck-oas
+targets:
+    apideck:
+        target: typescript
+        source: Apideck-OAS
+        publish:
+            npm:
+                token: $npm_token
+        codeSamples:
+            registry:
+                location: registry.speakeasyapi.dev/apideck-k2o/apideck/apideck-oas-typescript-code-samples
+            blocking: false
