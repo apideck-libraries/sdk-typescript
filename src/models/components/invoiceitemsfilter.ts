@@ -4,15 +4,54 @@
 
 import * as z from "zod";
 import { safeParse } from "../../lib/schemas.js";
+import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
+
+/**
+ * The type of invoice item, indicating whether it is an inventory item, a service, or another type.
+ */
+export const InvoiceItemType = {
+  Inventory: "inventory",
+  Service: "service",
+  Other: "other",
+} as const;
+/**
+ * The type of invoice item, indicating whether it is an inventory item, a service, or another type.
+ */
+export type InvoiceItemType = ClosedEnum<typeof InvoiceItemType>;
 
 export type InvoiceItemsFilter = {
   /**
    * Name of Invoice Items to search for
    */
   name?: string | undefined;
+  /**
+   * The type of invoice item, indicating whether it is an inventory item, a service, or another type.
+   */
+  type?: InvoiceItemType | null | undefined;
 };
+
+/** @internal */
+export const InvoiceItemType$inboundSchema: z.ZodNativeEnum<
+  typeof InvoiceItemType
+> = z.nativeEnum(InvoiceItemType);
+
+/** @internal */
+export const InvoiceItemType$outboundSchema: z.ZodNativeEnum<
+  typeof InvoiceItemType
+> = InvoiceItemType$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace InvoiceItemType$ {
+  /** @deprecated use `InvoiceItemType$inboundSchema` instead. */
+  export const inboundSchema = InvoiceItemType$inboundSchema;
+  /** @deprecated use `InvoiceItemType$outboundSchema` instead. */
+  export const outboundSchema = InvoiceItemType$outboundSchema;
+}
 
 /** @internal */
 export const InvoiceItemsFilter$inboundSchema: z.ZodType<
@@ -21,11 +60,13 @@ export const InvoiceItemsFilter$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   name: z.string().optional(),
+  type: z.nullable(InvoiceItemType$inboundSchema).optional(),
 });
 
 /** @internal */
 export type InvoiceItemsFilter$Outbound = {
   name?: string | undefined;
+  type?: string | null | undefined;
 };
 
 /** @internal */
@@ -35,6 +76,7 @@ export const InvoiceItemsFilter$outboundSchema: z.ZodType<
   InvoiceItemsFilter
 > = z.object({
   name: z.string().optional(),
+  type: z.nullable(InvoiceItemType$outboundSchema).optional(),
 });
 
 /**

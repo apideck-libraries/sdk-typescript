@@ -41,6 +41,13 @@ export const TaxRateStatus = {
  */
 export type TaxRateStatus = ClosedEnum<typeof TaxRateStatus>;
 
+export type Subsidiaries = {
+  /**
+   * The ID of the subsidiary.
+   */
+  id?: string | undefined;
+};
+
 export type TaxRate = {
   /**
    * ID assigned to identify this tax rate.
@@ -119,6 +126,10 @@ export type TaxRate = {
    * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
    */
   passThrough?: Array<PassThroughBody> | undefined;
+  /**
+   * The subsidiaries this belongs to.
+   */
+  subsidiaries?: Array<Subsidiaries> | undefined;
 };
 
 export type TaxRateInput = {
@@ -179,6 +190,10 @@ export type TaxRateInput = {
    * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
    */
   passThrough?: Array<PassThroughBody> | undefined;
+  /**
+   * The subsidiaries this belongs to.
+   */
+  subsidiaries?: Array<Subsidiaries> | undefined;
 };
 
 /** @internal */
@@ -262,6 +277,56 @@ export namespace TaxRateStatus$ {
 }
 
 /** @internal */
+export const Subsidiaries$inboundSchema: z.ZodType<
+  Subsidiaries,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  id: z.string().optional(),
+});
+
+/** @internal */
+export type Subsidiaries$Outbound = {
+  id?: string | undefined;
+};
+
+/** @internal */
+export const Subsidiaries$outboundSchema: z.ZodType<
+  Subsidiaries$Outbound,
+  z.ZodTypeDef,
+  Subsidiaries
+> = z.object({
+  id: z.string().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace Subsidiaries$ {
+  /** @deprecated use `Subsidiaries$inboundSchema` instead. */
+  export const inboundSchema = Subsidiaries$inboundSchema;
+  /** @deprecated use `Subsidiaries$outboundSchema` instead. */
+  export const outboundSchema = Subsidiaries$outboundSchema;
+  /** @deprecated use `Subsidiaries$Outbound` instead. */
+  export type Outbound = Subsidiaries$Outbound;
+}
+
+export function subsidiariesToJSON(subsidiaries: Subsidiaries): string {
+  return JSON.stringify(Subsidiaries$outboundSchema.parse(subsidiaries));
+}
+
+export function subsidiariesFromJSON(
+  jsonString: string,
+): SafeParseResult<Subsidiaries, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Subsidiaries$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Subsidiaries' from JSON`,
+  );
+}
+
+/** @internal */
 export const TaxRate$inboundSchema: z.ZodType<TaxRate, z.ZodTypeDef, unknown> =
   z.object({
     id: z.nullable(z.string()).optional(),
@@ -289,6 +354,7 @@ export const TaxRate$inboundSchema: z.ZodType<TaxRate, z.ZodTypeDef, unknown> =
       z.string().datetime({ offset: true }).transform(v => new Date(v)),
     ).optional(),
     pass_through: z.array(PassThroughBody$inboundSchema).optional(),
+    subsidiaries: z.array(z.lazy(() => Subsidiaries$inboundSchema)).optional(),
   }).transform((v) => {
     return remap$(v, {
       "effective_tax_rate": "effectiveTaxRate",
@@ -329,6 +395,7 @@ export type TaxRate$Outbound = {
   updated_at?: string | null | undefined;
   created_at?: string | null | undefined;
   pass_through?: Array<PassThroughBody$Outbound> | undefined;
+  subsidiaries?: Array<Subsidiaries$Outbound> | undefined;
 };
 
 /** @internal */
@@ -358,6 +425,7 @@ export const TaxRate$outboundSchema: z.ZodType<
   updatedAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
   createdAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
   passThrough: z.array(PassThroughBody$outboundSchema).optional(),
+  subsidiaries: z.array(z.lazy(() => Subsidiaries$outboundSchema)).optional(),
 }).transform((v) => {
   return remap$(v, {
     effectiveTaxRate: "effective_tax_rate",
@@ -425,6 +493,7 @@ export const TaxRateInput$inboundSchema: z.ZodType<
   status: z.nullable(TaxRateStatus$inboundSchema).optional(),
   row_version: z.nullable(z.string()).optional(),
   pass_through: z.array(PassThroughBody$inboundSchema).optional(),
+  subsidiaries: z.array(z.lazy(() => Subsidiaries$inboundSchema)).optional(),
 }).transform((v) => {
   return remap$(v, {
     "effective_tax_rate": "effectiveTaxRate",
@@ -455,6 +524,7 @@ export type TaxRateInput$Outbound = {
   status?: string | null | undefined;
   row_version?: string | null | undefined;
   pass_through?: Array<PassThroughBody$Outbound> | undefined;
+  subsidiaries?: Array<Subsidiaries$Outbound> | undefined;
 };
 
 /** @internal */
@@ -479,6 +549,7 @@ export const TaxRateInput$outboundSchema: z.ZodType<
   status: z.nullable(TaxRateStatus$outboundSchema).optional(),
   rowVersion: z.nullable(z.string()).optional(),
   passThrough: z.array(PassThroughBody$outboundSchema).optional(),
+  subsidiaries: z.array(z.lazy(() => Subsidiaries$outboundSchema)).optional(),
 }).transform((v) => {
   return remap$(v, {
     effectiveTaxRate: "effective_tax_rate",

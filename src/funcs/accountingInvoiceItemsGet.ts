@@ -3,7 +3,12 @@
  */
 
 import { ApideckCore } from "../core.js";
-import { encodeFormQuery, encodeSimple } from "../lib/encodings.js";
+import {
+  encodeDeepObjectQuery,
+  encodeFormQuery,
+  encodeSimple,
+  queryJoin,
+} from "../lib/encodings.js";
 import * as M from "../lib/matchers.js";
 import { safeParse } from "../lib/schemas.js";
 import { RequestOptions } from "../lib/sdks.js";
@@ -70,10 +75,15 @@ export async function accountingInvoiceItemsGet(
 
   const path = pathToFunc("/accounting/invoice-items/{id}")(pathParams);
 
-  const query = encodeFormQuery({
-    "fields": payload.fields,
-    "raw": payload.raw,
-  });
+  const query = queryJoin(
+    encodeDeepObjectQuery({
+      "filter": payload.filter,
+    }),
+    encodeFormQuery({
+      "fields": payload.fields,
+      "raw": payload.raw,
+    }),
+  );
 
   const headers = new Headers({
     Accept: "application/json",

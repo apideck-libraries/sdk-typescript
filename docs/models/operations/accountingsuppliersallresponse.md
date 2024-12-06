@@ -137,6 +137,7 @@ let value: AccountingSuppliersAllResponse = {
             ],
           },
         ],
+        subsidiaryId: "12345",
       },
     ],
     meta: {

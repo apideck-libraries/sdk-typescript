@@ -116,6 +116,7 @@ let value: AccountingSuppliersAddRequest = {
         ],
       },
     ],
+    subsidiaryId: "12345",
   },
 };
 ```

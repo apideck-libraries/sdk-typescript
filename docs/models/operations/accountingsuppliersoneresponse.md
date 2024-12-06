@@ -136,6 +136,7 @@ let value: AccountingSuppliersOneResponse = {
           ],
         },
       ],
+      subsidiaryId: "12345",
     },
   },
   unexpectedErrorResponse: {

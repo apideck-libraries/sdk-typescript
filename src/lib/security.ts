@@ -236,7 +236,7 @@ export function resolveGlobalSecurity(
     [
       {
         fieldName: "Authorization",
-        type: "apiKey:header",
+        type: "http:bearer",
         value: security?.apiKey ?? env().APIDECK_API_KEY,
       },
     ],

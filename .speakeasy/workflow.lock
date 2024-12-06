@@ -1,21 +1,21 @@
-speakeasyVersion: 1.448.2
+speakeasyVersion: 1.453.0
 sources:
     Apideck-OAS:
         sourceNamespace: apideck-oas
-        sourceRevisionDigest: sha256:90d69058c46ac0c2802fb58ecda38db61a8b5c12b2a951eedd59d5e2ba690e6f
-        sourceBlobDigest: sha256:c3ee1e7fee0a43d2700c1bad102e747820d3e74509b9ab3f5d080b9018935ce7
+        sourceRevisionDigest: sha256:6c79f2ed431d1007fac0742b7fddeeacfad65e2d5f36065275f6a1bd62c4c1e4
+        sourceBlobDigest: sha256:c78223a6f6e3fb5b1d9f0d663d8bd72bf35ecc3ed8435dd81561c45569a9f642
         tags:
             - latest
-            - speakeasy-sdk-regen-1732805012
-            - 10.8.1
+            - speakeasy-sdk-regen-1733502126
+            - 10.8.3
 targets:
     apideck:
         source: Apideck-OAS
         sourceNamespace: apideck-oas
-        sourceRevisionDigest: sha256:90d69058c46ac0c2802fb58ecda38db61a8b5c12b2a951eedd59d5e2ba690e6f
-        sourceBlobDigest: sha256:c3ee1e7fee0a43d2700c1bad102e747820d3e74509b9ab3f5d080b9018935ce7
+        sourceRevisionDigest: sha256:6c79f2ed431d1007fac0742b7fddeeacfad65e2d5f36065275f6a1bd62c4c1e4
+        sourceBlobDigest: sha256:c78223a6f6e3fb5b1d9f0d663d8bd72bf35ecc3ed8435dd81561c45569a9f642
         codeSamplesNamespace: apideck-oas-typescript-code-samples
-        codeSamplesRevisionDigest: sha256:07feae5750436ea22e16691607d99a77fc9f0e86b32f61c06ba670e6fcbdcc1c
+        codeSamplesRevisionDigest: sha256:7406b39dd6b8dad97bfd424e9c54d1b70df2e8f3167e65d24fa2b70998e3f77c
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest
