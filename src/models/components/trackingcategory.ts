@@ -33,6 +33,13 @@ export const TrackingCategoryStatus = {
  */
 export type TrackingCategoryStatus = ClosedEnum<typeof TrackingCategoryStatus>;
 
+export type TrackingCategorySubsidiaries = {
+  /**
+   * The ID of the subsidiary.
+   */
+  id?: string | undefined;
+};
+
 export type TrackingCategory = {
   /**
    * A unique identifier for an object.
@@ -82,6 +89,10 @@ export type TrackingCategory = {
    * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
    */
   passThrough?: Array<PassThroughBody> | undefined;
+  /**
+   * The subsidiaries the account belongs to.
+   */
+  subsidiaries?: Array<TrackingCategorySubsidiaries> | undefined;
 };
 
 export type TrackingCategoryInput = {
@@ -109,6 +120,10 @@ export type TrackingCategoryInput = {
    * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
    */
   passThrough?: Array<PassThroughBody> | undefined;
+  /**
+   * The subsidiaries the account belongs to.
+   */
+  subsidiaries?: Array<TrackingCategorySubsidiaries> | undefined;
 };
 
 /** @internal */
@@ -133,6 +148,62 @@ export namespace TrackingCategoryStatus$ {
 }
 
 /** @internal */
+export const TrackingCategorySubsidiaries$inboundSchema: z.ZodType<
+  TrackingCategorySubsidiaries,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  id: z.string().optional(),
+});
+
+/** @internal */
+export type TrackingCategorySubsidiaries$Outbound = {
+  id?: string | undefined;
+};
+
+/** @internal */
+export const TrackingCategorySubsidiaries$outboundSchema: z.ZodType<
+  TrackingCategorySubsidiaries$Outbound,
+  z.ZodTypeDef,
+  TrackingCategorySubsidiaries
+> = z.object({
+  id: z.string().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace TrackingCategorySubsidiaries$ {
+  /** @deprecated use `TrackingCategorySubsidiaries$inboundSchema` instead. */
+  export const inboundSchema = TrackingCategorySubsidiaries$inboundSchema;
+  /** @deprecated use `TrackingCategorySubsidiaries$outboundSchema` instead. */
+  export const outboundSchema = TrackingCategorySubsidiaries$outboundSchema;
+  /** @deprecated use `TrackingCategorySubsidiaries$Outbound` instead. */
+  export type Outbound = TrackingCategorySubsidiaries$Outbound;
+}
+
+export function trackingCategorySubsidiariesToJSON(
+  trackingCategorySubsidiaries: TrackingCategorySubsidiaries,
+): string {
+  return JSON.stringify(
+    TrackingCategorySubsidiaries$outboundSchema.parse(
+      trackingCategorySubsidiaries,
+    ),
+  );
+}
+
+export function trackingCategorySubsidiariesFromJSON(
+  jsonString: string,
+): SafeParseResult<TrackingCategorySubsidiaries, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => TrackingCategorySubsidiaries$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'TrackingCategorySubsidiaries' from JSON`,
+  );
+}
+
+/** @internal */
 export const TrackingCategory$inboundSchema: z.ZodType<
   TrackingCategory,
   z.ZodTypeDef,
@@ -154,6 +225,9 @@ export const TrackingCategory$inboundSchema: z.ZodType<
     z.string().datetime({ offset: true }).transform(v => new Date(v)),
   ).optional(),
   pass_through: z.array(PassThroughBody$inboundSchema).optional(),
+  subsidiaries: z.array(
+    z.lazy(() => TrackingCategorySubsidiaries$inboundSchema),
+  ).optional(),
 }).transform((v) => {
   return remap$(v, {
     "parent_id": "parentId",
@@ -181,6 +255,7 @@ export type TrackingCategory$Outbound = {
   updated_at?: string | null | undefined;
   created_at?: string | null | undefined;
   pass_through?: Array<PassThroughBody$Outbound> | undefined;
+  subsidiaries?: Array<TrackingCategorySubsidiaries$Outbound> | undefined;
 };
 
 /** @internal */
@@ -201,6 +276,9 @@ export const TrackingCategory$outboundSchema: z.ZodType<
   updatedAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
   createdAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
   passThrough: z.array(PassThroughBody$outboundSchema).optional(),
+  subsidiaries: z.array(
+    z.lazy(() => TrackingCategorySubsidiaries$outboundSchema),
+  ).optional(),
 }).transform((v) => {
   return remap$(v, {
     parentId: "parent_id",
@@ -257,6 +335,9 @@ export const TrackingCategoryInput$inboundSchema: z.ZodType<
   status: TrackingCategoryStatus$inboundSchema.optional(),
   row_version: z.nullable(z.string()).optional(),
   pass_through: z.array(PassThroughBody$inboundSchema).optional(),
+  subsidiaries: z.array(
+    z.lazy(() => TrackingCategorySubsidiaries$inboundSchema),
+  ).optional(),
 }).transform((v) => {
   return remap$(v, {
     "parent_id": "parentId",
@@ -273,6 +354,7 @@ export type TrackingCategoryInput$Outbound = {
   status?: string | undefined;
   row_version?: string | null | undefined;
   pass_through?: Array<PassThroughBody$Outbound> | undefined;
+  subsidiaries?: Array<TrackingCategorySubsidiaries$Outbound> | undefined;
 };
 
 /** @internal */
@@ -287,6 +369,9 @@ export const TrackingCategoryInput$outboundSchema: z.ZodType<
   status: TrackingCategoryStatus$outboundSchema.optional(),
   rowVersion: z.nullable(z.string()).optional(),
   passThrough: z.array(PassThroughBody$outboundSchema).optional(),
+  subsidiaries: z.array(
+    z.lazy(() => TrackingCategorySubsidiaries$outboundSchema),
+  ).optional(),
 }).transform((v) => {
   return remap$(v, {
     parentId: "parent_id",

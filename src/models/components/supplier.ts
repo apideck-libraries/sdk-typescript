@@ -197,6 +197,10 @@ export type Supplier = {
    * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
    */
   passThrough?: Array<PassThroughBody> | undefined;
+  /**
+   * The subsidiary the supplier belongs to.
+   */
+  subsidiaryId?: string | undefined;
 };
 
 export type SupplierInput = {
@@ -273,6 +277,10 @@ export type SupplierInput = {
    * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
    */
   passThrough?: Array<PassThroughBody> | undefined;
+  /**
+   * The subsidiary the supplier belongs to.
+   */
+  subsidiaryId?: string | undefined;
 };
 
 /** @internal */
@@ -338,6 +346,7 @@ export const Supplier$inboundSchema: z.ZodType<
   ).optional(),
   row_version: z.nullable(z.string()).optional(),
   pass_through: z.array(PassThroughBody$inboundSchema).optional(),
+  subsidiary_id: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
     "downstream_id": "downstreamId",
@@ -360,6 +369,7 @@ export const Supplier$inboundSchema: z.ZodType<
     "created_at": "createdAt",
     "row_version": "rowVersion",
     "pass_through": "passThrough",
+    "subsidiary_id": "subsidiaryId",
   });
 });
 
@@ -397,6 +407,7 @@ export type Supplier$Outbound = {
   created_at?: string | null | undefined;
   row_version?: string | null | undefined;
   pass_through?: Array<PassThroughBody$Outbound> | undefined;
+  subsidiary_id?: string | undefined;
 };
 
 /** @internal */
@@ -437,6 +448,7 @@ export const Supplier$outboundSchema: z.ZodType<
   createdAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
   rowVersion: z.nullable(z.string()).optional(),
   passThrough: z.array(PassThroughBody$outboundSchema).optional(),
+  subsidiaryId: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
     downstreamId: "downstream_id",
@@ -459,6 +471,7 @@ export const Supplier$outboundSchema: z.ZodType<
     createdAt: "created_at",
     rowVersion: "row_version",
     passThrough: "pass_through",
+    subsidiaryId: "subsidiary_id",
   });
 });
 
@@ -520,6 +533,7 @@ export const SupplierInput$inboundSchema: z.ZodType<
   channel: z.nullable(z.string()).optional(),
   row_version: z.nullable(z.string()).optional(),
   pass_through: z.array(PassThroughBody$inboundSchema).optional(),
+  subsidiary_id: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
     "display_id": "displayId",
@@ -536,6 +550,7 @@ export const SupplierInput$inboundSchema: z.ZodType<
     "payment_method": "paymentMethod",
     "row_version": "rowVersion",
     "pass_through": "passThrough",
+    "subsidiary_id": "subsidiaryId",
   });
 });
 
@@ -566,6 +581,7 @@ export type SupplierInput$Outbound = {
   channel?: string | null | undefined;
   row_version?: string | null | undefined;
   pass_through?: Array<PassThroughBody$Outbound> | undefined;
+  subsidiary_id?: string | undefined;
 };
 
 /** @internal */
@@ -599,6 +615,7 @@ export const SupplierInput$outboundSchema: z.ZodType<
   channel: z.nullable(z.string()).optional(),
   rowVersion: z.nullable(z.string()).optional(),
   passThrough: z.array(PassThroughBody$outboundSchema).optional(),
+  subsidiaryId: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
     displayId: "display_id",
@@ -615,6 +632,7 @@ export const SupplierInput$outboundSchema: z.ZodType<
     paymentMethod: "payment_method",
     rowVersion: "row_version",
     passThrough: "pass_through",
+    subsidiaryId: "subsidiary_id",
   });
 });
 

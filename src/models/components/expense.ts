@@ -57,6 +57,19 @@ import {
 } from "./passthroughbody.js";
 
 /**
+ * The type of payment for the expense.
+ */
+export const ExpensePaymentType = {
+  Cash: "cash",
+  Check: "check",
+  CreditCard: "credit_card",
+} as const;
+/**
+ * The type of payment for the expense.
+ */
+export type ExpensePaymentType = ClosedEnum<typeof ExpensePaymentType>;
+
+/**
  * The type of expense.
  */
 export const ExpenseType = {
@@ -101,6 +114,10 @@ export type Expense = {
    * The ID of the department this expense is linked to.
    */
   departmentId?: string | undefined;
+  /**
+   * The type of payment for the expense.
+   */
+  paymentType?: ExpensePaymentType | null | undefined;
   /**
    * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
    */
@@ -179,6 +196,10 @@ export type ExpenseInput = {
    */
   departmentId?: string | undefined;
   /**
+   * The type of payment for the expense.
+   */
+  paymentType?: ExpensePaymentType | null | undefined;
+  /**
    * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
    */
   currency?: Currency | null | undefined;
@@ -215,6 +236,27 @@ export type ExpenseInput = {
 };
 
 /** @internal */
+export const ExpensePaymentType$inboundSchema: z.ZodNativeEnum<
+  typeof ExpensePaymentType
+> = z.nativeEnum(ExpensePaymentType);
+
+/** @internal */
+export const ExpensePaymentType$outboundSchema: z.ZodNativeEnum<
+  typeof ExpensePaymentType
+> = ExpensePaymentType$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace ExpensePaymentType$ {
+  /** @deprecated use `ExpensePaymentType$inboundSchema` instead. */
+  export const inboundSchema = ExpensePaymentType$inboundSchema;
+  /** @deprecated use `ExpensePaymentType$outboundSchema` instead. */
+  export const outboundSchema = ExpensePaymentType$outboundSchema;
+}
+
+/** @internal */
 export const ExpenseType$inboundSchema: z.ZodNativeEnum<typeof ExpenseType> = z
   .nativeEnum(ExpenseType);
 
@@ -246,6 +288,7 @@ export const Expense$inboundSchema: z.ZodType<Expense, z.ZodTypeDef, unknown> =
     supplier_id: z.string().optional(),
     company_id: z.nullable(z.string()).optional(),
     department_id: z.string().optional(),
+    payment_type: z.nullable(ExpensePaymentType$inboundSchema).optional(),
     currency: z.nullable(Currency$inboundSchema).optional(),
     currency_rate: z.nullable(z.number()).optional(),
     type: z.nullable(ExpenseType$inboundSchema).optional(),
@@ -271,6 +314,7 @@ export const Expense$inboundSchema: z.ZodType<Expense, z.ZodTypeDef, unknown> =
       "supplier_id": "supplierId",
       "company_id": "companyId",
       "department_id": "departmentId",
+      "payment_type": "paymentType",
       "currency_rate": "currencyRate",
       "tax_rate": "taxRate",
       "total_amount": "totalAmount",
@@ -294,6 +338,7 @@ export type Expense$Outbound = {
   supplier_id?: string | undefined;
   company_id?: string | null | undefined;
   department_id?: string | undefined;
+  payment_type?: string | null | undefined;
   currency?: string | null | undefined;
   currency_rate?: number | null | undefined;
   type?: string | null | undefined;
@@ -323,6 +368,7 @@ export const Expense$outboundSchema: z.ZodType<
   supplierId: z.string().optional(),
   companyId: z.nullable(z.string()).optional(),
   departmentId: z.string().optional(),
+  paymentType: z.nullable(ExpensePaymentType$outboundSchema).optional(),
   currency: z.nullable(Currency$outboundSchema).optional(),
   currencyRate: z.nullable(z.number()).optional(),
   type: z.nullable(ExpenseType$outboundSchema).optional(),
@@ -344,6 +390,7 @@ export const Expense$outboundSchema: z.ZodType<
     supplierId: "supplier_id",
     companyId: "company_id",
     departmentId: "department_id",
+    paymentType: "payment_type",
     currencyRate: "currency_rate",
     taxRate: "tax_rate",
     totalAmount: "total_amount",
@@ -399,6 +446,7 @@ export const ExpenseInput$inboundSchema: z.ZodType<
   supplier_id: z.string().optional(),
   company_id: z.nullable(z.string()).optional(),
   department_id: z.string().optional(),
+  payment_type: z.nullable(ExpensePaymentType$inboundSchema).optional(),
   currency: z.nullable(Currency$inboundSchema).optional(),
   currency_rate: z.nullable(z.number()).optional(),
   type: z.nullable(ExpenseType$inboundSchema).optional(),
@@ -417,6 +465,7 @@ export const ExpenseInput$inboundSchema: z.ZodType<
     "supplier_id": "supplierId",
     "company_id": "companyId",
     "department_id": "departmentId",
+    "payment_type": "paymentType",
     "currency_rate": "currencyRate",
     "tax_rate": "taxRate",
     "total_amount": "totalAmount",
@@ -436,6 +485,7 @@ export type ExpenseInput$Outbound = {
   supplier_id?: string | undefined;
   company_id?: string | null | undefined;
   department_id?: string | undefined;
+  payment_type?: string | null | undefined;
   currency?: string | null | undefined;
   currency_rate?: number | null | undefined;
   type?: string | null | undefined;
@@ -461,6 +511,7 @@ export const ExpenseInput$outboundSchema: z.ZodType<
   supplierId: z.string().optional(),
   companyId: z.nullable(z.string()).optional(),
   departmentId: z.string().optional(),
+  paymentType: z.nullable(ExpensePaymentType$outboundSchema).optional(),
   currency: z.nullable(Currency$outboundSchema).optional(),
   currencyRate: z.nullable(z.number()).optional(),
   type: z.nullable(ExpenseType$outboundSchema).optional(),
@@ -479,6 +530,7 @@ export const ExpenseInput$outboundSchema: z.ZodType<
     supplierId: "supplier_id",
     companyId: "company_id",
     departmentId: "department_id",
+    paymentType: "payment_type",
     currencyRate: "currency_rate",
     taxRate: "tax_rate",
     totalAmount: "total_amount",

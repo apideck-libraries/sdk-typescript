@@ -131,6 +131,7 @@ let value: GetSupplierResponse = {
         ],
       },
     ],
+    subsidiaryId: "12345",
   },
 };
 ```
