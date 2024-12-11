@@ -24,7 +24,7 @@ import { Result } from "../types/fp.js";
 
 export enum DownloadAcceptEnum {
   applicationJson = "application/json",
-  wildcardWildcard = "*/*",
+  wildcardRootWildcard = "*/*",
 }
 
 /**
