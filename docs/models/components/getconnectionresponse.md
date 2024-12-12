@@ -73,13 +73,17 @@ let value: GetConnectionResponse = {
             id: "ProductInterest",
             options: [
               {
+                id: "1234",
                 label: "General Channel",
-                value: true,
+                options: [
+                  {
+                    label: "General Channel",
+                    value: 123,
+                  },
+                ],
               },
             ],
-            value: [
-              "GC6000 series",
-            ],
+            value: 10,
           },
         ],
       },

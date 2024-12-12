@@ -7,7 +7,7 @@ Indicates whether the API is a Unified API. If unified_api is false, the API is 
 ```typescript
 import { ApiType } from "@apideck/unify/models/components";
 
-let value: ApiType = "unified";
+let value: ApiType = "platform";
 ```
 
 ## Values

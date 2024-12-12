@@ -89,7 +89,7 @@ let value: GetBillPaymentResponse = {
         name: "employee_level",
         description: "Employee Level",
         value: [
-          {},
+          "<value>",
         ],
       },
     ],

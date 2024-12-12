@@ -74,10 +74,10 @@ let value: UpdateConnectionResponse = {
             options: [
               {
                 label: "General Channel",
-                value: 123,
+                value: true,
               },
             ],
-            value: true,
+            value: 10,
           },
         ],
       },

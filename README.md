@@ -130,6 +130,14 @@ run();
 ### [accounting](docs/sdks/accounting/README.md)
 
 
+#### [accounting.agedCreditors](docs/sdks/agedcreditors/README.md)
+
+* [get](docs/sdks/agedcreditors/README.md#get) - Get Aged Creditors
+
+#### [accounting.agedDebtors](docs/sdks/ageddebtors/README.md)
+
+* [get](docs/sdks/ageddebtors/README.md#get) - Get Aged Debtors
+
 #### [accounting.attachments](docs/sdks/attachments/README.md)
 
 * [list](docs/sdks/attachments/README.md#list) - List Attachments
@@ -663,6 +671,8 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 
 <summary>Available standalone functions</summary>
 
+- [`accountingAgedCreditorsGet`](docs/sdks/agedcreditors/README.md#get) - Get Aged Creditors
+- [`accountingAgedDebtorsGet`](docs/sdks/ageddebtors/README.md#get) - Get Aged Debtors
 - [`accountingAttachmentsDelete`](docs/sdks/attachments/README.md#delete) - Delete Attachment
 - [`accountingAttachmentsDownload`](docs/sdks/attachments/README.md#download) - Download Attachment
 - [`accountingAttachmentsGet`](docs/sdks/attachments/README.md#get) - Get Attachment
