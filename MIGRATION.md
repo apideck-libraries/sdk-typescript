@@ -286,7 +286,7 @@ If you encounter any issues during migration:
 
 1. Checkout out our [documentation](https://github.com/apideck-libraries/sdk-typescript/tree/main?tab=readme-ov-file#apideck)
 2. Open an issue on our [GitHub repository](https://github.com/apideck-libraries/sdk-typescript/issues)
-3. Contact our support team
+3. Contact our support at `support@apideck.com`
 
 
 
