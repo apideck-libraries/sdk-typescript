@@ -9,8 +9,8 @@ import { VirtualWebhooks } from "@apideck/unify/models/components";
 
 let value: VirtualWebhooks = {
   requestRate: {
-    rate: 783235,
-    size: 288398,
+    rate: 241418,
+    size: 662505,
     unit: "second",
   },
 };

@@ -78,15 +78,14 @@ let value: CreateConnectionResponse = {
                 options: [
                   {
                     label: "General Channel",
-                    value: [
-                      "team",
-                      "general",
-                    ],
+                    value: true,
                   },
                 ],
               },
             ],
-            value: true,
+            value: [
+              10.5,
+            ],
           },
         ],
       },

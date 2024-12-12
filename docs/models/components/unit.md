@@ -7,7 +7,7 @@ The window unit for the rate.
 ```typescript
 import { Unit } from "@apideck/unify/models/components";
 
-let value: Unit = "hour";
+let value: Unit = "day";
 ```
 
 ## Values

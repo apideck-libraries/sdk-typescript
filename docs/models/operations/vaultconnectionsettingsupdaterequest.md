@@ -35,7 +35,7 @@ let value: VaultConnectionSettingsUpdateRequest = {
                 options: [
                   {
                     label: "General Channel",
-                    value: "general",
+                    value: true,
                   },
                 ],
               },

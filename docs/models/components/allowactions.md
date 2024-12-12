@@ -5,7 +5,7 @@
 ```typescript
 import { AllowActions } from "@apideck/unify/models/components";
 
-let value: AllowActions = "reauthorize";
+let value: AllowActions = "disconnect";
 ```
 
 ## Values

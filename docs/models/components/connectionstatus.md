@@ -7,7 +7,7 @@ Status of the connection.
 ```typescript
 import { ConnectionStatus } from "@apideck/unify/models/components";
 
-let value: ConnectionStatus = "requested";
+let value: ConnectionStatus = "upcoming";
 ```
 
 ## Values

@@ -79,10 +79,10 @@ let value: VaultConnectionsTokenResponse = {
               options: [
                 {
                   label: "General Channel",
-                  value: "general",
+                  value: 123,
                 },
               ],
-              value: 10,
+              value: 10.5,
             },
           ],
         },
@@ -140,7 +140,13 @@ let value: VaultConnectionsTokenResponse = {
     error: "Bad Request",
     typeName: "RequestHeadersValidationError",
     message: "Invalid Params",
-    detail: "Missing Header: x-apideck-consumer-id",
+    detail: {
+      "missing": [
+        {
+          "x-apideck-consumer-id": "required",
+        },
+      ],
+    },
     ref: "https://developers.apideck.com/errors#unauthorizederror",
   },
 };
