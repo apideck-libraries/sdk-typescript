@@ -30,7 +30,7 @@ let value: VaultConnectionsUpdateRequest = {
             options: [
               {
                 label: "General Channel",
-                value: true,
+                value: "general",
               },
             ],
             value: "GC5000 series",
