@@ -10,6 +10,7 @@ import { atsApplicationsUpdate } from "../funcs/atsApplicationsUpdate.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as operations from "../models/operations/index.js";
 import { unwrapAsync } from "../types/fp.js";
+import { PageIterator, unwrapResultIterator } from "../types/operations.js";
 
 export class Applications extends ClientSDK {
   /**
@@ -21,8 +22,10 @@ export class Applications extends ClientSDK {
   async list(
     request: operations.AtsApplicationsAllRequest,
     options?: RequestOptions,
-  ): Promise<operations.AtsApplicationsAllResponse> {
-    return unwrapAsync(atsApplicationsList(
+  ): Promise<
+    PageIterator<operations.AtsApplicationsAllResponse, { cursor: string }>
+  > {
+    return unwrapResultIterator(atsApplicationsList(
       this,
       request,
       options,

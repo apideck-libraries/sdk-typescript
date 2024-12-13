@@ -10,6 +10,7 @@ import { issueTrackingCollectionTicketsUpdate } from "../funcs/issueTrackingColl
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as operations from "../models/operations/index.js";
 import { unwrapAsync } from "../types/fp.js";
+import { PageIterator, unwrapResultIterator } from "../types/operations.js";
 
 export class CollectionTickets extends ClientSDK {
   /**
@@ -21,8 +22,13 @@ export class CollectionTickets extends ClientSDK {
   async list(
     request: operations.IssueTrackingCollectionTicketsAllRequest,
     options?: RequestOptions,
-  ): Promise<operations.IssueTrackingCollectionTicketsAllResponse> {
-    return unwrapAsync(issueTrackingCollectionTicketsList(
+  ): Promise<
+    PageIterator<
+      operations.IssueTrackingCollectionTicketsAllResponse,
+      { cursor: string }
+    >
+  > {
+    return unwrapResultIterator(issueTrackingCollectionTicketsList(
       this,
       request,
       options,

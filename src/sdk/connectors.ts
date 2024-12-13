@@ -7,6 +7,7 @@ import { connectorConnectorsList } from "../funcs/connectorConnectorsList.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as operations from "../models/operations/index.js";
 import { unwrapAsync } from "../types/fp.js";
+import { PageIterator, unwrapResultIterator } from "../types/operations.js";
 
 export class Connectors extends ClientSDK {
   /**
@@ -18,8 +19,10 @@ export class Connectors extends ClientSDK {
   async list(
     request: operations.ConnectorConnectorsAllRequest,
     options?: RequestOptions,
-  ): Promise<operations.ConnectorConnectorsAllResponse> {
-    return unwrapAsync(connectorConnectorsList(
+  ): Promise<
+    PageIterator<operations.ConnectorConnectorsAllResponse, { cursor: string }>
+  > {
+    return unwrapResultIterator(connectorConnectorsList(
       this,
       request,
       options,

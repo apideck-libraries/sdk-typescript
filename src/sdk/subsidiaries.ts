@@ -10,6 +10,7 @@ import { accountingSubsidiariesUpdate } from "../funcs/accountingSubsidiariesUpd
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as operations from "../models/operations/index.js";
 import { unwrapAsync } from "../types/fp.js";
+import { PageIterator, unwrapResultIterator } from "../types/operations.js";
 
 export class Subsidiaries extends ClientSDK {
   /**
@@ -21,8 +22,13 @@ export class Subsidiaries extends ClientSDK {
   async list(
     request: operations.AccountingSubsidiariesAllRequest,
     options?: RequestOptions,
-  ): Promise<operations.AccountingSubsidiariesAllResponse> {
-    return unwrapAsync(accountingSubsidiariesList(
+  ): Promise<
+    PageIterator<
+      operations.AccountingSubsidiariesAllResponse,
+      { cursor: string }
+    >
+  > {
+    return unwrapResultIterator(accountingSubsidiariesList(
       this,
       request,
       options,

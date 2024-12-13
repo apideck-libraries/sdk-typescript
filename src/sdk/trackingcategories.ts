@@ -10,6 +10,7 @@ import { accountingTrackingCategoriesUpdate } from "../funcs/accountingTrackingC
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as operations from "../models/operations/index.js";
 import { unwrapAsync } from "../types/fp.js";
+import { PageIterator, unwrapResultIterator } from "../types/operations.js";
 
 export class TrackingCategories extends ClientSDK {
   /**
@@ -21,8 +22,13 @@ export class TrackingCategories extends ClientSDK {
   async list(
     request: operations.AccountingTrackingCategoriesAllRequest,
     options?: RequestOptions,
-  ): Promise<operations.AccountingTrackingCategoriesAllResponse> {
-    return unwrapAsync(accountingTrackingCategoriesList(
+  ): Promise<
+    PageIterator<
+      operations.AccountingTrackingCategoriesAllResponse,
+      { cursor: string }
+    >
+  > {
+    return unwrapResultIterator(accountingTrackingCategoriesList(
       this,
       request,
       options,

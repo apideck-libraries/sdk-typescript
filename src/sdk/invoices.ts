@@ -10,6 +10,7 @@ import { accountingInvoicesUpdate } from "../funcs/accountingInvoicesUpdate.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as operations from "../models/operations/index.js";
 import { unwrapAsync } from "../types/fp.js";
+import { PageIterator, unwrapResultIterator } from "../types/operations.js";
 
 export class Invoices extends ClientSDK {
   /**
@@ -21,8 +22,10 @@ export class Invoices extends ClientSDK {
   async list(
     request: operations.AccountingInvoicesAllRequest,
     options?: RequestOptions,
-  ): Promise<operations.AccountingInvoicesAllResponse> {
-    return unwrapAsync(accountingInvoicesList(
+  ): Promise<
+    PageIterator<operations.AccountingInvoicesAllResponse, { cursor: string }>
+  > {
+    return unwrapResultIterator(accountingInvoicesList(
       this,
       request,
       options,

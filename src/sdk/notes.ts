@@ -10,6 +10,7 @@ import { crmNotesUpdate } from "../funcs/crmNotesUpdate.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as operations from "../models/operations/index.js";
 import { unwrapAsync } from "../types/fp.js";
+import { PageIterator, unwrapResultIterator } from "../types/operations.js";
 
 export class Notes extends ClientSDK {
   /**
@@ -21,8 +22,8 @@ export class Notes extends ClientSDK {
   async list(
     request: operations.CrmNotesAllRequest,
     options?: RequestOptions,
-  ): Promise<operations.CrmNotesAllResponse> {
-    return unwrapAsync(crmNotesList(
+  ): Promise<PageIterator<operations.CrmNotesAllResponse, { cursor: string }>> {
+    return unwrapResultIterator(crmNotesList(
       this,
       request,
       options,

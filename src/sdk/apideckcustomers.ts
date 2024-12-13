@@ -7,6 +7,7 @@ import { ecommerceCustomersList } from "../funcs/ecommerceCustomersList.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as operations from "../models/operations/index.js";
 import { unwrapAsync } from "../types/fp.js";
+import { PageIterator, unwrapResultIterator } from "../types/operations.js";
 
 export class ApideckCustomers extends ClientSDK {
   /**
@@ -18,8 +19,10 @@ export class ApideckCustomers extends ClientSDK {
   async list(
     request: operations.EcommerceCustomersAllRequest,
     options?: RequestOptions,
-  ): Promise<operations.EcommerceCustomersAllResponse> {
-    return unwrapAsync(ecommerceCustomersList(
+  ): Promise<
+    PageIterator<operations.EcommerceCustomersAllResponse, { cursor: string }>
+  > {
+    return unwrapResultIterator(ecommerceCustomersList(
       this,
       request,
       options,

@@ -10,6 +10,7 @@ import { smsMessagesUpdate } from "../funcs/smsMessagesUpdate.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as operations from "../models/operations/index.js";
 import { unwrapAsync } from "../types/fp.js";
+import { PageIterator, unwrapResultIterator } from "../types/operations.js";
 
 export class Messages extends ClientSDK {
   /**
@@ -21,8 +22,10 @@ export class Messages extends ClientSDK {
   async list(
     request: operations.SmsMessagesAllRequest,
     options?: RequestOptions,
-  ): Promise<operations.SmsMessagesAllResponse> {
-    return unwrapAsync(smsMessagesList(
+  ): Promise<
+    PageIterator<operations.SmsMessagesAllResponse, { cursor: string }>
+  > {
+    return unwrapResultIterator(smsMessagesList(
       this,
       request,
       options,

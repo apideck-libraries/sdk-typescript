@@ -10,6 +10,7 @@ import { fileStorageSharedLinksUpdate } from "../funcs/fileStorageSharedLinksUpd
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as operations from "../models/operations/index.js";
 import { unwrapAsync } from "../types/fp.js";
+import { PageIterator, unwrapResultIterator } from "../types/operations.js";
 
 export class SharedLinks extends ClientSDK {
   /**
@@ -21,8 +22,13 @@ export class SharedLinks extends ClientSDK {
   async list(
     request: operations.FileStorageSharedLinksAllRequest,
     options?: RequestOptions,
-  ): Promise<operations.FileStorageSharedLinksAllResponse> {
-    return unwrapAsync(fileStorageSharedLinksList(
+  ): Promise<
+    PageIterator<
+      operations.FileStorageSharedLinksAllResponse,
+      { cursor: string }
+    >
+  > {
+    return unwrapResultIterator(fileStorageSharedLinksList(
       this,
       request,
       options,

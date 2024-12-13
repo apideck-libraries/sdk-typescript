@@ -11,6 +11,7 @@ import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as components from "../models/components/index.js";
 import * as operations from "../models/operations/index.js";
 import { unwrapAsync } from "../types/fp.js";
+import { PageIterator, unwrapResultIterator } from "../types/operations.js";
 
 export class Webhooks extends ClientSDK {
   /**
@@ -22,8 +23,10 @@ export class Webhooks extends ClientSDK {
   async list(
     request: operations.WebhookWebhooksAllRequest,
     options?: RequestOptions,
-  ): Promise<operations.WebhookWebhooksAllResponse> {
-    return unwrapAsync(webhookWebhooksList(
+  ): Promise<
+    PageIterator<operations.WebhookWebhooksAllResponse, { cursor: string }>
+  > {
+    return unwrapResultIterator(webhookWebhooksList(
       this,
       request,
       options,

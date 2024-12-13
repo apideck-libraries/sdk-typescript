@@ -10,6 +10,7 @@ import { crmPipelinesUpdate } from "../funcs/crmPipelinesUpdate.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as operations from "../models/operations/index.js";
 import { unwrapAsync } from "../types/fp.js";
+import { PageIterator, unwrapResultIterator } from "../types/operations.js";
 
 export class Pipelines extends ClientSDK {
   /**
@@ -21,8 +22,10 @@ export class Pipelines extends ClientSDK {
   async list(
     request: operations.CrmPipelinesAllRequest,
     options?: RequestOptions,
-  ): Promise<operations.CrmPipelinesAllResponse> {
-    return unwrapAsync(crmPipelinesList(
+  ): Promise<
+    PageIterator<operations.CrmPipelinesAllResponse, { cursor: string }>
+  > {
+    return unwrapResultIterator(crmPipelinesList(
       this,
       request,
       options,

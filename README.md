@@ -31,6 +31,7 @@ For more information about the API: [Apideck Developer Docs](https://developers.
   * [SDK Example Usage](#sdk-example-usage)
   * [Available Resources and Operations](#available-resources-and-operations)
   * [Standalone functions](#standalone-functions)
+  * [Pagination](#pagination)
   * [Retries](#retries)
   * [Error Handling](#error-handling)
   * [Server Selection](#server-selection)
@@ -112,8 +113,10 @@ async function run() {
     fields: "id,updated_at",
   });
 
-  // Handle the result
-  console.log(result);
+  for await (const page of result) {
+    // Handle the page
+    console.log(page);
+  }
 }
 
 run();
@@ -939,6 +942,54 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 </details>
 <!-- End Standalone functions [standalone-funcs] -->
 
+<!-- Start Pagination [pagination] -->
+## Pagination
+
+Some of the endpoints in this SDK support pagination. To use pagination, you
+make your SDK calls as usual, but the returned response object will also be an
+async iterable that can be consumed using the [`for await...of`][for-await-of]
+syntax.
+
+[for-await-of]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for-await...of
+
+Here's an example of one such pagination call:
+
+```typescript
+import { Apideck } from "@apideck/unify";
+
+const apideck = new Apideck({
+  apiKey: process.env["APIDECK_API_KEY"] ?? "",
+  consumerId: "test-consumer",
+  appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
+});
+
+async function run() {
+  const result = await apideck.accounting.taxRates.list({
+    serviceId: "salesforce",
+    filter: {
+      assets: true,
+      equity: true,
+      expenses: true,
+      liabilities: true,
+      revenue: true,
+    },
+    passThrough: {
+      "search": "San Francisco",
+    },
+    fields: "id,updated_at",
+  });
+
+  for await (const page of result) {
+    // Handle the page
+    console.log(page);
+  }
+}
+
+run();
+
+```
+<!-- End Pagination [pagination] -->
+
 <!-- Start Retries [retries] -->
 ## Retries
 
@@ -981,8 +1032,10 @@ async function run() {
     },
   });
 
-  // Handle the result
-  console.log(result);
+  for await (const page of result) {
+    // Handle the page
+    console.log(page);
+  }
 }
 
 run();
@@ -1025,8 +1078,10 @@ async function run() {
     fields: "id,updated_at",
   });
 
-  // Handle the result
-  console.log(result);
+  for await (const page of result) {
+    // Handle the page
+    console.log(page);
+  }
 }
 
 run();
@@ -1085,8 +1140,10 @@ async function run() {
       fields: "id,updated_at",
     });
 
-    // Handle the result
-    console.log(result);
+    for await (const page of result) {
+      // Handle the page
+      console.log(page);
+    }
   } catch (err) {
     switch (true) {
       // The server response does not match the expected SDK schema
@@ -1179,8 +1236,10 @@ async function run() {
     fields: "id,updated_at",
   });
 
-  // Handle the result
-  console.log(result);
+  for await (const page of result) {
+    // Handle the page
+    console.log(page);
+  }
 }
 
 run();
@@ -1322,8 +1381,10 @@ async function run() {
     fields: "id,updated_at",
   });
 
-  // Handle the result
-  console.log(result);
+  for await (const page of result) {
+    // Handle the page
+    console.log(page);
+  }
 }
 
 run();

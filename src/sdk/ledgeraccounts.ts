@@ -10,6 +10,7 @@ import { accountingLedgerAccountsUpdate } from "../funcs/accountingLedgerAccount
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as operations from "../models/operations/index.js";
 import { unwrapAsync } from "../types/fp.js";
+import { PageIterator, unwrapResultIterator } from "../types/operations.js";
 
 export class LedgerAccounts extends ClientSDK {
   /**
@@ -21,8 +22,13 @@ export class LedgerAccounts extends ClientSDK {
   async list(
     request: operations.AccountingLedgerAccountsAllRequest,
     options?: RequestOptions,
-  ): Promise<operations.AccountingLedgerAccountsAllResponse> {
-    return unwrapAsync(accountingLedgerAccountsList(
+  ): Promise<
+    PageIterator<
+      operations.AccountingLedgerAccountsAllResponse,
+      { cursor: string }
+    >
+  > {
+    return unwrapResultIterator(accountingLedgerAccountsList(
       this,
       request,
       options,

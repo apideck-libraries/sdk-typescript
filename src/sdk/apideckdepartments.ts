@@ -10,6 +10,7 @@ import { hrisDepartmentsUpdate } from "../funcs/hrisDepartmentsUpdate.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as operations from "../models/operations/index.js";
 import { unwrapAsync } from "../types/fp.js";
+import { PageIterator, unwrapResultIterator } from "../types/operations.js";
 
 export class ApideckDepartments extends ClientSDK {
   /**
@@ -21,8 +22,10 @@ export class ApideckDepartments extends ClientSDK {
   async list(
     request: operations.HrisDepartmentsAllRequest,
     options?: RequestOptions,
-  ): Promise<operations.HrisDepartmentsAllResponse> {
-    return unwrapAsync(hrisDepartmentsList(
+  ): Promise<
+    PageIterator<operations.HrisDepartmentsAllResponse, { cursor: string }>
+  > {
+    return unwrapResultIterator(hrisDepartmentsList(
       this,
       request,
       options,
