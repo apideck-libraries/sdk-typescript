@@ -7,7 +7,7 @@ This guide helps you migrate from the previous `@apideck/node` SDK to the new `@
 
 ## Key Changes
 
-1. **Package Name**
+1. **Package Name and import**
 
 ````bash
 # Old package
@@ -20,33 +20,14 @@ npm install @apideck/unify
 yarn add @apideck/unify zod
 ````
 
-
-2. **SDK Initialization**
-
-SDK initialization is the same as old SDK
+Now you will have to import `@apideck/unify`
 
 ```ts
-// Old SDK
-import Apideck from '@apideck/node';
-
-const apideck = new Apideck({
-  apiKey: 'your-api-key',
-  appId: 'your-app-id',
-  consumerId: 'your-consumer-id'
-});
-const { crm } = apideck;
-
-// New SDK
 import { Apideck } from "@apideck/unify";
-
-const apideck = new Apideck({
-  apiKey: 'your-api-key',
-  appId: 'your-app-id',
-  consumerId: 'your-consumer-id'
-});
 ```
 
-3. **Method Naming Changes**
+
+2. **Method Naming Changes**
 
 ```ts
 // Old SDK
@@ -67,7 +48,7 @@ const contact = await apideck.crm.contacts.create({
 });
 ```
 
-4. **Response Structure**
+3. **Response Structure**
 
 The new SDK wraps all responses in a typed response object that includes both the API response and HTTP metadata:
 
@@ -102,7 +83,7 @@ console.log({
 ```
 
 
-5. **Method Naming Convention Changes**
+4. **Method Naming Convention Changes**
 
 
 | Old Method | New Method |
@@ -113,7 +94,7 @@ console.log({
 | contactsDelete | contacts.delete |
 ...
 
-6. **File Upload Utility**
+5. **File Upload Utility**
 
 ```ts
 // Old SDK
@@ -135,7 +116,7 @@ const result = await apideck.fileStorage.files.upload({
 });
 ```
 
-7. **Error Handling**
+6. **Error Handling**
 
 ```ts
 // Old SDK
@@ -160,7 +141,7 @@ try {
 For more information about error handling, please refer to the [Error Handling Documentation](https://github.com/apideck-libraries/sdk-typescript/tree/main?tab=readme-ov-file#error-handling).
 
 
-8. **Working with dates**
+7. **Working with dates**
 
 The new SDK uses RFC3339 format for all date and date-time fields. This ensures consistent date handling across all API operations. The SDK provides an `RFCDate` helper to make working with dates easier.
 
