@@ -60,7 +60,7 @@ let value: CrmOpportunitiesAllResponse = {
             id: "2389328923893298",
             name: "employee_level",
             description: "Employee Level",
-            value: "Uses Salesforce and Marketo",
+            value: true,
           },
         ],
         stageLastChangedAt: new Date("2020-09-30T07:43:32.000Z"),

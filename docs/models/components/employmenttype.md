@@ -7,7 +7,7 @@ The type of employment relationship the employee has with the organization.
 ```typescript
 import { EmploymentType } from "@apideck/unify/models/components";
 
-let value: EmploymentType = "employee";
+let value: EmploymentType = "contractor";
 ```
 
 ## Values

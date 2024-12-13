@@ -10,16 +10,17 @@ let value: Defaults = {
   id: "ProductInterest",
   options: [
     {
+      id: "1234",
       label: "General Channel",
-      value: [
-        "team",
-        "general",
+      options: [
+        {
+          label: "General Channel",
+          value: "general",
+        },
       ],
     },
   ],
-  value: [
-    "GC6000 series",
-  ],
+  value: 10,
 };
 ```
 

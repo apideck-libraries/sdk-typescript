@@ -75,10 +75,10 @@ let value: GetConnectionsResponse = {
               options: [
                 {
                   label: "General Channel",
-                  value: 12.5,
+                  value: true,
                 },
               ],
-              value: 10,
+              value: 10.5,
             },
           ],
         },

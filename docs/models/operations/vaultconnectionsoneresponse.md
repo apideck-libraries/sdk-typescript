@@ -79,7 +79,7 @@ let value: VaultConnectionsOneResponse = {
               options: [
                 {
                   label: "General Channel",
-                  value: "general",
+                  value: true,
                 },
               ],
               value: "GC5000 series",

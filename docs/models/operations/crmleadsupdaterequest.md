@@ -90,9 +90,7 @@ let value: CrmLeadsUpdateRequest = {
         id: "2389328923893298",
         name: "employee_level",
         description: "Employee Level",
-        value: [
-          "<value>",
-        ],
+        value: true,
       },
     ],
     tags: [
