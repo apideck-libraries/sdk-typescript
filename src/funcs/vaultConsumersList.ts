@@ -3,6 +3,7 @@
  */
 
 import { ApideckCore } from "../core.js";
+import { dlv } from "../lib/dlv.js";
 import { encodeFormQuery, encodeSimple } from "../lib/encodings.js";
 import * as M from "../lib/matchers.js";
 import { safeParse } from "../lib/schemas.js";
@@ -21,6 +22,12 @@ import * as errors from "../models/errors/index.js";
 import { SDKValidationError } from "../models/errors/sdkvalidationerror.js";
 import * as operations from "../models/operations/index.js";
 import { Result } from "../types/fp.js";
+import {
+  createPageIterator,
+  haltIterator,
+  PageIterator,
+  Paginator,
+} from "../types/operations.js";
 
 /**
  * Get all consumers
@@ -33,20 +40,23 @@ export async function vaultConsumersList(
   request: operations.VaultConsumersAllRequest,
   options?: RequestOptions,
 ): Promise<
-  Result<
-    operations.VaultConsumersAllResponse,
-    | errors.BadRequestResponse
-    | errors.UnauthorizedResponse
-    | errors.PaymentRequiredResponse
-    | errors.NotFoundResponse
-    | errors.UnprocessableResponse
-    | APIError
-    | SDKValidationError
-    | UnexpectedClientError
-    | InvalidRequestError
-    | RequestAbortedError
-    | RequestTimeoutError
-    | ConnectionError
+  PageIterator<
+    Result<
+      operations.VaultConsumersAllResponse,
+      | errors.BadRequestResponse
+      | errors.UnauthorizedResponse
+      | errors.PaymentRequiredResponse
+      | errors.NotFoundResponse
+      | errors.UnprocessableResponse
+      | APIError
+      | SDKValidationError
+      | UnexpectedClientError
+      | InvalidRequestError
+      | RequestAbortedError
+      | RequestTimeoutError
+      | ConnectionError
+    >,
+    { cursor: string }
   >
 > {
   const parsed = safeParse(
@@ -55,7 +65,7 @@ export async function vaultConsumersList(
     "Input validation failed",
   );
   if (!parsed.ok) {
-    return parsed;
+    return haltIterator(parsed);
   }
   const payload = parsed.value;
   const body = null;
@@ -113,7 +123,7 @@ export async function vaultConsumersList(
     timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
   }, options);
   if (!requestRes.ok) {
-    return requestRes;
+    return haltIterator(requestRes);
   }
   const req = requestRes.value;
 
@@ -124,7 +134,7 @@ export async function vaultConsumersList(
     retryCodes: context.retryCodes,
   });
   if (!doResult.ok) {
-    return doResult;
+    return haltIterator(doResult);
   }
   const response = doResult.value;
 
@@ -132,7 +142,7 @@ export async function vaultConsumersList(
     HttpMeta: { Response: response, Request: req },
   };
 
-  const [result] = await M.match<
+  const [result, raw] = await M.match<
     operations.VaultConsumersAllResponse,
     | errors.BadRequestResponse
     | errors.UnauthorizedResponse
@@ -161,8 +171,49 @@ export async function vaultConsumersList(
     }),
   )(response, req, { extraFields: responseFields });
   if (!result.ok) {
-    return result;
+    return haltIterator(result);
   }
 
-  return result;
+  const nextFunc = (
+    responseData: unknown,
+  ): {
+    next: Paginator<
+      Result<
+        operations.VaultConsumersAllResponse,
+        | errors.BadRequestResponse
+        | errors.UnauthorizedResponse
+        | errors.PaymentRequiredResponse
+        | errors.NotFoundResponse
+        | errors.UnprocessableResponse
+        | APIError
+        | SDKValidationError
+        | UnexpectedClientError
+        | InvalidRequestError
+        | RequestAbortedError
+        | RequestTimeoutError
+        | ConnectionError
+      >
+    >;
+    "~next"?: { cursor: string };
+  } => {
+    const nextCursor = dlv(responseData, "meta.cursors.next");
+    if (nextCursor == null) {
+      return { next: () => null };
+    }
+
+    const nextVal = () =>
+      vaultConsumersList(
+        client,
+        {
+          ...request,
+          cursor: nextCursor,
+        },
+        options,
+      );
+
+    return { next: nextVal, "~next": { cursor: nextCursor } };
+  };
+
+  const page = { ...result, ...nextFunc(raw) };
+  return { ...page, ...createPageIterator(page, (v) => !v.ok) };
 }

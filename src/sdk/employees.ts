@@ -10,6 +10,7 @@ import { hrisEmployeesUpdate } from "../funcs/hrisEmployeesUpdate.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as operations from "../models/operations/index.js";
 import { unwrapAsync } from "../types/fp.js";
+import { PageIterator, unwrapResultIterator } from "../types/operations.js";
 
 export class Employees extends ClientSDK {
   /**
@@ -21,8 +22,10 @@ export class Employees extends ClientSDK {
   async list(
     request: operations.HrisEmployeesAllRequest,
     options?: RequestOptions,
-  ): Promise<operations.HrisEmployeesAllResponse> {
-    return unwrapAsync(hrisEmployeesList(
+  ): Promise<
+    PageIterator<operations.HrisEmployeesAllResponse, { cursor: string }>
+  > {
+    return unwrapResultIterator(hrisEmployeesList(
       this,
       request,
       options,

@@ -12,6 +12,7 @@ import { accountingAttachmentsList } from "../funcs/accountingAttachmentsList.js
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as operations from "../models/operations/index.js";
 import { unwrapAsync } from "../types/fp.js";
+import { PageIterator, unwrapResultIterator } from "../types/operations.js";
 
 export { DownloadAcceptEnum } from "../funcs/accountingAttachmentsDownload.js";
 
@@ -25,8 +26,13 @@ export class Attachments extends ClientSDK {
   async list(
     request: operations.AccountingAttachmentsAllRequest,
     options?: RequestOptions,
-  ): Promise<operations.AccountingAttachmentsAllResponse> {
-    return unwrapAsync(accountingAttachmentsList(
+  ): Promise<
+    PageIterator<
+      operations.AccountingAttachmentsAllResponse,
+      { cursor: string }
+    >
+  > {
+    return unwrapResultIterator(accountingAttachmentsList(
       this,
       request,
       options,

@@ -10,6 +10,7 @@ import { accountingTaxRatesUpdate } from "../funcs/accountingTaxRatesUpdate.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as operations from "../models/operations/index.js";
 import { unwrapAsync } from "../types/fp.js";
+import { PageIterator, unwrapResultIterator } from "../types/operations.js";
 
 export class TaxRates extends ClientSDK {
   /**
@@ -21,8 +22,10 @@ export class TaxRates extends ClientSDK {
   async list(
     request: operations.AccountingTaxRatesAllRequest,
     options?: RequestOptions,
-  ): Promise<operations.AccountingTaxRatesAllResponse> {
-    return unwrapAsync(accountingTaxRatesList(
+  ): Promise<
+    PageIterator<operations.AccountingTaxRatesAllResponse, { cursor: string }>
+  > {
+    return unwrapResultIterator(accountingTaxRatesList(
       this,
       request,
       options,

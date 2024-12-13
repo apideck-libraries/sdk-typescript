@@ -10,6 +10,7 @@ import { accountingPurchaseOrdersUpdate } from "../funcs/accountingPurchaseOrder
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as operations from "../models/operations/index.js";
 import { unwrapAsync } from "../types/fp.js";
+import { PageIterator, unwrapResultIterator } from "../types/operations.js";
 
 export class PurchaseOrders extends ClientSDK {
   /**
@@ -21,8 +22,13 @@ export class PurchaseOrders extends ClientSDK {
   async list(
     request: operations.AccountingPurchaseOrdersAllRequest,
     options?: RequestOptions,
-  ): Promise<operations.AccountingPurchaseOrdersAllResponse> {
-    return unwrapAsync(accountingPurchaseOrdersList(
+  ): Promise<
+    PageIterator<
+      operations.AccountingPurchaseOrdersAllResponse,
+      { cursor: string }
+    >
+  > {
+    return unwrapResultIterator(accountingPurchaseOrdersList(
       this,
       request,
       options,

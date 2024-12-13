@@ -11,6 +11,7 @@ import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as components from "../models/components/index.js";
 import * as operations from "../models/operations/index.js";
 import { unwrapAsync } from "../types/fp.js";
+import { PageIterator, unwrapResultIterator } from "../types/operations.js";
 
 export class Consumers extends ClientSDK {
   /**
@@ -39,8 +40,10 @@ export class Consumers extends ClientSDK {
   async list(
     request: operations.VaultConsumersAllRequest,
     options?: RequestOptions,
-  ): Promise<operations.VaultConsumersAllResponse> {
-    return unwrapAsync(vaultConsumersList(
+  ): Promise<
+    PageIterator<operations.VaultConsumersAllResponse, { cursor: string }>
+  > {
+    return unwrapResultIterator(vaultConsumersList(
       this,
       request,
       options,

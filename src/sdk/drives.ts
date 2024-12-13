@@ -10,6 +10,7 @@ import { fileStorageDrivesUpdate } from "../funcs/fileStorageDrivesUpdate.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as operations from "../models/operations/index.js";
 import { unwrapAsync } from "../types/fp.js";
+import { PageIterator, unwrapResultIterator } from "../types/operations.js";
 
 export class Drives extends ClientSDK {
   /**
@@ -21,8 +22,10 @@ export class Drives extends ClientSDK {
   async list(
     request: operations.FileStorageDrivesAllRequest,
     options?: RequestOptions,
-  ): Promise<operations.FileStorageDrivesAllResponse> {
-    return unwrapAsync(fileStorageDrivesList(
+  ): Promise<
+    PageIterator<operations.FileStorageDrivesAllResponse, { cursor: string }>
+  > {
+    return unwrapResultIterator(fileStorageDrivesList(
       this,
       request,
       options,

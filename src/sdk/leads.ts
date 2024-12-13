@@ -10,6 +10,7 @@ import { crmLeadsUpdate } from "../funcs/crmLeadsUpdate.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as operations from "../models/operations/index.js";
 import { unwrapAsync } from "../types/fp.js";
+import { PageIterator, unwrapResultIterator } from "../types/operations.js";
 
 export class Leads extends ClientSDK {
   /**
@@ -21,8 +22,8 @@ export class Leads extends ClientSDK {
   async list(
     request: operations.CrmLeadsAllRequest,
     options?: RequestOptions,
-  ): Promise<operations.CrmLeadsAllResponse> {
-    return unwrapAsync(crmLeadsList(
+  ): Promise<PageIterator<operations.CrmLeadsAllResponse, { cursor: string }>> {
+    return unwrapResultIterator(crmLeadsList(
       this,
       request,
       options,

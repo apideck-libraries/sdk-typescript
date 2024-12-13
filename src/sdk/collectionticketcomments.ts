@@ -10,6 +10,7 @@ import { issueTrackingCollectionTicketCommentsUpdate } from "../funcs/issueTrack
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as operations from "../models/operations/index.js";
 import { unwrapAsync } from "../types/fp.js";
+import { PageIterator, unwrapResultIterator } from "../types/operations.js";
 
 export class CollectionTicketComments extends ClientSDK {
   /**
@@ -21,8 +22,13 @@ export class CollectionTicketComments extends ClientSDK {
   async list(
     request: operations.IssueTrackingCollectionTicketCommentsAllRequest,
     options?: RequestOptions,
-  ): Promise<operations.IssueTrackingCollectionTicketCommentsAllResponse> {
-    return unwrapAsync(issueTrackingCollectionTicketCommentsList(
+  ): Promise<
+    PageIterator<
+      operations.IssueTrackingCollectionTicketCommentsAllResponse,
+      { cursor: string }
+    >
+  > {
+    return unwrapResultIterator(issueTrackingCollectionTicketCommentsList(
       this,
       request,
       options,
@@ -55,8 +61,13 @@ export class CollectionTicketComments extends ClientSDK {
   async get(
     request: operations.IssueTrackingCollectionTicketCommentsOneRequest,
     options?: RequestOptions,
-  ): Promise<operations.IssueTrackingCollectionTicketCommentsOneResponse> {
-    return unwrapAsync(issueTrackingCollectionTicketCommentsGet(
+  ): Promise<
+    PageIterator<
+      operations.IssueTrackingCollectionTicketCommentsOneResponse,
+      { cursor: string }
+    >
+  > {
+    return unwrapResultIterator(issueTrackingCollectionTicketCommentsGet(
       this,
       request,
       options,

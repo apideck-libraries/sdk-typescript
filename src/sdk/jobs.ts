@@ -7,6 +7,7 @@ import { atsJobsList } from "../funcs/atsJobsList.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as operations from "../models/operations/index.js";
 import { unwrapAsync } from "../types/fp.js";
+import { PageIterator, unwrapResultIterator } from "../types/operations.js";
 
 export class Jobs extends ClientSDK {
   /**
@@ -18,8 +19,8 @@ export class Jobs extends ClientSDK {
   async list(
     request: operations.AtsJobsAllRequest,
     options?: RequestOptions,
-  ): Promise<operations.AtsJobsAllResponse> {
-    return unwrapAsync(atsJobsList(
+  ): Promise<PageIterator<operations.AtsJobsAllResponse, { cursor: string }>> {
+    return unwrapResultIterator(atsJobsList(
       this,
       request,
       options,

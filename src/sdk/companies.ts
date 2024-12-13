@@ -10,6 +10,7 @@ import { crmCompaniesUpdate } from "../funcs/crmCompaniesUpdate.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as operations from "../models/operations/index.js";
 import { unwrapAsync } from "../types/fp.js";
+import { PageIterator, unwrapResultIterator } from "../types/operations.js";
 
 export class Companies extends ClientSDK {
   /**
@@ -21,8 +22,10 @@ export class Companies extends ClientSDK {
   async list(
     request: operations.CrmCompaniesAllRequest,
     options?: RequestOptions,
-  ): Promise<operations.CrmCompaniesAllResponse> {
-    return unwrapAsync(crmCompaniesList(
+  ): Promise<
+    PageIterator<operations.CrmCompaniesAllResponse, { cursor: string }>
+  > {
+    return unwrapResultIterator(crmCompaniesList(
       this,
       request,
       options,

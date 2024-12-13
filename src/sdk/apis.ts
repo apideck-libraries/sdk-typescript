@@ -7,6 +7,7 @@ import { connectorApisList } from "../funcs/connectorApisList.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as operations from "../models/operations/index.js";
 import { unwrapAsync } from "../types/fp.js";
+import { PageIterator, unwrapResultIterator } from "../types/operations.js";
 
 export class Apis extends ClientSDK {
   /**
@@ -18,8 +19,10 @@ export class Apis extends ClientSDK {
   async list(
     request: operations.ConnectorApisAllRequest,
     options?: RequestOptions,
-  ): Promise<operations.ConnectorApisAllResponse> {
-    return unwrapAsync(connectorApisList(
+  ): Promise<
+    PageIterator<operations.ConnectorApisAllResponse, { cursor: string }>
+  > {
+    return unwrapResultIterator(connectorApisList(
       this,
       request,
       options,

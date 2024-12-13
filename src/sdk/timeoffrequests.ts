@@ -10,6 +10,7 @@ import { hrisTimeOffRequestsUpdate } from "../funcs/hrisTimeOffRequestsUpdate.js
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as operations from "../models/operations/index.js";
 import { unwrapAsync } from "../types/fp.js";
+import { PageIterator, unwrapResultIterator } from "../types/operations.js";
 
 export class TimeOffRequests extends ClientSDK {
   /**
@@ -21,8 +22,10 @@ export class TimeOffRequests extends ClientSDK {
   async list(
     request: operations.HrisTimeOffRequestsAllRequest,
     options?: RequestOptions,
-  ): Promise<operations.HrisTimeOffRequestsAllResponse> {
-    return unwrapAsync(hrisTimeOffRequestsList(
+  ): Promise<
+    PageIterator<operations.HrisTimeOffRequestsAllResponse, { cursor: string }>
+  > {
+    return unwrapResultIterator(hrisTimeOffRequestsList(
       this,
       request,
       options,

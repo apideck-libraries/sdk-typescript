@@ -10,6 +10,7 @@ import { hrisCompaniesUpdate } from "../funcs/hrisCompaniesUpdate.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as operations from "../models/operations/index.js";
 import { unwrapAsync } from "../types/fp.js";
+import { PageIterator, unwrapResultIterator } from "../types/operations.js";
 
 export class ApideckCompanies extends ClientSDK {
   /**
@@ -21,8 +22,10 @@ export class ApideckCompanies extends ClientSDK {
   async list(
     request: operations.HrisCompaniesAllRequest,
     options?: RequestOptions,
-  ): Promise<operations.HrisCompaniesAllResponse> {
-    return unwrapAsync(hrisCompaniesList(
+  ): Promise<
+    PageIterator<operations.HrisCompaniesAllResponse, { cursor: string }>
+  > {
+    return unwrapResultIterator(hrisCompaniesList(
       this,
       request,
       options,

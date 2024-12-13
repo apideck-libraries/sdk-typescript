@@ -5,7 +5,7 @@
 import { vaultLogsList } from "../funcs/vaultLogsList.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as operations from "../models/operations/index.js";
-import { unwrapAsync } from "../types/fp.js";
+import { PageIterator, unwrapResultIterator } from "../types/operations.js";
 
 export class Logs extends ClientSDK {
   /**
@@ -17,8 +17,10 @@ export class Logs extends ClientSDK {
   async list(
     request: operations.VaultLogsAllRequest,
     options?: RequestOptions,
-  ): Promise<operations.VaultLogsAllResponse> {
-    return unwrapAsync(vaultLogsList(
+  ): Promise<
+    PageIterator<operations.VaultLogsAllResponse, { cursor: string }>
+  > {
+    return unwrapResultIterator(vaultLogsList(
       this,
       request,
       options,

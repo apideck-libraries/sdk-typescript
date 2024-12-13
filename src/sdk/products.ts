@@ -7,6 +7,7 @@ import { ecommerceProductsList } from "../funcs/ecommerceProductsList.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as operations from "../models/operations/index.js";
 import { unwrapAsync } from "../types/fp.js";
+import { PageIterator, unwrapResultIterator } from "../types/operations.js";
 
 export class Products extends ClientSDK {
   /**
@@ -18,8 +19,10 @@ export class Products extends ClientSDK {
   async list(
     request: operations.EcommerceProductsAllRequest,
     options?: RequestOptions,
-  ): Promise<operations.EcommerceProductsAllResponse> {
-    return unwrapAsync(ecommerceProductsList(
+  ): Promise<
+    PageIterator<operations.EcommerceProductsAllResponse, { cursor: string }>
+  > {
+    return unwrapResultIterator(ecommerceProductsList(
       this,
       request,
       options,

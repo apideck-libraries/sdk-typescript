@@ -5,7 +5,7 @@
 import { webhookEventLogsList } from "../funcs/webhookEventLogsList.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as operations from "../models/operations/index.js";
-import { unwrapAsync } from "../types/fp.js";
+import { PageIterator, unwrapResultIterator } from "../types/operations.js";
 
 export class EventLogs extends ClientSDK {
   /**
@@ -17,8 +17,10 @@ export class EventLogs extends ClientSDK {
   async list(
     request: operations.WebhookEventLogsAllRequest,
     options?: RequestOptions,
-  ): Promise<operations.WebhookEventLogsAllResponse> {
-    return unwrapAsync(webhookEventLogsList(
+  ): Promise<
+    PageIterator<operations.WebhookEventLogsAllResponse, { cursor: string }>
+  > {
+    return unwrapResultIterator(webhookEventLogsList(
       this,
       request,
       options,

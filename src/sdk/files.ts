@@ -18,6 +18,7 @@ import { fileStorageFilesUpdate } from "../funcs/fileStorageFilesUpdate.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as operations from "../models/operations/index.js";
 import { unwrapAsync } from "../types/fp.js";
+import { PageIterator, unwrapResultIterator } from "../types/operations.js";
 
 export { DownloadAcceptEnum } from "../funcs/fileStorageFilesDownload.js";
 
@@ -33,8 +34,10 @@ export class Files extends ClientSDK {
   async list(
     request: operations.FileStorageFilesAllRequest,
     options?: RequestOptions,
-  ): Promise<operations.FileStorageFilesAllResponse> {
-    return unwrapAsync(fileStorageFilesList(
+  ): Promise<
+    PageIterator<operations.FileStorageFilesAllResponse, { cursor: string }>
+  > {
+    return unwrapResultIterator(fileStorageFilesList(
       this,
       request,
       options,

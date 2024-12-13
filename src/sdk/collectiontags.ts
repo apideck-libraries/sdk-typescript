@@ -5,7 +5,7 @@
 import { issueTrackingCollectionTagsList } from "../funcs/issueTrackingCollectionTagsList.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as operations from "../models/operations/index.js";
-import { unwrapAsync } from "../types/fp.js";
+import { PageIterator, unwrapResultIterator } from "../types/operations.js";
 
 export class CollectionTags extends ClientSDK {
   /**
@@ -17,8 +17,13 @@ export class CollectionTags extends ClientSDK {
   async list(
     request: operations.IssueTrackingCollectionTagsAllRequest,
     options?: RequestOptions,
-  ): Promise<operations.IssueTrackingCollectionTagsAllResponse> {
-    return unwrapAsync(issueTrackingCollectionTagsList(
+  ): Promise<
+    PageIterator<
+      operations.IssueTrackingCollectionTagsAllResponse,
+      { cursor: string }
+    >
+  > {
+    return unwrapResultIterator(issueTrackingCollectionTagsList(
       this,
       request,
       options,

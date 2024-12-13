@@ -10,6 +10,7 @@ import { accountingJournalEntriesUpdate } from "../funcs/accountingJournalEntrie
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as operations from "../models/operations/index.js";
 import { unwrapAsync } from "../types/fp.js";
+import { PageIterator, unwrapResultIterator } from "../types/operations.js";
 
 export class JournalEntries extends ClientSDK {
   /**
@@ -21,8 +22,13 @@ export class JournalEntries extends ClientSDK {
   async list(
     request: operations.AccountingJournalEntriesAllRequest,
     options?: RequestOptions,
-  ): Promise<operations.AccountingJournalEntriesAllResponse> {
-    return unwrapAsync(accountingJournalEntriesList(
+  ): Promise<
+    PageIterator<
+      operations.AccountingJournalEntriesAllResponse,
+      { cursor: string }
+    >
+  > {
+    return unwrapResultIterator(accountingJournalEntriesList(
       this,
       request,
       options,

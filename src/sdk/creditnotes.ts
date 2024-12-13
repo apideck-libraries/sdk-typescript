@@ -10,6 +10,7 @@ import { accountingCreditNotesUpdate } from "../funcs/accountingCreditNotesUpdat
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as operations from "../models/operations/index.js";
 import { unwrapAsync } from "../types/fp.js";
+import { PageIterator, unwrapResultIterator } from "../types/operations.js";
 
 export class CreditNotes extends ClientSDK {
   /**
@@ -21,8 +22,13 @@ export class CreditNotes extends ClientSDK {
   async list(
     request: operations.AccountingCreditNotesAllRequest,
     options?: RequestOptions,
-  ): Promise<operations.AccountingCreditNotesAllResponse> {
-    return unwrapAsync(accountingCreditNotesList(
+  ): Promise<
+    PageIterator<
+      operations.AccountingCreditNotesAllResponse,
+      { cursor: string }
+    >
+  > {
+    return unwrapResultIterator(accountingCreditNotesList(
       this,
       request,
       options,
