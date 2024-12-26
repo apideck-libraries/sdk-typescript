@@ -32,7 +32,7 @@ import { Result } from "../types/fp.js";
 export async function fileStorageUploadSessionsGet(
   client: ApideckCore,
   request: operations.FileStorageUploadSessionsOneRequest,
-  options?: RequestOptions & { serverURL?: string },
+  options?: RequestOptions,
 ): Promise<
   Result<
     operations.FileStorageUploadSessionsOneResponse,

@@ -33,7 +33,7 @@ let value: VaultConnectionsUpdateRequest = {
                 value: "general",
               },
             ],
-            value: "GC5000 series",
+            value: 10,
           },
         ],
       },

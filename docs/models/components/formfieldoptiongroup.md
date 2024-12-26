@@ -11,7 +11,10 @@ let value: FormFieldOptionGroup = {
   options: [
     {
       label: "General Channel",
-      value: true,
+      value: [
+        "team",
+        "general",
+      ],
     },
   ],
 };

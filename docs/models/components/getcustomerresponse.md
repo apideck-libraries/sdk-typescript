@@ -116,6 +116,14 @@ let value: GetCustomerResponse = {
     status: "active",
     paymentMethod: "cash",
     channel: "email",
+    customFields: [
+      {
+        id: "2389328923893298",
+        name: "employee_level",
+        description: "Employee Level",
+        value: "Uses Salesforce and Marketo",
+      },
+    ],
     updatedBy: "12345",
     createdBy: "12345",
     updatedAt: new Date("2020-09-30T07:43:32.000Z"),

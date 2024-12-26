@@ -7,7 +7,7 @@ The FLSA status for this compensation.
 ```typescript
 import { FlsaStatus } from "@apideck/unify/models/components";
 
-let value: FlsaStatus = "other";
+let value: FlsaStatus = "salaried-nonexempt";
 ```
 
 ## Values

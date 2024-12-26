@@ -78,7 +78,9 @@ let value: GetConnectionsResponse = {
                   value: true,
                 },
               ],
-              value: 10.5,
+              value: [
+                "GC6000 series",
+              ],
             },
           ],
         },

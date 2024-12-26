@@ -9,6 +9,12 @@ import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
+  CustomField,
+  CustomField$inboundSchema,
+  CustomField$Outbound,
+  CustomField$outboundSchema,
+} from "./customfield.js";
+import {
   CustomMappings,
   CustomMappings$inboundSchema,
   CustomMappings$Outbound,
@@ -130,6 +136,7 @@ export type TaxRate = {
    * The subsidiaries this belongs to.
    */
   subsidiaries?: Array<Subsidiaries> | undefined;
+  customFields?: Array<CustomField> | undefined;
 };
 
 export type TaxRateInput = {
@@ -194,6 +201,7 @@ export type TaxRateInput = {
    * The subsidiaries this belongs to.
    */
   subsidiaries?: Array<Subsidiaries> | undefined;
+  customFields?: Array<CustomField> | undefined;
 };
 
 /** @internal */
@@ -355,6 +363,7 @@ export const TaxRate$inboundSchema: z.ZodType<TaxRate, z.ZodTypeDef, unknown> =
     ).optional(),
     pass_through: z.array(PassThroughBody$inboundSchema).optional(),
     subsidiaries: z.array(z.lazy(() => Subsidiaries$inboundSchema)).optional(),
+    custom_fields: z.array(CustomField$inboundSchema).optional(),
   }).transform((v) => {
     return remap$(v, {
       "effective_tax_rate": "effectiveTaxRate",
@@ -370,6 +379,7 @@ export const TaxRate$inboundSchema: z.ZodType<TaxRate, z.ZodTypeDef, unknown> =
       "updated_at": "updatedAt",
       "created_at": "createdAt",
       "pass_through": "passThrough",
+      "custom_fields": "customFields",
     });
   });
 
@@ -396,6 +406,7 @@ export type TaxRate$Outbound = {
   created_at?: string | null | undefined;
   pass_through?: Array<PassThroughBody$Outbound> | undefined;
   subsidiaries?: Array<Subsidiaries$Outbound> | undefined;
+  custom_fields?: Array<CustomField$Outbound> | undefined;
 };
 
 /** @internal */
@@ -426,6 +437,7 @@ export const TaxRate$outboundSchema: z.ZodType<
   createdAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
   passThrough: z.array(PassThroughBody$outboundSchema).optional(),
   subsidiaries: z.array(z.lazy(() => Subsidiaries$outboundSchema)).optional(),
+  customFields: z.array(CustomField$outboundSchema).optional(),
 }).transform((v) => {
   return remap$(v, {
     effectiveTaxRate: "effective_tax_rate",
@@ -441,6 +453,7 @@ export const TaxRate$outboundSchema: z.ZodType<
     updatedAt: "updated_at",
     createdAt: "created_at",
     passThrough: "pass_through",
+    customFields: "custom_fields",
   });
 });
 
@@ -494,6 +507,7 @@ export const TaxRateInput$inboundSchema: z.ZodType<
   row_version: z.nullable(z.string()).optional(),
   pass_through: z.array(PassThroughBody$inboundSchema).optional(),
   subsidiaries: z.array(z.lazy(() => Subsidiaries$inboundSchema)).optional(),
+  custom_fields: z.array(CustomField$inboundSchema).optional(),
 }).transform((v) => {
   return remap$(v, {
     "effective_tax_rate": "effectiveTaxRate",
@@ -504,6 +518,7 @@ export const TaxRateInput$inboundSchema: z.ZodType<
     "original_tax_rate_id": "originalTaxRateId",
     "row_version": "rowVersion",
     "pass_through": "passThrough",
+    "custom_fields": "customFields",
   });
 });
 
@@ -525,6 +540,7 @@ export type TaxRateInput$Outbound = {
   row_version?: string | null | undefined;
   pass_through?: Array<PassThroughBody$Outbound> | undefined;
   subsidiaries?: Array<Subsidiaries$Outbound> | undefined;
+  custom_fields?: Array<CustomField$Outbound> | undefined;
 };
 
 /** @internal */
@@ -550,6 +566,7 @@ export const TaxRateInput$outboundSchema: z.ZodType<
   rowVersion: z.nullable(z.string()).optional(),
   passThrough: z.array(PassThroughBody$outboundSchema).optional(),
   subsidiaries: z.array(z.lazy(() => Subsidiaries$outboundSchema)).optional(),
+  customFields: z.array(CustomField$outboundSchema).optional(),
 }).transform((v) => {
   return remap$(v, {
     effectiveTaxRate: "effective_tax_rate",
@@ -560,6 +577,7 @@ export const TaxRateInput$outboundSchema: z.ZodType<
     originalTaxRateId: "original_tax_rate_id",
     rowVersion: "row_version",
     passThrough: "pass_through",
+    customFields: "custom_fields",
   });
 });
 

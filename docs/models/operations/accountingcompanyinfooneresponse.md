@@ -67,6 +67,14 @@ let value: AccountingCompanyInfoOneResponse = {
             ],
           },
         ],
+        customFields: [
+          {
+            id: "2389328923893298",
+            name: "employee_level",
+            description: "Employee Level",
+            value: {},
+          },
+        ],
       },
       currency: "USD",
       language: "EN",
@@ -129,7 +137,13 @@ let value: AccountingCompanyInfoOneResponse = {
     error: "Bad Request",
     typeName: "RequestHeadersValidationError",
     message: "Invalid Params",
-    detail: "Missing Header: x-apideck-consumer-id",
+    detail: {
+      "missing": [
+        {
+          "x-apideck-consumer-id": "required",
+        },
+      ],
+    },
     ref: "https://developers.apideck.com/errors#unauthorizederror",
   },
 };

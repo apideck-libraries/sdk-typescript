@@ -15,12 +15,12 @@ let value: Defaults = {
       options: [
         {
           label: "General Channel",
-          value: "general",
+          value: 123,
         },
       ],
     },
   ],
-  value: 10,
+  value: "GC5000 series",
 };
 ```
 

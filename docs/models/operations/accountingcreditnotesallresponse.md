@@ -179,7 +179,9 @@ let value: AccountingCreditNotesAllResponse = {
             id: "2389328923893298",
             name: "employee_level",
             description: "Employee Level",
-            value: "Uses Salesforce and Marketo",
+            value: [
+              {},
+            ],
           },
         ],
         rowVersion: "1-12345",

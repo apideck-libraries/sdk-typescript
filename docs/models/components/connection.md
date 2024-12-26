@@ -73,14 +73,15 @@ let value: Connection = {
               options: [
                 {
                   label: "General Channel",
-                  value: 123,
+                  value: [
+                    "team",
+                    "general",
+                  ],
                 },
               ],
             },
           ],
-          value: [
-            "GC6000 series",
-          ],
+          value: true,
         },
       ],
     },
