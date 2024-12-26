@@ -7,7 +7,10 @@ import { SimpleFormFieldOption } from "@apideck/unify/models/components";
 
 let value: SimpleFormFieldOption = {
   label: "General Channel",
-  value: "general",
+  value: [
+    "team",
+    "general",
+  ],
 };
 ```
 

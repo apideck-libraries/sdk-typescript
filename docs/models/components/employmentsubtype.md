@@ -7,7 +7,7 @@ The work schedule of the employee.
 ```typescript
 import { EmploymentSubType } from "@apideck/unify/models/components";
 
-let value: EmploymentSubType = "full_time";
+let value: EmploymentSubType = "other";
 ```
 
 ## Values

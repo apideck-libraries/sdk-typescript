@@ -78,17 +78,11 @@ let value: VaultConnectionsUpdateResponse = {
               id: "ProductInterest",
               options: [
                 {
-                  id: "1234",
                   label: "General Channel",
-                  options: [
-                    {
-                      label: "General Channel",
-                      value: 123,
-                    },
-                  ],
+                  value: 12.5,
                 },
               ],
-              value: 10.5,
+              value: true,
             },
           ],
         },

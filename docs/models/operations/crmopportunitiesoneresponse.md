@@ -60,7 +60,7 @@ let value: CrmOpportunitiesOneResponse = {
           name: "employee_level",
           description: "Employee Level",
           value: [
-            {},
+            "<value>",
           ],
         },
       ],

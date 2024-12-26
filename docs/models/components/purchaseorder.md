@@ -100,7 +100,7 @@ let value: PurchaseOrder = {
           id: "2389328923893298",
           name: "employee_level",
           description: "Employee Level",
-          value: true,
+          value: "Uses Salesforce and Marketo",
         },
       ],
       rowVersion: "1-12345",

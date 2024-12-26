@@ -19,7 +19,7 @@ export class UploadSessions extends ClientSDK {
    */
   async create(
     request: operations.FileStorageUploadSessionsAddRequest,
-    options?: RequestOptions & { serverURL?: string },
+    options?: RequestOptions,
   ): Promise<operations.FileStorageUploadSessionsAddResponse> {
     return unwrapAsync(fileStorageUploadSessionsCreate(
       this,
@@ -36,7 +36,7 @@ export class UploadSessions extends ClientSDK {
    */
   async get(
     request: operations.FileStorageUploadSessionsOneRequest,
-    options?: RequestOptions & { serverURL?: string },
+    options?: RequestOptions,
   ): Promise<operations.FileStorageUploadSessionsOneResponse> {
     return unwrapAsync(fileStorageUploadSessionsGet(
       this,
@@ -70,7 +70,7 @@ export class UploadSessions extends ClientSDK {
    */
   async finish(
     request: operations.FileStorageUploadSessionsFinishRequest,
-    options?: RequestOptions & { serverURL?: string },
+    options?: RequestOptions,
   ): Promise<operations.FileStorageUploadSessionsFinishResponse> {
     return unwrapAsync(fileStorageUploadSessionsFinish(
       this,

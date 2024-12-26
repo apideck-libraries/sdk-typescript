@@ -42,6 +42,14 @@ let value: TaxRateInput = {
       ],
     },
   ],
+  customFields: [
+    {
+      id: "2389328923893298",
+      name: "employee_level",
+      description: "Employee Level",
+      value: true,
+    },
+  ],
 };
 ```
 
@@ -65,3 +73,4 @@ let value: TaxRateInput = {
 | `rowVersion`                                                                                                                                            | *string*                                                                                                                                                | :heavy_minus_sign:                                                                                                                                      | A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.              | 1-12345                                                                                                                                                 |
 | `passThrough`                                                                                                                                           | [components.PassThroughBody](../../models/components/passthroughbody.md)[]                                                                              | :heavy_minus_sign:                                                                                                                                      | The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources. |                                                                                                                                                         |
 | `subsidiaries`                                                                                                                                          | [components.Subsidiaries](../../models/components/subsidiaries.md)[]                                                                                    | :heavy_minus_sign:                                                                                                                                      | The subsidiaries this belongs to.                                                                                                                       |                                                                                                                                                         |
+| `customFields`                                                                                                                                          | [components.CustomField](../../models/components/customfield.md)[]                                                                                      | :heavy_minus_sign:                                                                                                                                      | N/A                                                                                                                                                     |                                                                                                                                                         |

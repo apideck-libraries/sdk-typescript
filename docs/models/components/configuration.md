@@ -14,14 +14,11 @@ let value: Configuration = {
       options: [
         {
           label: "General Channel",
-          value: [
-            "team",
-            "general",
-          ],
+          value: 123,
         },
       ],
       value: [
-        10.5,
+        "GC6000 series",
       ],
     },
   ],

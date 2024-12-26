@@ -62,6 +62,16 @@ let value: GetCompanyInfoResponse = {
           ],
         },
       ],
+      customFields: [
+        {
+          id: "2389328923893298",
+          name: "employee_level",
+          description: "Employee Level",
+          value: [
+            {},
+          ],
+        },
+      ],
     },
     currency: "USD",
     language: "EN",

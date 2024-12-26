@@ -46,6 +46,14 @@ let value: TaxRate = {
       ],
     },
   ],
+  customFields: [
+    {
+      id: "2389328923893298",
+      name: "employee_level",
+      description: "Employee Level",
+      value: true,
+    },
+  ],
 };
 ```
 
@@ -74,3 +82,4 @@ let value: TaxRate = {
 | `createdAt`                                                                                                                                             | [Date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date)                                                           | :heavy_minus_sign:                                                                                                                                      | The date and time when the object was created.                                                                                                          | 2020-09-30T07:43:32.000Z                                                                                                                                |
 | `passThrough`                                                                                                                                           | [components.PassThroughBody](../../models/components/passthroughbody.md)[]                                                                              | :heavy_minus_sign:                                                                                                                                      | The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources. |                                                                                                                                                         |
 | `subsidiaries`                                                                                                                                          | [components.Subsidiaries](../../models/components/subsidiaries.md)[]                                                                                    | :heavy_minus_sign:                                                                                                                                      | The subsidiaries this belongs to.                                                                                                                       |                                                                                                                                                         |
+| `customFields`                                                                                                                                          | [components.CustomField](../../models/components/customfield.md)[]                                                                                      | :heavy_minus_sign:                                                                                                                                      | N/A                                                                                                                                                     |                                                                                                                                                         |

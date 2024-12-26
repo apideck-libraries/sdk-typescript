@@ -31,14 +31,12 @@ let value: ConnectionInput = {
               options: [
                 {
                   label: "General Channel",
-                  value: true,
+                  value: 12.5,
                 },
               ],
             },
           ],
-          value: [
-            10.5,
-          ],
+          value: 10.5,
         },
       ],
     },
