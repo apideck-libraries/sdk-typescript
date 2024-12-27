@@ -17,13 +17,13 @@ import {
 
 export type BalanceByPeriod = {
   /**
-   * Start date of the period.
+   * The starting date of the period. If not provided, it represents the oldest period, where all transactions due before the specified `end_date` are included.
    */
-  startDate?: RFCDate | undefined;
+  startDate?: RFCDate | null | undefined;
   /**
-   * End date of the period.
+   * The ending date of the period. If not provided, it represents an open-ended period starting from the `start_date`, typically capturing future-dated transactions that are not yet aged.
    */
-  endDate?: RFCDate | undefined;
+  endDate?: RFCDate | null | undefined;
   /**
    * Total amount of the period.
    */
@@ -37,8 +37,8 @@ export const BalanceByPeriod$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  start_date: z.string().transform(v => new RFCDate(v)).optional(),
-  end_date: z.string().transform(v => new RFCDate(v)).optional(),
+  start_date: z.nullable(z.string().transform(v => new RFCDate(v))).optional(),
+  end_date: z.nullable(z.string().transform(v => new RFCDate(v))).optional(),
   total_amount: z.number().optional(),
   balances_by_transaction: z.array(BalanceByTransaction$inboundSchema)
     .optional(),
@@ -53,8 +53,8 @@ export const BalanceByPeriod$inboundSchema: z.ZodType<
 
 /** @internal */
 export type BalanceByPeriod$Outbound = {
-  start_date?: string | undefined;
-  end_date?: string | undefined;
+  start_date?: string | null | undefined;
+  end_date?: string | null | undefined;
   total_amount?: number | undefined;
   balances_by_transaction?: Array<BalanceByTransaction$Outbound> | undefined;
 };
@@ -65,8 +65,10 @@ export const BalanceByPeriod$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   BalanceByPeriod
 > = z.object({
-  startDate: z.instanceof(RFCDate).transform(v => v.toString()).optional(),
-  endDate: z.instanceof(RFCDate).transform(v => v.toString()).optional(),
+  startDate: z.nullable(z.instanceof(RFCDate).transform(v => v.toString()))
+    .optional(),
+  endDate: z.nullable(z.instanceof(RFCDate).transform(v => v.toString()))
+    .optional(),
   totalAmount: z.number().optional(),
   balancesByTransaction: z.array(BalanceByTransaction$outboundSchema)
     .optional(),

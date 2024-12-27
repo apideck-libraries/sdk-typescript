@@ -9,11 +9,11 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import { RFCDate } from "../../types/rfcdate.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
-  OutstandingBalance,
-  OutstandingBalance$inboundSchema,
-  OutstandingBalance$Outbound,
-  OutstandingBalance$outboundSchema,
-} from "./outstandingbalance.js";
+  OutstandingBalanceBySupplier,
+  OutstandingBalanceBySupplier$inboundSchema,
+  OutstandingBalanceBySupplier$Outbound,
+  OutstandingBalanceBySupplier$outboundSchema,
+} from "./outstandingbalancebysupplier.js";
 
 export type AgedCreditors = {
   /**
@@ -32,7 +32,7 @@ export type AgedCreditors = {
    * Length of each aging period in days.
    */
   periodLength?: number | undefined;
-  outstandingBalances?: Array<OutstandingBalance> | undefined;
+  outstandingBalances?: Array<OutstandingBalanceBySupplier> | undefined;
 };
 
 /** @internal */
@@ -47,7 +47,8 @@ export const AgedCreditors$inboundSchema: z.ZodType<
   report_as_of_date: z.string().transform(v => new RFCDate(v)).optional(),
   period_count: z.number().int().default(4),
   period_length: z.number().int().default(30),
-  outstanding_balances: z.array(OutstandingBalance$inboundSchema).optional(),
+  outstanding_balances: z.array(OutstandingBalanceBySupplier$inboundSchema)
+    .optional(),
 }).transform((v) => {
   return remap$(v, {
     "report_generated_at": "reportGeneratedAt",
@@ -64,7 +65,9 @@ export type AgedCreditors$Outbound = {
   report_as_of_date?: string | undefined;
   period_count: number;
   period_length: number;
-  outstanding_balances?: Array<OutstandingBalance$Outbound> | undefined;
+  outstanding_balances?:
+    | Array<OutstandingBalanceBySupplier$Outbound>
+    | undefined;
 };
 
 /** @internal */
@@ -77,7 +80,8 @@ export const AgedCreditors$outboundSchema: z.ZodType<
   reportAsOfDate: z.instanceof(RFCDate).transform(v => v.toString()).optional(),
   periodCount: z.number().int().default(4),
   periodLength: z.number().int().default(30),
-  outstandingBalances: z.array(OutstandingBalance$outboundSchema).optional(),
+  outstandingBalances: z.array(OutstandingBalanceBySupplier$outboundSchema)
+    .optional(),
 }).transform((v) => {
   return remap$(v, {
     reportGeneratedAt: "report_generated_at",

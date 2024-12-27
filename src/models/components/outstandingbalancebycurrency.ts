@@ -24,6 +24,10 @@ export type OutstandingBalanceByCurrency = {
    * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
    */
   currency?: Currency | null | undefined;
+  /**
+   * Total amount of the outstanding balance.
+   */
+  totalAmount?: number | undefined;
   balancesByPeriod?: Array<BalanceByPeriod> | undefined;
 };
 
@@ -34,9 +38,11 @@ export const OutstandingBalanceByCurrency$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   currency: z.nullable(Currency$inboundSchema).optional(),
+  total_amount: z.number().optional(),
   balances_by_period: z.array(BalanceByPeriod$inboundSchema).optional(),
 }).transform((v) => {
   return remap$(v, {
+    "total_amount": "totalAmount",
     "balances_by_period": "balancesByPeriod",
   });
 });
@@ -44,6 +50,7 @@ export const OutstandingBalanceByCurrency$inboundSchema: z.ZodType<
 /** @internal */
 export type OutstandingBalanceByCurrency$Outbound = {
   currency?: string | null | undefined;
+  total_amount?: number | undefined;
   balances_by_period?: Array<BalanceByPeriod$Outbound> | undefined;
 };
 
@@ -54,9 +61,11 @@ export const OutstandingBalanceByCurrency$outboundSchema: z.ZodType<
   OutstandingBalanceByCurrency
 > = z.object({
   currency: z.nullable(Currency$outboundSchema).optional(),
+  totalAmount: z.number().optional(),
   balancesByPeriod: z.array(BalanceByPeriod$outboundSchema).optional(),
 }).transform((v) => {
   return remap$(v, {
+    totalAmount: "total_amount",
     balancesByPeriod: "balances_by_period",
   });
 });

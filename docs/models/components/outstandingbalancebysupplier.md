@@ -1,14 +1,14 @@
-# OutstandingBalance
+# OutstandingBalanceBySupplier
 
 ## Example Usage
 
 ```typescript
-import { OutstandingBalance } from "@apideck/unify/models/components";
+import { OutstandingBalanceBySupplier } from "@apideck/unify/models/components";
 import { RFCDate } from "@apideck/unify/types";
 
-let value: OutstandingBalance = {
-  customerId: "123",
-  customerName: "Super Store",
+let value: OutstandingBalanceBySupplier = {
+  supplierId: "123",
+  supplierName: "Super Store",
   outstandingBalancesByCurrency: [
     {
       currency: "USD",
@@ -25,6 +25,7 @@ let value: OutstandingBalance = {
               dueDate: new RFCDate("2024-02-15"),
               originalAmount: 1000,
               outstandingBalance: 800,
+              transactionNumber: "INV-1001",
             },
           ],
         },
@@ -38,6 +39,6 @@ let value: OutstandingBalance = {
 
 | Field                                                                                                | Type                                                                                                 | Required                                                                                             | Description                                                                                          | Example                                                                                              |
 | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
-| `customerId`                                                                                         | *string*                                                                                             | :heavy_minus_sign:                                                                                   | Unique identifier for the customer or supplier.                                                      | 123                                                                                                  |
-| `customerName`                                                                                       | *string*                                                                                             | :heavy_minus_sign:                                                                                   | Full name of the customer or supplier.                                                               | Super Store                                                                                          |
+| `supplierId`                                                                                         | *string*                                                                                             | :heavy_minus_sign:                                                                                   | Unique identifier for the supplier.                                                                  | 123                                                                                                  |
+| `supplierName`                                                                                       | *string*                                                                                             | :heavy_minus_sign:                                                                                   | Full name of the supplier.                                                                           | Super Store                                                                                          |
 | `outstandingBalancesByCurrency`                                                                      | [components.OutstandingBalanceByCurrency](../../models/components/outstandingbalancebycurrency.md)[] | :heavy_minus_sign:                                                                                   | N/A                                                                                                  |                                                                                                      |

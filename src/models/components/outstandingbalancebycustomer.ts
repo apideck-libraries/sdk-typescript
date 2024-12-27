@@ -14,13 +14,13 @@ import {
   OutstandingBalanceByCurrency$outboundSchema,
 } from "./outstandingbalancebycurrency.js";
 
-export type OutstandingBalance = {
+export type OutstandingBalanceByCustomer = {
   /**
-   * Unique identifier for the customer or supplier.
+   * Unique identifier for the customer.
    */
   customerId?: string | undefined;
   /**
-   * Full name of the customer or supplier.
+   * Full name of the customer.
    */
   customerName?: string | undefined;
   outstandingBalancesByCurrency?:
@@ -29,8 +29,8 @@ export type OutstandingBalance = {
 };
 
 /** @internal */
-export const OutstandingBalance$inboundSchema: z.ZodType<
-  OutstandingBalance,
+export const OutstandingBalanceByCustomer$inboundSchema: z.ZodType<
+  OutstandingBalanceByCustomer,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -48,7 +48,7 @@ export const OutstandingBalance$inboundSchema: z.ZodType<
 });
 
 /** @internal */
-export type OutstandingBalance$Outbound = {
+export type OutstandingBalanceByCustomer$Outbound = {
   customer_id?: string | undefined;
   customer_name?: string | undefined;
   outstanding_balances_by_currency?:
@@ -57,10 +57,10 @@ export type OutstandingBalance$Outbound = {
 };
 
 /** @internal */
-export const OutstandingBalance$outboundSchema: z.ZodType<
-  OutstandingBalance$Outbound,
+export const OutstandingBalanceByCustomer$outboundSchema: z.ZodType<
+  OutstandingBalanceByCustomer$Outbound,
   z.ZodTypeDef,
-  OutstandingBalance
+  OutstandingBalanceByCustomer
 > = z.object({
   customerId: z.string().optional(),
   customerName: z.string().optional(),
@@ -79,29 +79,31 @@ export const OutstandingBalance$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace OutstandingBalance$ {
-  /** @deprecated use `OutstandingBalance$inboundSchema` instead. */
-  export const inboundSchema = OutstandingBalance$inboundSchema;
-  /** @deprecated use `OutstandingBalance$outboundSchema` instead. */
-  export const outboundSchema = OutstandingBalance$outboundSchema;
-  /** @deprecated use `OutstandingBalance$Outbound` instead. */
-  export type Outbound = OutstandingBalance$Outbound;
+export namespace OutstandingBalanceByCustomer$ {
+  /** @deprecated use `OutstandingBalanceByCustomer$inboundSchema` instead. */
+  export const inboundSchema = OutstandingBalanceByCustomer$inboundSchema;
+  /** @deprecated use `OutstandingBalanceByCustomer$outboundSchema` instead. */
+  export const outboundSchema = OutstandingBalanceByCustomer$outboundSchema;
+  /** @deprecated use `OutstandingBalanceByCustomer$Outbound` instead. */
+  export type Outbound = OutstandingBalanceByCustomer$Outbound;
 }
 
-export function outstandingBalanceToJSON(
-  outstandingBalance: OutstandingBalance,
+export function outstandingBalanceByCustomerToJSON(
+  outstandingBalanceByCustomer: OutstandingBalanceByCustomer,
 ): string {
   return JSON.stringify(
-    OutstandingBalance$outboundSchema.parse(outstandingBalance),
+    OutstandingBalanceByCustomer$outboundSchema.parse(
+      outstandingBalanceByCustomer,
+    ),
   );
 }
 
-export function outstandingBalanceFromJSON(
+export function outstandingBalanceByCustomerFromJSON(
   jsonString: string,
-): SafeParseResult<OutstandingBalance, SDKValidationError> {
+): SafeParseResult<OutstandingBalanceByCustomer, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => OutstandingBalance$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'OutstandingBalance' from JSON`,
+    (x) => OutstandingBalanceByCustomer$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'OutstandingBalanceByCustomer' from JSON`,
   );
 }
