@@ -13,6 +13,7 @@ let value: BalanceByTransaction = {
   dueDate: new RFCDate("2024-02-15"),
   originalAmount: 1000,
   outstandingBalance: 800,
+  transactionNumber: "INV-1001",
 };
 ```
 
@@ -26,3 +27,4 @@ let value: BalanceByTransaction = {
 | `dueDate`                                                                | [RFCDate](../../types/rfcdate.md)                                        | :heavy_minus_sign:                                                       | Due date of the transaction.                                             | 2024-02-15                                                               |
 | `originalAmount`                                                         | *number*                                                                 | :heavy_minus_sign:                                                       | Original amount of the transaction.                                      | 1000                                                                     |
 | `outstandingBalance`                                                     | *number*                                                                 | :heavy_minus_sign:                                                       | Outstanding balance of the transaction.                                  | 800                                                                      |
+| `transactionNumber`                                                      | *string*                                                                 | :heavy_minus_sign:                                                       | Transaction number of the transaction.                                   | INV-1001                                                                 |

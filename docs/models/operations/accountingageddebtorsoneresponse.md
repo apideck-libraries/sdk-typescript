@@ -44,6 +44,7 @@ let value: AccountingAgedDebtorsOneResponse = {
                       dueDate: new RFCDate("2024-02-15"),
                       originalAmount: 1000,
                       outstandingBalance: 800,
+                      transactionNumber: "INV-1001",
                     },
                   ],
                 },

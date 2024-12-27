@@ -14,6 +14,10 @@ export type AgedReportFilter = {
    */
   customerId?: string | undefined;
   /**
+   * Filter by supplier id
+   */
+  supplierId?: string | undefined;
+  /**
    * The cutoff date for considering transactions
    */
   reportAsOfDate?: string | undefined;
@@ -34,12 +38,14 @@ export const AgedReportFilter$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   customer_id: z.string().optional(),
+  supplier_id: z.string().optional(),
   report_as_of_date: z.string().optional(),
   period_count: z.number().int().optional(),
   period_length: z.number().int().optional(),
 }).transform((v) => {
   return remap$(v, {
     "customer_id": "customerId",
+    "supplier_id": "supplierId",
     "report_as_of_date": "reportAsOfDate",
     "period_count": "periodCount",
     "period_length": "periodLength",
@@ -49,6 +55,7 @@ export const AgedReportFilter$inboundSchema: z.ZodType<
 /** @internal */
 export type AgedReportFilter$Outbound = {
   customer_id?: string | undefined;
+  supplier_id?: string | undefined;
   report_as_of_date?: string | undefined;
   period_count?: number | undefined;
   period_length?: number | undefined;
@@ -61,12 +68,14 @@ export const AgedReportFilter$outboundSchema: z.ZodType<
   AgedReportFilter
 > = z.object({
   customerId: z.string().optional(),
+  supplierId: z.string().optional(),
   reportAsOfDate: z.string().optional(),
   periodCount: z.number().int().optional(),
   periodLength: z.number().int().optional(),
 }).transform((v) => {
   return remap$(v, {
     customerId: "customer_id",
+    supplierId: "supplier_id",
     reportAsOfDate: "report_as_of_date",
     periodCount: "period_count",
     periodLength: "period_length",

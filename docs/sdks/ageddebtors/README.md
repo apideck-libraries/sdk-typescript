@@ -27,6 +27,7 @@ async function run() {
     serviceId: "salesforce",
     filter: {
       customerId: "123abc",
+      supplierId: "123abc",
       reportAsOfDate: "2024-01-01",
       periodCount: 3,
       periodLength: 30,
@@ -65,6 +66,7 @@ async function run() {
     serviceId: "salesforce",
     filter: {
       customerId: "123abc",
+      supplierId: "123abc",
       reportAsOfDate: "2024-01-01",
       periodCount: 3,
       periodLength: 30,

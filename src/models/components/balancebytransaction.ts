@@ -18,7 +18,7 @@ export const TransactionType = {
   CreditNote: "credit_note",
   Bill: "bill",
   Payment: "payment",
-  BillPayment: "bill-payment",
+  BillPayment: "bill_payment",
 } as const;
 /**
  * Type of the transaction.
@@ -50,6 +50,10 @@ export type BalanceByTransaction = {
    * Outstanding balance of the transaction.
    */
   outstandingBalance?: number | undefined;
+  /**
+   * Transaction number of the transaction.
+   */
+  transactionNumber?: string | undefined;
 };
 
 /** @internal */
@@ -85,6 +89,7 @@ export const BalanceByTransaction$inboundSchema: z.ZodType<
   due_date: z.string().transform(v => new RFCDate(v)).optional(),
   original_amount: z.number().optional(),
   outstanding_balance: z.number().optional(),
+  transaction_number: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
     "transaction_id": "transactionId",
@@ -93,6 +98,7 @@ export const BalanceByTransaction$inboundSchema: z.ZodType<
     "due_date": "dueDate",
     "original_amount": "originalAmount",
     "outstanding_balance": "outstandingBalance",
+    "transaction_number": "transactionNumber",
   });
 });
 
@@ -104,6 +110,7 @@ export type BalanceByTransaction$Outbound = {
   due_date?: string | undefined;
   original_amount?: number | undefined;
   outstanding_balance?: number | undefined;
+  transaction_number?: string | undefined;
 };
 
 /** @internal */
@@ -119,6 +126,7 @@ export const BalanceByTransaction$outboundSchema: z.ZodType<
   dueDate: z.instanceof(RFCDate).transform(v => v.toString()).optional(),
   originalAmount: z.number().optional(),
   outstandingBalance: z.number().optional(),
+  transactionNumber: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
     transactionId: "transaction_id",
@@ -127,6 +135,7 @@ export const BalanceByTransaction$outboundSchema: z.ZodType<
     dueDate: "due_date",
     originalAmount: "original_amount",
     outstandingBalance: "outstanding_balance",
+    transactionNumber: "transaction_number",
   });
 });
 

@@ -21,8 +21,8 @@ let value: GetAgedCreditorsResponse = {
     periodLength: 30,
     outstandingBalances: [
       {
-        customerId: "123",
-        customerName: "Super Store",
+        supplierId: "123",
+        supplierName: "Super Store",
         outstandingBalancesByCurrency: [
           {
             currency: "USD",
@@ -39,6 +39,7 @@ let value: GetAgedCreditorsResponse = {
                     dueDate: new RFCDate("2024-02-15"),
                     originalAmount: 1000,
                     outstandingBalance: 800,
+                    transactionNumber: "INV-1001",
                   },
                 ],
               },
