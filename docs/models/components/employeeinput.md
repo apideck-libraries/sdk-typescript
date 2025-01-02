@@ -174,7 +174,7 @@ let value: EmployeeInput = {
       name: "employee_level",
       description: "Employee Level",
       value: [
-        "<value>",
+        {},
       ],
     },
   ],

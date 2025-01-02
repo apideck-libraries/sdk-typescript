@@ -8,10 +8,7 @@
 ```typescript
 const value: components.SimpleFormFieldOption = {
   label: "General Channel",
-  value: [
-    "team",
-    "general",
-  ],
+  value: 123,
 };
 ```
 
@@ -24,10 +21,7 @@ const value: components.FormFieldOptionGroup = {
   options: [
     {
       label: "General Channel",
-      value: [
-        "team",
-        "general",
-      ],
+      value: 12.5,
     },
   ],
 };

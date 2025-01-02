@@ -10,7 +10,7 @@ let value: CustomField = {
   name: "employee_level",
   description: "Employee Level",
   value: [
-    {},
+    "<value>",
   ],
 };
 ```

@@ -90,9 +90,7 @@ let value: GetCreditNoteResponse = {
             id: "2389328923893298",
             name: "employee_level",
             description: "Employee Level",
-            value: [
-              {},
-            ],
+            value: 10,
           },
         ],
         rowVersion: "1-12345",
@@ -175,9 +173,7 @@ let value: GetCreditNoteResponse = {
         id: "2389328923893298",
         name: "employee_level",
         description: "Employee Level",
-        value: [
-          "<value>",
-        ],
+        value: true,
       },
     ],
     rowVersion: "1-12345",

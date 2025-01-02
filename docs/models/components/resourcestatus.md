@@ -7,7 +7,7 @@ Status of the resource. Resources with status live or beta are callable.
 ```typescript
 import { ResourceStatus } from "@apideck/unify/models/components";
 
-let value: ResourceStatus = "live";
+let value: ResourceStatus = "considering";
 ```
 
 ## Values

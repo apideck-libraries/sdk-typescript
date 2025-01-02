@@ -26,6 +26,12 @@ import {
   Currency$outboundSchema,
 } from "./currency.js";
 import {
+  CustomField,
+  CustomField$inboundSchema,
+  CustomField$Outbound,
+  CustomField$outboundSchema,
+} from "./customfield.js";
+import {
   CustomMappings,
   CustomMappings$inboundSchema,
   CustomMappings$Outbound,
@@ -173,6 +179,7 @@ export type Supplier = {
    * When custom mappings are configured on the resource, the result is included here.
    */
   customMappings?: CustomMappings | null | undefined;
+  customFields?: Array<CustomField> | undefined;
   /**
    * The user who last updated the object.
    */
@@ -269,6 +276,7 @@ export type SupplierInput = {
    * The channel through which the transaction is processed.
    */
   channel?: string | null | undefined;
+  customFields?: Array<CustomField> | undefined;
   /**
    * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
    */
@@ -336,6 +344,7 @@ export const Supplier$inboundSchema: z.ZodType<
   payment_method: z.nullable(z.string()).optional(),
   channel: z.nullable(z.string()).optional(),
   custom_mappings: z.nullable(CustomMappings$inboundSchema).optional(),
+  custom_fields: z.array(CustomField$inboundSchema).optional(),
   updated_by: z.nullable(z.string()).optional(),
   created_by: z.nullable(z.string()).optional(),
   updated_at: z.nullable(
@@ -363,6 +372,7 @@ export const Supplier$inboundSchema: z.ZodType<
     "tax_number": "taxNumber",
     "payment_method": "paymentMethod",
     "custom_mappings": "customMappings",
+    "custom_fields": "customFields",
     "updated_by": "updatedBy",
     "created_by": "createdBy",
     "updated_at": "updatedAt",
@@ -401,6 +411,7 @@ export type Supplier$Outbound = {
   payment_method?: string | null | undefined;
   channel?: string | null | undefined;
   custom_mappings?: CustomMappings$Outbound | null | undefined;
+  custom_fields?: Array<CustomField$Outbound> | undefined;
   updated_by?: string | null | undefined;
   created_by?: string | null | undefined;
   updated_at?: string | null | undefined;
@@ -442,6 +453,7 @@ export const Supplier$outboundSchema: z.ZodType<
   paymentMethod: z.nullable(z.string()).optional(),
   channel: z.nullable(z.string()).optional(),
   customMappings: z.nullable(CustomMappings$outboundSchema).optional(),
+  customFields: z.array(CustomField$outboundSchema).optional(),
   updatedBy: z.nullable(z.string()).optional(),
   createdBy: z.nullable(z.string()).optional(),
   updatedAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
@@ -465,6 +477,7 @@ export const Supplier$outboundSchema: z.ZodType<
     taxNumber: "tax_number",
     paymentMethod: "payment_method",
     customMappings: "custom_mappings",
+    customFields: "custom_fields",
     updatedBy: "updated_by",
     createdBy: "created_by",
     updatedAt: "updated_at",
@@ -531,6 +544,7 @@ export const SupplierInput$inboundSchema: z.ZodType<
   status: z.nullable(SupplierStatus$inboundSchema).optional(),
   payment_method: z.nullable(z.string()).optional(),
   channel: z.nullable(z.string()).optional(),
+  custom_fields: z.array(CustomField$inboundSchema).optional(),
   row_version: z.nullable(z.string()).optional(),
   pass_through: z.array(PassThroughBody$inboundSchema).optional(),
   subsidiary_id: z.string().optional(),
@@ -548,6 +562,7 @@ export const SupplierInput$inboundSchema: z.ZodType<
     "tax_rate": "taxRate",
     "tax_number": "taxNumber",
     "payment_method": "paymentMethod",
+    "custom_fields": "customFields",
     "row_version": "rowVersion",
     "pass_through": "passThrough",
     "subsidiary_id": "subsidiaryId",
@@ -579,6 +594,7 @@ export type SupplierInput$Outbound = {
   status?: string | null | undefined;
   payment_method?: string | null | undefined;
   channel?: string | null | undefined;
+  custom_fields?: Array<CustomField$Outbound> | undefined;
   row_version?: string | null | undefined;
   pass_through?: Array<PassThroughBody$Outbound> | undefined;
   subsidiary_id?: string | undefined;
@@ -613,6 +629,7 @@ export const SupplierInput$outboundSchema: z.ZodType<
   status: z.nullable(SupplierStatus$outboundSchema).optional(),
   paymentMethod: z.nullable(z.string()).optional(),
   channel: z.nullable(z.string()).optional(),
+  customFields: z.array(CustomField$outboundSchema).optional(),
   rowVersion: z.nullable(z.string()).optional(),
   passThrough: z.array(PassThroughBody$outboundSchema).optional(),
   subsidiaryId: z.string().optional(),
@@ -630,6 +647,7 @@ export const SupplierInput$outboundSchema: z.ZodType<
     taxRate: "tax_rate",
     taxNumber: "tax_number",
     paymentMethod: "payment_method",
+    customFields: "custom_fields",
     rowVersion: "row_version",
     passThrough: "pass_through",
     subsidiaryId: "subsidiary_id",

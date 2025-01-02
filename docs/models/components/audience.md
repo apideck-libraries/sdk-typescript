@@ -7,7 +7,7 @@ Audience for the doc.
 ```typescript
 import { Audience } from "@apideck/unify/models/components";
 
-let value: Audience = "application_owner";
+let value: Audience = "consumer";
 ```
 
 ## Values

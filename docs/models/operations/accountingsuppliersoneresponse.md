@@ -116,6 +116,14 @@ let value: AccountingSuppliersOneResponse = {
       status: "active",
       paymentMethod: "cash",
       channel: "email",
+      customFields: [
+        {
+          id: "2389328923893298",
+          name: "employee_level",
+          description: "Employee Level",
+          value: true,
+        },
+      ],
       updatedBy: "12345",
       createdBy: "12345",
       updatedAt: new Date("2020-09-30T07:43:32.000Z"),
@@ -144,7 +152,13 @@ let value: AccountingSuppliersOneResponse = {
     error: "Bad Request",
     typeName: "RequestHeadersValidationError",
     message: "Invalid Params",
-    detail: "Missing Header: x-apideck-consumer-id",
+    detail: {
+      "missing": [
+        {
+          "x-apideck-consumer-id": "required",
+        },
+      ],
+    },
     ref: "https://developers.apideck.com/errors#unauthorizederror",
   },
 };

@@ -97,7 +97,7 @@ let value: CrmContactsAddRequest = {
         name: "employee_level",
         description: "Employee Level",
         value: [
-          {},
+          "<value>",
         ],
       },
     ],
