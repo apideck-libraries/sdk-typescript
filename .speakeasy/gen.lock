@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 7bffa198-5d29-4efa-9942-d549cc832085
 management:
-  docChecksum: 7dcfb4378c6b67f6f82c84503a30eb9f
+  docChecksum: acdbd94ea7dcac1efe718acbf408db84
   docVersion: 10.9.0
   speakeasyVersion: 1.460.3
   generationVersion: 2.484.0
-  releaseVersion: 0.13.2
-  configChecksum: e7628991b155a239ab442d10447e9eba
+  releaseVersion: 0.13.3
+  configChecksum: af11ca21ba72bc8b98daa6048ad021d5
   repoURL: https://github.com/apideck-libraries/sdk-typescript.git
   installationURL: https://github.com/apideck-libraries/sdk-typescript
   published: true
@@ -68,7 +68,6 @@ generatedFiles:
   - docs/models/components/activitytype.md
   - docs/models/components/address.md
   - docs/models/components/addresses.md
-  - docs/models/components/agedcreditors.md
   - docs/models/components/ageddebtors.md
   - docs/models/components/agedreportfilter.md
   - docs/models/components/allocation.md
@@ -215,7 +214,6 @@ generatedFiles:
   - docs/models/components/createnoteresponse.md
   - docs/models/components/createopportunityresponse.md
   - docs/models/components/createpaymentresponse.md
-  - docs/models/components/createpipelineresponse.md
   - docs/models/components/createpurchaseorderresponse.md
   - docs/models/components/createsessionresponse.md
   - docs/models/components/createsessionresponsedata.md
@@ -288,7 +286,6 @@ generatedFiles:
   - docs/models/components/deletenoteresponse.md
   - docs/models/components/deleteopportunityresponse.md
   - docs/models/components/deletepaymentresponse.md
-  - docs/models/components/deletepipelineresponse.md
   - docs/models/components/deletepurchaseorderresponse.md
   - docs/models/components/deletesharedlinkresponse.md
   - docs/models/components/deletesubsidiaryresponse.md
@@ -385,7 +382,6 @@ generatedFiles:
   - docs/models/components/getaccountinglocationsresponse.md
   - docs/models/components/getactivitiesresponse.md
   - docs/models/components/getactivityresponse.md
-  - docs/models/components/getagedcreditorsresponse.md
   - docs/models/components/getageddebtorsresponse.md
   - docs/models/components/getapiresourcecoverageresponse.md
   - docs/models/components/getapiresourceresponse.md
@@ -472,7 +468,6 @@ generatedFiles:
   - docs/models/components/getpaymentsresponse.md
   - docs/models/components/getpayrollresponse.md
   - docs/models/components/getpayrollsresponse.md
-  - docs/models/components/getpipelineresponse.md
   - docs/models/components/getpipelinesresponse.md
   - docs/models/components/getproductresponse.md
   - docs/models/components/getproductsresponse.md
@@ -602,7 +597,6 @@ generatedFiles:
   - docs/models/components/orderssortby.md
   - docs/models/components/outstandingbalancebycurrency.md
   - docs/models/components/outstandingbalancebycustomer.md
-  - docs/models/components/outstandingbalancebysupplier.md
   - docs/models/components/owner.md
   - docs/models/components/paginationcoverage.md
   - docs/models/components/paginationcoveragemode.md
@@ -627,8 +621,6 @@ generatedFiles:
   - docs/models/components/phonenumber.md
   - docs/models/components/phonenumbertype.md
   - docs/models/components/pipeline.md
-  - docs/models/components/pipelineinput.md
-  - docs/models/components/pipelinestages.md
   - docs/models/components/price.md
   - docs/models/components/priority.md
   - docs/models/components/probationperiod.md
@@ -755,7 +747,6 @@ generatedFiles:
   - docs/models/components/updatenoteresponse.md
   - docs/models/components/updateopportunityresponse.md
   - docs/models/components/updatepaymentresponse.md
-  - docs/models/components/updatepipelineresponse.md
   - docs/models/components/updatepurchaseorderresponse.md
   - docs/models/components/updatesharedlinkresponse.md
   - docs/models/components/updatesubsidiaryresponse.md
@@ -799,9 +790,6 @@ generatedFiles:
   - docs/models/errors/unauthorizedresponsedetail.md
   - docs/models/errors/unprocessableresponse.md
   - docs/models/errors/unprocessableresponsedetail.md
-  - docs/models/operations/accountingagedcreditorsoneglobals.md
-  - docs/models/operations/accountingagedcreditorsonerequest.md
-  - docs/models/operations/accountingagedcreditorsoneresponse.md
   - docs/models/operations/accountingageddebtorsoneglobals.md
   - docs/models/operations/accountingageddebtorsonerequest.md
   - docs/models/operations/accountingageddebtorsoneresponse.md
@@ -1231,21 +1219,9 @@ generatedFiles:
   - docs/models/operations/crmopportunitiesupdateglobals.md
   - docs/models/operations/crmopportunitiesupdaterequest.md
   - docs/models/operations/crmopportunitiesupdateresponse.md
-  - docs/models/operations/crmpipelinesaddglobals.md
-  - docs/models/operations/crmpipelinesaddrequest.md
-  - docs/models/operations/crmpipelinesaddresponse.md
   - docs/models/operations/crmpipelinesallglobals.md
   - docs/models/operations/crmpipelinesallrequest.md
   - docs/models/operations/crmpipelinesallresponse.md
-  - docs/models/operations/crmpipelinesdeleteglobals.md
-  - docs/models/operations/crmpipelinesdeleterequest.md
-  - docs/models/operations/crmpipelinesdeleteresponse.md
-  - docs/models/operations/crmpipelinesoneglobals.md
-  - docs/models/operations/crmpipelinesonerequest.md
-  - docs/models/operations/crmpipelinesoneresponse.md
-  - docs/models/operations/crmpipelinesupdateglobals.md
-  - docs/models/operations/crmpipelinesupdaterequest.md
-  - docs/models/operations/crmpipelinesupdateresponse.md
   - docs/models/operations/crmusersaddglobals.md
   - docs/models/operations/crmusersaddrequest.md
   - docs/models/operations/crmusersaddresponse.md
@@ -1593,7 +1569,6 @@ generatedFiles:
   - docs/models/operations/webhookwebhooksupdateresponse.md
   - docs/sdks/accounting/README.md
   - docs/sdks/activities/README.md
-  - docs/sdks/agedcreditors/README.md
   - docs/sdks/ageddebtors/README.md
   - docs/sdks/apideck/README.md
   - docs/sdks/apideckcompanies/README.md
@@ -1683,7 +1658,6 @@ generatedFiles:
   - jsr.json
   - package.json
   - src/core.ts
-  - src/funcs/accountingAgedCreditorsGet.ts
   - src/funcs/accountingAgedDebtorsGet.ts
   - src/funcs/accountingAttachmentsDelete.ts
   - src/funcs/accountingAttachmentsDownload.ts
@@ -1827,11 +1801,7 @@ generatedFiles:
   - src/funcs/crmOpportunitiesGet.ts
   - src/funcs/crmOpportunitiesList.ts
   - src/funcs/crmOpportunitiesUpdate.ts
-  - src/funcs/crmPipelinesCreate.ts
-  - src/funcs/crmPipelinesDelete.ts
-  - src/funcs/crmPipelinesGet.ts
   - src/funcs/crmPipelinesList.ts
-  - src/funcs/crmPipelinesUpdate.ts
   - src/funcs/crmUsersCreate.ts
   - src/funcs/crmUsersDelete.ts
   - src/funcs/crmUsersGet.ts
@@ -1976,7 +1946,6 @@ generatedFiles:
   - src/models/components/activity.ts
   - src/models/components/activityattendee.ts
   - src/models/components/address.ts
-  - src/models/components/agedcreditors.ts
   - src/models/components/ageddebtors.ts
   - src/models/components/agedreportfilter.ts
   - src/models/components/allocation.ts
@@ -2070,7 +2039,6 @@ generatedFiles:
   - src/models/components/createnoteresponse.ts
   - src/models/components/createopportunityresponse.ts
   - src/models/components/createpaymentresponse.ts
-  - src/models/components/createpipelineresponse.ts
   - src/models/components/createpurchaseorderresponse.ts
   - src/models/components/createsessionresponse.ts
   - src/models/components/createsharedlinkresponse.ts
@@ -2128,7 +2096,6 @@ generatedFiles:
   - src/models/components/deletenoteresponse.ts
   - src/models/components/deleteopportunityresponse.ts
   - src/models/components/deletepaymentresponse.ts
-  - src/models/components/deletepipelineresponse.ts
   - src/models/components/deletepurchaseorderresponse.ts
   - src/models/components/deletesharedlinkresponse.ts
   - src/models/components/deletesubsidiaryresponse.ts
@@ -2189,7 +2156,6 @@ generatedFiles:
   - src/models/components/getaccountinglocationsresponse.ts
   - src/models/components/getactivitiesresponse.ts
   - src/models/components/getactivityresponse.ts
-  - src/models/components/getagedcreditorsresponse.ts
   - src/models/components/getageddebtorsresponse.ts
   - src/models/components/getapiresourcecoverageresponse.ts
   - src/models/components/getapiresourceresponse.ts
@@ -2276,7 +2242,6 @@ generatedFiles:
   - src/models/components/getpaymentsresponse.ts
   - src/models/components/getpayrollresponse.ts
   - src/models/components/getpayrollsresponse.ts
-  - src/models/components/getpipelineresponse.ts
   - src/models/components/getpipelinesresponse.ts
   - src/models/components/getproductresponse.ts
   - src/models/components/getproductsresponse.ts
@@ -2361,7 +2326,6 @@ generatedFiles:
   - src/models/components/orderssort.ts
   - src/models/components/outstandingbalancebycurrency.ts
   - src/models/components/outstandingbalancebycustomer.ts
-  - src/models/components/outstandingbalancebysupplier.ts
   - src/models/components/owner.ts
   - src/models/components/paginationcoverage.ts
   - src/models/components/passthroughbody.ts
@@ -2380,7 +2344,6 @@ generatedFiles:
   - src/models/components/personinput.ts
   - src/models/components/phonenumber.ts
   - src/models/components/pipeline.ts
-  - src/models/components/pipelineinput.ts
   - src/models/components/profitandloss.ts
   - src/models/components/profitandlossfilter.ts
   - src/models/components/purchaseorder.ts
@@ -2453,7 +2416,6 @@ generatedFiles:
   - src/models/components/updatenoteresponse.ts
   - src/models/components/updateopportunityresponse.ts
   - src/models/components/updatepaymentresponse.ts
-  - src/models/components/updatepipelineresponse.ts
   - src/models/components/updatepurchaseorderresponse.ts
   - src/models/components/updatesharedlinkresponse.ts
   - src/models/components/updatesubsidiaryresponse.ts
@@ -2485,7 +2447,6 @@ generatedFiles:
   - src/models/errors/sdkvalidationerror.ts
   - src/models/errors/unauthorizedresponse.ts
   - src/models/errors/unprocessableresponse.ts
-  - src/models/operations/accountingagedcreditorsone.ts
   - src/models/operations/accountingageddebtorsone.ts
   - src/models/operations/accountingattachmentsall.ts
   - src/models/operations/accountingattachmentsdelete.ts
@@ -2629,11 +2590,7 @@ generatedFiles:
   - src/models/operations/crmopportunitiesdelete.ts
   - src/models/operations/crmopportunitiesone.ts
   - src/models/operations/crmopportunitiesupdate.ts
-  - src/models/operations/crmpipelinesadd.ts
   - src/models/operations/crmpipelinesall.ts
-  - src/models/operations/crmpipelinesdelete.ts
-  - src/models/operations/crmpipelinesone.ts
-  - src/models/operations/crmpipelinesupdate.ts
   - src/models/operations/crmusersadd.ts
   - src/models/operations/crmusersall.ts
   - src/models/operations/crmusersdelete.ts
@@ -2752,7 +2709,6 @@ generatedFiles:
   - src/models/operations/webhookwebhooksupdate.ts
   - src/sdk/accounting.ts
   - src/sdk/activities.ts
-  - src/sdk/agedcreditors.ts
   - src/sdk/ageddebtors.ts
   - src/sdk/apideckcompanies.ts
   - src/sdk/apideckcustomers.ts

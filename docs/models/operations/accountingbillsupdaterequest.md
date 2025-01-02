@@ -129,6 +129,14 @@ let value: AccountingBillsUpdateRequest = {
       },
     ],
     rowVersion: "1-12345",
+    customFields: [
+      {
+        id: "2389328923893298",
+        name: "employee_level",
+        description: "Employee Level",
+        value: "Uses Salesforce and Marketo",
+      },
+    ],
     passThrough: [
       {
         serviceId: "<id>",

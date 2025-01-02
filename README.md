@@ -133,10 +133,6 @@ run();
 ### [accounting](docs/sdks/accounting/README.md)
 
 
-#### [accounting.agedCreditors](docs/sdks/agedcreditors/README.md)
-
-* [get](docs/sdks/agedcreditors/README.md#get) - Get Aged Creditors
-
 #### [accounting.agedDebtors](docs/sdks/ageddebtors/README.md)
 
 * [get](docs/sdks/ageddebtors/README.md#get) - Get Aged Debtors
@@ -404,10 +400,6 @@ run();
 #### [crm.pipelines](docs/sdks/pipelines/README.md)
 
 * [list](docs/sdks/pipelines/README.md#list) - List pipelines
-* [create](docs/sdks/pipelines/README.md#create) - Create pipeline
-* [get](docs/sdks/pipelines/README.md#get) - Get pipeline
-* [update](docs/sdks/pipelines/README.md#update) - Update pipeline
-* [delete](docs/sdks/pipelines/README.md#delete) - Delete pipeline
 
 #### [crm.users](docs/sdks/users/README.md)
 
@@ -674,7 +666,6 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 
 <summary>Available standalone functions</summary>
 
-- [`accountingAgedCreditorsGet`](docs/sdks/agedcreditors/README.md#get) - Get Aged Creditors
 - [`accountingAgedDebtorsGet`](docs/sdks/ageddebtors/README.md#get) - Get Aged Debtors
 - [`accountingAttachmentsDelete`](docs/sdks/attachments/README.md#delete) - Delete Attachment
 - [`accountingAttachmentsDownload`](docs/sdks/attachments/README.md#download) - Download Attachment
@@ -818,11 +809,7 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`crmOpportunitiesGet`](docs/sdks/opportunities/README.md#get) - Get opportunity
 - [`crmOpportunitiesList`](docs/sdks/opportunities/README.md#list) - List opportunities
 - [`crmOpportunitiesUpdate`](docs/sdks/opportunities/README.md#update) - Update opportunity
-- [`crmPipelinesCreate`](docs/sdks/pipelines/README.md#create) - Create pipeline
-- [`crmPipelinesDelete`](docs/sdks/pipelines/README.md#delete) - Delete pipeline
-- [`crmPipelinesGet`](docs/sdks/pipelines/README.md#get) - Get pipeline
 - [`crmPipelinesList`](docs/sdks/pipelines/README.md#list) - List pipelines
-- [`crmPipelinesUpdate`](docs/sdks/pipelines/README.md#update) - Update pipeline
 - [`crmUsersCreate`](docs/sdks/users/README.md#create) - Create user
 - [`crmUsersDelete`](docs/sdks/users/README.md#delete) - Delete user
 - [`crmUsersGet`](docs/sdks/users/README.md#get) - Get user

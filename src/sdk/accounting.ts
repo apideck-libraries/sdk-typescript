@@ -3,7 +3,6 @@
  */
 
 import { ClientSDK } from "../lib/sdks.js";
-import { AgedCreditors } from "./agedcreditors.js";
 import { AgedDebtors } from "./ageddebtors.js";
 import { Attachments } from "./attachments.js";
 import { BalanceSheet } from "./balancesheet.js";
@@ -131,11 +130,6 @@ export class Accounting extends ClientSDK {
   private _expenses?: Expenses;
   get expenses(): Expenses {
     return (this._expenses ??= new Expenses(this._options));
-  }
-
-  private _agedCreditors?: AgedCreditors;
-  get agedCreditors(): AgedCreditors {
-    return (this._agedCreditors ??= new AgedCreditors(this._options));
   }
 
   private _agedDebtors?: AgedDebtors;

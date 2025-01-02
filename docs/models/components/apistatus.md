@@ -7,7 +7,7 @@ Status of the API. APIs with status live or beta are callable.
 ```typescript
 import { ApiStatus } from "@apideck/unify/models/components";
 
-let value: ApiStatus = "development";
+let value: ApiStatus = "considering";
 ```
 
 ## Values

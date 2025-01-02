@@ -49,6 +49,14 @@ let value: AccountingLedgerAccountsAddRequest = {
     },
     subAccount: false,
     lastReconciliationDate: new RFCDate("2020-09-30"),
+    customFields: [
+      {
+        id: "2389328923893298",
+        name: "employee_level",
+        description: "Employee Level",
+        value: {},
+      },
+    ],
     rowVersion: "1-12345",
     passThrough: [
       {

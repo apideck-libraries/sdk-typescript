@@ -31,6 +31,12 @@ import {
   Currency$outboundSchema,
 } from "./currency.js";
 import {
+  CustomField,
+  CustomField$inboundSchema,
+  CustomField$Outbound,
+  CustomField$outboundSchema,
+} from "./customfield.js";
+import {
   CustomMappings,
   CustomMappings$inboundSchema,
   CustomMappings$Outbound,
@@ -224,6 +230,7 @@ export type Bill = {
    * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
    */
   rowVersion?: string | null | undefined;
+  customFields?: Array<CustomField> | undefined;
   /**
    * When custom mappings are configured on the resource, the result is included here.
    */
@@ -347,6 +354,7 @@ export type BillInput = {
    * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
    */
   rowVersion?: string | null | undefined;
+  customFields?: Array<CustomField> | undefined;
   /**
    * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
    */
@@ -421,6 +429,7 @@ export const Bill$inboundSchema: z.ZodType<Bill, z.ZodTypeDef, unknown> = z
       z.string().datetime({ offset: true }).transform(v => new Date(v)),
     ).optional(),
     row_version: z.nullable(z.string()).optional(),
+    custom_fields: z.array(CustomField$inboundSchema).optional(),
     custom_mappings: z.nullable(CustomMappings$inboundSchema).optional(),
     pass_through: z.array(PassThroughBody$inboundSchema).optional(),
     accounting_period: z.nullable(z.string()).optional(),
@@ -450,6 +459,7 @@ export const Bill$inboundSchema: z.ZodType<Bill, z.ZodTypeDef, unknown> = z
       "updated_at": "updatedAt",
       "created_at": "createdAt",
       "row_version": "rowVersion",
+      "custom_fields": "customFields",
       "custom_mappings": "customMappings",
       "pass_through": "passThrough",
       "accounting_period": "accountingPeriod",
@@ -497,6 +507,7 @@ export type Bill$Outbound = {
   updated_at?: string | null | undefined;
   created_at?: string | null | undefined;
   row_version?: string | null | undefined;
+  custom_fields?: Array<CustomField$Outbound> | undefined;
   custom_mappings?: CustomMappings$Outbound | null | undefined;
   pass_through?: Array<PassThroughBody$Outbound> | undefined;
   accounting_period?: string | null | undefined;
@@ -544,6 +555,7 @@ export const Bill$outboundSchema: z.ZodType<Bill$Outbound, z.ZodTypeDef, Bill> =
     updatedAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
     createdAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
     rowVersion: z.nullable(z.string()).optional(),
+    customFields: z.array(CustomField$outboundSchema).optional(),
     customMappings: z.nullable(CustomMappings$outboundSchema).optional(),
     passThrough: z.array(PassThroughBody$outboundSchema).optional(),
     accountingPeriod: z.nullable(z.string()).optional(),
@@ -573,6 +585,7 @@ export const Bill$outboundSchema: z.ZodType<Bill$Outbound, z.ZodTypeDef, Bill> =
       updatedAt: "updated_at",
       createdAt: "created_at",
       rowVersion: "row_version",
+      customFields: "custom_fields",
       customMappings: "custom_mappings",
       passThrough: "pass_through",
       accountingPeriod: "accounting_period",
@@ -643,6 +656,7 @@ export const BillInput$inboundSchema: z.ZodType<
   tracking_categories: z.nullable(z.array(LinkedTrackingCategory$inboundSchema))
     .optional(),
   row_version: z.nullable(z.string()).optional(),
+  custom_fields: z.array(CustomField$inboundSchema).optional(),
   pass_through: z.array(PassThroughBody$inboundSchema).optional(),
   accounting_period: z.nullable(z.string()).optional(),
 }).transform((v) => {
@@ -666,6 +680,7 @@ export const BillInput$inboundSchema: z.ZodType<
     "discount_percentage": "discountPercentage",
     "tracking_categories": "trackingCategories",
     "row_version": "rowVersion",
+    "custom_fields": "customFields",
     "pass_through": "passThrough",
     "accounting_period": "accountingPeriod",
   });
@@ -706,6 +721,7 @@ export type BillInput$Outbound = {
     | null
     | undefined;
   row_version?: string | null | undefined;
+  custom_fields?: Array<CustomField$Outbound> | undefined;
   pass_through?: Array<PassThroughBody$Outbound> | undefined;
   accounting_period?: string | null | undefined;
 };
@@ -748,6 +764,7 @@ export const BillInput$outboundSchema: z.ZodType<
   trackingCategories: z.nullable(z.array(LinkedTrackingCategory$outboundSchema))
     .optional(),
   rowVersion: z.nullable(z.string()).optional(),
+  customFields: z.array(CustomField$outboundSchema).optional(),
   passThrough: z.array(PassThroughBody$outboundSchema).optional(),
   accountingPeriod: z.nullable(z.string()).optional(),
 }).transform((v) => {
@@ -771,6 +788,7 @@ export const BillInput$outboundSchema: z.ZodType<
     discountPercentage: "discount_percentage",
     trackingCategories: "tracking_categories",
     rowVersion: "row_version",
+    customFields: "custom_fields",
     passThrough: "pass_through",
     accountingPeriod: "accounting_period",
   });

@@ -54,7 +54,7 @@ let value: Payment = {
       id: "2389328923893298",
       name: "employee_level",
       description: "Employee Level",
-      value: 10,
+      value: "Uses Salesforce and Marketo",
     },
   ],
   rowVersion: "1-12345",

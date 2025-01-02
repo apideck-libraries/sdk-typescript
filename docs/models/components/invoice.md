@@ -91,7 +91,7 @@ let value: Invoice = {
           name: "employee_level",
           description: "Employee Level",
           value: [
-            "<value>",
+            {},
           ],
         },
       ],
@@ -184,7 +184,7 @@ let value: Invoice = {
       id: "2389328923893298",
       name: "employee_level",
       description: "Employee Level",
-      value: 10,
+      value: true,
     },
   ],
   rowVersion: "1-12345",

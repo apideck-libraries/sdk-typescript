@@ -81,7 +81,7 @@ let value: Connection = {
               ],
             },
           ],
-          value: true,
+          value: 10.5,
         },
       ],
     },

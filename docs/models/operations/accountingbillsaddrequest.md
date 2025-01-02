@@ -128,6 +128,14 @@ let value: AccountingBillsAddRequest = {
       },
     ],
     rowVersion: "1-12345",
+    customFields: [
+      {
+        id: "2389328923893298",
+        name: "employee_level",
+        description: "Employee Level",
+        value: {},
+      },
+    ],
     passThrough: [
       {
         serviceId: "<id>",

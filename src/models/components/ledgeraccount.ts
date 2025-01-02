@@ -21,6 +21,12 @@ import {
   Currency$outboundSchema,
 } from "./currency.js";
 import {
+  CustomField,
+  CustomField$inboundSchema,
+  CustomField$Outbound,
+  CustomField$outboundSchema,
+} from "./customfield.js";
+import {
   CustomMappings,
   CustomMappings$inboundSchema,
   CustomMappings$Outbound,
@@ -248,6 +254,7 @@ export type LedgerAccount = {
    * When custom mappings are configured on the resource, the result is included here.
    */
   customMappings?: CustomMappings | null | undefined;
+  customFields?: Array<CustomField> | undefined;
   /**
    * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
    */
@@ -357,6 +364,7 @@ export type LedgerAccountInput = {
    * The subsidiaries the account belongs to.
    */
   subsidiaries?: Array<LedgerAccountSubsidiaries> | undefined;
+  customFields?: Array<CustomField> | undefined;
   /**
    * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
    */
@@ -698,6 +706,7 @@ export const LedgerAccount$inboundSchema: z.ZodType<
   subsidiaries: z.array(z.lazy(() => LedgerAccountSubsidiaries$inboundSchema))
     .optional(),
   custom_mappings: z.nullable(CustomMappings$inboundSchema).optional(),
+  custom_fields: z.array(CustomField$inboundSchema).optional(),
   row_version: z.nullable(z.string()).optional(),
   updated_by: z.nullable(z.string()).optional(),
   created_by: z.nullable(z.string()).optional(),
@@ -724,6 +733,7 @@ export const LedgerAccount$inboundSchema: z.ZodType<
     "sub_accounts": "subAccounts",
     "last_reconciliation_date": "lastReconciliationDate",
     "custom_mappings": "customMappings",
+    "custom_fields": "customFields",
     "row_version": "rowVersion",
     "updated_by": "updatedBy",
     "created_by": "createdBy",
@@ -762,6 +772,7 @@ export type LedgerAccount$Outbound = {
   last_reconciliation_date?: string | null | undefined;
   subsidiaries?: Array<LedgerAccountSubsidiaries$Outbound> | undefined;
   custom_mappings?: CustomMappings$Outbound | null | undefined;
+  custom_fields?: Array<CustomField$Outbound> | undefined;
   row_version?: string | null | undefined;
   updated_by?: string | null | undefined;
   created_by?: string | null | undefined;
@@ -806,6 +817,7 @@ export const LedgerAccount$outboundSchema: z.ZodType<
   subsidiaries: z.array(z.lazy(() => LedgerAccountSubsidiaries$outboundSchema))
     .optional(),
   customMappings: z.nullable(CustomMappings$outboundSchema).optional(),
+  customFields: z.array(CustomField$outboundSchema).optional(),
   rowVersion: z.nullable(z.string()).optional(),
   updatedBy: z.nullable(z.string()).optional(),
   createdBy: z.nullable(z.string()).optional(),
@@ -828,6 +840,7 @@ export const LedgerAccount$outboundSchema: z.ZodType<
     subAccounts: "sub_accounts",
     lastReconciliationDate: "last_reconciliation_date",
     customMappings: "custom_mappings",
+    customFields: "custom_fields",
     rowVersion: "row_version",
     updatedBy: "updated_by",
     createdBy: "created_by",
@@ -896,6 +909,7 @@ export const LedgerAccountInput$inboundSchema: z.ZodType<
   ).optional(),
   subsidiaries: z.array(z.lazy(() => LedgerAccountSubsidiaries$inboundSchema))
     .optional(),
+  custom_fields: z.array(CustomField$inboundSchema).optional(),
   row_version: z.nullable(z.string()).optional(),
   pass_through: z.array(PassThroughBody$inboundSchema).optional(),
 }).transform((v) => {
@@ -912,6 +926,7 @@ export const LedgerAccountInput$inboundSchema: z.ZodType<
     "parent_account": "parentAccount",
     "sub_account": "subAccount",
     "last_reconciliation_date": "lastReconciliationDate",
+    "custom_fields": "customFields",
     "row_version": "rowVersion",
     "pass_through": "passThrough",
   });
@@ -942,6 +957,7 @@ export type LedgerAccountInput$Outbound = {
   sub_account?: boolean | null | undefined;
   last_reconciliation_date?: string | null | undefined;
   subsidiaries?: Array<LedgerAccountSubsidiaries$Outbound> | undefined;
+  custom_fields?: Array<CustomField$Outbound> | undefined;
   row_version?: string | null | undefined;
   pass_through?: Array<PassThroughBody$Outbound> | undefined;
 };
@@ -978,6 +994,7 @@ export const LedgerAccountInput$outboundSchema: z.ZodType<
   ).optional(),
   subsidiaries: z.array(z.lazy(() => LedgerAccountSubsidiaries$outboundSchema))
     .optional(),
+  customFields: z.array(CustomField$outboundSchema).optional(),
   rowVersion: z.nullable(z.string()).optional(),
   passThrough: z.array(PassThroughBody$outboundSchema).optional(),
 }).transform((v) => {
@@ -994,6 +1011,7 @@ export const LedgerAccountInput$outboundSchema: z.ZodType<
     parentAccount: "parent_account",
     subAccount: "sub_account",
     lastReconciliationDate: "last_reconciliation_date",
+    customFields: "custom_fields",
     rowVersion: "row_version",
     passThrough: "pass_through",
   });
