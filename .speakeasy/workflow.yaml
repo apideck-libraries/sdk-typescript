@@ -6,6 +6,17 @@ sources:
             - location: https://ci-spec-unify.s3.eu-central-1.amazonaws.com/speakeasy-spec.yml
         registry:
             location: registry.speakeasyapi.dev/apideck-k2o/apideck/apideck-oas
+    Apideck-Sample-Docs:
+        inputs:
+            - location: https://ci-spec-unify.s3.eu-central-1.amazonaws.com/speakeasy-spec.yml
+        overlays:
+            - location: registry.speakeasyapi.dev/apideck-k2o/apideck/apideck-oas-typescript-code-samples
+            - location: registry.speakeasyapi.dev/apideck-k2o/apideck/apideck-csharp-code-samples
+            - location: registry.speakeasyapi.dev/apideck-k2o/apideck/apideck-go-code-samples
+            - location: registry.speakeasyapi.dev/apideck-k2o/apideck/apideck-oas-java-code-samples
+            - location: registry.speakeasyapi.dev/apideck-k2o/apideck/apideck-python-code-samples
+            - location: registry.speakeasyapi.dev/apideck-k2o/apideck/apideck-php-code-samples
+        output: apideck-oas-with-code-samples.yaml
 targets:
     apideck:
         target: typescript
