@@ -16,7 +16,8 @@ sources:
             - location: registry.speakeasyapi.dev/apideck-k2o/apideck/apideck-oas-java-code-samples
             - location: registry.speakeasyapi.dev/apideck-k2o/apideck/apideck-python-code-samples
             - location: registry.speakeasyapi.dev/apideck-k2o/apideck/apideck-php-code-samples
-        output: apideck-oas-with-code-samples.yaml
+        registry:
+            location: registry.speakeasyapi.dev/apideck-k2o/apideck/apideck-oas-with-code-samples
 targets:
     apideck:
         target: typescript
