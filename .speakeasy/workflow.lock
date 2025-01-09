@@ -1,21 +1,21 @@
-speakeasyVersion: 1.460.6
+speakeasyVersion: 1.466.1
 sources:
     Apideck-OAS:
         sourceNamespace: apideck-oas
-        sourceRevisionDigest: sha256:8d36fdcc6da8642fb74016172fefd873660b1ccbac0d41e5e73491bac4d5331d
+        sourceRevisionDigest: sha256:87bd3beb920a694f28a2e4a62107f0e7f244c816b7a854ff14608b6d956946cb
         sourceBlobDigest: sha256:4f88a753a09ecc6a10f5d56483b1c819d6d9170668b1c8a5046a84c438ba0284
         tags:
             - latest
-            - speakeasy-sdk-regen-1735811831
+            - speakeasy-sdk-regen-1736417992
             - 10.9.0
 targets:
     apideck:
         source: Apideck-OAS
         sourceNamespace: apideck-oas
-        sourceRevisionDigest: sha256:8d36fdcc6da8642fb74016172fefd873660b1ccbac0d41e5e73491bac4d5331d
+        sourceRevisionDigest: sha256:87bd3beb920a694f28a2e4a62107f0e7f244c816b7a854ff14608b6d956946cb
         sourceBlobDigest: sha256:4f88a753a09ecc6a10f5d56483b1c819d6d9170668b1c8a5046a84c438ba0284
         codeSamplesNamespace: apideck-oas-typescript-code-samples
-        codeSamplesRevisionDigest: sha256:4459773d038127b26db09c03bb7b0b7dddfebc7d4532ef41af2231ede49be276
+        codeSamplesRevisionDigest: sha256:037e6c5e59fb19fd2d4ddb1bc27d3f9e7cba6f713e36a11a9f3b712d485ba720
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest
@@ -25,6 +25,17 @@ workflow:
                 - location: https://ci-spec-unify.s3.eu-central-1.amazonaws.com/speakeasy-spec.yml
             registry:
                 location: registry.speakeasyapi.dev/apideck-k2o/apideck/apideck-oas
+        Apideck-Sample-Docs:
+            inputs:
+                - location: https://ci-spec-unify.s3.eu-central-1.amazonaws.com/speakeasy-spec.yml
+            overlays:
+                - location: registry.speakeasyapi.dev/apideck-k2o/apideck/apideck-oas-typescript-code-samples
+                - location: registry.speakeasyapi.dev/apideck-k2o/apideck/apideck-csharp-code-samples
+                - location: registry.speakeasyapi.dev/apideck-k2o/apideck/apideck-go-code-samples
+                - location: registry.speakeasyapi.dev/apideck-k2o/apideck/apideck-oas-java-code-samples
+                - location: registry.speakeasyapi.dev/apideck-k2o/apideck/apideck-python-code-samples
+                - location: registry.speakeasyapi.dev/apideck-k2o/apideck/apideck-php-code-samples
+            output: apideck-oas-with-code-samples.yaml
     targets:
         apideck:
             target: typescript
