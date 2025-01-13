@@ -13,6 +13,12 @@ import {
   Currency$outboundSchema,
 } from "./currency.js";
 import {
+  CustomField,
+  CustomField$inboundSchema,
+  CustomField$Outbound,
+  CustomField$outboundSchema,
+} from "./customfield.js";
+import {
   JournalEntryLineItemInput,
   JournalEntryLineItemInput$inboundSchema,
   JournalEntryLineItemInput$Outbound,
@@ -88,6 +94,7 @@ export type JournalEntryInput = {
    * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
    */
   rowVersion?: string | null | undefined;
+  customFields?: Array<CustomField> | undefined;
   /**
    * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
    */
@@ -116,6 +123,7 @@ export const JournalEntryInput$inboundSchema: z.ZodType<
     .optional(),
   accounting_period: z.nullable(z.string()).optional(),
   row_version: z.nullable(z.string()).optional(),
+  custom_fields: z.array(CustomField$inboundSchema).optional(),
   pass_through: z.array(PassThroughBody$inboundSchema).optional(),
 }).transform((v) => {
   return remap$(v, {
@@ -129,6 +137,7 @@ export const JournalEntryInput$inboundSchema: z.ZodType<
     "tracking_categories": "trackingCategories",
     "accounting_period": "accountingPeriod",
     "row_version": "rowVersion",
+    "custom_fields": "customFields",
     "pass_through": "passThrough",
   });
 });
@@ -152,6 +161,7 @@ export type JournalEntryInput$Outbound = {
     | undefined;
   accounting_period?: string | null | undefined;
   row_version?: string | null | undefined;
+  custom_fields?: Array<CustomField$Outbound> | undefined;
   pass_through?: Array<PassThroughBody$Outbound> | undefined;
 };
 
@@ -176,6 +186,7 @@ export const JournalEntryInput$outboundSchema: z.ZodType<
     .optional(),
   accountingPeriod: z.nullable(z.string()).optional(),
   rowVersion: z.nullable(z.string()).optional(),
+  customFields: z.array(CustomField$outboundSchema).optional(),
   passThrough: z.array(PassThroughBody$outboundSchema).optional(),
 }).transform((v) => {
   return remap$(v, {
@@ -189,6 +200,7 @@ export const JournalEntryInput$outboundSchema: z.ZodType<
     trackingCategories: "tracking_categories",
     accountingPeriod: "accounting_period",
     rowVersion: "row_version",
+    customFields: "custom_fields",
     passThrough: "pass_through",
   });
 });

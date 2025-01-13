@@ -13,6 +13,12 @@ import {
   Currency$outboundSchema,
 } from "./currency.js";
 import {
+  CustomField,
+  CustomField$inboundSchema,
+  CustomField$Outbound,
+  CustomField$outboundSchema,
+} from "./customfield.js";
+import {
   CustomMappings,
   CustomMappings$inboundSchema,
   CustomMappings$Outbound,
@@ -118,6 +124,7 @@ export type JournalEntry = {
    * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
    */
   rowVersion?: string | null | undefined;
+  customFields?: Array<CustomField> | undefined;
   /**
    * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
    */
@@ -156,6 +163,7 @@ export const JournalEntry$inboundSchema: z.ZodType<
     z.string().datetime({ offset: true }).transform(v => new Date(v)),
   ).optional(),
   row_version: z.nullable(z.string()).optional(),
+  custom_fields: z.array(CustomField$inboundSchema).optional(),
   pass_through: z.array(PassThroughBody$inboundSchema).optional(),
 }).transform((v) => {
   return remap$(v, {
@@ -174,6 +182,7 @@ export const JournalEntry$inboundSchema: z.ZodType<
     "updated_at": "updatedAt",
     "created_at": "createdAt",
     "row_version": "rowVersion",
+    "custom_fields": "customFields",
     "pass_through": "passThrough",
   });
 });
@@ -203,6 +212,7 @@ export type JournalEntry$Outbound = {
   updated_at?: string | null | undefined;
   created_at?: string | null | undefined;
   row_version?: string | null | undefined;
+  custom_fields?: Array<CustomField$Outbound> | undefined;
   pass_through?: Array<PassThroughBody$Outbound> | undefined;
 };
 
@@ -233,6 +243,7 @@ export const JournalEntry$outboundSchema: z.ZodType<
   updatedAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
   createdAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
   rowVersion: z.nullable(z.string()).optional(),
+  customFields: z.array(CustomField$outboundSchema).optional(),
   passThrough: z.array(PassThroughBody$outboundSchema).optional(),
 }).transform((v) => {
   return remap$(v, {
@@ -251,6 +262,7 @@ export const JournalEntry$outboundSchema: z.ZodType<
     updatedAt: "updated_at",
     createdAt: "created_at",
     rowVersion: "row_version",
+    customFields: "custom_fields",
     passThrough: "pass_through",
   });
 });

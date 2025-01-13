@@ -73,11 +73,17 @@ let value: CreateConnectionResponse = {
             id: "ProductInterest",
             options: [
               {
+                id: "1234",
                 label: "General Channel",
-                value: true,
+                options: [
+                  {
+                    label: "General Channel",
+                    value: 12.5,
+                  },
+                ],
               },
             ],
-            value: true,
+            value: 10,
           },
         ],
       },

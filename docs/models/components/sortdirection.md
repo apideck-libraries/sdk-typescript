@@ -7,7 +7,7 @@ The direction in which to sort the results
 ```typescript
 import { SortDirection } from "@apideck/unify/models/components";
 
-let value: SortDirection = "asc";
+let value: SortDirection = "desc";
 ```
 
 ## Values
