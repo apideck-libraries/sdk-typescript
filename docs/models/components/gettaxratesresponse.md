@@ -61,7 +61,7 @@ let value: GetTaxRatesResponse = {
           name: "employee_level",
           description: "Employee Level",
           value: [
-            {},
+            "<value>",
           ],
         },
       ],

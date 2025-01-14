@@ -31,7 +31,7 @@ const value: boolean = true;
 
 ```typescript
 const value: components.Value5[] = [
-  "GC6000 series",
+  10.5,
 ];
 ```
 

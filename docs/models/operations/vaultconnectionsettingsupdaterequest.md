@@ -35,12 +35,12 @@ let value: VaultConnectionSettingsUpdateRequest = {
                 options: [
                   {
                     label: "General Channel",
-                    value: true,
+                    value: 12.5,
                   },
                 ],
               },
             ],
-            value: "GC5000 series",
+            value: true,
           },
         ],
       },

@@ -113,6 +113,16 @@ let value: AccountingJournalEntriesOneResponse = {
       updatedAt: new Date("2020-09-30T07:43:32.000Z"),
       createdAt: new Date("2020-09-30T07:43:32.000Z"),
       rowVersion: "1-12345",
+      customFields: [
+        {
+          id: "2389328923893298",
+          name: "employee_level",
+          description: "Employee Level",
+          value: [
+            "<value>",
+          ],
+        },
+      ],
       passThrough: [
         {
           serviceId: "<id>",
@@ -135,13 +145,7 @@ let value: AccountingJournalEntriesOneResponse = {
     error: "Bad Request",
     typeName: "RequestHeadersValidationError",
     message: "Invalid Params",
-    detail: {
-      "missing": [
-        {
-          "x-apideck-consumer-id": "required",
-        },
-      ],
-    },
+    detail: "Missing Header: x-apideck-consumer-id",
     ref: "https://developers.apideck.com/errors#unauthorizederror",
   },
 };

@@ -88,7 +88,7 @@ let value: LeadInput = {
       name: "employee_level",
       description: "Employee Level",
       value: [
-        {},
+        "<value>",
       ],
     },
   ],

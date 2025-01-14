@@ -78,17 +78,11 @@ let value: VaultConnectionsImportResponse = {
               id: "ProductInterest",
               options: [
                 {
-                  id: "1234",
                   label: "General Channel",
-                  options: [
-                    {
-                      label: "General Channel",
-                      value: 123,
-                    },
-                  ],
+                  value: 123,
                 },
               ],
-              value: 10,
+              value: "GC5000 series",
             },
           ],
         },
@@ -146,13 +140,7 @@ let value: VaultConnectionsImportResponse = {
     error: "Bad Request",
     typeName: "RequestHeadersValidationError",
     message: "Invalid Params",
-    detail: {
-      "missing": [
-        {
-          "x-apideck-consumer-id": "required",
-        },
-      ],
-    },
+    detail: "Missing Header: x-apideck-consumer-id",
     ref: "https://developers.apideck.com/errors#unauthorizederror",
   },
 };

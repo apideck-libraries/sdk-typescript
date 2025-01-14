@@ -34,12 +34,12 @@ let value: VaultConnectionsUpdateRequest = {
                 options: [
                   {
                     label: "General Channel",
-                    value: 123,
+                    value: "general",
                   },
                 ],
               },
             ],
-            value: 10,
+            value: true,
           },
         ],
       },
