@@ -189,14 +189,7 @@ async function run() {
         {
           serviceId: "<id>",
           extendPaths: [
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
+
           ],
         },
         {
@@ -289,14 +282,7 @@ async function run() {
         {
           serviceId: "<id>",
           extendPaths: [
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
+  
           ],
         },
         {
@@ -480,9 +466,7 @@ async function run() {
       status: "open",
       priority: "high",
       assignees: [
-        {
-          id: "12345",
-        },
+
       ],
       dueDate: new Date("2020-09-30T07:43:32.000Z"),
       tags: [
@@ -497,19 +481,7 @@ async function run() {
         },
       ],
       passThrough: [
-        {
-          serviceId: "<id>",
-          extendPaths: [
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
-          ],
-        },
+
       ],
     },
   });
@@ -550,9 +522,7 @@ async function run() {
       status: "open",
       priority: "high",
       assignees: [
-        {
-          id: "12345",
-        },
+  
       ],
       dueDate: new Date("2020-09-30T07:43:32.000Z"),
       tags: [
@@ -567,19 +537,7 @@ async function run() {
         },
       ],
       passThrough: [
-        {
-          serviceId: "<id>",
-          extendPaths: [
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
-          ],
-        },
+  
       ],
     },
   });

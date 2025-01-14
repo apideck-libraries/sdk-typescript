@@ -225,45 +225,7 @@ async function run() {
       sourceId: "12345",
       recordUrl: "https://app.intercom.io/contacts/12345",
       jobs: [
-        {
-          title: "CEO",
-          role: "Sales",
-          startDate: new RFCDate("2020-08-12"),
-          endDate: new RFCDate("2020-08-12"),
-          compensationRate: 72000,
-          currency: "USD",
-          paymentUnit: "year",
-          hiredAt: new RFCDate("2020-08-12"),
-          isPrimary: true,
-          isManager: true,
-          status: "active",
-          location: {
-            id: "123",
-            type: "primary",
-            string: "25 Spring Street, Blackburn, VIC 3130",
-            name: "HQ US",
-            line1: "Main street",
-            line2: "apt #",
-            line3: "Suite #",
-            line4: "delivery instructions",
-            streetNumber: "25",
-            city: "San Francisco",
-            state: "CA",
-            postalCode: "94104",
-            country: "US",
-            latitude: "40.759211",
-            longitude: "-73.984638",
-            county: "Santa Clara",
-            contactName: "Elon Musk",
-            salutation: "Mr",
-            phoneNumber: "111-111-1111",
-            fax: "122-111-1111",
-            email: "elon@musk.com",
-            website: "https://elonmusk.com",
-            notes: "Address notes or delivery instructions.",
-            rowVersion: "1-12345",
-          },
-        },
+
       ],
       compensations: [
         {
@@ -332,12 +294,7 @@ async function run() {
         },
       ],
       customFields: [
-        {
-          id: "2389328923893298",
-          name: "employee_level",
-          description: "Employee Level",
-          value: true,
-        },
+
       ],
       socialLinks: [
         {
@@ -557,45 +514,7 @@ async function run() {
       sourceId: "12345",
       recordUrl: "https://app.intercom.io/contacts/12345",
       jobs: [
-        {
-          title: "CEO",
-          role: "Sales",
-          startDate: new RFCDate("2020-08-12"),
-          endDate: new RFCDate("2020-08-12"),
-          compensationRate: 72000,
-          currency: "USD",
-          paymentUnit: "year",
-          hiredAt: new RFCDate("2020-08-12"),
-          isPrimary: true,
-          isManager: true,
-          status: "active",
-          location: {
-            id: "123",
-            type: "primary",
-            string: "25 Spring Street, Blackburn, VIC 3130",
-            name: "HQ US",
-            line1: "Main street",
-            line2: "apt #",
-            line3: "Suite #",
-            line4: "delivery instructions",
-            streetNumber: "25",
-            city: "San Francisco",
-            state: "CA",
-            postalCode: "94104",
-            country: "US",
-            latitude: "40.759211",
-            longitude: "-73.984638",
-            county: "Santa Clara",
-            contactName: "Elon Musk",
-            salutation: "Mr",
-            phoneNumber: "111-111-1111",
-            fax: "122-111-1111",
-            email: "elon@musk.com",
-            website: "https://elonmusk.com",
-            notes: "Address notes or delivery instructions.",
-            rowVersion: "1-12345",
-          },
-        },
+  
       ],
       compensations: [
         {
@@ -664,12 +583,7 @@ async function run() {
         },
       ],
       customFields: [
-        {
-          id: "2389328923893298",
-          name: "employee_level",
-          description: "Employee Level",
-          value: true,
-        },
+  
       ],
       socialLinks: [
         {
@@ -1020,45 +934,7 @@ async function run() {
       sourceId: "12345",
       recordUrl: "https://app.intercom.io/contacts/12345",
       jobs: [
-        {
-          title: "CEO",
-          role: "Sales",
-          startDate: new RFCDate("2020-08-12"),
-          endDate: new RFCDate("2020-08-12"),
-          compensationRate: 72000,
-          currency: "USD",
-          paymentUnit: "year",
-          hiredAt: new RFCDate("2020-08-12"),
-          isPrimary: true,
-          isManager: true,
-          status: "active",
-          location: {
-            id: "123",
-            type: "primary",
-            string: "25 Spring Street, Blackburn, VIC 3130",
-            name: "HQ US",
-            line1: "Main street",
-            line2: "apt #",
-            line3: "Suite #",
-            line4: "delivery instructions",
-            streetNumber: "25",
-            city: "San Francisco",
-            state: "CA",
-            postalCode: "94104",
-            country: "US",
-            latitude: "40.759211",
-            longitude: "-73.984638",
-            county: "Santa Clara",
-            contactName: "Elon Musk",
-            salutation: "Mr",
-            phoneNumber: "111-111-1111",
-            fax: "122-111-1111",
-            email: "elon@musk.com",
-            website: "https://elonmusk.com",
-            notes: "Address notes or delivery instructions.",
-            rowVersion: "1-12345",
-          },
-        },
+
       ],
       compensations: [
         {
@@ -1195,14 +1071,7 @@ async function run() {
         },
       ],
       customFields: [
-        {
-          id: "2389328923893298",
-          name: "employee_level",
-          description: "Employee Level",
-          value: [
-            {},
-          ],
-        },
+
       ],
       socialLinks: [
         {
@@ -1212,19 +1081,7 @@ async function run() {
         },
       ],
       bankAccounts: [
-        {
-          bankName: "Monzo",
-          accountNumber: "123465",
-          accountName: "SPACEX LLC",
-          accountType: "credit_card",
-          iban: "CH2989144532982975332",
-          bic: "AUDSCHGGXXX",
-          routingNumber: "012345678",
-          bsbNumber: "062-001",
-          branchIdentifier: "001",
-          bankCode: "BNH",
-          currency: "USD",
-        },
+
       ],
       taxCode: "1111",
       taxId: "234-32-0000",
@@ -1245,14 +1102,7 @@ async function run() {
         {
           serviceId: "<id>",
           extendPaths: [
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
+
           ],
         },
         {
@@ -1397,45 +1247,7 @@ async function run() {
       sourceId: "12345",
       recordUrl: "https://app.intercom.io/contacts/12345",
       jobs: [
-        {
-          title: "CEO",
-          role: "Sales",
-          startDate: new RFCDate("2020-08-12"),
-          endDate: new RFCDate("2020-08-12"),
-          compensationRate: 72000,
-          currency: "USD",
-          paymentUnit: "year",
-          hiredAt: new RFCDate("2020-08-12"),
-          isPrimary: true,
-          isManager: true,
-          status: "active",
-          location: {
-            id: "123",
-            type: "primary",
-            string: "25 Spring Street, Blackburn, VIC 3130",
-            name: "HQ US",
-            line1: "Main street",
-            line2: "apt #",
-            line3: "Suite #",
-            line4: "delivery instructions",
-            streetNumber: "25",
-            city: "San Francisco",
-            state: "CA",
-            postalCode: "94104",
-            country: "US",
-            latitude: "40.759211",
-            longitude: "-73.984638",
-            county: "Santa Clara",
-            contactName: "Elon Musk",
-            salutation: "Mr",
-            phoneNumber: "111-111-1111",
-            fax: "122-111-1111",
-            email: "elon@musk.com",
-            website: "https://elonmusk.com",
-            notes: "Address notes or delivery instructions.",
-            rowVersion: "1-12345",
-          },
-        },
+  
       ],
       compensations: [
         {
@@ -1572,12 +1384,7 @@ async function run() {
         },
       ],
       customFields: [
-        {
-          id: "2389328923893298",
-          name: "employee_level",
-          description: "Employee Level",
-          value: true,
-        },
+  
       ],
       socialLinks: [
         {
@@ -1587,19 +1394,7 @@ async function run() {
         },
       ],
       bankAccounts: [
-        {
-          bankName: "Monzo",
-          accountNumber: "123465",
-          accountName: "SPACEX LLC",
-          accountType: "credit_card",
-          iban: "CH2989144532982975332",
-          bic: "AUDSCHGGXXX",
-          routingNumber: "012345678",
-          bsbNumber: "062-001",
-          branchIdentifier: "001",
-          bankCode: "BNH",
-          currency: "USD",
-        },
+  
       ],
       taxCode: "1111",
       taxId: "234-32-0000",
@@ -1620,14 +1415,7 @@ async function run() {
         {
           serviceId: "<id>",
           extendPaths: [
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
+  
           ],
         },
         {

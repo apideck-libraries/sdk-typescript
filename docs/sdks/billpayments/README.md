@@ -660,10 +660,7 @@ async function run() {
       note: "Some notes about this transaction",
       number: "123456",
       trackingCategories: [
-        {
-          id: "123456",
-          name: "New York",
-        },
+
       ],
       customFields: [
         {
@@ -819,10 +816,7 @@ async function run() {
       note: "Some notes about this transaction",
       number: "123456",
       trackingCategories: [
-        {
-          id: "123456",
-          name: "New York",
-        },
+  
       ],
       customFields: [
         {

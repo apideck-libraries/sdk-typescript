@@ -1253,21 +1253,7 @@ async function run() {
       parentFolderId: "1234",
       driveId: "1234",
       size: 1810673,
-      passThrough: [
-        {
-          serviceId: "<id>",
-          extendPaths: [
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
-          ],
-        },
-      ],
+      passThrough: [],
     },
   }, {
     serverURL: "https://upload.apideck.com",

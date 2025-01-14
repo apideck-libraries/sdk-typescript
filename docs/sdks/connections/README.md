@@ -228,16 +228,7 @@ async function run() {
             {
               id: "ProductInterest",
               options: [
-                {
-                  id: "1234",
-                  label: "General Channel",
-                  options: [
-                    {
-                      label: "General Channel",
-                      value: 12.5,
-                    },
-                  ],
-                },
+
               ],
               value: 10.5,
             },
@@ -318,13 +309,7 @@ async function run() {
             {
               id: "ProductInterest",
               options: [
-                {
-                  label: "General Channel",
-                  value: [
-                    "team",
-                    "general",
-                  ],
-                },
+
               ],
               value: true,
             },
@@ -430,16 +415,7 @@ async function run() {
             {
               id: "ProductInterest",
               options: [
-                {
-                  id: "1234",
-                  label: "General Channel",
-                  options: [
-                    {
-                      label: "General Channel",
-                      value: 12.5,
-                    },
-                  ],
-                },
+  
               ],
               value: 10.5,
             },
@@ -520,10 +496,7 @@ async function run() {
             {
               id: "ProductInterest",
               options: [
-                {
-                  label: "General Channel",
-                  value: 123,
-                },
+  
               ],
               value: true,
             },

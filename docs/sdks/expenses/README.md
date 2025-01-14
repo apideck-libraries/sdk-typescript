@@ -178,19 +178,7 @@ async function run() {
       ],
       rowVersion: "1-12345",
       passThrough: [
-        {
-          serviceId: "<id>",
-          extendPaths: [
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
-          ],
-        },
+
       ],
     },
   });
@@ -281,19 +269,7 @@ async function run() {
       ],
       rowVersion: "1-12345",
       passThrough: [
-        {
-          serviceId: "<id>",
-          extendPaths: [
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
-          ],
-        },
+  
       ],
     },
   });
@@ -459,25 +435,7 @@ async function run() {
       },
       totalAmount: 275,
       lineItems: [
-        {
-          trackingCategories: [
-            {
-              id: "123456",
-              name: "New York",
-            },
-          ],
-          accountId: "123456",
-          customerId: "12345",
-          departmentId: "12345",
-          locationId: "12345",
-          taxRate: {
-            id: "123456",
-            rate: 10,
-          },
-          description: "Travel US.",
-          totalAmount: 275,
-          billable: true,
-        },
+
       ],
       customFields: [
         {
@@ -495,19 +453,7 @@ async function run() {
       ],
       rowVersion: "1-12345",
       passThrough: [
-        {
-          serviceId: "<id>",
-          extendPaths: [
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
-          ],
-        },
+
       ],
     },
   });
@@ -557,25 +503,7 @@ async function run() {
       },
       totalAmount: 275,
       lineItems: [
-        {
-          trackingCategories: [
-            {
-              id: "123456",
-              name: "New York",
-            },
-          ],
-          accountId: "123456",
-          customerId: "12345",
-          departmentId: "12345",
-          locationId: "12345",
-          taxRate: {
-            id: "123456",
-            rate: 10,
-          },
-          description: "Travel US.",
-          totalAmount: 275,
-          billable: true,
-        },
+  
       ],
       customFields: [
         {
@@ -593,19 +521,7 @@ async function run() {
       ],
       rowVersion: "1-12345",
       passThrough: [
-        {
-          serviceId: "<id>",
-          extendPaths: [
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
-          ],
-        },
+  
       ],
     },
   });

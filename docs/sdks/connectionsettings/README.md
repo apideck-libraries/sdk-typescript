@@ -135,29 +135,12 @@ async function run() {
         {
           resource: "leads",
           defaults: [
-            {
-              id: "ProductInterest",
-              options: [
-                {
-                  id: "1234",
-                  label: "General Channel",
-                  options: [
-                    {
-                      label: "General Channel",
-                      value: 12.5,
-                    },
-                  ],
-                },
-              ],
-              value: 10,
-            },
+
           ],
         },
       ],
       customMappings: [
-        {
-          value: "$.root.training.first_aid",
-        },
+
       ],
     },
   });
@@ -207,31 +190,12 @@ async function run() {
         {
           resource: "leads",
           defaults: [
-            {
-              id: "ProductInterest",
-              options: [
-                {
-                  id: "1234",
-                  label: "General Channel",
-                  options: [
-                    {
-                      label: "General Channel",
-                      value: "general",
-                    },
-                  ],
-                },
-              ],
-              value: [
-                10,
-              ],
-            },
+  
           ],
         },
       ],
       customMappings: [
-        {
-          value: "$.root.training.first_aid",
-        },
+  
       ],
     },
   });

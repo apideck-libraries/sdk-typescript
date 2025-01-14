@@ -164,11 +164,7 @@ async function run() {
       status: "authorised",
       type: "accounts_receivable",
       allocations: [
-        {
-          id: "123456",
-          amount: 49.99,
-          allocationId: "123456",
-        },
+
       ],
       note: "Some notes about this transaction",
       number: "123456",
@@ -183,29 +179,12 @@ async function run() {
         },
       ],
       customFields: [
-        {
-          id: "2389328923893298",
-          name: "employee_level",
-          description: "Employee Level",
-          value: true,
-        },
+
       ],
       rowVersion: "1-12345",
       displayId: "123456",
       passThrough: [
-        {
-          serviceId: "<id>",
-          extendPaths: [
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
-          ],
-        },
+
       ],
     },
   });
@@ -260,11 +239,7 @@ async function run() {
       status: "authorised",
       type: "accounts_receivable",
       allocations: [
-        {
-          id: "123456",
-          amount: 49.99,
-          allocationId: "123456",
-        },
+  
       ],
       note: "Some notes about this transaction",
       number: "123456",
@@ -279,29 +254,12 @@ async function run() {
         },
       ],
       customFields: [
-        {
-          id: "2389328923893298",
-          name: "employee_level",
-          description: "Employee Level",
-          value: true,
-        },
+  
       ],
       rowVersion: "1-12345",
       displayId: "123456",
       passThrough: [
-        {
-          serviceId: "<id>",
-          extendPaths: [
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
-          ],
-        },
+  
       ],
     },
   });
@@ -512,19 +470,7 @@ async function run() {
       rowVersion: "1-12345",
       displayId: "123456",
       passThrough: [
-        {
-          serviceId: "<id>",
-          extendPaths: [
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
-          ],
-        },
+
       ],
     },
   });
@@ -617,19 +563,7 @@ async function run() {
       rowVersion: "1-12345",
       displayId: "123456",
       passThrough: [
-        {
-          serviceId: "<id>",
-          extendPaths: [
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
-          ],
-        },
+  
       ],
     },
   });
