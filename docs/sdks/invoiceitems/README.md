@@ -181,10 +181,7 @@ async function run() {
         code: "453",
       },
       trackingCategories: [
-        {
-          id: "123456",
-          name: "New York",
-        },
+
       ],
       active: true,
       rowVersion: "1-12345",
@@ -192,14 +189,7 @@ async function run() {
         {
           serviceId: "<id>",
           extendPaths: [
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
+
           ],
         },
         {
@@ -300,10 +290,7 @@ async function run() {
         code: "453",
       },
       trackingCategories: [
-        {
-          id: "123456",
-          name: "New York",
-        },
+  
       ],
       active: true,
       rowVersion: "1-12345",
@@ -311,14 +298,7 @@ async function run() {
         {
           serviceId: "<id>",
           extendPaths: [
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
+  
           ],
         },
         {
@@ -555,14 +535,7 @@ async function run() {
         {
           serviceId: "<id>",
           extendPaths: [
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
+
           ],
         },
         {
@@ -704,14 +677,7 @@ async function run() {
         {
           serviceId: "<id>",
           extendPaths: [
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
+  
           ],
         },
         {

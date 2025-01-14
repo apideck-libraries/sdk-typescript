@@ -170,7 +170,7 @@ export type PurchaseOrder = {
   /**
    * The due date is the date on which a payment is scheduled to be received - YYYY-MM-DD.
    */
-  dueDate?: RFCDate | undefined;
+  dueDate?: RFCDate | null | undefined;
   /**
    * Payment method used for the transaction, such as cash, credit card, bank transfer, or check
    */
@@ -294,7 +294,7 @@ export type PurchaseOrderInput = {
   /**
    * The due date is the date on which a payment is scheduled to be received - YYYY-MM-DD.
    */
-  dueDate?: RFCDate | undefined;
+  dueDate?: RFCDate | null | undefined;
   /**
    * Payment method used for the transaction, such as cash, credit card, bank transfer, or check
    */
@@ -377,7 +377,7 @@ export const PurchaseOrder$inboundSchema: z.ZodType<
   discount_percentage: z.nullable(z.number()).optional(),
   bank_account: BankAccount$inboundSchema.optional(),
   accounting_by_row: z.nullable(z.boolean()).optional(),
-  due_date: z.string().transform(v => new RFCDate(v)).optional(),
+  due_date: z.nullable(z.string().transform(v => new RFCDate(v))).optional(),
   payment_method: z.nullable(z.string()).optional(),
   tax_code: z.nullable(z.string()).optional(),
   channel: z.nullable(z.string()).optional(),
@@ -453,7 +453,7 @@ export type PurchaseOrder$Outbound = {
   discount_percentage?: number | null | undefined;
   bank_account?: BankAccount$Outbound | undefined;
   accounting_by_row?: boolean | null | undefined;
-  due_date?: string | undefined;
+  due_date?: string | null | undefined;
   payment_method?: string | null | undefined;
   tax_code?: string | null | undefined;
   channel?: string | null | undefined;
@@ -504,7 +504,8 @@ export const PurchaseOrder$outboundSchema: z.ZodType<
   discountPercentage: z.nullable(z.number()).optional(),
   bankAccount: BankAccount$outboundSchema.optional(),
   accountingByRow: z.nullable(z.boolean()).optional(),
-  dueDate: z.instanceof(RFCDate).transform(v => v.toString()).optional(),
+  dueDate: z.nullable(z.instanceof(RFCDate).transform(v => v.toString()))
+    .optional(),
   paymentMethod: z.nullable(z.string()).optional(),
   taxCode: z.nullable(z.string()).optional(),
   channel: z.nullable(z.string()).optional(),
@@ -607,7 +608,7 @@ export const PurchaseOrderInput$inboundSchema: z.ZodType<
   discount_percentage: z.nullable(z.number()).optional(),
   bank_account: BankAccount$inboundSchema.optional(),
   accounting_by_row: z.nullable(z.boolean()).optional(),
-  due_date: z.string().transform(v => new RFCDate(v)).optional(),
+  due_date: z.nullable(z.string().transform(v => new RFCDate(v))).optional(),
   payment_method: z.nullable(z.string()).optional(),
   tax_code: z.nullable(z.string()).optional(),
   channel: z.nullable(z.string()).optional(),
@@ -666,7 +667,7 @@ export type PurchaseOrderInput$Outbound = {
   discount_percentage?: number | null | undefined;
   bank_account?: BankAccount$Outbound | undefined;
   accounting_by_row?: boolean | null | undefined;
-  due_date?: string | undefined;
+  due_date?: string | null | undefined;
   payment_method?: string | null | undefined;
   tax_code?: string | null | undefined;
   channel?: string | null | undefined;
@@ -710,7 +711,8 @@ export const PurchaseOrderInput$outboundSchema: z.ZodType<
   discountPercentage: z.nullable(z.number()).optional(),
   bankAccount: BankAccount$outboundSchema.optional(),
   accountingByRow: z.nullable(z.boolean()).optional(),
-  dueDate: z.instanceof(RFCDate).transform(v => v.toString()).optional(),
+  dueDate: z.nullable(z.instanceof(RFCDate).transform(v => v.toString()))
+    .optional(),
   paymentMethod: z.nullable(z.string()).optional(),
   taxCode: z.nullable(z.string()).optional(),
   channel: z.nullable(z.string()).optional(),

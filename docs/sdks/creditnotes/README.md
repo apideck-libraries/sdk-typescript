@@ -362,12 +362,7 @@ async function run() {
         },
       ],
       customFields: [
-        {
-          id: "2389328923893298",
-          name: "employee_level",
-          description: "Employee Level",
-          value: true,
-        },
+
       ],
       rowVersion: "1-12345",
       passThrough: [
@@ -681,12 +676,7 @@ async function run() {
         },
       ],
       customFields: [
-        {
-          id: "2389328923893298",
-          name: "employee_level",
-          description: "Employee Level",
-          value: true,
-        },
+  
       ],
       rowVersion: "1-12345",
       passThrough: [
@@ -1021,10 +1011,7 @@ async function run() {
             rate: 10,
           },
           trackingCategories: [
-            {
-              id: "123456",
-              name: "New York",
-            },
+
           ],
           ledgerAccount: {
             id: "123456",
@@ -1112,11 +1099,7 @@ async function run() {
         },
       ],
       allocations: [
-        {
-          id: "123456",
-          amount: 49.99,
-          allocationId: "123456",
-        },
+
       ],
       note: "Some notes about this credit note",
       terms: "Some terms about this credit note",
@@ -1173,20 +1156,10 @@ async function run() {
         rowVersion: "1-12345",
       },
       trackingCategories: [
-        {
-          id: "123456",
-          name: "New York",
-        },
+
       ],
       customFields: [
-        {
-          id: "2389328923893298",
-          name: "employee_level",
-          description: "Employee Level",
-          value: [
-            {},
-          ],
-        },
+
       ],
       rowVersion: "1-12345",
       passThrough: [
@@ -1374,10 +1347,7 @@ async function run() {
             rate: 10,
           },
           trackingCategories: [
-            {
-              id: "123456",
-              name: "New York",
-            },
+  
           ],
           ledgerAccount: {
             id: "123456",
@@ -1465,11 +1435,7 @@ async function run() {
         },
       ],
       allocations: [
-        {
-          id: "123456",
-          amount: 49.99,
-          allocationId: "123456",
-        },
+  
       ],
       note: "Some notes about this credit note",
       terms: "Some terms about this credit note",
@@ -1526,18 +1492,10 @@ async function run() {
         rowVersion: "1-12345",
       },
       trackingCategories: [
-        {
-          id: "123456",
-          name: "New York",
-        },
+  
       ],
       customFields: [
-        {
-          id: "2389328923893298",
-          name: "employee_level",
-          description: "Employee Level",
-          value: true,
-        },
+  
       ],
       rowVersion: "1-12345",
       passThrough: [

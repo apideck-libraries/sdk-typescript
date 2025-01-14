@@ -216,12 +216,7 @@ async function run() {
       videoConferenceUrl: "https://us02web.zoom.us/j/88120759396",
       videoConferenceId: "zoom:88120759396",
       customFields: [
-        {
-          id: "2389328923893298",
-          name: "employee_level",
-          description: "Employee Level",
-          value: true,
-        },
+
       ],
       attendees: [
         {
@@ -296,14 +291,7 @@ async function run() {
         {
           serviceId: "<id>",
           extendPaths: [
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
+
           ],
         },
       ],
@@ -404,12 +392,7 @@ async function run() {
       videoConferenceUrl: "https://us02web.zoom.us/j/88120759396",
       videoConferenceId: "zoom:88120759396",
       customFields: [
-        {
-          id: "2389328923893298",
-          name: "employee_level",
-          description: "Employee Level",
-          value: true,
-        },
+  
       ],
       attendees: [
         {
@@ -484,14 +467,7 @@ async function run() {
         {
           serviceId: "<id>",
           extendPaths: [
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
+  
           ],
         },
       ],

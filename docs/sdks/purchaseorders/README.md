@@ -367,19 +367,7 @@ async function run() {
       ],
       rowVersion: "1-12345",
       passThrough: [
-        {
-          serviceId: "<id>",
-          extendPaths: [
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
-          ],
-        },
+
       ],
     },
   });
@@ -637,19 +625,7 @@ async function run() {
       ],
       rowVersion: "1-12345",
       passThrough: [
-        {
-          serviceId: "<id>",
-          extendPaths: [
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
-          ],
-        },
+  
       ],
     },
   });
@@ -888,14 +864,7 @@ async function run() {
             code: "453",
           },
           customFields: [
-            {
-              id: "2389328923893298",
-              name: "employee_level",
-              description: "Employee Level",
-              value: [
-                {},
-              ],
-            },
+
           ],
           rowVersion: "1-12345",
         },
@@ -925,10 +894,7 @@ async function run() {
             rate: 10,
           },
           trackingCategories: [
-            {
-              id: "123456",
-              name: "New York",
-            },
+
           ],
           ledgerAccount: {
             id: "123456",
@@ -936,12 +902,7 @@ async function run() {
             code: "453",
           },
           customFields: [
-            {
-              id: "2389328923893298",
-              name: "employee_level",
-              description: "Employee Level",
-              value: {},
-            },
+
           ],
           rowVersion: "1-12345",
         },
@@ -971,10 +932,7 @@ async function run() {
             rate: 10,
           },
           trackingCategories: [
-            {
-              id: "123456",
-              name: "New York",
-            },
+
           ],
           ledgerAccount: {
             id: "123456",
@@ -1224,12 +1182,7 @@ async function run() {
             code: "453",
           },
           customFields: [
-            {
-              id: "2389328923893298",
-              name: "employee_level",
-              description: "Employee Level",
-              value: {},
-            },
+  
           ],
           rowVersion: "1-12345",
         },
@@ -1259,10 +1212,7 @@ async function run() {
             rate: 10,
           },
           trackingCategories: [
-            {
-              id: "123456",
-              name: "New York",
-            },
+  
           ],
           ledgerAccount: {
             id: "123456",
@@ -1270,12 +1220,7 @@ async function run() {
             code: "453",
           },
           customFields: [
-            {
-              id: "2389328923893298",
-              name: "employee_level",
-              description: "Employee Level",
-              value: true,
-            },
+  
           ],
           rowVersion: "1-12345",
         },
@@ -1305,10 +1250,7 @@ async function run() {
             rate: 10,
           },
           trackingCategories: [
-            {
-              id: "123456",
-              name: "New York",
-            },
+  
           ],
           ledgerAccount: {
             id: "123456",

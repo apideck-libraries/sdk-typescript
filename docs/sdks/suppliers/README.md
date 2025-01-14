@@ -325,19 +325,7 @@ async function run() {
       channel: "email",
       rowVersion: "1-12345",
       passThrough: [
-        {
-          serviceId: "<id>",
-          extendPaths: [
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
-          ],
-        },
+
       ],
     },
   });
@@ -543,19 +531,7 @@ async function run() {
       channel: "email",
       rowVersion: "1-12345",
       passThrough: [
-        {
-          serviceId: "<id>",
-          extendPaths: [
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
-          ],
-        },
+  
       ],
     },
   });
@@ -835,11 +811,7 @@ async function run() {
         },
       ],
       websites: [
-        {
-          id: "12345",
-          url: "http://example.com",
-          type: "primary",
-        },
+
       ],
       bankAccounts: [
         {
@@ -889,14 +861,7 @@ async function run() {
         {
           serviceId: "<id>",
           extendPaths: [
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
+
           ],
         },
         {
@@ -1102,11 +1067,7 @@ async function run() {
         },
       ],
       websites: [
-        {
-          id: "12345",
-          url: "http://example.com",
-          type: "primary",
-        },
+  
       ],
       bankAccounts: [
         {
@@ -1156,14 +1117,7 @@ async function run() {
         {
           serviceId: "<id>",
           extendPaths: [
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
+  
           ],
         },
         {

@@ -167,11 +167,7 @@ async function run() {
       currency: "USD",
       fax: "+12129876543",
       websites: [
-        {
-          id: "12345",
-          url: "http://example.com",
-          type: "primary",
-        },
+
       ],
       addresses: [
         {
@@ -275,12 +271,7 @@ async function run() {
         },
       ],
       customFields: [
-        {
-          id: "2389328923893298",
-          name: "employee_level",
-          description: "Employee Level",
-          value: true,
-        },
+
       ],
       tags: [
         "New",
@@ -364,11 +355,7 @@ async function run() {
       currency: "USD",
       fax: "+12129876543",
       websites: [
-        {
-          id: "12345",
-          url: "http://example.com",
-          type: "primary",
-        },
+  
       ],
       addresses: [
         {
@@ -472,12 +459,7 @@ async function run() {
         },
       ],
       customFields: [
-        {
-          id: "2389328923893298",
-          name: "employee_level",
-          description: "Employee Level",
-          value: true,
-        },
+  
       ],
       tags: [
         "New",

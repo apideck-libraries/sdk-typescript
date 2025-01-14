@@ -206,10 +206,7 @@ async function run() {
             rate: 10,
           },
           trackingCategories: [
-            {
-              id: "123456",
-              name: "New York",
-            },
+
           ],
           ledgerAccount: {
             id: "123456",
@@ -318,10 +315,7 @@ async function run() {
             rate: 10,
           },
           trackingCategories: [
-            {
-              id: "123456",
-              name: "New York",
-            },
+
           ],
           ledgerAccount: {
             id: "123456",
@@ -450,14 +444,7 @@ async function run() {
         {
           serviceId: "<id>",
           extendPaths: [
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
+
           ],
         },
       ],
@@ -552,10 +539,7 @@ async function run() {
             rate: 10,
           },
           trackingCategories: [
-            {
-              id: "123456",
-              name: "New York",
-            },
+  
           ],
           ledgerAccount: {
             id: "123456",
@@ -664,10 +648,7 @@ async function run() {
             rate: 10,
           },
           trackingCategories: [
-            {
-              id: "123456",
-              name: "New York",
-            },
+  
           ],
           ledgerAccount: {
             id: "123456",
@@ -796,14 +777,7 @@ async function run() {
         {
           serviceId: "<id>",
           extendPaths: [
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
+  
           ],
         },
       ],
@@ -985,60 +959,10 @@ async function run() {
       deposit: 0,
       customerMemo: "Thank you for your business and have a great day!",
       trackingCategories: [
-        {
-          id: "123456",
-          name: "New York",
-        },
+
       ],
       lineItems: [
-        {
-          id: "12345",
-          rowId: "12345",
-          code: "120-C",
-          lineNumber: 1,
-          description: "Model Y is a fully electric, mid-size SUV, with seating for up to seven, dual motor AWD and unparalleled protection.",
-          type: "sales_item",
-          taxAmount: 27500,
-          totalAmount: 27500,
-          quantity: 1,
-          unitPrice: 27500.5,
-          unitOfMeasure: "pc.",
-          discountPercentage: 0.01,
-          discountAmount: 19.99,
-          locationId: "1234",
-          departmentId: "1234",
-          item: {
-            id: "12344",
-            code: "120-C",
-            name: "Model Y",
-          },
-          taxRate: {
-            id: "123456",
-            rate: 10,
-          },
-          trackingCategories: [
-            {
-              id: "123456",
-              name: "New York",
-            },
-          ],
-          ledgerAccount: {
-            id: "123456",
-            nominalCode: "N091",
-            code: "453",
-          },
-          customFields: [
-            {
-              id: "2389328923893298",
-              name: "employee_level",
-              description: "Employee Level",
-              value: [
-                {},
-              ],
-            },
-          ],
-          rowVersion: "1-12345",
-        },
+
       ],
       billingAddress: {
         id: "123",
@@ -1135,14 +1059,7 @@ async function run() {
         {
           serviceId: "<id>",
           extendPaths: [
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
+
           ],
         },
       ],
@@ -1206,58 +1123,10 @@ async function run() {
       deposit: 0,
       customerMemo: "Thank you for your business and have a great day!",
       trackingCategories: [
-        {
-          id: "123456",
-          name: "New York",
-        },
+  
       ],
       lineItems: [
-        {
-          id: "12345",
-          rowId: "12345",
-          code: "120-C",
-          lineNumber: 1,
-          description: "Model Y is a fully electric, mid-size SUV, with seating for up to seven, dual motor AWD and unparalleled protection.",
-          type: "sales_item",
-          taxAmount: 27500,
-          totalAmount: 27500,
-          quantity: 1,
-          unitPrice: 27500.5,
-          unitOfMeasure: "pc.",
-          discountPercentage: 0.01,
-          discountAmount: 19.99,
-          locationId: "1234",
-          departmentId: "1234",
-          item: {
-            id: "12344",
-            code: "120-C",
-            name: "Model Y",
-          },
-          taxRate: {
-            id: "123456",
-            rate: 10,
-          },
-          trackingCategories: [
-            {
-              id: "123456",
-              name: "New York",
-            },
-          ],
-          ledgerAccount: {
-            id: "123456",
-            nominalCode: "N091",
-            code: "453",
-          },
-          customFields: [
-            {
-              id: "2389328923893298",
-              name: "employee_level",
-              description: "Employee Level",
-              value: true,
-            },
-          ],
-          rowVersion: "1-12345",
-        },
+  
       ],
       billingAddress: {
         id: "123",
@@ -1354,14 +1223,7 @@ async function run() {
         {
           serviceId: "<id>",
           extendPaths: [
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
+  
           ],
         },
       ],

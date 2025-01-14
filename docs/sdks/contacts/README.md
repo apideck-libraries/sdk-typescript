@@ -281,30 +281,14 @@ async function run() {
         },
       ],
       phoneNumbers: [
-        {
-          id: "12345",
-          countryCode: "1",
-          areaCode: "323",
-          number: "111-111-1111",
-          extension: "105",
-          type: "primary",
-        },
+
       ],
       emails: [
-        {
-          id: "123",
-          email: "elon@musk.com",
-          type: "primary",
-        },
+
       ],
       emailDomain: "gmail.com",
       customFields: [
-        {
-          id: "2389328923893298",
-          name: "employee_level",
-          description: "Employee Level",
-          value: true,
-        },
+
       ],
       tags: [
         "New",
@@ -316,27 +300,13 @@ async function run() {
         {
           serviceId: "<id>",
           extendPaths: [
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
+
           ],
         },
         {
           serviceId: "<id>",
           extendPaths: [
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
+
           ],
         },
         {
@@ -519,30 +489,14 @@ async function run() {
         },
       ],
       phoneNumbers: [
-        {
-          id: "12345",
-          countryCode: "1",
-          areaCode: "323",
-          number: "111-111-1111",
-          extension: "105",
-          type: "primary",
-        },
+  
       ],
       emails: [
-        {
-          id: "123",
-          email: "elon@musk.com",
-          type: "primary",
-        },
+  
       ],
       emailDomain: "gmail.com",
       customFields: [
-        {
-          id: "2389328923893298",
-          name: "employee_level",
-          description: "Employee Level",
-          value: true,
-        },
+  
       ],
       tags: [
         "New",
@@ -554,27 +508,13 @@ async function run() {
         {
           serviceId: "<id>",
           extendPaths: [
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
+  
           ],
         },
         {
           serviceId: "<id>",
           extendPaths: [
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
+  
           ],
         },
         {
@@ -790,11 +730,7 @@ async function run() {
       status: "open",
       active: true,
       websites: [
-        {
-          id: "12345",
-          url: "http://example.com",
-          type: "primary",
-        },
+
       ],
       addresses: [
         {
@@ -860,14 +796,7 @@ async function run() {
       ],
       emailDomain: "gmail.com",
       customFields: [
-        {
-          id: "2389328923893298",
-          name: "employee_level",
-          description: "Employee Level",
-          value: [
-            {},
-          ],
-        },
+
       ],
       tags: [
         "New",
@@ -876,19 +805,7 @@ async function run() {
         "12345",
       ],
       passThrough: [
-        {
-          serviceId: "<id>",
-          extendPaths: [
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
-          ],
-        },
+
       ],
     },
   });
@@ -945,11 +862,7 @@ async function run() {
       status: "open",
       active: true,
       websites: [
-        {
-          id: "12345",
-          url: "http://example.com",
-          type: "primary",
-        },
+  
       ],
       addresses: [
         {
@@ -1015,12 +928,7 @@ async function run() {
       ],
       emailDomain: "gmail.com",
       customFields: [
-        {
-          id: "2389328923893298",
-          name: "employee_level",
-          description: "Employee Level",
-          value: true,
-        },
+  
       ],
       tags: [
         "New",
@@ -1029,19 +937,7 @@ async function run() {
         "12345",
       ],
       passThrough: [
-        {
-          serviceId: "<id>",
-          extendPaths: [
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
-          ],
-        },
+  
       ],
     },
   });

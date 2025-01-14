@@ -133,11 +133,11 @@ export type Bill = {
   /**
    * Date bill was issued - YYYY-MM-DD.
    */
-  billDate?: RFCDate | undefined;
+  billDate?: RFCDate | null | undefined;
   /**
    * The due date is the date on which a payment is scheduled to be received - YYYY-MM-DD.
    */
-  dueDate?: RFCDate | undefined;
+  dueDate?: RFCDate | null | undefined;
   /**
    * The paid date is the date on which a payment was sent to the supplier - YYYY-MM-DD.
    */
@@ -273,11 +273,11 @@ export type BillInput = {
   /**
    * Date bill was issued - YYYY-MM-DD.
    */
-  billDate?: RFCDate | undefined;
+  billDate?: RFCDate | null | undefined;
   /**
    * The due date is the date on which a payment is scheduled to be received - YYYY-MM-DD.
    */
-  dueDate?: RFCDate | undefined;
+  dueDate?: RFCDate | null | undefined;
   /**
    * The paid date is the date on which a payment was sent to the supplier - YYYY-MM-DD.
    */
@@ -395,8 +395,8 @@ export const Bill$inboundSchema: z.ZodType<Bill, z.ZodTypeDef, unknown> = z
     currency: z.nullable(Currency$inboundSchema).optional(),
     currency_rate: z.nullable(z.number()).optional(),
     tax_inclusive: z.nullable(z.boolean()).optional(),
-    bill_date: z.string().transform(v => new RFCDate(v)).optional(),
-    due_date: z.string().transform(v => new RFCDate(v)).optional(),
+    bill_date: z.nullable(z.string().transform(v => new RFCDate(v))).optional(),
+    due_date: z.nullable(z.string().transform(v => new RFCDate(v))).optional(),
     paid_date: z.nullable(z.string().transform(v => new RFCDate(v))).optional(),
     po_number: z.nullable(z.string()).optional(),
     reference: z.nullable(z.string()).optional(),
@@ -476,8 +476,8 @@ export type Bill$Outbound = {
   currency?: string | null | undefined;
   currency_rate?: number | null | undefined;
   tax_inclusive?: boolean | null | undefined;
-  bill_date?: string | undefined;
-  due_date?: string | undefined;
+  bill_date?: string | null | undefined;
+  due_date?: string | null | undefined;
   paid_date?: string | null | undefined;
   po_number?: string | null | undefined;
   reference?: string | null | undefined;
@@ -524,8 +524,10 @@ export const Bill$outboundSchema: z.ZodType<Bill$Outbound, z.ZodTypeDef, Bill> =
     currency: z.nullable(Currency$outboundSchema).optional(),
     currencyRate: z.nullable(z.number()).optional(),
     taxInclusive: z.nullable(z.boolean()).optional(),
-    billDate: z.instanceof(RFCDate).transform(v => v.toString()).optional(),
-    dueDate: z.instanceof(RFCDate).transform(v => v.toString()).optional(),
+    billDate: z.nullable(z.instanceof(RFCDate).transform(v => v.toString()))
+      .optional(),
+    dueDate: z.nullable(z.instanceof(RFCDate).transform(v => v.toString()))
+      .optional(),
     paidDate: z.nullable(z.instanceof(RFCDate).transform(v => v.toString()))
       .optional(),
     poNumber: z.nullable(z.string()).optional(),
@@ -631,8 +633,8 @@ export const BillInput$inboundSchema: z.ZodType<
   currency: z.nullable(Currency$inboundSchema).optional(),
   currency_rate: z.nullable(z.number()).optional(),
   tax_inclusive: z.nullable(z.boolean()).optional(),
-  bill_date: z.string().transform(v => new RFCDate(v)).optional(),
-  due_date: z.string().transform(v => new RFCDate(v)).optional(),
+  bill_date: z.nullable(z.string().transform(v => new RFCDate(v))).optional(),
+  due_date: z.nullable(z.string().transform(v => new RFCDate(v))).optional(),
   paid_date: z.nullable(z.string().transform(v => new RFCDate(v))).optional(),
   po_number: z.nullable(z.string()).optional(),
   reference: z.nullable(z.string()).optional(),
@@ -694,8 +696,8 @@ export type BillInput$Outbound = {
   currency?: string | null | undefined;
   currency_rate?: number | null | undefined;
   tax_inclusive?: boolean | null | undefined;
-  bill_date?: string | undefined;
-  due_date?: string | undefined;
+  bill_date?: string | null | undefined;
+  due_date?: string | null | undefined;
   paid_date?: string | null | undefined;
   po_number?: string | null | undefined;
   reference?: string | null | undefined;
@@ -738,8 +740,10 @@ export const BillInput$outboundSchema: z.ZodType<
   currency: z.nullable(Currency$outboundSchema).optional(),
   currencyRate: z.nullable(z.number()).optional(),
   taxInclusive: z.nullable(z.boolean()).optional(),
-  billDate: z.instanceof(RFCDate).transform(v => v.toString()).optional(),
-  dueDate: z.instanceof(RFCDate).transform(v => v.toString()).optional(),
+  billDate: z.nullable(z.instanceof(RFCDate).transform(v => v.toString()))
+    .optional(),
+  dueDate: z.nullable(z.instanceof(RFCDate).transform(v => v.toString()))
+    .optional(),
   paidDate: z.nullable(z.instanceof(RFCDate).transform(v => v.toString()))
     .optional(),
   poNumber: z.nullable(z.string()).optional(),

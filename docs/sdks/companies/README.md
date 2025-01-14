@@ -203,11 +203,7 @@ async function run() {
         },
       ],
       websites: [
-        {
-          id: "12345",
-          url: "http://example.com",
-          type: "primary",
-        },
+
       ],
       addresses: [
         {
@@ -264,11 +260,7 @@ async function run() {
         },
       ],
       socialLinks: [
-        {
-          id: "12345",
-          url: "https://www.twitter.com/apideck",
-          type: "twitter",
-        },
+
       ],
       phoneNumbers: [
         {
@@ -481,11 +473,7 @@ async function run() {
         },
       ],
       websites: [
-        {
-          id: "12345",
-          url: "http://example.com",
-          type: "primary",
-        },
+  
       ],
       addresses: [
         {
@@ -542,11 +530,7 @@ async function run() {
         },
       ],
       socialLinks: [
-        {
-          id: "12345",
-          url: "https://www.twitter.com/apideck",
-          type: "twitter",
-        },
+  
       ],
       phoneNumbers: [
         {
@@ -935,14 +919,7 @@ async function run() {
         },
       ],
       phoneNumbers: [
-        {
-          id: "12345",
-          countryCode: "1",
-          areaCode: "323",
-          number: "111-111-1111",
-          extension: "105",
-          type: "primary",
-        },
+
       ],
       emails: [
         {
@@ -983,14 +960,7 @@ async function run() {
         {
           serviceId: "<id>",
           extendPaths: [
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
+
           ],
         },
         {
@@ -1186,14 +1156,7 @@ async function run() {
         },
       ],
       phoneNumbers: [
-        {
-          id: "12345",
-          countryCode: "1",
-          areaCode: "323",
-          number: "111-111-1111",
-          extension: "105",
-          type: "primary",
-        },
+  
       ],
       emails: [
         {
@@ -1234,14 +1197,7 @@ async function run() {
         {
           serviceId: "<id>",
           extendPaths: [
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
+  
           ],
         },
         {

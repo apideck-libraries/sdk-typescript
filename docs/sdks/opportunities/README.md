@@ -185,12 +185,7 @@ async function run() {
         "New",
       ],
       customFields: [
-        {
-          id: "2389328923893298",
-          name: "employee_level",
-          description: "Employee Level",
-          value: true,
-        },
+
       ],
       stageLastChangedAt: new Date("2020-09-30T07:43:32.000Z"),
       passThrough: [
@@ -315,12 +310,7 @@ async function run() {
         "New",
       ],
       customFields: [
-        {
-          id: "2389328923893298",
-          name: "employee_level",
-          description: "Employee Level",
-          value: true,
-        },
+  
       ],
       stageLastChangedAt: new Date("2020-09-30T07:43:32.000Z"),
       passThrough: [
@@ -626,14 +616,7 @@ async function run() {
         {
           serviceId: "<id>",
           extendPaths: [
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
+
           ],
         },
       ],
@@ -762,14 +745,7 @@ async function run() {
         {
           serviceId: "<id>",
           extendPaths: [
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
+  
           ],
         },
       ],
