@@ -11,8 +11,6 @@ Developer-friendly & type-safe Typescript SDK specifically catered to leverage *
 
 
 <br /><br />
-> [!IMPORTANT]
-> This SDK is beta private
 
 <!-- Start Summary [summary] -->
 ## Summary
@@ -1398,5 +1396,3 @@ looking for the latest version.
 
 While we value open-source contributions to this SDK, this library is generated programmatically. Any manual changes added to internal files will be overwritten on the next generation. 
 We look forward to hearing your feedback. Feel free to open a PR or an issue with a proof of concept and we'll do our best to include it in a future release. 
-
-### SDK Created by [Speakeasy](https://www.speakeasy.com/?utm_source=apideck&utm_campaign=typescript)
