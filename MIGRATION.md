@@ -94,29 +94,8 @@ console.log({
 | contactsDelete | contacts.delete |
 ...
 
-5. **File Upload Utility**
 
-```ts
-// Old SDK
-const file = await apideck.utils.uploadFile({
-  serviceId: 'dropbox',
-  file: buffer,
-  name: "test.jpg",
-  size: fileSize,
-  contentType: "image/jpg"
-});
-
-// New SDK
-const result = await apideck.fileStorage.files.upload({
-  serviceId: 'dropbox',
-  file: buffer,
-  name: "test.jpg",
-  size: fileSize,
-  contentType: "image/jpg"
-});
-```
-
-6. **Error Handling**
+5. **Error Handling**
 
 ```ts
 // Old SDK
@@ -141,7 +120,7 @@ try {
 For more information about error handling, please refer to the [Error Handling Documentation](https://github.com/apideck-libraries/sdk-typescript/tree/main?tab=readme-ov-file#error-handling).
 
 
-7. **Working with dates**
+6. **Working with dates**
 
 The new SDK uses RFC3339 format for all date and date-time fields. This ensures consistent date handling across all API operations. The SDK provides an `RFCDate` helper to make working with dates easier.
 
@@ -183,72 +162,6 @@ const opportunity = await apideck.crm.opportunities.create({
 
 The SDK will automatically validate that dates are in the correct format and will throw a `SDKValidationError` if an invalid date format is provided.
 
-
-## Additional features in the new SDK
-
-The retry configuration allows you to specify how the SDK should handle retries for failed requests. You can configure the retry strategy, initial interval, maximum interval, exponent, and maximum elapsed time.
-
-Here is an example of how to configure retries:
-
-1. **Retry Configuration**
-
-```ts
-const sdk = new Apideck({
-  apiKey: 'your-api-key',
-  consumerId: 'test-consumer',
-  appId: 'your-app-id',
-  retryConfig: {
-    strategy: "backoff",
-    backoff: {
-      initialInterval: 1,
-      maxInterval: 50,
-      exponent: 1.1,
-      maxElapsedTime: 100
-    }
-  }
-});
-```
-
-For more information about retry configuration, please refer to the [Retry Configuration Documentation](https://github.com/apideck-libraries/sdk-typescript/tree/main?tab=readme-ov-file#retries).
-
-2. **Debug Logging**
-
-```ts
-// Enable debug logging via environment variable
-process.env.APIDECK_DEBUG = "true";
-
-// Or via SDK initialization
-const sdk = new Apideck({
-  apiKey: 'your-api-key',
-  consumerId: 'test-consumer',
-  appId: 'your-app-id',
-  debugLogger: console
-});
-```
-
-3. **Custom HTTP Client**
-
-```ts
-import { HTTPClient } from "@apideck/unify/lib/http";
-
-const httpClient = new HTTPClient({
-  fetcher: (request) => fetch(request)
-});
-
-httpClient.addHook("beforeRequest", (request) => {
-  // Customize request
-  return request;
-});
-
-const sdk = new Apideck({ 
-  httpClient,
-  apiKey: 'your-api-key',
-  consumerId: 'test-consumer',
-  appId: 'your-app-id'
-});
-```
-
-For more information about custom HTTP clients, please refer to the [Custom HTTP Client Documentation](https://github.com/apideck-libraries/sdk-typescript/tree/main?tab=readme-ov-file#custom-http-client).
 
 
 ## Breaking Changes
