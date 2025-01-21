@@ -87,19 +87,19 @@ export async function issueTrackingCollectionTicketCommentsCreate(
   const headers = new Headers(compactMap({
     "Content-Type": "application/json",
     Accept: "application/json",
-    "x-apideck-service-id": encodeSimple(
-      "x-apideck-service-id",
-      payload.serviceId,
-      { explode: false, charEncoding: "none" },
-    ),
     "x-apideck-app-id": encodeSimple(
       "x-apideck-app-id",
-      client._options.appId,
+      payload.appId ?? client._options.appId,
       { explode: false, charEncoding: "none" },
     ),
     "x-apideck-consumer-id": encodeSimple(
       "x-apideck-consumer-id",
-      client._options.consumerId,
+      payload.consumerId ?? client._options.consumerId,
+      { explode: false, charEncoding: "none" },
+    ),
+    "x-apideck-service-id": encodeSimple(
+      "x-apideck-service-id",
+      payload.serviceId,
       { explode: false, charEncoding: "none" },
     ),
   }));

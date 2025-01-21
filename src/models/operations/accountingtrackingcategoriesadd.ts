@@ -26,6 +26,14 @@ export type AccountingTrackingCategoriesAddRequest = {
    */
   raw?: boolean | undefined;
   /**
+   * ID of the consumer which you want to get or push data from
+   */
+  consumerId?: string | undefined;
+  /**
+   * The ID of your Unify application
+   */
+  appId?: string | undefined;
+  /**
    * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
    */
   serviceId?: string | undefined;
@@ -116,6 +124,8 @@ export const AccountingTrackingCategoriesAddRequest$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   raw: z.boolean().default(false),
+  consumerId: z.string().optional(),
+  appId: z.string().optional(),
   serviceId: z.string().optional(),
   TrackingCategory: components.TrackingCategoryInput$inboundSchema,
 }).transform((v) => {
@@ -127,6 +137,8 @@ export const AccountingTrackingCategoriesAddRequest$inboundSchema: z.ZodType<
 /** @internal */
 export type AccountingTrackingCategoriesAddRequest$Outbound = {
   raw: boolean;
+  consumerId?: string | undefined;
+  appId?: string | undefined;
   serviceId?: string | undefined;
   TrackingCategory: components.TrackingCategoryInput$Outbound;
 };
@@ -138,6 +150,8 @@ export const AccountingTrackingCategoriesAddRequest$outboundSchema: z.ZodType<
   AccountingTrackingCategoriesAddRequest
 > = z.object({
   raw: z.boolean().default(false),
+  consumerId: z.string().optional(),
+  appId: z.string().optional(),
   serviceId: z.string().optional(),
   trackingCategory: components.TrackingCategoryInput$outboundSchema,
 }).transform((v) => {

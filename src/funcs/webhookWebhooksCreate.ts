@@ -10,7 +10,6 @@ import { safeParse } from "../lib/schemas.js";
 import { RequestOptions } from "../lib/sdks.js";
 import { extractSecurity, resolveGlobalSecurity } from "../lib/security.js";
 import { pathToFunc } from "../lib/url.js";
-import * as components from "../models/components/index.js";
 import { APIError } from "../models/errors/apierror.js";
 import {
   ConnectionError,
@@ -32,7 +31,7 @@ import { Result } from "../types/fp.js";
  */
 export async function webhookWebhooksCreate(
   client: ApideckCore,
-  request: components.CreateWebhookRequest,
+  request: operations.WebhookWebhooksAddRequest,
   options?: RequestOptions,
 ): Promise<
   Result<
@@ -53,14 +52,16 @@ export async function webhookWebhooksCreate(
 > {
   const parsed = safeParse(
     request,
-    (value) => components.CreateWebhookRequest$outboundSchema.parse(value),
+    (value) => operations.WebhookWebhooksAddRequest$outboundSchema.parse(value),
     "Input validation failed",
   );
   if (!parsed.ok) {
     return parsed;
   }
   const payload = parsed.value;
-  const body = encodeJSON("body", payload, { explode: true });
+  const body = encodeJSON("body", payload.CreateWebhookRequest, {
+    explode: true,
+  });
 
   const path = pathToFunc("/webhook/webhooks")();
 
@@ -69,7 +70,7 @@ export async function webhookWebhooksCreate(
     Accept: "application/json",
     "x-apideck-app-id": encodeSimple(
       "x-apideck-app-id",
-      client._options.appId,
+      payload.appId ?? client._options.appId,
       { explode: false, charEncoding: "none" },
     ),
   }));

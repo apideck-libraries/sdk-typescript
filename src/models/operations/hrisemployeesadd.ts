@@ -26,6 +26,14 @@ export type HrisEmployeesAddRequest = {
    */
   raw?: boolean | undefined;
   /**
+   * ID of the consumer which you want to get or push data from
+   */
+  consumerId?: string | undefined;
+  /**
+   * The ID of your Unify application
+   */
+  appId?: string | undefined;
+  /**
    * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
    */
   serviceId?: string | undefined;
@@ -108,6 +116,8 @@ export const HrisEmployeesAddRequest$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   raw: z.boolean().default(false),
+  consumerId: z.string().optional(),
+  appId: z.string().optional(),
   serviceId: z.string().optional(),
   Employee: components.EmployeeInput$inboundSchema,
 }).transform((v) => {
@@ -119,6 +129,8 @@ export const HrisEmployeesAddRequest$inboundSchema: z.ZodType<
 /** @internal */
 export type HrisEmployeesAddRequest$Outbound = {
   raw: boolean;
+  consumerId?: string | undefined;
+  appId?: string | undefined;
   serviceId?: string | undefined;
   Employee: components.EmployeeInput$Outbound;
 };
@@ -130,6 +142,8 @@ export const HrisEmployeesAddRequest$outboundSchema: z.ZodType<
   HrisEmployeesAddRequest
 > = z.object({
   raw: z.boolean().default(false),
+  consumerId: z.string().optional(),
+  appId: z.string().optional(),
   serviceId: z.string().optional(),
   employee: components.EmployeeInput$outboundSchema,
 }).transform((v) => {

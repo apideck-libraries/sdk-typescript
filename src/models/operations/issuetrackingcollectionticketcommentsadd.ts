@@ -26,6 +26,14 @@ export type IssueTrackingCollectionTicketCommentsAddRequest = {
    */
   raw?: boolean | undefined;
   /**
+   * ID of the consumer which you want to get or push data from
+   */
+  consumerId?: string | undefined;
+  /**
+   * The ID of your Unify application
+   */
+  appId?: string | undefined;
+  /**
    * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
    */
   serviceId?: string | undefined;
@@ -131,6 +139,8 @@ export const IssueTrackingCollectionTicketCommentsAddRequest$inboundSchema:
     unknown
   > = z.object({
     raw: z.boolean().default(false),
+    consumerId: z.string().optional(),
+    appId: z.string().optional(),
     serviceId: z.string().optional(),
     collection_id: z.string(),
     ticket_id: z.string(),
@@ -147,6 +157,8 @@ export const IssueTrackingCollectionTicketCommentsAddRequest$inboundSchema:
 /** @internal */
 export type IssueTrackingCollectionTicketCommentsAddRequest$Outbound = {
   raw: boolean;
+  consumerId?: string | undefined;
+  appId?: string | undefined;
   serviceId?: string | undefined;
   collection_id: string;
   ticket_id: string;
@@ -161,6 +173,8 @@ export const IssueTrackingCollectionTicketCommentsAddRequest$outboundSchema:
     IssueTrackingCollectionTicketCommentsAddRequest
   > = z.object({
     raw: z.boolean().default(false),
+    consumerId: z.string().optional(),
+    appId: z.string().optional(),
     serviceId: z.string().optional(),
     collectionId: z.string(),
     ticketId: z.string(),

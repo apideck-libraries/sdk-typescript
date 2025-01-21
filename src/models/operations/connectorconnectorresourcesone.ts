@@ -18,6 +18,10 @@ export type ConnectorConnectorResourcesOneGlobals = {
 
 export type ConnectorConnectorResourcesOneRequest = {
   /**
+   * The ID of your Unify application
+   */
+  appId?: string | undefined;
+  /**
    * ID of the record you are acting upon.
    */
   id: string;
@@ -110,6 +114,7 @@ export const ConnectorConnectorResourcesOneRequest$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
+  appId: z.string().optional(),
   id: z.string(),
   resource_id: z.string(),
   unified_api: components.UnifiedApiId$inboundSchema.optional(),
@@ -122,6 +127,7 @@ export const ConnectorConnectorResourcesOneRequest$inboundSchema: z.ZodType<
 
 /** @internal */
 export type ConnectorConnectorResourcesOneRequest$Outbound = {
+  appId?: string | undefined;
   id: string;
   resource_id: string;
   unified_api?: string | undefined;
@@ -133,6 +139,7 @@ export const ConnectorConnectorResourcesOneRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   ConnectorConnectorResourcesOneRequest
 > = z.object({
+  appId: z.string().optional(),
   id: z.string(),
   resourceId: z.string(),
   unifiedApi: components.UnifiedApiId$outboundSchema.optional(),

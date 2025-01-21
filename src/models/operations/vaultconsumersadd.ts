@@ -16,6 +16,14 @@ export type VaultConsumersAddGlobals = {
   appId?: string | undefined;
 };
 
+export type VaultConsumersAddRequest = {
+  /**
+   * The ID of your Unify application
+   */
+  appId?: string | undefined;
+  consumer: components.ConsumerInput;
+};
+
 export type VaultConsumersAddResponse = {
   httpMeta: components.HTTPMetadata;
   /**
@@ -79,6 +87,71 @@ export function vaultConsumersAddGlobalsFromJSON(
     jsonString,
     (x) => VaultConsumersAddGlobals$inboundSchema.parse(JSON.parse(x)),
     `Failed to parse 'VaultConsumersAddGlobals' from JSON`,
+  );
+}
+
+/** @internal */
+export const VaultConsumersAddRequest$inboundSchema: z.ZodType<
+  VaultConsumersAddRequest,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  appId: z.string().optional(),
+  Consumer: components.ConsumerInput$inboundSchema,
+}).transform((v) => {
+  return remap$(v, {
+    "Consumer": "consumer",
+  });
+});
+
+/** @internal */
+export type VaultConsumersAddRequest$Outbound = {
+  appId?: string | undefined;
+  Consumer: components.ConsumerInput$Outbound;
+};
+
+/** @internal */
+export const VaultConsumersAddRequest$outboundSchema: z.ZodType<
+  VaultConsumersAddRequest$Outbound,
+  z.ZodTypeDef,
+  VaultConsumersAddRequest
+> = z.object({
+  appId: z.string().optional(),
+  consumer: components.ConsumerInput$outboundSchema,
+}).transform((v) => {
+  return remap$(v, {
+    consumer: "Consumer",
+  });
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace VaultConsumersAddRequest$ {
+  /** @deprecated use `VaultConsumersAddRequest$inboundSchema` instead. */
+  export const inboundSchema = VaultConsumersAddRequest$inboundSchema;
+  /** @deprecated use `VaultConsumersAddRequest$outboundSchema` instead. */
+  export const outboundSchema = VaultConsumersAddRequest$outboundSchema;
+  /** @deprecated use `VaultConsumersAddRequest$Outbound` instead. */
+  export type Outbound = VaultConsumersAddRequest$Outbound;
+}
+
+export function vaultConsumersAddRequestToJSON(
+  vaultConsumersAddRequest: VaultConsumersAddRequest,
+): string {
+  return JSON.stringify(
+    VaultConsumersAddRequest$outboundSchema.parse(vaultConsumersAddRequest),
+  );
+}
+
+export function vaultConsumersAddRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<VaultConsumersAddRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => VaultConsumersAddRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'VaultConsumersAddRequest' from JSON`,
   );
 }
 

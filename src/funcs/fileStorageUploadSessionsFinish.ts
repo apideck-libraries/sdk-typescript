@@ -88,6 +88,16 @@ export async function fileStorageUploadSessionsFinish(
   const headers = new Headers(compactMap({
     "Content-Type": "application/json",
     Accept: "application/json",
+    "x-apideck-app-id": encodeSimple(
+      "x-apideck-app-id",
+      payload.appId ?? client._options.appId,
+      { explode: false, charEncoding: "none" },
+    ),
+    "x-apideck-consumer-id": encodeSimple(
+      "x-apideck-consumer-id",
+      payload.consumerId ?? client._options.consumerId,
+      { explode: false, charEncoding: "none" },
+    ),
     "digest": encodeSimple("digest", payload.digest, {
       explode: false,
       charEncoding: "none",
@@ -95,16 +105,6 @@ export async function fileStorageUploadSessionsFinish(
     "x-apideck-service-id": encodeSimple(
       "x-apideck-service-id",
       payload.serviceId,
-      { explode: false, charEncoding: "none" },
-    ),
-    "x-apideck-app-id": encodeSimple(
-      "x-apideck-app-id",
-      client._options.appId,
-      { explode: false, charEncoding: "none" },
-    ),
-    "x-apideck-consumer-id": encodeSimple(
-      "x-apideck-consumer-id",
-      client._options.consumerId,
       { explode: false, charEncoding: "none" },
     ),
   }));

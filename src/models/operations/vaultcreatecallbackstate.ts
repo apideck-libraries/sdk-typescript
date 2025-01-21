@@ -22,6 +22,14 @@ export type VaultCreateCallbackStateGlobals = {
 
 export type VaultCreateCallbackStateRequest = {
   /**
+   * ID of the consumer which you want to get or push data from
+   */
+  consumerId?: string | undefined;
+  /**
+   * The ID of your Unify application
+   */
+  appId?: string | undefined;
+  /**
    * Service ID of the resource to return
    */
   serviceId: string;
@@ -114,6 +122,8 @@ export const VaultCreateCallbackStateRequest$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
+  consumerId: z.string().optional(),
+  appId: z.string().optional(),
   service_id: z.string(),
   unified_api: z.string(),
   CreateCallbackState: components.CreateCallbackState$inboundSchema,
@@ -127,6 +137,8 @@ export const VaultCreateCallbackStateRequest$inboundSchema: z.ZodType<
 
 /** @internal */
 export type VaultCreateCallbackStateRequest$Outbound = {
+  consumerId?: string | undefined;
+  appId?: string | undefined;
   service_id: string;
   unified_api: string;
   CreateCallbackState: components.CreateCallbackState$Outbound;
@@ -138,6 +150,8 @@ export const VaultCreateCallbackStateRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   VaultCreateCallbackStateRequest
 > = z.object({
+  consumerId: z.string().optional(),
+  appId: z.string().optional(),
   serviceId: z.string(),
   unifiedApi: z.string(),
   createCallbackState: components.CreateCallbackState$outboundSchema,

@@ -22,6 +22,14 @@ export type VaultLogsAllGlobals = {
 
 export type VaultLogsAllRequest = {
   /**
+   * The ID of your Unify application
+   */
+  appId?: string | undefined;
+  /**
+   * ID of the consumer which you want to get or push data from
+   */
+  consumerId?: string | undefined;
+  /**
    * Filter results
    */
   filter?: components.LogsFilter | undefined;
@@ -110,6 +118,8 @@ export const VaultLogsAllRequest$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
+  appId: z.string().optional(),
+  consumerId: z.string().optional(),
   filter: components.LogsFilter$inboundSchema.optional(),
   cursor: z.nullable(z.string()).optional(),
   limit: z.number().int().default(20),
@@ -117,6 +127,8 @@ export const VaultLogsAllRequest$inboundSchema: z.ZodType<
 
 /** @internal */
 export type VaultLogsAllRequest$Outbound = {
+  appId?: string | undefined;
+  consumerId?: string | undefined;
   filter?: components.LogsFilter$Outbound | undefined;
   cursor?: string | null | undefined;
   limit: number;
@@ -128,6 +140,8 @@ export const VaultLogsAllRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   VaultLogsAllRequest
 > = z.object({
+  appId: z.string().optional(),
+  consumerId: z.string().optional(),
   filter: components.LogsFilter$outboundSchema.optional(),
   cursor: z.nullable(z.string()).optional(),
   limit: z.number().int().default(20),

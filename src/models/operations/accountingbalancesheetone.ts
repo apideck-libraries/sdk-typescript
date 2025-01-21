@@ -22,6 +22,14 @@ export type AccountingBalanceSheetOneGlobals = {
 
 export type AccountingBalanceSheetOneRequest = {
   /**
+   * ID of the consumer which you want to get or push data from
+   */
+  consumerId?: string | undefined;
+  /**
+   * The ID of your Unify application
+   */
+  appId?: string | undefined;
+  /**
    * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
    */
   serviceId?: string | undefined;
@@ -116,6 +124,8 @@ export const AccountingBalanceSheetOneRequest$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
+  consumerId: z.string().optional(),
+  appId: z.string().optional(),
   serviceId: z.string().optional(),
   pass_through: z.record(z.any()).optional(),
   filter: components.BalanceSheetFilter$inboundSchema.optional(),
@@ -128,6 +138,8 @@ export const AccountingBalanceSheetOneRequest$inboundSchema: z.ZodType<
 
 /** @internal */
 export type AccountingBalanceSheetOneRequest$Outbound = {
+  consumerId?: string | undefined;
+  appId?: string | undefined;
   serviceId?: string | undefined;
   pass_through?: { [k: string]: any } | undefined;
   filter?: components.BalanceSheetFilter$Outbound | undefined;
@@ -140,6 +152,8 @@ export const AccountingBalanceSheetOneRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   AccountingBalanceSheetOneRequest
 > = z.object({
+  consumerId: z.string().optional(),
+  appId: z.string().optional(),
   serviceId: z.string().optional(),
   passThrough: z.record(z.any()).optional(),
   filter: components.BalanceSheetFilter$outboundSchema.optional(),

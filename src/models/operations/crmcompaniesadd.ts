@@ -26,6 +26,14 @@ export type CrmCompaniesAddRequest = {
    */
   raw?: boolean | undefined;
   /**
+   * ID of the consumer which you want to get or push data from
+   */
+  consumerId?: string | undefined;
+  /**
+   * The ID of your Unify application
+   */
+  appId?: string | undefined;
+  /**
    * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
    */
   serviceId?: string | undefined;
@@ -108,6 +116,8 @@ export const CrmCompaniesAddRequest$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   raw: z.boolean().default(false),
+  consumerId: z.string().optional(),
+  appId: z.string().optional(),
   serviceId: z.string().optional(),
   Company: components.CompanyInput$inboundSchema,
 }).transform((v) => {
@@ -119,6 +129,8 @@ export const CrmCompaniesAddRequest$inboundSchema: z.ZodType<
 /** @internal */
 export type CrmCompaniesAddRequest$Outbound = {
   raw: boolean;
+  consumerId?: string | undefined;
+  appId?: string | undefined;
   serviceId?: string | undefined;
   Company: components.CompanyInput$Outbound;
 };
@@ -130,6 +142,8 @@ export const CrmCompaniesAddRequest$outboundSchema: z.ZodType<
   CrmCompaniesAddRequest
 > = z.object({
   raw: z.boolean().default(false),
+  consumerId: z.string().optional(),
+  appId: z.string().optional(),
   serviceId: z.string().optional(),
   company: components.CompanyInput$outboundSchema,
 }).transform((v) => {

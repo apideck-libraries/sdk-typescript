@@ -30,6 +30,14 @@ export type HrisEmployeeSchedulesAllRequest = {
    */
   raw?: boolean | undefined;
   /**
+   * ID of the consumer which you want to get or push data from
+   */
+  consumerId?: string | undefined;
+  /**
+   * The ID of your Unify application
+   */
+  appId?: string | undefined;
+  /**
    * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
    */
   serviceId?: string | undefined;
@@ -124,6 +132,8 @@ export const HrisEmployeeSchedulesAllRequest$inboundSchema: z.ZodType<
 > = z.object({
   employee_id: z.string(),
   raw: z.boolean().default(false),
+  consumerId: z.string().optional(),
+  appId: z.string().optional(),
   serviceId: z.string().optional(),
   pass_through: z.record(z.any()).optional(),
   fields: z.nullable(z.string()).optional(),
@@ -138,6 +148,8 @@ export const HrisEmployeeSchedulesAllRequest$inboundSchema: z.ZodType<
 export type HrisEmployeeSchedulesAllRequest$Outbound = {
   employee_id: string;
   raw: boolean;
+  consumerId?: string | undefined;
+  appId?: string | undefined;
   serviceId?: string | undefined;
   pass_through?: { [k: string]: any } | undefined;
   fields?: string | null | undefined;
@@ -151,6 +163,8 @@ export const HrisEmployeeSchedulesAllRequest$outboundSchema: z.ZodType<
 > = z.object({
   employeeId: z.string(),
   raw: z.boolean().default(false),
+  consumerId: z.string().optional(),
+  appId: z.string().optional(),
   serviceId: z.string().optional(),
   passThrough: z.record(z.any()).optional(),
   fields: z.nullable(z.string()).optional(),

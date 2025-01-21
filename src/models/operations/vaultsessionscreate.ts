@@ -20,6 +20,21 @@ export type VaultSessionsCreateGlobals = {
   appId?: string | undefined;
 };
 
+export type VaultSessionsCreateRequest = {
+  /**
+   * ID of the consumer which you want to get or push data from
+   */
+  consumerId?: string | undefined;
+  /**
+   * The ID of your Unify application
+   */
+  appId?: string | undefined;
+  /**
+   * Additional redirect uri and/or consumer metadata
+   */
+  session?: components.Session | undefined;
+};
+
 export type VaultSessionsCreateResponse = {
   httpMeta: components.HTTPMetadata;
   /**
@@ -86,6 +101,74 @@ export function vaultSessionsCreateGlobalsFromJSON(
     jsonString,
     (x) => VaultSessionsCreateGlobals$inboundSchema.parse(JSON.parse(x)),
     `Failed to parse 'VaultSessionsCreateGlobals' from JSON`,
+  );
+}
+
+/** @internal */
+export const VaultSessionsCreateRequest$inboundSchema: z.ZodType<
+  VaultSessionsCreateRequest,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  consumerId: z.string().optional(),
+  appId: z.string().optional(),
+  Session: components.Session$inboundSchema.optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "Session": "session",
+  });
+});
+
+/** @internal */
+export type VaultSessionsCreateRequest$Outbound = {
+  consumerId?: string | undefined;
+  appId?: string | undefined;
+  Session?: components.Session$Outbound | undefined;
+};
+
+/** @internal */
+export const VaultSessionsCreateRequest$outboundSchema: z.ZodType<
+  VaultSessionsCreateRequest$Outbound,
+  z.ZodTypeDef,
+  VaultSessionsCreateRequest
+> = z.object({
+  consumerId: z.string().optional(),
+  appId: z.string().optional(),
+  session: components.Session$outboundSchema.optional(),
+}).transform((v) => {
+  return remap$(v, {
+    session: "Session",
+  });
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace VaultSessionsCreateRequest$ {
+  /** @deprecated use `VaultSessionsCreateRequest$inboundSchema` instead. */
+  export const inboundSchema = VaultSessionsCreateRequest$inboundSchema;
+  /** @deprecated use `VaultSessionsCreateRequest$outboundSchema` instead. */
+  export const outboundSchema = VaultSessionsCreateRequest$outboundSchema;
+  /** @deprecated use `VaultSessionsCreateRequest$Outbound` instead. */
+  export type Outbound = VaultSessionsCreateRequest$Outbound;
+}
+
+export function vaultSessionsCreateRequestToJSON(
+  vaultSessionsCreateRequest: VaultSessionsCreateRequest,
+): string {
+  return JSON.stringify(
+    VaultSessionsCreateRequest$outboundSchema.parse(vaultSessionsCreateRequest),
+  );
+}
+
+export function vaultSessionsCreateRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<VaultSessionsCreateRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => VaultSessionsCreateRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'VaultSessionsCreateRequest' from JSON`,
   );
 }
 

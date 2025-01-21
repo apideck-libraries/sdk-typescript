@@ -21,6 +21,10 @@ export type WebhookWebhooksUpdateRequest = {
    * JWT Webhook token that represents the unifiedApi and applicationId associated to the event source.
    */
   id: string;
+  /**
+   * The ID of your Unify application
+   */
+  appId?: string | undefined;
   updateWebhookRequest: components.UpdateWebhookRequest;
 };
 
@@ -99,6 +103,7 @@ export const WebhookWebhooksUpdateRequest$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   id: z.string(),
+  appId: z.string().optional(),
   UpdateWebhookRequest: components.UpdateWebhookRequest$inboundSchema,
 }).transform((v) => {
   return remap$(v, {
@@ -109,6 +114,7 @@ export const WebhookWebhooksUpdateRequest$inboundSchema: z.ZodType<
 /** @internal */
 export type WebhookWebhooksUpdateRequest$Outbound = {
   id: string;
+  appId?: string | undefined;
   UpdateWebhookRequest: components.UpdateWebhookRequest$Outbound;
 };
 
@@ -119,6 +125,7 @@ export const WebhookWebhooksUpdateRequest$outboundSchema: z.ZodType<
   WebhookWebhooksUpdateRequest
 > = z.object({
   id: z.string(),
+  appId: z.string().optional(),
   updateWebhookRequest: components.UpdateWebhookRequest$outboundSchema,
 }).transform((v) => {
   return remap$(v, {

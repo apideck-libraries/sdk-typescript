@@ -16,6 +16,14 @@ export type WebhookWebhooksAddGlobals = {
   appId?: string | undefined;
 };
 
+export type WebhookWebhooksAddRequest = {
+  /**
+   * The ID of your Unify application
+   */
+  appId?: string | undefined;
+  createWebhookRequest: components.CreateWebhookRequest;
+};
+
 export type WebhookWebhooksAddResponse = {
   httpMeta: components.HTTPMetadata;
   /**
@@ -79,6 +87,71 @@ export function webhookWebhooksAddGlobalsFromJSON(
     jsonString,
     (x) => WebhookWebhooksAddGlobals$inboundSchema.parse(JSON.parse(x)),
     `Failed to parse 'WebhookWebhooksAddGlobals' from JSON`,
+  );
+}
+
+/** @internal */
+export const WebhookWebhooksAddRequest$inboundSchema: z.ZodType<
+  WebhookWebhooksAddRequest,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  appId: z.string().optional(),
+  CreateWebhookRequest: components.CreateWebhookRequest$inboundSchema,
+}).transform((v) => {
+  return remap$(v, {
+    "CreateWebhookRequest": "createWebhookRequest",
+  });
+});
+
+/** @internal */
+export type WebhookWebhooksAddRequest$Outbound = {
+  appId?: string | undefined;
+  CreateWebhookRequest: components.CreateWebhookRequest$Outbound;
+};
+
+/** @internal */
+export const WebhookWebhooksAddRequest$outboundSchema: z.ZodType<
+  WebhookWebhooksAddRequest$Outbound,
+  z.ZodTypeDef,
+  WebhookWebhooksAddRequest
+> = z.object({
+  appId: z.string().optional(),
+  createWebhookRequest: components.CreateWebhookRequest$outboundSchema,
+}).transform((v) => {
+  return remap$(v, {
+    createWebhookRequest: "CreateWebhookRequest",
+  });
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace WebhookWebhooksAddRequest$ {
+  /** @deprecated use `WebhookWebhooksAddRequest$inboundSchema` instead. */
+  export const inboundSchema = WebhookWebhooksAddRequest$inboundSchema;
+  /** @deprecated use `WebhookWebhooksAddRequest$outboundSchema` instead. */
+  export const outboundSchema = WebhookWebhooksAddRequest$outboundSchema;
+  /** @deprecated use `WebhookWebhooksAddRequest$Outbound` instead. */
+  export type Outbound = WebhookWebhooksAddRequest$Outbound;
+}
+
+export function webhookWebhooksAddRequestToJSON(
+  webhookWebhooksAddRequest: WebhookWebhooksAddRequest,
+): string {
+  return JSON.stringify(
+    WebhookWebhooksAddRequest$outboundSchema.parse(webhookWebhooksAddRequest),
+  );
+}
+
+export function webhookWebhooksAddRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<WebhookWebhooksAddRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => WebhookWebhooksAddRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'WebhookWebhooksAddRequest' from JSON`,
   );
 }
 

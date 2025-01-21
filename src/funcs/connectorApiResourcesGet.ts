@@ -79,7 +79,7 @@ export async function connectorApiResourcesGet(
     Accept: "application/json",
     "x-apideck-app-id": encodeSimple(
       "x-apideck-app-id",
-      client._options.appId,
+      payload.appId ?? client._options.appId,
       { explode: false, charEncoding: "none" },
     ),
   }));

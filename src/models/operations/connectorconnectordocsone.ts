@@ -18,6 +18,10 @@ export type ConnectorConnectorDocsOneGlobals = {
 
 export type ConnectorConnectorDocsOneRequest = {
   /**
+   * The ID of your Unify application
+   */
+  appId?: string | undefined;
+  /**
    * ID of the record you are acting upon.
    */
   id: string;
@@ -101,6 +105,7 @@ export const ConnectorConnectorDocsOneRequest$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
+  appId: z.string().optional(),
   id: z.string(),
   doc_id: z.string(),
 }).transform((v) => {
@@ -111,6 +116,7 @@ export const ConnectorConnectorDocsOneRequest$inboundSchema: z.ZodType<
 
 /** @internal */
 export type ConnectorConnectorDocsOneRequest$Outbound = {
+  appId?: string | undefined;
   id: string;
   doc_id: string;
 };
@@ -121,6 +127,7 @@ export const ConnectorConnectorDocsOneRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   ConnectorConnectorDocsOneRequest
 > = z.object({
+  appId: z.string().optional(),
   id: z.string(),
   docId: z.string(),
 }).transform((v) => {

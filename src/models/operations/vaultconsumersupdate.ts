@@ -18,6 +18,10 @@ export type VaultConsumersUpdateGlobals = {
 
 export type VaultConsumersUpdateRequest = {
   /**
+   * The ID of your Unify application
+   */
+  appId?: string | undefined;
+  /**
    * ID of the consumer to return
    */
   consumerId: string;
@@ -98,6 +102,7 @@ export const VaultConsumersUpdateRequest$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
+  appId: z.string().optional(),
   consumer_id: z.string(),
   UpdateConsumerRequest: components.UpdateConsumerRequest$inboundSchema,
 }).transform((v) => {
@@ -109,6 +114,7 @@ export const VaultConsumersUpdateRequest$inboundSchema: z.ZodType<
 
 /** @internal */
 export type VaultConsumersUpdateRequest$Outbound = {
+  appId?: string | undefined;
   consumer_id: string;
   UpdateConsumerRequest: components.UpdateConsumerRequest$Outbound;
 };
@@ -119,6 +125,7 @@ export const VaultConsumersUpdateRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   VaultConsumersUpdateRequest
 > = z.object({
+  appId: z.string().optional(),
   consumerId: z.string(),
   updateConsumerRequest: components.UpdateConsumerRequest$outboundSchema,
 }).transform((v) => {

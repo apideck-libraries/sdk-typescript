@@ -26,6 +26,14 @@ export type AccountingInvoiceItemsOneRequest = {
    */
   id: string;
   /**
+   * ID of the consumer which you want to get or push data from
+   */
+  consumerId?: string | undefined;
+  /**
+   * The ID of your Unify application
+   */
+  appId?: string | undefined;
+  /**
    * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
    */
   serviceId?: string | undefined;
@@ -121,6 +129,8 @@ export const AccountingInvoiceItemsOneRequest$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   id: z.string(),
+  consumerId: z.string().optional(),
+  appId: z.string().optional(),
   serviceId: z.string().optional(),
   raw: z.boolean().default(false),
   fields: z.nullable(z.string()).optional(),
@@ -130,6 +140,8 @@ export const AccountingInvoiceItemsOneRequest$inboundSchema: z.ZodType<
 /** @internal */
 export type AccountingInvoiceItemsOneRequest$Outbound = {
   id: string;
+  consumerId?: string | undefined;
+  appId?: string | undefined;
   serviceId?: string | undefined;
   raw: boolean;
   fields?: string | null | undefined;
@@ -143,6 +155,8 @@ export const AccountingInvoiceItemsOneRequest$outboundSchema: z.ZodType<
   AccountingInvoiceItemsOneRequest
 > = z.object({
   id: z.string(),
+  consumerId: z.string().optional(),
+  appId: z.string().optional(),
   serviceId: z.string().optional(),
   raw: z.boolean().default(false),
   fields: z.nullable(z.string()).optional(),

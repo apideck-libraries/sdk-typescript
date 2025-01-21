@@ -18,6 +18,10 @@ export type VaultConsumersDeleteGlobals = {
 
 export type VaultConsumersDeleteRequest = {
   /**
+   * The ID of your Unify application
+   */
+  appId?: string | undefined;
+  /**
    * ID of the consumer to return
    */
   consumerId: string;
@@ -97,6 +101,7 @@ export const VaultConsumersDeleteRequest$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
+  appId: z.string().optional(),
   consumer_id: z.string(),
 }).transform((v) => {
   return remap$(v, {
@@ -106,6 +111,7 @@ export const VaultConsumersDeleteRequest$inboundSchema: z.ZodType<
 
 /** @internal */
 export type VaultConsumersDeleteRequest$Outbound = {
+  appId?: string | undefined;
   consumer_id: string;
 };
 
@@ -115,6 +121,7 @@ export const VaultConsumersDeleteRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   VaultConsumersDeleteRequest
 > = z.object({
+  appId: z.string().optional(),
   consumerId: z.string(),
 }).transform((v) => {
   return remap$(v, {

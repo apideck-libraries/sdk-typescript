@@ -22,6 +22,14 @@ export type VaultCustomMappingsAllGlobals = {
 
 export type VaultCustomMappingsAllRequest = {
   /**
+   * ID of the consumer which you want to get or push data from
+   */
+  consumerId?: string | undefined;
+  /**
+   * The ID of your Unify application
+   */
+  appId?: string | undefined;
+  /**
    * Unified API
    */
   unifiedApi: string;
@@ -108,6 +116,8 @@ export const VaultCustomMappingsAllRequest$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
+  consumerId: z.string().optional(),
+  appId: z.string().optional(),
   unified_api: z.string(),
   service_id: z.string(),
 }).transform((v) => {
@@ -119,6 +129,8 @@ export const VaultCustomMappingsAllRequest$inboundSchema: z.ZodType<
 
 /** @internal */
 export type VaultCustomMappingsAllRequest$Outbound = {
+  consumerId?: string | undefined;
+  appId?: string | undefined;
   unified_api: string;
   service_id: string;
 };
@@ -129,6 +141,8 @@ export const VaultCustomMappingsAllRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   VaultCustomMappingsAllRequest
 > = z.object({
+  consumerId: z.string().optional(),
+  appId: z.string().optional(),
   unifiedApi: z.string(),
   serviceId: z.string(),
 }).transform((v) => {

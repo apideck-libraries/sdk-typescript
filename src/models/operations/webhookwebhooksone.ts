@@ -21,6 +21,10 @@ export type WebhookWebhooksOneRequest = {
    * JWT Webhook token that represents the unifiedApi and applicationId associated to the event source.
    */
   id: string;
+  /**
+   * The ID of your Unify application
+   */
+  appId?: string | undefined;
 };
 
 export type WebhookWebhooksOneResponse = {
@@ -96,11 +100,13 @@ export const WebhookWebhooksOneRequest$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   id: z.string(),
+  appId: z.string().optional(),
 });
 
 /** @internal */
 export type WebhookWebhooksOneRequest$Outbound = {
   id: string;
+  appId?: string | undefined;
 };
 
 /** @internal */
@@ -110,6 +116,7 @@ export const WebhookWebhooksOneRequest$outboundSchema: z.ZodType<
   WebhookWebhooksOneRequest
 > = z.object({
   id: z.string(),
+  appId: z.string().optional(),
 });
 
 /**

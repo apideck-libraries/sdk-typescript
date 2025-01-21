@@ -30,6 +30,14 @@ export type FileStorageUploadSessionsAddRequest = {
    */
   raw?: boolean | undefined;
   /**
+   * ID of the consumer which you want to get or push data from
+   */
+  consumerId?: string | undefined;
+  /**
+   * The ID of your Unify application
+   */
+  appId?: string | undefined;
+  /**
    * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
    */
   serviceId?: string | undefined;
@@ -119,6 +127,8 @@ export const FileStorageUploadSessionsAddRequest$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   raw: z.boolean().default(false),
+  consumerId: z.string().optional(),
+  appId: z.string().optional(),
   serviceId: z.string().optional(),
   CreateUploadSessionRequest:
     components.CreateUploadSessionRequest$inboundSchema,
@@ -131,6 +141,8 @@ export const FileStorageUploadSessionsAddRequest$inboundSchema: z.ZodType<
 /** @internal */
 export type FileStorageUploadSessionsAddRequest$Outbound = {
   raw: boolean;
+  consumerId?: string | undefined;
+  appId?: string | undefined;
   serviceId?: string | undefined;
   CreateUploadSessionRequest: components.CreateUploadSessionRequest$Outbound;
 };
@@ -142,6 +154,8 @@ export const FileStorageUploadSessionsAddRequest$outboundSchema: z.ZodType<
   FileStorageUploadSessionsAddRequest
 > = z.object({
   raw: z.boolean().default(false),
+  consumerId: z.string().optional(),
+  appId: z.string().optional(),
   serviceId: z.string().optional(),
   createUploadSessionRequest:
     components.CreateUploadSessionRequest$outboundSchema,

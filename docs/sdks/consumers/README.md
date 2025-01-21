@@ -28,12 +28,14 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.vault.consumers.create({
-    consumerId: "test_consumer_id",
-    metadata: {
-      accountName: "SpaceX",
-      userName: "Elon Musk",
-      email: "elon@musk.com",
-      image: "https://www.spacex.com/static/images/share.jpg",
+    consumer: {
+      consumerId: "test_consumer_id",
+      metadata: {
+        accountName: "SpaceX",
+        userName: "Elon Musk",
+        email: "elon@musk.com",
+        image: "https://www.spacex.com/static/images/share.jpg",
+      },
     },
   });
 
@@ -62,12 +64,14 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await vaultConsumersCreate(apideck, {
-    consumerId: "test_consumer_id",
-    metadata: {
-      accountName: "SpaceX",
-      userName: "Elon Musk",
-      email: "elon@musk.com",
-      image: "https://www.spacex.com/static/images/share.jpg",
+    consumer: {
+      consumerId: "test_consumer_id",
+      metadata: {
+        accountName: "SpaceX",
+        userName: "Elon Musk",
+        email: "elon@musk.com",
+        image: "https://www.spacex.com/static/images/share.jpg",
+      },
     },
   });
 
@@ -88,7 +92,7 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [components.ConsumerInput](../../models/components/consumerinput.md)                                                                                                           | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `request`                                                                                                                                                                      | [operations.VaultConsumersAddRequest](../../models/operations/vaultconsumersaddrequest.md)                                                                                     | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |

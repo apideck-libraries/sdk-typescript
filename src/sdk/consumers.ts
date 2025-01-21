@@ -8,7 +8,6 @@ import { vaultConsumersGet } from "../funcs/vaultConsumersGet.js";
 import { vaultConsumersList } from "../funcs/vaultConsumersList.js";
 import { vaultConsumersUpdate } from "../funcs/vaultConsumersUpdate.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
-import * as components from "../models/components/index.js";
 import * as operations from "../models/operations/index.js";
 import { unwrapAsync } from "../types/fp.js";
 import { PageIterator, unwrapResultIterator } from "../types/operations.js";
@@ -21,7 +20,7 @@ export class Consumers extends ClientSDK {
    * Create a consumer
    */
   async create(
-    request: components.ConsumerInput,
+    request: operations.VaultConsumersAddRequest,
     options?: RequestOptions,
   ): Promise<operations.VaultConsumersAddResponse> {
     return unwrapAsync(vaultConsumersCreate(

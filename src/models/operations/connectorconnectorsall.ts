@@ -18,6 +18,10 @@ export type ConnectorConnectorsAllGlobals = {
 
 export type ConnectorConnectorsAllRequest = {
   /**
+   * The ID of your Unify application
+   */
+  appId?: string | undefined;
+  /**
    * Cursor to start from. You can find cursors for next/previous pages in the meta.cursors property of the response.
    */
   cursor?: string | null | undefined;
@@ -105,6 +109,7 @@ export const ConnectorConnectorsAllRequest$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
+  appId: z.string().optional(),
   cursor: z.nullable(z.string()).optional(),
   limit: z.number().int().default(20),
   filter: components.ConnectorsFilter$inboundSchema.optional(),
@@ -112,6 +117,7 @@ export const ConnectorConnectorsAllRequest$inboundSchema: z.ZodType<
 
 /** @internal */
 export type ConnectorConnectorsAllRequest$Outbound = {
+  appId?: string | undefined;
   cursor?: string | null | undefined;
   limit: number;
   filter?: components.ConnectorsFilter$Outbound | undefined;
@@ -123,6 +129,7 @@ export const ConnectorConnectorsAllRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   ConnectorConnectorsAllRequest
 > = z.object({
+  appId: z.string().optional(),
   cursor: z.nullable(z.string()).optional(),
   limit: z.number().int().default(20),
   filter: components.ConnectorsFilter$outboundSchema.optional(),
