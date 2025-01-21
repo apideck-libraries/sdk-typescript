@@ -28,7 +28,9 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.accounting.ledgerAccounts.list({
+    raw: false,
     serviceId: "salesforce",
+    limit: 20,
     filter: {
       updatedSince: new Date("2020-09-30T07:43:32.000Z"),
     },
@@ -69,7 +71,9 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await accountingLedgerAccountsList(apideck, {
+    raw: false,
     serviceId: "salesforce",
+    limit: 20,
     filter: {
       updatedSince: new Date("2020-09-30T07:43:32.000Z"),
     },
@@ -140,6 +144,7 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.accounting.ledgerAccounts.create({
+    raw: false,
     serviceId: "salesforce",
     ledgerAccount: {
       displayId: "1-12345",
@@ -182,48 +187,25 @@ async function run() {
       },
       subAccount: false,
       lastReconciliationDate: new RFCDate("2020-09-30"),
+      customFields: [
+        {
+          id: "2389328923893298",
+          name: "employee_level",
+          description: "Employee Level",
+          value: {},
+        },
+        {
+          id: "2389328923893298",
+          name: "employee_level",
+          description: "Employee Level",
+          value: true,
+        },
+      ],
       rowVersion: "1-12345",
       passThrough: [
         {
           serviceId: "<id>",
           extendPaths: [
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
-          ],
-        },
-        {
-          serviceId: "<id>",
-          extendPaths: [
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
             {
               path: "$.nested.property",
               value: {
@@ -264,6 +246,7 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await accountingLedgerAccountsCreate(apideck, {
+    raw: false,
     serviceId: "salesforce",
     ledgerAccount: {
       displayId: "1-12345",
@@ -306,48 +289,25 @@ async function run() {
       },
       subAccount: false,
       lastReconciliationDate: new RFCDate("2020-09-30"),
+      customFields: [
+        {
+          id: "2389328923893298",
+          name: "employee_level",
+          description: "Employee Level",
+          value: {},
+        },
+        {
+          id: "2389328923893298",
+          name: "employee_level",
+          description: "Employee Level",
+          value: true,
+        },
+      ],
       rowVersion: "1-12345",
       passThrough: [
         {
           serviceId: "<id>",
           extendPaths: [
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
-          ],
-        },
-        {
-          serviceId: "<id>",
-          extendPaths: [
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
             {
               path: "$.nested.property",
               value: {
@@ -418,6 +378,7 @@ async function run() {
   const result = await apideck.accounting.ledgerAccounts.get({
     id: "<id>",
     serviceId: "salesforce",
+    raw: false,
     fields: "id,updated_at",
   });
 
@@ -448,6 +409,7 @@ async function run() {
   const res = await accountingLedgerAccountsGet(apideck, {
     id: "<id>",
     serviceId: "salesforce",
+    raw: false,
     fields: "id,updated_at",
   });
 
@@ -508,6 +470,7 @@ async function run() {
   const result = await apideck.accounting.ledgerAccounts.update({
     id: "<id>",
     serviceId: "salesforce",
+    raw: false,
     ledgerAccount: {
       displayId: "1-12345",
       code: "453",
@@ -549,9 +512,73 @@ async function run() {
       },
       subAccount: false,
       lastReconciliationDate: new RFCDate("2020-09-30"),
+      customFields: [
+        {
+          id: "2389328923893298",
+          name: "employee_level",
+          description: "Employee Level",
+          value: {},
+        },
+        {
+          id: "2389328923893298",
+          name: "employee_level",
+          description: "Employee Level",
+          value: true,
+        },
+        {
+          id: "2389328923893298",
+          name: "employee_level",
+          description: "Employee Level",
+          value: [
+            {},
+            {},
+          ],
+        },
+      ],
       rowVersion: "1-12345",
       passThrough: [
-
+        {
+          serviceId: "<id>",
+          extendPaths: [
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+          ],
+        },
+        {
+          serviceId: "<id>",
+          extendPaths: [
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+          ],
+        },
       ],
     },
   });
@@ -584,6 +611,7 @@ async function run() {
   const res = await accountingLedgerAccountsUpdate(apideck, {
     id: "<id>",
     serviceId: "salesforce",
+    raw: false,
     ledgerAccount: {
       displayId: "1-12345",
       code: "453",
@@ -625,9 +653,73 @@ async function run() {
       },
       subAccount: false,
       lastReconciliationDate: new RFCDate("2020-09-30"),
+      customFields: [
+        {
+          id: "2389328923893298",
+          name: "employee_level",
+          description: "Employee Level",
+          value: {},
+        },
+        {
+          id: "2389328923893298",
+          name: "employee_level",
+          description: "Employee Level",
+          value: true,
+        },
+        {
+          id: "2389328923893298",
+          name: "employee_level",
+          description: "Employee Level",
+          value: [
+            {},
+            {},
+          ],
+        },
+      ],
       rowVersion: "1-12345",
       passThrough: [
-  
+        {
+          serviceId: "<id>",
+          extendPaths: [
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+          ],
+        },
+        {
+          serviceId: "<id>",
+          extendPaths: [
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+          ],
+        },
       ],
     },
   });
@@ -688,6 +780,7 @@ async function run() {
   const result = await apideck.accounting.ledgerAccounts.delete({
     id: "<id>",
     serviceId: "salesforce",
+    raw: false,
   });
 
   // Handle the result
@@ -717,6 +810,7 @@ async function run() {
   const res = await accountingLedgerAccountsDelete(apideck, {
     id: "<id>",
     serviceId: "salesforce",
+    raw: false,
   });
 
   if (!res.ok) {

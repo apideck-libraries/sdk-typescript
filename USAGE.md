@@ -10,7 +10,9 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.accounting.taxRates.list({
+    raw: false,
     serviceId: "salesforce",
+    limit: 20,
     filter: {
       assets: true,
       equity: true,

@@ -28,7 +28,9 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.fileStorage.sharedLinks.list({
+    raw: false,
     serviceId: "salesforce",
+    limit: 20,
     passThrough: {
       "search": "San Francisco",
     },
@@ -62,7 +64,9 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await fileStorageSharedLinksList(apideck, {
+    raw: false,
     serviceId: "salesforce",
+    limit: 20,
     passThrough: {
       "search": "San Francisco",
     },
@@ -125,13 +129,55 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.fileStorage.sharedLinks.create({
+    raw: false,
     serviceId: "salesforce",
     sharedLink: {
       downloadUrl: "https://www.box.com/shared/static/rh935iit6ewrmw0unyul.jpeg",
       targetId: "<id>",
       scope: "company",
       passThrough: [
-
+        {
+          serviceId: "<id>",
+          extendPaths: [
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+          ],
+        },
+        {
+          serviceId: "<id>",
+          extendPaths: [
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+          ],
+        },
       ],
     },
   });
@@ -161,13 +207,55 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await fileStorageSharedLinksCreate(apideck, {
+    raw: false,
     serviceId: "salesforce",
     sharedLink: {
       downloadUrl: "https://www.box.com/shared/static/rh935iit6ewrmw0unyul.jpeg",
       targetId: "<id>",
       scope: "company",
       passThrough: [
-  
+        {
+          serviceId: "<id>",
+          extendPaths: [
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+          ],
+        },
+        {
+          serviceId: "<id>",
+          extendPaths: [
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+          ],
+        },
       ],
     },
   });
@@ -228,6 +316,7 @@ async function run() {
   const result = await apideck.fileStorage.sharedLinks.get({
     id: "<id>",
     serviceId: "salesforce",
+    raw: false,
     fields: "id,updated_at",
   });
 
@@ -258,6 +347,7 @@ async function run() {
   const res = await fileStorageSharedLinksGet(apideck, {
     id: "<id>",
     serviceId: "salesforce",
+    raw: false,
     fields: "id,updated_at",
   });
 
@@ -317,6 +407,7 @@ async function run() {
   const result = await apideck.fileStorage.sharedLinks.update({
     id: "<id>",
     serviceId: "salesforce",
+    raw: false,
     sharedLink: {
       downloadUrl: "https://www.box.com/shared/static/rh935iit6ewrmw0unyul.jpeg",
       targetId: "<id>",
@@ -325,6 +416,64 @@ async function run() {
         {
           serviceId: "<id>",
           extendPaths: [
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+          ],
+        },
+        {
+          serviceId: "<id>",
+          extendPaths: [
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+          ],
+        },
+        {
+          serviceId: "<id>",
+          extendPaths: [
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
             {
               path: "$.nested.property",
               value: {
@@ -366,6 +515,7 @@ async function run() {
   const res = await fileStorageSharedLinksUpdate(apideck, {
     id: "<id>",
     serviceId: "salesforce",
+    raw: false,
     sharedLink: {
       downloadUrl: "https://www.box.com/shared/static/rh935iit6ewrmw0unyul.jpeg",
       targetId: "<id>",
@@ -374,6 +524,64 @@ async function run() {
         {
           serviceId: "<id>",
           extendPaths: [
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+          ],
+        },
+        {
+          serviceId: "<id>",
+          extendPaths: [
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+          ],
+        },
+        {
+          serviceId: "<id>",
+          extendPaths: [
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
             {
               path: "$.nested.property",
               value: {
@@ -444,6 +652,7 @@ async function run() {
   const result = await apideck.fileStorage.sharedLinks.delete({
     id: "<id>",
     serviceId: "salesforce",
+    raw: false,
   });
 
   // Handle the result
@@ -473,6 +682,7 @@ async function run() {
   const res = await fileStorageSharedLinksDelete(apideck, {
     id: "<id>",
     serviceId: "salesforce",
+    raw: false,
   });
 
   if (!res.ok) {

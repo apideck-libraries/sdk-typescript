@@ -28,7 +28,9 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.accounting.billPayments.list({
+    raw: false,
     serviceId: "salesforce",
+    limit: 20,
     filter: {
       updatedSince: new Date("2020-09-30T07:43:32.000Z"),
     },
@@ -69,7 +71,9 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await accountingBillPaymentsList(apideck, {
+    raw: false,
     serviceId: "salesforce",
+    limit: 20,
     filter: {
       updatedSince: new Date("2020-09-30T07:43:32.000Z"),
     },
@@ -139,6 +143,7 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.accounting.billPayments.create({
+    raw: false,
     serviceId: "salesforce",
     billPayment: {
       currency: "USD",
@@ -219,7 +224,13 @@ async function run() {
           id: "2389328923893298",
           name: "employee_level",
           description: "Employee Level",
-          value: true,
+          value: "Uses Salesforce and Marketo",
+        },
+        {
+          id: "2389328923893298",
+          name: "employee_level",
+          description: "Employee Level",
+          value: "Uses Salesforce and Marketo",
         },
       ],
       rowVersion: "1-12345",
@@ -228,6 +239,14 @@ async function run() {
         {
           serviceId: "<id>",
           extendPaths: [
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
             {
               path: "$.nested.property",
               value: {
@@ -257,14 +276,11 @@ async function run() {
                 },
               },
             },
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
+          ],
+        },
+        {
+          serviceId: "<id>",
+          extendPaths: [
             {
               path: "$.nested.property",
               value: {
@@ -304,6 +320,7 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await accountingBillPaymentsCreate(apideck, {
+    raw: false,
     serviceId: "salesforce",
     billPayment: {
       currency: "USD",
@@ -384,7 +401,13 @@ async function run() {
           id: "2389328923893298",
           name: "employee_level",
           description: "Employee Level",
-          value: true,
+          value: "Uses Salesforce and Marketo",
+        },
+        {
+          id: "2389328923893298",
+          name: "employee_level",
+          description: "Employee Level",
+          value: "Uses Salesforce and Marketo",
         },
       ],
       rowVersion: "1-12345",
@@ -393,6 +416,14 @@ async function run() {
         {
           serviceId: "<id>",
           extendPaths: [
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
             {
               path: "$.nested.property",
               value: {
@@ -422,14 +453,11 @@ async function run() {
                 },
               },
             },
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
+          ],
+        },
+        {
+          serviceId: "<id>",
+          extendPaths: [
             {
               path: "$.nested.property",
               value: {
@@ -500,6 +528,7 @@ async function run() {
   const result = await apideck.accounting.billPayments.get({
     id: "<id>",
     serviceId: "salesforce",
+    raw: false,
     fields: "id,updated_at",
   });
 
@@ -530,6 +559,7 @@ async function run() {
   const res = await accountingBillPaymentsGet(apideck, {
     id: "<id>",
     serviceId: "salesforce",
+    raw: false,
     fields: "id,updated_at",
   });
 
@@ -589,6 +619,7 @@ async function run() {
   const result = await apideck.accounting.billPayments.update({
     id: "<id>",
     serviceId: "salesforce",
+    raw: false,
     billPayment: {
       currency: "USD",
       currencyRate: 0.69,
@@ -660,26 +691,30 @@ async function run() {
       note: "Some notes about this transaction",
       number: "123456",
       trackingCategories: [
-
+        {
+          id: "123456",
+          name: "New York",
+        },
+        {
+          id: "123456",
+          name: "New York",
+        },
       ],
       customFields: [
         {
           id: "2389328923893298",
           name: "employee_level",
           description: "Employee Level",
+          value: [
+            {},
+            {},
+          ],
+        },
+        {
+          id: "2389328923893298",
+          name: "employee_level",
+          description: "Employee Level",
           value: true,
-        },
-        {
-          id: "2389328923893298",
-          name: "employee_level",
-          description: "Employee Level",
-          value: {},
-        },
-        {
-          id: "2389328923893298",
-          name: "employee_level",
-          description: "Employee Level",
-          value: {},
         },
       ],
       rowVersion: "1-12345",
@@ -696,6 +731,40 @@ async function run() {
                 },
               },
             },
+          ],
+        },
+        {
+          serviceId: "<id>",
+          extendPaths: [
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+          ],
+        },
+        {
+          serviceId: "<id>",
+          extendPaths: [
             {
               path: "$.nested.property",
               value: {
@@ -745,6 +814,7 @@ async function run() {
   const res = await accountingBillPaymentsUpdate(apideck, {
     id: "<id>",
     serviceId: "salesforce",
+    raw: false,
     billPayment: {
       currency: "USD",
       currencyRate: 0.69,
@@ -816,26 +886,30 @@ async function run() {
       note: "Some notes about this transaction",
       number: "123456",
       trackingCategories: [
-  
+        {
+          id: "123456",
+          name: "New York",
+        },
+        {
+          id: "123456",
+          name: "New York",
+        },
       ],
       customFields: [
         {
           id: "2389328923893298",
           name: "employee_level",
           description: "Employee Level",
+          value: [
+            {},
+            {},
+          ],
+        },
+        {
+          id: "2389328923893298",
+          name: "employee_level",
+          description: "Employee Level",
           value: true,
-        },
-        {
-          id: "2389328923893298",
-          name: "employee_level",
-          description: "Employee Level",
-          value: {},
-        },
-        {
-          id: "2389328923893298",
-          name: "employee_level",
-          description: "Employee Level",
-          value: {},
         },
       ],
       rowVersion: "1-12345",
@@ -852,6 +926,40 @@ async function run() {
                 },
               },
             },
+          ],
+        },
+        {
+          serviceId: "<id>",
+          extendPaths: [
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+          ],
+        },
+        {
+          serviceId: "<id>",
+          extendPaths: [
             {
               path: "$.nested.property",
               value: {
@@ -930,6 +1038,7 @@ async function run() {
   const result = await apideck.accounting.billPayments.delete({
     id: "<id>",
     serviceId: "salesforce",
+    raw: false,
   });
 
   // Handle the result
@@ -959,6 +1068,7 @@ async function run() {
   const res = await accountingBillPaymentsDelete(apideck, {
     id: "<id>",
     serviceId: "salesforce",
+    raw: false,
   });
 
   if (!res.ok) {

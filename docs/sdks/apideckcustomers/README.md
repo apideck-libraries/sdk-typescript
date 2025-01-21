@@ -25,7 +25,9 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.ecommerce.customers.list({
+    raw: false,
     serviceId: "salesforce",
+    limit: 20,
     filter: {
       email: "elon@musk.com",
       phoneNumber: "111-111-1111",
@@ -63,7 +65,9 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await ecommerceCustomersList(apideck, {
+    raw: false,
     serviceId: "salesforce",
+    limit: 20,
     filter: {
       email: "elon@musk.com",
       phoneNumber: "111-111-1111",
@@ -132,6 +136,7 @@ async function run() {
   const result = await apideck.ecommerce.customers.get({
     id: "<id>",
     serviceId: "salesforce",
+    raw: false,
     fields: "id,updated_at",
   });
 
@@ -162,6 +167,7 @@ async function run() {
   const res = await ecommerceCustomersGet(apideck, {
     id: "<id>",
     serviceId: "salesforce",
+    raw: false,
     fields: "id,updated_at",
   });
 

@@ -28,7 +28,9 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.issueTracking.collectionTickets.list({
+    raw: false,
     serviceId: "salesforce",
+    limit: 20,
     collectionId: "apideck-io",
     sort: {
       by: "created_at",
@@ -38,8 +40,6 @@ async function run() {
       status: [
         "open",
       ],
-      since: new Date("2020-09-30T07:43:32.000Z"),
-      assigneeId: "2332bd9c2eaaa5dcfa14721c",
     },
     passThrough: {
       "search": "San Francisco",
@@ -74,7 +74,9 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await issueTrackingCollectionTicketsList(apideck, {
+    raw: false,
     serviceId: "salesforce",
+    limit: 20,
     collectionId: "apideck-io",
     sort: {
       by: "created_at",
@@ -84,8 +86,6 @@ async function run() {
       status: [
         "open",
       ],
-      since: new Date("2020-09-30T07:43:32.000Z"),
-      assigneeId: "2332bd9c2eaaa5dcfa14721c",
     },
     passThrough: {
       "search": "San Francisco",
@@ -149,6 +149,7 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.issueTracking.collectionTickets.create({
+    raw: false,
     serviceId: "salesforce",
     collectionId: "apideck-io",
     ticket: {
@@ -159,6 +160,9 @@ async function run() {
       status: "open",
       priority: "high",
       assignees: [
+        {
+          id: "12345",
+        },
         {
           id: "12345",
         },
@@ -189,20 +193,6 @@ async function run() {
         {
           serviceId: "<id>",
           extendPaths: [
-
-          ],
-        },
-        {
-          serviceId: "<id>",
-          extendPaths: [
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
             {
               path: "$.nested.property",
               value: {
@@ -242,6 +232,7 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await issueTrackingCollectionTicketsCreate(apideck, {
+    raw: false,
     serviceId: "salesforce",
     collectionId: "apideck-io",
     ticket: {
@@ -252,6 +243,9 @@ async function run() {
       status: "open",
       priority: "high",
       assignees: [
+        {
+          id: "12345",
+        },
         {
           id: "12345",
         },
@@ -282,20 +276,6 @@ async function run() {
         {
           serviceId: "<id>",
           extendPaths: [
-  
-          ],
-        },
-        {
-          serviceId: "<id>",
-          extendPaths: [
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
             {
               path: "$.nested.property",
               value: {
@@ -366,6 +346,7 @@ async function run() {
   const result = await apideck.issueTracking.collectionTickets.get({
     ticketId: "<id>",
     serviceId: "salesforce",
+    raw: false,
     collectionId: "apideck-io",
     fields: "id,updated_at",
   });
@@ -397,6 +378,7 @@ async function run() {
   const res = await issueTrackingCollectionTicketsGet(apideck, {
     ticketId: "<id>",
     serviceId: "salesforce",
+    raw: false,
     collectionId: "apideck-io",
     fields: "id,updated_at",
   });
@@ -457,6 +439,7 @@ async function run() {
   const result = await apideck.issueTracking.collectionTickets.update({
     ticketId: "<id>",
     serviceId: "salesforce",
+    raw: false,
     collectionId: "apideck-io",
     ticket: {
       parentId: "12345",
@@ -466,7 +449,15 @@ async function run() {
       status: "open",
       priority: "high",
       assignees: [
-
+        {
+          id: "12345",
+        },
+        {
+          id: "12345",
+        },
+        {
+          id: "12345",
+        },
       ],
       dueDate: new Date("2020-09-30T07:43:32.000Z"),
       tags: [
@@ -476,12 +467,58 @@ async function run() {
         {
           id: "12345",
         },
-        {
-          id: "12345",
-        },
       ],
       passThrough: [
-
+        {
+          serviceId: "<id>",
+          extendPaths: [
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+          ],
+        },
+        {
+          serviceId: "<id>",
+          extendPaths: [
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+          ],
+        },
       ],
     },
   });
@@ -513,6 +550,7 @@ async function run() {
   const res = await issueTrackingCollectionTicketsUpdate(apideck, {
     ticketId: "<id>",
     serviceId: "salesforce",
+    raw: false,
     collectionId: "apideck-io",
     ticket: {
       parentId: "12345",
@@ -522,7 +560,15 @@ async function run() {
       status: "open",
       priority: "high",
       assignees: [
-  
+        {
+          id: "12345",
+        },
+        {
+          id: "12345",
+        },
+        {
+          id: "12345",
+        },
       ],
       dueDate: new Date("2020-09-30T07:43:32.000Z"),
       tags: [
@@ -532,12 +578,58 @@ async function run() {
         {
           id: "12345",
         },
-        {
-          id: "12345",
-        },
       ],
       passThrough: [
-  
+        {
+          serviceId: "<id>",
+          extendPaths: [
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+          ],
+        },
+        {
+          serviceId: "<id>",
+          extendPaths: [
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+          ],
+        },
       ],
     },
   });
@@ -598,6 +690,7 @@ async function run() {
   const result = await apideck.issueTracking.collectionTickets.delete({
     ticketId: "<id>",
     serviceId: "salesforce",
+    raw: false,
     collectionId: "apideck-io",
   });
 
@@ -628,6 +721,7 @@ async function run() {
   const res = await issueTrackingCollectionTicketsDelete(apideck, {
     ticketId: "<id>",
     serviceId: "salesforce",
+    raw: false,
     collectionId: "apideck-io",
   });
 

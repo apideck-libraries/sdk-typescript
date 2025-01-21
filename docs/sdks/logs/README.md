@@ -30,6 +30,7 @@ async function run() {
       statusCode: 201,
       excludeUnifiedApis: "vault,proxy",
     },
+    limit: 20,
   });
 
   for await (const page of result) {
@@ -64,6 +65,7 @@ async function run() {
       statusCode: 201,
       excludeUnifiedApis: "vault,proxy",
     },
+    limit: 20,
   });
 
   if (!res.ok) {

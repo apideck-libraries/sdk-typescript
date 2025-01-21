@@ -25,7 +25,9 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.ecommerce.products.list({
+    raw: false,
     serviceId: "salesforce",
+    limit: 20,
     passThrough: {
       "search": "San Francisco",
     },
@@ -59,7 +61,9 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await ecommerceProductsList(apideck, {
+    raw: false,
     serviceId: "salesforce",
+    limit: 20,
     passThrough: {
       "search": "San Francisco",
     },
@@ -124,6 +128,7 @@ async function run() {
   const result = await apideck.ecommerce.products.get({
     id: "<id>",
     serviceId: "salesforce",
+    raw: false,
     fields: "id,updated_at",
   });
 
@@ -154,6 +159,7 @@ async function run() {
   const res = await ecommerceProductsGet(apideck, {
     id: "<id>",
     serviceId: "salesforce",
+    raw: false,
     fields: "id,updated_at",
   });
 

@@ -28,7 +28,9 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.accounting.journalEntries.list({
+    raw: false,
     serviceId: "salesforce",
+    limit: 20,
     filter: {
       updatedSince: new Date("2020-09-30T07:43:32.000Z"),
     },
@@ -69,7 +71,9 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await accountingJournalEntriesList(apideck, {
+    raw: false,
     serviceId: "salesforce",
+    limit: 20,
     filter: {
       updatedSince: new Date("2020-09-30T07:43:32.000Z"),
     },
@@ -139,6 +143,7 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.accounting.journalEntries.create({
+    raw: false,
     serviceId: "salesforce",
     journalEntry: {
       title: "Purchase Invoice-Inventory (USD): 2019/02/01 Batch Summary Entry",
@@ -157,7 +162,14 @@ async function run() {
             rate: 10,
           },
           trackingCategories: [
-
+            {
+              id: "123456",
+              name: "New York",
+            },
+            {
+              id: "123456",
+              name: "New York",
+            },
           ],
           ledgerAccount: {
             id: "123456",
@@ -271,12 +283,39 @@ async function run() {
       taxCode: "1234",
       number: "OIT00546",
       trackingCategories: [
-
+        {
+          id: "123456",
+          name: "New York",
+        },
       ],
       accountingPeriod: "01-24",
       rowVersion: "1-12345",
+      customFields: [
+        {
+          id: "2389328923893298",
+          name: "employee_level",
+          description: "Employee Level",
+          value: [
+            "<value>",
+            "<value>",
+            "<value>",
+          ],
+        },
+      ],
       passThrough: [
-
+        {
+          serviceId: "<id>",
+          extendPaths: [
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+          ],
+        },
       ],
     },
   });
@@ -306,6 +345,7 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await accountingJournalEntriesCreate(apideck, {
+    raw: false,
     serviceId: "salesforce",
     journalEntry: {
       title: "Purchase Invoice-Inventory (USD): 2019/02/01 Batch Summary Entry",
@@ -324,7 +364,14 @@ async function run() {
             rate: 10,
           },
           trackingCategories: [
-  
+            {
+              id: "123456",
+              name: "New York",
+            },
+            {
+              id: "123456",
+              name: "New York",
+            },
           ],
           ledgerAccount: {
             id: "123456",
@@ -438,12 +485,39 @@ async function run() {
       taxCode: "1234",
       number: "OIT00546",
       trackingCategories: [
-  
+        {
+          id: "123456",
+          name: "New York",
+        },
       ],
       accountingPeriod: "01-24",
       rowVersion: "1-12345",
+      customFields: [
+        {
+          id: "2389328923893298",
+          name: "employee_level",
+          description: "Employee Level",
+          value: [
+            "<value>",
+            "<value>",
+            "<value>",
+          ],
+        },
+      ],
       passThrough: [
-  
+        {
+          serviceId: "<id>",
+          extendPaths: [
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+          ],
+        },
       ],
     },
   });
@@ -504,6 +578,7 @@ async function run() {
   const result = await apideck.accounting.journalEntries.get({
     id: "<id>",
     serviceId: "salesforce",
+    raw: false,
     fields: "id,updated_at",
   });
 
@@ -534,6 +609,7 @@ async function run() {
   const res = await accountingJournalEntriesGet(apideck, {
     id: "<id>",
     serviceId: "salesforce",
+    raw: false,
     fields: "id,updated_at",
   });
 
@@ -593,13 +669,203 @@ async function run() {
   const result = await apideck.accounting.journalEntries.update({
     id: "<id>",
     serviceId: "salesforce",
+    raw: false,
     journalEntry: {
       title: "Purchase Invoice-Inventory (USD): 2019/02/01 Batch Summary Entry",
       currencyRate: 0.69,
       currency: "USD",
       companyId: "12345",
       lineItems: [
-
+        {
+          description: "Model Y is a fully electric, mid-size SUV, with seating for up to seven, dual motor AWD and unparalleled protection.",
+          taxAmount: 27500,
+          subTotal: 27500,
+          totalAmount: 27500,
+          type: "debit",
+          taxRate: {
+            id: "123456",
+            rate: 10,
+          },
+          trackingCategories: [
+            {
+              id: "123456",
+              name: "New York",
+            },
+            {
+              id: "123456",
+              name: "New York",
+            },
+          ],
+          ledgerAccount: {
+            id: "123456",
+            nominalCode: "N091",
+            code: "453",
+          },
+          customer: {
+            id: "12345",
+            displayName: "Windsurf Shop",
+            email: "boring@boring.com",
+          },
+          supplier: {
+            id: "12345",
+            displayName: "Windsurf Shop",
+            address: {
+              id: "123",
+              type: "primary",
+              string: "25 Spring Street, Blackburn, VIC 3130",
+              name: "HQ US",
+              line1: "Main street",
+              line2: "apt #",
+              line3: "Suite #",
+              line4: "delivery instructions",
+              streetNumber: "25",
+              city: "San Francisco",
+              state: "CA",
+              postalCode: "94104",
+              country: "US",
+              latitude: "40.759211",
+              longitude: "-73.984638",
+              county: "Santa Clara",
+              contactName: "Elon Musk",
+              salutation: "Mr",
+              phoneNumber: "111-111-1111",
+              fax: "122-111-1111",
+              email: "elon@musk.com",
+              website: "https://elonmusk.com",
+              notes: "Address notes or delivery instructions.",
+              rowVersion: "1-12345",
+            },
+          },
+          lineNumber: 1,
+        },
+        {
+          description: "Model Y is a fully electric, mid-size SUV, with seating for up to seven, dual motor AWD and unparalleled protection.",
+          taxAmount: 27500,
+          subTotal: 27500,
+          totalAmount: 27500,
+          type: "debit",
+          taxRate: {
+            id: "123456",
+            rate: 10,
+          },
+          trackingCategories: [
+            {
+              id: "123456",
+              name: "New York",
+            },
+            {
+              id: "123456",
+              name: "New York",
+            },
+          ],
+          ledgerAccount: {
+            id: "123456",
+            nominalCode: "N091",
+            code: "453",
+          },
+          customer: {
+            id: "12345",
+            displayName: "Windsurf Shop",
+            email: "boring@boring.com",
+          },
+          supplier: {
+            id: "12345",
+            displayName: "Windsurf Shop",
+            address: {
+              id: "123",
+              type: "primary",
+              string: "25 Spring Street, Blackburn, VIC 3130",
+              name: "HQ US",
+              line1: "Main street",
+              line2: "apt #",
+              line3: "Suite #",
+              line4: "delivery instructions",
+              streetNumber: "25",
+              city: "San Francisco",
+              state: "CA",
+              postalCode: "94104",
+              country: "US",
+              latitude: "40.759211",
+              longitude: "-73.984638",
+              county: "Santa Clara",
+              contactName: "Elon Musk",
+              salutation: "Mr",
+              phoneNumber: "111-111-1111",
+              fax: "122-111-1111",
+              email: "elon@musk.com",
+              website: "https://elonmusk.com",
+              notes: "Address notes or delivery instructions.",
+              rowVersion: "1-12345",
+            },
+          },
+          lineNumber: 1,
+        },
+        {
+          description: "Model Y is a fully electric, mid-size SUV, with seating for up to seven, dual motor AWD and unparalleled protection.",
+          taxAmount: 27500,
+          subTotal: 27500,
+          totalAmount: 27500,
+          type: "debit",
+          taxRate: {
+            id: "123456",
+            rate: 10,
+          },
+          trackingCategories: [
+            {
+              id: "123456",
+              name: "New York",
+            },
+            {
+              id: "123456",
+              name: "New York",
+            },
+            {
+              id: "123456",
+              name: "New York",
+            },
+          ],
+          ledgerAccount: {
+            id: "123456",
+            nominalCode: "N091",
+            code: "453",
+          },
+          customer: {
+            id: "12345",
+            displayName: "Windsurf Shop",
+            email: "boring@boring.com",
+          },
+          supplier: {
+            id: "12345",
+            displayName: "Windsurf Shop",
+            address: {
+              id: "123",
+              type: "primary",
+              string: "25 Spring Street, Blackburn, VIC 3130",
+              name: "HQ US",
+              line1: "Main street",
+              line2: "apt #",
+              line3: "Suite #",
+              line4: "delivery instructions",
+              streetNumber: "25",
+              city: "San Francisco",
+              state: "CA",
+              postalCode: "94104",
+              country: "US",
+              latitude: "40.759211",
+              longitude: "-73.984638",
+              county: "Santa Clara",
+              contactName: "Elon Musk",
+              salutation: "Mr",
+              phoneNumber: "111-111-1111",
+              fax: "122-111-1111",
+              email: "elon@musk.com",
+              website: "https://elonmusk.com",
+              notes: "Address notes or delivery instructions.",
+              rowVersion: "1-12345",
+            },
+          },
+          lineNumber: 1,
+        },
       ],
       memo: "Thank you for your business and have a great day!",
       postedAt: new Date("2020-09-30T07:43:32.000Z"),
@@ -616,15 +882,39 @@ async function run() {
           id: "123456",
           name: "New York",
         },
-        {
-          id: "123456",
-          name: "New York",
-        },
       ],
       accountingPeriod: "01-24",
       rowVersion: "1-12345",
+      customFields: [
+        {
+          id: "2389328923893298",
+          name: "employee_level",
+          description: "Employee Level",
+          value: {},
+        },
+        {
+          id: "2389328923893298",
+          name: "employee_level",
+          description: "Employee Level",
+          value: [
+            {},
+          ],
+        },
+      ],
       passThrough: [
-
+        {
+          serviceId: "<id>",
+          extendPaths: [
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+          ],
+        },
       ],
     },
   });
@@ -656,13 +946,203 @@ async function run() {
   const res = await accountingJournalEntriesUpdate(apideck, {
     id: "<id>",
     serviceId: "salesforce",
+    raw: false,
     journalEntry: {
       title: "Purchase Invoice-Inventory (USD): 2019/02/01 Batch Summary Entry",
       currencyRate: 0.69,
       currency: "USD",
       companyId: "12345",
       lineItems: [
-  
+        {
+          description: "Model Y is a fully electric, mid-size SUV, with seating for up to seven, dual motor AWD and unparalleled protection.",
+          taxAmount: 27500,
+          subTotal: 27500,
+          totalAmount: 27500,
+          type: "debit",
+          taxRate: {
+            id: "123456",
+            rate: 10,
+          },
+          trackingCategories: [
+            {
+              id: "123456",
+              name: "New York",
+            },
+            {
+              id: "123456",
+              name: "New York",
+            },
+          ],
+          ledgerAccount: {
+            id: "123456",
+            nominalCode: "N091",
+            code: "453",
+          },
+          customer: {
+            id: "12345",
+            displayName: "Windsurf Shop",
+            email: "boring@boring.com",
+          },
+          supplier: {
+            id: "12345",
+            displayName: "Windsurf Shop",
+            address: {
+              id: "123",
+              type: "primary",
+              string: "25 Spring Street, Blackburn, VIC 3130",
+              name: "HQ US",
+              line1: "Main street",
+              line2: "apt #",
+              line3: "Suite #",
+              line4: "delivery instructions",
+              streetNumber: "25",
+              city: "San Francisco",
+              state: "CA",
+              postalCode: "94104",
+              country: "US",
+              latitude: "40.759211",
+              longitude: "-73.984638",
+              county: "Santa Clara",
+              contactName: "Elon Musk",
+              salutation: "Mr",
+              phoneNumber: "111-111-1111",
+              fax: "122-111-1111",
+              email: "elon@musk.com",
+              website: "https://elonmusk.com",
+              notes: "Address notes or delivery instructions.",
+              rowVersion: "1-12345",
+            },
+          },
+          lineNumber: 1,
+        },
+        {
+          description: "Model Y is a fully electric, mid-size SUV, with seating for up to seven, dual motor AWD and unparalleled protection.",
+          taxAmount: 27500,
+          subTotal: 27500,
+          totalAmount: 27500,
+          type: "debit",
+          taxRate: {
+            id: "123456",
+            rate: 10,
+          },
+          trackingCategories: [
+            {
+              id: "123456",
+              name: "New York",
+            },
+            {
+              id: "123456",
+              name: "New York",
+            },
+          ],
+          ledgerAccount: {
+            id: "123456",
+            nominalCode: "N091",
+            code: "453",
+          },
+          customer: {
+            id: "12345",
+            displayName: "Windsurf Shop",
+            email: "boring@boring.com",
+          },
+          supplier: {
+            id: "12345",
+            displayName: "Windsurf Shop",
+            address: {
+              id: "123",
+              type: "primary",
+              string: "25 Spring Street, Blackburn, VIC 3130",
+              name: "HQ US",
+              line1: "Main street",
+              line2: "apt #",
+              line3: "Suite #",
+              line4: "delivery instructions",
+              streetNumber: "25",
+              city: "San Francisco",
+              state: "CA",
+              postalCode: "94104",
+              country: "US",
+              latitude: "40.759211",
+              longitude: "-73.984638",
+              county: "Santa Clara",
+              contactName: "Elon Musk",
+              salutation: "Mr",
+              phoneNumber: "111-111-1111",
+              fax: "122-111-1111",
+              email: "elon@musk.com",
+              website: "https://elonmusk.com",
+              notes: "Address notes or delivery instructions.",
+              rowVersion: "1-12345",
+            },
+          },
+          lineNumber: 1,
+        },
+        {
+          description: "Model Y is a fully electric, mid-size SUV, with seating for up to seven, dual motor AWD and unparalleled protection.",
+          taxAmount: 27500,
+          subTotal: 27500,
+          totalAmount: 27500,
+          type: "debit",
+          taxRate: {
+            id: "123456",
+            rate: 10,
+          },
+          trackingCategories: [
+            {
+              id: "123456",
+              name: "New York",
+            },
+            {
+              id: "123456",
+              name: "New York",
+            },
+            {
+              id: "123456",
+              name: "New York",
+            },
+          ],
+          ledgerAccount: {
+            id: "123456",
+            nominalCode: "N091",
+            code: "453",
+          },
+          customer: {
+            id: "12345",
+            displayName: "Windsurf Shop",
+            email: "boring@boring.com",
+          },
+          supplier: {
+            id: "12345",
+            displayName: "Windsurf Shop",
+            address: {
+              id: "123",
+              type: "primary",
+              string: "25 Spring Street, Blackburn, VIC 3130",
+              name: "HQ US",
+              line1: "Main street",
+              line2: "apt #",
+              line3: "Suite #",
+              line4: "delivery instructions",
+              streetNumber: "25",
+              city: "San Francisco",
+              state: "CA",
+              postalCode: "94104",
+              country: "US",
+              latitude: "40.759211",
+              longitude: "-73.984638",
+              county: "Santa Clara",
+              contactName: "Elon Musk",
+              salutation: "Mr",
+              phoneNumber: "111-111-1111",
+              fax: "122-111-1111",
+              email: "elon@musk.com",
+              website: "https://elonmusk.com",
+              notes: "Address notes or delivery instructions.",
+              rowVersion: "1-12345",
+            },
+          },
+          lineNumber: 1,
+        },
       ],
       memo: "Thank you for your business and have a great day!",
       postedAt: new Date("2020-09-30T07:43:32.000Z"),
@@ -679,15 +1159,39 @@ async function run() {
           id: "123456",
           name: "New York",
         },
-        {
-          id: "123456",
-          name: "New York",
-        },
       ],
       accountingPeriod: "01-24",
       rowVersion: "1-12345",
+      customFields: [
+        {
+          id: "2389328923893298",
+          name: "employee_level",
+          description: "Employee Level",
+          value: {},
+        },
+        {
+          id: "2389328923893298",
+          name: "employee_level",
+          description: "Employee Level",
+          value: [
+            {},
+          ],
+        },
+      ],
       passThrough: [
-  
+        {
+          serviceId: "<id>",
+          extendPaths: [
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+          ],
+        },
       ],
     },
   });
@@ -748,6 +1252,7 @@ async function run() {
   const result = await apideck.accounting.journalEntries.delete({
     id: "<id>",
     serviceId: "salesforce",
+    raw: false,
   });
 
   // Handle the result
@@ -777,6 +1282,7 @@ async function run() {
   const res = await accountingJournalEntriesDelete(apideck, {
     id: "<id>",
     serviceId: "salesforce",
+    raw: false,
   });
 
   if (!res.ok) {

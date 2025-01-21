@@ -28,15 +28,12 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.crm.opportunities.list({
+    raw: false,
     serviceId: "salesforce",
+    limit: 20,
     filter: {
-      title: "Tesla deal",
       status: "Completed",
       monetaryAmount: 75000,
-      winProbability: 50,
-      companyId: "1234",
-      ownerId: "1234",
-      primaryContactId: "1234",
     },
     sort: {
       by: "created_at",
@@ -75,15 +72,12 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await crmOpportunitiesList(apideck, {
+    raw: false,
     serviceId: "salesforce",
+    limit: 20,
     filter: {
-      title: "Tesla deal",
       status: "Completed",
       monetaryAmount: 75000,
-      winProbability: 50,
-      companyId: "1234",
-      ownerId: "1234",
-      primaryContactId: "1234",
     },
     sort: {
       by: "created_at",
@@ -152,6 +146,7 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.crm.opportunities.create({
+    raw: false,
     serviceId: "salesforce",
     opportunity: {
       title: "New Rocket",
@@ -185,58 +180,24 @@ async function run() {
         "New",
       ],
       customFields: [
-
+        {
+          id: "2389328923893298",
+          name: "employee_level",
+          description: "Employee Level",
+          value: {},
+        },
+        {
+          id: "2389328923893298",
+          name: "employee_level",
+          description: "Employee Level",
+          value: true,
+        },
       ],
       stageLastChangedAt: new Date("2020-09-30T07:43:32.000Z"),
       passThrough: [
         {
           serviceId: "<id>",
           extendPaths: [
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
-          ],
-        },
-        {
-          serviceId: "<id>",
-          extendPaths: [
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
             {
               path: "$.nested.property",
               value: {
@@ -277,6 +238,7 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await crmOpportunitiesCreate(apideck, {
+    raw: false,
     serviceId: "salesforce",
     opportunity: {
       title: "New Rocket",
@@ -310,58 +272,24 @@ async function run() {
         "New",
       ],
       customFields: [
-  
+        {
+          id: "2389328923893298",
+          name: "employee_level",
+          description: "Employee Level",
+          value: {},
+        },
+        {
+          id: "2389328923893298",
+          name: "employee_level",
+          description: "Employee Level",
+          value: true,
+        },
       ],
       stageLastChangedAt: new Date("2020-09-30T07:43:32.000Z"),
       passThrough: [
         {
           serviceId: "<id>",
           extendPaths: [
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
-          ],
-        },
-        {
-          serviceId: "<id>",
-          extendPaths: [
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
             {
               path: "$.nested.property",
               value: {
@@ -432,6 +360,7 @@ async function run() {
   const result = await apideck.crm.opportunities.get({
     id: "<id>",
     serviceId: "salesforce",
+    raw: false,
     fields: "id,updated_at",
   });
 
@@ -462,6 +391,7 @@ async function run() {
   const res = await crmOpportunitiesGet(apideck, {
     id: "<id>",
     serviceId: "salesforce",
+    raw: false,
     fields: "id,updated_at",
   });
 
@@ -522,6 +452,7 @@ async function run() {
   const result = await apideck.crm.opportunities.update({
     id: "<id>",
     serviceId: "salesforce",
+    raw: false,
     opportunity: {
       title: "New Rocket",
       primaryContactId: "12345",
@@ -558,7 +489,22 @@ async function run() {
           id: "2389328923893298",
           name: "employee_level",
           description: "Employee Level",
-          value: 10,
+          value: {},
+        },
+        {
+          id: "2389328923893298",
+          name: "employee_level",
+          description: "Employee Level",
+          value: true,
+        },
+        {
+          id: "2389328923893298",
+          name: "employee_level",
+          description: "Employee Level",
+          value: [
+            {},
+            {},
+          ],
         },
       ],
       stageLastChangedAt: new Date("2020-09-30T07:43:32.000Z"),
@@ -603,20 +549,6 @@ async function run() {
                 },
               },
             },
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
-          ],
-        },
-        {
-          serviceId: "<id>",
-          extendPaths: [
-
           ],
         },
       ],
@@ -651,6 +583,7 @@ async function run() {
   const res = await crmOpportunitiesUpdate(apideck, {
     id: "<id>",
     serviceId: "salesforce",
+    raw: false,
     opportunity: {
       title: "New Rocket",
       primaryContactId: "12345",
@@ -687,7 +620,22 @@ async function run() {
           id: "2389328923893298",
           name: "employee_level",
           description: "Employee Level",
-          value: 10,
+          value: {},
+        },
+        {
+          id: "2389328923893298",
+          name: "employee_level",
+          description: "Employee Level",
+          value: true,
+        },
+        {
+          id: "2389328923893298",
+          name: "employee_level",
+          description: "Employee Level",
+          value: [
+            {},
+            {},
+          ],
         },
       ],
       stageLastChangedAt: new Date("2020-09-30T07:43:32.000Z"),
@@ -732,20 +680,6 @@ async function run() {
                 },
               },
             },
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
-          ],
-        },
-        {
-          serviceId: "<id>",
-          extendPaths: [
-  
           ],
         },
       ],
@@ -808,6 +742,7 @@ async function run() {
   const result = await apideck.crm.opportunities.delete({
     id: "<id>",
     serviceId: "salesforce",
+    raw: false,
   });
 
   // Handle the result
@@ -837,6 +772,7 @@ async function run() {
   const res = await crmOpportunitiesDelete(apideck, {
     id: "<id>",
     serviceId: "salesforce",
+    raw: false,
   });
 
   if (!res.ok) {

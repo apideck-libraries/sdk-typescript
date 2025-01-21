@@ -95,7 +95,9 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.accounting.taxRates.list({
+    raw: false,
     serviceId: "salesforce",
+    limit: 20,
     filter: {
       assets: true,
       equity: true,
@@ -948,7 +950,9 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.accounting.taxRates.list({
+    raw: false,
     serviceId: "salesforce",
+    limit: 20,
     filter: {
       assets: true,
       equity: true,
@@ -990,7 +994,9 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.accounting.taxRates.list({
+    raw: false,
     serviceId: "salesforce",
+    limit: 20,
     filter: {
       assets: true,
       equity: true,
@@ -1047,7 +1053,9 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.accounting.taxRates.list({
+    raw: false,
     serviceId: "salesforce",
+    limit: 20,
     filter: {
       assets: true,
       equity: true,
@@ -1109,7 +1117,9 @@ async function run() {
   let result;
   try {
     result = await apideck.accounting.taxRates.list({
+      raw: false,
       serviceId: "salesforce",
+      limit: 20,
       filter: {
         assets: true,
         equity: true,
@@ -1205,7 +1215,9 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.accounting.taxRates.list({
+    raw: false,
     serviceId: "salesforce",
+    limit: 20,
     filter: {
       assets: true,
       equity: true,
@@ -1243,13 +1255,57 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.fileStorage.uploadSessions.create({
+    raw: false,
     serviceId: "salesforce",
     createUploadSessionRequest: {
       name: "Documents",
       parentFolderId: "1234",
       driveId: "1234",
       size: 1810673,
-      passThrough: [],
+      passThrough: [
+        {
+          serviceId: "<id>",
+          extendPaths: [
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+          ],
+        },
+        {
+          serviceId: "<id>",
+          extendPaths: [
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+          ],
+        },
+      ],
     },
   }, {
     serverURL: "https://upload.apideck.com",
@@ -1336,7 +1392,9 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.accounting.taxRates.list({
+    raw: false,
     serviceId: "salesforce",
+    limit: 20,
     filter: {
       assets: true,
       equity: true,

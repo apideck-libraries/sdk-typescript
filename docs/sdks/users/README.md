@@ -28,7 +28,9 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.crm.users.list({
+    raw: false,
     serviceId: "salesforce",
+    limit: 20,
     passThrough: {
       "search": "San Francisco",
     },
@@ -62,7 +64,9 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await crmUsersList(apideck, {
+    raw: false,
     serviceId: "salesforce",
+    limit: 20,
     passThrough: {
       "search": "San Francisco",
     },
@@ -125,6 +129,7 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.crm.users.create({
+    raw: false,
     serviceId: "salesforce",
     user: {
       parentId: "54321",
@@ -195,14 +200,24 @@ async function run() {
         },
       ],
       phoneNumbers: [
-
-      ],
-      emails: [
         {
-          id: "123",
-          email: "elon@musk.com",
+          id: "12345",
+          countryCode: "1",
+          areaCode: "323",
+          number: "111-111-1111",
+          extension: "105",
           type: "primary",
         },
+        {
+          id: "12345",
+          countryCode: "1",
+          areaCode: "323",
+          number: "111-111-1111",
+          extension: "105",
+          type: "primary",
+        },
+      ],
+      emails: [
         {
           id: "123",
           email: "elon@musk.com",
@@ -213,80 +228,6 @@ async function run() {
         {
           serviceId: "<id>",
           extendPaths: [
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
-          ],
-        },
-        {
-          serviceId: "<id>",
-          extendPaths: [
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
-          ],
-        },
-        {
-          serviceId: "<id>",
-          extendPaths: [
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
             {
               path: "$.nested.property",
               value: {
@@ -326,6 +267,7 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await crmUsersCreate(apideck, {
+    raw: false,
     serviceId: "salesforce",
     user: {
       parentId: "54321",
@@ -396,14 +338,24 @@ async function run() {
         },
       ],
       phoneNumbers: [
-  
-      ],
-      emails: [
         {
-          id: "123",
-          email: "elon@musk.com",
+          id: "12345",
+          countryCode: "1",
+          areaCode: "323",
+          number: "111-111-1111",
+          extension: "105",
           type: "primary",
         },
+        {
+          id: "12345",
+          countryCode: "1",
+          areaCode: "323",
+          number: "111-111-1111",
+          extension: "105",
+          type: "primary",
+        },
+      ],
+      emails: [
         {
           id: "123",
           email: "elon@musk.com",
@@ -414,80 +366,6 @@ async function run() {
         {
           serviceId: "<id>",
           extendPaths: [
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
-          ],
-        },
-        {
-          serviceId: "<id>",
-          extendPaths: [
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
-          ],
-        },
-        {
-          serviceId: "<id>",
-          extendPaths: [
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
             {
               path: "$.nested.property",
               value: {
@@ -558,6 +436,7 @@ async function run() {
   const result = await apideck.crm.users.get({
     id: "<id>",
     serviceId: "salesforce",
+    raw: false,
     fields: "id,updated_at",
   });
 
@@ -588,6 +467,7 @@ async function run() {
   const res = await crmUsersGet(apideck, {
     id: "<id>",
     serviceId: "salesforce",
+    raw: false,
     fields: "id,updated_at",
   });
 
@@ -647,6 +527,7 @@ async function run() {
   const result = await apideck.crm.users.update({
     id: "<id>",
     serviceId: "salesforce",
+    raw: false,
     user: {
       parentId: "54321",
       username: "masterofcoin",
@@ -742,14 +623,24 @@ async function run() {
         },
       ],
       phoneNumbers: [
-
-      ],
-      emails: [
         {
-          id: "123",
-          email: "elon@musk.com",
+          id: "12345",
+          countryCode: "1",
+          areaCode: "323",
+          number: "111-111-1111",
+          extension: "105",
           type: "primary",
         },
+        {
+          id: "12345",
+          countryCode: "1",
+          areaCode: "323",
+          number: "111-111-1111",
+          extension: "105",
+          type: "primary",
+        },
+      ],
+      emails: [
         {
           id: "123",
           email: "elon@musk.com",
@@ -760,7 +651,43 @@ async function run() {
         {
           serviceId: "<id>",
           extendPaths: [
-
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+          ],
+        },
+        {
+          serviceId: "<id>",
+          extendPaths: [
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
           ],
         },
         {
@@ -823,6 +750,7 @@ async function run() {
   const res = await crmUsersUpdate(apideck, {
     id: "<id>",
     serviceId: "salesforce",
+    raw: false,
     user: {
       parentId: "54321",
       username: "masterofcoin",
@@ -918,14 +846,24 @@ async function run() {
         },
       ],
       phoneNumbers: [
-  
-      ],
-      emails: [
         {
-          id: "123",
-          email: "elon@musk.com",
+          id: "12345",
+          countryCode: "1",
+          areaCode: "323",
+          number: "111-111-1111",
+          extension: "105",
           type: "primary",
         },
+        {
+          id: "12345",
+          countryCode: "1",
+          areaCode: "323",
+          number: "111-111-1111",
+          extension: "105",
+          type: "primary",
+        },
+      ],
+      emails: [
         {
           id: "123",
           email: "elon@musk.com",
@@ -936,7 +874,43 @@ async function run() {
         {
           serviceId: "<id>",
           extendPaths: [
-  
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+          ],
+        },
+        {
+          serviceId: "<id>",
+          extendPaths: [
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
           ],
         },
         {
@@ -1028,6 +1002,7 @@ async function run() {
   const result = await apideck.crm.users.delete({
     id: "<id>",
     serviceId: "salesforce",
+    raw: false,
   });
 
   // Handle the result
@@ -1057,6 +1032,7 @@ async function run() {
   const res = await crmUsersDelete(apideck, {
     id: "<id>",
     serviceId: "salesforce",
+    raw: false,
   });
 
   if (!res.ok) {

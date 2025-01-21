@@ -28,7 +28,9 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.accounting.invoices.list({
+    raw: false,
     serviceId: "salesforce",
+    limit: 20,
     filter: {
       updatedSince: new Date("2020-09-30T07:43:32.000Z"),
       createdSince: new Date("2020-09-30T07:43:32.000Z"),
@@ -71,7 +73,9 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await accountingInvoicesList(apideck, {
+    raw: false,
     serviceId: "salesforce",
+    limit: 20,
     filter: {
       updatedSince: new Date("2020-09-30T07:43:32.000Z"),
       createdSince: new Date("2020-09-30T07:43:32.000Z"),
@@ -144,6 +148,7 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.accounting.invoices.create({
+    raw: false,
     serviceId: "salesforce",
     invoice: {
       type: "service",
@@ -178,6 +183,10 @@ async function run() {
           id: "123456",
           name: "New York",
         },
+        {
+          id: "123456",
+          name: "New York",
+        },
       ],
       lineItems: [
         {
@@ -206,7 +215,14 @@ async function run() {
             rate: 10,
           },
           trackingCategories: [
-
+            {
+              id: "123456",
+              name: "New York",
+            },
+            {
+              id: "123456",
+              name: "New York",
+            },
           ],
           ledgerAccount: {
             id: "123456",
@@ -218,19 +234,7 @@ async function run() {
               id: "2389328923893298",
               name: "employee_level",
               description: "Employee Level",
-              value: 10,
-            },
-            {
-              id: "2389328923893298",
-              name: "employee_level",
-              description: "Employee Level",
-              value: {},
-            },
-            {
-              id: "2389328923893298",
-              name: "employee_level",
-              description: "Employee Level",
-              value: 10,
+              value: "Uses Salesforce and Marketo",
             },
           ],
           rowVersion: "1-12345",
@@ -284,58 +288,19 @@ async function run() {
               id: "2389328923893298",
               name: "employee_level",
               description: "Employee Level",
+              value: "Uses Salesforce and Marketo",
+            },
+            {
+              id: "2389328923893298",
+              name: "employee_level",
+              description: "Employee Level",
               value: 10,
             },
-          ],
-          rowVersion: "1-12345",
-        },
-        {
-          id: "12345",
-          rowId: "12345",
-          code: "120-C",
-          lineNumber: 1,
-          description: "Model Y is a fully electric, mid-size SUV, with seating for up to seven, dual motor AWD and unparalleled protection.",
-          type: "sales_item",
-          taxAmount: 27500,
-          totalAmount: 27500,
-          quantity: 1,
-          unitPrice: 27500.5,
-          unitOfMeasure: "pc.",
-          discountPercentage: 0.01,
-          discountAmount: 19.99,
-          locationId: "1234",
-          departmentId: "1234",
-          item: {
-            id: "12344",
-            code: "120-C",
-            name: "Model Y",
-          },
-          taxRate: {
-            id: "123456",
-            rate: 10,
-          },
-          trackingCategories: [
-
-          ],
-          ledgerAccount: {
-            id: "123456",
-            nominalCode: "N091",
-            code: "453",
-          },
-          customFields: [
             {
               id: "2389328923893298",
               name: "employee_level",
               description: "Employee Level",
-              value: true,
-            },
-            {
-              id: "2389328923893298",
-              name: "employee_level",
-              description: "Employee Level",
-              value: [
-                "<value>",
-              ],
+              value: "Uses Salesforce and Marketo",
             },
           ],
           rowVersion: "1-12345",
@@ -422,13 +387,10 @@ async function run() {
           id: "2389328923893298",
           name: "employee_level",
           description: "Employee Level",
-          value: 10,
-        },
-        {
-          id: "2389328923893298",
-          name: "employee_level",
-          description: "Employee Level",
-          value: 10,
+          value: [
+            "<value>",
+            "<value>",
+          ],
         },
         {
           id: "2389328923893298",
@@ -436,7 +398,15 @@ async function run() {
           description: "Employee Level",
           value: [
             "<value>",
+            "<value>",
+            "<value>",
           ],
+        },
+        {
+          id: "2389328923893298",
+          name: "employee_level",
+          description: "Employee Level",
+          value: true,
         },
       ],
       rowVersion: "1-12345",
@@ -444,7 +414,14 @@ async function run() {
         {
           serviceId: "<id>",
           extendPaths: [
-
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
           ],
         },
       ],
@@ -477,6 +454,7 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await accountingInvoicesCreate(apideck, {
+    raw: false,
     serviceId: "salesforce",
     invoice: {
       type: "service",
@@ -511,6 +489,10 @@ async function run() {
           id: "123456",
           name: "New York",
         },
+        {
+          id: "123456",
+          name: "New York",
+        },
       ],
       lineItems: [
         {
@@ -539,7 +521,14 @@ async function run() {
             rate: 10,
           },
           trackingCategories: [
-  
+            {
+              id: "123456",
+              name: "New York",
+            },
+            {
+              id: "123456",
+              name: "New York",
+            },
           ],
           ledgerAccount: {
             id: "123456",
@@ -551,19 +540,7 @@ async function run() {
               id: "2389328923893298",
               name: "employee_level",
               description: "Employee Level",
-              value: 10,
-            },
-            {
-              id: "2389328923893298",
-              name: "employee_level",
-              description: "Employee Level",
-              value: {},
-            },
-            {
-              id: "2389328923893298",
-              name: "employee_level",
-              description: "Employee Level",
-              value: 10,
+              value: "Uses Salesforce and Marketo",
             },
           ],
           rowVersion: "1-12345",
@@ -617,58 +594,19 @@ async function run() {
               id: "2389328923893298",
               name: "employee_level",
               description: "Employee Level",
+              value: "Uses Salesforce and Marketo",
+            },
+            {
+              id: "2389328923893298",
+              name: "employee_level",
+              description: "Employee Level",
               value: 10,
             },
-          ],
-          rowVersion: "1-12345",
-        },
-        {
-          id: "12345",
-          rowId: "12345",
-          code: "120-C",
-          lineNumber: 1,
-          description: "Model Y is a fully electric, mid-size SUV, with seating for up to seven, dual motor AWD and unparalleled protection.",
-          type: "sales_item",
-          taxAmount: 27500,
-          totalAmount: 27500,
-          quantity: 1,
-          unitPrice: 27500.5,
-          unitOfMeasure: "pc.",
-          discountPercentage: 0.01,
-          discountAmount: 19.99,
-          locationId: "1234",
-          departmentId: "1234",
-          item: {
-            id: "12344",
-            code: "120-C",
-            name: "Model Y",
-          },
-          taxRate: {
-            id: "123456",
-            rate: 10,
-          },
-          trackingCategories: [
-  
-          ],
-          ledgerAccount: {
-            id: "123456",
-            nominalCode: "N091",
-            code: "453",
-          },
-          customFields: [
             {
               id: "2389328923893298",
               name: "employee_level",
               description: "Employee Level",
-              value: true,
-            },
-            {
-              id: "2389328923893298",
-              name: "employee_level",
-              description: "Employee Level",
-              value: [
-                "<value>",
-              ],
+              value: "Uses Salesforce and Marketo",
             },
           ],
           rowVersion: "1-12345",
@@ -755,13 +693,10 @@ async function run() {
           id: "2389328923893298",
           name: "employee_level",
           description: "Employee Level",
-          value: 10,
-        },
-        {
-          id: "2389328923893298",
-          name: "employee_level",
-          description: "Employee Level",
-          value: 10,
+          value: [
+            "<value>",
+            "<value>",
+          ],
         },
         {
           id: "2389328923893298",
@@ -769,7 +704,15 @@ async function run() {
           description: "Employee Level",
           value: [
             "<value>",
+            "<value>",
+            "<value>",
           ],
+        },
+        {
+          id: "2389328923893298",
+          name: "employee_level",
+          description: "Employee Level",
+          value: true,
         },
       ],
       rowVersion: "1-12345",
@@ -777,7 +720,14 @@ async function run() {
         {
           serviceId: "<id>",
           extendPaths: [
-  
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
           ],
         },
       ],
@@ -840,6 +790,7 @@ async function run() {
   const result = await apideck.accounting.invoices.get({
     id: "<id>",
     serviceId: "salesforce",
+    raw: false,
     fields: "id,updated_at",
   });
 
@@ -870,6 +821,7 @@ async function run() {
   const res = await accountingInvoicesGet(apideck, {
     id: "<id>",
     serviceId: "salesforce",
+    raw: false,
     fields: "id,updated_at",
   });
 
@@ -930,6 +882,7 @@ async function run() {
   const result = await apideck.accounting.invoices.update({
     id: "<id>",
     serviceId: "salesforce",
+    raw: false,
     invoice: {
       type: "service",
       number: "OIT00546",
@@ -959,10 +912,142 @@ async function run() {
       deposit: 0,
       customerMemo: "Thank you for your business and have a great day!",
       trackingCategories: [
-
+        {
+          id: "123456",
+          name: "New York",
+        },
+        {
+          id: "123456",
+          name: "New York",
+        },
+        {
+          id: "123456",
+          name: "New York",
+        },
       ],
       lineItems: [
-
+        {
+          id: "12345",
+          rowId: "12345",
+          code: "120-C",
+          lineNumber: 1,
+          description: "Model Y is a fully electric, mid-size SUV, with seating for up to seven, dual motor AWD and unparalleled protection.",
+          type: "sales_item",
+          taxAmount: 27500,
+          totalAmount: 27500,
+          quantity: 1,
+          unitPrice: 27500.5,
+          unitOfMeasure: "pc.",
+          discountPercentage: 0.01,
+          discountAmount: 19.99,
+          locationId: "1234",
+          departmentId: "1234",
+          item: {
+            id: "12344",
+            code: "120-C",
+            name: "Model Y",
+          },
+          taxRate: {
+            id: "123456",
+            rate: 10,
+          },
+          trackingCategories: [
+            {
+              id: "123456",
+              name: "New York",
+            },
+            {
+              id: "123456",
+              name: "New York",
+            },
+          ],
+          ledgerAccount: {
+            id: "123456",
+            nominalCode: "N091",
+            code: "453",
+          },
+          customFields: [
+            {
+              id: "2389328923893298",
+              name: "employee_level",
+              description: "Employee Level",
+              value: {},
+            },
+            {
+              id: "2389328923893298",
+              name: "employee_level",
+              description: "Employee Level",
+              value: true,
+            },
+            {
+              id: "2389328923893298",
+              name: "employee_level",
+              description: "Employee Level",
+              value: {},
+            },
+          ],
+          rowVersion: "1-12345",
+        },
+        {
+          id: "12345",
+          rowId: "12345",
+          code: "120-C",
+          lineNumber: 1,
+          description: "Model Y is a fully electric, mid-size SUV, with seating for up to seven, dual motor AWD and unparalleled protection.",
+          type: "sales_item",
+          taxAmount: 27500,
+          totalAmount: 27500,
+          quantity: 1,
+          unitPrice: 27500.5,
+          unitOfMeasure: "pc.",
+          discountPercentage: 0.01,
+          discountAmount: 19.99,
+          locationId: "1234",
+          departmentId: "1234",
+          item: {
+            id: "12344",
+            code: "120-C",
+            name: "Model Y",
+          },
+          taxRate: {
+            id: "123456",
+            rate: 10,
+          },
+          trackingCategories: [
+            {
+              id: "123456",
+              name: "New York",
+            },
+            {
+              id: "123456",
+              name: "New York",
+            },
+            {
+              id: "123456",
+              name: "New York",
+            },
+          ],
+          ledgerAccount: {
+            id: "123456",
+            nominalCode: "N091",
+            code: "453",
+          },
+          customFields: [
+            {
+              id: "2389328923893298",
+              name: "employee_level",
+              description: "Employee Level",
+              value: 10,
+            },
+            {
+              id: "2389328923893298",
+              name: "employee_level",
+              description: "Employee Level",
+              value: 10,
+            },
+          ],
+          rowVersion: "1-12345",
+        },
       ],
       billingAddress: {
         id: "123",
@@ -1045,13 +1130,11 @@ async function run() {
           id: "2389328923893298",
           name: "employee_level",
           description: "Employee Level",
-          value: "Uses Salesforce and Marketo",
-        },
-        {
-          id: "2389328923893298",
-          name: "employee_level",
-          description: "Employee Level",
-          value: {},
+          value: [
+            "<value>",
+            "<value>",
+            "<value>",
+          ],
         },
       ],
       rowVersion: "1-12345",
@@ -1059,7 +1142,22 @@ async function run() {
         {
           serviceId: "<id>",
           extendPaths: [
-
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
           ],
         },
       ],
@@ -1094,6 +1192,7 @@ async function run() {
   const res = await accountingInvoicesUpdate(apideck, {
     id: "<id>",
     serviceId: "salesforce",
+    raw: false,
     invoice: {
       type: "service",
       number: "OIT00546",
@@ -1123,10 +1222,142 @@ async function run() {
       deposit: 0,
       customerMemo: "Thank you for your business and have a great day!",
       trackingCategories: [
-  
+        {
+          id: "123456",
+          name: "New York",
+        },
+        {
+          id: "123456",
+          name: "New York",
+        },
+        {
+          id: "123456",
+          name: "New York",
+        },
       ],
       lineItems: [
-  
+        {
+          id: "12345",
+          rowId: "12345",
+          code: "120-C",
+          lineNumber: 1,
+          description: "Model Y is a fully electric, mid-size SUV, with seating for up to seven, dual motor AWD and unparalleled protection.",
+          type: "sales_item",
+          taxAmount: 27500,
+          totalAmount: 27500,
+          quantity: 1,
+          unitPrice: 27500.5,
+          unitOfMeasure: "pc.",
+          discountPercentage: 0.01,
+          discountAmount: 19.99,
+          locationId: "1234",
+          departmentId: "1234",
+          item: {
+            id: "12344",
+            code: "120-C",
+            name: "Model Y",
+          },
+          taxRate: {
+            id: "123456",
+            rate: 10,
+          },
+          trackingCategories: [
+            {
+              id: "123456",
+              name: "New York",
+            },
+            {
+              id: "123456",
+              name: "New York",
+            },
+          ],
+          ledgerAccount: {
+            id: "123456",
+            nominalCode: "N091",
+            code: "453",
+          },
+          customFields: [
+            {
+              id: "2389328923893298",
+              name: "employee_level",
+              description: "Employee Level",
+              value: {},
+            },
+            {
+              id: "2389328923893298",
+              name: "employee_level",
+              description: "Employee Level",
+              value: true,
+            },
+            {
+              id: "2389328923893298",
+              name: "employee_level",
+              description: "Employee Level",
+              value: {},
+            },
+          ],
+          rowVersion: "1-12345",
+        },
+        {
+          id: "12345",
+          rowId: "12345",
+          code: "120-C",
+          lineNumber: 1,
+          description: "Model Y is a fully electric, mid-size SUV, with seating for up to seven, dual motor AWD and unparalleled protection.",
+          type: "sales_item",
+          taxAmount: 27500,
+          totalAmount: 27500,
+          quantity: 1,
+          unitPrice: 27500.5,
+          unitOfMeasure: "pc.",
+          discountPercentage: 0.01,
+          discountAmount: 19.99,
+          locationId: "1234",
+          departmentId: "1234",
+          item: {
+            id: "12344",
+            code: "120-C",
+            name: "Model Y",
+          },
+          taxRate: {
+            id: "123456",
+            rate: 10,
+          },
+          trackingCategories: [
+            {
+              id: "123456",
+              name: "New York",
+            },
+            {
+              id: "123456",
+              name: "New York",
+            },
+            {
+              id: "123456",
+              name: "New York",
+            },
+          ],
+          ledgerAccount: {
+            id: "123456",
+            nominalCode: "N091",
+            code: "453",
+          },
+          customFields: [
+            {
+              id: "2389328923893298",
+              name: "employee_level",
+              description: "Employee Level",
+              value: 10,
+            },
+            {
+              id: "2389328923893298",
+              name: "employee_level",
+              description: "Employee Level",
+              value: 10,
+            },
+          ],
+          rowVersion: "1-12345",
+        },
       ],
       billingAddress: {
         id: "123",
@@ -1209,13 +1440,11 @@ async function run() {
           id: "2389328923893298",
           name: "employee_level",
           description: "Employee Level",
-          value: "Uses Salesforce and Marketo",
-        },
-        {
-          id: "2389328923893298",
-          name: "employee_level",
-          description: "Employee Level",
-          value: {},
+          value: [
+            "<value>",
+            "<value>",
+            "<value>",
+          ],
         },
       ],
       rowVersion: "1-12345",
@@ -1223,7 +1452,22 @@ async function run() {
         {
           serviceId: "<id>",
           extendPaths: [
-  
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
           ],
         },
       ],
@@ -1286,6 +1530,7 @@ async function run() {
   const result = await apideck.accounting.invoices.delete({
     id: "<id>",
     serviceId: "salesforce",
+    raw: false,
   });
 
   // Handle the result
@@ -1315,6 +1560,7 @@ async function run() {
   const res = await accountingInvoicesDelete(apideck, {
     id: "<id>",
     serviceId: "salesforce",
+    raw: false,
   });
 
   if (!res.ok) {

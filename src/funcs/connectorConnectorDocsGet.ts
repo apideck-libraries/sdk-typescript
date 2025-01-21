@@ -166,7 +166,8 @@ export async function connectorConnectorDocsGet(
     M.jsonErr(401, errors.UnauthorizedResponse$inboundSchema),
     M.jsonErr(402, errors.PaymentRequiredResponse$inboundSchema),
     M.jsonErr(404, errors.NotFoundResponse$inboundSchema),
-    M.fail(["4XX", "5XX"]),
+    M.fail("4XX"),
+    M.fail("5XX"),
     M.json(
       "default",
       operations.ConnectorConnectorDocsOneResponse$inboundSchema,

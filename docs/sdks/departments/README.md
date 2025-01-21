@@ -28,7 +28,9 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.accounting.departments.list({
+    raw: false,
     serviceId: "salesforce",
+    limit: 20,
     fields: "id,updated_at",
     filter: {
       subsidiary: "1",
@@ -62,7 +64,9 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await accountingDepartmentsList(apideck, {
+    raw: false,
     serviceId: "salesforce",
+    limit: 20,
     fields: "id,updated_at",
     filter: {
       subsidiary: "1",
@@ -125,6 +129,7 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.accounting.departments.create({
+    raw: false,
     serviceId: "salesforce",
     accountingDepartment: {
       parentId: "12345",
@@ -151,6 +156,19 @@ async function run() {
                 },
               },
             },
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+          ],
+        },
+        {
+          serviceId: "<id>",
+          extendPaths: [
             {
               path: "$.nested.property",
               value: {
@@ -190,6 +208,7 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await accountingDepartmentsCreate(apideck, {
+    raw: false,
     serviceId: "salesforce",
     accountingDepartment: {
       parentId: "12345",
@@ -216,6 +235,19 @@ async function run() {
                 },
               },
             },
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+          ],
+        },
+        {
+          serviceId: "<id>",
+          extendPaths: [
             {
               path: "$.nested.property",
               value: {
@@ -286,6 +318,7 @@ async function run() {
   const result = await apideck.accounting.departments.get({
     id: "<id>",
     serviceId: "salesforce",
+    raw: false,
     fields: "id,updated_at",
   });
 
@@ -316,6 +349,7 @@ async function run() {
   const res = await accountingDepartmentsGet(apideck, {
     id: "<id>",
     serviceId: "salesforce",
+    raw: false,
     fields: "id,updated_at",
   });
 
@@ -375,6 +409,7 @@ async function run() {
   const result = await apideck.accounting.departments.update({
     id: "<id>",
     serviceId: "salesforce",
+    raw: false,
     accountingDepartment: {
       parentId: "12345",
       name: "Sales",
@@ -383,10 +418,65 @@ async function run() {
         {
           name: "SpaceX",
         },
+        {
+          name: "SpaceX",
+        },
+        {
+          name: "SpaceX",
+        },
       ],
       rowVersion: "1-12345",
       passThrough: [
-
+        {
+          serviceId: "<id>",
+          extendPaths: [
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+          ],
+        },
+        {
+          serviceId: "<id>",
+          extendPaths: [
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+          ],
+        },
       ],
     },
   });
@@ -418,6 +508,7 @@ async function run() {
   const res = await accountingDepartmentsUpdate(apideck, {
     id: "<id>",
     serviceId: "salesforce",
+    raw: false,
     accountingDepartment: {
       parentId: "12345",
       name: "Sales",
@@ -426,10 +517,65 @@ async function run() {
         {
           name: "SpaceX",
         },
+        {
+          name: "SpaceX",
+        },
+        {
+          name: "SpaceX",
+        },
       ],
       rowVersion: "1-12345",
       passThrough: [
-  
+        {
+          serviceId: "<id>",
+          extendPaths: [
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+          ],
+        },
+        {
+          serviceId: "<id>",
+          extendPaths: [
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+          ],
+        },
       ],
     },
   });
@@ -490,6 +636,7 @@ async function run() {
   const result = await apideck.accounting.departments.delete({
     id: "<id>",
     serviceId: "salesforce",
+    raw: false,
   });
 
   // Handle the result
@@ -519,6 +666,7 @@ async function run() {
   const res = await accountingDepartmentsDelete(apideck, {
     id: "<id>",
     serviceId: "salesforce",
+    raw: false,
   });
 
   if (!res.ok) {

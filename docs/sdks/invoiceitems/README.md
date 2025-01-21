@@ -28,7 +28,9 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.accounting.invoiceItems.list({
+    raw: false,
     serviceId: "salesforce",
+    limit: 20,
     filter: {
       name: "Widgets Large",
       type: "service",
@@ -66,7 +68,9 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await accountingInvoiceItemsList(apideck, {
+    raw: false,
     serviceId: "salesforce",
+    limit: 20,
     filter: {
       name: "Widgets Large",
       type: "service",
@@ -134,6 +138,7 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.accounting.invoiceItems.create({
+    raw: false,
     serviceId: "salesforce",
     invoiceItem: {
       name: "Model Y",
@@ -181,17 +186,18 @@ async function run() {
         code: "453",
       },
       trackingCategories: [
-
+        {
+          id: "123456",
+          name: "New York",
+        },
+        {
+          id: "123456",
+          name: "New York",
+        },
       ],
       active: true,
       rowVersion: "1-12345",
       passThrough: [
-        {
-          serviceId: "<id>",
-          extendPaths: [
-
-          ],
-        },
         {
           serviceId: "<id>",
           extendPaths: [
@@ -203,6 +209,19 @@ async function run() {
                 },
               },
             },
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+          ],
+        },
+        {
+          serviceId: "<id>",
+          extendPaths: [
             {
               path: "$.nested.property",
               value: {
@@ -243,6 +262,7 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await accountingInvoiceItemsCreate(apideck, {
+    raw: false,
     serviceId: "salesforce",
     invoiceItem: {
       name: "Model Y",
@@ -290,17 +310,18 @@ async function run() {
         code: "453",
       },
       trackingCategories: [
-  
+        {
+          id: "123456",
+          name: "New York",
+        },
+        {
+          id: "123456",
+          name: "New York",
+        },
       ],
       active: true,
       rowVersion: "1-12345",
       passThrough: [
-        {
-          serviceId: "<id>",
-          extendPaths: [
-  
-          ],
-        },
         {
           serviceId: "<id>",
           extendPaths: [
@@ -312,6 +333,19 @@ async function run() {
                 },
               },
             },
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+          ],
+        },
+        {
+          serviceId: "<id>",
+          extendPaths: [
             {
               path: "$.nested.property",
               value: {
@@ -382,6 +416,7 @@ async function run() {
   const result = await apideck.accounting.invoiceItems.get({
     id: "<id>",
     serviceId: "salesforce",
+    raw: false,
     fields: "id,updated_at",
     filter: {
       type: "service",
@@ -415,6 +450,7 @@ async function run() {
   const res = await accountingInvoiceItemsGet(apideck, {
     id: "<id>",
     serviceId: "salesforce",
+    raw: false,
     fields: "id,updated_at",
     filter: {
       type: "service",
@@ -478,6 +514,7 @@ async function run() {
   const result = await apideck.accounting.invoiceItems.update({
     id: "<id>",
     serviceId: "salesforce",
+    raw: false,
     invoiceItem: {
       name: "Model Y",
       description: "Model Y is a fully electric, mid-size SUV, with seating for up to seven, dual motor AWD and unparalleled protection.",
@@ -528,16 +565,18 @@ async function run() {
           id: "123456",
           name: "New York",
         },
+        {
+          id: "123456",
+          name: "New York",
+        },
+        {
+          id: "123456",
+          name: "New York",
+        },
       ],
       active: true,
       rowVersion: "1-12345",
       passThrough: [
-        {
-          serviceId: "<id>",
-          extendPaths: [
-
-          ],
-        },
         {
           serviceId: "<id>",
           extendPaths: [
@@ -620,6 +659,7 @@ async function run() {
   const res = await accountingInvoiceItemsUpdate(apideck, {
     id: "<id>",
     serviceId: "salesforce",
+    raw: false,
     invoiceItem: {
       name: "Model Y",
       description: "Model Y is a fully electric, mid-size SUV, with seating for up to seven, dual motor AWD and unparalleled protection.",
@@ -670,16 +710,18 @@ async function run() {
           id: "123456",
           name: "New York",
         },
+        {
+          id: "123456",
+          name: "New York",
+        },
+        {
+          id: "123456",
+          name: "New York",
+        },
       ],
       active: true,
       rowVersion: "1-12345",
       passThrough: [
-        {
-          serviceId: "<id>",
-          extendPaths: [
-  
-          ],
-        },
         {
           serviceId: "<id>",
           extendPaths: [
@@ -790,6 +832,7 @@ async function run() {
   const result = await apideck.accounting.invoiceItems.delete({
     id: "<id>",
     serviceId: "salesforce",
+    raw: false,
   });
 
   // Handle the result
@@ -819,6 +862,7 @@ async function run() {
   const res = await accountingInvoiceItemsDelete(apideck, {
     id: "<id>",
     serviceId: "salesforce",
+    raw: false,
   });
 
   if (!res.ok) {

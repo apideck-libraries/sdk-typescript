@@ -28,7 +28,9 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.accounting.locations.list({
+    raw: false,
     serviceId: "salesforce",
+    limit: 20,
     fields: "id,updated_at",
     filter: {
       subsidiary: "1",
@@ -62,7 +64,9 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await accountingLocationsList(apideck, {
+    raw: false,
     serviceId: "salesforce",
+    limit: 20,
     fields: "id,updated_at",
     filter: {
       subsidiary: "1",
@@ -125,6 +129,7 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.accounting.locations.create({
+    raw: false,
     serviceId: "salesforce",
     accountingLocation: {
       parentId: "12345",
@@ -132,9 +137,63 @@ async function run() {
       displayName: "11 UT - South Jordan",
       status: "active",
       addresses: [
-
+        {
+          id: "123",
+          type: "primary",
+          string: "25 Spring Street, Blackburn, VIC 3130",
+          name: "HQ US",
+          line1: "Main street",
+          line2: "apt #",
+          line3: "Suite #",
+          line4: "delivery instructions",
+          streetNumber: "25",
+          city: "San Francisco",
+          state: "CA",
+          postalCode: "94104",
+          country: "US",
+          latitude: "40.759211",
+          longitude: "-73.984638",
+          county: "Santa Clara",
+          contactName: "Elon Musk",
+          salutation: "Mr",
+          phoneNumber: "111-111-1111",
+          fax: "122-111-1111",
+          email: "elon@musk.com",
+          website: "https://elonmusk.com",
+          notes: "Address notes or delivery instructions.",
+          rowVersion: "1-12345",
+        },
+        {
+          id: "123",
+          type: "primary",
+          string: "25 Spring Street, Blackburn, VIC 3130",
+          name: "HQ US",
+          line1: "Main street",
+          line2: "apt #",
+          line3: "Suite #",
+          line4: "delivery instructions",
+          streetNumber: "25",
+          city: "San Francisco",
+          state: "CA",
+          postalCode: "94104",
+          country: "US",
+          latitude: "40.759211",
+          longitude: "-73.984638",
+          county: "Santa Clara",
+          contactName: "Elon Musk",
+          salutation: "Mr",
+          phoneNumber: "111-111-1111",
+          fax: "122-111-1111",
+          email: "elon@musk.com",
+          website: "https://elonmusk.com",
+          notes: "Address notes or delivery instructions.",
+          rowVersion: "1-12345",
+        },
       ],
       subsidiaries: [
+        {
+          name: "SpaceX",
+        },
         {
           name: "SpaceX",
         },
@@ -144,22 +203,6 @@ async function run() {
         {
           serviceId: "<id>",
           extendPaths: [
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
             {
               path: "$.nested.property",
               value: {
@@ -212,6 +255,7 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await accountingLocationsCreate(apideck, {
+    raw: false,
     serviceId: "salesforce",
     accountingLocation: {
       parentId: "12345",
@@ -219,9 +263,63 @@ async function run() {
       displayName: "11 UT - South Jordan",
       status: "active",
       addresses: [
-  
+        {
+          id: "123",
+          type: "primary",
+          string: "25 Spring Street, Blackburn, VIC 3130",
+          name: "HQ US",
+          line1: "Main street",
+          line2: "apt #",
+          line3: "Suite #",
+          line4: "delivery instructions",
+          streetNumber: "25",
+          city: "San Francisco",
+          state: "CA",
+          postalCode: "94104",
+          country: "US",
+          latitude: "40.759211",
+          longitude: "-73.984638",
+          county: "Santa Clara",
+          contactName: "Elon Musk",
+          salutation: "Mr",
+          phoneNumber: "111-111-1111",
+          fax: "122-111-1111",
+          email: "elon@musk.com",
+          website: "https://elonmusk.com",
+          notes: "Address notes or delivery instructions.",
+          rowVersion: "1-12345",
+        },
+        {
+          id: "123",
+          type: "primary",
+          string: "25 Spring Street, Blackburn, VIC 3130",
+          name: "HQ US",
+          line1: "Main street",
+          line2: "apt #",
+          line3: "Suite #",
+          line4: "delivery instructions",
+          streetNumber: "25",
+          city: "San Francisco",
+          state: "CA",
+          postalCode: "94104",
+          country: "US",
+          latitude: "40.759211",
+          longitude: "-73.984638",
+          county: "Santa Clara",
+          contactName: "Elon Musk",
+          salutation: "Mr",
+          phoneNumber: "111-111-1111",
+          fax: "122-111-1111",
+          email: "elon@musk.com",
+          website: "https://elonmusk.com",
+          notes: "Address notes or delivery instructions.",
+          rowVersion: "1-12345",
+        },
       ],
       subsidiaries: [
+        {
+          name: "SpaceX",
+        },
         {
           name: "SpaceX",
         },
@@ -231,22 +329,6 @@ async function run() {
         {
           serviceId: "<id>",
           extendPaths: [
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
             {
               path: "$.nested.property",
               value: {
@@ -330,6 +412,7 @@ async function run() {
   const result = await apideck.accounting.locations.get({
     id: "<id>",
     serviceId: "salesforce",
+    raw: false,
     fields: "id,updated_at",
   });
 
@@ -360,6 +443,7 @@ async function run() {
   const res = await accountingLocationsGet(apideck, {
     id: "<id>",
     serviceId: "salesforce",
+    raw: false,
     fields: "id,updated_at",
   });
 
@@ -419,6 +503,7 @@ async function run() {
   const result = await apideck.accounting.locations.update({
     id: "<id>",
     serviceId: "salesforce",
+    raw: false,
     accountingLocation: {
       parentId: "12345",
       companyName: "SpaceX",
@@ -451,8 +536,63 @@ async function run() {
           notes: "Address notes or delivery instructions.",
           rowVersion: "1-12345",
         },
+        {
+          id: "123",
+          type: "primary",
+          string: "25 Spring Street, Blackburn, VIC 3130",
+          name: "HQ US",
+          line1: "Main street",
+          line2: "apt #",
+          line3: "Suite #",
+          line4: "delivery instructions",
+          streetNumber: "25",
+          city: "San Francisco",
+          state: "CA",
+          postalCode: "94104",
+          country: "US",
+          latitude: "40.759211",
+          longitude: "-73.984638",
+          county: "Santa Clara",
+          contactName: "Elon Musk",
+          salutation: "Mr",
+          phoneNumber: "111-111-1111",
+          fax: "122-111-1111",
+          email: "elon@musk.com",
+          website: "https://elonmusk.com",
+          notes: "Address notes or delivery instructions.",
+          rowVersion: "1-12345",
+        },
+        {
+          id: "123",
+          type: "primary",
+          string: "25 Spring Street, Blackburn, VIC 3130",
+          name: "HQ US",
+          line1: "Main street",
+          line2: "apt #",
+          line3: "Suite #",
+          line4: "delivery instructions",
+          streetNumber: "25",
+          city: "San Francisco",
+          state: "CA",
+          postalCode: "94104",
+          country: "US",
+          latitude: "40.759211",
+          longitude: "-73.984638",
+          county: "Santa Clara",
+          contactName: "Elon Musk",
+          salutation: "Mr",
+          phoneNumber: "111-111-1111",
+          fax: "122-111-1111",
+          email: "elon@musk.com",
+          website: "https://elonmusk.com",
+          notes: "Address notes or delivery instructions.",
+          rowVersion: "1-12345",
+        },
       ],
       subsidiaries: [
+        {
+          name: "SpaceX",
+        },
         {
           name: "SpaceX",
         },
@@ -462,7 +602,51 @@ async function run() {
         {
           serviceId: "<id>",
           extendPaths: [
-
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+          ],
+        },
+        {
+          serviceId: "<id>",
+          extendPaths: [
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
           ],
         },
       ],
@@ -496,6 +680,7 @@ async function run() {
   const res = await accountingLocationsUpdate(apideck, {
     id: "<id>",
     serviceId: "salesforce",
+    raw: false,
     accountingLocation: {
       parentId: "12345",
       companyName: "SpaceX",
@@ -528,8 +713,63 @@ async function run() {
           notes: "Address notes or delivery instructions.",
           rowVersion: "1-12345",
         },
+        {
+          id: "123",
+          type: "primary",
+          string: "25 Spring Street, Blackburn, VIC 3130",
+          name: "HQ US",
+          line1: "Main street",
+          line2: "apt #",
+          line3: "Suite #",
+          line4: "delivery instructions",
+          streetNumber: "25",
+          city: "San Francisco",
+          state: "CA",
+          postalCode: "94104",
+          country: "US",
+          latitude: "40.759211",
+          longitude: "-73.984638",
+          county: "Santa Clara",
+          contactName: "Elon Musk",
+          salutation: "Mr",
+          phoneNumber: "111-111-1111",
+          fax: "122-111-1111",
+          email: "elon@musk.com",
+          website: "https://elonmusk.com",
+          notes: "Address notes or delivery instructions.",
+          rowVersion: "1-12345",
+        },
+        {
+          id: "123",
+          type: "primary",
+          string: "25 Spring Street, Blackburn, VIC 3130",
+          name: "HQ US",
+          line1: "Main street",
+          line2: "apt #",
+          line3: "Suite #",
+          line4: "delivery instructions",
+          streetNumber: "25",
+          city: "San Francisco",
+          state: "CA",
+          postalCode: "94104",
+          country: "US",
+          latitude: "40.759211",
+          longitude: "-73.984638",
+          county: "Santa Clara",
+          contactName: "Elon Musk",
+          salutation: "Mr",
+          phoneNumber: "111-111-1111",
+          fax: "122-111-1111",
+          email: "elon@musk.com",
+          website: "https://elonmusk.com",
+          notes: "Address notes or delivery instructions.",
+          rowVersion: "1-12345",
+        },
       ],
       subsidiaries: [
+        {
+          name: "SpaceX",
+        },
         {
           name: "SpaceX",
         },
@@ -539,7 +779,51 @@ async function run() {
         {
           serviceId: "<id>",
           extendPaths: [
-  
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+          ],
+        },
+        {
+          serviceId: "<id>",
+          extendPaths: [
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
           ],
         },
       ],
@@ -602,6 +886,7 @@ async function run() {
   const result = await apideck.accounting.locations.delete({
     id: "<id>",
     serviceId: "salesforce",
+    raw: false,
   });
 
   // Handle the result
@@ -631,6 +916,7 @@ async function run() {
   const res = await accountingLocationsDelete(apideck, {
     id: "<id>",
     serviceId: "salesforce",
+    raw: false,
   });
 
   if (!res.ok) {
