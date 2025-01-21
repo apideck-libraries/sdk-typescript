@@ -18,6 +18,10 @@ export type ConnectorApiResourceCoverageOneGlobals = {
 
 export type ConnectorApiResourceCoverageOneRequest = {
   /**
+   * The ID of your Unify application
+   */
+  appId?: string | undefined;
+  /**
    * ID of the record you are acting upon.
    */
   id: string;
@@ -107,6 +111,7 @@ export const ConnectorApiResourceCoverageOneRequest$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
+  appId: z.string().optional(),
   id: z.string(),
   resource_id: z.string(),
 }).transform((v) => {
@@ -117,6 +122,7 @@ export const ConnectorApiResourceCoverageOneRequest$inboundSchema: z.ZodType<
 
 /** @internal */
 export type ConnectorApiResourceCoverageOneRequest$Outbound = {
+  appId?: string | undefined;
   id: string;
   resource_id: string;
 };
@@ -127,6 +133,7 @@ export const ConnectorApiResourceCoverageOneRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   ConnectorApiResourceCoverageOneRequest
 > = z.object({
+  appId: z.string().optional(),
   id: z.string(),
   resourceId: z.string(),
 }).transform((v) => {

@@ -38,6 +38,9 @@ export type UpdateTrackingCategoryResponse = {
    * Operation performed
    */
   operation: string;
+  /**
+   * A object containing a unique identifier for the resource that was created, updated, or deleted.
+   */
   data: UnifiedId;
 };
 

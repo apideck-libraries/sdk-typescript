@@ -18,6 +18,10 @@ export type VaultConsumerRequestCountsAllGlobals = {
 
 export type VaultConsumerRequestCountsAllRequest = {
   /**
+   * The ID of your Unify application
+   */
+  appId?: string | undefined;
+  /**
    * ID of the consumer to return
    */
   consumerId: string;
@@ -110,6 +114,7 @@ export const VaultConsumerRequestCountsAllRequest$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
+  appId: z.string().optional(),
   consumer_id: z.string(),
   start_datetime: z.string(),
   end_datetime: z.string(),
@@ -123,6 +128,7 @@ export const VaultConsumerRequestCountsAllRequest$inboundSchema: z.ZodType<
 
 /** @internal */
 export type VaultConsumerRequestCountsAllRequest$Outbound = {
+  appId?: string | undefined;
   consumer_id: string;
   start_datetime: string;
   end_datetime: string;
@@ -134,6 +140,7 @@ export const VaultConsumerRequestCountsAllRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   VaultConsumerRequestCountsAllRequest
 > = z.object({
+  appId: z.string().optional(),
   consumerId: z.string(),
   startDatetime: z.string(),
   endDatetime: z.string(),

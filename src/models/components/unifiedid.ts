@@ -7,6 +7,9 @@ import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
+/**
+ * A object containing a unique identifier for the resource that was created, updated, or deleted.
+ */
 export type UnifiedId = {
   /**
    * The unique identifier of the resource

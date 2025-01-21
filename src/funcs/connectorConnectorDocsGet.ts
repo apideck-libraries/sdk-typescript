@@ -85,7 +85,7 @@ export async function connectorConnectorDocsGet(
       || "application/json;q=1, text/markdown;q=0",
     "x-apideck-app-id": encodeSimple(
       "x-apideck-app-id",
-      client._options.appId,
+      payload.appId ?? client._options.appId,
       { explode: false, charEncoding: "none" },
     ),
   }));

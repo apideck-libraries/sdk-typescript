@@ -21,6 +21,10 @@ export type WebhookWebhooksDeleteRequest = {
    * JWT Webhook token that represents the unifiedApi and applicationId associated to the event source.
    */
   id: string;
+  /**
+   * The ID of your Unify application
+   */
+  appId?: string | undefined;
 };
 
 export type WebhookWebhooksDeleteResponse = {
@@ -98,11 +102,13 @@ export const WebhookWebhooksDeleteRequest$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   id: z.string(),
+  appId: z.string().optional(),
 });
 
 /** @internal */
 export type WebhookWebhooksDeleteRequest$Outbound = {
   id: string;
+  appId?: string | undefined;
 };
 
 /** @internal */
@@ -112,6 +118,7 @@ export const WebhookWebhooksDeleteRequest$outboundSchema: z.ZodType<
   WebhookWebhooksDeleteRequest
 > = z.object({
   id: z.string(),
+  appId: z.string().optional(),
 });
 
 /**

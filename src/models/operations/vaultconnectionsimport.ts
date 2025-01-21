@@ -22,6 +22,14 @@ export type VaultConnectionsImportGlobals = {
 
 export type VaultConnectionsImportRequest = {
   /**
+   * ID of the consumer which you want to get or push data from
+   */
+  consumerId?: string | undefined;
+  /**
+   * The ID of your Unify application
+   */
+  appId?: string | undefined;
+  /**
    * Service ID of the resource to return
    */
   serviceId: string;
@@ -112,6 +120,8 @@ export const VaultConnectionsImportRequest$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
+  consumerId: z.string().optional(),
+  appId: z.string().optional(),
   service_id: z.string(),
   unified_api: z.string(),
   ConnectionImportData: components.ConnectionImportData$inboundSchema,
@@ -125,6 +135,8 @@ export const VaultConnectionsImportRequest$inboundSchema: z.ZodType<
 
 /** @internal */
 export type VaultConnectionsImportRequest$Outbound = {
+  consumerId?: string | undefined;
+  appId?: string | undefined;
   service_id: string;
   unified_api: string;
   ConnectionImportData: components.ConnectionImportData$Outbound;
@@ -136,6 +148,8 @@ export const VaultConnectionsImportRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   VaultConnectionsImportRequest
 > = z.object({
+  consumerId: z.string().optional(),
+  appId: z.string().optional(),
   serviceId: z.string(),
   unifiedApi: z.string(),
   connectionImportData: components.ConnectionImportData$outboundSchema,

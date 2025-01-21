@@ -26,6 +26,14 @@ export type AccountingExpensesUpdateRequest = {
    */
   id: string;
   /**
+   * ID of the consumer which you want to get or push data from
+   */
+  consumerId?: string | undefined;
+  /**
+   * The ID of your Unify application
+   */
+  appId?: string | undefined;
+  /**
    * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
    */
   serviceId?: string | undefined;
@@ -114,6 +122,8 @@ export const AccountingExpensesUpdateRequest$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   id: z.string(),
+  consumerId: z.string().optional(),
+  appId: z.string().optional(),
   serviceId: z.string().optional(),
   raw: z.boolean().default(false),
   Expense: components.ExpenseInput$inboundSchema,
@@ -126,6 +136,8 @@ export const AccountingExpensesUpdateRequest$inboundSchema: z.ZodType<
 /** @internal */
 export type AccountingExpensesUpdateRequest$Outbound = {
   id: string;
+  consumerId?: string | undefined;
+  appId?: string | undefined;
   serviceId?: string | undefined;
   raw: boolean;
   Expense: components.ExpenseInput$Outbound;
@@ -138,6 +150,8 @@ export const AccountingExpensesUpdateRequest$outboundSchema: z.ZodType<
   AccountingExpensesUpdateRequest
 > = z.object({
   id: z.string(),
+  consumerId: z.string().optional(),
+  appId: z.string().optional(),
   serviceId: z.string().optional(),
   raw: z.boolean().default(false),
   expense: components.ExpenseInput$outboundSchema,

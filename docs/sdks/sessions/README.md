@@ -28,49 +28,51 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.vault.sessions.create({
-    consumerMetadata: {
-      accountName: "SpaceX",
-      userName: "Elon Musk",
-      email: "elon@musk.com",
-      image: "https://www.spacex.com/static/images/share.jpg",
-    },
-    redirectUri: "https://mysaas.com/dashboard",
-    settings: {
-      unifiedApis: [
-        "crm",
-      ],
-      hideResourceSettings: false,
-      sandboxMode: false,
-      isolationMode: false,
-      sessionLength: "1h",
-      showLogs: true,
-      showSuggestions: false,
-      showSidebar: true,
-      autoRedirect: false,
-      hideGuides: false,
-    },
-    theme: {
-      favicon: "https://res.cloudinary.com/apideck/icons/intercom",
-      logo: "https://res.cloudinary.com/apideck/icons/intercom",
-      primaryColor: "#286efa",
-      sidepanelBackgroundColor: "#286efa",
-      sidepanelTextColor: "#FFFFFF",
-      vaultName: "Intercom",
-      privacyUrl: "https://compliance.apideck.com/privacy-policy",
-      termsUrl: "https://www.termsfeed.com/terms-conditions/957c85c1b089ae9e3219c83eff65377e",
-    },
-    customConsumerSettings: {
-      "feature_flag_1": true,
-      "tax_rates": [
-        {
-          "id": "6",
-          "label": "6%",
-        },
-        {
-          "id": "21",
-          "label": "21%",
-        },
-      ],
+    session: {
+      consumerMetadata: {
+        accountName: "SpaceX",
+        userName: "Elon Musk",
+        email: "elon@musk.com",
+        image: "https://www.spacex.com/static/images/share.jpg",
+      },
+      redirectUri: "https://mysaas.com/dashboard",
+      settings: {
+        unifiedApis: [
+          "crm",
+        ],
+        hideResourceSettings: false,
+        sandboxMode: false,
+        isolationMode: false,
+        sessionLength: "1h",
+        showLogs: true,
+        showSuggestions: false,
+        showSidebar: true,
+        autoRedirect: false,
+        hideGuides: false,
+      },
+      theme: {
+        favicon: "https://res.cloudinary.com/apideck/icons/intercom",
+        logo: "https://res.cloudinary.com/apideck/icons/intercom",
+        primaryColor: "#286efa",
+        sidepanelBackgroundColor: "#286efa",
+        sidepanelTextColor: "#FFFFFF",
+        vaultName: "Intercom",
+        privacyUrl: "https://compliance.apideck.com/privacy-policy",
+        termsUrl: "https://www.termsfeed.com/terms-conditions/957c85c1b089ae9e3219c83eff65377e",
+      },
+      customConsumerSettings: {
+        "feature_flag_1": true,
+        "tax_rates": [
+          {
+            "id": "6",
+            "label": "6%",
+          },
+          {
+            "id": "21",
+            "label": "21%",
+          },
+        ],
+      },
     },
   });
 
@@ -99,49 +101,51 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await vaultSessionsCreate(apideck, {
-    consumerMetadata: {
-      accountName: "SpaceX",
-      userName: "Elon Musk",
-      email: "elon@musk.com",
-      image: "https://www.spacex.com/static/images/share.jpg",
-    },
-    redirectUri: "https://mysaas.com/dashboard",
-    settings: {
-      unifiedApis: [
-        "crm",
-      ],
-      hideResourceSettings: false,
-      sandboxMode: false,
-      isolationMode: false,
-      sessionLength: "1h",
-      showLogs: true,
-      showSuggestions: false,
-      showSidebar: true,
-      autoRedirect: false,
-      hideGuides: false,
-    },
-    theme: {
-      favicon: "https://res.cloudinary.com/apideck/icons/intercom",
-      logo: "https://res.cloudinary.com/apideck/icons/intercom",
-      primaryColor: "#286efa",
-      sidepanelBackgroundColor: "#286efa",
-      sidepanelTextColor: "#FFFFFF",
-      vaultName: "Intercom",
-      privacyUrl: "https://compliance.apideck.com/privacy-policy",
-      termsUrl: "https://www.termsfeed.com/terms-conditions/957c85c1b089ae9e3219c83eff65377e",
-    },
-    customConsumerSettings: {
-      "feature_flag_1": true,
-      "tax_rates": [
-        {
-          "id": "6",
-          "label": "6%",
-        },
-        {
-          "id": "21",
-          "label": "21%",
-        },
-      ],
+    session: {
+      consumerMetadata: {
+        accountName: "SpaceX",
+        userName: "Elon Musk",
+        email: "elon@musk.com",
+        image: "https://www.spacex.com/static/images/share.jpg",
+      },
+      redirectUri: "https://mysaas.com/dashboard",
+      settings: {
+        unifiedApis: [
+          "crm",
+        ],
+        hideResourceSettings: false,
+        sandboxMode: false,
+        isolationMode: false,
+        sessionLength: "1h",
+        showLogs: true,
+        showSuggestions: false,
+        showSidebar: true,
+        autoRedirect: false,
+        hideGuides: false,
+      },
+      theme: {
+        favicon: "https://res.cloudinary.com/apideck/icons/intercom",
+        logo: "https://res.cloudinary.com/apideck/icons/intercom",
+        primaryColor: "#286efa",
+        sidepanelBackgroundColor: "#286efa",
+        sidepanelTextColor: "#FFFFFF",
+        vaultName: "Intercom",
+        privacyUrl: "https://compliance.apideck.com/privacy-policy",
+        termsUrl: "https://www.termsfeed.com/terms-conditions/957c85c1b089ae9e3219c83eff65377e",
+      },
+      customConsumerSettings: {
+        "feature_flag_1": true,
+        "tax_rates": [
+          {
+            "id": "6",
+            "label": "6%",
+          },
+          {
+            "id": "21",
+            "label": "21%",
+          },
+        ],
+      },
     },
   });
 
@@ -162,7 +166,7 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [components.Session](../../models/components/session.md)                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `request`                                                                                                                                                                      | [operations.VaultSessionsCreateRequest](../../models/operations/vaultsessionscreaterequest.md)                                                                                 | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |

@@ -26,6 +26,14 @@ export type IssueTrackingCollectionTicketCommentsDeleteRequest = {
    */
   id: string;
   /**
+   * ID of the consumer which you want to get or push data from
+   */
+  consumerId?: string | undefined;
+  /**
+   * The ID of your Unify application
+   */
+  appId?: string | undefined;
+  /**
    * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
    */
   serviceId?: string | undefined;
@@ -134,6 +142,8 @@ export const IssueTrackingCollectionTicketCommentsDeleteRequest$inboundSchema:
     unknown
   > = z.object({
     id: z.string(),
+    consumerId: z.string().optional(),
+    appId: z.string().optional(),
     serviceId: z.string().optional(),
     raw: z.boolean().default(false),
     collection_id: z.string(),
@@ -148,6 +158,8 @@ export const IssueTrackingCollectionTicketCommentsDeleteRequest$inboundSchema:
 /** @internal */
 export type IssueTrackingCollectionTicketCommentsDeleteRequest$Outbound = {
   id: string;
+  consumerId?: string | undefined;
+  appId?: string | undefined;
   serviceId?: string | undefined;
   raw: boolean;
   collection_id: string;
@@ -162,6 +174,8 @@ export const IssueTrackingCollectionTicketCommentsDeleteRequest$outboundSchema:
     IssueTrackingCollectionTicketCommentsDeleteRequest
   > = z.object({
     id: z.string(),
+    consumerId: z.string().optional(),
+    appId: z.string().optional(),
     serviceId: z.string().optional(),
     raw: z.boolean().default(false),
     collectionId: z.string(),

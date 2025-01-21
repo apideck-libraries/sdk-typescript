@@ -8,7 +8,6 @@ import { webhookWebhooksGet } from "../funcs/webhookWebhooksGet.js";
 import { webhookWebhooksList } from "../funcs/webhookWebhooksList.js";
 import { webhookWebhooksUpdate } from "../funcs/webhookWebhooksUpdate.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
-import * as components from "../models/components/index.js";
 import * as operations from "../models/operations/index.js";
 import { unwrapAsync } from "../types/fp.js";
 import { PageIterator, unwrapResultIterator } from "../types/operations.js";
@@ -40,7 +39,7 @@ export class Webhooks extends ClientSDK {
    * Create a webhook subscription to receive events
    */
   async create(
-    request: components.CreateWebhookRequest,
+    request: operations.WebhookWebhooksAddRequest,
     options?: RequestOptions,
   ): Promise<operations.WebhookWebhooksAddResponse> {
     return unwrapAsync(webhookWebhooksCreate(

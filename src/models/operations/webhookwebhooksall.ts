@@ -18,6 +18,10 @@ export type WebhookWebhooksAllGlobals = {
 
 export type WebhookWebhooksAllRequest = {
   /**
+   * The ID of your Unify application
+   */
+  appId?: string | undefined;
+  /**
    * Cursor to start from. You can find cursors for next/previous pages in the meta.cursors property of the response.
    */
   cursor?: string | null | undefined;
@@ -99,12 +103,14 @@ export const WebhookWebhooksAllRequest$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
+  appId: z.string().optional(),
   cursor: z.nullable(z.string()).optional(),
   limit: z.number().int().default(20),
 });
 
 /** @internal */
 export type WebhookWebhooksAllRequest$Outbound = {
+  appId?: string | undefined;
   cursor?: string | null | undefined;
   limit: number;
 };
@@ -115,6 +121,7 @@ export const WebhookWebhooksAllRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   WebhookWebhooksAllRequest
 > = z.object({
+  appId: z.string().optional(),
   cursor: z.nullable(z.string()).optional(),
   limit: z.number().int().default(20),
 });
