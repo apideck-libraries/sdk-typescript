@@ -25,6 +25,7 @@ const apideck = new Apideck({
 async function run() {
   const result = await apideck.ecommerce.stores.get({
     serviceId: "salesforce",
+    raw: false,
     fields: "id,updated_at",
   });
 
@@ -54,6 +55,7 @@ const apideck = new ApideckCore({
 async function run() {
   const res = await ecommerceStoresGet(apideck, {
     serviceId: "salesforce",
+    raw: false,
     fields: "id,updated_at",
   });
 

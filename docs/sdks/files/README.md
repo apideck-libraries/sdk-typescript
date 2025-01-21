@@ -30,7 +30,9 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.fileStorage.files.list({
+    raw: false,
     serviceId: "salesforce",
+    limit: 20,
     filter: {
       driveId: "1234",
       folderId: "root",
@@ -73,7 +75,9 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await fileStorageFilesList(apideck, {
+    raw: false,
     serviceId: "salesforce",
+    limit: 20,
     filter: {
       driveId: "1234",
       folderId: "root",
@@ -150,6 +154,7 @@ async function run() {
       "search": "San Francisco",
     },
     fields: "id,updated_at",
+    limit: 20,
     filter: {
       driveId: "1234",
       folderId: "root",
@@ -157,10 +162,6 @@ async function run() {
     },
     filesSearch: {
       query: "logo jpg",
-      driveId: "1234",
-      passThrough: [
-
-      ],
     },
   });
 
@@ -194,6 +195,7 @@ async function run() {
       "search": "San Francisco",
     },
     fields: "id,updated_at",
+    limit: 20,
     filter: {
       driveId: "1234",
       folderId: "root",
@@ -201,10 +203,6 @@ async function run() {
     },
     filesSearch: {
       query: "logo jpg",
-      driveId: "1234",
-      passThrough: [
-  
-      ],
     },
   });
 
@@ -264,6 +262,7 @@ async function run() {
   const result = await apideck.fileStorage.files.get({
     id: "<id>",
     serviceId: "salesforce",
+    raw: false,
     fields: "id,updated_at",
   });
 
@@ -294,6 +293,7 @@ async function run() {
   const res = await fileStorageFilesGet(apideck, {
     id: "<id>",
     serviceId: "salesforce",
+    raw: false,
     fields: "id,updated_at",
   });
 
@@ -353,6 +353,7 @@ async function run() {
   const result = await apideck.fileStorage.files.update({
     id: "<id>",
     serviceId: "salesforce",
+    raw: false,
     updateFileRequest: {
       name: "New Name.pdf",
       description: "Renamed PDF Document",
@@ -361,7 +362,72 @@ async function run() {
         {
           serviceId: "<id>",
           extendPaths: [
-
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+          ],
+        },
+        {
+          serviceId: "<id>",
+          extendPaths: [
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+          ],
+        },
+        {
+          serviceId: "<id>",
+          extendPaths: [
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
           ],
         },
       ],
@@ -395,6 +461,7 @@ async function run() {
   const res = await fileStorageFilesUpdate(apideck, {
     id: "<id>",
     serviceId: "salesforce",
+    raw: false,
     updateFileRequest: {
       name: "New Name.pdf",
       description: "Renamed PDF Document",
@@ -403,7 +470,72 @@ async function run() {
         {
           serviceId: "<id>",
           extendPaths: [
-  
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+          ],
+        },
+        {
+          serviceId: "<id>",
+          extendPaths: [
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+          ],
+        },
+        {
+          serviceId: "<id>",
+          extendPaths: [
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
           ],
         },
       ],
@@ -466,6 +598,7 @@ async function run() {
   const result = await apideck.fileStorage.files.delete({
     id: "<id>",
     serviceId: "salesforce",
+    raw: false,
   });
 
   // Handle the result
@@ -495,6 +628,7 @@ async function run() {
   const res = await fileStorageFilesDelete(apideck, {
     id: "<id>",
     serviceId: "salesforce",
+    raw: false,
   });
 
   if (!res.ok) {

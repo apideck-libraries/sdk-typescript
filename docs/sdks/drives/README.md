@@ -28,7 +28,9 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.fileStorage.drives.list({
+    raw: false,
     serviceId: "salesforce",
+    limit: 20,
     filter: {
       groupId: "1234",
     },
@@ -62,7 +64,9 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await fileStorageDrivesList(apideck, {
+    raw: false,
     serviceId: "salesforce",
+    limit: 20,
     filter: {
       groupId: "1234",
     },
@@ -125,6 +129,7 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.fileStorage.drives.create({
+    raw: false,
     serviceId: "salesforce",
     drive: {
       name: "Project Resources",
@@ -149,6 +154,11 @@ async function run() {
                 },
               },
             },
+          ],
+        },
+        {
+          serviceId: "<id>",
+          extendPaths: [
             {
               path: "$.nested.property",
               value: {
@@ -157,12 +167,14 @@ async function run() {
                 },
               },
             },
-          ],
-        },
-        {
-          serviceId: "<id>",
-          extendPaths: [
-
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
           ],
         },
       ],
@@ -194,6 +206,7 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await fileStorageDrivesCreate(apideck, {
+    raw: false,
     serviceId: "salesforce",
     drive: {
       name: "Project Resources",
@@ -218,6 +231,11 @@ async function run() {
                 },
               },
             },
+          ],
+        },
+        {
+          serviceId: "<id>",
+          extendPaths: [
             {
               path: "$.nested.property",
               value: {
@@ -226,12 +244,14 @@ async function run() {
                 },
               },
             },
-          ],
-        },
-        {
-          serviceId: "<id>",
-          extendPaths: [
-  
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
           ],
         },
       ],
@@ -294,6 +314,7 @@ async function run() {
   const result = await apideck.fileStorage.drives.get({
     id: "<id>",
     serviceId: "salesforce",
+    raw: false,
     fields: "id,updated_at",
   });
 
@@ -324,6 +345,7 @@ async function run() {
   const res = await fileStorageDrivesGet(apideck, {
     id: "<id>",
     serviceId: "salesforce",
+    raw: false,
     fields: "id,updated_at",
   });
 
@@ -383,6 +405,7 @@ async function run() {
   const result = await apideck.fileStorage.drives.update({
     id: "<id>",
     serviceId: "salesforce",
+    raw: false,
     drive: {
       name: "Project Resources",
       description: "A description",
@@ -432,6 +455,22 @@ async function run() {
         {
           serviceId: "<id>",
           extendPaths: [
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
             {
               path: "$.nested.property",
               value: {
@@ -473,6 +512,7 @@ async function run() {
   const res = await fileStorageDrivesUpdate(apideck, {
     id: "<id>",
     serviceId: "salesforce",
+    raw: false,
     drive: {
       name: "Project Resources",
       description: "A description",
@@ -522,6 +562,22 @@ async function run() {
         {
           serviceId: "<id>",
           extendPaths: [
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
             {
               path: "$.nested.property",
               value: {
@@ -592,6 +648,7 @@ async function run() {
   const result = await apideck.fileStorage.drives.delete({
     id: "<id>",
     serviceId: "salesforce",
+    raw: false,
   });
 
   // Handle the result
@@ -621,6 +678,7 @@ async function run() {
   const res = await fileStorageDrivesDelete(apideck, {
     id: "<id>",
     serviceId: "salesforce",
+    raw: false,
   });
 
   if (!res.ok) {

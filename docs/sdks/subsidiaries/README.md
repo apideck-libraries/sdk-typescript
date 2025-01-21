@@ -28,7 +28,9 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.accounting.subsidiaries.list({
+    raw: false,
     serviceId: "salesforce",
+    limit: 20,
     fields: "id,updated_at",
   });
 
@@ -59,7 +61,9 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await accountingSubsidiariesList(apideck, {
+    raw: false,
     serviceId: "salesforce",
+    limit: 20,
     fields: "id,updated_at",
   });
 
@@ -119,6 +123,7 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.accounting.subsidiaries.create({
+    raw: false,
     serviceId: "salesforce",
     subsidiary: {
       parentId: "12345",
@@ -126,7 +131,48 @@ async function run() {
       status: "active",
       rowVersion: "1-12345",
       passThrough: [
-
+        {
+          serviceId: "<id>",
+          extendPaths: [
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+          ],
+        },
+        {
+          serviceId: "<id>",
+          extendPaths: [
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+          ],
+        },
       ],
     },
   });
@@ -156,6 +202,7 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await accountingSubsidiariesCreate(apideck, {
+    raw: false,
     serviceId: "salesforce",
     subsidiary: {
       parentId: "12345",
@@ -163,7 +210,48 @@ async function run() {
       status: "active",
       rowVersion: "1-12345",
       passThrough: [
-  
+        {
+          serviceId: "<id>",
+          extendPaths: [
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+          ],
+        },
+        {
+          serviceId: "<id>",
+          extendPaths: [
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+          ],
+        },
       ],
     },
   });
@@ -224,6 +312,7 @@ async function run() {
   const result = await apideck.accounting.subsidiaries.get({
     id: "<id>",
     serviceId: "salesforce",
+    raw: false,
     fields: "id,updated_at",
   });
 
@@ -254,6 +343,7 @@ async function run() {
   const res = await accountingSubsidiariesGet(apideck, {
     id: "<id>",
     serviceId: "salesforce",
+    raw: false,
     fields: "id,updated_at",
   });
 
@@ -313,6 +403,7 @@ async function run() {
   const result = await apideck.accounting.subsidiaries.update({
     id: "<id>",
     serviceId: "salesforce",
+    raw: false,
     subsidiary: {
       parentId: "12345",
       name: "SpaceX",
@@ -322,14 +413,6 @@ async function run() {
         {
           serviceId: "<id>",
           extendPaths: [
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
             {
               path: "$.nested.property",
               value: {
@@ -429,6 +512,7 @@ async function run() {
   const res = await accountingSubsidiariesUpdate(apideck, {
     id: "<id>",
     serviceId: "salesforce",
+    raw: false,
     subsidiary: {
       parentId: "12345",
       name: "SpaceX",
@@ -438,14 +522,6 @@ async function run() {
         {
           serviceId: "<id>",
           extendPaths: [
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
             {
               path: "$.nested.property",
               value: {
@@ -574,6 +650,7 @@ async function run() {
   const result = await apideck.accounting.subsidiaries.delete({
     id: "<id>",
     serviceId: "salesforce",
+    raw: false,
   });
 
   // Handle the result
@@ -603,6 +680,7 @@ async function run() {
   const res = await accountingSubsidiariesDelete(apideck, {
     id: "<id>",
     serviceId: "salesforce",
+    raw: false,
   });
 
   if (!res.ok) {

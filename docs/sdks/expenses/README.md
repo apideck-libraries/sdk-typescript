@@ -28,7 +28,9 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.accounting.expenses.list({
+    raw: false,
     serviceId: "salesforce",
+    limit: 20,
   });
 
   for await (const page of result) {
@@ -58,7 +60,9 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await accountingExpensesList(apideck, {
+    raw: false,
     serviceId: "salesforce",
+    limit: 20,
   });
 
   if (!res.ok) {
@@ -117,6 +121,7 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.accounting.expenses.create({
+    raw: false,
     serviceId: "salesforce",
     expense: {
       number: "OIT00546",
@@ -126,6 +131,7 @@ async function run() {
       supplierId: "12345",
       companyId: "12345",
       departmentId: "12345",
+      paymentType: "cash",
       currency: "USD",
       currencyRate: 0.69,
       type: "expense",
@@ -138,6 +144,10 @@ async function run() {
       lineItems: [
         {
           trackingCategories: [
+            {
+              id: "123456",
+              name: "New York",
+            },
             {
               id: "123456",
               name: "New York",
@@ -161,24 +171,72 @@ async function run() {
           id: "2389328923893298",
           name: "employee_level",
           description: "Employee Level",
-          value: true,
+          value: "Uses Salesforce and Marketo",
         },
         {
           id: "2389328923893298",
           name: "employee_level",
           description: "Employee Level",
-          value: 10,
-        },
-        {
-          id: "2389328923893298",
-          name: "employee_level",
-          description: "Employee Level",
-          value: true,
+          value: "Uses Salesforce and Marketo",
         },
       ],
       rowVersion: "1-12345",
       passThrough: [
-
+        {
+          serviceId: "<id>",
+          extendPaths: [
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+          ],
+        },
+        {
+          serviceId: "<id>",
+          extendPaths: [
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+          ],
+        },
+        {
+          serviceId: "<id>",
+          extendPaths: [
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+          ],
+        },
       ],
     },
   });
@@ -208,6 +266,7 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await accountingExpensesCreate(apideck, {
+    raw: false,
     serviceId: "salesforce",
     expense: {
       number: "OIT00546",
@@ -217,6 +276,7 @@ async function run() {
       supplierId: "12345",
       companyId: "12345",
       departmentId: "12345",
+      paymentType: "cash",
       currency: "USD",
       currencyRate: 0.69,
       type: "expense",
@@ -229,6 +289,10 @@ async function run() {
       lineItems: [
         {
           trackingCategories: [
+            {
+              id: "123456",
+              name: "New York",
+            },
             {
               id: "123456",
               name: "New York",
@@ -252,24 +316,72 @@ async function run() {
           id: "2389328923893298",
           name: "employee_level",
           description: "Employee Level",
-          value: true,
+          value: "Uses Salesforce and Marketo",
         },
         {
           id: "2389328923893298",
           name: "employee_level",
           description: "Employee Level",
-          value: 10,
-        },
-        {
-          id: "2389328923893298",
-          name: "employee_level",
-          description: "Employee Level",
-          value: true,
+          value: "Uses Salesforce and Marketo",
         },
       ],
       rowVersion: "1-12345",
       passThrough: [
-  
+        {
+          serviceId: "<id>",
+          extendPaths: [
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+          ],
+        },
+        {
+          serviceId: "<id>",
+          extendPaths: [
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+          ],
+        },
+        {
+          serviceId: "<id>",
+          extendPaths: [
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+          ],
+        },
       ],
     },
   });
@@ -330,6 +442,7 @@ async function run() {
   const result = await apideck.accounting.expenses.get({
     id: "<id>",
     serviceId: "salesforce",
+    raw: false,
   });
 
   // Handle the result
@@ -359,6 +472,7 @@ async function run() {
   const res = await accountingExpensesGet(apideck, {
     id: "<id>",
     serviceId: "salesforce",
+    raw: false,
   });
 
   if (!res.ok) {
@@ -417,6 +531,7 @@ async function run() {
   const result = await apideck.accounting.expenses.update({
     id: "<id>",
     serviceId: "salesforce",
+    raw: false,
     expense: {
       number: "OIT00546",
       transactionDate: new Date("2021-05-01T12:00:00.000Z"),
@@ -425,6 +540,7 @@ async function run() {
       supplierId: "12345",
       companyId: "12345",
       departmentId: "12345",
+      paymentType: "cash",
       currency: "USD",
       currencyRate: 0.69,
       type: "expense",
@@ -435,25 +551,143 @@ async function run() {
       },
       totalAmount: 275,
       lineItems: [
-
+        {
+          trackingCategories: [
+            {
+              id: "123456",
+              name: "New York",
+            },
+            {
+              id: "123456",
+              name: "New York",
+            },
+          ],
+          accountId: "123456",
+          customerId: "12345",
+          departmentId: "12345",
+          locationId: "12345",
+          taxRate: {
+            id: "123456",
+            rate: 10,
+          },
+          description: "Travel US.",
+          totalAmount: 275,
+          billable: true,
+        },
+        {
+          trackingCategories: [
+            {
+              id: "123456",
+              name: "New York",
+            },
+            {
+              id: "123456",
+              name: "New York",
+            },
+          ],
+          accountId: "123456",
+          customerId: "12345",
+          departmentId: "12345",
+          locationId: "12345",
+          taxRate: {
+            id: "123456",
+            rate: 10,
+          },
+          description: "Travel US.",
+          totalAmount: 275,
+          billable: true,
+        },
+        {
+          trackingCategories: [
+            {
+              id: "123456",
+              name: "New York",
+            },
+            {
+              id: "123456",
+              name: "New York",
+            },
+            {
+              id: "123456",
+              name: "New York",
+            },
+          ],
+          accountId: "123456",
+          customerId: "12345",
+          departmentId: "12345",
+          locationId: "12345",
+          taxRate: {
+            id: "123456",
+            rate: 10,
+          },
+          description: "Travel US.",
+          totalAmount: 275,
+          billable: true,
+        },
       ],
       customFields: [
         {
           id: "2389328923893298",
           name: "employee_level",
           description: "Employee Level",
-          value: 10,
+          value: true,
         },
         {
           id: "2389328923893298",
           name: "employee_level",
           description: "Employee Level",
-          value: true,
+          value: {},
         },
       ],
       rowVersion: "1-12345",
       passThrough: [
-
+        {
+          serviceId: "<id>",
+          extendPaths: [
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+          ],
+        },
+        {
+          serviceId: "<id>",
+          extendPaths: [
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+          ],
+        },
+        {
+          serviceId: "<id>",
+          extendPaths: [
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+          ],
+        },
       ],
     },
   });
@@ -485,6 +719,7 @@ async function run() {
   const res = await accountingExpensesUpdate(apideck, {
     id: "<id>",
     serviceId: "salesforce",
+    raw: false,
     expense: {
       number: "OIT00546",
       transactionDate: new Date("2021-05-01T12:00:00.000Z"),
@@ -493,6 +728,7 @@ async function run() {
       supplierId: "12345",
       companyId: "12345",
       departmentId: "12345",
+      paymentType: "cash",
       currency: "USD",
       currencyRate: 0.69,
       type: "expense",
@@ -503,25 +739,143 @@ async function run() {
       },
       totalAmount: 275,
       lineItems: [
-  
+        {
+          trackingCategories: [
+            {
+              id: "123456",
+              name: "New York",
+            },
+            {
+              id: "123456",
+              name: "New York",
+            },
+          ],
+          accountId: "123456",
+          customerId: "12345",
+          departmentId: "12345",
+          locationId: "12345",
+          taxRate: {
+            id: "123456",
+            rate: 10,
+          },
+          description: "Travel US.",
+          totalAmount: 275,
+          billable: true,
+        },
+        {
+          trackingCategories: [
+            {
+              id: "123456",
+              name: "New York",
+            },
+            {
+              id: "123456",
+              name: "New York",
+            },
+          ],
+          accountId: "123456",
+          customerId: "12345",
+          departmentId: "12345",
+          locationId: "12345",
+          taxRate: {
+            id: "123456",
+            rate: 10,
+          },
+          description: "Travel US.",
+          totalAmount: 275,
+          billable: true,
+        },
+        {
+          trackingCategories: [
+            {
+              id: "123456",
+              name: "New York",
+            },
+            {
+              id: "123456",
+              name: "New York",
+            },
+            {
+              id: "123456",
+              name: "New York",
+            },
+          ],
+          accountId: "123456",
+          customerId: "12345",
+          departmentId: "12345",
+          locationId: "12345",
+          taxRate: {
+            id: "123456",
+            rate: 10,
+          },
+          description: "Travel US.",
+          totalAmount: 275,
+          billable: true,
+        },
       ],
       customFields: [
         {
           id: "2389328923893298",
           name: "employee_level",
           description: "Employee Level",
-          value: 10,
+          value: true,
         },
         {
           id: "2389328923893298",
           name: "employee_level",
           description: "Employee Level",
-          value: true,
+          value: {},
         },
       ],
       rowVersion: "1-12345",
       passThrough: [
-  
+        {
+          serviceId: "<id>",
+          extendPaths: [
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+          ],
+        },
+        {
+          serviceId: "<id>",
+          extendPaths: [
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+          ],
+        },
+        {
+          serviceId: "<id>",
+          extendPaths: [
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+          ],
+        },
       ],
     },
   });
@@ -582,6 +936,7 @@ async function run() {
   const result = await apideck.accounting.expenses.delete({
     id: "<id>",
     serviceId: "salesforce",
+    raw: false,
   });
 
   // Handle the result
@@ -611,6 +966,7 @@ async function run() {
   const res = await accountingExpensesDelete(apideck, {
     id: "<id>",
     serviceId: "salesforce",
+    raw: false,
   });
 
   if (!res.ok) {

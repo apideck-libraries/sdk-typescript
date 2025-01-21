@@ -167,7 +167,8 @@ export async function webhookWebhooksList(
     M.jsonErr(402, errors.PaymentRequiredResponse$inboundSchema),
     M.jsonErr(404, errors.NotFoundResponse$inboundSchema),
     M.jsonErr(422, errors.UnprocessableResponse$inboundSchema),
-    M.fail(["4XX", "5XX"]),
+    M.fail("4XX"),
+    M.fail("5XX"),
     M.json("default", operations.WebhookWebhooksAllResponse$inboundSchema, {
       key: "UnexpectedErrorResponse",
     }),

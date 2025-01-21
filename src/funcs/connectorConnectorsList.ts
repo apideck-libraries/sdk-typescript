@@ -172,7 +172,8 @@ export async function connectorConnectorsList(
     M.jsonErr(400, errors.BadRequestResponse$inboundSchema),
     M.jsonErr(401, errors.UnauthorizedResponse$inboundSchema),
     M.jsonErr(402, errors.PaymentRequiredResponse$inboundSchema),
-    M.fail(["4XX", "5XX"]),
+    M.fail("4XX"),
+    M.fail("5XX"),
     M.json("default", operations.ConnectorConnectorsAllResponse$inboundSchema, {
       key: "UnexpectedErrorResponse",
     }),

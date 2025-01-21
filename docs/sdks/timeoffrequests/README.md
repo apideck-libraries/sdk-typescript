@@ -28,7 +28,9 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.hris.timeOffRequests.list({
+    raw: false,
     serviceId: "salesforce",
+    limit: 20,
     filter: {
       startDate: "2022-04-08",
       endDate: "2022-04-21",
@@ -70,7 +72,9 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await hrisTimeOffRequestsList(apideck, {
+    raw: false,
     serviceId: "salesforce",
+    limit: 20,
     filter: {
       startDate: "2022-04-08",
       endDate: "2022-04-21",
@@ -141,6 +145,7 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.hris.timeOffRequests.create({
+    raw: false,
     serviceId: "salesforce",
     timeOffRequest: {
       employeeId: "12345",
@@ -160,7 +165,48 @@ async function run() {
         manager: "Enjoy!",
       },
       passThrough: [
-
+        {
+          serviceId: "<id>",
+          extendPaths: [
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+          ],
+        },
+        {
+          serviceId: "<id>",
+          extendPaths: [
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+          ],
+        },
       ],
       policyType: "sick",
     },
@@ -191,6 +237,7 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await hrisTimeOffRequestsCreate(apideck, {
+    raw: false,
     serviceId: "salesforce",
     timeOffRequest: {
       employeeId: "12345",
@@ -210,7 +257,48 @@ async function run() {
         manager: "Enjoy!",
       },
       passThrough: [
-  
+        {
+          serviceId: "<id>",
+          extendPaths: [
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+          ],
+        },
+        {
+          serviceId: "<id>",
+          extendPaths: [
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+          ],
+        },
       ],
       policyType: "sick",
     },
@@ -272,6 +360,7 @@ async function run() {
   const result = await apideck.hris.timeOffRequests.get({
     id: "<id>",
     serviceId: "salesforce",
+    raw: false,
     fields: "id,updated_at",
     employeeId: "<id>",
   });
@@ -303,6 +392,7 @@ async function run() {
   const res = await hrisTimeOffRequestsGet(apideck, {
     id: "<id>",
     serviceId: "salesforce",
+    raw: false,
     fields: "id,updated_at",
     employeeId: "<id>",
   });
@@ -363,6 +453,7 @@ async function run() {
   const result = await apideck.hris.timeOffRequests.update({
     id: "<id>",
     serviceId: "salesforce",
+    raw: false,
     employeeId: "<id>",
     timeOffRequest: {
       employeeId: "12345",
@@ -385,18 +476,56 @@ async function run() {
         {
           serviceId: "<id>",
           extendPaths: [
-
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
           ],
         },
         {
           serviceId: "<id>",
           extendPaths: [
-
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
           ],
         },
         {
           serviceId: "<id>",
           extendPaths: [
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
             {
               path: "$.nested.property",
               value: {
@@ -447,6 +576,7 @@ async function run() {
   const res = await hrisTimeOffRequestsUpdate(apideck, {
     id: "<id>",
     serviceId: "salesforce",
+    raw: false,
     employeeId: "<id>",
     timeOffRequest: {
       employeeId: "12345",
@@ -469,18 +599,56 @@ async function run() {
         {
           serviceId: "<id>",
           extendPaths: [
-  
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
           ],
         },
         {
           serviceId: "<id>",
           extendPaths: [
-  
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
           ],
         },
         {
           serviceId: "<id>",
           extendPaths: [
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
             {
               path: "$.nested.property",
               value: {
@@ -560,6 +728,7 @@ async function run() {
   const result = await apideck.hris.timeOffRequests.delete({
     id: "<id>",
     serviceId: "salesforce",
+    raw: false,
     employeeId: "<id>",
   });
 
@@ -590,6 +759,7 @@ async function run() {
   const res = await hrisTimeOffRequestsDelete(apideck, {
     id: "<id>",
     serviceId: "salesforce",
+    raw: false,
     employeeId: "<id>",
   });
 

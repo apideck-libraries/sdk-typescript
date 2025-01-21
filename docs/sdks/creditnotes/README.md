@@ -28,7 +28,9 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.accounting.creditNotes.list({
+    raw: false,
     serviceId: "salesforce",
+    limit: 20,
     filter: {
       updatedSince: new Date("2020-09-30T07:43:32.000Z"),
     },
@@ -69,7 +71,9 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await accountingCreditNotesList(apideck, {
+    raw: false,
     serviceId: "salesforce",
+    limit: 20,
     filter: {
       updatedSince: new Date("2020-09-30T07:43:32.000Z"),
     },
@@ -139,6 +143,7 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.accounting.creditNotes.create({
+    raw: false,
     serviceId: "salesforce",
     creditNote: {
       number: "OIT00546",
@@ -202,10 +207,6 @@ async function run() {
               id: "123456",
               name: "New York",
             },
-            {
-              id: "123456",
-              name: "New York",
-            },
           ],
           ledgerAccount: {
             id: "123456",
@@ -217,11 +218,13 @@ async function run() {
               id: "2389328923893298",
               name: "employee_level",
               description: "Employee Level",
-              value: [
-                "<value>",
-                "<value>",
-                "<value>",
-              ],
+              value: "Uses Salesforce and Marketo",
+            },
+            {
+              id: "2389328923893298",
+              name: "employee_level",
+              description: "Employee Level",
+              value: "Uses Salesforce and Marketo",
             },
           ],
           rowVersion: "1-12345",
@@ -275,10 +278,19 @@ async function run() {
               id: "2389328923893298",
               name: "employee_level",
               description: "Employee Level",
-              value: [
-                "<value>",
-                "<value>",
-              ],
+              value: "Uses Salesforce and Marketo",
+            },
+            {
+              id: "2389328923893298",
+              name: "employee_level",
+              description: "Employee Level",
+              value: 10,
+            },
+            {
+              id: "2389328923893298",
+              name: "employee_level",
+              description: "Employee Level",
+              value: "Uses Salesforce and Marketo",
             },
           ],
           rowVersion: "1-12345",
@@ -360,60 +372,38 @@ async function run() {
           id: "123456",
           name: "New York",
         },
+        {
+          id: "123456",
+          name: "New York",
+        },
+        {
+          id: "123456",
+          name: "New York",
+        },
       ],
       customFields: [
-
+        {
+          id: "2389328923893298",
+          name: "employee_level",
+          description: "Employee Level",
+          value: [
+            "<value>",
+            "<value>",
+            "<value>",
+          ],
+        },
+        {
+          id: "2389328923893298",
+          name: "employee_level",
+          description: "Employee Level",
+          value: true,
+        },
       ],
       rowVersion: "1-12345",
       passThrough: [
         {
           serviceId: "<id>",
           extendPaths: [
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
-          ],
-        },
-        {
-          serviceId: "<id>",
-          extendPaths: [
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
             {
               path: "$.nested.property",
               value: {
@@ -453,6 +443,7 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await accountingCreditNotesCreate(apideck, {
+    raw: false,
     serviceId: "salesforce",
     creditNote: {
       number: "OIT00546",
@@ -516,10 +507,6 @@ async function run() {
               id: "123456",
               name: "New York",
             },
-            {
-              id: "123456",
-              name: "New York",
-            },
           ],
           ledgerAccount: {
             id: "123456",
@@ -531,11 +518,13 @@ async function run() {
               id: "2389328923893298",
               name: "employee_level",
               description: "Employee Level",
-              value: [
-                "<value>",
-                "<value>",
-                "<value>",
-              ],
+              value: "Uses Salesforce and Marketo",
+            },
+            {
+              id: "2389328923893298",
+              name: "employee_level",
+              description: "Employee Level",
+              value: "Uses Salesforce and Marketo",
             },
           ],
           rowVersion: "1-12345",
@@ -589,10 +578,19 @@ async function run() {
               id: "2389328923893298",
               name: "employee_level",
               description: "Employee Level",
-              value: [
-                "<value>",
-                "<value>",
-              ],
+              value: "Uses Salesforce and Marketo",
+            },
+            {
+              id: "2389328923893298",
+              name: "employee_level",
+              description: "Employee Level",
+              value: 10,
+            },
+            {
+              id: "2389328923893298",
+              name: "employee_level",
+              description: "Employee Level",
+              value: "Uses Salesforce and Marketo",
             },
           ],
           rowVersion: "1-12345",
@@ -674,60 +672,38 @@ async function run() {
           id: "123456",
           name: "New York",
         },
+        {
+          id: "123456",
+          name: "New York",
+        },
+        {
+          id: "123456",
+          name: "New York",
+        },
       ],
       customFields: [
-  
+        {
+          id: "2389328923893298",
+          name: "employee_level",
+          description: "Employee Level",
+          value: [
+            "<value>",
+            "<value>",
+            "<value>",
+          ],
+        },
+        {
+          id: "2389328923893298",
+          name: "employee_level",
+          description: "Employee Level",
+          value: true,
+        },
       ],
       rowVersion: "1-12345",
       passThrough: [
         {
           serviceId: "<id>",
           extendPaths: [
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
-          ],
-        },
-        {
-          serviceId: "<id>",
-          extendPaths: [
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
             {
               path: "$.nested.property",
               value: {
@@ -798,6 +774,7 @@ async function run() {
   const result = await apideck.accounting.creditNotes.get({
     id: "<id>",
     serviceId: "salesforce",
+    raw: false,
     fields: "id,updated_at",
   });
 
@@ -828,6 +805,7 @@ async function run() {
   const res = await accountingCreditNotesGet(apideck, {
     id: "<id>",
     serviceId: "salesforce",
+    raw: false,
     fields: "id,updated_at",
   });
 
@@ -887,6 +865,7 @@ async function run() {
   const result = await apideck.accounting.creditNotes.update({
     id: "<id>",
     serviceId: "salesforce",
+    raw: false,
     creditNote: {
       number: "OIT00546",
       customer: {
@@ -949,10 +928,6 @@ async function run() {
               id: "123456",
               name: "New York",
             },
-            {
-              id: "123456",
-              name: "New York",
-            },
           ],
           ledgerAccount: {
             id: "123456",
@@ -960,80 +935,21 @@ async function run() {
             code: "453",
           },
           customFields: [
+            {
+              id: "2389328923893298",
+              name: "employee_level",
+              description: "Employee Level",
+              value: [
+                {},
+                {},
+              ],
+            },
             {
               id: "2389328923893298",
               name: "employee_level",
               description: "Employee Level",
               value: true,
             },
-            {
-              id: "2389328923893298",
-              name: "employee_level",
-              description: "Employee Level",
-              value: 10,
-            },
-            {
-              id: "2389328923893298",
-              name: "employee_level",
-              description: "Employee Level",
-              value: [
-                "<value>",
-                "<value>",
-                "<value>",
-              ],
-            },
-          ],
-          rowVersion: "1-12345",
-        },
-        {
-          id: "12345",
-          rowId: "12345",
-          code: "120-C",
-          lineNumber: 1,
-          description: "Model Y is a fully electric, mid-size SUV, with seating for up to seven, dual motor AWD and unparalleled protection.",
-          type: "sales_item",
-          taxAmount: 27500,
-          totalAmount: 27500,
-          quantity: 1,
-          unitPrice: 27500.5,
-          unitOfMeasure: "pc.",
-          discountPercentage: 0.01,
-          discountAmount: 19.99,
-          locationId: "1234",
-          departmentId: "1234",
-          item: {
-            id: "12344",
-            code: "120-C",
-            name: "Model Y",
-          },
-          taxRate: {
-            id: "123456",
-            rate: 10,
-          },
-          trackingCategories: [
-
-          ],
-          ledgerAccount: {
-            id: "123456",
-            nominalCode: "N091",
-            code: "453",
-          },
-          customFields: [
-            {
-              id: "2389328923893298",
-              name: "employee_level",
-              description: "Employee Level",
-              value: 10,
-            },
-            {
-              id: "2389328923893298",
-              name: "employee_level",
-              description: "Employee Level",
-              value: [
-                "<value>",
-                "<value>",
-              ],
-            },
           ],
           rowVersion: "1-12345",
         },
@@ -1086,20 +1002,76 @@ async function run() {
               id: "2389328923893298",
               name: "employee_level",
               description: "Employee Level",
-              value: {},
+              value: [
+                {},
+              ],
             },
+          ],
+          rowVersion: "1-12345",
+        },
+        {
+          id: "12345",
+          rowId: "12345",
+          code: "120-C",
+          lineNumber: 1,
+          description: "Model Y is a fully electric, mid-size SUV, with seating for up to seven, dual motor AWD and unparalleled protection.",
+          type: "sales_item",
+          taxAmount: 27500,
+          totalAmount: 27500,
+          quantity: 1,
+          unitPrice: 27500.5,
+          unitOfMeasure: "pc.",
+          discountPercentage: 0.01,
+          discountAmount: 19.99,
+          locationId: "1234",
+          departmentId: "1234",
+          item: {
+            id: "12344",
+            code: "120-C",
+            name: "Model Y",
+          },
+          taxRate: {
+            id: "123456",
+            rate: 10,
+          },
+          trackingCategories: [
+            {
+              id: "123456",
+              name: "New York",
+            },
+          ],
+          ledgerAccount: {
+            id: "123456",
+            nominalCode: "N091",
+            code: "453",
+          },
+          customFields: [
             {
               id: "2389328923893298",
               name: "employee_level",
               description: "Employee Level",
-              value: 10,
+              value: "Uses Salesforce and Marketo",
             },
           ],
           rowVersion: "1-12345",
         },
       ],
       allocations: [
-
+        {
+          id: "123456",
+          amount: 49.99,
+          allocationId: "123456",
+        },
+        {
+          id: "123456",
+          amount: 49.99,
+          allocationId: "123456",
+        },
+        {
+          id: "123456",
+          amount: 49.99,
+          allocationId: "123456",
+        },
       ],
       note: "Some notes about this credit note",
       terms: "Some terms about this credit note",
@@ -1156,10 +1128,26 @@ async function run() {
         rowVersion: "1-12345",
       },
       trackingCategories: [
-
+        {
+          id: "123456",
+          name: "New York",
+        },
+        {
+          id: "123456",
+          name: "New York",
+        },
+        {
+          id: "123456",
+          name: "New York",
+        },
       ],
       customFields: [
-
+        {
+          id: "2389328923893298",
+          name: "employee_level",
+          description: "Employee Level",
+          value: true,
+        },
       ],
       rowVersion: "1-12345",
       passThrough: [
@@ -1182,6 +1170,40 @@ async function run() {
                 },
               },
             },
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+          ],
+        },
+        {
+          serviceId: "<id>",
+          extendPaths: [
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+          ],
+        },
+        {
+          serviceId: "<id>",
+          extendPaths: [
             {
               path: "$.nested.property",
               value: {
@@ -1223,6 +1245,7 @@ async function run() {
   const res = await accountingCreditNotesUpdate(apideck, {
     id: "<id>",
     serviceId: "salesforce",
+    raw: false,
     creditNote: {
       number: "OIT00546",
       customer: {
@@ -1285,10 +1308,6 @@ async function run() {
               id: "123456",
               name: "New York",
             },
-            {
-              id: "123456",
-              name: "New York",
-            },
           ],
           ledgerAccount: {
             id: "123456",
@@ -1296,80 +1315,21 @@ async function run() {
             code: "453",
           },
           customFields: [
+            {
+              id: "2389328923893298",
+              name: "employee_level",
+              description: "Employee Level",
+              value: [
+                {},
+                {},
+              ],
+            },
             {
               id: "2389328923893298",
               name: "employee_level",
               description: "Employee Level",
               value: true,
             },
-            {
-              id: "2389328923893298",
-              name: "employee_level",
-              description: "Employee Level",
-              value: 10,
-            },
-            {
-              id: "2389328923893298",
-              name: "employee_level",
-              description: "Employee Level",
-              value: [
-                "<value>",
-                "<value>",
-                "<value>",
-              ],
-            },
-          ],
-          rowVersion: "1-12345",
-        },
-        {
-          id: "12345",
-          rowId: "12345",
-          code: "120-C",
-          lineNumber: 1,
-          description: "Model Y is a fully electric, mid-size SUV, with seating for up to seven, dual motor AWD and unparalleled protection.",
-          type: "sales_item",
-          taxAmount: 27500,
-          totalAmount: 27500,
-          quantity: 1,
-          unitPrice: 27500.5,
-          unitOfMeasure: "pc.",
-          discountPercentage: 0.01,
-          discountAmount: 19.99,
-          locationId: "1234",
-          departmentId: "1234",
-          item: {
-            id: "12344",
-            code: "120-C",
-            name: "Model Y",
-          },
-          taxRate: {
-            id: "123456",
-            rate: 10,
-          },
-          trackingCategories: [
-  
-          ],
-          ledgerAccount: {
-            id: "123456",
-            nominalCode: "N091",
-            code: "453",
-          },
-          customFields: [
-            {
-              id: "2389328923893298",
-              name: "employee_level",
-              description: "Employee Level",
-              value: 10,
-            },
-            {
-              id: "2389328923893298",
-              name: "employee_level",
-              description: "Employee Level",
-              value: [
-                "<value>",
-                "<value>",
-              ],
-            },
           ],
           rowVersion: "1-12345",
         },
@@ -1422,20 +1382,76 @@ async function run() {
               id: "2389328923893298",
               name: "employee_level",
               description: "Employee Level",
-              value: {},
+              value: [
+                {},
+              ],
             },
+          ],
+          rowVersion: "1-12345",
+        },
+        {
+          id: "12345",
+          rowId: "12345",
+          code: "120-C",
+          lineNumber: 1,
+          description: "Model Y is a fully electric, mid-size SUV, with seating for up to seven, dual motor AWD and unparalleled protection.",
+          type: "sales_item",
+          taxAmount: 27500,
+          totalAmount: 27500,
+          quantity: 1,
+          unitPrice: 27500.5,
+          unitOfMeasure: "pc.",
+          discountPercentage: 0.01,
+          discountAmount: 19.99,
+          locationId: "1234",
+          departmentId: "1234",
+          item: {
+            id: "12344",
+            code: "120-C",
+            name: "Model Y",
+          },
+          taxRate: {
+            id: "123456",
+            rate: 10,
+          },
+          trackingCategories: [
+            {
+              id: "123456",
+              name: "New York",
+            },
+          ],
+          ledgerAccount: {
+            id: "123456",
+            nominalCode: "N091",
+            code: "453",
+          },
+          customFields: [
             {
               id: "2389328923893298",
               name: "employee_level",
               description: "Employee Level",
-              value: 10,
+              value: "Uses Salesforce and Marketo",
             },
           ],
           rowVersion: "1-12345",
         },
       ],
       allocations: [
-  
+        {
+          id: "123456",
+          amount: 49.99,
+          allocationId: "123456",
+        },
+        {
+          id: "123456",
+          amount: 49.99,
+          allocationId: "123456",
+        },
+        {
+          id: "123456",
+          amount: 49.99,
+          allocationId: "123456",
+        },
       ],
       note: "Some notes about this credit note",
       terms: "Some terms about this credit note",
@@ -1492,10 +1508,26 @@ async function run() {
         rowVersion: "1-12345",
       },
       trackingCategories: [
-  
+        {
+          id: "123456",
+          name: "New York",
+        },
+        {
+          id: "123456",
+          name: "New York",
+        },
+        {
+          id: "123456",
+          name: "New York",
+        },
       ],
       customFields: [
-  
+        {
+          id: "2389328923893298",
+          name: "employee_level",
+          description: "Employee Level",
+          value: true,
+        },
       ],
       rowVersion: "1-12345",
       passThrough: [
@@ -1518,6 +1550,40 @@ async function run() {
                 },
               },
             },
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+          ],
+        },
+        {
+          serviceId: "<id>",
+          extendPaths: [
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+          ],
+        },
+        {
+          serviceId: "<id>",
+          extendPaths: [
             {
               path: "$.nested.property",
               value: {
@@ -1588,6 +1654,7 @@ async function run() {
   const result = await apideck.accounting.creditNotes.delete({
     id: "<id>",
     serviceId: "salesforce",
+    raw: false,
   });
 
   // Handle the result
@@ -1617,6 +1684,7 @@ async function run() {
   const res = await accountingCreditNotesDelete(apideck, {
     id: "<id>",
     serviceId: "salesforce",
+    raw: false,
   });
 
   if (!res.ok) {

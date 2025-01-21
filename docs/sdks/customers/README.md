@@ -28,7 +28,9 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.accounting.customers.list({
+    raw: false,
     serviceId: "salesforce",
+    limit: 20,
     filter: {
       companyName: "SpaceX",
       displayName: "Elon Musk",
@@ -75,7 +77,9 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await accountingCustomersList(apideck, {
+    raw: false,
     serviceId: "salesforce",
+    limit: 20,
     filter: {
       companyName: "SpaceX",
       displayName: "Elon Musk",
@@ -151,6 +155,7 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.accounting.customers.create({
+    raw: false,
     serviceId: "salesforce",
     customer: {
       displayId: "EMP00101",
@@ -165,17 +170,60 @@ async function run() {
       individual: true,
       project: false,
       addresses: [
-
+        {
+          id: "123",
+          type: "primary",
+          string: "25 Spring Street, Blackburn, VIC 3130",
+          name: "HQ US",
+          line1: "Main street",
+          line2: "apt #",
+          line3: "Suite #",
+          line4: "delivery instructions",
+          streetNumber: "25",
+          city: "San Francisco",
+          state: "CA",
+          postalCode: "94104",
+          country: "US",
+          latitude: "40.759211",
+          longitude: "-73.984638",
+          county: "Santa Clara",
+          contactName: "Elon Musk",
+          salutation: "Mr",
+          phoneNumber: "111-111-1111",
+          fax: "122-111-1111",
+          email: "elon@musk.com",
+          website: "https://elonmusk.com",
+          notes: "Address notes or delivery instructions.",
+          rowVersion: "1-12345",
+        },
+        {
+          id: "123",
+          type: "primary",
+          string: "25 Spring Street, Blackburn, VIC 3130",
+          name: "HQ US",
+          line1: "Main street",
+          line2: "apt #",
+          line3: "Suite #",
+          line4: "delivery instructions",
+          streetNumber: "25",
+          city: "San Francisco",
+          state: "CA",
+          postalCode: "94104",
+          country: "US",
+          latitude: "40.759211",
+          longitude: "-73.984638",
+          county: "Santa Clara",
+          contactName: "Elon Musk",
+          salutation: "Mr",
+          phoneNumber: "111-111-1111",
+          fax: "122-111-1111",
+          email: "elon@musk.com",
+          website: "https://elonmusk.com",
+          notes: "Address notes or delivery instructions.",
+          rowVersion: "1-12345",
+        },
       ],
       phoneNumbers: [
-        {
-          id: "12345",
-          countryCode: "1",
-          areaCode: "323",
-          number: "111-111-1111",
-          extension: "105",
-          type: "primary",
-        },
         {
           id: "12345",
           countryCode: "1",
@@ -211,31 +259,8 @@ async function run() {
           url: "http://example.com",
           type: "primary",
         },
-        {
-          id: "12345",
-          url: "http://example.com",
-          type: "primary",
-        },
-        {
-          id: "12345",
-          url: "http://example.com",
-          type: "primary",
-        },
       ],
       bankAccounts: [
-        {
-          bankName: "Monzo",
-          accountNumber: "123465",
-          accountName: "SPACEX LLC",
-          accountType: "credit_card",
-          iban: "CH2989144532982975332",
-          bic: "AUDSCHGGXXX",
-          routingNumber: "012345678",
-          bsbNumber: "062-001",
-          branchIdentifier: "001",
-          bankCode: "BNH",
-          currency: "USD",
-        },
         {
           bankName: "Monzo",
           accountNumber: "123465",
@@ -269,6 +294,26 @@ async function run() {
       status: "active",
       paymentMethod: "cash",
       channel: "email",
+      customFields: [
+        {
+          id: "2389328923893298",
+          name: "employee_level",
+          description: "Employee Level",
+          value: {},
+        },
+        {
+          id: "2389328923893298",
+          name: "employee_level",
+          description: "Employee Level",
+          value: 10,
+        },
+        {
+          id: "2389328923893298",
+          name: "employee_level",
+          description: "Employee Level",
+          value: "Uses Salesforce and Marketo",
+        },
+      ],
       rowVersion: "1-12345",
       passThrough: [
         {
@@ -282,11 +327,64 @@ async function run() {
                 },
               },
             },
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
           ],
         },
         {
           serviceId: "<id>",
           extendPaths: [
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+          ],
+        },
+        {
+          serviceId: "<id>",
+          extendPaths: [
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
             {
               path: "$.nested.property",
               value: {
@@ -326,6 +424,7 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await accountingCustomersCreate(apideck, {
+    raw: false,
     serviceId: "salesforce",
     customer: {
       displayId: "EMP00101",
@@ -340,17 +439,60 @@ async function run() {
       individual: true,
       project: false,
       addresses: [
-  
+        {
+          id: "123",
+          type: "primary",
+          string: "25 Spring Street, Blackburn, VIC 3130",
+          name: "HQ US",
+          line1: "Main street",
+          line2: "apt #",
+          line3: "Suite #",
+          line4: "delivery instructions",
+          streetNumber: "25",
+          city: "San Francisco",
+          state: "CA",
+          postalCode: "94104",
+          country: "US",
+          latitude: "40.759211",
+          longitude: "-73.984638",
+          county: "Santa Clara",
+          contactName: "Elon Musk",
+          salutation: "Mr",
+          phoneNumber: "111-111-1111",
+          fax: "122-111-1111",
+          email: "elon@musk.com",
+          website: "https://elonmusk.com",
+          notes: "Address notes or delivery instructions.",
+          rowVersion: "1-12345",
+        },
+        {
+          id: "123",
+          type: "primary",
+          string: "25 Spring Street, Blackburn, VIC 3130",
+          name: "HQ US",
+          line1: "Main street",
+          line2: "apt #",
+          line3: "Suite #",
+          line4: "delivery instructions",
+          streetNumber: "25",
+          city: "San Francisco",
+          state: "CA",
+          postalCode: "94104",
+          country: "US",
+          latitude: "40.759211",
+          longitude: "-73.984638",
+          county: "Santa Clara",
+          contactName: "Elon Musk",
+          salutation: "Mr",
+          phoneNumber: "111-111-1111",
+          fax: "122-111-1111",
+          email: "elon@musk.com",
+          website: "https://elonmusk.com",
+          notes: "Address notes or delivery instructions.",
+          rowVersion: "1-12345",
+        },
       ],
       phoneNumbers: [
-        {
-          id: "12345",
-          countryCode: "1",
-          areaCode: "323",
-          number: "111-111-1111",
-          extension: "105",
-          type: "primary",
-        },
         {
           id: "12345",
           countryCode: "1",
@@ -386,31 +528,8 @@ async function run() {
           url: "http://example.com",
           type: "primary",
         },
-        {
-          id: "12345",
-          url: "http://example.com",
-          type: "primary",
-        },
-        {
-          id: "12345",
-          url: "http://example.com",
-          type: "primary",
-        },
       ],
       bankAccounts: [
-        {
-          bankName: "Monzo",
-          accountNumber: "123465",
-          accountName: "SPACEX LLC",
-          accountType: "credit_card",
-          iban: "CH2989144532982975332",
-          bic: "AUDSCHGGXXX",
-          routingNumber: "012345678",
-          bsbNumber: "062-001",
-          branchIdentifier: "001",
-          bankCode: "BNH",
-          currency: "USD",
-        },
         {
           bankName: "Monzo",
           accountNumber: "123465",
@@ -444,6 +563,26 @@ async function run() {
       status: "active",
       paymentMethod: "cash",
       channel: "email",
+      customFields: [
+        {
+          id: "2389328923893298",
+          name: "employee_level",
+          description: "Employee Level",
+          value: {},
+        },
+        {
+          id: "2389328923893298",
+          name: "employee_level",
+          description: "Employee Level",
+          value: 10,
+        },
+        {
+          id: "2389328923893298",
+          name: "employee_level",
+          description: "Employee Level",
+          value: "Uses Salesforce and Marketo",
+        },
+      ],
       rowVersion: "1-12345",
       passThrough: [
         {
@@ -457,11 +596,64 @@ async function run() {
                 },
               },
             },
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
           ],
         },
         {
           serviceId: "<id>",
           extendPaths: [
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+          ],
+        },
+        {
+          serviceId: "<id>",
+          extendPaths: [
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
             {
               path: "$.nested.property",
               value: {
@@ -532,6 +724,7 @@ async function run() {
   const result = await apideck.accounting.customers.get({
     id: "<id>",
     serviceId: "salesforce",
+    raw: false,
     fields: "id,updated_at",
   });
 
@@ -562,6 +755,7 @@ async function run() {
   const res = await accountingCustomersGet(apideck, {
     id: "<id>",
     serviceId: "salesforce",
+    raw: false,
     fields: "id,updated_at",
   });
 
@@ -621,6 +815,7 @@ async function run() {
   const result = await apideck.accounting.customers.update({
     id: "<id>",
     serviceId: "salesforce",
+    raw: false,
     customer: {
       displayId: "EMP00101",
       displayName: "Windsurf Shop",
@@ -660,8 +855,68 @@ async function run() {
           notes: "Address notes or delivery instructions.",
           rowVersion: "1-12345",
         },
+        {
+          id: "123",
+          type: "primary",
+          string: "25 Spring Street, Blackburn, VIC 3130",
+          name: "HQ US",
+          line1: "Main street",
+          line2: "apt #",
+          line3: "Suite #",
+          line4: "delivery instructions",
+          streetNumber: "25",
+          city: "San Francisco",
+          state: "CA",
+          postalCode: "94104",
+          country: "US",
+          latitude: "40.759211",
+          longitude: "-73.984638",
+          county: "Santa Clara",
+          contactName: "Elon Musk",
+          salutation: "Mr",
+          phoneNumber: "111-111-1111",
+          fax: "122-111-1111",
+          email: "elon@musk.com",
+          website: "https://elonmusk.com",
+          notes: "Address notes or delivery instructions.",
+          rowVersion: "1-12345",
+        },
+        {
+          id: "123",
+          type: "primary",
+          string: "25 Spring Street, Blackburn, VIC 3130",
+          name: "HQ US",
+          line1: "Main street",
+          line2: "apt #",
+          line3: "Suite #",
+          line4: "delivery instructions",
+          streetNumber: "25",
+          city: "San Francisco",
+          state: "CA",
+          postalCode: "94104",
+          country: "US",
+          latitude: "40.759211",
+          longitude: "-73.984638",
+          county: "Santa Clara",
+          contactName: "Elon Musk",
+          salutation: "Mr",
+          phoneNumber: "111-111-1111",
+          fax: "122-111-1111",
+          email: "elon@musk.com",
+          website: "https://elonmusk.com",
+          notes: "Address notes or delivery instructions.",
+          rowVersion: "1-12345",
+        },
       ],
       phoneNumbers: [
+        {
+          id: "12345",
+          countryCode: "1",
+          areaCode: "323",
+          number: "111-111-1111",
+          extension: "105",
+          type: "primary",
+        },
         {
           id: "12345",
           countryCode: "1",
@@ -677,9 +932,28 @@ async function run() {
           email: "elon@musk.com",
           type: "primary",
         },
+        {
+          id: "123",
+          email: "elon@musk.com",
+          type: "primary",
+        },
       ],
       websites: [
-
+        {
+          id: "12345",
+          url: "http://example.com",
+          type: "primary",
+        },
+        {
+          id: "12345",
+          url: "http://example.com",
+          type: "primary",
+        },
+        {
+          id: "12345",
+          url: "http://example.com",
+          type: "primary",
+        },
       ],
       bankAccounts: [
         {
@@ -728,14 +1002,24 @@ async function run() {
       status: "active",
       paymentMethod: "cash",
       channel: "email",
-      rowVersion: "1-12345",
-      passThrough: [
+      customFields: [
         {
-          serviceId: "<id>",
-          extendPaths: [
-
+          id: "2389328923893298",
+          name: "employee_level",
+          description: "Employee Level",
+          value: {},
+        },
+        {
+          id: "2389328923893298",
+          name: "employee_level",
+          description: "Employee Level",
+          value: [
+            {},
           ],
         },
+      ],
+      rowVersion: "1-12345",
+      passThrough: [
         {
           serviceId: "<id>",
           extendPaths: [
@@ -780,6 +1064,7 @@ async function run() {
   const res = await accountingCustomersUpdate(apideck, {
     id: "<id>",
     serviceId: "salesforce",
+    raw: false,
     customer: {
       displayId: "EMP00101",
       displayName: "Windsurf Shop",
@@ -819,8 +1104,68 @@ async function run() {
           notes: "Address notes or delivery instructions.",
           rowVersion: "1-12345",
         },
+        {
+          id: "123",
+          type: "primary",
+          string: "25 Spring Street, Blackburn, VIC 3130",
+          name: "HQ US",
+          line1: "Main street",
+          line2: "apt #",
+          line3: "Suite #",
+          line4: "delivery instructions",
+          streetNumber: "25",
+          city: "San Francisco",
+          state: "CA",
+          postalCode: "94104",
+          country: "US",
+          latitude: "40.759211",
+          longitude: "-73.984638",
+          county: "Santa Clara",
+          contactName: "Elon Musk",
+          salutation: "Mr",
+          phoneNumber: "111-111-1111",
+          fax: "122-111-1111",
+          email: "elon@musk.com",
+          website: "https://elonmusk.com",
+          notes: "Address notes or delivery instructions.",
+          rowVersion: "1-12345",
+        },
+        {
+          id: "123",
+          type: "primary",
+          string: "25 Spring Street, Blackburn, VIC 3130",
+          name: "HQ US",
+          line1: "Main street",
+          line2: "apt #",
+          line3: "Suite #",
+          line4: "delivery instructions",
+          streetNumber: "25",
+          city: "San Francisco",
+          state: "CA",
+          postalCode: "94104",
+          country: "US",
+          latitude: "40.759211",
+          longitude: "-73.984638",
+          county: "Santa Clara",
+          contactName: "Elon Musk",
+          salutation: "Mr",
+          phoneNumber: "111-111-1111",
+          fax: "122-111-1111",
+          email: "elon@musk.com",
+          website: "https://elonmusk.com",
+          notes: "Address notes or delivery instructions.",
+          rowVersion: "1-12345",
+        },
       ],
       phoneNumbers: [
+        {
+          id: "12345",
+          countryCode: "1",
+          areaCode: "323",
+          number: "111-111-1111",
+          extension: "105",
+          type: "primary",
+        },
         {
           id: "12345",
           countryCode: "1",
@@ -836,9 +1181,28 @@ async function run() {
           email: "elon@musk.com",
           type: "primary",
         },
+        {
+          id: "123",
+          email: "elon@musk.com",
+          type: "primary",
+        },
       ],
       websites: [
-  
+        {
+          id: "12345",
+          url: "http://example.com",
+          type: "primary",
+        },
+        {
+          id: "12345",
+          url: "http://example.com",
+          type: "primary",
+        },
+        {
+          id: "12345",
+          url: "http://example.com",
+          type: "primary",
+        },
       ],
       bankAccounts: [
         {
@@ -887,14 +1251,24 @@ async function run() {
       status: "active",
       paymentMethod: "cash",
       channel: "email",
-      rowVersion: "1-12345",
-      passThrough: [
+      customFields: [
         {
-          serviceId: "<id>",
-          extendPaths: [
-  
+          id: "2389328923893298",
+          name: "employee_level",
+          description: "Employee Level",
+          value: {},
+        },
+        {
+          id: "2389328923893298",
+          name: "employee_level",
+          description: "Employee Level",
+          value: [
+            {},
           ],
         },
+      ],
+      rowVersion: "1-12345",
+      passThrough: [
         {
           serviceId: "<id>",
           extendPaths: [
@@ -968,6 +1342,7 @@ async function run() {
   const result = await apideck.accounting.customers.delete({
     id: "<id>",
     serviceId: "salesforce",
+    raw: false,
   });
 
   // Handle the result
@@ -997,6 +1372,7 @@ async function run() {
   const res = await accountingCustomersDelete(apideck, {
     id: "<id>",
     serviceId: "salesforce",
+    raw: false,
   });
 
   if (!res.ok) {

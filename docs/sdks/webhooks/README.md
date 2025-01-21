@@ -27,7 +27,9 @@ const apideck = new Apideck({
 });
 
 async function run() {
-  const result = await apideck.webhook.webhooks.list({});
+  const result = await apideck.webhook.webhooks.list({
+    limit: 20,
+  });
 
   for await (const page of result) {
     // Handle the page
@@ -55,7 +57,9 @@ const apideck = new ApideckCore({
 });
 
 async function run() {
-  const res = await webhookWebhooksList(apideck, {});
+  const res = await webhookWebhooksList(apideck, {
+    limit: 20,
+  });
 
   if (!res.ok) {
     throw res.error;

@@ -28,7 +28,9 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.issueTracking.collectionTicketComments.list({
+    raw: false,
     serviceId: "salesforce",
+    limit: 20,
     collectionId: "apideck-io",
     ticketId: "<id>",
     sort: {
@@ -68,7 +70,9 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await issueTrackingCollectionTicketCommentsList(apideck, {
+    raw: false,
     serviceId: "salesforce",
+    limit: 20,
     collectionId: "apideck-io",
     ticketId: "<id>",
     sort: {
@@ -137,12 +141,34 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.issueTracking.collectionTicketComments.create({
+    raw: false,
     serviceId: "salesforce",
     collectionId: "apideck-io",
     ticketId: "<id>",
     collectionTicketComment: {
       body: "What internet provider do you use?",
       passThrough: [
+        {
+          serviceId: "<id>",
+          extendPaths: [
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+          ],
+        },
         {
           serviceId: "<id>",
           extendPaths: [
@@ -193,12 +219,34 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await issueTrackingCollectionTicketCommentsCreate(apideck, {
+    raw: false,
     serviceId: "salesforce",
     collectionId: "apideck-io",
     ticketId: "<id>",
     collectionTicketComment: {
       body: "What internet provider do you use?",
       passThrough: [
+        {
+          serviceId: "<id>",
+          extendPaths: [
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+          ],
+        },
         {
           serviceId: "<id>",
           extendPaths: [
@@ -279,7 +327,9 @@ const apideck = new Apideck({
 async function run() {
   const result = await apideck.issueTracking.collectionTicketComments.get({
     id: "<id>",
+    raw: false,
     serviceId: "salesforce",
+    limit: 20,
     collectionId: "apideck-io",
     ticketId: "<id>",
     fields: "id,updated_at",
@@ -313,7 +363,9 @@ const apideck = new ApideckCore({
 async function run() {
   const res = await issueTrackingCollectionTicketCommentsGet(apideck, {
     id: "<id>",
+    raw: false,
     serviceId: "salesforce",
+    limit: 20,
     collectionId: "apideck-io",
     ticketId: "<id>",
     fields: "id,updated_at",
@@ -377,6 +429,7 @@ async function run() {
   const result = await apideck.issueTracking.collectionTicketComments.update({
     id: "<id>",
     serviceId: "salesforce",
+    raw: false,
     collectionId: "apideck-io",
     ticketId: "<id>",
     collectionTicketComment: {
@@ -401,6 +454,19 @@ async function run() {
                 },
               },
             },
+          ],
+        },
+        {
+          serviceId: "<id>",
+          extendPaths: [
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
             {
               path: "$.nested.property",
               value: {
@@ -414,6 +480,14 @@ async function run() {
         {
           serviceId: "<id>",
           extendPaths: [
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
             {
               path: "$.nested.property",
               value: {
@@ -463,6 +537,7 @@ async function run() {
   const res = await issueTrackingCollectionTicketCommentsUpdate(apideck, {
     id: "<id>",
     serviceId: "salesforce",
+    raw: false,
     collectionId: "apideck-io",
     ticketId: "<id>",
     collectionTicketComment: {
@@ -487,6 +562,19 @@ async function run() {
                 },
               },
             },
+          ],
+        },
+        {
+          serviceId: "<id>",
+          extendPaths: [
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
             {
               path: "$.nested.property",
               value: {
@@ -500,6 +588,14 @@ async function run() {
         {
           serviceId: "<id>",
           extendPaths: [
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
             {
               path: "$.nested.property",
               value: {
@@ -578,6 +674,7 @@ async function run() {
   const result = await apideck.issueTracking.collectionTicketComments.delete({
     id: "<id>",
     serviceId: "salesforce",
+    raw: false,
     collectionId: "apideck-io",
     ticketId: "<id>",
   });
@@ -609,6 +706,7 @@ async function run() {
   const res = await issueTrackingCollectionTicketCommentsDelete(apideck, {
     id: "<id>",
     serviceId: "salesforce",
+    raw: false,
     collectionId: "apideck-io",
     ticketId: "<id>",
   });

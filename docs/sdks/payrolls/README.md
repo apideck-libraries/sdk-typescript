@@ -25,6 +25,7 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.hris.payrolls.list({
+    raw: false,
     serviceId: "salesforce",
     filter: {
       startDate: "2022-04-08",
@@ -61,6 +62,7 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await hrisPayrollsList(apideck, {
+    raw: false,
     serviceId: "salesforce",
     filter: {
       startDate: "2022-04-08",
@@ -127,6 +129,7 @@ const apideck = new Apideck({
 async function run() {
   const result = await apideck.hris.payrolls.get({
     payrollId: "<id>",
+    raw: false,
     serviceId: "salesforce",
     fields: "id,updated_at",
   });
@@ -157,6 +160,7 @@ const apideck = new ApideckCore({
 async function run() {
   const res = await hrisPayrollsGet(apideck, {
     payrollId: "<id>",
+    raw: false,
     serviceId: "salesforce",
     fields: "id,updated_at",
   });

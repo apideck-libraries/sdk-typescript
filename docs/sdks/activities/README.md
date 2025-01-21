@@ -28,13 +28,11 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.crm.activities.list({
+    raw: false,
     serviceId: "salesforce",
+    limit: 20,
     filter: {
-      companyId: "1234",
-      ownerId: "1234",
-      contactId: "1234",
       updatedSince: new Date("2020-09-30T07:43:32.000Z"),
-      type: "Task",
     },
     sort: {
       by: "created_at",
@@ -73,13 +71,11 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await crmActivitiesList(apideck, {
+    raw: false,
     serviceId: "salesforce",
+    limit: 20,
     filter: {
-      companyId: "1234",
-      ownerId: "1234",
-      contactId: "1234",
       updatedSince: new Date("2020-09-30T07:43:32.000Z"),
-      type: "Task",
     },
     sort: {
       by: "created_at",
@@ -147,6 +143,7 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.crm.activities.create({
+    raw: false,
     serviceId: "salesforce",
     activity: {
       activityDatetime: "2021-05-01T12:00:00.000Z",
@@ -216,31 +213,20 @@ async function run() {
       videoConferenceUrl: "https://us02web.zoom.us/j/88120759396",
       videoConferenceId: "zoom:88120759396",
       customFields: [
-
+        {
+          id: "2389328923893298",
+          name: "employee_level",
+          description: "Employee Level",
+          value: {},
+        },
+        {
+          id: "2389328923893298",
+          name: "employee_level",
+          description: "Employee Level",
+          value: true,
+        },
       ],
       attendees: [
-        {
-          name: "Elon Musk",
-          firstName: "Elon",
-          middleName: "D.",
-          lastName: "Musk",
-          prefix: "Mr.",
-          suffix: "PhD",
-          emailAddress: "elon@musk.com",
-          isOrganizer: true,
-          status: "accepted",
-        },
-        {
-          name: "Elon Musk",
-          firstName: "Elon",
-          middleName: "D.",
-          lastName: "Musk",
-          prefix: "Mr.",
-          suffix: "PhD",
-          emailAddress: "elon@musk.com",
-          isOrganizer: true,
-          status: "accepted",
-        },
         {
           name: "Elon Musk",
           firstName: "Elon",
@@ -273,11 +259,6 @@ async function run() {
                 },
               },
             },
-          ],
-        },
-        {
-          serviceId: "<id>",
-          extendPaths: [
             {
               path: "$.nested.property",
               value: {
@@ -286,12 +267,6 @@ async function run() {
                 },
               },
             },
-          ],
-        },
-        {
-          serviceId: "<id>",
-          extendPaths: [
-
           ],
         },
       ],
@@ -323,6 +298,7 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await crmActivitiesCreate(apideck, {
+    raw: false,
     serviceId: "salesforce",
     activity: {
       activityDatetime: "2021-05-01T12:00:00.000Z",
@@ -392,31 +368,20 @@ async function run() {
       videoConferenceUrl: "https://us02web.zoom.us/j/88120759396",
       videoConferenceId: "zoom:88120759396",
       customFields: [
-  
+        {
+          id: "2389328923893298",
+          name: "employee_level",
+          description: "Employee Level",
+          value: {},
+        },
+        {
+          id: "2389328923893298",
+          name: "employee_level",
+          description: "Employee Level",
+          value: true,
+        },
       ],
       attendees: [
-        {
-          name: "Elon Musk",
-          firstName: "Elon",
-          middleName: "D.",
-          lastName: "Musk",
-          prefix: "Mr.",
-          suffix: "PhD",
-          emailAddress: "elon@musk.com",
-          isOrganizer: true,
-          status: "accepted",
-        },
-        {
-          name: "Elon Musk",
-          firstName: "Elon",
-          middleName: "D.",
-          lastName: "Musk",
-          prefix: "Mr.",
-          suffix: "PhD",
-          emailAddress: "elon@musk.com",
-          isOrganizer: true,
-          status: "accepted",
-        },
         {
           name: "Elon Musk",
           firstName: "Elon",
@@ -449,11 +414,6 @@ async function run() {
                 },
               },
             },
-          ],
-        },
-        {
-          serviceId: "<id>",
-          extendPaths: [
             {
               path: "$.nested.property",
               value: {
@@ -462,12 +422,6 @@ async function run() {
                 },
               },
             },
-          ],
-        },
-        {
-          serviceId: "<id>",
-          extendPaths: [
-  
           ],
         },
       ],
@@ -530,6 +484,7 @@ async function run() {
   const result = await apideck.crm.activities.get({
     id: "<id>",
     serviceId: "salesforce",
+    raw: false,
     fields: "id,updated_at",
   });
 
@@ -560,6 +515,7 @@ async function run() {
   const res = await crmActivitiesGet(apideck, {
     id: "<id>",
     serviceId: "salesforce",
+    raw: false,
     fields: "id,updated_at",
   });
 
@@ -619,6 +575,7 @@ async function run() {
   const result = await apideck.crm.activities.update({
     id: "<id>",
     serviceId: "salesforce",
+    raw: false,
     activity: {
       activityDatetime: "2021-05-01T12:00:00.000Z",
       durationSeconds: 1800,
@@ -691,40 +648,25 @@ async function run() {
           id: "2389328923893298",
           name: "employee_level",
           description: "Employee Level",
-          value: "Uses Salesforce and Marketo",
+          value: {},
+        },
+        {
+          id: "2389328923893298",
+          name: "employee_level",
+          description: "Employee Level",
+          value: true,
         },
         {
           id: "2389328923893298",
           name: "employee_level",
           description: "Employee Level",
           value: [
-            "<value>",
-            "<value>",
-            "<value>",
-          ],
-        },
-        {
-          id: "2389328923893298",
-          name: "employee_level",
-          description: "Employee Level",
-          value: [
-            "<value>",
-            "<value>",
+            {},
+            {},
           ],
         },
       ],
       attendees: [
-        {
-          name: "Elon Musk",
-          firstName: "Elon",
-          middleName: "D.",
-          lastName: "Musk",
-          prefix: "Mr.",
-          suffix: "PhD",
-          emailAddress: "elon@musk.com",
-          isOrganizer: true,
-          status: "accepted",
-        },
         {
           name: "Elon Musk",
           firstName: "Elon",
@@ -765,6 +707,14 @@ async function run() {
         {
           serviceId: "<id>",
           extendPaths: [
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
             {
               path: "$.nested.property",
               value: {
@@ -835,6 +785,7 @@ async function run() {
   const res = await crmActivitiesUpdate(apideck, {
     id: "<id>",
     serviceId: "salesforce",
+    raw: false,
     activity: {
       activityDatetime: "2021-05-01T12:00:00.000Z",
       durationSeconds: 1800,
@@ -907,40 +858,25 @@ async function run() {
           id: "2389328923893298",
           name: "employee_level",
           description: "Employee Level",
-          value: "Uses Salesforce and Marketo",
+          value: {},
+        },
+        {
+          id: "2389328923893298",
+          name: "employee_level",
+          description: "Employee Level",
+          value: true,
         },
         {
           id: "2389328923893298",
           name: "employee_level",
           description: "Employee Level",
           value: [
-            "<value>",
-            "<value>",
-            "<value>",
-          ],
-        },
-        {
-          id: "2389328923893298",
-          name: "employee_level",
-          description: "Employee Level",
-          value: [
-            "<value>",
-            "<value>",
+            {},
+            {},
           ],
         },
       ],
       attendees: [
-        {
-          name: "Elon Musk",
-          firstName: "Elon",
-          middleName: "D.",
-          lastName: "Musk",
-          prefix: "Mr.",
-          suffix: "PhD",
-          emailAddress: "elon@musk.com",
-          isOrganizer: true,
-          status: "accepted",
-        },
         {
           name: "Elon Musk",
           firstName: "Elon",
@@ -981,6 +917,14 @@ async function run() {
         {
           serviceId: "<id>",
           extendPaths: [
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
             {
               path: "$.nested.property",
               value: {
@@ -1080,6 +1024,7 @@ async function run() {
   const result = await apideck.crm.activities.delete({
     id: "<id>",
     serviceId: "salesforce",
+    raw: false,
   });
 
   // Handle the result
@@ -1109,6 +1054,7 @@ async function run() {
   const res = await crmActivitiesDelete(apideck, {
     id: "<id>",
     serviceId: "salesforce",
+    raw: false,
   });
 
   if (!res.ok) {
