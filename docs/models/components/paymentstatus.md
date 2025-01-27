@@ -13,5 +13,5 @@ let value: PaymentStatus = "authorised";
 ## Values
 
 ```typescript
-"authorised" | "paid" | "voided" | "deleted"
+"draft" | "authorised" | "rejected" | "paid" | "voided" | "deleted"
 ```

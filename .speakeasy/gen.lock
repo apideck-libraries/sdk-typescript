@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 7bffa198-5d29-4efa-9942-d549cc832085
 management:
-  docChecksum: f812b6f711e92ce366600fb1586396db
-  docVersion: 10.10.0
-  speakeasyVersion: 1.469.12
-  generationVersion: 2.493.34
-  releaseVersion: 0.15.0
-  configChecksum: dfdd323bc59552f36fdee66768e8447d
+  docChecksum: 8c4b36cd08c587e8f2b1dbac4f9b76d0
+  docVersion: 10.11.0
+  speakeasyVersion: 1.476.2
+  generationVersion: 2.495.1
+  releaseVersion: 0.16.0
+  configChecksum: c23b78eea035b93a4aeccb6c1fa24bff
   repoURL: https://github.com/apideck-libraries/sdk-typescript.git
   installationURL: https://github.com/apideck-libraries/sdk-typescript
   published: true
@@ -510,6 +510,8 @@ generatedFiles:
   - docs/models/components/invoiceitempurchasedetails.md
   - docs/models/components/invoiceitemsalesdetails.md
   - docs/models/components/invoiceitemsfilter.md
+  - docs/models/components/invoiceitemssort.md
+  - docs/models/components/invoiceitemssortby.md
   - docs/models/components/invoiceitemtype.md
   - docs/models/components/invoiceitemtypetype.md
   - docs/models/components/invoicelineitem.md
@@ -2278,6 +2280,7 @@ generatedFiles:
   - src/models/components/invoiceitem.ts
   - src/models/components/invoiceitemfilter.ts
   - src/models/components/invoiceitemsfilter.ts
+  - src/models/components/invoiceitemssort.ts
   - src/models/components/invoicelineitem.ts
   - src/models/components/invoiceresponse.ts
   - src/models/components/invoicesfilter.ts
@@ -3358,6 +3361,7 @@ examples:
           filter: {"name": "Widgets Large", "type": "service"}
           pass_through: {"search": "San Francisco"}
           fields: "id,updated_at"
+          sort: {"by": "updated_at", "direction": "desc"}
         header:
           x-apideck-consumer-id: "test-consumer"
           x-apideck-app-id: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
