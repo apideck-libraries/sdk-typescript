@@ -83,6 +83,7 @@ export async function accountingInvoiceItemsList(
     encodeDeepObjectQuery({
       "filter": payload.filter,
       "pass_through": payload.pass_through,
+      "sort": payload.sort,
     }),
     encodeFormQuery({
       "cursor": payload.cursor,

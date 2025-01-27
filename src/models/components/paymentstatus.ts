@@ -9,7 +9,9 @@ import { ClosedEnum } from "../../types/enums.js";
  * Status of payment
  */
 export const PaymentStatus = {
+  Draft: "draft",
   Authorised: "authorised",
+  Rejected: "rejected",
   Paid: "paid",
   Voided: "voided",
   Deleted: "deleted",

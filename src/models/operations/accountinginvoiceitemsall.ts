@@ -50,6 +50,10 @@ export type AccountingInvoiceItemsAllRequest = {
    */
   filter?: components.InvoiceItemsFilter | undefined;
   /**
+   * Apply sorting
+   */
+  sort?: components.InvoiceItemsSort | undefined;
+  /**
    * Optional unmapped key/values that will be passed through to downstream as query parameters. Ie: ?pass_through[search]=leads becomes ?search=leads
    */
   passThrough?: { [k: string]: any } | undefined;
@@ -143,6 +147,7 @@ export const AccountingInvoiceItemsAllRequest$inboundSchema: z.ZodType<
   cursor: z.nullable(z.string()).optional(),
   limit: z.number().int().default(20),
   filter: components.InvoiceItemsFilter$inboundSchema.optional(),
+  sort: components.InvoiceItemsSort$inboundSchema.optional(),
   pass_through: z.record(z.any()).optional(),
   fields: z.nullable(z.string()).optional(),
 }).transform((v) => {
@@ -160,6 +165,7 @@ export type AccountingInvoiceItemsAllRequest$Outbound = {
   cursor?: string | null | undefined;
   limit: number;
   filter?: components.InvoiceItemsFilter$Outbound | undefined;
+  sort?: components.InvoiceItemsSort$Outbound | undefined;
   pass_through?: { [k: string]: any } | undefined;
   fields?: string | null | undefined;
 };
@@ -177,6 +183,7 @@ export const AccountingInvoiceItemsAllRequest$outboundSchema: z.ZodType<
   cursor: z.nullable(z.string()).optional(),
   limit: z.number().int().default(20),
   filter: components.InvoiceItemsFilter$outboundSchema.optional(),
+  sort: components.InvoiceItemsSort$outboundSchema.optional(),
   passThrough: z.record(z.any()).optional(),
   fields: z.nullable(z.string()).optional(),
 }).transform((v) => {

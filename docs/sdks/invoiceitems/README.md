@@ -35,6 +35,10 @@ async function run() {
       name: "Widgets Large",
       type: "service",
     },
+    sort: {
+      by: "updated_at",
+      direction: "desc",
+    },
     passThrough: {
       "search": "San Francisco",
     },
@@ -74,6 +78,10 @@ async function run() {
     filter: {
       name: "Widgets Large",
       type: "service",
+    },
+    sort: {
+      by: "updated_at",
+      direction: "desc",
     },
     passThrough: {
       "search": "San Francisco",

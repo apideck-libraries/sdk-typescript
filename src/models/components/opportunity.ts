@@ -44,7 +44,7 @@ export type Opportunity = {
   /**
    * The unique identifier of the primary contact associated with the opportunity.
    */
-  primaryContactId: string | null;
+  primaryContactId?: string | null | undefined;
   /**
    * A description of the opportunity.
    */
@@ -205,7 +205,7 @@ export const Opportunity$inboundSchema: z.ZodType<
 > = z.object({
   id: z.string().optional(),
   title: z.string(),
-  primary_contact_id: z.nullable(z.string()),
+  primary_contact_id: z.nullable(z.string()).optional(),
   description: z.nullable(z.string()).optional(),
   type: z.nullable(z.string()).optional(),
   monetary_amount: z.nullable(z.number()).optional(),
@@ -299,7 +299,7 @@ export const Opportunity$inboundSchema: z.ZodType<
 export type Opportunity$Outbound = {
   id?: string | undefined;
   title: string;
-  primary_contact_id: string | null;
+  primary_contact_id?: string | null | undefined;
   description?: string | null | undefined;
   type?: string | null | undefined;
   monetary_amount?: number | null | undefined;
@@ -349,7 +349,7 @@ export const Opportunity$outboundSchema: z.ZodType<
 > = z.object({
   id: z.string().optional(),
   title: z.string(),
-  primaryContactId: z.nullable(z.string()),
+  primaryContactId: z.nullable(z.string()).optional(),
   description: z.nullable(z.string()).optional(),
   type: z.nullable(z.string()).optional(),
   monetaryAmount: z.nullable(z.number()).optional(),
