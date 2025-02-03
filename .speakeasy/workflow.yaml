@@ -3,13 +3,36 @@ speakeasyVersion: latest
 sources:
     Apideck-OAS:
         inputs:
-            - location: https://ci-spec-unify.s3.eu-central-1.amazonaws.com/speakeasy-spec.yml
+            - location: https://specs.apideck.com/accounting.yml
+            - location: https://specs.apideck.com/ats.yml
+            - location: https://specs.apideck.com/connector.yml
+            - location: https://specs.apideck.com/crm.yml
+            - location: https://specs.apideck.com/ecommerce.yml
+            - location: https://specs.apideck.com/file-storage.yml
+            - location: https://specs.apideck.com/hris.yml
+            - location: https://specs.apideck.com/issue-tracking.yml
+            - location: https://specs.apideck.com/sms.yml
+            - location: https://specs.apideck.com/vault.yml
+            - location: https://specs.apideck.com/webhook.yml
+        overlay:
+            - location: https://ci-spec-unify.s3.eu-central-1.amazonaws.com/speakeasy-spec-overlay.yml
         registry:
-            location: registry.speakeasyapi.dev/apideck-k2o/apideck/apideck-oas
+            location: registry.speakeasyapi.dev/apideck-k2o/apideck/apideck-oas-enhanced
     Apideck-Sample-Docs:
         inputs:
-            - location: https://ci-spec-unify.s3.eu-central-1.amazonaws.com/speakeasy-spec.yml
+            - location: https://specs.apideck.com/accounting.yml
+            - location: https://specs.apideck.com/ats.yml
+            - location: https://specs.apideck.com/connector.yml
+            - location: https://specs.apideck.com/crm.yml
+            - location: https://specs.apideck.com/ecommerce.yml
+            - location: https://specs.apideck.com/file-storage.yml
+            - location: https://specs.apideck.com/hris.yml
+            - location: https://specs.apideck.com/issue-tracking.yml
+            - location: https://specs.apideck.com/sms.yml
+            - location: https://specs.apideck.com/vault.yml
+            - location: https://specs.apideck.com/webhook.yml
         overlays:
+            - location: https://ci-spec-unify.s3.eu-central-1.amazonaws.com/speakeasy-spec-overlay.yml
             - location: registry.speakeasyapi.dev/apideck-k2o/apideck/apideck-oas-typescript-code-samples
             - location: registry.speakeasyapi.dev/apideck-k2o/apideck/apideck-csharp-code-samples
             - location: registry.speakeasyapi.dev/apideck-k2o/apideck/apideck-go-code-samples
@@ -17,7 +40,7 @@ sources:
             - location: registry.speakeasyapi.dev/apideck-k2o/apideck/apideck-python-code-samples
             - location: registry.speakeasyapi.dev/apideck-k2o/apideck/apideck-php-code-samples
         registry:
-            location: registry.speakeasyapi.dev/apideck-k2o/apideck/apideck-oas-with-code-samples
+            location: registry.speakeasyapi.dev/apideck-k2o/apideck/apideck-oas-enhanced-with-code-samples
 targets:
     apideck:
         target: typescript
