@@ -7,6 +7,8 @@ import { AccountingInvoiceItemsAddRequest } from "@apideck/unify/models/operatio
 import { RFCDate } from "@apideck/unify/types";
 
 let value: AccountingInvoiceItemsAddRequest = {
+  consumerId: "test-consumer",
+  appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
   serviceId: "salesforce",
   invoiceItem: {
     name: "Model Y",

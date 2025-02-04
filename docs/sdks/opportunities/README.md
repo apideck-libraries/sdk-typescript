@@ -28,16 +28,15 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.crm.opportunities.list({
-    raw: false,
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    limit: 20,
     filter: {
       status: "Completed",
       monetaryAmount: 75000,
     },
     sort: {
       by: "created_at",
-      direction: "desc",
     },
     passThrough: {
       "search": "San Francisco",
@@ -72,16 +71,15 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await crmOpportunitiesList(apideck, {
-    raw: false,
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    limit: 20,
     filter: {
       status: "Completed",
       monetaryAmount: 75000,
     },
     sort: {
       by: "created_at",
-      direction: "desc",
     },
     passThrough: {
       "search": "San Francisco",
@@ -146,7 +144,8 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.crm.opportunities.create({
-    raw: false,
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
     opportunity: {
       title: "New Rocket",
@@ -238,7 +237,8 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await crmOpportunitiesCreate(apideck, {
-    raw: false,
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
     opportunity: {
       title: "New Rocket",
@@ -359,8 +359,9 @@ const apideck = new Apideck({
 async function run() {
   const result = await apideck.crm.opportunities.get({
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    raw: false,
     fields: "id,updated_at",
   });
 
@@ -390,8 +391,9 @@ const apideck = new ApideckCore({
 async function run() {
   const res = await crmOpportunitiesGet(apideck, {
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    raw: false,
     fields: "id,updated_at",
   });
 
@@ -451,8 +453,9 @@ const apideck = new Apideck({
 async function run() {
   const result = await apideck.crm.opportunities.update({
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    raw: false,
     opportunity: {
       title: "New Rocket",
       primaryContactId: "12345",
@@ -582,8 +585,9 @@ const apideck = new ApideckCore({
 async function run() {
   const res = await crmOpportunitiesUpdate(apideck, {
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    raw: false,
     opportunity: {
       title: "New Rocket",
       primaryContactId: "12345",
@@ -741,8 +745,9 @@ const apideck = new Apideck({
 async function run() {
   const result = await apideck.crm.opportunities.delete({
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    raw: false,
   });
 
   // Handle the result
@@ -771,8 +776,9 @@ const apideck = new ApideckCore({
 async function run() {
   const res = await crmOpportunitiesDelete(apideck, {
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    raw: false,
   });
 
   if (!res.ok) {

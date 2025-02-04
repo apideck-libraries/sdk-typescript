@@ -6,6 +6,8 @@
 import { CrmLeadsAddRequest } from "@apideck/unify/models/operations";
 
 let value: CrmLeadsAddRequest = {
+  consumerId: "test-consumer",
+  appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
   serviceId: "salesforce",
   lead: {
     name: "Elon Musk",

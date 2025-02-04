@@ -6,6 +6,8 @@
 import { VaultCreateCallbackStateRequest } from "@apideck/unify/models/operations";
 
 let value: VaultCreateCallbackStateRequest = {
+  consumerId: "test-consumer",
+  appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
   serviceId: "pipedrive",
   unifiedApi: "crm",
   createCallbackState: {

@@ -5,7 +5,9 @@
 ```typescript
 import { WebhookEventLogsAllGlobals } from "@apideck/unify/models/operations";
 
-let value: WebhookEventLogsAllGlobals = {};
+let value: WebhookEventLogsAllGlobals = {
+  appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
+};
 ```
 
 ## Fields

@@ -28,15 +28,14 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.accounting.bills.list({
-    raw: false,
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    limit: 20,
     filter: {
       updatedSince: new Date("2020-09-30T07:43:32.000Z"),
     },
     sort: {
       by: "updated_at",
-      direction: "desc",
     },
     passThrough: {
       "search": "San Francisco",
@@ -71,15 +70,14 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await accountingBillsList(apideck, {
-    raw: false,
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    limit: 20,
     filter: {
       updatedSince: new Date("2020-09-30T07:43:32.000Z"),
     },
     sort: {
       by: "updated_at",
-      direction: "desc",
     },
     passThrough: {
       "search": "San Francisco",
@@ -144,7 +142,8 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.accounting.bills.create({
-    raw: false,
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
     bill: {
       billNumber: "10001",
@@ -367,7 +366,8 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await accountingBillsCreate(apideck, {
-    raw: false,
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
     bill: {
       billNumber: "10001",
@@ -619,8 +619,9 @@ const apideck = new Apideck({
 async function run() {
   const result = await apideck.accounting.bills.get({
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    raw: false,
     fields: "id,updated_at",
   });
 
@@ -650,8 +651,9 @@ const apideck = new ApideckCore({
 async function run() {
   const res = await accountingBillsGet(apideck, {
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    raw: false,
     fields: "id,updated_at",
   });
 
@@ -711,8 +713,9 @@ const apideck = new Apideck({
 async function run() {
   const result = await apideck.accounting.bills.update({
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    raw: false,
     bill: {
       billNumber: "10001",
       supplier: {
@@ -988,8 +991,9 @@ const apideck = new ApideckCore({
 async function run() {
   const res = await accountingBillsUpdate(apideck, {
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    raw: false,
     bill: {
       billNumber: "10001",
       supplier: {
@@ -1293,8 +1297,9 @@ const apideck = new Apideck({
 async function run() {
   const result = await apideck.accounting.bills.delete({
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    raw: false,
   });
 
   // Handle the result
@@ -1323,8 +1328,9 @@ const apideck = new ApideckCore({
 async function run() {
   const res = await accountingBillsDelete(apideck, {
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    raw: false,
   });
 
   if (!res.ok) {

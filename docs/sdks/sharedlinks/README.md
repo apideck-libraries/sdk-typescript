@@ -28,9 +28,9 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.fileStorage.sharedLinks.list({
-    raw: false,
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    limit: 20,
     passThrough: {
       "search": "San Francisco",
     },
@@ -64,9 +64,9 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await fileStorageSharedLinksList(apideck, {
-    raw: false,
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    limit: 20,
     passThrough: {
       "search": "San Francisco",
     },
@@ -129,7 +129,8 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.fileStorage.sharedLinks.create({
-    raw: false,
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
     sharedLink: {
       downloadUrl: "https://www.box.com/shared/static/rh935iit6ewrmw0unyul.jpeg",
@@ -207,7 +208,8 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await fileStorageSharedLinksCreate(apideck, {
-    raw: false,
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
     sharedLink: {
       downloadUrl: "https://www.box.com/shared/static/rh935iit6ewrmw0unyul.jpeg",
@@ -315,8 +317,9 @@ const apideck = new Apideck({
 async function run() {
   const result = await apideck.fileStorage.sharedLinks.get({
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    raw: false,
     fields: "id,updated_at",
   });
 
@@ -346,8 +349,9 @@ const apideck = new ApideckCore({
 async function run() {
   const res = await fileStorageSharedLinksGet(apideck, {
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    raw: false,
     fields: "id,updated_at",
   });
 
@@ -406,8 +410,9 @@ const apideck = new Apideck({
 async function run() {
   const result = await apideck.fileStorage.sharedLinks.update({
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    raw: false,
     sharedLink: {
       downloadUrl: "https://www.box.com/shared/static/rh935iit6ewrmw0unyul.jpeg",
       targetId: "<id>",
@@ -514,8 +519,9 @@ const apideck = new ApideckCore({
 async function run() {
   const res = await fileStorageSharedLinksUpdate(apideck, {
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    raw: false,
     sharedLink: {
       downloadUrl: "https://www.box.com/shared/static/rh935iit6ewrmw0unyul.jpeg",
       targetId: "<id>",
@@ -651,8 +657,9 @@ const apideck = new Apideck({
 async function run() {
   const result = await apideck.fileStorage.sharedLinks.delete({
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    raw: false,
   });
 
   // Handle the result
@@ -681,8 +688,9 @@ const apideck = new ApideckCore({
 async function run() {
   const res = await fileStorageSharedLinksDelete(apideck, {
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    raw: false,
   });
 
   if (!res.ok) {

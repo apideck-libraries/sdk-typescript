@@ -6,6 +6,8 @@
 import { AccountingSubsidiariesAddRequest } from "@apideck/unify/models/operations";
 
 let value: AccountingSubsidiariesAddRequest = {
+  consumerId: "test-consumer",
+  appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
   serviceId: "salesforce",
   subsidiary: {
     parentId: "12345",

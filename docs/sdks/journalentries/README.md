@@ -28,15 +28,14 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.accounting.journalEntries.list({
-    raw: false,
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    limit: 20,
     filter: {
       updatedSince: new Date("2020-09-30T07:43:32.000Z"),
     },
     sort: {
       by: "updated_at",
-      direction: "desc",
     },
     passThrough: {
       "search": "San Francisco",
@@ -71,15 +70,14 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await accountingJournalEntriesList(apideck, {
-    raw: false,
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    limit: 20,
     filter: {
       updatedSince: new Date("2020-09-30T07:43:32.000Z"),
     },
     sort: {
       by: "updated_at",
-      direction: "desc",
     },
     passThrough: {
       "search": "San Francisco",
@@ -143,7 +141,8 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.accounting.journalEntries.create({
-    raw: false,
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
     journalEntry: {
       title: "Purchase Invoice-Inventory (USD): 2019/02/01 Batch Summary Entry",
@@ -345,7 +344,8 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await accountingJournalEntriesCreate(apideck, {
-    raw: false,
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
     journalEntry: {
       title: "Purchase Invoice-Inventory (USD): 2019/02/01 Batch Summary Entry",
@@ -577,8 +577,9 @@ const apideck = new Apideck({
 async function run() {
   const result = await apideck.accounting.journalEntries.get({
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    raw: false,
     fields: "id,updated_at",
   });
 
@@ -608,8 +609,9 @@ const apideck = new ApideckCore({
 async function run() {
   const res = await accountingJournalEntriesGet(apideck, {
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    raw: false,
     fields: "id,updated_at",
   });
 
@@ -668,8 +670,9 @@ const apideck = new Apideck({
 async function run() {
   const result = await apideck.accounting.journalEntries.update({
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    raw: false,
     journalEntry: {
       title: "Purchase Invoice-Inventory (USD): 2019/02/01 Batch Summary Entry",
       currencyRate: 0.69,
@@ -945,8 +948,9 @@ const apideck = new ApideckCore({
 async function run() {
   const res = await accountingJournalEntriesUpdate(apideck, {
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    raw: false,
     journalEntry: {
       title: "Purchase Invoice-Inventory (USD): 2019/02/01 Batch Summary Entry",
       currencyRate: 0.69,
@@ -1251,8 +1255,9 @@ const apideck = new Apideck({
 async function run() {
   const result = await apideck.accounting.journalEntries.delete({
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    raw: false,
   });
 
   // Handle the result
@@ -1281,8 +1286,9 @@ const apideck = new ApideckCore({
 async function run() {
   const res = await accountingJournalEntriesDelete(apideck, {
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    raw: false,
   });
 
   if (!res.ok) {

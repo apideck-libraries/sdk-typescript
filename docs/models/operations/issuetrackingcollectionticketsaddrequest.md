@@ -6,6 +6,8 @@
 import { IssueTrackingCollectionTicketsAddRequest } from "@apideck/unify/models/operations";
 
 let value: IssueTrackingCollectionTicketsAddRequest = {
+  consumerId: "test-consumer",
+  appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
   serviceId: "salesforce",
   collectionId: "apideck-io",
   ticket: {

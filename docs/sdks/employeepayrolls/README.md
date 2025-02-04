@@ -26,7 +26,8 @@ const apideck = new Apideck({
 async function run() {
   const result = await apideck.hris.employeePayrolls.list({
     employeeId: "<id>",
-    raw: false,
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
     filter: {
       startDate: "2022-04-08",
@@ -64,7 +65,8 @@ const apideck = new ApideckCore({
 async function run() {
   const res = await hrisEmployeePayrollsList(apideck, {
     employeeId: "<id>",
-    raw: false,
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
     filter: {
       startDate: "2022-04-08",
@@ -132,7 +134,8 @@ async function run() {
   const result = await apideck.hris.employeePayrolls.get({
     payrollId: "<id>",
     employeeId: "<id>",
-    raw: false,
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
     fields: "id,updated_at",
   });
@@ -164,7 +167,8 @@ async function run() {
   const res = await hrisEmployeePayrollsGet(apideck, {
     payrollId: "<id>",
     employeeId: "<id>",
-    raw: false,
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
     fields: "id,updated_at",
   });

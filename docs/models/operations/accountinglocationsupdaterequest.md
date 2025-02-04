@@ -7,6 +7,8 @@ import { AccountingLocationsUpdateRequest } from "@apideck/unify/models/operatio
 
 let value: AccountingLocationsUpdateRequest = {
   id: "<id>",
+  consumerId: "test-consumer",
+  appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
   serviceId: "salesforce",
   accountingLocation: {
     parentId: "12345",

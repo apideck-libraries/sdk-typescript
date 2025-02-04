@@ -6,13 +6,14 @@
 import { CrmCompaniesAllRequest } from "@apideck/unify/models/operations";
 
 let value: CrmCompaniesAllRequest = {
+  consumerId: "test-consumer",
+  appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
   serviceId: "salesforce",
   filter: {
     name: "SpaceX",
   },
   sort: {
     by: "created_at",
-    direction: "desc",
   },
   passThrough: {
     "search": "San Francisco",

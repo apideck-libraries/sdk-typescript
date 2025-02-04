@@ -25,6 +25,8 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.vault.createCallback.state({
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "pipedrive",
     unifiedApi: "crm",
     createCallbackState: {
@@ -57,6 +59,8 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await vaultCreateCallbackState(apideck, {
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "pipedrive",
     unifiedApi: "crm",
     createCallbackState: {

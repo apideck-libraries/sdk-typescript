@@ -6,6 +6,8 @@
 import { CrmUsersAddRequest } from "@apideck/unify/models/operations";
 
 let value: CrmUsersAddRequest = {
+  consumerId: "test-consumer",
+  appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
   serviceId: "salesforce",
   user: {
     parentId: "54321",

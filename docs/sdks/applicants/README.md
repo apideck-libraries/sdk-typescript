@@ -28,9 +28,9 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.ats.applicants.list({
-    raw: false,
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    limit: 20,
     filter: {
       jobId: "1234",
     },
@@ -67,9 +67,9 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await atsApplicantsList(apideck, {
-    raw: false,
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    limit: 20,
     filter: {
       jobId: "1234",
     },
@@ -136,7 +136,8 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.ats.applicants.create({
-    raw: false,
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
     applicant: {
       name: "Elon Musk",
@@ -360,7 +361,8 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await atsApplicantsCreate(apideck, {
-    raw: false,
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
     applicant: {
       name: "Elon Musk",
@@ -613,8 +615,9 @@ const apideck = new Apideck({
 async function run() {
   const result = await apideck.ats.applicants.get({
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    raw: false,
     fields: "id,updated_at",
   });
 
@@ -644,8 +647,9 @@ const apideck = new ApideckCore({
 async function run() {
   const res = await atsApplicantsGet(apideck, {
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    raw: false,
     fields: "id,updated_at",
   });
 
@@ -705,8 +709,9 @@ const apideck = new Apideck({
 async function run() {
   const result = await apideck.ats.applicants.update({
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    raw: false,
     applicant: {
       name: "Elon Musk",
       firstName: "Elon",
@@ -959,8 +964,9 @@ const apideck = new ApideckCore({
 async function run() {
   const res = await atsApplicantsUpdate(apideck, {
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    raw: false,
     applicant: {
       name: "Elon Musk",
       firstName: "Elon",
@@ -1241,8 +1247,9 @@ const apideck = new Apideck({
 async function run() {
   const result = await apideck.ats.applicants.delete({
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    raw: false,
   });
 
   // Handle the result
@@ -1271,8 +1278,9 @@ const apideck = new ApideckCore({
 async function run() {
   const res = await atsApplicantsDelete(apideck, {
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    raw: false,
   });
 
   if (!res.ok) {

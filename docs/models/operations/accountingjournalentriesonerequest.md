@@ -7,6 +7,8 @@ import { AccountingJournalEntriesOneRequest } from "@apideck/unify/models/operat
 
 let value: AccountingJournalEntriesOneRequest = {
   id: "<id>",
+  consumerId: "test-consumer",
+  appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
   serviceId: "salesforce",
   fields: "id,updated_at",
 };

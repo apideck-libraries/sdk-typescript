@@ -7,6 +7,8 @@ import { AccountingBillsAddRequest } from "@apideck/unify/models/operations";
 import { RFCDate } from "@apideck/unify/types";
 
 let value: AccountingBillsAddRequest = {
+  consumerId: "test-consumer",
+  appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
   serviceId: "salesforce",
   bill: {
     billNumber: "10001",

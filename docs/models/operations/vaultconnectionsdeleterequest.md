@@ -6,6 +6,8 @@
 import { VaultConnectionsDeleteRequest } from "@apideck/unify/models/operations";
 
 let value: VaultConnectionsDeleteRequest = {
+  consumerId: "test-consumer",
+  appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
   serviceId: "pipedrive",
   unifiedApi: "crm",
 };

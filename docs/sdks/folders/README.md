@@ -28,7 +28,8 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.fileStorage.folders.create({
-    raw: false,
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
     fields: "id,updated_at",
     createFolderRequest: {
@@ -108,7 +109,8 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await fileStorageFoldersCreate(apideck, {
-    raw: false,
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
     fields: "id,updated_at",
     createFolderRequest: {
@@ -218,8 +220,9 @@ const apideck = new Apideck({
 async function run() {
   const result = await apideck.fileStorage.folders.get({
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    raw: false,
     fields: "id,updated_at",
   });
 
@@ -249,8 +252,9 @@ const apideck = new ApideckCore({
 async function run() {
   const res = await fileStorageFoldersGet(apideck, {
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    raw: false,
     fields: "id,updated_at",
   });
 
@@ -309,8 +313,9 @@ const apideck = new Apideck({
 async function run() {
   const result = await apideck.fileStorage.folders.update({
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    raw: false,
     updateFolderRequest: {
       name: "Documents",
       description: "My Personal Documents",
@@ -417,8 +422,9 @@ const apideck = new ApideckCore({
 async function run() {
   const res = await fileStorageFoldersUpdate(apideck, {
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    raw: false,
     updateFolderRequest: {
       name: "Documents",
       description: "My Personal Documents",
@@ -554,8 +560,9 @@ const apideck = new Apideck({
 async function run() {
   const result = await apideck.fileStorage.folders.delete({
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    raw: false,
   });
 
   // Handle the result
@@ -584,8 +591,9 @@ const apideck = new ApideckCore({
 async function run() {
   const res = await fileStorageFoldersDelete(apideck, {
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    raw: false,
   });
 
   if (!res.ok) {
@@ -643,8 +651,9 @@ const apideck = new Apideck({
 async function run() {
   const result = await apideck.fileStorage.folders.copy({
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    raw: false,
     fields: "id,updated_at",
     copyFolderRequest: {
       name: "Documents",
@@ -759,8 +768,9 @@ const apideck = new ApideckCore({
 async function run() {
   const res = await fileStorageFoldersCopy(apideck, {
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    raw: false,
     fields: "id,updated_at",
     copyFolderRequest: {
       name: "Documents",

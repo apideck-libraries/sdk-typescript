@@ -6,6 +6,8 @@
 import { AtsApplicationsAddRequest } from "@apideck/unify/models/operations";
 
 let value: AtsApplicationsAddRequest = {
+  consumerId: "test-consumer",
+  appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
   serviceId: "salesforce",
   application: {
     applicantId: "12345",

@@ -6,6 +6,8 @@
 import { AccountingCustomersAllRequest } from "@apideck/unify/models/operations";
 
 let value: AccountingCustomersAllRequest = {
+  consumerId: "test-consumer",
+  appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
   serviceId: "salesforce",
   filter: {
     companyName: "SpaceX",
@@ -18,7 +20,6 @@ let value: AccountingCustomersAllRequest = {
   },
   sort: {
     by: "updated_at",
-    direction: "desc",
   },
   passThrough: {
     "search": "San Francisco",

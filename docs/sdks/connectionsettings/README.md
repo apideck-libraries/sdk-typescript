@@ -26,6 +26,8 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.vault.connectionSettings.list({
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     unifiedApi: "crm",
     serviceId: "pipedrive",
     resource: "leads",
@@ -56,6 +58,8 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await vaultConnectionSettingsList(apideck, {
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     unifiedApi: "crm",
     serviceId: "pipedrive",
     resource: "leads",
@@ -115,6 +119,8 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.vault.connectionSettings.update({
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "pipedrive",
     unifiedApi: "crm",
     resource: "leads",
@@ -318,6 +324,8 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await vaultConnectionSettingsUpdate(apideck, {
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "pipedrive",
     unifiedApi: "crm",
     resource: "leads",

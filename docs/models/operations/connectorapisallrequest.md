@@ -6,6 +6,7 @@
 import { ConnectorApisAllRequest } from "@apideck/unify/models/operations";
 
 let value: ConnectorApisAllRequest = {
+  appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
   filter: {
     status: "beta",
   },

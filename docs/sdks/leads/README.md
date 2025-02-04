@@ -28,9 +28,9 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.crm.leads.list({
-    raw: false,
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    limit: 20,
     filter: {
       firstName: "Elon",
       lastName: "Musk",
@@ -39,7 +39,6 @@ async function run() {
     },
     sort: {
       by: "created_at",
-      direction: "desc",
     },
     passThrough: {
       "search": "San Francisco",
@@ -74,9 +73,9 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await crmLeadsList(apideck, {
-    raw: false,
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    limit: 20,
     filter: {
       firstName: "Elon",
       lastName: "Musk",
@@ -85,7 +84,6 @@ async function run() {
     },
     sort: {
       by: "created_at",
-      direction: "desc",
     },
     passThrough: {
       "search": "San Francisco",
@@ -149,7 +147,8 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.crm.leads.create({
-    raw: false,
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
     lead: {
       name: "Elon Musk",
@@ -396,7 +395,8 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await crmLeadsCreate(apideck, {
-    raw: false,
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
     lead: {
       name: "Elon Musk",
@@ -673,8 +673,9 @@ const apideck = new Apideck({
 async function run() {
   const result = await apideck.crm.leads.get({
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    raw: false,
     fields: "id,updated_at",
   });
 
@@ -704,8 +705,9 @@ const apideck = new ApideckCore({
 async function run() {
   const res = await crmLeadsGet(apideck, {
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    raw: false,
     fields: "id,updated_at",
   });
 
@@ -764,8 +766,9 @@ const apideck = new Apideck({
 async function run() {
   const result = await apideck.crm.leads.update({
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    raw: false,
     lead: {
       name: "Elon Musk",
       companyName: "Spacex",
@@ -968,8 +971,9 @@ const apideck = new ApideckCore({
 async function run() {
   const res = await crmLeadsUpdate(apideck, {
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    raw: false,
     lead: {
       name: "Elon Musk",
       companyName: "Spacex",
@@ -1201,8 +1205,9 @@ const apideck = new Apideck({
 async function run() {
   const result = await apideck.crm.leads.delete({
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    raw: false,
   });
 
   // Handle the result
@@ -1231,8 +1236,9 @@ const apideck = new ApideckCore({
 async function run() {
   const res = await crmLeadsDelete(apideck, {
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    raw: false,
   });
 
   if (!res.ok) {

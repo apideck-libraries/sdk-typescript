@@ -28,9 +28,9 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.accounting.subsidiaries.list({
-    raw: false,
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    limit: 20,
     fields: "id,updated_at",
   });
 
@@ -61,9 +61,9 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await accountingSubsidiariesList(apideck, {
-    raw: false,
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    limit: 20,
     fields: "id,updated_at",
   });
 
@@ -123,7 +123,8 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.accounting.subsidiaries.create({
-    raw: false,
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
     subsidiary: {
       parentId: "12345",
@@ -202,7 +203,8 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await accountingSubsidiariesCreate(apideck, {
-    raw: false,
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
     subsidiary: {
       parentId: "12345",
@@ -311,8 +313,9 @@ const apideck = new Apideck({
 async function run() {
   const result = await apideck.accounting.subsidiaries.get({
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    raw: false,
     fields: "id,updated_at",
   });
 
@@ -342,8 +345,9 @@ const apideck = new ApideckCore({
 async function run() {
   const res = await accountingSubsidiariesGet(apideck, {
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    raw: false,
     fields: "id,updated_at",
   });
 
@@ -402,8 +406,9 @@ const apideck = new Apideck({
 async function run() {
   const result = await apideck.accounting.subsidiaries.update({
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    raw: false,
     subsidiary: {
       parentId: "12345",
       name: "SpaceX",
@@ -511,8 +516,9 @@ const apideck = new ApideckCore({
 async function run() {
   const res = await accountingSubsidiariesUpdate(apideck, {
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    raw: false,
     subsidiary: {
       parentId: "12345",
       name: "SpaceX",
@@ -649,8 +655,9 @@ const apideck = new Apideck({
 async function run() {
   const result = await apideck.accounting.subsidiaries.delete({
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    raw: false,
   });
 
   // Handle the result
@@ -679,8 +686,9 @@ const apideck = new ApideckCore({
 async function run() {
   const res = await accountingSubsidiariesDelete(apideck, {
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    raw: false,
   });
 
   if (!res.ok) {

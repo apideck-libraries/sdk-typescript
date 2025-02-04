@@ -28,9 +28,9 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.sms.messages.list({
-    raw: false,
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    limit: 20,
     fields: "id,updated_at",
   });
 
@@ -61,9 +61,9 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await smsMessagesList(apideck, {
-    raw: false,
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    limit: 20,
     fields: "id,updated_at",
   });
 
@@ -123,7 +123,8 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.sms.messages.create({
-    raw: false,
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
     message: {
       from: "+15017122661",
@@ -207,7 +208,8 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await smsMessagesCreate(apideck, {
-    raw: false,
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
     message: {
       from: "+15017122661",
@@ -321,8 +323,9 @@ const apideck = new Apideck({
 async function run() {
   const result = await apideck.sms.messages.get({
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    raw: false,
     fields: "id,updated_at",
   });
 
@@ -352,8 +355,9 @@ const apideck = new ApideckCore({
 async function run() {
   const res = await smsMessagesGet(apideck, {
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    raw: false,
     fields: "id,updated_at",
   });
 
@@ -412,8 +416,9 @@ const apideck = new Apideck({
 async function run() {
   const result = await apideck.sms.messages.update({
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    raw: false,
     message: {
       from: "+15017122661",
       to: "+15017122662",
@@ -526,8 +531,9 @@ const apideck = new ApideckCore({
 async function run() {
   const res = await smsMessagesUpdate(apideck, {
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    raw: false,
     message: {
       from: "+15017122661",
       to: "+15017122662",
@@ -669,8 +675,9 @@ const apideck = new Apideck({
 async function run() {
   const result = await apideck.sms.messages.delete({
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    raw: false,
   });
 
   // Handle the result
@@ -699,8 +706,9 @@ const apideck = new ApideckCore({
 async function run() {
   const res = await smsMessagesDelete(apideck, {
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    raw: false,
   });
 
   if (!res.ok) {

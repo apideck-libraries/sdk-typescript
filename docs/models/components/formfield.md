@@ -13,7 +13,6 @@ let value: FormField = {
   type: "select",
   required: true,
   customField: false,
-  allowCustomValues: false,
   disabled: false,
   hidden: false,
   deprecated: false,

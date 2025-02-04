@@ -7,6 +7,8 @@ import { AccountingPurchaseOrdersAddRequest } from "@apideck/unify/models/operat
 import { RFCDate } from "@apideck/unify/types";
 
 let value: AccountingPurchaseOrdersAddRequest = {
+  consumerId: "test-consumer",
+  appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
   serviceId: "salesforce",
   purchaseOrder: {
     poNumber: "90000117",

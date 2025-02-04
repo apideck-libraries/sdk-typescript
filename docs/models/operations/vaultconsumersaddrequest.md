@@ -6,6 +6,7 @@
 import { VaultConsumersAddRequest } from "@apideck/unify/models/operations";
 
 let value: VaultConsumersAddRequest = {
+  appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
   consumer: {
     consumerId: "test_consumer_id",
     metadata: {

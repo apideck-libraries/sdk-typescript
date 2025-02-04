@@ -5,7 +5,10 @@
 ```typescript
 import { VaultConnectionsDeleteGlobals } from "@apideck/unify/models/operations";
 
-let value: VaultConnectionsDeleteGlobals = {};
+let value: VaultConnectionsDeleteGlobals = {
+  consumerId: "test-consumer",
+  appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
+};
 ```
 
 ## Fields

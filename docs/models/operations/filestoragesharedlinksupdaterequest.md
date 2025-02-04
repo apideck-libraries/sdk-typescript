@@ -7,6 +7,8 @@ import { FileStorageSharedLinksUpdateRequest } from "@apideck/unify/models/opera
 
 let value: FileStorageSharedLinksUpdateRequest = {
   id: "<id>",
+  consumerId: "test-consumer",
+  appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
   serviceId: "salesforce",
   sharedLink: {
     downloadUrl: "https://www.box.com/shared/static/rh935iit6ewrmw0unyul.jpeg",
