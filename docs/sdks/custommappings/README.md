@@ -24,6 +24,8 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.vault.customMappings.list({
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     unifiedApi: "crm",
     serviceId: "pipedrive",
   });
@@ -53,6 +55,8 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await vaultCustomMappingsList(apideck, {
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     unifiedApi: "crm",
     serviceId: "pipedrive",
   });

@@ -6,6 +6,7 @@
 import { WebhookWebhooksAddRequest } from "@apideck/unify/models/operations";
 
 let value: WebhookWebhooksAddRequest = {
+  appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
   createWebhookRequest: {
     description: "A description",
     unifiedApi: "crm",

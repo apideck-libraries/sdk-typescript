@@ -6,6 +6,8 @@
 import { AccountingTaxRatesAddRequest } from "@apideck/unify/models/operations";
 
 let value: AccountingTaxRatesAddRequest = {
+  consumerId: "test-consumer",
+  appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
   serviceId: "salesforce",
   taxRate: {
     id: "1234",

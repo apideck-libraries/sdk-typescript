@@ -28,9 +28,9 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.hris.employees.list({
-    raw: false,
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    limit: 20,
     filter: {
       companyId: "1234",
       email: "elon@tesla.com",
@@ -44,7 +44,6 @@ async function run() {
     },
     sort: {
       by: "created_at",
-      direction: "desc",
     },
     passThrough: {
       "search": "San Francisco",
@@ -79,9 +78,9 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await hrisEmployeesList(apideck, {
-    raw: false,
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    limit: 20,
     filter: {
       companyId: "1234",
       email: "elon@tesla.com",
@@ -95,7 +94,6 @@ async function run() {
     },
     sort: {
       by: "created_at",
-      direction: "desc",
     },
     passThrough: {
       "search": "San Francisco",
@@ -160,7 +158,8 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.hris.employees.create({
-    raw: false,
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
     employee: {
       id: "12345",
@@ -506,7 +505,8 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await hrisEmployeesCreate(apideck, {
-    raw: false,
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
     employee: {
       id: "12345",
@@ -881,8 +881,9 @@ const apideck = new Apideck({
 async function run() {
   const result = await apideck.hris.employees.get({
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    raw: false,
     fields: "id,updated_at",
     filter: {
       companyId: "1234",
@@ -918,8 +919,9 @@ const apideck = new ApideckCore({
 async function run() {
   const res = await hrisEmployeesGet(apideck, {
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    raw: false,
     fields: "id,updated_at",
     filter: {
       companyId: "1234",
@@ -985,8 +987,9 @@ const apideck = new Apideck({
 async function run() {
   const result = await apideck.hris.employees.update({
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    raw: false,
     employee: {
       id: "12345",
       firstName: "Elon",
@@ -1390,8 +1393,9 @@ const apideck = new ApideckCore({
 async function run() {
   const res = await hrisEmployeesUpdate(apideck, {
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    raw: false,
     employee: {
       id: "12345",
       firstName: "Elon",
@@ -1823,8 +1827,9 @@ const apideck = new Apideck({
 async function run() {
   const result = await apideck.hris.employees.delete({
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    raw: false,
   });
 
   // Handle the result
@@ -1853,8 +1858,9 @@ const apideck = new ApideckCore({
 async function run() {
   const res = await hrisEmployeesDelete(apideck, {
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    raw: false,
   });
 
   if (!res.ok) {

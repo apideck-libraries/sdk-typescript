@@ -32,6 +32,8 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.vault.connections.list({
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     api: "crm",
     configured: true,
   });
@@ -61,6 +63,8 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await vaultConnectionsList(apideck, {
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     api: "crm",
     configured: true,
   });
@@ -119,6 +123,8 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.vault.connections.get({
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "pipedrive",
     unifiedApi: "crm",
   });
@@ -148,6 +154,8 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await vaultConnectionsGet(apideck, {
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "pipedrive",
     unifiedApi: "crm",
   });
@@ -206,6 +214,8 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.vault.connections.update({
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "pipedrive",
     unifiedApi: "crm",
     connection: {
@@ -408,6 +418,8 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await vaultConnectionsUpdate(apideck, {
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "pipedrive",
     unifiedApi: "crm",
     connection: {
@@ -639,6 +651,8 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.vault.connections.delete({
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "pipedrive",
     unifiedApi: "crm",
   });
@@ -668,6 +682,8 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await vaultConnectionsDelete(apideck, {
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "pipedrive",
     unifiedApi: "crm",
   });
@@ -727,6 +743,8 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.vault.connections.imports({
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "pipedrive",
     unifiedApi: "crm",
     connectionImportData: {
@@ -769,6 +787,8 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await vaultConnectionsImports(apideck, {
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "pipedrive",
     unifiedApi: "crm",
     connectionImportData: {
@@ -846,6 +866,8 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.vault.connections.token({
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "pipedrive",
     unifiedApi: "crm",
   });
@@ -875,6 +897,8 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await vaultConnectionsToken(apideck, {
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "pipedrive",
     unifiedApi: "crm",
   });

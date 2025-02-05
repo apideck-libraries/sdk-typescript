@@ -25,7 +25,7 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.connector.connectors.list({
-    limit: 20,
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     filter: {
       unifiedApi: "file-storage",
     },
@@ -58,7 +58,7 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await connectorConnectorsList(apideck, {
-    limit: 20,
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     filter: {
       unifiedApi: "file-storage",
     },
@@ -118,6 +118,7 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.connector.connectors.get({
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     id: "<id>",
   });
 
@@ -146,6 +147,7 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await connectorConnectorsGet(apideck, {
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     id: "<id>",
   });
 

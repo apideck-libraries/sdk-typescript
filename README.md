@@ -95,9 +95,9 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.accounting.taxRates.list({
-    raw: false,
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    limit: 20,
     filter: {
       assets: true,
       equity: true,
@@ -950,9 +950,9 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.accounting.taxRates.list({
-    raw: false,
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    limit: 20,
     filter: {
       assets: true,
       equity: true,
@@ -994,9 +994,9 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.accounting.taxRates.list({
-    raw: false,
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    limit: 20,
     filter: {
       assets: true,
       equity: true,
@@ -1053,9 +1053,9 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.accounting.taxRates.list({
-    raw: false,
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    limit: 20,
     filter: {
       assets: true,
       equity: true,
@@ -1117,9 +1117,9 @@ async function run() {
   let result;
   try {
     result = await apideck.accounting.taxRates.list({
-      raw: false,
+      consumerId: "test-consumer",
+      appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
       serviceId: "salesforce",
-      limit: 20,
       filter: {
         assets: true,
         equity: true,
@@ -1215,9 +1215,9 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.accounting.taxRates.list({
-    raw: false,
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    limit: 20,
     filter: {
       assets: true,
       equity: true,
@@ -1255,7 +1255,8 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.fileStorage.uploadSessions.create({
-    raw: false,
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
     createUploadSessionRequest: {
       name: "Documents",
@@ -1392,9 +1393,9 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.accounting.taxRates.list({
-    raw: false,
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    limit: 20,
     filter: {
       assets: true,
       equity: true,

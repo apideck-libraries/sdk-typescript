@@ -5,7 +5,10 @@
 ```typescript
 import { VaultValidateConnectionStateGlobals } from "@apideck/unify/models/operations";
 
-let value: VaultValidateConnectionStateGlobals = {};
+let value: VaultValidateConnectionStateGlobals = {
+  consumerId: "test-consumer",
+  appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
+};
 ```
 
 ## Fields

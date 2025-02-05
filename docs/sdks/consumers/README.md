@@ -28,6 +28,7 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.vault.consumers.create({
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     consumer: {
       consumerId: "test_consumer_id",
       metadata: {
@@ -64,6 +65,7 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await vaultConsumersCreate(apideck, {
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     consumer: {
       consumerId: "test_consumer_id",
       metadata: {
@@ -130,7 +132,7 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.vault.consumers.list({
-    limit: 20,
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
   });
 
   for await (const page of result) {
@@ -160,7 +162,7 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await vaultConsumersList(apideck, {
-    limit: 20,
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
   });
 
   if (!res.ok) {
@@ -220,6 +222,7 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.vault.consumers.get({
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     consumerId: "test_user_id",
   });
 
@@ -248,6 +251,7 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await vaultConsumersGet(apideck, {
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     consumerId: "test_user_id",
   });
 
@@ -305,6 +309,7 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.vault.consumers.update({
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     consumerId: "test_user_id",
     updateConsumerRequest: {
       metadata: {
@@ -341,6 +346,7 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await vaultConsumersUpdate(apideck, {
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     consumerId: "test_user_id",
     updateConsumerRequest: {
       metadata: {
@@ -406,6 +412,7 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.vault.consumers.delete({
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     consumerId: "test_user_id",
   });
 
@@ -434,6 +441,7 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await vaultConsumersDelete(apideck, {
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     consumerId: "test_user_id",
   });
 

@@ -7,6 +7,7 @@ import { WebhookWebhooksDeleteRequest } from "@apideck/unify/models/operations";
 
 let value: WebhookWebhooksDeleteRequest = {
   id: "<id>",
+  appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
 };
 ```
 

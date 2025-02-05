@@ -6,6 +6,7 @@
 import { ConnectorConnectorDocsOneRequest } from "@apideck/unify/models/operations";
 
 let value: ConnectorConnectorDocsOneRequest = {
+  appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
   id: "<id>",
   docId: "application_owner+oauth_credentials",
 };

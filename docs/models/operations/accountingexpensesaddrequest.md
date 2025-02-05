@@ -6,6 +6,8 @@
 import { AccountingExpensesAddRequest } from "@apideck/unify/models/operations";
 
 let value: AccountingExpensesAddRequest = {
+  consumerId: "test-consumer",
+  appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
   serviceId: "salesforce",
   expense: {
     number: "OIT00546",

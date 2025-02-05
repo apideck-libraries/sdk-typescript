@@ -6,6 +6,7 @@
 import { WebhookEventLogsAllRequest } from "@apideck/unify/models/operations";
 
 let value: WebhookEventLogsAllRequest = {
+  appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
   filter: {
     excludeApis: "vault,proxy",
     consumerId: "test_user_id",

@@ -24,6 +24,7 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.connector.apiResourceCoverage.get({
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     id: "<id>",
     resourceId: "<id>",
   });
@@ -53,6 +54,7 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await connectorApiResourceCoverageGet(apideck, {
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     id: "<id>",
     resourceId: "<id>",
   });

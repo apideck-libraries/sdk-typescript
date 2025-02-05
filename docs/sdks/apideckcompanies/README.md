@@ -28,9 +28,9 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.hris.companies.list({
-    raw: false,
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    limit: 20,
     passThrough: {
       "search": "San Francisco",
     },
@@ -64,9 +64,9 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await hrisCompaniesList(apideck, {
-    raw: false,
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    limit: 20,
     passThrough: {
       "search": "San Francisco",
     },
@@ -129,7 +129,8 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.hris.companies.create({
-    raw: false,
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
     hrisCompany: {
       legalName: "SpaceX",
@@ -289,7 +290,8 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await hrisCompaniesCreate(apideck, {
-    raw: false,
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
     hrisCompany: {
       legalName: "SpaceX",
@@ -479,8 +481,9 @@ const apideck = new Apideck({
 async function run() {
   const result = await apideck.hris.companies.get({
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    raw: false,
     fields: "id,updated_at",
   });
 
@@ -510,8 +513,9 @@ const apideck = new ApideckCore({
 async function run() {
   const res = await hrisCompaniesGet(apideck, {
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    raw: false,
     fields: "id,updated_at",
   });
 
@@ -570,8 +574,9 @@ const apideck = new Apideck({
 async function run() {
   const result = await apideck.hris.companies.update({
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    raw: false,
     hrisCompany: {
       legalName: "SpaceX",
       displayName: "SpaceX",
@@ -788,8 +793,9 @@ const apideck = new ApideckCore({
 async function run() {
   const res = await hrisCompaniesUpdate(apideck, {
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    raw: false,
     hrisCompany: {
       legalName: "SpaceX",
       displayName: "SpaceX",
@@ -1035,8 +1041,9 @@ const apideck = new Apideck({
 async function run() {
   const result = await apideck.hris.companies.delete({
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    raw: false,
   });
 
   // Handle the result
@@ -1065,8 +1072,9 @@ const apideck = new ApideckCore({
 async function run() {
   const res = await hrisCompaniesDelete(apideck, {
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    raw: false,
   });
 
   if (!res.ok) {

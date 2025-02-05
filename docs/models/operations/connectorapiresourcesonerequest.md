@@ -6,6 +6,7 @@
 import { ConnectorApiResourcesOneRequest } from "@apideck/unify/models/operations";
 
 let value: ConnectorApiResourcesOneRequest = {
+  appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
   id: "<id>",
   resourceId: "<id>",
 };

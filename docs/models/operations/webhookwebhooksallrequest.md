@@ -5,7 +5,9 @@
 ```typescript
 import { WebhookWebhooksAllRequest } from "@apideck/unify/models/operations";
 
-let value: WebhookWebhooksAllRequest = {};
+let value: WebhookWebhooksAllRequest = {
+  appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
+};
 ```
 
 ## Fields

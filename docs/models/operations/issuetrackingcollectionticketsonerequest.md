@@ -7,6 +7,8 @@ import { IssueTrackingCollectionTicketsOneRequest } from "@apideck/unify/models/
 
 let value: IssueTrackingCollectionTicketsOneRequest = {
   ticketId: "<id>",
+  consumerId: "test-consumer",
+  appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
   serviceId: "salesforce",
   collectionId: "apideck-io",
   fields: "id,updated_at",

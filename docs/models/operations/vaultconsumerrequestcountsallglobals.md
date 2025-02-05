@@ -5,7 +5,9 @@
 ```typescript
 import { VaultConsumerRequestCountsAllGlobals } from "@apideck/unify/models/operations";
 
-let value: VaultConsumerRequestCountsAllGlobals = {};
+let value: VaultConsumerRequestCountsAllGlobals = {
+  appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
+};
 ```
 
 ## Fields

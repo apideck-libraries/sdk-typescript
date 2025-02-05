@@ -6,13 +6,14 @@
 import { AccountingPaymentsAllRequest } from "@apideck/unify/models/operations";
 
 let value: AccountingPaymentsAllRequest = {
+  consumerId: "test-consumer",
+  appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
   serviceId: "salesforce",
   filter: {
     updatedSince: new Date("2020-09-30T07:43:32.000Z"),
   },
   sort: {
     by: "updated_at",
-    direction: "desc",
   },
   passThrough: {
     "search": "San Francisco",

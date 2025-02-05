@@ -25,6 +25,8 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.vault.customFields.list({
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     unifiedApi: "crm",
     serviceId: "pipedrive",
     resource: "leads",
@@ -56,6 +58,8 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await vaultCustomFieldsList(apideck, {
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     unifiedApi: "crm",
     serviceId: "pipedrive",
     resource: "leads",

@@ -7,6 +7,7 @@ import { WebhookWebhooksUpdateRequest } from "@apideck/unify/models/operations";
 
 let value: WebhookWebhooksUpdateRequest = {
   id: "<id>",
+  appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
   updateWebhookRequest: {
     description: "A description",
     status: "enabled",

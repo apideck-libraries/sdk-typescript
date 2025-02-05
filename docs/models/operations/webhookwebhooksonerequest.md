@@ -7,6 +7,7 @@ import { WebhookWebhooksOneRequest } from "@apideck/unify/models/operations";
 
 let value: WebhookWebhooksOneRequest = {
   id: "<id>",
+  appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
 };
 ```
 

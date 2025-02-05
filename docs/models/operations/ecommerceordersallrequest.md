@@ -6,6 +6,8 @@
 import { EcommerceOrdersAllRequest } from "@apideck/unify/models/operations";
 
 let value: EcommerceOrdersAllRequest = {
+  consumerId: "test-consumer",
+  appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
   serviceId: "salesforce",
   filter: {
     email: "elon@musk.com",
@@ -15,7 +17,6 @@ let value: EcommerceOrdersAllRequest = {
   },
   sort: {
     by: "created_at",
-    direction: "desc",
   },
   passThrough: {
     "search": "San Francisco",

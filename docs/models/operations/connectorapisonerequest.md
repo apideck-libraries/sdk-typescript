@@ -6,6 +6,7 @@
 import { ConnectorApisOneRequest } from "@apideck/unify/models/operations";
 
 let value: ConnectorApisOneRequest = {
+  appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
   id: "<id>",
 };
 ```

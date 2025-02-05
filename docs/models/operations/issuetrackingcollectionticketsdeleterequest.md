@@ -7,6 +7,8 @@ import { IssueTrackingCollectionTicketsDeleteRequest } from "@apideck/unify/mode
 
 let value: IssueTrackingCollectionTicketsDeleteRequest = {
   ticketId: "<id>",
+  consumerId: "test-consumer",
+  appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
   serviceId: "salesforce",
   collectionId: "apideck-io",
 };

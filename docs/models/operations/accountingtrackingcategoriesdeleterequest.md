@@ -7,6 +7,8 @@ import { AccountingTrackingCategoriesDeleteRequest } from "@apideck/unify/models
 
 let value: AccountingTrackingCategoriesDeleteRequest = {
   id: "<id>",
+  consumerId: "test-consumer",
+  appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
   serviceId: "salesforce",
 };
 ```

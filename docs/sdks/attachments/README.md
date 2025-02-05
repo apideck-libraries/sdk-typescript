@@ -29,9 +29,9 @@ async function run() {
   const result = await apideck.accounting.attachments.list({
     referenceType: "invoice",
     referenceId: "123456",
-    raw: false,
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    limit: 20,
     fields: "id,updated_at",
   });
 
@@ -64,9 +64,9 @@ async function run() {
   const res = await accountingAttachmentsList(apideck, {
     referenceType: "invoice",
     referenceId: "123456",
-    raw: false,
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    limit: 20,
     fields: "id,updated_at",
   });
 
@@ -129,8 +129,9 @@ async function run() {
     referenceType: "invoice",
     referenceId: "123456",
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    raw: false,
     fields: "id,updated_at",
   });
 
@@ -162,8 +163,9 @@ async function run() {
     referenceType: "invoice",
     referenceId: "123456",
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    raw: false,
     fields: "id,updated_at",
   });
 
@@ -224,8 +226,9 @@ async function run() {
     referenceType: "invoice",
     referenceId: "123456",
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    raw: false,
   });
 
   // Handle the result
@@ -256,8 +259,9 @@ async function run() {
     referenceType: "invoice",
     referenceId: "123456",
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    raw: false,
   });
 
   if (!res.ok) {
@@ -317,6 +321,8 @@ async function run() {
     referenceType: "invoice",
     referenceId: "123456",
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
     fields: "id,updated_at",
   });
@@ -349,6 +355,8 @@ async function run() {
     referenceType: "invoice",
     referenceId: "123456",
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
     fields: "id,updated_at",
   });

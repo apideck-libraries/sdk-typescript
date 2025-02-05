@@ -6,6 +6,8 @@
 import { VaultLogsAllRequest } from "@apideck/unify/models/operations";
 
 let value: VaultLogsAllRequest = {
+  appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
+  consumerId: "test-consumer",
   filter: {
     connectorId: "crm+salesforce",
     statusCode: 201,

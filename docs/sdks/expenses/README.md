@@ -28,9 +28,9 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.accounting.expenses.list({
-    raw: false,
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    limit: 20,
   });
 
   for await (const page of result) {
@@ -60,9 +60,9 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await accountingExpensesList(apideck, {
-    raw: false,
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    limit: 20,
   });
 
   if (!res.ok) {
@@ -121,7 +121,8 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.accounting.expenses.create({
-    raw: false,
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
     expense: {
       number: "OIT00546",
@@ -266,7 +267,8 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await accountingExpensesCreate(apideck, {
-    raw: false,
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
     expense: {
       number: "OIT00546",
@@ -441,8 +443,9 @@ const apideck = new Apideck({
 async function run() {
   const result = await apideck.accounting.expenses.get({
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    raw: false,
   });
 
   // Handle the result
@@ -471,8 +474,9 @@ const apideck = new ApideckCore({
 async function run() {
   const res = await accountingExpensesGet(apideck, {
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    raw: false,
   });
 
   if (!res.ok) {
@@ -530,8 +534,9 @@ const apideck = new Apideck({
 async function run() {
   const result = await apideck.accounting.expenses.update({
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    raw: false,
     expense: {
       number: "OIT00546",
       transactionDate: new Date("2021-05-01T12:00:00.000Z"),
@@ -718,8 +723,9 @@ const apideck = new ApideckCore({
 async function run() {
   const res = await accountingExpensesUpdate(apideck, {
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    raw: false,
     expense: {
       number: "OIT00546",
       transactionDate: new Date("2021-05-01T12:00:00.000Z"),
@@ -935,8 +941,9 @@ const apideck = new Apideck({
 async function run() {
   const result = await apideck.accounting.expenses.delete({
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    raw: false,
   });
 
   // Handle the result
@@ -965,8 +972,9 @@ const apideck = new ApideckCore({
 async function run() {
   const res = await accountingExpensesDelete(apideck, {
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    raw: false,
   });
 
   if (!res.ok) {

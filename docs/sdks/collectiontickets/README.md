@@ -28,13 +28,12 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.issueTracking.collectionTickets.list({
-    raw: false,
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    limit: 20,
     collectionId: "apideck-io",
     sort: {
       by: "created_at",
-      direction: "desc",
     },
     filter: {
       status: [
@@ -74,13 +73,12 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await issueTrackingCollectionTicketsList(apideck, {
-    raw: false,
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    limit: 20,
     collectionId: "apideck-io",
     sort: {
       by: "created_at",
-      direction: "desc",
     },
     filter: {
       status: [
@@ -149,7 +147,8 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.issueTracking.collectionTickets.create({
-    raw: false,
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
     collectionId: "apideck-io",
     ticket: {
@@ -232,7 +231,8 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await issueTrackingCollectionTicketsCreate(apideck, {
-    raw: false,
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
     collectionId: "apideck-io",
     ticket: {
@@ -345,8 +345,9 @@ const apideck = new Apideck({
 async function run() {
   const result = await apideck.issueTracking.collectionTickets.get({
     ticketId: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    raw: false,
     collectionId: "apideck-io",
     fields: "id,updated_at",
   });
@@ -377,8 +378,9 @@ const apideck = new ApideckCore({
 async function run() {
   const res = await issueTrackingCollectionTicketsGet(apideck, {
     ticketId: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    raw: false,
     collectionId: "apideck-io",
     fields: "id,updated_at",
   });
@@ -438,8 +440,9 @@ const apideck = new Apideck({
 async function run() {
   const result = await apideck.issueTracking.collectionTickets.update({
     ticketId: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    raw: false,
     collectionId: "apideck-io",
     ticket: {
       parentId: "12345",
@@ -549,8 +552,9 @@ const apideck = new ApideckCore({
 async function run() {
   const res = await issueTrackingCollectionTicketsUpdate(apideck, {
     ticketId: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    raw: false,
     collectionId: "apideck-io",
     ticket: {
       parentId: "12345",
@@ -689,8 +693,9 @@ const apideck = new Apideck({
 async function run() {
   const result = await apideck.issueTracking.collectionTickets.delete({
     ticketId: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    raw: false,
     collectionId: "apideck-io",
   });
 
@@ -720,8 +725,9 @@ const apideck = new ApideckCore({
 async function run() {
   const res = await issueTrackingCollectionTicketsDelete(apideck, {
     ticketId: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    raw: false,
     collectionId: "apideck-io",
   });
 

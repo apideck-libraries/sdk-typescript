@@ -28,15 +28,14 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.accounting.payments.list({
-    raw: false,
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    limit: 20,
     filter: {
       updatedSince: new Date("2020-09-30T07:43:32.000Z"),
     },
     sort: {
       by: "updated_at",
-      direction: "desc",
     },
     passThrough: {
       "search": "San Francisco",
@@ -71,15 +70,14 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await accountingPaymentsList(apideck, {
-    raw: false,
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    limit: 20,
     filter: {
       updatedSince: new Date("2020-09-30T07:43:32.000Z"),
     },
     sort: {
       by: "updated_at",
-      direction: "desc",
     },
     passThrough: {
       "search": "San Francisco",
@@ -143,7 +141,8 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.accounting.payments.create({
-    raw: false,
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
     payment: {
       currency: "USD",
@@ -293,7 +292,8 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await accountingPaymentsCreate(apideck, {
-    raw: false,
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
     payment: {
       currency: "USD",
@@ -473,8 +473,9 @@ const apideck = new Apideck({
 async function run() {
   const result = await apideck.accounting.payments.get({
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    raw: false,
     fields: "id,updated_at",
   });
 
@@ -504,8 +505,9 @@ const apideck = new ApideckCore({
 async function run() {
   const res = await accountingPaymentsGet(apideck, {
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    raw: false,
     fields: "id,updated_at",
   });
 
@@ -564,8 +566,9 @@ const apideck = new Apideck({
 async function run() {
   const result = await apideck.accounting.payments.update({
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    raw: false,
     payment: {
       currency: "USD",
       currencyRate: 0.69,
@@ -731,8 +734,9 @@ const apideck = new ApideckCore({
 async function run() {
   const res = await accountingPaymentsUpdate(apideck, {
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    raw: false,
     payment: {
       currency: "USD",
       currencyRate: 0.69,
@@ -927,8 +931,9 @@ const apideck = new Apideck({
 async function run() {
   const result = await apideck.accounting.payments.delete({
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    raw: false,
   });
 
   // Handle the result
@@ -957,8 +962,9 @@ const apideck = new ApideckCore({
 async function run() {
   const res = await accountingPaymentsDelete(apideck, {
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    raw: false,
   });
 
   if (!res.ok) {

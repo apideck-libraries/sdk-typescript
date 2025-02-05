@@ -28,9 +28,9 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.accounting.customers.list({
-    raw: false,
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    limit: 20,
     filter: {
       companyName: "SpaceX",
       displayName: "Elon Musk",
@@ -42,7 +42,6 @@ async function run() {
     },
     sort: {
       by: "updated_at",
-      direction: "desc",
     },
     passThrough: {
       "search": "San Francisco",
@@ -77,9 +76,9 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await accountingCustomersList(apideck, {
-    raw: false,
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    limit: 20,
     filter: {
       companyName: "SpaceX",
       displayName: "Elon Musk",
@@ -91,7 +90,6 @@ async function run() {
     },
     sort: {
       by: "updated_at",
-      direction: "desc",
     },
     passThrough: {
       "search": "San Francisco",
@@ -155,7 +153,8 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.accounting.customers.create({
-    raw: false,
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
     customer: {
       displayId: "EMP00101",
@@ -424,7 +423,8 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await accountingCustomersCreate(apideck, {
-    raw: false,
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
     customer: {
       displayId: "EMP00101",
@@ -723,8 +723,9 @@ const apideck = new Apideck({
 async function run() {
   const result = await apideck.accounting.customers.get({
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    raw: false,
     fields: "id,updated_at",
   });
 
@@ -754,8 +755,9 @@ const apideck = new ApideckCore({
 async function run() {
   const res = await accountingCustomersGet(apideck, {
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    raw: false,
     fields: "id,updated_at",
   });
 
@@ -814,8 +816,9 @@ const apideck = new Apideck({
 async function run() {
   const result = await apideck.accounting.customers.update({
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    raw: false,
     customer: {
       displayId: "EMP00101",
       displayName: "Windsurf Shop",
@@ -1063,8 +1066,9 @@ const apideck = new ApideckCore({
 async function run() {
   const res = await accountingCustomersUpdate(apideck, {
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    raw: false,
     customer: {
       displayId: "EMP00101",
       displayName: "Windsurf Shop",
@@ -1341,8 +1345,9 @@ const apideck = new Apideck({
 async function run() {
   const result = await apideck.accounting.customers.delete({
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    raw: false,
   });
 
   // Handle the result
@@ -1371,8 +1376,9 @@ const apideck = new ApideckCore({
 async function run() {
   const res = await accountingCustomersDelete(apideck, {
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    raw: false,
   });
 
   if (!res.ok) {

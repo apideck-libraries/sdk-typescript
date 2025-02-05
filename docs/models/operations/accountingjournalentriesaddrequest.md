@@ -6,6 +6,8 @@
 import { AccountingJournalEntriesAddRequest } from "@apideck/unify/models/operations";
 
 let value: AccountingJournalEntriesAddRequest = {
+  consumerId: "test-consumer",
+  appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
   serviceId: "salesforce",
   journalEntry: {
     title: "Purchase Invoice-Inventory (USD): 2019/02/01 Batch Summary Entry",

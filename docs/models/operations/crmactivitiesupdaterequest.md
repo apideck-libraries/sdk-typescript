@@ -7,6 +7,8 @@ import { CrmActivitiesUpdateRequest } from "@apideck/unify/models/operations";
 
 let value: CrmActivitiesUpdateRequest = {
   id: "<id>",
+  consumerId: "test-consumer",
+  appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
   serviceId: "salesforce",
   activity: {
     activityDatetime: "2021-05-01T12:00:00.000Z",

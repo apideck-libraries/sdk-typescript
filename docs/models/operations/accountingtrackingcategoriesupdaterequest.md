@@ -7,6 +7,8 @@ import { AccountingTrackingCategoriesUpdateRequest } from "@apideck/unify/models
 
 let value: AccountingTrackingCategoriesUpdateRequest = {
   id: "<id>",
+  consumerId: "test-consumer",
+  appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
   serviceId: "salesforce",
   trackingCategory: {
     parentId: "12345",

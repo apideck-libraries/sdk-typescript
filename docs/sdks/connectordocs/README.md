@@ -24,6 +24,7 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.connector.connectorDocs.get({
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     id: "<id>",
     docId: "application_owner+oauth_credentials",
   });
@@ -53,6 +54,7 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await connectorConnectorDocsGet(apideck, {
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     id: "<id>",
     docId: "application_owner+oauth_credentials",
   });

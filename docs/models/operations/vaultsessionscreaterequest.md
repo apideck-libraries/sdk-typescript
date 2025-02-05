@@ -6,6 +6,8 @@
 import { VaultSessionsCreateRequest } from "@apideck/unify/models/operations";
 
 let value: VaultSessionsCreateRequest = {
+  consumerId: "test-consumer",
+  appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
   session: {
     consumerMetadata: {
       accountName: "SpaceX",
@@ -18,7 +20,6 @@ let value: VaultSessionsCreateRequest = {
       unifiedApis: [
         "crm",
       ],
-      sessionLength: "30m",
     },
     theme: {
       favicon: "https://res.cloudinary.com/apideck/icons/intercom",

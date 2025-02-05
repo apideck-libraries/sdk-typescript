@@ -28,9 +28,9 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.hris.timeOffRequests.list({
-    raw: false,
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    limit: 20,
     filter: {
       startDate: "2022-04-08",
       endDate: "2022-04-21",
@@ -72,9 +72,9 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await hrisTimeOffRequestsList(apideck, {
-    raw: false,
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    limit: 20,
     filter: {
       startDate: "2022-04-08",
       endDate: "2022-04-21",
@@ -145,7 +145,8 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.hris.timeOffRequests.create({
-    raw: false,
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
     timeOffRequest: {
       employeeId: "12345",
@@ -237,7 +238,8 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await hrisTimeOffRequestsCreate(apideck, {
-    raw: false,
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
     timeOffRequest: {
       employeeId: "12345",
@@ -359,8 +361,9 @@ const apideck = new Apideck({
 async function run() {
   const result = await apideck.hris.timeOffRequests.get({
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    raw: false,
     fields: "id,updated_at",
     employeeId: "<id>",
   });
@@ -391,8 +394,9 @@ const apideck = new ApideckCore({
 async function run() {
   const res = await hrisTimeOffRequestsGet(apideck, {
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    raw: false,
     fields: "id,updated_at",
     employeeId: "<id>",
   });
@@ -452,8 +456,9 @@ const apideck = new Apideck({
 async function run() {
   const result = await apideck.hris.timeOffRequests.update({
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    raw: false,
     employeeId: "<id>",
     timeOffRequest: {
       employeeId: "12345",
@@ -575,8 +580,9 @@ const apideck = new ApideckCore({
 async function run() {
   const res = await hrisTimeOffRequestsUpdate(apideck, {
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    raw: false,
     employeeId: "<id>",
     timeOffRequest: {
       employeeId: "12345",
@@ -727,8 +733,9 @@ const apideck = new Apideck({
 async function run() {
   const result = await apideck.hris.timeOffRequests.delete({
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    raw: false,
     employeeId: "<id>",
   });
 
@@ -758,8 +765,9 @@ const apideck = new ApideckCore({
 async function run() {
   const res = await hrisTimeOffRequestsDelete(apideck, {
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    raw: false,
     employeeId: "<id>",
   });
 

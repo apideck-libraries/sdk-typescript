@@ -28,9 +28,9 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.fileStorage.driveGroups.list({
-    raw: false,
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    limit: 20,
     filter: {
       parentGroupId: "1234",
     },
@@ -67,9 +67,9 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await fileStorageDriveGroupsList(apideck, {
-    raw: false,
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    limit: 20,
     filter: {
       parentGroupId: "1234",
     },
@@ -135,7 +135,8 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.fileStorage.driveGroups.create({
-    raw: false,
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
     driveGroup: {
       name: "accounting",
@@ -213,7 +214,8 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await fileStorageDriveGroupsCreate(apideck, {
-    raw: false,
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
     driveGroup: {
       name: "accounting",
@@ -321,8 +323,9 @@ const apideck = new Apideck({
 async function run() {
   const result = await apideck.fileStorage.driveGroups.get({
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    raw: false,
     fields: "id,updated_at",
   });
 
@@ -352,8 +355,9 @@ const apideck = new ApideckCore({
 async function run() {
   const res = await fileStorageDriveGroupsGet(apideck, {
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    raw: false,
     fields: "id,updated_at",
   });
 
@@ -412,8 +416,9 @@ const apideck = new Apideck({
 async function run() {
   const result = await apideck.fileStorage.driveGroups.update({
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    raw: false,
     driveGroup: {
       name: "accounting",
       displayName: "accounting",
@@ -520,8 +525,9 @@ const apideck = new ApideckCore({
 async function run() {
   const res = await fileStorageDriveGroupsUpdate(apideck, {
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    raw: false,
     driveGroup: {
       name: "accounting",
       displayName: "accounting",
@@ -657,8 +663,9 @@ const apideck = new Apideck({
 async function run() {
   const result = await apideck.fileStorage.driveGroups.delete({
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    raw: false,
   });
 
   // Handle the result
@@ -687,8 +694,9 @@ const apideck = new ApideckCore({
 async function run() {
   const res = await fileStorageDriveGroupsDelete(apideck, {
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    raw: false,
   });
 
   if (!res.ok) {

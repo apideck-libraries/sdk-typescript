@@ -6,6 +6,8 @@
 import { VaultConnectionsImportRequest } from "@apideck/unify/models/operations";
 
 let value: VaultConnectionsImportRequest = {
+  consumerId: "test-consumer",
+  appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
   serviceId: "pipedrive",
   unifiedApi: "crm",
   connectionImportData: {

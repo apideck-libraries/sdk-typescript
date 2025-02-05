@@ -6,6 +6,8 @@
 import { VaultConnectionCustomMappingsAllRequest } from "@apideck/unify/models/operations";
 
 let value: VaultConnectionCustomMappingsAllRequest = {
+  consumerId: "test-consumer",
+  appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
   unifiedApi: "crm",
   serviceId: "pipedrive",
   resource: "leads",

@@ -6,6 +6,7 @@
 import { VaultConsumersDeleteRequest } from "@apideck/unify/models/operations";
 
 let value: VaultConsumersDeleteRequest = {
+  appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
   consumerId: "test_user_id",
 };
 ```

@@ -28,9 +28,9 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.fileStorage.drives.list({
-    raw: false,
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    limit: 20,
     filter: {
       groupId: "1234",
     },
@@ -64,9 +64,9 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await fileStorageDrivesList(apideck, {
-    raw: false,
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    limit: 20,
     filter: {
       groupId: "1234",
     },
@@ -129,7 +129,8 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.fileStorage.drives.create({
-    raw: false,
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
     drive: {
       name: "Project Resources",
@@ -206,7 +207,8 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await fileStorageDrivesCreate(apideck, {
-    raw: false,
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
     drive: {
       name: "Project Resources",
@@ -313,8 +315,9 @@ const apideck = new Apideck({
 async function run() {
   const result = await apideck.fileStorage.drives.get({
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    raw: false,
     fields: "id,updated_at",
   });
 
@@ -344,8 +347,9 @@ const apideck = new ApideckCore({
 async function run() {
   const res = await fileStorageDrivesGet(apideck, {
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    raw: false,
     fields: "id,updated_at",
   });
 
@@ -404,8 +408,9 @@ const apideck = new Apideck({
 async function run() {
   const result = await apideck.fileStorage.drives.update({
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    raw: false,
     drive: {
       name: "Project Resources",
       description: "A description",
@@ -511,8 +516,9 @@ const apideck = new ApideckCore({
 async function run() {
   const res = await fileStorageDrivesUpdate(apideck, {
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    raw: false,
     drive: {
       name: "Project Resources",
       description: "A description",
@@ -647,8 +653,9 @@ const apideck = new Apideck({
 async function run() {
   const result = await apideck.fileStorage.drives.delete({
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    raw: false,
   });
 
   // Handle the result
@@ -677,8 +684,9 @@ const apideck = new ApideckCore({
 async function run() {
   const res = await fileStorageDrivesDelete(apideck, {
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
-    raw: false,
   });
 
   if (!res.ok) {

@@ -6,6 +6,8 @@
 import { FileStorageDriveGroupsAllRequest } from "@apideck/unify/models/operations";
 
 let value: FileStorageDriveGroupsAllRequest = {
+  consumerId: "test-consumer",
+  appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
   serviceId: "salesforce",
   filter: {
     parentGroupId: "1234",

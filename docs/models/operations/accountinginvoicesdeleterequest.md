@@ -7,6 +7,8 @@ import { AccountingInvoicesDeleteRequest } from "@apideck/unify/models/operation
 
 let value: AccountingInvoicesDeleteRequest = {
   id: "<id>",
+  consumerId: "test-consumer",
+  appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
   serviceId: "salesforce",
 };
 ```

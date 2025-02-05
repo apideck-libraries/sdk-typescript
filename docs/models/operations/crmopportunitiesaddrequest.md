@@ -7,6 +7,8 @@ import { CrmOpportunitiesAddRequest } from "@apideck/unify/models/operations";
 import { RFCDate } from "@apideck/unify/types";
 
 let value: CrmOpportunitiesAddRequest = {
+  consumerId: "test-consumer",
+  appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
   serviceId: "salesforce",
   opportunity: {
     title: "New Rocket",
