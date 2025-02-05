@@ -13,7 +13,6 @@ let value: AccountingInvoiceItemsAllRequest = {
   },
   sort: {
     by: "updated_at",
-    direction: "desc",
   },
   passThrough: {
     "search": "San Francisco",

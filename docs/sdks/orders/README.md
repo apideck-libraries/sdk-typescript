@@ -25,9 +25,7 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.ecommerce.orders.list({
-    raw: false,
     serviceId: "salesforce",
-    limit: 20,
     filter: {
       email: "elon@musk.com",
       customerId: "123",
@@ -36,7 +34,6 @@ async function run() {
     },
     sort: {
       by: "created_at",
-      direction: "desc",
     },
     passThrough: {
       "search": "San Francisco",
@@ -71,9 +68,7 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await ecommerceOrdersList(apideck, {
-    raw: false,
     serviceId: "salesforce",
-    limit: 20,
     filter: {
       email: "elon@musk.com",
       customerId: "123",
@@ -82,7 +77,6 @@ async function run() {
     },
     sort: {
       by: "created_at",
-      direction: "desc",
     },
     passThrough: {
       "search": "San Francisco",
@@ -148,7 +142,6 @@ async function run() {
   const result = await apideck.ecommerce.orders.get({
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
     fields: "id,updated_at",
   });
 
@@ -179,7 +172,6 @@ async function run() {
   const res = await ecommerceOrdersGet(apideck, {
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
     fields: "id,updated_at",
   });
 

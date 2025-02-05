@@ -17,7 +17,6 @@ let value: Session = {
     unifiedApis: [
       "crm",
     ],
-    sessionLength: "30m",
   },
   theme: {
     favicon: "https://res.cloudinary.com/apideck/icons/intercom",

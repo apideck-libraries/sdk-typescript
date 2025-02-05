@@ -28,9 +28,7 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.sms.messages.list({
-    raw: false,
     serviceId: "salesforce",
-    limit: 20,
     fields: "id,updated_at",
   });
 
@@ -61,9 +59,7 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await smsMessagesList(apideck, {
-    raw: false,
     serviceId: "salesforce",
-    limit: 20,
     fields: "id,updated_at",
   });
 
@@ -123,7 +119,6 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.sms.messages.create({
-    raw: false,
     serviceId: "salesforce",
     message: {
       from: "+15017122661",
@@ -207,7 +202,6 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await smsMessagesCreate(apideck, {
-    raw: false,
     serviceId: "salesforce",
     message: {
       from: "+15017122661",
@@ -322,7 +316,6 @@ async function run() {
   const result = await apideck.sms.messages.get({
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
     fields: "id,updated_at",
   });
 
@@ -353,7 +346,6 @@ async function run() {
   const res = await smsMessagesGet(apideck, {
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
     fields: "id,updated_at",
   });
 
@@ -413,7 +405,6 @@ async function run() {
   const result = await apideck.sms.messages.update({
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
     message: {
       from: "+15017122661",
       to: "+15017122662",
@@ -527,7 +518,6 @@ async function run() {
   const res = await smsMessagesUpdate(apideck, {
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
     message: {
       from: "+15017122661",
       to: "+15017122662",
@@ -670,7 +660,6 @@ async function run() {
   const result = await apideck.sms.messages.delete({
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
   });
 
   // Handle the result
@@ -700,7 +689,6 @@ async function run() {
   const res = await smsMessagesDelete(apideck, {
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
   });
 
   if (!res.ok) {

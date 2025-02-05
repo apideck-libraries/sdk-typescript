@@ -28,9 +28,7 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.crm.contacts.list({
-    raw: false,
     serviceId: "salesforce",
-    limit: 20,
     filter: {
       firstName: "Elon",
       lastName: "Musk",
@@ -40,7 +38,6 @@ async function run() {
     },
     sort: {
       by: "created_at",
-      direction: "desc",
     },
     passThrough: {
       "search": "San Francisco",
@@ -75,9 +72,7 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await crmContactsList(apideck, {
-    raw: false,
     serviceId: "salesforce",
-    limit: 20,
     filter: {
       firstName: "Elon",
       lastName: "Musk",
@@ -87,7 +82,6 @@ async function run() {
     },
     sort: {
       by: "created_at",
-      direction: "desc",
     },
     passThrough: {
       "search": "San Francisco",
@@ -151,7 +145,6 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.crm.contacts.create({
-    raw: false,
     serviceId: "salesforce",
     contact: {
       name: "Elon Musk",
@@ -408,7 +401,6 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await crmContactsCreate(apideck, {
-    raw: false,
     serviceId: "salesforce",
     contact: {
       name: "Elon Musk",
@@ -696,7 +688,6 @@ async function run() {
   const result = await apideck.crm.contacts.get({
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
     fields: "id,updated_at",
     filter: {
       firstName: "Elon",
@@ -734,7 +725,6 @@ async function run() {
   const res = await crmContactsGet(apideck, {
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
     fields: "id,updated_at",
     filter: {
       firstName: "Elon",
@@ -801,7 +791,6 @@ async function run() {
   const result = await apideck.crm.contacts.update({
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
     contact: {
       name: "Elon Musk",
       ownerId: "54321",
@@ -1015,7 +1004,6 @@ async function run() {
   const res = await crmContactsUpdate(apideck, {
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
     contact: {
       name: "Elon Musk",
       ownerId: "54321",
@@ -1258,7 +1246,6 @@ async function run() {
   const result = await apideck.crm.contacts.delete({
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
   });
 
   // Handle the result
@@ -1288,7 +1275,6 @@ async function run() {
   const res = await crmContactsDelete(apideck, {
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
   });
 
   if (!res.ok) {

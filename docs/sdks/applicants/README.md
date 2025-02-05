@@ -28,9 +28,7 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.ats.applicants.list({
-    raw: false,
     serviceId: "salesforce",
-    limit: 20,
     filter: {
       jobId: "1234",
     },
@@ -67,9 +65,7 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await atsApplicantsList(apideck, {
-    raw: false,
     serviceId: "salesforce",
-    limit: 20,
     filter: {
       jobId: "1234",
     },
@@ -136,7 +132,6 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.ats.applicants.create({
-    raw: false,
     serviceId: "salesforce",
     applicant: {
       name: "Elon Musk",
@@ -360,7 +355,6 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await atsApplicantsCreate(apideck, {
-    raw: false,
     serviceId: "salesforce",
     applicant: {
       name: "Elon Musk",
@@ -614,7 +608,6 @@ async function run() {
   const result = await apideck.ats.applicants.get({
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
     fields: "id,updated_at",
   });
 
@@ -645,7 +638,6 @@ async function run() {
   const res = await atsApplicantsGet(apideck, {
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
     fields: "id,updated_at",
   });
 
@@ -706,7 +698,6 @@ async function run() {
   const result = await apideck.ats.applicants.update({
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
     applicant: {
       name: "Elon Musk",
       firstName: "Elon",
@@ -960,7 +951,6 @@ async function run() {
   const res = await atsApplicantsUpdate(apideck, {
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
     applicant: {
       name: "Elon Musk",
       firstName: "Elon",
@@ -1242,7 +1232,6 @@ async function run() {
   const result = await apideck.ats.applicants.delete({
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
   });
 
   // Handle the result
@@ -1272,7 +1261,6 @@ async function run() {
   const res = await atsApplicantsDelete(apideck, {
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
   });
 
   if (!res.ok) {

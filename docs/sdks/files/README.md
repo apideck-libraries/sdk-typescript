@@ -30,9 +30,7 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.fileStorage.files.list({
-    raw: false,
     serviceId: "salesforce",
-    limit: 20,
     filter: {
       driveId: "1234",
       folderId: "root",
@@ -40,7 +38,6 @@ async function run() {
     },
     sort: {
       by: "updated_at",
-      direction: "desc",
     },
     passThrough: {
       "search": "San Francisco",
@@ -75,9 +72,7 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await fileStorageFilesList(apideck, {
-    raw: false,
     serviceId: "salesforce",
-    limit: 20,
     filter: {
       driveId: "1234",
       folderId: "root",
@@ -85,7 +80,6 @@ async function run() {
     },
     sort: {
       by: "updated_at",
-      direction: "desc",
     },
     passThrough: {
       "search": "San Francisco",
@@ -154,7 +148,6 @@ async function run() {
       "search": "San Francisco",
     },
     fields: "id,updated_at",
-    limit: 20,
     filter: {
       driveId: "1234",
       folderId: "root",
@@ -195,7 +188,6 @@ async function run() {
       "search": "San Francisco",
     },
     fields: "id,updated_at",
-    limit: 20,
     filter: {
       driveId: "1234",
       folderId: "root",
@@ -262,7 +254,6 @@ async function run() {
   const result = await apideck.fileStorage.files.get({
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
     fields: "id,updated_at",
   });
 
@@ -293,7 +284,6 @@ async function run() {
   const res = await fileStorageFilesGet(apideck, {
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
     fields: "id,updated_at",
   });
 
@@ -353,7 +343,6 @@ async function run() {
   const result = await apideck.fileStorage.files.update({
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
     updateFileRequest: {
       name: "New Name.pdf",
       description: "Renamed PDF Document",
@@ -461,7 +450,6 @@ async function run() {
   const res = await fileStorageFilesUpdate(apideck, {
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
     updateFileRequest: {
       name: "New Name.pdf",
       description: "Renamed PDF Document",
@@ -598,7 +586,6 @@ async function run() {
   const result = await apideck.fileStorage.files.delete({
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
   });
 
   // Handle the result
@@ -628,7 +615,6 @@ async function run() {
   const res = await fileStorageFilesDelete(apideck, {
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
   });
 
   if (!res.ok) {

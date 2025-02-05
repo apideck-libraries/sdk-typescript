@@ -27,7 +27,6 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.fileStorage.uploadSessions.create({
-    raw: false,
     serviceId: "salesforce",
     createUploadSessionRequest: {
       name: "Documents",
@@ -106,7 +105,6 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await fileStorageUploadSessionsCreate(apideck, {
-    raw: false,
     serviceId: "salesforce",
     createUploadSessionRequest: {
       name: "Documents",
@@ -217,7 +215,6 @@ async function run() {
   const result = await apideck.fileStorage.uploadSessions.get({
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
     fields: "id,updated_at",
   });
 
@@ -248,7 +245,6 @@ async function run() {
   const res = await fileStorageUploadSessionsGet(apideck, {
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
     fields: "id,updated_at",
   });
 
@@ -309,7 +305,6 @@ async function run() {
   const result = await apideck.fileStorage.uploadSessions.delete({
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
   });
 
   // Handle the result
@@ -339,7 +334,6 @@ async function run() {
   const res = await fileStorageUploadSessionsDelete(apideck, {
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
   });
 
   if (!res.ok) {
@@ -397,7 +391,6 @@ const apideck = new Apideck({
 async function run() {
   const result = await apideck.fileStorage.uploadSessions.finish({
     id: "<id>",
-    raw: false,
     serviceId: "salesforce",
     digest: "sha=fpRyg5eVQletdZqEKaFlqwBXJzM=",
   });
@@ -428,7 +421,6 @@ const apideck = new ApideckCore({
 async function run() {
   const res = await fileStorageUploadSessionsFinish(apideck, {
     id: "<id>",
-    raw: false,
     serviceId: "salesforce",
     digest: "sha=fpRyg5eVQletdZqEKaFlqwBXJzM=",
   });

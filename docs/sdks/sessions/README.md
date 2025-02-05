@@ -40,15 +40,6 @@ async function run() {
         unifiedApis: [
           "crm",
         ],
-        hideResourceSettings: false,
-        sandboxMode: false,
-        isolationMode: false,
-        sessionLength: "1h",
-        showLogs: true,
-        showSuggestions: false,
-        showSidebar: true,
-        autoRedirect: false,
-        hideGuides: false,
       },
       theme: {
         favicon: "https://res.cloudinary.com/apideck/icons/intercom",
@@ -113,15 +104,6 @@ async function run() {
         unifiedApis: [
           "crm",
         ],
-        hideResourceSettings: false,
-        sandboxMode: false,
-        isolationMode: false,
-        sessionLength: "1h",
-        showLogs: true,
-        showSuggestions: false,
-        showSidebar: true,
-        autoRedirect: false,
-        hideGuides: false,
       },
       theme: {
         favicon: "https://res.cloudinary.com/apideck/icons/intercom",

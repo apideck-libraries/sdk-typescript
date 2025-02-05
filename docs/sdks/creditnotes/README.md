@@ -28,15 +28,12 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.accounting.creditNotes.list({
-    raw: false,
     serviceId: "salesforce",
-    limit: 20,
     filter: {
       updatedSince: new Date("2020-09-30T07:43:32.000Z"),
     },
     sort: {
       by: "updated_at",
-      direction: "desc",
     },
     passThrough: {
       "search": "San Francisco",
@@ -71,15 +68,12 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await accountingCreditNotesList(apideck, {
-    raw: false,
     serviceId: "salesforce",
-    limit: 20,
     filter: {
       updatedSince: new Date("2020-09-30T07:43:32.000Z"),
     },
     sort: {
       by: "updated_at",
-      direction: "desc",
     },
     passThrough: {
       "search": "San Francisco",
@@ -143,7 +137,6 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.accounting.creditNotes.create({
-    raw: false,
     serviceId: "salesforce",
     creditNote: {
       number: "OIT00546",
@@ -443,7 +436,6 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await accountingCreditNotesCreate(apideck, {
-    raw: false,
     serviceId: "salesforce",
     creditNote: {
       number: "OIT00546",
@@ -774,7 +766,6 @@ async function run() {
   const result = await apideck.accounting.creditNotes.get({
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
     fields: "id,updated_at",
   });
 
@@ -805,7 +796,6 @@ async function run() {
   const res = await accountingCreditNotesGet(apideck, {
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
     fields: "id,updated_at",
   });
 
@@ -865,7 +855,6 @@ async function run() {
   const result = await apideck.accounting.creditNotes.update({
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
     creditNote: {
       number: "OIT00546",
       customer: {
@@ -1245,7 +1234,6 @@ async function run() {
   const res = await accountingCreditNotesUpdate(apideck, {
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
     creditNote: {
       number: "OIT00546",
       customer: {
@@ -1654,7 +1642,6 @@ async function run() {
   const result = await apideck.accounting.creditNotes.delete({
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
   });
 
   // Handle the result
@@ -1684,7 +1671,6 @@ async function run() {
   const res = await accountingCreditNotesDelete(apideck, {
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
   });
 
   if (!res.ok) {

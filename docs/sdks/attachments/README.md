@@ -29,9 +29,7 @@ async function run() {
   const result = await apideck.accounting.attachments.list({
     referenceType: "invoice",
     referenceId: "123456",
-    raw: false,
     serviceId: "salesforce",
-    limit: 20,
     fields: "id,updated_at",
   });
 
@@ -64,9 +62,7 @@ async function run() {
   const res = await accountingAttachmentsList(apideck, {
     referenceType: "invoice",
     referenceId: "123456",
-    raw: false,
     serviceId: "salesforce",
-    limit: 20,
     fields: "id,updated_at",
   });
 
@@ -130,7 +126,6 @@ async function run() {
     referenceId: "123456",
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
     fields: "id,updated_at",
   });
 
@@ -163,7 +158,6 @@ async function run() {
     referenceId: "123456",
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
     fields: "id,updated_at",
   });
 
@@ -225,7 +219,6 @@ async function run() {
     referenceId: "123456",
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
   });
 
   // Handle the result
@@ -257,7 +250,6 @@ async function run() {
     referenceId: "123456",
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
   });
 
   if (!res.ok) {

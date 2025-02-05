@@ -28,14 +28,11 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.issueTracking.collectionTicketComments.list({
-    raw: false,
     serviceId: "salesforce",
-    limit: 20,
     collectionId: "apideck-io",
     ticketId: "<id>",
     sort: {
       by: "created_at",
-      direction: "desc",
     },
     passThrough: {
       "search": "San Francisco",
@@ -70,14 +67,11 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await issueTrackingCollectionTicketCommentsList(apideck, {
-    raw: false,
     serviceId: "salesforce",
-    limit: 20,
     collectionId: "apideck-io",
     ticketId: "<id>",
     sort: {
       by: "created_at",
-      direction: "desc",
     },
     passThrough: {
       "search": "San Francisco",
@@ -141,7 +135,6 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.issueTracking.collectionTicketComments.create({
-    raw: false,
     serviceId: "salesforce",
     collectionId: "apideck-io",
     ticketId: "<id>",
@@ -219,7 +212,6 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await issueTrackingCollectionTicketCommentsCreate(apideck, {
-    raw: false,
     serviceId: "salesforce",
     collectionId: "apideck-io",
     ticketId: "<id>",
@@ -327,9 +319,7 @@ const apideck = new Apideck({
 async function run() {
   const result = await apideck.issueTracking.collectionTicketComments.get({
     id: "<id>",
-    raw: false,
     serviceId: "salesforce",
-    limit: 20,
     collectionId: "apideck-io",
     ticketId: "<id>",
     fields: "id,updated_at",
@@ -363,9 +353,7 @@ const apideck = new ApideckCore({
 async function run() {
   const res = await issueTrackingCollectionTicketCommentsGet(apideck, {
     id: "<id>",
-    raw: false,
     serviceId: "salesforce",
-    limit: 20,
     collectionId: "apideck-io",
     ticketId: "<id>",
     fields: "id,updated_at",
@@ -429,7 +417,6 @@ async function run() {
   const result = await apideck.issueTracking.collectionTicketComments.update({
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
     collectionId: "apideck-io",
     ticketId: "<id>",
     collectionTicketComment: {
@@ -537,7 +524,6 @@ async function run() {
   const res = await issueTrackingCollectionTicketCommentsUpdate(apideck, {
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
     collectionId: "apideck-io",
     ticketId: "<id>",
     collectionTicketComment: {
@@ -674,7 +660,6 @@ async function run() {
   const result = await apideck.issueTracking.collectionTicketComments.delete({
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
     collectionId: "apideck-io",
     ticketId: "<id>",
   });
@@ -706,7 +691,6 @@ async function run() {
   const res = await issueTrackingCollectionTicketCommentsDelete(apideck, {
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
     collectionId: "apideck-io",
     ticketId: "<id>",
   });

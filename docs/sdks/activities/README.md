@@ -28,15 +28,12 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.crm.activities.list({
-    raw: false,
     serviceId: "salesforce",
-    limit: 20,
     filter: {
       updatedSince: new Date("2020-09-30T07:43:32.000Z"),
     },
     sort: {
       by: "created_at",
-      direction: "desc",
     },
     passThrough: {
       "search": "San Francisco",
@@ -71,15 +68,12 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await crmActivitiesList(apideck, {
-    raw: false,
     serviceId: "salesforce",
-    limit: 20,
     filter: {
       updatedSince: new Date("2020-09-30T07:43:32.000Z"),
     },
     sort: {
       by: "created_at",
-      direction: "desc",
     },
     passThrough: {
       "search": "San Francisco",
@@ -143,7 +137,6 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.crm.activities.create({
-    raw: false,
     serviceId: "salesforce",
     activity: {
       activityDatetime: "2021-05-01T12:00:00.000Z",
@@ -298,7 +291,6 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await crmActivitiesCreate(apideck, {
-    raw: false,
     serviceId: "salesforce",
     activity: {
       activityDatetime: "2021-05-01T12:00:00.000Z",
@@ -484,7 +476,6 @@ async function run() {
   const result = await apideck.crm.activities.get({
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
     fields: "id,updated_at",
   });
 
@@ -515,7 +506,6 @@ async function run() {
   const res = await crmActivitiesGet(apideck, {
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
     fields: "id,updated_at",
   });
 
@@ -575,7 +565,6 @@ async function run() {
   const result = await apideck.crm.activities.update({
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
     activity: {
       activityDatetime: "2021-05-01T12:00:00.000Z",
       durationSeconds: 1800,
@@ -785,7 +774,6 @@ async function run() {
   const res = await crmActivitiesUpdate(apideck, {
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
     activity: {
       activityDatetime: "2021-05-01T12:00:00.000Z",
       durationSeconds: 1800,
@@ -1024,7 +1012,6 @@ async function run() {
   const result = await apideck.crm.activities.delete({
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
   });
 
   // Handle the result
@@ -1054,7 +1041,6 @@ async function run() {
   const res = await crmActivitiesDelete(apideck, {
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
   });
 
   if (!res.ok) {

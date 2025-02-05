@@ -28,12 +28,10 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.ats.applications.list({
-    raw: false,
     serviceId: "salesforce",
     passThrough: {
       "search": "San Francisco",
     },
-    limit: 20,
   });
 
   for await (const page of result) {
@@ -63,12 +61,10 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await atsApplicationsList(apideck, {
-    raw: false,
     serviceId: "salesforce",
     passThrough: {
       "search": "San Francisco",
     },
-    limit: 20,
   });
 
   if (!res.ok) {
@@ -127,7 +123,6 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.ats.applications.create({
-    raw: false,
     serviceId: "salesforce",
     application: {
       applicantId: "12345",
@@ -209,7 +204,6 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await atsApplicationsCreate(apideck, {
-    raw: false,
     serviceId: "salesforce",
     application: {
       applicantId: "12345",
@@ -322,7 +316,6 @@ async function run() {
   const result = await apideck.ats.applications.get({
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
   });
 
   // Handle the result
@@ -352,7 +345,6 @@ async function run() {
   const res = await atsApplicationsGet(apideck, {
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
   });
 
   if (!res.ok) {
@@ -411,7 +403,6 @@ async function run() {
   const result = await apideck.ats.applications.update({
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
     application: {
       applicantId: "12345",
       jobId: "12345",
@@ -523,7 +514,6 @@ async function run() {
   const res = await atsApplicationsUpdate(apideck, {
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
     application: {
       applicantId: "12345",
       jobId: "12345",
@@ -664,7 +654,6 @@ async function run() {
   const result = await apideck.ats.applications.delete({
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
   });
 
   // Handle the result
@@ -694,7 +683,6 @@ async function run() {
   const res = await atsApplicationsDelete(apideck, {
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
   });
 
   if (!res.ok) {

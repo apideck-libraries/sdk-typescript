@@ -28,9 +28,7 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.accounting.customers.list({
-    raw: false,
     serviceId: "salesforce",
-    limit: 20,
     filter: {
       companyName: "SpaceX",
       displayName: "Elon Musk",
@@ -42,7 +40,6 @@ async function run() {
     },
     sort: {
       by: "updated_at",
-      direction: "desc",
     },
     passThrough: {
       "search": "San Francisco",
@@ -77,9 +74,7 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await accountingCustomersList(apideck, {
-    raw: false,
     serviceId: "salesforce",
-    limit: 20,
     filter: {
       companyName: "SpaceX",
       displayName: "Elon Musk",
@@ -91,7 +86,6 @@ async function run() {
     },
     sort: {
       by: "updated_at",
-      direction: "desc",
     },
     passThrough: {
       "search": "San Francisco",
@@ -155,7 +149,6 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.accounting.customers.create({
-    raw: false,
     serviceId: "salesforce",
     customer: {
       displayId: "EMP00101",
@@ -424,7 +417,6 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await accountingCustomersCreate(apideck, {
-    raw: false,
     serviceId: "salesforce",
     customer: {
       displayId: "EMP00101",
@@ -724,7 +716,6 @@ async function run() {
   const result = await apideck.accounting.customers.get({
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
     fields: "id,updated_at",
   });
 
@@ -755,7 +746,6 @@ async function run() {
   const res = await accountingCustomersGet(apideck, {
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
     fields: "id,updated_at",
   });
 
@@ -815,7 +805,6 @@ async function run() {
   const result = await apideck.accounting.customers.update({
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
     customer: {
       displayId: "EMP00101",
       displayName: "Windsurf Shop",
@@ -1064,7 +1053,6 @@ async function run() {
   const res = await accountingCustomersUpdate(apideck, {
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
     customer: {
       displayId: "EMP00101",
       displayName: "Windsurf Shop",
@@ -1342,7 +1330,6 @@ async function run() {
   const result = await apideck.accounting.customers.delete({
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
   });
 
   // Handle the result
@@ -1372,7 +1359,6 @@ async function run() {
   const res = await accountingCustomersDelete(apideck, {
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
   });
 
   if (!res.ok) {

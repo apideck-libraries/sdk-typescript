@@ -24,7 +24,6 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.webhook.eventLogs.list({
-    limit: 20,
     filter: {
       excludeApis: "vault,proxy",
       consumerId: "test_user_id",
@@ -60,7 +59,6 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await webhookEventLogsList(apideck, {
-    limit: 20,
     filter: {
       excludeApis: "vault,proxy",
       consumerId: "test_user_id",
