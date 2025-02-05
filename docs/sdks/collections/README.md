@@ -25,12 +25,9 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.issueTracking.collections.list({
-    raw: false,
     serviceId: "salesforce",
-    limit: 20,
     sort: {
       by: "name",
-      direction: "desc",
     },
     passThrough: {
       "search": "San Francisco",
@@ -65,12 +62,9 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await issueTrackingCollectionsList(apideck, {
-    raw: false,
     serviceId: "salesforce",
-    limit: 20,
     sort: {
       by: "name",
-      direction: "desc",
     },
     passThrough: {
       "search": "San Francisco",
@@ -136,7 +130,6 @@ async function run() {
   const result = await apideck.issueTracking.collections.get({
     collectionId: "apideck-io",
     serviceId: "salesforce",
-    raw: false,
     fields: "id,updated_at",
   });
 
@@ -167,7 +160,6 @@ async function run() {
   const res = await issueTrackingCollectionsGet(apideck, {
     collectionId: "apideck-io",
     serviceId: "salesforce",
-    raw: false,
     fields: "id,updated_at",
   });
 

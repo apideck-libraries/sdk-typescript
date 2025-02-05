@@ -28,7 +28,6 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.fileStorage.folders.create({
-    raw: false,
     serviceId: "salesforce",
     fields: "id,updated_at",
     createFolderRequest: {
@@ -108,7 +107,6 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await fileStorageFoldersCreate(apideck, {
-    raw: false,
     serviceId: "salesforce",
     fields: "id,updated_at",
     createFolderRequest: {
@@ -219,7 +217,6 @@ async function run() {
   const result = await apideck.fileStorage.folders.get({
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
     fields: "id,updated_at",
   });
 
@@ -250,7 +247,6 @@ async function run() {
   const res = await fileStorageFoldersGet(apideck, {
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
     fields: "id,updated_at",
   });
 
@@ -310,7 +306,6 @@ async function run() {
   const result = await apideck.fileStorage.folders.update({
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
     updateFolderRequest: {
       name: "Documents",
       description: "My Personal Documents",
@@ -418,7 +413,6 @@ async function run() {
   const res = await fileStorageFoldersUpdate(apideck, {
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
     updateFolderRequest: {
       name: "Documents",
       description: "My Personal Documents",
@@ -555,7 +549,6 @@ async function run() {
   const result = await apideck.fileStorage.folders.delete({
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
   });
 
   // Handle the result
@@ -585,7 +578,6 @@ async function run() {
   const res = await fileStorageFoldersDelete(apideck, {
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
   });
 
   if (!res.ok) {
@@ -644,7 +636,6 @@ async function run() {
   const result = await apideck.fileStorage.folders.copy({
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
     fields: "id,updated_at",
     copyFolderRequest: {
       name: "Documents",
@@ -760,7 +751,6 @@ async function run() {
   const res = await fileStorageFoldersCopy(apideck, {
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
     fields: "id,updated_at",
     copyFolderRequest: {
       name: "Documents",

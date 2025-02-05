@@ -28,9 +28,7 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.crm.users.list({
-    raw: false,
     serviceId: "salesforce",
-    limit: 20,
     passThrough: {
       "search": "San Francisco",
     },
@@ -64,9 +62,7 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await crmUsersList(apideck, {
-    raw: false,
     serviceId: "salesforce",
-    limit: 20,
     passThrough: {
       "search": "San Francisco",
     },
@@ -129,7 +125,6 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.crm.users.create({
-    raw: false,
     serviceId: "salesforce",
     user: {
       parentId: "54321",
@@ -267,7 +262,6 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await crmUsersCreate(apideck, {
-    raw: false,
     serviceId: "salesforce",
     user: {
       parentId: "54321",
@@ -436,7 +430,6 @@ async function run() {
   const result = await apideck.crm.users.get({
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
     fields: "id,updated_at",
   });
 
@@ -467,7 +460,6 @@ async function run() {
   const res = await crmUsersGet(apideck, {
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
     fields: "id,updated_at",
   });
 
@@ -527,7 +519,6 @@ async function run() {
   const result = await apideck.crm.users.update({
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
     user: {
       parentId: "54321",
       username: "masterofcoin",
@@ -750,7 +741,6 @@ async function run() {
   const res = await crmUsersUpdate(apideck, {
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
     user: {
       parentId: "54321",
       username: "masterofcoin",
@@ -1002,7 +992,6 @@ async function run() {
   const result = await apideck.crm.users.delete({
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
   });
 
   // Handle the result
@@ -1032,7 +1021,6 @@ async function run() {
   const res = await crmUsersDelete(apideck, {
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
   });
 
   if (!res.ok) {

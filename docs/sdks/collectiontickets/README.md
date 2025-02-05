@@ -28,13 +28,10 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.issueTracking.collectionTickets.list({
-    raw: false,
     serviceId: "salesforce",
-    limit: 20,
     collectionId: "apideck-io",
     sort: {
       by: "created_at",
-      direction: "desc",
     },
     filter: {
       status: [
@@ -74,13 +71,10 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await issueTrackingCollectionTicketsList(apideck, {
-    raw: false,
     serviceId: "salesforce",
-    limit: 20,
     collectionId: "apideck-io",
     sort: {
       by: "created_at",
-      direction: "desc",
     },
     filter: {
       status: [
@@ -149,7 +143,6 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.issueTracking.collectionTickets.create({
-    raw: false,
     serviceId: "salesforce",
     collectionId: "apideck-io",
     ticket: {
@@ -232,7 +225,6 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await issueTrackingCollectionTicketsCreate(apideck, {
-    raw: false,
     serviceId: "salesforce",
     collectionId: "apideck-io",
     ticket: {
@@ -346,7 +338,6 @@ async function run() {
   const result = await apideck.issueTracking.collectionTickets.get({
     ticketId: "<id>",
     serviceId: "salesforce",
-    raw: false,
     collectionId: "apideck-io",
     fields: "id,updated_at",
   });
@@ -378,7 +369,6 @@ async function run() {
   const res = await issueTrackingCollectionTicketsGet(apideck, {
     ticketId: "<id>",
     serviceId: "salesforce",
-    raw: false,
     collectionId: "apideck-io",
     fields: "id,updated_at",
   });
@@ -439,7 +429,6 @@ async function run() {
   const result = await apideck.issueTracking.collectionTickets.update({
     ticketId: "<id>",
     serviceId: "salesforce",
-    raw: false,
     collectionId: "apideck-io",
     ticket: {
       parentId: "12345",
@@ -550,7 +539,6 @@ async function run() {
   const res = await issueTrackingCollectionTicketsUpdate(apideck, {
     ticketId: "<id>",
     serviceId: "salesforce",
-    raw: false,
     collectionId: "apideck-io",
     ticket: {
       parentId: "12345",
@@ -690,7 +678,6 @@ async function run() {
   const result = await apideck.issueTracking.collectionTickets.delete({
     ticketId: "<id>",
     serviceId: "salesforce",
-    raw: false,
     collectionId: "apideck-io",
   });
 
@@ -721,7 +708,6 @@ async function run() {
   const res = await issueTrackingCollectionTicketsDelete(apideck, {
     ticketId: "<id>",
     serviceId: "salesforce",
-    raw: false,
     collectionId: "apideck-io",
   });
 

@@ -25,7 +25,6 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.connector.connectors.list({
-    limit: 20,
     filter: {
       unifiedApi: "file-storage",
     },
@@ -58,7 +57,6 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await connectorConnectorsList(apideck, {
-    limit: 20,
     filter: {
       unifiedApi: "file-storage",
     },

@@ -24,7 +24,6 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.accounting.agedDebtors.get({
-    raw: false,
     serviceId: "salesforce",
     filter: {
       customerId: "123abc",
@@ -64,7 +63,6 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await accountingAgedDebtorsGet(apideck, {
-    raw: false,
     serviceId: "salesforce",
     filter: {
       customerId: "123abc",

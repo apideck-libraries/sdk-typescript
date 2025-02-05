@@ -17,8 +17,6 @@ let value: GetAgedDebtorsResponse = {
   data: {
     reportGeneratedAt: new Date("2024-11-14T12:00:00.000Z"),
     reportAsOfDate: new RFCDate("2024-11-13"),
-    periodCount: 4,
-    periodLength: 30,
     outstandingBalances: [
       {
         customerId: "123",

@@ -28,9 +28,7 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.accounting.invoices.list({
-    raw: false,
     serviceId: "salesforce",
-    limit: 20,
     filter: {
       updatedSince: new Date("2020-09-30T07:43:32.000Z"),
       createdSince: new Date("2020-09-30T07:43:32.000Z"),
@@ -38,7 +36,6 @@ async function run() {
     },
     sort: {
       by: "updated_at",
-      direction: "desc",
     },
     passThrough: {
       "search": "San Francisco",
@@ -73,9 +70,7 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await accountingInvoicesList(apideck, {
-    raw: false,
     serviceId: "salesforce",
-    limit: 20,
     filter: {
       updatedSince: new Date("2020-09-30T07:43:32.000Z"),
       createdSince: new Date("2020-09-30T07:43:32.000Z"),
@@ -83,7 +78,6 @@ async function run() {
     },
     sort: {
       by: "updated_at",
-      direction: "desc",
     },
     passThrough: {
       "search": "San Francisco",
@@ -148,7 +142,6 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.accounting.invoices.create({
-    raw: false,
     serviceId: "salesforce",
     invoice: {
       type: "service",
@@ -454,7 +447,6 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await accountingInvoicesCreate(apideck, {
-    raw: false,
     serviceId: "salesforce",
     invoice: {
       type: "service",
@@ -790,7 +782,6 @@ async function run() {
   const result = await apideck.accounting.invoices.get({
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
     fields: "id,updated_at",
   });
 
@@ -821,7 +812,6 @@ async function run() {
   const res = await accountingInvoicesGet(apideck, {
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
     fields: "id,updated_at",
   });
 
@@ -882,7 +872,6 @@ async function run() {
   const result = await apideck.accounting.invoices.update({
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
     invoice: {
       type: "service",
       number: "OIT00546",
@@ -1192,7 +1181,6 @@ async function run() {
   const res = await accountingInvoicesUpdate(apideck, {
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
     invoice: {
       type: "service",
       number: "OIT00546",
@@ -1530,7 +1518,6 @@ async function run() {
   const result = await apideck.accounting.invoices.delete({
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
   });
 
   // Handle the result
@@ -1560,7 +1547,6 @@ async function run() {
   const res = await accountingInvoicesDelete(apideck, {
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
   });
 
   if (!res.ok) {

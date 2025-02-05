@@ -28,9 +28,7 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.accounting.departments.list({
-    raw: false,
     serviceId: "salesforce",
-    limit: 20,
     fields: "id,updated_at",
     filter: {
       subsidiary: "1",
@@ -64,9 +62,7 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await accountingDepartmentsList(apideck, {
-    raw: false,
     serviceId: "salesforce",
-    limit: 20,
     fields: "id,updated_at",
     filter: {
       subsidiary: "1",
@@ -129,7 +125,6 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.accounting.departments.create({
-    raw: false,
     serviceId: "salesforce",
     accountingDepartment: {
       parentId: "12345",
@@ -208,7 +203,6 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await accountingDepartmentsCreate(apideck, {
-    raw: false,
     serviceId: "salesforce",
     accountingDepartment: {
       parentId: "12345",
@@ -318,7 +312,6 @@ async function run() {
   const result = await apideck.accounting.departments.get({
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
     fields: "id,updated_at",
   });
 
@@ -349,7 +342,6 @@ async function run() {
   const res = await accountingDepartmentsGet(apideck, {
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
     fields: "id,updated_at",
   });
 
@@ -409,7 +401,6 @@ async function run() {
   const result = await apideck.accounting.departments.update({
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
     accountingDepartment: {
       parentId: "12345",
       name: "Sales",
@@ -508,7 +499,6 @@ async function run() {
   const res = await accountingDepartmentsUpdate(apideck, {
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
     accountingDepartment: {
       parentId: "12345",
       name: "Sales",
@@ -636,7 +626,6 @@ async function run() {
   const result = await apideck.accounting.departments.delete({
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
   });
 
   // Handle the result
@@ -666,7 +655,6 @@ async function run() {
   const res = await accountingDepartmentsDelete(apideck, {
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
   });
 
   if (!res.ok) {

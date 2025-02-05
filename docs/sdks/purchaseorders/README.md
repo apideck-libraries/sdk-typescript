@@ -28,19 +28,16 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.accounting.purchaseOrders.list({
-    raw: false,
     serviceId: "salesforce",
     passThrough: {
       "search": "San Francisco",
     },
-    limit: 20,
     filter: {
       updatedSince: new Date("2020-09-30T07:43:32.000Z"),
       supplierId: "1234",
     },
     sort: {
       by: "updated_at",
-      direction: "desc",
     },
   });
 
@@ -71,19 +68,16 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await accountingPurchaseOrdersList(apideck, {
-    raw: false,
     serviceId: "salesforce",
     passThrough: {
       "search": "San Francisco",
     },
-    limit: 20,
     filter: {
       updatedSince: new Date("2020-09-30T07:43:32.000Z"),
       supplierId: "1234",
     },
     sort: {
       by: "updated_at",
-      direction: "desc",
     },
   });
 
@@ -144,7 +138,6 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.accounting.purchaseOrders.create({
-    raw: false,
     serviceId: "salesforce",
     purchaseOrder: {
       poNumber: "90000117",
@@ -491,7 +484,6 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await accountingPurchaseOrdersCreate(apideck, {
-    raw: false,
     serviceId: "salesforce",
     purchaseOrder: {
       poNumber: "90000117",
@@ -868,7 +860,6 @@ async function run() {
   const result = await apideck.accounting.purchaseOrders.get({
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
   });
 
   // Handle the result
@@ -898,7 +889,6 @@ async function run() {
   const res = await accountingPurchaseOrdersGet(apideck, {
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
   });
 
   if (!res.ok) {
@@ -958,7 +948,6 @@ async function run() {
   const result = await apideck.accounting.purchaseOrders.update({
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
     purchaseOrder: {
       poNumber: "90000117",
       reference: "123456",
@@ -1329,7 +1318,6 @@ async function run() {
   const res = await accountingPurchaseOrdersUpdate(apideck, {
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
     purchaseOrder: {
       poNumber: "90000117",
       reference: "123456",
@@ -1728,7 +1716,6 @@ async function run() {
   const result = await apideck.accounting.purchaseOrders.delete({
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
   });
 
   // Handle the result
@@ -1758,7 +1745,6 @@ async function run() {
   const res = await accountingPurchaseOrdersDelete(apideck, {
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
   });
 
   if (!res.ok) {

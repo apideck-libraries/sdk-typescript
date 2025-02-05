@@ -7,7 +7,6 @@ import { TicketsSort } from "@apideck/unify/models/components";
 
 let value: TicketsSort = {
   by: "created_at",
-  direction: "desc",
 };
 ```
 

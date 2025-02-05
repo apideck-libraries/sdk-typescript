@@ -28,9 +28,7 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.accounting.expenses.list({
-    raw: false,
     serviceId: "salesforce",
-    limit: 20,
   });
 
   for await (const page of result) {
@@ -60,9 +58,7 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await accountingExpensesList(apideck, {
-    raw: false,
     serviceId: "salesforce",
-    limit: 20,
   });
 
   if (!res.ok) {
@@ -121,7 +117,6 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.accounting.expenses.create({
-    raw: false,
     serviceId: "salesforce",
     expense: {
       number: "OIT00546",
@@ -266,7 +261,6 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await accountingExpensesCreate(apideck, {
-    raw: false,
     serviceId: "salesforce",
     expense: {
       number: "OIT00546",
@@ -442,7 +436,6 @@ async function run() {
   const result = await apideck.accounting.expenses.get({
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
   });
 
   // Handle the result
@@ -472,7 +465,6 @@ async function run() {
   const res = await accountingExpensesGet(apideck, {
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
   });
 
   if (!res.ok) {
@@ -531,7 +523,6 @@ async function run() {
   const result = await apideck.accounting.expenses.update({
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
     expense: {
       number: "OIT00546",
       transactionDate: new Date("2021-05-01T12:00:00.000Z"),
@@ -719,7 +710,6 @@ async function run() {
   const res = await accountingExpensesUpdate(apideck, {
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
     expense: {
       number: "OIT00546",
       transactionDate: new Date("2021-05-01T12:00:00.000Z"),
@@ -936,7 +926,6 @@ async function run() {
   const result = await apideck.accounting.expenses.delete({
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
   });
 
   // Handle the result
@@ -966,7 +955,6 @@ async function run() {
   const res = await accountingExpensesDelete(apideck, {
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
   });
 
   if (!res.ok) {

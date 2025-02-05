@@ -129,9 +129,7 @@ const apideck = new Apideck({
 });
 
 async function run() {
-  const result = await apideck.vault.consumers.list({
-    limit: 20,
-  });
+  const result = await apideck.vault.consumers.list({});
 
   for await (const page of result) {
     // Handle the page
@@ -159,9 +157,7 @@ const apideck = new ApideckCore({
 });
 
 async function run() {
-  const res = await vaultConsumersList(apideck, {
-    limit: 20,
-  });
+  const res = await vaultConsumersList(apideck, {});
 
   if (!res.ok) {
     throw res.error;

@@ -28,9 +28,7 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.crm.notes.list({
-    raw: false,
     serviceId: "salesforce",
-    limit: 20,
     passThrough: {
       "search": "San Francisco",
     },
@@ -64,9 +62,7 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await crmNotesList(apideck, {
-    raw: false,
     serviceId: "salesforce",
-    limit: 20,
     passThrough: {
       "search": "San Francisco",
     },
@@ -129,7 +125,6 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.crm.notes.create({
-    raw: false,
     serviceId: "salesforce",
     note: {
       title: "Meeting Notes",
@@ -212,7 +207,6 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await crmNotesCreate(apideck, {
-    raw: false,
     serviceId: "salesforce",
     note: {
       title: "Meeting Notes",
@@ -326,7 +320,6 @@ async function run() {
   const result = await apideck.crm.notes.get({
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
     fields: "id,updated_at",
   });
 
@@ -357,7 +350,6 @@ async function run() {
   const res = await crmNotesGet(apideck, {
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
     fields: "id,updated_at",
   });
 
@@ -417,7 +409,6 @@ async function run() {
   const result = await apideck.crm.notes.update({
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
     note: {
       title: "Meeting Notes",
       content: "Office hours are 9AM-6PM",
@@ -530,7 +521,6 @@ async function run() {
   const res = await crmNotesUpdate(apideck, {
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
     note: {
       title: "Meeting Notes",
       content: "Office hours are 9AM-6PM",
@@ -672,7 +662,6 @@ async function run() {
   const result = await apideck.crm.notes.delete({
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
   });
 
   // Handle the result
@@ -702,7 +691,6 @@ async function run() {
   const res = await crmNotesDelete(apideck, {
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
   });
 
   if (!res.ok) {

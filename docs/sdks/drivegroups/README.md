@@ -28,9 +28,7 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.fileStorage.driveGroups.list({
-    raw: false,
     serviceId: "salesforce",
-    limit: 20,
     filter: {
       parentGroupId: "1234",
     },
@@ -67,9 +65,7 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await fileStorageDriveGroupsList(apideck, {
-    raw: false,
     serviceId: "salesforce",
-    limit: 20,
     filter: {
       parentGroupId: "1234",
     },
@@ -135,7 +131,6 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.fileStorage.driveGroups.create({
-    raw: false,
     serviceId: "salesforce",
     driveGroup: {
       name: "accounting",
@@ -213,7 +208,6 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await fileStorageDriveGroupsCreate(apideck, {
-    raw: false,
     serviceId: "salesforce",
     driveGroup: {
       name: "accounting",
@@ -322,7 +316,6 @@ async function run() {
   const result = await apideck.fileStorage.driveGroups.get({
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
     fields: "id,updated_at",
   });
 
@@ -353,7 +346,6 @@ async function run() {
   const res = await fileStorageDriveGroupsGet(apideck, {
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
     fields: "id,updated_at",
   });
 
@@ -413,7 +405,6 @@ async function run() {
   const result = await apideck.fileStorage.driveGroups.update({
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
     driveGroup: {
       name: "accounting",
       displayName: "accounting",
@@ -521,7 +512,6 @@ async function run() {
   const res = await fileStorageDriveGroupsUpdate(apideck, {
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
     driveGroup: {
       name: "accounting",
       displayName: "accounting",
@@ -658,7 +648,6 @@ async function run() {
   const result = await apideck.fileStorage.driveGroups.delete({
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
   });
 
   // Handle the result
@@ -688,7 +677,6 @@ async function run() {
   const res = await fileStorageDriveGroupsDelete(apideck, {
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
   });
 
   if (!res.ok) {

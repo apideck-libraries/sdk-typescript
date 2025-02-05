@@ -28,9 +28,7 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.accounting.trackingCategories.list({
-    raw: false,
     serviceId: "salesforce",
-    limit: 20,
     passThrough: {
       "search": "San Francisco",
     },
@@ -64,9 +62,7 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await accountingTrackingCategoriesList(apideck, {
-    raw: false,
     serviceId: "salesforce",
-    limit: 20,
     passThrough: {
       "search": "San Francisco",
     },
@@ -129,7 +125,6 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.accounting.trackingCategories.create({
-    raw: false,
     serviceId: "salesforce",
     trackingCategory: {
       parentId: "12345",
@@ -209,7 +204,6 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await accountingTrackingCategoriesCreate(apideck, {
-    raw: false,
     serviceId: "salesforce",
     trackingCategory: {
       parentId: "12345",
@@ -320,7 +314,6 @@ async function run() {
   const result = await apideck.accounting.trackingCategories.get({
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
     fields: "id,updated_at",
   });
 
@@ -351,7 +344,6 @@ async function run() {
   const res = await accountingTrackingCategoriesGet(apideck, {
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
     fields: "id,updated_at",
   });
 
@@ -411,7 +403,6 @@ async function run() {
   const result = await apideck.accounting.trackingCategories.update({
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
     trackingCategory: {
       parentId: "12345",
       name: "Department",
@@ -521,7 +512,6 @@ async function run() {
   const res = await accountingTrackingCategoriesUpdate(apideck, {
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
     trackingCategory: {
       parentId: "12345",
       name: "Department",
@@ -660,7 +650,6 @@ async function run() {
   const result = await apideck.accounting.trackingCategories.delete({
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
   });
 
   // Handle the result
@@ -690,7 +679,6 @@ async function run() {
   const res = await accountingTrackingCategoriesDelete(apideck, {
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
   });
 
   if (!res.ok) {

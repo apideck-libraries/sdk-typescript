@@ -28,9 +28,7 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.hris.departments.list({
-    raw: false,
     serviceId: "salesforce",
-    limit: 20,
     passThrough: {
       "search": "San Francisco",
     },
@@ -64,9 +62,7 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await hrisDepartmentsList(apideck, {
-    raw: false,
     serviceId: "salesforce",
-    limit: 20,
     passThrough: {
       "search": "San Francisco",
     },
@@ -129,7 +125,6 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.hris.departments.create({
-    raw: false,
     serviceId: "salesforce",
     department: {
       name: "R&D",
@@ -207,7 +202,6 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await hrisDepartmentsCreate(apideck, {
-    raw: false,
     serviceId: "salesforce",
     department: {
       name: "R&D",
@@ -316,7 +310,6 @@ async function run() {
   const result = await apideck.hris.departments.get({
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
     fields: "id,updated_at",
   });
 
@@ -347,7 +340,6 @@ async function run() {
   const res = await hrisDepartmentsGet(apideck, {
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
     fields: "id,updated_at",
   });
 
@@ -407,7 +399,6 @@ async function run() {
   const result = await apideck.hris.departments.update({
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
     department: {
       name: "R&D",
       code: "2",
@@ -515,7 +506,6 @@ async function run() {
   const res = await hrisDepartmentsUpdate(apideck, {
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
     department: {
       name: "R&D",
       code: "2",
@@ -652,7 +642,6 @@ async function run() {
   const result = await apideck.hris.departments.delete({
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
   });
 
   // Handle the result
@@ -682,7 +671,6 @@ async function run() {
   const res = await hrisDepartmentsDelete(apideck, {
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
   });
 
   if (!res.ok) {

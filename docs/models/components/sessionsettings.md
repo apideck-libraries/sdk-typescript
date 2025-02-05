@@ -11,7 +11,6 @@ let value: SessionSettings = {
   unifiedApis: [
     "crm",
   ],
-  sessionLength: "30m",
 };
 ```
 

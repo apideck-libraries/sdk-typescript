@@ -28,9 +28,7 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.accounting.suppliers.list({
-    raw: false,
     serviceId: "salesforce",
-    limit: 20,
     filter: {
       companyName: "SpaceX",
       displayName: "Elon Musk",
@@ -41,7 +39,6 @@ async function run() {
     },
     sort: {
       by: "updated_at",
-      direction: "desc",
     },
     passThrough: {
       "search": "San Francisco",
@@ -76,9 +73,7 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await accountingSuppliersList(apideck, {
-    raw: false,
     serviceId: "salesforce",
-    limit: 20,
     filter: {
       companyName: "SpaceX",
       displayName: "Elon Musk",
@@ -89,7 +84,6 @@ async function run() {
     },
     sort: {
       by: "updated_at",
-      direction: "desc",
     },
     passThrough: {
       "search": "San Francisco",
@@ -153,7 +147,6 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.accounting.suppliers.create({
-    raw: false,
     serviceId: "salesforce",
     supplier: {
       displayId: "EMP00101",
@@ -418,7 +411,6 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await accountingSuppliersCreate(apideck, {
-    raw: false,
     serviceId: "salesforce",
     supplier: {
       displayId: "EMP00101",
@@ -714,7 +706,6 @@ async function run() {
   const result = await apideck.accounting.suppliers.get({
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
     fields: "id,updated_at",
   });
 
@@ -745,7 +736,6 @@ async function run() {
   const res = await accountingSuppliersGet(apideck, {
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
     fields: "id,updated_at",
   });
 
@@ -805,7 +795,6 @@ async function run() {
   const result = await apideck.accounting.suppliers.update({
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
     supplier: {
       displayId: "EMP00101",
       displayName: "Windsurf Shop",
@@ -1050,7 +1039,6 @@ async function run() {
   const res = await accountingSuppliersUpdate(apideck, {
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
     supplier: {
       displayId: "EMP00101",
       displayName: "Windsurf Shop",
@@ -1324,7 +1312,6 @@ async function run() {
   const result = await apideck.accounting.suppliers.delete({
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
   });
 
   // Handle the result
@@ -1354,7 +1341,6 @@ async function run() {
   const res = await accountingSuppliersDelete(apideck, {
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
   });
 
   if (!res.ok) {

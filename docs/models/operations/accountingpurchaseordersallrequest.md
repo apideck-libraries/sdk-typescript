@@ -16,7 +16,6 @@ let value: AccountingPurchaseOrdersAllRequest = {
   },
   sort: {
     by: "updated_at",
-    direction: "desc",
   },
 };
 ```

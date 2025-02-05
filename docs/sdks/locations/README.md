@@ -28,9 +28,7 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.accounting.locations.list({
-    raw: false,
     serviceId: "salesforce",
-    limit: 20,
     fields: "id,updated_at",
     filter: {
       subsidiary: "1",
@@ -64,9 +62,7 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await accountingLocationsList(apideck, {
-    raw: false,
     serviceId: "salesforce",
-    limit: 20,
     fields: "id,updated_at",
     filter: {
       subsidiary: "1",
@@ -129,7 +125,6 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.accounting.locations.create({
-    raw: false,
     serviceId: "salesforce",
     accountingLocation: {
       parentId: "12345",
@@ -255,7 +250,6 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await accountingLocationsCreate(apideck, {
-    raw: false,
     serviceId: "salesforce",
     accountingLocation: {
       parentId: "12345",
@@ -412,7 +406,6 @@ async function run() {
   const result = await apideck.accounting.locations.get({
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
     fields: "id,updated_at",
   });
 
@@ -443,7 +436,6 @@ async function run() {
   const res = await accountingLocationsGet(apideck, {
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
     fields: "id,updated_at",
   });
 
@@ -503,7 +495,6 @@ async function run() {
   const result = await apideck.accounting.locations.update({
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
     accountingLocation: {
       parentId: "12345",
       companyName: "SpaceX",
@@ -680,7 +671,6 @@ async function run() {
   const res = await accountingLocationsUpdate(apideck, {
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
     accountingLocation: {
       parentId: "12345",
       companyName: "SpaceX",
@@ -886,7 +876,6 @@ async function run() {
   const result = await apideck.accounting.locations.delete({
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
   });
 
   // Handle the result
@@ -916,7 +905,6 @@ async function run() {
   const res = await accountingLocationsDelete(apideck, {
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
   });
 
   if (!res.ok) {

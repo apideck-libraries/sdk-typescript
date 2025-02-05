@@ -28,9 +28,7 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.fileStorage.sharedLinks.list({
-    raw: false,
     serviceId: "salesforce",
-    limit: 20,
     passThrough: {
       "search": "San Francisco",
     },
@@ -64,9 +62,7 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await fileStorageSharedLinksList(apideck, {
-    raw: false,
     serviceId: "salesforce",
-    limit: 20,
     passThrough: {
       "search": "San Francisco",
     },
@@ -129,7 +125,6 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.fileStorage.sharedLinks.create({
-    raw: false,
     serviceId: "salesforce",
     sharedLink: {
       downloadUrl: "https://www.box.com/shared/static/rh935iit6ewrmw0unyul.jpeg",
@@ -207,7 +202,6 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await fileStorageSharedLinksCreate(apideck, {
-    raw: false,
     serviceId: "salesforce",
     sharedLink: {
       downloadUrl: "https://www.box.com/shared/static/rh935iit6ewrmw0unyul.jpeg",
@@ -316,7 +310,6 @@ async function run() {
   const result = await apideck.fileStorage.sharedLinks.get({
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
     fields: "id,updated_at",
   });
 
@@ -347,7 +340,6 @@ async function run() {
   const res = await fileStorageSharedLinksGet(apideck, {
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
     fields: "id,updated_at",
   });
 
@@ -407,7 +399,6 @@ async function run() {
   const result = await apideck.fileStorage.sharedLinks.update({
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
     sharedLink: {
       downloadUrl: "https://www.box.com/shared/static/rh935iit6ewrmw0unyul.jpeg",
       targetId: "<id>",
@@ -515,7 +506,6 @@ async function run() {
   const res = await fileStorageSharedLinksUpdate(apideck, {
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
     sharedLink: {
       downloadUrl: "https://www.box.com/shared/static/rh935iit6ewrmw0unyul.jpeg",
       targetId: "<id>",
@@ -652,7 +642,6 @@ async function run() {
   const result = await apideck.fileStorage.sharedLinks.delete({
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
   });
 
   // Handle the result
@@ -682,7 +671,6 @@ async function run() {
   const res = await fileStorageSharedLinksDelete(apideck, {
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
   });
 
   if (!res.ok) {

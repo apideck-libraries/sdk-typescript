@@ -29,9 +29,7 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.accounting.taxRates.list({
-    raw: false,
     serviceId: "salesforce",
-    limit: 20,
     filter: {
       assets: true,
       equity: true,
@@ -72,9 +70,7 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await accountingTaxRatesList(apideck, {
-    raw: false,
     serviceId: "salesforce",
-    limit: 20,
     filter: {
       assets: true,
       equity: true,
@@ -144,7 +140,6 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.accounting.taxRates.create({
-    raw: false,
     serviceId: "salesforce",
     taxRate: {
       id: "1234",
@@ -250,7 +245,6 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await accountingTaxRatesCreate(apideck, {
-    raw: false,
     serviceId: "salesforce",
     taxRate: {
       id: "1234",
@@ -388,7 +382,6 @@ async function run() {
   const result = await apideck.accounting.taxRates.get({
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
     fields: "id,updated_at",
   });
 
@@ -419,7 +412,6 @@ async function run() {
   const res = await accountingTaxRatesGet(apideck, {
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
     fields: "id,updated_at",
   });
 
@@ -479,7 +471,6 @@ async function run() {
   const result = await apideck.accounting.taxRates.update({
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
     taxRate: {
       id: "1234",
       name: "GST on Purchases",
@@ -610,7 +601,6 @@ async function run() {
   const res = await accountingTaxRatesUpdate(apideck, {
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
     taxRate: {
       id: "1234",
       name: "GST on Purchases",
@@ -770,7 +760,6 @@ async function run() {
   const result = await apideck.accounting.taxRates.delete({
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
   });
 
   // Handle the result
@@ -800,7 +789,6 @@ async function run() {
   const res = await accountingTaxRatesDelete(apideck, {
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
   });
 
   if (!res.ok) {

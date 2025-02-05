@@ -28,9 +28,7 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.crm.leads.list({
-    raw: false,
     serviceId: "salesforce",
-    limit: 20,
     filter: {
       firstName: "Elon",
       lastName: "Musk",
@@ -39,7 +37,6 @@ async function run() {
     },
     sort: {
       by: "created_at",
-      direction: "desc",
     },
     passThrough: {
       "search": "San Francisco",
@@ -74,9 +71,7 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await crmLeadsList(apideck, {
-    raw: false,
     serviceId: "salesforce",
-    limit: 20,
     filter: {
       firstName: "Elon",
       lastName: "Musk",
@@ -85,7 +80,6 @@ async function run() {
     },
     sort: {
       by: "created_at",
-      direction: "desc",
     },
     passThrough: {
       "search": "San Francisco",
@@ -149,7 +143,6 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.crm.leads.create({
-    raw: false,
     serviceId: "salesforce",
     lead: {
       name: "Elon Musk",
@@ -396,7 +389,6 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await crmLeadsCreate(apideck, {
-    raw: false,
     serviceId: "salesforce",
     lead: {
       name: "Elon Musk",
@@ -674,7 +666,6 @@ async function run() {
   const result = await apideck.crm.leads.get({
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
     fields: "id,updated_at",
   });
 
@@ -705,7 +696,6 @@ async function run() {
   const res = await crmLeadsGet(apideck, {
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
     fields: "id,updated_at",
   });
 
@@ -765,7 +755,6 @@ async function run() {
   const result = await apideck.crm.leads.update({
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
     lead: {
       name: "Elon Musk",
       companyName: "Spacex",
@@ -969,7 +958,6 @@ async function run() {
   const res = await crmLeadsUpdate(apideck, {
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
     lead: {
       name: "Elon Musk",
       companyName: "Spacex",
@@ -1202,7 +1190,6 @@ async function run() {
   const result = await apideck.crm.leads.delete({
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
   });
 
   // Handle the result
@@ -1232,7 +1219,6 @@ async function run() {
   const res = await crmLeadsDelete(apideck, {
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
   });
 
   if (!res.ok) {

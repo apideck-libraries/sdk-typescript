@@ -28,16 +28,13 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.accounting.invoiceItems.list({
-    raw: false,
     serviceId: "salesforce",
-    limit: 20,
     filter: {
       name: "Widgets Large",
       type: "service",
     },
     sort: {
       by: "updated_at",
-      direction: "desc",
     },
     passThrough: {
       "search": "San Francisco",
@@ -72,16 +69,13 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await accountingInvoiceItemsList(apideck, {
-    raw: false,
     serviceId: "salesforce",
-    limit: 20,
     filter: {
       name: "Widgets Large",
       type: "service",
     },
     sort: {
       by: "updated_at",
-      direction: "desc",
     },
     passThrough: {
       "search": "San Francisco",
@@ -146,7 +140,6 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.accounting.invoiceItems.create({
-    raw: false,
     serviceId: "salesforce",
     invoiceItem: {
       name: "Model Y",
@@ -270,7 +263,6 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await accountingInvoiceItemsCreate(apideck, {
-    raw: false,
     serviceId: "salesforce",
     invoiceItem: {
       name: "Model Y",
@@ -424,7 +416,6 @@ async function run() {
   const result = await apideck.accounting.invoiceItems.get({
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
     fields: "id,updated_at",
     filter: {
       type: "service",
@@ -458,7 +449,6 @@ async function run() {
   const res = await accountingInvoiceItemsGet(apideck, {
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
     fields: "id,updated_at",
     filter: {
       type: "service",
@@ -522,7 +512,6 @@ async function run() {
   const result = await apideck.accounting.invoiceItems.update({
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
     invoiceItem: {
       name: "Model Y",
       description: "Model Y is a fully electric, mid-size SUV, with seating for up to seven, dual motor AWD and unparalleled protection.",
@@ -667,7 +656,6 @@ async function run() {
   const res = await accountingInvoiceItemsUpdate(apideck, {
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
     invoiceItem: {
       name: "Model Y",
       description: "Model Y is a fully electric, mid-size SUV, with seating for up to seven, dual motor AWD and unparalleled protection.",
@@ -840,7 +828,6 @@ async function run() {
   const result = await apideck.accounting.invoiceItems.delete({
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
   });
 
   // Handle the result
@@ -870,7 +857,6 @@ async function run() {
   const res = await accountingInvoiceItemsDelete(apideck, {
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
   });
 
   if (!res.ok) {

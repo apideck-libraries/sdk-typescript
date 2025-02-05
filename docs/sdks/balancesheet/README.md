@@ -34,7 +34,6 @@ async function run() {
       periodCount: 3,
       periodType: "month",
     },
-    raw: false,
   });
 
   // Handle the result
@@ -72,7 +71,6 @@ async function run() {
       periodCount: 3,
       periodType: "month",
     },
-    raw: false,
   });
 
   if (!res.ok) {

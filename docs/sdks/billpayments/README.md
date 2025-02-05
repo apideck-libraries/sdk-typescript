@@ -28,15 +28,12 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.accounting.billPayments.list({
-    raw: false,
     serviceId: "salesforce",
-    limit: 20,
     filter: {
       updatedSince: new Date("2020-09-30T07:43:32.000Z"),
     },
     sort: {
       by: "updated_at",
-      direction: "desc",
     },
     passThrough: {
       "search": "San Francisco",
@@ -71,15 +68,12 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await accountingBillPaymentsList(apideck, {
-    raw: false,
     serviceId: "salesforce",
-    limit: 20,
     filter: {
       updatedSince: new Date("2020-09-30T07:43:32.000Z"),
     },
     sort: {
       by: "updated_at",
-      direction: "desc",
     },
     passThrough: {
       "search": "San Francisco",
@@ -143,7 +137,6 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.accounting.billPayments.create({
-    raw: false,
     serviceId: "salesforce",
     billPayment: {
       currency: "USD",
@@ -320,7 +313,6 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await accountingBillPaymentsCreate(apideck, {
-    raw: false,
     serviceId: "salesforce",
     billPayment: {
       currency: "USD",
@@ -528,7 +520,6 @@ async function run() {
   const result = await apideck.accounting.billPayments.get({
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
     fields: "id,updated_at",
   });
 
@@ -559,7 +550,6 @@ async function run() {
   const res = await accountingBillPaymentsGet(apideck, {
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
     fields: "id,updated_at",
   });
 
@@ -619,7 +609,6 @@ async function run() {
   const result = await apideck.accounting.billPayments.update({
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
     billPayment: {
       currency: "USD",
       currencyRate: 0.69,
@@ -814,7 +803,6 @@ async function run() {
   const res = await accountingBillPaymentsUpdate(apideck, {
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
     billPayment: {
       currency: "USD",
       currencyRate: 0.69,
@@ -1038,7 +1026,6 @@ async function run() {
   const result = await apideck.accounting.billPayments.delete({
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
   });
 
   // Handle the result
@@ -1068,7 +1055,6 @@ async function run() {
   const res = await accountingBillPaymentsDelete(apideck, {
     id: "<id>",
     serviceId: "salesforce",
-    raw: false,
   });
 
   if (!res.ok) {
