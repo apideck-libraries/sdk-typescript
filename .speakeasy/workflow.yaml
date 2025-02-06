@@ -20,7 +20,7 @@ sources:
             - removeUnused: true
             - cleanup: true
         registry:
-            location: registry.speakeasyapi.dev/apideck-k2o/apideck/apideck-oas-enhanced
+            location: registry.speakeasyapi.dev/apideck-k2o/apideck/apideck-oas
     Apideck-Sample-Docs:
         inputs:
             - location: https://specs.apideck.com/accounting.yml
@@ -46,7 +46,7 @@ sources:
             - removeUnused: true
             - cleanup: true
         registry:
-            location: registry.speakeasyapi.dev/apideck-k2o/apideck/apideck-oas-enhanced-with-code-samples
+            location: registry.speakeasyapi.dev/apideck-k2o/apideck/apideck-with-code-samples
 targets:
     apideck:
         target: typescript
