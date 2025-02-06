@@ -16,49 +16,14 @@ import { Vault } from "./vault.js";
 import { Webhook } from "./webhook.js";
 
 export class Apideck extends ClientSDK {
-  private _accounting?: Accounting;
-  get accounting(): Accounting {
-    return (this._accounting ??= new Accounting(this._options));
-  }
-
-  private _ats?: Ats;
-  get ats(): Ats {
-    return (this._ats ??= new Ats(this._options));
-  }
-
-  private _crm?: Crm;
-  get crm(): Crm {
-    return (this._crm ??= new Crm(this._options));
-  }
-
-  private _ecommerce?: Ecommerce;
-  get ecommerce(): Ecommerce {
-    return (this._ecommerce ??= new Ecommerce(this._options));
-  }
-
-  private _fileStorage?: FileStorage;
-  get fileStorage(): FileStorage {
-    return (this._fileStorage ??= new FileStorage(this._options));
-  }
-
-  private _hris?: Hris;
-  get hris(): Hris {
-    return (this._hris ??= new Hris(this._options));
-  }
-
-  private _sms?: Sms;
-  get sms(): Sms {
-    return (this._sms ??= new Sms(this._options));
-  }
-
   private _issueTracking?: IssueTracking;
   get issueTracking(): IssueTracking {
     return (this._issueTracking ??= new IssueTracking(this._options));
   }
 
-  private _connector?: Connector;
-  get connector(): Connector {
-    return (this._connector ??= new Connector(this._options));
+  private _webhook?: Webhook;
+  get webhook(): Webhook {
+    return (this._webhook ??= new Webhook(this._options));
   }
 
   private _vault?: Vault;
@@ -66,8 +31,43 @@ export class Apideck extends ClientSDK {
     return (this._vault ??= new Vault(this._options));
   }
 
-  private _webhook?: Webhook;
-  get webhook(): Webhook {
-    return (this._webhook ??= new Webhook(this._options));
+  private _sms?: Sms;
+  get sms(): Sms {
+    return (this._sms ??= new Sms(this._options));
+  }
+
+  private _ecommerce?: Ecommerce;
+  get ecommerce(): Ecommerce {
+    return (this._ecommerce ??= new Ecommerce(this._options));
+  }
+
+  private _hris?: Hris;
+  get hris(): Hris {
+    return (this._hris ??= new Hris(this._options));
+  }
+
+  private _ats?: Ats;
+  get ats(): Ats {
+    return (this._ats ??= new Ats(this._options));
+  }
+
+  private _connector?: Connector;
+  get connector(): Connector {
+    return (this._connector ??= new Connector(this._options));
+  }
+
+  private _crm?: Crm;
+  get crm(): Crm {
+    return (this._crm ??= new Crm(this._options));
+  }
+
+  private _fileStorage?: FileStorage;
+  get fileStorage(): FileStorage {
+    return (this._fileStorage ??= new FileStorage(this._options));
+  }
+
+  private _accounting?: Accounting;
+  get accounting(): Accounting {
+    return (this._accounting ??= new Accounting(this._options));
   }
 }

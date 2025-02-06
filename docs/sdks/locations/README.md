@@ -404,7 +404,7 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.accounting.locations.get({
-    id: "<id>",
+    id: "0b9579ba-14c9-46c5-a61a-8da5d6fd5b47",
     serviceId: "salesforce",
     fields: "id,updated_at",
   });
@@ -434,7 +434,7 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await accountingLocationsGet(apideck, {
-    id: "<id>",
+    id: "0b9579ba-14c9-46c5-a61a-8da5d6fd5b47",
     serviceId: "salesforce",
     fields: "id,updated_at",
   });
@@ -493,7 +493,7 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.accounting.locations.update({
-    id: "<id>",
+    id: "0b9579ba-14c9-46c5-a61a-8da5d6fd5b47",
     serviceId: "salesforce",
     accountingLocation: {
       parentId: "12345",
@@ -669,7 +669,7 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await accountingLocationsUpdate(apideck, {
-    id: "<id>",
+    id: "0b9579ba-14c9-46c5-a61a-8da5d6fd5b47",
     serviceId: "salesforce",
     accountingLocation: {
       parentId: "12345",
@@ -874,7 +874,7 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.accounting.locations.delete({
-    id: "<id>",
+    id: "0b9579ba-14c9-46c5-a61a-8da5d6fd5b47",
     serviceId: "salesforce",
   });
 
@@ -903,7 +903,7 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await accountingLocationsDelete(apideck, {
-    id: "<id>",
+    id: "0b9579ba-14c9-46c5-a61a-8da5d6fd5b47",
     serviceId: "salesforce",
   });
 

@@ -26,7 +26,7 @@ export type Operation = {
 /**
  * Apideck service provider associated with request.
  */
-export type Service = {
+export type LogService = {
   /**
    * Apideck service provider id.
    */
@@ -123,7 +123,7 @@ export type Log = {
   /**
    * Apideck service provider associated with request.
    */
-  service: Service;
+  service: LogService;
   /**
    * The IP address of the source of the request.
    */
@@ -200,23 +200,26 @@ export function operationFromJSON(
 }
 
 /** @internal */
-export const Service$inboundSchema: z.ZodType<Service, z.ZodTypeDef, unknown> =
-  z.object({
-    id: z.string(),
-    name: z.string(),
-  });
+export const LogService$inboundSchema: z.ZodType<
+  LogService,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  id: z.string(),
+  name: z.string(),
+});
 
 /** @internal */
-export type Service$Outbound = {
+export type LogService$Outbound = {
   id: string;
   name: string;
 };
 
 /** @internal */
-export const Service$outboundSchema: z.ZodType<
-  Service$Outbound,
+export const LogService$outboundSchema: z.ZodType<
+  LogService$Outbound,
   z.ZodTypeDef,
-  Service
+  LogService
 > = z.object({
   id: z.string(),
   name: z.string(),
@@ -226,26 +229,26 @@ export const Service$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace Service$ {
-  /** @deprecated use `Service$inboundSchema` instead. */
-  export const inboundSchema = Service$inboundSchema;
-  /** @deprecated use `Service$outboundSchema` instead. */
-  export const outboundSchema = Service$outboundSchema;
-  /** @deprecated use `Service$Outbound` instead. */
-  export type Outbound = Service$Outbound;
+export namespace LogService$ {
+  /** @deprecated use `LogService$inboundSchema` instead. */
+  export const inboundSchema = LogService$inboundSchema;
+  /** @deprecated use `LogService$outboundSchema` instead. */
+  export const outboundSchema = LogService$outboundSchema;
+  /** @deprecated use `LogService$Outbound` instead. */
+  export type Outbound = LogService$Outbound;
 }
 
-export function serviceToJSON(service: Service): string {
-  return JSON.stringify(Service$outboundSchema.parse(service));
+export function logServiceToJSON(logService: LogService): string {
+  return JSON.stringify(LogService$outboundSchema.parse(logService));
 }
 
-export function serviceFromJSON(
+export function logServiceFromJSON(
   jsonString: string,
-): SafeParseResult<Service, SDKValidationError> {
+): SafeParseResult<LogService, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => Service$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Service' from JSON`,
+    (x) => LogService$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'LogService' from JSON`,
   );
 }
 
@@ -286,7 +289,7 @@ export const Log$inboundSchema: z.ZodType<Log, z.ZodTypeDef, unknown> = z
     parent_id: z.nullable(z.string()),
     path: z.string(),
     sandbox: z.boolean(),
-    service: z.lazy(() => Service$inboundSchema),
+    service: z.lazy(() => LogService$inboundSchema),
     source_ip: z.nullable(z.string()).optional(),
     status_code: z.number().int(),
     success: z.boolean(),
@@ -325,7 +328,7 @@ export type Log$Outbound = {
   parent_id: string | null;
   path: string;
   sandbox: boolean;
-  service: Service$Outbound;
+  service: LogService$Outbound;
   source_ip?: string | null | undefined;
   status_code: number;
   success: boolean;
@@ -351,7 +354,7 @@ export const Log$outboundSchema: z.ZodType<Log$Outbound, z.ZodTypeDef, Log> = z
     parentId: z.nullable(z.string()),
     path: z.string(),
     sandbox: z.boolean(),
-    service: z.lazy(() => Service$outboundSchema),
+    service: z.lazy(() => LogService$outboundSchema),
     sourceIp: z.nullable(z.string()).optional(),
     statusCode: z.number().int(),
     success: z.boolean(),

@@ -1,17 +1,17 @@
 # By
 
-The field on which to sort the Bills
+The field on which to sort the Collections
 
 ## Example Usage
 
 ```typescript
 import { By } from "@apideck/unify/models/components";
 
-let value: By = "updated_at";
+let value: By = "name";
 ```
 
 ## Values
 
 ```typescript
-"updated_at" | "created_at"
+"name" | "created_at" | "updated_at"
 ```

@@ -4,14 +4,14 @@
 
 import { ClientSDK } from "../lib/sdks.js";
 import { AgedDebtors } from "./ageddebtors.js";
+import { ApideckCustomers } from "./apideckcustomers.js";
+import { ApideckDepartments } from "./apideckdepartments.js";
 import { Attachments } from "./attachments.js";
 import { BalanceSheet } from "./balancesheet.js";
 import { BillPayments } from "./billpayments.js";
 import { Bills } from "./bills.js";
 import { CompanyInfo } from "./companyinfo.js";
 import { CreditNotes } from "./creditnotes.js";
-import { Customers } from "./customers.js";
-import { Departments } from "./departments.js";
 import { Expenses } from "./expenses.js";
 import { InvoiceItems } from "./invoiceitems.js";
 import { Invoices } from "./invoices.js";
@@ -57,9 +57,9 @@ export class Accounting extends ClientSDK {
     return (this._creditNotes ??= new CreditNotes(this._options));
   }
 
-  private _customers?: Customers;
-  get customers(): Customers {
-    return (this._customers ??= new Customers(this._options));
+  private _customers?: ApideckCustomers;
+  get customers(): ApideckCustomers {
+    return (this._customers ??= new ApideckCustomers(this._options));
   }
 
   private _suppliers?: Suppliers;
@@ -107,9 +107,9 @@ export class Accounting extends ClientSDK {
     return (this._locations ??= new Locations(this._options));
   }
 
-  private _departments?: Departments;
-  get departments(): Departments {
-    return (this._departments ??= new Departments(this._options));
+  private _departments?: ApideckDepartments;
+  get departments(): ApideckDepartments {
+    return (this._departments ??= new ApideckDepartments(this._options));
   }
 
   private _attachments?: Attachments;

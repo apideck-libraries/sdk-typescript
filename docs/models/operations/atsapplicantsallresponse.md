@@ -46,7 +46,7 @@ let value: AtsApplicantsAllResponse = {
             id: "2389328923893298",
             name: "employee_level",
             description: "Employee Level",
-            value: {},
+            value: true,
           },
         ],
         phoneNumbers: [
@@ -178,7 +178,7 @@ let value: AtsApplicantsAllResponse = {
     error: "Bad Request",
     typeName: "RequestHeadersValidationError",
     message: "Invalid Params",
-    detail: "Missing Header: x-apideck-consumer-id",
+    detail: {},
     ref: "https://developers.apideck.com/errors#unauthorizederror",
   },
 };

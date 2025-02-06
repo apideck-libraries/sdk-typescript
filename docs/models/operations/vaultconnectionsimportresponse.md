@@ -79,10 +79,10 @@ let value: VaultConnectionsImportResponse = {
               options: [
                 {
                   label: "General Channel",
-                  value: 123,
+                  value: true,
                 },
               ],
-              value: "GC5000 series",
+              value: true,
             },
           ],
         },

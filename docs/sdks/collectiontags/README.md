@@ -24,7 +24,7 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.issueTracking.collectionTags.list({
-    collectionId: "apideck-io",
+    collectionId: "collection_id_example",
     serviceId: "salesforce",
     passThrough: {
       "search": "San Francisco",
@@ -59,7 +59,7 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await issueTrackingCollectionTagsList(apideck, {
-    collectionId: "apideck-io",
+    collectionId: "collection_id_example",
     serviceId: "salesforce",
     passThrough: {
       "search": "San Francisco",

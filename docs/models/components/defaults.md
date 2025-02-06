@@ -15,12 +15,15 @@ let value: Defaults = {
       options: [
         {
           label: "General Channel",
-          value: 12.5,
+          value: [
+            "team",
+            "general",
+          ],
         },
       ],
     },
   ],
-  value: 10,
+  value: 10.5,
 };
 ```
 

@@ -132,9 +132,7 @@ let value: AtsJobsOneResponse = {
           id: "2389328923893298",
           name: "employee_level",
           description: "Employee Level",
-          value: [
-            {},
-          ],
+          value: 10,
         },
       ],
       deleted: true,
@@ -151,7 +149,7 @@ let value: AtsJobsOneResponse = {
     error: "Bad Request",
     typeName: "RequestHeadersValidationError",
     message: "Invalid Params",
-    detail: "Missing Header: x-apideck-consumer-id",
+    detail: {},
     ref: "https://developers.apideck.com/errors#unauthorizederror",
   },
 };

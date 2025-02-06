@@ -128,7 +128,7 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.issueTracking.collections.get({
-    collectionId: "apideck-io",
+    collectionId: "collection_id_example",
     serviceId: "salesforce",
     fields: "id,updated_at",
   });
@@ -158,7 +158,7 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await issueTrackingCollectionsGet(apideck, {
-    collectionId: "apideck-io",
+    collectionId: "collection_id_example",
     serviceId: "salesforce",
     fields: "id,updated_at",
   });

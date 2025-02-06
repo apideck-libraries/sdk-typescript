@@ -14,45 +14,6 @@ import { PageIterator, unwrapResultIterator } from "../types/operations.js";
 
 export class CollectionTicketComments extends ClientSDK {
   /**
-   * List Comments
-   *
-   * @remarks
-   * List Comments
-   */
-  async list(
-    request: operations.IssueTrackingCollectionTicketCommentsAllRequest,
-    options?: RequestOptions,
-  ): Promise<
-    PageIterator<
-      operations.IssueTrackingCollectionTicketCommentsAllResponse,
-      { cursor: string }
-    >
-  > {
-    return unwrapResultIterator(issueTrackingCollectionTicketCommentsList(
-      this,
-      request,
-      options,
-    ));
-  }
-
-  /**
-   * Create Comment
-   *
-   * @remarks
-   * Create Comment
-   */
-  async create(
-    request: operations.IssueTrackingCollectionTicketCommentsAddRequest,
-    options?: RequestOptions,
-  ): Promise<operations.IssueTrackingCollectionTicketCommentsAddResponse> {
-    return unwrapAsync(issueTrackingCollectionTicketCommentsCreate(
-      this,
-      request,
-      options,
-    ));
-  }
-
-  /**
    * Get Comment
    *
    * @remarks
@@ -102,6 +63,45 @@ export class CollectionTicketComments extends ClientSDK {
     options?: RequestOptions,
   ): Promise<operations.IssueTrackingCollectionTicketCommentsDeleteResponse> {
     return unwrapAsync(issueTrackingCollectionTicketCommentsDelete(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * List Comments
+   *
+   * @remarks
+   * List Comments
+   */
+  async list(
+    request: operations.IssueTrackingCollectionTicketCommentsAllRequest,
+    options?: RequestOptions,
+  ): Promise<
+    PageIterator<
+      operations.IssueTrackingCollectionTicketCommentsAllResponse,
+      { cursor: string }
+    >
+  > {
+    return unwrapResultIterator(issueTrackingCollectionTicketCommentsList(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Create Comment
+   *
+   * @remarks
+   * Create Comment
+   */
+  async create(
+    request: operations.IssueTrackingCollectionTicketCommentsAddRequest,
+    options?: RequestOptions,
+  ): Promise<operations.IssueTrackingCollectionTicketCommentsAddResponse> {
+    return unwrapAsync(issueTrackingCollectionTicketCommentsCreate(
       this,
       request,
       options,

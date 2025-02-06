@@ -610,7 +610,7 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.accounting.bills.get({
-    id: "<id>",
+    id: "0b9579ba-14c9-46c5-a61a-8da5d6fd5b47",
     serviceId: "salesforce",
     fields: "id,updated_at",
   });
@@ -640,7 +640,7 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await accountingBillsGet(apideck, {
-    id: "<id>",
+    id: "0b9579ba-14c9-46c5-a61a-8da5d6fd5b47",
     serviceId: "salesforce",
     fields: "id,updated_at",
   });
@@ -700,7 +700,7 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.accounting.bills.update({
-    id: "<id>",
+    id: "0b9579ba-14c9-46c5-a61a-8da5d6fd5b47",
     serviceId: "salesforce",
     bill: {
       billNumber: "10001",
@@ -976,7 +976,7 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await accountingBillsUpdate(apideck, {
-    id: "<id>",
+    id: "0b9579ba-14c9-46c5-a61a-8da5d6fd5b47",
     serviceId: "salesforce",
     bill: {
       billNumber: "10001",
@@ -1280,7 +1280,7 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.accounting.bills.delete({
-    id: "<id>",
+    id: "0b9579ba-14c9-46c5-a61a-8da5d6fd5b47",
     serviceId: "salesforce",
   });
 
@@ -1309,7 +1309,7 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await accountingBillsDelete(apideck, {
-    id: "<id>",
+    id: "0b9579ba-14c9-46c5-a61a-8da5d6fd5b47",
     serviceId: "salesforce",
   });
 

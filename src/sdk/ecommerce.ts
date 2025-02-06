@@ -3,25 +3,25 @@
  */
 
 import { ClientSDK } from "../lib/sdks.js";
-import { ApideckCustomers } from "./apideckcustomers.js";
+import { Customers } from "./customers.js";
 import { Orders } from "./orders.js";
 import { Products } from "./products.js";
 import { Stores } from "./stores.js";
 
 export class Ecommerce extends ClientSDK {
-  private _orders?: Orders;
-  get orders(): Orders {
-    return (this._orders ??= new Orders(this._options));
-  }
-
   private _products?: Products;
   get products(): Products {
     return (this._products ??= new Products(this._options));
   }
 
-  private _customers?: ApideckCustomers;
-  get customers(): ApideckCustomers {
-    return (this._customers ??= new ApideckCustomers(this._options));
+  private _orders?: Orders;
+  get orders(): Orders {
+    return (this._orders ??= new Orders(this._options));
+  }
+
+  private _customers?: Customers;
+  get customers(): Customers {
+    return (this._customers ??= new Customers(this._options));
   }
 
   private _stores?: Stores;

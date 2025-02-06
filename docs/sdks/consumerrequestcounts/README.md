@@ -26,8 +26,8 @@ const apideck = new Apideck({
 async function run() {
   const result = await apideck.vault.consumerRequestCounts.list({
     consumerId: "test_user_id",
-    startDatetime: "2021-05-01T12:00:00.000Z",
-    endDatetime: "2021-05-30T12:00:00.000Z",
+    startDatetime: "start_datetime_example",
+    endDatetime: "end_datetime_example",
   });
 
   // Handle the result
@@ -56,8 +56,8 @@ const apideck = new ApideckCore({
 async function run() {
   const res = await vaultConsumerRequestCountsList(apideck, {
     consumerId: "test_user_id",
-    startDatetime: "2021-05-01T12:00:00.000Z",
-    endDatetime: "2021-05-30T12:00:00.000Z",
+    startDatetime: "start_datetime_example",
+    endDatetime: "end_datetime_example",
   });
 
   if (!res.ok) {

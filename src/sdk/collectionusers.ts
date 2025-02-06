@@ -11,6 +11,23 @@ import { PageIterator, unwrapResultIterator } from "../types/operations.js";
 
 export class CollectionUsers extends ClientSDK {
   /**
+   * Get user
+   *
+   * @remarks
+   * Get user
+   */
+  async get(
+    request: operations.IssueTrackingCollectionUsersOneRequest,
+    options?: RequestOptions,
+  ): Promise<operations.IssueTrackingCollectionUsersOneResponse> {
+    return unwrapAsync(issueTrackingCollectionUsersGet(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
    * List Users
    *
    * @remarks
@@ -26,23 +43,6 @@ export class CollectionUsers extends ClientSDK {
     >
   > {
     return unwrapResultIterator(issueTrackingCollectionUsersList(
-      this,
-      request,
-      options,
-    ));
-  }
-
-  /**
-   * Get user
-   *
-   * @remarks
-   * Get user
-   */
-  async get(
-    request: operations.IssueTrackingCollectionUsersOneRequest,
-    options?: RequestOptions,
-  ): Promise<operations.IssueTrackingCollectionUsersOneResponse> {
-    return unwrapAsync(issueTrackingCollectionUsersGet(
       this,
       request,
       options,

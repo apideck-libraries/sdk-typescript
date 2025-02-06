@@ -61,13 +61,7 @@ let value: VaultConsumersAllResponse = {
     error: "Bad Request",
     typeName: "RequestHeadersValidationError",
     message: "Invalid Params",
-    detail: {
-      "missing": [
-        {
-          "x-apideck-consumer-id": "required",
-        },
-      ],
-    },
+    detail: {},
     ref: "https://developers.apideck.com/errors#unauthorizederror",
   },
 };

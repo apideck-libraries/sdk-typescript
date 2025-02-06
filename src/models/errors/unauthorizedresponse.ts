@@ -8,10 +8,12 @@ import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "./sdkvalidationerror.js";
 
+export type Detail2 = {};
+
 /**
  * Contains parameter or domain specific information related to the error and why it occurred.
  */
-export type UnauthorizedResponseDetail = string | { [k: string]: any };
+export type UnauthorizedResponseDetail = Detail2 | string;
 
 /**
  * Unauthorized
@@ -36,7 +38,7 @@ export type UnauthorizedResponseData = {
   /**
    * Contains parameter or domain specific information related to the error and why it occurred.
    */
-  detail?: string | { [k: string]: any } | undefined;
+  detail?: Detail2 | string | undefined;
   /**
    * Link to documentation of error type
    */
@@ -62,7 +64,7 @@ export class UnauthorizedResponse extends Error {
   /**
    * Contains parameter or domain specific information related to the error and why it occurred.
    */
-  detail?: string | { [k: string]: any } | undefined;
+  detail?: Detail2 | string | undefined;
   /**
    * Link to documentation of error type
    */
@@ -87,21 +89,62 @@ export class UnauthorizedResponse extends Error {
 }
 
 /** @internal */
+export const Detail2$inboundSchema: z.ZodType<Detail2, z.ZodTypeDef, unknown> =
+  z.object({});
+
+/** @internal */
+export type Detail2$Outbound = {};
+
+/** @internal */
+export const Detail2$outboundSchema: z.ZodType<
+  Detail2$Outbound,
+  z.ZodTypeDef,
+  Detail2
+> = z.object({});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace Detail2$ {
+  /** @deprecated use `Detail2$inboundSchema` instead. */
+  export const inboundSchema = Detail2$inboundSchema;
+  /** @deprecated use `Detail2$outboundSchema` instead. */
+  export const outboundSchema = Detail2$outboundSchema;
+  /** @deprecated use `Detail2$Outbound` instead. */
+  export type Outbound = Detail2$Outbound;
+}
+
+export function detail2ToJSON(detail2: Detail2): string {
+  return JSON.stringify(Detail2$outboundSchema.parse(detail2));
+}
+
+export function detail2FromJSON(
+  jsonString: string,
+): SafeParseResult<Detail2, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Detail2$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Detail2' from JSON`,
+  );
+}
+
+/** @internal */
 export const UnauthorizedResponseDetail$inboundSchema: z.ZodType<
   UnauthorizedResponseDetail,
   z.ZodTypeDef,
   unknown
-> = z.union([z.string(), z.record(z.any())]);
+> = z.union([z.lazy(() => Detail2$inboundSchema), z.string()]);
 
 /** @internal */
-export type UnauthorizedResponseDetail$Outbound = string | { [k: string]: any };
+export type UnauthorizedResponseDetail$Outbound = Detail2$Outbound | string;
 
 /** @internal */
 export const UnauthorizedResponseDetail$outboundSchema: z.ZodType<
   UnauthorizedResponseDetail$Outbound,
   z.ZodTypeDef,
   UnauthorizedResponseDetail
-> = z.union([z.string(), z.record(z.any())]);
+> = z.union([z.lazy(() => Detail2$outboundSchema), z.string()]);
 
 /**
  * @internal
@@ -144,7 +187,7 @@ export const UnauthorizedResponse$inboundSchema: z.ZodType<
   error: z.string().optional(),
   type_name: z.string().optional(),
   message: z.string().optional(),
-  detail: z.union([z.string(), z.record(z.any())]).optional(),
+  detail: z.union([z.lazy(() => Detail2$inboundSchema), z.string()]).optional(),
   ref: z.string().optional(),
 })
   .transform((v) => {
@@ -162,7 +205,7 @@ export type UnauthorizedResponse$Outbound = {
   error?: string | undefined;
   type_name?: string | undefined;
   message?: string | undefined;
-  detail?: string | { [k: string]: any } | undefined;
+  detail?: Detail2$Outbound | string | undefined;
   ref?: string | undefined;
 };
 
@@ -179,7 +222,8 @@ export const UnauthorizedResponse$outboundSchema: z.ZodType<
       error: z.string().optional(),
       typeName: z.string().optional(),
       message: z.string().optional(),
-      detail: z.union([z.string(), z.record(z.any())]).optional(),
+      detail: z.union([z.lazy(() => Detail2$outboundSchema), z.string()])
+        .optional(),
       ref: z.string().optional(),
     }).transform((v) => {
       return remap$(v, {

@@ -314,7 +314,7 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.fileStorage.driveGroups.get({
-    id: "<id>",
+    id: "0b9579ba-14c9-46c5-a61a-8da5d6fd5b47",
     serviceId: "salesforce",
     fields: "id,updated_at",
   });
@@ -344,7 +344,7 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await fileStorageDriveGroupsGet(apideck, {
-    id: "<id>",
+    id: "0b9579ba-14c9-46c5-a61a-8da5d6fd5b47",
     serviceId: "salesforce",
     fields: "id,updated_at",
   });
@@ -403,7 +403,7 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.fileStorage.driveGroups.update({
-    id: "<id>",
+    id: "0b9579ba-14c9-46c5-a61a-8da5d6fd5b47",
     serviceId: "salesforce",
     driveGroup: {
       name: "accounting",
@@ -510,7 +510,7 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await fileStorageDriveGroupsUpdate(apideck, {
-    id: "<id>",
+    id: "0b9579ba-14c9-46c5-a61a-8da5d6fd5b47",
     serviceId: "salesforce",
     driveGroup: {
       name: "accounting",
@@ -646,7 +646,7 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.fileStorage.driveGroups.delete({
-    id: "<id>",
+    id: "0b9579ba-14c9-46c5-a61a-8da5d6fd5b47",
     serviceId: "salesforce",
   });
 
@@ -675,7 +675,7 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await fileStorageDriveGroupsDelete(apideck, {
-    id: "<id>",
+    id: "0b9579ba-14c9-46c5-a61a-8da5d6fd5b47",
     serviceId: "salesforce",
   });
 

@@ -48,7 +48,7 @@ export type AccountingCustomersAllRequest = {
   /**
    * Apply filters
    */
-  filter?: components.CustomersFilter | undefined;
+  filter?: components.EcommerceCustomersFilter | undefined;
   /**
    * Apply sorting
    */
@@ -146,7 +146,7 @@ export const AccountingCustomersAllRequest$inboundSchema: z.ZodType<
   serviceId: z.string().optional(),
   cursor: z.nullable(z.string()).optional(),
   limit: z.number().int().default(20),
-  filter: components.CustomersFilter$inboundSchema.optional(),
+  filter: components.EcommerceCustomersFilter$inboundSchema.optional(),
   sort: components.CustomersSort$inboundSchema.optional(),
   pass_through: z.record(z.any()).optional(),
   fields: z.nullable(z.string()).optional(),
@@ -164,7 +164,7 @@ export type AccountingCustomersAllRequest$Outbound = {
   serviceId?: string | undefined;
   cursor?: string | null | undefined;
   limit: number;
-  filter?: components.CustomersFilter$Outbound | undefined;
+  filter?: components.EcommerceCustomersFilter$Outbound | undefined;
   sort?: components.CustomersSort$Outbound | undefined;
   pass_through?: { [k: string]: any } | undefined;
   fields?: string | null | undefined;
@@ -182,7 +182,7 @@ export const AccountingCustomersAllRequest$outboundSchema: z.ZodType<
   serviceId: z.string().optional(),
   cursor: z.nullable(z.string()).optional(),
   limit: z.number().int().default(20),
-  filter: components.CustomersFilter$outboundSchema.optional(),
+  filter: components.EcommerceCustomersFilter$outboundSchema.optional(),
   sort: components.CustomersSort$outboundSchema.optional(),
   passThrough: z.record(z.any()).optional(),
   fields: z.nullable(z.string()).optional(),

@@ -1,17 +1,15 @@
 # Type
 
-The type of address.
-
 ## Example Usage
 
 ```typescript
 import { Type } from "@apideck/unify/models/components";
 
-let value: Type = "primary";
+let value: Type = "select";
 ```
 
 ## Values
 
 ```typescript
-"primary" | "secondary" | "home" | "office" | "shipping" | "billing" | "other"
+"text" | "checkbox" | "tel" | "email" | "url" | "textarea" | "select" | "filtered-select" | "multi-select" | "datetime" | "date" | "time" | "number"
 ```

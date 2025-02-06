@@ -252,7 +252,7 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.fileStorage.files.get({
-    id: "<id>",
+    id: "0b9579ba-14c9-46c5-a61a-8da5d6fd5b47",
     serviceId: "salesforce",
     fields: "id,updated_at",
   });
@@ -282,7 +282,7 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await fileStorageFilesGet(apideck, {
-    id: "<id>",
+    id: "0b9579ba-14c9-46c5-a61a-8da5d6fd5b47",
     serviceId: "salesforce",
     fields: "id,updated_at",
   });
@@ -341,7 +341,7 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.fileStorage.files.update({
-    id: "<id>",
+    id: "0b9579ba-14c9-46c5-a61a-8da5d6fd5b47",
     serviceId: "salesforce",
     updateFileRequest: {
       name: "New Name.pdf",
@@ -448,7 +448,7 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await fileStorageFilesUpdate(apideck, {
-    id: "<id>",
+    id: "0b9579ba-14c9-46c5-a61a-8da5d6fd5b47",
     serviceId: "salesforce",
     updateFileRequest: {
       name: "New Name.pdf",
@@ -584,7 +584,7 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.fileStorage.files.delete({
-    id: "<id>",
+    id: "0b9579ba-14c9-46c5-a61a-8da5d6fd5b47",
     serviceId: "salesforce",
   });
 
@@ -613,7 +613,7 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await fileStorageFilesDelete(apideck, {
-    id: "<id>",
+    id: "0b9579ba-14c9-46c5-a61a-8da5d6fd5b47",
     serviceId: "salesforce",
   });
 
@@ -671,7 +671,7 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.fileStorage.files.download({
-    id: "<id>",
+    id: "0b9579ba-14c9-46c5-a61a-8da5d6fd5b47",
     serviceId: "salesforce",
     fields: "id,updated_at",
   });
@@ -701,7 +701,7 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await fileStorageFilesDownload(apideck, {
-    id: "<id>",
+    id: "0b9579ba-14c9-46c5-a61a-8da5d6fd5b47",
     serviceId: "salesforce",
     fields: "id,updated_at",
   });
@@ -760,10 +760,10 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.fileStorage.files.export({
-    id: "<id>",
+    id: "0b9579ba-14c9-46c5-a61a-8da5d6fd5b47",
     serviceId: "salesforce",
     fields: "id,updated_at",
-    format: "pdf",
+    format: "format_example",
   });
 
   // Handle the result
@@ -791,10 +791,10 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await fileStorageFilesExport(apideck, {
-    id: "<id>",
+    id: "0b9579ba-14c9-46c5-a61a-8da5d6fd5b47",
     serviceId: "salesforce",
     fields: "id,updated_at",
-    format: "pdf",
+    format: "format_example",
   });
 
   if (!res.ok) {

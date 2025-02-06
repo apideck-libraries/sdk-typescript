@@ -14,42 +14,6 @@ import { PageIterator, unwrapResultIterator } from "../types/operations.js";
 
 export class Webhooks extends ClientSDK {
   /**
-   * List webhook subscriptions
-   *
-   * @remarks
-   * List all webhook subscriptions
-   */
-  async list(
-    request: operations.WebhookWebhooksAllRequest,
-    options?: RequestOptions,
-  ): Promise<
-    PageIterator<operations.WebhookWebhooksAllResponse, { cursor: string }>
-  > {
-    return unwrapResultIterator(webhookWebhooksList(
-      this,
-      request,
-      options,
-    ));
-  }
-
-  /**
-   * Create webhook subscription
-   *
-   * @remarks
-   * Create a webhook subscription to receive events
-   */
-  async create(
-    request: operations.WebhookWebhooksAddRequest,
-    options?: RequestOptions,
-  ): Promise<operations.WebhookWebhooksAddResponse> {
-    return unwrapAsync(webhookWebhooksCreate(
-      this,
-      request,
-      options,
-    ));
-  }
-
-  /**
    * Get webhook subscription
    *
    * @remarks
@@ -94,6 +58,42 @@ export class Webhooks extends ClientSDK {
     options?: RequestOptions,
   ): Promise<operations.WebhookWebhooksDeleteResponse> {
     return unwrapAsync(webhookWebhooksDelete(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * List webhook subscriptions
+   *
+   * @remarks
+   * List all webhook subscriptions
+   */
+  async list(
+    request: operations.WebhookWebhooksAllRequest,
+    options?: RequestOptions,
+  ): Promise<
+    PageIterator<operations.WebhookWebhooksAllResponse, { cursor: string }>
+  > {
+    return unwrapResultIterator(webhookWebhooksList(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Create webhook subscription
+   *
+   * @remarks
+   * Create a webhook subscription to receive events
+   */
+  async create(
+    request: operations.WebhookWebhooksAddRequest,
+    options?: RequestOptions,
+  ): Promise<operations.WebhookWebhooksAddResponse> {
+    return unwrapAsync(webhookWebhooksCreate(
       this,
       request,
       options,

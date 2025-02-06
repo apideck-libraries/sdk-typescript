@@ -8,7 +8,7 @@ import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
-export type CreateSessionResponseData = {
+export type Data = {
   sessionUri: string;
   sessionToken: string;
 };
@@ -25,73 +25,63 @@ export type CreateSessionResponse = {
    * HTTP Response Status
    */
   status: string;
-  data: CreateSessionResponseData;
+  data: Data;
 };
 
 /** @internal */
-export const CreateSessionResponseData$inboundSchema: z.ZodType<
-  CreateSessionResponseData,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  session_uri: z.string(),
-  session_token: z.string(),
-}).transform((v) => {
-  return remap$(v, {
-    "session_uri": "sessionUri",
-    "session_token": "sessionToken",
+export const Data$inboundSchema: z.ZodType<Data, z.ZodTypeDef, unknown> = z
+  .object({
+    session_uri: z.string(),
+    session_token: z.string(),
+  }).transform((v) => {
+    return remap$(v, {
+      "session_uri": "sessionUri",
+      "session_token": "sessionToken",
+    });
   });
-});
 
 /** @internal */
-export type CreateSessionResponseData$Outbound = {
+export type Data$Outbound = {
   session_uri: string;
   session_token: string;
 };
 
 /** @internal */
-export const CreateSessionResponseData$outboundSchema: z.ZodType<
-  CreateSessionResponseData$Outbound,
-  z.ZodTypeDef,
-  CreateSessionResponseData
-> = z.object({
-  sessionUri: z.string(),
-  sessionToken: z.string(),
-}).transform((v) => {
-  return remap$(v, {
-    sessionUri: "session_uri",
-    sessionToken: "session_token",
+export const Data$outboundSchema: z.ZodType<Data$Outbound, z.ZodTypeDef, Data> =
+  z.object({
+    sessionUri: z.string(),
+    sessionToken: z.string(),
+  }).transform((v) => {
+    return remap$(v, {
+      sessionUri: "session_uri",
+      sessionToken: "session_token",
+    });
   });
-});
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace CreateSessionResponseData$ {
-  /** @deprecated use `CreateSessionResponseData$inboundSchema` instead. */
-  export const inboundSchema = CreateSessionResponseData$inboundSchema;
-  /** @deprecated use `CreateSessionResponseData$outboundSchema` instead. */
-  export const outboundSchema = CreateSessionResponseData$outboundSchema;
-  /** @deprecated use `CreateSessionResponseData$Outbound` instead. */
-  export type Outbound = CreateSessionResponseData$Outbound;
+export namespace Data$ {
+  /** @deprecated use `Data$inboundSchema` instead. */
+  export const inboundSchema = Data$inboundSchema;
+  /** @deprecated use `Data$outboundSchema` instead. */
+  export const outboundSchema = Data$outboundSchema;
+  /** @deprecated use `Data$Outbound` instead. */
+  export type Outbound = Data$Outbound;
 }
 
-export function createSessionResponseDataToJSON(
-  createSessionResponseData: CreateSessionResponseData,
-): string {
-  return JSON.stringify(
-    CreateSessionResponseData$outboundSchema.parse(createSessionResponseData),
-  );
+export function dataToJSON(data: Data): string {
+  return JSON.stringify(Data$outboundSchema.parse(data));
 }
 
-export function createSessionResponseDataFromJSON(
+export function dataFromJSON(
   jsonString: string,
-): SafeParseResult<CreateSessionResponseData, SDKValidationError> {
+): SafeParseResult<Data, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => CreateSessionResponseData$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CreateSessionResponseData' from JSON`,
+    (x) => Data$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Data' from JSON`,
   );
 }
 
@@ -103,7 +93,7 @@ export const CreateSessionResponse$inboundSchema: z.ZodType<
 > = z.object({
   status_code: z.number().int(),
   status: z.string(),
-  data: z.lazy(() => CreateSessionResponseData$inboundSchema),
+  data: z.lazy(() => Data$inboundSchema),
 }).transform((v) => {
   return remap$(v, {
     "status_code": "statusCode",
@@ -114,7 +104,7 @@ export const CreateSessionResponse$inboundSchema: z.ZodType<
 export type CreateSessionResponse$Outbound = {
   status_code: number;
   status: string;
-  data: CreateSessionResponseData$Outbound;
+  data: Data$Outbound;
 };
 
 /** @internal */
@@ -125,7 +115,7 @@ export const CreateSessionResponse$outboundSchema: z.ZodType<
 > = z.object({
   statusCode: z.number().int(),
   status: z.string(),
-  data: z.lazy(() => CreateSessionResponseData$outboundSchema),
+  data: z.lazy(() => Data$outboundSchema),
 }).transform((v) => {
   return remap$(v, {
     statusCode: "status_code",

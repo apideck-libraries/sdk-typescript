@@ -474,7 +474,7 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.crm.activities.get({
-    id: "<id>",
+    id: "0b9579ba-14c9-46c5-a61a-8da5d6fd5b47",
     serviceId: "salesforce",
     fields: "id,updated_at",
   });
@@ -504,7 +504,7 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await crmActivitiesGet(apideck, {
-    id: "<id>",
+    id: "0b9579ba-14c9-46c5-a61a-8da5d6fd5b47",
     serviceId: "salesforce",
     fields: "id,updated_at",
   });
@@ -563,7 +563,7 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.crm.activities.update({
-    id: "<id>",
+    id: "0b9579ba-14c9-46c5-a61a-8da5d6fd5b47",
     serviceId: "salesforce",
     activity: {
       activityDatetime: "2021-05-01T12:00:00.000Z",
@@ -772,7 +772,7 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await crmActivitiesUpdate(apideck, {
-    id: "<id>",
+    id: "0b9579ba-14c9-46c5-a61a-8da5d6fd5b47",
     serviceId: "salesforce",
     activity: {
       activityDatetime: "2021-05-01T12:00:00.000Z",
@@ -1010,7 +1010,7 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.crm.activities.delete({
-    id: "<id>",
+    id: "0b9579ba-14c9-46c5-a61a-8da5d6fd5b47",
     serviceId: "salesforce",
   });
 
@@ -1039,7 +1039,7 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await crmActivitiesDelete(apideck, {
-    id: "<id>",
+    id: "0b9579ba-14c9-46c5-a61a-8da5d6fd5b47",
     serviceId: "salesforce",
   });
 

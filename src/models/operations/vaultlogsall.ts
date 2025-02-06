@@ -32,7 +32,7 @@ export type VaultLogsAllRequest = {
   /**
    * Filter results
    */
-  filter?: components.LogsFilter | undefined;
+  filter?: components.WebhookEventLogsFilter | undefined;
   /**
    * Cursor to start from. You can find cursors for next/previous pages in the meta.cursors property of the response.
    */
@@ -120,7 +120,7 @@ export const VaultLogsAllRequest$inboundSchema: z.ZodType<
 > = z.object({
   appId: z.string().optional(),
   consumerId: z.string().optional(),
-  filter: components.LogsFilter$inboundSchema.optional(),
+  filter: components.WebhookEventLogsFilter$inboundSchema.optional(),
   cursor: z.nullable(z.string()).optional(),
   limit: z.number().int().default(20),
 });
@@ -129,7 +129,7 @@ export const VaultLogsAllRequest$inboundSchema: z.ZodType<
 export type VaultLogsAllRequest$Outbound = {
   appId?: string | undefined;
   consumerId?: string | undefined;
-  filter?: components.LogsFilter$Outbound | undefined;
+  filter?: components.WebhookEventLogsFilter$Outbound | undefined;
   cursor?: string | null | undefined;
   limit: number;
 };
@@ -142,7 +142,7 @@ export const VaultLogsAllRequest$outboundSchema: z.ZodType<
 > = z.object({
   appId: z.string().optional(),
   consumerId: z.string().optional(),
-  filter: components.LogsFilter$outboundSchema.optional(),
+  filter: components.WebhookEventLogsFilter$outboundSchema.optional(),
   cursor: z.nullable(z.string()).optional(),
   limit: z.number().int().default(20),
 });

@@ -24,8 +24,8 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.connector.connectorResources.get({
-    id: "<id>",
-    resourceId: "<id>",
+    id: "0b9579ba-14c9-46c5-a61a-8da5d6fd5b47",
+    resourceId: "resource_id_example",
     unifiedApi: "crm",
   });
 
@@ -54,8 +54,8 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await connectorConnectorResourcesGet(apideck, {
-    id: "<id>",
-    resourceId: "<id>",
+    id: "0b9579ba-14c9-46c5-a61a-8da5d6fd5b47",
+    resourceId: "resource_id_example",
     unifiedApi: "crm",
   });
 

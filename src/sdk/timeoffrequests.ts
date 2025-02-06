@@ -14,42 +14,6 @@ import { PageIterator, unwrapResultIterator } from "../types/operations.js";
 
 export class TimeOffRequests extends ClientSDK {
   /**
-   * List Time Off Requests
-   *
-   * @remarks
-   * List Time Off Requests
-   */
-  async list(
-    request: operations.HrisTimeOffRequestsAllRequest,
-    options?: RequestOptions,
-  ): Promise<
-    PageIterator<operations.HrisTimeOffRequestsAllResponse, { cursor: string }>
-  > {
-    return unwrapResultIterator(hrisTimeOffRequestsList(
-      this,
-      request,
-      options,
-    ));
-  }
-
-  /**
-   * Create Time Off Request
-   *
-   * @remarks
-   * Create Time Off Request
-   */
-  async create(
-    request: operations.HrisTimeOffRequestsAddRequest,
-    options?: RequestOptions,
-  ): Promise<operations.HrisTimeOffRequestsAddResponse> {
-    return unwrapAsync(hrisTimeOffRequestsCreate(
-      this,
-      request,
-      options,
-    ));
-  }
-
-  /**
    * Get Time Off Request
    *
    * @remarks
@@ -94,6 +58,42 @@ export class TimeOffRequests extends ClientSDK {
     options?: RequestOptions,
   ): Promise<operations.HrisTimeOffRequestsDeleteResponse> {
     return unwrapAsync(hrisTimeOffRequestsDelete(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * List Time Off Requests
+   *
+   * @remarks
+   * List Time Off Requests
+   */
+  async list(
+    request: operations.HrisTimeOffRequestsAllRequest,
+    options?: RequestOptions,
+  ): Promise<
+    PageIterator<operations.HrisTimeOffRequestsAllResponse, { cursor: string }>
+  > {
+    return unwrapResultIterator(hrisTimeOffRequestsList(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Create Time Off Request
+   *
+   * @remarks
+   * Create Time Off Request
+   */
+  async create(
+    request: operations.HrisTimeOffRequestsAddRequest,
+    options?: RequestOptions,
+  ): Promise<operations.HrisTimeOffRequestsAddResponse> {
+    return unwrapAsync(hrisTimeOffRequestsCreate(
       this,
       request,
       options,

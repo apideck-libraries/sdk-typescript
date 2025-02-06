@@ -7,7 +7,7 @@ Type of entity this payment should be attributed to.
 ```typescript
 import { AllocationType } from "@apideck/unify/models/components";
 
-let value: AllocationType = "credit_memo";
+let value: AllocationType = "over_payment";
 ```
 
 ## Values

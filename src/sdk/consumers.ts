@@ -14,42 +14,6 @@ import { PageIterator, unwrapResultIterator } from "../types/operations.js";
 
 export class Consumers extends ClientSDK {
   /**
-   * Create consumer
-   *
-   * @remarks
-   * Create a consumer
-   */
-  async create(
-    request: operations.VaultConsumersAddRequest,
-    options?: RequestOptions,
-  ): Promise<operations.VaultConsumersAddResponse> {
-    return unwrapAsync(vaultConsumersCreate(
-      this,
-      request,
-      options,
-    ));
-  }
-
-  /**
-   * Get all consumers
-   *
-   * @remarks
-   * This endpoint includes all application consumers, along with an aggregated count of requests made.
-   */
-  async list(
-    request: operations.VaultConsumersAllRequest,
-    options?: RequestOptions,
-  ): Promise<
-    PageIterator<operations.VaultConsumersAllResponse, { cursor: string }>
-  > {
-    return unwrapResultIterator(vaultConsumersList(
-      this,
-      request,
-      options,
-    ));
-  }
-
-  /**
    * Get consumer
    *
    * @remarks
@@ -94,6 +58,42 @@ export class Consumers extends ClientSDK {
     options?: RequestOptions,
   ): Promise<operations.VaultConsumersDeleteResponse> {
     return unwrapAsync(vaultConsumersDelete(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Create consumer
+   *
+   * @remarks
+   * Create a consumer
+   */
+  async create(
+    request: operations.VaultConsumersAddRequest,
+    options?: RequestOptions,
+  ): Promise<operations.VaultConsumersAddResponse> {
+    return unwrapAsync(vaultConsumersCreate(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Get all consumers
+   *
+   * @remarks
+   * This endpoint includes all application consumers, along with an aggregated count of requests made.
+   */
+  async list(
+    request: operations.VaultConsumersAllRequest,
+    options?: RequestOptions,
+  ): Promise<
+    PageIterator<operations.VaultConsumersAllResponse, { cursor: string }>
+  > {
+    return unwrapResultIterator(vaultConsumersList(
       this,
       request,
       options,

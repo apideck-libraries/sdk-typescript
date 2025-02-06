@@ -215,7 +215,7 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.fileStorage.folders.get({
-    id: "<id>",
+    id: "0b9579ba-14c9-46c5-a61a-8da5d6fd5b47",
     serviceId: "salesforce",
     fields: "id,updated_at",
   });
@@ -245,7 +245,7 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await fileStorageFoldersGet(apideck, {
-    id: "<id>",
+    id: "0b9579ba-14c9-46c5-a61a-8da5d6fd5b47",
     serviceId: "salesforce",
     fields: "id,updated_at",
   });
@@ -304,7 +304,7 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.fileStorage.folders.update({
-    id: "<id>",
+    id: "0b9579ba-14c9-46c5-a61a-8da5d6fd5b47",
     serviceId: "salesforce",
     updateFolderRequest: {
       name: "Documents",
@@ -411,7 +411,7 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await fileStorageFoldersUpdate(apideck, {
-    id: "<id>",
+    id: "0b9579ba-14c9-46c5-a61a-8da5d6fd5b47",
     serviceId: "salesforce",
     updateFolderRequest: {
       name: "Documents",
@@ -547,7 +547,7 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.fileStorage.folders.delete({
-    id: "<id>",
+    id: "0b9579ba-14c9-46c5-a61a-8da5d6fd5b47",
     serviceId: "salesforce",
   });
 
@@ -576,7 +576,7 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await fileStorageFoldersDelete(apideck, {
-    id: "<id>",
+    id: "0b9579ba-14c9-46c5-a61a-8da5d6fd5b47",
     serviceId: "salesforce",
   });
 
@@ -634,7 +634,7 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.fileStorage.folders.copy({
-    id: "<id>",
+    id: "0b9579ba-14c9-46c5-a61a-8da5d6fd5b47",
     serviceId: "salesforce",
     fields: "id,updated_at",
     copyFolderRequest: {
@@ -749,7 +749,7 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await fileStorageFoldersCopy(apideck, {
-    id: "<id>",
+    id: "0b9579ba-14c9-46c5-a61a-8da5d6fd5b47",
     serviceId: "salesforce",
     fields: "id,updated_at",
     copyFolderRequest: {

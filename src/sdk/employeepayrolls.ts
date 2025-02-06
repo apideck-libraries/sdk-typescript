@@ -10,23 +10,6 @@ import { unwrapAsync } from "../types/fp.js";
 
 export class EmployeePayrolls extends ClientSDK {
   /**
-   * List Employee Payrolls
-   *
-   * @remarks
-   * List payrolls for employee
-   */
-  async list(
-    request: operations.HrisEmployeePayrollsAllRequest,
-    options?: RequestOptions,
-  ): Promise<operations.HrisEmployeePayrollsAllResponse> {
-    return unwrapAsync(hrisEmployeePayrollsList(
-      this,
-      request,
-      options,
-    ));
-  }
-
-  /**
    * Get Employee Payroll
    *
    * @remarks
@@ -37,6 +20,23 @@ export class EmployeePayrolls extends ClientSDK {
     options?: RequestOptions,
   ): Promise<operations.HrisEmployeePayrollsOneResponse> {
     return unwrapAsync(hrisEmployeePayrollsGet(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * List Employee Payrolls
+   *
+   * @remarks
+   * List payrolls for employee
+   */
+  async list(
+    request: operations.HrisEmployeePayrollsAllRequest,
+    options?: RequestOptions,
+  ): Promise<operations.HrisEmployeePayrollsAllResponse> {
+    return unwrapAsync(hrisEmployeePayrollsList(
       this,
       request,
       options,

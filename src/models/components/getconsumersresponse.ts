@@ -32,7 +32,7 @@ import {
   RequestCountAllocation$outboundSchema,
 } from "./requestcountallocation.js";
 
-export type Data = {
+export type GetConsumersResponseData = {
   consumerId?: string | undefined;
   applicationId?: string | undefined;
   /**
@@ -59,7 +59,7 @@ export type GetConsumersResponse = {
    * HTTP Response Status
    */
   status: string;
-  data: Array<Data>;
+  data: Array<GetConsumersResponseData>;
   /**
    * Response metadata
    */
@@ -71,29 +71,32 @@ export type GetConsumersResponse = {
 };
 
 /** @internal */
-export const Data$inboundSchema: z.ZodType<Data, z.ZodTypeDef, unknown> = z
-  .object({
-    consumer_id: z.string().optional(),
-    application_id: z.string().optional(),
-    metadata: ConsumerMetadata$inboundSchema.optional(),
-    aggregated_request_count: z.number().optional(),
-    request_counts: RequestCountAllocation$inboundSchema.optional(),
-    created: z.string().optional(),
-    modified: z.string().optional(),
-    request_count_updated: z.string().optional(),
-    services: z.array(z.string()).optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      "consumer_id": "consumerId",
-      "application_id": "applicationId",
-      "aggregated_request_count": "aggregatedRequestCount",
-      "request_counts": "requestCounts",
-      "request_count_updated": "requestCountUpdated",
-    });
+export const GetConsumersResponseData$inboundSchema: z.ZodType<
+  GetConsumersResponseData,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  consumer_id: z.string().optional(),
+  application_id: z.string().optional(),
+  metadata: ConsumerMetadata$inboundSchema.optional(),
+  aggregated_request_count: z.number().optional(),
+  request_counts: RequestCountAllocation$inboundSchema.optional(),
+  created: z.string().optional(),
+  modified: z.string().optional(),
+  request_count_updated: z.string().optional(),
+  services: z.array(z.string()).optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "consumer_id": "consumerId",
+    "application_id": "applicationId",
+    "aggregated_request_count": "aggregatedRequestCount",
+    "request_counts": "requestCounts",
+    "request_count_updated": "requestCountUpdated",
   });
+});
 
 /** @internal */
-export type Data$Outbound = {
+export type GetConsumersResponseData$Outbound = {
   consumer_id?: string | undefined;
   application_id?: string | undefined;
   metadata?: ConsumerMetadata$Outbound | undefined;
@@ -106,51 +109,58 @@ export type Data$Outbound = {
 };
 
 /** @internal */
-export const Data$outboundSchema: z.ZodType<Data$Outbound, z.ZodTypeDef, Data> =
-  z.object({
-    consumerId: z.string().optional(),
-    applicationId: z.string().optional(),
-    metadata: ConsumerMetadata$outboundSchema.optional(),
-    aggregatedRequestCount: z.number().optional(),
-    requestCounts: RequestCountAllocation$outboundSchema.optional(),
-    created: z.string().optional(),
-    modified: z.string().optional(),
-    requestCountUpdated: z.string().optional(),
-    services: z.array(z.string()).optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      consumerId: "consumer_id",
-      applicationId: "application_id",
-      aggregatedRequestCount: "aggregated_request_count",
-      requestCounts: "request_counts",
-      requestCountUpdated: "request_count_updated",
-    });
+export const GetConsumersResponseData$outboundSchema: z.ZodType<
+  GetConsumersResponseData$Outbound,
+  z.ZodTypeDef,
+  GetConsumersResponseData
+> = z.object({
+  consumerId: z.string().optional(),
+  applicationId: z.string().optional(),
+  metadata: ConsumerMetadata$outboundSchema.optional(),
+  aggregatedRequestCount: z.number().optional(),
+  requestCounts: RequestCountAllocation$outboundSchema.optional(),
+  created: z.string().optional(),
+  modified: z.string().optional(),
+  requestCountUpdated: z.string().optional(),
+  services: z.array(z.string()).optional(),
+}).transform((v) => {
+  return remap$(v, {
+    consumerId: "consumer_id",
+    applicationId: "application_id",
+    aggregatedRequestCount: "aggregated_request_count",
+    requestCounts: "request_counts",
+    requestCountUpdated: "request_count_updated",
   });
+});
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace Data$ {
-  /** @deprecated use `Data$inboundSchema` instead. */
-  export const inboundSchema = Data$inboundSchema;
-  /** @deprecated use `Data$outboundSchema` instead. */
-  export const outboundSchema = Data$outboundSchema;
-  /** @deprecated use `Data$Outbound` instead. */
-  export type Outbound = Data$Outbound;
+export namespace GetConsumersResponseData$ {
+  /** @deprecated use `GetConsumersResponseData$inboundSchema` instead. */
+  export const inboundSchema = GetConsumersResponseData$inboundSchema;
+  /** @deprecated use `GetConsumersResponseData$outboundSchema` instead. */
+  export const outboundSchema = GetConsumersResponseData$outboundSchema;
+  /** @deprecated use `GetConsumersResponseData$Outbound` instead. */
+  export type Outbound = GetConsumersResponseData$Outbound;
 }
 
-export function dataToJSON(data: Data): string {
-  return JSON.stringify(Data$outboundSchema.parse(data));
+export function getConsumersResponseDataToJSON(
+  getConsumersResponseData: GetConsumersResponseData,
+): string {
+  return JSON.stringify(
+    GetConsumersResponseData$outboundSchema.parse(getConsumersResponseData),
+  );
 }
 
-export function dataFromJSON(
+export function getConsumersResponseDataFromJSON(
   jsonString: string,
-): SafeParseResult<Data, SDKValidationError> {
+): SafeParseResult<GetConsumersResponseData, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => Data$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Data' from JSON`,
+    (x) => GetConsumersResponseData$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetConsumersResponseData' from JSON`,
   );
 }
 
@@ -162,7 +172,7 @@ export const GetConsumersResponse$inboundSchema: z.ZodType<
 > = z.object({
   status_code: z.number().int(),
   status: z.string(),
-  data: z.array(z.lazy(() => Data$inboundSchema)),
+  data: z.array(z.lazy(() => GetConsumersResponseData$inboundSchema)),
   meta: Meta$inboundSchema.optional(),
   links: Links$inboundSchema.optional(),
 }).transform((v) => {
@@ -175,7 +185,7 @@ export const GetConsumersResponse$inboundSchema: z.ZodType<
 export type GetConsumersResponse$Outbound = {
   status_code: number;
   status: string;
-  data: Array<Data$Outbound>;
+  data: Array<GetConsumersResponseData$Outbound>;
   meta?: Meta$Outbound | undefined;
   links?: Links$Outbound | undefined;
 };
@@ -188,7 +198,7 @@ export const GetConsumersResponse$outboundSchema: z.ZodType<
 > = z.object({
   statusCode: z.number().int(),
   status: z.string(),
-  data: z.array(z.lazy(() => Data$outboundSchema)),
+  data: z.array(z.lazy(() => GetConsumersResponseData$outboundSchema)),
   meta: Meta$outboundSchema.optional(),
   links: Links$outboundSchema.optional(),
 }).transform((v) => {

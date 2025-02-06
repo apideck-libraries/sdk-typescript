@@ -24,7 +24,7 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.hris.employeeSchedules.list({
-    employeeId: "<id>",
+    employeeId: "employee_id_example",
     serviceId: "salesforce",
     passThrough: {
       "search": "San Francisco",
@@ -57,7 +57,7 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await hrisEmployeeSchedulesList(apideck, {
-    employeeId: "<id>",
+    employeeId: "employee_id_example",
     serviceId: "salesforce",
     passThrough: {
       "search": "San Francisco",

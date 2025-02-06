@@ -7,13 +7,13 @@ import { EventLogs } from "./eventlogs.js";
 import { Webhooks } from "./webhooks.js";
 
 export class Webhook extends ClientSDK {
-  private _webhooks?: Webhooks;
-  get webhooks(): Webhooks {
-    return (this._webhooks ??= new Webhooks(this._options));
-  }
-
   private _eventLogs?: EventLogs;
   get eventLogs(): EventLogs {
     return (this._eventLogs ??= new EventLogs(this._options));
+  }
+
+  private _webhooks?: Webhooks;
+  get webhooks(): Webhooks {
+    return (this._webhooks ??= new Webhooks(this._options));
   }
 }

@@ -30,7 +30,7 @@ let value: ConnectionInput = {
               value: 123,
             },
           ],
-          value: true,
+          value: 10,
         },
       ],
     },

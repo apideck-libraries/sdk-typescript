@@ -1,5 +1,5 @@
 # ApideckDepartments
-(*hris.departments*)
+(*accounting.departments*)
 
 ## Overview
 
@@ -27,12 +27,12 @@ const apideck = new Apideck({
 });
 
 async function run() {
-  const result = await apideck.hris.departments.list({
+  const result = await apideck.accounting.departments.list({
     serviceId: "salesforce",
-    passThrough: {
-      "search": "San Francisco",
-    },
     fields: "id,updated_at",
+    filter: {
+      subsidiary: "1",
+    },
   });
 
   for await (const page of result) {
@@ -50,7 +50,7 @@ The standalone function version of this method:
 
 ```typescript
 import { ApideckCore } from "@apideck/unify/core.js";
-import { hrisDepartmentsList } from "@apideck/unify/funcs/hrisDepartmentsList.js";
+import { accountingDepartmentsList } from "@apideck/unify/funcs/accountingDepartmentsList.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -61,12 +61,12 @@ const apideck = new ApideckCore({
 });
 
 async function run() {
-  const res = await hrisDepartmentsList(apideck, {
+  const res = await accountingDepartmentsList(apideck, {
     serviceId: "salesforce",
-    passThrough: {
-      "search": "San Francisco",
-    },
     fields: "id,updated_at",
+    filter: {
+      subsidiary: "1",
+    },
   });
 
   if (!res.ok) {
@@ -88,14 +88,14 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [operations.HrisDepartmentsAllRequest](../../models/operations/hrisdepartmentsallrequest.md)                                                                                   | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `request`                                                                                                                                                                      | [operations.AccountingDepartmentsAllRequest](../../models/operations/accountingdepartmentsallrequest.md)                                                                       | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
 
 ### Response
 
-**Promise\<[operations.HrisDepartmentsAllResponse](../../models/operations/hrisdepartmentsallresponse.md)\>**
+**Promise\<[operations.AccountingDepartmentsAllResponse](../../models/operations/accountingdepartmentsallresponse.md)\>**
 
 ### Errors
 
@@ -124,12 +124,21 @@ const apideck = new Apideck({
 });
 
 async function run() {
-  const result = await apideck.hris.departments.create({
+  const result = await apideck.accounting.departments.create({
     serviceId: "salesforce",
-    department: {
-      name: "R&D",
-      code: "2",
-      description: "R&D",
+    accountingDepartment: {
+      parentId: "12345",
+      name: "Sales",
+      status: "active",
+      subsidiaries: [
+        {
+          name: "SpaceX",
+        },
+        {
+          name: "SpaceX",
+        },
+      ],
+      rowVersion: "1-12345",
       passThrough: [
         {
           serviceId: "<id>",
@@ -155,14 +164,6 @@ async function run() {
         {
           serviceId: "<id>",
           extendPaths: [
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
             {
               path: "$.nested.property",
               value: {
@@ -190,7 +191,7 @@ The standalone function version of this method:
 
 ```typescript
 import { ApideckCore } from "@apideck/unify/core.js";
-import { hrisDepartmentsCreate } from "@apideck/unify/funcs/hrisDepartmentsCreate.js";
+import { accountingDepartmentsCreate } from "@apideck/unify/funcs/accountingDepartmentsCreate.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -201,12 +202,21 @@ const apideck = new ApideckCore({
 });
 
 async function run() {
-  const res = await hrisDepartmentsCreate(apideck, {
+  const res = await accountingDepartmentsCreate(apideck, {
     serviceId: "salesforce",
-    department: {
-      name: "R&D",
-      code: "2",
-      description: "R&D",
+    accountingDepartment: {
+      parentId: "12345",
+      name: "Sales",
+      status: "active",
+      subsidiaries: [
+        {
+          name: "SpaceX",
+        },
+        {
+          name: "SpaceX",
+        },
+      ],
+      rowVersion: "1-12345",
       passThrough: [
         {
           serviceId: "<id>",
@@ -232,14 +242,6 @@ async function run() {
         {
           serviceId: "<id>",
           extendPaths: [
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
             {
               path: "$.nested.property",
               value: {
@@ -271,14 +273,14 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [operations.HrisDepartmentsAddRequest](../../models/operations/hrisdepartmentsaddrequest.md)                                                                                   | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `request`                                                                                                                                                                      | [operations.AccountingDepartmentsAddRequest](../../models/operations/accountingdepartmentsaddrequest.md)                                                                       | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
 
 ### Response
 
-**Promise\<[operations.HrisDepartmentsAddResponse](../../models/operations/hrisdepartmentsaddresponse.md)\>**
+**Promise\<[operations.AccountingDepartmentsAddResponse](../../models/operations/accountingdepartmentsaddresponse.md)\>**
 
 ### Errors
 
@@ -307,8 +309,8 @@ const apideck = new Apideck({
 });
 
 async function run() {
-  const result = await apideck.hris.departments.get({
-    id: "<id>",
+  const result = await apideck.accounting.departments.get({
+    id: "0b9579ba-14c9-46c5-a61a-8da5d6fd5b47",
     serviceId: "salesforce",
     fields: "id,updated_at",
   });
@@ -326,7 +328,7 @@ The standalone function version of this method:
 
 ```typescript
 import { ApideckCore } from "@apideck/unify/core.js";
-import { hrisDepartmentsGet } from "@apideck/unify/funcs/hrisDepartmentsGet.js";
+import { accountingDepartmentsGet } from "@apideck/unify/funcs/accountingDepartmentsGet.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -337,8 +339,8 @@ const apideck = new ApideckCore({
 });
 
 async function run() {
-  const res = await hrisDepartmentsGet(apideck, {
-    id: "<id>",
+  const res = await accountingDepartmentsGet(apideck, {
+    id: "0b9579ba-14c9-46c5-a61a-8da5d6fd5b47",
     serviceId: "salesforce",
     fields: "id,updated_at",
   });
@@ -360,14 +362,14 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [operations.HrisDepartmentsOneRequest](../../models/operations/hrisdepartmentsonerequest.md)                                                                                   | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `request`                                                                                                                                                                      | [operations.AccountingDepartmentsOneRequest](../../models/operations/accountingdepartmentsonerequest.md)                                                                       | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
 
 ### Response
 
-**Promise\<[operations.HrisDepartmentsOneResponse](../../models/operations/hrisdepartmentsoneresponse.md)\>**
+**Promise\<[operations.AccountingDepartmentsOneResponse](../../models/operations/accountingdepartmentsoneresponse.md)\>**
 
 ### Errors
 
@@ -396,35 +398,26 @@ const apideck = new Apideck({
 });
 
 async function run() {
-  const result = await apideck.hris.departments.update({
-    id: "<id>",
+  const result = await apideck.accounting.departments.update({
+    id: "0b9579ba-14c9-46c5-a61a-8da5d6fd5b47",
     serviceId: "salesforce",
-    department: {
-      name: "R&D",
-      code: "2",
-      description: "R&D",
-      passThrough: [
+    accountingDepartment: {
+      parentId: "12345",
+      name: "Sales",
+      status: "active",
+      subsidiaries: [
         {
-          serviceId: "<id>",
-          extendPaths: [
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
-          ],
+          name: "SpaceX",
         },
+        {
+          name: "SpaceX",
+        },
+        {
+          name: "SpaceX",
+        },
+      ],
+      rowVersion: "1-12345",
+      passThrough: [
         {
           serviceId: "<id>",
           extendPaths: [
@@ -492,7 +485,7 @@ The standalone function version of this method:
 
 ```typescript
 import { ApideckCore } from "@apideck/unify/core.js";
-import { hrisDepartmentsUpdate } from "@apideck/unify/funcs/hrisDepartmentsUpdate.js";
+import { accountingDepartmentsUpdate } from "@apideck/unify/funcs/accountingDepartmentsUpdate.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -503,35 +496,26 @@ const apideck = new ApideckCore({
 });
 
 async function run() {
-  const res = await hrisDepartmentsUpdate(apideck, {
-    id: "<id>",
+  const res = await accountingDepartmentsUpdate(apideck, {
+    id: "0b9579ba-14c9-46c5-a61a-8da5d6fd5b47",
     serviceId: "salesforce",
-    department: {
-      name: "R&D",
-      code: "2",
-      description: "R&D",
-      passThrough: [
+    accountingDepartment: {
+      parentId: "12345",
+      name: "Sales",
+      status: "active",
+      subsidiaries: [
         {
-          serviceId: "<id>",
-          extendPaths: [
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
-          ],
+          name: "SpaceX",
         },
+        {
+          name: "SpaceX",
+        },
+        {
+          name: "SpaceX",
+        },
+      ],
+      rowVersion: "1-12345",
+      passThrough: [
         {
           serviceId: "<id>",
           extendPaths: [
@@ -603,14 +587,14 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [operations.HrisDepartmentsUpdateRequest](../../models/operations/hrisdepartmentsupdaterequest.md)                                                                             | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `request`                                                                                                                                                                      | [operations.AccountingDepartmentsUpdateRequest](../../models/operations/accountingdepartmentsupdaterequest.md)                                                                 | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
 
 ### Response
 
-**Promise\<[operations.HrisDepartmentsUpdateResponse](../../models/operations/hrisdepartmentsupdateresponse.md)\>**
+**Promise\<[operations.AccountingDepartmentsUpdateResponse](../../models/operations/accountingdepartmentsupdateresponse.md)\>**
 
 ### Errors
 
@@ -639,8 +623,8 @@ const apideck = new Apideck({
 });
 
 async function run() {
-  const result = await apideck.hris.departments.delete({
-    id: "<id>",
+  const result = await apideck.accounting.departments.delete({
+    id: "0b9579ba-14c9-46c5-a61a-8da5d6fd5b47",
     serviceId: "salesforce",
   });
 
@@ -657,7 +641,7 @@ The standalone function version of this method:
 
 ```typescript
 import { ApideckCore } from "@apideck/unify/core.js";
-import { hrisDepartmentsDelete } from "@apideck/unify/funcs/hrisDepartmentsDelete.js";
+import { accountingDepartmentsDelete } from "@apideck/unify/funcs/accountingDepartmentsDelete.js";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -668,8 +652,8 @@ const apideck = new ApideckCore({
 });
 
 async function run() {
-  const res = await hrisDepartmentsDelete(apideck, {
-    id: "<id>",
+  const res = await accountingDepartmentsDelete(apideck, {
+    id: "0b9579ba-14c9-46c5-a61a-8da5d6fd5b47",
     serviceId: "salesforce",
   });
 
@@ -690,14 +674,14 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [operations.HrisDepartmentsDeleteRequest](../../models/operations/hrisdepartmentsdeleterequest.md)                                                                             | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `request`                                                                                                                                                                      | [operations.AccountingDepartmentsDeleteRequest](../../models/operations/accountingdepartmentsdeleterequest.md)                                                                 | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
 
 ### Response
 
-**Promise\<[operations.HrisDepartmentsDeleteResponse](../../models/operations/hrisdepartmentsdeleteresponse.md)\>**
+**Promise\<[operations.AccountingDepartmentsDeleteResponse](../../models/operations/accountingdepartmentsdeleteresponse.md)\>**
 
 ### Errors
 

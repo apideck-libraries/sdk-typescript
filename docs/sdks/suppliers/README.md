@@ -704,7 +704,7 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.accounting.suppliers.get({
-    id: "<id>",
+    id: "0b9579ba-14c9-46c5-a61a-8da5d6fd5b47",
     serviceId: "salesforce",
     fields: "id,updated_at",
   });
@@ -734,7 +734,7 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await accountingSuppliersGet(apideck, {
-    id: "<id>",
+    id: "0b9579ba-14c9-46c5-a61a-8da5d6fd5b47",
     serviceId: "salesforce",
     fields: "id,updated_at",
   });
@@ -793,7 +793,7 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.accounting.suppliers.update({
-    id: "<id>",
+    id: "0b9579ba-14c9-46c5-a61a-8da5d6fd5b47",
     serviceId: "salesforce",
     supplier: {
       displayId: "EMP00101",
@@ -1037,7 +1037,7 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await accountingSuppliersUpdate(apideck, {
-    id: "<id>",
+    id: "0b9579ba-14c9-46c5-a61a-8da5d6fd5b47",
     serviceId: "salesforce",
     supplier: {
       displayId: "EMP00101",
@@ -1310,7 +1310,7 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.accounting.suppliers.delete({
-    id: "<id>",
+    id: "0b9579ba-14c9-46c5-a61a-8da5d6fd5b47",
     serviceId: "salesforce",
   });
 
@@ -1339,7 +1339,7 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await accountingSuppliersDelete(apideck, {
-    id: "<id>",
+    id: "0b9579ba-14c9-46c5-a61a-8da5d6fd5b47",
     serviceId: "salesforce",
   });
 

@@ -312,7 +312,7 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.accounting.trackingCategories.get({
-    id: "<id>",
+    id: "0b9579ba-14c9-46c5-a61a-8da5d6fd5b47",
     serviceId: "salesforce",
     fields: "id,updated_at",
   });
@@ -342,7 +342,7 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await accountingTrackingCategoriesGet(apideck, {
-    id: "<id>",
+    id: "0b9579ba-14c9-46c5-a61a-8da5d6fd5b47",
     serviceId: "salesforce",
     fields: "id,updated_at",
   });
@@ -401,7 +401,7 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.accounting.trackingCategories.update({
-    id: "<id>",
+    id: "0b9579ba-14c9-46c5-a61a-8da5d6fd5b47",
     serviceId: "salesforce",
     trackingCategory: {
       parentId: "12345",
@@ -510,7 +510,7 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await accountingTrackingCategoriesUpdate(apideck, {
-    id: "<id>",
+    id: "0b9579ba-14c9-46c5-a61a-8da5d6fd5b47",
     serviceId: "salesforce",
     trackingCategory: {
       parentId: "12345",
@@ -648,7 +648,7 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.accounting.trackingCategories.delete({
-    id: "<id>",
+    id: "0b9579ba-14c9-46c5-a61a-8da5d6fd5b47",
     serviceId: "salesforce",
   });
 
@@ -677,7 +677,7 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await accountingTrackingCategoriesDelete(apideck, {
-    id: "<id>",
+    id: "0b9579ba-14c9-46c5-a61a-8da5d6fd5b47",
     serviceId: "salesforce",
   });
 

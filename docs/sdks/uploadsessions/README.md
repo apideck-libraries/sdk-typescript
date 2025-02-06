@@ -213,7 +213,7 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.fileStorage.uploadSessions.get({
-    id: "<id>",
+    id: "0b9579ba-14c9-46c5-a61a-8da5d6fd5b47",
     serviceId: "salesforce",
     fields: "id,updated_at",
   });
@@ -243,7 +243,7 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await fileStorageUploadSessionsGet(apideck, {
-    id: "<id>",
+    id: "0b9579ba-14c9-46c5-a61a-8da5d6fd5b47",
     serviceId: "salesforce",
     fields: "id,updated_at",
   });
@@ -303,7 +303,7 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.fileStorage.uploadSessions.delete({
-    id: "<id>",
+    id: "0b9579ba-14c9-46c5-a61a-8da5d6fd5b47",
     serviceId: "salesforce",
   });
 
@@ -332,7 +332,7 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await fileStorageUploadSessionsDelete(apideck, {
-    id: "<id>",
+    id: "0b9579ba-14c9-46c5-a61a-8da5d6fd5b47",
     serviceId: "salesforce",
   });
 
@@ -390,7 +390,7 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.fileStorage.uploadSessions.finish({
-    id: "<id>",
+    id: "0b9579ba-14c9-46c5-a61a-8da5d6fd5b47",
     serviceId: "salesforce",
     digest: "sha=fpRyg5eVQletdZqEKaFlqwBXJzM=",
   });
@@ -420,7 +420,7 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await fileStorageUploadSessionsFinish(apideck, {
-    id: "<id>",
+    id: "0b9579ba-14c9-46c5-a61a-8da5d6fd5b47",
     serviceId: "salesforce",
     digest: "sha=fpRyg5eVQletdZqEKaFlqwBXJzM=",
   });

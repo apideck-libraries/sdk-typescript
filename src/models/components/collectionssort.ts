@@ -16,7 +16,7 @@ import {
 /**
  * The field on which to sort the Collections
  */
-export const CollectionsSortBy = {
+export const By = {
   Name: "name",
   CreatedAt: "created_at",
   UpdatedAt: "updated_at",
@@ -24,13 +24,13 @@ export const CollectionsSortBy = {
 /**
  * The field on which to sort the Collections
  */
-export type CollectionsSortBy = ClosedEnum<typeof CollectionsSortBy>;
+export type By = ClosedEnum<typeof By>;
 
 export type CollectionsSort = {
   /**
    * The field on which to sort the Collections
    */
-  by?: CollectionsSortBy | undefined;
+  by?: By | undefined;
   /**
    * The direction in which to sort the results
    */
@@ -38,24 +38,20 @@ export type CollectionsSort = {
 };
 
 /** @internal */
-export const CollectionsSortBy$inboundSchema: z.ZodNativeEnum<
-  typeof CollectionsSortBy
-> = z.nativeEnum(CollectionsSortBy);
+export const By$inboundSchema: z.ZodNativeEnum<typeof By> = z.nativeEnum(By);
 
 /** @internal */
-export const CollectionsSortBy$outboundSchema: z.ZodNativeEnum<
-  typeof CollectionsSortBy
-> = CollectionsSortBy$inboundSchema;
+export const By$outboundSchema: z.ZodNativeEnum<typeof By> = By$inboundSchema;
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace CollectionsSortBy$ {
-  /** @deprecated use `CollectionsSortBy$inboundSchema` instead. */
-  export const inboundSchema = CollectionsSortBy$inboundSchema;
-  /** @deprecated use `CollectionsSortBy$outboundSchema` instead. */
-  export const outboundSchema = CollectionsSortBy$outboundSchema;
+export namespace By$ {
+  /** @deprecated use `By$inboundSchema` instead. */
+  export const inboundSchema = By$inboundSchema;
+  /** @deprecated use `By$outboundSchema` instead. */
+  export const outboundSchema = By$outboundSchema;
 }
 
 /** @internal */
@@ -64,7 +60,7 @@ export const CollectionsSort$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  by: CollectionsSortBy$inboundSchema.optional(),
+  by: By$inboundSchema.optional(),
   direction: SortDirection$inboundSchema.default("asc"),
 });
 
@@ -80,7 +76,7 @@ export const CollectionsSort$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   CollectionsSort
 > = z.object({
-  by: CollectionsSortBy$outboundSchema.optional(),
+  by: By$outboundSchema.optional(),
   direction: SortDirection$outboundSchema.default("asc"),
 });
 

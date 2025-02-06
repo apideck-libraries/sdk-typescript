@@ -14,42 +14,6 @@ import { PageIterator, unwrapResultIterator } from "../types/operations.js";
 
 export class Contacts extends ClientSDK {
   /**
-   * List contacts
-   *
-   * @remarks
-   * List contacts
-   */
-  async list(
-    request: operations.CrmContactsAllRequest,
-    options?: RequestOptions,
-  ): Promise<
-    PageIterator<operations.CrmContactsAllResponse, { cursor: string }>
-  > {
-    return unwrapResultIterator(crmContactsList(
-      this,
-      request,
-      options,
-    ));
-  }
-
-  /**
-   * Create contact
-   *
-   * @remarks
-   * Create contact
-   */
-  async create(
-    request: operations.CrmContactsAddRequest,
-    options?: RequestOptions,
-  ): Promise<operations.CrmContactsAddResponse> {
-    return unwrapAsync(crmContactsCreate(
-      this,
-      request,
-      options,
-    ));
-  }
-
-  /**
    * Get contact
    *
    * @remarks
@@ -94,6 +58,42 @@ export class Contacts extends ClientSDK {
     options?: RequestOptions,
   ): Promise<operations.CrmContactsDeleteResponse> {
     return unwrapAsync(crmContactsDelete(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * List contacts
+   *
+   * @remarks
+   * List contacts
+   */
+  async list(
+    request: operations.CrmContactsAllRequest,
+    options?: RequestOptions,
+  ): Promise<
+    PageIterator<operations.CrmContactsAllResponse, { cursor: string }>
+  > {
+    return unwrapResultIterator(crmContactsList(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Create contact
+   *
+   * @remarks
+   * Create contact
+   */
+  async create(
+    request: operations.CrmContactsAddRequest,
+    options?: RequestOptions,
+  ): Promise<operations.CrmContactsAddResponse> {
+    return unwrapAsync(crmContactsCreate(
       this,
       request,
       options,

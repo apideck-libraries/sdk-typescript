@@ -8,10 +8,12 @@ import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "./sdkvalidationerror.js";
 
+export type Two = {};
+
 /**
  * Contains parameter or domain specific information related to the error and why it occurred.
  */
-export type Detail = string | { [k: string]: any };
+export type Detail = Two | string;
 
 /**
  * Bad Request
@@ -36,7 +38,7 @@ export type BadRequestResponseData = {
   /**
    * Contains parameter or domain specific information related to the error and why it occurred.
    */
-  detail?: string | { [k: string]: any } | undefined;
+  detail?: Two | string | undefined;
   /**
    * Link to documentation of error type
    */
@@ -62,7 +64,7 @@ export class BadRequestResponse extends Error {
   /**
    * Contains parameter or domain specific information related to the error and why it occurred.
    */
-  detail?: string | { [k: string]: any } | undefined;
+  detail?: Two | string | undefined;
   /**
    * Link to documentation of error type
    */
@@ -87,18 +89,56 @@ export class BadRequestResponse extends Error {
 }
 
 /** @internal */
-export const Detail$inboundSchema: z.ZodType<Detail, z.ZodTypeDef, unknown> = z
-  .union([z.string(), z.record(z.any())]);
+export const Two$inboundSchema: z.ZodType<Two, z.ZodTypeDef, unknown> = z
+  .object({});
 
 /** @internal */
-export type Detail$Outbound = string | { [k: string]: any };
+export type Two$Outbound = {};
+
+/** @internal */
+export const Two$outboundSchema: z.ZodType<Two$Outbound, z.ZodTypeDef, Two> = z
+  .object({});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace Two$ {
+  /** @deprecated use `Two$inboundSchema` instead. */
+  export const inboundSchema = Two$inboundSchema;
+  /** @deprecated use `Two$outboundSchema` instead. */
+  export const outboundSchema = Two$outboundSchema;
+  /** @deprecated use `Two$Outbound` instead. */
+  export type Outbound = Two$Outbound;
+}
+
+export function twoToJSON(two: Two): string {
+  return JSON.stringify(Two$outboundSchema.parse(two));
+}
+
+export function twoFromJSON(
+  jsonString: string,
+): SafeParseResult<Two, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Two$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Two' from JSON`,
+  );
+}
+
+/** @internal */
+export const Detail$inboundSchema: z.ZodType<Detail, z.ZodTypeDef, unknown> = z
+  .union([z.lazy(() => Two$inboundSchema), z.string()]);
+
+/** @internal */
+export type Detail$Outbound = Two$Outbound | string;
 
 /** @internal */
 export const Detail$outboundSchema: z.ZodType<
   Detail$Outbound,
   z.ZodTypeDef,
   Detail
-> = z.union([z.string(), z.record(z.any())]);
+> = z.union([z.lazy(() => Two$outboundSchema), z.string()]);
 
 /**
  * @internal
@@ -137,7 +177,7 @@ export const BadRequestResponse$inboundSchema: z.ZodType<
   error: z.string().optional(),
   type_name: z.string().optional(),
   message: z.string().optional(),
-  detail: z.union([z.string(), z.record(z.any())]).optional(),
+  detail: z.union([z.lazy(() => Two$inboundSchema), z.string()]).optional(),
   ref: z.string().optional(),
 })
   .transform((v) => {
@@ -155,7 +195,7 @@ export type BadRequestResponse$Outbound = {
   error?: string | undefined;
   type_name?: string | undefined;
   message?: string | undefined;
-  detail?: string | { [k: string]: any } | undefined;
+  detail?: Two$Outbound | string | undefined;
   ref?: string | undefined;
 };
 
@@ -172,7 +212,8 @@ export const BadRequestResponse$outboundSchema: z.ZodType<
       error: z.string().optional(),
       typeName: z.string().optional(),
       message: z.string().optional(),
-      detail: z.union([z.string(), z.record(z.any())]).optional(),
+      detail: z.union([z.lazy(() => Two$outboundSchema), z.string()])
+        .optional(),
       ref: z.string().optional(),
     }).transform((v) => {
       return remap$(v, {

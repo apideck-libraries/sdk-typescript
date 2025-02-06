@@ -94,7 +94,7 @@ let value: AccountingBillPaymentsAllResponse = {
             id: "2389328923893298",
             name: "employee_level",
             description: "Employee Level",
-            value: {},
+            value: true,
           },
         ],
         rowVersion: "1-12345",
@@ -141,7 +141,7 @@ let value: AccountingBillPaymentsAllResponse = {
     error: "Bad Request",
     typeName: "RequestHeadersValidationError",
     message: "Invalid Params",
-    detail: "Missing Header: x-apideck-consumer-id",
+    detail: {},
     ref: "https://developers.apideck.com/errors#unauthorizederror",
   },
 };

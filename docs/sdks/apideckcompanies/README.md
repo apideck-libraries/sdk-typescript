@@ -472,7 +472,7 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.hris.companies.get({
-    id: "<id>",
+    id: "0b9579ba-14c9-46c5-a61a-8da5d6fd5b47",
     serviceId: "salesforce",
     fields: "id,updated_at",
   });
@@ -502,7 +502,7 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await hrisCompaniesGet(apideck, {
-    id: "<id>",
+    id: "0b9579ba-14c9-46c5-a61a-8da5d6fd5b47",
     serviceId: "salesforce",
     fields: "id,updated_at",
   });
@@ -561,7 +561,7 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.hris.companies.update({
-    id: "<id>",
+    id: "0b9579ba-14c9-46c5-a61a-8da5d6fd5b47",
     serviceId: "salesforce",
     hrisCompany: {
       legalName: "SpaceX",
@@ -778,7 +778,7 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await hrisCompaniesUpdate(apideck, {
-    id: "<id>",
+    id: "0b9579ba-14c9-46c5-a61a-8da5d6fd5b47",
     serviceId: "salesforce",
     hrisCompany: {
       legalName: "SpaceX",
@@ -1024,7 +1024,7 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.hris.companies.delete({
-    id: "<id>",
+    id: "0b9579ba-14c9-46c5-a61a-8da5d6fd5b47",
     serviceId: "salesforce",
   });
 
@@ -1053,7 +1053,7 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await hrisCompaniesDelete(apideck, {
-    id: "<id>",
+    id: "0b9579ba-14c9-46c5-a61a-8da5d6fd5b47",
     serviceId: "salesforce",
   });
 

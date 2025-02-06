@@ -4,7 +4,7 @@
 
 import { ClientSDK } from "../lib/sdks.js";
 import { ApideckCompanies } from "./apideckcompanies.js";
-import { ApideckDepartments } from "./apideckdepartments.js";
+import { Departments } from "./departments.js";
 import { EmployeePayrolls } from "./employeepayrolls.js";
 import { Employees } from "./employees.js";
 import { EmployeeSchedules } from "./employeeschedules.js";
@@ -12,6 +12,21 @@ import { Payrolls } from "./payrolls.js";
 import { TimeOffRequests } from "./timeoffrequests.js";
 
 export class Hris extends ClientSDK {
+  private _timeOffRequests?: TimeOffRequests;
+  get timeOffRequests(): TimeOffRequests {
+    return (this._timeOffRequests ??= new TimeOffRequests(this._options));
+  }
+
+  private _employeeSchedules?: EmployeeSchedules;
+  get employeeSchedules(): EmployeeSchedules {
+    return (this._employeeSchedules ??= new EmployeeSchedules(this._options));
+  }
+
+  private _employeePayrolls?: EmployeePayrolls;
+  get employeePayrolls(): EmployeePayrolls {
+    return (this._employeePayrolls ??= new EmployeePayrolls(this._options));
+  }
+
   private _employees?: Employees;
   get employees(): Employees {
     return (this._employees ??= new Employees(this._options));
@@ -22,28 +37,13 @@ export class Hris extends ClientSDK {
     return (this._companies ??= new ApideckCompanies(this._options));
   }
 
-  private _departments?: ApideckDepartments;
-  get departments(): ApideckDepartments {
-    return (this._departments ??= new ApideckDepartments(this._options));
+  private _departments?: Departments;
+  get departments(): Departments {
+    return (this._departments ??= new Departments(this._options));
   }
 
   private _payrolls?: Payrolls;
   get payrolls(): Payrolls {
     return (this._payrolls ??= new Payrolls(this._options));
-  }
-
-  private _employeePayrolls?: EmployeePayrolls;
-  get employeePayrolls(): EmployeePayrolls {
-    return (this._employeePayrolls ??= new EmployeePayrolls(this._options));
-  }
-
-  private _employeeSchedules?: EmployeeSchedules;
-  get employeeSchedules(): EmployeeSchedules {
-    return (this._employeeSchedules ??= new EmployeeSchedules(this._options));
-  }
-
-  private _timeOffRequests?: TimeOffRequests;
-  get timeOffRequests(): TimeOffRequests {
-    return (this._timeOffRequests ??= new TimeOffRequests(this._options));
   }
 }

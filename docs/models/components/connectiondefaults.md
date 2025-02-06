@@ -10,10 +10,10 @@ let value: ConnectionDefaults = {
   options: [
     {
       label: "General Channel",
-      value: 123,
+      value: "general",
     },
   ],
-  value: true,
+  value: 10.5,
 };
 ```
 

@@ -103,7 +103,7 @@ let value: CrmLeadsAllResponse = {
             name: "employee_level",
             description: "Employee Level",
             value: [
-              "<value>",
+              {},
             ],
           },
         ],
@@ -150,7 +150,7 @@ let value: CrmLeadsAllResponse = {
     error: "Bad Request",
     typeName: "RequestHeadersValidationError",
     message: "Invalid Params",
-    detail: "Missing Header: x-apideck-consumer-id",
+    detail: {},
     ref: "https://developers.apideck.com/errors#unauthorizederror",
   },
 };

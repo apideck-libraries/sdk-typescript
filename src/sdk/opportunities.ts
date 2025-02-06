@@ -14,42 +14,6 @@ import { PageIterator, unwrapResultIterator } from "../types/operations.js";
 
 export class Opportunities extends ClientSDK {
   /**
-   * List opportunities
-   *
-   * @remarks
-   * List opportunities
-   */
-  async list(
-    request: operations.CrmOpportunitiesAllRequest,
-    options?: RequestOptions,
-  ): Promise<
-    PageIterator<operations.CrmOpportunitiesAllResponse, { cursor: string }>
-  > {
-    return unwrapResultIterator(crmOpportunitiesList(
-      this,
-      request,
-      options,
-    ));
-  }
-
-  /**
-   * Create opportunity
-   *
-   * @remarks
-   * Create opportunity
-   */
-  async create(
-    request: operations.CrmOpportunitiesAddRequest,
-    options?: RequestOptions,
-  ): Promise<operations.CrmOpportunitiesAddResponse> {
-    return unwrapAsync(crmOpportunitiesCreate(
-      this,
-      request,
-      options,
-    ));
-  }
-
-  /**
    * Get opportunity
    *
    * @remarks
@@ -94,6 +58,42 @@ export class Opportunities extends ClientSDK {
     options?: RequestOptions,
   ): Promise<operations.CrmOpportunitiesDeleteResponse> {
     return unwrapAsync(crmOpportunitiesDelete(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * List opportunities
+   *
+   * @remarks
+   * List opportunities
+   */
+  async list(
+    request: operations.CrmOpportunitiesAllRequest,
+    options?: RequestOptions,
+  ): Promise<
+    PageIterator<operations.CrmOpportunitiesAllResponse, { cursor: string }>
+  > {
+    return unwrapResultIterator(crmOpportunitiesList(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Create opportunity
+   *
+   * @remarks
+   * Create opportunity
+   */
+  async create(
+    request: operations.CrmOpportunitiesAddRequest,
+    options?: RequestOptions,
+  ): Promise<operations.CrmOpportunitiesAddResponse> {
+    return unwrapAsync(crmOpportunitiesCreate(
       this,
       request,
       options,

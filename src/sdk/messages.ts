@@ -14,42 +14,6 @@ import { PageIterator, unwrapResultIterator } from "../types/operations.js";
 
 export class Messages extends ClientSDK {
   /**
-   * List Messages
-   *
-   * @remarks
-   * List Messages
-   */
-  async list(
-    request: operations.SmsMessagesAllRequest,
-    options?: RequestOptions,
-  ): Promise<
-    PageIterator<operations.SmsMessagesAllResponse, { cursor: string }>
-  > {
-    return unwrapResultIterator(smsMessagesList(
-      this,
-      request,
-      options,
-    ));
-  }
-
-  /**
-   * Create Message
-   *
-   * @remarks
-   * Create Message
-   */
-  async create(
-    request: operations.SmsMessagesAddRequest,
-    options?: RequestOptions,
-  ): Promise<operations.SmsMessagesAddResponse> {
-    return unwrapAsync(smsMessagesCreate(
-      this,
-      request,
-      options,
-    ));
-  }
-
-  /**
    * Get Message
    *
    * @remarks
@@ -94,6 +58,42 @@ export class Messages extends ClientSDK {
     options?: RequestOptions,
   ): Promise<operations.SmsMessagesDeleteResponse> {
     return unwrapAsync(smsMessagesDelete(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * List Messages
+   *
+   * @remarks
+   * List Messages
+   */
+  async list(
+    request: operations.SmsMessagesAllRequest,
+    options?: RequestOptions,
+  ): Promise<
+    PageIterator<operations.SmsMessagesAllResponse, { cursor: string }>
+  > {
+    return unwrapResultIterator(smsMessagesList(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Create Message
+   *
+   * @remarks
+   * Create Message
+   */
+  async create(
+    request: operations.SmsMessagesAddRequest,
+    options?: RequestOptions,
+  ): Promise<operations.SmsMessagesAddResponse> {
+    return unwrapAsync(smsMessagesCreate(
       this,
       request,
       options,

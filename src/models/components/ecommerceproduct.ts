@@ -38,7 +38,7 @@ export type Images = {
   url?: string | null | undefined;
 };
 
-export type EcommerceProductOptions = {
+export type Options = {
   /**
    * A unique identifier for the option of the product.
    */
@@ -50,7 +50,7 @@ export type EcommerceProductOptions = {
   values?: Array<string> | undefined;
 };
 
-export type EcommerceProductVariantsOptions = {
+export type EcommerceProductOptions = {
   /**
    * A unique identifier for the option of the variant.
    */
@@ -105,11 +105,11 @@ export type Variants = {
    * The unit of measurement for the weight of the variant.
    */
   weightUnit?: string | null | undefined;
-  options?: Array<EcommerceProductVariantsOptions> | undefined;
+  options?: Array<EcommerceProductOptions> | undefined;
   images?: Array<EcommerceProductImages> | undefined;
 };
 
-export type EcommerceProductCategories = {
+export type Categories = {
   /**
    * A unique identifier for an object.
    */
@@ -164,7 +164,7 @@ export type EcommerceProduct = {
   /**
    * An array of options for the product.
    */
-  options?: Array<EcommerceProductOptions> | undefined;
+  options?: Array<Options> | undefined;
   variants?: Array<Variants> | undefined;
   /**
    * An array of tags for the product, used for organization and searching.
@@ -173,7 +173,7 @@ export type EcommerceProduct = {
   /**
    * An array of categories for the product, used for organization and searching.
    */
-  categories?: Array<EcommerceProductCategories> | undefined;
+  categories?: Array<Categories> | undefined;
   /**
    * When custom mappings are configured on the resource, the result is included here.
    */
@@ -260,6 +260,59 @@ export function imagesFromJSON(
 }
 
 /** @internal */
+export const Options$inboundSchema: z.ZodType<Options, z.ZodTypeDef, unknown> =
+  z.object({
+    id: z.nullable(z.string()).optional(),
+    name: z.nullable(z.string()).optional(),
+    values: z.array(z.string()).optional(),
+  });
+
+/** @internal */
+export type Options$Outbound = {
+  id?: string | null | undefined;
+  name?: string | null | undefined;
+  values?: Array<string> | undefined;
+};
+
+/** @internal */
+export const Options$outboundSchema: z.ZodType<
+  Options$Outbound,
+  z.ZodTypeDef,
+  Options
+> = z.object({
+  id: z.nullable(z.string()).optional(),
+  name: z.nullable(z.string()).optional(),
+  values: z.array(z.string()).optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace Options$ {
+  /** @deprecated use `Options$inboundSchema` instead. */
+  export const inboundSchema = Options$inboundSchema;
+  /** @deprecated use `Options$outboundSchema` instead. */
+  export const outboundSchema = Options$outboundSchema;
+  /** @deprecated use `Options$Outbound` instead. */
+  export type Outbound = Options$Outbound;
+}
+
+export function optionsToJSON(options: Options): string {
+  return JSON.stringify(Options$outboundSchema.parse(options));
+}
+
+export function optionsFromJSON(
+  jsonString: string,
+): SafeParseResult<Options, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Options$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Options' from JSON`,
+  );
+}
+
+/** @internal */
 export const EcommerceProductOptions$inboundSchema: z.ZodType<
   EcommerceProductOptions,
   z.ZodTypeDef,
@@ -267,14 +320,14 @@ export const EcommerceProductOptions$inboundSchema: z.ZodType<
 > = z.object({
   id: z.nullable(z.string()).optional(),
   name: z.nullable(z.string()).optional(),
-  values: z.array(z.string()).optional(),
+  value: z.nullable(z.string()).optional(),
 });
 
 /** @internal */
 export type EcommerceProductOptions$Outbound = {
   id?: string | null | undefined;
   name?: string | null | undefined;
-  values?: Array<string> | undefined;
+  value?: string | null | undefined;
 };
 
 /** @internal */
@@ -285,7 +338,7 @@ export const EcommerceProductOptions$outboundSchema: z.ZodType<
 > = z.object({
   id: z.nullable(z.string()).optional(),
   name: z.nullable(z.string()).optional(),
-  values: z.array(z.string()).optional(),
+  value: z.nullable(z.string()).optional(),
 });
 
 /**
@@ -316,68 +369,6 @@ export function ecommerceProductOptionsFromJSON(
     jsonString,
     (x) => EcommerceProductOptions$inboundSchema.parse(JSON.parse(x)),
     `Failed to parse 'EcommerceProductOptions' from JSON`,
-  );
-}
-
-/** @internal */
-export const EcommerceProductVariantsOptions$inboundSchema: z.ZodType<
-  EcommerceProductVariantsOptions,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  id: z.nullable(z.string()).optional(),
-  name: z.nullable(z.string()).optional(),
-  value: z.nullable(z.string()).optional(),
-});
-
-/** @internal */
-export type EcommerceProductVariantsOptions$Outbound = {
-  id?: string | null | undefined;
-  name?: string | null | undefined;
-  value?: string | null | undefined;
-};
-
-/** @internal */
-export const EcommerceProductVariantsOptions$outboundSchema: z.ZodType<
-  EcommerceProductVariantsOptions$Outbound,
-  z.ZodTypeDef,
-  EcommerceProductVariantsOptions
-> = z.object({
-  id: z.nullable(z.string()).optional(),
-  name: z.nullable(z.string()).optional(),
-  value: z.nullable(z.string()).optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace EcommerceProductVariantsOptions$ {
-  /** @deprecated use `EcommerceProductVariantsOptions$inboundSchema` instead. */
-  export const inboundSchema = EcommerceProductVariantsOptions$inboundSchema;
-  /** @deprecated use `EcommerceProductVariantsOptions$outboundSchema` instead. */
-  export const outboundSchema = EcommerceProductVariantsOptions$outboundSchema;
-  /** @deprecated use `EcommerceProductVariantsOptions$Outbound` instead. */
-  export type Outbound = EcommerceProductVariantsOptions$Outbound;
-}
-
-export function ecommerceProductVariantsOptionsToJSON(
-  ecommerceProductVariantsOptions: EcommerceProductVariantsOptions,
-): string {
-  return JSON.stringify(
-    EcommerceProductVariantsOptions$outboundSchema.parse(
-      ecommerceProductVariantsOptions,
-    ),
-  );
-}
-
-export function ecommerceProductVariantsOptionsFromJSON(
-  jsonString: string,
-): SafeParseResult<EcommerceProductVariantsOptions, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => EcommerceProductVariantsOptions$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'EcommerceProductVariantsOptions' from JSON`,
   );
 }
 
@@ -451,7 +442,7 @@ export const Variants$inboundSchema: z.ZodType<
   inventory_quantity: z.nullable(z.string()).optional(),
   weight: z.nullable(z.string()).optional(),
   weight_unit: z.nullable(z.string()).optional(),
-  options: z.array(z.lazy(() => EcommerceProductVariantsOptions$inboundSchema))
+  options: z.array(z.lazy(() => EcommerceProductOptions$inboundSchema))
     .optional(),
   images: z.array(z.lazy(() => EcommerceProductImages$inboundSchema))
     .optional(),
@@ -471,7 +462,7 @@ export type Variants$Outbound = {
   inventory_quantity?: string | null | undefined;
   weight?: string | null | undefined;
   weight_unit?: string | null | undefined;
-  options?: Array<EcommerceProductVariantsOptions$Outbound> | undefined;
+  options?: Array<EcommerceProductOptions$Outbound> | undefined;
   images?: Array<EcommerceProductImages$Outbound> | undefined;
 };
 
@@ -488,7 +479,7 @@ export const Variants$outboundSchema: z.ZodType<
   inventoryQuantity: z.nullable(z.string()).optional(),
   weight: z.nullable(z.string()).optional(),
   weightUnit: z.nullable(z.string()).optional(),
-  options: z.array(z.lazy(() => EcommerceProductVariantsOptions$outboundSchema))
+  options: z.array(z.lazy(() => EcommerceProductOptions$outboundSchema))
     .optional(),
   images: z.array(z.lazy(() => EcommerceProductImages$outboundSchema))
     .optional(),
@@ -527,8 +518,8 @@ export function variantsFromJSON(
 }
 
 /** @internal */
-export const EcommerceProductCategories$inboundSchema: z.ZodType<
-  EcommerceProductCategories,
+export const Categories$inboundSchema: z.ZodType<
+  Categories,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -537,16 +528,16 @@ export const EcommerceProductCategories$inboundSchema: z.ZodType<
 });
 
 /** @internal */
-export type EcommerceProductCategories$Outbound = {
+export type Categories$Outbound = {
   id?: string | null | undefined;
   name?: string | null | undefined;
 };
 
 /** @internal */
-export const EcommerceProductCategories$outboundSchema: z.ZodType<
-  EcommerceProductCategories$Outbound,
+export const Categories$outboundSchema: z.ZodType<
+  Categories$Outbound,
   z.ZodTypeDef,
-  EcommerceProductCategories
+  Categories
 > = z.object({
   id: z.nullable(z.string()).optional(),
   name: z.nullable(z.string()).optional(),
@@ -556,30 +547,26 @@ export const EcommerceProductCategories$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace EcommerceProductCategories$ {
-  /** @deprecated use `EcommerceProductCategories$inboundSchema` instead. */
-  export const inboundSchema = EcommerceProductCategories$inboundSchema;
-  /** @deprecated use `EcommerceProductCategories$outboundSchema` instead. */
-  export const outboundSchema = EcommerceProductCategories$outboundSchema;
-  /** @deprecated use `EcommerceProductCategories$Outbound` instead. */
-  export type Outbound = EcommerceProductCategories$Outbound;
+export namespace Categories$ {
+  /** @deprecated use `Categories$inboundSchema` instead. */
+  export const inboundSchema = Categories$inboundSchema;
+  /** @deprecated use `Categories$outboundSchema` instead. */
+  export const outboundSchema = Categories$outboundSchema;
+  /** @deprecated use `Categories$Outbound` instead. */
+  export type Outbound = Categories$Outbound;
 }
 
-export function ecommerceProductCategoriesToJSON(
-  ecommerceProductCategories: EcommerceProductCategories,
-): string {
-  return JSON.stringify(
-    EcommerceProductCategories$outboundSchema.parse(ecommerceProductCategories),
-  );
+export function categoriesToJSON(categories: Categories): string {
+  return JSON.stringify(Categories$outboundSchema.parse(categories));
 }
 
-export function ecommerceProductCategoriesFromJSON(
+export function categoriesFromJSON(
   jsonString: string,
-): SafeParseResult<EcommerceProductCategories, SDKValidationError> {
+): SafeParseResult<Categories, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => EcommerceProductCategories$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'EcommerceProductCategories' from JSON`,
+    (x) => Categories$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Categories' from JSON`,
   );
 }
 
@@ -599,12 +586,10 @@ export const EcommerceProduct$inboundSchema: z.ZodType<
   images: z.nullable(z.array(z.lazy(() => Images$inboundSchema))).optional(),
   weight: z.nullable(z.string()).optional(),
   weight_unit: z.nullable(z.string()).optional(),
-  options: z.array(z.lazy(() => EcommerceProductOptions$inboundSchema))
-    .optional(),
+  options: z.array(z.lazy(() => Options$inboundSchema)).optional(),
   variants: z.array(z.lazy(() => Variants$inboundSchema)).optional(),
   tags: z.array(z.string()).optional(),
-  categories: z.array(z.lazy(() => EcommerceProductCategories$inboundSchema))
-    .optional(),
+  categories: z.array(z.lazy(() => Categories$inboundSchema)).optional(),
   custom_mappings: z.nullable(CustomMappings$inboundSchema).optional(),
   created_at: z.nullable(
     z.string().datetime({ offset: true }).transform(v => new Date(v)),
@@ -634,10 +619,10 @@ export type EcommerceProduct$Outbound = {
   images?: Array<Images$Outbound> | null | undefined;
   weight?: string | null | undefined;
   weight_unit?: string | null | undefined;
-  options?: Array<EcommerceProductOptions$Outbound> | undefined;
+  options?: Array<Options$Outbound> | undefined;
   variants?: Array<Variants$Outbound> | undefined;
   tags?: Array<string> | undefined;
-  categories?: Array<EcommerceProductCategories$Outbound> | undefined;
+  categories?: Array<Categories$Outbound> | undefined;
   custom_mappings?: CustomMappings$Outbound | null | undefined;
   created_at?: string | null | undefined;
   updated_at?: string | null | undefined;
@@ -659,12 +644,10 @@ export const EcommerceProduct$outboundSchema: z.ZodType<
   images: z.nullable(z.array(z.lazy(() => Images$outboundSchema))).optional(),
   weight: z.nullable(z.string()).optional(),
   weightUnit: z.nullable(z.string()).optional(),
-  options: z.array(z.lazy(() => EcommerceProductOptions$outboundSchema))
-    .optional(),
+  options: z.array(z.lazy(() => Options$outboundSchema)).optional(),
   variants: z.array(z.lazy(() => Variants$outboundSchema)).optional(),
   tags: z.array(z.string()).optional(),
-  categories: z.array(z.lazy(() => EcommerceProductCategories$outboundSchema))
-    .optional(),
+  categories: z.array(z.lazy(() => Categories$outboundSchema)).optional(),
   customMappings: z.nullable(CustomMappings$outboundSchema).optional(),
   createdAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
   updatedAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),

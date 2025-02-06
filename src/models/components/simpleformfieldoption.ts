@@ -9,7 +9,7 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type Five = string | number | number;
 
-export type SimpleFormFieldOptionValue =
+export type Value =
   | string
   | number
   | number
@@ -66,20 +66,17 @@ export function fiveFromJSON(
 }
 
 /** @internal */
-export const SimpleFormFieldOptionValue$inboundSchema: z.ZodType<
-  SimpleFormFieldOptionValue,
-  z.ZodTypeDef,
-  unknown
-> = z.union([
-  z.string(),
-  z.number().int(),
-  z.number(),
-  z.boolean(),
-  z.array(z.union([z.string(), z.number().int(), z.number()])),
-]);
+export const Value$inboundSchema: z.ZodType<Value, z.ZodTypeDef, unknown> = z
+  .union([
+    z.string(),
+    z.number().int(),
+    z.number(),
+    z.boolean(),
+    z.array(z.union([z.string(), z.number().int(), z.number()])),
+  ]);
 
 /** @internal */
-export type SimpleFormFieldOptionValue$Outbound =
+export type Value$Outbound =
   | string
   | number
   | number
@@ -87,10 +84,10 @@ export type SimpleFormFieldOptionValue$Outbound =
   | Array<string | number | number>;
 
 /** @internal */
-export const SimpleFormFieldOptionValue$outboundSchema: z.ZodType<
-  SimpleFormFieldOptionValue$Outbound,
+export const Value$outboundSchema: z.ZodType<
+  Value$Outbound,
   z.ZodTypeDef,
-  SimpleFormFieldOptionValue
+  Value
 > = z.union([
   z.string(),
   z.number().int(),
@@ -103,30 +100,26 @@ export const SimpleFormFieldOptionValue$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace SimpleFormFieldOptionValue$ {
-  /** @deprecated use `SimpleFormFieldOptionValue$inboundSchema` instead. */
-  export const inboundSchema = SimpleFormFieldOptionValue$inboundSchema;
-  /** @deprecated use `SimpleFormFieldOptionValue$outboundSchema` instead. */
-  export const outboundSchema = SimpleFormFieldOptionValue$outboundSchema;
-  /** @deprecated use `SimpleFormFieldOptionValue$Outbound` instead. */
-  export type Outbound = SimpleFormFieldOptionValue$Outbound;
+export namespace Value$ {
+  /** @deprecated use `Value$inboundSchema` instead. */
+  export const inboundSchema = Value$inboundSchema;
+  /** @deprecated use `Value$outboundSchema` instead. */
+  export const outboundSchema = Value$outboundSchema;
+  /** @deprecated use `Value$Outbound` instead. */
+  export type Outbound = Value$Outbound;
 }
 
-export function simpleFormFieldOptionValueToJSON(
-  simpleFormFieldOptionValue: SimpleFormFieldOptionValue,
-): string {
-  return JSON.stringify(
-    SimpleFormFieldOptionValue$outboundSchema.parse(simpleFormFieldOptionValue),
-  );
+export function valueToJSON(value: Value): string {
+  return JSON.stringify(Value$outboundSchema.parse(value));
 }
 
-export function simpleFormFieldOptionValueFromJSON(
+export function valueFromJSON(
   jsonString: string,
-): SafeParseResult<SimpleFormFieldOptionValue, SDKValidationError> {
+): SafeParseResult<Value, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => SimpleFormFieldOptionValue$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'SimpleFormFieldOptionValue' from JSON`,
+    (x) => Value$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Value' from JSON`,
   );
 }
 

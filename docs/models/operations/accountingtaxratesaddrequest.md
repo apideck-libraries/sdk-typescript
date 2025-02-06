@@ -49,7 +49,7 @@ let value: AccountingTaxRatesAddRequest = {
         id: "2389328923893298",
         name: "employee_level",
         description: "Employee Level",
-        value: {},
+        value: 10,
       },
     ],
   },

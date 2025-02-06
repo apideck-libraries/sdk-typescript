@@ -428,7 +428,7 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.crm.users.get({
-    id: "<id>",
+    id: "0b9579ba-14c9-46c5-a61a-8da5d6fd5b47",
     serviceId: "salesforce",
     fields: "id,updated_at",
   });
@@ -458,7 +458,7 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await crmUsersGet(apideck, {
-    id: "<id>",
+    id: "0b9579ba-14c9-46c5-a61a-8da5d6fd5b47",
     serviceId: "salesforce",
     fields: "id,updated_at",
   });
@@ -517,7 +517,7 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.crm.users.update({
-    id: "<id>",
+    id: "0b9579ba-14c9-46c5-a61a-8da5d6fd5b47",
     serviceId: "salesforce",
     user: {
       parentId: "54321",
@@ -739,7 +739,7 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await crmUsersUpdate(apideck, {
-    id: "<id>",
+    id: "0b9579ba-14c9-46c5-a61a-8da5d6fd5b47",
     serviceId: "salesforce",
     user: {
       parentId: "54321",
@@ -990,7 +990,7 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.crm.users.delete({
-    id: "<id>",
+    id: "0b9579ba-14c9-46c5-a61a-8da5d6fd5b47",
     serviceId: "salesforce",
   });
 
@@ -1019,7 +1019,7 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await crmUsersDelete(apideck, {
-    id: "<id>",
+    id: "0b9579ba-14c9-46c5-a61a-8da5d6fd5b47",
     serviceId: "salesforce",
   });
 

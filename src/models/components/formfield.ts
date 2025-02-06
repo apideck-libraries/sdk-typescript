@@ -15,7 +15,7 @@ import {
   FormFieldOption$outboundSchema,
 } from "./formfieldoption.js";
 
-export const FormFieldType = {
+export const Type = {
   Text: "text",
   Checkbox: "checkbox",
   Tel: "tel",
@@ -30,7 +30,7 @@ export const FormFieldType = {
   Time: "time",
   Number: "number",
 } as const;
-export type FormFieldType = ClosedEnum<typeof FormFieldType>;
+export type Type = ClosedEnum<typeof Type>;
 
 export type FormField = {
   /**
@@ -49,7 +49,7 @@ export type FormField = {
    * The description of the form field
    */
   description?: string | null | undefined;
-  type?: FormFieldType | undefined;
+  type?: Type | undefined;
   /**
    * Indicates if the form field is required, which means it must be filled in before the form can be submitted
    */
@@ -87,24 +87,23 @@ export type FormField = {
 };
 
 /** @internal */
-export const FormFieldType$inboundSchema: z.ZodNativeEnum<
-  typeof FormFieldType
-> = z.nativeEnum(FormFieldType);
+export const Type$inboundSchema: z.ZodNativeEnum<typeof Type> = z.nativeEnum(
+  Type,
+);
 
 /** @internal */
-export const FormFieldType$outboundSchema: z.ZodNativeEnum<
-  typeof FormFieldType
-> = FormFieldType$inboundSchema;
+export const Type$outboundSchema: z.ZodNativeEnum<typeof Type> =
+  Type$inboundSchema;
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace FormFieldType$ {
-  /** @deprecated use `FormFieldType$inboundSchema` instead. */
-  export const inboundSchema = FormFieldType$inboundSchema;
-  /** @deprecated use `FormFieldType$outboundSchema` instead. */
-  export const outboundSchema = FormFieldType$outboundSchema;
+export namespace Type$ {
+  /** @deprecated use `Type$inboundSchema` instead. */
+  export const inboundSchema = Type$inboundSchema;
+  /** @deprecated use `Type$outboundSchema` instead. */
+  export const outboundSchema = Type$outboundSchema;
 }
 
 /** @internal */
@@ -117,7 +116,7 @@ export const FormField$inboundSchema: z.ZodType<
   label: z.string().optional(),
   placeholder: z.nullable(z.string()).optional(),
   description: z.nullable(z.string()).optional(),
-  type: FormFieldType$inboundSchema.optional(),
+  type: Type$inboundSchema.optional(),
   required: z.boolean().optional(),
   custom_field: z.boolean().optional(),
   allow_custom_values: z.boolean().default(false),
@@ -164,7 +163,7 @@ export const FormField$outboundSchema: z.ZodType<
   label: z.string().optional(),
   placeholder: z.nullable(z.string()).optional(),
   description: z.nullable(z.string()).optional(),
-  type: FormFieldType$outboundSchema.optional(),
+  type: Type$outboundSchema.optional(),
   required: z.boolean().optional(),
   customField: z.boolean().optional(),
   allowCustomValues: z.boolean().default(false),

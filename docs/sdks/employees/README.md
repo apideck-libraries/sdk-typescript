@@ -872,7 +872,7 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.hris.employees.get({
-    id: "<id>",
+    id: "0b9579ba-14c9-46c5-a61a-8da5d6fd5b47",
     serviceId: "salesforce",
     fields: "id,updated_at",
     filter: {
@@ -908,7 +908,7 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await hrisEmployeesGet(apideck, {
-    id: "<id>",
+    id: "0b9579ba-14c9-46c5-a61a-8da5d6fd5b47",
     serviceId: "salesforce",
     fields: "id,updated_at",
     filter: {
@@ -974,7 +974,7 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.hris.employees.update({
-    id: "<id>",
+    id: "0b9579ba-14c9-46c5-a61a-8da5d6fd5b47",
     serviceId: "salesforce",
     employee: {
       id: "12345",
@@ -1378,7 +1378,7 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await hrisEmployeesUpdate(apideck, {
-    id: "<id>",
+    id: "0b9579ba-14c9-46c5-a61a-8da5d6fd5b47",
     serviceId: "salesforce",
     employee: {
       id: "12345",
@@ -1810,7 +1810,7 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.hris.employees.delete({
-    id: "<id>",
+    id: "0b9579ba-14c9-46c5-a61a-8da5d6fd5b47",
     serviceId: "salesforce",
   });
 
@@ -1839,7 +1839,7 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await hrisEmployeesDelete(apideck, {
-    id: "<id>",
+    id: "0b9579ba-14c9-46c5-a61a-8da5d6fd5b47",
     serviceId: "salesforce",
   });
 

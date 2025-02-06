@@ -69,7 +69,9 @@ let value: AccountingExpensesAllResponse = {
             id: "2389328923893298",
             name: "employee_level",
             description: "Employee Level",
-            value: true,
+            value: [
+              {},
+            ],
           },
         ],
         updatedAt: new Date("2020-09-30T07:43:32.000Z"),
@@ -113,13 +115,7 @@ let value: AccountingExpensesAllResponse = {
     error: "Bad Request",
     typeName: "RequestHeadersValidationError",
     message: "Invalid Params",
-    detail: {
-      "missing": [
-        {
-          "x-apideck-consumer-id": "required",
-        },
-      ],
-    },
+    detail: {},
     ref: "https://developers.apideck.com/errors#unauthorizederror",
   },
 };

@@ -14,7 +14,7 @@ import {
   EcommerceDiscount$outboundSchema,
 } from "./ecommercediscount.js";
 
-export type Options = {
+export type EcommerceOrderLineItemOptions = {
   /**
    * A unique identifier for the option.
    */
@@ -57,7 +57,7 @@ export type EcommerceOrderLineItem = {
    * The description of the product or variant associated with the line item.
    */
   description?: string | null | undefined;
-  options?: Array<Options> | undefined;
+  options?: Array<EcommerceOrderLineItemOptions> | undefined;
   /**
    * The quantity of the product or variant associated with the line item.
    */
@@ -98,25 +98,28 @@ export type EcommerceOrderLineItem = {
 };
 
 /** @internal */
-export const Options$inboundSchema: z.ZodType<Options, z.ZodTypeDef, unknown> =
-  z.object({
-    id: z.nullable(z.string()).optional(),
-    name: z.nullable(z.string()).optional(),
-    value: z.nullable(z.string()).optional(),
-  });
+export const EcommerceOrderLineItemOptions$inboundSchema: z.ZodType<
+  EcommerceOrderLineItemOptions,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  id: z.nullable(z.string()).optional(),
+  name: z.nullable(z.string()).optional(),
+  value: z.nullable(z.string()).optional(),
+});
 
 /** @internal */
-export type Options$Outbound = {
+export type EcommerceOrderLineItemOptions$Outbound = {
   id?: string | null | undefined;
   name?: string | null | undefined;
   value?: string | null | undefined;
 };
 
 /** @internal */
-export const Options$outboundSchema: z.ZodType<
-  Options$Outbound,
+export const EcommerceOrderLineItemOptions$outboundSchema: z.ZodType<
+  EcommerceOrderLineItemOptions$Outbound,
   z.ZodTypeDef,
-  Options
+  EcommerceOrderLineItemOptions
 > = z.object({
   id: z.nullable(z.string()).optional(),
   name: z.nullable(z.string()).optional(),
@@ -127,26 +130,32 @@ export const Options$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace Options$ {
-  /** @deprecated use `Options$inboundSchema` instead. */
-  export const inboundSchema = Options$inboundSchema;
-  /** @deprecated use `Options$outboundSchema` instead. */
-  export const outboundSchema = Options$outboundSchema;
-  /** @deprecated use `Options$Outbound` instead. */
-  export type Outbound = Options$Outbound;
+export namespace EcommerceOrderLineItemOptions$ {
+  /** @deprecated use `EcommerceOrderLineItemOptions$inboundSchema` instead. */
+  export const inboundSchema = EcommerceOrderLineItemOptions$inboundSchema;
+  /** @deprecated use `EcommerceOrderLineItemOptions$outboundSchema` instead. */
+  export const outboundSchema = EcommerceOrderLineItemOptions$outboundSchema;
+  /** @deprecated use `EcommerceOrderLineItemOptions$Outbound` instead. */
+  export type Outbound = EcommerceOrderLineItemOptions$Outbound;
 }
 
-export function optionsToJSON(options: Options): string {
-  return JSON.stringify(Options$outboundSchema.parse(options));
+export function ecommerceOrderLineItemOptionsToJSON(
+  ecommerceOrderLineItemOptions: EcommerceOrderLineItemOptions,
+): string {
+  return JSON.stringify(
+    EcommerceOrderLineItemOptions$outboundSchema.parse(
+      ecommerceOrderLineItemOptions,
+    ),
+  );
 }
 
-export function optionsFromJSON(
+export function ecommerceOrderLineItemOptionsFromJSON(
   jsonString: string,
-): SafeParseResult<Options, SDKValidationError> {
+): SafeParseResult<EcommerceOrderLineItemOptions, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => Options$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Options' from JSON`,
+    (x) => EcommerceOrderLineItemOptions$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'EcommerceOrderLineItemOptions' from JSON`,
   );
 }
 
@@ -162,7 +171,8 @@ export const EcommerceOrderLineItem$inboundSchema: z.ZodType<
   sku: z.nullable(z.string()).optional(),
   name: z.nullable(z.string()),
   description: z.nullable(z.string()).optional(),
-  options: z.array(z.lazy(() => Options$inboundSchema)).optional(),
+  options: z.array(z.lazy(() => EcommerceOrderLineItemOptions$inboundSchema))
+    .optional(),
   quantity: z.nullable(z.string()),
   unit_price: z.nullable(z.string()).optional(),
   tax_rate: z.nullable(z.string()).optional(),
@@ -196,7 +206,7 @@ export type EcommerceOrderLineItem$Outbound = {
   sku?: string | null | undefined;
   name: string | null;
   description?: string | null | undefined;
-  options?: Array<Options$Outbound> | undefined;
+  options?: Array<EcommerceOrderLineItemOptions$Outbound> | undefined;
   quantity: string | null;
   unit_price?: string | null | undefined;
   tax_rate?: string | null | undefined;
@@ -221,7 +231,8 @@ export const EcommerceOrderLineItem$outboundSchema: z.ZodType<
   sku: z.nullable(z.string()).optional(),
   name: z.nullable(z.string()),
   description: z.nullable(z.string()).optional(),
-  options: z.array(z.lazy(() => Options$outboundSchema)).optional(),
+  options: z.array(z.lazy(() => EcommerceOrderLineItemOptions$outboundSchema))
+    .optional(),
   quantity: z.nullable(z.string()),
   unitPrice: z.nullable(z.string()).optional(),
   taxRate: z.nullable(z.string()).optional(),

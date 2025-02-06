@@ -116,7 +116,7 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.connector.connectors.get({
-    id: "<id>",
+    id: "0b9579ba-14c9-46c5-a61a-8da5d6fd5b47",
   });
 
   // Handle the result
@@ -144,7 +144,7 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await connectorConnectorsGet(apideck, {
-    id: "<id>",
+    id: "0b9579ba-14c9-46c5-a61a-8da5d6fd5b47",
   });
 
   if (!res.ok) {

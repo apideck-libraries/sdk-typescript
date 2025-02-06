@@ -126,7 +126,7 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.hris.payrolls.get({
-    payrollId: "<id>",
+    payrollId: "payroll_id_example",
     serviceId: "salesforce",
     fields: "id,updated_at",
   });
@@ -156,7 +156,7 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await hrisPayrollsGet(apideck, {
-    payrollId: "<id>",
+    payrollId: "payroll_id_example",
     serviceId: "salesforce",
     fields: "id,updated_at",
   });

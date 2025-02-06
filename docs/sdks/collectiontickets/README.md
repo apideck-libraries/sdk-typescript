@@ -29,7 +29,7 @@ const apideck = new Apideck({
 async function run() {
   const result = await apideck.issueTracking.collectionTickets.list({
     serviceId: "salesforce",
-    collectionId: "apideck-io",
+    collectionId: "collection_id_example",
     sort: {
       by: "created_at",
     },
@@ -72,7 +72,7 @@ const apideck = new ApideckCore({
 async function run() {
   const res = await issueTrackingCollectionTicketsList(apideck, {
     serviceId: "salesforce",
-    collectionId: "apideck-io",
+    collectionId: "collection_id_example",
     sort: {
       by: "created_at",
     },
@@ -144,7 +144,7 @@ const apideck = new Apideck({
 async function run() {
   const result = await apideck.issueTracking.collectionTickets.create({
     serviceId: "salesforce",
-    collectionId: "apideck-io",
+    collectionId: "collection_id_example",
     ticket: {
       parentId: "12345",
       type: "Technical",
@@ -226,7 +226,7 @@ const apideck = new ApideckCore({
 async function run() {
   const res = await issueTrackingCollectionTicketsCreate(apideck, {
     serviceId: "salesforce",
-    collectionId: "apideck-io",
+    collectionId: "collection_id_example",
     ticket: {
       parentId: "12345",
       type: "Technical",
@@ -336,9 +336,9 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.issueTracking.collectionTickets.get({
-    ticketId: "<id>",
+    ticketId: "ticket_id_example",
     serviceId: "salesforce",
-    collectionId: "apideck-io",
+    collectionId: "collection_id_example",
     fields: "id,updated_at",
   });
 
@@ -367,9 +367,9 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await issueTrackingCollectionTicketsGet(apideck, {
-    ticketId: "<id>",
+    ticketId: "ticket_id_example",
     serviceId: "salesforce",
-    collectionId: "apideck-io",
+    collectionId: "collection_id_example",
     fields: "id,updated_at",
   });
 
@@ -427,9 +427,9 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.issueTracking.collectionTickets.update({
-    ticketId: "<id>",
+    ticketId: "ticket_id_example",
     serviceId: "salesforce",
-    collectionId: "apideck-io",
+    collectionId: "collection_id_example",
     ticket: {
       parentId: "12345",
       type: "Technical",
@@ -537,9 +537,9 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await issueTrackingCollectionTicketsUpdate(apideck, {
-    ticketId: "<id>",
+    ticketId: "ticket_id_example",
     serviceId: "salesforce",
-    collectionId: "apideck-io",
+    collectionId: "collection_id_example",
     ticket: {
       parentId: "12345",
       type: "Technical",
@@ -676,9 +676,9 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.issueTracking.collectionTickets.delete({
-    ticketId: "<id>",
+    ticketId: "ticket_id_example",
     serviceId: "salesforce",
-    collectionId: "apideck-io",
+    collectionId: "collection_id_example",
   });
 
   // Handle the result
@@ -706,9 +706,9 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await issueTrackingCollectionTicketsDelete(apideck, {
-    ticketId: "<id>",
+    ticketId: "ticket_id_example",
     serviceId: "salesforce",
-    collectionId: "apideck-io",
+    collectionId: "collection_id_example",
   });
 
   if (!res.ok) {

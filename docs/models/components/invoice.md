@@ -91,7 +91,7 @@ let value: Invoice = {
           name: "employee_level",
           description: "Employee Level",
           value: [
-            "<value>",
+            {},
           ],
         },
       ],

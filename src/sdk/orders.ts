@@ -11,6 +11,23 @@ import { PageIterator, unwrapResultIterator } from "../types/operations.js";
 
 export class Orders extends ClientSDK {
   /**
+   * Get Order
+   *
+   * @remarks
+   * Get Order
+   */
+  async get(
+    request: operations.EcommerceOrdersOneRequest,
+    options?: RequestOptions,
+  ): Promise<operations.EcommerceOrdersOneResponse> {
+    return unwrapAsync(ecommerceOrdersGet(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
    * List Orders
    *
    * @remarks
@@ -23,23 +40,6 @@ export class Orders extends ClientSDK {
     PageIterator<operations.EcommerceOrdersAllResponse, { cursor: string }>
   > {
     return unwrapResultIterator(ecommerceOrdersList(
-      this,
-      request,
-      options,
-    ));
-  }
-
-  /**
-   * Get Order
-   *
-   * @remarks
-   * Get Order
-   */
-  async get(
-    request: operations.EcommerceOrdersOneRequest,
-    options?: RequestOptions,
-  ): Promise<operations.EcommerceOrdersOneResponse> {
-    return unwrapAsync(ecommerceOrdersGet(
       this,
       request,
       options,

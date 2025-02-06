@@ -368,7 +368,7 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.accounting.ledgerAccounts.get({
-    id: "<id>",
+    id: "0b9579ba-14c9-46c5-a61a-8da5d6fd5b47",
     serviceId: "salesforce",
     fields: "id,updated_at",
   });
@@ -398,7 +398,7 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await accountingLedgerAccountsGet(apideck, {
-    id: "<id>",
+    id: "0b9579ba-14c9-46c5-a61a-8da5d6fd5b47",
     serviceId: "salesforce",
     fields: "id,updated_at",
   });
@@ -458,7 +458,7 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.accounting.ledgerAccounts.update({
-    id: "<id>",
+    id: "0b9579ba-14c9-46c5-a61a-8da5d6fd5b47",
     serviceId: "salesforce",
     ledgerAccount: {
       displayId: "1-12345",
@@ -598,7 +598,7 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await accountingLedgerAccountsUpdate(apideck, {
-    id: "<id>",
+    id: "0b9579ba-14c9-46c5-a61a-8da5d6fd5b47",
     serviceId: "salesforce",
     ledgerAccount: {
       displayId: "1-12345",
@@ -766,7 +766,7 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.accounting.ledgerAccounts.delete({
-    id: "<id>",
+    id: "0b9579ba-14c9-46c5-a61a-8da5d6fd5b47",
     serviceId: "salesforce",
   });
 
@@ -795,7 +795,7 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await accountingLedgerAccountsDelete(apideck, {
-    id: "<id>",
+    id: "0b9579ba-14c9-46c5-a61a-8da5d6fd5b47",
     serviceId: "salesforce",
   });
 

@@ -11,7 +11,7 @@ export type Six = {};
 
 export type Four = {};
 
-export type Value =
+export type CustomFieldValue =
   | Four
   | string
   | number
@@ -120,18 +120,21 @@ export function fourFromJSON(
 }
 
 /** @internal */
-export const Value$inboundSchema: z.ZodType<Value, z.ZodTypeDef, unknown> = z
-  .union([
-    z.lazy(() => Four$inboundSchema),
-    z.string(),
-    z.number(),
-    z.boolean(),
-    z.array(z.string()),
-    z.array(z.lazy(() => Six$inboundSchema)),
-  ]);
+export const CustomFieldValue$inboundSchema: z.ZodType<
+  CustomFieldValue,
+  z.ZodTypeDef,
+  unknown
+> = z.union([
+  z.lazy(() => Four$inboundSchema),
+  z.string(),
+  z.number(),
+  z.boolean(),
+  z.array(z.string()),
+  z.array(z.lazy(() => Six$inboundSchema)),
+]);
 
 /** @internal */
-export type Value$Outbound =
+export type CustomFieldValue$Outbound =
   | Four$Outbound
   | string
   | number
@@ -140,10 +143,10 @@ export type Value$Outbound =
   | Array<Six$Outbound>;
 
 /** @internal */
-export const Value$outboundSchema: z.ZodType<
-  Value$Outbound,
+export const CustomFieldValue$outboundSchema: z.ZodType<
+  CustomFieldValue$Outbound,
   z.ZodTypeDef,
-  Value
+  CustomFieldValue
 > = z.union([
   z.lazy(() => Four$outboundSchema),
   z.string(),
@@ -157,26 +160,30 @@ export const Value$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace Value$ {
-  /** @deprecated use `Value$inboundSchema` instead. */
-  export const inboundSchema = Value$inboundSchema;
-  /** @deprecated use `Value$outboundSchema` instead. */
-  export const outboundSchema = Value$outboundSchema;
-  /** @deprecated use `Value$Outbound` instead. */
-  export type Outbound = Value$Outbound;
+export namespace CustomFieldValue$ {
+  /** @deprecated use `CustomFieldValue$inboundSchema` instead. */
+  export const inboundSchema = CustomFieldValue$inboundSchema;
+  /** @deprecated use `CustomFieldValue$outboundSchema` instead. */
+  export const outboundSchema = CustomFieldValue$outboundSchema;
+  /** @deprecated use `CustomFieldValue$Outbound` instead. */
+  export type Outbound = CustomFieldValue$Outbound;
 }
 
-export function valueToJSON(value: Value): string {
-  return JSON.stringify(Value$outboundSchema.parse(value));
+export function customFieldValueToJSON(
+  customFieldValue: CustomFieldValue,
+): string {
+  return JSON.stringify(
+    CustomFieldValue$outboundSchema.parse(customFieldValue),
+  );
 }
 
-export function valueFromJSON(
+export function customFieldValueFromJSON(
   jsonString: string,
-): SafeParseResult<Value, SDKValidationError> {
+): SafeParseResult<CustomFieldValue, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => Value$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Value' from JSON`,
+    (x) => CustomFieldValue$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CustomFieldValue' from JSON`,
   );
 }
 

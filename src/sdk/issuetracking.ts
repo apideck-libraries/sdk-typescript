@@ -20,11 +20,9 @@ export class IssueTracking extends ClientSDK {
     return (this._collectionTickets ??= new CollectionTickets(this._options));
   }
 
-  private _collectionTicketComments?: CollectionTicketComments;
-  get collectionTicketComments(): CollectionTicketComments {
-    return (this._collectionTicketComments ??= new CollectionTicketComments(
-      this._options,
-    ));
+  private _collectionTags?: CollectionTags;
+  get collectionTags(): CollectionTags {
+    return (this._collectionTags ??= new CollectionTags(this._options));
   }
 
   private _collectionUsers?: CollectionUsers;
@@ -32,8 +30,10 @@ export class IssueTracking extends ClientSDK {
     return (this._collectionUsers ??= new CollectionUsers(this._options));
   }
 
-  private _collectionTags?: CollectionTags;
-  get collectionTags(): CollectionTags {
-    return (this._collectionTags ??= new CollectionTags(this._options));
+  private _collectionTicketComments?: CollectionTicketComments;
+  get collectionTicketComments(): CollectionTicketComments {
+    return (this._collectionTicketComments ??= new CollectionTicketComments(
+      this._options,
+    ));
   }
 }

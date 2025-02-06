@@ -606,7 +606,7 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.ats.applicants.get({
-    id: "<id>",
+    id: "0b9579ba-14c9-46c5-a61a-8da5d6fd5b47",
     serviceId: "salesforce",
     fields: "id,updated_at",
   });
@@ -636,7 +636,7 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await atsApplicantsGet(apideck, {
-    id: "<id>",
+    id: "0b9579ba-14c9-46c5-a61a-8da5d6fd5b47",
     serviceId: "salesforce",
     fields: "id,updated_at",
   });
@@ -696,7 +696,7 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.ats.applicants.update({
-    id: "<id>",
+    id: "0b9579ba-14c9-46c5-a61a-8da5d6fd5b47",
     serviceId: "salesforce",
     applicant: {
       name: "Elon Musk",
@@ -949,7 +949,7 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await atsApplicantsUpdate(apideck, {
-    id: "<id>",
+    id: "0b9579ba-14c9-46c5-a61a-8da5d6fd5b47",
     serviceId: "salesforce",
     applicant: {
       name: "Elon Musk",
@@ -1230,7 +1230,7 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.ats.applicants.delete({
-    id: "<id>",
+    id: "0b9579ba-14c9-46c5-a61a-8da5d6fd5b47",
     serviceId: "salesforce",
   });
 
@@ -1259,7 +1259,7 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await atsApplicantsDelete(apideck, {
-    id: "<id>",
+    id: "0b9579ba-14c9-46c5-a61a-8da5d6fd5b47",
     serviceId: "salesforce",
   });
 

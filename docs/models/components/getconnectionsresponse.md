@@ -78,7 +78,7 @@ let value: GetConnectionsResponse = {
                   value: "general",
                 },
               ],
-              value: true,
+              value: 10,
             },
           ],
         },

@@ -90,7 +90,7 @@ let value: GetActivitiesResponse = {
           name: "employee_level",
           description: "Employee Level",
           value: [
-            "<value>",
+            {},
           ],
         },
       ],

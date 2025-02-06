@@ -25,11 +25,7 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.vault.logs.list({
-    filter: {
-      connectorId: "crm+salesforce",
-      statusCode: 201,
-      excludeUnifiedApis: "vault,proxy",
-    },
+    filter: {},
   });
 
   for await (const page of result) {
@@ -59,11 +55,7 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await vaultLogsList(apideck, {
-    filter: {
-      connectorId: "crm+salesforce",
-      statusCode: 201,
-      excludeUnifiedApis: "vault,proxy",
-    },
+    filter: {},
   });
 
   if (!res.ok) {

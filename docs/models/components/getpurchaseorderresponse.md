@@ -109,7 +109,7 @@ let value: GetPurchaseOrderResponse = {
             name: "employee_level",
             description: "Employee Level",
             value: [
-              {},
+              "<value>",
             ],
           },
         ],

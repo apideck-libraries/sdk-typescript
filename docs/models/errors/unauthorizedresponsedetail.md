@@ -11,13 +11,9 @@ Contains parameter or domain specific information related to the error and why i
 const value: string = "Missing authentication";
 ```
 
-### `{ [k: string]: any }`
+### `errors.Detail2`
 
 ```typescript
-const value: { [k: string]: any } = {
-  "statusCode": 401,
-  "error": "Unauthorized",
-  "message": "Missing authentication",
-};
+const value: errors.Detail2 = {};
 ```
 

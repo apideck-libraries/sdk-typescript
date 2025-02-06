@@ -17,12 +17,14 @@ let value: ConnectionConfiguration = {
           options: [
             {
               label: "General Channel",
-              value: true,
+              value: "general",
             },
           ],
         },
       ],
-      value: true,
+      value: [
+        10.5,
+      ],
     },
   ],
 };

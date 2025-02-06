@@ -1,42 +1,71 @@
 speakeasyVersion: 1.484.1
 sources:
     Apideck-OAS:
-        sourceNamespace: apideck-oas
-        sourceRevisionDigest: sha256:18bea5aec53db2407aa8c0c658b219017be4b2d7eaa9d48401c7311c97f96857
-        sourceBlobDigest: sha256:94da7a3663c9fff3dac3d41364bf940e0b5eba81c50cb9e76a3af41d4af0b25f
+        sourceNamespace: apideck-oas-enhanced
+        sourceRevisionDigest: sha256:ca9dd669d71928629349849061a28a57b8a229403c905c18fd5e4d781be16425
+        sourceBlobDigest: sha256:dcc7d548eaf4408f9fc91e23dea60fc711cfef2c72d50ba30a7ff9d7f2ed3909
         tags:
             - latest
-            - speakeasy-sdk-regen-1738747406
+            - speakeasy-sdk-regen-1738852679
             - 10.11.2
 targets:
     apideck:
         source: Apideck-OAS
-        sourceNamespace: apideck-oas
-        sourceRevisionDigest: sha256:18bea5aec53db2407aa8c0c658b219017be4b2d7eaa9d48401c7311c97f96857
-        sourceBlobDigest: sha256:94da7a3663c9fff3dac3d41364bf940e0b5eba81c50cb9e76a3af41d4af0b25f
+        sourceNamespace: apideck-oas-enhanced
+        sourceRevisionDigest: sha256:ca9dd669d71928629349849061a28a57b8a229403c905c18fd5e4d781be16425
+        sourceBlobDigest: sha256:dcc7d548eaf4408f9fc91e23dea60fc711cfef2c72d50ba30a7ff9d7f2ed3909
         codeSamplesNamespace: apideck-oas-typescript-code-samples
-        codeSamplesRevisionDigest: sha256:5733e6394793f8b20c3fabcee4c88aace664cfbe94660dbf4f97bcb39820b542
+        codeSamplesRevisionDigest: sha256:6adf1b09a30e7208e968173816824765b551036d106c9dfcd7d645f91c1adfde
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest
     sources:
         Apideck-OAS:
             inputs:
-                - location: https://ci-spec-unify.s3.eu-central-1.amazonaws.com/speakeasy-spec.yml
+                - location: https://specs.apideck.com/accounting.yml
+                - location: https://specs.apideck.com/ats.yml
+                - location: https://specs.apideck.com/connector.yml
+                - location: https://specs.apideck.com/crm.yml
+                - location: https://specs.apideck.com/ecommerce.yml
+                - location: https://specs.apideck.com/file-storage.yml
+                - location: https://specs.apideck.com/hris.yml
+                - location: https://specs.apideck.com/issue-tracking.yml
+                - location: https://specs.apideck.com/sms.yml
+                - location: https://specs.apideck.com/vault.yml
+                - location: https://specs.apideck.com/webhook.yml
+            overlays:
+                - location: https://ci-spec-unify.s3.eu-central-1.amazonaws.com/speakeasy-spec-overlay.yml
+            transformations:
+                - removeUnused: true
+                - cleanup: true
             registry:
-                location: registry.speakeasyapi.dev/apideck-k2o/apideck/apideck-oas
+                location: registry.speakeasyapi.dev/apideck-k2o/apideck/apideck-oas-enhanced
         Apideck-Sample-Docs:
             inputs:
-                - location: https://ci-spec-unify.s3.eu-central-1.amazonaws.com/speakeasy-spec.yml
+                - location: https://specs.apideck.com/accounting.yml
+                - location: https://specs.apideck.com/ats.yml
+                - location: https://specs.apideck.com/connector.yml
+                - location: https://specs.apideck.com/crm.yml
+                - location: https://specs.apideck.com/ecommerce.yml
+                - location: https://specs.apideck.com/file-storage.yml
+                - location: https://specs.apideck.com/hris.yml
+                - location: https://specs.apideck.com/issue-tracking.yml
+                - location: https://specs.apideck.com/sms.yml
+                - location: https://specs.apideck.com/vault.yml
+                - location: https://specs.apideck.com/webhook.yml
             overlays:
+                - location: https://ci-spec-unify.s3.eu-central-1.amazonaws.com/speakeasy-spec-overlay.yml
                 - location: registry.speakeasyapi.dev/apideck-k2o/apideck/apideck-oas-typescript-code-samples
                 - location: registry.speakeasyapi.dev/apideck-k2o/apideck/apideck-csharp-code-samples
                 - location: registry.speakeasyapi.dev/apideck-k2o/apideck/apideck-go-code-samples
                 - location: registry.speakeasyapi.dev/apideck-k2o/apideck/apideck-oas-java-code-samples
                 - location: registry.speakeasyapi.dev/apideck-k2o/apideck/apideck-python-code-samples
                 - location: registry.speakeasyapi.dev/apideck-k2o/apideck/apideck-php-code-samples
+            transformations:
+                - removeUnused: true
+                - cleanup: true
             registry:
-                location: registry.speakeasyapi.dev/apideck-k2o/apideck/apideck-oas-with-code-samples
+                location: registry.speakeasyapi.dev/apideck-k2o/apideck/apideck-oas-enhanced-with-code-samples
     targets:
         apideck:
             target: typescript

@@ -114,7 +114,7 @@ export const AccountStatus = {
  */
 export type AccountStatus = ClosedEnum<typeof AccountStatus>;
 
-export type Categories = {
+export type LedgerAccountCategories = {
   id?: string | undefined;
   /**
    * The name of the category.
@@ -232,7 +232,7 @@ export type LedgerAccount = {
   /**
    * The categories of the account.
    */
-  categories?: Array<Categories> | undefined;
+  categories?: Array<LedgerAccountCategories> | undefined;
   parentAccount?: ParentAccount | undefined;
   /**
    * Whether the account is a sub account or not.
@@ -439,8 +439,8 @@ export namespace AccountStatus$ {
 }
 
 /** @internal */
-export const Categories$inboundSchema: z.ZodType<
-  Categories,
+export const LedgerAccountCategories$inboundSchema: z.ZodType<
+  LedgerAccountCategories,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -449,16 +449,16 @@ export const Categories$inboundSchema: z.ZodType<
 });
 
 /** @internal */
-export type Categories$Outbound = {
+export type LedgerAccountCategories$Outbound = {
   id?: string | undefined;
   name?: string | undefined;
 };
 
 /** @internal */
-export const Categories$outboundSchema: z.ZodType<
-  Categories$Outbound,
+export const LedgerAccountCategories$outboundSchema: z.ZodType<
+  LedgerAccountCategories$Outbound,
   z.ZodTypeDef,
-  Categories
+  LedgerAccountCategories
 > = z.object({
   id: z.string().optional(),
   name: z.string().optional(),
@@ -468,26 +468,30 @@ export const Categories$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace Categories$ {
-  /** @deprecated use `Categories$inboundSchema` instead. */
-  export const inboundSchema = Categories$inboundSchema;
-  /** @deprecated use `Categories$outboundSchema` instead. */
-  export const outboundSchema = Categories$outboundSchema;
-  /** @deprecated use `Categories$Outbound` instead. */
-  export type Outbound = Categories$Outbound;
+export namespace LedgerAccountCategories$ {
+  /** @deprecated use `LedgerAccountCategories$inboundSchema` instead. */
+  export const inboundSchema = LedgerAccountCategories$inboundSchema;
+  /** @deprecated use `LedgerAccountCategories$outboundSchema` instead. */
+  export const outboundSchema = LedgerAccountCategories$outboundSchema;
+  /** @deprecated use `LedgerAccountCategories$Outbound` instead. */
+  export type Outbound = LedgerAccountCategories$Outbound;
 }
 
-export function categoriesToJSON(categories: Categories): string {
-  return JSON.stringify(Categories$outboundSchema.parse(categories));
+export function ledgerAccountCategoriesToJSON(
+  ledgerAccountCategories: LedgerAccountCategories,
+): string {
+  return JSON.stringify(
+    LedgerAccountCategories$outboundSchema.parse(ledgerAccountCategories),
+  );
 }
 
-export function categoriesFromJSON(
+export function ledgerAccountCategoriesFromJSON(
   jsonString: string,
-): SafeParseResult<Categories, SDKValidationError> {
+): SafeParseResult<LedgerAccountCategories, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => Categories$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Categories' from JSON`,
+    (x) => LedgerAccountCategories$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'LedgerAccountCategories' from JSON`,
   );
 }
 
@@ -696,7 +700,8 @@ export const LedgerAccount$inboundSchema: z.ZodType<
   status: z.nullable(AccountStatus$inboundSchema).optional(),
   header: z.nullable(z.boolean()).optional(),
   bank_account: BankAccount$inboundSchema.optional(),
-  categories: z.array(z.lazy(() => Categories$inboundSchema)).optional(),
+  categories: z.array(z.lazy(() => LedgerAccountCategories$inboundSchema))
+    .optional(),
   parent_account: z.lazy(() => ParentAccount$inboundSchema).optional(),
   sub_account: z.nullable(z.boolean()).optional(),
   sub_accounts: z.array(z.lazy(() => SubAccounts$inboundSchema)).optional(),
@@ -765,7 +770,7 @@ export type LedgerAccount$Outbound = {
   status?: string | null | undefined;
   header?: boolean | null | undefined;
   bank_account?: BankAccount$Outbound | undefined;
-  categories?: Array<Categories$Outbound> | undefined;
+  categories?: Array<LedgerAccountCategories$Outbound> | undefined;
   parent_account?: ParentAccount$Outbound | undefined;
   sub_account?: boolean | null | undefined;
   sub_accounts?: Array<SubAccounts$Outbound> | undefined;
@@ -807,7 +812,8 @@ export const LedgerAccount$outboundSchema: z.ZodType<
   status: z.nullable(AccountStatus$outboundSchema).optional(),
   header: z.nullable(z.boolean()).optional(),
   bankAccount: BankAccount$outboundSchema.optional(),
-  categories: z.array(z.lazy(() => Categories$outboundSchema)).optional(),
+  categories: z.array(z.lazy(() => LedgerAccountCategories$outboundSchema))
+    .optional(),
   parentAccount: z.lazy(() => ParentAccount$outboundSchema).optional(),
   subAccount: z.nullable(z.boolean()).optional(),
   subAccounts: z.array(z.lazy(() => SubAccounts$outboundSchema)).optional(),

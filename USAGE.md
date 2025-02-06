@@ -9,14 +9,10 @@ const apideck = new Apideck({
 });
 
 async function run() {
-  const result = await apideck.accounting.taxRates.list({
+  const result = await apideck.issueTracking.collections.list({
     serviceId: "salesforce",
-    filter: {
-      assets: true,
-      equity: true,
-      expenses: true,
-      liabilities: true,
-      revenue: true,
+    sort: {
+      by: "name",
     },
     passThrough: {
       "search": "San Francisco",

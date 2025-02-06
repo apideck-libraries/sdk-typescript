@@ -8,37 +8,34 @@ import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
-export type WebhookEventLogsFilterService = {
+export type Service = {
   id?: string | undefined;
 };
 
 export type WebhookEventLogsFilter = {
   excludeApis?: string | null | undefined;
-  service?: WebhookEventLogsFilterService | null | undefined;
+  service?: Service | null | undefined;
   consumerId?: string | null | undefined;
   entityType?: string | null | undefined;
   eventType?: string | null | undefined;
 };
 
 /** @internal */
-export const WebhookEventLogsFilterService$inboundSchema: z.ZodType<
-  WebhookEventLogsFilterService,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  id: z.string().optional(),
-});
+export const Service$inboundSchema: z.ZodType<Service, z.ZodTypeDef, unknown> =
+  z.object({
+    id: z.string().optional(),
+  });
 
 /** @internal */
-export type WebhookEventLogsFilterService$Outbound = {
+export type Service$Outbound = {
   id?: string | undefined;
 };
 
 /** @internal */
-export const WebhookEventLogsFilterService$outboundSchema: z.ZodType<
-  WebhookEventLogsFilterService$Outbound,
+export const Service$outboundSchema: z.ZodType<
+  Service$Outbound,
   z.ZodTypeDef,
-  WebhookEventLogsFilterService
+  Service
 > = z.object({
   id: z.string().optional(),
 });
@@ -47,32 +44,26 @@ export const WebhookEventLogsFilterService$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace WebhookEventLogsFilterService$ {
-  /** @deprecated use `WebhookEventLogsFilterService$inboundSchema` instead. */
-  export const inboundSchema = WebhookEventLogsFilterService$inboundSchema;
-  /** @deprecated use `WebhookEventLogsFilterService$outboundSchema` instead. */
-  export const outboundSchema = WebhookEventLogsFilterService$outboundSchema;
-  /** @deprecated use `WebhookEventLogsFilterService$Outbound` instead. */
-  export type Outbound = WebhookEventLogsFilterService$Outbound;
+export namespace Service$ {
+  /** @deprecated use `Service$inboundSchema` instead. */
+  export const inboundSchema = Service$inboundSchema;
+  /** @deprecated use `Service$outboundSchema` instead. */
+  export const outboundSchema = Service$outboundSchema;
+  /** @deprecated use `Service$Outbound` instead. */
+  export type Outbound = Service$Outbound;
 }
 
-export function webhookEventLogsFilterServiceToJSON(
-  webhookEventLogsFilterService: WebhookEventLogsFilterService,
-): string {
-  return JSON.stringify(
-    WebhookEventLogsFilterService$outboundSchema.parse(
-      webhookEventLogsFilterService,
-    ),
-  );
+export function serviceToJSON(service: Service): string {
+  return JSON.stringify(Service$outboundSchema.parse(service));
 }
 
-export function webhookEventLogsFilterServiceFromJSON(
+export function serviceFromJSON(
   jsonString: string,
-): SafeParseResult<WebhookEventLogsFilterService, SDKValidationError> {
+): SafeParseResult<Service, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => WebhookEventLogsFilterService$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'WebhookEventLogsFilterService' from JSON`,
+    (x) => Service$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Service' from JSON`,
   );
 }
 
@@ -83,8 +74,7 @@ export const WebhookEventLogsFilter$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   exclude_apis: z.nullable(z.string()).optional(),
-  service: z.nullable(z.lazy(() => WebhookEventLogsFilterService$inboundSchema))
-    .optional(),
+  service: z.nullable(z.lazy(() => Service$inboundSchema)).optional(),
   consumer_id: z.nullable(z.string()).optional(),
   entity_type: z.nullable(z.string()).optional(),
   event_type: z.nullable(z.string()).optional(),
@@ -100,7 +90,7 @@ export const WebhookEventLogsFilter$inboundSchema: z.ZodType<
 /** @internal */
 export type WebhookEventLogsFilter$Outbound = {
   exclude_apis?: string | null | undefined;
-  service?: WebhookEventLogsFilterService$Outbound | null | undefined;
+  service?: Service$Outbound | null | undefined;
   consumer_id?: string | null | undefined;
   entity_type?: string | null | undefined;
   event_type?: string | null | undefined;
@@ -113,9 +103,7 @@ export const WebhookEventLogsFilter$outboundSchema: z.ZodType<
   WebhookEventLogsFilter
 > = z.object({
   excludeApis: z.nullable(z.string()).optional(),
-  service: z.nullable(
-    z.lazy(() => WebhookEventLogsFilterService$outboundSchema),
-  ).optional(),
+  service: z.nullable(z.lazy(() => Service$outboundSchema)).optional(),
   consumerId: z.nullable(z.string()).optional(),
   entityType: z.nullable(z.string()).optional(),
   eventType: z.nullable(z.string()).optional(),

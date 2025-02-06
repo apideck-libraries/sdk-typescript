@@ -7,7 +7,7 @@ import { AccountingInvoicesUpdateRequest } from "@apideck/unify/models/operation
 import { RFCDate } from "@apideck/unify/types";
 
 let value: AccountingInvoicesUpdateRequest = {
-  id: "<id>",
+  id: "0b9579ba-14c9-46c5-a61a-8da5d6fd5b47",
   serviceId: "salesforce",
   invoice: {
     type: "service",
@@ -86,9 +86,7 @@ let value: AccountingInvoicesUpdateRequest = {
             id: "2389328923893298",
             name: "employee_level",
             description: "Employee Level",
-            value: [
-              {},
-            ],
+            value: true,
           },
         ],
         rowVersion: "1-12345",
@@ -175,7 +173,7 @@ let value: AccountingInvoicesUpdateRequest = {
         id: "2389328923893298",
         name: "employee_level",
         description: "Employee Level",
-        value: {},
+        value: true,
       },
     ],
     rowVersion: "1-12345",
@@ -202,7 +200,7 @@ let value: AccountingInvoicesUpdateRequest = {
 
 | Field                                                                                                                                         | Type                                                                                                                                          | Required                                                                                                                                      | Description                                                                                                                                   | Example                                                                                                                                       |
 | --------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
-| `id`                                                                                                                                          | *string*                                                                                                                                      | :heavy_check_mark:                                                                                                                            | ID of the record you are acting upon.                                                                                                         |                                                                                                                                               |
+| `id`                                                                                                                                          | *string*                                                                                                                                      | :heavy_check_mark:                                                                                                                            | ID of the record you are acting upon.                                                                                                         | 0b9579ba-14c9-46c5-a61a-8da5d6fd5b47                                                                                                          |
 | `consumerId`                                                                                                                                  | *string*                                                                                                                                      | :heavy_minus_sign:                                                                                                                            | ID of the consumer which you want to get or push data from                                                                                    | test-consumer                                                                                                                                 |
 | `appId`                                                                                                                                       | *string*                                                                                                                                      | :heavy_minus_sign:                                                                                                                            | The ID of your Unify application                                                                                                              | dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX                                                                                                       |
 | `serviceId`                                                                                                                                   | *string*                                                                                                                                      | :heavy_minus_sign:                                                                                                                            | Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API. | salesforce                                                                                                                                    |

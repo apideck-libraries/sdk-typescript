@@ -78,11 +78,17 @@ let value: VaultConnectionSettingsUpdateResponse = {
               id: "ProductInterest",
               options: [
                 {
+                  id: "1234",
                   label: "General Channel",
-                  value: "general",
+                  options: [
+                    {
+                      label: "General Channel",
+                      value: "general",
+                    },
+                  ],
                 },
               ],
-              value: 10,
+              value: true,
             },
           ],
         },
@@ -140,13 +146,7 @@ let value: VaultConnectionSettingsUpdateResponse = {
     error: "Bad Request",
     typeName: "RequestHeadersValidationError",
     message: "Invalid Params",
-    detail: {
-      "missing": [
-        {
-          "x-apideck-consumer-id": "required",
-        },
-      ],
-    },
+    detail: {},
     ref: "https://developers.apideck.com/errors#unauthorizederror",
   },
 };

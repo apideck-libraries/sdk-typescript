@@ -8,10 +8,12 @@ import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "./sdkvalidationerror.js";
 
+export type DetailUnprocessableResponse2 = {};
+
 /**
  * Contains parameter or domain specific information related to the error and why it occurred.
  */
-export type UnprocessableResponseDetail = string | { [k: string]: any };
+export type UnprocessableResponseDetail = DetailUnprocessableResponse2 | string;
 
 /**
  * Unprocessable
@@ -36,7 +38,7 @@ export type UnprocessableResponseData = {
   /**
    * Contains parameter or domain specific information related to the error and why it occurred.
    */
-  detail?: string | { [k: string]: any } | undefined;
+  detail?: DetailUnprocessableResponse2 | string | undefined;
   /**
    * Link to documentation of error type
    */
@@ -62,7 +64,7 @@ export class UnprocessableResponse extends Error {
   /**
    * Contains parameter or domain specific information related to the error and why it occurred.
    */
-  detail?: string | { [k: string]: any } | undefined;
+  detail?: DetailUnprocessableResponse2 | string | undefined;
   /**
    * Link to documentation of error type
    */
@@ -87,23 +89,79 @@ export class UnprocessableResponse extends Error {
 }
 
 /** @internal */
+export const DetailUnprocessableResponse2$inboundSchema: z.ZodType<
+  DetailUnprocessableResponse2,
+  z.ZodTypeDef,
+  unknown
+> = z.object({});
+
+/** @internal */
+export type DetailUnprocessableResponse2$Outbound = {};
+
+/** @internal */
+export const DetailUnprocessableResponse2$outboundSchema: z.ZodType<
+  DetailUnprocessableResponse2$Outbound,
+  z.ZodTypeDef,
+  DetailUnprocessableResponse2
+> = z.object({});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace DetailUnprocessableResponse2$ {
+  /** @deprecated use `DetailUnprocessableResponse2$inboundSchema` instead. */
+  export const inboundSchema = DetailUnprocessableResponse2$inboundSchema;
+  /** @deprecated use `DetailUnprocessableResponse2$outboundSchema` instead. */
+  export const outboundSchema = DetailUnprocessableResponse2$outboundSchema;
+  /** @deprecated use `DetailUnprocessableResponse2$Outbound` instead. */
+  export type Outbound = DetailUnprocessableResponse2$Outbound;
+}
+
+export function detailUnprocessableResponse2ToJSON(
+  detailUnprocessableResponse2: DetailUnprocessableResponse2,
+): string {
+  return JSON.stringify(
+    DetailUnprocessableResponse2$outboundSchema.parse(
+      detailUnprocessableResponse2,
+    ),
+  );
+}
+
+export function detailUnprocessableResponse2FromJSON(
+  jsonString: string,
+): SafeParseResult<DetailUnprocessableResponse2, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => DetailUnprocessableResponse2$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'DetailUnprocessableResponse2' from JSON`,
+  );
+}
+
+/** @internal */
 export const UnprocessableResponseDetail$inboundSchema: z.ZodType<
   UnprocessableResponseDetail,
   z.ZodTypeDef,
   unknown
-> = z.union([z.string(), z.record(z.any())]);
+> = z.union([
+  z.lazy(() => DetailUnprocessableResponse2$inboundSchema),
+  z.string(),
+]);
 
 /** @internal */
-export type UnprocessableResponseDetail$Outbound = string | {
-  [k: string]: any;
-};
+export type UnprocessableResponseDetail$Outbound =
+  | DetailUnprocessableResponse2$Outbound
+  | string;
 
 /** @internal */
 export const UnprocessableResponseDetail$outboundSchema: z.ZodType<
   UnprocessableResponseDetail$Outbound,
   z.ZodTypeDef,
   UnprocessableResponseDetail
-> = z.union([z.string(), z.record(z.any())]);
+> = z.union([
+  z.lazy(() => DetailUnprocessableResponse2$outboundSchema),
+  z.string(),
+]);
 
 /**
  * @internal
@@ -148,7 +206,10 @@ export const UnprocessableResponse$inboundSchema: z.ZodType<
   error: z.string().optional(),
   type_name: z.string().optional(),
   message: z.string().optional(),
-  detail: z.union([z.string(), z.record(z.any())]).optional(),
+  detail: z.union([
+    z.lazy(() => DetailUnprocessableResponse2$inboundSchema),
+    z.string(),
+  ]).optional(),
   ref: z.string().optional(),
 })
   .transform((v) => {
@@ -166,7 +227,7 @@ export type UnprocessableResponse$Outbound = {
   error?: string | undefined;
   type_name?: string | undefined;
   message?: string | undefined;
-  detail?: string | { [k: string]: any } | undefined;
+  detail?: DetailUnprocessableResponse2$Outbound | string | undefined;
   ref?: string | undefined;
 };
 
@@ -183,7 +244,10 @@ export const UnprocessableResponse$outboundSchema: z.ZodType<
       error: z.string().optional(),
       typeName: z.string().optional(),
       message: z.string().optional(),
-      detail: z.union([z.string(), z.record(z.any())]).optional(),
+      detail: z.union([
+        z.lazy(() => DetailUnprocessableResponse2$outboundSchema),
+        z.string(),
+      ]).optional(),
       ref: z.string().optional(),
     }).transform((v) => {
       return remap$(v, {

@@ -16,20 +16,20 @@ import {
 /**
  * The field on which to sort the Bills
  */
-export const By = {
+export const BillsSortBy = {
   UpdatedAt: "updated_at",
   CreatedAt: "created_at",
 } as const;
 /**
  * The field on which to sort the Bills
  */
-export type By = ClosedEnum<typeof By>;
+export type BillsSortBy = ClosedEnum<typeof BillsSortBy>;
 
 export type BillsSort = {
   /**
    * The field on which to sort the Bills
    */
-  by?: By | undefined;
+  by?: BillsSortBy | undefined;
   /**
    * The direction in which to sort the results
    */
@@ -37,20 +37,22 @@ export type BillsSort = {
 };
 
 /** @internal */
-export const By$inboundSchema: z.ZodNativeEnum<typeof By> = z.nativeEnum(By);
+export const BillsSortBy$inboundSchema: z.ZodNativeEnum<typeof BillsSortBy> = z
+  .nativeEnum(BillsSortBy);
 
 /** @internal */
-export const By$outboundSchema: z.ZodNativeEnum<typeof By> = By$inboundSchema;
+export const BillsSortBy$outboundSchema: z.ZodNativeEnum<typeof BillsSortBy> =
+  BillsSortBy$inboundSchema;
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace By$ {
-  /** @deprecated use `By$inboundSchema` instead. */
-  export const inboundSchema = By$inboundSchema;
-  /** @deprecated use `By$outboundSchema` instead. */
-  export const outboundSchema = By$outboundSchema;
+export namespace BillsSortBy$ {
+  /** @deprecated use `BillsSortBy$inboundSchema` instead. */
+  export const inboundSchema = BillsSortBy$inboundSchema;
+  /** @deprecated use `BillsSortBy$outboundSchema` instead. */
+  export const outboundSchema = BillsSortBy$outboundSchema;
 }
 
 /** @internal */
@@ -59,7 +61,7 @@ export const BillsSort$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  by: By$inboundSchema.optional(),
+  by: BillsSortBy$inboundSchema.optional(),
   direction: SortDirection$inboundSchema.default("asc"),
 });
 
@@ -75,7 +77,7 @@ export const BillsSort$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   BillsSort
 > = z.object({
-  by: By$outboundSchema.optional(),
+  by: BillsSortBy$outboundSchema.optional(),
   direction: SortDirection$outboundSchema.default("asc"),
 });
 

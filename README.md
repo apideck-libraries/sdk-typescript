@@ -94,14 +94,10 @@ const apideck = new Apideck({
 });
 
 async function run() {
-  const result = await apideck.accounting.taxRates.list({
+  const result = await apideck.issueTracking.collections.list({
     serviceId: "salesforce",
-    filter: {
-      assets: true,
-      equity: true,
-      expenses: true,
-      liabilities: true,
-      revenue: true,
+    sort: {
+      by: "name",
     },
     passThrough: {
       "search": "San Francisco",
@@ -172,21 +168,21 @@ run();
 * [update](docs/sdks/creditnotes/README.md#update) - Update Credit Note
 * [delete](docs/sdks/creditnotes/README.md#delete) - Delete Credit Note
 
-#### [accounting.customers](docs/sdks/customers/README.md)
+#### [accounting.customers](docs/sdks/apideckcustomers/README.md)
 
-* [list](docs/sdks/customers/README.md#list) - List Customers
-* [create](docs/sdks/customers/README.md#create) - Create Customer
-* [get](docs/sdks/customers/README.md#get) - Get Customer
-* [update](docs/sdks/customers/README.md#update) - Update Customer
-* [delete](docs/sdks/customers/README.md#delete) - Delete Customer
+* [list](docs/sdks/apideckcustomers/README.md#list) - List Customers
+* [create](docs/sdks/apideckcustomers/README.md#create) - Create Customer
+* [get](docs/sdks/apideckcustomers/README.md#get) - Get Customer
+* [update](docs/sdks/apideckcustomers/README.md#update) - Update Customer
+* [delete](docs/sdks/apideckcustomers/README.md#delete) - Delete Customer
 
-#### [accounting.departments](docs/sdks/departments/README.md)
+#### [accounting.departments](docs/sdks/apideckdepartments/README.md)
 
-* [list](docs/sdks/departments/README.md#list) - List Departments
-* [create](docs/sdks/departments/README.md#create) - Create Department
-* [get](docs/sdks/departments/README.md#get) - Get Department
-* [update](docs/sdks/departments/README.md#update) - Update Department
-* [delete](docs/sdks/departments/README.md#delete) - Delete Department
+* [list](docs/sdks/apideckdepartments/README.md#list) - List Departments
+* [create](docs/sdks/apideckdepartments/README.md#create) - Create Department
+* [get](docs/sdks/apideckdepartments/README.md#get) - Get Department
+* [update](docs/sdks/apideckdepartments/README.md#update) - Update Department
+* [delete](docs/sdks/apideckdepartments/README.md#delete) - Delete Department
 
 #### [accounting.expenses](docs/sdks/expenses/README.md)
 
@@ -363,11 +359,11 @@ run();
 
 #### [crm.contacts](docs/sdks/contacts/README.md)
 
-* [list](docs/sdks/contacts/README.md#list) - List contacts
-* [create](docs/sdks/contacts/README.md#create) - Create contact
 * [get](docs/sdks/contacts/README.md#get) - Get contact
 * [update](docs/sdks/contacts/README.md#update) - Update contact
 * [delete](docs/sdks/contacts/README.md#delete) - Delete contact
+* [list](docs/sdks/contacts/README.md#list) - List contacts
+* [create](docs/sdks/contacts/README.md#create) - Create contact
 
 #### [crm.leads](docs/sdks/leads/README.md)
 
@@ -387,11 +383,11 @@ run();
 
 #### [crm.opportunities](docs/sdks/opportunities/README.md)
 
-* [list](docs/sdks/opportunities/README.md#list) - List opportunities
-* [create](docs/sdks/opportunities/README.md#create) - Create opportunity
 * [get](docs/sdks/opportunities/README.md#get) - Get opportunity
 * [update](docs/sdks/opportunities/README.md#update) - Update opportunity
 * [delete](docs/sdks/opportunities/README.md#delete) - Delete opportunity
+* [list](docs/sdks/opportunities/README.md#list) - List opportunities
+* [create](docs/sdks/opportunities/README.md#create) - Create opportunity
 
 #### [crm.pipelines](docs/sdks/pipelines/README.md)
 
@@ -408,15 +404,15 @@ run();
 ### [ecommerce](docs/sdks/ecommerce/README.md)
 
 
-#### [ecommerce.customers](docs/sdks/apideckcustomers/README.md)
+#### [ecommerce.customers](docs/sdks/customers/README.md)
 
-* [list](docs/sdks/apideckcustomers/README.md#list) - List Customers
-* [get](docs/sdks/apideckcustomers/README.md#get) - Get Customer
+* [list](docs/sdks/customers/README.md#list) - List Customers
+* [get](docs/sdks/customers/README.md#get) - Get Customer
 
 #### [ecommerce.orders](docs/sdks/orders/README.md)
 
-* [list](docs/sdks/orders/README.md#list) - List Orders
 * [get](docs/sdks/orders/README.md#get) - Get Order
+* [list](docs/sdks/orders/README.md#list) - List Orders
 
 #### [ecommerce.products](docs/sdks/products/README.md)
 
@@ -490,18 +486,18 @@ run();
 * [update](docs/sdks/apideckcompanies/README.md#update) - Update Company
 * [delete](docs/sdks/apideckcompanies/README.md#delete) - Delete Company
 
-#### [hris.departments](docs/sdks/apideckdepartments/README.md)
+#### [hris.departments](docs/sdks/departments/README.md)
 
-* [list](docs/sdks/apideckdepartments/README.md#list) - List Departments
-* [create](docs/sdks/apideckdepartments/README.md#create) - Create Department
-* [get](docs/sdks/apideckdepartments/README.md#get) - Get Department
-* [update](docs/sdks/apideckdepartments/README.md#update) - Update Department
-* [delete](docs/sdks/apideckdepartments/README.md#delete) - Delete Department
+* [list](docs/sdks/departments/README.md#list) - List Departments
+* [create](docs/sdks/departments/README.md#create) - Create Department
+* [get](docs/sdks/departments/README.md#get) - Get Department
+* [update](docs/sdks/departments/README.md#update) - Update Department
+* [delete](docs/sdks/departments/README.md#delete) - Delete Department
 
 #### [hris.employeePayrolls](docs/sdks/employeepayrolls/README.md)
 
-* [list](docs/sdks/employeepayrolls/README.md#list) - List Employee Payrolls
 * [get](docs/sdks/employeepayrolls/README.md#get) - Get Employee Payroll
+* [list](docs/sdks/employeepayrolls/README.md#list) - List Employee Payrolls
 
 #### [hris.employees](docs/sdks/employees/README.md)
 
@@ -522,11 +518,11 @@ run();
 
 #### [hris.timeOffRequests](docs/sdks/timeoffrequests/README.md)
 
-* [list](docs/sdks/timeoffrequests/README.md#list) - List Time Off Requests
-* [create](docs/sdks/timeoffrequests/README.md#create) - Create Time Off Request
 * [get](docs/sdks/timeoffrequests/README.md#get) - Get Time Off Request
 * [update](docs/sdks/timeoffrequests/README.md#update) - Update Time Off Request
 * [delete](docs/sdks/timeoffrequests/README.md#delete) - Delete Time Off Request
+* [list](docs/sdks/timeoffrequests/README.md#list) - List Time Off Requests
+* [create](docs/sdks/timeoffrequests/README.md#create) - Create Time Off Request
 
 ### [issueTracking](docs/sdks/issuetracking/README.md)
 
@@ -542,11 +538,11 @@ run();
 
 #### [issueTracking.collectionTicketComments](docs/sdks/collectionticketcomments/README.md)
 
-* [list](docs/sdks/collectionticketcomments/README.md#list) - List Comments
-* [create](docs/sdks/collectionticketcomments/README.md#create) - Create Comment
 * [get](docs/sdks/collectionticketcomments/README.md#get) - Get Comment
 * [update](docs/sdks/collectionticketcomments/README.md#update) - Update Comment
 * [delete](docs/sdks/collectionticketcomments/README.md#delete) - Delete Comment
+* [list](docs/sdks/collectionticketcomments/README.md#list) - List Comments
+* [create](docs/sdks/collectionticketcomments/README.md#create) - Create Comment
 
 #### [issueTracking.collectionTickets](docs/sdks/collectiontickets/README.md)
 
@@ -558,19 +554,19 @@ run();
 
 #### [issueTracking.collectionUsers](docs/sdks/collectionusers/README.md)
 
-* [list](docs/sdks/collectionusers/README.md#list) - List Users
 * [get](docs/sdks/collectionusers/README.md#get) - Get user
+* [list](docs/sdks/collectionusers/README.md#list) - List Users
 
 ### [sms](docs/sdks/sms/README.md)
 
 
 #### [sms.messages](docs/sdks/messages/README.md)
 
-* [list](docs/sdks/messages/README.md#list) - List Messages
-* [create](docs/sdks/messages/README.md#create) - Create Message
 * [get](docs/sdks/messages/README.md#get) - Get Message
 * [update](docs/sdks/messages/README.md#update) - Update Message
 * [delete](docs/sdks/messages/README.md#delete) - Delete Message
+* [list](docs/sdks/messages/README.md#list) - List Messages
+* [create](docs/sdks/messages/README.md#create) - Create Message
 
 ### [vault](docs/sdks/vault/README.md)
 
@@ -581,12 +577,12 @@ run();
 
 #### [vault.connections](docs/sdks/connections/README.md)
 
-* [list](docs/sdks/connections/README.md#list) - Get all connections
+* [token](docs/sdks/connections/README.md#token) - Authorize Access Token
+* [imports](docs/sdks/connections/README.md#imports) - Import connection
 * [get](docs/sdks/connections/README.md#get) - Get connection
 * [update](docs/sdks/connections/README.md#update) - Update connection
 * [delete](docs/sdks/connections/README.md#delete) - Deletes a connection
-* [imports](docs/sdks/connections/README.md#imports) - Import connection
-* [token](docs/sdks/connections/README.md#token) - Authorize Access Token
+* [list](docs/sdks/connections/README.md#list) - Get all connections
 
 #### [vault.connectionSettings](docs/sdks/connectionsettings/README.md)
 
@@ -599,11 +595,11 @@ run();
 
 #### [vault.consumers](docs/sdks/consumers/README.md)
 
-* [create](docs/sdks/consumers/README.md#create) - Create consumer
-* [list](docs/sdks/consumers/README.md#list) - Get all consumers
 * [get](docs/sdks/consumers/README.md#get) - Get consumer
 * [update](docs/sdks/consumers/README.md#update) - Update consumer
 * [delete](docs/sdks/consumers/README.md#delete) - Delete consumer
+* [create](docs/sdks/consumers/README.md#create) - Create consumer
+* [list](docs/sdks/consumers/README.md#list) - Get all consumers
 
 #### [vault.createCallback](docs/sdks/createcallback/README.md)
 
@@ -638,11 +634,11 @@ run();
 
 #### [webhook.webhooks](docs/sdks/webhooks/README.md)
 
-* [list](docs/sdks/webhooks/README.md#list) - List webhook subscriptions
-* [create](docs/sdks/webhooks/README.md#create) - Create webhook subscription
 * [get](docs/sdks/webhooks/README.md#get) - Get webhook subscription
 * [update](docs/sdks/webhooks/README.md#update) - Update webhook subscription
 * [delete](docs/sdks/webhooks/README.md#delete) - Delete webhook subscription
+* [list](docs/sdks/webhooks/README.md#list) - List webhook subscriptions
+* [create](docs/sdks/webhooks/README.md#create) - Create webhook subscription
 
 </details>
 <!-- End Available Resources and Operations [operations] -->
@@ -684,16 +680,16 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`accountingCreditNotesGet`](docs/sdks/creditnotes/README.md#get) - Get Credit Note
 - [`accountingCreditNotesList`](docs/sdks/creditnotes/README.md#list) - List Credit Notes
 - [`accountingCreditNotesUpdate`](docs/sdks/creditnotes/README.md#update) - Update Credit Note
-- [`accountingCustomersCreate`](docs/sdks/customers/README.md#create) - Create Customer
-- [`accountingCustomersDelete`](docs/sdks/customers/README.md#delete) - Delete Customer
-- [`accountingCustomersGet`](docs/sdks/customers/README.md#get) - Get Customer
-- [`accountingCustomersList`](docs/sdks/customers/README.md#list) - List Customers
-- [`accountingCustomersUpdate`](docs/sdks/customers/README.md#update) - Update Customer
-- [`accountingDepartmentsCreate`](docs/sdks/departments/README.md#create) - Create Department
-- [`accountingDepartmentsDelete`](docs/sdks/departments/README.md#delete) - Delete Department
-- [`accountingDepartmentsGet`](docs/sdks/departments/README.md#get) - Get Department
-- [`accountingDepartmentsList`](docs/sdks/departments/README.md#list) - List Departments
-- [`accountingDepartmentsUpdate`](docs/sdks/departments/README.md#update) - Update Department
+- [`accountingCustomersCreate`](docs/sdks/apideckcustomers/README.md#create) - Create Customer
+- [`accountingCustomersDelete`](docs/sdks/apideckcustomers/README.md#delete) - Delete Customer
+- [`accountingCustomersGet`](docs/sdks/apideckcustomers/README.md#get) - Get Customer
+- [`accountingCustomersList`](docs/sdks/apideckcustomers/README.md#list) - List Customers
+- [`accountingCustomersUpdate`](docs/sdks/apideckcustomers/README.md#update) - Update Customer
+- [`accountingDepartmentsCreate`](docs/sdks/apideckdepartments/README.md#create) - Create Department
+- [`accountingDepartmentsDelete`](docs/sdks/apideckdepartments/README.md#delete) - Delete Department
+- [`accountingDepartmentsGet`](docs/sdks/apideckdepartments/README.md#get) - Get Department
+- [`accountingDepartmentsList`](docs/sdks/apideckdepartments/README.md#list) - List Departments
+- [`accountingDepartmentsUpdate`](docs/sdks/apideckdepartments/README.md#update) - Update Department
 - [`accountingExpensesCreate`](docs/sdks/expenses/README.md#create) - Create Expense
 - [`accountingExpensesDelete`](docs/sdks/expenses/README.md#delete) - Delete Expense
 - [`accountingExpensesGet`](docs/sdks/expenses/README.md#get) - Get Expense
@@ -811,8 +807,8 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`crmUsersGet`](docs/sdks/users/README.md#get) - Get user
 - [`crmUsersList`](docs/sdks/users/README.md#list) - List users
 - [`crmUsersUpdate`](docs/sdks/users/README.md#update) - Update user
-- [`ecommerceCustomersGet`](docs/sdks/apideckcustomers/README.md#get) - Get Customer
-- [`ecommerceCustomersList`](docs/sdks/apideckcustomers/README.md#list) - List Customers
+- [`ecommerceCustomersGet`](docs/sdks/customers/README.md#get) - Get Customer
+- [`ecommerceCustomersList`](docs/sdks/customers/README.md#list) - List Customers
 - [`ecommerceOrdersGet`](docs/sdks/orders/README.md#get) - Get Order
 - [`ecommerceOrdersList`](docs/sdks/orders/README.md#list) - List Orders
 - [`ecommerceProductsGet`](docs/sdks/products/README.md#get) - Get Product
@@ -854,11 +850,11 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`hrisCompaniesGet`](docs/sdks/apideckcompanies/README.md#get) - Get Company
 - [`hrisCompaniesList`](docs/sdks/apideckcompanies/README.md#list) - List Companies
 - [`hrisCompaniesUpdate`](docs/sdks/apideckcompanies/README.md#update) - Update Company
-- [`hrisDepartmentsCreate`](docs/sdks/apideckdepartments/README.md#create) - Create Department
-- [`hrisDepartmentsDelete`](docs/sdks/apideckdepartments/README.md#delete) - Delete Department
-- [`hrisDepartmentsGet`](docs/sdks/apideckdepartments/README.md#get) - Get Department
-- [`hrisDepartmentsList`](docs/sdks/apideckdepartments/README.md#list) - List Departments
-- [`hrisDepartmentsUpdate`](docs/sdks/apideckdepartments/README.md#update) - Update Department
+- [`hrisDepartmentsCreate`](docs/sdks/departments/README.md#create) - Create Department
+- [`hrisDepartmentsDelete`](docs/sdks/departments/README.md#delete) - Delete Department
+- [`hrisDepartmentsGet`](docs/sdks/departments/README.md#get) - Get Department
+- [`hrisDepartmentsList`](docs/sdks/departments/README.md#list) - List Departments
+- [`hrisDepartmentsUpdate`](docs/sdks/departments/README.md#update) - Update Department
 - [`hrisEmployeePayrollsGet`](docs/sdks/employeepayrolls/README.md#get) - Get Employee Payroll
 - [`hrisEmployeePayrollsList`](docs/sdks/employeepayrolls/README.md#list) - List Employee Payrolls
 - [`hrisEmployeeSchedulesList`](docs/sdks/employeeschedules/README.md#list) - List Employee Schedules
@@ -947,14 +943,10 @@ const apideck = new Apideck({
 });
 
 async function run() {
-  const result = await apideck.accounting.taxRates.list({
+  const result = await apideck.issueTracking.collections.list({
     serviceId: "salesforce",
-    filter: {
-      assets: true,
-      equity: true,
-      expenses: true,
-      liabilities: true,
-      revenue: true,
+    sort: {
+      by: "name",
     },
     passThrough: {
       "search": "San Francisco",
@@ -989,14 +981,10 @@ const apideck = new Apideck({
 });
 
 async function run() {
-  const result = await apideck.accounting.taxRates.list({
+  const result = await apideck.issueTracking.collections.list({
     serviceId: "salesforce",
-    filter: {
-      assets: true,
-      equity: true,
-      expenses: true,
-      liabilities: true,
-      revenue: true,
+    sort: {
+      by: "name",
     },
     passThrough: {
       "search": "San Francisco",
@@ -1046,14 +1034,10 @@ const apideck = new Apideck({
 });
 
 async function run() {
-  const result = await apideck.accounting.taxRates.list({
+  const result = await apideck.issueTracking.collections.list({
     serviceId: "salesforce",
-    filter: {
-      assets: true,
-      equity: true,
-      expenses: true,
-      liabilities: true,
-      revenue: true,
+    sort: {
+      by: "name",
     },
     passThrough: {
       "search": "San Francisco",
@@ -1108,14 +1092,10 @@ const apideck = new Apideck({
 async function run() {
   let result;
   try {
-    result = await apideck.accounting.taxRates.list({
+    result = await apideck.issueTracking.collections.list({
       serviceId: "salesforce",
-      filter: {
-        assets: true,
-        equity: true,
-        expenses: true,
-        liabilities: true,
-        revenue: true,
+      sort: {
+        by: "name",
       },
       passThrough: {
         "search": "San Francisco",
@@ -1204,14 +1184,10 @@ const apideck = new Apideck({
 });
 
 async function run() {
-  const result = await apideck.accounting.taxRates.list({
+  const result = await apideck.issueTracking.collections.list({
     serviceId: "salesforce",
-    filter: {
-      assets: true,
-      equity: true,
-      expenses: true,
-      liabilities: true,
-      revenue: true,
+    sort: {
+      by: "name",
     },
     passThrough: {
       "search": "San Francisco",
@@ -1378,14 +1354,10 @@ const apideck = new Apideck({
 });
 
 async function run() {
-  const result = await apideck.accounting.taxRates.list({
+  const result = await apideck.issueTracking.collections.list({
     serviceId: "salesforce",
-    filter: {
-      assets: true,
-      equity: true,
-      expenses: true,
-      liabilities: true,
-      revenue: true,
+    sort: {
+      by: "name",
     },
     passThrough: {
       "search": "San Francisco",

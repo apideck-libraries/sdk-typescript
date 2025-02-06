@@ -568,7 +568,7 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.accounting.journalEntries.get({
-    id: "<id>",
+    id: "0b9579ba-14c9-46c5-a61a-8da5d6fd5b47",
     serviceId: "salesforce",
     fields: "id,updated_at",
   });
@@ -598,7 +598,7 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await accountingJournalEntriesGet(apideck, {
-    id: "<id>",
+    id: "0b9579ba-14c9-46c5-a61a-8da5d6fd5b47",
     serviceId: "salesforce",
     fields: "id,updated_at",
   });
@@ -657,7 +657,7 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.accounting.journalEntries.update({
-    id: "<id>",
+    id: "0b9579ba-14c9-46c5-a61a-8da5d6fd5b47",
     serviceId: "salesforce",
     journalEntry: {
       title: "Purchase Invoice-Inventory (USD): 2019/02/01 Batch Summary Entry",
@@ -933,7 +933,7 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await accountingJournalEntriesUpdate(apideck, {
-    id: "<id>",
+    id: "0b9579ba-14c9-46c5-a61a-8da5d6fd5b47",
     serviceId: "salesforce",
     journalEntry: {
       title: "Purchase Invoice-Inventory (USD): 2019/02/01 Batch Summary Entry",
@@ -1238,7 +1238,7 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.accounting.journalEntries.delete({
-    id: "<id>",
+    id: "0b9579ba-14c9-46c5-a61a-8da5d6fd5b47",
     serviceId: "salesforce",
   });
 
@@ -1267,7 +1267,7 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await accountingJournalEntriesDelete(apideck, {
-    id: "<id>",
+    id: "0b9579ba-14c9-46c5-a61a-8da5d6fd5b47",
     serviceId: "salesforce",
   });
 

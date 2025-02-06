@@ -124,7 +124,7 @@ async function run() {
   const result = await apideck.accounting.attachments.get({
     referenceType: "invoice",
     referenceId: "123456",
-    id: "<id>",
+    id: "0b9579ba-14c9-46c5-a61a-8da5d6fd5b47",
     serviceId: "salesforce",
     fields: "id,updated_at",
   });
@@ -156,7 +156,7 @@ async function run() {
   const res = await accountingAttachmentsGet(apideck, {
     referenceType: "invoice",
     referenceId: "123456",
-    id: "<id>",
+    id: "0b9579ba-14c9-46c5-a61a-8da5d6fd5b47",
     serviceId: "salesforce",
     fields: "id,updated_at",
   });
@@ -217,7 +217,7 @@ async function run() {
   const result = await apideck.accounting.attachments.delete({
     referenceType: "invoice",
     referenceId: "123456",
-    id: "<id>",
+    id: "0b9579ba-14c9-46c5-a61a-8da5d6fd5b47",
     serviceId: "salesforce",
   });
 
@@ -248,7 +248,7 @@ async function run() {
   const res = await accountingAttachmentsDelete(apideck, {
     referenceType: "invoice",
     referenceId: "123456",
-    id: "<id>",
+    id: "0b9579ba-14c9-46c5-a61a-8da5d6fd5b47",
     serviceId: "salesforce",
   });
 
@@ -308,7 +308,7 @@ async function run() {
   const result = await apideck.accounting.attachments.download({
     referenceType: "invoice",
     referenceId: "123456",
-    id: "<id>",
+    id: "0b9579ba-14c9-46c5-a61a-8da5d6fd5b47",
     serviceId: "salesforce",
     fields: "id,updated_at",
   });
@@ -340,7 +340,7 @@ async function run() {
   const res = await accountingAttachmentsDownload(apideck, {
     referenceType: "invoice",
     referenceId: "123456",
-    id: "<id>",
+    id: "0b9579ba-14c9-46c5-a61a-8da5d6fd5b47",
     serviceId: "salesforce",
     fields: "id,updated_at",
   });
