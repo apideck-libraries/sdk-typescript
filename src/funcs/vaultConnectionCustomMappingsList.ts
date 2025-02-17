@@ -106,6 +106,7 @@ export async function vaultConnectionCustomMappingsList(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: options?.serverURL ?? "",
     operationID: "vault.connectionCustomMappingsAll",
     oAuth2Scopes: [],
 

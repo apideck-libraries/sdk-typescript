@@ -84,6 +84,7 @@ export async function vaultConsumersGet(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: options?.serverURL ?? "",
     operationID: "vault.consumersOne",
     oAuth2Scopes: [],
 

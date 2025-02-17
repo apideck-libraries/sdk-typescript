@@ -95,6 +95,7 @@ export async function accountingDepartmentsCreate(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: options?.serverURL ?? "",
     operationID: "accounting.departmentsAdd",
     oAuth2Scopes: [],
 

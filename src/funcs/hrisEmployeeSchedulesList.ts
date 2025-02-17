@@ -112,6 +112,7 @@ export async function hrisEmployeeSchedulesList(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: options?.serverURL ?? "",
     operationID: "hris.employeeSchedulesAll",
     oAuth2Scopes: [],
 

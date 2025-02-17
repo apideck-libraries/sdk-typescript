@@ -109,6 +109,7 @@ export async function crmContactsGet(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: options?.serverURL ?? "",
     operationID: "crm.contactsOne",
     oAuth2Scopes: [],
 

@@ -85,6 +85,7 @@ export async function webhookWebhooksDelete(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: options?.serverURL ?? "",
     operationID: "webhook.webhooksDelete",
     oAuth2Scopes: [],
 

@@ -99,6 +99,7 @@ export async function smsMessagesUpdate(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: options?.serverURL ?? "",
     operationID: "sms.messagesUpdate",
     oAuth2Scopes: [],
 

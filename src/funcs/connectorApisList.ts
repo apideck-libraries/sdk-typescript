@@ -100,6 +100,7 @@ export async function connectorApisList(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: options?.serverURL ?? "",
     operationID: "connector.apisAll",
     oAuth2Scopes: [],
 

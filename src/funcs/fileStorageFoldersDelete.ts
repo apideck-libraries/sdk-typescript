@@ -99,6 +99,7 @@ export async function fileStorageFoldersDelete(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: options?.serverURL ?? "",
     operationID: "fileStorage.foldersDelete",
     oAuth2Scopes: [],
 

@@ -98,6 +98,7 @@ export async function atsApplicationsGet(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: options?.serverURL ?? "",
     operationID: "ats.applicationsOne",
     oAuth2Scopes: [],
 

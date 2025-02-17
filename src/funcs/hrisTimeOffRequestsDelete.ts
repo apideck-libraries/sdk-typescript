@@ -105,6 +105,7 @@ export async function hrisTimeOffRequestsDelete(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: options?.serverURL ?? "",
     operationID: "hris.timeOffRequestsDelete",
     oAuth2Scopes: [],
 

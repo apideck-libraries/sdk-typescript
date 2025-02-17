@@ -102,6 +102,7 @@ export async function fileStorageFoldersUpdate(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: options?.serverURL ?? "",
     operationID: "fileStorage.foldersUpdate",
     oAuth2Scopes: [],
 

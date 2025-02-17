@@ -101,6 +101,7 @@ export async function fileStorageSharedLinksDelete(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: options?.serverURL ?? "",
     operationID: "fileStorage.sharedLinksDelete",
     oAuth2Scopes: [],
 

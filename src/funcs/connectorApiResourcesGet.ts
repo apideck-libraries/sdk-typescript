@@ -89,6 +89,7 @@ export async function connectorApiResourcesGet(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: options?.serverURL ?? "",
     operationID: "connector.apiResourcesOne",
     oAuth2Scopes: [],
 

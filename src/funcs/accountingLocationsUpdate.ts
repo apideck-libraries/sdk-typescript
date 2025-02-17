@@ -102,6 +102,7 @@ export async function accountingLocationsUpdate(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: options?.serverURL ?? "",
     operationID: "accounting.locationsUpdate",
     oAuth2Scopes: [],
 

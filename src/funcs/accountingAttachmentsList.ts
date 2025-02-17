@@ -118,6 +118,7 @@ export async function accountingAttachmentsList(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: options?.serverURL ?? "",
     operationID: "accounting.attachmentsAll",
     oAuth2Scopes: [],
 

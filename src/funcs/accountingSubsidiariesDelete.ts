@@ -101,6 +101,7 @@ export async function accountingSubsidiariesDelete(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: options?.serverURL ?? "",
     operationID: "accounting.subsidiariesDelete",
     oAuth2Scopes: [],
 

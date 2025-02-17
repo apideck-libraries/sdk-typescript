@@ -93,6 +93,7 @@ export async function accountingJournalEntriesCreate(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: options?.serverURL ?? "",
     operationID: "accounting.journalEntriesAdd",
     oAuth2Scopes: [],
 

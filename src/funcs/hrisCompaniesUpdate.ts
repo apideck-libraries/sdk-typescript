@@ -100,6 +100,7 @@ export async function hrisCompaniesUpdate(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: options?.serverURL ?? "",
     operationID: "hris.companiesUpdate",
     oAuth2Scopes: [],
 

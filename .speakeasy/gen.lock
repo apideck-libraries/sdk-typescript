@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 7bffa198-5d29-4efa-9942-d549cc832085
 management:
-  docChecksum: 068bc54ce549b3d15555126d167f788e
-  docVersion: 10.11.2
-  speakeasyVersion: 1.484.1
-  generationVersion: 2.503.2
-  releaseVersion: 0.16.1
-  configChecksum: ed296ec195fea8bb8954ee5621f5ceed
+  docChecksum: 8a84b005337515a4311dec5a8c491146
+  docVersion: 10.11.5
+  speakeasyVersion: 1.493.2
+  generationVersion: 2.512.4
+  releaseVersion: 0.17.0
+  configChecksum: 66263facf6f0eb049d59f680e5a864f9
   repoURL: https://github.com/apideck-libraries/sdk-typescript.git
   installationURL: https://github.com/apideck-libraries/sdk-typescript
   published: true
@@ -15,7 +15,7 @@ features:
     acceptHeaders: 2.81.2
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.11
-    core: 3.18.22
+    core: 3.19.0
     deepObjectParams: 0.1.0
     defaultEnabledRetries: 0.1.0
     deprecations: 2.81.1
@@ -23,7 +23,7 @@ features:
     enumUnions: 0.1.0
     envVarSecurityUsage: 0.1.2
     errors: 2.84.0
-    globalSecurity: 2.82.12
+    globalSecurity: 2.82.13
     globalSecurityCallbacks: 0.1.0
     globalSecurityFlattening: 0.1.0
     globalServerURLs: 2.82.4
@@ -6848,6 +6848,7 @@ examples:
           fields: "id,updated_at"
           limit: 20
           filter: {"drive_id": "1234", "folder_id": "root", "shared": true}
+          raw: false
         header:
           x-apideck-consumer-id: "test-consumer"
           x-apideck-app-id: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"

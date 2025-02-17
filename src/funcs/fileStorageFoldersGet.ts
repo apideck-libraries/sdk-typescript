@@ -100,6 +100,7 @@ export async function fileStorageFoldersGet(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: options?.serverURL ?? "",
     operationID: "fileStorage.foldersOne",
     oAuth2Scopes: [],
 

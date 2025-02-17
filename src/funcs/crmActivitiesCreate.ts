@@ -92,6 +92,7 @@ export async function crmActivitiesCreate(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: options?.serverURL ?? "",
     operationID: "crm.activitiesAdd",
     oAuth2Scopes: [],
 

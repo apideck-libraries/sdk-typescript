@@ -100,6 +100,7 @@ export async function accountingSuppliersGet(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: options?.serverURL ?? "",
     operationID: "accounting.suppliersOne",
     oAuth2Scopes: [],
 

@@ -98,6 +98,7 @@ export async function smsMessagesDelete(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: options?.serverURL ?? "",
     operationID: "sms.messagesDelete",
     oAuth2Scopes: [],
 

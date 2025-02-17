@@ -104,6 +104,7 @@ export async function accountingAgedDebtorsGet(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: options?.serverURL ?? "",
     operationID: "accounting.agedDebtorsOne",
     oAuth2Scopes: [],
 

@@ -100,6 +100,7 @@ export async function crmOpportunitiesUpdate(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: options?.serverURL ?? "",
     operationID: "crm.opportunitiesUpdate",
     oAuth2Scopes: [],
 

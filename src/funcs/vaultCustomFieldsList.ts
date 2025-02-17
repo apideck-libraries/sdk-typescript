@@ -104,6 +104,7 @@ export async function vaultCustomFieldsList(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: options?.serverURL ?? "",
     operationID: "vault.customFieldsAll",
     oAuth2Scopes: [],
 

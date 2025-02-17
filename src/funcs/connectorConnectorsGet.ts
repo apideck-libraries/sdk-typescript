@@ -83,6 +83,7 @@ export async function connectorConnectorsGet(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: options?.serverURL ?? "",
     operationID: "connector.connectorsOne",
     oAuth2Scopes: [],
 

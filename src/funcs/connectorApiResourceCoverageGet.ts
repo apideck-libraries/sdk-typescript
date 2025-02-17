@@ -91,6 +91,7 @@ export async function connectorApiResourceCoverageGet(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: options?.serverURL ?? "",
     operationID: "connector.apiResourceCoverageOne",
     oAuth2Scopes: [],
 

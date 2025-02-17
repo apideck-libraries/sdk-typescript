@@ -104,6 +104,7 @@ export async function smsMessagesList(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: options?.serverURL ?? "",
     operationID: "sms.messagesAll",
     oAuth2Scopes: [],
 

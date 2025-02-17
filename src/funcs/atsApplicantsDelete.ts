@@ -99,6 +99,7 @@ export async function atsApplicantsDelete(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: options?.serverURL ?? "",
     operationID: "ats.applicantsDelete",
     oAuth2Scopes: [],
 

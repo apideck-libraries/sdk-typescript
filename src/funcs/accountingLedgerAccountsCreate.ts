@@ -93,6 +93,7 @@ export async function accountingLedgerAccountsCreate(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: options?.serverURL ?? "",
     operationID: "accounting.ledgerAccountsAdd",
     oAuth2Scopes: [],
 

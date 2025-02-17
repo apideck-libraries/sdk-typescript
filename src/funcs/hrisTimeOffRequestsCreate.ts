@@ -93,6 +93,7 @@ export async function hrisTimeOffRequestsCreate(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: options?.serverURL ?? "",
     operationID: "hris.timeOffRequestsAdd",
     oAuth2Scopes: [],
 

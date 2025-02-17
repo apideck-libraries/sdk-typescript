@@ -99,6 +99,7 @@ export async function accountingTaxRatesDelete(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: options?.serverURL ?? "",
     operationID: "accounting.taxRatesDelete",
     oAuth2Scopes: [],
 

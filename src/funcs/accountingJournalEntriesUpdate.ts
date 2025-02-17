@@ -102,6 +102,7 @@ export async function accountingJournalEntriesUpdate(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: options?.serverURL ?? "",
     operationID: "accounting.journalEntriesUpdate",
     oAuth2Scopes: [],
 

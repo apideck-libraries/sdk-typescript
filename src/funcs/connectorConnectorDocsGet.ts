@@ -95,6 +95,7 @@ export async function connectorConnectorDocsGet(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: options?.serverURL ?? "",
     operationID: "connector.connectorDocsOne",
     oAuth2Scopes: [],
 

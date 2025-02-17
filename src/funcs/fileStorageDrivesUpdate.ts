@@ -100,6 +100,7 @@ export async function fileStorageDrivesUpdate(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: options?.serverURL ?? "",
     operationID: "fileStorage.drivesUpdate",
     oAuth2Scopes: [],
 

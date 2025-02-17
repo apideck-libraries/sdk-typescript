@@ -99,6 +99,7 @@ export async function accountingExpensesGet(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: options?.serverURL ?? "",
     operationID: "accounting.expensesOne",
     oAuth2Scopes: [],
 

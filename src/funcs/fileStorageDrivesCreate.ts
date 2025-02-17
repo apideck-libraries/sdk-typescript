@@ -93,6 +93,7 @@ export async function fileStorageDrivesCreate(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: options?.serverURL ?? "",
     operationID: "fileStorage.drivesAdd",
     oAuth2Scopes: [],
 

@@ -84,6 +84,7 @@ export async function webhookWebhooksGet(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: options?.serverURL ?? "",
     operationID: "webhook.webhooksOne",
     oAuth2Scopes: [],
 

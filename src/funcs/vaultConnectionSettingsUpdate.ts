@@ -103,6 +103,7 @@ export async function vaultConnectionSettingsUpdate(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: options?.serverURL ?? "",
     operationID: "vault.connectionSettingsUpdate",
     oAuth2Scopes: [],
 

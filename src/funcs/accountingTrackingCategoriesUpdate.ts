@@ -102,6 +102,7 @@ export async function accountingTrackingCategoriesUpdate(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: options?.serverURL ?? "",
     operationID: "accounting.trackingCategoriesUpdate",
     oAuth2Scopes: [],
 

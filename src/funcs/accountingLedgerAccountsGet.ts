@@ -100,6 +100,7 @@ export async function accountingLedgerAccountsGet(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: options?.serverURL ?? "",
     operationID: "accounting.ledgerAccountsOne",
     oAuth2Scopes: [],
 

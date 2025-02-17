@@ -110,6 +110,7 @@ export async function accountingInvoiceItemsGet(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: options?.serverURL ?? "",
     operationID: "accounting.invoiceItemsOne",
     oAuth2Scopes: [],
 

@@ -104,6 +104,7 @@ export async function accountingProfitAndLossGet(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: options?.serverURL ?? "",
     operationID: "accounting.profitAndLossOne",
     oAuth2Scopes: [],
 
