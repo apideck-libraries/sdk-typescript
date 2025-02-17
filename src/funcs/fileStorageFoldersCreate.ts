@@ -96,6 +96,7 @@ export async function fileStorageFoldersCreate(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: options?.serverURL ?? "",
     operationID: "fileStorage.foldersAdd",
     oAuth2Scopes: [],
 

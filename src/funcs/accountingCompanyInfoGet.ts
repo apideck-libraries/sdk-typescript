@@ -93,6 +93,7 @@ export async function accountingCompanyInfoGet(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: options?.serverURL ?? "",
     operationID: "accounting.companyInfoOne",
     oAuth2Scopes: [],
 

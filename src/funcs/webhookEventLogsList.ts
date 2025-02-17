@@ -103,6 +103,7 @@ export async function webhookEventLogsList(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: options?.serverURL ?? "",
     operationID: "webhook.eventLogsAll",
     oAuth2Scopes: [],
 

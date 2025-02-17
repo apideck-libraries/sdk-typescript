@@ -101,6 +101,7 @@ export async function connectorConnectorsList(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: options?.serverURL ?? "",
     operationID: "connector.connectorsAll",
     oAuth2Scopes: [],
 

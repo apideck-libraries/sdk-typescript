@@ -101,6 +101,7 @@ export async function accountingTrackingCategoriesDelete(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: options?.serverURL ?? "",
     operationID: "accounting.trackingCategoriesDelete",
     oAuth2Scopes: [],
 

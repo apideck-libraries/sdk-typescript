@@ -114,6 +114,7 @@ export async function crmPipelinesList(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: options?.serverURL ?? "",
     operationID: "crm.pipelinesAll",
     oAuth2Scopes: [],
 

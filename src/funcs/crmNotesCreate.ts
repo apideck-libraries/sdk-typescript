@@ -92,6 +92,7 @@ export async function crmNotesCreate(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: options?.serverURL ?? "",
     operationID: "crm.notesAdd",
     oAuth2Scopes: [],
 

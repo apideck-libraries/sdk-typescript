@@ -100,6 +100,7 @@ export async function accountingTaxRatesUpdate(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: options?.serverURL ?? "",
     operationID: "accounting.taxRatesUpdate",
     oAuth2Scopes: [],
 

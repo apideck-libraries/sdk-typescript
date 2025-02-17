@@ -100,6 +100,7 @@ export async function ecommerceProductsGet(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: options?.serverURL ?? "",
     operationID: "ecommerce.productsOne",
     oAuth2Scopes: [],
 

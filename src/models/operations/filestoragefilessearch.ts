@@ -50,6 +50,10 @@ export type FileStorageFilesSearchRequest = {
    */
   limit?: number | undefined;
   /**
+   * Include raw response. Mostly used for debugging purposes
+   */
+  raw?: boolean | undefined;
+  /**
    * Apply filters
    */
   filter?: components.FilesFilter | undefined;
@@ -140,6 +144,7 @@ export const FileStorageFilesSearchRequest$inboundSchema: z.ZodType<
   fields: z.nullable(z.string()).optional(),
   cursor: z.nullable(z.string()).optional(),
   limit: z.number().int().default(20),
+  raw: z.boolean().default(false),
   filter: components.FilesFilter$inboundSchema.optional(),
   FilesSearch: components.FilesSearch$inboundSchema,
 }).transform((v) => {
@@ -158,6 +163,7 @@ export type FileStorageFilesSearchRequest$Outbound = {
   fields?: string | null | undefined;
   cursor?: string | null | undefined;
   limit: number;
+  raw: boolean;
   filter?: components.FilesFilter$Outbound | undefined;
   FilesSearch: components.FilesSearch$Outbound;
 };
@@ -175,6 +181,7 @@ export const FileStorageFilesSearchRequest$outboundSchema: z.ZodType<
   fields: z.nullable(z.string()).optional(),
   cursor: z.nullable(z.string()).optional(),
   limit: z.number().int().default(20),
+  raw: z.boolean().default(false),
   filter: components.FilesFilter$outboundSchema.optional(),
   filesSearch: components.FilesSearch$outboundSchema,
 }).transform((v) => {

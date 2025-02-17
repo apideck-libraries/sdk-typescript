@@ -104,6 +104,7 @@ export async function fileStorageFilesDownload(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: options?.serverURL ?? "",
     operationID: "fileStorage.filesDownload",
     oAuth2Scopes: [],
 

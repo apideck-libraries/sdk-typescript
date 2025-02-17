@@ -92,6 +92,7 @@ export async function vaultConsumerRequestCountsList(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: options?.serverURL ?? "",
     operationID: "vault.consumerRequestCountsAll",
     oAuth2Scopes: [],
 

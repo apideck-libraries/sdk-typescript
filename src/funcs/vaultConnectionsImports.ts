@@ -99,6 +99,7 @@ export async function vaultConnectionsImports(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: options?.serverURL ?? "",
     operationID: "vault.connectionsImport",
     oAuth2Scopes: [],
 

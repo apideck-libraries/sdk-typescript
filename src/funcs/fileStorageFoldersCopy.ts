@@ -101,6 +101,7 @@ export async function fileStorageFoldersCopy(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: options?.serverURL ?? "",
     operationID: "fileStorage.foldersCopy",
     oAuth2Scopes: [],
 

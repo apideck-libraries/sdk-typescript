@@ -100,6 +100,7 @@ export async function accountingCreditNotesGet(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: options?.serverURL ?? "",
     operationID: "accounting.creditNotesOne",
     oAuth2Scopes: [],
 

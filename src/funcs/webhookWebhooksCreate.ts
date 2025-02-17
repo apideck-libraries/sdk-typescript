@@ -80,6 +80,7 @@ export async function webhookWebhooksCreate(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: options?.serverURL ?? "",
     operationID: "webhook.webhooksAdd",
     oAuth2Scopes: [],
 

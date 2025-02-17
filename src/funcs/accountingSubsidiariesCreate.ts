@@ -93,6 +93,7 @@ export async function accountingSubsidiariesCreate(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: options?.serverURL ?? "",
     operationID: "accounting.subsidiariesAdd",
     oAuth2Scopes: [],
 

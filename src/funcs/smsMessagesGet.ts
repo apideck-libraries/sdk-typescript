@@ -99,6 +99,7 @@ export async function smsMessagesGet(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: options?.serverURL ?? "",
     operationID: "sms.messagesOne",
     oAuth2Scopes: [],
 

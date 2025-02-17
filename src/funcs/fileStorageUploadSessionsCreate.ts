@@ -103,6 +103,7 @@ export async function fileStorageUploadSessionsCreate(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: baseURL ?? "",
     operationID: "fileStorage.uploadSessionsAdd",
     oAuth2Scopes: [],
 

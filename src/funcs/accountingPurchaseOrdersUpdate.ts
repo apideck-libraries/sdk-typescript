@@ -102,6 +102,7 @@ export async function accountingPurchaseOrdersUpdate(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: options?.serverURL ?? "",
     operationID: "accounting.purchaseOrdersUpdate",
     oAuth2Scopes: [],
 

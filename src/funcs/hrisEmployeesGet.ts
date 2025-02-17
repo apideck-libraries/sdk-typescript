@@ -110,6 +110,7 @@ export async function hrisEmployeesGet(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: options?.serverURL ?? "",
     operationID: "hris.employeesOne",
     oAuth2Scopes: [],
 

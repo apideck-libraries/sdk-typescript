@@ -99,6 +99,7 @@ export async function hrisDepartmentsDelete(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: options?.serverURL ?? "",
     operationID: "hris.departmentsDelete",
     oAuth2Scopes: [],
 

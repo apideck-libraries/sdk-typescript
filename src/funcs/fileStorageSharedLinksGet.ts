@@ -100,6 +100,7 @@ export async function fileStorageSharedLinksGet(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: options?.serverURL ?? "",
     operationID: "fileStorage.sharedLinksOne",
     oAuth2Scopes: [],
 

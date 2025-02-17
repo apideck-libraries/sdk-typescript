@@ -99,6 +99,7 @@ export async function hrisEmployeesDelete(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: options?.serverURL ?? "",
     operationID: "hris.employeesDelete",
     oAuth2Scopes: [],
 

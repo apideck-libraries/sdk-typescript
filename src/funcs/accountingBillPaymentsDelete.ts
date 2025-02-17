@@ -101,6 +101,7 @@ export async function accountingBillPaymentsDelete(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: options?.serverURL ?? "",
     operationID: "accounting.billPaymentsDelete",
     oAuth2Scopes: [],
 

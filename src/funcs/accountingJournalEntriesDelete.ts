@@ -101,6 +101,7 @@ export async function accountingJournalEntriesDelete(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: options?.serverURL ?? "",
     operationID: "accounting.journalEntriesDelete",
     oAuth2Scopes: [],
 

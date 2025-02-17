@@ -99,6 +99,7 @@ export async function vaultCreateCallbackState(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: options?.serverURL ?? "",
     operationID: "vault.createCallbackState",
     oAuth2Scopes: [],
 

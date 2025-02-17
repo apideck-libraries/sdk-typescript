@@ -101,6 +101,7 @@ export async function accountingLedgerAccountsDelete(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: options?.serverURL ?? "",
     operationID: "accounting.ledgerAccountsDelete",
     oAuth2Scopes: [],
 

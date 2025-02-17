@@ -109,6 +109,7 @@ export async function accountingAttachmentsDelete(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: options?.serverURL ?? "",
     operationID: "accounting.attachmentsDelete",
     oAuth2Scopes: [],
 

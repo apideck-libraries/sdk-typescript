@@ -87,6 +87,7 @@ export async function vaultSessionsCreate(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: options?.serverURL ?? "",
     operationID: "vault.sessionsCreate",
     oAuth2Scopes: [],
 

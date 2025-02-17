@@ -98,6 +98,7 @@ export async function crmCompaniesDelete(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: options?.serverURL ?? "",
     operationID: "crm.companiesDelete",
     oAuth2Scopes: [],
 

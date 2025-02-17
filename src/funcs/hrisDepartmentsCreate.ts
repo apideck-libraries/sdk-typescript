@@ -92,6 +92,7 @@ export async function hrisDepartmentsCreate(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: options?.serverURL ?? "",
     operationID: "hris.departmentsAdd",
     oAuth2Scopes: [],
 

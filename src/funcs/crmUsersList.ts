@@ -114,6 +114,7 @@ export async function crmUsersList(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: options?.serverURL ?? "",
     operationID: "crm.usersAll",
     oAuth2Scopes: [],
 

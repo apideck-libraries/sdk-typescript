@@ -93,6 +93,7 @@ export async function accountingBillPaymentsCreate(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: options?.serverURL ?? "",
     operationID: "accounting.billPaymentsAdd",
     oAuth2Scopes: [],
 

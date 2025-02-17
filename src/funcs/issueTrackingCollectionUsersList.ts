@@ -126,6 +126,7 @@ export async function issueTrackingCollectionUsersList(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: options?.serverURL ?? "",
     operationID: "issueTracking.collectionUsersAll",
     oAuth2Scopes: [],
 

@@ -100,6 +100,7 @@ export async function fileStorageDrivesGet(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: options?.serverURL ?? "",
     operationID: "fileStorage.drivesOne",
     oAuth2Scopes: [],
 

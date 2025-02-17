@@ -130,6 +130,7 @@ export async function issueTrackingCollectionTicketCommentsList(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: options?.serverURL ?? "",
     operationID: "issueTracking.collectionTicketCommentsAll",
     oAuth2Scopes: [],
 

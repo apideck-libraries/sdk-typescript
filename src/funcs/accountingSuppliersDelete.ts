@@ -99,6 +99,7 @@ export async function accountingSuppliersDelete(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: options?.serverURL ?? "",
     operationID: "accounting.suppliersDelete",
     oAuth2Scopes: [],
 

@@ -101,6 +101,7 @@ export async function accountingInvoiceItemsDelete(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: options?.serverURL ?? "",
     operationID: "accounting.invoiceItemsDelete",
     oAuth2Scopes: [],
 

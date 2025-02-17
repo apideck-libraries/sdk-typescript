@@ -101,6 +101,7 @@ export async function fileStorageUploadSessionsDelete(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: options?.serverURL ?? "",
     operationID: "fileStorage.uploadSessionsDelete",
     oAuth2Scopes: [],
 

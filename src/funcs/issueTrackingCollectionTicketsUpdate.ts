@@ -107,6 +107,7 @@ export async function issueTrackingCollectionTicketsUpdate(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: options?.serverURL ?? "",
     operationID: "issueTracking.collectionTicketsUpdate",
     oAuth2Scopes: [],
 

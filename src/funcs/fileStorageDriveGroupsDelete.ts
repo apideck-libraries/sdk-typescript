@@ -101,6 +101,7 @@ export async function fileStorageDriveGroupsDelete(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: options?.serverURL ?? "",
     operationID: "fileStorage.driveGroupsDelete",
     oAuth2Scopes: [],
 

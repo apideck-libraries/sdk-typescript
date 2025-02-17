@@ -92,6 +92,7 @@ export async function crmCompaniesCreate(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: options?.serverURL ?? "",
     operationID: "crm.companiesAdd",
     oAuth2Scopes: [],
 

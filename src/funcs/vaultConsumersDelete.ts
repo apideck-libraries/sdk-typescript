@@ -85,6 +85,7 @@ export async function vaultConsumersDelete(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: options?.serverURL ?? "",
     operationID: "vault.consumersDelete",
     oAuth2Scopes: [],
 

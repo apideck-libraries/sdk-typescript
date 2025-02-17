@@ -92,6 +92,7 @@ export async function vaultConsumersList(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: options?.serverURL ?? "",
     operationID: "vault.consumersAll",
     oAuth2Scopes: [],
 

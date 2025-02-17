@@ -79,6 +79,7 @@ export async function fileStorageFilesSearch(
       "cursor": payload.cursor,
       "fields": payload.fields,
       "limit": payload.limit,
+      "raw": payload.raw,
     }),
   );
 
@@ -107,6 +108,7 @@ export async function fileStorageFilesSearch(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: options?.serverURL ?? "",
     operationID: "fileStorage.filesSearch",
     oAuth2Scopes: [],
 
