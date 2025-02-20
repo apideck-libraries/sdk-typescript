@@ -126,7 +126,7 @@ export type InvoiceLineItem = {
   /**
    * A list of linked tracking categories.
    */
-  trackingCategories?: Array<LinkedTrackingCategory> | null | undefined;
+  trackingCategories?: Array<LinkedTrackingCategory | null> | null | undefined;
   ledgerAccount?: LinkedLedgerAccount | null | undefined;
   customFields?: Array<CustomField> | undefined;
   /**
@@ -211,7 +211,7 @@ export type InvoiceLineItemInput = {
   /**
    * A list of linked tracking categories.
    */
-  trackingCategories?: Array<LinkedTrackingCategory> | null | undefined;
+  trackingCategories?: Array<LinkedTrackingCategory | null> | null | undefined;
   ledgerAccount?: LinkedLedgerAccountInput | null | undefined;
   customFields?: Array<CustomField> | undefined;
   /**
@@ -264,8 +264,9 @@ export const InvoiceLineItem$inboundSchema: z.ZodType<
   department_id: z.nullable(z.string()).optional(),
   item: LinkedInvoiceItem$inboundSchema.optional(),
   tax_rate: LinkedTaxRate$inboundSchema.optional(),
-  tracking_categories: z.nullable(z.array(LinkedTrackingCategory$inboundSchema))
-    .optional(),
+  tracking_categories: z.nullable(
+    z.array(z.nullable(LinkedTrackingCategory$inboundSchema)),
+  ).optional(),
   ledger_account: z.nullable(LinkedLedgerAccount$inboundSchema).optional(),
   custom_fields: z.array(CustomField$inboundSchema).optional(),
   row_version: z.nullable(z.string()).optional(),
@@ -321,7 +322,7 @@ export type InvoiceLineItem$Outbound = {
   item?: LinkedInvoiceItem$Outbound | undefined;
   tax_rate?: LinkedTaxRate$Outbound | undefined;
   tracking_categories?:
-    | Array<LinkedTrackingCategory$Outbound>
+    | Array<LinkedTrackingCategory$Outbound | null>
     | null
     | undefined;
   ledger_account?: LinkedLedgerAccount$Outbound | null | undefined;
@@ -356,8 +357,9 @@ export const InvoiceLineItem$outboundSchema: z.ZodType<
   departmentId: z.nullable(z.string()).optional(),
   item: LinkedInvoiceItem$outboundSchema.optional(),
   taxRate: LinkedTaxRate$outboundSchema.optional(),
-  trackingCategories: z.nullable(z.array(LinkedTrackingCategory$outboundSchema))
-    .optional(),
+  trackingCategories: z.nullable(
+    z.array(z.nullable(LinkedTrackingCategory$outboundSchema)),
+  ).optional(),
   ledgerAccount: z.nullable(LinkedLedgerAccount$outboundSchema).optional(),
   customFields: z.array(CustomField$outboundSchema).optional(),
   rowVersion: z.nullable(z.string()).optional(),
@@ -441,8 +443,9 @@ export const InvoiceLineItemInput$inboundSchema: z.ZodType<
   department_id: z.nullable(z.string()).optional(),
   item: LinkedInvoiceItem$inboundSchema.optional(),
   tax_rate: LinkedTaxRateInput$inboundSchema.optional(),
-  tracking_categories: z.nullable(z.array(LinkedTrackingCategory$inboundSchema))
-    .optional(),
+  tracking_categories: z.nullable(
+    z.array(z.nullable(LinkedTrackingCategory$inboundSchema)),
+  ).optional(),
   ledger_account: z.nullable(LinkedLedgerAccountInput$inboundSchema).optional(),
   custom_fields: z.array(CustomField$inboundSchema).optional(),
   row_version: z.nullable(z.string()).optional(),
@@ -486,7 +489,7 @@ export type InvoiceLineItemInput$Outbound = {
   item?: LinkedInvoiceItem$Outbound | undefined;
   tax_rate?: LinkedTaxRateInput$Outbound | undefined;
   tracking_categories?:
-    | Array<LinkedTrackingCategory$Outbound>
+    | Array<LinkedTrackingCategory$Outbound | null>
     | null
     | undefined;
   ledger_account?: LinkedLedgerAccountInput$Outbound | null | undefined;
@@ -517,8 +520,9 @@ export const InvoiceLineItemInput$outboundSchema: z.ZodType<
   departmentId: z.nullable(z.string()).optional(),
   item: LinkedInvoiceItem$outboundSchema.optional(),
   taxRate: LinkedTaxRateInput$outboundSchema.optional(),
-  trackingCategories: z.nullable(z.array(LinkedTrackingCategory$outboundSchema))
-    .optional(),
+  trackingCategories: z.nullable(
+    z.array(z.nullable(LinkedTrackingCategory$outboundSchema)),
+  ).optional(),
   ledgerAccount: z.nullable(LinkedLedgerAccountInput$outboundSchema).optional(),
   customFields: z.array(CustomField$outboundSchema).optional(),
   rowVersion: z.nullable(z.string()).optional(),

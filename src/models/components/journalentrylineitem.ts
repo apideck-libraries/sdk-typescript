@@ -116,7 +116,7 @@ export type JournalEntryLineItem = {
   /**
    * A list of linked tracking categories.
    */
-  trackingCategories?: Array<LinkedTrackingCategory> | null | undefined;
+  trackingCategories?: Array<LinkedTrackingCategory | null> | null | undefined;
   ledgerAccount: LinkedLedgerAccount | null;
   /**
    * The customer this entity is linked to.
@@ -169,7 +169,7 @@ export type JournalEntryLineItemInput = {
   /**
    * A list of linked tracking categories.
    */
-  trackingCategories?: Array<LinkedTrackingCategory> | null | undefined;
+  trackingCategories?: Array<LinkedTrackingCategory | null> | null | undefined;
   ledgerAccount: LinkedLedgerAccountInput | null;
   /**
    * The customer this entity is linked to.
@@ -221,8 +221,9 @@ export const JournalEntryLineItem$inboundSchema: z.ZodType<
   tax_rate: LinkedTaxRate$inboundSchema.optional(),
   tracking_category: z.nullable(DeprecatedLinkedTrackingCategory$inboundSchema)
     .optional(),
-  tracking_categories: z.nullable(z.array(LinkedTrackingCategory$inboundSchema))
-    .optional(),
+  tracking_categories: z.nullable(
+    z.array(z.nullable(LinkedTrackingCategory$inboundSchema)),
+  ).optional(),
   ledger_account: z.nullable(LinkedLedgerAccount$inboundSchema),
   customer: z.nullable(LinkedCustomer$inboundSchema).optional(),
   supplier: z.nullable(LinkedSupplier$inboundSchema).optional(),
@@ -258,7 +259,7 @@ export type JournalEntryLineItem$Outbound = {
     | null
     | undefined;
   tracking_categories?:
-    | Array<LinkedTrackingCategory$Outbound>
+    | Array<LinkedTrackingCategory$Outbound | null>
     | null
     | undefined;
   ledger_account: LinkedLedgerAccount$Outbound | null;
@@ -284,8 +285,9 @@ export const JournalEntryLineItem$outboundSchema: z.ZodType<
   taxRate: LinkedTaxRate$outboundSchema.optional(),
   trackingCategory: z.nullable(DeprecatedLinkedTrackingCategory$outboundSchema)
     .optional(),
-  trackingCategories: z.nullable(z.array(LinkedTrackingCategory$outboundSchema))
-    .optional(),
+  trackingCategories: z.nullable(
+    z.array(z.nullable(LinkedTrackingCategory$outboundSchema)),
+  ).optional(),
   ledgerAccount: z.nullable(LinkedLedgerAccount$outboundSchema),
   customer: z.nullable(LinkedCustomer$outboundSchema).optional(),
   supplier: z.nullable(LinkedSupplier$outboundSchema).optional(),
@@ -352,8 +354,9 @@ export const JournalEntryLineItemInput$inboundSchema: z.ZodType<
   tax_rate: LinkedTaxRateInput$inboundSchema.optional(),
   tracking_category: z.nullable(DeprecatedLinkedTrackingCategory$inboundSchema)
     .optional(),
-  tracking_categories: z.nullable(z.array(LinkedTrackingCategory$inboundSchema))
-    .optional(),
+  tracking_categories: z.nullable(
+    z.array(z.nullable(LinkedTrackingCategory$inboundSchema)),
+  ).optional(),
   ledger_account: z.nullable(LinkedLedgerAccountInput$inboundSchema),
   customer: z.nullable(LinkedCustomerInput$inboundSchema).optional(),
   supplier: z.nullable(LinkedSupplierInput$inboundSchema).optional(),
@@ -384,7 +387,7 @@ export type JournalEntryLineItemInput$Outbound = {
     | null
     | undefined;
   tracking_categories?:
-    | Array<LinkedTrackingCategory$Outbound>
+    | Array<LinkedTrackingCategory$Outbound | null>
     | null
     | undefined;
   ledger_account: LinkedLedgerAccountInput$Outbound | null;
@@ -407,8 +410,9 @@ export const JournalEntryLineItemInput$outboundSchema: z.ZodType<
   taxRate: LinkedTaxRateInput$outboundSchema.optional(),
   trackingCategory: z.nullable(DeprecatedLinkedTrackingCategory$outboundSchema)
     .optional(),
-  trackingCategories: z.nullable(z.array(LinkedTrackingCategory$outboundSchema))
-    .optional(),
+  trackingCategories: z.nullable(
+    z.array(z.nullable(LinkedTrackingCategory$outboundSchema)),
+  ).optional(),
   ledgerAccount: z.nullable(LinkedLedgerAccountInput$outboundSchema),
   customer: z.nullable(LinkedCustomerInput$outboundSchema).optional(),
   supplier: z.nullable(LinkedSupplierInput$outboundSchema).optional(),

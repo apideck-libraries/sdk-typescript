@@ -190,7 +190,7 @@ export type PurchaseOrder = {
   /**
    * A list of linked tracking categories.
    */
-  trackingCategories?: Array<LinkedTrackingCategory> | null | undefined;
+  trackingCategories?: Array<LinkedTrackingCategory | null> | null | undefined;
   /**
    * When custom mappings are configured on the resource, the result is included here.
    */
@@ -314,7 +314,7 @@ export type PurchaseOrderInput = {
   /**
    * A list of linked tracking categories.
    */
-  trackingCategories?: Array<LinkedTrackingCategory> | null | undefined;
+  trackingCategories?: Array<LinkedTrackingCategory | null> | null | undefined;
   /**
    * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
    */
@@ -382,8 +382,9 @@ export const PurchaseOrder$inboundSchema: z.ZodType<
   tax_code: z.nullable(z.string()).optional(),
   channel: z.nullable(z.string()).optional(),
   memo: z.nullable(z.string()).optional(),
-  tracking_categories: z.nullable(z.array(LinkedTrackingCategory$inboundSchema))
-    .optional(),
+  tracking_categories: z.nullable(
+    z.array(z.nullable(LinkedTrackingCategory$inboundSchema)),
+  ).optional(),
   custom_mappings: z.nullable(CustomMappings$inboundSchema).optional(),
   row_version: z.nullable(z.string()).optional(),
   updated_by: z.nullable(z.string()).optional(),
@@ -459,7 +460,7 @@ export type PurchaseOrder$Outbound = {
   channel?: string | null | undefined;
   memo?: string | null | undefined;
   tracking_categories?:
-    | Array<LinkedTrackingCategory$Outbound>
+    | Array<LinkedTrackingCategory$Outbound | null>
     | null
     | undefined;
   custom_mappings?: CustomMappings$Outbound | null | undefined;
@@ -510,8 +511,9 @@ export const PurchaseOrder$outboundSchema: z.ZodType<
   taxCode: z.nullable(z.string()).optional(),
   channel: z.nullable(z.string()).optional(),
   memo: z.nullable(z.string()).optional(),
-  trackingCategories: z.nullable(z.array(LinkedTrackingCategory$outboundSchema))
-    .optional(),
+  trackingCategories: z.nullable(
+    z.array(z.nullable(LinkedTrackingCategory$outboundSchema)),
+  ).optional(),
   customMappings: z.nullable(CustomMappings$outboundSchema).optional(),
   rowVersion: z.nullable(z.string()).optional(),
   updatedBy: z.nullable(z.string()).optional(),
@@ -613,8 +615,9 @@ export const PurchaseOrderInput$inboundSchema: z.ZodType<
   tax_code: z.nullable(z.string()).optional(),
   channel: z.nullable(z.string()).optional(),
   memo: z.nullable(z.string()).optional(),
-  tracking_categories: z.nullable(z.array(LinkedTrackingCategory$inboundSchema))
-    .optional(),
+  tracking_categories: z.nullable(
+    z.array(z.nullable(LinkedTrackingCategory$inboundSchema)),
+  ).optional(),
   row_version: z.nullable(z.string()).optional(),
   pass_through: z.array(PassThroughBody$inboundSchema).optional(),
 }).transform((v) => {
@@ -673,7 +676,7 @@ export type PurchaseOrderInput$Outbound = {
   channel?: string | null | undefined;
   memo?: string | null | undefined;
   tracking_categories?:
-    | Array<LinkedTrackingCategory$Outbound>
+    | Array<LinkedTrackingCategory$Outbound | null>
     | null
     | undefined;
   row_version?: string | null | undefined;
@@ -717,8 +720,9 @@ export const PurchaseOrderInput$outboundSchema: z.ZodType<
   taxCode: z.nullable(z.string()).optional(),
   channel: z.nullable(z.string()).optional(),
   memo: z.nullable(z.string()).optional(),
-  trackingCategories: z.nullable(z.array(LinkedTrackingCategory$outboundSchema))
-    .optional(),
+  trackingCategories: z.nullable(
+    z.array(z.nullable(LinkedTrackingCategory$outboundSchema)),
+  ).optional(),
   rowVersion: z.nullable(z.string()).optional(),
   passThrough: z.array(PassThroughBody$outboundSchema).optional(),
 }).transform((v) => {

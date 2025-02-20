@@ -47,7 +47,7 @@ export type EcommerceProductOptions = {
    * The name of the option for the product.
    */
   name?: string | null | undefined;
-  values?: Array<string> | undefined;
+  values?: Array<string | null> | undefined;
 };
 
 export type EcommerceProductVariantsOptions = {
@@ -169,7 +169,7 @@ export type EcommerceProduct = {
   /**
    * An array of tags for the product, used for organization and searching.
    */
-  tags?: Array<string> | undefined;
+  tags?: Array<string | null> | undefined;
   /**
    * An array of categories for the product, used for organization and searching.
    */
@@ -267,14 +267,14 @@ export const EcommerceProductOptions$inboundSchema: z.ZodType<
 > = z.object({
   id: z.nullable(z.string()).optional(),
   name: z.nullable(z.string()).optional(),
-  values: z.array(z.string()).optional(),
+  values: z.array(z.nullable(z.string())).optional(),
 });
 
 /** @internal */
 export type EcommerceProductOptions$Outbound = {
   id?: string | null | undefined;
   name?: string | null | undefined;
-  values?: Array<string> | undefined;
+  values?: Array<string | null> | undefined;
 };
 
 /** @internal */
@@ -285,7 +285,7 @@ export const EcommerceProductOptions$outboundSchema: z.ZodType<
 > = z.object({
   id: z.nullable(z.string()).optional(),
   name: z.nullable(z.string()).optional(),
-  values: z.array(z.string()).optional(),
+  values: z.array(z.nullable(z.string())).optional(),
 });
 
 /**
@@ -602,7 +602,7 @@ export const EcommerceProduct$inboundSchema: z.ZodType<
   options: z.array(z.lazy(() => EcommerceProductOptions$inboundSchema))
     .optional(),
   variants: z.array(z.lazy(() => Variants$inboundSchema)).optional(),
-  tags: z.array(z.string()).optional(),
+  tags: z.array(z.nullable(z.string())).optional(),
   categories: z.array(z.lazy(() => EcommerceProductCategories$inboundSchema))
     .optional(),
   custom_mappings: z.nullable(CustomMappings$inboundSchema).optional(),
@@ -636,7 +636,7 @@ export type EcommerceProduct$Outbound = {
   weight_unit?: string | null | undefined;
   options?: Array<EcommerceProductOptions$Outbound> | undefined;
   variants?: Array<Variants$Outbound> | undefined;
-  tags?: Array<string> | undefined;
+  tags?: Array<string | null> | undefined;
   categories?: Array<EcommerceProductCategories$Outbound> | undefined;
   custom_mappings?: CustomMappings$Outbound | null | undefined;
   created_at?: string | null | undefined;
@@ -662,7 +662,7 @@ export const EcommerceProduct$outboundSchema: z.ZodType<
   options: z.array(z.lazy(() => EcommerceProductOptions$outboundSchema))
     .optional(),
   variants: z.array(z.lazy(() => Variants$outboundSchema)).optional(),
-  tags: z.array(z.string()).optional(),
+  tags: z.array(z.nullable(z.string())).optional(),
   categories: z.array(z.lazy(() => EcommerceProductCategories$outboundSchema))
     .optional(),
   customMappings: z.nullable(CustomMappings$outboundSchema).optional(),

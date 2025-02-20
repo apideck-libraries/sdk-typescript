@@ -338,8 +338,8 @@ export type Employee = {
    * language code according to ISO 639-1. For the United States - EN
    */
   preferredLanguage?: string | null | undefined;
-  languages?: Array<string> | undefined;
-  nationalities?: Array<string> | undefined;
+  languages?: Array<string | null> | undefined;
+  nationalities?: Array<string | null> | undefined;
   /**
    * The URL of the photo of a person.
    */
@@ -553,8 +553,8 @@ export type EmployeeInput = {
    * language code according to ISO 639-1. For the United States - EN
    */
   preferredLanguage?: string | null | undefined;
-  languages?: Array<string> | undefined;
-  nationalities?: Array<string> | undefined;
+  languages?: Array<string | null> | undefined;
+  nationalities?: Array<string | null> | undefined;
   /**
    * The URL of the photo of a person.
    */
@@ -917,8 +917,8 @@ export const Employee$inboundSchema: z.ZodType<
   gender: z.nullable(Gender$inboundSchema).optional(),
   pronouns: z.nullable(z.string()).optional(),
   preferred_language: z.nullable(z.string()).optional(),
-  languages: z.array(z.string()).optional(),
-  nationalities: z.array(z.string()).optional(),
+  languages: z.array(z.nullable(z.string())).optional(),
+  nationalities: z.array(z.nullable(z.string())).optional(),
   photo_url: z.nullable(z.string()).optional(),
   timezone: z.nullable(z.string()).optional(),
   source: z.nullable(z.string()).optional(),
@@ -1037,8 +1037,8 @@ export type Employee$Outbound = {
   gender?: string | null | undefined;
   pronouns?: string | null | undefined;
   preferred_language?: string | null | undefined;
-  languages?: Array<string> | undefined;
-  nationalities?: Array<string> | undefined;
+  languages?: Array<string | null> | undefined;
+  nationalities?: Array<string | null> | undefined;
   photo_url?: string | null | undefined;
   timezone?: string | null | undefined;
   source?: string | null | undefined;
@@ -1113,8 +1113,8 @@ export const Employee$outboundSchema: z.ZodType<
   gender: z.nullable(Gender$outboundSchema).optional(),
   pronouns: z.nullable(z.string()).optional(),
   preferredLanguage: z.nullable(z.string()).optional(),
-  languages: z.array(z.string()).optional(),
-  nationalities: z.array(z.string()).optional(),
+  languages: z.array(z.nullable(z.string())).optional(),
+  nationalities: z.array(z.nullable(z.string())).optional(),
   photoUrl: z.nullable(z.string()).optional(),
   timezone: z.nullable(z.string()).optional(),
   source: z.nullable(z.string()).optional(),
@@ -1260,8 +1260,8 @@ export const EmployeeInput$inboundSchema: z.ZodType<
   gender: z.nullable(Gender$inboundSchema).optional(),
   pronouns: z.nullable(z.string()).optional(),
   preferred_language: z.nullable(z.string()).optional(),
-  languages: z.array(z.string()).optional(),
-  nationalities: z.array(z.string()).optional(),
+  languages: z.array(z.nullable(z.string())).optional(),
+  nationalities: z.array(z.nullable(z.string())).optional(),
   photo_url: z.nullable(z.string()).optional(),
   timezone: z.nullable(z.string()).optional(),
   source: z.nullable(z.string()).optional(),
@@ -1366,8 +1366,8 @@ export type EmployeeInput$Outbound = {
   gender?: string | null | undefined;
   pronouns?: string | null | undefined;
   preferred_language?: string | null | undefined;
-  languages?: Array<string> | undefined;
-  nationalities?: Array<string> | undefined;
+  languages?: Array<string | null> | undefined;
+  nationalities?: Array<string | null> | undefined;
   photo_url?: string | null | undefined;
   timezone?: string | null | undefined;
   source?: string | null | undefined;
@@ -1437,8 +1437,8 @@ export const EmployeeInput$outboundSchema: z.ZodType<
   gender: z.nullable(Gender$outboundSchema).optional(),
   pronouns: z.nullable(z.string()).optional(),
   preferredLanguage: z.nullable(z.string()).optional(),
-  languages: z.array(z.string()).optional(),
-  nationalities: z.array(z.string()).optional(),
+  languages: z.array(z.nullable(z.string())).optional(),
+  nationalities: z.array(z.nullable(z.string())).optional(),
   photoUrl: z.nullable(z.string()).optional(),
   timezone: z.nullable(z.string()).optional(),
   source: z.nullable(z.string()).optional(),

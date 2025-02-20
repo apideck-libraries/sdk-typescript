@@ -204,7 +204,7 @@ export type CreditNote = {
   /**
    * A list of linked tracking categories.
    */
-  trackingCategories?: Array<LinkedTrackingCategory> | null | undefined;
+  trackingCategories?: Array<LinkedTrackingCategory | null> | null | undefined;
   /**
    * When custom mappings are configured on the resource, the result is included here.
    */
@@ -321,7 +321,7 @@ export type CreditNoteInput = {
   /**
    * A list of linked tracking categories.
    */
-  trackingCategories?: Array<LinkedTrackingCategory> | null | undefined;
+  trackingCategories?: Array<LinkedTrackingCategory | null> | null | undefined;
   customFields?: Array<CustomField> | undefined;
   /**
    * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
@@ -409,8 +409,9 @@ export const CreditNote$inboundSchema: z.ZodType<
   terms: z.nullable(z.string()).optional(),
   billing_address: Address$inboundSchema.optional(),
   shipping_address: Address$inboundSchema.optional(),
-  tracking_categories: z.nullable(z.array(LinkedTrackingCategory$inboundSchema))
-    .optional(),
+  tracking_categories: z.nullable(
+    z.array(z.nullable(LinkedTrackingCategory$inboundSchema)),
+  ).optional(),
   custom_mappings: z.nullable(CustomMappings$inboundSchema).optional(),
   custom_fields: z.array(CustomField$inboundSchema).optional(),
   row_version: z.nullable(z.string()).optional(),
@@ -478,7 +479,7 @@ export type CreditNote$Outbound = {
   billing_address?: Address$Outbound | undefined;
   shipping_address?: Address$Outbound | undefined;
   tracking_categories?:
-    | Array<LinkedTrackingCategory$Outbound>
+    | Array<LinkedTrackingCategory$Outbound | null>
     | null
     | undefined;
   custom_mappings?: CustomMappings$Outbound | null | undefined;
@@ -522,8 +523,9 @@ export const CreditNote$outboundSchema: z.ZodType<
   terms: z.nullable(z.string()).optional(),
   billingAddress: Address$outboundSchema.optional(),
   shippingAddress: Address$outboundSchema.optional(),
-  trackingCategories: z.nullable(z.array(LinkedTrackingCategory$outboundSchema))
-    .optional(),
+  trackingCategories: z.nullable(
+    z.array(z.nullable(LinkedTrackingCategory$outboundSchema)),
+  ).optional(),
   customMappings: z.nullable(CustomMappings$outboundSchema).optional(),
   customFields: z.array(CustomField$outboundSchema).optional(),
   rowVersion: z.nullable(z.string()).optional(),
@@ -619,8 +621,9 @@ export const CreditNoteInput$inboundSchema: z.ZodType<
   terms: z.nullable(z.string()).optional(),
   billing_address: Address$inboundSchema.optional(),
   shipping_address: Address$inboundSchema.optional(),
-  tracking_categories: z.nullable(z.array(LinkedTrackingCategory$inboundSchema))
-    .optional(),
+  tracking_categories: z.nullable(
+    z.array(z.nullable(LinkedTrackingCategory$inboundSchema)),
+  ).optional(),
   custom_fields: z.array(CustomField$inboundSchema).optional(),
   row_version: z.nullable(z.string()).optional(),
   pass_through: z.array(PassThroughBody$inboundSchema).optional(),
@@ -673,7 +676,7 @@ export type CreditNoteInput$Outbound = {
   billing_address?: Address$Outbound | undefined;
   shipping_address?: Address$Outbound | undefined;
   tracking_categories?:
-    | Array<LinkedTrackingCategory$Outbound>
+    | Array<LinkedTrackingCategory$Outbound | null>
     | null
     | undefined;
   custom_fields?: Array<CustomField$Outbound> | undefined;
@@ -711,8 +714,9 @@ export const CreditNoteInput$outboundSchema: z.ZodType<
   terms: z.nullable(z.string()).optional(),
   billingAddress: Address$outboundSchema.optional(),
   shippingAddress: Address$outboundSchema.optional(),
-  trackingCategories: z.nullable(z.array(LinkedTrackingCategory$outboundSchema))
-    .optional(),
+  trackingCategories: z.nullable(
+    z.array(z.nullable(LinkedTrackingCategory$outboundSchema)),
+  ).optional(),
   customFields: z.array(CustomField$outboundSchema).optional(),
   rowVersion: z.nullable(z.string()).optional(),
   passThrough: z.array(PassThroughBody$outboundSchema).optional(),

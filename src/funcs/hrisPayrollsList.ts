@@ -26,6 +26,7 @@ import {
 import * as errors from "../models/errors/index.js";
 import { SDKValidationError } from "../models/errors/sdkvalidationerror.js";
 import * as operations from "../models/operations/index.js";
+import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
 
 /**
@@ -34,11 +35,11 @@ import { Result } from "../types/fp.js";
  * @remarks
  * List Payroll
  */
-export async function hrisPayrollsList(
+export function hrisPayrollsList(
   client: ApideckCore,
   request: operations.HrisPayrollsAllRequest,
   options?: RequestOptions,
-): Promise<
+): APIPromise<
   Result<
     operations.HrisPayrollsAllResponse,
     | errors.BadRequestResponse
@@ -55,13 +56,44 @@ export async function hrisPayrollsList(
     | ConnectionError
   >
 > {
+  return new APIPromise($do(
+    client,
+    request,
+    options,
+  ));
+}
+
+async function $do(
+  client: ApideckCore,
+  request: operations.HrisPayrollsAllRequest,
+  options?: RequestOptions,
+): Promise<
+  [
+    Result<
+      operations.HrisPayrollsAllResponse,
+      | errors.BadRequestResponse
+      | errors.UnauthorizedResponse
+      | errors.PaymentRequiredResponse
+      | errors.NotFoundResponse
+      | errors.UnprocessableResponse
+      | APIError
+      | SDKValidationError
+      | UnexpectedClientError
+      | InvalidRequestError
+      | RequestAbortedError
+      | RequestTimeoutError
+      | ConnectionError
+    >,
+    APICall,
+  ]
+> {
   const parsed = safeParse(
     request,
     (value) => operations.HrisPayrollsAllRequest$outboundSchema.parse(value),
     "Input validation failed",
   );
   if (!parsed.ok) {
-    return parsed;
+    return [parsed, { status: "invalid" }];
   }
   const payload = parsed.value;
   const body = null;
@@ -103,6 +135,7 @@ export async function hrisPayrollsList(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: options?.serverURL ?? client._baseURL ?? "",
     operationID: "hris.payrollsAll",
     oAuth2Scopes: [],
 
@@ -136,7 +169,7 @@ export async function hrisPayrollsList(
     timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
   }, options);
   if (!requestRes.ok) {
-    return requestRes;
+    return [requestRes, { status: "invalid" }];
   }
   const req = requestRes.value;
 
@@ -147,7 +180,7 @@ export async function hrisPayrollsList(
     retryCodes: context.retryCodes,
   });
   if (!doResult.ok) {
-    return doResult;
+    return [doResult, { status: "request-error", request: req }];
   }
   const response = doResult.value;
 
@@ -185,8 +218,8 @@ export async function hrisPayrollsList(
     }),
   )(response, req, { extraFields: responseFields });
   if (!result.ok) {
-    return result;
+    return [result, { status: "complete", request: req, response }];
   }
 
-  return result;
+  return [result, { status: "complete", request: req, response }];
 }

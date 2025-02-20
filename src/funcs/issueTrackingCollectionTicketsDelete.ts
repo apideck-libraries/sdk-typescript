@@ -21,6 +21,7 @@ import {
 import * as errors from "../models/errors/index.js";
 import { SDKValidationError } from "../models/errors/sdkvalidationerror.js";
 import * as operations from "../models/operations/index.js";
+import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
 
 /**
@@ -29,11 +30,11 @@ import { Result } from "../types/fp.js";
  * @remarks
  * Delete Ticket
  */
-export async function issueTrackingCollectionTicketsDelete(
+export function issueTrackingCollectionTicketsDelete(
   client: ApideckCore,
   request: operations.IssueTrackingCollectionTicketsDeleteRequest,
   options?: RequestOptions,
-): Promise<
+): APIPromise<
   Result<
     operations.IssueTrackingCollectionTicketsDeleteResponse,
     | errors.BadRequestResponse
@@ -50,6 +51,37 @@ export async function issueTrackingCollectionTicketsDelete(
     | ConnectionError
   >
 > {
+  return new APIPromise($do(
+    client,
+    request,
+    options,
+  ));
+}
+
+async function $do(
+  client: ApideckCore,
+  request: operations.IssueTrackingCollectionTicketsDeleteRequest,
+  options?: RequestOptions,
+): Promise<
+  [
+    Result<
+      operations.IssueTrackingCollectionTicketsDeleteResponse,
+      | errors.BadRequestResponse
+      | errors.UnauthorizedResponse
+      | errors.PaymentRequiredResponse
+      | errors.NotFoundResponse
+      | errors.UnprocessableResponse
+      | APIError
+      | SDKValidationError
+      | UnexpectedClientError
+      | InvalidRequestError
+      | RequestAbortedError
+      | RequestTimeoutError
+      | ConnectionError
+    >,
+    APICall,
+  ]
+> {
   const parsed = safeParse(
     request,
     (value) =>
@@ -58,7 +90,7 @@ export async function issueTrackingCollectionTicketsDelete(
     "Input validation failed",
   );
   if (!parsed.ok) {
-    return parsed;
+    return [parsed, { status: "invalid" }];
   }
   const payload = parsed.value;
   const body = null;
@@ -106,6 +138,7 @@ export async function issueTrackingCollectionTicketsDelete(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: options?.serverURL ?? client._baseURL ?? "",
     operationID: "issueTracking.collectionTicketsDelete",
     oAuth2Scopes: [],
 
@@ -139,7 +172,7 @@ export async function issueTrackingCollectionTicketsDelete(
     timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
   }, options);
   if (!requestRes.ok) {
-    return requestRes;
+    return [requestRes, { status: "invalid" }];
   }
   const req = requestRes.value;
 
@@ -150,7 +183,7 @@ export async function issueTrackingCollectionTicketsDelete(
     retryCodes: context.retryCodes,
   });
   if (!doResult.ok) {
-    return doResult;
+    return [doResult, { status: "request-error", request: req }];
   }
   const response = doResult.value;
 
@@ -192,8 +225,8 @@ export async function issueTrackingCollectionTicketsDelete(
     ),
   )(response, req, { extraFields: responseFields });
   if (!result.ok) {
-    return result;
+    return [result, { status: "complete", request: req, response }];
   }
 
-  return result;
+  return [result, { status: "complete", request: req, response }];
 }
