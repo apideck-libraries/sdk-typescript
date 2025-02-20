@@ -95,7 +95,7 @@ export type JournalEntry = {
   /**
    * A list of linked tracking categories.
    */
-  trackingCategories?: Array<LinkedTrackingCategory> | null | undefined;
+  trackingCategories?: Array<LinkedTrackingCategory | null> | null | undefined;
   /**
    * Accounting period
    */
@@ -150,8 +150,9 @@ export const JournalEntry$inboundSchema: z.ZodType<
   tax_type: z.nullable(z.string()).optional(),
   tax_code: z.nullable(z.string()).optional(),
   number: z.nullable(z.string()).optional(),
-  tracking_categories: z.nullable(z.array(LinkedTrackingCategory$inboundSchema))
-    .optional(),
+  tracking_categories: z.nullable(
+    z.array(z.nullable(LinkedTrackingCategory$inboundSchema)),
+  ).optional(),
   accounting_period: z.nullable(z.string()).optional(),
   custom_mappings: z.nullable(CustomMappings$inboundSchema).optional(),
   updated_by: z.nullable(z.string()).optional(),
@@ -202,7 +203,7 @@ export type JournalEntry$Outbound = {
   tax_code?: string | null | undefined;
   number?: string | null | undefined;
   tracking_categories?:
-    | Array<LinkedTrackingCategory$Outbound>
+    | Array<LinkedTrackingCategory$Outbound | null>
     | null
     | undefined;
   accounting_period?: string | null | undefined;
@@ -234,8 +235,9 @@ export const JournalEntry$outboundSchema: z.ZodType<
   taxType: z.nullable(z.string()).optional(),
   taxCode: z.nullable(z.string()).optional(),
   number: z.nullable(z.string()).optional(),
-  trackingCategories: z.nullable(z.array(LinkedTrackingCategory$outboundSchema))
-    .optional(),
+  trackingCategories: z.nullable(
+    z.array(z.nullable(LinkedTrackingCategory$outboundSchema)),
+  ).optional(),
   accountingPeriod: z.nullable(z.string()).optional(),
   customMappings: z.nullable(CustomMappings$outboundSchema).optional(),
   updatedBy: z.nullable(z.string()).optional(),

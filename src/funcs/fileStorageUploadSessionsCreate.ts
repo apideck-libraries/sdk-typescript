@@ -22,6 +22,7 @@ import * as errors from "../models/errors/index.js";
 import { SDKValidationError } from "../models/errors/sdkvalidationerror.js";
 import { FileStorageUploadSessionsAddServerList } from "../models/operations/filestorageuploadsessionsadd.js";
 import * as operations from "../models/operations/index.js";
+import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
 
 /**
@@ -30,11 +31,11 @@ import { Result } from "../types/fp.js";
  * @remarks
  * Start an Upload Session. Upload sessions are used to upload large files, use the [Upload File](#operation/filesUpload) endpoint to upload smaller files (up to 100MB). Note that the base URL is upload.apideck.com instead of unify.apideck.com. For more information on uploads, refer to the [file upload guide](/guides/file-upload).
  */
-export async function fileStorageUploadSessionsCreate(
+export function fileStorageUploadSessionsCreate(
   client: ApideckCore,
   request: operations.FileStorageUploadSessionsAddRequest,
   options?: RequestOptions,
-): Promise<
+): APIPromise<
   Result<
     operations.FileStorageUploadSessionsAddResponse,
     | errors.BadRequestResponse
@@ -51,6 +52,37 @@ export async function fileStorageUploadSessionsCreate(
     | ConnectionError
   >
 > {
+  return new APIPromise($do(
+    client,
+    request,
+    options,
+  ));
+}
+
+async function $do(
+  client: ApideckCore,
+  request: operations.FileStorageUploadSessionsAddRequest,
+  options?: RequestOptions,
+): Promise<
+  [
+    Result<
+      operations.FileStorageUploadSessionsAddResponse,
+      | errors.BadRequestResponse
+      | errors.UnauthorizedResponse
+      | errors.PaymentRequiredResponse
+      | errors.NotFoundResponse
+      | errors.UnprocessableResponse
+      | APIError
+      | SDKValidationError
+      | UnexpectedClientError
+      | InvalidRequestError
+      | RequestAbortedError
+      | RequestTimeoutError
+      | ConnectionError
+    >,
+    APICall,
+  ]
+> {
   const parsed = safeParse(
     request,
     (value) =>
@@ -60,7 +92,7 @@ export async function fileStorageUploadSessionsCreate(
     "Input validation failed",
   );
   if (!parsed.ok) {
-    return parsed;
+    return [parsed, { status: "invalid" }];
   }
   const payload = parsed.value;
   const body = encodeJSON("body", payload.CreateUploadSessionRequest, {
@@ -103,6 +135,7 @@ export async function fileStorageUploadSessionsCreate(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: baseURL ?? "",
     operationID: "fileStorage.uploadSessionsAdd",
     oAuth2Scopes: [],
 
@@ -136,7 +169,7 @@ export async function fileStorageUploadSessionsCreate(
     timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
   }, options);
   if (!requestRes.ok) {
-    return requestRes;
+    return [requestRes, { status: "invalid" }];
   }
   const req = requestRes.value;
 
@@ -147,7 +180,7 @@ export async function fileStorageUploadSessionsCreate(
     retryCodes: context.retryCodes,
   });
   if (!doResult.ok) {
-    return doResult;
+    return [doResult, { status: "request-error", request: req }];
   }
   const response = doResult.value;
 
@@ -187,8 +220,8 @@ export async function fileStorageUploadSessionsCreate(
     ),
   )(response, req, { extraFields: responseFields });
   if (!result.ok) {
-    return result;
+    return [result, { status: "complete", request: req, response }];
   }
 
-  return result;
+  return [result, { status: "complete", request: req, response }];
 }

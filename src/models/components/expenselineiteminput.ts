@@ -24,7 +24,7 @@ export type ExpenseLineItemInput = {
   /**
    * A list of linked tracking categories.
    */
-  trackingCategories?: Array<LinkedTrackingCategory> | null | undefined;
+  trackingCategories?: Array<LinkedTrackingCategory | null> | null | undefined;
   /**
    * The unique identifier for the ledger account.
    */
@@ -62,8 +62,9 @@ export const ExpenseLineItemInput$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  tracking_categories: z.nullable(z.array(LinkedTrackingCategory$inboundSchema))
-    .optional(),
+  tracking_categories: z.nullable(
+    z.array(z.nullable(LinkedTrackingCategory$inboundSchema)),
+  ).optional(),
   account_id: z.string().optional(),
   customer_id: z.string().optional(),
   department_id: z.string().optional(),
@@ -87,7 +88,7 @@ export const ExpenseLineItemInput$inboundSchema: z.ZodType<
 /** @internal */
 export type ExpenseLineItemInput$Outbound = {
   tracking_categories?:
-    | Array<LinkedTrackingCategory$Outbound>
+    | Array<LinkedTrackingCategory$Outbound | null>
     | null
     | undefined;
   account_id?: string | undefined;
@@ -106,8 +107,9 @@ export const ExpenseLineItemInput$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   ExpenseLineItemInput
 > = z.object({
-  trackingCategories: z.nullable(z.array(LinkedTrackingCategory$outboundSchema))
-    .optional(),
+  trackingCategories: z.nullable(
+    z.array(z.nullable(LinkedTrackingCategory$outboundSchema)),
+  ).optional(),
   accountId: z.string().optional(),
   customerId: z.string().optional(),
   departmentId: z.string().optional(),

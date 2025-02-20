@@ -209,7 +209,7 @@ export type Bill = {
   /**
    * A list of linked tracking categories.
    */
-  trackingCategories?: Array<LinkedTrackingCategory> | null | undefined;
+  trackingCategories?: Array<LinkedTrackingCategory | null> | null | undefined;
   /**
    * The user who last updated the object.
    */
@@ -349,7 +349,7 @@ export type BillInput = {
   /**
    * A list of linked tracking categories.
    */
-  trackingCategories?: Array<LinkedTrackingCategory> | null | undefined;
+  trackingCategories?: Array<LinkedTrackingCategory | null> | null | undefined;
   /**
    * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
    */
@@ -418,7 +418,7 @@ export const Bill$inboundSchema: z.ZodType<Bill, z.ZodTypeDef, unknown> = z
     bank_account: BankAccount$inboundSchema.optional(),
     discount_percentage: z.nullable(z.number()).optional(),
     tracking_categories: z.nullable(
-      z.array(LinkedTrackingCategory$inboundSchema),
+      z.array(z.nullable(LinkedTrackingCategory$inboundSchema)),
     ).optional(),
     updated_by: z.nullable(z.string()).optional(),
     created_by: z.nullable(z.string()).optional(),
@@ -499,7 +499,7 @@ export type Bill$Outbound = {
   bank_account?: BankAccount$Outbound | undefined;
   discount_percentage?: number | null | undefined;
   tracking_categories?:
-    | Array<LinkedTrackingCategory$Outbound>
+    | Array<LinkedTrackingCategory$Outbound | null>
     | null
     | undefined;
   updated_by?: string | null | undefined;
@@ -550,7 +550,7 @@ export const Bill$outboundSchema: z.ZodType<Bill$Outbound, z.ZodTypeDef, Bill> =
     bankAccount: BankAccount$outboundSchema.optional(),
     discountPercentage: z.nullable(z.number()).optional(),
     trackingCategories: z.nullable(
-      z.array(LinkedTrackingCategory$outboundSchema),
+      z.array(z.nullable(LinkedTrackingCategory$outboundSchema)),
     ).optional(),
     updatedBy: z.nullable(z.string()).optional(),
     createdBy: z.nullable(z.string()).optional(),
@@ -655,8 +655,9 @@ export const BillInput$inboundSchema: z.ZodType<
   accounting_by_row: z.nullable(z.boolean()).optional(),
   bank_account: BankAccount$inboundSchema.optional(),
   discount_percentage: z.nullable(z.number()).optional(),
-  tracking_categories: z.nullable(z.array(LinkedTrackingCategory$inboundSchema))
-    .optional(),
+  tracking_categories: z.nullable(
+    z.array(z.nullable(LinkedTrackingCategory$inboundSchema)),
+  ).optional(),
   row_version: z.nullable(z.string()).optional(),
   custom_fields: z.array(CustomField$inboundSchema).optional(),
   pass_through: z.array(PassThroughBody$inboundSchema).optional(),
@@ -719,7 +720,7 @@ export type BillInput$Outbound = {
   bank_account?: BankAccount$Outbound | undefined;
   discount_percentage?: number | null | undefined;
   tracking_categories?:
-    | Array<LinkedTrackingCategory$Outbound>
+    | Array<LinkedTrackingCategory$Outbound | null>
     | null
     | undefined;
   row_version?: string | null | undefined;
@@ -765,8 +766,9 @@ export const BillInput$outboundSchema: z.ZodType<
   accountingByRow: z.nullable(z.boolean()).optional(),
   bankAccount: BankAccount$outboundSchema.optional(),
   discountPercentage: z.nullable(z.number()).optional(),
-  trackingCategories: z.nullable(z.array(LinkedTrackingCategory$outboundSchema))
-    .optional(),
+  trackingCategories: z.nullable(
+    z.array(z.nullable(LinkedTrackingCategory$outboundSchema)),
+  ).optional(),
   rowVersion: z.nullable(z.string()).optional(),
   customFields: z.array(CustomField$outboundSchema).optional(),
   passThrough: z.array(PassThroughBody$outboundSchema).optional(),

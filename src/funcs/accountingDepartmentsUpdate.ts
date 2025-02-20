@@ -21,6 +21,7 @@ import {
 import * as errors from "../models/errors/index.js";
 import { SDKValidationError } from "../models/errors/sdkvalidationerror.js";
 import * as operations from "../models/operations/index.js";
+import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
 
 /**
@@ -29,11 +30,11 @@ import { Result } from "../types/fp.js";
  * @remarks
  * Update Department
  */
-export async function accountingDepartmentsUpdate(
+export function accountingDepartmentsUpdate(
   client: ApideckCore,
   request: operations.AccountingDepartmentsUpdateRequest,
   options?: RequestOptions,
-): Promise<
+): APIPromise<
   Result<
     operations.AccountingDepartmentsUpdateResponse,
     | errors.BadRequestResponse
@@ -50,6 +51,37 @@ export async function accountingDepartmentsUpdate(
     | ConnectionError
   >
 > {
+  return new APIPromise($do(
+    client,
+    request,
+    options,
+  ));
+}
+
+async function $do(
+  client: ApideckCore,
+  request: operations.AccountingDepartmentsUpdateRequest,
+  options?: RequestOptions,
+): Promise<
+  [
+    Result<
+      operations.AccountingDepartmentsUpdateResponse,
+      | errors.BadRequestResponse
+      | errors.UnauthorizedResponse
+      | errors.PaymentRequiredResponse
+      | errors.NotFoundResponse
+      | errors.UnprocessableResponse
+      | APIError
+      | SDKValidationError
+      | UnexpectedClientError
+      | InvalidRequestError
+      | RequestAbortedError
+      | RequestTimeoutError
+      | ConnectionError
+    >,
+    APICall,
+  ]
+> {
   const parsed = safeParse(
     request,
     (value) =>
@@ -57,7 +89,7 @@ export async function accountingDepartmentsUpdate(
     "Input validation failed",
   );
   if (!parsed.ok) {
-    return parsed;
+    return [parsed, { status: "invalid" }];
   }
   const payload = parsed.value;
   const body = encodeJSON("body", payload.AccountingDepartment, {
@@ -102,6 +134,7 @@ export async function accountingDepartmentsUpdate(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: options?.serverURL ?? client._baseURL ?? "",
     operationID: "accounting.departmentsUpdate",
     oAuth2Scopes: [],
 
@@ -135,7 +168,7 @@ export async function accountingDepartmentsUpdate(
     timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
   }, options);
   if (!requestRes.ok) {
-    return requestRes;
+    return [requestRes, { status: "invalid" }];
   }
   const req = requestRes.value;
 
@@ -146,7 +179,7 @@ export async function accountingDepartmentsUpdate(
     retryCodes: context.retryCodes,
   });
   if (!doResult.ok) {
-    return doResult;
+    return [doResult, { status: "request-error", request: req }];
   }
   const response = doResult.value;
 
@@ -186,8 +219,8 @@ export async function accountingDepartmentsUpdate(
     ),
   )(response, req, { extraFields: responseFields });
   if (!result.ok) {
-    return result;
+    return [result, { status: "complete", request: req, response }];
   }
 
-  return result;
+  return [result, { status: "complete", request: req, response }];
 }

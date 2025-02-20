@@ -21,6 +21,7 @@ import {
 import * as errors from "../models/errors/index.js";
 import { SDKValidationError } from "../models/errors/sdkvalidationerror.js";
 import * as operations from "../models/operations/index.js";
+import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
 
 /**
@@ -29,11 +30,11 @@ import { Result } from "../types/fp.js";
  * @remarks
  * Get a connection
  */
-export async function vaultConnectionsGet(
+export function vaultConnectionsGet(
   client: ApideckCore,
   request: operations.VaultConnectionsOneRequest,
   options?: RequestOptions,
-): Promise<
+): APIPromise<
   Result<
     operations.VaultConnectionsOneResponse,
     | errors.BadRequestResponse
@@ -50,6 +51,37 @@ export async function vaultConnectionsGet(
     | ConnectionError
   >
 > {
+  return new APIPromise($do(
+    client,
+    request,
+    options,
+  ));
+}
+
+async function $do(
+  client: ApideckCore,
+  request: operations.VaultConnectionsOneRequest,
+  options?: RequestOptions,
+): Promise<
+  [
+    Result<
+      operations.VaultConnectionsOneResponse,
+      | errors.BadRequestResponse
+      | errors.UnauthorizedResponse
+      | errors.PaymentRequiredResponse
+      | errors.NotFoundResponse
+      | errors.UnprocessableResponse
+      | APIError
+      | SDKValidationError
+      | UnexpectedClientError
+      | InvalidRequestError
+      | RequestAbortedError
+      | RequestTimeoutError
+      | ConnectionError
+    >,
+    APICall,
+  ]
+> {
   const parsed = safeParse(
     request,
     (value) =>
@@ -57,7 +89,7 @@ export async function vaultConnectionsGet(
     "Input validation failed",
   );
   if (!parsed.ok) {
-    return parsed;
+    return [parsed, { status: "invalid" }];
   }
   const payload = parsed.value;
   const body = null;
@@ -96,6 +128,7 @@ export async function vaultConnectionsGet(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: options?.serverURL ?? client._baseURL ?? "",
     operationID: "vault.connectionsOne",
     oAuth2Scopes: [],
 
@@ -128,7 +161,7 @@ export async function vaultConnectionsGet(
     timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
   }, options);
   if (!requestRes.ok) {
-    return requestRes;
+    return [requestRes, { status: "invalid" }];
   }
   const req = requestRes.value;
 
@@ -139,7 +172,7 @@ export async function vaultConnectionsGet(
     retryCodes: context.retryCodes,
   });
   if (!doResult.ok) {
-    return doResult;
+    return [doResult, { status: "request-error", request: req }];
   }
   const response = doResult.value;
 
@@ -177,8 +210,8 @@ export async function vaultConnectionsGet(
     }),
   )(response, req, { extraFields: responseFields });
   if (!result.ok) {
-    return result;
+    return [result, { status: "complete", request: req, response }];
   }
 
-  return result;
+  return [result, { status: "complete", request: req, response }];
 }

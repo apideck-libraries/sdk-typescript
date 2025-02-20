@@ -119,7 +119,7 @@ export type BillLineItem = {
   /**
    * A list of linked tracking categories.
    */
-  trackingCategories?: Array<LinkedTrackingCategory> | null | undefined;
+  trackingCategories?: Array<LinkedTrackingCategory | null> | null | undefined;
   /**
    * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
    */
@@ -199,7 +199,7 @@ export type BillLineItemInput = {
   /**
    * A list of linked tracking categories.
    */
-  trackingCategories?: Array<LinkedTrackingCategory> | null | undefined;
+  trackingCategories?: Array<LinkedTrackingCategory | null> | null | undefined;
   /**
    * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
    */
@@ -251,8 +251,9 @@ export const BillLineItem$inboundSchema: z.ZodType<
   item: LinkedInvoiceItem$inboundSchema.optional(),
   tax_rate: LinkedTaxRate$inboundSchema.optional(),
   ledger_account: z.nullable(LinkedLedgerAccount$inboundSchema).optional(),
-  tracking_categories: z.nullable(z.array(LinkedTrackingCategory$inboundSchema))
-    .optional(),
+  tracking_categories: z.nullable(
+    z.array(z.nullable(LinkedTrackingCategory$inboundSchema)),
+  ).optional(),
   row_version: z.nullable(z.string()).optional(),
   updated_by: z.nullable(z.string()).optional(),
   created_by: z.nullable(z.string()).optional(),
@@ -306,7 +307,7 @@ export type BillLineItem$Outbound = {
   tax_rate?: LinkedTaxRate$Outbound | undefined;
   ledger_account?: LinkedLedgerAccount$Outbound | null | undefined;
   tracking_categories?:
-    | Array<LinkedTrackingCategory$Outbound>
+    | Array<LinkedTrackingCategory$Outbound | null>
     | null
     | undefined;
   row_version?: string | null | undefined;
@@ -340,8 +341,9 @@ export const BillLineItem$outboundSchema: z.ZodType<
   item: LinkedInvoiceItem$outboundSchema.optional(),
   taxRate: LinkedTaxRate$outboundSchema.optional(),
   ledgerAccount: z.nullable(LinkedLedgerAccount$outboundSchema).optional(),
-  trackingCategories: z.nullable(z.array(LinkedTrackingCategory$outboundSchema))
-    .optional(),
+  trackingCategories: z.nullable(
+    z.array(z.nullable(LinkedTrackingCategory$outboundSchema)),
+  ).optional(),
   rowVersion: z.nullable(z.string()).optional(),
   updatedBy: z.nullable(z.string()).optional(),
   createdBy: z.nullable(z.string()).optional(),
@@ -420,8 +422,9 @@ export const BillLineItemInput$inboundSchema: z.ZodType<
   item: LinkedInvoiceItem$inboundSchema.optional(),
   tax_rate: LinkedTaxRateInput$inboundSchema.optional(),
   ledger_account: z.nullable(LinkedLedgerAccountInput$inboundSchema).optional(),
-  tracking_categories: z.nullable(z.array(LinkedTrackingCategory$inboundSchema))
-    .optional(),
+  tracking_categories: z.nullable(
+    z.array(z.nullable(LinkedTrackingCategory$inboundSchema)),
+  ).optional(),
   row_version: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
@@ -462,7 +465,7 @@ export type BillLineItemInput$Outbound = {
   tax_rate?: LinkedTaxRateInput$Outbound | undefined;
   ledger_account?: LinkedLedgerAccountInput$Outbound | null | undefined;
   tracking_categories?:
-    | Array<LinkedTrackingCategory$Outbound>
+    | Array<LinkedTrackingCategory$Outbound | null>
     | null
     | undefined;
   row_version?: string | null | undefined;
@@ -491,8 +494,9 @@ export const BillLineItemInput$outboundSchema: z.ZodType<
   item: LinkedInvoiceItem$outboundSchema.optional(),
   taxRate: LinkedTaxRateInput$outboundSchema.optional(),
   ledgerAccount: z.nullable(LinkedLedgerAccountInput$outboundSchema).optional(),
-  trackingCategories: z.nullable(z.array(LinkedTrackingCategory$outboundSchema))
-    .optional(),
+  trackingCategories: z.nullable(
+    z.array(z.nullable(LinkedTrackingCategory$outboundSchema)),
+  ).optional(),
   rowVersion: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {

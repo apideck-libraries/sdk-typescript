@@ -194,7 +194,7 @@ export type BillPayment = {
   /**
    * A list of linked tracking categories.
    */
-  trackingCategories?: Array<LinkedTrackingCategory> | null | undefined;
+  trackingCategories?: Array<LinkedTrackingCategory | null> | null | undefined;
   customFields?: Array<CustomField> | undefined;
   /**
    * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
@@ -315,7 +315,7 @@ export type BillPaymentInput = {
   /**
    * A list of linked tracking categories.
    */
-  trackingCategories?: Array<LinkedTrackingCategory> | null | undefined;
+  trackingCategories?: Array<LinkedTrackingCategory | null> | null | undefined;
   customFields?: Array<CustomField> | undefined;
   /**
    * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
@@ -470,8 +470,9 @@ export const BillPayment$inboundSchema: z.ZodType<
   allocations: z.array(z.lazy(() => Allocations$inboundSchema)).optional(),
   note: z.nullable(z.string()).optional(),
   number: z.nullable(z.string()).optional(),
-  tracking_categories: z.nullable(z.array(LinkedTrackingCategory$inboundSchema))
-    .optional(),
+  tracking_categories: z.nullable(
+    z.array(z.nullable(LinkedTrackingCategory$inboundSchema)),
+  ).optional(),
   custom_fields: z.array(CustomField$inboundSchema).optional(),
   row_version: z.nullable(z.string()).optional(),
   display_id: z.nullable(z.string()).optional(),
@@ -530,7 +531,7 @@ export type BillPayment$Outbound = {
   note?: string | null | undefined;
   number?: string | null | undefined;
   tracking_categories?:
-    | Array<LinkedTrackingCategory$Outbound>
+    | Array<LinkedTrackingCategory$Outbound | null>
     | null
     | undefined;
   custom_fields?: Array<CustomField$Outbound> | undefined;
@@ -569,8 +570,9 @@ export const BillPayment$outboundSchema: z.ZodType<
   allocations: z.array(z.lazy(() => Allocations$outboundSchema)).optional(),
   note: z.nullable(z.string()).optional(),
   number: z.nullable(z.string()).optional(),
-  trackingCategories: z.nullable(z.array(LinkedTrackingCategory$outboundSchema))
-    .optional(),
+  trackingCategories: z.nullable(
+    z.array(z.nullable(LinkedTrackingCategory$outboundSchema)),
+  ).optional(),
   customFields: z.array(CustomField$outboundSchema).optional(),
   rowVersion: z.nullable(z.string()).optional(),
   displayId: z.nullable(z.string()).optional(),
@@ -727,8 +729,9 @@ export const BillPaymentInput$inboundSchema: z.ZodType<
     .optional(),
   note: z.nullable(z.string()).optional(),
   number: z.nullable(z.string()).optional(),
-  tracking_categories: z.nullable(z.array(LinkedTrackingCategory$inboundSchema))
-    .optional(),
+  tracking_categories: z.nullable(
+    z.array(z.nullable(LinkedTrackingCategory$inboundSchema)),
+  ).optional(),
   custom_fields: z.array(CustomField$inboundSchema).optional(),
   row_version: z.nullable(z.string()).optional(),
   display_id: z.nullable(z.string()).optional(),
@@ -770,7 +773,7 @@ export type BillPaymentInput$Outbound = {
   note?: string | null | undefined;
   number?: string | null | undefined;
   tracking_categories?:
-    | Array<LinkedTrackingCategory$Outbound>
+    | Array<LinkedTrackingCategory$Outbound | null>
     | null
     | undefined;
   custom_fields?: Array<CustomField$Outbound> | undefined;
@@ -803,8 +806,9 @@ export const BillPaymentInput$outboundSchema: z.ZodType<
     .optional(),
   note: z.nullable(z.string()).optional(),
   number: z.nullable(z.string()).optional(),
-  trackingCategories: z.nullable(z.array(LinkedTrackingCategory$outboundSchema))
-    .optional(),
+  trackingCategories: z.nullable(
+    z.array(z.nullable(LinkedTrackingCategory$outboundSchema)),
+  ).optional(),
   customFields: z.array(CustomField$outboundSchema).optional(),
   rowVersion: z.nullable(z.string()).optional(),
   displayId: z.nullable(z.string()).optional(),

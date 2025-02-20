@@ -152,7 +152,7 @@ export type InvoiceItem = {
   /**
    * A list of linked tracking categories.
    */
-  trackingCategories?: Array<LinkedTrackingCategory> | null | undefined;
+  trackingCategories?: Array<LinkedTrackingCategory | null> | null | undefined;
   active?: boolean | null | undefined;
   /**
    * When custom mappings are configured on the resource, the result is included here.
@@ -261,7 +261,7 @@ export type InvoiceItemInput = {
   /**
    * A list of linked tracking categories.
    */
-  trackingCategories?: Array<LinkedTrackingCategory> | null | undefined;
+  trackingCategories?: Array<LinkedTrackingCategory | null> | null | undefined;
   active?: boolean | null | undefined;
   /**
    * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
@@ -468,8 +468,9 @@ export const InvoiceItem$inboundSchema: z.ZodType<
   expense_account: z.nullable(LinkedLedgerAccount$inboundSchema).optional(),
   tracking_category: z.nullable(DeprecatedLinkedTrackingCategory$inboundSchema)
     .optional(),
-  tracking_categories: z.nullable(z.array(LinkedTrackingCategory$inboundSchema))
-    .optional(),
+  tracking_categories: z.nullable(
+    z.array(z.nullable(LinkedTrackingCategory$inboundSchema)),
+  ).optional(),
   active: z.nullable(z.boolean()).optional(),
   custom_mappings: z.nullable(CustomMappings$inboundSchema).optional(),
   row_version: z.nullable(z.string()).optional(),
@@ -527,7 +528,7 @@ export type InvoiceItem$Outbound = {
     | null
     | undefined;
   tracking_categories?:
-    | Array<LinkedTrackingCategory$Outbound>
+    | Array<LinkedTrackingCategory$Outbound | null>
     | null
     | undefined;
   active?: boolean | null | undefined;
@@ -566,8 +567,9 @@ export const InvoiceItem$outboundSchema: z.ZodType<
   expenseAccount: z.nullable(LinkedLedgerAccount$outboundSchema).optional(),
   trackingCategory: z.nullable(DeprecatedLinkedTrackingCategory$outboundSchema)
     .optional(),
-  trackingCategories: z.nullable(z.array(LinkedTrackingCategory$outboundSchema))
-    .optional(),
+  trackingCategories: z.nullable(
+    z.array(z.nullable(LinkedTrackingCategory$outboundSchema)),
+  ).optional(),
   active: z.nullable(z.boolean()).optional(),
   customMappings: z.nullable(CustomMappings$outboundSchema).optional(),
   rowVersion: z.nullable(z.string()).optional(),
@@ -805,8 +807,9 @@ export const InvoiceItemInput$inboundSchema: z.ZodType<
     .optional(),
   tracking_category: z.nullable(DeprecatedLinkedTrackingCategory$inboundSchema)
     .optional(),
-  tracking_categories: z.nullable(z.array(LinkedTrackingCategory$inboundSchema))
-    .optional(),
+  tracking_categories: z.nullable(
+    z.array(z.nullable(LinkedTrackingCategory$inboundSchema)),
+  ).optional(),
   active: z.nullable(z.boolean()).optional(),
   row_version: z.nullable(z.string()).optional(),
   pass_through: z.array(PassThroughBody$inboundSchema).optional(),
@@ -849,7 +852,7 @@ export type InvoiceItemInput$Outbound = {
     | null
     | undefined;
   tracking_categories?:
-    | Array<LinkedTrackingCategory$Outbound>
+    | Array<LinkedTrackingCategory$Outbound | null>
     | null
     | undefined;
   active?: boolean | null | undefined;
@@ -884,8 +887,9 @@ export const InvoiceItemInput$outboundSchema: z.ZodType<
     .optional(),
   trackingCategory: z.nullable(DeprecatedLinkedTrackingCategory$outboundSchema)
     .optional(),
-  trackingCategories: z.nullable(z.array(LinkedTrackingCategory$outboundSchema))
-    .optional(),
+  trackingCategories: z.nullable(
+    z.array(z.nullable(LinkedTrackingCategory$outboundSchema)),
+  ).optional(),
   active: z.nullable(z.boolean()).optional(),
   rowVersion: z.nullable(z.string()).optional(),
   passThrough: z.array(PassThroughBody$outboundSchema).optional(),

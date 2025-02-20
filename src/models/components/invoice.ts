@@ -233,7 +233,7 @@ export type Invoice = {
   /**
    * A list of linked tracking categories.
    */
-  trackingCategories?: Array<LinkedTrackingCategory> | null | undefined;
+  trackingCategories?: Array<LinkedTrackingCategory | null> | null | undefined;
   lineItems?: Array<InvoiceLineItem> | undefined;
   billingAddress?: Address | undefined;
   shippingAddress?: Address | undefined;
@@ -394,7 +394,7 @@ export type InvoiceInput = {
   /**
    * A list of linked tracking categories.
    */
-  trackingCategories?: Array<LinkedTrackingCategory> | null | undefined;
+  trackingCategories?: Array<LinkedTrackingCategory | null> | null | undefined;
   lineItems?: Array<InvoiceLineItemInput> | undefined;
   billingAddress?: Address | undefined;
   shippingAddress?: Address | undefined;
@@ -508,7 +508,7 @@ export const Invoice$inboundSchema: z.ZodType<Invoice, z.ZodTypeDef, unknown> =
       DeprecatedLinkedTrackingCategory$inboundSchema,
     ).optional(),
     tracking_categories: z.nullable(
-      z.array(LinkedTrackingCategory$inboundSchema),
+      z.array(z.nullable(LinkedTrackingCategory$inboundSchema)),
     ).optional(),
     line_items: z.array(InvoiceLineItem$inboundSchema).optional(),
     billing_address: Address$inboundSchema.optional(),
@@ -603,7 +603,7 @@ export type Invoice$Outbound = {
     | null
     | undefined;
   tracking_categories?:
-    | Array<LinkedTrackingCategory$Outbound>
+    | Array<LinkedTrackingCategory$Outbound | null>
     | null
     | undefined;
   line_items?: Array<InvoiceLineItem$Outbound> | undefined;
@@ -662,8 +662,9 @@ export const Invoice$outboundSchema: z.ZodType<
   customerMemo: z.nullable(z.string()).optional(),
   trackingCategory: z.nullable(DeprecatedLinkedTrackingCategory$outboundSchema)
     .optional(),
-  trackingCategories: z.nullable(z.array(LinkedTrackingCategory$outboundSchema))
-    .optional(),
+  trackingCategories: z.nullable(
+    z.array(z.nullable(LinkedTrackingCategory$outboundSchema)),
+  ).optional(),
   lineItems: z.array(InvoiceLineItem$outboundSchema).optional(),
   billingAddress: Address$outboundSchema.optional(),
   shippingAddress: Address$outboundSchema.optional(),
@@ -780,8 +781,9 @@ export const InvoiceInput$inboundSchema: z.ZodType<
   customer_memo: z.nullable(z.string()).optional(),
   tracking_category: z.nullable(DeprecatedLinkedTrackingCategory$inboundSchema)
     .optional(),
-  tracking_categories: z.nullable(z.array(LinkedTrackingCategory$inboundSchema))
-    .optional(),
+  tracking_categories: z.nullable(
+    z.array(z.nullable(LinkedTrackingCategory$inboundSchema)),
+  ).optional(),
   line_items: z.array(InvoiceLineItemInput$inboundSchema).optional(),
   billing_address: Address$inboundSchema.optional(),
   shipping_address: Address$inboundSchema.optional(),
@@ -858,7 +860,7 @@ export type InvoiceInput$Outbound = {
     | null
     | undefined;
   tracking_categories?:
-    | Array<LinkedTrackingCategory$Outbound>
+    | Array<LinkedTrackingCategory$Outbound | null>
     | null
     | undefined;
   line_items?: Array<InvoiceLineItemInput$Outbound> | undefined;
@@ -910,8 +912,9 @@ export const InvoiceInput$outboundSchema: z.ZodType<
   customerMemo: z.nullable(z.string()).optional(),
   trackingCategory: z.nullable(DeprecatedLinkedTrackingCategory$outboundSchema)
     .optional(),
-  trackingCategories: z.nullable(z.array(LinkedTrackingCategory$outboundSchema))
-    .optional(),
+  trackingCategories: z.nullable(
+    z.array(z.nullable(LinkedTrackingCategory$outboundSchema)),
+  ).optional(),
   lineItems: z.array(InvoiceLineItemInput$outboundSchema).optional(),
   billingAddress: Address$outboundSchema.optional(),
   shippingAddress: Address$outboundSchema.optional(),

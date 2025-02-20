@@ -27,6 +27,7 @@ import {
 import * as errors from "../models/errors/index.js";
 import { SDKValidationError } from "../models/errors/sdkvalidationerror.js";
 import * as operations from "../models/operations/index.js";
+import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
 import {
   createPageIterator,
@@ -41,11 +42,11 @@ import {
  * @remarks
  * List Files
  */
-export async function fileStorageFilesList(
+export function fileStorageFilesList(
   client: ApideckCore,
   request: operations.FileStorageFilesAllRequest,
   options?: RequestOptions,
-): Promise<
+): APIPromise<
   PageIterator<
     Result<
       operations.FileStorageFilesAllResponse,
@@ -65,6 +66,40 @@ export async function fileStorageFilesList(
     { cursor: string }
   >
 > {
+  return new APIPromise($do(
+    client,
+    request,
+    options,
+  ));
+}
+
+async function $do(
+  client: ApideckCore,
+  request: operations.FileStorageFilesAllRequest,
+  options?: RequestOptions,
+): Promise<
+  [
+    PageIterator<
+      Result<
+        operations.FileStorageFilesAllResponse,
+        | errors.BadRequestResponse
+        | errors.UnauthorizedResponse
+        | errors.PaymentRequiredResponse
+        | errors.NotFoundResponse
+        | errors.UnprocessableResponse
+        | APIError
+        | SDKValidationError
+        | UnexpectedClientError
+        | InvalidRequestError
+        | RequestAbortedError
+        | RequestTimeoutError
+        | ConnectionError
+      >,
+      { cursor: string }
+    >,
+    APICall,
+  ]
+> {
   const parsed = safeParse(
     request,
     (value) =>
@@ -72,7 +107,7 @@ export async function fileStorageFilesList(
     "Input validation failed",
   );
   if (!parsed.ok) {
-    return haltIterator(parsed);
+    return [haltIterator(parsed), { status: "invalid" }];
   }
   const payload = parsed.value;
   const body = null;
@@ -117,6 +152,7 @@ export async function fileStorageFilesList(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: options?.serverURL ?? client._baseURL ?? "",
     operationID: "fileStorage.filesAll",
     oAuth2Scopes: [],
 
@@ -150,7 +186,7 @@ export async function fileStorageFilesList(
     timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
   }, options);
   if (!requestRes.ok) {
-    return haltIterator(requestRes);
+    return [haltIterator(requestRes), { status: "invalid" }];
   }
   const req = requestRes.value;
 
@@ -161,7 +197,7 @@ export async function fileStorageFilesList(
     retryCodes: context.retryCodes,
   });
   if (!doResult.ok) {
-    return haltIterator(doResult);
+    return [haltIterator(doResult), { status: "request-error", request: req }];
   }
   const response = doResult.value;
 
@@ -199,7 +235,11 @@ export async function fileStorageFilesList(
     }),
   )(response, req, { extraFields: responseFields });
   if (!result.ok) {
-    return haltIterator(result);
+    return [haltIterator(result), {
+      status: "complete",
+      request: req,
+      response,
+    }];
   }
 
   const nextFunc = (
@@ -243,5 +283,9 @@ export async function fileStorageFilesList(
   };
 
   const page = { ...result, ...nextFunc(raw) };
-  return { ...page, ...createPageIterator(page, (v) => !v.ok) };
+  return [{ ...page, ...createPageIterator(page, (v) => !v.ok) }, {
+    status: "complete",
+    request: req,
+    response,
+  }];
 }

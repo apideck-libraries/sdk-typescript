@@ -27,6 +27,7 @@ import {
 import * as errors from "../models/errors/index.js";
 import { SDKValidationError } from "../models/errors/sdkvalidationerror.js";
 import * as operations from "../models/operations/index.js";
+import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
 import {
   createPageIterator,
@@ -41,11 +42,11 @@ import {
  * @remarks
  * This endpoint includes all consumer request logs.
  */
-export async function vaultLogsList(
+export function vaultLogsList(
   client: ApideckCore,
   request: operations.VaultLogsAllRequest,
   options?: RequestOptions,
-): Promise<
+): APIPromise<
   PageIterator<
     Result<
       operations.VaultLogsAllResponse,
@@ -65,13 +66,47 @@ export async function vaultLogsList(
     { cursor: string }
   >
 > {
+  return new APIPromise($do(
+    client,
+    request,
+    options,
+  ));
+}
+
+async function $do(
+  client: ApideckCore,
+  request: operations.VaultLogsAllRequest,
+  options?: RequestOptions,
+): Promise<
+  [
+    PageIterator<
+      Result<
+        operations.VaultLogsAllResponse,
+        | errors.BadRequestResponse
+        | errors.UnauthorizedResponse
+        | errors.PaymentRequiredResponse
+        | errors.NotFoundResponse
+        | errors.UnprocessableResponse
+        | APIError
+        | SDKValidationError
+        | UnexpectedClientError
+        | InvalidRequestError
+        | RequestAbortedError
+        | RequestTimeoutError
+        | ConnectionError
+      >,
+      { cursor: string }
+    >,
+    APICall,
+  ]
+> {
   const parsed = safeParse(
     request,
     (value) => operations.VaultLogsAllRequest$outboundSchema.parse(value),
     "Input validation failed",
   );
   if (!parsed.ok) {
-    return haltIterator(parsed);
+    return [haltIterator(parsed), { status: "invalid" }];
   }
   const payload = parsed.value;
   const body = null;
@@ -107,6 +142,7 @@ export async function vaultLogsList(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: options?.serverURL ?? client._baseURL ?? "",
     operationID: "vault.logsAll",
     oAuth2Scopes: [],
 
@@ -140,7 +176,7 @@ export async function vaultLogsList(
     timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
   }, options);
   if (!requestRes.ok) {
-    return haltIterator(requestRes);
+    return [haltIterator(requestRes), { status: "invalid" }];
   }
   const req = requestRes.value;
 
@@ -151,7 +187,7 @@ export async function vaultLogsList(
     retryCodes: context.retryCodes,
   });
   if (!doResult.ok) {
-    return haltIterator(doResult);
+    return [haltIterator(doResult), { status: "request-error", request: req }];
   }
   const response = doResult.value;
 
@@ -189,7 +225,11 @@ export async function vaultLogsList(
     }),
   )(response, req, { extraFields: responseFields });
   if (!result.ok) {
-    return haltIterator(result);
+    return [haltIterator(result), {
+      status: "complete",
+      request: req,
+      response,
+    }];
   }
 
   const nextFunc = (
@@ -233,5 +273,9 @@ export async function vaultLogsList(
   };
 
   const page = { ...result, ...nextFunc(raw) };
-  return { ...page, ...createPageIterator(page, (v) => !v.ok) };
+  return [{ ...page, ...createPageIterator(page, (v) => !v.ok) }, {
+    status: "complete",
+    request: req,
+    response,
+  }];
 }

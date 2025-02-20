@@ -21,6 +21,7 @@ import {
 import * as errors from "../models/errors/index.js";
 import { SDKValidationError } from "../models/errors/sdkvalidationerror.js";
 import * as operations from "../models/operations/index.js";
+import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
 
 /**
@@ -34,11 +35,11 @@ import { Result } from "../types/fp.js";
  *   - The access token will not be returned in the response. A 200 response code indicates the authorization was successful and that a valid access token was stored on the connection.
  *   - The access token will be used for subsequent API requests.
  */
-export async function vaultConnectionsToken(
+export function vaultConnectionsToken(
   client: ApideckCore,
   request: operations.VaultConnectionsTokenRequest,
   options?: RequestOptions,
-): Promise<
+): APIPromise<
   Result<
     operations.VaultConnectionsTokenResponse,
     | errors.BadRequestResponse
@@ -55,6 +56,37 @@ export async function vaultConnectionsToken(
     | ConnectionError
   >
 > {
+  return new APIPromise($do(
+    client,
+    request,
+    options,
+  ));
+}
+
+async function $do(
+  client: ApideckCore,
+  request: operations.VaultConnectionsTokenRequest,
+  options?: RequestOptions,
+): Promise<
+  [
+    Result<
+      operations.VaultConnectionsTokenResponse,
+      | errors.BadRequestResponse
+      | errors.UnauthorizedResponse
+      | errors.PaymentRequiredResponse
+      | errors.NotFoundResponse
+      | errors.UnprocessableResponse
+      | APIError
+      | SDKValidationError
+      | UnexpectedClientError
+      | InvalidRequestError
+      | RequestAbortedError
+      | RequestTimeoutError
+      | ConnectionError
+    >,
+    APICall,
+  ]
+> {
   const parsed = safeParse(
     request,
     (value) =>
@@ -62,7 +94,7 @@ export async function vaultConnectionsToken(
     "Input validation failed",
   );
   if (!parsed.ok) {
-    return parsed;
+    return [parsed, { status: "invalid" }];
   }
   const payload = parsed.value;
   const body = encodeJSON("body", payload.RequestBody, { explode: true });
@@ -102,6 +134,7 @@ export async function vaultConnectionsToken(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: options?.serverURL ?? client._baseURL ?? "",
     operationID: "vault.connectionsToken",
     oAuth2Scopes: [],
 
@@ -134,7 +167,7 @@ export async function vaultConnectionsToken(
     timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
   }, options);
   if (!requestRes.ok) {
-    return requestRes;
+    return [requestRes, { status: "invalid" }];
   }
   const req = requestRes.value;
 
@@ -145,7 +178,7 @@ export async function vaultConnectionsToken(
     retryCodes: context.retryCodes,
   });
   if (!doResult.ok) {
-    return doResult;
+    return [doResult, { status: "request-error", request: req }];
   }
   const response = doResult.value;
 
@@ -183,8 +216,8 @@ export async function vaultConnectionsToken(
     }),
   )(response, req, { extraFields: responseFields });
   if (!result.ok) {
-    return result;
+    return [result, { status: "complete", request: req, response }];
   }
 
-  return result;
+  return [result, { status: "complete", request: req, response }];
 }

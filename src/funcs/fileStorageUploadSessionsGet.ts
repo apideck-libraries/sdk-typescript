@@ -22,6 +22,7 @@ import * as errors from "../models/errors/index.js";
 import { SDKValidationError } from "../models/errors/sdkvalidationerror.js";
 import { FileStorageUploadSessionsOneServerList } from "../models/operations/filestorageuploadsessionsone.js";
 import * as operations from "../models/operations/index.js";
+import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
 
 /**
@@ -30,11 +31,11 @@ import { Result } from "../types/fp.js";
  * @remarks
  * Get Upload Session. Use the `part_size` to split your file into parts. Upload the parts to the [Upload part of File](#operation/uploadSessionsUpload) endpoint. Note that the base URL is upload.apideck.com instead of unify.apideck.com. For more information on uploads, refer to the [file upload guide](/guides/file-upload).
  */
-export async function fileStorageUploadSessionsGet(
+export function fileStorageUploadSessionsGet(
   client: ApideckCore,
   request: operations.FileStorageUploadSessionsOneRequest,
   options?: RequestOptions,
-): Promise<
+): APIPromise<
   Result<
     operations.FileStorageUploadSessionsOneResponse,
     | errors.BadRequestResponse
@@ -51,6 +52,37 @@ export async function fileStorageUploadSessionsGet(
     | ConnectionError
   >
 > {
+  return new APIPromise($do(
+    client,
+    request,
+    options,
+  ));
+}
+
+async function $do(
+  client: ApideckCore,
+  request: operations.FileStorageUploadSessionsOneRequest,
+  options?: RequestOptions,
+): Promise<
+  [
+    Result<
+      operations.FileStorageUploadSessionsOneResponse,
+      | errors.BadRequestResponse
+      | errors.UnauthorizedResponse
+      | errors.PaymentRequiredResponse
+      | errors.NotFoundResponse
+      | errors.UnprocessableResponse
+      | APIError
+      | SDKValidationError
+      | UnexpectedClientError
+      | InvalidRequestError
+      | RequestAbortedError
+      | RequestTimeoutError
+      | ConnectionError
+    >,
+    APICall,
+  ]
+> {
   const parsed = safeParse(
     request,
     (value) =>
@@ -60,7 +92,7 @@ export async function fileStorageUploadSessionsGet(
     "Input validation failed",
   );
   if (!parsed.ok) {
-    return parsed;
+    return [parsed, { status: "invalid" }];
   }
   const payload = parsed.value;
   const body = null;
@@ -108,6 +140,7 @@ export async function fileStorageUploadSessionsGet(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: baseURL ?? "",
     operationID: "fileStorage.uploadSessionsOne",
     oAuth2Scopes: [],
 
@@ -141,7 +174,7 @@ export async function fileStorageUploadSessionsGet(
     timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
   }, options);
   if (!requestRes.ok) {
-    return requestRes;
+    return [requestRes, { status: "invalid" }];
   }
   const req = requestRes.value;
 
@@ -152,7 +185,7 @@ export async function fileStorageUploadSessionsGet(
     retryCodes: context.retryCodes,
   });
   if (!doResult.ok) {
-    return doResult;
+    return [doResult, { status: "request-error", request: req }];
   }
   const response = doResult.value;
 
@@ -192,8 +225,8 @@ export async function fileStorageUploadSessionsGet(
     ),
   )(response, req, { extraFields: responseFields });
   if (!result.ok) {
-    return result;
+    return [result, { status: "complete", request: req, response }];
   }
 
-  return result;
+  return [result, { status: "complete", request: req, response }];
 }
