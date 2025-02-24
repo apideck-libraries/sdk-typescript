@@ -39,6 +39,10 @@ export type GetCreditNoteResponse = {
    */
   operation: string;
   data: CreditNote;
+  /**
+   * Raw response from the integration when raw=true query param is provided
+   */
+  raw?: { [k: string]: any } | null | undefined;
 };
 
 /** @internal */
@@ -53,9 +57,11 @@ export const GetCreditNoteResponse$inboundSchema: z.ZodType<
   resource: z.string(),
   operation: z.string(),
   data: CreditNote$inboundSchema,
+  _raw: z.nullable(z.record(z.any())).optional(),
 }).transform((v) => {
   return remap$(v, {
     "status_code": "statusCode",
+    "_raw": "raw",
   });
 });
 
@@ -67,6 +73,7 @@ export type GetCreditNoteResponse$Outbound = {
   resource: string;
   operation: string;
   data: CreditNote$Outbound;
+  _raw?: { [k: string]: any } | null | undefined;
 };
 
 /** @internal */
@@ -81,9 +88,11 @@ export const GetCreditNoteResponse$outboundSchema: z.ZodType<
   resource: z.string(),
   operation: z.string(),
   data: CreditNote$outboundSchema,
+  raw: z.nullable(z.record(z.any())).optional(),
 }).transform((v) => {
   return remap$(v, {
     statusCode: "status_code",
+    raw: "_raw",
   });
 });
 

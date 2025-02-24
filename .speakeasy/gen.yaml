@@ -18,7 +18,7 @@ generation:
     oAuth2ClientCredentialsEnabled: true
     oAuth2PasswordEnabled: true
 typescript:
-  version: 0.17.0
+  version: 0.18.0
   additionalDependencies:
     dependencies: {}
     devDependencies: {}
@@ -28,6 +28,7 @@ typescript:
   clientServerStatusCodesAsErrors: true
   defaultErrorName: APIError
   enableCustomCodeRegions: false
+  enableMCPServer: true
   enableReactQuery: false
   enumFormat: union
   envVarPrefix: APIDECK

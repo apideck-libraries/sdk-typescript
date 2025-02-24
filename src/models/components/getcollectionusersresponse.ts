@@ -59,6 +59,10 @@ export type GetCollectionUsersResponse = {
    * Links to navigate to previous or next pages through the API
    */
   links?: Links | undefined;
+  /**
+   * Raw response from the integration when raw=true query param is provided
+   */
+  raw?: { [k: string]: any } | null | undefined;
 };
 
 /** @internal */
@@ -75,9 +79,11 @@ export const GetCollectionUsersResponse$inboundSchema: z.ZodType<
   data: z.array(CollectionUser$inboundSchema),
   meta: Meta$inboundSchema.optional(),
   links: Links$inboundSchema.optional(),
+  _raw: z.nullable(z.record(z.any())).optional(),
 }).transform((v) => {
   return remap$(v, {
     "status_code": "statusCode",
+    "_raw": "raw",
   });
 });
 
@@ -91,6 +97,7 @@ export type GetCollectionUsersResponse$Outbound = {
   data: Array<CollectionUser$Outbound>;
   meta?: Meta$Outbound | undefined;
   links?: Links$Outbound | undefined;
+  _raw?: { [k: string]: any } | null | undefined;
 };
 
 /** @internal */
@@ -107,9 +114,11 @@ export const GetCollectionUsersResponse$outboundSchema: z.ZodType<
   data: z.array(CollectionUser$outboundSchema),
   meta: Meta$outboundSchema.optional(),
   links: Links$outboundSchema.optional(),
+  raw: z.nullable(z.record(z.any())).optional(),
 }).transform((v) => {
   return remap$(v, {
     statusCode: "status_code",
+    raw: "_raw",
   });
 });
 

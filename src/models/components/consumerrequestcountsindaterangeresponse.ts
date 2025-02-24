@@ -36,6 +36,10 @@ export type ConsumerRequestCountsInDateRangeResponse = {
    */
   status: string;
   data: ConsumerRequestCountsInDateRangeResponseData;
+  /**
+   * Raw response from the integration when raw=true query param is provided
+   */
+  raw?: { [k: string]: any } | null | undefined;
 };
 
 /** @internal */
@@ -149,9 +153,11 @@ export const ConsumerRequestCountsInDateRangeResponse$inboundSchema: z.ZodType<
   data: z.lazy(() =>
     ConsumerRequestCountsInDateRangeResponseData$inboundSchema
   ),
+  _raw: z.nullable(z.record(z.any())).optional(),
 }).transform((v) => {
   return remap$(v, {
     "status_code": "statusCode",
+    "_raw": "raw",
   });
 });
 
@@ -160,6 +166,7 @@ export type ConsumerRequestCountsInDateRangeResponse$Outbound = {
   status_code: number;
   status: string;
   data: ConsumerRequestCountsInDateRangeResponseData$Outbound;
+  _raw?: { [k: string]: any } | null | undefined;
 };
 
 /** @internal */
@@ -173,9 +180,11 @@ export const ConsumerRequestCountsInDateRangeResponse$outboundSchema: z.ZodType<
   data: z.lazy(() =>
     ConsumerRequestCountsInDateRangeResponseData$outboundSchema
   ),
+  raw: z.nullable(z.record(z.any())).optional(),
 }).transform((v) => {
   return remap$(v, {
     statusCode: "status_code",
+    raw: "_raw",
   });
 });
 

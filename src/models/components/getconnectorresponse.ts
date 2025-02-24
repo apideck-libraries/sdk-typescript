@@ -40,6 +40,10 @@ export type GetConnectorResponse = {
   status: string;
   data: Connector;
   /**
+   * Raw response from the integration when raw=true query param is provided
+   */
+  raw?: { [k: string]: any } | null | undefined;
+  /**
    * Response metadata
    */
   meta?: Meta | undefined;
@@ -58,11 +62,13 @@ export const GetConnectorResponse$inboundSchema: z.ZodType<
   status_code: z.number().int(),
   status: z.string(),
   data: Connector$inboundSchema,
+  _raw: z.nullable(z.record(z.any())).optional(),
   meta: Meta$inboundSchema.optional(),
   links: Links$inboundSchema.optional(),
 }).transform((v) => {
   return remap$(v, {
     "status_code": "statusCode",
+    "_raw": "raw",
   });
 });
 
@@ -71,6 +77,7 @@ export type GetConnectorResponse$Outbound = {
   status_code: number;
   status: string;
   data: Connector$Outbound;
+  _raw?: { [k: string]: any } | null | undefined;
   meta?: Meta$Outbound | undefined;
   links?: Links$Outbound | undefined;
 };
@@ -84,11 +91,13 @@ export const GetConnectorResponse$outboundSchema: z.ZodType<
   statusCode: z.number().int(),
   status: z.string(),
   data: Connector$outboundSchema,
+  raw: z.nullable(z.record(z.any())).optional(),
   meta: Meta$outboundSchema.optional(),
   links: Links$outboundSchema.optional(),
 }).transform((v) => {
   return remap$(v, {
     statusCode: "status_code",
+    raw: "_raw",
   });
 });
 
