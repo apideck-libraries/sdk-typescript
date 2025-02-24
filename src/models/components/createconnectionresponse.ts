@@ -27,6 +27,10 @@ export type CreateConnectionResponse = {
    */
   status: string;
   data: Connection;
+  /**
+   * Raw response from the integration when raw=true query param is provided
+   */
+  raw?: { [k: string]: any } | null | undefined;
 };
 
 /** @internal */
@@ -38,9 +42,11 @@ export const CreateConnectionResponse$inboundSchema: z.ZodType<
   status_code: z.number().int(),
   status: z.string(),
   data: Connection$inboundSchema,
+  _raw: z.nullable(z.record(z.any())).optional(),
 }).transform((v) => {
   return remap$(v, {
     "status_code": "statusCode",
+    "_raw": "raw",
   });
 });
 
@@ -49,6 +55,7 @@ export type CreateConnectionResponse$Outbound = {
   status_code: number;
   status: string;
   data: Connection$Outbound;
+  _raw?: { [k: string]: any } | null | undefined;
 };
 
 /** @internal */
@@ -60,9 +67,11 @@ export const CreateConnectionResponse$outboundSchema: z.ZodType<
   statusCode: z.number().int(),
   status: z.string(),
   data: Connection$outboundSchema,
+  raw: z.nullable(z.record(z.any())).optional(),
 }).transform((v) => {
   return remap$(v, {
     statusCode: "status_code",
+    raw: "_raw",
   });
 });
 

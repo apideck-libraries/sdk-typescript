@@ -52,6 +52,10 @@ export type GetSharedLinksResponse = {
   operation: string;
   data: Array<SharedLink>;
   /**
+   * Raw response from the integration when raw=true query param is provided
+   */
+  raw?: { [k: string]: any } | null | undefined;
+  /**
    * Response metadata
    */
   meta?: Meta | undefined;
@@ -73,11 +77,13 @@ export const GetSharedLinksResponse$inboundSchema: z.ZodType<
   resource: z.string(),
   operation: z.string(),
   data: z.array(SharedLink$inboundSchema),
+  _raw: z.nullable(z.record(z.any())).optional(),
   meta: Meta$inboundSchema.optional(),
   links: Links$inboundSchema.optional(),
 }).transform((v) => {
   return remap$(v, {
     "status_code": "statusCode",
+    "_raw": "raw",
   });
 });
 
@@ -89,6 +95,7 @@ export type GetSharedLinksResponse$Outbound = {
   resource: string;
   operation: string;
   data: Array<SharedLink$Outbound>;
+  _raw?: { [k: string]: any } | null | undefined;
   meta?: Meta$Outbound | undefined;
   links?: Links$Outbound | undefined;
 };
@@ -105,11 +112,13 @@ export const GetSharedLinksResponse$outboundSchema: z.ZodType<
   resource: z.string(),
   operation: z.string(),
   data: z.array(SharedLink$outboundSchema),
+  raw: z.nullable(z.record(z.any())).optional(),
   meta: Meta$outboundSchema.optional(),
   links: Links$outboundSchema.optional(),
 }).transform((v) => {
   return remap$(v, {
     statusCode: "status_code",
+    raw: "_raw",
   });
 });
 

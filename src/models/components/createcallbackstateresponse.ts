@@ -28,6 +28,10 @@ export type CreateCallbackStateResponse = {
    */
   status: string;
   data: CreateCallbackStateResponseData;
+  /**
+   * Raw response from the integration when raw=true query param is provided
+   */
+  raw?: { [k: string]: any } | null | undefined;
 };
 
 /** @internal */
@@ -95,9 +99,11 @@ export const CreateCallbackStateResponse$inboundSchema: z.ZodType<
   status_code: z.number().int(),
   status: z.string(),
   data: z.lazy(() => CreateCallbackStateResponseData$inboundSchema),
+  _raw: z.nullable(z.record(z.any())).optional(),
 }).transform((v) => {
   return remap$(v, {
     "status_code": "statusCode",
+    "_raw": "raw",
   });
 });
 
@@ -106,6 +112,7 @@ export type CreateCallbackStateResponse$Outbound = {
   status_code: number;
   status: string;
   data: CreateCallbackStateResponseData$Outbound;
+  _raw?: { [k: string]: any } | null | undefined;
 };
 
 /** @internal */
@@ -117,9 +124,11 @@ export const CreateCallbackStateResponse$outboundSchema: z.ZodType<
   statusCode: z.number().int(),
   status: z.string(),
   data: z.lazy(() => CreateCallbackStateResponseData$outboundSchema),
+  raw: z.nullable(z.record(z.any())).optional(),
 }).transform((v) => {
   return remap$(v, {
     statusCode: "status_code",
+    raw: "_raw",
   });
 });
 

@@ -28,6 +28,10 @@ export type DeleteConsumerResponse = {
    */
   status: string;
   data: DeleteConsumerResponseData;
+  /**
+   * Raw response from the integration when raw=true query param is provided
+   */
+  raw?: { [k: string]: any } | null | undefined;
 };
 
 /** @internal */
@@ -101,9 +105,11 @@ export const DeleteConsumerResponse$inboundSchema: z.ZodType<
   status_code: z.number().int(),
   status: z.string(),
   data: z.lazy(() => DeleteConsumerResponseData$inboundSchema),
+  _raw: z.nullable(z.record(z.any())).optional(),
 }).transform((v) => {
   return remap$(v, {
     "status_code": "statusCode",
+    "_raw": "raw",
   });
 });
 
@@ -112,6 +118,7 @@ export type DeleteConsumerResponse$Outbound = {
   status_code: number;
   status: string;
   data: DeleteConsumerResponseData$Outbound;
+  _raw?: { [k: string]: any } | null | undefined;
 };
 
 /** @internal */
@@ -123,9 +130,11 @@ export const DeleteConsumerResponse$outboundSchema: z.ZodType<
   statusCode: z.number().int(),
   status: z.string(),
   data: z.lazy(() => DeleteConsumerResponseData$outboundSchema),
+  raw: z.nullable(z.record(z.any())).optional(),
 }).transform((v) => {
   return remap$(v, {
     statusCode: "status_code",
+    raw: "_raw",
   });
 });
 

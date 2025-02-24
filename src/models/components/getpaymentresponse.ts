@@ -39,6 +39,10 @@ export type GetPaymentResponse = {
    */
   operation: string;
   data: Payment;
+  /**
+   * Raw response from the integration when raw=true query param is provided
+   */
+  raw?: { [k: string]: any } | null | undefined;
 };
 
 /** @internal */
@@ -53,9 +57,11 @@ export const GetPaymentResponse$inboundSchema: z.ZodType<
   resource: z.string(),
   operation: z.string(),
   data: Payment$inboundSchema,
+  _raw: z.nullable(z.record(z.any())).optional(),
 }).transform((v) => {
   return remap$(v, {
     "status_code": "statusCode",
+    "_raw": "raw",
   });
 });
 
@@ -67,6 +73,7 @@ export type GetPaymentResponse$Outbound = {
   resource: string;
   operation: string;
   data: Payment$Outbound;
+  _raw?: { [k: string]: any } | null | undefined;
 };
 
 /** @internal */
@@ -81,9 +88,11 @@ export const GetPaymentResponse$outboundSchema: z.ZodType<
   resource: z.string(),
   operation: z.string(),
   data: Payment$outboundSchema,
+  raw: z.nullable(z.record(z.any())).optional(),
 }).transform((v) => {
   return remap$(v, {
     statusCode: "status_code",
+    raw: "_raw",
   });
 });
 

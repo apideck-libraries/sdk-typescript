@@ -39,6 +39,10 @@ export type GetFileResponse = {
    */
   operation: string;
   data: UnifiedFile;
+  /**
+   * Raw response from the integration when raw=true query param is provided
+   */
+  raw?: { [k: string]: any } | null | undefined;
 };
 
 /** @internal */
@@ -53,9 +57,11 @@ export const GetFileResponse$inboundSchema: z.ZodType<
   resource: z.string(),
   operation: z.string(),
   data: UnifiedFile$inboundSchema,
+  _raw: z.nullable(z.record(z.any())).optional(),
 }).transform((v) => {
   return remap$(v, {
     "status_code": "statusCode",
+    "_raw": "raw",
   });
 });
 
@@ -67,6 +73,7 @@ export type GetFileResponse$Outbound = {
   resource: string;
   operation: string;
   data: UnifiedFile$Outbound;
+  _raw?: { [k: string]: any } | null | undefined;
 };
 
 /** @internal */
@@ -81,9 +88,11 @@ export const GetFileResponse$outboundSchema: z.ZodType<
   resource: z.string(),
   operation: z.string(),
   data: UnifiedFile$outboundSchema,
+  raw: z.nullable(z.record(z.any())).optional(),
 }).transform((v) => {
   return remap$(v, {
     statusCode: "status_code",
+    raw: "_raw",
   });
 });
 

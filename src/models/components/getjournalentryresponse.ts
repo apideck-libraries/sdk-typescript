@@ -39,6 +39,10 @@ export type GetJournalEntryResponse = {
    */
   operation: string;
   data: JournalEntry;
+  /**
+   * Raw response from the integration when raw=true query param is provided
+   */
+  raw?: { [k: string]: any } | null | undefined;
 };
 
 /** @internal */
@@ -53,9 +57,11 @@ export const GetJournalEntryResponse$inboundSchema: z.ZodType<
   resource: z.string(),
   operation: z.string(),
   data: JournalEntry$inboundSchema,
+  _raw: z.nullable(z.record(z.any())).optional(),
 }).transform((v) => {
   return remap$(v, {
     "status_code": "statusCode",
+    "_raw": "raw",
   });
 });
 
@@ -67,6 +73,7 @@ export type GetJournalEntryResponse$Outbound = {
   resource: string;
   operation: string;
   data: JournalEntry$Outbound;
+  _raw?: { [k: string]: any } | null | undefined;
 };
 
 /** @internal */
@@ -81,9 +88,11 @@ export const GetJournalEntryResponse$outboundSchema: z.ZodType<
   resource: z.string(),
   operation: z.string(),
   data: JournalEntry$outboundSchema,
+  raw: z.nullable(z.record(z.any())).optional(),
 }).transform((v) => {
   return remap$(v, {
     statusCode: "status_code",
+    raw: "_raw",
   });
 });
 

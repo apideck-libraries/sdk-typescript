@@ -39,6 +39,10 @@ export type GetEmployeeSchedulesResponse = {
    */
   operation: string;
   data: EmployeeSchedules;
+  /**
+   * Raw response from the integration when raw=true query param is provided
+   */
+  raw?: { [k: string]: any } | null | undefined;
 };
 
 /** @internal */
@@ -53,9 +57,11 @@ export const GetEmployeeSchedulesResponse$inboundSchema: z.ZodType<
   resource: z.string(),
   operation: z.string(),
   data: EmployeeSchedules$inboundSchema,
+  _raw: z.nullable(z.record(z.any())).optional(),
 }).transform((v) => {
   return remap$(v, {
     "status_code": "statusCode",
+    "_raw": "raw",
   });
 });
 
@@ -67,6 +73,7 @@ export type GetEmployeeSchedulesResponse$Outbound = {
   resource: string;
   operation: string;
   data: EmployeeSchedules$Outbound;
+  _raw?: { [k: string]: any } | null | undefined;
 };
 
 /** @internal */
@@ -81,9 +88,11 @@ export const GetEmployeeSchedulesResponse$outboundSchema: z.ZodType<
   resource: z.string(),
   operation: z.string(),
   data: EmployeeSchedules$outboundSchema,
+  raw: z.nullable(z.record(z.any())).optional(),
 }).transform((v) => {
   return remap$(v, {
     statusCode: "status_code",
+    raw: "_raw",
   });
 });
 
