@@ -241,7 +241,7 @@ async function $do(
     "~next"?: { cursor: string };
   } => {
     const nextCursor = dlv(responseData, "meta.cursors.next");
-    if (nextCursor == null) {
+    if (typeof nextCursor !== "string") {
       return { next: () => null };
     }
 
