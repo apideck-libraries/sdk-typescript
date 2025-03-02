@@ -12,7 +12,7 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 /**
  * The type of address.
  */
-export const Type = {
+export const AddressType = {
   Primary: "primary",
   Secondary: "secondary",
   Home: "home",
@@ -24,7 +24,7 @@ export const Type = {
 /**
  * The type of address.
  */
-export type Type = ClosedEnum<typeof Type>;
+export type AddressType = ClosedEnum<typeof AddressType>;
 
 export type Address = {
   /**
@@ -34,7 +34,7 @@ export type Address = {
   /**
    * The type of address.
    */
-  type?: Type | null | undefined;
+  type?: AddressType | null | undefined;
   /**
    * The address string. Some APIs don't provide structured address data.
    */
@@ -126,30 +126,29 @@ export type Address = {
 };
 
 /** @internal */
-export const Type$inboundSchema: z.ZodNativeEnum<typeof Type> = z.nativeEnum(
-  Type,
-);
+export const AddressType$inboundSchema: z.ZodNativeEnum<typeof AddressType> = z
+  .nativeEnum(AddressType);
 
 /** @internal */
-export const Type$outboundSchema: z.ZodNativeEnum<typeof Type> =
-  Type$inboundSchema;
+export const AddressType$outboundSchema: z.ZodNativeEnum<typeof AddressType> =
+  AddressType$inboundSchema;
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace Type$ {
-  /** @deprecated use `Type$inboundSchema` instead. */
-  export const inboundSchema = Type$inboundSchema;
-  /** @deprecated use `Type$outboundSchema` instead. */
-  export const outboundSchema = Type$outboundSchema;
+export namespace AddressType$ {
+  /** @deprecated use `AddressType$inboundSchema` instead. */
+  export const inboundSchema = AddressType$inboundSchema;
+  /** @deprecated use `AddressType$outboundSchema` instead. */
+  export const outboundSchema = AddressType$outboundSchema;
 }
 
 /** @internal */
 export const Address$inboundSchema: z.ZodType<Address, z.ZodTypeDef, unknown> =
   z.object({
     id: z.nullable(z.string()).optional(),
-    type: z.nullable(Type$inboundSchema).optional(),
+    type: z.nullable(AddressType$inboundSchema).optional(),
     string: z.nullable(z.string()).optional(),
     name: z.nullable(z.string()).optional(),
     line1: z.nullable(z.string()).optional(),
@@ -217,7 +216,7 @@ export const Address$outboundSchema: z.ZodType<
   Address
 > = z.object({
   id: z.nullable(z.string()).optional(),
-  type: z.nullable(Type$outboundSchema).optional(),
+  type: z.nullable(AddressType$outboundSchema).optional(),
   string: z.nullable(z.string()).optional(),
   name: z.nullable(z.string()).optional(),
   line1: z.nullable(z.string()).optional(),
