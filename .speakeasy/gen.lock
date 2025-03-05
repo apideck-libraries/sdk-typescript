@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 7bffa198-5d29-4efa-9942-d549cc832085
 management:
-  docChecksum: 1b699953c6695d1307d5ba6eeb4cfd5f
+  docChecksum: d7135fd6bec8d864fcc4b9f14f36dfd2
   docVersion: 10.11.5
-  speakeasyVersion: 1.501.1
-  generationVersion: 2.522.5
-  releaseVersion: 0.18.0
-  configChecksum: ef775fae45193541a1780f696642c3bb
+  speakeasyVersion: 1.509.1
+  generationVersion: 2.539.1
+  releaseVersion: 0.19.0
+  configChecksum: faa8706fd635903aaaff572e42295a7e
   repoURL: https://github.com/apideck-libraries/sdk-typescript.git
   installationURL: https://github.com/apideck-libraries/sdk-typescript
   published: true
@@ -15,7 +15,7 @@ features:
     acceptHeaders: 2.81.2
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.11
-    core: 3.21.1
+    core: 3.21.3
     deepObjectParams: 0.1.0
     defaultEnabledRetries: 0.1.0
     deprecations: 2.81.1
@@ -33,7 +33,7 @@ features:
     methodServerURLs: 2.82.1
     nameOverrides: 2.81.2
     nullables: 0.1.1
-    pagination: 2.82.8
+    pagination: 2.83.0
     responseFormat: 0.2.3
     retries: 2.83.0
     sdkHooks: 0.2.0
@@ -65,6 +65,7 @@ generatedFiles:
   - docs/models/components/activitytype.md
   - docs/models/components/address.md
   - docs/models/components/addresses.md
+  - docs/models/components/addresstype.md
   - docs/models/components/ageddebtors.md
   - docs/models/components/agedreportfilter.md
   - docs/models/components/allocation.md
@@ -174,7 +175,6 @@ generatedFiles:
   - docs/models/components/contactsfilter.md
   - docs/models/components/contactssort.md
   - docs/models/components/contactssortby.md
-  - docs/models/components/contacttype.md
   - docs/models/components/copyfolderrequest.md
   - docs/models/components/coverage.md
   - docs/models/components/createaccountingdepartmentresponse.md
