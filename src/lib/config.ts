@@ -15,7 +15,7 @@ export const ServerList = [
 ] as const;
 
 export type SDKOptions = {
-  apiKey?: string | (() => Promise<string>);
+  apiKey?: string | (() => Promise<string>) | undefined;
 
   /**
    * Allows setting the consumerId parameter for all supported operations
@@ -64,7 +64,7 @@ export function serverURLFromOptions(options: SDKOptions): URL | null {
 export const SDK_METADATA = {
   language: "typescript",
   openapiDocVersion: "10.11.5",
-  sdkVersion: "0.18.0",
-  genVersion: "2.522.5",
-  userAgent: "speakeasy-sdk/typescript 0.18.0 2.522.5 10.11.5 @apideck/unify",
+  sdkVersion: "0.19.0",
+  genVersion: "2.539.1",
+  userAgent: "speakeasy-sdk/typescript 0.19.0 2.539.1 10.11.5 @apideck/unify",
 } as const;
