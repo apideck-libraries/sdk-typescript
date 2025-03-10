@@ -411,6 +411,8 @@ export * from "./phonenumber.js";
 export * from "./pipeline.js";
 export * from "./profitandloss.js";
 export * from "./profitandlossfilter.js";
+export * from "./profitandlossindicator.js";
+export * from "./profitandlosstype.js";
 export * from "./purchaseorder.js";
 export * from "./purchaseordersfilter.js";
 export * from "./purchaseorderssort.js";
