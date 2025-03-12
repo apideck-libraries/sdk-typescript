@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 7bffa198-5d29-4efa-9942-d549cc832085
 management:
-  docChecksum: d7135fd6bec8d864fcc4b9f14f36dfd2
-  docVersion: 10.11.5
-  speakeasyVersion: 1.509.1
-  generationVersion: 2.539.1
-  releaseVersion: 0.19.0
-  configChecksum: faa8706fd635903aaaff572e42295a7e
+  docChecksum: 1c457e5380748926df036f79bf4d8520
+  docVersion: 10.12.3
+  speakeasyVersion: 1.517.0
+  generationVersion: 2.548.1
+  releaseVersion: 0.20.0
+  configChecksum: 88b59e3a20bed9bb07370061c694a1f0
   repoURL: https://github.com/apideck-libraries/sdk-typescript.git
   installationURL: https://github.com/apideck-libraries/sdk-typescript
   published: true
@@ -15,7 +15,7 @@ features:
     acceptHeaders: 2.81.2
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.11
-    core: 3.21.3
+    core: 3.21.4
     deepObjectParams: 0.1.0
     defaultEnabledRetries: 0.1.0
     deprecations: 2.81.1
@@ -176,6 +176,7 @@ generatedFiles:
   - docs/models/components/contactssort.md
   - docs/models/components/contactssortby.md
   - docs/models/components/copyfolderrequest.md
+  - docs/models/components/costofgoodssold.md
   - docs/models/components/coverage.md
   - docs/models/components/createaccountingdepartmentresponse.md
   - docs/models/components/createaccountinglocationresponse.md
@@ -492,7 +493,6 @@ generatedFiles:
   - docs/models/components/getwebhookeventlogsresponse.md
   - docs/models/components/getwebhookresponse.md
   - docs/models/components/getwebhooksresponse.md
-  - docs/models/components/grossprofit.md
   - docs/models/components/hriscompany.md
   - docs/models/components/hriscompanyinput.md
   - docs/models/components/hriscompanystatus.md
@@ -576,8 +576,6 @@ generatedFiles:
   - docs/models/components/messagetype.md
   - docs/models/components/meta.md
   - docs/models/components/mode.md
-  - docs/models/components/netincome.md
-  - docs/models/components/netoperatingincome.md
   - docs/models/components/note.md
   - docs/models/components/noteinput.md
   - docs/models/components/notes.md
@@ -594,6 +592,8 @@ generatedFiles:
   - docs/models/components/options.md
   - docs/models/components/orderssort.md
   - docs/models/components/orderssortby.md
+  - docs/models/components/otherexpenses.md
+  - docs/models/components/otherincome.md
   - docs/models/components/outstandingbalancebycurrency.md
   - docs/models/components/outstandingbalancebycustomer.md
   - docs/models/components/owner.md
@@ -626,6 +626,8 @@ generatedFiles:
   - docs/models/components/productstatus.md
   - docs/models/components/profitandloss.md
   - docs/models/components/profitandlossfilter.md
+  - docs/models/components/profitandlossindicator.md
+  - docs/models/components/profitandlosstype.md
   - docs/models/components/purchasedetails.md
   - docs/models/components/purchaseorder.md
   - docs/models/components/purchaseorderinput.md
@@ -704,6 +706,7 @@ generatedFiles:
   - docs/models/components/trackingitem.md
   - docs/models/components/transactiontype.md
   - docs/models/components/type.md
+  - docs/models/components/uncategorizedaccounts.md
   - docs/models/components/unexpectederrorresponse.md
   - docs/models/components/unifiedapi.md
   - docs/models/components/unifiedapiid.md
@@ -2350,6 +2353,8 @@ generatedFiles:
   - src/models/components/pipeline.ts
   - src/models/components/profitandloss.ts
   - src/models/components/profitandlossfilter.ts
+  - src/models/components/profitandlossindicator.ts
+  - src/models/components/profitandlosstype.ts
   - src/models/components/purchaseorder.ts
   - src/models/components/purchaseordersfilter.ts
   - src/models/components/purchaseorderssort.ts
@@ -3632,7 +3637,7 @@ examples:
         query:
           raw: false
           limit: 20
-          filter: {"company_name": "SpaceX", "display_name": "Elon Musk", "first_name": "Elon", "last_name": "Musk", "email": "elon@musk.com", "status": "active", "updated_since": "2020-09-30T07:43:32.000Z"}
+          filter: {"company_name": "SpaceX", "display_name": "Elon Musk", "first_name": "Elon", "last_name": "Musk", "email": "elon@musk.com", "status": "active", "updated_since": "2020-09-30T07:43:32.000Z", "supplier_id": "123"}
           sort: {"by": "updated_at", "direction": "desc"}
           pass_through: {"search": "San Francisco"}
           fields: "id,updated_at"
@@ -4099,7 +4104,7 @@ examples:
           x-apideck-service-id: "salesforce"
       responses:
         "200":
-          application/json: {"status_code": 200, "status": "OK", "service": "quickbooks", "resource": "ProfitAndLosses", "operation": "one", "data": {"id": "12345", "report_name": "ProfitAndLoss", "start_date": "2017-01-01", "end_date": "2017-01-01", "currency": "USD", "customer_id": "123", "income": {"total": 200000, "records": [{"id": "123", "name": "Income 1", "amount": 10000}, {"id": "456", "name": "Income 2", "amount": 20000}]}, "expenses": {"total": 200000, "records": [{"id": "123", "name": "Expense 1", "amount": 10000}, {"id": "456", "name": "Expense 2", "amount": 20000}]}, "net_income": {"total": 200000, "records": "<value>"}, "net_operating_income": {"total": 200000, "records": "<value>"}, "gross_profit": {"total": 200000, "records": "<value>"}}}
+          application/json: {"status_code": 200, "status": "OK", "service": "quickbooks", "resource": "ProfitAndLosses", "operation": "one", "data": {"id": "12345", "report_name": "ProfitAndLoss", "start_date": "2017-01-01", "end_date": "2017-01-01", "currency": "USD", "income": {"total": 200000, "records": [{"id": "123", "name": "Income 1", "amount": 10000}, {"id": "456", "name": "Income 2", "amount": 20000}]}, "expenses": {"total": 200000, "records": [{"id": "123", "name": "Expense 1", "amount": 10000}, {"id": "456", "name": "Expense 2", "amount": 20000}]}, "gross_profit": {"total": 200000}, "net_operating_income": {"total": 200000}, "net_income": {"total": 200000}}}
         "400":
           application/json: {"status_code": 400, "error": "Bad Request", "type_name": "RequestValidationError", "message": "Invalid Params", "detail": {"missing": [{"foobar": "required"}]}, "ref": "https://developers.apideck.com/errors#requestvalidationerror"}
         "401":

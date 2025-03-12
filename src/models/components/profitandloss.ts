@@ -8,47 +8,185 @@ import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
+  Currency,
+  Currency$inboundSchema,
+  Currency$outboundSchema,
+} from "./currency.js";
+import {
   CustomMappings,
   CustomMappings$inboundSchema,
   CustomMappings$Outbound,
   CustomMappings$outboundSchema,
 } from "./custommappings.js";
+import {
+  ProfitAndLossIndicator,
+  ProfitAndLossIndicator$inboundSchema,
+  ProfitAndLossIndicator$Outbound,
+  ProfitAndLossIndicator$outboundSchema,
+} from "./profitandlossindicator.js";
+import {
+  ProfitAndLossType,
+  ProfitAndLossType$inboundSchema,
+  ProfitAndLossType$outboundSchema,
+} from "./profitandlosstype.js";
 
+/**
+ * The operating income accounts
+ */
 export type Income = {
   /**
-   * Total income
+   * A unique identifier for an object.
+   */
+  id?: string | undefined;
+  /**
+   * The account code of the account
+   */
+  code?: string | undefined;
+  /**
+   * The name of the account.
+   */
+  title?: string | undefined;
+  /**
+   * The type of profit and loss
+   */
+  type?: ProfitAndLossType | null | undefined;
+  /**
+   * The aggregated total of all accounts within this category.
    */
   total: number | null;
   records?: any | undefined;
 };
 
+/**
+ * The cost of goods sold accounts
+ */
+export type CostOfGoodsSold = {
+  /**
+   * A unique identifier for an object.
+   */
+  id?: string | undefined;
+  /**
+   * The account code of the account
+   */
+  code?: string | undefined;
+  /**
+   * The name of the account.
+   */
+  title?: string | undefined;
+  /**
+   * The type of profit and loss
+   */
+  type?: ProfitAndLossType | null | undefined;
+  /**
+   * The aggregated total of all accounts within this category.
+   */
+  total: number | null;
+  records?: any | undefined;
+};
+
+/**
+ * The operating expenses accounts
+ */
 export type Expenses = {
   /**
-   * Total expense
+   * A unique identifier for an object.
+   */
+  id?: string | undefined;
+  /**
+   * The account code of the account
+   */
+  code?: string | undefined;
+  /**
+   * The name of the account.
+   */
+  title?: string | undefined;
+  /**
+   * The type of profit and loss
+   */
+  type?: ProfitAndLossType | null | undefined;
+  /**
+   * The aggregated total of all accounts within this category.
    */
   total: number | null;
   records?: any | undefined;
 };
 
-export type NetIncome = {
+/**
+ * The other income accounts
+ */
+export type OtherIncome = {
   /**
-   * Total net income
+   * A unique identifier for an object.
+   */
+  id?: string | undefined;
+  /**
+   * The account code of the account
+   */
+  code?: string | undefined;
+  /**
+   * The name of the account.
+   */
+  title?: string | undefined;
+  /**
+   * The type of profit and loss
+   */
+  type?: ProfitAndLossType | null | undefined;
+  /**
+   * The aggregated total of all accounts within this category.
    */
   total: number | null;
   records?: any | undefined;
 };
 
-export type NetOperatingIncome = {
+/**
+ * The other expenses accounts
+ */
+export type OtherExpenses = {
   /**
-   * Total net operating income
+   * A unique identifier for an object.
+   */
+  id?: string | undefined;
+  /**
+   * The account code of the account
+   */
+  code?: string | undefined;
+  /**
+   * The name of the account.
+   */
+  title?: string | undefined;
+  /**
+   * The type of profit and loss
+   */
+  type?: ProfitAndLossType | null | undefined;
+  /**
+   * The aggregated total of all accounts within this category.
    */
   total: number | null;
   records?: any | undefined;
 };
 
-export type GrossProfit = {
+/**
+ * The accounts not categorized in the other sections
+ */
+export type UncategorizedAccounts = {
   /**
-   * Total gross profit
+   * A unique identifier for an object.
+   */
+  id?: string | undefined;
+  /**
+   * The account code of the account
+   */
+  code?: string | undefined;
+  /**
+   * The name of the account.
+   */
+  title?: string | undefined;
+  /**
+   * The type of profit and loss
+   */
+  type?: ProfitAndLossType | null | undefined;
+  /**
+   * The aggregated total of all accounts within this category.
    */
   total: number | null;
   records?: any | undefined;
@@ -68,34 +206,67 @@ export type ProfitAndLoss = {
    */
   startDate?: string | undefined;
   /**
-   * The start date of the report
+   * The end date of the report
    */
   endDate?: string | undefined;
-  currency: string;
   /**
-   * Customer id
+   * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
    */
-  customerId?: string | undefined;
+  currency: Currency | null;
+  /**
+   * The operating income accounts
+   */
   income: Income;
+  /**
+   * The cost of goods sold accounts
+   */
+  costOfGoodsSold?: CostOfGoodsSold | undefined;
+  /**
+   * The operating expenses accounts
+   */
   expenses: Expenses;
-  netIncome?: NetIncome | null | undefined;
-  netOperatingIncome?: NetOperatingIncome | null | undefined;
-  grossProfit?: GrossProfit | null | undefined;
+  /**
+   * The other income accounts
+   */
+  otherIncome?: OtherIncome | undefined;
+  /**
+   * The other expenses accounts
+   */
+  otherExpenses?: OtherExpenses | undefined;
+  /**
+   * The accounts not categorized in the other sections
+   */
+  uncategorizedAccounts?: UncategorizedAccounts | undefined;
+  grossProfit?: ProfitAndLossIndicator | undefined;
+  netOperatingIncome?: ProfitAndLossIndicator | undefined;
+  netIncome?: ProfitAndLossIndicator | undefined;
   /**
    * When custom mappings are configured on the resource, the result is included here.
    */
   customMappings?: CustomMappings | null | undefined;
+  /**
+   * The customer id
+   */
+  customer?: string | undefined;
 };
 
 /** @internal */
 export const Income$inboundSchema: z.ZodType<Income, z.ZodTypeDef, unknown> = z
   .object({
+    id: z.string().optional(),
+    code: z.string().optional(),
+    title: z.string().optional(),
+    type: z.nullable(ProfitAndLossType$inboundSchema).optional(),
     total: z.nullable(z.number()),
     records: z.any().optional(),
   });
 
 /** @internal */
 export type Income$Outbound = {
+  id?: string | undefined;
+  code?: string | undefined;
+  title?: string | undefined;
+  type?: string | null | undefined;
   total: number | null;
   records?: any | undefined;
 };
@@ -106,6 +277,10 @@ export const Income$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   Income
 > = z.object({
+  id: z.string().optional(),
+  code: z.string().optional(),
+  title: z.string().optional(),
+  type: z.nullable(ProfitAndLossType$outboundSchema).optional(),
   total: z.nullable(z.number()),
   records: z.any().optional(),
 });
@@ -138,17 +313,92 @@ export function incomeFromJSON(
 }
 
 /** @internal */
+export const CostOfGoodsSold$inboundSchema: z.ZodType<
+  CostOfGoodsSold,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  id: z.string().optional(),
+  code: z.string().optional(),
+  title: z.string().optional(),
+  type: z.nullable(ProfitAndLossType$inboundSchema).optional(),
+  total: z.nullable(z.number()),
+  records: z.any().optional(),
+});
+
+/** @internal */
+export type CostOfGoodsSold$Outbound = {
+  id?: string | undefined;
+  code?: string | undefined;
+  title?: string | undefined;
+  type?: string | null | undefined;
+  total: number | null;
+  records?: any | undefined;
+};
+
+/** @internal */
+export const CostOfGoodsSold$outboundSchema: z.ZodType<
+  CostOfGoodsSold$Outbound,
+  z.ZodTypeDef,
+  CostOfGoodsSold
+> = z.object({
+  id: z.string().optional(),
+  code: z.string().optional(),
+  title: z.string().optional(),
+  type: z.nullable(ProfitAndLossType$outboundSchema).optional(),
+  total: z.nullable(z.number()),
+  records: z.any().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace CostOfGoodsSold$ {
+  /** @deprecated use `CostOfGoodsSold$inboundSchema` instead. */
+  export const inboundSchema = CostOfGoodsSold$inboundSchema;
+  /** @deprecated use `CostOfGoodsSold$outboundSchema` instead. */
+  export const outboundSchema = CostOfGoodsSold$outboundSchema;
+  /** @deprecated use `CostOfGoodsSold$Outbound` instead. */
+  export type Outbound = CostOfGoodsSold$Outbound;
+}
+
+export function costOfGoodsSoldToJSON(
+  costOfGoodsSold: CostOfGoodsSold,
+): string {
+  return JSON.stringify(CostOfGoodsSold$outboundSchema.parse(costOfGoodsSold));
+}
+
+export function costOfGoodsSoldFromJSON(
+  jsonString: string,
+): SafeParseResult<CostOfGoodsSold, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CostOfGoodsSold$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CostOfGoodsSold' from JSON`,
+  );
+}
+
+/** @internal */
 export const Expenses$inboundSchema: z.ZodType<
   Expenses,
   z.ZodTypeDef,
   unknown
 > = z.object({
+  id: z.string().optional(),
+  code: z.string().optional(),
+  title: z.string().optional(),
+  type: z.nullable(ProfitAndLossType$inboundSchema).optional(),
   total: z.nullable(z.number()),
   records: z.any().optional(),
 });
 
 /** @internal */
 export type Expenses$Outbound = {
+  id?: string | undefined;
+  code?: string | undefined;
+  title?: string | undefined;
+  type?: string | null | undefined;
   total: number | null;
   records?: any | undefined;
 };
@@ -159,6 +409,10 @@ export const Expenses$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   Expenses
 > = z.object({
+  id: z.string().optional(),
+  code: z.string().optional(),
+  title: z.string().optional(),
+  type: z.nullable(ProfitAndLossType$outboundSchema).optional(),
   total: z.nullable(z.number()),
   records: z.any().optional(),
 });
@@ -191,27 +445,39 @@ export function expensesFromJSON(
 }
 
 /** @internal */
-export const NetIncome$inboundSchema: z.ZodType<
-  NetIncome,
+export const OtherIncome$inboundSchema: z.ZodType<
+  OtherIncome,
   z.ZodTypeDef,
   unknown
 > = z.object({
+  id: z.string().optional(),
+  code: z.string().optional(),
+  title: z.string().optional(),
+  type: z.nullable(ProfitAndLossType$inboundSchema).optional(),
   total: z.nullable(z.number()),
   records: z.any().optional(),
 });
 
 /** @internal */
-export type NetIncome$Outbound = {
+export type OtherIncome$Outbound = {
+  id?: string | undefined;
+  code?: string | undefined;
+  title?: string | undefined;
+  type?: string | null | undefined;
   total: number | null;
   records?: any | undefined;
 };
 
 /** @internal */
-export const NetIncome$outboundSchema: z.ZodType<
-  NetIncome$Outbound,
+export const OtherIncome$outboundSchema: z.ZodType<
+  OtherIncome$Outbound,
   z.ZodTypeDef,
-  NetIncome
+  OtherIncome
 > = z.object({
+  id: z.string().optional(),
+  code: z.string().optional(),
+  title: z.string().optional(),
+  type: z.nullable(ProfitAndLossType$outboundSchema).optional(),
   total: z.nullable(z.number()),
   records: z.any().optional(),
 });
@@ -220,51 +486,63 @@ export const NetIncome$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace NetIncome$ {
-  /** @deprecated use `NetIncome$inboundSchema` instead. */
-  export const inboundSchema = NetIncome$inboundSchema;
-  /** @deprecated use `NetIncome$outboundSchema` instead. */
-  export const outboundSchema = NetIncome$outboundSchema;
-  /** @deprecated use `NetIncome$Outbound` instead. */
-  export type Outbound = NetIncome$Outbound;
+export namespace OtherIncome$ {
+  /** @deprecated use `OtherIncome$inboundSchema` instead. */
+  export const inboundSchema = OtherIncome$inboundSchema;
+  /** @deprecated use `OtherIncome$outboundSchema` instead. */
+  export const outboundSchema = OtherIncome$outboundSchema;
+  /** @deprecated use `OtherIncome$Outbound` instead. */
+  export type Outbound = OtherIncome$Outbound;
 }
 
-export function netIncomeToJSON(netIncome: NetIncome): string {
-  return JSON.stringify(NetIncome$outboundSchema.parse(netIncome));
+export function otherIncomeToJSON(otherIncome: OtherIncome): string {
+  return JSON.stringify(OtherIncome$outboundSchema.parse(otherIncome));
 }
 
-export function netIncomeFromJSON(
+export function otherIncomeFromJSON(
   jsonString: string,
-): SafeParseResult<NetIncome, SDKValidationError> {
+): SafeParseResult<OtherIncome, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => NetIncome$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'NetIncome' from JSON`,
+    (x) => OtherIncome$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'OtherIncome' from JSON`,
   );
 }
 
 /** @internal */
-export const NetOperatingIncome$inboundSchema: z.ZodType<
-  NetOperatingIncome,
+export const OtherExpenses$inboundSchema: z.ZodType<
+  OtherExpenses,
   z.ZodTypeDef,
   unknown
 > = z.object({
+  id: z.string().optional(),
+  code: z.string().optional(),
+  title: z.string().optional(),
+  type: z.nullable(ProfitAndLossType$inboundSchema).optional(),
   total: z.nullable(z.number()),
   records: z.any().optional(),
 });
 
 /** @internal */
-export type NetOperatingIncome$Outbound = {
+export type OtherExpenses$Outbound = {
+  id?: string | undefined;
+  code?: string | undefined;
+  title?: string | undefined;
+  type?: string | null | undefined;
   total: number | null;
   records?: any | undefined;
 };
 
 /** @internal */
-export const NetOperatingIncome$outboundSchema: z.ZodType<
-  NetOperatingIncome$Outbound,
+export const OtherExpenses$outboundSchema: z.ZodType<
+  OtherExpenses$Outbound,
   z.ZodTypeDef,
-  NetOperatingIncome
+  OtherExpenses
 > = z.object({
+  id: z.string().optional(),
+  code: z.string().optional(),
+  title: z.string().optional(),
+  type: z.nullable(ProfitAndLossType$outboundSchema).optional(),
   total: z.nullable(z.number()),
   records: z.any().optional(),
 });
@@ -273,83 +551,95 @@ export const NetOperatingIncome$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace NetOperatingIncome$ {
-  /** @deprecated use `NetOperatingIncome$inboundSchema` instead. */
-  export const inboundSchema = NetOperatingIncome$inboundSchema;
-  /** @deprecated use `NetOperatingIncome$outboundSchema` instead. */
-  export const outboundSchema = NetOperatingIncome$outboundSchema;
-  /** @deprecated use `NetOperatingIncome$Outbound` instead. */
-  export type Outbound = NetOperatingIncome$Outbound;
+export namespace OtherExpenses$ {
+  /** @deprecated use `OtherExpenses$inboundSchema` instead. */
+  export const inboundSchema = OtherExpenses$inboundSchema;
+  /** @deprecated use `OtherExpenses$outboundSchema` instead. */
+  export const outboundSchema = OtherExpenses$outboundSchema;
+  /** @deprecated use `OtherExpenses$Outbound` instead. */
+  export type Outbound = OtherExpenses$Outbound;
 }
 
-export function netOperatingIncomeToJSON(
-  netOperatingIncome: NetOperatingIncome,
+export function otherExpensesToJSON(otherExpenses: OtherExpenses): string {
+  return JSON.stringify(OtherExpenses$outboundSchema.parse(otherExpenses));
+}
+
+export function otherExpensesFromJSON(
+  jsonString: string,
+): SafeParseResult<OtherExpenses, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => OtherExpenses$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'OtherExpenses' from JSON`,
+  );
+}
+
+/** @internal */
+export const UncategorizedAccounts$inboundSchema: z.ZodType<
+  UncategorizedAccounts,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  id: z.string().optional(),
+  code: z.string().optional(),
+  title: z.string().optional(),
+  type: z.nullable(ProfitAndLossType$inboundSchema).optional(),
+  total: z.nullable(z.number()),
+  records: z.any().optional(),
+});
+
+/** @internal */
+export type UncategorizedAccounts$Outbound = {
+  id?: string | undefined;
+  code?: string | undefined;
+  title?: string | undefined;
+  type?: string | null | undefined;
+  total: number | null;
+  records?: any | undefined;
+};
+
+/** @internal */
+export const UncategorizedAccounts$outboundSchema: z.ZodType<
+  UncategorizedAccounts$Outbound,
+  z.ZodTypeDef,
+  UncategorizedAccounts
+> = z.object({
+  id: z.string().optional(),
+  code: z.string().optional(),
+  title: z.string().optional(),
+  type: z.nullable(ProfitAndLossType$outboundSchema).optional(),
+  total: z.nullable(z.number()),
+  records: z.any().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace UncategorizedAccounts$ {
+  /** @deprecated use `UncategorizedAccounts$inboundSchema` instead. */
+  export const inboundSchema = UncategorizedAccounts$inboundSchema;
+  /** @deprecated use `UncategorizedAccounts$outboundSchema` instead. */
+  export const outboundSchema = UncategorizedAccounts$outboundSchema;
+  /** @deprecated use `UncategorizedAccounts$Outbound` instead. */
+  export type Outbound = UncategorizedAccounts$Outbound;
+}
+
+export function uncategorizedAccountsToJSON(
+  uncategorizedAccounts: UncategorizedAccounts,
 ): string {
   return JSON.stringify(
-    NetOperatingIncome$outboundSchema.parse(netOperatingIncome),
+    UncategorizedAccounts$outboundSchema.parse(uncategorizedAccounts),
   );
 }
 
-export function netOperatingIncomeFromJSON(
+export function uncategorizedAccountsFromJSON(
   jsonString: string,
-): SafeParseResult<NetOperatingIncome, SDKValidationError> {
+): SafeParseResult<UncategorizedAccounts, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => NetOperatingIncome$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'NetOperatingIncome' from JSON`,
-  );
-}
-
-/** @internal */
-export const GrossProfit$inboundSchema: z.ZodType<
-  GrossProfit,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  total: z.nullable(z.number()),
-  records: z.any().optional(),
-});
-
-/** @internal */
-export type GrossProfit$Outbound = {
-  total: number | null;
-  records?: any | undefined;
-};
-
-/** @internal */
-export const GrossProfit$outboundSchema: z.ZodType<
-  GrossProfit$Outbound,
-  z.ZodTypeDef,
-  GrossProfit
-> = z.object({
-  total: z.nullable(z.number()),
-  records: z.any().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GrossProfit$ {
-  /** @deprecated use `GrossProfit$inboundSchema` instead. */
-  export const inboundSchema = GrossProfit$inboundSchema;
-  /** @deprecated use `GrossProfit$outboundSchema` instead. */
-  export const outboundSchema = GrossProfit$outboundSchema;
-  /** @deprecated use `GrossProfit$Outbound` instead. */
-  export type Outbound = GrossProfit$Outbound;
-}
-
-export function grossProfitToJSON(grossProfit: GrossProfit): string {
-  return JSON.stringify(GrossProfit$outboundSchema.parse(grossProfit));
-}
-
-export function grossProfitFromJSON(
-  jsonString: string,
-): SafeParseResult<GrossProfit, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => GrossProfit$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GrossProfit' from JSON`,
+    (x) => UncategorizedAccounts$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'UncategorizedAccounts' from JSON`,
   );
 }
 
@@ -363,25 +653,31 @@ export const ProfitAndLoss$inboundSchema: z.ZodType<
   report_name: z.string(),
   start_date: z.string().optional(),
   end_date: z.string().optional(),
-  currency: z.string(),
-  customer_id: z.string().optional(),
+  currency: z.nullable(Currency$inboundSchema),
   income: z.lazy(() => Income$inboundSchema),
+  cost_of_goods_sold: z.lazy(() => CostOfGoodsSold$inboundSchema).optional(),
   expenses: z.lazy(() => Expenses$inboundSchema),
-  net_income: z.nullable(z.lazy(() => NetIncome$inboundSchema)).optional(),
-  net_operating_income: z.nullable(
-    z.lazy(() => NetOperatingIncome$inboundSchema),
-  ).optional(),
-  gross_profit: z.nullable(z.lazy(() => GrossProfit$inboundSchema)).optional(),
+  other_income: z.lazy(() => OtherIncome$inboundSchema).optional(),
+  other_expenses: z.lazy(() => OtherExpenses$inboundSchema).optional(),
+  uncategorized_accounts: z.lazy(() => UncategorizedAccounts$inboundSchema)
+    .optional(),
+  gross_profit: ProfitAndLossIndicator$inboundSchema.optional(),
+  net_operating_income: ProfitAndLossIndicator$inboundSchema.optional(),
+  net_income: ProfitAndLossIndicator$inboundSchema.optional(),
   custom_mappings: z.nullable(CustomMappings$inboundSchema).optional(),
+  customer: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
     "report_name": "reportName",
     "start_date": "startDate",
     "end_date": "endDate",
-    "customer_id": "customerId",
-    "net_income": "netIncome",
-    "net_operating_income": "netOperatingIncome",
+    "cost_of_goods_sold": "costOfGoodsSold",
+    "other_income": "otherIncome",
+    "other_expenses": "otherExpenses",
+    "uncategorized_accounts": "uncategorizedAccounts",
     "gross_profit": "grossProfit",
+    "net_operating_income": "netOperatingIncome",
+    "net_income": "netIncome",
     "custom_mappings": "customMappings",
   });
 });
@@ -392,14 +688,18 @@ export type ProfitAndLoss$Outbound = {
   report_name: string;
   start_date?: string | undefined;
   end_date?: string | undefined;
-  currency: string;
-  customer_id?: string | undefined;
+  currency: string | null;
   income: Income$Outbound;
+  cost_of_goods_sold?: CostOfGoodsSold$Outbound | undefined;
   expenses: Expenses$Outbound;
-  net_income?: NetIncome$Outbound | null | undefined;
-  net_operating_income?: NetOperatingIncome$Outbound | null | undefined;
-  gross_profit?: GrossProfit$Outbound | null | undefined;
+  other_income?: OtherIncome$Outbound | undefined;
+  other_expenses?: OtherExpenses$Outbound | undefined;
+  uncategorized_accounts?: UncategorizedAccounts$Outbound | undefined;
+  gross_profit?: ProfitAndLossIndicator$Outbound | undefined;
+  net_operating_income?: ProfitAndLossIndicator$Outbound | undefined;
+  net_income?: ProfitAndLossIndicator$Outbound | undefined;
   custom_mappings?: CustomMappings$Outbound | null | undefined;
+  customer?: string | undefined;
 };
 
 /** @internal */
@@ -412,25 +712,31 @@ export const ProfitAndLoss$outboundSchema: z.ZodType<
   reportName: z.string(),
   startDate: z.string().optional(),
   endDate: z.string().optional(),
-  currency: z.string(),
-  customerId: z.string().optional(),
+  currency: z.nullable(Currency$outboundSchema),
   income: z.lazy(() => Income$outboundSchema),
+  costOfGoodsSold: z.lazy(() => CostOfGoodsSold$outboundSchema).optional(),
   expenses: z.lazy(() => Expenses$outboundSchema),
-  netIncome: z.nullable(z.lazy(() => NetIncome$outboundSchema)).optional(),
-  netOperatingIncome: z.nullable(
-    z.lazy(() => NetOperatingIncome$outboundSchema),
-  ).optional(),
-  grossProfit: z.nullable(z.lazy(() => GrossProfit$outboundSchema)).optional(),
+  otherIncome: z.lazy(() => OtherIncome$outboundSchema).optional(),
+  otherExpenses: z.lazy(() => OtherExpenses$outboundSchema).optional(),
+  uncategorizedAccounts: z.lazy(() => UncategorizedAccounts$outboundSchema)
+    .optional(),
+  grossProfit: ProfitAndLossIndicator$outboundSchema.optional(),
+  netOperatingIncome: ProfitAndLossIndicator$outboundSchema.optional(),
+  netIncome: ProfitAndLossIndicator$outboundSchema.optional(),
   customMappings: z.nullable(CustomMappings$outboundSchema).optional(),
+  customer: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
     reportName: "report_name",
     startDate: "start_date",
     endDate: "end_date",
-    customerId: "customer_id",
-    netIncome: "net_income",
-    netOperatingIncome: "net_operating_income",
+    costOfGoodsSold: "cost_of_goods_sold",
+    otherIncome: "other_income",
+    otherExpenses: "other_expenses",
+    uncategorizedAccounts: "uncategorized_accounts",
     grossProfit: "gross_profit",
+    netOperatingIncome: "net_operating_income",
+    netIncome: "net_income",
     customMappings: "custom_mappings",
   });
 });
