@@ -49,6 +49,10 @@ export type CustomersFilter = {
    */
   status?: CustomersFilterStatus | null | undefined;
   updatedSince?: Date | undefined;
+  /**
+   * Supplier ID of customer to search for
+   */
+  supplierId?: string | undefined;
 };
 
 /** @internal */
@@ -87,6 +91,7 @@ export const CustomersFilter$inboundSchema: z.ZodType<
   updated_since: z.string().datetime({ offset: true }).transform(v =>
     new Date(v)
   ).optional(),
+  supplier_id: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
     "company_name": "companyName",
@@ -94,6 +99,7 @@ export const CustomersFilter$inboundSchema: z.ZodType<
     "first_name": "firstName",
     "last_name": "lastName",
     "updated_since": "updatedSince",
+    "supplier_id": "supplierId",
   });
 });
 
@@ -106,6 +112,7 @@ export type CustomersFilter$Outbound = {
   email?: string | undefined;
   status?: string | null | undefined;
   updated_since?: string | undefined;
+  supplier_id?: string | undefined;
 };
 
 /** @internal */
@@ -121,6 +128,7 @@ export const CustomersFilter$outboundSchema: z.ZodType<
   email: z.string().optional(),
   status: z.nullable(CustomersFilterStatus$outboundSchema).optional(),
   updatedSince: z.date().transform(v => v.toISOString()).optional(),
+  supplierId: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
     companyName: "company_name",
@@ -128,6 +136,7 @@ export const CustomersFilter$outboundSchema: z.ZodType<
     firstName: "first_name",
     lastName: "last_name",
     updatedSince: "updated_since",
+    supplierId: "supplier_id",
   });
 });
 

@@ -1,57 +1,25 @@
-# Income
+# CostOfGoodsSold
 
-The operating income accounts
+The cost of goods sold accounts
 
 ## Example Usage
 
 ```typescript
-import { Income } from "@apideck/unify/models/components";
+import { CostOfGoodsSold } from "@apideck/unify/models/components";
 
-let value: Income = {
+let value: CostOfGoodsSold = {
   id: "123",
   code: "123",
-  title: "Operating Income",
+  title: "Cost of Goods Sold",
   type: "Section",
-  total: 60000,
+  total: 12000,
   records: [
     {
-      "id": "137",
-      "title": "Sales of products",
-      "code": "137",
-      "type": "Section",
-      "total": 20000,
-      "records": [
-        {
-          "id": "13701",
-          "title": "Sales of products",
-          "code": "13701",
-          "type": "Record",
-          "total": 20000,
-        },
-      ],
-    },
-    {
-      "id": "138",
-      "title": "Sales of services",
-      "code": "138",
-      "type": "Section",
-      "total": 40000,
-      "records": [
-        {
-          "id": "789",
-          "code": "789",
-          "title": "Sales of External Services",
-          "type": "Record",
-          "total": 10000,
-        },
-        {
-          "id": "101",
-          "code": "101",
-          "title": "Sales of Internal Services",
-          "type": "Record",
-          "total": 30000,
-        },
-      ],
+      "id": "123",
+      "code": "123",
+      "title": "COGS Sales",
+      "type": "Record",
+      "total": 12000,
     },
   ],
 };

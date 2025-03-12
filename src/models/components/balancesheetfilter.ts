@@ -25,6 +25,8 @@ export type PeriodType = ClosedEnum<typeof PeriodType>;
 export type BalanceSheetFilter = {
   /**
    * The start date of the period to include in the resource.
+   *
+   * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
    */
   startDate?: string | undefined;
   /**

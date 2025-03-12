@@ -37,6 +37,7 @@ async function run() {
       email: "elon@musk.com",
       status: "active",
       updatedSince: new Date("2020-09-30T07:43:32.000Z"),
+      supplierId: "123",
     },
     sort: {
       by: "updated_at",
@@ -83,6 +84,7 @@ async function run() {
       email: "elon@musk.com",
       status: "active",
       updatedSince: new Date("2020-09-30T07:43:32.000Z"),
+      supplierId: "123",
     },
     sort: {
       by: "updated_at",

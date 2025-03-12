@@ -1,57 +1,25 @@
-# Income
+# OtherExpenses
 
-The operating income accounts
+The other expenses accounts
 
 ## Example Usage
 
 ```typescript
-import { Income } from "@apideck/unify/models/components";
+import { OtherExpenses } from "@apideck/unify/models/components";
 
-let value: Income = {
+let value: OtherExpenses = {
   id: "123",
   code: "123",
-  title: "Operating Income",
+  title: "Other Expenses",
   type: "Section",
-  total: 60000,
+  total: 1000,
   records: [
     {
-      "id": "137",
-      "title": "Sales of products",
-      "code": "137",
-      "type": "Section",
-      "total": 20000,
-      "records": [
-        {
-          "id": "13701",
-          "title": "Sales of products",
-          "code": "13701",
-          "type": "Record",
-          "total": 20000,
-        },
-      ],
-    },
-    {
-      "id": "138",
-      "title": "Sales of services",
-      "code": "138",
-      "type": "Section",
-      "total": 40000,
-      "records": [
-        {
-          "id": "789",
-          "code": "789",
-          "title": "Sales of External Services",
-          "type": "Record",
-          "total": 10000,
-        },
-        {
-          "id": "101",
-          "code": "101",
-          "title": "Sales of Internal Services",
-          "type": "Record",
-          "total": 30000,
-        },
-      ],
+      "id": "123",
+      "code": "123",
+      "title": "Unrealized Gain/Loss",
+      "type": "Record",
+      "total": 1000,
     },
   ],
 };

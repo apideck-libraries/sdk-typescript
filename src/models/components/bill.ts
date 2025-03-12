@@ -207,6 +207,10 @@ export type Bill = {
    */
   discountPercentage?: number | null | undefined;
   /**
+   * URL link to a source document - shown as 'Go to [appName]' in the downstream app. Currently only supported for Xero.
+   */
+  sourceDocumentUrl?: string | null | undefined;
+  /**
    * A list of linked tracking categories.
    */
   trackingCategories?: Array<LinkedTrackingCategory | null> | null | undefined;
@@ -347,6 +351,10 @@ export type BillInput = {
    */
   discountPercentage?: number | null | undefined;
   /**
+   * URL link to a source document - shown as 'Go to [appName]' in the downstream app. Currently only supported for Xero.
+   */
+  sourceDocumentUrl?: string | null | undefined;
+  /**
    * A list of linked tracking categories.
    */
   trackingCategories?: Array<LinkedTrackingCategory | null> | null | undefined;
@@ -417,6 +425,7 @@ export const Bill$inboundSchema: z.ZodType<Bill, z.ZodTypeDef, unknown> = z
     accounting_by_row: z.nullable(z.boolean()).optional(),
     bank_account: BankAccount$inboundSchema.optional(),
     discount_percentage: z.nullable(z.number()).optional(),
+    source_document_url: z.nullable(z.string()).optional(),
     tracking_categories: z.nullable(
       z.array(z.nullable(LinkedTrackingCategory$inboundSchema)),
     ).optional(),
@@ -453,6 +462,7 @@ export const Bill$inboundSchema: z.ZodType<Bill, z.ZodTypeDef, unknown> = z
       "accounting_by_row": "accountingByRow",
       "bank_account": "bankAccount",
       "discount_percentage": "discountPercentage",
+      "source_document_url": "sourceDocumentUrl",
       "tracking_categories": "trackingCategories",
       "updated_by": "updatedBy",
       "created_by": "createdBy",
@@ -498,6 +508,7 @@ export type Bill$Outbound = {
   accounting_by_row?: boolean | null | undefined;
   bank_account?: BankAccount$Outbound | undefined;
   discount_percentage?: number | null | undefined;
+  source_document_url?: string | null | undefined;
   tracking_categories?:
     | Array<LinkedTrackingCategory$Outbound | null>
     | null
@@ -549,6 +560,7 @@ export const Bill$outboundSchema: z.ZodType<Bill$Outbound, z.ZodTypeDef, Bill> =
     accountingByRow: z.nullable(z.boolean()).optional(),
     bankAccount: BankAccount$outboundSchema.optional(),
     discountPercentage: z.nullable(z.number()).optional(),
+    sourceDocumentUrl: z.nullable(z.string()).optional(),
     trackingCategories: z.nullable(
       z.array(z.nullable(LinkedTrackingCategory$outboundSchema)),
     ).optional(),
@@ -581,6 +593,7 @@ export const Bill$outboundSchema: z.ZodType<Bill$Outbound, z.ZodTypeDef, Bill> =
       accountingByRow: "accounting_by_row",
       bankAccount: "bank_account",
       discountPercentage: "discount_percentage",
+      sourceDocumentUrl: "source_document_url",
       trackingCategories: "tracking_categories",
       updatedBy: "updated_by",
       createdBy: "created_by",
@@ -655,6 +668,7 @@ export const BillInput$inboundSchema: z.ZodType<
   accounting_by_row: z.nullable(z.boolean()).optional(),
   bank_account: BankAccount$inboundSchema.optional(),
   discount_percentage: z.nullable(z.number()).optional(),
+  source_document_url: z.nullable(z.string()).optional(),
   tracking_categories: z.nullable(
     z.array(z.nullable(LinkedTrackingCategory$inboundSchema)),
   ).optional(),
@@ -681,6 +695,7 @@ export const BillInput$inboundSchema: z.ZodType<
     "accounting_by_row": "accountingByRow",
     "bank_account": "bankAccount",
     "discount_percentage": "discountPercentage",
+    "source_document_url": "sourceDocumentUrl",
     "tracking_categories": "trackingCategories",
     "row_version": "rowVersion",
     "custom_fields": "customFields",
@@ -719,6 +734,7 @@ export type BillInput$Outbound = {
   accounting_by_row?: boolean | null | undefined;
   bank_account?: BankAccount$Outbound | undefined;
   discount_percentage?: number | null | undefined;
+  source_document_url?: string | null | undefined;
   tracking_categories?:
     | Array<LinkedTrackingCategory$Outbound | null>
     | null
@@ -766,6 +782,7 @@ export const BillInput$outboundSchema: z.ZodType<
   accountingByRow: z.nullable(z.boolean()).optional(),
   bankAccount: BankAccount$outboundSchema.optional(),
   discountPercentage: z.nullable(z.number()).optional(),
+  sourceDocumentUrl: z.nullable(z.string()).optional(),
   trackingCategories: z.nullable(
     z.array(z.nullable(LinkedTrackingCategory$outboundSchema)),
   ).optional(),
@@ -792,6 +809,7 @@ export const BillInput$outboundSchema: z.ZodType<
     accountingByRow: "accounting_by_row",
     bankAccount: "bank_account",
     discountPercentage: "discount_percentage",
+    sourceDocumentUrl: "source_document_url",
     trackingCategories: "tracking_categories",
     rowVersion: "row_version",
     customFields: "custom_fields",

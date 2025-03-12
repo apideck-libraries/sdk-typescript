@@ -141,6 +141,7 @@ let value: GetBillsResponse = {
         currency: "USD",
       },
       discountPercentage: 5.5,
+      sourceDocumentUrl: "https://www.invoicesolution.com/bill/123456",
       trackingCategories: [
         {
           id: "123456",

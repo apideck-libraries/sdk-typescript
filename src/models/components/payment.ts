@@ -89,7 +89,7 @@ export type Payment = {
    */
   currencyRate?: number | null | undefined;
   /**
-   * The total amount of the transaction
+   * The total amount of the transaction or record
    */
   totalAmount: number | null;
   /**
