@@ -1,17 +1,17 @@
 # Type
 
-The type of the contact.
+The type of address.
 
 ## Example Usage
 
 ```typescript
 import { Type } from "@apideck/unify/models/components";
 
-let value: Type = "personal";
+let value: Type = "primary";
 ```
 
 ## Values
 
 ```typescript
-"customer" | "supplier" | "employee" | "personal"
+"primary" | "secondary" | "home" | "office" | "shipping" | "billing" | "other"
 ```

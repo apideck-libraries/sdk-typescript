@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 7bffa198-5d29-4efa-9942-d549cc832085
 management:
-  docChecksum: 1c457e5380748926df036f79bf4d8520
+  docChecksum: 6c39ad7f10a42df924ab6c12c8ef2bc9
   docVersion: 10.12.3
-  speakeasyVersion: 1.517.0
-  generationVersion: 2.548.1
-  releaseVersion: 0.20.0
-  configChecksum: 88b59e3a20bed9bb07370061c694a1f0
+  speakeasyVersion: 1.517.3
+  generationVersion: 2.548.6
+  releaseVersion: 0.20.1
+  configChecksum: 0ec548dab4be743b7065c29e578a1b9a
   repoURL: https://github.com/apideck-libraries/sdk-typescript.git
   installationURL: https://github.com/apideck-libraries/sdk-typescript
   published: true
@@ -65,7 +65,6 @@ generatedFiles:
   - docs/models/components/activitytype.md
   - docs/models/components/address.md
   - docs/models/components/addresses.md
-  - docs/models/components/addresstype.md
   - docs/models/components/ageddebtors.md
   - docs/models/components/agedreportfilter.md
   - docs/models/components/allocation.md
@@ -175,6 +174,7 @@ generatedFiles:
   - docs/models/components/contactsfilter.md
   - docs/models/components/contactssort.md
   - docs/models/components/contactssortby.md
+  - docs/models/components/contacttype.md
   - docs/models/components/copyfolderrequest.md
   - docs/models/components/costofgoodssold.md
   - docs/models/components/coverage.md
