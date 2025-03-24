@@ -9,6 +9,7 @@
 const value: components.SimpleFormFieldOption = {
   label: "General Channel",
   value: 12.5,
+  optionType: "simple",
 };
 ```
 
@@ -22,8 +23,10 @@ const value: components.FormFieldOptionGroup = {
     {
       label: "General Channel",
       value: 123,
+      optionType: "simple",
     },
   ],
+  optionType: "group",
 };
 ```
 

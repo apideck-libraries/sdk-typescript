@@ -74,8 +74,10 @@ let value: Connection = {
                 {
                   label: "General Channel",
                   value: 123,
+                  optionType: "simple",
                 },
               ],
+              optionType: "group",
             },
           ],
           value: 10.5,

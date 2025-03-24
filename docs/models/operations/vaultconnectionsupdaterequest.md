@@ -35,8 +35,10 @@ let value: VaultConnectionsUpdateRequest = {
                   {
                     label: "General Channel",
                     value: "general",
+                    optionType: "simple",
                   },
                 ],
+                optionType: "group",
               },
             ],
             value: true,

@@ -206,6 +206,10 @@ export type Employee = {
    */
   id?: string | null | undefined;
   /**
+   * The third-party API ID of original entity
+   */
+  downstreamId?: string | null | undefined;
+  /**
    * The first name of the person.
    */
   firstName?: string | null | undefined;
@@ -882,6 +886,7 @@ export const Employee$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   id: z.nullable(z.string()).optional(),
+  downstream_id: z.nullable(z.string()).optional(),
   first_name: z.nullable(z.string()).optional(),
   last_name: z.nullable(z.string()).optional(),
   middle_name: z.nullable(z.string()).optional(),
@@ -954,6 +959,7 @@ export const Employee$inboundSchema: z.ZodType<
   pass_through: z.array(PassThroughBody$inboundSchema).optional(),
 }).transform((v) => {
   return remap$(v, {
+    "downstream_id": "downstreamId",
     "first_name": "firstName",
     "last_name": "lastName",
     "middle_name": "middleName",
@@ -1002,6 +1008,7 @@ export const Employee$inboundSchema: z.ZodType<
 /** @internal */
 export type Employee$Outbound = {
   id?: string | null | undefined;
+  downstream_id?: string | null | undefined;
   first_name?: string | null | undefined;
   last_name?: string | null | undefined;
   middle_name?: string | null | undefined;
@@ -1076,6 +1083,7 @@ export const Employee$outboundSchema: z.ZodType<
   Employee
 > = z.object({
   id: z.nullable(z.string()).optional(),
+  downstreamId: z.nullable(z.string()).optional(),
   firstName: z.nullable(z.string()).optional(),
   lastName: z.nullable(z.string()).optional(),
   middleName: z.nullable(z.string()).optional(),
@@ -1146,6 +1154,7 @@ export const Employee$outboundSchema: z.ZodType<
   passThrough: z.array(PassThroughBody$outboundSchema).optional(),
 }).transform((v) => {
   return remap$(v, {
+    downstreamId: "downstream_id",
     firstName: "first_name",
     lastName: "last_name",
     middleName: "middle_name",

@@ -9,6 +9,7 @@ import { RFCDate } from "@apideck/unify/types";
 let value: EmployeeSchedules = {
   employee: {
     id: "12345",
+    downstreamId: "12345",
     firstName: "Elon",
     lastName: "Musk",
     middleName: "D.",

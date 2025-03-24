@@ -60,7 +60,7 @@ import {
 /**
  * The type of the contact.
  */
-export const Type = {
+export const ContactType = {
   Customer: "customer",
   Supplier: "supplier",
   Employee: "employee",
@@ -69,7 +69,7 @@ export const Type = {
 /**
  * The type of the contact.
  */
-export type Type = ClosedEnum<typeof Type>;
+export type ContactType = ClosedEnum<typeof ContactType>;
 
 /**
  * The gender of the contact.
@@ -100,7 +100,7 @@ export type Contact = {
   /**
    * The type of the contact.
    */
-  type?: Type | null | undefined;
+  type?: ContactType | null | undefined;
   /**
    * The company the contact is associated with.
    */
@@ -239,7 +239,7 @@ export type ContactInput = {
   /**
    * The type of the contact.
    */
-  type?: Type | null | undefined;
+  type?: ContactType | null | undefined;
   /**
    * The company the contact is associated with.
    */
@@ -343,23 +343,22 @@ export type ContactInput = {
 };
 
 /** @internal */
-export const Type$inboundSchema: z.ZodNativeEnum<typeof Type> = z.nativeEnum(
-  Type,
-);
+export const ContactType$inboundSchema: z.ZodNativeEnum<typeof ContactType> = z
+  .nativeEnum(ContactType);
 
 /** @internal */
-export const Type$outboundSchema: z.ZodNativeEnum<typeof Type> =
-  Type$inboundSchema;
+export const ContactType$outboundSchema: z.ZodNativeEnum<typeof ContactType> =
+  ContactType$inboundSchema;
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace Type$ {
-  /** @deprecated use `Type$inboundSchema` instead. */
-  export const inboundSchema = Type$inboundSchema;
-  /** @deprecated use `Type$outboundSchema` instead. */
-  export const outboundSchema = Type$outboundSchema;
+export namespace ContactType$ {
+  /** @deprecated use `ContactType$inboundSchema` instead. */
+  export const inboundSchema = ContactType$inboundSchema;
+  /** @deprecated use `ContactType$outboundSchema` instead. */
+  export const outboundSchema = ContactType$outboundSchema;
 }
 
 /** @internal */
@@ -389,7 +388,7 @@ export const Contact$inboundSchema: z.ZodType<Contact, z.ZodTypeDef, unknown> =
     id: z.string().optional(),
     name: z.nullable(z.string()),
     owner_id: z.nullable(z.string()).optional(),
-    type: z.nullable(Type$inboundSchema).optional(),
+    type: z.nullable(ContactType$inboundSchema).optional(),
     company_id: z.nullable(z.string()).optional(),
     company_name: z.nullable(z.string()).optional(),
     lead_id: z.nullable(z.string()).optional(),
@@ -518,7 +517,7 @@ export const Contact$outboundSchema: z.ZodType<
   id: z.string().optional(),
   name: z.nullable(z.string()),
   ownerId: z.nullable(z.string()).optional(),
-  type: z.nullable(Type$outboundSchema).optional(),
+  type: z.nullable(ContactType$outboundSchema).optional(),
   companyId: z.nullable(z.string()).optional(),
   companyName: z.nullable(z.string()).optional(),
   leadId: z.nullable(z.string()).optional(),
@@ -619,7 +618,7 @@ export const ContactInput$inboundSchema: z.ZodType<
 > = z.object({
   name: z.nullable(z.string()),
   owner_id: z.nullable(z.string()).optional(),
-  type: z.nullable(Type$inboundSchema).optional(),
+  type: z.nullable(ContactType$inboundSchema).optional(),
   company_id: z.nullable(z.string()).optional(),
   company_name: z.nullable(z.string()).optional(),
   lead_id: z.nullable(z.string()).optional(),
@@ -718,7 +717,7 @@ export const ContactInput$outboundSchema: z.ZodType<
 > = z.object({
   name: z.nullable(z.string()),
   ownerId: z.nullable(z.string()).optional(),
-  type: z.nullable(Type$outboundSchema).optional(),
+  type: z.nullable(ContactType$outboundSchema).optional(),
   companyId: z.nullable(z.string()).optional(),
   companyName: z.nullable(z.string()).optional(),
   leadId: z.nullable(z.string()).optional(),

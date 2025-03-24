@@ -18,11 +18,6 @@ import {
   ConnectionState$outboundSchema,
 } from "./connectionstate.js";
 
-/**
- * Connection settings. Values will persist to `form_fields` with corresponding id
- */
-export type Settings = {};
-
 export type ConsumerConnection = {
   id?: string | undefined;
   name?: string | undefined;
@@ -41,7 +36,7 @@ export type ConsumerConnection = {
   /**
    * Connection settings. Values will persist to `form_fields` with corresponding id
    */
-  settings?: Settings | null | undefined;
+  settings?: { [k: string]: any } | null | undefined;
   /**
    * Attach your own consumer specific metadata
    */
@@ -53,50 +48,6 @@ export type ConsumerConnection = {
    */
   state?: ConnectionState | undefined;
 };
-
-/** @internal */
-export const Settings$inboundSchema: z.ZodType<
-  Settings,
-  z.ZodTypeDef,
-  unknown
-> = z.object({});
-
-/** @internal */
-export type Settings$Outbound = {};
-
-/** @internal */
-export const Settings$outboundSchema: z.ZodType<
-  Settings$Outbound,
-  z.ZodTypeDef,
-  Settings
-> = z.object({});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Settings$ {
-  /** @deprecated use `Settings$inboundSchema` instead. */
-  export const inboundSchema = Settings$inboundSchema;
-  /** @deprecated use `Settings$outboundSchema` instead. */
-  export const outboundSchema = Settings$outboundSchema;
-  /** @deprecated use `Settings$Outbound` instead. */
-  export type Outbound = Settings$Outbound;
-}
-
-export function settingsToJSON(settings: Settings): string {
-  return JSON.stringify(Settings$outboundSchema.parse(settings));
-}
-
-export function settingsFromJSON(
-  jsonString: string,
-): SafeParseResult<Settings, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => Settings$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Settings' from JSON`,
-  );
-}
 
 /** @internal */
 export const ConsumerConnection$inboundSchema: z.ZodType<
@@ -115,7 +66,7 @@ export const ConsumerConnection$inboundSchema: z.ZodType<
   consumer_id: z.string().optional(),
   auth_type: AuthType$inboundSchema.optional(),
   enabled: z.boolean().optional(),
-  settings: z.nullable(z.lazy(() => Settings$inboundSchema)).optional(),
+  settings: z.nullable(z.record(z.any())).optional(),
   metadata: z.nullable(z.record(z.any())).optional(),
   created_at: z.string().optional(),
   updated_at: z.nullable(z.string()).optional(),
@@ -145,7 +96,7 @@ export type ConsumerConnection$Outbound = {
   consumer_id?: string | undefined;
   auth_type?: string | undefined;
   enabled?: boolean | undefined;
-  settings?: Settings$Outbound | null | undefined;
+  settings?: { [k: string]: any } | null | undefined;
   metadata?: { [k: string]: any } | null | undefined;
   created_at?: string | undefined;
   updated_at?: string | null | undefined;
@@ -169,7 +120,7 @@ export const ConsumerConnection$outboundSchema: z.ZodType<
   consumerId: z.string().optional(),
   authType: AuthType$outboundSchema.optional(),
   enabled: z.boolean().optional(),
-  settings: z.nullable(z.lazy(() => Settings$outboundSchema)).optional(),
+  settings: z.nullable(z.record(z.any())).optional(),
   metadata: z.nullable(z.record(z.any())).optional(),
   createdAt: z.string().optional(),
   updatedAt: z.nullable(z.string()).optional(),
