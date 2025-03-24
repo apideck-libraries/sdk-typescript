@@ -17,6 +17,7 @@ let value: GetEmployeesResponse = {
   data: [
     {
       id: "12345",
+      downstreamId: "12345",
       firstName: "Elon",
       lastName: "Musk",
       middleName: "D.",

@@ -28,6 +28,7 @@ let value: ConnectionInput = {
             {
               label: "General Channel",
               value: 123,
+              optionType: "simple",
             },
           ],
           value: true,

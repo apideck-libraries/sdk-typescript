@@ -3,7 +3,9 @@
  */
 
 import * as z from "zod";
+import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
+import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
@@ -16,8 +18,13 @@ export type SimpleFormFieldOptionValue =
   | boolean
   | Array<string | number | number>;
 
+export const OptionType = {
+  Simple: "simple",
+} as const;
+export type OptionType = ClosedEnum<typeof OptionType>;
+
 export type SimpleFormFieldOption = {
-  label?: string | undefined;
+  label: string;
   value?:
     | string
     | number
@@ -25,6 +32,7 @@ export type SimpleFormFieldOption = {
     | boolean
     | Array<string | number | number>
     | undefined;
+  optionType: OptionType;
 };
 
 /** @internal */
@@ -131,12 +139,31 @@ export function simpleFormFieldOptionValueFromJSON(
 }
 
 /** @internal */
+export const OptionType$inboundSchema: z.ZodNativeEnum<typeof OptionType> = z
+  .nativeEnum(OptionType);
+
+/** @internal */
+export const OptionType$outboundSchema: z.ZodNativeEnum<typeof OptionType> =
+  OptionType$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace OptionType$ {
+  /** @deprecated use `OptionType$inboundSchema` instead. */
+  export const inboundSchema = OptionType$inboundSchema;
+  /** @deprecated use `OptionType$outboundSchema` instead. */
+  export const outboundSchema = OptionType$outboundSchema;
+}
+
+/** @internal */
 export const SimpleFormFieldOption$inboundSchema: z.ZodType<
   SimpleFormFieldOption,
   z.ZodTypeDef,
   unknown
 > = z.object({
-  label: z.string().optional(),
+  label: z.string(),
   value: z.union([
     z.string(),
     z.number().int(),
@@ -144,11 +171,16 @@ export const SimpleFormFieldOption$inboundSchema: z.ZodType<
     z.boolean(),
     z.array(z.union([z.string(), z.number().int(), z.number()])),
   ]).optional(),
+  option_type: OptionType$inboundSchema,
+}).transform((v) => {
+  return remap$(v, {
+    "option_type": "optionType",
+  });
 });
 
 /** @internal */
 export type SimpleFormFieldOption$Outbound = {
-  label?: string | undefined;
+  label: string;
   value?:
     | string
     | number
@@ -156,6 +188,7 @@ export type SimpleFormFieldOption$Outbound = {
     | boolean
     | Array<string | number | number>
     | undefined;
+  option_type: string;
 };
 
 /** @internal */
@@ -164,7 +197,7 @@ export const SimpleFormFieldOption$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   SimpleFormFieldOption
 > = z.object({
-  label: z.string().optional(),
+  label: z.string(),
   value: z.union([
     z.string(),
     z.number().int(),
@@ -172,6 +205,11 @@ export const SimpleFormFieldOption$outboundSchema: z.ZodType<
     z.boolean(),
     z.array(z.union([z.string(), z.number().int(), z.number()])),
   ]).optional(),
+  optionType: OptionType$outboundSchema,
+}).transform((v) => {
+  return remap$(v, {
+    optionType: "option_type",
+  });
 });
 
 /**

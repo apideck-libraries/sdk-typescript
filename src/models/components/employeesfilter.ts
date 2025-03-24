@@ -62,6 +62,10 @@ export type EmployeesFilter = {
    * ID of the department to filter on
    */
   departmentId?: string | undefined;
+  /**
+   * City to filter on
+   */
+  city?: string | undefined;
 };
 
 /** @internal */
@@ -100,6 +104,7 @@ export const EmployeesFilter$inboundSchema: z.ZodType<
   employment_status: EmployeesFilterEmploymentStatus$inboundSchema.optional(),
   employee_number: z.string().optional(),
   department_id: z.string().optional(),
+  city: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
     "company_id": "companyId",
@@ -123,6 +128,7 @@ export type EmployeesFilter$Outbound = {
   employment_status?: string | undefined;
   employee_number?: string | undefined;
   department_id?: string | undefined;
+  city?: string | undefined;
 };
 
 /** @internal */
@@ -140,6 +146,7 @@ export const EmployeesFilter$outboundSchema: z.ZodType<
   employmentStatus: EmployeesFilterEmploymentStatus$outboundSchema.optional(),
   employeeNumber: z.string().optional(),
   departmentId: z.string().optional(),
+  city: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
     companyId: "company_id",

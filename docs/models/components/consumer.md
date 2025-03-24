@@ -30,7 +30,9 @@ let value: Consumer = {
       consumerId: "test_user_id",
       authType: "oauth2",
       enabled: true,
-      settings: {},
+      settings: {
+        "instance_url": "https://eu28.salesforce.com",
+      },
       metadata: {
         "account": {
           "name": "My Company",

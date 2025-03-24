@@ -3,7 +3,9 @@
  */
 
 import * as z from "zod";
+import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
+import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
@@ -13,11 +15,40 @@ import {
   SimpleFormFieldOption$outboundSchema,
 } from "./simpleformfieldoption.js";
 
+export const FormFieldOptionGroupOptionType = {
+  Group: "group",
+} as const;
+export type FormFieldOptionGroupOptionType = ClosedEnum<
+  typeof FormFieldOptionGroupOptionType
+>;
+
 export type FormFieldOptionGroup = {
   id?: string | undefined;
-  label?: string | undefined;
-  options?: Array<SimpleFormFieldOption> | undefined;
+  label: string;
+  options: Array<SimpleFormFieldOption>;
+  optionType: FormFieldOptionGroupOptionType;
 };
+
+/** @internal */
+export const FormFieldOptionGroupOptionType$inboundSchema: z.ZodNativeEnum<
+  typeof FormFieldOptionGroupOptionType
+> = z.nativeEnum(FormFieldOptionGroupOptionType);
+
+/** @internal */
+export const FormFieldOptionGroupOptionType$outboundSchema: z.ZodNativeEnum<
+  typeof FormFieldOptionGroupOptionType
+> = FormFieldOptionGroupOptionType$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace FormFieldOptionGroupOptionType$ {
+  /** @deprecated use `FormFieldOptionGroupOptionType$inboundSchema` instead. */
+  export const inboundSchema = FormFieldOptionGroupOptionType$inboundSchema;
+  /** @deprecated use `FormFieldOptionGroupOptionType$outboundSchema` instead. */
+  export const outboundSchema = FormFieldOptionGroupOptionType$outboundSchema;
+}
 
 /** @internal */
 export const FormFieldOptionGroup$inboundSchema: z.ZodType<
@@ -26,15 +57,21 @@ export const FormFieldOptionGroup$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   id: z.string().optional(),
-  label: z.string().optional(),
-  options: z.array(SimpleFormFieldOption$inboundSchema).optional(),
+  label: z.string(),
+  options: z.array(SimpleFormFieldOption$inboundSchema),
+  option_type: FormFieldOptionGroupOptionType$inboundSchema,
+}).transform((v) => {
+  return remap$(v, {
+    "option_type": "optionType",
+  });
 });
 
 /** @internal */
 export type FormFieldOptionGroup$Outbound = {
   id?: string | undefined;
-  label?: string | undefined;
-  options?: Array<SimpleFormFieldOption$Outbound> | undefined;
+  label: string;
+  options: Array<SimpleFormFieldOption$Outbound>;
+  option_type: string;
 };
 
 /** @internal */
@@ -44,8 +81,13 @@ export const FormFieldOptionGroup$outboundSchema: z.ZodType<
   FormFieldOptionGroup
 > = z.object({
   id: z.string().optional(),
-  label: z.string().optional(),
-  options: z.array(SimpleFormFieldOption$outboundSchema).optional(),
+  label: z.string(),
+  options: z.array(SimpleFormFieldOption$outboundSchema),
+  optionType: FormFieldOptionGroupOptionType$outboundSchema,
+}).transform((v) => {
+  return remap$(v, {
+    optionType: "option_type",
+  });
 });
 
 /**

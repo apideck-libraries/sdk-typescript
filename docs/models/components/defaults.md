@@ -16,8 +16,10 @@ let value: Defaults = {
         {
           label: "General Channel",
           value: 12.5,
+          optionType: "simple",
         },
       ],
+      optionType: "group",
     },
   ],
   value: 10,

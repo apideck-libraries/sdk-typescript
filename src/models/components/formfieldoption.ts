@@ -19,7 +19,9 @@ import {
   SimpleFormFieldOption$outboundSchema,
 } from "./simpleformfieldoption.js";
 
-export type FormFieldOption = SimpleFormFieldOption | FormFieldOptionGroup;
+export type FormFieldOption =
+  | (SimpleFormFieldOption & { optionType: "simple" })
+  | (FormFieldOptionGroup & { optionType: "group" });
 
 /** @internal */
 export const FormFieldOption$inboundSchema: z.ZodType<
@@ -27,14 +29,22 @@ export const FormFieldOption$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.union([
-  SimpleFormFieldOption$inboundSchema,
-  FormFieldOptionGroup$inboundSchema,
+  SimpleFormFieldOption$inboundSchema.and(
+    z.object({ option_type: z.literal("simple") }).transform((v) => ({
+      optionType: v.option_type,
+    })),
+  ),
+  FormFieldOptionGroup$inboundSchema.and(
+    z.object({ option_type: z.literal("group") }).transform((v) => ({
+      optionType: v.option_type,
+    })),
+  ),
 ]);
 
 /** @internal */
 export type FormFieldOption$Outbound =
-  | SimpleFormFieldOption$Outbound
-  | FormFieldOptionGroup$Outbound;
+  | (SimpleFormFieldOption$Outbound & { option_type: "simple" })
+  | (FormFieldOptionGroup$Outbound & { option_type: "group" });
 
 /** @internal */
 export const FormFieldOption$outboundSchema: z.ZodType<
@@ -42,8 +52,16 @@ export const FormFieldOption$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   FormFieldOption
 > = z.union([
-  SimpleFormFieldOption$outboundSchema,
-  FormFieldOptionGroup$outboundSchema,
+  SimpleFormFieldOption$outboundSchema.and(
+    z.object({ optionType: z.literal("simple") }).transform((v) => ({
+      option_type: v.optionType,
+    })),
+  ),
+  FormFieldOptionGroup$outboundSchema.and(
+    z.object({ optionType: z.literal("group") }).transform((v) => ({
+      option_type: v.optionType,
+    })),
+  ),
 ]);
 
 /**

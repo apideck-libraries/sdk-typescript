@@ -80,6 +80,7 @@ let value: VaultConnectionSettingsUpdateResponse = {
                 {
                   label: "General Channel",
                   value: "general",
+                  optionType: "simple",
                 },
               ],
               value: 10,

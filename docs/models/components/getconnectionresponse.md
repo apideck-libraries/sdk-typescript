@@ -79,8 +79,10 @@ let value: GetConnectionResponse = {
                   {
                     label: "General Channel",
                     value: 123,
+                    optionType: "simple",
                   },
                 ],
+                optionType: "group",
               },
             ],
             value: [

@@ -234,7 +234,8 @@ async function run() {
                   options: [
                     {
                       label: "General Channel",
-                      value: 12.5,
+                      value: 123,
+                      optionType: "simple",
                     },
                     {
                       label: "General Channel",
@@ -242,15 +243,25 @@ async function run() {
                         "team",
                         "general",
                       ],
+                      optionType: "simple",
                     },
                   ],
+                  optionType: "group",
                 },
                 {
+                  id: "1234",
                   label: "General Channel",
-                  value: [
-                    "team",
-                    "general",
+                  options: [
+                    {
+                      label: "General Channel",
+                      value: [
+                        "team",
+                        "general",
+                      ],
+                      optionType: "simple",
+                    },
                   ],
+                  optionType: "group",
                 },
               ],
               value: 10.5,
@@ -260,7 +271,11 @@ async function run() {
               options: [
                 {
                   label: "General Channel",
-                  value: "general",
+                  value: [
+                    "team",
+                    "general",
+                  ],
+                  optionType: "simple",
                 },
               ],
               value: true,
@@ -275,7 +290,8 @@ async function run() {
               options: [
                 {
                   label: "General Channel",
-                  value: true,
+                  value: 123,
+                  optionType: "simple",
                 },
               ],
               value: true,
@@ -285,7 +301,8 @@ async function run() {
               options: [
                 {
                   label: "General Channel",
-                  value: true,
+                  value: "general",
+                  optionType: "simple",
                 },
                 {
                   id: "1234",
@@ -293,13 +310,21 @@ async function run() {
                   options: [
                     {
                       label: "General Channel",
-                      value: 12.5,
+                      value: 123,
+                      optionType: "simple",
                     },
                     {
                       label: "General Channel",
-                      value: "general",
+                      value: 12.5,
+                      optionType: "simple",
+                    },
+                    {
+                      label: "General Channel",
+                      value: true,
+                      optionType: "simple",
                     },
                   ],
+                  optionType: "group",
                 },
               ],
               value: 10,
@@ -313,24 +338,33 @@ async function run() {
                   options: [
                     {
                       label: "General Channel",
-                      value: [
-                        "team",
-                        "general",
-                      ],
+                      value: "general",
+                      optionType: "simple",
                     },
+                  ],
+                  optionType: "group",
+                },
+                {
+                  id: "1234",
+                  label: "General Channel",
+                  options: [
                     {
                       label: "General Channel",
-                      value: true,
+                      value: 12.5,
+                      optionType: "simple",
                     },
                     {
                       label: "General Channel",
                       value: 12.5,
+                      optionType: "simple",
+                    },
+                    {
+                      label: "General Channel",
+                      value: "general",
+                      optionType: "simple",
                     },
                   ],
-                },
-                {
-                  label: "General Channel",
-                  value: 12.5,
+                  optionType: "group",
                 },
               ],
               value: 10.5,
@@ -345,15 +379,38 @@ async function run() {
               options: [
                 {
                   label: "General Channel",
-                  value: "general",
+                  value: 123,
+                  optionType: "simple",
+                },
+                {
+                  id: "1234",
+                  label: "General Channel",
+                  options: [
+                    {
+                      label: "General Channel",
+                      value: [
+                        "team",
+                        "general",
+                      ],
+                      optionType: "simple",
+                    },
+                    {
+                      label: "General Channel",
+                      value: true,
+                      optionType: "simple",
+                    },
+                    {
+                      label: "General Channel",
+                      value: 12.5,
+                      optionType: "simple",
+                    },
+                  ],
+                  optionType: "group",
                 },
                 {
                   label: "General Channel",
-                  value: true,
-                },
-                {
-                  label: "General Channel",
-                  value: true,
+                  value: 12.5,
+                  optionType: "simple",
                 },
               ],
               value: "GC5000 series",
@@ -362,12 +419,29 @@ async function run() {
               id: "ProductInterest",
               options: [
                 {
+                  id: "1234",
                   label: "General Channel",
-                  value: true,
+                  options: [
+                    {
+                      label: "General Channel",
+                      value: [
+                        "team",
+                        "general",
+                      ],
+                      optionType: "simple",
+                    },
+                    {
+                      label: "General Channel",
+                      value: "general",
+                      optionType: "simple",
+                    },
+                  ],
+                  optionType: "group",
                 },
                 {
                   label: "General Channel",
                   value: 123,
+                  optionType: "simple",
                 },
               ],
               value: 10.5,
@@ -436,7 +510,8 @@ async function run() {
                   options: [
                     {
                       label: "General Channel",
-                      value: 12.5,
+                      value: 123,
+                      optionType: "simple",
                     },
                     {
                       label: "General Channel",
@@ -444,15 +519,25 @@ async function run() {
                         "team",
                         "general",
                       ],
+                      optionType: "simple",
                     },
                   ],
+                  optionType: "group",
                 },
                 {
+                  id: "1234",
                   label: "General Channel",
-                  value: [
-                    "team",
-                    "general",
+                  options: [
+                    {
+                      label: "General Channel",
+                      value: [
+                        "team",
+                        "general",
+                      ],
+                      optionType: "simple",
+                    },
                   ],
+                  optionType: "group",
                 },
               ],
               value: 10.5,
@@ -462,7 +547,11 @@ async function run() {
               options: [
                 {
                   label: "General Channel",
-                  value: "general",
+                  value: [
+                    "team",
+                    "general",
+                  ],
+                  optionType: "simple",
                 },
               ],
               value: true,
@@ -477,7 +566,8 @@ async function run() {
               options: [
                 {
                   label: "General Channel",
-                  value: true,
+                  value: 123,
+                  optionType: "simple",
                 },
               ],
               value: true,
@@ -487,7 +577,8 @@ async function run() {
               options: [
                 {
                   label: "General Channel",
-                  value: true,
+                  value: "general",
+                  optionType: "simple",
                 },
                 {
                   id: "1234",
@@ -495,13 +586,21 @@ async function run() {
                   options: [
                     {
                       label: "General Channel",
-                      value: 12.5,
+                      value: 123,
+                      optionType: "simple",
                     },
                     {
                       label: "General Channel",
-                      value: "general",
+                      value: 12.5,
+                      optionType: "simple",
+                    },
+                    {
+                      label: "General Channel",
+                      value: true,
+                      optionType: "simple",
                     },
                   ],
+                  optionType: "group",
                 },
               ],
               value: 10,
@@ -515,24 +614,33 @@ async function run() {
                   options: [
                     {
                       label: "General Channel",
-                      value: [
-                        "team",
-                        "general",
-                      ],
+                      value: "general",
+                      optionType: "simple",
                     },
+                  ],
+                  optionType: "group",
+                },
+                {
+                  id: "1234",
+                  label: "General Channel",
+                  options: [
                     {
                       label: "General Channel",
-                      value: true,
+                      value: 12.5,
+                      optionType: "simple",
                     },
                     {
                       label: "General Channel",
                       value: 12.5,
+                      optionType: "simple",
+                    },
+                    {
+                      label: "General Channel",
+                      value: "general",
+                      optionType: "simple",
                     },
                   ],
-                },
-                {
-                  label: "General Channel",
-                  value: 12.5,
+                  optionType: "group",
                 },
               ],
               value: 10.5,
@@ -547,15 +655,38 @@ async function run() {
               options: [
                 {
                   label: "General Channel",
-                  value: "general",
+                  value: 123,
+                  optionType: "simple",
+                },
+                {
+                  id: "1234",
+                  label: "General Channel",
+                  options: [
+                    {
+                      label: "General Channel",
+                      value: [
+                        "team",
+                        "general",
+                      ],
+                      optionType: "simple",
+                    },
+                    {
+                      label: "General Channel",
+                      value: true,
+                      optionType: "simple",
+                    },
+                    {
+                      label: "General Channel",
+                      value: 12.5,
+                      optionType: "simple",
+                    },
+                  ],
+                  optionType: "group",
                 },
                 {
                   label: "General Channel",
-                  value: true,
-                },
-                {
-                  label: "General Channel",
-                  value: true,
+                  value: 12.5,
+                  optionType: "simple",
                 },
               ],
               value: "GC5000 series",
@@ -564,12 +695,29 @@ async function run() {
               id: "ProductInterest",
               options: [
                 {
+                  id: "1234",
                   label: "General Channel",
-                  value: true,
+                  options: [
+                    {
+                      label: "General Channel",
+                      value: [
+                        "team",
+                        "general",
+                      ],
+                      optionType: "simple",
+                    },
+                    {
+                      label: "General Channel",
+                      value: "general",
+                      optionType: "simple",
+                    },
+                  ],
+                  optionType: "group",
                 },
                 {
                   label: "General Channel",
                   value: 123,
+                  optionType: "simple",
                 },
               ],
               value: 10.5,

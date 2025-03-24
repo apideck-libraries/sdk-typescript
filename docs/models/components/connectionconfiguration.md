@@ -18,8 +18,10 @@ let value: ConnectionConfiguration = {
             {
               label: "General Channel",
               value: true,
+              optionType: "simple",
             },
           ],
+          optionType: "group",
         },
       ],
       value: true,
