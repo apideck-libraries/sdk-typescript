@@ -15,14 +15,16 @@ let value: Defaults = {
       options: [
         {
           label: "General Channel",
-          value: 12.5,
+          value: true,
           optionType: "simple",
         },
       ],
       optionType: "group",
     },
   ],
-  value: 10,
+  value: [
+    10,
+  ],
 };
 ```
 

@@ -11,7 +11,7 @@ import {
   Employee$inboundSchema,
   Employee$Outbound,
   Employee$outboundSchema,
-} from "./employee.js";
+} from "./employeeinput.js";
 import {
   Schedule,
   Schedule$inboundSchema,

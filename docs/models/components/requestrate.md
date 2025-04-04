@@ -8,9 +8,9 @@ The rate at which requests for resources will be made to downstream.
 import { RequestRate } from "@apideck/unify/models/components";
 
 let value: RequestRate = {
-  rate: 867290,
-  size: 940210,
-  unit: "day",
+  rate: 48411,
+  size: 900936,
+  unit: "hour",
 };
 ```
 

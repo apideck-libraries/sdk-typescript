@@ -6,6 +6,7 @@ import { fileStorageUploadSessionsCreate } from "../funcs/fileStorageUploadSessi
 import { fileStorageUploadSessionsDelete } from "../funcs/fileStorageUploadSessionsDelete.js";
 import { fileStorageUploadSessionsFinish } from "../funcs/fileStorageUploadSessionsFinish.js";
 import { fileStorageUploadSessionsGet } from "../funcs/fileStorageUploadSessionsGet.js";
+import { fileStorageUploadSessionsUpload } from "../funcs/fileStorageUploadSessionsUpload.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as operations from "../models/operations/index.js";
 import { unwrapAsync } from "../types/fp.js";
@@ -39,6 +40,23 @@ export class UploadSessions extends ClientSDK {
     options?: RequestOptions,
   ): Promise<operations.FileStorageUploadSessionsOneResponse> {
     return unwrapAsync(fileStorageUploadSessionsGet(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Upload part of File to Upload Session
+   *
+   * @remarks
+   * Upload part of File to Upload Session (max 100MB). Get `part_size` from [Get Upload Session](#operation/uploadSessionsOne) first. Every File part (except the last one) uploaded to this endpoint should have Content-Length equal to `part_size`. Note that the base URL is upload.apideck.com instead of unify.apideck.com. For more information on uploads, refer to the [file upload guide](/guides/file-upload).
+   */
+  async upload(
+    request: operations.FileStorageUploadSessionsUploadRequest,
+    options?: RequestOptions,
+  ): Promise<operations.FileStorageUploadSessionsUploadResponse> {
+    return unwrapAsync(fileStorageUploadSessionsUpload(
       this,
       request,
       options,

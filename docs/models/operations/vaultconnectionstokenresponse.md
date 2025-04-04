@@ -79,11 +79,13 @@ let value: VaultConnectionsTokenResponse = {
               options: [
                 {
                   label: "General Channel",
-                  value: true,
+                  value: "general",
                   optionType: "simple",
                 },
               ],
-              value: "GC5000 series",
+              value: [
+                10,
+              ],
             },
           ],
         },

@@ -12,7 +12,7 @@ import {
   Ticket$inboundSchema,
   Ticket$Outbound,
   Ticket$outboundSchema,
-} from "./ticket.js";
+} from "./ticketinput.js";
 
 /**
  * Get a Ticket

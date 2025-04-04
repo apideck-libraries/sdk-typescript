@@ -106,11 +106,11 @@ export type BillLineItem = {
    */
   discountAmount?: number | null | undefined;
   /**
-   * Location id
+   * The ID of the location
    */
   locationId?: string | null | undefined;
   /**
-   * Department id
+   * The ID of the department
    */
   departmentId?: string | null | undefined;
   item?: LinkedInvoiceItem | undefined;
@@ -186,11 +186,11 @@ export type BillLineItemInput = {
    */
   discountAmount?: number | null | undefined;
   /**
-   * Location id
+   * The ID of the location
    */
   locationId?: string | null | undefined;
   /**
-   * Department id
+   * The ID of the department
    */
   departmentId?: string | null | undefined;
   item?: LinkedInvoiceItem | undefined;

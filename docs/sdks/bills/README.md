@@ -194,8 +194,8 @@ async function run() {
           unitOfMeasure: "pc.",
           discountPercentage: 0.01,
           discountAmount: 19.99,
-          locationId: "1234",
-          departmentId: "1234",
+          locationId: "12345",
+          departmentId: "12345",
           item: {
             id: "12344",
             code: "120-C",
@@ -235,8 +235,8 @@ async function run() {
           unitOfMeasure: "pc.",
           discountPercentage: 0.01,
           discountAmount: 19.99,
-          locationId: "1234",
-          departmentId: "1234",
+          locationId: "12345",
+          departmentId: "12345",
           item: {
             id: "12344",
             code: "120-C",
@@ -296,6 +296,7 @@ async function run() {
         currency: "USD",
       },
       discountPercentage: 5.5,
+      sourceDocumentUrl: "https://www.invoicesolution.com/bill/123456",
       trackingCategories: [
         {
           id: "123456",
@@ -416,8 +417,8 @@ async function run() {
           unitOfMeasure: "pc.",
           discountPercentage: 0.01,
           discountAmount: 19.99,
-          locationId: "1234",
-          departmentId: "1234",
+          locationId: "12345",
+          departmentId: "12345",
           item: {
             id: "12344",
             code: "120-C",
@@ -457,8 +458,8 @@ async function run() {
           unitOfMeasure: "pc.",
           discountPercentage: 0.01,
           discountAmount: 19.99,
-          locationId: "1234",
-          departmentId: "1234",
+          locationId: "12345",
+          departmentId: "12345",
           item: {
             id: "12344",
             code: "120-C",
@@ -518,6 +519,7 @@ async function run() {
         currency: "USD",
       },
       discountPercentage: 5.5,
+      sourceDocumentUrl: "https://www.invoicesolution.com/bill/123456",
       trackingCategories: [
         {
           id: "123456",
@@ -757,8 +759,8 @@ async function run() {
           unitOfMeasure: "pc.",
           discountPercentage: 0.01,
           discountAmount: 19.99,
-          locationId: "1234",
-          departmentId: "1234",
+          locationId: "12345",
+          departmentId: "12345",
           item: {
             id: "12344",
             code: "120-C",
@@ -798,8 +800,8 @@ async function run() {
           unitOfMeasure: "pc.",
           discountPercentage: 0.01,
           discountAmount: 19.99,
-          locationId: "1234",
-          departmentId: "1234",
+          locationId: "12345",
+          departmentId: "12345",
           item: {
             id: "12344",
             code: "120-C",
@@ -839,8 +841,8 @@ async function run() {
           unitOfMeasure: "pc.",
           discountPercentage: 0.01,
           discountAmount: 19.99,
-          locationId: "1234",
-          departmentId: "1234",
+          locationId: "12345",
+          departmentId: "12345",
           item: {
             id: "12344",
             code: "120-C",
@@ -904,6 +906,7 @@ async function run() {
         currency: "USD",
       },
       discountPercentage: 5.5,
+      sourceDocumentUrl: "https://www.invoicesolution.com/bill/123456",
       trackingCategories: [
         {
           id: "123456",
@@ -1033,8 +1036,8 @@ async function run() {
           unitOfMeasure: "pc.",
           discountPercentage: 0.01,
           discountAmount: 19.99,
-          locationId: "1234",
-          departmentId: "1234",
+          locationId: "12345",
+          departmentId: "12345",
           item: {
             id: "12344",
             code: "120-C",
@@ -1074,8 +1077,8 @@ async function run() {
           unitOfMeasure: "pc.",
           discountPercentage: 0.01,
           discountAmount: 19.99,
-          locationId: "1234",
-          departmentId: "1234",
+          locationId: "12345",
+          departmentId: "12345",
           item: {
             id: "12344",
             code: "120-C",
@@ -1115,8 +1118,8 @@ async function run() {
           unitOfMeasure: "pc.",
           discountPercentage: 0.01,
           discountAmount: 19.99,
-          locationId: "1234",
-          departmentId: "1234",
+          locationId: "12345",
+          departmentId: "12345",
           item: {
             id: "12344",
             code: "120-C",
@@ -1180,6 +1183,7 @@ async function run() {
         currency: "USD",
       },
       discountPercentage: 5.5,
+      sourceDocumentUrl: "https://www.invoicesolution.com/bill/123456",
       trackingCategories: [
         {
           id: "123456",

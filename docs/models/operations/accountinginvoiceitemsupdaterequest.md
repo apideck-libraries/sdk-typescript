@@ -62,6 +62,10 @@ let value: AccountingInvoiceItemsUpdateRequest = {
       },
     ],
     active: true,
+    departmentId: "12345",
+    locationId: "12345",
+    subsidiaryId: "12345",
+    taxScheduleId: "123456",
     rowVersion: "1-12345",
     passThrough: [
       {

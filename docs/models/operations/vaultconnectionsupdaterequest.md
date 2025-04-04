@@ -34,14 +34,17 @@ let value: VaultConnectionsUpdateRequest = {
                 options: [
                   {
                     label: "General Channel",
-                    value: "general",
+                    value: [
+                      "team",
+                      "general",
+                    ],
                     optionType: "simple",
                   },
                 ],
                 optionType: "group",
               },
             ],
-            value: true,
+            value: 10,
           },
         ],
       },

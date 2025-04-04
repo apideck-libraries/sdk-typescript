@@ -27,11 +27,11 @@ let value: ConnectionInput = {
           options: [
             {
               label: "General Channel",
-              value: 123,
+              value: 12.5,
               optionType: "simple",
             },
           ],
-          value: true,
+          value: 10.5,
         },
       ],
     },

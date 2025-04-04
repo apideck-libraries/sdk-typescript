@@ -12,7 +12,7 @@ import {
   Expense$inboundSchema,
   Expense$Outbound,
   Expense$outboundSchema,
-} from "./expense.js";
+} from "./expenseinput.js";
 
 /**
  * Expenses

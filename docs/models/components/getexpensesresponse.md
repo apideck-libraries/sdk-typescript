@@ -48,6 +48,7 @@ let value: GetExpensesResponse = {
           customerId: "12345",
           departmentId: "12345",
           locationId: "12345",
+          subsidiaryId: "12345",
           taxRate: {
             id: "123456",
             code: "N-T",
@@ -64,7 +65,9 @@ let value: GetExpensesResponse = {
           id: "2389328923893298",
           name: "employee_level",
           description: "Employee Level",
-          value: {},
+          value: [
+            {},
+          ],
         },
       ],
       updatedAt: new Date("2020-09-30T07:43:32.000Z"),

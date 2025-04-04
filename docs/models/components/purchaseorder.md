@@ -70,8 +70,8 @@ let value: PurchaseOrder = {
       unitOfMeasure: "pc.",
       discountPercentage: 0.01,
       discountAmount: 19.99,
-      locationId: "1234",
-      departmentId: "1234",
+      locationId: "12345",
+      departmentId: "12345",
       item: {
         id: "12344",
         code: "120-C",
@@ -169,6 +169,16 @@ let value: PurchaseOrder = {
       name: "New York",
     },
   ],
+  customFields: [
+    {
+      id: "2389328923893298",
+      name: "employee_level",
+      description: "Employee Level",
+      value: [
+        {},
+      ],
+    },
+  ],
   rowVersion: "1-12345",
   updatedBy: "12345",
   createdBy: "12345",
@@ -226,6 +236,7 @@ let value: PurchaseOrder = {
 | `memo`                                                                                                                                                  | *string*                                                                                                                                                | :heavy_minus_sign:                                                                                                                                      | Message for the supplier. This text appears on the Purchase Order.                                                                                      | Thank you for the partnership and have a great day!                                                                                                     |
 | `trackingCategories`                                                                                                                                    | [components.LinkedTrackingCategory](../../models/components/linkedtrackingcategory.md)[]                                                                | :heavy_minus_sign:                                                                                                                                      | A list of linked tracking categories.                                                                                                                   |                                                                                                                                                         |
 | `customMappings`                                                                                                                                        | [components.CustomMappings](../../models/components/custommappings.md)                                                                                  | :heavy_minus_sign:                                                                                                                                      | When custom mappings are configured on the resource, the result is included here.                                                                       |                                                                                                                                                         |
+| `customFields`                                                                                                                                          | [components.CustomField](../../models/components/customfield.md)[]                                                                                      | :heavy_minus_sign:                                                                                                                                      | N/A                                                                                                                                                     |                                                                                                                                                         |
 | `rowVersion`                                                                                                                                            | *string*                                                                                                                                                | :heavy_minus_sign:                                                                                                                                      | A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.              | 1-12345                                                                                                                                                 |
 | `updatedBy`                                                                                                                                             | *string*                                                                                                                                                | :heavy_minus_sign:                                                                                                                                      | The user who last updated the object.                                                                                                                   | 12345                                                                                                                                                   |
 | `createdBy`                                                                                                                                             | *string*                                                                                                                                                | :heavy_minus_sign:                                                                                                                                      | The user who created the object.                                                                                                                        | 12345                                                                                                                                                   |

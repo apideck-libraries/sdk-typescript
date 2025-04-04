@@ -126,7 +126,9 @@ let value: CrmCompaniesOneResponse = {
           id: "2389328923893298",
           name: "employee_level",
           description: "Employee Level",
-          value: "Uses Salesforce and Marketo",
+          value: [
+            "<value>",
+          ],
         },
       ],
       tags: [
@@ -163,7 +165,13 @@ let value: CrmCompaniesOneResponse = {
     error: "Bad Request",
     typeName: "RequestHeadersValidationError",
     message: "Invalid Params",
-    detail: "Missing Header: x-apideck-consumer-id",
+    detail: {
+      "missing": [
+        {
+          "x-apideck-consumer-id": "required",
+        },
+      ],
+    },
     ref: "https://developers.apideck.com/errors#unauthorizederror",
   },
 };

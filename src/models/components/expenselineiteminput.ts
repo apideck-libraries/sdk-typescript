@@ -34,13 +34,17 @@ export type ExpenseLineItemInput = {
    */
   customerId?: string | undefined;
   /**
-   * The ID of the department this expense item is linked to.
+   * The ID of the department
    */
-  departmentId?: string | undefined;
+  departmentId?: string | null | undefined;
   /**
-   * The ID of the location this expense item is linked to.
+   * The ID of the location
    */
-  locationId?: string | undefined;
+  locationId?: string | null | undefined;
+  /**
+   * The ID of the subsidiary
+   */
+  subsidiaryId?: string | null | undefined;
   taxRate?: LinkedTaxRateInput | undefined;
   /**
    * The expense line item description
@@ -67,8 +71,9 @@ export const ExpenseLineItemInput$inboundSchema: z.ZodType<
   ).optional(),
   account_id: z.string().optional(),
   customer_id: z.string().optional(),
-  department_id: z.string().optional(),
-  location_id: z.string().optional(),
+  department_id: z.nullable(z.string()).optional(),
+  location_id: z.nullable(z.string()).optional(),
+  subsidiary_id: z.nullable(z.string()).optional(),
   tax_rate: LinkedTaxRateInput$inboundSchema.optional(),
   description: z.nullable(z.string()).optional(),
   total_amount: z.nullable(z.number()),
@@ -80,6 +85,7 @@ export const ExpenseLineItemInput$inboundSchema: z.ZodType<
     "customer_id": "customerId",
     "department_id": "departmentId",
     "location_id": "locationId",
+    "subsidiary_id": "subsidiaryId",
     "tax_rate": "taxRate",
     "total_amount": "totalAmount",
   });
@@ -93,8 +99,9 @@ export type ExpenseLineItemInput$Outbound = {
     | undefined;
   account_id?: string | undefined;
   customer_id?: string | undefined;
-  department_id?: string | undefined;
-  location_id?: string | undefined;
+  department_id?: string | null | undefined;
+  location_id?: string | null | undefined;
+  subsidiary_id?: string | null | undefined;
   tax_rate?: LinkedTaxRateInput$Outbound | undefined;
   description?: string | null | undefined;
   total_amount: number | null;
@@ -112,8 +119,9 @@ export const ExpenseLineItemInput$outboundSchema: z.ZodType<
   ).optional(),
   accountId: z.string().optional(),
   customerId: z.string().optional(),
-  departmentId: z.string().optional(),
-  locationId: z.string().optional(),
+  departmentId: z.nullable(z.string()).optional(),
+  locationId: z.nullable(z.string()).optional(),
+  subsidiaryId: z.nullable(z.string()).optional(),
   taxRate: LinkedTaxRateInput$outboundSchema.optional(),
   description: z.nullable(z.string()).optional(),
   totalAmount: z.nullable(z.number()),
@@ -125,6 +133,7 @@ export const ExpenseLineItemInput$outboundSchema: z.ZodType<
     customerId: "customer_id",
     departmentId: "department_id",
     locationId: "location_id",
+    subsidiaryId: "subsidiary_id",
     taxRate: "tax_rate",
     totalAmount: "total_amount",
   });

@@ -9,6 +9,7 @@ import {
 } from "../funcs/accountingAttachmentsDownload.js";
 import { accountingAttachmentsGet } from "../funcs/accountingAttachmentsGet.js";
 import { accountingAttachmentsList } from "../funcs/accountingAttachmentsList.js";
+import { accountingAttachmentsUpload } from "../funcs/accountingAttachmentsUpload.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as operations from "../models/operations/index.js";
 import { unwrapAsync } from "../types/fp.js";
@@ -33,6 +34,23 @@ export class Attachments extends ClientSDK {
     >
   > {
     return unwrapResultIterator(accountingAttachmentsList(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Upload attachment
+   *
+   * @remarks
+   * Upload attachment
+   */
+  async upload(
+    request: operations.AccountingAttachmentsUploadRequest,
+    options?: RequestOptions,
+  ): Promise<operations.AccountingAttachmentsUploadResponse> {
+    return unwrapAsync(accountingAttachmentsUpload(
       this,
       request,
       options,
