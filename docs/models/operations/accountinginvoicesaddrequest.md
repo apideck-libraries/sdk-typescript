@@ -58,8 +58,8 @@ let value: AccountingInvoicesAddRequest = {
         unitOfMeasure: "pc.",
         discountPercentage: 0.01,
         discountAmount: 19.99,
-        locationId: "1234",
-        departmentId: "1234",
+        locationId: "12345",
+        departmentId: "12345",
         item: {
           id: "12344",
           code: "120-C",
@@ -86,7 +86,7 @@ let value: AccountingInvoicesAddRequest = {
             name: "employee_level",
             description: "Employee Level",
             value: [
-              "<value>",
+              {},
             ],
           },
         ],
@@ -174,7 +174,7 @@ let value: AccountingInvoicesAddRequest = {
         id: "2389328923893298",
         name: "employee_level",
         description: "Employee Level",
-        value: true,
+        value: "Uses Salesforce and Marketo",
       },
     ],
     rowVersion: "1-12345",

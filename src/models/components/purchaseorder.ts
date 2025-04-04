@@ -27,6 +27,12 @@ import {
   Currency$outboundSchema,
 } from "./currency.js";
 import {
+  CustomField,
+  CustomField$inboundSchema,
+  CustomField$Outbound,
+  CustomField$outboundSchema,
+} from "./customfield.js";
+import {
   CustomMappings,
   CustomMappings$inboundSchema,
   CustomMappings$Outbound,
@@ -41,7 +47,7 @@ import {
   InvoiceLineItemInput$inboundSchema,
   InvoiceLineItemInput$Outbound,
   InvoiceLineItemInput$outboundSchema,
-} from "./invoicelineitem.js";
+} from "./invoicelineiteminput.js";
 import {
   LinkedLedgerAccount,
   LinkedLedgerAccount$inboundSchema,
@@ -195,6 +201,7 @@ export type PurchaseOrder = {
    * When custom mappings are configured on the resource, the result is included here.
    */
   customMappings?: CustomMappings | null | undefined;
+  customFields?: Array<CustomField> | undefined;
   /**
    * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
    */
@@ -315,6 +322,7 @@ export type PurchaseOrderInput = {
    * A list of linked tracking categories.
    */
   trackingCategories?: Array<LinkedTrackingCategory | null> | null | undefined;
+  customFields?: Array<CustomField> | undefined;
   /**
    * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
    */
@@ -386,6 +394,7 @@ export const PurchaseOrder$inboundSchema: z.ZodType<
     z.array(z.nullable(LinkedTrackingCategory$inboundSchema)),
   ).optional(),
   custom_mappings: z.nullable(CustomMappings$inboundSchema).optional(),
+  custom_fields: z.array(CustomField$inboundSchema).optional(),
   row_version: z.nullable(z.string()).optional(),
   updated_by: z.nullable(z.string()).optional(),
   created_by: z.nullable(z.string()).optional(),
@@ -420,6 +429,7 @@ export const PurchaseOrder$inboundSchema: z.ZodType<
     "tax_code": "taxCode",
     "tracking_categories": "trackingCategories",
     "custom_mappings": "customMappings",
+    "custom_fields": "customFields",
     "row_version": "rowVersion",
     "updated_by": "updatedBy",
     "created_by": "createdBy",
@@ -464,6 +474,7 @@ export type PurchaseOrder$Outbound = {
     | null
     | undefined;
   custom_mappings?: CustomMappings$Outbound | null | undefined;
+  custom_fields?: Array<CustomField$Outbound> | undefined;
   row_version?: string | null | undefined;
   updated_by?: string | null | undefined;
   created_by?: string | null | undefined;
@@ -515,6 +526,7 @@ export const PurchaseOrder$outboundSchema: z.ZodType<
     z.array(z.nullable(LinkedTrackingCategory$outboundSchema)),
   ).optional(),
   customMappings: z.nullable(CustomMappings$outboundSchema).optional(),
+  customFields: z.array(CustomField$outboundSchema).optional(),
   rowVersion: z.nullable(z.string()).optional(),
   updatedBy: z.nullable(z.string()).optional(),
   createdBy: z.nullable(z.string()).optional(),
@@ -545,6 +557,7 @@ export const PurchaseOrder$outboundSchema: z.ZodType<
     taxCode: "tax_code",
     trackingCategories: "tracking_categories",
     customMappings: "custom_mappings",
+    customFields: "custom_fields",
     rowVersion: "row_version",
     updatedBy: "updated_by",
     createdBy: "created_by",
@@ -618,6 +631,7 @@ export const PurchaseOrderInput$inboundSchema: z.ZodType<
   tracking_categories: z.nullable(
     z.array(z.nullable(LinkedTrackingCategory$inboundSchema)),
   ).optional(),
+  custom_fields: z.array(CustomField$inboundSchema).optional(),
   row_version: z.nullable(z.string()).optional(),
   pass_through: z.array(PassThroughBody$inboundSchema).optional(),
 }).transform((v) => {
@@ -642,6 +656,7 @@ export const PurchaseOrderInput$inboundSchema: z.ZodType<
     "payment_method": "paymentMethod",
     "tax_code": "taxCode",
     "tracking_categories": "trackingCategories",
+    "custom_fields": "customFields",
     "row_version": "rowVersion",
     "pass_through": "passThrough",
   });
@@ -679,6 +694,7 @@ export type PurchaseOrderInput$Outbound = {
     | Array<LinkedTrackingCategory$Outbound | null>
     | null
     | undefined;
+  custom_fields?: Array<CustomField$Outbound> | undefined;
   row_version?: string | null | undefined;
   pass_through?: Array<PassThroughBody$Outbound> | undefined;
 };
@@ -723,6 +739,7 @@ export const PurchaseOrderInput$outboundSchema: z.ZodType<
   trackingCategories: z.nullable(
     z.array(z.nullable(LinkedTrackingCategory$outboundSchema)),
   ).optional(),
+  customFields: z.array(CustomField$outboundSchema).optional(),
   rowVersion: z.nullable(z.string()).optional(),
   passThrough: z.array(PassThroughBody$outboundSchema).optional(),
 }).transform((v) => {
@@ -747,6 +764,7 @@ export const PurchaseOrderInput$outboundSchema: z.ZodType<
     paymentMethod: "payment_method",
     taxCode: "tax_code",
     trackingCategories: "tracking_categories",
+    customFields: "custom_fields",
     rowVersion: "row_version",
     passThrough: "pass_through",
   });

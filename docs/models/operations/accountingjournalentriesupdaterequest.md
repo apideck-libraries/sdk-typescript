@@ -71,6 +71,8 @@ let value: AccountingJournalEntriesUpdateRequest = {
             rowVersion: "1-12345",
           },
         },
+        departmentId: "12345",
+        locationId: "12345",
         lineNumber: 1,
       },
     ],

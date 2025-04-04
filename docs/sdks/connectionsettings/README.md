@@ -144,7 +144,7 @@ async function run() {
                   options: [
                     {
                       label: "General Channel",
-                      value: 123,
+                      value: 12.5,
                       optionType: "simple",
                     },
                     {
@@ -159,22 +159,65 @@ async function run() {
                   optionType: "group",
                 },
                 {
+                  label: "General Channel",
+                  value: [
+                    "team",
+                    "general",
+                  ],
+                  optionType: "simple",
+                },
+              ],
+              value: 10.5,
+            },
+            {
+              id: "ProductInterest",
+              options: [
+                {
+                  label: "General Channel",
+                  value: "general",
+                  optionType: "simple",
+                },
+              ],
+              value: true,
+            },
+          ],
+        },
+        {
+          resource: "leads",
+          defaults: [
+            {
+              id: "ProductInterest",
+              options: [
+                {
+                  label: "General Channel",
+                  value: true,
+                  optionType: "simple",
+                },
+              ],
+              value: true,
+            },
+            {
+              id: "ProductInterest",
+              options: [
+                {
+                  label: "General Channel",
+                  value: true,
+                  optionType: "simple",
+                },
+                {
                   id: "1234",
                   label: "General Channel",
                   options: [
                     {
                       label: "General Channel",
-                      value: [
-                        "team",
-                        "general",
-                      ],
+                      value: 12.5,
                       optionType: "simple",
                     },
                   ],
                   optionType: "group",
                 },
               ],
-              value: 10.5,
+              value: "GC5000 series",
             },
             {
               id: "ProductInterest",
@@ -188,7 +231,11 @@ async function run() {
                   optionType: "simple",
                 },
               ],
-              value: true,
+              value: [
+                10.5,
+                10,
+                "GC6000 series",
+              ],
             },
           ],
         },
@@ -199,9 +246,34 @@ async function run() {
               id: "ProductInterest",
               options: [
                 {
+                  id: "1234",
                   label: "General Channel",
-                  value: 123,
-                  optionType: "simple",
+                  options: [
+                    {
+                      label: "General Channel",
+                      value: "general",
+                      optionType: "simple",
+                    },
+                    {
+                      label: "General Channel",
+                      value: "general",
+                      optionType: "simple",
+                    },
+                    {
+                      label: "General Channel",
+                      value: 123,
+                      optionType: "simple",
+                    },
+                  ],
+                  optionType: "group",
+                },
+                {
+                  id: "1234",
+                  label: "General Channel",
+                  options: [
+
+                  ],
+                  optionType: "group",
                 },
               ],
               value: true,
@@ -214,152 +286,16 @@ async function run() {
                   value: "general",
                   optionType: "simple",
                 },
-                {
-                  id: "1234",
-                  label: "General Channel",
-                  options: [
-                    {
-                      label: "General Channel",
-                      value: 123,
-                      optionType: "simple",
-                    },
-                    {
-                      label: "General Channel",
-                      value: 12.5,
-                      optionType: "simple",
-                    },
-                    {
-                      label: "General Channel",
-                      value: true,
-                      optionType: "simple",
-                    },
-                  ],
-                  optionType: "group",
-                },
               ],
-              value: 10,
-            },
-            {
-              id: "ProductInterest",
-              options: [
-                {
-                  id: "1234",
-                  label: "General Channel",
-                  options: [
-                    {
-                      label: "General Channel",
-                      value: "general",
-                      optionType: "simple",
-                    },
-                  ],
-                  optionType: "group",
-                },
-                {
-                  id: "1234",
-                  label: "General Channel",
-                  options: [
-                    {
-                      label: "General Channel",
-                      value: 12.5,
-                      optionType: "simple",
-                    },
-                    {
-                      label: "General Channel",
-                      value: 12.5,
-                      optionType: "simple",
-                    },
-                    {
-                      label: "General Channel",
-                      value: "general",
-                      optionType: "simple",
-                    },
-                  ],
-                  optionType: "group",
-                },
-              ],
-              value: 10.5,
-            },
-          ],
-        },
-        {
-          resource: "leads",
-          defaults: [
-            {
-              id: "ProductInterest",
-              options: [
-                {
-                  label: "General Channel",
-                  value: 123,
-                  optionType: "simple",
-                },
-                {
-                  id: "1234",
-                  label: "General Channel",
-                  options: [
-                    {
-                      label: "General Channel",
-                      value: [
-                        "team",
-                        "general",
-                      ],
-                      optionType: "simple",
-                    },
-                    {
-                      label: "General Channel",
-                      value: true,
-                      optionType: "simple",
-                    },
-                    {
-                      label: "General Channel",
-                      value: 12.5,
-                      optionType: "simple",
-                    },
-                  ],
-                  optionType: "group",
-                },
-                {
-                  label: "General Channel",
-                  value: 12.5,
-                  optionType: "simple",
-                },
-              ],
-              value: "GC5000 series",
-            },
-            {
-              id: "ProductInterest",
-              options: [
-                {
-                  id: "1234",
-                  label: "General Channel",
-                  options: [
-                    {
-                      label: "General Channel",
-                      value: [
-                        "team",
-                        "general",
-                      ],
-                      optionType: "simple",
-                    },
-                    {
-                      label: "General Channel",
-                      value: "general",
-                      optionType: "simple",
-                    },
-                  ],
-                  optionType: "group",
-                },
-                {
-                  label: "General Channel",
-                  value: 123,
-                  optionType: "simple",
-                },
-              ],
-              value: 10.5,
+              value: true,
             },
           ],
         },
       ],
       customMappings: [
+        {
+          value: "$.root.training.first_aid",
+        },
         {
           value: "$.root.training.first_aid",
         },
@@ -421,7 +357,7 @@ async function run() {
                   options: [
                     {
                       label: "General Channel",
-                      value: 123,
+                      value: 12.5,
                       optionType: "simple",
                     },
                     {
@@ -436,22 +372,65 @@ async function run() {
                   optionType: "group",
                 },
                 {
+                  label: "General Channel",
+                  value: [
+                    "team",
+                    "general",
+                  ],
+                  optionType: "simple",
+                },
+              ],
+              value: 10.5,
+            },
+            {
+              id: "ProductInterest",
+              options: [
+                {
+                  label: "General Channel",
+                  value: "general",
+                  optionType: "simple",
+                },
+              ],
+              value: true,
+            },
+          ],
+        },
+        {
+          resource: "leads",
+          defaults: [
+            {
+              id: "ProductInterest",
+              options: [
+                {
+                  label: "General Channel",
+                  value: true,
+                  optionType: "simple",
+                },
+              ],
+              value: true,
+            },
+            {
+              id: "ProductInterest",
+              options: [
+                {
+                  label: "General Channel",
+                  value: true,
+                  optionType: "simple",
+                },
+                {
                   id: "1234",
                   label: "General Channel",
                   options: [
                     {
                       label: "General Channel",
-                      value: [
-                        "team",
-                        "general",
-                      ],
+                      value: 12.5,
                       optionType: "simple",
                     },
                   ],
                   optionType: "group",
                 },
               ],
-              value: 10.5,
+              value: "GC5000 series",
             },
             {
               id: "ProductInterest",
@@ -465,7 +444,11 @@ async function run() {
                   optionType: "simple",
                 },
               ],
-              value: true,
+              value: [
+                10.5,
+                10,
+                "GC6000 series",
+              ],
             },
           ],
         },
@@ -476,9 +459,34 @@ async function run() {
               id: "ProductInterest",
               options: [
                 {
+                  id: "1234",
                   label: "General Channel",
-                  value: 123,
-                  optionType: "simple",
+                  options: [
+                    {
+                      label: "General Channel",
+                      value: "general",
+                      optionType: "simple",
+                    },
+                    {
+                      label: "General Channel",
+                      value: "general",
+                      optionType: "simple",
+                    },
+                    {
+                      label: "General Channel",
+                      value: 123,
+                      optionType: "simple",
+                    },
+                  ],
+                  optionType: "group",
+                },
+                {
+                  id: "1234",
+                  label: "General Channel",
+                  options: [
+  
+                  ],
+                  optionType: "group",
                 },
               ],
               value: true,
@@ -491,152 +499,16 @@ async function run() {
                   value: "general",
                   optionType: "simple",
                 },
-                {
-                  id: "1234",
-                  label: "General Channel",
-                  options: [
-                    {
-                      label: "General Channel",
-                      value: 123,
-                      optionType: "simple",
-                    },
-                    {
-                      label: "General Channel",
-                      value: 12.5,
-                      optionType: "simple",
-                    },
-                    {
-                      label: "General Channel",
-                      value: true,
-                      optionType: "simple",
-                    },
-                  ],
-                  optionType: "group",
-                },
               ],
-              value: 10,
-            },
-            {
-              id: "ProductInterest",
-              options: [
-                {
-                  id: "1234",
-                  label: "General Channel",
-                  options: [
-                    {
-                      label: "General Channel",
-                      value: "general",
-                      optionType: "simple",
-                    },
-                  ],
-                  optionType: "group",
-                },
-                {
-                  id: "1234",
-                  label: "General Channel",
-                  options: [
-                    {
-                      label: "General Channel",
-                      value: 12.5,
-                      optionType: "simple",
-                    },
-                    {
-                      label: "General Channel",
-                      value: 12.5,
-                      optionType: "simple",
-                    },
-                    {
-                      label: "General Channel",
-                      value: "general",
-                      optionType: "simple",
-                    },
-                  ],
-                  optionType: "group",
-                },
-              ],
-              value: 10.5,
-            },
-          ],
-        },
-        {
-          resource: "leads",
-          defaults: [
-            {
-              id: "ProductInterest",
-              options: [
-                {
-                  label: "General Channel",
-                  value: 123,
-                  optionType: "simple",
-                },
-                {
-                  id: "1234",
-                  label: "General Channel",
-                  options: [
-                    {
-                      label: "General Channel",
-                      value: [
-                        "team",
-                        "general",
-                      ],
-                      optionType: "simple",
-                    },
-                    {
-                      label: "General Channel",
-                      value: true,
-                      optionType: "simple",
-                    },
-                    {
-                      label: "General Channel",
-                      value: 12.5,
-                      optionType: "simple",
-                    },
-                  ],
-                  optionType: "group",
-                },
-                {
-                  label: "General Channel",
-                  value: 12.5,
-                  optionType: "simple",
-                },
-              ],
-              value: "GC5000 series",
-            },
-            {
-              id: "ProductInterest",
-              options: [
-                {
-                  id: "1234",
-                  label: "General Channel",
-                  options: [
-                    {
-                      label: "General Channel",
-                      value: [
-                        "team",
-                        "general",
-                      ],
-                      optionType: "simple",
-                    },
-                    {
-                      label: "General Channel",
-                      value: "general",
-                      optionType: "simple",
-                    },
-                  ],
-                  optionType: "group",
-                },
-                {
-                  label: "General Channel",
-                  value: 123,
-                  optionType: "simple",
-                },
-              ],
-              value: 10.5,
+              value: true,
             },
           ],
         },
       ],
       customMappings: [
+        {
+          value: "$.root.training.first_aid",
+        },
         {
           value: "$.root.training.first_aid",
         },

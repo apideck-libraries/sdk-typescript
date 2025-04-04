@@ -10,11 +10,16 @@ let value: ConnectionDefaults = {
   options: [
     {
       label: "General Channel",
-      value: 123,
+      value: [
+        "team",
+        "general",
+      ],
       optionType: "simple",
     },
   ],
-  value: true,
+  value: [
+    10,
+  ],
 };
 ```
 

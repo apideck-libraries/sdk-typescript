@@ -13,5 +13,5 @@ let value: InvoiceItemTypeType = "inventory";
 ## Values
 
 ```typescript
-"inventory" | "service" | "other"
+"inventory" | "non_inventory" | "service" | "description" | "other"
 ```

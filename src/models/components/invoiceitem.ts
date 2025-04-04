@@ -63,7 +63,9 @@ import {
  */
 export const InvoiceItemTypeType = {
   Inventory: "inventory",
+  NonInventory: "non_inventory",
   Service: "service",
+  Description: "description",
   Other: "other",
 } as const;
 /**
@@ -154,6 +156,22 @@ export type InvoiceItem = {
    */
   trackingCategories?: Array<LinkedTrackingCategory | null> | null | undefined;
   active?: boolean | null | undefined;
+  /**
+   * The ID of the department
+   */
+  departmentId?: string | null | undefined;
+  /**
+   * The ID of the location
+   */
+  locationId?: string | null | undefined;
+  /**
+   * The ID of the subsidiary
+   */
+  subsidiaryId?: string | null | undefined;
+  /**
+   * The ID of the tax schedule
+   */
+  taxScheduleId?: string | null | undefined;
   /**
    * When custom mappings are configured on the resource, the result is included here.
    */
@@ -263,6 +281,22 @@ export type InvoiceItemInput = {
    */
   trackingCategories?: Array<LinkedTrackingCategory | null> | null | undefined;
   active?: boolean | null | undefined;
+  /**
+   * The ID of the department
+   */
+  departmentId?: string | null | undefined;
+  /**
+   * The ID of the location
+   */
+  locationId?: string | null | undefined;
+  /**
+   * The ID of the subsidiary
+   */
+  subsidiaryId?: string | null | undefined;
+  /**
+   * The ID of the tax schedule
+   */
+  taxScheduleId?: string | null | undefined;
   /**
    * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
    */
@@ -472,6 +506,10 @@ export const InvoiceItem$inboundSchema: z.ZodType<
     z.array(z.nullable(LinkedTrackingCategory$inboundSchema)),
   ).optional(),
   active: z.nullable(z.boolean()).optional(),
+  department_id: z.nullable(z.string()).optional(),
+  location_id: z.nullable(z.string()).optional(),
+  subsidiary_id: z.nullable(z.string()).optional(),
+  tax_schedule_id: z.nullable(z.string()).optional(),
   custom_mappings: z.nullable(CustomMappings$inboundSchema).optional(),
   row_version: z.nullable(z.string()).optional(),
   updated_by: z.nullable(z.string()).optional(),
@@ -494,6 +532,10 @@ export const InvoiceItem$inboundSchema: z.ZodType<
     "expense_account": "expenseAccount",
     "tracking_category": "trackingCategory",
     "tracking_categories": "trackingCategories",
+    "department_id": "departmentId",
+    "location_id": "locationId",
+    "subsidiary_id": "subsidiaryId",
+    "tax_schedule_id": "taxScheduleId",
     "custom_mappings": "customMappings",
     "row_version": "rowVersion",
     "updated_by": "updatedBy",
@@ -532,6 +574,10 @@ export type InvoiceItem$Outbound = {
     | null
     | undefined;
   active?: boolean | null | undefined;
+  department_id?: string | null | undefined;
+  location_id?: string | null | undefined;
+  subsidiary_id?: string | null | undefined;
+  tax_schedule_id?: string | null | undefined;
   custom_mappings?: CustomMappings$Outbound | null | undefined;
   row_version?: string | null | undefined;
   updated_by?: string | null | undefined;
@@ -571,6 +617,10 @@ export const InvoiceItem$outboundSchema: z.ZodType<
     z.array(z.nullable(LinkedTrackingCategory$outboundSchema)),
   ).optional(),
   active: z.nullable(z.boolean()).optional(),
+  departmentId: z.nullable(z.string()).optional(),
+  locationId: z.nullable(z.string()).optional(),
+  subsidiaryId: z.nullable(z.string()).optional(),
+  taxScheduleId: z.nullable(z.string()).optional(),
   customMappings: z.nullable(CustomMappings$outboundSchema).optional(),
   rowVersion: z.nullable(z.string()).optional(),
   updatedBy: z.nullable(z.string()).optional(),
@@ -589,6 +639,10 @@ export const InvoiceItem$outboundSchema: z.ZodType<
     expenseAccount: "expense_account",
     trackingCategory: "tracking_category",
     trackingCategories: "tracking_categories",
+    departmentId: "department_id",
+    locationId: "location_id",
+    subsidiaryId: "subsidiary_id",
+    taxScheduleId: "tax_schedule_id",
     customMappings: "custom_mappings",
     rowVersion: "row_version",
     updatedBy: "updated_by",
@@ -811,6 +865,10 @@ export const InvoiceItemInput$inboundSchema: z.ZodType<
     z.array(z.nullable(LinkedTrackingCategory$inboundSchema)),
   ).optional(),
   active: z.nullable(z.boolean()).optional(),
+  department_id: z.nullable(z.string()).optional(),
+  location_id: z.nullable(z.string()).optional(),
+  subsidiary_id: z.nullable(z.string()).optional(),
+  tax_schedule_id: z.nullable(z.string()).optional(),
   row_version: z.nullable(z.string()).optional(),
   pass_through: z.array(PassThroughBody$inboundSchema).optional(),
 }).transform((v) => {
@@ -824,6 +882,10 @@ export const InvoiceItemInput$inboundSchema: z.ZodType<
     "expense_account": "expenseAccount",
     "tracking_category": "trackingCategory",
     "tracking_categories": "trackingCategories",
+    "department_id": "departmentId",
+    "location_id": "locationId",
+    "subsidiary_id": "subsidiaryId",
+    "tax_schedule_id": "taxScheduleId",
     "row_version": "rowVersion",
     "pass_through": "passThrough",
   });
@@ -856,6 +918,10 @@ export type InvoiceItemInput$Outbound = {
     | null
     | undefined;
   active?: boolean | null | undefined;
+  department_id?: string | null | undefined;
+  location_id?: string | null | undefined;
+  subsidiary_id?: string | null | undefined;
+  tax_schedule_id?: string | null | undefined;
   row_version?: string | null | undefined;
   pass_through?: Array<PassThroughBody$Outbound> | undefined;
 };
@@ -891,6 +957,10 @@ export const InvoiceItemInput$outboundSchema: z.ZodType<
     z.array(z.nullable(LinkedTrackingCategory$outboundSchema)),
   ).optional(),
   active: z.nullable(z.boolean()).optional(),
+  departmentId: z.nullable(z.string()).optional(),
+  locationId: z.nullable(z.string()).optional(),
+  subsidiaryId: z.nullable(z.string()).optional(),
+  taxScheduleId: z.nullable(z.string()).optional(),
   rowVersion: z.nullable(z.string()).optional(),
   passThrough: z.array(PassThroughBody$outboundSchema).optional(),
 }).transform((v) => {
@@ -904,6 +974,10 @@ export const InvoiceItemInput$outboundSchema: z.ZodType<
     expenseAccount: "expense_account",
     trackingCategory: "tracking_category",
     trackingCategories: "tracking_categories",
+    departmentId: "department_id",
+    locationId: "location_id",
+    subsidiaryId: "subsidiary_id",
+    taxScheduleId: "tax_schedule_id",
     rowVersion: "row_version",
     passThrough: "pass_through",
   });

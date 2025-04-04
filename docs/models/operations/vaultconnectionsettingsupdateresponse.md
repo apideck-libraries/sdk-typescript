@@ -79,11 +79,14 @@ let value: VaultConnectionSettingsUpdateResponse = {
               options: [
                 {
                   label: "General Channel",
-                  value: "general",
+                  value: [
+                    "team",
+                    "general",
+                  ],
                   optionType: "simple",
                 },
               ],
-              value: 10,
+              value: 10.5,
             },
           ],
         },
@@ -141,13 +144,7 @@ let value: VaultConnectionSettingsUpdateResponse = {
     error: "Bad Request",
     typeName: "RequestHeadersValidationError",
     message: "Invalid Params",
-    detail: {
-      "missing": [
-        {
-          "x-apideck-consumer-id": "required",
-        },
-      ],
-    },
+    detail: "Missing Header: x-apideck-consumer-id",
     ref: "https://developers.apideck.com/errors#unauthorizederror",
   },
 };

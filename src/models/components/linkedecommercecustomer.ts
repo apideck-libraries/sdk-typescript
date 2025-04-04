@@ -27,7 +27,7 @@ export type LinkedEcommerceCustomer = {
   /**
    * The ID of the customer this entity is linked to.
    */
-  id: string | null;
+  id?: string | null | undefined;
   /**
    * Full name of the customer
    */
@@ -44,8 +44,8 @@ export type LinkedEcommerceCustomer = {
    * Company name of the customer
    */
   companyName?: string | null | undefined;
-  phoneNumbers?: Array<PhoneNumber> | undefined;
-  emails?: Array<Email> | undefined;
+  phoneNumbers?: Array<PhoneNumber> | null | undefined;
+  emails?: Array<Email> | null | undefined;
 };
 
 /** @internal */
@@ -54,13 +54,13 @@ export const LinkedEcommerceCustomer$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  id: z.nullable(z.string()),
+  id: z.nullable(z.string()).optional(),
   name: z.nullable(z.string()).optional(),
   first_name: z.nullable(z.string()).optional(),
   last_name: z.nullable(z.string()).optional(),
   company_name: z.nullable(z.string()).optional(),
-  phone_numbers: z.array(PhoneNumber$inboundSchema).optional(),
-  emails: z.array(Email$inboundSchema).optional(),
+  phone_numbers: z.nullable(z.array(PhoneNumber$inboundSchema)).optional(),
+  emails: z.nullable(z.array(Email$inboundSchema)).optional(),
 }).transform((v) => {
   return remap$(v, {
     "first_name": "firstName",
@@ -72,13 +72,13 @@ export const LinkedEcommerceCustomer$inboundSchema: z.ZodType<
 
 /** @internal */
 export type LinkedEcommerceCustomer$Outbound = {
-  id: string | null;
+  id?: string | null | undefined;
   name?: string | null | undefined;
   first_name?: string | null | undefined;
   last_name?: string | null | undefined;
   company_name?: string | null | undefined;
-  phone_numbers?: Array<PhoneNumber$Outbound> | undefined;
-  emails?: Array<Email$Outbound> | undefined;
+  phone_numbers?: Array<PhoneNumber$Outbound> | null | undefined;
+  emails?: Array<Email$Outbound> | null | undefined;
 };
 
 /** @internal */
@@ -87,13 +87,13 @@ export const LinkedEcommerceCustomer$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   LinkedEcommerceCustomer
 > = z.object({
-  id: z.nullable(z.string()),
+  id: z.nullable(z.string()).optional(),
   name: z.nullable(z.string()).optional(),
   firstName: z.nullable(z.string()).optional(),
   lastName: z.nullable(z.string()).optional(),
   companyName: z.nullable(z.string()).optional(),
-  phoneNumbers: z.array(PhoneNumber$outboundSchema).optional(),
-  emails: z.array(Email$outboundSchema).optional(),
+  phoneNumbers: z.nullable(z.array(PhoneNumber$outboundSchema)).optional(),
+  emails: z.nullable(z.array(Email$outboundSchema)).optional(),
 }).transform((v) => {
   return remap$(v, {
     firstName: "first_name",

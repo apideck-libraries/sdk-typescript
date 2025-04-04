@@ -152,6 +152,7 @@ async function run() {
           customerId: "12345",
           departmentId: "12345",
           locationId: "12345",
+          subsidiaryId: "12345",
           taxRate: {
             id: "123456",
             rate: 10,
@@ -296,6 +297,7 @@ async function run() {
           customerId: "12345",
           departmentId: "12345",
           locationId: "12345",
+          subsidiaryId: "12345",
           taxRate: {
             id: "123456",
             rate: 10,
@@ -557,6 +559,7 @@ async function run() {
           customerId: "12345",
           departmentId: "12345",
           locationId: "12345",
+          subsidiaryId: "12345",
           taxRate: {
             id: "123456",
             rate: 10,
@@ -580,6 +583,7 @@ async function run() {
           customerId: "12345",
           departmentId: "12345",
           locationId: "12345",
+          subsidiaryId: "12345",
           taxRate: {
             id: "123456",
             rate: 10,
@@ -607,6 +611,7 @@ async function run() {
           customerId: "12345",
           departmentId: "12345",
           locationId: "12345",
+          subsidiaryId: "12345",
           taxRate: {
             id: "123456",
             rate: 10,
@@ -744,6 +749,7 @@ async function run() {
           customerId: "12345",
           departmentId: "12345",
           locationId: "12345",
+          subsidiaryId: "12345",
           taxRate: {
             id: "123456",
             rate: 10,
@@ -767,6 +773,7 @@ async function run() {
           customerId: "12345",
           departmentId: "12345",
           locationId: "12345",
+          subsidiaryId: "12345",
           taxRate: {
             id: "123456",
             rate: 10,
@@ -794,6 +801,7 @@ async function run() {
           customerId: "12345",
           departmentId: "12345",
           locationId: "12345",
+          subsidiaryId: "12345",
           taxRate: {
             id: "123456",
             rate: 10,

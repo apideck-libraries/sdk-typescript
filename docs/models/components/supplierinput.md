@@ -103,7 +103,9 @@ let value: SupplierInput = {
       id: "2389328923893298",
       name: "employee_level",
       description: "Employee Level",
-      value: true,
+      value: [
+        "<value>",
+      ],
     },
   ],
   rowVersion: "1-12345",

@@ -127,13 +127,13 @@ export type JournalEntryLineItem = {
    */
   supplier?: LinkedSupplier | null | undefined;
   /**
-   * A unique identifier for an object.
+   * The ID of the department
    */
-  departmentId?: string | undefined;
+  departmentId?: string | null | undefined;
   /**
-   * A unique identifier for an object.
+   * The ID of the location
    */
-  locationId?: string | undefined;
+  locationId?: string | null | undefined;
   /**
    * Line number of the resource
    */
@@ -179,6 +179,14 @@ export type JournalEntryLineItemInput = {
    * The supplier this entity is linked to.
    */
   supplier?: LinkedSupplierInput | null | undefined;
+  /**
+   * The ID of the department
+   */
+  departmentId?: string | null | undefined;
+  /**
+   * The ID of the location
+   */
+  locationId?: string | null | undefined;
   /**
    * Line number of the resource
    */
@@ -227,8 +235,8 @@ export const JournalEntryLineItem$inboundSchema: z.ZodType<
   ledger_account: z.nullable(LinkedLedgerAccount$inboundSchema),
   customer: z.nullable(LinkedCustomer$inboundSchema).optional(),
   supplier: z.nullable(LinkedSupplier$inboundSchema).optional(),
-  department_id: z.string().optional(),
-  location_id: z.string().optional(),
+  department_id: z.nullable(z.string()).optional(),
+  location_id: z.nullable(z.string()).optional(),
   line_number: z.nullable(z.number().int()).optional(),
 }).transform((v) => {
   return remap$(v, {
@@ -265,8 +273,8 @@ export type JournalEntryLineItem$Outbound = {
   ledger_account: LinkedLedgerAccount$Outbound | null;
   customer?: LinkedCustomer$Outbound | null | undefined;
   supplier?: LinkedSupplier$Outbound | null | undefined;
-  department_id?: string | undefined;
-  location_id?: string | undefined;
+  department_id?: string | null | undefined;
+  location_id?: string | null | undefined;
   line_number?: number | null | undefined;
 };
 
@@ -291,8 +299,8 @@ export const JournalEntryLineItem$outboundSchema: z.ZodType<
   ledgerAccount: z.nullable(LinkedLedgerAccount$outboundSchema),
   customer: z.nullable(LinkedCustomer$outboundSchema).optional(),
   supplier: z.nullable(LinkedSupplier$outboundSchema).optional(),
-  departmentId: z.string().optional(),
-  locationId: z.string().optional(),
+  departmentId: z.nullable(z.string()).optional(),
+  locationId: z.nullable(z.string()).optional(),
   lineNumber: z.nullable(z.number().int()).optional(),
 }).transform((v) => {
   return remap$(v, {
@@ -360,6 +368,8 @@ export const JournalEntryLineItemInput$inboundSchema: z.ZodType<
   ledger_account: z.nullable(LinkedLedgerAccountInput$inboundSchema),
   customer: z.nullable(LinkedCustomerInput$inboundSchema).optional(),
   supplier: z.nullable(LinkedSupplierInput$inboundSchema).optional(),
+  department_id: z.nullable(z.string()).optional(),
+  location_id: z.nullable(z.string()).optional(),
   line_number: z.nullable(z.number().int()).optional(),
 }).transform((v) => {
   return remap$(v, {
@@ -370,6 +380,8 @@ export const JournalEntryLineItemInput$inboundSchema: z.ZodType<
     "tracking_category": "trackingCategory",
     "tracking_categories": "trackingCategories",
     "ledger_account": "ledgerAccount",
+    "department_id": "departmentId",
+    "location_id": "locationId",
     "line_number": "lineNumber",
   });
 });
@@ -393,6 +405,8 @@ export type JournalEntryLineItemInput$Outbound = {
   ledger_account: LinkedLedgerAccountInput$Outbound | null;
   customer?: LinkedCustomerInput$Outbound | null | undefined;
   supplier?: LinkedSupplierInput$Outbound | null | undefined;
+  department_id?: string | null | undefined;
+  location_id?: string | null | undefined;
   line_number?: number | null | undefined;
 };
 
@@ -416,6 +430,8 @@ export const JournalEntryLineItemInput$outboundSchema: z.ZodType<
   ledgerAccount: z.nullable(LinkedLedgerAccountInput$outboundSchema),
   customer: z.nullable(LinkedCustomerInput$outboundSchema).optional(),
   supplier: z.nullable(LinkedSupplierInput$outboundSchema).optional(),
+  departmentId: z.nullable(z.string()).optional(),
+  locationId: z.nullable(z.string()).optional(),
   lineNumber: z.nullable(z.number().int()).optional(),
 }).transform((v) => {
   return remap$(v, {
@@ -426,6 +442,8 @@ export const JournalEntryLineItemInput$outboundSchema: z.ZodType<
     trackingCategory: "tracking_category",
     trackingCategories: "tracking_categories",
     ledgerAccount: "ledger_account",
+    departmentId: "department_id",
+    locationId: "location_id",
     lineNumber: "line_number",
   });
 });

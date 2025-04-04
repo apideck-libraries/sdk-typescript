@@ -68,19 +68,12 @@ let value: Connection = {
           id: "ProductInterest",
           options: [
             {
-              id: "1234",
               label: "General Channel",
-              options: [
-                {
-                  label: "General Channel",
-                  value: 123,
-                  optionType: "simple",
-                },
-              ],
-              optionType: "group",
+              value: 123,
+              optionType: "simple",
             },
           ],
-          value: 10.5,
+          value: 10,
         },
       ],
     },

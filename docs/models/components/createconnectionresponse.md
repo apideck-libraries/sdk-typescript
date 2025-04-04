@@ -78,14 +78,14 @@ let value: CreateConnectionResponse = {
                 options: [
                   {
                     label: "General Channel",
-                    value: 12.5,
+                    value: "general",
                     optionType: "simple",
                   },
                 ],
                 optionType: "group",
               },
             ],
-            value: 10,
+            value: 10.5,
           },
         ],
       },

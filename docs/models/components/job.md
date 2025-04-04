@@ -119,7 +119,7 @@ let value: Job = {
       id: "2389328923893298",
       name: "employee_level",
       description: "Employee Level",
-      value: {},
+      value: true,
     },
   ],
   deleted: true,

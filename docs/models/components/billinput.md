@@ -62,8 +62,8 @@ let value: BillInput = {
       unitOfMeasure: "pc.",
       discountPercentage: 0.01,
       discountAmount: 19.99,
-      locationId: "1234",
-      departmentId: "1234",
+      locationId: "12345",
+      departmentId: "12345",
       item: {
         id: "12344",
         code: "120-C",
@@ -133,7 +133,7 @@ let value: BillInput = {
       name: "employee_level",
       description: "Employee Level",
       value: [
-        {},
+        "<value>",
       ],
     },
   ],

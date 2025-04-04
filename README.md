@@ -28,6 +28,7 @@ For more information about the API: [Apideck Developer Docs](https://developers.
   * [Available Resources and Operations](#available-resources-and-operations)
   * [Standalone functions](#standalone-functions)
   * [Pagination](#pagination)
+  * [File uploads](#file-uploads)
   * [Retries](#retries)
   * [Error Handling](#error-handling)
   * [Server Selection](#server-selection)
@@ -129,6 +130,10 @@ run();
 ### [accounting](docs/sdks/accounting/README.md)
 
 
+#### [accounting.agedCreditors](docs/sdks/agedcreditors/README.md)
+
+* [get](docs/sdks/agedcreditors/README.md#get) - Get Aged Creditors
+
 #### [accounting.agedDebtors](docs/sdks/ageddebtors/README.md)
 
 * [get](docs/sdks/ageddebtors/README.md#get) - Get Aged Debtors
@@ -136,6 +141,7 @@ run();
 #### [accounting.attachments](docs/sdks/attachments/README.md)
 
 * [list](docs/sdks/attachments/README.md#list) - List Attachments
+* [upload](docs/sdks/attachments/README.md#upload) - Upload attachment
 * [get](docs/sdks/attachments/README.md#get) - Get Attachment
 * [delete](docs/sdks/attachments/README.md#delete) - Delete Attachment
 * [download](docs/sdks/attachments/README.md#download) - Download Attachment
@@ -396,6 +402,10 @@ run();
 #### [crm.pipelines](docs/sdks/pipelines/README.md)
 
 * [list](docs/sdks/pipelines/README.md#list) - List pipelines
+* [create](docs/sdks/pipelines/README.md#create) - Create pipeline
+* [get](docs/sdks/pipelines/README.md#get) - Get pipeline
+* [update](docs/sdks/pipelines/README.md#update) - Update pipeline
+* [delete](docs/sdks/pipelines/README.md#delete) - Delete pipeline
 
 #### [crm.users](docs/sdks/users/README.md)
 
@@ -476,6 +486,7 @@ run();
 
 * [create](docs/sdks/uploadsessions/README.md#create) - Start Upload Session
 * [get](docs/sdks/uploadsessions/README.md#get) - Get Upload Session
+* [upload](docs/sdks/uploadsessions/README.md#upload) - Upload part of File to Upload Session
 * [delete](docs/sdks/uploadsessions/README.md#delete) - Abort Upload Session
 * [finish](docs/sdks/uploadsessions/README.md#finish) - Finish Upload Session
 
@@ -662,11 +673,13 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 
 <summary>Available standalone functions</summary>
 
+- [`accountingAgedCreditorsGet`](docs/sdks/agedcreditors/README.md#get) - Get Aged Creditors
 - [`accountingAgedDebtorsGet`](docs/sdks/ageddebtors/README.md#get) - Get Aged Debtors
 - [`accountingAttachmentsDelete`](docs/sdks/attachments/README.md#delete) - Delete Attachment
 - [`accountingAttachmentsDownload`](docs/sdks/attachments/README.md#download) - Download Attachment
 - [`accountingAttachmentsGet`](docs/sdks/attachments/README.md#get) - Get Attachment
 - [`accountingAttachmentsList`](docs/sdks/attachments/README.md#list) - List Attachments
+- [`accountingAttachmentsUpload`](docs/sdks/attachments/README.md#upload) - Upload attachment
 - [`accountingBalanceSheetGet`](docs/sdks/balancesheet/README.md#get) - Get BalanceSheet
 - [`accountingBillPaymentsCreate`](docs/sdks/billpayments/README.md#create) - Create Bill Payment
 - [`accountingBillPaymentsDelete`](docs/sdks/billpayments/README.md#delete) - Delete Bill Payment
@@ -805,7 +818,11 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`crmOpportunitiesGet`](docs/sdks/opportunities/README.md#get) - Get opportunity
 - [`crmOpportunitiesList`](docs/sdks/opportunities/README.md#list) - List opportunities
 - [`crmOpportunitiesUpdate`](docs/sdks/opportunities/README.md#update) - Update opportunity
+- [`crmPipelinesCreate`](docs/sdks/pipelines/README.md#create) - Create pipeline
+- [`crmPipelinesDelete`](docs/sdks/pipelines/README.md#delete) - Delete pipeline
+- [`crmPipelinesGet`](docs/sdks/pipelines/README.md#get) - Get pipeline
 - [`crmPipelinesList`](docs/sdks/pipelines/README.md#list) - List pipelines
+- [`crmPipelinesUpdate`](docs/sdks/pipelines/README.md#update) - Update pipeline
 - [`crmUsersCreate`](docs/sdks/users/README.md#create) - Create user
 - [`crmUsersDelete`](docs/sdks/users/README.md#delete) - Delete user
 - [`crmUsersGet`](docs/sdks/users/README.md#get) - Get user
@@ -849,6 +866,7 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`fileStorageUploadSessionsDelete`](docs/sdks/uploadsessions/README.md#delete) - Abort Upload Session
 - [`fileStorageUploadSessionsFinish`](docs/sdks/uploadsessions/README.md#finish) - Finish Upload Session
 - [`fileStorageUploadSessionsGet`](docs/sdks/uploadsessions/README.md#get) - Get Upload Session
+- [`fileStorageUploadSessionsUpload`](docs/sdks/uploadsessions/README.md#upload) - Upload part of File to Upload Session
 - [`hrisCompaniesCreate`](docs/sdks/apideckcompanies/README.md#create) - Create Company
 - [`hrisCompaniesDelete`](docs/sdks/apideckcompanies/README.md#delete) - Delete Company
 - [`hrisCompaniesGet`](docs/sdks/apideckcompanies/README.md#get) - Get Company
@@ -972,6 +990,49 @@ run();
 
 ```
 <!-- End Pagination [pagination] -->
+
+<!-- Start File uploads [file-upload] -->
+## File uploads
+
+Certain SDK methods accept files as part of a multi-part request. It is possible and typically recommended to upload files as a stream rather than reading the entire contents into memory. This avoids excessive memory consumption and potentially crashing with out-of-memory errors when working with very large files. The following example demonstrates how to attach a file stream to a request.
+
+> [!TIP]
+>
+> Depending on your JavaScript runtime, there are convenient utilities that return a handle to a file without reading the entire contents into memory:
+>
+> - **Node.js v20+:** Since v20, Node.js comes with a native `openAsBlob` function in [`node:fs`](https://nodejs.org/docs/latest-v20.x/api/fs.html#fsopenasblobpath-options).
+> - **Bun:** The native [`Bun.file`](https://bun.sh/docs/api/file-io#reading-files-bun-file) function produces a file handle that can be used for streaming file uploads.
+> - **Browsers:** All supported browsers return an instance to a [`File`](https://developer.mozilla.org/en-US/docs/Web/API/File) when reading the value from an `<input type="file">` element.
+> - **Node.js v18:** A file stream can be created using the `fileFrom` helper from [`fetch-blob/from.js`](https://www.npmjs.com/package/fetch-blob).
+
+```typescript
+import { Apideck } from "@apideck/unify";
+import { openAsBlob } from "node:fs";
+
+const apideck = new Apideck({
+  apiKey: process.env["APIDECK_API_KEY"] ?? "",
+  consumerId: "test-consumer",
+  appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
+});
+
+async function run() {
+  const result = await apideck.accounting.attachments.upload({
+    referenceType: "invoice",
+    referenceId: "123456",
+    xApideckMetadata:
+      "{\"name\":\"document.pdf\",\"description\":\"Invoice attachment\"}",
+    serviceId: "salesforce",
+    requestBody: await openAsBlob("example.file"),
+  });
+
+  // Handle the result
+  console.log(result);
+}
+
+run();
+
+```
+<!-- End File uploads [file-upload] -->
 
 <!-- Start Retries [retries] -->
 ## Retries
@@ -1234,6 +1295,7 @@ run();
 The server URL can also be overridden on a per-operation basis, provided a server list was specified for the operation. For example:
 ```typescript
 import { Apideck } from "@apideck/unify";
+import { openAsBlob } from "node:fs";
 
 const apideck = new Apideck({
   apiKey: process.env["APIDECK_API_KEY"] ?? "",
@@ -1242,58 +1304,13 @@ const apideck = new Apideck({
 });
 
 async function run() {
-  const result = await apideck.fileStorage.uploadSessions.create({
+  const result = await apideck.accounting.attachments.upload({
+    referenceType: "invoice",
+    referenceId: "123456",
+    xApideckMetadata:
+      "{\"name\":\"document.pdf\",\"description\":\"Invoice attachment\"}",
     serviceId: "salesforce",
-    createUploadSessionRequest: {
-      name: "Documents",
-      parentFolderId: "1234",
-      driveId: "1234",
-      size: 1810673,
-      passThrough: [
-        {
-          serviceId: "<id>",
-          extendPaths: [
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
-          ],
-        },
-        {
-          serviceId: "<id>",
-          extendPaths: [
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
-          ],
-        },
-      ],
-    },
+    requestBody: await openAsBlob("example.file"),
   }, {
     serverURL: "https://upload.apideck.com",
   });

@@ -12,7 +12,7 @@ import {
   Connection$inboundSchema,
   Connection$Outbound,
   Connection$outboundSchema,
-} from "./connection.js";
+} from "./connectioninput.js";
 
 /**
  * Connection updated

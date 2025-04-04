@@ -88,7 +88,7 @@ let value: GetBillPaymentResponse = {
         id: "2389328923893298",
         name: "employee_level",
         description: "Employee Level",
-        value: 10,
+        value: {},
       },
     ],
     rowVersion: "1-12345",

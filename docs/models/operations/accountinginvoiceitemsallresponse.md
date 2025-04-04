@@ -81,6 +81,10 @@ let value: AccountingInvoiceItemsAllResponse = {
           },
         ],
         active: true,
+        departmentId: "12345",
+        locationId: "12345",
+        subsidiaryId: "12345",
+        taxScheduleId: "123456",
         rowVersion: "1-12345",
         updatedBy: "12345",
         createdBy: "12345",
@@ -124,7 +128,13 @@ let value: AccountingInvoiceItemsAllResponse = {
     error: "Bad Request",
     typeName: "RequestHeadersValidationError",
     message: "Invalid Params",
-    detail: "Missing Header: x-apideck-consumer-id",
+    detail: {
+      "missing": [
+        {
+          "x-apideck-consumer-id": "required",
+        },
+      ],
+    },
     ref: "https://developers.apideck.com/errors#unauthorizederror",
   },
 };

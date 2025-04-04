@@ -198,8 +198,8 @@ async function run() {
           unitOfMeasure: "pc.",
           discountPercentage: 0.01,
           discountAmount: 19.99,
-          locationId: "1234",
-          departmentId: "1234",
+          locationId: "12345",
+          departmentId: "12345",
           item: {
             id: "12344",
             code: "120-C",
@@ -254,8 +254,8 @@ async function run() {
           unitOfMeasure: "pc.",
           discountPercentage: 0.01,
           discountAmount: 19.99,
-          locationId: "1234",
-          departmentId: "1234",
+          locationId: "12345",
+          departmentId: "12345",
           item: {
             id: "12344",
             code: "120-C",
@@ -373,77 +373,35 @@ async function run() {
           name: "New York",
         },
       ],
+      customFields: [
+        {
+          id: "2389328923893298",
+          name: "employee_level",
+          description: "Employee Level",
+          value: {},
+        },
+        {
+          id: "2389328923893298",
+          name: "employee_level",
+          description: "Employee Level",
+          value: [
+            "<value>",
+            "<value>",
+            "<value>",
+          ],
+        },
+        {
+          id: "2389328923893298",
+          name: "employee_level",
+          description: "Employee Level",
+          value: true,
+        },
+      ],
       rowVersion: "1-12345",
       passThrough: [
         {
           serviceId: "<id>",
           extendPaths: [
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
-          ],
-        },
-        {
-          serviceId: "<id>",
-          extendPaths: [
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
-          ],
-        },
-        {
-          serviceId: "<id>",
-          extendPaths: [
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
             {
               path: "$.nested.property",
               value: {
@@ -544,8 +502,8 @@ async function run() {
           unitOfMeasure: "pc.",
           discountPercentage: 0.01,
           discountAmount: 19.99,
-          locationId: "1234",
-          departmentId: "1234",
+          locationId: "12345",
+          departmentId: "12345",
           item: {
             id: "12344",
             code: "120-C",
@@ -600,8 +558,8 @@ async function run() {
           unitOfMeasure: "pc.",
           discountPercentage: 0.01,
           discountAmount: 19.99,
-          locationId: "1234",
-          departmentId: "1234",
+          locationId: "12345",
+          departmentId: "12345",
           item: {
             id: "12344",
             code: "120-C",
@@ -719,77 +677,35 @@ async function run() {
           name: "New York",
         },
       ],
+      customFields: [
+        {
+          id: "2389328923893298",
+          name: "employee_level",
+          description: "Employee Level",
+          value: {},
+        },
+        {
+          id: "2389328923893298",
+          name: "employee_level",
+          description: "Employee Level",
+          value: [
+            "<value>",
+            "<value>",
+            "<value>",
+          ],
+        },
+        {
+          id: "2389328923893298",
+          name: "employee_level",
+          description: "Employee Level",
+          value: true,
+        },
+      ],
       rowVersion: "1-12345",
       passThrough: [
         {
           serviceId: "<id>",
           extendPaths: [
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
-          ],
-        },
-        {
-          serviceId: "<id>",
-          extendPaths: [
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
-          ],
-        },
-        {
-          serviceId: "<id>",
-          extendPaths: [
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
             {
               path: "$.nested.property",
               value: {
@@ -1007,8 +923,8 @@ async function run() {
           unitOfMeasure: "pc.",
           discountPercentage: 0.01,
           discountAmount: 19.99,
-          locationId: "1234",
-          departmentId: "1234",
+          locationId: "12345",
+          departmentId: "12345",
           item: {
             id: "12344",
             code: "120-C",
@@ -1066,8 +982,8 @@ async function run() {
           unitOfMeasure: "pc.",
           discountPercentage: 0.01,
           discountAmount: 19.99,
-          locationId: "1234",
-          departmentId: "1234",
+          locationId: "12345",
+          departmentId: "12345",
           item: {
             id: "12344",
             code: "120-C",
@@ -1122,8 +1038,8 @@ async function run() {
           unitOfMeasure: "pc.",
           discountPercentage: 0.01,
           discountAmount: 19.99,
-          locationId: "1234",
-          departmentId: "1234",
+          locationId: "12345",
+          departmentId: "12345",
           item: {
             id: "12344",
             code: "120-C",
@@ -1221,32 +1137,34 @@ async function run() {
           name: "New York",
         },
       ],
+      customFields: [
+        {
+          id: "2389328923893298",
+          name: "employee_level",
+          description: "Employee Level",
+          value: 10,
+        },
+        {
+          id: "2389328923893298",
+          name: "employee_level",
+          description: "Employee Level",
+          value: true,
+        },
+        {
+          id: "2389328923893298",
+          name: "employee_level",
+          description: "Employee Level",
+          value: [
+            "<value>",
+            "<value>",
+          ],
+        },
+      ],
       rowVersion: "1-12345",
       passThrough: [
         {
           serviceId: "<id>",
           extendPaths: [
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
-          ],
-        },
-        {
-          serviceId: "<id>",
-          extendPaths: [
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
             {
               path: "$.nested.property",
               value: {
@@ -1377,8 +1295,8 @@ async function run() {
           unitOfMeasure: "pc.",
           discountPercentage: 0.01,
           discountAmount: 19.99,
-          locationId: "1234",
-          departmentId: "1234",
+          locationId: "12345",
+          departmentId: "12345",
           item: {
             id: "12344",
             code: "120-C",
@@ -1436,8 +1354,8 @@ async function run() {
           unitOfMeasure: "pc.",
           discountPercentage: 0.01,
           discountAmount: 19.99,
-          locationId: "1234",
-          departmentId: "1234",
+          locationId: "12345",
+          departmentId: "12345",
           item: {
             id: "12344",
             code: "120-C",
@@ -1492,8 +1410,8 @@ async function run() {
           unitOfMeasure: "pc.",
           discountPercentage: 0.01,
           discountAmount: 19.99,
-          locationId: "1234",
-          departmentId: "1234",
+          locationId: "12345",
+          departmentId: "12345",
           item: {
             id: "12344",
             code: "120-C",
@@ -1591,32 +1509,34 @@ async function run() {
           name: "New York",
         },
       ],
+      customFields: [
+        {
+          id: "2389328923893298",
+          name: "employee_level",
+          description: "Employee Level",
+          value: 10,
+        },
+        {
+          id: "2389328923893298",
+          name: "employee_level",
+          description: "Employee Level",
+          value: true,
+        },
+        {
+          id: "2389328923893298",
+          name: "employee_level",
+          description: "Employee Level",
+          value: [
+            "<value>",
+            "<value>",
+          ],
+        },
+      ],
       rowVersion: "1-12345",
       passThrough: [
         {
           serviceId: "<id>",
           extendPaths: [
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
-          ],
-        },
-        {
-          serviceId: "<id>",
-          extendPaths: [
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
             {
               path: "$.nested.property",
               value: {

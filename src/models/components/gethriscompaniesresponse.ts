@@ -12,7 +12,7 @@ import {
   HrisCompany$inboundSchema,
   HrisCompany$Outbound,
   HrisCompany$outboundSchema,
-} from "./hriscompany.js";
+} from "./hriscompanyinput.js";
 import {
   Links,
   Links$inboundSchema,

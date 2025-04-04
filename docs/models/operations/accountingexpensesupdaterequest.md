@@ -38,6 +38,7 @@ let value: AccountingExpensesUpdateRequest = {
         customerId: "12345",
         departmentId: "12345",
         locationId: "12345",
+        subsidiaryId: "12345",
         taxRate: {
           id: "123456",
           rate: 10,
@@ -52,9 +53,7 @@ let value: AccountingExpensesUpdateRequest = {
         id: "2389328923893298",
         name: "employee_level",
         description: "Employee Level",
-        value: [
-          "<value>",
-        ],
+        value: true,
       },
     ],
     rowVersion: "1-12345",

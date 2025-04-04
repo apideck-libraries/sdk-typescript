@@ -12,16 +12,9 @@ let value: ConnectionConfiguration = {
       id: "ProductInterest",
       options: [
         {
-          id: "1234",
           label: "General Channel",
-          options: [
-            {
-              label: "General Channel",
-              value: true,
-              optionType: "simple",
-            },
-          ],
-          optionType: "group",
+          value: "general",
+          optionType: "simple",
         },
       ],
       value: true,

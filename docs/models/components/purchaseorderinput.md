@@ -66,8 +66,8 @@ let value: PurchaseOrderInput = {
       unitOfMeasure: "pc.",
       discountPercentage: 0.01,
       discountAmount: 19.99,
-      locationId: "1234",
-      departmentId: "1234",
+      locationId: "12345",
+      departmentId: "12345",
       item: {
         id: "12344",
         code: "120-C",
@@ -157,6 +157,16 @@ let value: PurchaseOrderInput = {
       name: "New York",
     },
   ],
+  customFields: [
+    {
+      id: "2389328923893298",
+      name: "employee_level",
+      description: "Employee Level",
+      value: [
+        {},
+      ],
+    },
+  ],
   rowVersion: "1-12345",
   passThrough: [
     {
@@ -207,5 +217,6 @@ let value: PurchaseOrderInput = {
 | `channel`                                                                                                                                               | *string*                                                                                                                                                | :heavy_minus_sign:                                                                                                                                      | The channel through which the transaction is processed.                                                                                                 | email                                                                                                                                                   |
 | `memo`                                                                                                                                                  | *string*                                                                                                                                                | :heavy_minus_sign:                                                                                                                                      | Message for the supplier. This text appears on the Purchase Order.                                                                                      | Thank you for the partnership and have a great day!                                                                                                     |
 | `trackingCategories`                                                                                                                                    | [components.LinkedTrackingCategory](../../models/components/linkedtrackingcategory.md)[]                                                                | :heavy_minus_sign:                                                                                                                                      | A list of linked tracking categories.                                                                                                                   |                                                                                                                                                         |
+| `customFields`                                                                                                                                          | [components.CustomField](../../models/components/customfield.md)[]                                                                                      | :heavy_minus_sign:                                                                                                                                      | N/A                                                                                                                                                     |                                                                                                                                                         |
 | `rowVersion`                                                                                                                                            | *string*                                                                                                                                                | :heavy_minus_sign:                                                                                                                                      | A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.              | 1-12345                                                                                                                                                 |
 | `passThrough`                                                                                                                                           | [components.PassThroughBody](../../models/components/passthroughbody.md)[]                                                                              | :heavy_minus_sign:                                                                                                                                      | The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources. |                                                                                                                                                         |

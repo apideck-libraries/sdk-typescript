@@ -18,17 +18,16 @@ let value: Configuration = {
           options: [
             {
               label: "General Channel",
-              value: [
-                "team",
-                "general",
-              ],
+              value: 123,
               optionType: "simple",
             },
           ],
           optionType: "group",
         },
       ],
-      value: 10.5,
+      value: [
+        10.5,
+      ],
     },
   ],
 };

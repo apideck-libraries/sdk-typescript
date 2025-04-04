@@ -80,11 +80,11 @@ let value: VaultConnectionsAllResponse = {
                 options: [
                   {
                     label: "General Channel",
-                    value: 123,
+                    value: true,
                     optionType: "simple",
                   },
                 ],
-                value: 10.5,
+                value: true,
               },
             ],
           },
