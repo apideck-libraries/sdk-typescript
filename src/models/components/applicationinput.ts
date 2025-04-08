@@ -38,6 +38,17 @@ export type Stage = {
   name?: string | null | undefined;
 };
 
+export type ApplicationInput = {
+  applicantId: string | null;
+  jobId: string | null;
+  status?: ApplicationStatus | null | undefined;
+  stage?: Stage | undefined;
+  /**
+   * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
+   */
+  passThrough?: Array<PassThroughBody> | undefined;
+};
+
 export type Application = {
   /**
    * A unique identifier for an object.
@@ -67,17 +78,6 @@ export type Application = {
    * The date and time when the object was created.
    */
   createdAt?: Date | null | undefined;
-  /**
-   * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
-   */
-  passThrough?: Array<PassThroughBody> | undefined;
-};
-
-export type ApplicationInput = {
-  applicantId: string | null;
-  jobId: string | null;
-  status?: ApplicationStatus | null | undefined;
-  stage?: Stage | undefined;
   /**
    * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
    */
@@ -152,6 +152,84 @@ export function stageFromJSON(
     jsonString,
     (x) => Stage$inboundSchema.parse(JSON.parse(x)),
     `Failed to parse 'Stage' from JSON`,
+  );
+}
+
+/** @internal */
+export const ApplicationInput$inboundSchema: z.ZodType<
+  ApplicationInput,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  applicant_id: z.nullable(z.string()),
+  job_id: z.nullable(z.string()),
+  status: z.nullable(ApplicationStatus$inboundSchema).optional(),
+  stage: z.lazy(() => Stage$inboundSchema).optional(),
+  pass_through: z.array(PassThroughBody$inboundSchema).optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "applicant_id": "applicantId",
+    "job_id": "jobId",
+    "pass_through": "passThrough",
+  });
+});
+
+/** @internal */
+export type ApplicationInput$Outbound = {
+  applicant_id: string | null;
+  job_id: string | null;
+  status?: string | null | undefined;
+  stage?: Stage$Outbound | undefined;
+  pass_through?: Array<PassThroughBody$Outbound> | undefined;
+};
+
+/** @internal */
+export const ApplicationInput$outboundSchema: z.ZodType<
+  ApplicationInput$Outbound,
+  z.ZodTypeDef,
+  ApplicationInput
+> = z.object({
+  applicantId: z.nullable(z.string()),
+  jobId: z.nullable(z.string()),
+  status: z.nullable(ApplicationStatus$outboundSchema).optional(),
+  stage: z.lazy(() => Stage$outboundSchema).optional(),
+  passThrough: z.array(PassThroughBody$outboundSchema).optional(),
+}).transform((v) => {
+  return remap$(v, {
+    applicantId: "applicant_id",
+    jobId: "job_id",
+    passThrough: "pass_through",
+  });
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace ApplicationInput$ {
+  /** @deprecated use `ApplicationInput$inboundSchema` instead. */
+  export const inboundSchema = ApplicationInput$inboundSchema;
+  /** @deprecated use `ApplicationInput$outboundSchema` instead. */
+  export const outboundSchema = ApplicationInput$outboundSchema;
+  /** @deprecated use `ApplicationInput$Outbound` instead. */
+  export type Outbound = ApplicationInput$Outbound;
+}
+
+export function applicationInputToJSON(
+  applicationInput: ApplicationInput,
+): string {
+  return JSON.stringify(
+    ApplicationInput$outboundSchema.parse(applicationInput),
+  );
+}
+
+export function applicationInputFromJSON(
+  jsonString: string,
+): SafeParseResult<ApplicationInput, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ApplicationInput$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ApplicationInput' from JSON`,
   );
 }
 
@@ -258,83 +336,5 @@ export function applicationFromJSON(
     jsonString,
     (x) => Application$inboundSchema.parse(JSON.parse(x)),
     `Failed to parse 'Application' from JSON`,
-  );
-}
-
-/** @internal */
-export const ApplicationInput$inboundSchema: z.ZodType<
-  ApplicationInput,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  applicant_id: z.nullable(z.string()),
-  job_id: z.nullable(z.string()),
-  status: z.nullable(ApplicationStatus$inboundSchema).optional(),
-  stage: z.lazy(() => Stage$inboundSchema).optional(),
-  pass_through: z.array(PassThroughBody$inboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "applicant_id": "applicantId",
-    "job_id": "jobId",
-    "pass_through": "passThrough",
-  });
-});
-
-/** @internal */
-export type ApplicationInput$Outbound = {
-  applicant_id: string | null;
-  job_id: string | null;
-  status?: string | null | undefined;
-  stage?: Stage$Outbound | undefined;
-  pass_through?: Array<PassThroughBody$Outbound> | undefined;
-};
-
-/** @internal */
-export const ApplicationInput$outboundSchema: z.ZodType<
-  ApplicationInput$Outbound,
-  z.ZodTypeDef,
-  ApplicationInput
-> = z.object({
-  applicantId: z.nullable(z.string()),
-  jobId: z.nullable(z.string()),
-  status: z.nullable(ApplicationStatus$outboundSchema).optional(),
-  stage: z.lazy(() => Stage$outboundSchema).optional(),
-  passThrough: z.array(PassThroughBody$outboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    applicantId: "applicant_id",
-    jobId: "job_id",
-    passThrough: "pass_through",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ApplicationInput$ {
-  /** @deprecated use `ApplicationInput$inboundSchema` instead. */
-  export const inboundSchema = ApplicationInput$inboundSchema;
-  /** @deprecated use `ApplicationInput$outboundSchema` instead. */
-  export const outboundSchema = ApplicationInput$outboundSchema;
-  /** @deprecated use `ApplicationInput$Outbound` instead. */
-  export type Outbound = ApplicationInput$Outbound;
-}
-
-export function applicationInputToJSON(
-  applicationInput: ApplicationInput,
-): string {
-  return JSON.stringify(
-    ApplicationInput$outboundSchema.parse(applicationInput),
-  );
-}
-
-export function applicationInputFromJSON(
-  jsonString: string,
-): SafeParseResult<ApplicationInput, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => ApplicationInput$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ApplicationInput' from JSON`,
   );
 }

@@ -24,7 +24,7 @@ import {
   TaxRate$inboundSchema,
   TaxRate$Outbound,
   TaxRate$outboundSchema,
-} from "./taxrate.js";
+} from "./taxrateinput.js";
 
 /**
  * TaxRates

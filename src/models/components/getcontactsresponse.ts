@@ -12,7 +12,7 @@ import {
   Contact$inboundSchema,
   Contact$Outbound,
   Contact$outboundSchema,
-} from "./contactinput.js";
+} from "./contact.js";
 import {
   Links,
   Links$inboundSchema,

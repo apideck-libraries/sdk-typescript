@@ -24,7 +24,7 @@ import {
   Supplier$inboundSchema,
   Supplier$Outbound,
   Supplier$outboundSchema,
-} from "./supplierinput.js";
+} from "./supplier.js";
 
 /**
  * Suppliers

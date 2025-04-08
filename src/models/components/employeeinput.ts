@@ -48,7 +48,7 @@ import {
   EmployeeCompensationInput$inboundSchema,
   EmployeeCompensationInput$Outbound,
   EmployeeCompensationInput$outboundSchema,
-} from "./employeecompensationinput.js";
+} from "./employeecompensation.js";
 import {
   EmployeeJob,
   EmployeeJob$inboundSchema,
@@ -58,7 +58,7 @@ import {
   EmployeeJobInput$inboundSchema,
   EmployeeJobInput$Outbound,
   EmployeeJobInput$outboundSchema,
-} from "./employeejob.js";
+} from "./employeejobinput.js";
 import {
   EmploymentStatus,
   EmploymentStatus$inboundSchema,

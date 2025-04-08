@@ -12,7 +12,7 @@ import {
   AccountingDepartment$inboundSchema,
   AccountingDepartment$Outbound,
   AccountingDepartment$outboundSchema,
-} from "./accountingdepartment.js";
+} from "./accountingdepartmentinput.js";
 
 /**
  * Location

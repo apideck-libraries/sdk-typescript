@@ -12,7 +12,7 @@ import {
   AllocationInput$inboundSchema,
   AllocationInput$Outbound,
   AllocationInput$outboundSchema,
-} from "./allocation.js";
+} from "./allocationinput.js";
 import {
   Currency,
   Currency$inboundSchema,

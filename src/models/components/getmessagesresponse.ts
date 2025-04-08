@@ -18,7 +18,7 @@ import {
   Message$inboundSchema,
   Message$Outbound,
   Message$outboundSchema,
-} from "./message.js";
+} from "./messageinput.js";
 import {
   Meta,
   Meta$inboundSchema,

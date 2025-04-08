@@ -17,7 +17,7 @@ import {
   ActivityAttendeeInput$inboundSchema,
   ActivityAttendeeInput$Outbound,
   ActivityAttendeeInput$outboundSchema,
-} from "./activityattendee.js";
+} from "./activityattendeeinput.js";
 import {
   Address,
   Address$inboundSchema,

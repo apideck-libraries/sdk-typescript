@@ -12,7 +12,7 @@ import {
   CreditNote$inboundSchema,
   CreditNote$Outbound,
   CreditNote$outboundSchema,
-} from "./creditnoteinput.js";
+} from "./creditnote.js";
 
 /**
  * Credit Note
