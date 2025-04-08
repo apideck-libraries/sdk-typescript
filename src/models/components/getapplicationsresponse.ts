@@ -12,7 +12,7 @@ import {
   Application$inboundSchema,
   Application$Outbound,
   Application$outboundSchema,
-} from "./application.js";
+} from "./applicationinput.js";
 import {
   Links,
   Links$inboundSchema,

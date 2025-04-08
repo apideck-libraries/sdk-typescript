@@ -28,7 +28,7 @@ export const AllocationType = {
  */
 export type AllocationType = ClosedEnum<typeof AllocationType>;
 
-export type Allocation = {
+export type AllocationInput = {
   /**
    * Unique identifier of entity this payment should be attributed to.
    */
@@ -37,7 +37,6 @@ export type Allocation = {
    * Type of entity this payment should be attributed to.
    */
   type?: AllocationType | undefined;
-  code?: string | undefined;
   /**
    * Amount of payment that should be attributed to this allocation. If null, the total_amount will be used.
    */
@@ -48,7 +47,7 @@ export type Allocation = {
   allocationId?: string | undefined;
 };
 
-export type AllocationInput = {
+export type Allocation = {
   /**
    * Unique identifier of entity this payment should be attributed to.
    */
@@ -57,6 +56,7 @@ export type AllocationInput = {
    * Type of entity this payment should be attributed to.
    */
   type?: AllocationType | undefined;
+  code?: string | undefined;
   /**
    * Amount of payment that should be attributed to this allocation. If null, the total_amount will be used.
    */
@@ -86,6 +86,75 @@ export namespace AllocationType$ {
   export const inboundSchema = AllocationType$inboundSchema;
   /** @deprecated use `AllocationType$outboundSchema` instead. */
   export const outboundSchema = AllocationType$outboundSchema;
+}
+
+/** @internal */
+export const AllocationInput$inboundSchema: z.ZodType<
+  AllocationInput,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  id: z.string().optional(),
+  type: AllocationType$inboundSchema.optional(),
+  amount: z.nullable(z.number()).optional(),
+  allocation_id: z.string().optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "allocation_id": "allocationId",
+  });
+});
+
+/** @internal */
+export type AllocationInput$Outbound = {
+  id?: string | undefined;
+  type?: string | undefined;
+  amount?: number | null | undefined;
+  allocation_id?: string | undefined;
+};
+
+/** @internal */
+export const AllocationInput$outboundSchema: z.ZodType<
+  AllocationInput$Outbound,
+  z.ZodTypeDef,
+  AllocationInput
+> = z.object({
+  id: z.string().optional(),
+  type: AllocationType$outboundSchema.optional(),
+  amount: z.nullable(z.number()).optional(),
+  allocationId: z.string().optional(),
+}).transform((v) => {
+  return remap$(v, {
+    allocationId: "allocation_id",
+  });
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace AllocationInput$ {
+  /** @deprecated use `AllocationInput$inboundSchema` instead. */
+  export const inboundSchema = AllocationInput$inboundSchema;
+  /** @deprecated use `AllocationInput$outboundSchema` instead. */
+  export const outboundSchema = AllocationInput$outboundSchema;
+  /** @deprecated use `AllocationInput$Outbound` instead. */
+  export type Outbound = AllocationInput$Outbound;
+}
+
+export function allocationInputToJSON(
+  allocationInput: AllocationInput,
+): string {
+  return JSON.stringify(AllocationInput$outboundSchema.parse(allocationInput));
+}
+
+export function allocationInputFromJSON(
+  jsonString: string,
+): SafeParseResult<AllocationInput, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => AllocationInput$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AllocationInput' from JSON`,
+  );
 }
 
 /** @internal */
@@ -155,74 +224,5 @@ export function allocationFromJSON(
     jsonString,
     (x) => Allocation$inboundSchema.parse(JSON.parse(x)),
     `Failed to parse 'Allocation' from JSON`,
-  );
-}
-
-/** @internal */
-export const AllocationInput$inboundSchema: z.ZodType<
-  AllocationInput,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  id: z.string().optional(),
-  type: AllocationType$inboundSchema.optional(),
-  amount: z.nullable(z.number()).optional(),
-  allocation_id: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "allocation_id": "allocationId",
-  });
-});
-
-/** @internal */
-export type AllocationInput$Outbound = {
-  id?: string | undefined;
-  type?: string | undefined;
-  amount?: number | null | undefined;
-  allocation_id?: string | undefined;
-};
-
-/** @internal */
-export const AllocationInput$outboundSchema: z.ZodType<
-  AllocationInput$Outbound,
-  z.ZodTypeDef,
-  AllocationInput
-> = z.object({
-  id: z.string().optional(),
-  type: AllocationType$outboundSchema.optional(),
-  amount: z.nullable(z.number()).optional(),
-  allocationId: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    allocationId: "allocation_id",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AllocationInput$ {
-  /** @deprecated use `AllocationInput$inboundSchema` instead. */
-  export const inboundSchema = AllocationInput$inboundSchema;
-  /** @deprecated use `AllocationInput$outboundSchema` instead. */
-  export const outboundSchema = AllocationInput$outboundSchema;
-  /** @deprecated use `AllocationInput$Outbound` instead. */
-  export type Outbound = AllocationInput$Outbound;
-}
-
-export function allocationInputToJSON(
-  allocationInput: AllocationInput,
-): string {
-  return JSON.stringify(AllocationInput$outboundSchema.parse(allocationInput));
-}
-
-export function allocationInputFromJSON(
-  jsonString: string,
-): SafeParseResult<AllocationInput, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => AllocationInput$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'AllocationInput' from JSON`,
   );
 }

@@ -45,6 +45,30 @@ export const DepartmentStatus = {
  */
 export type DepartmentStatus = ClosedEnum<typeof DepartmentStatus>;
 
+export type AccountingDepartmentInput = {
+  /**
+   * A unique identifier for an object.
+   */
+  parentId?: string | null | undefined;
+  /**
+   * The name of the department.
+   */
+  name?: string | null | undefined;
+  /**
+   * Based on the status some functionality is enabled or disabled.
+   */
+  status?: DepartmentStatus | undefined;
+  subsidiaries?: Array<SubsidiaryReferenceInput> | undefined;
+  /**
+   * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
+   */
+  rowVersion?: string | null | undefined;
+  /**
+   * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
+   */
+  passThrough?: Array<PassThroughBody> | undefined;
+};
+
 export type AccountingDepartment = {
   /**
    * A unique identifier for an object.
@@ -93,30 +117,6 @@ export type AccountingDepartment = {
   passThrough?: Array<PassThroughBody> | undefined;
 };
 
-export type AccountingDepartmentInput = {
-  /**
-   * A unique identifier for an object.
-   */
-  parentId?: string | null | undefined;
-  /**
-   * The name of the department.
-   */
-  name?: string | null | undefined;
-  /**
-   * Based on the status some functionality is enabled or disabled.
-   */
-  status?: DepartmentStatus | undefined;
-  subsidiaries?: Array<SubsidiaryReferenceInput> | undefined;
-  /**
-   * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
-   */
-  rowVersion?: string | null | undefined;
-  /**
-   * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
-   */
-  passThrough?: Array<PassThroughBody> | undefined;
-};
-
 /** @internal */
 export const DepartmentStatus$inboundSchema: z.ZodNativeEnum<
   typeof DepartmentStatus
@@ -136,6 +136,87 @@ export namespace DepartmentStatus$ {
   export const inboundSchema = DepartmentStatus$inboundSchema;
   /** @deprecated use `DepartmentStatus$outboundSchema` instead. */
   export const outboundSchema = DepartmentStatus$outboundSchema;
+}
+
+/** @internal */
+export const AccountingDepartmentInput$inboundSchema: z.ZodType<
+  AccountingDepartmentInput,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  parent_id: z.nullable(z.string()).optional(),
+  name: z.nullable(z.string()).optional(),
+  status: DepartmentStatus$inboundSchema.optional(),
+  subsidiaries: z.array(SubsidiaryReferenceInput$inboundSchema).optional(),
+  row_version: z.nullable(z.string()).optional(),
+  pass_through: z.array(PassThroughBody$inboundSchema).optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "parent_id": "parentId",
+    "row_version": "rowVersion",
+    "pass_through": "passThrough",
+  });
+});
+
+/** @internal */
+export type AccountingDepartmentInput$Outbound = {
+  parent_id?: string | null | undefined;
+  name?: string | null | undefined;
+  status?: string | undefined;
+  subsidiaries?: Array<SubsidiaryReferenceInput$Outbound> | undefined;
+  row_version?: string | null | undefined;
+  pass_through?: Array<PassThroughBody$Outbound> | undefined;
+};
+
+/** @internal */
+export const AccountingDepartmentInput$outboundSchema: z.ZodType<
+  AccountingDepartmentInput$Outbound,
+  z.ZodTypeDef,
+  AccountingDepartmentInput
+> = z.object({
+  parentId: z.nullable(z.string()).optional(),
+  name: z.nullable(z.string()).optional(),
+  status: DepartmentStatus$outboundSchema.optional(),
+  subsidiaries: z.array(SubsidiaryReferenceInput$outboundSchema).optional(),
+  rowVersion: z.nullable(z.string()).optional(),
+  passThrough: z.array(PassThroughBody$outboundSchema).optional(),
+}).transform((v) => {
+  return remap$(v, {
+    parentId: "parent_id",
+    rowVersion: "row_version",
+    passThrough: "pass_through",
+  });
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace AccountingDepartmentInput$ {
+  /** @deprecated use `AccountingDepartmentInput$inboundSchema` instead. */
+  export const inboundSchema = AccountingDepartmentInput$inboundSchema;
+  /** @deprecated use `AccountingDepartmentInput$outboundSchema` instead. */
+  export const outboundSchema = AccountingDepartmentInput$outboundSchema;
+  /** @deprecated use `AccountingDepartmentInput$Outbound` instead. */
+  export type Outbound = AccountingDepartmentInput$Outbound;
+}
+
+export function accountingDepartmentInputToJSON(
+  accountingDepartmentInput: AccountingDepartmentInput,
+): string {
+  return JSON.stringify(
+    AccountingDepartmentInput$outboundSchema.parse(accountingDepartmentInput),
+  );
+}
+
+export function accountingDepartmentInputFromJSON(
+  jsonString: string,
+): SafeParseResult<AccountingDepartmentInput, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => AccountingDepartmentInput$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AccountingDepartmentInput' from JSON`,
+  );
 }
 
 /** @internal */
@@ -248,86 +329,5 @@ export function accountingDepartmentFromJSON(
     jsonString,
     (x) => AccountingDepartment$inboundSchema.parse(JSON.parse(x)),
     `Failed to parse 'AccountingDepartment' from JSON`,
-  );
-}
-
-/** @internal */
-export const AccountingDepartmentInput$inboundSchema: z.ZodType<
-  AccountingDepartmentInput,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  parent_id: z.nullable(z.string()).optional(),
-  name: z.nullable(z.string()).optional(),
-  status: DepartmentStatus$inboundSchema.optional(),
-  subsidiaries: z.array(SubsidiaryReferenceInput$inboundSchema).optional(),
-  row_version: z.nullable(z.string()).optional(),
-  pass_through: z.array(PassThroughBody$inboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "parent_id": "parentId",
-    "row_version": "rowVersion",
-    "pass_through": "passThrough",
-  });
-});
-
-/** @internal */
-export type AccountingDepartmentInput$Outbound = {
-  parent_id?: string | null | undefined;
-  name?: string | null | undefined;
-  status?: string | undefined;
-  subsidiaries?: Array<SubsidiaryReferenceInput$Outbound> | undefined;
-  row_version?: string | null | undefined;
-  pass_through?: Array<PassThroughBody$Outbound> | undefined;
-};
-
-/** @internal */
-export const AccountingDepartmentInput$outboundSchema: z.ZodType<
-  AccountingDepartmentInput$Outbound,
-  z.ZodTypeDef,
-  AccountingDepartmentInput
-> = z.object({
-  parentId: z.nullable(z.string()).optional(),
-  name: z.nullable(z.string()).optional(),
-  status: DepartmentStatus$outboundSchema.optional(),
-  subsidiaries: z.array(SubsidiaryReferenceInput$outboundSchema).optional(),
-  rowVersion: z.nullable(z.string()).optional(),
-  passThrough: z.array(PassThroughBody$outboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    parentId: "parent_id",
-    rowVersion: "row_version",
-    passThrough: "pass_through",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AccountingDepartmentInput$ {
-  /** @deprecated use `AccountingDepartmentInput$inboundSchema` instead. */
-  export const inboundSchema = AccountingDepartmentInput$inboundSchema;
-  /** @deprecated use `AccountingDepartmentInput$outboundSchema` instead. */
-  export const outboundSchema = AccountingDepartmentInput$outboundSchema;
-  /** @deprecated use `AccountingDepartmentInput$Outbound` instead. */
-  export type Outbound = AccountingDepartmentInput$Outbound;
-}
-
-export function accountingDepartmentInputToJSON(
-  accountingDepartmentInput: AccountingDepartmentInput,
-): string {
-  return JSON.stringify(
-    AccountingDepartmentInput$outboundSchema.parse(accountingDepartmentInput),
-  );
-}
-
-export function accountingDepartmentInputFromJSON(
-  jsonString: string,
-): SafeParseResult<AccountingDepartmentInput, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => AccountingDepartmentInput$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'AccountingDepartmentInput' from JSON`,
   );
 }

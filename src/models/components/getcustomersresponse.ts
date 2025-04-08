@@ -12,7 +12,7 @@ import {
   Customer$inboundSchema,
   Customer$Outbound,
   Customer$outboundSchema,
-} from "./customerinput.js";
+} from "./customer.js";
 import {
   Links,
   Links$inboundSchema,

@@ -91,73 +91,6 @@ export type SocialLinks = {
   type?: string | null | undefined;
 };
 
-export type ApplicantInput = {
-  /**
-   * The name of an applicant.
-   */
-  name?: string | undefined;
-  /**
-   * The first name of the person.
-   */
-  firstName?: string | null | undefined;
-  /**
-   * The last name of the person.
-   */
-  lastName?: string | null | undefined;
-  /**
-   * Middle name of the person.
-   */
-  middleName?: string | null | undefined;
-  /**
-   * The initials of the person, usually derived from their first, middle, and last names.
-   */
-  initials?: string | null | undefined;
-  /**
-   * The date of birth of the person.
-   */
-  birthday?: RFCDate | null | undefined;
-  coverLetter?: string | undefined;
-  /**
-   * The URL of the photo of a person.
-   */
-  photoUrl?: string | null | undefined;
-  /**
-   * Typically a list of previous companies where the contact has worked or schools that the contact has attended
-   */
-  headline?: string | undefined;
-  /**
-   * The job title of the person.
-   */
-  title?: string | null | undefined;
-  emails?: Array<Email> | undefined;
-  customFields?: Array<CustomField> | undefined;
-  phoneNumbers?: Array<PhoneNumber> | undefined;
-  addresses?: Array<Address> | undefined;
-  websites?: Array<Websites> | undefined;
-  socialLinks?: Array<SocialLinks> | undefined;
-  stageId?: string | undefined;
-  recruiterId?: string | undefined;
-  coordinatorId?: string | undefined;
-  applicationIds?: Array<string> | null | undefined;
-  applications?: Array<string> | null | undefined;
-  followers?: Array<string> | null | undefined;
-  sources?: Array<string> | null | undefined;
-  confidential?: boolean | undefined;
-  anonymized?: boolean | undefined;
-  tags?: Array<string> | null | undefined;
-  archived?: boolean | null | undefined;
-  ownerId?: string | null | undefined;
-  recordUrl?: string | null | undefined;
-  /**
-   * Flag to indicate if the object is deleted.
-   */
-  deleted?: boolean | null | undefined;
-  /**
-   * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
-   */
-  passThrough?: Array<PassThroughBody> | undefined;
-};
-
 export type Applicant = {
   /**
    * A unique identifier for an object.
@@ -257,6 +190,73 @@ export type Applicant = {
    * The date and time when the object was created.
    */
   createdAt?: Date | null | undefined;
+  /**
+   * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
+   */
+  passThrough?: Array<PassThroughBody> | undefined;
+};
+
+export type ApplicantInput = {
+  /**
+   * The name of an applicant.
+   */
+  name?: string | undefined;
+  /**
+   * The first name of the person.
+   */
+  firstName?: string | null | undefined;
+  /**
+   * The last name of the person.
+   */
+  lastName?: string | null | undefined;
+  /**
+   * Middle name of the person.
+   */
+  middleName?: string | null | undefined;
+  /**
+   * The initials of the person, usually derived from their first, middle, and last names.
+   */
+  initials?: string | null | undefined;
+  /**
+   * The date of birth of the person.
+   */
+  birthday?: RFCDate | null | undefined;
+  coverLetter?: string | undefined;
+  /**
+   * The URL of the photo of a person.
+   */
+  photoUrl?: string | null | undefined;
+  /**
+   * Typically a list of previous companies where the contact has worked or schools that the contact has attended
+   */
+  headline?: string | undefined;
+  /**
+   * The job title of the person.
+   */
+  title?: string | null | undefined;
+  emails?: Array<Email> | undefined;
+  customFields?: Array<CustomField> | undefined;
+  phoneNumbers?: Array<PhoneNumber> | undefined;
+  addresses?: Array<Address> | undefined;
+  websites?: Array<Websites> | undefined;
+  socialLinks?: Array<SocialLinks> | undefined;
+  stageId?: string | undefined;
+  recruiterId?: string | undefined;
+  coordinatorId?: string | undefined;
+  applicationIds?: Array<string> | null | undefined;
+  applications?: Array<string> | null | undefined;
+  followers?: Array<string> | null | undefined;
+  sources?: Array<string> | null | undefined;
+  confidential?: boolean | undefined;
+  anonymized?: boolean | undefined;
+  tags?: Array<string> | null | undefined;
+  archived?: boolean | null | undefined;
+  ownerId?: string | null | undefined;
+  recordUrl?: string | null | undefined;
+  /**
+   * Flag to indicate if the object is deleted.
+   */
+  deleted?: boolean | null | undefined;
   /**
    * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
    */
@@ -393,183 +393,6 @@ export function socialLinksFromJSON(
     jsonString,
     (x) => SocialLinks$inboundSchema.parse(JSON.parse(x)),
     `Failed to parse 'SocialLinks' from JSON`,
-  );
-}
-
-/** @internal */
-export const ApplicantInput$inboundSchema: z.ZodType<
-  ApplicantInput,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  name: z.string().optional(),
-  first_name: z.nullable(z.string()).optional(),
-  last_name: z.nullable(z.string()).optional(),
-  middle_name: z.nullable(z.string()).optional(),
-  initials: z.nullable(z.string()).optional(),
-  birthday: z.nullable(z.string().transform(v => new RFCDate(v))).optional(),
-  cover_letter: z.string().optional(),
-  photo_url: z.nullable(z.string()).optional(),
-  headline: z.string().optional(),
-  title: z.nullable(z.string()).optional(),
-  emails: z.array(Email$inboundSchema).optional(),
-  custom_fields: z.array(CustomField$inboundSchema).optional(),
-  phone_numbers: z.array(PhoneNumber$inboundSchema).optional(),
-  addresses: z.array(Address$inboundSchema).optional(),
-  websites: z.array(z.lazy(() => Websites$inboundSchema)).optional(),
-  social_links: z.array(z.lazy(() => SocialLinks$inboundSchema)).optional(),
-  stage_id: z.string().optional(),
-  recruiter_id: z.string().optional(),
-  coordinator_id: z.string().optional(),
-  application_ids: z.nullable(z.array(z.string())).optional(),
-  applications: z.nullable(z.array(z.string())).optional(),
-  followers: z.nullable(z.array(z.string())).optional(),
-  sources: z.nullable(z.array(z.string())).optional(),
-  confidential: z.boolean().optional(),
-  anonymized: z.boolean().optional(),
-  tags: z.nullable(z.array(z.string())).optional(),
-  archived: z.nullable(z.boolean()).optional(),
-  owner_id: z.nullable(z.string()).optional(),
-  record_url: z.nullable(z.string()).optional(),
-  deleted: z.nullable(z.boolean()).optional(),
-  pass_through: z.array(PassThroughBody$inboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "first_name": "firstName",
-    "last_name": "lastName",
-    "middle_name": "middleName",
-    "cover_letter": "coverLetter",
-    "photo_url": "photoUrl",
-    "custom_fields": "customFields",
-    "phone_numbers": "phoneNumbers",
-    "social_links": "socialLinks",
-    "stage_id": "stageId",
-    "recruiter_id": "recruiterId",
-    "coordinator_id": "coordinatorId",
-    "application_ids": "applicationIds",
-    "owner_id": "ownerId",
-    "record_url": "recordUrl",
-    "pass_through": "passThrough",
-  });
-});
-
-/** @internal */
-export type ApplicantInput$Outbound = {
-  name?: string | undefined;
-  first_name?: string | null | undefined;
-  last_name?: string | null | undefined;
-  middle_name?: string | null | undefined;
-  initials?: string | null | undefined;
-  birthday?: string | null | undefined;
-  cover_letter?: string | undefined;
-  photo_url?: string | null | undefined;
-  headline?: string | undefined;
-  title?: string | null | undefined;
-  emails?: Array<Email$Outbound> | undefined;
-  custom_fields?: Array<CustomField$Outbound> | undefined;
-  phone_numbers?: Array<PhoneNumber$Outbound> | undefined;
-  addresses?: Array<Address$Outbound> | undefined;
-  websites?: Array<Websites$Outbound> | undefined;
-  social_links?: Array<SocialLinks$Outbound> | undefined;
-  stage_id?: string | undefined;
-  recruiter_id?: string | undefined;
-  coordinator_id?: string | undefined;
-  application_ids?: Array<string> | null | undefined;
-  applications?: Array<string> | null | undefined;
-  followers?: Array<string> | null | undefined;
-  sources?: Array<string> | null | undefined;
-  confidential?: boolean | undefined;
-  anonymized?: boolean | undefined;
-  tags?: Array<string> | null | undefined;
-  archived?: boolean | null | undefined;
-  owner_id?: string | null | undefined;
-  record_url?: string | null | undefined;
-  deleted?: boolean | null | undefined;
-  pass_through?: Array<PassThroughBody$Outbound> | undefined;
-};
-
-/** @internal */
-export const ApplicantInput$outboundSchema: z.ZodType<
-  ApplicantInput$Outbound,
-  z.ZodTypeDef,
-  ApplicantInput
-> = z.object({
-  name: z.string().optional(),
-  firstName: z.nullable(z.string()).optional(),
-  lastName: z.nullable(z.string()).optional(),
-  middleName: z.nullable(z.string()).optional(),
-  initials: z.nullable(z.string()).optional(),
-  birthday: z.nullable(z.instanceof(RFCDate).transform(v => v.toString()))
-    .optional(),
-  coverLetter: z.string().optional(),
-  photoUrl: z.nullable(z.string()).optional(),
-  headline: z.string().optional(),
-  title: z.nullable(z.string()).optional(),
-  emails: z.array(Email$outboundSchema).optional(),
-  customFields: z.array(CustomField$outboundSchema).optional(),
-  phoneNumbers: z.array(PhoneNumber$outboundSchema).optional(),
-  addresses: z.array(Address$outboundSchema).optional(),
-  websites: z.array(z.lazy(() => Websites$outboundSchema)).optional(),
-  socialLinks: z.array(z.lazy(() => SocialLinks$outboundSchema)).optional(),
-  stageId: z.string().optional(),
-  recruiterId: z.string().optional(),
-  coordinatorId: z.string().optional(),
-  applicationIds: z.nullable(z.array(z.string())).optional(),
-  applications: z.nullable(z.array(z.string())).optional(),
-  followers: z.nullable(z.array(z.string())).optional(),
-  sources: z.nullable(z.array(z.string())).optional(),
-  confidential: z.boolean().optional(),
-  anonymized: z.boolean().optional(),
-  tags: z.nullable(z.array(z.string())).optional(),
-  archived: z.nullable(z.boolean()).optional(),
-  ownerId: z.nullable(z.string()).optional(),
-  recordUrl: z.nullable(z.string()).optional(),
-  deleted: z.nullable(z.boolean()).optional(),
-  passThrough: z.array(PassThroughBody$outboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    firstName: "first_name",
-    lastName: "last_name",
-    middleName: "middle_name",
-    coverLetter: "cover_letter",
-    photoUrl: "photo_url",
-    customFields: "custom_fields",
-    phoneNumbers: "phone_numbers",
-    socialLinks: "social_links",
-    stageId: "stage_id",
-    recruiterId: "recruiter_id",
-    coordinatorId: "coordinator_id",
-    applicationIds: "application_ids",
-    ownerId: "owner_id",
-    recordUrl: "record_url",
-    passThrough: "pass_through",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ApplicantInput$ {
-  /** @deprecated use `ApplicantInput$inboundSchema` instead. */
-  export const inboundSchema = ApplicantInput$inboundSchema;
-  /** @deprecated use `ApplicantInput$outboundSchema` instead. */
-  export const outboundSchema = ApplicantInput$outboundSchema;
-  /** @deprecated use `ApplicantInput$Outbound` instead. */
-  export type Outbound = ApplicantInput$Outbound;
-}
-
-export function applicantInputToJSON(applicantInput: ApplicantInput): string {
-  return JSON.stringify(ApplicantInput$outboundSchema.parse(applicantInput));
-}
-
-export function applicantInputFromJSON(
-  jsonString: string,
-): SafeParseResult<ApplicantInput, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => ApplicantInput$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ApplicantInput' from JSON`,
   );
 }
 
@@ -826,5 +649,182 @@ export function applicantFromJSON(
     jsonString,
     (x) => Applicant$inboundSchema.parse(JSON.parse(x)),
     `Failed to parse 'Applicant' from JSON`,
+  );
+}
+
+/** @internal */
+export const ApplicantInput$inboundSchema: z.ZodType<
+  ApplicantInput,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  name: z.string().optional(),
+  first_name: z.nullable(z.string()).optional(),
+  last_name: z.nullable(z.string()).optional(),
+  middle_name: z.nullable(z.string()).optional(),
+  initials: z.nullable(z.string()).optional(),
+  birthday: z.nullable(z.string().transform(v => new RFCDate(v))).optional(),
+  cover_letter: z.string().optional(),
+  photo_url: z.nullable(z.string()).optional(),
+  headline: z.string().optional(),
+  title: z.nullable(z.string()).optional(),
+  emails: z.array(Email$inboundSchema).optional(),
+  custom_fields: z.array(CustomField$inboundSchema).optional(),
+  phone_numbers: z.array(PhoneNumber$inboundSchema).optional(),
+  addresses: z.array(Address$inboundSchema).optional(),
+  websites: z.array(z.lazy(() => Websites$inboundSchema)).optional(),
+  social_links: z.array(z.lazy(() => SocialLinks$inboundSchema)).optional(),
+  stage_id: z.string().optional(),
+  recruiter_id: z.string().optional(),
+  coordinator_id: z.string().optional(),
+  application_ids: z.nullable(z.array(z.string())).optional(),
+  applications: z.nullable(z.array(z.string())).optional(),
+  followers: z.nullable(z.array(z.string())).optional(),
+  sources: z.nullable(z.array(z.string())).optional(),
+  confidential: z.boolean().optional(),
+  anonymized: z.boolean().optional(),
+  tags: z.nullable(z.array(z.string())).optional(),
+  archived: z.nullable(z.boolean()).optional(),
+  owner_id: z.nullable(z.string()).optional(),
+  record_url: z.nullable(z.string()).optional(),
+  deleted: z.nullable(z.boolean()).optional(),
+  pass_through: z.array(PassThroughBody$inboundSchema).optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "first_name": "firstName",
+    "last_name": "lastName",
+    "middle_name": "middleName",
+    "cover_letter": "coverLetter",
+    "photo_url": "photoUrl",
+    "custom_fields": "customFields",
+    "phone_numbers": "phoneNumbers",
+    "social_links": "socialLinks",
+    "stage_id": "stageId",
+    "recruiter_id": "recruiterId",
+    "coordinator_id": "coordinatorId",
+    "application_ids": "applicationIds",
+    "owner_id": "ownerId",
+    "record_url": "recordUrl",
+    "pass_through": "passThrough",
+  });
+});
+
+/** @internal */
+export type ApplicantInput$Outbound = {
+  name?: string | undefined;
+  first_name?: string | null | undefined;
+  last_name?: string | null | undefined;
+  middle_name?: string | null | undefined;
+  initials?: string | null | undefined;
+  birthday?: string | null | undefined;
+  cover_letter?: string | undefined;
+  photo_url?: string | null | undefined;
+  headline?: string | undefined;
+  title?: string | null | undefined;
+  emails?: Array<Email$Outbound> | undefined;
+  custom_fields?: Array<CustomField$Outbound> | undefined;
+  phone_numbers?: Array<PhoneNumber$Outbound> | undefined;
+  addresses?: Array<Address$Outbound> | undefined;
+  websites?: Array<Websites$Outbound> | undefined;
+  social_links?: Array<SocialLinks$Outbound> | undefined;
+  stage_id?: string | undefined;
+  recruiter_id?: string | undefined;
+  coordinator_id?: string | undefined;
+  application_ids?: Array<string> | null | undefined;
+  applications?: Array<string> | null | undefined;
+  followers?: Array<string> | null | undefined;
+  sources?: Array<string> | null | undefined;
+  confidential?: boolean | undefined;
+  anonymized?: boolean | undefined;
+  tags?: Array<string> | null | undefined;
+  archived?: boolean | null | undefined;
+  owner_id?: string | null | undefined;
+  record_url?: string | null | undefined;
+  deleted?: boolean | null | undefined;
+  pass_through?: Array<PassThroughBody$Outbound> | undefined;
+};
+
+/** @internal */
+export const ApplicantInput$outboundSchema: z.ZodType<
+  ApplicantInput$Outbound,
+  z.ZodTypeDef,
+  ApplicantInput
+> = z.object({
+  name: z.string().optional(),
+  firstName: z.nullable(z.string()).optional(),
+  lastName: z.nullable(z.string()).optional(),
+  middleName: z.nullable(z.string()).optional(),
+  initials: z.nullable(z.string()).optional(),
+  birthday: z.nullable(z.instanceof(RFCDate).transform(v => v.toString()))
+    .optional(),
+  coverLetter: z.string().optional(),
+  photoUrl: z.nullable(z.string()).optional(),
+  headline: z.string().optional(),
+  title: z.nullable(z.string()).optional(),
+  emails: z.array(Email$outboundSchema).optional(),
+  customFields: z.array(CustomField$outboundSchema).optional(),
+  phoneNumbers: z.array(PhoneNumber$outboundSchema).optional(),
+  addresses: z.array(Address$outboundSchema).optional(),
+  websites: z.array(z.lazy(() => Websites$outboundSchema)).optional(),
+  socialLinks: z.array(z.lazy(() => SocialLinks$outboundSchema)).optional(),
+  stageId: z.string().optional(),
+  recruiterId: z.string().optional(),
+  coordinatorId: z.string().optional(),
+  applicationIds: z.nullable(z.array(z.string())).optional(),
+  applications: z.nullable(z.array(z.string())).optional(),
+  followers: z.nullable(z.array(z.string())).optional(),
+  sources: z.nullable(z.array(z.string())).optional(),
+  confidential: z.boolean().optional(),
+  anonymized: z.boolean().optional(),
+  tags: z.nullable(z.array(z.string())).optional(),
+  archived: z.nullable(z.boolean()).optional(),
+  ownerId: z.nullable(z.string()).optional(),
+  recordUrl: z.nullable(z.string()).optional(),
+  deleted: z.nullable(z.boolean()).optional(),
+  passThrough: z.array(PassThroughBody$outboundSchema).optional(),
+}).transform((v) => {
+  return remap$(v, {
+    firstName: "first_name",
+    lastName: "last_name",
+    middleName: "middle_name",
+    coverLetter: "cover_letter",
+    photoUrl: "photo_url",
+    customFields: "custom_fields",
+    phoneNumbers: "phone_numbers",
+    socialLinks: "social_links",
+    stageId: "stage_id",
+    recruiterId: "recruiter_id",
+    coordinatorId: "coordinator_id",
+    applicationIds: "application_ids",
+    ownerId: "owner_id",
+    recordUrl: "record_url",
+    passThrough: "pass_through",
+  });
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace ApplicantInput$ {
+  /** @deprecated use `ApplicantInput$inboundSchema` instead. */
+  export const inboundSchema = ApplicantInput$inboundSchema;
+  /** @deprecated use `ApplicantInput$outboundSchema` instead. */
+  export const outboundSchema = ApplicantInput$outboundSchema;
+  /** @deprecated use `ApplicantInput$Outbound` instead. */
+  export type Outbound = ApplicantInput$Outbound;
+}
+
+export function applicantInputToJSON(applicantInput: ApplicantInput): string {
+  return JSON.stringify(ApplicantInput$outboundSchema.parse(applicantInput));
+}
+
+export function applicantInputFromJSON(
+  jsonString: string,
+): SafeParseResult<ApplicantInput, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ApplicantInput$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ApplicantInput' from JSON`,
   );
 }

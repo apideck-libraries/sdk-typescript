@@ -12,7 +12,7 @@ import {
   TimeOffRequest$inboundSchema,
   TimeOffRequest$Outbound,
   TimeOffRequest$outboundSchema,
-} from "./timeoffrequest.js";
+} from "./timeoffrequestinput.js";
 
 /**
  * TimeOffRequests

@@ -12,7 +12,7 @@ import {
   TrackingCategory$inboundSchema,
   TrackingCategory$Outbound,
   TrackingCategory$outboundSchema,
-} from "./trackingcategory.js";
+} from "./trackingcategoryinput.js";
 
 /**
  * Tracking category
