@@ -24,7 +24,7 @@ import {
   Ticket$inboundSchema,
   Ticket$Outbound,
   Ticket$outboundSchema,
-} from "./ticket.js";
+} from "./ticketinput.js";
 
 /**
  * List Tickets

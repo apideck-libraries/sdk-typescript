@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 7bffa198-5d29-4efa-9942-d549cc832085
 management:
-  docChecksum: 85e08f6b69ccddf3a58bd14a872c4e81
-  docVersion: 10.14.1
+  docChecksum: 5f9c8c78f4e97650b9622752c12efc49
+  docVersion: 10.15.2
   speakeasyVersion: 1.531.0
   generationVersion: 2.568.2
-  releaseVersion: 0.21.1
-  configChecksum: e207c2fccfc65f5ed23776aa68007ff9
+  releaseVersion: 0.22.1
+  configChecksum: e5c5e058cbd69eb426aada87c418676d
   repoURL: https://github.com/apideck-libraries/sdk-typescript.git
   installationURL: https://github.com/apideck-libraries/sdk-typescript
   published: true
@@ -611,6 +611,7 @@ generatedFiles:
   - docs/models/components/parentaccount.md
   - docs/models/components/passthroughbody.md
   - docs/models/components/payment.md
+  - docs/models/components/paymentallocations.md
   - docs/models/components/paymentfrequency.md
   - docs/models/components/paymentinput.md
   - docs/models/components/paymentsfilter.md
@@ -1985,19 +1986,19 @@ generatedFiles:
   - src/lib/sdks.ts
   - src/lib/security.ts
   - src/lib/url.ts
-  - src/models/components/accountingdepartmentinput.ts
+  - src/models/components/accountingdepartment.ts
   - src/models/components/accountingdepartmentsfilter.ts
-  - src/models/components/accountinglocationinput.ts
+  - src/models/components/accountinglocation.ts
   - src/models/components/accountinglocationsfilter.ts
   - src/models/components/activitiesfilter.ts
   - src/models/components/activitiessort.ts
   - src/models/components/activity.ts
-  - src/models/components/activityattendeeinput.ts
+  - src/models/components/activityattendee.ts
   - src/models/components/address.ts
   - src/models/components/agedcreditors.ts
   - src/models/components/ageddebtors.ts
   - src/models/components/agedreportfilter.ts
-  - src/models/components/allocationinput.ts
+  - src/models/components/allocation.ts
   - src/models/components/api.ts
   - src/models/components/apiresource.ts
   - src/models/components/apiresourcecoverage.ts
@@ -2005,7 +2006,7 @@ generatedFiles:
   - src/models/components/apistatus.ts
   - src/models/components/applicant.ts
   - src/models/components/applicantsfilter.ts
-  - src/models/components/applicationinput.ts
+  - src/models/components/application.ts
   - src/models/components/assignee.ts
   - src/models/components/assigneeinput.ts
   - src/models/components/attachment.ts
@@ -2018,8 +2019,8 @@ generatedFiles:
   - src/models/components/balancesheetfilter.ts
   - src/models/components/bankaccount.ts
   - src/models/components/benefit.ts
-  - src/models/components/bill.ts
-  - src/models/components/billlineitem.ts
+  - src/models/components/billinput.ts
+  - src/models/components/billlineiteminput.ts
   - src/models/components/billpaymentinput.ts
   - src/models/components/billsfilter.ts
   - src/models/components/billssort.ts
@@ -2033,8 +2034,8 @@ generatedFiles:
   - src/models/components/commentssort.ts
   - src/models/components/companiesfilter.ts
   - src/models/components/companiessort.ts
-  - src/models/components/company.ts
   - src/models/components/companyinfo.ts
+  - src/models/components/companyinput.ts
   - src/models/components/compensation.ts
   - src/models/components/connectionimportdata.ts
   - src/models/components/connectioninput.ts
@@ -2183,14 +2184,14 @@ generatedFiles:
   - src/models/components/email.ts
   - src/models/components/employeecompensation.ts
   - src/models/components/employeeinput.ts
-  - src/models/components/employeejobinput.ts
+  - src/models/components/employeejob.ts
   - src/models/components/employeepayroll.ts
   - src/models/components/employeeschedules.ts
   - src/models/components/employeesfilter.ts
   - src/models/components/employeesonefilter.ts
   - src/models/components/employeessort.ts
   - src/models/components/employmentstatus.ts
-  - src/models/components/expenseinput.ts
+  - src/models/components/expense.ts
   - src/models/components/expenselineitem.ts
   - src/models/components/expenselineiteminput.ts
   - src/models/components/filesfilter.ts
@@ -2323,11 +2324,11 @@ generatedFiles:
   - src/models/components/getwebhookeventlogsresponse.ts
   - src/models/components/getwebhookresponse.ts
   - src/models/components/getwebhooksresponse.ts
-  - src/models/components/hriscompanyinput.ts
+  - src/models/components/hriscompany.ts
   - src/models/components/httpmetadata.ts
   - src/models/components/index.ts
   - src/models/components/integrationstate.ts
-  - src/models/components/invoiceinput.ts
+  - src/models/components/invoice.ts
   - src/models/components/invoiceitem.ts
   - src/models/components/invoiceitemfilter.ts
   - src/models/components/invoiceitemsfilter.ts
@@ -2343,12 +2344,12 @@ generatedFiles:
   - src/models/components/journalentriessort.ts
   - src/models/components/journalentry.ts
   - src/models/components/journalentryinput.ts
-  - src/models/components/journalentrylineiteminput.ts
+  - src/models/components/journalentrylineitem.ts
   - src/models/components/lead.ts
   - src/models/components/leadinput.ts
   - src/models/components/leadsfilter.ts
   - src/models/components/leadssort.ts
-  - src/models/components/ledgeraccountinput.ts
+  - src/models/components/ledgeraccount.ts
   - src/models/components/ledgeraccountsfilter.ts
   - src/models/components/ledgeraccountssort.ts
   - src/models/components/linkedconnectorresource.ts
@@ -2414,7 +2415,7 @@ generatedFiles:
   - src/models/components/schemasupport.ts
   - src/models/components/security.ts
   - src/models/components/session.ts
-  - src/models/components/sharedlinkinput.ts
+  - src/models/components/sharedlink.ts
   - src/models/components/sharedlinktarget.ts
   - src/models/components/simpleformfieldoption.ts
   - src/models/components/sociallink.ts
@@ -2428,12 +2429,12 @@ generatedFiles:
   - src/models/components/supplierssort.ts
   - src/models/components/supportedproperty.ts
   - src/models/components/tax.ts
-  - src/models/components/taxrateinput.ts
+  - src/models/components/taxrate.ts
   - src/models/components/taxratesfilter.ts
   - src/models/components/team.ts
-  - src/models/components/ticket.ts
+  - src/models/components/ticketinput.ts
   - src/models/components/ticketssort.ts
-  - src/models/components/timeoffrequestinput.ts
+  - src/models/components/timeoffrequest.ts
   - src/models/components/timeoffrequestsfilter.ts
   - src/models/components/trackingcategoryinput.ts
   - src/models/components/trackingitem.ts

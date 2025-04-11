@@ -24,7 +24,7 @@ import {
   SharedLink$inboundSchema,
   SharedLink$Outbound,
   SharedLink$outboundSchema,
-} from "./sharedlinkinput.js";
+} from "./sharedlink.js";
 
 /**
  * Shared Links

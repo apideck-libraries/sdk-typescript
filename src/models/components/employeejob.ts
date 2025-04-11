@@ -39,7 +39,15 @@ export const EmployeeJobStatus = {
  */
 export type EmployeeJobStatus = ClosedEnum<typeof EmployeeJobStatus>;
 
-export type EmployeeJobInput = {
+export type EmployeeJob = {
+  /**
+   * A unique identifier for an object.
+   */
+  id?: string | null | undefined;
+  /**
+   * A unique identifier for an object.
+   */
+  employeeId?: string | null | undefined;
   /**
    * The job title of the person.
    */
@@ -87,15 +95,7 @@ export type EmployeeJobInput = {
   location?: Address | undefined;
 };
 
-export type EmployeeJob = {
-  /**
-   * A unique identifier for an object.
-   */
-  id?: string | null | undefined;
-  /**
-   * A unique identifier for an object.
-   */
-  employeeId?: string | null | undefined;
+export type EmployeeJobInput = {
   /**
    * The job title of the person.
    */
@@ -162,116 +162,6 @@ export namespace EmployeeJobStatus$ {
   export const inboundSchema = EmployeeJobStatus$inboundSchema;
   /** @deprecated use `EmployeeJobStatus$outboundSchema` instead. */
   export const outboundSchema = EmployeeJobStatus$outboundSchema;
-}
-
-/** @internal */
-export const EmployeeJobInput$inboundSchema: z.ZodType<
-  EmployeeJobInput,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  title: z.nullable(z.string()).optional(),
-  role: z.nullable(z.string()).optional(),
-  start_date: z.nullable(z.string().transform(v => new RFCDate(v))).optional(),
-  end_date: z.nullable(z.string().transform(v => new RFCDate(v))).optional(),
-  compensation_rate: z.nullable(z.number()).optional(),
-  currency: z.nullable(Currency$inboundSchema).optional(),
-  payment_unit: z.nullable(PaymentUnit$inboundSchema).optional(),
-  hired_at: z.nullable(z.string().transform(v => new RFCDate(v))).optional(),
-  is_primary: z.nullable(z.boolean()).optional(),
-  is_manager: z.nullable(z.boolean()).optional(),
-  status: z.nullable(EmployeeJobStatus$inboundSchema).optional(),
-  location: Address$inboundSchema.optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "start_date": "startDate",
-    "end_date": "endDate",
-    "compensation_rate": "compensationRate",
-    "payment_unit": "paymentUnit",
-    "hired_at": "hiredAt",
-    "is_primary": "isPrimary",
-    "is_manager": "isManager",
-  });
-});
-
-/** @internal */
-export type EmployeeJobInput$Outbound = {
-  title?: string | null | undefined;
-  role?: string | null | undefined;
-  start_date?: string | null | undefined;
-  end_date?: string | null | undefined;
-  compensation_rate?: number | null | undefined;
-  currency?: string | null | undefined;
-  payment_unit?: string | null | undefined;
-  hired_at?: string | null | undefined;
-  is_primary?: boolean | null | undefined;
-  is_manager?: boolean | null | undefined;
-  status?: string | null | undefined;
-  location?: Address$Outbound | undefined;
-};
-
-/** @internal */
-export const EmployeeJobInput$outboundSchema: z.ZodType<
-  EmployeeJobInput$Outbound,
-  z.ZodTypeDef,
-  EmployeeJobInput
-> = z.object({
-  title: z.nullable(z.string()).optional(),
-  role: z.nullable(z.string()).optional(),
-  startDate: z.nullable(z.instanceof(RFCDate).transform(v => v.toString()))
-    .optional(),
-  endDate: z.nullable(z.instanceof(RFCDate).transform(v => v.toString()))
-    .optional(),
-  compensationRate: z.nullable(z.number()).optional(),
-  currency: z.nullable(Currency$outboundSchema).optional(),
-  paymentUnit: z.nullable(PaymentUnit$outboundSchema).optional(),
-  hiredAt: z.nullable(z.instanceof(RFCDate).transform(v => v.toString()))
-    .optional(),
-  isPrimary: z.nullable(z.boolean()).optional(),
-  isManager: z.nullable(z.boolean()).optional(),
-  status: z.nullable(EmployeeJobStatus$outboundSchema).optional(),
-  location: Address$outboundSchema.optional(),
-}).transform((v) => {
-  return remap$(v, {
-    startDate: "start_date",
-    endDate: "end_date",
-    compensationRate: "compensation_rate",
-    paymentUnit: "payment_unit",
-    hiredAt: "hired_at",
-    isPrimary: "is_primary",
-    isManager: "is_manager",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace EmployeeJobInput$ {
-  /** @deprecated use `EmployeeJobInput$inboundSchema` instead. */
-  export const inboundSchema = EmployeeJobInput$inboundSchema;
-  /** @deprecated use `EmployeeJobInput$outboundSchema` instead. */
-  export const outboundSchema = EmployeeJobInput$outboundSchema;
-  /** @deprecated use `EmployeeJobInput$Outbound` instead. */
-  export type Outbound = EmployeeJobInput$Outbound;
-}
-
-export function employeeJobInputToJSON(
-  employeeJobInput: EmployeeJobInput,
-): string {
-  return JSON.stringify(
-    EmployeeJobInput$outboundSchema.parse(employeeJobInput),
-  );
-}
-
-export function employeeJobInputFromJSON(
-  jsonString: string,
-): SafeParseResult<EmployeeJobInput, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => EmployeeJobInput$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'EmployeeJobInput' from JSON`,
-  );
 }
 
 /** @internal */
@@ -385,5 +275,115 @@ export function employeeJobFromJSON(
     jsonString,
     (x) => EmployeeJob$inboundSchema.parse(JSON.parse(x)),
     `Failed to parse 'EmployeeJob' from JSON`,
+  );
+}
+
+/** @internal */
+export const EmployeeJobInput$inboundSchema: z.ZodType<
+  EmployeeJobInput,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  title: z.nullable(z.string()).optional(),
+  role: z.nullable(z.string()).optional(),
+  start_date: z.nullable(z.string().transform(v => new RFCDate(v))).optional(),
+  end_date: z.nullable(z.string().transform(v => new RFCDate(v))).optional(),
+  compensation_rate: z.nullable(z.number()).optional(),
+  currency: z.nullable(Currency$inboundSchema).optional(),
+  payment_unit: z.nullable(PaymentUnit$inboundSchema).optional(),
+  hired_at: z.nullable(z.string().transform(v => new RFCDate(v))).optional(),
+  is_primary: z.nullable(z.boolean()).optional(),
+  is_manager: z.nullable(z.boolean()).optional(),
+  status: z.nullable(EmployeeJobStatus$inboundSchema).optional(),
+  location: Address$inboundSchema.optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "start_date": "startDate",
+    "end_date": "endDate",
+    "compensation_rate": "compensationRate",
+    "payment_unit": "paymentUnit",
+    "hired_at": "hiredAt",
+    "is_primary": "isPrimary",
+    "is_manager": "isManager",
+  });
+});
+
+/** @internal */
+export type EmployeeJobInput$Outbound = {
+  title?: string | null | undefined;
+  role?: string | null | undefined;
+  start_date?: string | null | undefined;
+  end_date?: string | null | undefined;
+  compensation_rate?: number | null | undefined;
+  currency?: string | null | undefined;
+  payment_unit?: string | null | undefined;
+  hired_at?: string | null | undefined;
+  is_primary?: boolean | null | undefined;
+  is_manager?: boolean | null | undefined;
+  status?: string | null | undefined;
+  location?: Address$Outbound | undefined;
+};
+
+/** @internal */
+export const EmployeeJobInput$outboundSchema: z.ZodType<
+  EmployeeJobInput$Outbound,
+  z.ZodTypeDef,
+  EmployeeJobInput
+> = z.object({
+  title: z.nullable(z.string()).optional(),
+  role: z.nullable(z.string()).optional(),
+  startDate: z.nullable(z.instanceof(RFCDate).transform(v => v.toString()))
+    .optional(),
+  endDate: z.nullable(z.instanceof(RFCDate).transform(v => v.toString()))
+    .optional(),
+  compensationRate: z.nullable(z.number()).optional(),
+  currency: z.nullable(Currency$outboundSchema).optional(),
+  paymentUnit: z.nullable(PaymentUnit$outboundSchema).optional(),
+  hiredAt: z.nullable(z.instanceof(RFCDate).transform(v => v.toString()))
+    .optional(),
+  isPrimary: z.nullable(z.boolean()).optional(),
+  isManager: z.nullable(z.boolean()).optional(),
+  status: z.nullable(EmployeeJobStatus$outboundSchema).optional(),
+  location: Address$outboundSchema.optional(),
+}).transform((v) => {
+  return remap$(v, {
+    startDate: "start_date",
+    endDate: "end_date",
+    compensationRate: "compensation_rate",
+    paymentUnit: "payment_unit",
+    hiredAt: "hired_at",
+    isPrimary: "is_primary",
+    isManager: "is_manager",
+  });
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace EmployeeJobInput$ {
+  /** @deprecated use `EmployeeJobInput$inboundSchema` instead. */
+  export const inboundSchema = EmployeeJobInput$inboundSchema;
+  /** @deprecated use `EmployeeJobInput$outboundSchema` instead. */
+  export const outboundSchema = EmployeeJobInput$outboundSchema;
+  /** @deprecated use `EmployeeJobInput$Outbound` instead. */
+  export type Outbound = EmployeeJobInput$Outbound;
+}
+
+export function employeeJobInputToJSON(
+  employeeJobInput: EmployeeJobInput,
+): string {
+  return JSON.stringify(
+    EmployeeJobInput$outboundSchema.parse(employeeJobInput),
+  );
+}
+
+export function employeeJobInputFromJSON(
+  jsonString: string,
+): SafeParseResult<EmployeeJobInput, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => EmployeeJobInput$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'EmployeeJobInput' from JSON`,
   );
 }
