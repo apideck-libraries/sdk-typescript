@@ -51,35 +51,6 @@ export const LocationStatus = {
  */
 export type LocationStatus = ClosedEnum<typeof LocationStatus>;
 
-export type AccountingLocationInput = {
-  /**
-   * A unique identifier for an object.
-   */
-  parentId?: string | null | undefined;
-  /**
-   * The name of the company.
-   */
-  companyName?: string | null | undefined;
-  /**
-   * The display name of the location.
-   */
-  displayName?: string | null | undefined;
-  /**
-   * Based on the status some functionality is enabled or disabled.
-   */
-  status?: LocationStatus | undefined;
-  addresses?: Array<Address> | undefined;
-  subsidiaries?: Array<SubsidiaryReferenceInput> | undefined;
-  /**
-   * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
-   */
-  rowVersion?: string | null | undefined;
-  /**
-   * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
-   */
-  passThrough?: Array<PassThroughBody> | undefined;
-};
-
 export type AccountingLocation = {
   /**
    * A unique identifier for an object.
@@ -133,6 +104,35 @@ export type AccountingLocation = {
   passThrough?: Array<PassThroughBody> | undefined;
 };
 
+export type AccountingLocationInput = {
+  /**
+   * A unique identifier for an object.
+   */
+  parentId?: string | null | undefined;
+  /**
+   * The name of the company.
+   */
+  companyName?: string | null | undefined;
+  /**
+   * The display name of the location.
+   */
+  displayName?: string | null | undefined;
+  /**
+   * Based on the status some functionality is enabled or disabled.
+   */
+  status?: LocationStatus | undefined;
+  addresses?: Array<Address> | undefined;
+  subsidiaries?: Array<SubsidiaryReferenceInput> | undefined;
+  /**
+   * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
+   */
+  rowVersion?: string | null | undefined;
+  /**
+   * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
+   */
+  passThrough?: Array<PassThroughBody> | undefined;
+};
+
 /** @internal */
 export const LocationStatus$inboundSchema: z.ZodNativeEnum<
   typeof LocationStatus
@@ -152,97 +152,6 @@ export namespace LocationStatus$ {
   export const inboundSchema = LocationStatus$inboundSchema;
   /** @deprecated use `LocationStatus$outboundSchema` instead. */
   export const outboundSchema = LocationStatus$outboundSchema;
-}
-
-/** @internal */
-export const AccountingLocationInput$inboundSchema: z.ZodType<
-  AccountingLocationInput,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  parent_id: z.nullable(z.string()).optional(),
-  company_name: z.nullable(z.string()).optional(),
-  display_name: z.nullable(z.string()).optional(),
-  status: LocationStatus$inboundSchema.optional(),
-  addresses: z.array(Address$inboundSchema).optional(),
-  subsidiaries: z.array(SubsidiaryReferenceInput$inboundSchema).optional(),
-  row_version: z.nullable(z.string()).optional(),
-  pass_through: z.array(PassThroughBody$inboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "parent_id": "parentId",
-    "company_name": "companyName",
-    "display_name": "displayName",
-    "row_version": "rowVersion",
-    "pass_through": "passThrough",
-  });
-});
-
-/** @internal */
-export type AccountingLocationInput$Outbound = {
-  parent_id?: string | null | undefined;
-  company_name?: string | null | undefined;
-  display_name?: string | null | undefined;
-  status?: string | undefined;
-  addresses?: Array<Address$Outbound> | undefined;
-  subsidiaries?: Array<SubsidiaryReferenceInput$Outbound> | undefined;
-  row_version?: string | null | undefined;
-  pass_through?: Array<PassThroughBody$Outbound> | undefined;
-};
-
-/** @internal */
-export const AccountingLocationInput$outboundSchema: z.ZodType<
-  AccountingLocationInput$Outbound,
-  z.ZodTypeDef,
-  AccountingLocationInput
-> = z.object({
-  parentId: z.nullable(z.string()).optional(),
-  companyName: z.nullable(z.string()).optional(),
-  displayName: z.nullable(z.string()).optional(),
-  status: LocationStatus$outboundSchema.optional(),
-  addresses: z.array(Address$outboundSchema).optional(),
-  subsidiaries: z.array(SubsidiaryReferenceInput$outboundSchema).optional(),
-  rowVersion: z.nullable(z.string()).optional(),
-  passThrough: z.array(PassThroughBody$outboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    parentId: "parent_id",
-    companyName: "company_name",
-    displayName: "display_name",
-    rowVersion: "row_version",
-    passThrough: "pass_through",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AccountingLocationInput$ {
-  /** @deprecated use `AccountingLocationInput$inboundSchema` instead. */
-  export const inboundSchema = AccountingLocationInput$inboundSchema;
-  /** @deprecated use `AccountingLocationInput$outboundSchema` instead. */
-  export const outboundSchema = AccountingLocationInput$outboundSchema;
-  /** @deprecated use `AccountingLocationInput$Outbound` instead. */
-  export type Outbound = AccountingLocationInput$Outbound;
-}
-
-export function accountingLocationInputToJSON(
-  accountingLocationInput: AccountingLocationInput,
-): string {
-  return JSON.stringify(
-    AccountingLocationInput$outboundSchema.parse(accountingLocationInput),
-  );
-}
-
-export function accountingLocationInputFromJSON(
-  jsonString: string,
-): SafeParseResult<AccountingLocationInput, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => AccountingLocationInput$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'AccountingLocationInput' from JSON`,
-  );
 }
 
 /** @internal */
@@ -365,5 +274,96 @@ export function accountingLocationFromJSON(
     jsonString,
     (x) => AccountingLocation$inboundSchema.parse(JSON.parse(x)),
     `Failed to parse 'AccountingLocation' from JSON`,
+  );
+}
+
+/** @internal */
+export const AccountingLocationInput$inboundSchema: z.ZodType<
+  AccountingLocationInput,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  parent_id: z.nullable(z.string()).optional(),
+  company_name: z.nullable(z.string()).optional(),
+  display_name: z.nullable(z.string()).optional(),
+  status: LocationStatus$inboundSchema.optional(),
+  addresses: z.array(Address$inboundSchema).optional(),
+  subsidiaries: z.array(SubsidiaryReferenceInput$inboundSchema).optional(),
+  row_version: z.nullable(z.string()).optional(),
+  pass_through: z.array(PassThroughBody$inboundSchema).optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "parent_id": "parentId",
+    "company_name": "companyName",
+    "display_name": "displayName",
+    "row_version": "rowVersion",
+    "pass_through": "passThrough",
+  });
+});
+
+/** @internal */
+export type AccountingLocationInput$Outbound = {
+  parent_id?: string | null | undefined;
+  company_name?: string | null | undefined;
+  display_name?: string | null | undefined;
+  status?: string | undefined;
+  addresses?: Array<Address$Outbound> | undefined;
+  subsidiaries?: Array<SubsidiaryReferenceInput$Outbound> | undefined;
+  row_version?: string | null | undefined;
+  pass_through?: Array<PassThroughBody$Outbound> | undefined;
+};
+
+/** @internal */
+export const AccountingLocationInput$outboundSchema: z.ZodType<
+  AccountingLocationInput$Outbound,
+  z.ZodTypeDef,
+  AccountingLocationInput
+> = z.object({
+  parentId: z.nullable(z.string()).optional(),
+  companyName: z.nullable(z.string()).optional(),
+  displayName: z.nullable(z.string()).optional(),
+  status: LocationStatus$outboundSchema.optional(),
+  addresses: z.array(Address$outboundSchema).optional(),
+  subsidiaries: z.array(SubsidiaryReferenceInput$outboundSchema).optional(),
+  rowVersion: z.nullable(z.string()).optional(),
+  passThrough: z.array(PassThroughBody$outboundSchema).optional(),
+}).transform((v) => {
+  return remap$(v, {
+    parentId: "parent_id",
+    companyName: "company_name",
+    displayName: "display_name",
+    rowVersion: "row_version",
+    passThrough: "pass_through",
+  });
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace AccountingLocationInput$ {
+  /** @deprecated use `AccountingLocationInput$inboundSchema` instead. */
+  export const inboundSchema = AccountingLocationInput$inboundSchema;
+  /** @deprecated use `AccountingLocationInput$outboundSchema` instead. */
+  export const outboundSchema = AccountingLocationInput$outboundSchema;
+  /** @deprecated use `AccountingLocationInput$Outbound` instead. */
+  export type Outbound = AccountingLocationInput$Outbound;
+}
+
+export function accountingLocationInputToJSON(
+  accountingLocationInput: AccountingLocationInput,
+): string {
+  return JSON.stringify(
+    AccountingLocationInput$outboundSchema.parse(accountingLocationInput),
+  );
+}
+
+export function accountingLocationInputFromJSON(
+  jsonString: string,
+): SafeParseResult<AccountingLocationInput, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => AccountingLocationInput$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AccountingLocationInput' from JSON`,
   );
 }

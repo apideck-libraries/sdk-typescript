@@ -43,7 +43,7 @@ import {
   TaxRate$inboundSchema,
   TaxRate$Outbound,
   TaxRate$outboundSchema,
-} from "./taxrateinput.js";
+} from "./taxrate.js";
 
 /**
  * Based on the status some functionality is enabled or disabled.

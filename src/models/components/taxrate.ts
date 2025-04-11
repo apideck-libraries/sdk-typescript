@@ -54,71 +54,6 @@ export type Subsidiaries = {
   id?: string | undefined;
 };
 
-export type TaxRateInput = {
-  /**
-   * ID assigned to identify this tax rate.
-   */
-  id?: string | null | undefined;
-  /**
-   * Name assigned to identify this tax rate.
-   */
-  name?: string | undefined;
-  /**
-   * Tax code assigned to identify this tax rate.
-   */
-  code?: string | null | undefined;
-  /**
-   * Description of tax rate
-   */
-  description?: string | null | undefined;
-  /**
-   * Effective tax rate
-   */
-  effectiveTaxRate?: number | null | undefined;
-  /**
-   * Not compounded sum of the components of a tax rate
-   */
-  totalTaxRate?: number | null | undefined;
-  /**
-   * Unique identifier for the account for tax collected.
-   */
-  taxPayableAccountId?: string | null | undefined;
-  /**
-   * Unique identifier for the account for tax remitted.
-   */
-  taxRemittedAccountId?: string | null | undefined;
-  components?: Array<Components> | null | undefined;
-  /**
-   * Tax type used to indicate the source of tax collected or paid
-   */
-  type?: string | null | undefined;
-  /**
-   * Report Tax type to aggregate tax collected or paid for reporting purposes
-   */
-  reportTaxType?: string | null | undefined;
-  /**
-   * ID of the original tax rate from which the new tax rate is derived. Helps to understand the relationship between corresponding tax rate entities.
-   */
-  originalTaxRateId?: string | null | undefined;
-  /**
-   * Tax rate status
-   */
-  status?: TaxRateStatus | null | undefined;
-  /**
-   * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
-   */
-  rowVersion?: string | null | undefined;
-  /**
-   * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
-   */
-  passThrough?: Array<PassThroughBody> | undefined;
-  /**
-   * The subsidiaries this belongs to.
-   */
-  subsidiaries?: Array<Subsidiaries> | undefined;
-  customFields?: Array<CustomField> | undefined;
-};
-
 export type TaxRate = {
   /**
    * ID assigned to identify this tax rate.
@@ -193,6 +128,71 @@ export type TaxRate = {
    * The date and time when the object was created.
    */
   createdAt?: Date | null | undefined;
+  /**
+   * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
+   */
+  passThrough?: Array<PassThroughBody> | undefined;
+  /**
+   * The subsidiaries this belongs to.
+   */
+  subsidiaries?: Array<Subsidiaries> | undefined;
+  customFields?: Array<CustomField> | undefined;
+};
+
+export type TaxRateInput = {
+  /**
+   * ID assigned to identify this tax rate.
+   */
+  id?: string | null | undefined;
+  /**
+   * Name assigned to identify this tax rate.
+   */
+  name?: string | undefined;
+  /**
+   * Tax code assigned to identify this tax rate.
+   */
+  code?: string | null | undefined;
+  /**
+   * Description of tax rate
+   */
+  description?: string | null | undefined;
+  /**
+   * Effective tax rate
+   */
+  effectiveTaxRate?: number | null | undefined;
+  /**
+   * Not compounded sum of the components of a tax rate
+   */
+  totalTaxRate?: number | null | undefined;
+  /**
+   * Unique identifier for the account for tax collected.
+   */
+  taxPayableAccountId?: string | null | undefined;
+  /**
+   * Unique identifier for the account for tax remitted.
+   */
+  taxRemittedAccountId?: string | null | undefined;
+  components?: Array<Components> | null | undefined;
+  /**
+   * Tax type used to indicate the source of tax collected or paid
+   */
+  type?: string | null | undefined;
+  /**
+   * Report Tax type to aggregate tax collected or paid for reporting purposes
+   */
+  reportTaxType?: string | null | undefined;
+  /**
+   * ID of the original tax rate from which the new tax rate is derived. Helps to understand the relationship between corresponding tax rate entities.
+   */
+  originalTaxRateId?: string | null | undefined;
+  /**
+   * Tax rate status
+   */
+  status?: TaxRateStatus | null | undefined;
+  /**
+   * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
+   */
+  rowVersion?: string | null | undefined;
   /**
    * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
    */
@@ -331,130 +331,6 @@ export function subsidiariesFromJSON(
     jsonString,
     (x) => Subsidiaries$inboundSchema.parse(JSON.parse(x)),
     `Failed to parse 'Subsidiaries' from JSON`,
-  );
-}
-
-/** @internal */
-export const TaxRateInput$inboundSchema: z.ZodType<
-  TaxRateInput,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  id: z.nullable(z.string()).optional(),
-  name: z.string().optional(),
-  code: z.nullable(z.string()).optional(),
-  description: z.nullable(z.string()).optional(),
-  effective_tax_rate: z.nullable(z.number()).optional(),
-  total_tax_rate: z.nullable(z.number()).optional(),
-  tax_payable_account_id: z.nullable(z.string()).optional(),
-  tax_remitted_account_id: z.nullable(z.string()).optional(),
-  components: z.nullable(z.array(z.lazy(() => Components$inboundSchema)))
-    .optional(),
-  type: z.nullable(z.string()).optional(),
-  report_tax_type: z.nullable(z.string()).optional(),
-  original_tax_rate_id: z.nullable(z.string()).optional(),
-  status: z.nullable(TaxRateStatus$inboundSchema).optional(),
-  row_version: z.nullable(z.string()).optional(),
-  pass_through: z.array(PassThroughBody$inboundSchema).optional(),
-  subsidiaries: z.array(z.lazy(() => Subsidiaries$inboundSchema)).optional(),
-  custom_fields: z.array(CustomField$inboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "effective_tax_rate": "effectiveTaxRate",
-    "total_tax_rate": "totalTaxRate",
-    "tax_payable_account_id": "taxPayableAccountId",
-    "tax_remitted_account_id": "taxRemittedAccountId",
-    "report_tax_type": "reportTaxType",
-    "original_tax_rate_id": "originalTaxRateId",
-    "row_version": "rowVersion",
-    "pass_through": "passThrough",
-    "custom_fields": "customFields",
-  });
-});
-
-/** @internal */
-export type TaxRateInput$Outbound = {
-  id?: string | null | undefined;
-  name?: string | undefined;
-  code?: string | null | undefined;
-  description?: string | null | undefined;
-  effective_tax_rate?: number | null | undefined;
-  total_tax_rate?: number | null | undefined;
-  tax_payable_account_id?: string | null | undefined;
-  tax_remitted_account_id?: string | null | undefined;
-  components?: Array<Components$Outbound> | null | undefined;
-  type?: string | null | undefined;
-  report_tax_type?: string | null | undefined;
-  original_tax_rate_id?: string | null | undefined;
-  status?: string | null | undefined;
-  row_version?: string | null | undefined;
-  pass_through?: Array<PassThroughBody$Outbound> | undefined;
-  subsidiaries?: Array<Subsidiaries$Outbound> | undefined;
-  custom_fields?: Array<CustomField$Outbound> | undefined;
-};
-
-/** @internal */
-export const TaxRateInput$outboundSchema: z.ZodType<
-  TaxRateInput$Outbound,
-  z.ZodTypeDef,
-  TaxRateInput
-> = z.object({
-  id: z.nullable(z.string()).optional(),
-  name: z.string().optional(),
-  code: z.nullable(z.string()).optional(),
-  description: z.nullable(z.string()).optional(),
-  effectiveTaxRate: z.nullable(z.number()).optional(),
-  totalTaxRate: z.nullable(z.number()).optional(),
-  taxPayableAccountId: z.nullable(z.string()).optional(),
-  taxRemittedAccountId: z.nullable(z.string()).optional(),
-  components: z.nullable(z.array(z.lazy(() => Components$outboundSchema)))
-    .optional(),
-  type: z.nullable(z.string()).optional(),
-  reportTaxType: z.nullable(z.string()).optional(),
-  originalTaxRateId: z.nullable(z.string()).optional(),
-  status: z.nullable(TaxRateStatus$outboundSchema).optional(),
-  rowVersion: z.nullable(z.string()).optional(),
-  passThrough: z.array(PassThroughBody$outboundSchema).optional(),
-  subsidiaries: z.array(z.lazy(() => Subsidiaries$outboundSchema)).optional(),
-  customFields: z.array(CustomField$outboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    effectiveTaxRate: "effective_tax_rate",
-    totalTaxRate: "total_tax_rate",
-    taxPayableAccountId: "tax_payable_account_id",
-    taxRemittedAccountId: "tax_remitted_account_id",
-    reportTaxType: "report_tax_type",
-    originalTaxRateId: "original_tax_rate_id",
-    rowVersion: "row_version",
-    passThrough: "pass_through",
-    customFields: "custom_fields",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace TaxRateInput$ {
-  /** @deprecated use `TaxRateInput$inboundSchema` instead. */
-  export const inboundSchema = TaxRateInput$inboundSchema;
-  /** @deprecated use `TaxRateInput$outboundSchema` instead. */
-  export const outboundSchema = TaxRateInput$outboundSchema;
-  /** @deprecated use `TaxRateInput$Outbound` instead. */
-  export type Outbound = TaxRateInput$Outbound;
-}
-
-export function taxRateInputToJSON(taxRateInput: TaxRateInput): string {
-  return JSON.stringify(TaxRateInput$outboundSchema.parse(taxRateInput));
-}
-
-export function taxRateInputFromJSON(
-  jsonString: string,
-): SafeParseResult<TaxRateInput, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => TaxRateInput$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'TaxRateInput' from JSON`,
   );
 }
 
@@ -605,5 +481,129 @@ export function taxRateFromJSON(
     jsonString,
     (x) => TaxRate$inboundSchema.parse(JSON.parse(x)),
     `Failed to parse 'TaxRate' from JSON`,
+  );
+}
+
+/** @internal */
+export const TaxRateInput$inboundSchema: z.ZodType<
+  TaxRateInput,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  id: z.nullable(z.string()).optional(),
+  name: z.string().optional(),
+  code: z.nullable(z.string()).optional(),
+  description: z.nullable(z.string()).optional(),
+  effective_tax_rate: z.nullable(z.number()).optional(),
+  total_tax_rate: z.nullable(z.number()).optional(),
+  tax_payable_account_id: z.nullable(z.string()).optional(),
+  tax_remitted_account_id: z.nullable(z.string()).optional(),
+  components: z.nullable(z.array(z.lazy(() => Components$inboundSchema)))
+    .optional(),
+  type: z.nullable(z.string()).optional(),
+  report_tax_type: z.nullable(z.string()).optional(),
+  original_tax_rate_id: z.nullable(z.string()).optional(),
+  status: z.nullable(TaxRateStatus$inboundSchema).optional(),
+  row_version: z.nullable(z.string()).optional(),
+  pass_through: z.array(PassThroughBody$inboundSchema).optional(),
+  subsidiaries: z.array(z.lazy(() => Subsidiaries$inboundSchema)).optional(),
+  custom_fields: z.array(CustomField$inboundSchema).optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "effective_tax_rate": "effectiveTaxRate",
+    "total_tax_rate": "totalTaxRate",
+    "tax_payable_account_id": "taxPayableAccountId",
+    "tax_remitted_account_id": "taxRemittedAccountId",
+    "report_tax_type": "reportTaxType",
+    "original_tax_rate_id": "originalTaxRateId",
+    "row_version": "rowVersion",
+    "pass_through": "passThrough",
+    "custom_fields": "customFields",
+  });
+});
+
+/** @internal */
+export type TaxRateInput$Outbound = {
+  id?: string | null | undefined;
+  name?: string | undefined;
+  code?: string | null | undefined;
+  description?: string | null | undefined;
+  effective_tax_rate?: number | null | undefined;
+  total_tax_rate?: number | null | undefined;
+  tax_payable_account_id?: string | null | undefined;
+  tax_remitted_account_id?: string | null | undefined;
+  components?: Array<Components$Outbound> | null | undefined;
+  type?: string | null | undefined;
+  report_tax_type?: string | null | undefined;
+  original_tax_rate_id?: string | null | undefined;
+  status?: string | null | undefined;
+  row_version?: string | null | undefined;
+  pass_through?: Array<PassThroughBody$Outbound> | undefined;
+  subsidiaries?: Array<Subsidiaries$Outbound> | undefined;
+  custom_fields?: Array<CustomField$Outbound> | undefined;
+};
+
+/** @internal */
+export const TaxRateInput$outboundSchema: z.ZodType<
+  TaxRateInput$Outbound,
+  z.ZodTypeDef,
+  TaxRateInput
+> = z.object({
+  id: z.nullable(z.string()).optional(),
+  name: z.string().optional(),
+  code: z.nullable(z.string()).optional(),
+  description: z.nullable(z.string()).optional(),
+  effectiveTaxRate: z.nullable(z.number()).optional(),
+  totalTaxRate: z.nullable(z.number()).optional(),
+  taxPayableAccountId: z.nullable(z.string()).optional(),
+  taxRemittedAccountId: z.nullable(z.string()).optional(),
+  components: z.nullable(z.array(z.lazy(() => Components$outboundSchema)))
+    .optional(),
+  type: z.nullable(z.string()).optional(),
+  reportTaxType: z.nullable(z.string()).optional(),
+  originalTaxRateId: z.nullable(z.string()).optional(),
+  status: z.nullable(TaxRateStatus$outboundSchema).optional(),
+  rowVersion: z.nullable(z.string()).optional(),
+  passThrough: z.array(PassThroughBody$outboundSchema).optional(),
+  subsidiaries: z.array(z.lazy(() => Subsidiaries$outboundSchema)).optional(),
+  customFields: z.array(CustomField$outboundSchema).optional(),
+}).transform((v) => {
+  return remap$(v, {
+    effectiveTaxRate: "effective_tax_rate",
+    totalTaxRate: "total_tax_rate",
+    taxPayableAccountId: "tax_payable_account_id",
+    taxRemittedAccountId: "tax_remitted_account_id",
+    reportTaxType: "report_tax_type",
+    originalTaxRateId: "original_tax_rate_id",
+    rowVersion: "row_version",
+    passThrough: "pass_through",
+    customFields: "custom_fields",
+  });
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace TaxRateInput$ {
+  /** @deprecated use `TaxRateInput$inboundSchema` instead. */
+  export const inboundSchema = TaxRateInput$inboundSchema;
+  /** @deprecated use `TaxRateInput$outboundSchema` instead. */
+  export const outboundSchema = TaxRateInput$outboundSchema;
+  /** @deprecated use `TaxRateInput$Outbound` instead. */
+  export type Outbound = TaxRateInput$Outbound;
+}
+
+export function taxRateInputToJSON(taxRateInput: TaxRateInput): string {
+  return JSON.stringify(TaxRateInput$outboundSchema.parse(taxRateInput));
+}
+
+export function taxRateInputFromJSON(
+  jsonString: string,
+): SafeParseResult<TaxRateInput, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => TaxRateInput$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'TaxRateInput' from JSON`,
   );
 }

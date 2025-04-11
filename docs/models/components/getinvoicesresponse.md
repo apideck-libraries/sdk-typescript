@@ -163,6 +163,13 @@ let value: GetInvoicesResponse = {
       },
       templateId: "123456",
       sourceDocumentUrl: "https://www.invoicesolution.com/invoice/123456",
+      paymentAllocations: [
+        {
+          id: "123456",
+          allocatedAmount: 1000,
+          date: new Date("2020-09-30T07:43:32.000Z"),
+        },
+      ],
       paymentMethod: "cash",
       channel: "email",
       language: "EN",

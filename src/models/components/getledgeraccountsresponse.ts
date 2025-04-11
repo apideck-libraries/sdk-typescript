@@ -12,7 +12,7 @@ import {
   LedgerAccount$inboundSchema,
   LedgerAccount$Outbound,
   LedgerAccount$outboundSchema,
-} from "./ledgeraccountinput.js";
+} from "./ledgeraccount.js";
 import {
   Links,
   Links$inboundSchema,

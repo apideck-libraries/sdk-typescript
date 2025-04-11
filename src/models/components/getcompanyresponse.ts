@@ -12,7 +12,7 @@ import {
   Company$inboundSchema,
   Company$Outbound,
   Company$outboundSchema,
-} from "./company.js";
+} from "./companyinput.js";
 
 /**
  * Company

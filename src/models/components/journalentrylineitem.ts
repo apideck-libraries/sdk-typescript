@@ -83,59 +83,6 @@ export type JournalEntryLineItemType = ClosedEnum<
   typeof JournalEntryLineItemType
 >;
 
-export type JournalEntryLineItemInput = {
-  /**
-   * User defined description
-   */
-  description?: string | null | undefined;
-  /**
-   * Tax amount
-   */
-  taxAmount?: number | null | undefined;
-  /**
-   * Sub-total amount, normally before tax.
-   */
-  subTotal?: number | null | undefined;
-  /**
-   * Debit entries are considered positive, and credit entries are considered negative.
-   */
-  totalAmount?: number | null | undefined;
-  /**
-   * Debit entries are considered positive, and credit entries are considered negative.
-   */
-  type: JournalEntryLineItemType;
-  taxRate?: LinkedTaxRateInput | undefined;
-  /**
-   * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
-   */
-  trackingCategory?: DeprecatedLinkedTrackingCategory | null | undefined;
-  /**
-   * A list of linked tracking categories.
-   */
-  trackingCategories?: Array<LinkedTrackingCategory | null> | null | undefined;
-  ledgerAccount: LinkedLedgerAccountInput | null;
-  /**
-   * The customer this entity is linked to.
-   */
-  customer?: LinkedCustomerInput | null | undefined;
-  /**
-   * The supplier this entity is linked to.
-   */
-  supplier?: LinkedSupplierInput | null | undefined;
-  /**
-   * The ID of the department
-   */
-  departmentId?: string | null | undefined;
-  /**
-   * The ID of the location
-   */
-  locationId?: string | null | undefined;
-  /**
-   * Line number of the resource
-   */
-  lineNumber?: number | null | undefined;
-};
-
 export type JournalEntryLineItem = {
   /**
    * A unique identifier for an object.
@@ -193,6 +140,59 @@ export type JournalEntryLineItem = {
   lineNumber?: number | null | undefined;
 };
 
+export type JournalEntryLineItemInput = {
+  /**
+   * User defined description
+   */
+  description?: string | null | undefined;
+  /**
+   * Tax amount
+   */
+  taxAmount?: number | null | undefined;
+  /**
+   * Sub-total amount, normally before tax.
+   */
+  subTotal?: number | null | undefined;
+  /**
+   * Debit entries are considered positive, and credit entries are considered negative.
+   */
+  totalAmount?: number | null | undefined;
+  /**
+   * Debit entries are considered positive, and credit entries are considered negative.
+   */
+  type: JournalEntryLineItemType;
+  taxRate?: LinkedTaxRateInput | undefined;
+  /**
+   * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+   */
+  trackingCategory?: DeprecatedLinkedTrackingCategory | null | undefined;
+  /**
+   * A list of linked tracking categories.
+   */
+  trackingCategories?: Array<LinkedTrackingCategory | null> | null | undefined;
+  ledgerAccount: LinkedLedgerAccountInput | null;
+  /**
+   * The customer this entity is linked to.
+   */
+  customer?: LinkedCustomerInput | null | undefined;
+  /**
+   * The supplier this entity is linked to.
+   */
+  supplier?: LinkedSupplierInput | null | undefined;
+  /**
+   * The ID of the department
+   */
+  departmentId?: string | null | undefined;
+  /**
+   * The ID of the location
+   */
+  locationId?: string | null | undefined;
+  /**
+   * Line number of the resource
+   */
+  lineNumber?: number | null | undefined;
+};
+
 /** @internal */
 export const JournalEntryLineItemType$inboundSchema: z.ZodNativeEnum<
   typeof JournalEntryLineItemType
@@ -212,137 +212,6 @@ export namespace JournalEntryLineItemType$ {
   export const inboundSchema = JournalEntryLineItemType$inboundSchema;
   /** @deprecated use `JournalEntryLineItemType$outboundSchema` instead. */
   export const outboundSchema = JournalEntryLineItemType$outboundSchema;
-}
-
-/** @internal */
-export const JournalEntryLineItemInput$inboundSchema: z.ZodType<
-  JournalEntryLineItemInput,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  description: z.nullable(z.string()).optional(),
-  tax_amount: z.nullable(z.number()).optional(),
-  sub_total: z.nullable(z.number()).optional(),
-  total_amount: z.nullable(z.number()).optional(),
-  type: JournalEntryLineItemType$inboundSchema,
-  tax_rate: LinkedTaxRateInput$inboundSchema.optional(),
-  tracking_category: z.nullable(DeprecatedLinkedTrackingCategory$inboundSchema)
-    .optional(),
-  tracking_categories: z.nullable(
-    z.array(z.nullable(LinkedTrackingCategory$inboundSchema)),
-  ).optional(),
-  ledger_account: z.nullable(LinkedLedgerAccountInput$inboundSchema),
-  customer: z.nullable(LinkedCustomerInput$inboundSchema).optional(),
-  supplier: z.nullable(LinkedSupplierInput$inboundSchema).optional(),
-  department_id: z.nullable(z.string()).optional(),
-  location_id: z.nullable(z.string()).optional(),
-  line_number: z.nullable(z.number().int()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "tax_amount": "taxAmount",
-    "sub_total": "subTotal",
-    "total_amount": "totalAmount",
-    "tax_rate": "taxRate",
-    "tracking_category": "trackingCategory",
-    "tracking_categories": "trackingCategories",
-    "ledger_account": "ledgerAccount",
-    "department_id": "departmentId",
-    "location_id": "locationId",
-    "line_number": "lineNumber",
-  });
-});
-
-/** @internal */
-export type JournalEntryLineItemInput$Outbound = {
-  description?: string | null | undefined;
-  tax_amount?: number | null | undefined;
-  sub_total?: number | null | undefined;
-  total_amount?: number | null | undefined;
-  type: string;
-  tax_rate?: LinkedTaxRateInput$Outbound | undefined;
-  tracking_category?:
-    | DeprecatedLinkedTrackingCategory$Outbound
-    | null
-    | undefined;
-  tracking_categories?:
-    | Array<LinkedTrackingCategory$Outbound | null>
-    | null
-    | undefined;
-  ledger_account: LinkedLedgerAccountInput$Outbound | null;
-  customer?: LinkedCustomerInput$Outbound | null | undefined;
-  supplier?: LinkedSupplierInput$Outbound | null | undefined;
-  department_id?: string | null | undefined;
-  location_id?: string | null | undefined;
-  line_number?: number | null | undefined;
-};
-
-/** @internal */
-export const JournalEntryLineItemInput$outboundSchema: z.ZodType<
-  JournalEntryLineItemInput$Outbound,
-  z.ZodTypeDef,
-  JournalEntryLineItemInput
-> = z.object({
-  description: z.nullable(z.string()).optional(),
-  taxAmount: z.nullable(z.number()).optional(),
-  subTotal: z.nullable(z.number()).optional(),
-  totalAmount: z.nullable(z.number()).optional(),
-  type: JournalEntryLineItemType$outboundSchema,
-  taxRate: LinkedTaxRateInput$outboundSchema.optional(),
-  trackingCategory: z.nullable(DeprecatedLinkedTrackingCategory$outboundSchema)
-    .optional(),
-  trackingCategories: z.nullable(
-    z.array(z.nullable(LinkedTrackingCategory$outboundSchema)),
-  ).optional(),
-  ledgerAccount: z.nullable(LinkedLedgerAccountInput$outboundSchema),
-  customer: z.nullable(LinkedCustomerInput$outboundSchema).optional(),
-  supplier: z.nullable(LinkedSupplierInput$outboundSchema).optional(),
-  departmentId: z.nullable(z.string()).optional(),
-  locationId: z.nullable(z.string()).optional(),
-  lineNumber: z.nullable(z.number().int()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    taxAmount: "tax_amount",
-    subTotal: "sub_total",
-    totalAmount: "total_amount",
-    taxRate: "tax_rate",
-    trackingCategory: "tracking_category",
-    trackingCategories: "tracking_categories",
-    ledgerAccount: "ledger_account",
-    departmentId: "department_id",
-    locationId: "location_id",
-    lineNumber: "line_number",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace JournalEntryLineItemInput$ {
-  /** @deprecated use `JournalEntryLineItemInput$inboundSchema` instead. */
-  export const inboundSchema = JournalEntryLineItemInput$inboundSchema;
-  /** @deprecated use `JournalEntryLineItemInput$outboundSchema` instead. */
-  export const outboundSchema = JournalEntryLineItemInput$outboundSchema;
-  /** @deprecated use `JournalEntryLineItemInput$Outbound` instead. */
-  export type Outbound = JournalEntryLineItemInput$Outbound;
-}
-
-export function journalEntryLineItemInputToJSON(
-  journalEntryLineItemInput: JournalEntryLineItemInput,
-): string {
-  return JSON.stringify(
-    JournalEntryLineItemInput$outboundSchema.parse(journalEntryLineItemInput),
-  );
-}
-
-export function journalEntryLineItemInputFromJSON(
-  jsonString: string,
-): SafeParseResult<JournalEntryLineItemInput, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => JournalEntryLineItemInput$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'JournalEntryLineItemInput' from JSON`,
-  );
 }
 
 /** @internal */
@@ -476,5 +345,136 @@ export function journalEntryLineItemFromJSON(
     jsonString,
     (x) => JournalEntryLineItem$inboundSchema.parse(JSON.parse(x)),
     `Failed to parse 'JournalEntryLineItem' from JSON`,
+  );
+}
+
+/** @internal */
+export const JournalEntryLineItemInput$inboundSchema: z.ZodType<
+  JournalEntryLineItemInput,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  description: z.nullable(z.string()).optional(),
+  tax_amount: z.nullable(z.number()).optional(),
+  sub_total: z.nullable(z.number()).optional(),
+  total_amount: z.nullable(z.number()).optional(),
+  type: JournalEntryLineItemType$inboundSchema,
+  tax_rate: LinkedTaxRateInput$inboundSchema.optional(),
+  tracking_category: z.nullable(DeprecatedLinkedTrackingCategory$inboundSchema)
+    .optional(),
+  tracking_categories: z.nullable(
+    z.array(z.nullable(LinkedTrackingCategory$inboundSchema)),
+  ).optional(),
+  ledger_account: z.nullable(LinkedLedgerAccountInput$inboundSchema),
+  customer: z.nullable(LinkedCustomerInput$inboundSchema).optional(),
+  supplier: z.nullable(LinkedSupplierInput$inboundSchema).optional(),
+  department_id: z.nullable(z.string()).optional(),
+  location_id: z.nullable(z.string()).optional(),
+  line_number: z.nullable(z.number().int()).optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "tax_amount": "taxAmount",
+    "sub_total": "subTotal",
+    "total_amount": "totalAmount",
+    "tax_rate": "taxRate",
+    "tracking_category": "trackingCategory",
+    "tracking_categories": "trackingCategories",
+    "ledger_account": "ledgerAccount",
+    "department_id": "departmentId",
+    "location_id": "locationId",
+    "line_number": "lineNumber",
+  });
+});
+
+/** @internal */
+export type JournalEntryLineItemInput$Outbound = {
+  description?: string | null | undefined;
+  tax_amount?: number | null | undefined;
+  sub_total?: number | null | undefined;
+  total_amount?: number | null | undefined;
+  type: string;
+  tax_rate?: LinkedTaxRateInput$Outbound | undefined;
+  tracking_category?:
+    | DeprecatedLinkedTrackingCategory$Outbound
+    | null
+    | undefined;
+  tracking_categories?:
+    | Array<LinkedTrackingCategory$Outbound | null>
+    | null
+    | undefined;
+  ledger_account: LinkedLedgerAccountInput$Outbound | null;
+  customer?: LinkedCustomerInput$Outbound | null | undefined;
+  supplier?: LinkedSupplierInput$Outbound | null | undefined;
+  department_id?: string | null | undefined;
+  location_id?: string | null | undefined;
+  line_number?: number | null | undefined;
+};
+
+/** @internal */
+export const JournalEntryLineItemInput$outboundSchema: z.ZodType<
+  JournalEntryLineItemInput$Outbound,
+  z.ZodTypeDef,
+  JournalEntryLineItemInput
+> = z.object({
+  description: z.nullable(z.string()).optional(),
+  taxAmount: z.nullable(z.number()).optional(),
+  subTotal: z.nullable(z.number()).optional(),
+  totalAmount: z.nullable(z.number()).optional(),
+  type: JournalEntryLineItemType$outboundSchema,
+  taxRate: LinkedTaxRateInput$outboundSchema.optional(),
+  trackingCategory: z.nullable(DeprecatedLinkedTrackingCategory$outboundSchema)
+    .optional(),
+  trackingCategories: z.nullable(
+    z.array(z.nullable(LinkedTrackingCategory$outboundSchema)),
+  ).optional(),
+  ledgerAccount: z.nullable(LinkedLedgerAccountInput$outboundSchema),
+  customer: z.nullable(LinkedCustomerInput$outboundSchema).optional(),
+  supplier: z.nullable(LinkedSupplierInput$outboundSchema).optional(),
+  departmentId: z.nullable(z.string()).optional(),
+  locationId: z.nullable(z.string()).optional(),
+  lineNumber: z.nullable(z.number().int()).optional(),
+}).transform((v) => {
+  return remap$(v, {
+    taxAmount: "tax_amount",
+    subTotal: "sub_total",
+    totalAmount: "total_amount",
+    taxRate: "tax_rate",
+    trackingCategory: "tracking_category",
+    trackingCategories: "tracking_categories",
+    ledgerAccount: "ledger_account",
+    departmentId: "department_id",
+    locationId: "location_id",
+    lineNumber: "line_number",
+  });
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace JournalEntryLineItemInput$ {
+  /** @deprecated use `JournalEntryLineItemInput$inboundSchema` instead. */
+  export const inboundSchema = JournalEntryLineItemInput$inboundSchema;
+  /** @deprecated use `JournalEntryLineItemInput$outboundSchema` instead. */
+  export const outboundSchema = JournalEntryLineItemInput$outboundSchema;
+  /** @deprecated use `JournalEntryLineItemInput$Outbound` instead. */
+  export type Outbound = JournalEntryLineItemInput$Outbound;
+}
+
+export function journalEntryLineItemInputToJSON(
+  journalEntryLineItemInput: JournalEntryLineItemInput,
+): string {
+  return JSON.stringify(
+    JournalEntryLineItemInput$outboundSchema.parse(journalEntryLineItemInput),
+  );
+}
+
+export function journalEntryLineItemInputFromJSON(
+  jsonString: string,
+): SafeParseResult<JournalEntryLineItemInput, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => JournalEntryLineItemInput$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'JournalEntryLineItemInput' from JSON`,
   );
 }

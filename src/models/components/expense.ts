@@ -81,75 +81,6 @@ export const ExpenseType = {
  */
 export type ExpenseType = ClosedEnum<typeof ExpenseType>;
 
-export type ExpenseInput = {
-  /**
-   * Number.
-   */
-  number?: string | null | undefined;
-  /**
-   * The date of the transaction - YYYY:MM::DDThh:mm:ss.sTZD
-   */
-  transactionDate: Date | null;
-  /**
-   * The unique identifier for the ledger account that this expense should be credited to.
-   */
-  accountId: string;
-  /**
-   * The ID of the customer this entity is linked to. Used for expenses that should be marked as billable to customers.
-   */
-  customerId?: string | undefined;
-  /**
-   * The ID of the supplier this entity is linked to.
-   */
-  supplierId?: string | undefined;
-  /**
-   * The company or subsidiary id the transaction belongs to
-   */
-  companyId?: string | null | undefined;
-  /**
-   * The ID of the department
-   */
-  departmentId?: string | null | undefined;
-  /**
-   * The type of payment for the expense.
-   */
-  paymentType?: ExpensePaymentType | null | undefined;
-  /**
-   * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
-   */
-  currency?: Currency | null | undefined;
-  /**
-   * Currency Exchange Rate at the time entity was recorded/generated.
-   */
-  currencyRate?: number | null | undefined;
-  /**
-   * The type of expense.
-   */
-  type?: ExpenseType | null | undefined;
-  /**
-   * The memo of the expense.
-   */
-  memo?: string | null | undefined;
-  taxRate?: LinkedTaxRateInput | undefined;
-  /**
-   * The total amount of the expense line item.
-   */
-  totalAmount?: number | null | undefined;
-  /**
-   * Expense line items linked to this expense.
-   */
-  lineItems: Array<ExpenseLineItemInput>;
-  customFields?: Array<CustomField> | undefined;
-  /**
-   * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
-   */
-  rowVersion?: string | null | undefined;
-  /**
-   * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
-   */
-  passThrough?: Array<PassThroughBody> | undefined;
-};
-
 export type Expense = {
   /**
    * A unique identifier for an object.
@@ -235,6 +166,75 @@ export type Expense = {
   passThrough?: Array<PassThroughBody> | undefined;
 };
 
+export type ExpenseInput = {
+  /**
+   * Number.
+   */
+  number?: string | null | undefined;
+  /**
+   * The date of the transaction - YYYY:MM::DDThh:mm:ss.sTZD
+   */
+  transactionDate: Date | null;
+  /**
+   * The unique identifier for the ledger account that this expense should be credited to.
+   */
+  accountId: string;
+  /**
+   * The ID of the customer this entity is linked to. Used for expenses that should be marked as billable to customers.
+   */
+  customerId?: string | undefined;
+  /**
+   * The ID of the supplier this entity is linked to.
+   */
+  supplierId?: string | undefined;
+  /**
+   * The company or subsidiary id the transaction belongs to
+   */
+  companyId?: string | null | undefined;
+  /**
+   * The ID of the department
+   */
+  departmentId?: string | null | undefined;
+  /**
+   * The type of payment for the expense.
+   */
+  paymentType?: ExpensePaymentType | null | undefined;
+  /**
+   * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
+   */
+  currency?: Currency | null | undefined;
+  /**
+   * Currency Exchange Rate at the time entity was recorded/generated.
+   */
+  currencyRate?: number | null | undefined;
+  /**
+   * The type of expense.
+   */
+  type?: ExpenseType | null | undefined;
+  /**
+   * The memo of the expense.
+   */
+  memo?: string | null | undefined;
+  taxRate?: LinkedTaxRateInput | undefined;
+  /**
+   * The total amount of the expense line item.
+   */
+  totalAmount?: number | null | undefined;
+  /**
+   * Expense line items linked to this expense.
+   */
+  lineItems: Array<ExpenseLineItemInput>;
+  customFields?: Array<CustomField> | undefined;
+  /**
+   * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
+   */
+  rowVersion?: string | null | undefined;
+  /**
+   * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
+   */
+  passThrough?: Array<PassThroughBody> | undefined;
+};
+
 /** @internal */
 export const ExpensePaymentType$inboundSchema: z.ZodNativeEnum<
   typeof ExpensePaymentType
@@ -273,143 +273,6 @@ export namespace ExpenseType$ {
   export const inboundSchema = ExpenseType$inboundSchema;
   /** @deprecated use `ExpenseType$outboundSchema` instead. */
   export const outboundSchema = ExpenseType$outboundSchema;
-}
-
-/** @internal */
-export const ExpenseInput$inboundSchema: z.ZodType<
-  ExpenseInput,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  number: z.nullable(z.string()).optional(),
-  transaction_date: z.nullable(
-    z.string().datetime({ offset: true }).transform(v => new Date(v)),
-  ),
-  account_id: z.string(),
-  customer_id: z.string().optional(),
-  supplier_id: z.string().optional(),
-  company_id: z.nullable(z.string()).optional(),
-  department_id: z.nullable(z.string()).optional(),
-  payment_type: z.nullable(ExpensePaymentType$inboundSchema).optional(),
-  currency: z.nullable(Currency$inboundSchema).optional(),
-  currency_rate: z.nullable(z.number()).optional(),
-  type: z.nullable(ExpenseType$inboundSchema).optional(),
-  memo: z.nullable(z.string()).optional(),
-  tax_rate: LinkedTaxRateInput$inboundSchema.optional(),
-  total_amount: z.nullable(z.number()).optional(),
-  line_items: z.array(ExpenseLineItemInput$inboundSchema),
-  custom_fields: z.array(CustomField$inboundSchema).optional(),
-  row_version: z.nullable(z.string()).optional(),
-  pass_through: z.array(PassThroughBody$inboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "transaction_date": "transactionDate",
-    "account_id": "accountId",
-    "customer_id": "customerId",
-    "supplier_id": "supplierId",
-    "company_id": "companyId",
-    "department_id": "departmentId",
-    "payment_type": "paymentType",
-    "currency_rate": "currencyRate",
-    "tax_rate": "taxRate",
-    "total_amount": "totalAmount",
-    "line_items": "lineItems",
-    "custom_fields": "customFields",
-    "row_version": "rowVersion",
-    "pass_through": "passThrough",
-  });
-});
-
-/** @internal */
-export type ExpenseInput$Outbound = {
-  number?: string | null | undefined;
-  transaction_date: string | null;
-  account_id: string;
-  customer_id?: string | undefined;
-  supplier_id?: string | undefined;
-  company_id?: string | null | undefined;
-  department_id?: string | null | undefined;
-  payment_type?: string | null | undefined;
-  currency?: string | null | undefined;
-  currency_rate?: number | null | undefined;
-  type?: string | null | undefined;
-  memo?: string | null | undefined;
-  tax_rate?: LinkedTaxRateInput$Outbound | undefined;
-  total_amount?: number | null | undefined;
-  line_items: Array<ExpenseLineItemInput$Outbound>;
-  custom_fields?: Array<CustomField$Outbound> | undefined;
-  row_version?: string | null | undefined;
-  pass_through?: Array<PassThroughBody$Outbound> | undefined;
-};
-
-/** @internal */
-export const ExpenseInput$outboundSchema: z.ZodType<
-  ExpenseInput$Outbound,
-  z.ZodTypeDef,
-  ExpenseInput
-> = z.object({
-  number: z.nullable(z.string()).optional(),
-  transactionDate: z.nullable(z.date().transform(v => v.toISOString())),
-  accountId: z.string(),
-  customerId: z.string().optional(),
-  supplierId: z.string().optional(),
-  companyId: z.nullable(z.string()).optional(),
-  departmentId: z.nullable(z.string()).optional(),
-  paymentType: z.nullable(ExpensePaymentType$outboundSchema).optional(),
-  currency: z.nullable(Currency$outboundSchema).optional(),
-  currencyRate: z.nullable(z.number()).optional(),
-  type: z.nullable(ExpenseType$outboundSchema).optional(),
-  memo: z.nullable(z.string()).optional(),
-  taxRate: LinkedTaxRateInput$outboundSchema.optional(),
-  totalAmount: z.nullable(z.number()).optional(),
-  lineItems: z.array(ExpenseLineItemInput$outboundSchema),
-  customFields: z.array(CustomField$outboundSchema).optional(),
-  rowVersion: z.nullable(z.string()).optional(),
-  passThrough: z.array(PassThroughBody$outboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    transactionDate: "transaction_date",
-    accountId: "account_id",
-    customerId: "customer_id",
-    supplierId: "supplier_id",
-    companyId: "company_id",
-    departmentId: "department_id",
-    paymentType: "payment_type",
-    currencyRate: "currency_rate",
-    taxRate: "tax_rate",
-    totalAmount: "total_amount",
-    lineItems: "line_items",
-    customFields: "custom_fields",
-    rowVersion: "row_version",
-    passThrough: "pass_through",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ExpenseInput$ {
-  /** @deprecated use `ExpenseInput$inboundSchema` instead. */
-  export const inboundSchema = ExpenseInput$inboundSchema;
-  /** @deprecated use `ExpenseInput$outboundSchema` instead. */
-  export const outboundSchema = ExpenseInput$outboundSchema;
-  /** @deprecated use `ExpenseInput$Outbound` instead. */
-  export type Outbound = ExpenseInput$Outbound;
-}
-
-export function expenseInputToJSON(expenseInput: ExpenseInput): string {
-  return JSON.stringify(ExpenseInput$outboundSchema.parse(expenseInput));
-}
-
-export function expenseInputFromJSON(
-  jsonString: string,
-): SafeParseResult<ExpenseInput, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => ExpenseInput$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ExpenseInput' from JSON`,
-  );
 }
 
 /** @internal */
@@ -565,5 +428,142 @@ export function expenseFromJSON(
     jsonString,
     (x) => Expense$inboundSchema.parse(JSON.parse(x)),
     `Failed to parse 'Expense' from JSON`,
+  );
+}
+
+/** @internal */
+export const ExpenseInput$inboundSchema: z.ZodType<
+  ExpenseInput,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  number: z.nullable(z.string()).optional(),
+  transaction_date: z.nullable(
+    z.string().datetime({ offset: true }).transform(v => new Date(v)),
+  ),
+  account_id: z.string(),
+  customer_id: z.string().optional(),
+  supplier_id: z.string().optional(),
+  company_id: z.nullable(z.string()).optional(),
+  department_id: z.nullable(z.string()).optional(),
+  payment_type: z.nullable(ExpensePaymentType$inboundSchema).optional(),
+  currency: z.nullable(Currency$inboundSchema).optional(),
+  currency_rate: z.nullable(z.number()).optional(),
+  type: z.nullable(ExpenseType$inboundSchema).optional(),
+  memo: z.nullable(z.string()).optional(),
+  tax_rate: LinkedTaxRateInput$inboundSchema.optional(),
+  total_amount: z.nullable(z.number()).optional(),
+  line_items: z.array(ExpenseLineItemInput$inboundSchema),
+  custom_fields: z.array(CustomField$inboundSchema).optional(),
+  row_version: z.nullable(z.string()).optional(),
+  pass_through: z.array(PassThroughBody$inboundSchema).optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "transaction_date": "transactionDate",
+    "account_id": "accountId",
+    "customer_id": "customerId",
+    "supplier_id": "supplierId",
+    "company_id": "companyId",
+    "department_id": "departmentId",
+    "payment_type": "paymentType",
+    "currency_rate": "currencyRate",
+    "tax_rate": "taxRate",
+    "total_amount": "totalAmount",
+    "line_items": "lineItems",
+    "custom_fields": "customFields",
+    "row_version": "rowVersion",
+    "pass_through": "passThrough",
+  });
+});
+
+/** @internal */
+export type ExpenseInput$Outbound = {
+  number?: string | null | undefined;
+  transaction_date: string | null;
+  account_id: string;
+  customer_id?: string | undefined;
+  supplier_id?: string | undefined;
+  company_id?: string | null | undefined;
+  department_id?: string | null | undefined;
+  payment_type?: string | null | undefined;
+  currency?: string | null | undefined;
+  currency_rate?: number | null | undefined;
+  type?: string | null | undefined;
+  memo?: string | null | undefined;
+  tax_rate?: LinkedTaxRateInput$Outbound | undefined;
+  total_amount?: number | null | undefined;
+  line_items: Array<ExpenseLineItemInput$Outbound>;
+  custom_fields?: Array<CustomField$Outbound> | undefined;
+  row_version?: string | null | undefined;
+  pass_through?: Array<PassThroughBody$Outbound> | undefined;
+};
+
+/** @internal */
+export const ExpenseInput$outboundSchema: z.ZodType<
+  ExpenseInput$Outbound,
+  z.ZodTypeDef,
+  ExpenseInput
+> = z.object({
+  number: z.nullable(z.string()).optional(),
+  transactionDate: z.nullable(z.date().transform(v => v.toISOString())),
+  accountId: z.string(),
+  customerId: z.string().optional(),
+  supplierId: z.string().optional(),
+  companyId: z.nullable(z.string()).optional(),
+  departmentId: z.nullable(z.string()).optional(),
+  paymentType: z.nullable(ExpensePaymentType$outboundSchema).optional(),
+  currency: z.nullable(Currency$outboundSchema).optional(),
+  currencyRate: z.nullable(z.number()).optional(),
+  type: z.nullable(ExpenseType$outboundSchema).optional(),
+  memo: z.nullable(z.string()).optional(),
+  taxRate: LinkedTaxRateInput$outboundSchema.optional(),
+  totalAmount: z.nullable(z.number()).optional(),
+  lineItems: z.array(ExpenseLineItemInput$outboundSchema),
+  customFields: z.array(CustomField$outboundSchema).optional(),
+  rowVersion: z.nullable(z.string()).optional(),
+  passThrough: z.array(PassThroughBody$outboundSchema).optional(),
+}).transform((v) => {
+  return remap$(v, {
+    transactionDate: "transaction_date",
+    accountId: "account_id",
+    customerId: "customer_id",
+    supplierId: "supplier_id",
+    companyId: "company_id",
+    departmentId: "department_id",
+    paymentType: "payment_type",
+    currencyRate: "currency_rate",
+    taxRate: "tax_rate",
+    totalAmount: "total_amount",
+    lineItems: "line_items",
+    customFields: "custom_fields",
+    rowVersion: "row_version",
+    passThrough: "pass_through",
+  });
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace ExpenseInput$ {
+  /** @deprecated use `ExpenseInput$inboundSchema` instead. */
+  export const inboundSchema = ExpenseInput$inboundSchema;
+  /** @deprecated use `ExpenseInput$outboundSchema` instead. */
+  export const outboundSchema = ExpenseInput$outboundSchema;
+  /** @deprecated use `ExpenseInput$Outbound` instead. */
+  export type Outbound = ExpenseInput$Outbound;
+}
+
+export function expenseInputToJSON(expenseInput: ExpenseInput): string {
+  return JSON.stringify(ExpenseInput$outboundSchema.parse(expenseInput));
+}
+
+export function expenseInputFromJSON(
+  jsonString: string,
+): SafeParseResult<ExpenseInput, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ExpenseInput$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ExpenseInput' from JSON`,
   );
 }

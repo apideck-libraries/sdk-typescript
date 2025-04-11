@@ -12,7 +12,7 @@ import {
   Invoice$inboundSchema,
   Invoice$Outbound,
   Invoice$outboundSchema,
-} from "./invoiceinput.js";
+} from "./invoice.js";
 import {
   Links,
   Links$inboundSchema,

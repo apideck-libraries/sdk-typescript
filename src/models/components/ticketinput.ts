@@ -59,6 +59,43 @@ export const Priority = {
  */
 export type Priority = ClosedEnum<typeof Priority>;
 
+export type TicketInput = {
+  /**
+   * The ticket's parent ID
+   */
+  parentId?: string | null | undefined;
+  /**
+   * The ticket's type
+   */
+  type?: string | null | undefined;
+  /**
+   * Subject of the ticket
+   */
+  subject?: string | null | undefined;
+  /**
+   * The ticket's description. HTML version of description is mapped if supported by the third-party platform
+   */
+  description?: string | null | undefined;
+  /**
+   * The current status of the ticket. Possible values include: open, in_progress, closed, or - in cases where there is no clear mapping - the original value passed through.
+   */
+  status?: string | null | undefined;
+  /**
+   * Priority of the ticket
+   */
+  priority?: Priority | null | undefined;
+  assignees?: Array<AssigneeInput> | undefined;
+  /**
+   * Due date of the ticket
+   */
+  dueDate?: Date | null | undefined;
+  tags?: Array<CollectionTagInput> | undefined;
+  /**
+   * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
+   */
+  passThrough?: Array<PassThroughBody> | undefined;
+};
+
 export type Ticket = {
   /**
    * A unique identifier for an object.
@@ -124,43 +161,6 @@ export type Ticket = {
   passThrough?: Array<PassThroughBody> | undefined;
 };
 
-export type TicketInput = {
-  /**
-   * The ticket's parent ID
-   */
-  parentId?: string | null | undefined;
-  /**
-   * The ticket's type
-   */
-  type?: string | null | undefined;
-  /**
-   * Subject of the ticket
-   */
-  subject?: string | null | undefined;
-  /**
-   * The ticket's description. HTML version of description is mapped if supported by the third-party platform
-   */
-  description?: string | null | undefined;
-  /**
-   * The current status of the ticket. Possible values include: open, in_progress, closed, or - in cases where there is no clear mapping - the original value passed through.
-   */
-  status?: string | null | undefined;
-  /**
-   * Priority of the ticket
-   */
-  priority?: Priority | null | undefined;
-  assignees?: Array<AssigneeInput> | undefined;
-  /**
-   * Due date of the ticket
-   */
-  dueDate?: Date | null | undefined;
-  tags?: Array<CollectionTagInput> | undefined;
-  /**
-   * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
-   */
-  passThrough?: Array<PassThroughBody> | undefined;
-};
-
 /** @internal */
 export const Priority$inboundSchema: z.ZodNativeEnum<typeof Priority> = z
   .nativeEnum(Priority);
@@ -178,6 +178,97 @@ export namespace Priority$ {
   export const inboundSchema = Priority$inboundSchema;
   /** @deprecated use `Priority$outboundSchema` instead. */
   export const outboundSchema = Priority$outboundSchema;
+}
+
+/** @internal */
+export const TicketInput$inboundSchema: z.ZodType<
+  TicketInput,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  parent_id: z.nullable(z.string()).optional(),
+  type: z.nullable(z.string()).optional(),
+  subject: z.nullable(z.string()).optional(),
+  description: z.nullable(z.string()).optional(),
+  status: z.nullable(z.string()).optional(),
+  priority: z.nullable(Priority$inboundSchema).optional(),
+  assignees: z.array(AssigneeInput$inboundSchema).optional(),
+  due_date: z.nullable(
+    z.string().datetime({ offset: true }).transform(v => new Date(v)),
+  ).optional(),
+  tags: z.array(CollectionTagInput$inboundSchema).optional(),
+  pass_through: z.array(PassThroughBody$inboundSchema).optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "parent_id": "parentId",
+    "due_date": "dueDate",
+    "pass_through": "passThrough",
+  });
+});
+
+/** @internal */
+export type TicketInput$Outbound = {
+  parent_id?: string | null | undefined;
+  type?: string | null | undefined;
+  subject?: string | null | undefined;
+  description?: string | null | undefined;
+  status?: string | null | undefined;
+  priority?: string | null | undefined;
+  assignees?: Array<AssigneeInput$Outbound> | undefined;
+  due_date?: string | null | undefined;
+  tags?: Array<CollectionTagInput$Outbound> | undefined;
+  pass_through?: Array<PassThroughBody$Outbound> | undefined;
+};
+
+/** @internal */
+export const TicketInput$outboundSchema: z.ZodType<
+  TicketInput$Outbound,
+  z.ZodTypeDef,
+  TicketInput
+> = z.object({
+  parentId: z.nullable(z.string()).optional(),
+  type: z.nullable(z.string()).optional(),
+  subject: z.nullable(z.string()).optional(),
+  description: z.nullable(z.string()).optional(),
+  status: z.nullable(z.string()).optional(),
+  priority: z.nullable(Priority$outboundSchema).optional(),
+  assignees: z.array(AssigneeInput$outboundSchema).optional(),
+  dueDate: z.nullable(z.date().transform(v => v.toISOString())).optional(),
+  tags: z.array(CollectionTagInput$outboundSchema).optional(),
+  passThrough: z.array(PassThroughBody$outboundSchema).optional(),
+}).transform((v) => {
+  return remap$(v, {
+    parentId: "parent_id",
+    dueDate: "due_date",
+    passThrough: "pass_through",
+  });
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace TicketInput$ {
+  /** @deprecated use `TicketInput$inboundSchema` instead. */
+  export const inboundSchema = TicketInput$inboundSchema;
+  /** @deprecated use `TicketInput$outboundSchema` instead. */
+  export const outboundSchema = TicketInput$outboundSchema;
+  /** @deprecated use `TicketInput$Outbound` instead. */
+  export type Outbound = TicketInput$Outbound;
+}
+
+export function ticketInputToJSON(ticketInput: TicketInput): string {
+  return JSON.stringify(TicketInput$outboundSchema.parse(ticketInput));
+}
+
+export function ticketInputFromJSON(
+  jsonString: string,
+): SafeParseResult<TicketInput, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => TicketInput$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'TicketInput' from JSON`,
+  );
 }
 
 /** @internal */
@@ -304,96 +395,5 @@ export function ticketFromJSON(
     jsonString,
     (x) => Ticket$inboundSchema.parse(JSON.parse(x)),
     `Failed to parse 'Ticket' from JSON`,
-  );
-}
-
-/** @internal */
-export const TicketInput$inboundSchema: z.ZodType<
-  TicketInput,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  parent_id: z.nullable(z.string()).optional(),
-  type: z.nullable(z.string()).optional(),
-  subject: z.nullable(z.string()).optional(),
-  description: z.nullable(z.string()).optional(),
-  status: z.nullable(z.string()).optional(),
-  priority: z.nullable(Priority$inboundSchema).optional(),
-  assignees: z.array(AssigneeInput$inboundSchema).optional(),
-  due_date: z.nullable(
-    z.string().datetime({ offset: true }).transform(v => new Date(v)),
-  ).optional(),
-  tags: z.array(CollectionTagInput$inboundSchema).optional(),
-  pass_through: z.array(PassThroughBody$inboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "parent_id": "parentId",
-    "due_date": "dueDate",
-    "pass_through": "passThrough",
-  });
-});
-
-/** @internal */
-export type TicketInput$Outbound = {
-  parent_id?: string | null | undefined;
-  type?: string | null | undefined;
-  subject?: string | null | undefined;
-  description?: string | null | undefined;
-  status?: string | null | undefined;
-  priority?: string | null | undefined;
-  assignees?: Array<AssigneeInput$Outbound> | undefined;
-  due_date?: string | null | undefined;
-  tags?: Array<CollectionTagInput$Outbound> | undefined;
-  pass_through?: Array<PassThroughBody$Outbound> | undefined;
-};
-
-/** @internal */
-export const TicketInput$outboundSchema: z.ZodType<
-  TicketInput$Outbound,
-  z.ZodTypeDef,
-  TicketInput
-> = z.object({
-  parentId: z.nullable(z.string()).optional(),
-  type: z.nullable(z.string()).optional(),
-  subject: z.nullable(z.string()).optional(),
-  description: z.nullable(z.string()).optional(),
-  status: z.nullable(z.string()).optional(),
-  priority: z.nullable(Priority$outboundSchema).optional(),
-  assignees: z.array(AssigneeInput$outboundSchema).optional(),
-  dueDate: z.nullable(z.date().transform(v => v.toISOString())).optional(),
-  tags: z.array(CollectionTagInput$outboundSchema).optional(),
-  passThrough: z.array(PassThroughBody$outboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    parentId: "parent_id",
-    dueDate: "due_date",
-    passThrough: "pass_through",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace TicketInput$ {
-  /** @deprecated use `TicketInput$inboundSchema` instead. */
-  export const inboundSchema = TicketInput$inboundSchema;
-  /** @deprecated use `TicketInput$outboundSchema` instead. */
-  export const outboundSchema = TicketInput$outboundSchema;
-  /** @deprecated use `TicketInput$Outbound` instead. */
-  export type Outbound = TicketInput$Outbound;
-}
-
-export function ticketInputToJSON(ticketInput: TicketInput): string {
-  return JSON.stringify(TicketInput$outboundSchema.parse(ticketInput));
-}
-
-export function ticketInputFromJSON(
-  jsonString: string,
-): SafeParseResult<TicketInput, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => TicketInput$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'TicketInput' from JSON`,
   );
 }

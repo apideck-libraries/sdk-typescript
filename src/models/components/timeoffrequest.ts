@@ -74,66 +74,6 @@ export type Notes = {
   manager?: string | null | undefined;
 };
 
-export type TimeOffRequestInput = {
-  /**
-   * ID of the employee
-   */
-  employeeId?: string | null | undefined;
-  /**
-   * ID of the policy
-   */
-  policyId?: string | null | undefined;
-  /**
-   * The status of the time off request.
-   */
-  status?: TimeOffRequestStatusStatus | null | undefined;
-  /**
-   * Description of the time off request.
-   */
-  description?: string | null | undefined;
-  /**
-   * The start date of the time off request.
-   */
-  startDate?: string | null | undefined;
-  /**
-   * The end date of the time off request.
-   */
-  endDate?: string | null | undefined;
-  /**
-   * The date the request was made.
-   */
-  requestDate?: string | null | undefined;
-  /**
-   * The type of request
-   */
-  requestType?: RequestType | null | undefined;
-  /**
-   * The date the request was approved
-   */
-  approvalDate?: string | null | undefined;
-  /**
-   * The unit of time off requested. Possible values include: `hours`, `days`, or `other`.
-   */
-  units?: Units | null | undefined;
-  /**
-   * The amount of time off requested.
-   */
-  amount?: number | null | undefined;
-  /**
-   * The day part of the time off request.
-   */
-  dayPart?: string | null | undefined;
-  notes?: Notes | undefined;
-  /**
-   * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
-   */
-  passThrough?: Array<PassThroughBody> | undefined;
-  /**
-   * The policy type of the time off request
-   */
-  policyType?: string | undefined;
-};
-
 export type TimeOffRequest = {
   /**
    * A unique identifier for an object.
@@ -208,6 +148,66 @@ export type TimeOffRequest = {
    * The date and time when the object was created.
    */
   createdAt?: Date | null | undefined;
+  /**
+   * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
+   */
+  passThrough?: Array<PassThroughBody> | undefined;
+  /**
+   * The policy type of the time off request
+   */
+  policyType?: string | undefined;
+};
+
+export type TimeOffRequestInput = {
+  /**
+   * ID of the employee
+   */
+  employeeId?: string | null | undefined;
+  /**
+   * ID of the policy
+   */
+  policyId?: string | null | undefined;
+  /**
+   * The status of the time off request.
+   */
+  status?: TimeOffRequestStatusStatus | null | undefined;
+  /**
+   * Description of the time off request.
+   */
+  description?: string | null | undefined;
+  /**
+   * The start date of the time off request.
+   */
+  startDate?: string | null | undefined;
+  /**
+   * The end date of the time off request.
+   */
+  endDate?: string | null | undefined;
+  /**
+   * The date the request was made.
+   */
+  requestDate?: string | null | undefined;
+  /**
+   * The type of request
+   */
+  requestType?: RequestType | null | undefined;
+  /**
+   * The date the request was approved
+   */
+  approvalDate?: string | null | undefined;
+  /**
+   * The unit of time off requested. Possible values include: `hours`, `days`, or `other`.
+   */
+  units?: Units | null | undefined;
+  /**
+   * The amount of time off requested.
+   */
+  amount?: number | null | undefined;
+  /**
+   * The day part of the time off request.
+   */
+  dayPart?: string | null | undefined;
+  notes?: Notes | undefined;
   /**
    * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
    */
@@ -325,128 +325,6 @@ export function notesFromJSON(
     jsonString,
     (x) => Notes$inboundSchema.parse(JSON.parse(x)),
     `Failed to parse 'Notes' from JSON`,
-  );
-}
-
-/** @internal */
-export const TimeOffRequestInput$inboundSchema: z.ZodType<
-  TimeOffRequestInput,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  employee_id: z.nullable(z.string()).optional(),
-  policy_id: z.nullable(z.string()).optional(),
-  status: z.nullable(TimeOffRequestStatusStatus$inboundSchema).optional(),
-  description: z.nullable(z.string()).optional(),
-  start_date: z.nullable(z.string()).optional(),
-  end_date: z.nullable(z.string()).optional(),
-  request_date: z.nullable(z.string()).optional(),
-  request_type: z.nullable(RequestType$inboundSchema).optional(),
-  approval_date: z.nullable(z.string()).optional(),
-  units: z.nullable(Units$inboundSchema).optional(),
-  amount: z.nullable(z.number()).optional(),
-  day_part: z.nullable(z.string()).optional(),
-  notes: z.lazy(() => Notes$inboundSchema).optional(),
-  pass_through: z.array(PassThroughBody$inboundSchema).optional(),
-  policy_type: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "employee_id": "employeeId",
-    "policy_id": "policyId",
-    "start_date": "startDate",
-    "end_date": "endDate",
-    "request_date": "requestDate",
-    "request_type": "requestType",
-    "approval_date": "approvalDate",
-    "day_part": "dayPart",
-    "pass_through": "passThrough",
-    "policy_type": "policyType",
-  });
-});
-
-/** @internal */
-export type TimeOffRequestInput$Outbound = {
-  employee_id?: string | null | undefined;
-  policy_id?: string | null | undefined;
-  status?: string | null | undefined;
-  description?: string | null | undefined;
-  start_date?: string | null | undefined;
-  end_date?: string | null | undefined;
-  request_date?: string | null | undefined;
-  request_type?: string | null | undefined;
-  approval_date?: string | null | undefined;
-  units?: string | null | undefined;
-  amount?: number | null | undefined;
-  day_part?: string | null | undefined;
-  notes?: Notes$Outbound | undefined;
-  pass_through?: Array<PassThroughBody$Outbound> | undefined;
-  policy_type?: string | undefined;
-};
-
-/** @internal */
-export const TimeOffRequestInput$outboundSchema: z.ZodType<
-  TimeOffRequestInput$Outbound,
-  z.ZodTypeDef,
-  TimeOffRequestInput
-> = z.object({
-  employeeId: z.nullable(z.string()).optional(),
-  policyId: z.nullable(z.string()).optional(),
-  status: z.nullable(TimeOffRequestStatusStatus$outboundSchema).optional(),
-  description: z.nullable(z.string()).optional(),
-  startDate: z.nullable(z.string()).optional(),
-  endDate: z.nullable(z.string()).optional(),
-  requestDate: z.nullable(z.string()).optional(),
-  requestType: z.nullable(RequestType$outboundSchema).optional(),
-  approvalDate: z.nullable(z.string()).optional(),
-  units: z.nullable(Units$outboundSchema).optional(),
-  amount: z.nullable(z.number()).optional(),
-  dayPart: z.nullable(z.string()).optional(),
-  notes: z.lazy(() => Notes$outboundSchema).optional(),
-  passThrough: z.array(PassThroughBody$outboundSchema).optional(),
-  policyType: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    employeeId: "employee_id",
-    policyId: "policy_id",
-    startDate: "start_date",
-    endDate: "end_date",
-    requestDate: "request_date",
-    requestType: "request_type",
-    approvalDate: "approval_date",
-    dayPart: "day_part",
-    passThrough: "pass_through",
-    policyType: "policy_type",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace TimeOffRequestInput$ {
-  /** @deprecated use `TimeOffRequestInput$inboundSchema` instead. */
-  export const inboundSchema = TimeOffRequestInput$inboundSchema;
-  /** @deprecated use `TimeOffRequestInput$outboundSchema` instead. */
-  export const outboundSchema = TimeOffRequestInput$outboundSchema;
-  /** @deprecated use `TimeOffRequestInput$Outbound` instead. */
-  export type Outbound = TimeOffRequestInput$Outbound;
-}
-
-export function timeOffRequestInputToJSON(
-  timeOffRequestInput: TimeOffRequestInput,
-): string {
-  return JSON.stringify(
-    TimeOffRequestInput$outboundSchema.parse(timeOffRequestInput),
-  );
-}
-
-export function timeOffRequestInputFromJSON(
-  jsonString: string,
-): SafeParseResult<TimeOffRequestInput, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => TimeOffRequestInput$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'TimeOffRequestInput' from JSON`,
   );
 }
 
@@ -597,5 +475,127 @@ export function timeOffRequestFromJSON(
     jsonString,
     (x) => TimeOffRequest$inboundSchema.parse(JSON.parse(x)),
     `Failed to parse 'TimeOffRequest' from JSON`,
+  );
+}
+
+/** @internal */
+export const TimeOffRequestInput$inboundSchema: z.ZodType<
+  TimeOffRequestInput,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  employee_id: z.nullable(z.string()).optional(),
+  policy_id: z.nullable(z.string()).optional(),
+  status: z.nullable(TimeOffRequestStatusStatus$inboundSchema).optional(),
+  description: z.nullable(z.string()).optional(),
+  start_date: z.nullable(z.string()).optional(),
+  end_date: z.nullable(z.string()).optional(),
+  request_date: z.nullable(z.string()).optional(),
+  request_type: z.nullable(RequestType$inboundSchema).optional(),
+  approval_date: z.nullable(z.string()).optional(),
+  units: z.nullable(Units$inboundSchema).optional(),
+  amount: z.nullable(z.number()).optional(),
+  day_part: z.nullable(z.string()).optional(),
+  notes: z.lazy(() => Notes$inboundSchema).optional(),
+  pass_through: z.array(PassThroughBody$inboundSchema).optional(),
+  policy_type: z.string().optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "employee_id": "employeeId",
+    "policy_id": "policyId",
+    "start_date": "startDate",
+    "end_date": "endDate",
+    "request_date": "requestDate",
+    "request_type": "requestType",
+    "approval_date": "approvalDate",
+    "day_part": "dayPart",
+    "pass_through": "passThrough",
+    "policy_type": "policyType",
+  });
+});
+
+/** @internal */
+export type TimeOffRequestInput$Outbound = {
+  employee_id?: string | null | undefined;
+  policy_id?: string | null | undefined;
+  status?: string | null | undefined;
+  description?: string | null | undefined;
+  start_date?: string | null | undefined;
+  end_date?: string | null | undefined;
+  request_date?: string | null | undefined;
+  request_type?: string | null | undefined;
+  approval_date?: string | null | undefined;
+  units?: string | null | undefined;
+  amount?: number | null | undefined;
+  day_part?: string | null | undefined;
+  notes?: Notes$Outbound | undefined;
+  pass_through?: Array<PassThroughBody$Outbound> | undefined;
+  policy_type?: string | undefined;
+};
+
+/** @internal */
+export const TimeOffRequestInput$outboundSchema: z.ZodType<
+  TimeOffRequestInput$Outbound,
+  z.ZodTypeDef,
+  TimeOffRequestInput
+> = z.object({
+  employeeId: z.nullable(z.string()).optional(),
+  policyId: z.nullable(z.string()).optional(),
+  status: z.nullable(TimeOffRequestStatusStatus$outboundSchema).optional(),
+  description: z.nullable(z.string()).optional(),
+  startDate: z.nullable(z.string()).optional(),
+  endDate: z.nullable(z.string()).optional(),
+  requestDate: z.nullable(z.string()).optional(),
+  requestType: z.nullable(RequestType$outboundSchema).optional(),
+  approvalDate: z.nullable(z.string()).optional(),
+  units: z.nullable(Units$outboundSchema).optional(),
+  amount: z.nullable(z.number()).optional(),
+  dayPart: z.nullable(z.string()).optional(),
+  notes: z.lazy(() => Notes$outboundSchema).optional(),
+  passThrough: z.array(PassThroughBody$outboundSchema).optional(),
+  policyType: z.string().optional(),
+}).transform((v) => {
+  return remap$(v, {
+    employeeId: "employee_id",
+    policyId: "policy_id",
+    startDate: "start_date",
+    endDate: "end_date",
+    requestDate: "request_date",
+    requestType: "request_type",
+    approvalDate: "approval_date",
+    dayPart: "day_part",
+    passThrough: "pass_through",
+    policyType: "policy_type",
+  });
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace TimeOffRequestInput$ {
+  /** @deprecated use `TimeOffRequestInput$inboundSchema` instead. */
+  export const inboundSchema = TimeOffRequestInput$inboundSchema;
+  /** @deprecated use `TimeOffRequestInput$outboundSchema` instead. */
+  export const outboundSchema = TimeOffRequestInput$outboundSchema;
+  /** @deprecated use `TimeOffRequestInput$Outbound` instead. */
+  export type Outbound = TimeOffRequestInput$Outbound;
+}
+
+export function timeOffRequestInputToJSON(
+  timeOffRequestInput: TimeOffRequestInput,
+): string {
+  return JSON.stringify(
+    TimeOffRequestInput$outboundSchema.parse(timeOffRequestInput),
+  );
+}
+
+export function timeOffRequestInputFromJSON(
+  jsonString: string,
+): SafeParseResult<TimeOffRequestInput, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => TimeOffRequestInput$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'TimeOffRequestInput' from JSON`,
   );
 }

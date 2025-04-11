@@ -23,7 +23,7 @@ import {
   JournalEntryLineItemInput$inboundSchema,
   JournalEntryLineItemInput$Outbound,
   JournalEntryLineItemInput$outboundSchema,
-} from "./journalentrylineiteminput.js";
+} from "./journalentrylineitem.js";
 import {
   LinkedTrackingCategory,
   LinkedTrackingCategory$inboundSchema,
