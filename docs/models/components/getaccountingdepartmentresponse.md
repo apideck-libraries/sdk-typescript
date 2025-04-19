@@ -24,6 +24,7 @@ let value: GetAccountingDepartmentResponse = {
         name: "SpaceX",
       },
     ],
+    code: "123",
     rowVersion: "1-12345",
     updatedBy: "12345",
     createdBy: "12345",

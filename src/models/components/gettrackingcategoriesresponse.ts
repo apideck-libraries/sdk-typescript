@@ -24,7 +24,7 @@ import {
   TrackingCategory$inboundSchema,
   TrackingCategory$Outbound,
   TrackingCategory$outboundSchema,
-} from "./trackingcategoryinput.js";
+} from "./trackingcategory.js";
 
 /**
  * Tracking categories

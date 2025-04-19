@@ -12,7 +12,7 @@ import {
   BillPayment$inboundSchema,
   BillPayment$Outbound,
   BillPayment$outboundSchema,
-} from "./billpaymentinput.js";
+} from "./billpayment.js";
 
 /**
  * Bill Payment

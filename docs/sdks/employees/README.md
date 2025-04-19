@@ -39,6 +39,8 @@ async function run() {
       employmentStatus: "active",
       employeeNumber: "123456-AB",
       departmentId: "1234",
+      city: "San Francisco",
+      country: "US",
     },
     sort: {
       by: "created_at",
@@ -87,6 +89,8 @@ async function run() {
       employmentStatus: "active",
       employeeNumber: "123456-AB",
       departmentId: "1234",
+      city: "San Francisco",
+      country: "US",
     },
     sort: {
       by: "created_at",

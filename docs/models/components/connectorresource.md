@@ -32,8 +32,17 @@ let value: ConnectorResource = {
     "created_at",
     "name",
   ],
-  supportedFields: [],
-  supportedListFields: [],
+  supportedFields: [
+    {
+      unifiedProperty: "owner_id",
+      childProperties: [],
+    },
+  ],
+  supportedListFields: [
+    {
+      unifiedProperty: "owner_id",
+    },
+  ],
 };
 ```
 
