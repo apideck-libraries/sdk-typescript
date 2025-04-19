@@ -37,8 +37,17 @@ let value: GetConnectorResourceResponse = {
       "created_at",
       "name",
     ],
-    supportedFields: [],
-    supportedListFields: [],
+    supportedFields: [
+      {
+        unifiedProperty: "owner_id",
+        childProperties: [],
+      },
+    ],
+    supportedListFields: [
+      {
+        unifiedProperty: "owner_id",
+      },
+    ],
   },
   meta: {
     itemsOnPage: 50,

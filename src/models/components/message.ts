@@ -38,46 +38,6 @@ export const MessageType = {
  */
 export type MessageType = ClosedEnum<typeof MessageType>;
 
-export type MessageInput = {
-  /**
-   * The phone number that initiated the message.
-   */
-  from: string;
-  /**
-   * The phone number that received the message.
-   */
-  to: string;
-  subject?: string | undefined;
-  /**
-   * The message text.
-   */
-  body: string;
-  /**
-   * Set to sms for SMS messages and mms for MMS messages.
-   */
-  type?: MessageType | undefined;
-  /**
-   * The scheduled date and time of the message.
-   */
-  scheduledAt?: Date | undefined;
-  /**
-   * Define a webhook to receive delivery notifications.
-   */
-  webhookUrl?: string | undefined;
-  /**
-   * A client reference.
-   */
-  reference?: string | undefined;
-  /**
-   * The ID of the Messaging Service used with the message. In case of Plivo this links to the Powerpack ID.
-   */
-  messagingServiceId?: string | undefined;
-  /**
-   * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
-   */
-  passThrough?: Array<PassThroughBody> | undefined;
-};
-
 /**
  * The direction of the message.
  */
@@ -230,6 +190,46 @@ export type Message = {
   passThrough?: Array<PassThroughBody> | undefined;
 };
 
+export type MessageInput = {
+  /**
+   * The phone number that initiated the message.
+   */
+  from: string;
+  /**
+   * The phone number that received the message.
+   */
+  to: string;
+  subject?: string | undefined;
+  /**
+   * The message text.
+   */
+  body: string;
+  /**
+   * Set to sms for SMS messages and mms for MMS messages.
+   */
+  type?: MessageType | undefined;
+  /**
+   * The scheduled date and time of the message.
+   */
+  scheduledAt?: Date | undefined;
+  /**
+   * Define a webhook to receive delivery notifications.
+   */
+  webhookUrl?: string | undefined;
+  /**
+   * A client reference.
+   */
+  reference?: string | undefined;
+  /**
+   * The ID of the Messaging Service used with the message. In case of Plivo this links to the Powerpack ID.
+   */
+  messagingServiceId?: string | undefined;
+  /**
+   * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
+   */
+  passThrough?: Array<PassThroughBody> | undefined;
+};
+
 /** @internal */
 export const MessageType$inboundSchema: z.ZodNativeEnum<typeof MessageType> = z
   .nativeEnum(MessageType);
@@ -247,99 +247,6 @@ export namespace MessageType$ {
   export const inboundSchema = MessageType$inboundSchema;
   /** @deprecated use `MessageType$outboundSchema` instead. */
   export const outboundSchema = MessageType$outboundSchema;
-}
-
-/** @internal */
-export const MessageInput$inboundSchema: z.ZodType<
-  MessageInput,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  from: z.string(),
-  to: z.string(),
-  subject: z.string().optional(),
-  body: z.string(),
-  type: MessageType$inboundSchema.optional(),
-  scheduled_at: z.string().datetime({ offset: true }).transform(v =>
-    new Date(v)
-  ).optional(),
-  webhook_url: z.string().optional(),
-  reference: z.string().optional(),
-  messaging_service_id: z.string().optional(),
-  pass_through: z.array(PassThroughBody$inboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "scheduled_at": "scheduledAt",
-    "webhook_url": "webhookUrl",
-    "messaging_service_id": "messagingServiceId",
-    "pass_through": "passThrough",
-  });
-});
-
-/** @internal */
-export type MessageInput$Outbound = {
-  from: string;
-  to: string;
-  subject?: string | undefined;
-  body: string;
-  type?: string | undefined;
-  scheduled_at?: string | undefined;
-  webhook_url?: string | undefined;
-  reference?: string | undefined;
-  messaging_service_id?: string | undefined;
-  pass_through?: Array<PassThroughBody$Outbound> | undefined;
-};
-
-/** @internal */
-export const MessageInput$outboundSchema: z.ZodType<
-  MessageInput$Outbound,
-  z.ZodTypeDef,
-  MessageInput
-> = z.object({
-  from: z.string(),
-  to: z.string(),
-  subject: z.string().optional(),
-  body: z.string(),
-  type: MessageType$outboundSchema.optional(),
-  scheduledAt: z.date().transform(v => v.toISOString()).optional(),
-  webhookUrl: z.string().optional(),
-  reference: z.string().optional(),
-  messagingServiceId: z.string().optional(),
-  passThrough: z.array(PassThroughBody$outboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    scheduledAt: "scheduled_at",
-    webhookUrl: "webhook_url",
-    messagingServiceId: "messaging_service_id",
-    passThrough: "pass_through",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace MessageInput$ {
-  /** @deprecated use `MessageInput$inboundSchema` instead. */
-  export const inboundSchema = MessageInput$inboundSchema;
-  /** @deprecated use `MessageInput$outboundSchema` instead. */
-  export const outboundSchema = MessageInput$outboundSchema;
-  /** @deprecated use `MessageInput$Outbound` instead. */
-  export type Outbound = MessageInput$Outbound;
-}
-
-export function messageInputToJSON(messageInput: MessageInput): string {
-  return JSON.stringify(MessageInput$outboundSchema.parse(messageInput));
-}
-
-export function messageInputFromJSON(
-  jsonString: string,
-): SafeParseResult<MessageInput, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => MessageInput$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'MessageInput' from JSON`,
-  );
 }
 
 /** @internal */
@@ -642,5 +549,98 @@ export function messageFromJSON(
     jsonString,
     (x) => Message$inboundSchema.parse(JSON.parse(x)),
     `Failed to parse 'Message' from JSON`,
+  );
+}
+
+/** @internal */
+export const MessageInput$inboundSchema: z.ZodType<
+  MessageInput,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  from: z.string(),
+  to: z.string(),
+  subject: z.string().optional(),
+  body: z.string(),
+  type: MessageType$inboundSchema.optional(),
+  scheduled_at: z.string().datetime({ offset: true }).transform(v =>
+    new Date(v)
+  ).optional(),
+  webhook_url: z.string().optional(),
+  reference: z.string().optional(),
+  messaging_service_id: z.string().optional(),
+  pass_through: z.array(PassThroughBody$inboundSchema).optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "scheduled_at": "scheduledAt",
+    "webhook_url": "webhookUrl",
+    "messaging_service_id": "messagingServiceId",
+    "pass_through": "passThrough",
+  });
+});
+
+/** @internal */
+export type MessageInput$Outbound = {
+  from: string;
+  to: string;
+  subject?: string | undefined;
+  body: string;
+  type?: string | undefined;
+  scheduled_at?: string | undefined;
+  webhook_url?: string | undefined;
+  reference?: string | undefined;
+  messaging_service_id?: string | undefined;
+  pass_through?: Array<PassThroughBody$Outbound> | undefined;
+};
+
+/** @internal */
+export const MessageInput$outboundSchema: z.ZodType<
+  MessageInput$Outbound,
+  z.ZodTypeDef,
+  MessageInput
+> = z.object({
+  from: z.string(),
+  to: z.string(),
+  subject: z.string().optional(),
+  body: z.string(),
+  type: MessageType$outboundSchema.optional(),
+  scheduledAt: z.date().transform(v => v.toISOString()).optional(),
+  webhookUrl: z.string().optional(),
+  reference: z.string().optional(),
+  messagingServiceId: z.string().optional(),
+  passThrough: z.array(PassThroughBody$outboundSchema).optional(),
+}).transform((v) => {
+  return remap$(v, {
+    scheduledAt: "scheduled_at",
+    webhookUrl: "webhook_url",
+    messagingServiceId: "messaging_service_id",
+    passThrough: "pass_through",
+  });
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace MessageInput$ {
+  /** @deprecated use `MessageInput$inboundSchema` instead. */
+  export const inboundSchema = MessageInput$inboundSchema;
+  /** @deprecated use `MessageInput$outboundSchema` instead. */
+  export const outboundSchema = MessageInput$outboundSchema;
+  /** @deprecated use `MessageInput$Outbound` instead. */
+  export type Outbound = MessageInput$Outbound;
+}
+
+export function messageInputToJSON(messageInput: MessageInput): string {
+  return JSON.stringify(MessageInput$outboundSchema.parse(messageInput));
+}
+
+export function messageInputFromJSON(
+  jsonString: string,
+): SafeParseResult<MessageInput, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => MessageInput$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'MessageInput' from JSON`,
   );
 }

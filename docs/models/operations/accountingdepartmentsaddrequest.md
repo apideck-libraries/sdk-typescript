@@ -16,6 +16,7 @@ let value: AccountingDepartmentsAddRequest = {
         name: "SpaceX",
       },
     ],
+    code: "123",
     rowVersion: "1-12345",
     passThrough: [
       {
