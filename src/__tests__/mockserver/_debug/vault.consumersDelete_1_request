@@ -1,0 +1,13 @@
+DELETE /vault/consumers/test_user_id HTTP/1.1
+Host: localhost:18080
+Accept: application/json
+Accept-Encoding: gzip, deflate
+Accept-Language: *
+Authorization: Bearer value
+Connection: keep-alive
+Cookie: 
+Sec-Fetch-Mode: cors
+User-Agent: speakeasy-sdk/typescript 0.22.1 2.585.2 10.16.2 @apideck/unify
+X-Speakeasy-Test-Instance-Id: 290473CA-B836-0087-AA4D-782B4DE59D81
+X-Speakeasy-Test-Name: vault.consumersDelete
+

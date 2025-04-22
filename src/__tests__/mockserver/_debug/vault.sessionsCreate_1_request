@@ -1,0 +1,16 @@
+POST /vault/sessions HTTP/1.1
+Host: localhost:18080
+Accept: application/json
+Accept-Encoding: gzip, deflate
+Accept-Language: *
+Authorization: Bearer value
+Connection: keep-alive
+Content-Length: 955
+Content-Type: application/json
+Cookie: 
+Sec-Fetch-Mode: cors
+User-Agent: speakeasy-sdk/typescript 0.22.1 2.585.2 10.16.2 @apideck/unify
+X-Speakeasy-Test-Instance-Id: 34CF6E60-0832-59E7-DEA4-FFD6F12FF756
+X-Speakeasy-Test-Name: vault.sessionsCreate
+
+{"consumer_metadata":{"account_name":"SpaceX","user_name":"Elon Musk","email":"elon@musk.com","image":"https://www.spacex.com/static/images/share.jpg"},"redirect_uri":"https://mysaas.com/dashboard","settings":{"unified_apis":["crm"],"hide_resource_settings":false,"sandbox_mode":false,"isolation_mode":false,"session_length":"1h","show_logs":true,"show_suggestions":false,"show_sidebar":true,"auto_redirect":false,"hide_guides":false},"theme":{"favicon":"https://res.cloudinary.com/apideck/icons/intercom","logo":"https://res.cloudinary.com/apideck/icons/intercom","primary_color":"#286efa","sidepanel_background_color":"#286efa","sidepanel_text_color":"#FFFFFF","vault_name":"Intercom","privacy_url":"https://compliance.apideck.com/privacy-policy","terms_url":"https://www.termsfeed.com/terms-conditions/957c85c1b089ae9e3219c83eff65377e"},"custom_consumer_settings":{"feature_flag_1":true,"tax_rates":[{"id":"6","label":"6%"},{"id":"21","label":"21%"}]}}

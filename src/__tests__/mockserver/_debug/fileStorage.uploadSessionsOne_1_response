@@ -1,0 +1,5 @@
+HTTP/1.1 200 OK
+Connection: close
+Content-Type: application/json
+
+{"status_code":200,"status":"OK","service":"dropbox","resource":"UploadSessions","operation":"one","data":{"expires_at":"2022-09-30T07:43:32Z","id":"12345","parallel_upload_supported":true,"part_size":1000000,"success":true,"uploaded_byte_range":"0-42"}}

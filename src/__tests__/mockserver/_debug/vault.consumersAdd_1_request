@@ -1,0 +1,16 @@
+POST /vault/consumers HTTP/1.1
+Host: localhost:18080
+Accept: application/json
+Accept-Encoding: gzip, deflate
+Accept-Language: *
+Authorization: Bearer value
+Connection: keep-alive
+Content-Length: 176
+Content-Type: application/json
+Cookie: 
+Sec-Fetch-Mode: cors
+User-Agent: speakeasy-sdk/typescript 0.22.1 2.585.2 10.16.2 @apideck/unify
+X-Speakeasy-Test-Instance-Id: 63E3978B-281B-68BA-9E61-4137D21ADFAF
+X-Speakeasy-Test-Name: vault.consumersAdd
+
+{"consumer_id":"test_consumer_id","metadata":{"account_name":"SpaceX","user_name":"Elon Musk","email":"elon@musk.com","image":"https://www.spacex.com/static/images/share.jpg"}}

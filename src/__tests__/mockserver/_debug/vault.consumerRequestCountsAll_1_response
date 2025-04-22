@@ -1,0 +1,5 @@
+HTTP/1.1 200 OK
+Connection: close
+Content-Type: application/json
+
+{"status_code":200,"status":"OK","data":{"application_id":"1111","consumer_id":"test_user_id","start_datetime":"2021-05-01T12:00:00.000Z","end_datetime":"2021-05-10T12:00:00.000Z","aggregated_request_count":40,"request_counts":{"unify":100,"proxy":10,"vault":21}}}

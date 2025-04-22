@@ -1,0 +1,13 @@
+GET /webhook/webhooks?limit=20 HTTP/1.1
+Host: localhost:18080
+Accept: application/json
+Accept-Encoding: gzip, deflate
+Accept-Language: *
+Authorization: Bearer value
+Connection: keep-alive
+Cookie: 
+Sec-Fetch-Mode: cors
+User-Agent: speakeasy-sdk/typescript 0.22.1 2.585.2 10.16.2 @apideck/unify
+X-Speakeasy-Test-Instance-Id: 583BC5FA-2414-5CAF-2C62-938FD9AE82A9
+X-Speakeasy-Test-Name: webhook.webhooksAll
+

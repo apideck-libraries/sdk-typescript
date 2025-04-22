@@ -1,0 +1,13 @@
+GET /vault/connections/crm/pipedrive/leads/custom-mappings?resource_id=1234 HTTP/1.1
+Host: localhost:18080
+Accept: application/json
+Accept-Encoding: gzip, deflate
+Accept-Language: *
+Authorization: Bearer value
+Connection: keep-alive
+Cookie: 
+Sec-Fetch-Mode: cors
+User-Agent: speakeasy-sdk/typescript 0.22.1 2.585.2 10.16.2 @apideck/unify
+X-Speakeasy-Test-Instance-Id: C9AAFDCC-97C9-D851-132B-3B585161863C
+X-Speakeasy-Test-Name: vault.connectionCustomMappingsAll
+

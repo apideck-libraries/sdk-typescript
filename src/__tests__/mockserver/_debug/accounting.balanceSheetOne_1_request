@@ -1,0 +1,14 @@
+GET /accounting/balance-sheet?filter%5Bstart_date%5D=2021-01-01&filter%5Bend_date%5D=2021-12-31&filter%5Bperiod_count%5D=3&filter%5Bperiod_type%5D=month&pass_through%5Bsearch%5D=San%20Francisco&raw=false HTTP/1.1
+Host: localhost:18080
+Accept: application/json
+Accept-Encoding: gzip, deflate
+Accept-Language: *
+Authorization: Bearer value
+Connection: keep-alive
+Cookie: 
+Sec-Fetch-Mode: cors
+User-Agent: speakeasy-sdk/typescript 0.22.1 2.585.2 10.16.2 @apideck/unify
+X-Apideck-Service-Id: salesforce
+X-Speakeasy-Test-Instance-Id: 4DF14205-852A-6120-0628-1EABA02B2EFA
+X-Speakeasy-Test-Name: accounting.balanceSheetOne
+

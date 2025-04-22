@@ -12,7 +12,7 @@ import {
   Connection$inboundSchema,
   Connection$Outbound,
   Connection$outboundSchema,
-} from "./connectioninput.js";
+} from "./connection.js";
 
 /**
  * Connection created

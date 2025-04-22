@@ -1,0 +1,5 @@
+HTTP/1.1 200 OK
+Connection: close
+Content-Type: application/json
+
+{"status_code":200,"status":"OK","data":{"state":"123e4567-e89b-12d3-a456-426614174000"}}

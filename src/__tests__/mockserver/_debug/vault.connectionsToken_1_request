@@ -1,0 +1,15 @@
+POST /vault/connections/crm/pipedrive/token HTTP/1.1
+Host: localhost:18080
+Accept: application/json
+Accept-Encoding: gzip, deflate
+Accept-Language: *
+Authorization: Bearer value
+Connection: keep-alive
+Content-Length: 0
+Content-Type: application/json
+Cookie: 
+Sec-Fetch-Mode: cors
+User-Agent: speakeasy-sdk/typescript 0.22.1 2.585.2 10.16.2 @apideck/unify
+X-Speakeasy-Test-Instance-Id: B455725C-D755-E5CB-CE88-A5AD8186750B
+X-Speakeasy-Test-Name: vault.connectionsToken
+

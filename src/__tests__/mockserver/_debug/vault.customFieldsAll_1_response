@@ -1,0 +1,5 @@
+HTTP/1.1 200 OK
+Connection: close
+Content-Type: application/json
+
+{"status_code":200,"status":"OK","data":[{"id":"123456","name":"SSN","description":"Employee Level","value":"495172776"},{"id":"123456","name":"SSN","description":"Employee Level","value":"495172776"},{"id":"123456","name":"SSN","description":"Employee Level","value":"495172776"}]}

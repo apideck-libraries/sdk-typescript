@@ -1,0 +1,14 @@
+GET /accounting/tax-rates?filter%5Bassets%5D=true&filter%5Bequity%5D=true&filter%5Bexpenses%5D=true&filter%5Bliabilities%5D=true&filter%5Brevenue%5D=true&pass_through%5Bsearch%5D=San%20Francisco&fields=id%2Cupdated_at&limit=20&raw=false HTTP/1.1
+Host: localhost:18080
+Accept: application/json
+Accept-Encoding: gzip, deflate
+Accept-Language: *
+Authorization: Bearer value
+Connection: keep-alive
+Cookie: 
+Sec-Fetch-Mode: cors
+User-Agent: speakeasy-sdk/typescript 0.22.1 2.585.2 10.16.2 @apideck/unify
+X-Apideck-Service-Id: salesforce
+X-Speakeasy-Test-Instance-Id: 08F43AEC-0037-F577-2114-C1731838F500
+X-Speakeasy-Test-Name: accounting.taxRatesAll
+

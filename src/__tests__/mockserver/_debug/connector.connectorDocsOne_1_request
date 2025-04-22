@@ -1,0 +1,13 @@
+GET /connector/connectors/%3Cid%3E/docs/application_owner%2Boauth_credentials HTTP/1.1
+Host: localhost:18080
+Accept: text/markdown
+Accept-Encoding: gzip, deflate
+Accept-Language: *
+Authorization: Bearer value
+Connection: keep-alive
+Cookie: 
+Sec-Fetch-Mode: cors
+User-Agent: speakeasy-sdk/typescript 0.22.1 2.585.2 10.16.2 @apideck/unify
+X-Speakeasy-Test-Instance-Id: 844DED87-64F4-4E8D-FA94-33771ACF417A
+X-Speakeasy-Test-Name: connector.connectorDocsOne
+

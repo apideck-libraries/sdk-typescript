@@ -1,0 +1,13 @@
+GET /vault/connections?api=crm&configured=true HTTP/1.1
+Host: localhost:18080
+Accept: application/json
+Accept-Encoding: gzip, deflate
+Accept-Language: *
+Authorization: Bearer value
+Connection: keep-alive
+Cookie: 
+Sec-Fetch-Mode: cors
+User-Agent: speakeasy-sdk/typescript 0.22.1 2.585.2 10.16.2 @apideck/unify
+X-Speakeasy-Test-Instance-Id: B7D13970-B926-A32D-9D83-1DA88C0FCFAB
+X-Speakeasy-Test-Name: vault.connectionsAll
+

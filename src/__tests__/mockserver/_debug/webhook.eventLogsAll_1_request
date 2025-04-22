@@ -1,0 +1,13 @@
+GET /webhook/logs?filter%5Bexclude_apis%5D=vault%2Cproxy&filter%5Bconsumer_id%5D=test_user_id&filter%5Bentity_type%5D=Connection&filter%5Bevent_type%5D=vault.connection.callable&limit=20 HTTP/1.1
+Host: localhost:18080
+Accept: application/json
+Accept-Encoding: gzip, deflate
+Accept-Language: *
+Authorization: Bearer value
+Connection: keep-alive
+Cookie: 
+Sec-Fetch-Mode: cors
+User-Agent: speakeasy-sdk/typescript 0.22.1 2.585.2 10.16.2 @apideck/unify
+X-Speakeasy-Test-Instance-Id: CE7537CB-B176-A2D6-F304-A9346AEE4BF7
+X-Speakeasy-Test-Name: webhook.eventLogsAll
+
