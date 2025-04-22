@@ -47,7 +47,7 @@ import {
   InvoiceLineItemInput$inboundSchema,
   InvoiceLineItemInput$Outbound,
   InvoiceLineItemInput$outboundSchema,
-} from "./invoicelineiteminput.js";
+} from "./invoicelineitem.js";
 import {
   LinkedLedgerAccount,
   LinkedLedgerAccount$inboundSchema,

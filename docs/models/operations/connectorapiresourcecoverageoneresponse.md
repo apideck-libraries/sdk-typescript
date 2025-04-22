@@ -18,7 +18,42 @@ let value: ConnectorApiResourceCoverageOneResponse = {
     data: {
       id: "companies",
       name: "Companies",
-      coverage: [],
+      coverage: [
+        {
+          downstreamId: "accounts",
+          downstreamName: "Accounts",
+          pagination: {
+            mode: "native",
+          },
+          supportedOperations: [
+            "all",
+            "one",
+            "add",
+            "update",
+            "delete",
+          ],
+          supportedFilters: [
+            "name",
+            "email",
+          ],
+          supportedSortBy: [
+            "updated_at",
+            "created_at",
+            "name",
+          ],
+          supportedFields: [
+            {
+              unifiedProperty: "owner_id",
+              childProperties: [],
+            },
+          ],
+          supportedListFields: [
+            {
+              unifiedProperty: "owner_id",
+            },
+          ],
+        },
+      ],
     },
     meta: {
       itemsOnPage: 50,

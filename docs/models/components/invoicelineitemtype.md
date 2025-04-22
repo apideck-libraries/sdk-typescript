@@ -13,5 +13,5 @@ let value: InvoiceLineItemType = "sales_item";
 ## Values
 
 ```typescript
-"sales_item" | "discount" | "info" | "sub_total" | "other"
+"sales_item" | "discount" | "info" | "sub_total" | "service" | "other"
 ```
