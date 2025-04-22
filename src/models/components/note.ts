@@ -50,6 +50,10 @@ export type Note = {
    */
   opportunityId?: string | null | undefined;
   /**
+   * The activity that is related to the note.
+   */
+  activityId?: string | null | undefined;
+  /**
    * The lead that is related to the note.
    */
   leadId?: string | null | undefined;
@@ -93,6 +97,7 @@ export const Note$inboundSchema: z.ZodType<Note, z.ZodTypeDef, unknown> = z
     contact_id: z.nullable(z.string()).optional(),
     company_id: z.nullable(z.string()).optional(),
     opportunity_id: z.nullable(z.string()).optional(),
+    activity_id: z.nullable(z.string()).optional(),
     lead_id: z.nullable(z.string()).optional(),
     active: z.nullable(z.boolean()).optional(),
     custom_mappings: z.nullable(CustomMappings$inboundSchema).optional(),
@@ -107,6 +112,7 @@ export const Note$inboundSchema: z.ZodType<Note, z.ZodTypeDef, unknown> = z
       "contact_id": "contactId",
       "company_id": "companyId",
       "opportunity_id": "opportunityId",
+      "activity_id": "activityId",
       "lead_id": "leadId",
       "custom_mappings": "customMappings",
       "updated_by": "updatedBy",
@@ -126,6 +132,7 @@ export type Note$Outbound = {
   contact_id?: string | null | undefined;
   company_id?: string | null | undefined;
   opportunity_id?: string | null | undefined;
+  activity_id?: string | null | undefined;
   lead_id?: string | null | undefined;
   active?: boolean | null | undefined;
   custom_mappings?: CustomMappings$Outbound | null | undefined;
@@ -146,6 +153,7 @@ export const Note$outboundSchema: z.ZodType<Note$Outbound, z.ZodTypeDef, Note> =
     contactId: z.nullable(z.string()).optional(),
     companyId: z.nullable(z.string()).optional(),
     opportunityId: z.nullable(z.string()).optional(),
+    activityId: z.nullable(z.string()).optional(),
     leadId: z.nullable(z.string()).optional(),
     active: z.nullable(z.boolean()).optional(),
     customMappings: z.nullable(CustomMappings$outboundSchema).optional(),
@@ -160,6 +168,7 @@ export const Note$outboundSchema: z.ZodType<Note$Outbound, z.ZodTypeDef, Note> =
       contactId: "contact_id",
       companyId: "company_id",
       opportunityId: "opportunity_id",
+      activityId: "activity_id",
       leadId: "lead_id",
       customMappings: "custom_mappings",
       updatedBy: "updated_by",

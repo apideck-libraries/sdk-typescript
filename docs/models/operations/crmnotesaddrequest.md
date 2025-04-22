@@ -14,6 +14,7 @@ let value: CrmNotesAddRequest = {
     contactId: "12345",
     companyId: "12345",
     opportunityId: "12345",
+    activityId: "12345",
     leadId: "12345",
     active: true,
     passThrough: [
