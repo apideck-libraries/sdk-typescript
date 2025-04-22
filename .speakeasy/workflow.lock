@@ -2,20 +2,19 @@ speakeasyVersion: 1.537.0
 sources:
     Apideck-OAS:
         sourceNamespace: apideck-oas
-        sourceRevisionDigest: sha256:446b7f9a4d56e2336d157aba770e2ff23b095371416b2c3d926844cd45b52112
+        sourceRevisionDigest: sha256:97c6ba63660a34e47878e59c16df339e1028ea0faa97ae890da2eb6945a8199f
         sourceBlobDigest: sha256:303c1acf7abc835f46d58b4a823c3bb3e537aae128b78352be572e712c7879f6
         tags:
             - latest
-            - speakeasy-sdk-regen-1744725236
             - 10.16.2
 targets:
     apideck:
         source: Apideck-OAS
         sourceNamespace: apideck-oas
-        sourceRevisionDigest: sha256:446b7f9a4d56e2336d157aba770e2ff23b095371416b2c3d926844cd45b52112
+        sourceRevisionDigest: sha256:97c6ba63660a34e47878e59c16df339e1028ea0faa97ae890da2eb6945a8199f
         sourceBlobDigest: sha256:303c1acf7abc835f46d58b4a823c3bb3e537aae128b78352be572e712c7879f6
         codeSamplesNamespace: apideck-oas-typescript-code-samples
-        codeSamplesRevisionDigest: sha256:61cfa888bf797be5b40fb2e4d6acc845812e6b57a08c6c88dcbd6bea55e8cf08
+        codeSamplesRevisionDigest: sha256:03010ee2c66dd7e18d6d0863c2081c702a286e3f30caf2a32e329cae61b23501
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest
@@ -48,3 +47,5 @@ workflow:
                 registry:
                     location: registry.speakeasyapi.dev/apideck-k2o/apideck/apideck-oas-typescript-code-samples
                 blocking: false
+            testing:
+                enabled: true
