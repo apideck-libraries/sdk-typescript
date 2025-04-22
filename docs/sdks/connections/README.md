@@ -360,9 +360,7 @@ async function run() {
                 {
                   id: "1234",
                   label: "General Channel",
-                  options: [
-
-                  ],
+                  options: [],
                   optionType: "group",
                 },
               ],
@@ -572,9 +570,7 @@ async function run() {
                 {
                   id: "1234",
                   label: "General Channel",
-                  options: [
-  
-                  ],
+                  options: [],
                   optionType: "group",
                 },
               ],

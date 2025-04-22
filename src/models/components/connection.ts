@@ -59,52 +59,6 @@ import {
   WebhookSubscription$outboundSchema,
 } from "./webhooksubscription.js";
 
-export type Value5 = string | number | number;
-
-export type ConnectionValue =
-  | string
-  | number
-  | number
-  | boolean
-  | Array<string | number | number>;
-
-export type ConnectionDefaults = {
-  id?: string | undefined;
-  options?: Array<FormFieldOption> | undefined;
-  value?:
-    | string
-    | number
-    | number
-    | boolean
-    | Array<string | number | number>
-    | undefined;
-};
-
-export type ConnectionConfiguration = {
-  resource?: string | undefined;
-  defaults?: Array<ConnectionDefaults> | undefined;
-};
-
-export type ConnectionInput = {
-  /**
-   * Whether the connection is enabled or not. You can enable or disable a connection using the Update Connection API.
-   */
-  enabled?: boolean | undefined;
-  /**
-   * Connection settings. Values will persist to `form_fields` with corresponding id
-   */
-  settings?: { [k: string]: any } | null | undefined;
-  /**
-   * Attach your own consumer specific metadata
-   */
-  metadata?: { [k: string]: any } | null | undefined;
-  configuration?: Array<ConnectionConfiguration> | undefined;
-  /**
-   * List of custom mappings configured for this connection
-   */
-  customMappings?: Array<CustomMappingInput> | undefined;
-};
-
 /**
  * Status of the connection.
  */
@@ -123,6 +77,15 @@ export const Target = {
   Resource: "resource",
 } as const;
 export type Target = ClosedEnum<typeof Target>;
+
+export type Value5 = string | number | number;
+
+export type ConnectionValue =
+  | string
+  | number
+  | number
+  | boolean
+  | Array<string | number | number>;
 
 export type Defaults = {
   target?: Target | undefined;
@@ -239,6 +202,83 @@ export type Connection = {
   updatedAt?: number | null | undefined;
 };
 
+export type ConnectionDefaults = {
+  id?: string | undefined;
+  options?: Array<FormFieldOption> | undefined;
+  value?:
+    | string
+    | number
+    | number
+    | boolean
+    | Array<string | number | number>
+    | undefined;
+};
+
+export type ConnectionConfiguration = {
+  resource?: string | undefined;
+  defaults?: Array<ConnectionDefaults> | undefined;
+};
+
+export type ConnectionInput = {
+  /**
+   * Whether the connection is enabled or not. You can enable or disable a connection using the Update Connection API.
+   */
+  enabled?: boolean | undefined;
+  /**
+   * Connection settings. Values will persist to `form_fields` with corresponding id
+   */
+  settings?: { [k: string]: any } | null | undefined;
+  /**
+   * Attach your own consumer specific metadata
+   */
+  metadata?: { [k: string]: any } | null | undefined;
+  configuration?: Array<ConnectionConfiguration> | undefined;
+  /**
+   * List of custom mappings configured for this connection
+   */
+  customMappings?: Array<CustomMappingInput> | undefined;
+};
+
+/** @internal */
+export const ConnectionStatus$inboundSchema: z.ZodNativeEnum<
+  typeof ConnectionStatus
+> = z.nativeEnum(ConnectionStatus);
+
+/** @internal */
+export const ConnectionStatus$outboundSchema: z.ZodNativeEnum<
+  typeof ConnectionStatus
+> = ConnectionStatus$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace ConnectionStatus$ {
+  /** @deprecated use `ConnectionStatus$inboundSchema` instead. */
+  export const inboundSchema = ConnectionStatus$inboundSchema;
+  /** @deprecated use `ConnectionStatus$outboundSchema` instead. */
+  export const outboundSchema = ConnectionStatus$outboundSchema;
+}
+
+/** @internal */
+export const Target$inboundSchema: z.ZodNativeEnum<typeof Target> = z
+  .nativeEnum(Target);
+
+/** @internal */
+export const Target$outboundSchema: z.ZodNativeEnum<typeof Target> =
+  Target$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace Target$ {
+  /** @deprecated use `Target$inboundSchema` instead. */
+  export const inboundSchema = Target$inboundSchema;
+  /** @deprecated use `Target$outboundSchema` instead. */
+  export const outboundSchema = Target$outboundSchema;
+}
+
 /** @internal */
 export const Value5$inboundSchema: z.ZodType<Value5, z.ZodTypeDef, unknown> = z
   .union([z.string(), z.number().int(), z.number()]);
@@ -341,255 +381,6 @@ export function connectionValueFromJSON(
     (x) => ConnectionValue$inboundSchema.parse(JSON.parse(x)),
     `Failed to parse 'ConnectionValue' from JSON`,
   );
-}
-
-/** @internal */
-export const ConnectionDefaults$inboundSchema: z.ZodType<
-  ConnectionDefaults,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  id: z.string().optional(),
-  options: z.array(FormFieldOption$inboundSchema).optional(),
-  value: z.union([
-    z.string(),
-    z.number().int(),
-    z.number(),
-    z.boolean(),
-    z.array(z.union([z.string(), z.number().int(), z.number()])),
-  ]).optional(),
-});
-
-/** @internal */
-export type ConnectionDefaults$Outbound = {
-  id?: string | undefined;
-  options?: Array<FormFieldOption$Outbound> | undefined;
-  value?:
-    | string
-    | number
-    | number
-    | boolean
-    | Array<string | number | number>
-    | undefined;
-};
-
-/** @internal */
-export const ConnectionDefaults$outboundSchema: z.ZodType<
-  ConnectionDefaults$Outbound,
-  z.ZodTypeDef,
-  ConnectionDefaults
-> = z.object({
-  id: z.string().optional(),
-  options: z.array(FormFieldOption$outboundSchema).optional(),
-  value: z.union([
-    z.string(),
-    z.number().int(),
-    z.number(),
-    z.boolean(),
-    z.array(z.union([z.string(), z.number().int(), z.number()])),
-  ]).optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ConnectionDefaults$ {
-  /** @deprecated use `ConnectionDefaults$inboundSchema` instead. */
-  export const inboundSchema = ConnectionDefaults$inboundSchema;
-  /** @deprecated use `ConnectionDefaults$outboundSchema` instead. */
-  export const outboundSchema = ConnectionDefaults$outboundSchema;
-  /** @deprecated use `ConnectionDefaults$Outbound` instead. */
-  export type Outbound = ConnectionDefaults$Outbound;
-}
-
-export function connectionDefaultsToJSON(
-  connectionDefaults: ConnectionDefaults,
-): string {
-  return JSON.stringify(
-    ConnectionDefaults$outboundSchema.parse(connectionDefaults),
-  );
-}
-
-export function connectionDefaultsFromJSON(
-  jsonString: string,
-): SafeParseResult<ConnectionDefaults, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => ConnectionDefaults$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ConnectionDefaults' from JSON`,
-  );
-}
-
-/** @internal */
-export const ConnectionConfiguration$inboundSchema: z.ZodType<
-  ConnectionConfiguration,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  resource: z.string().optional(),
-  defaults: z.array(z.lazy(() => ConnectionDefaults$inboundSchema)).optional(),
-});
-
-/** @internal */
-export type ConnectionConfiguration$Outbound = {
-  resource?: string | undefined;
-  defaults?: Array<ConnectionDefaults$Outbound> | undefined;
-};
-
-/** @internal */
-export const ConnectionConfiguration$outboundSchema: z.ZodType<
-  ConnectionConfiguration$Outbound,
-  z.ZodTypeDef,
-  ConnectionConfiguration
-> = z.object({
-  resource: z.string().optional(),
-  defaults: z.array(z.lazy(() => ConnectionDefaults$outboundSchema)).optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ConnectionConfiguration$ {
-  /** @deprecated use `ConnectionConfiguration$inboundSchema` instead. */
-  export const inboundSchema = ConnectionConfiguration$inboundSchema;
-  /** @deprecated use `ConnectionConfiguration$outboundSchema` instead. */
-  export const outboundSchema = ConnectionConfiguration$outboundSchema;
-  /** @deprecated use `ConnectionConfiguration$Outbound` instead. */
-  export type Outbound = ConnectionConfiguration$Outbound;
-}
-
-export function connectionConfigurationToJSON(
-  connectionConfiguration: ConnectionConfiguration,
-): string {
-  return JSON.stringify(
-    ConnectionConfiguration$outboundSchema.parse(connectionConfiguration),
-  );
-}
-
-export function connectionConfigurationFromJSON(
-  jsonString: string,
-): SafeParseResult<ConnectionConfiguration, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => ConnectionConfiguration$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ConnectionConfiguration' from JSON`,
-  );
-}
-
-/** @internal */
-export const ConnectionInput$inboundSchema: z.ZodType<
-  ConnectionInput,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  enabled: z.boolean().optional(),
-  settings: z.nullable(z.record(z.any())).optional(),
-  metadata: z.nullable(z.record(z.any())).optional(),
-  configuration: z.array(z.lazy(() => ConnectionConfiguration$inboundSchema))
-    .optional(),
-  custom_mappings: z.array(CustomMappingInput$inboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "custom_mappings": "customMappings",
-  });
-});
-
-/** @internal */
-export type ConnectionInput$Outbound = {
-  enabled?: boolean | undefined;
-  settings?: { [k: string]: any } | null | undefined;
-  metadata?: { [k: string]: any } | null | undefined;
-  configuration?: Array<ConnectionConfiguration$Outbound> | undefined;
-  custom_mappings?: Array<CustomMappingInput$Outbound> | undefined;
-};
-
-/** @internal */
-export const ConnectionInput$outboundSchema: z.ZodType<
-  ConnectionInput$Outbound,
-  z.ZodTypeDef,
-  ConnectionInput
-> = z.object({
-  enabled: z.boolean().optional(),
-  settings: z.nullable(z.record(z.any())).optional(),
-  metadata: z.nullable(z.record(z.any())).optional(),
-  configuration: z.array(z.lazy(() => ConnectionConfiguration$outboundSchema))
-    .optional(),
-  customMappings: z.array(CustomMappingInput$outboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    customMappings: "custom_mappings",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ConnectionInput$ {
-  /** @deprecated use `ConnectionInput$inboundSchema` instead. */
-  export const inboundSchema = ConnectionInput$inboundSchema;
-  /** @deprecated use `ConnectionInput$outboundSchema` instead. */
-  export const outboundSchema = ConnectionInput$outboundSchema;
-  /** @deprecated use `ConnectionInput$Outbound` instead. */
-  export type Outbound = ConnectionInput$Outbound;
-}
-
-export function connectionInputToJSON(
-  connectionInput: ConnectionInput,
-): string {
-  return JSON.stringify(ConnectionInput$outboundSchema.parse(connectionInput));
-}
-
-export function connectionInputFromJSON(
-  jsonString: string,
-): SafeParseResult<ConnectionInput, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => ConnectionInput$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ConnectionInput' from JSON`,
-  );
-}
-
-/** @internal */
-export const ConnectionStatus$inboundSchema: z.ZodNativeEnum<
-  typeof ConnectionStatus
-> = z.nativeEnum(ConnectionStatus);
-
-/** @internal */
-export const ConnectionStatus$outboundSchema: z.ZodNativeEnum<
-  typeof ConnectionStatus
-> = ConnectionStatus$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ConnectionStatus$ {
-  /** @deprecated use `ConnectionStatus$inboundSchema` instead. */
-  export const inboundSchema = ConnectionStatus$inboundSchema;
-  /** @deprecated use `ConnectionStatus$outboundSchema` instead. */
-  export const outboundSchema = ConnectionStatus$outboundSchema;
-}
-
-/** @internal */
-export const Target$inboundSchema: z.ZodNativeEnum<typeof Target> = z
-  .nativeEnum(Target);
-
-/** @internal */
-export const Target$outboundSchema: z.ZodNativeEnum<typeof Target> =
-  Target$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Target$ {
-  /** @deprecated use `Target$inboundSchema` instead. */
-  export const inboundSchema = Target$inboundSchema;
-  /** @deprecated use `Target$outboundSchema` instead. */
-  export const outboundSchema = Target$outboundSchema;
 }
 
 /** @internal */
@@ -903,5 +694,214 @@ export function connectionFromJSON(
     jsonString,
     (x) => Connection$inboundSchema.parse(JSON.parse(x)),
     `Failed to parse 'Connection' from JSON`,
+  );
+}
+
+/** @internal */
+export const ConnectionDefaults$inboundSchema: z.ZodType<
+  ConnectionDefaults,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  id: z.string().optional(),
+  options: z.array(FormFieldOption$inboundSchema).optional(),
+  value: z.union([
+    z.string(),
+    z.number().int(),
+    z.number(),
+    z.boolean(),
+    z.array(z.union([z.string(), z.number().int(), z.number()])),
+  ]).optional(),
+});
+
+/** @internal */
+export type ConnectionDefaults$Outbound = {
+  id?: string | undefined;
+  options?: Array<FormFieldOption$Outbound> | undefined;
+  value?:
+    | string
+    | number
+    | number
+    | boolean
+    | Array<string | number | number>
+    | undefined;
+};
+
+/** @internal */
+export const ConnectionDefaults$outboundSchema: z.ZodType<
+  ConnectionDefaults$Outbound,
+  z.ZodTypeDef,
+  ConnectionDefaults
+> = z.object({
+  id: z.string().optional(),
+  options: z.array(FormFieldOption$outboundSchema).optional(),
+  value: z.union([
+    z.string(),
+    z.number().int(),
+    z.number(),
+    z.boolean(),
+    z.array(z.union([z.string(), z.number().int(), z.number()])),
+  ]).optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace ConnectionDefaults$ {
+  /** @deprecated use `ConnectionDefaults$inboundSchema` instead. */
+  export const inboundSchema = ConnectionDefaults$inboundSchema;
+  /** @deprecated use `ConnectionDefaults$outboundSchema` instead. */
+  export const outboundSchema = ConnectionDefaults$outboundSchema;
+  /** @deprecated use `ConnectionDefaults$Outbound` instead. */
+  export type Outbound = ConnectionDefaults$Outbound;
+}
+
+export function connectionDefaultsToJSON(
+  connectionDefaults: ConnectionDefaults,
+): string {
+  return JSON.stringify(
+    ConnectionDefaults$outboundSchema.parse(connectionDefaults),
+  );
+}
+
+export function connectionDefaultsFromJSON(
+  jsonString: string,
+): SafeParseResult<ConnectionDefaults, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ConnectionDefaults$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ConnectionDefaults' from JSON`,
+  );
+}
+
+/** @internal */
+export const ConnectionConfiguration$inboundSchema: z.ZodType<
+  ConnectionConfiguration,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  resource: z.string().optional(),
+  defaults: z.array(z.lazy(() => ConnectionDefaults$inboundSchema)).optional(),
+});
+
+/** @internal */
+export type ConnectionConfiguration$Outbound = {
+  resource?: string | undefined;
+  defaults?: Array<ConnectionDefaults$Outbound> | undefined;
+};
+
+/** @internal */
+export const ConnectionConfiguration$outboundSchema: z.ZodType<
+  ConnectionConfiguration$Outbound,
+  z.ZodTypeDef,
+  ConnectionConfiguration
+> = z.object({
+  resource: z.string().optional(),
+  defaults: z.array(z.lazy(() => ConnectionDefaults$outboundSchema)).optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace ConnectionConfiguration$ {
+  /** @deprecated use `ConnectionConfiguration$inboundSchema` instead. */
+  export const inboundSchema = ConnectionConfiguration$inboundSchema;
+  /** @deprecated use `ConnectionConfiguration$outboundSchema` instead. */
+  export const outboundSchema = ConnectionConfiguration$outboundSchema;
+  /** @deprecated use `ConnectionConfiguration$Outbound` instead. */
+  export type Outbound = ConnectionConfiguration$Outbound;
+}
+
+export function connectionConfigurationToJSON(
+  connectionConfiguration: ConnectionConfiguration,
+): string {
+  return JSON.stringify(
+    ConnectionConfiguration$outboundSchema.parse(connectionConfiguration),
+  );
+}
+
+export function connectionConfigurationFromJSON(
+  jsonString: string,
+): SafeParseResult<ConnectionConfiguration, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ConnectionConfiguration$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ConnectionConfiguration' from JSON`,
+  );
+}
+
+/** @internal */
+export const ConnectionInput$inboundSchema: z.ZodType<
+  ConnectionInput,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  enabled: z.boolean().optional(),
+  settings: z.nullable(z.record(z.any())).optional(),
+  metadata: z.nullable(z.record(z.any())).optional(),
+  configuration: z.array(z.lazy(() => ConnectionConfiguration$inboundSchema))
+    .optional(),
+  custom_mappings: z.array(CustomMappingInput$inboundSchema).optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "custom_mappings": "customMappings",
+  });
+});
+
+/** @internal */
+export type ConnectionInput$Outbound = {
+  enabled?: boolean | undefined;
+  settings?: { [k: string]: any } | null | undefined;
+  metadata?: { [k: string]: any } | null | undefined;
+  configuration?: Array<ConnectionConfiguration$Outbound> | undefined;
+  custom_mappings?: Array<CustomMappingInput$Outbound> | undefined;
+};
+
+/** @internal */
+export const ConnectionInput$outboundSchema: z.ZodType<
+  ConnectionInput$Outbound,
+  z.ZodTypeDef,
+  ConnectionInput
+> = z.object({
+  enabled: z.boolean().optional(),
+  settings: z.nullable(z.record(z.any())).optional(),
+  metadata: z.nullable(z.record(z.any())).optional(),
+  configuration: z.array(z.lazy(() => ConnectionConfiguration$outboundSchema))
+    .optional(),
+  customMappings: z.array(CustomMappingInput$outboundSchema).optional(),
+}).transform((v) => {
+  return remap$(v, {
+    customMappings: "custom_mappings",
+  });
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace ConnectionInput$ {
+  /** @deprecated use `ConnectionInput$inboundSchema` instead. */
+  export const inboundSchema = ConnectionInput$inboundSchema;
+  /** @deprecated use `ConnectionInput$outboundSchema` instead. */
+  export const outboundSchema = ConnectionInput$outboundSchema;
+  /** @deprecated use `ConnectionInput$Outbound` instead. */
+  export type Outbound = ConnectionInput$Outbound;
+}
+
+export function connectionInputToJSON(
+  connectionInput: ConnectionInput,
+): string {
+  return JSON.stringify(ConnectionInput$outboundSchema.parse(connectionInput));
+}
+
+export function connectionInputFromJSON(
+  jsonString: string,
+): SafeParseResult<ConnectionInput, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ConnectionInput$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ConnectionInput' from JSON`,
   );
 }

@@ -200,201 +200,6 @@ export type ProbationPeriod = {
   endDate?: RFCDate | null | undefined;
 };
 
-export type EmployeeInput = {
-  /**
-   * A unique identifier for an object.
-   */
-  id?: string | null | undefined;
-  /**
-   * The first name of the person.
-   */
-  firstName?: string | null | undefined;
-  /**
-   * The last name of the person.
-   */
-  lastName?: string | null | undefined;
-  /**
-   * Middle name of the person.
-   */
-  middleName?: string | null | undefined;
-  /**
-   * The name used to display the employee, often a combination of their first and last names.
-   */
-  displayName?: string | null | undefined;
-  /**
-   * The name the employee prefers to be addressed by, which may be different from their legal name.
-   */
-  preferredName?: string | null | undefined;
-  /**
-   * The initials of the person, usually derived from their first, middle, and last names.
-   */
-  initials?: string | null | undefined;
-  /**
-   * A formal salutation for the person. For example, 'Mr', 'Mrs'
-   */
-  salutation?: string | null | undefined;
-  /**
-   * The job title of the person.
-   */
-  title?: string | null | undefined;
-  /**
-   * The marital status of the employee.
-   */
-  maritalStatus?: string | null | undefined;
-  partner?: PersonInput | undefined;
-  /**
-   * The division the person is currently in. Usually a collection of departments or teams or regions.
-   */
-  division?: string | null | undefined;
-  /**
-   * Unique identifier of the division this employee belongs to.
-   */
-  divisionId?: string | null | undefined;
-  /**
-   * The department the person is currently in. [Deprecated](https://developers.apideck.com/changelog) in favor of the dedicated department_id and department_name field.
-   *
-   * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
-   */
-  department?: string | null | undefined;
-  /**
-   * Unique identifier of the department ID this employee belongs to.
-   */
-  departmentId?: string | null | undefined;
-  /**
-   * Name of the department this employee belongs to.
-   */
-  departmentName?: string | null | undefined;
-  /**
-   * The team the person is currently in.
-   */
-  team?: Team | null | undefined;
-  /**
-   * The unique identifier of the company.
-   */
-  companyId?: string | null | undefined;
-  /**
-   * The name of the company.
-   */
-  companyName?: string | null | undefined;
-  /**
-   * A Start Date is the date that the employee started working at the company
-   */
-  employmentStartDate?: string | null | undefined;
-  /**
-   * An End Date is the date that the employee ended working at the company
-   */
-  employmentEndDate?: string | null | undefined;
-  /**
-   * The reason because the employment ended.
-   */
-  leavingReason?: LeavingReason | null | undefined;
-  /**
-   * An Employee Number, Employee ID or Employee Code, is a unique number that has been assigned to each individual staff member within a company.
-   */
-  employeeNumber?: string | null | undefined;
-  /**
-   * The employment status of the employee, indicating whether they are currently employed, inactive, terminated, or in another status.
-   */
-  employmentStatus?: EmploymentStatus | null | undefined;
-  employmentRole?: EmploymentRole | undefined;
-  /**
-   * The ethnicity of the employee
-   */
-  ethnicity?: string | null | undefined;
-  manager?: Manager | undefined;
-  /**
-   * Direct reports is an array of ids that reflect the individuals in an organizational hierarchy who are directly supervised by this specific employee.
-   */
-  directReports?: Array<string> | null | undefined;
-  /**
-   * A unique identifier assigned by the government. This field is considered sensitive information and may be subject to special security and privacy restrictions.
-   */
-  socialSecurityNumber?: string | null | undefined;
-  /**
-   * The date of birth of the person.
-   */
-  birthday?: RFCDate | null | undefined;
-  /**
-   * The date the person deceased.
-   */
-  deceasedOn?: RFCDate | null | undefined;
-  /**
-   * Country code according to ISO 3166-1 alpha-2.
-   */
-  countryOfBirth?: string | null | undefined;
-  /**
-   * A description of the object.
-   */
-  description?: string | null | undefined;
-  /**
-   * The gender represents the gender identity of a person.
-   */
-  gender?: Gender | null | undefined;
-  /**
-   * The preferred pronouns of the person.
-   */
-  pronouns?: string | null | undefined;
-  /**
-   * language code according to ISO 639-1. For the United States - EN
-   */
-  preferredLanguage?: string | null | undefined;
-  languages?: Array<string | null> | undefined;
-  nationalities?: Array<string | null> | undefined;
-  /**
-   * The URL of the photo of a person.
-   */
-  photoUrl?: string | null | undefined;
-  /**
-   * The time zone related to the resource. The value is a string containing a standard time zone identifier, e.g. Europe/London.
-   */
-  timezone?: string | null | undefined;
-  /**
-   * When the employee is imported as a new hire, this field indicates what system (e.g. the name of the ATS) this employee was imported from.
-   */
-  source?: string | null | undefined;
-  /**
-   * Unique identifier of the employee in the system this employee was imported from (e.g. the ID in the ATS).
-   */
-  sourceId?: string | null | undefined;
-  recordUrl?: string | null | undefined;
-  jobs?: Array<EmployeeJobInput> | null | undefined;
-  compensations?: Array<EmployeeCompensationInput> | null | undefined;
-  /**
-   * Indicates if the employee works from a remote location.
-   */
-  worksRemote?: boolean | null | undefined;
-  addresses?: Array<Address> | undefined;
-  phoneNumbers?: Array<PhoneNumber> | undefined;
-  emails?: Array<Email> | undefined;
-  customFields?: Array<CustomField> | undefined;
-  socialLinks?: Array<SocialLink> | undefined;
-  bankAccounts?: Array<BankAccount> | undefined;
-  taxCode?: string | null | undefined;
-  taxId?: string | null | undefined;
-  /**
-   * Indicate the employee's dietary preference.
-   */
-  dietaryPreference?: string | null | undefined;
-  /**
-   * Indicate the employee's food allergies.
-   */
-  foodAllergies?: Array<string> | null | undefined;
-  probationPeriod?: ProbationPeriod | undefined;
-  tags?: Array<string> | null | undefined;
-  /**
-   * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
-   */
-  rowVersion?: string | null | undefined;
-  /**
-   * Flag to indicate if the object is deleted.
-   */
-  deleted?: boolean | null | undefined;
-  /**
-   * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
-   */
-  passThrough?: Array<PassThroughBody> | undefined;
-};
-
 export type Employee = {
   /**
    * A unique identifier for an object.
@@ -608,6 +413,201 @@ export type Employee = {
    * The date and time when the object was created.
    */
   createdAt?: Date | null | undefined;
+  /**
+   * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
+   */
+  passThrough?: Array<PassThroughBody> | undefined;
+};
+
+export type EmployeeInput = {
+  /**
+   * A unique identifier for an object.
+   */
+  id?: string | null | undefined;
+  /**
+   * The first name of the person.
+   */
+  firstName?: string | null | undefined;
+  /**
+   * The last name of the person.
+   */
+  lastName?: string | null | undefined;
+  /**
+   * Middle name of the person.
+   */
+  middleName?: string | null | undefined;
+  /**
+   * The name used to display the employee, often a combination of their first and last names.
+   */
+  displayName?: string | null | undefined;
+  /**
+   * The name the employee prefers to be addressed by, which may be different from their legal name.
+   */
+  preferredName?: string | null | undefined;
+  /**
+   * The initials of the person, usually derived from their first, middle, and last names.
+   */
+  initials?: string | null | undefined;
+  /**
+   * A formal salutation for the person. For example, 'Mr', 'Mrs'
+   */
+  salutation?: string | null | undefined;
+  /**
+   * The job title of the person.
+   */
+  title?: string | null | undefined;
+  /**
+   * The marital status of the employee.
+   */
+  maritalStatus?: string | null | undefined;
+  partner?: PersonInput | undefined;
+  /**
+   * The division the person is currently in. Usually a collection of departments or teams or regions.
+   */
+  division?: string | null | undefined;
+  /**
+   * Unique identifier of the division this employee belongs to.
+   */
+  divisionId?: string | null | undefined;
+  /**
+   * The department the person is currently in. [Deprecated](https://developers.apideck.com/changelog) in favor of the dedicated department_id and department_name field.
+   *
+   * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+   */
+  department?: string | null | undefined;
+  /**
+   * Unique identifier of the department ID this employee belongs to.
+   */
+  departmentId?: string | null | undefined;
+  /**
+   * Name of the department this employee belongs to.
+   */
+  departmentName?: string | null | undefined;
+  /**
+   * The team the person is currently in.
+   */
+  team?: Team | null | undefined;
+  /**
+   * The unique identifier of the company.
+   */
+  companyId?: string | null | undefined;
+  /**
+   * The name of the company.
+   */
+  companyName?: string | null | undefined;
+  /**
+   * A Start Date is the date that the employee started working at the company
+   */
+  employmentStartDate?: string | null | undefined;
+  /**
+   * An End Date is the date that the employee ended working at the company
+   */
+  employmentEndDate?: string | null | undefined;
+  /**
+   * The reason because the employment ended.
+   */
+  leavingReason?: LeavingReason | null | undefined;
+  /**
+   * An Employee Number, Employee ID or Employee Code, is a unique number that has been assigned to each individual staff member within a company.
+   */
+  employeeNumber?: string | null | undefined;
+  /**
+   * The employment status of the employee, indicating whether they are currently employed, inactive, terminated, or in another status.
+   */
+  employmentStatus?: EmploymentStatus | null | undefined;
+  employmentRole?: EmploymentRole | undefined;
+  /**
+   * The ethnicity of the employee
+   */
+  ethnicity?: string | null | undefined;
+  manager?: Manager | undefined;
+  /**
+   * Direct reports is an array of ids that reflect the individuals in an organizational hierarchy who are directly supervised by this specific employee.
+   */
+  directReports?: Array<string> | null | undefined;
+  /**
+   * A unique identifier assigned by the government. This field is considered sensitive information and may be subject to special security and privacy restrictions.
+   */
+  socialSecurityNumber?: string | null | undefined;
+  /**
+   * The date of birth of the person.
+   */
+  birthday?: RFCDate | null | undefined;
+  /**
+   * The date the person deceased.
+   */
+  deceasedOn?: RFCDate | null | undefined;
+  /**
+   * Country code according to ISO 3166-1 alpha-2.
+   */
+  countryOfBirth?: string | null | undefined;
+  /**
+   * A description of the object.
+   */
+  description?: string | null | undefined;
+  /**
+   * The gender represents the gender identity of a person.
+   */
+  gender?: Gender | null | undefined;
+  /**
+   * The preferred pronouns of the person.
+   */
+  pronouns?: string | null | undefined;
+  /**
+   * language code according to ISO 639-1. For the United States - EN
+   */
+  preferredLanguage?: string | null | undefined;
+  languages?: Array<string | null> | undefined;
+  nationalities?: Array<string | null> | undefined;
+  /**
+   * The URL of the photo of a person.
+   */
+  photoUrl?: string | null | undefined;
+  /**
+   * The time zone related to the resource. The value is a string containing a standard time zone identifier, e.g. Europe/London.
+   */
+  timezone?: string | null | undefined;
+  /**
+   * When the employee is imported as a new hire, this field indicates what system (e.g. the name of the ATS) this employee was imported from.
+   */
+  source?: string | null | undefined;
+  /**
+   * Unique identifier of the employee in the system this employee was imported from (e.g. the ID in the ATS).
+   */
+  sourceId?: string | null | undefined;
+  recordUrl?: string | null | undefined;
+  jobs?: Array<EmployeeJobInput> | null | undefined;
+  compensations?: Array<EmployeeCompensationInput> | null | undefined;
+  /**
+   * Indicates if the employee works from a remote location.
+   */
+  worksRemote?: boolean | null | undefined;
+  addresses?: Array<Address> | undefined;
+  phoneNumbers?: Array<PhoneNumber> | undefined;
+  emails?: Array<Email> | undefined;
+  customFields?: Array<CustomField> | undefined;
+  socialLinks?: Array<SocialLink> | undefined;
+  bankAccounts?: Array<BankAccount> | undefined;
+  taxCode?: string | null | undefined;
+  taxId?: string | null | undefined;
+  /**
+   * Indicate the employee's dietary preference.
+   */
+  dietaryPreference?: string | null | undefined;
+  /**
+   * Indicate the employee's food allergies.
+   */
+  foodAllergies?: Array<string> | null | undefined;
+  probationPeriod?: ProbationPeriod | undefined;
+  tags?: Array<string> | null | undefined;
+  /**
+   * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
+   */
+  rowVersion?: string | null | undefined;
+  /**
+   * Flag to indicate if the object is deleted.
+   */
+  deleted?: boolean | null | undefined;
   /**
    * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
    */
@@ -876,320 +876,6 @@ export function probationPeriodFromJSON(
     jsonString,
     (x) => ProbationPeriod$inboundSchema.parse(JSON.parse(x)),
     `Failed to parse 'ProbationPeriod' from JSON`,
-  );
-}
-
-/** @internal */
-export const EmployeeInput$inboundSchema: z.ZodType<
-  EmployeeInput,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  id: z.nullable(z.string()).optional(),
-  first_name: z.nullable(z.string()).optional(),
-  last_name: z.nullable(z.string()).optional(),
-  middle_name: z.nullable(z.string()).optional(),
-  display_name: z.nullable(z.string()).optional(),
-  preferred_name: z.nullable(z.string()).optional(),
-  initials: z.nullable(z.string()).optional(),
-  salutation: z.nullable(z.string()).optional(),
-  title: z.nullable(z.string()).optional(),
-  marital_status: z.nullable(z.string()).optional(),
-  partner: PersonInput$inboundSchema.optional(),
-  division: z.nullable(z.string()).optional(),
-  division_id: z.nullable(z.string()).optional(),
-  department: z.nullable(z.string()).optional(),
-  department_id: z.nullable(z.string()).optional(),
-  department_name: z.nullable(z.string()).optional(),
-  team: z.nullable(Team$inboundSchema).optional(),
-  company_id: z.nullable(z.string()).optional(),
-  company_name: z.nullable(z.string()).optional(),
-  employment_start_date: z.nullable(z.string()).optional(),
-  employment_end_date: z.nullable(z.string()).optional(),
-  leaving_reason: z.nullable(LeavingReason$inboundSchema).optional(),
-  employee_number: z.nullable(z.string()).optional(),
-  employment_status: z.nullable(EmploymentStatus$inboundSchema).optional(),
-  employment_role: z.lazy(() => EmploymentRole$inboundSchema).optional(),
-  ethnicity: z.nullable(z.string()).optional(),
-  manager: z.lazy(() => Manager$inboundSchema).optional(),
-  direct_reports: z.nullable(z.array(z.string())).optional(),
-  social_security_number: z.nullable(z.string()).optional(),
-  birthday: z.nullable(z.string().transform(v => new RFCDate(v))).optional(),
-  deceased_on: z.nullable(z.string().transform(v => new RFCDate(v))).optional(),
-  country_of_birth: z.nullable(z.string()).optional(),
-  description: z.nullable(z.string()).optional(),
-  gender: z.nullable(Gender$inboundSchema).optional(),
-  pronouns: z.nullable(z.string()).optional(),
-  preferred_language: z.nullable(z.string()).optional(),
-  languages: z.array(z.nullable(z.string())).optional(),
-  nationalities: z.array(z.nullable(z.string())).optional(),
-  photo_url: z.nullable(z.string()).optional(),
-  timezone: z.nullable(z.string()).optional(),
-  source: z.nullable(z.string()).optional(),
-  source_id: z.nullable(z.string()).optional(),
-  record_url: z.nullable(z.string()).optional(),
-  jobs: z.nullable(z.array(EmployeeJobInput$inboundSchema)).optional(),
-  compensations: z.nullable(z.array(EmployeeCompensationInput$inboundSchema))
-    .optional(),
-  works_remote: z.nullable(z.boolean()).optional(),
-  addresses: z.array(Address$inboundSchema).optional(),
-  phone_numbers: z.array(PhoneNumber$inboundSchema).optional(),
-  emails: z.array(Email$inboundSchema).optional(),
-  custom_fields: z.array(CustomField$inboundSchema).optional(),
-  social_links: z.array(SocialLink$inboundSchema).optional(),
-  bank_accounts: z.array(BankAccount$inboundSchema).optional(),
-  tax_code: z.nullable(z.string()).optional(),
-  tax_id: z.nullable(z.string()).optional(),
-  dietary_preference: z.nullable(z.string()).optional(),
-  food_allergies: z.nullable(z.array(z.string())).optional(),
-  probation_period: z.lazy(() => ProbationPeriod$inboundSchema).optional(),
-  tags: z.nullable(z.array(z.string())).optional(),
-  row_version: z.nullable(z.string()).optional(),
-  deleted: z.nullable(z.boolean()).optional(),
-  pass_through: z.array(PassThroughBody$inboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "first_name": "firstName",
-    "last_name": "lastName",
-    "middle_name": "middleName",
-    "display_name": "displayName",
-    "preferred_name": "preferredName",
-    "marital_status": "maritalStatus",
-    "division_id": "divisionId",
-    "department_id": "departmentId",
-    "department_name": "departmentName",
-    "company_id": "companyId",
-    "company_name": "companyName",
-    "employment_start_date": "employmentStartDate",
-    "employment_end_date": "employmentEndDate",
-    "leaving_reason": "leavingReason",
-    "employee_number": "employeeNumber",
-    "employment_status": "employmentStatus",
-    "employment_role": "employmentRole",
-    "direct_reports": "directReports",
-    "social_security_number": "socialSecurityNumber",
-    "deceased_on": "deceasedOn",
-    "country_of_birth": "countryOfBirth",
-    "preferred_language": "preferredLanguage",
-    "photo_url": "photoUrl",
-    "source_id": "sourceId",
-    "record_url": "recordUrl",
-    "works_remote": "worksRemote",
-    "phone_numbers": "phoneNumbers",
-    "custom_fields": "customFields",
-    "social_links": "socialLinks",
-    "bank_accounts": "bankAccounts",
-    "tax_code": "taxCode",
-    "tax_id": "taxId",
-    "dietary_preference": "dietaryPreference",
-    "food_allergies": "foodAllergies",
-    "probation_period": "probationPeriod",
-    "row_version": "rowVersion",
-    "pass_through": "passThrough",
-  });
-});
-
-/** @internal */
-export type EmployeeInput$Outbound = {
-  id?: string | null | undefined;
-  first_name?: string | null | undefined;
-  last_name?: string | null | undefined;
-  middle_name?: string | null | undefined;
-  display_name?: string | null | undefined;
-  preferred_name?: string | null | undefined;
-  initials?: string | null | undefined;
-  salutation?: string | null | undefined;
-  title?: string | null | undefined;
-  marital_status?: string | null | undefined;
-  partner?: PersonInput$Outbound | undefined;
-  division?: string | null | undefined;
-  division_id?: string | null | undefined;
-  department?: string | null | undefined;
-  department_id?: string | null | undefined;
-  department_name?: string | null | undefined;
-  team?: Team$Outbound | null | undefined;
-  company_id?: string | null | undefined;
-  company_name?: string | null | undefined;
-  employment_start_date?: string | null | undefined;
-  employment_end_date?: string | null | undefined;
-  leaving_reason?: string | null | undefined;
-  employee_number?: string | null | undefined;
-  employment_status?: string | null | undefined;
-  employment_role?: EmploymentRole$Outbound | undefined;
-  ethnicity?: string | null | undefined;
-  manager?: Manager$Outbound | undefined;
-  direct_reports?: Array<string> | null | undefined;
-  social_security_number?: string | null | undefined;
-  birthday?: string | null | undefined;
-  deceased_on?: string | null | undefined;
-  country_of_birth?: string | null | undefined;
-  description?: string | null | undefined;
-  gender?: string | null | undefined;
-  pronouns?: string | null | undefined;
-  preferred_language?: string | null | undefined;
-  languages?: Array<string | null> | undefined;
-  nationalities?: Array<string | null> | undefined;
-  photo_url?: string | null | undefined;
-  timezone?: string | null | undefined;
-  source?: string | null | undefined;
-  source_id?: string | null | undefined;
-  record_url?: string | null | undefined;
-  jobs?: Array<EmployeeJobInput$Outbound> | null | undefined;
-  compensations?: Array<EmployeeCompensationInput$Outbound> | null | undefined;
-  works_remote?: boolean | null | undefined;
-  addresses?: Array<Address$Outbound> | undefined;
-  phone_numbers?: Array<PhoneNumber$Outbound> | undefined;
-  emails?: Array<Email$Outbound> | undefined;
-  custom_fields?: Array<CustomField$Outbound> | undefined;
-  social_links?: Array<SocialLink$Outbound> | undefined;
-  bank_accounts?: Array<BankAccount$Outbound> | undefined;
-  tax_code?: string | null | undefined;
-  tax_id?: string | null | undefined;
-  dietary_preference?: string | null | undefined;
-  food_allergies?: Array<string> | null | undefined;
-  probation_period?: ProbationPeriod$Outbound | undefined;
-  tags?: Array<string> | null | undefined;
-  row_version?: string | null | undefined;
-  deleted?: boolean | null | undefined;
-  pass_through?: Array<PassThroughBody$Outbound> | undefined;
-};
-
-/** @internal */
-export const EmployeeInput$outboundSchema: z.ZodType<
-  EmployeeInput$Outbound,
-  z.ZodTypeDef,
-  EmployeeInput
-> = z.object({
-  id: z.nullable(z.string()).optional(),
-  firstName: z.nullable(z.string()).optional(),
-  lastName: z.nullable(z.string()).optional(),
-  middleName: z.nullable(z.string()).optional(),
-  displayName: z.nullable(z.string()).optional(),
-  preferredName: z.nullable(z.string()).optional(),
-  initials: z.nullable(z.string()).optional(),
-  salutation: z.nullable(z.string()).optional(),
-  title: z.nullable(z.string()).optional(),
-  maritalStatus: z.nullable(z.string()).optional(),
-  partner: PersonInput$outboundSchema.optional(),
-  division: z.nullable(z.string()).optional(),
-  divisionId: z.nullable(z.string()).optional(),
-  department: z.nullable(z.string()).optional(),
-  departmentId: z.nullable(z.string()).optional(),
-  departmentName: z.nullable(z.string()).optional(),
-  team: z.nullable(Team$outboundSchema).optional(),
-  companyId: z.nullable(z.string()).optional(),
-  companyName: z.nullable(z.string()).optional(),
-  employmentStartDate: z.nullable(z.string()).optional(),
-  employmentEndDate: z.nullable(z.string()).optional(),
-  leavingReason: z.nullable(LeavingReason$outboundSchema).optional(),
-  employeeNumber: z.nullable(z.string()).optional(),
-  employmentStatus: z.nullable(EmploymentStatus$outboundSchema).optional(),
-  employmentRole: z.lazy(() => EmploymentRole$outboundSchema).optional(),
-  ethnicity: z.nullable(z.string()).optional(),
-  manager: z.lazy(() => Manager$outboundSchema).optional(),
-  directReports: z.nullable(z.array(z.string())).optional(),
-  socialSecurityNumber: z.nullable(z.string()).optional(),
-  birthday: z.nullable(z.instanceof(RFCDate).transform(v => v.toString()))
-    .optional(),
-  deceasedOn: z.nullable(z.instanceof(RFCDate).transform(v => v.toString()))
-    .optional(),
-  countryOfBirth: z.nullable(z.string()).optional(),
-  description: z.nullable(z.string()).optional(),
-  gender: z.nullable(Gender$outboundSchema).optional(),
-  pronouns: z.nullable(z.string()).optional(),
-  preferredLanguage: z.nullable(z.string()).optional(),
-  languages: z.array(z.nullable(z.string())).optional(),
-  nationalities: z.array(z.nullable(z.string())).optional(),
-  photoUrl: z.nullable(z.string()).optional(),
-  timezone: z.nullable(z.string()).optional(),
-  source: z.nullable(z.string()).optional(),
-  sourceId: z.nullable(z.string()).optional(),
-  recordUrl: z.nullable(z.string()).optional(),
-  jobs: z.nullable(z.array(EmployeeJobInput$outboundSchema)).optional(),
-  compensations: z.nullable(z.array(EmployeeCompensationInput$outboundSchema))
-    .optional(),
-  worksRemote: z.nullable(z.boolean()).optional(),
-  addresses: z.array(Address$outboundSchema).optional(),
-  phoneNumbers: z.array(PhoneNumber$outboundSchema).optional(),
-  emails: z.array(Email$outboundSchema).optional(),
-  customFields: z.array(CustomField$outboundSchema).optional(),
-  socialLinks: z.array(SocialLink$outboundSchema).optional(),
-  bankAccounts: z.array(BankAccount$outboundSchema).optional(),
-  taxCode: z.nullable(z.string()).optional(),
-  taxId: z.nullable(z.string()).optional(),
-  dietaryPreference: z.nullable(z.string()).optional(),
-  foodAllergies: z.nullable(z.array(z.string())).optional(),
-  probationPeriod: z.lazy(() => ProbationPeriod$outboundSchema).optional(),
-  tags: z.nullable(z.array(z.string())).optional(),
-  rowVersion: z.nullable(z.string()).optional(),
-  deleted: z.nullable(z.boolean()).optional(),
-  passThrough: z.array(PassThroughBody$outboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    firstName: "first_name",
-    lastName: "last_name",
-    middleName: "middle_name",
-    displayName: "display_name",
-    preferredName: "preferred_name",
-    maritalStatus: "marital_status",
-    divisionId: "division_id",
-    departmentId: "department_id",
-    departmentName: "department_name",
-    companyId: "company_id",
-    companyName: "company_name",
-    employmentStartDate: "employment_start_date",
-    employmentEndDate: "employment_end_date",
-    leavingReason: "leaving_reason",
-    employeeNumber: "employee_number",
-    employmentStatus: "employment_status",
-    employmentRole: "employment_role",
-    directReports: "direct_reports",
-    socialSecurityNumber: "social_security_number",
-    deceasedOn: "deceased_on",
-    countryOfBirth: "country_of_birth",
-    preferredLanguage: "preferred_language",
-    photoUrl: "photo_url",
-    sourceId: "source_id",
-    recordUrl: "record_url",
-    worksRemote: "works_remote",
-    phoneNumbers: "phone_numbers",
-    customFields: "custom_fields",
-    socialLinks: "social_links",
-    bankAccounts: "bank_accounts",
-    taxCode: "tax_code",
-    taxId: "tax_id",
-    dietaryPreference: "dietary_preference",
-    foodAllergies: "food_allergies",
-    probationPeriod: "probation_period",
-    rowVersion: "row_version",
-    passThrough: "pass_through",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace EmployeeInput$ {
-  /** @deprecated use `EmployeeInput$inboundSchema` instead. */
-  export const inboundSchema = EmployeeInput$inboundSchema;
-  /** @deprecated use `EmployeeInput$outboundSchema` instead. */
-  export const outboundSchema = EmployeeInput$outboundSchema;
-  /** @deprecated use `EmployeeInput$Outbound` instead. */
-  export type Outbound = EmployeeInput$Outbound;
-}
-
-export function employeeInputToJSON(employeeInput: EmployeeInput): string {
-  return JSON.stringify(EmployeeInput$outboundSchema.parse(employeeInput));
-}
-
-export function employeeInputFromJSON(
-  jsonString: string,
-): SafeParseResult<EmployeeInput, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => EmployeeInput$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'EmployeeInput' from JSON`,
   );
 }
 
@@ -1538,5 +1224,319 @@ export function employeeFromJSON(
     jsonString,
     (x) => Employee$inboundSchema.parse(JSON.parse(x)),
     `Failed to parse 'Employee' from JSON`,
+  );
+}
+
+/** @internal */
+export const EmployeeInput$inboundSchema: z.ZodType<
+  EmployeeInput,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  id: z.nullable(z.string()).optional(),
+  first_name: z.nullable(z.string()).optional(),
+  last_name: z.nullable(z.string()).optional(),
+  middle_name: z.nullable(z.string()).optional(),
+  display_name: z.nullable(z.string()).optional(),
+  preferred_name: z.nullable(z.string()).optional(),
+  initials: z.nullable(z.string()).optional(),
+  salutation: z.nullable(z.string()).optional(),
+  title: z.nullable(z.string()).optional(),
+  marital_status: z.nullable(z.string()).optional(),
+  partner: PersonInput$inboundSchema.optional(),
+  division: z.nullable(z.string()).optional(),
+  division_id: z.nullable(z.string()).optional(),
+  department: z.nullable(z.string()).optional(),
+  department_id: z.nullable(z.string()).optional(),
+  department_name: z.nullable(z.string()).optional(),
+  team: z.nullable(Team$inboundSchema).optional(),
+  company_id: z.nullable(z.string()).optional(),
+  company_name: z.nullable(z.string()).optional(),
+  employment_start_date: z.nullable(z.string()).optional(),
+  employment_end_date: z.nullable(z.string()).optional(),
+  leaving_reason: z.nullable(LeavingReason$inboundSchema).optional(),
+  employee_number: z.nullable(z.string()).optional(),
+  employment_status: z.nullable(EmploymentStatus$inboundSchema).optional(),
+  employment_role: z.lazy(() => EmploymentRole$inboundSchema).optional(),
+  ethnicity: z.nullable(z.string()).optional(),
+  manager: z.lazy(() => Manager$inboundSchema).optional(),
+  direct_reports: z.nullable(z.array(z.string())).optional(),
+  social_security_number: z.nullable(z.string()).optional(),
+  birthday: z.nullable(z.string().transform(v => new RFCDate(v))).optional(),
+  deceased_on: z.nullable(z.string().transform(v => new RFCDate(v))).optional(),
+  country_of_birth: z.nullable(z.string()).optional(),
+  description: z.nullable(z.string()).optional(),
+  gender: z.nullable(Gender$inboundSchema).optional(),
+  pronouns: z.nullable(z.string()).optional(),
+  preferred_language: z.nullable(z.string()).optional(),
+  languages: z.array(z.nullable(z.string())).optional(),
+  nationalities: z.array(z.nullable(z.string())).optional(),
+  photo_url: z.nullable(z.string()).optional(),
+  timezone: z.nullable(z.string()).optional(),
+  source: z.nullable(z.string()).optional(),
+  source_id: z.nullable(z.string()).optional(),
+  record_url: z.nullable(z.string()).optional(),
+  jobs: z.nullable(z.array(EmployeeJobInput$inboundSchema)).optional(),
+  compensations: z.nullable(z.array(EmployeeCompensationInput$inboundSchema))
+    .optional(),
+  works_remote: z.nullable(z.boolean()).optional(),
+  addresses: z.array(Address$inboundSchema).optional(),
+  phone_numbers: z.array(PhoneNumber$inboundSchema).optional(),
+  emails: z.array(Email$inboundSchema).optional(),
+  custom_fields: z.array(CustomField$inboundSchema).optional(),
+  social_links: z.array(SocialLink$inboundSchema).optional(),
+  bank_accounts: z.array(BankAccount$inboundSchema).optional(),
+  tax_code: z.nullable(z.string()).optional(),
+  tax_id: z.nullable(z.string()).optional(),
+  dietary_preference: z.nullable(z.string()).optional(),
+  food_allergies: z.nullable(z.array(z.string())).optional(),
+  probation_period: z.lazy(() => ProbationPeriod$inboundSchema).optional(),
+  tags: z.nullable(z.array(z.string())).optional(),
+  row_version: z.nullable(z.string()).optional(),
+  deleted: z.nullable(z.boolean()).optional(),
+  pass_through: z.array(PassThroughBody$inboundSchema).optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "first_name": "firstName",
+    "last_name": "lastName",
+    "middle_name": "middleName",
+    "display_name": "displayName",
+    "preferred_name": "preferredName",
+    "marital_status": "maritalStatus",
+    "division_id": "divisionId",
+    "department_id": "departmentId",
+    "department_name": "departmentName",
+    "company_id": "companyId",
+    "company_name": "companyName",
+    "employment_start_date": "employmentStartDate",
+    "employment_end_date": "employmentEndDate",
+    "leaving_reason": "leavingReason",
+    "employee_number": "employeeNumber",
+    "employment_status": "employmentStatus",
+    "employment_role": "employmentRole",
+    "direct_reports": "directReports",
+    "social_security_number": "socialSecurityNumber",
+    "deceased_on": "deceasedOn",
+    "country_of_birth": "countryOfBirth",
+    "preferred_language": "preferredLanguage",
+    "photo_url": "photoUrl",
+    "source_id": "sourceId",
+    "record_url": "recordUrl",
+    "works_remote": "worksRemote",
+    "phone_numbers": "phoneNumbers",
+    "custom_fields": "customFields",
+    "social_links": "socialLinks",
+    "bank_accounts": "bankAccounts",
+    "tax_code": "taxCode",
+    "tax_id": "taxId",
+    "dietary_preference": "dietaryPreference",
+    "food_allergies": "foodAllergies",
+    "probation_period": "probationPeriod",
+    "row_version": "rowVersion",
+    "pass_through": "passThrough",
+  });
+});
+
+/** @internal */
+export type EmployeeInput$Outbound = {
+  id?: string | null | undefined;
+  first_name?: string | null | undefined;
+  last_name?: string | null | undefined;
+  middle_name?: string | null | undefined;
+  display_name?: string | null | undefined;
+  preferred_name?: string | null | undefined;
+  initials?: string | null | undefined;
+  salutation?: string | null | undefined;
+  title?: string | null | undefined;
+  marital_status?: string | null | undefined;
+  partner?: PersonInput$Outbound | undefined;
+  division?: string | null | undefined;
+  division_id?: string | null | undefined;
+  department?: string | null | undefined;
+  department_id?: string | null | undefined;
+  department_name?: string | null | undefined;
+  team?: Team$Outbound | null | undefined;
+  company_id?: string | null | undefined;
+  company_name?: string | null | undefined;
+  employment_start_date?: string | null | undefined;
+  employment_end_date?: string | null | undefined;
+  leaving_reason?: string | null | undefined;
+  employee_number?: string | null | undefined;
+  employment_status?: string | null | undefined;
+  employment_role?: EmploymentRole$Outbound | undefined;
+  ethnicity?: string | null | undefined;
+  manager?: Manager$Outbound | undefined;
+  direct_reports?: Array<string> | null | undefined;
+  social_security_number?: string | null | undefined;
+  birthday?: string | null | undefined;
+  deceased_on?: string | null | undefined;
+  country_of_birth?: string | null | undefined;
+  description?: string | null | undefined;
+  gender?: string | null | undefined;
+  pronouns?: string | null | undefined;
+  preferred_language?: string | null | undefined;
+  languages?: Array<string | null> | undefined;
+  nationalities?: Array<string | null> | undefined;
+  photo_url?: string | null | undefined;
+  timezone?: string | null | undefined;
+  source?: string | null | undefined;
+  source_id?: string | null | undefined;
+  record_url?: string | null | undefined;
+  jobs?: Array<EmployeeJobInput$Outbound> | null | undefined;
+  compensations?: Array<EmployeeCompensationInput$Outbound> | null | undefined;
+  works_remote?: boolean | null | undefined;
+  addresses?: Array<Address$Outbound> | undefined;
+  phone_numbers?: Array<PhoneNumber$Outbound> | undefined;
+  emails?: Array<Email$Outbound> | undefined;
+  custom_fields?: Array<CustomField$Outbound> | undefined;
+  social_links?: Array<SocialLink$Outbound> | undefined;
+  bank_accounts?: Array<BankAccount$Outbound> | undefined;
+  tax_code?: string | null | undefined;
+  tax_id?: string | null | undefined;
+  dietary_preference?: string | null | undefined;
+  food_allergies?: Array<string> | null | undefined;
+  probation_period?: ProbationPeriod$Outbound | undefined;
+  tags?: Array<string> | null | undefined;
+  row_version?: string | null | undefined;
+  deleted?: boolean | null | undefined;
+  pass_through?: Array<PassThroughBody$Outbound> | undefined;
+};
+
+/** @internal */
+export const EmployeeInput$outboundSchema: z.ZodType<
+  EmployeeInput$Outbound,
+  z.ZodTypeDef,
+  EmployeeInput
+> = z.object({
+  id: z.nullable(z.string()).optional(),
+  firstName: z.nullable(z.string()).optional(),
+  lastName: z.nullable(z.string()).optional(),
+  middleName: z.nullable(z.string()).optional(),
+  displayName: z.nullable(z.string()).optional(),
+  preferredName: z.nullable(z.string()).optional(),
+  initials: z.nullable(z.string()).optional(),
+  salutation: z.nullable(z.string()).optional(),
+  title: z.nullable(z.string()).optional(),
+  maritalStatus: z.nullable(z.string()).optional(),
+  partner: PersonInput$outboundSchema.optional(),
+  division: z.nullable(z.string()).optional(),
+  divisionId: z.nullable(z.string()).optional(),
+  department: z.nullable(z.string()).optional(),
+  departmentId: z.nullable(z.string()).optional(),
+  departmentName: z.nullable(z.string()).optional(),
+  team: z.nullable(Team$outboundSchema).optional(),
+  companyId: z.nullable(z.string()).optional(),
+  companyName: z.nullable(z.string()).optional(),
+  employmentStartDate: z.nullable(z.string()).optional(),
+  employmentEndDate: z.nullable(z.string()).optional(),
+  leavingReason: z.nullable(LeavingReason$outboundSchema).optional(),
+  employeeNumber: z.nullable(z.string()).optional(),
+  employmentStatus: z.nullable(EmploymentStatus$outboundSchema).optional(),
+  employmentRole: z.lazy(() => EmploymentRole$outboundSchema).optional(),
+  ethnicity: z.nullable(z.string()).optional(),
+  manager: z.lazy(() => Manager$outboundSchema).optional(),
+  directReports: z.nullable(z.array(z.string())).optional(),
+  socialSecurityNumber: z.nullable(z.string()).optional(),
+  birthday: z.nullable(z.instanceof(RFCDate).transform(v => v.toString()))
+    .optional(),
+  deceasedOn: z.nullable(z.instanceof(RFCDate).transform(v => v.toString()))
+    .optional(),
+  countryOfBirth: z.nullable(z.string()).optional(),
+  description: z.nullable(z.string()).optional(),
+  gender: z.nullable(Gender$outboundSchema).optional(),
+  pronouns: z.nullable(z.string()).optional(),
+  preferredLanguage: z.nullable(z.string()).optional(),
+  languages: z.array(z.nullable(z.string())).optional(),
+  nationalities: z.array(z.nullable(z.string())).optional(),
+  photoUrl: z.nullable(z.string()).optional(),
+  timezone: z.nullable(z.string()).optional(),
+  source: z.nullable(z.string()).optional(),
+  sourceId: z.nullable(z.string()).optional(),
+  recordUrl: z.nullable(z.string()).optional(),
+  jobs: z.nullable(z.array(EmployeeJobInput$outboundSchema)).optional(),
+  compensations: z.nullable(z.array(EmployeeCompensationInput$outboundSchema))
+    .optional(),
+  worksRemote: z.nullable(z.boolean()).optional(),
+  addresses: z.array(Address$outboundSchema).optional(),
+  phoneNumbers: z.array(PhoneNumber$outboundSchema).optional(),
+  emails: z.array(Email$outboundSchema).optional(),
+  customFields: z.array(CustomField$outboundSchema).optional(),
+  socialLinks: z.array(SocialLink$outboundSchema).optional(),
+  bankAccounts: z.array(BankAccount$outboundSchema).optional(),
+  taxCode: z.nullable(z.string()).optional(),
+  taxId: z.nullable(z.string()).optional(),
+  dietaryPreference: z.nullable(z.string()).optional(),
+  foodAllergies: z.nullable(z.array(z.string())).optional(),
+  probationPeriod: z.lazy(() => ProbationPeriod$outboundSchema).optional(),
+  tags: z.nullable(z.array(z.string())).optional(),
+  rowVersion: z.nullable(z.string()).optional(),
+  deleted: z.nullable(z.boolean()).optional(),
+  passThrough: z.array(PassThroughBody$outboundSchema).optional(),
+}).transform((v) => {
+  return remap$(v, {
+    firstName: "first_name",
+    lastName: "last_name",
+    middleName: "middle_name",
+    displayName: "display_name",
+    preferredName: "preferred_name",
+    maritalStatus: "marital_status",
+    divisionId: "division_id",
+    departmentId: "department_id",
+    departmentName: "department_name",
+    companyId: "company_id",
+    companyName: "company_name",
+    employmentStartDate: "employment_start_date",
+    employmentEndDate: "employment_end_date",
+    leavingReason: "leaving_reason",
+    employeeNumber: "employee_number",
+    employmentStatus: "employment_status",
+    employmentRole: "employment_role",
+    directReports: "direct_reports",
+    socialSecurityNumber: "social_security_number",
+    deceasedOn: "deceased_on",
+    countryOfBirth: "country_of_birth",
+    preferredLanguage: "preferred_language",
+    photoUrl: "photo_url",
+    sourceId: "source_id",
+    recordUrl: "record_url",
+    worksRemote: "works_remote",
+    phoneNumbers: "phone_numbers",
+    customFields: "custom_fields",
+    socialLinks: "social_links",
+    bankAccounts: "bank_accounts",
+    taxCode: "tax_code",
+    taxId: "tax_id",
+    dietaryPreference: "dietary_preference",
+    foodAllergies: "food_allergies",
+    probationPeriod: "probation_period",
+    rowVersion: "row_version",
+    passThrough: "pass_through",
+  });
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace EmployeeInput$ {
+  /** @deprecated use `EmployeeInput$inboundSchema` instead. */
+  export const inboundSchema = EmployeeInput$inboundSchema;
+  /** @deprecated use `EmployeeInput$outboundSchema` instead. */
+  export const outboundSchema = EmployeeInput$outboundSchema;
+  /** @deprecated use `EmployeeInput$Outbound` instead. */
+  export type Outbound = EmployeeInput$Outbound;
+}
+
+export function employeeInputToJSON(employeeInput: EmployeeInput): string {
+  return JSON.stringify(EmployeeInput$outboundSchema.parse(employeeInput));
+}
+
+export function employeeInputFromJSON(
+  jsonString: string,
+): SafeParseResult<EmployeeInput, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => EmployeeInput$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'EmployeeInput' from JSON`,
   );
 }

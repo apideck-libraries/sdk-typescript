@@ -64,6 +64,10 @@ export type AccountingDepartment = {
   status?: DepartmentStatus | undefined;
   subsidiaries?: Array<SubsidiaryReference> | undefined;
   /**
+   * The code of the department.
+   */
+  code?: string | undefined;
+  /**
    * When custom mappings are configured on the resource, the result is included here.
    */
   customMappings?: CustomMappings | null | undefined;
@@ -108,6 +112,10 @@ export type AccountingDepartmentInput = {
   status?: DepartmentStatus | undefined;
   subsidiaries?: Array<SubsidiaryReferenceInput> | undefined;
   /**
+   * The code of the department.
+   */
+  code?: string | undefined;
+  /**
    * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
    */
   rowVersion?: string | null | undefined;
@@ -149,6 +157,7 @@ export const AccountingDepartment$inboundSchema: z.ZodType<
   name: z.nullable(z.string()).optional(),
   status: DepartmentStatus$inboundSchema.optional(),
   subsidiaries: z.array(SubsidiaryReference$inboundSchema).optional(),
+  code: z.string().optional(),
   custom_mappings: z.nullable(CustomMappings$inboundSchema).optional(),
   row_version: z.nullable(z.string()).optional(),
   updated_by: z.nullable(z.string()).optional(),
@@ -180,6 +189,7 @@ export type AccountingDepartment$Outbound = {
   name?: string | null | undefined;
   status?: string | undefined;
   subsidiaries?: Array<SubsidiaryReference$Outbound> | undefined;
+  code?: string | undefined;
   custom_mappings?: CustomMappings$Outbound | null | undefined;
   row_version?: string | null | undefined;
   updated_by?: string | null | undefined;
@@ -200,6 +210,7 @@ export const AccountingDepartment$outboundSchema: z.ZodType<
   name: z.nullable(z.string()).optional(),
   status: DepartmentStatus$outboundSchema.optional(),
   subsidiaries: z.array(SubsidiaryReference$outboundSchema).optional(),
+  code: z.string().optional(),
   customMappings: z.nullable(CustomMappings$outboundSchema).optional(),
   rowVersion: z.nullable(z.string()).optional(),
   updatedBy: z.nullable(z.string()).optional(),
@@ -261,6 +272,7 @@ export const AccountingDepartmentInput$inboundSchema: z.ZodType<
   name: z.nullable(z.string()).optional(),
   status: DepartmentStatus$inboundSchema.optional(),
   subsidiaries: z.array(SubsidiaryReferenceInput$inboundSchema).optional(),
+  code: z.string().optional(),
   row_version: z.nullable(z.string()).optional(),
   pass_through: z.array(PassThroughBody$inboundSchema).optional(),
 }).transform((v) => {
@@ -277,6 +289,7 @@ export type AccountingDepartmentInput$Outbound = {
   name?: string | null | undefined;
   status?: string | undefined;
   subsidiaries?: Array<SubsidiaryReferenceInput$Outbound> | undefined;
+  code?: string | undefined;
   row_version?: string | null | undefined;
   pass_through?: Array<PassThroughBody$Outbound> | undefined;
 };
@@ -291,6 +304,7 @@ export const AccountingDepartmentInput$outboundSchema: z.ZodType<
   name: z.nullable(z.string()).optional(),
   status: DepartmentStatus$outboundSchema.optional(),
   subsidiaries: z.array(SubsidiaryReferenceInput$outboundSchema).optional(),
+  code: z.string().optional(),
   rowVersion: z.nullable(z.string()).optional(),
   passThrough: z.array(PassThroughBody$outboundSchema).optional(),
 }).transform((v) => {

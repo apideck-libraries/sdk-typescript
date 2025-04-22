@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 7bffa198-5d29-4efa-9942-d549cc832085
 management:
-  docChecksum: 5f9c8c78f4e97650b9622752c12efc49
-  docVersion: 10.15.2
-  speakeasyVersion: 1.531.0
-  generationVersion: 2.568.2
-  releaseVersion: 0.22.1
-  configChecksum: e5c5e058cbd69eb426aada87c418676d
+  docChecksum: b5dc0244aa499b8adfc991da71055e1b
+  docVersion: 10.16.2
+  speakeasyVersion: 1.537.0
+  generationVersion: 2.588.0
+  releaseVersion: 0.23.0
+  configChecksum: c4f203ce83e6e3de3ceac60ea24a5c2c
   repoURL: https://github.com/apideck-libraries/sdk-typescript.git
   installationURL: https://github.com/apideck-libraries/sdk-typescript
   published: true
@@ -15,7 +15,7 @@ features:
     acceptHeaders: 2.81.2
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.11
-    core: 3.21.5
+    core: 3.21.6
     deepObjectParams: 0.1.0
     defaultEnabledRetries: 0.1.0
     deprecations: 2.81.1
@@ -2019,9 +2019,9 @@ generatedFiles:
   - src/models/components/balancesheetfilter.ts
   - src/models/components/bankaccount.ts
   - src/models/components/benefit.ts
-  - src/models/components/billinput.ts
-  - src/models/components/billlineiteminput.ts
-  - src/models/components/billpaymentinput.ts
+  - src/models/components/bill.ts
+  - src/models/components/billlineitem.ts
+  - src/models/components/billpayment.ts
   - src/models/components/billsfilter.ts
   - src/models/components/billssort.ts
   - src/models/components/collection.ts
@@ -2034,11 +2034,11 @@ generatedFiles:
   - src/models/components/commentssort.ts
   - src/models/components/companiesfilter.ts
   - src/models/components/companiessort.ts
+  - src/models/components/company.ts
   - src/models/components/companyinfo.ts
-  - src/models/components/companyinput.ts
   - src/models/components/compensation.ts
+  - src/models/components/connection.ts
   - src/models/components/connectionimportdata.ts
-  - src/models/components/connectioninput.ts
   - src/models/components/connectionstate.ts
   - src/models/components/connector.ts
   - src/models/components/connectordoc.ts
@@ -2182,8 +2182,8 @@ generatedFiles:
   - src/models/components/ecommerceproduct.ts
   - src/models/components/ecommercestore.ts
   - src/models/components/email.ts
+  - src/models/components/employee.ts
   - src/models/components/employeecompensation.ts
-  - src/models/components/employeeinput.ts
   - src/models/components/employeejob.ts
   - src/models/components/employeepayroll.ts
   - src/models/components/employeeschedules.ts
@@ -2333,7 +2333,7 @@ generatedFiles:
   - src/models/components/invoiceitemfilter.ts
   - src/models/components/invoiceitemsfilter.ts
   - src/models/components/invoiceitemssort.ts
-  - src/models/components/invoicelineiteminput.ts
+  - src/models/components/invoicelineitem.ts
   - src/models/components/invoiceresponse.ts
   - src/models/components/invoicesfilter.ts
   - src/models/components/invoicessort.ts
@@ -2370,7 +2370,7 @@ generatedFiles:
   - src/models/components/links.ts
   - src/models/components/log.ts
   - src/models/components/logsfilter.ts
-  - src/models/components/messageinput.ts
+  - src/models/components/message.ts
   - src/models/components/meta.ts
   - src/models/components/note.ts
   - src/models/components/noteinput.ts
@@ -2432,11 +2432,11 @@ generatedFiles:
   - src/models/components/taxrate.ts
   - src/models/components/taxratesfilter.ts
   - src/models/components/team.ts
-  - src/models/components/ticketinput.ts
+  - src/models/components/ticket.ts
   - src/models/components/ticketssort.ts
   - src/models/components/timeoffrequest.ts
   - src/models/components/timeoffrequestsfilter.ts
-  - src/models/components/trackingcategoryinput.ts
+  - src/models/components/trackingcategory.ts
   - src/models/components/trackingitem.ts
   - src/models/components/unexpectederrorresponse.ts
   - src/models/components/unifiedapiid.ts
@@ -7945,7 +7945,7 @@ examples:
         query:
           raw: false
           limit: 20
-          filter: {"company_id": "1234", "email": "elon@tesla.com", "first_name": "Elon", "title": "Manager", "last_name": "Musk", "manager_id": "1234", "employment_status": "active", "employee_number": "123456-AB", "department_id": "1234"}
+          filter: {"company_id": "1234", "email": "elon@tesla.com", "first_name": "Elon", "title": "Manager", "last_name": "Musk", "manager_id": "1234", "employment_status": "active", "employee_number": "123456-AB", "department_id": "1234", "city": "San Francisco", "country": "US"}
           sort: {"by": "created_at", "direction": "desc"}
           pass_through: {"search": "San Francisco"}
           fields: "id,updated_at"

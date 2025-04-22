@@ -15,6 +15,8 @@ let value: EmployeesFilter = {
   employmentStatus: "active",
   employeeNumber: "123456-AB",
   departmentId: "1234",
+  city: "San Francisco",
+  country: "US",
 };
 ```
 
@@ -32,3 +34,4 @@ let value: EmployeesFilter = {
 | `employeeNumber`                                                                                         | *string*                                                                                                 | :heavy_minus_sign:                                                                                       | Employee number to filter on                                                                             | 123456-AB                                                                                                |
 | `departmentId`                                                                                           | *string*                                                                                                 | :heavy_minus_sign:                                                                                       | ID of the department to filter on                                                                        | 1234                                                                                                     |
 | `city`                                                                                                   | *string*                                                                                                 | :heavy_minus_sign:                                                                                       | City to filter on                                                                                        | San Francisco                                                                                            |
+| `country`                                                                                                | *string*                                                                                                 | :heavy_minus_sign:                                                                                       | Country to filter on                                                                                     | US                                                                                                       |
