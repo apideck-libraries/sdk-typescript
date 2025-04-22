@@ -17,6 +17,8 @@ type Note struct {
 	CompanyID *string `json:"company_id,omitempty"`
 	// The opportunity that is related to the note.
 	OpportunityID *string `json:"opportunity_id,omitempty"`
+	// The activity that is related to the note.
+	ActivityID *string `json:"activity_id,omitempty"`
 	// The lead that is related to the note.
 	LeadID *string `json:"lead_id,omitempty"`
 	// Whether the Note is active or not.
@@ -82,6 +84,13 @@ func (o *Note) GetOpportunityID() *string {
 		return nil
 	}
 	return o.OpportunityID
+}
+
+func (o *Note) GetActivityID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ActivityID
 }
 
 func (o *Note) GetLeadID() *string {

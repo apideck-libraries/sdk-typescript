@@ -40,6 +40,10 @@ export type NoteInput = {
    */
   opportunityId?: string | null | undefined;
   /**
+   * The activity that is related to the note.
+   */
+  activityId?: string | null | undefined;
+  /**
    * The lead that is related to the note.
    */
   leadId?: string | null | undefined;
@@ -65,6 +69,7 @@ export const NoteInput$inboundSchema: z.ZodType<
   contact_id: z.nullable(z.string()).optional(),
   company_id: z.nullable(z.string()).optional(),
   opportunity_id: z.nullable(z.string()).optional(),
+  activity_id: z.nullable(z.string()).optional(),
   lead_id: z.nullable(z.string()).optional(),
   active: z.nullable(z.boolean()).optional(),
   pass_through: z.array(PassThroughBody$inboundSchema).optional(),
@@ -74,6 +79,7 @@ export const NoteInput$inboundSchema: z.ZodType<
     "contact_id": "contactId",
     "company_id": "companyId",
     "opportunity_id": "opportunityId",
+    "activity_id": "activityId",
     "lead_id": "leadId",
     "pass_through": "passThrough",
   });
@@ -87,6 +93,7 @@ export type NoteInput$Outbound = {
   contact_id?: string | null | undefined;
   company_id?: string | null | undefined;
   opportunity_id?: string | null | undefined;
+  activity_id?: string | null | undefined;
   lead_id?: string | null | undefined;
   active?: boolean | null | undefined;
   pass_through?: Array<PassThroughBody$Outbound> | undefined;
@@ -104,6 +111,7 @@ export const NoteInput$outboundSchema: z.ZodType<
   contactId: z.nullable(z.string()).optional(),
   companyId: z.nullable(z.string()).optional(),
   opportunityId: z.nullable(z.string()).optional(),
+  activityId: z.nullable(z.string()).optional(),
   leadId: z.nullable(z.string()).optional(),
   active: z.nullable(z.boolean()).optional(),
   passThrough: z.array(PassThroughBody$outboundSchema).optional(),
@@ -113,6 +121,7 @@ export const NoteInput$outboundSchema: z.ZodType<
     contactId: "contact_id",
     companyId: "company_id",
     opportunityId: "opportunity_id",
+    activityId: "activity_id",
     leadId: "lead_id",
     passThrough: "pass_through",
   });
