@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 7bffa198-5d29-4efa-9942-d549cc832085
 management:
-  docChecksum: 422131c3394c1d87f3f12f8512793390
-  docVersion: 10.16.3
-  speakeasyVersion: 1.537.0
-  generationVersion: 2.588.0
-  releaseVersion: 0.23.1
-  configChecksum: 675a031df6db2f2441f4992bdd7980ca
+  docChecksum: a7344d1d756f33c46fe358d8b17e51c7
+  docVersion: 10.16.5
+  speakeasyVersion: 1.543.4
+  generationVersion: 2.598.22
+  releaseVersion: 0.23.2
+  configChecksum: 4d1917d1f53dce5ff55c78b2f6c166b2
   repoURL: https://github.com/apideck-libraries/sdk-typescript.git
   installationURL: https://github.com/apideck-libraries/sdk-typescript
   published: true
@@ -15,7 +15,7 @@ features:
     acceptHeaders: 2.81.2
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.11
-    core: 3.21.6
+    core: 3.21.7
     deepObjectParams: 0.1.0
     defaultEnabledRetries: 0.1.0
     deprecations: 2.81.1
@@ -26,7 +26,7 @@ features:
     globalSecurity: 2.82.13
     globalSecurityCallbacks: 0.1.0
     globalSecurityFlattening: 0.1.0
-    globalServerURLs: 2.82.4
+    globalServerURLs: 2.82.5
     globals: 2.82.2
     groups: 2.81.2
     inputOutputModels: 2.82.0
@@ -38,7 +38,7 @@ features:
     responseFormat: 0.2.3
     retries: 2.83.0
     sdkHooks: 0.2.0
-    tests: 0.16.0
+    tests: 0.16.2
     typeOverrides: 2.81.1
     unions: 2.85.8
     uploadStreams: 0.1.0
@@ -1756,6 +1756,7 @@ generatedFiles:
   - src/__tests__/locations.test.ts
   - src/__tests__/logs.test.ts
   - src/__tests__/messages.test.ts
+  - src/__tests__/mockserver/.gitignore
   - src/__tests__/mockserver/Dockerfile
   - src/__tests__/mockserver/Makefile
   - src/__tests__/mockserver/README.md

@@ -64,7 +64,7 @@ type EcommerceOrderLineItem struct {
 	// The sub total for the product(s) or variant associated with the line item, excluding taxes and discounts.
 	SubTotal *string `json:"sub_total,omitempty"`
 	// The total amount for the product(s) or variant associated with the line item, including taxes and discounts.
-	TotalAmount *string             `json:"total_amount"`
+	TotalAmount *string             `json:"total_amount,omitempty"`
 	Discounts   []EcommerceDiscount `json:"discounts,omitempty"`
 }
 
