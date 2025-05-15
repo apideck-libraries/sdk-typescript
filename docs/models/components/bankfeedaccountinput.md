@@ -1,0 +1,40 @@
+# BankFeedAccountInput
+
+## Example Usage
+
+```typescript
+import { BankFeedAccountInput } from "@apideck/unify/models/components";
+
+let value: BankFeedAccountInput = {
+  bankAccountType: "bank",
+  sourceAccountId: "src_456",
+  targetAccountId: "tgt_789",
+  targetAccountName: "Main Company Checking",
+  targetAccountNumber: "NL91ABNA0417164300",
+  currency: "USD",
+  feedStatus: "pending",
+  country: "US",
+  customFields: [
+    {
+      id: "2389328923893298",
+      name: "employee_level",
+      description: "Employee Level",
+      value: 10,
+    },
+  ],
+};
+```
+
+## Fields
+
+| Field                                                                                                                              | Type                                                                                                                               | Required                                                                                                                           | Description                                                                                                                        | Example                                                                                                                            |
+| ---------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
+| `bankAccountType`                                                                                                                  | [components.BankAccountType](../../models/components/bankaccounttype.md)                                                           | :heavy_minus_sign:                                                                                                                 | Type of the bank account.                                                                                                          | bank                                                                                                                               |
+| `sourceAccountId`                                                                                                                  | *string*                                                                                                                           | :heavy_minus_sign:                                                                                                                 | The source account's unique identifier.                                                                                            | src_456                                                                                                                            |
+| `targetAccountId`                                                                                                                  | *string*                                                                                                                           | :heavy_minus_sign:                                                                                                                 | The target account's unique identifier in the accounting connector.                                                                | tgt_789                                                                                                                            |
+| `targetAccountName`                                                                                                                | *string*                                                                                                                           | :heavy_minus_sign:                                                                                                                 | Name associated with the target account.                                                                                           | Main Company Checking                                                                                                              |
+| `targetAccountNumber`                                                                                                              | *string*                                                                                                                           | :heavy_minus_sign:                                                                                                                 | Account number of the destination bank account.                                                                                    | NL91ABNA0417164300                                                                                                                 |
+| `currency`                                                                                                                         | [components.Currency](../../models/components/currency.md)                                                                         | :heavy_minus_sign:                                                                                                                 | Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217). | USD                                                                                                                                |
+| `feedStatus`                                                                                                                       | [components.FeedStatus](../../models/components/feedstatus.md)                                                                     | :heavy_minus_sign:                                                                                                                 | Current status of the bank feed.                                                                                                   | pending                                                                                                                            |
+| `country`                                                                                                                          | *string*                                                                                                                           | :heavy_minus_sign:                                                                                                                 | Country code according to ISO 3166-1 alpha-2.                                                                                      | US                                                                                                                                 |
+| `customFields`                                                                                                                     | [components.CustomField](../../models/components/customfield.md)[]                                                                 | :heavy_minus_sign:                                                                                                                 | N/A                                                                                                                                |                                                                                                                                    |

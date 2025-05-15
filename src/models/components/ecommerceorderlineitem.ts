@@ -93,7 +93,7 @@ export type EcommerceOrderLineItem = {
   /**
    * The total amount for the product(s) or variant associated with the line item, including taxes and discounts.
    */
-  totalAmount: string | null;
+  totalAmount?: string | null | undefined;
   discounts?: Array<EcommerceDiscount> | undefined;
 };
 
@@ -171,7 +171,7 @@ export const EcommerceOrderLineItem$inboundSchema: z.ZodType<
   refunded_amount: z.nullable(z.string()).optional(),
   refunded_quantity: z.nullable(z.string()).optional(),
   sub_total: z.nullable(z.string()).optional(),
-  total_amount: z.nullable(z.string()),
+  total_amount: z.nullable(z.string()).optional(),
   discounts: z.array(EcommerceDiscount$inboundSchema).optional(),
 }).transform((v) => {
   return remap$(v, {
@@ -205,7 +205,7 @@ export type EcommerceOrderLineItem$Outbound = {
   refunded_amount?: string | null | undefined;
   refunded_quantity?: string | null | undefined;
   sub_total?: string | null | undefined;
-  total_amount: string | null;
+  total_amount?: string | null | undefined;
   discounts?: Array<EcommerceDiscount$Outbound> | undefined;
 };
 
@@ -230,7 +230,7 @@ export const EcommerceOrderLineItem$outboundSchema: z.ZodType<
   refundedAmount: z.nullable(z.string()).optional(),
   refundedQuantity: z.nullable(z.string()).optional(),
   subTotal: z.nullable(z.string()).optional(),
-  totalAmount: z.nullable(z.string()),
+  totalAmount: z.nullable(z.string()).optional(),
   discounts: z.array(EcommerceDiscount$outboundSchema).optional(),
 }).transform((v) => {
   return remap$(v, {
