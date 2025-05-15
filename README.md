@@ -150,6 +150,22 @@ run();
 
 * [get](docs/sdks/balancesheet/README.md#get) - Get BalanceSheet
 
+#### [accounting.bankFeedAccounts](docs/sdks/bankfeedaccounts/README.md)
+
+* [list](docs/sdks/bankfeedaccounts/README.md#list) - List Bank Feed Accounts
+* [create](docs/sdks/bankfeedaccounts/README.md#create) - Create Bank Feed Account
+* [get](docs/sdks/bankfeedaccounts/README.md#get) - Get Bank Feed Account
+* [update](docs/sdks/bankfeedaccounts/README.md#update) - Update Bank Feed Account
+* [delete](docs/sdks/bankfeedaccounts/README.md#delete) - Delete Bank Feed Account
+
+#### [accounting.bankFeedStatements](docs/sdks/bankfeedstatements/README.md)
+
+* [list](docs/sdks/bankfeedstatements/README.md#list) - List Bank Feed Statements
+* [create](docs/sdks/bankfeedstatements/README.md#create) - Create Bank Feed Statement
+* [get](docs/sdks/bankfeedstatements/README.md#get) - Get Bank Feed Statement
+* [update](docs/sdks/bankfeedstatements/README.md#update) - Update Bank Feed Statement
+* [delete](docs/sdks/bankfeedstatements/README.md#delete) - Delete Bank Feed Statement
+
 #### [accounting.billPayments](docs/sdks/billpayments/README.md)
 
 * [list](docs/sdks/billpayments/README.md#list) - List Bill Payments
@@ -681,6 +697,16 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`accountingAttachmentsList`](docs/sdks/attachments/README.md#list) - List Attachments
 - [`accountingAttachmentsUpload`](docs/sdks/attachments/README.md#upload) - Upload attachment
 - [`accountingBalanceSheetGet`](docs/sdks/balancesheet/README.md#get) - Get BalanceSheet
+- [`accountingBankFeedAccountsCreate`](docs/sdks/bankfeedaccounts/README.md#create) - Create Bank Feed Account
+- [`accountingBankFeedAccountsDelete`](docs/sdks/bankfeedaccounts/README.md#delete) - Delete Bank Feed Account
+- [`accountingBankFeedAccountsGet`](docs/sdks/bankfeedaccounts/README.md#get) - Get Bank Feed Account
+- [`accountingBankFeedAccountsList`](docs/sdks/bankfeedaccounts/README.md#list) - List Bank Feed Accounts
+- [`accountingBankFeedAccountsUpdate`](docs/sdks/bankfeedaccounts/README.md#update) - Update Bank Feed Account
+- [`accountingBankFeedStatementsCreate`](docs/sdks/bankfeedstatements/README.md#create) - Create Bank Feed Statement
+- [`accountingBankFeedStatementsDelete`](docs/sdks/bankfeedstatements/README.md#delete) - Delete Bank Feed Statement
+- [`accountingBankFeedStatementsGet`](docs/sdks/bankfeedstatements/README.md#get) - Get Bank Feed Statement
+- [`accountingBankFeedStatementsList`](docs/sdks/bankfeedstatements/README.md#list) - List Bank Feed Statements
+- [`accountingBankFeedStatementsUpdate`](docs/sdks/bankfeedstatements/README.md#update) - Update Bank Feed Statement
 - [`accountingBillPaymentsCreate`](docs/sdks/billpayments/README.md#create) - Create Bill Payment
 - [`accountingBillPaymentsDelete`](docs/sdks/billpayments/README.md#delete) - Delete Bill Payment
 - [`accountingBillPaymentsGet`](docs/sdks/billpayments/README.md#get) - Get Bill Payment
