@@ -160,6 +160,7 @@ async function run() {
           description: "Travel US.",
           totalAmount: 275,
           billable: true,
+          lineNumber: 1,
         },
       ],
       customFields: [
@@ -167,13 +168,25 @@ async function run() {
           id: "2389328923893298",
           name: "employee_level",
           description: "Employee Level",
-          value: "Uses Salesforce and Marketo",
+          value: [
+            {},
+          ],
         },
         {
           id: "2389328923893298",
           name: "employee_level",
           description: "Employee Level",
-          value: "Uses Salesforce and Marketo",
+          value: [
+            {},
+          ],
+        },
+        {
+          id: "2389328923893298",
+          name: "employee_level",
+          description: "Employee Level",
+          value: [
+            {},
+          ],
         },
       ],
       rowVersion: "1-12345",
@@ -218,11 +231,14 @@ async function run() {
                 },
               },
             },
-          ],
-        },
-        {
-          serviceId: "<id>",
-          extendPaths: [
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
             {
               path: "$.nested.property",
               value: {
@@ -305,6 +321,7 @@ async function run() {
           description: "Travel US.",
           totalAmount: 275,
           billable: true,
+          lineNumber: 1,
         },
       ],
       customFields: [
@@ -312,13 +329,25 @@ async function run() {
           id: "2389328923893298",
           name: "employee_level",
           description: "Employee Level",
-          value: "Uses Salesforce and Marketo",
+          value: [
+            {},
+          ],
         },
         {
           id: "2389328923893298",
           name: "employee_level",
           description: "Employee Level",
-          value: "Uses Salesforce and Marketo",
+          value: [
+            {},
+          ],
+        },
+        {
+          id: "2389328923893298",
+          name: "employee_level",
+          description: "Employee Level",
+          value: [
+            {},
+          ],
         },
       ],
       rowVersion: "1-12345",
@@ -363,11 +392,14 @@ async function run() {
                 },
               },
             },
-          ],
-        },
-        {
-          serviceId: "<id>",
-          extendPaths: [
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
             {
               path: "$.nested.property",
               value: {
@@ -567,58 +599,7 @@ async function run() {
           description: "Travel US.",
           totalAmount: 275,
           billable: true,
-        },
-        {
-          trackingCategories: [
-            {
-              id: "123456",
-              name: "New York",
-            },
-            {
-              id: "123456",
-              name: "New York",
-            },
-          ],
-          accountId: "123456",
-          customerId: "12345",
-          departmentId: "12345",
-          locationId: "12345",
-          subsidiaryId: "12345",
-          taxRate: {
-            id: "123456",
-            rate: 10,
-          },
-          description: "Travel US.",
-          totalAmount: 275,
-          billable: true,
-        },
-        {
-          trackingCategories: [
-            {
-              id: "123456",
-              name: "New York",
-            },
-            {
-              id: "123456",
-              name: "New York",
-            },
-            {
-              id: "123456",
-              name: "New York",
-            },
-          ],
-          accountId: "123456",
-          customerId: "12345",
-          departmentId: "12345",
-          locationId: "12345",
-          subsidiaryId: "12345",
-          taxRate: {
-            id: "123456",
-            rate: 10,
-          },
-          description: "Travel US.",
-          totalAmount: 275,
-          billable: true,
+          lineNumber: 1,
         },
       ],
       customFields: [
@@ -626,13 +607,19 @@ async function run() {
           id: "2389328923893298",
           name: "employee_level",
           description: "Employee Level",
-          value: true,
+          value: "Uses Salesforce and Marketo",
         },
         {
           id: "2389328923893298",
           name: "employee_level",
           description: "Employee Level",
-          value: {},
+          value: "Uses Salesforce and Marketo",
+        },
+        {
+          id: "2389328923893298",
+          name: "employee_level",
+          description: "Employee Level",
+          value: "Uses Salesforce and Marketo",
         },
       ],
       rowVersion: "1-12345",
@@ -656,11 +643,6 @@ async function run() {
                 },
               },
             },
-          ],
-        },
-        {
-          serviceId: "<id>",
-          extendPaths: [
             {
               path: "$.nested.property",
               value: {
@@ -674,6 +656,51 @@ async function run() {
         {
           serviceId: "<id>",
           extendPaths: [
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+          ],
+        },
+        {
+          serviceId: "<id>",
+          extendPaths: [
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
             {
               path: "$.nested.property",
               value: {
@@ -757,58 +784,7 @@ async function run() {
           description: "Travel US.",
           totalAmount: 275,
           billable: true,
-        },
-        {
-          trackingCategories: [
-            {
-              id: "123456",
-              name: "New York",
-            },
-            {
-              id: "123456",
-              name: "New York",
-            },
-          ],
-          accountId: "123456",
-          customerId: "12345",
-          departmentId: "12345",
-          locationId: "12345",
-          subsidiaryId: "12345",
-          taxRate: {
-            id: "123456",
-            rate: 10,
-          },
-          description: "Travel US.",
-          totalAmount: 275,
-          billable: true,
-        },
-        {
-          trackingCategories: [
-            {
-              id: "123456",
-              name: "New York",
-            },
-            {
-              id: "123456",
-              name: "New York",
-            },
-            {
-              id: "123456",
-              name: "New York",
-            },
-          ],
-          accountId: "123456",
-          customerId: "12345",
-          departmentId: "12345",
-          locationId: "12345",
-          subsidiaryId: "12345",
-          taxRate: {
-            id: "123456",
-            rate: 10,
-          },
-          description: "Travel US.",
-          totalAmount: 275,
-          billable: true,
+          lineNumber: 1,
         },
       ],
       customFields: [
@@ -816,13 +792,19 @@ async function run() {
           id: "2389328923893298",
           name: "employee_level",
           description: "Employee Level",
-          value: true,
+          value: "Uses Salesforce and Marketo",
         },
         {
           id: "2389328923893298",
           name: "employee_level",
           description: "Employee Level",
-          value: {},
+          value: "Uses Salesforce and Marketo",
+        },
+        {
+          id: "2389328923893298",
+          name: "employee_level",
+          description: "Employee Level",
+          value: "Uses Salesforce and Marketo",
         },
       ],
       rowVersion: "1-12345",
@@ -846,11 +828,6 @@ async function run() {
                 },
               },
             },
-          ],
-        },
-        {
-          serviceId: "<id>",
-          extendPaths: [
             {
               path: "$.nested.property",
               value: {
@@ -864,6 +841,51 @@ async function run() {
         {
           serviceId: "<id>",
           extendPaths: [
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+          ],
+        },
+        {
+          serviceId: "<id>",
+          extendPaths: [
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
             {
               path: "$.nested.property",
               value: {

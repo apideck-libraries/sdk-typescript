@@ -180,6 +180,10 @@ async function run() {
           id: "123456",
           name: "New York",
         },
+        {
+          id: "123456",
+          name: "New York",
+        },
       ],
       lineItems: [
         {
@@ -212,10 +216,6 @@ async function run() {
               id: "123456",
               name: "New York",
             },
-            {
-              id: "123456",
-              name: "New York",
-            },
           ],
           ledgerAccount: {
             id: "123456",
@@ -227,7 +227,7 @@ async function run() {
               id: "2389328923893298",
               name: "employee_level",
               description: "Employee Level",
-              value: "Uses Salesforce and Marketo",
+              value: {},
             },
           ],
           rowVersion: "1-12345",
@@ -262,14 +262,6 @@ async function run() {
               id: "123456",
               name: "New York",
             },
-            {
-              id: "123456",
-              name: "New York",
-            },
-            {
-              id: "123456",
-              name: "New York",
-            },
           ],
           ledgerAccount: {
             id: "123456",
@@ -281,19 +273,7 @@ async function run() {
               id: "2389328923893298",
               name: "employee_level",
               description: "Employee Level",
-              value: "Uses Salesforce and Marketo",
-            },
-            {
-              id: "2389328923893298",
-              name: "employee_level",
-              description: "Employee Level",
-              value: 10,
-            },
-            {
-              id: "2389328923893298",
-              name: "employee_level",
-              description: "Employee Level",
-              value: "Uses Salesforce and Marketo",
+              value: {},
             },
           ],
           rowVersion: "1-12345",
@@ -353,6 +333,13 @@ async function run() {
       },
       templateId: "123456",
       sourceDocumentUrl: "https://www.invoicesolution.com/invoice/123456",
+      paymentAllocations: [
+        {
+          id: "123456",
+          allocatedAmount: 1000,
+          date: new Date("2020-09-30T07:43:32.000Z"),
+        },
+      ],
       paymentMethod: "cash",
       channel: "email",
       language: "EN",
@@ -380,26 +367,7 @@ async function run() {
           id: "2389328923893298",
           name: "employee_level",
           description: "Employee Level",
-          value: [
-            "<value>",
-            "<value>",
-          ],
-        },
-        {
-          id: "2389328923893298",
-          name: "employee_level",
-          description: "Employee Level",
-          value: [
-            "<value>",
-            "<value>",
-            "<value>",
-          ],
-        },
-        {
-          id: "2389328923893298",
-          name: "employee_level",
-          description: "Employee Level",
-          value: true,
+          value: {},
         },
       ],
       rowVersion: "1-12345",
@@ -407,6 +375,35 @@ async function run() {
         {
           serviceId: "<id>",
           extendPaths: [
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+          ],
+        },
+        {
+          serviceId: "<id>",
+          extendPaths: [
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
             {
               path: "$.nested.property",
               value: {
@@ -485,6 +482,10 @@ async function run() {
           id: "123456",
           name: "New York",
         },
+        {
+          id: "123456",
+          name: "New York",
+        },
       ],
       lineItems: [
         {
@@ -517,10 +518,6 @@ async function run() {
               id: "123456",
               name: "New York",
             },
-            {
-              id: "123456",
-              name: "New York",
-            },
           ],
           ledgerAccount: {
             id: "123456",
@@ -532,7 +529,7 @@ async function run() {
               id: "2389328923893298",
               name: "employee_level",
               description: "Employee Level",
-              value: "Uses Salesforce and Marketo",
+              value: {},
             },
           ],
           rowVersion: "1-12345",
@@ -567,14 +564,6 @@ async function run() {
               id: "123456",
               name: "New York",
             },
-            {
-              id: "123456",
-              name: "New York",
-            },
-            {
-              id: "123456",
-              name: "New York",
-            },
           ],
           ledgerAccount: {
             id: "123456",
@@ -586,19 +575,7 @@ async function run() {
               id: "2389328923893298",
               name: "employee_level",
               description: "Employee Level",
-              value: "Uses Salesforce and Marketo",
-            },
-            {
-              id: "2389328923893298",
-              name: "employee_level",
-              description: "Employee Level",
-              value: 10,
-            },
-            {
-              id: "2389328923893298",
-              name: "employee_level",
-              description: "Employee Level",
-              value: "Uses Salesforce and Marketo",
+              value: {},
             },
           ],
           rowVersion: "1-12345",
@@ -658,6 +635,13 @@ async function run() {
       },
       templateId: "123456",
       sourceDocumentUrl: "https://www.invoicesolution.com/invoice/123456",
+      paymentAllocations: [
+        {
+          id: "123456",
+          allocatedAmount: 1000,
+          date: new Date("2020-09-30T07:43:32.000Z"),
+        },
+      ],
       paymentMethod: "cash",
       channel: "email",
       language: "EN",
@@ -685,26 +669,7 @@ async function run() {
           id: "2389328923893298",
           name: "employee_level",
           description: "Employee Level",
-          value: [
-            "<value>",
-            "<value>",
-          ],
-        },
-        {
-          id: "2389328923893298",
-          name: "employee_level",
-          description: "Employee Level",
-          value: [
-            "<value>",
-            "<value>",
-            "<value>",
-          ],
-        },
-        {
-          id: "2389328923893298",
-          name: "employee_level",
-          description: "Employee Level",
-          value: true,
+          value: {},
         },
       ],
       rowVersion: "1-12345",
@@ -712,6 +677,35 @@ async function run() {
         {
           serviceId: "<id>",
           extendPaths: [
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+          ],
+        },
+        {
+          serviceId: "<id>",
+          extendPaths: [
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
             {
               path: "$.nested.property",
               value: {
@@ -909,10 +903,6 @@ async function run() {
           id: "123456",
           name: "New York",
         },
-        {
-          id: "123456",
-          name: "New York",
-        },
       ],
       lineItems: [
         {
@@ -945,10 +935,6 @@ async function run() {
               id: "123456",
               name: "New York",
             },
-            {
-              id: "123456",
-              name: "New York",
-            },
           ],
           ledgerAccount: {
             id: "123456",
@@ -960,19 +946,7 @@ async function run() {
               id: "2389328923893298",
               name: "employee_level",
               description: "Employee Level",
-              value: {},
-            },
-            {
-              id: "2389328923893298",
-              name: "employee_level",
-              description: "Employee Level",
-              value: true,
-            },
-            {
-              id: "2389328923893298",
-              name: "employee_level",
-              description: "Employee Level",
-              value: {},
+              value: "Uses Salesforce and Marketo",
             },
           ],
           rowVersion: "1-12345",
@@ -1007,10 +981,48 @@ async function run() {
               id: "123456",
               name: "New York",
             },
+          ],
+          ledgerAccount: {
+            id: "123456",
+            nominalCode: "N091",
+            code: "453",
+          },
+          customFields: [
             {
-              id: "123456",
-              name: "New York",
+              id: "2389328923893298",
+              name: "employee_level",
+              description: "Employee Level",
+              value: "Uses Salesforce and Marketo",
             },
+          ],
+          rowVersion: "1-12345",
+        },
+        {
+          id: "12345",
+          rowId: "12345",
+          code: "120-C",
+          lineNumber: 1,
+          description: "Model Y is a fully electric, mid-size SUV, with seating for up to seven, dual motor AWD and unparalleled protection.",
+          type: "sales_item",
+          taxAmount: 27500,
+          totalAmount: 27500,
+          quantity: 1,
+          unitPrice: 27500.5,
+          unitOfMeasure: "pc.",
+          discountPercentage: 0.01,
+          discountAmount: 19.99,
+          locationId: "12345",
+          departmentId: "12345",
+          item: {
+            id: "12344",
+            code: "120-C",
+            name: "Model Y",
+          },
+          taxRate: {
+            id: "123456",
+            rate: 10,
+          },
+          trackingCategories: [
             {
               id: "123456",
               name: "New York",
@@ -1026,13 +1038,7 @@ async function run() {
               id: "2389328923893298",
               name: "employee_level",
               description: "Employee Level",
-              value: 10,
-            },
-            {
-              id: "2389328923893298",
-              name: "employee_level",
-              description: "Employee Level",
-              value: 10,
+              value: "Uses Salesforce and Marketo",
             },
           ],
           rowVersion: "1-12345",
@@ -1092,6 +1098,23 @@ async function run() {
       },
       templateId: "123456",
       sourceDocumentUrl: "https://www.invoicesolution.com/invoice/123456",
+      paymentAllocations: [
+        {
+          id: "123456",
+          allocatedAmount: 1000,
+          date: new Date("2020-09-30T07:43:32.000Z"),
+        },
+        {
+          id: "123456",
+          allocatedAmount: 1000,
+          date: new Date("2020-09-30T07:43:32.000Z"),
+        },
+        {
+          id: "123456",
+          allocatedAmount: 1000,
+          date: new Date("2020-09-30T07:43:32.000Z"),
+        },
+      ],
       paymentMethod: "cash",
       channel: "email",
       language: "EN",
@@ -1119,11 +1142,13 @@ async function run() {
           id: "2389328923893298",
           name: "employee_level",
           description: "Employee Level",
-          value: [
-            "<value>",
-            "<value>",
-            "<value>",
-          ],
+          value: "Uses Salesforce and Marketo",
+        },
+        {
+          id: "2389328923893298",
+          name: "employee_level",
+          description: "Employee Level",
+          value: "Uses Salesforce and Marketo",
         },
       ],
       rowVersion: "1-12345",
@@ -1139,6 +1164,24 @@ async function run() {
                 },
               },
             },
+          ],
+        },
+        {
+          serviceId: "<id>",
+          extendPaths: [
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+          ],
+        },
+        {
+          serviceId: "<id>",
+          extendPaths: [
             {
               path: "$.nested.property",
               value: {
@@ -1218,10 +1261,6 @@ async function run() {
           id: "123456",
           name: "New York",
         },
-        {
-          id: "123456",
-          name: "New York",
-        },
       ],
       lineItems: [
         {
@@ -1254,10 +1293,6 @@ async function run() {
               id: "123456",
               name: "New York",
             },
-            {
-              id: "123456",
-              name: "New York",
-            },
           ],
           ledgerAccount: {
             id: "123456",
@@ -1269,19 +1304,7 @@ async function run() {
               id: "2389328923893298",
               name: "employee_level",
               description: "Employee Level",
-              value: {},
-            },
-            {
-              id: "2389328923893298",
-              name: "employee_level",
-              description: "Employee Level",
-              value: true,
-            },
-            {
-              id: "2389328923893298",
-              name: "employee_level",
-              description: "Employee Level",
-              value: {},
+              value: "Uses Salesforce and Marketo",
             },
           ],
           rowVersion: "1-12345",
@@ -1316,10 +1339,48 @@ async function run() {
               id: "123456",
               name: "New York",
             },
+          ],
+          ledgerAccount: {
+            id: "123456",
+            nominalCode: "N091",
+            code: "453",
+          },
+          customFields: [
             {
-              id: "123456",
-              name: "New York",
+              id: "2389328923893298",
+              name: "employee_level",
+              description: "Employee Level",
+              value: "Uses Salesforce and Marketo",
             },
+          ],
+          rowVersion: "1-12345",
+        },
+        {
+          id: "12345",
+          rowId: "12345",
+          code: "120-C",
+          lineNumber: 1,
+          description: "Model Y is a fully electric, mid-size SUV, with seating for up to seven, dual motor AWD and unparalleled protection.",
+          type: "sales_item",
+          taxAmount: 27500,
+          totalAmount: 27500,
+          quantity: 1,
+          unitPrice: 27500.5,
+          unitOfMeasure: "pc.",
+          discountPercentage: 0.01,
+          discountAmount: 19.99,
+          locationId: "12345",
+          departmentId: "12345",
+          item: {
+            id: "12344",
+            code: "120-C",
+            name: "Model Y",
+          },
+          taxRate: {
+            id: "123456",
+            rate: 10,
+          },
+          trackingCategories: [
             {
               id: "123456",
               name: "New York",
@@ -1335,13 +1396,7 @@ async function run() {
               id: "2389328923893298",
               name: "employee_level",
               description: "Employee Level",
-              value: 10,
-            },
-            {
-              id: "2389328923893298",
-              name: "employee_level",
-              description: "Employee Level",
-              value: 10,
+              value: "Uses Salesforce and Marketo",
             },
           ],
           rowVersion: "1-12345",
@@ -1401,6 +1456,23 @@ async function run() {
       },
       templateId: "123456",
       sourceDocumentUrl: "https://www.invoicesolution.com/invoice/123456",
+      paymentAllocations: [
+        {
+          id: "123456",
+          allocatedAmount: 1000,
+          date: new Date("2020-09-30T07:43:32.000Z"),
+        },
+        {
+          id: "123456",
+          allocatedAmount: 1000,
+          date: new Date("2020-09-30T07:43:32.000Z"),
+        },
+        {
+          id: "123456",
+          allocatedAmount: 1000,
+          date: new Date("2020-09-30T07:43:32.000Z"),
+        },
+      ],
       paymentMethod: "cash",
       channel: "email",
       language: "EN",
@@ -1428,11 +1500,13 @@ async function run() {
           id: "2389328923893298",
           name: "employee_level",
           description: "Employee Level",
-          value: [
-            "<value>",
-            "<value>",
-            "<value>",
-          ],
+          value: "Uses Salesforce and Marketo",
+        },
+        {
+          id: "2389328923893298",
+          name: "employee_level",
+          description: "Employee Level",
+          value: "Uses Salesforce and Marketo",
         },
       ],
       rowVersion: "1-12345",
@@ -1448,6 +1522,24 @@ async function run() {
                 },
               },
             },
+          ],
+        },
+        {
+          serviceId: "<id>",
+          extendPaths: [
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+          ],
+        },
+        {
+          serviceId: "<id>",
+          extendPaths: [
             {
               path: "$.nested.property",
               value: {

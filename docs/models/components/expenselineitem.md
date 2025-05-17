@@ -27,6 +27,7 @@ let value: ExpenseLineItem = {
   description: "Travel US.",
   totalAmount: 275,
   billable: true,
+  lineNumber: 1,
 };
 ```
 
@@ -45,3 +46,4 @@ let value: ExpenseLineItem = {
 | `description`                                                                            | *string*                                                                                 | :heavy_minus_sign:                                                                       | The expense line item description                                                        | Travel US.                                                                               |
 | `totalAmount`                                                                            | *number*                                                                                 | :heavy_check_mark:                                                                       | The total amount of the expense line item.                                               | 275                                                                                      |
 | `billable`                                                                               | *boolean*                                                                                | :heavy_minus_sign:                                                                       | Boolean that indicates if the line item is billable or not.                              | true                                                                                     |
+| `lineNumber`                                                                             | *number*                                                                                 | :heavy_minus_sign:                                                                       | Line number of the resource                                                              | 1                                                                                        |

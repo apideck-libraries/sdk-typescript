@@ -156,6 +156,16 @@ async function run() {
           reference: "INV-2025-01",
           transactionType: "payment",
         },
+        {
+          postedDate: new Date("2025-01-15T12:00:00.000Z"),
+          description: "Payment received from ACME Corp",
+          amount: 250,
+          creditOrDebit: "debit",
+          sourceTransactionId: "txn_987",
+          counterparty: "ACME Corp",
+          reference: "INV-2025-01",
+          transactionType: "payment",
+        },
       ],
     },
   });
@@ -196,6 +206,16 @@ async function run() {
       endBalance: 9800.5,
       endBalanceCreditOrDebit: "debit",
       transactions: [
+        {
+          postedDate: new Date("2025-01-15T12:00:00.000Z"),
+          description: "Payment received from ACME Corp",
+          amount: 250,
+          creditOrDebit: "debit",
+          sourceTransactionId: "txn_987",
+          counterparty: "ACME Corp",
+          reference: "INV-2025-01",
+          transactionType: "payment",
+        },
         {
           postedDate: new Date("2025-01-15T12:00:00.000Z"),
           description: "Payment received from ACME Corp",
@@ -395,16 +415,6 @@ async function run() {
           reference: "INV-2025-01",
           transactionType: "payment",
         },
-        {
-          postedDate: new Date("2025-01-15T12:00:00.000Z"),
-          description: "Payment received from ACME Corp",
-          amount: 250,
-          creditOrDebit: "debit",
-          sourceTransactionId: "txn_987",
-          counterparty: "ACME Corp",
-          reference: "INV-2025-01",
-          transactionType: "payment",
-        },
       ],
     },
   });
@@ -446,16 +456,6 @@ async function run() {
       endBalance: 9800.5,
       endBalanceCreditOrDebit: "debit",
       transactions: [
-        {
-          postedDate: new Date("2025-01-15T12:00:00.000Z"),
-          description: "Payment received from ACME Corp",
-          amount: 250,
-          creditOrDebit: "debit",
-          sourceTransactionId: "txn_987",
-          counterparty: "ACME Corp",
-          reference: "INV-2025-01",
-          transactionType: "payment",
-        },
         {
           postedDate: new Date("2025-01-15T12:00:00.000Z"),
           description: "Payment received from ACME Corp",

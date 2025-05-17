@@ -163,6 +163,12 @@ async function run() {
           rate: 10,
           compound: true,
         },
+        {
+          id: "10",
+          name: "GST",
+          rate: 10,
+          compound: true,
+        },
       ],
       type: "NONE",
       reportTaxType: "NONE",
@@ -189,11 +195,6 @@ async function run() {
                 },
               },
             },
-          ],
-        },
-        {
-          serviceId: "<id>",
-          extendPaths: [
             {
               path: "$.nested.property",
               value: {
@@ -210,11 +211,7 @@ async function run() {
           id: "2389328923893298",
           name: "employee_level",
           description: "Employee Level",
-          value: [
-            "<value>",
-            "<value>",
-            "<value>",
-          ],
+          value: 10,
         },
       ],
     },
@@ -268,6 +265,12 @@ async function run() {
           rate: 10,
           compound: true,
         },
+        {
+          id: "10",
+          name: "GST",
+          rate: 10,
+          compound: true,
+        },
       ],
       type: "NONE",
       reportTaxType: "NONE",
@@ -294,11 +297,6 @@ async function run() {
                 },
               },
             },
-          ],
-        },
-        {
-          serviceId: "<id>",
-          extendPaths: [
             {
               path: "$.nested.property",
               value: {
@@ -315,11 +313,7 @@ async function run() {
           id: "2389328923893298",
           name: "employee_level",
           description: "Employee Level",
-          value: [
-            "<value>",
-            "<value>",
-            "<value>",
-          ],
+          value: 10,
         },
       ],
     },
@@ -487,18 +481,6 @@ async function run() {
           rate: 10,
           compound: true,
         },
-        {
-          id: "10",
-          name: "GST",
-          rate: 10,
-          compound: true,
-        },
-        {
-          id: "10",
-          name: "GST",
-          rate: 10,
-          compound: true,
-        },
       ],
       type: "NONE",
       reportTaxType: "NONE",
@@ -546,6 +528,19 @@ async function run() {
                 },
               },
             },
+          ],
+        },
+        {
+          serviceId: "<id>",
+          extendPaths: [
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
             {
               path: "$.nested.property",
               value: {
@@ -562,7 +557,13 @@ async function run() {
           id: "2389328923893298",
           name: "employee_level",
           description: "Employee Level",
-          value: true,
+          value: {},
+        },
+        {
+          id: "2389328923893298",
+          name: "employee_level",
+          description: "Employee Level",
+          value: {},
         },
         {
           id: "2389328923893298",
@@ -617,18 +618,6 @@ async function run() {
           rate: 10,
           compound: true,
         },
-        {
-          id: "10",
-          name: "GST",
-          rate: 10,
-          compound: true,
-        },
-        {
-          id: "10",
-          name: "GST",
-          rate: 10,
-          compound: true,
-        },
       ],
       type: "NONE",
       reportTaxType: "NONE",
@@ -676,6 +665,19 @@ async function run() {
                 },
               },
             },
+          ],
+        },
+        {
+          serviceId: "<id>",
+          extendPaths: [
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
             {
               path: "$.nested.property",
               value: {
@@ -692,7 +694,13 @@ async function run() {
           id: "2389328923893298",
           name: "employee_level",
           description: "Employee Level",
-          value: true,
+          value: {},
+        },
+        {
+          id: "2389328923893298",
+          name: "employee_level",
+          description: "Employee Level",
+          value: {},
         },
         {
           id: "2389328923893298",

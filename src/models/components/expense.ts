@@ -161,6 +161,14 @@ export type Expense = {
    */
   rowVersion?: string | null | undefined;
   /**
+   * The user who last updated the object.
+   */
+  updatedBy?: string | null | undefined;
+  /**
+   * The user who created the object.
+   */
+  createdBy?: string | null | undefined;
+  /**
    * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
    */
   passThrough?: Array<PassThroughBody> | undefined;
@@ -305,6 +313,8 @@ export const Expense$inboundSchema: z.ZodType<Expense, z.ZodTypeDef, unknown> =
       z.string().datetime({ offset: true }).transform(v => new Date(v)),
     ).optional(),
     row_version: z.nullable(z.string()).optional(),
+    updated_by: z.nullable(z.string()).optional(),
+    created_by: z.nullable(z.string()).optional(),
     pass_through: z.array(PassThroughBody$inboundSchema).optional(),
   }).transform((v) => {
     return remap$(v, {
@@ -324,6 +334,8 @@ export const Expense$inboundSchema: z.ZodType<Expense, z.ZodTypeDef, unknown> =
       "updated_at": "updatedAt",
       "created_at": "createdAt",
       "row_version": "rowVersion",
+      "updated_by": "updatedBy",
+      "created_by": "createdBy",
       "pass_through": "passThrough",
     });
   });
@@ -351,6 +363,8 @@ export type Expense$Outbound = {
   updated_at?: string | null | undefined;
   created_at?: string | null | undefined;
   row_version?: string | null | undefined;
+  updated_by?: string | null | undefined;
+  created_by?: string | null | undefined;
   pass_through?: Array<PassThroughBody$Outbound> | undefined;
 };
 
@@ -381,6 +395,8 @@ export const Expense$outboundSchema: z.ZodType<
   updatedAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
   createdAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
   rowVersion: z.nullable(z.string()).optional(),
+  updatedBy: z.nullable(z.string()).optional(),
+  createdBy: z.nullable(z.string()).optional(),
   passThrough: z.array(PassThroughBody$outboundSchema).optional(),
 }).transform((v) => {
   return remap$(v, {
@@ -400,6 +416,8 @@ export const Expense$outboundSchema: z.ZodType<
     updatedAt: "updated_at",
     createdAt: "created_at",
     rowVersion: "row_version",
+    updatedBy: "updated_by",
+    createdBy: "created_by",
     passThrough: "pass_through",
   });
 });
