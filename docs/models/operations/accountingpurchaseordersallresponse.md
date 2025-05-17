@@ -57,6 +57,7 @@ let value: AccountingPurchaseOrdersAllResponse = {
             rowVersion: "1-12345",
           },
         },
+        subsidiaryId: "12345",
         companyId: "12345",
         status: "open",
         issuedDate: new RFCDate("2020-09-30"),

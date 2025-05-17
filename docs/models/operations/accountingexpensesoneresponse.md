@@ -62,6 +62,7 @@ let value: AccountingExpensesOneResponse = {
           description: "Travel US.",
           totalAmount: 275,
           billable: true,
+          lineNumber: 1,
         },
       ],
       customFields: [
@@ -75,6 +76,8 @@ let value: AccountingExpensesOneResponse = {
       updatedAt: new Date("2020-09-30T07:43:32.000Z"),
       createdAt: new Date("2020-09-30T07:43:32.000Z"),
       rowVersion: "1-12345",
+      updatedBy: "12345",
+      createdBy: "12345",
       passThrough: [
         {
           serviceId: "<id>",

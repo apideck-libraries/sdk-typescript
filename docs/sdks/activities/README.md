@@ -210,13 +210,7 @@ async function run() {
           id: "2389328923893298",
           name: "employee_level",
           description: "Employee Level",
-          value: {},
-        },
-        {
-          id: "2389328923893298",
-          name: "employee_level",
-          description: "Employee Level",
-          value: true,
+          value: "Uses Salesforce and Marketo",
         },
       ],
       attendees: [
@@ -236,22 +230,6 @@ async function run() {
         {
           serviceId: "<id>",
           extendPaths: [
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
             {
               path: "$.nested.property",
               value: {
@@ -364,13 +342,7 @@ async function run() {
           id: "2389328923893298",
           name: "employee_level",
           description: "Employee Level",
-          value: {},
-        },
-        {
-          id: "2389328923893298",
-          name: "employee_level",
-          description: "Employee Level",
-          value: true,
+          value: "Uses Salesforce and Marketo",
         },
       ],
       attendees: [
@@ -390,22 +362,6 @@ async function run() {
         {
           serviceId: "<id>",
           extendPaths: [
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
             {
               path: "$.nested.property",
               value: {
@@ -643,19 +599,21 @@ async function run() {
           id: "2389328923893298",
           name: "employee_level",
           description: "Employee Level",
-          value: true,
-        },
-        {
-          id: "2389328923893298",
-          name: "employee_level",
-          description: "Employee Level",
-          value: [
-            {},
-            {},
-          ],
+          value: {},
         },
       ],
       attendees: [
+        {
+          name: "Elon Musk",
+          firstName: "Elon",
+          middleName: "D.",
+          lastName: "Musk",
+          prefix: "Mr.",
+          suffix: "PhD",
+          emailAddress: "elon@musk.com",
+          isOrganizer: true,
+          status: "accepted",
+        },
         {
           name: "Elon Musk",
           firstName: "Elon",
@@ -691,11 +649,6 @@ async function run() {
                 },
               },
             },
-          ],
-        },
-        {
-          serviceId: "<id>",
-          extendPaths: [
             {
               path: "$.nested.property",
               value: {
@@ -704,6 +657,11 @@ async function run() {
                 },
               },
             },
+          ],
+        },
+        {
+          serviceId: "<id>",
+          extendPaths: [
             {
               path: "$.nested.property",
               value: {
@@ -852,19 +810,21 @@ async function run() {
           id: "2389328923893298",
           name: "employee_level",
           description: "Employee Level",
-          value: true,
-        },
-        {
-          id: "2389328923893298",
-          name: "employee_level",
-          description: "Employee Level",
-          value: [
-            {},
-            {},
-          ],
+          value: {},
         },
       ],
       attendees: [
+        {
+          name: "Elon Musk",
+          firstName: "Elon",
+          middleName: "D.",
+          lastName: "Musk",
+          prefix: "Mr.",
+          suffix: "PhD",
+          emailAddress: "elon@musk.com",
+          isOrganizer: true,
+          status: "accepted",
+        },
         {
           name: "Elon Musk",
           firstName: "Elon",
@@ -900,11 +860,6 @@ async function run() {
                 },
               },
             },
-          ],
-        },
-        {
-          serviceId: "<id>",
-          extendPaths: [
             {
               path: "$.nested.property",
               value: {
@@ -913,6 +868,11 @@ async function run() {
                 },
               },
             },
+          ],
+        },
+        {
+          serviceId: "<id>",
+          extendPaths: [
             {
               path: "$.nested.property",
               value: {

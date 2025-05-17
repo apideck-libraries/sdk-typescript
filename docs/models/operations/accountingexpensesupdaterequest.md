@@ -46,6 +46,7 @@ let value: AccountingExpensesUpdateRequest = {
         description: "Travel US.",
         totalAmount: 275,
         billable: true,
+        lineNumber: 1,
       },
     ],
     customFields: [

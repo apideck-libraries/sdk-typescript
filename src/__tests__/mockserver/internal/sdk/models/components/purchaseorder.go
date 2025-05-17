@@ -59,6 +59,8 @@ type PurchaseOrder struct {
 	Reference *string `json:"reference,omitempty"`
 	// The supplier this entity is linked to.
 	Supplier *LinkedSupplier `json:"supplier,omitempty"`
+	// The ID of the subsidiary
+	SubsidiaryID *string `json:"subsidiary_id,omitempty"`
 	// The company or subsidiary id the transaction belongs to
 	CompanyID *string              `json:"company_id,omitempty"`
 	Status    *PurchaseOrderStatus `json:"status,omitempty"`
@@ -163,6 +165,13 @@ func (o *PurchaseOrder) GetSupplier() *LinkedSupplier {
 		return nil
 	}
 	return o.Supplier
+}
+
+func (o *PurchaseOrder) GetSubsidiaryID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.SubsidiaryID
 }
 
 func (o *PurchaseOrder) GetCompanyID() *string {
@@ -396,6 +405,8 @@ type PurchaseOrderInput struct {
 	Reference *string `json:"reference,omitempty"`
 	// The supplier this entity is linked to.
 	Supplier *LinkedSupplierInput `json:"supplier,omitempty"`
+	// The ID of the subsidiary
+	SubsidiaryID *string `json:"subsidiary_id,omitempty"`
 	// The company or subsidiary id the transaction belongs to
 	CompanyID *string              `json:"company_id,omitempty"`
 	Status    *PurchaseOrderStatus `json:"status,omitempty"`
@@ -476,6 +487,13 @@ func (o *PurchaseOrderInput) GetSupplier() *LinkedSupplierInput {
 		return nil
 	}
 	return o.Supplier
+}
+
+func (o *PurchaseOrderInput) GetSubsidiaryID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.SubsidiaryID
 }
 
 func (o *PurchaseOrderInput) GetCompanyID() *string {

@@ -133,9 +133,31 @@ async function run() {
       contactId: "12345",
       companyId: "12345",
       opportunityId: "12345",
+      activityId: "12345",
       leadId: "12345",
       active: true,
       passThrough: [
+        {
+          serviceId: "<id>",
+          extendPaths: [
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+          ],
+        },
         {
           serviceId: "<id>",
           extendPaths: [
@@ -215,9 +237,31 @@ async function run() {
       contactId: "12345",
       companyId: "12345",
       opportunityId: "12345",
+      activityId: "12345",
       leadId: "12345",
       active: true,
       passThrough: [
+        {
+          serviceId: "<id>",
+          extendPaths: [
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+          ],
+        },
         {
           serviceId: "<id>",
           extendPaths: [
@@ -416,6 +460,7 @@ async function run() {
       contactId: "12345",
       companyId: "12345",
       opportunityId: "12345",
+      activityId: "12345",
       leadId: "12345",
       active: true,
       passThrough: [
@@ -464,14 +509,6 @@ async function run() {
         {
           serviceId: "<id>",
           extendPaths: [
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
             {
               path: "$.nested.property",
               value: {
@@ -528,6 +565,7 @@ async function run() {
       contactId: "12345",
       companyId: "12345",
       opportunityId: "12345",
+      activityId: "12345",
       leadId: "12345",
       active: true,
       passThrough: [
@@ -576,14 +614,6 @@ async function run() {
         {
           serviceId: "<id>",
           extendPaths: [
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
             {
               path: "$.nested.property",
               value: {

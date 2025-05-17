@@ -159,9 +159,15 @@ async function run() {
         {
           id: "12345",
         },
+        {
+          id: "12345",
+        },
       ],
       dueDate: new Date("2020-09-30T07:43:32.000Z"),
       tags: [
+        {
+          id: "12345",
+        },
         {
           id: "12345",
         },
@@ -181,11 +187,48 @@ async function run() {
                 },
               },
             },
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
           ],
         },
         {
           serviceId: "<id>",
           extendPaths: [
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+          ],
+        },
+        {
+          serviceId: "<id>",
+          extendPaths: [
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
             {
               path: "$.nested.property",
               value: {
@@ -241,9 +284,15 @@ async function run() {
         {
           id: "12345",
         },
+        {
+          id: "12345",
+        },
       ],
       dueDate: new Date("2020-09-30T07:43:32.000Z"),
       tags: [
+        {
+          id: "12345",
+        },
         {
           id: "12345",
         },
@@ -263,11 +312,48 @@ async function run() {
                 },
               },
             },
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
           ],
         },
         {
           serviceId: "<id>",
           extendPaths: [
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+          ],
+        },
+        {
+          serviceId: "<id>",
+          extendPaths: [
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
             {
               path: "$.nested.property",
               value: {
@@ -444,15 +530,9 @@ async function run() {
         {
           id: "12345",
         },
-        {
-          id: "12345",
-        },
       ],
       dueDate: new Date("2020-09-30T07:43:32.000Z"),
       tags: [
-        {
-          id: "12345",
-        },
         {
           id: "12345",
         },
@@ -469,6 +549,19 @@ async function run() {
                 },
               },
             },
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+          ],
+        },
+        {
+          serviceId: "<id>",
+          extendPaths: [
             {
               path: "$.nested.property",
               value: {
@@ -554,15 +647,9 @@ async function run() {
         {
           id: "12345",
         },
-        {
-          id: "12345",
-        },
       ],
       dueDate: new Date("2020-09-30T07:43:32.000Z"),
       tags: [
-        {
-          id: "12345",
-        },
         {
           id: "12345",
         },
@@ -579,6 +666,19 @@ async function run() {
                 },
               },
             },
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+          ],
+        },
+        {
+          serviceId: "<id>",
+          extendPaths: [
             {
               path: "$.nested.property",
               value: {
