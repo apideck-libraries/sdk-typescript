@@ -31,6 +31,7 @@ async function run() {
     serviceId: "salesforce",
     filter: {
       updatedSince: new Date("2020-09-30T07:43:32.000Z"),
+      invoiceId: "123",
     },
     sort: {
       by: "updated_at",
@@ -71,6 +72,7 @@ async function run() {
     serviceId: "salesforce",
     filter: {
       updatedSince: new Date("2020-09-30T07:43:32.000Z"),
+      invoiceId: "123",
     },
     sort: {
       by: "updated_at",
@@ -199,6 +201,12 @@ async function run() {
           amount: 49.99,
           allocationId: "123456",
         },
+        {
+          id: "12345",
+          type: "bill",
+          amount: 49.99,
+          allocationId: "123456",
+        },
       ],
       note: "Some notes about this transaction",
       number: "123456",
@@ -207,12 +215,14 @@ async function run() {
           id: "123456",
           name: "New York",
         },
-        {
-          id: "123456",
-          name: "New York",
-        },
       ],
       customFields: [
+        {
+          id: "2389328923893298",
+          name: "employee_level",
+          description: "Employee Level",
+          value: "Uses Salesforce and Marketo",
+        },
         {
           id: "2389328923893298",
           name: "employee_level",
@@ -248,32 +258,6 @@ async function run() {
                 },
               },
             },
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
-          ],
-        },
-        {
-          serviceId: "<id>",
-          extendPaths: [
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
-          ],
-        },
-        {
-          serviceId: "<id>",
-          extendPaths: [
             {
               path: "$.nested.property",
               value: {
@@ -375,6 +359,12 @@ async function run() {
           amount: 49.99,
           allocationId: "123456",
         },
+        {
+          id: "12345",
+          type: "bill",
+          amount: 49.99,
+          allocationId: "123456",
+        },
       ],
       note: "Some notes about this transaction",
       number: "123456",
@@ -383,12 +373,14 @@ async function run() {
           id: "123456",
           name: "New York",
         },
-        {
-          id: "123456",
-          name: "New York",
-        },
       ],
       customFields: [
+        {
+          id: "2389328923893298",
+          name: "employee_level",
+          description: "Employee Level",
+          value: "Uses Salesforce and Marketo",
+        },
         {
           id: "2389328923893298",
           name: "employee_level",
@@ -424,32 +416,6 @@ async function run() {
                 },
               },
             },
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
-          ],
-        },
-        {
-          serviceId: "<id>",
-          extendPaths: [
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
-          ],
-        },
-        {
-          serviceId: "<id>",
-          extendPaths: [
             {
               path: "$.nested.property",
               value: {
@@ -679,31 +645,13 @@ async function run() {
       ],
       note: "Some notes about this transaction",
       number: "123456",
-      trackingCategories: [
-        {
-          id: "123456",
-          name: "New York",
-        },
-        {
-          id: "123456",
-          name: "New York",
-        },
-      ],
+      trackingCategories: null,
       customFields: [
         {
           id: "2389328923893298",
           name: "employee_level",
           description: "Employee Level",
-          value: [
-            {},
-            {},
-          ],
-        },
-        {
-          id: "2389328923893298",
-          name: "employee_level",
-          description: "Employee Level",
-          value: true,
+          value: "Uses Salesforce and Marketo",
         },
       ],
       rowVersion: "1-12345",
@@ -725,43 +673,6 @@ async function run() {
         {
           serviceId: "<id>",
           extendPaths: [
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
-          ],
-        },
-        {
-          serviceId: "<id>",
-          extendPaths: [
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
             {
               path: "$.nested.property",
               value: {
@@ -873,31 +784,13 @@ async function run() {
       ],
       note: "Some notes about this transaction",
       number: "123456",
-      trackingCategories: [
-        {
-          id: "123456",
-          name: "New York",
-        },
-        {
-          id: "123456",
-          name: "New York",
-        },
-      ],
+      trackingCategories: null,
       customFields: [
         {
           id: "2389328923893298",
           name: "employee_level",
           description: "Employee Level",
-          value: [
-            {},
-            {},
-          ],
-        },
-        {
-          id: "2389328923893298",
-          name: "employee_level",
-          description: "Employee Level",
-          value: true,
+          value: "Uses Salesforce and Marketo",
         },
       ],
       rowVersion: "1-12345",
@@ -919,43 +812,6 @@ async function run() {
         {
           serviceId: "<id>",
           extendPaths: [
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
-          ],
-        },
-        {
-          serviceId: "<id>",
-          extendPaths: [
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
             {
               path: "$.nested.property",
               value: {

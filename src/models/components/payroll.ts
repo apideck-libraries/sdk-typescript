@@ -14,12 +14,6 @@ import {
   Compensation$outboundSchema,
 } from "./compensation.js";
 import {
-  CustomMappings,
-  CustomMappings$inboundSchema,
-  CustomMappings$Outbound,
-  CustomMappings$outboundSchema,
-} from "./custommappings.js";
-import {
   PayrollTotals,
   PayrollTotals$inboundSchema,
   PayrollTotals$Outbound,
@@ -66,7 +60,7 @@ export type Payroll = {
   /**
    * When custom mappings are configured on the resource, the result is included here.
    */
-  customMappings?: CustomMappings | null | undefined;
+  customMappings?: { [k: string]: any } | null | undefined;
 };
 
 /** @internal */
@@ -81,7 +75,7 @@ export const Payroll$inboundSchema: z.ZodType<Payroll, z.ZodTypeDef, unknown> =
     end_date: z.nullable(z.string()),
     totals: PayrollTotals$inboundSchema.optional(),
     compensations: z.array(Compensation$inboundSchema).optional(),
-    custom_mappings: z.nullable(CustomMappings$inboundSchema).optional(),
+    custom_mappings: z.nullable(z.record(z.any())).optional(),
   }).transform((v) => {
     return remap$(v, {
       "company_id": "companyId",
@@ -104,7 +98,7 @@ export type Payroll$Outbound = {
   end_date: string | null;
   totals?: PayrollTotals$Outbound | undefined;
   compensations?: Array<Compensation$Outbound> | undefined;
-  custom_mappings?: CustomMappings$Outbound | null | undefined;
+  custom_mappings?: { [k: string]: any } | null | undefined;
 };
 
 /** @internal */
@@ -122,7 +116,7 @@ export const Payroll$outboundSchema: z.ZodType<
   endDate: z.nullable(z.string()),
   totals: PayrollTotals$outboundSchema.optional(),
   compensations: z.array(Compensation$outboundSchema).optional(),
-  customMappings: z.nullable(CustomMappings$outboundSchema).optional(),
+  customMappings: z.nullable(z.record(z.any())).optional(),
 }).transform((v) => {
   return remap$(v, {
     companyId: "company_id",

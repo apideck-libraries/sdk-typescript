@@ -22,6 +22,8 @@ type ExpenseLineItemInput struct {
 	TotalAmount *float64 `json:"total_amount"`
 	// Boolean that indicates if the line item is billable or not.
 	Billable *bool `json:"billable,omitempty"`
+	// Line number of the resource
+	LineNumber *int64 `json:"line_number,omitempty"`
 }
 
 func (o *ExpenseLineItemInput) GetTrackingCategories() []*LinkedTrackingCategory {
@@ -92,4 +94,11 @@ func (o *ExpenseLineItemInput) GetBillable() *bool {
 		return nil
 	}
 	return o.Billable
+}
+
+func (o *ExpenseLineItemInput) GetLineNumber() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.LineNumber
 }

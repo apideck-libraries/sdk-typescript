@@ -9,12 +9,6 @@ import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
-  CustomMappings,
-  CustomMappings$inboundSchema,
-  CustomMappings$Outbound,
-  CustomMappings$outboundSchema,
-} from "./custommappings.js";
-import {
   PassThroughBody,
   PassThroughBody$inboundSchema,
   PassThroughBody$Outbound,
@@ -64,7 +58,7 @@ export type TrackingCategory = {
   /**
    * When custom mappings are configured on the resource, the result is included here.
    */
-  customMappings?: CustomMappings | null | undefined;
+  customMappings?: { [k: string]: any } | null | undefined;
   /**
    * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
    */
@@ -214,7 +208,7 @@ export const TrackingCategory$inboundSchema: z.ZodType<
   name: z.string().optional(),
   code: z.nullable(z.string()).optional(),
   status: TrackingCategoryStatus$inboundSchema.optional(),
-  custom_mappings: z.nullable(CustomMappings$inboundSchema).optional(),
+  custom_mappings: z.nullable(z.record(z.any())).optional(),
   row_version: z.nullable(z.string()).optional(),
   updated_by: z.nullable(z.string()).optional(),
   created_by: z.nullable(z.string()).optional(),
@@ -248,7 +242,7 @@ export type TrackingCategory$Outbound = {
   name?: string | undefined;
   code?: string | null | undefined;
   status?: string | undefined;
-  custom_mappings?: CustomMappings$Outbound | null | undefined;
+  custom_mappings?: { [k: string]: any } | null | undefined;
   row_version?: string | null | undefined;
   updated_by?: string | null | undefined;
   created_by?: string | null | undefined;
@@ -269,7 +263,7 @@ export const TrackingCategory$outboundSchema: z.ZodType<
   name: z.string().optional(),
   code: z.nullable(z.string()).optional(),
   status: TrackingCategoryStatus$outboundSchema.optional(),
-  customMappings: z.nullable(CustomMappings$outboundSchema).optional(),
+  customMappings: z.nullable(z.record(z.any())).optional(),
   rowVersion: z.nullable(z.string()).optional(),
   updatedBy: z.nullable(z.string()).optional(),
   createdBy: z.nullable(z.string()).optional(),

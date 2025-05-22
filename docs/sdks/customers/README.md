@@ -191,42 +191,8 @@ async function run() {
           notes: "Address notes or delivery instructions.",
           rowVersion: "1-12345",
         },
-        {
-          id: "123",
-          type: "primary",
-          string: "25 Spring Street, Blackburn, VIC 3130",
-          name: "HQ US",
-          line1: "Main street",
-          line2: "apt #",
-          line3: "Suite #",
-          line4: "delivery instructions",
-          streetNumber: "25",
-          city: "San Francisco",
-          state: "CA",
-          postalCode: "94104",
-          country: "US",
-          latitude: "40.759211",
-          longitude: "-73.984638",
-          county: "Santa Clara",
-          contactName: "Elon Musk",
-          salutation: "Mr",
-          phoneNumber: "111-111-1111",
-          fax: "122-111-1111",
-          email: "elon@musk.com",
-          website: "https://elonmusk.com",
-          notes: "Address notes or delivery instructions.",
-          rowVersion: "1-12345",
-        },
       ],
       phoneNumbers: [
-        {
-          id: "12345",
-          countryCode: "1",
-          areaCode: "323",
-          number: "111-111-1111",
-          extension: "105",
-          type: "primary",
-        },
         {
           id: "12345",
           countryCode: "1",
@@ -242,11 +208,6 @@ async function run() {
           email: "elon@musk.com",
           type: "primary",
         },
-        {
-          id: "123",
-          email: "elon@musk.com",
-          type: "primary",
-        },
       ],
       websites: [
         {
@@ -254,8 +215,31 @@ async function run() {
           url: "http://example.com",
           type: "primary",
         },
+        {
+          id: "12345",
+          url: "http://example.com",
+          type: "primary",
+        },
+        {
+          id: "12345",
+          url: "http://example.com",
+          type: "primary",
+        },
       ],
       bankAccounts: [
+        {
+          bankName: "Monzo",
+          accountNumber: "123465",
+          accountName: "SPACEX LLC",
+          accountType: "credit_card",
+          iban: "CH2989144532982975332",
+          bic: "AUDSCHGGXXX",
+          routingNumber: "012345678",
+          bsbNumber: "062-001",
+          branchIdentifier: "001",
+          bankCode: "BNH",
+          currency: "USD",
+        },
         {
           bankName: "Monzo",
           accountNumber: "123465",
@@ -294,13 +278,13 @@ async function run() {
           id: "2389328923893298",
           name: "employee_level",
           description: "Employee Level",
-          value: {},
+          value: "Uses Salesforce and Marketo",
         },
         {
           id: "2389328923893298",
           name: "employee_level",
           description: "Employee Level",
-          value: 10,
+          value: "Uses Salesforce and Marketo",
         },
         {
           id: "2389328923893298",
@@ -314,64 +298,6 @@ async function run() {
         {
           serviceId: "<id>",
           extendPaths: [
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
-          ],
-        },
-        {
-          serviceId: "<id>",
-          extendPaths: [
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
-          ],
-        },
-        {
-          serviceId: "<id>",
-          extendPaths: [
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
             {
               path: "$.nested.property",
               value: {
@@ -459,42 +385,8 @@ async function run() {
           notes: "Address notes or delivery instructions.",
           rowVersion: "1-12345",
         },
-        {
-          id: "123",
-          type: "primary",
-          string: "25 Spring Street, Blackburn, VIC 3130",
-          name: "HQ US",
-          line1: "Main street",
-          line2: "apt #",
-          line3: "Suite #",
-          line4: "delivery instructions",
-          streetNumber: "25",
-          city: "San Francisco",
-          state: "CA",
-          postalCode: "94104",
-          country: "US",
-          latitude: "40.759211",
-          longitude: "-73.984638",
-          county: "Santa Clara",
-          contactName: "Elon Musk",
-          salutation: "Mr",
-          phoneNumber: "111-111-1111",
-          fax: "122-111-1111",
-          email: "elon@musk.com",
-          website: "https://elonmusk.com",
-          notes: "Address notes or delivery instructions.",
-          rowVersion: "1-12345",
-        },
       ],
       phoneNumbers: [
-        {
-          id: "12345",
-          countryCode: "1",
-          areaCode: "323",
-          number: "111-111-1111",
-          extension: "105",
-          type: "primary",
-        },
         {
           id: "12345",
           countryCode: "1",
@@ -510,11 +402,6 @@ async function run() {
           email: "elon@musk.com",
           type: "primary",
         },
-        {
-          id: "123",
-          email: "elon@musk.com",
-          type: "primary",
-        },
       ],
       websites: [
         {
@@ -522,8 +409,31 @@ async function run() {
           url: "http://example.com",
           type: "primary",
         },
+        {
+          id: "12345",
+          url: "http://example.com",
+          type: "primary",
+        },
+        {
+          id: "12345",
+          url: "http://example.com",
+          type: "primary",
+        },
       ],
       bankAccounts: [
+        {
+          bankName: "Monzo",
+          accountNumber: "123465",
+          accountName: "SPACEX LLC",
+          accountType: "credit_card",
+          iban: "CH2989144532982975332",
+          bic: "AUDSCHGGXXX",
+          routingNumber: "012345678",
+          bsbNumber: "062-001",
+          branchIdentifier: "001",
+          bankCode: "BNH",
+          currency: "USD",
+        },
         {
           bankName: "Monzo",
           accountNumber: "123465",
@@ -562,13 +472,15 @@ async function run() {
           id: "2389328923893298",
           name: "employee_level",
           description: "Employee Level",
-          value: {},
+          value: true,
         },
         {
           id: "2389328923893298",
           name: "employee_level",
           description: "Employee Level",
-          value: 10,
+          value: [
+            {},
+          ],
         },
         {
           id: "2389328923893298",
@@ -582,64 +494,6 @@ async function run() {
         {
           serviceId: "<id>",
           extendPaths: [
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
-          ],
-        },
-        {
-          serviceId: "<id>",
-          extendPaths: [
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
-          ],
-        },
-        {
-          serviceId: "<id>",
-          extendPaths: [
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
             {
               path: "$.nested.property",
               value: {
@@ -846,58 +700,6 @@ async function run() {
           notes: "Address notes or delivery instructions.",
           rowVersion: "1-12345",
         },
-        {
-          id: "123",
-          type: "primary",
-          string: "25 Spring Street, Blackburn, VIC 3130",
-          name: "HQ US",
-          line1: "Main street",
-          line2: "apt #",
-          line3: "Suite #",
-          line4: "delivery instructions",
-          streetNumber: "25",
-          city: "San Francisco",
-          state: "CA",
-          postalCode: "94104",
-          country: "US",
-          latitude: "40.759211",
-          longitude: "-73.984638",
-          county: "Santa Clara",
-          contactName: "Elon Musk",
-          salutation: "Mr",
-          phoneNumber: "111-111-1111",
-          fax: "122-111-1111",
-          email: "elon@musk.com",
-          website: "https://elonmusk.com",
-          notes: "Address notes or delivery instructions.",
-          rowVersion: "1-12345",
-        },
-        {
-          id: "123",
-          type: "primary",
-          string: "25 Spring Street, Blackburn, VIC 3130",
-          name: "HQ US",
-          line1: "Main street",
-          line2: "apt #",
-          line3: "Suite #",
-          line4: "delivery instructions",
-          streetNumber: "25",
-          city: "San Francisco",
-          state: "CA",
-          postalCode: "94104",
-          country: "US",
-          latitude: "40.759211",
-          longitude: "-73.984638",
-          county: "Santa Clara",
-          contactName: "Elon Musk",
-          salutation: "Mr",
-          phoneNumber: "111-111-1111",
-          fax: "122-111-1111",
-          email: "elon@musk.com",
-          website: "https://elonmusk.com",
-          notes: "Address notes or delivery instructions.",
-          rowVersion: "1-12345",
-        },
       ],
       phoneNumbers: [
         {
@@ -923,11 +725,6 @@ async function run() {
           email: "elon@musk.com",
           type: "primary",
         },
-        {
-          id: "123",
-          email: "elon@musk.com",
-          type: "primary",
-        },
       ],
       websites: [
         {
@@ -947,6 +744,19 @@ async function run() {
         },
       ],
       bankAccounts: [
+        {
+          bankName: "Monzo",
+          accountNumber: "123465",
+          accountName: "SPACEX LLC",
+          accountType: "credit_card",
+          iban: "CH2989144532982975332",
+          bic: "AUDSCHGGXXX",
+          routingNumber: "012345678",
+          bsbNumber: "062-001",
+          branchIdentifier: "001",
+          bankCode: "BNH",
+          currency: "USD",
+        },
         {
           bankName: "Monzo",
           accountNumber: "123465",
@@ -998,15 +808,7 @@ async function run() {
           id: "2389328923893298",
           name: "employee_level",
           description: "Employee Level",
-          value: {},
-        },
-        {
-          id: "2389328923893298",
-          name: "employee_level",
-          description: "Employee Level",
-          value: [
-            {},
-          ],
+          value: "Uses Salesforce and Marketo",
         },
       ],
       rowVersion: "1-12345",
@@ -1014,6 +816,22 @@ async function run() {
         {
           serviceId: "<id>",
           extendPaths: [
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
             {
               path: "$.nested.property",
               value: {
@@ -1094,58 +912,6 @@ async function run() {
           notes: "Address notes or delivery instructions.",
           rowVersion: "1-12345",
         },
-        {
-          id: "123",
-          type: "primary",
-          string: "25 Spring Street, Blackburn, VIC 3130",
-          name: "HQ US",
-          line1: "Main street",
-          line2: "apt #",
-          line3: "Suite #",
-          line4: "delivery instructions",
-          streetNumber: "25",
-          city: "San Francisco",
-          state: "CA",
-          postalCode: "94104",
-          country: "US",
-          latitude: "40.759211",
-          longitude: "-73.984638",
-          county: "Santa Clara",
-          contactName: "Elon Musk",
-          salutation: "Mr",
-          phoneNumber: "111-111-1111",
-          fax: "122-111-1111",
-          email: "elon@musk.com",
-          website: "https://elonmusk.com",
-          notes: "Address notes or delivery instructions.",
-          rowVersion: "1-12345",
-        },
-        {
-          id: "123",
-          type: "primary",
-          string: "25 Spring Street, Blackburn, VIC 3130",
-          name: "HQ US",
-          line1: "Main street",
-          line2: "apt #",
-          line3: "Suite #",
-          line4: "delivery instructions",
-          streetNumber: "25",
-          city: "San Francisco",
-          state: "CA",
-          postalCode: "94104",
-          country: "US",
-          latitude: "40.759211",
-          longitude: "-73.984638",
-          county: "Santa Clara",
-          contactName: "Elon Musk",
-          salutation: "Mr",
-          phoneNumber: "111-111-1111",
-          fax: "122-111-1111",
-          email: "elon@musk.com",
-          website: "https://elonmusk.com",
-          notes: "Address notes or delivery instructions.",
-          rowVersion: "1-12345",
-        },
       ],
       phoneNumbers: [
         {
@@ -1171,11 +937,6 @@ async function run() {
           email: "elon@musk.com",
           type: "primary",
         },
-        {
-          id: "123",
-          email: "elon@musk.com",
-          type: "primary",
-        },
       ],
       websites: [
         {
@@ -1195,6 +956,19 @@ async function run() {
         },
       ],
       bankAccounts: [
+        {
+          bankName: "Monzo",
+          accountNumber: "123465",
+          accountName: "SPACEX LLC",
+          accountType: "credit_card",
+          iban: "CH2989144532982975332",
+          bic: "AUDSCHGGXXX",
+          routingNumber: "012345678",
+          bsbNumber: "062-001",
+          branchIdentifier: "001",
+          bankCode: "BNH",
+          currency: "USD",
+        },
         {
           bankName: "Monzo",
           accountNumber: "123465",
@@ -1246,15 +1020,7 @@ async function run() {
           id: "2389328923893298",
           name: "employee_level",
           description: "Employee Level",
-          value: {},
-        },
-        {
-          id: "2389328923893298",
-          name: "employee_level",
-          description: "Employee Level",
-          value: [
-            {},
-          ],
+          value: "Uses Salesforce and Marketo",
         },
       ],
       rowVersion: "1-12345",
@@ -1262,6 +1028,22 @@ async function run() {
         {
           serviceId: "<id>",
           extendPaths: [
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
             {
               path: "$.nested.property",
               value: {

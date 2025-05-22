@@ -13,7 +13,7 @@ type CollectionTicketComment struct {
 	// Body of the comment
 	Body *string `json:"body,omitempty"`
 	// When custom mappings are configured on the resource, the result is included here.
-	CustomMappings *CustomMappings `json:"custom_mappings,omitempty"`
+	CustomMappings map[string]any `json:"custom_mappings,omitempty"`
 	// The user who created the object.
 	CreatedBy *string `json:"created_by,omitempty"`
 	// The date and time when the object was last updated.
@@ -49,7 +49,7 @@ func (o *CollectionTicketComment) GetBody() *string {
 	return o.Body
 }
 
-func (o *CollectionTicketComment) GetCustomMappings() *CustomMappings {
+func (o *CollectionTicketComment) GetCustomMappings() map[string]any {
 	if o == nil {
 		return nil
 	}

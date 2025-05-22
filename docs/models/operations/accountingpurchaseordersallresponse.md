@@ -57,6 +57,7 @@ let value: AccountingPurchaseOrdersAllResponse = {
             rowVersion: "1-12345",
           },
         },
+        subsidiaryId: "12345",
         companyId: "12345",
         status: "open",
         issuedDate: new RFCDate("2020-09-30"),
@@ -114,9 +115,7 @@ let value: AccountingPurchaseOrdersAllResponse = {
                 id: "2389328923893298",
                 name: "employee_level",
                 description: "Employee Level",
-                value: [
-                  "<value>",
-                ],
+                value: "Uses Salesforce and Marketo",
               },
             ],
             rowVersion: "1-12345",

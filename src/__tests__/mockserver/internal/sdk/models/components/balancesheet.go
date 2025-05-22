@@ -223,7 +223,7 @@ type Reports struct {
 	// The net assets of the balance sheet
 	NetAssets *float64 `json:"net_assets,omitempty"`
 	// When custom mappings are configured on the resource, the result is included here.
-	CustomMappings *CustomMappings `json:"custom_mappings,omitempty"`
+	CustomMappings map[string]any `json:"custom_mappings,omitempty"`
 	// The user who last updated the object.
 	UpdatedBy *string `json:"updated_by,omitempty"`
 	// The user who created the object.
@@ -310,7 +310,7 @@ func (o *Reports) GetNetAssets() *float64 {
 	return o.NetAssets
 }
 
-func (o *Reports) GetCustomMappings() *CustomMappings {
+func (o *Reports) GetCustomMappings() map[string]any {
 	if o == nil {
 		return nil
 	}

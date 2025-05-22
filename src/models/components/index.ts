@@ -137,7 +137,6 @@ export * from "./customfield.js";
 export * from "./customfieldfinder.js";
 export * from "./custommapping.js";
 export * from "./custommappinginput.js";
-export * from "./custommappings.js";
 export * from "./deduction.js";
 export * from "./deleteaccountingdepartmentresponse.js";
 export * from "./deleteaccountinglocationresponse.js";

@@ -269,7 +269,7 @@ type EcommerceProduct struct {
 	// An array of categories for the product, used for organization and searching.
 	Categories []EcommerceProductCategories `json:"categories,omitempty"`
 	// When custom mappings are configured on the resource, the result is included here.
-	CustomMappings *CustomMappings `json:"custom_mappings,omitempty"`
+	CustomMappings map[string]any `json:"custom_mappings,omitempty"`
 	// The date and time when the object was created.
 	CreatedAt *time.Time `json:"created_at,omitempty"`
 	// The date and time when the object was last updated.
@@ -385,7 +385,7 @@ func (o *EcommerceProduct) GetCategories() []EcommerceProductCategories {
 	return o.Categories
 }
 
-func (o *EcommerceProduct) GetCustomMappings() *CustomMappings {
+func (o *EcommerceProduct) GetCustomMappings() map[string]any {
 	if o == nil {
 		return nil
 	}

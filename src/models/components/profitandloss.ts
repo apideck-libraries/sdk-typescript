@@ -13,12 +13,6 @@ import {
   Currency$outboundSchema,
 } from "./currency.js";
 import {
-  CustomMappings,
-  CustomMappings$inboundSchema,
-  CustomMappings$Outbound,
-  CustomMappings$outboundSchema,
-} from "./custommappings.js";
-import {
   ProfitAndLossIndicator,
   ProfitAndLossIndicator$inboundSchema,
   ProfitAndLossIndicator$Outbound,
@@ -134,7 +128,7 @@ export type OtherIncome = {
   /**
    * The aggregated total of all accounts within this category.
    */
-  total: number | null;
+  total?: number | null | undefined;
   records?: any | undefined;
 };
 
@@ -161,7 +155,7 @@ export type OtherExpenses = {
   /**
    * The aggregated total of all accounts within this category.
    */
-  total: number | null;
+  total?: number | null | undefined;
   records?: any | undefined;
 };
 
@@ -243,7 +237,7 @@ export type ProfitAndLoss = {
   /**
    * When custom mappings are configured on the resource, the result is included here.
    */
-  customMappings?: CustomMappings | null | undefined;
+  customMappings?: { [k: string]: any } | null | undefined;
   /**
    * The customer id
    */
@@ -454,7 +448,7 @@ export const OtherIncome$inboundSchema: z.ZodType<
   code: z.string().optional(),
   title: z.string().optional(),
   type: z.nullable(ProfitAndLossType$inboundSchema).optional(),
-  total: z.nullable(z.number()),
+  total: z.nullable(z.number()).optional(),
   records: z.any().optional(),
 });
 
@@ -464,7 +458,7 @@ export type OtherIncome$Outbound = {
   code?: string | undefined;
   title?: string | undefined;
   type?: string | null | undefined;
-  total: number | null;
+  total?: number | null | undefined;
   records?: any | undefined;
 };
 
@@ -478,7 +472,7 @@ export const OtherIncome$outboundSchema: z.ZodType<
   code: z.string().optional(),
   title: z.string().optional(),
   type: z.nullable(ProfitAndLossType$outboundSchema).optional(),
-  total: z.nullable(z.number()),
+  total: z.nullable(z.number()).optional(),
   records: z.any().optional(),
 });
 
@@ -519,7 +513,7 @@ export const OtherExpenses$inboundSchema: z.ZodType<
   code: z.string().optional(),
   title: z.string().optional(),
   type: z.nullable(ProfitAndLossType$inboundSchema).optional(),
-  total: z.nullable(z.number()),
+  total: z.nullable(z.number()).optional(),
   records: z.any().optional(),
 });
 
@@ -529,7 +523,7 @@ export type OtherExpenses$Outbound = {
   code?: string | undefined;
   title?: string | undefined;
   type?: string | null | undefined;
-  total: number | null;
+  total?: number | null | undefined;
   records?: any | undefined;
 };
 
@@ -543,7 +537,7 @@ export const OtherExpenses$outboundSchema: z.ZodType<
   code: z.string().optional(),
   title: z.string().optional(),
   type: z.nullable(ProfitAndLossType$outboundSchema).optional(),
-  total: z.nullable(z.number()),
+  total: z.nullable(z.number()).optional(),
   records: z.any().optional(),
 });
 
@@ -664,7 +658,7 @@ export const ProfitAndLoss$inboundSchema: z.ZodType<
   gross_profit: ProfitAndLossIndicator$inboundSchema.optional(),
   net_operating_income: ProfitAndLossIndicator$inboundSchema.optional(),
   net_income: ProfitAndLossIndicator$inboundSchema.optional(),
-  custom_mappings: z.nullable(CustomMappings$inboundSchema).optional(),
+  custom_mappings: z.nullable(z.record(z.any())).optional(),
   customer: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
@@ -698,7 +692,7 @@ export type ProfitAndLoss$Outbound = {
   gross_profit?: ProfitAndLossIndicator$Outbound | undefined;
   net_operating_income?: ProfitAndLossIndicator$Outbound | undefined;
   net_income?: ProfitAndLossIndicator$Outbound | undefined;
-  custom_mappings?: CustomMappings$Outbound | null | undefined;
+  custom_mappings?: { [k: string]: any } | null | undefined;
   customer?: string | undefined;
 };
 
@@ -723,7 +717,7 @@ export const ProfitAndLoss$outboundSchema: z.ZodType<
   grossProfit: ProfitAndLossIndicator$outboundSchema.optional(),
   netOperatingIncome: ProfitAndLossIndicator$outboundSchema.optional(),
   netIncome: ProfitAndLossIndicator$outboundSchema.optional(),
-  customMappings: z.nullable(CustomMappings$outboundSchema).optional(),
+  customMappings: z.nullable(z.record(z.any())).optional(),
   customer: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {

@@ -184,7 +184,7 @@ type OtherIncome struct {
 	// The type of profit and loss
 	Type *ProfitAndLossType `json:"type,omitempty"`
 	// The aggregated total of all accounts within this category.
-	Total   *float64 `json:"total"`
+	Total   *float64 `json:"total,omitempty"`
 	Records any      `json:"records"`
 }
 
@@ -241,7 +241,7 @@ type OtherExpenses struct {
 	// The type of profit and loss
 	Type *ProfitAndLossType `json:"type,omitempty"`
 	// The aggregated total of all accounts within this category.
-	Total   *float64 `json:"total"`
+	Total   *float64 `json:"total,omitempty"`
 	Records any      `json:"records"`
 }
 
@@ -371,7 +371,7 @@ type ProfitAndLoss struct {
 	NetOperatingIncome    *ProfitAndLossIndicator `json:"net_operating_income,omitempty"`
 	NetIncome             *ProfitAndLossIndicator `json:"net_income,omitempty"`
 	// When custom mappings are configured on the resource, the result is included here.
-	CustomMappings *CustomMappings `json:"custom_mappings,omitempty"`
+	CustomMappings map[string]any `json:"custom_mappings,omitempty"`
 	// The customer id
 	Customer *string `json:"customer,omitempty"`
 }
@@ -474,7 +474,7 @@ func (o *ProfitAndLoss) GetNetIncome() *ProfitAndLossIndicator {
 	return o.NetIncome
 }
 
-func (o *ProfitAndLoss) GetCustomMappings() *CustomMappings {
+func (o *ProfitAndLoss) GetCustomMappings() map[string]any {
 	if o == nil {
 		return nil
 	}

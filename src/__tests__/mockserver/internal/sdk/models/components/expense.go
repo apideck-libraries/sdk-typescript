@@ -100,13 +100,17 @@ type Expense struct {
 	LineItems    []ExpenseLineItem `json:"line_items"`
 	CustomFields []CustomField     `json:"custom_fields,omitempty"`
 	// When custom mappings are configured on the resource, the result is included here.
-	CustomMappings *CustomMappings `json:"custom_mappings,omitempty"`
+	CustomMappings map[string]any `json:"custom_mappings,omitempty"`
 	// The date and time when the object was last updated.
 	UpdatedAt *time.Time `json:"updated_at,omitempty"`
 	// The date and time when the object was created.
 	CreatedAt *time.Time `json:"created_at,omitempty"`
 	// A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
 	RowVersion *string `json:"row_version,omitempty"`
+	// The user who last updated the object.
+	UpdatedBy *string `json:"updated_by,omitempty"`
+	// The user who created the object.
+	CreatedBy *string `json:"created_by,omitempty"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
 	PassThrough []PassThroughBody `json:"pass_through,omitempty"`
 }
@@ -241,7 +245,7 @@ func (o *Expense) GetCustomFields() []CustomField {
 	return o.CustomFields
 }
 
-func (o *Expense) GetCustomMappings() *CustomMappings {
+func (o *Expense) GetCustomMappings() map[string]any {
 	if o == nil {
 		return nil
 	}
@@ -267,6 +271,20 @@ func (o *Expense) GetRowVersion() *string {
 		return nil
 	}
 	return o.RowVersion
+}
+
+func (o *Expense) GetUpdatedBy() *string {
+	if o == nil {
+		return nil
+	}
+	return o.UpdatedBy
+}
+
+func (o *Expense) GetCreatedBy() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CreatedBy
 }
 
 func (o *Expense) GetPassThrough() []PassThroughBody {

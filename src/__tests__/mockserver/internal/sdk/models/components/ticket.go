@@ -72,7 +72,7 @@ type Ticket struct {
 	CompletedAt *time.Time      `json:"completed_at,omitempty"`
 	Tags        []CollectionTag `json:"tags,omitempty"`
 	// When custom mappings are configured on the resource, the result is included here.
-	CustomMappings *CustomMappings `json:"custom_mappings,omitempty"`
+	CustomMappings map[string]any `json:"custom_mappings,omitempty"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
 	PassThrough []PassThroughBody `json:"pass_through,omitempty"`
 }
@@ -193,7 +193,7 @@ func (o *Ticket) GetTags() []CollectionTag {
 	return o.Tags
 }
 
-func (o *Ticket) GetCustomMappings() *CustomMappings {
+func (o *Ticket) GetCustomMappings() map[string]any {
 	if o == nil {
 		return nil
 	}

@@ -7,12 +7,6 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  CustomMappings,
-  CustomMappings$inboundSchema,
-  CustomMappings$Outbound,
-  CustomMappings$outboundSchema,
-} from "./custommappings.js";
 
 export type EcommerceStore = {
   /**
@@ -34,7 +28,7 @@ export type EcommerceStore = {
   /**
    * When custom mappings are configured on the resource, the result is included here.
    */
-  customMappings?: CustomMappings | null | undefined;
+  customMappings?: { [k: string]: any } | null | undefined;
   /**
    * The date and time when the object was created.
    */
@@ -55,7 +49,7 @@ export const EcommerceStore$inboundSchema: z.ZodType<
   name: z.nullable(z.string()).optional(),
   store_url: z.nullable(z.string()).optional(),
   admin_url: z.nullable(z.string()).optional(),
-  custom_mappings: z.nullable(CustomMappings$inboundSchema).optional(),
+  custom_mappings: z.nullable(z.record(z.any())).optional(),
   created_at: z.nullable(
     z.string().datetime({ offset: true }).transform(v => new Date(v)),
   ).optional(),
@@ -78,7 +72,7 @@ export type EcommerceStore$Outbound = {
   name?: string | null | undefined;
   store_url?: string | null | undefined;
   admin_url?: string | null | undefined;
-  custom_mappings?: CustomMappings$Outbound | null | undefined;
+  custom_mappings?: { [k: string]: any } | null | undefined;
   created_at?: string | null | undefined;
   updated_at?: string | null | undefined;
 };
@@ -93,7 +87,7 @@ export const EcommerceStore$outboundSchema: z.ZodType<
   name: z.nullable(z.string()).optional(),
   storeUrl: z.nullable(z.string()).optional(),
   adminUrl: z.nullable(z.string()).optional(),
-  customMappings: z.nullable(CustomMappings$outboundSchema).optional(),
+  customMappings: z.nullable(z.record(z.any())).optional(),
   createdAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
   updatedAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
 }).transform((v) => {

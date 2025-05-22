@@ -154,7 +154,7 @@ type Applicant struct {
 	RecordURL         *string       `json:"record_url,omitempty"`
 	RejectedAt        *time.Time    `json:"rejected_at,omitempty"`
 	// When custom mappings are configured on the resource, the result is included here.
-	CustomMappings *CustomMappings `json:"custom_mappings,omitempty"`
+	CustomMappings map[string]any `json:"custom_mappings,omitempty"`
 	// Flag to indicate if the object is deleted.
 	Deleted *bool `json:"deleted,omitempty"`
 	// The user who deleted the object.
@@ -436,7 +436,7 @@ func (o *Applicant) GetRejectedAt() *time.Time {
 	return o.RejectedAt
 }
 
-func (o *Applicant) GetCustomMappings() *CustomMappings {
+func (o *Applicant) GetCustomMappings() map[string]any {
 	if o == nil {
 		return nil
 	}

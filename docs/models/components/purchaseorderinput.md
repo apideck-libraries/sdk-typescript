@@ -39,6 +39,7 @@ let value: PurchaseOrderInput = {
       rowVersion: "1-12345",
     },
   },
+  subsidiaryId: "12345",
   companyId: "12345",
   status: "open",
   issuedDate: new RFCDate("2020-09-30"),
@@ -93,7 +94,7 @@ let value: PurchaseOrderInput = {
           id: "2389328923893298",
           name: "employee_level",
           description: "Employee Level",
-          value: true,
+          value: "Uses Salesforce and Marketo",
         },
       ],
       rowVersion: "1-12345",
@@ -162,9 +163,7 @@ let value: PurchaseOrderInput = {
       id: "2389328923893298",
       name: "employee_level",
       description: "Employee Level",
-      value: [
-        {},
-      ],
+      value: "Uses Salesforce and Marketo",
     },
   ],
   rowVersion: "1-12345",
@@ -193,6 +192,7 @@ let value: PurchaseOrderInput = {
 | `poNumber`                                                                                                                                              | *string*                                                                                                                                                | :heavy_minus_sign:                                                                                                                                      | A PO Number uniquely identifies a purchase order and is generally defined by the buyer.                                                                 | 90000117                                                                                                                                                |
 | `reference`                                                                                                                                             | *string*                                                                                                                                                | :heavy_minus_sign:                                                                                                                                      | Optional purchase order reference.                                                                                                                      | 123456                                                                                                                                                  |
 | `supplier`                                                                                                                                              | [components.LinkedSupplierInput](../../models/components/linkedsupplierinput.md)                                                                        | :heavy_minus_sign:                                                                                                                                      | The supplier this entity is linked to.                                                                                                                  |                                                                                                                                                         |
+| `subsidiaryId`                                                                                                                                          | *string*                                                                                                                                                | :heavy_minus_sign:                                                                                                                                      | The ID of the subsidiary                                                                                                                                | 12345                                                                                                                                                   |
 | `companyId`                                                                                                                                             | *string*                                                                                                                                                | :heavy_minus_sign:                                                                                                                                      | The company or subsidiary id the transaction belongs to                                                                                                 | 12345                                                                                                                                                   |
 | `status`                                                                                                                                                | [components.PurchaseOrderStatus](../../models/components/purchaseorderstatus.md)                                                                        | :heavy_minus_sign:                                                                                                                                      | N/A                                                                                                                                                     | open                                                                                                                                                    |
 | `issuedDate`                                                                                                                                            | [RFCDate](../../types/rfcdate.md)                                                                                                                       | :heavy_minus_sign:                                                                                                                                      | Date purchase order was issued - YYYY-MM-DD.                                                                                                            | 2020-09-30                                                                                                                                              |

@@ -162,7 +162,7 @@ type InvoiceItem struct {
 	// The ID of the tax schedule
 	TaxScheduleID *string `json:"tax_schedule_id,omitempty"`
 	// When custom mappings are configured on the resource, the result is included here.
-	CustomMappings *CustomMappings `json:"custom_mappings,omitempty"`
+	CustomMappings map[string]any `json:"custom_mappings,omitempty"`
 	// A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
 	RowVersion *string `json:"row_version,omitempty"`
 	// The user who last updated the object.
@@ -356,7 +356,7 @@ func (o *InvoiceItem) GetTaxScheduleID() *string {
 	return o.TaxScheduleID
 }
 
-func (o *InvoiceItem) GetCustomMappings() *CustomMappings {
+func (o *InvoiceItem) GetCustomMappings() map[string]any {
 	if o == nil {
 		return nil
 	}

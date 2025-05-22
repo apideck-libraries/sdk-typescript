@@ -9,12 +9,6 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import { RFCDate } from "../../types/rfcdate.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
-  CustomMappings,
-  CustomMappings$inboundSchema,
-  CustomMappings$Outbound,
-  CustomMappings$outboundSchema,
-} from "./custommappings.js";
-import {
   Gender,
   Gender$inboundSchema,
   Gender$outboundSchema,
@@ -56,7 +50,7 @@ export type Person = {
   /**
    * When custom mappings are configured on the resource, the result is included here.
    */
-  customMappings?: CustomMappings | null | undefined;
+  customMappings?: { [k: string]: any } | null | undefined;
 };
 
 /** @internal */
@@ -71,7 +65,7 @@ export const Person$inboundSchema: z.ZodType<Person, z.ZodTypeDef, unknown> = z
     birthday: z.nullable(z.string().transform(v => new RFCDate(v))).optional(),
     deceased_on: z.nullable(z.string().transform(v => new RFCDate(v)))
       .optional(),
-    custom_mappings: z.nullable(CustomMappings$inboundSchema).optional(),
+    custom_mappings: z.nullable(z.record(z.any())).optional(),
   }).transform((v) => {
     return remap$(v, {
       "first_name": "firstName",
@@ -92,7 +86,7 @@ export type Person$Outbound = {
   initials?: string | null | undefined;
   birthday?: string | null | undefined;
   deceased_on?: string | null | undefined;
-  custom_mappings?: CustomMappings$Outbound | null | undefined;
+  custom_mappings?: { [k: string]: any } | null | undefined;
 };
 
 /** @internal */
@@ -111,7 +105,7 @@ export const Person$outboundSchema: z.ZodType<
     .optional(),
   deceasedOn: z.nullable(z.instanceof(RFCDate).transform(v => v.toString()))
     .optional(),
-  customMappings: z.nullable(CustomMappings$outboundSchema).optional(),
+  customMappings: z.nullable(z.record(z.any())).optional(),
 }).transform((v) => {
   return remap$(v, {
     firstName: "first_name",

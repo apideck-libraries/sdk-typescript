@@ -8,12 +8,6 @@ import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
-  CustomMappings,
-  CustomMappings$inboundSchema,
-  CustomMappings$Outbound,
-  CustomMappings$outboundSchema,
-} from "./custommappings.js";
-import {
   FileType,
   FileType$inboundSchema,
   FileType$outboundSchema,
@@ -102,7 +96,7 @@ export type UnifiedFile = {
   /**
    * When custom mappings are configured on the resource, the result is included here.
    */
-  customMappings?: CustomMappings | null | undefined;
+  customMappings?: { [k: string]: any } | null | undefined;
   /**
    * The user who last updated the object.
    */
@@ -192,7 +186,7 @@ export const UnifiedFile$inboundSchema: z.ZodType<
   permissions: z.lazy(() => Permissions$inboundSchema).optional(),
   exportable: z.boolean().optional(),
   export_formats: z.nullable(z.array(z.string())).optional(),
-  custom_mappings: z.nullable(CustomMappings$inboundSchema).optional(),
+  custom_mappings: z.nullable(z.record(z.any())).optional(),
   updated_by: z.nullable(z.string()).optional(),
   created_by: z.nullable(z.string()).optional(),
   updated_at: z.nullable(
@@ -233,7 +227,7 @@ export type UnifiedFile$Outbound = {
   permissions?: Permissions$Outbound | undefined;
   exportable?: boolean | undefined;
   export_formats?: Array<string> | null | undefined;
-  custom_mappings?: CustomMappings$Outbound | null | undefined;
+  custom_mappings?: { [k: string]: any } | null | undefined;
   updated_by?: string | null | undefined;
   created_by?: string | null | undefined;
   updated_at?: string | null | undefined;
@@ -261,7 +255,7 @@ export const UnifiedFile$outboundSchema: z.ZodType<
   permissions: z.lazy(() => Permissions$outboundSchema).optional(),
   exportable: z.boolean().optional(),
   exportFormats: z.nullable(z.array(z.string())).optional(),
-  customMappings: z.nullable(CustomMappings$outboundSchema).optional(),
+  customMappings: z.nullable(z.record(z.any())).optional(),
   updatedBy: z.nullable(z.string()).optional(),
   createdBy: z.nullable(z.string()).optional(),
   updatedAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),

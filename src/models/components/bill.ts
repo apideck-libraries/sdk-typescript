@@ -37,12 +37,6 @@ import {
   CustomField$outboundSchema,
 } from "./customfield.js";
 import {
-  CustomMappings,
-  CustomMappings$inboundSchema,
-  CustomMappings$Outbound,
-  CustomMappings$outboundSchema,
-} from "./custommappings.js";
-import {
   LinkedLedgerAccount,
   LinkedLedgerAccount$inboundSchema,
   LinkedLedgerAccount$Outbound,
@@ -238,7 +232,7 @@ export type Bill = {
   /**
    * When custom mappings are configured on the resource, the result is included here.
    */
-  customMappings?: CustomMappings | null | undefined;
+  customMappings?: { [k: string]: any } | null | undefined;
   /**
    * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
    */
@@ -439,7 +433,7 @@ export const Bill$inboundSchema: z.ZodType<Bill, z.ZodTypeDef, unknown> = z
     ).optional(),
     row_version: z.nullable(z.string()).optional(),
     custom_fields: z.array(CustomField$inboundSchema).optional(),
-    custom_mappings: z.nullable(CustomMappings$inboundSchema).optional(),
+    custom_mappings: z.nullable(z.record(z.any())).optional(),
     pass_through: z.array(PassThroughBody$inboundSchema).optional(),
     accounting_period: z.nullable(z.string()).optional(),
   }).transform((v) => {
@@ -519,7 +513,7 @@ export type Bill$Outbound = {
   created_at?: string | null | undefined;
   row_version?: string | null | undefined;
   custom_fields?: Array<CustomField$Outbound> | undefined;
-  custom_mappings?: CustomMappings$Outbound | null | undefined;
+  custom_mappings?: { [k: string]: any } | null | undefined;
   pass_through?: Array<PassThroughBody$Outbound> | undefined;
   accounting_period?: string | null | undefined;
 };
@@ -570,7 +564,7 @@ export const Bill$outboundSchema: z.ZodType<Bill$Outbound, z.ZodTypeDef, Bill> =
     createdAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
     rowVersion: z.nullable(z.string()).optional(),
     customFields: z.array(CustomField$outboundSchema).optional(),
-    customMappings: z.nullable(CustomMappings$outboundSchema).optional(),
+    customMappings: z.nullable(z.record(z.any())).optional(),
     passThrough: z.array(PassThroughBody$outboundSchema).optional(),
     accountingPeriod: z.nullable(z.string()).optional(),
   }).transform((v) => {

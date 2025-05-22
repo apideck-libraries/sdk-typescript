@@ -15,12 +15,6 @@ import {
   Address$outboundSchema,
 } from "./address.js";
 import {
-  CustomMappings,
-  CustomMappings$inboundSchema,
-  CustomMappings$Outbound,
-  CustomMappings$outboundSchema,
-} from "./custommappings.js";
-import {
   PassThroughBody,
   PassThroughBody$inboundSchema,
   PassThroughBody$Outbound,
@@ -77,7 +71,7 @@ export type AccountingLocation = {
   /**
    * When custom mappings are configured on the resource, the result is included here.
    */
-  customMappings?: CustomMappings | null | undefined;
+  customMappings?: { [k: string]: any } | null | undefined;
   /**
    * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
    */
@@ -167,7 +161,7 @@ export const AccountingLocation$inboundSchema: z.ZodType<
   status: LocationStatus$inboundSchema.optional(),
   addresses: z.array(Address$inboundSchema).optional(),
   subsidiaries: z.array(SubsidiaryReference$inboundSchema).optional(),
-  custom_mappings: z.nullable(CustomMappings$inboundSchema).optional(),
+  custom_mappings: z.nullable(z.record(z.any())).optional(),
   row_version: z.nullable(z.string()).optional(),
   updated_by: z.nullable(z.string()).optional(),
   created_by: z.nullable(z.string()).optional(),
@@ -202,7 +196,7 @@ export type AccountingLocation$Outbound = {
   status?: string | undefined;
   addresses?: Array<Address$Outbound> | undefined;
   subsidiaries?: Array<SubsidiaryReference$Outbound> | undefined;
-  custom_mappings?: CustomMappings$Outbound | null | undefined;
+  custom_mappings?: { [k: string]: any } | null | undefined;
   row_version?: string | null | undefined;
   updated_by?: string | null | undefined;
   created_by?: string | null | undefined;
@@ -224,7 +218,7 @@ export const AccountingLocation$outboundSchema: z.ZodType<
   status: LocationStatus$outboundSchema.optional(),
   addresses: z.array(Address$outboundSchema).optional(),
   subsidiaries: z.array(SubsidiaryReference$outboundSchema).optional(),
-  customMappings: z.nullable(CustomMappings$outboundSchema).optional(),
+  customMappings: z.nullable(z.record(z.any())).optional(),
   rowVersion: z.nullable(z.string()).optional(),
   updatedBy: z.nullable(z.string()).optional(),
   createdBy: z.nullable(z.string()).optional(),

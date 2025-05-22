@@ -37,7 +37,7 @@ type User struct {
 	PhoneNumbers []PhoneNumber `json:"phone_numbers,omitempty"`
 	Emails       []Email       `json:"emails"`
 	// When custom mappings are configured on the resource, the result is included here.
-	CustomMappings *CustomMappings `json:"custom_mappings,omitempty"`
+	CustomMappings map[string]any `json:"custom_mappings,omitempty"`
 	// The date and time when the user was last updated.
 	UpdatedAt *string `json:"updated_at,omitempty"`
 	// The date and time when the user was created.
@@ -165,7 +165,7 @@ func (o *User) GetEmails() []Email {
 	return o.Emails
 }
 
-func (o *User) GetCustomMappings() *CustomMappings {
+func (o *User) GetCustomMappings() map[string]any {
 	if o == nil {
 		return nil
 	}

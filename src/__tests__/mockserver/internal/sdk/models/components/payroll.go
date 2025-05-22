@@ -22,7 +22,7 @@ type Payroll struct {
 	// An array of compensations for the payroll.
 	Compensations []Compensation `json:"compensations,omitempty"`
 	// When custom mappings are configured on the resource, the result is included here.
-	CustomMappings *CustomMappings `json:"custom_mappings,omitempty"`
+	CustomMappings map[string]any `json:"custom_mappings,omitempty"`
 }
 
 func (o *Payroll) GetID() *string {
@@ -88,7 +88,7 @@ func (o *Payroll) GetCompensations() []Compensation {
 	return o.Compensations
 }
 
-func (o *Payroll) GetCustomMappings() *CustomMappings {
+func (o *Payroll) GetCustomMappings() map[string]any {
 	if o == nil {
 		return nil
 	}

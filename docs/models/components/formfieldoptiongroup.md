@@ -11,7 +11,7 @@ let value: FormFieldOptionGroup = {
   options: [
     {
       label: "General Channel",
-      value: true,
+      value: "general",
       optionType: "simple",
     },
   ],

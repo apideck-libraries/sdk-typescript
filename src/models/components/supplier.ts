@@ -32,12 +32,6 @@ import {
   CustomField$outboundSchema,
 } from "./customfield.js";
 import {
-  CustomMappings,
-  CustomMappings$inboundSchema,
-  CustomMappings$Outbound,
-  CustomMappings$outboundSchema,
-} from "./custommappings.js";
-import {
   Email,
   Email$inboundSchema,
   Email$Outbound,
@@ -178,7 +172,7 @@ export type Supplier = {
   /**
    * When custom mappings are configured on the resource, the result is included here.
    */
-  customMappings?: CustomMappings | null | undefined;
+  customMappings?: { [k: string]: any } | null | undefined;
   customFields?: Array<CustomField> | undefined;
   /**
    * The user who last updated the object.
@@ -343,7 +337,7 @@ export const Supplier$inboundSchema: z.ZodType<
   status: z.nullable(SupplierStatus$inboundSchema).optional(),
   payment_method: z.nullable(z.string()).optional(),
   channel: z.nullable(z.string()).optional(),
-  custom_mappings: z.nullable(CustomMappings$inboundSchema).optional(),
+  custom_mappings: z.nullable(z.record(z.any())).optional(),
   custom_fields: z.array(CustomField$inboundSchema).optional(),
   updated_by: z.nullable(z.string()).optional(),
   created_by: z.nullable(z.string()).optional(),
@@ -410,7 +404,7 @@ export type Supplier$Outbound = {
   status?: string | null | undefined;
   payment_method?: string | null | undefined;
   channel?: string | null | undefined;
-  custom_mappings?: CustomMappings$Outbound | null | undefined;
+  custom_mappings?: { [k: string]: any } | null | undefined;
   custom_fields?: Array<CustomField$Outbound> | undefined;
   updated_by?: string | null | undefined;
   created_by?: string | null | undefined;
@@ -452,7 +446,7 @@ export const Supplier$outboundSchema: z.ZodType<
   status: z.nullable(SupplierStatus$outboundSchema).optional(),
   paymentMethod: z.nullable(z.string()).optional(),
   channel: z.nullable(z.string()).optional(),
-  customMappings: z.nullable(CustomMappings$outboundSchema).optional(),
+  customMappings: z.nullable(z.record(z.any())).optional(),
   customFields: z.array(CustomField$outboundSchema).optional(),
   updatedBy: z.nullable(z.string()).optional(),
   createdBy: z.nullable(z.string()).optional(),

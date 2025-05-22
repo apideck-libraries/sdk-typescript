@@ -13,11 +13,10 @@ let value: ConnectionConfiguration = {
       options: [
         {
           label: "General Channel",
-          value: "general",
           optionType: "simple",
         },
       ],
-      value: true,
+      value: "GC5000 series",
     },
   ],
 };

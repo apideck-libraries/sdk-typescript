@@ -27,12 +27,6 @@ import {
   CustomField$outboundSchema,
 } from "./customfield.js";
 import {
-  CustomMappings,
-  CustomMappings$inboundSchema,
-  CustomMappings$Outbound,
-  CustomMappings$outboundSchema,
-} from "./custommappings.js";
-import {
   LinkedTaxRate,
   LinkedTaxRate$inboundSchema,
   LinkedTaxRate$Outbound,
@@ -253,7 +247,7 @@ export type LedgerAccount = {
   /**
    * When custom mappings are configured on the resource, the result is included here.
    */
-  customMappings?: CustomMappings | null | undefined;
+  customMappings?: { [k: string]: any } | null | undefined;
   customFields?: Array<CustomField> | undefined;
   /**
    * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
@@ -705,7 +699,7 @@ export const LedgerAccount$inboundSchema: z.ZodType<
   ).optional(),
   subsidiaries: z.array(z.lazy(() => LedgerAccountSubsidiaries$inboundSchema))
     .optional(),
-  custom_mappings: z.nullable(CustomMappings$inboundSchema).optional(),
+  custom_mappings: z.nullable(z.record(z.any())).optional(),
   custom_fields: z.array(CustomField$inboundSchema).optional(),
   row_version: z.nullable(z.string()).optional(),
   updated_by: z.nullable(z.string()).optional(),
@@ -771,7 +765,7 @@ export type LedgerAccount$Outbound = {
   sub_accounts?: Array<SubAccounts$Outbound> | undefined;
   last_reconciliation_date?: string | null | undefined;
   subsidiaries?: Array<LedgerAccountSubsidiaries$Outbound> | undefined;
-  custom_mappings?: CustomMappings$Outbound | null | undefined;
+  custom_mappings?: { [k: string]: any } | null | undefined;
   custom_fields?: Array<CustomField$Outbound> | undefined;
   row_version?: string | null | undefined;
   updated_by?: string | null | undefined;
@@ -816,7 +810,7 @@ export const LedgerAccount$outboundSchema: z.ZodType<
   ).optional(),
   subsidiaries: z.array(z.lazy(() => LedgerAccountSubsidiaries$outboundSchema))
     .optional(),
-  customMappings: z.nullable(CustomMappings$outboundSchema).optional(),
+  customMappings: z.nullable(z.record(z.any())).optional(),
   customFields: z.array(CustomField$outboundSchema).optional(),
   rowVersion: z.nullable(z.string()).optional(),
   updatedBy: z.nullable(z.string()).optional(),

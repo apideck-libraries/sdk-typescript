@@ -58,8 +58,8 @@ type HrisCompany struct {
 	Websites     []Website     `json:"websites,omitempty"`
 	DebtorID     *string       `json:"debtor_id,omitempty"`
 	// When custom mappings are configured on the resource, the result is included here.
-	CustomMappings *CustomMappings `json:"custom_mappings,omitempty"`
-	Deleted        *bool           `json:"deleted,omitempty"`
+	CustomMappings map[string]any `json:"custom_mappings,omitempty"`
+	Deleted        *bool          `json:"deleted,omitempty"`
 	// The user who last updated the object.
 	UpdatedBy *string `json:"updated_by,omitempty"`
 	// The user who created the object.
@@ -167,7 +167,7 @@ func (o *HrisCompany) GetDebtorID() *string {
 	return o.DebtorID
 }
 
-func (o *HrisCompany) GetCustomMappings() *CustomMappings {
+func (o *HrisCompany) GetCustomMappings() map[string]any {
 	if o == nil {
 		return nil
 	}

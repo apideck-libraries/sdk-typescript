@@ -28,12 +28,6 @@ import {
   CustomField$outboundSchema,
 } from "./customfield.js";
 import {
-  CustomMappings,
-  CustomMappings$inboundSchema,
-  CustomMappings$Outbound,
-  CustomMappings$outboundSchema,
-} from "./custommappings.js";
-import {
   Email,
   Email$inboundSchema,
   Email$Outbound,
@@ -388,7 +382,7 @@ export type Employee = {
   /**
    * When custom mappings are configured on the resource, the result is included here.
    */
-  customMappings?: CustomMappings | null | undefined;
+  customMappings?: { [k: string]: any } | null | undefined;
   /**
    * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
    */
@@ -945,7 +939,7 @@ export const Employee$inboundSchema: z.ZodType<
   food_allergies: z.nullable(z.array(z.string())).optional(),
   probation_period: z.lazy(() => ProbationPeriod$inboundSchema).optional(),
   tags: z.nullable(z.array(z.string())).optional(),
-  custom_mappings: z.nullable(CustomMappings$inboundSchema).optional(),
+  custom_mappings: z.nullable(z.record(z.any())).optional(),
   row_version: z.nullable(z.string()).optional(),
   deleted: z.nullable(z.boolean()).optional(),
   updated_by: z.nullable(z.string()).optional(),
@@ -1066,7 +1060,7 @@ export type Employee$Outbound = {
   food_allergies?: Array<string> | null | undefined;
   probation_period?: ProbationPeriod$Outbound | undefined;
   tags?: Array<string> | null | undefined;
-  custom_mappings?: CustomMappings$Outbound | null | undefined;
+  custom_mappings?: { [k: string]: any } | null | undefined;
   row_version?: string | null | undefined;
   deleted?: boolean | null | undefined;
   updated_by?: string | null | undefined;
@@ -1144,7 +1138,7 @@ export const Employee$outboundSchema: z.ZodType<
   foodAllergies: z.nullable(z.array(z.string())).optional(),
   probationPeriod: z.lazy(() => ProbationPeriod$outboundSchema).optional(),
   tags: z.nullable(z.array(z.string())).optional(),
-  customMappings: z.nullable(CustomMappings$outboundSchema).optional(),
+  customMappings: z.nullable(z.record(z.any())).optional(),
   rowVersion: z.nullable(z.string()).optional(),
   deleted: z.nullable(z.boolean()).optional(),
   updatedBy: z.nullable(z.string()).optional(),

@@ -19,7 +19,7 @@ type Collection struct {
 	// Description of the collection
 	Description *string `json:"description,omitempty"`
 	// When custom mappings are configured on the resource, the result is included here.
-	CustomMappings *CustomMappings `json:"custom_mappings,omitempty"`
+	CustomMappings map[string]any `json:"custom_mappings,omitempty"`
 	// The date and time when the object was last updated.
 	UpdatedAt *time.Time `json:"updated_at,omitempty"`
 	// The date and time when the object was created.
@@ -72,7 +72,7 @@ func (o *Collection) GetDescription() *string {
 	return o.Description
 }
 
-func (o *Collection) GetCustomMappings() *CustomMappings {
+func (o *Collection) GetCustomMappings() map[string]any {
 	if o == nil {
 		return nil
 	}

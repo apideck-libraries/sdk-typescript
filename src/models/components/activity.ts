@@ -31,12 +31,6 @@ import {
   CustomField$outboundSchema,
 } from "./customfield.js";
 import {
-  CustomMappings,
-  CustomMappings$inboundSchema,
-  CustomMappings$Outbound,
-  CustomMappings$outboundSchema,
-} from "./custommappings.js";
-import {
   PassThroughBody,
   PassThroughBody$inboundSchema,
   PassThroughBody$Outbound,
@@ -247,7 +241,7 @@ export type Activity = {
   /**
    * When custom mappings are configured on the resource, the result is included here.
    */
-  customMappings?: CustomMappings | null | undefined;
+  customMappings?: { [k: string]: any } | null | undefined;
   /**
    * The user who last updated the activity
    */
@@ -530,7 +524,7 @@ export const Activity$inboundSchema: z.ZodType<
   video_conference_id: z.nullable(z.string()).optional(),
   custom_fields: z.array(CustomField$inboundSchema).optional(),
   attendees: z.array(ActivityAttendee$inboundSchema).optional(),
-  custom_mappings: z.nullable(CustomMappings$inboundSchema).optional(),
+  custom_mappings: z.nullable(z.record(z.any())).optional(),
   updated_by: z.nullable(z.string()).optional(),
   created_by: z.nullable(z.string()).optional(),
   updated_at: z.nullable(z.string()).optional(),
@@ -628,7 +622,7 @@ export type Activity$Outbound = {
   video_conference_id?: string | null | undefined;
   custom_fields?: Array<CustomField$Outbound> | undefined;
   attendees?: Array<ActivityAttendee$Outbound> | undefined;
-  custom_mappings?: CustomMappings$Outbound | null | undefined;
+  custom_mappings?: { [k: string]: any } | null | undefined;
   updated_by?: string | null | undefined;
   created_by?: string | null | undefined;
   updated_at?: string | null | undefined;
@@ -688,7 +682,7 @@ export const Activity$outboundSchema: z.ZodType<
   videoConferenceId: z.nullable(z.string()).optional(),
   customFields: z.array(CustomField$outboundSchema).optional(),
   attendees: z.array(ActivityAttendee$outboundSchema).optional(),
-  customMappings: z.nullable(CustomMappings$outboundSchema).optional(),
+  customMappings: z.nullable(z.record(z.any())).optional(),
   updatedBy: z.nullable(z.string()).optional(),
   createdBy: z.nullable(z.string()).optional(),
   updatedAt: z.nullable(z.string()).optional(),

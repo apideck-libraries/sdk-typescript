@@ -7,12 +7,6 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  CustomMappings,
-  CustomMappings$inboundSchema,
-  CustomMappings$Outbound,
-  CustomMappings$outboundSchema,
-} from "./custommappings.js";
 
 export type CollectionTag = {
   /**
@@ -26,7 +20,7 @@ export type CollectionTag = {
   /**
    * When custom mappings are configured on the resource, the result is included here.
    */
-  customMappings?: CustomMappings | null | undefined;
+  customMappings?: { [k: string]: any } | null | undefined;
 };
 
 /** @internal */
@@ -37,7 +31,7 @@ export const CollectionTag$inboundSchema: z.ZodType<
 > = z.object({
   id: z.nullable(z.string()),
   name: z.nullable(z.string()).optional(),
-  custom_mappings: z.nullable(CustomMappings$inboundSchema).optional(),
+  custom_mappings: z.nullable(z.record(z.any())).optional(),
 }).transform((v) => {
   return remap$(v, {
     "custom_mappings": "customMappings",
@@ -48,7 +42,7 @@ export const CollectionTag$inboundSchema: z.ZodType<
 export type CollectionTag$Outbound = {
   id: string | null;
   name?: string | null | undefined;
-  custom_mappings?: CustomMappings$Outbound | null | undefined;
+  custom_mappings?: { [k: string]: any } | null | undefined;
 };
 
 /** @internal */
@@ -59,7 +53,7 @@ export const CollectionTag$outboundSchema: z.ZodType<
 > = z.object({
   id: z.nullable(z.string()),
   name: z.nullable(z.string()).optional(),
-  customMappings: z.nullable(CustomMappings$outboundSchema).optional(),
+  customMappings: z.nullable(z.record(z.any())).optional(),
 }).transform((v) => {
   return remap$(v, {
     customMappings: "custom_mappings",
