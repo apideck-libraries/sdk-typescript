@@ -14,12 +14,6 @@ import {
   Currency$outboundSchema,
 } from "./currency.js";
 import {
-  CustomMappings,
-  CustomMappings$inboundSchema,
-  CustomMappings$Outbound,
-  CustomMappings$outboundSchema,
-} from "./custommappings.js";
-import {
   Email,
   Email$inboundSchema,
   Email$Outbound,
@@ -134,7 +128,7 @@ export type EcommerceCustomer = {
   /**
    * When custom mappings are configured on the resource, the result is included here.
    */
-  customMappings?: CustomMappings | null | undefined;
+  customMappings?: { [k: string]: any } | null | undefined;
   /**
    * The date and time when the object was created.
    */
@@ -283,7 +277,7 @@ export const EcommerceCustomer$inboundSchema: z.ZodType<
   phone_numbers: z.nullable(z.array(PhoneNumber$inboundSchema)).optional(),
   addresses: z.array(z.lazy(() => Addresses$inboundSchema)).optional(),
   orders: z.array(LinkedEcommerceOrder$inboundSchema).optional(),
-  custom_mappings: z.nullable(CustomMappings$inboundSchema).optional(),
+  custom_mappings: z.nullable(z.record(z.any())).optional(),
   created_at: z.nullable(
     z.string().datetime({ offset: true }).transform(v => new Date(v)),
   ).optional(),
@@ -315,7 +309,7 @@ export type EcommerceCustomer$Outbound = {
   phone_numbers?: Array<PhoneNumber$Outbound> | null | undefined;
   addresses?: Array<Addresses$Outbound> | undefined;
   orders?: Array<LinkedEcommerceOrder$Outbound> | undefined;
-  custom_mappings?: CustomMappings$Outbound | null | undefined;
+  custom_mappings?: { [k: string]: any } | null | undefined;
   created_at?: string | null | undefined;
   updated_at?: string | null | undefined;
 };
@@ -337,7 +331,7 @@ export const EcommerceCustomer$outboundSchema: z.ZodType<
   phoneNumbers: z.nullable(z.array(PhoneNumber$outboundSchema)).optional(),
   addresses: z.array(z.lazy(() => Addresses$outboundSchema)).optional(),
   orders: z.array(LinkedEcommerceOrder$outboundSchema).optional(),
-  customMappings: z.nullable(CustomMappings$outboundSchema).optional(),
+  customMappings: z.nullable(z.record(z.any())).optional(),
   createdAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
   updatedAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
 }).transform((v) => {

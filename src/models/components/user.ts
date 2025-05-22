@@ -14,12 +14,6 @@ import {
   Address$outboundSchema,
 } from "./address.js";
 import {
-  CustomMappings,
-  CustomMappings$inboundSchema,
-  CustomMappings$Outbound,
-  CustomMappings$outboundSchema,
-} from "./custommappings.js";
-import {
   Email,
   Email$inboundSchema,
   Email$Outbound,
@@ -103,7 +97,7 @@ export type User = {
   /**
    * When custom mappings are configured on the resource, the result is included here.
    */
-  customMappings?: CustomMappings | null | undefined;
+  customMappings?: { [k: string]: any } | null | undefined;
   /**
    * The date and time when the user was last updated.
    */
@@ -138,7 +132,7 @@ export const User$inboundSchema: z.ZodType<User, z.ZodTypeDef, unknown> = z
     addresses: z.array(Address$inboundSchema).optional(),
     phone_numbers: z.array(PhoneNumber$inboundSchema).optional(),
     emails: z.array(Email$inboundSchema),
-    custom_mappings: z.nullable(CustomMappings$inboundSchema).optional(),
+    custom_mappings: z.nullable(z.record(z.any())).optional(),
     updated_at: z.nullable(z.string()).optional(),
     created_at: z.nullable(z.string()).optional(),
     pass_through: z.array(PassThroughBody$inboundSchema).optional(),
@@ -176,7 +170,7 @@ export type User$Outbound = {
   addresses?: Array<Address$Outbound> | undefined;
   phone_numbers?: Array<PhoneNumber$Outbound> | undefined;
   emails: Array<Email$Outbound>;
-  custom_mappings?: CustomMappings$Outbound | null | undefined;
+  custom_mappings?: { [k: string]: any } | null | undefined;
   updated_at?: string | null | undefined;
   created_at?: string | null | undefined;
   pass_through?: Array<PassThroughBody$Outbound> | undefined;
@@ -202,7 +196,7 @@ export const User$outboundSchema: z.ZodType<User$Outbound, z.ZodTypeDef, User> =
     addresses: z.array(Address$outboundSchema).optional(),
     phoneNumbers: z.array(PhoneNumber$outboundSchema).optional(),
     emails: z.array(Email$outboundSchema),
-    customMappings: z.nullable(CustomMappings$outboundSchema).optional(),
+    customMappings: z.nullable(z.record(z.any())).optional(),
     updatedAt: z.nullable(z.string()).optional(),
     createdAt: z.nullable(z.string()).optional(),
     passThrough: z.array(PassThroughBody$outboundSchema).optional(),

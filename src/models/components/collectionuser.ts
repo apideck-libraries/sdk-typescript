@@ -7,12 +7,6 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  CustomMappings,
-  CustomMappings$inboundSchema,
-  CustomMappings$Outbound,
-  CustomMappings$outboundSchema,
-} from "./custommappings.js";
 
 export type CollectionUser = {
   /**
@@ -42,7 +36,7 @@ export type CollectionUser = {
   /**
    * When custom mappings are configured on the resource, the result is included here.
    */
-  customMappings?: CustomMappings | null | undefined;
+  customMappings?: { [k: string]: any } | null | undefined;
   /**
    * The date and time when the object was last updated.
    */
@@ -65,7 +59,7 @@ export const CollectionUser$inboundSchema: z.ZodType<
   last_name: z.nullable(z.string()).optional(),
   email: z.nullable(z.string()).optional(),
   photo_url: z.nullable(z.string()).optional(),
-  custom_mappings: z.nullable(CustomMappings$inboundSchema).optional(),
+  custom_mappings: z.nullable(z.record(z.any())).optional(),
   updated_at: z.nullable(
     z.string().datetime({ offset: true }).transform(v => new Date(v)),
   ).optional(),
@@ -91,7 +85,7 @@ export type CollectionUser$Outbound = {
   last_name?: string | null | undefined;
   email?: string | null | undefined;
   photo_url?: string | null | undefined;
-  custom_mappings?: CustomMappings$Outbound | null | undefined;
+  custom_mappings?: { [k: string]: any } | null | undefined;
   updated_at?: string | null | undefined;
   created_at?: string | null | undefined;
 };
@@ -108,7 +102,7 @@ export const CollectionUser$outboundSchema: z.ZodType<
   lastName: z.nullable(z.string()).optional(),
   email: z.nullable(z.string()).optional(),
   photoUrl: z.nullable(z.string()).optional(),
-  customMappings: z.nullable(CustomMappings$outboundSchema).optional(),
+  customMappings: z.nullable(z.record(z.any())).optional(),
   updatedAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
   createdAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
 }).transform((v) => {

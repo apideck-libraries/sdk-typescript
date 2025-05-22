@@ -79,7 +79,6 @@ let value: VaultConnectionsOneResponse = {
               options: [
                 {
                   label: "General Channel",
-                  value: true,
                   optionType: "simple",
                 },
               ],

@@ -22,12 +22,6 @@ import {
   CustomField$outboundSchema,
 } from "./customfield.js";
 import {
-  CustomMappings,
-  CustomMappings$inboundSchema,
-  CustomMappings$Outbound,
-  CustomMappings$outboundSchema,
-} from "./custommappings.js";
-import {
   Email,
   Email$inboundSchema,
   Email$Outbound,
@@ -161,7 +155,7 @@ export type Applicant = {
   /**
    * When custom mappings are configured on the resource, the result is included here.
    */
-  customMappings?: CustomMappings | null | undefined;
+  customMappings?: { [k: string]: any } | null | undefined;
   /**
    * Flag to indicate if the object is deleted.
    */
@@ -442,7 +436,7 @@ export const Applicant$inboundSchema: z.ZodType<
   rejected_at: z.nullable(
     z.string().datetime({ offset: true }).transform(v => new Date(v)),
   ).optional(),
-  custom_mappings: z.nullable(CustomMappings$inboundSchema).optional(),
+  custom_mappings: z.nullable(z.record(z.any())).optional(),
   deleted: z.nullable(z.boolean()).optional(),
   deleted_by: z.nullable(z.string()).optional(),
   deleted_at: z.nullable(
@@ -528,7 +522,7 @@ export type Applicant$Outbound = {
   cv_url?: string | undefined;
   record_url?: string | null | undefined;
   rejected_at?: string | null | undefined;
-  custom_mappings?: CustomMappings$Outbound | null | undefined;
+  custom_mappings?: { [k: string]: any } | null | undefined;
   deleted?: boolean | null | undefined;
   deleted_by?: string | null | undefined;
   deleted_at?: string | null | undefined;
@@ -583,7 +577,7 @@ export const Applicant$outboundSchema: z.ZodType<
   cvUrl: z.string().optional(),
   recordUrl: z.nullable(z.string()).optional(),
   rejectedAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
-  customMappings: z.nullable(CustomMappings$outboundSchema).optional(),
+  customMappings: z.nullable(z.record(z.any())).optional(),
   deleted: z.nullable(z.boolean()).optional(),
   deletedBy: z.nullable(z.string()).optional(),
   deletedAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),

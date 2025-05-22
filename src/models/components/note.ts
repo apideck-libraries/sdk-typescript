@@ -8,12 +8,6 @@ import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
-  CustomMappings,
-  CustomMappings$inboundSchema,
-  CustomMappings$Outbound,
-  CustomMappings$outboundSchema,
-} from "./custommappings.js";
-import {
   PassThroughBody,
   PassThroughBody$inboundSchema,
   PassThroughBody$Outbound,
@@ -64,7 +58,7 @@ export type Note = {
   /**
    * When custom mappings are configured on the resource, the result is included here.
    */
-  customMappings?: CustomMappings | null | undefined;
+  customMappings?: { [k: string]: any } | null | undefined;
   /**
    * The user that last updated the note.
    */
@@ -100,7 +94,7 @@ export const Note$inboundSchema: z.ZodType<Note, z.ZodTypeDef, unknown> = z
     activity_id: z.nullable(z.string()).optional(),
     lead_id: z.nullable(z.string()).optional(),
     active: z.nullable(z.boolean()).optional(),
-    custom_mappings: z.nullable(CustomMappings$inboundSchema).optional(),
+    custom_mappings: z.nullable(z.record(z.any())).optional(),
     updated_by: z.nullable(z.string()).optional(),
     created_by: z.nullable(z.string()).optional(),
     updated_at: z.nullable(z.string()).optional(),
@@ -135,7 +129,7 @@ export type Note$Outbound = {
   activity_id?: string | null | undefined;
   lead_id?: string | null | undefined;
   active?: boolean | null | undefined;
-  custom_mappings?: CustomMappings$Outbound | null | undefined;
+  custom_mappings?: { [k: string]: any } | null | undefined;
   updated_by?: string | null | undefined;
   created_by?: string | null | undefined;
   updated_at?: string | null | undefined;
@@ -156,7 +150,7 @@ export const Note$outboundSchema: z.ZodType<Note$Outbound, z.ZodTypeDef, Note> =
     activityId: z.nullable(z.string()).optional(),
     leadId: z.nullable(z.string()).optional(),
     active: z.nullable(z.boolean()).optional(),
-    customMappings: z.nullable(CustomMappings$outboundSchema).optional(),
+    customMappings: z.nullable(z.record(z.any())).optional(),
     updatedBy: z.nullable(z.string()).optional(),
     createdBy: z.nullable(z.string()).optional(),
     updatedAt: z.nullable(z.string()).optional(),

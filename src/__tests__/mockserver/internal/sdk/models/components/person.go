@@ -25,7 +25,7 @@ type Person struct {
 	// Date of death
 	DeceasedOn *types.Date `json:"deceased_on,omitempty"`
 	// When custom mappings are configured on the resource, the result is included here.
-	CustomMappings *CustomMappings `json:"custom_mappings,omitempty"`
+	CustomMappings map[string]any `json:"custom_mappings,omitempty"`
 }
 
 func (p Person) MarshalJSON() ([]byte, error) {
@@ -95,7 +95,7 @@ func (o *Person) GetDeceasedOn() *types.Date {
 	return o.DeceasedOn
 }
 
-func (o *Person) GetCustomMappings() *CustomMappings {
+func (o *Person) GetCustomMappings() map[string]any {
 	if o == nil {
 		return nil
 	}

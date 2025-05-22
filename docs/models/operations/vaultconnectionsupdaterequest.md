@@ -29,22 +29,18 @@ let value: VaultConnectionsUpdateRequest = {
             id: "ProductInterest",
             options: [
               {
-                id: "1234",
                 label: "General Channel",
                 options: [
                   {
                     label: "General Channel",
-                    value: [
-                      "team",
-                      "general",
-                    ],
+                    value: "general",
                     optionType: "simple",
                   },
                 ],
                 optionType: "group",
               },
             ],
-            value: 10,
+            value: "GC5000 series",
           },
         ],
       },

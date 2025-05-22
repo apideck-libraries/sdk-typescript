@@ -332,7 +332,7 @@ type Employee struct {
 	ProbationPeriod *ProbationPeriod `json:"probation_period,omitempty"`
 	Tags            []string         `json:"tags,omitempty"`
 	// When custom mappings are configured on the resource, the result is included here.
-	CustomMappings *CustomMappings `json:"custom_mappings,omitempty"`
+	CustomMappings map[string]any `json:"custom_mappings,omitempty"`
 	// A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
 	RowVersion *string `json:"row_version,omitempty"`
 	// Flag to indicate if the object is deleted.
@@ -773,7 +773,7 @@ func (o *Employee) GetTags() []string {
 	return o.Tags
 }
 
-func (o *Employee) GetCustomMappings() *CustomMappings {
+func (o *Employee) GetCustomMappings() map[string]any {
 	if o == nil {
 		return nil
 	}

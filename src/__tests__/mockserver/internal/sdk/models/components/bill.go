@@ -128,7 +128,7 @@ type Bill struct {
 	RowVersion   *string       `json:"row_version,omitempty"`
 	CustomFields []CustomField `json:"custom_fields,omitempty"`
 	// When custom mappings are configured on the resource, the result is included here.
-	CustomMappings *CustomMappings `json:"custom_mappings,omitempty"`
+	CustomMappings map[string]any `json:"custom_mappings,omitempty"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
 	PassThrough []PassThroughBody `json:"pass_through,omitempty"`
 	// Accounting period
@@ -412,7 +412,7 @@ func (o *Bill) GetCustomFields() []CustomField {
 	return o.CustomFields
 }
 
-func (o *Bill) GetCustomMappings() *CustomMappings {
+func (o *Bill) GetCustomMappings() map[string]any {
 	if o == nil {
 		return nil
 	}

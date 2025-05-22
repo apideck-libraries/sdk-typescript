@@ -79,14 +79,10 @@ let value: VaultConnectionSettingsUpdateResponse = {
               options: [
                 {
                   label: "General Channel",
-                  value: [
-                    "team",
-                    "general",
-                  ],
                   optionType: "simple",
                 },
               ],
-              value: 10.5,
+              value: "GC5000 series",
             },
           ],
         },

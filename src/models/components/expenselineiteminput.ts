@@ -58,6 +58,10 @@ export type ExpenseLineItemInput = {
    * Boolean that indicates if the line item is billable or not.
    */
   billable?: boolean | undefined;
+  /**
+   * Line number of the resource
+   */
+  lineNumber?: number | null | undefined;
 };
 
 /** @internal */
@@ -78,6 +82,7 @@ export const ExpenseLineItemInput$inboundSchema: z.ZodType<
   description: z.nullable(z.string()).optional(),
   total_amount: z.nullable(z.number()),
   billable: z.boolean().optional(),
+  line_number: z.nullable(z.number().int()).optional(),
 }).transform((v) => {
   return remap$(v, {
     "tracking_categories": "trackingCategories",
@@ -88,6 +93,7 @@ export const ExpenseLineItemInput$inboundSchema: z.ZodType<
     "subsidiary_id": "subsidiaryId",
     "tax_rate": "taxRate",
     "total_amount": "totalAmount",
+    "line_number": "lineNumber",
   });
 });
 
@@ -106,6 +112,7 @@ export type ExpenseLineItemInput$Outbound = {
   description?: string | null | undefined;
   total_amount: number | null;
   billable?: boolean | undefined;
+  line_number?: number | null | undefined;
 };
 
 /** @internal */
@@ -126,6 +133,7 @@ export const ExpenseLineItemInput$outboundSchema: z.ZodType<
   description: z.nullable(z.string()).optional(),
   totalAmount: z.nullable(z.number()),
   billable: z.boolean().optional(),
+  lineNumber: z.nullable(z.number().int()).optional(),
 }).transform((v) => {
   return remap$(v, {
     trackingCategories: "tracking_categories",
@@ -136,6 +144,7 @@ export const ExpenseLineItemInput$outboundSchema: z.ZodType<
     subsidiaryId: "subsidiary_id",
     taxRate: "tax_rate",
     totalAmount: "total_amount",
+    lineNumber: "line_number",
   });
 });
 

@@ -8,7 +8,7 @@ type Lead struct {
 	// Full name of the lead.
 	Name string `json:"name"`
 	// The name of the company the lead is associated with.
-	CompanyName *string `json:"company_name"`
+	CompanyName *string `json:"company_name,omitempty"`
 	// The owner of the lead.
 	OwnerID *string `json:"owner_id,omitempty"`
 	// The name of the owner of the lead.
@@ -46,7 +46,7 @@ type Lead struct {
 	CustomFields []CustomField `json:"custom_fields,omitempty"`
 	Tags         []string      `json:"tags,omitempty"`
 	// When custom mappings are configured on the resource, the result is included here.
-	CustomMappings *CustomMappings `json:"custom_mappings,omitempty"`
+	CustomMappings map[string]any `json:"custom_mappings,omitempty"`
 	// Date updated in ISO 8601 format
 	UpdatedAt *string `json:"updated_at,omitempty"`
 	// Date created in ISO 8601 format
@@ -230,7 +230,7 @@ func (o *Lead) GetTags() []string {
 	return o.Tags
 }
 
-func (o *Lead) GetCustomMappings() *CustomMappings {
+func (o *Lead) GetCustomMappings() map[string]any {
 	if o == nil {
 		return nil
 	}

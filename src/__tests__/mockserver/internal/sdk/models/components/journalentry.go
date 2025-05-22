@@ -37,7 +37,7 @@ type JournalEntry struct {
 	// Accounting period
 	AccountingPeriod *string `json:"accounting_period,omitempty"`
 	// When custom mappings are configured on the resource, the result is included here.
-	CustomMappings *CustomMappings `json:"custom_mappings,omitempty"`
+	CustomMappings map[string]any `json:"custom_mappings,omitempty"`
 	// The user who last updated the object.
 	UpdatedBy *string `json:"updated_by,omitempty"`
 	// The user who created the object.
@@ -162,7 +162,7 @@ func (o *JournalEntry) GetAccountingPeriod() *string {
 	return o.AccountingPeriod
 }
 
-func (o *JournalEntry) GetCustomMappings() *CustomMappings {
+func (o *JournalEntry) GetCustomMappings() map[string]any {
 	if o == nil {
 		return nil
 	}

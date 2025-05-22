@@ -51,7 +51,7 @@ type UnifiedFile struct {
 	// The available file formats when exporting this file.
 	ExportFormats []string `json:"export_formats,omitempty"`
 	// When custom mappings are configured on the resource, the result is included here.
-	CustomMappings *CustomMappings `json:"custom_mappings,omitempty"`
+	CustomMappings map[string]any `json:"custom_mappings,omitempty"`
 	// The user who last updated the object.
 	UpdatedBy *string `json:"updated_by,omitempty"`
 	// The user who created the object.
@@ -178,7 +178,7 @@ func (o *UnifiedFile) GetExportFormats() []string {
 	return o.ExportFormats
 }
 
-func (o *UnifiedFile) GetCustomMappings() *CustomMappings {
+func (o *UnifiedFile) GetCustomMappings() map[string]any {
 	if o == nil {
 		return nil
 	}

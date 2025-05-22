@@ -33,12 +33,6 @@ import {
   CustomField$outboundSchema,
 } from "./customfield.js";
 import {
-  CustomMappings,
-  CustomMappings$inboundSchema,
-  CustomMappings$Outbound,
-  CustomMappings$outboundSchema,
-} from "./custommappings.js";
-import {
   DeprecatedLinkedTrackingCategory,
   DeprecatedLinkedTrackingCategory$inboundSchema,
   DeprecatedLinkedTrackingCategory$Outbound,
@@ -285,7 +279,7 @@ export type Invoice = {
   /**
    * When custom mappings are configured on the resource, the result is included here.
    */
-  customMappings?: CustomMappings | null | undefined;
+  customMappings?: { [k: string]: any } | null | undefined;
   customFields?: Array<CustomField> | undefined;
   /**
    * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
@@ -617,7 +611,7 @@ export const Invoice$inboundSchema: z.ZodType<Invoice, z.ZodTypeDef, unknown> =
     accounting_by_row: z.nullable(z.boolean()).optional(),
     bank_account: BankAccount$inboundSchema.optional(),
     ledger_account: z.nullable(LinkedLedgerAccount$inboundSchema).optional(),
-    custom_mappings: z.nullable(CustomMappings$inboundSchema).optional(),
+    custom_mappings: z.nullable(z.record(z.any())).optional(),
     custom_fields: z.array(CustomField$inboundSchema).optional(),
     row_version: z.nullable(z.string()).optional(),
     updated_by: z.nullable(z.string()).optional(),
@@ -715,7 +709,7 @@ export type Invoice$Outbound = {
   accounting_by_row?: boolean | null | undefined;
   bank_account?: BankAccount$Outbound | undefined;
   ledger_account?: LinkedLedgerAccount$Outbound | null | undefined;
-  custom_mappings?: CustomMappings$Outbound | null | undefined;
+  custom_mappings?: { [k: string]: any } | null | undefined;
   custom_fields?: Array<CustomField$Outbound> | undefined;
   row_version?: string | null | undefined;
   updated_by?: string | null | undefined;
@@ -777,7 +771,7 @@ export const Invoice$outboundSchema: z.ZodType<
   accountingByRow: z.nullable(z.boolean()).optional(),
   bankAccount: BankAccount$outboundSchema.optional(),
   ledgerAccount: z.nullable(LinkedLedgerAccount$outboundSchema).optional(),
-  customMappings: z.nullable(CustomMappings$outboundSchema).optional(),
+  customMappings: z.nullable(z.record(z.any())).optional(),
   customFields: z.array(CustomField$outboundSchema).optional(),
   rowVersion: z.nullable(z.string()).optional(),
   updatedBy: z.nullable(z.string()).optional(),

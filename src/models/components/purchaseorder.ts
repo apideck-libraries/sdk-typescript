@@ -33,12 +33,6 @@ import {
   CustomField$outboundSchema,
 } from "./customfield.js";
 import {
-  CustomMappings,
-  CustomMappings$inboundSchema,
-  CustomMappings$Outbound,
-  CustomMappings$outboundSchema,
-} from "./custommappings.js";
-import {
   InvoiceLineItem,
   InvoiceLineItem$inboundSchema,
   InvoiceLineItem$Outbound,
@@ -116,6 +110,10 @@ export type PurchaseOrder = {
    * The supplier this entity is linked to.
    */
   supplier?: LinkedSupplier | null | undefined;
+  /**
+   * The ID of the subsidiary
+   */
+  subsidiaryId?: string | null | undefined;
   /**
    * The company or subsidiary id the transaction belongs to
    */
@@ -200,7 +198,7 @@ export type PurchaseOrder = {
   /**
    * When custom mappings are configured on the resource, the result is included here.
    */
-  customMappings?: CustomMappings | null | undefined;
+  customMappings?: { [k: string]: any } | null | undefined;
   customFields?: Array<CustomField> | undefined;
   /**
    * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
@@ -241,6 +239,10 @@ export type PurchaseOrderInput = {
    * The supplier this entity is linked to.
    */
   supplier?: LinkedSupplierInput | null | undefined;
+  /**
+   * The ID of the subsidiary
+   */
+  subsidiaryId?: string | null | undefined;
   /**
    * The company or subsidiary id the transaction belongs to
    */
@@ -365,6 +367,7 @@ export const PurchaseOrder$inboundSchema: z.ZodType<
   po_number: z.nullable(z.string()).optional(),
   reference: z.nullable(z.string()).optional(),
   supplier: z.nullable(LinkedSupplier$inboundSchema).optional(),
+  subsidiary_id: z.nullable(z.string()).optional(),
   company_id: z.nullable(z.string()).optional(),
   status: z.nullable(PurchaseOrderStatus$inboundSchema).optional(),
   issued_date: z.nullable(z.string().transform(v => new RFCDate(v))).optional(),
@@ -393,7 +396,7 @@ export const PurchaseOrder$inboundSchema: z.ZodType<
   tracking_categories: z.nullable(
     z.array(z.nullable(LinkedTrackingCategory$inboundSchema)),
   ).optional(),
-  custom_mappings: z.nullable(CustomMappings$inboundSchema).optional(),
+  custom_mappings: z.nullable(z.record(z.any())).optional(),
   custom_fields: z.array(CustomField$inboundSchema).optional(),
   row_version: z.nullable(z.string()).optional(),
   updated_by: z.nullable(z.string()).optional(),
@@ -409,6 +412,7 @@ export const PurchaseOrder$inboundSchema: z.ZodType<
   return remap$(v, {
     "downstream_id": "downstreamId",
     "po_number": "poNumber",
+    "subsidiary_id": "subsidiaryId",
     "company_id": "companyId",
     "issued_date": "issuedDate",
     "delivery_date": "deliveryDate",
@@ -446,6 +450,7 @@ export type PurchaseOrder$Outbound = {
   po_number?: string | null | undefined;
   reference?: string | null | undefined;
   supplier?: LinkedSupplier$Outbound | null | undefined;
+  subsidiary_id?: string | null | undefined;
   company_id?: string | null | undefined;
   status?: string | null | undefined;
   issued_date?: string | null | undefined;
@@ -473,7 +478,7 @@ export type PurchaseOrder$Outbound = {
     | Array<LinkedTrackingCategory$Outbound | null>
     | null
     | undefined;
-  custom_mappings?: CustomMappings$Outbound | null | undefined;
+  custom_mappings?: { [k: string]: any } | null | undefined;
   custom_fields?: Array<CustomField$Outbound> | undefined;
   row_version?: string | null | undefined;
   updated_by?: string | null | undefined;
@@ -494,6 +499,7 @@ export const PurchaseOrder$outboundSchema: z.ZodType<
   poNumber: z.nullable(z.string()).optional(),
   reference: z.nullable(z.string()).optional(),
   supplier: z.nullable(LinkedSupplier$outboundSchema).optional(),
+  subsidiaryId: z.nullable(z.string()).optional(),
   companyId: z.nullable(z.string()).optional(),
   status: z.nullable(PurchaseOrderStatus$outboundSchema).optional(),
   issuedDate: z.nullable(z.instanceof(RFCDate).transform(v => v.toString()))
@@ -525,7 +531,7 @@ export const PurchaseOrder$outboundSchema: z.ZodType<
   trackingCategories: z.nullable(
     z.array(z.nullable(LinkedTrackingCategory$outboundSchema)),
   ).optional(),
-  customMappings: z.nullable(CustomMappings$outboundSchema).optional(),
+  customMappings: z.nullable(z.record(z.any())).optional(),
   customFields: z.array(CustomField$outboundSchema).optional(),
   rowVersion: z.nullable(z.string()).optional(),
   updatedBy: z.nullable(z.string()).optional(),
@@ -537,6 +543,7 @@ export const PurchaseOrder$outboundSchema: z.ZodType<
   return remap$(v, {
     downstreamId: "downstream_id",
     poNumber: "po_number",
+    subsidiaryId: "subsidiary_id",
     companyId: "company_id",
     issuedDate: "issued_date",
     deliveryDate: "delivery_date",
@@ -603,6 +610,7 @@ export const PurchaseOrderInput$inboundSchema: z.ZodType<
   po_number: z.nullable(z.string()).optional(),
   reference: z.nullable(z.string()).optional(),
   supplier: z.nullable(LinkedSupplierInput$inboundSchema).optional(),
+  subsidiary_id: z.nullable(z.string()).optional(),
   company_id: z.nullable(z.string()).optional(),
   status: z.nullable(PurchaseOrderStatus$inboundSchema).optional(),
   issued_date: z.nullable(z.string().transform(v => new RFCDate(v))).optional(),
@@ -637,6 +645,7 @@ export const PurchaseOrderInput$inboundSchema: z.ZodType<
 }).transform((v) => {
   return remap$(v, {
     "po_number": "poNumber",
+    "subsidiary_id": "subsidiaryId",
     "company_id": "companyId",
     "issued_date": "issuedDate",
     "delivery_date": "deliveryDate",
@@ -667,6 +676,7 @@ export type PurchaseOrderInput$Outbound = {
   po_number?: string | null | undefined;
   reference?: string | null | undefined;
   supplier?: LinkedSupplierInput$Outbound | null | undefined;
+  subsidiary_id?: string | null | undefined;
   company_id?: string | null | undefined;
   status?: string | null | undefined;
   issued_date?: string | null | undefined;
@@ -708,6 +718,7 @@ export const PurchaseOrderInput$outboundSchema: z.ZodType<
   poNumber: z.nullable(z.string()).optional(),
   reference: z.nullable(z.string()).optional(),
   supplier: z.nullable(LinkedSupplierInput$outboundSchema).optional(),
+  subsidiaryId: z.nullable(z.string()).optional(),
   companyId: z.nullable(z.string()).optional(),
   status: z.nullable(PurchaseOrderStatus$outboundSchema).optional(),
   issuedDate: z.nullable(z.instanceof(RFCDate).transform(v => v.toString()))
@@ -745,6 +756,7 @@ export const PurchaseOrderInput$outboundSchema: z.ZodType<
 }).transform((v) => {
   return remap$(v, {
     poNumber: "po_number",
+    subsidiaryId: "subsidiary_id",
     companyId: "company_id",
     issuedDate: "issued_date",
     deliveryDate: "delivery_date",

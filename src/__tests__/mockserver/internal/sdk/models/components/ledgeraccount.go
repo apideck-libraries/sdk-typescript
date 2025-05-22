@@ -307,8 +307,8 @@ type LedgerAccount struct {
 	// The subsidiaries the account belongs to.
 	Subsidiaries []LedgerAccountSubsidiaries `json:"subsidiaries,omitempty"`
 	// When custom mappings are configured on the resource, the result is included here.
-	CustomMappings *CustomMappings `json:"custom_mappings,omitempty"`
-	CustomFields   []CustomField   `json:"custom_fields,omitempty"`
+	CustomMappings map[string]any `json:"custom_mappings,omitempty"`
+	CustomFields   []CustomField  `json:"custom_fields,omitempty"`
 	// A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
 	RowVersion *string `json:"row_version,omitempty"`
 	// The user who last updated the object.
@@ -516,7 +516,7 @@ func (o *LedgerAccount) GetSubsidiaries() []LedgerAccountSubsidiaries {
 	return o.Subsidiaries
 }
 
-func (o *LedgerAccount) GetCustomMappings() *CustomMappings {
+func (o *LedgerAccount) GetCustomMappings() map[string]any {
 	if o == nil {
 		return nil
 	}

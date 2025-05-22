@@ -21,12 +21,6 @@ import {
   Currency$outboundSchema,
 } from "./currency.js";
 import {
-  CustomMappings,
-  CustomMappings$inboundSchema,
-  CustomMappings$Outbound,
-  CustomMappings$outboundSchema,
-} from "./custommappings.js";
-import {
   Email,
   Email$inboundSchema,
   Email$Outbound,
@@ -134,7 +128,7 @@ export type CompanyInfo = {
   /**
    * When custom mappings are configured on the resource, the result is included here.
    */
-  customMappings?: CustomMappings | null | undefined;
+  customMappings?: { [k: string]: any } | null | undefined;
   /**
    * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
    */
@@ -221,7 +215,7 @@ export const CompanyInfo$inboundSchema: z.ZodType<
   addresses: z.array(Address$inboundSchema).optional(),
   phone_numbers: z.array(PhoneNumber$inboundSchema).optional(),
   emails: z.array(Email$inboundSchema).optional(),
-  custom_mappings: z.nullable(CustomMappings$inboundSchema).optional(),
+  custom_mappings: z.nullable(z.record(z.any())).optional(),
   row_version: z.nullable(z.string()).optional(),
   updated_by: z.nullable(z.string()).optional(),
   created_by: z.nullable(z.string()).optional(),
@@ -269,7 +263,7 @@ export type CompanyInfo$Outbound = {
   addresses?: Array<Address$Outbound> | undefined;
   phone_numbers?: Array<PhoneNumber$Outbound> | undefined;
   emails?: Array<Email$Outbound> | undefined;
-  custom_mappings?: CustomMappings$Outbound | null | undefined;
+  custom_mappings?: { [k: string]: any } | null | undefined;
   row_version?: string | null | undefined;
   updated_by?: string | null | undefined;
   created_by?: string | null | undefined;
@@ -300,7 +294,7 @@ export const CompanyInfo$outboundSchema: z.ZodType<
   addresses: z.array(Address$outboundSchema).optional(),
   phoneNumbers: z.array(PhoneNumber$outboundSchema).optional(),
   emails: z.array(Email$outboundSchema).optional(),
-  customMappings: z.nullable(CustomMappings$outboundSchema).optional(),
+  customMappings: z.nullable(z.record(z.any())).optional(),
   rowVersion: z.nullable(z.string()).optional(),
   updatedBy: z.nullable(z.string()).optional(),
   createdBy: z.nullable(z.string()).optional(),

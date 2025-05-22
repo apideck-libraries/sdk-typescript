@@ -46,6 +46,7 @@ let value: AccountingExpensesUpdateRequest = {
         description: "Travel US.",
         totalAmount: 275,
         billable: true,
+        lineNumber: 1,
       },
     ],
     customFields: [
@@ -53,7 +54,7 @@ let value: AccountingExpensesUpdateRequest = {
         id: "2389328923893298",
         name: "employee_level",
         description: "Employee Level",
-        value: true,
+        value: "Uses Salesforce and Marketo",
       },
     ],
     rowVersion: "1-12345",

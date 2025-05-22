@@ -138,7 +138,7 @@ type Contact struct {
 	// The last activity date of the contact.
 	LastActivityAt *time.Time `json:"last_activity_at,omitempty"`
 	// When custom mappings are configured on the resource, the result is included here.
-	CustomMappings *CustomMappings `json:"custom_mappings,omitempty"`
+	CustomMappings map[string]any `json:"custom_mappings,omitempty"`
 	// The last update date of the contact.
 	UpdatedAt *time.Time `json:"updated_at,omitempty"`
 	// The creation date of the contact.
@@ -412,7 +412,7 @@ func (o *Contact) GetLastActivityAt() *time.Time {
 	return o.LastActivityAt
 }
 
-func (o *Contact) GetCustomMappings() *CustomMappings {
+func (o *Contact) GetCustomMappings() map[string]any {
 	if o == nil {
 		return nil
 	}

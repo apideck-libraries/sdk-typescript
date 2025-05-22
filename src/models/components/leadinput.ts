@@ -63,7 +63,7 @@ export type LeadInput = {
   /**
    * The name of the company the lead is associated with.
    */
-  companyName: string | null;
+  companyName?: string | null | undefined;
   /**
    * The owner of the lead.
    */
@@ -126,7 +126,7 @@ export type LeadInput = {
   socialLinks?: Array<SocialLink> | undefined;
   phoneNumbers?: Array<PhoneNumber> | undefined;
   emails?: Array<Email> | undefined;
-  customFields?: Array<CustomField> | undefined;
+  customFields?: Array<CustomField> | null | undefined;
   tags?: Array<string> | null | undefined;
   /**
    * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
@@ -141,7 +141,7 @@ export const LeadInput$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   name: z.string(),
-  company_name: z.nullable(z.string()),
+  company_name: z.nullable(z.string()).optional(),
   owner_id: z.nullable(z.string()).optional(),
   owner_name: z.nullable(z.string()).optional(),
   company_id: z.nullable(z.string()).optional(),
@@ -162,7 +162,7 @@ export const LeadInput$inboundSchema: z.ZodType<
   social_links: z.array(SocialLink$inboundSchema).optional(),
   phone_numbers: z.array(PhoneNumber$inboundSchema).optional(),
   emails: z.array(Email$inboundSchema).optional(),
-  custom_fields: z.array(CustomField$inboundSchema).optional(),
+  custom_fields: z.nullable(z.array(CustomField$inboundSchema)).optional(),
   tags: z.nullable(z.array(z.string())).optional(),
   pass_through: z.array(PassThroughBody$inboundSchema).optional(),
 }).transform((v) => {
@@ -186,7 +186,7 @@ export const LeadInput$inboundSchema: z.ZodType<
 /** @internal */
 export type LeadInput$Outbound = {
   name: string;
-  company_name: string | null;
+  company_name?: string | null | undefined;
   owner_id?: string | null | undefined;
   owner_name?: string | null | undefined;
   company_id?: string | null | undefined;
@@ -207,7 +207,7 @@ export type LeadInput$Outbound = {
   social_links?: Array<SocialLink$Outbound> | undefined;
   phone_numbers?: Array<PhoneNumber$Outbound> | undefined;
   emails?: Array<Email$Outbound> | undefined;
-  custom_fields?: Array<CustomField$Outbound> | undefined;
+  custom_fields?: Array<CustomField$Outbound> | null | undefined;
   tags?: Array<string> | null | undefined;
   pass_through?: Array<PassThroughBody$Outbound> | undefined;
 };
@@ -219,7 +219,7 @@ export const LeadInput$outboundSchema: z.ZodType<
   LeadInput
 > = z.object({
   name: z.string(),
-  companyName: z.nullable(z.string()),
+  companyName: z.nullable(z.string()).optional(),
   ownerId: z.nullable(z.string()).optional(),
   ownerName: z.nullable(z.string()).optional(),
   companyId: z.nullable(z.string()).optional(),
@@ -240,7 +240,7 @@ export const LeadInput$outboundSchema: z.ZodType<
   socialLinks: z.array(SocialLink$outboundSchema).optional(),
   phoneNumbers: z.array(PhoneNumber$outboundSchema).optional(),
   emails: z.array(Email$outboundSchema).optional(),
-  customFields: z.array(CustomField$outboundSchema).optional(),
+  customFields: z.nullable(z.array(CustomField$outboundSchema)).optional(),
   tags: z.nullable(z.array(z.string())).optional(),
   passThrough: z.array(PassThroughBody$outboundSchema).optional(),
 }).transform((v) => {

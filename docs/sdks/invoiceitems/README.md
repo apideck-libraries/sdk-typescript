@@ -186,16 +186,7 @@ async function run() {
         nominalCode: "N091",
         code: "453",
       },
-      trackingCategories: [
-        {
-          id: "123456",
-          name: "New York",
-        },
-        {
-          id: "123456",
-          name: "New York",
-        },
-      ],
+      trackingCategories: null,
       active: true,
       departmentId: "12345",
       locationId: "12345",
@@ -214,19 +205,6 @@ async function run() {
                 },
               },
             },
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
-          ],
-        },
-        {
-          serviceId: "<id>",
-          extendPaths: [
             {
               path: "$.nested.property",
               value: {
@@ -313,16 +291,7 @@ async function run() {
         nominalCode: "N091",
         code: "453",
       },
-      trackingCategories: [
-        {
-          id: "123456",
-          name: "New York",
-        },
-        {
-          id: "123456",
-          name: "New York",
-        },
-      ],
+      trackingCategories: null,
       active: true,
       departmentId: "12345",
       locationId: "12345",
@@ -341,19 +310,6 @@ async function run() {
                 },
               },
             },
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
-          ],
-        },
-        {
-          serviceId: "<id>",
-          extendPaths: [
             {
               path: "$.nested.property",
               value: {
@@ -555,21 +511,13 @@ async function run() {
         nominalCode: "N091",
         code: "453",
       },
-      incomeAccount: {
-        id: "123456",
-        nominalCode: "N091",
-        code: "453",
-      },
+      incomeAccount: null,
       expenseAccount: {
         id: "123456",
         nominalCode: "N091",
         code: "453",
       },
       trackingCategories: [
-        {
-          id: "123456",
-          name: "New York",
-        },
         {
           id: "123456",
           name: "New York",
@@ -597,35 +545,11 @@ async function run() {
                 },
               },
             },
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
           ],
         },
         {
           serviceId: "<id>",
           extendPaths: [
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
             {
               path: "$.nested.property",
               value: {
@@ -703,21 +627,13 @@ async function run() {
         nominalCode: "N091",
         code: "453",
       },
-      incomeAccount: {
-        id: "123456",
-        nominalCode: "N091",
-        code: "453",
-      },
+      incomeAccount: null,
       expenseAccount: {
         id: "123456",
         nominalCode: "N091",
         code: "453",
       },
       trackingCategories: [
-        {
-          id: "123456",
-          name: "New York",
-        },
         {
           id: "123456",
           name: "New York",
@@ -745,35 +661,11 @@ async function run() {
                 },
               },
             },
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
           ],
         },
         {
           serviceId: "<id>",
           extendPaths: [
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
             {
               path: "$.nested.property",
               value: {

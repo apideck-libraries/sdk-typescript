@@ -20,12 +20,6 @@ import {
   CustomField$outboundSchema,
 } from "./customfield.js";
 import {
-  CustomMappings,
-  CustomMappings$inboundSchema,
-  CustomMappings$Outbound,
-  CustomMappings$outboundSchema,
-} from "./custommappings.js";
-import {
   ExpenseLineItem,
   ExpenseLineItem$inboundSchema,
   ExpenseLineItem$Outbound,
@@ -147,7 +141,7 @@ export type Expense = {
   /**
    * When custom mappings are configured on the resource, the result is included here.
    */
-  customMappings?: CustomMappings | null | undefined;
+  customMappings?: { [k: string]: any } | null | undefined;
   /**
    * The date and time when the object was last updated.
    */
@@ -160,6 +154,14 @@ export type Expense = {
    * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
    */
   rowVersion?: string | null | undefined;
+  /**
+   * The user who last updated the object.
+   */
+  updatedBy?: string | null | undefined;
+  /**
+   * The user who created the object.
+   */
+  createdBy?: string | null | undefined;
   /**
    * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
    */
@@ -297,7 +299,7 @@ export const Expense$inboundSchema: z.ZodType<Expense, z.ZodTypeDef, unknown> =
     total_amount: z.nullable(z.number()).optional(),
     line_items: z.array(ExpenseLineItem$inboundSchema),
     custom_fields: z.array(CustomField$inboundSchema).optional(),
-    custom_mappings: z.nullable(CustomMappings$inboundSchema).optional(),
+    custom_mappings: z.nullable(z.record(z.any())).optional(),
     updated_at: z.nullable(
       z.string().datetime({ offset: true }).transform(v => new Date(v)),
     ).optional(),
@@ -305,6 +307,8 @@ export const Expense$inboundSchema: z.ZodType<Expense, z.ZodTypeDef, unknown> =
       z.string().datetime({ offset: true }).transform(v => new Date(v)),
     ).optional(),
     row_version: z.nullable(z.string()).optional(),
+    updated_by: z.nullable(z.string()).optional(),
+    created_by: z.nullable(z.string()).optional(),
     pass_through: z.array(PassThroughBody$inboundSchema).optional(),
   }).transform((v) => {
     return remap$(v, {
@@ -324,6 +328,8 @@ export const Expense$inboundSchema: z.ZodType<Expense, z.ZodTypeDef, unknown> =
       "updated_at": "updatedAt",
       "created_at": "createdAt",
       "row_version": "rowVersion",
+      "updated_by": "updatedBy",
+      "created_by": "createdBy",
       "pass_through": "passThrough",
     });
   });
@@ -347,10 +353,12 @@ export type Expense$Outbound = {
   total_amount?: number | null | undefined;
   line_items: Array<ExpenseLineItem$Outbound>;
   custom_fields?: Array<CustomField$Outbound> | undefined;
-  custom_mappings?: CustomMappings$Outbound | null | undefined;
+  custom_mappings?: { [k: string]: any } | null | undefined;
   updated_at?: string | null | undefined;
   created_at?: string | null | undefined;
   row_version?: string | null | undefined;
+  updated_by?: string | null | undefined;
+  created_by?: string | null | undefined;
   pass_through?: Array<PassThroughBody$Outbound> | undefined;
 };
 
@@ -377,10 +385,12 @@ export const Expense$outboundSchema: z.ZodType<
   totalAmount: z.nullable(z.number()).optional(),
   lineItems: z.array(ExpenseLineItem$outboundSchema),
   customFields: z.array(CustomField$outboundSchema).optional(),
-  customMappings: z.nullable(CustomMappings$outboundSchema).optional(),
+  customMappings: z.nullable(z.record(z.any())).optional(),
   updatedAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
   createdAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
   rowVersion: z.nullable(z.string()).optional(),
+  updatedBy: z.nullable(z.string()).optional(),
+  createdBy: z.nullable(z.string()).optional(),
   passThrough: z.array(PassThroughBody$outboundSchema).optional(),
 }).transform((v) => {
   return remap$(v, {
@@ -400,6 +410,8 @@ export const Expense$outboundSchema: z.ZodType<
     updatedAt: "updated_at",
     createdAt: "created_at",
     rowVersion: "row_version",
+    updatedBy: "updated_by",
+    createdBy: "created_by",
     passThrough: "pass_through",
   });
 });

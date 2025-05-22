@@ -6,7 +6,7 @@ type LeadInput struct {
 	// Full name of the lead.
 	Name string `json:"name"`
 	// The name of the company the lead is associated with.
-	CompanyName *string `json:"company_name"`
+	CompanyName *string `json:"company_name,omitempty"`
 	// The owner of the lead.
 	OwnerID *string `json:"owner_id,omitempty"`
 	// The name of the owner of the lead.

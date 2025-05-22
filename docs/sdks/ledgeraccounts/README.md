@@ -185,17 +185,37 @@ async function run() {
           id: "2389328923893298",
           name: "employee_level",
           description: "Employee Level",
-          value: {},
-        },
-        {
-          id: "2389328923893298",
-          name: "employee_level",
-          description: "Employee Level",
-          value: true,
+          value: "Uses Salesforce and Marketo",
         },
       ],
       rowVersion: "1-12345",
       passThrough: [
+        {
+          serviceId: "<id>",
+          extendPaths: [
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+          ],
+        },
+        {
+          serviceId: "<id>",
+          extendPaths: [
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+          ],
+        },
         {
           serviceId: "<id>",
           extendPaths: [
@@ -286,17 +306,37 @@ async function run() {
           id: "2389328923893298",
           name: "employee_level",
           description: "Employee Level",
-          value: {},
-        },
-        {
-          id: "2389328923893298",
-          name: "employee_level",
-          description: "Employee Level",
-          value: true,
+          value: "Uses Salesforce and Marketo",
         },
       ],
       rowVersion: "1-12345",
       passThrough: [
+        {
+          serviceId: "<id>",
+          extendPaths: [
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+          ],
+        },
+        {
+          serviceId: "<id>",
+          extendPaths: [
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+          ],
+        },
         {
           serviceId: "<id>",
           extendPaths: [
@@ -506,22 +546,13 @@ async function run() {
           id: "2389328923893298",
           name: "employee_level",
           description: "Employee Level",
-          value: {},
+          value: "Uses Salesforce and Marketo",
         },
         {
           id: "2389328923893298",
           name: "employee_level",
           description: "Employee Level",
-          value: true,
-        },
-        {
-          id: "2389328923893298",
-          name: "employee_level",
-          description: "Employee Level",
-          value: [
-            {},
-            {},
-          ],
+          value: "Uses Salesforce and Marketo",
         },
       ],
       rowVersion: "1-12345",
@@ -537,27 +568,6 @@ async function run() {
                 },
               },
             },
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
-          ],
-        },
-        {
-          serviceId: "<id>",
-          extendPaths: [
             {
               path: "$.nested.property",
               value: {
@@ -646,22 +656,13 @@ async function run() {
           id: "2389328923893298",
           name: "employee_level",
           description: "Employee Level",
-          value: {},
+          value: "Uses Salesforce and Marketo",
         },
         {
           id: "2389328923893298",
           name: "employee_level",
           description: "Employee Level",
-          value: true,
-        },
-        {
-          id: "2389328923893298",
-          name: "employee_level",
-          description: "Employee Level",
-          value: [
-            {},
-            {},
-          ],
+          value: "Uses Salesforce and Marketo",
         },
       ],
       rowVersion: "1-12345",
@@ -677,27 +678,6 @@ async function run() {
                 },
               },
             },
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
-          ],
-        },
-        {
-          serviceId: "<id>",
-          extendPaths: [
             {
               path: "$.nested.property",
               value: {

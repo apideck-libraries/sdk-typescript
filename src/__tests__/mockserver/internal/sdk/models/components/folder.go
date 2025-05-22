@@ -24,7 +24,7 @@ type Folder struct {
 	// Whether the list of parent folder is complete. Some connectors only return the direct parent of a folder
 	ParentFoldersComplete *bool `json:"parent_folders_complete,omitempty"`
 	// When custom mappings are configured on the resource, the result is included here.
-	CustomMappings *CustomMappings `json:"custom_mappings,omitempty"`
+	CustomMappings map[string]any `json:"custom_mappings,omitempty"`
 	// The user who last updated the object.
 	UpdatedBy *string `json:"updated_by,omitempty"`
 	// The user who created the object.
@@ -102,7 +102,7 @@ func (o *Folder) GetParentFoldersComplete() *bool {
 	return o.ParentFoldersComplete
 }
 
-func (o *Folder) GetCustomMappings() *CustomMappings {
+func (o *Folder) GetCustomMappings() map[string]any {
 	if o == nil {
 		return nil
 	}

@@ -214,7 +214,7 @@ type Message struct {
 	// The ID of the Messaging Service used with the message. In case of Plivo this links to the Powerpack ID.
 	MessagingServiceID *string `json:"messaging_service_id,omitempty"`
 	// When custom mappings are configured on the resource, the result is included here.
-	CustomMappings *CustomMappings `json:"custom_mappings,omitempty"`
+	CustomMappings map[string]any `json:"custom_mappings,omitempty"`
 	// The user who last updated the object.
 	UpdatedBy *string `json:"updated_by,omitempty"`
 	// The user who created the object.
@@ -357,7 +357,7 @@ func (o *Message) GetMessagingServiceID() *string {
 	return o.MessagingServiceID
 }
 
-func (o *Message) GetCustomMappings() *CustomMappings {
+func (o *Message) GetCustomMappings() map[string]any {
 	if o == nil {
 		return nil
 	}

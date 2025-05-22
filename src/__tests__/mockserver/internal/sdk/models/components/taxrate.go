@@ -113,7 +113,7 @@ type TaxRate struct {
 	// Tax rate status
 	Status *TaxRateStatus `json:"status,omitempty"`
 	// When custom mappings are configured on the resource, the result is included here.
-	CustomMappings *CustomMappings `json:"custom_mappings,omitempty"`
+	CustomMappings map[string]any `json:"custom_mappings,omitempty"`
 	// A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
 	RowVersion *string `json:"row_version,omitempty"`
 	// The user who last updated the object.
@@ -233,7 +233,7 @@ func (o *TaxRate) GetStatus() *TaxRateStatus {
 	return o.Status
 }
 
-func (o *TaxRate) GetCustomMappings() *CustomMappings {
+func (o *TaxRate) GetCustomMappings() map[string]any {
 	if o == nil {
 		return nil
 	}

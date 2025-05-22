@@ -12,12 +12,6 @@ import {
   Currency$inboundSchema,
   Currency$outboundSchema,
 } from "./currency.js";
-import {
-  CustomMappings,
-  CustomMappings$inboundSchema,
-  CustomMappings$Outbound,
-  CustomMappings$outboundSchema,
-} from "./custommappings.js";
 
 /**
  * A balance sheet assets account represents the financial position of a company at a specific point in time.
@@ -163,7 +157,7 @@ export type Reports = {
   /**
    * When custom mappings are configured on the resource, the result is included here.
    */
-  customMappings?: CustomMappings | null | undefined;
+  customMappings?: { [k: string]: any } | null | undefined;
   /**
    * The user who last updated the object.
    */
@@ -505,7 +499,7 @@ export const Reports$inboundSchema: z.ZodType<Reports, z.ZodTypeDef, unknown> =
     liabilities: z.lazy(() => BalanceSheetLiabilitiesAccount$inboundSchema),
     equity: z.lazy(() => BalanceSheetEquityAccount$inboundSchema),
     net_assets: z.number().optional(),
-    custom_mappings: z.nullable(CustomMappings$inboundSchema).optional(),
+    custom_mappings: z.nullable(z.record(z.any())).optional(),
     updated_by: z.nullable(z.string()).optional(),
     created_by: z.nullable(z.string()).optional(),
     updated_at: z.nullable(
@@ -543,7 +537,7 @@ export type Reports$Outbound = {
   liabilities: BalanceSheetLiabilitiesAccount$Outbound;
   equity: BalanceSheetEquityAccount$Outbound;
   net_assets?: number | undefined;
-  custom_mappings?: CustomMappings$Outbound | null | undefined;
+  custom_mappings?: { [k: string]: any } | null | undefined;
   updated_by?: string | null | undefined;
   created_by?: string | null | undefined;
   updated_at?: string | null | undefined;
@@ -568,7 +562,7 @@ export const Reports$outboundSchema: z.ZodType<
   liabilities: z.lazy(() => BalanceSheetLiabilitiesAccount$outboundSchema),
   equity: z.lazy(() => BalanceSheetEquityAccount$outboundSchema),
   netAssets: z.number().optional(),
-  customMappings: z.nullable(CustomMappings$outboundSchema).optional(),
+  customMappings: z.nullable(z.record(z.any())).optional(),
   updatedBy: z.nullable(z.string()).optional(),
   createdBy: z.nullable(z.string()).optional(),
   updatedAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),

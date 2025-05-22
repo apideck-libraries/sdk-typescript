@@ -93,7 +93,7 @@ type Customer struct {
 	Channel      *string       `json:"channel,omitempty"`
 	CustomFields []CustomField `json:"custom_fields,omitempty"`
 	// When custom mappings are configured on the resource, the result is included here.
-	CustomMappings *CustomMappings `json:"custom_mappings,omitempty"`
+	CustomMappings map[string]any `json:"custom_mappings,omitempty"`
 	// The user who last updated the object.
 	UpdatedBy *string `json:"updated_by,omitempty"`
 	// The user who created the object.
@@ -315,7 +315,7 @@ func (o *Customer) GetCustomFields() []CustomField {
 	return o.CustomFields
 }
 
-func (o *Customer) GetCustomMappings() *CustomMappings {
+func (o *Customer) GetCustomMappings() map[string]any {
 	if o == nil {
 		return nil
 	}

@@ -89,9 +89,7 @@ let value: GetBillPaymentsResponse = {
           id: "2389328923893298",
           name: "employee_level",
           description: "Employee Level",
-          value: [
-            "<value>",
-          ],
+          value: "Uses Salesforce and Marketo",
         },
       ],
       rowVersion: "1-12345",

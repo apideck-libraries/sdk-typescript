@@ -19,12 +19,6 @@ import {
   CustomField$Outbound,
   CustomField$outboundSchema,
 } from "./customfield.js";
-import {
-  CustomMappings,
-  CustomMappings$inboundSchema,
-  CustomMappings$Outbound,
-  CustomMappings$outboundSchema,
-} from "./custommappings.js";
 
 /**
  * Type of the bank account.
@@ -91,7 +85,7 @@ export type BankFeedAccount = {
   /**
    * When custom mappings are configured on the resource, the result is included here.
    */
-  customMappings?: CustomMappings | null | undefined;
+  customMappings?: { [k: string]: any } | null | undefined;
   /**
    * The date and time when the object was created.
    */
@@ -202,7 +196,7 @@ export const BankFeedAccount$inboundSchema: z.ZodType<
   feed_status: FeedStatus$inboundSchema.optional(),
   country: z.nullable(z.string()).optional(),
   custom_fields: z.array(CustomField$inboundSchema).optional(),
-  custom_mappings: z.nullable(CustomMappings$inboundSchema).optional(),
+  custom_mappings: z.nullable(z.record(z.any())).optional(),
   created_at: z.nullable(
     z.string().datetime({ offset: true }).transform(v => new Date(v)),
   ).optional(),
@@ -240,7 +234,7 @@ export type BankFeedAccount$Outbound = {
   feed_status?: string | undefined;
   country?: string | null | undefined;
   custom_fields?: Array<CustomField$Outbound> | undefined;
-  custom_mappings?: CustomMappings$Outbound | null | undefined;
+  custom_mappings?: { [k: string]: any } | null | undefined;
   created_at?: string | null | undefined;
   updated_at?: string | null | undefined;
   updated_by?: string | null | undefined;
@@ -263,7 +257,7 @@ export const BankFeedAccount$outboundSchema: z.ZodType<
   feedStatus: FeedStatus$outboundSchema.optional(),
   country: z.nullable(z.string()).optional(),
   customFields: z.array(CustomField$outboundSchema).optional(),
-  customMappings: z.nullable(CustomMappings$outboundSchema).optional(),
+  customMappings: z.nullable(z.record(z.any())).optional(),
   createdAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
   updatedAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
   updatedBy: z.nullable(z.string()).optional(),

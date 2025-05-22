@@ -21,12 +21,6 @@ import {
   CustomField$outboundSchema,
 } from "./customfield.js";
 import {
-  CustomMappings,
-  CustomMappings$inboundSchema,
-  CustomMappings$Outbound,
-  CustomMappings$outboundSchema,
-} from "./custommappings.js";
-import {
   Email,
   Email$inboundSchema,
   Email$Outbound,
@@ -191,7 +185,7 @@ export type Contact = {
   phoneNumbers?: Array<PhoneNumber> | undefined;
   emails?: Array<Email> | undefined;
   emailDomain?: string | null | undefined;
-  customFields?: Array<CustomField> | undefined;
+  customFields?: Array<CustomField> | null | undefined;
   tags?: Array<string> | null | undefined;
   /**
    * The first call date of the contact.
@@ -208,7 +202,7 @@ export type Contact = {
   /**
    * When custom mappings are configured on the resource, the result is included here.
    */
-  customMappings?: CustomMappings | null | undefined;
+  customMappings?: { [k: string]: any } | null | undefined;
   /**
    * The last update date of the contact.
    */
@@ -330,7 +324,7 @@ export type ContactInput = {
   phoneNumbers?: Array<PhoneNumber> | undefined;
   emails?: Array<Email> | undefined;
   emailDomain?: string | null | undefined;
-  customFields?: Array<CustomField> | undefined;
+  customFields?: Array<CustomField> | null | undefined;
   tags?: Array<string> | null | undefined;
   /**
    * The opportunity ids of the contact.
@@ -416,7 +410,7 @@ export const Contact$inboundSchema: z.ZodType<Contact, z.ZodTypeDef, unknown> =
     phone_numbers: z.array(PhoneNumber$inboundSchema).optional(),
     emails: z.array(Email$inboundSchema).optional(),
     email_domain: z.nullable(z.string()).optional(),
-    custom_fields: z.array(CustomField$inboundSchema).optional(),
+    custom_fields: z.nullable(z.array(CustomField$inboundSchema)).optional(),
     tags: z.nullable(z.array(z.string())).optional(),
     first_call_at: z.nullable(
       z.string().datetime({ offset: true }).transform(v => new Date(v)),
@@ -427,7 +421,7 @@ export const Contact$inboundSchema: z.ZodType<Contact, z.ZodTypeDef, unknown> =
     last_activity_at: z.nullable(
       z.string().datetime({ offset: true }).transform(v => new Date(v)),
     ).optional(),
-    custom_mappings: z.nullable(CustomMappings$inboundSchema).optional(),
+    custom_mappings: z.nullable(z.record(z.any())).optional(),
     updated_at: z.nullable(
       z.string().datetime({ offset: true }).transform(v => new Date(v)),
     ).optional(),
@@ -496,12 +490,12 @@ export type Contact$Outbound = {
   phone_numbers?: Array<PhoneNumber$Outbound> | undefined;
   emails?: Array<Email$Outbound> | undefined;
   email_domain?: string | null | undefined;
-  custom_fields?: Array<CustomField$Outbound> | undefined;
+  custom_fields?: Array<CustomField$Outbound> | null | undefined;
   tags?: Array<string> | null | undefined;
   first_call_at?: string | null | undefined;
   first_email_at?: string | null | undefined;
   last_activity_at?: string | null | undefined;
-  custom_mappings?: CustomMappings$Outbound | null | undefined;
+  custom_mappings?: { [k: string]: any } | null | undefined;
   updated_at?: string | null | undefined;
   created_at?: string | null | undefined;
   opportunity_ids?: Array<string> | undefined;
@@ -545,13 +539,13 @@ export const Contact$outboundSchema: z.ZodType<
   phoneNumbers: z.array(PhoneNumber$outboundSchema).optional(),
   emails: z.array(Email$outboundSchema).optional(),
   emailDomain: z.nullable(z.string()).optional(),
-  customFields: z.array(CustomField$outboundSchema).optional(),
+  customFields: z.nullable(z.array(CustomField$outboundSchema)).optional(),
   tags: z.nullable(z.array(z.string())).optional(),
   firstCallAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
   firstEmailAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
   lastActivityAt: z.nullable(z.date().transform(v => v.toISOString()))
     .optional(),
-  customMappings: z.nullable(CustomMappings$outboundSchema).optional(),
+  customMappings: z.nullable(z.record(z.any())).optional(),
   updatedAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
   createdAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
   opportunityIds: z.array(z.string()).optional(),
@@ -646,7 +640,7 @@ export const ContactInput$inboundSchema: z.ZodType<
   phone_numbers: z.array(PhoneNumber$inboundSchema).optional(),
   emails: z.array(Email$inboundSchema).optional(),
   email_domain: z.nullable(z.string()).optional(),
-  custom_fields: z.array(CustomField$inboundSchema).optional(),
+  custom_fields: z.nullable(z.array(CustomField$inboundSchema)).optional(),
   tags: z.nullable(z.array(z.string())).optional(),
   opportunity_ids: z.array(z.string()).optional(),
   pass_through: z.array(PassThroughBody$inboundSchema).optional(),
@@ -703,7 +697,7 @@ export type ContactInput$Outbound = {
   phone_numbers?: Array<PhoneNumber$Outbound> | undefined;
   emails?: Array<Email$Outbound> | undefined;
   email_domain?: string | null | undefined;
-  custom_fields?: Array<CustomField$Outbound> | undefined;
+  custom_fields?: Array<CustomField$Outbound> | null | undefined;
   tags?: Array<string> | null | undefined;
   opportunity_ids?: Array<string> | undefined;
   pass_through?: Array<PassThroughBody$Outbound> | undefined;
@@ -745,7 +739,7 @@ export const ContactInput$outboundSchema: z.ZodType<
   phoneNumbers: z.array(PhoneNumber$outboundSchema).optional(),
   emails: z.array(Email$outboundSchema).optional(),
   emailDomain: z.nullable(z.string()).optional(),
-  customFields: z.array(CustomField$outboundSchema).optional(),
+  customFields: z.nullable(z.array(CustomField$outboundSchema)).optional(),
   tags: z.nullable(z.array(z.string())).optional(),
   opportunityIds: z.array(z.string()).optional(),
   passThrough: z.array(PassThroughBody$outboundSchema).optional(),

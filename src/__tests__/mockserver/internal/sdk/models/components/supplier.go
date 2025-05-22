@@ -88,8 +88,8 @@ type Supplier struct {
 	// The channel through which the transaction is processed.
 	Channel *string `json:"channel,omitempty"`
 	// When custom mappings are configured on the resource, the result is included here.
-	CustomMappings *CustomMappings `json:"custom_mappings,omitempty"`
-	CustomFields   []CustomField   `json:"custom_fields,omitempty"`
+	CustomMappings map[string]any `json:"custom_mappings,omitempty"`
+	CustomFields   []CustomField  `json:"custom_fields,omitempty"`
 	// The user who last updated the object.
 	UpdatedBy *string `json:"updated_by,omitempty"`
 	// The user who created the object.
@@ -292,7 +292,7 @@ func (o *Supplier) GetChannel() *string {
 	return o.Channel
 }
 
-func (o *Supplier) GetCustomMappings() *CustomMappings {
+func (o *Supplier) GetCustomMappings() map[string]any {
 	if o == nil {
 		return nil
 	}

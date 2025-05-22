@@ -80,13 +80,7 @@ let value: HrisTimeOffRequestsAllResponse = {
     error: "Bad Request",
     typeName: "RequestHeadersValidationError",
     message: "Invalid Params",
-    detail: {
-      "missing": [
-        {
-          "x-apideck-consumer-id": "required",
-        },
-      ],
-    },
+    detail: "Missing Header: x-apideck-consumer-id",
     ref: "https://developers.apideck.com/errors#unauthorizederror",
   },
 };

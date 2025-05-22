@@ -134,7 +134,7 @@ type EcommerceOrder struct {
 	// Note for the order.
 	Note *string `json:"note,omitempty"`
 	// When custom mappings are configured on the resource, the result is included here.
-	CustomMappings *CustomMappings `json:"custom_mappings,omitempty"`
+	CustomMappings map[string]any `json:"custom_mappings,omitempty"`
 	// The date and time when the object was created.
 	CreatedAt *time.Time `json:"created_at,omitempty"`
 	// The date and time when the object was last updated.
@@ -299,7 +299,7 @@ func (o *EcommerceOrder) GetNote() *string {
 	return o.Note
 }
 
-func (o *EcommerceOrder) GetCustomMappings() *CustomMappings {
+func (o *EcommerceOrder) GetCustomMappings() map[string]any {
 	if o == nil {
 		return nil
 	}

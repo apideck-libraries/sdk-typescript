@@ -80,7 +80,7 @@ type Opportunity struct {
 	// The date and time when the lead associated with the opportunity was created.
 	DateLeadCreated *time.Time `json:"date_lead_created,omitempty"`
 	// When custom mappings are configured on the resource, the result is included here.
-	CustomMappings *CustomMappings `json:"custom_mappings,omitempty"`
+	CustomMappings map[string]any `json:"custom_mappings,omitempty"`
 	// The unique identifier of the user who last updated the opportunity.
 	UpdatedBy *string `json:"updated_by,omitempty"`
 	// The unique identifier of the user who created the opportunity.
@@ -356,7 +356,7 @@ func (o *Opportunity) GetDateLeadCreated() *time.Time {
 	return o.DateLeadCreated
 }
 
-func (o *Opportunity) GetCustomMappings() *CustomMappings {
+func (o *Opportunity) GetCustomMappings() map[string]any {
 	if o == nil {
 		return nil
 	}

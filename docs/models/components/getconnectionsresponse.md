@@ -75,11 +75,10 @@ let value: GetConnectionsResponse = {
               options: [
                 {
                   label: "General Channel",
-                  value: 12.5,
                   optionType: "simple",
                 },
               ],
-              value: true,
+              value: "GC5000 series",
             },
           ],
         },

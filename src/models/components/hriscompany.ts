@@ -20,12 +20,6 @@ import {
   Currency$outboundSchema,
 } from "./currency.js";
 import {
-  CustomMappings,
-  CustomMappings$inboundSchema,
-  CustomMappings$Outbound,
-  CustomMappings$outboundSchema,
-} from "./custommappings.js";
-import {
   Email,
   Email$inboundSchema,
   Email$Outbound,
@@ -83,7 +77,7 @@ export type HrisCompany = {
   /**
    * When custom mappings are configured on the resource, the result is included here.
    */
-  customMappings?: CustomMappings | null | undefined;
+  customMappings?: { [k: string]: any } | null | undefined;
   deleted?: boolean | undefined;
   /**
    * The user who last updated the object.
@@ -170,7 +164,7 @@ export const HrisCompany$inboundSchema: z.ZodType<
   emails: z.array(Email$inboundSchema).optional(),
   websites: z.array(Website$inboundSchema).optional(),
   debtor_id: z.nullable(z.string()).optional(),
-  custom_mappings: z.nullable(CustomMappings$inboundSchema).optional(),
+  custom_mappings: z.nullable(z.record(z.any())).optional(),
   deleted: z.boolean().optional(),
   updated_by: z.nullable(z.string()).optional(),
   created_by: z.nullable(z.string()).optional(),
@@ -211,7 +205,7 @@ export type HrisCompany$Outbound = {
   emails?: Array<Email$Outbound> | undefined;
   websites?: Array<Website$Outbound> | undefined;
   debtor_id?: string | null | undefined;
-  custom_mappings?: CustomMappings$Outbound | null | undefined;
+  custom_mappings?: { [k: string]: any } | null | undefined;
   deleted?: boolean | undefined;
   updated_by?: string | null | undefined;
   created_by?: string | null | undefined;
@@ -238,7 +232,7 @@ export const HrisCompany$outboundSchema: z.ZodType<
   emails: z.array(Email$outboundSchema).optional(),
   websites: z.array(Website$outboundSchema).optional(),
   debtorId: z.nullable(z.string()).optional(),
-  customMappings: z.nullable(CustomMappings$outboundSchema).optional(),
+  customMappings: z.nullable(z.record(z.any())).optional(),
   deleted: z.boolean().optional(),
   updatedBy: z.nullable(z.string()).optional(),
   createdBy: z.nullable(z.string()).optional(),

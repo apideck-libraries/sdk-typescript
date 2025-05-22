@@ -9,12 +9,6 @@ import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
-  CustomMappings,
-  CustomMappings$inboundSchema,
-  CustomMappings$Outbound,
-  CustomMappings$outboundSchema,
-} from "./custommappings.js";
-import {
   PassThroughBody,
   PassThroughBody$inboundSchema,
   PassThroughBody$Outbound,
@@ -131,7 +125,7 @@ export type TimeOffRequest = {
   /**
    * When custom mappings are configured on the resource, the result is included here.
    */
-  customMappings?: CustomMappings | null | undefined;
+  customMappings?: { [k: string]: any } | null | undefined;
   /**
    * The user who last updated the object.
    */
@@ -348,7 +342,7 @@ export const TimeOffRequest$inboundSchema: z.ZodType<
   amount: z.nullable(z.number()).optional(),
   day_part: z.nullable(z.string()).optional(),
   notes: z.lazy(() => Notes$inboundSchema).optional(),
-  custom_mappings: z.nullable(CustomMappings$inboundSchema).optional(),
+  custom_mappings: z.nullable(z.record(z.any())).optional(),
   updated_by: z.nullable(z.string()).optional(),
   created_by: z.nullable(z.string()).optional(),
   updated_at: z.nullable(
@@ -395,7 +389,7 @@ export type TimeOffRequest$Outbound = {
   amount?: number | null | undefined;
   day_part?: string | null | undefined;
   notes?: Notes$Outbound | undefined;
-  custom_mappings?: CustomMappings$Outbound | null | undefined;
+  custom_mappings?: { [k: string]: any } | null | undefined;
   updated_by?: string | null | undefined;
   created_by?: string | null | undefined;
   updated_at?: string | null | undefined;
@@ -424,7 +418,7 @@ export const TimeOffRequest$outboundSchema: z.ZodType<
   amount: z.nullable(z.number()).optional(),
   dayPart: z.nullable(z.string()).optional(),
   notes: z.lazy(() => Notes$outboundSchema).optional(),
-  customMappings: z.nullable(CustomMappings$outboundSchema).optional(),
+  customMappings: z.nullable(z.record(z.any())).optional(),
   updatedBy: z.nullable(z.string()).optional(),
   createdBy: z.nullable(z.string()).optional(),
   updatedAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),

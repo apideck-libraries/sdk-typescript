@@ -25,12 +25,6 @@ import {
   CustomField$outboundSchema,
 } from "./customfield.js";
 import {
-  CustomMappings,
-  CustomMappings$inboundSchema,
-  CustomMappings$Outbound,
-  CustomMappings$outboundSchema,
-} from "./custommappings.js";
-import {
   DeprecatedLinkedSupplier,
   DeprecatedLinkedSupplier$inboundSchema,
   DeprecatedLinkedSupplier$Outbound,
@@ -176,7 +170,7 @@ export type Payment = {
   /**
    * When custom mappings are configured on the resource, the result is included here.
    */
-  customMappings?: CustomMappings | null | undefined;
+  customMappings?: { [k: string]: any } | null | undefined;
   /**
    * The user who last updated the object.
    */
@@ -232,7 +226,7 @@ export const Payment$inboundSchema: z.ZodType<Payment, z.ZodTypeDef, unknown> =
     custom_fields: z.array(CustomField$inboundSchema).optional(),
     row_version: z.nullable(z.string()).optional(),
     display_id: z.nullable(z.string()).optional(),
-    custom_mappings: z.nullable(CustomMappings$inboundSchema).optional(),
+    custom_mappings: z.nullable(z.record(z.any())).optional(),
     updated_by: z.nullable(z.string()).optional(),
     created_by: z.nullable(z.string()).optional(),
     created_at: z.nullable(
@@ -298,7 +292,7 @@ export type Payment$Outbound = {
   custom_fields?: Array<CustomField$Outbound> | undefined;
   row_version?: string | null | undefined;
   display_id?: string | null | undefined;
-  custom_mappings?: CustomMappings$Outbound | null | undefined;
+  custom_mappings?: { [k: string]: any } | null | undefined;
   updated_by?: string | null | undefined;
   created_by?: string | null | undefined;
   created_at?: string | null | undefined;
@@ -340,7 +334,7 @@ export const Payment$outboundSchema: z.ZodType<
   customFields: z.array(CustomField$outboundSchema).optional(),
   rowVersion: z.nullable(z.string()).optional(),
   displayId: z.nullable(z.string()).optional(),
-  customMappings: z.nullable(CustomMappings$outboundSchema).optional(),
+  customMappings: z.nullable(z.record(z.any())).optional(),
   updatedBy: z.nullable(z.string()).optional(),
   createdBy: z.nullable(z.string()).optional(),
   createdAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),

@@ -33,12 +33,6 @@ import {
   CollectionTagInput$outboundSchema,
 } from "./collectiontaginput.js";
 import {
-  CustomMappings,
-  CustomMappings$inboundSchema,
-  CustomMappings$Outbound,
-  CustomMappings$outboundSchema,
-} from "./custommappings.js";
-import {
   PassThroughBody,
   PassThroughBody$inboundSchema,
   PassThroughBody$Outbound,
@@ -117,7 +111,7 @@ export type Ticket = {
   /**
    * When custom mappings are configured on the resource, the result is included here.
    */
-  customMappings?: CustomMappings | null | undefined;
+  customMappings?: { [k: string]: any } | null | undefined;
   /**
    * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
    */
@@ -206,7 +200,7 @@ export const Ticket$inboundSchema: z.ZodType<Ticket, z.ZodTypeDef, unknown> = z
       z.string().datetime({ offset: true }).transform(v => new Date(v)),
     ).optional(),
     tags: z.array(CollectionTag$inboundSchema).optional(),
-    custom_mappings: z.nullable(CustomMappings$inboundSchema).optional(),
+    custom_mappings: z.nullable(z.record(z.any())).optional(),
     pass_through: z.array(PassThroughBody$inboundSchema).optional(),
   }).transform((v) => {
     return remap$(v, {
@@ -239,7 +233,7 @@ export type Ticket$Outbound = {
   due_date?: string | null | undefined;
   completed_at?: string | null | undefined;
   tags?: Array<CollectionTag$Outbound> | undefined;
-  custom_mappings?: CustomMappings$Outbound | null | undefined;
+  custom_mappings?: { [k: string]: any } | null | undefined;
   pass_through?: Array<PassThroughBody$Outbound> | undefined;
 };
 
@@ -264,7 +258,7 @@ export const Ticket$outboundSchema: z.ZodType<
   dueDate: z.nullable(z.date().transform(v => v.toISOString())).optional(),
   completedAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
   tags: z.array(CollectionTag$outboundSchema).optional(),
-  customMappings: z.nullable(CustomMappings$outboundSchema).optional(),
+  customMappings: z.nullable(z.record(z.any())).optional(),
   passThrough: z.array(PassThroughBody$outboundSchema).optional(),
 }).transform((v) => {
   return remap$(v, {

@@ -64,7 +64,7 @@ type Payment struct {
 	// Id to be displayed.
 	DisplayID *string `json:"display_id,omitempty"`
 	// When custom mappings are configured on the resource, the result is included here.
-	CustomMappings *CustomMappings `json:"custom_mappings,omitempty"`
+	CustomMappings map[string]any `json:"custom_mappings,omitempty"`
 	// The user who last updated the object.
 	UpdatedBy *string `json:"updated_by,omitempty"`
 	// The user who created the object.
@@ -270,7 +270,7 @@ func (o *Payment) GetDisplayID() *string {
 	return o.DisplayID
 }
 
-func (o *Payment) GetCustomMappings() *CustomMappings {
+func (o *Payment) GetCustomMappings() map[string]any {
 	if o == nil {
 		return nil
 	}

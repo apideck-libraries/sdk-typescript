@@ -162,7 +162,7 @@ type EcommerceCustomer struct {
 	Addresses []Addresses            `json:"addresses,omitempty"`
 	Orders    []LinkedEcommerceOrder `json:"orders,omitempty"`
 	// When custom mappings are configured on the resource, the result is included here.
-	CustomMappings *CustomMappings `json:"custom_mappings,omitempty"`
+	CustomMappings map[string]any `json:"custom_mappings,omitempty"`
 	// The date and time when the object was created.
 	CreatedAt *time.Time `json:"created_at,omitempty"`
 	// The date and time when the object was last updated.
@@ -257,7 +257,7 @@ func (o *EcommerceCustomer) GetOrders() []LinkedEcommerceOrder {
 	return o.Orders
 }
 
-func (o *EcommerceCustomer) GetCustomMappings() *CustomMappings {
+func (o *EcommerceCustomer) GetCustomMappings() map[string]any {
 	if o == nil {
 		return nil
 	}

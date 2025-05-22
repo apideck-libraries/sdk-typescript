@@ -8,7 +8,7 @@ type CollectionTag struct {
 	// The name of the tag.
 	Name *string `json:"name,omitempty"`
 	// When custom mappings are configured on the resource, the result is included here.
-	CustomMappings *CustomMappings `json:"custom_mappings,omitempty"`
+	CustomMappings map[string]any `json:"custom_mappings,omitempty"`
 }
 
 func (o *CollectionTag) GetID() *string {
@@ -25,7 +25,7 @@ func (o *CollectionTag) GetName() *string {
 	return o.Name
 }
 
-func (o *CollectionTag) GetCustomMappings() *CustomMappings {
+func (o *CollectionTag) GetCustomMappings() map[string]any {
 	if o == nil {
 		return nil
 	}

@@ -24,7 +24,7 @@ type Note struct {
 	// Whether the Note is active or not.
 	Active *bool `json:"active,omitempty"`
 	// When custom mappings are configured on the resource, the result is included here.
-	CustomMappings *CustomMappings `json:"custom_mappings,omitempty"`
+	CustomMappings map[string]any `json:"custom_mappings,omitempty"`
 	// The user that last updated the note.
 	UpdatedBy *string `json:"updated_by,omitempty"`
 	// The user that created the note.
@@ -107,7 +107,7 @@ func (o *Note) GetActive() *bool {
 	return o.Active
 }
 
-func (o *Note) GetCustomMappings() *CustomMappings {
+func (o *Note) GetCustomMappings() map[string]any {
 	if o == nil {
 		return nil
 	}

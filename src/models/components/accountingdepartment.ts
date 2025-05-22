@@ -9,12 +9,6 @@ import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
-  CustomMappings,
-  CustomMappings$inboundSchema,
-  CustomMappings$Outbound,
-  CustomMappings$outboundSchema,
-} from "./custommappings.js";
-import {
   PassThroughBody,
   PassThroughBody$inboundSchema,
   PassThroughBody$Outbound,
@@ -70,7 +64,7 @@ export type AccountingDepartment = {
   /**
    * When custom mappings are configured on the resource, the result is included here.
    */
-  customMappings?: CustomMappings | null | undefined;
+  customMappings?: { [k: string]: any } | null | undefined;
   /**
    * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
    */
@@ -158,7 +152,7 @@ export const AccountingDepartment$inboundSchema: z.ZodType<
   status: DepartmentStatus$inboundSchema.optional(),
   subsidiaries: z.array(SubsidiaryReference$inboundSchema).optional(),
   code: z.string().optional(),
-  custom_mappings: z.nullable(CustomMappings$inboundSchema).optional(),
+  custom_mappings: z.nullable(z.record(z.any())).optional(),
   row_version: z.nullable(z.string()).optional(),
   updated_by: z.nullable(z.string()).optional(),
   created_by: z.nullable(z.string()).optional(),
@@ -190,7 +184,7 @@ export type AccountingDepartment$Outbound = {
   status?: string | undefined;
   subsidiaries?: Array<SubsidiaryReference$Outbound> | undefined;
   code?: string | undefined;
-  custom_mappings?: CustomMappings$Outbound | null | undefined;
+  custom_mappings?: { [k: string]: any } | null | undefined;
   row_version?: string | null | undefined;
   updated_by?: string | null | undefined;
   created_by?: string | null | undefined;
@@ -211,7 +205,7 @@ export const AccountingDepartment$outboundSchema: z.ZodType<
   status: DepartmentStatus$outboundSchema.optional(),
   subsidiaries: z.array(SubsidiaryReference$outboundSchema).optional(),
   code: z.string().optional(),
-  customMappings: z.nullable(CustomMappings$outboundSchema).optional(),
+  customMappings: z.nullable(z.record(z.any())).optional(),
   rowVersion: z.nullable(z.string()).optional(),
   updatedBy: z.nullable(z.string()).optional(),
   createdBy: z.nullable(z.string()).optional(),

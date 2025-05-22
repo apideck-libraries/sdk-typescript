@@ -92,7 +92,7 @@ type Company struct {
 	// The date of birth of the person.
 	Birthday *types.Date `json:"birthday,omitempty"`
 	// When custom mappings are configured on the resource, the result is included here.
-	CustomMappings *CustomMappings `json:"custom_mappings,omitempty"`
+	CustomMappings map[string]any `json:"custom_mappings,omitempty"`
 	// Updated by user ID
 	UpdatedBy *string `json:"updated_by,omitempty"`
 	// Created by user ID
@@ -368,7 +368,7 @@ func (o *Company) GetBirthday() *types.Date {
 	return o.Birthday
 }
 
-func (o *Company) GetCustomMappings() *CustomMappings {
+func (o *Company) GetCustomMappings() map[string]any {
 	if o == nil {
 		return nil
 	}

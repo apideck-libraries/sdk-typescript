@@ -21,7 +21,7 @@ type CollectionUser struct {
 	// The URL of the photo of a person.
 	PhotoURL *string `json:"photo_url,omitempty"`
 	// When custom mappings are configured on the resource, the result is included here.
-	CustomMappings *CustomMappings `json:"custom_mappings,omitempty"`
+	CustomMappings map[string]any `json:"custom_mappings,omitempty"`
 	// The date and time when the object was last updated.
 	UpdatedAt *time.Time `json:"updated_at,omitempty"`
 	// The date and time when the object was created.
@@ -81,7 +81,7 @@ func (o *CollectionUser) GetPhotoURL() *string {
 	return o.PhotoURL
 }
 
-func (o *CollectionUser) GetCustomMappings() *CustomMappings {
+func (o *CollectionUser) GetCustomMappings() map[string]any {
 	if o == nil {
 		return nil
 	}

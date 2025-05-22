@@ -8,12 +8,6 @@ import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  CustomMappings,
-  CustomMappings$inboundSchema,
-  CustomMappings$Outbound,
-  CustomMappings$outboundSchema,
-} from "./custommappings.js";
 
 /**
  * The current status of the product (active or archived).
@@ -177,7 +171,7 @@ export type EcommerceProduct = {
   /**
    * When custom mappings are configured on the resource, the result is included here.
    */
-  customMappings?: CustomMappings | null | undefined;
+  customMappings?: { [k: string]: any } | null | undefined;
   /**
    * The date and time when the object was created.
    */
@@ -605,7 +599,7 @@ export const EcommerceProduct$inboundSchema: z.ZodType<
   tags: z.array(z.nullable(z.string())).optional(),
   categories: z.array(z.lazy(() => EcommerceProductCategories$inboundSchema))
     .optional(),
-  custom_mappings: z.nullable(CustomMappings$inboundSchema).optional(),
+  custom_mappings: z.nullable(z.record(z.any())).optional(),
   created_at: z.nullable(
     z.string().datetime({ offset: true }).transform(v => new Date(v)),
   ).optional(),
@@ -638,7 +632,7 @@ export type EcommerceProduct$Outbound = {
   variants?: Array<Variants$Outbound> | undefined;
   tags?: Array<string | null> | undefined;
   categories?: Array<EcommerceProductCategories$Outbound> | undefined;
-  custom_mappings?: CustomMappings$Outbound | null | undefined;
+  custom_mappings?: { [k: string]: any } | null | undefined;
   created_at?: string | null | undefined;
   updated_at?: string | null | undefined;
 };
@@ -665,7 +659,7 @@ export const EcommerceProduct$outboundSchema: z.ZodType<
   tags: z.array(z.nullable(z.string())).optional(),
   categories: z.array(z.lazy(() => EcommerceProductCategories$outboundSchema))
     .optional(),
-  customMappings: z.nullable(CustomMappings$outboundSchema).optional(),
+  customMappings: z.nullable(z.record(z.any())).optional(),
   createdAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
   updatedAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
 }).transform((v) => {

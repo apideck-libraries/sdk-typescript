@@ -32,12 +32,6 @@ import {
   CustomField$outboundSchema,
 } from "./customfield.js";
 import {
-  CustomMappings,
-  CustomMappings$inboundSchema,
-  CustomMappings$Outbound,
-  CustomMappings$outboundSchema,
-} from "./custommappings.js";
-import {
   Email,
   Email$inboundSchema,
   Email$Outbound,
@@ -194,7 +188,7 @@ export type Company = {
   /**
    * When custom mappings are configured on the resource, the result is included here.
    */
-  customMappings?: CustomMappings | null | undefined;
+  customMappings?: { [k: string]: any } | null | undefined;
   /**
    * Updated by user ID
    */
@@ -415,7 +409,7 @@ export const Company$inboundSchema: z.ZodType<Company, z.ZodTypeDef, unknown> =
     deleted: z.boolean().optional(),
     salutation: z.nullable(z.string()).optional(),
     birthday: z.nullable(z.string().transform(v => new RFCDate(v))).optional(),
-    custom_mappings: z.nullable(CustomMappings$inboundSchema).optional(),
+    custom_mappings: z.nullable(z.record(z.any())).optional(),
     updated_by: z.nullable(z.string()).optional(),
     created_by: z.nullable(z.string()).optional(),
     updated_at: z.nullable(
@@ -493,7 +487,7 @@ export type Company$Outbound = {
   deleted?: boolean | undefined;
   salutation?: string | null | undefined;
   birthday?: string | null | undefined;
-  custom_mappings?: CustomMappings$Outbound | null | undefined;
+  custom_mappings?: { [k: string]: any } | null | undefined;
   updated_by?: string | null | undefined;
   created_by?: string | null | undefined;
   updated_at?: string | null | undefined;
@@ -545,7 +539,7 @@ export const Company$outboundSchema: z.ZodType<
   salutation: z.nullable(z.string()).optional(),
   birthday: z.nullable(z.instanceof(RFCDate).transform(v => v.toString()))
     .optional(),
-  customMappings: z.nullable(CustomMappings$outboundSchema).optional(),
+  customMappings: z.nullable(z.record(z.any())).optional(),
   updatedBy: z.nullable(z.string()).optional(),
   createdBy: z.nullable(z.string()).optional(),
   updatedAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),

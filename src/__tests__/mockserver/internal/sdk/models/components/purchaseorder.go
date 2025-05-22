@@ -59,6 +59,8 @@ type PurchaseOrder struct {
 	Reference *string `json:"reference,omitempty"`
 	// The supplier this entity is linked to.
 	Supplier *LinkedSupplier `json:"supplier,omitempty"`
+	// The ID of the subsidiary
+	SubsidiaryID *string `json:"subsidiary_id,omitempty"`
 	// The company or subsidiary id the transaction belongs to
 	CompanyID *string              `json:"company_id,omitempty"`
 	Status    *PurchaseOrderStatus `json:"status,omitempty"`
@@ -103,8 +105,8 @@ type PurchaseOrder struct {
 	// A list of linked tracking categories.
 	TrackingCategories []*LinkedTrackingCategory `json:"tracking_categories,omitempty"`
 	// When custom mappings are configured on the resource, the result is included here.
-	CustomMappings *CustomMappings `json:"custom_mappings,omitempty"`
-	CustomFields   []CustomField   `json:"custom_fields,omitempty"`
+	CustomMappings map[string]any `json:"custom_mappings,omitempty"`
+	CustomFields   []CustomField  `json:"custom_fields,omitempty"`
 	// A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
 	RowVersion *string `json:"row_version,omitempty"`
 	// The user who last updated the object.
@@ -163,6 +165,13 @@ func (o *PurchaseOrder) GetSupplier() *LinkedSupplier {
 		return nil
 	}
 	return o.Supplier
+}
+
+func (o *PurchaseOrder) GetSubsidiaryID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.SubsidiaryID
 }
 
 func (o *PurchaseOrder) GetCompanyID() *string {
@@ -333,7 +342,7 @@ func (o *PurchaseOrder) GetTrackingCategories() []*LinkedTrackingCategory {
 	return o.TrackingCategories
 }
 
-func (o *PurchaseOrder) GetCustomMappings() *CustomMappings {
+func (o *PurchaseOrder) GetCustomMappings() map[string]any {
 	if o == nil {
 		return nil
 	}
@@ -396,6 +405,8 @@ type PurchaseOrderInput struct {
 	Reference *string `json:"reference,omitempty"`
 	// The supplier this entity is linked to.
 	Supplier *LinkedSupplierInput `json:"supplier,omitempty"`
+	// The ID of the subsidiary
+	SubsidiaryID *string `json:"subsidiary_id,omitempty"`
 	// The company or subsidiary id the transaction belongs to
 	CompanyID *string              `json:"company_id,omitempty"`
 	Status    *PurchaseOrderStatus `json:"status,omitempty"`
@@ -476,6 +487,13 @@ func (o *PurchaseOrderInput) GetSupplier() *LinkedSupplierInput {
 		return nil
 	}
 	return o.Supplier
+}
+
+func (o *PurchaseOrderInput) GetSubsidiaryID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.SubsidiaryID
 }
 
 func (o *PurchaseOrderInput) GetCompanyID() *string {
