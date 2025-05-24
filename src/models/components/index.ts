@@ -199,6 +199,7 @@ export * from "./ecommercecustomersfilter.js";
 export * from "./ecommercediscount.js";
 export * from "./ecommerceorder.js";
 export * from "./ecommerceorderlineitem.js";
+export * from "./ecommerceorderrefund.js";
 export * from "./ecommerceordersfilter.js";
 export * from "./ecommerceorderstatus.js";
 export * from "./ecommerceproduct.js";
