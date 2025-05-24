@@ -132,7 +132,8 @@ type EcommerceOrder struct {
 	Tracking        []TrackingItem           `json:"tracking,omitempty"`
 	LineItems       []EcommerceOrderLineItem `json:"line_items,omitempty"`
 	// Note for the order.
-	Note *string `json:"note,omitempty"`
+	Note    *string                `json:"note,omitempty"`
+	Refunds []EcommerceOrderRefund `json:"refunds,omitempty"`
 	// When custom mappings are configured on the resource, the result is included here.
 	CustomMappings map[string]any `json:"custom_mappings,omitempty"`
 	// The date and time when the object was created.
@@ -297,6 +298,13 @@ func (o *EcommerceOrder) GetNote() *string {
 		return nil
 	}
 	return o.Note
+}
+
+func (o *EcommerceOrder) GetRefunds() []EcommerceOrderRefund {
+	if o == nil {
+		return nil
+	}
+	return o.Refunds
 }
 
 func (o *EcommerceOrder) GetCustomMappings() map[string]any {

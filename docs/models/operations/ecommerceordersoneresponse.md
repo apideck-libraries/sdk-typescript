@@ -125,6 +125,15 @@ let value: EcommerceOrdersOneResponse = {
         },
       ],
       note: "Special instructions for delivery",
+      refunds: [
+        {
+          id: "12345",
+          amount: "100",
+          currency: "USD",
+          reason: "Customer requested a refund",
+          createdAt: new Date("2020-09-30T07:43:32.000Z"),
+        },
+      ],
       createdAt: new Date("2020-09-30T07:43:32.000Z"),
       updatedAt: new Date("2020-09-30T07:43:32.000Z"),
     },
