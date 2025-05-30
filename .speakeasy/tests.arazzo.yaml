@@ -49660,3 +49660,1088 @@ workflows:
               }
             type: simple
     x-speakeasy-test-group: bankFeedStatements
+  - workflowId: crm.customObjectSchemasAll
+    steps:
+      - stepId: test
+        operationId: crm.customObjectSchemasAll
+        parameters:
+          - name: raw
+            in: query
+            value: false
+          - name: limit
+            in: query
+            value: 20
+          - name: pass_through
+            in: query
+            value:
+              search: San Francisco
+          - name: x-apideck-consumer-id
+            in: header
+            value: test-consumer
+          - name: x-apideck-app-id
+            in: header
+            value: dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX
+          - name: x-apideck-service-id
+            in: header
+            value: salesforce
+        successCriteria:
+          - condition: $statusCode == 200
+          - condition: $response.header.Content-Type == application/json
+          - context: $response.body
+            condition: |
+              {
+                "status_code": 200,
+                "status": "OK",
+                "service": "zoho-crm",
+                "resource": "custom-object-schemas",
+                "operation": "all",
+                "data": [
+                  {
+                    "id": "cos_12345",
+                    "name": "project",
+                    "description": "This schema defines a project custom object",
+                    "fields": [
+                      {
+                        "id": "field_123",
+                        "name": "project_name",
+                        "description": "Name of the project",
+                        "type": "string",
+                        "required": true,
+                        "options": [
+                          {
+                            "value": "option1",
+                            "label": "Option 1"
+                          },
+                          {
+                            "value": "option1",
+                            "label": "Option 1"
+                          },
+                          {
+                            "value": "option1",
+                            "label": "Option 1"
+                          }
+                        ],
+                        "default_value": "New Project"
+                      },
+                      {
+                        "id": "field_123",
+                        "name": "project_name",
+                        "description": "Name of the project",
+                        "type": "string",
+                        "required": true,
+                        "options": [
+                          {
+                            "value": "option1",
+                            "label": "Option 1"
+                          },
+                          {
+                            "value": "option1",
+                            "label": "Option 1"
+                          },
+                          {
+                            "value": "option1",
+                            "label": "Option 1"
+                          }
+                        ],
+                        "default_value": "New Project"
+                      }
+                    ],
+                    "visible": true,
+                    "active": true,
+                    "created_by": "12345",
+                    "updated_by": "12345",
+                    "updated_at": "2020-09-30T07:43:32.000Z",
+                    "created_at": "2020-09-30T07:43:32.000Z",
+                    "pass_through": [
+                      {
+                        "service_id": "\u003cid\u003e",
+                        "extend_paths": [
+                          {
+                            "path": "$.nested.property",
+                            "value": {
+                              "TaxClassificationRef": {
+                                "value": "EUC-99990201-V1-00020000"
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "id": "cos_12345",
+                    "name": "project",
+                    "description": "This schema defines a project custom object",
+                    "fields": [
+                      {
+                        "id": "field_123",
+                        "name": "project_name",
+                        "description": "Name of the project",
+                        "type": "string",
+                        "required": true,
+                        "options": [
+                          {
+                            "value": "option1",
+                            "label": "Option 1"
+                          },
+                          {
+                            "value": "option1",
+                            "label": "Option 1"
+                          },
+                          {
+                            "value": "option1",
+                            "label": "Option 1"
+                          }
+                        ],
+                        "default_value": "New Project"
+                      },
+                      {
+                        "id": "field_123",
+                        "name": "project_name",
+                        "description": "Name of the project",
+                        "type": "string",
+                        "required": true,
+                        "options": [
+                          {
+                            "value": "option1",
+                            "label": "Option 1"
+                          },
+                          {
+                            "value": "option1",
+                            "label": "Option 1"
+                          },
+                          {
+                            "value": "option1",
+                            "label": "Option 1"
+                          }
+                        ],
+                        "default_value": "New Project"
+                      }
+                    ],
+                    "visible": true,
+                    "active": true,
+                    "created_by": "12345",
+                    "updated_by": "12345",
+                    "updated_at": "2020-09-30T07:43:32.000Z",
+                    "created_at": "2020-09-30T07:43:32.000Z",
+                    "pass_through": [
+                      {
+                        "service_id": "\u003cid\u003e",
+                        "extend_paths": [
+                          {
+                            "path": "$.nested.property",
+                            "value": {
+                              "TaxClassificationRef": {
+                                "value": "EUC-99990201-V1-00020000"
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "id": "cos_12345",
+                    "name": "project",
+                    "description": "This schema defines a project custom object",
+                    "fields": [
+                      {
+                        "id": "field_123",
+                        "name": "project_name",
+                        "description": "Name of the project",
+                        "type": "string",
+                        "required": true,
+                        "options": [
+                          {
+                            "value": "option1",
+                            "label": "Option 1"
+                          },
+                          {
+                            "value": "option1",
+                            "label": "Option 1"
+                          },
+                          {
+                            "value": "option1",
+                            "label": "Option 1"
+                          }
+                        ],
+                        "default_value": "New Project"
+                      },
+                      {
+                        "id": "field_123",
+                        "name": "project_name",
+                        "description": "Name of the project",
+                        "type": "string",
+                        "required": true,
+                        "options": [
+                          {
+                            "value": "option1",
+                            "label": "Option 1"
+                          },
+                          {
+                            "value": "option1",
+                            "label": "Option 1"
+                          },
+                          {
+                            "value": "option1",
+                            "label": "Option 1"
+                          }
+                        ],
+                        "default_value": "New Project"
+                      }
+                    ],
+                    "visible": true,
+                    "active": true,
+                    "created_by": "12345",
+                    "updated_by": "12345",
+                    "updated_at": "2020-09-30T07:43:32.000Z",
+                    "created_at": "2020-09-30T07:43:32.000Z",
+                    "pass_through": [
+                      {
+                        "service_id": "\u003cid\u003e",
+                        "extend_paths": [
+                          {
+                            "path": "$.nested.property",
+                            "value": {
+                              "TaxClassificationRef": {
+                                "value": "EUC-99990201-V1-00020000"
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ],
+                "meta": {
+                  "items_on_page": 50,
+                  "cursors": {
+                    "previous": "em9oby1jcm06OnBhZ2U6OjE=",
+                    "current": "em9oby1jcm06OnBhZ2U6OjI=",
+                    "next": "em9oby1jcm06OnBhZ2U6OjM="
+                  }
+                },
+                "links": {
+                  "previous": "https://unify.apideck.com/crm/companies?cursor=em9oby1jcm06OnBhZ2U6OjE%3D",
+                  "current": "https://unify.apideck.com/crm/companies",
+                  "next": "https://unify.apideck.com/crm/companies?cursor=em9oby1jcm06OnBhZ2U6OjM"
+                }
+              }
+            type: simple
+    x-speakeasy-test-group: customObjectSchemas
+  - workflowId: crm.customObjectSchemasAdd
+    steps:
+      - stepId: test
+        operationId: crm.customObjectSchemasAdd
+        parameters:
+          - name: raw
+            in: query
+            value: false
+          - name: x-apideck-consumer-id
+            in: header
+            value: test-consumer
+          - name: x-apideck-app-id
+            in: header
+            value: dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX
+          - name: x-apideck-service-id
+            in: header
+            value: salesforce
+        requestBody:
+          contentType: application/json
+          payload:
+            active: true
+            description: This schema defines a project custom object
+            fields:
+              - default_value: New Project
+                description: Name of the project
+                id: field_123
+                name: project_name
+                options:
+                  - label: Option 1
+                    value: option1
+                required: true
+                type: string
+            name: project
+            pass_through:
+              - extend_paths:
+                  - path: $.nested.property
+                    value:
+                      TaxClassificationRef:
+                        value: EUC-99990201-V1-00020000
+                service_id: <id>
+              - extend_paths:
+                  - path: $.nested.property
+                    value:
+                      TaxClassificationRef:
+                        value: EUC-99990201-V1-00020000
+                service_id: <id>
+            visible: true
+        successCriteria:
+          - condition: $statusCode == 201
+          - condition: $response.header.Content-Type == application/json
+          - context: $response.body
+            condition: |
+              {
+                "status_code": 201,
+                "status": "Created",
+                "service": "zoho-crm",
+                "resource": "custom-object-schemas",
+                "operation": "add",
+                "data": {
+                  "id": "cos_12345",
+                  "name": "project",
+                  "description": "This schema defines a project custom object",
+                  "fields": [
+                    {
+                      "id": "field_123",
+                      "name": "project_name",
+                      "description": "Name of the project",
+                      "type": "string",
+                      "required": true,
+                      "options": [
+                        {
+                          "value": "option1",
+                          "label": "Option 1"
+                        }
+                      ],
+                      "default_value": "New Project"
+                    },
+                    {
+                      "id": "field_123",
+                      "name": "project_name",
+                      "description": "Name of the project",
+                      "type": "string",
+                      "required": true,
+                      "options": [
+                        {
+                          "value": "option1",
+                          "label": "Option 1"
+                        }
+                      ],
+                      "default_value": "New Project"
+                    }
+                  ],
+                  "visible": true,
+                  "active": true,
+                  "created_by": "12345",
+                  "updated_by": "12345",
+                  "updated_at": "2020-09-30T07:43:32.000Z",
+                  "created_at": "2020-09-30T07:43:32.000Z",
+                  "pass_through": [
+                    {
+                      "service_id": "\u003cid\u003e",
+                      "extend_paths": [
+                        {
+                          "path": "$.nested.property",
+                          "value": {
+                            "TaxClassificationRef": {
+                              "value": "EUC-99990201-V1-00020000"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "service_id": "\u003cid\u003e",
+                      "extend_paths": [
+                        {
+                          "path": "$.nested.property",
+                          "value": {
+                            "TaxClassificationRef": {
+                              "value": "EUC-99990201-V1-00020000"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            type: simple
+    x-speakeasy-test-group: customObjectSchemas
+  - workflowId: crm.customObjectSchemasOne
+    steps:
+      - stepId: test
+        operationId: crm.customObjectSchemasOne
+        parameters:
+          - name: id
+            in: path
+            value: <id>
+          - name: raw
+            in: query
+            value: false
+          - name: x-apideck-consumer-id
+            in: header
+            value: test-consumer
+          - name: x-apideck-app-id
+            in: header
+            value: dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX
+          - name: x-apideck-service-id
+            in: header
+            value: salesforce
+        successCriteria:
+          - condition: $statusCode == 200
+          - condition: $response.header.Content-Type == application/json
+          - context: $response.body
+            condition: |
+              {
+                "status_code": 200,
+                "status": "OK",
+                "service": "zoho-crm",
+                "resource": "custom-object-schemas",
+                "operation": "one",
+                "data": {
+                  "id": "cos_12345",
+                  "name": "project",
+                  "description": "This schema defines a project custom object",
+                  "fields": [
+                    {
+                      "id": "field_123",
+                      "name": "project_name",
+                      "description": "Name of the project",
+                      "type": "string",
+                      "required": true,
+                      "options": [
+                        {
+                          "value": "option1",
+                          "label": "Option 1"
+                        }
+                      ],
+                      "default_value": "New Project"
+                    }
+                  ],
+                  "visible": true,
+                  "active": true,
+                  "created_by": "12345",
+                  "updated_by": "12345",
+                  "updated_at": "2020-09-30T07:43:32.000Z",
+                  "created_at": "2020-09-30T07:43:32.000Z",
+                  "pass_through": [
+                    {
+                      "service_id": "\u003cid\u003e",
+                      "extend_paths": [
+                        {
+                          "path": "$.nested.property",
+                          "value": {
+                            "TaxClassificationRef": {
+                              "value": "EUC-99990201-V1-00020000"
+                            }
+                          }
+                        },
+                        {
+                          "path": "$.nested.property",
+                          "value": {
+                            "TaxClassificationRef": {
+                              "value": "EUC-99990201-V1-00020000"
+                            }
+                          }
+                        },
+                        {
+                          "path": "$.nested.property",
+                          "value": {
+                            "TaxClassificationRef": {
+                              "value": "EUC-99990201-V1-00020000"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "service_id": "\u003cid\u003e",
+                      "extend_paths": [
+                        {
+                          "path": "$.nested.property",
+                          "value": {
+                            "TaxClassificationRef": {
+                              "value": "EUC-99990201-V1-00020000"
+                            }
+                          }
+                        },
+                        {
+                          "path": "$.nested.property",
+                          "value": {
+                            "TaxClassificationRef": {
+                              "value": "EUC-99990201-V1-00020000"
+                            }
+                          }
+                        },
+                        {
+                          "path": "$.nested.property",
+                          "value": {
+                            "TaxClassificationRef": {
+                              "value": "EUC-99990201-V1-00020000"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            type: simple
+    x-speakeasy-test-group: customObjectSchemas
+  - workflowId: crm.customObjectSchemasUpdate
+    steps:
+      - stepId: test
+        operationId: crm.customObjectSchemasUpdate
+        parameters:
+          - name: id
+            in: path
+            value: <id>
+          - name: raw
+            in: query
+            value: false
+          - name: x-apideck-consumer-id
+            in: header
+            value: test-consumer
+          - name: x-apideck-app-id
+            in: header
+            value: dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX
+          - name: x-apideck-service-id
+            in: header
+            value: salesforce
+        requestBody:
+          contentType: application/json
+          payload:
+            active: true
+            description: This schema defines a project custom object
+            fields:
+              - default_value: New Project
+                description: Name of the project
+                id: field_123
+                name: project_name
+                options:
+                  - label: Option 1
+                    value: option1
+                  - label: Option 1
+                    value: option1
+                required: true
+                type: string
+              - default_value: New Project
+                description: Name of the project
+                id: field_123
+                name: project_name
+                options:
+                  - label: Option 1
+                    value: option1
+                  - label: Option 1
+                    value: option1
+                required: true
+                type: string
+              - default_value: New Project
+                description: Name of the project
+                id: field_123
+                name: project_name
+                options:
+                  - label: Option 1
+                    value: option1
+                  - label: Option 1
+                    value: option1
+                required: true
+                type: string
+            name: project
+            pass_through:
+              - extend_paths:
+                  - path: $.nested.property
+                    value:
+                      TaxClassificationRef:
+                        value: EUC-99990201-V1-00020000
+                  - path: $.nested.property
+                    value:
+                      TaxClassificationRef:
+                        value: EUC-99990201-V1-00020000
+                  - path: $.nested.property
+                    value:
+                      TaxClassificationRef:
+                        value: EUC-99990201-V1-00020000
+                service_id: <id>
+              - extend_paths:
+                  - path: $.nested.property
+                    value:
+                      TaxClassificationRef:
+                        value: EUC-99990201-V1-00020000
+                  - path: $.nested.property
+                    value:
+                      TaxClassificationRef:
+                        value: EUC-99990201-V1-00020000
+                  - path: $.nested.property
+                    value:
+                      TaxClassificationRef:
+                        value: EUC-99990201-V1-00020000
+                service_id: <id>
+              - extend_paths:
+                  - path: $.nested.property
+                    value:
+                      TaxClassificationRef:
+                        value: EUC-99990201-V1-00020000
+                  - path: $.nested.property
+                    value:
+                      TaxClassificationRef:
+                        value: EUC-99990201-V1-00020000
+                  - path: $.nested.property
+                    value:
+                      TaxClassificationRef:
+                        value: EUC-99990201-V1-00020000
+                service_id: <id>
+            visible: true
+        successCriteria:
+          - condition: $statusCode == 200
+          - condition: $response.header.Content-Type == application/json
+          - context: $response.body
+            condition: |
+              {
+                "status_code": 200,
+                "status": "OK",
+                "service": "zoho-crm",
+                "resource": "custom-object-schemas",
+                "operation": "update",
+                "data": {
+                  "id": "12345"
+                }
+              }
+            type: simple
+    x-speakeasy-test-group: customObjectSchemas
+  - workflowId: crm.customObjectSchemasDelete
+    steps:
+      - stepId: test
+        operationId: crm.customObjectSchemasDelete
+        parameters:
+          - name: id
+            in: path
+            value: <id>
+          - name: raw
+            in: query
+            value: false
+          - name: x-apideck-consumer-id
+            in: header
+            value: test-consumer
+          - name: x-apideck-app-id
+            in: header
+            value: dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX
+          - name: x-apideck-service-id
+            in: header
+            value: salesforce
+        successCriteria:
+          - condition: $statusCode == 200
+          - condition: $response.header.Content-Type == application/json
+          - context: $response.body
+            condition: |
+              {
+                "status_code": 200,
+                "status": "OK",
+                "service": "zoho-crm",
+                "resource": "custom-object-schemas",
+                "operation": "delete",
+                "data": {
+                  "id": "12345"
+                }
+              }
+            type: simple
+    x-speakeasy-test-group: customObjectSchemas
+  - workflowId: crm.customObjectsAll
+    steps:
+      - stepId: test
+        operationId: crm.customObjectsAll
+        parameters:
+          - name: object_id
+            in: path
+            value: <id>
+          - name: raw
+            in: query
+            value: false
+          - name: limit
+            in: query
+            value: 20
+          - name: pass_through
+            in: query
+            value:
+              search: San Francisco
+          - name: fields
+            in: query
+            value: id,updated_at
+          - name: x-apideck-consumer-id
+            in: header
+            value: test-consumer
+          - name: x-apideck-app-id
+            in: header
+            value: dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX
+          - name: x-apideck-service-id
+            in: header
+            value: salesforce
+        successCriteria:
+          - condition: $statusCode == 200
+          - condition: $response.header.Content-Type == application/json
+          - context: $response.body
+            condition: |
+              {
+                "status_code": 200,
+                "status": "OK",
+                "service": "zoho-crm",
+                "resource": "custom-objects",
+                "operation": "all",
+                "data": [
+                  {
+                    "id": "co_12345",
+                    "owner_id": "user_12345",
+                    "name": "project",
+                    "fields": [
+                      {
+                        "name": "name",
+                        "value": "string"
+                      }
+                    ],
+                    "updated_by": "user_12345",
+                    "created_by": "user_12345",
+                    "updated_at": "2020-09-30T07:43:32.000Z",
+                    "created_at": "2020-09-30T07:43:32.000Z",
+                    "pass_through": [
+                      {
+                        "service_id": "\u003cid\u003e",
+                        "extend_paths": [
+                          {
+                            "path": "$.nested.property",
+                            "value": {
+                              "TaxClassificationRef": {
+                                "value": "EUC-99990201-V1-00020000"
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "id": "co_12345",
+                    "owner_id": "user_12345",
+                    "name": "project",
+                    "fields": [
+                      {
+                        "name": "name",
+                        "value": "string"
+                      }
+                    ],
+                    "updated_by": "user_12345",
+                    "created_by": "user_12345",
+                    "updated_at": "2020-09-30T07:43:32.000Z",
+                    "created_at": "2020-09-30T07:43:32.000Z",
+                    "pass_through": [
+                      {
+                        "service_id": "\u003cid\u003e",
+                        "extend_paths": [
+                          {
+                            "path": "$.nested.property",
+                            "value": {
+                              "TaxClassificationRef": {
+                                "value": "EUC-99990201-V1-00020000"
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "id": "co_12345",
+                    "owner_id": "user_12345",
+                    "name": "project",
+                    "fields": [
+                      {
+                        "name": "name",
+                        "value": "string"
+                      }
+                    ],
+                    "updated_by": "user_12345",
+                    "created_by": "user_12345",
+                    "updated_at": "2020-09-30T07:43:32.000Z",
+                    "created_at": "2020-09-30T07:43:32.000Z",
+                    "pass_through": [
+                      {
+                        "service_id": "\u003cid\u003e",
+                        "extend_paths": [
+                          {
+                            "path": "$.nested.property",
+                            "value": {
+                              "TaxClassificationRef": {
+                                "value": "EUC-99990201-V1-00020000"
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ],
+                "meta": {
+                  "items_on_page": 50,
+                  "cursors": {
+                    "previous": "em9oby1jcm06OnBhZ2U6OjE=",
+                    "current": "em9oby1jcm06OnBhZ2U6OjI=",
+                    "next": "em9oby1jcm06OnBhZ2U6OjM="
+                  }
+                },
+                "links": {
+                  "previous": "https://unify.apideck.com/crm/companies?cursor=em9oby1jcm06OnBhZ2U6OjE%3D",
+                  "current": "https://unify.apideck.com/crm/companies",
+                  "next": "https://unify.apideck.com/crm/companies?cursor=em9oby1jcm06OnBhZ2U6OjM"
+                }
+              }
+            type: simple
+    x-speakeasy-test-group: customObjects
+  - workflowId: crm.customObjectsAdd
+    steps:
+      - stepId: test
+        operationId: crm.customObjectsAdd
+        parameters:
+          - name: object_id
+            in: path
+            value: <id>
+          - name: raw
+            in: query
+            value: false
+          - name: x-apideck-consumer-id
+            in: header
+            value: test-consumer
+          - name: x-apideck-app-id
+            in: header
+            value: dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX
+          - name: x-apideck-service-id
+            in: header
+            value: salesforce
+        requestBody:
+          contentType: application/json
+          payload:
+            fields:
+              - name: name
+                value: string
+              - name: name
+                value: string
+              - name: name
+                value: string
+            name: project
+            pass_through:
+              - extend_paths:
+                  - path: $.nested.property
+                    value:
+                      TaxClassificationRef:
+                        value: EUC-99990201-V1-00020000
+                service_id: <id>
+              - extend_paths:
+                  - path: $.nested.property
+                    value:
+                      TaxClassificationRef:
+                        value: EUC-99990201-V1-00020000
+                service_id: <id>
+              - extend_paths:
+                  - path: $.nested.property
+                    value:
+                      TaxClassificationRef:
+                        value: EUC-99990201-V1-00020000
+                service_id: <id>
+        successCriteria:
+          - condition: $statusCode == 201
+          - condition: $response.header.Content-Type == application/json
+          - context: $response.body
+            condition: |
+              {
+                "status_code": 200,
+                "status": "OK",
+                "service": "zoho-crm",
+                "resource": "custom-objects",
+                "operation": "add",
+                "data": {
+                  "id": "12345"
+                }
+              }
+            type: simple
+    x-speakeasy-test-group: customObjects
+  - workflowId: crm.customObjectsOne
+    steps:
+      - stepId: test
+        operationId: crm.customObjectsOne
+        parameters:
+          - name: id
+            in: path
+            value: <id>
+          - name: object_id
+            in: path
+            value: <id>
+          - name: raw
+            in: query
+            value: false
+          - name: x-apideck-consumer-id
+            in: header
+            value: test-consumer
+          - name: x-apideck-app-id
+            in: header
+            value: dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX
+          - name: x-apideck-service-id
+            in: header
+            value: salesforce
+        successCriteria:
+          - condition: $statusCode == 200
+          - condition: $response.header.Content-Type == application/json
+          - context: $response.body
+            condition: |
+              {
+                "status_code": 200,
+                "status": "OK",
+                "service": "zoho-crm",
+                "resource": "custom-objects",
+                "operation": "one",
+                "data": {
+                  "id": "co_12345",
+                  "owner_id": "user_12345",
+                  "name": "project",
+                  "fields": [
+                    {
+                      "name": "name",
+                      "value": "string"
+                    },
+                    {
+                      "name": "name",
+                      "value": "string"
+                    },
+                    {
+                      "name": "name",
+                      "value": "string"
+                    }
+                  ],
+                  "updated_by": "user_12345",
+                  "created_by": "user_12345",
+                  "updated_at": "2020-09-30T07:43:32.000Z",
+                  "created_at": "2020-09-30T07:43:32.000Z",
+                  "pass_through": [
+                    {
+                      "service_id": "\u003cid\u003e",
+                      "extend_paths": [
+                        {
+                          "path": "$.nested.property",
+                          "value": {
+                            "TaxClassificationRef": {
+                              "value": "EUC-99990201-V1-00020000"
+                            }
+                          }
+                        },
+                        {
+                          "path": "$.nested.property",
+                          "value": {
+                            "TaxClassificationRef": {
+                              "value": "EUC-99990201-V1-00020000"
+                            }
+                          }
+                        },
+                        {
+                          "path": "$.nested.property",
+                          "value": {
+                            "TaxClassificationRef": {
+                              "value": "EUC-99990201-V1-00020000"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            type: simple
+    x-speakeasy-test-group: customObjects
+  - workflowId: crm.customObjectsUpdate
+    steps:
+      - stepId: test
+        operationId: crm.customObjectsUpdate
+        parameters:
+          - name: id
+            in: path
+            value: <id>
+          - name: object_id
+            in: path
+            value: <id>
+          - name: raw
+            in: query
+            value: false
+          - name: x-apideck-consumer-id
+            in: header
+            value: test-consumer
+          - name: x-apideck-app-id
+            in: header
+            value: dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX
+          - name: x-apideck-service-id
+            in: header
+            value: salesforce
+        requestBody:
+          contentType: application/json
+          payload:
+            fields:
+              - name: name
+                value: string
+              - name: name
+                value: string
+            name: project
+            pass_through:
+              - extend_paths:
+                  - path: $.nested.property
+                    value:
+                      TaxClassificationRef:
+                        value: EUC-99990201-V1-00020000
+                  - path: $.nested.property
+                    value:
+                      TaxClassificationRef:
+                        value: EUC-99990201-V1-00020000
+                service_id: <id>
+        successCriteria:
+          - condition: $statusCode == 200
+          - condition: $response.header.Content-Type == application/json
+          - context: $response.body
+            condition: |
+              {
+                "status_code": 200,
+                "status": "OK",
+                "service": "zoho-crm",
+                "resource": "custom-objects",
+                "operation": "update",
+                "data": {
+                  "id": "12345"
+                }
+              }
+            type: simple
+    x-speakeasy-test-group: customObjects
+  - workflowId: crm.customObjectsDelete
+    steps:
+      - stepId: test
+        operationId: crm.customObjectsDelete
+        parameters:
+          - name: id
+            in: path
+            value: <id>
+          - name: object_id
+            in: path
+            value: <id>
+          - name: raw
+            in: query
+            value: false
+          - name: x-apideck-consumer-id
+            in: header
+            value: test-consumer
+          - name: x-apideck-app-id
+            in: header
+            value: dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX
+          - name: x-apideck-service-id
+            in: header
+            value: salesforce
+        successCriteria:
+          - condition: $statusCode == 200
+          - condition: $response.header.Content-Type == application/json
+          - context: $response.body
+            condition: |
+              {
+                "status_code": 200,
+                "status": "OK",
+                "service": "zoho-crm",
+                "resource": "custom-objects",
+                "operation": "delete",
+                "data": {
+                  "id": "12345"
+                }
+              }
+            type: simple
+    x-speakeasy-test-group: customObjects

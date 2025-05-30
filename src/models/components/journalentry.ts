@@ -5,6 +5,7 @@
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
+import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
@@ -23,6 +24,10 @@ import {
   JournalEntryLineItem$inboundSchema,
   JournalEntryLineItem$Outbound,
   JournalEntryLineItem$outboundSchema,
+  JournalEntryLineItemInput,
+  JournalEntryLineItemInput$inboundSchema,
+  JournalEntryLineItemInput$Outbound,
+  JournalEntryLineItemInput$outboundSchema,
 } from "./journalentrylineitem.js";
 import {
   LinkedTrackingCategory,
@@ -36,6 +41,23 @@ import {
   PassThroughBody$Outbound,
   PassThroughBody$outboundSchema,
 } from "./passthroughbody.js";
+
+/**
+ * Journal entry status
+ */
+export const JournalEntryStatus = {
+  Draft: "draft",
+  PendingApproval: "pending_approval",
+  Approved: "approved",
+  Posted: "posted",
+  Voided: "voided",
+  Rejected: "rejected",
+  Deleted: "deleted",
+} as const;
+/**
+ * Journal entry status
+ */
+export type JournalEntryStatus = ClosedEnum<typeof JournalEntryStatus>;
 
 export type JournalEntry = {
   /**
@@ -62,6 +84,10 @@ export type JournalEntry = {
    * Requires a minimum of 2 line items that sum to 0
    */
   lineItems?: Array<JournalEntryLineItem> | undefined;
+  /**
+   * Journal entry status
+   */
+  status?: JournalEntryStatus | null | undefined;
   /**
    * Reference for the journal entry.
    */
@@ -125,6 +151,95 @@ export type JournalEntry = {
   passThrough?: Array<PassThroughBody> | undefined;
 };
 
+export type JournalEntryInput = {
+  /**
+   * Journal entry title
+   */
+  title?: string | null | undefined;
+  /**
+   * Currency Exchange Rate at the time entity was recorded/generated.
+   */
+  currencyRate?: number | null | undefined;
+  /**
+   * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
+   */
+  currency?: Currency | null | undefined;
+  /**
+   * The company or subsidiary id the transaction belongs to
+   */
+  companyId?: string | null | undefined;
+  /**
+   * Requires a minimum of 2 line items that sum to 0
+   */
+  lineItems?: Array<JournalEntryLineItemInput> | undefined;
+  /**
+   * Journal entry status
+   */
+  status?: JournalEntryStatus | null | undefined;
+  /**
+   * Reference for the journal entry.
+   */
+  memo?: string | null | undefined;
+  /**
+   * This is the date on which the journal entry was added. This can be different from the creation date and can also be backdated.
+   */
+  postedAt?: Date | undefined;
+  /**
+   * Journal symbol of the entry. For example IND for indirect costs
+   */
+  journalSymbol?: string | null | undefined;
+  /**
+   * The specific category of tax associated with a transaction like sales or purchase
+   */
+  taxType?: string | null | undefined;
+  /**
+   * Applicable tax id/code override if tax is not supplied on a line item basis.
+   */
+  taxCode?: string | null | undefined;
+  /**
+   * Journal entry number.
+   */
+  number?: string | null | undefined;
+  /**
+   * A list of linked tracking categories.
+   */
+  trackingCategories?: Array<LinkedTrackingCategory | null> | null | undefined;
+  /**
+   * Accounting period
+   */
+  accountingPeriod?: string | null | undefined;
+  /**
+   * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
+   */
+  rowVersion?: string | null | undefined;
+  customFields?: Array<CustomField> | undefined;
+  /**
+   * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
+   */
+  passThrough?: Array<PassThroughBody> | undefined;
+};
+
+/** @internal */
+export const JournalEntryStatus$inboundSchema: z.ZodNativeEnum<
+  typeof JournalEntryStatus
+> = z.nativeEnum(JournalEntryStatus);
+
+/** @internal */
+export const JournalEntryStatus$outboundSchema: z.ZodNativeEnum<
+  typeof JournalEntryStatus
+> = JournalEntryStatus$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace JournalEntryStatus$ {
+  /** @deprecated use `JournalEntryStatus$inboundSchema` instead. */
+  export const inboundSchema = JournalEntryStatus$inboundSchema;
+  /** @deprecated use `JournalEntryStatus$outboundSchema` instead. */
+  export const outboundSchema = JournalEntryStatus$outboundSchema;
+}
+
 /** @internal */
 export const JournalEntry$inboundSchema: z.ZodType<
   JournalEntry,
@@ -137,6 +252,7 @@ export const JournalEntry$inboundSchema: z.ZodType<
   currency: z.nullable(Currency$inboundSchema).optional(),
   company_id: z.nullable(z.string()).optional(),
   line_items: z.array(JournalEntryLineItem$inboundSchema).optional(),
+  status: z.nullable(JournalEntryStatus$inboundSchema).optional(),
   memo: z.nullable(z.string()).optional(),
   posted_at: z.string().datetime({ offset: true }).transform(v => new Date(v))
     .optional(),
@@ -190,6 +306,7 @@ export type JournalEntry$Outbound = {
   currency?: string | null | undefined;
   company_id?: string | null | undefined;
   line_items?: Array<JournalEntryLineItem$Outbound> | undefined;
+  status?: string | null | undefined;
   memo?: string | null | undefined;
   posted_at?: string | undefined;
   journal_symbol?: string | null | undefined;
@@ -223,6 +340,7 @@ export const JournalEntry$outboundSchema: z.ZodType<
   currency: z.nullable(Currency$outboundSchema).optional(),
   companyId: z.nullable(z.string()).optional(),
   lineItems: z.array(JournalEntryLineItem$outboundSchema).optional(),
+  status: z.nullable(JournalEntryStatus$outboundSchema).optional(),
   memo: z.nullable(z.string()).optional(),
   postedAt: z.date().transform(v => v.toISOString()).optional(),
   journalSymbol: z.nullable(z.string()).optional(),
@@ -287,5 +405,145 @@ export function journalEntryFromJSON(
     jsonString,
     (x) => JournalEntry$inboundSchema.parse(JSON.parse(x)),
     `Failed to parse 'JournalEntry' from JSON`,
+  );
+}
+
+/** @internal */
+export const JournalEntryInput$inboundSchema: z.ZodType<
+  JournalEntryInput,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  title: z.nullable(z.string()).optional(),
+  currency_rate: z.nullable(z.number()).optional(),
+  currency: z.nullable(Currency$inboundSchema).optional(),
+  company_id: z.nullable(z.string()).optional(),
+  line_items: z.array(JournalEntryLineItemInput$inboundSchema).optional(),
+  status: z.nullable(JournalEntryStatus$inboundSchema).optional(),
+  memo: z.nullable(z.string()).optional(),
+  posted_at: z.string().datetime({ offset: true }).transform(v => new Date(v))
+    .optional(),
+  journal_symbol: z.nullable(z.string()).optional(),
+  tax_type: z.nullable(z.string()).optional(),
+  tax_code: z.nullable(z.string()).optional(),
+  number: z.nullable(z.string()).optional(),
+  tracking_categories: z.nullable(
+    z.array(z.nullable(LinkedTrackingCategory$inboundSchema)),
+  ).optional(),
+  accounting_period: z.nullable(z.string()).optional(),
+  row_version: z.nullable(z.string()).optional(),
+  custom_fields: z.array(CustomField$inboundSchema).optional(),
+  pass_through: z.array(PassThroughBody$inboundSchema).optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "currency_rate": "currencyRate",
+    "company_id": "companyId",
+    "line_items": "lineItems",
+    "posted_at": "postedAt",
+    "journal_symbol": "journalSymbol",
+    "tax_type": "taxType",
+    "tax_code": "taxCode",
+    "tracking_categories": "trackingCategories",
+    "accounting_period": "accountingPeriod",
+    "row_version": "rowVersion",
+    "custom_fields": "customFields",
+    "pass_through": "passThrough",
+  });
+});
+
+/** @internal */
+export type JournalEntryInput$Outbound = {
+  title?: string | null | undefined;
+  currency_rate?: number | null | undefined;
+  currency?: string | null | undefined;
+  company_id?: string | null | undefined;
+  line_items?: Array<JournalEntryLineItemInput$Outbound> | undefined;
+  status?: string | null | undefined;
+  memo?: string | null | undefined;
+  posted_at?: string | undefined;
+  journal_symbol?: string | null | undefined;
+  tax_type?: string | null | undefined;
+  tax_code?: string | null | undefined;
+  number?: string | null | undefined;
+  tracking_categories?:
+    | Array<LinkedTrackingCategory$Outbound | null>
+    | null
+    | undefined;
+  accounting_period?: string | null | undefined;
+  row_version?: string | null | undefined;
+  custom_fields?: Array<CustomField$Outbound> | undefined;
+  pass_through?: Array<PassThroughBody$Outbound> | undefined;
+};
+
+/** @internal */
+export const JournalEntryInput$outboundSchema: z.ZodType<
+  JournalEntryInput$Outbound,
+  z.ZodTypeDef,
+  JournalEntryInput
+> = z.object({
+  title: z.nullable(z.string()).optional(),
+  currencyRate: z.nullable(z.number()).optional(),
+  currency: z.nullable(Currency$outboundSchema).optional(),
+  companyId: z.nullable(z.string()).optional(),
+  lineItems: z.array(JournalEntryLineItemInput$outboundSchema).optional(),
+  status: z.nullable(JournalEntryStatus$outboundSchema).optional(),
+  memo: z.nullable(z.string()).optional(),
+  postedAt: z.date().transform(v => v.toISOString()).optional(),
+  journalSymbol: z.nullable(z.string()).optional(),
+  taxType: z.nullable(z.string()).optional(),
+  taxCode: z.nullable(z.string()).optional(),
+  number: z.nullable(z.string()).optional(),
+  trackingCategories: z.nullable(
+    z.array(z.nullable(LinkedTrackingCategory$outboundSchema)),
+  ).optional(),
+  accountingPeriod: z.nullable(z.string()).optional(),
+  rowVersion: z.nullable(z.string()).optional(),
+  customFields: z.array(CustomField$outboundSchema).optional(),
+  passThrough: z.array(PassThroughBody$outboundSchema).optional(),
+}).transform((v) => {
+  return remap$(v, {
+    currencyRate: "currency_rate",
+    companyId: "company_id",
+    lineItems: "line_items",
+    postedAt: "posted_at",
+    journalSymbol: "journal_symbol",
+    taxType: "tax_type",
+    taxCode: "tax_code",
+    trackingCategories: "tracking_categories",
+    accountingPeriod: "accounting_period",
+    rowVersion: "row_version",
+    customFields: "custom_fields",
+    passThrough: "pass_through",
+  });
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace JournalEntryInput$ {
+  /** @deprecated use `JournalEntryInput$inboundSchema` instead. */
+  export const inboundSchema = JournalEntryInput$inboundSchema;
+  /** @deprecated use `JournalEntryInput$outboundSchema` instead. */
+  export const outboundSchema = JournalEntryInput$outboundSchema;
+  /** @deprecated use `JournalEntryInput$Outbound` instead. */
+  export type Outbound = JournalEntryInput$Outbound;
+}
+
+export function journalEntryInputToJSON(
+  journalEntryInput: JournalEntryInput,
+): string {
+  return JSON.stringify(
+    JournalEntryInput$outboundSchema.parse(journalEntryInput),
+  );
+}
+
+export function journalEntryInputFromJSON(
+  jsonString: string,
+): SafeParseResult<JournalEntryInput, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => JournalEntryInput$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'JournalEntryInput' from JSON`,
   );
 }

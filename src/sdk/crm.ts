@@ -6,6 +6,8 @@ import { ClientSDK } from "../lib/sdks.js";
 import { Activities } from "./activities.js";
 import { Companies } from "./companies.js";
 import { Contacts } from "./contacts.js";
+import { CustomObjects } from "./customobjects.js";
+import { CustomObjectSchemas } from "./customobjectschemas.js";
 import { Leads } from "./leads.js";
 import { Notes } from "./notes.js";
 import { Opportunities } from "./opportunities.js";
@@ -51,5 +53,17 @@ export class Crm extends ClientSDK {
   private _activities?: Activities;
   get activities(): Activities {
     return (this._activities ??= new Activities(this._options));
+  }
+
+  private _customObjectSchemas?: CustomObjectSchemas;
+  get customObjectSchemas(): CustomObjectSchemas {
+    return (this._customObjectSchemas ??= new CustomObjectSchemas(
+      this._options,
+    ));
+  }
+
+  private _customObjects?: CustomObjects;
+  get customObjects(): CustomObjects {
+    return (this._customObjects ??= new CustomObjects(this._options));
   }
 }
