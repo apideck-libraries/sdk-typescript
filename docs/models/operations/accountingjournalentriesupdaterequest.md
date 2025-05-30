@@ -76,6 +76,7 @@ let value: AccountingJournalEntriesUpdateRequest = {
         lineNumber: 1,
       },
     ],
+    status: "draft",
     memo: "Thank you for your business and have a great day!",
     postedAt: new Date("2020-09-30T07:43:32.000Z"),
     journalSymbol: "IND",

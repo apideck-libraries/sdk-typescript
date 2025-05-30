@@ -391,6 +391,22 @@ run();
 * [update](docs/sdks/contacts/README.md#update) - Update contact
 * [delete](docs/sdks/contacts/README.md#delete) - Delete contact
 
+#### [crm.customObjects](docs/sdks/customobjects/README.md)
+
+* [list](docs/sdks/customobjects/README.md#list) - List custom objects
+* [create](docs/sdks/customobjects/README.md#create) - Create custom object
+* [get](docs/sdks/customobjects/README.md#get) - Get custom object
+* [update](docs/sdks/customobjects/README.md#update) - Update custom object
+* [delete](docs/sdks/customobjects/README.md#delete) - Delete custom object
+
+#### [crm.customObjectSchemas](docs/sdks/customobjectschemas/README.md)
+
+* [list](docs/sdks/customobjectschemas/README.md#list) - List custom object schemas
+* [create](docs/sdks/customobjectschemas/README.md#create) - Create custom object schema
+* [get](docs/sdks/customobjectschemas/README.md#get) - Get custom object schema
+* [update](docs/sdks/customobjectschemas/README.md#update) - Update custom object schema
+* [delete](docs/sdks/customobjectschemas/README.md#delete) - Delete custom object schema
+
 #### [crm.leads](docs/sdks/leads/README.md)
 
 * [list](docs/sdks/leads/README.md#list) - List leads
@@ -829,6 +845,16 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`crmContactsGet`](docs/sdks/contacts/README.md#get) - Get contact
 - [`crmContactsList`](docs/sdks/contacts/README.md#list) - List contacts
 - [`crmContactsUpdate`](docs/sdks/contacts/README.md#update) - Update contact
+- [`crmCustomObjectSchemasCreate`](docs/sdks/customobjectschemas/README.md#create) - Create custom object schema
+- [`crmCustomObjectSchemasDelete`](docs/sdks/customobjectschemas/README.md#delete) - Delete custom object schema
+- [`crmCustomObjectSchemasGet`](docs/sdks/customobjectschemas/README.md#get) - Get custom object schema
+- [`crmCustomObjectSchemasList`](docs/sdks/customobjectschemas/README.md#list) - List custom object schemas
+- [`crmCustomObjectSchemasUpdate`](docs/sdks/customobjectschemas/README.md#update) - Update custom object schema
+- [`crmCustomObjectsCreate`](docs/sdks/customobjects/README.md#create) - Create custom object
+- [`crmCustomObjectsDelete`](docs/sdks/customobjects/README.md#delete) - Delete custom object
+- [`crmCustomObjectsGet`](docs/sdks/customobjects/README.md#get) - Get custom object
+- [`crmCustomObjectsList`](docs/sdks/customobjects/README.md#list) - List custom objects
+- [`crmCustomObjectsUpdate`](docs/sdks/customobjects/README.md#update) - Update custom object
 - [`crmLeadsCreate`](docs/sdks/leads/README.md#create) - Create lead
 - [`crmLeadsDelete`](docs/sdks/leads/README.md#delete) - Delete lead
 - [`crmLeadsGet`](docs/sdks/leads/README.md#get) - Get lead
