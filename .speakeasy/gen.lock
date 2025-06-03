@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 7bffa198-5d29-4efa-9942-d549cc832085
 management:
-  docChecksum: d3a631039ef3972a6ba543f5005a6dfe
+  docChecksum: 44787a7a83de7e825d52591063ea6b13
   docVersion: 10.17.2
-  speakeasyVersion: 1.554.1
-  generationVersion: 2.616.1
-  releaseVersion: 0.24.0
-  configChecksum: 4e7535195e2055999487710090ef1c6c
+  speakeasyVersion: 1.555.0
+  generationVersion: 2.618.0
+  releaseVersion: 0.24.1
+  configChecksum: 63786f3516711b541d05ecf80173dd8c
   repoURL: https://github.com/apideck-libraries/sdk-typescript.git
   installationURL: https://github.com/apideck-libraries/sdk-typescript
   published: true
@@ -15,7 +15,7 @@ features:
     acceptHeaders: 2.81.2
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.11
-    core: 3.21.9
+    core: 3.21.10
     deepObjectParams: 0.1.0
     defaultEnabledRetries: 0.1.0
     deprecations: 2.81.1

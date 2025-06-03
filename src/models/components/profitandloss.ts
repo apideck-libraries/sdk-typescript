@@ -74,7 +74,7 @@ export type CostOfGoodsSold = {
   /**
    * The aggregated total of all accounts within this category.
    */
-  total: number | null;
+  total?: number | null | undefined;
   records?: any | undefined;
 };
 
@@ -206,7 +206,7 @@ export type ProfitAndLoss = {
   /**
    * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
    */
-  currency: Currency | null;
+  currency?: Currency | null | undefined;
   /**
    * The operating income accounts
    */
@@ -316,7 +316,7 @@ export const CostOfGoodsSold$inboundSchema: z.ZodType<
   code: z.string().optional(),
   title: z.string().optional(),
   type: z.nullable(ProfitAndLossType$inboundSchema).optional(),
-  total: z.nullable(z.number()),
+  total: z.nullable(z.number()).optional(),
   records: z.any().optional(),
 });
 
@@ -326,7 +326,7 @@ export type CostOfGoodsSold$Outbound = {
   code?: string | undefined;
   title?: string | undefined;
   type?: string | null | undefined;
-  total: number | null;
+  total?: number | null | undefined;
   records?: any | undefined;
 };
 
@@ -340,7 +340,7 @@ export const CostOfGoodsSold$outboundSchema: z.ZodType<
   code: z.string().optional(),
   title: z.string().optional(),
   type: z.nullable(ProfitAndLossType$outboundSchema).optional(),
-  total: z.nullable(z.number()),
+  total: z.nullable(z.number()).optional(),
   records: z.any().optional(),
 });
 
@@ -647,7 +647,7 @@ export const ProfitAndLoss$inboundSchema: z.ZodType<
   report_name: z.string(),
   start_date: z.string().optional(),
   end_date: z.string().optional(),
-  currency: z.nullable(Currency$inboundSchema),
+  currency: z.nullable(Currency$inboundSchema).optional(),
   income: z.lazy(() => Income$inboundSchema),
   cost_of_goods_sold: z.lazy(() => CostOfGoodsSold$inboundSchema).optional(),
   expenses: z.lazy(() => Expenses$inboundSchema),
@@ -682,7 +682,7 @@ export type ProfitAndLoss$Outbound = {
   report_name: string;
   start_date?: string | undefined;
   end_date?: string | undefined;
-  currency: string | null;
+  currency?: string | null | undefined;
   income: Income$Outbound;
   cost_of_goods_sold?: CostOfGoodsSold$Outbound | undefined;
   expenses: Expenses$Outbound;
@@ -706,7 +706,7 @@ export const ProfitAndLoss$outboundSchema: z.ZodType<
   reportName: z.string(),
   startDate: z.string().optional(),
   endDate: z.string().optional(),
-  currency: z.nullable(Currency$outboundSchema),
+  currency: z.nullable(Currency$outboundSchema).optional(),
   income: z.lazy(() => Income$outboundSchema),
   costOfGoodsSold: z.lazy(() => CostOfGoodsSold$outboundSchema).optional(),
   expenses: z.lazy(() => Expenses$outboundSchema),

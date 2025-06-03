@@ -4,7 +4,7 @@ package components
 
 type ProfitAndLossIndicator struct {
 	// The total amount of the transaction or record
-	Total *float64 `json:"total"`
+	Total *float64 `json:"total,omitempty"`
 }
 
 func (o *ProfitAndLossIndicator) GetTotal() *float64 {

@@ -53,6 +53,7 @@ export const JournalEntryStatus = {
   Voided: "voided",
   Rejected: "rejected",
   Deleted: "deleted",
+  Other: "other",
 } as const;
 /**
  * Journal entry status

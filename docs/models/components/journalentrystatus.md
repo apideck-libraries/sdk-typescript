@@ -13,5 +13,5 @@ let value: JournalEntryStatus = "draft";
 ## Values
 
 ```typescript
-"draft" | "pending_approval" | "approved" | "posted" | "voided" | "rejected" | "deleted"
+"draft" | "pending_approval" | "approved" | "posted" | "voided" | "rejected" | "deleted" | "other"
 ```

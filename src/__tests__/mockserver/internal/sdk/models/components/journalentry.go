@@ -20,6 +20,7 @@ const (
 	JournalEntryStatusVoided          JournalEntryStatus = "voided"
 	JournalEntryStatusRejected        JournalEntryStatus = "rejected"
 	JournalEntryStatusDeleted         JournalEntryStatus = "deleted"
+	JournalEntryStatusOther           JournalEntryStatus = "other"
 )
 
 func (e JournalEntryStatus) ToPointer() *JournalEntryStatus {
@@ -44,6 +45,8 @@ func (e *JournalEntryStatus) UnmarshalJSON(data []byte) error {
 	case "rejected":
 		fallthrough
 	case "deleted":
+		fallthrough
+	case "other":
 		*e = JournalEntryStatus(v)
 		return nil
 	default:
