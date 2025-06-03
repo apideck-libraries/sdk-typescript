@@ -11,7 +11,7 @@ export type ProfitAndLossIndicator = {
   /**
    * The total amount of the transaction or record
    */
-  total: number | null;
+  total?: number | null | undefined;
 };
 
 /** @internal */
@@ -20,12 +20,12 @@ export const ProfitAndLossIndicator$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  total: z.nullable(z.number()),
+  total: z.nullable(z.number()).optional(),
 });
 
 /** @internal */
 export type ProfitAndLossIndicator$Outbound = {
-  total: number | null;
+  total?: number | null | undefined;
 };
 
 /** @internal */
@@ -34,7 +34,7 @@ export const ProfitAndLossIndicator$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   ProfitAndLossIndicator
 > = z.object({
-  total: z.nullable(z.number()),
+  total: z.nullable(z.number()).optional(),
 });
 
 /**

@@ -70,7 +70,7 @@ type CostOfGoodsSold struct {
 	// The type of profit and loss
 	Type *ProfitAndLossType `json:"type,omitempty"`
 	// The aggregated total of all accounts within this category.
-	Total   *float64 `json:"total"`
+	Total   *float64 `json:"total,omitempty"`
 	Records any      `json:"records"`
 }
 
@@ -354,7 +354,7 @@ type ProfitAndLoss struct {
 	// The end date of the report
 	EndDate *string `json:"end_date,omitempty"`
 	// Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
-	Currency *Currency `json:"currency"`
+	Currency *Currency `json:"currency,omitempty"`
 	// The operating income accounts
 	Income Income `json:"income"`
 	// The cost of goods sold accounts

@@ -14,4 +14,4 @@ let value: ProfitAndLossIndicator = {
 
 | Field                                         | Type                                          | Required                                      | Description                                   | Example                                       |
 | --------------------------------------------- | --------------------------------------------- | --------------------------------------------- | --------------------------------------------- | --------------------------------------------- |
-| `total`                                       | *number*                                      | :heavy_check_mark:                            | The total amount of the transaction or record | 49.99                                         |
+| `total`                                       | *number*                                      | :heavy_minus_sign:                            | The total amount of the transaction or record | 49.99                                         |
