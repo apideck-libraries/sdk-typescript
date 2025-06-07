@@ -8,26 +8,6 @@ import { FileStorageFoldersUpdateRequest } from "@apideck/unify/models/operation
 let value: FileStorageFoldersUpdateRequest = {
   id: "<id>",
   serviceId: "salesforce",
-  updateFolderRequest: {
-    name: "Documents",
-    description: "My Personal Documents",
-    parentFolderId: "1234",
-    passThrough: [
-      {
-        serviceId: "<id>",
-        extendPaths: [
-          {
-            path: "$.nested.property",
-            value: {
-              "TaxClassificationRef": {
-                "value": "EUC-99990201-V1-00020000",
-              },
-            },
-          },
-        ],
-      },
-    ],
-  },
 };
 ```
 

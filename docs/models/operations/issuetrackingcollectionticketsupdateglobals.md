@@ -5,7 +5,10 @@
 ```typescript
 import { IssueTrackingCollectionTicketsUpdateGlobals } from "@apideck/unify/models/operations";
 
-let value: IssueTrackingCollectionTicketsUpdateGlobals = {};
+let value: IssueTrackingCollectionTicketsUpdateGlobals = {
+  consumerId: "test-consumer",
+  appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
+};
 ```
 
 ## Fields

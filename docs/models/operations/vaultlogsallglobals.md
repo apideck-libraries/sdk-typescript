@@ -5,7 +5,10 @@
 ```typescript
 import { VaultLogsAllGlobals } from "@apideck/unify/models/operations";
 
-let value: VaultLogsAllGlobals = {};
+let value: VaultLogsAllGlobals = {
+  appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
+  consumerId: "test-consumer",
+};
 ```
 
 ## Fields

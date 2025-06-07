@@ -21,9 +21,9 @@ List Invoice Items
 import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
-  apiKey: process.env["APIDECK_API_KEY"] ?? "",
   consumerId: "test-consumer",
   appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
+  apiKey: process.env["APIDECK_API_KEY"] ?? "",
 });
 
 async function run() {
@@ -35,6 +35,7 @@ async function run() {
     },
     sort: {
       by: "updated_at",
+      direction: "desc",
     },
     passThrough: {
       "search": "San Francisco",
@@ -43,7 +44,6 @@ async function run() {
   });
 
   for await (const page of result) {
-    // Handle the page
     console.log(page);
   }
 }
@@ -62,9 +62,9 @@ import { accountingInvoiceItemsList } from "@apideck/unify/funcs/accountingInvoi
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const apideck = new ApideckCore({
-  apiKey: process.env["APIDECK_API_KEY"] ?? "",
   consumerId: "test-consumer",
   appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
+  apiKey: process.env["APIDECK_API_KEY"] ?? "",
 });
 
 async function run() {
@@ -76,22 +76,20 @@ async function run() {
     },
     sort: {
       by: "updated_at",
+      direction: "desc",
     },
     passThrough: {
       "search": "San Francisco",
     },
     fields: "id,updated_at",
   });
-
-  if (!res.ok) {
-    throw res.error;
-  }
-
-  const { value: result } = res;
-
-  for await (const page of result) {
-    // Handle the page
+  if (res.ok) {
+    const { value: result } = res;
+    for await (const page of result) {
     console.log(page);
+  }
+  } else {
+    console.log("accountingInvoiceItemsList failed:", res.error);
   }
 }
 
@@ -133,9 +131,9 @@ import { Apideck } from "@apideck/unify";
 import { RFCDate } from "@apideck/unify/types";
 
 const apideck = new Apideck({
-  apiKey: process.env["APIDECK_API_KEY"] ?? "",
   consumerId: "test-consumer",
   appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
+  apiKey: process.env["APIDECK_API_KEY"] ?? "",
 });
 
 async function run() {
@@ -219,7 +217,6 @@ async function run() {
     },
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -238,9 +235,9 @@ import { RFCDate } from "@apideck/unify/types";
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const apideck = new ApideckCore({
-  apiKey: process.env["APIDECK_API_KEY"] ?? "",
   consumerId: "test-consumer",
   appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
+  apiKey: process.env["APIDECK_API_KEY"] ?? "",
 });
 
 async function run() {
@@ -323,15 +320,12 @@ async function run() {
       ],
     },
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("accountingInvoiceItemsCreate failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -371,9 +365,9 @@ Get Invoice Item
 import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
-  apiKey: process.env["APIDECK_API_KEY"] ?? "",
   consumerId: "test-consumer",
   appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
+  apiKey: process.env["APIDECK_API_KEY"] ?? "",
 });
 
 async function run() {
@@ -386,7 +380,6 @@ async function run() {
     },
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -404,9 +397,9 @@ import { accountingInvoiceItemsGet } from "@apideck/unify/funcs/accountingInvoic
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const apideck = new ApideckCore({
-  apiKey: process.env["APIDECK_API_KEY"] ?? "",
   consumerId: "test-consumer",
   appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
+  apiKey: process.env["APIDECK_API_KEY"] ?? "",
 });
 
 async function run() {
@@ -418,15 +411,12 @@ async function run() {
       type: "service",
     },
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("accountingInvoiceItemsGet failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -467,9 +457,9 @@ import { Apideck } from "@apideck/unify";
 import { RFCDate } from "@apideck/unify/types";
 
 const apideck = new Apideck({
-  apiKey: process.env["APIDECK_API_KEY"] ?? "",
   consumerId: "test-consumer",
   appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
+  apiKey: process.env["APIDECK_API_KEY"] ?? "",
 });
 
 async function run() {
@@ -564,7 +554,6 @@ async function run() {
     },
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -583,9 +572,9 @@ import { RFCDate } from "@apideck/unify/types";
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const apideck = new ApideckCore({
-  apiKey: process.env["APIDECK_API_KEY"] ?? "",
   consumerId: "test-consumer",
   appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
+  apiKey: process.env["APIDECK_API_KEY"] ?? "",
 });
 
 async function run() {
@@ -679,15 +668,12 @@ async function run() {
       ],
     },
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("accountingInvoiceItemsUpdate failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -727,9 +713,9 @@ Delete Invoice Item
 import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
-  apiKey: process.env["APIDECK_API_KEY"] ?? "",
   consumerId: "test-consumer",
   appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
+  apiKey: process.env["APIDECK_API_KEY"] ?? "",
 });
 
 async function run() {
@@ -738,7 +724,6 @@ async function run() {
     serviceId: "salesforce",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -756,9 +741,9 @@ import { accountingInvoiceItemsDelete } from "@apideck/unify/funcs/accountingInv
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const apideck = new ApideckCore({
-  apiKey: process.env["APIDECK_API_KEY"] ?? "",
   consumerId: "test-consumer",
   appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
+  apiKey: process.env["APIDECK_API_KEY"] ?? "",
 });
 
 async function run() {
@@ -766,15 +751,12 @@ async function run() {
     id: "<id>",
     serviceId: "salesforce",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("accountingInvoiceItemsDelete failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();

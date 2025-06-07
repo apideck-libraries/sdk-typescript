@@ -31,7 +31,8 @@ const value: components.Four = {};
 
 ```typescript
 const value: string[] = [
-  "<value>",
+  "<value 1>",
+  "<value 2>",
 ];
 ```
 

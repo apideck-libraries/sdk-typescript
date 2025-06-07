@@ -21,9 +21,9 @@ List Tracking Categories
 import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
-  apiKey: process.env["APIDECK_API_KEY"] ?? "",
   consumerId: "test-consumer",
   appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
+  apiKey: process.env["APIDECK_API_KEY"] ?? "",
 });
 
 async function run() {
@@ -36,7 +36,6 @@ async function run() {
   });
 
   for await (const page of result) {
-    // Handle the page
     console.log(page);
   }
 }
@@ -55,9 +54,9 @@ import { accountingTrackingCategoriesList } from "@apideck/unify/funcs/accountin
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const apideck = new ApideckCore({
-  apiKey: process.env["APIDECK_API_KEY"] ?? "",
   consumerId: "test-consumer",
   appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
+  apiKey: process.env["APIDECK_API_KEY"] ?? "",
 });
 
 async function run() {
@@ -68,16 +67,13 @@ async function run() {
     },
     fields: "id,updated_at",
   });
-
-  if (!res.ok) {
-    throw res.error;
-  }
-
-  const { value: result } = res;
-
-  for await (const page of result) {
-    // Handle the page
+  if (res.ok) {
+    const { value: result } = res;
+    for await (const page of result) {
     console.log(page);
+  }
+  } else {
+    console.log("accountingTrackingCategoriesList failed:", res.error);
   }
 }
 
@@ -118,9 +114,9 @@ Create Tracking Category
 import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
-  apiKey: process.env["APIDECK_API_KEY"] ?? "",
   consumerId: "test-consumer",
   appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
+  apiKey: process.env["APIDECK_API_KEY"] ?? "",
 });
 
 async function run() {
@@ -195,7 +191,6 @@ async function run() {
     },
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -213,9 +208,9 @@ import { accountingTrackingCategoriesCreate } from "@apideck/unify/funcs/account
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const apideck = new ApideckCore({
-  apiKey: process.env["APIDECK_API_KEY"] ?? "",
   consumerId: "test-consumer",
   appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
+  apiKey: process.env["APIDECK_API_KEY"] ?? "",
 });
 
 async function run() {
@@ -289,15 +284,12 @@ async function run() {
       ],
     },
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("accountingTrackingCategoriesCreate failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -337,9 +329,9 @@ Get Tracking Category
 import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
-  apiKey: process.env["APIDECK_API_KEY"] ?? "",
   consumerId: "test-consumer",
   appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
+  apiKey: process.env["APIDECK_API_KEY"] ?? "",
 });
 
 async function run() {
@@ -349,7 +341,6 @@ async function run() {
     fields: "id,updated_at",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -367,9 +358,9 @@ import { accountingTrackingCategoriesGet } from "@apideck/unify/funcs/accounting
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const apideck = new ApideckCore({
-  apiKey: process.env["APIDECK_API_KEY"] ?? "",
   consumerId: "test-consumer",
   appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
+  apiKey: process.env["APIDECK_API_KEY"] ?? "",
 });
 
 async function run() {
@@ -378,15 +369,12 @@ async function run() {
     serviceId: "salesforce",
     fields: "id,updated_at",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("accountingTrackingCategoriesGet failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -426,9 +414,9 @@ Update Tracking Category
 import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
-  apiKey: process.env["APIDECK_API_KEY"] ?? "",
   consumerId: "test-consumer",
   appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
+  apiKey: process.env["APIDECK_API_KEY"] ?? "",
 });
 
 async function run() {
@@ -467,7 +455,6 @@ async function run() {
     },
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -485,9 +472,9 @@ import { accountingTrackingCategoriesUpdate } from "@apideck/unify/funcs/account
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const apideck = new ApideckCore({
-  apiKey: process.env["APIDECK_API_KEY"] ?? "",
   consumerId: "test-consumer",
   appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
+  apiKey: process.env["APIDECK_API_KEY"] ?? "",
 });
 
 async function run() {
@@ -525,15 +512,12 @@ async function run() {
       ],
     },
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("accountingTrackingCategoriesUpdate failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -573,9 +557,9 @@ Delete Tracking Category
 import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
-  apiKey: process.env["APIDECK_API_KEY"] ?? "",
   consumerId: "test-consumer",
   appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
+  apiKey: process.env["APIDECK_API_KEY"] ?? "",
 });
 
 async function run() {
@@ -584,7 +568,6 @@ async function run() {
     serviceId: "salesforce",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -602,9 +585,9 @@ import { accountingTrackingCategoriesDelete } from "@apideck/unify/funcs/account
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const apideck = new ApideckCore({
-  apiKey: process.env["APIDECK_API_KEY"] ?? "",
   consumerId: "test-consumer",
   appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
+  apiKey: process.env["APIDECK_API_KEY"] ?? "",
 });
 
 async function run() {
@@ -612,15 +595,12 @@ async function run() {
     id: "<id>",
     serviceId: "salesforce",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("accountingTrackingCategoriesDelete failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();

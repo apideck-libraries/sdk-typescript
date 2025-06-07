@@ -5,7 +5,9 @@
 ```typescript
 import { ConnectorConnectorResourcesOneGlobals } from "@apideck/unify/models/operations";
 
-let value: ConnectorConnectorResourcesOneGlobals = {};
+let value: ConnectorConnectorResourcesOneGlobals = {
+  appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
+};
 ```
 
 ## Fields

@@ -5,17 +5,7 @@
 ```typescript
 import { VaultConsumersAddRequest } from "@apideck/unify/models/operations";
 
-let value: VaultConsumersAddRequest = {
-  consumer: {
-    consumerId: "test_consumer_id",
-    metadata: {
-      accountName: "SpaceX",
-      userName: "Elon Musk",
-      email: "elon@musk.com",
-      image: "https://www.spacex.com/static/images/share.jpg",
-    },
-  },
-};
+let value: VaultConsumersAddRequest = {};
 ```
 
 ## Fields

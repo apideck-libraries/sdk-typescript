@@ -16,6 +16,7 @@ test("Consumerrequestcounts Vault Consumer Request Counts All", async () => {
   });
 
   const result = await apideck.vault.consumerRequestCounts.list({
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     consumerId: "test_user_id",
     startDatetime: "2021-05-01T12:00:00.000Z",
     endDatetime: "2021-05-30T12:00:00.000Z",

@@ -21,9 +21,9 @@ List Departments
 import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
-  apiKey: process.env["APIDECK_API_KEY"] ?? "",
   consumerId: "test-consumer",
   appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
+  apiKey: process.env["APIDECK_API_KEY"] ?? "",
 });
 
 async function run() {
@@ -36,7 +36,6 @@ async function run() {
   });
 
   for await (const page of result) {
-    // Handle the page
     console.log(page);
   }
 }
@@ -55,9 +54,9 @@ import { hrisDepartmentsList } from "@apideck/unify/funcs/hrisDepartmentsList.js
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const apideck = new ApideckCore({
-  apiKey: process.env["APIDECK_API_KEY"] ?? "",
   consumerId: "test-consumer",
   appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
+  apiKey: process.env["APIDECK_API_KEY"] ?? "",
 });
 
 async function run() {
@@ -68,16 +67,13 @@ async function run() {
     },
     fields: "id,updated_at",
   });
-
-  if (!res.ok) {
-    throw res.error;
-  }
-
-  const { value: result } = res;
-
-  for await (const page of result) {
-    // Handle the page
+  if (res.ok) {
+    const { value: result } = res;
+    for await (const page of result) {
     console.log(page);
+  }
+  } else {
+    console.log("hrisDepartmentsList failed:", res.error);
   }
 }
 
@@ -118,9 +114,9 @@ Create Department
 import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
-  apiKey: process.env["APIDECK_API_KEY"] ?? "",
   consumerId: "test-consumer",
   appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
+  apiKey: process.env["APIDECK_API_KEY"] ?? "",
 });
 
 async function run() {
@@ -174,7 +170,6 @@ async function run() {
     },
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -192,9 +187,9 @@ import { hrisDepartmentsCreate } from "@apideck/unify/funcs/hrisDepartmentsCreat
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const apideck = new ApideckCore({
-  apiKey: process.env["APIDECK_API_KEY"] ?? "",
   consumerId: "test-consumer",
   appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
+  apiKey: process.env["APIDECK_API_KEY"] ?? "",
 });
 
 async function run() {
@@ -247,15 +242,12 @@ async function run() {
       ],
     },
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("hrisDepartmentsCreate failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -295,9 +287,9 @@ Get Department
 import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
-  apiKey: process.env["APIDECK_API_KEY"] ?? "",
   consumerId: "test-consumer",
   appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
+  apiKey: process.env["APIDECK_API_KEY"] ?? "",
 });
 
 async function run() {
@@ -307,7 +299,6 @@ async function run() {
     fields: "id,updated_at",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -325,9 +316,9 @@ import { hrisDepartmentsGet } from "@apideck/unify/funcs/hrisDepartmentsGet.js";
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const apideck = new ApideckCore({
-  apiKey: process.env["APIDECK_API_KEY"] ?? "",
   consumerId: "test-consumer",
   appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
+  apiKey: process.env["APIDECK_API_KEY"] ?? "",
 });
 
 async function run() {
@@ -336,15 +327,12 @@ async function run() {
     serviceId: "salesforce",
     fields: "id,updated_at",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("hrisDepartmentsGet failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -384,9 +372,9 @@ Update Department
 import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
-  apiKey: process.env["APIDECK_API_KEY"] ?? "",
   consumerId: "test-consumer",
   appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
+  apiKey: process.env["APIDECK_API_KEY"] ?? "",
 });
 
 async function run() {
@@ -415,7 +403,6 @@ async function run() {
     },
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -433,9 +420,9 @@ import { hrisDepartmentsUpdate } from "@apideck/unify/funcs/hrisDepartmentsUpdat
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const apideck = new ApideckCore({
-  apiKey: process.env["APIDECK_API_KEY"] ?? "",
   consumerId: "test-consumer",
   appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
+  apiKey: process.env["APIDECK_API_KEY"] ?? "",
 });
 
 async function run() {
@@ -463,15 +450,12 @@ async function run() {
       ],
     },
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("hrisDepartmentsUpdate failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -511,9 +495,9 @@ Delete Department
 import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
-  apiKey: process.env["APIDECK_API_KEY"] ?? "",
   consumerId: "test-consumer",
   appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
+  apiKey: process.env["APIDECK_API_KEY"] ?? "",
 });
 
 async function run() {
@@ -522,7 +506,6 @@ async function run() {
     serviceId: "salesforce",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -540,9 +523,9 @@ import { hrisDepartmentsDelete } from "@apideck/unify/funcs/hrisDepartmentsDelet
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const apideck = new ApideckCore({
-  apiKey: process.env["APIDECK_API_KEY"] ?? "",
   consumerId: "test-consumer",
   appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
+  apiKey: process.env["APIDECK_API_KEY"] ?? "",
 });
 
 async function run() {
@@ -550,15 +533,12 @@ async function run() {
     id: "<id>",
     serviceId: "salesforce",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("hrisDepartmentsDelete failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();

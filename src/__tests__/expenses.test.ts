@@ -16,6 +16,8 @@ test("Expenses Accounting Expenses All", async () => {
   });
 
   const result = await apideck.accounting.expenses.list({
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
   });
   expect(result.httpMeta.response.status).toBe(200);
@@ -407,6 +409,8 @@ test("Expenses Accounting Expenses One", async () => {
 
   const result = await apideck.accounting.expenses.get({
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
   });
   expect(result.httpMeta.response.status).toBe(200);
@@ -549,6 +553,8 @@ test("Expenses Accounting Expenses Delete", async () => {
 
   const result = await apideck.accounting.expenses.delete({
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
   });
   expect(result.httpMeta.response.status).toBe(200);

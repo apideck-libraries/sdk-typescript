@@ -18,10 +18,13 @@ test("Collectiontickets Issue Tracking Collection Tickets All", async () => {
   });
 
   const result = await apideck.issueTracking.collectionTickets.list({
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
     collectionId: "apideck-io",
     sort: {
       by: "created_at",
+      direction: "desc",
     },
     filter: {
       status: [
@@ -293,6 +296,8 @@ test("Collectiontickets Issue Tracking Collection Tickets One", async () => {
 
   const result = await apideck.issueTracking.collectionTickets.get({
     ticketId: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
     collectionId: "apideck-io",
     fields: "id,updated_at",
@@ -418,6 +423,8 @@ test("Collectiontickets Issue Tracking Collection Tickets Delete", async () => {
 
   const result = await apideck.issueTracking.collectionTickets.delete({
     ticketId: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
     collectionId: "apideck-io",
   });

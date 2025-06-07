@@ -24,12 +24,7 @@ let value: GetBillPaymentsResponse = {
       paymentMethod: "cash",
       paymentMethodReference: "123456",
       paymentMethodId: "12345",
-      account: {
-        id: "123456",
-        name: "Bank account",
-        nominalCode: "N091",
-        code: "453",
-      },
+      account: null,
       transactionDate: new Date("2021-05-01T12:00:00.000Z"),
       supplier: {
         id: "12345",

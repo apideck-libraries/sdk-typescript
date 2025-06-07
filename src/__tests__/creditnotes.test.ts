@@ -16,12 +16,15 @@ test("Creditnotes Accounting Credit Notes All", async () => {
   });
 
   const result = await apideck.accounting.creditNotes.list({
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
     filter: {
       updatedSince: new Date("2020-09-30T07:43:32.000Z"),
     },
     sort: {
       by: "updated_at",
+      direction: "desc",
     },
     passThrough: {
       "search": "San Francisco",
@@ -968,6 +971,8 @@ test("Creditnotes Accounting Credit Notes One", async () => {
 
   const result = await apideck.accounting.creditNotes.get({
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
     fields: "id,updated_at",
   });
@@ -1345,6 +1350,8 @@ test("Creditnotes Accounting Credit Notes Delete", async () => {
 
   const result = await apideck.accounting.creditNotes.delete({
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
   });
   expect(result.httpMeta.response.status).toBe(200);

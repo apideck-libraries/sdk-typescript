@@ -21,9 +21,9 @@ List contacts
 import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
-  apiKey: process.env["APIDECK_API_KEY"] ?? "",
   consumerId: "test-consumer",
   appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
+  apiKey: process.env["APIDECK_API_KEY"] ?? "",
 });
 
 async function run() {
@@ -38,6 +38,7 @@ async function run() {
     },
     sort: {
       by: "created_at",
+      direction: "desc",
     },
     passThrough: {
       "search": "San Francisco",
@@ -46,7 +47,6 @@ async function run() {
   });
 
   for await (const page of result) {
-    // Handle the page
     console.log(page);
   }
 }
@@ -65,9 +65,9 @@ import { crmContactsList } from "@apideck/unify/funcs/crmContactsList.js";
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const apideck = new ApideckCore({
-  apiKey: process.env["APIDECK_API_KEY"] ?? "",
   consumerId: "test-consumer",
   appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
+  apiKey: process.env["APIDECK_API_KEY"] ?? "",
 });
 
 async function run() {
@@ -82,22 +82,20 @@ async function run() {
     },
     sort: {
       by: "created_at",
+      direction: "desc",
     },
     passThrough: {
       "search": "San Francisco",
     },
     fields: "id,updated_at",
   });
-
-  if (!res.ok) {
-    throw res.error;
-  }
-
-  const { value: result } = res;
-
-  for await (const page of result) {
-    // Handle the page
+  if (res.ok) {
+    const { value: result } = res;
+    for await (const page of result) {
     console.log(page);
+  }
+  } else {
+    console.log("crmContactsList failed:", res.error);
   }
 }
 
@@ -138,9 +136,9 @@ Create contact
 import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
-  apiKey: process.env["APIDECK_API_KEY"] ?? "",
   consumerId: "test-consumer",
   appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
+  apiKey: process.env["APIDECK_API_KEY"] ?? "",
 });
 
 async function run() {
@@ -332,7 +330,6 @@ async function run() {
     },
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -350,9 +347,9 @@ import { crmContactsCreate } from "@apideck/unify/funcs/crmContactsCreate.js";
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const apideck = new ApideckCore({
-  apiKey: process.env["APIDECK_API_KEY"] ?? "",
   consumerId: "test-consumer",
   appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
+  apiKey: process.env["APIDECK_API_KEY"] ?? "",
 });
 
 async function run() {
@@ -543,15 +540,12 @@ async function run() {
       ],
     },
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("crmContactsCreate failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -591,9 +585,9 @@ Get contact
 import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
-  apiKey: process.env["APIDECK_API_KEY"] ?? "",
   consumerId: "test-consumer",
   appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
+  apiKey: process.env["APIDECK_API_KEY"] ?? "",
 });
 
 async function run() {
@@ -610,7 +604,6 @@ async function run() {
     },
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -628,9 +621,9 @@ import { crmContactsGet } from "@apideck/unify/funcs/crmContactsGet.js";
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const apideck = new ApideckCore({
-  apiKey: process.env["APIDECK_API_KEY"] ?? "",
   consumerId: "test-consumer",
   appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
+  apiKey: process.env["APIDECK_API_KEY"] ?? "",
 });
 
 async function run() {
@@ -646,15 +639,12 @@ async function run() {
       ownerId: "12345",
     },
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("crmContactsGet failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -694,9 +684,9 @@ Update contact
 import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
-  apiKey: process.env["APIDECK_API_KEY"] ?? "",
   consumerId: "test-consumer",
   appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
+  apiKey: process.env["APIDECK_API_KEY"] ?? "",
 });
 
 async function run() {
@@ -943,7 +933,6 @@ async function run() {
     },
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -961,9 +950,9 @@ import { crmContactsUpdate } from "@apideck/unify/funcs/crmContactsUpdate.js";
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const apideck = new ApideckCore({
-  apiKey: process.env["APIDECK_API_KEY"] ?? "",
   consumerId: "test-consumer",
   appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
+  apiKey: process.env["APIDECK_API_KEY"] ?? "",
 });
 
 async function run() {
@@ -1209,15 +1198,12 @@ async function run() {
       ],
     },
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("crmContactsUpdate failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -1257,9 +1243,9 @@ Delete contact
 import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
-  apiKey: process.env["APIDECK_API_KEY"] ?? "",
   consumerId: "test-consumer",
   appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
+  apiKey: process.env["APIDECK_API_KEY"] ?? "",
 });
 
 async function run() {
@@ -1268,7 +1254,6 @@ async function run() {
     serviceId: "salesforce",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -1286,9 +1271,9 @@ import { crmContactsDelete } from "@apideck/unify/funcs/crmContactsDelete.js";
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const apideck = new ApideckCore({
-  apiKey: process.env["APIDECK_API_KEY"] ?? "",
   consumerId: "test-consumer",
   appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
+  apiKey: process.env["APIDECK_API_KEY"] ?? "",
 });
 
 async function run() {
@@ -1296,15 +1281,12 @@ async function run() {
     id: "<id>",
     serviceId: "salesforce",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("crmContactsDelete failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();

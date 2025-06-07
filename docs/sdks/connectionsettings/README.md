@@ -19,9 +19,9 @@ This endpoint returns custom settings and their defaults required by connection 
 import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
-  apiKey: process.env["APIDECK_API_KEY"] ?? "",
   consumerId: "test-consumer",
   appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
+  apiKey: process.env["APIDECK_API_KEY"] ?? "",
 });
 
 async function run() {
@@ -31,7 +31,6 @@ async function run() {
     resource: "leads",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -49,9 +48,9 @@ import { vaultConnectionSettingsList } from "@apideck/unify/funcs/vaultConnectio
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const apideck = new ApideckCore({
-  apiKey: process.env["APIDECK_API_KEY"] ?? "",
   consumerId: "test-consumer",
   appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
+  apiKey: process.env["APIDECK_API_KEY"] ?? "",
 });
 
 async function run() {
@@ -60,15 +59,12 @@ async function run() {
     serviceId: "pipedrive",
     resource: "leads",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("vaultConnectionSettingsList failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -108,9 +104,9 @@ Update default values for a connection's resource settings
 import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
-  apiKey: process.env["APIDECK_API_KEY"] ?? "",
   consumerId: "test-consumer",
   appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
+  apiKey: process.env["APIDECK_API_KEY"] ?? "",
 });
 
 async function run() {
@@ -214,7 +210,6 @@ async function run() {
     },
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -232,9 +227,9 @@ import { vaultConnectionSettingsUpdate } from "@apideck/unify/funcs/vaultConnect
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const apideck = new ApideckCore({
-  apiKey: process.env["APIDECK_API_KEY"] ?? "",
   consumerId: "test-consumer",
   appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
+  apiKey: process.env["APIDECK_API_KEY"] ?? "",
 });
 
 async function run() {
@@ -337,15 +332,12 @@ async function run() {
       ],
     },
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("vaultConnectionSettingsUpdate failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();

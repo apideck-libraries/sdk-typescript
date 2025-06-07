@@ -5,7 +5,10 @@
 ```typescript
 import { HrisDepartmentsAllGlobals } from "@apideck/unify/models/operations";
 
-let value: HrisDepartmentsAllGlobals = {};
+let value: HrisDepartmentsAllGlobals = {
+  consumerId: "test-consumer",
+  appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
+};
 ```
 
 ## Fields

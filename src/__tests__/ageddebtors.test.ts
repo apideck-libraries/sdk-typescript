@@ -17,6 +17,8 @@ test("Ageddebtors Accounting Aged Debtors One", async () => {
   });
 
   const result = await apideck.accounting.agedDebtors.get({
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
     filter: {
       customerId: "123abc",

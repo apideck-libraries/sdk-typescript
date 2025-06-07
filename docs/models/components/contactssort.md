@@ -7,6 +7,7 @@ import { ContactsSort } from "@apideck/unify/models/components";
 
 let value: ContactsSort = {
   by: "created_at",
+  direction: "desc",
 };
 ```
 

@@ -101,10 +101,7 @@ let value: Customer = {
     nominalCode: "N091",
     code: "453",
   },
-  parent: {
-    id: "12345",
-    name: "Windsurf Shop",
-  },
+  parent: null,
   status: "active",
   paymentMethod: "cash",
   channel: "email",

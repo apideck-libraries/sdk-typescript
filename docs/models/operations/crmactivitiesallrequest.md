@@ -12,6 +12,7 @@ let value: CrmActivitiesAllRequest = {
   },
   sort: {
     by: "created_at",
+    direction: "desc",
   },
   passThrough: {
     "search": "San Francisco",

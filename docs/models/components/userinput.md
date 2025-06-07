@@ -57,13 +57,7 @@ let value: UserInput = {
       type: "primary",
     },
   ],
-  emails: [
-    {
-      id: "123",
-      email: "elon@musk.com",
-      type: "primary",
-    },
-  ],
+  emails: [],
   passThrough: [
     {
       serviceId: "<id>",

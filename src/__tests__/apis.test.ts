@@ -16,6 +16,7 @@ test("Apis Connector Apis All", async () => {
   });
 
   const result = await apideck.connector.apis.list({
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     filter: {
       status: "beta",
     },
@@ -151,6 +152,7 @@ test("Apis Connector Apis One", async () => {
   });
 
   const result = await apideck.connector.apis.get({
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     id: "<id>",
   });
   expect(result.httpMeta.response.status).toBe(200);

@@ -16,12 +16,7 @@ let value: Folder = {
     email: "hello@apideck.com",
     name: "Elon Musk",
   },
-  parentFolders: [
-    {
-      id: "12345",
-      name: "Personal",
-    },
-  ],
+  parentFolders: [],
   updatedBy: "12345",
   createdBy: "12345",
   updatedAt: new Date("2020-09-30T07:43:32.000Z"),

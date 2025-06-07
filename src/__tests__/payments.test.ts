@@ -16,12 +16,15 @@ test("Payments Accounting Payments All", async () => {
   });
 
   const result = await apideck.accounting.payments.list({
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
     filter: {
       updatedSince: new Date("2020-09-30T07:43:32.000Z"),
     },
     sort: {
       by: "updated_at",
+      direction: "desc",
     },
     passThrough: {
       "search": "San Francisco",
@@ -398,6 +401,8 @@ test("Payments Accounting Payments One", async () => {
 
   const result = await apideck.accounting.payments.get({
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
     fields: "id,updated_at",
   });
@@ -540,6 +545,8 @@ test("Payments Accounting Payments Delete", async () => {
 
   const result = await apideck.accounting.payments.delete({
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
   });
   expect(result.httpMeta.response.status).toBe(200);

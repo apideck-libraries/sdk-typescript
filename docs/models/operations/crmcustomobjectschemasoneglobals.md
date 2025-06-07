@@ -5,7 +5,10 @@
 ```typescript
 import { CrmCustomObjectSchemasOneGlobals } from "@apideck/unify/models/operations";
 
-let value: CrmCustomObjectSchemasOneGlobals = {};
+let value: CrmCustomObjectSchemasOneGlobals = {
+  consumerId: "test-consumer",
+  appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
+};
 ```
 
 ## Fields

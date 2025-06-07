@@ -89,12 +89,7 @@ let value: JournalEntry = {
   taxType: "sales",
   taxCode: "1234",
   number: "OIT00546",
-  trackingCategories: [
-    {
-      id: "123456",
-      name: "New York",
-    },
-  ],
+  trackingCategories: null,
   accountingPeriod: "01-24",
   updatedBy: "12345",
   createdBy: "12345",

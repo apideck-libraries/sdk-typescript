@@ -5,7 +5,10 @@
 ```typescript
 import { VaultCustomFieldsAllGlobals } from "@apideck/unify/models/operations";
 
-let value: VaultCustomFieldsAllGlobals = {};
+let value: VaultCustomFieldsAllGlobals = {
+  consumerId: "test-consumer",
+  appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
+};
 ```
 
 ## Fields

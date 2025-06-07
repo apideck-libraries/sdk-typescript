@@ -5,7 +5,10 @@
 ```typescript
 import { SmsMessagesOneGlobals } from "@apideck/unify/models/operations";
 
-let value: SmsMessagesOneGlobals = {};
+let value: SmsMessagesOneGlobals = {
+  consumerId: "test-consumer",
+  appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
+};
 ```
 
 ## Fields

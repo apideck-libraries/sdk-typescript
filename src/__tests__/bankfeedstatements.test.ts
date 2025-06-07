@@ -18,6 +18,8 @@ test("Bankfeedstatements Accounting Bank Feed Statements All", async () => {
   });
 
   const result = await apideck.accounting.bankFeedStatements.list({
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
     passThrough: {
       "search": "San Francisco",
@@ -175,6 +177,8 @@ test("Bankfeedstatements Accounting Bank Feed Statements Add", async () => {
   });
 
   const result = await apideck.accounting.bankFeedStatements.create({
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
     bankFeedStatement: {
       bankFeedAccountId: "acc_456",
@@ -236,6 +240,8 @@ test("Bankfeedstatements Accounting Bank Feed Statements One", async () => {
 
   const result = await apideck.accounting.bankFeedStatements.get({
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
     fields: "id,updated_at",
   });
@@ -310,6 +316,8 @@ test("Bankfeedstatements Accounting Bank Feed Statements Update", async () => {
 
   const result = await apideck.accounting.bankFeedStatements.update({
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
     bankFeedStatement: {
       bankFeedAccountId: "acc_456",
@@ -381,6 +389,8 @@ test("Bankfeedstatements Accounting Bank Feed Statements Delete", async () => {
 
   const result = await apideck.accounting.bankFeedStatements.delete({
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
   });
   expect(result.httpMeta.response.status).toBe(200);

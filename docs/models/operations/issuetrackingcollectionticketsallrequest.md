@@ -10,6 +10,7 @@ let value: IssueTrackingCollectionTicketsAllRequest = {
   collectionId: "apideck-io",
   sort: {
     by: "created_at",
+    direction: "desc",
   },
   filter: {
     status: [

@@ -13,18 +13,7 @@ let value: GetCollectionUsersResponse = {
   service: "jira",
   resource: "Tickets",
   operation: "all",
-  data: [
-    {
-      id: "12345",
-      name: "Elon Musk",
-      firstName: "Elon",
-      lastName: "Musk",
-      email: "elon@musk.com",
-      photoUrl: "https://unavatar.io/elon-musk",
-      updatedAt: new Date("2020-09-30T07:43:32.000Z"),
-      createdAt: new Date("2020-09-30T07:43:32.000Z"),
-    },
-  ],
+  data: [],
   meta: {
     itemsOnPage: 50,
     cursors: {

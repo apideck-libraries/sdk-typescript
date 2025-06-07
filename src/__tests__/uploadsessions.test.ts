@@ -22,6 +22,8 @@ test("Uploadsessions File Storage Upload Sessions One", async () => {
 
   const result = await apideck.fileStorage.uploadSessions.get({
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
     fields: "id,updated_at",
   }, {
@@ -59,6 +61,8 @@ test("Uploadsessions File Storage Upload Sessions Delete", async () => {
 
   const result = await apideck.fileStorage.uploadSessions.delete({
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
   });
   expect(result.httpMeta.response.status).toBe(200);
@@ -87,6 +91,8 @@ test("Uploadsessions File Storage Upload Sessions Finish", async () => {
 
   const result = await apideck.fileStorage.uploadSessions.finish({
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
     digest: "sha=fpRyg5eVQletdZqEKaFlqwBXJzM=",
   }, {

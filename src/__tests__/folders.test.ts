@@ -23,6 +23,8 @@ test("Folders File Storage Folders One", async () => {
 
   const result = await apideck.fileStorage.folders.get({
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
     fields: "id,updated_at",
   });
@@ -80,6 +82,8 @@ test("Folders File Storage Folders Delete", async () => {
 
   const result = await apideck.fileStorage.folders.delete({
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
   });
   expect(result.httpMeta.response.status).toBe(200);

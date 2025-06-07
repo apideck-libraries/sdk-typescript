@@ -7,6 +7,7 @@ import { LeadsSort } from "@apideck/unify/models/components";
 
 let value: LeadsSort = {
   by: "created_at",
+  direction: "desc",
 };
 ```
 

@@ -13,31 +13,7 @@ let value: GetBankFeedAccountsResponse = {
   service: "quickbooks",
   resource: "bank-feed-accounts",
   operation: "all",
-  data: [
-    {
-      id: "12345",
-      bankAccountType: "bank",
-      sourceAccountId: "src_456",
-      targetAccountId: "tgt_789",
-      targetAccountName: "Main Company Checking",
-      targetAccountNumber: "NL91ABNA0417164300",
-      currency: "USD",
-      feedStatus: "pending",
-      country: "US",
-      customFields: [
-        {
-          id: "2389328923893298",
-          name: "employee_level",
-          description: "Employee Level",
-          value: "Uses Salesforce and Marketo",
-        },
-      ],
-      createdAt: new Date("2020-09-30T07:43:32.000Z"),
-      updatedAt: new Date("2020-09-30T07:43:32.000Z"),
-      updatedBy: "12345",
-      createdBy: "12345",
-    },
-  ],
+  data: [],
   meta: {
     itemsOnPage: 50,
     cursors: {

@@ -8,38 +8,6 @@ import { CrmPipelinesUpdateRequest } from "@apideck/unify/models/operations";
 let value: CrmPipelinesUpdateRequest = {
   id: "<id>",
   serviceId: "salesforce",
-  pipeline: {
-    id: "default",
-    name: "Sales Pipeline",
-    currency: "USD",
-    archived: false,
-    active: false,
-    displayOrder: 1,
-    winProbabilityEnabled: true,
-    stages: [
-      {
-        name: "Contract Sent",
-        value: "CONTRACT_SENT",
-        winProbability: 50,
-        displayOrder: 1,
-      },
-    ],
-    passThrough: [
-      {
-        serviceId: "<id>",
-        extendPaths: [
-          {
-            path: "$.nested.property",
-            value: {
-              "TaxClassificationRef": {
-                "value": "EUC-99990201-V1-00020000",
-              },
-            },
-          },
-        ],
-      },
-    ],
-  },
 };
 ```
 

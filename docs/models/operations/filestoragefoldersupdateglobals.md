@@ -5,7 +5,10 @@
 ```typescript
 import { FileStorageFoldersUpdateGlobals } from "@apideck/unify/models/operations";
 
-let value: FileStorageFoldersUpdateGlobals = {};
+let value: FileStorageFoldersUpdateGlobals = {
+  consumerId: "test-consumer",
+  appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
+};
 ```
 
 ## Fields
