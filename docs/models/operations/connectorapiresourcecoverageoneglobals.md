@@ -5,7 +5,9 @@
 ```typescript
 import { ConnectorApiResourceCoverageOneGlobals } from "@apideck/unify/models/operations";
 
-let value: ConnectorApiResourceCoverageOneGlobals = {};
+let value: ConnectorApiResourceCoverageOneGlobals = {
+  appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
+};
 ```
 
 ## Fields

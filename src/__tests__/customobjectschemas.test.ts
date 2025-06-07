@@ -16,6 +16,8 @@ test("Customobjectschemas Crm Custom Object Schemas All", async () => {
   });
 
   const result = await apideck.crm.customObjectSchemas.list({
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
     passThrough: {
       "search": "San Francisco",
@@ -282,6 +284,8 @@ test("Customobjectschemas Crm Custom Object Schemas One", async () => {
 
   const result = await apideck.crm.customObjectSchemas.get({
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
   });
   expect(result.httpMeta.response.status).toBe(200);
@@ -399,6 +403,8 @@ test("Customobjectschemas Crm Custom Object Schemas Delete", async () => {
 
   const result = await apideck.crm.customObjectSchemas.delete({
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
   });
   expect(result.httpMeta.response.status).toBe(200);

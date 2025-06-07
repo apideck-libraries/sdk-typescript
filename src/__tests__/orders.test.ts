@@ -16,6 +16,8 @@ test("Orders Ecommerce Orders All", async () => {
   });
 
   const result = await apideck.ecommerce.orders.list({
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
     filter: {
       email: "elon@musk.com",
@@ -25,6 +27,7 @@ test("Orders Ecommerce Orders All", async () => {
     },
     sort: {
       by: "created_at",
+      direction: "desc",
     },
     passThrough: {
       "search": "San Francisco",
@@ -606,6 +609,8 @@ test("Orders Ecommerce Orders One", async () => {
 
   const result = await apideck.ecommerce.orders.get({
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
     fields: "id,updated_at",
   });

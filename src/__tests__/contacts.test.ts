@@ -16,6 +16,8 @@ test("Contacts Crm Contacts All", async () => {
   });
 
   const result = await apideck.crm.contacts.list({
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
     filter: {
       firstName: "Elon",
@@ -26,6 +28,7 @@ test("Contacts Crm Contacts All", async () => {
     },
     sort: {
       by: "created_at",
+      direction: "desc",
     },
     passThrough: {
       "search": "San Francisco",
@@ -701,6 +704,8 @@ test("Contacts Crm Contacts One", async () => {
 
   const result = await apideck.crm.contacts.get({
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
     fields: "id,updated_at",
     filter: {
@@ -940,6 +945,8 @@ test("Contacts Crm Contacts Delete", async () => {
 
   const result = await apideck.crm.contacts.delete({
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
   });
   expect(result.httpMeta.response.status).toBe(200);

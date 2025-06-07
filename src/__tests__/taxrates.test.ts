@@ -16,6 +16,8 @@ test("Taxrates Accounting Tax Rates All", async () => {
   });
 
   const result = await apideck.accounting.taxRates.list({
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
     filter: {
       assets: true,
@@ -321,6 +323,8 @@ test("Taxrates Accounting Tax Rates One", async () => {
 
   const result = await apideck.accounting.taxRates.get({
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
     fields: "id,updated_at",
   });
@@ -455,6 +459,8 @@ test("Taxrates Accounting Tax Rates Delete", async () => {
 
   const result = await apideck.accounting.taxRates.delete({
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
   });
   expect(result.httpMeta.response.status).toBe(200);

@@ -8,25 +8,6 @@ import { FileStorageDrivesUpdateRequest } from "@apideck/unify/models/operations
 let value: FileStorageDrivesUpdateRequest = {
   id: "<id>",
   serviceId: "salesforce",
-  drive: {
-    name: "Project Resources",
-    description: "A description",
-    passThrough: [
-      {
-        serviceId: "<id>",
-        extendPaths: [
-          {
-            path: "$.nested.property",
-            value: {
-              "TaxClassificationRef": {
-                "value": "EUC-99990201-V1-00020000",
-              },
-            },
-          },
-        ],
-      },
-    ],
-  },
 };
 ```
 

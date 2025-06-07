@@ -66,13 +66,7 @@ let value: GetUsersResponse = {
           type: "primary",
         },
       ],
-      emails: [
-        {
-          id: "123",
-          email: "elon@musk.com",
-          type: "primary",
-        },
-      ],
+      emails: [],
       updatedAt: "2017-08-12T20:43:21.291Z",
       createdAt: "2017-08-12T20:43:21.291Z",
       passThrough: [

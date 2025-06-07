@@ -5,32 +5,7 @@
 ```typescript
 import { AccountingLocationsUpdateResponse } from "@apideck/unify/models/operations";
 
-let value: AccountingLocationsUpdateResponse = {
-  httpMeta: {
-    response: new Response("{\"message\": \"hello world\"}", {
-      headers: { "Content-Type": "application/json" },
-    }),
-    request: new Request("https://example.com"),
-  },
-  updateAccountingLocationResponse: {
-    statusCode: 200,
-    status: "OK",
-    service: "quickbooks",
-    resource: "locations",
-    operation: "update",
-    data: {
-      id: "12345",
-    },
-  },
-  unexpectedErrorResponse: {
-    statusCode: 400,
-    error: "Bad Request",
-    typeName: "RequestHeadersValidationError",
-    message: "Invalid Params",
-    detail: "Missing Header: x-apideck-consumer-id",
-    ref: "https://developers.apideck.com/errors#unauthorizederror",
-  },
-};
+let value: AccountingLocationsUpdateResponse = {};
 ```
 
 ## Fields

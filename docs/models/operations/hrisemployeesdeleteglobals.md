@@ -5,7 +5,10 @@
 ```typescript
 import { HrisEmployeesDeleteGlobals } from "@apideck/unify/models/operations";
 
-let value: HrisEmployeesDeleteGlobals = {};
+let value: HrisEmployeesDeleteGlobals = {
+  consumerId: "test-consumer",
+  appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
+};
 ```
 
 ## Fields

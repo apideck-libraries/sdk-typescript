@@ -16,6 +16,8 @@ test("Connections Vault Connections All", async () => {
   });
 
   const result = await apideck.vault.connections.list({
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     api: "crm",
     configured: true,
   });
@@ -826,6 +828,8 @@ test("Connections Vault Connections One", async () => {
   });
 
   const result = await apideck.vault.connections.get({
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "pipedrive",
     unifiedApi: "crm",
   });
@@ -1112,6 +1116,8 @@ test("Connections Vault Connections Delete", async () => {
   });
 
   const result = await apideck.vault.connections.delete({
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "pipedrive",
     unifiedApi: "crm",
   });
@@ -1190,6 +1196,8 @@ test("Connections Vault Connections Import", async () => {
   });
 
   const result = await apideck.vault.connections.imports({
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "pipedrive",
     unifiedApi: "crm",
     connectionImportData: {
@@ -1551,6 +1559,8 @@ test("Connections Vault Connections Token", async () => {
   });
 
   const result = await apideck.vault.connections.token({
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "pipedrive",
     unifiedApi: "crm",
   });

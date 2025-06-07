@@ -16,6 +16,8 @@ test("Createcallback Vault Create Callback State", async () => {
   });
 
   const result = await apideck.vault.createCallback.state({
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "pipedrive",
     unifiedApi: "crm",
     createCallbackState: {

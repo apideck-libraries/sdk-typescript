@@ -7,6 +7,7 @@ import { LedgerAccountsSort } from "@apideck/unify/models/components";
 
 let value: LedgerAccountsSort = {
   by: "updated_at",
+  direction: "desc",
 };
 ```
 

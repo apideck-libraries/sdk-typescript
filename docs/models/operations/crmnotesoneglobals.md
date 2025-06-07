@@ -5,7 +5,10 @@
 ```typescript
 import { CrmNotesOneGlobals } from "@apideck/unify/models/operations";
 
-let value: CrmNotesOneGlobals = {};
+let value: CrmNotesOneGlobals = {
+  consumerId: "test-consumer",
+  appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
+};
 ```
 
 ## Fields

@@ -18,9 +18,8 @@ Get consumer request counts within a given datetime range.
 import { Apideck } from "@apideck/unify";
 
 const apideck = new Apideck({
-  apiKey: process.env["APIDECK_API_KEY"] ?? "",
-  consumerId: "test-consumer",
   appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
+  apiKey: process.env["APIDECK_API_KEY"] ?? "",
 });
 
 async function run() {
@@ -30,7 +29,6 @@ async function run() {
     endDatetime: "2021-05-30T12:00:00.000Z",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -48,9 +46,8 @@ import { vaultConsumerRequestCountsList } from "@apideck/unify/funcs/vaultConsum
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const apideck = new ApideckCore({
-  apiKey: process.env["APIDECK_API_KEY"] ?? "",
-  consumerId: "test-consumer",
   appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
+  apiKey: process.env["APIDECK_API_KEY"] ?? "",
 });
 
 async function run() {
@@ -59,15 +56,12 @@ async function run() {
     startDatetime: "2021-05-01T12:00:00.000Z",
     endDatetime: "2021-05-30T12:00:00.000Z",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("vaultConsumerRequestCountsList failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();

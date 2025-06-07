@@ -11,7 +11,7 @@ import { safeParse } from "../lib/schemas.js";
 import { RequestOptions } from "../lib/sdks.js";
 import { extractSecurity, resolveGlobalSecurity } from "../lib/security.js";
 import { pathToFunc } from "../lib/url.js";
-import { APIError } from "../models/errors/apierror.js";
+import { ApideckError } from "../models/errors/apideckerror.js";
 import {
   ConnectionError,
   InvalidRequestError,
@@ -20,6 +20,7 @@ import {
   UnexpectedClientError,
 } from "../models/errors/httpclienterrors.js";
 import * as errors from "../models/errors/index.js";
+import { ResponseValidationError } from "../models/errors/responsevalidationerror.js";
 import { SDKValidationError } from "../models/errors/sdkvalidationerror.js";
 import * as operations from "../models/operations/index.js";
 import { APICall, APIPromise } from "../types/async.js";
@@ -50,13 +51,14 @@ export function accountingAttachmentsList(
       | errors.PaymentRequiredResponse
       | errors.NotFoundResponse
       | errors.UnprocessableResponse
-      | APIError
-      | SDKValidationError
-      | UnexpectedClientError
-      | InvalidRequestError
+      | ApideckError
+      | ResponseValidationError
+      | ConnectionError
       | RequestAbortedError
       | RequestTimeoutError
-      | ConnectionError
+      | InvalidRequestError
+      | UnexpectedClientError
+      | SDKValidationError
     >,
     { cursor: string }
   >
@@ -82,13 +84,14 @@ async function $do(
         | errors.PaymentRequiredResponse
         | errors.NotFoundResponse
         | errors.UnprocessableResponse
-        | APIError
-        | SDKValidationError
-        | UnexpectedClientError
-        | InvalidRequestError
+        | ApideckError
+        | ResponseValidationError
+        | ConnectionError
         | RequestAbortedError
         | RequestTimeoutError
-        | ConnectionError
+        | InvalidRequestError
+        | UnexpectedClientError
+        | SDKValidationError
       >,
       { cursor: string }
     >,
@@ -215,13 +218,14 @@ async function $do(
     | errors.PaymentRequiredResponse
     | errors.NotFoundResponse
     | errors.UnprocessableResponse
-    | APIError
-    | SDKValidationError
-    | UnexpectedClientError
-    | InvalidRequestError
+    | ApideckError
+    | ResponseValidationError
+    | ConnectionError
     | RequestAbortedError
     | RequestTimeoutError
-    | ConnectionError
+    | InvalidRequestError
+    | UnexpectedClientError
+    | SDKValidationError
   >(
     M.json(200, operations.AccountingAttachmentsAllResponse$inboundSchema, {
       key: "GetAttachmentsResponse",
@@ -258,13 +262,14 @@ async function $do(
         | errors.PaymentRequiredResponse
         | errors.NotFoundResponse
         | errors.UnprocessableResponse
-        | APIError
-        | SDKValidationError
-        | UnexpectedClientError
-        | InvalidRequestError
+        | ApideckError
+        | ResponseValidationError
+        | ConnectionError
         | RequestAbortedError
         | RequestTimeoutError
-        | ConnectionError
+        | InvalidRequestError
+        | UnexpectedClientError
+        | SDKValidationError
       >
     >;
     "~next"?: { cursor: string };

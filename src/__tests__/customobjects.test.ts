@@ -16,6 +16,8 @@ test("Customobjects Crm Custom Objects All", async () => {
   });
 
   const result = await apideck.crm.customObjects.list({
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
     passThrough: {
       "search": "San Francisco",
@@ -158,6 +160,8 @@ test("Customobjects Crm Custom Objects One", async () => {
 
   const result = await apideck.crm.customObjects.get({
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
     objectId: "<id>",
   });
@@ -243,6 +247,8 @@ test("Customobjects Crm Custom Objects Delete", async () => {
 
   const result = await apideck.crm.customObjects.delete({
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
     objectId: "<id>",
   });

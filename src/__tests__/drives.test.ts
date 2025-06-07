@@ -16,6 +16,8 @@ test("Drives File Storage Drives All", async () => {
   });
 
   const result = await apideck.fileStorage.drives.list({
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
     filter: {
       groupId: "1234",
@@ -189,6 +191,8 @@ test("Drives File Storage Drives One", async () => {
 
   const result = await apideck.fileStorage.drives.get({
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
     fields: "id,updated_at",
   });
@@ -294,6 +298,8 @@ test("Drives File Storage Drives Delete", async () => {
 
   const result = await apideck.fileStorage.drives.delete({
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
   });
   expect(result.httpMeta.response.status).toBe(200);

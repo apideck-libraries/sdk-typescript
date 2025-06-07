@@ -18,11 +18,14 @@ test("Collectionticketcomments Issue Tracking Collection Ticket Comments All", a
   });
 
   const result = await apideck.issueTracking.collectionTicketComments.list({
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
     collectionId: "apideck-io",
     ticketId: "<id>",
     sort: {
       by: "created_at",
+      direction: "desc",
     },
     passThrough: {
       "search": "San Francisco",
@@ -192,6 +195,8 @@ test("Collectionticketcomments Issue Tracking Collection Ticket Comments One", a
 
   const result = await apideck.issueTracking.collectionTicketComments.get({
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
     collectionId: "apideck-io",
     ticketId: "<id>",
@@ -299,6 +304,8 @@ test("Collectionticketcomments Issue Tracking Collection Ticket Comments Delete"
 
   const result = await apideck.issueTracking.collectionTicketComments.delete({
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
     collectionId: "apideck-io",
     ticketId: "<id>",

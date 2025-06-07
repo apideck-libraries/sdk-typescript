@@ -5,7 +5,9 @@
 ```typescript
 import { ConnectorApisOneGlobals } from "@apideck/unify/models/operations";
 
-let value: ConnectorApisOneGlobals = {};
+let value: ConnectorApisOneGlobals = {
+  appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
+};
 ```
 
 ## Fields

@@ -16,12 +16,15 @@ test("Activities Crm Activities All", async () => {
   });
 
   const result = await apideck.crm.activities.list({
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
     filter: {
       updatedSince: new Date("2020-09-30T07:43:32.000Z"),
     },
     sort: {
       by: "created_at",
+      direction: "desc",
     },
     passThrough: {
       "search": "San Francisco",
@@ -554,6 +557,8 @@ test("Activities Crm Activities One", async () => {
 
   const result = await apideck.crm.activities.get({
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
     fields: "id,updated_at",
   });
@@ -766,6 +771,8 @@ test("Activities Crm Activities Delete", async () => {
 
   const result = await apideck.crm.activities.delete({
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
   });
   expect(result.httpMeta.response.status).toBe(200);

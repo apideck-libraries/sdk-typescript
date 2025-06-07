@@ -8,27 +8,6 @@ import { FileStorageFoldersAddRequest } from "@apideck/unify/models/operations";
 let value: FileStorageFoldersAddRequest = {
   serviceId: "salesforce",
   fields: "id,updated_at",
-  createFolderRequest: {
-    name: "Documents",
-    description: "My Personal Documents",
-    parentFolderId: "1234",
-    driveId: "1234",
-    passThrough: [
-      {
-        serviceId: "<id>",
-        extendPaths: [
-          {
-            path: "$.nested.property",
-            value: {
-              "TaxClassificationRef": {
-                "value": "EUC-99990201-V1-00020000",
-              },
-            },
-          },
-        ],
-      },
-    ],
-  },
 };
 ```
 

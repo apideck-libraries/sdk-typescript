@@ -5,7 +5,10 @@
 ```typescript
 import { AtsApplicantsOneGlobals } from "@apideck/unify/models/operations";
 
-let value: AtsApplicantsOneGlobals = {};
+let value: AtsApplicantsOneGlobals = {
+  consumerId: "test-consumer",
+  appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
+};
 ```
 
 ## Fields

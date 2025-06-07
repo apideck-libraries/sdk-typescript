@@ -14,14 +14,7 @@ let value: TaxRateInput = {
   totalTaxRate: 10,
   taxPayableAccountId: "123456",
   taxRemittedAccountId: "123456",
-  components: [
-    {
-      id: "10",
-      name: "GST",
-      rate: 10,
-      compound: true,
-    },
-  ],
+  components: null,
   type: "NONE",
   reportTaxType: "NONE",
   originalTaxRateId: "12345",

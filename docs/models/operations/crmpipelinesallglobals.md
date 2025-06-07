@@ -5,7 +5,10 @@
 ```typescript
 import { CrmPipelinesAllGlobals } from "@apideck/unify/models/operations";
 
-let value: CrmPipelinesAllGlobals = {};
+let value: CrmPipelinesAllGlobals = {
+  consumerId: "test-consumer",
+  appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
+};
 ```
 
 ## Fields

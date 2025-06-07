@@ -17,6 +17,8 @@ test("Opportunities Crm Opportunities All", async () => {
   });
 
   const result = await apideck.crm.opportunities.list({
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
     filter: {
       status: "Completed",
@@ -24,6 +26,7 @@ test("Opportunities Crm Opportunities All", async () => {
     },
     sort: {
       by: "created_at",
+      direction: "desc",
     },
     passThrough: {
       "search": "San Francisco",
@@ -332,6 +335,8 @@ test("Opportunities Crm Opportunities One", async () => {
 
   const result = await apideck.crm.opportunities.get({
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
     fields: "id,updated_at",
   });
@@ -486,6 +491,8 @@ test("Opportunities Crm Opportunities Delete", async () => {
 
   const result = await apideck.crm.opportunities.delete({
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
   });
   expect(result.httpMeta.response.status).toBe(200);

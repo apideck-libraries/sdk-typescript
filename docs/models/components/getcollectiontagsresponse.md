@@ -13,12 +13,7 @@ let value: GetCollectionTagsResponse = {
   service: "jira",
   resource: "Tickets",
   operation: "all",
-  data: [
-    {
-      id: "12345",
-      name: "User Experience",
-    },
-  ],
+  data: [],
   meta: {
     itemsOnPage: 50,
     cursors: {

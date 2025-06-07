@@ -20,6 +20,8 @@ test("Attachments Accounting Attachments All", async () => {
   const result = await apideck.accounting.attachments.list({
     referenceType: "invoice",
     referenceId: "123456",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
     fields: "id,updated_at",
   });
@@ -210,6 +212,8 @@ test("Attachments Accounting Attachments One", async () => {
     referenceType: "invoice",
     referenceId: "123456",
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
     fields: "id,updated_at",
   });
@@ -319,6 +323,8 @@ test("Attachments Accounting Attachments Delete", async () => {
     referenceType: "invoice",
     referenceId: "123456",
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
   });
   expect(result.httpMeta.response.status).toBe(200);
@@ -348,6 +354,8 @@ test("Attachments Accounting Attachments Download", async () => {
     referenceType: "invoice",
     referenceId: "123456",
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
     fields: "id,updated_at",
   }, {

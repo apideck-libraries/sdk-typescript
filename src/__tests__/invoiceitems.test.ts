@@ -17,6 +17,8 @@ test("Invoiceitems Accounting Invoice Items All", async () => {
   });
 
   const result = await apideck.accounting.invoiceItems.list({
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
     filter: {
       name: "Widgets Large",
@@ -24,6 +26,7 @@ test("Invoiceitems Accounting Invoice Items All", async () => {
     },
     sort: {
       by: "updated_at",
+      direction: "desc",
     },
     passThrough: {
       "search": "San Francisco",
@@ -412,6 +415,8 @@ test("Invoiceitems Accounting Invoice Items One", async () => {
 
   const result = await apideck.accounting.invoiceItems.get({
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
     fields: "id,updated_at",
     filter: {
@@ -569,6 +574,8 @@ test("Invoiceitems Accounting Invoice Items Delete", async () => {
 
   const result = await apideck.accounting.invoiceItems.delete({
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
   });
   expect(result.httpMeta.response.status).toBe(200);

@@ -5,7 +5,10 @@
 ```typescript
 import { AccountingTrackingCategoriesAllGlobals } from "@apideck/unify/models/operations";
 
-let value: AccountingTrackingCategoriesAllGlobals = {};
+let value: AccountingTrackingCategoriesAllGlobals = {
+  consumerId: "test-consumer",
+  appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
+};
 ```
 
 ## Fields

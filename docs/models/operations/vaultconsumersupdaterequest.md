@@ -7,14 +7,6 @@ import { VaultConsumersUpdateRequest } from "@apideck/unify/models/operations";
 
 let value: VaultConsumersUpdateRequest = {
   consumerId: "test_user_id",
-  updateConsumerRequest: {
-    metadata: {
-      accountName: "SpaceX",
-      userName: "Elon Musk",
-      email: "elon@musk.com",
-      image: "https://www.spacex.com/static/images/share.jpg",
-    },
-  },
 };
 ```
 

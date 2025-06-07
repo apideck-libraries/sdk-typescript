@@ -5,7 +5,10 @@
 ```typescript
 import { FileStorageDriveGroupsAllGlobals } from "@apideck/unify/models/operations";
 
-let value: FileStorageDriveGroupsAllGlobals = {};
+let value: FileStorageDriveGroupsAllGlobals = {
+  consumerId: "test-consumer",
+  appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
+};
 ```
 
 ## Fields
