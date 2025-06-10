@@ -90,12 +90,12 @@ func testAccountingLedgerAccountsAllAccountingLedgerAccountsAll0(w http.Response
 					BankCode:         types.String("BNH"),
 					Currency:         components.CurrencyUsd.ToPointer(),
 				},
-				Categories: []components.Categories{
-					components.Categories{
+				Categories: []components.LedgerAccountCategory{
+					components.LedgerAccountCategory{
 						ID:   types.String("12345"),
 						Name: types.String("Finance Charges Expense"),
 					},
-					components.Categories{
+					components.LedgerAccountCategory{
 						ID:   types.String("12345"),
 						Name: types.String("Finance Charges Expense"),
 					},
@@ -106,16 +106,16 @@ func testAccountingLedgerAccountsAllAccountingLedgerAccountsAll0(w http.Response
 					DisplayID: types.String("1-1100"),
 				},
 				SubAccount: types.Bool(false),
-				SubAccounts: []components.SubAccounts{
-					components.SubAccounts{
+				SubAccounts: []components.SubAccount{
+					components.SubAccount{
 						ID:             types.String("12345"),
 						AccountSubName: types.String("Petty Cash"),
 					},
-					components.SubAccounts{
+					components.SubAccount{
 						ID:             types.String("12345"),
 						AccountSubName: types.String("Petty Cash"),
 					},
-					components.SubAccounts{
+					components.SubAccount{
 						ID:             types.String("12345"),
 						AccountSubName: types.String("Petty Cash"),
 					},
@@ -126,7 +126,7 @@ func testAccountingLedgerAccountsAllAccountingLedgerAccountsAll0(w http.Response
 						ID:          types.String("2389328923893298"),
 						Name:        types.String("employee_level"),
 						Description: types.String("Employee Level"),
-						Value: types.Pointer(components.CreateValueNumber(
+						Value: types.Pointer(components.CreateCustomFieldValueUnionNumber(
 							10,
 						)),
 					},
@@ -139,8 +139,8 @@ func testAccountingLedgerAccountsAllAccountingLedgerAccountsAll0(w http.Response
 				PassThrough: []components.PassThroughBody{
 					components.PassThroughBody{
 						ServiceID: "<id>",
-						ExtendPaths: []components.ExtendPaths{
-							components.ExtendPaths{
+						ExtendPaths: []components.ExtendPath{
+							components.ExtendPath{
 								Path: "$.nested.property",
 								Value: map[string]any{
 									"TaxClassificationRef": map[string]any{
@@ -148,7 +148,7 @@ func testAccountingLedgerAccountsAllAccountingLedgerAccountsAll0(w http.Response
 									},
 								},
 							},
-							components.ExtendPaths{
+							components.ExtendPath{
 								Path: "$.nested.property",
 								Value: map[string]any{
 									"TaxClassificationRef": map[string]any{
@@ -197,12 +197,12 @@ func testAccountingLedgerAccountsAllAccountingLedgerAccountsAll0(w http.Response
 					BankCode:         types.String("BNH"),
 					Currency:         components.CurrencyUsd.ToPointer(),
 				},
-				Categories: []components.Categories{
-					components.Categories{
+				Categories: []components.LedgerAccountCategory{
+					components.LedgerAccountCategory{
 						ID:   types.String("12345"),
 						Name: types.String("Finance Charges Expense"),
 					},
-					components.Categories{
+					components.LedgerAccountCategory{
 						ID:   types.String("12345"),
 						Name: types.String("Finance Charges Expense"),
 					},
@@ -213,8 +213,8 @@ func testAccountingLedgerAccountsAllAccountingLedgerAccountsAll0(w http.Response
 					DisplayID: types.String("1-1100"),
 				},
 				SubAccount: types.Bool(false),
-				SubAccounts: []components.SubAccounts{
-					components.SubAccounts{
+				SubAccounts: []components.SubAccount{
+					components.SubAccount{
 						ID:             types.String("12345"),
 						AccountSubName: types.String("Petty Cash"),
 					},
@@ -225,7 +225,7 @@ func testAccountingLedgerAccountsAllAccountingLedgerAccountsAll0(w http.Response
 						ID:          types.String("2389328923893298"),
 						Name:        types.String("employee_level"),
 						Description: types.String("Employee Level"),
-						Value: types.Pointer(components.CreateValueStr(
+						Value: types.Pointer(components.CreateCustomFieldValueUnionStr(
 							"Uses Salesforce and Marketo",
 						)),
 					},
@@ -233,7 +233,7 @@ func testAccountingLedgerAccountsAllAccountingLedgerAccountsAll0(w http.Response
 						ID:          types.String("2389328923893298"),
 						Name:        types.String("employee_level"),
 						Description: types.String("Employee Level"),
-						Value: types.Pointer(components.CreateValueStr(
+						Value: types.Pointer(components.CreateCustomFieldValueUnionStr(
 							"Uses Salesforce and Marketo",
 						)),
 					},
@@ -241,7 +241,7 @@ func testAccountingLedgerAccountsAllAccountingLedgerAccountsAll0(w http.Response
 						ID:          types.String("2389328923893298"),
 						Name:        types.String("employee_level"),
 						Description: types.String("Employee Level"),
-						Value: types.Pointer(components.CreateValueArrayOfStr(
+						Value: types.Pointer(components.CreateCustomFieldValueUnionArrayOfStr(
 							[]string{
 								"<value>",
 								"<value>",
@@ -257,8 +257,8 @@ func testAccountingLedgerAccountsAllAccountingLedgerAccountsAll0(w http.Response
 				PassThrough: []components.PassThroughBody{
 					components.PassThroughBody{
 						ServiceID: "<id>",
-						ExtendPaths: []components.ExtendPaths{
-							components.ExtendPaths{
+						ExtendPaths: []components.ExtendPath{
+							components.ExtendPath{
 								Path: "$.nested.property",
 								Value: map[string]any{
 									"TaxClassificationRef": map[string]any{
@@ -270,8 +270,8 @@ func testAccountingLedgerAccountsAllAccountingLedgerAccountsAll0(w http.Response
 					},
 					components.PassThroughBody{
 						ServiceID: "<id>",
-						ExtendPaths: []components.ExtendPaths{
-							components.ExtendPaths{
+						ExtendPaths: []components.ExtendPath{
+							components.ExtendPath{
 								Path: "$.nested.property",
 								Value: map[string]any{
 									"TaxClassificationRef": map[string]any{
@@ -320,12 +320,12 @@ func testAccountingLedgerAccountsAllAccountingLedgerAccountsAll0(w http.Response
 					BankCode:         types.String("BNH"),
 					Currency:         components.CurrencyUsd.ToPointer(),
 				},
-				Categories: []components.Categories{
-					components.Categories{
+				Categories: []components.LedgerAccountCategory{
+					components.LedgerAccountCategory{
 						ID:   types.String("12345"),
 						Name: types.String("Finance Charges Expense"),
 					},
-					components.Categories{
+					components.LedgerAccountCategory{
 						ID:   types.String("12345"),
 						Name: types.String("Finance Charges Expense"),
 					},
@@ -336,12 +336,12 @@ func testAccountingLedgerAccountsAllAccountingLedgerAccountsAll0(w http.Response
 					DisplayID: types.String("1-1100"),
 				},
 				SubAccount: types.Bool(false),
-				SubAccounts: []components.SubAccounts{
-					components.SubAccounts{
+				SubAccounts: []components.SubAccount{
+					components.SubAccount{
 						ID:             types.String("12345"),
 						AccountSubName: types.String("Petty Cash"),
 					},
-					components.SubAccounts{
+					components.SubAccount{
 						ID:             types.String("12345"),
 						AccountSubName: types.String("Petty Cash"),
 					},
@@ -352,10 +352,10 @@ func testAccountingLedgerAccountsAllAccountingLedgerAccountsAll0(w http.Response
 						ID:          types.String("2389328923893298"),
 						Name:        types.String("employee_level"),
 						Description: types.String("Employee Level"),
-						Value: types.Pointer(components.CreateValueArrayOf6(
-							[]components.Six{
-								components.Six{},
-								components.Six{},
+						Value: types.Pointer(components.CreateCustomFieldValueUnionArrayOfCustomFieldValue2(
+							[]components.CustomFieldValue2{
+								components.CustomFieldValue2{},
+								components.CustomFieldValue2{},
 							},
 						)),
 					},
@@ -368,8 +368,8 @@ func testAccountingLedgerAccountsAllAccountingLedgerAccountsAll0(w http.Response
 				PassThrough: []components.PassThroughBody{
 					components.PassThroughBody{
 						ServiceID: "<id>",
-						ExtendPaths: []components.ExtendPaths{
-							components.ExtendPaths{
+						ExtendPaths: []components.ExtendPath{
+							components.ExtendPath{
 								Path: "$.nested.property",
 								Value: map[string]any{
 									"TaxClassificationRef": map[string]any{
@@ -377,20 +377,7 @@ func testAccountingLedgerAccountsAllAccountingLedgerAccountsAll0(w http.Response
 									},
 								},
 							},
-							components.ExtendPaths{
-								Path: "$.nested.property",
-								Value: map[string]any{
-									"TaxClassificationRef": map[string]any{
-										"value": "EUC-99990201-V1-00020000",
-									},
-								},
-							},
-						},
-					},
-					components.PassThroughBody{
-						ServiceID: "<id>",
-						ExtendPaths: []components.ExtendPaths{
-							components.ExtendPaths{
+							components.ExtendPath{
 								Path: "$.nested.property",
 								Value: map[string]any{
 									"TaxClassificationRef": map[string]any{
@@ -402,8 +389,21 @@ func testAccountingLedgerAccountsAllAccountingLedgerAccountsAll0(w http.Response
 					},
 					components.PassThroughBody{
 						ServiceID: "<id>",
-						ExtendPaths: []components.ExtendPaths{
-							components.ExtendPaths{
+						ExtendPaths: []components.ExtendPath{
+							components.ExtendPath{
+								Path: "$.nested.property",
+								Value: map[string]any{
+									"TaxClassificationRef": map[string]any{
+										"value": "EUC-99990201-V1-00020000",
+									},
+								},
+							},
+						},
+					},
+					components.PassThroughBody{
+						ServiceID: "<id>",
+						ExtendPaths: []components.ExtendPath{
+							components.ExtendPath{
 								Path: "$.nested.property",
 								Value: map[string]any{
 									"TaxClassificationRef": map[string]any{

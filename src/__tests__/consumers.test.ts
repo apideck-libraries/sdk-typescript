@@ -16,6 +16,7 @@ test("Consumers Vault Consumers Add", async () => {
   });
 
   const result = await apideck.vault.consumers.create({
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     consumer: {
       consumerId: "test_consumer_id",
       metadata: {
@@ -126,7 +127,9 @@ test("Consumers Vault Consumers All", async () => {
     apiKey: process.env["APIDECK_API_KEY"] ?? "value",
   });
 
-  const result = await apideck.vault.consumers.list({});
+  const result = await apideck.vault.consumers.list({
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
+  });
   expect(result.httpMeta.response.status).toBe(200);
   expect(result.getConsumersResponse).toBeDefined();
   expect(result.getConsumersResponse).toEqual({
@@ -231,6 +234,7 @@ test("Consumers Vault Consumers One", async () => {
   });
 
   const result = await apideck.vault.consumers.get({
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     consumerId: "test_user_id",
   });
   expect(result.httpMeta.response.status).toBe(200);
@@ -363,6 +367,7 @@ test("Consumers Vault Consumers Update", async () => {
   });
 
   const result = await apideck.vault.consumers.update({
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     consumerId: "test_user_id",
     updateConsumerRequest: {
       metadata: {
@@ -503,6 +508,7 @@ test("Consumers Vault Consumers Delete", async () => {
   });
 
   const result = await apideck.vault.consumers.delete({
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     consumerId: "test_user_id",
   });
   expect(result.httpMeta.response.status).toBe(200);

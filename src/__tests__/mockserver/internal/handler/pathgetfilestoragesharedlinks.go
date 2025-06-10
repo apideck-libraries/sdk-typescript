@@ -52,8 +52,8 @@ func testFileStorageSharedLinksAllFileStorageSharedLinksAll0(w http.ResponseWrit
 		Service:    "dropbox",
 		Resource:   "Shared Links",
 		Operation:  "all",
-		Data: []components.SharedLink{
-			components.SharedLink{
+		Data: []components.SharedLinkOutput{
+			components.SharedLinkOutput{
 				URL:         types.String("https://www.box.com/s/vspke7y05sb214wjokpk"),
 				DownloadURL: types.String("https://www.box.com/shared/static/rh935iit6ewrmw0unyul.jpeg"),
 				Target: &components.SharedLinkTarget{
@@ -68,8 +68,8 @@ func testFileStorageSharedLinksAllFileStorageSharedLinksAll0(w http.ResponseWrit
 				PassThrough: []components.PassThroughBody{
 					components.PassThroughBody{
 						ServiceID: "<id>",
-						ExtendPaths: []components.ExtendPaths{
-							components.ExtendPaths{
+						ExtendPaths: []components.ExtendPath{
+							components.ExtendPath{
 								Path: "$.nested.property",
 								Value: map[string]any{
 									"TaxClassificationRef": map[string]any{
@@ -77,7 +77,7 @@ func testFileStorageSharedLinksAllFileStorageSharedLinksAll0(w http.ResponseWrit
 									},
 								},
 							},
-							components.ExtendPaths{
+							components.ExtendPath{
 								Path: "$.nested.property",
 								Value: map[string]any{
 									"TaxClassificationRef": map[string]any{
@@ -85,7 +85,7 @@ func testFileStorageSharedLinksAllFileStorageSharedLinksAll0(w http.ResponseWrit
 									},
 								},
 							},
-							components.ExtendPaths{
+							components.ExtendPath{
 								Path: "$.nested.property",
 								Value: map[string]any{
 									"TaxClassificationRef": map[string]any{
@@ -97,8 +97,8 @@ func testFileStorageSharedLinksAllFileStorageSharedLinksAll0(w http.ResponseWrit
 					},
 					components.PassThroughBody{
 						ServiceID: "<id>",
-						ExtendPaths: []components.ExtendPaths{
-							components.ExtendPaths{
+						ExtendPaths: []components.ExtendPath{
+							components.ExtendPath{
 								Path: "$.nested.property",
 								Value: map[string]any{
 									"TaxClassificationRef": map[string]any{
@@ -110,7 +110,7 @@ func testFileStorageSharedLinksAllFileStorageSharedLinksAll0(w http.ResponseWrit
 					},
 				},
 			},
-			components.SharedLink{
+			components.SharedLinkOutput{
 				URL:         types.String("https://www.box.com/s/vspke7y05sb214wjokpk"),
 				DownloadURL: types.String("https://www.box.com/shared/static/rh935iit6ewrmw0unyul.jpeg"),
 				Target: &components.SharedLinkTarget{
@@ -125,8 +125,8 @@ func testFileStorageSharedLinksAllFileStorageSharedLinksAll0(w http.ResponseWrit
 				PassThrough: []components.PassThroughBody{
 					components.PassThroughBody{
 						ServiceID: "<id>",
-						ExtendPaths: []components.ExtendPaths{
-							components.ExtendPaths{
+						ExtendPaths: []components.ExtendPath{
+							components.ExtendPath{
 								Path: "$.nested.property",
 								Value: map[string]any{
 									"TaxClassificationRef": map[string]any{
@@ -138,7 +138,7 @@ func testFileStorageSharedLinksAllFileStorageSharedLinksAll0(w http.ResponseWrit
 					},
 				},
 			},
-			components.SharedLink{
+			components.SharedLinkOutput{
 				URL:         types.String("https://www.box.com/s/vspke7y05sb214wjokpk"),
 				DownloadURL: types.String("https://www.box.com/shared/static/rh935iit6ewrmw0unyul.jpeg"),
 				Target: &components.SharedLinkTarget{
@@ -153,8 +153,8 @@ func testFileStorageSharedLinksAllFileStorageSharedLinksAll0(w http.ResponseWrit
 				PassThrough: []components.PassThroughBody{
 					components.PassThroughBody{
 						ServiceID: "<id>",
-						ExtendPaths: []components.ExtendPaths{
-							components.ExtendPaths{
+						ExtendPaths: []components.ExtendPath{
+							components.ExtendPath{
 								Path: "$.nested.property",
 								Value: map[string]any{
 									"TaxClassificationRef": map[string]any{
@@ -162,7 +162,7 @@ func testFileStorageSharedLinksAllFileStorageSharedLinksAll0(w http.ResponseWrit
 									},
 								},
 							},
-							components.ExtendPaths{
+							components.ExtendPath{
 								Path: "$.nested.property",
 								Value: map[string]any{
 									"TaxClassificationRef": map[string]any{
@@ -174,8 +174,8 @@ func testFileStorageSharedLinksAllFileStorageSharedLinksAll0(w http.ResponseWrit
 					},
 					components.PassThroughBody{
 						ServiceID: "<id>",
-						ExtendPaths: []components.ExtendPaths{
-							components.ExtendPaths{
+						ExtendPaths: []components.ExtendPath{
+							components.ExtendPath{
 								Path: "$.nested.property",
 								Value: map[string]any{
 									"TaxClassificationRef": map[string]any{

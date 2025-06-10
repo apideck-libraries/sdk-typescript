@@ -8,26 +8,6 @@ import { FileStorageFilesUpdateRequest } from "@apideck/unify/models/operations"
 let value: FileStorageFilesUpdateRequest = {
   id: "<id>",
   serviceId: "salesforce",
-  updateFileRequest: {
-    name: "New Name.pdf",
-    description: "Renamed PDF Document",
-    parentFolderId: "1234",
-    passThrough: [
-      {
-        serviceId: "<id>",
-        extendPaths: [
-          {
-            path: "$.nested.property",
-            value: {
-              "TaxClassificationRef": {
-                "value": "EUC-99990201-V1-00020000",
-              },
-            },
-          },
-        ],
-      },
-    ],
-  },
 };
 ```
 

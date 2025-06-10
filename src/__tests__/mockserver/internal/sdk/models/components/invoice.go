@@ -94,7 +94,7 @@ func (e *InvoiceStatus) UnmarshalJSON(data []byte) error {
 	}
 }
 
-type PaymentAllocations struct {
+type PaymentAllocation struct {
 	// ID of the payment
 	ID *string `json:"id,omitempty"`
 	// Amount of the payment allocated to the invoice
@@ -103,32 +103,32 @@ type PaymentAllocations struct {
 	Date *time.Time `json:"date,omitempty"`
 }
 
-func (p PaymentAllocations) MarshalJSON() ([]byte, error) {
+func (p PaymentAllocation) MarshalJSON() ([]byte, error) {
 	return utils.MarshalJSON(p, "", false)
 }
 
-func (p *PaymentAllocations) UnmarshalJSON(data []byte) error {
+func (p *PaymentAllocation) UnmarshalJSON(data []byte) error {
 	if err := utils.UnmarshalJSON(data, &p, "", false, false); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *PaymentAllocations) GetID() *string {
+func (o *PaymentAllocation) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *PaymentAllocations) GetAllocatedAmount() *float64 {
+func (o *PaymentAllocation) GetAllocatedAmount() *float64 {
 	if o == nil {
 		return nil
 	}
 	return o.AllocatedAmount
 }
 
-func (o *PaymentAllocations) GetDate() *time.Time {
+func (o *PaymentAllocation) GetDate() *time.Time {
 	if o == nil {
 		return nil
 	}
@@ -198,7 +198,7 @@ type Invoice struct {
 	// URL link to a source document - shown as 'Go to [appName]' in the downstream app. Currently only supported for Xero.
 	SourceDocumentURL *string `json:"source_document_url,omitempty"`
 	// IDs of payments made on the invoice
-	PaymentAllocations []PaymentAllocations `json:"payment_allocations,omitempty"`
+	PaymentAllocations []PaymentAllocation `json:"payment_allocations,omitempty"`
 	// Payment method used for the transaction, such as cash, credit card, bank transfer, or check
 	PaymentMethod *string `json:"payment_method,omitempty"`
 	// The channel through which the transaction is processed.
@@ -461,7 +461,7 @@ func (o *Invoice) GetSourceDocumentURL() *string {
 	return o.SourceDocumentURL
 }
 
-func (o *Invoice) GetPaymentAllocations() []PaymentAllocations {
+func (o *Invoice) GetPaymentAllocations() []PaymentAllocation {
 	if o == nil {
 		return nil
 	}
@@ -625,7 +625,7 @@ type InvoiceInput struct {
 	// URL link to a source document - shown as 'Go to [appName]' in the downstream app. Currently only supported for Xero.
 	SourceDocumentURL *string `json:"source_document_url,omitempty"`
 	// IDs of payments made on the invoice
-	PaymentAllocations []PaymentAllocations `json:"payment_allocations,omitempty"`
+	PaymentAllocations []PaymentAllocation `json:"payment_allocations,omitempty"`
 	// Payment method used for the transaction, such as cash, credit card, bank transfer, or check
 	PaymentMethod *string `json:"payment_method,omitempty"`
 	// The channel through which the transaction is processed.
@@ -864,7 +864,7 @@ func (o *InvoiceInput) GetSourceDocumentURL() *string {
 	return o.SourceDocumentURL
 }
 
-func (o *InvoiceInput) GetPaymentAllocations() []PaymentAllocations {
+func (o *InvoiceInput) GetPaymentAllocations() []PaymentAllocation {
 	if o == nil {
 		return nil
 	}

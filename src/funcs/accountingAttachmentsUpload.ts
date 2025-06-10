@@ -10,7 +10,7 @@ import { safeParse } from "../lib/schemas.js";
 import { RequestOptions } from "../lib/sdks.js";
 import { extractSecurity, resolveGlobalSecurity } from "../lib/security.js";
 import { pathToFunc } from "../lib/url.js";
-import { APIError } from "../models/errors/apierror.js";
+import { ApideckError } from "../models/errors/apideckerror.js";
 import {
   ConnectionError,
   InvalidRequestError,
@@ -19,6 +19,7 @@ import {
   UnexpectedClientError,
 } from "../models/errors/httpclienterrors.js";
 import * as errors from "../models/errors/index.js";
+import { ResponseValidationError } from "../models/errors/responsevalidationerror.js";
 import { SDKValidationError } from "../models/errors/sdkvalidationerror.js";
 import { AccountingAttachmentsUploadServerList } from "../models/operations/accountingattachmentsupload.js";
 import * as operations from "../models/operations/index.js";
@@ -43,13 +44,14 @@ export function accountingAttachmentsUpload(
     | errors.PaymentRequiredResponse
     | errors.NotFoundResponse
     | errors.UnprocessableResponse
-    | APIError
-    | SDKValidationError
-    | UnexpectedClientError
-    | InvalidRequestError
+    | ApideckError
+    | ResponseValidationError
+    | ConnectionError
     | RequestAbortedError
     | RequestTimeoutError
-    | ConnectionError
+    | InvalidRequestError
+    | UnexpectedClientError
+    | SDKValidationError
   >
 > {
   return new APIPromise($do(
@@ -72,13 +74,14 @@ async function $do(
       | errors.PaymentRequiredResponse
       | errors.NotFoundResponse
       | errors.UnprocessableResponse
-      | APIError
-      | SDKValidationError
-      | UnexpectedClientError
-      | InvalidRequestError
+      | ApideckError
+      | ResponseValidationError
+      | ConnectionError
       | RequestAbortedError
       | RequestTimeoutError
-      | ConnectionError
+      | InvalidRequestError
+      | UnexpectedClientError
+      | SDKValidationError
     >,
     APICall,
   ]
@@ -211,13 +214,14 @@ async function $do(
     | errors.PaymentRequiredResponse
     | errors.NotFoundResponse
     | errors.UnprocessableResponse
-    | APIError
-    | SDKValidationError
-    | UnexpectedClientError
-    | InvalidRequestError
+    | ApideckError
+    | ResponseValidationError
+    | ConnectionError
     | RequestAbortedError
     | RequestTimeoutError
-    | ConnectionError
+    | InvalidRequestError
+    | UnexpectedClientError
+    | SDKValidationError
   >(
     M.json(201, operations.AccountingAttachmentsUploadResponse$inboundSchema, {
       key: "CreateAttachmentResponse",

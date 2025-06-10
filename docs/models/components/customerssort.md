@@ -7,6 +7,7 @@ import { CustomersSort } from "@apideck/unify/models/components";
 
 let value: CustomersSort = {
   by: "updated_at",
+  direction: "desc",
 };
 ```
 

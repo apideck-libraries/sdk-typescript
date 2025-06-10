@@ -43,12 +43,7 @@ let value: Payment = {
   ],
   note: "Some notes about this transaction",
   number: "123456",
-  trackingCategories: [
-    {
-      id: "123456",
-      name: "New York",
-    },
-  ],
+  trackingCategories: null,
   customFields: [
     {
       id: "2389328923893298",

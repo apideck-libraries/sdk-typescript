@@ -7,6 +7,7 @@ import { OpportunitiesSort } from "@apideck/unify/models/components";
 
 let value: OpportunitiesSort = {
   by: "created_at",
+  direction: "desc",
 };
 ```
 

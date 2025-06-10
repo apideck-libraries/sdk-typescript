@@ -7,25 +7,25 @@ import (
 	"fmt"
 )
 
-// AllocationType - Type of entity this payment should be attributed to.
-type AllocationType string
+// AllocationAllocationType - Type of entity this payment should be attributed to.
+type AllocationAllocationType string
 
 const (
-	AllocationTypeInvoice      AllocationType = "invoice"
-	AllocationTypeOrder        AllocationType = "order"
-	AllocationTypeExpense      AllocationType = "expense"
-	AllocationTypeCreditMemo   AllocationType = "credit_memo"
-	AllocationTypeOverPayment  AllocationType = "over_payment"
-	AllocationTypePrePayment   AllocationType = "pre_payment"
-	AllocationTypeJournalEntry AllocationType = "journal_entry"
-	AllocationTypeOther        AllocationType = "other"
-	AllocationTypeBill         AllocationType = "bill"
+	AllocationAllocationTypeInvoice      AllocationAllocationType = "invoice"
+	AllocationAllocationTypeOrder        AllocationAllocationType = "order"
+	AllocationAllocationTypeExpense      AllocationAllocationType = "expense"
+	AllocationAllocationTypeCreditMemo   AllocationAllocationType = "credit_memo"
+	AllocationAllocationTypeOverPayment  AllocationAllocationType = "over_payment"
+	AllocationAllocationTypePrePayment   AllocationAllocationType = "pre_payment"
+	AllocationAllocationTypeJournalEntry AllocationAllocationType = "journal_entry"
+	AllocationAllocationTypeOther        AllocationAllocationType = "other"
+	AllocationAllocationTypeBill         AllocationAllocationType = "bill"
 )
 
-func (e AllocationType) ToPointer() *AllocationType {
+func (e AllocationAllocationType) ToPointer() *AllocationAllocationType {
 	return &e
 }
-func (e *AllocationType) UnmarshalJSON(data []byte) error {
+func (e *AllocationAllocationType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -48,10 +48,10 @@ func (e *AllocationType) UnmarshalJSON(data []byte) error {
 	case "other":
 		fallthrough
 	case "bill":
-		*e = AllocationType(v)
+		*e = AllocationAllocationType(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for AllocationType: %v", v)
+		return fmt.Errorf("invalid value for AllocationAllocationType: %v", v)
 	}
 }
 
@@ -59,8 +59,8 @@ type Allocation struct {
 	// Unique identifier of entity this payment should be attributed to.
 	ID *string `json:"id,omitempty"`
 	// Type of entity this payment should be attributed to.
-	Type *AllocationType `json:"type,omitempty"`
-	Code *string         `json:"code,omitempty"`
+	Type *AllocationAllocationType `json:"type,omitempty"`
+	Code *string                   `json:"code,omitempty"`
 	// Amount of payment that should be attributed to this allocation. If null, the total_amount will be used.
 	Amount *float64 `json:"amount,omitempty"`
 	// Unique identifier of the allocation
@@ -74,7 +74,7 @@ func (o *Allocation) GetID() *string {
 	return o.ID
 }
 
-func (o *Allocation) GetType() *AllocationType {
+func (o *Allocation) GetType() *AllocationAllocationType {
 	if o == nil {
 		return nil
 	}
@@ -106,7 +106,7 @@ type AllocationInput struct {
 	// Unique identifier of entity this payment should be attributed to.
 	ID *string `json:"id,omitempty"`
 	// Type of entity this payment should be attributed to.
-	Type *AllocationType `json:"type,omitempty"`
+	Type *AllocationAllocationType `json:"type,omitempty"`
 	// Amount of payment that should be attributed to this allocation. If null, the total_amount will be used.
 	Amount *float64 `json:"amount,omitempty"`
 	// Unique identifier of the allocation
@@ -120,7 +120,7 @@ func (o *AllocationInput) GetID() *string {
 	return o.ID
 }
 
-func (o *AllocationInput) GetType() *AllocationType {
+func (o *AllocationInput) GetType() *AllocationAllocationType {
 	if o == nil {
 		return nil
 	}

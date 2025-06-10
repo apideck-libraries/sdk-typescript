@@ -34,7 +34,11 @@ let value: ApiResourceCoverage = {
       supportedFields: [
         {
           unifiedProperty: "owner_id",
-          childProperties: [],
+          childProperties: [
+            {
+              unifiedProperty: "owner_id",
+            },
+          ],
         },
       ],
       supportedListFields: [

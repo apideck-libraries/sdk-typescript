@@ -10,23 +10,7 @@ import { GetWebhooksResponse } from "@apideck/unify/models/components";
 let value: GetWebhooksResponse = {
   statusCode: 200,
   status: "OK",
-  data: [
-    {
-      id: "1234",
-      description: "A description",
-      unifiedApi: "crm",
-      status: "enabled",
-      disabledReason: "retry_limit",
-      deliveryUrl: "https://example.com/my/webhook/endpoint",
-      executeBaseUrl: "https://unify.apideck.com/webhook/webhooks/1234/execute",
-      events: [
-        "vault.connection.created",
-        "vault.connection.updated",
-      ],
-      updatedAt: new Date("2020-09-30T07:43:32.000Z"),
-      createdAt: new Date("2020-09-30T07:43:32.000Z"),
-    },
-  ],
+  data: [],
   meta: {
     itemsOnPage: 50,
     cursors: {

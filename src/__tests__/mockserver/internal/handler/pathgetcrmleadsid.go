@@ -91,7 +91,7 @@ func testCrmLeadsOneCrmLeadsOne0(w http.ResponseWriter, req *http.Request) {
 			Addresses: []components.Address{
 				components.Address{
 					ID:           types.String("123"),
-					Type:         components.TypePrimary.ToPointer(),
+					Type:         components.AddressTypePrimary.ToPointer(),
 					String:       types.String("25 Spring Street, Blackburn, VIC 3130"),
 					Name:         types.String("HQ US"),
 					Line1:        types.String("Main street"),
@@ -117,7 +117,7 @@ func testCrmLeadsOneCrmLeadsOne0(w http.ResponseWriter, req *http.Request) {
 				},
 				components.Address{
 					ID:           types.String("123"),
-					Type:         components.TypePrimary.ToPointer(),
+					Type:         components.AddressTypePrimary.ToPointer(),
 					String:       types.String("25 Spring Street, Blackburn, VIC 3130"),
 					Name:         types.String("HQ US"),
 					Line1:        types.String("Main street"),
@@ -194,7 +194,7 @@ func testCrmLeadsOneCrmLeadsOne0(w http.ResponseWriter, req *http.Request) {
 					ID:          types.String("2389328923893298"),
 					Name:        types.String("employee_level"),
 					Description: types.String("Employee Level"),
-					Value: types.Pointer(components.CreateValueBoolean(
+					Value: types.Pointer(components.CreateCustomFieldValueUnionBoolean(
 						true,
 					)),
 				},
@@ -202,7 +202,7 @@ func testCrmLeadsOneCrmLeadsOne0(w http.ResponseWriter, req *http.Request) {
 					ID:          types.String("2389328923893298"),
 					Name:        types.String("employee_level"),
 					Description: types.String("Employee Level"),
-					Value: types.Pointer(components.CreateValueNumber(
+					Value: types.Pointer(components.CreateCustomFieldValueUnionNumber(
 						10,
 					)),
 				},
@@ -215,8 +215,8 @@ func testCrmLeadsOneCrmLeadsOne0(w http.ResponseWriter, req *http.Request) {
 			PassThrough: []components.PassThroughBody{
 				components.PassThroughBody{
 					ServiceID: "<id>",
-					ExtendPaths: []components.ExtendPaths{
-						components.ExtendPaths{
+					ExtendPaths: []components.ExtendPath{
+						components.ExtendPath{
 							Path: "$.nested.property",
 							Value: map[string]any{
 								"TaxClassificationRef": map[string]any{
@@ -224,7 +224,7 @@ func testCrmLeadsOneCrmLeadsOne0(w http.ResponseWriter, req *http.Request) {
 								},
 							},
 						},
-						components.ExtendPaths{
+						components.ExtendPath{
 							Path: "$.nested.property",
 							Value: map[string]any{
 								"TaxClassificationRef": map[string]any{
@@ -232,7 +232,7 @@ func testCrmLeadsOneCrmLeadsOne0(w http.ResponseWriter, req *http.Request) {
 								},
 							},
 						},
-						components.ExtendPaths{
+						components.ExtendPath{
 							Path: "$.nested.property",
 							Value: map[string]any{
 								"TaxClassificationRef": map[string]any{

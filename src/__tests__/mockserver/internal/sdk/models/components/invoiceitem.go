@@ -10,21 +10,21 @@ import (
 	"time"
 )
 
-// InvoiceItemTypeType - Item type
-type InvoiceItemTypeType string
+// InvoiceItemType - Item type
+type InvoiceItemType string
 
 const (
-	InvoiceItemTypeTypeInventory    InvoiceItemTypeType = "inventory"
-	InvoiceItemTypeTypeNonInventory InvoiceItemTypeType = "non_inventory"
-	InvoiceItemTypeTypeService      InvoiceItemTypeType = "service"
-	InvoiceItemTypeTypeDescription  InvoiceItemTypeType = "description"
-	InvoiceItemTypeTypeOther        InvoiceItemTypeType = "other"
+	InvoiceItemTypeInventory    InvoiceItemType = "inventory"
+	InvoiceItemTypeNonInventory InvoiceItemType = "non_inventory"
+	InvoiceItemTypeService      InvoiceItemType = "service"
+	InvoiceItemTypeDescription  InvoiceItemType = "description"
+	InvoiceItemTypeOther        InvoiceItemType = "other"
 )
 
-func (e InvoiceItemTypeType) ToPointer() *InvoiceItemTypeType {
+func (e InvoiceItemType) ToPointer() *InvoiceItemType {
 	return &e
 }
-func (e *InvoiceItemTypeType) UnmarshalJSON(data []byte) error {
+func (e *InvoiceItemType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -39,10 +39,10 @@ func (e *InvoiceItemTypeType) UnmarshalJSON(data []byte) error {
 	case "description":
 		fallthrough
 	case "other":
-		*e = InvoiceItemTypeType(v)
+		*e = InvoiceItemType(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for InvoiceItemTypeType: %v", v)
+		return fmt.Errorf("invalid value for InvoiceItemType: %v", v)
 	}
 }
 
@@ -140,7 +140,7 @@ type InvoiceItem struct {
 	// The date of opening balance if inventory item is tracked - YYYY-MM-DD.
 	InventoryDate *types.Date `json:"inventory_date,omitempty"`
 	// Item type
-	Type            *InvoiceItemTypeType `json:"type,omitempty"`
+	Type            *InvoiceItemType     `json:"type,omitempty"`
 	SalesDetails    *SalesDetails        `json:"sales_details,omitempty"`
 	PurchaseDetails *PurchaseDetails     `json:"purchase_details,omitempty"`
 	Quantity        *float64             `json:"quantity,omitempty"`
@@ -251,7 +251,7 @@ func (o *InvoiceItem) GetInventoryDate() *types.Date {
 	return o.InventoryDate
 }
 
-func (o *InvoiceItem) GetType() *InvoiceItemTypeType {
+func (o *InvoiceItem) GetType() *InvoiceItemType {
 	if o == nil {
 		return nil
 	}
@@ -405,7 +405,7 @@ func (o *InvoiceItem) GetPassThrough() []PassThroughBody {
 	return o.PassThrough
 }
 
-type InvoiceItemSalesDetails struct {
+type SalesDetailsInput struct {
 	UnitPrice *float64 `json:"unit_price,omitempty"`
 	// Description of the unit type the item is sold as, ie: kg, hour.
 	UnitOfMeasure *string `json:"unit_of_measure,omitempty"`
@@ -414,35 +414,35 @@ type InvoiceItemSalesDetails struct {
 	TaxRate      *LinkedTaxRateInput `json:"tax_rate,omitempty"`
 }
 
-func (o *InvoiceItemSalesDetails) GetUnitPrice() *float64 {
+func (o *SalesDetailsInput) GetUnitPrice() *float64 {
 	if o == nil {
 		return nil
 	}
 	return o.UnitPrice
 }
 
-func (o *InvoiceItemSalesDetails) GetUnitOfMeasure() *string {
+func (o *SalesDetailsInput) GetUnitOfMeasure() *string {
 	if o == nil {
 		return nil
 	}
 	return o.UnitOfMeasure
 }
 
-func (o *InvoiceItemSalesDetails) GetTaxInclusive() *bool {
+func (o *SalesDetailsInput) GetTaxInclusive() *bool {
 	if o == nil {
 		return nil
 	}
 	return o.TaxInclusive
 }
 
-func (o *InvoiceItemSalesDetails) GetTaxRate() *LinkedTaxRateInput {
+func (o *SalesDetailsInput) GetTaxRate() *LinkedTaxRateInput {
 	if o == nil {
 		return nil
 	}
 	return o.TaxRate
 }
 
-type InvoiceItemPurchaseDetails struct {
+type PurchaseDetailsInput struct {
 	UnitPrice *float64 `json:"unit_price,omitempty"`
 	// Description of the unit type the item is sold as, ie: kg, hour.
 	UnitOfMeasure *string `json:"unit_of_measure,omitempty"`
@@ -451,28 +451,28 @@ type InvoiceItemPurchaseDetails struct {
 	TaxRate      *LinkedTaxRateInput `json:"tax_rate,omitempty"`
 }
 
-func (o *InvoiceItemPurchaseDetails) GetUnitPrice() *float64 {
+func (o *PurchaseDetailsInput) GetUnitPrice() *float64 {
 	if o == nil {
 		return nil
 	}
 	return o.UnitPrice
 }
 
-func (o *InvoiceItemPurchaseDetails) GetUnitOfMeasure() *string {
+func (o *PurchaseDetailsInput) GetUnitOfMeasure() *string {
 	if o == nil {
 		return nil
 	}
 	return o.UnitOfMeasure
 }
 
-func (o *InvoiceItemPurchaseDetails) GetTaxInclusive() *bool {
+func (o *PurchaseDetailsInput) GetTaxInclusive() *bool {
 	if o == nil {
 		return nil
 	}
 	return o.TaxInclusive
 }
 
-func (o *InvoiceItemPurchaseDetails) GetTaxRate() *LinkedTaxRateInput {
+func (o *PurchaseDetailsInput) GetTaxRate() *LinkedTaxRateInput {
 	if o == nil {
 		return nil
 	}
@@ -497,14 +497,14 @@ type InvoiceItemInput struct {
 	// The date of opening balance if inventory item is tracked - YYYY-MM-DD.
 	InventoryDate *types.Date `json:"inventory_date,omitempty"`
 	// Item type
-	Type            *InvoiceItemTypeType        `json:"type,omitempty"`
-	SalesDetails    *InvoiceItemSalesDetails    `json:"sales_details,omitempty"`
-	PurchaseDetails *InvoiceItemPurchaseDetails `json:"purchase_details,omitempty"`
-	Quantity        *float64                    `json:"quantity,omitempty"`
-	UnitPrice       *float64                    `json:"unit_price,omitempty"`
-	AssetAccount    *LinkedLedgerAccountInput   `json:"asset_account,omitempty"`
-	IncomeAccount   *LinkedLedgerAccountInput   `json:"income_account,omitempty"`
-	ExpenseAccount  *LinkedLedgerAccountInput   `json:"expense_account,omitempty"`
+	Type            *InvoiceItemType          `json:"type,omitempty"`
+	SalesDetails    *SalesDetailsInput        `json:"sales_details,omitempty"`
+	PurchaseDetails *PurchaseDetailsInput     `json:"purchase_details,omitempty"`
+	Quantity        *float64                  `json:"quantity,omitempty"`
+	UnitPrice       *float64                  `json:"unit_price,omitempty"`
+	AssetAccount    *LinkedLedgerAccountInput `json:"asset_account,omitempty"`
+	IncomeAccount   *LinkedLedgerAccountInput `json:"income_account,omitempty"`
+	ExpenseAccount  *LinkedLedgerAccountInput `json:"expense_account,omitempty"`
 	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
 	TrackingCategory *DeprecatedLinkedTrackingCategory `json:"tracking_category,omitempty"`
 	// A list of linked tracking categories.
@@ -591,21 +591,21 @@ func (o *InvoiceItemInput) GetInventoryDate() *types.Date {
 	return o.InventoryDate
 }
 
-func (o *InvoiceItemInput) GetType() *InvoiceItemTypeType {
+func (o *InvoiceItemInput) GetType() *InvoiceItemType {
 	if o == nil {
 		return nil
 	}
 	return o.Type
 }
 
-func (o *InvoiceItemInput) GetSalesDetails() *InvoiceItemSalesDetails {
+func (o *InvoiceItemInput) GetSalesDetails() *SalesDetailsInput {
 	if o == nil {
 		return nil
 	}
 	return o.SalesDetails
 }
 
-func (o *InvoiceItemInput) GetPurchaseDetails() *InvoiceItemPurchaseDetails {
+func (o *InvoiceItemInput) GetPurchaseDetails() *PurchaseDetailsInput {
 	if o == nil {
 		return nil
 	}

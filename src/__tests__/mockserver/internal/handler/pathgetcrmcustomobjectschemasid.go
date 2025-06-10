@@ -56,15 +56,15 @@ func testCrmCustomObjectSchemasOneCrmCustomObjectSchemasOne0(w http.ResponseWrit
 			ID:          types.String("cos_12345"),
 			Name:        types.String("project"),
 			Description: types.String("This schema defines a project custom object"),
-			Fields: []components.Fields{
-				components.Fields{
+			Fields: []components.CustomObjectSchemaField{
+				components.CustomObjectSchemaField{
 					ID:          types.String("field_123"),
 					Name:        types.String("project_name"),
 					Description: types.String("Name of the project"),
 					Type:        components.CustomObjectSchemaTypeString.ToPointer(),
 					Required:    types.Bool(true),
-					Options: []components.CustomObjectSchemaOptions{
-						components.CustomObjectSchemaOptions{
+					Options: []components.CustomObjectSchemaOption{
+						components.CustomObjectSchemaOption{
 							Value: types.String("option1"),
 							Label: types.String("Option 1"),
 						},
@@ -81,8 +81,8 @@ func testCrmCustomObjectSchemasOneCrmCustomObjectSchemasOne0(w http.ResponseWrit
 			PassThrough: []components.PassThroughBody{
 				components.PassThroughBody{
 					ServiceID: "<id>",
-					ExtendPaths: []components.ExtendPaths{
-						components.ExtendPaths{
+					ExtendPaths: []components.ExtendPath{
+						components.ExtendPath{
 							Path: "$.nested.property",
 							Value: map[string]any{
 								"TaxClassificationRef": map[string]any{
@@ -90,7 +90,7 @@ func testCrmCustomObjectSchemasOneCrmCustomObjectSchemasOne0(w http.ResponseWrit
 								},
 							},
 						},
-						components.ExtendPaths{
+						components.ExtendPath{
 							Path: "$.nested.property",
 							Value: map[string]any{
 								"TaxClassificationRef": map[string]any{
@@ -98,7 +98,7 @@ func testCrmCustomObjectSchemasOneCrmCustomObjectSchemasOne0(w http.ResponseWrit
 								},
 							},
 						},
-						components.ExtendPaths{
+						components.ExtendPath{
 							Path: "$.nested.property",
 							Value: map[string]any{
 								"TaxClassificationRef": map[string]any{
@@ -110,8 +110,8 @@ func testCrmCustomObjectSchemasOneCrmCustomObjectSchemasOne0(w http.ResponseWrit
 				},
 				components.PassThroughBody{
 					ServiceID: "<id>",
-					ExtendPaths: []components.ExtendPaths{
-						components.ExtendPaths{
+					ExtendPaths: []components.ExtendPath{
+						components.ExtendPath{
 							Path: "$.nested.property",
 							Value: map[string]any{
 								"TaxClassificationRef": map[string]any{
@@ -119,7 +119,7 @@ func testCrmCustomObjectSchemasOneCrmCustomObjectSchemasOne0(w http.ResponseWrit
 								},
 							},
 						},
-						components.ExtendPaths{
+						components.ExtendPath{
 							Path: "$.nested.property",
 							Value: map[string]any{
 								"TaxClassificationRef": map[string]any{
@@ -127,7 +127,7 @@ func testCrmCustomObjectSchemasOneCrmCustomObjectSchemasOne0(w http.ResponseWrit
 								},
 							},
 						},
-						components.ExtendPaths{
+						components.ExtendPath{
 							Path: "$.nested.property",
 							Value: map[string]any{
 								"TaxClassificationRef": map[string]any{

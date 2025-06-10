@@ -5,7 +5,10 @@
 ```typescript
 import { CrmActivitiesDeleteGlobals } from "@apideck/unify/models/operations";
 
-let value: CrmActivitiesDeleteGlobals = {};
+let value: CrmActivitiesDeleteGlobals = {
+  consumerId: "test-consumer",
+  appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
+};
 ```
 
 ## Fields

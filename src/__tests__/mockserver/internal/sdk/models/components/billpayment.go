@@ -84,7 +84,7 @@ func (e *BillPaymentAllocationType) UnmarshalJSON(data []byte) error {
 	}
 }
 
-type Allocations struct {
+type BillPaymentAllocation struct {
 	// A unique identifier for an object.
 	ID *string `json:"id,omitempty"`
 	// Type of entity this payment should be attributed to.
@@ -96,35 +96,35 @@ type Allocations struct {
 	AllocationID *string `json:"allocation_id,omitempty"`
 }
 
-func (o *Allocations) GetID() *string {
+func (o *BillPaymentAllocation) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *Allocations) GetType() *BillPaymentAllocationType {
+func (o *BillPaymentAllocation) GetType() *BillPaymentAllocationType {
 	if o == nil {
 		return nil
 	}
 	return o.Type
 }
 
-func (o *Allocations) GetCode() *string {
+func (o *BillPaymentAllocation) GetCode() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Code
 }
 
-func (o *Allocations) GetAmount() *float64 {
+func (o *BillPaymentAllocation) GetAmount() *float64 {
 	if o == nil {
 		return nil
 	}
 	return o.Amount
 }
 
-func (o *Allocations) GetAllocationID() *string {
+func (o *BillPaymentAllocation) GetAllocationID() *string {
 	if o == nil {
 		return nil
 	}
@@ -162,8 +162,8 @@ type BillPayment struct {
 	// Status of payment
 	Status *PaymentStatus `json:"status,omitempty"`
 	// Type of payment
-	Type        *BillPaymentType `json:"type,omitempty"`
-	Allocations []Allocations    `json:"allocations,omitempty"`
+	Type        *BillPaymentType        `json:"type,omitempty"`
+	Allocations []BillPaymentAllocation `json:"allocations,omitempty"`
 	// Note associated with the transaction
 	Note *string `json:"note,omitempty"`
 	// Number associated with the transaction
@@ -312,7 +312,7 @@ func (o *BillPayment) GetType() *BillPaymentType {
 	return o.Type
 }
 
-func (o *BillPayment) GetAllocations() []Allocations {
+func (o *BillPayment) GetAllocations() []BillPaymentAllocation {
 	if o == nil {
 		return nil
 	}
@@ -403,7 +403,7 @@ func (o *BillPayment) GetPassThrough() []PassThroughBody {
 	return o.PassThrough
 }
 
-type BillPaymentAllocations struct {
+type BillPaymentAllocationInput struct {
 	// A unique identifier for an object.
 	ID *string `json:"id,omitempty"`
 	// Type of entity this payment should be attributed to.
@@ -414,28 +414,28 @@ type BillPaymentAllocations struct {
 	AllocationID *string `json:"allocation_id,omitempty"`
 }
 
-func (o *BillPaymentAllocations) GetID() *string {
+func (o *BillPaymentAllocationInput) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *BillPaymentAllocations) GetType() *BillPaymentAllocationType {
+func (o *BillPaymentAllocationInput) GetType() *BillPaymentAllocationType {
 	if o == nil {
 		return nil
 	}
 	return o.Type
 }
 
-func (o *BillPaymentAllocations) GetAmount() *float64 {
+func (o *BillPaymentAllocationInput) GetAmount() *float64 {
 	if o == nil {
 		return nil
 	}
 	return o.Amount
 }
 
-func (o *BillPaymentAllocations) GetAllocationID() *string {
+func (o *BillPaymentAllocationInput) GetAllocationID() *string {
 	if o == nil {
 		return nil
 	}
@@ -469,8 +469,8 @@ type BillPaymentInput struct {
 	// Status of payment
 	Status *PaymentStatus `json:"status,omitempty"`
 	// Type of payment
-	Type        *BillPaymentType         `json:"type,omitempty"`
-	Allocations []BillPaymentAllocations `json:"allocations,omitempty"`
+	Type        *BillPaymentType             `json:"type,omitempty"`
+	Allocations []BillPaymentAllocationInput `json:"allocations,omitempty"`
 	// Note associated with the transaction
 	Note *string `json:"note,omitempty"`
 	// Number associated with the transaction
@@ -595,7 +595,7 @@ func (o *BillPaymentInput) GetType() *BillPaymentType {
 	return o.Type
 }
 
-func (o *BillPaymentInput) GetAllocations() []BillPaymentAllocations {
+func (o *BillPaymentInput) GetAllocations() []BillPaymentAllocationInput {
 	if o == nil {
 		return nil
 	}

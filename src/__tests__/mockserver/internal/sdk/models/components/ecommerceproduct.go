@@ -36,28 +36,28 @@ func (e *ProductStatus) UnmarshalJSON(data []byte) error {
 	}
 }
 
-type Images struct {
+type Image struct {
 	// A unique identifier for an object.
 	ID *string `json:"id,omitempty"`
 	// The URL of an image of the product.
 	URL *string `json:"url,omitempty"`
 }
 
-func (o *Images) GetID() *string {
+func (o *Image) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *Images) GetURL() *string {
+func (o *Image) GetURL() *string {
 	if o == nil {
 		return nil
 	}
 	return o.URL
 }
 
-type EcommerceProductOptions struct {
+type EcommerceProductOption struct {
 	// A unique identifier for the option of the product.
 	ID *string `json:"id,omitempty"`
 	// The name of the option for the product.
@@ -65,28 +65,28 @@ type EcommerceProductOptions struct {
 	Values []*string `json:"values,omitempty"`
 }
 
-func (o *EcommerceProductOptions) GetID() *string {
+func (o *EcommerceProductOption) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *EcommerceProductOptions) GetName() *string {
+func (o *EcommerceProductOption) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-func (o *EcommerceProductOptions) GetValues() []*string {
+func (o *EcommerceProductOption) GetValues() []*string {
 	if o == nil {
 		return nil
 	}
 	return o.Values
 }
 
-type EcommerceProductVariantsOptions struct {
+type VariantOption struct {
 	// A unique identifier for the option of the variant.
 	ID *string `json:"id,omitempty"`
 	// The name of the option for the variant.
@@ -95,49 +95,49 @@ type EcommerceProductVariantsOptions struct {
 	Value *string `json:"value,omitempty"`
 }
 
-func (o *EcommerceProductVariantsOptions) GetID() *string {
+func (o *VariantOption) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *EcommerceProductVariantsOptions) GetName() *string {
+func (o *VariantOption) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-func (o *EcommerceProductVariantsOptions) GetValue() *string {
+func (o *VariantOption) GetValue() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Value
 }
 
-type EcommerceProductImages struct {
+type VariantImage struct {
 	// A unique identifier for an object.
 	ID *string `json:"id,omitempty"`
 	// The URL of an image of the variant.
 	URL *string `json:"url,omitempty"`
 }
 
-func (o *EcommerceProductImages) GetID() *string {
+func (o *VariantImage) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *EcommerceProductImages) GetURL() *string {
+func (o *VariantImage) GetURL() *string {
 	if o == nil {
 		return nil
 	}
 	return o.URL
 }
 
-type Variants struct {
+type Variant struct {
 	// A unique identifier for the variant of the product.
 	ID *string `json:"id,omitempty"`
 	// The name for the variant, used for displaying to customers.
@@ -151,89 +151,89 @@ type Variants struct {
 	// The weight of the variant.
 	Weight *string `json:"weight,omitempty"`
 	// The unit of measurement for the weight of the variant.
-	WeightUnit *string                           `json:"weight_unit,omitempty"`
-	Options    []EcommerceProductVariantsOptions `json:"options,omitempty"`
-	Images     []EcommerceProductImages          `json:"images,omitempty"`
+	WeightUnit *string         `json:"weight_unit,omitempty"`
+	Options    []VariantOption `json:"options,omitempty"`
+	Images     []VariantImage  `json:"images,omitempty"`
 }
 
-func (o *Variants) GetID() *string {
+func (o *Variant) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *Variants) GetName() *string {
+func (o *Variant) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-func (o *Variants) GetPrice() *string {
+func (o *Variant) GetPrice() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Price
 }
 
-func (o *Variants) GetSku() *string {
+func (o *Variant) GetSku() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Sku
 }
 
-func (o *Variants) GetInventoryQuantity() *string {
+func (o *Variant) GetInventoryQuantity() *string {
 	if o == nil {
 		return nil
 	}
 	return o.InventoryQuantity
 }
 
-func (o *Variants) GetWeight() *string {
+func (o *Variant) GetWeight() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Weight
 }
 
-func (o *Variants) GetWeightUnit() *string {
+func (o *Variant) GetWeightUnit() *string {
 	if o == nil {
 		return nil
 	}
 	return o.WeightUnit
 }
 
-func (o *Variants) GetOptions() []EcommerceProductVariantsOptions {
+func (o *Variant) GetOptions() []VariantOption {
 	if o == nil {
 		return nil
 	}
 	return o.Options
 }
 
-func (o *Variants) GetImages() []EcommerceProductImages {
+func (o *Variant) GetImages() []VariantImage {
 	if o == nil {
 		return nil
 	}
 	return o.Images
 }
 
-type EcommerceProductCategories struct {
+type EcommerceProductCategory struct {
 	// A unique identifier for an object.
 	ID *string `json:"id,omitempty"`
 	// The name of the category.
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *EcommerceProductCategories) GetID() *string {
+func (o *EcommerceProductCategory) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *EcommerceProductCategories) GetName() *string {
+func (o *EcommerceProductCategory) GetName() *string {
 	if o == nil {
 		return nil
 	}
@@ -256,18 +256,18 @@ type EcommerceProduct struct {
 	// The quantity of the product in stock.
 	InventoryQuantity *string `json:"inventory_quantity,omitempty"`
 	// An array of image URLs for the product.
-	Images []Images `json:"images,omitempty"`
+	Images []Image `json:"images,omitempty"`
 	// The weight of the product.
 	Weight *string `json:"weight,omitempty"`
 	// The unit of measurement for the weight of the product.
 	WeightUnit *string `json:"weight_unit,omitempty"`
 	// An array of options for the product.
-	Options  []EcommerceProductOptions `json:"options,omitempty"`
-	Variants []Variants                `json:"variants,omitempty"`
+	Options  []EcommerceProductOption `json:"options,omitempty"`
+	Variants []Variant                `json:"variants,omitempty"`
 	// An array of tags for the product, used for organization and searching.
 	Tags []*string `json:"tags,omitempty"`
 	// An array of categories for the product, used for organization and searching.
-	Categories []EcommerceProductCategories `json:"categories,omitempty"`
+	Categories []EcommerceProductCategory `json:"categories,omitempty"`
 	// When custom mappings are configured on the resource, the result is included here.
 	CustomMappings map[string]any `json:"custom_mappings,omitempty"`
 	// The date and time when the object was created.
@@ -336,7 +336,7 @@ func (o *EcommerceProduct) GetInventoryQuantity() *string {
 	return o.InventoryQuantity
 }
 
-func (o *EcommerceProduct) GetImages() []Images {
+func (o *EcommerceProduct) GetImages() []Image {
 	if o == nil {
 		return nil
 	}
@@ -357,14 +357,14 @@ func (o *EcommerceProduct) GetWeightUnit() *string {
 	return o.WeightUnit
 }
 
-func (o *EcommerceProduct) GetOptions() []EcommerceProductOptions {
+func (o *EcommerceProduct) GetOptions() []EcommerceProductOption {
 	if o == nil {
 		return nil
 	}
 	return o.Options
 }
 
-func (o *EcommerceProduct) GetVariants() []Variants {
+func (o *EcommerceProduct) GetVariants() []Variant {
 	if o == nil {
 		return nil
 	}
@@ -378,7 +378,7 @@ func (o *EcommerceProduct) GetTags() []*string {
 	return o.Tags
 }
 
-func (o *EcommerceProduct) GetCategories() []EcommerceProductCategories {
+func (o *EcommerceProduct) GetCategories() []EcommerceProductCategory {
 	if o == nil {
 		return nil
 	}

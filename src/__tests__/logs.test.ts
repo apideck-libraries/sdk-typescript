@@ -16,6 +16,8 @@ test("Logs Vault Logs All", async () => {
   });
 
   const result = await apideck.vault.logs.list({
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
+    consumerId: "test-consumer",
     filter: {
       connectorId: "crm+salesforce",
       statusCode: 201,

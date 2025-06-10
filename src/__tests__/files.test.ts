@@ -18,6 +18,8 @@ test("Files File Storage Files All", async () => {
   });
 
   const result = await apideck.fileStorage.files.list({
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
     filter: {
       driveId: "1234",
@@ -26,6 +28,7 @@ test("Files File Storage Files All", async () => {
     },
     sort: {
       by: "updated_at",
+      direction: "desc",
     },
     passThrough: {
       "search": "San Francisco",
@@ -172,6 +175,8 @@ test("Files File Storage Files Search", async () => {
   });
 
   const result = await apideck.fileStorage.files.search({
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
     passThrough: {
       "search": "San Francisco",
@@ -259,6 +264,8 @@ test("Files File Storage Files One", async () => {
 
   const result = await apideck.fileStorage.files.get({
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
     fields: "id,updated_at",
   });
@@ -328,6 +335,8 @@ test("Files File Storage Files Delete", async () => {
 
   const result = await apideck.fileStorage.files.delete({
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
   });
   expect(result.httpMeta.response.status).toBe(200);
@@ -355,6 +364,8 @@ test("Files File Storage Files Download", async () => {
 
   const result = await apideck.fileStorage.files.download({
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
     fields: "id,updated_at",
   }, {
@@ -378,6 +389,8 @@ test("Files File Storage Files Export", async () => {
 
   const result = await apideck.fileStorage.files.export({
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
     fields: "id,updated_at",
     format: "pdf",

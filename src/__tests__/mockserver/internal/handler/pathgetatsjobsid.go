@@ -79,8 +79,8 @@ func testAtsJobsOneAtsJobsOne0(w http.ResponseWriter, req *http.Request) {
 				PassThrough: []components.PassThroughBody{
 					components.PassThroughBody{
 						ServiceID: "<id>",
-						ExtendPaths: []components.ExtendPaths{
-							components.ExtendPaths{
+						ExtendPaths: []components.ExtendPath{
+							components.ExtendPath{
 								Path: "$.nested.property",
 								Value: map[string]any{
 									"TaxClassificationRef": map[string]any{
@@ -88,28 +88,7 @@ func testAtsJobsOneAtsJobsOne0(w http.ResponseWriter, req *http.Request) {
 									},
 								},
 							},
-							components.ExtendPaths{
-								Path: "$.nested.property",
-								Value: map[string]any{
-									"TaxClassificationRef": map[string]any{
-										"value": "EUC-99990201-V1-00020000",
-									},
-								},
-							},
-						},
-					},
-					components.PassThroughBody{
-						ServiceID: "<id>",
-						ExtendPaths: []components.ExtendPaths{
-							components.ExtendPaths{
-								Path: "$.nested.property",
-								Value: map[string]any{
-									"TaxClassificationRef": map[string]any{
-										"value": "EUC-99990201-V1-00020000",
-									},
-								},
-							},
-							components.ExtendPaths{
+							components.ExtendPath{
 								Path: "$.nested.property",
 								Value: map[string]any{
 									"TaxClassificationRef": map[string]any{
@@ -121,8 +100,8 @@ func testAtsJobsOneAtsJobsOne0(w http.ResponseWriter, req *http.Request) {
 					},
 					components.PassThroughBody{
 						ServiceID: "<id>",
-						ExtendPaths: []components.ExtendPaths{
-							components.ExtendPaths{
+						ExtendPaths: []components.ExtendPath{
+							components.ExtendPath{
 								Path: "$.nested.property",
 								Value: map[string]any{
 									"TaxClassificationRef": map[string]any{
@@ -130,7 +109,28 @@ func testAtsJobsOneAtsJobsOne0(w http.ResponseWriter, req *http.Request) {
 									},
 								},
 							},
-							components.ExtendPaths{
+							components.ExtendPath{
+								Path: "$.nested.property",
+								Value: map[string]any{
+									"TaxClassificationRef": map[string]any{
+										"value": "EUC-99990201-V1-00020000",
+									},
+								},
+							},
+						},
+					},
+					components.PassThroughBody{
+						ServiceID: "<id>",
+						ExtendPaths: []components.ExtendPath{
+							components.ExtendPath{
+								Path: "$.nested.property",
+								Value: map[string]any{
+									"TaxClassificationRef": map[string]any{
+										"value": "EUC-99990201-V1-00020000",
+									},
+								},
+							},
+							components.ExtendPath{
 								Path: "$.nested.property",
 								Value: map[string]any{
 									"TaxClassificationRef": map[string]any{
@@ -157,8 +157,8 @@ func testAtsJobsOneAtsJobsOne0(w http.ResponseWriter, req *http.Request) {
 				"a98lfd96-43b3-4bde-8c70-85b707d992e6",
 			},
 			Description: types.String("A description"),
-			Blocks: []components.Blocks{
-				components.Blocks{
+			Blocks: []components.Block{
+				components.Block{
 					Title:   types.String("string"),
 					Content: types.String("string"),
 				},
@@ -171,16 +171,16 @@ func testAtsJobsOneAtsJobsOne0(w http.ResponseWriter, req *http.Request) {
 				Currency: components.CurrencyUsd.ToPointer(),
 				Interval: types.String("year"),
 			},
-			Links: []components.JobLinks{
-				components.JobLinks{
+			Links: []components.Link{
+				components.Link{
 					Type: components.JobTypeJobPortal.ToPointer(),
 					URL:  types.String("https://app.intercom.io/contacts/12345"),
 				},
-				components.JobLinks{
+				components.Link{
 					Type: components.JobTypeJobPortal.ToPointer(),
 					URL:  types.String("https://app.intercom.io/contacts/12345"),
 				},
-				components.JobLinks{
+				components.Link{
 					Type: components.JobTypeJobPortal.ToPointer(),
 					URL:  types.String("https://app.intercom.io/contacts/12345"),
 				},
@@ -193,7 +193,7 @@ func testAtsJobsOneAtsJobsOne0(w http.ResponseWriter, req *http.Request) {
 			Addresses: []components.Address{
 				components.Address{
 					ID:           types.String("123"),
-					Type:         components.TypePrimary.ToPointer(),
+					Type:         components.AddressTypePrimary.ToPointer(),
 					String:       types.String("25 Spring Street, Blackburn, VIC 3130"),
 					Name:         types.String("HQ US"),
 					Line1:        types.String("Main street"),
@@ -219,7 +219,7 @@ func testAtsJobsOneAtsJobsOne0(w http.ResponseWriter, req *http.Request) {
 				},
 				components.Address{
 					ID:           types.String("123"),
-					Type:         components.TypePrimary.ToPointer(),
+					Type:         components.AddressTypePrimary.ToPointer(),
 					String:       types.String("25 Spring Street, Blackburn, VIC 3130"),
 					Name:         types.String("HQ US"),
 					Line1:        types.String("Main street"),
@@ -249,7 +249,7 @@ func testAtsJobsOneAtsJobsOne0(w http.ResponseWriter, req *http.Request) {
 					ID:          types.String("2389328923893298"),
 					Name:        types.String("employee_level"),
 					Description: types.String("Employee Level"),
-					Value: types.Pointer(components.CreateValueNumber(
+					Value: types.Pointer(components.CreateCustomFieldValueUnionNumber(
 						10,
 					)),
 				},
@@ -257,7 +257,7 @@ func testAtsJobsOneAtsJobsOne0(w http.ResponseWriter, req *http.Request) {
 					ID:          types.String("2389328923893298"),
 					Name:        types.String("employee_level"),
 					Description: types.String("Employee Level"),
-					Value: types.Pointer(components.CreateValueNumber(
+					Value: types.Pointer(components.CreateCustomFieldValueUnionNumber(
 						10,
 					)),
 				},

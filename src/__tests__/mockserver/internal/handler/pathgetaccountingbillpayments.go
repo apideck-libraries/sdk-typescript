@@ -77,7 +77,7 @@ func testAccountingBillPaymentsAllAccountingBillPaymentsAll0(w http.ResponseWrit
 					CompanyName: types.String("The boring company"),
 					Address: &components.Address{
 						ID:           types.String("123"),
-						Type:         components.TypePrimary.ToPointer(),
+						Type:         components.AddressTypePrimary.ToPointer(),
 						String:       types.String("25 Spring Street, Blackburn, VIC 3130"),
 						Name:         types.String("HQ US"),
 						Line1:        types.String("Main street"),
@@ -106,15 +106,15 @@ func testAccountingBillPaymentsAllAccountingBillPaymentsAll0(w http.ResponseWrit
 				Reconciled: types.Bool(true),
 				Status:     components.PaymentStatusAuthorised.ToPointer(),
 				Type:       components.BillPaymentTypeAccountsPayable.ToPointer(),
-				Allocations: []components.Allocations{
-					components.Allocations{
+				Allocations: []components.BillPaymentAllocation{
+					components.BillPaymentAllocation{
 						ID:           types.String("12345"),
 						Type:         components.BillPaymentAllocationTypeBill.ToPointer(),
 						Code:         types.String("N091"),
 						Amount:       types.Float64(49.99),
 						AllocationID: types.String("123456"),
 					},
-					components.Allocations{
+					components.BillPaymentAllocation{
 						ID:           types.String("12345"),
 						Type:         components.BillPaymentAllocationTypeBill.ToPointer(),
 						Code:         types.String("N091"),
@@ -143,7 +143,7 @@ func testAccountingBillPaymentsAllAccountingBillPaymentsAll0(w http.ResponseWrit
 						ID:          types.String("2389328923893298"),
 						Name:        types.String("employee_level"),
 						Description: types.String("Employee Level"),
-						Value: types.Pointer(components.CreateValueNumber(
+						Value: types.Pointer(components.CreateCustomFieldValueUnionNumber(
 							10,
 						)),
 					},
@@ -157,8 +157,8 @@ func testAccountingBillPaymentsAllAccountingBillPaymentsAll0(w http.ResponseWrit
 				PassThrough: []components.PassThroughBody{
 					components.PassThroughBody{
 						ServiceID: "<id>",
-						ExtendPaths: []components.ExtendPaths{
-							components.ExtendPaths{
+						ExtendPaths: []components.ExtendPath{
+							components.ExtendPath{
 								Path: "$.nested.property",
 								Value: map[string]any{
 									"TaxClassificationRef": map[string]any{
@@ -166,7 +166,7 @@ func testAccountingBillPaymentsAllAccountingBillPaymentsAll0(w http.ResponseWrit
 									},
 								},
 							},
-							components.ExtendPaths{
+							components.ExtendPath{
 								Path: "$.nested.property",
 								Value: map[string]any{
 									"TaxClassificationRef": map[string]any{
@@ -202,7 +202,7 @@ func testAccountingBillPaymentsAllAccountingBillPaymentsAll0(w http.ResponseWrit
 					CompanyName: types.String("The boring company"),
 					Address: &components.Address{
 						ID:           types.String("123"),
-						Type:         components.TypePrimary.ToPointer(),
+						Type:         components.AddressTypePrimary.ToPointer(),
 						String:       types.String("25 Spring Street, Blackburn, VIC 3130"),
 						Name:         types.String("HQ US"),
 						Line1:        types.String("Main street"),
@@ -231,15 +231,15 @@ func testAccountingBillPaymentsAllAccountingBillPaymentsAll0(w http.ResponseWrit
 				Reconciled: types.Bool(true),
 				Status:     components.PaymentStatusAuthorised.ToPointer(),
 				Type:       components.BillPaymentTypeAccountsPayable.ToPointer(),
-				Allocations: []components.Allocations{
-					components.Allocations{
+				Allocations: []components.BillPaymentAllocation{
+					components.BillPaymentAllocation{
 						ID:           types.String("12345"),
 						Type:         components.BillPaymentAllocationTypeBill.ToPointer(),
 						Code:         types.String("N091"),
 						Amount:       types.Float64(49.99),
 						AllocationID: types.String("123456"),
 					},
-					components.Allocations{
+					components.BillPaymentAllocation{
 						ID:           types.String("12345"),
 						Type:         components.BillPaymentAllocationTypeBill.ToPointer(),
 						Code:         types.String("N091"),
@@ -260,7 +260,7 @@ func testAccountingBillPaymentsAllAccountingBillPaymentsAll0(w http.ResponseWrit
 						ID:          types.String("2389328923893298"),
 						Name:        types.String("employee_level"),
 						Description: types.String("Employee Level"),
-						Value: types.Pointer(components.CreateValueStr(
+						Value: types.Pointer(components.CreateCustomFieldValueUnionStr(
 							"Uses Salesforce and Marketo",
 						)),
 					},
@@ -268,7 +268,7 @@ func testAccountingBillPaymentsAllAccountingBillPaymentsAll0(w http.ResponseWrit
 						ID:          types.String("2389328923893298"),
 						Name:        types.String("employee_level"),
 						Description: types.String("Employee Level"),
-						Value: types.Pointer(components.CreateValueStr(
+						Value: types.Pointer(components.CreateCustomFieldValueUnionStr(
 							"Uses Salesforce and Marketo",
 						)),
 					},
@@ -276,7 +276,7 @@ func testAccountingBillPaymentsAllAccountingBillPaymentsAll0(w http.ResponseWrit
 						ID:          types.String("2389328923893298"),
 						Name:        types.String("employee_level"),
 						Description: types.String("Employee Level"),
-						Value: types.Pointer(components.CreateValueArrayOfStr(
+						Value: types.Pointer(components.CreateCustomFieldValueUnionArrayOfStr(
 							[]string{
 								"<value>",
 								"<value>",
@@ -293,8 +293,8 @@ func testAccountingBillPaymentsAllAccountingBillPaymentsAll0(w http.ResponseWrit
 				PassThrough: []components.PassThroughBody{
 					components.PassThroughBody{
 						ServiceID: "<id>",
-						ExtendPaths: []components.ExtendPaths{
-							components.ExtendPaths{
+						ExtendPaths: []components.ExtendPath{
+							components.ExtendPath{
 								Path: "$.nested.property",
 								Value: map[string]any{
 									"TaxClassificationRef": map[string]any{
@@ -306,8 +306,8 @@ func testAccountingBillPaymentsAllAccountingBillPaymentsAll0(w http.ResponseWrit
 					},
 					components.PassThroughBody{
 						ServiceID: "<id>",
-						ExtendPaths: []components.ExtendPaths{
-							components.ExtendPaths{
+						ExtendPaths: []components.ExtendPath{
+							components.ExtendPath{
 								Path: "$.nested.property",
 								Value: map[string]any{
 									"TaxClassificationRef": map[string]any{
@@ -343,7 +343,7 @@ func testAccountingBillPaymentsAllAccountingBillPaymentsAll0(w http.ResponseWrit
 					CompanyName: types.String("The boring company"),
 					Address: &components.Address{
 						ID:           types.String("123"),
-						Type:         components.TypePrimary.ToPointer(),
+						Type:         components.AddressTypePrimary.ToPointer(),
 						String:       types.String("25 Spring Street, Blackburn, VIC 3130"),
 						Name:         types.String("HQ US"),
 						Line1:        types.String("Main street"),
@@ -372,15 +372,15 @@ func testAccountingBillPaymentsAllAccountingBillPaymentsAll0(w http.ResponseWrit
 				Reconciled: types.Bool(true),
 				Status:     components.PaymentStatusAuthorised.ToPointer(),
 				Type:       components.BillPaymentTypeAccountsPayable.ToPointer(),
-				Allocations: []components.Allocations{
-					components.Allocations{
+				Allocations: []components.BillPaymentAllocation{
+					components.BillPaymentAllocation{
 						ID:           types.String("12345"),
 						Type:         components.BillPaymentAllocationTypeBill.ToPointer(),
 						Code:         types.String("N091"),
 						Amount:       types.Float64(49.99),
 						AllocationID: types.String("123456"),
 					},
-					components.Allocations{
+					components.BillPaymentAllocation{
 						ID:           types.String("12345"),
 						Type:         components.BillPaymentAllocationTypeBill.ToPointer(),
 						Code:         types.String("N091"),
@@ -405,10 +405,10 @@ func testAccountingBillPaymentsAllAccountingBillPaymentsAll0(w http.ResponseWrit
 						ID:          types.String("2389328923893298"),
 						Name:        types.String("employee_level"),
 						Description: types.String("Employee Level"),
-						Value: types.Pointer(components.CreateValueArrayOf6(
-							[]components.Six{
-								components.Six{},
-								components.Six{},
+						Value: types.Pointer(components.CreateCustomFieldValueUnionArrayOfCustomFieldValue2(
+							[]components.CustomFieldValue2{
+								components.CustomFieldValue2{},
+								components.CustomFieldValue2{},
 							},
 						)),
 					},
@@ -422,8 +422,8 @@ func testAccountingBillPaymentsAllAccountingBillPaymentsAll0(w http.ResponseWrit
 				PassThrough: []components.PassThroughBody{
 					components.PassThroughBody{
 						ServiceID: "<id>",
-						ExtendPaths: []components.ExtendPaths{
-							components.ExtendPaths{
+						ExtendPaths: []components.ExtendPath{
+							components.ExtendPath{
 								Path: "$.nested.property",
 								Value: map[string]any{
 									"TaxClassificationRef": map[string]any{
@@ -431,20 +431,7 @@ func testAccountingBillPaymentsAllAccountingBillPaymentsAll0(w http.ResponseWrit
 									},
 								},
 							},
-							components.ExtendPaths{
-								Path: "$.nested.property",
-								Value: map[string]any{
-									"TaxClassificationRef": map[string]any{
-										"value": "EUC-99990201-V1-00020000",
-									},
-								},
-							},
-						},
-					},
-					components.PassThroughBody{
-						ServiceID: "<id>",
-						ExtendPaths: []components.ExtendPaths{
-							components.ExtendPaths{
+							components.ExtendPath{
 								Path: "$.nested.property",
 								Value: map[string]any{
 									"TaxClassificationRef": map[string]any{
@@ -456,8 +443,21 @@ func testAccountingBillPaymentsAllAccountingBillPaymentsAll0(w http.ResponseWrit
 					},
 					components.PassThroughBody{
 						ServiceID: "<id>",
-						ExtendPaths: []components.ExtendPaths{
-							components.ExtendPaths{
+						ExtendPaths: []components.ExtendPath{
+							components.ExtendPath{
+								Path: "$.nested.property",
+								Value: map[string]any{
+									"TaxClassificationRef": map[string]any{
+										"value": "EUC-99990201-V1-00020000",
+									},
+								},
+							},
+						},
+					},
+					components.PassThroughBody{
+						ServiceID: "<id>",
+						ExtendPaths: []components.ExtendPath{
+							components.ExtendPath{
 								Path: "$.nested.property",
 								Value: map[string]any{
 									"TaxClassificationRef": map[string]any{

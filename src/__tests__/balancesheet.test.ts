@@ -16,6 +16,8 @@ test("Balancesheet Accounting Balance Sheet One", async () => {
   });
 
   const result = await apideck.accounting.balanceSheet.get({
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
     passThrough: {
       "search": "San Francisco",

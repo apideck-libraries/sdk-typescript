@@ -172,20 +172,20 @@ func (e *AccountStatus) UnmarshalJSON(data []byte) error {
 	}
 }
 
-type Categories struct {
+type LedgerAccountCategory struct {
 	ID *string `json:"id,omitempty"`
 	// The name of the category.
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *Categories) GetID() *string {
+func (o *LedgerAccountCategory) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *Categories) GetName() *string {
+func (o *LedgerAccountCategory) GetName() *string {
 	if o == nil {
 		return nil
 	}
@@ -222,33 +222,33 @@ func (o *ParentAccount) GetDisplayID() *string {
 	return o.DisplayID
 }
 
-type SubAccounts struct {
+type SubAccount struct {
 	// The ID of the sub account.
 	ID *string `json:"id,omitempty"`
 	// The name of the sub account.
 	AccountSubName *string `json:"account_sub_name,omitempty"`
 }
 
-func (o *SubAccounts) GetID() *string {
+func (o *SubAccount) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *SubAccounts) GetAccountSubName() *string {
+func (o *SubAccount) GetAccountSubName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.AccountSubName
 }
 
-type LedgerAccountSubsidiaries struct {
+type LedgerAccountSubsidiary struct {
 	// The ID of the subsidiary.
 	ID *string `json:"id,omitempty"`
 }
 
-func (o *LedgerAccountSubsidiaries) GetID() *string {
+func (o *LedgerAccountSubsidiary) GetID() *string {
 	if o == nil {
 		return nil
 	}
@@ -296,16 +296,16 @@ type LedgerAccount struct {
 	Header      *bool        `json:"header,omitempty"`
 	BankAccount *BankAccount `json:"bank_account,omitempty"`
 	// The categories of the account.
-	Categories    []Categories   `json:"categories,omitempty"`
-	ParentAccount *ParentAccount `json:"parent_account,omitempty"`
+	Categories    []LedgerAccountCategory `json:"categories,omitempty"`
+	ParentAccount *ParentAccount          `json:"parent_account,omitempty"`
 	// Whether the account is a sub account or not.
 	SubAccount *bool `json:"sub_account,omitempty"`
 	// The sub accounts of the account.
-	SubAccounts []SubAccounts `json:"sub_accounts,omitempty"`
+	SubAccounts []SubAccount `json:"sub_accounts,omitempty"`
 	// Reconciliation Date means the last calendar day of each Reconciliation Period.
 	LastReconciliationDate *types.Date `json:"last_reconciliation_date,omitempty"`
 	// The subsidiaries the account belongs to.
-	Subsidiaries []LedgerAccountSubsidiaries `json:"subsidiaries,omitempty"`
+	Subsidiaries []LedgerAccountSubsidiary `json:"subsidiaries,omitempty"`
 	// When custom mappings are configured on the resource, the result is included here.
 	CustomMappings map[string]any `json:"custom_mappings,omitempty"`
 	CustomFields   []CustomField  `json:"custom_fields,omitempty"`
@@ -474,7 +474,7 @@ func (o *LedgerAccount) GetBankAccount() *BankAccount {
 	return o.BankAccount
 }
 
-func (o *LedgerAccount) GetCategories() []Categories {
+func (o *LedgerAccount) GetCategories() []LedgerAccountCategory {
 	if o == nil {
 		return nil
 	}
@@ -495,7 +495,7 @@ func (o *LedgerAccount) GetSubAccount() *bool {
 	return o.SubAccount
 }
 
-func (o *LedgerAccount) GetSubAccounts() []SubAccounts {
+func (o *LedgerAccount) GetSubAccounts() []SubAccount {
 	if o == nil {
 		return nil
 	}
@@ -509,7 +509,7 @@ func (o *LedgerAccount) GetLastReconciliationDate() *types.Date {
 	return o.LastReconciliationDate
 }
 
-func (o *LedgerAccount) GetSubsidiaries() []LedgerAccountSubsidiaries {
+func (o *LedgerAccount) GetSubsidiaries() []LedgerAccountSubsidiary {
 	if o == nil {
 		return nil
 	}
@@ -616,8 +616,8 @@ type LedgerAccountInput struct {
 	// Reconciliation Date means the last calendar day of each Reconciliation Period.
 	LastReconciliationDate *types.Date `json:"last_reconciliation_date,omitempty"`
 	// The subsidiaries the account belongs to.
-	Subsidiaries []LedgerAccountSubsidiaries `json:"subsidiaries,omitempty"`
-	CustomFields []CustomField               `json:"custom_fields,omitempty"`
+	Subsidiaries []LedgerAccountSubsidiary `json:"subsidiaries,omitempty"`
+	CustomFields []CustomField             `json:"custom_fields,omitempty"`
 	// A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
 	RowVersion *string `json:"row_version,omitempty"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
@@ -789,7 +789,7 @@ func (o *LedgerAccountInput) GetLastReconciliationDate() *types.Date {
 	return o.LastReconciliationDate
 }
 
-func (o *LedgerAccountInput) GetSubsidiaries() []LedgerAccountSubsidiaries {
+func (o *LedgerAccountInput) GetSubsidiaries() []LedgerAccountSubsidiary {
 	if o == nil {
 		return nil
 	}

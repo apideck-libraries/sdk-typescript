@@ -16,6 +16,8 @@ test("Sharedlinks File Storage Shared Links All", async () => {
   });
 
   const result = await apideck.fileStorage.sharedLinks.list({
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
     passThrough: {
       "search": "San Francisco",
@@ -204,6 +206,8 @@ test("Sharedlinks File Storage Shared Links One", async () => {
 
   const result = await apideck.fileStorage.sharedLinks.get({
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
     fields: "id,updated_at",
   });
@@ -314,6 +318,8 @@ test("Sharedlinks File Storage Shared Links Delete", async () => {
 
   const result = await apideck.fileStorage.sharedLinks.delete({
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
   });
   expect(result.httpMeta.response.status).toBe(200);

@@ -7,6 +7,7 @@ import { ActivitiesSort } from "@apideck/unify/models/components";
 
 let value: ActivitiesSort = {
   by: "created_at",
+  direction: "desc",
 };
 ```
 

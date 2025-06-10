@@ -16,6 +16,8 @@ test("Connectionsettings Vault Connection Settings All", async () => {
   });
 
   const result = await apideck.vault.connectionSettings.list({
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     unifiedApi: "crm",
     serviceId: "pipedrive",
     resource: "leads",

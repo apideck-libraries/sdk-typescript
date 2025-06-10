@@ -63,7 +63,7 @@ func testHrisCompaniesOneHrisCompaniesOne0(w http.ResponseWriter, req *http.Requ
 			Addresses: []components.Address{
 				components.Address{
 					ID:           types.String("123"),
-					Type:         components.TypePrimary.ToPointer(),
+					Type:         components.AddressTypePrimary.ToPointer(),
 					String:       types.String("25 Spring Street, Blackburn, VIC 3130"),
 					Name:         types.String("HQ US"),
 					Line1:        types.String("Main street"),
@@ -89,7 +89,7 @@ func testHrisCompaniesOneHrisCompaniesOne0(w http.ResponseWriter, req *http.Requ
 				},
 				components.Address{
 					ID:           types.String("123"),
-					Type:         components.TypePrimary.ToPointer(),
+					Type:         components.AddressTypePrimary.ToPointer(),
 					String:       types.String("25 Spring Street, Blackburn, VIC 3130"),
 					Name:         types.String("HQ US"),
 					Line1:        types.String("Main street"),
@@ -115,7 +115,7 @@ func testHrisCompaniesOneHrisCompaniesOne0(w http.ResponseWriter, req *http.Requ
 				},
 				components.Address{
 					ID:           types.String("123"),
-					Type:         components.TypePrimary.ToPointer(),
+					Type:         components.AddressTypePrimary.ToPointer(),
 					String:       types.String("25 Spring Street, Blackburn, VIC 3130"),
 					Name:         types.String("HQ US"),
 					Line1:        types.String("Main street"),
@@ -191,8 +191,8 @@ func testHrisCompaniesOneHrisCompaniesOne0(w http.ResponseWriter, req *http.Requ
 			PassThrough: []components.PassThroughBody{
 				components.PassThroughBody{
 					ServiceID: "<id>",
-					ExtendPaths: []components.ExtendPaths{
-						components.ExtendPaths{
+					ExtendPaths: []components.ExtendPath{
+						components.ExtendPath{
 							Path: "$.nested.property",
 							Value: map[string]any{
 								"TaxClassificationRef": map[string]any{
@@ -200,28 +200,7 @@ func testHrisCompaniesOneHrisCompaniesOne0(w http.ResponseWriter, req *http.Requ
 								},
 							},
 						},
-						components.ExtendPaths{
-							Path: "$.nested.property",
-							Value: map[string]any{
-								"TaxClassificationRef": map[string]any{
-									"value": "EUC-99990201-V1-00020000",
-								},
-							},
-						},
-					},
-				},
-				components.PassThroughBody{
-					ServiceID: "<id>",
-					ExtendPaths: []components.ExtendPaths{
-						components.ExtendPaths{
-							Path: "$.nested.property",
-							Value: map[string]any{
-								"TaxClassificationRef": map[string]any{
-									"value": "EUC-99990201-V1-00020000",
-								},
-							},
-						},
-						components.ExtendPaths{
+						components.ExtendPath{
 							Path: "$.nested.property",
 							Value: map[string]any{
 								"TaxClassificationRef": map[string]any{
@@ -233,8 +212,29 @@ func testHrisCompaniesOneHrisCompaniesOne0(w http.ResponseWriter, req *http.Requ
 				},
 				components.PassThroughBody{
 					ServiceID: "<id>",
-					ExtendPaths: []components.ExtendPaths{
-						components.ExtendPaths{
+					ExtendPaths: []components.ExtendPath{
+						components.ExtendPath{
+							Path: "$.nested.property",
+							Value: map[string]any{
+								"TaxClassificationRef": map[string]any{
+									"value": "EUC-99990201-V1-00020000",
+								},
+							},
+						},
+						components.ExtendPath{
+							Path: "$.nested.property",
+							Value: map[string]any{
+								"TaxClassificationRef": map[string]any{
+									"value": "EUC-99990201-V1-00020000",
+								},
+							},
+						},
+					},
+				},
+				components.PassThroughBody{
+					ServiceID: "<id>",
+					ExtendPaths: []components.ExtendPath{
+						components.ExtendPath{
 							Path: "$.nested.property",
 							Value: map[string]any{
 								"TaxClassificationRef": map[string]any{

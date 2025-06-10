@@ -203,7 +203,7 @@ func (o *BalanceSheetUncategorizedItemsAccount) GetItems() any {
 	return o.Items
 }
 
-type Reports struct {
+type Report struct {
 	// A unique identifier for an object.
 	ID *string `json:"id,omitempty"`
 	// The name of the report
@@ -236,116 +236,116 @@ type Reports struct {
 	UncategorizedItems *BalanceSheetUncategorizedItemsAccount `json:"uncategorized_items,omitempty"`
 }
 
-func (r Reports) MarshalJSON() ([]byte, error) {
+func (r Report) MarshalJSON() ([]byte, error) {
 	return utils.MarshalJSON(r, "", false)
 }
 
-func (r *Reports) UnmarshalJSON(data []byte) error {
+func (r *Report) UnmarshalJSON(data []byte) error {
 	if err := utils.UnmarshalJSON(data, &r, "", false, false); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *Reports) GetID() *string {
+func (o *Report) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *Reports) GetReportName() *string {
+func (o *Report) GetReportName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ReportName
 }
 
-func (o *Reports) GetStartDate() *string {
+func (o *Report) GetStartDate() *string {
 	if o == nil {
 		return nil
 	}
 	return o.StartDate
 }
 
-func (o *Reports) GetEndDate() string {
+func (o *Report) GetEndDate() string {
 	if o == nil {
 		return ""
 	}
 	return o.EndDate
 }
 
-func (o *Reports) GetCurrency() *Currency {
+func (o *Report) GetCurrency() *Currency {
 	if o == nil {
 		return nil
 	}
 	return o.Currency
 }
 
-func (o *Reports) GetAssets() BalanceSheetAssetsAccount {
+func (o *Report) GetAssets() BalanceSheetAssetsAccount {
 	if o == nil {
 		return BalanceSheetAssetsAccount{}
 	}
 	return o.Assets
 }
 
-func (o *Reports) GetLiabilities() BalanceSheetLiabilitiesAccount {
+func (o *Report) GetLiabilities() BalanceSheetLiabilitiesAccount {
 	if o == nil {
 		return BalanceSheetLiabilitiesAccount{}
 	}
 	return o.Liabilities
 }
 
-func (o *Reports) GetEquity() BalanceSheetEquityAccount {
+func (o *Report) GetEquity() BalanceSheetEquityAccount {
 	if o == nil {
 		return BalanceSheetEquityAccount{}
 	}
 	return o.Equity
 }
 
-func (o *Reports) GetNetAssets() *float64 {
+func (o *Report) GetNetAssets() *float64 {
 	if o == nil {
 		return nil
 	}
 	return o.NetAssets
 }
 
-func (o *Reports) GetCustomMappings() map[string]any {
+func (o *Report) GetCustomMappings() map[string]any {
 	if o == nil {
 		return nil
 	}
 	return o.CustomMappings
 }
 
-func (o *Reports) GetUpdatedBy() *string {
+func (o *Report) GetUpdatedBy() *string {
 	if o == nil {
 		return nil
 	}
 	return o.UpdatedBy
 }
 
-func (o *Reports) GetCreatedBy() *string {
+func (o *Report) GetCreatedBy() *string {
 	if o == nil {
 		return nil
 	}
 	return o.CreatedBy
 }
 
-func (o *Reports) GetUpdatedAt() *time.Time {
+func (o *Report) GetUpdatedAt() *time.Time {
 	if o == nil {
 		return nil
 	}
 	return o.UpdatedAt
 }
 
-func (o *Reports) GetCreatedAt() *time.Time {
+func (o *Report) GetCreatedAt() *time.Time {
 	if o == nil {
 		return nil
 	}
 	return o.CreatedAt
 }
 
-func (o *Reports) GetUncategorizedItems() *BalanceSheetUncategorizedItemsAccount {
+func (o *Report) GetUncategorizedItems() *BalanceSheetUncategorizedItemsAccount {
 	if o == nil {
 		return nil
 	}
@@ -353,12 +353,12 @@ func (o *Reports) GetUncategorizedItems() *BalanceSheetUncategorizedItemsAccount
 }
 
 type BalanceSheet struct {
-	Reports []Reports `json:"reports"`
+	Reports []Report `json:"reports"`
 }
 
-func (o *BalanceSheet) GetReports() []Reports {
+func (o *BalanceSheet) GetReports() []Report {
 	if o == nil {
-		return []Reports{}
+		return []Report{}
 	}
 	return o.Reports
 }

@@ -2,7 +2,7 @@
 
 package components
 
-type Data struct {
+type GetConsumersResponseData struct {
 	ConsumerID    *string `json:"consumer_id,omitempty"`
 	ApplicationID *string `json:"application_id,omitempty"`
 	// The metadata of the consumer. This is used to display the consumer in the sidebar. This is optional, but recommended.
@@ -15,63 +15,63 @@ type Data struct {
 	Services               []string                `json:"services,omitempty"`
 }
 
-func (o *Data) GetConsumerID() *string {
+func (o *GetConsumersResponseData) GetConsumerID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ConsumerID
 }
 
-func (o *Data) GetApplicationID() *string {
+func (o *GetConsumersResponseData) GetApplicationID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ApplicationID
 }
 
-func (o *Data) GetMetadata() *ConsumerMetadata {
+func (o *GetConsumersResponseData) GetMetadata() *ConsumerMetadata {
 	if o == nil {
 		return nil
 	}
 	return o.Metadata
 }
 
-func (o *Data) GetAggregatedRequestCount() *float64 {
+func (o *GetConsumersResponseData) GetAggregatedRequestCount() *float64 {
 	if o == nil {
 		return nil
 	}
 	return o.AggregatedRequestCount
 }
 
-func (o *Data) GetRequestCounts() *RequestCountAllocation {
+func (o *GetConsumersResponseData) GetRequestCounts() *RequestCountAllocation {
 	if o == nil {
 		return nil
 	}
 	return o.RequestCounts
 }
 
-func (o *Data) GetCreated() *string {
+func (o *GetConsumersResponseData) GetCreated() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Created
 }
 
-func (o *Data) GetModified() *string {
+func (o *GetConsumersResponseData) GetModified() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Modified
 }
 
-func (o *Data) GetRequestCountUpdated() *string {
+func (o *GetConsumersResponseData) GetRequestCountUpdated() *string {
 	if o == nil {
 		return nil
 	}
 	return o.RequestCountUpdated
 }
 
-func (o *Data) GetServices() []string {
+func (o *GetConsumersResponseData) GetServices() []string {
 	if o == nil {
 		return nil
 	}
@@ -83,8 +83,8 @@ type GetConsumersResponse struct {
 	// HTTP Response Status Code
 	StatusCode int64 `json:"status_code"`
 	// HTTP Response Status
-	Status string `json:"status"`
-	Data   []Data `json:"data"`
+	Status string                     `json:"status"`
+	Data   []GetConsumersResponseData `json:"data"`
 	// Response metadata
 	Meta *Meta `json:"meta,omitempty"`
 	// Links to navigate to previous or next pages through the API
@@ -107,9 +107,9 @@ func (o *GetConsumersResponse) GetStatus() string {
 	return o.Status
 }
 
-func (o *GetConsumersResponse) GetData() []Data {
+func (o *GetConsumersResponse) GetData() []GetConsumersResponseData {
 	if o == nil {
-		return []Data{}
+		return []GetConsumersResponseData{}
 	}
 	return o.Data
 }

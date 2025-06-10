@@ -9,21 +9,21 @@ import (
 	"mockserver/internal/sdk/utils"
 )
 
-// TransactionType - Type of the transaction.
-type TransactionType string
+// BalanceByTransactionTransactionType - Type of the transaction.
+type BalanceByTransactionTransactionType string
 
 const (
-	TransactionTypeInvoice     TransactionType = "invoice"
-	TransactionTypeCreditNote  TransactionType = "credit_note"
-	TransactionTypeBill        TransactionType = "bill"
-	TransactionTypePayment     TransactionType = "payment"
-	TransactionTypeBillPayment TransactionType = "bill_payment"
+	BalanceByTransactionTransactionTypeInvoice     BalanceByTransactionTransactionType = "invoice"
+	BalanceByTransactionTransactionTypeCreditNote  BalanceByTransactionTransactionType = "credit_note"
+	BalanceByTransactionTransactionTypeBill        BalanceByTransactionTransactionType = "bill"
+	BalanceByTransactionTransactionTypePayment     BalanceByTransactionTransactionType = "payment"
+	BalanceByTransactionTransactionTypeBillPayment BalanceByTransactionTransactionType = "bill_payment"
 )
 
-func (e TransactionType) ToPointer() *TransactionType {
+func (e BalanceByTransactionTransactionType) ToPointer() *BalanceByTransactionTransactionType {
 	return &e
 }
-func (e *TransactionType) UnmarshalJSON(data []byte) error {
+func (e *BalanceByTransactionTransactionType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -38,10 +38,10 @@ func (e *TransactionType) UnmarshalJSON(data []byte) error {
 	case "payment":
 		fallthrough
 	case "bill_payment":
-		*e = TransactionType(v)
+		*e = BalanceByTransactionTransactionType(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for TransactionType: %v", v)
+		return fmt.Errorf("invalid value for BalanceByTransactionTransactionType: %v", v)
 	}
 }
 
@@ -51,7 +51,7 @@ type BalanceByTransaction struct {
 	// Date of the transaction.
 	TransactionDate *types.Date `json:"transaction_date,omitempty"`
 	// Type of the transaction.
-	TransactionType *TransactionType `json:"transaction_type,omitempty"`
+	TransactionType *BalanceByTransactionTransactionType `json:"transaction_type,omitempty"`
 	// Due date of the transaction.
 	DueDate *types.Date `json:"due_date,omitempty"`
 	// Original amount of the transaction.
@@ -87,7 +87,7 @@ func (o *BalanceByTransaction) GetTransactionDate() *types.Date {
 	return o.TransactionDate
 }
 
-func (o *BalanceByTransaction) GetTransactionType() *TransactionType {
+func (o *BalanceByTransaction) GetTransactionType() *BalanceByTransactionTransactionType {
 	if o == nil {
 		return nil
 	}

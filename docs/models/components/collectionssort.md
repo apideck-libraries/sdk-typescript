@@ -7,6 +7,7 @@ import { CollectionsSort } from "@apideck/unify/models/components";
 
 let value: CollectionsSort = {
   by: "name",
+  direction: "desc",
 };
 ```
 

@@ -116,7 +116,7 @@ func testAccountingPaymentsAllAccountingPaymentsAll0(w http.ResponseWriter, req 
 						ID:          types.String("2389328923893298"),
 						Name:        types.String("employee_level"),
 						Description: types.String("Employee Level"),
-						Value: types.Pointer(components.CreateValueNumber(
+						Value: types.Pointer(components.CreateCustomFieldValueUnionNumber(
 							10,
 						)),
 					},
@@ -130,8 +130,8 @@ func testAccountingPaymentsAllAccountingPaymentsAll0(w http.ResponseWriter, req 
 				PassThrough: []components.PassThroughBody{
 					components.PassThroughBody{
 						ServiceID: "<id>",
-						ExtendPaths: []components.ExtendPaths{
-							components.ExtendPaths{
+						ExtendPaths: []components.ExtendPath{
+							components.ExtendPath{
 								Path: "$.nested.property",
 								Value: map[string]any{
 									"TaxClassificationRef": map[string]any{
@@ -139,7 +139,7 @@ func testAccountingPaymentsAllAccountingPaymentsAll0(w http.ResponseWriter, req 
 									},
 								},
 							},
-							components.ExtendPaths{
+							components.ExtendPath{
 								Path: "$.nested.property",
 								Value: map[string]any{
 									"TaxClassificationRef": map[string]any{
@@ -206,7 +206,7 @@ func testAccountingPaymentsAllAccountingPaymentsAll0(w http.ResponseWriter, req 
 						ID:          types.String("2389328923893298"),
 						Name:        types.String("employee_level"),
 						Description: types.String("Employee Level"),
-						Value: types.Pointer(components.CreateValueStr(
+						Value: types.Pointer(components.CreateCustomFieldValueUnionStr(
 							"Uses Salesforce and Marketo",
 						)),
 					},
@@ -214,7 +214,7 @@ func testAccountingPaymentsAllAccountingPaymentsAll0(w http.ResponseWriter, req 
 						ID:          types.String("2389328923893298"),
 						Name:        types.String("employee_level"),
 						Description: types.String("Employee Level"),
-						Value: types.Pointer(components.CreateValueStr(
+						Value: types.Pointer(components.CreateCustomFieldValueUnionStr(
 							"Uses Salesforce and Marketo",
 						)),
 					},
@@ -222,7 +222,7 @@ func testAccountingPaymentsAllAccountingPaymentsAll0(w http.ResponseWriter, req 
 						ID:          types.String("2389328923893298"),
 						Name:        types.String("employee_level"),
 						Description: types.String("Employee Level"),
-						Value: types.Pointer(components.CreateValueArrayOfStr(
+						Value: types.Pointer(components.CreateCustomFieldValueUnionArrayOfStr(
 							[]string{
 								"<value>",
 								"<value>",
@@ -239,8 +239,8 @@ func testAccountingPaymentsAllAccountingPaymentsAll0(w http.ResponseWriter, req 
 				PassThrough: []components.PassThroughBody{
 					components.PassThroughBody{
 						ServiceID: "<id>",
-						ExtendPaths: []components.ExtendPaths{
-							components.ExtendPaths{
+						ExtendPaths: []components.ExtendPath{
+							components.ExtendPath{
 								Path: "$.nested.property",
 								Value: map[string]any{
 									"TaxClassificationRef": map[string]any{
@@ -252,8 +252,8 @@ func testAccountingPaymentsAllAccountingPaymentsAll0(w http.ResponseWriter, req 
 					},
 					components.PassThroughBody{
 						ServiceID: "<id>",
-						ExtendPaths: []components.ExtendPaths{
-							components.ExtendPaths{
+						ExtendPaths: []components.ExtendPath{
+							components.ExtendPath{
 								Path: "$.nested.property",
 								Value: map[string]any{
 									"TaxClassificationRef": map[string]any{
@@ -324,10 +324,10 @@ func testAccountingPaymentsAllAccountingPaymentsAll0(w http.ResponseWriter, req 
 						ID:          types.String("2389328923893298"),
 						Name:        types.String("employee_level"),
 						Description: types.String("Employee Level"),
-						Value: types.Pointer(components.CreateValueArrayOf6(
-							[]components.Six{
-								components.Six{},
-								components.Six{},
+						Value: types.Pointer(components.CreateCustomFieldValueUnionArrayOfCustomFieldValue2(
+							[]components.CustomFieldValue2{
+								components.CustomFieldValue2{},
+								components.CustomFieldValue2{},
 							},
 						)),
 					},
@@ -341,8 +341,8 @@ func testAccountingPaymentsAllAccountingPaymentsAll0(w http.ResponseWriter, req 
 				PassThrough: []components.PassThroughBody{
 					components.PassThroughBody{
 						ServiceID: "<id>",
-						ExtendPaths: []components.ExtendPaths{
-							components.ExtendPaths{
+						ExtendPaths: []components.ExtendPath{
+							components.ExtendPath{
 								Path: "$.nested.property",
 								Value: map[string]any{
 									"TaxClassificationRef": map[string]any{
@@ -350,20 +350,7 @@ func testAccountingPaymentsAllAccountingPaymentsAll0(w http.ResponseWriter, req 
 									},
 								},
 							},
-							components.ExtendPaths{
-								Path: "$.nested.property",
-								Value: map[string]any{
-									"TaxClassificationRef": map[string]any{
-										"value": "EUC-99990201-V1-00020000",
-									},
-								},
-							},
-						},
-					},
-					components.PassThroughBody{
-						ServiceID: "<id>",
-						ExtendPaths: []components.ExtendPaths{
-							components.ExtendPaths{
+							components.ExtendPath{
 								Path: "$.nested.property",
 								Value: map[string]any{
 									"TaxClassificationRef": map[string]any{
@@ -375,8 +362,21 @@ func testAccountingPaymentsAllAccountingPaymentsAll0(w http.ResponseWriter, req 
 					},
 					components.PassThroughBody{
 						ServiceID: "<id>",
-						ExtendPaths: []components.ExtendPaths{
-							components.ExtendPaths{
+						ExtendPaths: []components.ExtendPath{
+							components.ExtendPath{
+								Path: "$.nested.property",
+								Value: map[string]any{
+									"TaxClassificationRef": map[string]any{
+										"value": "EUC-99990201-V1-00020000",
+									},
+								},
+							},
+						},
+					},
+					components.PassThroughBody{
+						ServiceID: "<id>",
+						ExtendPaths: []components.ExtendPath{
+							components.ExtendPath{
 								Path: "$.nested.property",
 								Value: map[string]any{
 									"TaxClassificationRef": map[string]any{

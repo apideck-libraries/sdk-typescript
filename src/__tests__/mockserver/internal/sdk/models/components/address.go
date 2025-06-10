@@ -7,23 +7,23 @@ import (
 	"fmt"
 )
 
-// Type - The type of address.
-type Type string
+// AddressType - The type of address.
+type AddressType string
 
 const (
-	TypePrimary   Type = "primary"
-	TypeSecondary Type = "secondary"
-	TypeHome      Type = "home"
-	TypeOffice    Type = "office"
-	TypeShipping  Type = "shipping"
-	TypeBilling   Type = "billing"
-	TypeOther     Type = "other"
+	AddressTypePrimary   AddressType = "primary"
+	AddressTypeSecondary AddressType = "secondary"
+	AddressTypeHome      AddressType = "home"
+	AddressTypeOffice    AddressType = "office"
+	AddressTypeShipping  AddressType = "shipping"
+	AddressTypeBilling   AddressType = "billing"
+	AddressTypeOther     AddressType = "other"
 )
 
-func (e Type) ToPointer() *Type {
+func (e AddressType) ToPointer() *AddressType {
 	return &e
 }
-func (e *Type) UnmarshalJSON(data []byte) error {
+func (e *AddressType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -42,10 +42,10 @@ func (e *Type) UnmarshalJSON(data []byte) error {
 	case "billing":
 		fallthrough
 	case "other":
-		*e = Type(v)
+		*e = AddressType(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for Type: %v", v)
+		return fmt.Errorf("invalid value for AddressType: %v", v)
 	}
 }
 
@@ -53,7 +53,7 @@ type Address struct {
 	// Unique identifier for the address.
 	ID *string `json:"id,omitempty"`
 	// The type of address.
-	Type *Type `json:"type,omitempty"`
+	Type *AddressType `json:"type,omitempty"`
 	// The address string. Some APIs don't provide structured address data.
 	String *string `json:"string,omitempty"`
 	// The name of the address.
@@ -107,7 +107,7 @@ func (o *Address) GetID() *string {
 	return o.ID
 }
 
-func (o *Address) GetType() *Type {
+func (o *Address) GetType() *AddressType {
 	if o == nil {
 		return nil
 	}

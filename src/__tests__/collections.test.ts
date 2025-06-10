@@ -16,9 +16,12 @@ test("Collections Issue Tracking Collections All", async () => {
   });
 
   const result = await apideck.issueTracking.collections.list({
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
     sort: {
       by: "name",
+      direction: "desc",
     },
     passThrough: {
       "search": "San Francisco",
@@ -91,6 +94,8 @@ test("Collections Issue Tracking Collections One", async () => {
 
   const result = await apideck.issueTracking.collections.get({
     collectionId: "apideck-io",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
     fields: "id,updated_at",
   });

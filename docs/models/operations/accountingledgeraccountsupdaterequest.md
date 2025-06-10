@@ -4,77 +4,10 @@
 
 ```typescript
 import { AccountingLedgerAccountsUpdateRequest } from "@apideck/unify/models/operations";
-import { RFCDate } from "@apideck/unify/types";
 
 let value: AccountingLedgerAccountsUpdateRequest = {
   id: "<id>",
   serviceId: "salesforce",
-  ledgerAccount: {
-    displayId: "1-12345",
-    code: "453",
-    classification: "asset",
-    type: "bank",
-    subType: "CHECKING_ACCOUNT",
-    name: "Bank account",
-    fullyQualifiedName: "Asset.Bank.Checking_Account",
-    description: "Main checking account",
-    openingBalance: 75000,
-    currentBalance: 20000,
-    currency: "USD",
-    taxType: "NONE",
-    taxRate: {
-      id: "123456",
-      rate: 10,
-    },
-    level: 1,
-    active: true,
-    status: "active",
-    header: true,
-    bankAccount: {
-      bankName: "Monzo",
-      accountNumber: "123465",
-      accountName: "SPACEX LLC",
-      accountType: "credit_card",
-      iban: "CH2989144532982975332",
-      bic: "AUDSCHGGXXX",
-      routingNumber: "012345678",
-      bsbNumber: "062-001",
-      branchIdentifier: "001",
-      bankCode: "BNH",
-      currency: "USD",
-    },
-    parentAccount: {
-      id: "12345",
-      name: "Bank Accounts",
-      displayId: "1-1100",
-    },
-    subAccount: false,
-    lastReconciliationDate: new RFCDate("2020-09-30"),
-    customFields: [
-      {
-        id: "2389328923893298",
-        name: "employee_level",
-        description: "Employee Level",
-        value: "Uses Salesforce and Marketo",
-      },
-    ],
-    rowVersion: "1-12345",
-    passThrough: [
-      {
-        serviceId: "<id>",
-        extendPaths: [
-          {
-            path: "$.nested.property",
-            value: {
-              "TaxClassificationRef": {
-                "value": "EUC-99990201-V1-00020000",
-              },
-            },
-          },
-        ],
-      },
-    ],
-  },
 };
 ```
 

@@ -16,6 +16,7 @@ test("Eventlogs Webhook Event Logs All", async () => {
   });
 
   const result = await apideck.webhook.eventLogs.list({
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     filter: {
       excludeApis: "vault,proxy",
       consumerId: "test_user_id",

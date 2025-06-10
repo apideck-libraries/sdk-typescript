@@ -63,80 +63,80 @@ func (e *CustomObjectSchemaType) UnmarshalJSON(data []byte) error {
 	}
 }
 
-type CustomObjectSchemaOptions struct {
+type CustomObjectSchemaOption struct {
 	Value *string `json:"value,omitempty"`
 	Label *string `json:"label,omitempty"`
 }
 
-func (o *CustomObjectSchemaOptions) GetValue() *string {
+func (o *CustomObjectSchemaOption) GetValue() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Value
 }
 
-func (o *CustomObjectSchemaOptions) GetLabel() *string {
+func (o *CustomObjectSchemaOption) GetLabel() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Label
 }
 
-type Fields struct {
+type CustomObjectSchemaField struct {
 	ID          *string                 `json:"id,omitempty"`
 	Name        *string                 `json:"name,omitempty"`
 	Description *string                 `json:"description,omitempty"`
 	Type        *CustomObjectSchemaType `json:"type,omitempty"`
 	Required    *bool                   `json:"required,omitempty"`
 	// Options for select and multiselect types
-	Options []CustomObjectSchemaOptions `json:"options,omitempty"`
+	Options []CustomObjectSchemaOption `json:"options,omitempty"`
 	// Default value for the field
 	DefaultValue *string `json:"default_value,omitempty"`
 }
 
-func (o *Fields) GetID() *string {
+func (o *CustomObjectSchemaField) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *Fields) GetName() *string {
+func (o *CustomObjectSchemaField) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-func (o *Fields) GetDescription() *string {
+func (o *CustomObjectSchemaField) GetDescription() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Description
 }
 
-func (o *Fields) GetType() *CustomObjectSchemaType {
+func (o *CustomObjectSchemaField) GetType() *CustomObjectSchemaType {
 	if o == nil {
 		return nil
 	}
 	return o.Type
 }
 
-func (o *Fields) GetRequired() *bool {
+func (o *CustomObjectSchemaField) GetRequired() *bool {
 	if o == nil {
 		return nil
 	}
 	return o.Required
 }
 
-func (o *Fields) GetOptions() []CustomObjectSchemaOptions {
+func (o *CustomObjectSchemaField) GetOptions() []CustomObjectSchemaOption {
 	if o == nil {
 		return nil
 	}
 	return o.Options
 }
 
-func (o *Fields) GetDefaultValue() *string {
+func (o *CustomObjectSchemaField) GetDefaultValue() *string {
 	if o == nil {
 		return nil
 	}
@@ -151,7 +151,7 @@ type CustomObjectSchema struct {
 	// The description of the custom object schema
 	Description *string `json:"description,omitempty"`
 	// The fields defined in the schema
-	Fields []Fields `json:"fields,omitempty"`
+	Fields []CustomObjectSchemaField `json:"fields,omitempty"`
 	// Whether the custom object schema is visible in the UI
 	Visible *bool `json:"visible,omitempty"`
 	// Whether the custom object schema is active
@@ -189,7 +189,7 @@ func (o *CustomObjectSchema) GetDescription() *string {
 	return o.Description
 }
 
-func (o *CustomObjectSchema) GetFields() []Fields {
+func (o *CustomObjectSchema) GetFields() []CustomObjectSchemaField {
 	if o == nil {
 		return nil
 	}
@@ -251,7 +251,7 @@ type CustomObjectSchemaInput struct {
 	// The description of the custom object schema
 	Description *string `json:"description,omitempty"`
 	// The fields defined in the schema
-	Fields []Fields `json:"fields,omitempty"`
+	Fields []CustomObjectSchemaField `json:"fields,omitempty"`
 	// Whether the custom object schema is visible in the UI
 	Visible *bool `json:"visible,omitempty"`
 	// Whether the custom object schema is active
@@ -274,7 +274,7 @@ func (o *CustomObjectSchemaInput) GetDescription() *string {
 	return o.Description
 }
 
-func (o *CustomObjectSchemaInput) GetFields() []Fields {
+func (o *CustomObjectSchemaInput) GetFields() []CustomObjectSchemaField {
 	if o == nil {
 		return nil
 	}

@@ -7,6 +7,7 @@ import { CreditNotesSort } from "@apideck/unify/models/components";
 
 let value: CreditNotesSort = {
   by: "updated_at",
+  direction: "desc",
 };
 ```
 

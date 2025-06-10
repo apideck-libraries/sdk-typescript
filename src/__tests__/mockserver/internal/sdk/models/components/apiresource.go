@@ -2,21 +2,21 @@
 
 package components
 
-type LinkedResources struct {
+type LinkedResource struct {
 	// ID of the resource, typically a lowercased version of name.
 	ID *string `json:"id,omitempty"`
 	// Name of the property in our Unified API.
 	UnifiedProperty *string `json:"unified_property,omitempty"`
 }
 
-func (o *LinkedResources) GetID() *string {
+func (o *LinkedResource) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *LinkedResources) GetUnifiedProperty() *string {
+func (o *LinkedResource) GetUnifiedProperty() *string {
 	if o == nil {
 		return nil
 	}
@@ -35,7 +35,7 @@ type APIResource struct {
 	// Status of the resource. Resources with status live or beta are callable.
 	Status *ResourceStatus `json:"status,omitempty"`
 	// List of linked resources.
-	LinkedResources []LinkedResources `json:"linked_resources,omitempty"`
+	LinkedResources []LinkedResource `json:"linked_resources,omitempty"`
 	// JSON Schema of the resource in our Unified API
 	Schema *Schema `json:"schema,omitempty"`
 }
@@ -61,7 +61,7 @@ func (o *APIResource) GetStatus() *ResourceStatus {
 	return o.Status
 }
 
-func (o *APIResource) GetLinkedResources() []LinkedResources {
+func (o *APIResource) GetLinkedResources() []LinkedResource {
 	if o == nil {
 		return nil
 	}

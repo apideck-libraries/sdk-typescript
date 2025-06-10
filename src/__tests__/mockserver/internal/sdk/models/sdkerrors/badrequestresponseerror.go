@@ -2,8 +2,12 @@
 
 package sdkerrors
 
-// PaymentRequiredResponse - Payment Required
-type PaymentRequiredResponse struct {
+import (
+	"mockserver/internal/sdk/models/components"
+)
+
+// BadRequestResponseError - Bad Request
+type BadRequestResponseError struct {
 	// HTTP status code
 	StatusCode *float64 `json:"status_code,omitempty"`
 	// Contains an explanation of the status_code as defined in HTTP/1.1 standard (RFC 7231)
@@ -13,14 +17,15 @@ type PaymentRequiredResponse struct {
 	// A human-readable message providing more details about the error.
 	Message *string `json:"message,omitempty"`
 	// Contains parameter or domain specific information related to the error and why it occurred.
-	Detail *string `json:"detail,omitempty"`
+	Detail *components.BadRequestResponseDetail `json:"detail,omitempty"`
 	// Link to documentation of error type
-	Ref *string `json:"ref,omitempty"`
+	Ref      *string                 `json:"ref,omitempty"`
+	HTTPMeta components.HTTPMetadata `json:"-"`
 }
 
-var _ error = &PaymentRequiredResponse{}
+var _ error = &BadRequestResponseError{}
 
-func (e *PaymentRequiredResponse) Error() string {
+func (e *BadRequestResponseError) Error() string {
 	if e.Message == nil {
 		return "unknown error"
 	}

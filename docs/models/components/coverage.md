@@ -30,7 +30,11 @@ let value: Coverage = {
   supportedFields: [
     {
       unifiedProperty: "owner_id",
-      childProperties: [],
+      childProperties: [
+        {
+          unifiedProperty: "owner_id",
+        },
+      ],
     },
   ],
   supportedListFields: [

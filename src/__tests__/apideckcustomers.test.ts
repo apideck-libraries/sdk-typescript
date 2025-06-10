@@ -16,6 +16,8 @@ test("Apideck Customers Ecommerce Customers All", async () => {
   });
 
   const result = await apideck.ecommerce.customers.list({
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
     filter: {
       email: "elon@musk.com",
@@ -265,6 +267,8 @@ test("Apideck Customers Ecommerce Customers One", async () => {
 
   const result = await apideck.ecommerce.customers.get({
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
     fields: "id,updated_at",
   });

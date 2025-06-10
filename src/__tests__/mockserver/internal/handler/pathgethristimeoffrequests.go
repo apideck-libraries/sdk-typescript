@@ -57,7 +57,7 @@ func testHrisTimeOffRequestsAllHrisTimeOffRequestsAll0(w http.ResponseWriter, re
 				ID:           types.String("12345"),
 				EmployeeID:   types.String("12345"),
 				PolicyID:     types.String("12345"),
-				Status:       components.TimeOffRequestStatusStatusApproved.ToPointer(),
+				Status:       components.TimeOffRequestStatusApproved.ToPointer(),
 				Description:  types.String("Enjoying some sun."),
 				StartDate:    types.String("2022-04-01"),
 				EndDate:      types.String("2022-04-01"),
@@ -78,8 +78,8 @@ func testHrisTimeOffRequestsAllHrisTimeOffRequestsAll0(w http.ResponseWriter, re
 				PassThrough: []components.PassThroughBody{
 					components.PassThroughBody{
 						ServiceID: "<id>",
-						ExtendPaths: []components.ExtendPaths{
-							components.ExtendPaths{
+						ExtendPaths: []components.ExtendPath{
+							components.ExtendPath{
 								Path: "$.nested.property",
 								Value: map[string]any{
 									"TaxClassificationRef": map[string]any{
@@ -87,7 +87,7 @@ func testHrisTimeOffRequestsAllHrisTimeOffRequestsAll0(w http.ResponseWriter, re
 									},
 								},
 							},
-							components.ExtendPaths{
+							components.ExtendPath{
 								Path: "$.nested.property",
 								Value: map[string]any{
 									"TaxClassificationRef": map[string]any{
@@ -95,7 +95,7 @@ func testHrisTimeOffRequestsAllHrisTimeOffRequestsAll0(w http.ResponseWriter, re
 									},
 								},
 							},
-							components.ExtendPaths{
+							components.ExtendPath{
 								Path: "$.nested.property",
 								Value: map[string]any{
 									"TaxClassificationRef": map[string]any{
@@ -107,8 +107,8 @@ func testHrisTimeOffRequestsAllHrisTimeOffRequestsAll0(w http.ResponseWriter, re
 					},
 					components.PassThroughBody{
 						ServiceID: "<id>",
-						ExtendPaths: []components.ExtendPaths{
-							components.ExtendPaths{
+						ExtendPaths: []components.ExtendPath{
+							components.ExtendPath{
 								Path: "$.nested.property",
 								Value: map[string]any{
 									"TaxClassificationRef": map[string]any{
@@ -125,7 +125,7 @@ func testHrisTimeOffRequestsAllHrisTimeOffRequestsAll0(w http.ResponseWriter, re
 				ID:           types.String("12345"),
 				EmployeeID:   types.String("12345"),
 				PolicyID:     types.String("12345"),
-				Status:       components.TimeOffRequestStatusStatusApproved.ToPointer(),
+				Status:       components.TimeOffRequestStatusApproved.ToPointer(),
 				Description:  types.String("Enjoying some sun."),
 				StartDate:    types.String("2022-04-01"),
 				EndDate:      types.String("2022-04-01"),
@@ -146,8 +146,8 @@ func testHrisTimeOffRequestsAllHrisTimeOffRequestsAll0(w http.ResponseWriter, re
 				PassThrough: []components.PassThroughBody{
 					components.PassThroughBody{
 						ServiceID: "<id>",
-						ExtendPaths: []components.ExtendPaths{
-							components.ExtendPaths{
+						ExtendPaths: []components.ExtendPath{
+							components.ExtendPath{
 								Path: "$.nested.property",
 								Value: map[string]any{
 									"TaxClassificationRef": map[string]any{
@@ -164,7 +164,7 @@ func testHrisTimeOffRequestsAllHrisTimeOffRequestsAll0(w http.ResponseWriter, re
 				ID:           types.String("12345"),
 				EmployeeID:   types.String("12345"),
 				PolicyID:     types.String("12345"),
-				Status:       components.TimeOffRequestStatusStatusApproved.ToPointer(),
+				Status:       components.TimeOffRequestStatusApproved.ToPointer(),
 				Description:  types.String("Enjoying some sun."),
 				StartDate:    types.String("2022-04-01"),
 				EndDate:      types.String("2022-04-01"),
@@ -185,8 +185,8 @@ func testHrisTimeOffRequestsAllHrisTimeOffRequestsAll0(w http.ResponseWriter, re
 				PassThrough: []components.PassThroughBody{
 					components.PassThroughBody{
 						ServiceID: "<id>",
-						ExtendPaths: []components.ExtendPaths{
-							components.ExtendPaths{
+						ExtendPaths: []components.ExtendPath{
+							components.ExtendPath{
 								Path: "$.nested.property",
 								Value: map[string]any{
 									"TaxClassificationRef": map[string]any{
@@ -194,7 +194,7 @@ func testHrisTimeOffRequestsAllHrisTimeOffRequestsAll0(w http.ResponseWriter, re
 									},
 								},
 							},
-							components.ExtendPaths{
+							components.ExtendPath{
 								Path: "$.nested.property",
 								Value: map[string]any{
 									"TaxClassificationRef": map[string]any{
@@ -206,8 +206,8 @@ func testHrisTimeOffRequestsAllHrisTimeOffRequestsAll0(w http.ResponseWriter, re
 					},
 					components.PassThroughBody{
 						ServiceID: "<id>",
-						ExtendPaths: []components.ExtendPaths{
-							components.ExtendPaths{
+						ExtendPaths: []components.ExtendPath{
+							components.ExtendPath{
 								Path: "$.nested.property",
 								Value: map[string]any{
 									"TaxClassificationRef": map[string]any{

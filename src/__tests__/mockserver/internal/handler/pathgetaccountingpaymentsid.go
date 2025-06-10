@@ -117,17 +117,17 @@ func testAccountingPaymentsOneAccountingPaymentsOne0(w http.ResponseWriter, req 
 					ID:          types.String("2389328923893298"),
 					Name:        types.String("employee_level"),
 					Description: types.String("Employee Level"),
-					Value: types.Pointer(components.CreateValueFour(
-						components.Four{},
+					Value: types.Pointer(components.CreateCustomFieldValueUnionCustomFieldValue1(
+						components.CustomFieldValue1{},
 					)),
 				},
 				components.CustomField{
 					ID:          types.String("2389328923893298"),
 					Name:        types.String("employee_level"),
 					Description: types.String("Employee Level"),
-					Value: types.Pointer(components.CreateValueArrayOf6(
-						[]components.Six{
-							components.Six{},
+					Value: types.Pointer(components.CreateCustomFieldValueUnionArrayOfCustomFieldValue2(
+						[]components.CustomFieldValue2{
+							components.CustomFieldValue2{},
 						},
 					)),
 				},
@@ -141,8 +141,8 @@ func testAccountingPaymentsOneAccountingPaymentsOne0(w http.ResponseWriter, req 
 			PassThrough: []components.PassThroughBody{
 				components.PassThroughBody{
 					ServiceID: "<id>",
-					ExtendPaths: []components.ExtendPaths{
-						components.ExtendPaths{
+					ExtendPaths: []components.ExtendPath{
+						components.ExtendPath{
 							Path: "$.nested.property",
 							Value: map[string]any{
 								"TaxClassificationRef": map[string]any{
@@ -154,8 +154,8 @@ func testAccountingPaymentsOneAccountingPaymentsOne0(w http.ResponseWriter, req 
 				},
 				components.PassThroughBody{
 					ServiceID: "<id>",
-					ExtendPaths: []components.ExtendPaths{
-						components.ExtendPaths{
+					ExtendPaths: []components.ExtendPath{
+						components.ExtendPath{
 							Path: "$.nested.property",
 							Value: map[string]any{
 								"TaxClassificationRef": map[string]any{

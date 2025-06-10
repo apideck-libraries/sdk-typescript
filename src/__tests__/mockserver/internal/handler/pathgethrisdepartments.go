@@ -66,8 +66,8 @@ func testHrisDepartmentsAllHrisDepartmentsAll0(w http.ResponseWriter, req *http.
 				PassThrough: []components.PassThroughBody{
 					components.PassThroughBody{
 						ServiceID: "<id>",
-						ExtendPaths: []components.ExtendPaths{
-							components.ExtendPaths{
+						ExtendPaths: []components.ExtendPath{
+							components.ExtendPath{
 								Path: "$.nested.property",
 								Value: map[string]any{
 									"TaxClassificationRef": map[string]any{
@@ -75,7 +75,7 @@ func testHrisDepartmentsAllHrisDepartmentsAll0(w http.ResponseWriter, req *http.
 									},
 								},
 							},
-							components.ExtendPaths{
+							components.ExtendPath{
 								Path: "$.nested.property",
 								Value: map[string]any{
 									"TaxClassificationRef": map[string]any{
@@ -83,7 +83,7 @@ func testHrisDepartmentsAllHrisDepartmentsAll0(w http.ResponseWriter, req *http.
 									},
 								},
 							},
-							components.ExtendPaths{
+							components.ExtendPath{
 								Path: "$.nested.property",
 								Value: map[string]any{
 									"TaxClassificationRef": map[string]any{
@@ -95,34 +95,8 @@ func testHrisDepartmentsAllHrisDepartmentsAll0(w http.ResponseWriter, req *http.
 					},
 					components.PassThroughBody{
 						ServiceID: "<id>",
-						ExtendPaths: []components.ExtendPaths{
-							components.ExtendPaths{
-								Path: "$.nested.property",
-								Value: map[string]any{
-									"TaxClassificationRef": map[string]any{
-										"value": "EUC-99990201-V1-00020000",
-									},
-								},
-							},
-						},
-					},
-				},
-			},
-			components.Department{
-				ID:          types.String("12345"),
-				ParentID:    types.String("22345"),
-				Name:        types.String("R&D"),
-				Code:        types.String("2"),
-				Description: types.String("R&D"),
-				UpdatedBy:   types.String("12345"),
-				CreatedBy:   types.String("12345"),
-				UpdatedAt:   types.MustNewTimeFromString("2020-09-30T07:43:32.000Z"),
-				CreatedAt:   types.MustNewTimeFromString("2020-09-30T07:43:32.000Z"),
-				PassThrough: []components.PassThroughBody{
-					components.PassThroughBody{
-						ServiceID: "<id>",
-						ExtendPaths: []components.ExtendPaths{
-							components.ExtendPaths{
+						ExtendPaths: []components.ExtendPath{
+							components.ExtendPath{
 								Path: "$.nested.property",
 								Value: map[string]any{
 									"TaxClassificationRef": map[string]any{
@@ -147,8 +121,8 @@ func testHrisDepartmentsAllHrisDepartmentsAll0(w http.ResponseWriter, req *http.
 				PassThrough: []components.PassThroughBody{
 					components.PassThroughBody{
 						ServiceID: "<id>",
-						ExtendPaths: []components.ExtendPaths{
-							components.ExtendPaths{
+						ExtendPaths: []components.ExtendPath{
+							components.ExtendPath{
 								Path: "$.nested.property",
 								Value: map[string]any{
 									"TaxClassificationRef": map[string]any{
@@ -156,7 +130,33 @@ func testHrisDepartmentsAllHrisDepartmentsAll0(w http.ResponseWriter, req *http.
 									},
 								},
 							},
-							components.ExtendPaths{
+						},
+					},
+				},
+			},
+			components.Department{
+				ID:          types.String("12345"),
+				ParentID:    types.String("22345"),
+				Name:        types.String("R&D"),
+				Code:        types.String("2"),
+				Description: types.String("R&D"),
+				UpdatedBy:   types.String("12345"),
+				CreatedBy:   types.String("12345"),
+				UpdatedAt:   types.MustNewTimeFromString("2020-09-30T07:43:32.000Z"),
+				CreatedAt:   types.MustNewTimeFromString("2020-09-30T07:43:32.000Z"),
+				PassThrough: []components.PassThroughBody{
+					components.PassThroughBody{
+						ServiceID: "<id>",
+						ExtendPaths: []components.ExtendPath{
+							components.ExtendPath{
+								Path: "$.nested.property",
+								Value: map[string]any{
+									"TaxClassificationRef": map[string]any{
+										"value": "EUC-99990201-V1-00020000",
+									},
+								},
+							},
+							components.ExtendPath{
 								Path: "$.nested.property",
 								Value: map[string]any{
 									"TaxClassificationRef": map[string]any{
@@ -168,8 +168,8 @@ func testHrisDepartmentsAllHrisDepartmentsAll0(w http.ResponseWriter, req *http.
 					},
 					components.PassThroughBody{
 						ServiceID: "<id>",
-						ExtendPaths: []components.ExtendPaths{
-							components.ExtendPaths{
+						ExtendPaths: []components.ExtendPath{
+							components.ExtendPath{
 								Path: "$.nested.property",
 								Value: map[string]any{
 									"TaxClassificationRef": map[string]any{

@@ -36,12 +36,12 @@ func (e *TrackingCategoryStatus) UnmarshalJSON(data []byte) error {
 	}
 }
 
-type TrackingCategorySubsidiaries struct {
+type TrackingCategorySubsidiary struct {
 	// The ID of the subsidiary.
 	ID *string `json:"id,omitempty"`
 }
 
-func (o *TrackingCategorySubsidiaries) GetID() *string {
+func (o *TrackingCategorySubsidiary) GetID() *string {
 	if o == nil {
 		return nil
 	}
@@ -74,7 +74,7 @@ type TrackingCategory struct {
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
 	PassThrough []PassThroughBody `json:"pass_through,omitempty"`
 	// The subsidiaries the account belongs to.
-	Subsidiaries []TrackingCategorySubsidiaries `json:"subsidiaries,omitempty"`
+	Subsidiaries []TrackingCategorySubsidiary `json:"subsidiaries,omitempty"`
 }
 
 func (t TrackingCategory) MarshalJSON() ([]byte, error) {
@@ -172,7 +172,7 @@ func (o *TrackingCategory) GetPassThrough() []PassThroughBody {
 	return o.PassThrough
 }
 
-func (o *TrackingCategory) GetSubsidiaries() []TrackingCategorySubsidiaries {
+func (o *TrackingCategory) GetSubsidiaries() []TrackingCategorySubsidiary {
 	if o == nil {
 		return nil
 	}
@@ -193,7 +193,7 @@ type TrackingCategoryInput struct {
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
 	PassThrough []PassThroughBody `json:"pass_through,omitempty"`
 	// The subsidiaries the account belongs to.
-	Subsidiaries []TrackingCategorySubsidiaries `json:"subsidiaries,omitempty"`
+	Subsidiaries []TrackingCategorySubsidiary `json:"subsidiaries,omitempty"`
 }
 
 func (o *TrackingCategoryInput) GetParentID() *string {
@@ -238,7 +238,7 @@ func (o *TrackingCategoryInput) GetPassThrough() []PassThroughBody {
 	return o.PassThrough
 }
 
-func (o *TrackingCategoryInput) GetSubsidiaries() []TrackingCategorySubsidiaries {
+func (o *TrackingCategoryInput) GetSubsidiaries() []TrackingCategorySubsidiary {
 	if o == nil {
 		return nil
 	}

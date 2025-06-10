@@ -73,7 +73,7 @@ func testAccountingAgedCreditorsOneAccountingAgedCreditorsOne0(w http.ResponseWr
 										components.BalanceByTransaction{
 											TransactionID:      types.String("INV-1001"),
 											TransactionDate:    types.MustNewDateFromString("2024-01-15"),
-											TransactionType:    components.TransactionTypeInvoice.ToPointer(),
+											TransactionType:    components.BalanceByTransactionTransactionTypeInvoice.ToPointer(),
 											DueDate:            types.MustNewDateFromString("2024-02-15"),
 											OriginalAmount:     types.Float64(1000),
 											OutstandingBalance: types.Float64(800),
@@ -82,7 +82,7 @@ func testAccountingAgedCreditorsOneAccountingAgedCreditorsOne0(w http.ResponseWr
 										components.BalanceByTransaction{
 											TransactionID:      types.String("INV-1001"),
 											TransactionDate:    types.MustNewDateFromString("2024-01-15"),
-											TransactionType:    components.TransactionTypeInvoice.ToPointer(),
+											TransactionType:    components.BalanceByTransactionTransactionTypeInvoice.ToPointer(),
 											DueDate:            types.MustNewDateFromString("2024-02-15"),
 											OriginalAmount:     types.Float64(1000),
 											OutstandingBalance: types.Float64(800),
@@ -98,7 +98,7 @@ func testAccountingAgedCreditorsOneAccountingAgedCreditorsOne0(w http.ResponseWr
 										components.BalanceByTransaction{
 											TransactionID:      types.String("INV-1001"),
 											TransactionDate:    types.MustNewDateFromString("2024-01-15"),
-											TransactionType:    components.TransactionTypeInvoice.ToPointer(),
+											TransactionType:    components.BalanceByTransactionTransactionTypeInvoice.ToPointer(),
 											DueDate:            types.MustNewDateFromString("2024-02-15"),
 											OriginalAmount:     types.Float64(1000),
 											OutstandingBalance: types.Float64(800),
@@ -107,7 +107,7 @@ func testAccountingAgedCreditorsOneAccountingAgedCreditorsOne0(w http.ResponseWr
 										components.BalanceByTransaction{
 											TransactionID:      types.String("INV-1001"),
 											TransactionDate:    types.MustNewDateFromString("2024-01-15"),
-											TransactionType:    components.TransactionTypeInvoice.ToPointer(),
+											TransactionType:    components.BalanceByTransactionTransactionTypeInvoice.ToPointer(),
 											DueDate:            types.MustNewDateFromString("2024-02-15"),
 											OriginalAmount:     types.Float64(1000),
 											OutstandingBalance: types.Float64(800),
@@ -116,7 +116,7 @@ func testAccountingAgedCreditorsOneAccountingAgedCreditorsOne0(w http.ResponseWr
 										components.BalanceByTransaction{
 											TransactionID:      types.String("INV-1001"),
 											TransactionDate:    types.MustNewDateFromString("2024-01-15"),
-											TransactionType:    components.TransactionTypeInvoice.ToPointer(),
+											TransactionType:    components.BalanceByTransactionTransactionTypeInvoice.ToPointer(),
 											DueDate:            types.MustNewDateFromString("2024-02-15"),
 											OriginalAmount:     types.Float64(1000),
 											OutstandingBalance: types.Float64(800),
@@ -137,7 +137,7 @@ func testAccountingAgedCreditorsOneAccountingAgedCreditorsOne0(w http.ResponseWr
 										components.BalanceByTransaction{
 											TransactionID:      types.String("INV-1001"),
 											TransactionDate:    types.MustNewDateFromString("2024-01-15"),
-											TransactionType:    components.TransactionTypeInvoice.ToPointer(),
+											TransactionType:    components.BalanceByTransactionTransactionTypeInvoice.ToPointer(),
 											DueDate:            types.MustNewDateFromString("2024-02-15"),
 											OriginalAmount:     types.Float64(1000),
 											OutstandingBalance: types.Float64(800),
@@ -146,59 +146,7 @@ func testAccountingAgedCreditorsOneAccountingAgedCreditorsOne0(w http.ResponseWr
 										components.BalanceByTransaction{
 											TransactionID:      types.String("INV-1001"),
 											TransactionDate:    types.MustNewDateFromString("2024-01-15"),
-											TransactionType:    components.TransactionTypeInvoice.ToPointer(),
-											DueDate:            types.MustNewDateFromString("2024-02-15"),
-											OriginalAmount:     types.Float64(1000),
-											OutstandingBalance: types.Float64(800),
-											TransactionNumber:  types.String("INV-1001"),
-										},
-									},
-								},
-								components.BalanceByPeriod{
-									StartDate:   types.MustNewDateFromString("2024-01-01"),
-									EndDate:     types.MustNewDateFromString("2024-01-30"),
-									TotalAmount: types.Float64(1500),
-									BalancesByTransaction: []components.BalanceByTransaction{
-										components.BalanceByTransaction{
-											TransactionID:      types.String("INV-1001"),
-											TransactionDate:    types.MustNewDateFromString("2024-01-15"),
-											TransactionType:    components.TransactionTypeInvoice.ToPointer(),
-											DueDate:            types.MustNewDateFromString("2024-02-15"),
-											OriginalAmount:     types.Float64(1000),
-											OutstandingBalance: types.Float64(800),
-											TransactionNumber:  types.String("INV-1001"),
-										},
-									},
-								},
-							},
-						},
-					},
-				},
-				components.OutstandingBalanceBySupplier{
-					SupplierID:   types.String("123"),
-					SupplierName: types.String("Super Store"),
-					OutstandingBalancesByCurrency: []components.OutstandingBalanceByCurrency{
-						components.OutstandingBalanceByCurrency{
-							Currency: components.CurrencyUsd.ToPointer(),
-							BalancesByPeriod: []components.BalanceByPeriod{
-								components.BalanceByPeriod{
-									StartDate:   types.MustNewDateFromString("2024-01-01"),
-									EndDate:     types.MustNewDateFromString("2024-01-30"),
-									TotalAmount: types.Float64(1500),
-									BalancesByTransaction: []components.BalanceByTransaction{
-										components.BalanceByTransaction{
-											TransactionID:      types.String("INV-1001"),
-											TransactionDate:    types.MustNewDateFromString("2024-01-15"),
-											TransactionType:    components.TransactionTypeInvoice.ToPointer(),
-											DueDate:            types.MustNewDateFromString("2024-02-15"),
-											OriginalAmount:     types.Float64(1000),
-											OutstandingBalance: types.Float64(800),
-											TransactionNumber:  types.String("INV-1001"),
-										},
-										components.BalanceByTransaction{
-											TransactionID:      types.String("INV-1001"),
-											TransactionDate:    types.MustNewDateFromString("2024-01-15"),
-											TransactionType:    components.TransactionTypeInvoice.ToPointer(),
+											TransactionType:    components.BalanceByTransactionTransactionTypeInvoice.ToPointer(),
 											DueDate:            types.MustNewDateFromString("2024-02-15"),
 											OriginalAmount:     types.Float64(1000),
 											OutstandingBalance: types.Float64(800),
@@ -214,41 +162,7 @@ func testAccountingAgedCreditorsOneAccountingAgedCreditorsOne0(w http.ResponseWr
 										components.BalanceByTransaction{
 											TransactionID:      types.String("INV-1001"),
 											TransactionDate:    types.MustNewDateFromString("2024-01-15"),
-											TransactionType:    components.TransactionTypeInvoice.ToPointer(),
-											DueDate:            types.MustNewDateFromString("2024-02-15"),
-											OriginalAmount:     types.Float64(1000),
-											OutstandingBalance: types.Float64(800),
-											TransactionNumber:  types.String("INV-1001"),
-										},
-										components.BalanceByTransaction{
-											TransactionID:      types.String("INV-1001"),
-											TransactionDate:    types.MustNewDateFromString("2024-01-15"),
-											TransactionType:    components.TransactionTypeInvoice.ToPointer(),
-											DueDate:            types.MustNewDateFromString("2024-02-15"),
-											OriginalAmount:     types.Float64(1000),
-											OutstandingBalance: types.Float64(800),
-											TransactionNumber:  types.String("INV-1001"),
-										},
-										components.BalanceByTransaction{
-											TransactionID:      types.String("INV-1001"),
-											TransactionDate:    types.MustNewDateFromString("2024-01-15"),
-											TransactionType:    components.TransactionTypeInvoice.ToPointer(),
-											DueDate:            types.MustNewDateFromString("2024-02-15"),
-											OriginalAmount:     types.Float64(1000),
-											OutstandingBalance: types.Float64(800),
-											TransactionNumber:  types.String("INV-1001"),
-										},
-									},
-								},
-								components.BalanceByPeriod{
-									StartDate:   types.MustNewDateFromString("2024-01-01"),
-									EndDate:     types.MustNewDateFromString("2024-01-30"),
-									TotalAmount: types.Float64(1500),
-									BalancesByTransaction: []components.BalanceByTransaction{
-										components.BalanceByTransaction{
-											TransactionID:      types.String("INV-1001"),
-											TransactionDate:    types.MustNewDateFromString("2024-01-15"),
-											TransactionType:    components.TransactionTypeInvoice.ToPointer(),
+											TransactionType:    components.BalanceByTransactionTransactionTypeInvoice.ToPointer(),
 											DueDate:            types.MustNewDateFromString("2024-02-15"),
 											OriginalAmount:     types.Float64(1000),
 											OutstandingBalance: types.Float64(800),
@@ -275,7 +189,93 @@ func testAccountingAgedCreditorsOneAccountingAgedCreditorsOne0(w http.ResponseWr
 										components.BalanceByTransaction{
 											TransactionID:      types.String("INV-1001"),
 											TransactionDate:    types.MustNewDateFromString("2024-01-15"),
-											TransactionType:    components.TransactionTypeInvoice.ToPointer(),
+											TransactionType:    components.BalanceByTransactionTransactionTypeInvoice.ToPointer(),
+											DueDate:            types.MustNewDateFromString("2024-02-15"),
+											OriginalAmount:     types.Float64(1000),
+											OutstandingBalance: types.Float64(800),
+											TransactionNumber:  types.String("INV-1001"),
+										},
+										components.BalanceByTransaction{
+											TransactionID:      types.String("INV-1001"),
+											TransactionDate:    types.MustNewDateFromString("2024-01-15"),
+											TransactionType:    components.BalanceByTransactionTransactionTypeInvoice.ToPointer(),
+											DueDate:            types.MustNewDateFromString("2024-02-15"),
+											OriginalAmount:     types.Float64(1000),
+											OutstandingBalance: types.Float64(800),
+											TransactionNumber:  types.String("INV-1001"),
+										},
+									},
+								},
+								components.BalanceByPeriod{
+									StartDate:   types.MustNewDateFromString("2024-01-01"),
+									EndDate:     types.MustNewDateFromString("2024-01-30"),
+									TotalAmount: types.Float64(1500),
+									BalancesByTransaction: []components.BalanceByTransaction{
+										components.BalanceByTransaction{
+											TransactionID:      types.String("INV-1001"),
+											TransactionDate:    types.MustNewDateFromString("2024-01-15"),
+											TransactionType:    components.BalanceByTransactionTransactionTypeInvoice.ToPointer(),
+											DueDate:            types.MustNewDateFromString("2024-02-15"),
+											OriginalAmount:     types.Float64(1000),
+											OutstandingBalance: types.Float64(800),
+											TransactionNumber:  types.String("INV-1001"),
+										},
+										components.BalanceByTransaction{
+											TransactionID:      types.String("INV-1001"),
+											TransactionDate:    types.MustNewDateFromString("2024-01-15"),
+											TransactionType:    components.BalanceByTransactionTransactionTypeInvoice.ToPointer(),
+											DueDate:            types.MustNewDateFromString("2024-02-15"),
+											OriginalAmount:     types.Float64(1000),
+											OutstandingBalance: types.Float64(800),
+											TransactionNumber:  types.String("INV-1001"),
+										},
+										components.BalanceByTransaction{
+											TransactionID:      types.String("INV-1001"),
+											TransactionDate:    types.MustNewDateFromString("2024-01-15"),
+											TransactionType:    components.BalanceByTransactionTransactionTypeInvoice.ToPointer(),
+											DueDate:            types.MustNewDateFromString("2024-02-15"),
+											OriginalAmount:     types.Float64(1000),
+											OutstandingBalance: types.Float64(800),
+											TransactionNumber:  types.String("INV-1001"),
+										},
+									},
+								},
+								components.BalanceByPeriod{
+									StartDate:   types.MustNewDateFromString("2024-01-01"),
+									EndDate:     types.MustNewDateFromString("2024-01-30"),
+									TotalAmount: types.Float64(1500),
+									BalancesByTransaction: []components.BalanceByTransaction{
+										components.BalanceByTransaction{
+											TransactionID:      types.String("INV-1001"),
+											TransactionDate:    types.MustNewDateFromString("2024-01-15"),
+											TransactionType:    components.BalanceByTransactionTransactionTypeInvoice.ToPointer(),
+											DueDate:            types.MustNewDateFromString("2024-02-15"),
+											OriginalAmount:     types.Float64(1000),
+											OutstandingBalance: types.Float64(800),
+											TransactionNumber:  types.String("INV-1001"),
+										},
+									},
+								},
+							},
+						},
+					},
+				},
+				components.OutstandingBalanceBySupplier{
+					SupplierID:   types.String("123"),
+					SupplierName: types.String("Super Store"),
+					OutstandingBalancesByCurrency: []components.OutstandingBalanceByCurrency{
+						components.OutstandingBalanceByCurrency{
+							Currency: components.CurrencyUsd.ToPointer(),
+							BalancesByPeriod: []components.BalanceByPeriod{
+								components.BalanceByPeriod{
+									StartDate:   types.MustNewDateFromString("2024-01-01"),
+									EndDate:     types.MustNewDateFromString("2024-01-30"),
+									TotalAmount: types.Float64(1500),
+									BalancesByTransaction: []components.BalanceByTransaction{
+										components.BalanceByTransaction{
+											TransactionID:      types.String("INV-1001"),
+											TransactionDate:    types.MustNewDateFromString("2024-01-15"),
+											TransactionType:    components.BalanceByTransactionTransactionTypeInvoice.ToPointer(),
 											DueDate:            types.MustNewDateFromString("2024-02-15"),
 											OriginalAmount:     types.Float64(1000),
 											OutstandingBalance: types.Float64(800),

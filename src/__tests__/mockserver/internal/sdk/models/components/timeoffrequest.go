@@ -9,22 +9,22 @@ import (
 	"time"
 )
 
-// TimeOffRequestStatusStatus - The status of the time off request.
-type TimeOffRequestStatusStatus string
+// TimeOffRequestStatus - The status of the time off request.
+type TimeOffRequestStatus string
 
 const (
-	TimeOffRequestStatusStatusRequested TimeOffRequestStatusStatus = "requested"
-	TimeOffRequestStatusStatusApproved  TimeOffRequestStatusStatus = "approved"
-	TimeOffRequestStatusStatusDeclined  TimeOffRequestStatusStatus = "declined"
-	TimeOffRequestStatusStatusCancelled TimeOffRequestStatusStatus = "cancelled"
-	TimeOffRequestStatusStatusDeleted   TimeOffRequestStatusStatus = "deleted"
-	TimeOffRequestStatusStatusOther     TimeOffRequestStatusStatus = "other"
+	TimeOffRequestStatusRequested TimeOffRequestStatus = "requested"
+	TimeOffRequestStatusApproved  TimeOffRequestStatus = "approved"
+	TimeOffRequestStatusDeclined  TimeOffRequestStatus = "declined"
+	TimeOffRequestStatusCancelled TimeOffRequestStatus = "cancelled"
+	TimeOffRequestStatusDeleted   TimeOffRequestStatus = "deleted"
+	TimeOffRequestStatusOther     TimeOffRequestStatus = "other"
 )
 
-func (e TimeOffRequestStatusStatus) ToPointer() *TimeOffRequestStatusStatus {
+func (e TimeOffRequestStatus) ToPointer() *TimeOffRequestStatus {
 	return &e
 }
-func (e *TimeOffRequestStatusStatus) UnmarshalJSON(data []byte) error {
+func (e *TimeOffRequestStatus) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -41,10 +41,10 @@ func (e *TimeOffRequestStatusStatus) UnmarshalJSON(data []byte) error {
 	case "deleted":
 		fallthrough
 	case "other":
-		*e = TimeOffRequestStatusStatus(v)
+		*e = TimeOffRequestStatus(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for TimeOffRequestStatusStatus: %v", v)
+		return fmt.Errorf("invalid value for TimeOffRequestStatus: %v", v)
 	}
 }
 
@@ -147,7 +147,7 @@ type TimeOffRequest struct {
 	// ID of the policy
 	PolicyID *string `json:"policy_id,omitempty"`
 	// The status of the time off request.
-	Status *TimeOffRequestStatusStatus `json:"status,omitempty"`
+	Status *TimeOffRequestStatus `json:"status,omitempty"`
 	// Description of the time off request.
 	Description *string `json:"description,omitempty"`
 	// The start date of the time off request.
@@ -215,7 +215,7 @@ func (o *TimeOffRequest) GetPolicyID() *string {
 	return o.PolicyID
 }
 
-func (o *TimeOffRequest) GetStatus() *TimeOffRequestStatusStatus {
+func (o *TimeOffRequest) GetStatus() *TimeOffRequestStatus {
 	if o == nil {
 		return nil
 	}
@@ -347,7 +347,7 @@ type TimeOffRequestInput struct {
 	// ID of the policy
 	PolicyID *string `json:"policy_id,omitempty"`
 	// The status of the time off request.
-	Status *TimeOffRequestStatusStatus `json:"status,omitempty"`
+	Status *TimeOffRequestStatus `json:"status,omitempty"`
 	// Description of the time off request.
 	Description *string `json:"description,omitempty"`
 	// The start date of the time off request.
@@ -387,7 +387,7 @@ func (o *TimeOffRequestInput) GetPolicyID() *string {
 	return o.PolicyID
 }
 
-func (o *TimeOffRequestInput) GetStatus() *TimeOffRequestStatusStatus {
+func (o *TimeOffRequestInput) GetStatus() *TimeOffRequestStatus {
 	if o == nil {
 		return nil
 	}

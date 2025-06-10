@@ -62,8 +62,8 @@ func testAccountingBankFeedStatementsOneAccountingBankFeedStatementsOne0(w http.
 			StartBalanceCreditOrDebit: components.CreditOrDebitDebit.ToPointer(),
 			EndBalance:                types.Float64(9800.5),
 			EndBalanceCreditOrDebit:   components.CreditOrDebitDebit.ToPointer(),
-			Transactions: []components.Transactions{
-				components.Transactions{
+			Transactions: []components.Transaction{
+				components.Transaction{
 					PostedDate:          types.MustTimeFromString("2025-01-15T12:00:00.000Z"),
 					Description:         types.String("Payment received from ACME Corp"),
 					Amount:              250,
@@ -73,7 +73,7 @@ func testAccountingBankFeedStatementsOneAccountingBankFeedStatementsOne0(w http.
 					Reference:           types.String("INV-2025-01"),
 					TransactionType:     components.BankFeedStatementTransactionTypePayment.ToPointer(),
 				},
-				components.Transactions{
+				components.Transaction{
 					PostedDate:          types.MustTimeFromString("2025-01-15T12:00:00.000Z"),
 					Description:         types.String("Payment received from ACME Corp"),
 					Amount:              250,
@@ -83,7 +83,7 @@ func testAccountingBankFeedStatementsOneAccountingBankFeedStatementsOne0(w http.
 					Reference:           types.String("INV-2025-01"),
 					TransactionType:     components.BankFeedStatementTransactionTypePayment.ToPointer(),
 				},
-				components.Transactions{
+				components.Transaction{
 					PostedDate:          types.MustTimeFromString("2025-01-15T12:00:00.000Z"),
 					Description:         types.String("Payment received from ACME Corp"),
 					Amount:              250,

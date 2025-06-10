@@ -62,18 +62,18 @@ func testConnectorApisOneConnectorApisOne0(w http.ResponseWriter, req *http.Requ
 				"cloud-storage",
 				"object-storage",
 			},
-			Resources: []components.Resources{
-				components.Resources{
+			Resources: []components.Resource{
+				components.Resource{
 					ID:                   types.String("companies"),
 					Name:                 types.String("Companies"),
 					ExcludedFromCoverage: types.Bool(false),
 				},
-				components.Resources{
+				components.Resource{
 					ID:                   types.String("companies"),
 					Name:                 types.String("Companies"),
 					ExcludedFromCoverage: types.Bool(false),
 				},
-				components.Resources{
+				components.Resource{
 					ID:                   types.String("companies"),
 					Name:                 types.String("Companies"),
 					ExcludedFromCoverage: types.Bool(false),

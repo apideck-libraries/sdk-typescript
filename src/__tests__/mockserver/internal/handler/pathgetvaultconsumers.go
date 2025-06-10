@@ -49,8 +49,8 @@ func testVaultConsumersAllVaultConsumersAll0(w http.ResponseWriter, req *http.Re
 	respBody := &components.GetConsumersResponse{
 		StatusCode: 200,
 		Status:     "OK",
-		Data: []components.Data{
-			components.Data{
+		Data: []components.GetConsumersResponseData{
+			components.GetConsumersResponseData{
 				ConsumerID:    types.String("test_consumer_id"),
 				ApplicationID: types.String("1111"),
 				Metadata: &components.ConsumerMetadata{
@@ -73,7 +73,7 @@ func testVaultConsumersAllVaultConsumersAll0(w http.ResponseWriter, req *http.Re
 					"stripe",
 				},
 			},
-			components.Data{
+			components.GetConsumersResponseData{
 				ConsumerID:    types.String("test_consumer_id"),
 				ApplicationID: types.String("1111"),
 				Metadata: &components.ConsumerMetadata{
@@ -96,7 +96,7 @@ func testVaultConsumersAllVaultConsumersAll0(w http.ResponseWriter, req *http.Re
 					"stripe",
 				},
 			},
-			components.Data{
+			components.GetConsumersResponseData{
 				ConsumerID:    types.String("test_consumer_id"),
 				ApplicationID: types.String("1111"),
 				Metadata: &components.ConsumerMetadata{

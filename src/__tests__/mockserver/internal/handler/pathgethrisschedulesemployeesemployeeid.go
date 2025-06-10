@@ -139,7 +139,7 @@ func testHrisEmployeeSchedulesAllHrisEmployeeSchedulesAll0(w http.ResponseWriter
 						Status:           components.EmployeeJobStatusActive.ToPointer(),
 						Location: &components.Address{
 							ID:           types.String("123"),
-							Type:         components.TypePrimary.ToPointer(),
+							Type:         components.AddressTypePrimary.ToPointer(),
 							String:       types.String("25 Spring Street, Blackburn, VIC 3130"),
 							Name:         types.String("HQ US"),
 							Line1:        types.String("Main street"),
@@ -180,7 +180,7 @@ func testHrisEmployeeSchedulesAllHrisEmployeeSchedulesAll0(w http.ResponseWriter
 						Status:           components.EmployeeJobStatusActive.ToPointer(),
 						Location: &components.Address{
 							ID:           types.String("123"),
-							Type:         components.TypePrimary.ToPointer(),
+							Type:         components.AddressTypePrimary.ToPointer(),
 							String:       types.String("25 Spring Street, Blackburn, VIC 3130"),
 							Name:         types.String("HQ US"),
 							Line1:        types.String("Main street"),
@@ -221,7 +221,7 @@ func testHrisEmployeeSchedulesAllHrisEmployeeSchedulesAll0(w http.ResponseWriter
 						Status:           components.EmployeeJobStatusActive.ToPointer(),
 						Location: &components.Address{
 							ID:           types.String("123"),
-							Type:         components.TypePrimary.ToPointer(),
+							Type:         components.AddressTypePrimary.ToPointer(),
 							String:       types.String("25 Spring Street, Blackburn, VIC 3130"),
 							Name:         types.String("HQ US"),
 							Line1:        types.String("Main street"),
@@ -261,7 +261,7 @@ func testHrisEmployeeSchedulesAllHrisEmployeeSchedulesAll0(w http.ResponseWriter
 				Addresses: []components.Address{
 					components.Address{
 						ID:           types.String("123"),
-						Type:         components.TypePrimary.ToPointer(),
+						Type:         components.AddressTypePrimary.ToPointer(),
 						String:       types.String("25 Spring Street, Blackburn, VIC 3130"),
 						Name:         types.String("HQ US"),
 						Line1:        types.String("Main street"),
@@ -287,7 +287,7 @@ func testHrisEmployeeSchedulesAllHrisEmployeeSchedulesAll0(w http.ResponseWriter
 					},
 					components.Address{
 						ID:           types.String("123"),
-						Type:         components.TypePrimary.ToPointer(),
+						Type:         components.AddressTypePrimary.ToPointer(),
 						String:       types.String("25 Spring Street, Blackburn, VIC 3130"),
 						Name:         types.String("HQ US"),
 						Line1:        types.String("Main street"),
@@ -350,7 +350,7 @@ func testHrisEmployeeSchedulesAllHrisEmployeeSchedulesAll0(w http.ResponseWriter
 						ID:          types.String("2389328923893298"),
 						Name:        types.String("employee_level"),
 						Description: types.String("Employee Level"),
-						Value: types.Pointer(components.CreateValueStr(
+						Value: types.Pointer(components.CreateCustomFieldValueUnionStr(
 							"Uses Salesforce and Marketo",
 						)),
 					},
@@ -417,8 +417,8 @@ func testHrisEmployeeSchedulesAllHrisEmployeeSchedulesAll0(w http.ResponseWriter
 				PassThrough: []components.PassThroughBody{
 					components.PassThroughBody{
 						ServiceID: "<id>",
-						ExtendPaths: []components.ExtendPaths{
-							components.ExtendPaths{
+						ExtendPaths: []components.ExtendPath{
+							components.ExtendPath{
 								Path: "$.nested.property",
 								Value: map[string]any{
 									"TaxClassificationRef": map[string]any{
@@ -426,7 +426,7 @@ func testHrisEmployeeSchedulesAllHrisEmployeeSchedulesAll0(w http.ResponseWriter
 									},
 								},
 							},
-							components.ExtendPaths{
+							components.ExtendPath{
 								Path: "$.nested.property",
 								Value: map[string]any{
 									"TaxClassificationRef": map[string]any{
@@ -434,7 +434,7 @@ func testHrisEmployeeSchedulesAllHrisEmployeeSchedulesAll0(w http.ResponseWriter
 									},
 								},
 							},
-							components.ExtendPaths{
+							components.ExtendPath{
 								Path: "$.nested.property",
 								Value: map[string]any{
 									"TaxClassificationRef": map[string]any{

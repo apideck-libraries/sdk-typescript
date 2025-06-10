@@ -9,35 +9,35 @@ import (
 	"time"
 )
 
-type ComponentsObj struct {
+type Component struct {
 	ID       *string  `json:"id,omitempty"`
 	Name     *string  `json:"name,omitempty"`
 	Rate     *float64 `json:"rate,omitempty"`
 	Compound *bool    `json:"compound,omitempty"`
 }
 
-func (o *ComponentsObj) GetID() *string {
+func (o *Component) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *ComponentsObj) GetName() *string {
+func (o *Component) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-func (o *ComponentsObj) GetRate() *float64 {
+func (o *Component) GetRate() *float64 {
 	if o == nil {
 		return nil
 	}
 	return o.Rate
 }
 
-func (o *ComponentsObj) GetCompound() *bool {
+func (o *Component) GetCompound() *bool {
 	if o == nil {
 		return nil
 	}
@@ -74,12 +74,12 @@ func (e *TaxRateStatus) UnmarshalJSON(data []byte) error {
 	}
 }
 
-type Subsidiaries struct {
+type TaxRateSubsidiary struct {
 	// The ID of the subsidiary.
 	ID *string `json:"id,omitempty"`
 }
 
-func (o *Subsidiaries) GetID() *string {
+func (o *TaxRateSubsidiary) GetID() *string {
 	if o == nil {
 		return nil
 	}
@@ -102,8 +102,8 @@ type TaxRate struct {
 	// Unique identifier for the account for tax collected.
 	TaxPayableAccountID *string `json:"tax_payable_account_id,omitempty"`
 	// Unique identifier for the account for tax remitted.
-	TaxRemittedAccountID *string         `json:"tax_remitted_account_id,omitempty"`
-	Components           []ComponentsObj `json:"components,omitempty"`
+	TaxRemittedAccountID *string     `json:"tax_remitted_account_id,omitempty"`
+	Components           []Component `json:"components,omitempty"`
 	// Tax type used to indicate the source of tax collected or paid
 	Type *string `json:"type,omitempty"`
 	// Report Tax type to aggregate tax collected or paid for reporting purposes
@@ -127,8 +127,8 @@ type TaxRate struct {
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
 	PassThrough []PassThroughBody `json:"pass_through,omitempty"`
 	// The subsidiaries this belongs to.
-	Subsidiaries []Subsidiaries `json:"subsidiaries,omitempty"`
-	CustomFields []CustomField  `json:"custom_fields,omitempty"`
+	Subsidiaries []TaxRateSubsidiary `json:"subsidiaries,omitempty"`
+	CustomFields []CustomField       `json:"custom_fields,omitempty"`
 }
 
 func (t TaxRate) MarshalJSON() ([]byte, error) {
@@ -198,7 +198,7 @@ func (o *TaxRate) GetTaxRemittedAccountID() *string {
 	return o.TaxRemittedAccountID
 }
 
-func (o *TaxRate) GetComponents() []ComponentsObj {
+func (o *TaxRate) GetComponents() []Component {
 	if o == nil {
 		return nil
 	}
@@ -282,7 +282,7 @@ func (o *TaxRate) GetPassThrough() []PassThroughBody {
 	return o.PassThrough
 }
 
-func (o *TaxRate) GetSubsidiaries() []Subsidiaries {
+func (o *TaxRate) GetSubsidiaries() []TaxRateSubsidiary {
 	if o == nil {
 		return nil
 	}
@@ -312,8 +312,8 @@ type TaxRateInput struct {
 	// Unique identifier for the account for tax collected.
 	TaxPayableAccountID *string `json:"tax_payable_account_id,omitempty"`
 	// Unique identifier for the account for tax remitted.
-	TaxRemittedAccountID *string         `json:"tax_remitted_account_id,omitempty"`
-	Components           []ComponentsObj `json:"components,omitempty"`
+	TaxRemittedAccountID *string     `json:"tax_remitted_account_id,omitempty"`
+	Components           []Component `json:"components,omitempty"`
 	// Tax type used to indicate the source of tax collected or paid
 	Type *string `json:"type,omitempty"`
 	// Report Tax type to aggregate tax collected or paid for reporting purposes
@@ -327,8 +327,8 @@ type TaxRateInput struct {
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
 	PassThrough []PassThroughBody `json:"pass_through,omitempty"`
 	// The subsidiaries this belongs to.
-	Subsidiaries []Subsidiaries `json:"subsidiaries,omitempty"`
-	CustomFields []CustomField  `json:"custom_fields,omitempty"`
+	Subsidiaries []TaxRateSubsidiary `json:"subsidiaries,omitempty"`
+	CustomFields []CustomField       `json:"custom_fields,omitempty"`
 }
 
 func (o *TaxRateInput) GetID() *string {
@@ -387,7 +387,7 @@ func (o *TaxRateInput) GetTaxRemittedAccountID() *string {
 	return o.TaxRemittedAccountID
 }
 
-func (o *TaxRateInput) GetComponents() []ComponentsObj {
+func (o *TaxRateInput) GetComponents() []Component {
 	if o == nil {
 		return nil
 	}
@@ -436,7 +436,7 @@ func (o *TaxRateInput) GetPassThrough() []PassThroughBody {
 	return o.PassThrough
 }
 
-func (o *TaxRateInput) GetSubsidiaries() []Subsidiaries {
+func (o *TaxRateInput) GetSubsidiaries() []TaxRateSubsidiary {
 	if o == nil {
 		return nil
 	}

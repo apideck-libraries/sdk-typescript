@@ -6,6 +6,7 @@ import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import { ApideckError } from "./apideckerror.js";
 import { SDKValidationError } from "./sdkvalidationerror.js";
 
 /**
@@ -46,7 +47,7 @@ export type UnprocessableResponseData = {
 /**
  * Unprocessable
  */
-export class UnprocessableResponse extends Error {
+export class UnprocessableResponse extends ApideckError {
   /**
    * HTTP status code
    */
@@ -71,11 +72,13 @@ export class UnprocessableResponse extends Error {
   /** The original data that was passed to this error instance. */
   data$: UnprocessableResponseData;
 
-  constructor(err: UnprocessableResponseData) {
+  constructor(
+    err: UnprocessableResponseData,
+    httpMeta: { response: Response; request: Request; body: string },
+  ) {
     const message = err.message || "API error occurred";
-    super(message);
+    super(message, httpMeta);
     this.data$ = err;
-
     if (err.statusCode != null) this.statusCode = err.statusCode;
     if (err.error != null) this.error = err.error;
     if (err.typeName != null) this.typeName = err.typeName;
@@ -150,6 +153,9 @@ export const UnprocessableResponse$inboundSchema: z.ZodType<
   message: z.string().optional(),
   detail: z.union([z.string(), z.record(z.any())]).optional(),
   ref: z.string().optional(),
+  request$: z.instanceof(Request),
+  response$: z.instanceof(Response),
+  body$: z.string(),
 })
   .transform((v) => {
     const remapped = remap$(v, {
@@ -157,7 +163,11 @@ export const UnprocessableResponse$inboundSchema: z.ZodType<
       "type_name": "typeName",
     });
 
-    return new UnprocessableResponse(remapped);
+    return new UnprocessableResponse(remapped, {
+      request: v.request$,
+      response: v.response$,
+      body: v.body$,
+    });
   });
 
 /** @internal */

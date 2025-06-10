@@ -93,8 +93,8 @@ func testIssueTrackingCollectionTicketsOneIssueTrackingCollectionTicketsOne0(w h
 			PassThrough: []components.PassThroughBody{
 				components.PassThroughBody{
 					ServiceID: "<id>",
-					ExtendPaths: []components.ExtendPaths{
-						components.ExtendPaths{
+					ExtendPaths: []components.ExtendPath{
+						components.ExtendPath{
 							Path: "$.nested.property",
 							Value: map[string]any{
 								"TaxClassificationRef": map[string]any{
@@ -102,7 +102,7 @@ func testIssueTrackingCollectionTicketsOneIssueTrackingCollectionTicketsOne0(w h
 								},
 							},
 						},
-						components.ExtendPaths{
+						components.ExtendPath{
 							Path: "$.nested.property",
 							Value: map[string]any{
 								"TaxClassificationRef": map[string]any{
@@ -114,8 +114,8 @@ func testIssueTrackingCollectionTicketsOneIssueTrackingCollectionTicketsOne0(w h
 				},
 				components.PassThroughBody{
 					ServiceID: "<id>",
-					ExtendPaths: []components.ExtendPaths{
-						components.ExtendPaths{
+					ExtendPaths: []components.ExtendPath{
+						components.ExtendPath{
 							Path: "$.nested.property",
 							Value: map[string]any{
 								"TaxClassificationRef": map[string]any{
@@ -123,7 +123,7 @@ func testIssueTrackingCollectionTicketsOneIssueTrackingCollectionTicketsOne0(w h
 								},
 							},
 						},
-						components.ExtendPaths{
+						components.ExtendPath{
 							Path: "$.nested.property",
 							Value: map[string]any{
 								"TaxClassificationRef": map[string]any{
@@ -131,7 +131,7 @@ func testIssueTrackingCollectionTicketsOneIssueTrackingCollectionTicketsOne0(w h
 								},
 							},
 						},
-						components.ExtendPaths{
+						components.ExtendPath{
 							Path: "$.nested.property",
 							Value: map[string]any{
 								"TaxClassificationRef": map[string]any{

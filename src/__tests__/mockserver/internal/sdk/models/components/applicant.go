@@ -46,7 +46,7 @@ func (e *ApplicantType) UnmarshalJSON(data []byte) error {
 	}
 }
 
-type Websites struct {
+type ApplicantWebsite struct {
 	// Unique identifier for the website
 	ID *string `json:"id,omitempty"`
 	// The website URL
@@ -55,28 +55,28 @@ type Websites struct {
 	Type *ApplicantType `json:"type,omitempty"`
 }
 
-func (o *Websites) GetID() *string {
+func (o *ApplicantWebsite) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *Websites) GetURL() string {
+func (o *ApplicantWebsite) GetURL() string {
 	if o == nil {
 		return ""
 	}
 	return o.URL
 }
 
-func (o *Websites) GetType() *ApplicantType {
+func (o *ApplicantWebsite) GetType() *ApplicantType {
 	if o == nil {
 		return nil
 	}
 	return o.Type
 }
 
-type SocialLinks struct {
+type ApplicantSocialLink struct {
 	// Unique identifier of the social link
 	ID *string `json:"id,omitempty"`
 	// URL of the social link, e.g. https://www.twitter.com/apideck
@@ -85,21 +85,21 @@ type SocialLinks struct {
 	Type *string `json:"type,omitempty"`
 }
 
-func (o *SocialLinks) GetID() *string {
+func (o *ApplicantSocialLink) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *SocialLinks) GetURL() string {
+func (o *ApplicantSocialLink) GetURL() string {
 	if o == nil {
 		return ""
 	}
 	return o.URL
 }
 
-func (o *SocialLinks) GetType() *string {
+func (o *ApplicantSocialLink) GetType() *string {
 	if o == nil {
 		return nil
 	}
@@ -128,31 +128,31 @@ type Applicant struct {
 	// Typically a list of previous companies where the contact has worked or schools that the contact has attended
 	Headline *string `json:"headline,omitempty"`
 	// The job title of the person.
-	Title             *string       `json:"title,omitempty"`
-	Emails            []Email       `json:"emails,omitempty"`
-	CustomFields      []CustomField `json:"custom_fields,omitempty"`
-	PhoneNumbers      []PhoneNumber `json:"phone_numbers,omitempty"`
-	Addresses         []Address     `json:"addresses,omitempty"`
-	Websites          []Websites    `json:"websites,omitempty"`
-	SocialLinks       []SocialLinks `json:"social_links,omitempty"`
-	StageID           *string       `json:"stage_id,omitempty"`
-	RecruiterID       *string       `json:"recruiter_id,omitempty"`
-	CoordinatorID     *string       `json:"coordinator_id,omitempty"`
-	ApplicationIds    []string      `json:"application_ids,omitempty"`
-	Applications      []string      `json:"applications,omitempty"`
-	Followers         []string      `json:"followers,omitempty"`
-	Sources           []string      `json:"sources,omitempty"`
-	SourceID          *string       `json:"source_id,omitempty"`
-	Confidential      *bool         `json:"confidential,omitempty"`
-	Anonymized        *bool         `json:"anonymized,omitempty"`
-	Tags              []string      `json:"tags,omitempty"`
-	Archived          *bool         `json:"archived,omitempty"`
-	LastInteractionAt *time.Time    `json:"last_interaction_at,omitempty"`
-	OwnerID           *string       `json:"owner_id,omitempty"`
-	SourcedBy         *string       `json:"sourced_by,omitempty"`
-	CvURL             *string       `json:"cv_url,omitempty"`
-	RecordURL         *string       `json:"record_url,omitempty"`
-	RejectedAt        *time.Time    `json:"rejected_at,omitempty"`
+	Title             *string               `json:"title,omitempty"`
+	Emails            []Email               `json:"emails,omitempty"`
+	CustomFields      []CustomField         `json:"custom_fields,omitempty"`
+	PhoneNumbers      []PhoneNumber         `json:"phone_numbers,omitempty"`
+	Addresses         []Address             `json:"addresses,omitempty"`
+	Websites          []ApplicantWebsite    `json:"websites,omitempty"`
+	SocialLinks       []ApplicantSocialLink `json:"social_links,omitempty"`
+	StageID           *string               `json:"stage_id,omitempty"`
+	RecruiterID       *string               `json:"recruiter_id,omitempty"`
+	CoordinatorID     *string               `json:"coordinator_id,omitempty"`
+	ApplicationIds    []string              `json:"application_ids,omitempty"`
+	Applications      []string              `json:"applications,omitempty"`
+	Followers         []string              `json:"followers,omitempty"`
+	Sources           []string              `json:"sources,omitempty"`
+	SourceID          *string               `json:"source_id,omitempty"`
+	Confidential      *bool                 `json:"confidential,omitempty"`
+	Anonymized        *bool                 `json:"anonymized,omitempty"`
+	Tags              []string              `json:"tags,omitempty"`
+	Archived          *bool                 `json:"archived,omitempty"`
+	LastInteractionAt *time.Time            `json:"last_interaction_at,omitempty"`
+	OwnerID           *string               `json:"owner_id,omitempty"`
+	SourcedBy         *string               `json:"sourced_by,omitempty"`
+	CvURL             *string               `json:"cv_url,omitempty"`
+	RecordURL         *string               `json:"record_url,omitempty"`
+	RejectedAt        *time.Time            `json:"rejected_at,omitempty"`
 	// When custom mappings are configured on the resource, the result is included here.
 	CustomMappings map[string]any `json:"custom_mappings,omitempty"`
 	// Flag to indicate if the object is deleted.
@@ -296,14 +296,14 @@ func (o *Applicant) GetAddresses() []Address {
 	return o.Addresses
 }
 
-func (o *Applicant) GetWebsites() []Websites {
+func (o *Applicant) GetWebsites() []ApplicantWebsite {
 	if o == nil {
 		return nil
 	}
 	return o.Websites
 }
 
-func (o *Applicant) GetSocialLinks() []SocialLinks {
+func (o *Applicant) GetSocialLinks() []ApplicantSocialLink {
 	if o == nil {
 		return nil
 	}
@@ -518,26 +518,26 @@ type ApplicantInput struct {
 	// Typically a list of previous companies where the contact has worked or schools that the contact has attended
 	Headline *string `json:"headline,omitempty"`
 	// The job title of the person.
-	Title          *string       `json:"title,omitempty"`
-	Emails         []Email       `json:"emails,omitempty"`
-	CustomFields   []CustomField `json:"custom_fields,omitempty"`
-	PhoneNumbers   []PhoneNumber `json:"phone_numbers,omitempty"`
-	Addresses      []Address     `json:"addresses,omitempty"`
-	Websites       []Websites    `json:"websites,omitempty"`
-	SocialLinks    []SocialLinks `json:"social_links,omitempty"`
-	StageID        *string       `json:"stage_id,omitempty"`
-	RecruiterID    *string       `json:"recruiter_id,omitempty"`
-	CoordinatorID  *string       `json:"coordinator_id,omitempty"`
-	ApplicationIds []string      `json:"application_ids,omitempty"`
-	Applications   []string      `json:"applications,omitempty"`
-	Followers      []string      `json:"followers,omitempty"`
-	Sources        []string      `json:"sources,omitempty"`
-	Confidential   *bool         `json:"confidential,omitempty"`
-	Anonymized     *bool         `json:"anonymized,omitempty"`
-	Tags           []string      `json:"tags,omitempty"`
-	Archived       *bool         `json:"archived,omitempty"`
-	OwnerID        *string       `json:"owner_id,omitempty"`
-	RecordURL      *string       `json:"record_url,omitempty"`
+	Title          *string               `json:"title,omitempty"`
+	Emails         []Email               `json:"emails,omitempty"`
+	CustomFields   []CustomField         `json:"custom_fields,omitempty"`
+	PhoneNumbers   []PhoneNumber         `json:"phone_numbers,omitempty"`
+	Addresses      []Address             `json:"addresses,omitempty"`
+	Websites       []ApplicantWebsite    `json:"websites,omitempty"`
+	SocialLinks    []ApplicantSocialLink `json:"social_links,omitempty"`
+	StageID        *string               `json:"stage_id,omitempty"`
+	RecruiterID    *string               `json:"recruiter_id,omitempty"`
+	CoordinatorID  *string               `json:"coordinator_id,omitempty"`
+	ApplicationIds []string              `json:"application_ids,omitempty"`
+	Applications   []string              `json:"applications,omitempty"`
+	Followers      []string              `json:"followers,omitempty"`
+	Sources        []string              `json:"sources,omitempty"`
+	Confidential   *bool                 `json:"confidential,omitempty"`
+	Anonymized     *bool                 `json:"anonymized,omitempty"`
+	Tags           []string              `json:"tags,omitempty"`
+	Archived       *bool                 `json:"archived,omitempty"`
+	OwnerID        *string               `json:"owner_id,omitempty"`
+	RecordURL      *string               `json:"record_url,omitempty"`
 	// Flag to indicate if the object is deleted.
 	Deleted *bool `json:"deleted,omitempty"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
@@ -653,14 +653,14 @@ func (o *ApplicantInput) GetAddresses() []Address {
 	return o.Addresses
 }
 
-func (o *ApplicantInput) GetWebsites() []Websites {
+func (o *ApplicantInput) GetWebsites() []ApplicantWebsite {
 	if o == nil {
 		return nil
 	}
 	return o.Websites
 }
 
-func (o *ApplicantInput) GetSocialLinks() []SocialLinks {
+func (o *ApplicantInput) GetSocialLinks() []ApplicantSocialLink {
 	if o == nil {
 		return nil
 	}

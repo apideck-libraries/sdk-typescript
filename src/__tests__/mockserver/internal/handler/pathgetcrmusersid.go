@@ -52,7 +52,7 @@ func testCrmUsersOneCrmUsersOne0(w http.ResponseWriter, req *http.Request) {
 		Service:    "zoho-crm",
 		Resource:   "companies",
 		Operation:  "one",
-		Data: components.User{
+		Data: components.UserOutput{
 			ID:             types.String("12345"),
 			ParentID:       types.String("54321"),
 			Username:       types.String("masterofcoin"),
@@ -69,7 +69,7 @@ func testCrmUsersOneCrmUsersOne0(w http.ResponseWriter, req *http.Request) {
 			Addresses: []components.Address{
 				components.Address{
 					ID:           types.String("123"),
-					Type:         components.TypePrimary.ToPointer(),
+					Type:         components.AddressTypePrimary.ToPointer(),
 					String:       types.String("25 Spring Street, Blackburn, VIC 3130"),
 					Name:         types.String("HQ US"),
 					Line1:        types.String("Main street"),
@@ -95,7 +95,7 @@ func testCrmUsersOneCrmUsersOne0(w http.ResponseWriter, req *http.Request) {
 				},
 				components.Address{
 					ID:           types.String("123"),
-					Type:         components.TypePrimary.ToPointer(),
+					Type:         components.AddressTypePrimary.ToPointer(),
 					String:       types.String("25 Spring Street, Blackburn, VIC 3130"),
 					Name:         types.String("HQ US"),
 					Line1:        types.String("Main street"),
@@ -121,7 +121,7 @@ func testCrmUsersOneCrmUsersOne0(w http.ResponseWriter, req *http.Request) {
 				},
 				components.Address{
 					ID:           types.String("123"),
-					Type:         components.TypePrimary.ToPointer(),
+					Type:         components.AddressTypePrimary.ToPointer(),
 					String:       types.String("25 Spring Street, Blackburn, VIC 3130"),
 					Name:         types.String("HQ US"),
 					Line1:        types.String("Main street"),
@@ -181,8 +181,8 @@ func testCrmUsersOneCrmUsersOne0(w http.ResponseWriter, req *http.Request) {
 			PassThrough: []components.PassThroughBody{
 				components.PassThroughBody{
 					ServiceID: "<id>",
-					ExtendPaths: []components.ExtendPaths{
-						components.ExtendPaths{
+					ExtendPaths: []components.ExtendPath{
+						components.ExtendPath{
 							Path: "$.nested.property",
 							Value: map[string]any{
 								"TaxClassificationRef": map[string]any{
@@ -190,7 +190,7 @@ func testCrmUsersOneCrmUsersOne0(w http.ResponseWriter, req *http.Request) {
 								},
 							},
 						},
-						components.ExtendPaths{
+						components.ExtendPath{
 							Path: "$.nested.property",
 							Value: map[string]any{
 								"TaxClassificationRef": map[string]any{
@@ -198,7 +198,7 @@ func testCrmUsersOneCrmUsersOne0(w http.ResponseWriter, req *http.Request) {
 								},
 							},
 						},
-						components.ExtendPaths{
+						components.ExtendPath{
 							Path: "$.nested.property",
 							Value: map[string]any{
 								"TaxClassificationRef": map[string]any{
@@ -210,8 +210,8 @@ func testCrmUsersOneCrmUsersOne0(w http.ResponseWriter, req *http.Request) {
 				},
 				components.PassThroughBody{
 					ServiceID: "<id>",
-					ExtendPaths: []components.ExtendPaths{
-						components.ExtendPaths{
+					ExtendPaths: []components.ExtendPath{
+						components.ExtendPath{
 							Path: "$.nested.property",
 							Value: map[string]any{
 								"TaxClassificationRef": map[string]any{
@@ -219,7 +219,7 @@ func testCrmUsersOneCrmUsersOne0(w http.ResponseWriter, req *http.Request) {
 								},
 							},
 						},
-						components.ExtendPaths{
+						components.ExtendPath{
 							Path: "$.nested.property",
 							Value: map[string]any{
 								"TaxClassificationRef": map[string]any{

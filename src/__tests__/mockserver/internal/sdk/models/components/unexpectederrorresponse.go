@@ -8,59 +8,59 @@ import (
 	"mockserver/internal/sdk/utils"
 )
 
-type DetailType string
+type UnexpectedErrorResponseDetailType string
 
 const (
-	DetailTypeStr      DetailType = "str"
-	DetailTypeMapOfAny DetailType = "mapOfAny"
+	UnexpectedErrorResponseDetailTypeStr      UnexpectedErrorResponseDetailType = "str"
+	UnexpectedErrorResponseDetailTypeMapOfAny UnexpectedErrorResponseDetailType = "mapOfAny"
 )
 
-// Detail - Contains parameter or domain specific information related to the error and why it occurred.
-type Detail struct {
+// UnexpectedErrorResponseDetail - Contains parameter or domain specific information related to the error and why it occurred.
+type UnexpectedErrorResponseDetail struct {
 	Str      *string
 	MapOfAny map[string]any
 
-	Type DetailType
+	Type UnexpectedErrorResponseDetailType
 }
 
-func CreateDetailStr(str string) Detail {
-	typ := DetailTypeStr
+func CreateUnexpectedErrorResponseDetailStr(str string) UnexpectedErrorResponseDetail {
+	typ := UnexpectedErrorResponseDetailTypeStr
 
-	return Detail{
+	return UnexpectedErrorResponseDetail{
 		Str:  &str,
 		Type: typ,
 	}
 }
 
-func CreateDetailMapOfAny(mapOfAny map[string]any) Detail {
-	typ := DetailTypeMapOfAny
+func CreateUnexpectedErrorResponseDetailMapOfAny(mapOfAny map[string]any) UnexpectedErrorResponseDetail {
+	typ := UnexpectedErrorResponseDetailTypeMapOfAny
 
-	return Detail{
+	return UnexpectedErrorResponseDetail{
 		MapOfAny: mapOfAny,
 		Type:     typ,
 	}
 }
 
-func (u *Detail) UnmarshalJSON(data []byte) error {
+func (u *UnexpectedErrorResponseDetail) UnmarshalJSON(data []byte) error {
 
 	var str string = ""
 	if err := utils.UnmarshalJSON(data, &str, "", true, true); err == nil {
 		u.Str = &str
-		u.Type = DetailTypeStr
+		u.Type = UnexpectedErrorResponseDetailTypeStr
 		return nil
 	}
 
 	var mapOfAny map[string]any = map[string]any{}
 	if err := utils.UnmarshalJSON(data, &mapOfAny, "", true, true); err == nil {
 		u.MapOfAny = mapOfAny
-		u.Type = DetailTypeMapOfAny
+		u.Type = UnexpectedErrorResponseDetailTypeMapOfAny
 		return nil
 	}
 
-	return fmt.Errorf("could not unmarshal `%s` into any supported union types for Detail", string(data))
+	return fmt.Errorf("could not unmarshal `%s` into any supported union types for UnexpectedErrorResponseDetail", string(data))
 }
 
-func (u Detail) MarshalJSON() ([]byte, error) {
+func (u UnexpectedErrorResponseDetail) MarshalJSON() ([]byte, error) {
 	if u.Str != nil {
 		return utils.MarshalJSON(u.Str, "", true)
 	}
@@ -69,7 +69,7 @@ func (u Detail) MarshalJSON() ([]byte, error) {
 		return utils.MarshalJSON(u.MapOfAny, "", true)
 	}
 
-	return nil, errors.New("could not marshal union type Detail: all fields are null")
+	return nil, errors.New("could not marshal union type UnexpectedErrorResponseDetail: all fields are null")
 }
 
 // UnexpectedErrorResponse - Unexpected error
@@ -83,7 +83,7 @@ type UnexpectedErrorResponse struct {
 	// A human-readable message providing more details about the error.
 	Message *string `json:"message,omitempty"`
 	// Contains parameter or domain specific information related to the error and why it occurred.
-	Detail *Detail `json:"detail,omitempty"`
+	Detail *UnexpectedErrorResponseDetail `json:"detail,omitempty"`
 	// Link to documentation of error type
 	Ref *string `json:"ref,omitempty"`
 }
@@ -116,7 +116,7 @@ func (o *UnexpectedErrorResponse) GetMessage() *string {
 	return o.Message
 }
 
-func (o *UnexpectedErrorResponse) GetDetail() *Detail {
+func (o *UnexpectedErrorResponse) GetDetail() *UnexpectedErrorResponseDetail {
 	if o == nil {
 		return nil
 	}

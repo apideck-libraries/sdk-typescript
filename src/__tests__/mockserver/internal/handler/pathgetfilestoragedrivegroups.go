@@ -65,8 +65,8 @@ func testFileStorageDriveGroupsAllFileStorageDriveGroupsAll0(w http.ResponseWrit
 				PassThrough: []components.PassThroughBody{
 					components.PassThroughBody{
 						ServiceID: "<id>",
-						ExtendPaths: []components.ExtendPaths{
-							components.ExtendPaths{
+						ExtendPaths: []components.ExtendPath{
+							components.ExtendPath{
 								Path: "$.nested.property",
 								Value: map[string]any{
 									"TaxClassificationRef": map[string]any{
@@ -74,7 +74,7 @@ func testFileStorageDriveGroupsAllFileStorageDriveGroupsAll0(w http.ResponseWrit
 									},
 								},
 							},
-							components.ExtendPaths{
+							components.ExtendPath{
 								Path: "$.nested.property",
 								Value: map[string]any{
 									"TaxClassificationRef": map[string]any{
@@ -82,7 +82,7 @@ func testFileStorageDriveGroupsAllFileStorageDriveGroupsAll0(w http.ResponseWrit
 									},
 								},
 							},
-							components.ExtendPaths{
+							components.ExtendPath{
 								Path: "$.nested.property",
 								Value: map[string]any{
 									"TaxClassificationRef": map[string]any{
@@ -94,33 +94,8 @@ func testFileStorageDriveGroupsAllFileStorageDriveGroupsAll0(w http.ResponseWrit
 					},
 					components.PassThroughBody{
 						ServiceID: "<id>",
-						ExtendPaths: []components.ExtendPaths{
-							components.ExtendPaths{
-								Path: "$.nested.property",
-								Value: map[string]any{
-									"TaxClassificationRef": map[string]any{
-										"value": "EUC-99990201-V1-00020000",
-									},
-								},
-							},
-						},
-					},
-				},
-			},
-			components.DriveGroup{
-				ID:          "12345",
-				Name:        "accounting",
-				DisplayName: types.String("accounting"),
-				Description: types.String("A description"),
-				UpdatedBy:   types.String("12345"),
-				CreatedBy:   types.String("12345"),
-				UpdatedAt:   types.MustNewTimeFromString("2020-09-30T07:43:32.000Z"),
-				CreatedAt:   types.MustNewTimeFromString("2020-09-30T07:43:32.000Z"),
-				PassThrough: []components.PassThroughBody{
-					components.PassThroughBody{
-						ServiceID: "<id>",
-						ExtendPaths: []components.ExtendPaths{
-							components.ExtendPaths{
+						ExtendPaths: []components.ExtendPath{
+							components.ExtendPath{
 								Path: "$.nested.property",
 								Value: map[string]any{
 									"TaxClassificationRef": map[string]any{
@@ -144,8 +119,8 @@ func testFileStorageDriveGroupsAllFileStorageDriveGroupsAll0(w http.ResponseWrit
 				PassThrough: []components.PassThroughBody{
 					components.PassThroughBody{
 						ServiceID: "<id>",
-						ExtendPaths: []components.ExtendPaths{
-							components.ExtendPaths{
+						ExtendPaths: []components.ExtendPath{
+							components.ExtendPath{
 								Path: "$.nested.property",
 								Value: map[string]any{
 									"TaxClassificationRef": map[string]any{
@@ -153,7 +128,32 @@ func testFileStorageDriveGroupsAllFileStorageDriveGroupsAll0(w http.ResponseWrit
 									},
 								},
 							},
-							components.ExtendPaths{
+						},
+					},
+				},
+			},
+			components.DriveGroup{
+				ID:          "12345",
+				Name:        "accounting",
+				DisplayName: types.String("accounting"),
+				Description: types.String("A description"),
+				UpdatedBy:   types.String("12345"),
+				CreatedBy:   types.String("12345"),
+				UpdatedAt:   types.MustNewTimeFromString("2020-09-30T07:43:32.000Z"),
+				CreatedAt:   types.MustNewTimeFromString("2020-09-30T07:43:32.000Z"),
+				PassThrough: []components.PassThroughBody{
+					components.PassThroughBody{
+						ServiceID: "<id>",
+						ExtendPaths: []components.ExtendPath{
+							components.ExtendPath{
+								Path: "$.nested.property",
+								Value: map[string]any{
+									"TaxClassificationRef": map[string]any{
+										"value": "EUC-99990201-V1-00020000",
+									},
+								},
+							},
+							components.ExtendPath{
 								Path: "$.nested.property",
 								Value: map[string]any{
 									"TaxClassificationRef": map[string]any{
@@ -165,8 +165,8 @@ func testFileStorageDriveGroupsAllFileStorageDriveGroupsAll0(w http.ResponseWrit
 					},
 					components.PassThroughBody{
 						ServiceID: "<id>",
-						ExtendPaths: []components.ExtendPaths{
-							components.ExtendPaths{
+						ExtendPaths: []components.ExtendPath{
+							components.ExtendPath{
 								Path: "$.nested.property",
 								Value: map[string]any{
 									"TaxClassificationRef": map[string]any{

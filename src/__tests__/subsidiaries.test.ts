@@ -16,6 +16,8 @@ test("Subsidiaries Accounting Subsidiaries All", async () => {
   });
 
   const result = await apideck.accounting.subsidiaries.list({
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
     fields: "id,updated_at",
   });
@@ -192,6 +194,8 @@ test("Subsidiaries Accounting Subsidiaries One", async () => {
 
   const result = await apideck.accounting.subsidiaries.get({
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
     fields: "id,updated_at",
   });
@@ -299,6 +303,8 @@ test("Subsidiaries Accounting Subsidiaries Delete", async () => {
 
   const result = await apideck.accounting.subsidiaries.delete({
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
   });
   expect(result.httpMeta.response.status).toBe(200);

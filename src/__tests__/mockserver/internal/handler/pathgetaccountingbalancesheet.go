@@ -53,8 +53,8 @@ func testAccountingBalanceSheetOneAccountingBalanceSheetOne0(w http.ResponseWrit
 		Resource:   "BalanceSheets",
 		Operation:  "one",
 		Data: components.BalanceSheet{
-			Reports: []components.Reports{
-				components.Reports{
+			Reports: []components.Report{
+				components.Report{
 					ID:         types.String("12345"),
 					ReportName: types.String("BalanceSheet"),
 					StartDate:  types.String("2017-01-01"),
@@ -258,7 +258,7 @@ func testAccountingBalanceSheetOneAccountingBalanceSheetOne0(w http.ResponseWrit
 						},
 					},
 				},
-				components.Reports{
+				components.Report{
 					ID:         types.String("12345"),
 					ReportName: types.String("BalanceSheet"),
 					StartDate:  types.String("2017-01-01"),

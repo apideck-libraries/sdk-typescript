@@ -92,15 +92,15 @@ func testCrmOpportunitiesAllCrmOpportunitiesAll0(w http.ResponseWriter, req *htt
 						ID:          types.String("2389328923893298"),
 						Name:        types.String("employee_level"),
 						Description: types.String("Employee Level"),
-						Value: types.Pointer(components.CreateValueFour(
-							components.Four{},
+						Value: types.Pointer(components.CreateCustomFieldValueUnionCustomFieldValue1(
+							components.CustomFieldValue1{},
 						)),
 					},
 					components.CustomField{
 						ID:          types.String("2389328923893298"),
 						Name:        types.String("employee_level"),
 						Description: types.String("Employee Level"),
-						Value: types.Pointer(components.CreateValueNumber(
+						Value: types.Pointer(components.CreateCustomFieldValueUnionNumber(
 							10,
 						)),
 					},
@@ -118,8 +118,8 @@ func testCrmOpportunitiesAllCrmOpportunitiesAll0(w http.ResponseWriter, req *htt
 				PassThrough: []components.PassThroughBody{
 					components.PassThroughBody{
 						ServiceID: "<id>",
-						ExtendPaths: []components.ExtendPaths{
-							components.ExtendPaths{
+						ExtendPaths: []components.ExtendPath{
+							components.ExtendPath{
 								Path: "$.nested.property",
 								Value: map[string]any{
 									"TaxClassificationRef": map[string]any{
@@ -127,101 +127,7 @@ func testCrmOpportunitiesAllCrmOpportunitiesAll0(w http.ResponseWriter, req *htt
 									},
 								},
 							},
-							components.ExtendPaths{
-								Path: "$.nested.property",
-								Value: map[string]any{
-									"TaxClassificationRef": map[string]any{
-										"value": "EUC-99990201-V1-00020000",
-									},
-								},
-							},
-						},
-					},
-				},
-			},
-			components.Opportunity{
-				ID:               types.String("12345"),
-				Title:            "New Rocket",
-				PrimaryContactID: types.String("12345"),
-				Description:      types.String("Opportunities are created for People and Companies that are interested in buying your products or services. Create Opportunities for People and Companies to move them through one of your Pipelines."),
-				Type:             types.String("Existing Customer - Upgrade"),
-				MonetaryAmount:   types.Float64(75000),
-				Currency:         components.CurrencyUsd.ToPointer(),
-				WinProbability:   types.Float64(40),
-				ExpectedRevenue:  types.Float64(75000),
-				CloseDate:        types.MustNewDateFromString("2020-10-30"),
-				LossReasonID:     types.String("12345"),
-				LossReason:       types.String("No budget"),
-				WonReasonID:      types.String("12345"),
-				WonReason:        types.String("Best pitch"),
-				PipelineID:       types.String("12345"),
-				PipelineStageID:  types.String("12345"),
-				SourceID:         types.String("12345"),
-				LeadID:           types.String("12345"),
-				LeadSource:       types.String("Website"),
-				ContactID:        types.String("12345"),
-				ContactIds: []string{
-					"12345",
-				},
-				CompanyID:   types.String("12345"),
-				CompanyName: types.String("Copper"),
-				OwnerID:     types.String("12345"),
-				Priority:    types.String("None"),
-				Status:      types.String("Open"),
-				StatusID:    types.String("12345"),
-				Tags: []string{
-					"New",
-				},
-				InteractionCount: types.Float64(0),
-				CustomFields: []components.CustomField{
-					components.CustomField{
-						ID:          types.String("2389328923893298"),
-						Name:        types.String("employee_level"),
-						Description: types.String("Employee Level"),
-						Value: types.Pointer(components.CreateValueStr(
-							"Uses Salesforce and Marketo",
-						)),
-					},
-					components.CustomField{
-						ID:          types.String("2389328923893298"),
-						Name:        types.String("employee_level"),
-						Description: types.String("Employee Level"),
-						Value: types.Pointer(components.CreateValueFour(
-							components.Four{},
-						)),
-					},
-				},
-				StageLastChangedAt: types.MustNewTimeFromString("2020-09-30T07:43:32.000Z"),
-				LastActivityAt:     types.String("2020-09-30T07:43:32.000Z"),
-				Deleted:            types.Bool(false),
-				DateStageChanged:   types.MustNewTimeFromString("2020-09-30T00:00:00.000Z"),
-				DateLastContacted:  types.MustNewTimeFromString("2020-09-30T00:00:00.000Z"),
-				DateLeadCreated:    types.MustNewTimeFromString("2020-09-30T00:00:00.000Z"),
-				UpdatedBy:          types.String("12345"),
-				CreatedBy:          types.String("12345"),
-				UpdatedAt:          types.MustNewTimeFromString("2020-09-30T07:43:32.000Z"),
-				CreatedAt:          types.MustNewTimeFromString("2020-09-30T07:43:32.000Z"),
-				PassThrough: []components.PassThroughBody{
-					components.PassThroughBody{
-						ServiceID: "<id>",
-						ExtendPaths: []components.ExtendPaths{
-							components.ExtendPaths{
-								Path: "$.nested.property",
-								Value: map[string]any{
-									"TaxClassificationRef": map[string]any{
-										"value": "EUC-99990201-V1-00020000",
-									},
-								},
-							},
-							components.ExtendPaths{
-								Path: "$.nested.property",
-								Value: map[string]any{
-									"TaxClassificationRef": map[string]any{
-										"value": "EUC-99990201-V1-00020000",
-									},
-								},
-							},
-							components.ExtendPaths{
+							components.ExtendPath{
 								Path: "$.nested.property",
 								Value: map[string]any{
 									"TaxClassificationRef": map[string]any{
@@ -272,15 +178,109 @@ func testCrmOpportunitiesAllCrmOpportunitiesAll0(w http.ResponseWriter, req *htt
 						ID:          types.String("2389328923893298"),
 						Name:        types.String("employee_level"),
 						Description: types.String("Employee Level"),
-						Value: types.Pointer(components.CreateValueFour(
-							components.Four{},
+						Value: types.Pointer(components.CreateCustomFieldValueUnionStr(
+							"Uses Salesforce and Marketo",
 						)),
 					},
 					components.CustomField{
 						ID:          types.String("2389328923893298"),
 						Name:        types.String("employee_level"),
 						Description: types.String("Employee Level"),
-						Value: types.Pointer(components.CreateValueStr(
+						Value: types.Pointer(components.CreateCustomFieldValueUnionCustomFieldValue1(
+							components.CustomFieldValue1{},
+						)),
+					},
+				},
+				StageLastChangedAt: types.MustNewTimeFromString("2020-09-30T07:43:32.000Z"),
+				LastActivityAt:     types.String("2020-09-30T07:43:32.000Z"),
+				Deleted:            types.Bool(false),
+				DateStageChanged:   types.MustNewTimeFromString("2020-09-30T00:00:00.000Z"),
+				DateLastContacted:  types.MustNewTimeFromString("2020-09-30T00:00:00.000Z"),
+				DateLeadCreated:    types.MustNewTimeFromString("2020-09-30T00:00:00.000Z"),
+				UpdatedBy:          types.String("12345"),
+				CreatedBy:          types.String("12345"),
+				UpdatedAt:          types.MustNewTimeFromString("2020-09-30T07:43:32.000Z"),
+				CreatedAt:          types.MustNewTimeFromString("2020-09-30T07:43:32.000Z"),
+				PassThrough: []components.PassThroughBody{
+					components.PassThroughBody{
+						ServiceID: "<id>",
+						ExtendPaths: []components.ExtendPath{
+							components.ExtendPath{
+								Path: "$.nested.property",
+								Value: map[string]any{
+									"TaxClassificationRef": map[string]any{
+										"value": "EUC-99990201-V1-00020000",
+									},
+								},
+							},
+							components.ExtendPath{
+								Path: "$.nested.property",
+								Value: map[string]any{
+									"TaxClassificationRef": map[string]any{
+										"value": "EUC-99990201-V1-00020000",
+									},
+								},
+							},
+							components.ExtendPath{
+								Path: "$.nested.property",
+								Value: map[string]any{
+									"TaxClassificationRef": map[string]any{
+										"value": "EUC-99990201-V1-00020000",
+									},
+								},
+							},
+						},
+					},
+				},
+			},
+			components.Opportunity{
+				ID:               types.String("12345"),
+				Title:            "New Rocket",
+				PrimaryContactID: types.String("12345"),
+				Description:      types.String("Opportunities are created for People and Companies that are interested in buying your products or services. Create Opportunities for People and Companies to move them through one of your Pipelines."),
+				Type:             types.String("Existing Customer - Upgrade"),
+				MonetaryAmount:   types.Float64(75000),
+				Currency:         components.CurrencyUsd.ToPointer(),
+				WinProbability:   types.Float64(40),
+				ExpectedRevenue:  types.Float64(75000),
+				CloseDate:        types.MustNewDateFromString("2020-10-30"),
+				LossReasonID:     types.String("12345"),
+				LossReason:       types.String("No budget"),
+				WonReasonID:      types.String("12345"),
+				WonReason:        types.String("Best pitch"),
+				PipelineID:       types.String("12345"),
+				PipelineStageID:  types.String("12345"),
+				SourceID:         types.String("12345"),
+				LeadID:           types.String("12345"),
+				LeadSource:       types.String("Website"),
+				ContactID:        types.String("12345"),
+				ContactIds: []string{
+					"12345",
+				},
+				CompanyID:   types.String("12345"),
+				CompanyName: types.String("Copper"),
+				OwnerID:     types.String("12345"),
+				Priority:    types.String("None"),
+				Status:      types.String("Open"),
+				StatusID:    types.String("12345"),
+				Tags: []string{
+					"New",
+				},
+				InteractionCount: types.Float64(0),
+				CustomFields: []components.CustomField{
+					components.CustomField{
+						ID:          types.String("2389328923893298"),
+						Name:        types.String("employee_level"),
+						Description: types.String("Employee Level"),
+						Value: types.Pointer(components.CreateCustomFieldValueUnionCustomFieldValue1(
+							components.CustomFieldValue1{},
+						)),
+					},
+					components.CustomField{
+						ID:          types.String("2389328923893298"),
+						Name:        types.String("employee_level"),
+						Description: types.String("Employee Level"),
+						Value: types.Pointer(components.CreateCustomFieldValueUnionStr(
 							"Uses Salesforce and Marketo",
 						)),
 					},
@@ -298,8 +298,8 @@ func testCrmOpportunitiesAllCrmOpportunitiesAll0(w http.ResponseWriter, req *htt
 				PassThrough: []components.PassThroughBody{
 					components.PassThroughBody{
 						ServiceID: "<id>",
-						ExtendPaths: []components.ExtendPaths{
-							components.ExtendPaths{
+						ExtendPaths: []components.ExtendPath{
+							components.ExtendPath{
 								Path: "$.nested.property",
 								Value: map[string]any{
 									"TaxClassificationRef": map[string]any{
@@ -307,7 +307,7 @@ func testCrmOpportunitiesAllCrmOpportunitiesAll0(w http.ResponseWriter, req *htt
 									},
 								},
 							},
-							components.ExtendPaths{
+							components.ExtendPath{
 								Path: "$.nested.property",
 								Value: map[string]any{
 									"TaxClassificationRef": map[string]any{

@@ -9,30 +9,6 @@ let value: CrmCustomObjectsUpdateRequest = {
   id: "<id>",
   objectId: "<id>",
   serviceId: "salesforce",
-  customObject: {
-    name: "project",
-    fields: [
-      {
-        name: "name",
-        value: "string",
-      },
-    ],
-    passThrough: [
-      {
-        serviceId: "<id>",
-        extendPaths: [
-          {
-            path: "$.nested.property",
-            value: {
-              "TaxClassificationRef": {
-                "value": "EUC-99990201-V1-00020000",
-              },
-            },
-          },
-        ],
-      },
-    ],
-  },
 };
 ```
 

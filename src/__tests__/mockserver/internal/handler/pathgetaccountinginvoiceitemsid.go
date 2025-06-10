@@ -62,7 +62,7 @@ func testAccountingInvoiceItemsOneAccountingInvoiceItemsOne0(w http.ResponseWrit
 			Tracked:       types.Bool(true),
 			Taxable:       types.Bool(true),
 			InventoryDate: types.MustNewDateFromString("2020-10-30"),
-			Type:          components.InvoiceItemTypeTypeInventory.ToPointer(),
+			Type:          components.InvoiceItemTypeInventory.ToPointer(),
 			SalesDetails: &components.SalesDetails{
 				UnitPrice:     types.Float64(27500.5),
 				UnitOfMeasure: types.String("pc."),
@@ -132,8 +132,8 @@ func testAccountingInvoiceItemsOneAccountingInvoiceItemsOne0(w http.ResponseWrit
 			PassThrough: []components.PassThroughBody{
 				components.PassThroughBody{
 					ServiceID: "<id>",
-					ExtendPaths: []components.ExtendPaths{
-						components.ExtendPaths{
+					ExtendPaths: []components.ExtendPath{
+						components.ExtendPath{
 							Path: "$.nested.property",
 							Value: map[string]any{
 								"TaxClassificationRef": map[string]any{
@@ -141,7 +141,7 @@ func testAccountingInvoiceItemsOneAccountingInvoiceItemsOne0(w http.ResponseWrit
 								},
 							},
 						},
-						components.ExtendPaths{
+						components.ExtendPath{
 							Path: "$.nested.property",
 							Value: map[string]any{
 								"TaxClassificationRef": map[string]any{
@@ -153,8 +153,8 @@ func testAccountingInvoiceItemsOneAccountingInvoiceItemsOne0(w http.ResponseWrit
 				},
 				components.PassThroughBody{
 					ServiceID: "<id>",
-					ExtendPaths: []components.ExtendPaths{
-						components.ExtendPaths{
+					ExtendPaths: []components.ExtendPath{
+						components.ExtendPath{
 							Path: "$.nested.property",
 							Value: map[string]any{
 								"TaxClassificationRef": map[string]any{
@@ -162,7 +162,7 @@ func testAccountingInvoiceItemsOneAccountingInvoiceItemsOne0(w http.ResponseWrit
 								},
 							},
 						},
-						components.ExtendPaths{
+						components.ExtendPath{
 							Path: "$.nested.property",
 							Value: map[string]any{
 								"TaxClassificationRef": map[string]any{

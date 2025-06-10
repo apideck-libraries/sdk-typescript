@@ -15,7 +15,9 @@ test("Webhooks Webhook Webhooks All", async () => {
     apiKey: process.env["APIDECK_API_KEY"] ?? "value",
   });
 
-  const result = await apideck.webhook.webhooks.list({});
+  const result = await apideck.webhook.webhooks.list({
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
+  });
   expect(result.httpMeta.response.status).toBe(200);
   expect(result.getWebhooksResponse).toBeDefined();
   expect(result.getWebhooksResponse).toEqual({
@@ -99,6 +101,7 @@ test("Webhooks Webhook Webhooks Add", async () => {
   });
 
   const result = await apideck.webhook.webhooks.create({
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     createWebhookRequest: {
       description: "A description",
       unifiedApi: "crm",
@@ -144,6 +147,7 @@ test("Webhooks Webhook Webhooks One", async () => {
 
   const result = await apideck.webhook.webhooks.get({
     id: "<id>",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
   });
   expect(result.httpMeta.response.status).toBe(200);
   expect(result.getWebhookResponse).toBeDefined();
@@ -179,6 +183,7 @@ test("Webhooks Webhook Webhooks Update", async () => {
 
   const result = await apideck.webhook.webhooks.update({
     id: "<id>",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     updateWebhookRequest: {
       description: "A description",
       status: "enabled",
@@ -223,6 +228,7 @@ test("Webhooks Webhook Webhooks Delete", async () => {
 
   const result = await apideck.webhook.webhooks.delete({
     id: "<id>",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
   });
   expect(result.httpMeta.response.status).toBe(200);
   expect(result.deleteWebhookResponse).toBeDefined();

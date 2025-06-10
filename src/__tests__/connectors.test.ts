@@ -16,6 +16,7 @@ test("Connectors Connector Connectors All", async () => {
   });
 
   const result = await apideck.connector.connectors.list({
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     filter: {
       unifiedApi: "file-storage",
     },
@@ -512,6 +513,7 @@ test("Connectors Connector Connectors One", async () => {
   });
 
   const result = await apideck.connector.connectors.get({
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     id: "<id>",
   });
   expect(result.httpMeta.response.status).toBe(200);

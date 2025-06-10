@@ -8,136 +8,136 @@ import (
 	"mockserver/internal/sdk/utils"
 )
 
-type Six struct {
+type CustomFieldValue2 struct {
 }
 
-type Four struct {
+type CustomFieldValue1 struct {
 }
 
-type ValueType string
+type CustomFieldValueUnionType string
 
 const (
-	ValueTypeStr        ValueType = "str"
-	ValueTypeNumber     ValueType = "number"
-	ValueTypeBoolean    ValueType = "boolean"
-	ValueTypeFour       ValueType = "4"
-	ValueTypeArrayOfStr ValueType = "arrayOfStr"
-	ValueTypeArrayOf6   ValueType = "arrayOf6"
+	CustomFieldValueUnionTypeStr                      CustomFieldValueUnionType = "str"
+	CustomFieldValueUnionTypeNumber                   CustomFieldValueUnionType = "number"
+	CustomFieldValueUnionTypeBoolean                  CustomFieldValueUnionType = "boolean"
+	CustomFieldValueUnionTypeCustomFieldValue1        CustomFieldValueUnionType = "CustomField_value_1"
+	CustomFieldValueUnionTypeArrayOfStr               CustomFieldValueUnionType = "arrayOfStr"
+	CustomFieldValueUnionTypeArrayOfCustomFieldValue2 CustomFieldValueUnionType = "arrayOfCustomFieldValue2"
 )
 
-type Value struct {
-	Str        *string
-	Number     *float64
-	Boolean    *bool
-	Four       *Four
-	ArrayOfStr []string
-	ArrayOf6   []Six
+type CustomFieldValueUnion struct {
+	Str                      *string
+	Number                   *float64
+	Boolean                  *bool
+	CustomFieldValue1        *CustomFieldValue1
+	ArrayOfStr               []string
+	ArrayOfCustomFieldValue2 []CustomFieldValue2
 
-	Type ValueType
+	Type CustomFieldValueUnionType
 }
 
-func CreateValueStr(str string) Value {
-	typ := ValueTypeStr
+func CreateCustomFieldValueUnionStr(str string) CustomFieldValueUnion {
+	typ := CustomFieldValueUnionTypeStr
 
-	return Value{
+	return CustomFieldValueUnion{
 		Str:  &str,
 		Type: typ,
 	}
 }
 
-func CreateValueNumber(number float64) Value {
-	typ := ValueTypeNumber
+func CreateCustomFieldValueUnionNumber(number float64) CustomFieldValueUnion {
+	typ := CustomFieldValueUnionTypeNumber
 
-	return Value{
+	return CustomFieldValueUnion{
 		Number: &number,
 		Type:   typ,
 	}
 }
 
-func CreateValueBoolean(boolean bool) Value {
-	typ := ValueTypeBoolean
+func CreateCustomFieldValueUnionBoolean(boolean bool) CustomFieldValueUnion {
+	typ := CustomFieldValueUnionTypeBoolean
 
-	return Value{
+	return CustomFieldValueUnion{
 		Boolean: &boolean,
 		Type:    typ,
 	}
 }
 
-func CreateValueFour(four Four) Value {
-	typ := ValueTypeFour
+func CreateCustomFieldValueUnionCustomFieldValue1(customFieldValue1 CustomFieldValue1) CustomFieldValueUnion {
+	typ := CustomFieldValueUnionTypeCustomFieldValue1
 
-	return Value{
-		Four: &four,
-		Type: typ,
+	return CustomFieldValueUnion{
+		CustomFieldValue1: &customFieldValue1,
+		Type:              typ,
 	}
 }
 
-func CreateValueArrayOfStr(arrayOfStr []string) Value {
-	typ := ValueTypeArrayOfStr
+func CreateCustomFieldValueUnionArrayOfStr(arrayOfStr []string) CustomFieldValueUnion {
+	typ := CustomFieldValueUnionTypeArrayOfStr
 
-	return Value{
+	return CustomFieldValueUnion{
 		ArrayOfStr: arrayOfStr,
 		Type:       typ,
 	}
 }
 
-func CreateValueArrayOf6(arrayOf6 []Six) Value {
-	typ := ValueTypeArrayOf6
+func CreateCustomFieldValueUnionArrayOfCustomFieldValue2(arrayOfCustomFieldValue2 []CustomFieldValue2) CustomFieldValueUnion {
+	typ := CustomFieldValueUnionTypeArrayOfCustomFieldValue2
 
-	return Value{
-		ArrayOf6: arrayOf6,
-		Type:     typ,
+	return CustomFieldValueUnion{
+		ArrayOfCustomFieldValue2: arrayOfCustomFieldValue2,
+		Type:                     typ,
 	}
 }
 
-func (u *Value) UnmarshalJSON(data []byte) error {
+func (u *CustomFieldValueUnion) UnmarshalJSON(data []byte) error {
 
-	var four Four = Four{}
-	if err := utils.UnmarshalJSON(data, &four, "", true, true); err == nil {
-		u.Four = &four
-		u.Type = ValueTypeFour
+	var customFieldValue1 CustomFieldValue1 = CustomFieldValue1{}
+	if err := utils.UnmarshalJSON(data, &customFieldValue1, "", true, true); err == nil {
+		u.CustomFieldValue1 = &customFieldValue1
+		u.Type = CustomFieldValueUnionTypeCustomFieldValue1
 		return nil
 	}
 
 	var str string = ""
 	if err := utils.UnmarshalJSON(data, &str, "", true, true); err == nil {
 		u.Str = &str
-		u.Type = ValueTypeStr
+		u.Type = CustomFieldValueUnionTypeStr
 		return nil
 	}
 
 	var number float64 = float64(0)
 	if err := utils.UnmarshalJSON(data, &number, "", true, true); err == nil {
 		u.Number = &number
-		u.Type = ValueTypeNumber
+		u.Type = CustomFieldValueUnionTypeNumber
 		return nil
 	}
 
 	var boolean bool = false
 	if err := utils.UnmarshalJSON(data, &boolean, "", true, true); err == nil {
 		u.Boolean = &boolean
-		u.Type = ValueTypeBoolean
+		u.Type = CustomFieldValueUnionTypeBoolean
 		return nil
 	}
 
 	var arrayOfStr []string = []string{}
 	if err := utils.UnmarshalJSON(data, &arrayOfStr, "", true, true); err == nil {
 		u.ArrayOfStr = arrayOfStr
-		u.Type = ValueTypeArrayOfStr
+		u.Type = CustomFieldValueUnionTypeArrayOfStr
 		return nil
 	}
 
-	var arrayOf6 []Six = []Six{}
-	if err := utils.UnmarshalJSON(data, &arrayOf6, "", true, true); err == nil {
-		u.ArrayOf6 = arrayOf6
-		u.Type = ValueTypeArrayOf6
+	var arrayOfCustomFieldValue2 []CustomFieldValue2 = []CustomFieldValue2{}
+	if err := utils.UnmarshalJSON(data, &arrayOfCustomFieldValue2, "", true, true); err == nil {
+		u.ArrayOfCustomFieldValue2 = arrayOfCustomFieldValue2
+		u.Type = CustomFieldValueUnionTypeArrayOfCustomFieldValue2
 		return nil
 	}
 
-	return fmt.Errorf("could not unmarshal `%s` into any supported union types for Value", string(data))
+	return fmt.Errorf("could not unmarshal `%s` into any supported union types for CustomFieldValueUnion", string(data))
 }
 
-func (u Value) MarshalJSON() ([]byte, error) {
+func (u CustomFieldValueUnion) MarshalJSON() ([]byte, error) {
 	if u.Str != nil {
 		return utils.MarshalJSON(u.Str, "", true)
 	}
@@ -150,19 +150,19 @@ func (u Value) MarshalJSON() ([]byte, error) {
 		return utils.MarshalJSON(u.Boolean, "", true)
 	}
 
-	if u.Four != nil {
-		return utils.MarshalJSON(u.Four, "", true)
+	if u.CustomFieldValue1 != nil {
+		return utils.MarshalJSON(u.CustomFieldValue1, "", true)
 	}
 
 	if u.ArrayOfStr != nil {
 		return utils.MarshalJSON(u.ArrayOfStr, "", true)
 	}
 
-	if u.ArrayOf6 != nil {
-		return utils.MarshalJSON(u.ArrayOf6, "", true)
+	if u.ArrayOfCustomFieldValue2 != nil {
+		return utils.MarshalJSON(u.ArrayOfCustomFieldValue2, "", true)
 	}
 
-	return nil, errors.New("could not marshal union type Value: all fields are null")
+	return nil, errors.New("could not marshal union type CustomFieldValueUnion: all fields are null")
 }
 
 type CustomField struct {
@@ -171,8 +171,8 @@ type CustomField struct {
 	// Name of the custom field.
 	Name *string `json:"name,omitempty"`
 	// More information about the custom field
-	Description *string `json:"description,omitempty"`
-	Value       *Value  `json:"value,omitempty"`
+	Description *string                `json:"description,omitempty"`
+	Value       *CustomFieldValueUnion `json:"value,omitempty"`
 }
 
 func (o *CustomField) GetID() *string {
@@ -196,7 +196,7 @@ func (o *CustomField) GetDescription() *string {
 	return o.Description
 }
 
-func (o *CustomField) GetValue() *Value {
+func (o *CustomField) GetValue() *CustomFieldValueUnion {
 	if o == nil {
 		return nil
 	}

@@ -31,7 +31,7 @@ export type AllowActions = ClosedEnum<typeof AllowActions>;
 /**
  * Settings to change the way the Vault is displayed.
  */
-export type SessionSettings = {
+export type Settings = {
   /**
    * Provide the IDs of the Unified APIs you want to be visible. Leaving it empty or omitting this field will show all Unified APIs.
    */
@@ -132,7 +132,7 @@ export type Session = {
   /**
    * Settings to change the way the Vault is displayed.
    */
-  settings?: SessionSettings | undefined;
+  settings?: Settings | undefined;
   /**
    * Theming options to change the look and feel of Vault.
    */
@@ -163,8 +163,8 @@ export namespace AllowActions$ {
 }
 
 /** @internal */
-export const SessionSettings$inboundSchema: z.ZodType<
-  SessionSettings,
+export const Settings$inboundSchema: z.ZodType<
+  Settings,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -196,7 +196,7 @@ export const SessionSettings$inboundSchema: z.ZodType<
 });
 
 /** @internal */
-export type SessionSettings$Outbound = {
+export type Settings$Outbound = {
   unified_apis?: Array<string> | undefined;
   hide_resource_settings: boolean;
   sandbox_mode: boolean;
@@ -211,10 +211,10 @@ export type SessionSettings$Outbound = {
 };
 
 /** @internal */
-export const SessionSettings$outboundSchema: z.ZodType<
-  SessionSettings$Outbound,
+export const Settings$outboundSchema: z.ZodType<
+  Settings$Outbound,
   z.ZodTypeDef,
-  SessionSettings
+  Settings
 > = z.object({
   unifiedApis: z.array(UnifiedApiId$outboundSchema).optional(),
   hideResourceSettings: z.boolean().default(false),
@@ -247,28 +247,26 @@ export const SessionSettings$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace SessionSettings$ {
-  /** @deprecated use `SessionSettings$inboundSchema` instead. */
-  export const inboundSchema = SessionSettings$inboundSchema;
-  /** @deprecated use `SessionSettings$outboundSchema` instead. */
-  export const outboundSchema = SessionSettings$outboundSchema;
-  /** @deprecated use `SessionSettings$Outbound` instead. */
-  export type Outbound = SessionSettings$Outbound;
+export namespace Settings$ {
+  /** @deprecated use `Settings$inboundSchema` instead. */
+  export const inboundSchema = Settings$inboundSchema;
+  /** @deprecated use `Settings$outboundSchema` instead. */
+  export const outboundSchema = Settings$outboundSchema;
+  /** @deprecated use `Settings$Outbound` instead. */
+  export type Outbound = Settings$Outbound;
 }
 
-export function sessionSettingsToJSON(
-  sessionSettings: SessionSettings,
-): string {
-  return JSON.stringify(SessionSettings$outboundSchema.parse(sessionSettings));
+export function settingsToJSON(settings: Settings): string {
+  return JSON.stringify(Settings$outboundSchema.parse(settings));
 }
 
-export function sessionSettingsFromJSON(
+export function settingsFromJSON(
   jsonString: string,
-): SafeParseResult<SessionSettings, SDKValidationError> {
+): SafeParseResult<Settings, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => SessionSettings$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'SessionSettings' from JSON`,
+    (x) => Settings$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Settings' from JSON`,
   );
 }
 
@@ -363,7 +361,7 @@ export const Session$inboundSchema: z.ZodType<Session, z.ZodTypeDef, unknown> =
   z.object({
     consumer_metadata: ConsumerMetadata$inboundSchema.optional(),
     redirect_uri: z.string().optional(),
-    settings: z.lazy(() => SessionSettings$inboundSchema).optional(),
+    settings: z.lazy(() => Settings$inboundSchema).optional(),
     theme: z.lazy(() => Theme$inboundSchema).optional(),
     custom_consumer_settings: z.record(z.any()).optional(),
   }).transform((v) => {
@@ -378,7 +376,7 @@ export const Session$inboundSchema: z.ZodType<Session, z.ZodTypeDef, unknown> =
 export type Session$Outbound = {
   consumer_metadata?: ConsumerMetadata$Outbound | undefined;
   redirect_uri?: string | undefined;
-  settings?: SessionSettings$Outbound | undefined;
+  settings?: Settings$Outbound | undefined;
   theme?: Theme$Outbound | undefined;
   custom_consumer_settings?: { [k: string]: any } | undefined;
 };
@@ -391,7 +389,7 @@ export const Session$outboundSchema: z.ZodType<
 > = z.object({
   consumerMetadata: ConsumerMetadata$outboundSchema.optional(),
   redirectUri: z.string().optional(),
-  settings: z.lazy(() => SessionSettings$outboundSchema).optional(),
+  settings: z.lazy(() => Settings$outboundSchema).optional(),
   theme: z.lazy(() => Theme$outboundSchema).optional(),
   customConsumerSettings: z.record(z.any()).optional(),
 }).transform((v) => {

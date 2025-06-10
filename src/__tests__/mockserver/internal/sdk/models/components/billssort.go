@@ -8,18 +8,18 @@ import (
 	"mockserver/internal/sdk/utils"
 )
 
-// By - The field on which to sort the Bills
-type By string
+// BillsSortBy - The field on which to sort the Bills
+type BillsSortBy string
 
 const (
-	ByUpdatedAt By = "updated_at"
-	ByCreatedAt By = "created_at"
+	BillsSortByUpdatedAt BillsSortBy = "updated_at"
+	BillsSortByCreatedAt BillsSortBy = "created_at"
 )
 
-func (e By) ToPointer() *By {
+func (e BillsSortBy) ToPointer() *BillsSortBy {
 	return &e
 }
-func (e *By) UnmarshalJSON(data []byte) error {
+func (e *BillsSortBy) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -28,16 +28,16 @@ func (e *By) UnmarshalJSON(data []byte) error {
 	case "updated_at":
 		fallthrough
 	case "created_at":
-		*e = By(v)
+		*e = BillsSortBy(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for By: %v", v)
+		return fmt.Errorf("invalid value for BillsSortBy: %v", v)
 	}
 }
 
 type BillsSort struct {
 	// The field on which to sort the Bills
-	By *By `queryParam:"name=by"`
+	By *BillsSortBy `queryParam:"name=by"`
 	// The direction in which to sort the results
 	Direction *SortDirection `default:"asc" queryParam:"name=direction"`
 }
@@ -53,7 +53,7 @@ func (b *BillsSort) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *BillsSort) GetBy() *By {
+func (o *BillsSort) GetBy() *BillsSortBy {
 	if o == nil {
 		return nil
 	}

@@ -24,7 +24,7 @@ func (o *WebhookEventLogService) GetName() string {
 	return o.Name
 }
 
-type Attempts struct {
+type Attempt struct {
 	// ISO Date and time when the request was made.
 	Timestamp *string `json:"timestamp,omitempty"`
 	// Number of attempts webhook endpoint was called before a success was returned or eventually failed
@@ -35,28 +35,28 @@ type Attempts struct {
 	Success *bool `json:"success,omitempty"`
 }
 
-func (o *Attempts) GetTimestamp() *string {
+func (o *Attempt) GetTimestamp() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Timestamp
 }
 
-func (o *Attempts) GetExecutionAttempt() *float64 {
+func (o *Attempt) GetExecutionAttempt() *float64 {
 	if o == nil {
 		return nil
 	}
 	return o.ExecutionAttempt
 }
 
-func (o *Attempts) GetStatusCode() *int64 {
+func (o *Attempt) GetStatusCode() *int64 {
 	if o == nil {
 		return nil
 	}
 	return o.StatusCode
 }
 
-func (o *Attempts) GetSuccess() *bool {
+func (o *Attempt) GetSuccess() *bool {
 	if o == nil {
 		return nil
 	}
@@ -96,7 +96,7 @@ type WebhookEventLog struct {
 	// If the request has not hit the max retry limit and will be retried.
 	RetryScheduled *bool `json:"retry_scheduled,omitempty"`
 	// record of each attempt to call webhook endpoint
-	Attempts []Attempts `json:"attempts,omitempty"`
+	Attempts []Attempt `json:"attempts,omitempty"`
 }
 
 func (o *WebhookEventLog) GetID() *string {
@@ -211,7 +211,7 @@ func (o *WebhookEventLog) GetRetryScheduled() *bool {
 	return o.RetryScheduled
 }
 
-func (o *WebhookEventLog) GetAttempts() []Attempts {
+func (o *WebhookEventLog) GetAttempts() []Attempt {
 	if o == nil {
 		return nil
 	}

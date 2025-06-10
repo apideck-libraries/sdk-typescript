@@ -44,20 +44,20 @@ func (e *ApplicationStatus) UnmarshalJSON(data []byte) error {
 	}
 }
 
-type Stage struct {
+type ApplicationStage struct {
 	// Stage the candidate should be in. If omitted, the default stage for this job will be used.
 	ID   *string `json:"id,omitempty"`
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *Stage) GetID() *string {
+func (o *ApplicationStage) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *Stage) GetName() *string {
+func (o *ApplicationStage) GetName() *string {
 	if o == nil {
 		return nil
 	}
@@ -70,7 +70,7 @@ type Application struct {
 	ApplicantID *string            `json:"applicant_id"`
 	JobID       *string            `json:"job_id"`
 	Status      *ApplicationStatus `json:"status,omitempty"`
-	Stage       *Stage             `json:"stage,omitempty"`
+	Stage       *ApplicationStage  `json:"stage,omitempty"`
 	// When custom mappings are configured on the resource, the result is included here.
 	CustomMappings map[string]any `json:"custom_mappings,omitempty"`
 	// The user who last updated the object.
@@ -124,7 +124,7 @@ func (o *Application) GetStatus() *ApplicationStatus {
 	return o.Status
 }
 
-func (o *Application) GetStage() *Stage {
+func (o *Application) GetStage() *ApplicationStage {
 	if o == nil {
 		return nil
 	}
@@ -177,7 +177,7 @@ type ApplicationInput struct {
 	ApplicantID *string            `json:"applicant_id"`
 	JobID       *string            `json:"job_id"`
 	Status      *ApplicationStatus `json:"status,omitempty"`
-	Stage       *Stage             `json:"stage,omitempty"`
+	Stage       *ApplicationStage  `json:"stage,omitempty"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
 	PassThrough []PassThroughBody `json:"pass_through,omitempty"`
 }
@@ -203,7 +203,7 @@ func (o *ApplicationInput) GetStatus() *ApplicationStatus {
 	return o.Status
 }
 
-func (o *ApplicationInput) GetStage() *Stage {
+func (o *ApplicationInput) GetStage() *ApplicationStage {
 	if o == nil {
 		return nil
 	}

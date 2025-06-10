@@ -63,48 +63,13 @@ func testConnectorApisAllConnectorApisAll0(w http.ResponseWriter, req *http.Requ
 					"cloud-storage",
 					"object-storage",
 				},
-				Resources: []components.Resources{
-					components.Resources{
+				Resources: []components.Resource{
+					components.Resource{
 						ID:                   types.String("companies"),
 						Name:                 types.String("Companies"),
 						ExcludedFromCoverage: types.Bool(false),
 					},
-					components.Resources{
-						ID:                   types.String("companies"),
-						Name:                 types.String("Companies"),
-						ExcludedFromCoverage: types.Bool(false),
-					},
-				},
-				Events: []string{
-					"crm.contact.updated",
-					"accounting.invoice.created",
-				},
-			},
-			components.API{
-				ID:                  types.String("file-storage"),
-				Name:                types.String("File Storage API"),
-				Description:         types.String("Manage API keys, access tokens, OAuth flows and integrations."),
-				SpecURL:             types.String("https://specs.apideck.com/file-storage.yml"),
-				APIReferenceURL:     types.String("https://developers.apideck.com/apis/file-storage/reference"),
-				PostmanCollectionID: types.String("1311564-00e7266b-a3d6-4f40-b172-baaa66a3ed6f"),
-				Categories: []string{
-					"files",
-					"file-storage",
-					"cloud-storage",
-					"object-storage",
-				},
-				Resources: []components.Resources{
-					components.Resources{
-						ID:                   types.String("companies"),
-						Name:                 types.String("Companies"),
-						ExcludedFromCoverage: types.Bool(false),
-					},
-					components.Resources{
-						ID:                   types.String("companies"),
-						Name:                 types.String("Companies"),
-						ExcludedFromCoverage: types.Bool(false),
-					},
-					components.Resources{
+					components.Resource{
 						ID:                   types.String("companies"),
 						Name:                 types.String("Companies"),
 						ExcludedFromCoverage: types.Bool(false),
@@ -128,8 +93,43 @@ func testConnectorApisAllConnectorApisAll0(w http.ResponseWriter, req *http.Requ
 					"cloud-storage",
 					"object-storage",
 				},
-				Resources: []components.Resources{
-					components.Resources{
+				Resources: []components.Resource{
+					components.Resource{
+						ID:                   types.String("companies"),
+						Name:                 types.String("Companies"),
+						ExcludedFromCoverage: types.Bool(false),
+					},
+					components.Resource{
+						ID:                   types.String("companies"),
+						Name:                 types.String("Companies"),
+						ExcludedFromCoverage: types.Bool(false),
+					},
+					components.Resource{
+						ID:                   types.String("companies"),
+						Name:                 types.String("Companies"),
+						ExcludedFromCoverage: types.Bool(false),
+					},
+				},
+				Events: []string{
+					"crm.contact.updated",
+					"accounting.invoice.created",
+				},
+			},
+			components.API{
+				ID:                  types.String("file-storage"),
+				Name:                types.String("File Storage API"),
+				Description:         types.String("Manage API keys, access tokens, OAuth flows and integrations."),
+				SpecURL:             types.String("https://specs.apideck.com/file-storage.yml"),
+				APIReferenceURL:     types.String("https://developers.apideck.com/apis/file-storage/reference"),
+				PostmanCollectionID: types.String("1311564-00e7266b-a3d6-4f40-b172-baaa66a3ed6f"),
+				Categories: []string{
+					"files",
+					"file-storage",
+					"cloud-storage",
+					"object-storage",
+				},
+				Resources: []components.Resource{
+					components.Resource{
 						ID:                   types.String("companies"),
 						Name:                 types.String("Companies"),
 						ExcludedFromCoverage: types.Bool(false),

@@ -57,14 +57,10 @@ func (o *Credentials) GetExpiresIn() *int64 {
 	return o.ExpiresIn
 }
 
-// Settings - Connection settings. Values will persist to `form_fields` with corresponding id
-type Settings struct {
-}
-
 type ConnectionImportData struct {
 	Credentials *Credentials `json:"credentials,omitempty"`
 	// Connection settings. Values will persist to `form_fields` with corresponding id
-	Settings *Settings `json:"settings,omitempty"`
+	Settings map[string]any `json:"settings,omitempty"`
 	// Attach your own consumer specific metadata
 	Metadata map[string]any `json:"metadata,omitempty"`
 }
@@ -76,7 +72,7 @@ func (o *ConnectionImportData) GetCredentials() *Credentials {
 	return o.Credentials
 }
 
-func (o *ConnectionImportData) GetSettings() *Settings {
+func (o *ConnectionImportData) GetSettings() map[string]any {
 	if o == nil {
 		return nil
 	}
