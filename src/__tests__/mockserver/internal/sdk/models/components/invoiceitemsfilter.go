@@ -7,19 +7,19 @@ import (
 	"fmt"
 )
 
-// InvoiceItemType - The type of invoice item, indicating whether it is an inventory item, a service, or another type.
-type InvoiceItemType string
+// InvoiceItemsFilterInvoiceItemType - The type of invoice item, indicating whether it is an inventory item, a service, or another type.
+type InvoiceItemsFilterInvoiceItemType string
 
 const (
-	InvoiceItemTypeInventory InvoiceItemType = "inventory"
-	InvoiceItemTypeService   InvoiceItemType = "service"
-	InvoiceItemTypeOther     InvoiceItemType = "other"
+	InvoiceItemsFilterInvoiceItemTypeInventory InvoiceItemsFilterInvoiceItemType = "inventory"
+	InvoiceItemsFilterInvoiceItemTypeService   InvoiceItemsFilterInvoiceItemType = "service"
+	InvoiceItemsFilterInvoiceItemTypeOther     InvoiceItemsFilterInvoiceItemType = "other"
 )
 
-func (e InvoiceItemType) ToPointer() *InvoiceItemType {
+func (e InvoiceItemsFilterInvoiceItemType) ToPointer() *InvoiceItemsFilterInvoiceItemType {
 	return &e
 }
-func (e *InvoiceItemType) UnmarshalJSON(data []byte) error {
+func (e *InvoiceItemsFilterInvoiceItemType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -30,10 +30,10 @@ func (e *InvoiceItemType) UnmarshalJSON(data []byte) error {
 	case "service":
 		fallthrough
 	case "other":
-		*e = InvoiceItemType(v)
+		*e = InvoiceItemsFilterInvoiceItemType(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for InvoiceItemType: %v", v)
+		return fmt.Errorf("invalid value for InvoiceItemsFilterInvoiceItemType: %v", v)
 	}
 }
 
@@ -41,7 +41,7 @@ type InvoiceItemsFilter struct {
 	// Name of Invoice Items to search for
 	Name *string `queryParam:"name=name"`
 	// The type of invoice item, indicating whether it is an inventory item, a service, or another type.
-	Type *InvoiceItemType `queryParam:"name=type"`
+	Type *InvoiceItemsFilterInvoiceItemType `queryParam:"name=type"`
 }
 
 func (o *InvoiceItemsFilter) GetName() *string {
@@ -51,7 +51,7 @@ func (o *InvoiceItemsFilter) GetName() *string {
 	return o.Name
 }
 
-func (o *InvoiceItemsFilter) GetType() *InvoiceItemType {
+func (o *InvoiceItemsFilter) GetType() *InvoiceItemsFilterInvoiceItemType {
 	if o == nil {
 		return nil
 	}

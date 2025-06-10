@@ -9,6 +9,7 @@ let value: IssueTrackingCollectionsAllRequest = {
   serviceId: "salesforce",
   sort: {
     by: "name",
+    direction: "desc",
   },
   passThrough: {
     "search": "San Francisco",

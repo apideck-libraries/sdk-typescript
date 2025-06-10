@@ -7,7 +7,7 @@ import (
 	"time"
 )
 
-type Stages struct {
+type PipelineStage struct {
 	// The unique identifier of the Pipeline Stage.
 	ID *string `json:"id,omitempty"`
 	// The name of the Pipeline Stage.
@@ -20,35 +20,35 @@ type Stages struct {
 	DisplayOrder *int64 `json:"display_order,omitempty"`
 }
 
-func (o *Stages) GetID() *string {
+func (o *PipelineStage) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *Stages) GetName() *string {
+func (o *PipelineStage) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-func (o *Stages) GetValue() *string {
+func (o *PipelineStage) GetValue() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Value
 }
 
-func (o *Stages) GetWinProbability() *int64 {
+func (o *PipelineStage) GetWinProbability() *int64 {
 	if o == nil {
 		return nil
 	}
 	return o.WinProbability
 }
 
-func (o *Stages) GetDisplayOrder() *int64 {
+func (o *PipelineStage) GetDisplayOrder() *int64 {
 	if o == nil {
 		return nil
 	}
@@ -71,7 +71,7 @@ type Pipeline struct {
 	// Whether the Pipeline has win probability enabled or not.
 	WinProbabilityEnabled *bool `json:"win_probability_enabled,omitempty"`
 	// The Pipeline Stages.
-	Stages []Stages `json:"stages,omitempty"`
+	Stages []PipelineStage `json:"stages,omitempty"`
 	// The date and time when the object was last updated.
 	UpdatedAt *time.Time `json:"updated_at,omitempty"`
 	// The date and time when the object was created.
@@ -140,7 +140,7 @@ func (o *Pipeline) GetWinProbabilityEnabled() *bool {
 	return o.WinProbabilityEnabled
 }
 
-func (o *Pipeline) GetStages() []Stages {
+func (o *Pipeline) GetStages() []PipelineStage {
 	if o == nil {
 		return nil
 	}

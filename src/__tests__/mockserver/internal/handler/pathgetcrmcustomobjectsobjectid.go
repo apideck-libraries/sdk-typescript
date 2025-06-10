@@ -57,8 +57,8 @@ func testCrmCustomObjectsAllCrmCustomObjectsAll0(w http.ResponseWriter, req *htt
 				ID:      types.String("co_12345"),
 				OwnerID: types.String("user_12345"),
 				Name:    types.String("project"),
-				Fields: []components.CustomObjectFields{
-					components.CustomObjectFields{
+				Fields: []components.CustomObjectField{
+					components.CustomObjectField{
 						Name:  types.String("name"),
 						Value: types.String("string"),
 					},
@@ -70,8 +70,8 @@ func testCrmCustomObjectsAllCrmCustomObjectsAll0(w http.ResponseWriter, req *htt
 				PassThrough: []components.PassThroughBody{
 					components.PassThroughBody{
 						ServiceID: "<id>",
-						ExtendPaths: []components.ExtendPaths{
-							components.ExtendPaths{
+						ExtendPaths: []components.ExtendPath{
+							components.ExtendPath{
 								Path: "$.nested.property",
 								Value: map[string]any{
 									"TaxClassificationRef": map[string]any{
@@ -87,8 +87,8 @@ func testCrmCustomObjectsAllCrmCustomObjectsAll0(w http.ResponseWriter, req *htt
 				ID:      types.String("co_12345"),
 				OwnerID: types.String("user_12345"),
 				Name:    types.String("project"),
-				Fields: []components.CustomObjectFields{
-					components.CustomObjectFields{
+				Fields: []components.CustomObjectField{
+					components.CustomObjectField{
 						Name:  types.String("name"),
 						Value: types.String("string"),
 					},
@@ -100,8 +100,8 @@ func testCrmCustomObjectsAllCrmCustomObjectsAll0(w http.ResponseWriter, req *htt
 				PassThrough: []components.PassThroughBody{
 					components.PassThroughBody{
 						ServiceID: "<id>",
-						ExtendPaths: []components.ExtendPaths{
-							components.ExtendPaths{
+						ExtendPaths: []components.ExtendPath{
+							components.ExtendPath{
 								Path: "$.nested.property",
 								Value: map[string]any{
 									"TaxClassificationRef": map[string]any{
@@ -117,8 +117,8 @@ func testCrmCustomObjectsAllCrmCustomObjectsAll0(w http.ResponseWriter, req *htt
 				ID:      types.String("co_12345"),
 				OwnerID: types.String("user_12345"),
 				Name:    types.String("project"),
-				Fields: []components.CustomObjectFields{
-					components.CustomObjectFields{
+				Fields: []components.CustomObjectField{
+					components.CustomObjectField{
 						Name:  types.String("name"),
 						Value: types.String("string"),
 					},
@@ -130,8 +130,8 @@ func testCrmCustomObjectsAllCrmCustomObjectsAll0(w http.ResponseWriter, req *htt
 				PassThrough: []components.PassThroughBody{
 					components.PassThroughBody{
 						ServiceID: "<id>",
-						ExtendPaths: []components.ExtendPaths{
-							components.ExtendPaths{
+						ExtendPaths: []components.ExtendPath{
+							components.ExtendPath{
 								Path: "$.nested.property",
 								Value: map[string]any{
 									"TaxClassificationRef": map[string]any{

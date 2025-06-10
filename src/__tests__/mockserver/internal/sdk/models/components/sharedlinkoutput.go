@@ -36,7 +36,7 @@ func (e *Scope) UnmarshalJSON(data []byte) error {
 	}
 }
 
-type SharedLink struct {
+type SharedLinkOutput struct {
 	// The URL that can be used to view the file.
 	URL *string `json:"url,omitempty"`
 	// The URL that can be used to download the file.
@@ -55,74 +55,74 @@ type SharedLink struct {
 	PassThrough []PassThroughBody `json:"pass_through,omitempty"`
 }
 
-func (s SharedLink) MarshalJSON() ([]byte, error) {
+func (s SharedLinkOutput) MarshalJSON() ([]byte, error) {
 	return utils.MarshalJSON(s, "", false)
 }
 
-func (s *SharedLink) UnmarshalJSON(data []byte) error {
+func (s *SharedLinkOutput) UnmarshalJSON(data []byte) error {
 	if err := utils.UnmarshalJSON(data, &s, "", false, false); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *SharedLink) GetURL() *string {
+func (o *SharedLinkOutput) GetURL() *string {
 	if o == nil {
 		return nil
 	}
 	return o.URL
 }
 
-func (o *SharedLink) GetDownloadURL() *string {
+func (o *SharedLinkOutput) GetDownloadURL() *string {
 	if o == nil {
 		return nil
 	}
 	return o.DownloadURL
 }
 
-func (o *SharedLink) GetTarget() *SharedLinkTarget {
+func (o *SharedLinkOutput) GetTarget() *SharedLinkTarget {
 	if o == nil {
 		return nil
 	}
 	return o.Target
 }
 
-func (o *SharedLink) GetScope() *Scope {
+func (o *SharedLinkOutput) GetScope() *Scope {
 	if o == nil {
 		return nil
 	}
 	return o.Scope
 }
 
-func (o *SharedLink) GetPasswordProtected() *bool {
+func (o *SharedLinkOutput) GetPasswordProtected() *bool {
 	if o == nil {
 		return nil
 	}
 	return o.PasswordProtected
 }
 
-func (o *SharedLink) GetExpiresAt() *time.Time {
+func (o *SharedLinkOutput) GetExpiresAt() *time.Time {
 	if o == nil {
 		return nil
 	}
 	return o.ExpiresAt
 }
 
-func (o *SharedLink) GetUpdatedAt() *time.Time {
+func (o *SharedLinkOutput) GetUpdatedAt() *time.Time {
 	if o == nil {
 		return nil
 	}
 	return o.UpdatedAt
 }
 
-func (o *SharedLink) GetCreatedAt() *time.Time {
+func (o *SharedLinkOutput) GetCreatedAt() *time.Time {
 	if o == nil {
 		return nil
 	}
 	return o.CreatedAt
 }
 
-func (o *SharedLink) GetPassThrough() []PassThroughBody {
+func (o *SharedLinkOutput) GetPassThrough() []PassThroughBody {
 	if o == nil {
 		return nil
 	}

@@ -108,49 +108,49 @@ func testVaultConnectionsTokenVaultConnectionsToken0(w http.ResponseWriter, req 
 			Configuration: []components.Configuration{
 				components.Configuration{
 					Resource: types.String("leads"),
-					Defaults: []components.Defaults{
-						components.Defaults{
+					Defaults: []components.Default{
+						components.Default{
 							Target: components.TargetCustomFields.ToPointer(),
 							ID:     types.String("ProductInterest"),
 							Options: []components.FormFieldOption{
 								components.CreateFormFieldOptionSimple(
 									components.SimpleFormFieldOption{
 										Label: "General Channel",
-										Value: types.Pointer(components.CreateSimpleFormFieldOptionValueBoolean(
+										Value: types.Pointer(components.CreateSimpleFormFieldOptionValue2Boolean(
 											true,
 										)),
-										OptionType: components.OptionTypeSimple,
+										OptionType: components.SimpleFormFieldOptionOptionTypeSimple,
 									},
 								),
 								components.CreateFormFieldOptionSimple(
 									components.SimpleFormFieldOption{
 										Label: "General Channel",
-										Value: types.Pointer(components.CreateSimpleFormFieldOptionValueBoolean(
+										Value: types.Pointer(components.CreateSimpleFormFieldOptionValue2Boolean(
 											true,
 										)),
-										OptionType: components.OptionTypeSimple,
+										OptionType: components.SimpleFormFieldOptionOptionTypeSimple,
 									},
 								),
 							},
-							Value: types.Pointer(components.CreateConnectionValueArrayOfValue5(
-								[]components.Value5{},
+							Value: types.Pointer(components.CreateConnectionValue2ArrayOfConnectionValue1(
+								[]components.ConnectionValue1{},
 							)),
 						},
-						components.Defaults{
+						components.Default{
 							Target: components.TargetCustomFields.ToPointer(),
 							ID:     types.String("ProductInterest"),
 							Options: []components.FormFieldOption{
 								components.CreateFormFieldOptionSimple(
 									components.SimpleFormFieldOption{
 										Label: "General Channel",
-										Value: types.Pointer(components.CreateSimpleFormFieldOptionValueBoolean(
+										Value: types.Pointer(components.CreateSimpleFormFieldOptionValue2Boolean(
 											true,
 										)),
-										OptionType: components.OptionTypeSimple,
+										OptionType: components.SimpleFormFieldOptionOptionTypeSimple,
 									},
 								),
 							},
-							Value: types.Pointer(components.CreateConnectionValueStr(
+							Value: types.Pointer(components.CreateConnectionValue2Str(
 								"GC5000 series",
 							)),
 						},

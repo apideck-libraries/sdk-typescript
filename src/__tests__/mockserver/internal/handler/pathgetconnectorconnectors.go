@@ -64,15 +64,15 @@ func testConnectorConnectorsAllConnectorConnectorsAll0(w http.ResponseWriter, re
 				BlindMapped:            types.Bool(true),
 				OauthGrantType:         components.ConnectorOauthGrantTypeAuthorizationCode.ToPointer(),
 				OauthCredentialsSource: components.OauthCredentialsSourceIntegration.ToPointer(),
-				OauthScopes: []components.OauthScopes{
-					components.OauthScopes{
+				OauthScopes: []components.OauthScope{
+					components.OauthScope{
 						ID:    types.String("contacts:all"),
 						Label: types.String("Read/write on the Contacts resource"),
 						DefaultApis: []string{
 							"crm",
 						},
 					},
-					components.OauthScopes{
+					components.OauthScope{
 						ID:    types.String("contacts:all"),
 						Label: types.String("Read/write on the Contacts resource"),
 						DefaultApis: []string{
@@ -100,13 +100,13 @@ func testConnectorConnectorsAllConnectorConnectorsAll0(w http.ResponseWriter, re
 					},
 				},
 				ServiceID: types.String("close"),
-				UnifiedApis: []components.UnifiedApis{
-					components.UnifiedApis{
+				UnifiedApis: []components.ConnectorUnifiedAPI{
+					components.ConnectorUnifiedAPI{
 						ID:       components.UnifiedAPIIDCrm.ToPointer(),
 						Name:     types.String("File Storage API"),
 						AuthOnly: types.Bool(true),
-						OauthScopes: []components.ConnectorOauthScopes{
-							components.ConnectorOauthScopes{
+						OauthScopes: []components.UnifiedAPIOauthScope{
+							components.UnifiedAPIOauthScope{
 								ID:    types.String("contacts:all"),
 								Label: types.String("Read/write on the Contacts resource"),
 							},
@@ -174,7 +174,7 @@ func testConnectorConnectorsAllConnectorConnectorsAll0(w http.ResponseWriter, re
 					},
 				},
 				WebhookSupport: &components.WebhookSupport{
-					Mode:              components.ModeNative.ToPointer(),
+					Mode:              components.WebhookSupportModeNative.ToPointer(),
 					SubscriptionLevel: components.SubscriptionLevelIntegration.ToPointer(),
 					ManagedVia:        components.ManagedViaAPI.ToPointer(),
 				},
@@ -203,22 +203,22 @@ func testConnectorConnectorsAllConnectorConnectorsAll0(w http.ResponseWriter, re
 				BlindMapped:            types.Bool(true),
 				OauthGrantType:         components.ConnectorOauthGrantTypeAuthorizationCode.ToPointer(),
 				OauthCredentialsSource: components.OauthCredentialsSourceIntegration.ToPointer(),
-				OauthScopes: []components.OauthScopes{
-					components.OauthScopes{
+				OauthScopes: []components.OauthScope{
+					components.OauthScope{
 						ID:    types.String("contacts:all"),
 						Label: types.String("Read/write on the Contacts resource"),
 						DefaultApis: []string{
 							"crm",
 						},
 					},
-					components.OauthScopes{
+					components.OauthScope{
 						ID:    types.String("contacts:all"),
 						Label: types.String("Read/write on the Contacts resource"),
 						DefaultApis: []string{
 							"crm",
 						},
 					},
-					components.OauthScopes{
+					components.OauthScope{
 						ID:    types.String("contacts:all"),
 						Label: types.String("Read/write on the Contacts resource"),
 						DefaultApis: []string{
@@ -236,13 +236,13 @@ func testConnectorConnectorsAllConnectorConnectorsAll0(w http.ResponseWriter, re
 					},
 				},
 				ServiceID: types.String("close"),
-				UnifiedApis: []components.UnifiedApis{
-					components.UnifiedApis{
+				UnifiedApis: []components.ConnectorUnifiedAPI{
+					components.ConnectorUnifiedAPI{
 						ID:       components.UnifiedAPIIDCrm.ToPointer(),
 						Name:     types.String("File Storage API"),
 						AuthOnly: types.Bool(true),
-						OauthScopes: []components.ConnectorOauthScopes{
-							components.ConnectorOauthScopes{
+						OauthScopes: []components.UnifiedAPIOauthScope{
+							components.UnifiedAPIOauthScope{
 								ID:    types.String("contacts:all"),
 								Label: types.String("Read/write on the Contacts resource"),
 							},
@@ -322,7 +322,7 @@ func testConnectorConnectorsAllConnectorConnectorsAll0(w http.ResponseWriter, re
 					},
 				},
 				WebhookSupport: &components.WebhookSupport{
-					Mode:              components.ModeNative.ToPointer(),
+					Mode:              components.WebhookSupportModeNative.ToPointer(),
 					SubscriptionLevel: components.SubscriptionLevelIntegration.ToPointer(),
 					ManagedVia:        components.ManagedViaAPI.ToPointer(),
 				},
@@ -351,15 +351,15 @@ func testConnectorConnectorsAllConnectorConnectorsAll0(w http.ResponseWriter, re
 				BlindMapped:            types.Bool(true),
 				OauthGrantType:         components.ConnectorOauthGrantTypeAuthorizationCode.ToPointer(),
 				OauthCredentialsSource: components.OauthCredentialsSourceIntegration.ToPointer(),
-				OauthScopes: []components.OauthScopes{
-					components.OauthScopes{
+				OauthScopes: []components.OauthScope{
+					components.OauthScope{
 						ID:    types.String("contacts:all"),
 						Label: types.String("Read/write on the Contacts resource"),
 						DefaultApis: []string{
 							"crm",
 						},
 					},
-					components.OauthScopes{
+					components.OauthScope{
 						ID:    types.String("contacts:all"),
 						Label: types.String("Read/write on the Contacts resource"),
 						DefaultApis: []string{
@@ -382,13 +382,13 @@ func testConnectorConnectorsAllConnectorConnectorsAll0(w http.ResponseWriter, re
 					},
 				},
 				ServiceID: types.String("close"),
-				UnifiedApis: []components.UnifiedApis{
-					components.UnifiedApis{
+				UnifiedApis: []components.ConnectorUnifiedAPI{
+					components.ConnectorUnifiedAPI{
 						ID:       components.UnifiedAPIIDCrm.ToPointer(),
 						Name:     types.String("File Storage API"),
 						AuthOnly: types.Bool(true),
-						OauthScopes: []components.ConnectorOauthScopes{
-							components.ConnectorOauthScopes{
+						OauthScopes: []components.UnifiedAPIOauthScope{
+							components.UnifiedAPIOauthScope{
 								ID:    types.String("contacts:all"),
 								Label: types.String("Read/write on the Contacts resource"),
 							},
@@ -483,7 +483,7 @@ func testConnectorConnectorsAllConnectorConnectorsAll0(w http.ResponseWriter, re
 					},
 				},
 				WebhookSupport: &components.WebhookSupport{
-					Mode:              components.ModeNative.ToPointer(),
+					Mode:              components.WebhookSupportModeNative.ToPointer(),
 					SubscriptionLevel: components.SubscriptionLevelIntegration.ToPointer(),
 					ManagedVia:        components.ManagedViaAPI.ToPointer(),
 				},

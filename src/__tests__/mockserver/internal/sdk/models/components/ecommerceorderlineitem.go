@@ -2,7 +2,7 @@
 
 package components
 
-type Options struct {
+type EcommerceOrderLineItemOption struct {
 	// A unique identifier for the option.
 	ID *string `json:"id,omitempty"`
 	// The name of the option.
@@ -11,21 +11,21 @@ type Options struct {
 	Value *string `json:"value,omitempty"`
 }
 
-func (o *Options) GetID() *string {
+func (o *EcommerceOrderLineItemOption) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *Options) GetName() *string {
+func (o *EcommerceOrderLineItemOption) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-func (o *Options) GetValue() *string {
+func (o *EcommerceOrderLineItemOption) GetValue() *string {
 	if o == nil {
 		return nil
 	}
@@ -45,8 +45,8 @@ type EcommerceOrderLineItem struct {
 	// The name of the product or variant associated with the line item.
 	Name *string `json:"name"`
 	// The description of the product or variant associated with the line item.
-	Description *string   `json:"description,omitempty"`
-	Options     []Options `json:"options,omitempty"`
+	Description *string                        `json:"description,omitempty"`
+	Options     []EcommerceOrderLineItemOption `json:"options,omitempty"`
 	// The quantity of the product or variant associated with the line item.
 	Quantity *string `json:"quantity"`
 	// The unit price of the product or variant associated with the line item.
@@ -110,7 +110,7 @@ func (o *EcommerceOrderLineItem) GetDescription() *string {
 	return o.Description
 }
 
-func (o *EcommerceOrderLineItem) GetOptions() []Options {
+func (o *EcommerceOrderLineItem) GetOptions() []EcommerceOrderLineItemOption {
 	if o == nil {
 		return nil
 	}

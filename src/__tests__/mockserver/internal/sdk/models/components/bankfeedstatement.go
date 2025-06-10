@@ -78,7 +78,7 @@ func (e *BankFeedStatementTransactionType) UnmarshalJSON(data []byte) error {
 	}
 }
 
-type Transactions struct {
+type Transaction struct {
 	// The date of the transaction - YYYY:MM::DDThh:mm:ss.sTZD
 	PostedDate time.Time `json:"posted_date"`
 	// A description of the transaction.
@@ -97,67 +97,67 @@ type Transactions struct {
 	TransactionType *BankFeedStatementTransactionType `json:"transaction_type,omitempty"`
 }
 
-func (t Transactions) MarshalJSON() ([]byte, error) {
+func (t Transaction) MarshalJSON() ([]byte, error) {
 	return utils.MarshalJSON(t, "", false)
 }
 
-func (t *Transactions) UnmarshalJSON(data []byte) error {
+func (t *Transaction) UnmarshalJSON(data []byte) error {
 	if err := utils.UnmarshalJSON(data, &t, "", false, false); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *Transactions) GetPostedDate() time.Time {
+func (o *Transaction) GetPostedDate() time.Time {
 	if o == nil {
 		return time.Time{}
 	}
 	return o.PostedDate
 }
 
-func (o *Transactions) GetDescription() *string {
+func (o *Transaction) GetDescription() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Description
 }
 
-func (o *Transactions) GetAmount() float64 {
+func (o *Transaction) GetAmount() float64 {
 	if o == nil {
 		return 0.0
 	}
 	return o.Amount
 }
 
-func (o *Transactions) GetCreditOrDebit() CreditOrDebit {
+func (o *Transaction) GetCreditOrDebit() CreditOrDebit {
 	if o == nil {
 		return CreditOrDebit("")
 	}
 	return o.CreditOrDebit
 }
 
-func (o *Transactions) GetSourceTransactionID() string {
+func (o *Transaction) GetSourceTransactionID() string {
 	if o == nil {
 		return ""
 	}
 	return o.SourceTransactionID
 }
 
-func (o *Transactions) GetCounterparty() *string {
+func (o *Transaction) GetCounterparty() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Counterparty
 }
 
-func (o *Transactions) GetReference() *string {
+func (o *Transaction) GetReference() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Reference
 }
 
-func (o *Transactions) GetTransactionType() *BankFeedStatementTransactionType {
+func (o *Transaction) GetTransactionType() *BankFeedStatementTransactionType {
 	if o == nil {
 		return nil
 	}
@@ -184,7 +184,7 @@ type BankFeedStatement struct {
 	// Whether the amount is a credit or debit.
 	EndBalanceCreditOrDebit *CreditOrDebit `json:"end_balance_credit_or_debit,omitempty"`
 	// List of transactions in the bank feed statement.
-	Transactions []Transactions `json:"transactions,omitempty"`
+	Transactions []Transaction `json:"transactions,omitempty"`
 	// The date and time when the object was created.
 	CreatedAt *time.Time `json:"created_at,omitempty"`
 	// The user who created the object.
@@ -269,7 +269,7 @@ func (o *BankFeedStatement) GetEndBalanceCreditOrDebit() *CreditOrDebit {
 	return o.EndBalanceCreditOrDebit
 }
 
-func (o *BankFeedStatement) GetTransactions() []Transactions {
+func (o *BankFeedStatement) GetTransactions() []Transaction {
 	if o == nil {
 		return nil
 	}
@@ -322,7 +322,7 @@ type BankFeedStatementInput struct {
 	// Whether the amount is a credit or debit.
 	EndBalanceCreditOrDebit *CreditOrDebit `json:"end_balance_credit_or_debit,omitempty"`
 	// List of transactions in the bank feed statement.
-	Transactions []Transactions `json:"transactions,omitempty"`
+	Transactions []Transaction `json:"transactions,omitempty"`
 }
 
 func (b BankFeedStatementInput) MarshalJSON() ([]byte, error) {
@@ -392,7 +392,7 @@ func (o *BankFeedStatementInput) GetEndBalanceCreditOrDebit() *CreditOrDebit {
 	return o.EndBalanceCreditOrDebit
 }
 
-func (o *BankFeedStatementInput) GetTransactions() []Transactions {
+func (o *BankFeedStatementInput) GetTransactions() []Transaction {
 	if o == nil {
 		return nil
 	}

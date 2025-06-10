@@ -7,22 +7,22 @@ import (
 	"fmt"
 )
 
-// TimeOffRequestStatus - Time off request status to filter on
-type TimeOffRequestStatus string
+// TimeOffRequestsFilterTimeOffRequestStatus - Time off request status to filter on
+type TimeOffRequestsFilterTimeOffRequestStatus string
 
 const (
-	TimeOffRequestStatusRequested TimeOffRequestStatus = "requested"
-	TimeOffRequestStatusApproved  TimeOffRequestStatus = "approved"
-	TimeOffRequestStatusDeclined  TimeOffRequestStatus = "declined"
-	TimeOffRequestStatusCancelled TimeOffRequestStatus = "cancelled"
-	TimeOffRequestStatusDeleted   TimeOffRequestStatus = "deleted"
-	TimeOffRequestStatusOther     TimeOffRequestStatus = "other"
+	TimeOffRequestsFilterTimeOffRequestStatusRequested TimeOffRequestsFilterTimeOffRequestStatus = "requested"
+	TimeOffRequestsFilterTimeOffRequestStatusApproved  TimeOffRequestsFilterTimeOffRequestStatus = "approved"
+	TimeOffRequestsFilterTimeOffRequestStatusDeclined  TimeOffRequestsFilterTimeOffRequestStatus = "declined"
+	TimeOffRequestsFilterTimeOffRequestStatusCancelled TimeOffRequestsFilterTimeOffRequestStatus = "cancelled"
+	TimeOffRequestsFilterTimeOffRequestStatusDeleted   TimeOffRequestsFilterTimeOffRequestStatus = "deleted"
+	TimeOffRequestsFilterTimeOffRequestStatusOther     TimeOffRequestsFilterTimeOffRequestStatus = "other"
 )
 
-func (e TimeOffRequestStatus) ToPointer() *TimeOffRequestStatus {
+func (e TimeOffRequestsFilterTimeOffRequestStatus) ToPointer() *TimeOffRequestsFilterTimeOffRequestStatus {
 	return &e
 }
-func (e *TimeOffRequestStatus) UnmarshalJSON(data []byte) error {
+func (e *TimeOffRequestsFilterTimeOffRequestStatus) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -39,10 +39,10 @@ func (e *TimeOffRequestStatus) UnmarshalJSON(data []byte) error {
 	case "deleted":
 		fallthrough
 	case "other":
-		*e = TimeOffRequestStatus(v)
+		*e = TimeOffRequestsFilterTimeOffRequestStatus(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for TimeOffRequestStatus: %v", v)
+		return fmt.Errorf("invalid value for TimeOffRequestsFilterTimeOffRequestStatus: %v", v)
 	}
 }
 
@@ -56,7 +56,7 @@ type TimeOffRequestsFilter struct {
 	// Employee ID
 	EmployeeID *string `queryParam:"name=employee_id"`
 	// Time off request status to filter on
-	TimeOffRequestStatus *TimeOffRequestStatus `queryParam:"name=time_off_request_status"`
+	TimeOffRequestStatus *TimeOffRequestsFilterTimeOffRequestStatus `queryParam:"name=time_off_request_status"`
 	// Company ID
 	CompanyID *string `queryParam:"name=company_id"`
 }
@@ -89,7 +89,7 @@ func (o *TimeOffRequestsFilter) GetEmployeeID() *string {
 	return o.EmployeeID
 }
 
-func (o *TimeOffRequestsFilter) GetTimeOffRequestStatus() *TimeOffRequestStatus {
+func (o *TimeOffRequestsFilter) GetTimeOffRequestStatus() *TimeOffRequestsFilterTimeOffRequestStatus {
 	if o == nil {
 		return nil
 	}

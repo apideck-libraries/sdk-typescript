@@ -16,6 +16,8 @@ test("Apideck Departments Hris Departments All", async () => {
   });
 
   const result = await apideck.hris.departments.list({
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
     passThrough: {
       "search": "San Francisco",
@@ -195,6 +197,8 @@ test("Apideck Departments Hris Departments One", async () => {
 
   const result = await apideck.hris.departments.get({
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
     fields: "id,updated_at",
   });
@@ -302,6 +306,8 @@ test("Apideck Departments Hris Departments Delete", async () => {
 
   const result = await apideck.hris.departments.delete({
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
   });
   expect(result.httpMeta.response.status).toBe(200);

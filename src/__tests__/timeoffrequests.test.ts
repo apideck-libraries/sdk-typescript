@@ -16,6 +16,8 @@ test("Timeoffrequests Hris Time Off Requests All", async () => {
   });
 
   const result = await apideck.hris.timeOffRequests.list({
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
     filter: {
       startDate: "2022-04-08",
@@ -242,6 +244,8 @@ test("Timeoffrequests Hris Time Off Requests One", async () => {
 
   const result = await apideck.hris.timeOffRequests.get({
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
     fields: "id,updated_at",
     employeeId: "<id>",
@@ -363,6 +367,8 @@ test("Timeoffrequests Hris Time Off Requests Delete", async () => {
 
   const result = await apideck.hris.timeOffRequests.delete({
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
     employeeId: "<id>",
   });

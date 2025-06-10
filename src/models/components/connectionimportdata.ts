@@ -27,17 +27,12 @@ export type Credentials = {
   expiresIn?: number | null | undefined;
 };
 
-/**
- * Connection settings. Values will persist to `form_fields` with corresponding id
- */
-export type Settings = {};
-
 export type ConnectionImportData = {
   credentials?: Credentials | undefined;
   /**
    * Connection settings. Values will persist to `form_fields` with corresponding id
    */
-  settings?: Settings | null | undefined;
+  settings?: { [k: string]: any } | null | undefined;
   /**
    * Attach your own consumer specific metadata
    */
@@ -120,64 +115,20 @@ export function credentialsFromJSON(
 }
 
 /** @internal */
-export const Settings$inboundSchema: z.ZodType<
-  Settings,
-  z.ZodTypeDef,
-  unknown
-> = z.object({});
-
-/** @internal */
-export type Settings$Outbound = {};
-
-/** @internal */
-export const Settings$outboundSchema: z.ZodType<
-  Settings$Outbound,
-  z.ZodTypeDef,
-  Settings
-> = z.object({});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Settings$ {
-  /** @deprecated use `Settings$inboundSchema` instead. */
-  export const inboundSchema = Settings$inboundSchema;
-  /** @deprecated use `Settings$outboundSchema` instead. */
-  export const outboundSchema = Settings$outboundSchema;
-  /** @deprecated use `Settings$Outbound` instead. */
-  export type Outbound = Settings$Outbound;
-}
-
-export function settingsToJSON(settings: Settings): string {
-  return JSON.stringify(Settings$outboundSchema.parse(settings));
-}
-
-export function settingsFromJSON(
-  jsonString: string,
-): SafeParseResult<Settings, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => Settings$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Settings' from JSON`,
-  );
-}
-
-/** @internal */
 export const ConnectionImportData$inboundSchema: z.ZodType<
   ConnectionImportData,
   z.ZodTypeDef,
   unknown
 > = z.object({
   credentials: z.lazy(() => Credentials$inboundSchema).optional(),
-  settings: z.nullable(z.lazy(() => Settings$inboundSchema)).optional(),
+  settings: z.nullable(z.record(z.any())).optional(),
   metadata: z.nullable(z.record(z.any())).optional(),
 });
 
 /** @internal */
 export type ConnectionImportData$Outbound = {
   credentials?: Credentials$Outbound | undefined;
-  settings?: Settings$Outbound | null | undefined;
+  settings?: { [k: string]: any } | null | undefined;
   metadata?: { [k: string]: any } | null | undefined;
 };
 
@@ -188,7 +139,7 @@ export const ConnectionImportData$outboundSchema: z.ZodType<
   ConnectionImportData
 > = z.object({
   credentials: z.lazy(() => Credentials$outboundSchema).optional(),
-  settings: z.nullable(z.lazy(() => Settings$outboundSchema)).optional(),
+  settings: z.nullable(z.record(z.any())).optional(),
   metadata: z.nullable(z.record(z.any())).optional(),
 });
 

@@ -16,6 +16,8 @@ test("Validateconnection Vault Validate Connection State", async () => {
   });
 
   const result = await apideck.vault.validateConnection.state({
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "pipedrive",
     unifiedApi: "crm",
   });

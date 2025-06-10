@@ -26,32 +26,7 @@ let value: Expense = {
     rate: 10,
   },
   totalAmount: 275,
-  lineItems: [
-    {
-      id: "12345",
-      trackingCategories: [
-        {
-          id: "123456",
-          name: "New York",
-        },
-      ],
-      accountId: "123456",
-      customerId: "12345",
-      departmentId: "12345",
-      locationId: "12345",
-      subsidiaryId: "12345",
-      taxRate: {
-        id: "123456",
-        code: "N-T",
-        name: "GST on Purchases",
-        rate: 10,
-      },
-      description: "Travel US.",
-      totalAmount: 275,
-      billable: true,
-      lineNumber: 1,
-    },
-  ],
+  lineItems: [],
   customFields: [
     {
       id: "2389328923893298",

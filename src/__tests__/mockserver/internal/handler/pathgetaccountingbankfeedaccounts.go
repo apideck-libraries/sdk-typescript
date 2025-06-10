@@ -68,15 +68,15 @@ func testAccountingBankFeedAccountsAllAccountingBankFeedAccountsAll0(w http.Resp
 						ID:          types.String("2389328923893298"),
 						Name:        types.String("employee_level"),
 						Description: types.String("Employee Level"),
-						Value: types.Pointer(components.CreateValueFour(
-							components.Four{},
+						Value: types.Pointer(components.CreateCustomFieldValueUnionCustomFieldValue1(
+							components.CustomFieldValue1{},
 						)),
 					},
 					components.CustomField{
 						ID:          types.String("2389328923893298"),
 						Name:        types.String("employee_level"),
 						Description: types.String("Employee Level"),
-						Value: types.Pointer(components.CreateValueNumber(
+						Value: types.Pointer(components.CreateCustomFieldValueUnionNumber(
 							10,
 						)),
 					},
@@ -101,8 +101,8 @@ func testAccountingBankFeedAccountsAllAccountingBankFeedAccountsAll0(w http.Resp
 						ID:          types.String("2389328923893298"),
 						Name:        types.String("employee_level"),
 						Description: types.String("Employee Level"),
-						Value: types.Pointer(components.CreateValueFour(
-							components.Four{},
+						Value: types.Pointer(components.CreateCustomFieldValueUnionCustomFieldValue1(
+							components.CustomFieldValue1{},
 						)),
 					},
 				},
@@ -126,7 +126,7 @@ func testAccountingBankFeedAccountsAllAccountingBankFeedAccountsAll0(w http.Resp
 						ID:          types.String("2389328923893298"),
 						Name:        types.String("employee_level"),
 						Description: types.String("Employee Level"),
-						Value: types.Pointer(components.CreateValueStr(
+						Value: types.Pointer(components.CreateCustomFieldValueUnionStr(
 							"Uses Salesforce and Marketo",
 						)),
 					},
@@ -134,8 +134,8 @@ func testAccountingBankFeedAccountsAllAccountingBankFeedAccountsAll0(w http.Resp
 						ID:          types.String("2389328923893298"),
 						Name:        types.String("employee_level"),
 						Description: types.String("Employee Level"),
-						Value: types.Pointer(components.CreateValueFour(
-							components.Four{},
+						Value: types.Pointer(components.CreateCustomFieldValueUnionCustomFieldValue1(
+							components.CustomFieldValue1{},
 						)),
 					},
 				},

@@ -4,6 +4,7 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { ApideckError } from "./apideckerror.js";
 
 /**
  * Payment Required
@@ -38,7 +39,7 @@ export type PaymentRequiredResponseData = {
 /**
  * Payment Required
  */
-export class PaymentRequiredResponse extends Error {
+export class PaymentRequiredResponse extends ApideckError {
   /**
    * HTTP status code
    */
@@ -63,11 +64,13 @@ export class PaymentRequiredResponse extends Error {
   /** The original data that was passed to this error instance. */
   data$: PaymentRequiredResponseData;
 
-  constructor(err: PaymentRequiredResponseData) {
+  constructor(
+    err: PaymentRequiredResponseData,
+    httpMeta: { response: Response; request: Request; body: string },
+  ) {
     const message = err.message || "API error occurred";
-    super(message);
+    super(message, httpMeta);
     this.data$ = err;
-
     if (err.statusCode != null) this.statusCode = err.statusCode;
     if (err.error != null) this.error = err.error;
     if (err.typeName != null) this.typeName = err.typeName;
@@ -90,6 +93,9 @@ export const PaymentRequiredResponse$inboundSchema: z.ZodType<
   message: z.string().optional(),
   detail: z.string().optional(),
   ref: z.string().optional(),
+  request$: z.instanceof(Request),
+  response$: z.instanceof(Response),
+  body$: z.string(),
 })
   .transform((v) => {
     const remapped = remap$(v, {
@@ -97,7 +103,11 @@ export const PaymentRequiredResponse$inboundSchema: z.ZodType<
       "type_name": "typeName",
     });
 
-    return new PaymentRequiredResponse(remapped);
+    return new PaymentRequiredResponse(remapped, {
+      request: v.request$,
+      response: v.response$,
+      body: v.body$,
+    });
   });
 
 /** @internal */

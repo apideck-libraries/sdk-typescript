@@ -59,7 +59,7 @@ func testEcommerceCustomersAllEcommerceCustomersAll0(w http.ResponseWriter, req 
 				FirstName:   types.String("John"),
 				LastName:    types.String("Doe"),
 				CompanyName: types.String("Acme Inc."),
-				Status:      components.CustomerStatusActive.ToPointer(),
+				Status:      components.EcommerceCustomerStatusCustomerStatusActive.ToPointer(),
 				Currency:    components.CurrencyUsd.ToPointer(),
 				Emails: []components.Email{
 					components.Email{
@@ -99,8 +99,8 @@ func testEcommerceCustomersAllEcommerceCustomersAll0(w http.ResponseWriter, req 
 						Type:        components.PhoneNumberTypePrimary.ToPointer(),
 					},
 				},
-				Addresses: []components.Addresses{
-					components.Addresses{
+				Addresses: []components.EcommerceCustomerAddress{
+					components.EcommerceCustomerAddress{
 						Type:       components.EcommerceCustomerTypeBilling.ToPointer(),
 						ID:         types.String("12345"),
 						Line1:      types.String("Main street"),
@@ -127,7 +127,7 @@ func testEcommerceCustomersAllEcommerceCustomersAll0(w http.ResponseWriter, req 
 				FirstName:   types.String("John"),
 				LastName:    types.String("Doe"),
 				CompanyName: types.String("Acme Inc."),
-				Status:      components.CustomerStatusActive.ToPointer(),
+				Status:      components.EcommerceCustomerStatusCustomerStatusActive.ToPointer(),
 				Currency:    components.CurrencyUsd.ToPointer(),
 				Emails: []components.Email{
 					components.Email{
@@ -154,8 +154,8 @@ func testEcommerceCustomersAllEcommerceCustomersAll0(w http.ResponseWriter, req 
 						Type:        components.PhoneNumberTypePrimary.ToPointer(),
 					},
 				},
-				Addresses: []components.Addresses{
-					components.Addresses{
+				Addresses: []components.EcommerceCustomerAddress{
+					components.EcommerceCustomerAddress{
 						Type:       components.EcommerceCustomerTypeBilling.ToPointer(),
 						ID:         types.String("12345"),
 						Line1:      types.String("Main street"),
@@ -165,7 +165,7 @@ func testEcommerceCustomersAllEcommerceCustomersAll0(w http.ResponseWriter, req 
 						PostalCode: types.String("12345"),
 						Country:    types.String("US"),
 					},
-					components.Addresses{
+					components.EcommerceCustomerAddress{
 						Type:       components.EcommerceCustomerTypeBilling.ToPointer(),
 						ID:         types.String("12345"),
 						Line1:      types.String("Main street"),
@@ -192,7 +192,7 @@ func testEcommerceCustomersAllEcommerceCustomersAll0(w http.ResponseWriter, req 
 				FirstName:   types.String("John"),
 				LastName:    types.String("Doe"),
 				CompanyName: types.String("Acme Inc."),
-				Status:      components.CustomerStatusActive.ToPointer(),
+				Status:      components.EcommerceCustomerStatusCustomerStatusActive.ToPointer(),
 				Currency:    components.CurrencyUsd.ToPointer(),
 				Emails: []components.Email{
 					components.Email{
@@ -221,8 +221,8 @@ func testEcommerceCustomersAllEcommerceCustomersAll0(w http.ResponseWriter, req 
 						Type:        components.PhoneNumberTypePrimary.ToPointer(),
 					},
 				},
-				Addresses: []components.Addresses{
-					components.Addresses{
+				Addresses: []components.EcommerceCustomerAddress{
+					components.EcommerceCustomerAddress{
 						Type:       components.EcommerceCustomerTypeBilling.ToPointer(),
 						ID:         types.String("12345"),
 						Line1:      types.String("Main street"),

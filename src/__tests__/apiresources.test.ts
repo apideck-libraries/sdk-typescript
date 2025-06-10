@@ -16,6 +16,7 @@ test("Apiresources Connector Api Resources One", async () => {
   });
 
   const result = await apideck.connector.apiResources.get({
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     id: "<id>",
     resourceId: "<id>",
   });

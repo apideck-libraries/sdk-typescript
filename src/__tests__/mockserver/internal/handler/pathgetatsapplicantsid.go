@@ -87,16 +87,16 @@ func testAtsApplicantsOneAtsApplicantsOne0(w http.ResponseWriter, req *http.Requ
 					ID:          types.String("2389328923893298"),
 					Name:        types.String("employee_level"),
 					Description: types.String("Employee Level"),
-					Value: types.Pointer(components.CreateValueFour(
-						components.Four{},
+					Value: types.Pointer(components.CreateCustomFieldValueUnionCustomFieldValue1(
+						components.CustomFieldValue1{},
 					)),
 				},
 				components.CustomField{
 					ID:          types.String("2389328923893298"),
 					Name:        types.String("employee_level"),
 					Description: types.String("Employee Level"),
-					Value: types.Pointer(components.CreateValueFour(
-						components.Four{},
+					Value: types.Pointer(components.CreateCustomFieldValueUnionCustomFieldValue1(
+						components.CustomFieldValue1{},
 					)),
 				},
 			},
@@ -129,7 +129,7 @@ func testAtsApplicantsOneAtsApplicantsOne0(w http.ResponseWriter, req *http.Requ
 			Addresses: []components.Address{
 				components.Address{
 					ID:           types.String("123"),
-					Type:         components.TypePrimary.ToPointer(),
+					Type:         components.AddressTypePrimary.ToPointer(),
 					String:       types.String("25 Spring Street, Blackburn, VIC 3130"),
 					Name:         types.String("HQ US"),
 					Line1:        types.String("Main street"),
@@ -155,7 +155,7 @@ func testAtsApplicantsOneAtsApplicantsOne0(w http.ResponseWriter, req *http.Requ
 				},
 				components.Address{
 					ID:           types.String("123"),
-					Type:         components.TypePrimary.ToPointer(),
+					Type:         components.AddressTypePrimary.ToPointer(),
 					String:       types.String("25 Spring Street, Blackburn, VIC 3130"),
 					Name:         types.String("HQ US"),
 					Line1:        types.String("Main street"),
@@ -180,20 +180,20 @@ func testAtsApplicantsOneAtsApplicantsOne0(w http.ResponseWriter, req *http.Requ
 					RowVersion:   types.String("1-12345"),
 				},
 			},
-			Websites: []components.Websites{
-				components.Websites{
+			Websites: []components.ApplicantWebsite{
+				components.ApplicantWebsite{
 					ID:   types.String("12345"),
 					URL:  "http://example.com",
 					Type: components.ApplicantTypePrimary.ToPointer(),
 				},
-				components.Websites{
+				components.ApplicantWebsite{
 					ID:   types.String("12345"),
 					URL:  "http://example.com",
 					Type: components.ApplicantTypePrimary.ToPointer(),
 				},
 			},
-			SocialLinks: []components.SocialLinks{
-				components.SocialLinks{
+			SocialLinks: []components.ApplicantSocialLink{
+				components.ApplicantSocialLink{
 					ID:   types.String("12345"),
 					URL:  "https://www.twitter.com/apideck",
 					Type: types.String("twitter"),
@@ -240,8 +240,8 @@ func testAtsApplicantsOneAtsApplicantsOne0(w http.ResponseWriter, req *http.Requ
 			PassThrough: []components.PassThroughBody{
 				components.PassThroughBody{
 					ServiceID: "<id>",
-					ExtendPaths: []components.ExtendPaths{
-						components.ExtendPaths{
+					ExtendPaths: []components.ExtendPath{
+						components.ExtendPath{
 							Path: "$.nested.property",
 							Value: map[string]any{
 								"TaxClassificationRef": map[string]any{
@@ -249,7 +249,7 @@ func testAtsApplicantsOneAtsApplicantsOne0(w http.ResponseWriter, req *http.Requ
 								},
 							},
 						},
-						components.ExtendPaths{
+						components.ExtendPath{
 							Path: "$.nested.property",
 							Value: map[string]any{
 								"TaxClassificationRef": map[string]any{
@@ -257,7 +257,7 @@ func testAtsApplicantsOneAtsApplicantsOne0(w http.ResponseWriter, req *http.Requ
 								},
 							},
 						},
-						components.ExtendPaths{
+						components.ExtendPath{
 							Path: "$.nested.property",
 							Value: map[string]any{
 								"TaxClassificationRef": map[string]any{

@@ -16,6 +16,8 @@ test("Leads Crm Leads All", async () => {
   });
 
   const result = await apideck.crm.leads.list({
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
     filter: {
       firstName: "Elon",
@@ -25,6 +27,7 @@ test("Leads Crm Leads All", async () => {
     },
     sort: {
       by: "created_at",
+      direction: "desc",
     },
     passThrough: {
       "search": "San Francisco",
@@ -661,6 +664,8 @@ test("Leads Crm Leads One", async () => {
 
   const result = await apideck.crm.leads.get({
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
     fields: "id,updated_at",
   });
@@ -880,6 +885,8 @@ test("Leads Crm Leads Delete", async () => {
 
   const result = await apideck.crm.leads.delete({
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
   });
   expect(result.httpMeta.response.status).toBe(200);

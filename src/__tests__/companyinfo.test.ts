@@ -17,6 +17,8 @@ test("Companyinfo Accounting Company Info One", async () => {
   });
 
   const result = await apideck.accounting.companyInfo.get({
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
     fields: "id,updated_at",
   });

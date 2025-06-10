@@ -7,26 +7,6 @@ import { FileStorageSharedLinksAddRequest } from "@apideck/unify/models/operatio
 
 let value: FileStorageSharedLinksAddRequest = {
   serviceId: "salesforce",
-  sharedLink: {
-    downloadUrl: "https://www.box.com/shared/static/rh935iit6ewrmw0unyul.jpeg",
-    targetId: "<id>",
-    scope: "company",
-    passThrough: [
-      {
-        serviceId: "<id>",
-        extendPaths: [
-          {
-            path: "$.nested.property",
-            value: {
-              "TaxClassificationRef": {
-                "value": "EUC-99990201-V1-00020000",
-              },
-            },
-          },
-        ],
-      },
-    ],
-  },
 };
 ```
 

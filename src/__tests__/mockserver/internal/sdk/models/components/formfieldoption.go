@@ -26,7 +26,7 @@ type FormFieldOption struct {
 func CreateFormFieldOptionSimple(simple SimpleFormFieldOption) FormFieldOption {
 	typ := FormFieldOptionTypeSimple
 
-	typStr := OptionType(typ)
+	typStr := SimpleFormFieldOptionOptionType(typ)
 	simple.OptionType = typStr
 
 	return FormFieldOption{

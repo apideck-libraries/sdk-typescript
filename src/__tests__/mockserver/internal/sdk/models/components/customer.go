@@ -9,21 +9,21 @@ import (
 	"time"
 )
 
-// CustomerStatusStatus - Customer status
-type CustomerStatusStatus string
+// CustomerStatus - Customer status
+type CustomerStatus string
 
 const (
-	CustomerStatusStatusActive             CustomerStatusStatus = "active"
-	CustomerStatusStatusInactive           CustomerStatusStatus = "inactive"
-	CustomerStatusStatusArchived           CustomerStatusStatus = "archived"
-	CustomerStatusStatusGdprErasureRequest CustomerStatusStatus = "gdpr-erasure-request"
-	CustomerStatusStatusUnknown            CustomerStatusStatus = "unknown"
+	CustomerStatusActive             CustomerStatus = "active"
+	CustomerStatusInactive           CustomerStatus = "inactive"
+	CustomerStatusArchived           CustomerStatus = "archived"
+	CustomerStatusGdprErasureRequest CustomerStatus = "gdpr-erasure-request"
+	CustomerStatusUnknown            CustomerStatus = "unknown"
 )
 
-func (e CustomerStatusStatus) ToPointer() *CustomerStatusStatus {
+func (e CustomerStatus) ToPointer() *CustomerStatus {
 	return &e
 }
-func (e *CustomerStatusStatus) UnmarshalJSON(data []byte) error {
+func (e *CustomerStatus) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -38,10 +38,10 @@ func (e *CustomerStatusStatus) UnmarshalJSON(data []byte) error {
 	case "gdpr-erasure-request":
 		fallthrough
 	case "unknown":
-		*e = CustomerStatusStatus(v)
+		*e = CustomerStatus(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for CustomerStatusStatus: %v", v)
+		return fmt.Errorf("invalid value for CustomerStatus: %v", v)
 	}
 }
 
@@ -86,7 +86,7 @@ type Customer struct {
 	// The parent customer this entity is linked to.
 	Parent *LinkedParentCustomer `json:"parent,omitempty"`
 	// Customer status
-	Status *CustomerStatusStatus `json:"status,omitempty"`
+	Status *CustomerStatus `json:"status,omitempty"`
 	// Payment method used for the transaction, such as cash, credit card, bank transfer, or check
 	PaymentMethod *string `json:"payment_method,omitempty"`
 	// The channel through which the transaction is processed.
@@ -287,7 +287,7 @@ func (o *Customer) GetParent() *LinkedParentCustomer {
 	return o.Parent
 }
 
-func (o *Customer) GetStatus() *CustomerStatusStatus {
+func (o *Customer) GetStatus() *CustomerStatus {
 	if o == nil {
 		return nil
 	}
@@ -401,7 +401,7 @@ type CustomerInput struct {
 	// The parent customer this entity is linked to.
 	Parent *LinkedParentCustomer `json:"parent,omitempty"`
 	// Customer status
-	Status *CustomerStatusStatus `json:"status,omitempty"`
+	Status *CustomerStatus `json:"status,omitempty"`
 	// Payment method used for the transaction, such as cash, credit card, bank transfer, or check
 	PaymentMethod *string `json:"payment_method,omitempty"`
 	// The channel through which the transaction is processed.
@@ -567,7 +567,7 @@ func (o *CustomerInput) GetParent() *LinkedParentCustomer {
 	return o.Parent
 }
 
-func (o *CustomerInput) GetStatus() *CustomerStatusStatus {
+func (o *CustomerInput) GetStatus() *CustomerStatus {
 	if o == nil {
 		return nil
 	}

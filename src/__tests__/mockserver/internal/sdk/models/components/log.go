@@ -29,50 +29,50 @@ func (o *Operation) GetName() string {
 	return o.Name
 }
 
-// Service - Apideck service provider associated with request.
-type Service struct {
+// LogService - Apideck service provider associated with request.
+type LogService struct {
 	// Apideck service provider id.
 	ID string `json:"id"`
 	// Apideck service provider name.
 	Name string `json:"name"`
 }
 
-func (o *Service) GetID() string {
+func (o *LogService) GetID() string {
 	if o == nil {
 		return ""
 	}
 	return o.ID
 }
 
-func (o *Service) GetName() string {
+func (o *LogService) GetName() string {
 	if o == nil {
 		return ""
 	}
 	return o.Name
 }
 
-// UnifiedAPI - Which Unified Api request was made to.
-type UnifiedAPI string
+// UnifiedAPIEnum - Which Unified Api request was made to.
+type UnifiedAPIEnum string
 
 const (
-	UnifiedAPICrm           UnifiedAPI = "crm"
-	UnifiedAPILead          UnifiedAPI = "lead"
-	UnifiedAPIProxy         UnifiedAPI = "proxy"
-	UnifiedAPIVault         UnifiedAPI = "vault"
-	UnifiedAPIAccounting    UnifiedAPI = "accounting"
-	UnifiedAPIHris          UnifiedAPI = "hris"
-	UnifiedAPIAts           UnifiedAPI = "ats"
-	UnifiedAPIEcommerce     UnifiedAPI = "ecommerce"
-	UnifiedAPIIssueTracking UnifiedAPI = "issue-tracking"
-	UnifiedAPIPos           UnifiedAPI = "pos"
-	UnifiedAPIFileStorage   UnifiedAPI = "file-storage"
-	UnifiedAPISms           UnifiedAPI = "sms"
+	UnifiedAPIEnumCrm           UnifiedAPIEnum = "crm"
+	UnifiedAPIEnumLead          UnifiedAPIEnum = "lead"
+	UnifiedAPIEnumProxy         UnifiedAPIEnum = "proxy"
+	UnifiedAPIEnumVault         UnifiedAPIEnum = "vault"
+	UnifiedAPIEnumAccounting    UnifiedAPIEnum = "accounting"
+	UnifiedAPIEnumHris          UnifiedAPIEnum = "hris"
+	UnifiedAPIEnumAts           UnifiedAPIEnum = "ats"
+	UnifiedAPIEnumEcommerce     UnifiedAPIEnum = "ecommerce"
+	UnifiedAPIEnumIssueTracking UnifiedAPIEnum = "issue-tracking"
+	UnifiedAPIEnumPos           UnifiedAPIEnum = "pos"
+	UnifiedAPIEnumFileStorage   UnifiedAPIEnum = "file-storage"
+	UnifiedAPIEnumSms           UnifiedAPIEnum = "sms"
 )
 
-func (e UnifiedAPI) ToPointer() *UnifiedAPI {
+func (e UnifiedAPIEnum) ToPointer() *UnifiedAPIEnum {
 	return &e
 }
-func (e *UnifiedAPI) UnmarshalJSON(data []byte) error {
+func (e *UnifiedAPIEnum) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -101,10 +101,10 @@ func (e *UnifiedAPI) UnmarshalJSON(data []byte) error {
 	case "file-storage":
 		fallthrough
 	case "sms":
-		*e = UnifiedAPI(v)
+		*e = UnifiedAPIEnum(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for UnifiedAPI: %v", v)
+		return fmt.Errorf("invalid value for UnifiedAPIEnum: %v", v)
 	}
 }
 
@@ -140,7 +140,7 @@ type Log struct {
 	// Indicates whether the request was made using Apidecks sandbox credentials or not.
 	Sandbox bool `json:"sandbox"`
 	// Apideck service provider associated with request.
-	Service Service `json:"service"`
+	Service LogService `json:"service"`
 	// The IP address of the source of the request.
 	SourceIP *string `json:"source_ip,omitempty"`
 	// HTTP Status code that was returned.
@@ -150,7 +150,7 @@ type Log struct {
 	// ISO Date and time when the request was made.
 	Timestamp string `json:"timestamp"`
 	// Which Unified Api request was made to.
-	UnifiedAPI UnifiedAPI `json:"unified_api"`
+	UnifiedAPI UnifiedAPIEnum `json:"unified_api"`
 }
 
 func (o *Log) GetAPIStyle() string {
@@ -258,9 +258,9 @@ func (o *Log) GetSandbox() bool {
 	return o.Sandbox
 }
 
-func (o *Log) GetService() Service {
+func (o *Log) GetService() LogService {
 	if o == nil {
-		return Service{}
+		return LogService{}
 	}
 	return o.Service
 }
@@ -293,9 +293,9 @@ func (o *Log) GetTimestamp() string {
 	return o.Timestamp
 }
 
-func (o *Log) GetUnifiedAPI() UnifiedAPI {
+func (o *Log) GetUnifiedAPI() UnifiedAPIEnum {
 	if o == nil {
-		return UnifiedAPI("")
+		return UnifiedAPIEnum("")
 	}
 	return o.UnifiedAPI
 }

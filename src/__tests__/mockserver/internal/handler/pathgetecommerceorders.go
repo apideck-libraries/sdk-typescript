@@ -154,13 +154,13 @@ func testEcommerceOrdersAllEcommerceOrdersAll0(w http.ResponseWriter, req *http.
 						Sku:         types.String("MBP123-16GB-SILVER-13"),
 						Name:        types.String("Midnight 16inch MacBook Pro"),
 						Description: types.String("Powerful and portable, the MacBook Pro is perfect for professionals and creatives."),
-						Options: []components.Options{
-							components.Options{
+						Options: []components.EcommerceOrderLineItemOption{
+							components.EcommerceOrderLineItemOption{
 								ID:    types.String("jkl012"),
 								Name:  types.String("Color"),
 								Value: types.String("Silver"),
 							},
-							components.Options{
+							components.EcommerceOrderLineItemOption{
 								ID:    types.String("jkl012"),
 								Name:  types.String("Color"),
 								Value: types.String("Silver"),
@@ -289,13 +289,13 @@ func testEcommerceOrdersAllEcommerceOrdersAll0(w http.ResponseWriter, req *http.
 						Sku:         types.String("MBP123-16GB-SILVER-13"),
 						Name:        types.String("Midnight 16inch MacBook Pro"),
 						Description: types.String("Powerful and portable, the MacBook Pro is perfect for professionals and creatives."),
-						Options: []components.Options{
-							components.Options{
+						Options: []components.EcommerceOrderLineItemOption{
+							components.EcommerceOrderLineItemOption{
 								ID:    types.String("jkl012"),
 								Name:  types.String("Color"),
 								Value: types.String("Silver"),
 							},
-							components.Options{
+							components.EcommerceOrderLineItemOption{
 								ID:    types.String("jkl012"),
 								Name:  types.String("Color"),
 								Value: types.String("Silver"),
@@ -330,8 +330,8 @@ func testEcommerceOrdersAllEcommerceOrdersAll0(w http.ResponseWriter, req *http.
 						Sku:         types.String("MBP123-16GB-SILVER-13"),
 						Name:        types.String("Midnight 16inch MacBook Pro"),
 						Description: types.String("Powerful and portable, the MacBook Pro is perfect for professionals and creatives."),
-						Options: []components.Options{
-							components.Options{
+						Options: []components.EcommerceOrderLineItemOption{
+							components.EcommerceOrderLineItemOption{
 								ID:    types.String("jkl012"),
 								Name:  types.String("Color"),
 								Value: types.String("Silver"),
@@ -361,13 +361,13 @@ func testEcommerceOrdersAllEcommerceOrdersAll0(w http.ResponseWriter, req *http.
 						Sku:         types.String("MBP123-16GB-SILVER-13"),
 						Name:        types.String("Midnight 16inch MacBook Pro"),
 						Description: types.String("Powerful and portable, the MacBook Pro is perfect for professionals and creatives."),
-						Options: []components.Options{
-							components.Options{
+						Options: []components.EcommerceOrderLineItemOption{
+							components.EcommerceOrderLineItemOption{
 								ID:    types.String("jkl012"),
 								Name:  types.String("Color"),
 								Value: types.String("Silver"),
 							},
-							components.Options{
+							components.EcommerceOrderLineItemOption{
 								ID:    types.String("jkl012"),
 								Name:  types.String("Color"),
 								Value: types.String("Silver"),
@@ -513,8 +513,8 @@ func testEcommerceOrdersAllEcommerceOrdersAll0(w http.ResponseWriter, req *http.
 						Sku:         types.String("MBP123-16GB-SILVER-13"),
 						Name:        types.String("Midnight 16inch MacBook Pro"),
 						Description: types.String("Powerful and portable, the MacBook Pro is perfect for professionals and creatives."),
-						Options: []components.Options{
-							components.Options{
+						Options: []components.EcommerceOrderLineItemOption{
+							components.EcommerceOrderLineItemOption{
 								ID:    types.String("jkl012"),
 								Name:  types.String("Color"),
 								Value: types.String("Silver"),
@@ -544,18 +544,18 @@ func testEcommerceOrdersAllEcommerceOrdersAll0(w http.ResponseWriter, req *http.
 						Sku:         types.String("MBP123-16GB-SILVER-13"),
 						Name:        types.String("Midnight 16inch MacBook Pro"),
 						Description: types.String("Powerful and portable, the MacBook Pro is perfect for professionals and creatives."),
-						Options: []components.Options{
-							components.Options{
+						Options: []components.EcommerceOrderLineItemOption{
+							components.EcommerceOrderLineItemOption{
 								ID:    types.String("jkl012"),
 								Name:  types.String("Color"),
 								Value: types.String("Silver"),
 							},
-							components.Options{
+							components.EcommerceOrderLineItemOption{
 								ID:    types.String("jkl012"),
 								Name:  types.String("Color"),
 								Value: types.String("Silver"),
 							},
-							components.Options{
+							components.EcommerceOrderLineItemOption{
 								ID:    types.String("jkl012"),
 								Name:  types.String("Color"),
 								Value: types.String("Silver"),

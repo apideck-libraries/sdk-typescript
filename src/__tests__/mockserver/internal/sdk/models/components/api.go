@@ -34,7 +34,7 @@ func (e *APIType) UnmarshalJSON(data []byte) error {
 	}
 }
 
-type Resources struct {
+type Resource struct {
 	// ID of the resource, typically a lowercased version of its name.
 	ID *string `json:"id,omitempty"`
 	// Name of the resource (plural)
@@ -45,28 +45,28 @@ type Resources struct {
 	ExcludedFromCoverage *bool `json:"excluded_from_coverage,omitempty"`
 }
 
-func (o *Resources) GetID() *string {
+func (o *Resource) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *Resources) GetName() *string {
+func (o *Resource) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-func (o *Resources) GetStatus() *ResourceStatus {
+func (o *Resource) GetStatus() *ResourceStatus {
 	if o == nil {
 		return nil
 	}
 	return o.Status
 }
 
-func (o *Resources) GetExcludedFromCoverage() *bool {
+func (o *Resource) GetExcludedFromCoverage() *bool {
 	if o == nil {
 		return nil
 	}
@@ -93,7 +93,7 @@ type API struct {
 	// List of categories the API belongs to.
 	Categories []string `json:"categories,omitempty"`
 	// List of resources supported in this API.
-	Resources []Resources `json:"resources,omitempty"`
+	Resources []Resource `json:"resources,omitempty"`
 	// List of event types this API supports.
 	Events []string `json:"events,omitempty"`
 }
@@ -161,7 +161,7 @@ func (o *API) GetCategories() []string {
 	return o.Categories
 }
 
-func (o *API) GetResources() []Resources {
+func (o *API) GetResources() []Resource {
 	if o == nil {
 		return nil
 	}

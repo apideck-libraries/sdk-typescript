@@ -5,7 +5,10 @@
 ```typescript
 import { FileStorageSharedLinksDeleteGlobals } from "@apideck/unify/models/operations";
 
-let value: FileStorageSharedLinksDeleteGlobals = {};
+let value: FileStorageSharedLinksDeleteGlobals = {
+  consumerId: "test-consumer",
+  appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
+};
 ```
 
 ## Fields

@@ -70,55 +70,14 @@ func testWebhookEventLogsAllWebhookEventLogsAll0(w http.ResponseWriter, req *htt
 				RequestBody:      types.String("{\"entity\":{\"id\":\"2222+test_user_id\",\"application_id\":\"2222\",\"consumer_id\":\"test_user_id\",\"name\":\"ActiveCampaign\",\"icon\":\"https://res.cloudinary.com/apideck/image/upload/v1529455970/catalog/activecampaign/icon128x128.png\",\"logo\":\"https://www.activecampaign.com/site/assets/social-2x.png\",\"unified_api\":\"crm\",\"service_id\":\"activecampaign\",\"auth_type\":\"apiKey\",\"enabled\":true,\"tag_line\":\"Integrated email marketing, marketing automation, and small business CRM. Save time while growing your business with sales automation.\",\"website\":\"https://www.activecampaign.com/\",\"settings\":{\"instance_url\":\"https://eu28.salesforce.com\",\"base_url\":\"https://updated.api-us1.com\"},\"metadata\":{\"plan\":\"enterprise\",\"account\":{\"name\":\"My Company\"}},\"state\":\"callable\",\"created_at\":\"2021-09-10T10:39:49.628Z\",\"updated_at\":\"2021-09-10T10:39:52.715Z\"},\"entityType\":\"Connection\"}"),
 				ResponseBody:     types.String("{\"status\":\"OK\"}"),
 				RetryScheduled:   types.Bool(true),
-				Attempts: []components.Attempts{
-					components.Attempts{
+				Attempts: []components.Attempt{
+					components.Attempt{
 						Timestamp:        types.String("2021-07-12T14:26:17.420Z"),
 						ExecutionAttempt: types.Float64(3),
 						StatusCode:       types.Int64(200),
 						Success:          types.Bool(true),
 					},
-					components.Attempts{
-						Timestamp:        types.String("2021-07-12T14:26:17.420Z"),
-						ExecutionAttempt: types.Float64(3),
-						StatusCode:       types.Int64(200),
-						Success:          types.Bool(true),
-					},
-				},
-			},
-			components.WebhookEventLog{
-				ID:            types.String("1d174c4d-fe9e-4377-a76c-6da22fe9cd87"),
-				StatusCode:    types.Int64(200),
-				Success:       types.Bool(true),
-				ApplicationID: types.String("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"),
-				ConsumerID:    types.String("test_consumer_id"),
-				UnifiedAPI:    components.UnifiedAPIIDCrm.ToPointer(),
-				Service: &components.WebhookEventLogService{
-					ID:   "101-data-solution",
-					Name: "101 Data Solution",
-				},
-				Endpoint:         types.String("https://example.com/my/webhook/endpoint"),
-				EventType:        types.String("vault.connection.updated"),
-				ExecutionAttempt: types.Float64(3),
-				HTTPMethod:       types.String("GET"),
-				Timestamp:        types.String("2021-07-12T14:26:17.420Z"),
-				EntityType:       types.String("Connection"),
-				RequestBody:      types.String("{\"entity\":{\"id\":\"2222+test_user_id\",\"application_id\":\"2222\",\"consumer_id\":\"test_user_id\",\"name\":\"ActiveCampaign\",\"icon\":\"https://res.cloudinary.com/apideck/image/upload/v1529455970/catalog/activecampaign/icon128x128.png\",\"logo\":\"https://www.activecampaign.com/site/assets/social-2x.png\",\"unified_api\":\"crm\",\"service_id\":\"activecampaign\",\"auth_type\":\"apiKey\",\"enabled\":true,\"tag_line\":\"Integrated email marketing, marketing automation, and small business CRM. Save time while growing your business with sales automation.\",\"website\":\"https://www.activecampaign.com/\",\"settings\":{\"instance_url\":\"https://eu28.salesforce.com\",\"base_url\":\"https://updated.api-us1.com\"},\"metadata\":{\"plan\":\"enterprise\",\"account\":{\"name\":\"My Company\"}},\"state\":\"callable\",\"created_at\":\"2021-09-10T10:39:49.628Z\",\"updated_at\":\"2021-09-10T10:39:52.715Z\"},\"entityType\":\"Connection\"}"),
-				ResponseBody:     types.String("{\"status\":\"OK\"}"),
-				RetryScheduled:   types.Bool(true),
-				Attempts: []components.Attempts{
-					components.Attempts{
-						Timestamp:        types.String("2021-07-12T14:26:17.420Z"),
-						ExecutionAttempt: types.Float64(3),
-						StatusCode:       types.Int64(200),
-						Success:          types.Bool(true),
-					},
-					components.Attempts{
-						Timestamp:        types.String("2021-07-12T14:26:17.420Z"),
-						ExecutionAttempt: types.Float64(3),
-						StatusCode:       types.Int64(200),
-						Success:          types.Bool(true),
-					},
-					components.Attempts{
+					components.Attempt{
 						Timestamp:        types.String("2021-07-12T14:26:17.420Z"),
 						ExecutionAttempt: types.Float64(3),
 						StatusCode:       types.Int64(200),
@@ -146,8 +105,49 @@ func testWebhookEventLogsAllWebhookEventLogsAll0(w http.ResponseWriter, req *htt
 				RequestBody:      types.String("{\"entity\":{\"id\":\"2222+test_user_id\",\"application_id\":\"2222\",\"consumer_id\":\"test_user_id\",\"name\":\"ActiveCampaign\",\"icon\":\"https://res.cloudinary.com/apideck/image/upload/v1529455970/catalog/activecampaign/icon128x128.png\",\"logo\":\"https://www.activecampaign.com/site/assets/social-2x.png\",\"unified_api\":\"crm\",\"service_id\":\"activecampaign\",\"auth_type\":\"apiKey\",\"enabled\":true,\"tag_line\":\"Integrated email marketing, marketing automation, and small business CRM. Save time while growing your business with sales automation.\",\"website\":\"https://www.activecampaign.com/\",\"settings\":{\"instance_url\":\"https://eu28.salesforce.com\",\"base_url\":\"https://updated.api-us1.com\"},\"metadata\":{\"plan\":\"enterprise\",\"account\":{\"name\":\"My Company\"}},\"state\":\"callable\",\"created_at\":\"2021-09-10T10:39:49.628Z\",\"updated_at\":\"2021-09-10T10:39:52.715Z\"},\"entityType\":\"Connection\"}"),
 				ResponseBody:     types.String("{\"status\":\"OK\"}"),
 				RetryScheduled:   types.Bool(true),
-				Attempts: []components.Attempts{
-					components.Attempts{
+				Attempts: []components.Attempt{
+					components.Attempt{
+						Timestamp:        types.String("2021-07-12T14:26:17.420Z"),
+						ExecutionAttempt: types.Float64(3),
+						StatusCode:       types.Int64(200),
+						Success:          types.Bool(true),
+					},
+					components.Attempt{
+						Timestamp:        types.String("2021-07-12T14:26:17.420Z"),
+						ExecutionAttempt: types.Float64(3),
+						StatusCode:       types.Int64(200),
+						Success:          types.Bool(true),
+					},
+					components.Attempt{
+						Timestamp:        types.String("2021-07-12T14:26:17.420Z"),
+						ExecutionAttempt: types.Float64(3),
+						StatusCode:       types.Int64(200),
+						Success:          types.Bool(true),
+					},
+				},
+			},
+			components.WebhookEventLog{
+				ID:            types.String("1d174c4d-fe9e-4377-a76c-6da22fe9cd87"),
+				StatusCode:    types.Int64(200),
+				Success:       types.Bool(true),
+				ApplicationID: types.String("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"),
+				ConsumerID:    types.String("test_consumer_id"),
+				UnifiedAPI:    components.UnifiedAPIIDCrm.ToPointer(),
+				Service: &components.WebhookEventLogService{
+					ID:   "101-data-solution",
+					Name: "101 Data Solution",
+				},
+				Endpoint:         types.String("https://example.com/my/webhook/endpoint"),
+				EventType:        types.String("vault.connection.updated"),
+				ExecutionAttempt: types.Float64(3),
+				HTTPMethod:       types.String("GET"),
+				Timestamp:        types.String("2021-07-12T14:26:17.420Z"),
+				EntityType:       types.String("Connection"),
+				RequestBody:      types.String("{\"entity\":{\"id\":\"2222+test_user_id\",\"application_id\":\"2222\",\"consumer_id\":\"test_user_id\",\"name\":\"ActiveCampaign\",\"icon\":\"https://res.cloudinary.com/apideck/image/upload/v1529455970/catalog/activecampaign/icon128x128.png\",\"logo\":\"https://www.activecampaign.com/site/assets/social-2x.png\",\"unified_api\":\"crm\",\"service_id\":\"activecampaign\",\"auth_type\":\"apiKey\",\"enabled\":true,\"tag_line\":\"Integrated email marketing, marketing automation, and small business CRM. Save time while growing your business with sales automation.\",\"website\":\"https://www.activecampaign.com/\",\"settings\":{\"instance_url\":\"https://eu28.salesforce.com\",\"base_url\":\"https://updated.api-us1.com\"},\"metadata\":{\"plan\":\"enterprise\",\"account\":{\"name\":\"My Company\"}},\"state\":\"callable\",\"created_at\":\"2021-09-10T10:39:49.628Z\",\"updated_at\":\"2021-09-10T10:39:52.715Z\"},\"entityType\":\"Connection\"}"),
+				ResponseBody:     types.String("{\"status\":\"OK\"}"),
+				RetryScheduled:   types.Bool(true),
+				Attempts: []components.Attempt{
+					components.Attempt{
 						Timestamp:        types.String("2021-07-12T14:26:17.420Z"),
 						ExecutionAttempt: types.Float64(3),
 						StatusCode:       types.Int64(200),

@@ -69,7 +69,7 @@ func testVaultLogsAllVaultLogsAll0(w http.ResponseWriter, req *http.Request) {
 				ParentID: types.String("0b5f7480-5550-4f5c-a5fc-3c01ac43dd0f"),
 				Path:     "/vault/connections",
 				Sandbox:  false,
-				Service: components.Service{
+				Service: components.LogService{
 					ID:   "apideck-vault",
 					Name: "Apideck Vault",
 				},
@@ -77,7 +77,7 @@ func testVaultLogsAllVaultLogsAll0(w http.ResponseWriter, req *http.Request) {
 				StatusCode: 200,
 				Success:    true,
 				Timestamp:  "2021-07-12T14:26:17.420Z",
-				UnifiedAPI: components.UnifiedAPIVault,
+				UnifiedAPI: components.UnifiedAPIEnumVault,
 			},
 			components.Log{
 				APIStyle:     "REST",
@@ -98,7 +98,7 @@ func testVaultLogsAllVaultLogsAll0(w http.ResponseWriter, req *http.Request) {
 				ParentID: types.String("0b5f7480-5550-4f5c-a5fc-3c01ac43dd0f"),
 				Path:     "/vault/connections",
 				Sandbox:  false,
-				Service: components.Service{
+				Service: components.LogService{
 					ID:   "apideck-vault",
 					Name: "Apideck Vault",
 				},
@@ -106,7 +106,7 @@ func testVaultLogsAllVaultLogsAll0(w http.ResponseWriter, req *http.Request) {
 				StatusCode: 200,
 				Success:    true,
 				Timestamp:  "2021-07-12T14:26:17.420Z",
-				UnifiedAPI: components.UnifiedAPIVault,
+				UnifiedAPI: components.UnifiedAPIEnumVault,
 			},
 			components.Log{
 				APIStyle:     "REST",
@@ -127,7 +127,7 @@ func testVaultLogsAllVaultLogsAll0(w http.ResponseWriter, req *http.Request) {
 				ParentID: types.String("0b5f7480-5550-4f5c-a5fc-3c01ac43dd0f"),
 				Path:     "/vault/connections",
 				Sandbox:  false,
-				Service: components.Service{
+				Service: components.LogService{
 					ID:   "apideck-vault",
 					Name: "Apideck Vault",
 				},
@@ -135,7 +135,7 @@ func testVaultLogsAllVaultLogsAll0(w http.ResponseWriter, req *http.Request) {
 				StatusCode: 200,
 				Success:    true,
 				Timestamp:  "2021-07-12T14:26:17.420Z",
-				UnifiedAPI: components.UnifiedAPIVault,
+				UnifiedAPI: components.UnifiedAPIEnumVault,
 			},
 		},
 		Meta: &components.Meta{

@@ -8,26 +8,6 @@ import { FileStorageSharedLinksUpdateRequest } from "@apideck/unify/models/opera
 let value: FileStorageSharedLinksUpdateRequest = {
   id: "<id>",
   serviceId: "salesforce",
-  sharedLink: {
-    downloadUrl: "https://www.box.com/shared/static/rh935iit6ewrmw0unyul.jpeg",
-    targetId: "<id>",
-    scope: "company",
-    passThrough: [
-      {
-        serviceId: "<id>",
-        extendPaths: [
-          {
-            path: "$.nested.property",
-            value: {
-              "TaxClassificationRef": {
-                "value": "EUC-99990201-V1-00020000",
-              },
-            },
-          },
-        ],
-      },
-    ],
-  },
 };
 ```
 

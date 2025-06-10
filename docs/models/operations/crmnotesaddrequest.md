@@ -7,32 +7,6 @@ import { CrmNotesAddRequest } from "@apideck/unify/models/operations";
 
 let value: CrmNotesAddRequest = {
   serviceId: "salesforce",
-  note: {
-    title: "Meeting Notes",
-    content: "Office hours are 9AM-6PM",
-    ownerId: "12345",
-    contactId: "12345",
-    companyId: "12345",
-    opportunityId: "12345",
-    activityId: "12345",
-    leadId: "12345",
-    active: true,
-    passThrough: [
-      {
-        serviceId: "<id>",
-        extendPaths: [
-          {
-            path: "$.nested.property",
-            value: {
-              "TaxClassificationRef": {
-                "value": "EUC-99990201-V1-00020000",
-              },
-            },
-          },
-        ],
-      },
-    ],
-  },
 };
 ```
 

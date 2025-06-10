@@ -13,8 +13,8 @@ type GetUsersResponse struct {
 	// Unified API resource name
 	Resource string `json:"resource"`
 	// Operation performed
-	Operation string `json:"operation"`
-	Data      []User `json:"data"`
+	Operation string       `json:"operation"`
+	Data      []UserOutput `json:"data"`
 	// Raw response from the integration when raw=true query param is provided
 	Raw map[string]any `json:"_raw,omitempty"`
 	// Response metadata
@@ -58,9 +58,9 @@ func (o *GetUsersResponse) GetOperation() string {
 	return o.Operation
 }
 
-func (o *GetUsersResponse) GetData() []User {
+func (o *GetUsersResponse) GetData() []UserOutput {
 	if o == nil {
-		return []User{}
+		return []UserOutput{}
 	}
 	return o.Data
 }

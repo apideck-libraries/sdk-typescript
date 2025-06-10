@@ -7,43 +7,6 @@ import { CrmCustomObjectSchemasAddRequest } from "@apideck/unify/models/operatio
 
 let value: CrmCustomObjectSchemasAddRequest = {
   serviceId: "salesforce",
-  customObjectSchema: {
-    name: "project",
-    description: "This schema defines a project custom object",
-    fields: [
-      {
-        id: "field_123",
-        name: "project_name",
-        description: "Name of the project",
-        type: "string",
-        required: true,
-        options: [
-          {
-            value: "option1",
-            label: "Option 1",
-          },
-        ],
-        defaultValue: "New Project",
-      },
-    ],
-    visible: true,
-    active: true,
-    passThrough: [
-      {
-        serviceId: "<id>",
-        extendPaths: [
-          {
-            path: "$.nested.property",
-            value: {
-              "TaxClassificationRef": {
-                "value": "EUC-99990201-V1-00020000",
-              },
-            },
-          },
-        ],
-      },
-    ],
-  },
 };
 ```
 

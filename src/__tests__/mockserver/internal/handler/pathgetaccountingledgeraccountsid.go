@@ -89,16 +89,16 @@ func testAccountingLedgerAccountsOneAccountingLedgerAccountsOne0(w http.Response
 				BankCode:         types.String("BNH"),
 				Currency:         components.CurrencyUsd.ToPointer(),
 			},
-			Categories: []components.Categories{
-				components.Categories{
+			Categories: []components.LedgerAccountCategory{
+				components.LedgerAccountCategory{
 					ID:   types.String("12345"),
 					Name: types.String("Finance Charges Expense"),
 				},
-				components.Categories{
+				components.LedgerAccountCategory{
 					ID:   types.String("12345"),
 					Name: types.String("Finance Charges Expense"),
 				},
-				components.Categories{
+				components.LedgerAccountCategory{
 					ID:   types.String("12345"),
 					Name: types.String("Finance Charges Expense"),
 				},
@@ -109,12 +109,12 @@ func testAccountingLedgerAccountsOneAccountingLedgerAccountsOne0(w http.Response
 				DisplayID: types.String("1-1100"),
 			},
 			SubAccount: types.Bool(false),
-			SubAccounts: []components.SubAccounts{
-				components.SubAccounts{
+			SubAccounts: []components.SubAccount{
+				components.SubAccount{
 					ID:             types.String("12345"),
 					AccountSubName: types.String("Petty Cash"),
 				},
-				components.SubAccounts{
+				components.SubAccount{
 					ID:             types.String("12345"),
 					AccountSubName: types.String("Petty Cash"),
 				},
@@ -125,17 +125,17 @@ func testAccountingLedgerAccountsOneAccountingLedgerAccountsOne0(w http.Response
 					ID:          types.String("2389328923893298"),
 					Name:        types.String("employee_level"),
 					Description: types.String("Employee Level"),
-					Value: types.Pointer(components.CreateValueFour(
-						components.Four{},
+					Value: types.Pointer(components.CreateCustomFieldValueUnionCustomFieldValue1(
+						components.CustomFieldValue1{},
 					)),
 				},
 				components.CustomField{
 					ID:          types.String("2389328923893298"),
 					Name:        types.String("employee_level"),
 					Description: types.String("Employee Level"),
-					Value: types.Pointer(components.CreateValueArrayOf6(
-						[]components.Six{
-							components.Six{},
+					Value: types.Pointer(components.CreateCustomFieldValueUnionArrayOfCustomFieldValue2(
+						[]components.CustomFieldValue2{
+							components.CustomFieldValue2{},
 						},
 					)),
 				},
@@ -148,8 +148,8 @@ func testAccountingLedgerAccountsOneAccountingLedgerAccountsOne0(w http.Response
 			PassThrough: []components.PassThroughBody{
 				components.PassThroughBody{
 					ServiceID: "<id>",
-					ExtendPaths: []components.ExtendPaths{
-						components.ExtendPaths{
+					ExtendPaths: []components.ExtendPath{
+						components.ExtendPath{
 							Path: "$.nested.property",
 							Value: map[string]any{
 								"TaxClassificationRef": map[string]any{
@@ -161,8 +161,8 @@ func testAccountingLedgerAccountsOneAccountingLedgerAccountsOne0(w http.Response
 				},
 				components.PassThroughBody{
 					ServiceID: "<id>",
-					ExtendPaths: []components.ExtendPaths{
-						components.ExtendPaths{
+					ExtendPaths: []components.ExtendPath{
+						components.ExtendPath{
 							Path: "$.nested.property",
 							Value: map[string]any{
 								"TaxClassificationRef": map[string]any{

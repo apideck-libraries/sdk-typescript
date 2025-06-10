@@ -2,21 +2,21 @@
 
 package components
 
-type ExtendPaths struct {
+type ExtendPath struct {
 	// JSONPath string specifying where to apply the value.
 	Path string `json:"path"`
 	// The value to set at the specified path, can be any type.
 	Value any `json:"value"`
 }
 
-func (o *ExtendPaths) GetPath() string {
+func (o *ExtendPath) GetPath() string {
 	if o == nil {
 		return ""
 	}
 	return o.Path
 }
 
-func (o *ExtendPaths) GetValue() any {
+func (o *ExtendPath) GetValue() any {
 	if o == nil {
 		return nil
 	}
@@ -31,7 +31,7 @@ type PassThroughBody struct {
 	// Simple object allowing any properties for direct extension.
 	ExtendObject map[string]any `json:"extend_object,omitempty"`
 	// Array of objects for structured data modifications via paths.
-	ExtendPaths []ExtendPaths `json:"extend_paths,omitempty"`
+	ExtendPaths []ExtendPath `json:"extend_paths,omitempty"`
 }
 
 func (o *PassThroughBody) GetServiceID() string {
@@ -55,7 +55,7 @@ func (o *PassThroughBody) GetExtendObject() map[string]any {
 	return o.ExtendObject
 }
 
-func (o *PassThroughBody) GetExtendPaths() []ExtendPaths {
+func (o *PassThroughBody) GetExtendPaths() []ExtendPath {
 	if o == nil {
 		return nil
 	}

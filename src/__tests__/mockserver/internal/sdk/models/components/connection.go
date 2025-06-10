@@ -65,76 +65,76 @@ func (e *Target) UnmarshalJSON(data []byte) error {
 	}
 }
 
-type Value5Type string
+type ConnectionValue1Type string
 
 const (
-	Value5TypeStr     Value5Type = "str"
-	Value5TypeInteger Value5Type = "integer"
-	Value5TypeNumber  Value5Type = "number"
+	ConnectionValue1TypeStr     ConnectionValue1Type = "str"
+	ConnectionValue1TypeInteger ConnectionValue1Type = "integer"
+	ConnectionValue1TypeNumber  ConnectionValue1Type = "number"
 )
 
-type Value5 struct {
+type ConnectionValue1 struct {
 	Str     *string
 	Integer *int64
 	Number  *float64
 
-	Type Value5Type
+	Type ConnectionValue1Type
 }
 
-func CreateValue5Str(str string) Value5 {
-	typ := Value5TypeStr
+func CreateConnectionValue1Str(str string) ConnectionValue1 {
+	typ := ConnectionValue1TypeStr
 
-	return Value5{
+	return ConnectionValue1{
 		Str:  &str,
 		Type: typ,
 	}
 }
 
-func CreateValue5Integer(integer int64) Value5 {
-	typ := Value5TypeInteger
+func CreateConnectionValue1Integer(integer int64) ConnectionValue1 {
+	typ := ConnectionValue1TypeInteger
 
-	return Value5{
+	return ConnectionValue1{
 		Integer: &integer,
 		Type:    typ,
 	}
 }
 
-func CreateValue5Number(number float64) Value5 {
-	typ := Value5TypeNumber
+func CreateConnectionValue1Number(number float64) ConnectionValue1 {
+	typ := ConnectionValue1TypeNumber
 
-	return Value5{
+	return ConnectionValue1{
 		Number: &number,
 		Type:   typ,
 	}
 }
 
-func (u *Value5) UnmarshalJSON(data []byte) error {
+func (u *ConnectionValue1) UnmarshalJSON(data []byte) error {
 
 	var str string = ""
 	if err := utils.UnmarshalJSON(data, &str, "", true, true); err == nil {
 		u.Str = &str
-		u.Type = Value5TypeStr
+		u.Type = ConnectionValue1TypeStr
 		return nil
 	}
 
 	var integer int64 = int64(0)
 	if err := utils.UnmarshalJSON(data, &integer, "", true, true); err == nil {
 		u.Integer = &integer
-		u.Type = Value5TypeInteger
+		u.Type = ConnectionValue1TypeInteger
 		return nil
 	}
 
 	var number float64 = float64(0)
 	if err := utils.UnmarshalJSON(data, &number, "", true, true); err == nil {
 		u.Number = &number
-		u.Type = Value5TypeNumber
+		u.Type = ConnectionValue1TypeNumber
 		return nil
 	}
 
-	return fmt.Errorf("could not unmarshal `%s` into any supported union types for Value5", string(data))
+	return fmt.Errorf("could not unmarshal `%s` into any supported union types for ConnectionValue1", string(data))
 }
 
-func (u Value5) MarshalJSON() ([]byte, error) {
+func (u ConnectionValue1) MarshalJSON() ([]byte, error) {
 	if u.Str != nil {
 		return utils.MarshalJSON(u.Str, "", true)
 	}
@@ -147,115 +147,115 @@ func (u Value5) MarshalJSON() ([]byte, error) {
 		return utils.MarshalJSON(u.Number, "", true)
 	}
 
-	return nil, errors.New("could not marshal union type Value5: all fields are null")
+	return nil, errors.New("could not marshal union type ConnectionValue1: all fields are null")
 }
 
-type ConnectionValueType string
+type ConnectionValue2Type string
 
 const (
-	ConnectionValueTypeStr           ConnectionValueType = "str"
-	ConnectionValueTypeInteger       ConnectionValueType = "integer"
-	ConnectionValueTypeNumber        ConnectionValueType = "number"
-	ConnectionValueTypeBoolean       ConnectionValueType = "boolean"
-	ConnectionValueTypeArrayOfValue5 ConnectionValueType = "arrayOfValue5"
+	ConnectionValue2TypeStr                     ConnectionValue2Type = "str"
+	ConnectionValue2TypeInteger                 ConnectionValue2Type = "integer"
+	ConnectionValue2TypeNumber                  ConnectionValue2Type = "number"
+	ConnectionValue2TypeBoolean                 ConnectionValue2Type = "boolean"
+	ConnectionValue2TypeArrayOfConnectionValue1 ConnectionValue2Type = "arrayOfConnectionValue1"
 )
 
-type ConnectionValue struct {
-	Str           *string
-	Integer       *int64
-	Number        *float64
-	Boolean       *bool
-	ArrayOfValue5 []Value5
+type ConnectionValue2 struct {
+	Str                     *string
+	Integer                 *int64
+	Number                  *float64
+	Boolean                 *bool
+	ArrayOfConnectionValue1 []ConnectionValue1
 
-	Type ConnectionValueType
+	Type ConnectionValue2Type
 }
 
-func CreateConnectionValueStr(str string) ConnectionValue {
-	typ := ConnectionValueTypeStr
+func CreateConnectionValue2Str(str string) ConnectionValue2 {
+	typ := ConnectionValue2TypeStr
 
-	return ConnectionValue{
+	return ConnectionValue2{
 		Str:  &str,
 		Type: typ,
 	}
 }
 
-func CreateConnectionValueInteger(integer int64) ConnectionValue {
-	typ := ConnectionValueTypeInteger
+func CreateConnectionValue2Integer(integer int64) ConnectionValue2 {
+	typ := ConnectionValue2TypeInteger
 
-	return ConnectionValue{
+	return ConnectionValue2{
 		Integer: &integer,
 		Type:    typ,
 	}
 }
 
-func CreateConnectionValueNumber(number float64) ConnectionValue {
-	typ := ConnectionValueTypeNumber
+func CreateConnectionValue2Number(number float64) ConnectionValue2 {
+	typ := ConnectionValue2TypeNumber
 
-	return ConnectionValue{
+	return ConnectionValue2{
 		Number: &number,
 		Type:   typ,
 	}
 }
 
-func CreateConnectionValueBoolean(boolean bool) ConnectionValue {
-	typ := ConnectionValueTypeBoolean
+func CreateConnectionValue2Boolean(boolean bool) ConnectionValue2 {
+	typ := ConnectionValue2TypeBoolean
 
-	return ConnectionValue{
+	return ConnectionValue2{
 		Boolean: &boolean,
 		Type:    typ,
 	}
 }
 
-func CreateConnectionValueArrayOfValue5(arrayOfValue5 []Value5) ConnectionValue {
-	typ := ConnectionValueTypeArrayOfValue5
+func CreateConnectionValue2ArrayOfConnectionValue1(arrayOfConnectionValue1 []ConnectionValue1) ConnectionValue2 {
+	typ := ConnectionValue2TypeArrayOfConnectionValue1
 
-	return ConnectionValue{
-		ArrayOfValue5: arrayOfValue5,
-		Type:          typ,
+	return ConnectionValue2{
+		ArrayOfConnectionValue1: arrayOfConnectionValue1,
+		Type:                    typ,
 	}
 }
 
-func (u *ConnectionValue) UnmarshalJSON(data []byte) error {
+func (u *ConnectionValue2) UnmarshalJSON(data []byte) error {
 
 	var str string = ""
 	if err := utils.UnmarshalJSON(data, &str, "", true, true); err == nil {
 		u.Str = &str
-		u.Type = ConnectionValueTypeStr
+		u.Type = ConnectionValue2TypeStr
 		return nil
 	}
 
 	var integer int64 = int64(0)
 	if err := utils.UnmarshalJSON(data, &integer, "", true, true); err == nil {
 		u.Integer = &integer
-		u.Type = ConnectionValueTypeInteger
+		u.Type = ConnectionValue2TypeInteger
 		return nil
 	}
 
 	var number float64 = float64(0)
 	if err := utils.UnmarshalJSON(data, &number, "", true, true); err == nil {
 		u.Number = &number
-		u.Type = ConnectionValueTypeNumber
+		u.Type = ConnectionValue2TypeNumber
 		return nil
 	}
 
 	var boolean bool = false
 	if err := utils.UnmarshalJSON(data, &boolean, "", true, true); err == nil {
 		u.Boolean = &boolean
-		u.Type = ConnectionValueTypeBoolean
+		u.Type = ConnectionValue2TypeBoolean
 		return nil
 	}
 
-	var arrayOfValue5 []Value5 = []Value5{}
-	if err := utils.UnmarshalJSON(data, &arrayOfValue5, "", true, true); err == nil {
-		u.ArrayOfValue5 = arrayOfValue5
-		u.Type = ConnectionValueTypeArrayOfValue5
+	var arrayOfConnectionValue1 []ConnectionValue1 = []ConnectionValue1{}
+	if err := utils.UnmarshalJSON(data, &arrayOfConnectionValue1, "", true, true); err == nil {
+		u.ArrayOfConnectionValue1 = arrayOfConnectionValue1
+		u.Type = ConnectionValue2TypeArrayOfConnectionValue1
 		return nil
 	}
 
-	return fmt.Errorf("could not unmarshal `%s` into any supported union types for ConnectionValue", string(data))
+	return fmt.Errorf("could not unmarshal `%s` into any supported union types for ConnectionValue2", string(data))
 }
 
-func (u ConnectionValue) MarshalJSON() ([]byte, error) {
+func (u ConnectionValue2) MarshalJSON() ([]byte, error) {
 	if u.Str != nil {
 		return utils.MarshalJSON(u.Str, "", true)
 	}
@@ -272,42 +272,42 @@ func (u ConnectionValue) MarshalJSON() ([]byte, error) {
 		return utils.MarshalJSON(u.Boolean, "", true)
 	}
 
-	if u.ArrayOfValue5 != nil {
-		return utils.MarshalJSON(u.ArrayOfValue5, "", true)
+	if u.ArrayOfConnectionValue1 != nil {
+		return utils.MarshalJSON(u.ArrayOfConnectionValue1, "", true)
 	}
 
-	return nil, errors.New("could not marshal union type ConnectionValue: all fields are null")
+	return nil, errors.New("could not marshal union type ConnectionValue2: all fields are null")
 }
 
-type Defaults struct {
+type Default struct {
 	Target  *Target           `json:"target,omitempty"`
 	ID      *string           `json:"id,omitempty"`
 	Options []FormFieldOption `json:"options,omitempty"`
-	Value   *ConnectionValue  `json:"value,omitempty"`
+	Value   *ConnectionValue2 `json:"value,omitempty"`
 }
 
-func (o *Defaults) GetTarget() *Target {
+func (o *Default) GetTarget() *Target {
 	if o == nil {
 		return nil
 	}
 	return o.Target
 }
 
-func (o *Defaults) GetID() *string {
+func (o *Default) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *Defaults) GetOptions() []FormFieldOption {
+func (o *Default) GetOptions() []FormFieldOption {
 	if o == nil {
 		return nil
 	}
 	return o.Options
 }
 
-func (o *Defaults) GetValue() *ConnectionValue {
+func (o *Default) GetValue() *ConnectionValue2 {
 	if o == nil {
 		return nil
 	}
@@ -315,8 +315,8 @@ func (o *Defaults) GetValue() *ConnectionValue {
 }
 
 type Configuration struct {
-	Resource *string    `json:"resource,omitempty"`
-	Defaults []Defaults `json:"defaults,omitempty"`
+	Resource *string   `json:"resource,omitempty"`
+	Defaults []Default `json:"defaults,omitempty"`
 }
 
 func (o *Configuration) GetResource() *string {
@@ -326,7 +326,7 @@ func (o *Configuration) GetResource() *string {
 	return o.Resource
 }
 
-func (o *Configuration) GetDefaults() []Defaults {
+func (o *Configuration) GetDefaults() []Default {
 	if o == nil {
 		return nil
 	}
@@ -605,46 +605,46 @@ func (o *Connection) GetUpdatedAt() *float64 {
 	return o.UpdatedAt
 }
 
-type ConnectionDefaults struct {
+type DefaultInput struct {
 	ID      *string           `json:"id,omitempty"`
 	Options []FormFieldOption `json:"options,omitempty"`
-	Value   *ConnectionValue  `json:"value,omitempty"`
+	Value   *ConnectionValue2 `json:"value,omitempty"`
 }
 
-func (o *ConnectionDefaults) GetID() *string {
+func (o *DefaultInput) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *ConnectionDefaults) GetOptions() []FormFieldOption {
+func (o *DefaultInput) GetOptions() []FormFieldOption {
 	if o == nil {
 		return nil
 	}
 	return o.Options
 }
 
-func (o *ConnectionDefaults) GetValue() *ConnectionValue {
+func (o *DefaultInput) GetValue() *ConnectionValue2 {
 	if o == nil {
 		return nil
 	}
 	return o.Value
 }
 
-type ConnectionConfiguration struct {
-	Resource *string              `json:"resource,omitempty"`
-	Defaults []ConnectionDefaults `json:"defaults,omitempty"`
+type ConfigurationInput struct {
+	Resource *string        `json:"resource,omitempty"`
+	Defaults []DefaultInput `json:"defaults,omitempty"`
 }
 
-func (o *ConnectionConfiguration) GetResource() *string {
+func (o *ConfigurationInput) GetResource() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Resource
 }
 
-func (o *ConnectionConfiguration) GetDefaults() []ConnectionDefaults {
+func (o *ConfigurationInput) GetDefaults() []DefaultInput {
 	if o == nil {
 		return nil
 	}
@@ -657,8 +657,8 @@ type ConnectionInput struct {
 	// Connection settings. Values will persist to `form_fields` with corresponding id
 	Settings map[string]any `json:"settings,omitempty"`
 	// Attach your own consumer specific metadata
-	Metadata      map[string]any            `json:"metadata,omitempty"`
-	Configuration []ConnectionConfiguration `json:"configuration,omitempty"`
+	Metadata      map[string]any       `json:"metadata,omitempty"`
+	Configuration []ConfigurationInput `json:"configuration,omitempty"`
 	// List of custom mappings configured for this connection
 	CustomMappings []CustomMappingInput `json:"custom_mappings,omitempty"`
 }
@@ -684,7 +684,7 @@ func (o *ConnectionInput) GetMetadata() map[string]any {
 	return o.Metadata
 }
 
-func (o *ConnectionInput) GetConfiguration() []ConnectionConfiguration {
+func (o *ConnectionInput) GetConfiguration() []ConfigurationInput {
 	if o == nil {
 		return nil
 	}

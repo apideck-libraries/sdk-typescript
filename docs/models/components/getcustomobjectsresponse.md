@@ -13,38 +13,7 @@ let value: GetCustomObjectsResponse = {
   service: "zoho-crm",
   resource: "custom-objects",
   operation: "all",
-  data: [
-    {
-      id: "co_12345",
-      ownerId: "user_12345",
-      name: "project",
-      fields: [
-        {
-          name: "name",
-          value: "string",
-        },
-      ],
-      updatedBy: "user_12345",
-      createdBy: "user_12345",
-      updatedAt: "2020-09-30T07:43:32.000Z",
-      createdAt: "2020-09-30T07:43:32.000Z",
-      passThrough: [
-        {
-          serviceId: "<id>",
-          extendPaths: [
-            {
-              path: "$.nested.property",
-              value: {
-                "TaxClassificationRef": {
-                  "value": "EUC-99990201-V1-00020000",
-                },
-              },
-            },
-          ],
-        },
-      ],
-    },
-  ],
+  data: [],
   meta: {
     itemsOnPage: 50,
     cursors: {

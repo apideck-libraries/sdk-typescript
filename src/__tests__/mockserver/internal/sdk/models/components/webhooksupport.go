@@ -7,19 +7,19 @@ import (
 	"fmt"
 )
 
-// Mode of the webhook support.
-type Mode string
+// WebhookSupportMode - Mode of the webhook support.
+type WebhookSupportMode string
 
 const (
-	ModeNative  Mode = "native"
-	ModeVirtual Mode = "virtual"
-	ModeNone    Mode = "none"
+	WebhookSupportModeNative  WebhookSupportMode = "native"
+	WebhookSupportModeVirtual WebhookSupportMode = "virtual"
+	WebhookSupportModeNone    WebhookSupportMode = "none"
 )
 
-func (e Mode) ToPointer() *Mode {
+func (e WebhookSupportMode) ToPointer() *WebhookSupportMode {
 	return &e
 }
-func (e *Mode) UnmarshalJSON(data []byte) error {
+func (e *WebhookSupportMode) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -30,10 +30,10 @@ func (e *Mode) UnmarshalJSON(data []byte) error {
 	case "virtual":
 		fallthrough
 	case "none":
-		*e = Mode(v)
+		*e = WebhookSupportMode(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for Mode: %v", v)
+		return fmt.Errorf("invalid value for WebhookSupportMode: %v", v)
 	}
 }
 
@@ -155,11 +155,11 @@ func (o *RequestRate) GetUnit() Unit {
 	return o.Unit
 }
 
-type WebhookSupportResources struct {
+type Resources struct {
 	Events []string `json:"events,omitempty"`
 }
 
-func (o *WebhookSupportResources) GetEvents() []string {
+func (o *Resources) GetEvents() []string {
 	if o == nil {
 		return nil
 	}
@@ -171,7 +171,7 @@ type VirtualWebhooks struct {
 	// The rate at which requests for resources will be made to downstream.
 	RequestRate RequestRate `json:"request_rate"`
 	// The resources that will be requested from downstream.
-	Resources map[string]WebhookSupportResources `json:"resources,omitempty"`
+	Resources map[string]Resources `json:"resources,omitempty"`
 }
 
 func (o *VirtualWebhooks) GetRequestRate() RequestRate {
@@ -181,7 +181,7 @@ func (o *VirtualWebhooks) GetRequestRate() RequestRate {
 	return o.RequestRate
 }
 
-func (o *VirtualWebhooks) GetResources() map[string]WebhookSupportResources {
+func (o *VirtualWebhooks) GetResources() map[string]Resources {
 	if o == nil {
 		return nil
 	}
@@ -191,7 +191,7 @@ func (o *VirtualWebhooks) GetResources() map[string]WebhookSupportResources {
 // WebhookSupport - How webhooks are supported for the connector. Sometimes the connector natively supports webhooks, other times Apideck virtualizes them based on polling.
 type WebhookSupport struct {
 	// Mode of the webhook support.
-	Mode *Mode `json:"mode,omitempty"`
+	Mode *WebhookSupportMode `json:"mode,omitempty"`
 	// Received events are scoped to connection or across integration.
 	SubscriptionLevel *SubscriptionLevel `json:"subscription_level,omitempty"`
 	// How the subscription is managed in the downstream.
@@ -200,7 +200,7 @@ type WebhookSupport struct {
 	VirtualWebhooks *VirtualWebhooks `json:"virtual_webhooks,omitempty"`
 }
 
-func (o *WebhookSupport) GetMode() *Mode {
+func (o *WebhookSupport) GetMode() *WebhookSupportMode {
 	if o == nil {
 		return nil
 	}

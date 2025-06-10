@@ -103,8 +103,8 @@ func testVaultConnectionsOneVaultConnectionsOne0(w http.ResponseWriter, req *htt
 			Configuration: []components.Configuration{
 				components.Configuration{
 					Resource: types.String("leads"),
-					Defaults: []components.Defaults{
-						components.Defaults{
+					Defaults: []components.Default{
+						components.Default{
 							Target: components.TargetCustomFields.ToPointer(),
 							ID:     types.String("ProductInterest"),
 							Options: []components.FormFieldOption{
@@ -115,24 +115,24 @@ func testVaultConnectionsOneVaultConnectionsOne0(w http.ResponseWriter, req *htt
 										Options: []components.SimpleFormFieldOption{
 											components.SimpleFormFieldOption{
 												Label: "General Channel",
-												Value: types.Pointer(components.CreateSimpleFormFieldOptionValueNumber(
+												Value: types.Pointer(components.CreateSimpleFormFieldOptionValue2Number(
 													12.5,
 												)),
-												OptionType: components.OptionTypeSimple,
+												OptionType: components.SimpleFormFieldOptionOptionTypeSimple,
 											},
 											components.SimpleFormFieldOption{
 												Label: "General Channel",
-												Value: types.Pointer(components.CreateSimpleFormFieldOptionValueNumber(
+												Value: types.Pointer(components.CreateSimpleFormFieldOptionValue2Number(
 													12.5,
 												)),
-												OptionType: components.OptionTypeSimple,
+												OptionType: components.SimpleFormFieldOptionOptionTypeSimple,
 											},
 											components.SimpleFormFieldOption{
 												Label: "General Channel",
-												Value: types.Pointer(components.CreateSimpleFormFieldOptionValueInteger(
+												Value: types.Pointer(components.CreateSimpleFormFieldOptionValue2Integer(
 													123,
 												)),
-												OptionType: components.OptionTypeSimple,
+												OptionType: components.SimpleFormFieldOptionOptionTypeSimple,
 											},
 										},
 										OptionType: components.FormFieldOptionGroupOptionTypeGroup,
@@ -141,44 +141,44 @@ func testVaultConnectionsOneVaultConnectionsOne0(w http.ResponseWriter, req *htt
 								components.CreateFormFieldOptionSimple(
 									components.SimpleFormFieldOption{
 										Label: "General Channel",
-										Value: types.Pointer(components.CreateSimpleFormFieldOptionValueArrayOf5(
-											[]components.Five{
-												components.CreateFiveStr(
+										Value: types.Pointer(components.CreateSimpleFormFieldOptionValue2ArrayOfSimpleFormFieldOptionValue1(
+											[]components.SimpleFormFieldOptionValue1{
+												components.CreateSimpleFormFieldOptionValue1Str(
 													"team",
 												),
-												components.CreateFiveStr(
+												components.CreateSimpleFormFieldOptionValue1Str(
 													"general",
 												),
 											},
 										)),
-										OptionType: components.OptionTypeSimple,
+										OptionType: components.SimpleFormFieldOptionOptionTypeSimple,
 									},
 								),
 							},
-							Value: types.Pointer(components.CreateConnectionValueNumber(
+							Value: types.Pointer(components.CreateConnectionValue2Number(
 								10.5,
 							)),
 						},
-						components.Defaults{
+						components.Default{
 							Target: components.TargetCustomFields.ToPointer(),
 							ID:     types.String("ProductInterest"),
 							Options: []components.FormFieldOption{
 								components.CreateFormFieldOptionSimple(
 									components.SimpleFormFieldOption{
 										Label: "General Channel",
-										Value: types.Pointer(components.CreateSimpleFormFieldOptionValueInteger(
+										Value: types.Pointer(components.CreateSimpleFormFieldOptionValue2Integer(
 											123,
 										)),
-										OptionType: components.OptionTypeSimple,
+										OptionType: components.SimpleFormFieldOptionOptionTypeSimple,
 									},
 								),
 								components.CreateFormFieldOptionSimple(
 									components.SimpleFormFieldOption{
 										Label: "General Channel",
-										Value: types.Pointer(components.CreateSimpleFormFieldOptionValueStr(
+										Value: types.Pointer(components.CreateSimpleFormFieldOptionValue2Str(
 											"general",
 										)),
-										OptionType: components.OptionTypeSimple,
+										OptionType: components.SimpleFormFieldOptionOptionTypeSimple,
 									},
 								),
 								components.CreateFormFieldOptionGroup(
@@ -188,31 +188,31 @@ func testVaultConnectionsOneVaultConnectionsOne0(w http.ResponseWriter, req *htt
 										Options: []components.SimpleFormFieldOption{
 											components.SimpleFormFieldOption{
 												Label: "General Channel",
-												Value: types.Pointer(components.CreateSimpleFormFieldOptionValueInteger(
+												Value: types.Pointer(components.CreateSimpleFormFieldOptionValue2Integer(
 													123,
 												)),
-												OptionType: components.OptionTypeSimple,
+												OptionType: components.SimpleFormFieldOptionOptionTypeSimple,
 											},
 											components.SimpleFormFieldOption{
 												Label: "General Channel",
-												Value: types.Pointer(components.CreateSimpleFormFieldOptionValueBoolean(
+												Value: types.Pointer(components.CreateSimpleFormFieldOptionValue2Boolean(
 													true,
 												)),
-												OptionType: components.OptionTypeSimple,
+												OptionType: components.SimpleFormFieldOptionOptionTypeSimple,
 											},
 											components.SimpleFormFieldOption{
 												Label: "General Channel",
-												Value: types.Pointer(components.CreateSimpleFormFieldOptionValueBoolean(
+												Value: types.Pointer(components.CreateSimpleFormFieldOptionValue2Boolean(
 													true,
 												)),
-												OptionType: components.OptionTypeSimple,
+												OptionType: components.SimpleFormFieldOptionOptionTypeSimple,
 											},
 										},
 										OptionType: components.FormFieldOptionGroupOptionTypeGroup,
 									},
 								),
 							},
-							Value: types.Pointer(components.CreateConnectionValueNumber(
+							Value: types.Pointer(components.CreateConnectionValue2Number(
 								10.5,
 							)),
 						},
@@ -220,22 +220,22 @@ func testVaultConnectionsOneVaultConnectionsOne0(w http.ResponseWriter, req *htt
 				},
 				components.Configuration{
 					Resource: types.String("leads"),
-					Defaults: []components.Defaults{
-						components.Defaults{
+					Defaults: []components.Default{
+						components.Default{
 							Target: components.TargetCustomFields.ToPointer(),
 							ID:     types.String("ProductInterest"),
 							Options: []components.FormFieldOption{
 								components.CreateFormFieldOptionSimple(
 									components.SimpleFormFieldOption{
 										Label: "General Channel",
-										Value: types.Pointer(components.CreateSimpleFormFieldOptionValueInteger(
+										Value: types.Pointer(components.CreateSimpleFormFieldOptionValue2Integer(
 											123,
 										)),
-										OptionType: components.OptionTypeSimple,
+										OptionType: components.SimpleFormFieldOptionOptionTypeSimple,
 									},
 								),
 							},
-							Value: types.Pointer(components.CreateConnectionValueBoolean(
+							Value: types.Pointer(components.CreateConnectionValue2Boolean(
 								true,
 							)),
 						},
@@ -243,8 +243,8 @@ func testVaultConnectionsOneVaultConnectionsOne0(w http.ResponseWriter, req *htt
 				},
 				components.Configuration{
 					Resource: types.String("leads"),
-					Defaults: []components.Defaults{
-						components.Defaults{
+					Defaults: []components.Default{
+						components.Default{
 							Target: components.TargetCustomFields.ToPointer(),
 							ID:     types.String("ProductInterest"),
 							Options: []components.FormFieldOption{
@@ -255,24 +255,24 @@ func testVaultConnectionsOneVaultConnectionsOne0(w http.ResponseWriter, req *htt
 										Options: []components.SimpleFormFieldOption{
 											components.SimpleFormFieldOption{
 												Label: "General Channel",
-												Value: types.Pointer(components.CreateSimpleFormFieldOptionValueArrayOf5(
-													[]components.Five{
-														components.CreateFiveStr(
+												Value: types.Pointer(components.CreateSimpleFormFieldOptionValue2ArrayOfSimpleFormFieldOptionValue1(
+													[]components.SimpleFormFieldOptionValue1{
+														components.CreateSimpleFormFieldOptionValue1Str(
 															"team",
 														),
-														components.CreateFiveStr(
+														components.CreateSimpleFormFieldOptionValue1Str(
 															"general",
 														),
 													},
 												)),
-												OptionType: components.OptionTypeSimple,
+												OptionType: components.SimpleFormFieldOptionOptionTypeSimple,
 											},
 											components.SimpleFormFieldOption{
 												Label: "General Channel",
-												Value: types.Pointer(components.CreateSimpleFormFieldOptionValueInteger(
+												Value: types.Pointer(components.CreateSimpleFormFieldOptionValue2Integer(
 													123,
 												)),
-												OptionType: components.OptionTypeSimple,
+												OptionType: components.SimpleFormFieldOptionOptionTypeSimple,
 											},
 										},
 										OptionType: components.FormFieldOptionGroupOptionTypeGroup,
@@ -281,30 +281,30 @@ func testVaultConnectionsOneVaultConnectionsOne0(w http.ResponseWriter, req *htt
 								components.CreateFormFieldOptionSimple(
 									components.SimpleFormFieldOption{
 										Label: "General Channel",
-										Value: types.Pointer(components.CreateSimpleFormFieldOptionValueArrayOf5(
-											[]components.Five{
-												components.CreateFiveStr(
+										Value: types.Pointer(components.CreateSimpleFormFieldOptionValue2ArrayOfSimpleFormFieldOptionValue1(
+											[]components.SimpleFormFieldOptionValue1{
+												components.CreateSimpleFormFieldOptionValue1Str(
 													"team",
 												),
-												components.CreateFiveStr(
+												components.CreateSimpleFormFieldOptionValue1Str(
 													"general",
 												),
 											},
 										)),
-										OptionType: components.OptionTypeSimple,
+										OptionType: components.SimpleFormFieldOptionOptionTypeSimple,
 									},
 								),
 								components.CreateFormFieldOptionSimple(
 									components.SimpleFormFieldOption{
 										Label: "General Channel",
-										Value: types.Pointer(components.CreateSimpleFormFieldOptionValueNumber(
+										Value: types.Pointer(components.CreateSimpleFormFieldOptionValue2Number(
 											12.5,
 										)),
-										OptionType: components.OptionTypeSimple,
+										OptionType: components.SimpleFormFieldOptionOptionTypeSimple,
 									},
 								),
 							},
-							Value: types.Pointer(components.CreateConnectionValueStr(
+							Value: types.Pointer(components.CreateConnectionValue2Str(
 								"GC5000 series",
 							)),
 						},

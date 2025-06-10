@@ -85,8 +85,8 @@ func testSmsMessagesAllSmsMessagesAll0(w http.ResponseWriter, req *http.Request)
 				PassThrough: []components.PassThroughBody{
 					components.PassThroughBody{
 						ServiceID: "<id>",
-						ExtendPaths: []components.ExtendPaths{
-							components.ExtendPaths{
+						ExtendPaths: []components.ExtendPath{
+							components.ExtendPath{
 								Path: "$.nested.property",
 								Value: map[string]any{
 									"TaxClassificationRef": map[string]any{
@@ -94,7 +94,7 @@ func testSmsMessagesAllSmsMessagesAll0(w http.ResponseWriter, req *http.Request)
 									},
 								},
 							},
-							components.ExtendPaths{
+							components.ExtendPath{
 								Path: "$.nested.property",
 								Value: map[string]any{
 									"TaxClassificationRef": map[string]any{
@@ -102,7 +102,7 @@ func testSmsMessagesAllSmsMessagesAll0(w http.ResponseWriter, req *http.Request)
 									},
 								},
 							},
-							components.ExtendPaths{
+							components.ExtendPath{
 								Path: "$.nested.property",
 								Value: map[string]any{
 									"TaxClassificationRef": map[string]any{
@@ -114,53 +114,8 @@ func testSmsMessagesAllSmsMessagesAll0(w http.ResponseWriter, req *http.Request)
 					},
 					components.PassThroughBody{
 						ServiceID: "<id>",
-						ExtendPaths: []components.ExtendPaths{
-							components.ExtendPaths{
-								Path: "$.nested.property",
-								Value: map[string]any{
-									"TaxClassificationRef": map[string]any{
-										"value": "EUC-99990201-V1-00020000",
-									},
-								},
-							},
-						},
-					},
-				},
-			},
-			components.Message{
-				ID:                 types.String("12345"),
-				From:               "+15017122661",
-				To:                 "+15017122662",
-				Subject:            types.String("Picture"),
-				Body:               "Hi! How are you doing?",
-				Type:               components.MessageTypeSms.ToPointer(),
-				NumberOfUnits:      types.Int64(1),
-				NumberOfMediaFiles: types.Int64(1),
-				Direction:          components.DirectionOutboundAPI.ToPointer(),
-				Status:             components.MessageStatusSent.ToPointer(),
-				ScheduledAt:        types.MustNewTimeFromString("2020-09-30T07:43:32.000Z"),
-				SentAt:             types.MustNewTimeFromString("2020-09-30T07:43:32.000Z"),
-				WebhookURL:         types.String("https://unify.apideck.com/webhook/webhooks/eyz329dkffdl4949/x/sms"),
-				Reference:          types.String("CUST001"),
-				Price: &components.Price{
-					PerUnit:     types.String("0.01"),
-					TotalAmount: types.String("0.01"),
-					Currency:    components.CurrencyUsd.ToPointer(),
-				},
-				Error: &components.Error{
-					Code:    types.String("X1"),
-					Message: types.String("Something went wrong"),
-				},
-				MessagingServiceID: types.String("123456"),
-				UpdatedBy:          types.String("12345"),
-				CreatedBy:          types.String("12345"),
-				UpdatedAt:          types.MustNewTimeFromString("2020-09-30T07:43:32.000Z"),
-				CreatedAt:          types.MustNewTimeFromString("2020-09-30T07:43:32.000Z"),
-				PassThrough: []components.PassThroughBody{
-					components.PassThroughBody{
-						ServiceID: "<id>",
-						ExtendPaths: []components.ExtendPaths{
-							components.ExtendPaths{
+						ExtendPaths: []components.ExtendPath{
+							components.ExtendPath{
 								Path: "$.nested.property",
 								Value: map[string]any{
 									"TaxClassificationRef": map[string]any{
@@ -204,8 +159,8 @@ func testSmsMessagesAllSmsMessagesAll0(w http.ResponseWriter, req *http.Request)
 				PassThrough: []components.PassThroughBody{
 					components.PassThroughBody{
 						ServiceID: "<id>",
-						ExtendPaths: []components.ExtendPaths{
-							components.ExtendPaths{
+						ExtendPaths: []components.ExtendPath{
+							components.ExtendPath{
 								Path: "$.nested.property",
 								Value: map[string]any{
 									"TaxClassificationRef": map[string]any{
@@ -213,7 +168,52 @@ func testSmsMessagesAllSmsMessagesAll0(w http.ResponseWriter, req *http.Request)
 									},
 								},
 							},
-							components.ExtendPaths{
+						},
+					},
+				},
+			},
+			components.Message{
+				ID:                 types.String("12345"),
+				From:               "+15017122661",
+				To:                 "+15017122662",
+				Subject:            types.String("Picture"),
+				Body:               "Hi! How are you doing?",
+				Type:               components.MessageTypeSms.ToPointer(),
+				NumberOfUnits:      types.Int64(1),
+				NumberOfMediaFiles: types.Int64(1),
+				Direction:          components.DirectionOutboundAPI.ToPointer(),
+				Status:             components.MessageStatusSent.ToPointer(),
+				ScheduledAt:        types.MustNewTimeFromString("2020-09-30T07:43:32.000Z"),
+				SentAt:             types.MustNewTimeFromString("2020-09-30T07:43:32.000Z"),
+				WebhookURL:         types.String("https://unify.apideck.com/webhook/webhooks/eyz329dkffdl4949/x/sms"),
+				Reference:          types.String("CUST001"),
+				Price: &components.Price{
+					PerUnit:     types.String("0.01"),
+					TotalAmount: types.String("0.01"),
+					Currency:    components.CurrencyUsd.ToPointer(),
+				},
+				Error: &components.Error{
+					Code:    types.String("X1"),
+					Message: types.String("Something went wrong"),
+				},
+				MessagingServiceID: types.String("123456"),
+				UpdatedBy:          types.String("12345"),
+				CreatedBy:          types.String("12345"),
+				UpdatedAt:          types.MustNewTimeFromString("2020-09-30T07:43:32.000Z"),
+				CreatedAt:          types.MustNewTimeFromString("2020-09-30T07:43:32.000Z"),
+				PassThrough: []components.PassThroughBody{
+					components.PassThroughBody{
+						ServiceID: "<id>",
+						ExtendPaths: []components.ExtendPath{
+							components.ExtendPath{
+								Path: "$.nested.property",
+								Value: map[string]any{
+									"TaxClassificationRef": map[string]any{
+										"value": "EUC-99990201-V1-00020000",
+									},
+								},
+							},
+							components.ExtendPath{
 								Path: "$.nested.property",
 								Value: map[string]any{
 									"TaxClassificationRef": map[string]any{
@@ -225,8 +225,8 @@ func testSmsMessagesAllSmsMessagesAll0(w http.ResponseWriter, req *http.Request)
 					},
 					components.PassThroughBody{
 						ServiceID: "<id>",
-						ExtendPaths: []components.ExtendPaths{
-							components.ExtendPaths{
+						ExtendPaths: []components.ExtendPath{
+							components.ExtendPath{
 								Path: "$.nested.property",
 								Value: map[string]any{
 									"TaxClassificationRef": map[string]any{

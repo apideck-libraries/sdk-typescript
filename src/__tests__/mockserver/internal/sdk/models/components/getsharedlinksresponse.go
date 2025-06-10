@@ -13,8 +13,8 @@ type GetSharedLinksResponse struct {
 	// Unified API resource name
 	Resource string `json:"resource"`
 	// Operation performed
-	Operation string       `json:"operation"`
-	Data      []SharedLink `json:"data"`
+	Operation string             `json:"operation"`
+	Data      []SharedLinkOutput `json:"data"`
 	// Raw response from the integration when raw=true query param is provided
 	Raw map[string]any `json:"_raw,omitempty"`
 	// Response metadata
@@ -58,9 +58,9 @@ func (o *GetSharedLinksResponse) GetOperation() string {
 	return o.Operation
 }
 
-func (o *GetSharedLinksResponse) GetData() []SharedLink {
+func (o *GetSharedLinksResponse) GetData() []SharedLinkOutput {
 	if o == nil {
-		return []SharedLink{}
+		return []SharedLinkOutput{}
 	}
 	return o.Data
 }

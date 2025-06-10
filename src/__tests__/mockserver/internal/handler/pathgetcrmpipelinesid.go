@@ -60,22 +60,22 @@ func testCrmPipelinesOneCrmPipelinesOne0(w http.ResponseWriter, req *http.Reques
 			Active:                types.Bool(false),
 			DisplayOrder:          types.Int64(1),
 			WinProbabilityEnabled: types.Bool(true),
-			Stages: []components.Stages{
-				components.Stages{
+			Stages: []components.PipelineStage{
+				components.PipelineStage{
 					ID:             types.String("contractsent"),
 					Name:           types.String("Contract Sent"),
 					Value:          types.String("CONTRACT_SENT"),
 					WinProbability: types.Int64(50),
 					DisplayOrder:   types.Int64(1),
 				},
-				components.Stages{
+				components.PipelineStage{
 					ID:             types.String("contractsent"),
 					Name:           types.String("Contract Sent"),
 					Value:          types.String("CONTRACT_SENT"),
 					WinProbability: types.Int64(50),
 					DisplayOrder:   types.Int64(1),
 				},
-				components.Stages{
+				components.PipelineStage{
 					ID:             types.String("contractsent"),
 					Name:           types.String("Contract Sent"),
 					Value:          types.String("CONTRACT_SENT"),
@@ -88,8 +88,8 @@ func testCrmPipelinesOneCrmPipelinesOne0(w http.ResponseWriter, req *http.Reques
 			PassThrough: []components.PassThroughBody{
 				components.PassThroughBody{
 					ServiceID: "<id>",
-					ExtendPaths: []components.ExtendPaths{
-						components.ExtendPaths{
+					ExtendPaths: []components.ExtendPath{
+						components.ExtendPath{
 							Path: "$.nested.property",
 							Value: map[string]any{
 								"TaxClassificationRef": map[string]any{
@@ -97,7 +97,7 @@ func testCrmPipelinesOneCrmPipelinesOne0(w http.ResponseWriter, req *http.Reques
 								},
 							},
 						},
-						components.ExtendPaths{
+						components.ExtendPath{
 							Path: "$.nested.property",
 							Value: map[string]any{
 								"TaxClassificationRef": map[string]any{
@@ -109,8 +109,8 @@ func testCrmPipelinesOneCrmPipelinesOne0(w http.ResponseWriter, req *http.Reques
 				},
 				components.PassThroughBody{
 					ServiceID: "<id>",
-					ExtendPaths: []components.ExtendPaths{
-						components.ExtendPaths{
+					ExtendPaths: []components.ExtendPath{
+						components.ExtendPath{
 							Path: "$.nested.property",
 							Value: map[string]any{
 								"TaxClassificationRef": map[string]any{
@@ -118,7 +118,7 @@ func testCrmPipelinesOneCrmPipelinesOne0(w http.ResponseWriter, req *http.Reques
 								},
 							},
 						},
-						components.ExtendPaths{
+						components.ExtendPath{
 							Path: "$.nested.property",
 							Value: map[string]any{
 								"TaxClassificationRef": map[string]any{

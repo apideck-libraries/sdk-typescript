@@ -2,7 +2,7 @@
 
 package components
 
-type User struct {
+type UserOutput struct {
 	// The unique identifier for the user
 	ID *string `json:"id,omitempty"`
 	// The parent user id
@@ -46,147 +46,147 @@ type User struct {
 	PassThrough []PassThroughBody `json:"pass_through,omitempty"`
 }
 
-func (o *User) GetID() *string {
+func (o *UserOutput) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *User) GetParentID() *string {
+func (o *UserOutput) GetParentID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ParentID
 }
 
-func (o *User) GetUsername() *string {
+func (o *UserOutput) GetUsername() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Username
 }
 
-func (o *User) GetFirstName() *string {
+func (o *UserOutput) GetFirstName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.FirstName
 }
 
-func (o *User) GetLastName() *string {
+func (o *UserOutput) GetLastName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.LastName
 }
 
-func (o *User) GetTitle() *string {
+func (o *UserOutput) GetTitle() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Title
 }
 
-func (o *User) GetDivision() *string {
+func (o *UserOutput) GetDivision() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Division
 }
 
-func (o *User) GetDepartment() *string {
+func (o *UserOutput) GetDepartment() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Department
 }
 
-func (o *User) GetCompanyName() *string {
+func (o *UserOutput) GetCompanyName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.CompanyName
 }
 
-func (o *User) GetEmployeeNumber() *string {
+func (o *UserOutput) GetEmployeeNumber() *string {
 	if o == nil {
 		return nil
 	}
 	return o.EmployeeNumber
 }
 
-func (o *User) GetDescription() *string {
+func (o *UserOutput) GetDescription() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Description
 }
 
-func (o *User) GetImage() *string {
+func (o *UserOutput) GetImage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Image
 }
 
-func (o *User) GetLanguage() *string {
+func (o *UserOutput) GetLanguage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Language
 }
 
-func (o *User) GetStatus() *string {
+func (o *UserOutput) GetStatus() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Status
 }
 
-func (o *User) GetAddresses() []Address {
+func (o *UserOutput) GetAddresses() []Address {
 	if o == nil {
 		return nil
 	}
 	return o.Addresses
 }
 
-func (o *User) GetPhoneNumbers() []PhoneNumber {
+func (o *UserOutput) GetPhoneNumbers() []PhoneNumber {
 	if o == nil {
 		return nil
 	}
 	return o.PhoneNumbers
 }
 
-func (o *User) GetEmails() []Email {
+func (o *UserOutput) GetEmails() []Email {
 	if o == nil {
 		return []Email{}
 	}
 	return o.Emails
 }
 
-func (o *User) GetCustomMappings() map[string]any {
+func (o *UserOutput) GetCustomMappings() map[string]any {
 	if o == nil {
 		return nil
 	}
 	return o.CustomMappings
 }
 
-func (o *User) GetUpdatedAt() *string {
+func (o *UserOutput) GetUpdatedAt() *string {
 	if o == nil {
 		return nil
 	}
 	return o.UpdatedAt
 }
 
-func (o *User) GetCreatedAt() *string {
+func (o *UserOutput) GetCreatedAt() *string {
 	if o == nil {
 		return nil
 	}
 	return o.CreatedAt
 }
 
-func (o *User) GetPassThrough() []PassThroughBody {
+func (o *UserOutput) GetPassThrough() []PassThroughBody {
 	if o == nil {
 		return nil
 	}

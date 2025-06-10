@@ -16,6 +16,8 @@ test("Products Ecommerce Products All", async () => {
   });
 
   const result = await apideck.ecommerce.products.list({
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
     passThrough: {
       "search": "San Francisco",
@@ -369,6 +371,8 @@ test("Products Ecommerce Products One", async () => {
 
   const result = await apideck.ecommerce.products.get({
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
     fields: "id,updated_at",
   });

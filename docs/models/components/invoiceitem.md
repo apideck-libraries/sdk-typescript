@@ -60,12 +60,7 @@ let value: InvoiceItem = {
     nominalCode: "N091",
     code: "453",
   },
-  trackingCategories: [
-    {
-      id: "123456",
-      name: "New York",
-    },
-  ],
+  trackingCategories: null,
   active: true,
   departmentId: "12345",
   locationId: "12345",

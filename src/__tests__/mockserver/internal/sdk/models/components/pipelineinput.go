@@ -2,7 +2,7 @@
 
 package components
 
-type PipelineStages struct {
+type StageInput struct {
 	// The name of the Pipeline Stage.
 	Name *string `json:"name,omitempty"`
 	// The value of the Pipeline Stage.
@@ -13,28 +13,28 @@ type PipelineStages struct {
 	DisplayOrder *int64 `json:"display_order,omitempty"`
 }
 
-func (o *PipelineStages) GetName() *string {
+func (o *StageInput) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-func (o *PipelineStages) GetValue() *string {
+func (o *StageInput) GetValue() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Value
 }
 
-func (o *PipelineStages) GetWinProbability() *int64 {
+func (o *StageInput) GetWinProbability() *int64 {
 	if o == nil {
 		return nil
 	}
 	return o.WinProbability
 }
 
-func (o *PipelineStages) GetDisplayOrder() *int64 {
+func (o *StageInput) GetDisplayOrder() *int64 {
 	if o == nil {
 		return nil
 	}
@@ -57,7 +57,7 @@ type PipelineInput struct {
 	// Whether the Pipeline has win probability enabled or not.
 	WinProbabilityEnabled *bool `json:"win_probability_enabled,omitempty"`
 	// The Pipeline Stages.
-	Stages []PipelineStages `json:"stages,omitempty"`
+	Stages []StageInput `json:"stages,omitempty"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
 	PassThrough []PassThroughBody `json:"pass_through,omitempty"`
 }
@@ -111,7 +111,7 @@ func (o *PipelineInput) GetWinProbabilityEnabled() *bool {
 	return o.WinProbabilityEnabled
 }
 
-func (o *PipelineInput) GetStages() []PipelineStages {
+func (o *PipelineInput) GetStages() []StageInput {
 	if o == nil {
 		return nil
 	}

@@ -9,18 +9,18 @@ import (
 	"time"
 )
 
-// CustomerStatus - The current status of the customer
-type CustomerStatus string
+// EcommerceCustomerStatusCustomerStatus - The current status of the customer
+type EcommerceCustomerStatusCustomerStatus string
 
 const (
-	CustomerStatusActive   CustomerStatus = "active"
-	CustomerStatusArchived CustomerStatus = "archived"
+	EcommerceCustomerStatusCustomerStatusActive   EcommerceCustomerStatusCustomerStatus = "active"
+	EcommerceCustomerStatusCustomerStatusArchived EcommerceCustomerStatusCustomerStatus = "archived"
 )
 
-func (e CustomerStatus) ToPointer() *CustomerStatus {
+func (e EcommerceCustomerStatusCustomerStatus) ToPointer() *EcommerceCustomerStatusCustomerStatus {
 	return &e
 }
-func (e *CustomerStatus) UnmarshalJSON(data []byte) error {
+func (e *EcommerceCustomerStatusCustomerStatus) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -29,10 +29,10 @@ func (e *CustomerStatus) UnmarshalJSON(data []byte) error {
 	case "active":
 		fallthrough
 	case "archived":
-		*e = CustomerStatus(v)
+		*e = EcommerceCustomerStatusCustomerStatus(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for CustomerStatus: %v", v)
+		return fmt.Errorf("invalid value for EcommerceCustomerStatusCustomerStatus: %v", v)
 	}
 }
 
@@ -65,7 +65,7 @@ func (e *EcommerceCustomerType) UnmarshalJSON(data []byte) error {
 	}
 }
 
-type Addresses struct {
+type EcommerceCustomerAddress struct {
 	Type *EcommerceCustomerType `json:"type,omitempty"`
 	// A unique identifier for an object.
 	ID *string `json:"id,omitempty"`
@@ -83,56 +83,56 @@ type Addresses struct {
 	Country *string `json:"country,omitempty"`
 }
 
-func (o *Addresses) GetType() *EcommerceCustomerType {
+func (o *EcommerceCustomerAddress) GetType() *EcommerceCustomerType {
 	if o == nil {
 		return nil
 	}
 	return o.Type
 }
 
-func (o *Addresses) GetID() *string {
+func (o *EcommerceCustomerAddress) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *Addresses) GetLine1() *string {
+func (o *EcommerceCustomerAddress) GetLine1() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Line1
 }
 
-func (o *Addresses) GetLine2() *string {
+func (o *EcommerceCustomerAddress) GetLine2() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Line2
 }
 
-func (o *Addresses) GetCity() *string {
+func (o *EcommerceCustomerAddress) GetCity() *string {
 	if o == nil {
 		return nil
 	}
 	return o.City
 }
 
-func (o *Addresses) GetState() *string {
+func (o *EcommerceCustomerAddress) GetState() *string {
 	if o == nil {
 		return nil
 	}
 	return o.State
 }
 
-func (o *Addresses) GetPostalCode() *string {
+func (o *EcommerceCustomerAddress) GetPostalCode() *string {
 	if o == nil {
 		return nil
 	}
 	return o.PostalCode
 }
 
-func (o *Addresses) GetCountry() *string {
+func (o *EcommerceCustomerAddress) GetCountry() *string {
 	if o == nil {
 		return nil
 	}
@@ -151,7 +151,7 @@ type EcommerceCustomer struct {
 	// Company name of the customer
 	CompanyName *string `json:"company_name,omitempty"`
 	// The current status of the customer
-	Status *CustomerStatus `json:"status,omitempty"`
+	Status *EcommerceCustomerStatusCustomerStatus `json:"status,omitempty"`
 	// Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
 	Currency *Currency `json:"currency,omitempty"`
 	// An array of email addresses for the customer.
@@ -159,8 +159,8 @@ type EcommerceCustomer struct {
 	// An array of phone numbers for the customer.
 	PhoneNumbers []PhoneNumber `json:"phone_numbers,omitempty"`
 	// An array of addresses for the customer.
-	Addresses []Addresses            `json:"addresses,omitempty"`
-	Orders    []LinkedEcommerceOrder `json:"orders,omitempty"`
+	Addresses []EcommerceCustomerAddress `json:"addresses,omitempty"`
+	Orders    []LinkedEcommerceOrder     `json:"orders,omitempty"`
 	// When custom mappings are configured on the resource, the result is included here.
 	CustomMappings map[string]any `json:"custom_mappings,omitempty"`
 	// The date and time when the object was created.
@@ -215,7 +215,7 @@ func (o *EcommerceCustomer) GetCompanyName() *string {
 	return o.CompanyName
 }
 
-func (o *EcommerceCustomer) GetStatus() *CustomerStatus {
+func (o *EcommerceCustomer) GetStatus() *EcommerceCustomerStatusCustomerStatus {
 	if o == nil {
 		return nil
 	}
@@ -243,7 +243,7 @@ func (o *EcommerceCustomer) GetPhoneNumbers() []PhoneNumber {
 	return o.PhoneNumbers
 }
 
-func (o *EcommerceCustomer) GetAddresses() []Addresses {
+func (o *EcommerceCustomer) GetAddresses() []EcommerceCustomerAddress {
 	if o == nil {
 		return nil
 	}

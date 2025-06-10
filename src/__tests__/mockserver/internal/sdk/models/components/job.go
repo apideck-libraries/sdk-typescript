@@ -112,19 +112,19 @@ func (o *Branch) GetName() *string {
 	return o.Name
 }
 
-type Blocks struct {
+type Block struct {
 	Title   *string `json:"title,omitempty"`
 	Content *string `json:"content,omitempty"`
 }
 
-func (o *Blocks) GetTitle() *string {
+func (o *Block) GetTitle() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Title
 }
 
-func (o *Blocks) GetContent() *string {
+func (o *Block) GetContent() *string {
 	if o == nil {
 		return nil
 	}
@@ -195,19 +195,19 @@ func (e *JobType) UnmarshalJSON(data []byte) error {
 	}
 }
 
-type JobLinks struct {
+type Link struct {
 	Type *JobType `json:"type,omitempty"`
 	URL  *string  `json:"url,omitempty"`
 }
 
-func (o *JobLinks) GetType() *JobType {
+func (o *Link) GetType() *JobType {
 	if o == nil {
 		return nil
 	}
 	return o.Type
 }
 
-func (o *JobLinks) GetURL() *string {
+func (o *Link) GetURL() *string {
 	if o == nil {
 		return nil
 	}
@@ -249,9 +249,9 @@ type Job struct {
 	// A description of the object.
 	Description *string `json:"description,omitempty"`
 	// The job description in HTML format
-	DescriptionHTML *string  `json:"description_html,omitempty"`
-	Blocks          []Blocks `json:"blocks,omitempty"`
-	Closing         *string  `json:"closing,omitempty"`
+	DescriptionHTML *string `json:"description_html,omitempty"`
+	Blocks          []Block `json:"blocks,omitempty"`
+	Closing         *string `json:"closing,omitempty"`
 	// The closing section of the job description in HTML format
 	ClosingHTML *string     `json:"closing_html,omitempty"`
 	ClosingDate *types.Date `json:"closing_date,omitempty"`
@@ -265,9 +265,9 @@ type Job struct {
 	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
 	JobPortalURL *string `json:"job_portal_url,omitempty"`
 	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
-	RecordURL    *string    `json:"record_url,omitempty"`
-	Links        []JobLinks `json:"links,omitempty"`
-	Confidential *bool      `json:"confidential,omitempty"`
+	RecordURL    *string `json:"record_url,omitempty"`
+	Links        []Link  `json:"links,omitempty"`
+	Confidential *bool   `json:"confidential,omitempty"`
 	// Specifies whether an employee of the organization can apply for the job.
 	AvailableToEmployees *bool         `json:"available_to_employees,omitempty"`
 	Tags                 []string      `json:"tags,omitempty"`
@@ -440,7 +440,7 @@ func (o *Job) GetDescriptionHTML() *string {
 	return o.DescriptionHTML
 }
 
-func (o *Job) GetBlocks() []Blocks {
+func (o *Job) GetBlocks() []Block {
 	if o == nil {
 		return nil
 	}
@@ -496,7 +496,7 @@ func (o *Job) GetRecordURL() *string {
 	return o.RecordURL
 }
 
-func (o *Job) GetLinks() []JobLinks {
+func (o *Job) GetLinks() []Link {
 	if o == nil {
 		return nil
 	}

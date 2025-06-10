@@ -7,6 +7,7 @@ import { JournalEntriesSort } from "@apideck/unify/models/components";
 
 let value: JournalEntriesSort = {
   by: "updated_at",
+  direction: "desc",
 };
 ```
 

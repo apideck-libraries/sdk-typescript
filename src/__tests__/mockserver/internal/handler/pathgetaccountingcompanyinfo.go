@@ -68,20 +68,20 @@ func testAccountingCompanyInfoOneAccountingCompanyInfoOne0(w http.ResponseWriter
 				TotalTaxRate:         types.Float64(10),
 				TaxPayableAccountID:  types.String("123456"),
 				TaxRemittedAccountID: types.String("123456"),
-				Components: []components.ComponentsObj{
-					components.ComponentsObj{
+				Components: []components.Component{
+					components.Component{
 						ID:       types.String("10"),
 						Name:     types.String("GST"),
 						Rate:     types.Float64(10),
 						Compound: types.Bool(true),
 					},
-					components.ComponentsObj{
+					components.Component{
 						ID:       types.String("10"),
 						Name:     types.String("GST"),
 						Rate:     types.Float64(10),
 						Compound: types.Bool(true),
 					},
-					components.ComponentsObj{
+					components.Component{
 						ID:       types.String("10"),
 						Name:     types.String("GST"),
 						Rate:     types.Float64(10),
@@ -100,8 +100,8 @@ func testAccountingCompanyInfoOneAccountingCompanyInfoOne0(w http.ResponseWriter
 				PassThrough: []components.PassThroughBody{
 					components.PassThroughBody{
 						ServiceID: "<id>",
-						ExtendPaths: []components.ExtendPaths{
-							components.ExtendPaths{
+						ExtendPaths: []components.ExtendPath{
+							components.ExtendPath{
 								Path: "$.nested.property",
 								Value: map[string]any{
 									"TaxClassificationRef": map[string]any{
@@ -109,7 +109,7 @@ func testAccountingCompanyInfoOneAccountingCompanyInfoOne0(w http.ResponseWriter
 									},
 								},
 							},
-							components.ExtendPaths{
+							components.ExtendPath{
 								Path: "$.nested.property",
 								Value: map[string]any{
 									"TaxClassificationRef": map[string]any{
@@ -121,8 +121,8 @@ func testAccountingCompanyInfoOneAccountingCompanyInfoOne0(w http.ResponseWriter
 					},
 					components.PassThroughBody{
 						ServiceID: "<id>",
-						ExtendPaths: []components.ExtendPaths{
-							components.ExtendPaths{
+						ExtendPaths: []components.ExtendPath{
+							components.ExtendPath{
 								Path: "$.nested.property",
 								Value: map[string]any{
 									"TaxClassificationRef": map[string]any{
@@ -130,7 +130,7 @@ func testAccountingCompanyInfoOneAccountingCompanyInfoOne0(w http.ResponseWriter
 									},
 								},
 							},
-							components.ExtendPaths{
+							components.ExtendPath{
 								Path: "$.nested.property",
 								Value: map[string]any{
 									"TaxClassificationRef": map[string]any{
@@ -146,7 +146,7 @@ func testAccountingCompanyInfoOneAccountingCompanyInfoOne0(w http.ResponseWriter
 						ID:          types.String("2389328923893298"),
 						Name:        types.String("employee_level"),
 						Description: types.String("Employee Level"),
-						Value: types.Pointer(components.CreateValueBoolean(
+						Value: types.Pointer(components.CreateCustomFieldValueUnionBoolean(
 							true,
 						)),
 					},
@@ -154,7 +154,7 @@ func testAccountingCompanyInfoOneAccountingCompanyInfoOne0(w http.ResponseWriter
 						ID:          types.String("2389328923893298"),
 						Name:        types.String("employee_level"),
 						Description: types.String("Employee Level"),
-						Value: types.Pointer(components.CreateValueBoolean(
+						Value: types.Pointer(components.CreateCustomFieldValueUnionBoolean(
 							true,
 						)),
 					},
@@ -162,7 +162,7 @@ func testAccountingCompanyInfoOneAccountingCompanyInfoOne0(w http.ResponseWriter
 						ID:          types.String("2389328923893298"),
 						Name:        types.String("employee_level"),
 						Description: types.String("Employee Level"),
-						Value: types.Pointer(components.CreateValueNumber(
+						Value: types.Pointer(components.CreateCustomFieldValueUnionNumber(
 							10,
 						)),
 					},
@@ -175,7 +175,7 @@ func testAccountingCompanyInfoOneAccountingCompanyInfoOne0(w http.ResponseWriter
 			Addresses: []components.Address{
 				components.Address{
 					ID:           types.String("123"),
-					Type:         components.TypePrimary.ToPointer(),
+					Type:         components.AddressTypePrimary.ToPointer(),
 					String:       types.String("25 Spring Street, Blackburn, VIC 3130"),
 					Name:         types.String("HQ US"),
 					Line1:        types.String("Main street"),

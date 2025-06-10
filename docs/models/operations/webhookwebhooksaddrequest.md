@@ -5,18 +5,7 @@
 ```typescript
 import { WebhookWebhooksAddRequest } from "@apideck/unify/models/operations";
 
-let value: WebhookWebhooksAddRequest = {
-  createWebhookRequest: {
-    description: "A description",
-    unifiedApi: "crm",
-    status: "enabled",
-    deliveryUrl: "https://example.com/my/webhook/endpoint",
-    events: [
-      "vault.connection.created",
-      "vault.connection.updated",
-    ],
-  },
-};
+let value: WebhookWebhooksAddRequest = {};
 ```
 
 ## Fields

@@ -65,8 +65,8 @@ func testAccountingSubsidiariesOneAccountingSubsidiariesOne0(w http.ResponseWrit
 			PassThrough: []components.PassThroughBody{
 				components.PassThroughBody{
 					ServiceID: "<id>",
-					ExtendPaths: []components.ExtendPaths{
-						components.ExtendPaths{
+					ExtendPaths: []components.ExtendPath{
+						components.ExtendPath{
 							Path: "$.nested.property",
 							Value: map[string]any{
 								"TaxClassificationRef": map[string]any{
@@ -74,28 +74,7 @@ func testAccountingSubsidiariesOneAccountingSubsidiariesOne0(w http.ResponseWrit
 								},
 							},
 						},
-						components.ExtendPaths{
-							Path: "$.nested.property",
-							Value: map[string]any{
-								"TaxClassificationRef": map[string]any{
-									"value": "EUC-99990201-V1-00020000",
-								},
-							},
-						},
-					},
-				},
-				components.PassThroughBody{
-					ServiceID: "<id>",
-					ExtendPaths: []components.ExtendPaths{
-						components.ExtendPaths{
-							Path: "$.nested.property",
-							Value: map[string]any{
-								"TaxClassificationRef": map[string]any{
-									"value": "EUC-99990201-V1-00020000",
-								},
-							},
-						},
-						components.ExtendPaths{
+						components.ExtendPath{
 							Path: "$.nested.property",
 							Value: map[string]any{
 								"TaxClassificationRef": map[string]any{
@@ -107,8 +86,8 @@ func testAccountingSubsidiariesOneAccountingSubsidiariesOne0(w http.ResponseWrit
 				},
 				components.PassThroughBody{
 					ServiceID: "<id>",
-					ExtendPaths: []components.ExtendPaths{
-						components.ExtendPaths{
+					ExtendPaths: []components.ExtendPath{
+						components.ExtendPath{
 							Path: "$.nested.property",
 							Value: map[string]any{
 								"TaxClassificationRef": map[string]any{
@@ -116,7 +95,28 @@ func testAccountingSubsidiariesOneAccountingSubsidiariesOne0(w http.ResponseWrit
 								},
 							},
 						},
-						components.ExtendPaths{
+						components.ExtendPath{
+							Path: "$.nested.property",
+							Value: map[string]any{
+								"TaxClassificationRef": map[string]any{
+									"value": "EUC-99990201-V1-00020000",
+								},
+							},
+						},
+					},
+				},
+				components.PassThroughBody{
+					ServiceID: "<id>",
+					ExtendPaths: []components.ExtendPath{
+						components.ExtendPath{
+							Path: "$.nested.property",
+							Value: map[string]any{
+								"TaxClassificationRef": map[string]any{
+									"value": "EUC-99990201-V1-00020000",
+								},
+							},
+						},
+						components.ExtendPath{
 							Path: "$.nested.property",
 							Value: map[string]any{
 								"TaxClassificationRef": map[string]any{

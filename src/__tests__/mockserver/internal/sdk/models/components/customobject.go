@@ -2,19 +2,19 @@
 
 package components
 
-type CustomObjectFields struct {
+type CustomObjectField struct {
 	Name  *string `json:"name,omitempty"`
 	Value *string `json:"value,omitempty"`
 }
 
-func (o *CustomObjectFields) GetName() *string {
+func (o *CustomObjectField) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-func (o *CustomObjectFields) GetValue() *string {
+func (o *CustomObjectField) GetValue() *string {
 	if o == nil {
 		return nil
 	}
@@ -27,8 +27,8 @@ type CustomObject struct {
 	// The unique identifier of the owner of the custom object
 	OwnerID *string `json:"owner_id,omitempty"`
 	// The name of the custom object
-	Name   *string              `json:"name,omitempty"`
-	Fields []CustomObjectFields `json:"fields,omitempty"`
+	Name   *string             `json:"name,omitempty"`
+	Fields []CustomObjectField `json:"fields,omitempty"`
 	// The unique identifier of the user who last updated the custom object
 	UpdatedBy *string `json:"updated_by,omitempty"`
 	// The unique identifier of the user who created the custom object
@@ -62,7 +62,7 @@ func (o *CustomObject) GetName() *string {
 	return o.Name
 }
 
-func (o *CustomObject) GetFields() []CustomObjectFields {
+func (o *CustomObject) GetFields() []CustomObjectField {
 	if o == nil {
 		return nil
 	}
@@ -106,8 +106,8 @@ func (o *CustomObject) GetPassThrough() []PassThroughBody {
 
 type CustomObjectInput struct {
 	// The name of the custom object
-	Name   *string              `json:"name,omitempty"`
-	Fields []CustomObjectFields `json:"fields,omitempty"`
+	Name   *string             `json:"name,omitempty"`
+	Fields []CustomObjectField `json:"fields,omitempty"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
 	PassThrough []PassThroughBody `json:"pass_through,omitempty"`
 }
@@ -119,7 +119,7 @@ func (o *CustomObjectInput) GetName() *string {
 	return o.Name
 }
 
-func (o *CustomObjectInput) GetFields() []CustomObjectFields {
+func (o *CustomObjectInput) GetFields() []CustomObjectField {
 	if o == nil {
 		return nil
 	}

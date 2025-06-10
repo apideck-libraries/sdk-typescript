@@ -70,8 +70,8 @@ func testCrmNotesAllCrmNotesAll0(w http.ResponseWriter, req *http.Request) {
 				PassThrough: []components.PassThroughBody{
 					components.PassThroughBody{
 						ServiceID: "<id>",
-						ExtendPaths: []components.ExtendPaths{
-							components.ExtendPaths{
+						ExtendPaths: []components.ExtendPath{
+							components.ExtendPath{
 								Path: "$.nested.property",
 								Value: map[string]any{
 									"TaxClassificationRef": map[string]any{
@@ -79,7 +79,7 @@ func testCrmNotesAllCrmNotesAll0(w http.ResponseWriter, req *http.Request) {
 									},
 								},
 							},
-							components.ExtendPaths{
+							components.ExtendPath{
 								Path: "$.nested.property",
 								Value: map[string]any{
 									"TaxClassificationRef": map[string]any{
@@ -87,7 +87,7 @@ func testCrmNotesAllCrmNotesAll0(w http.ResponseWriter, req *http.Request) {
 									},
 								},
 							},
-							components.ExtendPaths{
+							components.ExtendPath{
 								Path: "$.nested.property",
 								Value: map[string]any{
 									"TaxClassificationRef": map[string]any{
@@ -99,38 +99,8 @@ func testCrmNotesAllCrmNotesAll0(w http.ResponseWriter, req *http.Request) {
 					},
 					components.PassThroughBody{
 						ServiceID: "<id>",
-						ExtendPaths: []components.ExtendPaths{
-							components.ExtendPaths{
-								Path: "$.nested.property",
-								Value: map[string]any{
-									"TaxClassificationRef": map[string]any{
-										"value": "EUC-99990201-V1-00020000",
-									},
-								},
-							},
-						},
-					},
-				},
-			},
-			components.Note{
-				ID:            types.String("12345"),
-				Title:         types.String("Meeting Notes"),
-				Content:       types.String("Office hours are 9AM-6PM"),
-				OwnerID:       types.String("12345"),
-				ContactID:     types.String("12345"),
-				CompanyID:     types.String("12345"),
-				OpportunityID: types.String("12345"),
-				LeadID:        types.String("12345"),
-				Active:        types.Bool(true),
-				UpdatedBy:     types.String("12345"),
-				CreatedBy:     types.String("12345"),
-				UpdatedAt:     types.String("2020-09-30T07:43:32.000Z"),
-				CreatedAt:     types.String("2020-09-30T07:43:32.000Z"),
-				PassThrough: []components.PassThroughBody{
-					components.PassThroughBody{
-						ServiceID: "<id>",
-						ExtendPaths: []components.ExtendPaths{
-							components.ExtendPaths{
+						ExtendPaths: []components.ExtendPath{
+							components.ExtendPath{
 								Path: "$.nested.property",
 								Value: map[string]any{
 									"TaxClassificationRef": map[string]any{
@@ -159,8 +129,8 @@ func testCrmNotesAllCrmNotesAll0(w http.ResponseWriter, req *http.Request) {
 				PassThrough: []components.PassThroughBody{
 					components.PassThroughBody{
 						ServiceID: "<id>",
-						ExtendPaths: []components.ExtendPaths{
-							components.ExtendPaths{
+						ExtendPaths: []components.ExtendPath{
+							components.ExtendPath{
 								Path: "$.nested.property",
 								Value: map[string]any{
 									"TaxClassificationRef": map[string]any{
@@ -168,7 +138,37 @@ func testCrmNotesAllCrmNotesAll0(w http.ResponseWriter, req *http.Request) {
 									},
 								},
 							},
-							components.ExtendPaths{
+						},
+					},
+				},
+			},
+			components.Note{
+				ID:            types.String("12345"),
+				Title:         types.String("Meeting Notes"),
+				Content:       types.String("Office hours are 9AM-6PM"),
+				OwnerID:       types.String("12345"),
+				ContactID:     types.String("12345"),
+				CompanyID:     types.String("12345"),
+				OpportunityID: types.String("12345"),
+				LeadID:        types.String("12345"),
+				Active:        types.Bool(true),
+				UpdatedBy:     types.String("12345"),
+				CreatedBy:     types.String("12345"),
+				UpdatedAt:     types.String("2020-09-30T07:43:32.000Z"),
+				CreatedAt:     types.String("2020-09-30T07:43:32.000Z"),
+				PassThrough: []components.PassThroughBody{
+					components.PassThroughBody{
+						ServiceID: "<id>",
+						ExtendPaths: []components.ExtendPath{
+							components.ExtendPath{
+								Path: "$.nested.property",
+								Value: map[string]any{
+									"TaxClassificationRef": map[string]any{
+										"value": "EUC-99990201-V1-00020000",
+									},
+								},
+							},
+							components.ExtendPath{
 								Path: "$.nested.property",
 								Value: map[string]any{
 									"TaxClassificationRef": map[string]any{
@@ -180,8 +180,8 @@ func testCrmNotesAllCrmNotesAll0(w http.ResponseWriter, req *http.Request) {
 					},
 					components.PassThroughBody{
 						ServiceID: "<id>",
-						ExtendPaths: []components.ExtendPaths{
-							components.ExtendPaths{
+						ExtendPaths: []components.ExtendPath{
+							components.ExtendPath{
 								Path: "$.nested.property",
 								Value: map[string]any{
 									"TaxClassificationRef": map[string]any{

@@ -16,6 +16,8 @@ test("Suppliers Accounting Suppliers All", async () => {
   });
 
   const result = await apideck.accounting.suppliers.list({
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
     filter: {
       companyName: "SpaceX",
@@ -27,6 +29,7 @@ test("Suppliers Accounting Suppliers All", async () => {
     },
     sort: {
       by: "updated_at",
+      direction: "desc",
     },
     passThrough: {
       "search": "San Francisco",
@@ -777,6 +780,8 @@ test("Suppliers Accounting Suppliers One", async () => {
 
   const result = await apideck.accounting.suppliers.get({
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
     fields: "id,updated_at",
   });
@@ -1054,6 +1059,8 @@ test("Suppliers Accounting Suppliers Delete", async () => {
 
   const result = await apideck.accounting.suppliers.delete({
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
   });
   expect(result.httpMeta.response.status).toBe(200);

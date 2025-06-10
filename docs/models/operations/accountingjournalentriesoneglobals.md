@@ -5,7 +5,10 @@
 ```typescript
 import { AccountingJournalEntriesOneGlobals } from "@apideck/unify/models/operations";
 
-let value: AccountingJournalEntriesOneGlobals = {};
+let value: AccountingJournalEntriesOneGlobals = {
+  consumerId: "test-consumer",
+  appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
+};
 ```
 
 ## Fields

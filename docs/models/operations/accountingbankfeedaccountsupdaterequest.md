@@ -8,24 +8,6 @@ import { AccountingBankFeedAccountsUpdateRequest } from "@apideck/unify/models/o
 let value: AccountingBankFeedAccountsUpdateRequest = {
   id: "<id>",
   serviceId: "salesforce",
-  bankFeedAccount: {
-    bankAccountType: "bank",
-    sourceAccountId: "src_456",
-    targetAccountId: "tgt_789",
-    targetAccountName: "Main Company Checking",
-    targetAccountNumber: "NL91ABNA0417164300",
-    currency: "USD",
-    feedStatus: "pending",
-    country: "US",
-    customFields: [
-      {
-        id: "2389328923893298",
-        name: "employee_level",
-        description: "Employee Level",
-        value: "Uses Salesforce and Marketo",
-      },
-    ],
-  },
 };
 ```
 

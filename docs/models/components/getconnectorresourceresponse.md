@@ -40,7 +40,11 @@ let value: GetConnectorResourceResponse = {
     supportedFields: [
       {
         unifiedProperty: "owner_id",
-        childProperties: [],
+        childProperties: [
+          {
+            unifiedProperty: "owner_id",
+          },
+        ],
       },
     ],
     supportedListFields: [

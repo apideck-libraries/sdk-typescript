@@ -100,7 +100,7 @@ func (e *OauthCredentialsSource) UnmarshalJSON(data []byte) error {
 	}
 }
 
-type OauthScopes struct {
+type OauthScope struct {
 	// ID of the OAuth scope.
 	ID *string `json:"id,omitempty"`
 	// Label of the OAuth scope.
@@ -109,57 +109,57 @@ type OauthScopes struct {
 	DefaultApis []string `json:"default_apis,omitempty"`
 }
 
-func (o *OauthScopes) GetID() *string {
+func (o *OauthScope) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *OauthScopes) GetLabel() *string {
+func (o *OauthScope) GetLabel() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Label
 }
 
-func (o *OauthScopes) GetDefaultApis() []string {
+func (o *OauthScope) GetDefaultApis() []string {
 	if o == nil {
 		return nil
 	}
 	return o.DefaultApis
 }
 
-// ConnectorOauthScopes - OAuth scopes required for the connector. Add these scopes to your OAuth app.
-type ConnectorOauthScopes struct {
+// UnifiedAPIOauthScope - OAuth scopes required for the connector. Add these scopes to your OAuth app.
+type UnifiedAPIOauthScope struct {
 	// ID of the OAuth scope.
 	ID *string `json:"id,omitempty"`
 	// Label of the OAuth scope.
 	Label *string `json:"label,omitempty"`
 }
 
-func (o *ConnectorOauthScopes) GetID() *string {
+func (o *UnifiedAPIOauthScope) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *ConnectorOauthScopes) GetLabel() *string {
+func (o *UnifiedAPIOauthScope) GetLabel() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Label
 }
 
-type UnifiedApis struct {
+type ConnectorUnifiedAPI struct {
 	// Name of Apideck Unified API
 	ID *UnifiedAPIID `json:"id,omitempty"`
 	// Name of the API.
 	Name *string `json:"name,omitempty"`
 	// Indicates whether a connector only supports authentication. In this case the connector is not mapped to a Unified API, but can be used with the Proxy API
 	AuthOnly    *bool                  `json:"auth_only,omitempty"`
-	OauthScopes []ConnectorOauthScopes `json:"oauth_scopes,omitempty"`
+	OauthScopes []UnifiedAPIOauthScope `json:"oauth_scopes,omitempty"`
 	// List of resources that are supported on the connector.
 	SupportedResources []LinkedConnectorResource `json:"supported_resources,omitempty"`
 	// List of resources that are not supported on the downstream.
@@ -168,49 +168,49 @@ type UnifiedApis struct {
 	SupportedEvents []ConnectorEvent `json:"supported_events,omitempty"`
 }
 
-func (o *UnifiedApis) GetID() *UnifiedAPIID {
+func (o *ConnectorUnifiedAPI) GetID() *UnifiedAPIID {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *UnifiedApis) GetName() *string {
+func (o *ConnectorUnifiedAPI) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-func (o *UnifiedApis) GetAuthOnly() *bool {
+func (o *ConnectorUnifiedAPI) GetAuthOnly() *bool {
 	if o == nil {
 		return nil
 	}
 	return o.AuthOnly
 }
 
-func (o *UnifiedApis) GetOauthScopes() []ConnectorOauthScopes {
+func (o *ConnectorUnifiedAPI) GetOauthScopes() []UnifiedAPIOauthScope {
 	if o == nil {
 		return nil
 	}
 	return o.OauthScopes
 }
 
-func (o *UnifiedApis) GetSupportedResources() []LinkedConnectorResource {
+func (o *ConnectorUnifiedAPI) GetSupportedResources() []LinkedConnectorResource {
 	if o == nil {
 		return nil
 	}
 	return o.SupportedResources
 }
 
-func (o *UnifiedApis) GetDownstreamUnsupportedResources() []string {
+func (o *ConnectorUnifiedAPI) GetDownstreamUnsupportedResources() []string {
 	if o == nil {
 		return nil
 	}
 	return o.DownstreamUnsupportedResources
 }
 
-func (o *UnifiedApis) GetSupportedEvents() []ConnectorEvent {
+func (o *ConnectorUnifiedAPI) GetSupportedEvents() []ConnectorEvent {
 	if o == nil {
 		return nil
 	}
@@ -269,7 +269,7 @@ type Connector struct {
 	// Location of the OAuth client credentials. For most connectors the OAuth client credentials are stored on integration and managed by the application owner. For others they are stored on connection and managed by the consumer in Vault.
 	OauthCredentialsSource *OauthCredentialsSource `json:"oauth_credentials_source,omitempty"`
 	// List of OAuth Scopes available for this connector.
-	OauthScopes []OauthScopes `json:"oauth_scopes,omitempty"`
+	OauthScopes []OauthScope `json:"oauth_scopes,omitempty"`
 	// Set to `true` when connector allows the definition of custom scopes.
 	CustomScopes *bool `json:"custom_scopes,omitempty"`
 	// Indicates whether Apideck Sandbox OAuth credentials are available.
@@ -278,7 +278,7 @@ type Connector struct {
 	// Service provider identifier
 	ServiceID *string `json:"service_id,omitempty"`
 	// List of Unified APIs that feature this connector.
-	UnifiedApis []UnifiedApis `json:"unified_apis,omitempty"`
+	UnifiedApis []ConnectorUnifiedAPI `json:"unified_apis,omitempty"`
 	// List of resources that are supported on the connector.
 	SupportedResources []LinkedConnectorResource `json:"supported_resources,omitempty"`
 	// List of resources that have settings that can be configured.
@@ -398,7 +398,7 @@ func (o *Connector) GetOauthCredentialsSource() *OauthCredentialsSource {
 	return o.OauthCredentialsSource
 }
 
-func (o *Connector) GetOauthScopes() []OauthScopes {
+func (o *Connector) GetOauthScopes() []OauthScope {
 	if o == nil {
 		return nil
 	}
@@ -433,7 +433,7 @@ func (o *Connector) GetServiceID() *string {
 	return o.ServiceID
 }
 
-func (o *Connector) GetUnifiedApis() []UnifiedApis {
+func (o *Connector) GetUnifiedApis() []ConnectorUnifiedAPI {
 	if o == nil {
 		return nil
 	}

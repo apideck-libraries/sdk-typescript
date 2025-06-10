@@ -23,12 +23,7 @@ let value: GetProductsResponse = {
       price: "1999.99",
       sku: "MBP123",
       inventoryQuantity: "10",
-      images: [
-        {
-          id: "12345",
-          url: "https://example.com/macbook-pro.jpg",
-        },
-      ],
+      images: null,
       weight: "1.25",
       weightUnit: "lb",
       options: [

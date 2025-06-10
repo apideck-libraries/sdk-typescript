@@ -51,7 +51,7 @@ func testVaultConnectionsDeleteVaultConnectionsDelete0(w http.ResponseWriter, re
 		Error:      types.String("Bad Request"),
 		TypeName:   types.String("RequestHeadersValidationError"),
 		Message:    types.String("Invalid Params"),
-		Detail: types.Pointer(components.CreateDetailMapOfAny(
+		Detail: types.Pointer(components.CreateUnexpectedErrorResponseDetailMapOfAny(
 			map[string]any{
 				"missing": []any{
 					map[string]any{

@@ -7,6 +7,7 @@ import { CompaniesSort } from "@apideck/unify/models/components";
 
 let value: CompaniesSort = {
   by: "created_at",
+  direction: "desc",
 };
 ```
 

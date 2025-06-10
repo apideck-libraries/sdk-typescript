@@ -58,7 +58,7 @@ func testAtsApplicationsAllAtsApplicationsAll0(w http.ResponseWriter, req *http.
 				ApplicantID: types.String("12345"),
 				JobID:       types.String("12345"),
 				Status:      components.ApplicationStatusOpen.ToPointer(),
-				Stage: &components.Stage{
+				Stage: &components.ApplicationStage{
 					ID:   types.String("12345"),
 					Name: types.String("12345"),
 				},
@@ -69,8 +69,8 @@ func testAtsApplicationsAllAtsApplicationsAll0(w http.ResponseWriter, req *http.
 				PassThrough: []components.PassThroughBody{
 					components.PassThroughBody{
 						ServiceID: "<id>",
-						ExtendPaths: []components.ExtendPaths{
-							components.ExtendPaths{
+						ExtendPaths: []components.ExtendPath{
+							components.ExtendPath{
 								Path: "$.nested.property",
 								Value: map[string]any{
 									"TaxClassificationRef": map[string]any{
@@ -78,7 +78,7 @@ func testAtsApplicationsAllAtsApplicationsAll0(w http.ResponseWriter, req *http.
 									},
 								},
 							},
-							components.ExtendPaths{
+							components.ExtendPath{
 								Path: "$.nested.property",
 								Value: map[string]any{
 									"TaxClassificationRef": map[string]any{
@@ -86,7 +86,7 @@ func testAtsApplicationsAllAtsApplicationsAll0(w http.ResponseWriter, req *http.
 									},
 								},
 							},
-							components.ExtendPaths{
+							components.ExtendPath{
 								Path: "$.nested.property",
 								Value: map[string]any{
 									"TaxClassificationRef": map[string]any{
@@ -98,8 +98,8 @@ func testAtsApplicationsAllAtsApplicationsAll0(w http.ResponseWriter, req *http.
 					},
 					components.PassThroughBody{
 						ServiceID: "<id>",
-						ExtendPaths: []components.ExtendPaths{
-							components.ExtendPaths{
+						ExtendPaths: []components.ExtendPath{
+							components.ExtendPath{
 								Path: "$.nested.property",
 								Value: map[string]any{
 									"TaxClassificationRef": map[string]any{
@@ -116,7 +116,7 @@ func testAtsApplicationsAllAtsApplicationsAll0(w http.ResponseWriter, req *http.
 				ApplicantID: types.String("12345"),
 				JobID:       types.String("12345"),
 				Status:      components.ApplicationStatusOpen.ToPointer(),
-				Stage: &components.Stage{
+				Stage: &components.ApplicationStage{
 					ID:   types.String("12345"),
 					Name: types.String("12345"),
 				},
@@ -127,8 +127,8 @@ func testAtsApplicationsAllAtsApplicationsAll0(w http.ResponseWriter, req *http.
 				PassThrough: []components.PassThroughBody{
 					components.PassThroughBody{
 						ServiceID: "<id>",
-						ExtendPaths: []components.ExtendPaths{
-							components.ExtendPaths{
+						ExtendPaths: []components.ExtendPath{
+							components.ExtendPath{
 								Path: "$.nested.property",
 								Value: map[string]any{
 									"TaxClassificationRef": map[string]any{
@@ -145,7 +145,7 @@ func testAtsApplicationsAllAtsApplicationsAll0(w http.ResponseWriter, req *http.
 				ApplicantID: types.String("12345"),
 				JobID:       types.String("12345"),
 				Status:      components.ApplicationStatusOpen.ToPointer(),
-				Stage: &components.Stage{
+				Stage: &components.ApplicationStage{
 					ID:   types.String("12345"),
 					Name: types.String("12345"),
 				},
@@ -156,8 +156,8 @@ func testAtsApplicationsAllAtsApplicationsAll0(w http.ResponseWriter, req *http.
 				PassThrough: []components.PassThroughBody{
 					components.PassThroughBody{
 						ServiceID: "<id>",
-						ExtendPaths: []components.ExtendPaths{
-							components.ExtendPaths{
+						ExtendPaths: []components.ExtendPath{
+							components.ExtendPath{
 								Path: "$.nested.property",
 								Value: map[string]any{
 									"TaxClassificationRef": map[string]any{
@@ -165,7 +165,7 @@ func testAtsApplicationsAllAtsApplicationsAll0(w http.ResponseWriter, req *http.
 									},
 								},
 							},
-							components.ExtendPaths{
+							components.ExtendPath{
 								Path: "$.nested.property",
 								Value: map[string]any{
 									"TaxClassificationRef": map[string]any{
@@ -177,8 +177,8 @@ func testAtsApplicationsAllAtsApplicationsAll0(w http.ResponseWriter, req *http.
 					},
 					components.PassThroughBody{
 						ServiceID: "<id>",
-						ExtendPaths: []components.ExtendPaths{
-							components.ExtendPaths{
+						ExtendPaths: []components.ExtendPath{
+							components.ExtendPath{
 								Path: "$.nested.property",
 								Value: map[string]any{
 									"TaxClassificationRef": map[string]any{

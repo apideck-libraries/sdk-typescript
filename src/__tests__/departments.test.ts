@@ -16,6 +16,8 @@ test("Departments Accounting Departments All", async () => {
   });
 
   const result = await apideck.accounting.departments.list({
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
     fields: "id,updated_at",
     filter: {
@@ -242,6 +244,8 @@ test("Departments Accounting Departments One", async () => {
 
   const result = await apideck.accounting.departments.get({
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
     fields: "id,updated_at",
   });
@@ -342,6 +346,8 @@ test("Departments Accounting Departments Delete", async () => {
 
   const result = await apideck.accounting.departments.delete({
     id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",
   });
   expect(result.httpMeta.response.status).toBe(200);

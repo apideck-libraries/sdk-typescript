@@ -8,19 +8,19 @@ import (
 	"mockserver/internal/sdk/utils"
 )
 
-type AllowActions string
+type AllowAction string
 
 const (
-	AllowActionsDelete      AllowActions = "delete"
-	AllowActionsDisconnect  AllowActions = "disconnect"
-	AllowActionsReauthorize AllowActions = "reauthorize"
-	AllowActionsDisable     AllowActions = "disable"
+	AllowActionDelete      AllowAction = "delete"
+	AllowActionDisconnect  AllowAction = "disconnect"
+	AllowActionReauthorize AllowAction = "reauthorize"
+	AllowActionDisable     AllowAction = "disable"
 )
 
-func (e AllowActions) ToPointer() *AllowActions {
+func (e AllowAction) ToPointer() *AllowAction {
 	return &e
 }
-func (e *AllowActions) UnmarshalJSON(data []byte) error {
+func (e *AllowAction) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -33,15 +33,15 @@ func (e *AllowActions) UnmarshalJSON(data []byte) error {
 	case "reauthorize":
 		fallthrough
 	case "disable":
-		*e = AllowActions(v)
+		*e = AllowAction(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for AllowActions: %v", v)
+		return fmt.Errorf("invalid value for AllowAction: %v", v)
 	}
 }
 
-// SessionSettings - Settings to change the way the Vault is displayed.
-type SessionSettings struct {
+// Settings to change the way the Vault is displayed.
+type Settings struct {
 	// Provide the IDs of the Unified APIs you want to be visible. Leaving it empty or omitting this field will show all Unified APIs.
 	UnifiedApis []UnifiedAPIID `json:"unified_apis,omitempty"`
 	// A boolean that controls the display of the configurable resources for an integration. When set to true, the resource configuration options will be hidden and not shown to the user. When set to false, the resource configuration options will be displayed to the user.
@@ -65,91 +65,91 @@ type SessionSettings struct {
 	// Hide actions from your users in [Vault](/apis/vault/reference#section/Get-Started). Actions in `allow_actions` will be shown on a connection in Vault.
 	// Available actions are: `delete`, `disconnect`, `reauthorize` and `disable`.
 	// Empty array will hide all actions. By default all actions are visible.
-	AllowActions []AllowActions `json:"allow_actions,omitempty"`
+	AllowActions []AllowAction `json:"allow_actions,omitempty"`
 }
 
-func (s SessionSettings) MarshalJSON() ([]byte, error) {
+func (s Settings) MarshalJSON() ([]byte, error) {
 	return utils.MarshalJSON(s, "", false)
 }
 
-func (s *SessionSettings) UnmarshalJSON(data []byte) error {
+func (s *Settings) UnmarshalJSON(data []byte) error {
 	if err := utils.UnmarshalJSON(data, &s, "", false, false); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *SessionSettings) GetUnifiedApis() []UnifiedAPIID {
+func (o *Settings) GetUnifiedApis() []UnifiedAPIID {
 	if o == nil {
 		return nil
 	}
 	return o.UnifiedApis
 }
 
-func (o *SessionSettings) GetHideResourceSettings() *bool {
+func (o *Settings) GetHideResourceSettings() *bool {
 	if o == nil {
 		return nil
 	}
 	return o.HideResourceSettings
 }
 
-func (o *SessionSettings) GetSandboxMode() *bool {
+func (o *Settings) GetSandboxMode() *bool {
 	if o == nil {
 		return nil
 	}
 	return o.SandboxMode
 }
 
-func (o *SessionSettings) GetIsolationMode() *bool {
+func (o *Settings) GetIsolationMode() *bool {
 	if o == nil {
 		return nil
 	}
 	return o.IsolationMode
 }
 
-func (o *SessionSettings) GetSessionLength() *string {
+func (o *Settings) GetSessionLength() *string {
 	if o == nil {
 		return nil
 	}
 	return o.SessionLength
 }
 
-func (o *SessionSettings) GetShowLogs() *bool {
+func (o *Settings) GetShowLogs() *bool {
 	if o == nil {
 		return nil
 	}
 	return o.ShowLogs
 }
 
-func (o *SessionSettings) GetShowSuggestions() *bool {
+func (o *Settings) GetShowSuggestions() *bool {
 	if o == nil {
 		return nil
 	}
 	return o.ShowSuggestions
 }
 
-func (o *SessionSettings) GetShowSidebar() *bool {
+func (o *Settings) GetShowSidebar() *bool {
 	if o == nil {
 		return nil
 	}
 	return o.ShowSidebar
 }
 
-func (o *SessionSettings) GetAutoRedirect() *bool {
+func (o *Settings) GetAutoRedirect() *bool {
 	if o == nil {
 		return nil
 	}
 	return o.AutoRedirect
 }
 
-func (o *SessionSettings) GetHideGuides() *bool {
+func (o *Settings) GetHideGuides() *bool {
 	if o == nil {
 		return nil
 	}
 	return o.HideGuides
 }
 
-func (o *SessionSettings) GetAllowActions() []AllowActions {
+func (o *Settings) GetAllowActions() []AllowAction {
 	if o == nil {
 		return nil
 	}
@@ -238,7 +238,7 @@ type Session struct {
 	// The URL to redirect the user to after the session has been configured.
 	RedirectURI *string `json:"redirect_uri,omitempty"`
 	// Settings to change the way the Vault is displayed.
-	Settings *SessionSettings `json:"settings,omitempty"`
+	Settings *Settings `json:"settings,omitempty"`
 	// Theming options to change the look and feel of Vault.
 	Theme *Theme `json:"theme,omitempty"`
 	// Custom consumer settings that are passed as part of the session.
@@ -259,7 +259,7 @@ func (o *Session) GetRedirectURI() *string {
 	return o.RedirectURI
 }
 
-func (o *Session) GetSettings() *SessionSettings {
+func (o *Session) GetSettings() *Settings {
 	if o == nil {
 		return nil
 	}

@@ -7,7 +7,11 @@ import { SupportedProperty } from "@apideck/unify/models/components";
 
 let value: SupportedProperty = {
   unifiedProperty: "owner_id",
-  childProperties: [],
+  childProperties: [
+    {
+      unifiedProperty: "owner_id",
+    },
+  ],
 };
 ```
 

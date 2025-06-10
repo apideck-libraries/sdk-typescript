@@ -52,16 +52,16 @@ func testConnectorAPIResourcesOneConnectorAPIResourcesOne0(w http.ResponseWriter
 		Data: components.APIResource{
 			ID:   types.String("companies"),
 			Name: types.String("Companies"),
-			LinkedResources: []components.LinkedResources{
-				components.LinkedResources{
+			LinkedResources: []components.LinkedResource{
+				components.LinkedResource{
 					ID:              types.String("companies"),
 					UnifiedProperty: types.String("owner_id"),
 				},
-				components.LinkedResources{
+				components.LinkedResource{
 					ID:              types.String("companies"),
 					UnifiedProperty: types.String("owner_id"),
 				},
-				components.LinkedResources{
+				components.LinkedResource{
 					ID:              types.String("companies"),
 					UnifiedProperty: types.String("owner_id"),
 				},
