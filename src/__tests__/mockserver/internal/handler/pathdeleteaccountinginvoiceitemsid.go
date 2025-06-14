@@ -45,7 +45,7 @@ func testAccountingInvoiceItemsDeleteAccountingInvoiceItemsDelete0(w http.Respon
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	respBody := &components.DeleteTaxRateResponse{
+	var respBody *components.DeleteTaxRateResponse = &components.DeleteTaxRateResponse{
 		StatusCode: 200,
 		Status:     "OK",
 		Service:    "xero",

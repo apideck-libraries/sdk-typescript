@@ -45,7 +45,7 @@ func testHrisTimeOffRequestsDeleteHrisTimeOffRequestsDelete0(w http.ResponseWrit
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	respBody := &components.DeleteTimeOffRequestResponse{
+	var respBody *components.DeleteTimeOffRequestResponse = &components.DeleteTimeOffRequestResponse{
 		StatusCode: 200,
 		Status:     "OK",
 		Service:    "bamboohr",

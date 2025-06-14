@@ -50,7 +50,7 @@ func testAccountingBankFeedAccountsAddAccountingBankFeedAccountsAdd0(w http.Resp
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	respBody := &components.CreateBankFeedAccountResponse{
+	var respBody *components.CreateBankFeedAccountResponse = &components.CreateBankFeedAccountResponse{
 		StatusCode: 200,
 		Status:     "OK",
 		Service:    "xero",

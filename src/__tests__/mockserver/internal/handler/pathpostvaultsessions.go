@@ -50,7 +50,7 @@ func testVaultSessionsCreateVaultSessionsCreate0(w http.ResponseWriter, req *htt
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	respBody := &components.CreateSessionResponse{
+	var respBody *components.CreateSessionResponse = &components.CreateSessionResponse{
 		StatusCode: 200,
 		Status:     "OK",
 		Data: components.CreateSessionResponseData{

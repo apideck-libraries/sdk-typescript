@@ -45,7 +45,7 @@ func testAccountingBankFeedStatementsDeleteAccountingBankFeedStatementsDelete0(w
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	respBody := &components.DeleteBankFeedStatementResponse{
+	var respBody *components.DeleteBankFeedStatementResponse = &components.DeleteBankFeedStatementResponse{
 		StatusCode: 200,
 		Status:     "OK",
 		Service:    "quickbooks",

@@ -46,7 +46,7 @@ func testAccountingInvoiceItemsOneAccountingInvoiceItemsOne0(w http.ResponseWrit
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	respBody := &components.GetInvoiceItemResponse{
+	var respBody *components.GetInvoiceItemResponse = &components.GetInvoiceItemResponse{
 		StatusCode: 200,
 		Status:     "OK",
 		Service:    "xero",

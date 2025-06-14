@@ -45,7 +45,7 @@ func testHrisDepartmentsDeleteHrisDepartmentsDelete0(w http.ResponseWriter, req 
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	respBody := &components.DeleteDepartmentResponse{
+	var respBody *components.DeleteDepartmentResponse = &components.DeleteDepartmentResponse{
 		StatusCode: 200,
 		Status:     "OK",
 		Service:    "workday",

@@ -86,7 +86,7 @@ export type Contact = {
   /**
    * Full name of the contact.
    */
-  name: string | null;
+  name?: string | null | undefined;
   /**
    * The owner of the contact.
    */
@@ -225,7 +225,7 @@ export type ContactInput = {
   /**
    * Full name of the contact.
    */
-  name: string | null;
+  name?: string | null | undefined;
   /**
    * The owner of the contact.
    */
@@ -380,7 +380,7 @@ export namespace ContactGender$ {
 export const Contact$inboundSchema: z.ZodType<Contact, z.ZodTypeDef, unknown> =
   z.object({
     id: z.string().optional(),
-    name: z.nullable(z.string()),
+    name: z.nullable(z.string()).optional(),
     owner_id: z.nullable(z.string()).optional(),
     type: z.nullable(ContactType$inboundSchema).optional(),
     company_id: z.nullable(z.string()).optional(),
@@ -460,7 +460,7 @@ export const Contact$inboundSchema: z.ZodType<Contact, z.ZodTypeDef, unknown> =
 /** @internal */
 export type Contact$Outbound = {
   id?: string | undefined;
-  name: string | null;
+  name?: string | null | undefined;
   owner_id?: string | null | undefined;
   type?: string | null | undefined;
   company_id?: string | null | undefined;
@@ -509,7 +509,7 @@ export const Contact$outboundSchema: z.ZodType<
   Contact
 > = z.object({
   id: z.string().optional(),
-  name: z.nullable(z.string()),
+  name: z.nullable(z.string()).optional(),
   ownerId: z.nullable(z.string()).optional(),
   type: z.nullable(ContactType$outboundSchema).optional(),
   companyId: z.nullable(z.string()).optional(),
@@ -610,7 +610,7 @@ export const ContactInput$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  name: z.nullable(z.string()),
+  name: z.nullable(z.string()).optional(),
   owner_id: z.nullable(z.string()).optional(),
   type: z.nullable(ContactType$inboundSchema).optional(),
   company_id: z.nullable(z.string()).optional(),
@@ -667,7 +667,7 @@ export const ContactInput$inboundSchema: z.ZodType<
 
 /** @internal */
 export type ContactInput$Outbound = {
-  name: string | null;
+  name?: string | null | undefined;
   owner_id?: string | null | undefined;
   type?: string | null | undefined;
   company_id?: string | null | undefined;
@@ -709,7 +709,7 @@ export const ContactInput$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   ContactInput
 > = z.object({
-  name: z.nullable(z.string()),
+  name: z.nullable(z.string()).optional(),
   ownerId: z.nullable(z.string()).optional(),
   type: z.nullable(ContactType$outboundSchema).optional(),
   companyId: z.nullable(z.string()).optional(),

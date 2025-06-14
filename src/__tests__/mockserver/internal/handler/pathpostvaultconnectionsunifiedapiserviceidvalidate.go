@@ -51,7 +51,7 @@ func testVaultValidateConnectionStateVaultValidateConnectionState0(w http.Respon
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	respBody := &components.ValidateConnectionStateResponse{
+	var respBody *components.ValidateConnectionStateResponse = &components.ValidateConnectionStateResponse{
 		StatusCode: 200,
 		Status:     "OK",
 		Data: components.ValidateConnectionStateResponseData{

@@ -46,7 +46,7 @@ func testAccountingLocationsOneAccountingLocationsOne0(w http.ResponseWriter, re
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	respBody := &components.GetAccountingLocationResponse{
+	var respBody *components.GetAccountingLocationResponse = &components.GetAccountingLocationResponse{
 		StatusCode: 200,
 		Status:     "OK",
 		Service:    "xero",

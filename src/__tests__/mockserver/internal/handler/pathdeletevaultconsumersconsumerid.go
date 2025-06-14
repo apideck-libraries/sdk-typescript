@@ -46,7 +46,7 @@ func testVaultConsumersDeleteVaultConsumersDelete0(w http.ResponseWriter, req *h
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	respBody := &components.DeleteConsumerResponse{
+	var respBody *components.DeleteConsumerResponse = &components.DeleteConsumerResponse{
 		StatusCode: 200,
 		Status:     "OK",
 		Data: components.DeleteConsumerResponseData{

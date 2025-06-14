@@ -46,7 +46,7 @@ func testHrisEmployeesOneHrisEmployeesOne0(w http.ResponseWriter, req *http.Requ
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	respBody := &components.GetEmployeeResponse{
+	var respBody *components.GetEmployeeResponse = &components.GetEmployeeResponse{
 		StatusCode: 200,
 		Status:     "OK",
 		Service:    "sage-hr",

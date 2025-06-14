@@ -46,7 +46,7 @@ func testVaultConsumerRequestCountsAllVaultConsumerRequestCountsAll0(w http.Resp
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	respBody := &components.ConsumerRequestCountsInDateRangeResponse{
+	var respBody *components.ConsumerRequestCountsInDateRangeResponse = &components.ConsumerRequestCountsInDateRangeResponse{
 		StatusCode: 200,
 		Status:     "OK",
 		Data: components.ConsumerRequestCountsInDateRangeResponseData{

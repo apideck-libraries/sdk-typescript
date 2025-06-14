@@ -46,7 +46,7 @@ func testAccountingTrackingCategoriesOneAccountingTrackingCategoriesOne0(w http.
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	respBody := &components.GetTrackingCategoryResponse{
+	var respBody *components.GetTrackingCategoryResponse = &components.GetTrackingCategoryResponse{
 		StatusCode: 200,
 		Status:     "OK",
 		Service:    "xero",

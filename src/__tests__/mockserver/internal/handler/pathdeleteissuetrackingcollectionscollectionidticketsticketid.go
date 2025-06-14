@@ -45,7 +45,7 @@ func testIssueTrackingCollectionTicketsDeleteIssueTrackingCollectionTicketsDelet
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	respBody := &components.DeleteTicketResponse{
+	var respBody *components.DeleteTicketResponse = &components.DeleteTicketResponse{
 		StatusCode: 200,
 		Status:     "OK",
 		Service:    "jira",

@@ -45,7 +45,7 @@ func testAccountingLedgerAccountsDeleteAccountingLedgerAccountsDelete0(w http.Re
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	respBody := &components.DeleteLedgerAccountResponse{
+	var respBody *components.DeleteLedgerAccountResponse = &components.DeleteLedgerAccountResponse{
 		StatusCode: 200,
 		Status:     "OK",
 		Service:    "xero",

@@ -45,7 +45,7 @@ func testCrmCustomObjectsDeleteCrmCustomObjectsDelete0(w http.ResponseWriter, re
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	respBody := &components.DeleteCustomObjectResponse{
+	var respBody *components.DeleteCustomObjectResponse = &components.DeleteCustomObjectResponse{
 		StatusCode: 200,
 		Status:     "OK",
 		Service:    "zoho-crm",

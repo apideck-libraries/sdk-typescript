@@ -46,7 +46,7 @@ func testCrmUsersOneCrmUsersOne0(w http.ResponseWriter, req *http.Request) {
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	respBody := &components.GetUserResponse{
+	var respBody *components.GetUserResponse = &components.GetUserResponse{
 		StatusCode: 200,
 		Status:     "OK",
 		Service:    "zoho-crm",

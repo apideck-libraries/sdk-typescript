@@ -46,7 +46,7 @@ func testVaultConnectionsDeleteVaultConnectionsDelete0(w http.ResponseWriter, re
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	respBody := &components.UnexpectedErrorResponse{
+	var respBody *components.UnexpectedErrorResponse = &components.UnexpectedErrorResponse{
 		StatusCode: types.Float64(400),
 		Error:      types.String("Bad Request"),
 		TypeName:   types.String("RequestHeadersValidationError"),

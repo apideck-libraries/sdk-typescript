@@ -46,7 +46,7 @@ func testAccountingInvoicesDeleteAccountingInvoicesDelete0(w http.ResponseWriter
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	respBody := &components.DeleteInvoiceResponse{
+	var respBody *components.DeleteInvoiceResponse = &components.DeleteInvoiceResponse{
 		StatusCode: 200,
 		Status:     "OK",
 		Service:    "xero",

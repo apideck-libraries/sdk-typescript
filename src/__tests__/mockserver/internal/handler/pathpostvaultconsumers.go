@@ -51,7 +51,7 @@ func testVaultConsumersAddVaultConsumersAdd0(w http.ResponseWriter, req *http.Re
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	respBody := &components.CreateConsumerResponse{
+	var respBody *components.CreateConsumerResponse = &components.CreateConsumerResponse{
 		StatusCode: 200,
 		Status:     "OK",
 		Data: components.Consumer{

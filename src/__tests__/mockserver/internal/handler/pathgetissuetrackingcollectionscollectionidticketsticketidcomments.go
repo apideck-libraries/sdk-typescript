@@ -46,7 +46,7 @@ func testIssueTrackingCollectionTicketCommentsAllIssueTrackingCollectionTicketCo
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	respBody := &components.GetCommentsResponse{
+	var respBody *components.GetCommentsResponse = &components.GetCommentsResponse{
 		StatusCode: 200,
 		Status:     "OK",
 		Service:    "jira",

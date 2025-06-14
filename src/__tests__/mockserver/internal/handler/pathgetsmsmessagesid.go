@@ -46,7 +46,7 @@ func testSmsMessagesOneSmsMessagesOne0(w http.ResponseWriter, req *http.Request)
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	respBody := &components.GetMessageResponse{
+	var respBody *components.GetMessageResponse = &components.GetMessageResponse{
 		StatusCode: 200,
 		Status:     "OK",
 		Service:    "twilio",

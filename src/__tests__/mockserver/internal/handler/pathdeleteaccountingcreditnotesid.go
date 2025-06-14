@@ -45,7 +45,7 @@ func testAccountingCreditNotesDeleteAccountingCreditNotesDelete0(w http.Response
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	respBody := &components.DeleteCreditNoteResponse{
+	var respBody *components.DeleteCreditNoteResponse = &components.DeleteCreditNoteResponse{
 		StatusCode: 200,
 		Status:     "OK",
 		Service:    "xero",

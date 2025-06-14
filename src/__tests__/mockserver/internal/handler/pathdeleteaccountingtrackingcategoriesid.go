@@ -45,7 +45,7 @@ func testAccountingTrackingCategoriesDeleteAccountingTrackingCategoriesDelete0(w
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	respBody := &components.DeleteTrackingCategoryResponse{
+	var respBody *components.DeleteTrackingCategoryResponse = &components.DeleteTrackingCategoryResponse{
 		StatusCode: 200,
 		Status:     "OK",
 		Service:    "quickbooks",

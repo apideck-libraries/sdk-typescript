@@ -46,7 +46,7 @@ func testAtsJobsOneAtsJobsOne0(w http.ResponseWriter, req *http.Request) {
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	respBody := &components.GetJobResponse{
+	var respBody *components.GetJobResponse = &components.GetJobResponse{
 		StatusCode: 200,
 		Status:     "OK",
 		Service:    "lever",

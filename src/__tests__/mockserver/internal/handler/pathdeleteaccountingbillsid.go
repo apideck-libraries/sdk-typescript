@@ -45,7 +45,7 @@ func testAccountingBillsDeleteAccountingBillsDelete0(w http.ResponseWriter, req 
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	respBody := &components.DeleteBillResponse{
+	var respBody *components.DeleteBillResponse = &components.DeleteBillResponse{
 		StatusCode: 200,
 		Status:     "OK",
 		Service:    "xero",

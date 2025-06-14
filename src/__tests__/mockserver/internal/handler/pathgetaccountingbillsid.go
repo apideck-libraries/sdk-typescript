@@ -46,7 +46,7 @@ func testAccountingBillsOneAccountingBillsOne0(w http.ResponseWriter, req *http.
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	respBody := &components.GetBillResponse{
+	var respBody *components.GetBillResponse = &components.GetBillResponse{
 		StatusCode: 200,
 		Status:     "OK",
 		Service:    "xero",

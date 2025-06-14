@@ -51,7 +51,7 @@ func testFileStorageUploadSessionsFinishFileStorageUploadSessionsFinish0(w http.
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	respBody := &components.GetFileResponse{
+	var respBody *components.GetFileResponse = &components.GetFileResponse{
 		StatusCode: 200,
 		Status:     "OK",
 		Service:    "google-drive",

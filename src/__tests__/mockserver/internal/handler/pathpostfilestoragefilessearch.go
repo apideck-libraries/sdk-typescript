@@ -51,7 +51,7 @@ func testFileStorageFilesSearchFileStorageFilesSearch0(w http.ResponseWriter, re
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	respBody := &components.GetFilesResponse{
+	var respBody *components.GetFilesResponse = &components.GetFilesResponse{
 		StatusCode: 200,
 		Status:     "OK",
 		Service:    "google-drive",

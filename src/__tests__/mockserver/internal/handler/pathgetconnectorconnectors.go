@@ -46,7 +46,7 @@ func testConnectorConnectorsAllConnectorConnectorsAll0(w http.ResponseWriter, re
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	respBody := &components.GetConnectorsResponse{
+	var respBody *components.GetConnectorsResponse = &components.GetConnectorsResponse{
 		StatusCode: 200,
 		Status:     "OK",
 		Data: []components.Connector{

@@ -45,7 +45,7 @@ func testCrmContactsDeleteCrmContactsDelete0(w http.ResponseWriter, req *http.Re
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	respBody := &components.DeleteContactResponse{
+	var respBody *components.DeleteContactResponse = &components.DeleteContactResponse{
 		StatusCode: 200,
 		Status:     "OK",
 		Service:    "zoho-crm",

@@ -45,7 +45,7 @@ func testAccountingSuppliersDeleteAccountingSuppliersDelete0(w http.ResponseWrit
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	respBody := &components.DeleteSupplierResponse{
+	var respBody *components.DeleteSupplierResponse = &components.DeleteSupplierResponse{
 		StatusCode: 200,
 		Status:     "OK",
 		Service:    "xero",

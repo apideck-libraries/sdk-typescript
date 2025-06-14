@@ -51,7 +51,7 @@ func testWebhookWebhooksAddWebhookWebhooksAdd0(w http.ResponseWriter, req *http.
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	respBody := &components.CreateWebhookResponse{
+	var respBody *components.CreateWebhookResponse = &components.CreateWebhookResponse{
 		StatusCode: 200,
 		Status:     "OK",
 		Data: components.Webhook{

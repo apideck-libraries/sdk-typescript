@@ -45,7 +45,7 @@ func testHrisCompaniesDeleteHrisCompaniesDelete0(w http.ResponseWriter, req *htt
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	respBody := &components.DeleteHrisCompanyResponse{
+	var respBody *components.DeleteHrisCompanyResponse = &components.DeleteHrisCompanyResponse{
 		StatusCode: 200,
 		Status:     "OK",
 		Service:    "undefined",

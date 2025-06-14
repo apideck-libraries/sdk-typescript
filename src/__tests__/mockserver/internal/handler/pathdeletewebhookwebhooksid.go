@@ -46,7 +46,7 @@ func testWebhookWebhooksDeleteWebhookWebhooksDelete0(w http.ResponseWriter, req 
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	respBody := &components.DeleteWebhookResponse{
+	var respBody *components.DeleteWebhookResponse = &components.DeleteWebhookResponse{
 		StatusCode: 200,
 		Status:     "OK",
 		Data: components.Webhook{

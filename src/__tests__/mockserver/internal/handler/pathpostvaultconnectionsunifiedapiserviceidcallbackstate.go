@@ -51,7 +51,7 @@ func testVaultCreateCallbackStateVaultCreateCallbackState0(w http.ResponseWriter
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	respBody := &components.CreateCallbackStateResponse{
+	var respBody *components.CreateCallbackStateResponse = &components.CreateCallbackStateResponse{
 		StatusCode: 200,
 		Status:     "OK",
 		Data: components.CreateCallbackStateResponseData{

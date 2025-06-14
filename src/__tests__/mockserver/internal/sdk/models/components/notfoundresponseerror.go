@@ -17,8 +17,8 @@ const (
 
 // NotFoundResponseDetail - Contains parameter or domain specific information related to the error and why it occurred.
 type NotFoundResponseDetail struct {
-	Str      *string
-	MapOfAny map[string]any
+	Str      *string        `queryParam:"inline"`
+	MapOfAny map[string]any `queryParam:"inline"`
 
 	Type NotFoundResponseDetailType
 }

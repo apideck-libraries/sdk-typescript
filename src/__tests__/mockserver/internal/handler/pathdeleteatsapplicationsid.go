@@ -45,7 +45,7 @@ func testAtsApplicationsDeleteAtsApplicationsDelete0(w http.ResponseWriter, req 
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	respBody := &components.DeleteApplicationResponse{
+	var respBody *components.DeleteApplicationResponse = &components.DeleteApplicationResponse{
 		StatusCode: 200,
 		Status:     "OK",
 		Service:    "sap-successfactors",

@@ -46,7 +46,7 @@ func testAccountingPurchaseOrdersOneAccountingPurchaseOrdersOne0(w http.Response
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	respBody := &components.GetPurchaseOrderResponse{
+	var respBody *components.GetPurchaseOrderResponse = &components.GetPurchaseOrderResponse{
 		StatusCode: 200,
 		Status:     "OK",
 		Service:    "quickbooks",

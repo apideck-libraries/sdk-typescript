@@ -46,7 +46,7 @@ func testAccountingAgedDebtorsOneAccountingAgedDebtorsOne0(w http.ResponseWriter
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	respBody := &components.GetAgedDebtorsResponse{
+	var respBody *components.GetAgedDebtorsResponse = &components.GetAgedDebtorsResponse{
 		StatusCode: 200,
 		Status:     "OK",
 		Service:    "quickbooks",

@@ -46,7 +46,7 @@ func testCrmLeadsAllCrmLeadsAll0(w http.ResponseWriter, req *http.Request) {
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	respBody := &components.GetLeadsResponse{
+	var respBody *components.GetLeadsResponse = &components.GetLeadsResponse{
 		StatusCode: 200,
 		Status:     "OK",
 		Service:    "zoho-crm",

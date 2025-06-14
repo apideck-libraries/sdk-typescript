@@ -46,7 +46,7 @@ func testFileStorageDriveGroupsAllFileStorageDriveGroupsAll0(w http.ResponseWrit
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	respBody := &components.GetDriveGroupsResponse{
+	var respBody *components.GetDriveGroupsResponse = &components.GetDriveGroupsResponse{
 		StatusCode: 200,
 		Status:     "OK",
 		Service:    "google-drive",

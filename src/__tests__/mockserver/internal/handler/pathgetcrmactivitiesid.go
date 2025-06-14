@@ -46,7 +46,7 @@ func testCrmActivitiesOneCrmActivitiesOne0(w http.ResponseWriter, req *http.Requ
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	respBody := &components.GetActivityResponse{
+	var respBody *components.GetActivityResponse = &components.GetActivityResponse{
 		StatusCode: 200,
 		Status:     "OK",
 		Service:    "zoho-crm",

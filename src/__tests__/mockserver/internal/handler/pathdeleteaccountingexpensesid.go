@@ -45,7 +45,7 @@ func testAccountingExpensesDeleteAccountingExpensesDelete0(w http.ResponseWriter
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	respBody := &components.DeleteExpenseResponse{
+	var respBody *components.DeleteExpenseResponse = &components.DeleteExpenseResponse{
 		StatusCode: 200,
 		Status:     "OK",
 		Service:    "quickbooks",

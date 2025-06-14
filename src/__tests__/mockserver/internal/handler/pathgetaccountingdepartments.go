@@ -46,7 +46,7 @@ func testAccountingDepartmentsAllAccountingDepartmentsAll0(w http.ResponseWriter
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	respBody := &components.GetAccountingDepartmentsResponse{
+	var respBody *components.GetAccountingDepartmentsResponse = &components.GetAccountingDepartmentsResponse{
 		StatusCode: 200,
 		Status:     "OK",
 		Service:    "xero",

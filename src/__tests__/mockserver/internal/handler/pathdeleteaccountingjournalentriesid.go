@@ -45,7 +45,7 @@ func testAccountingJournalEntriesDeleteAccountingJournalEntriesDelete0(w http.Re
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	respBody := &components.DeleteJournalEntryResponse{
+	var respBody *components.DeleteJournalEntryResponse = &components.DeleteJournalEntryResponse{
 		StatusCode: 200,
 		Status:     "OK",
 		Service:    "quickbooks",

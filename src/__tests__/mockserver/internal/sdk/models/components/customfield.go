@@ -26,12 +26,12 @@ const (
 )
 
 type CustomFieldValueUnion struct {
-	Str                      *string
-	Number                   *float64
-	Boolean                  *bool
-	CustomFieldValue1        *CustomFieldValue1
-	ArrayOfStr               []string
-	ArrayOfCustomFieldValue2 []CustomFieldValue2
+	Str                      *string             `queryParam:"inline"`
+	Number                   *float64            `queryParam:"inline"`
+	Boolean                  *bool               `queryParam:"inline"`
+	CustomFieldValue1        *CustomFieldValue1  `queryParam:"inline"`
+	ArrayOfStr               []string            `queryParam:"inline"`
+	ArrayOfCustomFieldValue2 []CustomFieldValue2 `queryParam:"inline"`
 
 	Type CustomFieldValueUnionType
 }

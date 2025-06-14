@@ -45,7 +45,7 @@ func testAccountingSubsidiariesDeleteAccountingSubsidiariesDelete0(w http.Respon
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	respBody := &components.DeleteSubsidiaryResponse{
+	var respBody *components.DeleteSubsidiaryResponse = &components.DeleteSubsidiaryResponse{
 		StatusCode: 200,
 		Status:     "OK",
 		Service:    "quickbooks",

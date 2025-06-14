@@ -46,7 +46,7 @@ func testVaultConsumersAllVaultConsumersAll0(w http.ResponseWriter, req *http.Re
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	respBody := &components.GetConsumersResponse{
+	var respBody *components.GetConsumersResponse = &components.GetConsumersResponse{
 		StatusCode: 200,
 		Status:     "OK",
 		Data: []components.GetConsumersResponseData{

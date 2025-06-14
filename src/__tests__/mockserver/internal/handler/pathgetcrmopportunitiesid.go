@@ -46,7 +46,7 @@ func testCrmOpportunitiesOneCrmOpportunitiesOne0(w http.ResponseWriter, req *htt
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	respBody := &components.GetOpportunityResponse{
+	var respBody *components.GetOpportunityResponse = &components.GetOpportunityResponse{
 		StatusCode: 200,
 		Status:     "OK",
 		Service:    "zoho-crm",

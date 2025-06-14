@@ -45,7 +45,7 @@ func testFileStorageFoldersDeleteFileStorageFoldersDelete0(w http.ResponseWriter
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	respBody := &components.DeleteFolderResponse{
+	var respBody *components.DeleteFolderResponse = &components.DeleteFolderResponse{
 		StatusCode: 200,
 		Status:     "OK",
 		Service:    "undefined",
