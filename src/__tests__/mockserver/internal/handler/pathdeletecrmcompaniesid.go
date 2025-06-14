@@ -45,7 +45,7 @@ func testCrmCompaniesDeleteCrmCompaniesDelete0(w http.ResponseWriter, req *http.
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	respBody := &components.DeleteCompanyResponse{
+	var respBody *components.DeleteCompanyResponse = &components.DeleteCompanyResponse{
 		StatusCode: 200,
 		Status:     "OK",
 		Service:    "zoho-crm",

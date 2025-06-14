@@ -46,7 +46,7 @@ func testAccountingCompanyInfoOneAccountingCompanyInfoOne0(w http.ResponseWriter
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	respBody := &components.GetCompanyInfoResponse{
+	var respBody *components.GetCompanyInfoResponse = &components.GetCompanyInfoResponse{
 		StatusCode: 200,
 		Status:     "OK",
 		Service:    "xero",

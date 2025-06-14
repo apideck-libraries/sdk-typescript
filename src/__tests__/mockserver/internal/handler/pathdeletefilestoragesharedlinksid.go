@@ -45,7 +45,7 @@ func testFileStorageSharedLinksDeleteFileStorageSharedLinksDelete0(w http.Respon
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	respBody := &components.DeleteSharedLinkResponse{
+	var respBody *components.DeleteSharedLinkResponse = &components.DeleteSharedLinkResponse{
 		StatusCode: 200,
 		Status:     "OK",
 		Service:    "dropbox",

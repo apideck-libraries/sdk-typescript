@@ -46,7 +46,7 @@ func testAccountingSuppliersAllAccountingSuppliersAll0(w http.ResponseWriter, re
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	respBody := &components.GetSuppliersResponse{
+	var respBody *components.GetSuppliersResponse = &components.GetSuppliersResponse{
 		StatusCode: 200,
 		Status:     "OK",
 		Service:    "xero",

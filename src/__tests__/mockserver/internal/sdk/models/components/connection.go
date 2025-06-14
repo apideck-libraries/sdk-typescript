@@ -74,9 +74,9 @@ const (
 )
 
 type ConnectionValue1 struct {
-	Str     *string
-	Integer *int64
-	Number  *float64
+	Str     *string  `queryParam:"inline"`
+	Integer *int64   `queryParam:"inline"`
+	Number  *float64 `queryParam:"inline"`
 
 	Type ConnectionValue1Type
 }
@@ -161,11 +161,11 @@ const (
 )
 
 type ConnectionValue2 struct {
-	Str                     *string
-	Integer                 *int64
-	Number                  *float64
-	Boolean                 *bool
-	ArrayOfConnectionValue1 []ConnectionValue1
+	Str                     *string            `queryParam:"inline"`
+	Integer                 *int64             `queryParam:"inline"`
+	Number                  *float64           `queryParam:"inline"`
+	Boolean                 *bool              `queryParam:"inline"`
+	ArrayOfConnectionValue1 []ConnectionValue1 `queryParam:"inline"`
 
 	Type ConnectionValue2Type
 }

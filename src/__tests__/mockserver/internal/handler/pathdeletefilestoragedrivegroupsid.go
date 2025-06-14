@@ -45,7 +45,7 @@ func testFileStorageDriveGroupsDeleteFileStorageDriveGroupsDelete0(w http.Respon
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	respBody := &components.DeleteDriveGroupResponse{
+	var respBody *components.DeleteDriveGroupResponse = &components.DeleteDriveGroupResponse{
 		StatusCode: 200,
 		Status:     "OK",
 		Service:    "google-drive",

@@ -46,7 +46,7 @@ func testHrisEmployeePayrollsAllHrisEmployeePayrollsAll0(w http.ResponseWriter, 
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	respBody := &components.GetEmployeePayrollsResponse{
+	var respBody *components.GetEmployeePayrollsResponse = &components.GetEmployeePayrollsResponse{
 		StatusCode: 200,
 		Status:     "OK",
 		Service:    "sage-hr",

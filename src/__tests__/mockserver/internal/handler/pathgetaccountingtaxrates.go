@@ -46,7 +46,7 @@ func testAccountingTaxRatesAllAccountingTaxRatesAll0(w http.ResponseWriter, req 
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	respBody := &components.GetTaxRatesResponse{
+	var respBody *components.GetTaxRatesResponse = &components.GetTaxRatesResponse{
 		StatusCode: 200,
 		Status:     "OK",
 		Service:    "xero",

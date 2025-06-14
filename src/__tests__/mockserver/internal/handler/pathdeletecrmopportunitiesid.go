@@ -45,7 +45,7 @@ func testCrmOpportunitiesDeleteCrmOpportunitiesDelete0(w http.ResponseWriter, re
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	respBody := &components.DeleteOpportunityResponse{
+	var respBody *components.DeleteOpportunityResponse = &components.DeleteOpportunityResponse{
 		StatusCode: 200,
 		Status:     "OK",
 		Service:    "zoho-crm",

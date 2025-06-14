@@ -46,7 +46,7 @@ func testAccountingSubsidiariesOneAccountingSubsidiariesOne0(w http.ResponseWrit
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	respBody := &components.GetSubsidiaryResponse{
+	var respBody *components.GetSubsidiaryResponse = &components.GetSubsidiaryResponse{
 		StatusCode: 200,
 		Status:     "OK",
 		Service:    "xero",

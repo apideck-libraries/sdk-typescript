@@ -46,7 +46,7 @@ func testAccountingProfitAndLossOneAccountingProfitAndLossOne0(w http.ResponseWr
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	respBody := &components.GetProfitAndLossResponse{
+	var respBody *components.GetProfitAndLossResponse = &components.GetProfitAndLossResponse{
 		StatusCode: 200,
 		Status:     "OK",
 		Service:    "quickbooks",

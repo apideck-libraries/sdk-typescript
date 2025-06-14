@@ -46,7 +46,7 @@ func testCrmCustomObjectSchemasOneCrmCustomObjectSchemasOne0(w http.ResponseWrit
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	respBody := &components.GetCustomObjectSchemaResponse{
+	var respBody *components.GetCustomObjectSchemaResponse = &components.GetCustomObjectSchemaResponse{
 		StatusCode: 200,
 		Status:     "OK",
 		Service:    "zoho-crm",

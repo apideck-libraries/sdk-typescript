@@ -45,7 +45,7 @@ func testFileStorageFilesDeleteFileStorageFilesDelete0(w http.ResponseWriter, re
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	respBody := &components.DeleteFileResponse{
+	var respBody *components.DeleteFileResponse = &components.DeleteFileResponse{
 		StatusCode: 200,
 		Status:     "OK",
 		Service:    "google-drive",

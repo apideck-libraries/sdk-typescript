@@ -46,7 +46,7 @@ func testEcommerceCustomersAllEcommerceCustomersAll0(w http.ResponseWriter, req 
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	respBody := &components.GetEcommerceCustomersResponse{
+	var respBody *components.GetEcommerceCustomersResponse = &components.GetEcommerceCustomersResponse{
 		StatusCode: 200,
 		Status:     "OK",
 		Service:    "shopify",

@@ -46,7 +46,7 @@ func testAccountingBalanceSheetOneAccountingBalanceSheetOne0(w http.ResponseWrit
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	respBody := &components.GetBalanceSheetResponse{
+	var respBody *components.GetBalanceSheetResponse = &components.GetBalanceSheetResponse{
 		StatusCode: 200,
 		Status:     "OK",
 		Service:    "quickbooks",

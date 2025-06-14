@@ -76,7 +76,7 @@ type Contact struct {
 	// Unique identifier for the contact.
 	ID *string `json:"id,omitempty"`
 	// Full name of the contact.
-	Name *string `json:"name"`
+	Name *string `json:"name,omitempty"`
 	// The owner of the contact.
 	OwnerID *string `json:"owner_id,omitempty"`
 	// The type of the contact.
@@ -449,7 +449,7 @@ func (o *Contact) GetPassThrough() []PassThroughBody {
 
 type ContactInput struct {
 	// Full name of the contact.
-	Name *string `json:"name"`
+	Name *string `json:"name,omitempty"`
 	// The owner of the contact.
 	OwnerID *string `json:"owner_id,omitempty"`
 	// The type of the contact.

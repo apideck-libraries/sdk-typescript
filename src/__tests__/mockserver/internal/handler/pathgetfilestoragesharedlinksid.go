@@ -46,7 +46,7 @@ func testFileStorageSharedLinksOneFileStorageSharedLinksOne0(w http.ResponseWrit
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	respBody := &components.GetSharedLinkResponse{
+	var respBody *components.GetSharedLinkResponse = &components.GetSharedLinkResponse{
 		StatusCode: 200,
 		Status:     "OK",
 		Service:    "dropbox",

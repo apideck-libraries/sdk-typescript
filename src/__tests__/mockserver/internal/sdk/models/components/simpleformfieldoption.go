@@ -18,9 +18,9 @@ const (
 )
 
 type SimpleFormFieldOptionValue1 struct {
-	Str     *string
-	Integer *int64
-	Number  *float64
+	Str     *string  `queryParam:"inline"`
+	Integer *int64   `queryParam:"inline"`
+	Number  *float64 `queryParam:"inline"`
 
 	Type SimpleFormFieldOptionValue1Type
 }
@@ -105,11 +105,11 @@ const (
 )
 
 type SimpleFormFieldOptionValue2 struct {
-	Str                                *string
-	Integer                            *int64
-	Number                             *float64
-	Boolean                            *bool
-	ArrayOfSimpleFormFieldOptionValue1 []SimpleFormFieldOptionValue1
+	Str                                *string                       `queryParam:"inline"`
+	Integer                            *int64                        `queryParam:"inline"`
+	Number                             *float64                      `queryParam:"inline"`
+	Boolean                            *bool                         `queryParam:"inline"`
+	ArrayOfSimpleFormFieldOptionValue1 []SimpleFormFieldOptionValue1 `queryParam:"inline"`
 
 	Type SimpleFormFieldOptionValue2Type
 }

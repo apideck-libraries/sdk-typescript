@@ -45,7 +45,7 @@ func testFileStorageUploadSessionsDeleteFileStorageUploadSessionsDelete0(w http.
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	respBody := &components.DeleteUploadSessionResponse{
+	var respBody *components.DeleteUploadSessionResponse = &components.DeleteUploadSessionResponse{
 		StatusCode: 200,
 		Status:     "OK",
 		Service:    "dropbox",

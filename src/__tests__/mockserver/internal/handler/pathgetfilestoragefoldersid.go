@@ -46,7 +46,7 @@ func testFileStorageFoldersOneFileStorageFoldersOne0(w http.ResponseWriter, req 
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	respBody := &components.GetFolderResponse{
+	var respBody *components.GetFolderResponse = &components.GetFolderResponse{
 		StatusCode: 200,
 		Status:     "OK",
 		Service:    "undefined",

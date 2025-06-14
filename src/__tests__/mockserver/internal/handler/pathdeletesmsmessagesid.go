@@ -45,7 +45,7 @@ func testSmsMessagesDeleteSmsMessagesDelete0(w http.ResponseWriter, req *http.Re
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	respBody := &components.DeleteMessageResponse{
+	var respBody *components.DeleteMessageResponse = &components.DeleteMessageResponse{
 		StatusCode: 200,
 		Status:     "OK",
 		Service:    "twilio",

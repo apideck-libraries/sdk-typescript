@@ -46,7 +46,7 @@ func testConnectorApisAllConnectorApisAll0(w http.ResponseWriter, req *http.Requ
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	respBody := &components.GetApisResponse{
+	var respBody *components.GetApisResponse = &components.GetApisResponse{
 		StatusCode: 200,
 		Status:     "OK",
 		Data: []components.API{

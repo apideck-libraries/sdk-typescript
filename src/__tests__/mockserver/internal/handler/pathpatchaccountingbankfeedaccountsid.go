@@ -50,7 +50,7 @@ func testAccountingBankFeedAccountsUpdateAccountingBankFeedAccountsUpdate0(w htt
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	respBody := &components.UpdateBankFeedAccountResponse{
+	var respBody *components.UpdateBankFeedAccountResponse = &components.UpdateBankFeedAccountResponse{
 		StatusCode: 200,
 		Status:     "OK",
 		Service:    "quickbooks",

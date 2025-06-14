@@ -46,7 +46,7 @@ func testAccountingAttachmentsAllAccountingAttachmentsAll0(w http.ResponseWriter
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	respBody := &components.GetAttachmentsResponse{
+	var respBody *components.GetAttachmentsResponse = &components.GetAttachmentsResponse{
 		StatusCode: 200,
 		Status:     "OK",
 		Service:    "quickbooks",

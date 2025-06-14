@@ -46,7 +46,7 @@ func testAccountingLedgerAccountsAllAccountingLedgerAccountsAll0(w http.Response
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	respBody := &components.GetLedgerAccountsResponse{
+	var respBody *components.GetLedgerAccountsResponse = &components.GetLedgerAccountsResponse{
 		StatusCode: 200,
 		Status:     "OK",
 		Service:    "xero",

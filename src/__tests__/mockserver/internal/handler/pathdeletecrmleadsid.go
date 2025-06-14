@@ -45,7 +45,7 @@ func testCrmLeadsDeleteCrmLeadsDelete0(w http.ResponseWriter, req *http.Request)
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	respBody := &components.DeleteLeadResponse{
+	var respBody *components.DeleteLeadResponse = &components.DeleteLeadResponse{
 		StatusCode: 200,
 		Status:     "OK",
 		Service:    "zoho-crm",

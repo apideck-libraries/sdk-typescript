@@ -46,7 +46,7 @@ func testWebhookWebhooksAllWebhookWebhooksAll0(w http.ResponseWriter, req *http.
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	respBody := &components.GetWebhooksResponse{
+	var respBody *components.GetWebhooksResponse = &components.GetWebhooksResponse{
 		StatusCode: 200,
 		Status:     "OK",
 		Data: []components.Webhook{

@@ -46,7 +46,7 @@ func testCrmPipelinesOneCrmPipelinesOne0(w http.ResponseWriter, req *http.Reques
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	respBody := &components.GetPipelineResponse{
+	var respBody *components.GetPipelineResponse = &components.GetPipelineResponse{
 		StatusCode: 200,
 		Status:     "OK",
 		Service:    "zoho-crm",

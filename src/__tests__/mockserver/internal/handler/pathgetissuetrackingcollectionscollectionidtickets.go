@@ -46,7 +46,7 @@ func testIssueTrackingCollectionTicketsAllIssueTrackingCollectionTicketsAll0(w h
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	respBody := &components.GetTicketsResponse{
+	var respBody *components.GetTicketsResponse = &components.GetTicketsResponse{
 		StatusCode: 200,
 		Status:     "OK",
 		Service:    "jira",

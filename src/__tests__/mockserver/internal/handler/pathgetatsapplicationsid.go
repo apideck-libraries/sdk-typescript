@@ -46,7 +46,7 @@ func testAtsApplicationsOneAtsApplicationsOne0(w http.ResponseWriter, req *http.
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	respBody := &components.GetApplicationResponse{
+	var respBody *components.GetApplicationResponse = &components.GetApplicationResponse{
 		StatusCode: 200,
 		Status:     "OK",
 		Service:    "sap-successfactors",

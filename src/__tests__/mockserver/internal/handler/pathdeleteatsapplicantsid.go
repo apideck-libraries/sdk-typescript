@@ -45,7 +45,7 @@ func testAtsApplicantsDeleteAtsApplicantsDelete0(w http.ResponseWriter, req *htt
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	respBody := &components.DeleteApplicantResponse{
+	var respBody *components.DeleteApplicantResponse = &components.DeleteApplicantResponse{
 		StatusCode: 200,
 		Status:     "OK",
 		Service:    "lever",

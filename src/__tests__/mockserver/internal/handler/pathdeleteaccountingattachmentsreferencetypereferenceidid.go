@@ -45,7 +45,7 @@ func testAccountingAttachmentsDeleteAccountingAttachmentsDelete0(w http.Response
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	respBody := &components.DeleteAttachmentResponse{
+	var respBody *components.DeleteAttachmentResponse = &components.DeleteAttachmentResponse{
 		StatusCode: 200,
 		Status:     "OK",
 		Service:    "google-drive",

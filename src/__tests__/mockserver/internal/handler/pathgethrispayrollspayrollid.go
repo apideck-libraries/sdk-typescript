@@ -46,7 +46,7 @@ func testHrisPayrollsOneHrisPayrollsOne0(w http.ResponseWriter, req *http.Reques
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	respBody := &components.GetPayrollResponse{
+	var respBody *components.GetPayrollResponse = &components.GetPayrollResponse{
 		StatusCode: 200,
 		Status:     "OK",
 		Service:    "undefined",

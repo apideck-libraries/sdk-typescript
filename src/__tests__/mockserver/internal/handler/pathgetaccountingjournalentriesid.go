@@ -46,7 +46,7 @@ func testAccountingJournalEntriesOneAccountingJournalEntriesOne0(w http.Response
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	respBody := &components.GetJournalEntryResponse{
+	var respBody *components.GetJournalEntryResponse = &components.GetJournalEntryResponse{
 		StatusCode: 200,
 		Status:     "OK",
 		Service:    "quickbooks",

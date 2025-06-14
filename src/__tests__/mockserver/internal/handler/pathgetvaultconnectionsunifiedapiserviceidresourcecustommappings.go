@@ -46,7 +46,7 @@ func testVaultConnectionCustomMappingsAllVaultConnectionCustomMappingsAll0(w htt
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	respBody := &components.GetCustomMappingsResponse{
+	var respBody *components.GetCustomMappingsResponse = &components.GetCustomMappingsResponse{
 		StatusCode: 200,
 		Status:     "OK",
 		Data: []components.CustomMapping{

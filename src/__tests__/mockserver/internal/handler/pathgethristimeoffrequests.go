@@ -46,7 +46,7 @@ func testHrisTimeOffRequestsAllHrisTimeOffRequestsAll0(w http.ResponseWriter, re
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	respBody := &components.GetTimeOffRequestsResponse{
+	var respBody *components.GetTimeOffRequestsResponse = &components.GetTimeOffRequestsResponse{
 		StatusCode: 200,
 		Status:     "OK",
 		Service:    "bamboohr",

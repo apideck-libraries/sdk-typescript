@@ -46,7 +46,7 @@ func testAccountingCreditNotesAllAccountingCreditNotesAll0(w http.ResponseWriter
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	respBody := &components.GetCreditNotesResponse{
+	var respBody *components.GetCreditNotesResponse = &components.GetCreditNotesResponse{
 		StatusCode: 200,
 		Status:     "OK",
 		Service:    "xero",

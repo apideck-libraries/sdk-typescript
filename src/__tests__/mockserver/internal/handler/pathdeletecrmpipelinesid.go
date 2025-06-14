@@ -45,7 +45,7 @@ func testCrmPipelinesDeleteCrmPipelinesDelete0(w http.ResponseWriter, req *http.
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	respBody := &components.DeletePipelineResponse{
+	var respBody *components.DeletePipelineResponse = &components.DeletePipelineResponse{
 		StatusCode: 200,
 		Status:     "OK",
 		Service:    "zoho-crm",

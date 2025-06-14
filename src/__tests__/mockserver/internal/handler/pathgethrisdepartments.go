@@ -46,7 +46,7 @@ func testHrisDepartmentsAllHrisDepartmentsAll0(w http.ResponseWriter, req *http.
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	respBody := &components.GetDepartmentsResponse{
+	var respBody *components.GetDepartmentsResponse = &components.GetDepartmentsResponse{
 		StatusCode: 200,
 		Status:     "OK",
 		Service:    "workday",

@@ -45,7 +45,7 @@ func testHrisEmployeesDeleteHrisEmployeesDelete0(w http.ResponseWriter, req *htt
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	respBody := &components.DeleteEmployeeResponse{
+	var respBody *components.DeleteEmployeeResponse = &components.DeleteEmployeeResponse{
 		StatusCode: 200,
 		Status:     "OK",
 		Service:    "sage-hr",

@@ -46,7 +46,7 @@ func testAccountingExpensesAllAccountingExpensesAll0(w http.ResponseWriter, req 
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	respBody := &components.GetExpensesResponse{
+	var respBody *components.GetExpensesResponse = &components.GetExpensesResponse{
 		StatusCode: 200,
 		Status:     "OK",
 		Service:    "quickbooks",

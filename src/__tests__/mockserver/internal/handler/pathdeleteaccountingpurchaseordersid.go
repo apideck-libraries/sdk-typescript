@@ -45,7 +45,7 @@ func testAccountingPurchaseOrdersDeleteAccountingPurchaseOrdersDelete0(w http.Re
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	respBody := &components.DeletePurchaseOrderResponse{
+	var respBody *components.DeletePurchaseOrderResponse = &components.DeletePurchaseOrderResponse{
 		StatusCode: 200,
 		Status:     "OK",
 		Service:    "quickbooks",

@@ -46,7 +46,7 @@ func testAccountingCustomersOneAccountingCustomersOne0(w http.ResponseWriter, re
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	respBody := &components.GetCustomerResponse{
+	var respBody *components.GetCustomerResponse = &components.GetCustomerResponse{
 		StatusCode: 200,
 		Status:     "OK",
 		Service:    "xero",

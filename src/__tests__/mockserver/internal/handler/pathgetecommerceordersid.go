@@ -46,7 +46,7 @@ func testEcommerceOrdersOneEcommerceOrdersOne0(w http.ResponseWriter, req *http.
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	respBody := &components.GetEcommerceOrderResponse{
+	var respBody *components.GetEcommerceOrderResponse = &components.GetEcommerceOrderResponse{
 		StatusCode: 200,
 		Status:     "OK",
 		Service:    "shopify",

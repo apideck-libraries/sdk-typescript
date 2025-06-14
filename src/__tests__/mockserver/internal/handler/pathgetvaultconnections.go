@@ -46,7 +46,7 @@ func testVaultConnectionsAllVaultConnectionsAll0(w http.ResponseWriter, req *htt
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	respBody := &components.GetConnectionsResponse{
+	var respBody *components.GetConnectionsResponse = &components.GetConnectionsResponse{
 		StatusCode: 200,
 		Status:     "OK",
 		Data: []components.Connection{

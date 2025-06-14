@@ -46,7 +46,7 @@ func testCrmCompaniesAllCrmCompaniesAll0(w http.ResponseWriter, req *http.Reques
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	respBody := &components.GetCompaniesResponse{
+	var respBody *components.GetCompaniesResponse = &components.GetCompaniesResponse{
 		StatusCode: 200,
 		Status:     "OK",
 		Service:    "zoho-crm",

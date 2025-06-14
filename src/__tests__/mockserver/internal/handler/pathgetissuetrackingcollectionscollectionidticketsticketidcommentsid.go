@@ -46,7 +46,7 @@ func testIssueTrackingCollectionTicketCommentsOneIssueTrackingCollectionTicketCo
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	respBody := &components.GetCommentResponse{
+	var respBody *components.GetCommentResponse = &components.GetCommentResponse{
 		StatusCode: 200,
 		Status:     "OK",
 		Service:    "sage-hr",

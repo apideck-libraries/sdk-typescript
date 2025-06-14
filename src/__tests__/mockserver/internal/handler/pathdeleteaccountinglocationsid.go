@@ -45,7 +45,7 @@ func testAccountingLocationsDeleteAccountingLocationsDelete0(w http.ResponseWrit
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	respBody := &components.DeleteAccountingLocationResponse{
+	var respBody *components.DeleteAccountingLocationResponse = &components.DeleteAccountingLocationResponse{
 		StatusCode: 200,
 		Status:     "OK",
 		Service:    "quickbooks",

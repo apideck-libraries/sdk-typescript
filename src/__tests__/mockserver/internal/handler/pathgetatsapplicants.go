@@ -46,7 +46,7 @@ func testAtsApplicantsAllAtsApplicantsAll0(w http.ResponseWriter, req *http.Requ
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	respBody := &components.GetApplicantsResponse{
+	var respBody *components.GetApplicantsResponse = &components.GetApplicantsResponse{
 		StatusCode: 200,
 		Status:     "OK",
 		Service:    "lever",

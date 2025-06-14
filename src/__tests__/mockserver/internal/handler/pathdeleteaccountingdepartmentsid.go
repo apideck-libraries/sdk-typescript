@@ -45,7 +45,7 @@ func testAccountingDepartmentsDeleteAccountingDepartmentsDelete0(w http.Response
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	respBody := &components.DeleteAccountingDepartmentResponse{
+	var respBody *components.DeleteAccountingDepartmentResponse = &components.DeleteAccountingDepartmentResponse{
 		StatusCode: 200,
 		Status:     "OK",
 		Service:    "quickbooks",

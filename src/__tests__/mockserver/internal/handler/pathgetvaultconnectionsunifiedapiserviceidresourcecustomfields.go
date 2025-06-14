@@ -46,7 +46,7 @@ func testVaultCustomFieldsAllVaultCustomFieldsAll0(w http.ResponseWriter, req *h
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	respBody := &components.GetCustomFieldsResponse{
+	var respBody *components.GetCustomFieldsResponse = &components.GetCustomFieldsResponse{
 		StatusCode: 200,
 		Status:     "OK",
 		Data: []components.CustomFieldFinder{

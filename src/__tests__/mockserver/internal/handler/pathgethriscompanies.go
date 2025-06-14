@@ -46,7 +46,7 @@ func testHrisCompaniesAllHrisCompaniesAll0(w http.ResponseWriter, req *http.Requ
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	respBody := &components.GetHrisCompaniesResponse{
+	var respBody *components.GetHrisCompaniesResponse = &components.GetHrisCompaniesResponse{
 		StatusCode: 200,
 		Status:     "OK",
 		Service:    "undefined",

@@ -45,7 +45,7 @@ func testAccountingPaymentsDeleteAccountingPaymentsDelete0(w http.ResponseWriter
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	respBody := &components.DeletePaymentResponse{
+	var respBody *components.DeletePaymentResponse = &components.DeletePaymentResponse{
 		StatusCode: 200,
 		Status:     "OK",
 		Service:    "xero",

@@ -46,7 +46,7 @@ func testCrmNotesOneCrmNotesOne0(w http.ResponseWriter, req *http.Request) {
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	respBody := &components.GetNoteResponse{
+	var respBody *components.GetNoteResponse = &components.GetNoteResponse{
 		StatusCode: 200,
 		Status:     "OK",
 		Service:    "zoho-crm",

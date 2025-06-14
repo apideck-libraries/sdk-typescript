@@ -17,8 +17,8 @@ const (
 
 // UnexpectedErrorResponseDetail - Contains parameter or domain specific information related to the error and why it occurred.
 type UnexpectedErrorResponseDetail struct {
-	Str      *string
-	MapOfAny map[string]any
+	Str      *string        `queryParam:"inline"`
+	MapOfAny map[string]any `queryParam:"inline"`
 
 	Type UnexpectedErrorResponseDetailType
 }

@@ -46,7 +46,7 @@ func testAccountingBankFeedAccountsOneAccountingBankFeedAccountsOne0(w http.Resp
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	respBody := &components.GetBankFeedAccountResponse{
+	var respBody *components.GetBankFeedAccountResponse = &components.GetBankFeedAccountResponse{
 		StatusCode: 200,
 		Status:     "OK",
 		Service:    "quickbooks",

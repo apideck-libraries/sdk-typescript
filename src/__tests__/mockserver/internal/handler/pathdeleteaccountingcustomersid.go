@@ -45,7 +45,7 @@ func testAccountingCustomersDeleteAccountingCustomersDelete0(w http.ResponseWrit
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	respBody := &components.DeleteCustomerResponse{
+	var respBody *components.DeleteCustomerResponse = &components.DeleteCustomerResponse{
 		StatusCode: 200,
 		Status:     "OK",
 		Service:    "xero",

@@ -46,7 +46,7 @@ func testIssueTrackingCollectionsAllIssueTrackingCollectionsAll0(w http.Response
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	respBody := &components.GetCollectionsResponse{
+	var respBody *components.GetCollectionsResponse = &components.GetCollectionsResponse{
 		StatusCode: 200,
 		Status:     "OK",
 		Service:    "jira",
