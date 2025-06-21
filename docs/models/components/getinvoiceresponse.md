@@ -31,7 +31,7 @@ let value: GetInvoiceResponse = {
     dueDate: new RFCDate("2020-09-30"),
     terms: "Net 30 days",
     poNumber: "90000117",
-    reference: "123456",
+    reference: "INV-2024-001",
     status: "draft",
     invoiceSent: true,
     currency: "USD",

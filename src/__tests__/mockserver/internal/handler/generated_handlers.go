@@ -74,6 +74,8 @@ func GeneratedHandlers(ctx context.Context, dir *logging.HTTPFileDirectory, rt *
 		NewGeneratedHandler(ctx, http.MethodGet, "/accounting/bill-payments/{id}", pathGetAccountingBillPaymentsID(dir, rt)),
 		NewGeneratedHandler(ctx, http.MethodGet, "/accounting/bills", pathGetAccountingBills(dir, rt)),
 		NewGeneratedHandler(ctx, http.MethodGet, "/accounting/bills/{id}", pathGetAccountingBillsID(dir, rt)),
+		NewGeneratedHandler(ctx, http.MethodGet, "/accounting/categories", pathGetAccountingCategories(dir, rt)),
+		NewGeneratedHandler(ctx, http.MethodGet, "/accounting/categories/{id}", pathGetAccountingCategoriesID(dir, rt)),
 		NewGeneratedHandler(ctx, http.MethodGet, "/accounting/company-info", pathGetAccountingCompanyInfo(dir, rt)),
 		NewGeneratedHandler(ctx, http.MethodGet, "/accounting/credit-notes", pathGetAccountingCreditNotes(dir, rt)),
 		NewGeneratedHandler(ctx, http.MethodGet, "/accounting/credit-notes/{id}", pathGetAccountingCreditNotesID(dir, rt)),

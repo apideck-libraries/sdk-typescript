@@ -97,8 +97,10 @@ type Expense struct {
 	// The total amount of the expense line item.
 	TotalAmount *float64 `json:"total_amount,omitempty"`
 	// Expense line items linked to this expense.
-	LineItems    []ExpenseLineItem `json:"line_items"`
-	CustomFields []CustomField     `json:"custom_fields,omitempty"`
+	LineItems []ExpenseLineItem `json:"line_items"`
+	// Optional reference identifier for the transaction.
+	Reference    *string       `json:"reference,omitempty"`
+	CustomFields []CustomField `json:"custom_fields,omitempty"`
 	// When custom mappings are configured on the resource, the result is included here.
 	CustomMappings map[string]any `json:"custom_mappings,omitempty"`
 	// The date and time when the object was last updated.
@@ -238,6 +240,13 @@ func (o *Expense) GetLineItems() []ExpenseLineItem {
 	return o.LineItems
 }
 
+func (o *Expense) GetReference() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Reference
+}
+
 func (o *Expense) GetCustomFields() []CustomField {
 	if o == nil {
 		return nil
@@ -323,8 +332,10 @@ type ExpenseInput struct {
 	// The total amount of the expense line item.
 	TotalAmount *float64 `json:"total_amount,omitempty"`
 	// Expense line items linked to this expense.
-	LineItems    []ExpenseLineItemInput `json:"line_items"`
-	CustomFields []CustomField          `json:"custom_fields,omitempty"`
+	LineItems []ExpenseLineItemInput `json:"line_items"`
+	// Optional reference identifier for the transaction.
+	Reference    *string       `json:"reference,omitempty"`
+	CustomFields []CustomField `json:"custom_fields,omitempty"`
 	// A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
 	RowVersion *string `json:"row_version,omitempty"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
@@ -445,6 +456,13 @@ func (o *ExpenseInput) GetLineItems() []ExpenseLineItemInput {
 		return []ExpenseLineItemInput{}
 	}
 	return o.LineItems
+}
+
+func (o *ExpenseInput) GetReference() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Reference
 }
 
 func (o *ExpenseInput) GetCustomFields() []CustomField {
