@@ -181,6 +181,11 @@ run();
 * [update](docs/sdks/bills/README.md#update) - Update Bill
 * [delete](docs/sdks/bills/README.md#delete) - Delete Bill
 
+#### [accounting.categories](docs/sdks/categories/README.md)
+
+* [list](docs/sdks/categories/README.md#list) - List Categories
+* [get](docs/sdks/categories/README.md#get) - Get Category
+
 #### [accounting.companyInfo](docs/sdks/companyinfo/README.md)
 
 * [get](docs/sdks/companyinfo/README.md#get) - Get company info
@@ -732,6 +737,8 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`accountingBillsGet`](docs/sdks/bills/README.md#get) - Get Bill
 - [`accountingBillsList`](docs/sdks/bills/README.md#list) - List Bills
 - [`accountingBillsUpdate`](docs/sdks/bills/README.md#update) - Update Bill
+- [`accountingCategoriesGet`](docs/sdks/categories/README.md#get) - Get Category
+- [`accountingCategoriesList`](docs/sdks/categories/README.md#list) - List Categories
 - [`accountingCompanyInfoGet`](docs/sdks/companyinfo/README.md#get) - Get company info
 - [`accountingCreditNotesCreate`](docs/sdks/creditnotes/README.md#create) - Create Credit Note
 - [`accountingCreditNotesDelete`](docs/sdks/creditnotes/README.md#delete) - Delete Credit Note

@@ -20,8 +20,8 @@ import {
 } from "./simpleformfieldoption.js";
 
 export type FormFieldOption =
-  | (SimpleFormFieldOption & { optionType: "simple" })
-  | (FormFieldOptionGroup & { optionType: "group" });
+  | (FormFieldOptionGroup & { optionType: "group" })
+  | (SimpleFormFieldOption & { optionType: "simple" });
 
 /** @internal */
 export const FormFieldOption$inboundSchema: z.ZodType<
@@ -29,13 +29,13 @@ export const FormFieldOption$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.union([
-  SimpleFormFieldOption$inboundSchema.and(
-    z.object({ option_type: z.literal("simple") }).transform((v) => ({
+  FormFieldOptionGroup$inboundSchema.and(
+    z.object({ option_type: z.literal("group") }).transform((v) => ({
       optionType: v.option_type,
     })),
   ),
-  FormFieldOptionGroup$inboundSchema.and(
-    z.object({ option_type: z.literal("group") }).transform((v) => ({
+  SimpleFormFieldOption$inboundSchema.and(
+    z.object({ option_type: z.literal("simple") }).transform((v) => ({
       optionType: v.option_type,
     })),
   ),
@@ -43,8 +43,8 @@ export const FormFieldOption$inboundSchema: z.ZodType<
 
 /** @internal */
 export type FormFieldOption$Outbound =
-  | (SimpleFormFieldOption$Outbound & { option_type: "simple" })
-  | (FormFieldOptionGroup$Outbound & { option_type: "group" });
+  | (FormFieldOptionGroup$Outbound & { option_type: "group" })
+  | (SimpleFormFieldOption$Outbound & { option_type: "simple" });
 
 /** @internal */
 export const FormFieldOption$outboundSchema: z.ZodType<
@@ -52,13 +52,13 @@ export const FormFieldOption$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   FormFieldOption
 > = z.union([
-  SimpleFormFieldOption$outboundSchema.and(
-    z.object({ optionType: z.literal("simple") }).transform((v) => ({
+  FormFieldOptionGroup$outboundSchema.and(
+    z.object({ optionType: z.literal("group") }).transform((v) => ({
       option_type: v.optionType,
     })),
   ),
-  FormFieldOptionGroup$outboundSchema.and(
-    z.object({ optionType: z.literal("group") }).transform((v) => ({
+  SimpleFormFieldOption$outboundSchema.and(
+    z.object({ optionType: z.literal("simple") }).transform((v) => ({
       option_type: v.optionType,
     })),
   ),

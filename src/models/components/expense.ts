@@ -137,6 +137,10 @@ export type Expense = {
    * Expense line items linked to this expense.
    */
   lineItems: Array<ExpenseLineItem>;
+  /**
+   * Optional reference identifier for the transaction.
+   */
+  reference?: string | null | undefined;
   customFields?: Array<CustomField> | undefined;
   /**
    * When custom mappings are configured on the resource, the result is included here.
@@ -226,6 +230,10 @@ export type ExpenseInput = {
    * Expense line items linked to this expense.
    */
   lineItems: Array<ExpenseLineItemInput>;
+  /**
+   * Optional reference identifier for the transaction.
+   */
+  reference?: string | null | undefined;
   customFields?: Array<CustomField> | undefined;
   /**
    * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
@@ -298,6 +306,7 @@ export const Expense$inboundSchema: z.ZodType<Expense, z.ZodTypeDef, unknown> =
     tax_rate: LinkedTaxRate$inboundSchema.optional(),
     total_amount: z.nullable(z.number()).optional(),
     line_items: z.array(ExpenseLineItem$inboundSchema),
+    reference: z.nullable(z.string()).optional(),
     custom_fields: z.array(CustomField$inboundSchema).optional(),
     custom_mappings: z.nullable(z.record(z.any())).optional(),
     updated_at: z.nullable(
@@ -352,6 +361,7 @@ export type Expense$Outbound = {
   tax_rate?: LinkedTaxRate$Outbound | undefined;
   total_amount?: number | null | undefined;
   line_items: Array<ExpenseLineItem$Outbound>;
+  reference?: string | null | undefined;
   custom_fields?: Array<CustomField$Outbound> | undefined;
   custom_mappings?: { [k: string]: any } | null | undefined;
   updated_at?: string | null | undefined;
@@ -384,6 +394,7 @@ export const Expense$outboundSchema: z.ZodType<
   taxRate: LinkedTaxRate$outboundSchema.optional(),
   totalAmount: z.nullable(z.number()).optional(),
   lineItems: z.array(ExpenseLineItem$outboundSchema),
+  reference: z.nullable(z.string()).optional(),
   customFields: z.array(CustomField$outboundSchema).optional(),
   customMappings: z.nullable(z.record(z.any())).optional(),
   updatedAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
@@ -466,6 +477,7 @@ export const ExpenseInput$inboundSchema: z.ZodType<
   tax_rate: LinkedTaxRateInput$inboundSchema.optional(),
   total_amount: z.nullable(z.number()).optional(),
   line_items: z.array(ExpenseLineItemInput$inboundSchema),
+  reference: z.nullable(z.string()).optional(),
   custom_fields: z.array(CustomField$inboundSchema).optional(),
   row_version: z.nullable(z.string()).optional(),
   pass_through: z.array(PassThroughBody$inboundSchema).optional(),
@@ -505,6 +517,7 @@ export type ExpenseInput$Outbound = {
   tax_rate?: LinkedTaxRateInput$Outbound | undefined;
   total_amount?: number | null | undefined;
   line_items: Array<ExpenseLineItemInput$Outbound>;
+  reference?: string | null | undefined;
   custom_fields?: Array<CustomField$Outbound> | undefined;
   row_version?: string | null | undefined;
   pass_through?: Array<PassThroughBody$Outbound> | undefined;
@@ -531,6 +544,7 @@ export const ExpenseInput$outboundSchema: z.ZodType<
   taxRate: LinkedTaxRateInput$outboundSchema.optional(),
   totalAmount: z.nullable(z.number()).optional(),
   lineItems: z.array(ExpenseLineItemInput$outboundSchema),
+  reference: z.nullable(z.string()).optional(),
   customFields: z.array(CustomField$outboundSchema).optional(),
   rowVersion: z.nullable(z.string()).optional(),
   passThrough: z.array(PassThroughBody$outboundSchema).optional(),

@@ -58,6 +58,8 @@ type Supplier struct {
 	CompanyName *string `json:"company_name,omitempty"`
 	// The company or subsidiary id the transaction belongs to
 	CompanyID *string `json:"company_id,omitempty"`
+	// The category/type of the supplier
+	SupplierCategory *string `json:"supplier_category,omitempty"`
 	// The job title of the person.
 	Title *string `json:"title,omitempty"`
 	// The first name of the person.
@@ -157,6 +159,13 @@ func (o *Supplier) GetCompanyID() *string {
 		return nil
 	}
 	return o.CompanyID
+}
+
+func (o *Supplier) GetSupplierCategory() *string {
+	if o == nil {
+		return nil
+	}
+	return o.SupplierCategory
 }
 
 func (o *Supplier) GetTitle() *string {
@@ -364,6 +373,8 @@ type SupplierInput struct {
 	CompanyName *string `json:"company_name,omitempty"`
 	// The company or subsidiary id the transaction belongs to
 	CompanyID *string `json:"company_id,omitempty"`
+	// The category/type of the supplier
+	SupplierCategory *string `json:"supplier_category,omitempty"`
 	// The job title of the person.
 	Title *string `json:"title,omitempty"`
 	// The first name of the person.
@@ -428,6 +439,13 @@ func (o *SupplierInput) GetCompanyID() *string {
 		return nil
 	}
 	return o.CompanyID
+}
+
+func (o *SupplierInput) GetSupplierCategory() *string {
+	if o == nil {
+		return nil
+	}
+	return o.SupplierCategory
 }
 
 func (o *SupplierInput) GetTitle() *string {

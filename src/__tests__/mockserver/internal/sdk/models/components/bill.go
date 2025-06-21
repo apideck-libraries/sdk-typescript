@@ -80,7 +80,7 @@ type Bill struct {
 	PaidDate *types.Date `json:"paid_date,omitempty"`
 	// A PO Number uniquely identifies a purchase order and is generally defined by the buyer. The buyer will match the PO number in the invoice to the Purchase Order.
 	PoNumber *string `json:"po_number,omitempty"`
-	// Optional bill reference.
+	// Optional reference identifier for the transaction.
 	Reference *string        `json:"reference,omitempty"`
 	LineItems []BillLineItem `json:"line_items,omitempty"`
 	// Terms of payment.
@@ -454,7 +454,7 @@ type BillInput struct {
 	PaidDate *types.Date `json:"paid_date,omitempty"`
 	// A PO Number uniquely identifies a purchase order and is generally defined by the buyer. The buyer will match the PO number in the invoice to the Purchase Order.
 	PoNumber *string `json:"po_number,omitempty"`
-	// Optional bill reference.
+	// Optional reference identifier for the transaction.
 	Reference *string             `json:"reference,omitempty"`
 	LineItems []BillLineItemInput `json:"line_items,omitempty"`
 	// Terms of payment.
