@@ -176,7 +176,7 @@ export type Invoice = {
    */
   poNumber?: string | null | undefined;
   /**
-   * Optional invoice reference.
+   * Optional reference identifier for the transaction.
    */
   reference?: string | null | undefined;
   /**
@@ -341,7 +341,7 @@ export type InvoiceInput = {
    */
   poNumber?: string | null | undefined;
   /**
-   * Optional invoice reference.
+   * Optional reference identifier for the transaction.
    */
   reference?: string | null | undefined;
   /**

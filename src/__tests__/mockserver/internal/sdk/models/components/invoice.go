@@ -156,7 +156,7 @@ type Invoice struct {
 	Terms *string `json:"terms,omitempty"`
 	// A PO Number uniquely identifies a purchase order and is generally defined by the buyer. The buyer will match the PO number in the invoice to the Purchase Order.
 	PoNumber *string `json:"po_number,omitempty"`
-	// Optional invoice reference.
+	// Optional reference identifier for the transaction.
 	Reference *string `json:"reference,omitempty"`
 	// Invoice status
 	Status *InvoiceStatus `json:"status,omitempty"`
@@ -583,7 +583,7 @@ type InvoiceInput struct {
 	Terms *string `json:"terms,omitempty"`
 	// A PO Number uniquely identifies a purchase order and is generally defined by the buyer. The buyer will match the PO number in the invoice to the Purchase Order.
 	PoNumber *string `json:"po_number,omitempty"`
-	// Optional invoice reference.
+	// Optional reference identifier for the transaction.
 	Reference *string `json:"reference,omitempty"`
 	// Invoice status
 	Status *InvoiceStatus `json:"status,omitempty"`

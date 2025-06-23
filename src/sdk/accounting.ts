@@ -11,6 +11,7 @@ import { BankFeedAccounts } from "./bankfeedaccounts.js";
 import { BankFeedStatements } from "./bankfeedstatements.js";
 import { BillPayments } from "./billpayments.js";
 import { Bills } from "./bills.js";
+import { Categories } from "./categories.js";
 import { CompanyInfo } from "./companyinfo.js";
 import { CreditNotes } from "./creditnotes.js";
 import { Customers } from "./customers.js";
@@ -153,5 +154,10 @@ export class Accounting extends ClientSDK {
   private _bankFeedStatements?: BankFeedStatements;
   get bankFeedStatements(): BankFeedStatements {
     return (this._bankFeedStatements ??= new BankFeedStatements(this._options));
+  }
+
+  private _categories?: Categories;
+  get categories(): Categories {
+    return (this._categories ??= new Categories(this._options));
   }
 }

@@ -58,7 +58,7 @@ let value: GetBillResponse = {
     dueDate: new RFCDate("2020-10-30"),
     paidDate: new RFCDate("2020-10-30"),
     poNumber: "90000117",
-    reference: "123456",
+    reference: "INV-2024-001",
     lineItems: [
       {
         id: "12345",

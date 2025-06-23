@@ -121,6 +121,10 @@ export type Supplier = {
    */
   companyId?: string | null | undefined;
   /**
+   * The category/type of the supplier
+   */
+  supplierCategory?: string | null | undefined;
+  /**
    * The job title of the person.
    */
   title?: string | null | undefined;
@@ -222,6 +226,10 @@ export type SupplierInput = {
    */
   companyId?: string | null | undefined;
   /**
+   * The category/type of the supplier
+   */
+  supplierCategory?: string | null | undefined;
+  /**
    * The job title of the person.
    */
   title?: string | null | undefined;
@@ -318,6 +326,7 @@ export const Supplier$inboundSchema: z.ZodType<
   display_name: z.nullable(z.string()).optional(),
   company_name: z.nullable(z.string()).optional(),
   company_id: z.nullable(z.string()).optional(),
+  supplier_category: z.nullable(z.string()).optional(),
   title: z.nullable(z.string()).optional(),
   first_name: z.nullable(z.string()).optional(),
   middle_name: z.nullable(z.string()).optional(),
@@ -357,6 +366,7 @@ export const Supplier$inboundSchema: z.ZodType<
     "display_name": "displayName",
     "company_name": "companyName",
     "company_id": "companyId",
+    "supplier_category": "supplierCategory",
     "first_name": "firstName",
     "middle_name": "middleName",
     "last_name": "lastName",
@@ -385,6 +395,7 @@ export type Supplier$Outbound = {
   display_name?: string | null | undefined;
   company_name?: string | null | undefined;
   company_id?: string | null | undefined;
+  supplier_category?: string | null | undefined;
   title?: string | null | undefined;
   first_name?: string | null | undefined;
   middle_name?: string | null | undefined;
@@ -427,6 +438,7 @@ export const Supplier$outboundSchema: z.ZodType<
   displayName: z.nullable(z.string()).optional(),
   companyName: z.nullable(z.string()).optional(),
   companyId: z.nullable(z.string()).optional(),
+  supplierCategory: z.nullable(z.string()).optional(),
   title: z.nullable(z.string()).optional(),
   firstName: z.nullable(z.string()).optional(),
   middleName: z.nullable(z.string()).optional(),
@@ -462,6 +474,7 @@ export const Supplier$outboundSchema: z.ZodType<
     displayName: "display_name",
     companyName: "company_name",
     companyId: "company_id",
+    supplierCategory: "supplier_category",
     firstName: "first_name",
     middleName: "middle_name",
     lastName: "last_name",
@@ -519,6 +532,7 @@ export const SupplierInput$inboundSchema: z.ZodType<
   display_name: z.nullable(z.string()).optional(),
   company_name: z.nullable(z.string()).optional(),
   company_id: z.nullable(z.string()).optional(),
+  supplier_category: z.nullable(z.string()).optional(),
   title: z.nullable(z.string()).optional(),
   first_name: z.nullable(z.string()).optional(),
   middle_name: z.nullable(z.string()).optional(),
@@ -548,6 +562,7 @@ export const SupplierInput$inboundSchema: z.ZodType<
     "display_name": "displayName",
     "company_name": "companyName",
     "company_id": "companyId",
+    "supplier_category": "supplierCategory",
     "first_name": "firstName",
     "middle_name": "middleName",
     "last_name": "lastName",
@@ -569,6 +584,7 @@ export type SupplierInput$Outbound = {
   display_name?: string | null | undefined;
   company_name?: string | null | undefined;
   company_id?: string | null | undefined;
+  supplier_category?: string | null | undefined;
   title?: string | null | undefined;
   first_name?: string | null | undefined;
   middle_name?: string | null | undefined;
@@ -604,6 +620,7 @@ export const SupplierInput$outboundSchema: z.ZodType<
   displayName: z.nullable(z.string()).optional(),
   companyName: z.nullable(z.string()).optional(),
   companyId: z.nullable(z.string()).optional(),
+  supplierCategory: z.nullable(z.string()).optional(),
   title: z.nullable(z.string()).optional(),
   firstName: z.nullable(z.string()).optional(),
   middleName: z.nullable(z.string()).optional(),
@@ -633,6 +650,7 @@ export const SupplierInput$outboundSchema: z.ZodType<
     displayName: "display_name",
     companyName: "company_name",
     companyId: "company_id",
+    supplierCategory: "supplier_category",
     firstName: "first_name",
     middleName: "middle_name",
     lastName: "last_name",
