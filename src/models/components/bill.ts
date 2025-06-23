@@ -141,7 +141,7 @@ export type Bill = {
    */
   poNumber?: string | null | undefined;
   /**
-   * Optional bill reference.
+   * Optional reference identifier for the transaction.
    */
   reference?: string | null | undefined;
   lineItems?: Array<BillLineItem> | undefined;
@@ -285,7 +285,7 @@ export type BillInput = {
    */
   poNumber?: string | null | undefined;
   /**
-   * Optional bill reference.
+   * Optional reference identifier for the transaction.
    */
   reference?: string | null | undefined;
   lineItems?: Array<BillLineItemInput> | undefined;

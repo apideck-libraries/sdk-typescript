@@ -30,6 +30,8 @@ export * from "./accountingbillsall.js";
 export * from "./accountingbillsdelete.js";
 export * from "./accountingbillsone.js";
 export * from "./accountingbillsupdate.js";
+export * from "./accountingcategoriesall.js";
+export * from "./accountingcategoriesone.js";
 export * from "./accountingcompanyinfoone.js";
 export * from "./accountingcreditnotesadd.js";
 export * from "./accountingcreditnotesall.js";

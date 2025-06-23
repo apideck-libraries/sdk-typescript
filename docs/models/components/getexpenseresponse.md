@@ -60,6 +60,7 @@ let value: GetExpenseResponse = {
         lineNumber: 1,
       },
     ],
+    reference: "INV-2024-001",
     customFields: [
       {
         id: "2389328923893298",

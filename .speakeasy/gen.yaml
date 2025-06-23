@@ -23,7 +23,7 @@ generation:
     generateNewTests: true
     skipResponseBodyAssertions: false
 typescript:
-  version: 0.25.1
+  version: 0.26.0
   additionalDependencies:
     dependencies: {}
     devDependencies: {}
@@ -32,6 +32,7 @@ typescript:
   author: Speakeasy
   baseErrorName: ApideckError
   clientServerStatusCodesAsErrors: true
+  constFieldsAlwaysOptional: true
   defaultErrorName: APIError
   enableCustomCodeRegions: false
   enableMCPServer: true

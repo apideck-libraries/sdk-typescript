@@ -36,6 +36,7 @@ let value: GetExpensesResponse = {
       },
       totalAmount: 275,
       lineItems: [],
+      reference: "INV-2024-001",
       customFields: [
         {
           id: "2389328923893298",
