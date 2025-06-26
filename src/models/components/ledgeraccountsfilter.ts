@@ -5,12 +5,58 @@
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
+import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
+/**
+ * Filter by account classification.
+ */
+export const Classification = {
+  Asset: "asset",
+  Equity: "equity",
+  Expense: "expense",
+  Liability: "liability",
+  Revenue: "revenue",
+  Income: "income",
+  OtherIncome: "other_income",
+  OtherExpense: "other_expense",
+  CostsOfSales: "costs_of_sales",
+  Other: "other",
+} as const;
+/**
+ * Filter by account classification.
+ */
+export type Classification = ClosedEnum<typeof Classification>;
+
 export type LedgerAccountsFilter = {
   updatedSince?: Date | undefined;
+  /**
+   * Filter by account classification.
+   */
+  classification?: Classification | undefined;
 };
+
+/** @internal */
+export const Classification$inboundSchema: z.ZodNativeEnum<
+  typeof Classification
+> = z.nativeEnum(Classification);
+
+/** @internal */
+export const Classification$outboundSchema: z.ZodNativeEnum<
+  typeof Classification
+> = Classification$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace Classification$ {
+  /** @deprecated use `Classification$inboundSchema` instead. */
+  export const inboundSchema = Classification$inboundSchema;
+  /** @deprecated use `Classification$outboundSchema` instead. */
+  export const outboundSchema = Classification$outboundSchema;
+}
 
 /** @internal */
 export const LedgerAccountsFilter$inboundSchema: z.ZodType<
@@ -21,6 +67,7 @@ export const LedgerAccountsFilter$inboundSchema: z.ZodType<
   updated_since: z.string().datetime({ offset: true }).transform(v =>
     new Date(v)
   ).optional(),
+  classification: Classification$inboundSchema.optional(),
 }).transform((v) => {
   return remap$(v, {
     "updated_since": "updatedSince",
@@ -30,6 +77,7 @@ export const LedgerAccountsFilter$inboundSchema: z.ZodType<
 /** @internal */
 export type LedgerAccountsFilter$Outbound = {
   updated_since?: string | undefined;
+  classification?: string | undefined;
 };
 
 /** @internal */
@@ -39,6 +87,7 @@ export const LedgerAccountsFilter$outboundSchema: z.ZodType<
   LedgerAccountsFilter
 > = z.object({
   updatedSince: z.date().transform(v => v.toISOString()).optional(),
+  classification: Classification$outboundSchema.optional(),
 }).transform((v) => {
   return remap$(v, {
     updatedSince: "updated_since",

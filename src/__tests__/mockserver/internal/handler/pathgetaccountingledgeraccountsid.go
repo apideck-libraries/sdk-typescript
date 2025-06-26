@@ -56,7 +56,7 @@ func testAccountingLedgerAccountsOneAccountingLedgerAccountsOne0(w http.Response
 			ID:                 types.String("12345"),
 			DisplayID:          types.String("1-12345"),
 			Code:               types.String("453"),
-			Classification:     components.ClassificationAsset.ToPointer(),
+			Classification:     components.LedgerAccountClassificationAsset.ToPointer(),
 			Type:               components.LedgerAccountTypeBank.ToPointer(),
 			SubType:            types.String("CHECKING_ACCOUNT"),
 			Name:               types.String("Bank account"),

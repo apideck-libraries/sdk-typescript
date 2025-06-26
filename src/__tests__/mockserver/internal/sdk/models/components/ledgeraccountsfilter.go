@@ -3,12 +3,67 @@
 package components
 
 import (
+	"encoding/json"
+	"fmt"
 	"mockserver/internal/sdk/utils"
 	"time"
 )
 
+// LedgerAccountsFilterClassification - Filter by account classification.
+type LedgerAccountsFilterClassification string
+
+const (
+	LedgerAccountsFilterClassificationAsset        LedgerAccountsFilterClassification = "asset"
+	LedgerAccountsFilterClassificationEquity       LedgerAccountsFilterClassification = "equity"
+	LedgerAccountsFilterClassificationExpense      LedgerAccountsFilterClassification = "expense"
+	LedgerAccountsFilterClassificationLiability    LedgerAccountsFilterClassification = "liability"
+	LedgerAccountsFilterClassificationRevenue      LedgerAccountsFilterClassification = "revenue"
+	LedgerAccountsFilterClassificationIncome       LedgerAccountsFilterClassification = "income"
+	LedgerAccountsFilterClassificationOtherIncome  LedgerAccountsFilterClassification = "other_income"
+	LedgerAccountsFilterClassificationOtherExpense LedgerAccountsFilterClassification = "other_expense"
+	LedgerAccountsFilterClassificationCostsOfSales LedgerAccountsFilterClassification = "costs_of_sales"
+	LedgerAccountsFilterClassificationOther        LedgerAccountsFilterClassification = "other"
+)
+
+func (e LedgerAccountsFilterClassification) ToPointer() *LedgerAccountsFilterClassification {
+	return &e
+}
+func (e *LedgerAccountsFilterClassification) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "asset":
+		fallthrough
+	case "equity":
+		fallthrough
+	case "expense":
+		fallthrough
+	case "liability":
+		fallthrough
+	case "revenue":
+		fallthrough
+	case "income":
+		fallthrough
+	case "other_income":
+		fallthrough
+	case "other_expense":
+		fallthrough
+	case "costs_of_sales":
+		fallthrough
+	case "other":
+		*e = LedgerAccountsFilterClassification(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for LedgerAccountsFilterClassification: %v", v)
+	}
+}
+
 type LedgerAccountsFilter struct {
 	UpdatedSince *time.Time `queryParam:"name=updated_since"`
+	// Filter by account classification.
+	Classification *LedgerAccountsFilterClassification `queryParam:"name=classification"`
 }
 
 func (l LedgerAccountsFilter) MarshalJSON() ([]byte, error) {
@@ -27,4 +82,11 @@ func (o *LedgerAccountsFilter) GetUpdatedSince() *time.Time {
 		return nil
 	}
 	return o.UpdatedSince
+}
+
+func (o *LedgerAccountsFilter) GetClassification() *LedgerAccountsFilterClassification {
+	if o == nil {
+		return nil
+	}
+	return o.Classification
 }

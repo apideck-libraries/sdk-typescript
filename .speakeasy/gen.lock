@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 7bffa198-5d29-4efa-9942-d549cc832085
 management:
-  docChecksum: 5a7a3e78fa143743ba617851cfacb28f
+  docChecksum: f6f883c9fbf0c7e3a5a4be7117b01b3b
   docVersion: 10.18.0
-  speakeasyVersion: 1.568.0
-  generationVersion: 2.632.2
-  releaseVersion: 0.26.0
-  configChecksum: 9cee1c0a3af55c638b25d802be772aa6
+  speakeasyVersion: 1.570.1
+  generationVersion: 2.638.1
+  releaseVersion: 0.27.0
+  configChecksum: 03a4663857dc859f5a6067a99b725c10
   repoURL: https://github.com/apideck-libraries/sdk-typescript.git
   installationURL: https://github.com/apideck-libraries/sdk-typescript
   published: true
@@ -38,7 +38,7 @@ features:
     responseFormat: 0.2.3
     retries: 2.83.0
     sdkHooks: 0.3.0
-    tests: 0.16.2
+    tests: 0.17.0
     typeOverrides: 2.81.1
     unions: 2.85.11
     uploadStreams: 0.1.0
@@ -588,6 +588,7 @@ generatedFiles:
   - docs/models/components/leadssortby.md
   - docs/models/components/leavingreason.md
   - docs/models/components/ledgeraccount.md
+  - docs/models/components/ledgeraccountclassification.md
   - docs/models/components/ledgeraccountinput.md
   - docs/models/components/ledgeraccountsfilter.md
   - docs/models/components/ledgeraccountssort.md
@@ -5062,7 +5063,7 @@ examples:
         query:
           raw: false
           limit: 20
-          filter: {"updated_since": "2020-09-30T07:43:32.000Z"}
+          filter: {"updated_since": "2020-09-30T07:43:32.000Z", "classification": "asset"}
           sort: {"by": "updated_at", "direction": "desc"}
           pass_through: {"search": "San Francisco"}
           fields: "id,updated_at"

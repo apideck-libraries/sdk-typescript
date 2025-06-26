@@ -10,26 +10,26 @@ import (
 	"time"
 )
 
-// Classification - The classification of account.
-type Classification string
+// LedgerAccountClassification - The classification of account.
+type LedgerAccountClassification string
 
 const (
-	ClassificationAsset        Classification = "asset"
-	ClassificationEquity       Classification = "equity"
-	ClassificationExpense      Classification = "expense"
-	ClassificationLiability    Classification = "liability"
-	ClassificationRevenue      Classification = "revenue"
-	ClassificationIncome       Classification = "income"
-	ClassificationOtherIncome  Classification = "other_income"
-	ClassificationOtherExpense Classification = "other_expense"
-	ClassificationCostsOfSales Classification = "costs_of_sales"
-	ClassificationOther        Classification = "other"
+	LedgerAccountClassificationAsset        LedgerAccountClassification = "asset"
+	LedgerAccountClassificationEquity       LedgerAccountClassification = "equity"
+	LedgerAccountClassificationExpense      LedgerAccountClassification = "expense"
+	LedgerAccountClassificationLiability    LedgerAccountClassification = "liability"
+	LedgerAccountClassificationRevenue      LedgerAccountClassification = "revenue"
+	LedgerAccountClassificationIncome       LedgerAccountClassification = "income"
+	LedgerAccountClassificationOtherIncome  LedgerAccountClassification = "other_income"
+	LedgerAccountClassificationOtherExpense LedgerAccountClassification = "other_expense"
+	LedgerAccountClassificationCostsOfSales LedgerAccountClassification = "costs_of_sales"
+	LedgerAccountClassificationOther        LedgerAccountClassification = "other"
 )
 
-func (e Classification) ToPointer() *Classification {
+func (e LedgerAccountClassification) ToPointer() *LedgerAccountClassification {
 	return &e
 }
-func (e *Classification) UnmarshalJSON(data []byte) error {
+func (e *LedgerAccountClassification) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -54,10 +54,10 @@ func (e *Classification) UnmarshalJSON(data []byte) error {
 	case "costs_of_sales":
 		fallthrough
 	case "other":
-		*e = Classification(v)
+		*e = LedgerAccountClassification(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for Classification: %v", v)
+		return fmt.Errorf("invalid value for LedgerAccountClassification: %v", v)
 	}
 }
 
@@ -267,7 +267,7 @@ type LedgerAccount struct {
 	// The code assigned to the account.
 	Code *string `json:"code,omitempty"`
 	// The classification of account.
-	Classification *Classification `json:"classification,omitempty"`
+	Classification *LedgerAccountClassification `json:"classification,omitempty"`
 	// The type of account.
 	Type *LedgerAccountType `json:"type,omitempty"`
 	// The sub type of account.
@@ -362,7 +362,7 @@ func (o *LedgerAccount) GetCode() *string {
 	return o.Code
 }
 
-func (o *LedgerAccount) GetClassification() *Classification {
+func (o *LedgerAccount) GetClassification() *LedgerAccountClassification {
 	if o == nil {
 		return nil
 	}
@@ -582,7 +582,7 @@ type LedgerAccountInput struct {
 	// The code assigned to the account.
 	Code *string `json:"code,omitempty"`
 	// The classification of account.
-	Classification *Classification `json:"classification,omitempty"`
+	Classification *LedgerAccountClassification `json:"classification,omitempty"`
 	// The type of account.
 	Type *LedgerAccountType `json:"type,omitempty"`
 	// The sub type of account.
@@ -656,7 +656,7 @@ func (o *LedgerAccountInput) GetCode() *string {
 	return o.Code
 }
 
-func (o *LedgerAccountInput) GetClassification() *Classification {
+func (o *LedgerAccountInput) GetClassification() *LedgerAccountClassification {
 	if o == nil {
 		return nil
 	}
