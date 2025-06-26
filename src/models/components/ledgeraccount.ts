@@ -48,7 +48,7 @@ import {
 /**
  * The classification of account.
  */
-export const Classification = {
+export const LedgerAccountClassification = {
   Asset: "asset",
   Equity: "equity",
   Expense: "expense",
@@ -63,7 +63,9 @@ export const Classification = {
 /**
  * The classification of account.
  */
-export type Classification = ClosedEnum<typeof Classification>;
+export type LedgerAccountClassification = ClosedEnum<
+  typeof LedgerAccountClassification
+>;
 
 /**
  * The type of account.
@@ -171,7 +173,7 @@ export type LedgerAccount = {
   /**
    * The classification of account.
    */
-  classification?: Classification | null | undefined;
+  classification?: LedgerAccountClassification | null | undefined;
   /**
    * The type of account.
    */
@@ -293,7 +295,7 @@ export type LedgerAccountInput = {
   /**
    * The classification of account.
    */
-  classification?: Classification | null | undefined;
+  classification?: LedgerAccountClassification | null | undefined;
   /**
    * The type of account.
    */
@@ -370,24 +372,24 @@ export type LedgerAccountInput = {
 };
 
 /** @internal */
-export const Classification$inboundSchema: z.ZodNativeEnum<
-  typeof Classification
-> = z.nativeEnum(Classification);
+export const LedgerAccountClassification$inboundSchema: z.ZodNativeEnum<
+  typeof LedgerAccountClassification
+> = z.nativeEnum(LedgerAccountClassification);
 
 /** @internal */
-export const Classification$outboundSchema: z.ZodNativeEnum<
-  typeof Classification
-> = Classification$inboundSchema;
+export const LedgerAccountClassification$outboundSchema: z.ZodNativeEnum<
+  typeof LedgerAccountClassification
+> = LedgerAccountClassification$inboundSchema;
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace Classification$ {
-  /** @deprecated use `Classification$inboundSchema` instead. */
-  export const inboundSchema = Classification$inboundSchema;
-  /** @deprecated use `Classification$outboundSchema` instead. */
-  export const outboundSchema = Classification$outboundSchema;
+export namespace LedgerAccountClassification$ {
+  /** @deprecated use `LedgerAccountClassification$inboundSchema` instead. */
+  export const inboundSchema = LedgerAccountClassification$inboundSchema;
+  /** @deprecated use `LedgerAccountClassification$outboundSchema` instead. */
+  export const outboundSchema = LedgerAccountClassification$outboundSchema;
 }
 
 /** @internal */
@@ -674,7 +676,8 @@ export const LedgerAccount$inboundSchema: z.ZodType<
   display_id: z.string().optional(),
   nominal_code: z.nullable(z.string()).optional(),
   code: z.nullable(z.string()).optional(),
-  classification: z.nullable(Classification$inboundSchema).optional(),
+  classification: z.nullable(LedgerAccountClassification$inboundSchema)
+    .optional(),
   type: LedgerAccountType$inboundSchema.optional(),
   sub_type: z.nullable(z.string()).optional(),
   name: z.nullable(z.string()).optional(),
@@ -785,7 +788,8 @@ export const LedgerAccount$outboundSchema: z.ZodType<
   displayId: z.string().optional(),
   nominalCode: z.nullable(z.string()).optional(),
   code: z.nullable(z.string()).optional(),
-  classification: z.nullable(Classification$outboundSchema).optional(),
+  classification: z.nullable(LedgerAccountClassification$outboundSchema)
+    .optional(),
   type: LedgerAccountType$outboundSchema.optional(),
   subType: z.nullable(z.string()).optional(),
   name: z.nullable(z.string()).optional(),
@@ -880,7 +884,8 @@ export const LedgerAccountInput$inboundSchema: z.ZodType<
   display_id: z.string().optional(),
   nominal_code: z.nullable(z.string()).optional(),
   code: z.nullable(z.string()).optional(),
-  classification: z.nullable(Classification$inboundSchema).optional(),
+  classification: z.nullable(LedgerAccountClassification$inboundSchema)
+    .optional(),
   type: LedgerAccountType$inboundSchema.optional(),
   sub_type: z.nullable(z.string()).optional(),
   name: z.nullable(z.string()).optional(),
@@ -965,7 +970,8 @@ export const LedgerAccountInput$outboundSchema: z.ZodType<
   displayId: z.string().optional(),
   nominalCode: z.nullable(z.string()).optional(),
   code: z.nullable(z.string()).optional(),
-  classification: z.nullable(Classification$outboundSchema).optional(),
+  classification: z.nullable(LedgerAccountClassification$outboundSchema)
+    .optional(),
   type: LedgerAccountType$outboundSchema.optional(),
   subType: z.nullable(z.string()).optional(),
   name: z.nullable(z.string()).optional(),

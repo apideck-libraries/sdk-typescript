@@ -1,13 +1,13 @@
-# Classification
+# LedgerAccountClassification
 
-Filter by account classification.
+The classification of account.
 
 ## Example Usage
 
 ```typescript
-import { Classification } from "@apideck/unify/models/components";
+import { LedgerAccountClassification } from "@apideck/unify/models/components";
 
-let value: Classification = "asset";
+let value: LedgerAccountClassification = "asset";
 ```
 
 ## Values
