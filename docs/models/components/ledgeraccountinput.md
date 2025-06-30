@@ -39,6 +39,7 @@ let value: LedgerAccountInput = {
     branchIdentifier: "001",
     bankCode: "BNH",
     currency: "USD",
+    country: "US",
   },
   parentAccount: {
     id: "12345",

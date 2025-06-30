@@ -17,7 +17,7 @@ import {
 /**
  * The type of bank account.
  */
-export const AccountType = {
+export const BankAccount1AccountType = {
   BankAccount: "bank_account",
   CreditCard: "credit_card",
   Other: "other",
@@ -25,9 +25,11 @@ export const AccountType = {
 /**
  * The type of bank account.
  */
-export type AccountType = ClosedEnum<typeof AccountType>;
+export type BankAccount1AccountType = ClosedEnum<
+  typeof BankAccount1AccountType
+>;
 
-export type BankAccount = {
+export type BankAccount1 = {
   /**
    * The name of the bank
    */
@@ -43,7 +45,7 @@ export type BankAccount = {
   /**
    * The type of bank account.
    */
-  accountType?: AccountType | null | undefined;
+  accountType?: BankAccount1AccountType | null | undefined;
   /**
    * The International Bank Account Number (IBAN).
    */
@@ -79,34 +81,36 @@ export type BankAccount = {
 };
 
 /** @internal */
-export const AccountType$inboundSchema: z.ZodNativeEnum<typeof AccountType> = z
-  .nativeEnum(AccountType);
+export const BankAccount1AccountType$inboundSchema: z.ZodNativeEnum<
+  typeof BankAccount1AccountType
+> = z.nativeEnum(BankAccount1AccountType);
 
 /** @internal */
-export const AccountType$outboundSchema: z.ZodNativeEnum<typeof AccountType> =
-  AccountType$inboundSchema;
+export const BankAccount1AccountType$outboundSchema: z.ZodNativeEnum<
+  typeof BankAccount1AccountType
+> = BankAccount1AccountType$inboundSchema;
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace AccountType$ {
-  /** @deprecated use `AccountType$inboundSchema` instead. */
-  export const inboundSchema = AccountType$inboundSchema;
-  /** @deprecated use `AccountType$outboundSchema` instead. */
-  export const outboundSchema = AccountType$outboundSchema;
+export namespace BankAccount1AccountType$ {
+  /** @deprecated use `BankAccount1AccountType$inboundSchema` instead. */
+  export const inboundSchema = BankAccount1AccountType$inboundSchema;
+  /** @deprecated use `BankAccount1AccountType$outboundSchema` instead. */
+  export const outboundSchema = BankAccount1AccountType$outboundSchema;
 }
 
 /** @internal */
-export const BankAccount$inboundSchema: z.ZodType<
-  BankAccount,
+export const BankAccount1$inboundSchema: z.ZodType<
+  BankAccount1,
   z.ZodTypeDef,
   unknown
 > = z.object({
   bank_name: z.nullable(z.string()).optional(),
   account_number: z.nullable(z.string()).optional(),
   account_name: z.nullable(z.string()).optional(),
-  account_type: z.nullable(AccountType$inboundSchema).optional(),
+  account_type: z.nullable(BankAccount1AccountType$inboundSchema).optional(),
   iban: z.nullable(z.string()).optional(),
   bic: z.nullable(z.string()).optional(),
   routing_number: z.nullable(z.string()).optional(),
@@ -129,7 +133,7 @@ export const BankAccount$inboundSchema: z.ZodType<
 });
 
 /** @internal */
-export type BankAccount$Outbound = {
+export type BankAccount1$Outbound = {
   bank_name?: string | null | undefined;
   account_number?: string | null | undefined;
   account_name?: string | null | undefined;
@@ -145,15 +149,15 @@ export type BankAccount$Outbound = {
 };
 
 /** @internal */
-export const BankAccount$outboundSchema: z.ZodType<
-  BankAccount$Outbound,
+export const BankAccount1$outboundSchema: z.ZodType<
+  BankAccount1$Outbound,
   z.ZodTypeDef,
-  BankAccount
+  BankAccount1
 > = z.object({
   bankName: z.nullable(z.string()).optional(),
   accountNumber: z.nullable(z.string()).optional(),
   accountName: z.nullable(z.string()).optional(),
-  accountType: z.nullable(AccountType$outboundSchema).optional(),
+  accountType: z.nullable(BankAccount1AccountType$outboundSchema).optional(),
   iban: z.nullable(z.string()).optional(),
   bic: z.nullable(z.string()).optional(),
   routingNumber: z.nullable(z.string()).optional(),
@@ -179,25 +183,25 @@ export const BankAccount$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace BankAccount$ {
-  /** @deprecated use `BankAccount$inboundSchema` instead. */
-  export const inboundSchema = BankAccount$inboundSchema;
-  /** @deprecated use `BankAccount$outboundSchema` instead. */
-  export const outboundSchema = BankAccount$outboundSchema;
-  /** @deprecated use `BankAccount$Outbound` instead. */
-  export type Outbound = BankAccount$Outbound;
+export namespace BankAccount1$ {
+  /** @deprecated use `BankAccount1$inboundSchema` instead. */
+  export const inboundSchema = BankAccount1$inboundSchema;
+  /** @deprecated use `BankAccount1$outboundSchema` instead. */
+  export const outboundSchema = BankAccount1$outboundSchema;
+  /** @deprecated use `BankAccount1$Outbound` instead. */
+  export type Outbound = BankAccount1$Outbound;
 }
 
-export function bankAccountToJSON(bankAccount: BankAccount): string {
-  return JSON.stringify(BankAccount$outboundSchema.parse(bankAccount));
+export function bankAccount1ToJSON(bankAccount1: BankAccount1): string {
+  return JSON.stringify(BankAccount1$outboundSchema.parse(bankAccount1));
 }
 
-export function bankAccountFromJSON(
+export function bankAccount1FromJSON(
   jsonString: string,
-): SafeParseResult<BankAccount, SDKValidationError> {
+): SafeParseResult<BankAccount1, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => BankAccount$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'BankAccount' from JSON`,
+    (x) => BankAccount1$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'BankAccount1' from JSON`,
   );
 }

@@ -51,6 +51,7 @@ let value: GetCompanyResponse = {
         branchIdentifier: "001",
         bankCode: "BNH",
         currency: "USD",
+        country: "US",
       },
     ],
     websites: [
@@ -164,5 +165,5 @@ let value: GetCompanyResponse = {
 | `service`                                                               | *string*                                                                | :heavy_check_mark:                                                      | Apideck ID of service provider                                          | zoho-crm                                                                |
 | `resource`                                                              | *string*                                                                | :heavy_check_mark:                                                      | Unified API resource name                                               | companies                                                               |
 | `operation`                                                             | *string*                                                                | :heavy_check_mark:                                                      | Operation performed                                                     | one                                                                     |
-| `data`                                                                  | [components.Company](../../models/components/company.md)                | :heavy_check_mark:                                                      | N/A                                                                     |                                                                         |
+| `data`                                                                  | [components.Company1](../../models/components/company1.md)              | :heavy_check_mark:                                                      | N/A                                                                     |                                                                         |
 | `raw`                                                                   | Record<string, *any*>                                                   | :heavy_minus_sign:                                                      | Raw response from the integration when raw=true query param is provided |                                                                         |

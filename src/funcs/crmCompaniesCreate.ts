@@ -94,7 +94,7 @@ async function $do(
     return [parsed, { status: "invalid" }];
   }
   const payload = parsed.value;
-  const body = encodeJSON("body", payload.Company, { explode: true });
+  const body = encodeJSON("body", payload.Company1, { explode: true });
 
   const path = pathToFunc("/crm/companies")();
 

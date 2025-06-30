@@ -185,6 +185,7 @@ let value: GetInvoiceResponse = {
       branchIdentifier: "001",
       bankCode: "BNH",
       currency: "USD",
+      country: "US",
     },
     ledgerAccount: {
       id: "123456",

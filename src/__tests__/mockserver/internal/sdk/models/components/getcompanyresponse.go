@@ -13,8 +13,8 @@ type GetCompanyResponse struct {
 	// Unified API resource name
 	Resource string `json:"resource"`
 	// Operation performed
-	Operation string  `json:"operation"`
-	Data      Company `json:"data"`
+	Operation string   `json:"operation"`
+	Data      Company1 `json:"data"`
 	// Raw response from the integration when raw=true query param is provided
 	Raw map[string]any `json:"_raw,omitempty"`
 }
@@ -54,9 +54,9 @@ func (o *GetCompanyResponse) GetOperation() string {
 	return o.Operation
 }
 
-func (o *GetCompanyResponse) GetData() Company {
+func (o *GetCompanyResponse) GetData() Company1 {
 	if o == nil {
-		return Company{}
+		return Company1{}
 	}
 	return o.Data
 }
