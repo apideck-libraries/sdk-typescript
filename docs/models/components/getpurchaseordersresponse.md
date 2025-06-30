@@ -166,6 +166,7 @@ let value: GetPurchaseOrdersResponse = {
         branchIdentifier: "001",
         bankCode: "BNH",
         currency: "USD",
+        country: "US",
       },
       accountingByRow: false,
       dueDate: new RFCDate("2020-10-30"),

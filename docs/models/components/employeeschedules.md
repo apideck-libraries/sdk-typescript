@@ -203,6 +203,7 @@ let value: EmployeeSchedules = {
         branchIdentifier: "001",
         bankCode: "BNH",
         currency: "USD",
+        country: "US",
       },
     ],
     taxCode: "1111",

@@ -170,6 +170,10 @@ export type Supplier = {
    */
   paymentMethod?: string | null | undefined;
   /**
+   * Terms of payment.
+   */
+  terms?: string | null | undefined;
+  /**
    * The channel through which the transaction is processed.
    */
   channel?: string | null | undefined;
@@ -275,6 +279,10 @@ export type SupplierInput = {
    */
   paymentMethod?: string | null | undefined;
   /**
+   * Terms of payment.
+   */
+  terms?: string | null | undefined;
+  /**
    * The channel through which the transaction is processed.
    */
   channel?: string | null | undefined;
@@ -345,6 +353,7 @@ export const Supplier$inboundSchema: z.ZodType<
   account: z.nullable(LinkedLedgerAccount$inboundSchema).optional(),
   status: z.nullable(SupplierStatus$inboundSchema).optional(),
   payment_method: z.nullable(z.string()).optional(),
+  terms: z.nullable(z.string()).optional(),
   channel: z.nullable(z.string()).optional(),
   custom_mappings: z.nullable(z.record(z.any())).optional(),
   custom_fields: z.array(CustomField$inboundSchema).optional(),
@@ -414,6 +423,7 @@ export type Supplier$Outbound = {
   account?: LinkedLedgerAccount$Outbound | null | undefined;
   status?: string | null | undefined;
   payment_method?: string | null | undefined;
+  terms?: string | null | undefined;
   channel?: string | null | undefined;
   custom_mappings?: { [k: string]: any } | null | undefined;
   custom_fields?: Array<CustomField$Outbound> | undefined;
@@ -457,6 +467,7 @@ export const Supplier$outboundSchema: z.ZodType<
   account: z.nullable(LinkedLedgerAccount$outboundSchema).optional(),
   status: z.nullable(SupplierStatus$outboundSchema).optional(),
   paymentMethod: z.nullable(z.string()).optional(),
+  terms: z.nullable(z.string()).optional(),
   channel: z.nullable(z.string()).optional(),
   customMappings: z.nullable(z.record(z.any())).optional(),
   customFields: z.array(CustomField$outboundSchema).optional(),
@@ -551,6 +562,7 @@ export const SupplierInput$inboundSchema: z.ZodType<
   account: z.nullable(LinkedLedgerAccountInput$inboundSchema).optional(),
   status: z.nullable(SupplierStatus$inboundSchema).optional(),
   payment_method: z.nullable(z.string()).optional(),
+  terms: z.nullable(z.string()).optional(),
   channel: z.nullable(z.string()).optional(),
   custom_fields: z.array(CustomField$inboundSchema).optional(),
   row_version: z.nullable(z.string()).optional(),
@@ -603,6 +615,7 @@ export type SupplierInput$Outbound = {
   account?: LinkedLedgerAccountInput$Outbound | null | undefined;
   status?: string | null | undefined;
   payment_method?: string | null | undefined;
+  terms?: string | null | undefined;
   channel?: string | null | undefined;
   custom_fields?: Array<CustomField$Outbound> | undefined;
   row_version?: string | null | undefined;
@@ -639,6 +652,7 @@ export const SupplierInput$outboundSchema: z.ZodType<
   account: z.nullable(LinkedLedgerAccountInput$outboundSchema).optional(),
   status: z.nullable(SupplierStatus$outboundSchema).optional(),
   paymentMethod: z.nullable(z.string()).optional(),
+  terms: z.nullable(z.string()).optional(),
   channel: z.nullable(z.string()).optional(),
   customFields: z.array(CustomField$outboundSchema).optional(),
   rowVersion: z.nullable(z.string()).optional(),

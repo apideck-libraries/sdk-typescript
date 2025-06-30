@@ -42,6 +42,7 @@ let value: LedgerAccount = {
     branchIdentifier: "001",
     bankCode: "BNH",
     currency: "USD",
+    country: "US",
   },
   categories: [
     {

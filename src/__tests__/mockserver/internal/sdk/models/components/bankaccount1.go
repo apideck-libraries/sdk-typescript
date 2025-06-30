@@ -7,19 +7,19 @@ import (
 	"fmt"
 )
 
-// BankAccountAccountType - The type of bank account.
-type BankAccountAccountType string
+// BankAccount1AccountType - The type of bank account.
+type BankAccount1AccountType string
 
 const (
-	BankAccountAccountTypeBankAccount BankAccountAccountType = "bank_account"
-	BankAccountAccountTypeCreditCard  BankAccountAccountType = "credit_card"
-	BankAccountAccountTypeOther       BankAccountAccountType = "other"
+	BankAccount1AccountTypeBankAccount BankAccount1AccountType = "bank_account"
+	BankAccount1AccountTypeCreditCard  BankAccount1AccountType = "credit_card"
+	BankAccount1AccountTypeOther       BankAccount1AccountType = "other"
 )
 
-func (e BankAccountAccountType) ToPointer() *BankAccountAccountType {
+func (e BankAccount1AccountType) ToPointer() *BankAccount1AccountType {
 	return &e
 }
-func (e *BankAccountAccountType) UnmarshalJSON(data []byte) error {
+func (e *BankAccount1AccountType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -30,14 +30,14 @@ func (e *BankAccountAccountType) UnmarshalJSON(data []byte) error {
 	case "credit_card":
 		fallthrough
 	case "other":
-		*e = BankAccountAccountType(v)
+		*e = BankAccount1AccountType(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for BankAccountAccountType: %v", v)
+		return fmt.Errorf("invalid value for BankAccount1AccountType: %v", v)
 	}
 }
 
-type BankAccount struct {
+type BankAccount1 struct {
 	// The name of the bank
 	BankName *string `json:"bank_name,omitempty"`
 	// A bank account number is a number that is tied to your bank account. If you have several bank accounts, such as personal, joint, business (and so on), each account will have a different account number.
@@ -45,7 +45,7 @@ type BankAccount struct {
 	// The name which you used in opening your bank account.
 	AccountName *string `json:"account_name,omitempty"`
 	// The type of bank account.
-	AccountType *BankAccountAccountType `json:"account_type,omitempty"`
+	AccountType *BankAccount1AccountType `json:"account_type,omitempty"`
 	// The International Bank Account Number (IBAN).
 	Iban *string `json:"iban,omitempty"`
 	// The Bank Identifier Code (BIC).
@@ -64,84 +64,84 @@ type BankAccount struct {
 	Country *string `json:"country,omitempty"`
 }
 
-func (o *BankAccount) GetBankName() *string {
+func (o *BankAccount1) GetBankName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.BankName
 }
 
-func (o *BankAccount) GetAccountNumber() *string {
+func (o *BankAccount1) GetAccountNumber() *string {
 	if o == nil {
 		return nil
 	}
 	return o.AccountNumber
 }
 
-func (o *BankAccount) GetAccountName() *string {
+func (o *BankAccount1) GetAccountName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.AccountName
 }
 
-func (o *BankAccount) GetAccountType() *BankAccountAccountType {
+func (o *BankAccount1) GetAccountType() *BankAccount1AccountType {
 	if o == nil {
 		return nil
 	}
 	return o.AccountType
 }
 
-func (o *BankAccount) GetIban() *string {
+func (o *BankAccount1) GetIban() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Iban
 }
 
-func (o *BankAccount) GetBic() *string {
+func (o *BankAccount1) GetBic() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Bic
 }
 
-func (o *BankAccount) GetRoutingNumber() *string {
+func (o *BankAccount1) GetRoutingNumber() *string {
 	if o == nil {
 		return nil
 	}
 	return o.RoutingNumber
 }
 
-func (o *BankAccount) GetBsbNumber() *string {
+func (o *BankAccount1) GetBsbNumber() *string {
 	if o == nil {
 		return nil
 	}
 	return o.BsbNumber
 }
 
-func (o *BankAccount) GetBranchIdentifier() *string {
+func (o *BankAccount1) GetBranchIdentifier() *string {
 	if o == nil {
 		return nil
 	}
 	return o.BranchIdentifier
 }
 
-func (o *BankAccount) GetBankCode() *string {
+func (o *BankAccount1) GetBankCode() *string {
 	if o == nil {
 		return nil
 	}
 	return o.BankCode
 }
 
-func (o *BankAccount) GetCurrency() *Currency {
+func (o *BankAccount1) GetCurrency() *Currency {
 	if o == nil {
 		return nil
 	}
 	return o.Currency
 }
 
-func (o *BankAccount) GetCountry() *string {
+func (o *BankAccount1) GetCountry() *string {
 	if o == nil {
 		return nil
 	}

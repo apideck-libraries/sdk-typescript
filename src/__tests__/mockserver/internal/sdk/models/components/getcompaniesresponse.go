@@ -13,8 +13,8 @@ type GetCompaniesResponse struct {
 	// Unified API resource name
 	Resource string `json:"resource"`
 	// Operation performed
-	Operation string    `json:"operation"`
-	Data      []Company `json:"data"`
+	Operation string     `json:"operation"`
+	Data      []Company1 `json:"data"`
 	// Response metadata
 	Meta *Meta `json:"meta,omitempty"`
 	// Links to navigate to previous or next pages through the API
@@ -58,9 +58,9 @@ func (o *GetCompaniesResponse) GetOperation() string {
 	return o.Operation
 }
 
-func (o *GetCompaniesResponse) GetData() []Company {
+func (o *GetCompaniesResponse) GetData() []Company1 {
 	if o == nil {
-		return []Company{}
+		return []Company1{}
 	}
 	return o.Data
 }

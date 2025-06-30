@@ -137,7 +137,7 @@ const apideck = new Apideck({
 async function run() {
   const result = await apideck.crm.companies.create({
     serviceId: "salesforce",
-    company: {
+    company1: {
       name: "SpaceX",
       ownerId: "12345",
       image: "https://www.spacex.com/static/images/share.jpg",
@@ -357,7 +357,7 @@ const apideck = new ApideckCore({
 async function run() {
   const res = await crmCompaniesCreate(apideck, {
     serviceId: "salesforce",
-    company: {
+    company1: {
       name: "SpaceX",
       ownerId: "12345",
       image: "https://www.spacex.com/static/images/share.jpg",
@@ -690,7 +690,7 @@ async function run() {
   const result = await apideck.crm.companies.update({
     id: "<id>",
     serviceId: "salesforce",
-    company: {
+    company1: {
       name: "SpaceX",
       ownerId: "12345",
       image: "https://www.spacex.com/static/images/share.jpg",
@@ -949,7 +949,7 @@ async function run() {
   const res = await crmCompaniesUpdate(apideck, {
     id: "<id>",
     serviceId: "salesforce",
-    company: {
+    company1: {
       name: "SpaceX",
       ownerId: "12345",
       image: "https://www.spacex.com/static/images/share.jpg",

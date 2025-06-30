@@ -8,11 +8,11 @@ import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
-  Company,
-  Company$inboundSchema,
-  Company$Outbound,
-  Company$outboundSchema,
-} from "./company.js";
+  Company1,
+  Company1$inboundSchema,
+  Company1$Outbound,
+  Company1$outboundSchema,
+} from "./company1.js";
 import {
   Links,
   Links$inboundSchema,
@@ -50,7 +50,7 @@ export type GetCompaniesResponse = {
    * Operation performed
    */
   operation: string;
-  data: Array<Company>;
+  data: Array<Company1>;
   /**
    * Response metadata
    */
@@ -76,7 +76,7 @@ export const GetCompaniesResponse$inboundSchema: z.ZodType<
   service: z.string(),
   resource: z.string(),
   operation: z.string(),
-  data: z.array(Company$inboundSchema),
+  data: z.array(Company1$inboundSchema),
   meta: Meta$inboundSchema.optional(),
   links: Links$inboundSchema.optional(),
   _raw: z.nullable(z.record(z.any())).optional(),
@@ -94,7 +94,7 @@ export type GetCompaniesResponse$Outbound = {
   service: string;
   resource: string;
   operation: string;
-  data: Array<Company$Outbound>;
+  data: Array<Company1$Outbound>;
   meta?: Meta$Outbound | undefined;
   links?: Links$Outbound | undefined;
   _raw?: { [k: string]: any } | null | undefined;
@@ -111,7 +111,7 @@ export const GetCompaniesResponse$outboundSchema: z.ZodType<
   service: z.string(),
   resource: z.string(),
   operation: z.string(),
-  data: z.array(Company$outboundSchema),
+  data: z.array(Company1$outboundSchema),
   meta: Meta$outboundSchema.optional(),
   links: Links$outboundSchema.optional(),
   raw: z.nullable(z.record(z.any())).optional(),
