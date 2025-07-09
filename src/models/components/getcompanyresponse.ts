@@ -8,11 +8,11 @@ import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
-  Company,
-  Company$inboundSchema,
-  Company$Outbound,
-  Company$outboundSchema,
-} from "./company.js";
+  Company1,
+  Company1$inboundSchema,
+  Company1$Outbound,
+  Company1$outboundSchema,
+} from "./company1.js";
 
 /**
  * Company
@@ -38,7 +38,7 @@ export type GetCompanyResponse = {
    * Operation performed
    */
   operation: string;
-  data: Company;
+  data: Company1;
   /**
    * Raw response from the integration when raw=true query param is provided
    */
@@ -56,7 +56,7 @@ export const GetCompanyResponse$inboundSchema: z.ZodType<
   service: z.string(),
   resource: z.string(),
   operation: z.string(),
-  data: Company$inboundSchema,
+  data: Company1$inboundSchema,
   _raw: z.nullable(z.record(z.any())).optional(),
 }).transform((v) => {
   return remap$(v, {
@@ -72,7 +72,7 @@ export type GetCompanyResponse$Outbound = {
   service: string;
   resource: string;
   operation: string;
-  data: Company$Outbound;
+  data: Company1$Outbound;
   _raw?: { [k: string]: any } | null | undefined;
 };
 
@@ -87,7 +87,7 @@ export const GetCompanyResponse$outboundSchema: z.ZodType<
   service: z.string(),
   resource: z.string(),
   operation: z.string(),
-  data: Company$outboundSchema,
+  data: Company1$outboundSchema,
   raw: z.nullable(z.record(z.any())).optional(),
 }).transform((v) => {
   return remap$(v, {

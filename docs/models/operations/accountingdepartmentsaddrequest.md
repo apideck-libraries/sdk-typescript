@@ -7,6 +7,33 @@ import { AccountingDepartmentsAddRequest } from "@apideck/unify/models/operation
 
 let value: AccountingDepartmentsAddRequest = {
   serviceId: "salesforce",
+  accountingDepartment: {
+    parentId: "12345",
+    name: "Sales",
+    status: "active",
+    subsidiaries: [
+      {
+        name: "SpaceX",
+      },
+    ],
+    code: "123",
+    rowVersion: "1-12345",
+    passThrough: [
+      {
+        serviceId: "<id>",
+        extendPaths: [
+          {
+            path: "$.nested.property",
+            value: {
+              "TaxClassificationRef": {
+                "value": "EUC-99990201-V1-00020000",
+              },
+            },
+          },
+        ],
+      },
+    ],
+  },
 };
 ```
 

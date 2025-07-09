@@ -8,6 +8,26 @@ import { FileStorageDriveGroupsUpdateRequest } from "@apideck/unify/models/opera
 let value: FileStorageDriveGroupsUpdateRequest = {
   id: "<id>",
   serviceId: "salesforce",
+  driveGroup: {
+    name: "accounting",
+    displayName: "accounting",
+    description: "A description",
+    passThrough: [
+      {
+        serviceId: "<id>",
+        extendPaths: [
+          {
+            path: "$.nested.property",
+            value: {
+              "TaxClassificationRef": {
+                "value": "EUC-99990201-V1-00020000",
+              },
+            },
+          },
+        ],
+      },
+    ],
+  },
 };
 ```
 

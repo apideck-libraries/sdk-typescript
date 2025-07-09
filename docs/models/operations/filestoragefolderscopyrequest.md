@@ -9,6 +9,25 @@ let value: FileStorageFoldersCopyRequest = {
   id: "<id>",
   serviceId: "salesforce",
   fields: "id,updated_at",
+  copyFolderRequest: {
+    name: "Documents",
+    parentFolderId: "1234",
+    passThrough: [
+      {
+        serviceId: "<id>",
+        extendPaths: [
+          {
+            path: "$.nested.property",
+            value: {
+              "TaxClassificationRef": {
+                "value": "EUC-99990201-V1-00020000",
+              },
+            },
+          },
+        ],
+      },
+    ],
+  },
 };
 ```
 

@@ -84,6 +84,7 @@ let value: Customer = {
       branchIdentifier: "001",
       bankCode: "BNH",
       currency: "USD",
+      country: "US",
     },
   ],
   notes: "Some notes about this customer",

@@ -99,6 +99,7 @@ let value: Bill = {
     branchIdentifier: "001",
     bankCode: "BNH",
     currency: "USD",
+    country: "US",
   },
   discountPercentage: 5.5,
   sourceDocumentUrl: "https://www.invoicesolution.com/bill/123456",

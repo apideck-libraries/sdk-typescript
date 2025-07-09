@@ -16,6 +16,9 @@ let value: FileStorageFilesSearchRequest = {
     folderId: "root",
     shared: true,
   },
+  filesSearch: {
+    query: "logo jpg",
+  },
 };
 ```
 

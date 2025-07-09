@@ -72,6 +72,10 @@ export type BankAccount = {
    * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
    */
   currency?: Currency | null | undefined;
+  /**
+   * Country code according to ISO 3166-1 alpha-2.
+   */
+  country?: string | null | undefined;
 };
 
 /** @internal */
@@ -110,6 +114,7 @@ export const BankAccount$inboundSchema: z.ZodType<
   branch_identifier: z.nullable(z.string()).optional(),
   bank_code: z.nullable(z.string()).optional(),
   currency: z.nullable(Currency$inboundSchema).optional(),
+  country: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     "bank_name": "bankName",
@@ -136,6 +141,7 @@ export type BankAccount$Outbound = {
   branch_identifier?: string | null | undefined;
   bank_code?: string | null | undefined;
   currency?: string | null | undefined;
+  country?: string | null | undefined;
 };
 
 /** @internal */
@@ -155,6 +161,7 @@ export const BankAccount$outboundSchema: z.ZodType<
   branchIdentifier: z.nullable(z.string()).optional(),
   bankCode: z.nullable(z.string()).optional(),
   currency: z.nullable(Currency$outboundSchema).optional(),
+  country: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     bankName: "bank_name",

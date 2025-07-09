@@ -7,19 +7,19 @@ import (
 	"fmt"
 )
 
-// AccountType - The type of bank account.
-type AccountType string
+// BankAccountAccountType - The type of bank account.
+type BankAccountAccountType string
 
 const (
-	AccountTypeBankAccount AccountType = "bank_account"
-	AccountTypeCreditCard  AccountType = "credit_card"
-	AccountTypeOther       AccountType = "other"
+	BankAccountAccountTypeBankAccount BankAccountAccountType = "bank_account"
+	BankAccountAccountTypeCreditCard  BankAccountAccountType = "credit_card"
+	BankAccountAccountTypeOther       BankAccountAccountType = "other"
 )
 
-func (e AccountType) ToPointer() *AccountType {
+func (e BankAccountAccountType) ToPointer() *BankAccountAccountType {
 	return &e
 }
-func (e *AccountType) UnmarshalJSON(data []byte) error {
+func (e *BankAccountAccountType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -30,10 +30,10 @@ func (e *AccountType) UnmarshalJSON(data []byte) error {
 	case "credit_card":
 		fallthrough
 	case "other":
-		*e = AccountType(v)
+		*e = BankAccountAccountType(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for AccountType: %v", v)
+		return fmt.Errorf("invalid value for BankAccountAccountType: %v", v)
 	}
 }
 
@@ -45,7 +45,7 @@ type BankAccount struct {
 	// The name which you used in opening your bank account.
 	AccountName *string `json:"account_name,omitempty"`
 	// The type of bank account.
-	AccountType *AccountType `json:"account_type,omitempty"`
+	AccountType *BankAccountAccountType `json:"account_type,omitempty"`
 	// The International Bank Account Number (IBAN).
 	Iban *string `json:"iban,omitempty"`
 	// The Bank Identifier Code (BIC).
@@ -60,6 +60,8 @@ type BankAccount struct {
 	BankCode *string `json:"bank_code,omitempty"`
 	// Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
 	Currency *Currency `json:"currency,omitempty"`
+	// Country code according to ISO 3166-1 alpha-2.
+	Country *string `json:"country,omitempty"`
 }
 
 func (o *BankAccount) GetBankName() *string {
@@ -83,7 +85,7 @@ func (o *BankAccount) GetAccountName() *string {
 	return o.AccountName
 }
 
-func (o *BankAccount) GetAccountType() *AccountType {
+func (o *BankAccount) GetAccountType() *BankAccountAccountType {
 	if o == nil {
 		return nil
 	}
@@ -137,4 +139,11 @@ func (o *BankAccount) GetCurrency() *Currency {
 		return nil
 	}
 	return o.Currency
+}
+
+func (o *BankAccount) GetCountry() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Country
 }

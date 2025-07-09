@@ -7,6 +7,15 @@ import { WebhookWebhooksUpdateRequest } from "@apideck/unify/models/operations";
 
 let value: WebhookWebhooksUpdateRequest = {
   id: "<id>",
+  updateWebhookRequest: {
+    description: "A description",
+    status: "enabled",
+    deliveryUrl: "https://example.com/my/webhook/endpoint",
+    events: [
+      "vault.connection.created",
+      "vault.connection.updated",
+    ],
+  },
 };
 ```
 

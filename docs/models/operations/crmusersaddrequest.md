@@ -7,6 +7,75 @@ import { CrmUsersAddRequest } from "@apideck/unify/models/operations";
 
 let value: CrmUsersAddRequest = {
   serviceId: "salesforce",
+  user: {
+    parentId: "54321",
+    username: "masterofcoin",
+    firstName: "Elon",
+    lastName: "Musk",
+    title: "CEO",
+    division: "Europe",
+    companyName: "SpaceX",
+    employeeNumber: "123456-AB",
+    description: "A description",
+    image: "https://logo.clearbit.com/spacex.com?s=128",
+    language: "EN",
+    status: "active",
+    password: "supersecretpassword",
+    addresses: [
+      {
+        id: "123",
+        type: "primary",
+        string: "25 Spring Street, Blackburn, VIC 3130",
+        name: "HQ US",
+        line1: "Main street",
+        line2: "apt #",
+        line3: "Suite #",
+        line4: "delivery instructions",
+        streetNumber: "25",
+        city: "San Francisco",
+        state: "CA",
+        postalCode: "94104",
+        country: "US",
+        latitude: "40.759211",
+        longitude: "-73.984638",
+        county: "Santa Clara",
+        contactName: "Elon Musk",
+        salutation: "Mr",
+        phoneNumber: "111-111-1111",
+        fax: "122-111-1111",
+        email: "elon@musk.com",
+        website: "https://elonmusk.com",
+        notes: "Address notes or delivery instructions.",
+        rowVersion: "1-12345",
+      },
+    ],
+    phoneNumbers: [
+      {
+        id: "12345",
+        countryCode: "1",
+        areaCode: "323",
+        number: "111-111-1111",
+        extension: "105",
+        type: "primary",
+      },
+    ],
+    emails: [],
+    passThrough: [
+      {
+        serviceId: "<id>",
+        extendPaths: [
+          {
+            path: "$.nested.property",
+            value: {
+              "TaxClassificationRef": {
+                "value": "EUC-99990201-V1-00020000",
+              },
+            },
+          },
+        ],
+      },
+    ],
+  },
 };
 ```
 

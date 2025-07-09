@@ -124,6 +124,8 @@ type CompanyInfo struct {
 	Emails           []Email       `json:"emails,omitempty"`
 	// When custom mappings are configured on the resource, the result is included here.
 	CustomMappings map[string]any `json:"custom_mappings,omitempty"`
+	// Whether tracking categories are enabled for the company on transactions
+	TrackingCategoriesEnabled *bool `json:"tracking_categories_enabled,omitempty"`
 	// A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
 	RowVersion *string `json:"row_version,omitempty"`
 	// The user who last updated the object.
@@ -264,6 +266,13 @@ func (o *CompanyInfo) GetCustomMappings() map[string]any {
 		return nil
 	}
 	return o.CustomMappings
+}
+
+func (o *CompanyInfo) GetTrackingCategoriesEnabled() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.TrackingCategoriesEnabled
 }
 
 func (o *CompanyInfo) GetRowVersion() *string {

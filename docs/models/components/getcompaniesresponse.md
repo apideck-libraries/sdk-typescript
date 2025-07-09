@@ -52,6 +52,7 @@ let value: GetCompaniesResponse = {
           branchIdentifier: "001",
           bankCode: "BNH",
           currency: "USD",
+          country: "US",
         },
       ],
       websites: [
@@ -181,7 +182,7 @@ let value: GetCompaniesResponse = {
 | `service`                                                               | *string*                                                                | :heavy_check_mark:                                                      | Apideck ID of service provider                                          | zoho-crm                                                                |
 | `resource`                                                              | *string*                                                                | :heavy_check_mark:                                                      | Unified API resource name                                               | companies                                                               |
 | `operation`                                                             | *string*                                                                | :heavy_check_mark:                                                      | Operation performed                                                     | all                                                                     |
-| `data`                                                                  | [components.Company](../../models/components/company.md)[]              | :heavy_check_mark:                                                      | N/A                                                                     |                                                                         |
+| `data`                                                                  | [components.Company1](../../models/components/company1.md)[]            | :heavy_check_mark:                                                      | N/A                                                                     |                                                                         |
 | `meta`                                                                  | [components.Meta](../../models/components/meta.md)                      | :heavy_minus_sign:                                                      | Response metadata                                                       |                                                                         |
 | `links`                                                                 | [components.Links](../../models/components/links.md)                    | :heavy_minus_sign:                                                      | Links to navigate to previous or next pages through the API             |                                                                         |
 | `raw`                                                                   | Record<string, *any*>                                                   | :heavy_minus_sign:                                                      | Raw response from the integration when raw=true query param is provided |                                                                         |
