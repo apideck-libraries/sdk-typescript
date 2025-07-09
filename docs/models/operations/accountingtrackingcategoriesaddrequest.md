@@ -7,6 +7,28 @@ import { AccountingTrackingCategoriesAddRequest } from "@apideck/unify/models/op
 
 let value: AccountingTrackingCategoriesAddRequest = {
   serviceId: "salesforce",
+  trackingCategory: {
+    parentId: "12345",
+    name: "Department",
+    code: "100",
+    status: "active",
+    rowVersion: "1-12345",
+    passThrough: [
+      {
+        serviceId: "<id>",
+        extendPaths: [
+          {
+            path: "$.nested.property",
+            value: {
+              "TaxClassificationRef": {
+                "value": "EUC-99990201-V1-00020000",
+              },
+            },
+          },
+        ],
+      },
+    ],
+  },
 };
 ```
 

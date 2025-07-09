@@ -50,6 +50,7 @@ let value: GetLedgerAccountResponse = {
       branchIdentifier: "001",
       bankCode: "BNH",
       currency: "USD",
+      country: "US",
     },
     categories: [
       {

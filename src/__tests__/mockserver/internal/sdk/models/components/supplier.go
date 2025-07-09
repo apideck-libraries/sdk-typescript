@@ -87,6 +87,8 @@ type Supplier struct {
 	Status *SupplierStatus `json:"status,omitempty"`
 	// Payment method used for the transaction, such as cash, credit card, bank transfer, or check
 	PaymentMethod *string `json:"payment_method,omitempty"`
+	// Terms of payment.
+	Terms *string `json:"terms,omitempty"`
 	// The channel through which the transaction is processed.
 	Channel *string `json:"channel,omitempty"`
 	// When custom mappings are configured on the resource, the result is included here.
@@ -294,6 +296,13 @@ func (o *Supplier) GetPaymentMethod() *string {
 	return o.PaymentMethod
 }
 
+func (o *Supplier) GetTerms() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Terms
+}
+
 func (o *Supplier) GetChannel() *string {
 	if o == nil {
 		return nil
@@ -402,6 +411,8 @@ type SupplierInput struct {
 	Status *SupplierStatus `json:"status,omitempty"`
 	// Payment method used for the transaction, such as cash, credit card, bank transfer, or check
 	PaymentMethod *string `json:"payment_method,omitempty"`
+	// Terms of payment.
+	Terms *string `json:"terms,omitempty"`
 	// The channel through which the transaction is processed.
 	Channel      *string       `json:"channel,omitempty"`
 	CustomFields []CustomField `json:"custom_fields,omitempty"`
@@ -572,6 +583,13 @@ func (o *SupplierInput) GetPaymentMethod() *string {
 		return nil
 	}
 	return o.PaymentMethod
+}
+
+func (o *SupplierInput) GetTerms() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Terms
 }
 
 func (o *SupplierInput) GetChannel() *string {

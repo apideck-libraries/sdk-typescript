@@ -130,6 +130,10 @@ export type CompanyInfo = {
    */
   customMappings?: { [k: string]: any } | null | undefined;
   /**
+   * Whether tracking categories are enabled for the company on transactions
+   */
+  trackingCategoriesEnabled?: boolean | undefined;
+  /**
    * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
    */
   rowVersion?: string | null | undefined;
@@ -216,6 +220,7 @@ export const CompanyInfo$inboundSchema: z.ZodType<
   phone_numbers: z.array(PhoneNumber$inboundSchema).optional(),
   emails: z.array(Email$inboundSchema).optional(),
   custom_mappings: z.nullable(z.record(z.any())).optional(),
+  tracking_categories_enabled: z.boolean().optional(),
   row_version: z.nullable(z.string()).optional(),
   updated_by: z.nullable(z.string()).optional(),
   created_by: z.nullable(z.string()).optional(),
@@ -237,6 +242,7 @@ export const CompanyInfo$inboundSchema: z.ZodType<
     "company_start_date": "companyStartDate",
     "phone_numbers": "phoneNumbers",
     "custom_mappings": "customMappings",
+    "tracking_categories_enabled": "trackingCategoriesEnabled",
     "row_version": "rowVersion",
     "updated_by": "updatedBy",
     "created_by": "createdBy",
@@ -264,6 +270,7 @@ export type CompanyInfo$Outbound = {
   phone_numbers?: Array<PhoneNumber$Outbound> | undefined;
   emails?: Array<Email$Outbound> | undefined;
   custom_mappings?: { [k: string]: any } | null | undefined;
+  tracking_categories_enabled?: boolean | undefined;
   row_version?: string | null | undefined;
   updated_by?: string | null | undefined;
   created_by?: string | null | undefined;
@@ -295,6 +302,7 @@ export const CompanyInfo$outboundSchema: z.ZodType<
   phoneNumbers: z.array(PhoneNumber$outboundSchema).optional(),
   emails: z.array(Email$outboundSchema).optional(),
   customMappings: z.nullable(z.record(z.any())).optional(),
+  trackingCategoriesEnabled: z.boolean().optional(),
   rowVersion: z.nullable(z.string()).optional(),
   updatedBy: z.nullable(z.string()).optional(),
   createdBy: z.nullable(z.string()).optional(),
@@ -312,6 +320,7 @@ export const CompanyInfo$outboundSchema: z.ZodType<
     companyStartDate: "company_start_date",
     phoneNumbers: "phone_numbers",
     customMappings: "custom_mappings",
+    trackingCategoriesEnabled: "tracking_categories_enabled",
     rowVersion: "row_version",
     updatedBy: "updated_by",
     createdBy: "created_by",

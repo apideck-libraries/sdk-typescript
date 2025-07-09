@@ -52,8 +52,8 @@ func testCrmCompaniesAllCrmCompaniesAll0(w http.ResponseWriter, req *http.Reques
 		Service:    "zoho-crm",
 		Resource:   "companies",
 		Operation:  "all",
-		Data: []components.Company{
-			components.Company{
+		Data: []components.Company1{
+			components.Company1{
 				ID:                types.String("12345"),
 				Name:              types.String("SpaceX"),
 				InteractionCount:  types.Int64(1),
@@ -76,12 +76,12 @@ func testCrmCompaniesAllCrmCompaniesAll0(w http.ResponseWriter, req *http.Reques
 				FirstName:         types.String("Elon"),
 				LastName:          types.String("Musk"),
 				ParentID:          types.String("22345"),
-				BankAccounts: []components.BankAccount{
-					components.BankAccount{
+				BankAccounts: []components.BankAccount1{
+					components.BankAccount1{
 						BankName:         types.String("Monzo"),
 						AccountNumber:    types.String("123465"),
 						AccountName:      types.String("SPACEX LLC"),
-						AccountType:      components.AccountTypeCreditCard.ToPointer(),
+						AccountType:      components.BankAccount1AccountTypeCreditCard.ToPointer(),
 						Iban:             types.String("CH2989144532982975332"),
 						Bic:              types.String("AUDSCHGGXXX"),
 						RoutingNumber:    types.String("012345678"),
@@ -90,11 +90,11 @@ func testCrmCompaniesAllCrmCompaniesAll0(w http.ResponseWriter, req *http.Reques
 						BankCode:         types.String("BNH"),
 						Currency:         components.CurrencyUsd.ToPointer(),
 					},
-					components.BankAccount{
+					components.BankAccount1{
 						BankName:         types.String("Monzo"),
 						AccountNumber:    types.String("123465"),
 						AccountName:      types.String("SPACEX LLC"),
-						AccountType:      components.AccountTypeCreditCard.ToPointer(),
+						AccountType:      components.BankAccount1AccountTypeCreditCard.ToPointer(),
 						Iban:             types.String("CH2989144532982975332"),
 						Bic:              types.String("AUDSCHGGXXX"),
 						RoutingNumber:    types.String("012345678"),
@@ -244,7 +244,7 @@ func testCrmCompaniesAllCrmCompaniesAll0(w http.ResponseWriter, req *http.Reques
 					},
 				},
 			},
-			components.Company{
+			components.Company1{
 				ID:                types.String("12345"),
 				Name:              types.String("SpaceX"),
 				InteractionCount:  types.Int64(1),
@@ -267,12 +267,12 @@ func testCrmCompaniesAllCrmCompaniesAll0(w http.ResponseWriter, req *http.Reques
 				FirstName:         types.String("Elon"),
 				LastName:          types.String("Musk"),
 				ParentID:          types.String("22345"),
-				BankAccounts: []components.BankAccount{
-					components.BankAccount{
+				BankAccounts: []components.BankAccount1{
+					components.BankAccount1{
 						BankName:         types.String("Monzo"),
 						AccountNumber:    types.String("123465"),
 						AccountName:      types.String("SPACEX LLC"),
-						AccountType:      components.AccountTypeCreditCard.ToPointer(),
+						AccountType:      components.BankAccount1AccountTypeCreditCard.ToPointer(),
 						Iban:             types.String("CH2989144532982975332"),
 						Bic:              types.String("AUDSCHGGXXX"),
 						RoutingNumber:    types.String("012345678"),
@@ -281,11 +281,11 @@ func testCrmCompaniesAllCrmCompaniesAll0(w http.ResponseWriter, req *http.Reques
 						BankCode:         types.String("BNH"),
 						Currency:         components.CurrencyUsd.ToPointer(),
 					},
-					components.BankAccount{
+					components.BankAccount1{
 						BankName:         types.String("Monzo"),
 						AccountNumber:    types.String("123465"),
 						AccountName:      types.String("SPACEX LLC"),
-						AccountType:      components.AccountTypeCreditCard.ToPointer(),
+						AccountType:      components.BankAccount1AccountTypeCreditCard.ToPointer(),
 						Iban:             types.String("CH2989144532982975332"),
 						Bic:              types.String("AUDSCHGGXXX"),
 						RoutingNumber:    types.String("012345678"),
@@ -451,7 +451,7 @@ func testCrmCompaniesAllCrmCompaniesAll0(w http.ResponseWriter, req *http.Reques
 					},
 				},
 			},
-			components.Company{
+			components.Company1{
 				ID:                types.String("12345"),
 				Name:              types.String("SpaceX"),
 				InteractionCount:  types.Int64(1),
@@ -474,12 +474,12 @@ func testCrmCompaniesAllCrmCompaniesAll0(w http.ResponseWriter, req *http.Reques
 				FirstName:         types.String("Elon"),
 				LastName:          types.String("Musk"),
 				ParentID:          types.String("22345"),
-				BankAccounts: []components.BankAccount{
-					components.BankAccount{
+				BankAccounts: []components.BankAccount1{
+					components.BankAccount1{
 						BankName:         types.String("Monzo"),
 						AccountNumber:    types.String("123465"),
 						AccountName:      types.String("SPACEX LLC"),
-						AccountType:      components.AccountTypeCreditCard.ToPointer(),
+						AccountType:      components.BankAccount1AccountTypeCreditCard.ToPointer(),
 						Iban:             types.String("CH2989144532982975332"),
 						Bic:              types.String("AUDSCHGGXXX"),
 						RoutingNumber:    types.String("012345678"),
@@ -488,11 +488,11 @@ func testCrmCompaniesAllCrmCompaniesAll0(w http.ResponseWriter, req *http.Reques
 						BankCode:         types.String("BNH"),
 						Currency:         components.CurrencyUsd.ToPointer(),
 					},
-					components.BankAccount{
+					components.BankAccount1{
 						BankName:         types.String("Monzo"),
 						AccountNumber:    types.String("123465"),
 						AccountName:      types.String("SPACEX LLC"),
-						AccountType:      components.AccountTypeCreditCard.ToPointer(),
+						AccountType:      components.BankAccount1AccountTypeCreditCard.ToPointer(),
 						Iban:             types.String("CH2989144532982975332"),
 						Bic:              types.String("AUDSCHGGXXX"),
 						RoutingNumber:    types.String("012345678"),
@@ -501,11 +501,11 @@ func testCrmCompaniesAllCrmCompaniesAll0(w http.ResponseWriter, req *http.Reques
 						BankCode:         types.String("BNH"),
 						Currency:         components.CurrencyUsd.ToPointer(),
 					},
-					components.BankAccount{
+					components.BankAccount1{
 						BankName:         types.String("Monzo"),
 						AccountNumber:    types.String("123465"),
 						AccountName:      types.String("SPACEX LLC"),
-						AccountType:      components.AccountTypeCreditCard.ToPointer(),
+						AccountType:      components.BankAccount1AccountTypeCreditCard.ToPointer(),
 						Iban:             types.String("CH2989144532982975332"),
 						Bic:              types.String("AUDSCHGGXXX"),
 						RoutingNumber:    types.String("012345678"),

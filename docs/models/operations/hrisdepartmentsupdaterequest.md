@@ -8,6 +8,26 @@ import { HrisDepartmentsUpdateRequest } from "@apideck/unify/models/operations";
 let value: HrisDepartmentsUpdateRequest = {
   id: "<id>",
   serviceId: "salesforce",
+  department: {
+    name: "R&D",
+    code: "2",
+    description: "R&D",
+    passThrough: [
+      {
+        serviceId: "<id>",
+        extendPaths: [
+          {
+            path: "$.nested.property",
+            value: {
+              "TaxClassificationRef": {
+                "value": "EUC-99990201-V1-00020000",
+              },
+            },
+          },
+        ],
+      },
+    ],
+  },
 };
 ```
 

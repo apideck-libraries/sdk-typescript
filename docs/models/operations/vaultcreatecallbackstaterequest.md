@@ -8,6 +8,9 @@ import { VaultCreateCallbackStateRequest } from "@apideck/unify/models/operation
 let value: VaultCreateCallbackStateRequest = {
   serviceId: "pipedrive",
   unifiedApi: "crm",
+  createCallbackState: {
+    redirectUri: "https://example.com/callback",
+  },
 };
 ```
 

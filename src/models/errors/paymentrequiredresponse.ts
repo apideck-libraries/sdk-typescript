@@ -68,7 +68,7 @@ export class PaymentRequiredResponse extends ApideckError {
     err: PaymentRequiredResponseData,
     httpMeta: { response: Response; request: Request; body: string },
   ) {
-    const message = err.message || "API error occurred";
+    const message = err.message || `API error occurred: ${JSON.stringify(err)}`;
     super(message, httpMeta);
     this.data$ = err;
     if (err.statusCode != null) this.statusCode = err.statusCode;

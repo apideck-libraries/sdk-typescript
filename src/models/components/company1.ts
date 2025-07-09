@@ -15,11 +15,11 @@ import {
   Address$outboundSchema,
 } from "./address.js";
 import {
-  BankAccount,
-  BankAccount$inboundSchema,
-  BankAccount$Outbound,
-  BankAccount$outboundSchema,
-} from "./bankaccount.js";
+  BankAccount1,
+  BankAccount1$inboundSchema,
+  BankAccount1$Outbound,
+  BankAccount1$outboundSchema,
+} from "./bankaccount1.js";
 import {
   Currency,
   Currency$inboundSchema,
@@ -67,7 +67,7 @@ export type CompanyRowType = {
   name?: string | null | undefined;
 };
 
-export type Company = {
+export type Company1 = {
   /**
    * Unique identifier for the company
    */
@@ -156,7 +156,7 @@ export type Company = {
    * Parent ID
    */
   parentId?: string | null | undefined;
-  bankAccounts?: Array<BankAccount> | undefined;
+  bankAccounts?: Array<BankAccount1> | undefined;
   websites?: Array<Website> | undefined;
   addresses?: Array<Address> | undefined;
   socialLinks?: Array<SocialLink> | undefined;
@@ -211,7 +211,7 @@ export type Company = {
   passThrough?: Array<PassThroughBody> | undefined;
 };
 
-export type CompanyInput = {
+export type Company1Input = {
   /**
    * Name of the company
    */
@@ -288,7 +288,7 @@ export type CompanyInput = {
    * The last name of the person.
    */
   lastName?: string | null | undefined;
-  bankAccounts?: Array<BankAccount> | undefined;
+  bankAccounts?: Array<BankAccount1> | undefined;
   websites?: Array<Website> | undefined;
   addresses?: Array<Address> | undefined;
   socialLinks?: Array<SocialLink> | undefined;
@@ -369,88 +369,91 @@ export function companyRowTypeFromJSON(
 }
 
 /** @internal */
-export const Company$inboundSchema: z.ZodType<Company, z.ZodTypeDef, unknown> =
-  z.object({
-    id: z.string().optional(),
-    name: z.nullable(z.string()),
-    interaction_count: z.nullable(z.number().int()).optional(),
-    owner_id: z.nullable(z.string()).optional(),
-    image: z.nullable(z.string()).optional(),
-    description: z.nullable(z.string()).optional(),
-    vat_number: z.nullable(z.string()).optional(),
-    currency: z.nullable(Currency$inboundSchema).optional(),
-    status: z.nullable(z.string()).optional(),
-    fax: z.nullable(z.string()).optional(),
-    annual_revenue: z.nullable(z.string()).optional(),
-    number_of_employees: z.nullable(z.string()).optional(),
-    industry: z.nullable(z.string()).optional(),
-    ownership: z.nullable(z.string()).optional(),
-    sales_tax_number: z.nullable(z.string()).optional(),
-    payee_number: z.nullable(z.string()).optional(),
-    abn_or_tfn: z.nullable(z.string()).optional(),
-    abn_branch: z.nullable(z.string()).optional(),
-    acn: z.nullable(z.string()).optional(),
-    first_name: z.nullable(z.string()).optional(),
-    last_name: z.nullable(z.string()).optional(),
-    parent_id: z.nullable(z.string()).optional(),
-    bank_accounts: z.array(BankAccount$inboundSchema).optional(),
-    websites: z.array(Website$inboundSchema).optional(),
-    addresses: z.array(Address$inboundSchema).optional(),
-    social_links: z.array(SocialLink$inboundSchema).optional(),
-    phone_numbers: z.array(PhoneNumber$inboundSchema).optional(),
-    emails: z.array(Email$inboundSchema).optional(),
-    row_type: z.lazy(() => CompanyRowType$inboundSchema).optional(),
-    custom_fields: z.array(CustomField$inboundSchema).optional(),
-    tags: z.nullable(z.array(z.string())).optional(),
-    read_only: z.nullable(z.boolean()).optional(),
-    last_activity_at: z.nullable(
-      z.string().datetime({ offset: true }).transform(v => new Date(v)),
-    ).optional(),
-    deleted: z.boolean().optional(),
-    salutation: z.nullable(z.string()).optional(),
-    birthday: z.nullable(z.string().transform(v => new RFCDate(v))).optional(),
-    custom_mappings: z.nullable(z.record(z.any())).optional(),
-    updated_by: z.nullable(z.string()).optional(),
-    created_by: z.nullable(z.string()).optional(),
-    updated_at: z.nullable(
-      z.string().datetime({ offset: true }).transform(v => new Date(v)),
-    ).optional(),
-    created_at: z.nullable(
-      z.string().datetime({ offset: true }).transform(v => new Date(v)),
-    ).optional(),
-    pass_through: z.array(PassThroughBody$inboundSchema).optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      "interaction_count": "interactionCount",
-      "owner_id": "ownerId",
-      "vat_number": "vatNumber",
-      "annual_revenue": "annualRevenue",
-      "number_of_employees": "numberOfEmployees",
-      "sales_tax_number": "salesTaxNumber",
-      "payee_number": "payeeNumber",
-      "abn_or_tfn": "abnOrTfn",
-      "abn_branch": "abnBranch",
-      "first_name": "firstName",
-      "last_name": "lastName",
-      "parent_id": "parentId",
-      "bank_accounts": "bankAccounts",
-      "social_links": "socialLinks",
-      "phone_numbers": "phoneNumbers",
-      "row_type": "rowType",
-      "custom_fields": "customFields",
-      "read_only": "readOnly",
-      "last_activity_at": "lastActivityAt",
-      "custom_mappings": "customMappings",
-      "updated_by": "updatedBy",
-      "created_by": "createdBy",
-      "updated_at": "updatedAt",
-      "created_at": "createdAt",
-      "pass_through": "passThrough",
-    });
+export const Company1$inboundSchema: z.ZodType<
+  Company1,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  id: z.string().optional(),
+  name: z.nullable(z.string()),
+  interaction_count: z.nullable(z.number().int()).optional(),
+  owner_id: z.nullable(z.string()).optional(),
+  image: z.nullable(z.string()).optional(),
+  description: z.nullable(z.string()).optional(),
+  vat_number: z.nullable(z.string()).optional(),
+  currency: z.nullable(Currency$inboundSchema).optional(),
+  status: z.nullable(z.string()).optional(),
+  fax: z.nullable(z.string()).optional(),
+  annual_revenue: z.nullable(z.string()).optional(),
+  number_of_employees: z.nullable(z.string()).optional(),
+  industry: z.nullable(z.string()).optional(),
+  ownership: z.nullable(z.string()).optional(),
+  sales_tax_number: z.nullable(z.string()).optional(),
+  payee_number: z.nullable(z.string()).optional(),
+  abn_or_tfn: z.nullable(z.string()).optional(),
+  abn_branch: z.nullable(z.string()).optional(),
+  acn: z.nullable(z.string()).optional(),
+  first_name: z.nullable(z.string()).optional(),
+  last_name: z.nullable(z.string()).optional(),
+  parent_id: z.nullable(z.string()).optional(),
+  bank_accounts: z.array(BankAccount1$inboundSchema).optional(),
+  websites: z.array(Website$inboundSchema).optional(),
+  addresses: z.array(Address$inboundSchema).optional(),
+  social_links: z.array(SocialLink$inboundSchema).optional(),
+  phone_numbers: z.array(PhoneNumber$inboundSchema).optional(),
+  emails: z.array(Email$inboundSchema).optional(),
+  row_type: z.lazy(() => CompanyRowType$inboundSchema).optional(),
+  custom_fields: z.array(CustomField$inboundSchema).optional(),
+  tags: z.nullable(z.array(z.string())).optional(),
+  read_only: z.nullable(z.boolean()).optional(),
+  last_activity_at: z.nullable(
+    z.string().datetime({ offset: true }).transform(v => new Date(v)),
+  ).optional(),
+  deleted: z.boolean().optional(),
+  salutation: z.nullable(z.string()).optional(),
+  birthday: z.nullable(z.string().transform(v => new RFCDate(v))).optional(),
+  custom_mappings: z.nullable(z.record(z.any())).optional(),
+  updated_by: z.nullable(z.string()).optional(),
+  created_by: z.nullable(z.string()).optional(),
+  updated_at: z.nullable(
+    z.string().datetime({ offset: true }).transform(v => new Date(v)),
+  ).optional(),
+  created_at: z.nullable(
+    z.string().datetime({ offset: true }).transform(v => new Date(v)),
+  ).optional(),
+  pass_through: z.array(PassThroughBody$inboundSchema).optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "interaction_count": "interactionCount",
+    "owner_id": "ownerId",
+    "vat_number": "vatNumber",
+    "annual_revenue": "annualRevenue",
+    "number_of_employees": "numberOfEmployees",
+    "sales_tax_number": "salesTaxNumber",
+    "payee_number": "payeeNumber",
+    "abn_or_tfn": "abnOrTfn",
+    "abn_branch": "abnBranch",
+    "first_name": "firstName",
+    "last_name": "lastName",
+    "parent_id": "parentId",
+    "bank_accounts": "bankAccounts",
+    "social_links": "socialLinks",
+    "phone_numbers": "phoneNumbers",
+    "row_type": "rowType",
+    "custom_fields": "customFields",
+    "read_only": "readOnly",
+    "last_activity_at": "lastActivityAt",
+    "custom_mappings": "customMappings",
+    "updated_by": "updatedBy",
+    "created_by": "createdBy",
+    "updated_at": "updatedAt",
+    "created_at": "createdAt",
+    "pass_through": "passThrough",
   });
+});
 
 /** @internal */
-export type Company$Outbound = {
+export type Company1$Outbound = {
   id?: string | undefined;
   name: string | null;
   interaction_count?: number | null | undefined;
@@ -473,7 +476,7 @@ export type Company$Outbound = {
   first_name?: string | null | undefined;
   last_name?: string | null | undefined;
   parent_id?: string | null | undefined;
-  bank_accounts?: Array<BankAccount$Outbound> | undefined;
+  bank_accounts?: Array<BankAccount1$Outbound> | undefined;
   websites?: Array<Website$Outbound> | undefined;
   addresses?: Array<Address$Outbound> | undefined;
   social_links?: Array<SocialLink$Outbound> | undefined;
@@ -496,10 +499,10 @@ export type Company$Outbound = {
 };
 
 /** @internal */
-export const Company$outboundSchema: z.ZodType<
-  Company$Outbound,
+export const Company1$outboundSchema: z.ZodType<
+  Company1$Outbound,
   z.ZodTypeDef,
-  Company
+  Company1
 > = z.object({
   id: z.string().optional(),
   name: z.nullable(z.string()),
@@ -523,7 +526,7 @@ export const Company$outboundSchema: z.ZodType<
   firstName: z.nullable(z.string()).optional(),
   lastName: z.nullable(z.string()).optional(),
   parentId: z.nullable(z.string()).optional(),
-  bankAccounts: z.array(BankAccount$outboundSchema).optional(),
+  bankAccounts: z.array(BankAccount1$outboundSchema).optional(),
   websites: z.array(Website$outboundSchema).optional(),
   addresses: z.array(Address$outboundSchema).optional(),
   socialLinks: z.array(SocialLink$outboundSchema).optional(),
@@ -579,32 +582,32 @@ export const Company$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace Company$ {
-  /** @deprecated use `Company$inboundSchema` instead. */
-  export const inboundSchema = Company$inboundSchema;
-  /** @deprecated use `Company$outboundSchema` instead. */
-  export const outboundSchema = Company$outboundSchema;
-  /** @deprecated use `Company$Outbound` instead. */
-  export type Outbound = Company$Outbound;
+export namespace Company1$ {
+  /** @deprecated use `Company1$inboundSchema` instead. */
+  export const inboundSchema = Company1$inboundSchema;
+  /** @deprecated use `Company1$outboundSchema` instead. */
+  export const outboundSchema = Company1$outboundSchema;
+  /** @deprecated use `Company1$Outbound` instead. */
+  export type Outbound = Company1$Outbound;
 }
 
-export function companyToJSON(company: Company): string {
-  return JSON.stringify(Company$outboundSchema.parse(company));
+export function company1ToJSON(company1: Company1): string {
+  return JSON.stringify(Company1$outboundSchema.parse(company1));
 }
 
-export function companyFromJSON(
+export function company1FromJSON(
   jsonString: string,
-): SafeParseResult<Company, SDKValidationError> {
+): SafeParseResult<Company1, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => Company$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Company' from JSON`,
+    (x) => Company1$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Company1' from JSON`,
   );
 }
 
 /** @internal */
-export const CompanyInput$inboundSchema: z.ZodType<
-  CompanyInput,
+export const Company1Input$inboundSchema: z.ZodType<
+  Company1Input,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -627,7 +630,7 @@ export const CompanyInput$inboundSchema: z.ZodType<
   acn: z.nullable(z.string()).optional(),
   first_name: z.nullable(z.string()).optional(),
   last_name: z.nullable(z.string()).optional(),
-  bank_accounts: z.array(BankAccount$inboundSchema).optional(),
+  bank_accounts: z.array(BankAccount1$inboundSchema).optional(),
   websites: z.array(Website$inboundSchema).optional(),
   addresses: z.array(Address$inboundSchema).optional(),
   social_links: z.array(SocialLink$inboundSchema).optional(),
@@ -663,7 +666,7 @@ export const CompanyInput$inboundSchema: z.ZodType<
 });
 
 /** @internal */
-export type CompanyInput$Outbound = {
+export type Company1Input$Outbound = {
   name: string | null;
   owner_id?: string | null | undefined;
   image?: string | null | undefined;
@@ -683,7 +686,7 @@ export type CompanyInput$Outbound = {
   acn?: string | null | undefined;
   first_name?: string | null | undefined;
   last_name?: string | null | undefined;
-  bank_accounts?: Array<BankAccount$Outbound> | undefined;
+  bank_accounts?: Array<BankAccount1$Outbound> | undefined;
   websites?: Array<Website$Outbound> | undefined;
   addresses?: Array<Address$Outbound> | undefined;
   social_links?: Array<SocialLink$Outbound> | undefined;
@@ -699,10 +702,10 @@ export type CompanyInput$Outbound = {
 };
 
 /** @internal */
-export const CompanyInput$outboundSchema: z.ZodType<
-  CompanyInput$Outbound,
+export const Company1Input$outboundSchema: z.ZodType<
+  Company1Input$Outbound,
   z.ZodTypeDef,
-  CompanyInput
+  Company1Input
 > = z.object({
   name: z.nullable(z.string()),
   ownerId: z.nullable(z.string()).optional(),
@@ -723,7 +726,7 @@ export const CompanyInput$outboundSchema: z.ZodType<
   acn: z.nullable(z.string()).optional(),
   firstName: z.nullable(z.string()).optional(),
   lastName: z.nullable(z.string()).optional(),
-  bankAccounts: z.array(BankAccount$outboundSchema).optional(),
+  bankAccounts: z.array(BankAccount1$outboundSchema).optional(),
   websites: z.array(Website$outboundSchema).optional(),
   addresses: z.array(Address$outboundSchema).optional(),
   socialLinks: z.array(SocialLink$outboundSchema).optional(),
@@ -763,25 +766,25 @@ export const CompanyInput$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace CompanyInput$ {
-  /** @deprecated use `CompanyInput$inboundSchema` instead. */
-  export const inboundSchema = CompanyInput$inboundSchema;
-  /** @deprecated use `CompanyInput$outboundSchema` instead. */
-  export const outboundSchema = CompanyInput$outboundSchema;
-  /** @deprecated use `CompanyInput$Outbound` instead. */
-  export type Outbound = CompanyInput$Outbound;
+export namespace Company1Input$ {
+  /** @deprecated use `Company1Input$inboundSchema` instead. */
+  export const inboundSchema = Company1Input$inboundSchema;
+  /** @deprecated use `Company1Input$outboundSchema` instead. */
+  export const outboundSchema = Company1Input$outboundSchema;
+  /** @deprecated use `Company1Input$Outbound` instead. */
+  export type Outbound = Company1Input$Outbound;
 }
 
-export function companyInputToJSON(companyInput: CompanyInput): string {
-  return JSON.stringify(CompanyInput$outboundSchema.parse(companyInput));
+export function company1InputToJSON(company1Input: Company1Input): string {
+  return JSON.stringify(Company1Input$outboundSchema.parse(company1Input));
 }
 
-export function companyInputFromJSON(
+export function company1InputFromJSON(
   jsonString: string,
-): SafeParseResult<CompanyInput, SDKValidationError> {
+): SafeParseResult<Company1Input, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => CompanyInput$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CompanyInput' from JSON`,
+    (x) => Company1Input$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Company1Input' from JSON`,
   );
 }

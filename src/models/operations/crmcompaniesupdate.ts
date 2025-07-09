@@ -41,7 +41,7 @@ export type CrmCompaniesUpdateRequest = {
    * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
    */
   serviceId?: string | undefined;
-  company: components.CompanyInput;
+  company1: components.Company1Input;
 };
 
 export type CrmCompaniesUpdateResponse = {
@@ -124,10 +124,10 @@ export const CrmCompaniesUpdateRequest$inboundSchema: z.ZodType<
   consumerId: z.string().optional(),
   appId: z.string().optional(),
   serviceId: z.string().optional(),
-  Company: components.CompanyInput$inboundSchema,
+  Company1: components.Company1Input$inboundSchema,
 }).transform((v) => {
   return remap$(v, {
-    "Company": "company",
+    "Company1": "company1",
   });
 });
 
@@ -138,7 +138,7 @@ export type CrmCompaniesUpdateRequest$Outbound = {
   consumerId?: string | undefined;
   appId?: string | undefined;
   serviceId?: string | undefined;
-  Company: components.CompanyInput$Outbound;
+  Company1: components.Company1Input$Outbound;
 };
 
 /** @internal */
@@ -152,10 +152,10 @@ export const CrmCompaniesUpdateRequest$outboundSchema: z.ZodType<
   consumerId: z.string().optional(),
   appId: z.string().optional(),
   serviceId: z.string().optional(),
-  company: components.CompanyInput$outboundSchema,
+  company1: components.Company1Input$outboundSchema,
 }).transform((v) => {
   return remap$(v, {
-    company: "Company",
+    company1: "Company1",
   });
 });
 

@@ -8,6 +8,30 @@ import { AtsApplicationsUpdateRequest } from "@apideck/unify/models/operations";
 let value: AtsApplicationsUpdateRequest = {
   id: "<id>",
   serviceId: "salesforce",
+  application: {
+    applicantId: "12345",
+    jobId: "12345",
+    status: "open",
+    stage: {
+      id: "12345",
+      name: "12345",
+    },
+    passThrough: [
+      {
+        serviceId: "<id>",
+        extendPaths: [
+          {
+            path: "$.nested.property",
+            value: {
+              "TaxClassificationRef": {
+                "value": "EUC-99990201-V1-00020000",
+              },
+            },
+          },
+        ],
+      },
+    ],
+  },
 };
 ```
 

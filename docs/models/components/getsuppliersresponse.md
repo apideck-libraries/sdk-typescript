@@ -93,6 +93,7 @@ let value: GetSuppliersResponse = {
           branchIdentifier: "001",
           bankCode: "BNH",
           currency: "USD",
+          country: "US",
         },
       ],
       notes: "Some notes about this supplier",
@@ -112,6 +113,7 @@ let value: GetSuppliersResponse = {
       },
       status: "active",
       paymentMethod: "cash",
+      terms: "Net 30 days",
       channel: "email",
       customFields: [
         {

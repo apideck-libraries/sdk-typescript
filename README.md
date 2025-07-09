@@ -1257,11 +1257,11 @@ run();
 ### Error Classes
 **Primary errors:**
 * [`ApideckError`](./src/models/errors/apideckerror.ts): The base class for HTTP error responses.
-  * [`UnauthorizedResponse`](docs/models/errors/unauthorizedresponse.md): Unauthorized. Status code `401`.
-  * [`PaymentRequiredResponse`](docs/models/errors/paymentrequiredresponse.md): Payment Required. Status code `402`.
-  * [`NotFoundResponse`](docs/models/errors/notfoundresponse.md): The specified resource was not found. Status code `404`. *
-  * [`BadRequestResponse`](docs/models/errors/badrequestresponse.md): Bad Request. Status code `400`. *
-  * [`UnprocessableResponse`](docs/models/errors/unprocessableresponse.md): Unprocessable. Status code `422`. *
+  * [`UnauthorizedResponse`](./src/models/errors/unauthorizedresponse.ts): Unauthorized. Status code `401`.
+  * [`PaymentRequiredResponse`](./src/models/errors/paymentrequiredresponse.ts): Payment Required. Status code `402`.
+  * [`NotFoundResponse`](./src/models/errors/notfoundresponse.ts): The specified resource was not found. Status code `404`. *
+  * [`BadRequestResponse`](./src/models/errors/badrequestresponse.ts): Bad Request. Status code `400`. *
+  * [`UnprocessableResponse`](./src/models/errors/unprocessableresponse.ts): Unprocessable. Status code `422`. *
 
 <details><summary>Less common errors (6)</summary>
 

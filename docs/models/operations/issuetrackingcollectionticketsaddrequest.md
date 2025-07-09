@@ -8,6 +8,40 @@ import { IssueTrackingCollectionTicketsAddRequest } from "@apideck/unify/models/
 let value: IssueTrackingCollectionTicketsAddRequest = {
   serviceId: "salesforce",
   collectionId: "apideck-io",
+  ticket: {
+    parentId: "12345",
+    type: "Technical",
+    subject: "Technical Support Request",
+    description: "I am facing issues with my internet connection",
+    status: "open",
+    priority: "high",
+    assignees: [
+      {
+        id: "12345",
+      },
+    ],
+    dueDate: new Date("2020-09-30T07:43:32.000Z"),
+    tags: [
+      {
+        id: "12345",
+      },
+    ],
+    passThrough: [
+      {
+        serviceId: "<id>",
+        extendPaths: [
+          {
+            path: "$.nested.property",
+            value: {
+              "TaxClassificationRef": {
+                "value": "EUC-99990201-V1-00020000",
+              },
+            },
+          },
+        ],
+      },
+    ],
+  },
 };
 ```
 

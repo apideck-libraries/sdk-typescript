@@ -8,6 +8,24 @@ import { VaultConnectionsImportRequest } from "@apideck/unify/models/operations"
 let value: VaultConnectionsImportRequest = {
   serviceId: "pipedrive",
   unifiedApi: "crm",
+  connectionImportData: {
+    credentials: {
+      refreshToken:
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.cThIIoDvwdueQB468K5xDc5633seEFoqwxjF_xSJyQQ",
+      accessToken:
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c",
+    },
+    settings: {
+      "instance_url": "https://eu28.salesforce.com",
+    },
+    metadata: {
+      "account": {
+        "name": "My Company",
+        "id": "c01458a5-7276-41ce-bc19-639906b0450a",
+      },
+      "plan": "enterprise",
+    },
+  },
 };
 ```
 
