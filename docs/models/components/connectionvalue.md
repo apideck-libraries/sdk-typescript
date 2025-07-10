@@ -27,10 +27,10 @@ const value: number = 10.5;
 const value: boolean = true;
 ```
 
-### `components.Value5[]`
+### `components.ConnectionValue5[]`
 
 ```typescript
-const value: components.Value5[] = [
+const value: components.ConnectionValue5[] = [
   "GC6000 series",
 ];
 ```

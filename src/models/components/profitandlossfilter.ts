@@ -21,6 +21,10 @@ export type ProfitAndLossFilter = {
    * Filter by end date. If end date is given, start date is required.
    */
   endDate?: string | undefined;
+  /**
+   * Filter by location id
+   */
+  locationId?: string | undefined;
 };
 
 /** @internal */
@@ -32,11 +36,13 @@ export const ProfitAndLossFilter$inboundSchema: z.ZodType<
   customer_id: z.string().optional(),
   start_date: z.string().optional(),
   end_date: z.string().optional(),
+  location_id: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
     "customer_id": "customerId",
     "start_date": "startDate",
     "end_date": "endDate",
+    "location_id": "locationId",
   });
 });
 
@@ -45,6 +51,7 @@ export type ProfitAndLossFilter$Outbound = {
   customer_id?: string | undefined;
   start_date?: string | undefined;
   end_date?: string | undefined;
+  location_id?: string | undefined;
 };
 
 /** @internal */
@@ -56,11 +63,13 @@ export const ProfitAndLossFilter$outboundSchema: z.ZodType<
   customerId: z.string().optional(),
   startDate: z.string().optional(),
   endDate: z.string().optional(),
+  locationId: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
     customerId: "customer_id",
     startDate: "start_date",
     endDate: "end_date",
+    locationId: "location_id",
   });
 });
 

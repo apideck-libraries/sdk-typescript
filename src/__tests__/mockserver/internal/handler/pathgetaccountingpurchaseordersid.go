@@ -149,17 +149,17 @@ func testAccountingPurchaseOrdersOneAccountingPurchaseOrdersOne0(w http.Response
 							ID:          types.String("2389328923893298"),
 							Name:        types.String("employee_level"),
 							Description: types.String("Employee Level"),
-							Value: types.Pointer(components.CreateCustomFieldValueUnionCustomFieldValue1(
-								components.CustomFieldValue1{},
+							Value: types.Pointer(components.CreateCustomFieldValue2MapOfAny(
+								map[string]any{},
 							)),
 						},
 						components.CustomField{
 							ID:          types.String("2389328923893298"),
 							Name:        types.String("employee_level"),
 							Description: types.String("Employee Level"),
-							Value: types.Pointer(components.CreateCustomFieldValueUnionArrayOfCustomFieldValue2(
-								[]components.CustomFieldValue2{
-									components.CustomFieldValue2{},
+							Value: types.Pointer(components.CreateCustomFieldValue2MapOfAny(
+								map[string]any{
+									"0": map[string]any{},
 								},
 							)),
 						},
@@ -218,7 +218,7 @@ func testAccountingPurchaseOrdersOneAccountingPurchaseOrdersOne0(w http.Response
 							ID:          types.String("2389328923893298"),
 							Name:        types.String("employee_level"),
 							Description: types.String("Employee Level"),
-							Value: types.Pointer(components.CreateCustomFieldValueUnionNumber(
+							Value: types.Pointer(components.CreateCustomFieldValue2Number(
 								10,
 							)),
 						},
@@ -281,15 +281,15 @@ func testAccountingPurchaseOrdersOneAccountingPurchaseOrdersOne0(w http.Response
 							ID:          types.String("2389328923893298"),
 							Name:        types.String("employee_level"),
 							Description: types.String("Employee Level"),
-							Value: types.Pointer(components.CreateCustomFieldValueUnionCustomFieldValue1(
-								components.CustomFieldValue1{},
+							Value: types.Pointer(components.CreateCustomFieldValue2MapOfAny(
+								map[string]any{},
 							)),
 						},
 						components.CustomField{
 							ID:          types.String("2389328923893298"),
 							Name:        types.String("employee_level"),
 							Description: types.String("Employee Level"),
-							Value: types.Pointer(components.CreateCustomFieldValueUnionNumber(
+							Value: types.Pointer(components.CreateCustomFieldValue2Number(
 								10,
 							)),
 						},
@@ -365,8 +365,8 @@ func testAccountingPurchaseOrdersOneAccountingPurchaseOrdersOne0(w http.Response
 					ID:          types.String("2389328923893298"),
 					Name:        types.String("employee_level"),
 					Description: types.String("Employee Level"),
-					Value: types.Pointer(components.CreateCustomFieldValueUnionCustomFieldValue1(
-						components.CustomFieldValue1{},
+					Value: types.Pointer(components.CreateCustomFieldValue2MapOfAny(
+						map[string]any{},
 					)),
 				},
 			},

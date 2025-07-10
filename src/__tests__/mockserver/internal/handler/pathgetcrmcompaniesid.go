@@ -241,7 +241,7 @@ func testCrmCompaniesOneCrmCompaniesOne0(w http.ResponseWriter, req *http.Reques
 					ID:          types.String("2389328923893298"),
 					Name:        types.String("employee_level"),
 					Description: types.String("Employee Level"),
-					Value: types.Pointer(components.CreateCustomFieldValueUnionNumber(
+					Value: types.Pointer(components.CreateCustomFieldValue2Number(
 						10,
 					)),
 				},
@@ -249,7 +249,7 @@ func testCrmCompaniesOneCrmCompaniesOne0(w http.ResponseWriter, req *http.Reques
 					ID:          types.String("2389328923893298"),
 					Name:        types.String("employee_level"),
 					Description: types.String("Employee Level"),
-					Value: types.Pointer(components.CreateCustomFieldValueUnionNumber(
+					Value: types.Pointer(components.CreateCustomFieldValue2Number(
 						10,
 					)),
 				},

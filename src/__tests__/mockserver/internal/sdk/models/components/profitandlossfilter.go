@@ -9,6 +9,8 @@ type ProfitAndLossFilter struct {
 	StartDate *string `queryParam:"name=start_date"`
 	// Filter by end date. If end date is given, start date is required.
 	EndDate *string `queryParam:"name=end_date"`
+	// Filter by location id
+	LocationID *string `queryParam:"name=location_id"`
 }
 
 func (o *ProfitAndLossFilter) GetCustomerID() *string {
@@ -30,4 +32,11 @@ func (o *ProfitAndLossFilter) GetEndDate() *string {
 		return nil
 	}
 	return o.EndDate
+}
+
+func (o *ProfitAndLossFilter) GetLocationID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.LocationID
 }

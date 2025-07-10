@@ -1446,11 +1446,11 @@ test("Employees Hris Employees Add", async () => {
           id: "2389328923893298",
           name: "employee_level",
           description: "Employee Level",
-          value: [
-            "<value>",
-            "<value>",
-            "<value>",
-          ],
+          value: {
+            "0": "<value>",
+            "1": "<value>",
+            "2": "<value>",
+          },
         },
       ],
       socialLinks: [

@@ -16,6 +16,19 @@ import {
 } from "./passthroughbody.js";
 
 /**
+ * The type of the category.
+ */
+export const CategoryType = {
+  Supplier: "supplier",
+  Expense: "expense",
+  Revenue: "revenue",
+} as const;
+/**
+ * The type of the category.
+ */
+export type CategoryType = ClosedEnum<typeof CategoryType>;
+
+/**
  * Based on the status some functionality is enabled or disabled.
  */
 export const CategoryStatus = {
@@ -36,6 +49,10 @@ export type Category = {
    * The name of the category.
    */
   name?: string | undefined;
+  /**
+   * The type of the category.
+   */
+  type?: CategoryType | undefined;
   /**
    * Based on the status some functionality is enabled or disabled.
    */
@@ -71,6 +88,25 @@ export type Category = {
 };
 
 /** @internal */
+export const CategoryType$inboundSchema: z.ZodNativeEnum<typeof CategoryType> =
+  z.nativeEnum(CategoryType);
+
+/** @internal */
+export const CategoryType$outboundSchema: z.ZodNativeEnum<typeof CategoryType> =
+  CategoryType$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace CategoryType$ {
+  /** @deprecated use `CategoryType$inboundSchema` instead. */
+  export const inboundSchema = CategoryType$inboundSchema;
+  /** @deprecated use `CategoryType$outboundSchema` instead. */
+  export const outboundSchema = CategoryType$outboundSchema;
+}
+
+/** @internal */
 export const CategoryStatus$inboundSchema: z.ZodNativeEnum<
   typeof CategoryStatus
 > = z.nativeEnum(CategoryStatus);
@@ -99,6 +135,7 @@ export const Category$inboundSchema: z.ZodType<
 > = z.object({
   id: z.string().optional(),
   name: z.string().optional(),
+  type: CategoryType$inboundSchema.optional(),
   status: CategoryStatus$inboundSchema.optional(),
   custom_mappings: z.nullable(z.record(z.any())).optional(),
   row_version: z.nullable(z.string()).optional(),
@@ -127,6 +164,7 @@ export const Category$inboundSchema: z.ZodType<
 export type Category$Outbound = {
   id?: string | undefined;
   name?: string | undefined;
+  type?: string | undefined;
   status?: string | undefined;
   custom_mappings?: { [k: string]: any } | null | undefined;
   row_version?: string | null | undefined;
@@ -145,6 +183,7 @@ export const Category$outboundSchema: z.ZodType<
 > = z.object({
   id: z.string().optional(),
   name: z.string().optional(),
+  type: CategoryType$outboundSchema.optional(),
   status: CategoryStatus$outboundSchema.optional(),
   customMappings: z.nullable(z.record(z.any())).optional(),
   rowVersion: z.nullable(z.string()).optional(),

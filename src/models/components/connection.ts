@@ -78,7 +78,7 @@ export const Target = {
 } as const;
 export type Target = ClosedEnum<typeof Target>;
 
-export type Value5 = string | number | number;
+export type ConnectionValue5 = string | number | number;
 
 export type ConnectionValue =
   | string
@@ -280,43 +280,50 @@ export namespace Target$ {
 }
 
 /** @internal */
-export const Value5$inboundSchema: z.ZodType<Value5, z.ZodTypeDef, unknown> = z
-  .union([z.string(), z.number().int(), z.number()]);
-
-/** @internal */
-export type Value5$Outbound = string | number | number;
-
-/** @internal */
-export const Value5$outboundSchema: z.ZodType<
-  Value5$Outbound,
+export const ConnectionValue5$inboundSchema: z.ZodType<
+  ConnectionValue5,
   z.ZodTypeDef,
-  Value5
+  unknown
+> = z.union([z.string(), z.number().int(), z.number()]);
+
+/** @internal */
+export type ConnectionValue5$Outbound = string | number | number;
+
+/** @internal */
+export const ConnectionValue5$outboundSchema: z.ZodType<
+  ConnectionValue5$Outbound,
+  z.ZodTypeDef,
+  ConnectionValue5
 > = z.union([z.string(), z.number().int(), z.number()]);
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace Value5$ {
-  /** @deprecated use `Value5$inboundSchema` instead. */
-  export const inboundSchema = Value5$inboundSchema;
-  /** @deprecated use `Value5$outboundSchema` instead. */
-  export const outboundSchema = Value5$outboundSchema;
-  /** @deprecated use `Value5$Outbound` instead. */
-  export type Outbound = Value5$Outbound;
+export namespace ConnectionValue5$ {
+  /** @deprecated use `ConnectionValue5$inboundSchema` instead. */
+  export const inboundSchema = ConnectionValue5$inboundSchema;
+  /** @deprecated use `ConnectionValue5$outboundSchema` instead. */
+  export const outboundSchema = ConnectionValue5$outboundSchema;
+  /** @deprecated use `ConnectionValue5$Outbound` instead. */
+  export type Outbound = ConnectionValue5$Outbound;
 }
 
-export function value5ToJSON(value5: Value5): string {
-  return JSON.stringify(Value5$outboundSchema.parse(value5));
+export function connectionValue5ToJSON(
+  connectionValue5: ConnectionValue5,
+): string {
+  return JSON.stringify(
+    ConnectionValue5$outboundSchema.parse(connectionValue5),
+  );
 }
 
-export function value5FromJSON(
+export function connectionValue5FromJSON(
   jsonString: string,
-): SafeParseResult<Value5, SDKValidationError> {
+): SafeParseResult<ConnectionValue5, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => Value5$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Value5' from JSON`,
+    (x) => ConnectionValue5$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ConnectionValue5' from JSON`,
   );
 }
 

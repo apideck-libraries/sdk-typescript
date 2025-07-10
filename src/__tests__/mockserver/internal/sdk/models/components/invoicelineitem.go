@@ -73,6 +73,8 @@ type InvoiceLineItem struct {
 	DiscountPercentage *float64 `json:"discount_percentage,omitempty"`
 	// Discount amount applied to the line item when supported downstream.
 	DiscountAmount *float64 `json:"discount_amount,omitempty"`
+	// ID of the category of the line item
+	CategoryID *string `json:"category_id,omitempty"`
 	// The ID of the location
 	LocationID *string `json:"location_id,omitempty"`
 	// The ID of the department
@@ -197,6 +199,13 @@ func (o *InvoiceLineItem) GetDiscountAmount() *float64 {
 	return o.DiscountAmount
 }
 
+func (o *InvoiceLineItem) GetCategoryID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CategoryID
+}
+
 func (o *InvoiceLineItem) GetLocationID() *string {
 	if o == nil {
 		return nil
@@ -306,6 +315,8 @@ type InvoiceLineItemInput struct {
 	DiscountPercentage *float64 `json:"discount_percentage,omitempty"`
 	// Discount amount applied to the line item when supported downstream.
 	DiscountAmount *float64 `json:"discount_amount,omitempty"`
+	// ID of the category of the line item
+	CategoryID *string `json:"category_id,omitempty"`
 	// The ID of the location
 	LocationID *string `json:"location_id,omitempty"`
 	// The ID of the department
@@ -409,6 +420,13 @@ func (o *InvoiceLineItemInput) GetDiscountAmount() *float64 {
 		return nil
 	}
 	return o.DiscountAmount
+}
+
+func (o *InvoiceLineItemInput) GetCategoryID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CategoryID
 }
 
 func (o *InvoiceLineItemInput) GetLocationID() *string {

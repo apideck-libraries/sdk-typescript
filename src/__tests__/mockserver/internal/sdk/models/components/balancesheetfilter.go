@@ -48,6 +48,8 @@ type BalanceSheetFilter struct {
 	PeriodCount *int64 `queryParam:"name=period_count"`
 	// The type of period to include in the resource: month, quarter, year.
 	PeriodType *PeriodType `queryParam:"name=period_type"`
+	// The ID of the location to include in the resource.
+	LocationID *string `queryParam:"name=location_id"`
 }
 
 func (o *BalanceSheetFilter) GetStartDate() *string {
@@ -76,4 +78,11 @@ func (o *BalanceSheetFilter) GetPeriodType() *PeriodType {
 		return nil
 	}
 	return o.PeriodType
+}
+
+func (o *BalanceSheetFilter) GetLocationID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.LocationID
 }

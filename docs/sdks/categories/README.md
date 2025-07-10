@@ -27,6 +27,9 @@ async function run() {
   const result = await apideck.accounting.categories.list({
     serviceId: "salesforce",
     fields: "id,updated_at",
+    filter: {
+      type: "expense",
+    },
   });
 
   for await (const page of result) {
@@ -57,6 +60,9 @@ async function run() {
   const res = await accountingCategoriesList(apideck, {
     serviceId: "salesforce",
     fields: "id,updated_at",
+    filter: {
+      type: "expense",
+    },
   });
   if (res.ok) {
     const { value: result } = res;
@@ -115,6 +121,9 @@ async function run() {
     id: "<id>",
     serviceId: "salesforce",
     fields: "id,updated_at",
+    filter: {
+      type: "expense",
+    },
   });
 
   console.log(result);
@@ -144,6 +153,9 @@ async function run() {
     id: "<id>",
     serviceId: "salesforce",
     fields: "id,updated_at",
+    filter: {
+      type: "expense",
+    },
   });
   if (res.ok) {
     const { value: result } = res;

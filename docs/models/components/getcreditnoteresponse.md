@@ -60,6 +60,7 @@ let value: GetCreditNoteResponse = {
         unitOfMeasure: "pc.",
         discountPercentage: 0.01,
         discountAmount: 19.99,
+        categoryId: "12345",
         locationId: "12345",
         departmentId: "12345",
         item: {

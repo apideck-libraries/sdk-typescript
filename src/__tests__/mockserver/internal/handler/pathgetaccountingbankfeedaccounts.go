@@ -68,15 +68,15 @@ func testAccountingBankFeedAccountsAllAccountingBankFeedAccountsAll0(w http.Resp
 						ID:          types.String("2389328923893298"),
 						Name:        types.String("employee_level"),
 						Description: types.String("Employee Level"),
-						Value: types.Pointer(components.CreateCustomFieldValueUnionCustomFieldValue1(
-							components.CustomFieldValue1{},
+						Value: types.Pointer(components.CreateCustomFieldValue2MapOfAny(
+							map[string]any{},
 						)),
 					},
 					components.CustomField{
 						ID:          types.String("2389328923893298"),
 						Name:        types.String("employee_level"),
 						Description: types.String("Employee Level"),
-						Value: types.Pointer(components.CreateCustomFieldValueUnionNumber(
+						Value: types.Pointer(components.CreateCustomFieldValue2Number(
 							10,
 						)),
 					},
@@ -101,8 +101,8 @@ func testAccountingBankFeedAccountsAllAccountingBankFeedAccountsAll0(w http.Resp
 						ID:          types.String("2389328923893298"),
 						Name:        types.String("employee_level"),
 						Description: types.String("Employee Level"),
-						Value: types.Pointer(components.CreateCustomFieldValueUnionCustomFieldValue1(
-							components.CustomFieldValue1{},
+						Value: types.Pointer(components.CreateCustomFieldValue2MapOfAny(
+							map[string]any{},
 						)),
 					},
 				},
@@ -126,7 +126,7 @@ func testAccountingBankFeedAccountsAllAccountingBankFeedAccountsAll0(w http.Resp
 						ID:          types.String("2389328923893298"),
 						Name:        types.String("employee_level"),
 						Description: types.String("Employee Level"),
-						Value: types.Pointer(components.CreateCustomFieldValueUnionStr(
+						Value: types.Pointer(components.CreateCustomFieldValue2Str(
 							"Uses Salesforce and Marketo",
 						)),
 					},
@@ -134,8 +134,8 @@ func testAccountingBankFeedAccountsAllAccountingBankFeedAccountsAll0(w http.Resp
 						ID:          types.String("2389328923893298"),
 						Name:        types.String("employee_level"),
 						Description: types.String("Employee Level"),
-						Value: types.Pointer(components.CreateCustomFieldValueUnionCustomFieldValue1(
-							components.CustomFieldValue1{},
+						Value: types.Pointer(components.CreateCustomFieldValue2MapOfAny(
+							map[string]any{},
 						)),
 					},
 				},

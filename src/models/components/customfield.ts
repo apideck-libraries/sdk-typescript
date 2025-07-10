@@ -7,17 +7,14 @@ import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
-export type Six = {};
-
-export type Four = {};
+export type Five = string | number | boolean | { [k: string]: any };
 
 export type Value =
-  | Four
   | string
   | number
   | boolean
-  | Array<string>
-  | Array<Six>;
+  | { [k: string]: any }
+  | Array<string | number | boolean | { [k: string]: any } | null>;
 
 export type CustomField = {
   /**
@@ -33,111 +30,74 @@ export type CustomField = {
    */
   description?: string | null | undefined;
   value?:
-    | Four
     | string
     | number
     | boolean
-    | Array<string>
-    | Array<Six>
+    | { [k: string]: any }
+    | Array<string | number | boolean | { [k: string]: any } | null>
     | null
     | undefined;
 };
 
 /** @internal */
-export const Six$inboundSchema: z.ZodType<Six, z.ZodTypeDef, unknown> = z
-  .object({});
+export const Five$inboundSchema: z.ZodType<Five, z.ZodTypeDef, unknown> = z
+  .union([z.string(), z.number(), z.boolean(), z.record(z.any())]);
 
 /** @internal */
-export type Six$Outbound = {};
+export type Five$Outbound = string | number | boolean | { [k: string]: any };
 
 /** @internal */
-export const Six$outboundSchema: z.ZodType<Six$Outbound, z.ZodTypeDef, Six> = z
-  .object({});
+export const Five$outboundSchema: z.ZodType<Five$Outbound, z.ZodTypeDef, Five> =
+  z.union([z.string(), z.number(), z.boolean(), z.record(z.any())]);
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace Six$ {
-  /** @deprecated use `Six$inboundSchema` instead. */
-  export const inboundSchema = Six$inboundSchema;
-  /** @deprecated use `Six$outboundSchema` instead. */
-  export const outboundSchema = Six$outboundSchema;
-  /** @deprecated use `Six$Outbound` instead. */
-  export type Outbound = Six$Outbound;
+export namespace Five$ {
+  /** @deprecated use `Five$inboundSchema` instead. */
+  export const inboundSchema = Five$inboundSchema;
+  /** @deprecated use `Five$outboundSchema` instead. */
+  export const outboundSchema = Five$outboundSchema;
+  /** @deprecated use `Five$Outbound` instead. */
+  export type Outbound = Five$Outbound;
 }
 
-export function sixToJSON(six: Six): string {
-  return JSON.stringify(Six$outboundSchema.parse(six));
+export function fiveToJSON(five: Five): string {
+  return JSON.stringify(Five$outboundSchema.parse(five));
 }
 
-export function sixFromJSON(
+export function fiveFromJSON(
   jsonString: string,
-): SafeParseResult<Six, SDKValidationError> {
+): SafeParseResult<Five, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => Six$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Six' from JSON`,
-  );
-}
-
-/** @internal */
-export const Four$inboundSchema: z.ZodType<Four, z.ZodTypeDef, unknown> = z
-  .object({});
-
-/** @internal */
-export type Four$Outbound = {};
-
-/** @internal */
-export const Four$outboundSchema: z.ZodType<Four$Outbound, z.ZodTypeDef, Four> =
-  z.object({});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Four$ {
-  /** @deprecated use `Four$inboundSchema` instead. */
-  export const inboundSchema = Four$inboundSchema;
-  /** @deprecated use `Four$outboundSchema` instead. */
-  export const outboundSchema = Four$outboundSchema;
-  /** @deprecated use `Four$Outbound` instead. */
-  export type Outbound = Four$Outbound;
-}
-
-export function fourToJSON(four: Four): string {
-  return JSON.stringify(Four$outboundSchema.parse(four));
-}
-
-export function fourFromJSON(
-  jsonString: string,
-): SafeParseResult<Four, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => Four$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Four' from JSON`,
+    (x) => Five$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Five' from JSON`,
   );
 }
 
 /** @internal */
 export const Value$inboundSchema: z.ZodType<Value, z.ZodTypeDef, unknown> = z
   .union([
-    z.lazy(() => Four$inboundSchema),
     z.string(),
     z.number(),
     z.boolean(),
-    z.array(z.string()),
-    z.array(z.lazy(() => Six$inboundSchema)),
+    z.record(z.any()),
+    z.array(
+      z.nullable(
+        z.union([z.string(), z.number(), z.boolean(), z.record(z.any())]),
+      ),
+    ),
   ]);
 
 /** @internal */
 export type Value$Outbound =
-  | Four$Outbound
   | string
   | number
   | boolean
-  | Array<string>
-  | Array<Six$Outbound>;
+  | { [k: string]: any }
+  | Array<string | number | boolean | { [k: string]: any } | null>;
 
 /** @internal */
 export const Value$outboundSchema: z.ZodType<
@@ -145,12 +105,15 @@ export const Value$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   Value
 > = z.union([
-  z.lazy(() => Four$outboundSchema),
   z.string(),
   z.number(),
   z.boolean(),
-  z.array(z.string()),
-  z.array(z.lazy(() => Six$outboundSchema)),
+  z.record(z.any()),
+  z.array(
+    z.nullable(
+      z.union([z.string(), z.number(), z.boolean(), z.record(z.any())]),
+    ),
+  ),
 ]);
 
 /**
@@ -191,12 +154,15 @@ export const CustomField$inboundSchema: z.ZodType<
   description: z.nullable(z.string()).optional(),
   value: z.nullable(
     z.union([
-      z.lazy(() => Four$inboundSchema),
       z.string(),
       z.number(),
       z.boolean(),
-      z.array(z.string()),
-      z.array(z.lazy(() => Six$inboundSchema)),
+      z.record(z.any()),
+      z.array(
+        z.nullable(
+          z.union([z.string(), z.number(), z.boolean(), z.record(z.any())]),
+        ),
+      ),
     ]),
   ).optional(),
 });
@@ -207,12 +173,11 @@ export type CustomField$Outbound = {
   name?: string | null | undefined;
   description?: string | null | undefined;
   value?:
-    | Four$Outbound
     | string
     | number
     | boolean
-    | Array<string>
-    | Array<Six$Outbound>
+    | { [k: string]: any }
+    | Array<string | number | boolean | { [k: string]: any } | null>
     | null
     | undefined;
 };
@@ -228,12 +193,15 @@ export const CustomField$outboundSchema: z.ZodType<
   description: z.nullable(z.string()).optional(),
   value: z.nullable(
     z.union([
-      z.lazy(() => Four$outboundSchema),
       z.string(),
       z.number(),
       z.boolean(),
-      z.array(z.string()),
-      z.array(z.lazy(() => Six$outboundSchema)),
+      z.record(z.any()),
+      z.array(
+        z.nullable(
+          z.union([z.string(), z.number(), z.boolean(), z.record(z.any())]),
+        ),
+      ),
     ]),
   ).optional(),
 });

@@ -289,10 +289,10 @@ test("Bankfeedaccounts Accounting Bank Feed Accounts Update", async () => {
           id: "2389328923893298",
           name: "employee_level",
           description: "Employee Level",
-          value: [
-            {},
-            {},
-          ],
+          value: {
+            "0": {},
+            "1": {},
+          },
         },
       ],
     },

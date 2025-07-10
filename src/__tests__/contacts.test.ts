@@ -401,10 +401,10 @@ test("Contacts Crm Contacts All", async () => {
             id: "2389328923893298",
             name: "employee_level",
             description: "Employee Level",
-            value: [
-              {},
-              {},
-            ],
+            value: {
+              "0": {},
+              "1": {},
+            },
           },
         ],
         tags: [
@@ -1349,9 +1349,9 @@ test("Contacts Crm Contacts Update", async () => {
           id: "2389328923893298",
           name: "employee_level",
           description: "Employee Level",
-          value: [
-            {},
-          ],
+          value: {
+            "0": {},
+          },
         },
       ],
       tags: [

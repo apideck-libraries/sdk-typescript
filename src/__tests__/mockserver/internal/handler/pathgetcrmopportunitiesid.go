@@ -91,24 +91,24 @@ func testCrmOpportunitiesOneCrmOpportunitiesOne0(w http.ResponseWriter, req *htt
 					ID:          types.String("2389328923893298"),
 					Name:        types.String("employee_level"),
 					Description: types.String("Employee Level"),
-					Value: types.Pointer(components.CreateCustomFieldValueUnionCustomFieldValue1(
-						components.CustomFieldValue1{},
+					Value: types.Pointer(components.CreateCustomFieldValue2MapOfAny(
+						map[string]any{},
 					)),
 				},
 				components.CustomField{
 					ID:          types.String("2389328923893298"),
 					Name:        types.String("employee_level"),
 					Description: types.String("Employee Level"),
-					Value: types.Pointer(components.CreateCustomFieldValueUnionCustomFieldValue1(
-						components.CustomFieldValue1{},
+					Value: types.Pointer(components.CreateCustomFieldValue2MapOfAny(
+						map[string]any{},
 					)),
 				},
 				components.CustomField{
 					ID:          types.String("2389328923893298"),
 					Name:        types.String("employee_level"),
 					Description: types.String("Employee Level"),
-					Value: types.Pointer(components.CreateCustomFieldValueUnionCustomFieldValue1(
-						components.CustomFieldValue1{},
+					Value: types.Pointer(components.CreateCustomFieldValue2MapOfAny(
+						map[string]any{},
 					)),
 				},
 			},

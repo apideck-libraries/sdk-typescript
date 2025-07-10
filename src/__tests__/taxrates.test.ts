@@ -275,9 +275,9 @@ test("Taxrates Accounting Tax Rates All", async () => {
             id: "2389328923893298",
             name: "employee_level",
             description: "Employee Level",
-            value: [
-              {},
-            ],
+            value: {
+              "0": {},
+            },
           },
           {
             id: "2389328923893298",
@@ -388,11 +388,11 @@ test("Taxrates Accounting Tax Rates Add", async () => {
           id: "2389328923893298",
           name: "employee_level",
           description: "Employee Level",
-          value: [
-            "<value>",
-            "<value>",
-            "<value>",
-          ],
+          value: {
+            "0": "<value>",
+            "1": "<value>",
+            "2": "<value>",
+          },
         },
       ],
     },

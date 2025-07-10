@@ -193,15 +193,15 @@ func testCrmLeadsAllCrmLeadsAll0(w http.ResponseWriter, req *http.Request) {
 						ID:          types.String("2389328923893298"),
 						Name:        types.String("employee_level"),
 						Description: types.String("Employee Level"),
-						Value: types.Pointer(components.CreateCustomFieldValueUnionCustomFieldValue1(
-							components.CustomFieldValue1{},
+						Value: types.Pointer(components.CreateCustomFieldValue2MapOfAny(
+							map[string]any{},
 						)),
 					},
 					components.CustomField{
 						ID:          types.String("2389328923893298"),
 						Name:        types.String("employee_level"),
 						Description: types.String("Employee Level"),
-						Value: types.Pointer(components.CreateCustomFieldValueUnionStr(
+						Value: types.Pointer(components.CreateCustomFieldValue2Str(
 							"Uses Salesforce and Marketo",
 						)),
 					},
@@ -388,7 +388,7 @@ func testCrmLeadsAllCrmLeadsAll0(w http.ResponseWriter, req *http.Request) {
 						ID:          types.String("2389328923893298"),
 						Name:        types.String("employee_level"),
 						Description: types.String("Employee Level"),
-						Value: types.Pointer(components.CreateCustomFieldValueUnionStr(
+						Value: types.Pointer(components.CreateCustomFieldValue2Str(
 							"Uses Salesforce and Marketo",
 						)),
 					},
@@ -396,10 +396,10 @@ func testCrmLeadsAllCrmLeadsAll0(w http.ResponseWriter, req *http.Request) {
 						ID:          types.String("2389328923893298"),
 						Name:        types.String("employee_level"),
 						Description: types.String("Employee Level"),
-						Value: types.Pointer(components.CreateCustomFieldValueUnionArrayOfCustomFieldValue2(
-							[]components.CustomFieldValue2{
-								components.CustomFieldValue2{},
-								components.CustomFieldValue2{},
+						Value: types.Pointer(components.CreateCustomFieldValue2MapOfAny(
+							map[string]any{
+								"0": map[string]any{},
+								"1": map[string]any{},
 							},
 						)),
 					},
@@ -580,7 +580,7 @@ func testCrmLeadsAllCrmLeadsAll0(w http.ResponseWriter, req *http.Request) {
 						ID:          types.String("2389328923893298"),
 						Name:        types.String("employee_level"),
 						Description: types.String("Employee Level"),
-						Value: types.Pointer(components.CreateCustomFieldValueUnionStr(
+						Value: types.Pointer(components.CreateCustomFieldValue2Str(
 							"Uses Salesforce and Marketo",
 						)),
 					},

@@ -9,6 +9,36 @@ import (
 	"time"
 )
 
+// CategoryType - The type of the category.
+type CategoryType string
+
+const (
+	CategoryTypeSupplier CategoryType = "supplier"
+	CategoryTypeExpense  CategoryType = "expense"
+	CategoryTypeRevenue  CategoryType = "revenue"
+)
+
+func (e CategoryType) ToPointer() *CategoryType {
+	return &e
+}
+func (e *CategoryType) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "supplier":
+		fallthrough
+	case "expense":
+		fallthrough
+	case "revenue":
+		*e = CategoryType(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CategoryType: %v", v)
+	}
+}
+
 // CategoryStatus - Based on the status some functionality is enabled or disabled.
 type CategoryStatus string
 
@@ -41,6 +71,8 @@ type Category struct {
 	ID *string `json:"id,omitempty"`
 	// The name of the category.
 	Name *string `json:"name,omitempty"`
+	// The type of the category.
+	Type *CategoryType `json:"type,omitempty"`
 	// Based on the status some functionality is enabled or disabled.
 	Status *CategoryStatus `json:"status,omitempty"`
 	// When custom mappings are configured on the resource, the result is included here.
@@ -82,6 +114,13 @@ func (o *Category) GetName() *string {
 		return nil
 	}
 	return o.Name
+}
+
+func (o *Category) GetType() *CategoryType {
+	if o == nil {
+		return nil
+	}
+	return o.Type
 }
 
 func (o *Category) GetStatus() *CategoryStatus {
