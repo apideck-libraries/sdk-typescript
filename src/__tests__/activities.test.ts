@@ -270,10 +270,10 @@ test("Activities Crm Activities All", async () => {
             id: "2389328923893298",
             name: "employee_level",
             description: "Employee Level",
-            value: [
-              "<value>",
-              "<value>",
-            ],
+            value: {
+              "0": "<value>",
+              "1": "<value>",
+            },
           },
         ],
         attendees: [
@@ -1000,10 +1000,10 @@ test("Activities Crm Activities Update", async () => {
           id: "2389328923893298",
           name: "employee_level",
           description: "Employee Level",
-          value: [
-            {},
-            {},
-          ],
+          value: {
+            "0": {},
+            "1": {},
+          },
         },
       ],
       attendees: [

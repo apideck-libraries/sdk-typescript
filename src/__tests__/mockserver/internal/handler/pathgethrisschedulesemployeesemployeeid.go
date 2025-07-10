@@ -350,7 +350,7 @@ func testHrisEmployeeSchedulesAllHrisEmployeeSchedulesAll0(w http.ResponseWriter
 						ID:          types.String("2389328923893298"),
 						Name:        types.String("employee_level"),
 						Description: types.String("Employee Level"),
-						Value: types.Pointer(components.CreateCustomFieldValueUnionStr(
+						Value: types.Pointer(components.CreateCustomFieldValue2Str(
 							"Uses Salesforce and Marketo",
 						)),
 					},

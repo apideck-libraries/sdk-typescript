@@ -43,6 +43,7 @@ export * from "./billlineitem.js";
 export * from "./billpayment.js";
 export * from "./billsfilter.js";
 export * from "./billssort.js";
+export * from "./categoriesfilter.js";
 export * from "./category.js";
 export * from "./collection.js";
 export * from "./collectionssort.js";

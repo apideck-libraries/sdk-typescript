@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 7bffa198-5d29-4efa-9942-d549cc832085
 management:
-  docChecksum: 4ebd66f6415f48e48d4ff856025bbc34
-  docVersion: 10.18.1
-  speakeasyVersion: 1.580.0
-  generationVersion: 2.654.2
-  releaseVersion: 0.28.0
-  configChecksum: d25406d5ed60831eb5f65cceacc08f60
+  docChecksum: a0e431f75871c2f1969e84af31612ca1
+  docVersion: 10.18.2
+  speakeasyVersion: 1.580.1
+  generationVersion: 2.656.3
+  releaseVersion: 0.28.1
+  configChecksum: 9ccaa08eaa4d2eadc4414069a0708138
   repoURL: https://github.com/apideck-libraries/sdk-typescript.git
   installationURL: https://github.com/apideck-libraries/sdk-typescript
   published: true
@@ -15,7 +15,7 @@ features:
     acceptHeaders: 2.81.2
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.12
-    core: 3.21.13
+    core: 3.21.14
     deepObjectParams: 0.1.0
     defaultEnabledRetries: 0.1.0
     deprecations: 2.81.1
@@ -132,8 +132,11 @@ generatedFiles:
   - docs/models/components/branch.md
   - docs/models/components/by.md
   - docs/models/components/categories.md
+  - docs/models/components/categoriesfilter.md
+  - docs/models/components/categoriesfiltertype.md
   - docs/models/components/category.md
   - docs/models/components/categorystatus.md
+  - docs/models/components/categorytype.md
   - docs/models/components/classification.md
   - docs/models/components/collection.md
   - docs/models/components/collectionssort.md
@@ -164,6 +167,7 @@ generatedFiles:
   - docs/models/components/connectionstate.md
   - docs/models/components/connectionstatus.md
   - docs/models/components/connectionvalue.md
+  - docs/models/components/connectionvalue5.md
   - docs/models/components/connector.md
   - docs/models/components/connectorauthtype.md
   - docs/models/components/connectordoc.md
@@ -406,7 +410,6 @@ generatedFiles:
   - docs/models/components/formfieldoptiongroup.md
   - docs/models/components/formfieldoptiongroupoptiontype.md
   - docs/models/components/formfieldtype.md
-  - docs/models/components/four.md
   - docs/models/components/fulfillmentstatus.md
   - docs/models/components/gender.md
   - docs/models/components/getaccountingdepartmentresponse.md
@@ -711,7 +714,6 @@ generatedFiles:
   - docs/models/components/showas.md
   - docs/models/components/simpleformfieldoption.md
   - docs/models/components/simpleformfieldoptionvalue.md
-  - docs/models/components/six.md
   - docs/models/components/sociallink.md
   - docs/models/components/sociallinks.md
   - docs/models/components/sortdirection.md
@@ -2230,6 +2232,7 @@ generatedFiles:
   - src/__tests__/mockserver/internal/sdk/models/components/billpayment.go
   - src/__tests__/mockserver/internal/sdk/models/components/billsfilter.go
   - src/__tests__/mockserver/internal/sdk/models/components/billssort.go
+  - src/__tests__/mockserver/internal/sdk/models/components/categoriesfilter.go
   - src/__tests__/mockserver/internal/sdk/models/components/category.go
   - src/__tests__/mockserver/internal/sdk/models/components/collection.go
   - src/__tests__/mockserver/internal/sdk/models/components/collectionssort.go
@@ -3417,6 +3420,7 @@ generatedFiles:
   - src/models/components/billpayment.ts
   - src/models/components/billsfilter.ts
   - src/models/components/billssort.ts
+  - src/models/components/categoriesfilter.ts
   - src/models/components/category.ts
   - src/models/components/collection.ts
   - src/models/components/collectionssort.ts
@@ -6805,7 +6809,7 @@ examples:
       parameters:
         query:
           pass_through: {"search": "San Francisco"}
-          filter: {"start_date": "2021-01-01", "end_date": "2021-12-31", "period_count": 3, "period_type": "month"}
+          filter: {"start_date": "2021-01-01", "end_date": "2021-12-31", "period_count": 3, "period_type": "month", "location_id": "123"}
           raw: false
         header:
           x-apideck-consumer-id: "test-consumer"
@@ -6857,7 +6861,7 @@ examples:
       parameters:
         query:
           raw: false
-          filter: {"customer_id": "123abc", "start_date": "2021-01-01", "end_date": "2021-12-31"}
+          filter: {"customer_id": "123abc", "start_date": "2021-01-01", "end_date": "2021-12-31", "location_id": "123"}
           pass_through: {"search": "San Francisco"}
           fields: "id,updated_at"
         header:
@@ -19311,6 +19315,7 @@ examples:
           raw: false
           limit: 20
           fields: "id,updated_at"
+          filter: {"type": "expense"}
         header:
           x-apideck-consumer-id: "test-consumer"
           x-apideck-app-id: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
@@ -19338,13 +19343,14 @@ examples:
         query:
           raw: false
           fields: "id,updated_at"
+          filter: {"type": "expense"}
         header:
           x-apideck-consumer-id: "test-consumer"
           x-apideck-app-id: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
           x-apideck-service-id: "salesforce"
       responses:
         "200":
-          application/json: {"status_code": 200, "status": "OK", "service": "xero", "resource": "categories", "operation": "one", "data": {"id": "12345", "name": "Insurance", "status": "active", "row_version": "1-12345", "updated_by": "12345", "created_by": "12345", "updated_at": "2020-09-30T07:43:32.000Z", "created_at": "2020-09-30T07:43:32.000Z", "pass_through": [{"service_id": "<id>", "extend_paths": [{"path": "$.nested.property", "value": {"TaxClassificationRef": {"value": "EUC-99990201-V1-00020000"}}}]}]}}
+          application/json: {"status_code": 200, "status": "OK", "service": "xero", "resource": "categories", "operation": "one", "data": {"id": "12345", "name": "Insurance", "type": "expense", "status": "active", "row_version": "1-12345", "updated_by": "12345", "created_by": "12345", "updated_at": "2020-09-30T07:43:32.000Z", "created_at": "2020-09-30T07:43:32.000Z", "pass_through": [{"service_id": "<id>", "extend_paths": [{"path": "$.nested.property", "value": {"TaxClassificationRef": {"value": "EUC-99990201-V1-00020000"}}}]}]}}
         "400":
           application/json: {"status_code": 400, "error": "Bad Request", "type_name": "RequestValidationError", "message": "Invalid Params", "detail": "Missing property foobar", "ref": "https://developers.apideck.com/errors#requestvalidationerror"}
         "401":

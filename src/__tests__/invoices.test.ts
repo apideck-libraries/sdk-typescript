@@ -560,9 +560,9 @@ test("Invoices Accounting Invoices All", async () => {
                 id: "2389328923893298",
                 name: "employee_level",
                 description: "Employee Level",
-                value: [
-                  {},
-                ],
+                value: {
+                  "0": {},
+                },
               },
             ],
             rowVersion: "1-12345",
@@ -943,11 +943,11 @@ test("Invoices Accounting Invoices All", async () => {
                 id: "2389328923893298",
                 name: "employee_level",
                 description: "Employee Level",
-                value: [
-                  {},
-                  {},
-                  {},
-                ],
+                value: {
+                  "0": {},
+                  "1": {},
+                  "2": {},
+                },
               },
             ],
             rowVersion: "1-12345",
@@ -1007,11 +1007,11 @@ test("Invoices Accounting Invoices All", async () => {
                 id: "2389328923893298",
                 name: "employee_level",
                 description: "Employee Level",
-                value: [
-                  {},
-                  {},
-                  {},
-                ],
+                value: {
+                  "0": {},
+                  "1": {},
+                  "2": {},
+                },
               },
               {
                 id: "2389328923893298",
@@ -1454,20 +1454,20 @@ test("Invoices Accounting Invoices Add", async () => {
           id: "2389328923893298",
           name: "employee_level",
           description: "Employee Level",
-          value: [
-            "<value>",
-            "<value>",
-          ],
+          value: {
+            "0": "<value>",
+            "1": "<value>",
+          },
         },
         {
           id: "2389328923893298",
           name: "employee_level",
           description: "Employee Level",
-          value: [
-            "<value>",
-            "<value>",
-            "<value>",
-          ],
+          value: {
+            "0": "<value>",
+            "1": "<value>",
+            "2": "<value>",
+          },
         },
         {
           id: "2389328923893298",
@@ -1629,9 +1629,9 @@ test("Invoices Accounting Invoices One", async () => {
               id: "2389328923893298",
               name: "employee_level",
               description: "Employee Level",
-              value: [
-                {},
-              ],
+              value: {
+                "0": {},
+              },
             },
             {
               id: "2389328923893298",
@@ -1691,9 +1691,9 @@ test("Invoices Accounting Invoices One", async () => {
               id: "2389328923893298",
               name: "employee_level",
               description: "Employee Level",
-              value: [
-                {},
-              ],
+              value: {
+                "0": {},
+              },
             },
           ],
           rowVersion: "1-12345",
@@ -2095,11 +2095,11 @@ test("Invoices Accounting Invoices Update", async () => {
           id: "2389328923893298",
           name: "employee_level",
           description: "Employee Level",
-          value: [
-            "<value>",
-            "<value>",
-            "<value>",
-          ],
+          value: {
+            "0": "<value>",
+            "1": "<value>",
+            "2": "<value>",
+          },
         },
       ],
       rowVersion: "1-12345",

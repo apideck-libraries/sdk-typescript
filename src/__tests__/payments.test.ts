@@ -203,10 +203,10 @@ test("Payments Accounting Payments All", async () => {
             id: "2389328923893298",
             name: "employee_level",
             description: "Employee Level",
-            value: [
-              "<value>",
-              "<value>",
-            ],
+            value: {
+              "0": "<value>",
+              "1": "<value>",
+            },
           },
         ],
         rowVersion: "1-12345",
@@ -303,10 +303,10 @@ test("Payments Accounting Payments All", async () => {
             id: "2389328923893298",
             name: "employee_level",
             description: "Employee Level",
-            value: [
-              {},
-              {},
-            ],
+            value: {
+              "0": {},
+              "1": {},
+            },
           },
         ],
         rowVersion: "1-12345",
@@ -628,9 +628,9 @@ test("Payments Accounting Payments One", async () => {
           id: "2389328923893298",
           name: "employee_level",
           description: "Employee Level",
-          value: [
-            {},
-          ],
+          value: {
+            "0": {},
+          },
         },
       ],
       rowVersion: "1-12345",
@@ -742,10 +742,10 @@ test("Payments Accounting Payments Update", async () => {
           id: "2389328923893298",
           name: "employee_level",
           description: "Employee Level",
-          value: [
-            {},
-            {},
-          ],
+          value: {
+            "0": {},
+            "1": {},
+          },
         },
         {
           id: "2389328923893298",

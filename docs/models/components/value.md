@@ -21,26 +21,19 @@ const value: number = 10;
 const value: boolean = true;
 ```
 
-### `components.Four`
+### `{ [k: string]: any }`
 
 ```typescript
-const value: components.Four = {};
+const value: { [k: string]: any } = {
+  "foo": "bar",
+};
 ```
 
-### `string[]`
+### `components.Five[]`
 
 ```typescript
-const value: string[] = [
-  "<value 1>",
-  "<value 2>",
-];
-```
-
-### `components.Six[]`
-
-```typescript
-const value: components.Six[] = [
-  {},
+const value: components.Five[] = [
+  "Uses Salesforce and Marketo",
 ];
 ```
 

@@ -45,6 +45,10 @@ export type AccountingCategoriesOneRequest = {
    * The 'fields' parameter allows API users to specify the fields they want to include in the API response. If this parameter is not present, the API will return all available fields. If this parameter is present, only the fields specified in the comma-separated string will be included in the response. Nested properties can also be requested by using a dot notation. <br /><br />Example: `fields=name,email,addresses.city`<br /><br />In the example above, the response will only include the fields "name", "email" and "addresses.city". If any other fields are available, they will be excluded.
    */
   fields?: string | null | undefined;
+  /**
+   * Apply filters
+   */
+  filter?: components.CategoriesFilter | undefined;
 };
 
 export type AccountingCategoriesOneResponse = {
@@ -130,6 +134,7 @@ export const AccountingCategoriesOneRequest$inboundSchema: z.ZodType<
   serviceId: z.string().optional(),
   raw: z.boolean().default(false),
   fields: z.nullable(z.string()).optional(),
+  filter: components.CategoriesFilter$inboundSchema.optional(),
 });
 
 /** @internal */
@@ -140,6 +145,7 @@ export type AccountingCategoriesOneRequest$Outbound = {
   serviceId?: string | undefined;
   raw: boolean;
   fields?: string | null | undefined;
+  filter?: components.CategoriesFilter$Outbound | undefined;
 };
 
 /** @internal */
@@ -154,6 +160,7 @@ export const AccountingCategoriesOneRequest$outboundSchema: z.ZodType<
   serviceId: z.string().optional(),
   raw: z.boolean().default(false),
   fields: z.nullable(z.string()).optional(),
+  filter: components.CategoriesFilter$outboundSchema.optional(),
 });
 
 /**

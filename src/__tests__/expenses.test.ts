@@ -327,9 +327,9 @@ test("Expenses Accounting Expenses All", async () => {
             id: "2389328923893298",
             name: "employee_level",
             description: "Employee Level",
-            value: [
-              {},
-            ],
+            value: {
+              "0": {},
+            },
           },
           {
             id: "2389328923893298",
@@ -642,9 +642,9 @@ test("Expenses Accounting Expenses One", async () => {
           id: "2389328923893298",
           name: "employee_level",
           description: "Employee Level",
-          value: [
-            {},
-          ],
+          value: {
+            "0": {},
+          },
         },
         {
           id: "2389328923893298",

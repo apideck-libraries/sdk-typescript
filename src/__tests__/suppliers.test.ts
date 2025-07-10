@@ -419,10 +419,10 @@ test("Suppliers Accounting Suppliers All", async () => {
             id: "2389328923893298",
             name: "employee_level",
             description: "Employee Level",
-            value: [
-              {},
-              {},
-            ],
+            value: {
+              "0": {},
+              "1": {},
+            },
           },
         ],
         updatedBy: "12345",
@@ -1506,9 +1506,9 @@ test("Suppliers Accounting Suppliers Update", async () => {
           id: "2389328923893298",
           name: "employee_level",
           description: "Employee Level",
-          value: [
-            {},
-          ],
+          value: {
+            "0": {},
+          },
         },
       ],
       rowVersion: "1-12345",

@@ -41,6 +41,10 @@ export type BalanceSheetFilter = {
    * The type of period to include in the resource: month, quarter, year.
    */
   periodType?: PeriodType | undefined;
+  /**
+   * The ID of the location to include in the resource.
+   */
+  locationId?: string | undefined;
 };
 
 /** @internal */
@@ -72,12 +76,14 @@ export const BalanceSheetFilter$inboundSchema: z.ZodType<
   end_date: z.string().optional(),
   period_count: z.number().int().optional(),
   period_type: PeriodType$inboundSchema.optional(),
+  location_id: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
     "start_date": "startDate",
     "end_date": "endDate",
     "period_count": "periodCount",
     "period_type": "periodType",
+    "location_id": "locationId",
   });
 });
 
@@ -87,6 +93,7 @@ export type BalanceSheetFilter$Outbound = {
   end_date?: string | undefined;
   period_count?: number | undefined;
   period_type?: string | undefined;
+  location_id?: string | undefined;
 };
 
 /** @internal */
@@ -99,12 +106,14 @@ export const BalanceSheetFilter$outboundSchema: z.ZodType<
   endDate: z.string().optional(),
   periodCount: z.number().int().optional(),
   periodType: PeriodType$outboundSchema.optional(),
+  locationId: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
     startDate: "start_date",
     endDate: "end_date",
     periodCount: "period_count",
     periodType: "period_type",
+    locationId: "location_id",
   });
 });
 

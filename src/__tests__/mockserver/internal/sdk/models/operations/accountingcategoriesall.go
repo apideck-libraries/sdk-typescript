@@ -43,6 +43,8 @@ type AccountingCategoriesAllRequest struct {
 	Limit *int64 `default:"20" queryParam:"style=form,explode=true,name=limit"`
 	// The 'fields' parameter allows API users to specify the fields they want to include in the API response. If this parameter is not present, the API will return all available fields. If this parameter is present, only the fields specified in the comma-separated string will be included in the response. Nested properties can also be requested by using a dot notation. <br /><br />Example: `fields=name,email,addresses.city`<br /><br />In the example above, the response will only include the fields "name", "email" and "addresses.city". If any other fields are available, they will be excluded.
 	Fields *string `queryParam:"style=form,explode=true,name=fields"`
+	// Apply filters
+	Filter *components.CategoriesFilter `queryParam:"style=deepObject,explode=true,name=filter"`
 }
 
 func (a AccountingCategoriesAllRequest) MarshalJSON() ([]byte, error) {
@@ -103,6 +105,13 @@ func (o *AccountingCategoriesAllRequest) GetFields() *string {
 		return nil
 	}
 	return o.Fields
+}
+
+func (o *AccountingCategoriesAllRequest) GetFilter() *components.CategoriesFilter {
+	if o == nil {
+		return nil
+	}
+	return o.Filter
 }
 
 type AccountingCategoriesAllResponse struct {

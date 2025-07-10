@@ -1,4 +1,4 @@
-# Value5
+# ConnectionValue5
 
 
 ## Supported Types
@@ -6,18 +6,18 @@
 ### `string`
 
 ```typescript
-const value: string = "<value>";
+const value: string = "GC6000 series";
 ```
 
 ### `number`
 
 ```typescript
-const value: number = 128403;
+const value: number = 10;
 ```
 
 ### `number`
 
 ```typescript
-const value: number = 1284.03;
+const value: number = 10.5;
 ```
 

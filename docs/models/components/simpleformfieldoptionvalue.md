@@ -27,10 +27,10 @@ const value: number = 12.5;
 const value: boolean = true;
 ```
 
-### `components.Five[]`
+### `components.Value5[]`
 
 ```typescript
-const value: components.Five[] = [
+const value: components.Value5[] = [
   "team",
   "general",
 ];

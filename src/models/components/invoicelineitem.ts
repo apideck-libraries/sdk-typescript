@@ -115,6 +115,10 @@ export type InvoiceLineItem = {
    */
   discountAmount?: number | null | undefined;
   /**
+   * ID of the category of the line item
+   */
+  categoryId?: string | null | undefined;
+  /**
    * The ID of the location
    */
   locationId?: string | null | undefined;
@@ -200,6 +204,10 @@ export type InvoiceLineItemInput = {
    */
   discountAmount?: number | null | undefined;
   /**
+   * ID of the category of the line item
+   */
+  categoryId?: string | null | undefined;
+  /**
    * The ID of the location
    */
   locationId?: string | null | undefined;
@@ -261,6 +269,7 @@ export const InvoiceLineItem$inboundSchema: z.ZodType<
   unit_of_measure: z.nullable(z.string()).optional(),
   discount_percentage: z.nullable(z.number()).optional(),
   discount_amount: z.nullable(z.number()).optional(),
+  category_id: z.nullable(z.string()).optional(),
   location_id: z.nullable(z.string()).optional(),
   department_id: z.nullable(z.string()).optional(),
   item: LinkedInvoiceItem$inboundSchema.optional(),
@@ -289,6 +298,7 @@ export const InvoiceLineItem$inboundSchema: z.ZodType<
     "unit_of_measure": "unitOfMeasure",
     "discount_percentage": "discountPercentage",
     "discount_amount": "discountAmount",
+    "category_id": "categoryId",
     "location_id": "locationId",
     "department_id": "departmentId",
     "tax_rate": "taxRate",
@@ -318,6 +328,7 @@ export type InvoiceLineItem$Outbound = {
   unit_of_measure?: string | null | undefined;
   discount_percentage?: number | null | undefined;
   discount_amount?: number | null | undefined;
+  category_id?: string | null | undefined;
   location_id?: string | null | undefined;
   department_id?: string | null | undefined;
   item?: LinkedInvoiceItem$Outbound | undefined;
@@ -354,6 +365,7 @@ export const InvoiceLineItem$outboundSchema: z.ZodType<
   unitOfMeasure: z.nullable(z.string()).optional(),
   discountPercentage: z.nullable(z.number()).optional(),
   discountAmount: z.nullable(z.number()).optional(),
+  categoryId: z.nullable(z.string()).optional(),
   locationId: z.nullable(z.string()).optional(),
   departmentId: z.nullable(z.string()).optional(),
   item: LinkedInvoiceItem$outboundSchema.optional(),
@@ -378,6 +390,7 @@ export const InvoiceLineItem$outboundSchema: z.ZodType<
     unitOfMeasure: "unit_of_measure",
     discountPercentage: "discount_percentage",
     discountAmount: "discount_amount",
+    categoryId: "category_id",
     locationId: "location_id",
     departmentId: "department_id",
     taxRate: "tax_rate",
@@ -440,6 +453,7 @@ export const InvoiceLineItemInput$inboundSchema: z.ZodType<
   unit_of_measure: z.nullable(z.string()).optional(),
   discount_percentage: z.nullable(z.number()).optional(),
   discount_amount: z.nullable(z.number()).optional(),
+  category_id: z.nullable(z.string()).optional(),
   location_id: z.nullable(z.string()).optional(),
   department_id: z.nullable(z.string()).optional(),
   item: LinkedInvoiceItem$inboundSchema.optional(),
@@ -460,6 +474,7 @@ export const InvoiceLineItemInput$inboundSchema: z.ZodType<
     "unit_of_measure": "unitOfMeasure",
     "discount_percentage": "discountPercentage",
     "discount_amount": "discountAmount",
+    "category_id": "categoryId",
     "location_id": "locationId",
     "department_id": "departmentId",
     "tax_rate": "taxRate",
@@ -485,6 +500,7 @@ export type InvoiceLineItemInput$Outbound = {
   unit_of_measure?: string | null | undefined;
   discount_percentage?: number | null | undefined;
   discount_amount?: number | null | undefined;
+  category_id?: string | null | undefined;
   location_id?: string | null | undefined;
   department_id?: string | null | undefined;
   item?: LinkedInvoiceItem$Outbound | undefined;
@@ -517,6 +533,7 @@ export const InvoiceLineItemInput$outboundSchema: z.ZodType<
   unitOfMeasure: z.nullable(z.string()).optional(),
   discountPercentage: z.nullable(z.number()).optional(),
   discountAmount: z.nullable(z.number()).optional(),
+  categoryId: z.nullable(z.string()).optional(),
   locationId: z.nullable(z.string()).optional(),
   departmentId: z.nullable(z.string()).optional(),
   item: LinkedInvoiceItem$outboundSchema.optional(),
@@ -537,6 +554,7 @@ export const InvoiceLineItemInput$outboundSchema: z.ZodType<
     unitOfMeasure: "unit_of_measure",
     discountPercentage: "discount_percentage",
     discountAmount: "discount_amount",
+    categoryId: "category_id",
     locationId: "location_id",
     departmentId: "department_id",
     taxRate: "tax_rate",

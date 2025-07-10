@@ -455,10 +455,10 @@ test("Purchaseorders Accounting Purchase Orders All", async () => {
                 id: "2389328923893298",
                 name: "employee_level",
                 description: "Employee Level",
-                value: [
-                  {},
-                  {},
-                ],
+                value: {
+                  "0": {},
+                  "1": {},
+                },
               },
             ],
             rowVersion: "1-12345",
@@ -832,17 +832,17 @@ test("Purchaseorders Accounting Purchase Orders All", async () => {
                 id: "2389328923893298",
                 name: "employee_level",
                 description: "Employee Level",
-                value: [
-                  {},
-                ],
+                value: {
+                  "0": {},
+                },
               },
               {
                 id: "2389328923893298",
                 name: "employee_level",
                 description: "Employee Level",
-                value: [
-                  {},
-                ],
+                value: {
+                  "0": {},
+                },
               },
             ],
             rowVersion: "1-12345",
@@ -1273,11 +1273,11 @@ test("Purchaseorders Accounting Purchase Orders Add", async () => {
           id: "2389328923893298",
           name: "employee_level",
           description: "Employee Level",
-          value: [
-            "<value>",
-            "<value>",
-            "<value>",
-          ],
+          value: {
+            "0": "<value>",
+            "1": "<value>",
+            "2": "<value>",
+          },
         },
         {
           id: "2389328923893298",
@@ -1445,9 +1445,9 @@ test("Purchaseorders Accounting Purchase Orders One", async () => {
               id: "2389328923893298",
               name: "employee_level",
               description: "Employee Level",
-              value: [
-                {},
-              ],
+              value: {
+                "0": {},
+              },
             },
           ],
           rowVersion: "1-12345",
@@ -1839,10 +1839,10 @@ test("Purchaseorders Accounting Purchase Orders Update", async () => {
               id: "2389328923893298",
               name: "employee_level",
               description: "Employee Level",
-              value: [
-                {},
-                {},
-              ],
+              value: {
+                "0": {},
+                "1": {},
+              },
             },
             {
               id: "2389328923893298",
@@ -1903,9 +1903,9 @@ test("Purchaseorders Accounting Purchase Orders Update", async () => {
               id: "2389328923893298",
               name: "employee_level",
               description: "Employee Level",
-              value: [
-                {},
-              ],
+              value: {
+                "0": {},
+              },
             },
           ],
           rowVersion: "1-12345",
@@ -2041,10 +2041,10 @@ test("Purchaseorders Accounting Purchase Orders Update", async () => {
           id: "2389328923893298",
           name: "employee_level",
           description: "Employee Level",
-          value: [
-            "<value>",
-            "<value>",
-          ],
+          value: {
+            "0": "<value>",
+            "1": "<value>",
+          },
         },
       ],
       rowVersion: "1-12345",
