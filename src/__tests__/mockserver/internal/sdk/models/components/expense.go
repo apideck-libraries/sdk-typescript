@@ -99,8 +99,10 @@ type Expense struct {
 	// Expense line items linked to this expense.
 	LineItems []ExpenseLineItem `json:"line_items"`
 	// Optional reference identifier for the transaction.
-	Reference    *string       `json:"reference,omitempty"`
-	CustomFields []CustomField `json:"custom_fields,omitempty"`
+	Reference *string `json:"reference,omitempty"`
+	// URL link to a source document - shown as 'Go to [appName]' in the downstream app. Currently only supported for Xero.
+	SourceDocumentURL *string       `json:"source_document_url,omitempty"`
+	CustomFields      []CustomField `json:"custom_fields,omitempty"`
 	// When custom mappings are configured on the resource, the result is included here.
 	CustomMappings map[string]any `json:"custom_mappings,omitempty"`
 	// The date and time when the object was last updated.
@@ -247,6 +249,13 @@ func (o *Expense) GetReference() *string {
 	return o.Reference
 }
 
+func (o *Expense) GetSourceDocumentURL() *string {
+	if o == nil {
+		return nil
+	}
+	return o.SourceDocumentURL
+}
+
 func (o *Expense) GetCustomFields() []CustomField {
 	if o == nil {
 		return nil
@@ -334,8 +343,10 @@ type ExpenseInput struct {
 	// Expense line items linked to this expense.
 	LineItems []ExpenseLineItemInput `json:"line_items"`
 	// Optional reference identifier for the transaction.
-	Reference    *string       `json:"reference,omitempty"`
-	CustomFields []CustomField `json:"custom_fields,omitempty"`
+	Reference *string `json:"reference,omitempty"`
+	// URL link to a source document - shown as 'Go to [appName]' in the downstream app. Currently only supported for Xero.
+	SourceDocumentURL *string       `json:"source_document_url,omitempty"`
+	CustomFields      []CustomField `json:"custom_fields,omitempty"`
 	// A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
 	RowVersion *string `json:"row_version,omitempty"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
@@ -463,6 +474,13 @@ func (o *ExpenseInput) GetReference() *string {
 		return nil
 	}
 	return o.Reference
+}
+
+func (o *ExpenseInput) GetSourceDocumentURL() *string {
+	if o == nil {
+		return nil
+	}
+	return o.SourceDocumentURL
 }
 
 func (o *ExpenseInput) GetCustomFields() []CustomField {
