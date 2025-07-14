@@ -50,6 +50,7 @@ let value: AccountingExpensesUpdateRequest = {
       },
     ],
     reference: "INV-2024-001",
+    sourceDocumentUrl: "https://www.invoicesolution.com/expense/123456",
     customFields: [
       {
         id: "2389328923893298",
