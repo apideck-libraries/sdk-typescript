@@ -28,6 +28,12 @@ let value: ExpenseLineItem = {
   totalAmount: 275,
   billable: true,
   lineNumber: 1,
+  rebilling: {
+    rebillable: true,
+    rebillStatus: "billed",
+    linkedTransactionId: "txn_abc123",
+    linkedTransactionLineId: "line_xyz789",
+  },
 };
 ```
 
@@ -47,3 +53,4 @@ let value: ExpenseLineItem = {
 | `totalAmount`                                                                            | *number*                                                                                 | :heavy_check_mark:                                                                       | The total amount of the expense line item.                                               | 275                                                                                      |
 | `billable`                                                                               | *boolean*                                                                                | :heavy_minus_sign:                                                                       | Boolean that indicates if the line item is billable or not.                              | true                                                                                     |
 | `lineNumber`                                                                             | *number*                                                                                 | :heavy_minus_sign:                                                                       | Line number of the resource                                                              | 1                                                                                        |
+| `rebilling`                                                                              | [components.Rebilling](../../models/components/rebilling.md)                             | :heavy_minus_sign:                                                                       | Rebilling metadata for this line item.                                                   |                                                                                          |

@@ -19,6 +19,12 @@ import {
   LinkedTrackingCategory$Outbound,
   LinkedTrackingCategory$outboundSchema,
 } from "./linkedtrackingcategory.js";
+import {
+  Rebilling,
+  Rebilling$inboundSchema,
+  Rebilling$Outbound,
+  Rebilling$outboundSchema,
+} from "./rebilling.js";
 
 export type ExpenseLineItem = {
   /**
@@ -66,6 +72,10 @@ export type ExpenseLineItem = {
    * Line number of the resource
    */
   lineNumber?: number | null | undefined;
+  /**
+   * Rebilling metadata for this line item.
+   */
+  rebilling?: Rebilling | null | undefined;
 };
 
 /** @internal */
@@ -88,6 +98,7 @@ export const ExpenseLineItem$inboundSchema: z.ZodType<
   total_amount: z.nullable(z.number()),
   billable: z.boolean().optional(),
   line_number: z.nullable(z.number().int()).optional(),
+  rebilling: z.nullable(Rebilling$inboundSchema).optional(),
 }).transform((v) => {
   return remap$(v, {
     "tracking_categories": "trackingCategories",
@@ -119,6 +130,7 @@ export type ExpenseLineItem$Outbound = {
   total_amount: number | null;
   billable?: boolean | undefined;
   line_number?: number | null | undefined;
+  rebilling?: Rebilling$Outbound | null | undefined;
 };
 
 /** @internal */
@@ -141,6 +153,7 @@ export const ExpenseLineItem$outboundSchema: z.ZodType<
   totalAmount: z.nullable(z.number()),
   billable: z.boolean().optional(),
   lineNumber: z.nullable(z.number().int()).optional(),
+  rebilling: z.nullable(Rebilling$outboundSchema).optional(),
 }).transform((v) => {
   return remap$(v, {
     trackingCategories: "tracking_categories",

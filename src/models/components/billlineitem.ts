@@ -9,6 +9,18 @@ import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
+  LinkedCustomer,
+  LinkedCustomer$inboundSchema,
+  LinkedCustomer$Outbound,
+  LinkedCustomer$outboundSchema,
+} from "./linkedcustomer.js";
+import {
+  LinkedCustomerInput,
+  LinkedCustomerInput$inboundSchema,
+  LinkedCustomerInput$Outbound,
+  LinkedCustomerInput$outboundSchema,
+} from "./linkedcustomerinput.js";
+import {
   LinkedInvoiceItem,
   LinkedInvoiceItem$inboundSchema,
   LinkedInvoiceItem$Outbound,
@@ -44,6 +56,12 @@ import {
   LinkedTrackingCategory$Outbound,
   LinkedTrackingCategory$outboundSchema,
 } from "./linkedtrackingcategory.js";
+import {
+  Rebilling,
+  Rebilling$inboundSchema,
+  Rebilling$Outbound,
+  Rebilling$outboundSchema,
+} from "./rebilling.js";
 
 /**
  * Bill Line Item type
@@ -120,6 +138,14 @@ export type BillLineItem = {
    * A list of linked tracking categories.
    */
   trackingCategories?: Array<LinkedTrackingCategory | null> | null | undefined;
+  /**
+   * The customer this entity is linked to.
+   */
+  customer?: LinkedCustomer | null | undefined;
+  /**
+   * Rebilling metadata for this line item.
+   */
+  rebilling?: Rebilling | null | undefined;
   /**
    * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
    */
@@ -201,6 +227,14 @@ export type BillLineItemInput = {
    */
   trackingCategories?: Array<LinkedTrackingCategory | null> | null | undefined;
   /**
+   * The customer this entity is linked to.
+   */
+  customer?: LinkedCustomerInput | null | undefined;
+  /**
+   * Rebilling metadata for this line item.
+   */
+  rebilling?: Rebilling | null | undefined;
+  /**
    * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
    */
   rowVersion?: string | null | undefined;
@@ -254,6 +288,8 @@ export const BillLineItem$inboundSchema: z.ZodType<
   tracking_categories: z.nullable(
     z.array(z.nullable(LinkedTrackingCategory$inboundSchema)),
   ).optional(),
+  customer: z.nullable(LinkedCustomer$inboundSchema).optional(),
+  rebilling: z.nullable(Rebilling$inboundSchema).optional(),
   row_version: z.nullable(z.string()).optional(),
   updated_by: z.nullable(z.string()).optional(),
   created_by: z.nullable(z.string()).optional(),
@@ -310,6 +346,8 @@ export type BillLineItem$Outbound = {
     | Array<LinkedTrackingCategory$Outbound | null>
     | null
     | undefined;
+  customer?: LinkedCustomer$Outbound | null | undefined;
+  rebilling?: Rebilling$Outbound | null | undefined;
   row_version?: string | null | undefined;
   updated_by?: string | null | undefined;
   created_by?: string | null | undefined;
@@ -344,6 +382,8 @@ export const BillLineItem$outboundSchema: z.ZodType<
   trackingCategories: z.nullable(
     z.array(z.nullable(LinkedTrackingCategory$outboundSchema)),
   ).optional(),
+  customer: z.nullable(LinkedCustomer$outboundSchema).optional(),
+  rebilling: z.nullable(Rebilling$outboundSchema).optional(),
   rowVersion: z.nullable(z.string()).optional(),
   updatedBy: z.nullable(z.string()).optional(),
   createdBy: z.nullable(z.string()).optional(),
@@ -425,6 +465,8 @@ export const BillLineItemInput$inboundSchema: z.ZodType<
   tracking_categories: z.nullable(
     z.array(z.nullable(LinkedTrackingCategory$inboundSchema)),
   ).optional(),
+  customer: z.nullable(LinkedCustomerInput$inboundSchema).optional(),
+  rebilling: z.nullable(Rebilling$inboundSchema).optional(),
   row_version: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
@@ -468,6 +510,8 @@ export type BillLineItemInput$Outbound = {
     | Array<LinkedTrackingCategory$Outbound | null>
     | null
     | undefined;
+  customer?: LinkedCustomerInput$Outbound | null | undefined;
+  rebilling?: Rebilling$Outbound | null | undefined;
   row_version?: string | null | undefined;
 };
 
@@ -497,6 +541,8 @@ export const BillLineItemInput$outboundSchema: z.ZodType<
   trackingCategories: z.nullable(
     z.array(z.nullable(LinkedTrackingCategory$outboundSchema)),
   ).optional(),
+  customer: z.nullable(LinkedCustomerInput$outboundSchema).optional(),
+  rebilling: z.nullable(Rebilling$outboundSchema).optional(),
   rowVersion: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {

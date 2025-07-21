@@ -26,6 +26,8 @@ type ExpenseLineItem struct {
 	Billable *bool `json:"billable,omitempty"`
 	// Line number of the resource
 	LineNumber *int64 `json:"line_number,omitempty"`
+	// Rebilling metadata for this line item.
+	Rebilling *Rebilling `json:"rebilling,omitempty"`
 }
 
 func (o *ExpenseLineItem) GetID() *string {
@@ -110,4 +112,11 @@ func (o *ExpenseLineItem) GetLineNumber() *int64 {
 		return nil
 	}
 	return o.LineNumber
+}
+
+func (o *ExpenseLineItem) GetRebilling() *Rebilling {
+	if o == nil {
+		return nil
+	}
+	return o.Rebilling
 }

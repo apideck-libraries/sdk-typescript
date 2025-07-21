@@ -24,6 +24,8 @@ type ExpenseLineItemInput struct {
 	Billable *bool `json:"billable,omitempty"`
 	// Line number of the resource
 	LineNumber *int64 `json:"line_number,omitempty"`
+	// Rebilling metadata for this line item.
+	Rebilling *Rebilling `json:"rebilling,omitempty"`
 }
 
 func (o *ExpenseLineItemInput) GetTrackingCategories() []*LinkedTrackingCategory {
@@ -101,4 +103,11 @@ func (o *ExpenseLineItemInput) GetLineNumber() *int64 {
 		return nil
 	}
 	return o.LineNumber
+}
+
+func (o *ExpenseLineItemInput) GetRebilling() *Rebilling {
+	if o == nil {
+		return nil
+	}
+	return o.Rebilling
 }

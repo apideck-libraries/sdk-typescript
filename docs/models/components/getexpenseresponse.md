@@ -58,6 +58,12 @@ let value: GetExpenseResponse = {
         totalAmount: 275,
         billable: true,
         lineNumber: 1,
+        rebilling: {
+          rebillable: true,
+          rebillStatus: "billed",
+          linkedTransactionId: "txn_abc123",
+          linkedTransactionLineId: "line_xyz789",
+        },
       },
     ],
     reference: "INV-2024-001",

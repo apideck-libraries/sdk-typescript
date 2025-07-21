@@ -73,6 +73,10 @@ type BillLineItem struct {
 	LedgerAccount *LinkedLedgerAccount `json:"ledger_account,omitempty"`
 	// A list of linked tracking categories.
 	TrackingCategories []*LinkedTrackingCategory `json:"tracking_categories,omitempty"`
+	// The customer this entity is linked to.
+	Customer *LinkedCustomer `json:"customer,omitempty"`
+	// Rebilling metadata for this line item.
+	Rebilling *Rebilling `json:"rebilling,omitempty"`
 	// A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
 	RowVersion *string `json:"row_version,omitempty"`
 	// The user who last updated the object.
@@ -229,6 +233,20 @@ func (o *BillLineItem) GetTrackingCategories() []*LinkedTrackingCategory {
 	return o.TrackingCategories
 }
 
+func (o *BillLineItem) GetCustomer() *LinkedCustomer {
+	if o == nil {
+		return nil
+	}
+	return o.Customer
+}
+
+func (o *BillLineItem) GetRebilling() *Rebilling {
+	if o == nil {
+		return nil
+	}
+	return o.Rebilling
+}
+
 func (o *BillLineItem) GetRowVersion() *string {
 	if o == nil {
 		return nil
@@ -296,6 +314,10 @@ type BillLineItemInput struct {
 	LedgerAccount *LinkedLedgerAccountInput `json:"ledger_account,omitempty"`
 	// A list of linked tracking categories.
 	TrackingCategories []*LinkedTrackingCategory `json:"tracking_categories,omitempty"`
+	// The customer this entity is linked to.
+	Customer *LinkedCustomerInput `json:"customer,omitempty"`
+	// Rebilling metadata for this line item.
+	Rebilling *Rebilling `json:"rebilling,omitempty"`
 	// A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
 	RowVersion *string `json:"row_version,omitempty"`
 }
@@ -424,6 +446,20 @@ func (o *BillLineItemInput) GetTrackingCategories() []*LinkedTrackingCategory {
 		return nil
 	}
 	return o.TrackingCategories
+}
+
+func (o *BillLineItemInput) GetCustomer() *LinkedCustomerInput {
+	if o == nil {
+		return nil
+	}
+	return o.Customer
+}
+
+func (o *BillLineItemInput) GetRebilling() *Rebilling {
+	if o == nil {
+		return nil
+	}
+	return o.Rebilling
 }
 
 func (o *BillLineItemInput) GetRowVersion() *string {
