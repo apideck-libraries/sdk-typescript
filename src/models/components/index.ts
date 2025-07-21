@@ -449,6 +449,7 @@ export * from "./profitandlosstype.js";
 export * from "./purchaseorder.js";
 export * from "./purchaseordersfilter.js";
 export * from "./purchaseorderssort.js";
+export * from "./rebilling.js";
 export * from "./requestcountallocation.js";
 export * from "./resourcestatus.js";
 export * from "./schedule.js";

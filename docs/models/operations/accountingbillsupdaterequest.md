@@ -87,6 +87,17 @@ let value: AccountingBillsUpdateRequest = {
             name: "New York",
           },
         ],
+        customer: {
+          id: "12345",
+          displayName: "Windsurf Shop",
+          email: "boring@boring.com",
+        },
+        rebilling: {
+          rebillable: true,
+          rebillStatus: "billed",
+          linkedTransactionId: "txn_abc123",
+          linkedTransactionLineId: "line_xyz789",
+        },
         rowVersion: "1-12345",
       },
     ],
