@@ -89,6 +89,20 @@ export const PurchaseOrderStatus = {
 } as const;
 export type PurchaseOrderStatus = ClosedEnum<typeof PurchaseOrderStatus>;
 
+/**
+ * Type of amortization
+ */
+export const AmortizationType = {
+  Manual: "manual",
+  Receipt: "receipt",
+  Schedule: "schedule",
+  Other: "other",
+} as const;
+/**
+ * Type of amortization
+ */
+export type AmortizationType = ClosedEnum<typeof AmortizationType>;
+
 export type PurchaseOrder = {
   /**
    * A unique identifier for an object.
@@ -180,6 +194,10 @@ export type PurchaseOrder = {
    */
   paymentMethod?: string | null | undefined;
   /**
+   * Type of amortization
+   */
+  amortizationType?: AmortizationType | null | undefined;
+  /**
    * Applicable tax id/code override if tax is not supplied on a line item basis.
    */
   taxCode?: string | null | undefined;
@@ -191,6 +209,10 @@ export type PurchaseOrder = {
    * Message for the supplier. This text appears on the Purchase Order.
    */
   memo?: string | null | undefined;
+  /**
+   * Internal notes for the purchase order.
+   */
+  notes?: string | null | undefined;
   /**
    * A list of linked tracking categories.
    */
@@ -309,6 +331,10 @@ export type PurchaseOrderInput = {
    */
   paymentMethod?: string | null | undefined;
   /**
+   * Type of amortization
+   */
+  amortizationType?: AmortizationType | null | undefined;
+  /**
    * Applicable tax id/code override if tax is not supplied on a line item basis.
    */
   taxCode?: string | null | undefined;
@@ -320,6 +346,10 @@ export type PurchaseOrderInput = {
    * Message for the supplier. This text appears on the Purchase Order.
    */
   memo?: string | null | undefined;
+  /**
+   * Internal notes for the purchase order.
+   */
+  notes?: string | null | undefined;
   /**
    * A list of linked tracking categories.
    */
@@ -357,6 +387,27 @@ export namespace PurchaseOrderStatus$ {
 }
 
 /** @internal */
+export const AmortizationType$inboundSchema: z.ZodNativeEnum<
+  typeof AmortizationType
+> = z.nativeEnum(AmortizationType);
+
+/** @internal */
+export const AmortizationType$outboundSchema: z.ZodNativeEnum<
+  typeof AmortizationType
+> = AmortizationType$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace AmortizationType$ {
+  /** @deprecated use `AmortizationType$inboundSchema` instead. */
+  export const inboundSchema = AmortizationType$inboundSchema;
+  /** @deprecated use `AmortizationType$outboundSchema` instead. */
+  export const outboundSchema = AmortizationType$outboundSchema;
+}
+
+/** @internal */
 export const PurchaseOrder$inboundSchema: z.ZodType<
   PurchaseOrder,
   z.ZodTypeDef,
@@ -390,9 +441,11 @@ export const PurchaseOrder$inboundSchema: z.ZodType<
   accounting_by_row: z.nullable(z.boolean()).optional(),
   due_date: z.nullable(z.string().transform(v => new RFCDate(v))).optional(),
   payment_method: z.nullable(z.string()).optional(),
+  amortization_type: z.nullable(AmortizationType$inboundSchema).optional(),
   tax_code: z.nullable(z.string()).optional(),
   channel: z.nullable(z.string()).optional(),
   memo: z.nullable(z.string()).optional(),
+  notes: z.nullable(z.string()).optional(),
   tracking_categories: z.nullable(
     z.array(z.nullable(LinkedTrackingCategory$inboundSchema)),
   ).optional(),
@@ -430,6 +483,7 @@ export const PurchaseOrder$inboundSchema: z.ZodType<
     "accounting_by_row": "accountingByRow",
     "due_date": "dueDate",
     "payment_method": "paymentMethod",
+    "amortization_type": "amortizationType",
     "tax_code": "taxCode",
     "tracking_categories": "trackingCategories",
     "custom_mappings": "customMappings",
@@ -471,9 +525,11 @@ export type PurchaseOrder$Outbound = {
   accounting_by_row?: boolean | null | undefined;
   due_date?: string | null | undefined;
   payment_method?: string | null | undefined;
+  amortization_type?: string | null | undefined;
   tax_code?: string | null | undefined;
   channel?: string | null | undefined;
   memo?: string | null | undefined;
+  notes?: string | null | undefined;
   tracking_categories?:
     | Array<LinkedTrackingCategory$Outbound | null>
     | null
@@ -525,9 +581,11 @@ export const PurchaseOrder$outboundSchema: z.ZodType<
   dueDate: z.nullable(z.instanceof(RFCDate).transform(v => v.toString()))
     .optional(),
   paymentMethod: z.nullable(z.string()).optional(),
+  amortizationType: z.nullable(AmortizationType$outboundSchema).optional(),
   taxCode: z.nullable(z.string()).optional(),
   channel: z.nullable(z.string()).optional(),
   memo: z.nullable(z.string()).optional(),
+  notes: z.nullable(z.string()).optional(),
   trackingCategories: z.nullable(
     z.array(z.nullable(LinkedTrackingCategory$outboundSchema)),
   ).optional(),
@@ -561,6 +619,7 @@ export const PurchaseOrder$outboundSchema: z.ZodType<
     accountingByRow: "accounting_by_row",
     dueDate: "due_date",
     paymentMethod: "payment_method",
+    amortizationType: "amortization_type",
     taxCode: "tax_code",
     trackingCategories: "tracking_categories",
     customMappings: "custom_mappings",
@@ -633,9 +692,11 @@ export const PurchaseOrderInput$inboundSchema: z.ZodType<
   accounting_by_row: z.nullable(z.boolean()).optional(),
   due_date: z.nullable(z.string().transform(v => new RFCDate(v))).optional(),
   payment_method: z.nullable(z.string()).optional(),
+  amortization_type: z.nullable(AmortizationType$inboundSchema).optional(),
   tax_code: z.nullable(z.string()).optional(),
   channel: z.nullable(z.string()).optional(),
   memo: z.nullable(z.string()).optional(),
+  notes: z.nullable(z.string()).optional(),
   tracking_categories: z.nullable(
     z.array(z.nullable(LinkedTrackingCategory$inboundSchema)),
   ).optional(),
@@ -663,6 +724,7 @@ export const PurchaseOrderInput$inboundSchema: z.ZodType<
     "accounting_by_row": "accountingByRow",
     "due_date": "dueDate",
     "payment_method": "paymentMethod",
+    "amortization_type": "amortizationType",
     "tax_code": "taxCode",
     "tracking_categories": "trackingCategories",
     "custom_fields": "customFields",
@@ -697,9 +759,11 @@ export type PurchaseOrderInput$Outbound = {
   accounting_by_row?: boolean | null | undefined;
   due_date?: string | null | undefined;
   payment_method?: string | null | undefined;
+  amortization_type?: string | null | undefined;
   tax_code?: string | null | undefined;
   channel?: string | null | undefined;
   memo?: string | null | undefined;
+  notes?: string | null | undefined;
   tracking_categories?:
     | Array<LinkedTrackingCategory$Outbound | null>
     | null
@@ -744,9 +808,11 @@ export const PurchaseOrderInput$outboundSchema: z.ZodType<
   dueDate: z.nullable(z.instanceof(RFCDate).transform(v => v.toString()))
     .optional(),
   paymentMethod: z.nullable(z.string()).optional(),
+  amortizationType: z.nullable(AmortizationType$outboundSchema).optional(),
   taxCode: z.nullable(z.string()).optional(),
   channel: z.nullable(z.string()).optional(),
   memo: z.nullable(z.string()).optional(),
+  notes: z.nullable(z.string()).optional(),
   trackingCategories: z.nullable(
     z.array(z.nullable(LinkedTrackingCategory$outboundSchema)),
   ).optional(),
@@ -774,6 +840,7 @@ export const PurchaseOrderInput$outboundSchema: z.ZodType<
     accountingByRow: "accounting_by_row",
     dueDate: "due_date",
     paymentMethod: "payment_method",
+    amortizationType: "amortization_type",
     taxCode: "tax_code",
     trackingCategories: "tracking_categories",
     customFields: "custom_fields",

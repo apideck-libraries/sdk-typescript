@@ -21,6 +21,8 @@ let value: BillLineItemInput = {
   discountAmount: 19.99,
   locationId: "12345",
   departmentId: "12345",
+  subsidiaryId: "12345",
+  categoryId: "12345",
   item: {
     id: "12344",
     code: "120-C",
@@ -35,13 +37,17 @@ let value: BillLineItemInput = {
     nominalCode: "N091",
     code: "453",
   },
-  trackingCategories: [
-    {
-      id: "123456",
-      name: "New York",
-    },
-  ],
-  customer: null,
+  purchaseOrder: {
+    id: "123456",
+    lineId: "123456",
+    lineNumber: "1",
+  },
+  trackingCategories: null,
+  customer: {
+    id: "12345",
+    displayName: "Windsurf Shop",
+    email: "boring@boring.com",
+  },
   rebilling: {
     rebillable: true,
     rebillStatus: "billed",
@@ -70,9 +76,12 @@ let value: BillLineItemInput = {
 | `discountAmount`                                                                                                                           | *number*                                                                                                                                   | :heavy_minus_sign:                                                                                                                         | Discount amount applied to the line item when supported downstream.                                                                        | 19.99                                                                                                                                      |
 | `locationId`                                                                                                                               | *string*                                                                                                                                   | :heavy_minus_sign:                                                                                                                         | The ID of the location                                                                                                                     | 12345                                                                                                                                      |
 | `departmentId`                                                                                                                             | *string*                                                                                                                                   | :heavy_minus_sign:                                                                                                                         | The ID of the department                                                                                                                   | 12345                                                                                                                                      |
+| `subsidiaryId`                                                                                                                             | *string*                                                                                                                                   | :heavy_minus_sign:                                                                                                                         | The ID of the subsidiary                                                                                                                   | 12345                                                                                                                                      |
+| `categoryId`                                                                                                                               | *string*                                                                                                                                   | :heavy_minus_sign:                                                                                                                         | ID of the category of the line item                                                                                                        | 12345                                                                                                                                      |
 | `item`                                                                                                                                     | [components.LinkedInvoiceItem](../../models/components/linkedinvoiceitem.md)                                                               | :heavy_minus_sign:                                                                                                                         | N/A                                                                                                                                        |                                                                                                                                            |
 | `taxRate`                                                                                                                                  | [components.LinkedTaxRateInput](../../models/components/linkedtaxrateinput.md)                                                             | :heavy_minus_sign:                                                                                                                         | N/A                                                                                                                                        |                                                                                                                                            |
 | `ledgerAccount`                                                                                                                            | [components.LinkedLedgerAccountInput](../../models/components/linkedledgeraccountinput.md)                                                 | :heavy_minus_sign:                                                                                                                         | N/A                                                                                                                                        |                                                                                                                                            |
+| `purchaseOrder`                                                                                                                            | [components.LinkedPurchaseOrder](../../models/components/linkedpurchaseorder.md)                                                           | :heavy_minus_sign:                                                                                                                         | N/A                                                                                                                                        |                                                                                                                                            |
 | `trackingCategories`                                                                                                                       | [components.LinkedTrackingCategory](../../models/components/linkedtrackingcategory.md)[]                                                   | :heavy_minus_sign:                                                                                                                         | A list of linked tracking categories.                                                                                                      |                                                                                                                                            |
 | `customer`                                                                                                                                 | [components.LinkedCustomerInput](../../models/components/linkedcustomerinput.md)                                                           | :heavy_minus_sign:                                                                                                                         | The customer this entity is linked to.                                                                                                     |                                                                                                                                            |
 | `rebilling`                                                                                                                                | [components.Rebilling](../../models/components/rebilling.md)                                                                               | :heavy_minus_sign:                                                                                                                         | Rebilling metadata for this line item.                                                                                                     |                                                                                                                                            |

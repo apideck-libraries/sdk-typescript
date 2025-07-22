@@ -51,6 +51,8 @@ let value: CreditNoteInput = {
       categoryId: "12345",
       locationId: "12345",
       departmentId: "12345",
+      subsidiaryId: "12345",
+      prepaid: true,
       item: {
         id: "12344",
         code: "120-C",

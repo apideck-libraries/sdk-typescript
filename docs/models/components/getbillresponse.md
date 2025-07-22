@@ -77,6 +77,8 @@ let value: GetBillResponse = {
         discountAmount: 19.99,
         locationId: "12345",
         departmentId: "12345",
+        subsidiaryId: "12345",
+        categoryId: "12345",
         item: {
           id: "12344",
           code: "120-C",
@@ -94,6 +96,11 @@ let value: GetBillResponse = {
           nominalCode: "N091",
           code: "453",
         },
+        purchaseOrder: {
+          id: "123456",
+          lineId: "123456",
+          lineNumber: "1",
+        },
         trackingCategories: [
           {
             id: "123456",
@@ -107,12 +114,7 @@ let value: GetBillResponse = {
           companyName: "The boring company",
           email: "boring@boring.com",
         },
-        rebilling: {
-          rebillable: true,
-          rebillStatus: "billed",
-          linkedTransactionId: "txn_abc123",
-          linkedTransactionLineId: "line_xyz789",
-        },
+        rebilling: null,
         rowVersion: "1-12345",
         updatedBy: "12345",
         createdBy: "12345",
@@ -129,7 +131,12 @@ let value: GetBillResponse = {
     taxCode: "1234",
     notes: "Some notes about this bill.",
     status: "draft",
-    ledgerAccount: null,
+    ledgerAccount: {
+      id: "123456",
+      name: "Bank account",
+      nominalCode: "N091",
+      code: "453",
+    },
     paymentMethod: "cash",
     channel: "email",
     language: "EN",
