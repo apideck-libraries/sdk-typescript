@@ -402,6 +402,7 @@ export * from "./linkedinvoiceitem.js";
 export * from "./linkedledgeraccount.js";
 export * from "./linkedledgeraccountinput.js";
 export * from "./linkedparentcustomer.js";
+export * from "./linkedpurchaseorder.js";
 export * from "./linkedsupplier.js";
 export * from "./linkedsupplierinput.js";
 export * from "./linkedtaxrate.js";

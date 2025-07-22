@@ -67,10 +67,15 @@ type BillLineItem struct {
 	// The ID of the location
 	LocationID *string `json:"location_id,omitempty"`
 	// The ID of the department
-	DepartmentID  *string              `json:"department_id,omitempty"`
+	DepartmentID *string `json:"department_id,omitempty"`
+	// The ID of the subsidiary
+	SubsidiaryID *string `json:"subsidiary_id,omitempty"`
+	// ID of the category of the line item
+	CategoryID    *string              `json:"category_id,omitempty"`
 	Item          *LinkedInvoiceItem   `json:"item,omitempty"`
 	TaxRate       *LinkedTaxRate       `json:"tax_rate,omitempty"`
 	LedgerAccount *LinkedLedgerAccount `json:"ledger_account,omitempty"`
+	PurchaseOrder *LinkedPurchaseOrder `json:"purchase_order,omitempty"`
 	// A list of linked tracking categories.
 	TrackingCategories []*LinkedTrackingCategory `json:"tracking_categories,omitempty"`
 	// The customer this entity is linked to.
@@ -205,6 +210,20 @@ func (o *BillLineItem) GetDepartmentID() *string {
 	return o.DepartmentID
 }
 
+func (o *BillLineItem) GetSubsidiaryID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.SubsidiaryID
+}
+
+func (o *BillLineItem) GetCategoryID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CategoryID
+}
+
 func (o *BillLineItem) GetItem() *LinkedInvoiceItem {
 	if o == nil {
 		return nil
@@ -224,6 +243,13 @@ func (o *BillLineItem) GetLedgerAccount() *LinkedLedgerAccount {
 		return nil
 	}
 	return o.LedgerAccount
+}
+
+func (o *BillLineItem) GetPurchaseOrder() *LinkedPurchaseOrder {
+	if o == nil {
+		return nil
+	}
+	return o.PurchaseOrder
 }
 
 func (o *BillLineItem) GetTrackingCategories() []*LinkedTrackingCategory {
@@ -308,10 +334,15 @@ type BillLineItemInput struct {
 	// The ID of the location
 	LocationID *string `json:"location_id,omitempty"`
 	// The ID of the department
-	DepartmentID  *string                   `json:"department_id,omitempty"`
+	DepartmentID *string `json:"department_id,omitempty"`
+	// The ID of the subsidiary
+	SubsidiaryID *string `json:"subsidiary_id,omitempty"`
+	// ID of the category of the line item
+	CategoryID    *string                   `json:"category_id,omitempty"`
 	Item          *LinkedInvoiceItem        `json:"item,omitempty"`
 	TaxRate       *LinkedTaxRateInput       `json:"tax_rate,omitempty"`
 	LedgerAccount *LinkedLedgerAccountInput `json:"ledger_account,omitempty"`
+	PurchaseOrder *LinkedPurchaseOrder      `json:"purchase_order,omitempty"`
 	// A list of linked tracking categories.
 	TrackingCategories []*LinkedTrackingCategory `json:"tracking_categories,omitempty"`
 	// The customer this entity is linked to.
@@ -420,6 +451,20 @@ func (o *BillLineItemInput) GetDepartmentID() *string {
 	return o.DepartmentID
 }
 
+func (o *BillLineItemInput) GetSubsidiaryID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.SubsidiaryID
+}
+
+func (o *BillLineItemInput) GetCategoryID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CategoryID
+}
+
 func (o *BillLineItemInput) GetItem() *LinkedInvoiceItem {
 	if o == nil {
 		return nil
@@ -439,6 +484,13 @@ func (o *BillLineItemInput) GetLedgerAccount() *LinkedLedgerAccountInput {
 		return nil
 	}
 	return o.LedgerAccount
+}
+
+func (o *BillLineItemInput) GetPurchaseOrder() *LinkedPurchaseOrder {
+	if o == nil {
+		return nil
+	}
+	return o.PurchaseOrder
 }
 
 func (o *BillLineItemInput) GetTrackingCategories() []*LinkedTrackingCategory {

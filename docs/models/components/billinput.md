@@ -64,6 +64,8 @@ let value: BillInput = {
       discountAmount: 19.99,
       locationId: "12345",
       departmentId: "12345",
+      subsidiaryId: "12345",
+      categoryId: "12345",
       item: {
         id: "12344",
         code: "120-C",
@@ -77,6 +79,11 @@ let value: BillInput = {
         id: "123456",
         nominalCode: "N091",
         code: "453",
+      },
+      purchaseOrder: {
+        id: "123456",
+        lineId: "123456",
+        lineNumber: "1",
       },
       trackingCategories: [
         {

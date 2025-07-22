@@ -48,6 +48,39 @@ func (e *PurchaseOrderStatus) UnmarshalJSON(data []byte) error {
 	}
 }
 
+// AmortizationType - Type of amortization
+type AmortizationType string
+
+const (
+	AmortizationTypeManual   AmortizationType = "manual"
+	AmortizationTypeReceipt  AmortizationType = "receipt"
+	AmortizationTypeSchedule AmortizationType = "schedule"
+	AmortizationTypeOther    AmortizationType = "other"
+)
+
+func (e AmortizationType) ToPointer() *AmortizationType {
+	return &e
+}
+func (e *AmortizationType) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "manual":
+		fallthrough
+	case "receipt":
+		fallthrough
+	case "schedule":
+		fallthrough
+	case "other":
+		*e = AmortizationType(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for AmortizationType: %v", v)
+	}
+}
+
 type PurchaseOrder struct {
 	// A unique identifier for an object.
 	ID *string `json:"id,omitempty"`
@@ -96,12 +129,16 @@ type PurchaseOrder struct {
 	DueDate *types.Date `json:"due_date,omitempty"`
 	// Payment method used for the transaction, such as cash, credit card, bank transfer, or check
 	PaymentMethod *string `json:"payment_method,omitempty"`
+	// Type of amortization
+	AmortizationType *AmortizationType `json:"amortization_type,omitempty"`
 	// Applicable tax id/code override if tax is not supplied on a line item basis.
 	TaxCode *string `json:"tax_code,omitempty"`
 	// The channel through which the transaction is processed.
 	Channel *string `json:"channel,omitempty"`
 	// Message for the supplier. This text appears on the Purchase Order.
 	Memo *string `json:"memo,omitempty"`
+	// Internal notes for the purchase order.
+	Notes *string `json:"notes,omitempty"`
 	// A list of linked tracking categories.
 	TrackingCategories []*LinkedTrackingCategory `json:"tracking_categories,omitempty"`
 	// When custom mappings are configured on the resource, the result is included here.
@@ -314,6 +351,13 @@ func (o *PurchaseOrder) GetPaymentMethod() *string {
 	return o.PaymentMethod
 }
 
+func (o *PurchaseOrder) GetAmortizationType() *AmortizationType {
+	if o == nil {
+		return nil
+	}
+	return o.AmortizationType
+}
+
 func (o *PurchaseOrder) GetTaxCode() *string {
 	if o == nil {
 		return nil
@@ -333,6 +377,13 @@ func (o *PurchaseOrder) GetMemo() *string {
 		return nil
 	}
 	return o.Memo
+}
+
+func (o *PurchaseOrder) GetNotes() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Notes
 }
 
 func (o *PurchaseOrder) GetTrackingCategories() []*LinkedTrackingCategory {
@@ -442,12 +493,16 @@ type PurchaseOrderInput struct {
 	DueDate *types.Date `json:"due_date,omitempty"`
 	// Payment method used for the transaction, such as cash, credit card, bank transfer, or check
 	PaymentMethod *string `json:"payment_method,omitempty"`
+	// Type of amortization
+	AmortizationType *AmortizationType `json:"amortization_type,omitempty"`
 	// Applicable tax id/code override if tax is not supplied on a line item basis.
 	TaxCode *string `json:"tax_code,omitempty"`
 	// The channel through which the transaction is processed.
 	Channel *string `json:"channel,omitempty"`
 	// Message for the supplier. This text appears on the Purchase Order.
 	Memo *string `json:"memo,omitempty"`
+	// Internal notes for the purchase order.
+	Notes *string `json:"notes,omitempty"`
 	// A list of linked tracking categories.
 	TrackingCategories []*LinkedTrackingCategory `json:"tracking_categories,omitempty"`
 	CustomFields       []CustomField             `json:"custom_fields,omitempty"`
@@ -636,6 +691,13 @@ func (o *PurchaseOrderInput) GetPaymentMethod() *string {
 	return o.PaymentMethod
 }
 
+func (o *PurchaseOrderInput) GetAmortizationType() *AmortizationType {
+	if o == nil {
+		return nil
+	}
+	return o.AmortizationType
+}
+
 func (o *PurchaseOrderInput) GetTaxCode() *string {
 	if o == nil {
 		return nil
@@ -655,6 +717,13 @@ func (o *PurchaseOrderInput) GetMemo() *string {
 		return nil
 	}
 	return o.Memo
+}
+
+func (o *PurchaseOrderInput) GetNotes() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Notes
 }
 
 func (o *PurchaseOrderInput) GetTrackingCategories() []*LinkedTrackingCategory {

@@ -39,6 +39,12 @@ import {
   LinkedLedgerAccountInput$outboundSchema,
 } from "./linkedledgeraccountinput.js";
 import {
+  LinkedPurchaseOrder,
+  LinkedPurchaseOrder$inboundSchema,
+  LinkedPurchaseOrder$Outbound,
+  LinkedPurchaseOrder$outboundSchema,
+} from "./linkedpurchaseorder.js";
+import {
   LinkedTaxRate,
   LinkedTaxRate$inboundSchema,
   LinkedTaxRate$Outbound,
@@ -131,9 +137,18 @@ export type BillLineItem = {
    * The ID of the department
    */
   departmentId?: string | null | undefined;
+  /**
+   * The ID of the subsidiary
+   */
+  subsidiaryId?: string | null | undefined;
+  /**
+   * ID of the category of the line item
+   */
+  categoryId?: string | null | undefined;
   item?: LinkedInvoiceItem | undefined;
   taxRate?: LinkedTaxRate | undefined;
   ledgerAccount?: LinkedLedgerAccount | null | undefined;
+  purchaseOrder?: LinkedPurchaseOrder | null | undefined;
   /**
    * A list of linked tracking categories.
    */
@@ -219,9 +234,18 @@ export type BillLineItemInput = {
    * The ID of the department
    */
   departmentId?: string | null | undefined;
+  /**
+   * The ID of the subsidiary
+   */
+  subsidiaryId?: string | null | undefined;
+  /**
+   * ID of the category of the line item
+   */
+  categoryId?: string | null | undefined;
   item?: LinkedInvoiceItem | undefined;
   taxRate?: LinkedTaxRateInput | undefined;
   ledgerAccount?: LinkedLedgerAccountInput | null | undefined;
+  purchaseOrder?: LinkedPurchaseOrder | null | undefined;
   /**
    * A list of linked tracking categories.
    */
@@ -282,9 +306,12 @@ export const BillLineItem$inboundSchema: z.ZodType<
   discount_amount: z.nullable(z.number()).optional(),
   location_id: z.nullable(z.string()).optional(),
   department_id: z.nullable(z.string()).optional(),
+  subsidiary_id: z.nullable(z.string()).optional(),
+  category_id: z.nullable(z.string()).optional(),
   item: LinkedInvoiceItem$inboundSchema.optional(),
   tax_rate: LinkedTaxRate$inboundSchema.optional(),
   ledger_account: z.nullable(LinkedLedgerAccount$inboundSchema).optional(),
+  purchase_order: z.nullable(LinkedPurchaseOrder$inboundSchema).optional(),
   tracking_categories: z.nullable(
     z.array(z.nullable(LinkedTrackingCategory$inboundSchema)),
   ).optional(),
@@ -311,8 +338,11 @@ export const BillLineItem$inboundSchema: z.ZodType<
     "discount_amount": "discountAmount",
     "location_id": "locationId",
     "department_id": "departmentId",
+    "subsidiary_id": "subsidiaryId",
+    "category_id": "categoryId",
     "tax_rate": "taxRate",
     "ledger_account": "ledgerAccount",
+    "purchase_order": "purchaseOrder",
     "tracking_categories": "trackingCategories",
     "row_version": "rowVersion",
     "updated_by": "updatedBy",
@@ -339,9 +369,12 @@ export type BillLineItem$Outbound = {
   discount_amount?: number | null | undefined;
   location_id?: string | null | undefined;
   department_id?: string | null | undefined;
+  subsidiary_id?: string | null | undefined;
+  category_id?: string | null | undefined;
   item?: LinkedInvoiceItem$Outbound | undefined;
   tax_rate?: LinkedTaxRate$Outbound | undefined;
   ledger_account?: LinkedLedgerAccount$Outbound | null | undefined;
+  purchase_order?: LinkedPurchaseOrder$Outbound | null | undefined;
   tracking_categories?:
     | Array<LinkedTrackingCategory$Outbound | null>
     | null
@@ -376,9 +409,12 @@ export const BillLineItem$outboundSchema: z.ZodType<
   discountAmount: z.nullable(z.number()).optional(),
   locationId: z.nullable(z.string()).optional(),
   departmentId: z.nullable(z.string()).optional(),
+  subsidiaryId: z.nullable(z.string()).optional(),
+  categoryId: z.nullable(z.string()).optional(),
   item: LinkedInvoiceItem$outboundSchema.optional(),
   taxRate: LinkedTaxRate$outboundSchema.optional(),
   ledgerAccount: z.nullable(LinkedLedgerAccount$outboundSchema).optional(),
+  purchaseOrder: z.nullable(LinkedPurchaseOrder$outboundSchema).optional(),
   trackingCategories: z.nullable(
     z.array(z.nullable(LinkedTrackingCategory$outboundSchema)),
   ).optional(),
@@ -401,8 +437,11 @@ export const BillLineItem$outboundSchema: z.ZodType<
     discountAmount: "discount_amount",
     locationId: "location_id",
     departmentId: "department_id",
+    subsidiaryId: "subsidiary_id",
+    categoryId: "category_id",
     taxRate: "tax_rate",
     ledgerAccount: "ledger_account",
+    purchaseOrder: "purchase_order",
     trackingCategories: "tracking_categories",
     rowVersion: "row_version",
     updatedBy: "updated_by",
@@ -459,9 +498,12 @@ export const BillLineItemInput$inboundSchema: z.ZodType<
   discount_amount: z.nullable(z.number()).optional(),
   location_id: z.nullable(z.string()).optional(),
   department_id: z.nullable(z.string()).optional(),
+  subsidiary_id: z.nullable(z.string()).optional(),
+  category_id: z.nullable(z.string()).optional(),
   item: LinkedInvoiceItem$inboundSchema.optional(),
   tax_rate: LinkedTaxRateInput$inboundSchema.optional(),
   ledger_account: z.nullable(LinkedLedgerAccountInput$inboundSchema).optional(),
+  purchase_order: z.nullable(LinkedPurchaseOrder$inboundSchema).optional(),
   tracking_categories: z.nullable(
     z.array(z.nullable(LinkedTrackingCategory$inboundSchema)),
   ).optional(),
@@ -480,8 +522,11 @@ export const BillLineItemInput$inboundSchema: z.ZodType<
     "discount_amount": "discountAmount",
     "location_id": "locationId",
     "department_id": "departmentId",
+    "subsidiary_id": "subsidiaryId",
+    "category_id": "categoryId",
     "tax_rate": "taxRate",
     "ledger_account": "ledgerAccount",
+    "purchase_order": "purchaseOrder",
     "tracking_categories": "trackingCategories",
     "row_version": "rowVersion",
   });
@@ -503,9 +548,12 @@ export type BillLineItemInput$Outbound = {
   discount_amount?: number | null | undefined;
   location_id?: string | null | undefined;
   department_id?: string | null | undefined;
+  subsidiary_id?: string | null | undefined;
+  category_id?: string | null | undefined;
   item?: LinkedInvoiceItem$Outbound | undefined;
   tax_rate?: LinkedTaxRateInput$Outbound | undefined;
   ledger_account?: LinkedLedgerAccountInput$Outbound | null | undefined;
+  purchase_order?: LinkedPurchaseOrder$Outbound | null | undefined;
   tracking_categories?:
     | Array<LinkedTrackingCategory$Outbound | null>
     | null
@@ -535,9 +583,12 @@ export const BillLineItemInput$outboundSchema: z.ZodType<
   discountAmount: z.nullable(z.number()).optional(),
   locationId: z.nullable(z.string()).optional(),
   departmentId: z.nullable(z.string()).optional(),
+  subsidiaryId: z.nullable(z.string()).optional(),
+  categoryId: z.nullable(z.string()).optional(),
   item: LinkedInvoiceItem$outboundSchema.optional(),
   taxRate: LinkedTaxRateInput$outboundSchema.optional(),
   ledgerAccount: z.nullable(LinkedLedgerAccountInput$outboundSchema).optional(),
+  purchaseOrder: z.nullable(LinkedPurchaseOrder$outboundSchema).optional(),
   trackingCategories: z.nullable(
     z.array(z.nullable(LinkedTrackingCategory$outboundSchema)),
   ).optional(),
@@ -556,8 +607,11 @@ export const BillLineItemInput$outboundSchema: z.ZodType<
     discountAmount: "discount_amount",
     locationId: "location_id",
     departmentId: "department_id",
+    subsidiaryId: "subsidiary_id",
+    categoryId: "category_id",
     taxRate: "tax_rate",
     ledgerAccount: "ledger_account",
+    purchaseOrder: "purchase_order",
     trackingCategories: "tracking_categories",
     rowVersion: "row_version",
   });

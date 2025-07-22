@@ -82,6 +82,8 @@ let value: GetPurchaseOrderResponse = {
         categoryId: "12345",
         locationId: "12345",
         departmentId: "12345",
+        subsidiaryId: "12345",
+        prepaid: true,
         item: {
           id: "12344",
           code: "120-C",
@@ -174,6 +176,7 @@ let value: GetPurchaseOrderResponse = {
     taxCode: "1234",
     channel: "email",
     memo: "Thank you for the partnership and have a great day!",
+    notes: "This is a test purchase order",
     trackingCategories: [
       {
         id: "123456",

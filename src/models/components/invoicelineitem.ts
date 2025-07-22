@@ -126,6 +126,14 @@ export type InvoiceLineItem = {
    * The ID of the department
    */
   departmentId?: string | null | undefined;
+  /**
+   * The ID of the subsidiary
+   */
+  subsidiaryId?: string | null | undefined;
+  /**
+   * Whether the line item is prepaid
+   */
+  prepaid?: boolean | null | undefined;
   item?: LinkedInvoiceItem | undefined;
   taxRate?: LinkedTaxRate | undefined;
   /**
@@ -215,6 +223,14 @@ export type InvoiceLineItemInput = {
    * The ID of the department
    */
   departmentId?: string | null | undefined;
+  /**
+   * The ID of the subsidiary
+   */
+  subsidiaryId?: string | null | undefined;
+  /**
+   * Whether the line item is prepaid
+   */
+  prepaid?: boolean | null | undefined;
   item?: LinkedInvoiceItem | undefined;
   taxRate?: LinkedTaxRateInput | undefined;
   /**
@@ -272,6 +288,8 @@ export const InvoiceLineItem$inboundSchema: z.ZodType<
   category_id: z.nullable(z.string()).optional(),
   location_id: z.nullable(z.string()).optional(),
   department_id: z.nullable(z.string()).optional(),
+  subsidiary_id: z.nullable(z.string()).optional(),
+  prepaid: z.nullable(z.boolean()).optional(),
   item: LinkedInvoiceItem$inboundSchema.optional(),
   tax_rate: LinkedTaxRate$inboundSchema.optional(),
   tracking_categories: z.nullable(
@@ -301,6 +319,7 @@ export const InvoiceLineItem$inboundSchema: z.ZodType<
     "category_id": "categoryId",
     "location_id": "locationId",
     "department_id": "departmentId",
+    "subsidiary_id": "subsidiaryId",
     "tax_rate": "taxRate",
     "tracking_categories": "trackingCategories",
     "ledger_account": "ledgerAccount",
@@ -331,6 +350,8 @@ export type InvoiceLineItem$Outbound = {
   category_id?: string | null | undefined;
   location_id?: string | null | undefined;
   department_id?: string | null | undefined;
+  subsidiary_id?: string | null | undefined;
+  prepaid?: boolean | null | undefined;
   item?: LinkedInvoiceItem$Outbound | undefined;
   tax_rate?: LinkedTaxRate$Outbound | undefined;
   tracking_categories?:
@@ -368,6 +389,8 @@ export const InvoiceLineItem$outboundSchema: z.ZodType<
   categoryId: z.nullable(z.string()).optional(),
   locationId: z.nullable(z.string()).optional(),
   departmentId: z.nullable(z.string()).optional(),
+  subsidiaryId: z.nullable(z.string()).optional(),
+  prepaid: z.nullable(z.boolean()).optional(),
   item: LinkedInvoiceItem$outboundSchema.optional(),
   taxRate: LinkedTaxRate$outboundSchema.optional(),
   trackingCategories: z.nullable(
@@ -393,6 +416,7 @@ export const InvoiceLineItem$outboundSchema: z.ZodType<
     categoryId: "category_id",
     locationId: "location_id",
     departmentId: "department_id",
+    subsidiaryId: "subsidiary_id",
     taxRate: "tax_rate",
     trackingCategories: "tracking_categories",
     ledgerAccount: "ledger_account",
@@ -456,6 +480,8 @@ export const InvoiceLineItemInput$inboundSchema: z.ZodType<
   category_id: z.nullable(z.string()).optional(),
   location_id: z.nullable(z.string()).optional(),
   department_id: z.nullable(z.string()).optional(),
+  subsidiary_id: z.nullable(z.string()).optional(),
+  prepaid: z.nullable(z.boolean()).optional(),
   item: LinkedInvoiceItem$inboundSchema.optional(),
   tax_rate: LinkedTaxRateInput$inboundSchema.optional(),
   tracking_categories: z.nullable(
@@ -477,6 +503,7 @@ export const InvoiceLineItemInput$inboundSchema: z.ZodType<
     "category_id": "categoryId",
     "location_id": "locationId",
     "department_id": "departmentId",
+    "subsidiary_id": "subsidiaryId",
     "tax_rate": "taxRate",
     "tracking_categories": "trackingCategories",
     "ledger_account": "ledgerAccount",
@@ -503,6 +530,8 @@ export type InvoiceLineItemInput$Outbound = {
   category_id?: string | null | undefined;
   location_id?: string | null | undefined;
   department_id?: string | null | undefined;
+  subsidiary_id?: string | null | undefined;
+  prepaid?: boolean | null | undefined;
   item?: LinkedInvoiceItem$Outbound | undefined;
   tax_rate?: LinkedTaxRateInput$Outbound | undefined;
   tracking_categories?:
@@ -536,6 +565,8 @@ export const InvoiceLineItemInput$outboundSchema: z.ZodType<
   categoryId: z.nullable(z.string()).optional(),
   locationId: z.nullable(z.string()).optional(),
   departmentId: z.nullable(z.string()).optional(),
+  subsidiaryId: z.nullable(z.string()).optional(),
+  prepaid: z.nullable(z.boolean()).optional(),
   item: LinkedInvoiceItem$outboundSchema.optional(),
   taxRate: LinkedTaxRateInput$outboundSchema.optional(),
   trackingCategories: z.nullable(
@@ -557,6 +588,7 @@ export const InvoiceLineItemInput$outboundSchema: z.ZodType<
     categoryId: "category_id",
     locationId: "location_id",
     departmentId: "department_id",
+    subsidiaryId: "subsidiary_id",
     taxRate: "tax_rate",
     trackingCategories: "tracking_categories",
     ledgerAccount: "ledger_account",

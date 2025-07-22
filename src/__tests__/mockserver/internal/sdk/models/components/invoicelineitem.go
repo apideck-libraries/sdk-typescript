@@ -78,9 +78,13 @@ type InvoiceLineItem struct {
 	// The ID of the location
 	LocationID *string `json:"location_id,omitempty"`
 	// The ID of the department
-	DepartmentID *string            `json:"department_id,omitempty"`
-	Item         *LinkedInvoiceItem `json:"item,omitempty"`
-	TaxRate      *LinkedTaxRate     `json:"tax_rate,omitempty"`
+	DepartmentID *string `json:"department_id,omitempty"`
+	// The ID of the subsidiary
+	SubsidiaryID *string `json:"subsidiary_id,omitempty"`
+	// Whether the line item is prepaid
+	Prepaid *bool              `json:"prepaid,omitempty"`
+	Item    *LinkedInvoiceItem `json:"item,omitempty"`
+	TaxRate *LinkedTaxRate     `json:"tax_rate,omitempty"`
 	// A list of linked tracking categories.
 	TrackingCategories []*LinkedTrackingCategory `json:"tracking_categories,omitempty"`
 	LedgerAccount      *LinkedLedgerAccount      `json:"ledger_account,omitempty"`
@@ -220,6 +224,20 @@ func (o *InvoiceLineItem) GetDepartmentID() *string {
 	return o.DepartmentID
 }
 
+func (o *InvoiceLineItem) GetSubsidiaryID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.SubsidiaryID
+}
+
+func (o *InvoiceLineItem) GetPrepaid() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Prepaid
+}
+
 func (o *InvoiceLineItem) GetItem() *LinkedInvoiceItem {
 	if o == nil {
 		return nil
@@ -320,9 +338,13 @@ type InvoiceLineItemInput struct {
 	// The ID of the location
 	LocationID *string `json:"location_id,omitempty"`
 	// The ID of the department
-	DepartmentID *string             `json:"department_id,omitempty"`
-	Item         *LinkedInvoiceItem  `json:"item,omitempty"`
-	TaxRate      *LinkedTaxRateInput `json:"tax_rate,omitempty"`
+	DepartmentID *string `json:"department_id,omitempty"`
+	// The ID of the subsidiary
+	SubsidiaryID *string `json:"subsidiary_id,omitempty"`
+	// Whether the line item is prepaid
+	Prepaid *bool               `json:"prepaid,omitempty"`
+	Item    *LinkedInvoiceItem  `json:"item,omitempty"`
+	TaxRate *LinkedTaxRateInput `json:"tax_rate,omitempty"`
 	// A list of linked tracking categories.
 	TrackingCategories []*LinkedTrackingCategory `json:"tracking_categories,omitempty"`
 	LedgerAccount      *LinkedLedgerAccountInput `json:"ledger_account,omitempty"`
@@ -441,6 +463,20 @@ func (o *InvoiceLineItemInput) GetDepartmentID() *string {
 		return nil
 	}
 	return o.DepartmentID
+}
+
+func (o *InvoiceLineItemInput) GetSubsidiaryID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.SubsidiaryID
+}
+
+func (o *InvoiceLineItemInput) GetPrepaid() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Prepaid
 }
 
 func (o *InvoiceLineItemInput) GetItem() *LinkedInvoiceItem {
