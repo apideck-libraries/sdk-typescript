@@ -18,6 +18,7 @@ List Tax Rates. Note: Not all connectors return the actual rate/percentage value
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="accounting.taxRatesAll" method="get" path="/accounting/tax-rates" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -125,6 +126,7 @@ Create Tax Rate
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="accounting.taxRatesAdd" method="post" path="/accounting/tax-rates" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -351,6 +353,7 @@ Get Tax Rate. Note: Not all connectors return the actual rate/percentage value. 
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="accounting.taxRatesOne" method="get" path="/accounting/tax-rates/{id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -436,6 +439,7 @@ Update Tax Rate
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="accounting.taxRatesUpdate" method="patch" path="/accounting/tax-rates/{id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -737,6 +741,7 @@ Delete Tax Rate
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="accounting.taxRatesDelete" method="delete" path="/accounting/tax-rates/{id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 

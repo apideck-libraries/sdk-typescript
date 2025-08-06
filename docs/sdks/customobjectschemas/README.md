@@ -17,6 +17,7 @@ List custom object schemas
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="crm.customObjectSchemasAll" method="get" path="/crm/custom-object-schemas" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -108,6 +109,7 @@ Create custom object schema
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="crm.customObjectSchemasAdd" method="post" path="/crm/custom-object-schemas" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -289,6 +291,7 @@ Get custom object schema
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="crm.customObjectSchemasOne" method="get" path="/crm/custom-object-schemas/{id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -372,6 +375,7 @@ Update custom object schema
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="crm.customObjectSchemasUpdate" method="patch" path="/crm/custom-object-schemas/{id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -757,6 +761,7 @@ Delete custom object schema
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="crm.customObjectSchemasDelete" method="delete" path="/crm/custom-object-schemas/{id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 

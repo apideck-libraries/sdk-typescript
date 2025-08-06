@@ -66,6 +66,8 @@ let value: Bill = {
         {
           id: "123456",
           name: "New York",
+          parentId: "123456",
+          parentName: "New York",
         },
       ],
       customer: {
@@ -122,6 +124,8 @@ let value: Bill = {
     {
       id: "123456",
       name: "New York",
+      parentId: "123456",
+      parentName: "New York",
     },
   ],
   updatedBy: "12345",

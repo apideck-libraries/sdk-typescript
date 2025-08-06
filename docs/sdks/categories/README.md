@@ -14,6 +14,7 @@ List Categories
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="accounting.categoriesAll" method="get" path="/accounting/categories" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -107,6 +108,7 @@ Get Category
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="accounting.categoriesOne" method="get" path="/accounting/categories/{id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 

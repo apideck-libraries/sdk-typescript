@@ -2,21 +2,21 @@
 
 package components
 
-type ConsumerInput struct {
+type CreateConsumerRequest struct {
 	// Unique consumer identifier. You can freely choose a consumer ID yourself. Most of the time, this is an ID of your internal data model that represents a user or account in your system (for example account:12345). If the consumer doesn't exist yet, Vault will upsert a consumer based on your ID.
 	ConsumerID string `json:"consumer_id"`
 	// The metadata of the consumer. This is used to display the consumer in the sidebar. This is optional, but recommended.
 	Metadata *ConsumerMetadata `json:"metadata,omitempty"`
 }
 
-func (o *ConsumerInput) GetConsumerID() string {
+func (o *CreateConsumerRequest) GetConsumerID() string {
 	if o == nil {
 		return ""
 	}
 	return o.ConsumerID
 }
 
-func (o *ConsumerInput) GetMetadata() *ConsumerMetadata {
+func (o *CreateConsumerRequest) GetMetadata() *ConsumerMetadata {
 	if o == nil {
 		return nil
 	}

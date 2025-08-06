@@ -17,6 +17,7 @@ List Bills
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="accounting.billsAll" method="get" path="/accounting/bills" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -124,6 +125,7 @@ Create Bill
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="accounting.billsAdd" method="post" path="/accounting/bills" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 import { RFCDate } from "@apideck/unify/types";
@@ -675,6 +677,7 @@ Get Bill
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="accounting.billsOne" method="get" path="/accounting/bills/{id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -760,6 +763,7 @@ Update Bill
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="accounting.billsUpdate" method="patch" path="/accounting/bills/{id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 import { RFCDate } from "@apideck/unify/types";
@@ -1247,6 +1251,7 @@ Delete Bill
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="accounting.billsDelete" method="delete" path="/accounting/bills/{id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 

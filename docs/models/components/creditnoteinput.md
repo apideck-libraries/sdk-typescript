@@ -52,12 +52,19 @@ let value: CreditNoteInput = {
       locationId: "12345",
       departmentId: "12345",
       subsidiaryId: "12345",
+      shippingId: "12345",
+      memo: "Some memo",
       prepaid: true,
       item: {
         id: "12344",
         code: "120-C",
         name: "Model Y",
       },
+      taxApplicableOn: "Domestic_Purchase_of_Goods_and_Services",
+      taxRecoverability: "Fully_Recoverable",
+      taxMethod: "Due_to_Supplier",
+      budget: "in_budget",
+      projectId: "12345",
       taxRate: {
         id: "123456",
         rate: 10,
@@ -66,6 +73,8 @@ let value: CreditNoteInput = {
         {
           id: "123456",
           name: "New York",
+          parentId: "123456",
+          parentName: "New York",
         },
       ],
       ledgerAccount: {
@@ -149,6 +158,8 @@ let value: CreditNoteInput = {
     {
       id: "123456",
       name: "New York",
+      parentId: "123456",
+      parentName: "New York",
     },
   ],
   customFields: [

@@ -53,6 +53,10 @@ export type EcommerceProductsAllRequest = {
    * The 'fields' parameter allows API users to specify the fields they want to include in the API response. If this parameter is not present, the API will return all available fields. If this parameter is present, only the fields specified in the comma-separated string will be included in the response. Nested properties can also be requested by using a dot notation. <br /><br />Example: `fields=name,email,addresses.city`<br /><br />In the example above, the response will only include the fields "name", "email" and "addresses.city". If any other fields are available, they will be excluded.
    */
   fields?: string | null | undefined;
+  /**
+   * Apply filters
+   */
+  filter?: components.EcommerceProductsFilter | undefined;
 };
 
 export type EcommerceProductsAllResponse = {
@@ -140,6 +144,7 @@ export const EcommerceProductsAllRequest$inboundSchema: z.ZodType<
   limit: z.number().int().default(20),
   pass_through: z.record(z.any()).optional(),
   fields: z.nullable(z.string()).optional(),
+  filter: components.EcommerceProductsFilter$inboundSchema.optional(),
 }).transform((v) => {
   return remap$(v, {
     "pass_through": "passThrough",
@@ -156,6 +161,7 @@ export type EcommerceProductsAllRequest$Outbound = {
   limit: number;
   pass_through?: { [k: string]: any } | undefined;
   fields?: string | null | undefined;
+  filter?: components.EcommerceProductsFilter$Outbound | undefined;
 };
 
 /** @internal */
@@ -172,6 +178,7 @@ export const EcommerceProductsAllRequest$outboundSchema: z.ZodType<
   limit: z.number().int().default(20),
   passThrough: z.record(z.any()).optional(),
   fields: z.nullable(z.string()).optional(),
+  filter: components.EcommerceProductsFilter$outboundSchema.optional(),
 }).transform((v) => {
   return remap$(v, {
     passThrough: "pass_through",

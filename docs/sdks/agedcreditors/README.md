@@ -13,6 +13,7 @@ Get Aged Creditors
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="accounting.agedCreditorsOne" method="get" path="/accounting/aged-creditors" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 

@@ -170,6 +170,7 @@ export type PurchaseOrder = {
    */
   taxInclusive?: boolean | null | undefined;
   lineItems?: Array<InvoiceLineItem> | undefined;
+  billingAddress?: Address | undefined;
   shippingAddress?: Address | undefined;
   ledgerAccount?: LinkedLedgerAccount | null | undefined;
   /**
@@ -194,6 +195,10 @@ export type PurchaseOrder = {
    */
   paymentMethod?: string | null | undefined;
   /**
+   * Terms of payment.
+   */
+  terms?: string | null | undefined;
+  /**
    * Type of amortization
    */
   amortizationType?: AmortizationType | null | undefined;
@@ -201,6 +206,18 @@ export type PurchaseOrder = {
    * Applicable tax id/code override if tax is not supplied on a line item basis.
    */
   taxCode?: string | null | undefined;
+  /**
+   * Method of tax calculation
+   */
+  taxMethod?: string | null | undefined;
+  /**
+   * Method of issuance of the purchase order
+   */
+  issuedMethod?: string | null | undefined;
+  /**
+   * Email address of the person who issued the purchase order
+   */
+  issuedEmail?: string | null | undefined;
   /**
    * The channel through which the transaction is processed.
    */
@@ -307,6 +324,7 @@ export type PurchaseOrderInput = {
    */
   taxInclusive?: boolean | null | undefined;
   lineItems?: Array<InvoiceLineItemInput> | undefined;
+  billingAddress?: Address | undefined;
   shippingAddress?: Address | undefined;
   ledgerAccount?: LinkedLedgerAccountInput | null | undefined;
   /**
@@ -331,6 +349,10 @@ export type PurchaseOrderInput = {
    */
   paymentMethod?: string | null | undefined;
   /**
+   * Terms of payment.
+   */
+  terms?: string | null | undefined;
+  /**
    * Type of amortization
    */
   amortizationType?: AmortizationType | null | undefined;
@@ -338,6 +360,18 @@ export type PurchaseOrderInput = {
    * Applicable tax id/code override if tax is not supplied on a line item basis.
    */
   taxCode?: string | null | undefined;
+  /**
+   * Method of tax calculation
+   */
+  taxMethod?: string | null | undefined;
+  /**
+   * Method of issuance of the purchase order
+   */
+  issuedMethod?: string | null | undefined;
+  /**
+   * Email address of the person who issued the purchase order
+   */
+  issuedEmail?: string | null | undefined;
   /**
    * The channel through which the transaction is processed.
    */
@@ -433,6 +467,7 @@ export const PurchaseOrder$inboundSchema: z.ZodType<
   total: z.nullable(z.number()).optional(),
   tax_inclusive: z.nullable(z.boolean()).optional(),
   line_items: z.array(InvoiceLineItem$inboundSchema).optional(),
+  billing_address: Address$inboundSchema.optional(),
   shipping_address: Address$inboundSchema.optional(),
   ledger_account: z.nullable(LinkedLedgerAccount$inboundSchema).optional(),
   template_id: z.nullable(z.string()).optional(),
@@ -441,8 +476,12 @@ export const PurchaseOrder$inboundSchema: z.ZodType<
   accounting_by_row: z.nullable(z.boolean()).optional(),
   due_date: z.nullable(z.string().transform(v => new RFCDate(v))).optional(),
   payment_method: z.nullable(z.string()).optional(),
+  terms: z.nullable(z.string()).optional(),
   amortization_type: z.nullable(AmortizationType$inboundSchema).optional(),
   tax_code: z.nullable(z.string()).optional(),
+  tax_method: z.nullable(z.string()).optional(),
+  issued_method: z.nullable(z.string()).optional(),
+  issued_email: z.nullable(z.string()).optional(),
   channel: z.nullable(z.string()).optional(),
   memo: z.nullable(z.string()).optional(),
   notes: z.nullable(z.string()).optional(),
@@ -475,6 +514,7 @@ export const PurchaseOrder$inboundSchema: z.ZodType<
     "total_tax": "totalTax",
     "tax_inclusive": "taxInclusive",
     "line_items": "lineItems",
+    "billing_address": "billingAddress",
     "shipping_address": "shippingAddress",
     "ledger_account": "ledgerAccount",
     "template_id": "templateId",
@@ -485,6 +525,9 @@ export const PurchaseOrder$inboundSchema: z.ZodType<
     "payment_method": "paymentMethod",
     "amortization_type": "amortizationType",
     "tax_code": "taxCode",
+    "tax_method": "taxMethod",
+    "issued_method": "issuedMethod",
+    "issued_email": "issuedEmail",
     "tracking_categories": "trackingCategories",
     "custom_mappings": "customMappings",
     "custom_fields": "customFields",
@@ -517,6 +560,7 @@ export type PurchaseOrder$Outbound = {
   total?: number | null | undefined;
   tax_inclusive?: boolean | null | undefined;
   line_items?: Array<InvoiceLineItem$Outbound> | undefined;
+  billing_address?: Address$Outbound | undefined;
   shipping_address?: Address$Outbound | undefined;
   ledger_account?: LinkedLedgerAccount$Outbound | null | undefined;
   template_id?: string | null | undefined;
@@ -525,8 +569,12 @@ export type PurchaseOrder$Outbound = {
   accounting_by_row?: boolean | null | undefined;
   due_date?: string | null | undefined;
   payment_method?: string | null | undefined;
+  terms?: string | null | undefined;
   amortization_type?: string | null | undefined;
   tax_code?: string | null | undefined;
+  tax_method?: string | null | undefined;
+  issued_method?: string | null | undefined;
+  issued_email?: string | null | undefined;
   channel?: string | null | undefined;
   memo?: string | null | undefined;
   notes?: string | null | undefined;
@@ -572,6 +620,7 @@ export const PurchaseOrder$outboundSchema: z.ZodType<
   total: z.nullable(z.number()).optional(),
   taxInclusive: z.nullable(z.boolean()).optional(),
   lineItems: z.array(InvoiceLineItem$outboundSchema).optional(),
+  billingAddress: Address$outboundSchema.optional(),
   shippingAddress: Address$outboundSchema.optional(),
   ledgerAccount: z.nullable(LinkedLedgerAccount$outboundSchema).optional(),
   templateId: z.nullable(z.string()).optional(),
@@ -581,8 +630,12 @@ export const PurchaseOrder$outboundSchema: z.ZodType<
   dueDate: z.nullable(z.instanceof(RFCDate).transform(v => v.toString()))
     .optional(),
   paymentMethod: z.nullable(z.string()).optional(),
+  terms: z.nullable(z.string()).optional(),
   amortizationType: z.nullable(AmortizationType$outboundSchema).optional(),
   taxCode: z.nullable(z.string()).optional(),
+  taxMethod: z.nullable(z.string()).optional(),
+  issuedMethod: z.nullable(z.string()).optional(),
+  issuedEmail: z.nullable(z.string()).optional(),
   channel: z.nullable(z.string()).optional(),
   memo: z.nullable(z.string()).optional(),
   notes: z.nullable(z.string()).optional(),
@@ -611,6 +664,7 @@ export const PurchaseOrder$outboundSchema: z.ZodType<
     totalTax: "total_tax",
     taxInclusive: "tax_inclusive",
     lineItems: "line_items",
+    billingAddress: "billing_address",
     shippingAddress: "shipping_address",
     ledgerAccount: "ledger_account",
     templateId: "template_id",
@@ -621,6 +675,9 @@ export const PurchaseOrder$outboundSchema: z.ZodType<
     paymentMethod: "payment_method",
     amortizationType: "amortization_type",
     taxCode: "tax_code",
+    taxMethod: "tax_method",
+    issuedMethod: "issued_method",
+    issuedEmail: "issued_email",
     trackingCategories: "tracking_categories",
     customMappings: "custom_mappings",
     customFields: "custom_fields",
@@ -684,6 +741,7 @@ export const PurchaseOrderInput$inboundSchema: z.ZodType<
   total: z.nullable(z.number()).optional(),
   tax_inclusive: z.nullable(z.boolean()).optional(),
   line_items: z.array(InvoiceLineItemInput$inboundSchema).optional(),
+  billing_address: Address$inboundSchema.optional(),
   shipping_address: Address$inboundSchema.optional(),
   ledger_account: z.nullable(LinkedLedgerAccountInput$inboundSchema).optional(),
   template_id: z.nullable(z.string()).optional(),
@@ -692,8 +750,12 @@ export const PurchaseOrderInput$inboundSchema: z.ZodType<
   accounting_by_row: z.nullable(z.boolean()).optional(),
   due_date: z.nullable(z.string().transform(v => new RFCDate(v))).optional(),
   payment_method: z.nullable(z.string()).optional(),
+  terms: z.nullable(z.string()).optional(),
   amortization_type: z.nullable(AmortizationType$inboundSchema).optional(),
   tax_code: z.nullable(z.string()).optional(),
+  tax_method: z.nullable(z.string()).optional(),
+  issued_method: z.nullable(z.string()).optional(),
+  issued_email: z.nullable(z.string()).optional(),
   channel: z.nullable(z.string()).optional(),
   memo: z.nullable(z.string()).optional(),
   notes: z.nullable(z.string()).optional(),
@@ -716,6 +778,7 @@ export const PurchaseOrderInput$inboundSchema: z.ZodType<
     "total_tax": "totalTax",
     "tax_inclusive": "taxInclusive",
     "line_items": "lineItems",
+    "billing_address": "billingAddress",
     "shipping_address": "shippingAddress",
     "ledger_account": "ledgerAccount",
     "template_id": "templateId",
@@ -726,6 +789,9 @@ export const PurchaseOrderInput$inboundSchema: z.ZodType<
     "payment_method": "paymentMethod",
     "amortization_type": "amortizationType",
     "tax_code": "taxCode",
+    "tax_method": "taxMethod",
+    "issued_method": "issuedMethod",
+    "issued_email": "issuedEmail",
     "tracking_categories": "trackingCategories",
     "custom_fields": "customFields",
     "row_version": "rowVersion",
@@ -751,6 +817,7 @@ export type PurchaseOrderInput$Outbound = {
   total?: number | null | undefined;
   tax_inclusive?: boolean | null | undefined;
   line_items?: Array<InvoiceLineItemInput$Outbound> | undefined;
+  billing_address?: Address$Outbound | undefined;
   shipping_address?: Address$Outbound | undefined;
   ledger_account?: LinkedLedgerAccountInput$Outbound | null | undefined;
   template_id?: string | null | undefined;
@@ -759,8 +826,12 @@ export type PurchaseOrderInput$Outbound = {
   accounting_by_row?: boolean | null | undefined;
   due_date?: string | null | undefined;
   payment_method?: string | null | undefined;
+  terms?: string | null | undefined;
   amortization_type?: string | null | undefined;
   tax_code?: string | null | undefined;
+  tax_method?: string | null | undefined;
+  issued_method?: string | null | undefined;
+  issued_email?: string | null | undefined;
   channel?: string | null | undefined;
   memo?: string | null | undefined;
   notes?: string | null | undefined;
@@ -799,6 +870,7 @@ export const PurchaseOrderInput$outboundSchema: z.ZodType<
   total: z.nullable(z.number()).optional(),
   taxInclusive: z.nullable(z.boolean()).optional(),
   lineItems: z.array(InvoiceLineItemInput$outboundSchema).optional(),
+  billingAddress: Address$outboundSchema.optional(),
   shippingAddress: Address$outboundSchema.optional(),
   ledgerAccount: z.nullable(LinkedLedgerAccountInput$outboundSchema).optional(),
   templateId: z.nullable(z.string()).optional(),
@@ -808,8 +880,12 @@ export const PurchaseOrderInput$outboundSchema: z.ZodType<
   dueDate: z.nullable(z.instanceof(RFCDate).transform(v => v.toString()))
     .optional(),
   paymentMethod: z.nullable(z.string()).optional(),
+  terms: z.nullable(z.string()).optional(),
   amortizationType: z.nullable(AmortizationType$outboundSchema).optional(),
   taxCode: z.nullable(z.string()).optional(),
+  taxMethod: z.nullable(z.string()).optional(),
+  issuedMethod: z.nullable(z.string()).optional(),
+  issuedEmail: z.nullable(z.string()).optional(),
   channel: z.nullable(z.string()).optional(),
   memo: z.nullable(z.string()).optional(),
   notes: z.nullable(z.string()).optional(),
@@ -832,6 +908,7 @@ export const PurchaseOrderInput$outboundSchema: z.ZodType<
     totalTax: "total_tax",
     taxInclusive: "tax_inclusive",
     lineItems: "line_items",
+    billingAddress: "billing_address",
     shippingAddress: "shipping_address",
     ledgerAccount: "ledger_account",
     templateId: "template_id",
@@ -842,6 +919,9 @@ export const PurchaseOrderInput$outboundSchema: z.ZodType<
     paymentMethod: "payment_method",
     amortizationType: "amortization_type",
     taxCode: "tax_code",
+    taxMethod: "tax_method",
+    issuedMethod: "issued_method",
+    issuedEmail: "issued_email",
     trackingCategories: "tracking_categories",
     customFields: "custom_fields",
     rowVersion: "row_version",

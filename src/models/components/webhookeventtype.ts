@@ -123,6 +123,9 @@ export const WebhookEventType = {
   EcommerceCustomerCreated: "ecommerce.customer.created",
   EcommerceCustomerUpdated: "ecommerce.customer.updated",
   EcommerceCustomerDeleted: "ecommerce.customer.deleted",
+  AccountingQuoteCreated: "accounting.quote.created",
+  AccountingQuoteUpdated: "accounting.quote.updated",
+  AccountingQuoteDeleted: "accounting.quote.deleted",
 } as const;
 export type WebhookEventType = ClosedEnum<typeof WebhookEventType>;
 

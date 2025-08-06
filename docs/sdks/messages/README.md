@@ -17,6 +17,7 @@ List Messages
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="sms.messagesAll" method="get" path="/sms/messages" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -104,6 +105,7 @@ Create Message
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="sms.messagesAdd" method="post" path="/sms/messages" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -295,6 +297,7 @@ Get Message
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="sms.messagesOne" method="get" path="/sms/messages/{id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -380,6 +383,7 @@ Update Message
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="sms.messagesUpdate" method="patch" path="/sms/messages/{id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -541,6 +545,7 @@ Delete Message
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="sms.messagesDelete" method="delete" path="/sms/messages/{id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 

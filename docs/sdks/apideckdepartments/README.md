@@ -17,6 +17,7 @@ List Departments
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="hris.departmentsAll" method="get" path="/hris/departments" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -110,6 +111,7 @@ Create Department
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="hris.departmentsAdd" method="post" path="/hris/departments" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -283,6 +285,7 @@ Get Department
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="hris.departmentsOne" method="get" path="/hris/departments/{id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -368,6 +371,7 @@ Update Department
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="hris.departmentsUpdate" method="patch" path="/hris/departments/{id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -491,6 +495,7 @@ Delete Department
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="hris.departmentsDelete" method="delete" path="/hris/departments/{id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 

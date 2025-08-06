@@ -13,6 +13,7 @@ type ConnectorStatus string
 const (
 	ConnectorStatusLive        ConnectorStatus = "live"
 	ConnectorStatusBeta        ConnectorStatus = "beta"
+	ConnectorStatusEarlyAccess ConnectorStatus = "early-access"
 	ConnectorStatusDevelopment ConnectorStatus = "development"
 	ConnectorStatusConsidering ConnectorStatus = "considering"
 )
@@ -29,6 +30,8 @@ func (e *ConnectorStatus) UnmarshalJSON(data []byte) error {
 	case "live":
 		fallthrough
 	case "beta":
+		fallthrough
+	case "early-access":
 		fallthrough
 	case "development":
 		fallthrough

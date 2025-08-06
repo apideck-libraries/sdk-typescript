@@ -21,7 +21,7 @@ export type VaultConsumersAddRequest = {
    * The ID of your Unify application
    */
   appId?: string | undefined;
-  consumer: components.ConsumerInput;
+  createConsumerRequest: components.CreateConsumerRequest;
 };
 
 export type VaultConsumersAddResponse = {
@@ -97,17 +97,17 @@ export const VaultConsumersAddRequest$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   appId: z.string().optional(),
-  Consumer: components.ConsumerInput$inboundSchema,
+  CreateConsumerRequest: components.CreateConsumerRequest$inboundSchema,
 }).transform((v) => {
   return remap$(v, {
-    "Consumer": "consumer",
+    "CreateConsumerRequest": "createConsumerRequest",
   });
 });
 
 /** @internal */
 export type VaultConsumersAddRequest$Outbound = {
   appId?: string | undefined;
-  Consumer: components.ConsumerInput$Outbound;
+  CreateConsumerRequest: components.CreateConsumerRequest$Outbound;
 };
 
 /** @internal */
@@ -117,10 +117,10 @@ export const VaultConsumersAddRequest$outboundSchema: z.ZodType<
   VaultConsumersAddRequest
 > = z.object({
   appId: z.string().optional(),
-  consumer: components.ConsumerInput$outboundSchema,
+  createConsumerRequest: components.CreateConsumerRequest$outboundSchema,
 }).transform((v) => {
   return remap$(v, {
-    consumer: "Consumer",
+    createConsumerRequest: "CreateConsumerRequest",
   });
 });
 

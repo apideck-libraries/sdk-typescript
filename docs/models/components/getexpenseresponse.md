@@ -41,6 +41,8 @@ let value: GetExpenseResponse = {
           {
             id: "123456",
             name: "New York",
+            parentId: "123456",
+            parentName: "New York",
           },
         ],
         accountId: "123456",

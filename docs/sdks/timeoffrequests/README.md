@@ -17,6 +17,7 @@ List Time Off Requests
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="hris.timeOffRequestsAll" method="get" path="/hris/time-off-requests" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -126,6 +127,7 @@ Create Time Off Request
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="hris.timeOffRequestsAdd" method="post" path="/hris/time-off-requests" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -275,6 +277,7 @@ Get Time Off Request
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="hris.timeOffRequestsOne" method="get" path="/hris/time-off-requests/employees/{employee_id}/time-off-requests/{id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -362,6 +365,7 @@ Update Time Off Request
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="hris.timeOffRequestsUpdate" method="patch" path="/hris/time-off-requests/employees/{employee_id}/time-off-requests/{id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -547,6 +551,7 @@ Delete Time Off Request
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="hris.timeOffRequestsDelete" method="delete" path="/hris/time-off-requests/employees/{employee_id}/time-off-requests/{id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 

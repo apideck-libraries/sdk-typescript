@@ -17,6 +17,7 @@ List DriveGroups
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="fileStorage.driveGroupsAll" method="get" path="/file-storage/drive-groups" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -116,6 +117,7 @@ Create DriveGroup
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="fileStorage.driveGroupsAdd" method="post" path="/file-storage/drive-groups" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -295,6 +297,7 @@ Get DriveGroup
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="fileStorage.driveGroupsOne" method="get" path="/file-storage/drive-groups/{id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -380,6 +383,7 @@ Update DriveGroup
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="fileStorage.driveGroupsUpdate" method="patch" path="/file-storage/drive-groups/{id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -603,6 +607,7 @@ Delete DriveGroup
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="fileStorage.driveGroupsDelete" method="delete" path="/file-storage/drive-groups/{id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 

@@ -17,6 +17,7 @@ List Attachments
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="accounting.attachmentsAll" method="get" path="/accounting/attachments/{reference_type}/{reference_id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -108,6 +109,7 @@ Upload attachment
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="accounting.attachmentsUpload" method="post" path="/accounting/attachments/{reference_type}/{reference_id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 import { openAsBlob } from "node:fs";
@@ -200,6 +202,7 @@ Get Attachment
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="accounting.attachmentsOne" method="get" path="/accounting/attachments/{reference_type}/{reference_id}/{id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -289,6 +292,7 @@ Delete Attachment
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="accounting.attachmentsDelete" method="delete" path="/accounting/attachments/{reference_type}/{reference_id}/{id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -376,6 +380,7 @@ Download Attachment
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="accounting.attachmentsDownload" method="get" path="/accounting/attachments/{reference_type}/{reference_id}/{id}/download" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 

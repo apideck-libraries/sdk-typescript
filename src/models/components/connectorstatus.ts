@@ -11,6 +11,7 @@ import { ClosedEnum } from "../../types/enums.js";
 export const ConnectorStatus = {
   Live: "live",
   Beta: "beta",
+  EarlyAccess: "early-access",
   Development: "development",
   Considering: "considering",
 } as const;

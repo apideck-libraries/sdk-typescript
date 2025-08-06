@@ -9,6 +9,7 @@ export const AttachmentReferenceType = {
   Invoice: "invoice",
   Bill: "bill",
   Expense: "expense",
+  Quote: "quote",
 } as const;
 export type AttachmentReferenceType = ClosedEnum<
   typeof AttachmentReferenceType

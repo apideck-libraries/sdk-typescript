@@ -17,6 +17,7 @@ List custom objects
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="crm.customObjectsAll" method="get" path="/crm/custom-objects/{object_id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -112,6 +113,7 @@ Create custom object
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="crm.customObjectsAdd" method="post" path="/crm/custom-objects/{object_id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -311,6 +313,7 @@ Get custom object
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="crm.customObjectsOne" method="get" path="/crm/custom-objects/{object_id}/{id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -396,6 +399,7 @@ Update custom object
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="crm.customObjectsUpdate" method="patch" path="/crm/custom-objects/{object_id}/{id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -553,6 +557,7 @@ Delete custom object
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="crm.customObjectsDelete" method="delete" path="/crm/custom-objects/{object_id}/{id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 

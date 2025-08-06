@@ -17,6 +17,7 @@ List Customers
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="accounting.customersAll" method="get" path="/accounting/customers" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -138,6 +139,7 @@ Create Customer
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="accounting.customersAdd" method="post" path="/accounting/customers" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -551,6 +553,7 @@ Get Customer
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="accounting.customersOne" method="get" path="/accounting/customers/{id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -636,6 +639,7 @@ Update Customer
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="accounting.customersUpdate" method="patch" path="/accounting/customers/{id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -1085,6 +1089,7 @@ Delete Customer
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="accounting.customersDelete" method="delete" path="/accounting/customers/{id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 

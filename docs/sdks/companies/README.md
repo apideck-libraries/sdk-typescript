@@ -17,6 +17,7 @@ List companies
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="crm.companiesAll" method="get" path="/crm/companies" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -124,6 +125,7 @@ Create company
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="crm.companiesAdd" method="post" path="/crm/companies" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 import { RFCDate } from "@apideck/unify/types";
@@ -591,6 +593,7 @@ Get company
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="crm.companiesOne" method="get" path="/crm/companies/{id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -676,6 +679,7 @@ Update company
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="crm.companiesUpdate" method="patch" path="/crm/companies/{id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 import { RFCDate } from "@apideck/unify/types";
@@ -1221,6 +1225,7 @@ Delete company
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="crm.companiesDelete" method="delete" path="/crm/companies/{id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 

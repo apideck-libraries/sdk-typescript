@@ -14,6 +14,7 @@ List Collections
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="issueTracking.collectionsAll" method="get" path="/issue-tracking/collections" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -115,6 +116,7 @@ Get Collection
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="issueTracking.collectionsOne" method="get" path="/issue-tracking/collections/{collection_id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 

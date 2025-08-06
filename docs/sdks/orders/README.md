@@ -14,6 +14,7 @@ List Orders
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="ecommerce.ordersAll" method="get" path="/ecommerce/orders" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -127,6 +128,7 @@ Get Order
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="ecommerce.ordersOne" method="get" path="/ecommerce/orders/{id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 

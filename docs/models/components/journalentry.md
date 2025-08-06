@@ -30,6 +30,8 @@ let value: JournalEntry = {
         {
           id: "123456",
           name: "New York",
+          parentId: "123456",
+          parentName: "New York",
         },
       ],
       ledgerAccount: {

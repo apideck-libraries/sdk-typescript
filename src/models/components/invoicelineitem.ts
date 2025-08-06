@@ -67,6 +67,19 @@ export const InvoiceLineItemType = {
  */
 export type InvoiceLineItemType = ClosedEnum<typeof InvoiceLineItemType>;
 
+/**
+ * Budget of the line item
+ */
+export const Budget = {
+  OutOfBudget: "out_of_budget",
+  InBudget: "in_budget",
+  Other: "other",
+} as const;
+/**
+ * Budget of the line item
+ */
+export type Budget = ClosedEnum<typeof Budget>;
+
 export type InvoiceLineItem = {
   /**
    * A unique identifier for an object.
@@ -131,10 +144,38 @@ export type InvoiceLineItem = {
    */
   subsidiaryId?: string | null | undefined;
   /**
+   * ID of the shipping of the line item
+   */
+  shippingId?: string | null | undefined;
+  /**
+   * Memo
+   */
+  memo?: string | null | undefined;
+  /**
    * Whether the line item is prepaid
    */
   prepaid?: boolean | null | undefined;
   item?: LinkedInvoiceItem | undefined;
+  /**
+   * Tax applicable on
+   */
+  taxApplicableOn?: string | null | undefined;
+  /**
+   * Tax recoverability
+   */
+  taxRecoverability?: string | null | undefined;
+  /**
+   * Method of tax calculation
+   */
+  taxMethod?: string | null | undefined;
+  /**
+   * Budget of the line item
+   */
+  budget?: Budget | null | undefined;
+  /**
+   * ID of the project of the line item
+   */
+  projectId?: string | null | undefined;
   taxRate?: LinkedTaxRate | undefined;
   /**
    * A list of linked tracking categories.
@@ -228,10 +269,38 @@ export type InvoiceLineItemInput = {
    */
   subsidiaryId?: string | null | undefined;
   /**
+   * ID of the shipping of the line item
+   */
+  shippingId?: string | null | undefined;
+  /**
+   * Memo
+   */
+  memo?: string | null | undefined;
+  /**
    * Whether the line item is prepaid
    */
   prepaid?: boolean | null | undefined;
   item?: LinkedInvoiceItem | undefined;
+  /**
+   * Tax applicable on
+   */
+  taxApplicableOn?: string | null | undefined;
+  /**
+   * Tax recoverability
+   */
+  taxRecoverability?: string | null | undefined;
+  /**
+   * Method of tax calculation
+   */
+  taxMethod?: string | null | undefined;
+  /**
+   * Budget of the line item
+   */
+  budget?: Budget | null | undefined;
+  /**
+   * ID of the project of the line item
+   */
+  projectId?: string | null | undefined;
   taxRate?: LinkedTaxRateInput | undefined;
   /**
    * A list of linked tracking categories.
@@ -267,6 +336,25 @@ export namespace InvoiceLineItemType$ {
 }
 
 /** @internal */
+export const Budget$inboundSchema: z.ZodNativeEnum<typeof Budget> = z
+  .nativeEnum(Budget);
+
+/** @internal */
+export const Budget$outboundSchema: z.ZodNativeEnum<typeof Budget> =
+  Budget$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace Budget$ {
+  /** @deprecated use `Budget$inboundSchema` instead. */
+  export const inboundSchema = Budget$inboundSchema;
+  /** @deprecated use `Budget$outboundSchema` instead. */
+  export const outboundSchema = Budget$outboundSchema;
+}
+
+/** @internal */
 export const InvoiceLineItem$inboundSchema: z.ZodType<
   InvoiceLineItem,
   z.ZodTypeDef,
@@ -289,8 +377,15 @@ export const InvoiceLineItem$inboundSchema: z.ZodType<
   location_id: z.nullable(z.string()).optional(),
   department_id: z.nullable(z.string()).optional(),
   subsidiary_id: z.nullable(z.string()).optional(),
+  shipping_id: z.nullable(z.string()).optional(),
+  memo: z.nullable(z.string()).optional(),
   prepaid: z.nullable(z.boolean()).optional(),
   item: LinkedInvoiceItem$inboundSchema.optional(),
+  tax_applicable_on: z.nullable(z.string()).optional(),
+  tax_recoverability: z.nullable(z.string()).optional(),
+  tax_method: z.nullable(z.string()).optional(),
+  budget: z.nullable(Budget$inboundSchema).optional(),
+  project_id: z.nullable(z.string()).optional(),
   tax_rate: LinkedTaxRate$inboundSchema.optional(),
   tracking_categories: z.nullable(
     z.array(z.nullable(LinkedTrackingCategory$inboundSchema)),
@@ -320,6 +415,11 @@ export const InvoiceLineItem$inboundSchema: z.ZodType<
     "location_id": "locationId",
     "department_id": "departmentId",
     "subsidiary_id": "subsidiaryId",
+    "shipping_id": "shippingId",
+    "tax_applicable_on": "taxApplicableOn",
+    "tax_recoverability": "taxRecoverability",
+    "tax_method": "taxMethod",
+    "project_id": "projectId",
     "tax_rate": "taxRate",
     "tracking_categories": "trackingCategories",
     "ledger_account": "ledgerAccount",
@@ -351,8 +451,15 @@ export type InvoiceLineItem$Outbound = {
   location_id?: string | null | undefined;
   department_id?: string | null | undefined;
   subsidiary_id?: string | null | undefined;
+  shipping_id?: string | null | undefined;
+  memo?: string | null | undefined;
   prepaid?: boolean | null | undefined;
   item?: LinkedInvoiceItem$Outbound | undefined;
+  tax_applicable_on?: string | null | undefined;
+  tax_recoverability?: string | null | undefined;
+  tax_method?: string | null | undefined;
+  budget?: string | null | undefined;
+  project_id?: string | null | undefined;
   tax_rate?: LinkedTaxRate$Outbound | undefined;
   tracking_categories?:
     | Array<LinkedTrackingCategory$Outbound | null>
@@ -390,8 +497,15 @@ export const InvoiceLineItem$outboundSchema: z.ZodType<
   locationId: z.nullable(z.string()).optional(),
   departmentId: z.nullable(z.string()).optional(),
   subsidiaryId: z.nullable(z.string()).optional(),
+  shippingId: z.nullable(z.string()).optional(),
+  memo: z.nullable(z.string()).optional(),
   prepaid: z.nullable(z.boolean()).optional(),
   item: LinkedInvoiceItem$outboundSchema.optional(),
+  taxApplicableOn: z.nullable(z.string()).optional(),
+  taxRecoverability: z.nullable(z.string()).optional(),
+  taxMethod: z.nullable(z.string()).optional(),
+  budget: z.nullable(Budget$outboundSchema).optional(),
+  projectId: z.nullable(z.string()).optional(),
   taxRate: LinkedTaxRate$outboundSchema.optional(),
   trackingCategories: z.nullable(
     z.array(z.nullable(LinkedTrackingCategory$outboundSchema)),
@@ -417,6 +531,11 @@ export const InvoiceLineItem$outboundSchema: z.ZodType<
     locationId: "location_id",
     departmentId: "department_id",
     subsidiaryId: "subsidiary_id",
+    shippingId: "shipping_id",
+    taxApplicableOn: "tax_applicable_on",
+    taxRecoverability: "tax_recoverability",
+    taxMethod: "tax_method",
+    projectId: "project_id",
     taxRate: "tax_rate",
     trackingCategories: "tracking_categories",
     ledgerAccount: "ledger_account",
@@ -481,8 +600,15 @@ export const InvoiceLineItemInput$inboundSchema: z.ZodType<
   location_id: z.nullable(z.string()).optional(),
   department_id: z.nullable(z.string()).optional(),
   subsidiary_id: z.nullable(z.string()).optional(),
+  shipping_id: z.nullable(z.string()).optional(),
+  memo: z.nullable(z.string()).optional(),
   prepaid: z.nullable(z.boolean()).optional(),
   item: LinkedInvoiceItem$inboundSchema.optional(),
+  tax_applicable_on: z.nullable(z.string()).optional(),
+  tax_recoverability: z.nullable(z.string()).optional(),
+  tax_method: z.nullable(z.string()).optional(),
+  budget: z.nullable(Budget$inboundSchema).optional(),
+  project_id: z.nullable(z.string()).optional(),
   tax_rate: LinkedTaxRateInput$inboundSchema.optional(),
   tracking_categories: z.nullable(
     z.array(z.nullable(LinkedTrackingCategory$inboundSchema)),
@@ -504,6 +630,11 @@ export const InvoiceLineItemInput$inboundSchema: z.ZodType<
     "location_id": "locationId",
     "department_id": "departmentId",
     "subsidiary_id": "subsidiaryId",
+    "shipping_id": "shippingId",
+    "tax_applicable_on": "taxApplicableOn",
+    "tax_recoverability": "taxRecoverability",
+    "tax_method": "taxMethod",
+    "project_id": "projectId",
     "tax_rate": "taxRate",
     "tracking_categories": "trackingCategories",
     "ledger_account": "ledgerAccount",
@@ -531,8 +662,15 @@ export type InvoiceLineItemInput$Outbound = {
   location_id?: string | null | undefined;
   department_id?: string | null | undefined;
   subsidiary_id?: string | null | undefined;
+  shipping_id?: string | null | undefined;
+  memo?: string | null | undefined;
   prepaid?: boolean | null | undefined;
   item?: LinkedInvoiceItem$Outbound | undefined;
+  tax_applicable_on?: string | null | undefined;
+  tax_recoverability?: string | null | undefined;
+  tax_method?: string | null | undefined;
+  budget?: string | null | undefined;
+  project_id?: string | null | undefined;
   tax_rate?: LinkedTaxRateInput$Outbound | undefined;
   tracking_categories?:
     | Array<LinkedTrackingCategory$Outbound | null>
@@ -566,8 +704,15 @@ export const InvoiceLineItemInput$outboundSchema: z.ZodType<
   locationId: z.nullable(z.string()).optional(),
   departmentId: z.nullable(z.string()).optional(),
   subsidiaryId: z.nullable(z.string()).optional(),
+  shippingId: z.nullable(z.string()).optional(),
+  memo: z.nullable(z.string()).optional(),
   prepaid: z.nullable(z.boolean()).optional(),
   item: LinkedInvoiceItem$outboundSchema.optional(),
+  taxApplicableOn: z.nullable(z.string()).optional(),
+  taxRecoverability: z.nullable(z.string()).optional(),
+  taxMethod: z.nullable(z.string()).optional(),
+  budget: z.nullable(Budget$outboundSchema).optional(),
+  projectId: z.nullable(z.string()).optional(),
   taxRate: LinkedTaxRateInput$outboundSchema.optional(),
   trackingCategories: z.nullable(
     z.array(z.nullable(LinkedTrackingCategory$outboundSchema)),
@@ -589,6 +734,11 @@ export const InvoiceLineItemInput$outboundSchema: z.ZodType<
     locationId: "location_id",
     departmentId: "department_id",
     subsidiaryId: "subsidiary_id",
+    shippingId: "shipping_id",
+    taxApplicableOn: "tax_applicable_on",
+    taxRecoverability: "tax_recoverability",
+    taxMethod: "tax_method",
+    projectId: "project_id",
     taxRate: "tax_rate",
     trackingCategories: "tracking_categories",
     ledgerAccount: "ledger_account",

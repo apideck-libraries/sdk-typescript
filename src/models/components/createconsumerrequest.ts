@@ -14,7 +14,7 @@ import {
   ConsumerMetadata$outboundSchema,
 } from "./consumermetadata.js";
 
-export type ConsumerInput = {
+export type CreateConsumerRequest = {
   /**
    * Unique consumer identifier. You can freely choose a consumer ID yourself. Most of the time, this is an ID of your internal data model that represents a user or account in your system (for example account:12345). If the consumer doesn't exist yet, Vault will upsert a consumer based on your ID.
    */
@@ -26,8 +26,8 @@ export type ConsumerInput = {
 };
 
 /** @internal */
-export const ConsumerInput$inboundSchema: z.ZodType<
-  ConsumerInput,
+export const CreateConsumerRequest$inboundSchema: z.ZodType<
+  CreateConsumerRequest,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -40,16 +40,16 @@ export const ConsumerInput$inboundSchema: z.ZodType<
 });
 
 /** @internal */
-export type ConsumerInput$Outbound = {
+export type CreateConsumerRequest$Outbound = {
   consumer_id: string;
   metadata?: ConsumerMetadata$Outbound | undefined;
 };
 
 /** @internal */
-export const ConsumerInput$outboundSchema: z.ZodType<
-  ConsumerInput$Outbound,
+export const CreateConsumerRequest$outboundSchema: z.ZodType<
+  CreateConsumerRequest$Outbound,
   z.ZodTypeDef,
-  ConsumerInput
+  CreateConsumerRequest
 > = z.object({
   consumerId: z.string(),
   metadata: ConsumerMetadata$outboundSchema.optional(),
@@ -63,25 +63,29 @@ export const ConsumerInput$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace ConsumerInput$ {
-  /** @deprecated use `ConsumerInput$inboundSchema` instead. */
-  export const inboundSchema = ConsumerInput$inboundSchema;
-  /** @deprecated use `ConsumerInput$outboundSchema` instead. */
-  export const outboundSchema = ConsumerInput$outboundSchema;
-  /** @deprecated use `ConsumerInput$Outbound` instead. */
-  export type Outbound = ConsumerInput$Outbound;
+export namespace CreateConsumerRequest$ {
+  /** @deprecated use `CreateConsumerRequest$inboundSchema` instead. */
+  export const inboundSchema = CreateConsumerRequest$inboundSchema;
+  /** @deprecated use `CreateConsumerRequest$outboundSchema` instead. */
+  export const outboundSchema = CreateConsumerRequest$outboundSchema;
+  /** @deprecated use `CreateConsumerRequest$Outbound` instead. */
+  export type Outbound = CreateConsumerRequest$Outbound;
 }
 
-export function consumerInputToJSON(consumerInput: ConsumerInput): string {
-  return JSON.stringify(ConsumerInput$outboundSchema.parse(consumerInput));
+export function createConsumerRequestToJSON(
+  createConsumerRequest: CreateConsumerRequest,
+): string {
+  return JSON.stringify(
+    CreateConsumerRequest$outboundSchema.parse(createConsumerRequest),
+  );
 }
 
-export function consumerInputFromJSON(
+export function createConsumerRequestFromJSON(
   jsonString: string,
-): SafeParseResult<ConsumerInput, SDKValidationError> {
+): SafeParseResult<CreateConsumerRequest, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => ConsumerInput$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ConsumerInput' from JSON`,
+    (x) => CreateConsumerRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CreateConsumerRequest' from JSON`,
   );
 }

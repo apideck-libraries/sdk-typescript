@@ -17,6 +17,7 @@ Create a consumer
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="vault.consumersAdd" method="post" path="/vault/consumers" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -27,7 +28,7 @@ const apideck = new Apideck({
 
 async function run() {
   const result = await apideck.vault.consumers.create({
-    consumer: {
+    createConsumerRequest: {
       consumerId: "test_consumer_id",
       metadata: {
         accountName: "SpaceX",
@@ -61,7 +62,7 @@ const apideck = new ApideckCore({
 
 async function run() {
   const res = await vaultConsumersCreate(apideck, {
-    consumer: {
+    createConsumerRequest: {
       consumerId: "test_consumer_id",
       metadata: {
         accountName: "SpaceX",
@@ -113,6 +114,7 @@ This endpoint includes all application consumers, along with an aggregated count
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="vault.consumersAll" method="get" path="/vault/consumers" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -193,6 +195,7 @@ Consumer detail including their aggregated counts with the connections they have
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="vault.consumersOne" method="get" path="/vault/consumers/{consumer_id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -272,6 +275,7 @@ Update consumer metadata such as name and email.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="vault.consumersUpdate" method="patch" path="/vault/consumers/{consumer_id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -367,6 +371,7 @@ Delete consumer and all their connections, including credentials.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="vault.consumersDelete" method="delete" path="/vault/consumers/{consumer_id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 

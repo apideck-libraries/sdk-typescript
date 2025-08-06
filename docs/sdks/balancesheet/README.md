@@ -13,6 +13,7 @@ Get BalanceSheet
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="accounting.balanceSheetOne" method="get" path="/accounting/balance-sheet" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 

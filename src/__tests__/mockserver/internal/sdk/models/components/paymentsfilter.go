@@ -10,6 +10,7 @@ import (
 type PaymentsFilter struct {
 	UpdatedSince *time.Time `queryParam:"name=updated_since"`
 	InvoiceID    *string    `queryParam:"name=invoice_id"`
+	SupplierID   *string    `queryParam:"name=supplier_id"`
 }
 
 func (p PaymentsFilter) MarshalJSON() ([]byte, error) {
@@ -35,4 +36,11 @@ func (o *PaymentsFilter) GetInvoiceID() *string {
 		return nil
 	}
 	return o.InvoiceID
+}
+
+func (o *PaymentsFilter) GetSupplierID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.SupplierID
 }

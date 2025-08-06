@@ -17,6 +17,7 @@ List Bank Feed Accounts
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="accounting.bankFeedAccountsAll" method="get" path="/accounting/bank-feed-accounts" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -110,6 +111,7 @@ Create Bank Feed Account
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="accounting.bankFeedAccountsAdd" method="post" path="/accounting/bank-feed-accounts" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -251,6 +253,7 @@ Get Bank Feed Account
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="accounting.bankFeedAccountsOne" method="get" path="/accounting/bank-feed-accounts/{id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -336,6 +339,7 @@ Update Bank Feed Account
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="accounting.bankFeedAccountsUpdate" method="patch" path="/accounting/bank-feed-accounts/{id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -467,6 +471,7 @@ Delete Bank Feed Account
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="accounting.bankFeedAccountsDelete" method="delete" path="/accounting/bank-feed-accounts/{id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 

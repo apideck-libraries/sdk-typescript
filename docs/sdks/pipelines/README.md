@@ -17,6 +17,7 @@ List pipelines
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="crm.pipelinesAll" method="get" path="/crm/pipelines" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -110,6 +111,7 @@ Create pipeline
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="crm.pipelinesAdd" method="post" path="/crm/pipelines" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -293,6 +295,7 @@ Get pipeline
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="crm.pipelinesOne" method="get" path="/crm/pipelines/{id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -378,6 +381,7 @@ Update pipeline
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="crm.pipelinesUpdate" method="patch" path="/crm/pipelines/{id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -627,6 +631,7 @@ Delete pipeline
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="crm.pipelinesDelete" method="delete" path="/crm/pipelines/{id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 

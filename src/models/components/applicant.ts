@@ -138,6 +138,11 @@ export type Applicant = {
   recruiterId?: string | undefined;
   coordinatorId?: string | undefined;
   applicationIds?: Array<string> | null | undefined;
+  /**
+   * Deprecated: Use application_ids instead. Array of application IDs associated with the applicant.
+   *
+   * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+   */
   applications?: Array<string> | null | undefined;
   followers?: Array<string> | null | undefined;
   sources?: Array<string> | null | undefined;
@@ -238,6 +243,11 @@ export type ApplicantInput = {
   recruiterId?: string | undefined;
   coordinatorId?: string | undefined;
   applicationIds?: Array<string> | null | undefined;
+  /**
+   * Deprecated: Use application_ids instead. Array of application IDs associated with the applicant.
+   *
+   * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+   */
   applications?: Array<string> | null | undefined;
   followers?: Array<string> | null | undefined;
   sources?: Array<string> | null | undefined;

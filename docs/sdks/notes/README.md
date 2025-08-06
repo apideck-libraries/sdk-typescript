@@ -17,6 +17,7 @@ List notes
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="crm.notesAll" method="get" path="/crm/notes" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -110,6 +111,7 @@ Create note
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="crm.notesAdd" method="post" path="/crm/notes" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -343,6 +345,7 @@ Get note
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="crm.notesOne" method="get" path="/crm/notes/{id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -428,6 +431,7 @@ Update note
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="crm.notesUpdate" method="patch" path="/crm/notes/{id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -663,6 +667,7 @@ Delete note
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="crm.notesDelete" method="delete" path="/crm/notes/{id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 

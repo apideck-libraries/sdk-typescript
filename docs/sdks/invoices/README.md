@@ -17,6 +17,7 @@ List Invoices
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="accounting.invoicesAll" method="get" path="/accounting/invoices" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -128,6 +129,7 @@ Create Invoice
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="accounting.invoicesAdd" method="post" path="/accounting/invoices" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 import { RFCDate } from "@apideck/unify/types";
@@ -635,6 +637,7 @@ Get Invoice
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="accounting.invoicesOne" method="get" path="/accounting/invoices/{id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -720,6 +723,7 @@ Update Invoice
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="accounting.invoicesUpdate" method="patch" path="/accounting/invoices/{id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 import { RFCDate } from "@apideck/unify/types";
@@ -1383,6 +1387,7 @@ Delete Invoice
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="accounting.invoicesDelete" method="delete" path="/accounting/invoices/{id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 

@@ -17,6 +17,7 @@ List users
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="crm.usersAll" method="get" path="/crm/users" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -110,6 +111,7 @@ Create user
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="crm.usersAdd" method="post" path="/crm/users" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -523,6 +525,7 @@ Get user
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="crm.usersOne" method="get" path="/crm/users/{id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -608,6 +611,7 @@ Update user
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="crm.usersUpdate" method="patch" path="/crm/users/{id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -951,6 +955,7 @@ Delete user
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="crm.usersDelete" method="delete" path="/crm/users/{id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 

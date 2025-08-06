@@ -128,31 +128,34 @@ type Applicant struct {
 	// Typically a list of previous companies where the contact has worked or schools that the contact has attended
 	Headline *string `json:"headline,omitempty"`
 	// The job title of the person.
-	Title             *string               `json:"title,omitempty"`
-	Emails            []Email               `json:"emails,omitempty"`
-	CustomFields      []CustomField         `json:"custom_fields,omitempty"`
-	PhoneNumbers      []PhoneNumber         `json:"phone_numbers,omitempty"`
-	Addresses         []Address             `json:"addresses,omitempty"`
-	Websites          []ApplicantWebsite    `json:"websites,omitempty"`
-	SocialLinks       []ApplicantSocialLink `json:"social_links,omitempty"`
-	StageID           *string               `json:"stage_id,omitempty"`
-	RecruiterID       *string               `json:"recruiter_id,omitempty"`
-	CoordinatorID     *string               `json:"coordinator_id,omitempty"`
-	ApplicationIds    []string              `json:"application_ids,omitempty"`
-	Applications      []string              `json:"applications,omitempty"`
-	Followers         []string              `json:"followers,omitempty"`
-	Sources           []string              `json:"sources,omitempty"`
-	SourceID          *string               `json:"source_id,omitempty"`
-	Confidential      *bool                 `json:"confidential,omitempty"`
-	Anonymized        *bool                 `json:"anonymized,omitempty"`
-	Tags              []string              `json:"tags,omitempty"`
-	Archived          *bool                 `json:"archived,omitempty"`
-	LastInteractionAt *time.Time            `json:"last_interaction_at,omitempty"`
-	OwnerID           *string               `json:"owner_id,omitempty"`
-	SourcedBy         *string               `json:"sourced_by,omitempty"`
-	CvURL             *string               `json:"cv_url,omitempty"`
-	RecordURL         *string               `json:"record_url,omitempty"`
-	RejectedAt        *time.Time            `json:"rejected_at,omitempty"`
+	Title          *string               `json:"title,omitempty"`
+	Emails         []Email               `json:"emails,omitempty"`
+	CustomFields   []CustomField         `json:"custom_fields,omitempty"`
+	PhoneNumbers   []PhoneNumber         `json:"phone_numbers,omitempty"`
+	Addresses      []Address             `json:"addresses,omitempty"`
+	Websites       []ApplicantWebsite    `json:"websites,omitempty"`
+	SocialLinks    []ApplicantSocialLink `json:"social_links,omitempty"`
+	StageID        *string               `json:"stage_id,omitempty"`
+	RecruiterID    *string               `json:"recruiter_id,omitempty"`
+	CoordinatorID  *string               `json:"coordinator_id,omitempty"`
+	ApplicationIds []string              `json:"application_ids,omitempty"`
+	// Deprecated: Use application_ids instead. Array of application IDs associated with the applicant.
+	//
+	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
+	Applications      []string   `json:"applications,omitempty"`
+	Followers         []string   `json:"followers,omitempty"`
+	Sources           []string   `json:"sources,omitempty"`
+	SourceID          *string    `json:"source_id,omitempty"`
+	Confidential      *bool      `json:"confidential,omitempty"`
+	Anonymized        *bool      `json:"anonymized,omitempty"`
+	Tags              []string   `json:"tags,omitempty"`
+	Archived          *bool      `json:"archived,omitempty"`
+	LastInteractionAt *time.Time `json:"last_interaction_at,omitempty"`
+	OwnerID           *string    `json:"owner_id,omitempty"`
+	SourcedBy         *string    `json:"sourced_by,omitempty"`
+	CvURL             *string    `json:"cv_url,omitempty"`
+	RecordURL         *string    `json:"record_url,omitempty"`
+	RejectedAt        *time.Time `json:"rejected_at,omitempty"`
 	// When custom mappings are configured on the resource, the result is included here.
 	CustomMappings map[string]any `json:"custom_mappings,omitempty"`
 	// Flag to indicate if the object is deleted.
@@ -529,15 +532,18 @@ type ApplicantInput struct {
 	RecruiterID    *string               `json:"recruiter_id,omitempty"`
 	CoordinatorID  *string               `json:"coordinator_id,omitempty"`
 	ApplicationIds []string              `json:"application_ids,omitempty"`
-	Applications   []string              `json:"applications,omitempty"`
-	Followers      []string              `json:"followers,omitempty"`
-	Sources        []string              `json:"sources,omitempty"`
-	Confidential   *bool                 `json:"confidential,omitempty"`
-	Anonymized     *bool                 `json:"anonymized,omitempty"`
-	Tags           []string              `json:"tags,omitempty"`
-	Archived       *bool                 `json:"archived,omitempty"`
-	OwnerID        *string               `json:"owner_id,omitempty"`
-	RecordURL      *string               `json:"record_url,omitempty"`
+	// Deprecated: Use application_ids instead. Array of application IDs associated with the applicant.
+	//
+	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
+	Applications []string `json:"applications,omitempty"`
+	Followers    []string `json:"followers,omitempty"`
+	Sources      []string `json:"sources,omitempty"`
+	Confidential *bool    `json:"confidential,omitempty"`
+	Anonymized   *bool    `json:"anonymized,omitempty"`
+	Tags         []string `json:"tags,omitempty"`
+	Archived     *bool    `json:"archived,omitempty"`
+	OwnerID      *string  `json:"owner_id,omitempty"`
+	RecordURL    *string  `json:"record_url,omitempty"`
 	// Flag to indicate if the object is deleted.
 	Deleted *bool `json:"deleted,omitempty"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.

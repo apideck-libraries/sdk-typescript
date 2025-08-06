@@ -17,6 +17,7 @@ List Locations
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="accounting.locationsAll" method="get" path="/accounting/locations" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -110,6 +111,7 @@ Create Location
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="accounting.locationsAdd" method="post" path="/accounting/locations" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -307,6 +309,7 @@ Get Location
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="accounting.locationsOne" method="get" path="/accounting/locations/{id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -392,6 +395,7 @@ Update Location
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="accounting.locationsUpdate" method="patch" path="/accounting/locations/{id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -733,6 +737,7 @@ Delete Location
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="accounting.locationsDelete" method="delete" path="/accounting/locations/{id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 

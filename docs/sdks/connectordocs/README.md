@@ -13,6 +13,7 @@ Get Connector Doc content
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="connector.connectorDocsOne" method="get" path="/connector/connectors/{id}/docs/{doc_id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 

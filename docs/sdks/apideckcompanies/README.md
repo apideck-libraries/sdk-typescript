@@ -17,6 +17,7 @@ List Companies
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="hris.companiesAll" method="get" path="/hris/companies" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -110,6 +111,7 @@ Create Company
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="hris.companiesAdd" method="post" path="/hris/companies" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -515,6 +517,7 @@ Get Company
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="hris.companiesOne" method="get" path="/hris/companies/{id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -600,6 +603,7 @@ Update Company
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="hris.companiesUpdate" method="patch" path="/hris/companies/{id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -1007,6 +1011,7 @@ Delete Company
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="hris.companiesDelete" method="delete" path="/hris/companies/{id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 

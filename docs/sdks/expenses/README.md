@@ -17,6 +17,7 @@ List Expenses
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="accounting.expensesAll" method="get" path="/accounting/expenses" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -102,6 +103,7 @@ Create Expense
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="accounting.expensesAdd" method="post" path="/accounting/expenses" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -445,6 +447,7 @@ Get Expense
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="accounting.expensesOne" method="get" path="/accounting/expenses/{id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -528,6 +531,7 @@ Update Expense
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="accounting.expensesUpdate" method="patch" path="/accounting/expenses/{id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -811,6 +815,7 @@ Delete Expense
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="accounting.expensesDelete" method="delete" path="/accounting/expenses/{id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 

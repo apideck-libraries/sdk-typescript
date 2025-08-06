@@ -14,6 +14,7 @@ List Customers
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="ecommerce.customersAll" method="get" path="/ecommerce/customers" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -115,6 +116,7 @@ Get Customer
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="ecommerce.customersOne" method="get" path="/ecommerce/customers/{id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 

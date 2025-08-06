@@ -17,6 +17,7 @@ List Credit Notes
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="accounting.creditNotesAll" method="get" path="/accounting/credit-notes" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -124,6 +125,7 @@ Create Credit Note
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="accounting.creditNotesAdd" method="post" path="/accounting/credit-notes" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -571,6 +573,7 @@ Get Credit Note
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="accounting.creditNotesOne" method="get" path="/accounting/credit-notes/{id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -656,6 +659,7 @@ Update Credit Note
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="accounting.creditNotesUpdate" method="patch" path="/accounting/credit-notes/{id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -1127,6 +1131,7 @@ Delete Credit Note
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="accounting.creditNotesDelete" method="delete" path="/accounting/credit-notes/{id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 

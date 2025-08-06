@@ -14,6 +14,7 @@ List Jobs
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="ats.jobsAll" method="get" path="/ats/jobs" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -107,6 +108,7 @@ Get Job
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="ats.jobsOne" method="get" path="/ats/jobs/{id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 

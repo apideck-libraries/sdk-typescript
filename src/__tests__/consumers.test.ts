@@ -17,7 +17,7 @@ test("Consumers Vault Consumers Add", async () => {
 
   const result = await apideck.vault.consumers.create({
     appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
-    consumer: {
+    createConsumerRequest: {
       consumerId: "test_consumer_id",
       metadata: {
         accountName: "SpaceX",

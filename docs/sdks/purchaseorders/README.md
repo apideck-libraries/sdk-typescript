@@ -17,6 +17,7 @@ List Purchase Orders
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="accounting.purchaseOrdersAll" method="get" path="/accounting/purchase-orders" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -124,6 +125,7 @@ Create Purchase Order
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="accounting.purchaseOrdersAdd" method="post" path="/accounting/purchase-orders" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 import { RFCDate } from "@apideck/unify/types";
@@ -843,6 +845,7 @@ Get Purchase Order
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="accounting.purchaseOrdersOne" method="get" path="/accounting/purchase-orders/{id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -926,6 +929,7 @@ Update Purchase Order
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="accounting.purchaseOrdersUpdate" method="patch" path="/accounting/purchase-orders/{id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 import { RFCDate } from "@apideck/unify/types";
@@ -1527,6 +1531,7 @@ Delete Purchase Order
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="accounting.purchaseOrdersDelete" method="delete" path="/accounting/purchase-orders/{id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
