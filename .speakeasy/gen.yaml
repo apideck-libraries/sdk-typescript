@@ -27,7 +27,8 @@ typescript:
   version: 0.29.0
   additionalDependencies:
     dependencies: {}
-    devDependencies: {}
+    devDependencies:
+      typescript-eslint: ^8.26.0
     peerDependencies: {}
   additionalPackageJSON: {}
   author: Speakeasy
