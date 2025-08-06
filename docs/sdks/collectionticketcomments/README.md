@@ -17,6 +17,7 @@ List Comments
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="issueTracking.collectionTicketCommentsAll" method="get" path="/issue-tracking/collections/{collection_id}/tickets/{ticket_id}/comments" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -122,6 +123,7 @@ Create Comment
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="issueTracking.collectionTicketCommentsAdd" method="post" path="/issue-tracking/collections/{collection_id}/tickets/{ticket_id}/comments" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -333,6 +335,7 @@ Get Comment
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="issueTracking.collectionTicketCommentsOne" method="get" path="/issue-tracking/collections/{collection_id}/tickets/{ticket_id}/comments/{id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -426,6 +429,7 @@ Update Comment
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="issueTracking.collectionTicketCommentsUpdate" method="patch" path="/issue-tracking/collections/{collection_id}/tickets/{ticket_id}/comments/{id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -565,6 +569,7 @@ Delete Comment
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="issueTracking.collectionTicketCommentsDelete" method="delete" path="/issue-tracking/collections/{collection_id}/tickets/{ticket_id}/comments/{id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 

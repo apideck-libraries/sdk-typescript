@@ -13,6 +13,7 @@ const (
 	AttachmentReferenceTypeInvoice AttachmentReferenceType = "invoice"
 	AttachmentReferenceTypeBill    AttachmentReferenceType = "bill"
 	AttachmentReferenceTypeExpense AttachmentReferenceType = "expense"
+	AttachmentReferenceTypeQuote   AttachmentReferenceType = "quote"
 )
 
 func (e AttachmentReferenceType) ToPointer() *AttachmentReferenceType {
@@ -29,6 +30,8 @@ func (e *AttachmentReferenceType) UnmarshalJSON(data []byte) error {
 	case "bill":
 		fallthrough
 	case "expense":
+		fallthrough
+	case "quote":
 		*e = AttachmentReferenceType(v)
 		return nil
 	default:

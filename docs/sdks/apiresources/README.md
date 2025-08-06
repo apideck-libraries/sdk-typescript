@@ -13,6 +13,7 @@ Get API Resource
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="connector.apiResourcesOne" method="get" path="/connector/apis/{id}/resources/{resource_id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 

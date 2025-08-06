@@ -17,6 +17,7 @@ List Tracking Categories
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="accounting.trackingCategoriesAll" method="get" path="/accounting/tracking-categories" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -110,6 +111,7 @@ Create Tracking Category
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="accounting.trackingCategoriesAdd" method="post" path="/accounting/tracking-categories" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -325,6 +327,7 @@ Get Tracking Category
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="accounting.trackingCategoriesOne" method="get" path="/accounting/tracking-categories/{id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -410,6 +413,7 @@ Update Tracking Category
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="accounting.trackingCategoriesUpdate" method="patch" path="/accounting/tracking-categories/{id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -553,6 +557,7 @@ Delete Tracking Category
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="accounting.trackingCategoriesDelete" method="delete" path="/accounting/tracking-categories/{id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 

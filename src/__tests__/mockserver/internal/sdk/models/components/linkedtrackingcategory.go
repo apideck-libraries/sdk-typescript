@@ -7,6 +7,10 @@ type LinkedTrackingCategory struct {
 	ID *string `json:"id,omitempty"`
 	// The name of the tracking category.
 	Name *string `json:"name,omitempty"`
+	// The unique identifier for the parent tracking category.
+	ParentID *string `json:"parent_id,omitempty"`
+	// The name of the parent tracking category.
+	ParentName *string `json:"parent_name,omitempty"`
 }
 
 func (o *LinkedTrackingCategory) GetID() *string {
@@ -21,4 +25,18 @@ func (o *LinkedTrackingCategory) GetName() *string {
 		return nil
 	}
 	return o.Name
+}
+
+func (o *LinkedTrackingCategory) GetParentID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ParentID
+}
+
+func (o *LinkedTrackingCategory) GetParentName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ParentName
 }

@@ -21,6 +21,7 @@ OAuth2 supported integrations will contain authorize and revoke links to handle 
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="vault.connectionsAll" method="get" path="/vault/connections" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -104,6 +105,7 @@ Get a connection
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="vault.connectionsOne" method="get" path="/vault/connections/{unified_api}/{service_id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -187,6 +189,7 @@ Update a connection
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="vault.connectionsUpdate" method="patch" path="/vault/connections/{unified_api}/{service_id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -464,6 +467,7 @@ Deletes a connection
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="vault.connectionsDelete" method="delete" path="/vault/connections/{unified_api}/{service_id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -548,6 +552,7 @@ Import an authorized connection.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="vault.connectionsImport" method="post" path="/vault/connections/{unified_api}/{service_id}/import" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -669,6 +674,7 @@ Note:
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="vault.connectionsToken" method="post" path="/vault/connections/{unified_api}/{service_id}/token" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 

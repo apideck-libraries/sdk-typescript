@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod";
+import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -16,6 +17,14 @@ export type LinkedTrackingCategory = {
    * The name of the tracking category.
    */
   name?: string | null | undefined;
+  /**
+   * The unique identifier for the parent tracking category.
+   */
+  parentId?: string | undefined;
+  /**
+   * The name of the parent tracking category.
+   */
+  parentName?: string | null | undefined;
 };
 
 /** @internal */
@@ -26,12 +35,21 @@ export const LinkedTrackingCategory$inboundSchema: z.ZodType<
 > = z.object({
   id: z.string().optional(),
   name: z.nullable(z.string()).optional(),
+  parent_id: z.string().optional(),
+  parent_name: z.nullable(z.string()).optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "parent_id": "parentId",
+    "parent_name": "parentName",
+  });
 });
 
 /** @internal */
 export type LinkedTrackingCategory$Outbound = {
   id?: string | undefined;
   name?: string | null | undefined;
+  parent_id?: string | undefined;
+  parent_name?: string | null | undefined;
 };
 
 /** @internal */
@@ -42,6 +60,13 @@ export const LinkedTrackingCategory$outboundSchema: z.ZodType<
 > = z.object({
   id: z.string().optional(),
   name: z.nullable(z.string()).optional(),
+  parentId: z.string().optional(),
+  parentName: z.nullable(z.string()).optional(),
+}).transform((v) => {
+  return remap$(v, {
+    parentId: "parent_id",
+    parentName: "parent_name",
+  });
 });
 
 /**

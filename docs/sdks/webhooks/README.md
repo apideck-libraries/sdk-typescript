@@ -17,6 +17,7 @@ List all webhook subscriptions
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="webhook.webhooksAll" method="get" path="/webhook/webhooks" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -96,6 +97,7 @@ Create a webhook subscription to receive events
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="webhook.webhooksAdd" method="post" path="/webhook/webhooks" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -193,6 +195,7 @@ Get the webhook subscription details
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="webhook.webhooksOne" method="get" path="/webhook/webhooks/{id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -272,6 +275,7 @@ Update a webhook subscription
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="webhook.webhooksUpdate" method="patch" path="/webhook/webhooks/{id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -369,6 +373,7 @@ Delete a webhook subscription
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="webhook.webhooksDelete" method="delete" path="/webhook/webhooks/{id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 

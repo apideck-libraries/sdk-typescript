@@ -19,6 +19,7 @@ List Files
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="fileStorage.filesAll" method="get" path="/file-storage/files" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -130,6 +131,7 @@ Search Files
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="fileStorage.filesSearch" method="post" path="/file-storage/files/search" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -235,6 +237,7 @@ Get File
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="fileStorage.filesOne" method="get" path="/file-storage/files/{id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -320,6 +323,7 @@ Rename or move File
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="fileStorage.filesUpdate" method="patch" path="/file-storage/files/{id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -443,6 +447,7 @@ Delete File
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="fileStorage.filesDelete" method="delete" path="/file-storage/files/{id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -526,6 +531,7 @@ Download File
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="fileStorage.filesDownload" method="get" path="/file-storage/files/{id}/download" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -611,6 +617,7 @@ Export File
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="fileStorage.filesExport" method="get" path="/file-storage/files/{id}/export" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 

@@ -1,11 +1,11 @@
-# ConsumerInput
+# CreateConsumerRequest
 
 ## Example Usage
 
 ```typescript
-import { ConsumerInput } from "@apideck/unify/models/components";
+import { CreateConsumerRequest } from "@apideck/unify/models/components";
 
-let value: ConsumerInput = {
+let value: CreateConsumerRequest = {
   consumerId: "test_consumer_id",
   metadata: {
     accountName: "SpaceX",

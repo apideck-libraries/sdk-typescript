@@ -13,6 +13,7 @@ Get company info
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="accounting.companyInfoOne" method="get" path="/accounting/company-info" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 

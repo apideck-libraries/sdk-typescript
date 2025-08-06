@@ -14,6 +14,7 @@ This endpoint includes all consumer request logs.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="vault.logsAll" method="get" path="/vault/logs" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 

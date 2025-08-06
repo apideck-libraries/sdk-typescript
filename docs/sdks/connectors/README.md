@@ -14,6 +14,7 @@ List Connectors
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="connector.connectorsAll" method="get" path="/connector/connectors" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -99,6 +100,7 @@ Get Connector
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="connector.connectorsOne" method="get" path="/connector/connectors/{id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 

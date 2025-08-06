@@ -14,6 +14,7 @@ List Payroll
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="hris.payrollsAll" method="get" path="/hris/payrolls" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -111,6 +112,7 @@ Get Payroll
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="hris.payrollsOne" method="get" path="/hris/payrolls/{payroll_id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 

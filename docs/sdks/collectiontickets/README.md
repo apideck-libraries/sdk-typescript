@@ -17,6 +17,7 @@ List Tickets
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="issueTracking.collectionTicketsAll" method="get" path="/issue-tracking/collections/{collection_id}/tickets" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -130,6 +131,7 @@ Create Ticket
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="issueTracking.collectionTicketsAdd" method="post" path="/issue-tracking/collections/{collection_id}/tickets" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -405,6 +407,7 @@ Get Ticket
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="issueTracking.collectionTicketsOne" method="get" path="/issue-tracking/collections/{collection_id}/tickets/{ticket_id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -492,6 +495,7 @@ Update Ticket
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="issueTracking.collectionTicketsUpdate" method="patch" path="/issue-tracking/collections/{collection_id}/tickets/{ticket_id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -751,6 +755,7 @@ Delete Ticket
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="issueTracking.collectionTicketsDelete" method="delete" path="/issue-tracking/collections/{collection_id}/tickets/{ticket_id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 

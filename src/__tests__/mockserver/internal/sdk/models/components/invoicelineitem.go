@@ -48,6 +48,36 @@ func (e *InvoiceLineItemType) UnmarshalJSON(data []byte) error {
 	}
 }
 
+// Budget of the line item
+type Budget string
+
+const (
+	BudgetOutOfBudget Budget = "out_of_budget"
+	BudgetInBudget    Budget = "in_budget"
+	BudgetOther       Budget = "other"
+)
+
+func (e Budget) ToPointer() *Budget {
+	return &e
+}
+func (e *Budget) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "out_of_budget":
+		fallthrough
+	case "in_budget":
+		fallthrough
+	case "other":
+		*e = Budget(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for Budget: %v", v)
+	}
+}
+
 type InvoiceLineItem struct {
 	// A unique identifier for an object.
 	ID *string `json:"id,omitempty"`
@@ -81,10 +111,24 @@ type InvoiceLineItem struct {
 	DepartmentID *string `json:"department_id,omitempty"`
 	// The ID of the subsidiary
 	SubsidiaryID *string `json:"subsidiary_id,omitempty"`
+	// ID of the shipping of the line item
+	ShippingID *string `json:"shipping_id,omitempty"`
+	// Memo
+	Memo *string `json:"memo,omitempty"`
 	// Whether the line item is prepaid
 	Prepaid *bool              `json:"prepaid,omitempty"`
 	Item    *LinkedInvoiceItem `json:"item,omitempty"`
-	TaxRate *LinkedTaxRate     `json:"tax_rate,omitempty"`
+	// Tax applicable on
+	TaxApplicableOn *string `json:"tax_applicable_on,omitempty"`
+	// Tax recoverability
+	TaxRecoverability *string `json:"tax_recoverability,omitempty"`
+	// Method of tax calculation
+	TaxMethod *string `json:"tax_method,omitempty"`
+	// Budget of the line item
+	Budget *Budget `json:"budget,omitempty"`
+	// ID of the project of the line item
+	ProjectID *string        `json:"project_id,omitempty"`
+	TaxRate   *LinkedTaxRate `json:"tax_rate,omitempty"`
 	// A list of linked tracking categories.
 	TrackingCategories []*LinkedTrackingCategory `json:"tracking_categories,omitempty"`
 	LedgerAccount      *LinkedLedgerAccount      `json:"ledger_account,omitempty"`
@@ -231,6 +275,20 @@ func (o *InvoiceLineItem) GetSubsidiaryID() *string {
 	return o.SubsidiaryID
 }
 
+func (o *InvoiceLineItem) GetShippingID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ShippingID
+}
+
+func (o *InvoiceLineItem) GetMemo() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Memo
+}
+
 func (o *InvoiceLineItem) GetPrepaid() *bool {
 	if o == nil {
 		return nil
@@ -243,6 +301,41 @@ func (o *InvoiceLineItem) GetItem() *LinkedInvoiceItem {
 		return nil
 	}
 	return o.Item
+}
+
+func (o *InvoiceLineItem) GetTaxApplicableOn() *string {
+	if o == nil {
+		return nil
+	}
+	return o.TaxApplicableOn
+}
+
+func (o *InvoiceLineItem) GetTaxRecoverability() *string {
+	if o == nil {
+		return nil
+	}
+	return o.TaxRecoverability
+}
+
+func (o *InvoiceLineItem) GetTaxMethod() *string {
+	if o == nil {
+		return nil
+	}
+	return o.TaxMethod
+}
+
+func (o *InvoiceLineItem) GetBudget() *Budget {
+	if o == nil {
+		return nil
+	}
+	return o.Budget
+}
+
+func (o *InvoiceLineItem) GetProjectID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ProjectID
 }
 
 func (o *InvoiceLineItem) GetTaxRate() *LinkedTaxRate {
@@ -341,10 +434,24 @@ type InvoiceLineItemInput struct {
 	DepartmentID *string `json:"department_id,omitempty"`
 	// The ID of the subsidiary
 	SubsidiaryID *string `json:"subsidiary_id,omitempty"`
+	// ID of the shipping of the line item
+	ShippingID *string `json:"shipping_id,omitempty"`
+	// Memo
+	Memo *string `json:"memo,omitempty"`
 	// Whether the line item is prepaid
-	Prepaid *bool               `json:"prepaid,omitempty"`
-	Item    *LinkedInvoiceItem  `json:"item,omitempty"`
-	TaxRate *LinkedTaxRateInput `json:"tax_rate,omitempty"`
+	Prepaid *bool              `json:"prepaid,omitempty"`
+	Item    *LinkedInvoiceItem `json:"item,omitempty"`
+	// Tax applicable on
+	TaxApplicableOn *string `json:"tax_applicable_on,omitempty"`
+	// Tax recoverability
+	TaxRecoverability *string `json:"tax_recoverability,omitempty"`
+	// Method of tax calculation
+	TaxMethod *string `json:"tax_method,omitempty"`
+	// Budget of the line item
+	Budget *Budget `json:"budget,omitempty"`
+	// ID of the project of the line item
+	ProjectID *string             `json:"project_id,omitempty"`
+	TaxRate   *LinkedTaxRateInput `json:"tax_rate,omitempty"`
 	// A list of linked tracking categories.
 	TrackingCategories []*LinkedTrackingCategory `json:"tracking_categories,omitempty"`
 	LedgerAccount      *LinkedLedgerAccountInput `json:"ledger_account,omitempty"`
@@ -472,6 +579,20 @@ func (o *InvoiceLineItemInput) GetSubsidiaryID() *string {
 	return o.SubsidiaryID
 }
 
+func (o *InvoiceLineItemInput) GetShippingID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ShippingID
+}
+
+func (o *InvoiceLineItemInput) GetMemo() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Memo
+}
+
 func (o *InvoiceLineItemInput) GetPrepaid() *bool {
 	if o == nil {
 		return nil
@@ -484,6 +605,41 @@ func (o *InvoiceLineItemInput) GetItem() *LinkedInvoiceItem {
 		return nil
 	}
 	return o.Item
+}
+
+func (o *InvoiceLineItemInput) GetTaxApplicableOn() *string {
+	if o == nil {
+		return nil
+	}
+	return o.TaxApplicableOn
+}
+
+func (o *InvoiceLineItemInput) GetTaxRecoverability() *string {
+	if o == nil {
+		return nil
+	}
+	return o.TaxRecoverability
+}
+
+func (o *InvoiceLineItemInput) GetTaxMethod() *string {
+	if o == nil {
+		return nil
+	}
+	return o.TaxMethod
+}
+
+func (o *InvoiceLineItemInput) GetBudget() *Budget {
+	if o == nil {
+		return nil
+	}
+	return o.Budget
+}
+
+func (o *InvoiceLineItemInput) GetProjectID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ProjectID
 }
 
 func (o *InvoiceLineItemInput) GetTaxRate() *LinkedTaxRateInput {

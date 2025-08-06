@@ -17,6 +17,7 @@ List Ledger Accounts
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="accounting.ledgerAccountsAll" method="get" path="/accounting/ledger-accounts" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -124,6 +125,7 @@ Create Ledger Account
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="accounting.ledgerAccountsAdd" method="post" path="/accounting/ledger-accounts" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 import { RFCDate } from "@apideck/unify/types";
@@ -391,6 +393,7 @@ Get Ledger Account
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="accounting.ledgerAccountsOne" method="get" path="/accounting/ledger-accounts/{id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -476,6 +479,7 @@ Update Ledger Account
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="accounting.ledgerAccountsUpdate" method="patch" path="/accounting/ledger-accounts/{id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 import { RFCDate } from "@apideck/unify/types";
@@ -721,6 +725,7 @@ Delete Ledger Account
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="accounting.ledgerAccountsDelete" method="delete" path="/accounting/ledger-accounts/{id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 

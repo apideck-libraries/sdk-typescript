@@ -94,10 +94,6 @@ let value: AtsApplicantsAddRequest = {
       "a0d636c6-43b3-4bde-8c70-85b707d992f4",
       "a98lfd96-43b3-4bde-8c70-85b707d992e6",
     ],
-    applications: [
-      "a0d636c6-43b3-4bde-8c70-85b707d992f4",
-      "a98lfd96-43b3-4bde-8c70-85b707d992e6",
-    ],
     followers: [
       "a0d636c6-43b3-4bde-8c70-85b707d992f4",
       "a98lfd96-43b3-4bde-8c70-85b707d992e6",

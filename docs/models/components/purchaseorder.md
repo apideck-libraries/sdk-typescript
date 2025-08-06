@@ -75,12 +75,19 @@ let value: PurchaseOrder = {
       locationId: "12345",
       departmentId: "12345",
       subsidiaryId: "12345",
+      shippingId: "12345",
+      memo: "Some memo",
       prepaid: true,
       item: {
         id: "12344",
         code: "120-C",
         name: "Model Y",
       },
+      taxApplicableOn: "Domestic_Purchase_of_Goods_and_Services",
+      taxRecoverability: "Fully_Recoverable",
+      taxMethod: "Due_to_Supplier",
+      budget: "in_budget",
+      projectId: "12345",
       taxRate: {
         id: "123456",
         code: "N-T",
@@ -91,6 +98,8 @@ let value: PurchaseOrder = {
         {
           id: "123456",
           name: "New York",
+          parentId: "123456",
+          parentName: "New York",
         },
       ],
       ledgerAccount: {
@@ -114,6 +123,32 @@ let value: PurchaseOrder = {
       updatedAt: new Date("2020-09-30T07:43:32.000Z"),
     },
   ],
+  billingAddress: {
+    id: "123",
+    type: "primary",
+    string: "25 Spring Street, Blackburn, VIC 3130",
+    name: "HQ US",
+    line1: "Main street",
+    line2: "apt #",
+    line3: "Suite #",
+    line4: "delivery instructions",
+    streetNumber: "25",
+    city: "San Francisco",
+    state: "CA",
+    postalCode: "94104",
+    country: "US",
+    latitude: "40.759211",
+    longitude: "-73.984638",
+    county: "Santa Clara",
+    contactName: "Elon Musk",
+    salutation: "Mr",
+    phoneNumber: "111-111-1111",
+    fax: "122-111-1111",
+    email: "elon@musk.com",
+    website: "https://elonmusk.com",
+    notes: "Address notes or delivery instructions.",
+    rowVersion: "1-12345",
+  },
   shippingAddress: {
     id: "123",
     type: "primary",
@@ -165,7 +200,11 @@ let value: PurchaseOrder = {
   accountingByRow: false,
   dueDate: new RFCDate("2020-10-30"),
   paymentMethod: "cash",
+  terms: "Net 30 days",
   taxCode: "1234",
+  taxMethod: "Due to supplier",
+  issuedMethod: "Email",
+  issuedEmail: "john.doe@example.com",
   channel: "email",
   memo: "Thank you for the partnership and have a great day!",
   notes: "This is a test purchase order",
@@ -173,6 +212,8 @@ let value: PurchaseOrder = {
     {
       id: "123456",
       name: "New York",
+      parentId: "123456",
+      parentName: "New York",
     },
   ],
   customFields: [
@@ -228,6 +269,7 @@ let value: PurchaseOrder = {
 | `total`                                                                                                                                                 | *number*                                                                                                                                                | :heavy_minus_sign:                                                                                                                                      | Total amount of invoice, including tax.                                                                                                                 | 27500                                                                                                                                                   |
 | `taxInclusive`                                                                                                                                          | *boolean*                                                                                                                                               | :heavy_minus_sign:                                                                                                                                      | Amounts are including tax                                                                                                                               | true                                                                                                                                                    |
 | `lineItems`                                                                                                                                             | [components.InvoiceLineItem](../../models/components/invoicelineitem.md)[]                                                                              | :heavy_minus_sign:                                                                                                                                      | N/A                                                                                                                                                     |                                                                                                                                                         |
+| `billingAddress`                                                                                                                                        | [components.Address](../../models/components/address.md)                                                                                                | :heavy_minus_sign:                                                                                                                                      | N/A                                                                                                                                                     |                                                                                                                                                         |
 | `shippingAddress`                                                                                                                                       | [components.Address](../../models/components/address.md)                                                                                                | :heavy_minus_sign:                                                                                                                                      | N/A                                                                                                                                                     |                                                                                                                                                         |
 | `ledgerAccount`                                                                                                                                         | [components.LinkedLedgerAccount](../../models/components/linkedledgeraccount.md)                                                                        | :heavy_minus_sign:                                                                                                                                      | N/A                                                                                                                                                     |                                                                                                                                                         |
 | `templateId`                                                                                                                                            | *string*                                                                                                                                                | :heavy_minus_sign:                                                                                                                                      | Optional purchase order template                                                                                                                        | 123456                                                                                                                                                  |
@@ -236,8 +278,12 @@ let value: PurchaseOrder = {
 | `accountingByRow`                                                                                                                                       | *boolean*                                                                                                                                               | :heavy_minus_sign:                                                                                                                                      | Indicates if accounting by row is used (true) or not (false). Accounting by row means that a separate ledger transaction is created for each row.       | false                                                                                                                                                   |
 | `dueDate`                                                                                                                                               | [RFCDate](../../types/rfcdate.md)                                                                                                                       | :heavy_minus_sign:                                                                                                                                      | The due date is the date on which a payment is scheduled to be received - YYYY-MM-DD.                                                                   | 2020-10-30                                                                                                                                              |
 | `paymentMethod`                                                                                                                                         | *string*                                                                                                                                                | :heavy_minus_sign:                                                                                                                                      | Payment method used for the transaction, such as cash, credit card, bank transfer, or check                                                             | cash                                                                                                                                                    |
+| `terms`                                                                                                                                                 | *string*                                                                                                                                                | :heavy_minus_sign:                                                                                                                                      | Terms of payment.                                                                                                                                       | Net 30 days                                                                                                                                             |
 | `amortizationType`                                                                                                                                      | [components.AmortizationType](../../models/components/amortizationtype.md)                                                                              | :heavy_minus_sign:                                                                                                                                      | Type of amortization                                                                                                                                    |                                                                                                                                                         |
 | `taxCode`                                                                                                                                               | *string*                                                                                                                                                | :heavy_minus_sign:                                                                                                                                      | Applicable tax id/code override if tax is not supplied on a line item basis.                                                                            | 1234                                                                                                                                                    |
+| `taxMethod`                                                                                                                                             | *string*                                                                                                                                                | :heavy_minus_sign:                                                                                                                                      | Method of tax calculation                                                                                                                               | Due to supplier                                                                                                                                         |
+| `issuedMethod`                                                                                                                                          | *string*                                                                                                                                                | :heavy_minus_sign:                                                                                                                                      | Method of issuance of the purchase order                                                                                                                | Email                                                                                                                                                   |
+| `issuedEmail`                                                                                                                                           | *string*                                                                                                                                                | :heavy_minus_sign:                                                                                                                                      | Email address of the person who issued the purchase order                                                                                               | john.doe@example.com                                                                                                                                    |
 | `channel`                                                                                                                                               | *string*                                                                                                                                                | :heavy_minus_sign:                                                                                                                                      | The channel through which the transaction is processed.                                                                                                 | email                                                                                                                                                   |
 | `memo`                                                                                                                                                  | *string*                                                                                                                                                | :heavy_minus_sign:                                                                                                                                      | Message for the supplier. This text appears on the Purchase Order.                                                                                      | Thank you for the partnership and have a great day!                                                                                                     |
 | `notes`                                                                                                                                                 | *string*                                                                                                                                                | :heavy_minus_sign:                                                                                                                                      | Internal notes for the purchase order.                                                                                                                  | This is a test purchase order                                                                                                                           |

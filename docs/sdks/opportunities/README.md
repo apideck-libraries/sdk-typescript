@@ -17,6 +17,7 @@ List opportunities
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="crm.opportunitiesAll" method="get" path="/crm/opportunities" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -126,6 +127,7 @@ Create opportunity
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="crm.opportunitiesAdd" method="post" path="/crm/opportunities" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 import { RFCDate } from "@apideck/unify/types";
@@ -361,6 +363,7 @@ Get opportunity
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="crm.opportunitiesOne" method="get" path="/crm/opportunities/{id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -446,6 +449,7 @@ Update opportunity
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="crm.opportunitiesUpdate" method="patch" path="/crm/opportunities/{id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 import { RFCDate } from "@apideck/unify/types";
@@ -699,6 +703,7 @@ Delete opportunity
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="crm.opportunitiesDelete" method="delete" path="/crm/opportunities/{id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 

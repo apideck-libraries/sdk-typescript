@@ -17,6 +17,7 @@ List Journal Entries
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="accounting.journalEntriesAll" method="get" path="/accounting/journal-entries" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -124,6 +125,7 @@ Create Journal Entry
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="accounting.journalEntriesAdd" method="post" path="/accounting/journal-entries" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -571,6 +573,7 @@ Get Journal Entry
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="accounting.journalEntriesOne" method="get" path="/accounting/journal-entries/{id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -656,6 +659,7 @@ Update Journal Entry
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="accounting.journalEntriesUpdate" method="patch" path="/accounting/journal-entries/{id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -1033,6 +1037,7 @@ Delete Journal Entry
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="accounting.journalEntriesDelete" method="delete" path="/accounting/journal-entries/{id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 

@@ -17,6 +17,7 @@ List leads
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="crm.leadsAll" method="get" path="/crm/leads" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -130,6 +131,7 @@ Create lead
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="crm.leadsAdd" method="post" path="/crm/leads" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -723,6 +725,7 @@ Get lead
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="crm.leadsOne" method="get" path="/crm/leads/{id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -808,6 +811,7 @@ Update lead
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="crm.leadsUpdate" method="patch" path="/crm/leads/{id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -1315,6 +1319,7 @@ Delete lead
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="crm.leadsDelete" method="delete" path="/crm/leads/{id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 

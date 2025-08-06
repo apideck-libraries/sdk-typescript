@@ -14,6 +14,7 @@ List Users
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="issueTracking.collectionUsersAll" method="get" path="/issue-tracking/collections/{collection_id}/users" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -109,6 +110,7 @@ Get user
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="issueTracking.collectionUsersOne" method="get" path="/issue-tracking/collections/{collection_id}/users/{id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 

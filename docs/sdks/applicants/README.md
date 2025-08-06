@@ -17,6 +17,7 @@ List Applicants
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="ats.applicantsAll" method="get" path="/ats/applicants" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -116,6 +117,7 @@ Create Applicant
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="ats.applicantsAdd" method="post" path="/ats/applicants" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 import { RFCDate } from "@apideck/unify/types";
@@ -625,6 +627,7 @@ Get Applicant
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="ats.applicantsOne" method="get" path="/ats/applicants/{id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -710,6 +713,7 @@ Update Applicant
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="ats.applicantsUpdate" method="patch" path="/ats/applicants/{id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 import { RFCDate } from "@apideck/unify/types";
@@ -1239,6 +1243,7 @@ Delete Applicant
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="ats.applicantsDelete" method="delete" path="/ats/applicants/{id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 

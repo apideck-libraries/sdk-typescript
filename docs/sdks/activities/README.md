@@ -17,6 +17,7 @@ List activities
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="crm.activitiesAll" method="get" path="/crm/activities" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -124,6 +125,7 @@ Create activity
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="crm.activitiesAdd" method="post" path="/crm/activities" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -413,6 +415,7 @@ Get activity
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="crm.activitiesOne" method="get" path="/crm/activities/{id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -498,6 +501,7 @@ Update activity
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="crm.activitiesUpdate" method="patch" path="/crm/activities/{id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -945,6 +949,7 @@ Delete activity
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="crm.activitiesDelete" method="delete" path="/crm/activities/{id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 

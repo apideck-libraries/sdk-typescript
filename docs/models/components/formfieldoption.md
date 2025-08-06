@@ -3,16 +3,6 @@
 
 ## Supported Types
 
-### `components.SimpleFormFieldOption`
-
-```typescript
-const value: components.SimpleFormFieldOption = {
-  label: "General Channel",
-  value: "general",
-  optionType: "simple",
-};
-```
-
 ### `components.FormFieldOptionGroup`
 
 ```typescript
@@ -27,6 +17,16 @@ const value: components.FormFieldOptionGroup = {
     },
   ],
   optionType: "group",
+};
+```
+
+### `components.SimpleFormFieldOption`
+
+```typescript
+const value: components.SimpleFormFieldOption = {
+  label: "General Channel",
+  value: "general",
+  optionType: "simple",
 };
 ```
 

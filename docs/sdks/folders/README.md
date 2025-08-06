@@ -17,6 +17,7 @@ Create Folder
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="fileStorage.foldersAdd" method="post" path="/file-storage/folders" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -142,6 +143,7 @@ Get Folder
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="fileStorage.foldersOne" method="get" path="/file-storage/folders/{id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -227,6 +229,7 @@ Rename or move Folder
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="fileStorage.foldersUpdate" method="patch" path="/file-storage/folders/{id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -366,6 +369,7 @@ Delete Folder
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="fileStorage.foldersDelete" method="delete" path="/file-storage/folders/{id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -449,6 +453,7 @@ Copy Folder
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="fileStorage.foldersCopy" method="post" path="/file-storage/folders/{id}/copy" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 

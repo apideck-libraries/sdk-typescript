@@ -94,7 +94,9 @@ async function $do(
     return [parsed, { status: "invalid" }];
   }
   const payload = parsed.value;
-  const body = encodeJSON("body", payload.Consumer, { explode: true });
+  const body = encodeJSON("body", payload.CreateConsumerRequest, {
+    explode: true,
+  });
 
   const path = pathToFunc("/vault/consumers")();
 

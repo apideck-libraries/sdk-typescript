@@ -13,6 +13,7 @@ Get Store
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="ecommerce.storesOne" method="get" path="/ecommerce/store" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 

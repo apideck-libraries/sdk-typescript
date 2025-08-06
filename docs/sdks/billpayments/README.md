@@ -17,6 +17,7 @@ List Bill Payments
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="accounting.billPaymentsAll" method="get" path="/accounting/bill-payments" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -126,6 +127,7 @@ Create Bill Payment
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="accounting.billPaymentsAdd" method="post" path="/accounting/bill-payments" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -467,6 +469,7 @@ Get Bill Payment
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="accounting.billPaymentsOne" method="get" path="/accounting/bill-payments/{id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -552,6 +555,7 @@ Update Bill Payment
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="accounting.billPaymentsUpdate" method="patch" path="/accounting/bill-payments/{id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -855,6 +859,7 @@ Delete Bill Payment
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="accounting.billPaymentsDelete" method="delete" path="/accounting/bill-payments/{id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 

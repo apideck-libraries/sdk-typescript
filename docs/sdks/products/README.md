@@ -14,6 +14,7 @@ List Products
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="ecommerce.productsAll" method="get" path="/ecommerce/products" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -30,6 +31,11 @@ async function run() {
       "search": "San Francisco",
     },
     fields: "id,updated_at",
+    filter: {
+      name: "Product Name",
+      updatedSince: "2020-09-30T07:43:32.000Z",
+      createdSince: "2020-09-30T07:43:32.000Z",
+    },
   });
 
   for await (const page of result) {
@@ -63,6 +69,11 @@ async function run() {
       "search": "San Francisco",
     },
     fields: "id,updated_at",
+    filter: {
+      name: "Product Name",
+      updatedSince: "2020-09-30T07:43:32.000Z",
+      createdSince: "2020-09-30T07:43:32.000Z",
+    },
   });
   if (res.ok) {
     const { value: result } = res;
@@ -107,6 +118,7 @@ Get Product
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="ecommerce.productsOne" method="get" path="/ecommerce/products/{id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 

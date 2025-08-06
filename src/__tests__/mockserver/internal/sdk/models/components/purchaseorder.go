@@ -116,6 +116,7 @@ type PurchaseOrder struct {
 	// Amounts are including tax
 	TaxInclusive    *bool                `json:"tax_inclusive,omitempty"`
 	LineItems       []InvoiceLineItem    `json:"line_items,omitempty"`
+	BillingAddress  *Address             `json:"billing_address,omitempty"`
 	ShippingAddress *Address             `json:"shipping_address,omitempty"`
 	LedgerAccount   *LinkedLedgerAccount `json:"ledger_account,omitempty"`
 	// Optional purchase order template
@@ -129,10 +130,18 @@ type PurchaseOrder struct {
 	DueDate *types.Date `json:"due_date,omitempty"`
 	// Payment method used for the transaction, such as cash, credit card, bank transfer, or check
 	PaymentMethod *string `json:"payment_method,omitempty"`
+	// Terms of payment.
+	Terms *string `json:"terms,omitempty"`
 	// Type of amortization
 	AmortizationType *AmortizationType `json:"amortization_type,omitempty"`
 	// Applicable tax id/code override if tax is not supplied on a line item basis.
 	TaxCode *string `json:"tax_code,omitempty"`
+	// Method of tax calculation
+	TaxMethod *string `json:"tax_method,omitempty"`
+	// Method of issuance of the purchase order
+	IssuedMethod *string `json:"issued_method,omitempty"`
+	// Email address of the person who issued the purchase order
+	IssuedEmail *string `json:"issued_email,omitempty"`
 	// The channel through which the transaction is processed.
 	Channel *string `json:"channel,omitempty"`
 	// Message for the supplier. This text appears on the Purchase Order.
@@ -295,6 +304,13 @@ func (o *PurchaseOrder) GetLineItems() []InvoiceLineItem {
 	return o.LineItems
 }
 
+func (o *PurchaseOrder) GetBillingAddress() *Address {
+	if o == nil {
+		return nil
+	}
+	return o.BillingAddress
+}
+
 func (o *PurchaseOrder) GetShippingAddress() *Address {
 	if o == nil {
 		return nil
@@ -351,6 +367,13 @@ func (o *PurchaseOrder) GetPaymentMethod() *string {
 	return o.PaymentMethod
 }
 
+func (o *PurchaseOrder) GetTerms() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Terms
+}
+
 func (o *PurchaseOrder) GetAmortizationType() *AmortizationType {
 	if o == nil {
 		return nil
@@ -363,6 +386,27 @@ func (o *PurchaseOrder) GetTaxCode() *string {
 		return nil
 	}
 	return o.TaxCode
+}
+
+func (o *PurchaseOrder) GetTaxMethod() *string {
+	if o == nil {
+		return nil
+	}
+	return o.TaxMethod
+}
+
+func (o *PurchaseOrder) GetIssuedMethod() *string {
+	if o == nil {
+		return nil
+	}
+	return o.IssuedMethod
+}
+
+func (o *PurchaseOrder) GetIssuedEmail() *string {
+	if o == nil {
+		return nil
+	}
+	return o.IssuedEmail
 }
 
 func (o *PurchaseOrder) GetChannel() *string {
@@ -480,6 +524,7 @@ type PurchaseOrderInput struct {
 	// Amounts are including tax
 	TaxInclusive    *bool                     `json:"tax_inclusive,omitempty"`
 	LineItems       []InvoiceLineItemInput    `json:"line_items,omitempty"`
+	BillingAddress  *Address                  `json:"billing_address,omitempty"`
 	ShippingAddress *Address                  `json:"shipping_address,omitempty"`
 	LedgerAccount   *LinkedLedgerAccountInput `json:"ledger_account,omitempty"`
 	// Optional purchase order template
@@ -493,10 +538,18 @@ type PurchaseOrderInput struct {
 	DueDate *types.Date `json:"due_date,omitempty"`
 	// Payment method used for the transaction, such as cash, credit card, bank transfer, or check
 	PaymentMethod *string `json:"payment_method,omitempty"`
+	// Terms of payment.
+	Terms *string `json:"terms,omitempty"`
 	// Type of amortization
 	AmortizationType *AmortizationType `json:"amortization_type,omitempty"`
 	// Applicable tax id/code override if tax is not supplied on a line item basis.
 	TaxCode *string `json:"tax_code,omitempty"`
+	// Method of tax calculation
+	TaxMethod *string `json:"tax_method,omitempty"`
+	// Method of issuance of the purchase order
+	IssuedMethod *string `json:"issued_method,omitempty"`
+	// Email address of the person who issued the purchase order
+	IssuedEmail *string `json:"issued_email,omitempty"`
 	// The channel through which the transaction is processed.
 	Channel *string `json:"channel,omitempty"`
 	// Message for the supplier. This text appears on the Purchase Order.
@@ -635,6 +688,13 @@ func (o *PurchaseOrderInput) GetLineItems() []InvoiceLineItemInput {
 	return o.LineItems
 }
 
+func (o *PurchaseOrderInput) GetBillingAddress() *Address {
+	if o == nil {
+		return nil
+	}
+	return o.BillingAddress
+}
+
 func (o *PurchaseOrderInput) GetShippingAddress() *Address {
 	if o == nil {
 		return nil
@@ -691,6 +751,13 @@ func (o *PurchaseOrderInput) GetPaymentMethod() *string {
 	return o.PaymentMethod
 }
 
+func (o *PurchaseOrderInput) GetTerms() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Terms
+}
+
 func (o *PurchaseOrderInput) GetAmortizationType() *AmortizationType {
 	if o == nil {
 		return nil
@@ -703,6 +770,27 @@ func (o *PurchaseOrderInput) GetTaxCode() *string {
 		return nil
 	}
 	return o.TaxCode
+}
+
+func (o *PurchaseOrderInput) GetTaxMethod() *string {
+	if o == nil {
+		return nil
+	}
+	return o.TaxMethod
+}
+
+func (o *PurchaseOrderInput) GetIssuedMethod() *string {
+	if o == nil {
+		return nil
+	}
+	return o.IssuedMethod
+}
+
+func (o *PurchaseOrderInput) GetIssuedEmail() *string {
+	if o == nil {
+		return nil
+	}
+	return o.IssuedEmail
 }
 
 func (o *PurchaseOrderInput) GetChannel() *string {

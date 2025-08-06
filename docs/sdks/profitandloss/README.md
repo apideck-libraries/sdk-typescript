@@ -13,6 +13,7 @@ Get Profit and Loss
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="accounting.profitAndLossOne" method="get" path="/accounting/profit-and-loss" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 

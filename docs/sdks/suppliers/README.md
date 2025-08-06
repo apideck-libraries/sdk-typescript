@@ -17,6 +17,7 @@ List Suppliers
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="accounting.suppliersAll" method="get" path="/accounting/suppliers" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -134,6 +135,7 @@ Create Supplier
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="accounting.suppliersAdd" method="post" path="/accounting/suppliers" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -527,6 +529,7 @@ Get Supplier
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="accounting.suppliersOne" method="get" path="/accounting/suppliers/{id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -612,6 +615,7 @@ Update Supplier
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="accounting.suppliersUpdate" method="patch" path="/accounting/suppliers/{id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -987,6 +991,7 @@ Delete Supplier
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="accounting.suppliersDelete" method="delete" path="/accounting/suppliers/{id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 

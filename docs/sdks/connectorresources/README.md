@@ -13,6 +13,7 @@ Get Connector Resource
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="connector.connectorResourcesOne" method="get" path="/connector/connectors/{id}/resources/{resource_id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 

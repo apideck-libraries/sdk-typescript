@@ -17,6 +17,7 @@ Apideck operates as a stateless Unified API, which means that the list endpoint 
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="hris.employeesAll" method="get" path="/hris/employees" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -144,6 +145,7 @@ Create Employee
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="hris.employeesAdd" method="post" path="/hris/employees" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 import { RFCDate } from "@apideck/unify/types";
@@ -1055,6 +1057,7 @@ Get Employee
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="hris.employeesOne" method="get" path="/hris/employees/{id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -1152,6 +1155,7 @@ Update Employee
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="hris.employeesUpdate" method="patch" path="/hris/employees/{id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 import { RFCDate } from "@apideck/unify/types";
@@ -1759,6 +1763,7 @@ Delete Employee
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="hris.employeesDelete" method="delete" path="/hris/employees/{id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 

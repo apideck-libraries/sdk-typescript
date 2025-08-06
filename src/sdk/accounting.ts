@@ -25,6 +25,7 @@ import { Locations } from "./locations.js";
 import { Payments } from "./payments.js";
 import { ProfitAndLoss } from "./profitandloss.js";
 import { PurchaseOrders } from "./purchaseorders.js";
+import { Quotes } from "./quotes.js";
 import { Subsidiaries } from "./subsidiaries.js";
 import { Suppliers } from "./suppliers.js";
 import { TaxRates } from "./taxrates.js";
@@ -159,5 +160,10 @@ export class Accounting extends ClientSDK {
   private _categories?: Categories;
   get categories(): Categories {
     return (this._categories ??= new Categories(this._options));
+  }
+
+  private _quotes?: Quotes;
+  get quotes(): Quotes {
+    return (this._quotes ??= new Quotes(this._options));
   }
 }

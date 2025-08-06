@@ -17,6 +17,7 @@ List Departments
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="accounting.departmentsAll" method="get" path="/accounting/departments" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -110,6 +111,7 @@ Create Department
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="accounting.departmentsAdd" method="post" path="/accounting/departments" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -257,6 +259,7 @@ Get Department
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="accounting.departmentsOne" method="get" path="/accounting/departments/{id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -342,6 +345,7 @@ Update Department
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="accounting.departmentsUpdate" method="patch" path="/accounting/departments/{id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -523,6 +527,7 @@ Delete Department
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="accounting.departmentsDelete" method="delete" path="/accounting/departments/{id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 

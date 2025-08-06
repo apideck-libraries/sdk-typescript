@@ -15,6 +15,7 @@ This endpoint returns custom settings and their defaults required by connection 
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="vault.connectionSettingsAll" method="get" path="/vault/connections/{unified_api}/{service_id}/{resource}/config" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -100,6 +101,7 @@ Update default values for a connection's resource settings
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="vault.connectionSettingsUpdate" method="patch" path="/vault/connections/{unified_api}/{service_id}/{resource}/config" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 

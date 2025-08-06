@@ -17,6 +17,7 @@ List SharedLinks
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="fileStorage.sharedLinksAll" method="get" path="/file-storage/shared-links" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -110,6 +111,7 @@ Create Shared Link
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="fileStorage.sharedLinksAdd" method="post" path="/file-storage/shared-links" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -283,6 +285,7 @@ Get Shared Link
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="fileStorage.sharedLinksOne" method="get" path="/file-storage/shared-links/{id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -368,6 +371,7 @@ Update Shared Link
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="fileStorage.sharedLinksUpdate" method="patch" path="/file-storage/shared-links/{id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -549,6 +553,7 @@ Delete Shared Link
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="fileStorage.sharedLinksDelete" method="delete" path="/file-storage/shared-links/{id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 

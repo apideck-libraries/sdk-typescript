@@ -14,6 +14,7 @@ List APIs
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="connector.apisAll" method="get" path="/connector/apis" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -99,6 +100,7 @@ Get API
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="connector.apisOne" method="get" path="/connector/apis/{id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 

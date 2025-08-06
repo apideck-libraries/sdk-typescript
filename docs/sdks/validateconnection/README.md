@@ -19,6 +19,7 @@ Note:
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="vault.validateConnectionState" method="post" path="/vault/connections/{unified_api}/{service_id}/validate" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 

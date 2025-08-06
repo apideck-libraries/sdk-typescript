@@ -13,6 +13,7 @@ List event logs
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="webhook.eventLogsAll" method="get" path="/webhook/logs" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 

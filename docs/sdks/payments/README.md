@@ -17,6 +17,7 @@ List Payments
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="accounting.paymentsAll" method="get" path="/accounting/payments" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -126,6 +127,7 @@ Create Payment
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="accounting.paymentsAdd" method="post" path="/accounting/payments" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -379,6 +381,7 @@ Get Payment
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="accounting.paymentsOne" method="get" path="/accounting/payments/{id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -464,6 +467,7 @@ Update Payment
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="accounting.paymentsUpdate" method="patch" path="/accounting/payments/{id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -713,6 +717,7 @@ Delete Payment
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="accounting.paymentsDelete" method="delete" path="/accounting/payments/{id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 

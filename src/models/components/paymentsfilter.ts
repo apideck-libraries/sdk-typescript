@@ -11,6 +11,7 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 export type PaymentsFilter = {
   updatedSince?: Date | undefined;
   invoiceId?: string | undefined;
+  supplierId?: string | undefined;
 };
 
 /** @internal */
@@ -23,10 +24,12 @@ export const PaymentsFilter$inboundSchema: z.ZodType<
     new Date(v)
   ).optional(),
   invoice_id: z.string().optional(),
+  supplier_id: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
     "updated_since": "updatedSince",
     "invoice_id": "invoiceId",
+    "supplier_id": "supplierId",
   });
 });
 
@@ -34,6 +37,7 @@ export const PaymentsFilter$inboundSchema: z.ZodType<
 export type PaymentsFilter$Outbound = {
   updated_since?: string | undefined;
   invoice_id?: string | undefined;
+  supplier_id?: string | undefined;
 };
 
 /** @internal */
@@ -44,10 +48,12 @@ export const PaymentsFilter$outboundSchema: z.ZodType<
 > = z.object({
   updatedSince: z.date().transform(v => v.toISOString()).optional(),
   invoiceId: z.string().optional(),
+  supplierId: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
     updatedSince: "updated_since",
     invoiceId: "invoice_id",
+    supplierId: "supplier_id",
   });
 });
 

@@ -17,6 +17,7 @@ List Drives
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="fileStorage.drivesAll" method="get" path="/file-storage/drives" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -110,6 +111,7 @@ Create Drive
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="fileStorage.drivesAdd" method="post" path="/file-storage/drives" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -281,6 +283,7 @@ Get Drive
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="fileStorage.drivesOne" method="get" path="/file-storage/drives/{id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -366,6 +369,7 @@ Update Drive
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="fileStorage.drivesUpdate" method="patch" path="/file-storage/drives/{id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -487,6 +491,7 @@ Delete Drive
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="fileStorage.drivesDelete" method="delete" path="/file-storage/drives/{id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 

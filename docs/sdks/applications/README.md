@@ -17,6 +17,7 @@ List Applications
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="ats.applicationsAll" method="get" path="/ats/applications" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -108,6 +109,7 @@ Create Application
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="ats.applicationsAdd" method="post" path="/ats/applications" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -253,6 +255,7 @@ Get Application
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="ats.applicationsOne" method="get" path="/ats/applications/{id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -336,6 +339,7 @@ Update Application
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="ats.applicationsUpdate" method="patch" path="/ats/applications/{id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -615,6 +619,7 @@ Delete Application
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="ats.applicationsDelete" method="delete" path="/ats/applications/{id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 

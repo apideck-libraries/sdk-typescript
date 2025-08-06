@@ -127,6 +127,9 @@ const (
 	WebhookEventTypeEcommerceCustomerCreated          WebhookEventType = "ecommerce.customer.created"
 	WebhookEventTypeEcommerceCustomerUpdated          WebhookEventType = "ecommerce.customer.updated"
 	WebhookEventTypeEcommerceCustomerDeleted          WebhookEventType = "ecommerce.customer.deleted"
+	WebhookEventTypeAccountingQuoteCreated            WebhookEventType = "accounting.quote.created"
+	WebhookEventTypeAccountingQuoteUpdated            WebhookEventType = "accounting.quote.updated"
+	WebhookEventTypeAccountingQuoteDeleted            WebhookEventType = "accounting.quote.deleted"
 )
 
 func (e WebhookEventType) ToPointer() *WebhookEventType {
@@ -371,6 +374,12 @@ func (e *WebhookEventType) UnmarshalJSON(data []byte) error {
 	case "ecommerce.customer.updated":
 		fallthrough
 	case "ecommerce.customer.deleted":
+		fallthrough
+	case "accounting.quote.created":
+		fallthrough
+	case "accounting.quote.updated":
+		fallthrough
+	case "accounting.quote.deleted":
 		*e = WebhookEventType(v)
 		return nil
 	default:

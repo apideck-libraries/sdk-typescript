@@ -17,6 +17,7 @@ List contacts
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="crm.contactsAll" method="get" path="/crm/contacts" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -132,6 +133,7 @@ Create contact
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="crm.contactsAdd" method="post" path="/crm/contacts" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -581,6 +583,7 @@ Get contact
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="crm.contactsOne" method="get" path="/crm/contacts/{id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -680,6 +683,7 @@ Update contact
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="crm.contactsUpdate" method="patch" path="/crm/contacts/{id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -1239,6 +1243,7 @@ Delete contact
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="crm.contactsDelete" method="delete" path="/crm/contacts/{id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 

@@ -17,6 +17,7 @@ List Subsidiaries
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="accounting.subsidiariesAll" method="get" path="/accounting/subsidiaries" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -104,6 +105,7 @@ Create Subsidiary
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="accounting.subsidiariesAdd" method="post" path="/accounting/subsidiaries" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -279,6 +281,7 @@ Get Subsidiary
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="accounting.subsidiariesOne" method="get" path="/accounting/subsidiaries/{id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -364,6 +367,7 @@ Update Subsidiary
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="accounting.subsidiariesUpdate" method="patch" path="/accounting/subsidiaries/{id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
@@ -505,6 +509,7 @@ Delete Subsidiary
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="accounting.subsidiariesDelete" method="delete" path="/accounting/subsidiaries/{id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 
