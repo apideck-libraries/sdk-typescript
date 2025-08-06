@@ -5,8 +5,8 @@ management:
   docVersion: 10.20.2
   speakeasyVersion: 1.598.0
   generationVersion: 2.674.1
-  releaseVersion: 0.29.0
-  configChecksum: ffa8a82757497bb468f97990ac130ea5
+  releaseVersion: 0.29.1
+  configChecksum: 7f568a1c31297e80fc0c9e75f877c7ad
   repoURL: https://github.com/apideck-libraries/sdk-typescript.git
   installationURL: https://github.com/apideck-libraries/sdk-typescript
   published: true
