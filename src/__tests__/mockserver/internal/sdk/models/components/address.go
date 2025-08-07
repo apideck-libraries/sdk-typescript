@@ -17,6 +17,7 @@ const (
 	AddressTypeOffice    AddressType = "office"
 	AddressTypeShipping  AddressType = "shipping"
 	AddressTypeBilling   AddressType = "billing"
+	AddressTypeWork      AddressType = "work"
 	AddressTypeOther     AddressType = "other"
 )
 
@@ -40,6 +41,8 @@ func (e *AddressType) UnmarshalJSON(data []byte) error {
 	case "shipping":
 		fallthrough
 	case "billing":
+		fallthrough
+	case "work":
 		fallthrough
 	case "other":
 		*e = AddressType(v)

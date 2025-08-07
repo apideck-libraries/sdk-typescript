@@ -19,6 +19,7 @@ export const Type = {
   Office: "office",
   Shipping: "shipping",
   Billing: "billing",
+  Work: "work",
   Other: "other",
 } as const;
 /**

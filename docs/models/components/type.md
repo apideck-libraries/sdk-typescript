@@ -13,5 +13,5 @@ let value: Type = "primary";
 ## Values
 
 ```typescript
-"primary" | "secondary" | "home" | "office" | "shipping" | "billing" | "other"
+"primary" | "secondary" | "home" | "office" | "shipping" | "billing" | "work" | "other"
 ```
