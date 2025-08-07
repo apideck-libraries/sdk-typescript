@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 7bffa198-5d29-4efa-9942-d549cc832085
 management:
-  docChecksum: ffad85289ecb22153e96c5201275a350
+  docChecksum: 11feecf9984adeb160158d1266da5ee2
   docVersion: 10.20.2
-  speakeasyVersion: 1.598.2
+  speakeasyVersion: 1.598.3
   generationVersion: 2.674.3
-  releaseVersion: 0.29.1
-  configChecksum: bf7b3e62d6e1f777810117e1e0616ef8
+  releaseVersion: 0.29.2
+  configChecksum: b889fd4143e5804cfd50debc7ac9abda
   repoURL: https://github.com/apideck-libraries/sdk-typescript.git
   installationURL: https://github.com/apideck-libraries/sdk-typescript
   published: true
