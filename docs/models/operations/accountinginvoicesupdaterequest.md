@@ -10,6 +10,7 @@ let value: AccountingInvoicesUpdateRequest = {
   id: "<id>",
   serviceId: "salesforce",
   invoice: {
+    displayId: "123456",
     type: "service",
     number: "OIT00546",
     customer: {
