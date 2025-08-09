@@ -101,6 +101,10 @@ export type Bill = {
    */
   downstreamId?: string | null | undefined;
   /**
+   * Id to be displayed.
+   */
+  displayId?: string | null | undefined;
+  /**
    * Reference to supplier bill number
    */
   billNumber?: string | null | undefined;
@@ -244,6 +248,10 @@ export type Bill = {
 };
 
 export type BillInput = {
+  /**
+   * Id to be displayed.
+   */
+  displayId?: string | null | undefined;
   /**
    * Reference to supplier bill number
    */
@@ -391,6 +399,7 @@ export const Bill$inboundSchema: z.ZodType<Bill, z.ZodTypeDef, unknown> = z
   .object({
     id: z.string().optional(),
     downstream_id: z.nullable(z.string()).optional(),
+    display_id: z.nullable(z.string()).optional(),
     bill_number: z.nullable(z.string()).optional(),
     supplier: z.nullable(LinkedSupplier$inboundSchema).optional(),
     company_id: z.nullable(z.string()).optional(),
@@ -439,6 +448,7 @@ export const Bill$inboundSchema: z.ZodType<Bill, z.ZodTypeDef, unknown> = z
   }).transform((v) => {
     return remap$(v, {
       "downstream_id": "downstreamId",
+      "display_id": "displayId",
       "bill_number": "billNumber",
       "company_id": "companyId",
       "currency_rate": "currencyRate",
@@ -474,6 +484,7 @@ export const Bill$inboundSchema: z.ZodType<Bill, z.ZodTypeDef, unknown> = z
 export type Bill$Outbound = {
   id?: string | undefined;
   downstream_id?: string | null | undefined;
+  display_id?: string | null | undefined;
   bill_number?: string | null | undefined;
   supplier?: LinkedSupplier$Outbound | null | undefined;
   company_id?: string | null | undefined;
@@ -523,6 +534,7 @@ export const Bill$outboundSchema: z.ZodType<Bill$Outbound, z.ZodTypeDef, Bill> =
   z.object({
     id: z.string().optional(),
     downstreamId: z.nullable(z.string()).optional(),
+    displayId: z.nullable(z.string()).optional(),
     billNumber: z.nullable(z.string()).optional(),
     supplier: z.nullable(LinkedSupplier$outboundSchema).optional(),
     companyId: z.nullable(z.string()).optional(),
@@ -570,6 +582,7 @@ export const Bill$outboundSchema: z.ZodType<Bill$Outbound, z.ZodTypeDef, Bill> =
   }).transform((v) => {
     return remap$(v, {
       downstreamId: "downstream_id",
+      displayId: "display_id",
       billNumber: "bill_number",
       companyId: "company_id",
       currencyRate: "currency_rate",
@@ -634,6 +647,7 @@ export const BillInput$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
+  display_id: z.nullable(z.string()).optional(),
   bill_number: z.nullable(z.string()).optional(),
   supplier: z.nullable(LinkedSupplierInput$inboundSchema).optional(),
   company_id: z.nullable(z.string()).optional(),
@@ -672,6 +686,7 @@ export const BillInput$inboundSchema: z.ZodType<
   accounting_period: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
+    "display_id": "displayId",
     "bill_number": "billNumber",
     "company_id": "companyId",
     "currency_rate": "currencyRate",
@@ -700,6 +715,7 @@ export const BillInput$inboundSchema: z.ZodType<
 
 /** @internal */
 export type BillInput$Outbound = {
+  display_id?: string | null | undefined;
   bill_number?: string | null | undefined;
   supplier?: LinkedSupplierInput$Outbound | null | undefined;
   company_id?: string | null | undefined;
@@ -745,6 +761,7 @@ export const BillInput$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   BillInput
 > = z.object({
+  displayId: z.nullable(z.string()).optional(),
   billNumber: z.nullable(z.string()).optional(),
   supplier: z.nullable(LinkedSupplierInput$outboundSchema).optional(),
   companyId: z.nullable(z.string()).optional(),
@@ -786,6 +803,7 @@ export const BillInput$outboundSchema: z.ZodType<
   accountingPeriod: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
+    displayId: "display_id",
     billNumber: "bill_number",
     companyId: "company_id",
     currencyRate: "currency_rate",

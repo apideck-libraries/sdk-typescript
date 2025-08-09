@@ -140,6 +140,8 @@ type Invoice struct {
 	ID *string `json:"id,omitempty"`
 	// The third-party API ID of original entity
 	DownstreamID *string `json:"downstream_id,omitempty"`
+	// Id to be displayed.
+	DisplayID *string `json:"display_id,omitempty"`
 	// Invoice type
 	Type *InvoiceType `json:"type,omitempty"`
 	// Invoice number.
@@ -249,6 +251,13 @@ func (o *Invoice) GetDownstreamID() *string {
 		return nil
 	}
 	return o.DownstreamID
+}
+
+func (o *Invoice) GetDisplayID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.DisplayID
 }
 
 func (o *Invoice) GetType() *InvoiceType {
@@ -567,6 +576,8 @@ func (o *Invoice) GetPassThrough() []PassThroughBody {
 }
 
 type InvoiceInput struct {
+	// Id to be displayed.
+	DisplayID *string `json:"display_id,omitempty"`
 	// Invoice type
 	Type *InvoiceType `json:"type,omitempty"`
 	// Invoice number.
@@ -652,6 +663,13 @@ func (i *InvoiceInput) UnmarshalJSON(data []byte) error {
 		return err
 	}
 	return nil
+}
+
+func (o *InvoiceInput) GetDisplayID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.DisplayID
 }
 
 func (o *InvoiceInput) GetType() *InvoiceType {

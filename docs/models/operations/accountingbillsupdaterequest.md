@@ -10,6 +10,7 @@ let value: AccountingBillsUpdateRequest = {
   id: "<id>",
   serviceId: "salesforce",
   bill: {
+    displayId: "123456",
     billNumber: "10001",
     supplier: {
       id: "12345",

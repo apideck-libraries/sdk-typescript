@@ -144,6 +144,10 @@ export type Invoice = {
    */
   downstreamId?: string | null | undefined;
   /**
+   * Id to be displayed.
+   */
+  displayId?: string | null | undefined;
+  /**
    * Invoice type
    */
   type?: InvoiceType | null | undefined;
@@ -308,6 +312,10 @@ export type Invoice = {
 };
 
 export type InvoiceInput = {
+  /**
+   * Id to be displayed.
+   */
+  displayId?: string | null | undefined;
   /**
    * Invoice type
    */
@@ -567,6 +575,7 @@ export const Invoice$inboundSchema: z.ZodType<Invoice, z.ZodTypeDef, unknown> =
   z.object({
     id: z.string().optional(),
     downstream_id: z.nullable(z.string()).optional(),
+    display_id: z.nullable(z.string()).optional(),
     type: z.nullable(InvoiceType$inboundSchema).optional(),
     number: z.nullable(z.string()).optional(),
     customer: z.nullable(LinkedCustomer$inboundSchema).optional(),
@@ -626,6 +635,7 @@ export const Invoice$inboundSchema: z.ZodType<Invoice, z.ZodTypeDef, unknown> =
   }).transform((v) => {
     return remap$(v, {
       "downstream_id": "downstreamId",
+      "display_id": "displayId",
       "company_id": "companyId",
       "invoice_date": "invoiceDate",
       "due_date": "dueDate",
@@ -666,6 +676,7 @@ export const Invoice$inboundSchema: z.ZodType<Invoice, z.ZodTypeDef, unknown> =
 export type Invoice$Outbound = {
   id?: string | undefined;
   downstream_id?: string | null | undefined;
+  display_id?: string | null | undefined;
   type?: string | null | undefined;
   number?: string | null | undefined;
   customer?: LinkedCustomer$Outbound | null | undefined;
@@ -727,6 +738,7 @@ export const Invoice$outboundSchema: z.ZodType<
 > = z.object({
   id: z.string().optional(),
   downstreamId: z.nullable(z.string()).optional(),
+  displayId: z.nullable(z.string()).optional(),
   type: z.nullable(InvoiceType$outboundSchema).optional(),
   number: z.nullable(z.string()).optional(),
   customer: z.nullable(LinkedCustomer$outboundSchema).optional(),
@@ -782,6 +794,7 @@ export const Invoice$outboundSchema: z.ZodType<
 }).transform((v) => {
   return remap$(v, {
     downstreamId: "downstream_id",
+    displayId: "display_id",
     companyId: "company_id",
     invoiceDate: "invoice_date",
     dueDate: "due_date",
@@ -851,6 +864,7 @@ export const InvoiceInput$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
+  display_id: z.nullable(z.string()).optional(),
   type: z.nullable(InvoiceType$inboundSchema).optional(),
   number: z.nullable(z.string()).optional(),
   customer: z.nullable(LinkedCustomerInput$inboundSchema).optional(),
@@ -899,6 +913,7 @@ export const InvoiceInput$inboundSchema: z.ZodType<
   pass_through: z.array(PassThroughBody$inboundSchema).optional(),
 }).transform((v) => {
   return remap$(v, {
+    "display_id": "displayId",
     "company_id": "companyId",
     "invoice_date": "invoiceDate",
     "due_date": "dueDate",
@@ -932,6 +947,7 @@ export const InvoiceInput$inboundSchema: z.ZodType<
 
 /** @internal */
 export type InvoiceInput$Outbound = {
+  display_id?: string | null | undefined;
   type?: string | null | undefined;
   number?: string | null | undefined;
   customer?: LinkedCustomerInput$Outbound | null | undefined;
@@ -986,6 +1002,7 @@ export const InvoiceInput$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   InvoiceInput
 > = z.object({
+  displayId: z.nullable(z.string()).optional(),
   type: z.nullable(InvoiceType$outboundSchema).optional(),
   number: z.nullable(z.string()).optional(),
   customer: z.nullable(LinkedCustomerInput$outboundSchema).optional(),
@@ -1035,6 +1052,7 @@ export const InvoiceInput$outboundSchema: z.ZodType<
   passThrough: z.array(PassThroughBody$outboundSchema).optional(),
 }).transform((v) => {
   return remap$(v, {
+    displayId: "display_id",
     companyId: "company_id",
     invoiceDate: "invoice_date",
     dueDate: "due_date",

@@ -60,6 +60,8 @@ type Bill struct {
 	ID *string `json:"id,omitempty"`
 	// The third-party API ID of original entity
 	DownstreamID *string `json:"downstream_id,omitempty"`
+	// Id to be displayed.
+	DisplayID *string `json:"display_id,omitempty"`
 	// Reference to supplier bill number
 	BillNumber *string `json:"bill_number,omitempty"`
 	// The supplier this entity is linked to.
@@ -158,6 +160,13 @@ func (o *Bill) GetDownstreamID() *string {
 		return nil
 	}
 	return o.DownstreamID
+}
+
+func (o *Bill) GetDisplayID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.DisplayID
 }
 
 func (o *Bill) GetBillNumber() *string {
@@ -434,6 +443,8 @@ func (o *Bill) GetAccountingPeriod() *string {
 }
 
 type BillInput struct {
+	// Id to be displayed.
+	DisplayID *string `json:"display_id,omitempty"`
 	// Reference to supplier bill number
 	BillNumber *string `json:"bill_number,omitempty"`
 	// The supplier this entity is linked to.
@@ -508,6 +519,13 @@ func (b *BillInput) UnmarshalJSON(data []byte) error {
 		return err
 	}
 	return nil
+}
+
+func (o *BillInput) GetDisplayID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.DisplayID
 }
 
 func (o *BillInput) GetBillNumber() *string {

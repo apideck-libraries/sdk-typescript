@@ -17,6 +17,7 @@ let value: GetBillResponse = {
   data: {
     id: "12345",
     downstreamId: "12345",
+    displayId: "123456",
     billNumber: "10001",
     supplier: {
       id: "12345",

@@ -17,6 +17,7 @@ let value: GetInvoiceResponse = {
   data: {
     id: "12345",
     downstreamId: "12345",
+    displayId: "123456",
     type: "service",
     number: "OIT00546",
     customer: {
