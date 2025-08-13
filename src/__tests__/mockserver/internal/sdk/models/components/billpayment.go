@@ -155,7 +155,7 @@ type BillPayment struct {
 	TransactionDate *time.Time `json:"transaction_date"`
 	// The supplier this entity is linked to.
 	Supplier *LinkedSupplier `json:"supplier,omitempty"`
-	// The company or subsidiary id the transaction belongs to
+	// The company ID the transaction belongs to
 	CompanyID *string `json:"company_id,omitempty"`
 	// Indicates if the transaction has been reconciled.
 	Reconciled *bool `json:"reconciled,omitempty"`
@@ -462,7 +462,7 @@ type BillPaymentInput struct {
 	TransactionDate *time.Time `json:"transaction_date"`
 	// The supplier this entity is linked to.
 	Supplier *LinkedSupplierInput `json:"supplier,omitempty"`
-	// The company or subsidiary id the transaction belongs to
+	// The company ID the transaction belongs to
 	CompanyID *string `json:"company_id,omitempty"`
 	// Indicates if the transaction has been reconciled.
 	Reconciled *bool `json:"reconciled,omitempty"`

@@ -140,14 +140,18 @@ type Invoice struct {
 	ID *string `json:"id,omitempty"`
 	// The third-party API ID of original entity
 	DownstreamID *string `json:"downstream_id,omitempty"`
+	// Id to be displayed.
+	DisplayID *string `json:"display_id,omitempty"`
 	// Invoice type
 	Type *InvoiceType `json:"type,omitempty"`
 	// Invoice number.
 	Number *string `json:"number,omitempty"`
 	// The customer this entity is linked to.
 	Customer *LinkedCustomer `json:"customer,omitempty"`
-	// The company or subsidiary id the transaction belongs to
+	// The company ID the transaction belongs to
 	CompanyID *string `json:"company_id,omitempty"`
+	// The ID of the department
+	DepartmentID *string `json:"department_id,omitempty"`
 	// Date invoice was issued - YYYY-MM-DD.
 	InvoiceDate *types.Date `json:"invoice_date,omitempty"`
 	// The invoice due date is the date on which a payment or invoice is scheduled to be received by the seller - YYYY-MM-DD.
@@ -251,6 +255,13 @@ func (o *Invoice) GetDownstreamID() *string {
 	return o.DownstreamID
 }
 
+func (o *Invoice) GetDisplayID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.DisplayID
+}
+
 func (o *Invoice) GetType() *InvoiceType {
 	if o == nil {
 		return nil
@@ -277,6 +288,13 @@ func (o *Invoice) GetCompanyID() *string {
 		return nil
 	}
 	return o.CompanyID
+}
+
+func (o *Invoice) GetDepartmentID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.DepartmentID
 }
 
 func (o *Invoice) GetInvoiceDate() *types.Date {
@@ -567,14 +585,18 @@ func (o *Invoice) GetPassThrough() []PassThroughBody {
 }
 
 type InvoiceInput struct {
+	// Id to be displayed.
+	DisplayID *string `json:"display_id,omitempty"`
 	// Invoice type
 	Type *InvoiceType `json:"type,omitempty"`
 	// Invoice number.
 	Number *string `json:"number,omitempty"`
 	// The customer this entity is linked to.
 	Customer *LinkedCustomerInput `json:"customer,omitempty"`
-	// The company or subsidiary id the transaction belongs to
+	// The company ID the transaction belongs to
 	CompanyID *string `json:"company_id,omitempty"`
+	// The ID of the department
+	DepartmentID *string `json:"department_id,omitempty"`
 	// Date invoice was issued - YYYY-MM-DD.
 	InvoiceDate *types.Date `json:"invoice_date,omitempty"`
 	// The invoice due date is the date on which a payment or invoice is scheduled to be received by the seller - YYYY-MM-DD.
@@ -654,6 +676,13 @@ func (i *InvoiceInput) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
+func (o *InvoiceInput) GetDisplayID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.DisplayID
+}
+
 func (o *InvoiceInput) GetType() *InvoiceType {
 	if o == nil {
 		return nil
@@ -680,6 +709,13 @@ func (o *InvoiceInput) GetCompanyID() *string {
 		return nil
 	}
 	return o.CompanyID
+}
+
+func (o *InvoiceInput) GetDepartmentID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.DepartmentID
 }
 
 func (o *InvoiceInput) GetInvoiceDate() *types.Date {

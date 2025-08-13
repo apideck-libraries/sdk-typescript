@@ -117,7 +117,7 @@ export type Supplier = {
    */
   companyName?: string | null | undefined;
   /**
-   * The company or subsidiary id the transaction belongs to
+   * The company ID the transaction belongs to
    */
   companyId?: string | null | undefined;
   /**
@@ -226,7 +226,7 @@ export type SupplierInput = {
    */
   companyName?: string | null | undefined;
   /**
-   * The company or subsidiary id the transaction belongs to
+   * The company ID the transaction belongs to
    */
   companyId?: string | null | undefined;
   /**

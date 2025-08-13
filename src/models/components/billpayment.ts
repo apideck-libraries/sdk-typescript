@@ -161,7 +161,7 @@ export type BillPayment = {
    */
   supplier?: LinkedSupplier | null | undefined;
   /**
-   * The company or subsidiary id the transaction belongs to
+   * The company ID the transaction belongs to
    */
   companyId?: string | null | undefined;
   /**
@@ -282,7 +282,7 @@ export type BillPaymentInput = {
    */
   supplier?: LinkedSupplierInput | null | undefined;
   /**
-   * The company or subsidiary id the transaction belongs to
+   * The company ID the transaction belongs to
    */
   companyId?: string | null | undefined;
   /**

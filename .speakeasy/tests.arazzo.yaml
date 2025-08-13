@@ -50991,6 +50991,7 @@ workflows:
               email: boring@boring.com
               id: "12345"
             customer_memo: Thank you for considering our services!
+            department_id: "12345"
             discount_amount: 25
             discount_percentage: 5.5
             expiry_date: "2020-10-30"
@@ -51148,6 +51149,7 @@ workflows:
                   "invoice_id": "123456",
                   "sales_order_id": "123456",
                   "company_id": "12345",
+                  "department_id": "12345",
                   "project_id": "12345",
                   "quote_date": "2020-09-30",
                   "expiry_date": "2020-10-30",
@@ -51378,6 +51380,7 @@ workflows:
               email: boring@boring.com
               id: "12345"
             customer_memo: Thank you for considering our services!
+            department_id: "12345"
             discount_amount: 25
             discount_percentage: 5.5
             expiry_date: "2020-10-30"

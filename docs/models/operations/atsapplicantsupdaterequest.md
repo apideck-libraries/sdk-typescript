@@ -11,11 +11,15 @@ let value: AtsApplicantsUpdateRequest = {
   serviceId: "salesforce",
   applicant: {
     name: "Elon Musk",
+    salutation: "Mr",
     firstName: "Elon",
     lastName: "Musk",
     middleName: "D.",
     initials: "EM",
     birthday: new RFCDate("2000-08-12"),
+    gender: "male",
+    socialSecurityNumber: "123456789",
+    type: "Candidate",
     coverLetter:
       "I submit this application to express my sincere interest in the API developer position. In the previous role, I was responsible for leadership and ...",
     photoUrl: "https://unavatar.io/elon-musk",

@@ -68,8 +68,10 @@ type Quote struct {
 	InvoiceID *string `json:"invoice_id,omitempty"`
 	// The unique identifier for the sales order.
 	SalesOrderID *string `json:"sales_order_id,omitempty"`
-	// The company or subsidiary id the transaction belongs to
+	// The company ID the transaction belongs to
 	CompanyID *string `json:"company_id,omitempty"`
+	// The ID of the department
+	DepartmentID *string `json:"department_id,omitempty"`
 	// The unique identifier for the linked project.
 	ProjectID *string `json:"project_id,omitempty"`
 	// Date quote was issued - YYYY-MM-DD.
@@ -184,6 +186,13 @@ func (o *Quote) GetCompanyID() *string {
 		return nil
 	}
 	return o.CompanyID
+}
+
+func (o *Quote) GetDepartmentID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.DepartmentID
 }
 
 func (o *Quote) GetProjectID() *string {
@@ -396,8 +405,10 @@ type QuoteInput struct {
 	Customer *LinkedCustomerInput `json:"customer,omitempty"`
 	// The unique identifier for the sales order.
 	SalesOrderID *string `json:"sales_order_id,omitempty"`
-	// The company or subsidiary id the transaction belongs to
+	// The company ID the transaction belongs to
 	CompanyID *string `json:"company_id,omitempty"`
+	// The ID of the department
+	DepartmentID *string `json:"department_id,omitempty"`
 	// The unique identifier for the linked project.
 	ProjectID *string `json:"project_id,omitempty"`
 	// Date quote was issued - YYYY-MM-DD.
@@ -483,6 +494,13 @@ func (o *QuoteInput) GetCompanyID() *string {
 		return nil
 	}
 	return o.CompanyID
+}
+
+func (o *QuoteInput) GetDepartmentID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.DepartmentID
 }
 
 func (o *QuoteInput) GetProjectID() *string {

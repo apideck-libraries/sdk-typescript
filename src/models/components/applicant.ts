@@ -41,6 +41,21 @@ import {
 } from "./phonenumber.js";
 
 /**
+ * The gender represents the gender identity of a person.
+ */
+export const ApplicantGender = {
+  Male: "male",
+  Female: "female",
+  Unisex: "unisex",
+  Other: "other",
+  NotSpecified: "not_specified",
+} as const;
+/**
+ * The gender represents the gender identity of a person.
+ */
+export type ApplicantGender = ClosedEnum<typeof ApplicantGender>;
+
+/**
  * The type of website
  */
 export const ApplicantType = {
@@ -95,6 +110,10 @@ export type Applicant = {
    */
   name?: string | undefined;
   /**
+   * A formal salutation for the person. For example, 'Mr', 'Mrs'
+   */
+  salutation?: string | null | undefined;
+  /**
    * The first name of the person.
    */
   firstName?: string | null | undefined;
@@ -114,6 +133,15 @@ export type Applicant = {
    * The date of birth of the person.
    */
   birthday?: RFCDate | null | undefined;
+  /**
+   * The gender represents the gender identity of a person.
+   */
+  gender?: ApplicantGender | null | undefined;
+  /**
+   * A unique identifier assigned by the government. This field is considered sensitive information and may be subject to special security and privacy restrictions.
+   */
+  socialSecurityNumber?: string | null | undefined;
+  type?: string | undefined;
   coverLetter?: string | undefined;
   jobUrl?: string | null | undefined;
   /**
@@ -201,6 +229,10 @@ export type ApplicantInput = {
    */
   name?: string | undefined;
   /**
+   * A formal salutation for the person. For example, 'Mr', 'Mrs'
+   */
+  salutation?: string | null | undefined;
+  /**
    * The first name of the person.
    */
   firstName?: string | null | undefined;
@@ -220,6 +252,15 @@ export type ApplicantInput = {
    * The date of birth of the person.
    */
   birthday?: RFCDate | null | undefined;
+  /**
+   * The gender represents the gender identity of a person.
+   */
+  gender?: ApplicantGender | null | undefined;
+  /**
+   * A unique identifier assigned by the government. This field is considered sensitive information and may be subject to special security and privacy restrictions.
+   */
+  socialSecurityNumber?: string | null | undefined;
+  type?: string | undefined;
   coverLetter?: string | undefined;
   /**
    * The URL of the photo of a person.
@@ -266,6 +307,27 @@ export type ApplicantInput = {
    */
   passThrough?: Array<PassThroughBody> | undefined;
 };
+
+/** @internal */
+export const ApplicantGender$inboundSchema: z.ZodNativeEnum<
+  typeof ApplicantGender
+> = z.nativeEnum(ApplicantGender);
+
+/** @internal */
+export const ApplicantGender$outboundSchema: z.ZodNativeEnum<
+  typeof ApplicantGender
+> = ApplicantGender$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace ApplicantGender$ {
+  /** @deprecated use `ApplicantGender$inboundSchema` instead. */
+  export const inboundSchema = ApplicantGender$inboundSchema;
+  /** @deprecated use `ApplicantGender$outboundSchema` instead. */
+  export const outboundSchema = ApplicantGender$outboundSchema;
+}
 
 /** @internal */
 export const ApplicantType$inboundSchema: z.ZodNativeEnum<
@@ -408,11 +470,15 @@ export const Applicant$inboundSchema: z.ZodType<
 > = z.object({
   id: z.string().optional(),
   name: z.string().optional(),
+  salutation: z.nullable(z.string()).optional(),
   first_name: z.nullable(z.string()).optional(),
   last_name: z.nullable(z.string()).optional(),
   middle_name: z.nullable(z.string()).optional(),
   initials: z.nullable(z.string()).optional(),
   birthday: z.nullable(z.string().transform(v => new RFCDate(v))).optional(),
+  gender: z.nullable(ApplicantGender$inboundSchema).optional(),
+  social_security_number: z.nullable(z.string()).optional(),
+  type: z.string().optional(),
   cover_letter: z.string().optional(),
   job_url: z.nullable(z.string()).optional(),
   photo_url: z.nullable(z.string()).optional(),
@@ -466,6 +532,7 @@ export const Applicant$inboundSchema: z.ZodType<
     "first_name": "firstName",
     "last_name": "lastName",
     "middle_name": "middleName",
+    "social_security_number": "socialSecurityNumber",
     "cover_letter": "coverLetter",
     "job_url": "jobUrl",
     "photo_url": "photoUrl",
@@ -498,11 +565,15 @@ export const Applicant$inboundSchema: z.ZodType<
 export type Applicant$Outbound = {
   id?: string | undefined;
   name?: string | undefined;
+  salutation?: string | null | undefined;
   first_name?: string | null | undefined;
   last_name?: string | null | undefined;
   middle_name?: string | null | undefined;
   initials?: string | null | undefined;
   birthday?: string | null | undefined;
+  gender?: string | null | undefined;
+  social_security_number?: string | null | undefined;
+  type?: string | undefined;
   cover_letter?: string | undefined;
   job_url?: string | null | undefined;
   photo_url?: string | null | undefined;
@@ -551,12 +622,16 @@ export const Applicant$outboundSchema: z.ZodType<
 > = z.object({
   id: z.string().optional(),
   name: z.string().optional(),
+  salutation: z.nullable(z.string()).optional(),
   firstName: z.nullable(z.string()).optional(),
   lastName: z.nullable(z.string()).optional(),
   middleName: z.nullable(z.string()).optional(),
   initials: z.nullable(z.string()).optional(),
   birthday: z.nullable(z.instanceof(RFCDate).transform(v => v.toString()))
     .optional(),
+  gender: z.nullable(ApplicantGender$outboundSchema).optional(),
+  socialSecurityNumber: z.nullable(z.string()).optional(),
+  type: z.string().optional(),
   coverLetter: z.string().optional(),
   jobUrl: z.nullable(z.string()).optional(),
   photoUrl: z.nullable(z.string()).optional(),
@@ -601,6 +676,7 @@ export const Applicant$outboundSchema: z.ZodType<
     firstName: "first_name",
     lastName: "last_name",
     middleName: "middle_name",
+    socialSecurityNumber: "social_security_number",
     coverLetter: "cover_letter",
     jobUrl: "job_url",
     photoUrl: "photo_url",
@@ -663,11 +739,15 @@ export const ApplicantInput$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   name: z.string().optional(),
+  salutation: z.nullable(z.string()).optional(),
   first_name: z.nullable(z.string()).optional(),
   last_name: z.nullable(z.string()).optional(),
   middle_name: z.nullable(z.string()).optional(),
   initials: z.nullable(z.string()).optional(),
   birthday: z.nullable(z.string().transform(v => new RFCDate(v))).optional(),
+  gender: z.nullable(ApplicantGender$inboundSchema).optional(),
+  social_security_number: z.nullable(z.string()).optional(),
+  type: z.string().optional(),
   cover_letter: z.string().optional(),
   photo_url: z.nullable(z.string()).optional(),
   headline: z.string().optional(),
@@ -698,6 +778,7 @@ export const ApplicantInput$inboundSchema: z.ZodType<
     "first_name": "firstName",
     "last_name": "lastName",
     "middle_name": "middleName",
+    "social_security_number": "socialSecurityNumber",
     "cover_letter": "coverLetter",
     "photo_url": "photoUrl",
     "custom_fields": "customFields",
@@ -716,11 +797,15 @@ export const ApplicantInput$inboundSchema: z.ZodType<
 /** @internal */
 export type ApplicantInput$Outbound = {
   name?: string | undefined;
+  salutation?: string | null | undefined;
   first_name?: string | null | undefined;
   last_name?: string | null | undefined;
   middle_name?: string | null | undefined;
   initials?: string | null | undefined;
   birthday?: string | null | undefined;
+  gender?: string | null | undefined;
+  social_security_number?: string | null | undefined;
+  type?: string | undefined;
   cover_letter?: string | undefined;
   photo_url?: string | null | undefined;
   headline?: string | undefined;
@@ -755,12 +840,16 @@ export const ApplicantInput$outboundSchema: z.ZodType<
   ApplicantInput
 > = z.object({
   name: z.string().optional(),
+  salutation: z.nullable(z.string()).optional(),
   firstName: z.nullable(z.string()).optional(),
   lastName: z.nullable(z.string()).optional(),
   middleName: z.nullable(z.string()).optional(),
   initials: z.nullable(z.string()).optional(),
   birthday: z.nullable(z.instanceof(RFCDate).transform(v => v.toString()))
     .optional(),
+  gender: z.nullable(ApplicantGender$outboundSchema).optional(),
+  socialSecurityNumber: z.nullable(z.string()).optional(),
+  type: z.string().optional(),
   coverLetter: z.string().optional(),
   photoUrl: z.nullable(z.string()).optional(),
   headline: z.string().optional(),
@@ -791,6 +880,7 @@ export const ApplicantInput$outboundSchema: z.ZodType<
     firstName: "first_name",
     lastName: "last_name",
     middleName: "middle_name",
+    socialSecurityNumber: "social_security_number",
     coverLetter: "cover_letter",
     photoUrl: "photo_url",
     customFields: "custom_fields",

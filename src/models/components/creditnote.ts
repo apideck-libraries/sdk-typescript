@@ -123,9 +123,13 @@ export type CreditNote = {
    */
   customer?: LinkedCustomer | null | undefined;
   /**
-   * The company or subsidiary id the transaction belongs to
+   * The company ID the transaction belongs to
    */
   companyId?: string | null | undefined;
+  /**
+   * The ID of the department
+   */
+  departmentId?: string | null | undefined;
   /**
    * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
    */
@@ -240,9 +244,13 @@ export type CreditNoteInput = {
    */
   customer?: LinkedCustomerInput | null | undefined;
   /**
-   * The company or subsidiary id the transaction belongs to
+   * The company ID the transaction belongs to
    */
   companyId?: string | null | undefined;
+  /**
+   * The ID of the department
+   */
+  departmentId?: string | null | undefined;
   /**
    * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
    */
@@ -379,6 +387,7 @@ export const CreditNote$inboundSchema: z.ZodType<
   number: z.nullable(z.string()).optional(),
   customer: z.nullable(LinkedCustomer$inboundSchema).optional(),
   company_id: z.nullable(z.string()).optional(),
+  department_id: z.nullable(z.string()).optional(),
   currency: z.nullable(Currency$inboundSchema).optional(),
   currency_rate: z.nullable(z.number()).optional(),
   tax_inclusive: z.nullable(z.boolean()).optional(),
@@ -421,6 +430,7 @@ export const CreditNote$inboundSchema: z.ZodType<
 }).transform((v) => {
   return remap$(v, {
     "company_id": "companyId",
+    "department_id": "departmentId",
     "currency_rate": "currencyRate",
     "tax_inclusive": "taxInclusive",
     "sub_total": "subTotal",
@@ -451,6 +461,7 @@ export type CreditNote$Outbound = {
   number?: string | null | undefined;
   customer?: LinkedCustomer$Outbound | null | undefined;
   company_id?: string | null | undefined;
+  department_id?: string | null | undefined;
   currency?: string | null | undefined;
   currency_rate?: number | null | undefined;
   tax_inclusive?: boolean | null | undefined;
@@ -496,6 +507,7 @@ export const CreditNote$outboundSchema: z.ZodType<
   number: z.nullable(z.string()).optional(),
   customer: z.nullable(LinkedCustomer$outboundSchema).optional(),
   companyId: z.nullable(z.string()).optional(),
+  departmentId: z.nullable(z.string()).optional(),
   currency: z.nullable(Currency$outboundSchema).optional(),
   currencyRate: z.nullable(z.number()).optional(),
   taxInclusive: z.nullable(z.boolean()).optional(),
@@ -531,6 +543,7 @@ export const CreditNote$outboundSchema: z.ZodType<
 }).transform((v) => {
   return remap$(v, {
     companyId: "company_id",
+    departmentId: "department_id",
     currencyRate: "currency_rate",
     taxInclusive: "tax_inclusive",
     subTotal: "sub_total",
@@ -591,6 +604,7 @@ export const CreditNoteInput$inboundSchema: z.ZodType<
   number: z.nullable(z.string()).optional(),
   customer: z.nullable(LinkedCustomerInput$inboundSchema).optional(),
   company_id: z.nullable(z.string()).optional(),
+  department_id: z.nullable(z.string()).optional(),
   currency: z.nullable(Currency$inboundSchema).optional(),
   currency_rate: z.nullable(z.number()).optional(),
   tax_inclusive: z.nullable(z.boolean()).optional(),
@@ -624,6 +638,7 @@ export const CreditNoteInput$inboundSchema: z.ZodType<
 }).transform((v) => {
   return remap$(v, {
     "company_id": "companyId",
+    "department_id": "departmentId",
     "currency_rate": "currencyRate",
     "tax_inclusive": "taxInclusive",
     "sub_total": "subTotal",
@@ -648,6 +663,7 @@ export type CreditNoteInput$Outbound = {
   number?: string | null | undefined;
   customer?: LinkedCustomerInput$Outbound | null | undefined;
   company_id?: string | null | undefined;
+  department_id?: string | null | undefined;
   currency?: string | null | undefined;
   currency_rate?: number | null | undefined;
   tax_inclusive?: boolean | null | undefined;
@@ -687,6 +703,7 @@ export const CreditNoteInput$outboundSchema: z.ZodType<
   number: z.nullable(z.string()).optional(),
   customer: z.nullable(LinkedCustomerInput$outboundSchema).optional(),
   companyId: z.nullable(z.string()).optional(),
+  departmentId: z.nullable(z.string()).optional(),
   currency: z.nullable(Currency$outboundSchema).optional(),
   currencyRate: z.nullable(z.number()).optional(),
   taxInclusive: z.nullable(z.boolean()).optional(),
@@ -717,6 +734,7 @@ export const CreditNoteInput$outboundSchema: z.ZodType<
 }).transform((v) => {
   return remap$(v, {
     companyId: "company_id",
+    departmentId: "department_id",
     currencyRate: "currency_rate",
     taxInclusive: "tax_inclusive",
     subTotal: "sub_total",

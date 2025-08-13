@@ -48,36 +48,6 @@ func (e *InvoiceLineItemType) UnmarshalJSON(data []byte) error {
 	}
 }
 
-// Budget of the line item
-type Budget string
-
-const (
-	BudgetOutOfBudget Budget = "out_of_budget"
-	BudgetInBudget    Budget = "in_budget"
-	BudgetOther       Budget = "other"
-)
-
-func (e Budget) ToPointer() *Budget {
-	return &e
-}
-func (e *Budget) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "out_of_budget":
-		fallthrough
-	case "in_budget":
-		fallthrough
-	case "other":
-		*e = Budget(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for Budget: %v", v)
-	}
-}
-
 type InvoiceLineItem struct {
 	// A unique identifier for an object.
 	ID *string `json:"id,omitempty"`
@@ -124,11 +94,9 @@ type InvoiceLineItem struct {
 	TaxRecoverability *string `json:"tax_recoverability,omitempty"`
 	// Method of tax calculation
 	TaxMethod *string `json:"tax_method,omitempty"`
-	// Budget of the line item
-	Budget *Budget `json:"budget,omitempty"`
-	// ID of the project of the line item
-	ProjectID *string        `json:"project_id,omitempty"`
-	TaxRate   *LinkedTaxRate `json:"tax_rate,omitempty"`
+	// Worktags of the line item. This is currently only supported in Workday.
+	Worktags []*LinkedWorktag `json:"worktags,omitempty"`
+	TaxRate  *LinkedTaxRate   `json:"tax_rate,omitempty"`
 	// A list of linked tracking categories.
 	TrackingCategories []*LinkedTrackingCategory `json:"tracking_categories,omitempty"`
 	LedgerAccount      *LinkedLedgerAccount      `json:"ledger_account,omitempty"`
@@ -324,18 +292,11 @@ func (o *InvoiceLineItem) GetTaxMethod() *string {
 	return o.TaxMethod
 }
 
-func (o *InvoiceLineItem) GetBudget() *Budget {
+func (o *InvoiceLineItem) GetWorktags() []*LinkedWorktag {
 	if o == nil {
 		return nil
 	}
-	return o.Budget
-}
-
-func (o *InvoiceLineItem) GetProjectID() *string {
-	if o == nil {
-		return nil
-	}
-	return o.ProjectID
+	return o.Worktags
 }
 
 func (o *InvoiceLineItem) GetTaxRate() *LinkedTaxRate {
@@ -447,11 +408,9 @@ type InvoiceLineItemInput struct {
 	TaxRecoverability *string `json:"tax_recoverability,omitempty"`
 	// Method of tax calculation
 	TaxMethod *string `json:"tax_method,omitempty"`
-	// Budget of the line item
-	Budget *Budget `json:"budget,omitempty"`
-	// ID of the project of the line item
-	ProjectID *string             `json:"project_id,omitempty"`
-	TaxRate   *LinkedTaxRateInput `json:"tax_rate,omitempty"`
+	// Worktags of the line item. This is currently only supported in Workday.
+	Worktags []*LinkedWorktag    `json:"worktags,omitempty"`
+	TaxRate  *LinkedTaxRateInput `json:"tax_rate,omitempty"`
 	// A list of linked tracking categories.
 	TrackingCategories []*LinkedTrackingCategory `json:"tracking_categories,omitempty"`
 	LedgerAccount      *LinkedLedgerAccountInput `json:"ledger_account,omitempty"`
@@ -628,18 +587,11 @@ func (o *InvoiceLineItemInput) GetTaxMethod() *string {
 	return o.TaxMethod
 }
 
-func (o *InvoiceLineItemInput) GetBudget() *Budget {
+func (o *InvoiceLineItemInput) GetWorktags() []*LinkedWorktag {
 	if o == nil {
 		return nil
 	}
-	return o.Budget
-}
-
-func (o *InvoiceLineItemInput) GetProjectID() *string {
-	if o == nil {
-		return nil
-	}
-	return o.ProjectID
+	return o.Worktags
 }
 
 func (o *InvoiceLineItemInput) GetTaxRate() *LinkedTaxRateInput {

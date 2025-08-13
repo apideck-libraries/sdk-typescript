@@ -28,6 +28,7 @@ let value: GetQuoteResponse = {
     invoiceId: "123456",
     salesOrderId: "123456",
     companyId: "12345",
+    departmentId: "12345",
     projectId: "12345",
     quoteDate: new RFCDate("2020-09-30"),
     expiryDate: new RFCDate("2020-10-30"),

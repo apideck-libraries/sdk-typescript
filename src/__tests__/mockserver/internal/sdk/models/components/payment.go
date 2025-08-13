@@ -43,7 +43,7 @@ type Payment struct {
 	//
 	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
 	Supplier *DeprecatedLinkedSupplier `json:"supplier,omitempty"`
-	// The company or subsidiary id the transaction belongs to
+	// The company ID the transaction belongs to
 	CompanyID *string `json:"company_id,omitempty"`
 	// Indicates if the transaction has been reconciled.
 	Reconciled *bool `json:"reconciled,omitempty"`

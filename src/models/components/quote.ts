@@ -105,9 +105,13 @@ export type Quote = {
    */
   salesOrderId?: string | null | undefined;
   /**
-   * The company or subsidiary id the transaction belongs to
+   * The company ID the transaction belongs to
    */
   companyId?: string | null | undefined;
+  /**
+   * The ID of the department
+   */
+  departmentId?: string | null | undefined;
   /**
    * The unique identifier for the linked project.
    */
@@ -228,9 +232,13 @@ export type QuoteInput = {
    */
   salesOrderId?: string | null | undefined;
   /**
-   * The company or subsidiary id the transaction belongs to
+   * The company ID the transaction belongs to
    */
   companyId?: string | null | undefined;
+  /**
+   * The ID of the department
+   */
+  departmentId?: string | null | undefined;
   /**
    * The unique identifier for the linked project.
    */
@@ -350,6 +358,7 @@ export const Quote$inboundSchema: z.ZodType<Quote, z.ZodTypeDef, unknown> = z
     invoice_id: z.string().optional(),
     sales_order_id: z.nullable(z.string()).optional(),
     company_id: z.nullable(z.string()).optional(),
+    department_id: z.nullable(z.string()).optional(),
     project_id: z.string().optional(),
     quote_date: z.nullable(z.string().transform(v => new RFCDate(v)))
       .optional(),
@@ -393,6 +402,7 @@ export const Quote$inboundSchema: z.ZodType<Quote, z.ZodTypeDef, unknown> = z
       "invoice_id": "invoiceId",
       "sales_order_id": "salesOrderId",
       "company_id": "companyId",
+      "department_id": "departmentId",
       "project_id": "projectId",
       "quote_date": "quoteDate",
       "expiry_date": "expiryDate",
@@ -429,6 +439,7 @@ export type Quote$Outbound = {
   invoice_id?: string | undefined;
   sales_order_id?: string | null | undefined;
   company_id?: string | null | undefined;
+  department_id?: string | null | undefined;
   project_id?: string | undefined;
   quote_date?: string | null | undefined;
   expiry_date?: string | null | undefined;
@@ -476,6 +487,7 @@ export const Quote$outboundSchema: z.ZodType<
   invoiceId: z.string().optional(),
   salesOrderId: z.nullable(z.string()).optional(),
   companyId: z.nullable(z.string()).optional(),
+  departmentId: z.nullable(z.string()).optional(),
   projectId: z.string().optional(),
   quoteDate: z.nullable(z.instanceof(RFCDate).transform(v => v.toString()))
     .optional(),
@@ -515,6 +527,7 @@ export const Quote$outboundSchema: z.ZodType<
     invoiceId: "invoice_id",
     salesOrderId: "sales_order_id",
     companyId: "company_id",
+    departmentId: "department_id",
     projectId: "project_id",
     quoteDate: "quote_date",
     expiryDate: "expiry_date",
@@ -579,6 +592,7 @@ export const QuoteInput$inboundSchema: z.ZodType<
   customer: z.nullable(LinkedCustomerInput$inboundSchema).optional(),
   sales_order_id: z.nullable(z.string()).optional(),
   company_id: z.nullable(z.string()).optional(),
+  department_id: z.nullable(z.string()).optional(),
   project_id: z.string().optional(),
   quote_date: z.nullable(z.string().transform(v => new RFCDate(v))).optional(),
   expiry_date: z.nullable(z.string().transform(v => new RFCDate(v))).optional(),
@@ -610,6 +624,7 @@ export const QuoteInput$inboundSchema: z.ZodType<
   return remap$(v, {
     "sales_order_id": "salesOrderId",
     "company_id": "companyId",
+    "department_id": "departmentId",
     "project_id": "projectId",
     "quote_date": "quoteDate",
     "expiry_date": "expiryDate",
@@ -639,6 +654,7 @@ export type QuoteInput$Outbound = {
   customer?: LinkedCustomerInput$Outbound | null | undefined;
   sales_order_id?: string | null | undefined;
   company_id?: string | null | undefined;
+  department_id?: string | null | undefined;
   project_id?: string | undefined;
   quote_date?: string | null | undefined;
   expiry_date?: string | null | undefined;
@@ -679,6 +695,7 @@ export const QuoteInput$outboundSchema: z.ZodType<
   customer: z.nullable(LinkedCustomerInput$outboundSchema).optional(),
   salesOrderId: z.nullable(z.string()).optional(),
   companyId: z.nullable(z.string()).optional(),
+  departmentId: z.nullable(z.string()).optional(),
   projectId: z.string().optional(),
   quoteDate: z.nullable(z.instanceof(RFCDate).transform(v => v.toString()))
     .optional(),
@@ -712,6 +729,7 @@ export const QuoteInput$outboundSchema: z.ZodType<
   return remap$(v, {
     salesOrderId: "sales_order_id",
     companyId: "company_id",
+    departmentId: "department_id",
     projectId: "project_id",
     quoteDate: "quote_date",
     expiryDate: "expiry_date",

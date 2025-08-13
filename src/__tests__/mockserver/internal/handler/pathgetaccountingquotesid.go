@@ -66,6 +66,7 @@ func testAccountingQuotesOneAccountingQuotesOne0(w http.ResponseWriter, req *htt
 			InvoiceID:          types.String("123456"),
 			SalesOrderID:       types.String("123456"),
 			CompanyID:          types.String("12345"),
+			DepartmentID:       types.String("12345"),
 			ProjectID:          types.String("12345"),
 			QuoteDate:          types.MustNewDateFromString("2020-09-30"),
 			ExpiryDate:         types.MustNewDateFromString("2020-10-30"),

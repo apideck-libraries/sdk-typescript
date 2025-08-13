@@ -56,7 +56,7 @@ type Customer struct {
 	DisplayName *string `json:"display_name,omitempty"`
 	// The name of the company.
 	CompanyName *string `json:"company_name,omitempty"`
-	// The company or subsidiary id the transaction belongs to
+	// The company ID the transaction belongs to
 	CompanyID *string `json:"company_id,omitempty"`
 	// The job title of the person.
 	Title *string `json:"title,omitempty"`
@@ -371,7 +371,7 @@ type CustomerInput struct {
 	DisplayName *string `json:"display_name,omitempty"`
 	// The name of the company.
 	CompanyName *string `json:"company_name,omitempty"`
-	// The company or subsidiary id the transaction belongs to
+	// The company ID the transaction belongs to
 	CompanyID *string `json:"company_id,omitempty"`
 	// The job title of the person.
 	Title *string `json:"title,omitempty"`
