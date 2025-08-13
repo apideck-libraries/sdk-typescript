@@ -10,6 +10,42 @@ import (
 	"time"
 )
 
+// ApplicantGender - The gender represents the gender identity of a person.
+type ApplicantGender string
+
+const (
+	ApplicantGenderMale         ApplicantGender = "male"
+	ApplicantGenderFemale       ApplicantGender = "female"
+	ApplicantGenderUnisex       ApplicantGender = "unisex"
+	ApplicantGenderOther        ApplicantGender = "other"
+	ApplicantGenderNotSpecified ApplicantGender = "not_specified"
+)
+
+func (e ApplicantGender) ToPointer() *ApplicantGender {
+	return &e
+}
+func (e *ApplicantGender) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "male":
+		fallthrough
+	case "female":
+		fallthrough
+	case "unisex":
+		fallthrough
+	case "other":
+		fallthrough
+	case "not_specified":
+		*e = ApplicantGender(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ApplicantGender: %v", v)
+	}
+}
+
 // ApplicantType - The type of website
 type ApplicantType string
 
@@ -111,6 +147,8 @@ type Applicant struct {
 	ID *string `json:"id,omitempty"`
 	// The name of an applicant.
 	Name *string `json:"name,omitempty"`
+	// A formal salutation for the person. For example, 'Mr', 'Mrs'
+	Salutation *string `json:"salutation,omitempty"`
 	// The first name of the person.
 	FirstName *string `json:"first_name,omitempty"`
 	// The last name of the person.
@@ -120,9 +158,14 @@ type Applicant struct {
 	// The initials of the person, usually derived from their first, middle, and last names.
 	Initials *string `json:"initials,omitempty"`
 	// The date of birth of the person.
-	Birthday    *types.Date `json:"birthday,omitempty"`
-	CoverLetter *string     `json:"cover_letter,omitempty"`
-	JobURL      *string     `json:"job_url,omitempty"`
+	Birthday *types.Date `json:"birthday,omitempty"`
+	// The gender represents the gender identity of a person.
+	Gender *ApplicantGender `json:"gender,omitempty"`
+	// A unique identifier assigned by the government. This field is considered sensitive information and may be subject to special security and privacy restrictions.
+	SocialSecurityNumber *string `json:"social_security_number,omitempty"`
+	Type                 *string `json:"type,omitempty"`
+	CoverLetter          *string `json:"cover_letter,omitempty"`
+	JobURL               *string `json:"job_url,omitempty"`
 	// The URL of the photo of a person.
 	PhotoURL *string `json:"photo_url,omitempty"`
 	// Typically a list of previous companies where the contact has worked or schools that the contact has attended
@@ -201,6 +244,13 @@ func (o *Applicant) GetName() *string {
 	return o.Name
 }
 
+func (o *Applicant) GetSalutation() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Salutation
+}
+
 func (o *Applicant) GetFirstName() *string {
 	if o == nil {
 		return nil
@@ -234,6 +284,27 @@ func (o *Applicant) GetBirthday() *types.Date {
 		return nil
 	}
 	return o.Birthday
+}
+
+func (o *Applicant) GetGender() *ApplicantGender {
+	if o == nil {
+		return nil
+	}
+	return o.Gender
+}
+
+func (o *Applicant) GetSocialSecurityNumber() *string {
+	if o == nil {
+		return nil
+	}
+	return o.SocialSecurityNumber
+}
+
+func (o *Applicant) GetType() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Type
 }
 
 func (o *Applicant) GetCoverLetter() *string {
@@ -505,6 +576,8 @@ func (o *Applicant) GetPassThrough() []PassThroughBody {
 type ApplicantInput struct {
 	// The name of an applicant.
 	Name *string `json:"name,omitempty"`
+	// A formal salutation for the person. For example, 'Mr', 'Mrs'
+	Salutation *string `json:"salutation,omitempty"`
 	// The first name of the person.
 	FirstName *string `json:"first_name,omitempty"`
 	// The last name of the person.
@@ -514,8 +587,13 @@ type ApplicantInput struct {
 	// The initials of the person, usually derived from their first, middle, and last names.
 	Initials *string `json:"initials,omitempty"`
 	// The date of birth of the person.
-	Birthday    *types.Date `json:"birthday,omitempty"`
-	CoverLetter *string     `json:"cover_letter,omitempty"`
+	Birthday *types.Date `json:"birthday,omitempty"`
+	// The gender represents the gender identity of a person.
+	Gender *ApplicantGender `json:"gender,omitempty"`
+	// A unique identifier assigned by the government. This field is considered sensitive information and may be subject to special security and privacy restrictions.
+	SocialSecurityNumber *string `json:"social_security_number,omitempty"`
+	Type                 *string `json:"type,omitempty"`
+	CoverLetter          *string `json:"cover_letter,omitempty"`
 	// The URL of the photo of a person.
 	PhotoURL *string `json:"photo_url,omitempty"`
 	// Typically a list of previous companies where the contact has worked or schools that the contact has attended
@@ -568,6 +646,13 @@ func (o *ApplicantInput) GetName() *string {
 	return o.Name
 }
 
+func (o *ApplicantInput) GetSalutation() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Salutation
+}
+
 func (o *ApplicantInput) GetFirstName() *string {
 	if o == nil {
 		return nil
@@ -601,6 +686,27 @@ func (o *ApplicantInput) GetBirthday() *types.Date {
 		return nil
 	}
 	return o.Birthday
+}
+
+func (o *ApplicantInput) GetGender() *ApplicantGender {
+	if o == nil {
+		return nil
+	}
+	return o.Gender
+}
+
+func (o *ApplicantInput) GetSocialSecurityNumber() *string {
+	if o == nil {
+		return nil
+	}
+	return o.SocialSecurityNumber
+}
+
+func (o *ApplicantInput) GetType() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Type
 }
 
 func (o *ApplicantInput) GetCoverLetter() *string {

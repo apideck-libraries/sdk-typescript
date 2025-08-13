@@ -55,17 +55,54 @@ func (e *BillStatus) UnmarshalJSON(data []byte) error {
 	}
 }
 
+// BillAmortizationType - Type of amortization
+type BillAmortizationType string
+
+const (
+	BillAmortizationTypeManual   BillAmortizationType = "manual"
+	BillAmortizationTypeReceipt  BillAmortizationType = "receipt"
+	BillAmortizationTypeSchedule BillAmortizationType = "schedule"
+	BillAmortizationTypeOther    BillAmortizationType = "other"
+)
+
+func (e BillAmortizationType) ToPointer() *BillAmortizationType {
+	return &e
+}
+func (e *BillAmortizationType) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "manual":
+		fallthrough
+	case "receipt":
+		fallthrough
+	case "schedule":
+		fallthrough
+	case "other":
+		*e = BillAmortizationType(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for BillAmortizationType: %v", v)
+	}
+}
+
 type Bill struct {
 	// A unique identifier for an object.
 	ID *string `json:"id,omitempty"`
 	// The third-party API ID of original entity
 	DownstreamID *string `json:"downstream_id,omitempty"`
+	// Id to be displayed.
+	DisplayID *string `json:"display_id,omitempty"`
 	// Reference to supplier bill number
 	BillNumber *string `json:"bill_number,omitempty"`
 	// The supplier this entity is linked to.
 	Supplier *LinkedSupplier `json:"supplier,omitempty"`
-	// The company or subsidiary id the transaction belongs to
+	// The company ID the transaction belongs to
 	CompanyID *string `json:"company_id,omitempty"`
+	// The ID of the department
+	DepartmentID *string `json:"department_id,omitempty"`
 	// Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
 	Currency *Currency `json:"currency,omitempty"`
 	// Currency Exchange Rate at the time entity was recorded/generated.
@@ -112,6 +149,16 @@ type Bill struct {
 	BankAccount     *BankAccount `json:"bank_account,omitempty"`
 	// Discount percentage applied to this transaction.
 	DiscountPercentage *float64 `json:"discount_percentage,omitempty"`
+	// Optional bill template
+	TemplateID *string `json:"template_id,omitempty"`
+	// The user who approved the bill
+	ApprovedBy *string `json:"approved_by,omitempty"`
+	// Type of amortization
+	AmortizationType *BillAmortizationType `json:"amortization_type,omitempty"`
+	// Method of tax calculation
+	TaxMethod *string `json:"tax_method,omitempty"`
+	// Whether the document has been received
+	DocumentReceived *bool `json:"document_received,omitempty"`
 	// URL link to a source document - shown as 'Go to [appName]' in the downstream app. Currently only supported for Xero.
 	SourceDocumentURL *string `json:"source_document_url,omitempty"`
 	// A list of linked tracking categories.
@@ -132,7 +179,8 @@ type Bill struct {
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
 	PassThrough []PassThroughBody `json:"pass_through,omitempty"`
 	// Accounting period
-	AccountingPeriod *string `json:"accounting_period,omitempty"`
+	AccountingPeriod *string             `json:"accounting_period,omitempty"`
+	Attachments      []*LinkedAttachment `json:"attachments,omitempty"`
 }
 
 func (b Bill) MarshalJSON() ([]byte, error) {
@@ -160,6 +208,13 @@ func (o *Bill) GetDownstreamID() *string {
 	return o.DownstreamID
 }
 
+func (o *Bill) GetDisplayID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.DisplayID
+}
+
 func (o *Bill) GetBillNumber() *string {
 	if o == nil {
 		return nil
@@ -179,6 +234,13 @@ func (o *Bill) GetCompanyID() *string {
 		return nil
 	}
 	return o.CompanyID
+}
+
+func (o *Bill) GetDepartmentID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.DepartmentID
 }
 
 func (o *Bill) GetCurrency() *Currency {
@@ -356,6 +418,41 @@ func (o *Bill) GetDiscountPercentage() *float64 {
 	return o.DiscountPercentage
 }
 
+func (o *Bill) GetTemplateID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.TemplateID
+}
+
+func (o *Bill) GetApprovedBy() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ApprovedBy
+}
+
+func (o *Bill) GetAmortizationType() *BillAmortizationType {
+	if o == nil {
+		return nil
+	}
+	return o.AmortizationType
+}
+
+func (o *Bill) GetTaxMethod() *string {
+	if o == nil {
+		return nil
+	}
+	return o.TaxMethod
+}
+
+func (o *Bill) GetDocumentReceived() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.DocumentReceived
+}
+
 func (o *Bill) GetSourceDocumentURL() *string {
 	if o == nil {
 		return nil
@@ -433,13 +530,24 @@ func (o *Bill) GetAccountingPeriod() *string {
 	return o.AccountingPeriod
 }
 
+func (o *Bill) GetAttachments() []*LinkedAttachment {
+	if o == nil {
+		return nil
+	}
+	return o.Attachments
+}
+
 type BillInput struct {
+	// Id to be displayed.
+	DisplayID *string `json:"display_id,omitempty"`
 	// Reference to supplier bill number
 	BillNumber *string `json:"bill_number,omitempty"`
 	// The supplier this entity is linked to.
 	Supplier *LinkedSupplierInput `json:"supplier,omitempty"`
-	// The company or subsidiary id the transaction belongs to
+	// The company ID the transaction belongs to
 	CompanyID *string `json:"company_id,omitempty"`
+	// The ID of the department
+	DepartmentID *string `json:"department_id,omitempty"`
 	// Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
 	Currency *Currency `json:"currency,omitempty"`
 	// Currency Exchange Rate at the time entity was recorded/generated.
@@ -486,6 +594,16 @@ type BillInput struct {
 	BankAccount     *BankAccount `json:"bank_account,omitempty"`
 	// Discount percentage applied to this transaction.
 	DiscountPercentage *float64 `json:"discount_percentage,omitempty"`
+	// Optional bill template
+	TemplateID *string `json:"template_id,omitempty"`
+	// The user who approved the bill
+	ApprovedBy *string `json:"approved_by,omitempty"`
+	// Type of amortization
+	AmortizationType *BillAmortizationType `json:"amortization_type,omitempty"`
+	// Method of tax calculation
+	TaxMethod *string `json:"tax_method,omitempty"`
+	// Whether the document has been received
+	DocumentReceived *bool `json:"document_received,omitempty"`
 	// URL link to a source document - shown as 'Go to [appName]' in the downstream app. Currently only supported for Xero.
 	SourceDocumentURL *string `json:"source_document_url,omitempty"`
 	// A list of linked tracking categories.
@@ -496,7 +614,8 @@ type BillInput struct {
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
 	PassThrough []PassThroughBody `json:"pass_through,omitempty"`
 	// Accounting period
-	AccountingPeriod *string `json:"accounting_period,omitempty"`
+	AccountingPeriod *string             `json:"accounting_period,omitempty"`
+	Attachments      []*LinkedAttachment `json:"attachments,omitempty"`
 }
 
 func (b BillInput) MarshalJSON() ([]byte, error) {
@@ -508,6 +627,13 @@ func (b *BillInput) UnmarshalJSON(data []byte) error {
 		return err
 	}
 	return nil
+}
+
+func (o *BillInput) GetDisplayID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.DisplayID
 }
 
 func (o *BillInput) GetBillNumber() *string {
@@ -529,6 +655,13 @@ func (o *BillInput) GetCompanyID() *string {
 		return nil
 	}
 	return o.CompanyID
+}
+
+func (o *BillInput) GetDepartmentID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.DepartmentID
 }
 
 func (o *BillInput) GetCurrency() *Currency {
@@ -706,6 +839,41 @@ func (o *BillInput) GetDiscountPercentage() *float64 {
 	return o.DiscountPercentage
 }
 
+func (o *BillInput) GetTemplateID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.TemplateID
+}
+
+func (o *BillInput) GetApprovedBy() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ApprovedBy
+}
+
+func (o *BillInput) GetAmortizationType() *BillAmortizationType {
+	if o == nil {
+		return nil
+	}
+	return o.AmortizationType
+}
+
+func (o *BillInput) GetTaxMethod() *string {
+	if o == nil {
+		return nil
+	}
+	return o.TaxMethod
+}
+
+func (o *BillInput) GetDocumentReceived() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.DocumentReceived
+}
+
 func (o *BillInput) GetSourceDocumentURL() *string {
 	if o == nil {
 		return nil
@@ -746,4 +914,11 @@ func (o *BillInput) GetAccountingPeriod() *string {
 		return nil
 	}
 	return o.AccountingPeriod
+}
+
+func (o *BillInput) GetAttachments() []*LinkedAttachment {
+	if o == nil {
+		return nil
+	}
+	return o.Attachments
 }

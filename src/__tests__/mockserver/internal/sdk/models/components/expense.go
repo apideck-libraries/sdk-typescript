@@ -79,7 +79,7 @@ type Expense struct {
 	CustomerID *string `json:"customer_id,omitempty"`
 	// The ID of the supplier this entity is linked to.
 	SupplierID *string `json:"supplier_id,omitempty"`
-	// The company or subsidiary id the transaction belongs to
+	// The company ID the transaction belongs to
 	CompanyID *string `json:"company_id,omitempty"`
 	// The ID of the department
 	DepartmentID *string `json:"department_id,omitempty"`
@@ -323,7 +323,7 @@ type ExpenseInput struct {
 	CustomerID *string `json:"customer_id,omitempty"`
 	// The ID of the supplier this entity is linked to.
 	SupplierID *string `json:"supplier_id,omitempty"`
-	// The company or subsidiary id the transaction belongs to
+	// The company ID the transaction belongs to
 	CompanyID *string `json:"company_id,omitempty"`
 	// The ID of the department
 	DepartmentID *string `json:"department_id,omitempty"`

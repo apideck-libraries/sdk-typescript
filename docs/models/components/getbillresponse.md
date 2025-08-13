@@ -17,6 +17,7 @@ let value: GetBillResponse = {
   data: {
     id: "12345",
     downstreamId: "12345",
+    displayId: "123456",
     billNumber: "10001",
     supplier: {
       id: "12345",
@@ -51,6 +52,7 @@ let value: GetBillResponse = {
       },
     },
     companyId: "12345",
+    departmentId: "12345",
     currency: "USD",
     currencyRate: 0.69,
     taxInclusive: true,
@@ -79,6 +81,14 @@ let value: GetBillResponse = {
         departmentId: "12345",
         subsidiaryId: "12345",
         categoryId: "12345",
+        shippingId: "12345",
+        memo: "Some memo",
+        prepaid: true,
+        taxApplicableOn: "Domestic_Purchase_of_Goods_and_Services",
+        taxRecoverability: "Fully_Recoverable",
+        taxMethod: "Due_to_Supplier",
+        retentionAmount: 1000,
+        paymentAmount: 1000,
         item: {
           id: "12344",
           code: "120-C",
@@ -122,6 +132,12 @@ let value: GetBillResponse = {
         createdBy: "12345",
         createdAt: new Date("2020-09-30T07:43:32.000Z"),
         updatedAt: new Date("2020-09-30T07:43:32.000Z"),
+        worktags: [
+          {
+            id: "123456",
+            value: "New York",
+          },
+        ],
       },
     ],
     terms: "Net 30 days",
@@ -158,6 +174,10 @@ let value: GetBillResponse = {
       country: "US",
     },
     discountPercentage: 5.5,
+    templateId: "123456",
+    approvedBy: "John Doe",
+    taxMethod: "Due to supplier",
+    documentReceived: true,
     sourceDocumentUrl: "https://www.invoicesolution.com/bill/123456",
     trackingCategories: [
       {
@@ -196,6 +216,16 @@ let value: GetBillResponse = {
       },
     ],
     accountingPeriod: "01-24",
+    attachments: [
+      {
+        name: "sample.jpg",
+        mimeType: "image/jpeg",
+        isCompressed: false,
+        encoding: "base64",
+        content: "data:image/jpeg;base64,...",
+        notes: "A sample image",
+      },
+    ],
   },
 };
 ```

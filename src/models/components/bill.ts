@@ -37,6 +37,12 @@ import {
   CustomField$outboundSchema,
 } from "./customfield.js";
 import {
+  LinkedAttachment,
+  LinkedAttachment$inboundSchema,
+  LinkedAttachment$Outbound,
+  LinkedAttachment$outboundSchema,
+} from "./linkedattachment.js";
+import {
   LinkedLedgerAccount,
   LinkedLedgerAccount$inboundSchema,
   LinkedLedgerAccount$Outbound,
@@ -91,6 +97,20 @@ export const BillStatus = {
  */
 export type BillStatus = ClosedEnum<typeof BillStatus>;
 
+/**
+ * Type of amortization
+ */
+export const AmortizationType = {
+  Manual: "manual",
+  Receipt: "receipt",
+  Schedule: "schedule",
+  Other: "other",
+} as const;
+/**
+ * Type of amortization
+ */
+export type AmortizationType = ClosedEnum<typeof AmortizationType>;
+
 export type Bill = {
   /**
    * A unique identifier for an object.
@@ -101,6 +121,10 @@ export type Bill = {
    */
   downstreamId?: string | null | undefined;
   /**
+   * Id to be displayed.
+   */
+  displayId?: string | null | undefined;
+  /**
    * Reference to supplier bill number
    */
   billNumber?: string | null | undefined;
@@ -109,9 +133,13 @@ export type Bill = {
    */
   supplier?: LinkedSupplier | null | undefined;
   /**
-   * The company or subsidiary id the transaction belongs to
+   * The company ID the transaction belongs to
    */
   companyId?: string | null | undefined;
+  /**
+   * The ID of the department
+   */
+  departmentId?: string | null | undefined;
   /**
    * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
    */
@@ -201,6 +229,26 @@ export type Bill = {
    */
   discountPercentage?: number | null | undefined;
   /**
+   * Optional bill template
+   */
+  templateId?: string | null | undefined;
+  /**
+   * The user who approved the bill
+   */
+  approvedBy?: string | null | undefined;
+  /**
+   * Type of amortization
+   */
+  amortizationType?: AmortizationType | null | undefined;
+  /**
+   * Method of tax calculation
+   */
+  taxMethod?: string | null | undefined;
+  /**
+   * Whether the document has been received
+   */
+  documentReceived?: boolean | null | undefined;
+  /**
    * URL link to a source document - shown as 'Go to [appName]' in the downstream app. Currently only supported for Xero.
    */
   sourceDocumentUrl?: string | null | undefined;
@@ -241,9 +289,14 @@ export type Bill = {
    * Accounting period
    */
   accountingPeriod?: string | null | undefined;
+  attachments?: Array<LinkedAttachment | null> | undefined;
 };
 
 export type BillInput = {
+  /**
+   * Id to be displayed.
+   */
+  displayId?: string | null | undefined;
   /**
    * Reference to supplier bill number
    */
@@ -253,9 +306,13 @@ export type BillInput = {
    */
   supplier?: LinkedSupplierInput | null | undefined;
   /**
-   * The company or subsidiary id the transaction belongs to
+   * The company ID the transaction belongs to
    */
   companyId?: string | null | undefined;
+  /**
+   * The ID of the department
+   */
+  departmentId?: string | null | undefined;
   /**
    * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
    */
@@ -345,6 +402,26 @@ export type BillInput = {
    */
   discountPercentage?: number | null | undefined;
   /**
+   * Optional bill template
+   */
+  templateId?: string | null | undefined;
+  /**
+   * The user who approved the bill
+   */
+  approvedBy?: string | null | undefined;
+  /**
+   * Type of amortization
+   */
+  amortizationType?: AmortizationType | null | undefined;
+  /**
+   * Method of tax calculation
+   */
+  taxMethod?: string | null | undefined;
+  /**
+   * Whether the document has been received
+   */
+  documentReceived?: boolean | null | undefined;
+  /**
    * URL link to a source document - shown as 'Go to [appName]' in the downstream app. Currently only supported for Xero.
    */
   sourceDocumentUrl?: string | null | undefined;
@@ -365,6 +442,7 @@ export type BillInput = {
    * Accounting period
    */
   accountingPeriod?: string | null | undefined;
+  attachments?: Array<LinkedAttachment | null> | undefined;
 };
 
 /** @internal */
@@ -387,13 +465,36 @@ export namespace BillStatus$ {
 }
 
 /** @internal */
+export const AmortizationType$inboundSchema: z.ZodNativeEnum<
+  typeof AmortizationType
+> = z.nativeEnum(AmortizationType);
+
+/** @internal */
+export const AmortizationType$outboundSchema: z.ZodNativeEnum<
+  typeof AmortizationType
+> = AmortizationType$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace AmortizationType$ {
+  /** @deprecated use `AmortizationType$inboundSchema` instead. */
+  export const inboundSchema = AmortizationType$inboundSchema;
+  /** @deprecated use `AmortizationType$outboundSchema` instead. */
+  export const outboundSchema = AmortizationType$outboundSchema;
+}
+
+/** @internal */
 export const Bill$inboundSchema: z.ZodType<Bill, z.ZodTypeDef, unknown> = z
   .object({
     id: z.string().optional(),
     downstream_id: z.nullable(z.string()).optional(),
+    display_id: z.nullable(z.string()).optional(),
     bill_number: z.nullable(z.string()).optional(),
     supplier: z.nullable(LinkedSupplier$inboundSchema).optional(),
     company_id: z.nullable(z.string()).optional(),
+    department_id: z.nullable(z.string()).optional(),
     currency: z.nullable(Currency$inboundSchema).optional(),
     currency_rate: z.nullable(z.number()).optional(),
     tax_inclusive: z.nullable(z.boolean()).optional(),
@@ -419,6 +520,11 @@ export const Bill$inboundSchema: z.ZodType<Bill, z.ZodTypeDef, unknown> = z
     accounting_by_row: z.nullable(z.boolean()).optional(),
     bank_account: BankAccount$inboundSchema.optional(),
     discount_percentage: z.nullable(z.number()).optional(),
+    template_id: z.nullable(z.string()).optional(),
+    approved_by: z.nullable(z.string()).optional(),
+    amortization_type: z.nullable(AmortizationType$inboundSchema).optional(),
+    tax_method: z.nullable(z.string()).optional(),
+    document_received: z.nullable(z.boolean()).optional(),
     source_document_url: z.nullable(z.string()).optional(),
     tracking_categories: z.nullable(
       z.array(z.nullable(LinkedTrackingCategory$inboundSchema)),
@@ -436,11 +542,14 @@ export const Bill$inboundSchema: z.ZodType<Bill, z.ZodTypeDef, unknown> = z
     custom_mappings: z.nullable(z.record(z.any())).optional(),
     pass_through: z.array(PassThroughBody$inboundSchema).optional(),
     accounting_period: z.nullable(z.string()).optional(),
+    attachments: z.array(z.nullable(LinkedAttachment$inboundSchema)).optional(),
   }).transform((v) => {
     return remap$(v, {
       "downstream_id": "downstreamId",
+      "display_id": "displayId",
       "bill_number": "billNumber",
       "company_id": "companyId",
+      "department_id": "departmentId",
       "currency_rate": "currencyRate",
       "tax_inclusive": "taxInclusive",
       "bill_date": "billDate",
@@ -456,6 +565,11 @@ export const Bill$inboundSchema: z.ZodType<Bill, z.ZodTypeDef, unknown> = z
       "accounting_by_row": "accountingByRow",
       "bank_account": "bankAccount",
       "discount_percentage": "discountPercentage",
+      "template_id": "templateId",
+      "approved_by": "approvedBy",
+      "amortization_type": "amortizationType",
+      "tax_method": "taxMethod",
+      "document_received": "documentReceived",
       "source_document_url": "sourceDocumentUrl",
       "tracking_categories": "trackingCategories",
       "updated_by": "updatedBy",
@@ -474,9 +588,11 @@ export const Bill$inboundSchema: z.ZodType<Bill, z.ZodTypeDef, unknown> = z
 export type Bill$Outbound = {
   id?: string | undefined;
   downstream_id?: string | null | undefined;
+  display_id?: string | null | undefined;
   bill_number?: string | null | undefined;
   supplier?: LinkedSupplier$Outbound | null | undefined;
   company_id?: string | null | undefined;
+  department_id?: string | null | undefined;
   currency?: string | null | undefined;
   currency_rate?: number | null | undefined;
   tax_inclusive?: boolean | null | undefined;
@@ -502,6 +618,11 @@ export type Bill$Outbound = {
   accounting_by_row?: boolean | null | undefined;
   bank_account?: BankAccount$Outbound | undefined;
   discount_percentage?: number | null | undefined;
+  template_id?: string | null | undefined;
+  approved_by?: string | null | undefined;
+  amortization_type?: string | null | undefined;
+  tax_method?: string | null | undefined;
+  document_received?: boolean | null | undefined;
   source_document_url?: string | null | undefined;
   tracking_categories?:
     | Array<LinkedTrackingCategory$Outbound | null>
@@ -516,6 +637,7 @@ export type Bill$Outbound = {
   custom_mappings?: { [k: string]: any } | null | undefined;
   pass_through?: Array<PassThroughBody$Outbound> | undefined;
   accounting_period?: string | null | undefined;
+  attachments?: Array<LinkedAttachment$Outbound | null> | undefined;
 };
 
 /** @internal */
@@ -523,9 +645,11 @@ export const Bill$outboundSchema: z.ZodType<Bill$Outbound, z.ZodTypeDef, Bill> =
   z.object({
     id: z.string().optional(),
     downstreamId: z.nullable(z.string()).optional(),
+    displayId: z.nullable(z.string()).optional(),
     billNumber: z.nullable(z.string()).optional(),
     supplier: z.nullable(LinkedSupplier$outboundSchema).optional(),
     companyId: z.nullable(z.string()).optional(),
+    departmentId: z.nullable(z.string()).optional(),
     currency: z.nullable(Currency$outboundSchema).optional(),
     currencyRate: z.nullable(z.number()).optional(),
     taxInclusive: z.nullable(z.boolean()).optional(),
@@ -554,6 +678,11 @@ export const Bill$outboundSchema: z.ZodType<Bill$Outbound, z.ZodTypeDef, Bill> =
     accountingByRow: z.nullable(z.boolean()).optional(),
     bankAccount: BankAccount$outboundSchema.optional(),
     discountPercentage: z.nullable(z.number()).optional(),
+    templateId: z.nullable(z.string()).optional(),
+    approvedBy: z.nullable(z.string()).optional(),
+    amortizationType: z.nullable(AmortizationType$outboundSchema).optional(),
+    taxMethod: z.nullable(z.string()).optional(),
+    documentReceived: z.nullable(z.boolean()).optional(),
     sourceDocumentUrl: z.nullable(z.string()).optional(),
     trackingCategories: z.nullable(
       z.array(z.nullable(LinkedTrackingCategory$outboundSchema)),
@@ -567,11 +696,15 @@ export const Bill$outboundSchema: z.ZodType<Bill$Outbound, z.ZodTypeDef, Bill> =
     customMappings: z.nullable(z.record(z.any())).optional(),
     passThrough: z.array(PassThroughBody$outboundSchema).optional(),
     accountingPeriod: z.nullable(z.string()).optional(),
+    attachments: z.array(z.nullable(LinkedAttachment$outboundSchema))
+      .optional(),
   }).transform((v) => {
     return remap$(v, {
       downstreamId: "downstream_id",
+      displayId: "display_id",
       billNumber: "bill_number",
       companyId: "company_id",
+      departmentId: "department_id",
       currencyRate: "currency_rate",
       taxInclusive: "tax_inclusive",
       billDate: "bill_date",
@@ -587,6 +720,11 @@ export const Bill$outboundSchema: z.ZodType<Bill$Outbound, z.ZodTypeDef, Bill> =
       accountingByRow: "accounting_by_row",
       bankAccount: "bank_account",
       discountPercentage: "discount_percentage",
+      templateId: "template_id",
+      approvedBy: "approved_by",
+      amortizationType: "amortization_type",
+      taxMethod: "tax_method",
+      documentReceived: "document_received",
       sourceDocumentUrl: "source_document_url",
       trackingCategories: "tracking_categories",
       updatedBy: "updated_by",
@@ -634,9 +772,11 @@ export const BillInput$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
+  display_id: z.nullable(z.string()).optional(),
   bill_number: z.nullable(z.string()).optional(),
   supplier: z.nullable(LinkedSupplierInput$inboundSchema).optional(),
   company_id: z.nullable(z.string()).optional(),
+  department_id: z.nullable(z.string()).optional(),
   currency: z.nullable(Currency$inboundSchema).optional(),
   currency_rate: z.nullable(z.number()).optional(),
   tax_inclusive: z.nullable(z.boolean()).optional(),
@@ -662,6 +802,11 @@ export const BillInput$inboundSchema: z.ZodType<
   accounting_by_row: z.nullable(z.boolean()).optional(),
   bank_account: BankAccount$inboundSchema.optional(),
   discount_percentage: z.nullable(z.number()).optional(),
+  template_id: z.nullable(z.string()).optional(),
+  approved_by: z.nullable(z.string()).optional(),
+  amortization_type: z.nullable(AmortizationType$inboundSchema).optional(),
+  tax_method: z.nullable(z.string()).optional(),
+  document_received: z.nullable(z.boolean()).optional(),
   source_document_url: z.nullable(z.string()).optional(),
   tracking_categories: z.nullable(
     z.array(z.nullable(LinkedTrackingCategory$inboundSchema)),
@@ -670,10 +815,13 @@ export const BillInput$inboundSchema: z.ZodType<
   custom_fields: z.array(CustomField$inboundSchema).optional(),
   pass_through: z.array(PassThroughBody$inboundSchema).optional(),
   accounting_period: z.nullable(z.string()).optional(),
+  attachments: z.array(z.nullable(LinkedAttachment$inboundSchema)).optional(),
 }).transform((v) => {
   return remap$(v, {
+    "display_id": "displayId",
     "bill_number": "billNumber",
     "company_id": "companyId",
+    "department_id": "departmentId",
     "currency_rate": "currencyRate",
     "tax_inclusive": "taxInclusive",
     "bill_date": "billDate",
@@ -689,6 +837,11 @@ export const BillInput$inboundSchema: z.ZodType<
     "accounting_by_row": "accountingByRow",
     "bank_account": "bankAccount",
     "discount_percentage": "discountPercentage",
+    "template_id": "templateId",
+    "approved_by": "approvedBy",
+    "amortization_type": "amortizationType",
+    "tax_method": "taxMethod",
+    "document_received": "documentReceived",
     "source_document_url": "sourceDocumentUrl",
     "tracking_categories": "trackingCategories",
     "row_version": "rowVersion",
@@ -700,9 +853,11 @@ export const BillInput$inboundSchema: z.ZodType<
 
 /** @internal */
 export type BillInput$Outbound = {
+  display_id?: string | null | undefined;
   bill_number?: string | null | undefined;
   supplier?: LinkedSupplierInput$Outbound | null | undefined;
   company_id?: string | null | undefined;
+  department_id?: string | null | undefined;
   currency?: string | null | undefined;
   currency_rate?: number | null | undefined;
   tax_inclusive?: boolean | null | undefined;
@@ -728,6 +883,11 @@ export type BillInput$Outbound = {
   accounting_by_row?: boolean | null | undefined;
   bank_account?: BankAccount$Outbound | undefined;
   discount_percentage?: number | null | undefined;
+  template_id?: string | null | undefined;
+  approved_by?: string | null | undefined;
+  amortization_type?: string | null | undefined;
+  tax_method?: string | null | undefined;
+  document_received?: boolean | null | undefined;
   source_document_url?: string | null | undefined;
   tracking_categories?:
     | Array<LinkedTrackingCategory$Outbound | null>
@@ -737,6 +897,7 @@ export type BillInput$Outbound = {
   custom_fields?: Array<CustomField$Outbound> | undefined;
   pass_through?: Array<PassThroughBody$Outbound> | undefined;
   accounting_period?: string | null | undefined;
+  attachments?: Array<LinkedAttachment$Outbound | null> | undefined;
 };
 
 /** @internal */
@@ -745,9 +906,11 @@ export const BillInput$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   BillInput
 > = z.object({
+  displayId: z.nullable(z.string()).optional(),
   billNumber: z.nullable(z.string()).optional(),
   supplier: z.nullable(LinkedSupplierInput$outboundSchema).optional(),
   companyId: z.nullable(z.string()).optional(),
+  departmentId: z.nullable(z.string()).optional(),
   currency: z.nullable(Currency$outboundSchema).optional(),
   currencyRate: z.nullable(z.number()).optional(),
   taxInclusive: z.nullable(z.boolean()).optional(),
@@ -776,6 +939,11 @@ export const BillInput$outboundSchema: z.ZodType<
   accountingByRow: z.nullable(z.boolean()).optional(),
   bankAccount: BankAccount$outboundSchema.optional(),
   discountPercentage: z.nullable(z.number()).optional(),
+  templateId: z.nullable(z.string()).optional(),
+  approvedBy: z.nullable(z.string()).optional(),
+  amortizationType: z.nullable(AmortizationType$outboundSchema).optional(),
+  taxMethod: z.nullable(z.string()).optional(),
+  documentReceived: z.nullable(z.boolean()).optional(),
   sourceDocumentUrl: z.nullable(z.string()).optional(),
   trackingCategories: z.nullable(
     z.array(z.nullable(LinkedTrackingCategory$outboundSchema)),
@@ -784,10 +952,13 @@ export const BillInput$outboundSchema: z.ZodType<
   customFields: z.array(CustomField$outboundSchema).optional(),
   passThrough: z.array(PassThroughBody$outboundSchema).optional(),
   accountingPeriod: z.nullable(z.string()).optional(),
+  attachments: z.array(z.nullable(LinkedAttachment$outboundSchema)).optional(),
 }).transform((v) => {
   return remap$(v, {
+    displayId: "display_id",
     billNumber: "bill_number",
     companyId: "company_id",
+    departmentId: "department_id",
     currencyRate: "currency_rate",
     taxInclusive: "tax_inclusive",
     billDate: "bill_date",
@@ -803,6 +974,11 @@ export const BillInput$outboundSchema: z.ZodType<
     accountingByRow: "accounting_by_row",
     bankAccount: "bank_account",
     discountPercentage: "discount_percentage",
+    templateId: "template_id",
+    approvedBy: "approved_by",
+    amortizationType: "amortization_type",
+    taxMethod: "tax_method",
+    documentReceived: "document_received",
     sourceDocumentUrl: "source_document_url",
     trackingCategories: "tracking_categories",
     rowVersion: "row_version",

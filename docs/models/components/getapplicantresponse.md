@@ -17,11 +17,15 @@ let value: GetApplicantResponse = {
   data: {
     id: "12345",
     name: "Elon Musk",
+    salutation: "Mr",
     firstName: "Elon",
     lastName: "Musk",
     middleName: "D.",
     initials: "EM",
     birthday: new RFCDate("2000-08-12"),
+    gender: "male",
+    socialSecurityNumber: "123456789",
+    type: "Candidate",
     coverLetter:
       "I submit this application to express my sincere interest in the API developer position. In the previous role, I was responsible for leadership and ...",
     jobUrl: "https://democompany.recruitee.com/o/example-talent-pool",

@@ -48,20 +48,20 @@ func (e *PurchaseOrderStatus) UnmarshalJSON(data []byte) error {
 	}
 }
 
-// AmortizationType - Type of amortization
-type AmortizationType string
+// PurchaseOrderAmortizationType - Type of amortization
+type PurchaseOrderAmortizationType string
 
 const (
-	AmortizationTypeManual   AmortizationType = "manual"
-	AmortizationTypeReceipt  AmortizationType = "receipt"
-	AmortizationTypeSchedule AmortizationType = "schedule"
-	AmortizationTypeOther    AmortizationType = "other"
+	PurchaseOrderAmortizationTypeManual   PurchaseOrderAmortizationType = "manual"
+	PurchaseOrderAmortizationTypeReceipt  PurchaseOrderAmortizationType = "receipt"
+	PurchaseOrderAmortizationTypeSchedule PurchaseOrderAmortizationType = "schedule"
+	PurchaseOrderAmortizationTypeOther    PurchaseOrderAmortizationType = "other"
 )
 
-func (e AmortizationType) ToPointer() *AmortizationType {
+func (e PurchaseOrderAmortizationType) ToPointer() *PurchaseOrderAmortizationType {
 	return &e
 }
-func (e *AmortizationType) UnmarshalJSON(data []byte) error {
+func (e *PurchaseOrderAmortizationType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -74,10 +74,10 @@ func (e *AmortizationType) UnmarshalJSON(data []byte) error {
 	case "schedule":
 		fallthrough
 	case "other":
-		*e = AmortizationType(v)
+		*e = PurchaseOrderAmortizationType(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for AmortizationType: %v", v)
+		return fmt.Errorf("invalid value for PurchaseOrderAmortizationType: %v", v)
 	}
 }
 
@@ -94,9 +94,11 @@ type PurchaseOrder struct {
 	Supplier *LinkedSupplier `json:"supplier,omitempty"`
 	// The ID of the subsidiary
 	SubsidiaryID *string `json:"subsidiary_id,omitempty"`
-	// The company or subsidiary id the transaction belongs to
-	CompanyID *string              `json:"company_id,omitempty"`
-	Status    *PurchaseOrderStatus `json:"status,omitempty"`
+	// The company ID the transaction belongs to
+	CompanyID *string `json:"company_id,omitempty"`
+	// The ID of the department
+	DepartmentID *string              `json:"department_id,omitempty"`
+	Status       *PurchaseOrderStatus `json:"status,omitempty"`
 	// Date purchase order was issued - YYYY-MM-DD.
 	IssuedDate *types.Date `json:"issued_date,omitempty"`
 	// The date on which the purchase order is to be delivered - YYYY-MM-DD.
@@ -133,7 +135,7 @@ type PurchaseOrder struct {
 	// Terms of payment.
 	Terms *string `json:"terms,omitempty"`
 	// Type of amortization
-	AmortizationType *AmortizationType `json:"amortization_type,omitempty"`
+	AmortizationType *PurchaseOrderAmortizationType `json:"amortization_type,omitempty"`
 	// Applicable tax id/code override if tax is not supplied on a line item basis.
 	TaxCode *string `json:"tax_code,omitempty"`
 	// Method of tax calculation
@@ -225,6 +227,13 @@ func (o *PurchaseOrder) GetCompanyID() *string {
 		return nil
 	}
 	return o.CompanyID
+}
+
+func (o *PurchaseOrder) GetDepartmentID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.DepartmentID
 }
 
 func (o *PurchaseOrder) GetStatus() *PurchaseOrderStatus {
@@ -374,7 +383,7 @@ func (o *PurchaseOrder) GetTerms() *string {
 	return o.Terms
 }
 
-func (o *PurchaseOrder) GetAmortizationType() *AmortizationType {
+func (o *PurchaseOrder) GetAmortizationType() *PurchaseOrderAmortizationType {
 	if o == nil {
 		return nil
 	}
@@ -502,9 +511,11 @@ type PurchaseOrderInput struct {
 	Supplier *LinkedSupplierInput `json:"supplier,omitempty"`
 	// The ID of the subsidiary
 	SubsidiaryID *string `json:"subsidiary_id,omitempty"`
-	// The company or subsidiary id the transaction belongs to
-	CompanyID *string              `json:"company_id,omitempty"`
-	Status    *PurchaseOrderStatus `json:"status,omitempty"`
+	// The company ID the transaction belongs to
+	CompanyID *string `json:"company_id,omitempty"`
+	// The ID of the department
+	DepartmentID *string              `json:"department_id,omitempty"`
+	Status       *PurchaseOrderStatus `json:"status,omitempty"`
 	// Date purchase order was issued - YYYY-MM-DD.
 	IssuedDate *types.Date `json:"issued_date,omitempty"`
 	// The date on which the purchase order is to be delivered - YYYY-MM-DD.
@@ -541,7 +552,7 @@ type PurchaseOrderInput struct {
 	// Terms of payment.
 	Terms *string `json:"terms,omitempty"`
 	// Type of amortization
-	AmortizationType *AmortizationType `json:"amortization_type,omitempty"`
+	AmortizationType *PurchaseOrderAmortizationType `json:"amortization_type,omitempty"`
 	// Applicable tax id/code override if tax is not supplied on a line item basis.
 	TaxCode *string `json:"tax_code,omitempty"`
 	// Method of tax calculation
@@ -609,6 +620,13 @@ func (o *PurchaseOrderInput) GetCompanyID() *string {
 		return nil
 	}
 	return o.CompanyID
+}
+
+func (o *PurchaseOrderInput) GetDepartmentID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.DepartmentID
 }
 
 func (o *PurchaseOrderInput) GetStatus() *PurchaseOrderStatus {
@@ -758,7 +776,7 @@ func (o *PurchaseOrderInput) GetTerms() *string {
 	return o.Terms
 }
 
-func (o *PurchaseOrderInput) GetAmortizationType() *AmortizationType {
+func (o *PurchaseOrderInput) GetAmortizationType() *PurchaseOrderAmortizationType {
 	if o == nil {
 		return nil
 	}

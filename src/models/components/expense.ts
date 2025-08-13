@@ -101,7 +101,7 @@ export type Expense = {
    */
   supplierId?: string | undefined;
   /**
-   * The company or subsidiary id the transaction belongs to
+   * The company ID the transaction belongs to
    */
   companyId?: string | null | undefined;
   /**
@@ -198,7 +198,7 @@ export type ExpenseInput = {
    */
   supplierId?: string | undefined;
   /**
-   * The company or subsidiary id the transaction belongs to
+   * The company ID the transaction belongs to
    */
   companyId?: string | null | undefined;
   /**

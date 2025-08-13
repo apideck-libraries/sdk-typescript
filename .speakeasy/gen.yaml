@@ -24,7 +24,7 @@ generation:
     generateNewTests: true
     skipResponseBodyAssertions: false
 typescript:
-  version: 0.29.2
+  version: 0.29.3
   additionalDependencies:
     dependencies: {}
     devDependencies: {}
@@ -60,4 +60,5 @@ typescript:
   packageName: '@apideck/unify'
   responseFormat: envelope-http
   templateVersion: v2
+  usageSDKInitImports: []
   useIndexModules: true

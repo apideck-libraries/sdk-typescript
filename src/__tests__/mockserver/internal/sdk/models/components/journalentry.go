@@ -63,7 +63,7 @@ type JournalEntry struct {
 	CurrencyRate *float64 `json:"currency_rate,omitempty"`
 	// Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
 	Currency *Currency `json:"currency,omitempty"`
-	// The company or subsidiary id the transaction belongs to
+	// The company ID the transaction belongs to
 	CompanyID *string `json:"company_id,omitempty"`
 	// Requires a minimum of 2 line items that sum to 0
 	LineItems []JournalEntryLineItem `json:"line_items,omitempty"`
@@ -281,7 +281,7 @@ type JournalEntryInput struct {
 	CurrencyRate *float64 `json:"currency_rate,omitempty"`
 	// Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
 	Currency *Currency `json:"currency,omitempty"`
-	// The company or subsidiary id the transaction belongs to
+	// The company ID the transaction belongs to
 	CompanyID *string `json:"company_id,omitempty"`
 	// Requires a minimum of 2 line items that sum to 0
 	LineItems []JournalEntryLineItemInput `json:"line_items,omitempty"`

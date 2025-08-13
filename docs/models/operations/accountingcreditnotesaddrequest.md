@@ -15,6 +15,7 @@ let value: AccountingCreditNotesAddRequest = {
       email: "boring@boring.com",
     },
     companyId: "12345",
+    departmentId: "12345",
     currency: "USD",
     currencyRate: 0.69,
     taxInclusive: true,
@@ -65,8 +66,12 @@ let value: AccountingCreditNotesAddRequest = {
         taxApplicableOn: "Domestic_Purchase_of_Goods_and_Services",
         taxRecoverability: "Fully_Recoverable",
         taxMethod: "Due_to_Supplier",
-        budget: "in_budget",
-        projectId: "12345",
+        worktags: [
+          {
+            id: "123456",
+            value: "New York",
+          },
+        ],
         taxRate: {
           id: "123456",
           rate: 10,

@@ -8,7 +8,7 @@ dotenv.config();
  * Example usage of the @apideck/unify SDK
  *
  * To run this example from the examples directory:
- * npm run build && npx tsx accountingTaxRatesList.ts
+ * npm run build && npx tsx accountingTaxRatesList.example.ts
  */
 
 import { Apideck } from "@apideck/unify";

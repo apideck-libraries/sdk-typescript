@@ -92,7 +92,7 @@ export type PurchaseOrderStatus = ClosedEnum<typeof PurchaseOrderStatus>;
 /**
  * Type of amortization
  */
-export const AmortizationType = {
+export const PurchaseOrderAmortizationType = {
   Manual: "manual",
   Receipt: "receipt",
   Schedule: "schedule",
@@ -101,7 +101,9 @@ export const AmortizationType = {
 /**
  * Type of amortization
  */
-export type AmortizationType = ClosedEnum<typeof AmortizationType>;
+export type PurchaseOrderAmortizationType = ClosedEnum<
+  typeof PurchaseOrderAmortizationType
+>;
 
 export type PurchaseOrder = {
   /**
@@ -129,9 +131,13 @@ export type PurchaseOrder = {
    */
   subsidiaryId?: string | null | undefined;
   /**
-   * The company or subsidiary id the transaction belongs to
+   * The company ID the transaction belongs to
    */
   companyId?: string | null | undefined;
+  /**
+   * The ID of the department
+   */
+  departmentId?: string | null | undefined;
   status?: PurchaseOrderStatus | null | undefined;
   /**
    * Date purchase order was issued - YYYY-MM-DD.
@@ -201,7 +207,7 @@ export type PurchaseOrder = {
   /**
    * Type of amortization
    */
-  amortizationType?: AmortizationType | null | undefined;
+  amortizationType?: PurchaseOrderAmortizationType | null | undefined;
   /**
    * Applicable tax id/code override if tax is not supplied on a line item basis.
    */
@@ -283,9 +289,13 @@ export type PurchaseOrderInput = {
    */
   subsidiaryId?: string | null | undefined;
   /**
-   * The company or subsidiary id the transaction belongs to
+   * The company ID the transaction belongs to
    */
   companyId?: string | null | undefined;
+  /**
+   * The ID of the department
+   */
+  departmentId?: string | null | undefined;
   status?: PurchaseOrderStatus | null | undefined;
   /**
    * Date purchase order was issued - YYYY-MM-DD.
@@ -355,7 +365,7 @@ export type PurchaseOrderInput = {
   /**
    * Type of amortization
    */
-  amortizationType?: AmortizationType | null | undefined;
+  amortizationType?: PurchaseOrderAmortizationType | null | undefined;
   /**
    * Applicable tax id/code override if tax is not supplied on a line item basis.
    */
@@ -421,24 +431,24 @@ export namespace PurchaseOrderStatus$ {
 }
 
 /** @internal */
-export const AmortizationType$inboundSchema: z.ZodNativeEnum<
-  typeof AmortizationType
-> = z.nativeEnum(AmortizationType);
+export const PurchaseOrderAmortizationType$inboundSchema: z.ZodNativeEnum<
+  typeof PurchaseOrderAmortizationType
+> = z.nativeEnum(PurchaseOrderAmortizationType);
 
 /** @internal */
-export const AmortizationType$outboundSchema: z.ZodNativeEnum<
-  typeof AmortizationType
-> = AmortizationType$inboundSchema;
+export const PurchaseOrderAmortizationType$outboundSchema: z.ZodNativeEnum<
+  typeof PurchaseOrderAmortizationType
+> = PurchaseOrderAmortizationType$inboundSchema;
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace AmortizationType$ {
-  /** @deprecated use `AmortizationType$inboundSchema` instead. */
-  export const inboundSchema = AmortizationType$inboundSchema;
-  /** @deprecated use `AmortizationType$outboundSchema` instead. */
-  export const outboundSchema = AmortizationType$outboundSchema;
+export namespace PurchaseOrderAmortizationType$ {
+  /** @deprecated use `PurchaseOrderAmortizationType$inboundSchema` instead. */
+  export const inboundSchema = PurchaseOrderAmortizationType$inboundSchema;
+  /** @deprecated use `PurchaseOrderAmortizationType$outboundSchema` instead. */
+  export const outboundSchema = PurchaseOrderAmortizationType$outboundSchema;
 }
 
 /** @internal */
@@ -454,6 +464,7 @@ export const PurchaseOrder$inboundSchema: z.ZodType<
   supplier: z.nullable(LinkedSupplier$inboundSchema).optional(),
   subsidiary_id: z.nullable(z.string()).optional(),
   company_id: z.nullable(z.string()).optional(),
+  department_id: z.nullable(z.string()).optional(),
   status: z.nullable(PurchaseOrderStatus$inboundSchema).optional(),
   issued_date: z.nullable(z.string().transform(v => new RFCDate(v))).optional(),
   delivery_date: z.nullable(z.string().transform(v => new RFCDate(v)))
@@ -477,7 +488,8 @@ export const PurchaseOrder$inboundSchema: z.ZodType<
   due_date: z.nullable(z.string().transform(v => new RFCDate(v))).optional(),
   payment_method: z.nullable(z.string()).optional(),
   terms: z.nullable(z.string()).optional(),
-  amortization_type: z.nullable(AmortizationType$inboundSchema).optional(),
+  amortization_type: z.nullable(PurchaseOrderAmortizationType$inboundSchema)
+    .optional(),
   tax_code: z.nullable(z.string()).optional(),
   tax_method: z.nullable(z.string()).optional(),
   issued_method: z.nullable(z.string()).optional(),
@@ -506,6 +518,7 @@ export const PurchaseOrder$inboundSchema: z.ZodType<
     "po_number": "poNumber",
     "subsidiary_id": "subsidiaryId",
     "company_id": "companyId",
+    "department_id": "departmentId",
     "issued_date": "issuedDate",
     "delivery_date": "deliveryDate",
     "expected_arrival_date": "expectedArrivalDate",
@@ -549,6 +562,7 @@ export type PurchaseOrder$Outbound = {
   supplier?: LinkedSupplier$Outbound | null | undefined;
   subsidiary_id?: string | null | undefined;
   company_id?: string | null | undefined;
+  department_id?: string | null | undefined;
   status?: string | null | undefined;
   issued_date?: string | null | undefined;
   delivery_date?: string | null | undefined;
@@ -605,6 +619,7 @@ export const PurchaseOrder$outboundSchema: z.ZodType<
   supplier: z.nullable(LinkedSupplier$outboundSchema).optional(),
   subsidiaryId: z.nullable(z.string()).optional(),
   companyId: z.nullable(z.string()).optional(),
+  departmentId: z.nullable(z.string()).optional(),
   status: z.nullable(PurchaseOrderStatus$outboundSchema).optional(),
   issuedDate: z.nullable(z.instanceof(RFCDate).transform(v => v.toString()))
     .optional(),
@@ -631,7 +646,8 @@ export const PurchaseOrder$outboundSchema: z.ZodType<
     .optional(),
   paymentMethod: z.nullable(z.string()).optional(),
   terms: z.nullable(z.string()).optional(),
-  amortizationType: z.nullable(AmortizationType$outboundSchema).optional(),
+  amortizationType: z.nullable(PurchaseOrderAmortizationType$outboundSchema)
+    .optional(),
   taxCode: z.nullable(z.string()).optional(),
   taxMethod: z.nullable(z.string()).optional(),
   issuedMethod: z.nullable(z.string()).optional(),
@@ -656,6 +672,7 @@ export const PurchaseOrder$outboundSchema: z.ZodType<
     poNumber: "po_number",
     subsidiaryId: "subsidiary_id",
     companyId: "company_id",
+    departmentId: "department_id",
     issuedDate: "issued_date",
     deliveryDate: "delivery_date",
     expectedArrivalDate: "expected_arrival_date",
@@ -728,6 +745,7 @@ export const PurchaseOrderInput$inboundSchema: z.ZodType<
   supplier: z.nullable(LinkedSupplierInput$inboundSchema).optional(),
   subsidiary_id: z.nullable(z.string()).optional(),
   company_id: z.nullable(z.string()).optional(),
+  department_id: z.nullable(z.string()).optional(),
   status: z.nullable(PurchaseOrderStatus$inboundSchema).optional(),
   issued_date: z.nullable(z.string().transform(v => new RFCDate(v))).optional(),
   delivery_date: z.nullable(z.string().transform(v => new RFCDate(v)))
@@ -751,7 +769,8 @@ export const PurchaseOrderInput$inboundSchema: z.ZodType<
   due_date: z.nullable(z.string().transform(v => new RFCDate(v))).optional(),
   payment_method: z.nullable(z.string()).optional(),
   terms: z.nullable(z.string()).optional(),
-  amortization_type: z.nullable(AmortizationType$inboundSchema).optional(),
+  amortization_type: z.nullable(PurchaseOrderAmortizationType$inboundSchema)
+    .optional(),
   tax_code: z.nullable(z.string()).optional(),
   tax_method: z.nullable(z.string()).optional(),
   issued_method: z.nullable(z.string()).optional(),
@@ -770,6 +789,7 @@ export const PurchaseOrderInput$inboundSchema: z.ZodType<
     "po_number": "poNumber",
     "subsidiary_id": "subsidiaryId",
     "company_id": "companyId",
+    "department_id": "departmentId",
     "issued_date": "issuedDate",
     "delivery_date": "deliveryDate",
     "expected_arrival_date": "expectedArrivalDate",
@@ -806,6 +826,7 @@ export type PurchaseOrderInput$Outbound = {
   supplier?: LinkedSupplierInput$Outbound | null | undefined;
   subsidiary_id?: string | null | undefined;
   company_id?: string | null | undefined;
+  department_id?: string | null | undefined;
   status?: string | null | undefined;
   issued_date?: string | null | undefined;
   delivery_date?: string | null | undefined;
@@ -855,6 +876,7 @@ export const PurchaseOrderInput$outboundSchema: z.ZodType<
   supplier: z.nullable(LinkedSupplierInput$outboundSchema).optional(),
   subsidiaryId: z.nullable(z.string()).optional(),
   companyId: z.nullable(z.string()).optional(),
+  departmentId: z.nullable(z.string()).optional(),
   status: z.nullable(PurchaseOrderStatus$outboundSchema).optional(),
   issuedDate: z.nullable(z.instanceof(RFCDate).transform(v => v.toString()))
     .optional(),
@@ -881,7 +903,8 @@ export const PurchaseOrderInput$outboundSchema: z.ZodType<
     .optional(),
   paymentMethod: z.nullable(z.string()).optional(),
   terms: z.nullable(z.string()).optional(),
-  amortizationType: z.nullable(AmortizationType$outboundSchema).optional(),
+  amortizationType: z.nullable(PurchaseOrderAmortizationType$outboundSchema)
+    .optional(),
   taxCode: z.nullable(z.string()).optional(),
   taxMethod: z.nullable(z.string()).optional(),
   issuedMethod: z.nullable(z.string()).optional(),
@@ -900,6 +923,7 @@ export const PurchaseOrderInput$outboundSchema: z.ZodType<
     poNumber: "po_number",
     subsidiaryId: "subsidiary_id",
     companyId: "company_id",
+    departmentId: "department_id",
     issuedDate: "issued_date",
     deliveryDate: "delivery_date",
     expectedArrivalDate: "expected_arrival_date",

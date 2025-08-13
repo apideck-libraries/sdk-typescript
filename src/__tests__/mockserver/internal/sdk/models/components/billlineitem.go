@@ -71,7 +71,23 @@ type BillLineItem struct {
 	// The ID of the subsidiary
 	SubsidiaryID *string `json:"subsidiary_id,omitempty"`
 	// ID of the category of the line item
-	CategoryID    *string              `json:"category_id,omitempty"`
+	CategoryID *string `json:"category_id,omitempty"`
+	// ID of the shipping of the line item
+	ShippingID *string `json:"shipping_id,omitempty"`
+	// Memo
+	Memo *string `json:"memo,omitempty"`
+	// Whether the line item is prepaid
+	Prepaid *bool `json:"prepaid,omitempty"`
+	// Tax applicable on
+	TaxApplicableOn *string `json:"tax_applicable_on,omitempty"`
+	// Tax recoverability
+	TaxRecoverability *string `json:"tax_recoverability,omitempty"`
+	// Method of tax calculation
+	TaxMethod *string `json:"tax_method,omitempty"`
+	// Retention amount
+	RetentionAmount *float64 `json:"retention_amount,omitempty"`
+	// Payment amount
+	PaymentAmount *float64             `json:"payment_amount,omitempty"`
 	Item          *LinkedInvoiceItem   `json:"item,omitempty"`
 	TaxRate       *LinkedTaxRate       `json:"tax_rate,omitempty"`
 	LedgerAccount *LinkedLedgerAccount `json:"ledger_account,omitempty"`
@@ -92,6 +108,8 @@ type BillLineItem struct {
 	CreatedAt *time.Time `json:"created_at,omitempty"`
 	// The date and time when the object was last updated.
 	UpdatedAt *time.Time `json:"updated_at,omitempty"`
+	// A list of linked worktags. This is only supported for Workday.
+	Worktags []*LinkedWorktag `json:"worktags,omitempty"`
 }
 
 func (b BillLineItem) MarshalJSON() ([]byte, error) {
@@ -224,6 +242,62 @@ func (o *BillLineItem) GetCategoryID() *string {
 	return o.CategoryID
 }
 
+func (o *BillLineItem) GetShippingID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ShippingID
+}
+
+func (o *BillLineItem) GetMemo() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Memo
+}
+
+func (o *BillLineItem) GetPrepaid() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Prepaid
+}
+
+func (o *BillLineItem) GetTaxApplicableOn() *string {
+	if o == nil {
+		return nil
+	}
+	return o.TaxApplicableOn
+}
+
+func (o *BillLineItem) GetTaxRecoverability() *string {
+	if o == nil {
+		return nil
+	}
+	return o.TaxRecoverability
+}
+
+func (o *BillLineItem) GetTaxMethod() *string {
+	if o == nil {
+		return nil
+	}
+	return o.TaxMethod
+}
+
+func (o *BillLineItem) GetRetentionAmount() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.RetentionAmount
+}
+
+func (o *BillLineItem) GetPaymentAmount() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.PaymentAmount
+}
+
 func (o *BillLineItem) GetItem() *LinkedInvoiceItem {
 	if o == nil {
 		return nil
@@ -308,6 +382,13 @@ func (o *BillLineItem) GetUpdatedAt() *time.Time {
 	return o.UpdatedAt
 }
 
+func (o *BillLineItem) GetWorktags() []*LinkedWorktag {
+	if o == nil {
+		return nil
+	}
+	return o.Worktags
+}
+
 type BillLineItemInput struct {
 	// Row ID
 	RowID *string `json:"row_id,omitempty"`
@@ -338,7 +419,23 @@ type BillLineItemInput struct {
 	// The ID of the subsidiary
 	SubsidiaryID *string `json:"subsidiary_id,omitempty"`
 	// ID of the category of the line item
-	CategoryID    *string                   `json:"category_id,omitempty"`
+	CategoryID *string `json:"category_id,omitempty"`
+	// ID of the shipping of the line item
+	ShippingID *string `json:"shipping_id,omitempty"`
+	// Memo
+	Memo *string `json:"memo,omitempty"`
+	// Whether the line item is prepaid
+	Prepaid *bool `json:"prepaid,omitempty"`
+	// Tax applicable on
+	TaxApplicableOn *string `json:"tax_applicable_on,omitempty"`
+	// Tax recoverability
+	TaxRecoverability *string `json:"tax_recoverability,omitempty"`
+	// Method of tax calculation
+	TaxMethod *string `json:"tax_method,omitempty"`
+	// Retention amount
+	RetentionAmount *float64 `json:"retention_amount,omitempty"`
+	// Payment amount
+	PaymentAmount *float64                  `json:"payment_amount,omitempty"`
 	Item          *LinkedInvoiceItem        `json:"item,omitempty"`
 	TaxRate       *LinkedTaxRateInput       `json:"tax_rate,omitempty"`
 	LedgerAccount *LinkedLedgerAccountInput `json:"ledger_account,omitempty"`
@@ -351,6 +448,8 @@ type BillLineItemInput struct {
 	Rebilling *Rebilling `json:"rebilling,omitempty"`
 	// A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
 	RowVersion *string `json:"row_version,omitempty"`
+	// A list of linked worktags. This is only supported for Workday.
+	Worktags []*LinkedWorktag `json:"worktags,omitempty"`
 }
 
 func (o *BillLineItemInput) GetRowID() *string {
@@ -465,6 +564,62 @@ func (o *BillLineItemInput) GetCategoryID() *string {
 	return o.CategoryID
 }
 
+func (o *BillLineItemInput) GetShippingID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ShippingID
+}
+
+func (o *BillLineItemInput) GetMemo() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Memo
+}
+
+func (o *BillLineItemInput) GetPrepaid() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Prepaid
+}
+
+func (o *BillLineItemInput) GetTaxApplicableOn() *string {
+	if o == nil {
+		return nil
+	}
+	return o.TaxApplicableOn
+}
+
+func (o *BillLineItemInput) GetTaxRecoverability() *string {
+	if o == nil {
+		return nil
+	}
+	return o.TaxRecoverability
+}
+
+func (o *BillLineItemInput) GetTaxMethod() *string {
+	if o == nil {
+		return nil
+	}
+	return o.TaxMethod
+}
+
+func (o *BillLineItemInput) GetRetentionAmount() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.RetentionAmount
+}
+
+func (o *BillLineItemInput) GetPaymentAmount() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.PaymentAmount
+}
+
 func (o *BillLineItemInput) GetItem() *LinkedInvoiceItem {
 	if o == nil {
 		return nil
@@ -519,4 +674,11 @@ func (o *BillLineItemInput) GetRowVersion() *string {
 		return nil
 	}
 	return o.RowVersion
+}
+
+func (o *BillLineItemInput) GetWorktags() []*LinkedWorktag {
+	if o == nil {
+		return nil
+	}
+	return o.Worktags
 }

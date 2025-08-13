@@ -53,6 +53,7 @@ let value: GetPurchaseOrderResponse = {
     },
     subsidiaryId: "12345",
     companyId: "12345",
+    departmentId: "12345",
     status: "open",
     issuedDate: new RFCDate("2020-09-30"),
     deliveryDate: new RFCDate("2020-09-30"),
@@ -94,8 +95,12 @@ let value: GetPurchaseOrderResponse = {
         taxApplicableOn: "Domestic_Purchase_of_Goods_and_Services",
         taxRecoverability: "Fully_Recoverable",
         taxMethod: "Due_to_Supplier",
-        budget: "in_budget",
-        projectId: "12345",
+        worktags: [
+          {
+            id: "123456",
+            value: "New York",
+          },
+        ],
         taxRate: {
           id: "123456",
           code: "N-T",

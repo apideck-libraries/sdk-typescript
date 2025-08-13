@@ -63,6 +63,12 @@ import {
   LinkedTrackingCategory$outboundSchema,
 } from "./linkedtrackingcategory.js";
 import {
+  LinkedWorktag,
+  LinkedWorktag$inboundSchema,
+  LinkedWorktag$Outbound,
+  LinkedWorktag$outboundSchema,
+} from "./linkedworktag.js";
+import {
   Rebilling,
   Rebilling$inboundSchema,
   Rebilling$Outbound,
@@ -145,6 +151,38 @@ export type BillLineItem = {
    * ID of the category of the line item
    */
   categoryId?: string | null | undefined;
+  /**
+   * ID of the shipping of the line item
+   */
+  shippingId?: string | null | undefined;
+  /**
+   * Memo
+   */
+  memo?: string | null | undefined;
+  /**
+   * Whether the line item is prepaid
+   */
+  prepaid?: boolean | null | undefined;
+  /**
+   * Tax applicable on
+   */
+  taxApplicableOn?: string | null | undefined;
+  /**
+   * Tax recoverability
+   */
+  taxRecoverability?: string | null | undefined;
+  /**
+   * Method of tax calculation
+   */
+  taxMethod?: string | null | undefined;
+  /**
+   * Retention amount
+   */
+  retentionAmount?: number | null | undefined;
+  /**
+   * Payment amount
+   */
+  paymentAmount?: number | null | undefined;
   item?: LinkedInvoiceItem | undefined;
   taxRate?: LinkedTaxRate | undefined;
   ledgerAccount?: LinkedLedgerAccount | null | undefined;
@@ -181,6 +219,10 @@ export type BillLineItem = {
    * The date and time when the object was last updated.
    */
   updatedAt?: Date | null | undefined;
+  /**
+   * A list of linked worktags. This is only supported for Workday.
+   */
+  worktags?: Array<LinkedWorktag | null> | undefined;
 };
 
 export type BillLineItemInput = {
@@ -242,6 +284,38 @@ export type BillLineItemInput = {
    * ID of the category of the line item
    */
   categoryId?: string | null | undefined;
+  /**
+   * ID of the shipping of the line item
+   */
+  shippingId?: string | null | undefined;
+  /**
+   * Memo
+   */
+  memo?: string | null | undefined;
+  /**
+   * Whether the line item is prepaid
+   */
+  prepaid?: boolean | null | undefined;
+  /**
+   * Tax applicable on
+   */
+  taxApplicableOn?: string | null | undefined;
+  /**
+   * Tax recoverability
+   */
+  taxRecoverability?: string | null | undefined;
+  /**
+   * Method of tax calculation
+   */
+  taxMethod?: string | null | undefined;
+  /**
+   * Retention amount
+   */
+  retentionAmount?: number | null | undefined;
+  /**
+   * Payment amount
+   */
+  paymentAmount?: number | null | undefined;
   item?: LinkedInvoiceItem | undefined;
   taxRate?: LinkedTaxRateInput | undefined;
   ledgerAccount?: LinkedLedgerAccountInput | null | undefined;
@@ -262,6 +336,10 @@ export type BillLineItemInput = {
    * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
    */
   rowVersion?: string | null | undefined;
+  /**
+   * A list of linked worktags. This is only supported for Workday.
+   */
+  worktags?: Array<LinkedWorktag | null> | undefined;
 };
 
 /** @internal */
@@ -308,6 +386,14 @@ export const BillLineItem$inboundSchema: z.ZodType<
   department_id: z.nullable(z.string()).optional(),
   subsidiary_id: z.nullable(z.string()).optional(),
   category_id: z.nullable(z.string()).optional(),
+  shipping_id: z.nullable(z.string()).optional(),
+  memo: z.nullable(z.string()).optional(),
+  prepaid: z.nullable(z.boolean()).optional(),
+  tax_applicable_on: z.nullable(z.string()).optional(),
+  tax_recoverability: z.nullable(z.string()).optional(),
+  tax_method: z.nullable(z.string()).optional(),
+  retention_amount: z.nullable(z.number()).optional(),
+  payment_amount: z.nullable(z.number()).optional(),
   item: LinkedInvoiceItem$inboundSchema.optional(),
   tax_rate: LinkedTaxRate$inboundSchema.optional(),
   ledger_account: z.nullable(LinkedLedgerAccount$inboundSchema).optional(),
@@ -326,6 +412,7 @@ export const BillLineItem$inboundSchema: z.ZodType<
   updated_at: z.nullable(
     z.string().datetime({ offset: true }).transform(v => new Date(v)),
   ).optional(),
+  worktags: z.array(z.nullable(LinkedWorktag$inboundSchema)).optional(),
 }).transform((v) => {
   return remap$(v, {
     "row_id": "rowId",
@@ -340,6 +427,12 @@ export const BillLineItem$inboundSchema: z.ZodType<
     "department_id": "departmentId",
     "subsidiary_id": "subsidiaryId",
     "category_id": "categoryId",
+    "shipping_id": "shippingId",
+    "tax_applicable_on": "taxApplicableOn",
+    "tax_recoverability": "taxRecoverability",
+    "tax_method": "taxMethod",
+    "retention_amount": "retentionAmount",
+    "payment_amount": "paymentAmount",
     "tax_rate": "taxRate",
     "ledger_account": "ledgerAccount",
     "purchase_order": "purchaseOrder",
@@ -371,6 +464,14 @@ export type BillLineItem$Outbound = {
   department_id?: string | null | undefined;
   subsidiary_id?: string | null | undefined;
   category_id?: string | null | undefined;
+  shipping_id?: string | null | undefined;
+  memo?: string | null | undefined;
+  prepaid?: boolean | null | undefined;
+  tax_applicable_on?: string | null | undefined;
+  tax_recoverability?: string | null | undefined;
+  tax_method?: string | null | undefined;
+  retention_amount?: number | null | undefined;
+  payment_amount?: number | null | undefined;
   item?: LinkedInvoiceItem$Outbound | undefined;
   tax_rate?: LinkedTaxRate$Outbound | undefined;
   ledger_account?: LinkedLedgerAccount$Outbound | null | undefined;
@@ -386,6 +487,7 @@ export type BillLineItem$Outbound = {
   created_by?: string | null | undefined;
   created_at?: string | null | undefined;
   updated_at?: string | null | undefined;
+  worktags?: Array<LinkedWorktag$Outbound | null> | undefined;
 };
 
 /** @internal */
@@ -411,6 +513,14 @@ export const BillLineItem$outboundSchema: z.ZodType<
   departmentId: z.nullable(z.string()).optional(),
   subsidiaryId: z.nullable(z.string()).optional(),
   categoryId: z.nullable(z.string()).optional(),
+  shippingId: z.nullable(z.string()).optional(),
+  memo: z.nullable(z.string()).optional(),
+  prepaid: z.nullable(z.boolean()).optional(),
+  taxApplicableOn: z.nullable(z.string()).optional(),
+  taxRecoverability: z.nullable(z.string()).optional(),
+  taxMethod: z.nullable(z.string()).optional(),
+  retentionAmount: z.nullable(z.number()).optional(),
+  paymentAmount: z.nullable(z.number()).optional(),
   item: LinkedInvoiceItem$outboundSchema.optional(),
   taxRate: LinkedTaxRate$outboundSchema.optional(),
   ledgerAccount: z.nullable(LinkedLedgerAccount$outboundSchema).optional(),
@@ -425,6 +535,7 @@ export const BillLineItem$outboundSchema: z.ZodType<
   createdBy: z.nullable(z.string()).optional(),
   createdAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
   updatedAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
+  worktags: z.array(z.nullable(LinkedWorktag$outboundSchema)).optional(),
 }).transform((v) => {
   return remap$(v, {
     rowId: "row_id",
@@ -439,6 +550,12 @@ export const BillLineItem$outboundSchema: z.ZodType<
     departmentId: "department_id",
     subsidiaryId: "subsidiary_id",
     categoryId: "category_id",
+    shippingId: "shipping_id",
+    taxApplicableOn: "tax_applicable_on",
+    taxRecoverability: "tax_recoverability",
+    taxMethod: "tax_method",
+    retentionAmount: "retention_amount",
+    paymentAmount: "payment_amount",
     taxRate: "tax_rate",
     ledgerAccount: "ledger_account",
     purchaseOrder: "purchase_order",
@@ -500,6 +617,14 @@ export const BillLineItemInput$inboundSchema: z.ZodType<
   department_id: z.nullable(z.string()).optional(),
   subsidiary_id: z.nullable(z.string()).optional(),
   category_id: z.nullable(z.string()).optional(),
+  shipping_id: z.nullable(z.string()).optional(),
+  memo: z.nullable(z.string()).optional(),
+  prepaid: z.nullable(z.boolean()).optional(),
+  tax_applicable_on: z.nullable(z.string()).optional(),
+  tax_recoverability: z.nullable(z.string()).optional(),
+  tax_method: z.nullable(z.string()).optional(),
+  retention_amount: z.nullable(z.number()).optional(),
+  payment_amount: z.nullable(z.number()).optional(),
   item: LinkedInvoiceItem$inboundSchema.optional(),
   tax_rate: LinkedTaxRateInput$inboundSchema.optional(),
   ledger_account: z.nullable(LinkedLedgerAccountInput$inboundSchema).optional(),
@@ -510,6 +635,7 @@ export const BillLineItemInput$inboundSchema: z.ZodType<
   customer: z.nullable(LinkedCustomerInput$inboundSchema).optional(),
   rebilling: z.nullable(Rebilling$inboundSchema).optional(),
   row_version: z.nullable(z.string()).optional(),
+  worktags: z.array(z.nullable(LinkedWorktag$inboundSchema)).optional(),
 }).transform((v) => {
   return remap$(v, {
     "row_id": "rowId",
@@ -524,6 +650,12 @@ export const BillLineItemInput$inboundSchema: z.ZodType<
     "department_id": "departmentId",
     "subsidiary_id": "subsidiaryId",
     "category_id": "categoryId",
+    "shipping_id": "shippingId",
+    "tax_applicable_on": "taxApplicableOn",
+    "tax_recoverability": "taxRecoverability",
+    "tax_method": "taxMethod",
+    "retention_amount": "retentionAmount",
+    "payment_amount": "paymentAmount",
     "tax_rate": "taxRate",
     "ledger_account": "ledgerAccount",
     "purchase_order": "purchaseOrder",
@@ -550,6 +682,14 @@ export type BillLineItemInput$Outbound = {
   department_id?: string | null | undefined;
   subsidiary_id?: string | null | undefined;
   category_id?: string | null | undefined;
+  shipping_id?: string | null | undefined;
+  memo?: string | null | undefined;
+  prepaid?: boolean | null | undefined;
+  tax_applicable_on?: string | null | undefined;
+  tax_recoverability?: string | null | undefined;
+  tax_method?: string | null | undefined;
+  retention_amount?: number | null | undefined;
+  payment_amount?: number | null | undefined;
   item?: LinkedInvoiceItem$Outbound | undefined;
   tax_rate?: LinkedTaxRateInput$Outbound | undefined;
   ledger_account?: LinkedLedgerAccountInput$Outbound | null | undefined;
@@ -561,6 +701,7 @@ export type BillLineItemInput$Outbound = {
   customer?: LinkedCustomerInput$Outbound | null | undefined;
   rebilling?: Rebilling$Outbound | null | undefined;
   row_version?: string | null | undefined;
+  worktags?: Array<LinkedWorktag$Outbound | null> | undefined;
 };
 
 /** @internal */
@@ -585,6 +726,14 @@ export const BillLineItemInput$outboundSchema: z.ZodType<
   departmentId: z.nullable(z.string()).optional(),
   subsidiaryId: z.nullable(z.string()).optional(),
   categoryId: z.nullable(z.string()).optional(),
+  shippingId: z.nullable(z.string()).optional(),
+  memo: z.nullable(z.string()).optional(),
+  prepaid: z.nullable(z.boolean()).optional(),
+  taxApplicableOn: z.nullable(z.string()).optional(),
+  taxRecoverability: z.nullable(z.string()).optional(),
+  taxMethod: z.nullable(z.string()).optional(),
+  retentionAmount: z.nullable(z.number()).optional(),
+  paymentAmount: z.nullable(z.number()).optional(),
   item: LinkedInvoiceItem$outboundSchema.optional(),
   taxRate: LinkedTaxRateInput$outboundSchema.optional(),
   ledgerAccount: z.nullable(LinkedLedgerAccountInput$outboundSchema).optional(),
@@ -595,6 +744,7 @@ export const BillLineItemInput$outboundSchema: z.ZodType<
   customer: z.nullable(LinkedCustomerInput$outboundSchema).optional(),
   rebilling: z.nullable(Rebilling$outboundSchema).optional(),
   rowVersion: z.nullable(z.string()).optional(),
+  worktags: z.array(z.nullable(LinkedWorktag$outboundSchema)).optional(),
 }).transform((v) => {
   return remap$(v, {
     rowId: "row_id",
@@ -609,6 +759,12 @@ export const BillLineItemInput$outboundSchema: z.ZodType<
     departmentId: "department_id",
     subsidiaryId: "subsidiary_id",
     categoryId: "category_id",
+    shippingId: "shipping_id",
+    taxApplicableOn: "tax_applicable_on",
+    taxRecoverability: "tax_recoverability",
+    taxMethod: "tax_method",
+    retentionAmount: "retention_amount",
+    paymentAmount: "payment_amount",
     taxRate: "tax_rate",
     ledgerAccount: "ledger_account",
     purchaseOrder: "purchase_order",

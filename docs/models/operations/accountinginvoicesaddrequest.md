@@ -9,6 +9,7 @@ import { RFCDate } from "@apideck/unify/types";
 let value: AccountingInvoicesAddRequest = {
   serviceId: "salesforce",
   invoice: {
+    displayId: "123456",
     type: "service",
     number: "OIT00546",
     customer: {
@@ -17,6 +18,7 @@ let value: AccountingInvoicesAddRequest = {
       email: "boring@boring.com",
     },
     companyId: "12345",
+    departmentId: "12345",
     invoiceDate: new RFCDate("2020-09-30"),
     dueDate: new RFCDate("2020-09-30"),
     terms: "Net 30 days",
@@ -68,8 +70,12 @@ let value: AccountingInvoicesAddRequest = {
         taxApplicableOn: "Domestic_Purchase_of_Goods_and_Services",
         taxRecoverability: "Fully_Recoverable",
         taxMethod: "Due_to_Supplier",
-        budget: "in_budget",
-        projectId: "12345",
+        worktags: [
+          {
+            id: "123456",
+            value: "New York",
+          },
+        ],
         taxRate: {
           id: "123456",
           rate: 10,

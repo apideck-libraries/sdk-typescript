@@ -9,6 +9,7 @@ import { RFCDate } from "@apideck/unify/types";
 let value: AccountingBillsAddRequest = {
   serviceId: "salesforce",
   bill: {
+    displayId: "123456",
     billNumber: "10001",
     supplier: {
       id: "12345",
@@ -41,6 +42,7 @@ let value: AccountingBillsAddRequest = {
       },
     },
     companyId: "12345",
+    departmentId: "12345",
     currency: "USD",
     currencyRate: 0.69,
     taxInclusive: true,
@@ -68,6 +70,14 @@ let value: AccountingBillsAddRequest = {
         departmentId: "12345",
         subsidiaryId: "12345",
         categoryId: "12345",
+        shippingId: "12345",
+        memo: "Some memo",
+        prepaid: true,
+        taxApplicableOn: "Domestic_Purchase_of_Goods_and_Services",
+        taxRecoverability: "Fully_Recoverable",
+        taxMethod: "Due_to_Supplier",
+        retentionAmount: 1000,
+        paymentAmount: 1000,
         item: {
           id: "12344",
           code: "120-C",
@@ -107,6 +117,12 @@ let value: AccountingBillsAddRequest = {
           linkedTransactionLineId: "line_xyz789",
         },
         rowVersion: "1-12345",
+        worktags: [
+          {
+            id: "123456",
+            value: "New York",
+          },
+        ],
       },
     ],
     terms: "Net 30 days",
@@ -142,6 +158,10 @@ let value: AccountingBillsAddRequest = {
       country: "US",
     },
     discountPercentage: 5.5,
+    templateId: "123456",
+    approvedBy: "John Doe",
+    taxMethod: "Due to supplier",
+    documentReceived: true,
     sourceDocumentUrl: "https://www.invoicesolution.com/bill/123456",
     trackingCategories: [
       {
@@ -176,6 +196,16 @@ let value: AccountingBillsAddRequest = {
       },
     ],
     accountingPeriod: "01-24",
+    attachments: [
+      {
+        name: "sample.jpg",
+        mimeType: "image/jpeg",
+        isCompressed: false,
+        encoding: "base64",
+        content: "data:image/jpeg;base64,...",
+        notes: "A sample image",
+      },
+    ],
   },
 };
 ```

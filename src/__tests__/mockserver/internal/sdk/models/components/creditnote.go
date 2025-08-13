@@ -79,8 +79,10 @@ type CreditNote struct {
 	Number *string `json:"number,omitempty"`
 	// The customer this entity is linked to.
 	Customer *LinkedCustomer `json:"customer,omitempty"`
-	// The company or subsidiary id the transaction belongs to
+	// The company ID the transaction belongs to
 	CompanyID *string `json:"company_id,omitempty"`
+	// The ID of the department
+	DepartmentID *string `json:"department_id,omitempty"`
 	// Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
 	Currency *Currency `json:"currency,omitempty"`
 	// Currency Exchange Rate at the time entity was recorded/generated.
@@ -174,6 +176,13 @@ func (o *CreditNote) GetCompanyID() *string {
 		return nil
 	}
 	return o.CompanyID
+}
+
+func (o *CreditNote) GetDepartmentID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.DepartmentID
 }
 
 func (o *CreditNote) GetCurrency() *Currency {
@@ -391,8 +400,10 @@ type CreditNoteInput struct {
 	Number *string `json:"number,omitempty"`
 	// The customer this entity is linked to.
 	Customer *LinkedCustomerInput `json:"customer,omitempty"`
-	// The company or subsidiary id the transaction belongs to
+	// The company ID the transaction belongs to
 	CompanyID *string `json:"company_id,omitempty"`
+	// The ID of the department
+	DepartmentID *string `json:"department_id,omitempty"`
 	// Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
 	Currency *Currency `json:"currency,omitempty"`
 	// Currency Exchange Rate at the time entity was recorded/generated.
@@ -469,6 +480,13 @@ func (o *CreditNoteInput) GetCompanyID() *string {
 		return nil
 	}
 	return o.CompanyID
+}
+
+func (o *CreditNoteInput) GetDepartmentID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.DepartmentID
 }
 
 func (o *CreditNoteInput) GetCurrency() *Currency {
