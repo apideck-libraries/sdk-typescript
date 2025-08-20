@@ -45,6 +45,8 @@ type Subsidiary struct {
 	Name *string `json:"name,omitempty"`
 	// Based on the status some functionality is enabled or disabled.
 	Status *SubsidiaryStatus `json:"status,omitempty"`
+	// List of currencies supported by this subsidiary
+	Currencies []*Currency `json:"currencies,omitempty"`
 	// When custom mappings are configured on the resource, the result is included here.
 	CustomMappings map[string]any `json:"custom_mappings,omitempty"`
 	// A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
@@ -98,6 +100,13 @@ func (o *Subsidiary) GetStatus() *SubsidiaryStatus {
 		return nil
 	}
 	return o.Status
+}
+
+func (o *Subsidiary) GetCurrencies() []*Currency {
+	if o == nil {
+		return nil
+	}
+	return o.Currencies
 }
 
 func (o *Subsidiary) GetCustomMappings() map[string]any {
@@ -156,6 +165,8 @@ type SubsidiaryInput struct {
 	Name *string `json:"name,omitempty"`
 	// Based on the status some functionality is enabled or disabled.
 	Status *SubsidiaryStatus `json:"status,omitempty"`
+	// List of currencies supported by this subsidiary
+	Currencies []*Currency `json:"currencies,omitempty"`
 	// A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
 	RowVersion *string `json:"row_version,omitempty"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
@@ -181,6 +192,13 @@ func (o *SubsidiaryInput) GetStatus() *SubsidiaryStatus {
 		return nil
 	}
 	return o.Status
+}
+
+func (o *SubsidiaryInput) GetCurrencies() []*Currency {
+	if o == nil {
+		return nil
+	}
+	return o.Currencies
 }
 
 func (o *SubsidiaryInput) GetRowVersion() *string {

@@ -15,6 +15,7 @@ const (
 	JobStatusInternal  JobStatus = "internal"
 	JobStatusPublished JobStatus = "published"
 	JobStatusCompleted JobStatus = "completed"
+	JobStatusPlaced    JobStatus = "placed"
 	JobStatusOnHold    JobStatus = "on-hold"
 	JobStatusPrivate   JobStatus = "private"
 )
@@ -35,6 +36,8 @@ func (e *JobStatus) UnmarshalJSON(data []byte) error {
 	case "published":
 		fallthrough
 	case "completed":
+		fallthrough
+	case "placed":
 		fallthrough
 	case "on-hold":
 		fallthrough

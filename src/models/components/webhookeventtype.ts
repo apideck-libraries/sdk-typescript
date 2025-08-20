@@ -105,6 +105,7 @@ export const WebhookEventType = {
   FileStorageFileCreated: "file-storage.file.created",
   FileStorageFileUpdated: "file-storage.file.updated",
   FileStorageFileDeleted: "file-storage.file.deleted",
+  FileStorageDriveUpdated: "file-storage.drive.updated",
   IssueTrackingTicketCreated: "issue-tracking.ticket.created",
   IssueTrackingTicketUpdated: "issue-tracking.ticket.updated",
   IssueTrackingTicketDeleted: "issue-tracking.ticket.deleted",

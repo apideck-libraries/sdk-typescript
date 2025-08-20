@@ -18,6 +18,9 @@ let value: GetSubsidiaryResponse = {
     parentId: "12345",
     name: "SpaceX",
     status: "active",
+    currencies: [
+      "USD",
+    ],
     rowVersion: "1-12345",
     updatedBy: "12345",
     createdBy: "12345",

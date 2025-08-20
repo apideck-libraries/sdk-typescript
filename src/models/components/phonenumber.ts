@@ -23,6 +23,7 @@ export const PhoneNumberType = {
   Fax: "fax",
   DirectDialIn: "direct-dial-in",
   Personal: "personal",
+  Billing: "billing",
   Other: "other",
 } as const;
 /**
