@@ -109,6 +109,7 @@ const (
 	WebhookEventTypeFileStorageFileCreated            WebhookEventType = "file-storage.file.created"
 	WebhookEventTypeFileStorageFileUpdated            WebhookEventType = "file-storage.file.updated"
 	WebhookEventTypeFileStorageFileDeleted            WebhookEventType = "file-storage.file.deleted"
+	WebhookEventTypeFileStorageDriveUpdated           WebhookEventType = "file-storage.drive.updated"
 	WebhookEventTypeIssueTrackingTicketCreated        WebhookEventType = "issue-tracking.ticket.created"
 	WebhookEventTypeIssueTrackingTicketUpdated        WebhookEventType = "issue-tracking.ticket.updated"
 	WebhookEventTypeIssueTrackingTicketDeleted        WebhookEventType = "issue-tracking.ticket.deleted"
@@ -338,6 +339,8 @@ func (e *WebhookEventType) UnmarshalJSON(data []byte) error {
 	case "file-storage.file.updated":
 		fallthrough
 	case "file-storage.file.deleted":
+		fallthrough
+	case "file-storage.drive.updated":
 		fallthrough
 	case "issue-tracking.ticket.created":
 		fallthrough

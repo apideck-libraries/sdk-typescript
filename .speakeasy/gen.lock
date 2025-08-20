@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 7bffa198-5d29-4efa-9942-d549cc832085
 management:
-  docChecksum: 3508acc42fae389531f955a5c0ef2d51
-  docVersion: 10.20.6
-  speakeasyVersion: 1.603.0
-  generationVersion: 2.681.1
-  releaseVersion: 0.29.3
-  configChecksum: 35e2594ec12b3548ed45aa607c87a6e6
+  docChecksum: adbe8651971e100ed9d43a08042577ad
+  docVersion: 10.20.8
+  speakeasyVersion: 1.606.0
+  generationVersion: 2.686.7
+  releaseVersion: 0.29.4
+  configChecksum: b944eddcb86fd4ed58840642fc6194de
   repoURL: https://github.com/apideck-libraries/sdk-typescript.git
   installationURL: https://github.com/apideck-libraries/sdk-typescript
   published: true
@@ -7581,7 +7581,7 @@ examples:
           x-apideck-app-id: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
           x-apideck-service-id: "salesforce"
       requestBody:
-        application/json: {"parent_id": "12345", "name": "SpaceX", "status": "active", "row_version": "1-12345", "pass_through": [{"service_id": "<id>", "extend_paths": [{"path": "$.nested.property", "value": {"TaxClassificationRef": {"value": "EUC-99990201-V1-00020000"}}}]}]}
+        application/json: {"parent_id": "12345", "name": "SpaceX", "status": "active", "currencies": ["USD"], "row_version": "1-12345", "pass_through": [{"service_id": "<id>", "extend_paths": [{"path": "$.nested.property", "value": {"TaxClassificationRef": {"value": "EUC-99990201-V1-00020000"}}}]}]}
       responses:
         "201":
           application/json: {"status_code": 200, "status": "OK", "service": "quickbooks", "resource": "subsidiaries", "operation": "add", "data": {"id": "12345"}}
@@ -7637,7 +7637,7 @@ examples:
           x-apideck-service-id: "salesforce"
       responses:
         "200":
-          application/json: {"status_code": 200, "status": "OK", "service": "xero", "resource": "subsidiaries", "operation": "one", "data": {"id": "12345", "parent_id": "12345", "name": "SpaceX", "status": "active", "row_version": "1-12345", "updated_by": "12345", "created_by": "12345", "updated_at": "2020-09-30T07:43:32.000Z", "created_at": "2020-09-30T07:43:32.000Z", "pass_through": [{"service_id": "<id>", "extend_paths": [{"path": "$.nested.property", "value": {"TaxClassificationRef": {"value": "EUC-99990201-V1-00020000"}}}]}]}}
+          application/json: {"status_code": 200, "status": "OK", "service": "xero", "resource": "subsidiaries", "operation": "one", "data": {"id": "12345", "parent_id": "12345", "name": "SpaceX", "status": "active", "currencies": ["USD"], "row_version": "1-12345", "updated_by": "12345", "created_by": "12345", "updated_at": "2020-09-30T07:43:32.000Z", "created_at": "2020-09-30T07:43:32.000Z", "pass_through": [{"service_id": "<id>", "extend_paths": [{"path": "$.nested.property", "value": {"TaxClassificationRef": {"value": "EUC-99990201-V1-00020000"}}}]}]}}
         "400":
           application/json: {"status_code": 400, "error": "Bad Request", "type_name": "RequestValidationError", "message": "Invalid Params", "detail": "Missing property foobar", "ref": "https://developers.apideck.com/errors#requestvalidationerror"}
         "401":
@@ -7689,7 +7689,7 @@ examples:
           x-apideck-app-id: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
           x-apideck-service-id: "salesforce"
       requestBody:
-        application/json: {"parent_id": "12345", "name": "SpaceX", "status": "active", "row_version": "1-12345", "pass_through": [{"service_id": "<id>", "extend_paths": [{"path": "$.nested.property", "value": {"TaxClassificationRef": {"value": "EUC-99990201-V1-00020000"}}}]}]}
+        application/json: {"parent_id": "12345", "name": "SpaceX", "status": "active", "currencies": ["USD"], "row_version": "1-12345", "pass_through": [{"service_id": "<id>", "extend_paths": [{"path": "$.nested.property", "value": {"TaxClassificationRef": {"value": "EUC-99990201-V1-00020000"}}}]}]}
       responses:
         "200":
           application/json: {"status_code": 200, "status": "OK", "service": "quickbooks", "resource": "subsidiaries", "operation": "update", "data": {"id": "12345"}}
@@ -19868,3 +19868,4 @@ generatedTests:
   accounting.quotesOne: "2025-08-06T08:21:29Z"
   accounting.quotesUpdate: "2025-08-06T08:21:29Z"
   accounting.quotesDelete: "2025-08-06T08:21:29Z"
+releaseNotes: "## SDK Changes Detected:\n* `apideck.accounting.subsidiaries.list()`:  `response.data.[].currencies` **Added**\n* `apideck.accounting.subsidiaries.create()`: \n  *  `request.subsidiary.currencies` **Added**\n* `apideck.accounting.subsidiaries.get()`:  `response.data.currencies` **Added**\n* `apideck.accounting.subsidiaries.update()`: \n  *  `request.subsidiary.currencies` **Added**\n"

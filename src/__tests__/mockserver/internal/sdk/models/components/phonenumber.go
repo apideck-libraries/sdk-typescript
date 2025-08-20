@@ -21,6 +21,7 @@ const (
 	PhoneNumberTypeFax          PhoneNumberType = "fax"
 	PhoneNumberTypeDirectDialIn PhoneNumberType = "direct-dial-in"
 	PhoneNumberTypePersonal     PhoneNumberType = "personal"
+	PhoneNumberTypeBilling      PhoneNumberType = "billing"
 	PhoneNumberTypeOther        PhoneNumberType = "other"
 )
 
@@ -52,6 +53,8 @@ func (e *PhoneNumberType) UnmarshalJSON(data []byte) error {
 	case "direct-dial-in":
 		fallthrough
 	case "personal":
+		fallthrough
+	case "billing":
 		fallthrough
 	case "other":
 		*e = PhoneNumberType(v)

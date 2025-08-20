@@ -9,6 +9,11 @@ import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
+  Currency,
+  Currency$inboundSchema,
+  Currency$outboundSchema,
+} from "./currency.js";
+import {
   PassThroughBody,
   PassThroughBody$inboundSchema,
   PassThroughBody$Outbound,
@@ -44,6 +49,10 @@ export type Subsidiary = {
    * Based on the status some functionality is enabled or disabled.
    */
   status?: SubsidiaryStatus | undefined;
+  /**
+   * List of currencies supported by this subsidiary
+   */
+  currencies?: Array<Currency | null> | null | undefined;
   /**
    * When custom mappings are configured on the resource, the result is included here.
    */
@@ -88,6 +97,10 @@ export type SubsidiaryInput = {
    */
   status?: SubsidiaryStatus | undefined;
   /**
+   * List of currencies supported by this subsidiary
+   */
+  currencies?: Array<Currency | null> | null | undefined;
+  /**
    * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
    */
   rowVersion?: string | null | undefined;
@@ -128,6 +141,8 @@ export const Subsidiary$inboundSchema: z.ZodType<
   parent_id: z.nullable(z.string()).optional(),
   name: z.nullable(z.string()).optional(),
   status: SubsidiaryStatus$inboundSchema.optional(),
+  currencies: z.nullable(z.array(z.nullable(Currency$inboundSchema)))
+    .optional(),
   custom_mappings: z.nullable(z.record(z.any())).optional(),
   row_version: z.nullable(z.string()).optional(),
   updated_by: z.nullable(z.string()).optional(),
@@ -158,6 +173,7 @@ export type Subsidiary$Outbound = {
   parent_id?: string | null | undefined;
   name?: string | null | undefined;
   status?: string | undefined;
+  currencies?: Array<string | null> | null | undefined;
   custom_mappings?: { [k: string]: any } | null | undefined;
   row_version?: string | null | undefined;
   updated_by?: string | null | undefined;
@@ -177,6 +193,8 @@ export const Subsidiary$outboundSchema: z.ZodType<
   parentId: z.nullable(z.string()).optional(),
   name: z.nullable(z.string()).optional(),
   status: SubsidiaryStatus$outboundSchema.optional(),
+  currencies: z.nullable(z.array(z.nullable(Currency$outboundSchema)))
+    .optional(),
   customMappings: z.nullable(z.record(z.any())).optional(),
   rowVersion: z.nullable(z.string()).optional(),
   updatedBy: z.nullable(z.string()).optional(),
@@ -233,6 +251,8 @@ export const SubsidiaryInput$inboundSchema: z.ZodType<
   parent_id: z.nullable(z.string()).optional(),
   name: z.nullable(z.string()).optional(),
   status: SubsidiaryStatus$inboundSchema.optional(),
+  currencies: z.nullable(z.array(z.nullable(Currency$inboundSchema)))
+    .optional(),
   row_version: z.nullable(z.string()).optional(),
   pass_through: z.array(PassThroughBody$inboundSchema).optional(),
 }).transform((v) => {
@@ -248,6 +268,7 @@ export type SubsidiaryInput$Outbound = {
   parent_id?: string | null | undefined;
   name?: string | null | undefined;
   status?: string | undefined;
+  currencies?: Array<string | null> | null | undefined;
   row_version?: string | null | undefined;
   pass_through?: Array<PassThroughBody$Outbound> | undefined;
 };
@@ -261,6 +282,8 @@ export const SubsidiaryInput$outboundSchema: z.ZodType<
   parentId: z.nullable(z.string()).optional(),
   name: z.nullable(z.string()).optional(),
   status: SubsidiaryStatus$outboundSchema.optional(),
+  currencies: z.nullable(z.array(z.nullable(Currency$outboundSchema)))
+    .optional(),
   rowVersion: z.nullable(z.string()).optional(),
   passThrough: z.array(PassThroughBody$outboundSchema).optional(),
 }).transform((v) => {

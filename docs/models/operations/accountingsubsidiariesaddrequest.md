@@ -11,6 +11,9 @@ let value: AccountingSubsidiariesAddRequest = {
     parentId: "12345",
     name: "SpaceX",
     status: "active",
+    currencies: [
+      "USD",
+    ],
     rowVersion: "1-12345",
     passThrough: [
       {
