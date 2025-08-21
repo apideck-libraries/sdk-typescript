@@ -81,7 +81,7 @@ export type Branch = {
 
 export type Blocks = {
   title?: string | undefined;
-  content?: string | undefined;
+  content?: string | null | undefined;
 };
 
 export type Salary = {
@@ -332,13 +332,13 @@ export function branchFromJSON(
 export const Blocks$inboundSchema: z.ZodType<Blocks, z.ZodTypeDef, unknown> = z
   .object({
     title: z.string().optional(),
-    content: z.string().optional(),
+    content: z.nullable(z.string()).optional(),
   });
 
 /** @internal */
 export type Blocks$Outbound = {
   title?: string | undefined;
-  content?: string | undefined;
+  content?: string | null | undefined;
 };
 
 /** @internal */
@@ -348,7 +348,7 @@ export const Blocks$outboundSchema: z.ZodType<
   Blocks
 > = z.object({
   title: z.string().optional(),
-  content: z.string().optional(),
+  content: z.nullable(z.string()).optional(),
 });
 
 /**

@@ -50,6 +50,12 @@ import {
   LinkedLedgerAccountInput$outboundSchema,
 } from "./linkedledgeraccountinput.js";
 import {
+  LinkedTaxDetail,
+  LinkedTaxDetail$inboundSchema,
+  LinkedTaxDetail$Outbound,
+  LinkedTaxDetail$outboundSchema,
+} from "./linkedtaxdetail.js";
+import {
   LinkedTaxRate,
   LinkedTaxRate$inboundSchema,
   LinkedTaxRate$Outbound,
@@ -61,6 +67,12 @@ import {
   LinkedTaxRateInput$Outbound,
   LinkedTaxRateInput$outboundSchema,
 } from "./linkedtaxrateinput.js";
+import {
+  LinkedTaxStatusDetail,
+  LinkedTaxStatusDetail$inboundSchema,
+  LinkedTaxStatusDetail$Outbound,
+  LinkedTaxStatusDetail$outboundSchema,
+} from "./linkedtaxstatusdetail.js";
 import {
   PassThroughBody,
   PassThroughBody$inboundSchema,
@@ -178,10 +190,20 @@ export type Supplier = {
    */
   channel?: string | null | undefined;
   /**
+   * Method of issuance of the purchase order for the supplier
+   */
+  issuedMethod?: string | null | undefined;
+  /**
+   * Email address of the person who issued the purchase order for the supplier
+   */
+  issuedEmail?: string | null | undefined;
+  /**
    * When custom mappings are configured on the resource, the result is included here.
    */
   customMappings?: { [k: string]: any } | null | undefined;
   customFields?: Array<CustomField> | undefined;
+  taxDetails?: Array<LinkedTaxDetail | null> | undefined;
+  taxStatusDetails?: Array<LinkedTaxStatusDetail | null> | undefined;
   /**
    * The user who last updated the object.
    */
@@ -210,6 +232,10 @@ export type Supplier = {
    * The subsidiary the supplier belongs to.
    */
   subsidiaryId?: string | undefined;
+  /**
+   * The integration system the supplier belongs to.
+   */
+  integrationSystemId?: string | undefined;
 };
 
 export type SupplierInput = {
@@ -286,7 +312,17 @@ export type SupplierInput = {
    * The channel through which the transaction is processed.
    */
   channel?: string | null | undefined;
+  /**
+   * Method of issuance of the purchase order for the supplier
+   */
+  issuedMethod?: string | null | undefined;
+  /**
+   * Email address of the person who issued the purchase order for the supplier
+   */
+  issuedEmail?: string | null | undefined;
   customFields?: Array<CustomField> | undefined;
+  taxDetails?: Array<LinkedTaxDetail | null> | undefined;
+  taxStatusDetails?: Array<LinkedTaxStatusDetail | null> | undefined;
   /**
    * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
    */
@@ -299,6 +335,10 @@ export type SupplierInput = {
    * The subsidiary the supplier belongs to.
    */
   subsidiaryId?: string | undefined;
+  /**
+   * The integration system the supplier belongs to.
+   */
+  integrationSystemId?: string | undefined;
 };
 
 /** @internal */
@@ -355,8 +395,13 @@ export const Supplier$inboundSchema: z.ZodType<
   payment_method: z.nullable(z.string()).optional(),
   terms: z.nullable(z.string()).optional(),
   channel: z.nullable(z.string()).optional(),
+  issued_method: z.nullable(z.string()).optional(),
+  issued_email: z.nullable(z.string()).optional(),
   custom_mappings: z.nullable(z.record(z.any())).optional(),
   custom_fields: z.array(CustomField$inboundSchema).optional(),
+  tax_details: z.array(z.nullable(LinkedTaxDetail$inboundSchema)).optional(),
+  tax_status_details: z.array(z.nullable(LinkedTaxStatusDetail$inboundSchema))
+    .optional(),
   updated_by: z.nullable(z.string()).optional(),
   created_by: z.nullable(z.string()).optional(),
   updated_at: z.nullable(
@@ -368,6 +413,7 @@ export const Supplier$inboundSchema: z.ZodType<
   row_version: z.nullable(z.string()).optional(),
   pass_through: z.array(PassThroughBody$inboundSchema).optional(),
   subsidiary_id: z.string().optional(),
+  integration_system_id: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
     "downstream_id": "downstreamId",
@@ -384,8 +430,12 @@ export const Supplier$inboundSchema: z.ZodType<
     "tax_rate": "taxRate",
     "tax_number": "taxNumber",
     "payment_method": "paymentMethod",
+    "issued_method": "issuedMethod",
+    "issued_email": "issuedEmail",
     "custom_mappings": "customMappings",
     "custom_fields": "customFields",
+    "tax_details": "taxDetails",
+    "tax_status_details": "taxStatusDetails",
     "updated_by": "updatedBy",
     "created_by": "createdBy",
     "updated_at": "updatedAt",
@@ -393,6 +443,7 @@ export const Supplier$inboundSchema: z.ZodType<
     "row_version": "rowVersion",
     "pass_through": "passThrough",
     "subsidiary_id": "subsidiaryId",
+    "integration_system_id": "integrationSystemId",
   });
 });
 
@@ -425,8 +476,12 @@ export type Supplier$Outbound = {
   payment_method?: string | null | undefined;
   terms?: string | null | undefined;
   channel?: string | null | undefined;
+  issued_method?: string | null | undefined;
+  issued_email?: string | null | undefined;
   custom_mappings?: { [k: string]: any } | null | undefined;
   custom_fields?: Array<CustomField$Outbound> | undefined;
+  tax_details?: Array<LinkedTaxDetail$Outbound | null> | undefined;
+  tax_status_details?: Array<LinkedTaxStatusDetail$Outbound | null> | undefined;
   updated_by?: string | null | undefined;
   created_by?: string | null | undefined;
   updated_at?: string | null | undefined;
@@ -434,6 +489,7 @@ export type Supplier$Outbound = {
   row_version?: string | null | undefined;
   pass_through?: Array<PassThroughBody$Outbound> | undefined;
   subsidiary_id?: string | undefined;
+  integration_system_id?: string | undefined;
 };
 
 /** @internal */
@@ -469,8 +525,13 @@ export const Supplier$outboundSchema: z.ZodType<
   paymentMethod: z.nullable(z.string()).optional(),
   terms: z.nullable(z.string()).optional(),
   channel: z.nullable(z.string()).optional(),
+  issuedMethod: z.nullable(z.string()).optional(),
+  issuedEmail: z.nullable(z.string()).optional(),
   customMappings: z.nullable(z.record(z.any())).optional(),
   customFields: z.array(CustomField$outboundSchema).optional(),
+  taxDetails: z.array(z.nullable(LinkedTaxDetail$outboundSchema)).optional(),
+  taxStatusDetails: z.array(z.nullable(LinkedTaxStatusDetail$outboundSchema))
+    .optional(),
   updatedBy: z.nullable(z.string()).optional(),
   createdBy: z.nullable(z.string()).optional(),
   updatedAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
@@ -478,6 +539,7 @@ export const Supplier$outboundSchema: z.ZodType<
   rowVersion: z.nullable(z.string()).optional(),
   passThrough: z.array(PassThroughBody$outboundSchema).optional(),
   subsidiaryId: z.string().optional(),
+  integrationSystemId: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
     downstreamId: "downstream_id",
@@ -494,8 +556,12 @@ export const Supplier$outboundSchema: z.ZodType<
     taxRate: "tax_rate",
     taxNumber: "tax_number",
     paymentMethod: "payment_method",
+    issuedMethod: "issued_method",
+    issuedEmail: "issued_email",
     customMappings: "custom_mappings",
     customFields: "custom_fields",
+    taxDetails: "tax_details",
+    taxStatusDetails: "tax_status_details",
     updatedBy: "updated_by",
     createdBy: "created_by",
     updatedAt: "updated_at",
@@ -503,6 +569,7 @@ export const Supplier$outboundSchema: z.ZodType<
     rowVersion: "row_version",
     passThrough: "pass_through",
     subsidiaryId: "subsidiary_id",
+    integrationSystemId: "integration_system_id",
   });
 });
 
@@ -564,10 +631,16 @@ export const SupplierInput$inboundSchema: z.ZodType<
   payment_method: z.nullable(z.string()).optional(),
   terms: z.nullable(z.string()).optional(),
   channel: z.nullable(z.string()).optional(),
+  issued_method: z.nullable(z.string()).optional(),
+  issued_email: z.nullable(z.string()).optional(),
   custom_fields: z.array(CustomField$inboundSchema).optional(),
+  tax_details: z.array(z.nullable(LinkedTaxDetail$inboundSchema)).optional(),
+  tax_status_details: z.array(z.nullable(LinkedTaxStatusDetail$inboundSchema))
+    .optional(),
   row_version: z.nullable(z.string()).optional(),
   pass_through: z.array(PassThroughBody$inboundSchema).optional(),
   subsidiary_id: z.string().optional(),
+  integration_system_id: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
     "display_id": "displayId",
@@ -583,10 +656,15 @@ export const SupplierInput$inboundSchema: z.ZodType<
     "tax_rate": "taxRate",
     "tax_number": "taxNumber",
     "payment_method": "paymentMethod",
+    "issued_method": "issuedMethod",
+    "issued_email": "issuedEmail",
     "custom_fields": "customFields",
+    "tax_details": "taxDetails",
+    "tax_status_details": "taxStatusDetails",
     "row_version": "rowVersion",
     "pass_through": "passThrough",
     "subsidiary_id": "subsidiaryId",
+    "integration_system_id": "integrationSystemId",
   });
 });
 
@@ -617,10 +695,15 @@ export type SupplierInput$Outbound = {
   payment_method?: string | null | undefined;
   terms?: string | null | undefined;
   channel?: string | null | undefined;
+  issued_method?: string | null | undefined;
+  issued_email?: string | null | undefined;
   custom_fields?: Array<CustomField$Outbound> | undefined;
+  tax_details?: Array<LinkedTaxDetail$Outbound | null> | undefined;
+  tax_status_details?: Array<LinkedTaxStatusDetail$Outbound | null> | undefined;
   row_version?: string | null | undefined;
   pass_through?: Array<PassThroughBody$Outbound> | undefined;
   subsidiary_id?: string | undefined;
+  integration_system_id?: string | undefined;
 };
 
 /** @internal */
@@ -654,10 +737,16 @@ export const SupplierInput$outboundSchema: z.ZodType<
   paymentMethod: z.nullable(z.string()).optional(),
   terms: z.nullable(z.string()).optional(),
   channel: z.nullable(z.string()).optional(),
+  issuedMethod: z.nullable(z.string()).optional(),
+  issuedEmail: z.nullable(z.string()).optional(),
   customFields: z.array(CustomField$outboundSchema).optional(),
+  taxDetails: z.array(z.nullable(LinkedTaxDetail$outboundSchema)).optional(),
+  taxStatusDetails: z.array(z.nullable(LinkedTaxStatusDetail$outboundSchema))
+    .optional(),
   rowVersion: z.nullable(z.string()).optional(),
   passThrough: z.array(PassThroughBody$outboundSchema).optional(),
   subsidiaryId: z.string().optional(),
+  integrationSystemId: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
     displayId: "display_id",
@@ -673,10 +762,15 @@ export const SupplierInput$outboundSchema: z.ZodType<
     taxRate: "tax_rate",
     taxNumber: "tax_number",
     paymentMethod: "payment_method",
+    issuedMethod: "issued_method",
+    issuedEmail: "issued_email",
     customFields: "custom_fields",
+    taxDetails: "tax_details",
+    taxStatusDetails: "tax_status_details",
     rowVersion: "row_version",
     passThrough: "pass_through",
     subsidiaryId: "subsidiary_id",
+    integrationSystemId: "integration_system_id",
   });
 });
 

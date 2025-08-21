@@ -91,9 +91,15 @@ type Supplier struct {
 	Terms *string `json:"terms,omitempty"`
 	// The channel through which the transaction is processed.
 	Channel *string `json:"channel,omitempty"`
+	// Method of issuance of the purchase order for the supplier
+	IssuedMethod *string `json:"issued_method,omitempty"`
+	// Email address of the person who issued the purchase order for the supplier
+	IssuedEmail *string `json:"issued_email,omitempty"`
 	// When custom mappings are configured on the resource, the result is included here.
-	CustomMappings map[string]any `json:"custom_mappings,omitempty"`
-	CustomFields   []CustomField  `json:"custom_fields,omitempty"`
+	CustomMappings   map[string]any           `json:"custom_mappings,omitempty"`
+	CustomFields     []CustomField            `json:"custom_fields,omitempty"`
+	TaxDetails       []*LinkedTaxDetail       `json:"tax_details,omitempty"`
+	TaxStatusDetails []*LinkedTaxStatusDetail `json:"tax_status_details,omitempty"`
 	// The user who last updated the object.
 	UpdatedBy *string `json:"updated_by,omitempty"`
 	// The user who created the object.
@@ -108,6 +114,8 @@ type Supplier struct {
 	PassThrough []PassThroughBody `json:"pass_through,omitempty"`
 	// The subsidiary the supplier belongs to.
 	SubsidiaryID *string `json:"subsidiary_id,omitempty"`
+	// The integration system the supplier belongs to.
+	IntegrationSystemID *string `json:"integration_system_id,omitempty"`
 }
 
 func (s Supplier) MarshalJSON() ([]byte, error) {
@@ -310,6 +318,20 @@ func (o *Supplier) GetChannel() *string {
 	return o.Channel
 }
 
+func (o *Supplier) GetIssuedMethod() *string {
+	if o == nil {
+		return nil
+	}
+	return o.IssuedMethod
+}
+
+func (o *Supplier) GetIssuedEmail() *string {
+	if o == nil {
+		return nil
+	}
+	return o.IssuedEmail
+}
+
 func (o *Supplier) GetCustomMappings() map[string]any {
 	if o == nil {
 		return nil
@@ -322,6 +344,20 @@ func (o *Supplier) GetCustomFields() []CustomField {
 		return nil
 	}
 	return o.CustomFields
+}
+
+func (o *Supplier) GetTaxDetails() []*LinkedTaxDetail {
+	if o == nil {
+		return nil
+	}
+	return o.TaxDetails
+}
+
+func (o *Supplier) GetTaxStatusDetails() []*LinkedTaxStatusDetail {
+	if o == nil {
+		return nil
+	}
+	return o.TaxStatusDetails
 }
 
 func (o *Supplier) GetUpdatedBy() *string {
@@ -373,6 +409,13 @@ func (o *Supplier) GetSubsidiaryID() *string {
 	return o.SubsidiaryID
 }
 
+func (o *Supplier) GetIntegrationSystemID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.IntegrationSystemID
+}
+
 type SupplierInput struct {
 	// Display ID
 	DisplayID *string `json:"display_id,omitempty"`
@@ -414,14 +457,22 @@ type SupplierInput struct {
 	// Terms of payment.
 	Terms *string `json:"terms,omitempty"`
 	// The channel through which the transaction is processed.
-	Channel      *string       `json:"channel,omitempty"`
-	CustomFields []CustomField `json:"custom_fields,omitempty"`
+	Channel *string `json:"channel,omitempty"`
+	// Method of issuance of the purchase order for the supplier
+	IssuedMethod *string `json:"issued_method,omitempty"`
+	// Email address of the person who issued the purchase order for the supplier
+	IssuedEmail      *string                  `json:"issued_email,omitempty"`
+	CustomFields     []CustomField            `json:"custom_fields,omitempty"`
+	TaxDetails       []*LinkedTaxDetail       `json:"tax_details,omitempty"`
+	TaxStatusDetails []*LinkedTaxStatusDetail `json:"tax_status_details,omitempty"`
 	// A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
 	RowVersion *string `json:"row_version,omitempty"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
 	PassThrough []PassThroughBody `json:"pass_through,omitempty"`
 	// The subsidiary the supplier belongs to.
 	SubsidiaryID *string `json:"subsidiary_id,omitempty"`
+	// The integration system the supplier belongs to.
+	IntegrationSystemID *string `json:"integration_system_id,omitempty"`
 }
 
 func (o *SupplierInput) GetDisplayID() *string {
@@ -599,11 +650,39 @@ func (o *SupplierInput) GetChannel() *string {
 	return o.Channel
 }
 
+func (o *SupplierInput) GetIssuedMethod() *string {
+	if o == nil {
+		return nil
+	}
+	return o.IssuedMethod
+}
+
+func (o *SupplierInput) GetIssuedEmail() *string {
+	if o == nil {
+		return nil
+	}
+	return o.IssuedEmail
+}
+
 func (o *SupplierInput) GetCustomFields() []CustomField {
 	if o == nil {
 		return nil
 	}
 	return o.CustomFields
+}
+
+func (o *SupplierInput) GetTaxDetails() []*LinkedTaxDetail {
+	if o == nil {
+		return nil
+	}
+	return o.TaxDetails
+}
+
+func (o *SupplierInput) GetTaxStatusDetails() []*LinkedTaxStatusDetail {
+	if o == nil {
+		return nil
+	}
+	return o.TaxStatusDetails
 }
 
 func (o *SupplierInput) GetRowVersion() *string {
@@ -625,4 +704,11 @@ func (o *SupplierInput) GetSubsidiaryID() *string {
 		return nil
 	}
 	return o.SubsidiaryID
+}
+
+func (o *SupplierInput) GetIntegrationSystemID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.IntegrationSystemID
 }
