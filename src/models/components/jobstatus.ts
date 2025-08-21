@@ -16,6 +16,10 @@ export const JobStatus = {
   Placed: "placed",
   OnHold: "on-hold",
   Private: "private",
+  AcceptingCandidates: "accepting_candidates",
+  Open: "open",
+  Closed: "closed",
+  Archived: "archived",
 } as const;
 /**
  * The status of the job.

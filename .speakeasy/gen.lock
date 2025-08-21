@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 7bffa198-5d29-4efa-9942-d549cc832085
 management:
-  docChecksum: adbe8651971e100ed9d43a08042577ad
-  docVersion: 10.20.8
+  docChecksum: c2033f5fd8c53756c6569f4d0088bb52
+  docVersion: 10.20.9
   speakeasyVersion: 1.606.0
   generationVersion: 2.686.7
-  releaseVersion: 0.29.4
-  configChecksum: b944eddcb86fd4ed58840642fc6194de
+  releaseVersion: 0.29.5
+  configChecksum: fc4b647da316764c78f033f6b1d340af
   repoURL: https://github.com/apideck-libraries/sdk-typescript.git
   installationURL: https://github.com/apideck-libraries/sdk-typescript
   published: true
@@ -19868,4 +19868,3 @@ generatedTests:
   accounting.quotesOne: "2025-08-06T08:21:29Z"
   accounting.quotesUpdate: "2025-08-06T08:21:29Z"
   accounting.quotesDelete: "2025-08-06T08:21:29Z"
-releaseNotes: "## SDK Changes Detected:\n* `apideck.accounting.subsidiaries.list()`:  `response.data.[].currencies` **Added**\n* `apideck.accounting.subsidiaries.create()`: \n  *  `request.subsidiary.currencies` **Added**\n* `apideck.accounting.subsidiaries.get()`:  `response.data.currencies` **Added**\n* `apideck.accounting.subsidiaries.update()`: \n  *  `request.subsidiary.currencies` **Added**\n"
