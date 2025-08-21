@@ -115,12 +115,28 @@ let value: GetSuppliersResponse = {
       paymentMethod: "cash",
       terms: "Net 30 days",
       channel: "email",
+      issuedMethod: "Email",
+      issuedEmail: "john.doe@example.com",
       customFields: [
         {
           id: "2389328923893298",
           name: "employee_level",
           description: "Employee Level",
           value: "Uses Salesforce and Marketo",
+        },
+      ],
+      taxDetails: [
+        {
+          type: "GST on Purchases",
+          number: "123456",
+          isTransactionTax: true,
+          isPrimaryTax: true,
+        },
+      ],
+      taxStatusDetails: [
+        {
+          country: "US",
+          transactionTaxStatus: "taxable",
         },
       ],
       updatedBy: "12345",
@@ -144,6 +160,7 @@ let value: GetSuppliersResponse = {
         },
       ],
       subsidiaryId: "12345",
+      integrationSystemId: "12345",
     },
   ],
   meta: {
