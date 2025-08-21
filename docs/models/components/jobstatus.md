@@ -13,5 +13,5 @@ let value: JobStatus = "completed";
 ## Values
 
 ```typescript
-"draft" | "internal" | "published" | "completed" | "placed" | "on-hold" | "private"
+"draft" | "internal" | "published" | "completed" | "placed" | "on-hold" | "private" | "accepting_candidates" | "open" | "closed" | "archived"
 ```

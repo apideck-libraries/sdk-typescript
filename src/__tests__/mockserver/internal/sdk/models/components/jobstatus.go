@@ -11,13 +11,17 @@ import (
 type JobStatus string
 
 const (
-	JobStatusDraft     JobStatus = "draft"
-	JobStatusInternal  JobStatus = "internal"
-	JobStatusPublished JobStatus = "published"
-	JobStatusCompleted JobStatus = "completed"
-	JobStatusPlaced    JobStatus = "placed"
-	JobStatusOnHold    JobStatus = "on-hold"
-	JobStatusPrivate   JobStatus = "private"
+	JobStatusDraft               JobStatus = "draft"
+	JobStatusInternal            JobStatus = "internal"
+	JobStatusPublished           JobStatus = "published"
+	JobStatusCompleted           JobStatus = "completed"
+	JobStatusPlaced              JobStatus = "placed"
+	JobStatusOnHold              JobStatus = "on-hold"
+	JobStatusPrivate             JobStatus = "private"
+	JobStatusAcceptingCandidates JobStatus = "accepting_candidates"
+	JobStatusOpen                JobStatus = "open"
+	JobStatusClosed              JobStatus = "closed"
+	JobStatusArchived            JobStatus = "archived"
 )
 
 func (e JobStatus) ToPointer() *JobStatus {
@@ -42,6 +46,14 @@ func (e *JobStatus) UnmarshalJSON(data []byte) error {
 	case "on-hold":
 		fallthrough
 	case "private":
+		fallthrough
+	case "accepting_candidates":
+		fallthrough
+	case "open":
+		fallthrough
+	case "closed":
+		fallthrough
+	case "archived":
 		*e = JobStatus(v)
 		return nil
 	default:
