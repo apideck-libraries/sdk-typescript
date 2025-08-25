@@ -27,14 +27,7 @@ let value: ConnectionInput = {
           options: [
             {
               label: "General Channel",
-              options: [
-                {
-                  label: "General Channel",
-                  value: "general",
-                  optionType: "simple",
-                },
-              ],
-              optionType: "group",
+              optionType: "simple",
             },
           ],
           value: "GC5000 series",

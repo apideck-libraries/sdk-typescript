@@ -39,6 +39,7 @@ let value: AccountingInvoiceItemsAddRequest = {
     },
     quantity: 1,
     unitPrice: 27500.5,
+    currency: "USD",
     assetAccount: {
       id: "123456",
       nominalCode: "N091",
