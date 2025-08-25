@@ -51,6 +51,7 @@ let value: GetInvoiceItemsResponse = {
       },
       quantity: 1,
       unitPrice: 27500.5,
+      currency: "USD",
       assetAccount: {
         id: "123456",
         name: "Bank account",

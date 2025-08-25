@@ -10,6 +10,11 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import { RFCDate } from "../../types/rfcdate.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
+  Currency,
+  Currency$inboundSchema,
+  Currency$outboundSchema,
+} from "./currency.js";
+import {
   DeprecatedLinkedTrackingCategory,
   DeprecatedLinkedTrackingCategory$inboundSchema,
   DeprecatedLinkedTrackingCategory$Outbound,
@@ -138,6 +143,10 @@ export type InvoiceItem = {
   purchaseDetails?: PurchaseDetails | undefined;
   quantity?: number | null | undefined;
   unitPrice?: number | null | undefined;
+  /**
+   * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
+   */
+  currency?: Currency | null | undefined;
   assetAccount?: LinkedLedgerAccount | null | undefined;
   incomeAccount?: LinkedLedgerAccount | null | undefined;
   expenseAccount?: LinkedLedgerAccount | null | undefined;
@@ -263,6 +272,10 @@ export type InvoiceItemInput = {
   purchaseDetails?: InvoiceItemPurchaseDetails | undefined;
   quantity?: number | null | undefined;
   unitPrice?: number | null | undefined;
+  /**
+   * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
+   */
+  currency?: Currency | null | undefined;
   assetAccount?: LinkedLedgerAccountInput | null | undefined;
   incomeAccount?: LinkedLedgerAccountInput | null | undefined;
   expenseAccount?: LinkedLedgerAccountInput | null | undefined;
@@ -491,6 +504,7 @@ export const InvoiceItem$inboundSchema: z.ZodType<
   purchase_details: z.lazy(() => PurchaseDetails$inboundSchema).optional(),
   quantity: z.nullable(z.number()).optional(),
   unit_price: z.nullable(z.number()).optional(),
+  currency: z.nullable(Currency$inboundSchema).optional(),
   asset_account: z.nullable(LinkedLedgerAccount$inboundSchema).optional(),
   income_account: z.nullable(LinkedLedgerAccount$inboundSchema).optional(),
   expense_account: z.nullable(LinkedLedgerAccount$inboundSchema).optional(),
@@ -556,6 +570,7 @@ export type InvoiceItem$Outbound = {
   purchase_details?: PurchaseDetails$Outbound | undefined;
   quantity?: number | null | undefined;
   unit_price?: number | null | undefined;
+  currency?: string | null | undefined;
   asset_account?: LinkedLedgerAccount$Outbound | null | undefined;
   income_account?: LinkedLedgerAccount$Outbound | null | undefined;
   expense_account?: LinkedLedgerAccount$Outbound | null | undefined;
@@ -602,6 +617,7 @@ export const InvoiceItem$outboundSchema: z.ZodType<
   purchaseDetails: z.lazy(() => PurchaseDetails$outboundSchema).optional(),
   quantity: z.nullable(z.number()).optional(),
   unitPrice: z.nullable(z.number()).optional(),
+  currency: z.nullable(Currency$outboundSchema).optional(),
   assetAccount: z.nullable(LinkedLedgerAccount$outboundSchema).optional(),
   incomeAccount: z.nullable(LinkedLedgerAccount$outboundSchema).optional(),
   expenseAccount: z.nullable(LinkedLedgerAccount$outboundSchema).optional(),
@@ -849,6 +865,7 @@ export const InvoiceItemInput$inboundSchema: z.ZodType<
     .optional(),
   quantity: z.nullable(z.number()).optional(),
   unit_price: z.nullable(z.number()).optional(),
+  currency: z.nullable(Currency$inboundSchema).optional(),
   asset_account: z.nullable(LinkedLedgerAccountInput$inboundSchema).optional(),
   income_account: z.nullable(LinkedLedgerAccountInput$inboundSchema).optional(),
   expense_account: z.nullable(LinkedLedgerAccountInput$inboundSchema)
@@ -900,6 +917,7 @@ export type InvoiceItemInput$Outbound = {
   purchase_details?: InvoiceItemPurchaseDetails$Outbound | undefined;
   quantity?: number | null | undefined;
   unit_price?: number | null | undefined;
+  currency?: string | null | undefined;
   asset_account?: LinkedLedgerAccountInput$Outbound | null | undefined;
   income_account?: LinkedLedgerAccountInput$Outbound | null | undefined;
   expense_account?: LinkedLedgerAccountInput$Outbound | null | undefined;
@@ -941,6 +959,7 @@ export const InvoiceItemInput$outboundSchema: z.ZodType<
     .optional(),
   quantity: z.nullable(z.number()).optional(),
   unitPrice: z.nullable(z.number()).optional(),
+  currency: z.nullable(Currency$outboundSchema).optional(),
   assetAccount: z.nullable(LinkedLedgerAccountInput$outboundSchema).optional(),
   incomeAccount: z.nullable(LinkedLedgerAccountInput$outboundSchema).optional(),
   expenseAccount: z.nullable(LinkedLedgerAccountInput$outboundSchema)

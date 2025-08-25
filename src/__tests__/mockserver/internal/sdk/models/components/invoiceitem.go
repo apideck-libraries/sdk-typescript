@@ -140,14 +140,16 @@ type InvoiceItem struct {
 	// The date of opening balance if inventory item is tracked - YYYY-MM-DD.
 	InventoryDate *types.Date `json:"inventory_date,omitempty"`
 	// Item type
-	Type            *InvoiceItemType     `json:"type,omitempty"`
-	SalesDetails    *SalesDetails        `json:"sales_details,omitempty"`
-	PurchaseDetails *PurchaseDetails     `json:"purchase_details,omitempty"`
-	Quantity        *float64             `json:"quantity,omitempty"`
-	UnitPrice       *float64             `json:"unit_price,omitempty"`
-	AssetAccount    *LinkedLedgerAccount `json:"asset_account,omitempty"`
-	IncomeAccount   *LinkedLedgerAccount `json:"income_account,omitempty"`
-	ExpenseAccount  *LinkedLedgerAccount `json:"expense_account,omitempty"`
+	Type            *InvoiceItemType `json:"type,omitempty"`
+	SalesDetails    *SalesDetails    `json:"sales_details,omitempty"`
+	PurchaseDetails *PurchaseDetails `json:"purchase_details,omitempty"`
+	Quantity        *float64         `json:"quantity,omitempty"`
+	UnitPrice       *float64         `json:"unit_price,omitempty"`
+	// Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
+	Currency       *Currency            `json:"currency,omitempty"`
+	AssetAccount   *LinkedLedgerAccount `json:"asset_account,omitempty"`
+	IncomeAccount  *LinkedLedgerAccount `json:"income_account,omitempty"`
+	ExpenseAccount *LinkedLedgerAccount `json:"expense_account,omitempty"`
 	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
 	TrackingCategory *DeprecatedLinkedTrackingCategory `json:"tracking_category,omitempty"`
 	// A list of linked tracking categories.
@@ -284,6 +286,13 @@ func (o *InvoiceItem) GetUnitPrice() *float64 {
 		return nil
 	}
 	return o.UnitPrice
+}
+
+func (o *InvoiceItem) GetCurrency() *Currency {
+	if o == nil {
+		return nil
+	}
+	return o.Currency
 }
 
 func (o *InvoiceItem) GetAssetAccount() *LinkedLedgerAccount {
@@ -497,14 +506,16 @@ type InvoiceItemInput struct {
 	// The date of opening balance if inventory item is tracked - YYYY-MM-DD.
 	InventoryDate *types.Date `json:"inventory_date,omitempty"`
 	// Item type
-	Type            *InvoiceItemType          `json:"type,omitempty"`
-	SalesDetails    *SalesDetailsInput        `json:"sales_details,omitempty"`
-	PurchaseDetails *PurchaseDetailsInput     `json:"purchase_details,omitempty"`
-	Quantity        *float64                  `json:"quantity,omitempty"`
-	UnitPrice       *float64                  `json:"unit_price,omitempty"`
-	AssetAccount    *LinkedLedgerAccountInput `json:"asset_account,omitempty"`
-	IncomeAccount   *LinkedLedgerAccountInput `json:"income_account,omitempty"`
-	ExpenseAccount  *LinkedLedgerAccountInput `json:"expense_account,omitempty"`
+	Type            *InvoiceItemType      `json:"type,omitempty"`
+	SalesDetails    *SalesDetailsInput    `json:"sales_details,omitempty"`
+	PurchaseDetails *PurchaseDetailsInput `json:"purchase_details,omitempty"`
+	Quantity        *float64              `json:"quantity,omitempty"`
+	UnitPrice       *float64              `json:"unit_price,omitempty"`
+	// Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
+	Currency       *Currency                 `json:"currency,omitempty"`
+	AssetAccount   *LinkedLedgerAccountInput `json:"asset_account,omitempty"`
+	IncomeAccount  *LinkedLedgerAccountInput `json:"income_account,omitempty"`
+	ExpenseAccount *LinkedLedgerAccountInput `json:"expense_account,omitempty"`
 	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
 	TrackingCategory *DeprecatedLinkedTrackingCategory `json:"tracking_category,omitempty"`
 	// A list of linked tracking categories.
@@ -624,6 +635,13 @@ func (o *InvoiceItemInput) GetUnitPrice() *float64 {
 		return nil
 	}
 	return o.UnitPrice
+}
+
+func (o *InvoiceItemInput) GetCurrency() *Currency {
+	if o == nil {
+		return nil
+	}
+	return o.Currency
 }
 
 func (o *InvoiceItemInput) GetAssetAccount() *LinkedLedgerAccountInput {

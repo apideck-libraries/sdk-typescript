@@ -469,3 +469,13 @@ Based on:
 - [typescript v0.29.6] .
 ### Releases
 - [NPM v0.29.6] https://www.npmjs.com/package/@apideck/unify/v/0.29.6 - .
+
+## 2025-08-25 12:55:01
+### Changes
+Based on:
+- OpenAPI Doc  
+- Speakeasy CLI 1.606.4 (2.687.1) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [typescript v0.29.7] .
+### Releases
+- [NPM v0.29.7] https://www.npmjs.com/package/@apideck/unify/v/0.29.7 - .

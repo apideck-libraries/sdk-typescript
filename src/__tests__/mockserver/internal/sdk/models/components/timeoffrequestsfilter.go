@@ -47,9 +47,9 @@ func (e *TimeOffRequestsFilterTimeOffRequestStatus) UnmarshalJSON(data []byte) e
 }
 
 type TimeOffRequestsFilter struct {
-	// Start date
+	// Start date of the date range to filter time off requests. When used with end_date, filters for requests within the specified date range.
 	StartDate *string `queryParam:"name=start_date"`
-	// End date
+	// End date of the date range to filter time off requests. When used with start_date, filters for requests within the specified date range.
 	EndDate *string `queryParam:"name=end_date"`
 	// Minimum date the time off request was last created or modified
 	UpdatedSince *string `queryParam:"name=updated_since"`
