@@ -100,7 +100,7 @@ func (b BankFeedAccount) MarshalJSON() ([]byte, error) {
 }
 
 func (b *BankFeedAccount) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &b, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &b, "", false, []string{"id"}); err != nil {
 		return err
 	}
 	return nil

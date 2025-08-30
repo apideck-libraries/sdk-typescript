@@ -144,7 +144,7 @@ func (c CreditNote) MarshalJSON() ([]byte, error) {
 }
 
 func (c *CreditNote) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &c, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"id", "total_amount"}); err != nil {
 		return err
 	}
 	return nil
@@ -455,7 +455,7 @@ func (c CreditNoteInput) MarshalJSON() ([]byte, error) {
 }
 
 func (c *CreditNoteInput) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &c, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"total_amount"}); err != nil {
 		return err
 	}
 	return nil

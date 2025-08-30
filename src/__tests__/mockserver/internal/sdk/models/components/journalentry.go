@@ -107,7 +107,7 @@ func (j JournalEntry) MarshalJSON() ([]byte, error) {
 }
 
 func (j *JournalEntry) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &j, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &j, "", false, nil); err != nil {
 		return err
 	}
 	return nil
@@ -315,7 +315,7 @@ func (j JournalEntryInput) MarshalJSON() ([]byte, error) {
 }
 
 func (j *JournalEntryInput) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &j, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &j, "", false, nil); err != nil {
 		return err
 	}
 	return nil

@@ -52,7 +52,7 @@ func (h HrisDepartmentsAllRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (h *HrisDepartmentsAllRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &h, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &h, "", false, nil); err != nil {
 		return err
 	}
 	return nil

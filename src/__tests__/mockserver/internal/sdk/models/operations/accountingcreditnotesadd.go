@@ -45,7 +45,7 @@ func (a AccountingCreditNotesAddRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (a *AccountingCreditNotesAddRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"CreditNote"}); err != nil {
 		return err
 	}
 	return nil

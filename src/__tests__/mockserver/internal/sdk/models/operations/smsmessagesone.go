@@ -48,7 +48,7 @@ func (s SmsMessagesOneRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (s *SmsMessagesOneRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &s, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &s, "", false, []string{"id"}); err != nil {
 		return err
 	}
 	return nil

@@ -50,7 +50,7 @@ func (c CrmContactsOneRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (c *CrmContactsOneRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &c, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"id"}); err != nil {
 		return err
 	}
 	return nil

@@ -3,12 +3,59 @@
 package components
 
 import (
+	"encoding/json"
+	"fmt"
 	"mockserver/internal/sdk/utils"
 	"time"
 )
 
+type JournalEntriesFilterStatus string
+
+const (
+	JournalEntriesFilterStatusDraft           JournalEntriesFilterStatus = "draft"
+	JournalEntriesFilterStatusPendingApproval JournalEntriesFilterStatus = "pending_approval"
+	JournalEntriesFilterStatusApproved        JournalEntriesFilterStatus = "approved"
+	JournalEntriesFilterStatusPosted          JournalEntriesFilterStatus = "posted"
+	JournalEntriesFilterStatusVoided          JournalEntriesFilterStatus = "voided"
+	JournalEntriesFilterStatusRejected        JournalEntriesFilterStatus = "rejected"
+	JournalEntriesFilterStatusDeleted         JournalEntriesFilterStatus = "deleted"
+	JournalEntriesFilterStatusOther           JournalEntriesFilterStatus = "other"
+)
+
+func (e JournalEntriesFilterStatus) ToPointer() *JournalEntriesFilterStatus {
+	return &e
+}
+func (e *JournalEntriesFilterStatus) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "draft":
+		fallthrough
+	case "pending_approval":
+		fallthrough
+	case "approved":
+		fallthrough
+	case "posted":
+		fallthrough
+	case "voided":
+		fallthrough
+	case "rejected":
+		fallthrough
+	case "deleted":
+		fallthrough
+	case "other":
+		*e = JournalEntriesFilterStatus(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for JournalEntriesFilterStatus: %v", v)
+	}
+}
+
 type JournalEntriesFilter struct {
-	UpdatedSince *time.Time `queryParam:"name=updated_since"`
+	UpdatedSince *time.Time                  `queryParam:"name=updated_since"`
+	Status       *JournalEntriesFilterStatus `queryParam:"name=status"`
 }
 
 func (j JournalEntriesFilter) MarshalJSON() ([]byte, error) {
@@ -16,7 +63,7 @@ func (j JournalEntriesFilter) MarshalJSON() ([]byte, error) {
 }
 
 func (j *JournalEntriesFilter) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &j, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &j, "", false, nil); err != nil {
 		return err
 	}
 	return nil
@@ -27,4 +74,11 @@ func (o *JournalEntriesFilter) GetUpdatedSince() *time.Time {
 		return nil
 	}
 	return o.UpdatedSince
+}
+
+func (o *JournalEntriesFilter) GetStatus() *JournalEntriesFilterStatus {
+	if o == nil {
+		return nil
+	}
+	return o.Status
 }

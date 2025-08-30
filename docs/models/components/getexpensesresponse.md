@@ -46,6 +46,7 @@ let value: GetExpensesResponse = {
           value: "Uses Salesforce and Marketo",
         },
       ],
+      status: "draft",
       updatedAt: new Date("2020-09-30T07:43:32.000Z"),
       createdAt: new Date("2020-09-30T07:43:32.000Z"),
       rowVersion: "1-12345",

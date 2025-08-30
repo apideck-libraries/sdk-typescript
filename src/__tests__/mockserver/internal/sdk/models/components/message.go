@@ -232,7 +232,7 @@ func (m Message) MarshalJSON() ([]byte, error) {
 }
 
 func (m *Message) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &m, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &m, "", false, []string{"from", "to", "body"}); err != nil {
 		return err
 	}
 	return nil
@@ -426,7 +426,7 @@ func (m MessageInput) MarshalJSON() ([]byte, error) {
 }
 
 func (m *MessageInput) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &m, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &m, "", false, []string{"from", "to", "body"}); err != nil {
 		return err
 	}
 	return nil

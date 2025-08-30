@@ -188,7 +188,7 @@ func (b Bill) MarshalJSON() ([]byte, error) {
 }
 
 func (b *Bill) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &b, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &b, "", false, nil); err != nil {
 		return err
 	}
 	return nil
@@ -623,7 +623,7 @@ func (b BillInput) MarshalJSON() ([]byte, error) {
 }
 
 func (b *BillInput) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &b, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &b, "", false, nil); err != nil {
 		return err
 	}
 	return nil

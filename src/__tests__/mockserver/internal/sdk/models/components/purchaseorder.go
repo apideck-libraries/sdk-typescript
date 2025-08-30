@@ -174,7 +174,7 @@ func (p PurchaseOrder) MarshalJSON() ([]byte, error) {
 }
 
 func (p *PurchaseOrder) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &p, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &p, "", false, nil); err != nil {
 		return err
 	}
 	return nil
@@ -581,7 +581,7 @@ func (p PurchaseOrderInput) MarshalJSON() ([]byte, error) {
 }
 
 func (p *PurchaseOrderInput) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &p, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &p, "", false, nil); err != nil {
 		return err
 	}
 	return nil

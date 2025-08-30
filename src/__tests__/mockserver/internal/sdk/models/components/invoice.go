@@ -108,7 +108,7 @@ func (p PaymentAllocation) MarshalJSON() ([]byte, error) {
 }
 
 func (p *PaymentAllocation) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &p, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &p, "", false, nil); err != nil {
 		return err
 	}
 	return nil
@@ -235,7 +235,7 @@ func (i Invoice) MarshalJSON() ([]byte, error) {
 }
 
 func (i *Invoice) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &i, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &i, "", false, nil); err != nil {
 		return err
 	}
 	return nil
@@ -670,7 +670,7 @@ func (i InvoiceInput) MarshalJSON() ([]byte, error) {
 }
 
 func (i *InvoiceInput) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &i, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &i, "", false, nil); err != nil {
 		return err
 	}
 	return nil

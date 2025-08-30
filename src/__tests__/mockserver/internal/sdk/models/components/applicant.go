@@ -224,7 +224,7 @@ func (a Applicant) MarshalJSON() ([]byte, error) {
 }
 
 func (a *Applicant) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, nil); err != nil {
 		return err
 	}
 	return nil
@@ -633,7 +633,7 @@ func (a ApplicantInput) MarshalJSON() ([]byte, error) {
 }
 
 func (a *ApplicantInput) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, nil); err != nil {
 		return err
 	}
 	return nil

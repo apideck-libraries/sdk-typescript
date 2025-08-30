@@ -33,7 +33,7 @@ func (w WebhookWebhooksAllRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (w *WebhookWebhooksAllRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &w, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &w, "", false, nil); err != nil {
 		return err
 	}
 	return nil

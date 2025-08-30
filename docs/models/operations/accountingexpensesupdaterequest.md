@@ -67,6 +67,7 @@ let value: AccountingExpensesUpdateRequest = {
         value: "Uses Salesforce and Marketo",
       },
     ],
+    status: "draft",
     rowVersion: "1-12345",
     passThrough: [
       {

@@ -229,6 +229,7 @@ export * from "./employmentstatus.js";
 export * from "./expense.js";
 export * from "./expenselineitem.js";
 export * from "./expenselineiteminput.js";
+export * from "./expensesfilter.js";
 export * from "./filesfilter.js";
 export * from "./filessearch.js";
 export * from "./filessort.js";

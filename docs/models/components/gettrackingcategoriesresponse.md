@@ -17,6 +17,7 @@ let value: GetTrackingCategoriesResponse = {
     {
       id: "12345",
       parentId: "12345",
+      parentName: "Area",
       name: "Department",
       code: "100",
       status: "active",

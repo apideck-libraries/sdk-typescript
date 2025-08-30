@@ -194,7 +194,7 @@ func (b BillPayment) MarshalJSON() ([]byte, error) {
 }
 
 func (b *BillPayment) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &b, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &b, "", false, []string{"id", "total_amount", "transaction_date"}); err != nil {
 		return err
 	}
 	return nil
@@ -491,7 +491,7 @@ func (b BillPaymentInput) MarshalJSON() ([]byte, error) {
 }
 
 func (b *BillPaymentInput) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &b, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &b, "", false, []string{"total_amount", "transaction_date"}); err != nil {
 		return err
 	}
 	return nil

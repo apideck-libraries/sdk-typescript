@@ -10,6 +10,7 @@ let value: AccountingTrackingCategoriesUpdateRequest = {
   serviceId: "salesforce",
   trackingCategory: {
     parentId: "12345",
+    parentName: "Area",
     name: "Department",
     code: "100",
     status: "active",
