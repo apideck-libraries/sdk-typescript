@@ -45,6 +45,10 @@ export type AccountingExpensesAllRequest = {
    * Number of results to return. Minimum 1, Maximum 200, Default 20
    */
   limit?: number | undefined;
+  /**
+   * Apply filters
+   */
+  filter?: components.ExpensesFilter | undefined;
 };
 
 export type AccountingExpensesAllResponse = {
@@ -130,6 +134,7 @@ export const AccountingExpensesAllRequest$inboundSchema: z.ZodType<
   serviceId: z.string().optional(),
   cursor: z.nullable(z.string()).optional(),
   limit: z.number().int().default(20),
+  filter: components.ExpensesFilter$inboundSchema.optional(),
 });
 
 /** @internal */
@@ -140,6 +145,7 @@ export type AccountingExpensesAllRequest$Outbound = {
   serviceId?: string | undefined;
   cursor?: string | null | undefined;
   limit: number;
+  filter?: components.ExpensesFilter$Outbound | undefined;
 };
 
 /** @internal */
@@ -154,6 +160,7 @@ export const AccountingExpensesAllRequest$outboundSchema: z.ZodType<
   serviceId: z.string().optional(),
   cursor: z.nullable(z.string()).optional(),
   limit: z.number().int().default(20),
+  filter: components.ExpensesFilter$outboundSchema.optional(),
 });
 
 /**

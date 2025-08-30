@@ -47,7 +47,7 @@ func (f FileStorageFoldersUpdateRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (f *FileStorageFoldersUpdateRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &f, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &f, "", false, []string{"id", "UpdateFolderRequest"}); err != nil {
 		return err
 	}
 	return nil

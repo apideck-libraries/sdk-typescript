@@ -65,28 +65,28 @@ func CreateCustomFieldValue1MapOfAny(mapOfAny map[string]any) CustomFieldValue1 
 func (u *CustomFieldValue1) UnmarshalJSON(data []byte) error {
 
 	var str string = ""
-	if err := utils.UnmarshalJSON(data, &str, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &str, "", true, nil); err == nil {
 		u.Str = &str
 		u.Type = CustomFieldValue1TypeStr
 		return nil
 	}
 
 	var number float64 = float64(0)
-	if err := utils.UnmarshalJSON(data, &number, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &number, "", true, nil); err == nil {
 		u.Number = &number
 		u.Type = CustomFieldValue1TypeNumber
 		return nil
 	}
 
 	var boolean bool = false
-	if err := utils.UnmarshalJSON(data, &boolean, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &boolean, "", true, nil); err == nil {
 		u.Boolean = &boolean
 		u.Type = CustomFieldValue1TypeBoolean
 		return nil
 	}
 
 	var mapOfAny map[string]any = map[string]any{}
-	if err := utils.UnmarshalJSON(data, &mapOfAny, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &mapOfAny, "", true, nil); err == nil {
 		u.MapOfAny = mapOfAny
 		u.Type = CustomFieldValue1TypeMapOfAny
 		return nil
@@ -183,35 +183,35 @@ func CreateCustomFieldValue2ArrayOfCustomFieldValue1(arrayOfCustomFieldValue1 []
 func (u *CustomFieldValue2) UnmarshalJSON(data []byte) error {
 
 	var str string = ""
-	if err := utils.UnmarshalJSON(data, &str, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &str, "", true, nil); err == nil {
 		u.Str = &str
 		u.Type = CustomFieldValue2TypeStr
 		return nil
 	}
 
 	var number float64 = float64(0)
-	if err := utils.UnmarshalJSON(data, &number, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &number, "", true, nil); err == nil {
 		u.Number = &number
 		u.Type = CustomFieldValue2TypeNumber
 		return nil
 	}
 
 	var boolean bool = false
-	if err := utils.UnmarshalJSON(data, &boolean, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &boolean, "", true, nil); err == nil {
 		u.Boolean = &boolean
 		u.Type = CustomFieldValue2TypeBoolean
 		return nil
 	}
 
 	var mapOfAny map[string]any = map[string]any{}
-	if err := utils.UnmarshalJSON(data, &mapOfAny, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &mapOfAny, "", true, nil); err == nil {
 		u.MapOfAny = mapOfAny
 		u.Type = CustomFieldValue2TypeMapOfAny
 		return nil
 	}
 
 	var arrayOfCustomFieldValue1 []*CustomFieldValue1 = []*CustomFieldValue1{}
-	if err := utils.UnmarshalJSON(data, &arrayOfCustomFieldValue1, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &arrayOfCustomFieldValue1, "", true, nil); err == nil {
 		u.ArrayOfCustomFieldValue1 = arrayOfCustomFieldValue1
 		u.Type = CustomFieldValue2TypeArrayOfCustomFieldValue1
 		return nil

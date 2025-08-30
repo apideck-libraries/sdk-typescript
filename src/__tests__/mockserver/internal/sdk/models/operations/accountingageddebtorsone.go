@@ -50,7 +50,7 @@ func (a AccountingAgedDebtorsOneRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (a *AccountingAgedDebtorsOneRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, nil); err != nil {
 		return err
 	}
 	return nil

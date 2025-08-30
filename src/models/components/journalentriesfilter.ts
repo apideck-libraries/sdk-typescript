@@ -5,12 +5,49 @@
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
+import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
+export const JournalEntriesFilterStatus = {
+  Draft: "draft",
+  PendingApproval: "pending_approval",
+  Approved: "approved",
+  Posted: "posted",
+  Voided: "voided",
+  Rejected: "rejected",
+  Deleted: "deleted",
+  Other: "other",
+} as const;
+export type JournalEntriesFilterStatus = ClosedEnum<
+  typeof JournalEntriesFilterStatus
+>;
+
 export type JournalEntriesFilter = {
   updatedSince?: Date | undefined;
+  status?: JournalEntriesFilterStatus | undefined;
 };
+
+/** @internal */
+export const JournalEntriesFilterStatus$inboundSchema: z.ZodNativeEnum<
+  typeof JournalEntriesFilterStatus
+> = z.nativeEnum(JournalEntriesFilterStatus);
+
+/** @internal */
+export const JournalEntriesFilterStatus$outboundSchema: z.ZodNativeEnum<
+  typeof JournalEntriesFilterStatus
+> = JournalEntriesFilterStatus$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace JournalEntriesFilterStatus$ {
+  /** @deprecated use `JournalEntriesFilterStatus$inboundSchema` instead. */
+  export const inboundSchema = JournalEntriesFilterStatus$inboundSchema;
+  /** @deprecated use `JournalEntriesFilterStatus$outboundSchema` instead. */
+  export const outboundSchema = JournalEntriesFilterStatus$outboundSchema;
+}
 
 /** @internal */
 export const JournalEntriesFilter$inboundSchema: z.ZodType<
@@ -21,6 +58,7 @@ export const JournalEntriesFilter$inboundSchema: z.ZodType<
   updated_since: z.string().datetime({ offset: true }).transform(v =>
     new Date(v)
   ).optional(),
+  status: JournalEntriesFilterStatus$inboundSchema.optional(),
 }).transform((v) => {
   return remap$(v, {
     "updated_since": "updatedSince",
@@ -30,6 +68,7 @@ export const JournalEntriesFilter$inboundSchema: z.ZodType<
 /** @internal */
 export type JournalEntriesFilter$Outbound = {
   updated_since?: string | undefined;
+  status?: string | undefined;
 };
 
 /** @internal */
@@ -39,6 +78,7 @@ export const JournalEntriesFilter$outboundSchema: z.ZodType<
   JournalEntriesFilter
 > = z.object({
   updatedSince: z.date().transform(v => v.toISOString()).optional(),
+  status: JournalEntriesFilterStatus$outboundSchema.optional(),
 }).transform((v) => {
   return remap$(v, {
     updatedSince: "updated_since",

@@ -40,7 +40,7 @@ func (f Folder) MarshalJSON() ([]byte, error) {
 }
 
 func (f *Folder) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &f, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &f, "", false, []string{"name", "parent_folders"}); err != nil {
 		return err
 	}
 	return nil

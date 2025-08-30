@@ -17,7 +17,7 @@ func (p PurchaseOrdersFilter) MarshalJSON() ([]byte, error) {
 }
 
 func (p *PurchaseOrdersFilter) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &p, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &p, "", false, nil); err != nil {
 		return err
 	}
 	return nil

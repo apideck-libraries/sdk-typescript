@@ -52,7 +52,7 @@ func (c CrmNotesAllRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (c *CrmNotesAllRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &c, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &c, "", false, nil); err != nil {
 		return err
 	}
 	return nil

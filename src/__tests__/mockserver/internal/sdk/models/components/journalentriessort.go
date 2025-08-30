@@ -47,7 +47,7 @@ func (j JournalEntriesSort) MarshalJSON() ([]byte, error) {
 }
 
 func (j *JournalEntriesSort) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &j, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &j, "", false, nil); err != nil {
 		return err
 	}
 	return nil

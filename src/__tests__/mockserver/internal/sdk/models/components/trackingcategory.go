@@ -53,6 +53,8 @@ type TrackingCategory struct {
 	ID *string `json:"id,omitempty"`
 	// A unique identifier for an object.
 	ParentID *string `json:"parent_id,omitempty"`
+	// The name of the parent tracking category.
+	ParentName *string `json:"parent_name,omitempty"`
 	// The name of the tracking category.
 	Name *string `json:"name,omitempty"`
 	// The code of the tracking category.
@@ -82,7 +84,7 @@ func (t TrackingCategory) MarshalJSON() ([]byte, error) {
 }
 
 func (t *TrackingCategory) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &t, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &t, "", false, nil); err != nil {
 		return err
 	}
 	return nil
@@ -100,6 +102,13 @@ func (o *TrackingCategory) GetParentID() *string {
 		return nil
 	}
 	return o.ParentID
+}
+
+func (o *TrackingCategory) GetParentName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ParentName
 }
 
 func (o *TrackingCategory) GetName() *string {
@@ -182,6 +191,8 @@ func (o *TrackingCategory) GetSubsidiaries() []TrackingCategorySubsidiary {
 type TrackingCategoryInput struct {
 	// A unique identifier for an object.
 	ParentID *string `json:"parent_id,omitempty"`
+	// The name of the parent tracking category.
+	ParentName *string `json:"parent_name,omitempty"`
 	// The name of the tracking category.
 	Name *string `json:"name,omitempty"`
 	// The code of the tracking category.
@@ -201,6 +212,13 @@ func (o *TrackingCategoryInput) GetParentID() *string {
 		return nil
 	}
 	return o.ParentID
+}
+
+func (o *TrackingCategoryInput) GetParentName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ParentName
 }
 
 func (o *TrackingCategoryInput) GetName() *string {
