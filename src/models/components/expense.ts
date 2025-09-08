@@ -75,6 +75,18 @@ export const ExpenseType = {
  */
 export type ExpenseType = ClosedEnum<typeof ExpenseType>;
 
+/**
+ * Expense status
+ */
+export const ExpenseStatus = {
+  Draft: "draft",
+  Posted: "posted",
+} as const;
+/**
+ * Expense status
+ */
+export type ExpenseStatus = ClosedEnum<typeof ExpenseStatus>;
+
 export type Expense = {
   /**
    * A unique identifier for an object.
@@ -150,6 +162,10 @@ export type Expense = {
    * When custom mappings are configured on the resource, the result is included here.
    */
   customMappings?: { [k: string]: any } | null | undefined;
+  /**
+   * Expense status
+   */
+  status?: ExpenseStatus | null | undefined;
   /**
    * The date and time when the object was last updated.
    */
@@ -244,6 +260,10 @@ export type ExpenseInput = {
   sourceDocumentUrl?: string | null | undefined;
   customFields?: Array<CustomField> | undefined;
   /**
+   * Expense status
+   */
+  status?: ExpenseStatus | null | undefined;
+  /**
    * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
    */
   rowVersion?: string | null | undefined;
@@ -294,6 +314,27 @@ export namespace ExpenseType$ {
 }
 
 /** @internal */
+export const ExpenseStatus$inboundSchema: z.ZodNativeEnum<
+  typeof ExpenseStatus
+> = z.nativeEnum(ExpenseStatus);
+
+/** @internal */
+export const ExpenseStatus$outboundSchema: z.ZodNativeEnum<
+  typeof ExpenseStatus
+> = ExpenseStatus$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace ExpenseStatus$ {
+  /** @deprecated use `ExpenseStatus$inboundSchema` instead. */
+  export const inboundSchema = ExpenseStatus$inboundSchema;
+  /** @deprecated use `ExpenseStatus$outboundSchema` instead. */
+  export const outboundSchema = ExpenseStatus$outboundSchema;
+}
+
+/** @internal */
 export const Expense$inboundSchema: z.ZodType<Expense, z.ZodTypeDef, unknown> =
   z.object({
     id: z.string().optional(),
@@ -318,6 +359,7 @@ export const Expense$inboundSchema: z.ZodType<Expense, z.ZodTypeDef, unknown> =
     source_document_url: z.nullable(z.string()).optional(),
     custom_fields: z.array(CustomField$inboundSchema).optional(),
     custom_mappings: z.nullable(z.record(z.any())).optional(),
+    status: z.nullable(ExpenseStatus$inboundSchema).optional(),
     updated_at: z.nullable(
       z.string().datetime({ offset: true }).transform(v => new Date(v)),
     ).optional(),
@@ -375,6 +417,7 @@ export type Expense$Outbound = {
   source_document_url?: string | null | undefined;
   custom_fields?: Array<CustomField$Outbound> | undefined;
   custom_mappings?: { [k: string]: any } | null | undefined;
+  status?: string | null | undefined;
   updated_at?: string | null | undefined;
   created_at?: string | null | undefined;
   row_version?: string | null | undefined;
@@ -409,6 +452,7 @@ export const Expense$outboundSchema: z.ZodType<
   sourceDocumentUrl: z.nullable(z.string()).optional(),
   customFields: z.array(CustomField$outboundSchema).optional(),
   customMappings: z.nullable(z.record(z.any())).optional(),
+  status: z.nullable(ExpenseStatus$outboundSchema).optional(),
   updatedAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
   createdAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
   rowVersion: z.nullable(z.string()).optional(),
@@ -493,6 +537,7 @@ export const ExpenseInput$inboundSchema: z.ZodType<
   reference: z.nullable(z.string()).optional(),
   source_document_url: z.nullable(z.string()).optional(),
   custom_fields: z.array(CustomField$inboundSchema).optional(),
+  status: z.nullable(ExpenseStatus$inboundSchema).optional(),
   row_version: z.nullable(z.string()).optional(),
   pass_through: z.array(PassThroughBody$inboundSchema).optional(),
 }).transform((v) => {
@@ -535,6 +580,7 @@ export type ExpenseInput$Outbound = {
   reference?: string | null | undefined;
   source_document_url?: string | null | undefined;
   custom_fields?: Array<CustomField$Outbound> | undefined;
+  status?: string | null | undefined;
   row_version?: string | null | undefined;
   pass_through?: Array<PassThroughBody$Outbound> | undefined;
 };
@@ -563,6 +609,7 @@ export const ExpenseInput$outboundSchema: z.ZodType<
   reference: z.nullable(z.string()).optional(),
   sourceDocumentUrl: z.nullable(z.string()).optional(),
   customFields: z.array(CustomField$outboundSchema).optional(),
+  status: z.nullable(ExpenseStatus$outboundSchema).optional(),
   rowVersion: z.nullable(z.string()).optional(),
   passThrough: z.array(PassThroughBody$outboundSchema).optional(),
 }).transform((v) => {

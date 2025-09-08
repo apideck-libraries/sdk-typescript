@@ -67,7 +67,7 @@ func (u UnifiedFile) MarshalJSON() ([]byte, error) {
 }
 
 func (u *UnifiedFile) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &u, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &u, "", false, []string{"id", "name", "type"}); err != nil {
 		return err
 	}
 	return nil

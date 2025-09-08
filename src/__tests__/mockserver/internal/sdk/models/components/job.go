@@ -294,7 +294,7 @@ func (j Job) MarshalJSON() ([]byte, error) {
 }
 
 func (j *Job) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &j, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &j, "", false, nil); err != nil {
 		return err
 	}
 	return nil

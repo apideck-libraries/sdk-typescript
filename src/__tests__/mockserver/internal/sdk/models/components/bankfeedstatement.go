@@ -102,7 +102,7 @@ func (t Transaction) MarshalJSON() ([]byte, error) {
 }
 
 func (t *Transaction) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &t, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &t, "", false, []string{"posted_date", "amount", "credit_or_debit", "source_transaction_id"}); err != nil {
 		return err
 	}
 	return nil
@@ -200,7 +200,7 @@ func (b BankFeedStatement) MarshalJSON() ([]byte, error) {
 }
 
 func (b *BankFeedStatement) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &b, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &b, "", false, []string{"id"}); err != nil {
 		return err
 	}
 	return nil
@@ -330,7 +330,7 @@ func (b BankFeedStatementInput) MarshalJSON() ([]byte, error) {
 }
 
 func (b *BankFeedStatementInput) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &b, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &b, "", false, nil); err != nil {
 		return err
 	}
 	return nil

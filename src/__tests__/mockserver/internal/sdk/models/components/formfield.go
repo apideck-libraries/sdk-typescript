@@ -24,6 +24,7 @@ const (
 	FormFieldTypeDate           FormFieldType = "date"
 	FormFieldTypeTime           FormFieldType = "time"
 	FormFieldTypeNumber         FormFieldType = "number"
+	FormFieldTypePassword       FormFieldType = "password"
 )
 
 func (e FormFieldType) ToPointer() *FormFieldType {
@@ -60,6 +61,8 @@ func (e *FormFieldType) UnmarshalJSON(data []byte) error {
 	case "time":
 		fallthrough
 	case "number":
+		fallthrough
+	case "password":
 		*e = FormFieldType(v)
 		return nil
 	default:
@@ -102,7 +105,7 @@ func (f FormField) MarshalJSON() ([]byte, error) {
 }
 
 func (f *FormField) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &f, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &f, "", false, nil); err != nil {
 		return err
 	}
 	return nil

@@ -46,7 +46,7 @@ func (f FileStorageFilesDeleteRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (f *FileStorageFilesDeleteRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &f, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &f, "", false, []string{"id"}); err != nil {
 		return err
 	}
 	return nil

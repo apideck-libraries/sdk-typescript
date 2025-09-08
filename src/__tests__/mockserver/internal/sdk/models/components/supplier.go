@@ -123,7 +123,7 @@ func (s Supplier) MarshalJSON() ([]byte, error) {
 }
 
 func (s *Supplier) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &s, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &s, "", false, []string{"id"}); err != nil {
 		return err
 	}
 	return nil

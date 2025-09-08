@@ -630,6 +630,14 @@ run();
 ### [vault](docs/sdks/vault/README.md)
 
 
+#### [vault.connectionConsent](docs/sdks/connectionconsent/README.md)
+
+* [update](docs/sdks/connectionconsent/README.md#update) - Update consent state
+
+#### [vault.connectionConsents](docs/sdks/connectionconsents/README.md)
+
+* [list](docs/sdks/connectionconsents/README.md#list) - Get consent records
+
 #### [vault.connectionCustomMappings](docs/sdks/connectioncustommappings/README.md)
 
 * [list](docs/sdks/connectioncustommappings/README.md#list) - List connection custom mappings
@@ -983,6 +991,8 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`smsMessagesGet`](docs/sdks/messages/README.md#get) - Get Message
 - [`smsMessagesList`](docs/sdks/messages/README.md#list) - List Messages
 - [`smsMessagesUpdate`](docs/sdks/messages/README.md#update) - Update Message
+- [`vaultConnectionConsentsList`](docs/sdks/connectionconsents/README.md#list) - Get consent records
+- [`vaultConnectionConsentUpdate`](docs/sdks/connectionconsent/README.md#update) - Update consent state
 - [`vaultConnectionCustomMappingsList`](docs/sdks/connectioncustommappings/README.md#list) - List connection custom mappings
 - [`vaultConnectionsDelete`](docs/sdks/connections/README.md#delete) - Deletes a connection
 - [`vaultConnectionSettingsList`](docs/sdks/connectionsettings/README.md#list) - Get resource settings

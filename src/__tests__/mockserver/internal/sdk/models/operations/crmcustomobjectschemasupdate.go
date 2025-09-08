@@ -47,7 +47,7 @@ func (c CrmCustomObjectSchemasUpdateRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (c *CrmCustomObjectSchemasUpdateRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &c, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"id", "CustomObjectSchema"}); err != nil {
 		return err
 	}
 	return nil

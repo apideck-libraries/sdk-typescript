@@ -110,7 +110,7 @@ func (c Company1) MarshalJSON() ([]byte, error) {
 }
 
 func (c *Company1) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &c, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"name"}); err != nil {
 		return err
 	}
 	return nil
@@ -473,7 +473,7 @@ func (c Company1Input) MarshalJSON() ([]byte, error) {
 }
 
 func (c *Company1Input) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &c, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"name"}); err != nil {
 		return err
 	}
 	return nil

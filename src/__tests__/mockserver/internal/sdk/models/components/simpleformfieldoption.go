@@ -55,21 +55,21 @@ func CreateSimpleFormFieldOptionValue1Number(number float64) SimpleFormFieldOpti
 func (u *SimpleFormFieldOptionValue1) UnmarshalJSON(data []byte) error {
 
 	var str string = ""
-	if err := utils.UnmarshalJSON(data, &str, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &str, "", true, nil); err == nil {
 		u.Str = &str
 		u.Type = SimpleFormFieldOptionValue1TypeStr
 		return nil
 	}
 
 	var integer int64 = int64(0)
-	if err := utils.UnmarshalJSON(data, &integer, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &integer, "", true, nil); err == nil {
 		u.Integer = &integer
 		u.Type = SimpleFormFieldOptionValue1TypeInteger
 		return nil
 	}
 
 	var number float64 = float64(0)
-	if err := utils.UnmarshalJSON(data, &number, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &number, "", true, nil); err == nil {
 		u.Number = &number
 		u.Type = SimpleFormFieldOptionValue1TypeNumber
 		return nil
@@ -162,35 +162,35 @@ func CreateSimpleFormFieldOptionValue2ArrayOfSimpleFormFieldOptionValue1(arrayOf
 func (u *SimpleFormFieldOptionValue2) UnmarshalJSON(data []byte) error {
 
 	var str string = ""
-	if err := utils.UnmarshalJSON(data, &str, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &str, "", true, nil); err == nil {
 		u.Str = &str
 		u.Type = SimpleFormFieldOptionValue2TypeStr
 		return nil
 	}
 
 	var integer int64 = int64(0)
-	if err := utils.UnmarshalJSON(data, &integer, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &integer, "", true, nil); err == nil {
 		u.Integer = &integer
 		u.Type = SimpleFormFieldOptionValue2TypeInteger
 		return nil
 	}
 
 	var number float64 = float64(0)
-	if err := utils.UnmarshalJSON(data, &number, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &number, "", true, nil); err == nil {
 		u.Number = &number
 		u.Type = SimpleFormFieldOptionValue2TypeNumber
 		return nil
 	}
 
 	var boolean bool = false
-	if err := utils.UnmarshalJSON(data, &boolean, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &boolean, "", true, nil); err == nil {
 		u.Boolean = &boolean
 		u.Type = SimpleFormFieldOptionValue2TypeBoolean
 		return nil
 	}
 
 	var arrayOfSimpleFormFieldOptionValue1 []SimpleFormFieldOptionValue1 = []SimpleFormFieldOptionValue1{}
-	if err := utils.UnmarshalJSON(data, &arrayOfSimpleFormFieldOptionValue1, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &arrayOfSimpleFormFieldOptionValue1, "", true, nil); err == nil {
 		u.ArrayOfSimpleFormFieldOptionValue1 = arrayOfSimpleFormFieldOptionValue1
 		u.Type = SimpleFormFieldOptionValue2TypeArrayOfSimpleFormFieldOptionValue1
 		return nil
@@ -250,6 +250,17 @@ type SimpleFormFieldOption struct {
 	Label      string                          `json:"label"`
 	Value      *SimpleFormFieldOptionValue2    `json:"value,omitempty"`
 	OptionType SimpleFormFieldOptionOptionType `json:"option_type"`
+}
+
+func (s SimpleFormFieldOption) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(s, "", false)
+}
+
+func (s *SimpleFormFieldOption) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &s, "", false, []string{"label", "option_type"}); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *SimpleFormFieldOption) GetLabel() string {

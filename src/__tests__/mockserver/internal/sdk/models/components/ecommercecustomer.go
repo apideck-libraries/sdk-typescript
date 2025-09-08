@@ -174,7 +174,7 @@ func (e EcommerceCustomer) MarshalJSON() ([]byte, error) {
 }
 
 func (e *EcommerceCustomer) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &e, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &e, "", false, []string{"id"}); err != nil {
 		return err
 	}
 	return nil

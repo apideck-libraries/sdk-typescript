@@ -51527,3 +51527,122 @@ workflows:
             type: simple
     x-speakeasy-test-group: quotes
     x-speakeasy-test-rebuild: true
+  - workflowId: vault.connectionConsentsAll
+    steps:
+      - stepId: test
+        operationId: vault.connectionConsentsAll
+        parameters:
+          - name: service_id
+            in: path
+            value: pipedrive
+          - name: unified_api
+            in: path
+            value: crm
+          - name: x-apideck-consumer-id
+            in: header
+            value: test-consumer
+          - name: x-apideck-app-id
+            in: header
+            value: dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX
+        successCriteria:
+          - condition: $statusCode == 200
+          - condition: $response.header.Content-Type == application/json
+          - context: $response.body
+            condition: |
+              {
+                "status_code": 200,
+                "status": "OK",
+                "data": []
+              }
+            type: simple
+    x-speakeasy-test-group: connectionConsents
+    x-speakeasy-test-rebuild: true
+  - workflowId: vault.connectionConsentUpdate
+    steps:
+      - stepId: test
+        operationId: vault.connectionConsentUpdate
+        parameters:
+          - name: service_id
+            in: path
+            value: pipedrive
+          - name: unified_api
+            in: path
+            value: crm
+          - name: x-apideck-consumer-id
+            in: header
+            value: test-consumer
+          - name: x-apideck-app-id
+            in: header
+            value: dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX
+        requestBody:
+          contentType: application/json
+          payload:
+            granted: true
+            resources: '*'
+        successCriteria:
+          - condition: $statusCode == 200
+          - condition: $response.header.Content-Type == application/json
+          - context: $response.body
+            condition: |
+              {
+                "status_code": 200,
+                "status": "OK",
+                "data": {
+                  "id": "con_1234567890",
+                  "created_at": "2025-04-15T14:30:00Z",
+                  "granted": true,
+                  "resources": {
+                    "hris.employees": {
+                      "id": {
+                        "read": true,
+                        "write": false
+                      },
+                      "first_name": {
+                        "read": true,
+                        "write": true
+                      },
+                      "last_name": {
+                        "read": true,
+                        "write": true
+                      },
+                      "email": {
+                        "read": true,
+                        "write": true
+                      },
+                      "addresses[].street": {
+                        "read": true,
+                        "write": false
+                      },
+                      "addresses[].city": {
+                        "read": true,
+                        "write": false
+                      },
+                      "employment.job_title": {
+                        "read": true,
+                        "write": true
+                      },
+                      "custom_fields[].employee_number": {
+                        "read": true,
+                        "write": false
+                      }
+                    },
+                    "hris.departments": {
+                      "id": {
+                        "read": true,
+                        "write": false
+                      },
+                      "name": {
+                        "read": true,
+                        "write": true
+                      },
+                      "code": {
+                        "read": true,
+                        "write": false
+                      }
+                    }
+                  }
+                }
+              }
+            type: simple
+    x-speakeasy-test-group: connectionConsent
+    x-speakeasy-test-rebuild: true

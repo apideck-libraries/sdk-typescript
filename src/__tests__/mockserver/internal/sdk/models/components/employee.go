@@ -208,7 +208,7 @@ func (p ProbationPeriod) MarshalJSON() ([]byte, error) {
 }
 
 func (p *ProbationPeriod) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &p, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &p, "", false, nil); err != nil {
 		return err
 	}
 	return nil
@@ -354,7 +354,7 @@ func (e Employee) MarshalJSON() ([]byte, error) {
 }
 
 func (e *Employee) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &e, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &e, "", false, nil); err != nil {
 		return err
 	}
 	return nil
@@ -943,7 +943,7 @@ func (e EmployeeInput) MarshalJSON() ([]byte, error) {
 }
 
 func (e *EmployeeInput) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &e, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &e, "", false, nil); err != nil {
 		return err
 	}
 	return nil

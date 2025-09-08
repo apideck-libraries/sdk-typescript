@@ -66,6 +66,33 @@ func (e *ExpenseType) UnmarshalJSON(data []byte) error {
 	}
 }
 
+// ExpenseStatus - Expense status
+type ExpenseStatus string
+
+const (
+	ExpenseStatusDraft  ExpenseStatus = "draft"
+	ExpenseStatusPosted ExpenseStatus = "posted"
+)
+
+func (e ExpenseStatus) ToPointer() *ExpenseStatus {
+	return &e
+}
+func (e *ExpenseStatus) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "draft":
+		fallthrough
+	case "posted":
+		*e = ExpenseStatus(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ExpenseStatus: %v", v)
+	}
+}
+
 type Expense struct {
 	// A unique identifier for an object.
 	ID *string `json:"id,omitempty"`
@@ -105,6 +132,8 @@ type Expense struct {
 	CustomFields      []CustomField `json:"custom_fields,omitempty"`
 	// When custom mappings are configured on the resource, the result is included here.
 	CustomMappings map[string]any `json:"custom_mappings,omitempty"`
+	// Expense status
+	Status *ExpenseStatus `json:"status,omitempty"`
 	// The date and time when the object was last updated.
 	UpdatedAt *time.Time `json:"updated_at,omitempty"`
 	// The date and time when the object was created.
@@ -124,7 +153,7 @@ func (e Expense) MarshalJSON() ([]byte, error) {
 }
 
 func (e *Expense) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &e, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &e, "", false, []string{"transaction_date", "account_id", "line_items"}); err != nil {
 		return err
 	}
 	return nil
@@ -270,6 +299,13 @@ func (o *Expense) GetCustomMappings() map[string]any {
 	return o.CustomMappings
 }
 
+func (o *Expense) GetStatus() *ExpenseStatus {
+	if o == nil {
+		return nil
+	}
+	return o.Status
+}
+
 func (o *Expense) GetUpdatedAt() *time.Time {
 	if o == nil {
 		return nil
@@ -347,6 +383,8 @@ type ExpenseInput struct {
 	// URL link to a source document - shown as 'Go to [appName]' in the downstream app. Currently only supported for Xero.
 	SourceDocumentURL *string       `json:"source_document_url,omitempty"`
 	CustomFields      []CustomField `json:"custom_fields,omitempty"`
+	// Expense status
+	Status *ExpenseStatus `json:"status,omitempty"`
 	// A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
 	RowVersion *string `json:"row_version,omitempty"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
@@ -358,7 +396,7 @@ func (e ExpenseInput) MarshalJSON() ([]byte, error) {
 }
 
 func (e *ExpenseInput) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &e, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &e, "", false, []string{"transaction_date", "account_id", "line_items"}); err != nil {
 		return err
 	}
 	return nil
@@ -488,6 +526,13 @@ func (o *ExpenseInput) GetCustomFields() []CustomField {
 		return nil
 	}
 	return o.CustomFields
+}
+
+func (o *ExpenseInput) GetStatus() *ExpenseStatus {
+	if o == nil {
+		return nil
+	}
+	return o.Status
 }
 
 func (o *ExpenseInput) GetRowVersion() *string {

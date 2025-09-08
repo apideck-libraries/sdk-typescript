@@ -44,6 +44,10 @@ export type TrackingCategory = {
    */
   parentId?: string | null | undefined;
   /**
+   * The name of the parent tracking category.
+   */
+  parentName?: string | null | undefined;
+  /**
    * The name of the tracking category.
    */
   name?: string | undefined;
@@ -94,6 +98,10 @@ export type TrackingCategoryInput = {
    * A unique identifier for an object.
    */
   parentId?: string | null | undefined;
+  /**
+   * The name of the parent tracking category.
+   */
+  parentName?: string | null | undefined;
   /**
    * The name of the tracking category.
    */
@@ -205,6 +213,7 @@ export const TrackingCategory$inboundSchema: z.ZodType<
 > = z.object({
   id: z.string().optional(),
   parent_id: z.nullable(z.string()).optional(),
+  parent_name: z.nullable(z.string()).optional(),
   name: z.string().optional(),
   code: z.nullable(z.string()).optional(),
   status: TrackingCategoryStatus$inboundSchema.optional(),
@@ -225,6 +234,7 @@ export const TrackingCategory$inboundSchema: z.ZodType<
 }).transform((v) => {
   return remap$(v, {
     "parent_id": "parentId",
+    "parent_name": "parentName",
     "custom_mappings": "customMappings",
     "row_version": "rowVersion",
     "updated_by": "updatedBy",
@@ -239,6 +249,7 @@ export const TrackingCategory$inboundSchema: z.ZodType<
 export type TrackingCategory$Outbound = {
   id?: string | undefined;
   parent_id?: string | null | undefined;
+  parent_name?: string | null | undefined;
   name?: string | undefined;
   code?: string | null | undefined;
   status?: string | undefined;
@@ -260,6 +271,7 @@ export const TrackingCategory$outboundSchema: z.ZodType<
 > = z.object({
   id: z.string().optional(),
   parentId: z.nullable(z.string()).optional(),
+  parentName: z.nullable(z.string()).optional(),
   name: z.string().optional(),
   code: z.nullable(z.string()).optional(),
   status: TrackingCategoryStatus$outboundSchema.optional(),
@@ -276,6 +288,7 @@ export const TrackingCategory$outboundSchema: z.ZodType<
 }).transform((v) => {
   return remap$(v, {
     parentId: "parent_id",
+    parentName: "parent_name",
     customMappings: "custom_mappings",
     rowVersion: "row_version",
     updatedBy: "updated_by",
@@ -324,6 +337,7 @@ export const TrackingCategoryInput$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   parent_id: z.nullable(z.string()).optional(),
+  parent_name: z.nullable(z.string()).optional(),
   name: z.string().optional(),
   code: z.nullable(z.string()).optional(),
   status: TrackingCategoryStatus$inboundSchema.optional(),
@@ -335,6 +349,7 @@ export const TrackingCategoryInput$inboundSchema: z.ZodType<
 }).transform((v) => {
   return remap$(v, {
     "parent_id": "parentId",
+    "parent_name": "parentName",
     "row_version": "rowVersion",
     "pass_through": "passThrough",
   });
@@ -343,6 +358,7 @@ export const TrackingCategoryInput$inboundSchema: z.ZodType<
 /** @internal */
 export type TrackingCategoryInput$Outbound = {
   parent_id?: string | null | undefined;
+  parent_name?: string | null | undefined;
   name?: string | undefined;
   code?: string | null | undefined;
   status?: string | undefined;
@@ -358,6 +374,7 @@ export const TrackingCategoryInput$outboundSchema: z.ZodType<
   TrackingCategoryInput
 > = z.object({
   parentId: z.nullable(z.string()).optional(),
+  parentName: z.nullable(z.string()).optional(),
   name: z.string().optional(),
   code: z.nullable(z.string()).optional(),
   status: TrackingCategoryStatus$outboundSchema.optional(),
@@ -369,6 +386,7 @@ export const TrackingCategoryInput$outboundSchema: z.ZodType<
 }).transform((v) => {
   return remap$(v, {
     parentId: "parent_id",
+    parentName: "parent_name",
     rowVersion: "row_version",
     passThrough: "pass_through",
   });

@@ -45,7 +45,7 @@ func (c CrmPipelinesAddRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (c *CrmPipelinesAddRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &c, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"Pipeline"}); err != nil {
 		return err
 	}
 	return nil
