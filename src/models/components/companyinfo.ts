@@ -75,6 +75,20 @@ export type TheStartMonthOfFiscalYear = ClosedEnum<
   typeof TheStartMonthOfFiscalYear
 >;
 
+/**
+ * The mode of tracking categories for the company on transactions
+ */
+export const TrackingCategoriesMode = {
+  Transaction: "transaction",
+  Line: "line",
+  Both: "both",
+  Disabled: "disabled",
+} as const;
+/**
+ * The mode of tracking categories for the company on transactions
+ */
+export type TrackingCategoriesMode = ClosedEnum<typeof TrackingCategoriesMode>;
+
 export type CompanyInfo = {
   /**
    * A unique identifier for an object.
@@ -133,6 +147,10 @@ export type CompanyInfo = {
    * Whether tracking categories are enabled for the company on transactions
    */
   trackingCategoriesEnabled?: boolean | undefined;
+  /**
+   * The mode of tracking categories for the company on transactions
+   */
+  trackingCategoriesMode?: TrackingCategoriesMode | undefined;
   /**
    * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
    */
@@ -198,6 +216,27 @@ export namespace TheStartMonthOfFiscalYear$ {
 }
 
 /** @internal */
+export const TrackingCategoriesMode$inboundSchema: z.ZodNativeEnum<
+  typeof TrackingCategoriesMode
+> = z.nativeEnum(TrackingCategoriesMode);
+
+/** @internal */
+export const TrackingCategoriesMode$outboundSchema: z.ZodNativeEnum<
+  typeof TrackingCategoriesMode
+> = TrackingCategoriesMode$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace TrackingCategoriesMode$ {
+  /** @deprecated use `TrackingCategoriesMode$inboundSchema` instead. */
+  export const inboundSchema = TrackingCategoriesMode$inboundSchema;
+  /** @deprecated use `TrackingCategoriesMode$outboundSchema` instead. */
+  export const outboundSchema = TrackingCategoriesMode$outboundSchema;
+}
+
+/** @internal */
 export const CompanyInfo$inboundSchema: z.ZodType<
   CompanyInfo,
   z.ZodTypeDef,
@@ -221,6 +260,7 @@ export const CompanyInfo$inboundSchema: z.ZodType<
   emails: z.array(Email$inboundSchema).optional(),
   custom_mappings: z.nullable(z.record(z.any())).optional(),
   tracking_categories_enabled: z.boolean().optional(),
+  tracking_categories_mode: TrackingCategoriesMode$inboundSchema.optional(),
   row_version: z.nullable(z.string()).optional(),
   updated_by: z.nullable(z.string()).optional(),
   created_by: z.nullable(z.string()).optional(),
@@ -243,6 +283,7 @@ export const CompanyInfo$inboundSchema: z.ZodType<
     "phone_numbers": "phoneNumbers",
     "custom_mappings": "customMappings",
     "tracking_categories_enabled": "trackingCategoriesEnabled",
+    "tracking_categories_mode": "trackingCategoriesMode",
     "row_version": "rowVersion",
     "updated_by": "updatedBy",
     "created_by": "createdBy",
@@ -271,6 +312,7 @@ export type CompanyInfo$Outbound = {
   emails?: Array<Email$Outbound> | undefined;
   custom_mappings?: { [k: string]: any } | null | undefined;
   tracking_categories_enabled?: boolean | undefined;
+  tracking_categories_mode?: string | undefined;
   row_version?: string | null | undefined;
   updated_by?: string | null | undefined;
   created_by?: string | null | undefined;
@@ -303,6 +345,7 @@ export const CompanyInfo$outboundSchema: z.ZodType<
   emails: z.array(Email$outboundSchema).optional(),
   customMappings: z.nullable(z.record(z.any())).optional(),
   trackingCategoriesEnabled: z.boolean().optional(),
+  trackingCategoriesMode: TrackingCategoriesMode$outboundSchema.optional(),
   rowVersion: z.nullable(z.string()).optional(),
   updatedBy: z.nullable(z.string()).optional(),
   createdBy: z.nullable(z.string()).optional(),
@@ -321,6 +364,7 @@ export const CompanyInfo$outboundSchema: z.ZodType<
     phoneNumbers: "phone_numbers",
     customMappings: "custom_mappings",
     trackingCategoriesEnabled: "tracking_categories_enabled",
+    trackingCategoriesMode: "tracking_categories_mode",
     rowVersion: "row_version",
     updatedBy: "updated_by",
     createdBy: "created_by",

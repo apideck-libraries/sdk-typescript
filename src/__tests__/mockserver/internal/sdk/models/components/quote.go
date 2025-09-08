@@ -133,7 +133,7 @@ func (q Quote) MarshalJSON() ([]byte, error) {
 }
 
 func (q *Quote) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &q, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &q, "", false, nil); err != nil {
 		return err
 	}
 	return nil
@@ -462,7 +462,7 @@ func (q QuoteInput) MarshalJSON() ([]byte, error) {
 }
 
 func (q *QuoteInput) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &q, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &q, "", false, nil); err != nil {
 		return err
 	}
 	return nil

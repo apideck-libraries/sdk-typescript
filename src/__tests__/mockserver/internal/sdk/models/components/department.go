@@ -35,7 +35,7 @@ func (d Department) MarshalJSON() ([]byte, error) {
 }
 
 func (d *Department) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &d, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &d, "", false, nil); err != nil {
 		return err
 	}
 	return nil

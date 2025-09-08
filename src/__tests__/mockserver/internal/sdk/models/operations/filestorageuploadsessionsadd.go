@@ -45,7 +45,7 @@ func (f FileStorageUploadSessionsAddRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (f *FileStorageUploadSessionsAddRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &f, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &f, "", false, []string{"CreateUploadSessionRequest"}); err != nil {
 		return err
 	}
 	return nil

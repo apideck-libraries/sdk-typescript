@@ -328,7 +328,7 @@ func (l LedgerAccount) MarshalJSON() ([]byte, error) {
 }
 
 func (l *LedgerAccount) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &l, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &l, "", false, nil); err != nil {
 		return err
 	}
 	return nil
@@ -629,7 +629,7 @@ func (l LedgerAccountInput) MarshalJSON() ([]byte, error) {
 }
 
 func (l *LedgerAccountInput) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &l, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &l, "", false, nil); err != nil {
 		return err
 	}
 	return nil

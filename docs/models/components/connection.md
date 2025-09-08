@@ -129,6 +129,173 @@ let value: Connection = {
       example: "Some value",
     },
   ],
+  consentState: "granted",
+  consents: [
+    {
+      id: "con_1234567890",
+      createdAt: "2025-04-15T14:30:00Z",
+      granted: true,
+      resources: {
+        "hris.employees": {
+          "id": {
+            read: true,
+            write: false,
+          },
+          "first_name": {
+            read: true,
+            write: true,
+          },
+          "last_name": {
+            read: true,
+            write: true,
+          },
+          "email": {
+            read: true,
+            write: true,
+          },
+          "addresses[].street": {
+            read: true,
+            write: false,
+          },
+          "addresses[].city": {
+            read: true,
+            write: false,
+          },
+          "employment.job_title": {
+            read: true,
+            write: true,
+          },
+          "custom_fields[].employee_number": {
+            read: true,
+            write: false,
+          },
+        },
+        "hris.departments": {
+          "id": {
+            read: true,
+            write: false,
+          },
+          "name": {
+            read: true,
+            write: true,
+          },
+          "code": {
+            read: true,
+            write: false,
+          },
+        },
+      },
+    },
+  ],
+  latestConsent: {
+    id: "con_1234567890",
+    createdAt: "2025-04-15T14:30:00Z",
+    granted: true,
+    resources: {
+      "hris.employees": {
+        "id": {
+          read: true,
+          write: false,
+        },
+        "first_name": {
+          read: true,
+          write: true,
+        },
+        "last_name": {
+          read: true,
+          write: true,
+        },
+        "email": {
+          read: true,
+          write: true,
+        },
+        "addresses[].street": {
+          read: true,
+          write: false,
+        },
+        "addresses[].city": {
+          read: true,
+          write: false,
+        },
+        "employment.job_title": {
+          read: true,
+          write: true,
+        },
+        "custom_fields[].employee_number": {
+          read: true,
+          write: false,
+        },
+      },
+      "hris.departments": {
+        "id": {
+          read: true,
+          write: false,
+        },
+        "name": {
+          read: true,
+          write: true,
+        },
+        "code": {
+          read: true,
+          write: false,
+        },
+      },
+    },
+  },
+  applicationDataScopes: {
+    enabled: true,
+    updatedAt: "2025-04-15T14:30:00Z",
+    resources: {
+      "hris.employees": {
+        "id": {
+          read: true,
+          write: false,
+        },
+        "first_name": {
+          read: true,
+          write: true,
+        },
+        "last_name": {
+          read: true,
+          write: true,
+        },
+        "email": {
+          read: true,
+          write: true,
+        },
+        "addresses[].street": {
+          read: true,
+          write: false,
+        },
+        "addresses[].city": {
+          read: true,
+          write: false,
+        },
+        "employment.job_title": {
+          read: true,
+          write: true,
+        },
+        "custom_fields[].employee_number": {
+          read: true,
+          write: false,
+        },
+      },
+      "hris.departments": {
+        "id": {
+          read: true,
+          write: false,
+        },
+        "name": {
+          read: true,
+          write: true,
+        },
+        "code": {
+          read: true,
+          write: false,
+        },
+      },
+    },
+  },
   updatedAt: 1616662325753,
 };
 ```
@@ -167,4 +334,8 @@ let value: Connection = {
 | `hasGuide`                                                                                                                                                                                                                                                                                                                                                                                                                      | *boolean*                                                                                                                                                                                                                                                                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                                                              | Whether the connector has a guide available in the developer docs or not (https://docs.apideck.com/connectors/{service_id}/docs/consumer+connection).                                                                                                                                                                                                                                                                           | true                                                                                                                                                                                                                                                                                                                                                                                                                            |
 | `createdAt`                                                                                                                                                                                                                                                                                                                                                                                                                     | *number*                                                                                                                                                                                                                                                                                                                                                                                                                        | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                                                              | N/A                                                                                                                                                                                                                                                                                                                                                                                                                             | 1615563533390                                                                                                                                                                                                                                                                                                                                                                                                                   |
 | `customMappings`                                                                                                                                                                                                                                                                                                                                                                                                                | [components.CustomMapping](../../models/components/custommapping.md)[]                                                                                                                                                                                                                                                                                                                                                          | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                                                              | List of custom mappings configured for this connection                                                                                                                                                                                                                                                                                                                                                                          |                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| `consentState`                                                                                                                                                                                                                                                                                                                                                                                                                  | [components.ConsentState](../../models/components/consentstate.md)                                                                                                                                                                                                                                                                                                                                                              | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                                                              | The current consent state of the connection                                                                                                                                                                                                                                                                                                                                                                                     | granted                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| `consents`                                                                                                                                                                                                                                                                                                                                                                                                                      | [components.ConsentRecord](../../models/components/consentrecord.md)[]                                                                                                                                                                                                                                                                                                                                                          | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                                                              | Immutable array of consent records for compliance and audit purposes                                                                                                                                                                                                                                                                                                                                                            |                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| `latestConsent`                                                                                                                                                                                                                                                                                                                                                                                                                 | [components.ConsentRecord](../../models/components/consentrecord.md)                                                                                                                                                                                                                                                                                                                                                            | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                                                              | N/A                                                                                                                                                                                                                                                                                                                                                                                                                             |                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| `applicationDataScopes`                                                                                                                                                                                                                                                                                                                                                                                                         | [components.DataScopes](../../models/components/datascopes.md)                                                                                                                                                                                                                                                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                                                              | N/A                                                                                                                                                                                                                                                                                                                                                                                                                             |                                                                                                                                                                                                                                                                                                                                                                                                                                 |
 | `updatedAt`                                                                                                                                                                                                                                                                                                                                                                                                                     | *number*                                                                                                                                                                                                                                                                                                                                                                                                                        | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                                                              | N/A                                                                                                                                                                                                                                                                                                                                                                                                                             | 1616662325753                                                                                                                                                                                                                                                                                                                                                                                                                   |

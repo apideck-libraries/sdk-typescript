@@ -117,7 +117,7 @@ func (b BillLineItem) MarshalJSON() ([]byte, error) {
 }
 
 func (b *BillLineItem) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &b, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &b, "", false, nil); err != nil {
 		return err
 	}
 	return nil

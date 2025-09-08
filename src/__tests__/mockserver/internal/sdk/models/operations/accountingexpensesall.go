@@ -41,6 +41,8 @@ type AccountingExpensesAllRequest struct {
 	Cursor *string `queryParam:"style=form,explode=true,name=cursor"`
 	// Number of results to return. Minimum 1, Maximum 200, Default 20
 	Limit *int64 `default:"20" queryParam:"style=form,explode=true,name=limit"`
+	// Apply filters
+	Filter *components.ExpensesFilter `queryParam:"style=deepObject,explode=true,name=filter"`
 }
 
 func (a AccountingExpensesAllRequest) MarshalJSON() ([]byte, error) {
@@ -48,7 +50,7 @@ func (a AccountingExpensesAllRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (a *AccountingExpensesAllRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, nil); err != nil {
 		return err
 	}
 	return nil
@@ -94,6 +96,13 @@ func (o *AccountingExpensesAllRequest) GetLimit() *int64 {
 		return nil
 	}
 	return o.Limit
+}
+
+func (o *AccountingExpensesAllRequest) GetFilter() *components.ExpensesFilter {
+	if o == nil {
+		return nil
+	}
+	return o.Filter
 }
 
 type AccountingExpensesAllResponse struct {

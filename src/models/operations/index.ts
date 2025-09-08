@@ -268,6 +268,8 @@ export * from "./smsmessagesall.js";
 export * from "./smsmessagesdelete.js";
 export * from "./smsmessagesone.js";
 export * from "./smsmessagesupdate.js";
+export * from "./vaultconnectionconsentsall.js";
+export * from "./vaultconnectionconsentupdate.js";
 export * from "./vaultconnectioncustommappingsall.js";
 export * from "./vaultconnectionsall.js";
 export * from "./vaultconnectionsdelete.js";

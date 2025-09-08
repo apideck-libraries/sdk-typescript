@@ -50,7 +50,7 @@ func (a AtsApplicationsAllRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (a *AtsApplicationsAllRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, nil); err != nil {
 		return err
 	}
 	return nil

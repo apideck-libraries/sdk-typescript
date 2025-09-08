@@ -33,7 +33,7 @@ func (d Drive) MarshalJSON() ([]byte, error) {
 }
 
 func (d *Drive) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &d, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &d, "", false, []string{"id", "name"}); err != nil {
 		return err
 	}
 	return nil

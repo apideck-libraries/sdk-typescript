@@ -55,7 +55,7 @@ func (f FileStorageFilesSearchRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (f *FileStorageFilesSearchRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &f, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &f, "", false, []string{"FilesSearch"}); err != nil {
 		return err
 	}
 	return nil

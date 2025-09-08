@@ -47,7 +47,7 @@ func (h HrisCompaniesUpdateRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (h *HrisCompaniesUpdateRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &h, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &h, "", false, []string{"id", "HrisCompany"}); err != nil {
 		return err
 	}
 	return nil

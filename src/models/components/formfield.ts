@@ -29,6 +29,7 @@ export const FormFieldType = {
   Date: "date",
   Time: "time",
   Number: "number",
+  Password: "password",
 } as const;
 export type FormFieldType = ClosedEnum<typeof FormFieldType>;
 

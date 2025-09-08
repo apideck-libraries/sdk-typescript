@@ -3,6 +3,8 @@
  */
 
 import { ClientSDK } from "../lib/sdks.js";
+import { ConnectionConsent } from "./connectionconsent.js";
+import { ConnectionConsents } from "./connectionconsents.js";
 import { ConnectionCustomMappings } from "./connectioncustommappings.js";
 import { Connections } from "./connections.js";
 import { ConnectionSettings } from "./connectionsettings.js";
@@ -36,6 +38,16 @@ export class Vault extends ClientSDK {
   private _validateConnection?: ValidateConnection;
   get validateConnection(): ValidateConnection {
     return (this._validateConnection ??= new ValidateConnection(this._options));
+  }
+
+  private _connectionConsents?: ConnectionConsents;
+  get connectionConsents(): ConnectionConsents {
+    return (this._connectionConsents ??= new ConnectionConsents(this._options));
+  }
+
+  private _connectionConsent?: ConnectionConsent;
+  get connectionConsent(): ConnectionConsent {
+    return (this._connectionConsent ??= new ConnectionConsent(this._options));
   }
 
   private _createCallback?: CreateCallback;

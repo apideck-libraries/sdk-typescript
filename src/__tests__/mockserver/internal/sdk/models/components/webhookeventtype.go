@@ -24,8 +24,8 @@ const (
 	WebhookEventTypeCrmLeadUpdated                    WebhookEventType = "crm.lead.updated"
 	WebhookEventTypeCrmLeadDeleted                    WebhookEventType = "crm.lead.deleted"
 	WebhookEventTypeCrmNoteCreated                    WebhookEventType = "crm.note.created"
-	WebhookEventTypeCrmNotesUpdated                   WebhookEventType = "crm.notes.updated"
-	WebhookEventTypeCrmNotesDeleted                   WebhookEventType = "crm.notes.deleted"
+	WebhookEventTypeCrmNoteUpdated                    WebhookEventType = "crm.note.updated"
+	WebhookEventTypeCrmNoteDeleted                    WebhookEventType = "crm.note.deleted"
 	WebhookEventTypeCrmOpportunityCreated             WebhookEventType = "crm.opportunity.created"
 	WebhookEventTypeCrmOpportunityUpdated             WebhookEventType = "crm.opportunity.updated"
 	WebhookEventTypeCrmOpportunityDeleted             WebhookEventType = "crm.opportunity.deleted"
@@ -170,9 +170,9 @@ func (e *WebhookEventType) UnmarshalJSON(data []byte) error {
 		fallthrough
 	case "crm.note.created":
 		fallthrough
-	case "crm.notes.updated":
+	case "crm.note.updated":
 		fallthrough
-	case "crm.notes.deleted":
+	case "crm.note.deleted":
 		fallthrough
 	case "crm.opportunity.created":
 		fallthrough

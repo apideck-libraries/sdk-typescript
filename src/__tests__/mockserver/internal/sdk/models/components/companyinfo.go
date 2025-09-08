@@ -94,6 +94,39 @@ func (e *TheStartMonthOfFiscalYear) UnmarshalJSON(data []byte) error {
 	}
 }
 
+// TrackingCategoriesMode - The mode of tracking categories for the company on transactions
+type TrackingCategoriesMode string
+
+const (
+	TrackingCategoriesModeTransaction TrackingCategoriesMode = "transaction"
+	TrackingCategoriesModeLine        TrackingCategoriesMode = "line"
+	TrackingCategoriesModeBoth        TrackingCategoriesMode = "both"
+	TrackingCategoriesModeDisabled    TrackingCategoriesMode = "disabled"
+)
+
+func (e TrackingCategoriesMode) ToPointer() *TrackingCategoriesMode {
+	return &e
+}
+func (e *TrackingCategoriesMode) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "transaction":
+		fallthrough
+	case "line":
+		fallthrough
+	case "both":
+		fallthrough
+	case "disabled":
+		*e = TrackingCategoriesMode(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for TrackingCategoriesMode: %v", v)
+	}
+}
+
 type CompanyInfo struct {
 	// A unique identifier for an object.
 	ID *string `json:"id,omitempty"`
@@ -126,6 +159,8 @@ type CompanyInfo struct {
 	CustomMappings map[string]any `json:"custom_mappings,omitempty"`
 	// Whether tracking categories are enabled for the company on transactions
 	TrackingCategoriesEnabled *bool `json:"tracking_categories_enabled,omitempty"`
+	// The mode of tracking categories for the company on transactions
+	TrackingCategoriesMode *TrackingCategoriesMode `json:"tracking_categories_mode,omitempty"`
 	// A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
 	RowVersion *string `json:"row_version,omitempty"`
 	// The user who last updated the object.
@@ -143,7 +178,7 @@ func (c CompanyInfo) MarshalJSON() ([]byte, error) {
 }
 
 func (c *CompanyInfo) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &c, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &c, "", false, nil); err != nil {
 		return err
 	}
 	return nil
@@ -273,6 +308,13 @@ func (o *CompanyInfo) GetTrackingCategoriesEnabled() *bool {
 		return nil
 	}
 	return o.TrackingCategoriesEnabled
+}
+
+func (o *CompanyInfo) GetTrackingCategoriesMode() *TrackingCategoriesMode {
+	if o == nil {
+		return nil
+	}
+	return o.TrackingCategoriesMode
 }
 
 func (o *CompanyInfo) GetRowVersion() *string {

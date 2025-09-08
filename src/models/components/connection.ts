@@ -19,6 +19,23 @@ import {
   ConnectionState$outboundSchema,
 } from "./connectionstate.js";
 import {
+  ConsentRecord,
+  ConsentRecord$inboundSchema,
+  ConsentRecord$Outbound,
+  ConsentRecord$outboundSchema,
+} from "./consentrecord.js";
+import {
+  ConsentRecordInput,
+  ConsentRecordInput$inboundSchema,
+  ConsentRecordInput$Outbound,
+  ConsentRecordInput$outboundSchema,
+} from "./consentrecordinput.js";
+import {
+  ConsentState,
+  ConsentState$inboundSchema,
+  ConsentState$outboundSchema,
+} from "./consentstate.js";
+import {
   CustomMapping,
   CustomMapping$inboundSchema,
   CustomMapping$Outbound,
@@ -30,6 +47,18 @@ import {
   CustomMappingInput$Outbound,
   CustomMappingInput$outboundSchema,
 } from "./custommappinginput.js";
+import {
+  DataScopes,
+  DataScopes$inboundSchema,
+  DataScopes$Outbound,
+  DataScopes$outboundSchema,
+} from "./datascopes.js";
+import {
+  DataScopesInput,
+  DataScopesInput$inboundSchema,
+  DataScopesInput$Outbound,
+  DataScopesInput$outboundSchema,
+} from "./datascopesinput.js";
 import {
   FormField,
   FormField$inboundSchema,
@@ -199,6 +228,16 @@ export type Connection = {
    * List of custom mappings configured for this connection
    */
   customMappings?: Array<CustomMapping> | undefined;
+  /**
+   * The current consent state of the connection
+   */
+  consentState?: ConsentState | undefined;
+  /**
+   * Immutable array of consent records for compliance and audit purposes
+   */
+  consents?: Array<ConsentRecord> | undefined;
+  latestConsent?: ConsentRecord | undefined;
+  applicationDataScopes?: DataScopes | undefined;
   updatedAt?: number | null | undefined;
 };
 
@@ -237,6 +276,12 @@ export type ConnectionInput = {
    * List of custom mappings configured for this connection
    */
   customMappings?: Array<CustomMappingInput> | undefined;
+  /**
+   * The current consent state of the connection
+   */
+  consentState?: ConsentState | undefined;
+  latestConsent?: ConsentRecordInput | undefined;
+  applicationDataScopes?: DataScopesInput | undefined;
 };
 
 /** @internal */
@@ -556,6 +601,10 @@ export const Connection$inboundSchema: z.ZodType<
   has_guide: z.boolean().optional(),
   created_at: z.number().optional(),
   custom_mappings: z.array(CustomMapping$inboundSchema).optional(),
+  consent_state: ConsentState$inboundSchema.optional(),
+  consents: z.array(ConsentRecord$inboundSchema).optional(),
+  latest_consent: ConsentRecord$inboundSchema.optional(),
+  application_data_scopes: DataScopes$inboundSchema.optional(),
   updated_at: z.nullable(z.number()).optional(),
 }).transform((v) => {
   return remap$(v, {
@@ -577,6 +626,9 @@ export const Connection$inboundSchema: z.ZodType<
     "has_guide": "hasGuide",
     "created_at": "createdAt",
     "custom_mappings": "customMappings",
+    "consent_state": "consentState",
+    "latest_consent": "latestConsent",
+    "application_data_scopes": "applicationDataScopes",
     "updated_at": "updatedAt",
   });
 });
@@ -613,6 +665,10 @@ export type Connection$Outbound = {
   has_guide?: boolean | undefined;
   created_at?: number | undefined;
   custom_mappings?: Array<CustomMapping$Outbound> | undefined;
+  consent_state?: string | undefined;
+  consents?: Array<ConsentRecord$Outbound> | undefined;
+  latest_consent?: ConsentRecord$Outbound | undefined;
+  application_data_scopes?: DataScopes$Outbound | undefined;
   updated_at?: number | null | undefined;
 };
 
@@ -652,6 +708,10 @@ export const Connection$outboundSchema: z.ZodType<
   hasGuide: z.boolean().optional(),
   createdAt: z.number().optional(),
   customMappings: z.array(CustomMapping$outboundSchema).optional(),
+  consentState: ConsentState$outboundSchema.optional(),
+  consents: z.array(ConsentRecord$outboundSchema).optional(),
+  latestConsent: ConsentRecord$outboundSchema.optional(),
+  applicationDataScopes: DataScopes$outboundSchema.optional(),
   updatedAt: z.nullable(z.number()).optional(),
 }).transform((v) => {
   return remap$(v, {
@@ -673,6 +733,9 @@ export const Connection$outboundSchema: z.ZodType<
     hasGuide: "has_guide",
     createdAt: "created_at",
     customMappings: "custom_mappings",
+    consentState: "consent_state",
+    latestConsent: "latest_consent",
+    applicationDataScopes: "application_data_scopes",
     updatedAt: "updated_at",
   });
 });
@@ -851,9 +914,15 @@ export const ConnectionInput$inboundSchema: z.ZodType<
   configuration: z.array(z.lazy(() => ConnectionConfiguration$inboundSchema))
     .optional(),
   custom_mappings: z.array(CustomMappingInput$inboundSchema).optional(),
+  consent_state: ConsentState$inboundSchema.optional(),
+  latest_consent: ConsentRecordInput$inboundSchema.optional(),
+  application_data_scopes: DataScopesInput$inboundSchema.optional(),
 }).transform((v) => {
   return remap$(v, {
     "custom_mappings": "customMappings",
+    "consent_state": "consentState",
+    "latest_consent": "latestConsent",
+    "application_data_scopes": "applicationDataScopes",
   });
 });
 
@@ -864,6 +933,9 @@ export type ConnectionInput$Outbound = {
   metadata?: { [k: string]: any } | null | undefined;
   configuration?: Array<ConnectionConfiguration$Outbound> | undefined;
   custom_mappings?: Array<CustomMappingInput$Outbound> | undefined;
+  consent_state?: string | undefined;
+  latest_consent?: ConsentRecordInput$Outbound | undefined;
+  application_data_scopes?: DataScopesInput$Outbound | undefined;
 };
 
 /** @internal */
@@ -878,9 +950,15 @@ export const ConnectionInput$outboundSchema: z.ZodType<
   configuration: z.array(z.lazy(() => ConnectionConfiguration$outboundSchema))
     .optional(),
   customMappings: z.array(CustomMappingInput$outboundSchema).optional(),
+  consentState: ConsentState$outboundSchema.optional(),
+  latestConsent: ConsentRecordInput$outboundSchema.optional(),
+  applicationDataScopes: DataScopesInput$outboundSchema.optional(),
 }).transform((v) => {
   return remap$(v, {
     customMappings: "custom_mappings",
+    consentState: "consent_state",
+    latestConsent: "latest_consent",
+    applicationDataScopes: "application_data_scopes",
   });
 });
 

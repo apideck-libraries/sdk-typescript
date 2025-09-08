@@ -30,6 +30,10 @@ const apideck = new Apideck({
 async function run() {
   const result = await apideck.accounting.expenses.list({
     serviceId: "salesforce",
+    filter: {
+      updatedSince: new Date("2020-09-30T07:43:32.000Z"),
+      status: "draft",
+    },
   });
 
   for await (const page of result) {
@@ -59,6 +63,10 @@ const apideck = new ApideckCore({
 async function run() {
   const res = await accountingExpensesList(apideck, {
     serviceId: "salesforce",
+    filter: {
+      updatedSince: new Date("2020-09-30T07:43:32.000Z"),
+      status: "draft",
+    },
   });
   if (res.ok) {
     const { value: result } = res;

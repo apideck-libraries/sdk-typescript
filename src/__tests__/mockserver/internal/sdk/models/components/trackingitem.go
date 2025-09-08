@@ -24,7 +24,7 @@ func (t TrackingItem) MarshalJSON() ([]byte, error) {
 }
 
 func (t *TrackingItem) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &t, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &t, "", false, []string{"provider", "number"}); err != nil {
 		return err
 	}
 	return nil

@@ -58,7 +58,7 @@ func (i IssueTrackingCollectionTicketsAllRequest) MarshalJSON() ([]byte, error) 
 }
 
 func (i *IssueTrackingCollectionTicketsAllRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &i, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &i, "", false, []string{"collection_id"}); err != nil {
 		return err
 	}
 	return nil

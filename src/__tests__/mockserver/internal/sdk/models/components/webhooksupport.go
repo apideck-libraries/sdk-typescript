@@ -155,11 +155,11 @@ func (o *RequestRate) GetUnit() Unit {
 	return o.Unit
 }
 
-type Resources struct {
+type WebhookSupportResources struct {
 	Events []string `json:"events,omitempty"`
 }
 
-func (o *Resources) GetEvents() []string {
+func (o *WebhookSupportResources) GetEvents() []string {
 	if o == nil {
 		return nil
 	}
@@ -171,7 +171,7 @@ type VirtualWebhooks struct {
 	// The rate at which requests for resources will be made to downstream.
 	RequestRate RequestRate `json:"request_rate"`
 	// The resources that will be requested from downstream.
-	Resources map[string]Resources `json:"resources,omitempty"`
+	Resources map[string]WebhookSupportResources `json:"resources,omitempty"`
 }
 
 func (o *VirtualWebhooks) GetRequestRate() RequestRate {
@@ -181,7 +181,7 @@ func (o *VirtualWebhooks) GetRequestRate() RequestRate {
 	return o.RequestRate
 }
 
-func (o *VirtualWebhooks) GetResources() map[string]Resources {
+func (o *VirtualWebhooks) GetResources() map[string]WebhookSupportResources {
 	if o == nil {
 		return nil
 	}

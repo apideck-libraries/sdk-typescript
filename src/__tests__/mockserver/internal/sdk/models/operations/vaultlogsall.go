@@ -46,7 +46,7 @@ func (v VaultLogsAllRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (v *VaultLogsAllRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &v, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &v, "", false, nil); err != nil {
 		return err
 	}
 	return nil

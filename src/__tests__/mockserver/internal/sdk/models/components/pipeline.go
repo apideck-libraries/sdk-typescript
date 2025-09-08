@@ -85,7 +85,7 @@ func (p Pipeline) MarshalJSON() ([]byte, error) {
 }
 
 func (p *Pipeline) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &p, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &p, "", false, []string{"name"}); err != nil {
 		return err
 	}
 	return nil

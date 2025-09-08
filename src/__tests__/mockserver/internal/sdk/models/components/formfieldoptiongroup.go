@@ -5,6 +5,7 @@ package components
 import (
 	"encoding/json"
 	"fmt"
+	"mockserver/internal/sdk/utils"
 )
 
 type FormFieldOptionGroupOptionType string
@@ -35,6 +36,17 @@ type FormFieldOptionGroup struct {
 	Label      string                         `json:"label"`
 	Options    []SimpleFormFieldOption        `json:"options"`
 	OptionType FormFieldOptionGroupOptionType `json:"option_type"`
+}
+
+func (f FormFieldOptionGroup) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(f, "", false)
+}
+
+func (f *FormFieldOptionGroup) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &f, "", false, []string{"label", "options", "option_type"}); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *FormFieldOptionGroup) GetID() *string {

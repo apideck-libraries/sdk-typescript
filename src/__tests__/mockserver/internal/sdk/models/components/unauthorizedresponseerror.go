@@ -44,14 +44,14 @@ func CreateUnauthorizedResponseDetailMapOfAny(mapOfAny map[string]any) Unauthori
 func (u *UnauthorizedResponseDetail) UnmarshalJSON(data []byte) error {
 
 	var str string = ""
-	if err := utils.UnmarshalJSON(data, &str, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &str, "", true, nil); err == nil {
 		u.Str = &str
 		u.Type = UnauthorizedResponseDetailTypeStr
 		return nil
 	}
 
 	var mapOfAny map[string]any = map[string]any{}
-	if err := utils.UnmarshalJSON(data, &mapOfAny, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &mapOfAny, "", true, nil); err == nil {
 		u.MapOfAny = mapOfAny
 		u.Type = UnauthorizedResponseDetailTypeMapOfAny
 		return nil

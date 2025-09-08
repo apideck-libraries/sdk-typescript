@@ -50,7 +50,7 @@ func (i IssueTrackingCollectionUsersOneRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (i *IssueTrackingCollectionUsersOneRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &i, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &i, "", false, []string{"collection_id", "id"}); err != nil {
 		return err
 	}
 	return nil

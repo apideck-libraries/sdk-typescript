@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 7bffa198-5d29-4efa-9942-d549cc832085
 management:
-  docChecksum: 7a914b0b2af437b34e915b6e6c6d1834
-  docVersion: 10.20.11
-  speakeasyVersion: 1.606.4
-  generationVersion: 2.687.1
-  releaseVersion: 0.29.7
-  configChecksum: fbf0b04e09a12883713f32ede952ac0e
+  docChecksum: a66063e3c32337bb9f66b137be728988
+  docVersion: 10.20.13
+  speakeasyVersion: 1.611.1
+  generationVersion: 2.694.1
+  releaseVersion: 0.29.8
+  configChecksum: 0c3440055984a95250996ce025be44e5
   repoURL: https://github.com/apideck-libraries/sdk-typescript.git
   installationURL: https://github.com/apideck-libraries/sdk-typescript
   published: true
@@ -15,7 +15,7 @@ features:
     acceptHeaders: 2.81.2
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.12
-    core: 3.21.20
+    core: 3.21.22
     deepObjectParams: 0.1.0
     defaultEnabledRetries: 0.1.0
     deprecations: 2.81.1
@@ -181,6 +181,9 @@ generatedFiles:
   - docs/models/components/connectorsettingtype.md
   - docs/models/components/connectorsfilter.md
   - docs/models/components/connectorstatus.md
+  - docs/models/components/consentrecord.md
+  - docs/models/components/consentrecordinput.md
+  - docs/models/components/consentstate.md
   - docs/models/components/consumer.md
   - docs/models/components/consumerconnection.md
   - docs/models/components/consumermetadata.md
@@ -284,6 +287,11 @@ generatedFiles:
   - docs/models/components/customobjectschemaoptions.md
   - docs/models/components/customobjectschematype.md
   - docs/models/components/data.md
+  - docs/models/components/datascopes.md
+  - docs/models/components/datascopesinput.md
+  - docs/models/components/datascopesresources.md
+  - docs/models/components/datascopesresources1.md
+  - docs/models/components/datascopesresources2.md
   - docs/models/components/deduction.md
   - docs/models/components/defaults.md
   - docs/models/components/deleteaccountingdepartmentresponse.md
@@ -397,6 +405,9 @@ generatedFiles:
   - docs/models/components/expenselineiteminput.md
   - docs/models/components/expensepaymenttype.md
   - docs/models/components/expenses.md
+  - docs/models/components/expensesfilter.md
+  - docs/models/components/expensesfilterstatus.md
+  - docs/models/components/expensestatus.md
   - docs/models/components/expensetype.md
   - docs/models/components/extendpaths.md
   - docs/models/components/feedstatus.md
@@ -461,6 +472,7 @@ generatedFiles:
   - docs/models/components/getconnectorresourceresponse.md
   - docs/models/components/getconnectorresponse.md
   - docs/models/components/getconnectorsresponse.md
+  - docs/models/components/getconsentrecordsresponse.md
   - docs/models/components/getconsumerresponse.md
   - docs/models/components/getconsumersresponse.md
   - docs/models/components/getcontactresponse.md
@@ -585,6 +597,7 @@ generatedFiles:
   - docs/models/components/jobstatus.md
   - docs/models/components/jobtype.md
   - docs/models/components/journalentriesfilter.md
+  - docs/models/components/journalentriesfilterstatus.md
   - docs/models/components/journalentriessort.md
   - docs/models/components/journalentriessortby.md
   - docs/models/components/journalentry.md
@@ -647,6 +660,7 @@ generatedFiles:
   - docs/models/components/oauthgranttype.md
   - docs/models/components/oauthscopes.md
   - docs/models/components/oddweeks.md
+  - docs/models/components/one.md
   - docs/models/components/operation.md
   - docs/models/components/opportunitiesfilter.md
   - docs/models/components/opportunitiessort.md
@@ -776,6 +790,7 @@ generatedFiles:
   - docs/models/components/timeoffrequeststatus.md
   - docs/models/components/timeoffrequeststatusstatus.md
   - docs/models/components/tlssupport.md
+  - docs/models/components/trackingcategoriesmode.md
   - docs/models/components/trackingcategory.md
   - docs/models/components/trackingcategoryinput.md
   - docs/models/components/trackingcategorystatus.md
@@ -783,6 +798,7 @@ generatedFiles:
   - docs/models/components/trackingitem.md
   - docs/models/components/transactions.md
   - docs/models/components/transactiontype.md
+  - docs/models/components/two.md
   - docs/models/components/type.md
   - docs/models/components/uncategorizedaccounts.md
   - docs/models/components/unexpectederrorresponse.md
@@ -805,6 +821,9 @@ generatedFiles:
   - docs/models/components/updatecommentresponse.md
   - docs/models/components/updatecompanyresponse.md
   - docs/models/components/updateconnectionresponse.md
+  - docs/models/components/updateconsentrequest.md
+  - docs/models/components/updateconsentrequestresources.md
+  - docs/models/components/updateconsentresponse.md
   - docs/models/components/updateconsumerrequest.md
   - docs/models/components/updateconsumerresponse.md
   - docs/models/components/updatecontactresponse.md
@@ -1676,6 +1695,12 @@ generatedFiles:
   - docs/models/operations/smsmessagesupdateglobals.md
   - docs/models/operations/smsmessagesupdaterequest.md
   - docs/models/operations/smsmessagesupdateresponse.md
+  - docs/models/operations/vaultconnectionconsentsallglobals.md
+  - docs/models/operations/vaultconnectionconsentsallrequest.md
+  - docs/models/operations/vaultconnectionconsentsallresponse.md
+  - docs/models/operations/vaultconnectionconsentupdateglobals.md
+  - docs/models/operations/vaultconnectionconsentupdaterequest.md
+  - docs/models/operations/vaultconnectionconsentupdateresponse.md
   - docs/models/operations/vaultconnectioncustommappingsallglobals.md
   - docs/models/operations/vaultconnectioncustommappingsallrequest.md
   - docs/models/operations/vaultconnectioncustommappingsallresponse.md
@@ -1787,6 +1812,8 @@ generatedFiles:
   - docs/sdks/collectionusers/README.md
   - docs/sdks/companies/README.md
   - docs/sdks/companyinfo/README.md
+  - docs/sdks/connectionconsent/README.md
+  - docs/sdks/connectionconsents/README.md
   - docs/sdks/connectioncustommappings/README.md
   - docs/sdks/connections/README.md
   - docs/sdks/connectionsettings/README.md
@@ -1886,6 +1913,8 @@ generatedFiles:
   - src/__tests__/collectionusers.test.ts
   - src/__tests__/companies.test.ts
   - src/__tests__/companyinfo.test.ts
+  - src/__tests__/connectionconsent.test.ts
+  - src/__tests__/connectionconsents.test.ts
   - src/__tests__/connectioncustommappings.test.ts
   - src/__tests__/connections.test.ts
   - src/__tests__/connectionsettings.test.ts
@@ -2111,6 +2140,7 @@ generatedFiles:
   - src/__tests__/mockserver/internal/handler/pathgetsmsmessagesid.go
   - src/__tests__/mockserver/internal/handler/pathgetvaultconnections.go
   - src/__tests__/mockserver/internal/handler/pathgetvaultconnectionsunifiedapiserviceid.go
+  - src/__tests__/mockserver/internal/handler/pathgetvaultconnectionsunifiedapiserviceidconsent.go
   - src/__tests__/mockserver/internal/handler/pathgetvaultconnectionsunifiedapiserviceidresourceconfig.go
   - src/__tests__/mockserver/internal/handler/pathgetvaultconnectionsunifiedapiserviceidresourcecustomfields.go
   - src/__tests__/mockserver/internal/handler/pathgetvaultconnectionsunifiedapiserviceidresourcecustommappings.go
@@ -2167,6 +2197,7 @@ generatedFiles:
   - src/__tests__/mockserver/internal/handler/pathpatchissuetrackingcollectionscollectionidticketsticketidcommentsid.go
   - src/__tests__/mockserver/internal/handler/pathpatchsmsmessagesid.go
   - src/__tests__/mockserver/internal/handler/pathpatchvaultconnectionsunifiedapiserviceid.go
+  - src/__tests__/mockserver/internal/handler/pathpatchvaultconnectionsunifiedapiserviceidconsent.go
   - src/__tests__/mockserver/internal/handler/pathpatchvaultconnectionsunifiedapiserviceidresourceconfig.go
   - src/__tests__/mockserver/internal/handler/pathpatchvaultconsumersconsumerid.go
   - src/__tests__/mockserver/internal/handler/pathpatchwebhookwebhooksid.go
@@ -2300,6 +2331,9 @@ generatedFiles:
   - src/__tests__/mockserver/internal/sdk/models/components/connectorsetting.go
   - src/__tests__/mockserver/internal/sdk/models/components/connectorsfilter.go
   - src/__tests__/mockserver/internal/sdk/models/components/connectorstatus.go
+  - src/__tests__/mockserver/internal/sdk/models/components/consentrecord.go
+  - src/__tests__/mockserver/internal/sdk/models/components/consentrecordinput.go
+  - src/__tests__/mockserver/internal/sdk/models/components/consentstate.go
   - src/__tests__/mockserver/internal/sdk/models/components/consumer.go
   - src/__tests__/mockserver/internal/sdk/models/components/consumerconnection.go
   - src/__tests__/mockserver/internal/sdk/models/components/consumermetadata.go
@@ -2377,6 +2411,9 @@ generatedFiles:
   - src/__tests__/mockserver/internal/sdk/models/components/custommappinginput.go
   - src/__tests__/mockserver/internal/sdk/models/components/customobject.go
   - src/__tests__/mockserver/internal/sdk/models/components/customobjectschema.go
+  - src/__tests__/mockserver/internal/sdk/models/components/datascopes.go
+  - src/__tests__/mockserver/internal/sdk/models/components/datascopesinput.go
+  - src/__tests__/mockserver/internal/sdk/models/components/datascopesresourcesunion.go
   - src/__tests__/mockserver/internal/sdk/models/components/deduction.go
   - src/__tests__/mockserver/internal/sdk/models/components/deleteaccountingdepartmentresponse.go
   - src/__tests__/mockserver/internal/sdk/models/components/deleteaccountinglocationresponse.go
@@ -2461,6 +2498,7 @@ generatedFiles:
   - src/__tests__/mockserver/internal/sdk/models/components/expense.go
   - src/__tests__/mockserver/internal/sdk/models/components/expenselineitem.go
   - src/__tests__/mockserver/internal/sdk/models/components/expenselineiteminput.go
+  - src/__tests__/mockserver/internal/sdk/models/components/expensesfilter.go
   - src/__tests__/mockserver/internal/sdk/models/components/filesfilter.go
   - src/__tests__/mockserver/internal/sdk/models/components/filessearch.go
   - src/__tests__/mockserver/internal/sdk/models/components/filessort.go
@@ -2514,6 +2552,7 @@ generatedFiles:
   - src/__tests__/mockserver/internal/sdk/models/components/getconnectorresourceresponse.go
   - src/__tests__/mockserver/internal/sdk/models/components/getconnectorresponse.go
   - src/__tests__/mockserver/internal/sdk/models/components/getconnectorsresponse.go
+  - src/__tests__/mockserver/internal/sdk/models/components/getconsentrecordsresponse.go
   - src/__tests__/mockserver/internal/sdk/models/components/getconsumerresponse.go
   - src/__tests__/mockserver/internal/sdk/models/components/getconsumersresponse.go
   - src/__tests__/mockserver/internal/sdk/models/components/getcontactresponse.go
@@ -2742,6 +2781,8 @@ generatedFiles:
   - src/__tests__/mockserver/internal/sdk/models/components/updatecommentresponse.go
   - src/__tests__/mockserver/internal/sdk/models/components/updatecompanyresponse.go
   - src/__tests__/mockserver/internal/sdk/models/components/updateconnectionresponse.go
+  - src/__tests__/mockserver/internal/sdk/models/components/updateconsentrequest.go
+  - src/__tests__/mockserver/internal/sdk/models/components/updateconsentresponse.go
   - src/__tests__/mockserver/internal/sdk/models/components/updateconsumerrequest.go
   - src/__tests__/mockserver/internal/sdk/models/components/updateconsumerresponse.go
   - src/__tests__/mockserver/internal/sdk/models/components/updatecontactresponse.go
@@ -3059,6 +3100,8 @@ generatedFiles:
   - src/__tests__/mockserver/internal/sdk/models/operations/smsmessagesdelete.go
   - src/__tests__/mockserver/internal/sdk/models/operations/smsmessagesone.go
   - src/__tests__/mockserver/internal/sdk/models/operations/smsmessagesupdate.go
+  - src/__tests__/mockserver/internal/sdk/models/operations/vaultconnectionconsentsall.go
+  - src/__tests__/mockserver/internal/sdk/models/operations/vaultconnectionconsentupdate.go
   - src/__tests__/mockserver/internal/sdk/models/operations/vaultconnectioncustommappingsall.go
   - src/__tests__/mockserver/internal/sdk/models/operations/vaultconnectionsall.go
   - src/__tests__/mockserver/internal/sdk/models/operations/vaultconnectionsdelete.go
@@ -3400,6 +3443,8 @@ generatedFiles:
   - src/funcs/smsMessagesGet.ts
   - src/funcs/smsMessagesList.ts
   - src/funcs/smsMessagesUpdate.ts
+  - src/funcs/vaultConnectionConsentUpdate.ts
+  - src/funcs/vaultConnectionConsentsList.ts
   - src/funcs/vaultConnectionCustomMappingsList.ts
   - src/funcs/vaultConnectionSettingsList.ts
   - src/funcs/vaultConnectionSettingsUpdate.ts
@@ -3513,6 +3558,9 @@ generatedFiles:
   - src/models/components/connectorsetting.ts
   - src/models/components/connectorsfilter.ts
   - src/models/components/connectorstatus.ts
+  - src/models/components/consentrecord.ts
+  - src/models/components/consentrecordinput.ts
+  - src/models/components/consentstate.ts
   - src/models/components/consumer.ts
   - src/models/components/consumerconnection.ts
   - src/models/components/consumermetadata.ts
@@ -3590,6 +3638,9 @@ generatedFiles:
   - src/models/components/custommappinginput.ts
   - src/models/components/customobject.ts
   - src/models/components/customobjectschema.ts
+  - src/models/components/datascopes.ts
+  - src/models/components/datascopesinput.ts
+  - src/models/components/datascopesresources.ts
   - src/models/components/deduction.ts
   - src/models/components/deleteaccountingdepartmentresponse.ts
   - src/models/components/deleteaccountinglocationresponse.ts
@@ -3674,6 +3725,7 @@ generatedFiles:
   - src/models/components/expense.ts
   - src/models/components/expenselineitem.ts
   - src/models/components/expenselineiteminput.ts
+  - src/models/components/expensesfilter.ts
   - src/models/components/filesfilter.ts
   - src/models/components/filessearch.ts
   - src/models/components/filessort.ts
@@ -3727,6 +3779,7 @@ generatedFiles:
   - src/models/components/getconnectorresourceresponse.ts
   - src/models/components/getconnectorresponse.ts
   - src/models/components/getconnectorsresponse.ts
+  - src/models/components/getconsentrecordsresponse.ts
   - src/models/components/getconsumerresponse.ts
   - src/models/components/getconsumersresponse.ts
   - src/models/components/getcontactresponse.ts
@@ -3953,6 +4006,8 @@ generatedFiles:
   - src/models/components/updatecommentresponse.ts
   - src/models/components/updatecompanyresponse.ts
   - src/models/components/updateconnectionresponse.ts
+  - src/models/components/updateconsentrequest.ts
+  - src/models/components/updateconsentresponse.ts
   - src/models/components/updateconsumerrequest.ts
   - src/models/components/updateconsumerresponse.ts
   - src/models/components/updatecontactresponse.ts
@@ -4282,6 +4337,8 @@ generatedFiles:
   - src/models/operations/smsmessagesdelete.ts
   - src/models/operations/smsmessagesone.ts
   - src/models/operations/smsmessagesupdate.ts
+  - src/models/operations/vaultconnectionconsentsall.ts
+  - src/models/operations/vaultconnectionconsentupdate.ts
   - src/models/operations/vaultconnectioncustommappingsall.ts
   - src/models/operations/vaultconnectionsall.ts
   - src/models/operations/vaultconnectionsdelete.ts
@@ -4336,6 +4393,8 @@ generatedFiles:
   - src/sdk/collectionusers.ts
   - src/sdk/companies.ts
   - src/sdk/companyinfo.ts
+  - src/sdk/connectionconsent.ts
+  - src/sdk/connectionconsents.ts
   - src/sdk/connectioncustommappings.ts
   - src/sdk/connections.ts
   - src/sdk/connectionsettings.ts
@@ -6854,7 +6913,7 @@ examples:
           x-apideck-service-id: "salesforce"
       responses:
         "200":
-          application/json: {"status_code": 200, "status": "OK", "service": "xero", "resource": "company-info", "operation": "one", "data": {"id": "12345", "company_name": "SpaceX", "status": "active", "legal_name": "SpaceX Inc.", "country": "US", "sales_tax_number": "111.222.333", "default_sales_tax": {"id": "1234", "name": "GST on Purchases", "code": "ABN", "description": "Reduced rate GST Purchases", "effective_tax_rate": 10, "total_tax_rate": 10, "tax_payable_account_id": "123456", "tax_remitted_account_id": "123456", "components": [{"id": "10", "name": "GST", "rate": 10, "compound": true}], "type": "NONE", "report_tax_type": "NONE", "original_tax_rate_id": "12345", "status": "active", "row_version": "1-12345", "updated_by": "12345", "created_by": "12345", "updated_at": "2020-09-30T07:43:32.000Z", "created_at": "2020-09-30T07:43:32.000Z", "pass_through": [{"service_id": "<id>", "extend_paths": [{"path": "$.nested.property", "value": {"TaxClassificationRef": {"value": "EUC-99990201-V1-00020000"}}}]}], "custom_fields": [{"id": "2389328923893298", "name": "employee_level", "description": "Employee Level", "value": "Uses Salesforce and Marketo"}]}, "currency": "USD", "language": "EN", "fiscal_year_start_month": "January", "company_start_date": "2015-06-05", "addresses": [{"id": "123", "type": "primary", "string": "25 Spring Street, Blackburn, VIC 3130", "name": "HQ US", "line1": "Main street", "line2": "apt #", "line3": "Suite #", "line4": "delivery instructions", "street_number": "25", "city": "San Francisco", "state": "CA", "postal_code": "94104", "country": "US", "latitude": "40.759211", "longitude": "-73.984638", "county": "Santa Clara", "contact_name": "Elon Musk", "salutation": "Mr", "phone_number": "111-111-1111", "fax": "122-111-1111", "email": "elon@musk.com", "website": "https://elonmusk.com", "notes": "Address notes or delivery instructions.", "row_version": "1-12345"}], "phone_numbers": [{"id": "12345", "country_code": "1", "area_code": "323", "number": "111-111-1111", "extension": "105", "type": "primary"}], "emails": [{"id": "123", "email": "elon@musk.com", "type": "primary"}], "row_version": "1-12345", "updated_by": "12345", "created_by": "12345", "updated_at": "2020-09-30T07:43:32.000Z", "created_at": "2020-09-30T07:43:32.000Z"}}
+          application/json: {"status_code": 200, "status": "OK", "service": "xero", "resource": "company-info", "operation": "one", "data": {"id": "12345", "company_name": "SpaceX", "status": "active", "legal_name": "SpaceX Inc.", "country": "US", "sales_tax_number": "111.222.333", "default_sales_tax": {"id": "1234", "name": "GST on Purchases", "code": "ABN", "description": "Reduced rate GST Purchases", "effective_tax_rate": 10, "total_tax_rate": 10, "tax_payable_account_id": "123456", "tax_remitted_account_id": "123456", "components": [{"id": "10", "name": "GST", "rate": 10, "compound": true}], "type": "NONE", "report_tax_type": "NONE", "original_tax_rate_id": "12345", "status": "active", "row_version": "1-12345", "updated_by": "12345", "created_by": "12345", "updated_at": "2020-09-30T07:43:32.000Z", "created_at": "2020-09-30T07:43:32.000Z", "pass_through": [{"service_id": "<id>", "extend_paths": [{"path": "$.nested.property", "value": {"TaxClassificationRef": {"value": "EUC-99990201-V1-00020000"}}}]}], "custom_fields": [{"id": "2389328923893298", "name": "employee_level", "description": "Employee Level", "value": "Uses Salesforce and Marketo"}]}, "currency": "USD", "language": "EN", "fiscal_year_start_month": "January", "company_start_date": "2015-06-05", "addresses": [{"id": "123", "type": "primary", "string": "25 Spring Street, Blackburn, VIC 3130", "name": "HQ US", "line1": "Main street", "line2": "apt #", "line3": "Suite #", "line4": "delivery instructions", "street_number": "25", "city": "San Francisco", "state": "CA", "postal_code": "94104", "country": "US", "latitude": "40.759211", "longitude": "-73.984638", "county": "Santa Clara", "contact_name": "Elon Musk", "salutation": "Mr", "phone_number": "111-111-1111", "fax": "122-111-1111", "email": "elon@musk.com", "website": "https://elonmusk.com", "notes": "Address notes or delivery instructions.", "row_version": "1-12345"}], "phone_numbers": [{"id": "12345", "country_code": "1", "area_code": "323", "number": "111-111-1111", "extension": "105", "type": "primary"}], "emails": [{"id": "123", "email": "elon@musk.com", "type": "primary"}], "tracking_categories_mode": "disabled", "row_version": "1-12345", "updated_by": "12345", "created_by": "12345", "updated_at": "2020-09-30T07:43:32.000Z", "created_at": "2020-09-30T07:43:32.000Z"}}
         "400":
           application/json: {"status_code": 400, "error": "Bad Request", "type_name": "RequestValidationError", "message": "Invalid Params", "detail": "Missing property foobar", "ref": "https://developers.apideck.com/errors#requestvalidationerror"}
         "401":
@@ -7005,7 +7064,7 @@ examples:
         query:
           raw: false
           limit: 20
-          filter: {"updated_since": "2020-09-30T07:43:32.000Z"}
+          filter: {"updated_since": "2020-09-30T07:43:32.000Z", "status": "draft"}
           sort: {"by": "updated_at", "direction": "desc"}
           pass_through: {"search": "San Francisco"}
           fields: "id,updated_at"
@@ -8686,7 +8745,7 @@ examples:
           x-apideck-app-id: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
           x-apideck-service-id: "salesforce"
       requestBody:
-        application/json: {"parent_id": "12345", "name": "Department", "code": "100", "status": "active", "row_version": "1-12345", "pass_through": [{"service_id": "<id>", "extend_paths": [{"path": "$.nested.property", "value": {"TaxClassificationRef": {"value": "EUC-99990201-V1-00020000"}}}]}]}
+        application/json: {"parent_id": "12345", "parent_name": "Area", "name": "Department", "code": "100", "status": "active", "row_version": "1-12345", "pass_through": [{"service_id": "<id>", "extend_paths": [{"path": "$.nested.property", "value": {"TaxClassificationRef": {"value": "EUC-99990201-V1-00020000"}}}]}]}
       responses:
         "201":
           application/json: {"status_code": 200, "status": "OK", "service": "quickbooks", "resource": "tracking-categories", "operation": "add", "data": {"id": "12345"}}
@@ -8742,7 +8801,7 @@ examples:
           x-apideck-service-id: "salesforce"
       responses:
         "200":
-          application/json: {"status_code": 200, "status": "OK", "service": "xero", "resource": "tracking-categories", "operation": "one", "data": {"id": "12345", "parent_id": "12345", "name": "Department", "code": "100", "status": "active", "row_version": "1-12345", "updated_by": "12345", "created_by": "12345", "updated_at": "2020-09-30T07:43:32.000Z", "created_at": "2020-09-30T07:43:32.000Z", "pass_through": [{"service_id": "<id>", "extend_paths": [{"path": "$.nested.property", "value": {"TaxClassificationRef": {"value": "EUC-99990201-V1-00020000"}}}]}]}}
+          application/json: {"status_code": 200, "status": "OK", "service": "xero", "resource": "tracking-categories", "operation": "one", "data": {"id": "12345", "parent_id": "12345", "parent_name": "Area", "name": "Department", "code": "100", "status": "active", "row_version": "1-12345", "updated_by": "12345", "created_by": "12345", "updated_at": "2020-09-30T07:43:32.000Z", "created_at": "2020-09-30T07:43:32.000Z", "pass_through": [{"service_id": "<id>", "extend_paths": [{"path": "$.nested.property", "value": {"TaxClassificationRef": {"value": "EUC-99990201-V1-00020000"}}}]}]}}
         "400":
           application/json: {"status_code": 400, "error": "Bad Request", "type_name": "RequestValidationError", "message": "Invalid Params", "detail": "Missing property foobar", "ref": "https://developers.apideck.com/errors#requestvalidationerror"}
         "401":
@@ -8794,7 +8853,7 @@ examples:
           x-apideck-app-id: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
           x-apideck-service-id: "salesforce"
       requestBody:
-        application/json: {"parent_id": "12345", "name": "Department", "code": "100", "status": "active", "row_version": "1-12345", "pass_through": [{"service_id": "<id>", "extend_paths": [{"path": "$.nested.property", "value": {"TaxClassificationRef": {"value": "EUC-99990201-V1-00020000"}}}]}]}
+        application/json: {"parent_id": "12345", "parent_name": "Area", "name": "Department", "code": "100", "status": "active", "row_version": "1-12345", "pass_through": [{"service_id": "<id>", "extend_paths": [{"path": "$.nested.property", "value": {"TaxClassificationRef": {"value": "EUC-99990201-V1-00020000"}}}]}]}
       responses:
         "200":
           application/json: {"status_code": 200, "status": "OK", "service": "quickbooks", "resource": "tracking-categories", "operation": "update", "data": {"id": "12345"}}
@@ -9158,6 +9217,7 @@ examples:
         query:
           raw: false
           limit: 20
+          filter: {"updated_since": "2020-09-30T07:43:32.000Z", "status": "draft"}
         header:
           x-apideck-consumer-id: "test-consumer"
           x-apideck-app-id: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
@@ -9212,7 +9272,7 @@ examples:
           x-apideck-app-id: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
           x-apideck-service-id: "salesforce"
       requestBody:
-        application/json: {"number": "OIT00546", "transaction_date": "2021-05-01T12:00:00.000Z", "account_id": "123456", "customer_id": "12345", "supplier_id": "12345", "company_id": "12345", "department_id": "12345", "payment_type": "cash", "currency": "USD", "currency_rate": 0.69, "type": "expense", "memo": "For travel expenses incurred on 2024-05-15", "tax_rate": {"id": "123456", "rate": 10}, "total_amount": 275, "line_items": [], "reference": "INV-2024-001", "source_document_url": "https://www.invoicesolution.com/expense/123456", "custom_fields": [{"id": "2389328923893298", "name": "employee_level", "description": "Employee Level", "value": "Uses Salesforce and Marketo"}], "row_version": "1-12345", "pass_through": [{"service_id": "<id>", "extend_paths": [{"path": "$.nested.property", "value": {"TaxClassificationRef": {"value": "EUC-99990201-V1-00020000"}}}]}]}
+        application/json: {"number": "OIT00546", "transaction_date": "2021-05-01T12:00:00.000Z", "account_id": "123456", "customer_id": "12345", "supplier_id": "12345", "company_id": "12345", "department_id": "12345", "payment_type": "cash", "currency": "USD", "currency_rate": 0.69, "type": "expense", "memo": "For travel expenses incurred on 2024-05-15", "tax_rate": {"id": "123456", "rate": 10}, "total_amount": 275, "line_items": [], "reference": "INV-2024-001", "source_document_url": "https://www.invoicesolution.com/expense/123456", "custom_fields": [{"id": "2389328923893298", "name": "employee_level", "description": "Employee Level", "value": "Uses Salesforce and Marketo"}], "status": "draft", "row_version": "1-12345", "pass_through": [{"service_id": "<id>", "extend_paths": [{"path": "$.nested.property", "value": {"TaxClassificationRef": {"value": "EUC-99990201-V1-00020000"}}}]}]}
       responses:
         "201":
           application/json: {"status_code": 200, "status": "OK", "service": "quickbooks", "resource": "Expenses", "operation": "add", "data": {"id": "12345"}}
@@ -9266,7 +9326,7 @@ examples:
           x-apideck-service-id: "salesforce"
       responses:
         "200":
-          application/json: {"status_code": 200, "status": "OK", "service": "quickbooks", "resource": "Expenses", "operation": "one", "data": {"id": "12345", "number": "OIT00546", "transaction_date": "2021-05-01T12:00:00.000Z", "account_id": "123456", "customer_id": "12345", "supplier_id": "12345", "company_id": "12345", "department_id": "12345", "payment_type": "cash", "currency": "USD", "currency_rate": 0.69, "type": "expense", "memo": "For travel expenses incurred on 2024-05-15", "tax_rate": {"id": "123456", "code": "N-T", "name": "GST on Purchases", "rate": 10}, "total_amount": 275, "line_items": [{"id": "12345", "tracking_categories": [{"id": "123456", "name": "New York"}], "account_id": "123456", "customer_id": "12345", "department_id": "12345", "location_id": "12345", "subsidiary_id": "12345", "tax_rate": {"id": "123456", "code": "N-T", "name": "GST on Purchases", "rate": 10}, "description": "Travel US.", "total_amount": 275, "billable": true, "line_number": 1}], "reference": "INV-2024-001", "source_document_url": "https://www.invoicesolution.com/expense/123456", "custom_fields": [{"id": "2389328923893298", "name": "employee_level", "description": "Employee Level", "value": "Uses Salesforce and Marketo"}], "updated_at": "2020-09-30T07:43:32.000Z", "created_at": "2020-09-30T07:43:32.000Z", "row_version": "1-12345", "updated_by": "12345", "created_by": "12345", "pass_through": [{"service_id": "<id>", "extend_paths": [{"path": "$.nested.property", "value": {"TaxClassificationRef": {"value": "EUC-99990201-V1-00020000"}}}]}]}}
+          application/json: {"status_code": 200, "status": "OK", "service": "quickbooks", "resource": "Expenses", "operation": "one", "data": {"id": "12345", "number": "OIT00546", "transaction_date": "2021-05-01T12:00:00.000Z", "account_id": "123456", "customer_id": "12345", "supplier_id": "12345", "company_id": "12345", "department_id": "12345", "payment_type": "cash", "currency": "USD", "currency_rate": 0.69, "type": "expense", "memo": "For travel expenses incurred on 2024-05-15", "tax_rate": {"id": "123456", "code": "N-T", "name": "GST on Purchases", "rate": 10}, "total_amount": 275, "line_items": [{"id": "12345", "tracking_categories": [{"id": "123456", "name": "New York"}], "account_id": "123456", "customer_id": "12345", "department_id": "12345", "location_id": "12345", "subsidiary_id": "12345", "tax_rate": {"id": "123456", "code": "N-T", "name": "GST on Purchases", "rate": 10}, "description": "Travel US.", "total_amount": 275, "billable": true, "line_number": 1}], "reference": "INV-2024-001", "source_document_url": "https://www.invoicesolution.com/expense/123456", "custom_fields": [{"id": "2389328923893298", "name": "employee_level", "description": "Employee Level", "value": "Uses Salesforce and Marketo"}], "status": "draft", "updated_at": "2020-09-30T07:43:32.000Z", "created_at": "2020-09-30T07:43:32.000Z", "row_version": "1-12345", "updated_by": "12345", "created_by": "12345", "pass_through": [{"service_id": "<id>", "extend_paths": [{"path": "$.nested.property", "value": {"TaxClassificationRef": {"value": "EUC-99990201-V1-00020000"}}}]}]}}
         "400":
           application/json: {"status_code": 400, "error": "Bad Request", "type_name": "RequestValidationError", "message": "Invalid Params", "detail": "Missing property foobar", "ref": "https://developers.apideck.com/errors#requestvalidationerror"}
         "401":
@@ -9318,7 +9378,7 @@ examples:
           x-apideck-app-id: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
           x-apideck-service-id: "salesforce"
       requestBody:
-        application/json: {"number": "OIT00546", "transaction_date": "2021-05-01T12:00:00.000Z", "account_id": "123456", "customer_id": "12345", "supplier_id": "12345", "company_id": "12345", "department_id": "12345", "payment_type": "cash", "currency": "USD", "currency_rate": 0.69, "type": "expense", "memo": "For travel expenses incurred on 2024-05-15", "tax_rate": {"id": "123456", "rate": 10}, "total_amount": 275, "line_items": [], "reference": "INV-2024-001", "source_document_url": "https://www.invoicesolution.com/expense/123456", "custom_fields": [{"id": "2389328923893298", "name": "employee_level", "description": "Employee Level", "value": "Uses Salesforce and Marketo"}], "row_version": "1-12345", "pass_through": [{"service_id": "<id>", "extend_paths": [{"path": "$.nested.property", "value": {"TaxClassificationRef": {"value": "EUC-99990201-V1-00020000"}}}]}]}
+        application/json: {"number": "OIT00546", "transaction_date": "2021-05-01T12:00:00.000Z", "account_id": "123456", "customer_id": "12345", "supplier_id": "12345", "company_id": "12345", "department_id": "12345", "payment_type": "cash", "currency": "USD", "currency_rate": 0.69, "type": "expense", "memo": "For travel expenses incurred on 2024-05-15", "tax_rate": {"id": "123456", "rate": 10}, "total_amount": 275, "line_items": [], "reference": "INV-2024-001", "source_document_url": "https://www.invoicesolution.com/expense/123456", "custom_fields": [{"id": "2389328923893298", "name": "employee_level", "description": "Employee Level", "value": "Uses Salesforce and Marketo"}], "status": "draft", "row_version": "1-12345", "pass_through": [{"service_id": "<id>", "extend_paths": [{"path": "$.nested.property", "value": {"TaxClassificationRef": {"value": "EUC-99990201-V1-00020000"}}}]}]}
       responses:
         "200":
           application/json: {"status_code": 200, "status": "OK", "service": "quickbooks", "resource": "Expenses", "operation": "update", "data": {"id": "12345"}}
@@ -17949,7 +18009,7 @@ examples:
           x-apideck-app-id: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
       responses:
         "200":
-          application/json: {"status_code": 200, "status": "OK", "data": {"id": "crm+salesforce", "service_id": "salesforce", "name": "Salesforce", "tag_line": "CRM software solutions and enterprise cloud computing from Salesforce, the leader in customer relationship management (CRM) and PaaS. Free 30 day trial.", "unified_api": "crm", "state": "authorized", "integration_state": "configured", "auth_type": "oauth2", "oauth_grant_type": "authorization_code", "enabled": true, "website": "https://www.salesforce.com", "icon": "https://res.cloudinary.com/apideck/image/upload/v1529456047/catalog/salesforce/icon128x128.png", "logo": "https://c1.sfdcstatic.com/content/dam/web/en_us/www/images/home/logo-salesforce-m.svg", "authorize_url": "https://unify.apideck.com/vault/authorize/salesforce/<application-id>?state=<state>", "revoke_url": "https://unify.apideck.com/vault/revoke/salesforce/<application-id>?state=<state>", "settings": {"instance_url": "https://eu28.salesforce.com", "api_key": "12345xxxxxx"}, "metadata": {"account": {"name": "My Company", "id": "c01458a5-7276-41ce-bc19-639906b0450a"}, "plan": "enterprise"}, "form_fields": [{"id": "instance_url", "label": "Instance url", "placeholder": "", "type": "text", "required": true, "custom_field": false, "allow_custom_values": false, "disabled": false, "sensitive": false}, {"id": "api_key", "label": "API Key", "placeholder": "", "type": "text", "required": true, "custom_field": false, "allow_custom_values": false, "disabled": false, "sensitive": true}], "configuration": [{"resource": "leads", "defaults": [{"target": "custom_fields", "id": "ProductInterest", "options": [{"label": "General Channel", "options": [], "option_type": "group"}], "value": "GC5000 series"}]}], "configurable_resources": ["opportunities", "companies", "contacts", "leads"], "resource_schema_support": ["leads"], "resource_settings_support": ["leads"], "settings_required_for_authorization": ["client_id", "client_secret"], "subscriptions": [{"downstream_id": "5f5f5f5f5f5f5f5f5f5f5f5f", "unify_event_types": ["crm.contact.created"], "downstream_event_types": ["contacts.CREATED"], "execute_url": "https://unify.apideck.com/webhook/w/{lookupIdToken}/{serviceId}?e={downstreamEventType}", "created_at": "2020-10-01T12:00:00.000Z"}], "has_guide": true, "created_at": 1615563533390, "custom_mappings": [{"id": "hris+employees+first_aid_training", "label": "First Aid Training", "description": "First Aid Training completed after 2019-01-01", "value": "$.root.training.first_aid", "key": "first_aid_training", "required": false, "custom_field": true, "consumer_id": "test_user_id", "example": "Some value"}], "updated_at": 1616662325753}}
+          application/json: {"status_code": 200, "status": "OK", "data": {"id": "crm+salesforce", "service_id": "salesforce", "name": "Salesforce", "tag_line": "CRM software solutions and enterprise cloud computing from Salesforce, the leader in customer relationship management (CRM) and PaaS. Free 30 day trial.", "unified_api": "crm", "state": "authorized", "integration_state": "configured", "auth_type": "oauth2", "oauth_grant_type": "authorization_code", "enabled": true, "website": "https://www.salesforce.com", "icon": "https://res.cloudinary.com/apideck/image/upload/v1529456047/catalog/salesforce/icon128x128.png", "logo": "https://c1.sfdcstatic.com/content/dam/web/en_us/www/images/home/logo-salesforce-m.svg", "authorize_url": "https://unify.apideck.com/vault/authorize/salesforce/<application-id>?state=<state>", "revoke_url": "https://unify.apideck.com/vault/revoke/salesforce/<application-id>?state=<state>", "settings": {"instance_url": "https://eu28.salesforce.com", "api_key": "12345xxxxxx"}, "metadata": {"account": {"name": "My Company", "id": "c01458a5-7276-41ce-bc19-639906b0450a"}, "plan": "enterprise"}, "form_fields": [{"id": "instance_url", "label": "Instance url", "placeholder": "", "type": "text", "required": true, "custom_field": false, "allow_custom_values": false, "disabled": false, "sensitive": false}, {"id": "api_key", "label": "API Key", "placeholder": "", "type": "text", "required": true, "custom_field": false, "allow_custom_values": false, "disabled": false, "sensitive": true}], "configuration": [{"resource": "leads", "defaults": [{"target": "custom_fields", "id": "ProductInterest", "options": [{"label": "General Channel", "options": [], "option_type": "group"}], "value": "GC5000 series"}]}], "configurable_resources": ["opportunities", "companies", "contacts", "leads"], "resource_schema_support": ["leads"], "resource_settings_support": ["leads"], "settings_required_for_authorization": ["client_id", "client_secret"], "subscriptions": [{"downstream_id": "5f5f5f5f5f5f5f5f5f5f5f5f", "unify_event_types": ["crm.contact.created"], "downstream_event_types": ["contacts.CREATED"], "execute_url": "https://unify.apideck.com/webhook/w/{lookupIdToken}/{serviceId}?e={downstreamEventType}", "created_at": "2020-10-01T12:00:00.000Z"}], "has_guide": true, "created_at": 1615563533390, "custom_mappings": [{"id": "hris+employees+first_aid_training", "label": "First Aid Training", "description": "First Aid Training completed after 2019-01-01", "value": "$.root.training.first_aid", "key": "first_aid_training", "required": false, "custom_field": true, "consumer_id": "test_user_id", "example": "Some value"}], "consent_state": "granted", "consents": [{"id": "con_1234567890", "created_at": "2025-04-15T14:30:00Z", "granted": true, "resources": {"hris.employees": {"id": {"read": true, "write": false}, "first_name": {"read": true, "write": true}, "last_name": {"read": true, "write": true}, "email": {"read": true, "write": true}, "addresses[].street": {"read": true, "write": false}, "addresses[].city": {"read": true, "write": false}, "employment.job_title": {"read": true, "write": true}, "custom_fields[].employee_number": {"read": true, "write": false}}, "hris.departments": {"id": {"read": true, "write": false}, "name": {"read": true, "write": true}, "code": {"read": true, "write": false}}}}], "latest_consent": {"id": "con_1234567890", "created_at": "2025-04-15T14:30:00Z", "granted": true, "resources": {"hris.employees": {"id": {"read": true, "write": false}, "first_name": {"read": true, "write": true}, "last_name": {"read": true, "write": true}, "email": {"read": true, "write": true}, "addresses[].street": {"read": true, "write": false}, "addresses[].city": {"read": true, "write": false}, "employment.job_title": {"read": true, "write": true}, "custom_fields[].employee_number": {"read": true, "write": false}}, "hris.departments": {"id": {"read": true, "write": false}, "name": {"read": true, "write": true}, "code": {"read": true, "write": false}}}}, "application_data_scopes": {"enabled": true, "updated_at": "2025-04-15T14:30:00Z", "resources": {"hris.employees": {"id": {"read": true, "write": false}, "first_name": {"read": true, "write": true}, "last_name": {"read": true, "write": true}, "email": {"read": true, "write": true}, "addresses[].street": {"read": true, "write": false}, "addresses[].city": {"read": true, "write": false}, "employment.job_title": {"read": true, "write": true}, "custom_fields[].employee_number": {"read": true, "write": false}}, "hris.departments": {"id": {"read": true, "write": false}, "name": {"read": true, "write": true}, "code": {"read": true, "write": false}}}}, "updated_at": 1616662325753}}
         "400":
           application/json: {"status_code": 400, "error": "Bad Request", "type_name": "RequestValidationError", "message": "Invalid Params", "detail": "Missing property foobar", "ref": "https://developers.apideck.com/errors#requestvalidationerror"}
         "401":
@@ -17997,10 +18057,10 @@ examples:
           x-apideck-consumer-id: "test-consumer"
           x-apideck-app-id: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
       requestBody:
-        application/json: {"enabled": true, "settings": {"instance_url": "https://eu28.salesforce.com", "api_key": "12345xxxxxx"}, "metadata": {"account": {"name": "My Company", "id": "c01458a5-7276-41ce-bc19-639906b0450a"}, "plan": "enterprise"}, "configuration": [{"resource": "leads", "defaults": [{"id": "ProductInterest", "options": [{"label": "General Channel", "option_type": "simple"}], "value": "GC5000 series"}]}], "custom_mappings": [{"value": "$.root.training.first_aid"}]}
+        application/json: {"enabled": true, "settings": {"instance_url": "https://eu28.salesforce.com", "api_key": "12345xxxxxx"}, "metadata": {"account": {"name": "My Company", "id": "c01458a5-7276-41ce-bc19-639906b0450a"}, "plan": "enterprise"}, "configuration": [{"resource": "leads", "defaults": [{"id": "ProductInterest", "options": [{"label": "General Channel", "option_type": "simple"}], "value": "GC5000 series"}]}], "custom_mappings": [{"value": "$.root.training.first_aid"}], "consent_state": "granted", "latest_consent": {"granted": true, "resources": {"hris.employees": {"id": {"read": true, "write": false}, "first_name": {"read": true, "write": true}, "last_name": {"read": true, "write": true}, "email": {"read": true, "write": true}, "addresses[].street": {"read": true, "write": false}, "addresses[].city": {"read": true, "write": false}, "employment.job_title": {"read": true, "write": true}, "custom_fields[].employee_number": {"read": true, "write": false}}, "hris.departments": {"id": {"read": true, "write": false}, "name": {"read": true, "write": true}, "code": {"read": true, "write": false}}}}, "application_data_scopes": {"enabled": true, "resources": {"hris.employees": {"id": {"read": true, "write": false}, "first_name": {"read": true, "write": true}, "last_name": {"read": true, "write": true}, "email": {"read": true, "write": true}, "addresses[].street": {"read": true, "write": false}, "addresses[].city": {"read": true, "write": false}, "employment.job_title": {"read": true, "write": true}, "custom_fields[].employee_number": {"read": true, "write": false}}, "hris.departments": {"id": {"read": true, "write": false}, "name": {"read": true, "write": true}, "code": {"read": true, "write": false}}}}}
       responses:
         "200":
-          application/json: {"status_code": 200, "status": "OK", "data": {"id": "crm+salesforce", "service_id": "salesforce", "name": "Salesforce", "tag_line": "CRM software solutions and enterprise cloud computing from Salesforce, the leader in customer relationship management (CRM) and PaaS. Free 30 day trial.", "unified_api": "crm", "state": "authorized", "integration_state": "configured", "auth_type": "oauth2", "oauth_grant_type": "authorization_code", "enabled": true, "website": "https://www.salesforce.com", "icon": "https://res.cloudinary.com/apideck/image/upload/v1529456047/catalog/salesforce/icon128x128.png", "logo": "https://c1.sfdcstatic.com/content/dam/web/en_us/www/images/home/logo-salesforce-m.svg", "authorize_url": "https://unify.apideck.com/vault/authorize/salesforce/<application-id>?state=<state>", "revoke_url": "https://unify.apideck.com/vault/revoke/salesforce/<application-id>?state=<state>", "settings": {"instance_url": "https://eu28.salesforce.com", "api_key": "12345xxxxxx"}, "metadata": {"account": {"name": "My Company", "id": "c01458a5-7276-41ce-bc19-639906b0450a"}, "plan": "enterprise"}, "form_fields": [{"id": "instance_url", "label": "Instance url", "placeholder": "", "type": "text", "required": true, "custom_field": false, "allow_custom_values": false, "disabled": false, "sensitive": false}, {"id": "api_key", "label": "API Key", "placeholder": "", "type": "text", "required": true, "custom_field": false, "allow_custom_values": false, "disabled": false, "sensitive": true}], "configuration": [{"resource": "leads", "defaults": [{"target": "custom_fields", "id": "ProductInterest", "options": [{"label": "General Channel", "option_type": "simple"}], "value": "GC5000 series"}]}], "configurable_resources": ["opportunities", "companies", "contacts", "leads"], "resource_schema_support": ["leads"], "resource_settings_support": ["leads"], "settings_required_for_authorization": ["client_id", "client_secret"], "subscriptions": [{"downstream_id": "5f5f5f5f5f5f5f5f5f5f5f5f", "unify_event_types": ["crm.contact.created"], "downstream_event_types": ["contacts.CREATED"], "execute_url": "https://unify.apideck.com/webhook/w/{lookupIdToken}/{serviceId}?e={downstreamEventType}", "created_at": "2020-10-01T12:00:00.000Z"}], "has_guide": true, "created_at": 1615563533390, "custom_mappings": [{"id": "hris+employees+first_aid_training", "label": "First Aid Training", "description": "First Aid Training completed after 2019-01-01", "value": "$.root.training.first_aid", "key": "first_aid_training", "required": false, "custom_field": true, "consumer_id": "test_user_id", "example": "Some value"}], "updated_at": 1616662325753}}
+          application/json: {"status_code": 200, "status": "OK", "data": {"id": "crm+salesforce", "service_id": "salesforce", "name": "Salesforce", "tag_line": "CRM software solutions and enterprise cloud computing from Salesforce, the leader in customer relationship management (CRM) and PaaS. Free 30 day trial.", "unified_api": "crm", "state": "authorized", "integration_state": "configured", "auth_type": "oauth2", "oauth_grant_type": "authorization_code", "enabled": true, "website": "https://www.salesforce.com", "icon": "https://res.cloudinary.com/apideck/image/upload/v1529456047/catalog/salesforce/icon128x128.png", "logo": "https://c1.sfdcstatic.com/content/dam/web/en_us/www/images/home/logo-salesforce-m.svg", "authorize_url": "https://unify.apideck.com/vault/authorize/salesforce/<application-id>?state=<state>", "revoke_url": "https://unify.apideck.com/vault/revoke/salesforce/<application-id>?state=<state>", "settings": {"instance_url": "https://eu28.salesforce.com", "api_key": "12345xxxxxx"}, "metadata": {"account": {"name": "My Company", "id": "c01458a5-7276-41ce-bc19-639906b0450a"}, "plan": "enterprise"}, "form_fields": [{"id": "instance_url", "label": "Instance url", "placeholder": "", "type": "text", "required": true, "custom_field": false, "allow_custom_values": false, "disabled": false, "sensitive": false}, {"id": "api_key", "label": "API Key", "placeholder": "", "type": "text", "required": true, "custom_field": false, "allow_custom_values": false, "disabled": false, "sensitive": true}], "configuration": [{"resource": "leads", "defaults": [{"target": "custom_fields", "id": "ProductInterest", "options": [{"label": "General Channel", "option_type": "simple"}], "value": "GC5000 series"}]}], "configurable_resources": ["opportunities", "companies", "contacts", "leads"], "resource_schema_support": ["leads"], "resource_settings_support": ["leads"], "settings_required_for_authorization": ["client_id", "client_secret"], "subscriptions": [{"downstream_id": "5f5f5f5f5f5f5f5f5f5f5f5f", "unify_event_types": ["crm.contact.created"], "downstream_event_types": ["contacts.CREATED"], "execute_url": "https://unify.apideck.com/webhook/w/{lookupIdToken}/{serviceId}?e={downstreamEventType}", "created_at": "2020-10-01T12:00:00.000Z"}], "has_guide": true, "created_at": 1615563533390, "custom_mappings": [{"id": "hris+employees+first_aid_training", "label": "First Aid Training", "description": "First Aid Training completed after 2019-01-01", "value": "$.root.training.first_aid", "key": "first_aid_training", "required": false, "custom_field": true, "consumer_id": "test_user_id", "example": "Some value"}], "consent_state": "granted", "consents": [{"id": "con_1234567890", "created_at": "2025-04-15T14:30:00Z", "granted": true, "resources": {"hris.employees": {"id": {"read": true, "write": false}, "first_name": {"read": true, "write": true}, "last_name": {"read": true, "write": true}, "email": {"read": true, "write": true}, "addresses[].street": {"read": true, "write": false}, "addresses[].city": {"read": true, "write": false}, "employment.job_title": {"read": true, "write": true}, "custom_fields[].employee_number": {"read": true, "write": false}}, "hris.departments": {"id": {"read": true, "write": false}, "name": {"read": true, "write": true}, "code": {"read": true, "write": false}}}}], "latest_consent": {"id": "con_1234567890", "created_at": "2025-04-15T14:30:00Z", "granted": true, "resources": {"hris.employees": {"id": {"read": true, "write": false}, "first_name": {"read": true, "write": true}, "last_name": {"read": true, "write": true}, "email": {"read": true, "write": true}, "addresses[].street": {"read": true, "write": false}, "addresses[].city": {"read": true, "write": false}, "employment.job_title": {"read": true, "write": true}, "custom_fields[].employee_number": {"read": true, "write": false}}, "hris.departments": {"id": {"read": true, "write": false}, "name": {"read": true, "write": true}, "code": {"read": true, "write": false}}}}, "application_data_scopes": {"enabled": true, "updated_at": "2025-04-15T14:30:00Z", "resources": {"hris.employees": {"id": {"read": true, "write": false}, "first_name": {"read": true, "write": true}, "last_name": {"read": true, "write": true}, "email": {"read": true, "write": true}, "addresses[].street": {"read": true, "write": false}, "addresses[].city": {"read": true, "write": false}, "employment.job_title": {"read": true, "write": true}, "custom_fields[].employee_number": {"read": true, "write": false}}, "hris.departments": {"id": {"read": true, "write": false}, "name": {"read": true, "write": true}, "code": {"read": true, "write": false}}}}, "updated_at": 1616662325753}}
         "400":
           application/json: {"status_code": 400, "error": "Bad Request", "type_name": "RequestValidationError", "message": "Invalid Params", "detail": "Missing property foobar", "ref": "https://developers.apideck.com/errors#requestvalidationerror"}
         "401":
@@ -18094,7 +18154,7 @@ examples:
         application/json: {"credentials": {"refresh_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.cThIIoDvwdueQB468K5xDc5633seEFoqwxjF_xSJyQQ", "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"}, "settings": {"instance_url": "https://eu28.salesforce.com"}, "metadata": {"account": {"name": "My Company", "id": "c01458a5-7276-41ce-bc19-639906b0450a"}, "plan": "enterprise"}}
       responses:
         "200":
-          application/json: {"status_code": 201, "status": "OK", "data": {"id": "crm+salesforce", "service_id": "salesforce", "name": "Salesforce", "tag_line": "CRM software solutions and enterprise cloud computing from Salesforce, the leader in customer relationship management (CRM) and PaaS. Free 30 day trial.", "unified_api": "crm", "state": "authorized", "integration_state": "configured", "auth_type": "oauth2", "oauth_grant_type": "authorization_code", "enabled": true, "website": "https://www.salesforce.com", "icon": "https://res.cloudinary.com/apideck/image/upload/v1529456047/catalog/salesforce/icon128x128.png", "logo": "https://c1.sfdcstatic.com/content/dam/web/en_us/www/images/home/logo-salesforce-m.svg", "authorize_url": "https://unify.apideck.com/vault/authorize/salesforce/<application-id>?state=<state>", "revoke_url": "https://unify.apideck.com/vault/revoke/salesforce/<application-id>?state=<state>", "settings": {"instance_url": "https://eu28.salesforce.com", "api_key": "12345xxxxxx"}, "metadata": {"account": {"name": "My Company", "id": "c01458a5-7276-41ce-bc19-639906b0450a"}, "plan": "enterprise"}, "form_fields": [{"id": "instance_url", "label": "Instance url", "placeholder": "", "type": "text", "required": true, "custom_field": false, "allow_custom_values": false, "disabled": false, "sensitive": false}, {"id": "api_key", "label": "API Key", "placeholder": "", "type": "text", "required": true, "custom_field": false, "allow_custom_values": false, "disabled": false, "sensitive": true}], "configuration": [{"resource": "leads", "defaults": [{"target": "custom_fields", "id": "ProductInterest", "options": [{"label": "General Channel", "option_type": "simple"}], "value": "GC5000 series"}]}], "configurable_resources": ["opportunities", "companies", "contacts", "leads"], "resource_schema_support": ["leads"], "resource_settings_support": ["leads"], "settings_required_for_authorization": ["client_id", "client_secret"], "subscriptions": [{"downstream_id": "5f5f5f5f5f5f5f5f5f5f5f5f", "unify_event_types": ["crm.contact.created"], "downstream_event_types": ["contacts.CREATED"], "execute_url": "https://unify.apideck.com/webhook/w/{lookupIdToken}/{serviceId}?e={downstreamEventType}", "created_at": "2020-10-01T12:00:00.000Z"}], "has_guide": true, "created_at": 1615563533390, "custom_mappings": [{"id": "hris+employees+first_aid_training", "label": "First Aid Training", "description": "First Aid Training completed after 2019-01-01", "value": "$.root.training.first_aid", "key": "first_aid_training", "required": false, "custom_field": true, "consumer_id": "test_user_id", "example": "Some value"}], "updated_at": 1616662325753}}
+          application/json: {"status_code": 201, "status": "OK", "data": {"id": "crm+salesforce", "service_id": "salesforce", "name": "Salesforce", "tag_line": "CRM software solutions and enterprise cloud computing from Salesforce, the leader in customer relationship management (CRM) and PaaS. Free 30 day trial.", "unified_api": "crm", "state": "authorized", "integration_state": "configured", "auth_type": "oauth2", "oauth_grant_type": "authorization_code", "enabled": true, "website": "https://www.salesforce.com", "icon": "https://res.cloudinary.com/apideck/image/upload/v1529456047/catalog/salesforce/icon128x128.png", "logo": "https://c1.sfdcstatic.com/content/dam/web/en_us/www/images/home/logo-salesforce-m.svg", "authorize_url": "https://unify.apideck.com/vault/authorize/salesforce/<application-id>?state=<state>", "revoke_url": "https://unify.apideck.com/vault/revoke/salesforce/<application-id>?state=<state>", "settings": {"instance_url": "https://eu28.salesforce.com", "api_key": "12345xxxxxx"}, "metadata": {"account": {"name": "My Company", "id": "c01458a5-7276-41ce-bc19-639906b0450a"}, "plan": "enterprise"}, "form_fields": [{"id": "instance_url", "label": "Instance url", "placeholder": "", "type": "text", "required": true, "custom_field": false, "allow_custom_values": false, "disabled": false, "sensitive": false}, {"id": "api_key", "label": "API Key", "placeholder": "", "type": "text", "required": true, "custom_field": false, "allow_custom_values": false, "disabled": false, "sensitive": true}], "configuration": [{"resource": "leads", "defaults": [{"target": "custom_fields", "id": "ProductInterest", "options": [{"label": "General Channel", "option_type": "simple"}], "value": "GC5000 series"}]}], "configurable_resources": ["opportunities", "companies", "contacts", "leads"], "resource_schema_support": ["leads"], "resource_settings_support": ["leads"], "settings_required_for_authorization": ["client_id", "client_secret"], "subscriptions": [{"downstream_id": "5f5f5f5f5f5f5f5f5f5f5f5f", "unify_event_types": ["crm.contact.created"], "downstream_event_types": ["contacts.CREATED"], "execute_url": "https://unify.apideck.com/webhook/w/{lookupIdToken}/{serviceId}?e={downstreamEventType}", "created_at": "2020-10-01T12:00:00.000Z"}], "has_guide": true, "created_at": 1615563533390, "custom_mappings": [{"id": "hris+employees+first_aid_training", "label": "First Aid Training", "description": "First Aid Training completed after 2019-01-01", "value": "$.root.training.first_aid", "key": "first_aid_training", "required": false, "custom_field": true, "consumer_id": "test_user_id", "example": "Some value"}], "consent_state": "granted", "consents": [{"id": "con_1234567890", "created_at": "2025-04-15T14:30:00Z", "granted": true, "resources": {"hris.employees": {"id": {"read": true, "write": false}, "first_name": {"read": true, "write": true}, "last_name": {"read": true, "write": true}, "email": {"read": true, "write": true}, "addresses[].street": {"read": true, "write": false}, "addresses[].city": {"read": true, "write": false}, "employment.job_title": {"read": true, "write": true}, "custom_fields[].employee_number": {"read": true, "write": false}}, "hris.departments": {"id": {"read": true, "write": false}, "name": {"read": true, "write": true}, "code": {"read": true, "write": false}}}}], "latest_consent": {"id": "con_1234567890", "created_at": "2025-04-15T14:30:00Z", "granted": true, "resources": {"hris.employees": {"id": {"read": true, "write": false}, "first_name": {"read": true, "write": true}, "last_name": {"read": true, "write": true}, "email": {"read": true, "write": true}, "addresses[].street": {"read": true, "write": false}, "addresses[].city": {"read": true, "write": false}, "employment.job_title": {"read": true, "write": true}, "custom_fields[].employee_number": {"read": true, "write": false}}, "hris.departments": {"id": {"read": true, "write": false}, "name": {"read": true, "write": true}, "code": {"read": true, "write": false}}}}, "application_data_scopes": {"enabled": true, "updated_at": "2025-04-15T14:30:00Z", "resources": {"hris.employees": {"id": {"read": true, "write": false}, "first_name": {"read": true, "write": true}, "last_name": {"read": true, "write": true}, "email": {"read": true, "write": true}, "addresses[].street": {"read": true, "write": false}, "addresses[].city": {"read": true, "write": false}, "employment.job_title": {"read": true, "write": true}, "custom_fields[].employee_number": {"read": true, "write": false}}, "hris.departments": {"id": {"read": true, "write": false}, "name": {"read": true, "write": true}, "code": {"read": true, "write": false}}}}, "updated_at": 1616662325753}}
         "400":
           application/json: {"status_code": 400, "error": "Bad Request", "type_name": "RequestValidationError", "message": "Invalid Params", "detail": "Missing property foobar", "ref": "https://developers.apideck.com/errors#requestvalidationerror"}
         "401":
@@ -18141,7 +18201,7 @@ examples:
           x-apideck-app-id: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
       responses:
         "200":
-          application/json: {"status_code": 200, "status": "OK", "data": {"id": "crm+salesforce", "service_id": "salesforce", "name": "Salesforce", "tag_line": "CRM software solutions and enterprise cloud computing from Salesforce, the leader in customer relationship management (CRM) and PaaS. Free 30 day trial.", "unified_api": "crm", "state": "authorized", "integration_state": "configured", "auth_type": "oauth2", "oauth_grant_type": "authorization_code", "enabled": true, "website": "https://www.salesforce.com", "icon": "https://res.cloudinary.com/apideck/image/upload/v1529456047/catalog/salesforce/icon128x128.png", "logo": "https://c1.sfdcstatic.com/content/dam/web/en_us/www/images/home/logo-salesforce-m.svg", "authorize_url": "https://unify.apideck.com/vault/authorize/salesforce/<application-id>?state=<state>", "revoke_url": "https://unify.apideck.com/vault/revoke/salesforce/<application-id>?state=<state>", "settings": {"instance_url": "https://eu28.salesforce.com", "api_key": "12345xxxxxx"}, "metadata": {"account": {"name": "My Company", "id": "c01458a5-7276-41ce-bc19-639906b0450a"}, "plan": "enterprise"}, "form_fields": [{"id": "instance_url", "label": "Instance url", "placeholder": "", "type": "text", "required": true, "custom_field": false, "allow_custom_values": false, "disabled": false, "sensitive": false}, {"id": "api_key", "label": "API Key", "placeholder": "", "type": "text", "required": true, "custom_field": false, "allow_custom_values": false, "disabled": false, "sensitive": true}], "configuration": [{"resource": "leads", "defaults": [{"target": "custom_fields", "id": "ProductInterest", "options": [{"label": "General Channel", "options": [], "option_type": "group"}], "value": "GC5000 series"}]}], "configurable_resources": ["opportunities", "companies", "contacts", "leads"], "resource_schema_support": ["leads"], "resource_settings_support": ["leads"], "settings_required_for_authorization": ["client_id", "client_secret"], "subscriptions": [{"downstream_id": "5f5f5f5f5f5f5f5f5f5f5f5f", "unify_event_types": ["crm.contact.created"], "downstream_event_types": ["contacts.CREATED"], "execute_url": "https://unify.apideck.com/webhook/w/{lookupIdToken}/{serviceId}?e={downstreamEventType}", "created_at": "2020-10-01T12:00:00.000Z"}], "has_guide": true, "created_at": 1615563533390, "custom_mappings": [{"id": "hris+employees+first_aid_training", "label": "First Aid Training", "description": "First Aid Training completed after 2019-01-01", "value": "$.root.training.first_aid", "key": "first_aid_training", "required": false, "custom_field": true, "consumer_id": "test_user_id", "example": "Some value"}], "updated_at": 1616662325753}}
+          application/json: {"status_code": 200, "status": "OK", "data": {"id": "crm+salesforce", "service_id": "salesforce", "name": "Salesforce", "tag_line": "CRM software solutions and enterprise cloud computing from Salesforce, the leader in customer relationship management (CRM) and PaaS. Free 30 day trial.", "unified_api": "crm", "state": "authorized", "integration_state": "configured", "auth_type": "oauth2", "oauth_grant_type": "authorization_code", "enabled": true, "website": "https://www.salesforce.com", "icon": "https://res.cloudinary.com/apideck/image/upload/v1529456047/catalog/salesforce/icon128x128.png", "logo": "https://c1.sfdcstatic.com/content/dam/web/en_us/www/images/home/logo-salesforce-m.svg", "authorize_url": "https://unify.apideck.com/vault/authorize/salesforce/<application-id>?state=<state>", "revoke_url": "https://unify.apideck.com/vault/revoke/salesforce/<application-id>?state=<state>", "settings": {"instance_url": "https://eu28.salesforce.com", "api_key": "12345xxxxxx"}, "metadata": {"account": {"name": "My Company", "id": "c01458a5-7276-41ce-bc19-639906b0450a"}, "plan": "enterprise"}, "form_fields": [{"id": "instance_url", "label": "Instance url", "placeholder": "", "type": "text", "required": true, "custom_field": false, "allow_custom_values": false, "disabled": false, "sensitive": false}, {"id": "api_key", "label": "API Key", "placeholder": "", "type": "text", "required": true, "custom_field": false, "allow_custom_values": false, "disabled": false, "sensitive": true}], "configuration": [{"resource": "leads", "defaults": [{"target": "custom_fields", "id": "ProductInterest", "options": [{"label": "General Channel", "options": [], "option_type": "group"}], "value": "GC5000 series"}]}], "configurable_resources": ["opportunities", "companies", "contacts", "leads"], "resource_schema_support": ["leads"], "resource_settings_support": ["leads"], "settings_required_for_authorization": ["client_id", "client_secret"], "subscriptions": [{"downstream_id": "5f5f5f5f5f5f5f5f5f5f5f5f", "unify_event_types": ["crm.contact.created"], "downstream_event_types": ["contacts.CREATED"], "execute_url": "https://unify.apideck.com/webhook/w/{lookupIdToken}/{serviceId}?e={downstreamEventType}", "created_at": "2020-10-01T12:00:00.000Z"}], "has_guide": true, "created_at": 1615563533390, "custom_mappings": [{"id": "hris+employees+first_aid_training", "label": "First Aid Training", "description": "First Aid Training completed after 2019-01-01", "value": "$.root.training.first_aid", "key": "first_aid_training", "required": false, "custom_field": true, "consumer_id": "test_user_id", "example": "Some value"}], "consent_state": "granted", "consents": [{"id": "con_1234567890", "created_at": "2025-04-15T14:30:00Z", "granted": true, "resources": {"hris.employees": {"id": {"read": true, "write": false}, "first_name": {"read": true, "write": true}, "last_name": {"read": true, "write": true}, "email": {"read": true, "write": true}, "addresses[].street": {"read": true, "write": false}, "addresses[].city": {"read": true, "write": false}, "employment.job_title": {"read": true, "write": true}, "custom_fields[].employee_number": {"read": true, "write": false}}, "hris.departments": {"id": {"read": true, "write": false}, "name": {"read": true, "write": true}, "code": {"read": true, "write": false}}}}], "latest_consent": {"id": "con_1234567890", "created_at": "2025-04-15T14:30:00Z", "granted": true, "resources": {"hris.employees": {"id": {"read": true, "write": false}, "first_name": {"read": true, "write": true}, "last_name": {"read": true, "write": true}, "email": {"read": true, "write": true}, "addresses[].street": {"read": true, "write": false}, "addresses[].city": {"read": true, "write": false}, "employment.job_title": {"read": true, "write": true}, "custom_fields[].employee_number": {"read": true, "write": false}}, "hris.departments": {"id": {"read": true, "write": false}, "name": {"read": true, "write": true}, "code": {"read": true, "write": false}}}}, "application_data_scopes": {"enabled": true, "updated_at": "2025-04-15T14:30:00Z", "resources": {"hris.employees": {"id": {"read": true, "write": false}, "first_name": {"read": true, "write": true}, "last_name": {"read": true, "write": true}, "email": {"read": true, "write": true}, "addresses[].street": {"read": true, "write": false}, "addresses[].city": {"read": true, "write": false}, "employment.job_title": {"read": true, "write": true}, "custom_fields[].employee_number": {"read": true, "write": false}}, "hris.departments": {"id": {"read": true, "write": false}, "name": {"read": true, "write": true}, "code": {"read": true, "write": false}}}}, "updated_at": 1616662325753}}
         "400":
           application/json: {"status_code": 400, "error": "Bad Request", "type_name": "RequestValidationError", "message": "Invalid Params", "detail": "Missing property foobar", "ref": "https://developers.apideck.com/errors#requestvalidationerror"}
         "401":
@@ -18288,7 +18348,7 @@ examples:
           x-apideck-app-id: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
       responses:
         "200":
-          application/json: {"status_code": 200, "status": "OK", "data": {"id": "crm+salesforce", "service_id": "salesforce", "name": "Salesforce", "tag_line": "CRM software solutions and enterprise cloud computing from Salesforce, the leader in customer relationship management (CRM) and PaaS. Free 30 day trial.", "unified_api": "crm", "state": "authorized", "integration_state": "configured", "auth_type": "oauth2", "oauth_grant_type": "authorization_code", "enabled": true, "website": "https://www.salesforce.com", "icon": "https://res.cloudinary.com/apideck/image/upload/v1529456047/catalog/salesforce/icon128x128.png", "logo": "https://c1.sfdcstatic.com/content/dam/web/en_us/www/images/home/logo-salesforce-m.svg", "authorize_url": "https://unify.apideck.com/vault/authorize/salesforce/<application-id>?state=<state>", "revoke_url": "https://unify.apideck.com/vault/revoke/salesforce/<application-id>?state=<state>", "settings": {"instance_url": "https://eu28.salesforce.com", "api_key": "12345xxxxxx"}, "metadata": {"account": {"name": "My Company", "id": "c01458a5-7276-41ce-bc19-639906b0450a"}, "plan": "enterprise"}, "form_fields": [{"id": "instance_url", "label": "Instance url", "placeholder": "", "type": "text", "required": true, "custom_field": false, "allow_custom_values": false, "disabled": false, "sensitive": false}, {"id": "api_key", "label": "API Key", "placeholder": "", "type": "text", "required": true, "custom_field": false, "allow_custom_values": false, "disabled": false, "sensitive": true}], "configuration": [{"resource": "leads", "defaults": [{"target": "custom_fields", "id": "ProductInterest", "options": [{"label": "General Channel", "options": [], "option_type": "group"}], "value": "GC5000 series"}]}], "configurable_resources": ["opportunities", "companies", "contacts", "leads"], "resource_schema_support": ["leads"], "resource_settings_support": ["leads"], "settings_required_for_authorization": ["client_id", "client_secret"], "subscriptions": [{"downstream_id": "5f5f5f5f5f5f5f5f5f5f5f5f", "unify_event_types": ["crm.contact.created"], "downstream_event_types": ["contacts.CREATED"], "execute_url": "https://unify.apideck.com/webhook/w/{lookupIdToken}/{serviceId}?e={downstreamEventType}", "created_at": "2020-10-01T12:00:00.000Z"}], "has_guide": true, "created_at": 1615563533390, "custom_mappings": [{"id": "hris+employees+first_aid_training", "label": "First Aid Training", "description": "First Aid Training completed after 2019-01-01", "value": "$.root.training.first_aid", "key": "first_aid_training", "required": false, "custom_field": true, "consumer_id": "test_user_id", "example": "Some value"}], "updated_at": 1616662325753}}
+          application/json: {"status_code": 200, "status": "OK", "data": {"id": "crm+salesforce", "service_id": "salesforce", "name": "Salesforce", "tag_line": "CRM software solutions and enterprise cloud computing from Salesforce, the leader in customer relationship management (CRM) and PaaS. Free 30 day trial.", "unified_api": "crm", "state": "authorized", "integration_state": "configured", "auth_type": "oauth2", "oauth_grant_type": "authorization_code", "enabled": true, "website": "https://www.salesforce.com", "icon": "https://res.cloudinary.com/apideck/image/upload/v1529456047/catalog/salesforce/icon128x128.png", "logo": "https://c1.sfdcstatic.com/content/dam/web/en_us/www/images/home/logo-salesforce-m.svg", "authorize_url": "https://unify.apideck.com/vault/authorize/salesforce/<application-id>?state=<state>", "revoke_url": "https://unify.apideck.com/vault/revoke/salesforce/<application-id>?state=<state>", "settings": {"instance_url": "https://eu28.salesforce.com", "api_key": "12345xxxxxx"}, "metadata": {"account": {"name": "My Company", "id": "c01458a5-7276-41ce-bc19-639906b0450a"}, "plan": "enterprise"}, "form_fields": [{"id": "instance_url", "label": "Instance url", "placeholder": "", "type": "text", "required": true, "custom_field": false, "allow_custom_values": false, "disabled": false, "sensitive": false}, {"id": "api_key", "label": "API Key", "placeholder": "", "type": "text", "required": true, "custom_field": false, "allow_custom_values": false, "disabled": false, "sensitive": true}], "configuration": [{"resource": "leads", "defaults": [{"target": "custom_fields", "id": "ProductInterest", "options": [{"label": "General Channel", "options": [], "option_type": "group"}], "value": "GC5000 series"}]}], "configurable_resources": ["opportunities", "companies", "contacts", "leads"], "resource_schema_support": ["leads"], "resource_settings_support": ["leads"], "settings_required_for_authorization": ["client_id", "client_secret"], "subscriptions": [{"downstream_id": "5f5f5f5f5f5f5f5f5f5f5f5f", "unify_event_types": ["crm.contact.created"], "downstream_event_types": ["contacts.CREATED"], "execute_url": "https://unify.apideck.com/webhook/w/{lookupIdToken}/{serviceId}?e={downstreamEventType}", "created_at": "2020-10-01T12:00:00.000Z"}], "has_guide": true, "created_at": 1615563533390, "custom_mappings": [{"id": "hris+employees+first_aid_training", "label": "First Aid Training", "description": "First Aid Training completed after 2019-01-01", "value": "$.root.training.first_aid", "key": "first_aid_training", "required": false, "custom_field": true, "consumer_id": "test_user_id", "example": "Some value"}], "consent_state": "granted", "consents": [{"id": "con_1234567890", "created_at": "2025-04-15T14:30:00Z", "granted": true, "resources": {"hris.employees": {"id": {"read": true, "write": false}, "first_name": {"read": true, "write": true}, "last_name": {"read": true, "write": true}, "email": {"read": true, "write": true}, "addresses[].street": {"read": true, "write": false}, "addresses[].city": {"read": true, "write": false}, "employment.job_title": {"read": true, "write": true}, "custom_fields[].employee_number": {"read": true, "write": false}}, "hris.departments": {"id": {"read": true, "write": false}, "name": {"read": true, "write": true}, "code": {"read": true, "write": false}}}}], "latest_consent": {"id": "con_1234567890", "created_at": "2025-04-15T14:30:00Z", "granted": true, "resources": {"hris.employees": {"id": {"read": true, "write": false}, "first_name": {"read": true, "write": true}, "last_name": {"read": true, "write": true}, "email": {"read": true, "write": true}, "addresses[].street": {"read": true, "write": false}, "addresses[].city": {"read": true, "write": false}, "employment.job_title": {"read": true, "write": true}, "custom_fields[].employee_number": {"read": true, "write": false}}, "hris.departments": {"id": {"read": true, "write": false}, "name": {"read": true, "write": true}, "code": {"read": true, "write": false}}}}, "application_data_scopes": {"enabled": true, "updated_at": "2025-04-15T14:30:00Z", "resources": {"hris.employees": {"id": {"read": true, "write": false}, "first_name": {"read": true, "write": true}, "last_name": {"read": true, "write": true}, "email": {"read": true, "write": true}, "addresses[].street": {"read": true, "write": false}, "addresses[].city": {"read": true, "write": false}, "employment.job_title": {"read": true, "write": true}, "custom_fields[].employee_number": {"read": true, "write": false}}, "hris.departments": {"id": {"read": true, "write": false}, "name": {"read": true, "write": true}, "code": {"read": true, "write": false}}}}, "updated_at": 1616662325753}}
         "400":
           application/json: {"status_code": 400, "error": "Bad Request", "type_name": "RequestValidationError", "message": "Invalid Params", "detail": "Missing property foobar", "ref": "https://developers.apideck.com/errors#requestvalidationerror"}
         "401":
@@ -18338,10 +18398,10 @@ examples:
           x-apideck-consumer-id: "test-consumer"
           x-apideck-app-id: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
       requestBody:
-        application/json: {"enabled": true, "settings": {"instance_url": "https://eu28.salesforce.com", "api_key": "12345xxxxxx"}, "metadata": {"account": {"name": "My Company", "id": "c01458a5-7276-41ce-bc19-639906b0450a"}, "plan": "enterprise"}, "configuration": [{"resource": "leads", "defaults": [{"id": "ProductInterest", "options": [{"label": "General Channel", "options": [{"label": "General Channel", "value": "general", "option_type": "simple"}], "option_type": "group"}], "value": "GC5000 series"}]}], "custom_mappings": [{"value": "$.root.training.first_aid"}]}
+        application/json: {"enabled": true, "settings": {"instance_url": "https://eu28.salesforce.com", "api_key": "12345xxxxxx"}, "metadata": {"account": {"name": "My Company", "id": "c01458a5-7276-41ce-bc19-639906b0450a"}, "plan": "enterprise"}, "configuration": [{"resource": "leads", "defaults": [{"id": "ProductInterest", "options": [{"label": "General Channel", "options": [{"label": "General Channel", "value": "general", "option_type": "simple"}], "option_type": "group"}], "value": "GC5000 series"}]}], "custom_mappings": [{"value": "$.root.training.first_aid"}], "consent_state": "granted", "latest_consent": {"granted": true, "resources": {"hris.employees": {"id": {"read": true, "write": false}, "first_name": {"read": true, "write": true}, "last_name": {"read": true, "write": true}, "email": {"read": true, "write": true}, "addresses[].street": {"read": true, "write": false}, "addresses[].city": {"read": true, "write": false}, "employment.job_title": {"read": true, "write": true}, "custom_fields[].employee_number": {"read": true, "write": false}}, "hris.departments": {"id": {"read": true, "write": false}, "name": {"read": true, "write": true}, "code": {"read": true, "write": false}}}}, "application_data_scopes": {"enabled": true, "resources": {"hris.employees": {"id": {"read": true, "write": false}, "first_name": {"read": true, "write": true}, "last_name": {"read": true, "write": true}, "email": {"read": true, "write": true}, "addresses[].street": {"read": true, "write": false}, "addresses[].city": {"read": true, "write": false}, "employment.job_title": {"read": true, "write": true}, "custom_fields[].employee_number": {"read": true, "write": false}}, "hris.departments": {"id": {"read": true, "write": false}, "name": {"read": true, "write": true}, "code": {"read": true, "write": false}}}}}
       responses:
         "200":
-          application/json: {"status_code": 200, "status": "OK", "data": {"id": "crm+salesforce", "service_id": "salesforce", "name": "Salesforce", "tag_line": "CRM software solutions and enterprise cloud computing from Salesforce, the leader in customer relationship management (CRM) and PaaS. Free 30 day trial.", "unified_api": "crm", "state": "authorized", "integration_state": "configured", "auth_type": "oauth2", "oauth_grant_type": "authorization_code", "enabled": true, "website": "https://www.salesforce.com", "icon": "https://res.cloudinary.com/apideck/image/upload/v1529456047/catalog/salesforce/icon128x128.png", "logo": "https://c1.sfdcstatic.com/content/dam/web/en_us/www/images/home/logo-salesforce-m.svg", "authorize_url": "https://unify.apideck.com/vault/authorize/salesforce/<application-id>?state=<state>", "revoke_url": "https://unify.apideck.com/vault/revoke/salesforce/<application-id>?state=<state>", "settings": {"instance_url": "https://eu28.salesforce.com", "api_key": "12345xxxxxx"}, "metadata": {"account": {"name": "My Company", "id": "c01458a5-7276-41ce-bc19-639906b0450a"}, "plan": "enterprise"}, "form_fields": [{"id": "instance_url", "label": "Instance url", "placeholder": "", "type": "text", "required": true, "custom_field": false, "allow_custom_values": false, "disabled": false, "sensitive": false}, {"id": "api_key", "label": "API Key", "placeholder": "", "type": "text", "required": true, "custom_field": false, "allow_custom_values": false, "disabled": false, "sensitive": true}], "configuration": [{"resource": "leads", "defaults": [{"target": "custom_fields", "id": "ProductInterest", "options": [{"label": "General Channel", "option_type": "simple"}], "value": "GC5000 series"}]}], "configurable_resources": ["opportunities", "companies", "contacts", "leads"], "resource_schema_support": ["leads"], "resource_settings_support": ["leads"], "settings_required_for_authorization": ["client_id", "client_secret"], "subscriptions": [{"downstream_id": "5f5f5f5f5f5f5f5f5f5f5f5f", "unify_event_types": ["crm.contact.created"], "downstream_event_types": ["contacts.CREATED"], "execute_url": "https://unify.apideck.com/webhook/w/{lookupIdToken}/{serviceId}?e={downstreamEventType}", "created_at": "2020-10-01T12:00:00.000Z"}], "has_guide": true, "created_at": 1615563533390, "custom_mappings": [{"id": "hris+employees+first_aid_training", "label": "First Aid Training", "description": "First Aid Training completed after 2019-01-01", "value": "$.root.training.first_aid", "key": "first_aid_training", "required": false, "custom_field": true, "consumer_id": "test_user_id", "example": "Some value"}], "updated_at": 1616662325753}}
+          application/json: {"status_code": 200, "status": "OK", "data": {"id": "crm+salesforce", "service_id": "salesforce", "name": "Salesforce", "tag_line": "CRM software solutions and enterprise cloud computing from Salesforce, the leader in customer relationship management (CRM) and PaaS. Free 30 day trial.", "unified_api": "crm", "state": "authorized", "integration_state": "configured", "auth_type": "oauth2", "oauth_grant_type": "authorization_code", "enabled": true, "website": "https://www.salesforce.com", "icon": "https://res.cloudinary.com/apideck/image/upload/v1529456047/catalog/salesforce/icon128x128.png", "logo": "https://c1.sfdcstatic.com/content/dam/web/en_us/www/images/home/logo-salesforce-m.svg", "authorize_url": "https://unify.apideck.com/vault/authorize/salesforce/<application-id>?state=<state>", "revoke_url": "https://unify.apideck.com/vault/revoke/salesforce/<application-id>?state=<state>", "settings": {"instance_url": "https://eu28.salesforce.com", "api_key": "12345xxxxxx"}, "metadata": {"account": {"name": "My Company", "id": "c01458a5-7276-41ce-bc19-639906b0450a"}, "plan": "enterprise"}, "form_fields": [{"id": "instance_url", "label": "Instance url", "placeholder": "", "type": "text", "required": true, "custom_field": false, "allow_custom_values": false, "disabled": false, "sensitive": false}, {"id": "api_key", "label": "API Key", "placeholder": "", "type": "text", "required": true, "custom_field": false, "allow_custom_values": false, "disabled": false, "sensitive": true}], "configuration": [{"resource": "leads", "defaults": [{"target": "custom_fields", "id": "ProductInterest", "options": [{"label": "General Channel", "option_type": "simple"}], "value": "GC5000 series"}]}], "configurable_resources": ["opportunities", "companies", "contacts", "leads"], "resource_schema_support": ["leads"], "resource_settings_support": ["leads"], "settings_required_for_authorization": ["client_id", "client_secret"], "subscriptions": [{"downstream_id": "5f5f5f5f5f5f5f5f5f5f5f5f", "unify_event_types": ["crm.contact.created"], "downstream_event_types": ["contacts.CREATED"], "execute_url": "https://unify.apideck.com/webhook/w/{lookupIdToken}/{serviceId}?e={downstreamEventType}", "created_at": "2020-10-01T12:00:00.000Z"}], "has_guide": true, "created_at": 1615563533390, "custom_mappings": [{"id": "hris+employees+first_aid_training", "label": "First Aid Training", "description": "First Aid Training completed after 2019-01-01", "value": "$.root.training.first_aid", "key": "first_aid_training", "required": false, "custom_field": true, "consumer_id": "test_user_id", "example": "Some value"}], "consent_state": "granted", "consents": [{"id": "con_1234567890", "created_at": "2025-04-15T14:30:00Z", "granted": true, "resources": {"hris.employees": {"id": {"read": true, "write": false}, "first_name": {"read": true, "write": true}, "last_name": {"read": true, "write": true}, "email": {"read": true, "write": true}, "addresses[].street": {"read": true, "write": false}, "addresses[].city": {"read": true, "write": false}, "employment.job_title": {"read": true, "write": true}, "custom_fields[].employee_number": {"read": true, "write": false}}, "hris.departments": {"id": {"read": true, "write": false}, "name": {"read": true, "write": true}, "code": {"read": true, "write": false}}}}], "latest_consent": {"id": "con_1234567890", "created_at": "2025-04-15T14:30:00Z", "granted": true, "resources": {"hris.employees": {"id": {"read": true, "write": false}, "first_name": {"read": true, "write": true}, "last_name": {"read": true, "write": true}, "email": {"read": true, "write": true}, "addresses[].street": {"read": true, "write": false}, "addresses[].city": {"read": true, "write": false}, "employment.job_title": {"read": true, "write": true}, "custom_fields[].employee_number": {"read": true, "write": false}}, "hris.departments": {"id": {"read": true, "write": false}, "name": {"read": true, "write": true}, "code": {"read": true, "write": false}}}}, "application_data_scopes": {"enabled": true, "updated_at": "2025-04-15T14:30:00Z", "resources": {"hris.employees": {"id": {"read": true, "write": false}, "first_name": {"read": true, "write": true}, "last_name": {"read": true, "write": true}, "email": {"read": true, "write": true}, "addresses[].street": {"read": true, "write": false}, "addresses[].city": {"read": true, "write": false}, "employment.job_title": {"read": true, "write": true}, "custom_fields[].employee_number": {"read": true, "write": false}}, "hris.departments": {"id": {"read": true, "write": false}, "name": {"read": true, "write": true}, "code": {"read": true, "write": false}}}}, "updated_at": 1616662325753}}
         "400":
           application/json: {"status_code": 400, "error": "Bad Request", "type_name": "RequestValidationError", "message": "Invalid Params", "detail": "Missing property foobar", "ref": "https://developers.apideck.com/errors#requestvalidationerror"}
         "401":
@@ -19583,6 +19643,56 @@ examples:
           application/json: {"status_code": 422, "error": "Unprocessable Entity", "type_name": "InvalidStateError", "message": "Invalid State", "detail": "Unprocessable request, please verify your request headers and body.", "ref": "https://developers.apideck.com/errors#invalidstateerror"}
         default:
           application/json: {"status_code": 400, "error": "Bad Request", "type_name": "RequestHeadersValidationError", "message": "Invalid Params", "detail": "Missing Header: x-apideck-consumer-id", "ref": "https://developers.apideck.com/errors#unauthorizederror"}
+  vault.connectionConsentsAll:
+    speakeasy-default-vault-connection-consents-all:
+      parameters:
+        path:
+          service_id: "pipedrive"
+          unified_api: "crm"
+        header:
+          x-apideck-consumer-id: "test-consumer"
+          x-apideck-app-id: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
+      responses:
+        "200":
+          application/json: {"status_code": 200, "status": "OK", "data": []}
+        "400":
+          application/json: {"status_code": 400, "error": "Bad Request", "type_name": "RequestValidationError", "message": "Invalid Params", "detail": "Missing property foobar", "ref": "https://developers.apideck.com/errors#requestvalidationerror"}
+        "401":
+          application/json: {"status_code": 401, "error": "Unauthorized", "type_name": "UnauthorizedError", "message": "Unauthorized Request", "detail": "Missing authentication", "ref": "https://developers.apideck.com/errors#unauthorizederror"}
+        "402":
+          application/json: {"status_code": 402, "error": "Payment Required", "type_name": "RequestLimitError", "message": "Request Limit Reached", "detail": "You have reached your limit of 2000", "ref": "https://developers.apideck.com/errors#requestlimiterror"}
+        "404":
+          application/json: {"status_code": 404, "error": "Not Found", "type_name": "EntityNotFoundError", "message": "Unknown Widget", "detail": "Could not find widget with id: '123'", "ref": "https://developers.apideck.com/errors#entitynotfounderror"}
+        "422":
+          application/json: {"status_code": 422, "error": "Unprocessable Entity", "type_name": "InvalidStateError", "message": "Invalid State", "detail": "Unprocessable request, please verify your request headers and body.", "ref": "https://developers.apideck.com/errors#invalidstateerror"}
+        default:
+          application/json: {"status_code": 400, "error": "Bad Request", "type_name": "RequestHeadersValidationError", "message": "Invalid Params", "detail": "Missing Header: x-apideck-consumer-id", "ref": "https://developers.apideck.com/errors#unauthorizederror"}
+  vault.connectionConsentUpdate:
+    speakeasy-default-vault-connection-consent-update:
+      parameters:
+        path:
+          service_id: "pipedrive"
+          unified_api: "crm"
+        header:
+          x-apideck-consumer-id: "test-consumer"
+          x-apideck-app-id: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
+      requestBody:
+        application/json: {"resources": "*", "granted": true}
+      responses:
+        "200":
+          application/json: {"status_code": 200, "status": "OK", "data": {"id": "con_1234567890", "created_at": "2025-04-15T14:30:00Z", "granted": true, "resources": {"hris.employees": {"id": {"read": true, "write": false}, "first_name": {"read": true, "write": true}, "last_name": {"read": true, "write": true}, "email": {"read": true, "write": true}, "addresses[].street": {"read": true, "write": false}, "addresses[].city": {"read": true, "write": false}, "employment.job_title": {"read": true, "write": true}, "custom_fields[].employee_number": {"read": true, "write": false}}, "hris.departments": {"id": {"read": true, "write": false}, "name": {"read": true, "write": true}, "code": {"read": true, "write": false}}}}}
+        "400":
+          application/json: {"status_code": 400, "error": "Bad Request", "type_name": "RequestValidationError", "message": "Invalid Params", "detail": "Missing property foobar", "ref": "https://developers.apideck.com/errors#requestvalidationerror"}
+        "401":
+          application/json: {"status_code": 401, "error": "Unauthorized", "type_name": "UnauthorizedError", "message": "Unauthorized Request", "detail": "Missing authentication", "ref": "https://developers.apideck.com/errors#unauthorizederror"}
+        "402":
+          application/json: {"status_code": 402, "error": "Payment Required", "type_name": "RequestLimitError", "message": "Request Limit Reached", "detail": "You have reached your limit of 2000", "ref": "https://developers.apideck.com/errors#requestlimiterror"}
+        "404":
+          application/json: {"status_code": 404, "error": "Not Found", "type_name": "EntityNotFoundError", "message": "Unknown Widget", "detail": "Could not find widget with id: '123'", "ref": "https://developers.apideck.com/errors#entitynotfounderror"}
+        "422":
+          application/json: {"status_code": 422, "error": "Unprocessable Entity", "type_name": "InvalidStateError", "message": "Invalid State", "detail": "Unprocessable request, please verify your request headers and body.", "ref": "https://developers.apideck.com/errors#invalidstateerror"}
+        default:
+          application/json: {"status_code": 400, "error": "Bad Request", "type_name": "RequestHeadersValidationError", "message": "Invalid Params", "detail": "Missing Header: x-apideck-consumer-id", "ref": "https://developers.apideck.com/errors#unauthorizederror"}
 examplesVersion: 1.0.2
 generatedTests:
   accounting.taxRatesAll: "2025-04-22T11:14:40+01:00"
@@ -19874,4 +19984,6 @@ generatedTests:
   accounting.quotesOne: "2025-08-06T08:21:29Z"
   accounting.quotesUpdate: "2025-08-06T08:21:29Z"
   accounting.quotesDelete: "2025-08-06T08:21:29Z"
-releaseNotes: "## SDK Changes Detected:\n* `apideck.accounting.invoiceItems.list()`:  `response.data.[].currency` **Added**\n* `apideck.accounting.invoiceItems.create()`: \n  *  `request.invoiceItem.currency` **Added**\n* `apideck.accounting.invoiceItems.get()`:  `response.data.currency` **Added**\n* `apideck.accounting.invoiceItems.update()`: \n  *  `request.invoiceItem.currency` **Added**\n"
+  vault.connectionConsentsAll: "2025-09-08T00:03:45Z"
+  vault.connectionConsentUpdate: "2025-09-08T00:03:45Z"
+releaseNotes: "## Typescript SDK Changes Detected:\n* `apideck.vault.connectionConsents.list()`: **Added**\n* `apideck.vault.connectionConsent.update()`: **Added**\n* `apideck.accounting.companyInfo.get()`:  `response.data.trackingCategoriesMode` **Added**\n* `apideck.accounting.journalEntries.list()`: \n  *  `request.filter` **Changed**\n* `apideck.accounting.trackingCategories.list()`:  `response.data.[].parentName` **Added**\n* `apideck.accounting.trackingCategories.create()`: \n  *  `request.trackingCategory.parentName` **Added**\n* `apideck.accounting.trackingCategories.get()`:  `response.data.parentName` **Added**\n* `apideck.accounting.trackingCategories.update()`: \n  *  `request.trackingCategory.parentName` **Added**\n* `apideck.accounting.expenses.list()`: \n  *  `request.filter` **Added**\n  *  `response.data.[].status` **Added**\n* `apideck.accounting.expenses.create()`: \n  *  `request.expense.status` **Added**\n* `apideck.accounting.expenses.get()`:  `response.data.status` **Added**\n* `apideck.accounting.expenses.update()`: \n  *  `request.expense.status` **Added**\n* `apideck.vault.connections.list()`:  `response.data.[]` **Changed**\n* `apideck.vault.connections.get()`:  `response.data` **Changed**\n* `apideck.vault.connections.update()`: \n  *  `request.connection` **Changed**\n  *  `response.data` **Changed**\n* `apideck.vault.connections.imports()`:  `response.data` **Changed**\n* `apideck.vault.connections.token()`:  `response.data` **Changed**\n* `apideck.vault.connectionSettings.list()`:  `response.data` **Changed**\n* `apideck.vault.connectionSettings.update()`: \n  *  `request.connection` **Changed**\n  *  `response.data` **Changed**\n"
