@@ -1,0 +1,46 @@
+# GetBankAccountsResponse
+
+Bank Accounts
+
+## Example Usage
+
+```typescript
+import { GetBankAccountsResponse } from "@apideck/unify/models/components";
+
+let value: GetBankAccountsResponse = {
+  statusCode: 200,
+  status: "OK",
+  service: "quickbooks",
+  resource: "bank-accounts",
+  operation: "all",
+  data: [],
+  meta: {
+    itemsOnPage: 50,
+    cursors: {
+      previous: "em9oby1jcm06OnBhZ2U6OjE=",
+      current: "em9oby1jcm06OnBhZ2U6OjI=",
+      next: "em9oby1jcm06OnBhZ2U6OjM=",
+    },
+  },
+  links: {
+    previous:
+      "https://unify.apideck.com/crm/companies?cursor=em9oby1jcm06OnBhZ2U6OjE%3D",
+    current: "https://unify.apideck.com/crm/companies",
+    next:
+      "https://unify.apideck.com/crm/companies?cursor=em9oby1jcm06OnBhZ2U6OjM",
+  },
+};
+```
+
+## Fields
+
+| Field                                                                                  | Type                                                                                   | Required                                                                               | Description                                                                            | Example                                                                                |
+| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| `statusCode`                                                                           | *number*                                                                               | :heavy_check_mark:                                                                     | HTTP Response Status Code                                                              | 200                                                                                    |
+| `status`                                                                               | *string*                                                                               | :heavy_check_mark:                                                                     | HTTP Response Status                                                                   | OK                                                                                     |
+| `service`                                                                              | *string*                                                                               | :heavy_minus_sign:                                                                     | Apideck ID of service provider                                                         | quickbooks                                                                             |
+| `resource`                                                                             | *string*                                                                               | :heavy_minus_sign:                                                                     | Unified API resource name                                                              | bank-accounts                                                                          |
+| `operation`                                                                            | *string*                                                                               | :heavy_minus_sign:                                                                     | Operation performed                                                                    | all                                                                                    |
+| `data`                                                                                 | [components.AccountingBankAccount](../../models/components/accountingbankaccount.md)[] | :heavy_check_mark:                                                                     | N/A                                                                                    |                                                                                        |
+| `meta`                                                                                 | [components.Meta](../../models/components/meta.md)                                     | :heavy_minus_sign:                                                                     | Response metadata                                                                      |                                                                                        |
+| `links`                                                                                | [components.Links](../../models/components/links.md)                                   | :heavy_minus_sign:                                                                     | Links to navigate to previous or next pages through the API                            |                                                                                        |

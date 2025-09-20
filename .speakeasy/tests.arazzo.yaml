@@ -51646,3 +51646,337 @@ workflows:
             type: simple
     x-speakeasy-test-group: connectionConsent
     x-speakeasy-test-rebuild: true
+  - workflowId: accounting.bankAccountsAll
+    steps:
+      - stepId: test
+        operationId: accounting.bankAccountsAll
+        parameters:
+          - name: raw
+            in: query
+            value: false
+          - name: limit
+            in: query
+            value: 20
+          - name: filter
+            in: query
+            value:
+              name: Main Operating
+              status: active
+          - name: sort
+            in: query
+            value:
+              by: updated_at
+              direction: asc
+          - name: pass_through
+            in: query
+            value:
+              search: San Francisco
+          - name: fields
+            in: query
+            value: id,updated_at
+          - name: x-apideck-consumer-id
+            in: header
+            value: test-consumer
+          - name: x-apideck-app-id
+            in: header
+            value: dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX
+          - name: x-apideck-service-id
+            in: header
+            value: salesforce
+        successCriteria:
+          - condition: $statusCode == 200
+          - condition: $response.header.Content-Type == application/json
+          - context: $response.body
+            condition: |
+              {
+                "status_code": 200,
+                "status": "OK",
+                "service": "quickbooks",
+                "resource": "bank-accounts",
+                "operation": "all",
+                "data": [
+                  {
+                    "id": "12345",
+                    "display_id": "BA-001",
+                    "name": "Main Operating Account",
+                    "account_number": "1234567890",
+                    "account_type": "checking",
+                    "bank_name": "Chase Bank",
+                    "currency": "USD",
+                    "balance": 25000,
+                    "available_balance": 24500,
+                    "overdraft_limit": 5000,
+                    "routing_number": "021000021",
+                    "iban": "GB33BUKB20201555555555",
+                    "bic": "CHASUS33",
+                    "bsb_number": "062-001",
+                    "branch_identifier": "001",
+                    "bank_code": "BNH",
+                    "country": "US",
+                    "status": "active",
+                    "description": "Primary operating account for daily transactions",
+                    "custom_fields": [
+                      {
+                        "id": "2389328923893298",
+                        "name": "employee_level",
+                        "description": "Employee Level",
+                        "value": "Uses Salesforce and Marketo"
+                      }
+                    ],
+                    "created_at": "2020-09-30T07:43:32.000Z",
+                    "updated_at": "2020-09-30T07:43:32.000Z",
+                    "created_by": "12345",
+                    "updated_by": "12345"
+                  }
+                ],
+                "meta": {
+                  "items_on_page": 50,
+                  "cursors": {
+                    "previous": "em9oby1jcm06OnBhZ2U6OjE=",
+                    "current": "em9oby1jcm06OnBhZ2U6OjI=",
+                    "next": "em9oby1jcm06OnBhZ2U6OjM="
+                  }
+                },
+                "links": {
+                  "previous": "https://unify.apideck.com/crm/companies?cursor=em9oby1jcm06OnBhZ2U6OjE%3D",
+                  "current": "https://unify.apideck.com/crm/companies",
+                  "next": "https://unify.apideck.com/crm/companies?cursor=em9oby1jcm06OnBhZ2U6OjM"
+                }
+              }
+            type: simple
+    x-speakeasy-test-group: bankAccounts
+    x-speakeasy-test-rebuild: true
+  - workflowId: accounting.bankAccountsAdd
+    steps:
+      - stepId: test
+        operationId: accounting.bankAccountsAdd
+        parameters:
+          - name: raw
+            in: query
+            value: false
+          - name: x-apideck-consumer-id
+            in: header
+            value: test-consumer
+          - name: x-apideck-app-id
+            in: header
+            value: dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX
+          - name: x-apideck-service-id
+            in: header
+            value: salesforce
+        requestBody:
+          contentType: application/json
+          payload:
+            account_number: "1234567890"
+            account_type: checking
+            available_balance: 24500
+            balance: 25000
+            bank_code: BNH
+            bank_name: Chase Bank
+            bic: CHASUS33
+            branch_identifier: "001"
+            bsb_number: 062-001
+            country: US
+            currency: USD
+            custom_fields:
+              - description: Employee Level
+                id: "2389328923893298"
+                name: employee_level
+                value: Uses Salesforce and Marketo
+            description: Primary operating account for daily transactions
+            display_id: BA-001
+            iban: GB33BUKB20201555555555
+            name: Main Operating Account
+            overdraft_limit: 5000
+            routing_number: "021000021"
+            status: active
+        successCriteria:
+          - condition: $statusCode == 201
+          - condition: $response.header.Content-Type == application/json
+          - context: $response.body
+            condition: |
+              {
+                "status_code": 201,
+                "status": "Created",
+                "service": "quickbooks",
+                "resource": "bank-accounts",
+                "operation": "add",
+                "data": {
+                  "id": "12345"
+                }
+              }
+            type: simple
+    x-speakeasy-test-group: bankAccounts
+    x-speakeasy-test-rebuild: true
+  - workflowId: accounting.bankAccountsOne
+    steps:
+      - stepId: test
+        operationId: accounting.bankAccountsOne
+        parameters:
+          - name: id
+            in: path
+            value: <id>
+          - name: raw
+            in: query
+            value: false
+          - name: fields
+            in: query
+            value: id,updated_at
+          - name: x-apideck-consumer-id
+            in: header
+            value: test-consumer
+          - name: x-apideck-app-id
+            in: header
+            value: dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX
+          - name: x-apideck-service-id
+            in: header
+            value: salesforce
+        successCriteria:
+          - condition: $statusCode == 200
+          - condition: $response.header.Content-Type == application/json
+          - context: $response.body
+            condition: |
+              {
+                "status_code": 200,
+                "status": "OK",
+                "service": "quickbooks",
+                "resource": "bank-accounts",
+                "operation": "one",
+                "data": {
+                  "id": "12345",
+                  "display_id": "BA-001",
+                  "name": "Main Operating Account",
+                  "account_number": "1234567890",
+                  "account_type": "checking",
+                  "bank_name": "Chase Bank",
+                  "currency": "USD",
+                  "balance": 25000,
+                  "available_balance": 24500,
+                  "overdraft_limit": 5000,
+                  "routing_number": "021000021",
+                  "iban": "GB33BUKB20201555555555",
+                  "bic": "CHASUS33",
+                  "bsb_number": "062-001",
+                  "branch_identifier": "001",
+                  "bank_code": "BNH",
+                  "country": "US",
+                  "status": "active",
+                  "description": "Primary operating account for daily transactions",
+                  "custom_fields": [
+                    {
+                      "id": "2389328923893298",
+                      "name": "employee_level",
+                      "description": "Employee Level",
+                      "value": "Uses Salesforce and Marketo"
+                    }
+                  ],
+                  "created_at": "2020-09-30T07:43:32.000Z",
+                  "updated_at": "2020-09-30T07:43:32.000Z",
+                  "created_by": "12345",
+                  "updated_by": "12345"
+                }
+              }
+            type: simple
+    x-speakeasy-test-group: bankAccounts
+    x-speakeasy-test-rebuild: true
+  - workflowId: accounting.bankAccountsUpdate
+    steps:
+      - stepId: test
+        operationId: accounting.bankAccountsUpdate
+        parameters:
+          - name: id
+            in: path
+            value: <id>
+          - name: raw
+            in: query
+            value: false
+          - name: x-apideck-consumer-id
+            in: header
+            value: test-consumer
+          - name: x-apideck-app-id
+            in: header
+            value: dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX
+          - name: x-apideck-service-id
+            in: header
+            value: salesforce
+        requestBody:
+          contentType: application/json
+          payload:
+            account_number: "1234567890"
+            account_type: checking
+            available_balance: 24500
+            balance: 25000
+            bank_code: BNH
+            bank_name: Chase Bank
+            bic: CHASUS33
+            branch_identifier: "001"
+            bsb_number: 062-001
+            country: US
+            currency: USD
+            custom_fields:
+              - description: Employee Level
+                id: "2389328923893298"
+                name: employee_level
+                value: Uses Salesforce and Marketo
+            description: Primary operating account for daily transactions
+            display_id: BA-001
+            iban: GB33BUKB20201555555555
+            name: Main Operating Account
+            overdraft_limit: 5000
+            routing_number: "021000021"
+            status: active
+        successCriteria:
+          - condition: $statusCode == 200
+          - condition: $response.header.Content-Type == application/json
+          - context: $response.body
+            condition: |
+              {
+                "status_code": 200,
+                "status": "OK",
+                "service": "quickbooks",
+                "resource": "bank-accounts",
+                "operation": "update",
+                "data": {
+                  "id": "12345"
+                }
+              }
+            type: simple
+    x-speakeasy-test-group: bankAccounts
+    x-speakeasy-test-rebuild: true
+  - workflowId: accounting.bankAccountsDelete
+    steps:
+      - stepId: test
+        operationId: accounting.bankAccountsDelete
+        parameters:
+          - name: id
+            in: path
+            value: <id>
+          - name: raw
+            in: query
+            value: false
+          - name: x-apideck-consumer-id
+            in: header
+            value: test-consumer
+          - name: x-apideck-app-id
+            in: header
+            value: dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX
+          - name: x-apideck-service-id
+            in: header
+            value: salesforce
+        successCriteria:
+          - condition: $statusCode == 200
+          - condition: $response.header.Content-Type == application/json
+          - context: $response.body
+            condition: |
+              {
+                "status_code": 200,
+                "status": "OK",
+                "service": "quickbooks",
+                "resource": "bank-accounts",
+                "operation": "delete",
+                "data": {
+                  "id": "12345"
+                }
+              }
+            type: simple
+    x-speakeasy-test-group: bankAccounts
+    x-speakeasy-test-rebuild: true
