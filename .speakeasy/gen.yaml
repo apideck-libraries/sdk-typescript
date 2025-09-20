@@ -19,12 +19,13 @@ generation:
   auth:
     oAuth2ClientCredentialsEnabled: true
     oAuth2PasswordEnabled: true
+    hoistGlobalSecurity: true
   tests:
     generateTests: true
     generateNewTests: true
     skipResponseBodyAssertions: false
 typescript:
-  version: 0.29.8
+  version: 0.29.9
   additionalDependencies:
     dependencies: {}
     devDependencies: {}
@@ -55,10 +56,12 @@ typescript:
   jsonpath: legacy
   maxMethodParams: 0
   methodArguments: require-security-and-request
+  modelPropertyCasing: camel
   moduleFormat: commonjs
   outputModelSuffix: output
   packageName: '@apideck/unify'
   responseFormat: envelope-http
+  sseFlatResponse: false
   templateVersion: v2
   usageSDKInitImports: []
   useIndexModules: true

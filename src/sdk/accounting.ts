@@ -7,6 +7,7 @@ import { AgedCreditors } from "./agedcreditors.js";
 import { AgedDebtors } from "./ageddebtors.js";
 import { Attachments } from "./attachments.js";
 import { BalanceSheet } from "./balancesheet.js";
+import { BankAccounts } from "./bankaccounts.js";
 import { BankFeedAccounts } from "./bankfeedaccounts.js";
 import { BankFeedStatements } from "./bankfeedstatements.js";
 import { BillPayments } from "./billpayments.js";
@@ -120,6 +121,11 @@ export class Accounting extends ClientSDK {
   private _attachments?: Attachments;
   get attachments(): Attachments {
     return (this._attachments ??= new Attachments(this._options));
+  }
+
+  private _bankAccounts?: BankAccounts;
+  get bankAccounts(): BankAccounts {
+    return (this._bankAccounts ??= new BankAccounts(this._options));
   }
 
   private _trackingCategories?: TrackingCategories;

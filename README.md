@@ -149,6 +149,14 @@ run();
 
 * [get](docs/sdks/balancesheet/README.md#get) - Get BalanceSheet
 
+#### [accounting.bankAccounts](docs/sdks/bankaccounts/README.md)
+
+* [list](docs/sdks/bankaccounts/README.md#list) - List Bank Accounts
+* [create](docs/sdks/bankaccounts/README.md#create) - Create Bank Account
+* [get](docs/sdks/bankaccounts/README.md#get) - Get Bank Account
+* [update](docs/sdks/bankaccounts/README.md#update) - Update Bank Account
+* [delete](docs/sdks/bankaccounts/README.md#delete) - Delete Bank Account
+
 #### [accounting.bankFeedAccounts](docs/sdks/bankfeedaccounts/README.md)
 
 * [list](docs/sdks/bankfeedaccounts/README.md#list) - List Bank Feed Accounts
@@ -733,6 +741,11 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`accountingAttachmentsList`](docs/sdks/attachments/README.md#list) - List Attachments
 - [`accountingAttachmentsUpload`](docs/sdks/attachments/README.md#upload) - Upload attachment
 - [`accountingBalanceSheetGet`](docs/sdks/balancesheet/README.md#get) - Get BalanceSheet
+- [`accountingBankAccountsCreate`](docs/sdks/bankaccounts/README.md#create) - Create Bank Account
+- [`accountingBankAccountsDelete`](docs/sdks/bankaccounts/README.md#delete) - Delete Bank Account
+- [`accountingBankAccountsGet`](docs/sdks/bankaccounts/README.md#get) - Get Bank Account
+- [`accountingBankAccountsList`](docs/sdks/bankaccounts/README.md#list) - List Bank Accounts
+- [`accountingBankAccountsUpdate`](docs/sdks/bankaccounts/README.md#update) - Update Bank Account
 - [`accountingBankFeedAccountsCreate`](docs/sdks/bankfeedaccounts/README.md#create) - Create Bank Feed Account
 - [`accountingBankFeedAccountsDelete`](docs/sdks/bankfeedaccounts/README.md#delete) - Delete Bank Feed Account
 - [`accountingBankFeedAccountsGet`](docs/sdks/bankfeedaccounts/README.md#get) - Get Bank Feed Account
@@ -1425,7 +1438,7 @@ httpClient.addHook("requestError", (error, request) => {
   console.groupEnd();
 });
 
-const sdk = new Apideck({ httpClient });
+const sdk = new Apideck({ httpClient: httpClient });
 ```
 <!-- End Custom HTTP Client [http-client] -->
 

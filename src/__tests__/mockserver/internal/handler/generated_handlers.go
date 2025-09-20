@@ -13,6 +13,7 @@ import (
 func GeneratedHandlers(ctx context.Context, dir *logging.HTTPFileDirectory, rt *tracking.RequestTracker) []*GeneratedHandler {
 	return []*GeneratedHandler{
 		NewGeneratedHandler(ctx, http.MethodDelete, "/accounting/attachments/{reference_type}/{reference_id}/{id}", pathDeleteAccountingAttachmentsReferenceTypeReferenceIDID(dir, rt)),
+		NewGeneratedHandler(ctx, http.MethodDelete, "/accounting/bank-accounts/{id}", pathDeleteAccountingBankAccountsID(dir, rt)),
 		NewGeneratedHandler(ctx, http.MethodDelete, "/accounting/bank-feed-accounts/{id}", pathDeleteAccountingBankFeedAccountsID(dir, rt)),
 		NewGeneratedHandler(ctx, http.MethodDelete, "/accounting/bank-feed-statements/{id}", pathDeleteAccountingBankFeedStatementsID(dir, rt)),
 		NewGeneratedHandler(ctx, http.MethodDelete, "/accounting/bill-payments/{id}", pathDeleteAccountingBillPaymentsID(dir, rt)),
@@ -67,6 +68,8 @@ func GeneratedHandlers(ctx context.Context, dir *logging.HTTPFileDirectory, rt *
 		NewGeneratedHandler(ctx, http.MethodGet, "/accounting/attachments/{reference_type}/{reference_id}/{id}", pathGetAccountingAttachmentsReferenceTypeReferenceIDID(dir, rt)),
 		NewGeneratedHandler(ctx, http.MethodGet, "/accounting/attachments/{reference_type}/{reference_id}/{id}/download", pathGetAccountingAttachmentsReferenceTypeReferenceIDIDDownload(dir, rt)),
 		NewGeneratedHandler(ctx, http.MethodGet, "/accounting/balance-sheet", pathGetAccountingBalanceSheet(dir, rt)),
+		NewGeneratedHandler(ctx, http.MethodGet, "/accounting/bank-accounts", pathGetAccountingBankAccounts(dir, rt)),
+		NewGeneratedHandler(ctx, http.MethodGet, "/accounting/bank-accounts/{id}", pathGetAccountingBankAccountsID(dir, rt)),
 		NewGeneratedHandler(ctx, http.MethodGet, "/accounting/bank-feed-accounts", pathGetAccountingBankFeedAccounts(dir, rt)),
 		NewGeneratedHandler(ctx, http.MethodGet, "/accounting/bank-feed-accounts/{id}", pathGetAccountingBankFeedAccountsID(dir, rt)),
 		NewGeneratedHandler(ctx, http.MethodGet, "/accounting/bank-feed-statements", pathGetAccountingBankFeedStatements(dir, rt)),
@@ -200,6 +203,7 @@ func GeneratedHandlers(ctx context.Context, dir *logging.HTTPFileDirectory, rt *
 		NewGeneratedHandler(ctx, http.MethodGet, "/webhook/logs", pathGetWebhookLogs(dir, rt)),
 		NewGeneratedHandler(ctx, http.MethodGet, "/webhook/webhooks", pathGetWebhookWebhooks(dir, rt)),
 		NewGeneratedHandler(ctx, http.MethodGet, "/webhook/webhooks/{id}", pathGetWebhookWebhooksID(dir, rt)),
+		NewGeneratedHandler(ctx, http.MethodPatch, "/accounting/bank-accounts/{id}", pathPatchAccountingBankAccountsID(dir, rt)),
 		NewGeneratedHandler(ctx, http.MethodPatch, "/accounting/bank-feed-accounts/{id}", pathPatchAccountingBankFeedAccountsID(dir, rt)),
 		NewGeneratedHandler(ctx, http.MethodPatch, "/accounting/bank-feed-statements/{id}", pathPatchAccountingBankFeedStatementsID(dir, rt)),
 		NewGeneratedHandler(ctx, http.MethodPatch, "/accounting/bill-payments/{id}", pathPatchAccountingBillPaymentsID(dir, rt)),
@@ -249,6 +253,7 @@ func GeneratedHandlers(ctx context.Context, dir *logging.HTTPFileDirectory, rt *
 		NewGeneratedHandler(ctx, http.MethodPatch, "/vault/connections/{unified_api}/{service_id}/{resource}/config", pathPatchVaultConnectionsUnifiedAPIServiceIDResourceConfig(dir, rt)),
 		NewGeneratedHandler(ctx, http.MethodPatch, "/vault/consumers/{consumer_id}", pathPatchVaultConsumersConsumerID(dir, rt)),
 		NewGeneratedHandler(ctx, http.MethodPatch, "/webhook/webhooks/{id}", pathPatchWebhookWebhooksID(dir, rt)),
+		NewGeneratedHandler(ctx, http.MethodPost, "/accounting/bank-accounts", pathPostAccountingBankAccounts(dir, rt)),
 		NewGeneratedHandler(ctx, http.MethodPost, "/accounting/bank-feed-accounts", pathPostAccountingBankFeedAccounts(dir, rt)),
 		NewGeneratedHandler(ctx, http.MethodPost, "/accounting/bank-feed-statements", pathPostAccountingBankFeedStatements(dir, rt)),
 		NewGeneratedHandler(ctx, http.MethodPost, "/accounting/bill-payments", pathPostAccountingBillPayments(dir, rt)),

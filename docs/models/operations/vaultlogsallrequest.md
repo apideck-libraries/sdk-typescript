@@ -9,6 +9,11 @@ let value: VaultLogsAllRequest = {
   filter: {
     connectorId: "crm+salesforce",
     statusCode: 201,
+    statusCodes: [
+      200,
+      201,
+      204,
+    ],
     excludeUnifiedApis: "vault,proxy",
   },
 };
