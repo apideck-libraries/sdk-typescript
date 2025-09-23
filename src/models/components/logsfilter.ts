@@ -10,7 +10,14 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type LogsFilter = {
   connectorId?: string | null | undefined;
+  /**
+   * Filter by a single HTTP status code. For backward compatibility - use status_codes for multiple values.
+   */
   statusCode?: number | null | undefined;
+  /**
+   * Filter by multiple HTTP status codes. Values must be between 100-599. Maximum 50 status codes allowed.
+   */
+  statusCodes?: Array<number> | null | undefined;
   excludeUnifiedApis?: string | null | undefined;
 };
 
@@ -22,11 +29,13 @@ export const LogsFilter$inboundSchema: z.ZodType<
 > = z.object({
   connector_id: z.nullable(z.string()).optional(),
   status_code: z.nullable(z.number()).optional(),
+  status_codes: z.nullable(z.array(z.number())).optional(),
   exclude_unified_apis: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     "connector_id": "connectorId",
     "status_code": "statusCode",
+    "status_codes": "statusCodes",
     "exclude_unified_apis": "excludeUnifiedApis",
   });
 });
@@ -35,6 +44,7 @@ export const LogsFilter$inboundSchema: z.ZodType<
 export type LogsFilter$Outbound = {
   connector_id?: string | null | undefined;
   status_code?: number | null | undefined;
+  status_codes?: Array<number> | null | undefined;
   exclude_unified_apis?: string | null | undefined;
 };
 
@@ -46,11 +56,13 @@ export const LogsFilter$outboundSchema: z.ZodType<
 > = z.object({
   connectorId: z.nullable(z.string()).optional(),
   statusCode: z.nullable(z.number()).optional(),
+  statusCodes: z.nullable(z.array(z.number())).optional(),
   excludeUnifiedApis: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     connectorId: "connector_id",
     statusCode: "status_code",
+    statusCodes: "status_codes",
     excludeUnifiedApis: "exclude_unified_apis",
   });
 });
