@@ -42,7 +42,7 @@ import {
 /**
  * Priority of the ticket
  */
-export const Priority = {
+export const TicketPriority = {
   Low: "low",
   Normal: "normal",
   High: "high",
@@ -51,7 +51,7 @@ export const Priority = {
 /**
  * Priority of the ticket
  */
-export type Priority = ClosedEnum<typeof Priority>;
+export type TicketPriority = ClosedEnum<typeof TicketPriority>;
 
 export type Ticket = {
   /**
@@ -85,7 +85,7 @@ export type Ticket = {
   /**
    * Priority of the ticket
    */
-  priority?: Priority | null | undefined;
+  priority?: TicketPriority | null | undefined;
   assignees?: Array<Assignee> | undefined;
   /**
    * The date and time when the object was last updated.
@@ -142,7 +142,7 @@ export type TicketInput = {
   /**
    * Priority of the ticket
    */
-  priority?: Priority | null | undefined;
+  priority?: TicketPriority | null | undefined;
   assignees?: Array<AssigneeInput> | undefined;
   /**
    * Due date of the ticket
@@ -156,22 +156,24 @@ export type TicketInput = {
 };
 
 /** @internal */
-export const Priority$inboundSchema: z.ZodNativeEnum<typeof Priority> = z
-  .nativeEnum(Priority);
+export const TicketPriority$inboundSchema: z.ZodNativeEnum<
+  typeof TicketPriority
+> = z.nativeEnum(TicketPriority);
 
 /** @internal */
-export const Priority$outboundSchema: z.ZodNativeEnum<typeof Priority> =
-  Priority$inboundSchema;
+export const TicketPriority$outboundSchema: z.ZodNativeEnum<
+  typeof TicketPriority
+> = TicketPriority$inboundSchema;
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace Priority$ {
-  /** @deprecated use `Priority$inboundSchema` instead. */
-  export const inboundSchema = Priority$inboundSchema;
-  /** @deprecated use `Priority$outboundSchema` instead. */
-  export const outboundSchema = Priority$outboundSchema;
+export namespace TicketPriority$ {
+  /** @deprecated use `TicketPriority$inboundSchema` instead. */
+  export const inboundSchema = TicketPriority$inboundSchema;
+  /** @deprecated use `TicketPriority$outboundSchema` instead. */
+  export const outboundSchema = TicketPriority$outboundSchema;
 }
 
 /** @internal */
@@ -184,7 +186,7 @@ export const Ticket$inboundSchema: z.ZodType<Ticket, z.ZodTypeDef, unknown> = z
     subject: z.nullable(z.string()).optional(),
     description: z.nullable(z.string()).optional(),
     status: z.nullable(z.string()).optional(),
-    priority: z.nullable(Priority$inboundSchema).optional(),
+    priority: z.nullable(TicketPriority$inboundSchema).optional(),
     assignees: z.array(Assignee$inboundSchema).optional(),
     updated_at: z.nullable(
       z.string().datetime({ offset: true }).transform(v => new Date(v)),
@@ -250,7 +252,7 @@ export const Ticket$outboundSchema: z.ZodType<
   subject: z.nullable(z.string()).optional(),
   description: z.nullable(z.string()).optional(),
   status: z.nullable(z.string()).optional(),
-  priority: z.nullable(Priority$outboundSchema).optional(),
+  priority: z.nullable(TicketPriority$outboundSchema).optional(),
   assignees: z.array(Assignee$outboundSchema).optional(),
   updatedAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
   createdAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
@@ -312,7 +314,7 @@ export const TicketInput$inboundSchema: z.ZodType<
   subject: z.nullable(z.string()).optional(),
   description: z.nullable(z.string()).optional(),
   status: z.nullable(z.string()).optional(),
-  priority: z.nullable(Priority$inboundSchema).optional(),
+  priority: z.nullable(TicketPriority$inboundSchema).optional(),
   assignees: z.array(AssigneeInput$inboundSchema).optional(),
   due_date: z.nullable(
     z.string().datetime({ offset: true }).transform(v => new Date(v)),
@@ -352,7 +354,7 @@ export const TicketInput$outboundSchema: z.ZodType<
   subject: z.nullable(z.string()).optional(),
   description: z.nullable(z.string()).optional(),
   status: z.nullable(z.string()).optional(),
-  priority: z.nullable(Priority$outboundSchema).optional(),
+  priority: z.nullable(TicketPriority$outboundSchema).optional(),
   assignees: z.array(AssigneeInput$outboundSchema).optional(),
   dueDate: z.nullable(z.date().transform(v => v.toISOString())).optional(),
   tags: z.array(CollectionTagInput$outboundSchema).optional(),

@@ -37,11 +37,40 @@ func (e *InvoiceItemsFilterInvoiceItemType) UnmarshalJSON(data []byte) error {
 	}
 }
 
+// InvoiceItemsFilterTransactionType - The kind of transaction, indicating whether it is a sales transaction or a purchase transaction.
+type InvoiceItemsFilterTransactionType string
+
+const (
+	InvoiceItemsFilterTransactionTypeSale     InvoiceItemsFilterTransactionType = "sale"
+	InvoiceItemsFilterTransactionTypePurchase InvoiceItemsFilterTransactionType = "purchase"
+)
+
+func (e InvoiceItemsFilterTransactionType) ToPointer() *InvoiceItemsFilterTransactionType {
+	return &e
+}
+func (e *InvoiceItemsFilterTransactionType) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "sale":
+		fallthrough
+	case "purchase":
+		*e = InvoiceItemsFilterTransactionType(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for InvoiceItemsFilterTransactionType: %v", v)
+	}
+}
+
 type InvoiceItemsFilter struct {
 	// Name of Invoice Items to search for
 	Name *string `queryParam:"name=name"`
 	// The type of invoice item, indicating whether it is an inventory item, a service, or another type.
 	Type *InvoiceItemsFilterInvoiceItemType `queryParam:"name=type"`
+	// The kind of transaction, indicating whether it is a sales transaction or a purchase transaction.
+	TransactionType *InvoiceItemsFilterTransactionType `queryParam:"name=transaction_type"`
 }
 
 func (o *InvoiceItemsFilter) GetName() *string {
@@ -56,4 +85,11 @@ func (o *InvoiceItemsFilter) GetType() *InvoiceItemsFilterInvoiceItemType {
 		return nil
 	}
 	return o.Type
+}
+
+func (o *InvoiceItemsFilter) GetTransactionType() *InvoiceItemsFilterTransactionType {
+	if o == nil {
+		return nil
+	}
+	return o.TransactionType
 }

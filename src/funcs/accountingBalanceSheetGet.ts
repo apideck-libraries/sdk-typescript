@@ -141,7 +141,7 @@ async function $do(
     options: client._options,
     baseURL: options?.serverURL ?? client._baseURL ?? "",
     operationID: "accounting.balanceSheetOne",
-    oAuth2Scopes: [],
+    oAuth2Scopes: null,
 
     resolvedSecurity: requestSecurity,
 
@@ -154,7 +154,7 @@ async function $do(
           initialInterval: 500,
           maxInterval: 60000,
           exponent: 1.5,
-          maxElapsedTime: 3600000,
+          maxElapsedTime: 900000,
         },
         retryConnectionErrors: true,
       }

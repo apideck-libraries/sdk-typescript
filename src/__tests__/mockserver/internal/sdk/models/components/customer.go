@@ -58,6 +58,8 @@ type Customer struct {
 	CompanyName *string `json:"company_name,omitempty"`
 	// The company ID the transaction belongs to
 	CompanyID *string `json:"company_id,omitempty"`
+	// The category/type of the customer
+	CustomerCategory *string `json:"customer_category,omitempty"`
 	// The job title of the person.
 	Title *string `json:"title,omitempty"`
 	// The first name of the person.
@@ -89,6 +91,8 @@ type Customer struct {
 	Status *CustomerStatus `json:"status,omitempty"`
 	// Payment method used for the transaction, such as cash, credit card, bank transfer, or check
 	PaymentMethod *string `json:"payment_method,omitempty"`
+	// Terms of payment.
+	Terms *string `json:"terms,omitempty"`
 	// The channel through which the transaction is processed.
 	Channel      *string       `json:"channel,omitempty"`
 	CustomFields []CustomField `json:"custom_fields,omitempty"`
@@ -159,6 +163,13 @@ func (o *Customer) GetCompanyID() *string {
 		return nil
 	}
 	return o.CompanyID
+}
+
+func (o *Customer) GetCustomerCategory() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CustomerCategory
 }
 
 func (o *Customer) GetTitle() *string {
@@ -301,6 +312,13 @@ func (o *Customer) GetPaymentMethod() *string {
 	return o.PaymentMethod
 }
 
+func (o *Customer) GetTerms() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Terms
+}
+
 func (o *Customer) GetChannel() *string {
 	if o == nil {
 		return nil
@@ -373,6 +391,8 @@ type CustomerInput struct {
 	CompanyName *string `json:"company_name,omitempty"`
 	// The company ID the transaction belongs to
 	CompanyID *string `json:"company_id,omitempty"`
+	// The category/type of the customer
+	CustomerCategory *string `json:"customer_category,omitempty"`
 	// The job title of the person.
 	Title *string `json:"title,omitempty"`
 	// The first name of the person.
@@ -404,6 +424,8 @@ type CustomerInput struct {
 	Status *CustomerStatus `json:"status,omitempty"`
 	// Payment method used for the transaction, such as cash, credit card, bank transfer, or check
 	PaymentMethod *string `json:"payment_method,omitempty"`
+	// Terms of payment.
+	Terms *string `json:"terms,omitempty"`
 	// The channel through which the transaction is processed.
 	Channel      *string       `json:"channel,omitempty"`
 	CustomFields []CustomField `json:"custom_fields,omitempty"`
@@ -439,6 +461,13 @@ func (o *CustomerInput) GetCompanyID() *string {
 		return nil
 	}
 	return o.CompanyID
+}
+
+func (o *CustomerInput) GetCustomerCategory() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CustomerCategory
 }
 
 func (o *CustomerInput) GetTitle() *string {
@@ -579,6 +608,13 @@ func (o *CustomerInput) GetPaymentMethod() *string {
 		return nil
 	}
 	return o.PaymentMethod
+}
+
+func (o *CustomerInput) GetTerms() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Terms
 }
 
 func (o *CustomerInput) GetChannel() *string {

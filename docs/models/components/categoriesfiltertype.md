@@ -13,5 +13,5 @@ let value: CategoriesFilterType = "expense";
 ## Values
 
 ```typescript
-"supplier" | "expense" | "revenue"
+"supplier" | "expense" | "revenue" | "customer"
 ```

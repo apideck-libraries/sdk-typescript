@@ -66,6 +66,10 @@ export type JournalEntry = {
    */
   id?: string | undefined;
   /**
+   * The third-party API ID of original entity
+   */
+  downstreamId?: string | null | undefined;
+  /**
    * Journal entry title
    */
   title?: string | null | undefined;
@@ -121,6 +125,18 @@ export type JournalEntry = {
    * Accounting period
    */
   accountingPeriod?: string | null | undefined;
+  /**
+   * Amounts are including tax
+   */
+  taxInclusive?: boolean | null | undefined;
+  /**
+   * The source type of the journal entry
+   */
+  sourceType?: string | null | undefined;
+  /**
+   * A unique identifier for the source of the journal entry
+   */
+  sourceId?: string | null | undefined;
   /**
    * When custom mappings are configured on the resource, the result is included here.
    */
@@ -210,6 +226,18 @@ export type JournalEntryInput = {
    */
   accountingPeriod?: string | null | undefined;
   /**
+   * Amounts are including tax
+   */
+  taxInclusive?: boolean | null | undefined;
+  /**
+   * The source type of the journal entry
+   */
+  sourceType?: string | null | undefined;
+  /**
+   * A unique identifier for the source of the journal entry
+   */
+  sourceId?: string | null | undefined;
+  /**
    * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
    */
   rowVersion?: string | null | undefined;
@@ -248,6 +276,7 @@ export const JournalEntry$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   id: z.string().optional(),
+  downstream_id: z.nullable(z.string()).optional(),
   title: z.nullable(z.string()).optional(),
   currency_rate: z.nullable(z.number()).optional(),
   currency: z.nullable(Currency$inboundSchema).optional(),
@@ -265,6 +294,9 @@ export const JournalEntry$inboundSchema: z.ZodType<
     z.array(z.nullable(LinkedTrackingCategory$inboundSchema)),
   ).optional(),
   accounting_period: z.nullable(z.string()).optional(),
+  tax_inclusive: z.nullable(z.boolean()).optional(),
+  source_type: z.nullable(z.string()).optional(),
+  source_id: z.nullable(z.string()).optional(),
   custom_mappings: z.nullable(z.record(z.any())).optional(),
   updated_by: z.nullable(z.string()).optional(),
   created_by: z.nullable(z.string()).optional(),
@@ -279,6 +311,7 @@ export const JournalEntry$inboundSchema: z.ZodType<
   pass_through: z.array(PassThroughBody$inboundSchema).optional(),
 }).transform((v) => {
   return remap$(v, {
+    "downstream_id": "downstreamId",
     "currency_rate": "currencyRate",
     "company_id": "companyId",
     "line_items": "lineItems",
@@ -288,6 +321,9 @@ export const JournalEntry$inboundSchema: z.ZodType<
     "tax_code": "taxCode",
     "tracking_categories": "trackingCategories",
     "accounting_period": "accountingPeriod",
+    "tax_inclusive": "taxInclusive",
+    "source_type": "sourceType",
+    "source_id": "sourceId",
     "custom_mappings": "customMappings",
     "updated_by": "updatedBy",
     "created_by": "createdBy",
@@ -302,6 +338,7 @@ export const JournalEntry$inboundSchema: z.ZodType<
 /** @internal */
 export type JournalEntry$Outbound = {
   id?: string | undefined;
+  downstream_id?: string | null | undefined;
   title?: string | null | undefined;
   currency_rate?: number | null | undefined;
   currency?: string | null | undefined;
@@ -319,6 +356,9 @@ export type JournalEntry$Outbound = {
     | null
     | undefined;
   accounting_period?: string | null | undefined;
+  tax_inclusive?: boolean | null | undefined;
+  source_type?: string | null | undefined;
+  source_id?: string | null | undefined;
   custom_mappings?: { [k: string]: any } | null | undefined;
   updated_by?: string | null | undefined;
   created_by?: string | null | undefined;
@@ -336,6 +376,7 @@ export const JournalEntry$outboundSchema: z.ZodType<
   JournalEntry
 > = z.object({
   id: z.string().optional(),
+  downstreamId: z.nullable(z.string()).optional(),
   title: z.nullable(z.string()).optional(),
   currencyRate: z.nullable(z.number()).optional(),
   currency: z.nullable(Currency$outboundSchema).optional(),
@@ -352,6 +393,9 @@ export const JournalEntry$outboundSchema: z.ZodType<
     z.array(z.nullable(LinkedTrackingCategory$outboundSchema)),
   ).optional(),
   accountingPeriod: z.nullable(z.string()).optional(),
+  taxInclusive: z.nullable(z.boolean()).optional(),
+  sourceType: z.nullable(z.string()).optional(),
+  sourceId: z.nullable(z.string()).optional(),
   customMappings: z.nullable(z.record(z.any())).optional(),
   updatedBy: z.nullable(z.string()).optional(),
   createdBy: z.nullable(z.string()).optional(),
@@ -362,6 +406,7 @@ export const JournalEntry$outboundSchema: z.ZodType<
   passThrough: z.array(PassThroughBody$outboundSchema).optional(),
 }).transform((v) => {
   return remap$(v, {
+    downstreamId: "downstream_id",
     currencyRate: "currency_rate",
     companyId: "company_id",
     lineItems: "line_items",
@@ -371,6 +416,9 @@ export const JournalEntry$outboundSchema: z.ZodType<
     taxCode: "tax_code",
     trackingCategories: "tracking_categories",
     accountingPeriod: "accounting_period",
+    taxInclusive: "tax_inclusive",
+    sourceType: "source_type",
+    sourceId: "source_id",
     customMappings: "custom_mappings",
     updatedBy: "updated_by",
     createdBy: "created_by",
@@ -432,6 +480,9 @@ export const JournalEntryInput$inboundSchema: z.ZodType<
     z.array(z.nullable(LinkedTrackingCategory$inboundSchema)),
   ).optional(),
   accounting_period: z.nullable(z.string()).optional(),
+  tax_inclusive: z.nullable(z.boolean()).optional(),
+  source_type: z.nullable(z.string()).optional(),
+  source_id: z.nullable(z.string()).optional(),
   row_version: z.nullable(z.string()).optional(),
   custom_fields: z.array(CustomField$inboundSchema).optional(),
   pass_through: z.array(PassThroughBody$inboundSchema).optional(),
@@ -446,6 +497,9 @@ export const JournalEntryInput$inboundSchema: z.ZodType<
     "tax_code": "taxCode",
     "tracking_categories": "trackingCategories",
     "accounting_period": "accountingPeriod",
+    "tax_inclusive": "taxInclusive",
+    "source_type": "sourceType",
+    "source_id": "sourceId",
     "row_version": "rowVersion",
     "custom_fields": "customFields",
     "pass_through": "passThrough",
@@ -471,6 +525,9 @@ export type JournalEntryInput$Outbound = {
     | null
     | undefined;
   accounting_period?: string | null | undefined;
+  tax_inclusive?: boolean | null | undefined;
+  source_type?: string | null | undefined;
+  source_id?: string | null | undefined;
   row_version?: string | null | undefined;
   custom_fields?: Array<CustomField$Outbound> | undefined;
   pass_through?: Array<PassThroughBody$Outbound> | undefined;
@@ -498,6 +555,9 @@ export const JournalEntryInput$outboundSchema: z.ZodType<
     z.array(z.nullable(LinkedTrackingCategory$outboundSchema)),
   ).optional(),
   accountingPeriod: z.nullable(z.string()).optional(),
+  taxInclusive: z.nullable(z.boolean()).optional(),
+  sourceType: z.nullable(z.string()).optional(),
+  sourceId: z.nullable(z.string()).optional(),
   rowVersion: z.nullable(z.string()).optional(),
   customFields: z.array(CustomField$outboundSchema).optional(),
   passThrough: z.array(PassThroughBody$outboundSchema).optional(),
@@ -512,6 +572,9 @@ export const JournalEntryInput$outboundSchema: z.ZodType<
     taxCode: "tax_code",
     trackingCategories: "tracking_categories",
     accountingPeriod: "accounting_period",
+    taxInclusive: "tax_inclusive",
+    sourceType: "source_type",
+    sourceId: "source_id",
     rowVersion: "row_version",
     customFields: "custom_fields",
     passThrough: "pass_through",

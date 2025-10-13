@@ -20,6 +20,7 @@ let value: GetCustomerResponse = {
     displayName: "Windsurf Shop",
     companyName: "SpaceX",
     companyId: "12345",
+    customerCategory: "Insurance",
     title: "CEO",
     firstName: "Elon",
     middleName: "D.",
@@ -37,6 +38,7 @@ let value: GetCustomerResponse = {
         line2: "apt #",
         line3: "Suite #",
         line4: "delivery instructions",
+        line5: "Attention: Finance Dept",
         streetNumber: "25",
         city: "San Francisco",
         state: "CA",
@@ -116,6 +118,7 @@ let value: GetCustomerResponse = {
     },
     status: "active",
     paymentMethod: "cash",
+    terms: "Net 30 days",
     channel: "email",
     customFields: [
       {

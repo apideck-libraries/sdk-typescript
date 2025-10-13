@@ -7,6 +7,7 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import { RFCDate } from "../../types/rfcdate.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   CustomField,
@@ -120,6 +121,10 @@ export type InvoiceLineItem = {
    * Discount amount applied to the line item when supported downstream.
    */
   discountAmount?: number | null | undefined;
+  /**
+   * Date on which the service was provided or performed - YYYY-MM-DD.
+   */
+  serviceDate?: RFCDate | null | undefined;
   /**
    * ID of the category of the line item
    */
@@ -242,6 +247,10 @@ export type InvoiceLineItemInput = {
    */
   discountAmount?: number | null | undefined;
   /**
+   * Date on which the service was provided or performed - YYYY-MM-DD.
+   */
+  serviceDate?: RFCDate | null | undefined;
+  /**
    * ID of the category of the line item
    */
   categoryId?: string | null | undefined;
@@ -339,6 +348,8 @@ export const InvoiceLineItem$inboundSchema: z.ZodType<
   unit_of_measure: z.nullable(z.string()).optional(),
   discount_percentage: z.nullable(z.number()).optional(),
   discount_amount: z.nullable(z.number()).optional(),
+  service_date: z.nullable(z.string().transform(v => new RFCDate(v)))
+    .optional(),
   category_id: z.nullable(z.string()).optional(),
   location_id: z.nullable(z.string()).optional(),
   department_id: z.nullable(z.string()).optional(),
@@ -376,6 +387,7 @@ export const InvoiceLineItem$inboundSchema: z.ZodType<
     "unit_of_measure": "unitOfMeasure",
     "discount_percentage": "discountPercentage",
     "discount_amount": "discountAmount",
+    "service_date": "serviceDate",
     "category_id": "categoryId",
     "location_id": "locationId",
     "department_id": "departmentId",
@@ -411,6 +423,7 @@ export type InvoiceLineItem$Outbound = {
   unit_of_measure?: string | null | undefined;
   discount_percentage?: number | null | undefined;
   discount_amount?: number | null | undefined;
+  service_date?: string | null | undefined;
   category_id?: string | null | undefined;
   location_id?: string | null | undefined;
   department_id?: string | null | undefined;
@@ -456,6 +469,8 @@ export const InvoiceLineItem$outboundSchema: z.ZodType<
   unitOfMeasure: z.nullable(z.string()).optional(),
   discountPercentage: z.nullable(z.number()).optional(),
   discountAmount: z.nullable(z.number()).optional(),
+  serviceDate: z.nullable(z.instanceof(RFCDate).transform(v => v.toString()))
+    .optional(),
   categoryId: z.nullable(z.string()).optional(),
   locationId: z.nullable(z.string()).optional(),
   departmentId: z.nullable(z.string()).optional(),
@@ -489,6 +504,7 @@ export const InvoiceLineItem$outboundSchema: z.ZodType<
     unitOfMeasure: "unit_of_measure",
     discountPercentage: "discount_percentage",
     discountAmount: "discount_amount",
+    serviceDate: "service_date",
     categoryId: "category_id",
     locationId: "location_id",
     departmentId: "department_id",
@@ -557,6 +573,8 @@ export const InvoiceLineItemInput$inboundSchema: z.ZodType<
   unit_of_measure: z.nullable(z.string()).optional(),
   discount_percentage: z.nullable(z.number()).optional(),
   discount_amount: z.nullable(z.number()).optional(),
+  service_date: z.nullable(z.string().transform(v => new RFCDate(v)))
+    .optional(),
   category_id: z.nullable(z.string()).optional(),
   location_id: z.nullable(z.string()).optional(),
   department_id: z.nullable(z.string()).optional(),
@@ -586,6 +604,7 @@ export const InvoiceLineItemInput$inboundSchema: z.ZodType<
     "unit_of_measure": "unitOfMeasure",
     "discount_percentage": "discountPercentage",
     "discount_amount": "discountAmount",
+    "service_date": "serviceDate",
     "category_id": "categoryId",
     "location_id": "locationId",
     "department_id": "departmentId",
@@ -617,6 +636,7 @@ export type InvoiceLineItemInput$Outbound = {
   unit_of_measure?: string | null | undefined;
   discount_percentage?: number | null | undefined;
   discount_amount?: number | null | undefined;
+  service_date?: string | null | undefined;
   category_id?: string | null | undefined;
   location_id?: string | null | undefined;
   department_id?: string | null | undefined;
@@ -658,6 +678,8 @@ export const InvoiceLineItemInput$outboundSchema: z.ZodType<
   unitOfMeasure: z.nullable(z.string()).optional(),
   discountPercentage: z.nullable(z.number()).optional(),
   discountAmount: z.nullable(z.number()).optional(),
+  serviceDate: z.nullable(z.instanceof(RFCDate).transform(v => v.toString()))
+    .optional(),
   categoryId: z.nullable(z.string()).optional(),
   locationId: z.nullable(z.string()).optional(),
   departmentId: z.nullable(z.string()).optional(),
@@ -687,6 +709,7 @@ export const InvoiceLineItemInput$outboundSchema: z.ZodType<
     unitOfMeasure: "unit_of_measure",
     discountPercentage: "discount_percentage",
     discountAmount: "discount_amount",
+    serviceDate: "service_date",
     categoryId: "category_id",
     locationId: "location_id",
     departmentId: "department_id",

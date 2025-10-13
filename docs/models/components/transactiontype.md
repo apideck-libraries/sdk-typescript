@@ -1,17 +1,17 @@
 # TransactionType
 
-Type of the transaction.
+The kind of transaction, indicating whether it is a sales transaction or a purchase transaction.
 
 ## Example Usage
 
 ```typescript
 import { TransactionType } from "@apideck/unify/models/components";
 
-let value: TransactionType = "invoice";
+let value: TransactionType = "sale";
 ```
 
 ## Values
 
 ```typescript
-"invoice" | "credit_note" | "bill" | "payment" | "bill_payment"
+"sale" | "purchase"
 ```

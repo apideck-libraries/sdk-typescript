@@ -14,6 +14,7 @@ const (
 	CategoriesFilterTypeSupplier CategoriesFilterType = "supplier"
 	CategoriesFilterTypeExpense  CategoriesFilterType = "expense"
 	CategoriesFilterTypeRevenue  CategoriesFilterType = "revenue"
+	CategoriesFilterTypeCustomer CategoriesFilterType = "customer"
 )
 
 func (e CategoriesFilterType) ToPointer() *CategoriesFilterType {
@@ -30,6 +31,8 @@ func (e *CategoriesFilterType) UnmarshalJSON(data []byte) error {
 	case "expense":
 		fallthrough
 	case "revenue":
+		fallthrough
+	case "customer":
 		*e = CategoriesFilterType(v)
 		return nil
 	default:

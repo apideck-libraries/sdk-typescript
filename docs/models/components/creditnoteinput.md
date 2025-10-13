@@ -4,6 +4,7 @@
 
 ```typescript
 import { CreditNoteInput } from "@apideck/unify/models/components";
+import { RFCDate } from "@apideck/unify/types";
 
 let value: CreditNoteInput = {
   number: "OIT00546",
@@ -49,6 +50,7 @@ let value: CreditNoteInput = {
       unitOfMeasure: "pc.",
       discountPercentage: 0.01,
       discountAmount: 19.99,
+      serviceDate: new RFCDate("2024-01-15"),
       categoryId: "12345",
       locationId: "12345",
       departmentId: "12345",
@@ -116,6 +118,7 @@ let value: CreditNoteInput = {
     line2: "apt #",
     line3: "Suite #",
     line4: "delivery instructions",
+    line5: "Attention: Finance Dept",
     streetNumber: "25",
     city: "San Francisco",
     state: "CA",
@@ -142,6 +145,7 @@ let value: CreditNoteInput = {
     line2: "apt #",
     line3: "Suite #",
     line4: "delivery instructions",
+    line5: "Attention: Finance Dept",
     streetNumber: "25",
     city: "San Francisco",
     state: "CA",
