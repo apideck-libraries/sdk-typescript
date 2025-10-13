@@ -9,20 +9,20 @@ import (
 	"time"
 )
 
-// Priority of the ticket
-type Priority string
+// TicketPriority - Priority of the ticket
+type TicketPriority string
 
 const (
-	PriorityLow    Priority = "low"
-	PriorityNormal Priority = "normal"
-	PriorityHigh   Priority = "high"
-	PriorityUrgent Priority = "urgent"
+	TicketPriorityLow    TicketPriority = "low"
+	TicketPriorityNormal TicketPriority = "normal"
+	TicketPriorityHigh   TicketPriority = "high"
+	TicketPriorityUrgent TicketPriority = "urgent"
 )
 
-func (e Priority) ToPointer() *Priority {
+func (e TicketPriority) ToPointer() *TicketPriority {
 	return &e
 }
-func (e *Priority) UnmarshalJSON(data []byte) error {
+func (e *TicketPriority) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -35,10 +35,10 @@ func (e *Priority) UnmarshalJSON(data []byte) error {
 	case "high":
 		fallthrough
 	case "urgent":
-		*e = Priority(v)
+		*e = TicketPriority(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for Priority: %v", v)
+		return fmt.Errorf("invalid value for TicketPriority: %v", v)
 	}
 }
 
@@ -58,8 +58,8 @@ type Ticket struct {
 	// The current status of the ticket. Possible values include: open, in_progress, closed, or - in cases where there is no clear mapping - the original value passed through.
 	Status *string `json:"status,omitempty"`
 	// Priority of the ticket
-	Priority  *Priority  `json:"priority,omitempty"`
-	Assignees []Assignee `json:"assignees,omitempty"`
+	Priority  *TicketPriority `json:"priority,omitempty"`
+	Assignees []Assignee      `json:"assignees,omitempty"`
 	// The date and time when the object was last updated.
 	UpdatedAt *time.Time `json:"updated_at,omitempty"`
 	// The date and time when the object was created.
@@ -137,7 +137,7 @@ func (o *Ticket) GetStatus() *string {
 	return o.Status
 }
 
-func (o *Ticket) GetPriority() *Priority {
+func (o *Ticket) GetPriority() *TicketPriority {
 	if o == nil {
 		return nil
 	}
@@ -219,7 +219,7 @@ type TicketInput struct {
 	// The current status of the ticket. Possible values include: open, in_progress, closed, or - in cases where there is no clear mapping - the original value passed through.
 	Status *string `json:"status,omitempty"`
 	// Priority of the ticket
-	Priority  *Priority       `json:"priority,omitempty"`
+	Priority  *TicketPriority `json:"priority,omitempty"`
 	Assignees []AssigneeInput `json:"assignees,omitempty"`
 	// Due date of the ticket
 	DueDate *time.Time           `json:"due_date,omitempty"`
@@ -274,7 +274,7 @@ func (o *TicketInput) GetStatus() *string {
 	return o.Status
 }
 
-func (o *TicketInput) GetPriority() *Priority {
+func (o *TicketInput) GetPriority() *TicketPriority {
 	if o == nil {
 		return nil
 	}

@@ -13,5 +13,5 @@ let value: LedgerAccountType = "bank";
 ## Values
 
 ```typescript
-"accounts_receivable" | "revenue" | "sales" | "other_income" | "bank" | "current_asset" | "fixed_asset" | "non_current_asset" | "other_asset" | "balancesheet" | "equity" | "expense" | "other_expense" | "costs_of_sales" | "accounts_payable" | "credit_card" | "current_liability" | "non_current_liability" | "other_liability" | "other"
+"accounts_payable" | "accounts_receivable" | "balancesheet" | "bank" | "costs_of_sales" | "credit_card" | "current_asset" | "current_liability" | "equity" | "expense" | "fixed_asset" | "non_current_asset" | "non_current_liability" | "other_asset" | "other_expense" | "other_income" | "other_liability" | "revenue" | "sales" | "other"
 ```

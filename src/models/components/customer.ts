@@ -127,6 +127,10 @@ export type Customer = {
    */
   companyId?: string | null | undefined;
   /**
+   * The category/type of the customer
+   */
+  customerCategory?: string | null | undefined;
+  /**
    * The job title of the person.
    */
   title?: string | null | undefined;
@@ -180,6 +184,10 @@ export type Customer = {
    */
   paymentMethod?: string | null | undefined;
   /**
+   * Terms of payment.
+   */
+  terms?: string | null | undefined;
+  /**
    * The channel through which the transaction is processed.
    */
   channel?: string | null | undefined;
@@ -231,6 +239,10 @@ export type CustomerInput = {
    * The company ID the transaction belongs to
    */
   companyId?: string | null | undefined;
+  /**
+   * The category/type of the customer
+   */
+  customerCategory?: string | null | undefined;
   /**
    * The job title of the person.
    */
@@ -285,6 +297,10 @@ export type CustomerInput = {
    */
   paymentMethod?: string | null | undefined;
   /**
+   * Terms of payment.
+   */
+  terms?: string | null | undefined;
+  /**
    * The channel through which the transaction is processed.
    */
   channel?: string | null | undefined;
@@ -332,6 +348,7 @@ export const Customer$inboundSchema: z.ZodType<
   display_name: z.nullable(z.string()).optional(),
   company_name: z.nullable(z.string()).optional(),
   company_id: z.nullable(z.string()).optional(),
+  customer_category: z.nullable(z.string()).optional(),
   title: z.nullable(z.string()).optional(),
   first_name: z.nullable(z.string()).optional(),
   middle_name: z.nullable(z.string()).optional(),
@@ -352,6 +369,7 @@ export const Customer$inboundSchema: z.ZodType<
   parent: z.nullable(LinkedParentCustomer$inboundSchema).optional(),
   status: z.nullable(CustomerStatusStatus$inboundSchema).optional(),
   payment_method: z.nullable(z.string()).optional(),
+  terms: z.nullable(z.string()).optional(),
   channel: z.nullable(z.string()).optional(),
   custom_fields: z.array(CustomField$inboundSchema).optional(),
   custom_mappings: z.nullable(z.record(z.any())).optional(),
@@ -372,6 +390,7 @@ export const Customer$inboundSchema: z.ZodType<
     "display_name": "displayName",
     "company_name": "companyName",
     "company_id": "companyId",
+    "customer_category": "customerCategory",
     "first_name": "firstName",
     "middle_name": "middleName",
     "last_name": "lastName",
@@ -399,6 +418,7 @@ export type Customer$Outbound = {
   display_name?: string | null | undefined;
   company_name?: string | null | undefined;
   company_id?: string | null | undefined;
+  customer_category?: string | null | undefined;
   title?: string | null | undefined;
   first_name?: string | null | undefined;
   middle_name?: string | null | undefined;
@@ -419,6 +439,7 @@ export type Customer$Outbound = {
   parent?: LinkedParentCustomer$Outbound | null | undefined;
   status?: string | null | undefined;
   payment_method?: string | null | undefined;
+  terms?: string | null | undefined;
   channel?: string | null | undefined;
   custom_fields?: Array<CustomField$Outbound> | undefined;
   custom_mappings?: { [k: string]: any } | null | undefined;
@@ -442,6 +463,7 @@ export const Customer$outboundSchema: z.ZodType<
   displayName: z.nullable(z.string()).optional(),
   companyName: z.nullable(z.string()).optional(),
   companyId: z.nullable(z.string()).optional(),
+  customerCategory: z.nullable(z.string()).optional(),
   title: z.nullable(z.string()).optional(),
   firstName: z.nullable(z.string()).optional(),
   middleName: z.nullable(z.string()).optional(),
@@ -462,6 +484,7 @@ export const Customer$outboundSchema: z.ZodType<
   parent: z.nullable(LinkedParentCustomer$outboundSchema).optional(),
   status: z.nullable(CustomerStatusStatus$outboundSchema).optional(),
   paymentMethod: z.nullable(z.string()).optional(),
+  terms: z.nullable(z.string()).optional(),
   channel: z.nullable(z.string()).optional(),
   customFields: z.array(CustomField$outboundSchema).optional(),
   customMappings: z.nullable(z.record(z.any())).optional(),
@@ -478,6 +501,7 @@ export const Customer$outboundSchema: z.ZodType<
     displayName: "display_name",
     companyName: "company_name",
     companyId: "company_id",
+    customerCategory: "customer_category",
     firstName: "first_name",
     middleName: "middle_name",
     lastName: "last_name",
@@ -534,6 +558,7 @@ export const CustomerInput$inboundSchema: z.ZodType<
   display_name: z.nullable(z.string()).optional(),
   company_name: z.nullable(z.string()).optional(),
   company_id: z.nullable(z.string()).optional(),
+  customer_category: z.nullable(z.string()).optional(),
   title: z.nullable(z.string()).optional(),
   first_name: z.nullable(z.string()).optional(),
   middle_name: z.nullable(z.string()).optional(),
@@ -554,6 +579,7 @@ export const CustomerInput$inboundSchema: z.ZodType<
   parent: z.nullable(LinkedParentCustomer$inboundSchema).optional(),
   status: z.nullable(CustomerStatusStatus$inboundSchema).optional(),
   payment_method: z.nullable(z.string()).optional(),
+  terms: z.nullable(z.string()).optional(),
   channel: z.nullable(z.string()).optional(),
   custom_fields: z.array(CustomField$inboundSchema).optional(),
   row_version: z.nullable(z.string()).optional(),
@@ -564,6 +590,7 @@ export const CustomerInput$inboundSchema: z.ZodType<
     "display_name": "displayName",
     "company_name": "companyName",
     "company_id": "companyId",
+    "customer_category": "customerCategory",
     "first_name": "firstName",
     "middle_name": "middleName",
     "last_name": "lastName",
@@ -584,6 +611,7 @@ export type CustomerInput$Outbound = {
   display_name?: string | null | undefined;
   company_name?: string | null | undefined;
   company_id?: string | null | undefined;
+  customer_category?: string | null | undefined;
   title?: string | null | undefined;
   first_name?: string | null | undefined;
   middle_name?: string | null | undefined;
@@ -604,6 +632,7 @@ export type CustomerInput$Outbound = {
   parent?: LinkedParentCustomer$Outbound | null | undefined;
   status?: string | null | undefined;
   payment_method?: string | null | undefined;
+  terms?: string | null | undefined;
   channel?: string | null | undefined;
   custom_fields?: Array<CustomField$Outbound> | undefined;
   row_version?: string | null | undefined;
@@ -620,6 +649,7 @@ export const CustomerInput$outboundSchema: z.ZodType<
   displayName: z.nullable(z.string()).optional(),
   companyName: z.nullable(z.string()).optional(),
   companyId: z.nullable(z.string()).optional(),
+  customerCategory: z.nullable(z.string()).optional(),
   title: z.nullable(z.string()).optional(),
   firstName: z.nullable(z.string()).optional(),
   middleName: z.nullable(z.string()).optional(),
@@ -640,6 +670,7 @@ export const CustomerInput$outboundSchema: z.ZodType<
   parent: z.nullable(LinkedParentCustomer$outboundSchema).optional(),
   status: z.nullable(CustomerStatusStatus$outboundSchema).optional(),
   paymentMethod: z.nullable(z.string()).optional(),
+  terms: z.nullable(z.string()).optional(),
   channel: z.nullable(z.string()).optional(),
   customFields: z.array(CustomField$outboundSchema).optional(),
   rowVersion: z.nullable(z.string()).optional(),
@@ -650,6 +681,7 @@ export const CustomerInput$outboundSchema: z.ZodType<
     displayName: "display_name",
     companyName: "company_name",
     companyId: "company_id",
+    customerCategory: "customer_category",
     firstName: "first_name",
     middleName: "middle_name",
     lastName: "last_name",

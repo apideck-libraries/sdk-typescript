@@ -8,18 +8,18 @@ import (
 	"mockserver/internal/sdk/utils"
 )
 
-// SortBy - The field to sort by
-type SortBy string
+// BankAccountsSortSortBy - The field to sort by
+type BankAccountsSortSortBy string
 
 const (
-	SortByCreatedAt SortBy = "created_at"
-	SortByUpdatedAt SortBy = "updated_at"
+	BankAccountsSortSortByCreatedAt BankAccountsSortSortBy = "created_at"
+	BankAccountsSortSortByUpdatedAt BankAccountsSortSortBy = "updated_at"
 )
 
-func (e SortBy) ToPointer() *SortBy {
+func (e BankAccountsSortSortBy) ToPointer() *BankAccountsSortSortBy {
 	return &e
 }
-func (e *SortBy) UnmarshalJSON(data []byte) error {
+func (e *BankAccountsSortSortBy) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -28,16 +28,16 @@ func (e *SortBy) UnmarshalJSON(data []byte) error {
 	case "created_at":
 		fallthrough
 	case "updated_at":
-		*e = SortBy(v)
+		*e = BankAccountsSortSortBy(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for SortBy: %v", v)
+		return fmt.Errorf("invalid value for BankAccountsSortSortBy: %v", v)
 	}
 }
 
 type BankAccountsSort struct {
 	// The field to sort by
-	By *SortBy `default:"updated_at" queryParam:"name=by"`
+	By *BankAccountsSortSortBy `default:"updated_at" queryParam:"name=by"`
 	// The direction in which to sort the results
 	Direction *SortDirection `default:"asc" queryParam:"name=direction"`
 }
@@ -53,7 +53,7 @@ func (b *BankAccountsSort) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *BankAccountsSort) GetBy() *SortBy {
+func (o *BankAccountsSort) GetBy() *BankAccountsSortSortBy {
 	if o == nil {
 		return nil
 	}

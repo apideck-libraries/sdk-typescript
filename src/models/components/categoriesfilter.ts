@@ -15,6 +15,7 @@ export const CategoriesFilterType = {
   Supplier: "supplier",
   Expense: "expense",
   Revenue: "revenue",
+  Customer: "customer",
 } as const;
 /**
  * The type of the category.

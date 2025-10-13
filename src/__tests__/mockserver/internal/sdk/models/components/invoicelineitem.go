@@ -5,6 +5,7 @@ package components
 import (
 	"encoding/json"
 	"fmt"
+	"mockserver/internal/sdk/types"
 	"mockserver/internal/sdk/utils"
 	"time"
 )
@@ -73,6 +74,8 @@ type InvoiceLineItem struct {
 	DiscountPercentage *float64 `json:"discount_percentage,omitempty"`
 	// Discount amount applied to the line item when supported downstream.
 	DiscountAmount *float64 `json:"discount_amount,omitempty"`
+	// Date on which the service was provided or performed - YYYY-MM-DD.
+	ServiceDate *types.Date `json:"service_date,omitempty"`
 	// ID of the category of the line item
 	CategoryID *string `json:"category_id,omitempty"`
 	// The ID of the location
@@ -213,6 +216,13 @@ func (o *InvoiceLineItem) GetDiscountAmount() *float64 {
 		return nil
 	}
 	return o.DiscountAmount
+}
+
+func (o *InvoiceLineItem) GetServiceDate() *types.Date {
+	if o == nil {
+		return nil
+	}
+	return o.ServiceDate
 }
 
 func (o *InvoiceLineItem) GetCategoryID() *string {
@@ -387,6 +397,8 @@ type InvoiceLineItemInput struct {
 	DiscountPercentage *float64 `json:"discount_percentage,omitempty"`
 	// Discount amount applied to the line item when supported downstream.
 	DiscountAmount *float64 `json:"discount_amount,omitempty"`
+	// Date on which the service was provided or performed - YYYY-MM-DD.
+	ServiceDate *types.Date `json:"service_date,omitempty"`
 	// ID of the category of the line item
 	CategoryID *string `json:"category_id,omitempty"`
 	// The ID of the location
@@ -417,6 +429,17 @@ type InvoiceLineItemInput struct {
 	CustomFields       []CustomField             `json:"custom_fields,omitempty"`
 	// A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
 	RowVersion *string `json:"row_version,omitempty"`
+}
+
+func (i InvoiceLineItemInput) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(i, "", false)
+}
+
+func (i *InvoiceLineItemInput) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &i, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *InvoiceLineItemInput) GetID() *string {
@@ -508,6 +531,13 @@ func (o *InvoiceLineItemInput) GetDiscountAmount() *float64 {
 		return nil
 	}
 	return o.DiscountAmount
+}
+
+func (o *InvoiceLineItemInput) GetServiceDate() *types.Date {
+	if o == nil {
+		return nil
+	}
+	return o.ServiceDate
 }
 
 func (o *InvoiceLineItemInput) GetCategoryID() *string {

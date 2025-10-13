@@ -60,7 +60,7 @@ func testIssueTrackingCollectionTicketsOneIssueTrackingCollectionTicketsOne0(w h
 			Subject:      types.String("Technical Support Request"),
 			Description:  types.String("I am facing issues with my internet connection"),
 			Status:       types.String("open"),
-			Priority:     components.PriorityHigh.ToPointer(),
+			Priority:     components.TicketPriorityHigh.ToPointer(),
 			Assignees: []components.Assignee{
 				components.Assignee{
 					ID:       "12345",

@@ -15,6 +15,10 @@ export type InvoicesFilter = {
    * Invoice number to search for
    */
   number?: string | undefined;
+  /**
+   * Supplier ID to filter invoices by
+   */
+  supplierId?: string | undefined;
 };
 
 /** @internal */
@@ -30,10 +34,12 @@ export const InvoicesFilter$inboundSchema: z.ZodType<
     new Date(v)
   ).optional(),
   number: z.string().optional(),
+  supplier_id: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
     "updated_since": "updatedSince",
     "created_since": "createdSince",
+    "supplier_id": "supplierId",
   });
 });
 
@@ -42,6 +48,7 @@ export type InvoicesFilter$Outbound = {
   updated_since?: string | undefined;
   created_since?: string | undefined;
   number?: string | undefined;
+  supplier_id?: string | undefined;
 };
 
 /** @internal */
@@ -53,10 +60,12 @@ export const InvoicesFilter$outboundSchema: z.ZodType<
   updatedSince: z.date().transform(v => v.toISOString()).optional(),
   createdSince: z.date().transform(v => v.toISOString()).optional(),
   number: z.string().optional(),
+  supplierId: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
     updatedSince: "updated_since",
     createdSince: "created_since",
+    supplierId: "supplier_id",
   });
 });
 

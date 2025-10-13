@@ -1,6 +1,6 @@
 # Priority
 
-Priority of the ticket
+Priority level of the project
 
 ## Example Usage
 
@@ -13,5 +13,5 @@ let value: Priority = "high";
 ## Values
 
 ```typescript
-"low" | "normal" | "high" | "urgent"
+"low" | "medium" | "high" | "critical"
 ```

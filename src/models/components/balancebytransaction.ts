@@ -13,7 +13,7 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 /**
  * Type of the transaction.
  */
-export const TransactionType = {
+export const BalanceByTransactionTransactionType = {
   Invoice: "invoice",
   CreditNote: "credit_note",
   Bill: "bill",
@@ -23,7 +23,9 @@ export const TransactionType = {
 /**
  * Type of the transaction.
  */
-export type TransactionType = ClosedEnum<typeof TransactionType>;
+export type BalanceByTransactionTransactionType = ClosedEnum<
+  typeof BalanceByTransactionTransactionType
+>;
 
 export type BalanceByTransaction = {
   /**
@@ -37,7 +39,7 @@ export type BalanceByTransaction = {
   /**
    * Type of the transaction.
    */
-  transactionType?: TransactionType | undefined;
+  transactionType?: BalanceByTransactionTransactionType | undefined;
   /**
    * Due date of the transaction.
    */
@@ -57,24 +59,26 @@ export type BalanceByTransaction = {
 };
 
 /** @internal */
-export const TransactionType$inboundSchema: z.ZodNativeEnum<
-  typeof TransactionType
-> = z.nativeEnum(TransactionType);
+export const BalanceByTransactionTransactionType$inboundSchema: z.ZodNativeEnum<
+  typeof BalanceByTransactionTransactionType
+> = z.nativeEnum(BalanceByTransactionTransactionType);
 
 /** @internal */
-export const TransactionType$outboundSchema: z.ZodNativeEnum<
-  typeof TransactionType
-> = TransactionType$inboundSchema;
+export const BalanceByTransactionTransactionType$outboundSchema:
+  z.ZodNativeEnum<typeof BalanceByTransactionTransactionType> =
+    BalanceByTransactionTransactionType$inboundSchema;
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace TransactionType$ {
-  /** @deprecated use `TransactionType$inboundSchema` instead. */
-  export const inboundSchema = TransactionType$inboundSchema;
-  /** @deprecated use `TransactionType$outboundSchema` instead. */
-  export const outboundSchema = TransactionType$outboundSchema;
+export namespace BalanceByTransactionTransactionType$ {
+  /** @deprecated use `BalanceByTransactionTransactionType$inboundSchema` instead. */
+  export const inboundSchema =
+    BalanceByTransactionTransactionType$inboundSchema;
+  /** @deprecated use `BalanceByTransactionTransactionType$outboundSchema` instead. */
+  export const outboundSchema =
+    BalanceByTransactionTransactionType$outboundSchema;
 }
 
 /** @internal */
@@ -85,7 +89,8 @@ export const BalanceByTransaction$inboundSchema: z.ZodType<
 > = z.object({
   transaction_id: z.string().optional(),
   transaction_date: z.string().transform(v => new RFCDate(v)).optional(),
-  transaction_type: TransactionType$inboundSchema.optional(),
+  transaction_type: BalanceByTransactionTransactionType$inboundSchema
+    .optional(),
   due_date: z.string().transform(v => new RFCDate(v)).optional(),
   original_amount: z.number().optional(),
   outstanding_balance: z.number().optional(),
@@ -122,7 +127,8 @@ export const BalanceByTransaction$outboundSchema: z.ZodType<
   transactionId: z.string().optional(),
   transactionDate: z.instanceof(RFCDate).transform(v => v.toString())
     .optional(),
-  transactionType: TransactionType$outboundSchema.optional(),
+  transactionType: BalanceByTransactionTransactionType$outboundSchema
+    .optional(),
   dueDate: z.instanceof(RFCDate).transform(v => v.toString()).optional(),
   originalAmount: z.number().optional(),
   outstandingBalance: z.number().optional(),

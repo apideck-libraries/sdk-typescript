@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod";
+import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
@@ -21,6 +22,18 @@ export const InvoiceItemType = {
  */
 export type InvoiceItemType = ClosedEnum<typeof InvoiceItemType>;
 
+/**
+ * The kind of transaction, indicating whether it is a sales transaction or a purchase transaction.
+ */
+export const TransactionType = {
+  Sale: "sale",
+  Purchase: "purchase",
+} as const;
+/**
+ * The kind of transaction, indicating whether it is a sales transaction or a purchase transaction.
+ */
+export type TransactionType = ClosedEnum<typeof TransactionType>;
+
 export type InvoiceItemsFilter = {
   /**
    * Name of Invoice Items to search for
@@ -30,6 +43,10 @@ export type InvoiceItemsFilter = {
    * The type of invoice item, indicating whether it is an inventory item, a service, or another type.
    */
   type?: InvoiceItemType | null | undefined;
+  /**
+   * The kind of transaction, indicating whether it is a sales transaction or a purchase transaction.
+   */
+  transactionType?: TransactionType | null | undefined;
 };
 
 /** @internal */
@@ -54,6 +71,27 @@ export namespace InvoiceItemType$ {
 }
 
 /** @internal */
+export const TransactionType$inboundSchema: z.ZodNativeEnum<
+  typeof TransactionType
+> = z.nativeEnum(TransactionType);
+
+/** @internal */
+export const TransactionType$outboundSchema: z.ZodNativeEnum<
+  typeof TransactionType
+> = TransactionType$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace TransactionType$ {
+  /** @deprecated use `TransactionType$inboundSchema` instead. */
+  export const inboundSchema = TransactionType$inboundSchema;
+  /** @deprecated use `TransactionType$outboundSchema` instead. */
+  export const outboundSchema = TransactionType$outboundSchema;
+}
+
+/** @internal */
 export const InvoiceItemsFilter$inboundSchema: z.ZodType<
   InvoiceItemsFilter,
   z.ZodTypeDef,
@@ -61,12 +99,18 @@ export const InvoiceItemsFilter$inboundSchema: z.ZodType<
 > = z.object({
   name: z.string().optional(),
   type: z.nullable(InvoiceItemType$inboundSchema).optional(),
+  transaction_type: z.nullable(TransactionType$inboundSchema).optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "transaction_type": "transactionType",
+  });
 });
 
 /** @internal */
 export type InvoiceItemsFilter$Outbound = {
   name?: string | undefined;
   type?: string | null | undefined;
+  transaction_type?: string | null | undefined;
 };
 
 /** @internal */
@@ -77,6 +121,11 @@ export const InvoiceItemsFilter$outboundSchema: z.ZodType<
 > = z.object({
   name: z.string().optional(),
   type: z.nullable(InvoiceItemType$outboundSchema).optional(),
+  transactionType: z.nullable(TransactionType$outboundSchema).optional(),
+}).transform((v) => {
+  return remap$(v, {
+    transactionType: "transaction_type",
+  });
 });
 
 /**

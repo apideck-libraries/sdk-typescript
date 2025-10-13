@@ -65,25 +65,25 @@ func (e *LedgerAccountClassification) UnmarshalJSON(data []byte) error {
 type LedgerAccountType string
 
 const (
+	LedgerAccountTypeAccountsPayable     LedgerAccountType = "accounts_payable"
 	LedgerAccountTypeAccountsReceivable  LedgerAccountType = "accounts_receivable"
-	LedgerAccountTypeRevenue             LedgerAccountType = "revenue"
-	LedgerAccountTypeSales               LedgerAccountType = "sales"
-	LedgerAccountTypeOtherIncome         LedgerAccountType = "other_income"
-	LedgerAccountTypeBank                LedgerAccountType = "bank"
-	LedgerAccountTypeCurrentAsset        LedgerAccountType = "current_asset"
-	LedgerAccountTypeFixedAsset          LedgerAccountType = "fixed_asset"
-	LedgerAccountTypeNonCurrentAsset     LedgerAccountType = "non_current_asset"
-	LedgerAccountTypeOtherAsset          LedgerAccountType = "other_asset"
 	LedgerAccountTypeBalancesheet        LedgerAccountType = "balancesheet"
+	LedgerAccountTypeBank                LedgerAccountType = "bank"
+	LedgerAccountTypeCostsOfSales        LedgerAccountType = "costs_of_sales"
+	LedgerAccountTypeCreditCard          LedgerAccountType = "credit_card"
+	LedgerAccountTypeCurrentAsset        LedgerAccountType = "current_asset"
+	LedgerAccountTypeCurrentLiability    LedgerAccountType = "current_liability"
 	LedgerAccountTypeEquity              LedgerAccountType = "equity"
 	LedgerAccountTypeExpense             LedgerAccountType = "expense"
-	LedgerAccountTypeOtherExpense        LedgerAccountType = "other_expense"
-	LedgerAccountTypeCostsOfSales        LedgerAccountType = "costs_of_sales"
-	LedgerAccountTypeAccountsPayable     LedgerAccountType = "accounts_payable"
-	LedgerAccountTypeCreditCard          LedgerAccountType = "credit_card"
-	LedgerAccountTypeCurrentLiability    LedgerAccountType = "current_liability"
+	LedgerAccountTypeFixedAsset          LedgerAccountType = "fixed_asset"
+	LedgerAccountTypeNonCurrentAsset     LedgerAccountType = "non_current_asset"
 	LedgerAccountTypeNonCurrentLiability LedgerAccountType = "non_current_liability"
+	LedgerAccountTypeOtherAsset          LedgerAccountType = "other_asset"
+	LedgerAccountTypeOtherExpense        LedgerAccountType = "other_expense"
+	LedgerAccountTypeOtherIncome         LedgerAccountType = "other_income"
 	LedgerAccountTypeOtherLiability      LedgerAccountType = "other_liability"
+	LedgerAccountTypeRevenue             LedgerAccountType = "revenue"
+	LedgerAccountTypeSales               LedgerAccountType = "sales"
 	LedgerAccountTypeOther               LedgerAccountType = "other"
 )
 
@@ -96,43 +96,43 @@ func (e *LedgerAccountType) UnmarshalJSON(data []byte) error {
 		return err
 	}
 	switch v {
+	case "accounts_payable":
+		fallthrough
 	case "accounts_receivable":
 		fallthrough
-	case "revenue":
-		fallthrough
-	case "sales":
-		fallthrough
-	case "other_income":
+	case "balancesheet":
 		fallthrough
 	case "bank":
 		fallthrough
+	case "costs_of_sales":
+		fallthrough
+	case "credit_card":
+		fallthrough
 	case "current_asset":
 		fallthrough
-	case "fixed_asset":
-		fallthrough
-	case "non_current_asset":
-		fallthrough
-	case "other_asset":
-		fallthrough
-	case "balancesheet":
+	case "current_liability":
 		fallthrough
 	case "equity":
 		fallthrough
 	case "expense":
 		fallthrough
-	case "other_expense":
+	case "fixed_asset":
 		fallthrough
-	case "costs_of_sales":
-		fallthrough
-	case "accounts_payable":
-		fallthrough
-	case "credit_card":
-		fallthrough
-	case "current_liability":
+	case "non_current_asset":
 		fallthrough
 	case "non_current_liability":
 		fallthrough
+	case "other_asset":
+		fallthrough
+	case "other_expense":
+		fallthrough
+	case "other_income":
+		fallthrough
 	case "other_liability":
+		fallthrough
+	case "revenue":
+		fallthrough
+	case "sales":
 		fallthrough
 	case "other":
 		*e = LedgerAccountType(v)

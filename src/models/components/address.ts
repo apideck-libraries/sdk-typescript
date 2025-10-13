@@ -61,6 +61,10 @@ export type Address = {
    */
   line4?: string | null | undefined;
   /**
+   * Line 5 of the address
+   */
+  line5?: string | null | undefined;
+  /**
    * Street number
    */
   streetNumber?: string | null | undefined;
@@ -157,6 +161,7 @@ export const Address$inboundSchema: z.ZodType<Address, z.ZodTypeDef, unknown> =
     line2: z.nullable(z.string()).optional(),
     line3: z.nullable(z.string()).optional(),
     line4: z.nullable(z.string()).optional(),
+    line5: z.nullable(z.string()).optional(),
     street_number: z.nullable(z.string()).optional(),
     city: z.nullable(z.string()).optional(),
     state: z.nullable(z.string()).optional(),
@@ -193,6 +198,7 @@ export type Address$Outbound = {
   line2?: string | null | undefined;
   line3?: string | null | undefined;
   line4?: string | null | undefined;
+  line5?: string | null | undefined;
   street_number?: string | null | undefined;
   city?: string | null | undefined;
   state?: string | null | undefined;
@@ -225,6 +231,7 @@ export const Address$outboundSchema: z.ZodType<
   line2: z.nullable(z.string()).optional(),
   line3: z.nullable(z.string()).optional(),
   line4: z.nullable(z.string()).optional(),
+  line5: z.nullable(z.string()).optional(),
   streetNumber: z.nullable(z.string()).optional(),
   city: z.nullable(z.string()).optional(),
   state: z.nullable(z.string()).optional(),

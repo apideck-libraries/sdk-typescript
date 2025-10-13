@@ -25,6 +25,7 @@ import { LedgerAccounts } from "./ledgeraccounts.js";
 import { Locations } from "./locations.js";
 import { Payments } from "./payments.js";
 import { ProfitAndLoss } from "./profitandloss.js";
+import { Projects } from "./projects.js";
 import { PurchaseOrders } from "./purchaseorders.js";
 import { Quotes } from "./quotes.js";
 import { Subsidiaries } from "./subsidiaries.js";
@@ -171,5 +172,10 @@ export class Accounting extends ClientSDK {
   private _quotes?: Quotes;
   get quotes(): Quotes {
     return (this._quotes ??= new Quotes(this._options));
+  }
+
+  private _projects?: Projects;
+  get projects(): Projects {
+    return (this._projects ??= new Projects(this._options));
   }
 }

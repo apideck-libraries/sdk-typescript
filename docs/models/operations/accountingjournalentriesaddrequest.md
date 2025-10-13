@@ -54,6 +54,7 @@ let value: AccountingJournalEntriesAddRequest = {
             line2: "apt #",
             line3: "Suite #",
             line4: "delivery instructions",
+            line5: "Attention: Finance Dept",
             streetNumber: "25",
             city: "San Francisco",
             state: "CA",
@@ -93,6 +94,9 @@ let value: AccountingJournalEntriesAddRequest = {
       },
     ],
     accountingPeriod: "01-24",
+    taxInclusive: true,
+    sourceType: "manual",
+    sourceId: "12345",
     rowVersion: "1-12345",
     customFields: [
       {

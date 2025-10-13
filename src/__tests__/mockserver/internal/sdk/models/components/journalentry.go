@@ -57,6 +57,8 @@ func (e *JournalEntryStatus) UnmarshalJSON(data []byte) error {
 type JournalEntry struct {
 	// A unique identifier for an object.
 	ID *string `json:"id,omitempty"`
+	// The third-party API ID of original entity
+	DownstreamID *string `json:"downstream_id,omitempty"`
 	// Journal entry title
 	Title *string `json:"title,omitempty"`
 	// Currency Exchange Rate at the time entity was recorded/generated.
@@ -85,6 +87,12 @@ type JournalEntry struct {
 	TrackingCategories []*LinkedTrackingCategory `json:"tracking_categories,omitempty"`
 	// Accounting period
 	AccountingPeriod *string `json:"accounting_period,omitempty"`
+	// Amounts are including tax
+	TaxInclusive *bool `json:"tax_inclusive,omitempty"`
+	// The source type of the journal entry
+	SourceType *string `json:"source_type,omitempty"`
+	// A unique identifier for the source of the journal entry
+	SourceID *string `json:"source_id,omitempty"`
 	// When custom mappings are configured on the resource, the result is included here.
 	CustomMappings map[string]any `json:"custom_mappings,omitempty"`
 	// The user who last updated the object.
@@ -118,6 +126,13 @@ func (o *JournalEntry) GetID() *string {
 		return nil
 	}
 	return o.ID
+}
+
+func (o *JournalEntry) GetDownstreamID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.DownstreamID
 }
 
 func (o *JournalEntry) GetTitle() *string {
@@ -218,6 +233,27 @@ func (o *JournalEntry) GetAccountingPeriod() *string {
 	return o.AccountingPeriod
 }
 
+func (o *JournalEntry) GetTaxInclusive() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.TaxInclusive
+}
+
+func (o *JournalEntry) GetSourceType() *string {
+	if o == nil {
+		return nil
+	}
+	return o.SourceType
+}
+
+func (o *JournalEntry) GetSourceID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.SourceID
+}
+
 func (o *JournalEntry) GetCustomMappings() map[string]any {
 	if o == nil {
 		return nil
@@ -303,6 +339,12 @@ type JournalEntryInput struct {
 	TrackingCategories []*LinkedTrackingCategory `json:"tracking_categories,omitempty"`
 	// Accounting period
 	AccountingPeriod *string `json:"accounting_period,omitempty"`
+	// Amounts are including tax
+	TaxInclusive *bool `json:"tax_inclusive,omitempty"`
+	// The source type of the journal entry
+	SourceType *string `json:"source_type,omitempty"`
+	// A unique identifier for the source of the journal entry
+	SourceID *string `json:"source_id,omitempty"`
 	// A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
 	RowVersion   *string       `json:"row_version,omitempty"`
 	CustomFields []CustomField `json:"custom_fields,omitempty"`
@@ -417,6 +459,27 @@ func (o *JournalEntryInput) GetAccountingPeriod() *string {
 		return nil
 	}
 	return o.AccountingPeriod
+}
+
+func (o *JournalEntryInput) GetTaxInclusive() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.TaxInclusive
+}
+
+func (o *JournalEntryInput) GetSourceType() *string {
+	if o == nil {
+		return nil
+	}
+	return o.SourceType
+}
+
+func (o *JournalEntryInput) GetSourceID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.SourceID
 }
 
 func (o *JournalEntryInput) GetRowVersion() *string {

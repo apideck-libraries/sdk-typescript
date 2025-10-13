@@ -16,6 +16,7 @@ const (
 	CategoryTypeSupplier CategoryType = "supplier"
 	CategoryTypeExpense  CategoryType = "expense"
 	CategoryTypeRevenue  CategoryType = "revenue"
+	CategoryTypeCustomer CategoryType = "customer"
 )
 
 func (e CategoryType) ToPointer() *CategoryType {
@@ -32,6 +33,8 @@ func (e *CategoryType) UnmarshalJSON(data []byte) error {
 	case "expense":
 		fallthrough
 	case "revenue":
+		fallthrough
+	case "customer":
 		*e = CategoryType(v)
 		return nil
 	default:

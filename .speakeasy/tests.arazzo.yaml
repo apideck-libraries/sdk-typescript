@@ -50966,6 +50966,7 @@ workflows:
               line2: 'apt #'
               line3: 'Suite #'
               line4: delivery instructions
+              line5: 'Attention: Finance Dept'
               longitude: "-73.984638"
               name: HQ US
               notes: Address notes or delivery instructions.
@@ -51060,6 +51061,7 @@ workflows:
               line2: 'apt #'
               line3: 'Suite #'
               line4: delivery instructions
+              line5: 'Attention: Finance Dept'
               longitude: "-73.984638"
               name: HQ US
               notes: Address notes or delivery instructions.
@@ -51233,6 +51235,7 @@ workflows:
                     "line2": "apt #",
                     "line3": "Suite #",
                     "line4": "delivery instructions",
+                    "line5": "Attention: Finance Dept",
                     "street_number": "25",
                     "city": "San Francisco",
                     "state": "CA",
@@ -51259,6 +51262,7 @@ workflows:
                     "line2": "apt #",
                     "line3": "Suite #",
                     "line4": "delivery instructions",
+                    "line5": "Attention: Finance Dept",
                     "street_number": "25",
                     "city": "San Francisco",
                     "state": "CA",
@@ -51355,6 +51359,7 @@ workflows:
               line2: 'apt #'
               line3: 'Suite #'
               line4: delivery instructions
+              line5: 'Attention: Finance Dept'
               longitude: "-73.984638"
               name: HQ US
               notes: Address notes or delivery instructions.
@@ -51445,6 +51450,7 @@ workflows:
               line2: 'apt #'
               line3: 'Suite #'
               line4: delivery instructions
+              line5: 'Attention: Finance Dept'
               longitude: "-73.984638"
               name: HQ US
               notes: Address notes or delivery instructions.
@@ -51979,4 +51985,489 @@ workflows:
               }
             type: simple
     x-speakeasy-test-group: bankAccounts
+    x-speakeasy-test-rebuild: true
+  - workflowId: accounting.projectsAll
+    steps:
+      - stepId: test
+        operationId: accounting.projectsAll
+        parameters:
+          - name: raw
+            in: query
+            value: false
+          - name: limit
+            in: query
+            value: 20
+          - name: filter
+            in: query
+            value:
+              customer_id: "12345"
+              name: Website Redesign
+              status: active
+              updated_since: "2020-09-30T07:43:32.000Z"
+          - name: sort
+            in: query
+            value:
+              by: name
+              direction: asc
+          - name: pass_through
+            in: query
+            value:
+              search: San Francisco
+          - name: fields
+            in: query
+            value: id,updated_at
+          - name: x-apideck-consumer-id
+            in: header
+            value: test-consumer
+          - name: x-apideck-app-id
+            in: header
+            value: dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX
+          - name: x-apideck-service-id
+            in: header
+            value: salesforce
+        successCriteria:
+          - condition: $statusCode == 200
+          - condition: $response.header.Content-Type == application/json
+          - context: $response.body
+            condition: |
+              {
+                "status_code": 200,
+                "status": "OK",
+                "service": "quickbooks",
+                "resource": "Projects",
+                "operation": "all",
+                "data": [],
+                "meta": {
+                  "items_on_page": 50,
+                  "cursors": {
+                    "previous": "em9oby1jcm06OnBhZ2U6OjE=",
+                    "current": "em9oby1jcm06OnBhZ2U6OjI=",
+                    "next": "em9oby1jcm06OnBhZ2U6OjM="
+                  }
+                },
+                "links": {
+                  "previous": "https://unify.apideck.com/crm/companies?cursor=em9oby1jcm06OnBhZ2U6OjE%3D",
+                  "current": "https://unify.apideck.com/crm/companies",
+                  "next": "https://unify.apideck.com/crm/companies?cursor=em9oby1jcm06OnBhZ2U6OjM"
+                }
+              }
+            type: simple
+    x-speakeasy-test-group: projects
+    x-speakeasy-test-rebuild: true
+  - workflowId: accounting.projectsAdd
+    steps:
+      - stepId: test
+        operationId: accounting.projectsAdd
+        parameters:
+          - name: raw
+            in: query
+            value: false
+          - name: x-apideck-consumer-id
+            in: header
+            value: test-consumer
+          - name: x-apideck-app-id
+            in: header
+            value: dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX
+          - name: x-apideck-service-id
+            in: header
+            value: salesforce
+        requestBody:
+          contentType: application/json
+          payload:
+            active: true
+            addresses:
+              - city: San Francisco
+                contact_name: Elon Musk
+                country: US
+                county: Santa Clara
+                email: elon@musk.com
+                fax: 122-111-1111
+                id: "123"
+                latitude: "40.759211"
+                line1: Main street
+                line2: 'apt #'
+                line3: 'Suite #'
+                line4: delivery instructions
+                line5: 'Attention: Finance Dept'
+                longitude: "-73.984638"
+                name: HQ US
+                notes: Address notes or delivery instructions.
+                phone_number: 111-111-1111
+                postal_code: "94104"
+                row_version: 1-12345
+                salutation: Mr
+                state: CA
+                street_number: "25"
+                string: 25 Spring Street, Blackburn, VIC 3130
+                type: primary
+                website: https://elonmusk.com
+            approved_amount: 48000
+            billing_method: time_and_materials
+            budget_amount: 50000
+            budget_hours: 400
+            company_id: "12345"
+            completion_percentage: 75.5
+            contract_number: CNT-2024-001
+            currency: USD
+            custom_fields:
+              - description: Employee Level
+                id: "2389328923893298"
+                name: employee_level
+                value: Uses Salesforce and Marketo
+            customer:
+              display_name: Windsurf Shop
+              email: boring@boring.com
+              id: "12345"
+            department:
+              id: DEPT-001
+              name: Marketing
+            description: Complete redesign of the company website including new branding and improved user experience
+            display_id: PROJ-001
+            end_date: "2024-06-30"
+            hourly_rate: 125
+            is_billable: true
+            name: Website Redesign Project
+            notes: Client has requested modern design with mobile-first approach
+            owner_id: "12345"
+            parent_project:
+              id: PROJ-PARENT-001
+              name: Company Website Overhaul
+            phase: execution
+            priority: high
+            profit_margin: 15.5
+            project_type: client_project
+            reference_id: WD-REF-2024-001
+            row_version: 1-12345
+            schedule_status: on_schedule
+            start_date: "2024-01-15"
+            status: active
+            tags:
+              - website
+              - redesign
+              - urgent
+            tax_rate:
+              id: "123456"
+              rate: 10
+            team_size: 8
+            tracking_categories:
+              - id: "123456"
+                name: New York
+                parent_id: "123456"
+                parent_name: New York
+        successCriteria:
+          - condition: $statusCode == 201
+          - condition: $response.header.Content-Type == application/json
+          - context: $response.body
+            condition: |
+              {
+                "status_code": 200,
+                "status": "OK",
+                "service": "quickbooks",
+                "resource": "Projects",
+                "operation": "add",
+                "data": {
+                  "id": "12345"
+                }
+              }
+            type: simple
+    x-speakeasy-test-group: projects
+    x-speakeasy-test-rebuild: true
+  - workflowId: accounting.projectsOne
+    steps:
+      - stepId: test
+        operationId: accounting.projectsOne
+        parameters:
+          - name: id
+            in: path
+            value: <id>
+          - name: raw
+            in: query
+            value: false
+          - name: x-apideck-consumer-id
+            in: header
+            value: test-consumer
+          - name: x-apideck-app-id
+            in: header
+            value: dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX
+          - name: x-apideck-service-id
+            in: header
+            value: salesforce
+        successCriteria:
+          - condition: $statusCode == 200
+          - condition: $response.header.Content-Type == application/json
+          - context: $response.body
+            condition: |
+              {
+                "status_code": 200,
+                "status": "OK",
+                "service": "quickbooks",
+                "resource": "Projects",
+                "operation": "one",
+                "data": {
+                  "id": "12345",
+                  "downstream_id": "12345",
+                  "name": "Website Redesign Project",
+                  "display_id": "PROJ-001",
+                  "reference_id": "WD-REF-2024-001",
+                  "description": "Complete redesign of the company website including new branding and improved user experience",
+                  "status": "active",
+                  "active": true,
+                  "project_type": "client_project",
+                  "priority": "high",
+                  "completion_percentage": 75.5,
+                  "start_date": "2024-01-15",
+                  "end_date": "2024-06-30",
+                  "customer": {
+                    "id": "12345",
+                    "display_id": "CUST00101",
+                    "display_name": "Windsurf Shop",
+                    "company_name": "The boring company",
+                    "email": "boring@boring.com"
+                  },
+                  "department": {
+                    "id": "DEPT-001",
+                    "name": "Marketing"
+                  },
+                  "company_id": "12345",
+                  "owner_id": "12345",
+                  "parent_project": {
+                    "id": "PROJ-PARENT-001",
+                    "name": "Company Website Overhaul"
+                  },
+                  "currency": "USD",
+                  "budget_amount": 50000,
+                  "approved_amount": 48000,
+                  "actual_amount": 45250.75,
+                  "budget_hours": 400,
+                  "actual_hours": 385.5,
+                  "hourly_rate": 125,
+                  "billing_method": "time_and_materials",
+                  "is_billable": true,
+                  "phase": "execution",
+                  "tax_rate": {
+                    "id": "123456",
+                    "code": "N-T",
+                    "name": "GST on Purchases",
+                    "rate": 10
+                  },
+                  "tracking_categories": [
+                    {
+                      "id": "123456",
+                      "name": "New York",
+                      "parent_id": "123456",
+                      "parent_name": "New York"
+                    }
+                  ],
+                  "tags": [
+                    "website",
+                    "redesign",
+                    "urgent"
+                  ],
+                  "notes": "Client has requested modern design with mobile-first approach",
+                  "contract_number": "CNT-2024-001",
+                  "profit_margin": 15.5,
+                  "schedule_status": "on_schedule",
+                  "addresses": [
+                    {
+                      "id": "123",
+                      "type": "primary",
+                      "string": "25 Spring Street, Blackburn, VIC 3130",
+                      "name": "HQ US",
+                      "line1": "Main street",
+                      "line2": "apt #",
+                      "line3": "Suite #",
+                      "line4": "delivery instructions",
+                      "line5": "Attention: Finance Dept",
+                      "street_number": "25",
+                      "city": "San Francisco",
+                      "state": "CA",
+                      "postal_code": "94104",
+                      "country": "US",
+                      "latitude": "40.759211",
+                      "longitude": "-73.984638",
+                      "county": "Santa Clara",
+                      "contact_name": "Elon Musk",
+                      "salutation": "Mr",
+                      "phone_number": "111-111-1111",
+                      "fax": "122-111-1111",
+                      "email": "elon@musk.com",
+                      "website": "https://elonmusk.com",
+                      "notes": "Address notes or delivery instructions.",
+                      "row_version": "1-12345"
+                    }
+                  ],
+                  "team_size": 8,
+                  "custom_fields": [
+                    {
+                      "id": "2389328923893298",
+                      "name": "employee_level",
+                      "description": "Employee Level",
+                      "value": "Uses Salesforce and Marketo"
+                    }
+                  ],
+                  "row_version": "1-12345",
+                  "updated_by": "12345",
+                  "created_by": "12345",
+                  "created_at": "2020-09-30T07:43:32.000Z",
+                  "updated_at": "2020-09-30T07:43:32.000Z"
+                }
+              }
+            type: simple
+    x-speakeasy-test-group: projects
+    x-speakeasy-test-rebuild: true
+  - workflowId: accounting.projectsUpdate
+    steps:
+      - stepId: test
+        operationId: accounting.projectsUpdate
+        parameters:
+          - name: id
+            in: path
+            value: <id>
+          - name: raw
+            in: query
+            value: false
+          - name: x-apideck-consumer-id
+            in: header
+            value: test-consumer
+          - name: x-apideck-app-id
+            in: header
+            value: dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX
+          - name: x-apideck-service-id
+            in: header
+            value: salesforce
+        requestBody:
+          contentType: application/json
+          payload:
+            active: true
+            addresses:
+              - city: San Francisco
+                contact_name: Elon Musk
+                country: US
+                county: Santa Clara
+                email: elon@musk.com
+                fax: 122-111-1111
+                id: "123"
+                latitude: "40.759211"
+                line1: Main street
+                line2: 'apt #'
+                line3: 'Suite #'
+                line4: delivery instructions
+                line5: 'Attention: Finance Dept'
+                longitude: "-73.984638"
+                name: HQ US
+                notes: Address notes or delivery instructions.
+                phone_number: 111-111-1111
+                postal_code: "94104"
+                row_version: 1-12345
+                salutation: Mr
+                state: CA
+                street_number: "25"
+                string: 25 Spring Street, Blackburn, VIC 3130
+                type: primary
+                website: https://elonmusk.com
+            approved_amount: 48000
+            billing_method: time_and_materials
+            budget_amount: 50000
+            budget_hours: 400
+            company_id: "12345"
+            completion_percentage: 75.5
+            contract_number: CNT-2024-001
+            currency: USD
+            custom_fields:
+              - description: Employee Level
+                id: "2389328923893298"
+                name: employee_level
+                value: Uses Salesforce and Marketo
+            customer: null
+            department:
+              id: DEPT-001
+              name: Marketing
+            description: Complete redesign of the company website including new branding and improved user experience
+            display_id: PROJ-001
+            end_date: "2024-06-30"
+            hourly_rate: 125
+            is_billable: true
+            name: Website Redesign Project
+            notes: Client has requested modern design with mobile-first approach
+            owner_id: "12345"
+            parent_project:
+              id: PROJ-PARENT-001
+              name: Company Website Overhaul
+            phase: execution
+            priority: high
+            profit_margin: 15.5
+            project_type: client_project
+            reference_id: WD-REF-2024-001
+            row_version: 1-12345
+            schedule_status: on_schedule
+            start_date: "2024-01-15"
+            status: active
+            tags:
+              - website
+              - redesign
+              - urgent
+            tax_rate:
+              id: "123456"
+              rate: 10
+            team_size: 8
+            tracking_categories:
+              - id: "123456"
+                name: New York
+                parent_id: "123456"
+                parent_name: New York
+        successCriteria:
+          - condition: $statusCode == 200
+          - condition: $response.header.Content-Type == application/json
+          - context: $response.body
+            condition: |
+              {
+                "status_code": 200,
+                "status": "OK",
+                "service": "quickbooks",
+                "resource": "Projects",
+                "operation": "update",
+                "data": {
+                  "id": "12345"
+                }
+              }
+            type: simple
+    x-speakeasy-test-group: projects
+    x-speakeasy-test-rebuild: true
+  - workflowId: accounting.projectsDelete
+    steps:
+      - stepId: test
+        operationId: accounting.projectsDelete
+        parameters:
+          - name: id
+            in: path
+            value: <id>
+          - name: raw
+            in: query
+            value: false
+          - name: x-apideck-consumer-id
+            in: header
+            value: test-consumer
+          - name: x-apideck-app-id
+            in: header
+            value: dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX
+          - name: x-apideck-service-id
+            in: header
+            value: salesforce
+        successCriteria:
+          - condition: $statusCode == 200
+          - condition: $response.header.Content-Type == application/json
+          - context: $response.body
+            condition: |
+              {
+                "status_code": 200,
+                "status": "OK",
+                "service": "quickbooks",
+                "resource": "Projects",
+                "operation": "delete",
+                "data": {
+                  "id": "12345"
+                }
+              }
+            type: simple
+    x-speakeasy-test-group: projects
     x-speakeasy-test-rebuild: true

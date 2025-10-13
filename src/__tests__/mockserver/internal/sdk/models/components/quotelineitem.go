@@ -5,6 +5,7 @@ package components
 import (
 	"encoding/json"
 	"fmt"
+	"mockserver/internal/sdk/types"
 	"mockserver/internal/sdk/utils"
 	"time"
 )
@@ -73,6 +74,8 @@ type QuoteLineItem struct {
 	DiscountPercentage *float64 `json:"discount_percentage,omitempty"`
 	// Discount amount applied to the line item when supported downstream.
 	DiscountAmount *float64 `json:"discount_amount,omitempty"`
+	// Date on which the service was provided or performed - YYYY-MM-DD.
+	ServiceDate *types.Date `json:"service_date,omitempty"`
 	// ID of the category of the line item
 	CategoryID *string `json:"category_id,omitempty"`
 	// The ID of the location
@@ -199,6 +202,13 @@ func (o *QuoteLineItem) GetDiscountAmount() *float64 {
 	return o.DiscountAmount
 }
 
+func (o *QuoteLineItem) GetServiceDate() *types.Date {
+	if o == nil {
+		return nil
+	}
+	return o.ServiceDate
+}
+
 func (o *QuoteLineItem) GetCategoryID() *string {
 	if o == nil {
 		return nil
@@ -315,6 +325,8 @@ type QuoteLineItemInput struct {
 	DiscountPercentage *float64 `json:"discount_percentage,omitempty"`
 	// Discount amount applied to the line item when supported downstream.
 	DiscountAmount *float64 `json:"discount_amount,omitempty"`
+	// Date on which the service was provided or performed - YYYY-MM-DD.
+	ServiceDate *types.Date `json:"service_date,omitempty"`
 	// ID of the category of the line item
 	CategoryID *string `json:"category_id,omitempty"`
 	// The ID of the location
@@ -329,6 +341,17 @@ type QuoteLineItemInput struct {
 	CustomFields       []CustomField             `json:"custom_fields,omitempty"`
 	// A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
 	RowVersion *string `json:"row_version,omitempty"`
+}
+
+func (q QuoteLineItemInput) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(q, "", false)
+}
+
+func (q *QuoteLineItemInput) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &q, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *QuoteLineItemInput) GetID() *string {
@@ -420,6 +443,13 @@ func (o *QuoteLineItemInput) GetDiscountAmount() *float64 {
 		return nil
 	}
 	return o.DiscountAmount
+}
+
+func (o *QuoteLineItemInput) GetServiceDate() *types.Date {
+	if o == nil {
+		return nil
+	}
+	return o.ServiceDate
 }
 
 func (o *QuoteLineItemInput) GetCategoryID() *string {
