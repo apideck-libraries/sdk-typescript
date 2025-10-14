@@ -66,6 +66,7 @@ let value: Bill = {
         name: "Bank account",
         nominalCode: "N091",
         code: "453",
+        parentId: "123456",
       },
       purchaseOrder: {
         id: "123456",
@@ -115,6 +116,7 @@ let value: Bill = {
     name: "Bank account",
     nominalCode: "N091",
     code: "453",
+    parentId: "123456",
   },
   paymentMethod: "cash",
   channel: "email",

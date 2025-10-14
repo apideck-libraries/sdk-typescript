@@ -63,6 +63,8 @@ type JournalEntryLineItem struct {
 	LocationID *string `json:"location_id,omitempty"`
 	// Line number of the resource
 	LineNumber *int64 `json:"line_number,omitempty"`
+	// Worktags of the line item. This is currently only supported in Workday.
+	Worktags []*LinkedWorktag `json:"worktags,omitempty"`
 }
 
 func (o *JournalEntryLineItem) GetID() *string {
@@ -170,6 +172,13 @@ func (o *JournalEntryLineItem) GetLineNumber() *int64 {
 	return o.LineNumber
 }
 
+func (o *JournalEntryLineItem) GetWorktags() []*LinkedWorktag {
+	if o == nil {
+		return nil
+	}
+	return o.Worktags
+}
+
 type JournalEntryLineItemInput struct {
 	// User defined description
 	Description *string `json:"description,omitempty"`
@@ -197,6 +206,8 @@ type JournalEntryLineItemInput struct {
 	LocationID *string `json:"location_id,omitempty"`
 	// Line number of the resource
 	LineNumber *int64 `json:"line_number,omitempty"`
+	// Worktags of the line item. This is currently only supported in Workday.
+	Worktags []*LinkedWorktag `json:"worktags,omitempty"`
 }
 
 func (o *JournalEntryLineItemInput) GetDescription() *string {
@@ -295,4 +306,11 @@ func (o *JournalEntryLineItemInput) GetLineNumber() *int64 {
 		return nil
 	}
 	return o.LineNumber
+}
+
+func (o *JournalEntryLineItemInput) GetWorktags() []*LinkedWorktag {
+	if o == nil {
+		return nil
+	}
+	return o.Worktags
 }

@@ -92,6 +92,7 @@ let value: AccountingBillsAddRequest = {
           id: "123456",
           nominalCode: "N091",
           code: "453",
+          parentId: "123456",
         },
         purchaseOrder: {
           id: "123456",
@@ -139,6 +140,7 @@ let value: AccountingBillsAddRequest = {
       id: "123456",
       nominalCode: "N091",
       code: "453",
+      parentId: "123456",
     },
     paymentMethod: "cash",
     channel: "email",

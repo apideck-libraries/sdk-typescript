@@ -102,6 +102,7 @@ let value: Supplier = {
     name: "Bank account",
     nominalCode: "N091",
     code: "453",
+    parentId: "123456",
   },
   status: "active",
   paymentMethod: "cash",

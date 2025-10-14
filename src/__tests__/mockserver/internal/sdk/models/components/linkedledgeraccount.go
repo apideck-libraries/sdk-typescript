@@ -11,6 +11,8 @@ type LinkedLedgerAccount struct {
 	NominalCode *string `json:"nominal_code,omitempty"`
 	// The code assigned to the account.
 	Code *string `json:"code,omitempty"`
+	// The parent ID of the account.
+	ParentID *string `json:"parent_id,omitempty"`
 }
 
 func (o *LinkedLedgerAccount) GetID() *string {
@@ -39,4 +41,11 @@ func (o *LinkedLedgerAccount) GetCode() *string {
 		return nil
 	}
 	return o.Code
+}
+
+func (o *LinkedLedgerAccount) GetParentID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ParentID
 }

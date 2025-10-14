@@ -75,6 +75,7 @@ let value: AccountingQuotesAddRequest = {
           id: "123456",
           nominalCode: "N091",
           code: "453",
+          parentId: "123456",
         },
         customFields: [
           {

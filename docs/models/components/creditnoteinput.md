@@ -33,6 +33,7 @@ let value: CreditNoteInput = {
     id: "123456",
     nominalCode: "N091",
     code: "453",
+    parentId: "123456",
   },
   lineItems: [
     {
@@ -88,6 +89,7 @@ let value: CreditNoteInput = {
         id: "123456",
         nominalCode: "N091",
         code: "453",
+        parentId: "123456",
       },
       customFields: [
         {

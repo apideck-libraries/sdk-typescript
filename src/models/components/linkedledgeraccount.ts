@@ -25,6 +25,10 @@ export type LinkedLedgerAccount = {
    * The code assigned to the account.
    */
   code?: string | null | undefined;
+  /**
+   * The parent ID of the account.
+   */
+  parentId?: string | null | undefined;
 };
 
 /** @internal */
@@ -37,9 +41,11 @@ export const LinkedLedgerAccount$inboundSchema: z.ZodType<
   name: z.nullable(z.string()).optional(),
   nominal_code: z.nullable(z.string()).optional(),
   code: z.nullable(z.string()).optional(),
+  parent_id: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     "nominal_code": "nominalCode",
+    "parent_id": "parentId",
   });
 });
 
@@ -49,6 +55,7 @@ export type LinkedLedgerAccount$Outbound = {
   name?: string | null | undefined;
   nominal_code?: string | null | undefined;
   code?: string | null | undefined;
+  parent_id?: string | null | undefined;
 };
 
 /** @internal */
@@ -61,9 +68,11 @@ export const LinkedLedgerAccount$outboundSchema: z.ZodType<
   name: z.nullable(z.string()).optional(),
   nominalCode: z.nullable(z.string()).optional(),
   code: z.nullable(z.string()).optional(),
+  parentId: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     nominalCode: "nominal_code",
+    parentId: "parent_id",
   });
 });
 

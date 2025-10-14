@@ -114,6 +114,7 @@ let value: PurchaseOrder = {
         name: "Bank account",
         nominalCode: "N091",
         code: "453",
+        parentId: "123456",
       },
       customFields: [
         {
@@ -189,6 +190,7 @@ let value: PurchaseOrder = {
     name: "Bank account",
     nominalCode: "N091",
     code: "453",
+    parentId: "123456",
   },
   templateId: "123456",
   discountPercentage: 5.5,

@@ -101,6 +101,7 @@ let value: AccountingCustomersUpdateRequest = {
       id: "123456",
       nominalCode: "N091",
       code: "453",
+      parentId: "123456",
     },
     parent: {
       id: "12345",

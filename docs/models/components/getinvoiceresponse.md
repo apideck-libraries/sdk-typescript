@@ -113,6 +113,7 @@ let value: GetInvoiceResponse = {
           name: "Bank account",
           nominalCode: "N091",
           code: "453",
+          parentId: "123456",
         },
         customFields: [
           {
@@ -215,6 +216,7 @@ let value: GetInvoiceResponse = {
       name: "Bank account",
       nominalCode: "N091",
       code: "453",
+      parentId: "123456",
     },
     customFields: [
       {
