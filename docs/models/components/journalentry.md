@@ -40,6 +40,7 @@ let value: JournalEntry = {
         name: "Bank account",
         nominalCode: "N091",
         code: "453",
+        parentId: "123456",
       },
       customer: {
         id: "12345",
@@ -84,6 +85,12 @@ let value: JournalEntry = {
       departmentId: "12345",
       locationId: "12345",
       lineNumber: 1,
+      worktags: [
+        {
+          id: "123456",
+          value: "New York",
+        },
+      ],
     },
   ],
   status: "draft",

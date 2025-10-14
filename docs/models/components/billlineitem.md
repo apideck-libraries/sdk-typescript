@@ -48,6 +48,7 @@ let value: BillLineItem = {
     name: "Bank account",
     nominalCode: "N091",
     code: "453",
+    parentId: "123456",
   },
   purchaseOrder: {
     id: "123456",

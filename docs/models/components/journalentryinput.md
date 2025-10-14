@@ -34,6 +34,7 @@ let value: JournalEntryInput = {
         id: "123456",
         nominalCode: "N091",
         code: "453",
+        parentId: "123456",
       },
       customer: {
         id: "12345",
@@ -74,6 +75,12 @@ let value: JournalEntryInput = {
       departmentId: "12345",
       locationId: "12345",
       lineNumber: 1,
+      worktags: [
+        {
+          id: "123456",
+          value: "New York",
+        },
+      ],
     },
   ],
   status: "draft",

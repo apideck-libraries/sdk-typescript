@@ -19,6 +19,7 @@ let value: AccountingPaymentsAddRequest = {
       id: "123456",
       nominalCode: "N091",
       code: "453",
+      parentId: "123456",
     },
     transactionDate: new Date("2021-05-01T12:00:00.000Z"),
     customer: {

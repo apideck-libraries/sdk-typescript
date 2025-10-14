@@ -81,6 +81,7 @@ let value: Quote = {
         name: "Bank account",
         nominalCode: "N091",
         code: "453",
+        parentId: "123456",
       },
       customFields: [
         {

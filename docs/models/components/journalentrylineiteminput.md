@@ -28,6 +28,7 @@ let value: JournalEntryLineItemInput = {
     id: "123456",
     nominalCode: "N091",
     code: "453",
+    parentId: "123456",
   },
   customer: {
     id: "12345",
@@ -68,6 +69,12 @@ let value: JournalEntryLineItemInput = {
   departmentId: "12345",
   locationId: "12345",
   lineNumber: 1,
+  worktags: [
+    {
+      id: "123456",
+      value: "New York",
+    },
+  ],
 };
 ```
 
@@ -89,3 +96,4 @@ let value: JournalEntryLineItemInput = {
 | `departmentId`                                                                                                          | *string*                                                                                                                | :heavy_minus_sign:                                                                                                      | The ID of the department                                                                                                | 12345                                                                                                                   |
 | `locationId`                                                                                                            | *string*                                                                                                                | :heavy_minus_sign:                                                                                                      | The ID of the location                                                                                                  | 12345                                                                                                                   |
 | `lineNumber`                                                                                                            | *number*                                                                                                                | :heavy_minus_sign:                                                                                                      | Line number of the resource                                                                                             | 1                                                                                                                       |
+| `worktags`                                                                                                              | [components.LinkedWorktag](../../models/components/linkedworktag.md)[]                                                  | :heavy_minus_sign:                                                                                                      | Worktags of the line item. This is currently only supported in Workday.                                                 |                                                                                                                         |

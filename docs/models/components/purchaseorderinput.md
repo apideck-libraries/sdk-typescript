@@ -107,6 +107,7 @@ let value: PurchaseOrderInput = {
         id: "123456",
         nominalCode: "N091",
         code: "453",
+        parentId: "123456",
       },
       customFields: [
         {
@@ -177,6 +178,7 @@ let value: PurchaseOrderInput = {
     id: "123456",
     nominalCode: "N091",
     code: "453",
+    parentId: "123456",
   },
   templateId: "123456",
   discountPercentage: 5.5,

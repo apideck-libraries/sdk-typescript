@@ -37,6 +37,7 @@ let value: CreditNote = {
     name: "Bank account",
     nominalCode: "N091",
     code: "453",
+    parentId: "123456",
   },
   lineItems: [
     {
@@ -95,6 +96,7 @@ let value: CreditNote = {
         name: "Bank account",
         nominalCode: "N091",
         code: "453",
+        parentId: "123456",
       },
       customFields: [
         {

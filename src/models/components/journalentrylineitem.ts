@@ -68,6 +68,12 @@ import {
   LinkedTrackingCategory$Outbound,
   LinkedTrackingCategory$outboundSchema,
 } from "./linkedtrackingcategory.js";
+import {
+  LinkedWorktag,
+  LinkedWorktag$inboundSchema,
+  LinkedWorktag$Outbound,
+  LinkedWorktag$outboundSchema,
+} from "./linkedworktag.js";
 
 /**
  * Debit entries are considered positive, and credit entries are considered negative.
@@ -138,6 +144,10 @@ export type JournalEntryLineItem = {
    * Line number of the resource
    */
   lineNumber?: number | null | undefined;
+  /**
+   * Worktags of the line item. This is currently only supported in Workday.
+   */
+  worktags?: Array<LinkedWorktag | null> | undefined;
 };
 
 export type JournalEntryLineItemInput = {
@@ -191,6 +201,10 @@ export type JournalEntryLineItemInput = {
    * Line number of the resource
    */
   lineNumber?: number | null | undefined;
+  /**
+   * Worktags of the line item. This is currently only supported in Workday.
+   */
+  worktags?: Array<LinkedWorktag | null> | undefined;
 };
 
 /** @internal */
@@ -238,6 +252,7 @@ export const JournalEntryLineItem$inboundSchema: z.ZodType<
   department_id: z.nullable(z.string()).optional(),
   location_id: z.nullable(z.string()).optional(),
   line_number: z.nullable(z.number().int()).optional(),
+  worktags: z.array(z.nullable(LinkedWorktag$inboundSchema)).optional(),
 }).transform((v) => {
   return remap$(v, {
     "tax_amount": "taxAmount",
@@ -276,6 +291,7 @@ export type JournalEntryLineItem$Outbound = {
   department_id?: string | null | undefined;
   location_id?: string | null | undefined;
   line_number?: number | null | undefined;
+  worktags?: Array<LinkedWorktag$Outbound | null> | undefined;
 };
 
 /** @internal */
@@ -302,6 +318,7 @@ export const JournalEntryLineItem$outboundSchema: z.ZodType<
   departmentId: z.nullable(z.string()).optional(),
   locationId: z.nullable(z.string()).optional(),
   lineNumber: z.nullable(z.number().int()).optional(),
+  worktags: z.array(z.nullable(LinkedWorktag$outboundSchema)).optional(),
 }).transform((v) => {
   return remap$(v, {
     taxAmount: "tax_amount",
@@ -371,6 +388,7 @@ export const JournalEntryLineItemInput$inboundSchema: z.ZodType<
   department_id: z.nullable(z.string()).optional(),
   location_id: z.nullable(z.string()).optional(),
   line_number: z.nullable(z.number().int()).optional(),
+  worktags: z.array(z.nullable(LinkedWorktag$inboundSchema)).optional(),
 }).transform((v) => {
   return remap$(v, {
     "tax_amount": "taxAmount",
@@ -408,6 +426,7 @@ export type JournalEntryLineItemInput$Outbound = {
   department_id?: string | null | undefined;
   location_id?: string | null | undefined;
   line_number?: number | null | undefined;
+  worktags?: Array<LinkedWorktag$Outbound | null> | undefined;
 };
 
 /** @internal */
@@ -433,6 +452,7 @@ export const JournalEntryLineItemInput$outboundSchema: z.ZodType<
   departmentId: z.nullable(z.string()).optional(),
   locationId: z.nullable(z.string()).optional(),
   lineNumber: z.nullable(z.number().int()).optional(),
+  worktags: z.array(z.nullable(LinkedWorktag$outboundSchema)).optional(),
 }).transform((v) => {
   return remap$(v, {
     taxAmount: "tax_amount",
