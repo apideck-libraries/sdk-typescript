@@ -38,25 +38,25 @@ func (e *BankAccount1AccountType) UnmarshalJSON(data []byte) error {
 }
 
 type BankAccount1 struct {
-	// The name of the bank
+	// The name of the bank or financial institution
 	BankName *string `json:"bank_name,omitempty"`
-	// A bank account number is a number that is tied to your bank account. If you have several bank accounts, such as personal, joint, business (and so on), each account will have a different account number.
+	// The bank account number
 	AccountNumber *string `json:"account_number,omitempty"`
-	// The name which you used in opening your bank account.
+	// The name of the bank account
 	AccountName *string `json:"account_name,omitempty"`
 	// The type of bank account.
 	AccountType *BankAccount1AccountType `json:"account_type,omitempty"`
-	// The International Bank Account Number (IBAN).
+	// International Bank Account Number
 	Iban *string `json:"iban,omitempty"`
-	// The Bank Identifier Code (BIC).
+	// Bank Identifier Code / SWIFT Code
 	Bic *string `json:"bic,omitempty"`
-	// A routing number is a nine-digit code used to identify a financial institution in the United States.
+	// Bank routing number (US)
 	RoutingNumber *string `json:"routing_number,omitempty"`
-	// A BSB is a 6 digit numeric code used for identifying the branch of an Australian or New Zealand bank or financial institution.
+	// Bank State Branch number (Australia/New Zealand)
 	BsbNumber *string `json:"bsb_number,omitempty"`
-	// A branch identifier is a unique identifier for a branch of a bank or financial institution.
+	// Bank branch identifier
 	BranchIdentifier *string `json:"branch_identifier,omitempty"`
-	// A bank code is a code assigned by a central bank, a bank supervisory body or a Bankers Association in a country to all its licensed member banks or financial institutions.
+	// Bank code assigned by central bank
 	BankCode *string `json:"bank_code,omitempty"`
 	// Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
 	Currency *Currency `json:"currency,omitempty"`

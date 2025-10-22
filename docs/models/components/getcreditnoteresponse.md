@@ -46,6 +46,7 @@ let value: GetCreditNoteResponse = {
       nominalCode: "N091",
       code: "453",
       parentId: "123456",
+      displayId: "123456",
     },
     lineItems: [
       {
@@ -105,6 +106,7 @@ let value: GetCreditNoteResponse = {
           nominalCode: "N091",
           code: "453",
           parentId: "123456",
+          displayId: "123456",
         },
         customFields: [
           {

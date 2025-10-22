@@ -19,6 +19,20 @@ let value: GetExpensesResponse = {
       number: "OIT00546",
       transactionDate: new Date("2021-05-01T12:00:00.000Z"),
       accountId: "123456",
+      account: {
+        id: "123456",
+        name: "Bank account",
+        nominalCode: "N091",
+        code: "453",
+        parentId: "123456",
+        displayId: "123456",
+      },
+      bankAccount: {
+        id: "ba_123456",
+        name: "Main Operating Account",
+        accountNumber: "123465",
+        bankName: "Chase Bank",
+      },
       customerId: "12345",
       supplierId: "12345",
       companyId: "12345",
@@ -35,7 +49,42 @@ let value: GetExpensesResponse = {
         rate: 10,
       },
       totalAmount: 275,
-      lineItems: [],
+      lineItems: [
+        {
+          id: "12345",
+          trackingCategories: [
+            {
+              id: "123456",
+              name: "New York",
+              parentId: "123456",
+              parentName: "New York",
+            },
+          ],
+          account: {
+            id: "123456",
+            name: "Bank account",
+            nominalCode: "N091",
+            code: "453",
+            parentId: "123456",
+            displayId: "123456",
+          },
+          customerId: "12345",
+          departmentId: "12345",
+          locationId: "12345",
+          subsidiaryId: "12345",
+          taxRate: {
+            id: "123456",
+            code: "N-T",
+            name: "GST on Purchases",
+            rate: 10,
+          },
+          description: "Travel US.",
+          totalAmount: 275,
+          billable: true,
+          lineNumber: 1,
+          rebilling: null,
+        },
+      ],
       reference: "INV-2024-001",
       sourceDocumentUrl: "https://www.invoicesolution.com/expense/123456",
       customFields: [
@@ -96,7 +145,7 @@ let value: GetExpensesResponse = {
 | `service`                                                               | *string*                                                                | :heavy_check_mark:                                                      | Apideck ID of service provider                                          | quickbooks                                                              |
 | `resource`                                                              | *string*                                                                | :heavy_check_mark:                                                      | Unified API resource name                                               | Expenses                                                                |
 | `operation`                                                             | *string*                                                                | :heavy_check_mark:                                                      | Operation performed                                                     | all                                                                     |
-| `data`                                                                  | [components.Expense](../../models/components/expense.md)[]              | :heavy_check_mark:                                                      | N/A                                                                     |                                                                         |
+| `data`                                                                  | *components.Expense*[]                                                  | :heavy_check_mark:                                                      | N/A                                                                     |                                                                         |
 | `meta`                                                                  | [components.Meta](../../models/components/meta.md)                      | :heavy_minus_sign:                                                      | Response metadata                                                       |                                                                         |
 | `links`                                                                 | [components.Links](../../models/components/links.md)                    | :heavy_minus_sign:                                                      | Links to navigate to previous or next pages through the API             |                                                                         |
 | `raw`                                                                   | Record<string, *any*>                                                   | :heavy_minus_sign:                                                      | Raw response from the integration when raw=true query param is provided |                                                                         |

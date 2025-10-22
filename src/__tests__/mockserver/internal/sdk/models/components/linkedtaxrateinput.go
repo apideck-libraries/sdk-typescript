@@ -2,11 +2,26 @@
 
 package components
 
+import (
+	"mockserver/internal/sdk/utils"
+)
+
 type LinkedTaxRateInput struct {
 	// The ID of the object.
 	ID *string `json:"id,omitempty"`
 	// Rate of the tax rate
 	Rate *float64 `json:"rate,omitempty"`
+}
+
+func (l LinkedTaxRateInput) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(l, "", false)
+}
+
+func (l *LinkedTaxRateInput) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &l, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *LinkedTaxRateInput) GetID() *string {

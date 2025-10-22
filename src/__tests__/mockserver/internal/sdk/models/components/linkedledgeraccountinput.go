@@ -2,6 +2,10 @@
 
 package components
 
+import (
+	"mockserver/internal/sdk/utils"
+)
+
 type LinkedLedgerAccountInput struct {
 	// The unique identifier for the account.
 	ID *string `json:"id,omitempty"`
@@ -11,6 +15,19 @@ type LinkedLedgerAccountInput struct {
 	Code *string `json:"code,omitempty"`
 	// The parent ID of the account.
 	ParentID *string `json:"parent_id,omitempty"`
+	// The display ID of the account.
+	DisplayID *string `json:"display_id,omitempty"`
+}
+
+func (l LinkedLedgerAccountInput) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(l, "", false)
+}
+
+func (l *LinkedLedgerAccountInput) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &l, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *LinkedLedgerAccountInput) GetID() *string {
@@ -39,4 +56,11 @@ func (o *LinkedLedgerAccountInput) GetParentID() *string {
 		return nil
 	}
 	return o.ParentID
+}
+
+func (o *LinkedLedgerAccountInput) GetDisplayID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.DisplayID
 }

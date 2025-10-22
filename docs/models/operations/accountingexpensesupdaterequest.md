@@ -11,7 +11,19 @@ let value: AccountingExpensesUpdateRequest = {
   expense: {
     number: "OIT00546",
     transactionDate: new Date("2021-05-01T12:00:00.000Z"),
-    accountId: "123456",
+    account: {
+      id: "123456",
+      nominalCode: "N091",
+      code: "453",
+      parentId: "123456",
+      displayId: "123456",
+    },
+    bankAccount: {
+      id: "ba_123456",
+      name: "Main Operating Account",
+      accountNumber: "123465",
+      bankName: "Chase Bank",
+    },
     customerId: "12345",
     supplierId: "12345",
     companyId: "12345",
@@ -26,37 +38,7 @@ let value: AccountingExpensesUpdateRequest = {
       rate: 10,
     },
     totalAmount: 275,
-    lineItems: [
-      {
-        trackingCategories: [
-          {
-            id: "123456",
-            name: "New York",
-            parentId: "123456",
-            parentName: "New York",
-          },
-        ],
-        accountId: "123456",
-        customerId: "12345",
-        departmentId: "12345",
-        locationId: "12345",
-        subsidiaryId: "12345",
-        taxRate: {
-          id: "123456",
-          rate: 10,
-        },
-        description: "Travel US.",
-        totalAmount: 275,
-        billable: true,
-        lineNumber: 1,
-        rebilling: {
-          rebillable: true,
-          rebillStatus: "billed",
-          linkedTransactionId: "txn_abc123",
-          linkedTransactionLineId: "line_xyz789",
-        },
-      },
-    ],
+    lineItems: [],
     reference: "INV-2024-001",
     sourceDocumentUrl: "https://www.invoicesolution.com/expense/123456",
     customFields: [
@@ -97,4 +79,4 @@ let value: AccountingExpensesUpdateRequest = {
 | `appId`                                                                                                                                       | *string*                                                                                                                                      | :heavy_minus_sign:                                                                                                                            | The ID of your Unify application                                                                                                              | dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX                                                                                                       |
 | `serviceId`                                                                                                                                   | *string*                                                                                                                                      | :heavy_minus_sign:                                                                                                                            | Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API. | salesforce                                                                                                                                    |
 | `raw`                                                                                                                                         | *boolean*                                                                                                                                     | :heavy_minus_sign:                                                                                                                            | Include raw response. Mostly used for debugging purposes                                                                                      |                                                                                                                                               |
-| `expense`                                                                                                                                     | [components.ExpenseInput](../../models/components/expenseinput.md)                                                                            | :heavy_check_mark:                                                                                                                            | N/A                                                                                                                                           |                                                                                                                                               |
+| `expense`                                                                                                                                     | *components.ExpenseInput*                                                                                                                     | :heavy_check_mark:                                                                                                                            | N/A                                                                                                                                           |                                                                                                                                               |

@@ -19,6 +19,7 @@ const (
 	AccountingBankAccountAccountTypeMoneyMarket  AccountingBankAccountAccountType = "money_market"
 	AccountingBankAccountAccountTypeLineOfCredit AccountingBankAccountAccountType = "line_of_credit"
 	AccountingBankAccountAccountTypeOther        AccountingBankAccountAccountType = "other"
+	AccountingBankAccountAccountTypeCash         AccountingBankAccountAccountType = "cash"
 )
 
 func (e AccountingBankAccountAccountType) ToPointer() *AccountingBankAccountAccountType {
@@ -41,6 +42,8 @@ func (e *AccountingBankAccountAccountType) UnmarshalJSON(data []byte) error {
 	case "line_of_credit":
 		fallthrough
 	case "other":
+		fallthrough
+	case "cash":
 		*e = AccountingBankAccountAccountType(v)
 		return nil
 	default:
@@ -83,12 +86,13 @@ type AccountingBankAccount struct {
 	ID string `json:"id"`
 	// Display ID for the bank account
 	DisplayID *string `json:"display_id,omitempty"`
-	// The name of the bank account as it appears in the accounting system
+	// The name of the bank account
 	Name *string `json:"name,omitempty"`
 	// The bank account number
 	AccountNumber *string `json:"account_number,omitempty"`
 	// The type of bank account
-	AccountType *AccountingBankAccountAccountType `json:"account_type,omitempty"`
+	AccountType   *AccountingBankAccountAccountType `json:"account_type,omitempty"`
+	LedgerAccount *LinkedLedgerAccount              `json:"ledger_account,omitempty"`
 	// The name of the bank or financial institution
 	BankName *string `json:"bank_name,omitempty"`
 	// Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
@@ -174,6 +178,13 @@ func (o *AccountingBankAccount) GetAccountType() *AccountingBankAccountAccountTy
 		return nil
 	}
 	return o.AccountType
+}
+
+func (o *AccountingBankAccount) GetLedgerAccount() *LinkedLedgerAccount {
+	if o == nil {
+		return nil
+	}
+	return o.LedgerAccount
 }
 
 func (o *AccountingBankAccount) GetBankName() *string {
@@ -319,12 +330,13 @@ func (o *AccountingBankAccount) GetUpdatedBy() *string {
 type AccountingBankAccountInput struct {
 	// Display ID for the bank account
 	DisplayID *string `json:"display_id,omitempty"`
-	// The name of the bank account as it appears in the accounting system
+	// The name of the bank account
 	Name *string `json:"name,omitempty"`
 	// The bank account number
 	AccountNumber *string `json:"account_number,omitempty"`
 	// The type of bank account
-	AccountType *AccountingBankAccountAccountType `json:"account_type,omitempty"`
+	AccountType   *AccountingBankAccountAccountType `json:"account_type,omitempty"`
+	LedgerAccount *LinkedLedgerAccountInput         `json:"ledger_account,omitempty"`
 	// The name of the bank or financial institution
 	BankName *string `json:"bank_name,omitempty"`
 	// Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
@@ -382,6 +394,13 @@ func (o *AccountingBankAccountInput) GetAccountType() *AccountingBankAccountAcco
 		return nil
 	}
 	return o.AccountType
+}
+
+func (o *AccountingBankAccountInput) GetLedgerAccount() *LinkedLedgerAccountInput {
+	if o == nil {
+		return nil
+	}
+	return o.LedgerAccount
 }
 
 func (o *AccountingBankAccountInput) GetBankName() *string {

@@ -374,12 +374,12 @@ func testHrisEmployeesOneHrisEmployeesOne0(w http.ResponseWriter, req *http.Requ
 					Type: types.String("twitter"),
 				},
 			},
-			BankAccounts: []components.BankAccount{
-				components.BankAccount{
+			BankAccounts: []components.BankAccount2{
+				components.BankAccount2{
 					BankName:         types.String("Monzo"),
 					AccountNumber:    types.String("123465"),
 					AccountName:      types.String("SPACEX LLC"),
-					AccountType:      components.BankAccountAccountTypeCreditCard.ToPointer(),
+					AccountType:      components.BankAccount2AccountTypeCreditCard.ToPointer(),
 					Iban:             types.String("CH2989144532982975332"),
 					Bic:              types.String("AUDSCHGGXXX"),
 					RoutingNumber:    types.String("012345678"),
@@ -388,11 +388,11 @@ func testHrisEmployeesOneHrisEmployeesOne0(w http.ResponseWriter, req *http.Requ
 					BankCode:         types.String("BNH"),
 					Currency:         components.CurrencyUsd.ToPointer(),
 				},
-				components.BankAccount{
+				components.BankAccount2{
 					BankName:         types.String("Monzo"),
 					AccountNumber:    types.String("123465"),
 					AccountName:      types.String("SPACEX LLC"),
-					AccountType:      components.BankAccountAccountTypeCreditCard.ToPointer(),
+					AccountType:      components.BankAccount2AccountTypeCreditCard.ToPointer(),
 					Iban:             types.String("CH2989144532982975332"),
 					Bic:              types.String("AUDSCHGGXXX"),
 					RoutingNumber:    types.String("012345678"),
@@ -401,11 +401,11 @@ func testHrisEmployeesOneHrisEmployeesOne0(w http.ResponseWriter, req *http.Requ
 					BankCode:         types.String("BNH"),
 					Currency:         components.CurrencyUsd.ToPointer(),
 				},
-				components.BankAccount{
+				components.BankAccount2{
 					BankName:         types.String("Monzo"),
 					AccountNumber:    types.String("123465"),
 					AccountName:      types.String("SPACEX LLC"),
-					AccountType:      components.BankAccountAccountTypeCreditCard.ToPointer(),
+					AccountType:      components.BankAccount2AccountTypeCreditCard.ToPointer(),
 					Iban:             types.String("CH2989144532982975332"),
 					Bic:              types.String("AUDSCHGGXXX"),
 					RoutingNumber:    types.String("012345678"),

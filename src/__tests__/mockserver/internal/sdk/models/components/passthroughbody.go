@@ -2,11 +2,26 @@
 
 package components
 
+import (
+	"mockserver/internal/sdk/utils"
+)
+
 type ExtendPath struct {
 	// JSONPath string specifying where to apply the value.
 	Path string `json:"path"`
 	// The value to set at the specified path, can be any type.
 	Value any `json:"value"`
+}
+
+func (e ExtendPath) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(e, "", false)
+}
+
+func (e *ExtendPath) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &e, "", false, []string{"path", "value"}); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *ExtendPath) GetPath() string {
@@ -32,6 +47,17 @@ type PassThroughBody struct {
 	ExtendObject map[string]any `json:"extend_object,omitempty"`
 	// Array of objects for structured data modifications via paths.
 	ExtendPaths []ExtendPath `json:"extend_paths,omitempty"`
+}
+
+func (p PassThroughBody) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(p, "", false)
+}
+
+func (p *PassThroughBody) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &p, "", false, []string{"service_id"}); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *PassThroughBody) GetServiceID() string {

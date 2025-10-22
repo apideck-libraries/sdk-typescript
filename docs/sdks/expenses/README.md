@@ -33,6 +33,7 @@ async function run() {
     filter: {
       updatedSince: new Date("2020-09-30T07:43:32.000Z"),
       status: "draft",
+      type: "expense",
     },
   });
 
@@ -66,6 +67,7 @@ async function run() {
     filter: {
       updatedSince: new Date("2020-09-30T07:43:32.000Z"),
       status: "draft",
+      type: "expense",
     },
   });
   if (res.ok) {
