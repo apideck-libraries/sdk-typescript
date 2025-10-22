@@ -37,6 +37,7 @@ let value: AccountingCreditNotesUpdateRequest = {
       nominalCode: "N091",
       code: "453",
       parentId: "123456",
+      displayId: "123456",
     },
     lineItems: [
       {
@@ -93,6 +94,7 @@ let value: AccountingCreditNotesUpdateRequest = {
           nominalCode: "N091",
           code: "453",
           parentId: "123456",
+          displayId: "123456",
         },
         customFields: [
           {

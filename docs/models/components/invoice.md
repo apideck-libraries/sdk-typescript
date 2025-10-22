@@ -106,6 +106,7 @@ let value: Invoice = {
         nominalCode: "N091",
         code: "453",
         parentId: "123456",
+        displayId: "123456",
       },
       customFields: [
         {
@@ -190,13 +191,13 @@ let value: Invoice = {
   language: "EN",
   accountingByRow: false,
   bankAccount: {
-    bankName: "Monzo",
+    bankName: "Chase Bank",
     accountNumber: "123465",
-    accountName: "SPACEX LLC",
+    accountName: "Main Operating Account",
     accountType: "credit_card",
-    iban: "CH2989144532982975332",
-    bic: "AUDSCHGGXXX",
-    routingNumber: "012345678",
+    iban: "GB33BUKB20201555555555",
+    bic: "CHASUS33",
+    routingNumber: "021000021",
     bsbNumber: "062-001",
     branchIdentifier: "001",
     bankCode: "BNH",
@@ -209,6 +210,7 @@ let value: Invoice = {
     nominalCode: "N091",
     code: "453",
     parentId: "123456",
+    displayId: "123456",
   },
   customFields: [
     {

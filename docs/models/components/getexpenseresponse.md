@@ -17,7 +17,20 @@ let value: GetExpenseResponse = {
     id: "12345",
     number: "OIT00546",
     transactionDate: new Date("2021-05-01T12:00:00.000Z"),
-    accountId: "123456",
+    account: {
+      id: "123456",
+      name: "Bank account",
+      nominalCode: "N091",
+      code: "453",
+      parentId: "123456",
+      displayId: "123456",
+    },
+    bankAccount: {
+      id: "ba_123456",
+      name: "Main Operating Account",
+      accountNumber: "123465",
+      bankName: "Chase Bank",
+    },
     customerId: "12345",
     supplierId: "12345",
     companyId: "12345",
@@ -45,7 +58,14 @@ let value: GetExpenseResponse = {
             parentName: "New York",
           },
         ],
-        accountId: "123456",
+        account: {
+          id: "123456",
+          name: "Bank account",
+          nominalCode: "N091",
+          code: "453",
+          parentId: "123456",
+          displayId: "123456",
+        },
         customerId: "12345",
         departmentId: "12345",
         locationId: "12345",
@@ -60,12 +80,7 @@ let value: GetExpenseResponse = {
         totalAmount: 275,
         billable: true,
         lineNumber: 1,
-        rebilling: {
-          rebillable: true,
-          rebillStatus: "billed",
-          linkedTransactionId: "txn_abc123",
-          linkedTransactionLineId: "line_xyz789",
-        },
+        rebilling: null,
       },
     ],
     reference: "INV-2024-001",
@@ -112,5 +127,5 @@ let value: GetExpenseResponse = {
 | `service`                                                               | *string*                                                                | :heavy_check_mark:                                                      | Apideck ID of service provider                                          | quickbooks                                                              |
 | `resource`                                                              | *string*                                                                | :heavy_check_mark:                                                      | Unified API resource name                                               | Expenses                                                                |
 | `operation`                                                             | *string*                                                                | :heavy_check_mark:                                                      | Operation performed                                                     | one                                                                     |
-| `data`                                                                  | [components.Expense](../../models/components/expense.md)                | :heavy_check_mark:                                                      | N/A                                                                     |                                                                         |
+| `data`                                                                  | *components.Expense*                                                    | :heavy_check_mark:                                                      | N/A                                                                     |                                                                         |
 | `raw`                                                                   | Record<string, *any*>                                                   | :heavy_minus_sign:                                                      | Raw response from the integration when raw=true query param is provided |                                                                         |

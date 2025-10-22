@@ -13,5 +13,5 @@ let value: ExpensePaymentType = "cash";
 ## Values
 
 ```typescript
-"cash" | "check" | "credit_card"
+"cash" | "check" | "credit_card" | "other"
 ```

@@ -58,6 +58,7 @@ let value: GetInvoiceItemsResponse = {
         nominalCode: "N091",
         code: "453",
         parentId: "123456",
+        displayId: "123456",
       },
       incomeAccount: {
         id: "123456",
@@ -65,6 +66,7 @@ let value: GetInvoiceItemsResponse = {
         nominalCode: "N091",
         code: "453",
         parentId: "123456",
+        displayId: "123456",
       },
       expenseAccount: {
         id: "123456",
@@ -72,6 +74,7 @@ let value: GetInvoiceItemsResponse = {
         nominalCode: "N091",
         code: "453",
         parentId: "123456",
+        displayId: "123456",
       },
       trackingCategories: [
         {

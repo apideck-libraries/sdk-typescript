@@ -9,13 +9,14 @@ import (
 	"time"
 )
 
-// DisabledReason - Indicates if the webhook has has been disabled as it reached its retry limit or if account is over the usage allocated by it's plan.
+// DisabledReason - Indicates why the webhook has been disabled. `retry_limit`: webhook reached its retry limit. `usage_limit`: account is over its usage limit. `delivery_url_validation_failed`: delivery URL failed validation during webhook creation or update.
 type DisabledReason string
 
 const (
-	DisabledReasonNone       DisabledReason = "none"
-	DisabledReasonRetryLimit DisabledReason = "retry_limit"
-	DisabledReasonUsageLimit DisabledReason = "usage_limit"
+	DisabledReasonNone                        DisabledReason = "none"
+	DisabledReasonRetryLimit                  DisabledReason = "retry_limit"
+	DisabledReasonUsageLimit                  DisabledReason = "usage_limit"
+	DisabledReasonDeliveryURLValidationFailed DisabledReason = "delivery_url_validation_failed"
 )
 
 func (e DisabledReason) ToPointer() *DisabledReason {
@@ -32,6 +33,8 @@ func (e *DisabledReason) UnmarshalJSON(data []byte) error {
 	case "retry_limit":
 		fallthrough
 	case "usage_limit":
+		fallthrough
+	case "delivery_url_validation_failed":
 		*e = DisabledReason(v)
 		return nil
 	default:
@@ -47,7 +50,7 @@ type Webhook struct {
 	UnifiedAPI UnifiedAPIID `json:"unified_api"`
 	// The status of the webhook.
 	Status Status `json:"status"`
-	// Indicates if the webhook has has been disabled as it reached its retry limit or if account is over the usage allocated by it's plan.
+	// Indicates why the webhook has been disabled. `retry_limit`: webhook reached its retry limit. `usage_limit`: account is over its usage limit. `delivery_url_validation_failed`: delivery URL failed validation during webhook creation or update.
 	DisabledReason *DisabledReason `json:"disabled_reason,omitempty"`
 	// The delivery url of the webhook endpoint.
 	DeliveryURL string `json:"delivery_url"`

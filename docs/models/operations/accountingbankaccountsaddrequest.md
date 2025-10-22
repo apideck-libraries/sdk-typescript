@@ -10,8 +10,15 @@ let value: AccountingBankAccountsAddRequest = {
   accountingBankAccount: {
     displayId: "BA-001",
     name: "Main Operating Account",
-    accountNumber: "1234567890",
+    accountNumber: "123465",
     accountType: "checking",
+    ledgerAccount: {
+      id: "123456",
+      nominalCode: "N091",
+      code: "453",
+      parentId: "123456",
+      displayId: "123456",
+    },
     bankName: "Chase Bank",
     currency: "USD",
     balance: 25000,

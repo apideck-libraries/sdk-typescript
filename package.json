@@ -1,6 +1,6 @@
 {
   "name": "@apideck/unify",
-  "version": "0.30.1",
+  "version": "0.31.0",
   "author": "Speakeasy",
   "main": "./index.js",
   "sideEffects": false,
@@ -28,6 +28,6 @@
     "vitest": "^3.0.2"
   },
   "dependencies": {
-    "zod": "^3.20.0"
+    "zod": "^3.25.0 || ^4.0.0"
   }
 }

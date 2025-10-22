@@ -43,18 +43,21 @@ let value: InvoiceItemInput = {
     nominalCode: "N091",
     code: "453",
     parentId: "123456",
+    displayId: "123456",
   },
   incomeAccount: {
     id: "123456",
     nominalCode: "N091",
     code: "453",
     parentId: "123456",
+    displayId: "123456",
   },
   expenseAccount: {
     id: "123456",
     nominalCode: "N091",
     code: "453",
     parentId: "123456",
+    displayId: "123456",
   },
   trackingCategories: [
     {

@@ -2,11 +2,18 @@
 
 package components
 
+import (
+	"mockserver/internal/sdk/utils"
+)
+
 type ExpenseLineItemInput struct {
 	// A list of linked tracking categories.
 	TrackingCategories []*LinkedTrackingCategory `json:"tracking_categories,omitempty"`
-	// The unique identifier for the ledger account.
-	AccountID *string `json:"account_id,omitempty"`
+	// The unique identifier for the ledger account. Deprecated, use account instead.
+	//
+	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
+	AccountID *string                   `json:"account_id,omitempty"`
+	Account   *LinkedLedgerAccountInput `json:"account,omitempty"`
 	// The ID of the customer this expense item is linked to.
 	CustomerID *string `json:"customer_id,omitempty"`
 	// The ID of the department
@@ -28,6 +35,17 @@ type ExpenseLineItemInput struct {
 	Rebilling *Rebilling `json:"rebilling,omitempty"`
 }
 
+func (e ExpenseLineItemInput) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(e, "", false)
+}
+
+func (e *ExpenseLineItemInput) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &e, "", false, []string{"total_amount"}); err != nil {
+		return err
+	}
+	return nil
+}
+
 func (o *ExpenseLineItemInput) GetTrackingCategories() []*LinkedTrackingCategory {
 	if o == nil {
 		return nil
@@ -40,6 +58,13 @@ func (o *ExpenseLineItemInput) GetAccountID() *string {
 		return nil
 	}
 	return o.AccountID
+}
+
+func (o *ExpenseLineItemInput) GetAccount() *LinkedLedgerAccountInput {
+	if o == nil {
+		return nil
+	}
+	return o.Account
 }
 
 func (o *ExpenseLineItemInput) GetCustomerID() *string {
