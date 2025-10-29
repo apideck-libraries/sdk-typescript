@@ -105,7 +105,7 @@ export type UnprocessableResponseDetail$Outbound = string | {
 export const UnprocessableResponseDetail$outboundSchema: z.ZodType<
   UnprocessableResponseDetail$Outbound,
   z.ZodTypeDef,
-  UnprocessableResponseDetail
+  unknown
 > = z.union([z.string(), z.record(z.any())]);
 
 /**

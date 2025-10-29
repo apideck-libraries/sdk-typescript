@@ -103,7 +103,7 @@ export type UnauthorizedResponseDetail$Outbound = string | { [k: string]: any };
 export const UnauthorizedResponseDetail$outboundSchema: z.ZodType<
   UnauthorizedResponseDetail$Outbound,
   z.ZodTypeDef,
-  UnauthorizedResponseDetail
+  unknown
 > = z.union([z.string(), z.record(z.any())]);
 
 /**

@@ -113,6 +113,7 @@ export const InvoiceStatus = {
   Void: "void",
   Credit: "credit",
   Deleted: "deleted",
+  Posted: "posted",
 } as const;
 /**
  * Invoice status

@@ -61,6 +61,7 @@ const (
 	InvoiceStatusVoid          InvoiceStatus = "void"
 	InvoiceStatusCredit        InvoiceStatus = "credit"
 	InvoiceStatusDeleted       InvoiceStatus = "deleted"
+	InvoiceStatusPosted        InvoiceStatus = "posted"
 )
 
 func (e InvoiceStatus) ToPointer() *InvoiceStatus {
@@ -87,6 +88,8 @@ func (e *InvoiceStatus) UnmarshalJSON(data []byte) error {
 	case "credit":
 		fallthrough
 	case "deleted":
+		fallthrough
+	case "posted":
 		*e = InvoiceStatus(v)
 		return nil
 	default:

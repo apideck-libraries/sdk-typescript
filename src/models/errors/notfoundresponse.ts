@@ -103,7 +103,7 @@ export type NotFoundResponseDetail$Outbound = string | { [k: string]: any };
 export const NotFoundResponseDetail$outboundSchema: z.ZodType<
   NotFoundResponseDetail$Outbound,
   z.ZodTypeDef,
-  NotFoundResponseDetail
+  unknown
 > = z.union([z.string(), z.record(z.any())]);
 
 /**
