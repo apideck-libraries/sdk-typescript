@@ -100,7 +100,7 @@ export type Detail$Outbound = string | { [k: string]: any };
 export const Detail$outboundSchema: z.ZodType<
   Detail$Outbound,
   z.ZodTypeDef,
-  Detail
+  unknown
 > = z.union([z.string(), z.record(z.any())]);
 
 /**

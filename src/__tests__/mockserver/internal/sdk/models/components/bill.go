@@ -22,6 +22,7 @@ const (
 	BillStatusVoid          BillStatus = "void"
 	BillStatusCredit        BillStatus = "credit"
 	BillStatusDeleted       BillStatus = "deleted"
+	BillStatusPosted        BillStatus = "posted"
 )
 
 func (e BillStatus) ToPointer() *BillStatus {
@@ -48,6 +49,8 @@ func (e *BillStatus) UnmarshalJSON(data []byte) error {
 	case "credit":
 		fallthrough
 	case "deleted":
+		fallthrough
+	case "posted":
 		*e = BillStatus(v)
 		return nil
 	default:

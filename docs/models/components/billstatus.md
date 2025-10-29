@@ -13,5 +13,5 @@ let value: BillStatus = "draft";
 ## Values
 
 ```typescript
-"draft" | "submitted" | "authorised" | "partially_paid" | "paid" | "void" | "credit" | "deleted"
+"draft" | "submitted" | "authorised" | "partially_paid" | "paid" | "void" | "credit" | "deleted" | "posted"
 ```
