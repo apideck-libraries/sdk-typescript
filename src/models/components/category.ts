@@ -51,6 +51,10 @@ export type Category = {
    */
   name?: string | undefined;
   /**
+   * Display ID of the category
+   */
+  displayId?: string | null | undefined;
+  /**
    * The type of the category.
    */
   type?: CategoryType | undefined;
@@ -136,6 +140,7 @@ export const Category$inboundSchema: z.ZodType<
 > = z.object({
   id: z.string().optional(),
   name: z.string().optional(),
+  display_id: z.nullable(z.string()).optional(),
   type: CategoryType$inboundSchema.optional(),
   status: CategoryStatus$inboundSchema.optional(),
   custom_mappings: z.nullable(z.record(z.any())).optional(),
@@ -151,6 +156,7 @@ export const Category$inboundSchema: z.ZodType<
   pass_through: z.array(PassThroughBody$inboundSchema).optional(),
 }).transform((v) => {
   return remap$(v, {
+    "display_id": "displayId",
     "custom_mappings": "customMappings",
     "row_version": "rowVersion",
     "updated_by": "updatedBy",
@@ -165,6 +171,7 @@ export const Category$inboundSchema: z.ZodType<
 export type Category$Outbound = {
   id?: string | undefined;
   name?: string | undefined;
+  display_id?: string | null | undefined;
   type?: string | undefined;
   status?: string | undefined;
   custom_mappings?: { [k: string]: any } | null | undefined;
@@ -184,6 +191,7 @@ export const Category$outboundSchema: z.ZodType<
 > = z.object({
   id: z.string().optional(),
   name: z.string().optional(),
+  displayId: z.nullable(z.string()).optional(),
   type: CategoryType$outboundSchema.optional(),
   status: CategoryStatus$outboundSchema.optional(),
   customMappings: z.nullable(z.record(z.any())).optional(),
@@ -195,6 +203,7 @@ export const Category$outboundSchema: z.ZodType<
   passThrough: z.array(PassThroughBody$outboundSchema).optional(),
 }).transform((v) => {
   return remap$(v, {
+    displayId: "display_id",
     customMappings: "custom_mappings",
     rowVersion: "row_version",
     updatedBy: "updated_by",

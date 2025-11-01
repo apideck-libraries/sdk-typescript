@@ -17,6 +17,7 @@ let value: GetSubsidiaryResponse = {
     id: "12345",
     parentId: "12345",
     name: "SpaceX",
+    displayId: "12345",
     status: "active",
     currencies: [
       "USD",

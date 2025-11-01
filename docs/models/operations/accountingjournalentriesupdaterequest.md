@@ -9,6 +9,7 @@ let value: AccountingJournalEntriesUpdateRequest = {
   id: "<id>",
   serviceId: "salesforce",
   journalEntry: {
+    displayId: "12345",
     title: "Purchase Invoice-Inventory (USD): 2019/02/01 Batch Summary Entry",
     currencyRate: 0.69,
     currency: "USD",

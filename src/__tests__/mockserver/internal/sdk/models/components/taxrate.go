@@ -89,6 +89,8 @@ func (o *TaxRateSubsidiary) GetID() *string {
 type TaxRate struct {
 	// ID assigned to identify this tax rate.
 	ID *string `json:"id,omitempty"`
+	// Display ID of the tax rate
+	DisplayID *string `json:"display_id,omitempty"`
 	// Name assigned to identify this tax rate.
 	Name *string `json:"name,omitempty"`
 	// Tax code assigned to identify this tax rate.
@@ -147,6 +149,13 @@ func (o *TaxRate) GetID() *string {
 		return nil
 	}
 	return o.ID
+}
+
+func (o *TaxRate) GetDisplayID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.DisplayID
 }
 
 func (o *TaxRate) GetName() *string {
@@ -299,6 +308,8 @@ func (o *TaxRate) GetCustomFields() []CustomField {
 type TaxRateInput struct {
 	// ID assigned to identify this tax rate.
 	ID *string `json:"id,omitempty"`
+	// Display ID of the tax rate
+	DisplayID *string `json:"display_id,omitempty"`
 	// Name assigned to identify this tax rate.
 	Name *string `json:"name,omitempty"`
 	// Tax code assigned to identify this tax rate.
@@ -336,6 +347,13 @@ func (o *TaxRateInput) GetID() *string {
 		return nil
 	}
 	return o.ID
+}
+
+func (o *TaxRateInput) GetDisplayID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.DisplayID
 }
 
 func (o *TaxRateInput) GetName() *string {
