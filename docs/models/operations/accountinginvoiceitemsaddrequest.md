@@ -12,6 +12,7 @@ let value: AccountingInvoiceItemsAddRequest = {
     name: "Model Y",
     description:
       "Model Y is a fully electric, mid-size SUV, with seating for up to seven, dual motor AWD and unparalleled protection.",
+    displayId: "12345",
     code: "120-C",
     sold: true,
     purchased: true,

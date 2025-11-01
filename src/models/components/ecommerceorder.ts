@@ -66,6 +66,7 @@ export const EcommerceOrderPaymentStatus = {
   Refunded: "refunded",
   Voided: "voided",
   Unknown: "unknown",
+  PartiallyRefunded: "partially_refunded",
 } as const;
 /**
  * Current payment status of the order.

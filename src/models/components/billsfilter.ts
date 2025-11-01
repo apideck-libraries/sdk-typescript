@@ -5,12 +5,51 @@
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
+import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
+/**
+ * Filter by bill status
+ */
+export const BillsFilterStatus = {
+  Paid: "paid",
+  Unpaid: "unpaid",
+  PartiallyPaid: "partially_paid",
+} as const;
+/**
+ * Filter by bill status
+ */
+export type BillsFilterStatus = ClosedEnum<typeof BillsFilterStatus>;
+
 export type BillsFilter = {
   updatedSince?: Date | undefined;
+  /**
+   * Filter by bill status
+   */
+  status?: BillsFilterStatus | undefined;
 };
+
+/** @internal */
+export const BillsFilterStatus$inboundSchema: z.ZodNativeEnum<
+  typeof BillsFilterStatus
+> = z.nativeEnum(BillsFilterStatus);
+
+/** @internal */
+export const BillsFilterStatus$outboundSchema: z.ZodNativeEnum<
+  typeof BillsFilterStatus
+> = BillsFilterStatus$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace BillsFilterStatus$ {
+  /** @deprecated use `BillsFilterStatus$inboundSchema` instead. */
+  export const inboundSchema = BillsFilterStatus$inboundSchema;
+  /** @deprecated use `BillsFilterStatus$outboundSchema` instead. */
+  export const outboundSchema = BillsFilterStatus$outboundSchema;
+}
 
 /** @internal */
 export const BillsFilter$inboundSchema: z.ZodType<
@@ -21,6 +60,7 @@ export const BillsFilter$inboundSchema: z.ZodType<
   updated_since: z.string().datetime({ offset: true }).transform(v =>
     new Date(v)
   ).optional(),
+  status: BillsFilterStatus$inboundSchema.optional(),
 }).transform((v) => {
   return remap$(v, {
     "updated_since": "updatedSince",
@@ -30,6 +70,7 @@ export const BillsFilter$inboundSchema: z.ZodType<
 /** @internal */
 export type BillsFilter$Outbound = {
   updated_since?: string | undefined;
+  status?: string | undefined;
 };
 
 /** @internal */
@@ -39,6 +80,7 @@ export const BillsFilter$outboundSchema: z.ZodType<
   BillsFilter
 > = z.object({
   updatedSince: z.date().transform(v => v.toISOString()).optional(),
+  status: BillsFilterStatus$outboundSchema.optional(),
 }).transform((v) => {
   return remap$(v, {
     updatedSince: "updated_since",

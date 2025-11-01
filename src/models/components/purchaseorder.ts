@@ -115,6 +115,10 @@ export type PurchaseOrder = {
    */
   downstreamId?: string | null | undefined;
   /**
+   * Display ID of the purchase order
+   */
+  displayId?: string | null | undefined;
+  /**
    * A PO Number uniquely identifies a purchase order and is generally defined by the buyer.
    */
   poNumber?: string | null | undefined;
@@ -272,6 +276,10 @@ export type PurchaseOrder = {
 };
 
 export type PurchaseOrderInput = {
+  /**
+   * Display ID of the purchase order
+   */
+  displayId?: string | null | undefined;
   /**
    * A PO Number uniquely identifies a purchase order and is generally defined by the buyer.
    */
@@ -459,6 +467,7 @@ export const PurchaseOrder$inboundSchema: z.ZodType<
 > = z.object({
   id: z.string().optional(),
   downstream_id: z.nullable(z.string()).optional(),
+  display_id: z.nullable(z.string()).optional(),
   po_number: z.nullable(z.string()).optional(),
   reference: z.nullable(z.string()).optional(),
   supplier: z.nullable(LinkedSupplier$inboundSchema).optional(),
@@ -515,6 +524,7 @@ export const PurchaseOrder$inboundSchema: z.ZodType<
 }).transform((v) => {
   return remap$(v, {
     "downstream_id": "downstreamId",
+    "display_id": "displayId",
     "po_number": "poNumber",
     "subsidiary_id": "subsidiaryId",
     "company_id": "companyId",
@@ -557,6 +567,7 @@ export const PurchaseOrder$inboundSchema: z.ZodType<
 export type PurchaseOrder$Outbound = {
   id?: string | undefined;
   downstream_id?: string | null | undefined;
+  display_id?: string | null | undefined;
   po_number?: string | null | undefined;
   reference?: string | null | undefined;
   supplier?: LinkedSupplier$Outbound | null | undefined;
@@ -614,6 +625,7 @@ export const PurchaseOrder$outboundSchema: z.ZodType<
 > = z.object({
   id: z.string().optional(),
   downstreamId: z.nullable(z.string()).optional(),
+  displayId: z.nullable(z.string()).optional(),
   poNumber: z.nullable(z.string()).optional(),
   reference: z.nullable(z.string()).optional(),
   supplier: z.nullable(LinkedSupplier$outboundSchema).optional(),
@@ -669,6 +681,7 @@ export const PurchaseOrder$outboundSchema: z.ZodType<
 }).transform((v) => {
   return remap$(v, {
     downstreamId: "downstream_id",
+    displayId: "display_id",
     poNumber: "po_number",
     subsidiaryId: "subsidiary_id",
     companyId: "company_id",
@@ -740,6 +753,7 @@ export const PurchaseOrderInput$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
+  display_id: z.nullable(z.string()).optional(),
   po_number: z.nullable(z.string()).optional(),
   reference: z.nullable(z.string()).optional(),
   supplier: z.nullable(LinkedSupplierInput$inboundSchema).optional(),
@@ -786,6 +800,7 @@ export const PurchaseOrderInput$inboundSchema: z.ZodType<
   pass_through: z.array(PassThroughBody$inboundSchema).optional(),
 }).transform((v) => {
   return remap$(v, {
+    "display_id": "displayId",
     "po_number": "poNumber",
     "subsidiary_id": "subsidiaryId",
     "company_id": "companyId",
@@ -821,6 +836,7 @@ export const PurchaseOrderInput$inboundSchema: z.ZodType<
 
 /** @internal */
 export type PurchaseOrderInput$Outbound = {
+  display_id?: string | null | undefined;
   po_number?: string | null | undefined;
   reference?: string | null | undefined;
   supplier?: LinkedSupplierInput$Outbound | null | undefined;
@@ -871,6 +887,7 @@ export const PurchaseOrderInput$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   PurchaseOrderInput
 > = z.object({
+  displayId: z.nullable(z.string()).optional(),
   poNumber: z.nullable(z.string()).optional(),
   reference: z.nullable(z.string()).optional(),
   supplier: z.nullable(LinkedSupplierInput$outboundSchema).optional(),
@@ -920,6 +937,7 @@ export const PurchaseOrderInput$outboundSchema: z.ZodType<
   passThrough: z.array(PassThroughBody$outboundSchema).optional(),
 }).transform((v) => {
   return remap$(v, {
+    displayId: "display_id",
     poNumber: "po_number",
     subsidiaryId: "subsidiary_id",
     companyId: "company_id",

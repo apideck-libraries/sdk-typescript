@@ -70,6 +70,10 @@ export type JournalEntry = {
    */
   downstreamId?: string | null | undefined;
   /**
+   * Display ID of the journal entry
+   */
+  displayId?: string | null | undefined;
+  /**
    * Journal entry title
    */
   title?: string | null | undefined;
@@ -169,6 +173,10 @@ export type JournalEntry = {
 };
 
 export type JournalEntryInput = {
+  /**
+   * Display ID of the journal entry
+   */
+  displayId?: string | null | undefined;
   /**
    * Journal entry title
    */
@@ -277,6 +285,7 @@ export const JournalEntry$inboundSchema: z.ZodType<
 > = z.object({
   id: z.string().optional(),
   downstream_id: z.nullable(z.string()).optional(),
+  display_id: z.nullable(z.string()).optional(),
   title: z.nullable(z.string()).optional(),
   currency_rate: z.nullable(z.number()).optional(),
   currency: z.nullable(Currency$inboundSchema).optional(),
@@ -312,6 +321,7 @@ export const JournalEntry$inboundSchema: z.ZodType<
 }).transform((v) => {
   return remap$(v, {
     "downstream_id": "downstreamId",
+    "display_id": "displayId",
     "currency_rate": "currencyRate",
     "company_id": "companyId",
     "line_items": "lineItems",
@@ -339,6 +349,7 @@ export const JournalEntry$inboundSchema: z.ZodType<
 export type JournalEntry$Outbound = {
   id?: string | undefined;
   downstream_id?: string | null | undefined;
+  display_id?: string | null | undefined;
   title?: string | null | undefined;
   currency_rate?: number | null | undefined;
   currency?: string | null | undefined;
@@ -377,6 +388,7 @@ export const JournalEntry$outboundSchema: z.ZodType<
 > = z.object({
   id: z.string().optional(),
   downstreamId: z.nullable(z.string()).optional(),
+  displayId: z.nullable(z.string()).optional(),
   title: z.nullable(z.string()).optional(),
   currencyRate: z.nullable(z.number()).optional(),
   currency: z.nullable(Currency$outboundSchema).optional(),
@@ -407,6 +419,7 @@ export const JournalEntry$outboundSchema: z.ZodType<
 }).transform((v) => {
   return remap$(v, {
     downstreamId: "downstream_id",
+    displayId: "display_id",
     currencyRate: "currency_rate",
     companyId: "company_id",
     lineItems: "line_items",
@@ -463,6 +476,7 @@ export const JournalEntryInput$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
+  display_id: z.nullable(z.string()).optional(),
   title: z.nullable(z.string()).optional(),
   currency_rate: z.nullable(z.number()).optional(),
   currency: z.nullable(Currency$inboundSchema).optional(),
@@ -488,6 +502,7 @@ export const JournalEntryInput$inboundSchema: z.ZodType<
   pass_through: z.array(PassThroughBody$inboundSchema).optional(),
 }).transform((v) => {
   return remap$(v, {
+    "display_id": "displayId",
     "currency_rate": "currencyRate",
     "company_id": "companyId",
     "line_items": "lineItems",
@@ -508,6 +523,7 @@ export const JournalEntryInput$inboundSchema: z.ZodType<
 
 /** @internal */
 export type JournalEntryInput$Outbound = {
+  display_id?: string | null | undefined;
   title?: string | null | undefined;
   currency_rate?: number | null | undefined;
   currency?: string | null | undefined;
@@ -539,6 +555,7 @@ export const JournalEntryInput$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   JournalEntryInput
 > = z.object({
+  displayId: z.nullable(z.string()).optional(),
   title: z.nullable(z.string()).optional(),
   currencyRate: z.nullable(z.number()).optional(),
   currency: z.nullable(Currency$outboundSchema).optional(),
@@ -563,6 +580,7 @@ export const JournalEntryInput$outboundSchema: z.ZodType<
   passThrough: z.array(PassThroughBody$outboundSchema).optional(),
 }).transform((v) => {
   return remap$(v, {
+    displayId: "display_id",
     currencyRate: "currency_rate",
     companyId: "company_id",
     lineItems: "line_items",

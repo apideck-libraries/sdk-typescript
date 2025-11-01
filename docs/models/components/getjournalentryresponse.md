@@ -16,6 +16,7 @@ let value: GetJournalEntryResponse = {
   data: {
     id: "12345",
     downstreamId: "12345",
+    displayId: "12345",
     title: "Purchase Invoice-Inventory (USD): 2019/02/01 Batch Summary Entry",
     currencyRate: 0.69,
     currency: "USD",

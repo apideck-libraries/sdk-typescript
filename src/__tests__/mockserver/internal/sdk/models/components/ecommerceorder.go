@@ -13,13 +13,14 @@ import (
 type EcommerceOrderPaymentStatus string
 
 const (
-	EcommerceOrderPaymentStatusPending    EcommerceOrderPaymentStatus = "pending"
-	EcommerceOrderPaymentStatusAuthorized EcommerceOrderPaymentStatus = "authorized"
-	EcommerceOrderPaymentStatusPaid       EcommerceOrderPaymentStatus = "paid"
-	EcommerceOrderPaymentStatusPartial    EcommerceOrderPaymentStatus = "partial"
-	EcommerceOrderPaymentStatusRefunded   EcommerceOrderPaymentStatus = "refunded"
-	EcommerceOrderPaymentStatusVoided     EcommerceOrderPaymentStatus = "voided"
-	EcommerceOrderPaymentStatusUnknown    EcommerceOrderPaymentStatus = "unknown"
+	EcommerceOrderPaymentStatusPending           EcommerceOrderPaymentStatus = "pending"
+	EcommerceOrderPaymentStatusAuthorized        EcommerceOrderPaymentStatus = "authorized"
+	EcommerceOrderPaymentStatusPaid              EcommerceOrderPaymentStatus = "paid"
+	EcommerceOrderPaymentStatusPartial           EcommerceOrderPaymentStatus = "partial"
+	EcommerceOrderPaymentStatusRefunded          EcommerceOrderPaymentStatus = "refunded"
+	EcommerceOrderPaymentStatusVoided            EcommerceOrderPaymentStatus = "voided"
+	EcommerceOrderPaymentStatusUnknown           EcommerceOrderPaymentStatus = "unknown"
+	EcommerceOrderPaymentStatusPartiallyRefunded EcommerceOrderPaymentStatus = "partially_refunded"
 )
 
 func (e EcommerceOrderPaymentStatus) ToPointer() *EcommerceOrderPaymentStatus {
@@ -44,6 +45,8 @@ func (e *EcommerceOrderPaymentStatus) UnmarshalJSON(data []byte) error {
 	case "voided":
 		fallthrough
 	case "unknown":
+		fallthrough
+	case "partially_refunded":
 		*e = EcommerceOrderPaymentStatus(v)
 		return nil
 	default:

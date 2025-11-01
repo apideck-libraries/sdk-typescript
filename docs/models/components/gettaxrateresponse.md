@@ -15,6 +15,7 @@ let value: GetTaxRateResponse = {
   operation: "one",
   data: {
     id: "1234",
+    displayId: "12345",
     name: "GST on Purchases",
     code: "ABN",
     description: "Reduced rate GST Purchases",
