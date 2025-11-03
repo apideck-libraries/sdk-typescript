@@ -3,12 +3,46 @@
 package components
 
 import (
+	"encoding/json"
+	"fmt"
 	"mockserver/internal/sdk/utils"
 	"time"
 )
 
+// BillsFilterStatus - Filter by bill status
+type BillsFilterStatus string
+
+const (
+	BillsFilterStatusPaid          BillsFilterStatus = "paid"
+	BillsFilterStatusUnpaid        BillsFilterStatus = "unpaid"
+	BillsFilterStatusPartiallyPaid BillsFilterStatus = "partially_paid"
+)
+
+func (e BillsFilterStatus) ToPointer() *BillsFilterStatus {
+	return &e
+}
+func (e *BillsFilterStatus) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "paid":
+		fallthrough
+	case "unpaid":
+		fallthrough
+	case "partially_paid":
+		*e = BillsFilterStatus(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for BillsFilterStatus: %v", v)
+	}
+}
+
 type BillsFilter struct {
 	UpdatedSince *time.Time `queryParam:"name=updated_since"`
+	// Filter by bill status
+	Status *BillsFilterStatus `queryParam:"name=status"`
 }
 
 func (b BillsFilter) MarshalJSON() ([]byte, error) {
@@ -27,4 +61,11 @@ func (o *BillsFilter) GetUpdatedSince() *time.Time {
 		return nil
 	}
 	return o.UpdatedSince
+}
+
+func (o *BillsFilter) GetStatus() *BillsFilterStatus {
+	if o == nil {
+		return nil
+	}
+	return o.Status
 }

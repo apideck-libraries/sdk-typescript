@@ -127,6 +127,8 @@ type InvoiceItem struct {
 	Name *string `json:"name,omitempty"`
 	// A short description of the item
 	Description *string `json:"description,omitempty"`
+	// Display ID of the item
+	DisplayID *string `json:"display_id,omitempty"`
 	// User defined item code
 	Code *string `json:"code,omitempty"`
 	// Item will be available on sales transactions
@@ -209,6 +211,13 @@ func (o *InvoiceItem) GetDescription() *string {
 		return nil
 	}
 	return o.Description
+}
+
+func (o *InvoiceItem) GetDisplayID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.DisplayID
 }
 
 func (o *InvoiceItem) GetCode() *string {
@@ -493,6 +502,8 @@ type InvoiceItemInput struct {
 	Name *string `json:"name,omitempty"`
 	// A short description of the item
 	Description *string `json:"description,omitempty"`
+	// Display ID of the item
+	DisplayID *string `json:"display_id,omitempty"`
 	// User defined item code
 	Code *string `json:"code,omitempty"`
 	// Item will be available on sales transactions
@@ -558,6 +569,13 @@ func (o *InvoiceItemInput) GetDescription() *string {
 		return nil
 	}
 	return o.Description
+}
+
+func (o *InvoiceItemInput) GetDisplayID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.DisplayID
 }
 
 func (o *InvoiceItemInput) GetCode() *string {

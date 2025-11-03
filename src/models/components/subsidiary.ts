@@ -46,6 +46,10 @@ export type Subsidiary = {
    */
   name?: string | null | undefined;
   /**
+   * Display ID of the subsidiary
+   */
+  displayId?: string | null | undefined;
+  /**
    * Based on the status some functionality is enabled or disabled.
    */
   status?: SubsidiaryStatus | undefined;
@@ -92,6 +96,10 @@ export type SubsidiaryInput = {
    * The name of the company.
    */
   name?: string | null | undefined;
+  /**
+   * Display ID of the subsidiary
+   */
+  displayId?: string | null | undefined;
   /**
    * Based on the status some functionality is enabled or disabled.
    */
@@ -140,6 +148,7 @@ export const Subsidiary$inboundSchema: z.ZodType<
   id: z.string().optional(),
   parent_id: z.nullable(z.string()).optional(),
   name: z.nullable(z.string()).optional(),
+  display_id: z.nullable(z.string()).optional(),
   status: SubsidiaryStatus$inboundSchema.optional(),
   currencies: z.nullable(z.array(z.nullable(Currency$inboundSchema)))
     .optional(),
@@ -157,6 +166,7 @@ export const Subsidiary$inboundSchema: z.ZodType<
 }).transform((v) => {
   return remap$(v, {
     "parent_id": "parentId",
+    "display_id": "displayId",
     "custom_mappings": "customMappings",
     "row_version": "rowVersion",
     "updated_by": "updatedBy",
@@ -172,6 +182,7 @@ export type Subsidiary$Outbound = {
   id?: string | undefined;
   parent_id?: string | null | undefined;
   name?: string | null | undefined;
+  display_id?: string | null | undefined;
   status?: string | undefined;
   currencies?: Array<string | null> | null | undefined;
   custom_mappings?: { [k: string]: any } | null | undefined;
@@ -192,6 +203,7 @@ export const Subsidiary$outboundSchema: z.ZodType<
   id: z.string().optional(),
   parentId: z.nullable(z.string()).optional(),
   name: z.nullable(z.string()).optional(),
+  displayId: z.nullable(z.string()).optional(),
   status: SubsidiaryStatus$outboundSchema.optional(),
   currencies: z.nullable(z.array(z.nullable(Currency$outboundSchema)))
     .optional(),
@@ -205,6 +217,7 @@ export const Subsidiary$outboundSchema: z.ZodType<
 }).transform((v) => {
   return remap$(v, {
     parentId: "parent_id",
+    displayId: "display_id",
     customMappings: "custom_mappings",
     rowVersion: "row_version",
     updatedBy: "updated_by",
@@ -250,6 +263,7 @@ export const SubsidiaryInput$inboundSchema: z.ZodType<
 > = z.object({
   parent_id: z.nullable(z.string()).optional(),
   name: z.nullable(z.string()).optional(),
+  display_id: z.nullable(z.string()).optional(),
   status: SubsidiaryStatus$inboundSchema.optional(),
   currencies: z.nullable(z.array(z.nullable(Currency$inboundSchema)))
     .optional(),
@@ -258,6 +272,7 @@ export const SubsidiaryInput$inboundSchema: z.ZodType<
 }).transform((v) => {
   return remap$(v, {
     "parent_id": "parentId",
+    "display_id": "displayId",
     "row_version": "rowVersion",
     "pass_through": "passThrough",
   });
@@ -267,6 +282,7 @@ export const SubsidiaryInput$inboundSchema: z.ZodType<
 export type SubsidiaryInput$Outbound = {
   parent_id?: string | null | undefined;
   name?: string | null | undefined;
+  display_id?: string | null | undefined;
   status?: string | undefined;
   currencies?: Array<string | null> | null | undefined;
   row_version?: string | null | undefined;
@@ -281,6 +297,7 @@ export const SubsidiaryInput$outboundSchema: z.ZodType<
 > = z.object({
   parentId: z.nullable(z.string()).optional(),
   name: z.nullable(z.string()).optional(),
+  displayId: z.nullable(z.string()).optional(),
   status: SubsidiaryStatus$outboundSchema.optional(),
   currencies: z.nullable(z.array(z.nullable(Currency$outboundSchema)))
     .optional(),
@@ -289,6 +306,7 @@ export const SubsidiaryInput$outboundSchema: z.ZodType<
 }).transform((v) => {
   return remap$(v, {
     parentId: "parent_id",
+    displayId: "display_id",
     rowVersion: "row_version",
     passThrough: "pass_through",
   });

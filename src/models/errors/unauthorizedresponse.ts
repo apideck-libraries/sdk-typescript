@@ -4,15 +4,78 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import {
+  collectExtraKeys as collectExtraKeys$,
+  safeParse,
+} from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { ApideckError } from "./apideckerror.js";
 import { SDKValidationError } from "./sdkvalidationerror.js";
 
 /**
+ * HTTP request details
+ */
+export type RequestT = {};
+
+/**
+ * HTTP response details
+ */
+export type ResponseT = {};
+
+/**
+ * Debug information including request/response details and OAuth timing metadata
+ */
+export type Debug = {
+  /**
+   * HTTP request details
+   */
+  request?: RequestT | undefined;
+  /**
+   * HTTP response details
+   */
+  response?: ResponseT | undefined;
+  /**
+   * Error message from downstream provider or network layer
+   */
+  message?: string | undefined;
+  /**
+   * Error code (e.g., ETIMEDOUT, ECONNREFUSED)
+   */
+  code?: string | undefined;
+  /**
+   * Unix timestamp (milliseconds) when credentials will be deleted if not refreshed. Only present for non-recoverable errors (401, 400). Credentials are preserved indefinitely for recoverable/network errors.
+   */
+  credentialsExpireAtMs?: number | undefined;
+  /**
+   * Unix timestamp (milliseconds) when token refresh retry is allowed after cooldown period expires.
+   */
+  retryAfterMs?: number | undefined;
+  /**
+   * Milliseconds remaining in cooldown period before retry is allowed.
+   */
+  cooldownRemainingMs?: number | undefined;
+};
+
+export type Two = {
+  /**
+   * Error type identifier
+   */
+  type?: string | undefined;
+  /**
+   * Detailed error message
+   */
+  message?: string | undefined;
+  /**
+   * Debug information including request/response details and OAuth timing metadata
+   */
+  debug?: Debug | undefined;
+  additionalProperties?: { [k: string]: any } | undefined;
+};
+
+/**
  * Contains parameter or domain specific information related to the error and why it occurred.
  */
-export type UnauthorizedResponseDetail = string | { [k: string]: any };
+export type UnauthorizedResponseDetail = string | Two;
 
 /**
  * Unauthorized
@@ -37,7 +100,7 @@ export type UnauthorizedResponseData = {
   /**
    * Contains parameter or domain specific information related to the error and why it occurred.
    */
-  detail?: string | { [k: string]: any } | undefined;
+  detail?: string | Two | undefined;
   /**
    * Link to documentation of error type
    */
@@ -63,7 +126,7 @@ export class UnauthorizedResponse extends ApideckError {
   /**
    * Contains parameter or domain specific information related to the error and why it occurred.
    */
-  detail?: string | { [k: string]: any } | undefined;
+  detail?: string | Two | undefined;
   /**
    * Link to documentation of error type
    */
@@ -90,21 +153,249 @@ export class UnauthorizedResponse extends ApideckError {
 }
 
 /** @internal */
+export const RequestT$inboundSchema: z.ZodType<
+  RequestT,
+  z.ZodTypeDef,
+  unknown
+> = z.object({});
+
+/** @internal */
+export type RequestT$Outbound = {};
+
+/** @internal */
+export const RequestT$outboundSchema: z.ZodType<
+  RequestT$Outbound,
+  z.ZodTypeDef,
+  RequestT
+> = z.object({});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace RequestT$ {
+  /** @deprecated use `RequestT$inboundSchema` instead. */
+  export const inboundSchema = RequestT$inboundSchema;
+  /** @deprecated use `RequestT$outboundSchema` instead. */
+  export const outboundSchema = RequestT$outboundSchema;
+  /** @deprecated use `RequestT$Outbound` instead. */
+  export type Outbound = RequestT$Outbound;
+}
+
+export function requestToJSON(requestT: RequestT): string {
+  return JSON.stringify(RequestT$outboundSchema.parse(requestT));
+}
+
+export function requestFromJSON(
+  jsonString: string,
+): SafeParseResult<RequestT, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => RequestT$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'RequestT' from JSON`,
+  );
+}
+
+/** @internal */
+export const ResponseT$inboundSchema: z.ZodType<
+  ResponseT,
+  z.ZodTypeDef,
+  unknown
+> = z.object({});
+
+/** @internal */
+export type ResponseT$Outbound = {};
+
+/** @internal */
+export const ResponseT$outboundSchema: z.ZodType<
+  ResponseT$Outbound,
+  z.ZodTypeDef,
+  ResponseT
+> = z.object({});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace ResponseT$ {
+  /** @deprecated use `ResponseT$inboundSchema` instead. */
+  export const inboundSchema = ResponseT$inboundSchema;
+  /** @deprecated use `ResponseT$outboundSchema` instead. */
+  export const outboundSchema = ResponseT$outboundSchema;
+  /** @deprecated use `ResponseT$Outbound` instead. */
+  export type Outbound = ResponseT$Outbound;
+}
+
+export function responseToJSON(responseT: ResponseT): string {
+  return JSON.stringify(ResponseT$outboundSchema.parse(responseT));
+}
+
+export function responseFromJSON(
+  jsonString: string,
+): SafeParseResult<ResponseT, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ResponseT$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ResponseT' from JSON`,
+  );
+}
+
+/** @internal */
+export const Debug$inboundSchema: z.ZodType<Debug, z.ZodTypeDef, unknown> = z
+  .object({
+    request: z.lazy(() => RequestT$inboundSchema).optional(),
+    response: z.lazy(() => ResponseT$inboundSchema).optional(),
+    message: z.string().optional(),
+    code: z.string().optional(),
+    credentials_expire_at_ms: z.number().optional(),
+    retry_after_ms: z.number().optional(),
+    cooldown_remaining_ms: z.number().optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "credentials_expire_at_ms": "credentialsExpireAtMs",
+      "retry_after_ms": "retryAfterMs",
+      "cooldown_remaining_ms": "cooldownRemainingMs",
+    });
+  });
+
+/** @internal */
+export type Debug$Outbound = {
+  request?: RequestT$Outbound | undefined;
+  response?: ResponseT$Outbound | undefined;
+  message?: string | undefined;
+  code?: string | undefined;
+  credentials_expire_at_ms?: number | undefined;
+  retry_after_ms?: number | undefined;
+  cooldown_remaining_ms?: number | undefined;
+};
+
+/** @internal */
+export const Debug$outboundSchema: z.ZodType<
+  Debug$Outbound,
+  z.ZodTypeDef,
+  Debug
+> = z.object({
+  request: z.lazy(() => RequestT$outboundSchema).optional(),
+  response: z.lazy(() => ResponseT$outboundSchema).optional(),
+  message: z.string().optional(),
+  code: z.string().optional(),
+  credentialsExpireAtMs: z.number().optional(),
+  retryAfterMs: z.number().optional(),
+  cooldownRemainingMs: z.number().optional(),
+}).transform((v) => {
+  return remap$(v, {
+    credentialsExpireAtMs: "credentials_expire_at_ms",
+    retryAfterMs: "retry_after_ms",
+    cooldownRemainingMs: "cooldown_remaining_ms",
+  });
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace Debug$ {
+  /** @deprecated use `Debug$inboundSchema` instead. */
+  export const inboundSchema = Debug$inboundSchema;
+  /** @deprecated use `Debug$outboundSchema` instead. */
+  export const outboundSchema = Debug$outboundSchema;
+  /** @deprecated use `Debug$Outbound` instead. */
+  export type Outbound = Debug$Outbound;
+}
+
+export function debugToJSON(debug: Debug): string {
+  return JSON.stringify(Debug$outboundSchema.parse(debug));
+}
+
+export function debugFromJSON(
+  jsonString: string,
+): SafeParseResult<Debug, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Debug$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Debug' from JSON`,
+  );
+}
+
+/** @internal */
+export const Two$inboundSchema: z.ZodType<Two, z.ZodTypeDef, unknown> =
+  collectExtraKeys$(
+    z.object({
+      type: z.string().optional(),
+      message: z.string().optional(),
+      debug: z.lazy(() => Debug$inboundSchema).optional(),
+    }).catchall(z.any()),
+    "additionalProperties",
+    true,
+  );
+
+/** @internal */
+export type Two$Outbound = {
+  type?: string | undefined;
+  message?: string | undefined;
+  debug?: Debug$Outbound | undefined;
+  [additionalProperties: string]: unknown;
+};
+
+/** @internal */
+export const Two$outboundSchema: z.ZodType<Two$Outbound, z.ZodTypeDef, Two> = z
+  .object({
+    type: z.string().optional(),
+    message: z.string().optional(),
+    debug: z.lazy(() => Debug$outboundSchema).optional(),
+    additionalProperties: z.record(z.any()).optional(),
+  }).transform((v) => {
+    return {
+      ...v.additionalProperties,
+      ...remap$(v, {
+        additionalProperties: null,
+      }),
+    };
+  });
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace Two$ {
+  /** @deprecated use `Two$inboundSchema` instead. */
+  export const inboundSchema = Two$inboundSchema;
+  /** @deprecated use `Two$outboundSchema` instead. */
+  export const outboundSchema = Two$outboundSchema;
+  /** @deprecated use `Two$Outbound` instead. */
+  export type Outbound = Two$Outbound;
+}
+
+export function twoToJSON(two: Two): string {
+  return JSON.stringify(Two$outboundSchema.parse(two));
+}
+
+export function twoFromJSON(
+  jsonString: string,
+): SafeParseResult<Two, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Two$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Two' from JSON`,
+  );
+}
+
+/** @internal */
 export const UnauthorizedResponseDetail$inboundSchema: z.ZodType<
   UnauthorizedResponseDetail,
   z.ZodTypeDef,
   unknown
-> = z.union([z.string(), z.record(z.any())]);
+> = z.union([z.string(), z.lazy(() => Two$inboundSchema)]);
 
 /** @internal */
-export type UnauthorizedResponseDetail$Outbound = string | { [k: string]: any };
+export type UnauthorizedResponseDetail$Outbound = string | Two$Outbound;
 
 /** @internal */
 export const UnauthorizedResponseDetail$outboundSchema: z.ZodType<
   UnauthorizedResponseDetail$Outbound,
   z.ZodTypeDef,
   unknown
-> = z.union([z.string(), z.record(z.any())]);
+> = z.union([z.string(), z.lazy(() => Two$outboundSchema)]);
 
 /**
  * @internal
@@ -147,7 +438,7 @@ export const UnauthorizedResponse$inboundSchema: z.ZodType<
   error: z.string().optional(),
   type_name: z.string().optional(),
   message: z.string().optional(),
-  detail: z.union([z.string(), z.record(z.any())]).optional(),
+  detail: z.union([z.string(), z.lazy(() => Two$inboundSchema)]).optional(),
   ref: z.string().optional(),
   request$: z.instanceof(Request),
   response$: z.instanceof(Response),
@@ -172,7 +463,7 @@ export type UnauthorizedResponse$Outbound = {
   error?: string | undefined;
   type_name?: string | undefined;
   message?: string | undefined;
-  detail?: string | { [k: string]: any } | undefined;
+  detail?: string | Two$Outbound | undefined;
   ref?: string | undefined;
 };
 
@@ -189,7 +480,8 @@ export const UnauthorizedResponse$outboundSchema: z.ZodType<
       error: z.string().optional(),
       typeName: z.string().optional(),
       message: z.string().optional(),
-      detail: z.union([z.string(), z.record(z.any())]).optional(),
+      detail: z.union([z.string(), z.lazy(() => Two$outboundSchema)])
+        .optional(),
       ref: z.string().optional(),
     }).transform((v) => {
       return remap$(v, {

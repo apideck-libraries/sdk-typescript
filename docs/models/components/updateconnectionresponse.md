@@ -113,7 +113,6 @@ let value: UpdateConnectionResponse = {
       },
     ],
     hasGuide: true,
-    createdAt: 1615563533390,
     customMappings: [
       {
         id: "hris+employees+first_aid_training",
@@ -294,6 +293,10 @@ let value: UpdateConnectionResponse = {
         },
       },
     },
+    health: "ok",
+    credentialsExpireAt: 1730172800000,
+    lastRefreshFailedAt: 1730000000000,
+    createdAt: 1615563533390,
     updatedAt: 1616662325753,
   },
 };

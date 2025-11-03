@@ -59,6 +59,8 @@ type JournalEntry struct {
 	ID *string `json:"id,omitempty"`
 	// The third-party API ID of original entity
 	DownstreamID *string `json:"downstream_id,omitempty"`
+	// Display ID of the journal entry
+	DisplayID *string `json:"display_id,omitempty"`
 	// Journal entry title
 	Title *string `json:"title,omitempty"`
 	// Currency Exchange Rate at the time entity was recorded/generated.
@@ -133,6 +135,13 @@ func (o *JournalEntry) GetDownstreamID() *string {
 		return nil
 	}
 	return o.DownstreamID
+}
+
+func (o *JournalEntry) GetDisplayID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.DisplayID
 }
 
 func (o *JournalEntry) GetTitle() *string {
@@ -311,6 +320,8 @@ func (o *JournalEntry) GetPassThrough() []PassThroughBody {
 }
 
 type JournalEntryInput struct {
+	// Display ID of the journal entry
+	DisplayID *string `json:"display_id,omitempty"`
 	// Journal entry title
 	Title *string `json:"title,omitempty"`
 	// Currency Exchange Rate at the time entity was recorded/generated.
@@ -361,6 +372,13 @@ func (j *JournalEntryInput) UnmarshalJSON(data []byte) error {
 		return err
 	}
 	return nil
+}
+
+func (o *JournalEntryInput) GetDisplayID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.DisplayID
 }
 
 func (o *JournalEntryInput) GetTitle() *string {

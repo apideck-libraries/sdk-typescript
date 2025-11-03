@@ -260,8 +260,7 @@ func testVaultConnectionSettingsUpdateVaultConnectionSettingsUpdate0(w http.Resp
 					CreatedAt:  types.String("2020-10-01T12:00:00.000Z"),
 				},
 			},
-			HasGuide:  types.Bool(true),
-			CreatedAt: types.Float64(1615563533390),
+			HasGuide: types.Bool(true),
 			CustomMappings: []components.CustomMapping{
 				components.CustomMapping{
 					ID:          types.String("hris+employees+first_aid_training"),
@@ -286,6 +285,7 @@ func testVaultConnectionSettingsUpdateVaultConnectionSettingsUpdate0(w http.Resp
 					Example:     types.String("Some value"),
 				},
 			},
+			CreatedAt: types.Float64(1615563533390),
 			UpdatedAt: types.Float64(1616662325753),
 		},
 	}

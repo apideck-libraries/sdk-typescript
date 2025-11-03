@@ -17,6 +17,7 @@ let value: GetCategoriesResponse = {
     {
       id: "12345",
       name: "Insurance",
+      displayId: "12345",
       type: "expense",
       status: "active",
       rowVersion: "1-12345",

@@ -17,7 +17,7 @@ type UnauthorizedResponseError struct {
 	// A human-readable message providing more details about the error.
 	Message *string `json:"message,omitempty"`
 	// Contains parameter or domain specific information related to the error and why it occurred.
-	Detail *components.UnauthorizedResponseDetail `json:"detail,omitempty"`
+	Detail *components.UnauthorizedResponseDetailUnion `json:"detail,omitempty"`
 	// Link to documentation of error type
 	Ref      *string                 `json:"ref,omitempty"`
 	HTTPMeta components.HTTPMetadata `json:"-"`

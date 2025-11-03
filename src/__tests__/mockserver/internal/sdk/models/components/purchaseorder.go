@@ -86,6 +86,8 @@ type PurchaseOrder struct {
 	ID *string `json:"id,omitempty"`
 	// The third-party API ID of original entity
 	DownstreamID *string `json:"downstream_id,omitempty"`
+	// Display ID of the purchase order
+	DisplayID *string `json:"display_id,omitempty"`
 	// A PO Number uniquely identifies a purchase order and is generally defined by the buyer.
 	PoNumber *string `json:"po_number,omitempty"`
 	// Optional purchase order reference.
@@ -192,6 +194,13 @@ func (o *PurchaseOrder) GetDownstreamID() *string {
 		return nil
 	}
 	return o.DownstreamID
+}
+
+func (o *PurchaseOrder) GetDisplayID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.DisplayID
 }
 
 func (o *PurchaseOrder) GetPoNumber() *string {
@@ -503,6 +512,8 @@ func (o *PurchaseOrder) GetPassThrough() []PassThroughBody {
 }
 
 type PurchaseOrderInput struct {
+	// Display ID of the purchase order
+	DisplayID *string `json:"display_id,omitempty"`
 	// A PO Number uniquely identifies a purchase order and is generally defined by the buyer.
 	PoNumber *string `json:"po_number,omitempty"`
 	// Optional purchase order reference.
@@ -585,6 +596,13 @@ func (p *PurchaseOrderInput) UnmarshalJSON(data []byte) error {
 		return err
 	}
 	return nil
+}
+
+func (o *PurchaseOrderInput) GetDisplayID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.DisplayID
 }
 
 func (o *PurchaseOrderInput) GetPoNumber() *string {

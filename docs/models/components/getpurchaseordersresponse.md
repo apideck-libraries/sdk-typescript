@@ -18,6 +18,7 @@ let value: GetPurchaseOrdersResponse = {
     {
       id: "12345",
       downstreamId: "12345",
+      displayId: "12345",
       poNumber: "90000117",
       reference: "123456",
       supplier: {

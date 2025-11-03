@@ -223,7 +223,6 @@ test("Connections Vault Connections All", async () => {
           },
         ],
         hasGuide: true,
-        createdAt: 1615563533390,
         customMappings: [
           {
             id: "hris+employees+first_aid_training",
@@ -259,6 +258,7 @@ test("Connections Vault Connections All", async () => {
             example: "Some value",
           },
         ],
+        createdAt: 1615563533390,
         updatedAt: 1616662325753,
       },
       {
@@ -410,7 +410,6 @@ test("Connections Vault Connections All", async () => {
           },
         ],
         hasGuide: true,
-        createdAt: 1615563533390,
         customMappings: [
           {
             id: "hris+employees+first_aid_training",
@@ -424,6 +423,7 @@ test("Connections Vault Connections All", async () => {
             example: "Some value",
           },
         ],
+        createdAt: 1615563533390,
         updatedAt: 1616662325753,
       },
       {
@@ -776,7 +776,6 @@ test("Connections Vault Connections All", async () => {
           },
         ],
         hasGuide: true,
-        createdAt: 1615563533390,
         customMappings: [
           {
             id: "hris+employees+first_aid_training",
@@ -812,6 +811,7 @@ test("Connections Vault Connections All", async () => {
             example: "Some value",
           },
         ],
+        createdAt: 1615563533390,
         updatedAt: 1616662325753,
       },
     ],
@@ -1070,7 +1070,6 @@ test("Connections Vault Connections One", async () => {
         },
       ],
       hasGuide: true,
-      createdAt: 1615563533390,
       customMappings: [
         {
           id: "hris+employees+first_aid_training",
@@ -1095,6 +1094,7 @@ test("Connections Vault Connections One", async () => {
           example: "Some value",
         },
       ],
+      createdAt: 1615563533390,
       updatedAt: 1616662325753,
     },
   });
@@ -1480,7 +1480,6 @@ test("Connections Vault Connections Update", async () => {
         },
       ],
       hasGuide: true,
-      createdAt: 1615563533390,
       customMappings: [
         {
           id: "hris+employees+first_aid_training",
@@ -1505,6 +1504,7 @@ test("Connections Vault Connections Update", async () => {
           example: "Some value",
         },
       ],
+      createdAt: 1615563533390,
       updatedAt: 1616662325753,
     },
   });
@@ -1934,7 +1934,6 @@ test("Connections Vault Connections Import", async () => {
         },
       ],
       hasGuide: true,
-      createdAt: 1615563533390,
       customMappings: [
         {
           id: "hris+employees+first_aid_training",
@@ -1948,6 +1947,7 @@ test("Connections Vault Connections Import", async () => {
           example: "Some value",
         },
       ],
+      createdAt: 1615563533390,
       updatedAt: 1616662325753,
     },
   });
@@ -2096,7 +2096,6 @@ test("Connections Vault Connections Token", async () => {
         },
       ],
       hasGuide: true,
-      createdAt: 1615563533390,
       customMappings: [
         {
           id: "hris+employees+first_aid_training",
@@ -2121,6 +2120,7 @@ test("Connections Vault Connections Token", async () => {
           example: "Some value",
         },
       ],
+      createdAt: 1615563533390,
       updatedAt: 1616662325753,
     },
   });

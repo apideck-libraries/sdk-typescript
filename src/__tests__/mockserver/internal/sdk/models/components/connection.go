@@ -333,6 +333,39 @@ func (o *Configuration) GetDefaults() []Default {
 	return o.Defaults
 }
 
+// Health - Operational health status of the connection
+type Health string
+
+const (
+	HealthMissingSettings Health = "missing_settings"
+	HealthNeedsAuth       Health = "needs_auth"
+	HealthPendingRefresh  Health = "pending_refresh"
+	HealthOk              Health = "ok"
+)
+
+func (e Health) ToPointer() *Health {
+	return &e
+}
+func (e *Health) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "missing_settings":
+		fallthrough
+	case "needs_auth":
+		fallthrough
+	case "pending_refresh":
+		fallthrough
+	case "ok":
+		*e = Health(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for Health: %v", v)
+	}
+}
+
 type Connection struct {
 	// The unique identifier of the connection.
 	ID *string `json:"id,omitempty"`
@@ -381,8 +414,7 @@ type Connection struct {
 	SettingsRequiredForAuthorization []string              `json:"settings_required_for_authorization,omitempty"`
 	Subscriptions                    []WebhookSubscription `json:"subscriptions,omitempty"`
 	// Whether the connector has a guide available in the developer docs or not (https://docs.apideck.com/connectors/{service_id}/docs/consumer+connection).
-	HasGuide  *bool    `json:"has_guide,omitempty"`
-	CreatedAt *float64 `json:"created_at,omitempty"`
+	HasGuide *bool `json:"has_guide,omitempty"`
 	// List of custom mappings configured for this connection
 	CustomMappings []CustomMapping `json:"custom_mappings,omitempty"`
 	// The current consent state of the connection
@@ -391,7 +423,14 @@ type Connection struct {
 	Consents              []ConsentRecord `json:"consents,omitempty"`
 	LatestConsent         *ConsentRecord  `json:"latest_consent,omitempty"`
 	ApplicationDataScopes *DataScopes     `json:"application_data_scopes,omitempty"`
-	UpdatedAt             *float64        `json:"updated_at,omitempty"`
+	// Operational health status of the connection
+	Health *Health `json:"health,omitempty"`
+	// Unix timestamp in milliseconds when credentials will be deleted if token refresh continues to fail. A value of 0 indicates no active retention window (connection is healthy or not using OAuth token refresh).
+	CredentialsExpireAt *float64 `json:"credentials_expire_at,omitempty"`
+	// Unix timestamp in milliseconds of the last failed token refresh attempt. A value of 0 indicates no recent failures. This field is used internally to enforce cooldown periods between retry attempts.
+	LastRefreshFailedAt *float64 `json:"last_refresh_failed_at,omitempty"`
+	CreatedAt           *float64 `json:"created_at,omitempty"`
+	UpdatedAt           *float64 `json:"updated_at,omitempty"`
 }
 
 func (o *Connection) GetID() *string {
@@ -590,13 +629,6 @@ func (o *Connection) GetHasGuide() *bool {
 	return o.HasGuide
 }
 
-func (o *Connection) GetCreatedAt() *float64 {
-	if o == nil {
-		return nil
-	}
-	return o.CreatedAt
-}
-
 func (o *Connection) GetCustomMappings() []CustomMapping {
 	if o == nil {
 		return nil
@@ -630,6 +662,34 @@ func (o *Connection) GetApplicationDataScopes() *DataScopes {
 		return nil
 	}
 	return o.ApplicationDataScopes
+}
+
+func (o *Connection) GetHealth() *Health {
+	if o == nil {
+		return nil
+	}
+	return o.Health
+}
+
+func (o *Connection) GetCredentialsExpireAt() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.CredentialsExpireAt
+}
+
+func (o *Connection) GetLastRefreshFailedAt() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.LastRefreshFailedAt
+}
+
+func (o *Connection) GetCreatedAt() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.CreatedAt
 }
 
 func (o *Connection) GetUpdatedAt() *float64 {
