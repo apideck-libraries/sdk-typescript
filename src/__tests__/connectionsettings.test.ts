@@ -245,7 +245,6 @@ test("Connectionsettings Vault Connection Settings All", async () => {
         },
       ],
       hasGuide: true,
-      createdAt: 1615563533390,
       customMappings: [
         {
           id: "hris+employees+first_aid_training",
@@ -270,6 +269,7 @@ test("Connectionsettings Vault Connection Settings All", async () => {
           example: "Some value",
         },
       ],
+      createdAt: 1615563533390,
       updatedAt: 1616662325753,
     },
   });
@@ -656,7 +656,6 @@ test("Connectionsettings Vault Connection Settings Update", async () => {
         },
       ],
       hasGuide: true,
-      createdAt: 1615563533390,
       customMappings: [
         {
           id: "hris+employees+first_aid_training",
@@ -681,6 +680,7 @@ test("Connectionsettings Vault Connection Settings Update", async () => {
           example: "Some value",
         },
       ],
+      createdAt: 1615563533390,
       updatedAt: 1616662325753,
     },
   });

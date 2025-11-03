@@ -8,66 +8,223 @@ import (
 	"mockserver/internal/sdk/utils"
 )
 
-type UnauthorizedResponseDetailType string
-
-const (
-	UnauthorizedResponseDetailTypeStr      UnauthorizedResponseDetailType = "str"
-	UnauthorizedResponseDetailTypeMapOfAny UnauthorizedResponseDetailType = "mapOfAny"
-)
-
-// UnauthorizedResponseDetail - Contains parameter or domain specific information related to the error and why it occurred.
-type UnauthorizedResponseDetail struct {
-	Str      *string        `queryParam:"inline"`
-	MapOfAny map[string]any `queryParam:"inline"`
-
-	Type UnauthorizedResponseDetailType
+// Request - HTTP request details
+type Request struct {
 }
 
-func CreateUnauthorizedResponseDetailStr(str string) UnauthorizedResponseDetail {
-	typ := UnauthorizedResponseDetailTypeStr
+func (r Request) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(r, "", false)
+}
 
-	return UnauthorizedResponseDetail{
+func (r *Request) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &r, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
+// Response - HTTP response details
+type Response struct {
+}
+
+func (r Response) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(r, "", false)
+}
+
+func (r *Response) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &r, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
+// Debug information including request/response details and OAuth timing metadata
+type Debug struct {
+	// HTTP request details
+	Request *Request `json:"request,omitempty"`
+	// HTTP response details
+	Response *Response `json:"response,omitempty"`
+	// Error message from downstream provider or network layer
+	Message *string `json:"message,omitempty"`
+	// Error code (e.g., ETIMEDOUT, ECONNREFUSED)
+	Code *string `json:"code,omitempty"`
+	// Unix timestamp (milliseconds) when credentials will be deleted if not refreshed. Only present for non-recoverable errors (401, 400). Credentials are preserved indefinitely for recoverable/network errors.
+	CredentialsExpireAtMs *float64 `json:"credentials_expire_at_ms,omitempty"`
+	// Unix timestamp (milliseconds) when token refresh retry is allowed after cooldown period expires.
+	RetryAfterMs *float64 `json:"retry_after_ms,omitempty"`
+	// Milliseconds remaining in cooldown period before retry is allowed.
+	CooldownRemainingMs *float64 `json:"cooldown_remaining_ms,omitempty"`
+}
+
+func (d Debug) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(d, "", false)
+}
+
+func (d *Debug) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &d, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (o *Debug) GetRequest() *Request {
+	if o == nil {
+		return nil
+	}
+	return o.Request
+}
+
+func (o *Debug) GetResponse() *Response {
+	if o == nil {
+		return nil
+	}
+	return o.Response
+}
+
+func (o *Debug) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *Debug) GetCode() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Code
+}
+
+func (o *Debug) GetCredentialsExpireAtMs() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.CredentialsExpireAtMs
+}
+
+func (o *Debug) GetRetryAfterMs() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.RetryAfterMs
+}
+
+func (o *Debug) GetCooldownRemainingMs() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.CooldownRemainingMs
+}
+
+type UnauthorizedResponseDetail struct {
+	// Error type identifier
+	Type *string `json:"type,omitempty"`
+	// Detailed error message
+	Message *string `json:"message,omitempty"`
+	// Debug information including request/response details and OAuth timing metadata
+	Debug                *Debug         `json:"debug,omitempty"`
+	AdditionalProperties map[string]any `additionalProperties:"true" json:"-"`
+}
+
+func (u UnauthorizedResponseDetail) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(u, "", false)
+}
+
+func (u *UnauthorizedResponseDetail) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &u, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (o *UnauthorizedResponseDetail) GetType() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Type
+}
+
+func (o *UnauthorizedResponseDetail) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *UnauthorizedResponseDetail) GetDebug() *Debug {
+	if o == nil {
+		return nil
+	}
+	return o.Debug
+}
+
+func (o *UnauthorizedResponseDetail) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
+}
+
+type UnauthorizedResponseDetailUnionType string
+
+const (
+	UnauthorizedResponseDetailUnionTypeStr                        UnauthorizedResponseDetailUnionType = "str"
+	UnauthorizedResponseDetailUnionTypeUnauthorizedResponseDetail UnauthorizedResponseDetailUnionType = "UnauthorizedResponse_detail"
+)
+
+// UnauthorizedResponseDetailUnion - Contains parameter or domain specific information related to the error and why it occurred.
+type UnauthorizedResponseDetailUnion struct {
+	Str                        *string                     `queryParam:"inline"`
+	UnauthorizedResponseDetail *UnauthorizedResponseDetail `queryParam:"inline"`
+
+	Type UnauthorizedResponseDetailUnionType
+}
+
+func CreateUnauthorizedResponseDetailUnionStr(str string) UnauthorizedResponseDetailUnion {
+	typ := UnauthorizedResponseDetailUnionTypeStr
+
+	return UnauthorizedResponseDetailUnion{
 		Str:  &str,
 		Type: typ,
 	}
 }
 
-func CreateUnauthorizedResponseDetailMapOfAny(mapOfAny map[string]any) UnauthorizedResponseDetail {
-	typ := UnauthorizedResponseDetailTypeMapOfAny
+func CreateUnauthorizedResponseDetailUnionUnauthorizedResponseDetail(unauthorizedResponseDetail UnauthorizedResponseDetail) UnauthorizedResponseDetailUnion {
+	typ := UnauthorizedResponseDetailUnionTypeUnauthorizedResponseDetail
 
-	return UnauthorizedResponseDetail{
-		MapOfAny: mapOfAny,
-		Type:     typ,
+	return UnauthorizedResponseDetailUnion{
+		UnauthorizedResponseDetail: &unauthorizedResponseDetail,
+		Type:                       typ,
 	}
 }
 
-func (u *UnauthorizedResponseDetail) UnmarshalJSON(data []byte) error {
+func (u *UnauthorizedResponseDetailUnion) UnmarshalJSON(data []byte) error {
 
 	var str string = ""
 	if err := utils.UnmarshalJSON(data, &str, "", true, nil); err == nil {
 		u.Str = &str
-		u.Type = UnauthorizedResponseDetailTypeStr
+		u.Type = UnauthorizedResponseDetailUnionTypeStr
 		return nil
 	}
 
-	var mapOfAny map[string]any = map[string]any{}
-	if err := utils.UnmarshalJSON(data, &mapOfAny, "", true, nil); err == nil {
-		u.MapOfAny = mapOfAny
-		u.Type = UnauthorizedResponseDetailTypeMapOfAny
+	var unauthorizedResponseDetail UnauthorizedResponseDetail = UnauthorizedResponseDetail{}
+	if err := utils.UnmarshalJSON(data, &unauthorizedResponseDetail, "", true, nil); err == nil {
+		u.UnauthorizedResponseDetail = &unauthorizedResponseDetail
+		u.Type = UnauthorizedResponseDetailUnionTypeUnauthorizedResponseDetail
 		return nil
 	}
 
-	return fmt.Errorf("could not unmarshal `%s` into any supported union types for UnauthorizedResponseDetail", string(data))
+	return fmt.Errorf("could not unmarshal `%s` into any supported union types for UnauthorizedResponseDetailUnion", string(data))
 }
 
-func (u UnauthorizedResponseDetail) MarshalJSON() ([]byte, error) {
+func (u UnauthorizedResponseDetailUnion) MarshalJSON() ([]byte, error) {
 	if u.Str != nil {
 		return utils.MarshalJSON(u.Str, "", true)
 	}
 
-	if u.MapOfAny != nil {
-		return utils.MarshalJSON(u.MapOfAny, "", true)
+	if u.UnauthorizedResponseDetail != nil {
+		return utils.MarshalJSON(u.UnauthorizedResponseDetail, "", true)
 	}
 
-	return nil, errors.New("could not marshal union type UnauthorizedResponseDetail: all fields are null")
+	return nil, errors.New("could not marshal union type UnauthorizedResponseDetailUnion: all fields are null")
 }

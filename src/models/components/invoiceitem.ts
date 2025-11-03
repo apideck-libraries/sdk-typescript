@@ -112,6 +112,10 @@ export type InvoiceItem = {
    */
   description?: string | null | undefined;
   /**
+   * Display ID of the item
+   */
+  displayId?: string | null | undefined;
+  /**
    * User defined item code
    */
   code?: string | null | undefined;
@@ -240,6 +244,10 @@ export type InvoiceItemInput = {
    * A short description of the item
    */
   description?: string | null | undefined;
+  /**
+   * Display ID of the item
+   */
+  displayId?: string | null | undefined;
   /**
    * User defined item code
    */
@@ -492,6 +500,7 @@ export const InvoiceItem$inboundSchema: z.ZodType<
   id: z.string().optional(),
   name: z.nullable(z.string()).optional(),
   description: z.nullable(z.string()).optional(),
+  display_id: z.nullable(z.string()).optional(),
   code: z.nullable(z.string()).optional(),
   sold: z.nullable(z.boolean()).optional(),
   purchased: z.nullable(z.boolean()).optional(),
@@ -531,6 +540,7 @@ export const InvoiceItem$inboundSchema: z.ZodType<
   pass_through: z.array(PassThroughBody$inboundSchema).optional(),
 }).transform((v) => {
   return remap$(v, {
+    "display_id": "displayId",
     "inventory_date": "inventoryDate",
     "sales_details": "salesDetails",
     "purchase_details": "purchaseDetails",
@@ -559,6 +569,7 @@ export type InvoiceItem$Outbound = {
   id?: string | undefined;
   name?: string | null | undefined;
   description?: string | null | undefined;
+  display_id?: string | null | undefined;
   code?: string | null | undefined;
   sold?: boolean | null | undefined;
   purchased?: boolean | null | undefined;
@@ -605,6 +616,7 @@ export const InvoiceItem$outboundSchema: z.ZodType<
   id: z.string().optional(),
   name: z.nullable(z.string()).optional(),
   description: z.nullable(z.string()).optional(),
+  displayId: z.nullable(z.string()).optional(),
   code: z.nullable(z.string()).optional(),
   sold: z.nullable(z.boolean()).optional(),
   purchased: z.nullable(z.boolean()).optional(),
@@ -640,6 +652,7 @@ export const InvoiceItem$outboundSchema: z.ZodType<
   passThrough: z.array(PassThroughBody$outboundSchema).optional(),
 }).transform((v) => {
   return remap$(v, {
+    displayId: "display_id",
     inventoryDate: "inventory_date",
     salesDetails: "sales_details",
     purchaseDetails: "purchase_details",
@@ -852,6 +865,7 @@ export const InvoiceItemInput$inboundSchema: z.ZodType<
 > = z.object({
   name: z.nullable(z.string()).optional(),
   description: z.nullable(z.string()).optional(),
+  display_id: z.nullable(z.string()).optional(),
   code: z.nullable(z.string()).optional(),
   sold: z.nullable(z.boolean()).optional(),
   purchased: z.nullable(z.boolean()).optional(),
@@ -884,6 +898,7 @@ export const InvoiceItemInput$inboundSchema: z.ZodType<
   pass_through: z.array(PassThroughBody$inboundSchema).optional(),
 }).transform((v) => {
   return remap$(v, {
+    "display_id": "displayId",
     "inventory_date": "inventoryDate",
     "sales_details": "salesDetails",
     "purchase_details": "purchaseDetails",
@@ -906,6 +921,7 @@ export const InvoiceItemInput$inboundSchema: z.ZodType<
 export type InvoiceItemInput$Outbound = {
   name?: string | null | undefined;
   description?: string | null | undefined;
+  display_id?: string | null | undefined;
   code?: string | null | undefined;
   sold?: boolean | null | undefined;
   purchased?: boolean | null | undefined;
@@ -946,6 +962,7 @@ export const InvoiceItemInput$outboundSchema: z.ZodType<
 > = z.object({
   name: z.nullable(z.string()).optional(),
   description: z.nullable(z.string()).optional(),
+  displayId: z.nullable(z.string()).optional(),
   code: z.nullable(z.string()).optional(),
   sold: z.nullable(z.boolean()).optional(),
   purchased: z.nullable(z.boolean()).optional(),
@@ -978,6 +995,7 @@ export const InvoiceItemInput$outboundSchema: z.ZodType<
   passThrough: z.array(PassThroughBody$outboundSchema).optional(),
 }).transform((v) => {
   return remap$(v, {
+    displayId: "display_id",
     inventoryDate: "inventory_date",
     salesDetails: "sales_details",
     purchaseDetails: "purchase_details",

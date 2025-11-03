@@ -9,6 +9,7 @@ import { RFCDate } from "@apideck/unify/types";
 let value: AccountingPurchaseOrdersAddRequest = {
   serviceId: "salesforce",
   purchaseOrder: {
+    displayId: "12345",
     poNumber: "90000117",
     reference: "123456",
     supplier: null,

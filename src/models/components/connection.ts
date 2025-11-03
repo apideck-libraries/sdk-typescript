@@ -134,6 +134,20 @@ export type Configuration = {
   defaults?: Array<Defaults> | undefined;
 };
 
+/**
+ * Operational health status of the connection
+ */
+export const Health = {
+  MissingSettings: "missing_settings",
+  NeedsAuth: "needs_auth",
+  PendingRefresh: "pending_refresh",
+  Ok: "ok",
+} as const;
+/**
+ * Operational health status of the connection
+ */
+export type Health = ClosedEnum<typeof Health>;
+
 export type Connection = {
   /**
    * The unique identifier of the connection.
@@ -223,7 +237,6 @@ export type Connection = {
    * Whether the connector has a guide available in the developer docs or not (https://docs.apideck.com/connectors/{service_id}/docs/consumer+connection).
    */
   hasGuide?: boolean | undefined;
-  createdAt?: number | undefined;
   /**
    * List of custom mappings configured for this connection
    */
@@ -238,6 +251,19 @@ export type Connection = {
   consents?: Array<ConsentRecord> | undefined;
   latestConsent?: ConsentRecord | undefined;
   applicationDataScopes?: DataScopes | undefined;
+  /**
+   * Operational health status of the connection
+   */
+  health?: Health | undefined;
+  /**
+   * Unix timestamp in milliseconds when credentials will be deleted if token refresh continues to fail. A value of 0 indicates no active retention window (connection is healthy or not using OAuth token refresh).
+   */
+  credentialsExpireAt?: number | undefined;
+  /**
+   * Unix timestamp in milliseconds of the last failed token refresh attempt. A value of 0 indicates no recent failures. This field is used internally to enforce cooldown periods between retry attempts.
+   */
+  lastRefreshFailedAt?: number | undefined;
+  createdAt?: number | undefined;
   updatedAt?: number | null | undefined;
 };
 
@@ -566,6 +592,25 @@ export function configurationFromJSON(
 }
 
 /** @internal */
+export const Health$inboundSchema: z.ZodNativeEnum<typeof Health> = z
+  .nativeEnum(Health);
+
+/** @internal */
+export const Health$outboundSchema: z.ZodNativeEnum<typeof Health> =
+  Health$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace Health$ {
+  /** @deprecated use `Health$inboundSchema` instead. */
+  export const inboundSchema = Health$inboundSchema;
+  /** @deprecated use `Health$outboundSchema` instead. */
+  export const outboundSchema = Health$outboundSchema;
+}
+
+/** @internal */
 export const Connection$inboundSchema: z.ZodType<
   Connection,
   z.ZodTypeDef,
@@ -599,12 +644,15 @@ export const Connection$inboundSchema: z.ZodType<
   settings_required_for_authorization: z.array(z.string()).optional(),
   subscriptions: z.array(WebhookSubscription$inboundSchema).optional(),
   has_guide: z.boolean().optional(),
-  created_at: z.number().optional(),
   custom_mappings: z.array(CustomMapping$inboundSchema).optional(),
   consent_state: ConsentState$inboundSchema.optional(),
   consents: z.array(ConsentRecord$inboundSchema).optional(),
   latest_consent: ConsentRecord$inboundSchema.optional(),
   application_data_scopes: DataScopes$inboundSchema.optional(),
+  health: Health$inboundSchema.optional(),
+  credentials_expire_at: z.number().optional(),
+  last_refresh_failed_at: z.number().optional(),
+  created_at: z.number().optional(),
   updated_at: z.nullable(z.number()).optional(),
 }).transform((v) => {
   return remap$(v, {
@@ -624,11 +672,13 @@ export const Connection$inboundSchema: z.ZodType<
     "schema_support": "schemaSupport",
     "settings_required_for_authorization": "settingsRequiredForAuthorization",
     "has_guide": "hasGuide",
-    "created_at": "createdAt",
     "custom_mappings": "customMappings",
     "consent_state": "consentState",
     "latest_consent": "latestConsent",
     "application_data_scopes": "applicationDataScopes",
+    "credentials_expire_at": "credentialsExpireAt",
+    "last_refresh_failed_at": "lastRefreshFailedAt",
+    "created_at": "createdAt",
     "updated_at": "updatedAt",
   });
 });
@@ -663,12 +713,15 @@ export type Connection$Outbound = {
   settings_required_for_authorization?: Array<string> | undefined;
   subscriptions?: Array<WebhookSubscription$Outbound> | undefined;
   has_guide?: boolean | undefined;
-  created_at?: number | undefined;
   custom_mappings?: Array<CustomMapping$Outbound> | undefined;
   consent_state?: string | undefined;
   consents?: Array<ConsentRecord$Outbound> | undefined;
   latest_consent?: ConsentRecord$Outbound | undefined;
   application_data_scopes?: DataScopes$Outbound | undefined;
+  health?: string | undefined;
+  credentials_expire_at?: number | undefined;
+  last_refresh_failed_at?: number | undefined;
+  created_at?: number | undefined;
   updated_at?: number | null | undefined;
 };
 
@@ -706,12 +759,15 @@ export const Connection$outboundSchema: z.ZodType<
   settingsRequiredForAuthorization: z.array(z.string()).optional(),
   subscriptions: z.array(WebhookSubscription$outboundSchema).optional(),
   hasGuide: z.boolean().optional(),
-  createdAt: z.number().optional(),
   customMappings: z.array(CustomMapping$outboundSchema).optional(),
   consentState: ConsentState$outboundSchema.optional(),
   consents: z.array(ConsentRecord$outboundSchema).optional(),
   latestConsent: ConsentRecord$outboundSchema.optional(),
   applicationDataScopes: DataScopes$outboundSchema.optional(),
+  health: Health$outboundSchema.optional(),
+  credentialsExpireAt: z.number().optional(),
+  lastRefreshFailedAt: z.number().optional(),
+  createdAt: z.number().optional(),
   updatedAt: z.nullable(z.number()).optional(),
 }).transform((v) => {
   return remap$(v, {
@@ -731,11 +787,13 @@ export const Connection$outboundSchema: z.ZodType<
     schemaSupport: "schema_support",
     settingsRequiredForAuthorization: "settings_required_for_authorization",
     hasGuide: "has_guide",
-    createdAt: "created_at",
     customMappings: "custom_mappings",
     consentState: "consent_state",
     latestConsent: "latest_consent",
     applicationDataScopes: "application_data_scopes",
+    credentialsExpireAt: "credentials_expire_at",
+    lastRefreshFailedAt: "last_refresh_failed_at",
+    createdAt: "created_at",
     updatedAt: "updated_at",
   });
 });

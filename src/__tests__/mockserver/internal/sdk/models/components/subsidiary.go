@@ -43,6 +43,8 @@ type Subsidiary struct {
 	ParentID *string `json:"parent_id,omitempty"`
 	// The name of the company.
 	Name *string `json:"name,omitempty"`
+	// Display ID of the subsidiary
+	DisplayID *string `json:"display_id,omitempty"`
 	// Based on the status some functionality is enabled or disabled.
 	Status *SubsidiaryStatus `json:"status,omitempty"`
 	// List of currencies supported by this subsidiary
@@ -93,6 +95,13 @@ func (o *Subsidiary) GetName() *string {
 		return nil
 	}
 	return o.Name
+}
+
+func (o *Subsidiary) GetDisplayID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.DisplayID
 }
 
 func (o *Subsidiary) GetStatus() *SubsidiaryStatus {
@@ -163,6 +172,8 @@ type SubsidiaryInput struct {
 	ParentID *string `json:"parent_id,omitempty"`
 	// The name of the company.
 	Name *string `json:"name,omitempty"`
+	// Display ID of the subsidiary
+	DisplayID *string `json:"display_id,omitempty"`
 	// Based on the status some functionality is enabled or disabled.
 	Status *SubsidiaryStatus `json:"status,omitempty"`
 	// List of currencies supported by this subsidiary
@@ -185,6 +196,13 @@ func (o *SubsidiaryInput) GetName() *string {
 		return nil
 	}
 	return o.Name
+}
+
+func (o *SubsidiaryInput) GetDisplayID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.DisplayID
 }
 
 func (o *SubsidiaryInput) GetStatus() *SubsidiaryStatus {

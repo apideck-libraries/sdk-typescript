@@ -13,5 +13,5 @@ let value: EcommerceOrderPaymentStatus = "paid";
 ## Values
 
 ```typescript
-"pending" | "authorized" | "paid" | "partial" | "refunded" | "voided" | "unknown"
+"pending" | "authorized" | "paid" | "partial" | "refunded" | "voided" | "unknown" | "partially_refunded"
 ```

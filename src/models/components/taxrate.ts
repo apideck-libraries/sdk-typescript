@@ -54,6 +54,10 @@ export type TaxRate = {
    */
   id?: string | null | undefined;
   /**
+   * Display ID of the tax rate
+   */
+  displayId?: string | null | undefined;
+  /**
    * Name assigned to identify this tax rate.
    */
   name?: string | undefined;
@@ -138,6 +142,10 @@ export type TaxRateInput = {
    * ID assigned to identify this tax rate.
    */
   id?: string | null | undefined;
+  /**
+   * Display ID of the tax rate
+   */
+  displayId?: string | null | undefined;
   /**
    * Name assigned to identify this tax rate.
    */
@@ -332,6 +340,7 @@ export function subsidiariesFromJSON(
 export const TaxRate$inboundSchema: z.ZodType<TaxRate, z.ZodTypeDef, unknown> =
   z.object({
     id: z.nullable(z.string()).optional(),
+    display_id: z.nullable(z.string()).optional(),
     name: z.string().optional(),
     code: z.nullable(z.string()).optional(),
     description: z.nullable(z.string()).optional(),
@@ -360,6 +369,7 @@ export const TaxRate$inboundSchema: z.ZodType<TaxRate, z.ZodTypeDef, unknown> =
     custom_fields: z.array(CustomField$inboundSchema).optional(),
   }).transform((v) => {
     return remap$(v, {
+      "display_id": "displayId",
       "effective_tax_rate": "effectiveTaxRate",
       "total_tax_rate": "totalTaxRate",
       "tax_payable_account_id": "taxPayableAccountId",
@@ -380,6 +390,7 @@ export const TaxRate$inboundSchema: z.ZodType<TaxRate, z.ZodTypeDef, unknown> =
 /** @internal */
 export type TaxRate$Outbound = {
   id?: string | null | undefined;
+  display_id?: string | null | undefined;
   name?: string | undefined;
   code?: string | null | undefined;
   description?: string | null | undefined;
@@ -410,6 +421,7 @@ export const TaxRate$outboundSchema: z.ZodType<
   TaxRate
 > = z.object({
   id: z.nullable(z.string()).optional(),
+  displayId: z.nullable(z.string()).optional(),
   name: z.string().optional(),
   code: z.nullable(z.string()).optional(),
   description: z.nullable(z.string()).optional(),
@@ -434,6 +446,7 @@ export const TaxRate$outboundSchema: z.ZodType<
   customFields: z.array(CustomField$outboundSchema).optional(),
 }).transform((v) => {
   return remap$(v, {
+    displayId: "display_id",
     effectiveTaxRate: "effective_tax_rate",
     totalTaxRate: "total_tax_rate",
     taxPayableAccountId: "tax_payable_account_id",
@@ -485,6 +498,7 @@ export const TaxRateInput$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   id: z.nullable(z.string()).optional(),
+  display_id: z.nullable(z.string()).optional(),
   name: z.string().optional(),
   code: z.nullable(z.string()).optional(),
   description: z.nullable(z.string()).optional(),
@@ -504,6 +518,7 @@ export const TaxRateInput$inboundSchema: z.ZodType<
   custom_fields: z.array(CustomField$inboundSchema).optional(),
 }).transform((v) => {
   return remap$(v, {
+    "display_id": "displayId",
     "effective_tax_rate": "effectiveTaxRate",
     "total_tax_rate": "totalTaxRate",
     "tax_payable_account_id": "taxPayableAccountId",
@@ -519,6 +534,7 @@ export const TaxRateInput$inboundSchema: z.ZodType<
 /** @internal */
 export type TaxRateInput$Outbound = {
   id?: string | null | undefined;
+  display_id?: string | null | undefined;
   name?: string | undefined;
   code?: string | null | undefined;
   description?: string | null | undefined;
@@ -544,6 +560,7 @@ export const TaxRateInput$outboundSchema: z.ZodType<
   TaxRateInput
 > = z.object({
   id: z.nullable(z.string()).optional(),
+  displayId: z.nullable(z.string()).optional(),
   name: z.string().optional(),
   code: z.nullable(z.string()).optional(),
   description: z.nullable(z.string()).optional(),
@@ -563,6 +580,7 @@ export const TaxRateInput$outboundSchema: z.ZodType<
   customFields: z.array(CustomField$outboundSchema).optional(),
 }).transform((v) => {
   return remap$(v, {
+    displayId: "display_id",
     effectiveTaxRate: "effective_tax_rate",
     totalTaxRate: "total_tax_rate",
     taxPayableAccountId: "tax_payable_account_id",

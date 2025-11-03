@@ -10,6 +10,7 @@ let value: AccountingPurchaseOrdersUpdateRequest = {
   id: "<id>",
   serviceId: "salesforce",
   purchaseOrder: {
+    displayId: "12345",
     poNumber: "90000117",
     reference: "123456",
     supplier: null,

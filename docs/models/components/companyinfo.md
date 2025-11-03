@@ -15,6 +15,7 @@ let value: CompanyInfo = {
   salesTaxNumber: "111.222.333",
   defaultSalesTax: {
     id: "1234",
+    displayId: "12345",
     name: "GST on Purchases",
     code: "ABN",
     description: "Reduced rate GST Purchases",
