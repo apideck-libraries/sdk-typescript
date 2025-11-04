@@ -27,13 +27,14 @@ generation:
     generateNewTests: true
     skipResponseBodyAssertions: false
 typescript:
-  version: 0.33.0
+  version: 0.34.0
   acceptHeaderEnum: true
   additionalDependencies:
     dependencies: {}
     devDependencies: {}
     peerDependencies: {}
   additionalPackageJSON: {}
+  additionalScripts: {}
   author: Speakeasy
   baseErrorName: ApideckError
   clientServerStatusCodesAsErrors: true
