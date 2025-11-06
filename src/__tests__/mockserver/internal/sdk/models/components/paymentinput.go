@@ -29,8 +29,8 @@ type PaymentInput struct {
 	// Unique identifier for the account to allocate payment to.
 	//
 	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
-	AccountsReceivableAccountID *string                   `json:"accounts_receivable_account_id,omitempty"`
-	Account                     *LinkedLedgerAccountInput `json:"account,omitempty"`
+	AccountsReceivableAccountID *string              `json:"accounts_receivable_account_id,omitempty"`
+	Account                     *LinkedLedgerAccount `json:"account,omitempty"`
 	// The date of the transaction - YYYY:MM::DDThh:mm:ss.sTZD
 	TransactionDate *time.Time `json:"transaction_date"`
 	// The customer this entity is linked to.
@@ -137,7 +137,7 @@ func (o *PaymentInput) GetAccountsReceivableAccountID() *string {
 	return o.AccountsReceivableAccountID
 }
 
-func (o *PaymentInput) GetAccount() *LinkedLedgerAccountInput {
+func (o *PaymentInput) GetAccount() *LinkedLedgerAccount {
 	if o == nil {
 		return nil
 	}

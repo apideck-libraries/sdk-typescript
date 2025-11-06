@@ -56,87 +56,6 @@ export type VaultConnectionConsentUpdateResponse = {
 };
 
 /** @internal */
-export const VaultConnectionConsentUpdateGlobals$inboundSchema: z.ZodType<
-  VaultConnectionConsentUpdateGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/** @internal */
-export type VaultConnectionConsentUpdateGlobals$Outbound = {
-  consumerId?: string | undefined;
-  appId?: string | undefined;
-};
-
-/** @internal */
-export const VaultConnectionConsentUpdateGlobals$outboundSchema: z.ZodType<
-  VaultConnectionConsentUpdateGlobals$Outbound,
-  z.ZodTypeDef,
-  VaultConnectionConsentUpdateGlobals
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace VaultConnectionConsentUpdateGlobals$ {
-  /** @deprecated use `VaultConnectionConsentUpdateGlobals$inboundSchema` instead. */
-  export const inboundSchema =
-    VaultConnectionConsentUpdateGlobals$inboundSchema;
-  /** @deprecated use `VaultConnectionConsentUpdateGlobals$outboundSchema` instead. */
-  export const outboundSchema =
-    VaultConnectionConsentUpdateGlobals$outboundSchema;
-  /** @deprecated use `VaultConnectionConsentUpdateGlobals$Outbound` instead. */
-  export type Outbound = VaultConnectionConsentUpdateGlobals$Outbound;
-}
-
-export function vaultConnectionConsentUpdateGlobalsToJSON(
-  vaultConnectionConsentUpdateGlobals: VaultConnectionConsentUpdateGlobals,
-): string {
-  return JSON.stringify(
-    VaultConnectionConsentUpdateGlobals$outboundSchema.parse(
-      vaultConnectionConsentUpdateGlobals,
-    ),
-  );
-}
-
-export function vaultConnectionConsentUpdateGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<VaultConnectionConsentUpdateGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      VaultConnectionConsentUpdateGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'VaultConnectionConsentUpdateGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const VaultConnectionConsentUpdateRequest$inboundSchema: z.ZodType<
-  VaultConnectionConsentUpdateRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  service_id: z.string(),
-  unified_api: z.string(),
-  UpdateConsentRequest: components.UpdateConsentRequest$inboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    "service_id": "serviceId",
-    "unified_api": "unifiedApi",
-    "UpdateConsentRequest": "updateConsentRequest",
-  });
-});
-
-/** @internal */
 export type VaultConnectionConsentUpdateRequest$Outbound = {
   consumerId?: string | undefined;
   appId?: string | undefined;
@@ -164,21 +83,6 @@ export const VaultConnectionConsentUpdateRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace VaultConnectionConsentUpdateRequest$ {
-  /** @deprecated use `VaultConnectionConsentUpdateRequest$inboundSchema` instead. */
-  export const inboundSchema =
-    VaultConnectionConsentUpdateRequest$inboundSchema;
-  /** @deprecated use `VaultConnectionConsentUpdateRequest$outboundSchema` instead. */
-  export const outboundSchema =
-    VaultConnectionConsentUpdateRequest$outboundSchema;
-  /** @deprecated use `VaultConnectionConsentUpdateRequest$Outbound` instead. */
-  export type Outbound = VaultConnectionConsentUpdateRequest$Outbound;
-}
-
 export function vaultConnectionConsentUpdateRequestToJSON(
   vaultConnectionConsentUpdateRequest: VaultConnectionConsentUpdateRequest,
 ): string {
@@ -186,17 +90,6 @@ export function vaultConnectionConsentUpdateRequestToJSON(
     VaultConnectionConsentUpdateRequest$outboundSchema.parse(
       vaultConnectionConsentUpdateRequest,
     ),
-  );
-}
-
-export function vaultConnectionConsentUpdateRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<VaultConnectionConsentUpdateRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      VaultConnectionConsentUpdateRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'VaultConnectionConsentUpdateRequest' from JSON`,
   );
 }
 
@@ -218,59 +111,6 @@ export const VaultConnectionConsentUpdateResponse$inboundSchema: z.ZodType<
     "UnexpectedErrorResponse": "unexpectedErrorResponse",
   });
 });
-
-/** @internal */
-export type VaultConnectionConsentUpdateResponse$Outbound = {
-  HttpMeta: components.HTTPMetadata$Outbound;
-  UpdateConsentResponse?: components.UpdateConsentResponse$Outbound | undefined;
-  UnexpectedErrorResponse?:
-    | components.UnexpectedErrorResponse$Outbound
-    | undefined;
-};
-
-/** @internal */
-export const VaultConnectionConsentUpdateResponse$outboundSchema: z.ZodType<
-  VaultConnectionConsentUpdateResponse$Outbound,
-  z.ZodTypeDef,
-  VaultConnectionConsentUpdateResponse
-> = z.object({
-  httpMeta: components.HTTPMetadata$outboundSchema,
-  updateConsentResponse: components.UpdateConsentResponse$outboundSchema
-    .optional(),
-  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    httpMeta: "HttpMeta",
-    updateConsentResponse: "UpdateConsentResponse",
-    unexpectedErrorResponse: "UnexpectedErrorResponse",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace VaultConnectionConsentUpdateResponse$ {
-  /** @deprecated use `VaultConnectionConsentUpdateResponse$inboundSchema` instead. */
-  export const inboundSchema =
-    VaultConnectionConsentUpdateResponse$inboundSchema;
-  /** @deprecated use `VaultConnectionConsentUpdateResponse$outboundSchema` instead. */
-  export const outboundSchema =
-    VaultConnectionConsentUpdateResponse$outboundSchema;
-  /** @deprecated use `VaultConnectionConsentUpdateResponse$Outbound` instead. */
-  export type Outbound = VaultConnectionConsentUpdateResponse$Outbound;
-}
-
-export function vaultConnectionConsentUpdateResponseToJSON(
-  vaultConnectionConsentUpdateResponse: VaultConnectionConsentUpdateResponse,
-): string {
-  return JSON.stringify(
-    VaultConnectionConsentUpdateResponse$outboundSchema.parse(
-      vaultConnectionConsentUpdateResponse,
-    ),
-  );
-}
 
 export function vaultConnectionConsentUpdateResponseFromJSON(
   jsonString: string,

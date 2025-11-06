@@ -10,8 +10,6 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   EmployeeSchedules,
   EmployeeSchedules$inboundSchema,
-  EmployeeSchedules$Outbound,
-  EmployeeSchedules$outboundSchema,
 } from "./employeeschedules.js";
 
 /**
@@ -64,60 +62,6 @@ export const GetEmployeeSchedulesResponse$inboundSchema: z.ZodType<
     "_raw": "raw",
   });
 });
-
-/** @internal */
-export type GetEmployeeSchedulesResponse$Outbound = {
-  status_code: number;
-  status: string;
-  service: string;
-  resource: string;
-  operation: string;
-  data: EmployeeSchedules$Outbound;
-  _raw?: { [k: string]: any } | null | undefined;
-};
-
-/** @internal */
-export const GetEmployeeSchedulesResponse$outboundSchema: z.ZodType<
-  GetEmployeeSchedulesResponse$Outbound,
-  z.ZodTypeDef,
-  GetEmployeeSchedulesResponse
-> = z.object({
-  statusCode: z.number().int(),
-  status: z.string(),
-  service: z.string(),
-  resource: z.string(),
-  operation: z.string(),
-  data: EmployeeSchedules$outboundSchema,
-  raw: z.nullable(z.record(z.any())).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    statusCode: "status_code",
-    raw: "_raw",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetEmployeeSchedulesResponse$ {
-  /** @deprecated use `GetEmployeeSchedulesResponse$inboundSchema` instead. */
-  export const inboundSchema = GetEmployeeSchedulesResponse$inboundSchema;
-  /** @deprecated use `GetEmployeeSchedulesResponse$outboundSchema` instead. */
-  export const outboundSchema = GetEmployeeSchedulesResponse$outboundSchema;
-  /** @deprecated use `GetEmployeeSchedulesResponse$Outbound` instead. */
-  export type Outbound = GetEmployeeSchedulesResponse$Outbound;
-}
-
-export function getEmployeeSchedulesResponseToJSON(
-  getEmployeeSchedulesResponse: GetEmployeeSchedulesResponse,
-): string {
-  return JSON.stringify(
-    GetEmployeeSchedulesResponse$outboundSchema.parse(
-      getEmployeeSchedulesResponse,
-    ),
-  );
-}
 
 export function getEmployeeSchedulesResponseFromJSON(
   jsonString: string,

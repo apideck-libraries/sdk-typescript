@@ -36,8 +36,8 @@ type AccountingInvoiceItemsAddRequest struct {
 	// The ID of your Unify application
 	AppID *string `header:"style=simple,explode=false,name=x-apideck-app-id"`
 	// Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
-	ServiceID   *string                     `header:"style=simple,explode=false,name=x-apideck-service-id"`
-	InvoiceItem components.InvoiceItemInput `request:"mediaType=application/json"`
+	ServiceID *string                     `header:"style=simple,explode=false,name=x-apideck-service-id"`
+	Body      components.InvoiceItemInput `request:"mediaType=application/json"`
 }
 
 func (a AccountingInvoiceItemsAddRequest) MarshalJSON() ([]byte, error) {
@@ -45,7 +45,7 @@ func (a AccountingInvoiceItemsAddRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (a *AccountingInvoiceItemsAddRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"InvoiceItem"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"body"}); err != nil {
 		return err
 	}
 	return nil
@@ -79,11 +79,11 @@ func (o *AccountingInvoiceItemsAddRequest) GetServiceID() *string {
 	return o.ServiceID
 }
 
-func (o *AccountingInvoiceItemsAddRequest) GetInvoiceItem() components.InvoiceItemInput {
+func (o *AccountingInvoiceItemsAddRequest) GetBody() components.InvoiceItemInput {
 	if o == nil {
 		return components.InvoiceItemInput{}
 	}
-	return o.InvoiceItem
+	return o.Body
 }
 
 type AccountingInvoiceItemsAddResponse struct {

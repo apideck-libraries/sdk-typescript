@@ -76,85 +76,6 @@ export type HrisEmployeesAllResponse = {
 };
 
 /** @internal */
-export const HrisEmployeesAllGlobals$inboundSchema: z.ZodType<
-  HrisEmployeesAllGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/** @internal */
-export type HrisEmployeesAllGlobals$Outbound = {
-  consumerId?: string | undefined;
-  appId?: string | undefined;
-};
-
-/** @internal */
-export const HrisEmployeesAllGlobals$outboundSchema: z.ZodType<
-  HrisEmployeesAllGlobals$Outbound,
-  z.ZodTypeDef,
-  HrisEmployeesAllGlobals
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace HrisEmployeesAllGlobals$ {
-  /** @deprecated use `HrisEmployeesAllGlobals$inboundSchema` instead. */
-  export const inboundSchema = HrisEmployeesAllGlobals$inboundSchema;
-  /** @deprecated use `HrisEmployeesAllGlobals$outboundSchema` instead. */
-  export const outboundSchema = HrisEmployeesAllGlobals$outboundSchema;
-  /** @deprecated use `HrisEmployeesAllGlobals$Outbound` instead. */
-  export type Outbound = HrisEmployeesAllGlobals$Outbound;
-}
-
-export function hrisEmployeesAllGlobalsToJSON(
-  hrisEmployeesAllGlobals: HrisEmployeesAllGlobals,
-): string {
-  return JSON.stringify(
-    HrisEmployeesAllGlobals$outboundSchema.parse(hrisEmployeesAllGlobals),
-  );
-}
-
-export function hrisEmployeesAllGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<HrisEmployeesAllGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => HrisEmployeesAllGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'HrisEmployeesAllGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const HrisEmployeesAllRequest$inboundSchema: z.ZodType<
-  HrisEmployeesAllRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  raw: z.boolean().default(false),
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  cursor: z.nullable(z.string()).optional(),
-  limit: z.number().int().default(20),
-  filter: components.EmployeesFilter$inboundSchema.optional(),
-  sort: components.EmployeesSort$inboundSchema.optional(),
-  pass_through: z.record(z.any()).optional(),
-  fields: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "pass_through": "passThrough",
-  });
-});
-
-/** @internal */
 export type HrisEmployeesAllRequest$Outbound = {
   raw: boolean;
   consumerId?: string | undefined;
@@ -190,34 +111,11 @@ export const HrisEmployeesAllRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace HrisEmployeesAllRequest$ {
-  /** @deprecated use `HrisEmployeesAllRequest$inboundSchema` instead. */
-  export const inboundSchema = HrisEmployeesAllRequest$inboundSchema;
-  /** @deprecated use `HrisEmployeesAllRequest$outboundSchema` instead. */
-  export const outboundSchema = HrisEmployeesAllRequest$outboundSchema;
-  /** @deprecated use `HrisEmployeesAllRequest$Outbound` instead. */
-  export type Outbound = HrisEmployeesAllRequest$Outbound;
-}
-
 export function hrisEmployeesAllRequestToJSON(
   hrisEmployeesAllRequest: HrisEmployeesAllRequest,
 ): string {
   return JSON.stringify(
     HrisEmployeesAllRequest$outboundSchema.parse(hrisEmployeesAllRequest),
-  );
-}
-
-export function hrisEmployeesAllRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<HrisEmployeesAllRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => HrisEmployeesAllRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'HrisEmployeesAllRequest' from JSON`,
   );
 }
 
@@ -239,55 +137,6 @@ export const HrisEmployeesAllResponse$inboundSchema: z.ZodType<
     "UnexpectedErrorResponse": "unexpectedErrorResponse",
   });
 });
-
-/** @internal */
-export type HrisEmployeesAllResponse$Outbound = {
-  HttpMeta: components.HTTPMetadata$Outbound;
-  GetEmployeesResponse?: components.GetEmployeesResponse$Outbound | undefined;
-  UnexpectedErrorResponse?:
-    | components.UnexpectedErrorResponse$Outbound
-    | undefined;
-};
-
-/** @internal */
-export const HrisEmployeesAllResponse$outboundSchema: z.ZodType<
-  HrisEmployeesAllResponse$Outbound,
-  z.ZodTypeDef,
-  HrisEmployeesAllResponse
-> = z.object({
-  httpMeta: components.HTTPMetadata$outboundSchema,
-  getEmployeesResponse: components.GetEmployeesResponse$outboundSchema
-    .optional(),
-  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    httpMeta: "HttpMeta",
-    getEmployeesResponse: "GetEmployeesResponse",
-    unexpectedErrorResponse: "UnexpectedErrorResponse",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace HrisEmployeesAllResponse$ {
-  /** @deprecated use `HrisEmployeesAllResponse$inboundSchema` instead. */
-  export const inboundSchema = HrisEmployeesAllResponse$inboundSchema;
-  /** @deprecated use `HrisEmployeesAllResponse$outboundSchema` instead. */
-  export const outboundSchema = HrisEmployeesAllResponse$outboundSchema;
-  /** @deprecated use `HrisEmployeesAllResponse$Outbound` instead. */
-  export type Outbound = HrisEmployeesAllResponse$Outbound;
-}
-
-export function hrisEmployeesAllResponseToJSON(
-  hrisEmployeesAllResponse: HrisEmployeesAllResponse,
-): string {
-  return JSON.stringify(
-    HrisEmployeesAllResponse$outboundSchema.parse(hrisEmployeesAllResponse),
-  );
-}
 
 export function hrisEmployeesAllResponseFromJSON(
   jsonString: string,

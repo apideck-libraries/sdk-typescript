@@ -7,12 +7,7 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  Webhook,
-  Webhook$inboundSchema,
-  Webhook$Outbound,
-  Webhook$outboundSchema,
-} from "./webhook.js";
+import { Webhook, Webhook$inboundSchema } from "./webhook.js";
 
 /**
  * Webhooks
@@ -49,52 +44,6 @@ export const CreateWebhookResponse$inboundSchema: z.ZodType<
     "_raw": "raw",
   });
 });
-
-/** @internal */
-export type CreateWebhookResponse$Outbound = {
-  status_code: number;
-  status: string;
-  data: Webhook$Outbound;
-  _raw?: { [k: string]: any } | null | undefined;
-};
-
-/** @internal */
-export const CreateWebhookResponse$outboundSchema: z.ZodType<
-  CreateWebhookResponse$Outbound,
-  z.ZodTypeDef,
-  CreateWebhookResponse
-> = z.object({
-  statusCode: z.number().int(),
-  status: z.string(),
-  data: Webhook$outboundSchema,
-  raw: z.nullable(z.record(z.any())).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    statusCode: "status_code",
-    raw: "_raw",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateWebhookResponse$ {
-  /** @deprecated use `CreateWebhookResponse$inboundSchema` instead. */
-  export const inboundSchema = CreateWebhookResponse$inboundSchema;
-  /** @deprecated use `CreateWebhookResponse$outboundSchema` instead. */
-  export const outboundSchema = CreateWebhookResponse$outboundSchema;
-  /** @deprecated use `CreateWebhookResponse$Outbound` instead. */
-  export type Outbound = CreateWebhookResponse$Outbound;
-}
-
-export function createWebhookResponseToJSON(
-  createWebhookResponse: CreateWebhookResponse,
-): string {
-  return JSON.stringify(
-    CreateWebhookResponse$outboundSchema.parse(createWebhookResponse),
-  );
-}
 
 export function createWebhookResponseFromJSON(
   jsonString: string,

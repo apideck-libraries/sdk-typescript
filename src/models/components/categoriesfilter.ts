@@ -3,10 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
  * The type of the category.
@@ -30,34 +27,9 @@ export type CategoriesFilter = {
 };
 
 /** @internal */
-export const CategoriesFilterType$inboundSchema: z.ZodNativeEnum<
-  typeof CategoriesFilterType
-> = z.nativeEnum(CategoriesFilterType);
-
-/** @internal */
 export const CategoriesFilterType$outboundSchema: z.ZodNativeEnum<
   typeof CategoriesFilterType
-> = CategoriesFilterType$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CategoriesFilterType$ {
-  /** @deprecated use `CategoriesFilterType$inboundSchema` instead. */
-  export const inboundSchema = CategoriesFilterType$inboundSchema;
-  /** @deprecated use `CategoriesFilterType$outboundSchema` instead. */
-  export const outboundSchema = CategoriesFilterType$outboundSchema;
-}
-
-/** @internal */
-export const CategoriesFilter$inboundSchema: z.ZodType<
-  CategoriesFilter,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  type: CategoriesFilterType$inboundSchema.optional(),
-});
+> = z.nativeEnum(CategoriesFilterType);
 
 /** @internal */
 export type CategoriesFilter$Outbound = {
@@ -73,33 +45,10 @@ export const CategoriesFilter$outboundSchema: z.ZodType<
   type: CategoriesFilterType$outboundSchema.optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CategoriesFilter$ {
-  /** @deprecated use `CategoriesFilter$inboundSchema` instead. */
-  export const inboundSchema = CategoriesFilter$inboundSchema;
-  /** @deprecated use `CategoriesFilter$outboundSchema` instead. */
-  export const outboundSchema = CategoriesFilter$outboundSchema;
-  /** @deprecated use `CategoriesFilter$Outbound` instead. */
-  export type Outbound = CategoriesFilter$Outbound;
-}
-
 export function categoriesFilterToJSON(
   categoriesFilter: CategoriesFilter,
 ): string {
   return JSON.stringify(
     CategoriesFilter$outboundSchema.parse(categoriesFilter),
-  );
-}
-
-export function categoriesFilterFromJSON(
-  jsonString: string,
-): SafeParseResult<CategoriesFilter, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => CategoriesFilter$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CategoriesFilter' from JSON`,
   );
 }

@@ -82,22 +82,10 @@ export type ApplicationInput = {
 export const ApplicationStatus$inboundSchema: z.ZodNativeEnum<
   typeof ApplicationStatus
 > = z.nativeEnum(ApplicationStatus);
-
 /** @internal */
 export const ApplicationStatus$outboundSchema: z.ZodNativeEnum<
   typeof ApplicationStatus
 > = ApplicationStatus$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ApplicationStatus$ {
-  /** @deprecated use `ApplicationStatus$inboundSchema` instead. */
-  export const inboundSchema = ApplicationStatus$inboundSchema;
-  /** @deprecated use `ApplicationStatus$outboundSchema` instead. */
-  export const outboundSchema = ApplicationStatus$outboundSchema;
-}
 
 /** @internal */
 export const Stage$inboundSchema: z.ZodType<Stage, z.ZodTypeDef, unknown> = z
@@ -105,7 +93,6 @@ export const Stage$inboundSchema: z.ZodType<Stage, z.ZodTypeDef, unknown> = z
     id: z.nullable(z.string()).optional(),
     name: z.nullable(z.string()).optional(),
   });
-
 /** @internal */
 export type Stage$Outbound = {
   id?: string | null | undefined;
@@ -122,23 +109,9 @@ export const Stage$outboundSchema: z.ZodType<
   name: z.nullable(z.string()).optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Stage$ {
-  /** @deprecated use `Stage$inboundSchema` instead. */
-  export const inboundSchema = Stage$inboundSchema;
-  /** @deprecated use `Stage$outboundSchema` instead. */
-  export const outboundSchema = Stage$outboundSchema;
-  /** @deprecated use `Stage$Outbound` instead. */
-  export type Outbound = Stage$Outbound;
-}
-
 export function stageToJSON(stage: Stage): string {
   return JSON.stringify(Stage$outboundSchema.parse(stage));
 }
-
 export function stageFromJSON(
   jsonString: string,
 ): SafeParseResult<Stage, SDKValidationError> {
@@ -183,68 +156,6 @@ export const Application$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type Application$Outbound = {
-  id?: string | undefined;
-  applicant_id: string | null;
-  job_id: string | null;
-  status?: string | null | undefined;
-  stage?: Stage$Outbound | undefined;
-  custom_mappings?: { [k: string]: any } | null | undefined;
-  updated_by?: string | null | undefined;
-  created_by?: string | null | undefined;
-  updated_at?: string | null | undefined;
-  created_at?: string | null | undefined;
-  pass_through?: Array<PassThroughBody$Outbound> | undefined;
-};
-
-/** @internal */
-export const Application$outboundSchema: z.ZodType<
-  Application$Outbound,
-  z.ZodTypeDef,
-  Application
-> = z.object({
-  id: z.string().optional(),
-  applicantId: z.nullable(z.string()),
-  jobId: z.nullable(z.string()),
-  status: z.nullable(ApplicationStatus$outboundSchema).optional(),
-  stage: z.lazy(() => Stage$outboundSchema).optional(),
-  customMappings: z.nullable(z.record(z.any())).optional(),
-  updatedBy: z.nullable(z.string()).optional(),
-  createdBy: z.nullable(z.string()).optional(),
-  updatedAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
-  createdAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
-  passThrough: z.array(PassThroughBody$outboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    applicantId: "applicant_id",
-    jobId: "job_id",
-    customMappings: "custom_mappings",
-    updatedBy: "updated_by",
-    createdBy: "created_by",
-    updatedAt: "updated_at",
-    createdAt: "created_at",
-    passThrough: "pass_through",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Application$ {
-  /** @deprecated use `Application$inboundSchema` instead. */
-  export const inboundSchema = Application$inboundSchema;
-  /** @deprecated use `Application$outboundSchema` instead. */
-  export const outboundSchema = Application$outboundSchema;
-  /** @deprecated use `Application$Outbound` instead. */
-  export type Outbound = Application$Outbound;
-}
-
-export function applicationToJSON(application: Application): string {
-  return JSON.stringify(Application$outboundSchema.parse(application));
-}
-
 export function applicationFromJSON(
   jsonString: string,
 ): SafeParseResult<Application, SDKValidationError> {
@@ -254,25 +165,6 @@ export function applicationFromJSON(
     `Failed to parse 'Application' from JSON`,
   );
 }
-
-/** @internal */
-export const ApplicationInput$inboundSchema: z.ZodType<
-  ApplicationInput,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  applicant_id: z.nullable(z.string()),
-  job_id: z.nullable(z.string()),
-  status: z.nullable(ApplicationStatus$inboundSchema).optional(),
-  stage: z.lazy(() => Stage$inboundSchema).optional(),
-  pass_through: z.array(PassThroughBody$inboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "applicant_id": "applicantId",
-    "job_id": "jobId",
-    "pass_through": "passThrough",
-  });
-});
 
 /** @internal */
 export type ApplicationInput$Outbound = {
@@ -302,33 +194,10 @@ export const ApplicationInput$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ApplicationInput$ {
-  /** @deprecated use `ApplicationInput$inboundSchema` instead. */
-  export const inboundSchema = ApplicationInput$inboundSchema;
-  /** @deprecated use `ApplicationInput$outboundSchema` instead. */
-  export const outboundSchema = ApplicationInput$outboundSchema;
-  /** @deprecated use `ApplicationInput$Outbound` instead. */
-  export type Outbound = ApplicationInput$Outbound;
-}
-
 export function applicationInputToJSON(
   applicationInput: ApplicationInput,
 ): string {
   return JSON.stringify(
     ApplicationInput$outboundSchema.parse(applicationInput),
-  );
-}
-
-export function applicationInputFromJSON(
-  jsonString: string,
-): SafeParseResult<ApplicationInput, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => ApplicationInput$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ApplicationInput' from JSON`,
   );
 }

@@ -7,12 +7,7 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  UnifiedId,
-  UnifiedId$inboundSchema,
-  UnifiedId$Outbound,
-  UnifiedId$outboundSchema,
-} from "./unifiedid.js";
+import { UnifiedId, UnifiedId$inboundSchema } from "./unifiedid.js";
 
 /**
  * Projects
@@ -61,55 +56,6 @@ export const DeleteProjectResponse$inboundSchema: z.ZodType<
     "status_code": "statusCode",
   });
 });
-
-/** @internal */
-export type DeleteProjectResponse$Outbound = {
-  status_code: number;
-  status: string;
-  service: string;
-  resource: string;
-  operation: string;
-  data: UnifiedId$Outbound;
-};
-
-/** @internal */
-export const DeleteProjectResponse$outboundSchema: z.ZodType<
-  DeleteProjectResponse$Outbound,
-  z.ZodTypeDef,
-  DeleteProjectResponse
-> = z.object({
-  statusCode: z.number().int(),
-  status: z.string(),
-  service: z.string(),
-  resource: z.string(),
-  operation: z.string(),
-  data: UnifiedId$outboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    statusCode: "status_code",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DeleteProjectResponse$ {
-  /** @deprecated use `DeleteProjectResponse$inboundSchema` instead. */
-  export const inboundSchema = DeleteProjectResponse$inboundSchema;
-  /** @deprecated use `DeleteProjectResponse$outboundSchema` instead. */
-  export const outboundSchema = DeleteProjectResponse$outboundSchema;
-  /** @deprecated use `DeleteProjectResponse$Outbound` instead. */
-  export type Outbound = DeleteProjectResponse$Outbound;
-}
-
-export function deleteProjectResponseToJSON(
-  deleteProjectResponse: DeleteProjectResponse,
-): string {
-  return JSON.stringify(
-    DeleteProjectResponse$outboundSchema.parse(deleteProjectResponse),
-  );
-}
 
 export function deleteProjectResponseFromJSON(
   jsonString: string,

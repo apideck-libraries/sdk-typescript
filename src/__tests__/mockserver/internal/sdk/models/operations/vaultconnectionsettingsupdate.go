@@ -39,7 +39,7 @@ type VaultConnectionSettingsUpdateRequest struct {
 	// Name of the resource (plural)
 	Resource string `pathParam:"style=simple,explode=false,name=resource"`
 	// Fields that need to be updated on the resource
-	Connection components.ConnectionInput `request:"mediaType=application/json"`
+	Body components.ConnectionInput `request:"mediaType=application/json"`
 }
 
 func (o *VaultConnectionSettingsUpdateRequest) GetConsumerID() *string {
@@ -77,11 +77,11 @@ func (o *VaultConnectionSettingsUpdateRequest) GetResource() string {
 	return o.Resource
 }
 
-func (o *VaultConnectionSettingsUpdateRequest) GetConnection() components.ConnectionInput {
+func (o *VaultConnectionSettingsUpdateRequest) GetBody() components.ConnectionInput {
 	if o == nil {
 		return components.ConnectionInput{}
 	}
-	return o.Connection
+	return o.Body
 }
 
 type VaultConnectionSettingsUpdateResponse struct {

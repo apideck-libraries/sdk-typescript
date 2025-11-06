@@ -10,8 +10,6 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   TimeOffRequest,
   TimeOffRequest$inboundSchema,
-  TimeOffRequest$Outbound,
-  TimeOffRequest$outboundSchema,
 } from "./timeoffrequest.js";
 
 /**
@@ -64,58 +62,6 @@ export const GetTimeOffRequestResponse$inboundSchema: z.ZodType<
     "_raw": "raw",
   });
 });
-
-/** @internal */
-export type GetTimeOffRequestResponse$Outbound = {
-  status_code: number;
-  status: string;
-  service: string;
-  resource: string;
-  operation: string;
-  data: TimeOffRequest$Outbound;
-  _raw?: { [k: string]: any } | null | undefined;
-};
-
-/** @internal */
-export const GetTimeOffRequestResponse$outboundSchema: z.ZodType<
-  GetTimeOffRequestResponse$Outbound,
-  z.ZodTypeDef,
-  GetTimeOffRequestResponse
-> = z.object({
-  statusCode: z.number().int(),
-  status: z.string(),
-  service: z.string(),
-  resource: z.string(),
-  operation: z.string(),
-  data: TimeOffRequest$outboundSchema,
-  raw: z.nullable(z.record(z.any())).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    statusCode: "status_code",
-    raw: "_raw",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetTimeOffRequestResponse$ {
-  /** @deprecated use `GetTimeOffRequestResponse$inboundSchema` instead. */
-  export const inboundSchema = GetTimeOffRequestResponse$inboundSchema;
-  /** @deprecated use `GetTimeOffRequestResponse$outboundSchema` instead. */
-  export const outboundSchema = GetTimeOffRequestResponse$outboundSchema;
-  /** @deprecated use `GetTimeOffRequestResponse$Outbound` instead. */
-  export type Outbound = GetTimeOffRequestResponse$Outbound;
-}
-
-export function getTimeOffRequestResponseToJSON(
-  getTimeOffRequestResponse: GetTimeOffRequestResponse,
-): string {
-  return JSON.stringify(
-    GetTimeOffRequestResponse$outboundSchema.parse(getTimeOffRequestResponse),
-  );
-}
 
 export function getTimeOffRequestResponseFromJSON(
   jsonString: string,

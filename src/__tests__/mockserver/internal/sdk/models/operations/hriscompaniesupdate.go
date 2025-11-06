@@ -38,8 +38,8 @@ type HrisCompaniesUpdateRequest struct {
 	// Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
 	ServiceID *string `header:"style=simple,explode=false,name=x-apideck-service-id"`
 	// Include raw response. Mostly used for debugging purposes
-	Raw         *bool                       `default:"false" queryParam:"style=form,explode=true,name=raw"`
-	HrisCompany components.HrisCompanyInput `request:"mediaType=application/json"`
+	Raw  *bool                       `default:"false" queryParam:"style=form,explode=true,name=raw"`
+	Body components.HrisCompanyInput `request:"mediaType=application/json"`
 }
 
 func (h HrisCompaniesUpdateRequest) MarshalJSON() ([]byte, error) {
@@ -47,7 +47,7 @@ func (h HrisCompaniesUpdateRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (h *HrisCompaniesUpdateRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &h, "", false, []string{"id", "HrisCompany"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &h, "", false, []string{"id", "body"}); err != nil {
 		return err
 	}
 	return nil
@@ -88,11 +88,11 @@ func (o *HrisCompaniesUpdateRequest) GetRaw() *bool {
 	return o.Raw
 }
 
-func (o *HrisCompaniesUpdateRequest) GetHrisCompany() components.HrisCompanyInput {
+func (o *HrisCompaniesUpdateRequest) GetBody() components.HrisCompanyInput {
 	if o == nil {
 		return components.HrisCompanyInput{}
 	}
-	return o.HrisCompany
+	return o.Body
 }
 
 type HrisCompaniesUpdateResponse struct {

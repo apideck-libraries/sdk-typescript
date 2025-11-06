@@ -79,65 +79,6 @@ export const PayrollTotals$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type PayrollTotals$Outbound = {
-  company_debit?: number | null | undefined;
-  tax_debit?: number | null | undefined;
-  check_amount?: number | null | undefined;
-  net_pay?: number | null | undefined;
-  gross_pay?: number | null | undefined;
-  employer_taxes?: number | null | undefined;
-  employee_taxes?: number | null | undefined;
-  employer_benefit_contributions?: number | null | undefined;
-  employee_benefit_deductions?: number | null | undefined;
-};
-
-/** @internal */
-export const PayrollTotals$outboundSchema: z.ZodType<
-  PayrollTotals$Outbound,
-  z.ZodTypeDef,
-  PayrollTotals
-> = z.object({
-  companyDebit: z.nullable(z.number()).optional(),
-  taxDebit: z.nullable(z.number()).optional(),
-  checkAmount: z.nullable(z.number()).optional(),
-  netPay: z.nullable(z.number()).optional(),
-  grossPay: z.nullable(z.number()).optional(),
-  employerTaxes: z.nullable(z.number()).optional(),
-  employeeTaxes: z.nullable(z.number()).optional(),
-  employerBenefitContributions: z.nullable(z.number()).optional(),
-  employeeBenefitDeductions: z.nullable(z.number()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    companyDebit: "company_debit",
-    taxDebit: "tax_debit",
-    checkAmount: "check_amount",
-    netPay: "net_pay",
-    grossPay: "gross_pay",
-    employerTaxes: "employer_taxes",
-    employeeTaxes: "employee_taxes",
-    employerBenefitContributions: "employer_benefit_contributions",
-    employeeBenefitDeductions: "employee_benefit_deductions",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace PayrollTotals$ {
-  /** @deprecated use `PayrollTotals$inboundSchema` instead. */
-  export const inboundSchema = PayrollTotals$inboundSchema;
-  /** @deprecated use `PayrollTotals$outboundSchema` instead. */
-  export const outboundSchema = PayrollTotals$outboundSchema;
-  /** @deprecated use `PayrollTotals$Outbound` instead. */
-  export type Outbound = PayrollTotals$Outbound;
-}
-
-export function payrollTotalsToJSON(payrollTotals: PayrollTotals): string {
-  return JSON.stringify(PayrollTotals$outboundSchema.parse(payrollTotals));
-}
-
 export function payrollTotalsFromJSON(
   jsonString: string,
 ): SafeParseResult<PayrollTotals, SDKValidationError> {

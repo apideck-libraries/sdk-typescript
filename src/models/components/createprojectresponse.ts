@@ -7,12 +7,7 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  UnifiedId,
-  UnifiedId$inboundSchema,
-  UnifiedId$Outbound,
-  UnifiedId$outboundSchema,
-} from "./unifiedid.js";
+import { UnifiedId, UnifiedId$inboundSchema } from "./unifiedid.js";
 
 /**
  * Projects
@@ -61,55 +56,6 @@ export const CreateProjectResponse$inboundSchema: z.ZodType<
     "status_code": "statusCode",
   });
 });
-
-/** @internal */
-export type CreateProjectResponse$Outbound = {
-  status_code: number;
-  status: string;
-  service: string;
-  resource: string;
-  operation: string;
-  data: UnifiedId$Outbound;
-};
-
-/** @internal */
-export const CreateProjectResponse$outboundSchema: z.ZodType<
-  CreateProjectResponse$Outbound,
-  z.ZodTypeDef,
-  CreateProjectResponse
-> = z.object({
-  statusCode: z.number().int(),
-  status: z.string(),
-  service: z.string(),
-  resource: z.string(),
-  operation: z.string(),
-  data: UnifiedId$outboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    statusCode: "status_code",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateProjectResponse$ {
-  /** @deprecated use `CreateProjectResponse$inboundSchema` instead. */
-  export const inboundSchema = CreateProjectResponse$inboundSchema;
-  /** @deprecated use `CreateProjectResponse$outboundSchema` instead. */
-  export const outboundSchema = CreateProjectResponse$outboundSchema;
-  /** @deprecated use `CreateProjectResponse$Outbound` instead. */
-  export type Outbound = CreateProjectResponse$Outbound;
-}
-
-export function createProjectResponseToJSON(
-  createProjectResponse: CreateProjectResponse,
-): string {
-  return JSON.stringify(
-    CreateProjectResponse$outboundSchema.parse(createProjectResponse),
-  );
-}
 
 export function createProjectResponseFromJSON(
   jsonString: string,

@@ -10,8 +10,6 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   EmployeePayroll,
   EmployeePayroll$inboundSchema,
-  EmployeePayroll$Outbound,
-  EmployeePayroll$outboundSchema,
 } from "./employeepayroll.js";
 
 /**
@@ -64,58 +62,6 @@ export const GetEmployeePayrollResponse$inboundSchema: z.ZodType<
     "_raw": "raw",
   });
 });
-
-/** @internal */
-export type GetEmployeePayrollResponse$Outbound = {
-  status_code: number;
-  status: string;
-  service: string;
-  resource: string;
-  operation: string;
-  data: EmployeePayroll$Outbound;
-  _raw?: { [k: string]: any } | null | undefined;
-};
-
-/** @internal */
-export const GetEmployeePayrollResponse$outboundSchema: z.ZodType<
-  GetEmployeePayrollResponse$Outbound,
-  z.ZodTypeDef,
-  GetEmployeePayrollResponse
-> = z.object({
-  statusCode: z.number().int(),
-  status: z.string(),
-  service: z.string(),
-  resource: z.string(),
-  operation: z.string(),
-  data: EmployeePayroll$outboundSchema,
-  raw: z.nullable(z.record(z.any())).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    statusCode: "status_code",
-    raw: "_raw",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetEmployeePayrollResponse$ {
-  /** @deprecated use `GetEmployeePayrollResponse$inboundSchema` instead. */
-  export const inboundSchema = GetEmployeePayrollResponse$inboundSchema;
-  /** @deprecated use `GetEmployeePayrollResponse$outboundSchema` instead. */
-  export const outboundSchema = GetEmployeePayrollResponse$outboundSchema;
-  /** @deprecated use `GetEmployeePayrollResponse$Outbound` instead. */
-  export type Outbound = GetEmployeePayrollResponse$Outbound;
-}
-
-export function getEmployeePayrollResponseToJSON(
-  getEmployeePayrollResponse: GetEmployeePayrollResponse,
-): string {
-  return JSON.stringify(
-    GetEmployeePayrollResponse$outboundSchema.parse(getEmployeePayrollResponse),
-  );
-}
 
 export function getEmployeePayrollResponseFromJSON(
   jsonString: string,

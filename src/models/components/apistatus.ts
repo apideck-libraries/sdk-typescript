@@ -22,18 +22,6 @@ export type ApiStatus = ClosedEnum<typeof ApiStatus>;
 /** @internal */
 export const ApiStatus$inboundSchema: z.ZodNativeEnum<typeof ApiStatus> = z
   .nativeEnum(ApiStatus);
-
 /** @internal */
 export const ApiStatus$outboundSchema: z.ZodNativeEnum<typeof ApiStatus> =
   ApiStatus$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ApiStatus$ {
-  /** @deprecated use `ApiStatus$inboundSchema` instead. */
-  export const inboundSchema = ApiStatus$inboundSchema;
-  /** @deprecated use `ApiStatus$outboundSchema` instead. */
-  export const outboundSchema = ApiStatus$outboundSchema;
-}

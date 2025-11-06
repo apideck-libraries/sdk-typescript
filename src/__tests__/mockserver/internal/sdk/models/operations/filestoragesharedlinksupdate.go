@@ -38,8 +38,8 @@ type FileStorageSharedLinksUpdateRequest struct {
 	// Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
 	ServiceID *string `header:"style=simple,explode=false,name=x-apideck-service-id"`
 	// Include raw response. Mostly used for debugging purposes
-	Raw        *bool                      `default:"false" queryParam:"style=form,explode=true,name=raw"`
-	SharedLink components.SharedLinkInput `request:"mediaType=application/json"`
+	Raw  *bool                      `default:"false" queryParam:"style=form,explode=true,name=raw"`
+	Body components.SharedLinkInput `request:"mediaType=application/json"`
 }
 
 func (f FileStorageSharedLinksUpdateRequest) MarshalJSON() ([]byte, error) {
@@ -47,7 +47,7 @@ func (f FileStorageSharedLinksUpdateRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (f *FileStorageSharedLinksUpdateRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &f, "", false, []string{"id", "SharedLink"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &f, "", false, []string{"id", "body"}); err != nil {
 		return err
 	}
 	return nil
@@ -88,11 +88,11 @@ func (o *FileStorageSharedLinksUpdateRequest) GetRaw() *bool {
 	return o.Raw
 }
 
-func (o *FileStorageSharedLinksUpdateRequest) GetSharedLink() components.SharedLinkInput {
+func (o *FileStorageSharedLinksUpdateRequest) GetBody() components.SharedLinkInput {
 	if o == nil {
 		return components.SharedLinkInput{}
 	}
-	return o.SharedLink
+	return o.Body
 }
 
 type FileStorageSharedLinksUpdateResponse struct {

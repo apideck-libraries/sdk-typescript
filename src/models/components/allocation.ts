@@ -71,22 +71,10 @@ export type AllocationInput = {
 export const AllocationType$inboundSchema: z.ZodNativeEnum<
   typeof AllocationType
 > = z.nativeEnum(AllocationType);
-
 /** @internal */
 export const AllocationType$outboundSchema: z.ZodNativeEnum<
   typeof AllocationType
 > = AllocationType$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AllocationType$ {
-  /** @deprecated use `AllocationType$inboundSchema` instead. */
-  export const inboundSchema = AllocationType$inboundSchema;
-  /** @deprecated use `AllocationType$outboundSchema` instead. */
-  export const outboundSchema = AllocationType$outboundSchema;
-}
 
 /** @internal */
 export const Allocation$inboundSchema: z.ZodType<
@@ -105,49 +93,6 @@ export const Allocation$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type Allocation$Outbound = {
-  id?: string | undefined;
-  type?: string | undefined;
-  code?: string | undefined;
-  amount?: number | null | undefined;
-  allocation_id?: string | undefined;
-};
-
-/** @internal */
-export const Allocation$outboundSchema: z.ZodType<
-  Allocation$Outbound,
-  z.ZodTypeDef,
-  Allocation
-> = z.object({
-  id: z.string().optional(),
-  type: AllocationType$outboundSchema.optional(),
-  code: z.string().optional(),
-  amount: z.nullable(z.number()).optional(),
-  allocationId: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    allocationId: "allocation_id",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Allocation$ {
-  /** @deprecated use `Allocation$inboundSchema` instead. */
-  export const inboundSchema = Allocation$inboundSchema;
-  /** @deprecated use `Allocation$outboundSchema` instead. */
-  export const outboundSchema = Allocation$outboundSchema;
-  /** @deprecated use `Allocation$Outbound` instead. */
-  export type Outbound = Allocation$Outbound;
-}
-
-export function allocationToJSON(allocation: Allocation): string {
-  return JSON.stringify(Allocation$outboundSchema.parse(allocation));
-}
-
 export function allocationFromJSON(
   jsonString: string,
 ): SafeParseResult<Allocation, SDKValidationError> {
@@ -157,22 +102,6 @@ export function allocationFromJSON(
     `Failed to parse 'Allocation' from JSON`,
   );
 }
-
-/** @internal */
-export const AllocationInput$inboundSchema: z.ZodType<
-  AllocationInput,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  id: z.string().optional(),
-  type: AllocationType$inboundSchema.optional(),
-  amount: z.nullable(z.number()).optional(),
-  allocation_id: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "allocation_id": "allocationId",
-  });
-});
 
 /** @internal */
 export type AllocationInput$Outbound = {
@@ -198,31 +127,8 @@ export const AllocationInput$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AllocationInput$ {
-  /** @deprecated use `AllocationInput$inboundSchema` instead. */
-  export const inboundSchema = AllocationInput$inboundSchema;
-  /** @deprecated use `AllocationInput$outboundSchema` instead. */
-  export const outboundSchema = AllocationInput$outboundSchema;
-  /** @deprecated use `AllocationInput$Outbound` instead. */
-  export type Outbound = AllocationInput$Outbound;
-}
-
 export function allocationInputToJSON(
   allocationInput: AllocationInput,
 ): string {
   return JSON.stringify(AllocationInput$outboundSchema.parse(allocationInput));
-}
-
-export function allocationInputFromJSON(
-  jsonString: string,
-): SafeParseResult<AllocationInput, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => AllocationInput$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'AllocationInput' from JSON`,
-  );
 }

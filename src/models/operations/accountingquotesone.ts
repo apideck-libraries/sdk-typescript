@@ -56,76 +56,6 @@ export type AccountingQuotesOneResponse = {
 };
 
 /** @internal */
-export const AccountingQuotesOneGlobals$inboundSchema: z.ZodType<
-  AccountingQuotesOneGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/** @internal */
-export type AccountingQuotesOneGlobals$Outbound = {
-  consumerId?: string | undefined;
-  appId?: string | undefined;
-};
-
-/** @internal */
-export const AccountingQuotesOneGlobals$outboundSchema: z.ZodType<
-  AccountingQuotesOneGlobals$Outbound,
-  z.ZodTypeDef,
-  AccountingQuotesOneGlobals
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AccountingQuotesOneGlobals$ {
-  /** @deprecated use `AccountingQuotesOneGlobals$inboundSchema` instead. */
-  export const inboundSchema = AccountingQuotesOneGlobals$inboundSchema;
-  /** @deprecated use `AccountingQuotesOneGlobals$outboundSchema` instead. */
-  export const outboundSchema = AccountingQuotesOneGlobals$outboundSchema;
-  /** @deprecated use `AccountingQuotesOneGlobals$Outbound` instead. */
-  export type Outbound = AccountingQuotesOneGlobals$Outbound;
-}
-
-export function accountingQuotesOneGlobalsToJSON(
-  accountingQuotesOneGlobals: AccountingQuotesOneGlobals,
-): string {
-  return JSON.stringify(
-    AccountingQuotesOneGlobals$outboundSchema.parse(accountingQuotesOneGlobals),
-  );
-}
-
-export function accountingQuotesOneGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<AccountingQuotesOneGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => AccountingQuotesOneGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'AccountingQuotesOneGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const AccountingQuotesOneRequest$inboundSchema: z.ZodType<
-  AccountingQuotesOneRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  id: z.string(),
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  raw: z.boolean().default(false),
-});
-
-/** @internal */
 export type AccountingQuotesOneRequest$Outbound = {
   id: string;
   consumerId?: string | undefined;
@@ -147,34 +77,11 @@ export const AccountingQuotesOneRequest$outboundSchema: z.ZodType<
   raw: z.boolean().default(false),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AccountingQuotesOneRequest$ {
-  /** @deprecated use `AccountingQuotesOneRequest$inboundSchema` instead. */
-  export const inboundSchema = AccountingQuotesOneRequest$inboundSchema;
-  /** @deprecated use `AccountingQuotesOneRequest$outboundSchema` instead. */
-  export const outboundSchema = AccountingQuotesOneRequest$outboundSchema;
-  /** @deprecated use `AccountingQuotesOneRequest$Outbound` instead. */
-  export type Outbound = AccountingQuotesOneRequest$Outbound;
-}
-
 export function accountingQuotesOneRequestToJSON(
   accountingQuotesOneRequest: AccountingQuotesOneRequest,
 ): string {
   return JSON.stringify(
     AccountingQuotesOneRequest$outboundSchema.parse(accountingQuotesOneRequest),
-  );
-}
-
-export function accountingQuotesOneRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<AccountingQuotesOneRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => AccountingQuotesOneRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'AccountingQuotesOneRequest' from JSON`,
   );
 }
 
@@ -195,56 +102,6 @@ export const AccountingQuotesOneResponse$inboundSchema: z.ZodType<
     "UnexpectedErrorResponse": "unexpectedErrorResponse",
   });
 });
-
-/** @internal */
-export type AccountingQuotesOneResponse$Outbound = {
-  HttpMeta: components.HTTPMetadata$Outbound;
-  GetQuoteResponse?: components.GetQuoteResponse$Outbound | undefined;
-  UnexpectedErrorResponse?:
-    | components.UnexpectedErrorResponse$Outbound
-    | undefined;
-};
-
-/** @internal */
-export const AccountingQuotesOneResponse$outboundSchema: z.ZodType<
-  AccountingQuotesOneResponse$Outbound,
-  z.ZodTypeDef,
-  AccountingQuotesOneResponse
-> = z.object({
-  httpMeta: components.HTTPMetadata$outboundSchema,
-  getQuoteResponse: components.GetQuoteResponse$outboundSchema.optional(),
-  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    httpMeta: "HttpMeta",
-    getQuoteResponse: "GetQuoteResponse",
-    unexpectedErrorResponse: "UnexpectedErrorResponse",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AccountingQuotesOneResponse$ {
-  /** @deprecated use `AccountingQuotesOneResponse$inboundSchema` instead. */
-  export const inboundSchema = AccountingQuotesOneResponse$inboundSchema;
-  /** @deprecated use `AccountingQuotesOneResponse$outboundSchema` instead. */
-  export const outboundSchema = AccountingQuotesOneResponse$outboundSchema;
-  /** @deprecated use `AccountingQuotesOneResponse$Outbound` instead. */
-  export type Outbound = AccountingQuotesOneResponse$Outbound;
-}
-
-export function accountingQuotesOneResponseToJSON(
-  accountingQuotesOneResponse: AccountingQuotesOneResponse,
-): string {
-  return JSON.stringify(
-    AccountingQuotesOneResponse$outboundSchema.parse(
-      accountingQuotesOneResponse,
-    ),
-  );
-}
 
 export function accountingQuotesOneResponseFromJSON(
   jsonString: string,

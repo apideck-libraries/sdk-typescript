@@ -96,41 +96,6 @@ export const UnprocessableResponseDetail$inboundSchema: z.ZodType<
   unknown
 > = z.union([z.string(), z.record(z.any())]);
 
-/** @internal */
-export type UnprocessableResponseDetail$Outbound = string | {
-  [k: string]: any;
-};
-
-/** @internal */
-export const UnprocessableResponseDetail$outboundSchema: z.ZodType<
-  UnprocessableResponseDetail$Outbound,
-  z.ZodTypeDef,
-  unknown
-> = z.union([z.string(), z.record(z.any())]);
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace UnprocessableResponseDetail$ {
-  /** @deprecated use `UnprocessableResponseDetail$inboundSchema` instead. */
-  export const inboundSchema = UnprocessableResponseDetail$inboundSchema;
-  /** @deprecated use `UnprocessableResponseDetail$outboundSchema` instead. */
-  export const outboundSchema = UnprocessableResponseDetail$outboundSchema;
-  /** @deprecated use `UnprocessableResponseDetail$Outbound` instead. */
-  export type Outbound = UnprocessableResponseDetail$Outbound;
-}
-
-export function unprocessableResponseDetailToJSON(
-  unprocessableResponseDetail: UnprocessableResponseDetail,
-): string {
-  return JSON.stringify(
-    UnprocessableResponseDetail$outboundSchema.parse(
-      unprocessableResponseDetail,
-    ),
-  );
-}
-
 export function unprocessableResponseDetailFromJSON(
   jsonString: string,
 ): SafeParseResult<UnprocessableResponseDetail, SDKValidationError> {
@@ -169,49 +134,3 @@ export const UnprocessableResponse$inboundSchema: z.ZodType<
       body: v.body$,
     });
   });
-
-/** @internal */
-export type UnprocessableResponse$Outbound = {
-  status_code?: number | undefined;
-  error?: string | undefined;
-  type_name?: string | undefined;
-  message?: string | undefined;
-  detail?: string | { [k: string]: any } | undefined;
-  ref?: string | undefined;
-};
-
-/** @internal */
-export const UnprocessableResponse$outboundSchema: z.ZodType<
-  UnprocessableResponse$Outbound,
-  z.ZodTypeDef,
-  UnprocessableResponse
-> = z.instanceof(UnprocessableResponse)
-  .transform(v => v.data$)
-  .pipe(
-    z.object({
-      statusCode: z.number().optional(),
-      error: z.string().optional(),
-      typeName: z.string().optional(),
-      message: z.string().optional(),
-      detail: z.union([z.string(), z.record(z.any())]).optional(),
-      ref: z.string().optional(),
-    }).transform((v) => {
-      return remap$(v, {
-        statusCode: "status_code",
-        typeName: "type_name",
-      });
-    }),
-  );
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace UnprocessableResponse$ {
-  /** @deprecated use `UnprocessableResponse$inboundSchema` instead. */
-  export const inboundSchema = UnprocessableResponse$inboundSchema;
-  /** @deprecated use `UnprocessableResponse$outboundSchema` instead. */
-  export const outboundSchema = UnprocessableResponse$outboundSchema;
-  /** @deprecated use `UnprocessableResponse$Outbound` instead. */
-  export type Outbound = UnprocessableResponse$Outbound;
-}

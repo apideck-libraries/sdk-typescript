@@ -159,33 +159,6 @@ export const RequestT$inboundSchema: z.ZodType<
   unknown
 > = z.object({});
 
-/** @internal */
-export type RequestT$Outbound = {};
-
-/** @internal */
-export const RequestT$outboundSchema: z.ZodType<
-  RequestT$Outbound,
-  z.ZodTypeDef,
-  RequestT
-> = z.object({});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace RequestT$ {
-  /** @deprecated use `RequestT$inboundSchema` instead. */
-  export const inboundSchema = RequestT$inboundSchema;
-  /** @deprecated use `RequestT$outboundSchema` instead. */
-  export const outboundSchema = RequestT$outboundSchema;
-  /** @deprecated use `RequestT$Outbound` instead. */
-  export type Outbound = RequestT$Outbound;
-}
-
-export function requestToJSON(requestT: RequestT): string {
-  return JSON.stringify(RequestT$outboundSchema.parse(requestT));
-}
-
 export function requestFromJSON(
   jsonString: string,
 ): SafeParseResult<RequestT, SDKValidationError> {
@@ -202,33 +175,6 @@ export const ResponseT$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({});
-
-/** @internal */
-export type ResponseT$Outbound = {};
-
-/** @internal */
-export const ResponseT$outboundSchema: z.ZodType<
-  ResponseT$Outbound,
-  z.ZodTypeDef,
-  ResponseT
-> = z.object({});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ResponseT$ {
-  /** @deprecated use `ResponseT$inboundSchema` instead. */
-  export const inboundSchema = ResponseT$inboundSchema;
-  /** @deprecated use `ResponseT$outboundSchema` instead. */
-  export const outboundSchema = ResponseT$outboundSchema;
-  /** @deprecated use `ResponseT$Outbound` instead. */
-  export type Outbound = ResponseT$Outbound;
-}
-
-export function responseToJSON(responseT: ResponseT): string {
-  return JSON.stringify(ResponseT$outboundSchema.parse(responseT));
-}
 
 export function responseFromJSON(
   jsonString: string,
@@ -258,55 +204,6 @@ export const Debug$inboundSchema: z.ZodType<Debug, z.ZodTypeDef, unknown> = z
     });
   });
 
-/** @internal */
-export type Debug$Outbound = {
-  request?: RequestT$Outbound | undefined;
-  response?: ResponseT$Outbound | undefined;
-  message?: string | undefined;
-  code?: string | undefined;
-  credentials_expire_at_ms?: number | undefined;
-  retry_after_ms?: number | undefined;
-  cooldown_remaining_ms?: number | undefined;
-};
-
-/** @internal */
-export const Debug$outboundSchema: z.ZodType<
-  Debug$Outbound,
-  z.ZodTypeDef,
-  Debug
-> = z.object({
-  request: z.lazy(() => RequestT$outboundSchema).optional(),
-  response: z.lazy(() => ResponseT$outboundSchema).optional(),
-  message: z.string().optional(),
-  code: z.string().optional(),
-  credentialsExpireAtMs: z.number().optional(),
-  retryAfterMs: z.number().optional(),
-  cooldownRemainingMs: z.number().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    credentialsExpireAtMs: "credentials_expire_at_ms",
-    retryAfterMs: "retry_after_ms",
-    cooldownRemainingMs: "cooldown_remaining_ms",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Debug$ {
-  /** @deprecated use `Debug$inboundSchema` instead. */
-  export const inboundSchema = Debug$inboundSchema;
-  /** @deprecated use `Debug$outboundSchema` instead. */
-  export const outboundSchema = Debug$outboundSchema;
-  /** @deprecated use `Debug$Outbound` instead. */
-  export type Outbound = Debug$Outbound;
-}
-
-export function debugToJSON(debug: Debug): string {
-  return JSON.stringify(Debug$outboundSchema.parse(debug));
-}
-
 export function debugFromJSON(
   jsonString: string,
 ): SafeParseResult<Debug, SDKValidationError> {
@@ -329,47 +226,6 @@ export const Two$inboundSchema: z.ZodType<Two, z.ZodTypeDef, unknown> =
     true,
   );
 
-/** @internal */
-export type Two$Outbound = {
-  type?: string | undefined;
-  message?: string | undefined;
-  debug?: Debug$Outbound | undefined;
-  [additionalProperties: string]: unknown;
-};
-
-/** @internal */
-export const Two$outboundSchema: z.ZodType<Two$Outbound, z.ZodTypeDef, Two> = z
-  .object({
-    type: z.string().optional(),
-    message: z.string().optional(),
-    debug: z.lazy(() => Debug$outboundSchema).optional(),
-    additionalProperties: z.record(z.any()).optional(),
-  }).transform((v) => {
-    return {
-      ...v.additionalProperties,
-      ...remap$(v, {
-        additionalProperties: null,
-      }),
-    };
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Two$ {
-  /** @deprecated use `Two$inboundSchema` instead. */
-  export const inboundSchema = Two$inboundSchema;
-  /** @deprecated use `Two$outboundSchema` instead. */
-  export const outboundSchema = Two$outboundSchema;
-  /** @deprecated use `Two$Outbound` instead. */
-  export type Outbound = Two$Outbound;
-}
-
-export function twoToJSON(two: Two): string {
-  return JSON.stringify(Two$outboundSchema.parse(two));
-}
-
 export function twoFromJSON(
   jsonString: string,
 ): SafeParseResult<Two, SDKValidationError> {
@@ -386,37 +242,6 @@ export const UnauthorizedResponseDetail$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.union([z.string(), z.lazy(() => Two$inboundSchema)]);
-
-/** @internal */
-export type UnauthorizedResponseDetail$Outbound = string | Two$Outbound;
-
-/** @internal */
-export const UnauthorizedResponseDetail$outboundSchema: z.ZodType<
-  UnauthorizedResponseDetail$Outbound,
-  z.ZodTypeDef,
-  unknown
-> = z.union([z.string(), z.lazy(() => Two$outboundSchema)]);
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace UnauthorizedResponseDetail$ {
-  /** @deprecated use `UnauthorizedResponseDetail$inboundSchema` instead. */
-  export const inboundSchema = UnauthorizedResponseDetail$inboundSchema;
-  /** @deprecated use `UnauthorizedResponseDetail$outboundSchema` instead. */
-  export const outboundSchema = UnauthorizedResponseDetail$outboundSchema;
-  /** @deprecated use `UnauthorizedResponseDetail$Outbound` instead. */
-  export type Outbound = UnauthorizedResponseDetail$Outbound;
-}
-
-export function unauthorizedResponseDetailToJSON(
-  unauthorizedResponseDetail: UnauthorizedResponseDetail,
-): string {
-  return JSON.stringify(
-    UnauthorizedResponseDetail$outboundSchema.parse(unauthorizedResponseDetail),
-  );
-}
 
 export function unauthorizedResponseDetailFromJSON(
   jsonString: string,
@@ -456,50 +281,3 @@ export const UnauthorizedResponse$inboundSchema: z.ZodType<
       body: v.body$,
     });
   });
-
-/** @internal */
-export type UnauthorizedResponse$Outbound = {
-  status_code?: number | undefined;
-  error?: string | undefined;
-  type_name?: string | undefined;
-  message?: string | undefined;
-  detail?: string | Two$Outbound | undefined;
-  ref?: string | undefined;
-};
-
-/** @internal */
-export const UnauthorizedResponse$outboundSchema: z.ZodType<
-  UnauthorizedResponse$Outbound,
-  z.ZodTypeDef,
-  UnauthorizedResponse
-> = z.instanceof(UnauthorizedResponse)
-  .transform(v => v.data$)
-  .pipe(
-    z.object({
-      statusCode: z.number().optional(),
-      error: z.string().optional(),
-      typeName: z.string().optional(),
-      message: z.string().optional(),
-      detail: z.union([z.string(), z.lazy(() => Two$outboundSchema)])
-        .optional(),
-      ref: z.string().optional(),
-    }).transform((v) => {
-      return remap$(v, {
-        statusCode: "status_code",
-        typeName: "type_name",
-      });
-    }),
-  );
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace UnauthorizedResponse$ {
-  /** @deprecated use `UnauthorizedResponse$inboundSchema` instead. */
-  export const inboundSchema = UnauthorizedResponse$inboundSchema;
-  /** @deprecated use `UnauthorizedResponse$outboundSchema` instead. */
-  export const outboundSchema = UnauthorizedResponse$outboundSchema;
-  /** @deprecated use `UnauthorizedResponse$Outbound` instead. */
-  export type Outbound = UnauthorizedResponse$Outbound;
-}

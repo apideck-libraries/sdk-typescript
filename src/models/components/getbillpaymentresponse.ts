@@ -7,12 +7,7 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  BillPayment,
-  BillPayment$inboundSchema,
-  BillPayment$Outbound,
-  BillPayment$outboundSchema,
-} from "./billpayment.js";
+import { BillPayment, BillPayment$inboundSchema } from "./billpayment.js";
 
 /**
  * Bill Payment
@@ -64,58 +59,6 @@ export const GetBillPaymentResponse$inboundSchema: z.ZodType<
     "_raw": "raw",
   });
 });
-
-/** @internal */
-export type GetBillPaymentResponse$Outbound = {
-  status_code: number;
-  status: string;
-  service: string;
-  resource: string;
-  operation: string;
-  data: BillPayment$Outbound;
-  _raw?: { [k: string]: any } | null | undefined;
-};
-
-/** @internal */
-export const GetBillPaymentResponse$outboundSchema: z.ZodType<
-  GetBillPaymentResponse$Outbound,
-  z.ZodTypeDef,
-  GetBillPaymentResponse
-> = z.object({
-  statusCode: z.number().int(),
-  status: z.string(),
-  service: z.string(),
-  resource: z.string(),
-  operation: z.string(),
-  data: BillPayment$outboundSchema,
-  raw: z.nullable(z.record(z.any())).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    statusCode: "status_code",
-    raw: "_raw",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetBillPaymentResponse$ {
-  /** @deprecated use `GetBillPaymentResponse$inboundSchema` instead. */
-  export const inboundSchema = GetBillPaymentResponse$inboundSchema;
-  /** @deprecated use `GetBillPaymentResponse$outboundSchema` instead. */
-  export const outboundSchema = GetBillPaymentResponse$outboundSchema;
-  /** @deprecated use `GetBillPaymentResponse$Outbound` instead. */
-  export type Outbound = GetBillPaymentResponse$Outbound;
-}
-
-export function getBillPaymentResponseToJSON(
-  getBillPaymentResponse: GetBillPaymentResponse,
-): string {
-  return JSON.stringify(
-    GetBillPaymentResponse$outboundSchema.parse(getBillPaymentResponse),
-  );
-}
 
 export function getBillPaymentResponseFromJSON(
   jsonString: string,

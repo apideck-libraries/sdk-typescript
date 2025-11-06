@@ -23,18 +23,3 @@ export type AuthType = ClosedEnum<typeof AuthType>;
 /** @internal */
 export const AuthType$inboundSchema: z.ZodNativeEnum<typeof AuthType> = z
   .nativeEnum(AuthType);
-
-/** @internal */
-export const AuthType$outboundSchema: z.ZodNativeEnum<typeof AuthType> =
-  AuthType$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AuthType$ {
-  /** @deprecated use `AuthType$inboundSchema` instead. */
-  export const inboundSchema = AuthType$inboundSchema;
-  /** @deprecated use `AuthType$outboundSchema` instead. */
-  export const outboundSchema = AuthType$outboundSchema;
-}

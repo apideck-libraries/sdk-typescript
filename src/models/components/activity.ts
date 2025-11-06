@@ -11,10 +11,7 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   ActivityAttendee,
   ActivityAttendee$inboundSchema,
-  ActivityAttendee$Outbound,
-  ActivityAttendee$outboundSchema,
   ActivityAttendeeInput,
-  ActivityAttendeeInput$inboundSchema,
   ActivityAttendeeInput$Outbound,
   ActivityAttendeeInput$outboundSchema,
 } from "./activityattendee.js";
@@ -437,40 +434,16 @@ export type ActivityInput = {
 /** @internal */
 export const ActivityType$inboundSchema: z.ZodNativeEnum<typeof ActivityType> =
   z.nativeEnum(ActivityType);
-
 /** @internal */
 export const ActivityType$outboundSchema: z.ZodNativeEnum<typeof ActivityType> =
   ActivityType$inboundSchema;
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ActivityType$ {
-  /** @deprecated use `ActivityType$inboundSchema` instead. */
-  export const inboundSchema = ActivityType$inboundSchema;
-  /** @deprecated use `ActivityType$outboundSchema` instead. */
-  export const outboundSchema = ActivityType$outboundSchema;
-}
-
 /** @internal */
 export const ShowAs$inboundSchema: z.ZodNativeEnum<typeof ShowAs> = z
   .nativeEnum(ShowAs);
-
 /** @internal */
 export const ShowAs$outboundSchema: z.ZodNativeEnum<typeof ShowAs> =
   ShowAs$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ShowAs$ {
-  /** @deprecated use `ShowAs$inboundSchema` instead. */
-  export const inboundSchema = ShowAs$inboundSchema;
-  /** @deprecated use `ShowAs$outboundSchema` instead. */
-  export const outboundSchema = ShowAs$outboundSchema;
-}
 
 /** @internal */
 export const Activity$inboundSchema: z.ZodType<
@@ -574,181 +547,6 @@ export const Activity$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type Activity$Outbound = {
-  id?: string | undefined;
-  downstream_id?: string | null | undefined;
-  activity_datetime?: string | null | undefined;
-  duration_seconds?: number | null | undefined;
-  user_id?: string | null | undefined;
-  account_id?: string | null | undefined;
-  contact_id?: string | null | undefined;
-  company_id?: string | null | undefined;
-  opportunity_id?: string | null | undefined;
-  lead_id?: string | null | undefined;
-  owner_id?: string | null | undefined;
-  campaign_id?: string | null | undefined;
-  case_id?: string | null | undefined;
-  asset_id?: string | null | undefined;
-  contract_id?: string | null | undefined;
-  product_id?: string | null | undefined;
-  solution_id?: string | null | undefined;
-  custom_object_id?: string | null | undefined;
-  type: string | null;
-  title?: string | null | undefined;
-  description?: string | null | undefined;
-  note?: string | null | undefined;
-  location?: string | null | undefined;
-  location_address?: Address$Outbound | undefined;
-  all_day_event?: boolean | null | undefined;
-  private?: boolean | null | undefined;
-  group_event?: boolean | null | undefined;
-  event_sub_type?: string | null | undefined;
-  group_event_type?: string | null | undefined;
-  child?: boolean | null | undefined;
-  archived?: boolean | null | undefined;
-  deleted?: boolean | null | undefined;
-  show_as?: string | null | undefined;
-  done?: boolean | null | undefined;
-  start_datetime?: string | null | undefined;
-  end_datetime?: string | null | undefined;
-  duration_minutes?: number | null | undefined;
-  activity_date?: string | null | undefined;
-  end_date?: string | null | undefined;
-  recurrent?: boolean | undefined;
-  reminder_datetime?: string | null | undefined;
-  reminder_set?: boolean | null | undefined;
-  video_conference_url?: string | null | undefined;
-  video_conference_id?: string | null | undefined;
-  custom_fields?: Array<CustomField$Outbound> | undefined;
-  attendees?: Array<ActivityAttendee$Outbound> | undefined;
-  custom_mappings?: { [k: string]: any } | null | undefined;
-  updated_by?: string | null | undefined;
-  created_by?: string | null | undefined;
-  updated_at?: string | null | undefined;
-  created_at?: string | null | undefined;
-  pass_through?: Array<PassThroughBody$Outbound> | undefined;
-};
-
-/** @internal */
-export const Activity$outboundSchema: z.ZodType<
-  Activity$Outbound,
-  z.ZodTypeDef,
-  Activity
-> = z.object({
-  id: z.string().optional(),
-  downstreamId: z.nullable(z.string()).optional(),
-  activityDatetime: z.nullable(z.string()).optional(),
-  durationSeconds: z.nullable(z.number().int()).optional(),
-  userId: z.nullable(z.string()).optional(),
-  accountId: z.nullable(z.string()).optional(),
-  contactId: z.nullable(z.string()).optional(),
-  companyId: z.nullable(z.string()).optional(),
-  opportunityId: z.nullable(z.string()).optional(),
-  leadId: z.nullable(z.string()).optional(),
-  ownerId: z.nullable(z.string()).optional(),
-  campaignId: z.nullable(z.string()).optional(),
-  caseId: z.nullable(z.string()).optional(),
-  assetId: z.nullable(z.string()).optional(),
-  contractId: z.nullable(z.string()).optional(),
-  productId: z.nullable(z.string()).optional(),
-  solutionId: z.nullable(z.string()).optional(),
-  customObjectId: z.nullable(z.string()).optional(),
-  type: z.nullable(ActivityType$outboundSchema),
-  title: z.nullable(z.string()).optional(),
-  description: z.nullable(z.string()).optional(),
-  note: z.nullable(z.string()).optional(),
-  location: z.nullable(z.string()).optional(),
-  locationAddress: Address$outboundSchema.optional(),
-  allDayEvent: z.nullable(z.boolean()).optional(),
-  private: z.nullable(z.boolean()).optional(),
-  groupEvent: z.nullable(z.boolean()).optional(),
-  eventSubType: z.nullable(z.string()).optional(),
-  groupEventType: z.nullable(z.string()).optional(),
-  child: z.nullable(z.boolean()).optional(),
-  archived: z.nullable(z.boolean()).optional(),
-  deleted: z.nullable(z.boolean()).optional(),
-  showAs: z.nullable(ShowAs$outboundSchema).optional(),
-  done: z.nullable(z.boolean()).optional(),
-  startDatetime: z.nullable(z.string()).optional(),
-  endDatetime: z.nullable(z.string()).optional(),
-  durationMinutes: z.nullable(z.number().int()).optional(),
-  activityDate: z.nullable(z.string()).optional(),
-  endDate: z.nullable(z.string()).optional(),
-  recurrent: z.boolean().optional(),
-  reminderDatetime: z.nullable(z.string()).optional(),
-  reminderSet: z.nullable(z.boolean()).optional(),
-  videoConferenceUrl: z.nullable(z.string()).optional(),
-  videoConferenceId: z.nullable(z.string()).optional(),
-  customFields: z.array(CustomField$outboundSchema).optional(),
-  attendees: z.array(ActivityAttendee$outboundSchema).optional(),
-  customMappings: z.nullable(z.record(z.any())).optional(),
-  updatedBy: z.nullable(z.string()).optional(),
-  createdBy: z.nullable(z.string()).optional(),
-  updatedAt: z.nullable(z.string()).optional(),
-  createdAt: z.nullable(z.string()).optional(),
-  passThrough: z.array(PassThroughBody$outboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    downstreamId: "downstream_id",
-    activityDatetime: "activity_datetime",
-    durationSeconds: "duration_seconds",
-    userId: "user_id",
-    accountId: "account_id",
-    contactId: "contact_id",
-    companyId: "company_id",
-    opportunityId: "opportunity_id",
-    leadId: "lead_id",
-    ownerId: "owner_id",
-    campaignId: "campaign_id",
-    caseId: "case_id",
-    assetId: "asset_id",
-    contractId: "contract_id",
-    productId: "product_id",
-    solutionId: "solution_id",
-    customObjectId: "custom_object_id",
-    locationAddress: "location_address",
-    allDayEvent: "all_day_event",
-    groupEvent: "group_event",
-    eventSubType: "event_sub_type",
-    groupEventType: "group_event_type",
-    showAs: "show_as",
-    startDatetime: "start_datetime",
-    endDatetime: "end_datetime",
-    durationMinutes: "duration_minutes",
-    activityDate: "activity_date",
-    endDate: "end_date",
-    reminderDatetime: "reminder_datetime",
-    reminderSet: "reminder_set",
-    videoConferenceUrl: "video_conference_url",
-    videoConferenceId: "video_conference_id",
-    customFields: "custom_fields",
-    customMappings: "custom_mappings",
-    updatedBy: "updated_by",
-    createdBy: "created_by",
-    updatedAt: "updated_at",
-    createdAt: "created_at",
-    passThrough: "pass_through",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Activity$ {
-  /** @deprecated use `Activity$inboundSchema` instead. */
-  export const inboundSchema = Activity$inboundSchema;
-  /** @deprecated use `Activity$outboundSchema` instead. */
-  export const outboundSchema = Activity$outboundSchema;
-  /** @deprecated use `Activity$Outbound` instead. */
-  export type Outbound = Activity$Outbound;
-}
-
-export function activityToJSON(activity: Activity): string {
-  return JSON.stringify(Activity$outboundSchema.parse(activity));
-}
-
 export function activityFromJSON(
   jsonString: string,
 ): SafeParseResult<Activity, SDKValidationError> {
@@ -758,93 +556,6 @@ export function activityFromJSON(
     `Failed to parse 'Activity' from JSON`,
   );
 }
-
-/** @internal */
-export const ActivityInput$inboundSchema: z.ZodType<
-  ActivityInput,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  activity_datetime: z.nullable(z.string()).optional(),
-  duration_seconds: z.nullable(z.number().int()).optional(),
-  user_id: z.nullable(z.string()).optional(),
-  account_id: z.nullable(z.string()).optional(),
-  contact_id: z.nullable(z.string()).optional(),
-  company_id: z.nullable(z.string()).optional(),
-  opportunity_id: z.nullable(z.string()).optional(),
-  lead_id: z.nullable(z.string()).optional(),
-  owner_id: z.nullable(z.string()).optional(),
-  campaign_id: z.nullable(z.string()).optional(),
-  case_id: z.nullable(z.string()).optional(),
-  asset_id: z.nullable(z.string()).optional(),
-  contract_id: z.nullable(z.string()).optional(),
-  product_id: z.nullable(z.string()).optional(),
-  solution_id: z.nullable(z.string()).optional(),
-  custom_object_id: z.nullable(z.string()).optional(),
-  type: z.nullable(ActivityType$inboundSchema),
-  title: z.nullable(z.string()).optional(),
-  description: z.nullable(z.string()).optional(),
-  note: z.nullable(z.string()).optional(),
-  location: z.nullable(z.string()).optional(),
-  location_address: Address$inboundSchema.optional(),
-  all_day_event: z.nullable(z.boolean()).optional(),
-  private: z.nullable(z.boolean()).optional(),
-  group_event: z.nullable(z.boolean()).optional(),
-  event_sub_type: z.nullable(z.string()).optional(),
-  group_event_type: z.nullable(z.string()).optional(),
-  child: z.nullable(z.boolean()).optional(),
-  archived: z.nullable(z.boolean()).optional(),
-  deleted: z.nullable(z.boolean()).optional(),
-  show_as: z.nullable(ShowAs$inboundSchema).optional(),
-  done: z.nullable(z.boolean()).optional(),
-  start_datetime: z.nullable(z.string()).optional(),
-  end_datetime: z.nullable(z.string()).optional(),
-  activity_date: z.nullable(z.string()).optional(),
-  end_date: z.nullable(z.string()).optional(),
-  recurrent: z.boolean().optional(),
-  reminder_datetime: z.nullable(z.string()).optional(),
-  reminder_set: z.nullable(z.boolean()).optional(),
-  video_conference_url: z.nullable(z.string()).optional(),
-  video_conference_id: z.nullable(z.string()).optional(),
-  custom_fields: z.array(CustomField$inboundSchema).optional(),
-  attendees: z.array(ActivityAttendeeInput$inboundSchema).optional(),
-  pass_through: z.array(PassThroughBody$inboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "activity_datetime": "activityDatetime",
-    "duration_seconds": "durationSeconds",
-    "user_id": "userId",
-    "account_id": "accountId",
-    "contact_id": "contactId",
-    "company_id": "companyId",
-    "opportunity_id": "opportunityId",
-    "lead_id": "leadId",
-    "owner_id": "ownerId",
-    "campaign_id": "campaignId",
-    "case_id": "caseId",
-    "asset_id": "assetId",
-    "contract_id": "contractId",
-    "product_id": "productId",
-    "solution_id": "solutionId",
-    "custom_object_id": "customObjectId",
-    "location_address": "locationAddress",
-    "all_day_event": "allDayEvent",
-    "group_event": "groupEvent",
-    "event_sub_type": "eventSubType",
-    "group_event_type": "groupEventType",
-    "show_as": "showAs",
-    "start_datetime": "startDatetime",
-    "end_datetime": "endDatetime",
-    "activity_date": "activityDate",
-    "end_date": "endDate",
-    "reminder_datetime": "reminderDatetime",
-    "reminder_set": "reminderSet",
-    "video_conference_url": "videoConferenceUrl",
-    "video_conference_id": "videoConferenceId",
-    "custom_fields": "customFields",
-    "pass_through": "passThrough",
-  });
-});
 
 /** @internal */
 export type ActivityInput$Outbound = {
@@ -981,29 +692,6 @@ export const ActivityInput$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ActivityInput$ {
-  /** @deprecated use `ActivityInput$inboundSchema` instead. */
-  export const inboundSchema = ActivityInput$inboundSchema;
-  /** @deprecated use `ActivityInput$outboundSchema` instead. */
-  export const outboundSchema = ActivityInput$outboundSchema;
-  /** @deprecated use `ActivityInput$Outbound` instead. */
-  export type Outbound = ActivityInput$Outbound;
-}
-
 export function activityInputToJSON(activityInput: ActivityInput): string {
   return JSON.stringify(ActivityInput$outboundSchema.parse(activityInput));
-}
-
-export function activityInputFromJSON(
-  jsonString: string,
-): SafeParseResult<ActivityInput, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => ActivityInput$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ActivityInput' from JSON`,
-  );
 }

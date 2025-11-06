@@ -74,59 +74,6 @@ export const OddWeeks$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type OddWeeks$Outbound = {
-  hours_monday?: number | undefined;
-  hours_tuesday?: number | undefined;
-  hours_wednesday?: number | undefined;
-  hours_thursday?: number | undefined;
-  hours_friday?: number | undefined;
-  hours_saturday?: number | undefined;
-  hours_sunday?: number | undefined;
-};
-
-/** @internal */
-export const OddWeeks$outboundSchema: z.ZodType<
-  OddWeeks$Outbound,
-  z.ZodTypeDef,
-  OddWeeks
-> = z.object({
-  hoursMonday: z.number().optional(),
-  hoursTuesday: z.number().optional(),
-  hoursWednesday: z.number().optional(),
-  hoursThursday: z.number().optional(),
-  hoursFriday: z.number().optional(),
-  hoursSaturday: z.number().optional(),
-  hoursSunday: z.number().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    hoursMonday: "hours_monday",
-    hoursTuesday: "hours_tuesday",
-    hoursWednesday: "hours_wednesday",
-    hoursThursday: "hours_thursday",
-    hoursFriday: "hours_friday",
-    hoursSaturday: "hours_saturday",
-    hoursSunday: "hours_sunday",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace OddWeeks$ {
-  /** @deprecated use `OddWeeks$inboundSchema` instead. */
-  export const inboundSchema = OddWeeks$inboundSchema;
-  /** @deprecated use `OddWeeks$outboundSchema` instead. */
-  export const outboundSchema = OddWeeks$outboundSchema;
-  /** @deprecated use `OddWeeks$Outbound` instead. */
-  export type Outbound = OddWeeks$Outbound;
-}
-
-export function oddWeeksToJSON(oddWeeks: OddWeeks): string {
-  return JSON.stringify(OddWeeks$outboundSchema.parse(oddWeeks));
-}
-
 export function oddWeeksFromJSON(
   jsonString: string,
 ): SafeParseResult<OddWeeks, SDKValidationError> {
@@ -162,59 +109,6 @@ export const EvenWeeks$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type EvenWeeks$Outbound = {
-  hours_monday?: number | undefined;
-  hours_tuesday?: number | undefined;
-  hours_wednesday?: number | undefined;
-  hours_thursday?: number | undefined;
-  hours_friday?: number | undefined;
-  hours_saturday?: number | undefined;
-  hours_sunday?: number | undefined;
-};
-
-/** @internal */
-export const EvenWeeks$outboundSchema: z.ZodType<
-  EvenWeeks$Outbound,
-  z.ZodTypeDef,
-  EvenWeeks
-> = z.object({
-  hoursMonday: z.number().optional(),
-  hoursTuesday: z.number().optional(),
-  hoursWednesday: z.number().optional(),
-  hoursThursday: z.number().optional(),
-  hoursFriday: z.number().optional(),
-  hoursSaturday: z.number().optional(),
-  hoursSunday: z.number().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    hoursMonday: "hours_monday",
-    hoursTuesday: "hours_tuesday",
-    hoursWednesday: "hours_wednesday",
-    hoursThursday: "hours_thursday",
-    hoursFriday: "hours_friday",
-    hoursSaturday: "hours_saturday",
-    hoursSunday: "hours_sunday",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace EvenWeeks$ {
-  /** @deprecated use `EvenWeeks$inboundSchema` instead. */
-  export const inboundSchema = EvenWeeks$inboundSchema;
-  /** @deprecated use `EvenWeeks$outboundSchema` instead. */
-  export const outboundSchema = EvenWeeks$outboundSchema;
-  /** @deprecated use `EvenWeeks$Outbound` instead. */
-  export type Outbound = EvenWeeks$Outbound;
-}
-
-export function evenWeeksToJSON(evenWeeks: EvenWeeks): string {
-  return JSON.stringify(EvenWeeks$outboundSchema.parse(evenWeeks));
-}
-
 export function evenWeeksFromJSON(
   jsonString: string,
 ): SafeParseResult<EvenWeeks, SDKValidationError> {
@@ -239,44 +133,6 @@ export const WorkPattern$inboundSchema: z.ZodType<
     "even_weeks": "evenWeeks",
   });
 });
-
-/** @internal */
-export type WorkPattern$Outbound = {
-  odd_weeks?: OddWeeks$Outbound | undefined;
-  even_weeks?: EvenWeeks$Outbound | undefined;
-};
-
-/** @internal */
-export const WorkPattern$outboundSchema: z.ZodType<
-  WorkPattern$Outbound,
-  z.ZodTypeDef,
-  WorkPattern
-> = z.object({
-  oddWeeks: z.lazy(() => OddWeeks$outboundSchema).optional(),
-  evenWeeks: z.lazy(() => EvenWeeks$outboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    oddWeeks: "odd_weeks",
-    evenWeeks: "even_weeks",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace WorkPattern$ {
-  /** @deprecated use `WorkPattern$inboundSchema` instead. */
-  export const inboundSchema = WorkPattern$inboundSchema;
-  /** @deprecated use `WorkPattern$outboundSchema` instead. */
-  export const outboundSchema = WorkPattern$outboundSchema;
-  /** @deprecated use `WorkPattern$Outbound` instead. */
-  export type Outbound = WorkPattern$Outbound;
-}
-
-export function workPatternToJSON(workPattern: WorkPattern): string {
-  return JSON.stringify(WorkPattern$outboundSchema.parse(workPattern));
-}
 
 export function workPatternFromJSON(
   jsonString: string,
@@ -305,49 +161,6 @@ export const Schedule$inboundSchema: z.ZodType<
     "work_pattern": "workPattern",
   });
 });
-
-/** @internal */
-export type Schedule$Outbound = {
-  id: string;
-  start_date: string;
-  end_date: string;
-  work_pattern: WorkPattern$Outbound;
-};
-
-/** @internal */
-export const Schedule$outboundSchema: z.ZodType<
-  Schedule$Outbound,
-  z.ZodTypeDef,
-  Schedule
-> = z.object({
-  id: z.string(),
-  startDate: z.string(),
-  endDate: z.string(),
-  workPattern: z.lazy(() => WorkPattern$outboundSchema),
-}).transform((v) => {
-  return remap$(v, {
-    startDate: "start_date",
-    endDate: "end_date",
-    workPattern: "work_pattern",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Schedule$ {
-  /** @deprecated use `Schedule$inboundSchema` instead. */
-  export const inboundSchema = Schedule$inboundSchema;
-  /** @deprecated use `Schedule$outboundSchema` instead. */
-  export const outboundSchema = Schedule$outboundSchema;
-  /** @deprecated use `Schedule$Outbound` instead. */
-  export type Outbound = Schedule$Outbound;
-}
-
-export function scheduleToJSON(schedule: Schedule): string {
-  return JSON.stringify(Schedule$outboundSchema.parse(schedule));
-}
 
 export function scheduleFromJSON(
   jsonString: string,

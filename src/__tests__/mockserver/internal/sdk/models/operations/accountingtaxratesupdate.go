@@ -38,8 +38,8 @@ type AccountingTaxRatesUpdateRequest struct {
 	// Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
 	ServiceID *string `header:"style=simple,explode=false,name=x-apideck-service-id"`
 	// Include raw response. Mostly used for debugging purposes
-	Raw     *bool                   `default:"false" queryParam:"style=form,explode=true,name=raw"`
-	TaxRate components.TaxRateInput `request:"mediaType=application/json"`
+	Raw  *bool                   `default:"false" queryParam:"style=form,explode=true,name=raw"`
+	Body components.TaxRateInput `request:"mediaType=application/json"`
 }
 
 func (a AccountingTaxRatesUpdateRequest) MarshalJSON() ([]byte, error) {
@@ -47,7 +47,7 @@ func (a AccountingTaxRatesUpdateRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (a *AccountingTaxRatesUpdateRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"id", "TaxRate"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"id", "body"}); err != nil {
 		return err
 	}
 	return nil
@@ -88,11 +88,11 @@ func (o *AccountingTaxRatesUpdateRequest) GetRaw() *bool {
 	return o.Raw
 }
 
-func (o *AccountingTaxRatesUpdateRequest) GetTaxRate() components.TaxRateInput {
+func (o *AccountingTaxRatesUpdateRequest) GetBody() components.TaxRateInput {
 	if o == nil {
 		return components.TaxRateInput{}
 	}
-	return o.TaxRate
+	return o.Body
 }
 
 type AccountingTaxRatesUpdateResponse struct {

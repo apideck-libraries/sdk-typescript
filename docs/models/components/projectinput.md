@@ -43,6 +43,7 @@ let value: ProjectInput = {
   phase: "execution",
   taxRate: {
     id: "123456",
+    code: "N-T",
     rate: 10,
   },
   trackingCategories: [

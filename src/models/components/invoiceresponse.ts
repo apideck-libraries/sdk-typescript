@@ -33,45 +33,6 @@ export const InvoiceResponse$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type InvoiceResponse$Outbound = {
-  id?: string | undefined;
-  downstream_id?: string | null | undefined;
-};
-
-/** @internal */
-export const InvoiceResponse$outboundSchema: z.ZodType<
-  InvoiceResponse$Outbound,
-  z.ZodTypeDef,
-  InvoiceResponse
-> = z.object({
-  id: z.string().optional(),
-  downstreamId: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    downstreamId: "downstream_id",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace InvoiceResponse$ {
-  /** @deprecated use `InvoiceResponse$inboundSchema` instead. */
-  export const inboundSchema = InvoiceResponse$inboundSchema;
-  /** @deprecated use `InvoiceResponse$outboundSchema` instead. */
-  export const outboundSchema = InvoiceResponse$outboundSchema;
-  /** @deprecated use `InvoiceResponse$Outbound` instead. */
-  export type Outbound = InvoiceResponse$Outbound;
-}
-
-export function invoiceResponseToJSON(
-  invoiceResponse: InvoiceResponse,
-): string {
-  return JSON.stringify(InvoiceResponse$outboundSchema.parse(invoiceResponse));
-}
-
 export function invoiceResponseFromJSON(
   jsonString: string,
 ): SafeParseResult<InvoiceResponse, SDKValidationError> {

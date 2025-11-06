@@ -195,7 +195,7 @@ type JournalEntryLineItemInput struct {
 	TrackingCategory *DeprecatedLinkedTrackingCategory `json:"tracking_category,omitempty"`
 	// A list of linked tracking categories.
 	TrackingCategories []*LinkedTrackingCategory `json:"tracking_categories,omitempty"`
-	LedgerAccount      *LinkedLedgerAccountInput `json:"ledger_account"`
+	LedgerAccount      *LinkedLedgerAccount      `json:"ledger_account"`
 	// The customer this entity is linked to.
 	Customer *LinkedCustomerInput `json:"customer,omitempty"`
 	// The supplier this entity is linked to.
@@ -266,7 +266,7 @@ func (o *JournalEntryLineItemInput) GetTrackingCategories() []*LinkedTrackingCat
 	return o.TrackingCategories
 }
 
-func (o *JournalEntryLineItemInput) GetLedgerAccount() *LinkedLedgerAccountInput {
+func (o *JournalEntryLineItemInput) GetLedgerAccount() *LinkedLedgerAccount {
 	if o == nil {
 		return nil
 	}

@@ -425,7 +425,7 @@ type InvoiceLineItemInput struct {
 	TaxRate  *LinkedTaxRateInput `json:"tax_rate,omitempty"`
 	// A list of linked tracking categories.
 	TrackingCategories []*LinkedTrackingCategory `json:"tracking_categories,omitempty"`
-	LedgerAccount      *LinkedLedgerAccountInput `json:"ledger_account,omitempty"`
+	LedgerAccount      *LinkedLedgerAccount      `json:"ledger_account,omitempty"`
 	CustomFields       []CustomField             `json:"custom_fields,omitempty"`
 	// A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
 	RowVersion *string `json:"row_version,omitempty"`
@@ -638,7 +638,7 @@ func (o *InvoiceLineItemInput) GetTrackingCategories() []*LinkedTrackingCategory
 	return o.TrackingCategories
 }
 
-func (o *InvoiceLineItemInput) GetLedgerAccount() *LinkedLedgerAccountInput {
+func (o *InvoiceLineItemInput) GetLedgerAccount() *LinkedLedgerAccount {
 	if o == nil {
 		return nil
 	}

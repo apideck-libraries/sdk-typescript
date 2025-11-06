@@ -46,8 +46,8 @@ type FileStorageFilesSearchRequest struct {
 	// Include raw response. Mostly used for debugging purposes
 	Raw *bool `default:"false" queryParam:"style=form,explode=true,name=raw"`
 	// Apply filters
-	Filter      *components.FilesFilter `queryParam:"style=deepObject,explode=true,name=filter"`
-	FilesSearch components.FilesSearch  `request:"mediaType=application/json"`
+	Filter *components.FilesFilter `queryParam:"style=deepObject,explode=true,name=filter"`
+	Body   components.FilesSearch  `request:"mediaType=application/json"`
 }
 
 func (f FileStorageFilesSearchRequest) MarshalJSON() ([]byte, error) {
@@ -55,7 +55,7 @@ func (f FileStorageFilesSearchRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (f *FileStorageFilesSearchRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &f, "", false, []string{"FilesSearch"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &f, "", false, []string{"body"}); err != nil {
 		return err
 	}
 	return nil
@@ -124,11 +124,11 @@ func (o *FileStorageFilesSearchRequest) GetFilter() *components.FilesFilter {
 	return o.Filter
 }
 
-func (o *FileStorageFilesSearchRequest) GetFilesSearch() components.FilesSearch {
+func (o *FileStorageFilesSearchRequest) GetBody() components.FilesSearch {
 	if o == nil {
 		return components.FilesSearch{}
 	}
-	return o.FilesSearch
+	return o.Body
 }
 
 type FileStorageFilesSearchResponse struct {

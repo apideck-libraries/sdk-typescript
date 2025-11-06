@@ -64,80 +64,6 @@ export type AccountingSubsidiariesAllResponse = {
 };
 
 /** @internal */
-export const AccountingSubsidiariesAllGlobals$inboundSchema: z.ZodType<
-  AccountingSubsidiariesAllGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/** @internal */
-export type AccountingSubsidiariesAllGlobals$Outbound = {
-  consumerId?: string | undefined;
-  appId?: string | undefined;
-};
-
-/** @internal */
-export const AccountingSubsidiariesAllGlobals$outboundSchema: z.ZodType<
-  AccountingSubsidiariesAllGlobals$Outbound,
-  z.ZodTypeDef,
-  AccountingSubsidiariesAllGlobals
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AccountingSubsidiariesAllGlobals$ {
-  /** @deprecated use `AccountingSubsidiariesAllGlobals$inboundSchema` instead. */
-  export const inboundSchema = AccountingSubsidiariesAllGlobals$inboundSchema;
-  /** @deprecated use `AccountingSubsidiariesAllGlobals$outboundSchema` instead. */
-  export const outboundSchema = AccountingSubsidiariesAllGlobals$outboundSchema;
-  /** @deprecated use `AccountingSubsidiariesAllGlobals$Outbound` instead. */
-  export type Outbound = AccountingSubsidiariesAllGlobals$Outbound;
-}
-
-export function accountingSubsidiariesAllGlobalsToJSON(
-  accountingSubsidiariesAllGlobals: AccountingSubsidiariesAllGlobals,
-): string {
-  return JSON.stringify(
-    AccountingSubsidiariesAllGlobals$outboundSchema.parse(
-      accountingSubsidiariesAllGlobals,
-    ),
-  );
-}
-
-export function accountingSubsidiariesAllGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<AccountingSubsidiariesAllGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => AccountingSubsidiariesAllGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'AccountingSubsidiariesAllGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const AccountingSubsidiariesAllRequest$inboundSchema: z.ZodType<
-  AccountingSubsidiariesAllRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  raw: z.boolean().default(false),
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  cursor: z.nullable(z.string()).optional(),
-  limit: z.number().int().default(20),
-  fields: z.nullable(z.string()).optional(),
-});
-
-/** @internal */
 export type AccountingSubsidiariesAllRequest$Outbound = {
   raw: boolean;
   consumerId?: string | undefined;
@@ -163,19 +89,6 @@ export const AccountingSubsidiariesAllRequest$outboundSchema: z.ZodType<
   fields: z.nullable(z.string()).optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AccountingSubsidiariesAllRequest$ {
-  /** @deprecated use `AccountingSubsidiariesAllRequest$inboundSchema` instead. */
-  export const inboundSchema = AccountingSubsidiariesAllRequest$inboundSchema;
-  /** @deprecated use `AccountingSubsidiariesAllRequest$outboundSchema` instead. */
-  export const outboundSchema = AccountingSubsidiariesAllRequest$outboundSchema;
-  /** @deprecated use `AccountingSubsidiariesAllRequest$Outbound` instead. */
-  export type Outbound = AccountingSubsidiariesAllRequest$Outbound;
-}
-
 export function accountingSubsidiariesAllRequestToJSON(
   accountingSubsidiariesAllRequest: AccountingSubsidiariesAllRequest,
 ): string {
@@ -183,16 +96,6 @@ export function accountingSubsidiariesAllRequestToJSON(
     AccountingSubsidiariesAllRequest$outboundSchema.parse(
       accountingSubsidiariesAllRequest,
     ),
-  );
-}
-
-export function accountingSubsidiariesAllRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<AccountingSubsidiariesAllRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => AccountingSubsidiariesAllRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'AccountingSubsidiariesAllRequest' from JSON`,
   );
 }
 
@@ -214,60 +117,6 @@ export const AccountingSubsidiariesAllResponse$inboundSchema: z.ZodType<
     "UnexpectedErrorResponse": "unexpectedErrorResponse",
   });
 });
-
-/** @internal */
-export type AccountingSubsidiariesAllResponse$Outbound = {
-  HttpMeta: components.HTTPMetadata$Outbound;
-  GetSubsidiariesResponse?:
-    | components.GetSubsidiariesResponse$Outbound
-    | undefined;
-  UnexpectedErrorResponse?:
-    | components.UnexpectedErrorResponse$Outbound
-    | undefined;
-};
-
-/** @internal */
-export const AccountingSubsidiariesAllResponse$outboundSchema: z.ZodType<
-  AccountingSubsidiariesAllResponse$Outbound,
-  z.ZodTypeDef,
-  AccountingSubsidiariesAllResponse
-> = z.object({
-  httpMeta: components.HTTPMetadata$outboundSchema,
-  getSubsidiariesResponse: components.GetSubsidiariesResponse$outboundSchema
-    .optional(),
-  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    httpMeta: "HttpMeta",
-    getSubsidiariesResponse: "GetSubsidiariesResponse",
-    unexpectedErrorResponse: "UnexpectedErrorResponse",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AccountingSubsidiariesAllResponse$ {
-  /** @deprecated use `AccountingSubsidiariesAllResponse$inboundSchema` instead. */
-  export const inboundSchema = AccountingSubsidiariesAllResponse$inboundSchema;
-  /** @deprecated use `AccountingSubsidiariesAllResponse$outboundSchema` instead. */
-  export const outboundSchema =
-    AccountingSubsidiariesAllResponse$outboundSchema;
-  /** @deprecated use `AccountingSubsidiariesAllResponse$Outbound` instead. */
-  export type Outbound = AccountingSubsidiariesAllResponse$Outbound;
-}
-
-export function accountingSubsidiariesAllResponseToJSON(
-  accountingSubsidiariesAllResponse: AccountingSubsidiariesAllResponse,
-): string {
-  return JSON.stringify(
-    AccountingSubsidiariesAllResponse$outboundSchema.parse(
-      accountingSubsidiariesAllResponse,
-    ),
-  );
-}
 
 export function accountingSubsidiariesAllResponseFromJSON(
   jsonString: string,

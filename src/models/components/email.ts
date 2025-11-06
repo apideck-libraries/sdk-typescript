@@ -42,21 +42,9 @@ export type Email = {
 /** @internal */
 export const EmailType$inboundSchema: z.ZodNativeEnum<typeof EmailType> = z
   .nativeEnum(EmailType);
-
 /** @internal */
 export const EmailType$outboundSchema: z.ZodNativeEnum<typeof EmailType> =
   EmailType$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace EmailType$ {
-  /** @deprecated use `EmailType$inboundSchema` instead. */
-  export const inboundSchema = EmailType$inboundSchema;
-  /** @deprecated use `EmailType$outboundSchema` instead. */
-  export const outboundSchema = EmailType$outboundSchema;
-}
 
 /** @internal */
 export const Email$inboundSchema: z.ZodType<Email, z.ZodTypeDef, unknown> = z
@@ -65,7 +53,6 @@ export const Email$inboundSchema: z.ZodType<Email, z.ZodTypeDef, unknown> = z
     email: z.nullable(z.string()),
     type: z.nullable(EmailType$inboundSchema).optional(),
   });
-
 /** @internal */
 export type Email$Outbound = {
   id?: string | null | undefined;
@@ -84,23 +71,9 @@ export const Email$outboundSchema: z.ZodType<
   type: z.nullable(EmailType$outboundSchema).optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Email$ {
-  /** @deprecated use `Email$inboundSchema` instead. */
-  export const inboundSchema = Email$inboundSchema;
-  /** @deprecated use `Email$outboundSchema` instead. */
-  export const outboundSchema = Email$outboundSchema;
-  /** @deprecated use `Email$Outbound` instead. */
-  export type Outbound = Email$Outbound;
-}
-
 export function emailToJSON(email: Email): string {
   return JSON.stringify(Email$outboundSchema.parse(email));
 }
-
 export function emailFromJSON(
   jsonString: string,
 ): SafeParseResult<Email, SDKValidationError> {

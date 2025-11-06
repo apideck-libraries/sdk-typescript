@@ -36,8 +36,8 @@ type AccountingExpensesAddRequest struct {
 	// The ID of your Unify application
 	AppID *string `header:"style=simple,explode=false,name=x-apideck-app-id"`
 	// Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
-	ServiceID *string                      `header:"style=simple,explode=false,name=x-apideck-service-id"`
-	Expense   components.ExpenseInputUnion `request:"mediaType=application/json"`
+	ServiceID *string                 `header:"style=simple,explode=false,name=x-apideck-service-id"`
+	Body      components.ExpenseInput `request:"mediaType=application/json"`
 }
 
 func (a AccountingExpensesAddRequest) MarshalJSON() ([]byte, error) {
@@ -45,7 +45,7 @@ func (a AccountingExpensesAddRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (a *AccountingExpensesAddRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"Expense"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"body"}); err != nil {
 		return err
 	}
 	return nil
@@ -79,11 +79,11 @@ func (o *AccountingExpensesAddRequest) GetServiceID() *string {
 	return o.ServiceID
 }
 
-func (o *AccountingExpensesAddRequest) GetExpense() components.ExpenseInputUnion {
+func (o *AccountingExpensesAddRequest) GetBody() components.ExpenseInput {
 	if o == nil {
-		return components.ExpenseInputUnion{}
+		return components.ExpenseInput{}
 	}
-	return o.Expense
+	return o.Body
 }
 
 type AccountingExpensesAddResponse struct {

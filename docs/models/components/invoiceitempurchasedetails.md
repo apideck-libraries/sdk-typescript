@@ -11,6 +11,7 @@ let value: InvoiceItemPurchaseDetails = {
   taxInclusive: true,
   taxRate: {
     id: "123456",
+    code: "N-T",
     rate: 10,
   },
 };

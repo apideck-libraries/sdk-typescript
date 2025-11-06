@@ -60,79 +60,6 @@ export type AccountingCreditNotesOneResponse = {
 };
 
 /** @internal */
-export const AccountingCreditNotesOneGlobals$inboundSchema: z.ZodType<
-  AccountingCreditNotesOneGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/** @internal */
-export type AccountingCreditNotesOneGlobals$Outbound = {
-  consumerId?: string | undefined;
-  appId?: string | undefined;
-};
-
-/** @internal */
-export const AccountingCreditNotesOneGlobals$outboundSchema: z.ZodType<
-  AccountingCreditNotesOneGlobals$Outbound,
-  z.ZodTypeDef,
-  AccountingCreditNotesOneGlobals
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AccountingCreditNotesOneGlobals$ {
-  /** @deprecated use `AccountingCreditNotesOneGlobals$inboundSchema` instead. */
-  export const inboundSchema = AccountingCreditNotesOneGlobals$inboundSchema;
-  /** @deprecated use `AccountingCreditNotesOneGlobals$outboundSchema` instead. */
-  export const outboundSchema = AccountingCreditNotesOneGlobals$outboundSchema;
-  /** @deprecated use `AccountingCreditNotesOneGlobals$Outbound` instead. */
-  export type Outbound = AccountingCreditNotesOneGlobals$Outbound;
-}
-
-export function accountingCreditNotesOneGlobalsToJSON(
-  accountingCreditNotesOneGlobals: AccountingCreditNotesOneGlobals,
-): string {
-  return JSON.stringify(
-    AccountingCreditNotesOneGlobals$outboundSchema.parse(
-      accountingCreditNotesOneGlobals,
-    ),
-  );
-}
-
-export function accountingCreditNotesOneGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<AccountingCreditNotesOneGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => AccountingCreditNotesOneGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'AccountingCreditNotesOneGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const AccountingCreditNotesOneRequest$inboundSchema: z.ZodType<
-  AccountingCreditNotesOneRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  id: z.string(),
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  raw: z.boolean().default(false),
-  fields: z.nullable(z.string()).optional(),
-});
-
-/** @internal */
 export type AccountingCreditNotesOneRequest$Outbound = {
   id: string;
   consumerId?: string | undefined;
@@ -156,19 +83,6 @@ export const AccountingCreditNotesOneRequest$outboundSchema: z.ZodType<
   fields: z.nullable(z.string()).optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AccountingCreditNotesOneRequest$ {
-  /** @deprecated use `AccountingCreditNotesOneRequest$inboundSchema` instead. */
-  export const inboundSchema = AccountingCreditNotesOneRequest$inboundSchema;
-  /** @deprecated use `AccountingCreditNotesOneRequest$outboundSchema` instead. */
-  export const outboundSchema = AccountingCreditNotesOneRequest$outboundSchema;
-  /** @deprecated use `AccountingCreditNotesOneRequest$Outbound` instead. */
-  export type Outbound = AccountingCreditNotesOneRequest$Outbound;
-}
-
 export function accountingCreditNotesOneRequestToJSON(
   accountingCreditNotesOneRequest: AccountingCreditNotesOneRequest,
 ): string {
@@ -176,16 +90,6 @@ export function accountingCreditNotesOneRequestToJSON(
     AccountingCreditNotesOneRequest$outboundSchema.parse(
       accountingCreditNotesOneRequest,
     ),
-  );
-}
-
-export function accountingCreditNotesOneRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<AccountingCreditNotesOneRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => AccountingCreditNotesOneRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'AccountingCreditNotesOneRequest' from JSON`,
   );
 }
 
@@ -207,57 +111,6 @@ export const AccountingCreditNotesOneResponse$inboundSchema: z.ZodType<
     "UnexpectedErrorResponse": "unexpectedErrorResponse",
   });
 });
-
-/** @internal */
-export type AccountingCreditNotesOneResponse$Outbound = {
-  HttpMeta: components.HTTPMetadata$Outbound;
-  GetCreditNoteResponse?: components.GetCreditNoteResponse$Outbound | undefined;
-  UnexpectedErrorResponse?:
-    | components.UnexpectedErrorResponse$Outbound
-    | undefined;
-};
-
-/** @internal */
-export const AccountingCreditNotesOneResponse$outboundSchema: z.ZodType<
-  AccountingCreditNotesOneResponse$Outbound,
-  z.ZodTypeDef,
-  AccountingCreditNotesOneResponse
-> = z.object({
-  httpMeta: components.HTTPMetadata$outboundSchema,
-  getCreditNoteResponse: components.GetCreditNoteResponse$outboundSchema
-    .optional(),
-  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    httpMeta: "HttpMeta",
-    getCreditNoteResponse: "GetCreditNoteResponse",
-    unexpectedErrorResponse: "UnexpectedErrorResponse",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AccountingCreditNotesOneResponse$ {
-  /** @deprecated use `AccountingCreditNotesOneResponse$inboundSchema` instead. */
-  export const inboundSchema = AccountingCreditNotesOneResponse$inboundSchema;
-  /** @deprecated use `AccountingCreditNotesOneResponse$outboundSchema` instead. */
-  export const outboundSchema = AccountingCreditNotesOneResponse$outboundSchema;
-  /** @deprecated use `AccountingCreditNotesOneResponse$Outbound` instead. */
-  export type Outbound = AccountingCreditNotesOneResponse$Outbound;
-}
-
-export function accountingCreditNotesOneResponseToJSON(
-  accountingCreditNotesOneResponse: AccountingCreditNotesOneResponse,
-): string {
-  return JSON.stringify(
-    AccountingCreditNotesOneResponse$outboundSchema.parse(
-      accountingCreditNotesOneResponse,
-    ),
-  );
-}
 
 export function accountingCreditNotesOneResponseFromJSON(
   jsonString: string,

@@ -4,12 +4,8 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   PassThroughBody,
-  PassThroughBody$inboundSchema,
   PassThroughBody$Outbound,
   PassThroughBody$outboundSchema,
 } from "./passthroughbody.js";
@@ -24,20 +20,6 @@ export type CollectionTicketCommentInput = {
    */
   passThrough?: Array<PassThroughBody> | undefined;
 };
-
-/** @internal */
-export const CollectionTicketCommentInput$inboundSchema: z.ZodType<
-  CollectionTicketCommentInput,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  body: z.nullable(z.string()).optional(),
-  pass_through: z.array(PassThroughBody$inboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "pass_through": "passThrough",
-  });
-});
 
 /** @internal */
 export type CollectionTicketCommentInput$Outbound = {
@@ -59,19 +41,6 @@ export const CollectionTicketCommentInput$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CollectionTicketCommentInput$ {
-  /** @deprecated use `CollectionTicketCommentInput$inboundSchema` instead. */
-  export const inboundSchema = CollectionTicketCommentInput$inboundSchema;
-  /** @deprecated use `CollectionTicketCommentInput$outboundSchema` instead. */
-  export const outboundSchema = CollectionTicketCommentInput$outboundSchema;
-  /** @deprecated use `CollectionTicketCommentInput$Outbound` instead. */
-  export type Outbound = CollectionTicketCommentInput$Outbound;
-}
-
 export function collectionTicketCommentInputToJSON(
   collectionTicketCommentInput: CollectionTicketCommentInput,
 ): string {
@@ -79,15 +48,5 @@ export function collectionTicketCommentInputToJSON(
     CollectionTicketCommentInput$outboundSchema.parse(
       collectionTicketCommentInput,
     ),
-  );
-}
-
-export function collectionTicketCommentInputFromJSON(
-  jsonString: string,
-): SafeParseResult<CollectionTicketCommentInput, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => CollectionTicketCommentInput$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CollectionTicketCommentInput' from JSON`,
   );
 }

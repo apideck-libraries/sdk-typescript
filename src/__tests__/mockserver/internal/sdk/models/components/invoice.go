@@ -658,10 +658,10 @@ type InvoiceInput struct {
 	// language code according to ISO 639-1. For the United States - EN
 	Language *string `json:"language,omitempty"`
 	// Indicates if accounting by row is used (true) or not (false). Accounting by row means that a separate ledger transaction is created for each row.
-	AccountingByRow *bool                     `json:"accounting_by_row,omitempty"`
-	BankAccount     *BankAccount              `json:"bank_account,omitempty"`
-	LedgerAccount   *LinkedLedgerAccountInput `json:"ledger_account,omitempty"`
-	CustomFields    []CustomField             `json:"custom_fields,omitempty"`
+	AccountingByRow *bool                `json:"accounting_by_row,omitempty"`
+	BankAccount     *BankAccount         `json:"bank_account,omitempty"`
+	LedgerAccount   *LinkedLedgerAccount `json:"ledger_account,omitempty"`
+	CustomFields    []CustomField        `json:"custom_fields,omitempty"`
 	// A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
 	RowVersion *string `json:"row_version,omitempty"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
@@ -945,7 +945,7 @@ func (o *InvoiceInput) GetBankAccount() *BankAccount {
 	return o.BankAccount
 }
 
-func (o *InvoiceInput) GetLedgerAccount() *LinkedLedgerAccountInput {
+func (o *InvoiceInput) GetLedgerAccount() *LinkedLedgerAccount {
 	if o == nil {
 		return nil
 	}

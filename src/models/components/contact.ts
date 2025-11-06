@@ -339,42 +339,18 @@ export type ContactInput = {
 /** @internal */
 export const ContactType$inboundSchema: z.ZodNativeEnum<typeof ContactType> = z
   .nativeEnum(ContactType);
-
 /** @internal */
 export const ContactType$outboundSchema: z.ZodNativeEnum<typeof ContactType> =
   ContactType$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ContactType$ {
-  /** @deprecated use `ContactType$inboundSchema` instead. */
-  export const inboundSchema = ContactType$inboundSchema;
-  /** @deprecated use `ContactType$outboundSchema` instead. */
-  export const outboundSchema = ContactType$outboundSchema;
-}
 
 /** @internal */
 export const ContactGender$inboundSchema: z.ZodNativeEnum<
   typeof ContactGender
 > = z.nativeEnum(ContactGender);
-
 /** @internal */
 export const ContactGender$outboundSchema: z.ZodNativeEnum<
   typeof ContactGender
 > = ContactGender$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ContactGender$ {
-  /** @deprecated use `ContactGender$inboundSchema` instead. */
-  export const inboundSchema = ContactGender$inboundSchema;
-  /** @deprecated use `ContactGender$outboundSchema` instead. */
-  export const outboundSchema = ContactGender$outboundSchema;
-}
 
 /** @internal */
 export const Contact$inboundSchema: z.ZodType<Contact, z.ZodTypeDef, unknown> =
@@ -457,143 +433,6 @@ export const Contact$inboundSchema: z.ZodType<Contact, z.ZodTypeDef, unknown> =
     });
   });
 
-/** @internal */
-export type Contact$Outbound = {
-  id?: string | undefined;
-  name?: string | null | undefined;
-  owner_id?: string | null | undefined;
-  type?: string | null | undefined;
-  company_id?: string | null | undefined;
-  company_name?: string | null | undefined;
-  lead_id?: string | null | undefined;
-  first_name?: string | null | undefined;
-  middle_name?: string | null | undefined;
-  last_name?: string | null | undefined;
-  prefix?: string | null | undefined;
-  suffix?: string | null | undefined;
-  title?: string | null | undefined;
-  department?: string | null | undefined;
-  language?: string | null | undefined;
-  gender?: string | null | undefined;
-  birthday?: string | null | undefined;
-  image?: string | null | undefined;
-  photo_url?: string | null | undefined;
-  lead_source?: string | null | undefined;
-  fax?: string | null | undefined;
-  description?: string | null | undefined;
-  current_balance?: number | null | undefined;
-  status?: string | null | undefined;
-  active?: boolean | null | undefined;
-  websites?: Array<Website$Outbound> | undefined;
-  addresses?: Array<Address$Outbound> | undefined;
-  social_links?: Array<SocialLink$Outbound> | undefined;
-  phone_numbers?: Array<PhoneNumber$Outbound> | undefined;
-  emails?: Array<Email$Outbound> | undefined;
-  email_domain?: string | null | undefined;
-  custom_fields?: Array<CustomField$Outbound> | null | undefined;
-  tags?: Array<string> | null | undefined;
-  first_call_at?: string | null | undefined;
-  first_email_at?: string | null | undefined;
-  last_activity_at?: string | null | undefined;
-  custom_mappings?: { [k: string]: any } | null | undefined;
-  updated_at?: string | null | undefined;
-  created_at?: string | null | undefined;
-  opportunity_ids?: Array<string> | undefined;
-  pass_through?: Array<PassThroughBody$Outbound> | undefined;
-};
-
-/** @internal */
-export const Contact$outboundSchema: z.ZodType<
-  Contact$Outbound,
-  z.ZodTypeDef,
-  Contact
-> = z.object({
-  id: z.string().optional(),
-  name: z.nullable(z.string()).optional(),
-  ownerId: z.nullable(z.string()).optional(),
-  type: z.nullable(ContactType$outboundSchema).optional(),
-  companyId: z.nullable(z.string()).optional(),
-  companyName: z.nullable(z.string()).optional(),
-  leadId: z.nullable(z.string()).optional(),
-  firstName: z.nullable(z.string()).optional(),
-  middleName: z.nullable(z.string()).optional(),
-  lastName: z.nullable(z.string()).optional(),
-  prefix: z.nullable(z.string()).optional(),
-  suffix: z.nullable(z.string()).optional(),
-  title: z.nullable(z.string()).optional(),
-  department: z.nullable(z.string()).optional(),
-  language: z.nullable(z.string()).optional(),
-  gender: z.nullable(ContactGender$outboundSchema).optional(),
-  birthday: z.nullable(z.string()).optional(),
-  image: z.nullable(z.string()).optional(),
-  photoUrl: z.nullable(z.string()).optional(),
-  leadSource: z.nullable(z.string()).optional(),
-  fax: z.nullable(z.string()).optional(),
-  description: z.nullable(z.string()).optional(),
-  currentBalance: z.nullable(z.number()).optional(),
-  status: z.nullable(z.string()).optional(),
-  active: z.nullable(z.boolean()).optional(),
-  websites: z.array(Website$outboundSchema).optional(),
-  addresses: z.array(Address$outboundSchema).optional(),
-  socialLinks: z.array(SocialLink$outboundSchema).optional(),
-  phoneNumbers: z.array(PhoneNumber$outboundSchema).optional(),
-  emails: z.array(Email$outboundSchema).optional(),
-  emailDomain: z.nullable(z.string()).optional(),
-  customFields: z.nullable(z.array(CustomField$outboundSchema)).optional(),
-  tags: z.nullable(z.array(z.string())).optional(),
-  firstCallAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
-  firstEmailAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
-  lastActivityAt: z.nullable(z.date().transform(v => v.toISOString()))
-    .optional(),
-  customMappings: z.nullable(z.record(z.any())).optional(),
-  updatedAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
-  createdAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
-  opportunityIds: z.array(z.string()).optional(),
-  passThrough: z.array(PassThroughBody$outboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    ownerId: "owner_id",
-    companyId: "company_id",
-    companyName: "company_name",
-    leadId: "lead_id",
-    firstName: "first_name",
-    middleName: "middle_name",
-    lastName: "last_name",
-    photoUrl: "photo_url",
-    leadSource: "lead_source",
-    currentBalance: "current_balance",
-    socialLinks: "social_links",
-    phoneNumbers: "phone_numbers",
-    emailDomain: "email_domain",
-    customFields: "custom_fields",
-    firstCallAt: "first_call_at",
-    firstEmailAt: "first_email_at",
-    lastActivityAt: "last_activity_at",
-    customMappings: "custom_mappings",
-    updatedAt: "updated_at",
-    createdAt: "created_at",
-    opportunityIds: "opportunity_ids",
-    passThrough: "pass_through",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Contact$ {
-  /** @deprecated use `Contact$inboundSchema` instead. */
-  export const inboundSchema = Contact$inboundSchema;
-  /** @deprecated use `Contact$outboundSchema` instead. */
-  export const outboundSchema = Contact$outboundSchema;
-  /** @deprecated use `Contact$Outbound` instead. */
-  export type Outbound = Contact$Outbound;
-}
-
-export function contactToJSON(contact: Contact): string {
-  return JSON.stringify(Contact$outboundSchema.parse(contact));
-}
-
 export function contactFromJSON(
   jsonString: string,
 ): SafeParseResult<Contact, SDKValidationError> {
@@ -603,67 +442,6 @@ export function contactFromJSON(
     `Failed to parse 'Contact' from JSON`,
   );
 }
-
-/** @internal */
-export const ContactInput$inboundSchema: z.ZodType<
-  ContactInput,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  name: z.nullable(z.string()).optional(),
-  owner_id: z.nullable(z.string()).optional(),
-  type: z.nullable(ContactType$inboundSchema).optional(),
-  company_id: z.nullable(z.string()).optional(),
-  company_name: z.nullable(z.string()).optional(),
-  lead_id: z.nullable(z.string()).optional(),
-  first_name: z.nullable(z.string()).optional(),
-  middle_name: z.nullable(z.string()).optional(),
-  last_name: z.nullable(z.string()).optional(),
-  prefix: z.nullable(z.string()).optional(),
-  suffix: z.nullable(z.string()).optional(),
-  title: z.nullable(z.string()).optional(),
-  department: z.nullable(z.string()).optional(),
-  language: z.nullable(z.string()).optional(),
-  gender: z.nullable(ContactGender$inboundSchema).optional(),
-  birthday: z.nullable(z.string()).optional(),
-  image: z.nullable(z.string()).optional(),
-  photo_url: z.nullable(z.string()).optional(),
-  lead_source: z.nullable(z.string()).optional(),
-  fax: z.nullable(z.string()).optional(),
-  description: z.nullable(z.string()).optional(),
-  current_balance: z.nullable(z.number()).optional(),
-  status: z.nullable(z.string()).optional(),
-  active: z.nullable(z.boolean()).optional(),
-  websites: z.array(Website$inboundSchema).optional(),
-  addresses: z.array(Address$inboundSchema).optional(),
-  social_links: z.array(SocialLink$inboundSchema).optional(),
-  phone_numbers: z.array(PhoneNumber$inboundSchema).optional(),
-  emails: z.array(Email$inboundSchema).optional(),
-  email_domain: z.nullable(z.string()).optional(),
-  custom_fields: z.nullable(z.array(CustomField$inboundSchema)).optional(),
-  tags: z.nullable(z.array(z.string())).optional(),
-  opportunity_ids: z.array(z.string()).optional(),
-  pass_through: z.array(PassThroughBody$inboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "owner_id": "ownerId",
-    "company_id": "companyId",
-    "company_name": "companyName",
-    "lead_id": "leadId",
-    "first_name": "firstName",
-    "middle_name": "middleName",
-    "last_name": "lastName",
-    "photo_url": "photoUrl",
-    "lead_source": "leadSource",
-    "current_balance": "currentBalance",
-    "social_links": "socialLinks",
-    "phone_numbers": "phoneNumbers",
-    "email_domain": "emailDomain",
-    "custom_fields": "customFields",
-    "opportunity_ids": "opportunityIds",
-    "pass_through": "passThrough",
-  });
-});
 
 /** @internal */
 export type ContactInput$Outbound = {
@@ -764,29 +542,6 @@ export const ContactInput$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ContactInput$ {
-  /** @deprecated use `ContactInput$inboundSchema` instead. */
-  export const inboundSchema = ContactInput$inboundSchema;
-  /** @deprecated use `ContactInput$outboundSchema` instead. */
-  export const outboundSchema = ContactInput$outboundSchema;
-  /** @deprecated use `ContactInput$Outbound` instead. */
-  export type Outbound = ContactInput$Outbound;
-}
-
 export function contactInputToJSON(contactInput: ContactInput): string {
   return JSON.stringify(ContactInput$outboundSchema.parse(contactInput));
-}
-
-export function contactInputFromJSON(
-  jsonString: string,
-): SafeParseResult<ContactInput, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => ContactInput$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ContactInput' from JSON`,
-  );
 }

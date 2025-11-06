@@ -38,8 +38,8 @@ type SmsMessagesUpdateRequest struct {
 	// Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
 	ServiceID *string `header:"style=simple,explode=false,name=x-apideck-service-id"`
 	// Include raw response. Mostly used for debugging purposes
-	Raw     *bool                   `default:"false" queryParam:"style=form,explode=true,name=raw"`
-	Message components.MessageInput `request:"mediaType=application/json"`
+	Raw  *bool                   `default:"false" queryParam:"style=form,explode=true,name=raw"`
+	Body components.MessageInput `request:"mediaType=application/json"`
 }
 
 func (s SmsMessagesUpdateRequest) MarshalJSON() ([]byte, error) {
@@ -47,7 +47,7 @@ func (s SmsMessagesUpdateRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (s *SmsMessagesUpdateRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &s, "", false, []string{"id", "Message"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &s, "", false, []string{"id", "body"}); err != nil {
 		return err
 	}
 	return nil
@@ -88,11 +88,11 @@ func (o *SmsMessagesUpdateRequest) GetRaw() *bool {
 	return o.Raw
 }
 
-func (o *SmsMessagesUpdateRequest) GetMessage() components.MessageInput {
+func (o *SmsMessagesUpdateRequest) GetBody() components.MessageInput {
 	if o == nil {
 		return components.MessageInput{}
 	}
-	return o.Message
+	return o.Body
 }
 
 type SmsMessagesUpdateResponse struct {

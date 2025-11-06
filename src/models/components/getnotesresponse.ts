@@ -7,24 +7,9 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  Links,
-  Links$inboundSchema,
-  Links$Outbound,
-  Links$outboundSchema,
-} from "./links.js";
-import {
-  Meta,
-  Meta$inboundSchema,
-  Meta$Outbound,
-  Meta$outboundSchema,
-} from "./meta.js";
-import {
-  Note,
-  Note$inboundSchema,
-  Note$Outbound,
-  Note$outboundSchema,
-} from "./note.js";
+import { Links, Links$inboundSchema } from "./links.js";
+import { Meta, Meta$inboundSchema } from "./meta.js";
+import { Note, Note$inboundSchema } from "./note.js";
 
 /**
  * Notes
@@ -86,62 +71,6 @@ export const GetNotesResponse$inboundSchema: z.ZodType<
     "_raw": "raw",
   });
 });
-
-/** @internal */
-export type GetNotesResponse$Outbound = {
-  status_code: number;
-  status: string;
-  service: string;
-  resource: string;
-  operation: string;
-  data: Array<Note$Outbound>;
-  _raw?: { [k: string]: any } | null | undefined;
-  meta?: Meta$Outbound | undefined;
-  links?: Links$Outbound | undefined;
-};
-
-/** @internal */
-export const GetNotesResponse$outboundSchema: z.ZodType<
-  GetNotesResponse$Outbound,
-  z.ZodTypeDef,
-  GetNotesResponse
-> = z.object({
-  statusCode: z.number().int(),
-  status: z.string(),
-  service: z.string(),
-  resource: z.string(),
-  operation: z.string(),
-  data: z.array(Note$outboundSchema),
-  raw: z.nullable(z.record(z.any())).optional(),
-  meta: Meta$outboundSchema.optional(),
-  links: Links$outboundSchema.optional(),
-}).transform((v) => {
-  return remap$(v, {
-    statusCode: "status_code",
-    raw: "_raw",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetNotesResponse$ {
-  /** @deprecated use `GetNotesResponse$inboundSchema` instead. */
-  export const inboundSchema = GetNotesResponse$inboundSchema;
-  /** @deprecated use `GetNotesResponse$outboundSchema` instead. */
-  export const outboundSchema = GetNotesResponse$outboundSchema;
-  /** @deprecated use `GetNotesResponse$Outbound` instead. */
-  export type Outbound = GetNotesResponse$Outbound;
-}
-
-export function getNotesResponseToJSON(
-  getNotesResponse: GetNotesResponse,
-): string {
-  return JSON.stringify(
-    GetNotesResponse$outboundSchema.parse(getNotesResponse),
-  );
-}
 
 export function getNotesResponseFromJSON(
   jsonString: string,

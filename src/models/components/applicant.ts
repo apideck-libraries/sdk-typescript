@@ -312,43 +312,19 @@ export type ApplicantInput = {
 export const ApplicantGender$inboundSchema: z.ZodNativeEnum<
   typeof ApplicantGender
 > = z.nativeEnum(ApplicantGender);
-
 /** @internal */
 export const ApplicantGender$outboundSchema: z.ZodNativeEnum<
   typeof ApplicantGender
 > = ApplicantGender$inboundSchema;
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ApplicantGender$ {
-  /** @deprecated use `ApplicantGender$inboundSchema` instead. */
-  export const inboundSchema = ApplicantGender$inboundSchema;
-  /** @deprecated use `ApplicantGender$outboundSchema` instead. */
-  export const outboundSchema = ApplicantGender$outboundSchema;
-}
-
 /** @internal */
 export const ApplicantType$inboundSchema: z.ZodNativeEnum<
   typeof ApplicantType
 > = z.nativeEnum(ApplicantType);
-
 /** @internal */
 export const ApplicantType$outboundSchema: z.ZodNativeEnum<
   typeof ApplicantType
 > = ApplicantType$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ApplicantType$ {
-  /** @deprecated use `ApplicantType$inboundSchema` instead. */
-  export const inboundSchema = ApplicantType$inboundSchema;
-  /** @deprecated use `ApplicantType$outboundSchema` instead. */
-  export const outboundSchema = ApplicantType$outboundSchema;
-}
 
 /** @internal */
 export const Websites$inboundSchema: z.ZodType<
@@ -360,7 +336,6 @@ export const Websites$inboundSchema: z.ZodType<
   url: z.string(),
   type: z.nullable(ApplicantType$inboundSchema).optional(),
 });
-
 /** @internal */
 export type Websites$Outbound = {
   id?: string | null | undefined;
@@ -379,23 +354,9 @@ export const Websites$outboundSchema: z.ZodType<
   type: z.nullable(ApplicantType$outboundSchema).optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Websites$ {
-  /** @deprecated use `Websites$inboundSchema` instead. */
-  export const inboundSchema = Websites$inboundSchema;
-  /** @deprecated use `Websites$outboundSchema` instead. */
-  export const outboundSchema = Websites$outboundSchema;
-  /** @deprecated use `Websites$Outbound` instead. */
-  export type Outbound = Websites$Outbound;
-}
-
 export function websitesToJSON(websites: Websites): string {
   return JSON.stringify(Websites$outboundSchema.parse(websites));
 }
-
 export function websitesFromJSON(
   jsonString: string,
 ): SafeParseResult<Websites, SDKValidationError> {
@@ -416,7 +377,6 @@ export const SocialLinks$inboundSchema: z.ZodType<
   url: z.string(),
   type: z.nullable(z.string()).optional(),
 });
-
 /** @internal */
 export type SocialLinks$Outbound = {
   id?: string | null | undefined;
@@ -435,23 +395,9 @@ export const SocialLinks$outboundSchema: z.ZodType<
   type: z.nullable(z.string()).optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SocialLinks$ {
-  /** @deprecated use `SocialLinks$inboundSchema` instead. */
-  export const inboundSchema = SocialLinks$inboundSchema;
-  /** @deprecated use `SocialLinks$outboundSchema` instead. */
-  export const outboundSchema = SocialLinks$outboundSchema;
-  /** @deprecated use `SocialLinks$Outbound` instead. */
-  export type Outbound = SocialLinks$Outbound;
-}
-
 export function socialLinksToJSON(socialLinks: SocialLinks): string {
   return JSON.stringify(SocialLinks$outboundSchema.parse(socialLinks));
 }
-
 export function socialLinksFromJSON(
   jsonString: string,
 ): SafeParseResult<SocialLinks, SDKValidationError> {
@@ -561,167 +507,6 @@ export const Applicant$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type Applicant$Outbound = {
-  id?: string | undefined;
-  name?: string | undefined;
-  salutation?: string | null | undefined;
-  first_name?: string | null | undefined;
-  last_name?: string | null | undefined;
-  middle_name?: string | null | undefined;
-  initials?: string | null | undefined;
-  birthday?: string | null | undefined;
-  gender?: string | null | undefined;
-  social_security_number?: string | null | undefined;
-  type?: string | undefined;
-  cover_letter?: string | undefined;
-  job_url?: string | null | undefined;
-  photo_url?: string | null | undefined;
-  headline?: string | undefined;
-  title?: string | null | undefined;
-  emails?: Array<Email$Outbound> | undefined;
-  custom_fields?: Array<CustomField$Outbound> | undefined;
-  phone_numbers?: Array<PhoneNumber$Outbound> | undefined;
-  addresses?: Array<Address$Outbound> | undefined;
-  websites?: Array<Websites$Outbound> | undefined;
-  social_links?: Array<SocialLinks$Outbound> | undefined;
-  stage_id?: string | undefined;
-  recruiter_id?: string | undefined;
-  coordinator_id?: string | undefined;
-  application_ids?: Array<string> | null | undefined;
-  applications?: Array<string> | null | undefined;
-  followers?: Array<string> | null | undefined;
-  sources?: Array<string> | null | undefined;
-  source_id?: string | undefined;
-  confidential?: boolean | undefined;
-  anonymized?: boolean | undefined;
-  tags?: Array<string> | null | undefined;
-  archived?: boolean | null | undefined;
-  last_interaction_at?: string | null | undefined;
-  owner_id?: string | null | undefined;
-  sourced_by?: string | null | undefined;
-  cv_url?: string | undefined;
-  record_url?: string | null | undefined;
-  rejected_at?: string | null | undefined;
-  custom_mappings?: { [k: string]: any } | null | undefined;
-  deleted?: boolean | null | undefined;
-  deleted_by?: string | null | undefined;
-  deleted_at?: string | null | undefined;
-  updated_by?: string | null | undefined;
-  created_by?: string | null | undefined;
-  updated_at?: string | null | undefined;
-  created_at?: string | null | undefined;
-  pass_through?: Array<PassThroughBody$Outbound> | undefined;
-};
-
-/** @internal */
-export const Applicant$outboundSchema: z.ZodType<
-  Applicant$Outbound,
-  z.ZodTypeDef,
-  Applicant
-> = z.object({
-  id: z.string().optional(),
-  name: z.string().optional(),
-  salutation: z.nullable(z.string()).optional(),
-  firstName: z.nullable(z.string()).optional(),
-  lastName: z.nullable(z.string()).optional(),
-  middleName: z.nullable(z.string()).optional(),
-  initials: z.nullable(z.string()).optional(),
-  birthday: z.nullable(z.instanceof(RFCDate).transform(v => v.toString()))
-    .optional(),
-  gender: z.nullable(ApplicantGender$outboundSchema).optional(),
-  socialSecurityNumber: z.nullable(z.string()).optional(),
-  type: z.string().optional(),
-  coverLetter: z.string().optional(),
-  jobUrl: z.nullable(z.string()).optional(),
-  photoUrl: z.nullable(z.string()).optional(),
-  headline: z.string().optional(),
-  title: z.nullable(z.string()).optional(),
-  emails: z.array(Email$outboundSchema).optional(),
-  customFields: z.array(CustomField$outboundSchema).optional(),
-  phoneNumbers: z.array(PhoneNumber$outboundSchema).optional(),
-  addresses: z.array(Address$outboundSchema).optional(),
-  websites: z.array(z.lazy(() => Websites$outboundSchema)).optional(),
-  socialLinks: z.array(z.lazy(() => SocialLinks$outboundSchema)).optional(),
-  stageId: z.string().optional(),
-  recruiterId: z.string().optional(),
-  coordinatorId: z.string().optional(),
-  applicationIds: z.nullable(z.array(z.string())).optional(),
-  applications: z.nullable(z.array(z.string())).optional(),
-  followers: z.nullable(z.array(z.string())).optional(),
-  sources: z.nullable(z.array(z.string())).optional(),
-  sourceId: z.string().optional(),
-  confidential: z.boolean().optional(),
-  anonymized: z.boolean().optional(),
-  tags: z.nullable(z.array(z.string())).optional(),
-  archived: z.nullable(z.boolean()).optional(),
-  lastInteractionAt: z.nullable(z.date().transform(v => v.toISOString()))
-    .optional(),
-  ownerId: z.nullable(z.string()).optional(),
-  sourcedBy: z.nullable(z.string()).optional(),
-  cvUrl: z.string().optional(),
-  recordUrl: z.nullable(z.string()).optional(),
-  rejectedAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
-  customMappings: z.nullable(z.record(z.any())).optional(),
-  deleted: z.nullable(z.boolean()).optional(),
-  deletedBy: z.nullable(z.string()).optional(),
-  deletedAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
-  updatedBy: z.nullable(z.string()).optional(),
-  createdBy: z.nullable(z.string()).optional(),
-  updatedAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
-  createdAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
-  passThrough: z.array(PassThroughBody$outboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    firstName: "first_name",
-    lastName: "last_name",
-    middleName: "middle_name",
-    socialSecurityNumber: "social_security_number",
-    coverLetter: "cover_letter",
-    jobUrl: "job_url",
-    photoUrl: "photo_url",
-    customFields: "custom_fields",
-    phoneNumbers: "phone_numbers",
-    socialLinks: "social_links",
-    stageId: "stage_id",
-    recruiterId: "recruiter_id",
-    coordinatorId: "coordinator_id",
-    applicationIds: "application_ids",
-    sourceId: "source_id",
-    lastInteractionAt: "last_interaction_at",
-    ownerId: "owner_id",
-    sourcedBy: "sourced_by",
-    cvUrl: "cv_url",
-    recordUrl: "record_url",
-    rejectedAt: "rejected_at",
-    customMappings: "custom_mappings",
-    deletedBy: "deleted_by",
-    deletedAt: "deleted_at",
-    updatedBy: "updated_by",
-    createdBy: "created_by",
-    updatedAt: "updated_at",
-    createdAt: "created_at",
-    passThrough: "pass_through",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Applicant$ {
-  /** @deprecated use `Applicant$inboundSchema` instead. */
-  export const inboundSchema = Applicant$inboundSchema;
-  /** @deprecated use `Applicant$outboundSchema` instead. */
-  export const outboundSchema = Applicant$outboundSchema;
-  /** @deprecated use `Applicant$Outbound` instead. */
-  export type Outbound = Applicant$Outbound;
-}
-
-export function applicantToJSON(applicant: Applicant): string {
-  return JSON.stringify(Applicant$outboundSchema.parse(applicant));
-}
-
 export function applicantFromJSON(
   jsonString: string,
 ): SafeParseResult<Applicant, SDKValidationError> {
@@ -731,68 +516,6 @@ export function applicantFromJSON(
     `Failed to parse 'Applicant' from JSON`,
   );
 }
-
-/** @internal */
-export const ApplicantInput$inboundSchema: z.ZodType<
-  ApplicantInput,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  name: z.string().optional(),
-  salutation: z.nullable(z.string()).optional(),
-  first_name: z.nullable(z.string()).optional(),
-  last_name: z.nullable(z.string()).optional(),
-  middle_name: z.nullable(z.string()).optional(),
-  initials: z.nullable(z.string()).optional(),
-  birthday: z.nullable(z.string().transform(v => new RFCDate(v))).optional(),
-  gender: z.nullable(ApplicantGender$inboundSchema).optional(),
-  social_security_number: z.nullable(z.string()).optional(),
-  type: z.string().optional(),
-  cover_letter: z.string().optional(),
-  photo_url: z.nullable(z.string()).optional(),
-  headline: z.string().optional(),
-  title: z.nullable(z.string()).optional(),
-  emails: z.array(Email$inboundSchema).optional(),
-  custom_fields: z.array(CustomField$inboundSchema).optional(),
-  phone_numbers: z.array(PhoneNumber$inboundSchema).optional(),
-  addresses: z.array(Address$inboundSchema).optional(),
-  websites: z.array(z.lazy(() => Websites$inboundSchema)).optional(),
-  social_links: z.array(z.lazy(() => SocialLinks$inboundSchema)).optional(),
-  stage_id: z.string().optional(),
-  recruiter_id: z.string().optional(),
-  coordinator_id: z.string().optional(),
-  application_ids: z.nullable(z.array(z.string())).optional(),
-  applications: z.nullable(z.array(z.string())).optional(),
-  followers: z.nullable(z.array(z.string())).optional(),
-  sources: z.nullable(z.array(z.string())).optional(),
-  confidential: z.boolean().optional(),
-  anonymized: z.boolean().optional(),
-  tags: z.nullable(z.array(z.string())).optional(),
-  archived: z.nullable(z.boolean()).optional(),
-  owner_id: z.nullable(z.string()).optional(),
-  record_url: z.nullable(z.string()).optional(),
-  deleted: z.nullable(z.boolean()).optional(),
-  pass_through: z.array(PassThroughBody$inboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "first_name": "firstName",
-    "last_name": "lastName",
-    "middle_name": "middleName",
-    "social_security_number": "socialSecurityNumber",
-    "cover_letter": "coverLetter",
-    "photo_url": "photoUrl",
-    "custom_fields": "customFields",
-    "phone_numbers": "phoneNumbers",
-    "social_links": "socialLinks",
-    "stage_id": "stageId",
-    "recruiter_id": "recruiterId",
-    "coordinator_id": "coordinatorId",
-    "application_ids": "applicationIds",
-    "owner_id": "ownerId",
-    "record_url": "recordUrl",
-    "pass_through": "passThrough",
-  });
-});
 
 /** @internal */
 export type ApplicantInput$Outbound = {
@@ -896,29 +619,6 @@ export const ApplicantInput$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ApplicantInput$ {
-  /** @deprecated use `ApplicantInput$inboundSchema` instead. */
-  export const inboundSchema = ApplicantInput$inboundSchema;
-  /** @deprecated use `ApplicantInput$outboundSchema` instead. */
-  export const outboundSchema = ApplicantInput$outboundSchema;
-  /** @deprecated use `ApplicantInput$Outbound` instead. */
-  export type Outbound = ApplicantInput$Outbound;
-}
-
 export function applicantInputToJSON(applicantInput: ApplicantInput): string {
   return JSON.stringify(ApplicantInput$outboundSchema.parse(applicantInput));
-}
-
-export function applicantInputFromJSON(
-  jsonString: string,
-): SafeParseResult<ApplicantInput, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => ApplicantInput$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ApplicantInput' from JSON`,
-  );
 }

@@ -4,12 +4,8 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   PassThroughBody,
-  PassThroughBody$inboundSchema,
   PassThroughBody$Outbound,
   PassThroughBody$outboundSchema,
 } from "./passthroughbody.js";
@@ -58,34 +54,6 @@ export type NoteInput = {
 };
 
 /** @internal */
-export const NoteInput$inboundSchema: z.ZodType<
-  NoteInput,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  title: z.nullable(z.string()).optional(),
-  content: z.nullable(z.string()).optional(),
-  owner_id: z.nullable(z.string()).optional(),
-  contact_id: z.nullable(z.string()).optional(),
-  company_id: z.nullable(z.string()).optional(),
-  opportunity_id: z.nullable(z.string()).optional(),
-  activity_id: z.nullable(z.string()).optional(),
-  lead_id: z.nullable(z.string()).optional(),
-  active: z.nullable(z.boolean()).optional(),
-  pass_through: z.array(PassThroughBody$inboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "owner_id": "ownerId",
-    "contact_id": "contactId",
-    "company_id": "companyId",
-    "opportunity_id": "opportunityId",
-    "activity_id": "activityId",
-    "lead_id": "leadId",
-    "pass_through": "passThrough",
-  });
-});
-
-/** @internal */
 export type NoteInput$Outbound = {
   title?: string | null | undefined;
   content?: string | null | undefined;
@@ -127,29 +95,6 @@ export const NoteInput$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace NoteInput$ {
-  /** @deprecated use `NoteInput$inboundSchema` instead. */
-  export const inboundSchema = NoteInput$inboundSchema;
-  /** @deprecated use `NoteInput$outboundSchema` instead. */
-  export const outboundSchema = NoteInput$outboundSchema;
-  /** @deprecated use `NoteInput$Outbound` instead. */
-  export type Outbound = NoteInput$Outbound;
-}
-
 export function noteInputToJSON(noteInput: NoteInput): string {
   return JSON.stringify(NoteInput$outboundSchema.parse(noteInput));
-}
-
-export function noteInputFromJSON(
-  jsonString: string,
-): SafeParseResult<NoteInput, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => NoteInput$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'NoteInput' from JSON`,
-  );
 }

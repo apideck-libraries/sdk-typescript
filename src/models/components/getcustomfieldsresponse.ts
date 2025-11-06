@@ -10,8 +10,6 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   CustomFieldFinder,
   CustomFieldFinder$inboundSchema,
-  CustomFieldFinder$Outbound,
-  CustomFieldFinder$outboundSchema,
 } from "./customfieldfinder.js";
 
 /**
@@ -49,52 +47,6 @@ export const GetCustomFieldsResponse$inboundSchema: z.ZodType<
     "_raw": "raw",
   });
 });
-
-/** @internal */
-export type GetCustomFieldsResponse$Outbound = {
-  status_code: number;
-  status: string;
-  data: Array<CustomFieldFinder$Outbound>;
-  _raw?: { [k: string]: any } | null | undefined;
-};
-
-/** @internal */
-export const GetCustomFieldsResponse$outboundSchema: z.ZodType<
-  GetCustomFieldsResponse$Outbound,
-  z.ZodTypeDef,
-  GetCustomFieldsResponse
-> = z.object({
-  statusCode: z.number().int(),
-  status: z.string(),
-  data: z.array(CustomFieldFinder$outboundSchema),
-  raw: z.nullable(z.record(z.any())).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    statusCode: "status_code",
-    raw: "_raw",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetCustomFieldsResponse$ {
-  /** @deprecated use `GetCustomFieldsResponse$inboundSchema` instead. */
-  export const inboundSchema = GetCustomFieldsResponse$inboundSchema;
-  /** @deprecated use `GetCustomFieldsResponse$outboundSchema` instead. */
-  export const outboundSchema = GetCustomFieldsResponse$outboundSchema;
-  /** @deprecated use `GetCustomFieldsResponse$Outbound` instead. */
-  export type Outbound = GetCustomFieldsResponse$Outbound;
-}
-
-export function getCustomFieldsResponseToJSON(
-  getCustomFieldsResponse: GetCustomFieldsResponse,
-): string {
-  return JSON.stringify(
-    GetCustomFieldsResponse$outboundSchema.parse(getCustomFieldsResponse),
-  );
-}
 
 export function getCustomFieldsResponseFromJSON(
   jsonString: string,

@@ -35,49 +35,6 @@ export const SupportedProperty$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type SupportedProperty$Outbound = {
-  unified_property?: string | undefined;
-  child_properties?: Array<SupportedProperty$Outbound> | undefined;
-};
-
-/** @internal */
-export const SupportedProperty$outboundSchema: z.ZodType<
-  SupportedProperty$Outbound,
-  z.ZodTypeDef,
-  SupportedProperty
-> = z.object({
-  unifiedProperty: z.string().optional(),
-  childProperties: z.array(z.lazy(() => SupportedProperty$outboundSchema))
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    unifiedProperty: "unified_property",
-    childProperties: "child_properties",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SupportedProperty$ {
-  /** @deprecated use `SupportedProperty$inboundSchema` instead. */
-  export const inboundSchema = SupportedProperty$inboundSchema;
-  /** @deprecated use `SupportedProperty$outboundSchema` instead. */
-  export const outboundSchema = SupportedProperty$outboundSchema;
-  /** @deprecated use `SupportedProperty$Outbound` instead. */
-  export type Outbound = SupportedProperty$Outbound;
-}
-
-export function supportedPropertyToJSON(
-  supportedProperty: SupportedProperty,
-): string {
-  return JSON.stringify(
-    SupportedProperty$outboundSchema.parse(supportedProperty),
-  );
-}
-
 export function supportedPropertyFromJSON(
   jsonString: string,
 ): SafeParseResult<SupportedProperty, SDKValidationError> {

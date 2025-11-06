@@ -7,12 +7,7 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  ConsentRecord,
-  ConsentRecord$inboundSchema,
-  ConsentRecord$Outbound,
-  ConsentRecord$outboundSchema,
-} from "./consentrecord.js";
+import { ConsentRecord, ConsentRecord$inboundSchema } from "./consentrecord.js";
 
 /**
  * Consent records
@@ -49,52 +44,6 @@ export const GetConsentRecordsResponse$inboundSchema: z.ZodType<
     "_raw": "raw",
   });
 });
-
-/** @internal */
-export type GetConsentRecordsResponse$Outbound = {
-  status_code: number;
-  status: string;
-  data: Array<ConsentRecord$Outbound>;
-  _raw?: { [k: string]: any } | null | undefined;
-};
-
-/** @internal */
-export const GetConsentRecordsResponse$outboundSchema: z.ZodType<
-  GetConsentRecordsResponse$Outbound,
-  z.ZodTypeDef,
-  GetConsentRecordsResponse
-> = z.object({
-  statusCode: z.number().int(),
-  status: z.string(),
-  data: z.array(ConsentRecord$outboundSchema),
-  raw: z.nullable(z.record(z.any())).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    statusCode: "status_code",
-    raw: "_raw",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetConsentRecordsResponse$ {
-  /** @deprecated use `GetConsentRecordsResponse$inboundSchema` instead. */
-  export const inboundSchema = GetConsentRecordsResponse$inboundSchema;
-  /** @deprecated use `GetConsentRecordsResponse$outboundSchema` instead. */
-  export const outboundSchema = GetConsentRecordsResponse$outboundSchema;
-  /** @deprecated use `GetConsentRecordsResponse$Outbound` instead. */
-  export type Outbound = GetConsentRecordsResponse$Outbound;
-}
-
-export function getConsentRecordsResponseToJSON(
-  getConsentRecordsResponse: GetConsentRecordsResponse,
-): string {
-  return JSON.stringify(
-    GetConsentRecordsResponse$outboundSchema.parse(getConsentRecordsResponse),
-  );
-}
 
 export function getConsentRecordsResponseFromJSON(
   jsonString: string,

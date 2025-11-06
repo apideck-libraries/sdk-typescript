@@ -27,21 +27,9 @@ import {
   LinkedLedgerAccount$Outbound,
   LinkedLedgerAccount$outboundSchema,
 } from "./linkedledgeraccount.js";
-import {
-  LinkedLedgerAccountInput,
-  LinkedLedgerAccountInput$inboundSchema,
-  LinkedLedgerAccountInput$Outbound,
-  LinkedLedgerAccountInput$outboundSchema,
-} from "./linkedledgeraccountinput.js";
-import {
-  LinkedTaxRate,
-  LinkedTaxRate$inboundSchema,
-  LinkedTaxRate$Outbound,
-  LinkedTaxRate$outboundSchema,
-} from "./linkedtaxrate.js";
+import { LinkedTaxRate, LinkedTaxRate$inboundSchema } from "./linkedtaxrate.js";
 import {
   LinkedTaxRateInput,
-  LinkedTaxRateInput$inboundSchema,
   LinkedTaxRateInput$Outbound,
   LinkedTaxRateInput$outboundSchema,
 } from "./linkedtaxrateinput.js";
@@ -230,7 +218,7 @@ export type QuoteLineItemInput = {
    * A list of linked tracking categories.
    */
   trackingCategories?: Array<LinkedTrackingCategory | null> | null | undefined;
-  ledgerAccount?: LinkedLedgerAccountInput | null | undefined;
+  ledgerAccount?: LinkedLedgerAccount | null | undefined;
   customFields?: Array<CustomField> | undefined;
   /**
    * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
@@ -242,22 +230,10 @@ export type QuoteLineItemInput = {
 export const QuoteLineItemType$inboundSchema: z.ZodNativeEnum<
   typeof QuoteLineItemType
 > = z.nativeEnum(QuoteLineItemType);
-
 /** @internal */
 export const QuoteLineItemType$outboundSchema: z.ZodNativeEnum<
   typeof QuoteLineItemType
 > = QuoteLineItemType$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace QuoteLineItemType$ {
-  /** @deprecated use `QuoteLineItemType$inboundSchema` instead. */
-  export const inboundSchema = QuoteLineItemType$inboundSchema;
-  /** @deprecated use `QuoteLineItemType$outboundSchema` instead. */
-  export const outboundSchema = QuoteLineItemType$outboundSchema;
-}
 
 /** @internal */
 export const QuoteLineItem$inboundSchema: z.ZodType<
@@ -325,119 +301,6 @@ export const QuoteLineItem$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type QuoteLineItem$Outbound = {
-  id?: string | null | undefined;
-  row_id?: string | undefined;
-  code?: string | null | undefined;
-  line_number?: number | null | undefined;
-  description?: string | null | undefined;
-  type?: string | null | undefined;
-  tax_amount?: number | null | undefined;
-  total_amount?: number | null | undefined;
-  quantity?: number | null | undefined;
-  unit_price?: number | null | undefined;
-  unit_of_measure?: string | null | undefined;
-  discount_percentage?: number | null | undefined;
-  discount_amount?: number | null | undefined;
-  service_date?: string | null | undefined;
-  category_id?: string | null | undefined;
-  location_id?: string | null | undefined;
-  department_id?: string | null | undefined;
-  item?: LinkedInvoiceItem$Outbound | undefined;
-  tax_rate?: LinkedTaxRate$Outbound | undefined;
-  tracking_categories?:
-    | Array<LinkedTrackingCategory$Outbound | null>
-    | null
-    | undefined;
-  ledger_account?: LinkedLedgerAccount$Outbound | null | undefined;
-  custom_fields?: Array<CustomField$Outbound> | undefined;
-  row_version?: string | null | undefined;
-  updated_by?: string | null | undefined;
-  created_by?: string | null | undefined;
-  created_at?: string | null | undefined;
-  updated_at?: string | null | undefined;
-};
-
-/** @internal */
-export const QuoteLineItem$outboundSchema: z.ZodType<
-  QuoteLineItem$Outbound,
-  z.ZodTypeDef,
-  QuoteLineItem
-> = z.object({
-  id: z.nullable(z.string()).optional(),
-  rowId: z.string().optional(),
-  code: z.nullable(z.string()).optional(),
-  lineNumber: z.nullable(z.number().int()).optional(),
-  description: z.nullable(z.string()).optional(),
-  type: z.nullable(QuoteLineItemType$outboundSchema).optional(),
-  taxAmount: z.nullable(z.number()).optional(),
-  totalAmount: z.nullable(z.number()).optional(),
-  quantity: z.nullable(z.number()).optional(),
-  unitPrice: z.nullable(z.number()).optional(),
-  unitOfMeasure: z.nullable(z.string()).optional(),
-  discountPercentage: z.nullable(z.number()).optional(),
-  discountAmount: z.nullable(z.number()).optional(),
-  serviceDate: z.nullable(z.instanceof(RFCDate).transform(v => v.toString()))
-    .optional(),
-  categoryId: z.nullable(z.string()).optional(),
-  locationId: z.nullable(z.string()).optional(),
-  departmentId: z.nullable(z.string()).optional(),
-  item: LinkedInvoiceItem$outboundSchema.optional(),
-  taxRate: LinkedTaxRate$outboundSchema.optional(),
-  trackingCategories: z.nullable(
-    z.array(z.nullable(LinkedTrackingCategory$outboundSchema)),
-  ).optional(),
-  ledgerAccount: z.nullable(LinkedLedgerAccount$outboundSchema).optional(),
-  customFields: z.array(CustomField$outboundSchema).optional(),
-  rowVersion: z.nullable(z.string()).optional(),
-  updatedBy: z.nullable(z.string()).optional(),
-  createdBy: z.nullable(z.string()).optional(),
-  createdAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
-  updatedAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    rowId: "row_id",
-    lineNumber: "line_number",
-    taxAmount: "tax_amount",
-    totalAmount: "total_amount",
-    unitPrice: "unit_price",
-    unitOfMeasure: "unit_of_measure",
-    discountPercentage: "discount_percentage",
-    discountAmount: "discount_amount",
-    serviceDate: "service_date",
-    categoryId: "category_id",
-    locationId: "location_id",
-    departmentId: "department_id",
-    taxRate: "tax_rate",
-    trackingCategories: "tracking_categories",
-    ledgerAccount: "ledger_account",
-    customFields: "custom_fields",
-    rowVersion: "row_version",
-    updatedBy: "updated_by",
-    createdBy: "created_by",
-    createdAt: "created_at",
-    updatedAt: "updated_at",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace QuoteLineItem$ {
-  /** @deprecated use `QuoteLineItem$inboundSchema` instead. */
-  export const inboundSchema = QuoteLineItem$inboundSchema;
-  /** @deprecated use `QuoteLineItem$outboundSchema` instead. */
-  export const outboundSchema = QuoteLineItem$outboundSchema;
-  /** @deprecated use `QuoteLineItem$Outbound` instead. */
-  export type Outbound = QuoteLineItem$Outbound;
-}
-
-export function quoteLineItemToJSON(quoteLineItem: QuoteLineItem): string {
-  return JSON.stringify(QuoteLineItem$outboundSchema.parse(quoteLineItem));
-}
-
 export function quoteLineItemFromJSON(
   jsonString: string,
 ): SafeParseResult<QuoteLineItem, SDKValidationError> {
@@ -447,60 +310,6 @@ export function quoteLineItemFromJSON(
     `Failed to parse 'QuoteLineItem' from JSON`,
   );
 }
-
-/** @internal */
-export const QuoteLineItemInput$inboundSchema: z.ZodType<
-  QuoteLineItemInput,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  id: z.nullable(z.string()).optional(),
-  row_id: z.string().optional(),
-  code: z.nullable(z.string()).optional(),
-  line_number: z.nullable(z.number().int()).optional(),
-  description: z.nullable(z.string()).optional(),
-  type: z.nullable(QuoteLineItemType$inboundSchema).optional(),
-  tax_amount: z.nullable(z.number()).optional(),
-  total_amount: z.nullable(z.number()).optional(),
-  quantity: z.nullable(z.number()).optional(),
-  unit_price: z.nullable(z.number()).optional(),
-  unit_of_measure: z.nullable(z.string()).optional(),
-  discount_percentage: z.nullable(z.number()).optional(),
-  discount_amount: z.nullable(z.number()).optional(),
-  service_date: z.nullable(z.string().transform(v => new RFCDate(v)))
-    .optional(),
-  category_id: z.nullable(z.string()).optional(),
-  location_id: z.nullable(z.string()).optional(),
-  department_id: z.nullable(z.string()).optional(),
-  item: LinkedInvoiceItem$inboundSchema.optional(),
-  tax_rate: LinkedTaxRateInput$inboundSchema.optional(),
-  tracking_categories: z.nullable(
-    z.array(z.nullable(LinkedTrackingCategory$inboundSchema)),
-  ).optional(),
-  ledger_account: z.nullable(LinkedLedgerAccountInput$inboundSchema).optional(),
-  custom_fields: z.array(CustomField$inboundSchema).optional(),
-  row_version: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "row_id": "rowId",
-    "line_number": "lineNumber",
-    "tax_amount": "taxAmount",
-    "total_amount": "totalAmount",
-    "unit_price": "unitPrice",
-    "unit_of_measure": "unitOfMeasure",
-    "discount_percentage": "discountPercentage",
-    "discount_amount": "discountAmount",
-    "service_date": "serviceDate",
-    "category_id": "categoryId",
-    "location_id": "locationId",
-    "department_id": "departmentId",
-    "tax_rate": "taxRate",
-    "tracking_categories": "trackingCategories",
-    "ledger_account": "ledgerAccount",
-    "custom_fields": "customFields",
-    "row_version": "rowVersion",
-  });
-});
 
 /** @internal */
 export type QuoteLineItemInput$Outbound = {
@@ -527,7 +336,7 @@ export type QuoteLineItemInput$Outbound = {
     | Array<LinkedTrackingCategory$Outbound | null>
     | null
     | undefined;
-  ledger_account?: LinkedLedgerAccountInput$Outbound | null | undefined;
+  ledger_account?: LinkedLedgerAccount$Outbound | null | undefined;
   custom_fields?: Array<CustomField$Outbound> | undefined;
   row_version?: string | null | undefined;
 };
@@ -561,7 +370,7 @@ export const QuoteLineItemInput$outboundSchema: z.ZodType<
   trackingCategories: z.nullable(
     z.array(z.nullable(LinkedTrackingCategory$outboundSchema)),
   ).optional(),
-  ledgerAccount: z.nullable(LinkedLedgerAccountInput$outboundSchema).optional(),
+  ledgerAccount: z.nullable(LinkedLedgerAccount$outboundSchema).optional(),
   customFields: z.array(CustomField$outboundSchema).optional(),
   rowVersion: z.nullable(z.string()).optional(),
 }).transform((v) => {
@@ -586,33 +395,10 @@ export const QuoteLineItemInput$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace QuoteLineItemInput$ {
-  /** @deprecated use `QuoteLineItemInput$inboundSchema` instead. */
-  export const inboundSchema = QuoteLineItemInput$inboundSchema;
-  /** @deprecated use `QuoteLineItemInput$outboundSchema` instead. */
-  export const outboundSchema = QuoteLineItemInput$outboundSchema;
-  /** @deprecated use `QuoteLineItemInput$Outbound` instead. */
-  export type Outbound = QuoteLineItemInput$Outbound;
-}
-
 export function quoteLineItemInputToJSON(
   quoteLineItemInput: QuoteLineItemInput,
 ): string {
   return JSON.stringify(
     QuoteLineItemInput$outboundSchema.parse(quoteLineItemInput),
-  );
-}
-
-export function quoteLineItemInputFromJSON(
-  jsonString: string,
-): SafeParseResult<QuoteLineItemInput, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => QuoteLineItemInput$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'QuoteLineItemInput' from JSON`,
   );
 }

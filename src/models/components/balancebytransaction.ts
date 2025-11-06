@@ -64,24 +64,6 @@ export const BalanceByTransactionTransactionType$inboundSchema: z.ZodNativeEnum<
 > = z.nativeEnum(BalanceByTransactionTransactionType);
 
 /** @internal */
-export const BalanceByTransactionTransactionType$outboundSchema:
-  z.ZodNativeEnum<typeof BalanceByTransactionTransactionType> =
-    BalanceByTransactionTransactionType$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace BalanceByTransactionTransactionType$ {
-  /** @deprecated use `BalanceByTransactionTransactionType$inboundSchema` instead. */
-  export const inboundSchema =
-    BalanceByTransactionTransactionType$inboundSchema;
-  /** @deprecated use `BalanceByTransactionTransactionType$outboundSchema` instead. */
-  export const outboundSchema =
-    BalanceByTransactionTransactionType$outboundSchema;
-}
-
-/** @internal */
 export const BalanceByTransaction$inboundSchema: z.ZodType<
   BalanceByTransaction,
   z.ZodTypeDef,
@@ -106,65 +88,6 @@ export const BalanceByTransaction$inboundSchema: z.ZodType<
     "transaction_number": "transactionNumber",
   });
 });
-
-/** @internal */
-export type BalanceByTransaction$Outbound = {
-  transaction_id?: string | undefined;
-  transaction_date?: string | undefined;
-  transaction_type?: string | undefined;
-  due_date?: string | undefined;
-  original_amount?: number | undefined;
-  outstanding_balance?: number | undefined;
-  transaction_number?: string | undefined;
-};
-
-/** @internal */
-export const BalanceByTransaction$outboundSchema: z.ZodType<
-  BalanceByTransaction$Outbound,
-  z.ZodTypeDef,
-  BalanceByTransaction
-> = z.object({
-  transactionId: z.string().optional(),
-  transactionDate: z.instanceof(RFCDate).transform(v => v.toString())
-    .optional(),
-  transactionType: BalanceByTransactionTransactionType$outboundSchema
-    .optional(),
-  dueDate: z.instanceof(RFCDate).transform(v => v.toString()).optional(),
-  originalAmount: z.number().optional(),
-  outstandingBalance: z.number().optional(),
-  transactionNumber: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    transactionId: "transaction_id",
-    transactionDate: "transaction_date",
-    transactionType: "transaction_type",
-    dueDate: "due_date",
-    originalAmount: "original_amount",
-    outstandingBalance: "outstanding_balance",
-    transactionNumber: "transaction_number",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace BalanceByTransaction$ {
-  /** @deprecated use `BalanceByTransaction$inboundSchema` instead. */
-  export const inboundSchema = BalanceByTransaction$inboundSchema;
-  /** @deprecated use `BalanceByTransaction$outboundSchema` instead. */
-  export const outboundSchema = BalanceByTransaction$outboundSchema;
-  /** @deprecated use `BalanceByTransaction$Outbound` instead. */
-  export type Outbound = BalanceByTransaction$Outbound;
-}
-
-export function balanceByTransactionToJSON(
-  balanceByTransaction: BalanceByTransaction,
-): string {
-  return JSON.stringify(
-    BalanceByTransaction$outboundSchema.parse(balanceByTransaction),
-  );
-}
 
 export function balanceByTransactionFromJSON(
   jsonString: string,

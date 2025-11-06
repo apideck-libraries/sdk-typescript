@@ -14,6 +14,7 @@ let value: AccountingBankAccountsAddRequest = {
     accountType: "checking",
     ledgerAccount: {
       id: "123456",
+      name: "Bank account",
       nominalCode: "N091",
       code: "453",
       parentId: "123456",

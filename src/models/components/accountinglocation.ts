@@ -23,12 +23,9 @@ import {
 import {
   SubsidiaryReference,
   SubsidiaryReference$inboundSchema,
-  SubsidiaryReference$Outbound,
-  SubsidiaryReference$outboundSchema,
 } from "./subsidiaryreference.js";
 import {
   SubsidiaryReferenceInput,
-  SubsidiaryReferenceInput$inboundSchema,
   SubsidiaryReferenceInput$Outbound,
   SubsidiaryReferenceInput$outboundSchema,
 } from "./subsidiaryreferenceinput.js";
@@ -131,22 +128,10 @@ export type AccountingLocationInput = {
 export const LocationStatus$inboundSchema: z.ZodNativeEnum<
   typeof LocationStatus
 > = z.nativeEnum(LocationStatus);
-
 /** @internal */
 export const LocationStatus$outboundSchema: z.ZodNativeEnum<
   typeof LocationStatus
 > = LocationStatus$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace LocationStatus$ {
-  /** @deprecated use `LocationStatus$inboundSchema` instead. */
-  export const inboundSchema = LocationStatus$inboundSchema;
-  /** @deprecated use `LocationStatus$outboundSchema` instead. */
-  export const outboundSchema = LocationStatus$outboundSchema;
-}
 
 /** @internal */
 export const AccountingLocation$inboundSchema: z.ZodType<
@@ -187,80 +172,6 @@ export const AccountingLocation$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type AccountingLocation$Outbound = {
-  id?: string | undefined;
-  parent_id?: string | null | undefined;
-  company_name?: string | null | undefined;
-  display_name?: string | null | undefined;
-  status?: string | undefined;
-  addresses?: Array<Address$Outbound> | undefined;
-  subsidiaries?: Array<SubsidiaryReference$Outbound> | undefined;
-  custom_mappings?: { [k: string]: any } | null | undefined;
-  row_version?: string | null | undefined;
-  updated_by?: string | null | undefined;
-  created_by?: string | null | undefined;
-  updated_at?: string | null | undefined;
-  created_at?: string | null | undefined;
-  pass_through?: Array<PassThroughBody$Outbound> | undefined;
-};
-
-/** @internal */
-export const AccountingLocation$outboundSchema: z.ZodType<
-  AccountingLocation$Outbound,
-  z.ZodTypeDef,
-  AccountingLocation
-> = z.object({
-  id: z.string().optional(),
-  parentId: z.nullable(z.string()).optional(),
-  companyName: z.nullable(z.string()).optional(),
-  displayName: z.nullable(z.string()).optional(),
-  status: LocationStatus$outboundSchema.optional(),
-  addresses: z.array(Address$outboundSchema).optional(),
-  subsidiaries: z.array(SubsidiaryReference$outboundSchema).optional(),
-  customMappings: z.nullable(z.record(z.any())).optional(),
-  rowVersion: z.nullable(z.string()).optional(),
-  updatedBy: z.nullable(z.string()).optional(),
-  createdBy: z.nullable(z.string()).optional(),
-  updatedAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
-  createdAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
-  passThrough: z.array(PassThroughBody$outboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    parentId: "parent_id",
-    companyName: "company_name",
-    displayName: "display_name",
-    customMappings: "custom_mappings",
-    rowVersion: "row_version",
-    updatedBy: "updated_by",
-    createdBy: "created_by",
-    updatedAt: "updated_at",
-    createdAt: "created_at",
-    passThrough: "pass_through",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AccountingLocation$ {
-  /** @deprecated use `AccountingLocation$inboundSchema` instead. */
-  export const inboundSchema = AccountingLocation$inboundSchema;
-  /** @deprecated use `AccountingLocation$outboundSchema` instead. */
-  export const outboundSchema = AccountingLocation$outboundSchema;
-  /** @deprecated use `AccountingLocation$Outbound` instead. */
-  export type Outbound = AccountingLocation$Outbound;
-}
-
-export function accountingLocationToJSON(
-  accountingLocation: AccountingLocation,
-): string {
-  return JSON.stringify(
-    AccountingLocation$outboundSchema.parse(accountingLocation),
-  );
-}
-
 export function accountingLocationFromJSON(
   jsonString: string,
 ): SafeParseResult<AccountingLocation, SDKValidationError> {
@@ -270,30 +181,6 @@ export function accountingLocationFromJSON(
     `Failed to parse 'AccountingLocation' from JSON`,
   );
 }
-
-/** @internal */
-export const AccountingLocationInput$inboundSchema: z.ZodType<
-  AccountingLocationInput,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  parent_id: z.nullable(z.string()).optional(),
-  company_name: z.nullable(z.string()).optional(),
-  display_name: z.nullable(z.string()).optional(),
-  status: LocationStatus$inboundSchema.optional(),
-  addresses: z.array(Address$inboundSchema).optional(),
-  subsidiaries: z.array(SubsidiaryReferenceInput$inboundSchema).optional(),
-  row_version: z.nullable(z.string()).optional(),
-  pass_through: z.array(PassThroughBody$inboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "parent_id": "parentId",
-    "company_name": "companyName",
-    "display_name": "displayName",
-    "row_version": "rowVersion",
-    "pass_through": "passThrough",
-  });
-});
 
 /** @internal */
 export type AccountingLocationInput$Outbound = {
@@ -331,33 +218,10 @@ export const AccountingLocationInput$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AccountingLocationInput$ {
-  /** @deprecated use `AccountingLocationInput$inboundSchema` instead. */
-  export const inboundSchema = AccountingLocationInput$inboundSchema;
-  /** @deprecated use `AccountingLocationInput$outboundSchema` instead. */
-  export const outboundSchema = AccountingLocationInput$outboundSchema;
-  /** @deprecated use `AccountingLocationInput$Outbound` instead. */
-  export type Outbound = AccountingLocationInput$Outbound;
-}
-
 export function accountingLocationInputToJSON(
   accountingLocationInput: AccountingLocationInput,
 ): string {
   return JSON.stringify(
     AccountingLocationInput$outboundSchema.parse(accountingLocationInput),
-  );
-}
-
-export function accountingLocationInputFromJSON(
-  jsonString: string,
-): SafeParseResult<AccountingLocationInput, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => AccountingLocationInput$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'AccountingLocationInput' from JSON`,
   );
 }

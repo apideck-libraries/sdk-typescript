@@ -10,8 +10,6 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   DataScopesResources,
   DataScopesResources$inboundSchema,
-  DataScopesResources$Outbound,
-  DataScopesResources$outboundSchema,
 } from "./datascopesresources.js";
 
 export type ConsentRecord = {
@@ -48,47 +46,6 @@ export const ConsentRecord$inboundSchema: z.ZodType<
     "created_at": "createdAt",
   });
 });
-
-/** @internal */
-export type ConsentRecord$Outbound = {
-  id: string;
-  created_at: string;
-  granted: boolean;
-  resources: DataScopesResources$Outbound;
-};
-
-/** @internal */
-export const ConsentRecord$outboundSchema: z.ZodType<
-  ConsentRecord$Outbound,
-  z.ZodTypeDef,
-  ConsentRecord
-> = z.object({
-  id: z.string(),
-  createdAt: z.string(),
-  granted: z.boolean(),
-  resources: DataScopesResources$outboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    createdAt: "created_at",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ConsentRecord$ {
-  /** @deprecated use `ConsentRecord$inboundSchema` instead. */
-  export const inboundSchema = ConsentRecord$inboundSchema;
-  /** @deprecated use `ConsentRecord$outboundSchema` instead. */
-  export const outboundSchema = ConsentRecord$outboundSchema;
-  /** @deprecated use `ConsentRecord$Outbound` instead. */
-  export type Outbound = ConsentRecord$Outbound;
-}
-
-export function consentRecordToJSON(consentRecord: ConsentRecord): string {
-  return JSON.stringify(ConsentRecord$outboundSchema.parse(consentRecord));
-}
 
 export function consentRecordFromJSON(
   jsonString: string,

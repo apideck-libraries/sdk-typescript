@@ -4,31 +4,11 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type PurchaseOrdersFilter = {
   updatedSince?: Date | undefined;
   supplierId?: string | undefined;
 };
-
-/** @internal */
-export const PurchaseOrdersFilter$inboundSchema: z.ZodType<
-  PurchaseOrdersFilter,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  updated_since: z.string().datetime({ offset: true }).transform(v =>
-    new Date(v)
-  ).optional(),
-  supplier_id: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "updated_since": "updatedSince",
-    "supplier_id": "supplierId",
-  });
-});
 
 /** @internal */
 export type PurchaseOrdersFilter$Outbound = {
@@ -51,33 +31,10 @@ export const PurchaseOrdersFilter$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace PurchaseOrdersFilter$ {
-  /** @deprecated use `PurchaseOrdersFilter$inboundSchema` instead. */
-  export const inboundSchema = PurchaseOrdersFilter$inboundSchema;
-  /** @deprecated use `PurchaseOrdersFilter$outboundSchema` instead. */
-  export const outboundSchema = PurchaseOrdersFilter$outboundSchema;
-  /** @deprecated use `PurchaseOrdersFilter$Outbound` instead. */
-  export type Outbound = PurchaseOrdersFilter$Outbound;
-}
-
 export function purchaseOrdersFilterToJSON(
   purchaseOrdersFilter: PurchaseOrdersFilter,
 ): string {
   return JSON.stringify(
     PurchaseOrdersFilter$outboundSchema.parse(purchaseOrdersFilter),
-  );
-}
-
-export function purchaseOrdersFilterFromJSON(
-  jsonString: string,
-): SafeParseResult<PurchaseOrdersFilter, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => PurchaseOrdersFilter$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'PurchaseOrdersFilter' from JSON`,
   );
 }

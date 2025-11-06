@@ -47,7 +47,6 @@ export const ExtendPaths$inboundSchema: z.ZodType<
   path: z.string(),
   value: z.any().optional(),
 });
-
 /** @internal */
 export type ExtendPaths$Outbound = {
   path: string;
@@ -64,23 +63,9 @@ export const ExtendPaths$outboundSchema: z.ZodType<
   value: z.any().optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ExtendPaths$ {
-  /** @deprecated use `ExtendPaths$inboundSchema` instead. */
-  export const inboundSchema = ExtendPaths$inboundSchema;
-  /** @deprecated use `ExtendPaths$outboundSchema` instead. */
-  export const outboundSchema = ExtendPaths$outboundSchema;
-  /** @deprecated use `ExtendPaths$Outbound` instead. */
-  export type Outbound = ExtendPaths$Outbound;
-}
-
 export function extendPathsToJSON(extendPaths: ExtendPaths): string {
   return JSON.stringify(ExtendPaths$outboundSchema.parse(extendPaths));
 }
-
 export function extendPathsFromJSON(
   jsonString: string,
 ): SafeParseResult<ExtendPaths, SDKValidationError> {
@@ -109,7 +94,6 @@ export const PassThroughBody$inboundSchema: z.ZodType<
     "extend_paths": "extendPaths",
   });
 });
-
 /** @internal */
 export type PassThroughBody$Outbound = {
   service_id: string;
@@ -137,25 +121,11 @@ export const PassThroughBody$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace PassThroughBody$ {
-  /** @deprecated use `PassThroughBody$inboundSchema` instead. */
-  export const inboundSchema = PassThroughBody$inboundSchema;
-  /** @deprecated use `PassThroughBody$outboundSchema` instead. */
-  export const outboundSchema = PassThroughBody$outboundSchema;
-  /** @deprecated use `PassThroughBody$Outbound` instead. */
-  export type Outbound = PassThroughBody$Outbound;
-}
-
 export function passThroughBodyToJSON(
   passThroughBody: PassThroughBody,
 ): string {
   return JSON.stringify(PassThroughBody$outboundSchema.parse(passThroughBody));
 }
-
 export function passThroughBodyFromJSON(
   jsonString: string,
 ): SafeParseResult<PassThroughBody, SDKValidationError> {

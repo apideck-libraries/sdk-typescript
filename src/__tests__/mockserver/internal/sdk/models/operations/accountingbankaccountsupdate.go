@@ -38,8 +38,8 @@ type AccountingBankAccountsUpdateRequest struct {
 	// Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
 	ServiceID *string `header:"style=simple,explode=false,name=x-apideck-service-id"`
 	// Include raw response. Mostly used for debugging purposes
-	Raw                   *bool                                 `default:"false" queryParam:"style=form,explode=true,name=raw"`
-	AccountingBankAccount components.AccountingBankAccountInput `request:"mediaType=application/json"`
+	Raw  *bool                                 `default:"false" queryParam:"style=form,explode=true,name=raw"`
+	Body components.AccountingBankAccountInput `request:"mediaType=application/json"`
 }
 
 func (a AccountingBankAccountsUpdateRequest) MarshalJSON() ([]byte, error) {
@@ -47,7 +47,7 @@ func (a AccountingBankAccountsUpdateRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (a *AccountingBankAccountsUpdateRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"id", "AccountingBankAccount"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"id", "body"}); err != nil {
 		return err
 	}
 	return nil
@@ -88,11 +88,11 @@ func (o *AccountingBankAccountsUpdateRequest) GetRaw() *bool {
 	return o.Raw
 }
 
-func (o *AccountingBankAccountsUpdateRequest) GetAccountingBankAccount() components.AccountingBankAccountInput {
+func (o *AccountingBankAccountsUpdateRequest) GetBody() components.AccountingBankAccountInput {
 	if o == nil {
 		return components.AccountingBankAccountInput{}
 	}
-	return o.AccountingBankAccount
+	return o.Body
 }
 
 type AccountingBankAccountsUpdateResponse struct {

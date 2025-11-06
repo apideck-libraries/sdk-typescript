@@ -38,8 +38,8 @@ type AccountingPurchaseOrdersUpdateRequest struct {
 	// Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
 	ServiceID *string `header:"style=simple,explode=false,name=x-apideck-service-id"`
 	// Include raw response. Mostly used for debugging purposes
-	Raw           *bool                         `default:"false" queryParam:"style=form,explode=true,name=raw"`
-	PurchaseOrder components.PurchaseOrderInput `request:"mediaType=application/json"`
+	Raw  *bool                         `default:"false" queryParam:"style=form,explode=true,name=raw"`
+	Body components.PurchaseOrderInput `request:"mediaType=application/json"`
 }
 
 func (a AccountingPurchaseOrdersUpdateRequest) MarshalJSON() ([]byte, error) {
@@ -47,7 +47,7 @@ func (a AccountingPurchaseOrdersUpdateRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (a *AccountingPurchaseOrdersUpdateRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"id", "PurchaseOrder"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"id", "body"}); err != nil {
 		return err
 	}
 	return nil
@@ -88,11 +88,11 @@ func (o *AccountingPurchaseOrdersUpdateRequest) GetRaw() *bool {
 	return o.Raw
 }
 
-func (o *AccountingPurchaseOrdersUpdateRequest) GetPurchaseOrder() components.PurchaseOrderInput {
+func (o *AccountingPurchaseOrdersUpdateRequest) GetBody() components.PurchaseOrderInput {
 	if o == nil {
 		return components.PurchaseOrderInput{}
 	}
-	return o.PurchaseOrder
+	return o.Body
 }
 
 type AccountingPurchaseOrdersUpdateResponse struct {

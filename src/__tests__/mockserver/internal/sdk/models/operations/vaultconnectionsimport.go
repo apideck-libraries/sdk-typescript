@@ -37,7 +37,7 @@ type VaultConnectionsImportRequest struct {
 	// Unified API
 	UnifiedAPI string `pathParam:"style=simple,explode=false,name=unified_api"`
 	// Fields that need to be persisted on the resource
-	ConnectionImportData components.ConnectionImportData `request:"mediaType=application/json"`
+	Body components.ConnectionImportData `request:"mediaType=application/json"`
 }
 
 func (o *VaultConnectionsImportRequest) GetConsumerID() *string {
@@ -68,11 +68,11 @@ func (o *VaultConnectionsImportRequest) GetUnifiedAPI() string {
 	return o.UnifiedAPI
 }
 
-func (o *VaultConnectionsImportRequest) GetConnectionImportData() components.ConnectionImportData {
+func (o *VaultConnectionsImportRequest) GetBody() components.ConnectionImportData {
 	if o == nil {
 		return components.ConnectionImportData{}
 	}
-	return o.ConnectionImportData
+	return o.Body
 }
 
 type VaultConnectionsImportResponse struct {

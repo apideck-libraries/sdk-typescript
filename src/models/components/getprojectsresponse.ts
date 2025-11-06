@@ -7,24 +7,9 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  Links,
-  Links$inboundSchema,
-  Links$Outbound,
-  Links$outboundSchema,
-} from "./links.js";
-import {
-  Meta,
-  Meta$inboundSchema,
-  Meta$Outbound,
-  Meta$outboundSchema,
-} from "./meta.js";
-import {
-  Project,
-  Project$inboundSchema,
-  Project$Outbound,
-  Project$outboundSchema,
-} from "./project.js";
+import { Links, Links$inboundSchema } from "./links.js";
+import { Meta, Meta$inboundSchema } from "./meta.js";
+import { Project, Project$inboundSchema } from "./project.js";
 
 /**
  * Projects
@@ -80,59 +65,6 @@ export const GetProjectsResponse$inboundSchema: z.ZodType<
     "status_code": "statusCode",
   });
 });
-
-/** @internal */
-export type GetProjectsResponse$Outbound = {
-  status_code: number;
-  status: string;
-  service: string;
-  resource: string;
-  operation: string;
-  data: Array<Project$Outbound>;
-  meta?: Meta$Outbound | undefined;
-  links?: Links$Outbound | undefined;
-};
-
-/** @internal */
-export const GetProjectsResponse$outboundSchema: z.ZodType<
-  GetProjectsResponse$Outbound,
-  z.ZodTypeDef,
-  GetProjectsResponse
-> = z.object({
-  statusCode: z.number().int(),
-  status: z.string(),
-  service: z.string(),
-  resource: z.string(),
-  operation: z.string(),
-  data: z.array(Project$outboundSchema),
-  meta: Meta$outboundSchema.optional(),
-  links: Links$outboundSchema.optional(),
-}).transform((v) => {
-  return remap$(v, {
-    statusCode: "status_code",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetProjectsResponse$ {
-  /** @deprecated use `GetProjectsResponse$inboundSchema` instead. */
-  export const inboundSchema = GetProjectsResponse$inboundSchema;
-  /** @deprecated use `GetProjectsResponse$outboundSchema` instead. */
-  export const outboundSchema = GetProjectsResponse$outboundSchema;
-  /** @deprecated use `GetProjectsResponse$Outbound` instead. */
-  export type Outbound = GetProjectsResponse$Outbound;
-}
-
-export function getProjectsResponseToJSON(
-  getProjectsResponse: GetProjectsResponse,
-): string {
-  return JSON.stringify(
-    GetProjectsResponse$outboundSchema.parse(getProjectsResponse),
-  );
-}
 
 export function getProjectsResponseFromJSON(
   jsonString: string,

@@ -7,12 +7,7 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  CompanyInfo,
-  CompanyInfo$inboundSchema,
-  CompanyInfo$Outbound,
-  CompanyInfo$outboundSchema,
-} from "./companyinfo.js";
+import { CompanyInfo, CompanyInfo$inboundSchema } from "./companyinfo.js";
 
 /**
  * CompanyInfo
@@ -64,58 +59,6 @@ export const GetCompanyInfoResponse$inboundSchema: z.ZodType<
     "_raw": "raw",
   });
 });
-
-/** @internal */
-export type GetCompanyInfoResponse$Outbound = {
-  status_code: number;
-  status: string;
-  service: string;
-  resource: string;
-  operation: string;
-  data: CompanyInfo$Outbound;
-  _raw?: { [k: string]: any } | null | undefined;
-};
-
-/** @internal */
-export const GetCompanyInfoResponse$outboundSchema: z.ZodType<
-  GetCompanyInfoResponse$Outbound,
-  z.ZodTypeDef,
-  GetCompanyInfoResponse
-> = z.object({
-  statusCode: z.number().int(),
-  status: z.string(),
-  service: z.string(),
-  resource: z.string(),
-  operation: z.string(),
-  data: CompanyInfo$outboundSchema,
-  raw: z.nullable(z.record(z.any())).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    statusCode: "status_code",
-    raw: "_raw",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetCompanyInfoResponse$ {
-  /** @deprecated use `GetCompanyInfoResponse$inboundSchema` instead. */
-  export const inboundSchema = GetCompanyInfoResponse$inboundSchema;
-  /** @deprecated use `GetCompanyInfoResponse$outboundSchema` instead. */
-  export const outboundSchema = GetCompanyInfoResponse$outboundSchema;
-  /** @deprecated use `GetCompanyInfoResponse$Outbound` instead. */
-  export type Outbound = GetCompanyInfoResponse$Outbound;
-}
-
-export function getCompanyInfoResponseToJSON(
-  getCompanyInfoResponse: GetCompanyInfoResponse,
-): string {
-  return JSON.stringify(
-    GetCompanyInfoResponse$outboundSchema.parse(getCompanyInfoResponse),
-  );
-}
 
 export function getCompanyInfoResponseFromJSON(
   jsonString: string,

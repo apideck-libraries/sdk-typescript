@@ -57,83 +57,6 @@ export type AccountingProjectsUpdateResponse = {
 };
 
 /** @internal */
-export const AccountingProjectsUpdateGlobals$inboundSchema: z.ZodType<
-  AccountingProjectsUpdateGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/** @internal */
-export type AccountingProjectsUpdateGlobals$Outbound = {
-  consumerId?: string | undefined;
-  appId?: string | undefined;
-};
-
-/** @internal */
-export const AccountingProjectsUpdateGlobals$outboundSchema: z.ZodType<
-  AccountingProjectsUpdateGlobals$Outbound,
-  z.ZodTypeDef,
-  AccountingProjectsUpdateGlobals
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AccountingProjectsUpdateGlobals$ {
-  /** @deprecated use `AccountingProjectsUpdateGlobals$inboundSchema` instead. */
-  export const inboundSchema = AccountingProjectsUpdateGlobals$inboundSchema;
-  /** @deprecated use `AccountingProjectsUpdateGlobals$outboundSchema` instead. */
-  export const outboundSchema = AccountingProjectsUpdateGlobals$outboundSchema;
-  /** @deprecated use `AccountingProjectsUpdateGlobals$Outbound` instead. */
-  export type Outbound = AccountingProjectsUpdateGlobals$Outbound;
-}
-
-export function accountingProjectsUpdateGlobalsToJSON(
-  accountingProjectsUpdateGlobals: AccountingProjectsUpdateGlobals,
-): string {
-  return JSON.stringify(
-    AccountingProjectsUpdateGlobals$outboundSchema.parse(
-      accountingProjectsUpdateGlobals,
-    ),
-  );
-}
-
-export function accountingProjectsUpdateGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<AccountingProjectsUpdateGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => AccountingProjectsUpdateGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'AccountingProjectsUpdateGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const AccountingProjectsUpdateRequest$inboundSchema: z.ZodType<
-  AccountingProjectsUpdateRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  id: z.string(),
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  raw: z.boolean().default(false),
-  Project: components.ProjectInput$inboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    "Project": "project",
-  });
-});
-
-/** @internal */
 export type AccountingProjectsUpdateRequest$Outbound = {
   id: string;
   consumerId?: string | undefined;
@@ -161,19 +84,6 @@ export const AccountingProjectsUpdateRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AccountingProjectsUpdateRequest$ {
-  /** @deprecated use `AccountingProjectsUpdateRequest$inboundSchema` instead. */
-  export const inboundSchema = AccountingProjectsUpdateRequest$inboundSchema;
-  /** @deprecated use `AccountingProjectsUpdateRequest$outboundSchema` instead. */
-  export const outboundSchema = AccountingProjectsUpdateRequest$outboundSchema;
-  /** @deprecated use `AccountingProjectsUpdateRequest$Outbound` instead. */
-  export type Outbound = AccountingProjectsUpdateRequest$Outbound;
-}
-
 export function accountingProjectsUpdateRequestToJSON(
   accountingProjectsUpdateRequest: AccountingProjectsUpdateRequest,
 ): string {
@@ -181,16 +91,6 @@ export function accountingProjectsUpdateRequestToJSON(
     AccountingProjectsUpdateRequest$outboundSchema.parse(
       accountingProjectsUpdateRequest,
     ),
-  );
-}
-
-export function accountingProjectsUpdateRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<AccountingProjectsUpdateRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => AccountingProjectsUpdateRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'AccountingProjectsUpdateRequest' from JSON`,
   );
 }
 
@@ -212,57 +112,6 @@ export const AccountingProjectsUpdateResponse$inboundSchema: z.ZodType<
     "UnexpectedErrorResponse": "unexpectedErrorResponse",
   });
 });
-
-/** @internal */
-export type AccountingProjectsUpdateResponse$Outbound = {
-  HttpMeta: components.HTTPMetadata$Outbound;
-  UpdateProjectResponse?: components.UpdateProjectResponse$Outbound | undefined;
-  UnexpectedErrorResponse?:
-    | components.UnexpectedErrorResponse$Outbound
-    | undefined;
-};
-
-/** @internal */
-export const AccountingProjectsUpdateResponse$outboundSchema: z.ZodType<
-  AccountingProjectsUpdateResponse$Outbound,
-  z.ZodTypeDef,
-  AccountingProjectsUpdateResponse
-> = z.object({
-  httpMeta: components.HTTPMetadata$outboundSchema,
-  updateProjectResponse: components.UpdateProjectResponse$outboundSchema
-    .optional(),
-  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    httpMeta: "HttpMeta",
-    updateProjectResponse: "UpdateProjectResponse",
-    unexpectedErrorResponse: "UnexpectedErrorResponse",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AccountingProjectsUpdateResponse$ {
-  /** @deprecated use `AccountingProjectsUpdateResponse$inboundSchema` instead. */
-  export const inboundSchema = AccountingProjectsUpdateResponse$inboundSchema;
-  /** @deprecated use `AccountingProjectsUpdateResponse$outboundSchema` instead. */
-  export const outboundSchema = AccountingProjectsUpdateResponse$outboundSchema;
-  /** @deprecated use `AccountingProjectsUpdateResponse$Outbound` instead. */
-  export type Outbound = AccountingProjectsUpdateResponse$Outbound;
-}
-
-export function accountingProjectsUpdateResponseToJSON(
-  accountingProjectsUpdateResponse: AccountingProjectsUpdateResponse,
-): string {
-  return JSON.stringify(
-    AccountingProjectsUpdateResponse$outboundSchema.parse(
-      accountingProjectsUpdateResponse,
-    ),
-  );
-}
 
 export function accountingProjectsUpdateResponseFromJSON(
   jsonString: string,

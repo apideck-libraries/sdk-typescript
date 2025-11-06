@@ -38,8 +38,8 @@ type AccountingQuotesUpdateRequest struct {
 	// Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
 	ServiceID *string `header:"style=simple,explode=false,name=x-apideck-service-id"`
 	// Include raw response. Mostly used for debugging purposes
-	Raw   *bool                 `default:"false" queryParam:"style=form,explode=true,name=raw"`
-	Quote components.QuoteInput `request:"mediaType=application/json"`
+	Raw  *bool                 `default:"false" queryParam:"style=form,explode=true,name=raw"`
+	Body components.QuoteInput `request:"mediaType=application/json"`
 }
 
 func (a AccountingQuotesUpdateRequest) MarshalJSON() ([]byte, error) {
@@ -47,7 +47,7 @@ func (a AccountingQuotesUpdateRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (a *AccountingQuotesUpdateRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"id", "Quote"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"id", "body"}); err != nil {
 		return err
 	}
 	return nil
@@ -88,11 +88,11 @@ func (o *AccountingQuotesUpdateRequest) GetRaw() *bool {
 	return o.Raw
 }
 
-func (o *AccountingQuotesUpdateRequest) GetQuote() components.QuoteInput {
+func (o *AccountingQuotesUpdateRequest) GetBody() components.QuoteInput {
 	if o == nil {
 		return components.QuoteInput{}
 	}
-	return o.Quote
+	return o.Body
 }
 
 type AccountingQuotesUpdateResponse struct {

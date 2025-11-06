@@ -22,12 +22,13 @@ generation:
     hoistGlobalSecurity: true
   schemas:
     allOfMergeStrategy: shallowMerge
+  requestBodyFieldName: ""
   tests:
     generateTests: true
     generateNewTests: true
     skipResponseBodyAssertions: false
 typescript:
-  version: 0.34.0
+  version: 0.34.1
   acceptHeaderEnum: true
   additionalDependencies:
     dependencies: {}
@@ -35,6 +36,7 @@ typescript:
     peerDependencies: {}
   additionalPackageJSON: {}
   additionalScripts: {}
+  alwaysIncludeInboundAndOutbound: false
   author: Speakeasy
   baseErrorName: ApideckError
   clientServerStatusCodesAsErrors: true
@@ -45,6 +47,7 @@ typescript:
   enableReactQuery: false
   enumFormat: union
   envVarPrefix: APIDECK
+  exportZodModelNamespace: false
   flattenGlobalSecurity: true
   flatteningOrder: parameters-first
   generateExamples: true

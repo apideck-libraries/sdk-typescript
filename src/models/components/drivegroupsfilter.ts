@@ -4,9 +4,6 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type DriveGroupsFilter = {
   /**
@@ -14,19 +11,6 @@ export type DriveGroupsFilter = {
    */
   parentGroupId?: string | undefined;
 };
-
-/** @internal */
-export const DriveGroupsFilter$inboundSchema: z.ZodType<
-  DriveGroupsFilter,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  parent_group_id: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "parent_group_id": "parentGroupId",
-  });
-});
 
 /** @internal */
 export type DriveGroupsFilter$Outbound = {
@@ -46,33 +30,10 @@ export const DriveGroupsFilter$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DriveGroupsFilter$ {
-  /** @deprecated use `DriveGroupsFilter$inboundSchema` instead. */
-  export const inboundSchema = DriveGroupsFilter$inboundSchema;
-  /** @deprecated use `DriveGroupsFilter$outboundSchema` instead. */
-  export const outboundSchema = DriveGroupsFilter$outboundSchema;
-  /** @deprecated use `DriveGroupsFilter$Outbound` instead. */
-  export type Outbound = DriveGroupsFilter$Outbound;
-}
-
 export function driveGroupsFilterToJSON(
   driveGroupsFilter: DriveGroupsFilter,
 ): string {
   return JSON.stringify(
     DriveGroupsFilter$outboundSchema.parse(driveGroupsFilter),
-  );
-}
-
-export function driveGroupsFilterFromJSON(
-  jsonString: string,
-): SafeParseResult<DriveGroupsFilter, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => DriveGroupsFilter$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'DriveGroupsFilter' from JSON`,
   );
 }

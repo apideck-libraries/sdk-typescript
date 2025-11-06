@@ -43,8 +43,8 @@ type AccountingAttachmentsUploadRequest struct {
 	// The ID of your Unify application
 	AppID *string `header:"style=simple,explode=false,name=x-apideck-app-id"`
 	// Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
-	ServiceID   *string   `header:"style=simple,explode=false,name=x-apideck-service-id"`
-	RequestBody io.Reader `request:"mediaType=*/*"`
+	ServiceID *string   `header:"style=simple,explode=false,name=x-apideck-service-id"`
+	Body      io.Reader `request:"mediaType=*/*"`
 }
 
 func (a AccountingAttachmentsUploadRequest) MarshalJSON() ([]byte, error) {
@@ -52,7 +52,7 @@ func (a AccountingAttachmentsUploadRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (a *AccountingAttachmentsUploadRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"reference_type", "reference_id", "RequestBody"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"reference_type", "reference_id", "body"}); err != nil {
 		return err
 	}
 	return nil
@@ -107,11 +107,11 @@ func (o *AccountingAttachmentsUploadRequest) GetServiceID() *string {
 	return o.ServiceID
 }
 
-func (o *AccountingAttachmentsUploadRequest) GetRequestBody() io.Reader {
+func (o *AccountingAttachmentsUploadRequest) GetBody() io.Reader {
 	if o == nil {
 		return nil
 	}
-	return o.RequestBody
+	return o.Body
 }
 
 type AccountingAttachmentsUploadResponse struct {

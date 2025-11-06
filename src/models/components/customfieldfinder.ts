@@ -43,49 +43,6 @@ export const CustomFieldFinder$inboundSchema: z.ZodType<
   finder: z.string().optional(),
 });
 
-/** @internal */
-export type CustomFieldFinder$Outbound = {
-  id?: string | undefined;
-  name?: string | null | undefined;
-  description?: string | null | undefined;
-  value?: any | undefined;
-  finder?: string | undefined;
-};
-
-/** @internal */
-export const CustomFieldFinder$outboundSchema: z.ZodType<
-  CustomFieldFinder$Outbound,
-  z.ZodTypeDef,
-  CustomFieldFinder
-> = z.object({
-  id: z.string().optional(),
-  name: z.nullable(z.string()).optional(),
-  description: z.nullable(z.string()).optional(),
-  value: z.any().optional(),
-  finder: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CustomFieldFinder$ {
-  /** @deprecated use `CustomFieldFinder$inboundSchema` instead. */
-  export const inboundSchema = CustomFieldFinder$inboundSchema;
-  /** @deprecated use `CustomFieldFinder$outboundSchema` instead. */
-  export const outboundSchema = CustomFieldFinder$outboundSchema;
-  /** @deprecated use `CustomFieldFinder$Outbound` instead. */
-  export type Outbound = CustomFieldFinder$Outbound;
-}
-
-export function customFieldFinderToJSON(
-  customFieldFinder: CustomFieldFinder,
-): string {
-  return JSON.stringify(
-    CustomFieldFinder$outboundSchema.parse(customFieldFinder),
-  );
-}
-
 export function customFieldFinderFromJSON(
   jsonString: string,
 ): SafeParseResult<CustomFieldFinder, SDKValidationError> {

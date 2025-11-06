@@ -29,12 +29,9 @@ import {
 import {
   LinkedCustomer,
   LinkedCustomer$inboundSchema,
-  LinkedCustomer$Outbound,
-  LinkedCustomer$outboundSchema,
 } from "./linkedcustomer.js";
 import {
   LinkedCustomerInput,
-  LinkedCustomerInput$inboundSchema,
   LinkedCustomerInput$Outbound,
   LinkedCustomerInput$outboundSchema,
 } from "./linkedcustomerinput.js";
@@ -53,10 +50,7 @@ import {
 import {
   QuoteLineItem,
   QuoteLineItem$inboundSchema,
-  QuoteLineItem$Outbound,
-  QuoteLineItem$outboundSchema,
   QuoteLineItemInput,
-  QuoteLineItemInput$inboundSchema,
   QuoteLineItemInput$Outbound,
   QuoteLineItemInput$outboundSchema,
 } from "./quotelineitem.js";
@@ -332,21 +326,9 @@ export type QuoteInput = {
 /** @internal */
 export const QuoteStatus$inboundSchema: z.ZodNativeEnum<typeof QuoteStatus> = z
   .nativeEnum(QuoteStatus);
-
 /** @internal */
 export const QuoteStatus$outboundSchema: z.ZodNativeEnum<typeof QuoteStatus> =
   QuoteStatus$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace QuoteStatus$ {
-  /** @deprecated use `QuoteStatus$inboundSchema` instead. */
-  export const inboundSchema = QuoteStatus$inboundSchema;
-  /** @deprecated use `QuoteStatus$outboundSchema` instead. */
-  export const outboundSchema = QuoteStatus$outboundSchema;
-}
 
 /** @internal */
 export const Quote$inboundSchema: z.ZodType<Quote, z.ZodTypeDef, unknown> = z
@@ -430,148 +412,6 @@ export const Quote$inboundSchema: z.ZodType<Quote, z.ZodTypeDef, unknown> = z
     });
   });
 
-/** @internal */
-export type Quote$Outbound = {
-  id?: string | undefined;
-  downstream_id?: string | null | undefined;
-  number?: string | null | undefined;
-  customer?: LinkedCustomer$Outbound | null | undefined;
-  invoice_id?: string | undefined;
-  sales_order_id?: string | null | undefined;
-  company_id?: string | null | undefined;
-  department_id?: string | null | undefined;
-  project_id?: string | undefined;
-  quote_date?: string | null | undefined;
-  expiry_date?: string | null | undefined;
-  terms?: string | null | undefined;
-  reference?: string | null | undefined;
-  status?: string | null | undefined;
-  currency?: string | null | undefined;
-  currency_rate?: number | null | undefined;
-  tax_inclusive?: boolean | null | undefined;
-  sub_total?: number | null | undefined;
-  total_tax?: number | null | undefined;
-  tax_code?: string | null | undefined;
-  discount_percentage?: number | null | undefined;
-  discount_amount?: number | null | undefined;
-  total?: number | null | undefined;
-  customer_memo?: string | null | undefined;
-  line_items?: Array<QuoteLineItem$Outbound> | undefined;
-  billing_address?: Address$Outbound | undefined;
-  shipping_address?: Address$Outbound | undefined;
-  tracking_categories?:
-    | Array<LinkedTrackingCategory$Outbound | null>
-    | null
-    | undefined;
-  template_id?: string | null | undefined;
-  source_document_url?: string | null | undefined;
-  custom_fields?: Array<CustomField$Outbound> | undefined;
-  row_version?: string | null | undefined;
-  updated_by?: string | null | undefined;
-  created_by?: string | null | undefined;
-  updated_at?: string | null | undefined;
-  created_at?: string | null | undefined;
-  pass_through?: Array<PassThroughBody$Outbound> | undefined;
-};
-
-/** @internal */
-export const Quote$outboundSchema: z.ZodType<
-  Quote$Outbound,
-  z.ZodTypeDef,
-  Quote
-> = z.object({
-  id: z.string().optional(),
-  downstreamId: z.nullable(z.string()).optional(),
-  number: z.nullable(z.string()).optional(),
-  customer: z.nullable(LinkedCustomer$outboundSchema).optional(),
-  invoiceId: z.string().optional(),
-  salesOrderId: z.nullable(z.string()).optional(),
-  companyId: z.nullable(z.string()).optional(),
-  departmentId: z.nullable(z.string()).optional(),
-  projectId: z.string().optional(),
-  quoteDate: z.nullable(z.instanceof(RFCDate).transform(v => v.toString()))
-    .optional(),
-  expiryDate: z.nullable(z.instanceof(RFCDate).transform(v => v.toString()))
-    .optional(),
-  terms: z.nullable(z.string()).optional(),
-  reference: z.nullable(z.string()).optional(),
-  status: z.nullable(QuoteStatus$outboundSchema).optional(),
-  currency: z.nullable(Currency$outboundSchema).optional(),
-  currencyRate: z.nullable(z.number()).optional(),
-  taxInclusive: z.nullable(z.boolean()).optional(),
-  subTotal: z.nullable(z.number()).optional(),
-  totalTax: z.nullable(z.number()).optional(),
-  taxCode: z.nullable(z.string()).optional(),
-  discountPercentage: z.nullable(z.number()).optional(),
-  discountAmount: z.nullable(z.number()).optional(),
-  total: z.nullable(z.number()).optional(),
-  customerMemo: z.nullable(z.string()).optional(),
-  lineItems: z.array(QuoteLineItem$outboundSchema).optional(),
-  billingAddress: Address$outboundSchema.optional(),
-  shippingAddress: Address$outboundSchema.optional(),
-  trackingCategories: z.nullable(
-    z.array(z.nullable(LinkedTrackingCategory$outboundSchema)),
-  ).optional(),
-  templateId: z.nullable(z.string()).optional(),
-  sourceDocumentUrl: z.nullable(z.string()).optional(),
-  customFields: z.array(CustomField$outboundSchema).optional(),
-  rowVersion: z.nullable(z.string()).optional(),
-  updatedBy: z.nullable(z.string()).optional(),
-  createdBy: z.nullable(z.string()).optional(),
-  updatedAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
-  createdAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
-  passThrough: z.array(PassThroughBody$outboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    downstreamId: "downstream_id",
-    invoiceId: "invoice_id",
-    salesOrderId: "sales_order_id",
-    companyId: "company_id",
-    departmentId: "department_id",
-    projectId: "project_id",
-    quoteDate: "quote_date",
-    expiryDate: "expiry_date",
-    currencyRate: "currency_rate",
-    taxInclusive: "tax_inclusive",
-    subTotal: "sub_total",
-    totalTax: "total_tax",
-    taxCode: "tax_code",
-    discountPercentage: "discount_percentage",
-    discountAmount: "discount_amount",
-    customerMemo: "customer_memo",
-    lineItems: "line_items",
-    billingAddress: "billing_address",
-    shippingAddress: "shipping_address",
-    trackingCategories: "tracking_categories",
-    templateId: "template_id",
-    sourceDocumentUrl: "source_document_url",
-    customFields: "custom_fields",
-    rowVersion: "row_version",
-    updatedBy: "updated_by",
-    createdBy: "created_by",
-    updatedAt: "updated_at",
-    createdAt: "created_at",
-    passThrough: "pass_through",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Quote$ {
-  /** @deprecated use `Quote$inboundSchema` instead. */
-  export const inboundSchema = Quote$inboundSchema;
-  /** @deprecated use `Quote$outboundSchema` instead. */
-  export const outboundSchema = Quote$outboundSchema;
-  /** @deprecated use `Quote$Outbound` instead. */
-  export type Outbound = Quote$Outbound;
-}
-
-export function quoteToJSON(quote: Quote): string {
-  return JSON.stringify(Quote$outboundSchema.parse(quote));
-}
-
 export function quoteFromJSON(
   jsonString: string,
 ): SafeParseResult<Quote, SDKValidationError> {
@@ -581,72 +421,6 @@ export function quoteFromJSON(
     `Failed to parse 'Quote' from JSON`,
   );
 }
-
-/** @internal */
-export const QuoteInput$inboundSchema: z.ZodType<
-  QuoteInput,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  number: z.nullable(z.string()).optional(),
-  customer: z.nullable(LinkedCustomerInput$inboundSchema).optional(),
-  sales_order_id: z.nullable(z.string()).optional(),
-  company_id: z.nullable(z.string()).optional(),
-  department_id: z.nullable(z.string()).optional(),
-  project_id: z.string().optional(),
-  quote_date: z.nullable(z.string().transform(v => new RFCDate(v))).optional(),
-  expiry_date: z.nullable(z.string().transform(v => new RFCDate(v))).optional(),
-  terms: z.nullable(z.string()).optional(),
-  reference: z.nullable(z.string()).optional(),
-  status: z.nullable(QuoteStatus$inboundSchema).optional(),
-  currency: z.nullable(Currency$inboundSchema).optional(),
-  currency_rate: z.nullable(z.number()).optional(),
-  tax_inclusive: z.nullable(z.boolean()).optional(),
-  sub_total: z.nullable(z.number()).optional(),
-  total_tax: z.nullable(z.number()).optional(),
-  tax_code: z.nullable(z.string()).optional(),
-  discount_percentage: z.nullable(z.number()).optional(),
-  discount_amount: z.nullable(z.number()).optional(),
-  total: z.nullable(z.number()).optional(),
-  customer_memo: z.nullable(z.string()).optional(),
-  line_items: z.array(QuoteLineItemInput$inboundSchema).optional(),
-  billing_address: Address$inboundSchema.optional(),
-  shipping_address: Address$inboundSchema.optional(),
-  tracking_categories: z.nullable(
-    z.array(z.nullable(LinkedTrackingCategory$inboundSchema)),
-  ).optional(),
-  template_id: z.nullable(z.string()).optional(),
-  source_document_url: z.nullable(z.string()).optional(),
-  custom_fields: z.array(CustomField$inboundSchema).optional(),
-  row_version: z.nullable(z.string()).optional(),
-  pass_through: z.array(PassThroughBody$inboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "sales_order_id": "salesOrderId",
-    "company_id": "companyId",
-    "department_id": "departmentId",
-    "project_id": "projectId",
-    "quote_date": "quoteDate",
-    "expiry_date": "expiryDate",
-    "currency_rate": "currencyRate",
-    "tax_inclusive": "taxInclusive",
-    "sub_total": "subTotal",
-    "total_tax": "totalTax",
-    "tax_code": "taxCode",
-    "discount_percentage": "discountPercentage",
-    "discount_amount": "discountAmount",
-    "customer_memo": "customerMemo",
-    "line_items": "lineItems",
-    "billing_address": "billingAddress",
-    "shipping_address": "shippingAddress",
-    "tracking_categories": "trackingCategories",
-    "template_id": "templateId",
-    "source_document_url": "sourceDocumentUrl",
-    "custom_fields": "customFields",
-    "row_version": "rowVersion",
-    "pass_through": "passThrough",
-  });
-});
 
 /** @internal */
 export type QuoteInput$Outbound = {
@@ -753,29 +527,6 @@ export const QuoteInput$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace QuoteInput$ {
-  /** @deprecated use `QuoteInput$inboundSchema` instead. */
-  export const inboundSchema = QuoteInput$inboundSchema;
-  /** @deprecated use `QuoteInput$outboundSchema` instead. */
-  export const outboundSchema = QuoteInput$outboundSchema;
-  /** @deprecated use `QuoteInput$Outbound` instead. */
-  export type Outbound = QuoteInput$Outbound;
-}
-
 export function quoteInputToJSON(quoteInput: QuoteInput): string {
   return JSON.stringify(QuoteInput$outboundSchema.parse(quoteInput));
-}
-
-export function quoteInputFromJSON(
-  jsonString: string,
-): SafeParseResult<QuoteInput, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => QuoteInput$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'QuoteInput' from JSON`,
-  );
 }

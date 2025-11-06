@@ -37,7 +37,7 @@ type VaultConnectionsUpdateRequest struct {
 	// Unified API
 	UnifiedAPI string `pathParam:"style=simple,explode=false,name=unified_api"`
 	// Fields that need to be updated on the resource
-	Connection components.ConnectionInput `request:"mediaType=application/json"`
+	Body components.ConnectionInput `request:"mediaType=application/json"`
 }
 
 func (o *VaultConnectionsUpdateRequest) GetConsumerID() *string {
@@ -68,11 +68,11 @@ func (o *VaultConnectionsUpdateRequest) GetUnifiedAPI() string {
 	return o.UnifiedAPI
 }
 
-func (o *VaultConnectionsUpdateRequest) GetConnection() components.ConnectionInput {
+func (o *VaultConnectionsUpdateRequest) GetBody() components.ConnectionInput {
 	if o == nil {
 		return components.ConnectionInput{}
 	}
-	return o.Connection
+	return o.Body
 }
 
 type VaultConnectionsUpdateResponse struct {

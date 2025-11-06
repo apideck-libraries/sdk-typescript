@@ -37,7 +37,7 @@ type AccountingSuppliersAddRequest struct {
 	AppID *string `header:"style=simple,explode=false,name=x-apideck-app-id"`
 	// Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
 	ServiceID *string                  `header:"style=simple,explode=false,name=x-apideck-service-id"`
-	Supplier  components.SupplierInput `request:"mediaType=application/json"`
+	Body      components.SupplierInput `request:"mediaType=application/json"`
 }
 
 func (a AccountingSuppliersAddRequest) MarshalJSON() ([]byte, error) {
@@ -45,7 +45,7 @@ func (a AccountingSuppliersAddRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (a *AccountingSuppliersAddRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"Supplier"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"body"}); err != nil {
 		return err
 	}
 	return nil
@@ -79,11 +79,11 @@ func (o *AccountingSuppliersAddRequest) GetServiceID() *string {
 	return o.ServiceID
 }
 
-func (o *AccountingSuppliersAddRequest) GetSupplier() components.SupplierInput {
+func (o *AccountingSuppliersAddRequest) GetBody() components.SupplierInput {
 	if o == nil {
 		return components.SupplierInput{}
 	}
-	return o.Supplier
+	return o.Body
 }
 
 type AccountingSuppliersAddResponse struct {

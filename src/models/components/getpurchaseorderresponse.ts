@@ -7,12 +7,7 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  PurchaseOrder,
-  PurchaseOrder$inboundSchema,
-  PurchaseOrder$Outbound,
-  PurchaseOrder$outboundSchema,
-} from "./purchaseorder.js";
+import { PurchaseOrder, PurchaseOrder$inboundSchema } from "./purchaseorder.js";
 
 /**
  * PurchaseOrders
@@ -64,58 +59,6 @@ export const GetPurchaseOrderResponse$inboundSchema: z.ZodType<
     "_raw": "raw",
   });
 });
-
-/** @internal */
-export type GetPurchaseOrderResponse$Outbound = {
-  status_code: number;
-  status: string;
-  service: string;
-  resource: string;
-  operation: string;
-  data: PurchaseOrder$Outbound;
-  _raw?: { [k: string]: any } | null | undefined;
-};
-
-/** @internal */
-export const GetPurchaseOrderResponse$outboundSchema: z.ZodType<
-  GetPurchaseOrderResponse$Outbound,
-  z.ZodTypeDef,
-  GetPurchaseOrderResponse
-> = z.object({
-  statusCode: z.number().int(),
-  status: z.string(),
-  service: z.string(),
-  resource: z.string(),
-  operation: z.string(),
-  data: PurchaseOrder$outboundSchema,
-  raw: z.nullable(z.record(z.any())).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    statusCode: "status_code",
-    raw: "_raw",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetPurchaseOrderResponse$ {
-  /** @deprecated use `GetPurchaseOrderResponse$inboundSchema` instead. */
-  export const inboundSchema = GetPurchaseOrderResponse$inboundSchema;
-  /** @deprecated use `GetPurchaseOrderResponse$outboundSchema` instead. */
-  export const outboundSchema = GetPurchaseOrderResponse$outboundSchema;
-  /** @deprecated use `GetPurchaseOrderResponse$Outbound` instead. */
-  export type Outbound = GetPurchaseOrderResponse$Outbound;
-}
-
-export function getPurchaseOrderResponseToJSON(
-  getPurchaseOrderResponse: GetPurchaseOrderResponse,
-): string {
-  return JSON.stringify(
-    GetPurchaseOrderResponse$outboundSchema.parse(getPurchaseOrderResponse),
-  );
-}
 
 export function getPurchaseOrderResponseFromJSON(
   jsonString: string,

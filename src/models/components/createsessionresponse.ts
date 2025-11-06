@@ -47,48 +47,6 @@ export const CreateSessionResponseData$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type CreateSessionResponseData$Outbound = {
-  session_uri: string;
-  session_token: string;
-};
-
-/** @internal */
-export const CreateSessionResponseData$outboundSchema: z.ZodType<
-  CreateSessionResponseData$Outbound,
-  z.ZodTypeDef,
-  CreateSessionResponseData
-> = z.object({
-  sessionUri: z.string(),
-  sessionToken: z.string(),
-}).transform((v) => {
-  return remap$(v, {
-    sessionUri: "session_uri",
-    sessionToken: "session_token",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateSessionResponseData$ {
-  /** @deprecated use `CreateSessionResponseData$inboundSchema` instead. */
-  export const inboundSchema = CreateSessionResponseData$inboundSchema;
-  /** @deprecated use `CreateSessionResponseData$outboundSchema` instead. */
-  export const outboundSchema = CreateSessionResponseData$outboundSchema;
-  /** @deprecated use `CreateSessionResponseData$Outbound` instead. */
-  export type Outbound = CreateSessionResponseData$Outbound;
-}
-
-export function createSessionResponseDataToJSON(
-  createSessionResponseData: CreateSessionResponseData,
-): string {
-  return JSON.stringify(
-    CreateSessionResponseData$outboundSchema.parse(createSessionResponseData),
-  );
-}
-
 export function createSessionResponseDataFromJSON(
   jsonString: string,
 ): SafeParseResult<CreateSessionResponseData, SDKValidationError> {
@@ -115,52 +73,6 @@ export const CreateSessionResponse$inboundSchema: z.ZodType<
     "_raw": "raw",
   });
 });
-
-/** @internal */
-export type CreateSessionResponse$Outbound = {
-  status_code: number;
-  status: string;
-  data: CreateSessionResponseData$Outbound;
-  _raw?: { [k: string]: any } | null | undefined;
-};
-
-/** @internal */
-export const CreateSessionResponse$outboundSchema: z.ZodType<
-  CreateSessionResponse$Outbound,
-  z.ZodTypeDef,
-  CreateSessionResponse
-> = z.object({
-  statusCode: z.number().int(),
-  status: z.string(),
-  data: z.lazy(() => CreateSessionResponseData$outboundSchema),
-  raw: z.nullable(z.record(z.any())).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    statusCode: "status_code",
-    raw: "_raw",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateSessionResponse$ {
-  /** @deprecated use `CreateSessionResponse$inboundSchema` instead. */
-  export const inboundSchema = CreateSessionResponse$inboundSchema;
-  /** @deprecated use `CreateSessionResponse$outboundSchema` instead. */
-  export const outboundSchema = CreateSessionResponse$outboundSchema;
-  /** @deprecated use `CreateSessionResponse$Outbound` instead. */
-  export type Outbound = CreateSessionResponse$Outbound;
-}
-
-export function createSessionResponseToJSON(
-  createSessionResponse: CreateSessionResponse,
-): string {
-  return JSON.stringify(
-    CreateSessionResponse$outboundSchema.parse(createSessionResponse),
-  );
-}
 
 export function createSessionResponseFromJSON(
   jsonString: string,

@@ -7,12 +7,7 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  Message,
-  Message$inboundSchema,
-  Message$Outbound,
-  Message$outboundSchema,
-} from "./message.js";
+import { Message, Message$inboundSchema } from "./message.js";
 
 /**
  * Messages
@@ -64,58 +59,6 @@ export const GetMessageResponse$inboundSchema: z.ZodType<
     "_raw": "raw",
   });
 });
-
-/** @internal */
-export type GetMessageResponse$Outbound = {
-  status_code: number;
-  status: string;
-  service: string;
-  resource: string;
-  operation: string;
-  data: Message$Outbound;
-  _raw?: { [k: string]: any } | null | undefined;
-};
-
-/** @internal */
-export const GetMessageResponse$outboundSchema: z.ZodType<
-  GetMessageResponse$Outbound,
-  z.ZodTypeDef,
-  GetMessageResponse
-> = z.object({
-  statusCode: z.number().int(),
-  status: z.string(),
-  service: z.string(),
-  resource: z.string(),
-  operation: z.string(),
-  data: Message$outboundSchema,
-  raw: z.nullable(z.record(z.any())).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    statusCode: "status_code",
-    raw: "_raw",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetMessageResponse$ {
-  /** @deprecated use `GetMessageResponse$inboundSchema` instead. */
-  export const inboundSchema = GetMessageResponse$inboundSchema;
-  /** @deprecated use `GetMessageResponse$outboundSchema` instead. */
-  export const outboundSchema = GetMessageResponse$outboundSchema;
-  /** @deprecated use `GetMessageResponse$Outbound` instead. */
-  export type Outbound = GetMessageResponse$Outbound;
-}
-
-export function getMessageResponseToJSON(
-  getMessageResponse: GetMessageResponse,
-): string {
-  return JSON.stringify(
-    GetMessageResponse$outboundSchema.parse(getMessageResponse),
-  );
-}
 
 export function getMessageResponseFromJSON(
   jsonString: string,

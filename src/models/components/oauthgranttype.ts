@@ -22,19 +22,3 @@ export type OAuthGrantType = ClosedEnum<typeof OAuthGrantType>;
 export const OAuthGrantType$inboundSchema: z.ZodNativeEnum<
   typeof OAuthGrantType
 > = z.nativeEnum(OAuthGrantType);
-
-/** @internal */
-export const OAuthGrantType$outboundSchema: z.ZodNativeEnum<
-  typeof OAuthGrantType
-> = OAuthGrantType$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace OAuthGrantType$ {
-  /** @deprecated use `OAuthGrantType$inboundSchema` instead. */
-  export const inboundSchema = OAuthGrantType$inboundSchema;
-  /** @deprecated use `OAuthGrantType$outboundSchema` instead. */
-  export const outboundSchema = OAuthGrantType$outboundSchema;
-}

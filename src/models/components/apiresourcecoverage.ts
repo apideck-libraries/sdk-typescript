@@ -10,19 +10,14 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   PaginationCoverage,
   PaginationCoverage$inboundSchema,
-  PaginationCoverage$Outbound,
-  PaginationCoverage$outboundSchema,
 } from "./paginationcoverage.js";
 import {
   ResourceStatus,
   ResourceStatus$inboundSchema,
-  ResourceStatus$outboundSchema,
 } from "./resourcestatus.js";
 import {
   SupportedProperty,
   SupportedProperty$inboundSchema,
-  SupportedProperty$Outbound,
-  SupportedProperty$outboundSchema,
 } from "./supportedproperty.js";
 
 export type Coverage = {
@@ -105,64 +100,6 @@ export const Coverage$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type Coverage$Outbound = {
-  downstream_id?: string | undefined;
-  downstream_name?: string | undefined;
-  pagination_supported?: boolean | undefined;
-  pagination?: PaginationCoverage$Outbound | undefined;
-  supported_operations?: Array<string> | undefined;
-  supported_filters?: Array<string> | undefined;
-  supported_sort_by?: Array<string> | undefined;
-  supported_fields?: Array<SupportedProperty$Outbound> | undefined;
-  supported_list_fields?: Array<SupportedProperty$Outbound> | undefined;
-};
-
-/** @internal */
-export const Coverage$outboundSchema: z.ZodType<
-  Coverage$Outbound,
-  z.ZodTypeDef,
-  Coverage
-> = z.object({
-  downstreamId: z.string().optional(),
-  downstreamName: z.string().optional(),
-  paginationSupported: z.boolean().optional(),
-  pagination: PaginationCoverage$outboundSchema.optional(),
-  supportedOperations: z.array(z.string()).optional(),
-  supportedFilters: z.array(z.string()).optional(),
-  supportedSortBy: z.array(z.string()).optional(),
-  supportedFields: z.array(SupportedProperty$outboundSchema).optional(),
-  supportedListFields: z.array(SupportedProperty$outboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    downstreamId: "downstream_id",
-    downstreamName: "downstream_name",
-    paginationSupported: "pagination_supported",
-    supportedOperations: "supported_operations",
-    supportedFilters: "supported_filters",
-    supportedSortBy: "supported_sort_by",
-    supportedFields: "supported_fields",
-    supportedListFields: "supported_list_fields",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Coverage$ {
-  /** @deprecated use `Coverage$inboundSchema` instead. */
-  export const inboundSchema = Coverage$inboundSchema;
-  /** @deprecated use `Coverage$outboundSchema` instead. */
-  export const outboundSchema = Coverage$outboundSchema;
-  /** @deprecated use `Coverage$Outbound` instead. */
-  export type Outbound = Coverage$Outbound;
-}
-
-export function coverageToJSON(coverage: Coverage): string {
-  return JSON.stringify(Coverage$outboundSchema.parse(coverage));
-}
-
 export function coverageFromJSON(
   jsonString: string,
 ): SafeParseResult<Coverage, SDKValidationError> {
@@ -184,47 +121,6 @@ export const ApiResourceCoverage$inboundSchema: z.ZodType<
   status: ResourceStatus$inboundSchema.optional(),
   coverage: z.array(z.lazy(() => Coverage$inboundSchema)).optional(),
 });
-
-/** @internal */
-export type ApiResourceCoverage$Outbound = {
-  id?: string | undefined;
-  name?: string | undefined;
-  status?: string | undefined;
-  coverage?: Array<Coverage$Outbound> | undefined;
-};
-
-/** @internal */
-export const ApiResourceCoverage$outboundSchema: z.ZodType<
-  ApiResourceCoverage$Outbound,
-  z.ZodTypeDef,
-  ApiResourceCoverage
-> = z.object({
-  id: z.string().optional(),
-  name: z.string().optional(),
-  status: ResourceStatus$outboundSchema.optional(),
-  coverage: z.array(z.lazy(() => Coverage$outboundSchema)).optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ApiResourceCoverage$ {
-  /** @deprecated use `ApiResourceCoverage$inboundSchema` instead. */
-  export const inboundSchema = ApiResourceCoverage$inboundSchema;
-  /** @deprecated use `ApiResourceCoverage$outboundSchema` instead. */
-  export const outboundSchema = ApiResourceCoverage$outboundSchema;
-  /** @deprecated use `ApiResourceCoverage$Outbound` instead. */
-  export type Outbound = ApiResourceCoverage$Outbound;
-}
-
-export function apiResourceCoverageToJSON(
-  apiResourceCoverage: ApiResourceCoverage,
-): string {
-  return JSON.stringify(
-    ApiResourceCoverage$outboundSchema.parse(apiResourceCoverage),
-  );
-}
 
 export function apiResourceCoverageFromJSON(
   jsonString: string,

@@ -3,10 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
  * Filter by account status
@@ -35,35 +32,9 @@ export type BankAccountsFilter = {
 };
 
 /** @internal */
-export const BankAccountsFilterStatus$inboundSchema: z.ZodNativeEnum<
-  typeof BankAccountsFilterStatus
-> = z.nativeEnum(BankAccountsFilterStatus);
-
-/** @internal */
 export const BankAccountsFilterStatus$outboundSchema: z.ZodNativeEnum<
   typeof BankAccountsFilterStatus
-> = BankAccountsFilterStatus$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace BankAccountsFilterStatus$ {
-  /** @deprecated use `BankAccountsFilterStatus$inboundSchema` instead. */
-  export const inboundSchema = BankAccountsFilterStatus$inboundSchema;
-  /** @deprecated use `BankAccountsFilterStatus$outboundSchema` instead. */
-  export const outboundSchema = BankAccountsFilterStatus$outboundSchema;
-}
-
-/** @internal */
-export const BankAccountsFilter$inboundSchema: z.ZodType<
-  BankAccountsFilter,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  name: z.string().optional(),
-  status: BankAccountsFilterStatus$inboundSchema.optional(),
-});
+> = z.nativeEnum(BankAccountsFilterStatus);
 
 /** @internal */
 export type BankAccountsFilter$Outbound = {
@@ -81,33 +52,10 @@ export const BankAccountsFilter$outboundSchema: z.ZodType<
   status: BankAccountsFilterStatus$outboundSchema.optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace BankAccountsFilter$ {
-  /** @deprecated use `BankAccountsFilter$inboundSchema` instead. */
-  export const inboundSchema = BankAccountsFilter$inboundSchema;
-  /** @deprecated use `BankAccountsFilter$outboundSchema` instead. */
-  export const outboundSchema = BankAccountsFilter$outboundSchema;
-  /** @deprecated use `BankAccountsFilter$Outbound` instead. */
-  export type Outbound = BankAccountsFilter$Outbound;
-}
-
 export function bankAccountsFilterToJSON(
   bankAccountsFilter: BankAccountsFilter,
 ): string {
   return JSON.stringify(
     BankAccountsFilter$outboundSchema.parse(bankAccountsFilter),
-  );
-}
-
-export function bankAccountsFilterFromJSON(
-  jsonString: string,
-): SafeParseResult<BankAccountsFilter, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => BankAccountsFilter$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'BankAccountsFilter' from JSON`,
   );
 }

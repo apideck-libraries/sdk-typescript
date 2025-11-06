@@ -36,46 +36,6 @@ export const Benefit$inboundSchema: z.ZodType<Benefit, z.ZodTypeDef, unknown> =
     });
   });
 
-/** @internal */
-export type Benefit$Outbound = {
-  name?: string | null | undefined;
-  employee_deduction?: number | null | undefined;
-  employer_contribution?: number | null | undefined;
-};
-
-/** @internal */
-export const Benefit$outboundSchema: z.ZodType<
-  Benefit$Outbound,
-  z.ZodTypeDef,
-  Benefit
-> = z.object({
-  name: z.nullable(z.string()).optional(),
-  employeeDeduction: z.nullable(z.number()).optional(),
-  employerContribution: z.nullable(z.number()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    employeeDeduction: "employee_deduction",
-    employerContribution: "employer_contribution",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Benefit$ {
-  /** @deprecated use `Benefit$inboundSchema` instead. */
-  export const inboundSchema = Benefit$inboundSchema;
-  /** @deprecated use `Benefit$outboundSchema` instead. */
-  export const outboundSchema = Benefit$outboundSchema;
-  /** @deprecated use `Benefit$Outbound` instead. */
-  export type Outbound = Benefit$Outbound;
-}
-
-export function benefitToJSON(benefit: Benefit): string {
-  return JSON.stringify(Benefit$outboundSchema.parse(benefit));
-}
-
 export function benefitFromJSON(
   jsonString: string,
 ): SafeParseResult<Benefit, SDKValidationError> {

@@ -4,12 +4,8 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   PassThroughBody,
-  PassThroughBody$inboundSchema,
   PassThroughBody$Outbound,
   PassThroughBody$outboundSchema,
 } from "./passthroughbody.js";
@@ -28,22 +24,6 @@ export type CopyFolderRequest = {
    */
   passThrough?: Array<PassThroughBody> | undefined;
 };
-
-/** @internal */
-export const CopyFolderRequest$inboundSchema: z.ZodType<
-  CopyFolderRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  name: z.string().optional(),
-  parent_folder_id: z.string(),
-  pass_through: z.array(PassThroughBody$inboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "parent_folder_id": "parentFolderId",
-    "pass_through": "passThrough",
-  });
-});
 
 /** @internal */
 export type CopyFolderRequest$Outbound = {
@@ -68,33 +48,10 @@ export const CopyFolderRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CopyFolderRequest$ {
-  /** @deprecated use `CopyFolderRequest$inboundSchema` instead. */
-  export const inboundSchema = CopyFolderRequest$inboundSchema;
-  /** @deprecated use `CopyFolderRequest$outboundSchema` instead. */
-  export const outboundSchema = CopyFolderRequest$outboundSchema;
-  /** @deprecated use `CopyFolderRequest$Outbound` instead. */
-  export type Outbound = CopyFolderRequest$Outbound;
-}
-
 export function copyFolderRequestToJSON(
   copyFolderRequest: CopyFolderRequest,
 ): string {
   return JSON.stringify(
     CopyFolderRequest$outboundSchema.parse(copyFolderRequest),
-  );
-}
-
-export function copyFolderRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<CopyFolderRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => CopyFolderRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CopyFolderRequest' from JSON`,
   );
 }

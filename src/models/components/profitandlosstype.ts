@@ -21,19 +21,3 @@ export type ProfitAndLossType = ClosedEnum<typeof ProfitAndLossType>;
 export const ProfitAndLossType$inboundSchema: z.ZodNativeEnum<
   typeof ProfitAndLossType
 > = z.nativeEnum(ProfitAndLossType);
-
-/** @internal */
-export const ProfitAndLossType$outboundSchema: z.ZodNativeEnum<
-  typeof ProfitAndLossType
-> = ProfitAndLossType$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ProfitAndLossType$ {
-  /** @deprecated use `ProfitAndLossType$inboundSchema` instead. */
-  export const inboundSchema = ProfitAndLossType$inboundSchema;
-  /** @deprecated use `ProfitAndLossType$outboundSchema` instead. */
-  export const outboundSchema = ProfitAndLossType$outboundSchema;
-}

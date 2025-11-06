@@ -24,19 +24,7 @@ export type PaymentFrequency = ClosedEnum<typeof PaymentFrequency>;
 export const PaymentFrequency$inboundSchema: z.ZodNativeEnum<
   typeof PaymentFrequency
 > = z.nativeEnum(PaymentFrequency);
-
 /** @internal */
 export const PaymentFrequency$outboundSchema: z.ZodNativeEnum<
   typeof PaymentFrequency
 > = PaymentFrequency$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace PaymentFrequency$ {
-  /** @deprecated use `PaymentFrequency$inboundSchema` instead. */
-  export const inboundSchema = PaymentFrequency$inboundSchema;
-  /** @deprecated use `PaymentFrequency$outboundSchema` instead. */
-  export const outboundSchema = PaymentFrequency$outboundSchema;
-}

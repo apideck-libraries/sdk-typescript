@@ -29,18 +29,3 @@ export type JobStatus = ClosedEnum<typeof JobStatus>;
 /** @internal */
 export const JobStatus$inboundSchema: z.ZodNativeEnum<typeof JobStatus> = z
   .nativeEnum(JobStatus);
-
-/** @internal */
-export const JobStatus$outboundSchema: z.ZodNativeEnum<typeof JobStatus> =
-  JobStatus$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace JobStatus$ {
-  /** @deprecated use `JobStatus$inboundSchema` instead. */
-  export const inboundSchema = JobStatus$inboundSchema;
-  /** @deprecated use `JobStatus$outboundSchema` instead. */
-  export const outboundSchema = JobStatus$outboundSchema;
-}

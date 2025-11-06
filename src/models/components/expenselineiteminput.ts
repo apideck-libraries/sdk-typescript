@@ -4,30 +4,29 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
+import { LineItemType, LineItemType$outboundSchema } from "./lineitemtype.js";
 import {
-  LinkedLedgerAccountInput,
-  LinkedLedgerAccountInput$inboundSchema,
-  LinkedLedgerAccountInput$Outbound,
-  LinkedLedgerAccountInput$outboundSchema,
-} from "./linkedledgeraccountinput.js";
+  LinkedInvoiceItem,
+  LinkedInvoiceItem$Outbound,
+  LinkedInvoiceItem$outboundSchema,
+} from "./linkedinvoiceitem.js";
+import {
+  LinkedLedgerAccount,
+  LinkedLedgerAccount$Outbound,
+  LinkedLedgerAccount$outboundSchema,
+} from "./linkedledgeraccount.js";
 import {
   LinkedTaxRateInput,
-  LinkedTaxRateInput$inboundSchema,
   LinkedTaxRateInput$Outbound,
   LinkedTaxRateInput$outboundSchema,
 } from "./linkedtaxrateinput.js";
 import {
   LinkedTrackingCategory,
-  LinkedTrackingCategory$inboundSchema,
   LinkedTrackingCategory$Outbound,
   LinkedTrackingCategory$outboundSchema,
 } from "./linkedtrackingcategory.js";
 import {
   Rebilling,
-  Rebilling$inboundSchema,
   Rebilling$Outbound,
   Rebilling$outboundSchema,
 } from "./rebilling.js";
@@ -43,7 +42,7 @@ export type ExpenseLineItemInput = {
    * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
    */
   accountId?: string | undefined;
-  account?: LinkedLedgerAccountInput | null | undefined;
+  account?: LinkedLedgerAccount | null | undefined;
   /**
    * The ID of the customer this expense item is linked to.
    */
@@ -66,11 +65,24 @@ export type ExpenseLineItemInput = {
    */
   description?: string | null | undefined;
   /**
+   * Line Item type
+   */
+  type?: LineItemType | null | undefined;
+  /**
    * The total amount of the expense line item.
    */
   totalAmount: number | null;
   /**
+   * Tax amount
+   */
+  taxAmount?: number | null | undefined;
+  quantity?: number | null | undefined;
+  unitPrice?: number | null | undefined;
+  item?: LinkedInvoiceItem | undefined;
+  /**
    * Boolean that indicates if the line item is billable or not.
+   *
+   * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
    */
   billable?: boolean | undefined;
   /**
@@ -84,55 +96,25 @@ export type ExpenseLineItemInput = {
 };
 
 /** @internal */
-export const ExpenseLineItemInput$inboundSchema: z.ZodType<
-  ExpenseLineItemInput,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  tracking_categories: z.nullable(
-    z.array(z.nullable(LinkedTrackingCategory$inboundSchema)),
-  ).optional(),
-  account_id: z.string().optional(),
-  account: z.nullable(LinkedLedgerAccountInput$inboundSchema).optional(),
-  customer_id: z.string().optional(),
-  department_id: z.nullable(z.string()).optional(),
-  location_id: z.nullable(z.string()).optional(),
-  subsidiary_id: z.nullable(z.string()).optional(),
-  tax_rate: LinkedTaxRateInput$inboundSchema.optional(),
-  description: z.nullable(z.string()).optional(),
-  total_amount: z.nullable(z.number()),
-  billable: z.boolean().optional(),
-  line_number: z.nullable(z.number().int()).optional(),
-  rebilling: z.nullable(Rebilling$inboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "tracking_categories": "trackingCategories",
-    "account_id": "accountId",
-    "customer_id": "customerId",
-    "department_id": "departmentId",
-    "location_id": "locationId",
-    "subsidiary_id": "subsidiaryId",
-    "tax_rate": "taxRate",
-    "total_amount": "totalAmount",
-    "line_number": "lineNumber",
-  });
-});
-
-/** @internal */
 export type ExpenseLineItemInput$Outbound = {
   tracking_categories?:
     | Array<LinkedTrackingCategory$Outbound | null>
     | null
     | undefined;
   account_id?: string | undefined;
-  account?: LinkedLedgerAccountInput$Outbound | null | undefined;
+  account?: LinkedLedgerAccount$Outbound | null | undefined;
   customer_id?: string | undefined;
   department_id?: string | null | undefined;
   location_id?: string | null | undefined;
   subsidiary_id?: string | null | undefined;
   tax_rate?: LinkedTaxRateInput$Outbound | undefined;
   description?: string | null | undefined;
+  type?: string | null | undefined;
   total_amount: number | null;
+  tax_amount?: number | null | undefined;
+  quantity?: number | null | undefined;
+  unit_price?: number | null | undefined;
+  item?: LinkedInvoiceItem$Outbound | undefined;
   billable?: boolean | undefined;
   line_number?: number | null | undefined;
   rebilling?: Rebilling$Outbound | null | undefined;
@@ -148,14 +130,19 @@ export const ExpenseLineItemInput$outboundSchema: z.ZodType<
     z.array(z.nullable(LinkedTrackingCategory$outboundSchema)),
   ).optional(),
   accountId: z.string().optional(),
-  account: z.nullable(LinkedLedgerAccountInput$outboundSchema).optional(),
+  account: z.nullable(LinkedLedgerAccount$outboundSchema).optional(),
   customerId: z.string().optional(),
   departmentId: z.nullable(z.string()).optional(),
   locationId: z.nullable(z.string()).optional(),
   subsidiaryId: z.nullable(z.string()).optional(),
   taxRate: LinkedTaxRateInput$outboundSchema.optional(),
   description: z.nullable(z.string()).optional(),
+  type: z.nullable(LineItemType$outboundSchema).optional(),
   totalAmount: z.nullable(z.number()),
+  taxAmount: z.nullable(z.number()).optional(),
+  quantity: z.nullable(z.number()).optional(),
+  unitPrice: z.nullable(z.number()).optional(),
+  item: LinkedInvoiceItem$outboundSchema.optional(),
   billable: z.boolean().optional(),
   lineNumber: z.nullable(z.number().int()).optional(),
   rebilling: z.nullable(Rebilling$outboundSchema).optional(),
@@ -169,37 +156,16 @@ export const ExpenseLineItemInput$outboundSchema: z.ZodType<
     subsidiaryId: "subsidiary_id",
     taxRate: "tax_rate",
     totalAmount: "total_amount",
+    taxAmount: "tax_amount",
+    unitPrice: "unit_price",
     lineNumber: "line_number",
   });
 });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ExpenseLineItemInput$ {
-  /** @deprecated use `ExpenseLineItemInput$inboundSchema` instead. */
-  export const inboundSchema = ExpenseLineItemInput$inboundSchema;
-  /** @deprecated use `ExpenseLineItemInput$outboundSchema` instead. */
-  export const outboundSchema = ExpenseLineItemInput$outboundSchema;
-  /** @deprecated use `ExpenseLineItemInput$Outbound` instead. */
-  export type Outbound = ExpenseLineItemInput$Outbound;
-}
 
 export function expenseLineItemInputToJSON(
   expenseLineItemInput: ExpenseLineItemInput,
 ): string {
   return JSON.stringify(
     ExpenseLineItemInput$outboundSchema.parse(expenseLineItemInput),
-  );
-}
-
-export function expenseLineItemInputFromJSON(
-  jsonString: string,
-): SafeParseResult<ExpenseLineItemInput, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => ExpenseLineItemInput$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ExpenseLineItemInput' from JSON`,
   );
 }

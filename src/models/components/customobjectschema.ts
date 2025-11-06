@@ -130,22 +130,10 @@ export type CustomObjectSchemaInput = {
 export const CustomObjectSchemaType$inboundSchema: z.ZodNativeEnum<
   typeof CustomObjectSchemaType
 > = z.nativeEnum(CustomObjectSchemaType);
-
 /** @internal */
 export const CustomObjectSchemaType$outboundSchema: z.ZodNativeEnum<
   typeof CustomObjectSchemaType
 > = CustomObjectSchemaType$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CustomObjectSchemaType$ {
-  /** @deprecated use `CustomObjectSchemaType$inboundSchema` instead. */
-  export const inboundSchema = CustomObjectSchemaType$inboundSchema;
-  /** @deprecated use `CustomObjectSchemaType$outboundSchema` instead. */
-  export const outboundSchema = CustomObjectSchemaType$outboundSchema;
-}
 
 /** @internal */
 export const CustomObjectSchemaOptions$inboundSchema: z.ZodType<
@@ -156,7 +144,6 @@ export const CustomObjectSchemaOptions$inboundSchema: z.ZodType<
   value: z.string().optional(),
   label: z.string().optional(),
 });
-
 /** @internal */
 export type CustomObjectSchemaOptions$Outbound = {
   value?: string | undefined;
@@ -173,19 +160,6 @@ export const CustomObjectSchemaOptions$outboundSchema: z.ZodType<
   label: z.string().optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CustomObjectSchemaOptions$ {
-  /** @deprecated use `CustomObjectSchemaOptions$inboundSchema` instead. */
-  export const inboundSchema = CustomObjectSchemaOptions$inboundSchema;
-  /** @deprecated use `CustomObjectSchemaOptions$outboundSchema` instead. */
-  export const outboundSchema = CustomObjectSchemaOptions$outboundSchema;
-  /** @deprecated use `CustomObjectSchemaOptions$Outbound` instead. */
-  export type Outbound = CustomObjectSchemaOptions$Outbound;
-}
-
 export function customObjectSchemaOptionsToJSON(
   customObjectSchemaOptions: CustomObjectSchemaOptions,
 ): string {
@@ -193,7 +167,6 @@ export function customObjectSchemaOptionsToJSON(
     CustomObjectSchemaOptions$outboundSchema.parse(customObjectSchemaOptions),
   );
 }
-
 export function customObjectSchemaOptionsFromJSON(
   jsonString: string,
 ): SafeParseResult<CustomObjectSchemaOptions, SDKValidationError> {
@@ -221,7 +194,6 @@ export const Fields$inboundSchema: z.ZodType<Fields, z.ZodTypeDef, unknown> = z
       "default_value": "defaultValue",
     });
   });
-
 /** @internal */
 export type Fields$Outbound = {
   id?: string | undefined;
@@ -254,23 +226,9 @@ export const Fields$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Fields$ {
-  /** @deprecated use `Fields$inboundSchema` instead. */
-  export const inboundSchema = Fields$inboundSchema;
-  /** @deprecated use `Fields$outboundSchema` instead. */
-  export const outboundSchema = Fields$outboundSchema;
-  /** @deprecated use `Fields$Outbound` instead. */
-  export type Outbound = Fields$Outbound;
-}
-
 export function fieldsToJSON(fields: Fields): string {
   return JSON.stringify(Fields$outboundSchema.parse(fields));
 }
-
 export function fieldsFromJSON(
   jsonString: string,
 ): SafeParseResult<Fields, SDKValidationError> {
@@ -308,69 +266,6 @@ export const CustomObjectSchema$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type CustomObjectSchema$Outbound = {
-  id?: string | undefined;
-  name?: string | null | undefined;
-  description?: string | null | undefined;
-  fields?: Array<Fields$Outbound> | undefined;
-  visible?: boolean | null | undefined;
-  active?: boolean | null | undefined;
-  created_by?: string | null | undefined;
-  updated_by?: string | null | undefined;
-  updated_at?: string | null | undefined;
-  created_at?: string | null | undefined;
-  pass_through?: Array<PassThroughBody$Outbound> | undefined;
-};
-
-/** @internal */
-export const CustomObjectSchema$outboundSchema: z.ZodType<
-  CustomObjectSchema$Outbound,
-  z.ZodTypeDef,
-  CustomObjectSchema
-> = z.object({
-  id: z.string().optional(),
-  name: z.nullable(z.string()).optional(),
-  description: z.nullable(z.string()).optional(),
-  fields: z.array(z.lazy(() => Fields$outboundSchema)).optional(),
-  visible: z.nullable(z.boolean()).optional(),
-  active: z.nullable(z.boolean()).optional(),
-  createdBy: z.nullable(z.string()).optional(),
-  updatedBy: z.nullable(z.string()).optional(),
-  updatedAt: z.nullable(z.string()).optional(),
-  createdAt: z.nullable(z.string()).optional(),
-  passThrough: z.array(PassThroughBody$outboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    createdBy: "created_by",
-    updatedBy: "updated_by",
-    updatedAt: "updated_at",
-    createdAt: "created_at",
-    passThrough: "pass_through",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CustomObjectSchema$ {
-  /** @deprecated use `CustomObjectSchema$inboundSchema` instead. */
-  export const inboundSchema = CustomObjectSchema$inboundSchema;
-  /** @deprecated use `CustomObjectSchema$outboundSchema` instead. */
-  export const outboundSchema = CustomObjectSchema$outboundSchema;
-  /** @deprecated use `CustomObjectSchema$Outbound` instead. */
-  export type Outbound = CustomObjectSchema$Outbound;
-}
-
-export function customObjectSchemaToJSON(
-  customObjectSchema: CustomObjectSchema,
-): string {
-  return JSON.stringify(
-    CustomObjectSchema$outboundSchema.parse(customObjectSchema),
-  );
-}
-
 export function customObjectSchemaFromJSON(
   jsonString: string,
 ): SafeParseResult<CustomObjectSchema, SDKValidationError> {
@@ -380,24 +275,6 @@ export function customObjectSchemaFromJSON(
     `Failed to parse 'CustomObjectSchema' from JSON`,
   );
 }
-
-/** @internal */
-export const CustomObjectSchemaInput$inboundSchema: z.ZodType<
-  CustomObjectSchemaInput,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  name: z.nullable(z.string()).optional(),
-  description: z.nullable(z.string()).optional(),
-  fields: z.array(z.lazy(() => Fields$inboundSchema)).optional(),
-  visible: z.nullable(z.boolean()).optional(),
-  active: z.nullable(z.boolean()).optional(),
-  pass_through: z.array(PassThroughBody$inboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "pass_through": "passThrough",
-  });
-});
 
 /** @internal */
 export type CustomObjectSchemaInput$Outbound = {
@@ -427,33 +304,10 @@ export const CustomObjectSchemaInput$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CustomObjectSchemaInput$ {
-  /** @deprecated use `CustomObjectSchemaInput$inboundSchema` instead. */
-  export const inboundSchema = CustomObjectSchemaInput$inboundSchema;
-  /** @deprecated use `CustomObjectSchemaInput$outboundSchema` instead. */
-  export const outboundSchema = CustomObjectSchemaInput$outboundSchema;
-  /** @deprecated use `CustomObjectSchemaInput$Outbound` instead. */
-  export type Outbound = CustomObjectSchemaInput$Outbound;
-}
-
 export function customObjectSchemaInputToJSON(
   customObjectSchemaInput: CustomObjectSchemaInput,
 ): string {
   return JSON.stringify(
     CustomObjectSchemaInput$outboundSchema.parse(customObjectSchemaInput),
-  );
-}
-
-export function customObjectSchemaInputFromJSON(
-  jsonString: string,
-): SafeParseResult<CustomObjectSchemaInput, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => CustomObjectSchemaInput$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CustomObjectSchemaInput' from JSON`,
   );
 }

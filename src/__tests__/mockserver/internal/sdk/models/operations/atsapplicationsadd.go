@@ -36,8 +36,8 @@ type AtsApplicationsAddRequest struct {
 	// The ID of your Unify application
 	AppID *string `header:"style=simple,explode=false,name=x-apideck-app-id"`
 	// Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
-	ServiceID   *string                     `header:"style=simple,explode=false,name=x-apideck-service-id"`
-	Application components.ApplicationInput `request:"mediaType=application/json"`
+	ServiceID *string                     `header:"style=simple,explode=false,name=x-apideck-service-id"`
+	Body      components.ApplicationInput `request:"mediaType=application/json"`
 }
 
 func (a AtsApplicationsAddRequest) MarshalJSON() ([]byte, error) {
@@ -45,7 +45,7 @@ func (a AtsApplicationsAddRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (a *AtsApplicationsAddRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"Application"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"body"}); err != nil {
 		return err
 	}
 	return nil
@@ -79,11 +79,11 @@ func (o *AtsApplicationsAddRequest) GetServiceID() *string {
 	return o.ServiceID
 }
 
-func (o *AtsApplicationsAddRequest) GetApplication() components.ApplicationInput {
+func (o *AtsApplicationsAddRequest) GetBody() components.ApplicationInput {
 	if o == nil {
 		return components.ApplicationInput{}
 	}
-	return o.Application
+	return o.Body
 }
 
 type AtsApplicationsAddResponse struct {

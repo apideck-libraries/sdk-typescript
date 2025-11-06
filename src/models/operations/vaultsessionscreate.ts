@@ -48,78 +48,6 @@ export type VaultSessionsCreateResponse = {
 };
 
 /** @internal */
-export const VaultSessionsCreateGlobals$inboundSchema: z.ZodType<
-  VaultSessionsCreateGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/** @internal */
-export type VaultSessionsCreateGlobals$Outbound = {
-  consumerId?: string | undefined;
-  appId?: string | undefined;
-};
-
-/** @internal */
-export const VaultSessionsCreateGlobals$outboundSchema: z.ZodType<
-  VaultSessionsCreateGlobals$Outbound,
-  z.ZodTypeDef,
-  VaultSessionsCreateGlobals
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace VaultSessionsCreateGlobals$ {
-  /** @deprecated use `VaultSessionsCreateGlobals$inboundSchema` instead. */
-  export const inboundSchema = VaultSessionsCreateGlobals$inboundSchema;
-  /** @deprecated use `VaultSessionsCreateGlobals$outboundSchema` instead. */
-  export const outboundSchema = VaultSessionsCreateGlobals$outboundSchema;
-  /** @deprecated use `VaultSessionsCreateGlobals$Outbound` instead. */
-  export type Outbound = VaultSessionsCreateGlobals$Outbound;
-}
-
-export function vaultSessionsCreateGlobalsToJSON(
-  vaultSessionsCreateGlobals: VaultSessionsCreateGlobals,
-): string {
-  return JSON.stringify(
-    VaultSessionsCreateGlobals$outboundSchema.parse(vaultSessionsCreateGlobals),
-  );
-}
-
-export function vaultSessionsCreateGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<VaultSessionsCreateGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => VaultSessionsCreateGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'VaultSessionsCreateGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const VaultSessionsCreateRequest$inboundSchema: z.ZodType<
-  VaultSessionsCreateRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  Session: components.Session$inboundSchema.optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "Session": "session",
-  });
-});
-
-/** @internal */
 export type VaultSessionsCreateRequest$Outbound = {
   consumerId?: string | undefined;
   appId?: string | undefined;
@@ -141,34 +69,11 @@ export const VaultSessionsCreateRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace VaultSessionsCreateRequest$ {
-  /** @deprecated use `VaultSessionsCreateRequest$inboundSchema` instead. */
-  export const inboundSchema = VaultSessionsCreateRequest$inboundSchema;
-  /** @deprecated use `VaultSessionsCreateRequest$outboundSchema` instead. */
-  export const outboundSchema = VaultSessionsCreateRequest$outboundSchema;
-  /** @deprecated use `VaultSessionsCreateRequest$Outbound` instead. */
-  export type Outbound = VaultSessionsCreateRequest$Outbound;
-}
-
 export function vaultSessionsCreateRequestToJSON(
   vaultSessionsCreateRequest: VaultSessionsCreateRequest,
 ): string {
   return JSON.stringify(
     VaultSessionsCreateRequest$outboundSchema.parse(vaultSessionsCreateRequest),
-  );
-}
-
-export function vaultSessionsCreateRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<VaultSessionsCreateRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => VaultSessionsCreateRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'VaultSessionsCreateRequest' from JSON`,
   );
 }
 
@@ -190,57 +95,6 @@ export const VaultSessionsCreateResponse$inboundSchema: z.ZodType<
     "UnexpectedErrorResponse": "unexpectedErrorResponse",
   });
 });
-
-/** @internal */
-export type VaultSessionsCreateResponse$Outbound = {
-  HttpMeta: components.HTTPMetadata$Outbound;
-  CreateSessionResponse?: components.CreateSessionResponse$Outbound | undefined;
-  UnexpectedErrorResponse?:
-    | components.UnexpectedErrorResponse$Outbound
-    | undefined;
-};
-
-/** @internal */
-export const VaultSessionsCreateResponse$outboundSchema: z.ZodType<
-  VaultSessionsCreateResponse$Outbound,
-  z.ZodTypeDef,
-  VaultSessionsCreateResponse
-> = z.object({
-  httpMeta: components.HTTPMetadata$outboundSchema,
-  createSessionResponse: components.CreateSessionResponse$outboundSchema
-    .optional(),
-  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    httpMeta: "HttpMeta",
-    createSessionResponse: "CreateSessionResponse",
-    unexpectedErrorResponse: "UnexpectedErrorResponse",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace VaultSessionsCreateResponse$ {
-  /** @deprecated use `VaultSessionsCreateResponse$inboundSchema` instead. */
-  export const inboundSchema = VaultSessionsCreateResponse$inboundSchema;
-  /** @deprecated use `VaultSessionsCreateResponse$outboundSchema` instead. */
-  export const outboundSchema = VaultSessionsCreateResponse$outboundSchema;
-  /** @deprecated use `VaultSessionsCreateResponse$Outbound` instead. */
-  export type Outbound = VaultSessionsCreateResponse$Outbound;
-}
-
-export function vaultSessionsCreateResponseToJSON(
-  vaultSessionsCreateResponse: VaultSessionsCreateResponse,
-): string {
-  return JSON.stringify(
-    VaultSessionsCreateResponse$outboundSchema.parse(
-      vaultSessionsCreateResponse,
-    ),
-  );
-}
 
 export function vaultSessionsCreateResponseFromJSON(
   jsonString: string,

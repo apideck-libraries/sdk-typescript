@@ -7,12 +7,7 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  Webhook,
-  Webhook$inboundSchema,
-  Webhook$Outbound,
-  Webhook$outboundSchema,
-} from "./webhook.js";
+import { Webhook, Webhook$inboundSchema } from "./webhook.js";
 
 /**
  * Webhooks
@@ -49,52 +44,6 @@ export const GetWebhookResponse$inboundSchema: z.ZodType<
     "_raw": "raw",
   });
 });
-
-/** @internal */
-export type GetWebhookResponse$Outbound = {
-  status_code: number;
-  status: string;
-  data: Webhook$Outbound;
-  _raw?: { [k: string]: any } | null | undefined;
-};
-
-/** @internal */
-export const GetWebhookResponse$outboundSchema: z.ZodType<
-  GetWebhookResponse$Outbound,
-  z.ZodTypeDef,
-  GetWebhookResponse
-> = z.object({
-  statusCode: z.number().int(),
-  status: z.string(),
-  data: Webhook$outboundSchema,
-  raw: z.nullable(z.record(z.any())).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    statusCode: "status_code",
-    raw: "_raw",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetWebhookResponse$ {
-  /** @deprecated use `GetWebhookResponse$inboundSchema` instead. */
-  export const inboundSchema = GetWebhookResponse$inboundSchema;
-  /** @deprecated use `GetWebhookResponse$outboundSchema` instead. */
-  export const outboundSchema = GetWebhookResponse$outboundSchema;
-  /** @deprecated use `GetWebhookResponse$Outbound` instead. */
-  export type Outbound = GetWebhookResponse$Outbound;
-}
-
-export function getWebhookResponseToJSON(
-  getWebhookResponse: GetWebhookResponse,
-): string {
-  return JSON.stringify(
-    GetWebhookResponse$outboundSchema.parse(getWebhookResponse),
-  );
-}
 
 export function getWebhookResponseFromJSON(
   jsonString: string,

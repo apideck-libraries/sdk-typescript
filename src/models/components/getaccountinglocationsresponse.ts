@@ -10,21 +10,9 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   AccountingLocation,
   AccountingLocation$inboundSchema,
-  AccountingLocation$Outbound,
-  AccountingLocation$outboundSchema,
 } from "./accountinglocation.js";
-import {
-  Links,
-  Links$inboundSchema,
-  Links$Outbound,
-  Links$outboundSchema,
-} from "./links.js";
-import {
-  Meta,
-  Meta$inboundSchema,
-  Meta$Outbound,
-  Meta$outboundSchema,
-} from "./meta.js";
+import { Links, Links$inboundSchema } from "./links.js";
+import { Meta, Meta$inboundSchema } from "./meta.js";
 
 /**
  * Locations
@@ -86,64 +74,6 @@ export const GetAccountingLocationsResponse$inboundSchema: z.ZodType<
     "_raw": "raw",
   });
 });
-
-/** @internal */
-export type GetAccountingLocationsResponse$Outbound = {
-  status_code: number;
-  status: string;
-  service: string;
-  resource: string;
-  operation: string;
-  data: Array<AccountingLocation$Outbound>;
-  meta?: Meta$Outbound | undefined;
-  links?: Links$Outbound | undefined;
-  _raw?: { [k: string]: any } | null | undefined;
-};
-
-/** @internal */
-export const GetAccountingLocationsResponse$outboundSchema: z.ZodType<
-  GetAccountingLocationsResponse$Outbound,
-  z.ZodTypeDef,
-  GetAccountingLocationsResponse
-> = z.object({
-  statusCode: z.number().int(),
-  status: z.string(),
-  service: z.string(),
-  resource: z.string(),
-  operation: z.string(),
-  data: z.array(AccountingLocation$outboundSchema),
-  meta: Meta$outboundSchema.optional(),
-  links: Links$outboundSchema.optional(),
-  raw: z.nullable(z.record(z.any())).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    statusCode: "status_code",
-    raw: "_raw",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetAccountingLocationsResponse$ {
-  /** @deprecated use `GetAccountingLocationsResponse$inboundSchema` instead. */
-  export const inboundSchema = GetAccountingLocationsResponse$inboundSchema;
-  /** @deprecated use `GetAccountingLocationsResponse$outboundSchema` instead. */
-  export const outboundSchema = GetAccountingLocationsResponse$outboundSchema;
-  /** @deprecated use `GetAccountingLocationsResponse$Outbound` instead. */
-  export type Outbound = GetAccountingLocationsResponse$Outbound;
-}
-
-export function getAccountingLocationsResponseToJSON(
-  getAccountingLocationsResponse: GetAccountingLocationsResponse,
-): string {
-  return JSON.stringify(
-    GetAccountingLocationsResponse$outboundSchema.parse(
-      getAccountingLocationsResponse,
-    ),
-  );
-}
 
 export function getAccountingLocationsResponseFromJSON(
   jsonString: string,

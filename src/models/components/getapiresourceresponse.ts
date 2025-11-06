@@ -7,24 +7,9 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  ApiResource,
-  ApiResource$inboundSchema,
-  ApiResource$Outbound,
-  ApiResource$outboundSchema,
-} from "./apiresource.js";
-import {
-  Links,
-  Links$inboundSchema,
-  Links$Outbound,
-  Links$outboundSchema,
-} from "./links.js";
-import {
-  Meta,
-  Meta$inboundSchema,
-  Meta$Outbound,
-  Meta$outboundSchema,
-} from "./meta.js";
+import { ApiResource, ApiResource$inboundSchema } from "./apiresource.js";
+import { Links, Links$inboundSchema } from "./links.js";
+import { Meta, Meta$inboundSchema } from "./meta.js";
 
 /**
  * ApiResources
@@ -71,56 +56,6 @@ export const GetApiResourceResponse$inboundSchema: z.ZodType<
     "_raw": "raw",
   });
 });
-
-/** @internal */
-export type GetApiResourceResponse$Outbound = {
-  status_code: number;
-  status: string;
-  data: ApiResource$Outbound;
-  _raw?: { [k: string]: any } | null | undefined;
-  meta?: Meta$Outbound | undefined;
-  links?: Links$Outbound | undefined;
-};
-
-/** @internal */
-export const GetApiResourceResponse$outboundSchema: z.ZodType<
-  GetApiResourceResponse$Outbound,
-  z.ZodTypeDef,
-  GetApiResourceResponse
-> = z.object({
-  statusCode: z.number().int(),
-  status: z.string(),
-  data: ApiResource$outboundSchema,
-  raw: z.nullable(z.record(z.any())).optional(),
-  meta: Meta$outboundSchema.optional(),
-  links: Links$outboundSchema.optional(),
-}).transform((v) => {
-  return remap$(v, {
-    statusCode: "status_code",
-    raw: "_raw",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetApiResourceResponse$ {
-  /** @deprecated use `GetApiResourceResponse$inboundSchema` instead. */
-  export const inboundSchema = GetApiResourceResponse$inboundSchema;
-  /** @deprecated use `GetApiResourceResponse$outboundSchema` instead. */
-  export const outboundSchema = GetApiResourceResponse$outboundSchema;
-  /** @deprecated use `GetApiResourceResponse$Outbound` instead. */
-  export type Outbound = GetApiResourceResponse$Outbound;
-}
-
-export function getApiResourceResponseToJSON(
-  getApiResourceResponse: GetApiResourceResponse,
-): string {
-  return JSON.stringify(
-    GetApiResourceResponse$outboundSchema.parse(getApiResourceResponse),
-  );
-}
 
 export function getApiResourceResponseFromJSON(
   jsonString: string,

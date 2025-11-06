@@ -60,77 +60,6 @@ export type CrmPipelinesOneResponse = {
 };
 
 /** @internal */
-export const CrmPipelinesOneGlobals$inboundSchema: z.ZodType<
-  CrmPipelinesOneGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/** @internal */
-export type CrmPipelinesOneGlobals$Outbound = {
-  consumerId?: string | undefined;
-  appId?: string | undefined;
-};
-
-/** @internal */
-export const CrmPipelinesOneGlobals$outboundSchema: z.ZodType<
-  CrmPipelinesOneGlobals$Outbound,
-  z.ZodTypeDef,
-  CrmPipelinesOneGlobals
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CrmPipelinesOneGlobals$ {
-  /** @deprecated use `CrmPipelinesOneGlobals$inboundSchema` instead. */
-  export const inboundSchema = CrmPipelinesOneGlobals$inboundSchema;
-  /** @deprecated use `CrmPipelinesOneGlobals$outboundSchema` instead. */
-  export const outboundSchema = CrmPipelinesOneGlobals$outboundSchema;
-  /** @deprecated use `CrmPipelinesOneGlobals$Outbound` instead. */
-  export type Outbound = CrmPipelinesOneGlobals$Outbound;
-}
-
-export function crmPipelinesOneGlobalsToJSON(
-  crmPipelinesOneGlobals: CrmPipelinesOneGlobals,
-): string {
-  return JSON.stringify(
-    CrmPipelinesOneGlobals$outboundSchema.parse(crmPipelinesOneGlobals),
-  );
-}
-
-export function crmPipelinesOneGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<CrmPipelinesOneGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => CrmPipelinesOneGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CrmPipelinesOneGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const CrmPipelinesOneRequest$inboundSchema: z.ZodType<
-  CrmPipelinesOneRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  id: z.string(),
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  raw: z.boolean().default(false),
-  fields: z.nullable(z.string()).optional(),
-});
-
-/** @internal */
 export type CrmPipelinesOneRequest$Outbound = {
   id: string;
   consumerId?: string | undefined;
@@ -154,34 +83,11 @@ export const CrmPipelinesOneRequest$outboundSchema: z.ZodType<
   fields: z.nullable(z.string()).optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CrmPipelinesOneRequest$ {
-  /** @deprecated use `CrmPipelinesOneRequest$inboundSchema` instead. */
-  export const inboundSchema = CrmPipelinesOneRequest$inboundSchema;
-  /** @deprecated use `CrmPipelinesOneRequest$outboundSchema` instead. */
-  export const outboundSchema = CrmPipelinesOneRequest$outboundSchema;
-  /** @deprecated use `CrmPipelinesOneRequest$Outbound` instead. */
-  export type Outbound = CrmPipelinesOneRequest$Outbound;
-}
-
 export function crmPipelinesOneRequestToJSON(
   crmPipelinesOneRequest: CrmPipelinesOneRequest,
 ): string {
   return JSON.stringify(
     CrmPipelinesOneRequest$outboundSchema.parse(crmPipelinesOneRequest),
-  );
-}
-
-export function crmPipelinesOneRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<CrmPipelinesOneRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => CrmPipelinesOneRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CrmPipelinesOneRequest' from JSON`,
   );
 }
 
@@ -202,54 +108,6 @@ export const CrmPipelinesOneResponse$inboundSchema: z.ZodType<
     "UnexpectedErrorResponse": "unexpectedErrorResponse",
   });
 });
-
-/** @internal */
-export type CrmPipelinesOneResponse$Outbound = {
-  HttpMeta: components.HTTPMetadata$Outbound;
-  GetPipelineResponse?: components.GetPipelineResponse$Outbound | undefined;
-  UnexpectedErrorResponse?:
-    | components.UnexpectedErrorResponse$Outbound
-    | undefined;
-};
-
-/** @internal */
-export const CrmPipelinesOneResponse$outboundSchema: z.ZodType<
-  CrmPipelinesOneResponse$Outbound,
-  z.ZodTypeDef,
-  CrmPipelinesOneResponse
-> = z.object({
-  httpMeta: components.HTTPMetadata$outboundSchema,
-  getPipelineResponse: components.GetPipelineResponse$outboundSchema.optional(),
-  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    httpMeta: "HttpMeta",
-    getPipelineResponse: "GetPipelineResponse",
-    unexpectedErrorResponse: "UnexpectedErrorResponse",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CrmPipelinesOneResponse$ {
-  /** @deprecated use `CrmPipelinesOneResponse$inboundSchema` instead. */
-  export const inboundSchema = CrmPipelinesOneResponse$inboundSchema;
-  /** @deprecated use `CrmPipelinesOneResponse$outboundSchema` instead. */
-  export const outboundSchema = CrmPipelinesOneResponse$outboundSchema;
-  /** @deprecated use `CrmPipelinesOneResponse$Outbound` instead. */
-  export type Outbound = CrmPipelinesOneResponse$Outbound;
-}
-
-export function crmPipelinesOneResponseToJSON(
-  crmPipelinesOneResponse: CrmPipelinesOneResponse,
-): string {
-  return JSON.stringify(
-    CrmPipelinesOneResponse$outboundSchema.parse(crmPipelinesOneResponse),
-  );
-}
 
 export function crmPipelinesOneResponseFromJSON(
   jsonString: string,

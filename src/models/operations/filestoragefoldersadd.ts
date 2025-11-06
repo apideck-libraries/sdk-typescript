@@ -57,83 +57,6 @@ export type FileStorageFoldersAddResponse = {
 };
 
 /** @internal */
-export const FileStorageFoldersAddGlobals$inboundSchema: z.ZodType<
-  FileStorageFoldersAddGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/** @internal */
-export type FileStorageFoldersAddGlobals$Outbound = {
-  consumerId?: string | undefined;
-  appId?: string | undefined;
-};
-
-/** @internal */
-export const FileStorageFoldersAddGlobals$outboundSchema: z.ZodType<
-  FileStorageFoldersAddGlobals$Outbound,
-  z.ZodTypeDef,
-  FileStorageFoldersAddGlobals
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace FileStorageFoldersAddGlobals$ {
-  /** @deprecated use `FileStorageFoldersAddGlobals$inboundSchema` instead. */
-  export const inboundSchema = FileStorageFoldersAddGlobals$inboundSchema;
-  /** @deprecated use `FileStorageFoldersAddGlobals$outboundSchema` instead. */
-  export const outboundSchema = FileStorageFoldersAddGlobals$outboundSchema;
-  /** @deprecated use `FileStorageFoldersAddGlobals$Outbound` instead. */
-  export type Outbound = FileStorageFoldersAddGlobals$Outbound;
-}
-
-export function fileStorageFoldersAddGlobalsToJSON(
-  fileStorageFoldersAddGlobals: FileStorageFoldersAddGlobals,
-): string {
-  return JSON.stringify(
-    FileStorageFoldersAddGlobals$outboundSchema.parse(
-      fileStorageFoldersAddGlobals,
-    ),
-  );
-}
-
-export function fileStorageFoldersAddGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<FileStorageFoldersAddGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => FileStorageFoldersAddGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'FileStorageFoldersAddGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const FileStorageFoldersAddRequest$inboundSchema: z.ZodType<
-  FileStorageFoldersAddRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  raw: z.boolean().default(false),
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  fields: z.nullable(z.string()).optional(),
-  CreateFolderRequest: components.CreateFolderRequest$inboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    "CreateFolderRequest": "createFolderRequest",
-  });
-});
-
-/** @internal */
 export type FileStorageFoldersAddRequest$Outbound = {
   raw: boolean;
   consumerId?: string | undefined;
@@ -161,19 +84,6 @@ export const FileStorageFoldersAddRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace FileStorageFoldersAddRequest$ {
-  /** @deprecated use `FileStorageFoldersAddRequest$inboundSchema` instead. */
-  export const inboundSchema = FileStorageFoldersAddRequest$inboundSchema;
-  /** @deprecated use `FileStorageFoldersAddRequest$outboundSchema` instead. */
-  export const outboundSchema = FileStorageFoldersAddRequest$outboundSchema;
-  /** @deprecated use `FileStorageFoldersAddRequest$Outbound` instead. */
-  export type Outbound = FileStorageFoldersAddRequest$Outbound;
-}
-
 export function fileStorageFoldersAddRequestToJSON(
   fileStorageFoldersAddRequest: FileStorageFoldersAddRequest,
 ): string {
@@ -181,16 +91,6 @@ export function fileStorageFoldersAddRequestToJSON(
     FileStorageFoldersAddRequest$outboundSchema.parse(
       fileStorageFoldersAddRequest,
     ),
-  );
-}
-
-export function fileStorageFoldersAddRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<FileStorageFoldersAddRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => FileStorageFoldersAddRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'FileStorageFoldersAddRequest' from JSON`,
   );
 }
 
@@ -212,57 +112,6 @@ export const FileStorageFoldersAddResponse$inboundSchema: z.ZodType<
     "UnexpectedErrorResponse": "unexpectedErrorResponse",
   });
 });
-
-/** @internal */
-export type FileStorageFoldersAddResponse$Outbound = {
-  HttpMeta: components.HTTPMetadata$Outbound;
-  CreateFolderResponse?: components.CreateFolderResponse$Outbound | undefined;
-  UnexpectedErrorResponse?:
-    | components.UnexpectedErrorResponse$Outbound
-    | undefined;
-};
-
-/** @internal */
-export const FileStorageFoldersAddResponse$outboundSchema: z.ZodType<
-  FileStorageFoldersAddResponse$Outbound,
-  z.ZodTypeDef,
-  FileStorageFoldersAddResponse
-> = z.object({
-  httpMeta: components.HTTPMetadata$outboundSchema,
-  createFolderResponse: components.CreateFolderResponse$outboundSchema
-    .optional(),
-  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    httpMeta: "HttpMeta",
-    createFolderResponse: "CreateFolderResponse",
-    unexpectedErrorResponse: "UnexpectedErrorResponse",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace FileStorageFoldersAddResponse$ {
-  /** @deprecated use `FileStorageFoldersAddResponse$inboundSchema` instead. */
-  export const inboundSchema = FileStorageFoldersAddResponse$inboundSchema;
-  /** @deprecated use `FileStorageFoldersAddResponse$outboundSchema` instead. */
-  export const outboundSchema = FileStorageFoldersAddResponse$outboundSchema;
-  /** @deprecated use `FileStorageFoldersAddResponse$Outbound` instead. */
-  export type Outbound = FileStorageFoldersAddResponse$Outbound;
-}
-
-export function fileStorageFoldersAddResponseToJSON(
-  fileStorageFoldersAddResponse: FileStorageFoldersAddResponse,
-): string {
-  return JSON.stringify(
-    FileStorageFoldersAddResponse$outboundSchema.parse(
-      fileStorageFoldersAddResponse,
-    ),
-  );
-}
 
 export function fileStorageFoldersAddResponseFromJSON(
   jsonString: string,

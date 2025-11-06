@@ -56,78 +56,6 @@ export type AtsApplicationsDeleteResponse = {
 };
 
 /** @internal */
-export const AtsApplicationsDeleteGlobals$inboundSchema: z.ZodType<
-  AtsApplicationsDeleteGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/** @internal */
-export type AtsApplicationsDeleteGlobals$Outbound = {
-  consumerId?: string | undefined;
-  appId?: string | undefined;
-};
-
-/** @internal */
-export const AtsApplicationsDeleteGlobals$outboundSchema: z.ZodType<
-  AtsApplicationsDeleteGlobals$Outbound,
-  z.ZodTypeDef,
-  AtsApplicationsDeleteGlobals
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AtsApplicationsDeleteGlobals$ {
-  /** @deprecated use `AtsApplicationsDeleteGlobals$inboundSchema` instead. */
-  export const inboundSchema = AtsApplicationsDeleteGlobals$inboundSchema;
-  /** @deprecated use `AtsApplicationsDeleteGlobals$outboundSchema` instead. */
-  export const outboundSchema = AtsApplicationsDeleteGlobals$outboundSchema;
-  /** @deprecated use `AtsApplicationsDeleteGlobals$Outbound` instead. */
-  export type Outbound = AtsApplicationsDeleteGlobals$Outbound;
-}
-
-export function atsApplicationsDeleteGlobalsToJSON(
-  atsApplicationsDeleteGlobals: AtsApplicationsDeleteGlobals,
-): string {
-  return JSON.stringify(
-    AtsApplicationsDeleteGlobals$outboundSchema.parse(
-      atsApplicationsDeleteGlobals,
-    ),
-  );
-}
-
-export function atsApplicationsDeleteGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<AtsApplicationsDeleteGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => AtsApplicationsDeleteGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'AtsApplicationsDeleteGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const AtsApplicationsDeleteRequest$inboundSchema: z.ZodType<
-  AtsApplicationsDeleteRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  id: z.string(),
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  raw: z.boolean().default(false),
-});
-
-/** @internal */
 export type AtsApplicationsDeleteRequest$Outbound = {
   id: string;
   consumerId?: string | undefined;
@@ -149,19 +77,6 @@ export const AtsApplicationsDeleteRequest$outboundSchema: z.ZodType<
   raw: z.boolean().default(false),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AtsApplicationsDeleteRequest$ {
-  /** @deprecated use `AtsApplicationsDeleteRequest$inboundSchema` instead. */
-  export const inboundSchema = AtsApplicationsDeleteRequest$inboundSchema;
-  /** @deprecated use `AtsApplicationsDeleteRequest$outboundSchema` instead. */
-  export const outboundSchema = AtsApplicationsDeleteRequest$outboundSchema;
-  /** @deprecated use `AtsApplicationsDeleteRequest$Outbound` instead. */
-  export type Outbound = AtsApplicationsDeleteRequest$Outbound;
-}
-
 export function atsApplicationsDeleteRequestToJSON(
   atsApplicationsDeleteRequest: AtsApplicationsDeleteRequest,
 ): string {
@@ -169,16 +84,6 @@ export function atsApplicationsDeleteRequestToJSON(
     AtsApplicationsDeleteRequest$outboundSchema.parse(
       atsApplicationsDeleteRequest,
     ),
-  );
-}
-
-export function atsApplicationsDeleteRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<AtsApplicationsDeleteRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => AtsApplicationsDeleteRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'AtsApplicationsDeleteRequest' from JSON`,
   );
 }
 
@@ -200,59 +105,6 @@ export const AtsApplicationsDeleteResponse$inboundSchema: z.ZodType<
     "UnexpectedErrorResponse": "unexpectedErrorResponse",
   });
 });
-
-/** @internal */
-export type AtsApplicationsDeleteResponse$Outbound = {
-  HttpMeta: components.HTTPMetadata$Outbound;
-  DeleteApplicationResponse?:
-    | components.DeleteApplicationResponse$Outbound
-    | undefined;
-  UnexpectedErrorResponse?:
-    | components.UnexpectedErrorResponse$Outbound
-    | undefined;
-};
-
-/** @internal */
-export const AtsApplicationsDeleteResponse$outboundSchema: z.ZodType<
-  AtsApplicationsDeleteResponse$Outbound,
-  z.ZodTypeDef,
-  AtsApplicationsDeleteResponse
-> = z.object({
-  httpMeta: components.HTTPMetadata$outboundSchema,
-  deleteApplicationResponse: components.DeleteApplicationResponse$outboundSchema
-    .optional(),
-  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    httpMeta: "HttpMeta",
-    deleteApplicationResponse: "DeleteApplicationResponse",
-    unexpectedErrorResponse: "UnexpectedErrorResponse",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AtsApplicationsDeleteResponse$ {
-  /** @deprecated use `AtsApplicationsDeleteResponse$inboundSchema` instead. */
-  export const inboundSchema = AtsApplicationsDeleteResponse$inboundSchema;
-  /** @deprecated use `AtsApplicationsDeleteResponse$outboundSchema` instead. */
-  export const outboundSchema = AtsApplicationsDeleteResponse$outboundSchema;
-  /** @deprecated use `AtsApplicationsDeleteResponse$Outbound` instead. */
-  export type Outbound = AtsApplicationsDeleteResponse$Outbound;
-}
-
-export function atsApplicationsDeleteResponseToJSON(
-  atsApplicationsDeleteResponse: AtsApplicationsDeleteResponse,
-): string {
-  return JSON.stringify(
-    AtsApplicationsDeleteResponse$outboundSchema.parse(
-      atsApplicationsDeleteResponse,
-    ),
-  );
-}
 
 export function atsApplicationsDeleteResponseFromJSON(
   jsonString: string,

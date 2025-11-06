@@ -48,72 +48,6 @@ export type ConnectorApisAllResponse = {
 };
 
 /** @internal */
-export const ConnectorApisAllGlobals$inboundSchema: z.ZodType<
-  ConnectorApisAllGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  appId: z.string().optional(),
-});
-
-/** @internal */
-export type ConnectorApisAllGlobals$Outbound = {
-  appId?: string | undefined;
-};
-
-/** @internal */
-export const ConnectorApisAllGlobals$outboundSchema: z.ZodType<
-  ConnectorApisAllGlobals$Outbound,
-  z.ZodTypeDef,
-  ConnectorApisAllGlobals
-> = z.object({
-  appId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ConnectorApisAllGlobals$ {
-  /** @deprecated use `ConnectorApisAllGlobals$inboundSchema` instead. */
-  export const inboundSchema = ConnectorApisAllGlobals$inboundSchema;
-  /** @deprecated use `ConnectorApisAllGlobals$outboundSchema` instead. */
-  export const outboundSchema = ConnectorApisAllGlobals$outboundSchema;
-  /** @deprecated use `ConnectorApisAllGlobals$Outbound` instead. */
-  export type Outbound = ConnectorApisAllGlobals$Outbound;
-}
-
-export function connectorApisAllGlobalsToJSON(
-  connectorApisAllGlobals: ConnectorApisAllGlobals,
-): string {
-  return JSON.stringify(
-    ConnectorApisAllGlobals$outboundSchema.parse(connectorApisAllGlobals),
-  );
-}
-
-export function connectorApisAllGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<ConnectorApisAllGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => ConnectorApisAllGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ConnectorApisAllGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const ConnectorApisAllRequest$inboundSchema: z.ZodType<
-  ConnectorApisAllRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  appId: z.string().optional(),
-  cursor: z.nullable(z.string()).optional(),
-  limit: z.number().int().default(20),
-  filter: components.ApisFilter$inboundSchema.optional(),
-});
-
-/** @internal */
 export type ConnectorApisAllRequest$Outbound = {
   appId?: string | undefined;
   cursor?: string | null | undefined;
@@ -133,34 +67,11 @@ export const ConnectorApisAllRequest$outboundSchema: z.ZodType<
   filter: components.ApisFilter$outboundSchema.optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ConnectorApisAllRequest$ {
-  /** @deprecated use `ConnectorApisAllRequest$inboundSchema` instead. */
-  export const inboundSchema = ConnectorApisAllRequest$inboundSchema;
-  /** @deprecated use `ConnectorApisAllRequest$outboundSchema` instead. */
-  export const outboundSchema = ConnectorApisAllRequest$outboundSchema;
-  /** @deprecated use `ConnectorApisAllRequest$Outbound` instead. */
-  export type Outbound = ConnectorApisAllRequest$Outbound;
-}
-
 export function connectorApisAllRequestToJSON(
   connectorApisAllRequest: ConnectorApisAllRequest,
 ): string {
   return JSON.stringify(
     ConnectorApisAllRequest$outboundSchema.parse(connectorApisAllRequest),
-  );
-}
-
-export function connectorApisAllRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<ConnectorApisAllRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => ConnectorApisAllRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ConnectorApisAllRequest' from JSON`,
   );
 }
 
@@ -181,54 +92,6 @@ export const ConnectorApisAllResponse$inboundSchema: z.ZodType<
     "UnexpectedErrorResponse": "unexpectedErrorResponse",
   });
 });
-
-/** @internal */
-export type ConnectorApisAllResponse$Outbound = {
-  HttpMeta: components.HTTPMetadata$Outbound;
-  GetApisResponse?: components.GetApisResponse$Outbound | undefined;
-  UnexpectedErrorResponse?:
-    | components.UnexpectedErrorResponse$Outbound
-    | undefined;
-};
-
-/** @internal */
-export const ConnectorApisAllResponse$outboundSchema: z.ZodType<
-  ConnectorApisAllResponse$Outbound,
-  z.ZodTypeDef,
-  ConnectorApisAllResponse
-> = z.object({
-  httpMeta: components.HTTPMetadata$outboundSchema,
-  getApisResponse: components.GetApisResponse$outboundSchema.optional(),
-  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    httpMeta: "HttpMeta",
-    getApisResponse: "GetApisResponse",
-    unexpectedErrorResponse: "UnexpectedErrorResponse",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ConnectorApisAllResponse$ {
-  /** @deprecated use `ConnectorApisAllResponse$inboundSchema` instead. */
-  export const inboundSchema = ConnectorApisAllResponse$inboundSchema;
-  /** @deprecated use `ConnectorApisAllResponse$outboundSchema` instead. */
-  export const outboundSchema = ConnectorApisAllResponse$outboundSchema;
-  /** @deprecated use `ConnectorApisAllResponse$Outbound` instead. */
-  export type Outbound = ConnectorApisAllResponse$Outbound;
-}
-
-export function connectorApisAllResponseToJSON(
-  connectorApisAllResponse: ConnectorApisAllResponse,
-): string {
-  return JSON.stringify(
-    ConnectorApisAllResponse$outboundSchema.parse(connectorApisAllResponse),
-  );
-}
 
 export function connectorApisAllResponseFromJSON(
   jsonString: string,

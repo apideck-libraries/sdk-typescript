@@ -10,14 +10,10 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   AttachmentReference,
   AttachmentReference$inboundSchema,
-  AttachmentReference$Outbound,
-  AttachmentReference$outboundSchema,
 } from "./attachmentreference.js";
 import {
   PassThroughBody,
   PassThroughBody$inboundSchema,
-  PassThroughBody$Outbound,
-  PassThroughBody$outboundSchema,
 } from "./passthroughbody.js";
 
 export type Attachment = {
@@ -107,72 +103,6 @@ export const Attachment$inboundSchema: z.ZodType<
     "pass_through": "passThrough",
   });
 });
-
-/** @internal */
-export type Attachment$Outbound = {
-  id?: string | undefined;
-  display_id?: string | null | undefined;
-  name?: string | null | undefined;
-  mime_type?: string | null | undefined;
-  size?: number | null | undefined;
-  reference?: AttachmentReference$Outbound | undefined;
-  description?: string | null | undefined;
-  parent_folder_id?: string | null | undefined;
-  updated_by?: string | null | undefined;
-  created_by?: string | null | undefined;
-  updated_at?: string | null | undefined;
-  created_at?: string | null | undefined;
-  pass_through?: Array<PassThroughBody$Outbound> | undefined;
-};
-
-/** @internal */
-export const Attachment$outboundSchema: z.ZodType<
-  Attachment$Outbound,
-  z.ZodTypeDef,
-  Attachment
-> = z.object({
-  id: z.string().optional(),
-  displayId: z.nullable(z.string()).optional(),
-  name: z.nullable(z.string()).optional(),
-  mimeType: z.nullable(z.string()).optional(),
-  size: z.nullable(z.number().int()).optional(),
-  reference: AttachmentReference$outboundSchema.optional(),
-  description: z.nullable(z.string()).optional(),
-  parentFolderId: z.nullable(z.string()).optional(),
-  updatedBy: z.nullable(z.string()).optional(),
-  createdBy: z.nullable(z.string()).optional(),
-  updatedAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
-  createdAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
-  passThrough: z.array(PassThroughBody$outboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    displayId: "display_id",
-    mimeType: "mime_type",
-    parentFolderId: "parent_folder_id",
-    updatedBy: "updated_by",
-    createdBy: "created_by",
-    updatedAt: "updated_at",
-    createdAt: "created_at",
-    passThrough: "pass_through",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Attachment$ {
-  /** @deprecated use `Attachment$inboundSchema` instead. */
-  export const inboundSchema = Attachment$inboundSchema;
-  /** @deprecated use `Attachment$outboundSchema` instead. */
-  export const outboundSchema = Attachment$outboundSchema;
-  /** @deprecated use `Attachment$Outbound` instead. */
-  export type Outbound = Attachment$Outbound;
-}
-
-export function attachmentToJSON(attachment: Attachment): string {
-  return JSON.stringify(Attachment$outboundSchema.parse(attachment));
-}
 
 export function attachmentFromJSON(
   jsonString: string,

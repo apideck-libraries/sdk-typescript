@@ -3,12 +3,8 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   ConsumerMetadata,
-  ConsumerMetadata$inboundSchema,
   ConsumerMetadata$Outbound,
   ConsumerMetadata$outboundSchema,
 } from "./consumermetadata.js";
@@ -19,15 +15,6 @@ export type UpdateConsumerRequest = {
    */
   metadata?: ConsumerMetadata | undefined;
 };
-
-/** @internal */
-export const UpdateConsumerRequest$inboundSchema: z.ZodType<
-  UpdateConsumerRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  metadata: ConsumerMetadata$inboundSchema.optional(),
-});
 
 /** @internal */
 export type UpdateConsumerRequest$Outbound = {
@@ -43,33 +30,10 @@ export const UpdateConsumerRequest$outboundSchema: z.ZodType<
   metadata: ConsumerMetadata$outboundSchema.optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace UpdateConsumerRequest$ {
-  /** @deprecated use `UpdateConsumerRequest$inboundSchema` instead. */
-  export const inboundSchema = UpdateConsumerRequest$inboundSchema;
-  /** @deprecated use `UpdateConsumerRequest$outboundSchema` instead. */
-  export const outboundSchema = UpdateConsumerRequest$outboundSchema;
-  /** @deprecated use `UpdateConsumerRequest$Outbound` instead. */
-  export type Outbound = UpdateConsumerRequest$Outbound;
-}
-
 export function updateConsumerRequestToJSON(
   updateConsumerRequest: UpdateConsumerRequest,
 ): string {
   return JSON.stringify(
     UpdateConsumerRequest$outboundSchema.parse(updateConsumerRequest),
-  );
-}
-
-export function updateConsumerRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<UpdateConsumerRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => UpdateConsumerRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'UpdateConsumerRequest' from JSON`,
   );
 }

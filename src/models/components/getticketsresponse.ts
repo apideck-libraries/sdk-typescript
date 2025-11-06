@@ -7,24 +7,9 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  Links,
-  Links$inboundSchema,
-  Links$Outbound,
-  Links$outboundSchema,
-} from "./links.js";
-import {
-  Meta,
-  Meta$inboundSchema,
-  Meta$Outbound,
-  Meta$outboundSchema,
-} from "./meta.js";
-import {
-  Ticket,
-  Ticket$inboundSchema,
-  Ticket$Outbound,
-  Ticket$outboundSchema,
-} from "./ticket.js";
+import { Links, Links$inboundSchema } from "./links.js";
+import { Meta, Meta$inboundSchema } from "./meta.js";
+import { Ticket, Ticket$inboundSchema } from "./ticket.js";
 
 /**
  * List Tickets
@@ -86,62 +71,6 @@ export const GetTicketsResponse$inboundSchema: z.ZodType<
     "_raw": "raw",
   });
 });
-
-/** @internal */
-export type GetTicketsResponse$Outbound = {
-  status_code: number;
-  status: string;
-  service: string;
-  resource: string;
-  operation: string;
-  data: Array<Ticket$Outbound>;
-  meta?: Meta$Outbound | undefined;
-  links?: Links$Outbound | undefined;
-  _raw?: { [k: string]: any } | null | undefined;
-};
-
-/** @internal */
-export const GetTicketsResponse$outboundSchema: z.ZodType<
-  GetTicketsResponse$Outbound,
-  z.ZodTypeDef,
-  GetTicketsResponse
-> = z.object({
-  statusCode: z.number().int(),
-  status: z.string(),
-  service: z.string(),
-  resource: z.string(),
-  operation: z.string(),
-  data: z.array(Ticket$outboundSchema),
-  meta: Meta$outboundSchema.optional(),
-  links: Links$outboundSchema.optional(),
-  raw: z.nullable(z.record(z.any())).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    statusCode: "status_code",
-    raw: "_raw",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetTicketsResponse$ {
-  /** @deprecated use `GetTicketsResponse$inboundSchema` instead. */
-  export const inboundSchema = GetTicketsResponse$inboundSchema;
-  /** @deprecated use `GetTicketsResponse$outboundSchema` instead. */
-  export const outboundSchema = GetTicketsResponse$outboundSchema;
-  /** @deprecated use `GetTicketsResponse$Outbound` instead. */
-  export type Outbound = GetTicketsResponse$Outbound;
-}
-
-export function getTicketsResponseToJSON(
-  getTicketsResponse: GetTicketsResponse,
-): string {
-  return JSON.stringify(
-    GetTicketsResponse$outboundSchema.parse(getTicketsResponse),
-  );
-}
 
 export function getTicketsResponseFromJSON(
   jsonString: string,

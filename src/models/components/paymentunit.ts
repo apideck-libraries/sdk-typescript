@@ -24,18 +24,6 @@ export type PaymentUnit = ClosedEnum<typeof PaymentUnit>;
 /** @internal */
 export const PaymentUnit$inboundSchema: z.ZodNativeEnum<typeof PaymentUnit> = z
   .nativeEnum(PaymentUnit);
-
 /** @internal */
 export const PaymentUnit$outboundSchema: z.ZodNativeEnum<typeof PaymentUnit> =
   PaymentUnit$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace PaymentUnit$ {
-  /** @deprecated use `PaymentUnit$inboundSchema` instead. */
-  export const inboundSchema = PaymentUnit$inboundSchema;
-  /** @deprecated use `PaymentUnit$outboundSchema` instead. */
-  export const outboundSchema = PaymentUnit$outboundSchema;
-}

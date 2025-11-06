@@ -7,24 +7,9 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  Connector,
-  Connector$inboundSchema,
-  Connector$Outbound,
-  Connector$outboundSchema,
-} from "./connector.js";
-import {
-  Links,
-  Links$inboundSchema,
-  Links$Outbound,
-  Links$outboundSchema,
-} from "./links.js";
-import {
-  Meta,
-  Meta$inboundSchema,
-  Meta$Outbound,
-  Meta$outboundSchema,
-} from "./meta.js";
+import { Connector, Connector$inboundSchema } from "./connector.js";
+import { Links, Links$inboundSchema } from "./links.js";
+import { Meta, Meta$inboundSchema } from "./meta.js";
 
 /**
  * Connectors
@@ -71,56 +56,6 @@ export const GetConnectorsResponse$inboundSchema: z.ZodType<
     "_raw": "raw",
   });
 });
-
-/** @internal */
-export type GetConnectorsResponse$Outbound = {
-  status_code: number;
-  status: string;
-  data: Array<Connector$Outbound>;
-  _raw?: { [k: string]: any } | null | undefined;
-  meta?: Meta$Outbound | undefined;
-  links?: Links$Outbound | undefined;
-};
-
-/** @internal */
-export const GetConnectorsResponse$outboundSchema: z.ZodType<
-  GetConnectorsResponse$Outbound,
-  z.ZodTypeDef,
-  GetConnectorsResponse
-> = z.object({
-  statusCode: z.number().int(),
-  status: z.string(),
-  data: z.array(Connector$outboundSchema),
-  raw: z.nullable(z.record(z.any())).optional(),
-  meta: Meta$outboundSchema.optional(),
-  links: Links$outboundSchema.optional(),
-}).transform((v) => {
-  return remap$(v, {
-    statusCode: "status_code",
-    raw: "_raw",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetConnectorsResponse$ {
-  /** @deprecated use `GetConnectorsResponse$inboundSchema` instead. */
-  export const inboundSchema = GetConnectorsResponse$inboundSchema;
-  /** @deprecated use `GetConnectorsResponse$outboundSchema` instead. */
-  export const outboundSchema = GetConnectorsResponse$outboundSchema;
-  /** @deprecated use `GetConnectorsResponse$Outbound` instead. */
-  export type Outbound = GetConnectorsResponse$Outbound;
-}
-
-export function getConnectorsResponseToJSON(
-  getConnectorsResponse: GetConnectorsResponse,
-): string {
-  return JSON.stringify(
-    GetConnectorsResponse$outboundSchema.parse(getConnectorsResponse),
-  );
-}
 
 export function getConnectorsResponseFromJSON(
   jsonString: string,

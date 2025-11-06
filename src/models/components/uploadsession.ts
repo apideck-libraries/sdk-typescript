@@ -55,54 +55,6 @@ export const UploadSession$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type UploadSession$Outbound = {
-  id?: string | undefined;
-  success?: boolean | undefined;
-  part_size?: number | undefined;
-  parallel_upload_supported?: boolean | undefined;
-  uploaded_byte_range?: string | undefined;
-  expires_at?: string | null | undefined;
-};
-
-/** @internal */
-export const UploadSession$outboundSchema: z.ZodType<
-  UploadSession$Outbound,
-  z.ZodTypeDef,
-  UploadSession
-> = z.object({
-  id: z.string().optional(),
-  success: z.boolean().optional(),
-  partSize: z.number().optional(),
-  parallelUploadSupported: z.boolean().optional(),
-  uploadedByteRange: z.string().optional(),
-  expiresAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    partSize: "part_size",
-    parallelUploadSupported: "parallel_upload_supported",
-    uploadedByteRange: "uploaded_byte_range",
-    expiresAt: "expires_at",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace UploadSession$ {
-  /** @deprecated use `UploadSession$inboundSchema` instead. */
-  export const inboundSchema = UploadSession$inboundSchema;
-  /** @deprecated use `UploadSession$outboundSchema` instead. */
-  export const outboundSchema = UploadSession$outboundSchema;
-  /** @deprecated use `UploadSession$Outbound` instead. */
-  export type Outbound = UploadSession$Outbound;
-}
-
-export function uploadSessionToJSON(uploadSession: UploadSession): string {
-  return JSON.stringify(UploadSession$outboundSchema.parse(uploadSession));
-}
-
 export function uploadSessionFromJSON(
   jsonString: string,
 ): SafeParseResult<UploadSession, SDKValidationError> {

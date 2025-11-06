@@ -141,6 +141,7 @@ async function run() {
       accountType: "checking",
       ledgerAccount: {
         id: "123456",
+        name: "Bank account",
         nominalCode: "N091",
         code: "453",
         parentId: "123456",
@@ -203,6 +204,7 @@ async function run() {
       accountType: "checking",
       ledgerAccount: {
         id: "123456",
+        name: "Bank account",
         nominalCode: "N091",
         code: "453",
         parentId: "123456",
@@ -380,6 +382,7 @@ async function run() {
       accountType: "checking",
       ledgerAccount: {
         id: "123456",
+        name: "Bank account",
         nominalCode: "N091",
         code: "453",
         parentId: "123456",
@@ -443,6 +446,7 @@ async function run() {
       accountType: "checking",
       ledgerAccount: {
         id: "123456",
+        name: "Bank account",
         nominalCode: "N091",
         code: "453",
         parentId: "123456",

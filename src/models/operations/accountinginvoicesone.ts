@@ -60,79 +60,6 @@ export type AccountingInvoicesOneResponse = {
 };
 
 /** @internal */
-export const AccountingInvoicesOneGlobals$inboundSchema: z.ZodType<
-  AccountingInvoicesOneGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/** @internal */
-export type AccountingInvoicesOneGlobals$Outbound = {
-  consumerId?: string | undefined;
-  appId?: string | undefined;
-};
-
-/** @internal */
-export const AccountingInvoicesOneGlobals$outboundSchema: z.ZodType<
-  AccountingInvoicesOneGlobals$Outbound,
-  z.ZodTypeDef,
-  AccountingInvoicesOneGlobals
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AccountingInvoicesOneGlobals$ {
-  /** @deprecated use `AccountingInvoicesOneGlobals$inboundSchema` instead. */
-  export const inboundSchema = AccountingInvoicesOneGlobals$inboundSchema;
-  /** @deprecated use `AccountingInvoicesOneGlobals$outboundSchema` instead. */
-  export const outboundSchema = AccountingInvoicesOneGlobals$outboundSchema;
-  /** @deprecated use `AccountingInvoicesOneGlobals$Outbound` instead. */
-  export type Outbound = AccountingInvoicesOneGlobals$Outbound;
-}
-
-export function accountingInvoicesOneGlobalsToJSON(
-  accountingInvoicesOneGlobals: AccountingInvoicesOneGlobals,
-): string {
-  return JSON.stringify(
-    AccountingInvoicesOneGlobals$outboundSchema.parse(
-      accountingInvoicesOneGlobals,
-    ),
-  );
-}
-
-export function accountingInvoicesOneGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<AccountingInvoicesOneGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => AccountingInvoicesOneGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'AccountingInvoicesOneGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const AccountingInvoicesOneRequest$inboundSchema: z.ZodType<
-  AccountingInvoicesOneRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  id: z.string(),
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  raw: z.boolean().default(false),
-  fields: z.nullable(z.string()).optional(),
-});
-
-/** @internal */
 export type AccountingInvoicesOneRequest$Outbound = {
   id: string;
   consumerId?: string | undefined;
@@ -156,19 +83,6 @@ export const AccountingInvoicesOneRequest$outboundSchema: z.ZodType<
   fields: z.nullable(z.string()).optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AccountingInvoicesOneRequest$ {
-  /** @deprecated use `AccountingInvoicesOneRequest$inboundSchema` instead. */
-  export const inboundSchema = AccountingInvoicesOneRequest$inboundSchema;
-  /** @deprecated use `AccountingInvoicesOneRequest$outboundSchema` instead. */
-  export const outboundSchema = AccountingInvoicesOneRequest$outboundSchema;
-  /** @deprecated use `AccountingInvoicesOneRequest$Outbound` instead. */
-  export type Outbound = AccountingInvoicesOneRequest$Outbound;
-}
-
 export function accountingInvoicesOneRequestToJSON(
   accountingInvoicesOneRequest: AccountingInvoicesOneRequest,
 ): string {
@@ -176,16 +90,6 @@ export function accountingInvoicesOneRequestToJSON(
     AccountingInvoicesOneRequest$outboundSchema.parse(
       accountingInvoicesOneRequest,
     ),
-  );
-}
-
-export function accountingInvoicesOneRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<AccountingInvoicesOneRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => AccountingInvoicesOneRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'AccountingInvoicesOneRequest' from JSON`,
   );
 }
 
@@ -206,56 +110,6 @@ export const AccountingInvoicesOneResponse$inboundSchema: z.ZodType<
     "UnexpectedErrorResponse": "unexpectedErrorResponse",
   });
 });
-
-/** @internal */
-export type AccountingInvoicesOneResponse$Outbound = {
-  HttpMeta: components.HTTPMetadata$Outbound;
-  GetInvoiceResponse?: components.GetInvoiceResponse$Outbound | undefined;
-  UnexpectedErrorResponse?:
-    | components.UnexpectedErrorResponse$Outbound
-    | undefined;
-};
-
-/** @internal */
-export const AccountingInvoicesOneResponse$outboundSchema: z.ZodType<
-  AccountingInvoicesOneResponse$Outbound,
-  z.ZodTypeDef,
-  AccountingInvoicesOneResponse
-> = z.object({
-  httpMeta: components.HTTPMetadata$outboundSchema,
-  getInvoiceResponse: components.GetInvoiceResponse$outboundSchema.optional(),
-  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    httpMeta: "HttpMeta",
-    getInvoiceResponse: "GetInvoiceResponse",
-    unexpectedErrorResponse: "UnexpectedErrorResponse",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AccountingInvoicesOneResponse$ {
-  /** @deprecated use `AccountingInvoicesOneResponse$inboundSchema` instead. */
-  export const inboundSchema = AccountingInvoicesOneResponse$inboundSchema;
-  /** @deprecated use `AccountingInvoicesOneResponse$outboundSchema` instead. */
-  export const outboundSchema = AccountingInvoicesOneResponse$outboundSchema;
-  /** @deprecated use `AccountingInvoicesOneResponse$Outbound` instead. */
-  export type Outbound = AccountingInvoicesOneResponse$Outbound;
-}
-
-export function accountingInvoicesOneResponseToJSON(
-  accountingInvoicesOneResponse: AccountingInvoicesOneResponse,
-): string {
-  return JSON.stringify(
-    AccountingInvoicesOneResponse$outboundSchema.parse(
-      accountingInvoicesOneResponse,
-    ),
-  );
-}
 
 export function accountingInvoicesOneResponseFromJSON(
   jsonString: string,

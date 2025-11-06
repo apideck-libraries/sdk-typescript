@@ -4,34 +4,12 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type PaymentsFilter = {
   updatedSince?: Date | undefined;
   invoiceId?: string | undefined;
   supplierId?: string | undefined;
 };
-
-/** @internal */
-export const PaymentsFilter$inboundSchema: z.ZodType<
-  PaymentsFilter,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  updated_since: z.string().datetime({ offset: true }).transform(v =>
-    new Date(v)
-  ).optional(),
-  invoice_id: z.string().optional(),
-  supplier_id: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "updated_since": "updatedSince",
-    "invoice_id": "invoiceId",
-    "supplier_id": "supplierId",
-  });
-});
 
 /** @internal */
 export type PaymentsFilter$Outbound = {
@@ -57,29 +35,6 @@ export const PaymentsFilter$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace PaymentsFilter$ {
-  /** @deprecated use `PaymentsFilter$inboundSchema` instead. */
-  export const inboundSchema = PaymentsFilter$inboundSchema;
-  /** @deprecated use `PaymentsFilter$outboundSchema` instead. */
-  export const outboundSchema = PaymentsFilter$outboundSchema;
-  /** @deprecated use `PaymentsFilter$Outbound` instead. */
-  export type Outbound = PaymentsFilter$Outbound;
-}
-
 export function paymentsFilterToJSON(paymentsFilter: PaymentsFilter): string {
   return JSON.stringify(PaymentsFilter$outboundSchema.parse(paymentsFilter));
-}
-
-export function paymentsFilterFromJSON(
-  jsonString: string,
-): SafeParseResult<PaymentsFilter, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => PaymentsFilter$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'PaymentsFilter' from JSON`,
-  );
 }

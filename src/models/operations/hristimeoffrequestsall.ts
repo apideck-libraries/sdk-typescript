@@ -74,86 +74,6 @@ export type HrisTimeOffRequestsAllResponse = {
 };
 
 /** @internal */
-export const HrisTimeOffRequestsAllGlobals$inboundSchema: z.ZodType<
-  HrisTimeOffRequestsAllGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/** @internal */
-export type HrisTimeOffRequestsAllGlobals$Outbound = {
-  consumerId?: string | undefined;
-  appId?: string | undefined;
-};
-
-/** @internal */
-export const HrisTimeOffRequestsAllGlobals$outboundSchema: z.ZodType<
-  HrisTimeOffRequestsAllGlobals$Outbound,
-  z.ZodTypeDef,
-  HrisTimeOffRequestsAllGlobals
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace HrisTimeOffRequestsAllGlobals$ {
-  /** @deprecated use `HrisTimeOffRequestsAllGlobals$inboundSchema` instead. */
-  export const inboundSchema = HrisTimeOffRequestsAllGlobals$inboundSchema;
-  /** @deprecated use `HrisTimeOffRequestsAllGlobals$outboundSchema` instead. */
-  export const outboundSchema = HrisTimeOffRequestsAllGlobals$outboundSchema;
-  /** @deprecated use `HrisTimeOffRequestsAllGlobals$Outbound` instead. */
-  export type Outbound = HrisTimeOffRequestsAllGlobals$Outbound;
-}
-
-export function hrisTimeOffRequestsAllGlobalsToJSON(
-  hrisTimeOffRequestsAllGlobals: HrisTimeOffRequestsAllGlobals,
-): string {
-  return JSON.stringify(
-    HrisTimeOffRequestsAllGlobals$outboundSchema.parse(
-      hrisTimeOffRequestsAllGlobals,
-    ),
-  );
-}
-
-export function hrisTimeOffRequestsAllGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<HrisTimeOffRequestsAllGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => HrisTimeOffRequestsAllGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'HrisTimeOffRequestsAllGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const HrisTimeOffRequestsAllRequest$inboundSchema: z.ZodType<
-  HrisTimeOffRequestsAllRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  raw: z.boolean().default(false),
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  cursor: z.nullable(z.string()).optional(),
-  limit: z.number().int().default(20),
-  filter: components.TimeOffRequestsFilter$inboundSchema.optional(),
-  pass_through: z.record(z.any()).optional(),
-  fields: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "pass_through": "passThrough",
-  });
-});
-
-/** @internal */
 export type HrisTimeOffRequestsAllRequest$Outbound = {
   raw: boolean;
   consumerId?: string | undefined;
@@ -187,19 +107,6 @@ export const HrisTimeOffRequestsAllRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace HrisTimeOffRequestsAllRequest$ {
-  /** @deprecated use `HrisTimeOffRequestsAllRequest$inboundSchema` instead. */
-  export const inboundSchema = HrisTimeOffRequestsAllRequest$inboundSchema;
-  /** @deprecated use `HrisTimeOffRequestsAllRequest$outboundSchema` instead. */
-  export const outboundSchema = HrisTimeOffRequestsAllRequest$outboundSchema;
-  /** @deprecated use `HrisTimeOffRequestsAllRequest$Outbound` instead. */
-  export type Outbound = HrisTimeOffRequestsAllRequest$Outbound;
-}
-
 export function hrisTimeOffRequestsAllRequestToJSON(
   hrisTimeOffRequestsAllRequest: HrisTimeOffRequestsAllRequest,
 ): string {
@@ -207,16 +114,6 @@ export function hrisTimeOffRequestsAllRequestToJSON(
     HrisTimeOffRequestsAllRequest$outboundSchema.parse(
       hrisTimeOffRequestsAllRequest,
     ),
-  );
-}
-
-export function hrisTimeOffRequestsAllRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<HrisTimeOffRequestsAllRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => HrisTimeOffRequestsAllRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'HrisTimeOffRequestsAllRequest' from JSON`,
   );
 }
 
@@ -238,59 +135,6 @@ export const HrisTimeOffRequestsAllResponse$inboundSchema: z.ZodType<
     "UnexpectedErrorResponse": "unexpectedErrorResponse",
   });
 });
-
-/** @internal */
-export type HrisTimeOffRequestsAllResponse$Outbound = {
-  HttpMeta: components.HTTPMetadata$Outbound;
-  GetTimeOffRequestsResponse?:
-    | components.GetTimeOffRequestsResponse$Outbound
-    | undefined;
-  UnexpectedErrorResponse?:
-    | components.UnexpectedErrorResponse$Outbound
-    | undefined;
-};
-
-/** @internal */
-export const HrisTimeOffRequestsAllResponse$outboundSchema: z.ZodType<
-  HrisTimeOffRequestsAllResponse$Outbound,
-  z.ZodTypeDef,
-  HrisTimeOffRequestsAllResponse
-> = z.object({
-  httpMeta: components.HTTPMetadata$outboundSchema,
-  getTimeOffRequestsResponse: components
-    .GetTimeOffRequestsResponse$outboundSchema.optional(),
-  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    httpMeta: "HttpMeta",
-    getTimeOffRequestsResponse: "GetTimeOffRequestsResponse",
-    unexpectedErrorResponse: "UnexpectedErrorResponse",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace HrisTimeOffRequestsAllResponse$ {
-  /** @deprecated use `HrisTimeOffRequestsAllResponse$inboundSchema` instead. */
-  export const inboundSchema = HrisTimeOffRequestsAllResponse$inboundSchema;
-  /** @deprecated use `HrisTimeOffRequestsAllResponse$outboundSchema` instead. */
-  export const outboundSchema = HrisTimeOffRequestsAllResponse$outboundSchema;
-  /** @deprecated use `HrisTimeOffRequestsAllResponse$Outbound` instead. */
-  export type Outbound = HrisTimeOffRequestsAllResponse$Outbound;
-}
-
-export function hrisTimeOffRequestsAllResponseToJSON(
-  hrisTimeOffRequestsAllResponse: HrisTimeOffRequestsAllResponse,
-): string {
-  return JSON.stringify(
-    HrisTimeOffRequestsAllResponse$outboundSchema.parse(
-      hrisTimeOffRequestsAllResponse,
-    ),
-  );
-}
 
 export function hrisTimeOffRequestsAllResponseFromJSON(
   jsonString: string,

@@ -39,7 +39,7 @@ type IssueTrackingCollectionTicketsAddRequest struct {
 	ServiceID *string `header:"style=simple,explode=false,name=x-apideck-service-id"`
 	// The collection ID
 	CollectionID string                 `pathParam:"style=simple,explode=false,name=collection_id"`
-	Ticket       components.TicketInput `request:"mediaType=application/json"`
+	Body         components.TicketInput `request:"mediaType=application/json"`
 }
 
 func (i IssueTrackingCollectionTicketsAddRequest) MarshalJSON() ([]byte, error) {
@@ -47,7 +47,7 @@ func (i IssueTrackingCollectionTicketsAddRequest) MarshalJSON() ([]byte, error) 
 }
 
 func (i *IssueTrackingCollectionTicketsAddRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &i, "", false, []string{"collection_id", "Ticket"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &i, "", false, []string{"collection_id", "body"}); err != nil {
 		return err
 	}
 	return nil
@@ -88,11 +88,11 @@ func (o *IssueTrackingCollectionTicketsAddRequest) GetCollectionID() string {
 	return o.CollectionID
 }
 
-func (o *IssueTrackingCollectionTicketsAddRequest) GetTicket() components.TicketInput {
+func (o *IssueTrackingCollectionTicketsAddRequest) GetBody() components.TicketInput {
 	if o == nil {
 		return components.TicketInput{}
 	}
-	return o.Ticket
+	return o.Body
 }
 
 type IssueTrackingCollectionTicketsAddResponse struct {

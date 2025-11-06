@@ -58,78 +58,6 @@ export type AccountingLocationsDeleteResponse = {
 };
 
 /** @internal */
-export const AccountingLocationsDeleteGlobals$inboundSchema: z.ZodType<
-  AccountingLocationsDeleteGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/** @internal */
-export type AccountingLocationsDeleteGlobals$Outbound = {
-  consumerId?: string | undefined;
-  appId?: string | undefined;
-};
-
-/** @internal */
-export const AccountingLocationsDeleteGlobals$outboundSchema: z.ZodType<
-  AccountingLocationsDeleteGlobals$Outbound,
-  z.ZodTypeDef,
-  AccountingLocationsDeleteGlobals
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AccountingLocationsDeleteGlobals$ {
-  /** @deprecated use `AccountingLocationsDeleteGlobals$inboundSchema` instead. */
-  export const inboundSchema = AccountingLocationsDeleteGlobals$inboundSchema;
-  /** @deprecated use `AccountingLocationsDeleteGlobals$outboundSchema` instead. */
-  export const outboundSchema = AccountingLocationsDeleteGlobals$outboundSchema;
-  /** @deprecated use `AccountingLocationsDeleteGlobals$Outbound` instead. */
-  export type Outbound = AccountingLocationsDeleteGlobals$Outbound;
-}
-
-export function accountingLocationsDeleteGlobalsToJSON(
-  accountingLocationsDeleteGlobals: AccountingLocationsDeleteGlobals,
-): string {
-  return JSON.stringify(
-    AccountingLocationsDeleteGlobals$outboundSchema.parse(
-      accountingLocationsDeleteGlobals,
-    ),
-  );
-}
-
-export function accountingLocationsDeleteGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<AccountingLocationsDeleteGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => AccountingLocationsDeleteGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'AccountingLocationsDeleteGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const AccountingLocationsDeleteRequest$inboundSchema: z.ZodType<
-  AccountingLocationsDeleteRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  id: z.string(),
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  raw: z.boolean().default(false),
-});
-
-/** @internal */
 export type AccountingLocationsDeleteRequest$Outbound = {
   id: string;
   consumerId?: string | undefined;
@@ -151,19 +79,6 @@ export const AccountingLocationsDeleteRequest$outboundSchema: z.ZodType<
   raw: z.boolean().default(false),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AccountingLocationsDeleteRequest$ {
-  /** @deprecated use `AccountingLocationsDeleteRequest$inboundSchema` instead. */
-  export const inboundSchema = AccountingLocationsDeleteRequest$inboundSchema;
-  /** @deprecated use `AccountingLocationsDeleteRequest$outboundSchema` instead. */
-  export const outboundSchema = AccountingLocationsDeleteRequest$outboundSchema;
-  /** @deprecated use `AccountingLocationsDeleteRequest$Outbound` instead. */
-  export type Outbound = AccountingLocationsDeleteRequest$Outbound;
-}
-
 export function accountingLocationsDeleteRequestToJSON(
   accountingLocationsDeleteRequest: AccountingLocationsDeleteRequest,
 ): string {
@@ -171,16 +86,6 @@ export function accountingLocationsDeleteRequestToJSON(
     AccountingLocationsDeleteRequest$outboundSchema.parse(
       accountingLocationsDeleteRequest,
     ),
-  );
-}
-
-export function accountingLocationsDeleteRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<AccountingLocationsDeleteRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => AccountingLocationsDeleteRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'AccountingLocationsDeleteRequest' from JSON`,
   );
 }
 
@@ -202,60 +107,6 @@ export const AccountingLocationsDeleteResponse$inboundSchema: z.ZodType<
     "UnexpectedErrorResponse": "unexpectedErrorResponse",
   });
 });
-
-/** @internal */
-export type AccountingLocationsDeleteResponse$Outbound = {
-  HttpMeta: components.HTTPMetadata$Outbound;
-  DeleteAccountingLocationResponse?:
-    | components.DeleteAccountingLocationResponse$Outbound
-    | undefined;
-  UnexpectedErrorResponse?:
-    | components.UnexpectedErrorResponse$Outbound
-    | undefined;
-};
-
-/** @internal */
-export const AccountingLocationsDeleteResponse$outboundSchema: z.ZodType<
-  AccountingLocationsDeleteResponse$Outbound,
-  z.ZodTypeDef,
-  AccountingLocationsDeleteResponse
-> = z.object({
-  httpMeta: components.HTTPMetadata$outboundSchema,
-  deleteAccountingLocationResponse: components
-    .DeleteAccountingLocationResponse$outboundSchema.optional(),
-  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    httpMeta: "HttpMeta",
-    deleteAccountingLocationResponse: "DeleteAccountingLocationResponse",
-    unexpectedErrorResponse: "UnexpectedErrorResponse",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AccountingLocationsDeleteResponse$ {
-  /** @deprecated use `AccountingLocationsDeleteResponse$inboundSchema` instead. */
-  export const inboundSchema = AccountingLocationsDeleteResponse$inboundSchema;
-  /** @deprecated use `AccountingLocationsDeleteResponse$outboundSchema` instead. */
-  export const outboundSchema =
-    AccountingLocationsDeleteResponse$outboundSchema;
-  /** @deprecated use `AccountingLocationsDeleteResponse$Outbound` instead. */
-  export type Outbound = AccountingLocationsDeleteResponse$Outbound;
-}
-
-export function accountingLocationsDeleteResponseToJSON(
-  accountingLocationsDeleteResponse: AccountingLocationsDeleteResponse,
-): string {
-  return JSON.stringify(
-    AccountingLocationsDeleteResponse$outboundSchema.parse(
-      accountingLocationsDeleteResponse,
-    ),
-  );
-}
 
 export function accountingLocationsDeleteResponseFromJSON(
   jsonString: string,

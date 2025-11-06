@@ -72,86 +72,6 @@ export type EcommerceProductsAllResponse = {
 };
 
 /** @internal */
-export const EcommerceProductsAllGlobals$inboundSchema: z.ZodType<
-  EcommerceProductsAllGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/** @internal */
-export type EcommerceProductsAllGlobals$Outbound = {
-  consumerId?: string | undefined;
-  appId?: string | undefined;
-};
-
-/** @internal */
-export const EcommerceProductsAllGlobals$outboundSchema: z.ZodType<
-  EcommerceProductsAllGlobals$Outbound,
-  z.ZodTypeDef,
-  EcommerceProductsAllGlobals
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace EcommerceProductsAllGlobals$ {
-  /** @deprecated use `EcommerceProductsAllGlobals$inboundSchema` instead. */
-  export const inboundSchema = EcommerceProductsAllGlobals$inboundSchema;
-  /** @deprecated use `EcommerceProductsAllGlobals$outboundSchema` instead. */
-  export const outboundSchema = EcommerceProductsAllGlobals$outboundSchema;
-  /** @deprecated use `EcommerceProductsAllGlobals$Outbound` instead. */
-  export type Outbound = EcommerceProductsAllGlobals$Outbound;
-}
-
-export function ecommerceProductsAllGlobalsToJSON(
-  ecommerceProductsAllGlobals: EcommerceProductsAllGlobals,
-): string {
-  return JSON.stringify(
-    EcommerceProductsAllGlobals$outboundSchema.parse(
-      ecommerceProductsAllGlobals,
-    ),
-  );
-}
-
-export function ecommerceProductsAllGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<EcommerceProductsAllGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => EcommerceProductsAllGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'EcommerceProductsAllGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const EcommerceProductsAllRequest$inboundSchema: z.ZodType<
-  EcommerceProductsAllRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  raw: z.boolean().default(false),
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  cursor: z.nullable(z.string()).optional(),
-  limit: z.number().int().default(20),
-  pass_through: z.record(z.any()).optional(),
-  fields: z.nullable(z.string()).optional(),
-  filter: components.EcommerceProductsFilter$inboundSchema.optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "pass_through": "passThrough",
-  });
-});
-
-/** @internal */
 export type EcommerceProductsAllRequest$Outbound = {
   raw: boolean;
   consumerId?: string | undefined;
@@ -185,19 +105,6 @@ export const EcommerceProductsAllRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace EcommerceProductsAllRequest$ {
-  /** @deprecated use `EcommerceProductsAllRequest$inboundSchema` instead. */
-  export const inboundSchema = EcommerceProductsAllRequest$inboundSchema;
-  /** @deprecated use `EcommerceProductsAllRequest$outboundSchema` instead. */
-  export const outboundSchema = EcommerceProductsAllRequest$outboundSchema;
-  /** @deprecated use `EcommerceProductsAllRequest$Outbound` instead. */
-  export type Outbound = EcommerceProductsAllRequest$Outbound;
-}
-
 export function ecommerceProductsAllRequestToJSON(
   ecommerceProductsAllRequest: EcommerceProductsAllRequest,
 ): string {
@@ -205,16 +112,6 @@ export function ecommerceProductsAllRequestToJSON(
     EcommerceProductsAllRequest$outboundSchema.parse(
       ecommerceProductsAllRequest,
     ),
-  );
-}
-
-export function ecommerceProductsAllRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<EcommerceProductsAllRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => EcommerceProductsAllRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'EcommerceProductsAllRequest' from JSON`,
   );
 }
 
@@ -235,56 +132,6 @@ export const EcommerceProductsAllResponse$inboundSchema: z.ZodType<
     "UnexpectedErrorResponse": "unexpectedErrorResponse",
   });
 });
-
-/** @internal */
-export type EcommerceProductsAllResponse$Outbound = {
-  HttpMeta: components.HTTPMetadata$Outbound;
-  GetProductsResponse?: components.GetProductsResponse$Outbound | undefined;
-  UnexpectedErrorResponse?:
-    | components.UnexpectedErrorResponse$Outbound
-    | undefined;
-};
-
-/** @internal */
-export const EcommerceProductsAllResponse$outboundSchema: z.ZodType<
-  EcommerceProductsAllResponse$Outbound,
-  z.ZodTypeDef,
-  EcommerceProductsAllResponse
-> = z.object({
-  httpMeta: components.HTTPMetadata$outboundSchema,
-  getProductsResponse: components.GetProductsResponse$outboundSchema.optional(),
-  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    httpMeta: "HttpMeta",
-    getProductsResponse: "GetProductsResponse",
-    unexpectedErrorResponse: "UnexpectedErrorResponse",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace EcommerceProductsAllResponse$ {
-  /** @deprecated use `EcommerceProductsAllResponse$inboundSchema` instead. */
-  export const inboundSchema = EcommerceProductsAllResponse$inboundSchema;
-  /** @deprecated use `EcommerceProductsAllResponse$outboundSchema` instead. */
-  export const outboundSchema = EcommerceProductsAllResponse$outboundSchema;
-  /** @deprecated use `EcommerceProductsAllResponse$Outbound` instead. */
-  export type Outbound = EcommerceProductsAllResponse$Outbound;
-}
-
-export function ecommerceProductsAllResponseToJSON(
-  ecommerceProductsAllResponse: EcommerceProductsAllResponse,
-): string {
-  return JSON.stringify(
-    EcommerceProductsAllResponse$outboundSchema.parse(
-      ecommerceProductsAllResponse,
-    ),
-  );
-}
 
 export function ecommerceProductsAllResponseFromJSON(
   jsonString: string,

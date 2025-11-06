@@ -53,82 +53,6 @@ export type FileStorageDrivesAddResponse = {
 };
 
 /** @internal */
-export const FileStorageDrivesAddGlobals$inboundSchema: z.ZodType<
-  FileStorageDrivesAddGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/** @internal */
-export type FileStorageDrivesAddGlobals$Outbound = {
-  consumerId?: string | undefined;
-  appId?: string | undefined;
-};
-
-/** @internal */
-export const FileStorageDrivesAddGlobals$outboundSchema: z.ZodType<
-  FileStorageDrivesAddGlobals$Outbound,
-  z.ZodTypeDef,
-  FileStorageDrivesAddGlobals
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace FileStorageDrivesAddGlobals$ {
-  /** @deprecated use `FileStorageDrivesAddGlobals$inboundSchema` instead. */
-  export const inboundSchema = FileStorageDrivesAddGlobals$inboundSchema;
-  /** @deprecated use `FileStorageDrivesAddGlobals$outboundSchema` instead. */
-  export const outboundSchema = FileStorageDrivesAddGlobals$outboundSchema;
-  /** @deprecated use `FileStorageDrivesAddGlobals$Outbound` instead. */
-  export type Outbound = FileStorageDrivesAddGlobals$Outbound;
-}
-
-export function fileStorageDrivesAddGlobalsToJSON(
-  fileStorageDrivesAddGlobals: FileStorageDrivesAddGlobals,
-): string {
-  return JSON.stringify(
-    FileStorageDrivesAddGlobals$outboundSchema.parse(
-      fileStorageDrivesAddGlobals,
-    ),
-  );
-}
-
-export function fileStorageDrivesAddGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<FileStorageDrivesAddGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => FileStorageDrivesAddGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'FileStorageDrivesAddGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const FileStorageDrivesAddRequest$inboundSchema: z.ZodType<
-  FileStorageDrivesAddRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  raw: z.boolean().default(false),
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  Drive: components.DriveInput$inboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    "Drive": "drive",
-  });
-});
-
-/** @internal */
 export type FileStorageDrivesAddRequest$Outbound = {
   raw: boolean;
   consumerId?: string | undefined;
@@ -154,19 +78,6 @@ export const FileStorageDrivesAddRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace FileStorageDrivesAddRequest$ {
-  /** @deprecated use `FileStorageDrivesAddRequest$inboundSchema` instead. */
-  export const inboundSchema = FileStorageDrivesAddRequest$inboundSchema;
-  /** @deprecated use `FileStorageDrivesAddRequest$outboundSchema` instead. */
-  export const outboundSchema = FileStorageDrivesAddRequest$outboundSchema;
-  /** @deprecated use `FileStorageDrivesAddRequest$Outbound` instead. */
-  export type Outbound = FileStorageDrivesAddRequest$Outbound;
-}
-
 export function fileStorageDrivesAddRequestToJSON(
   fileStorageDrivesAddRequest: FileStorageDrivesAddRequest,
 ): string {
@@ -174,16 +85,6 @@ export function fileStorageDrivesAddRequestToJSON(
     FileStorageDrivesAddRequest$outboundSchema.parse(
       fileStorageDrivesAddRequest,
     ),
-  );
-}
-
-export function fileStorageDrivesAddRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<FileStorageDrivesAddRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => FileStorageDrivesAddRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'FileStorageDrivesAddRequest' from JSON`,
   );
 }
 
@@ -204,56 +105,6 @@ export const FileStorageDrivesAddResponse$inboundSchema: z.ZodType<
     "UnexpectedErrorResponse": "unexpectedErrorResponse",
   });
 });
-
-/** @internal */
-export type FileStorageDrivesAddResponse$Outbound = {
-  HttpMeta: components.HTTPMetadata$Outbound;
-  CreateDriveResponse?: components.CreateDriveResponse$Outbound | undefined;
-  UnexpectedErrorResponse?:
-    | components.UnexpectedErrorResponse$Outbound
-    | undefined;
-};
-
-/** @internal */
-export const FileStorageDrivesAddResponse$outboundSchema: z.ZodType<
-  FileStorageDrivesAddResponse$Outbound,
-  z.ZodTypeDef,
-  FileStorageDrivesAddResponse
-> = z.object({
-  httpMeta: components.HTTPMetadata$outboundSchema,
-  createDriveResponse: components.CreateDriveResponse$outboundSchema.optional(),
-  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    httpMeta: "HttpMeta",
-    createDriveResponse: "CreateDriveResponse",
-    unexpectedErrorResponse: "UnexpectedErrorResponse",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace FileStorageDrivesAddResponse$ {
-  /** @deprecated use `FileStorageDrivesAddResponse$inboundSchema` instead. */
-  export const inboundSchema = FileStorageDrivesAddResponse$inboundSchema;
-  /** @deprecated use `FileStorageDrivesAddResponse$outboundSchema` instead. */
-  export const outboundSchema = FileStorageDrivesAddResponse$outboundSchema;
-  /** @deprecated use `FileStorageDrivesAddResponse$Outbound` instead. */
-  export type Outbound = FileStorageDrivesAddResponse$Outbound;
-}
-
-export function fileStorageDrivesAddResponseToJSON(
-  fileStorageDrivesAddResponse: FileStorageDrivesAddResponse,
-): string {
-  return JSON.stringify(
-    FileStorageDrivesAddResponse$outboundSchema.parse(
-      fileStorageDrivesAddResponse,
-    ),
-  );
-}
 
 export function fileStorageDrivesAddResponseFromJSON(
   jsonString: string,

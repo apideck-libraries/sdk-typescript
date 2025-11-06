@@ -7,23 +7,11 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  Links,
-  Links$inboundSchema,
-  Links$Outbound,
-  Links$outboundSchema,
-} from "./links.js";
-import {
-  Meta,
-  Meta$inboundSchema,
-  Meta$Outbound,
-  Meta$outboundSchema,
-} from "./meta.js";
+import { Links, Links$inboundSchema } from "./links.js";
+import { Meta, Meta$inboundSchema } from "./meta.js";
 import {
   TrackingCategory,
   TrackingCategory$inboundSchema,
-  TrackingCategory$Outbound,
-  TrackingCategory$outboundSchema,
 } from "./trackingcategory.js";
 
 /**
@@ -86,64 +74,6 @@ export const GetTrackingCategoriesResponse$inboundSchema: z.ZodType<
     "_raw": "raw",
   });
 });
-
-/** @internal */
-export type GetTrackingCategoriesResponse$Outbound = {
-  status_code: number;
-  status: string;
-  service: string;
-  resource: string;
-  operation: string;
-  data: Array<TrackingCategory$Outbound>;
-  meta?: Meta$Outbound | undefined;
-  links?: Links$Outbound | undefined;
-  _raw?: { [k: string]: any } | null | undefined;
-};
-
-/** @internal */
-export const GetTrackingCategoriesResponse$outboundSchema: z.ZodType<
-  GetTrackingCategoriesResponse$Outbound,
-  z.ZodTypeDef,
-  GetTrackingCategoriesResponse
-> = z.object({
-  statusCode: z.number().int(),
-  status: z.string(),
-  service: z.string(),
-  resource: z.string(),
-  operation: z.string(),
-  data: z.array(TrackingCategory$outboundSchema),
-  meta: Meta$outboundSchema.optional(),
-  links: Links$outboundSchema.optional(),
-  raw: z.nullable(z.record(z.any())).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    statusCode: "status_code",
-    raw: "_raw",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetTrackingCategoriesResponse$ {
-  /** @deprecated use `GetTrackingCategoriesResponse$inboundSchema` instead. */
-  export const inboundSchema = GetTrackingCategoriesResponse$inboundSchema;
-  /** @deprecated use `GetTrackingCategoriesResponse$outboundSchema` instead. */
-  export const outboundSchema = GetTrackingCategoriesResponse$outboundSchema;
-  /** @deprecated use `GetTrackingCategoriesResponse$Outbound` instead. */
-  export type Outbound = GetTrackingCategoriesResponse$Outbound;
-}
-
-export function getTrackingCategoriesResponseToJSON(
-  getTrackingCategoriesResponse: GetTrackingCategoriesResponse,
-): string {
-  return JSON.stringify(
-    GetTrackingCategoriesResponse$outboundSchema.parse(
-      getTrackingCategoriesResponse,
-    ),
-  );
-}
 
 export function getTrackingCategoriesResponseFromJSON(
   jsonString: string,

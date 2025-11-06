@@ -8,20 +8,11 @@ import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  Status,
-  Status$inboundSchema,
-  Status$outboundSchema,
-} from "./status.js";
-import {
-  UnifiedApiId,
-  UnifiedApiId$inboundSchema,
-  UnifiedApiId$outboundSchema,
-} from "./unifiedapiid.js";
+import { Status, Status$inboundSchema } from "./status.js";
+import { UnifiedApiId, UnifiedApiId$inboundSchema } from "./unifiedapiid.js";
 import {
   WebhookEventType,
   WebhookEventType$inboundSchema,
-  WebhookEventType$outboundSchema,
 } from "./webhookeventtype.js";
 
 /**
@@ -84,22 +75,6 @@ export const DisabledReason$inboundSchema: z.ZodNativeEnum<
 > = z.nativeEnum(DisabledReason);
 
 /** @internal */
-export const DisabledReason$outboundSchema: z.ZodNativeEnum<
-  typeof DisabledReason
-> = DisabledReason$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DisabledReason$ {
-  /** @deprecated use `DisabledReason$inboundSchema` instead. */
-  export const inboundSchema = DisabledReason$inboundSchema;
-  /** @deprecated use `DisabledReason$outboundSchema` instead. */
-  export const outboundSchema = DisabledReason$outboundSchema;
-}
-
-/** @internal */
 export const Webhook$inboundSchema: z.ZodType<Webhook, z.ZodTypeDef, unknown> =
   z.object({
     id: z.string().optional(),
@@ -126,64 +101,6 @@ export const Webhook$inboundSchema: z.ZodType<Webhook, z.ZodTypeDef, unknown> =
       "created_at": "createdAt",
     });
   });
-
-/** @internal */
-export type Webhook$Outbound = {
-  id?: string | undefined;
-  description?: string | null | undefined;
-  unified_api: string;
-  status: string;
-  disabled_reason?: string | undefined;
-  delivery_url: string;
-  execute_base_url: string;
-  events: Array<string>;
-  updated_at?: string | null | undefined;
-  created_at?: string | null | undefined;
-};
-
-/** @internal */
-export const Webhook$outboundSchema: z.ZodType<
-  Webhook$Outbound,
-  z.ZodTypeDef,
-  Webhook
-> = z.object({
-  id: z.string().optional(),
-  description: z.nullable(z.string()).optional(),
-  unifiedApi: UnifiedApiId$outboundSchema,
-  status: Status$outboundSchema,
-  disabledReason: DisabledReason$outboundSchema.optional(),
-  deliveryUrl: z.string(),
-  executeBaseUrl: z.string(),
-  events: z.array(WebhookEventType$outboundSchema),
-  updatedAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
-  createdAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    unifiedApi: "unified_api",
-    disabledReason: "disabled_reason",
-    deliveryUrl: "delivery_url",
-    executeBaseUrl: "execute_base_url",
-    updatedAt: "updated_at",
-    createdAt: "created_at",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Webhook$ {
-  /** @deprecated use `Webhook$inboundSchema` instead. */
-  export const inboundSchema = Webhook$inboundSchema;
-  /** @deprecated use `Webhook$outboundSchema` instead. */
-  export const outboundSchema = Webhook$outboundSchema;
-  /** @deprecated use `Webhook$Outbound` instead. */
-  export type Outbound = Webhook$Outbound;
-}
-
-export function webhookToJSON(webhook: Webhook): string {
-  return JSON.stringify(Webhook$outboundSchema.parse(webhook));
-}
 
 export function webhookFromJSON(
   jsonString: string,

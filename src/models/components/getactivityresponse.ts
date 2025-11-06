@@ -7,12 +7,7 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  Activity,
-  Activity$inboundSchema,
-  Activity$Outbound,
-  Activity$outboundSchema,
-} from "./activity.js";
+import { Activity, Activity$inboundSchema } from "./activity.js";
 
 /**
  * Activity
@@ -64,58 +59,6 @@ export const GetActivityResponse$inboundSchema: z.ZodType<
     "_raw": "raw",
   });
 });
-
-/** @internal */
-export type GetActivityResponse$Outbound = {
-  status_code: number;
-  status: string;
-  service: string;
-  resource: string;
-  operation: string;
-  data: Activity$Outbound;
-  _raw?: { [k: string]: any } | null | undefined;
-};
-
-/** @internal */
-export const GetActivityResponse$outboundSchema: z.ZodType<
-  GetActivityResponse$Outbound,
-  z.ZodTypeDef,
-  GetActivityResponse
-> = z.object({
-  statusCode: z.number().int(),
-  status: z.string(),
-  service: z.string(),
-  resource: z.string(),
-  operation: z.string(),
-  data: Activity$outboundSchema,
-  raw: z.nullable(z.record(z.any())).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    statusCode: "status_code",
-    raw: "_raw",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetActivityResponse$ {
-  /** @deprecated use `GetActivityResponse$inboundSchema` instead. */
-  export const inboundSchema = GetActivityResponse$inboundSchema;
-  /** @deprecated use `GetActivityResponse$outboundSchema` instead. */
-  export const outboundSchema = GetActivityResponse$outboundSchema;
-  /** @deprecated use `GetActivityResponse$Outbound` instead. */
-  export type Outbound = GetActivityResponse$Outbound;
-}
-
-export function getActivityResponseToJSON(
-  getActivityResponse: GetActivityResponse,
-): string {
-  return JSON.stringify(
-    GetActivityResponse$outboundSchema.parse(getActivityResponse),
-  );
-}
 
 export function getActivityResponseFromJSON(
   jsonString: string,

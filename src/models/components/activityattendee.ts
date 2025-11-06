@@ -124,22 +124,10 @@ export type ActivityAttendeeInput = {
 export const ActivityAttendeeStatus$inboundSchema: z.ZodNativeEnum<
   typeof ActivityAttendeeStatus
 > = z.nativeEnum(ActivityAttendeeStatus);
-
 /** @internal */
 export const ActivityAttendeeStatus$outboundSchema: z.ZodNativeEnum<
   typeof ActivityAttendeeStatus
 > = ActivityAttendeeStatus$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ActivityAttendeeStatus$ {
-  /** @deprecated use `ActivityAttendeeStatus$inboundSchema` instead. */
-  export const inboundSchema = ActivityAttendeeStatus$inboundSchema;
-  /** @deprecated use `ActivityAttendeeStatus$outboundSchema` instead. */
-  export const outboundSchema = ActivityAttendeeStatus$outboundSchema;
-}
 
 /** @internal */
 export const ActivityAttendee$inboundSchema: z.ZodType<
@@ -179,79 +167,6 @@ export const ActivityAttendee$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type ActivityAttendee$Outbound = {
-  id?: string | null | undefined;
-  name?: string | null | undefined;
-  first_name?: string | null | undefined;
-  middle_name?: string | null | undefined;
-  last_name?: string | null | undefined;
-  prefix?: string | null | undefined;
-  suffix?: string | null | undefined;
-  email_address?: string | null | undefined;
-  is_organizer?: boolean | null | undefined;
-  status?: string | null | undefined;
-  user_id?: string | null | undefined;
-  contact_id?: string | null | undefined;
-  updated_at?: string | null | undefined;
-  created_at?: string | null | undefined;
-};
-
-/** @internal */
-export const ActivityAttendee$outboundSchema: z.ZodType<
-  ActivityAttendee$Outbound,
-  z.ZodTypeDef,
-  ActivityAttendee
-> = z.object({
-  id: z.nullable(z.string()).optional(),
-  name: z.nullable(z.string()).optional(),
-  firstName: z.nullable(z.string()).optional(),
-  middleName: z.nullable(z.string()).optional(),
-  lastName: z.nullable(z.string()).optional(),
-  prefix: z.nullable(z.string()).optional(),
-  suffix: z.nullable(z.string()).optional(),
-  emailAddress: z.nullable(z.string()).optional(),
-  isOrganizer: z.nullable(z.boolean()).optional(),
-  status: z.nullable(ActivityAttendeeStatus$outboundSchema).optional(),
-  userId: z.nullable(z.string()).optional(),
-  contactId: z.nullable(z.string()).optional(),
-  updatedAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
-  createdAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    firstName: "first_name",
-    middleName: "middle_name",
-    lastName: "last_name",
-    emailAddress: "email_address",
-    isOrganizer: "is_organizer",
-    userId: "user_id",
-    contactId: "contact_id",
-    updatedAt: "updated_at",
-    createdAt: "created_at",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ActivityAttendee$ {
-  /** @deprecated use `ActivityAttendee$inboundSchema` instead. */
-  export const inboundSchema = ActivityAttendee$inboundSchema;
-  /** @deprecated use `ActivityAttendee$outboundSchema` instead. */
-  export const outboundSchema = ActivityAttendee$outboundSchema;
-  /** @deprecated use `ActivityAttendee$Outbound` instead. */
-  export type Outbound = ActivityAttendee$Outbound;
-}
-
-export function activityAttendeeToJSON(
-  activityAttendee: ActivityAttendee,
-): string {
-  return JSON.stringify(
-    ActivityAttendee$outboundSchema.parse(activityAttendee),
-  );
-}
-
 export function activityAttendeeFromJSON(
   jsonString: string,
 ): SafeParseResult<ActivityAttendee, SDKValidationError> {
@@ -261,31 +176,6 @@ export function activityAttendeeFromJSON(
     `Failed to parse 'ActivityAttendee' from JSON`,
   );
 }
-
-/** @internal */
-export const ActivityAttendeeInput$inboundSchema: z.ZodType<
-  ActivityAttendeeInput,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  name: z.nullable(z.string()).optional(),
-  first_name: z.nullable(z.string()).optional(),
-  middle_name: z.nullable(z.string()).optional(),
-  last_name: z.nullable(z.string()).optional(),
-  prefix: z.nullable(z.string()).optional(),
-  suffix: z.nullable(z.string()).optional(),
-  email_address: z.nullable(z.string()).optional(),
-  is_organizer: z.nullable(z.boolean()).optional(),
-  status: z.nullable(ActivityAttendeeStatus$inboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "first_name": "firstName",
-    "middle_name": "middleName",
-    "last_name": "lastName",
-    "email_address": "emailAddress",
-    "is_organizer": "isOrganizer",
-  });
-});
 
 /** @internal */
 export type ActivityAttendeeInput$Outbound = {
@@ -325,33 +215,10 @@ export const ActivityAttendeeInput$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ActivityAttendeeInput$ {
-  /** @deprecated use `ActivityAttendeeInput$inboundSchema` instead. */
-  export const inboundSchema = ActivityAttendeeInput$inboundSchema;
-  /** @deprecated use `ActivityAttendeeInput$outboundSchema` instead. */
-  export const outboundSchema = ActivityAttendeeInput$outboundSchema;
-  /** @deprecated use `ActivityAttendeeInput$Outbound` instead. */
-  export type Outbound = ActivityAttendeeInput$Outbound;
-}
-
 export function activityAttendeeInputToJSON(
   activityAttendeeInput: ActivityAttendeeInput,
 ): string {
   return JSON.stringify(
     ActivityAttendeeInput$outboundSchema.parse(activityAttendeeInput),
-  );
-}
-
-export function activityAttendeeInputFromJSON(
-  jsonString: string,
-): SafeParseResult<ActivityAttendeeInput, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => ActivityAttendeeInput$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ActivityAttendeeInput' from JSON`,
   );
 }

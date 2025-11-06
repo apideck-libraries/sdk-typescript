@@ -10,21 +10,9 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   EcommerceCustomer,
   EcommerceCustomer$inboundSchema,
-  EcommerceCustomer$Outbound,
-  EcommerceCustomer$outboundSchema,
 } from "./ecommercecustomer.js";
-import {
-  Links,
-  Links$inboundSchema,
-  Links$Outbound,
-  Links$outboundSchema,
-} from "./links.js";
-import {
-  Meta,
-  Meta$inboundSchema,
-  Meta$Outbound,
-  Meta$outboundSchema,
-} from "./meta.js";
+import { Links, Links$inboundSchema } from "./links.js";
+import { Meta, Meta$inboundSchema } from "./meta.js";
 
 /**
  * Customers
@@ -86,64 +74,6 @@ export const GetEcommerceCustomersResponse$inboundSchema: z.ZodType<
     "_raw": "raw",
   });
 });
-
-/** @internal */
-export type GetEcommerceCustomersResponse$Outbound = {
-  status_code: number;
-  status: string;
-  service: string;
-  resource: string;
-  operation: string;
-  data: Array<EcommerceCustomer$Outbound>;
-  _raw?: { [k: string]: any } | null | undefined;
-  meta?: Meta$Outbound | undefined;
-  links?: Links$Outbound | undefined;
-};
-
-/** @internal */
-export const GetEcommerceCustomersResponse$outboundSchema: z.ZodType<
-  GetEcommerceCustomersResponse$Outbound,
-  z.ZodTypeDef,
-  GetEcommerceCustomersResponse
-> = z.object({
-  statusCode: z.number().int(),
-  status: z.string(),
-  service: z.string(),
-  resource: z.string(),
-  operation: z.string(),
-  data: z.array(EcommerceCustomer$outboundSchema),
-  raw: z.nullable(z.record(z.any())).optional(),
-  meta: Meta$outboundSchema.optional(),
-  links: Links$outboundSchema.optional(),
-}).transform((v) => {
-  return remap$(v, {
-    statusCode: "status_code",
-    raw: "_raw",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetEcommerceCustomersResponse$ {
-  /** @deprecated use `GetEcommerceCustomersResponse$inboundSchema` instead. */
-  export const inboundSchema = GetEcommerceCustomersResponse$inboundSchema;
-  /** @deprecated use `GetEcommerceCustomersResponse$outboundSchema` instead. */
-  export const outboundSchema = GetEcommerceCustomersResponse$outboundSchema;
-  /** @deprecated use `GetEcommerceCustomersResponse$Outbound` instead. */
-  export type Outbound = GetEcommerceCustomersResponse$Outbound;
-}
-
-export function getEcommerceCustomersResponseToJSON(
-  getEcommerceCustomersResponse: GetEcommerceCustomersResponse,
-): string {
-  return JSON.stringify(
-    GetEcommerceCustomersResponse$outboundSchema.parse(
-      getEcommerceCustomersResponse,
-    ),
-  );
-}
 
 export function getEcommerceCustomersResponseFromJSON(
   jsonString: string,

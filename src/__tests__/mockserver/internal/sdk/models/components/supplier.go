@@ -448,8 +448,8 @@ type SupplierInput struct {
 	TaxRate   *LinkedTaxRateInput `json:"tax_rate,omitempty"`
 	TaxNumber *string             `json:"tax_number,omitempty"`
 	// Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
-	Currency *Currency                 `json:"currency,omitempty"`
-	Account  *LinkedLedgerAccountInput `json:"account,omitempty"`
+	Currency *Currency            `json:"currency,omitempty"`
+	Account  *LinkedLedgerAccount `json:"account,omitempty"`
 	// Supplier status
 	Status *SupplierStatus `json:"status,omitempty"`
 	// Payment method used for the transaction, such as cash, credit card, bank transfer, or check
@@ -615,7 +615,7 @@ func (o *SupplierInput) GetCurrency() *Currency {
 	return o.Currency
 }
 
-func (o *SupplierInput) GetAccount() *LinkedLedgerAccountInput {
+func (o *SupplierInput) GetAccount() *LinkedLedgerAccount {
 	if o == nil {
 		return nil
 	}

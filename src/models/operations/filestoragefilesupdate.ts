@@ -57,83 +57,6 @@ export type FileStorageFilesUpdateResponse = {
 };
 
 /** @internal */
-export const FileStorageFilesUpdateGlobals$inboundSchema: z.ZodType<
-  FileStorageFilesUpdateGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/** @internal */
-export type FileStorageFilesUpdateGlobals$Outbound = {
-  consumerId?: string | undefined;
-  appId?: string | undefined;
-};
-
-/** @internal */
-export const FileStorageFilesUpdateGlobals$outboundSchema: z.ZodType<
-  FileStorageFilesUpdateGlobals$Outbound,
-  z.ZodTypeDef,
-  FileStorageFilesUpdateGlobals
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace FileStorageFilesUpdateGlobals$ {
-  /** @deprecated use `FileStorageFilesUpdateGlobals$inboundSchema` instead. */
-  export const inboundSchema = FileStorageFilesUpdateGlobals$inboundSchema;
-  /** @deprecated use `FileStorageFilesUpdateGlobals$outboundSchema` instead. */
-  export const outboundSchema = FileStorageFilesUpdateGlobals$outboundSchema;
-  /** @deprecated use `FileStorageFilesUpdateGlobals$Outbound` instead. */
-  export type Outbound = FileStorageFilesUpdateGlobals$Outbound;
-}
-
-export function fileStorageFilesUpdateGlobalsToJSON(
-  fileStorageFilesUpdateGlobals: FileStorageFilesUpdateGlobals,
-): string {
-  return JSON.stringify(
-    FileStorageFilesUpdateGlobals$outboundSchema.parse(
-      fileStorageFilesUpdateGlobals,
-    ),
-  );
-}
-
-export function fileStorageFilesUpdateGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<FileStorageFilesUpdateGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => FileStorageFilesUpdateGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'FileStorageFilesUpdateGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const FileStorageFilesUpdateRequest$inboundSchema: z.ZodType<
-  FileStorageFilesUpdateRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  id: z.string(),
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  raw: z.boolean().default(false),
-  UpdateFileRequest: components.UpdateFileRequest$inboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    "UpdateFileRequest": "updateFileRequest",
-  });
-});
-
-/** @internal */
 export type FileStorageFilesUpdateRequest$Outbound = {
   id: string;
   consumerId?: string | undefined;
@@ -161,19 +84,6 @@ export const FileStorageFilesUpdateRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace FileStorageFilesUpdateRequest$ {
-  /** @deprecated use `FileStorageFilesUpdateRequest$inboundSchema` instead. */
-  export const inboundSchema = FileStorageFilesUpdateRequest$inboundSchema;
-  /** @deprecated use `FileStorageFilesUpdateRequest$outboundSchema` instead. */
-  export const outboundSchema = FileStorageFilesUpdateRequest$outboundSchema;
-  /** @deprecated use `FileStorageFilesUpdateRequest$Outbound` instead. */
-  export type Outbound = FileStorageFilesUpdateRequest$Outbound;
-}
-
 export function fileStorageFilesUpdateRequestToJSON(
   fileStorageFilesUpdateRequest: FileStorageFilesUpdateRequest,
 ): string {
@@ -181,16 +91,6 @@ export function fileStorageFilesUpdateRequestToJSON(
     FileStorageFilesUpdateRequest$outboundSchema.parse(
       fileStorageFilesUpdateRequest,
     ),
-  );
-}
-
-export function fileStorageFilesUpdateRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<FileStorageFilesUpdateRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => FileStorageFilesUpdateRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'FileStorageFilesUpdateRequest' from JSON`,
   );
 }
 
@@ -211,56 +111,6 @@ export const FileStorageFilesUpdateResponse$inboundSchema: z.ZodType<
     "UnexpectedErrorResponse": "unexpectedErrorResponse",
   });
 });
-
-/** @internal */
-export type FileStorageFilesUpdateResponse$Outbound = {
-  HttpMeta: components.HTTPMetadata$Outbound;
-  UpdateFileResponse?: components.UpdateFileResponse$Outbound | undefined;
-  UnexpectedErrorResponse?:
-    | components.UnexpectedErrorResponse$Outbound
-    | undefined;
-};
-
-/** @internal */
-export const FileStorageFilesUpdateResponse$outboundSchema: z.ZodType<
-  FileStorageFilesUpdateResponse$Outbound,
-  z.ZodTypeDef,
-  FileStorageFilesUpdateResponse
-> = z.object({
-  httpMeta: components.HTTPMetadata$outboundSchema,
-  updateFileResponse: components.UpdateFileResponse$outboundSchema.optional(),
-  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    httpMeta: "HttpMeta",
-    updateFileResponse: "UpdateFileResponse",
-    unexpectedErrorResponse: "UnexpectedErrorResponse",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace FileStorageFilesUpdateResponse$ {
-  /** @deprecated use `FileStorageFilesUpdateResponse$inboundSchema` instead. */
-  export const inboundSchema = FileStorageFilesUpdateResponse$inboundSchema;
-  /** @deprecated use `FileStorageFilesUpdateResponse$outboundSchema` instead. */
-  export const outboundSchema = FileStorageFilesUpdateResponse$outboundSchema;
-  /** @deprecated use `FileStorageFilesUpdateResponse$Outbound` instead. */
-  export type Outbound = FileStorageFilesUpdateResponse$Outbound;
-}
-
-export function fileStorageFilesUpdateResponseToJSON(
-  fileStorageFilesUpdateResponse: FileStorageFilesUpdateResponse,
-): string {
-  return JSON.stringify(
-    FileStorageFilesUpdateResponse$outboundSchema.parse(
-      fileStorageFilesUpdateResponse,
-    ),
-  );
-}
 
 export function fileStorageFilesUpdateResponseFromJSON(
   jsonString: string,

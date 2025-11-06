@@ -10,8 +10,6 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   InvoiceResponse,
   InvoiceResponse$inboundSchema,
-  InvoiceResponse$Outbound,
-  InvoiceResponse$outboundSchema,
 } from "./invoiceresponse.js";
 
 /**
@@ -64,58 +62,6 @@ export const UpdateInvoiceResponse$inboundSchema: z.ZodType<
     "_raw": "raw",
   });
 });
-
-/** @internal */
-export type UpdateInvoiceResponse$Outbound = {
-  status_code: number;
-  status: string;
-  service: string;
-  resource: string;
-  operation: string;
-  data: InvoiceResponse$Outbound;
-  _raw?: { [k: string]: any } | null | undefined;
-};
-
-/** @internal */
-export const UpdateInvoiceResponse$outboundSchema: z.ZodType<
-  UpdateInvoiceResponse$Outbound,
-  z.ZodTypeDef,
-  UpdateInvoiceResponse
-> = z.object({
-  statusCode: z.number().int(),
-  status: z.string(),
-  service: z.string(),
-  resource: z.string(),
-  operation: z.string(),
-  data: InvoiceResponse$outboundSchema,
-  raw: z.nullable(z.record(z.any())).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    statusCode: "status_code",
-    raw: "_raw",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace UpdateInvoiceResponse$ {
-  /** @deprecated use `UpdateInvoiceResponse$inboundSchema` instead. */
-  export const inboundSchema = UpdateInvoiceResponse$inboundSchema;
-  /** @deprecated use `UpdateInvoiceResponse$outboundSchema` instead. */
-  export const outboundSchema = UpdateInvoiceResponse$outboundSchema;
-  /** @deprecated use `UpdateInvoiceResponse$Outbound` instead. */
-  export type Outbound = UpdateInvoiceResponse$Outbound;
-}
-
-export function updateInvoiceResponseToJSON(
-  updateInvoiceResponse: UpdateInvoiceResponse,
-): string {
-  return JSON.stringify(
-    UpdateInvoiceResponse$outboundSchema.parse(updateInvoiceResponse),
-  );
-}
 
 export function updateInvoiceResponseFromJSON(
   jsonString: string,

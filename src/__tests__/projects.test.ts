@@ -111,6 +111,7 @@ test("Projects Accounting Projects Add", async () => {
       phase: "execution",
       taxRate: {
         id: "123456",
+        code: "N-T",
         rate: 10,
       },
       trackingCategories: [
@@ -367,6 +368,7 @@ test("Projects Accounting Projects Update", async () => {
       phase: "execution",
       taxRate: {
         id: "123456",
+        code: "N-T",
         rate: 10,
       },
       trackingCategories: [

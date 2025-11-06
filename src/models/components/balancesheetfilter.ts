@@ -4,10 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
  * The type of period to include in the resource: month, quarter, year.
@@ -48,44 +45,8 @@ export type BalanceSheetFilter = {
 };
 
 /** @internal */
-export const PeriodType$inboundSchema: z.ZodNativeEnum<typeof PeriodType> = z
+export const PeriodType$outboundSchema: z.ZodNativeEnum<typeof PeriodType> = z
   .nativeEnum(PeriodType);
-
-/** @internal */
-export const PeriodType$outboundSchema: z.ZodNativeEnum<typeof PeriodType> =
-  PeriodType$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace PeriodType$ {
-  /** @deprecated use `PeriodType$inboundSchema` instead. */
-  export const inboundSchema = PeriodType$inboundSchema;
-  /** @deprecated use `PeriodType$outboundSchema` instead. */
-  export const outboundSchema = PeriodType$outboundSchema;
-}
-
-/** @internal */
-export const BalanceSheetFilter$inboundSchema: z.ZodType<
-  BalanceSheetFilter,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  start_date: z.string().optional(),
-  end_date: z.string().optional(),
-  period_count: z.number().int().optional(),
-  period_type: PeriodType$inboundSchema.optional(),
-  location_id: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "start_date": "startDate",
-    "end_date": "endDate",
-    "period_count": "periodCount",
-    "period_type": "periodType",
-    "location_id": "locationId",
-  });
-});
 
 /** @internal */
 export type BalanceSheetFilter$Outbound = {
@@ -117,33 +78,10 @@ export const BalanceSheetFilter$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace BalanceSheetFilter$ {
-  /** @deprecated use `BalanceSheetFilter$inboundSchema` instead. */
-  export const inboundSchema = BalanceSheetFilter$inboundSchema;
-  /** @deprecated use `BalanceSheetFilter$outboundSchema` instead. */
-  export const outboundSchema = BalanceSheetFilter$outboundSchema;
-  /** @deprecated use `BalanceSheetFilter$Outbound` instead. */
-  export type Outbound = BalanceSheetFilter$Outbound;
-}
-
 export function balanceSheetFilterToJSON(
   balanceSheetFilter: BalanceSheetFilter,
 ): string {
   return JSON.stringify(
     BalanceSheetFilter$outboundSchema.parse(balanceSheetFilter),
-  );
-}
-
-export function balanceSheetFilterFromJSON(
-  jsonString: string,
-): SafeParseResult<BalanceSheetFilter, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => BalanceSheetFilter$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'BalanceSheetFilter' from JSON`,
   );
 }

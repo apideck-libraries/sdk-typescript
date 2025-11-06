@@ -53,80 +53,6 @@ export type AtsApplicationsAddResponse = {
 };
 
 /** @internal */
-export const AtsApplicationsAddGlobals$inboundSchema: z.ZodType<
-  AtsApplicationsAddGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/** @internal */
-export type AtsApplicationsAddGlobals$Outbound = {
-  consumerId?: string | undefined;
-  appId?: string | undefined;
-};
-
-/** @internal */
-export const AtsApplicationsAddGlobals$outboundSchema: z.ZodType<
-  AtsApplicationsAddGlobals$Outbound,
-  z.ZodTypeDef,
-  AtsApplicationsAddGlobals
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AtsApplicationsAddGlobals$ {
-  /** @deprecated use `AtsApplicationsAddGlobals$inboundSchema` instead. */
-  export const inboundSchema = AtsApplicationsAddGlobals$inboundSchema;
-  /** @deprecated use `AtsApplicationsAddGlobals$outboundSchema` instead. */
-  export const outboundSchema = AtsApplicationsAddGlobals$outboundSchema;
-  /** @deprecated use `AtsApplicationsAddGlobals$Outbound` instead. */
-  export type Outbound = AtsApplicationsAddGlobals$Outbound;
-}
-
-export function atsApplicationsAddGlobalsToJSON(
-  atsApplicationsAddGlobals: AtsApplicationsAddGlobals,
-): string {
-  return JSON.stringify(
-    AtsApplicationsAddGlobals$outboundSchema.parse(atsApplicationsAddGlobals),
-  );
-}
-
-export function atsApplicationsAddGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<AtsApplicationsAddGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => AtsApplicationsAddGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'AtsApplicationsAddGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const AtsApplicationsAddRequest$inboundSchema: z.ZodType<
-  AtsApplicationsAddRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  raw: z.boolean().default(false),
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  Application: components.ApplicationInput$inboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    "Application": "application",
-  });
-});
-
-/** @internal */
 export type AtsApplicationsAddRequest$Outbound = {
   raw: boolean;
   consumerId?: string | undefined;
@@ -152,34 +78,11 @@ export const AtsApplicationsAddRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AtsApplicationsAddRequest$ {
-  /** @deprecated use `AtsApplicationsAddRequest$inboundSchema` instead. */
-  export const inboundSchema = AtsApplicationsAddRequest$inboundSchema;
-  /** @deprecated use `AtsApplicationsAddRequest$outboundSchema` instead. */
-  export const outboundSchema = AtsApplicationsAddRequest$outboundSchema;
-  /** @deprecated use `AtsApplicationsAddRequest$Outbound` instead. */
-  export type Outbound = AtsApplicationsAddRequest$Outbound;
-}
-
 export function atsApplicationsAddRequestToJSON(
   atsApplicationsAddRequest: AtsApplicationsAddRequest,
 ): string {
   return JSON.stringify(
     AtsApplicationsAddRequest$outboundSchema.parse(atsApplicationsAddRequest),
-  );
-}
-
-export function atsApplicationsAddRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<AtsApplicationsAddRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => AtsApplicationsAddRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'AtsApplicationsAddRequest' from JSON`,
   );
 }
 
@@ -201,57 +104,6 @@ export const AtsApplicationsAddResponse$inboundSchema: z.ZodType<
     "UnexpectedErrorResponse": "unexpectedErrorResponse",
   });
 });
-
-/** @internal */
-export type AtsApplicationsAddResponse$Outbound = {
-  HttpMeta: components.HTTPMetadata$Outbound;
-  CreateApplicationResponse?:
-    | components.CreateApplicationResponse$Outbound
-    | undefined;
-  UnexpectedErrorResponse?:
-    | components.UnexpectedErrorResponse$Outbound
-    | undefined;
-};
-
-/** @internal */
-export const AtsApplicationsAddResponse$outboundSchema: z.ZodType<
-  AtsApplicationsAddResponse$Outbound,
-  z.ZodTypeDef,
-  AtsApplicationsAddResponse
-> = z.object({
-  httpMeta: components.HTTPMetadata$outboundSchema,
-  createApplicationResponse: components.CreateApplicationResponse$outboundSchema
-    .optional(),
-  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    httpMeta: "HttpMeta",
-    createApplicationResponse: "CreateApplicationResponse",
-    unexpectedErrorResponse: "UnexpectedErrorResponse",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AtsApplicationsAddResponse$ {
-  /** @deprecated use `AtsApplicationsAddResponse$inboundSchema` instead. */
-  export const inboundSchema = AtsApplicationsAddResponse$inboundSchema;
-  /** @deprecated use `AtsApplicationsAddResponse$outboundSchema` instead. */
-  export const outboundSchema = AtsApplicationsAddResponse$outboundSchema;
-  /** @deprecated use `AtsApplicationsAddResponse$Outbound` instead. */
-  export type Outbound = AtsApplicationsAddResponse$Outbound;
-}
-
-export function atsApplicationsAddResponseToJSON(
-  atsApplicationsAddResponse: AtsApplicationsAddResponse,
-): string {
-  return JSON.stringify(
-    AtsApplicationsAddResponse$outboundSchema.parse(atsApplicationsAddResponse),
-  );
-}
 
 export function atsApplicationsAddResponseFromJSON(
   jsonString: string,

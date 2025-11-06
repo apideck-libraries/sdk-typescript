@@ -5,7 +5,6 @@ package components
 import (
 	"encoding/json"
 	"fmt"
-	"mockserver/internal/sdk/utils"
 )
 
 // RebillStatus - Status of the rebilling process for this line item.
@@ -48,17 +47,6 @@ type Rebilling struct {
 	LinkedTransactionID *string `json:"linked_transaction_id,omitempty"`
 	// The ID of the line item in the rebilled transaction.
 	LinkedTransactionLineID *string `json:"linked_transaction_line_id,omitempty"`
-}
-
-func (r Rebilling) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(r, "", false)
-}
-
-func (r *Rebilling) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &r, "", false, nil); err != nil {
-		return err
-	}
-	return nil
 }
 
 func (o *Rebilling) GetRebillable() *bool {

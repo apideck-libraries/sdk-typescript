@@ -7,24 +7,9 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  Bill,
-  Bill$inboundSchema,
-  Bill$Outbound,
-  Bill$outboundSchema,
-} from "./bill.js";
-import {
-  Links,
-  Links$inboundSchema,
-  Links$Outbound,
-  Links$outboundSchema,
-} from "./links.js";
-import {
-  Meta,
-  Meta$inboundSchema,
-  Meta$Outbound,
-  Meta$outboundSchema,
-} from "./meta.js";
+import { Bill, Bill$inboundSchema } from "./bill.js";
+import { Links, Links$inboundSchema } from "./links.js";
+import { Meta, Meta$inboundSchema } from "./meta.js";
 
 /**
  * Bills
@@ -86,62 +71,6 @@ export const GetBillsResponse$inboundSchema: z.ZodType<
     "_raw": "raw",
   });
 });
-
-/** @internal */
-export type GetBillsResponse$Outbound = {
-  status_code: number;
-  status: string;
-  service: string;
-  resource: string;
-  operation: string;
-  data: Array<Bill$Outbound>;
-  meta?: Meta$Outbound | undefined;
-  links?: Links$Outbound | undefined;
-  _raw?: { [k: string]: any } | null | undefined;
-};
-
-/** @internal */
-export const GetBillsResponse$outboundSchema: z.ZodType<
-  GetBillsResponse$Outbound,
-  z.ZodTypeDef,
-  GetBillsResponse
-> = z.object({
-  statusCode: z.number().int(),
-  status: z.string(),
-  service: z.string(),
-  resource: z.string(),
-  operation: z.string(),
-  data: z.array(Bill$outboundSchema),
-  meta: Meta$outboundSchema.optional(),
-  links: Links$outboundSchema.optional(),
-  raw: z.nullable(z.record(z.any())).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    statusCode: "status_code",
-    raw: "_raw",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetBillsResponse$ {
-  /** @deprecated use `GetBillsResponse$inboundSchema` instead. */
-  export const inboundSchema = GetBillsResponse$inboundSchema;
-  /** @deprecated use `GetBillsResponse$outboundSchema` instead. */
-  export const outboundSchema = GetBillsResponse$outboundSchema;
-  /** @deprecated use `GetBillsResponse$Outbound` instead. */
-  export type Outbound = GetBillsResponse$Outbound;
-}
-
-export function getBillsResponseToJSON(
-  getBillsResponse: GetBillsResponse,
-): string {
-  return JSON.stringify(
-    GetBillsResponse$outboundSchema.parse(getBillsResponse),
-  );
-}
 
 export function getBillsResponseFromJSON(
   jsonString: string,

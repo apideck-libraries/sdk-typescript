@@ -8,51 +8,28 @@ import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  ConnectorDoc,
-  ConnectorDoc$inboundSchema,
-  ConnectorDoc$Outbound,
-  ConnectorDoc$outboundSchema,
-} from "./connectordoc.js";
+import { ConnectorDoc, ConnectorDoc$inboundSchema } from "./connectordoc.js";
 import {
   ConnectorEvent,
   ConnectorEvent$inboundSchema,
-  ConnectorEvent$Outbound,
-  ConnectorEvent$outboundSchema,
 } from "./connectorevent.js";
 import {
   ConnectorSetting,
   ConnectorSetting$inboundSchema,
-  ConnectorSetting$Outbound,
-  ConnectorSetting$outboundSchema,
 } from "./connectorsetting.js";
 import {
   ConnectorStatus,
   ConnectorStatus$inboundSchema,
-  ConnectorStatus$outboundSchema,
 } from "./connectorstatus.js";
 import {
   LinkedConnectorResource,
   LinkedConnectorResource$inboundSchema,
-  LinkedConnectorResource$Outbound,
-  LinkedConnectorResource$outboundSchema,
 } from "./linkedconnectorresource.js";
-import {
-  SchemaSupport,
-  SchemaSupport$inboundSchema,
-  SchemaSupport$Outbound,
-  SchemaSupport$outboundSchema,
-} from "./schemasupport.js";
-import {
-  UnifiedApiId,
-  UnifiedApiId$inboundSchema,
-  UnifiedApiId$outboundSchema,
-} from "./unifiedapiid.js";
+import { SchemaSupport, SchemaSupport$inboundSchema } from "./schemasupport.js";
+import { UnifiedApiId, UnifiedApiId$inboundSchema } from "./unifiedapiid.js";
 import {
   WebhookSupport,
   WebhookSupport$inboundSchema,
-  WebhookSupport$Outbound,
-  WebhookSupport$outboundSchema,
 } from "./webhooksupport.js";
 
 /**
@@ -274,62 +251,14 @@ export const ConnectorAuthType$inboundSchema: z.ZodNativeEnum<
 > = z.nativeEnum(ConnectorAuthType);
 
 /** @internal */
-export const ConnectorAuthType$outboundSchema: z.ZodNativeEnum<
-  typeof ConnectorAuthType
-> = ConnectorAuthType$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ConnectorAuthType$ {
-  /** @deprecated use `ConnectorAuthType$inboundSchema` instead. */
-  export const inboundSchema = ConnectorAuthType$inboundSchema;
-  /** @deprecated use `ConnectorAuthType$outboundSchema` instead. */
-  export const outboundSchema = ConnectorAuthType$outboundSchema;
-}
-
-/** @internal */
 export const ConnectorOauthGrantType$inboundSchema: z.ZodNativeEnum<
   typeof ConnectorOauthGrantType
 > = z.nativeEnum(ConnectorOauthGrantType);
 
 /** @internal */
-export const ConnectorOauthGrantType$outboundSchema: z.ZodNativeEnum<
-  typeof ConnectorOauthGrantType
-> = ConnectorOauthGrantType$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ConnectorOauthGrantType$ {
-  /** @deprecated use `ConnectorOauthGrantType$inboundSchema` instead. */
-  export const inboundSchema = ConnectorOauthGrantType$inboundSchema;
-  /** @deprecated use `ConnectorOauthGrantType$outboundSchema` instead. */
-  export const outboundSchema = ConnectorOauthGrantType$outboundSchema;
-}
-
-/** @internal */
 export const OauthCredentialsSource$inboundSchema: z.ZodNativeEnum<
   typeof OauthCredentialsSource
 > = z.nativeEnum(OauthCredentialsSource);
-
-/** @internal */
-export const OauthCredentialsSource$outboundSchema: z.ZodNativeEnum<
-  typeof OauthCredentialsSource
-> = OauthCredentialsSource$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace OauthCredentialsSource$ {
-  /** @deprecated use `OauthCredentialsSource$inboundSchema` instead. */
-  export const inboundSchema = OauthCredentialsSource$inboundSchema;
-  /** @deprecated use `OauthCredentialsSource$outboundSchema` instead. */
-  export const outboundSchema = OauthCredentialsSource$outboundSchema;
-}
 
 /** @internal */
 export const OauthScopes$inboundSchema: z.ZodType<
@@ -345,45 +274,6 @@ export const OauthScopes$inboundSchema: z.ZodType<
     "default_apis": "defaultApis",
   });
 });
-
-/** @internal */
-export type OauthScopes$Outbound = {
-  id?: string | undefined;
-  label?: string | undefined;
-  default_apis?: Array<string> | undefined;
-};
-
-/** @internal */
-export const OauthScopes$outboundSchema: z.ZodType<
-  OauthScopes$Outbound,
-  z.ZodTypeDef,
-  OauthScopes
-> = z.object({
-  id: z.string().optional(),
-  label: z.string().optional(),
-  defaultApis: z.array(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    defaultApis: "default_apis",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace OauthScopes$ {
-  /** @deprecated use `OauthScopes$inboundSchema` instead. */
-  export const inboundSchema = OauthScopes$inboundSchema;
-  /** @deprecated use `OauthScopes$outboundSchema` instead. */
-  export const outboundSchema = OauthScopes$outboundSchema;
-  /** @deprecated use `OauthScopes$Outbound` instead. */
-  export type Outbound = OauthScopes$Outbound;
-}
-
-export function oauthScopesToJSON(oauthScopes: OauthScopes): string {
-  return JSON.stringify(OauthScopes$outboundSchema.parse(oauthScopes));
-}
 
 export function oauthScopesFromJSON(
   jsonString: string,
@@ -404,43 +294,6 @@ export const ConnectorOauthScopes$inboundSchema: z.ZodType<
   id: z.string().optional(),
   label: z.string().optional(),
 });
-
-/** @internal */
-export type ConnectorOauthScopes$Outbound = {
-  id?: string | undefined;
-  label?: string | undefined;
-};
-
-/** @internal */
-export const ConnectorOauthScopes$outboundSchema: z.ZodType<
-  ConnectorOauthScopes$Outbound,
-  z.ZodTypeDef,
-  ConnectorOauthScopes
-> = z.object({
-  id: z.string().optional(),
-  label: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ConnectorOauthScopes$ {
-  /** @deprecated use `ConnectorOauthScopes$inboundSchema` instead. */
-  export const inboundSchema = ConnectorOauthScopes$inboundSchema;
-  /** @deprecated use `ConnectorOauthScopes$outboundSchema` instead. */
-  export const outboundSchema = ConnectorOauthScopes$outboundSchema;
-  /** @deprecated use `ConnectorOauthScopes$Outbound` instead. */
-  export type Outbound = ConnectorOauthScopes$Outbound;
-}
-
-export function connectorOauthScopesToJSON(
-  connectorOauthScopes: ConnectorOauthScopes,
-): string {
-  return JSON.stringify(
-    ConnectorOauthScopes$outboundSchema.parse(connectorOauthScopes),
-  );
-}
 
 export function connectorOauthScopesFromJSON(
   jsonString: string,
@@ -477,59 +330,6 @@ export const UnifiedApis$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type UnifiedApis$Outbound = {
-  id?: string | undefined;
-  name?: string | undefined;
-  auth_only?: boolean | undefined;
-  oauth_scopes?: Array<ConnectorOauthScopes$Outbound> | undefined;
-  supported_resources?: Array<LinkedConnectorResource$Outbound> | undefined;
-  downstream_unsupported_resources?: Array<string> | undefined;
-  supported_events?: Array<ConnectorEvent$Outbound> | undefined;
-};
-
-/** @internal */
-export const UnifiedApis$outboundSchema: z.ZodType<
-  UnifiedApis$Outbound,
-  z.ZodTypeDef,
-  UnifiedApis
-> = z.object({
-  id: UnifiedApiId$outboundSchema.optional(),
-  name: z.string().optional(),
-  authOnly: z.boolean().optional(),
-  oauthScopes: z.array(z.lazy(() => ConnectorOauthScopes$outboundSchema))
-    .optional(),
-  supportedResources: z.array(LinkedConnectorResource$outboundSchema)
-    .optional(),
-  downstreamUnsupportedResources: z.array(z.string()).optional(),
-  supportedEvents: z.array(ConnectorEvent$outboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    authOnly: "auth_only",
-    oauthScopes: "oauth_scopes",
-    supportedResources: "supported_resources",
-    downstreamUnsupportedResources: "downstream_unsupported_resources",
-    supportedEvents: "supported_events",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace UnifiedApis$ {
-  /** @deprecated use `UnifiedApis$inboundSchema` instead. */
-  export const inboundSchema = UnifiedApis$inboundSchema;
-  /** @deprecated use `UnifiedApis$outboundSchema` instead. */
-  export const outboundSchema = UnifiedApis$outboundSchema;
-  /** @deprecated use `UnifiedApis$Outbound` instead. */
-  export type Outbound = UnifiedApis$Outbound;
-}
-
-export function unifiedApisToJSON(unifiedApis: UnifiedApis): string {
-  return JSON.stringify(UnifiedApis$outboundSchema.parse(unifiedApis));
-}
-
 export function unifiedApisFromJSON(
   jsonString: string,
 ): SafeParseResult<UnifiedApis, SDKValidationError> {
@@ -549,39 +349,6 @@ export const TlsSupport$inboundSchema: z.ZodType<
   type: z.string().optional(),
   description: z.string().optional(),
 });
-
-/** @internal */
-export type TlsSupport$Outbound = {
-  type?: string | undefined;
-  description?: string | undefined;
-};
-
-/** @internal */
-export const TlsSupport$outboundSchema: z.ZodType<
-  TlsSupport$Outbound,
-  z.ZodTypeDef,
-  TlsSupport
-> = z.object({
-  type: z.string().optional(),
-  description: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace TlsSupport$ {
-  /** @deprecated use `TlsSupport$inboundSchema` instead. */
-  export const inboundSchema = TlsSupport$inboundSchema;
-  /** @deprecated use `TlsSupport$outboundSchema` instead. */
-  export const outboundSchema = TlsSupport$outboundSchema;
-  /** @deprecated use `TlsSupport$Outbound` instead. */
-  export type Outbound = TlsSupport$Outbound;
-}
-
-export function tlsSupportToJSON(tlsSupport: TlsSupport): string {
-  return JSON.stringify(TlsSupport$outboundSchema.parse(tlsSupport));
-}
 
 export function tlsSupportFromJSON(
   jsonString: string,
@@ -654,117 +421,6 @@ export const Connector$inboundSchema: z.ZodType<
     "tls_support": "tlsSupport",
   });
 });
-
-/** @internal */
-export type Connector$Outbound = {
-  id?: string | undefined;
-  name?: string | undefined;
-  status?: string | undefined;
-  description?: string | null | undefined;
-  icon_url?: string | undefined;
-  logo_url?: string | undefined;
-  website_url?: string | undefined;
-  signup_url?: string | undefined;
-  partner_signup_url?: string | undefined;
-  free_trial_available?: boolean | undefined;
-  auth_type?: string | undefined;
-  auth_only?: boolean | undefined;
-  blind_mapped?: boolean | undefined;
-  oauth_grant_type?: string | undefined;
-  oauth_credentials_source?: string | undefined;
-  oauth_scopes?: Array<OauthScopes$Outbound> | undefined;
-  custom_scopes?: boolean | undefined;
-  has_sandbox_credentials?: boolean | undefined;
-  settings?: Array<ConnectorSetting$Outbound> | undefined;
-  service_id?: string | undefined;
-  unified_apis?: Array<UnifiedApis$Outbound> | undefined;
-  supported_resources?: Array<LinkedConnectorResource$Outbound> | undefined;
-  configurable_resources?: Array<string> | undefined;
-  supported_events?: Array<ConnectorEvent$Outbound> | undefined;
-  webhook_support?: WebhookSupport$Outbound | undefined;
-  schema_support?: SchemaSupport$Outbound | undefined;
-  docs?: Array<ConnectorDoc$Outbound> | undefined;
-  tls_support?: TlsSupport$Outbound | undefined;
-};
-
-/** @internal */
-export const Connector$outboundSchema: z.ZodType<
-  Connector$Outbound,
-  z.ZodTypeDef,
-  Connector
-> = z.object({
-  id: z.string().optional(),
-  name: z.string().optional(),
-  status: ConnectorStatus$outboundSchema.optional(),
-  description: z.nullable(z.string()).optional(),
-  iconUrl: z.string().optional(),
-  logoUrl: z.string().optional(),
-  websiteUrl: z.string().optional(),
-  signupUrl: z.string().optional(),
-  partnerSignupUrl: z.string().optional(),
-  freeTrialAvailable: z.boolean().optional(),
-  authType: ConnectorAuthType$outboundSchema.optional(),
-  authOnly: z.boolean().optional(),
-  blindMapped: z.boolean().optional(),
-  oauthGrantType: ConnectorOauthGrantType$outboundSchema.optional(),
-  oauthCredentialsSource: OauthCredentialsSource$outboundSchema.optional(),
-  oauthScopes: z.array(z.lazy(() => OauthScopes$outboundSchema)).optional(),
-  customScopes: z.boolean().optional(),
-  hasSandboxCredentials: z.boolean().optional(),
-  settings: z.array(ConnectorSetting$outboundSchema).optional(),
-  serviceId: z.string().optional(),
-  unifiedApis: z.array(z.lazy(() => UnifiedApis$outboundSchema)).optional(),
-  supportedResources: z.array(LinkedConnectorResource$outboundSchema)
-    .optional(),
-  configurableResources: z.array(z.string()).optional(),
-  supportedEvents: z.array(ConnectorEvent$outboundSchema).optional(),
-  webhookSupport: WebhookSupport$outboundSchema.optional(),
-  schemaSupport: SchemaSupport$outboundSchema.optional(),
-  docs: z.array(ConnectorDoc$outboundSchema).optional(),
-  tlsSupport: z.lazy(() => TlsSupport$outboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    iconUrl: "icon_url",
-    logoUrl: "logo_url",
-    websiteUrl: "website_url",
-    signupUrl: "signup_url",
-    partnerSignupUrl: "partner_signup_url",
-    freeTrialAvailable: "free_trial_available",
-    authType: "auth_type",
-    authOnly: "auth_only",
-    blindMapped: "blind_mapped",
-    oauthGrantType: "oauth_grant_type",
-    oauthCredentialsSource: "oauth_credentials_source",
-    oauthScopes: "oauth_scopes",
-    customScopes: "custom_scopes",
-    hasSandboxCredentials: "has_sandbox_credentials",
-    serviceId: "service_id",
-    unifiedApis: "unified_apis",
-    supportedResources: "supported_resources",
-    configurableResources: "configurable_resources",
-    supportedEvents: "supported_events",
-    webhookSupport: "webhook_support",
-    schemaSupport: "schema_support",
-    tlsSupport: "tls_support",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Connector$ {
-  /** @deprecated use `Connector$inboundSchema` instead. */
-  export const inboundSchema = Connector$inboundSchema;
-  /** @deprecated use `Connector$outboundSchema` instead. */
-  export const outboundSchema = Connector$outboundSchema;
-  /** @deprecated use `Connector$Outbound` instead. */
-  export type Outbound = Connector$Outbound;
-}
-
-export function connectorToJSON(connector: Connector): string {
-  return JSON.stringify(Connector$outboundSchema.parse(connector));
-}
 
 export function connectorFromJSON(
   jsonString: string,

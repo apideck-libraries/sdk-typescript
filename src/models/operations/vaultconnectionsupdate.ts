@@ -56,84 +56,6 @@ export type VaultConnectionsUpdateResponse = {
 };
 
 /** @internal */
-export const VaultConnectionsUpdateGlobals$inboundSchema: z.ZodType<
-  VaultConnectionsUpdateGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/** @internal */
-export type VaultConnectionsUpdateGlobals$Outbound = {
-  consumerId?: string | undefined;
-  appId?: string | undefined;
-};
-
-/** @internal */
-export const VaultConnectionsUpdateGlobals$outboundSchema: z.ZodType<
-  VaultConnectionsUpdateGlobals$Outbound,
-  z.ZodTypeDef,
-  VaultConnectionsUpdateGlobals
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace VaultConnectionsUpdateGlobals$ {
-  /** @deprecated use `VaultConnectionsUpdateGlobals$inboundSchema` instead. */
-  export const inboundSchema = VaultConnectionsUpdateGlobals$inboundSchema;
-  /** @deprecated use `VaultConnectionsUpdateGlobals$outboundSchema` instead. */
-  export const outboundSchema = VaultConnectionsUpdateGlobals$outboundSchema;
-  /** @deprecated use `VaultConnectionsUpdateGlobals$Outbound` instead. */
-  export type Outbound = VaultConnectionsUpdateGlobals$Outbound;
-}
-
-export function vaultConnectionsUpdateGlobalsToJSON(
-  vaultConnectionsUpdateGlobals: VaultConnectionsUpdateGlobals,
-): string {
-  return JSON.stringify(
-    VaultConnectionsUpdateGlobals$outboundSchema.parse(
-      vaultConnectionsUpdateGlobals,
-    ),
-  );
-}
-
-export function vaultConnectionsUpdateGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<VaultConnectionsUpdateGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => VaultConnectionsUpdateGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'VaultConnectionsUpdateGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const VaultConnectionsUpdateRequest$inboundSchema: z.ZodType<
-  VaultConnectionsUpdateRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  service_id: z.string(),
-  unified_api: z.string(),
-  Connection: components.ConnectionInput$inboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    "service_id": "serviceId",
-    "unified_api": "unifiedApi",
-    "Connection": "connection",
-  });
-});
-
-/** @internal */
 export type VaultConnectionsUpdateRequest$Outbound = {
   consumerId?: string | undefined;
   appId?: string | undefined;
@@ -161,19 +83,6 @@ export const VaultConnectionsUpdateRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace VaultConnectionsUpdateRequest$ {
-  /** @deprecated use `VaultConnectionsUpdateRequest$inboundSchema` instead. */
-  export const inboundSchema = VaultConnectionsUpdateRequest$inboundSchema;
-  /** @deprecated use `VaultConnectionsUpdateRequest$outboundSchema` instead. */
-  export const outboundSchema = VaultConnectionsUpdateRequest$outboundSchema;
-  /** @deprecated use `VaultConnectionsUpdateRequest$Outbound` instead. */
-  export type Outbound = VaultConnectionsUpdateRequest$Outbound;
-}
-
 export function vaultConnectionsUpdateRequestToJSON(
   vaultConnectionsUpdateRequest: VaultConnectionsUpdateRequest,
 ): string {
@@ -181,16 +90,6 @@ export function vaultConnectionsUpdateRequestToJSON(
     VaultConnectionsUpdateRequest$outboundSchema.parse(
       vaultConnectionsUpdateRequest,
     ),
-  );
-}
-
-export function vaultConnectionsUpdateRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<VaultConnectionsUpdateRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => VaultConnectionsUpdateRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'VaultConnectionsUpdateRequest' from JSON`,
   );
 }
 
@@ -212,59 +111,6 @@ export const VaultConnectionsUpdateResponse$inboundSchema: z.ZodType<
     "UnexpectedErrorResponse": "unexpectedErrorResponse",
   });
 });
-
-/** @internal */
-export type VaultConnectionsUpdateResponse$Outbound = {
-  HttpMeta: components.HTTPMetadata$Outbound;
-  UpdateConnectionResponse?:
-    | components.UpdateConnectionResponse$Outbound
-    | undefined;
-  UnexpectedErrorResponse?:
-    | components.UnexpectedErrorResponse$Outbound
-    | undefined;
-};
-
-/** @internal */
-export const VaultConnectionsUpdateResponse$outboundSchema: z.ZodType<
-  VaultConnectionsUpdateResponse$Outbound,
-  z.ZodTypeDef,
-  VaultConnectionsUpdateResponse
-> = z.object({
-  httpMeta: components.HTTPMetadata$outboundSchema,
-  updateConnectionResponse: components.UpdateConnectionResponse$outboundSchema
-    .optional(),
-  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    httpMeta: "HttpMeta",
-    updateConnectionResponse: "UpdateConnectionResponse",
-    unexpectedErrorResponse: "UnexpectedErrorResponse",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace VaultConnectionsUpdateResponse$ {
-  /** @deprecated use `VaultConnectionsUpdateResponse$inboundSchema` instead. */
-  export const inboundSchema = VaultConnectionsUpdateResponse$inboundSchema;
-  /** @deprecated use `VaultConnectionsUpdateResponse$outboundSchema` instead. */
-  export const outboundSchema = VaultConnectionsUpdateResponse$outboundSchema;
-  /** @deprecated use `VaultConnectionsUpdateResponse$Outbound` instead. */
-  export type Outbound = VaultConnectionsUpdateResponse$Outbound;
-}
-
-export function vaultConnectionsUpdateResponseToJSON(
-  vaultConnectionsUpdateResponse: VaultConnectionsUpdateResponse,
-): string {
-  return JSON.stringify(
-    VaultConnectionsUpdateResponse$outboundSchema.parse(
-      vaultConnectionsUpdateResponse,
-    ),
-  );
-}
 
 export function vaultConnectionsUpdateResponseFromJSON(
   jsonString: string,

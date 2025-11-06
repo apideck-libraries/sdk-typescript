@@ -7,12 +7,7 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  UnifiedId,
-  UnifiedId$inboundSchema,
-  UnifiedId$Outbound,
-  UnifiedId$outboundSchema,
-} from "./unifiedid.js";
+import { UnifiedId, UnifiedId$inboundSchema } from "./unifiedid.js";
 
 /**
  * Bank Account deleted
@@ -61,55 +56,6 @@ export const DeleteBankAccountResponse$inboundSchema: z.ZodType<
     "status_code": "statusCode",
   });
 });
-
-/** @internal */
-export type DeleteBankAccountResponse$Outbound = {
-  status_code: number;
-  status: string;
-  service?: string | undefined;
-  resource?: string | undefined;
-  operation?: string | undefined;
-  data: UnifiedId$Outbound;
-};
-
-/** @internal */
-export const DeleteBankAccountResponse$outboundSchema: z.ZodType<
-  DeleteBankAccountResponse$Outbound,
-  z.ZodTypeDef,
-  DeleteBankAccountResponse
-> = z.object({
-  statusCode: z.number().int(),
-  status: z.string(),
-  service: z.string().optional(),
-  resource: z.string().optional(),
-  operation: z.string().optional(),
-  data: UnifiedId$outboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    statusCode: "status_code",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DeleteBankAccountResponse$ {
-  /** @deprecated use `DeleteBankAccountResponse$inboundSchema` instead. */
-  export const inboundSchema = DeleteBankAccountResponse$inboundSchema;
-  /** @deprecated use `DeleteBankAccountResponse$outboundSchema` instead. */
-  export const outboundSchema = DeleteBankAccountResponse$outboundSchema;
-  /** @deprecated use `DeleteBankAccountResponse$Outbound` instead. */
-  export type Outbound = DeleteBankAccountResponse$Outbound;
-}
-
-export function deleteBankAccountResponseToJSON(
-  deleteBankAccountResponse: DeleteBankAccountResponse,
-): string {
-  return JSON.stringify(
-    DeleteBankAccountResponse$outboundSchema.parse(deleteBankAccountResponse),
-  );
-}
 
 export function deleteBankAccountResponseFromJSON(
   jsonString: string,

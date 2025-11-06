@@ -39,7 +39,7 @@ type CrmUsersUpdateRequest struct {
 	ServiceID *string `header:"style=simple,explode=false,name=x-apideck-service-id"`
 	// Include raw response. Mostly used for debugging purposes
 	Raw  *bool                `default:"false" queryParam:"style=form,explode=true,name=raw"`
-	User components.UserInput `request:"mediaType=application/json"`
+	Body components.UserInput `request:"mediaType=application/json"`
 }
 
 func (c CrmUsersUpdateRequest) MarshalJSON() ([]byte, error) {
@@ -47,7 +47,7 @@ func (c CrmUsersUpdateRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (c *CrmUsersUpdateRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"id", "User"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"id", "body"}); err != nil {
 		return err
 	}
 	return nil
@@ -88,11 +88,11 @@ func (o *CrmUsersUpdateRequest) GetRaw() *bool {
 	return o.Raw
 }
 
-func (o *CrmUsersUpdateRequest) GetUser() components.UserInput {
+func (o *CrmUsersUpdateRequest) GetBody() components.UserInput {
 	if o == nil {
 		return components.UserInput{}
 	}
-	return o.User
+	return o.Body
 }
 
 type CrmUsersUpdateResponse struct {

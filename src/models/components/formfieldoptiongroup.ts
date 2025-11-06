@@ -33,22 +33,10 @@ export type FormFieldOptionGroup = {
 export const FormFieldOptionGroupOptionType$inboundSchema: z.ZodNativeEnum<
   typeof FormFieldOptionGroupOptionType
 > = z.nativeEnum(FormFieldOptionGroupOptionType);
-
 /** @internal */
 export const FormFieldOptionGroupOptionType$outboundSchema: z.ZodNativeEnum<
   typeof FormFieldOptionGroupOptionType
 > = FormFieldOptionGroupOptionType$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace FormFieldOptionGroupOptionType$ {
-  /** @deprecated use `FormFieldOptionGroupOptionType$inboundSchema` instead. */
-  export const inboundSchema = FormFieldOptionGroupOptionType$inboundSchema;
-  /** @deprecated use `FormFieldOptionGroupOptionType$outboundSchema` instead. */
-  export const outboundSchema = FormFieldOptionGroupOptionType$outboundSchema;
-}
 
 /** @internal */
 export const FormFieldOptionGroup$inboundSchema: z.ZodType<
@@ -65,7 +53,6 @@ export const FormFieldOptionGroup$inboundSchema: z.ZodType<
     "option_type": "optionType",
   });
 });
-
 /** @internal */
 export type FormFieldOptionGroup$Outbound = {
   id?: string | undefined;
@@ -90,19 +77,6 @@ export const FormFieldOptionGroup$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace FormFieldOptionGroup$ {
-  /** @deprecated use `FormFieldOptionGroup$inboundSchema` instead. */
-  export const inboundSchema = FormFieldOptionGroup$inboundSchema;
-  /** @deprecated use `FormFieldOptionGroup$outboundSchema` instead. */
-  export const outboundSchema = FormFieldOptionGroup$outboundSchema;
-  /** @deprecated use `FormFieldOptionGroup$Outbound` instead. */
-  export type Outbound = FormFieldOptionGroup$Outbound;
-}
-
 export function formFieldOptionGroupToJSON(
   formFieldOptionGroup: FormFieldOptionGroup,
 ): string {
@@ -110,7 +84,6 @@ export function formFieldOptionGroupToJSON(
     FormFieldOptionGroup$outboundSchema.parse(formFieldOptionGroup),
   );
 }
-
 export function formFieldOptionGroupFromJSON(
   jsonString: string,
 ): SafeParseResult<FormFieldOptionGroup, SDKValidationError> {

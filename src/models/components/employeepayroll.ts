@@ -7,18 +7,8 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  Compensation,
-  Compensation$inboundSchema,
-  Compensation$Outbound,
-  Compensation$outboundSchema,
-} from "./compensation.js";
-import {
-  PayrollTotals,
-  PayrollTotals$inboundSchema,
-  PayrollTotals$Outbound,
-  PayrollTotals$outboundSchema,
-} from "./payrolltotals.js";
+import { Compensation, Compensation$inboundSchema } from "./compensation.js";
+import { PayrollTotals, PayrollTotals$inboundSchema } from "./payrolltotals.js";
 
 export type EmployeePayroll = {
   /**
@@ -89,66 +79,6 @@ export const EmployeePayroll$inboundSchema: z.ZodType<
     "end_date": "endDate",
   });
 });
-
-/** @internal */
-export type EmployeePayroll$Outbound = {
-  id: string | null;
-  employee_id?: string | null | undefined;
-  company_id?: string | null | undefined;
-  processed: boolean | null;
-  processed_date?: string | null | undefined;
-  check_date: string | null;
-  start_date: string | null;
-  end_date: string | null;
-  totals?: PayrollTotals$Outbound | undefined;
-  compensations?: Array<Compensation$Outbound> | undefined;
-};
-
-/** @internal */
-export const EmployeePayroll$outboundSchema: z.ZodType<
-  EmployeePayroll$Outbound,
-  z.ZodTypeDef,
-  EmployeePayroll
-> = z.object({
-  id: z.nullable(z.string()),
-  employeeId: z.nullable(z.string()).optional(),
-  companyId: z.nullable(z.string()).optional(),
-  processed: z.nullable(z.boolean()),
-  processedDate: z.nullable(z.string()).optional(),
-  checkDate: z.nullable(z.string()),
-  startDate: z.nullable(z.string()),
-  endDate: z.nullable(z.string()),
-  totals: PayrollTotals$outboundSchema.optional(),
-  compensations: z.array(Compensation$outboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    employeeId: "employee_id",
-    companyId: "company_id",
-    processedDate: "processed_date",
-    checkDate: "check_date",
-    startDate: "start_date",
-    endDate: "end_date",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace EmployeePayroll$ {
-  /** @deprecated use `EmployeePayroll$inboundSchema` instead. */
-  export const inboundSchema = EmployeePayroll$inboundSchema;
-  /** @deprecated use `EmployeePayroll$outboundSchema` instead. */
-  export const outboundSchema = EmployeePayroll$outboundSchema;
-  /** @deprecated use `EmployeePayroll$Outbound` instead. */
-  export type Outbound = EmployeePayroll$Outbound;
-}
-
-export function employeePayrollToJSON(
-  employeePayroll: EmployeePayroll,
-): string {
-  return JSON.stringify(EmployeePayroll$outboundSchema.parse(employeePayroll));
-}
 
 export function employeePayrollFromJSON(
   jsonString: string,

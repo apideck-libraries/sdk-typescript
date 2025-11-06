@@ -10,26 +10,12 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   ConsumerMetadata,
   ConsumerMetadata$inboundSchema,
-  ConsumerMetadata$Outbound,
-  ConsumerMetadata$outboundSchema,
 } from "./consumermetadata.js";
-import {
-  Links,
-  Links$inboundSchema,
-  Links$Outbound,
-  Links$outboundSchema,
-} from "./links.js";
-import {
-  Meta,
-  Meta$inboundSchema,
-  Meta$Outbound,
-  Meta$outboundSchema,
-} from "./meta.js";
+import { Links, Links$inboundSchema } from "./links.js";
+import { Meta, Meta$inboundSchema } from "./meta.js";
 import {
   RequestCountAllocation,
   RequestCountAllocation$inboundSchema,
-  RequestCountAllocation$Outbound,
-  RequestCountAllocation$outboundSchema,
 } from "./requestcountallocation.js";
 
 export type Data = {
@@ -96,58 +82,6 @@ export const Data$inboundSchema: z.ZodType<Data, z.ZodTypeDef, unknown> = z
     });
   });
 
-/** @internal */
-export type Data$Outbound = {
-  consumer_id?: string | undefined;
-  application_id?: string | undefined;
-  metadata?: ConsumerMetadata$Outbound | undefined;
-  aggregated_request_count?: number | undefined;
-  request_counts?: RequestCountAllocation$Outbound | undefined;
-  created?: string | undefined;
-  modified?: string | undefined;
-  request_count_updated?: string | undefined;
-  services?: Array<string> | undefined;
-};
-
-/** @internal */
-export const Data$outboundSchema: z.ZodType<Data$Outbound, z.ZodTypeDef, Data> =
-  z.object({
-    consumerId: z.string().optional(),
-    applicationId: z.string().optional(),
-    metadata: ConsumerMetadata$outboundSchema.optional(),
-    aggregatedRequestCount: z.number().optional(),
-    requestCounts: RequestCountAllocation$outboundSchema.optional(),
-    created: z.string().optional(),
-    modified: z.string().optional(),
-    requestCountUpdated: z.string().optional(),
-    services: z.array(z.string()).optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      consumerId: "consumer_id",
-      applicationId: "application_id",
-      aggregatedRequestCount: "aggregated_request_count",
-      requestCounts: "request_counts",
-      requestCountUpdated: "request_count_updated",
-    });
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Data$ {
-  /** @deprecated use `Data$inboundSchema` instead. */
-  export const inboundSchema = Data$inboundSchema;
-  /** @deprecated use `Data$outboundSchema` instead. */
-  export const outboundSchema = Data$outboundSchema;
-  /** @deprecated use `Data$Outbound` instead. */
-  export type Outbound = Data$Outbound;
-}
-
-export function dataToJSON(data: Data): string {
-  return JSON.stringify(Data$outboundSchema.parse(data));
-}
-
 export function dataFromJSON(
   jsonString: string,
 ): SafeParseResult<Data, SDKValidationError> {
@@ -176,56 +110,6 @@ export const GetConsumersResponse$inboundSchema: z.ZodType<
     "_raw": "raw",
   });
 });
-
-/** @internal */
-export type GetConsumersResponse$Outbound = {
-  status_code: number;
-  status: string;
-  data: Array<Data$Outbound>;
-  meta?: Meta$Outbound | undefined;
-  links?: Links$Outbound | undefined;
-  _raw?: { [k: string]: any } | null | undefined;
-};
-
-/** @internal */
-export const GetConsumersResponse$outboundSchema: z.ZodType<
-  GetConsumersResponse$Outbound,
-  z.ZodTypeDef,
-  GetConsumersResponse
-> = z.object({
-  statusCode: z.number().int(),
-  status: z.string(),
-  data: z.array(z.lazy(() => Data$outboundSchema)),
-  meta: Meta$outboundSchema.optional(),
-  links: Links$outboundSchema.optional(),
-  raw: z.nullable(z.record(z.any())).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    statusCode: "status_code",
-    raw: "_raw",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetConsumersResponse$ {
-  /** @deprecated use `GetConsumersResponse$inboundSchema` instead. */
-  export const inboundSchema = GetConsumersResponse$inboundSchema;
-  /** @deprecated use `GetConsumersResponse$outboundSchema` instead. */
-  export const outboundSchema = GetConsumersResponse$outboundSchema;
-  /** @deprecated use `GetConsumersResponse$Outbound` instead. */
-  export type Outbound = GetConsumersResponse$Outbound;
-}
-
-export function getConsumersResponseToJSON(
-  getConsumersResponse: GetConsumersResponse,
-): string {
-  return JSON.stringify(
-    GetConsumersResponse$outboundSchema.parse(getConsumersResponse),
-  );
-}
 
 export function getConsumersResponseFromJSON(
   jsonString: string,

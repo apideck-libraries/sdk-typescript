@@ -4,12 +4,8 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   PassThroughBody,
-  PassThroughBody$inboundSchema,
   PassThroughBody$Outbound,
   PassThroughBody$outboundSchema,
 } from "./passthroughbody.js";
@@ -32,23 +28,6 @@ export type UpdateFileRequest = {
    */
   passThrough?: Array<PassThroughBody> | undefined;
 };
-
-/** @internal */
-export const UpdateFileRequest$inboundSchema: z.ZodType<
-  UpdateFileRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  name: z.string().optional(),
-  description: z.string().optional(),
-  parent_folder_id: z.string().optional(),
-  pass_through: z.array(PassThroughBody$inboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "parent_folder_id": "parentFolderId",
-    "pass_through": "passThrough",
-  });
-});
 
 /** @internal */
 export type UpdateFileRequest$Outbound = {
@@ -75,33 +54,10 @@ export const UpdateFileRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace UpdateFileRequest$ {
-  /** @deprecated use `UpdateFileRequest$inboundSchema` instead. */
-  export const inboundSchema = UpdateFileRequest$inboundSchema;
-  /** @deprecated use `UpdateFileRequest$outboundSchema` instead. */
-  export const outboundSchema = UpdateFileRequest$outboundSchema;
-  /** @deprecated use `UpdateFileRequest$Outbound` instead. */
-  export type Outbound = UpdateFileRequest$Outbound;
-}
-
 export function updateFileRequestToJSON(
   updateFileRequest: UpdateFileRequest,
 ): string {
   return JSON.stringify(
     UpdateFileRequest$outboundSchema.parse(updateFileRequest),
-  );
-}
-
-export function updateFileRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<UpdateFileRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => UpdateFileRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'UpdateFileRequest' from JSON`,
   );
 }

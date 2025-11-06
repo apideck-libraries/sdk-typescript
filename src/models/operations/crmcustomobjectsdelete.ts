@@ -62,83 +62,6 @@ export type CrmCustomObjectsDeleteResponse = {
 };
 
 /** @internal */
-export const CrmCustomObjectsDeleteGlobals$inboundSchema: z.ZodType<
-  CrmCustomObjectsDeleteGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/** @internal */
-export type CrmCustomObjectsDeleteGlobals$Outbound = {
-  consumerId?: string | undefined;
-  appId?: string | undefined;
-};
-
-/** @internal */
-export const CrmCustomObjectsDeleteGlobals$outboundSchema: z.ZodType<
-  CrmCustomObjectsDeleteGlobals$Outbound,
-  z.ZodTypeDef,
-  CrmCustomObjectsDeleteGlobals
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CrmCustomObjectsDeleteGlobals$ {
-  /** @deprecated use `CrmCustomObjectsDeleteGlobals$inboundSchema` instead. */
-  export const inboundSchema = CrmCustomObjectsDeleteGlobals$inboundSchema;
-  /** @deprecated use `CrmCustomObjectsDeleteGlobals$outboundSchema` instead. */
-  export const outboundSchema = CrmCustomObjectsDeleteGlobals$outboundSchema;
-  /** @deprecated use `CrmCustomObjectsDeleteGlobals$Outbound` instead. */
-  export type Outbound = CrmCustomObjectsDeleteGlobals$Outbound;
-}
-
-export function crmCustomObjectsDeleteGlobalsToJSON(
-  crmCustomObjectsDeleteGlobals: CrmCustomObjectsDeleteGlobals,
-): string {
-  return JSON.stringify(
-    CrmCustomObjectsDeleteGlobals$outboundSchema.parse(
-      crmCustomObjectsDeleteGlobals,
-    ),
-  );
-}
-
-export function crmCustomObjectsDeleteGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<CrmCustomObjectsDeleteGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => CrmCustomObjectsDeleteGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CrmCustomObjectsDeleteGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const CrmCustomObjectsDeleteRequest$inboundSchema: z.ZodType<
-  CrmCustomObjectsDeleteRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  id: z.string(),
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  raw: z.boolean().default(false),
-  object_id: z.string(),
-}).transform((v) => {
-  return remap$(v, {
-    "object_id": "objectId",
-  });
-});
-
-/** @internal */
 export type CrmCustomObjectsDeleteRequest$Outbound = {
   id: string;
   consumerId?: string | undefined;
@@ -166,19 +89,6 @@ export const CrmCustomObjectsDeleteRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CrmCustomObjectsDeleteRequest$ {
-  /** @deprecated use `CrmCustomObjectsDeleteRequest$inboundSchema` instead. */
-  export const inboundSchema = CrmCustomObjectsDeleteRequest$inboundSchema;
-  /** @deprecated use `CrmCustomObjectsDeleteRequest$outboundSchema` instead. */
-  export const outboundSchema = CrmCustomObjectsDeleteRequest$outboundSchema;
-  /** @deprecated use `CrmCustomObjectsDeleteRequest$Outbound` instead. */
-  export type Outbound = CrmCustomObjectsDeleteRequest$Outbound;
-}
-
 export function crmCustomObjectsDeleteRequestToJSON(
   crmCustomObjectsDeleteRequest: CrmCustomObjectsDeleteRequest,
 ): string {
@@ -186,16 +96,6 @@ export function crmCustomObjectsDeleteRequestToJSON(
     CrmCustomObjectsDeleteRequest$outboundSchema.parse(
       crmCustomObjectsDeleteRequest,
     ),
-  );
-}
-
-export function crmCustomObjectsDeleteRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<CrmCustomObjectsDeleteRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => CrmCustomObjectsDeleteRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CrmCustomObjectsDeleteRequest' from JSON`,
   );
 }
 
@@ -217,59 +117,6 @@ export const CrmCustomObjectsDeleteResponse$inboundSchema: z.ZodType<
     "UnexpectedErrorResponse": "unexpectedErrorResponse",
   });
 });
-
-/** @internal */
-export type CrmCustomObjectsDeleteResponse$Outbound = {
-  HttpMeta: components.HTTPMetadata$Outbound;
-  DeleteCustomObjectResponse?:
-    | components.DeleteCustomObjectResponse$Outbound
-    | undefined;
-  UnexpectedErrorResponse?:
-    | components.UnexpectedErrorResponse$Outbound
-    | undefined;
-};
-
-/** @internal */
-export const CrmCustomObjectsDeleteResponse$outboundSchema: z.ZodType<
-  CrmCustomObjectsDeleteResponse$Outbound,
-  z.ZodTypeDef,
-  CrmCustomObjectsDeleteResponse
-> = z.object({
-  httpMeta: components.HTTPMetadata$outboundSchema,
-  deleteCustomObjectResponse: components
-    .DeleteCustomObjectResponse$outboundSchema.optional(),
-  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    httpMeta: "HttpMeta",
-    deleteCustomObjectResponse: "DeleteCustomObjectResponse",
-    unexpectedErrorResponse: "UnexpectedErrorResponse",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CrmCustomObjectsDeleteResponse$ {
-  /** @deprecated use `CrmCustomObjectsDeleteResponse$inboundSchema` instead. */
-  export const inboundSchema = CrmCustomObjectsDeleteResponse$inboundSchema;
-  /** @deprecated use `CrmCustomObjectsDeleteResponse$outboundSchema` instead. */
-  export const outboundSchema = CrmCustomObjectsDeleteResponse$outboundSchema;
-  /** @deprecated use `CrmCustomObjectsDeleteResponse$Outbound` instead. */
-  export type Outbound = CrmCustomObjectsDeleteResponse$Outbound;
-}
-
-export function crmCustomObjectsDeleteResponseToJSON(
-  crmCustomObjectsDeleteResponse: CrmCustomObjectsDeleteResponse,
-): string {
-  return JSON.stringify(
-    CrmCustomObjectsDeleteResponse$outboundSchema.parse(
-      crmCustomObjectsDeleteResponse,
-    ),
-  );
-}
 
 export function crmCustomObjectsDeleteResponseFromJSON(
   jsonString: string,

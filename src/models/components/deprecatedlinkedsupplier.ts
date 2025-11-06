@@ -7,12 +7,7 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  Address,
-  Address$inboundSchema,
-  Address$Outbound,
-  Address$outboundSchema,
-} from "./address.js";
+import { Address, Address$inboundSchema } from "./address.js";
 
 /**
  * The supplier this entity is linked to.
@@ -57,55 +52,6 @@ export const DeprecatedLinkedSupplier$inboundSchema: z.ZodType<
     "company_name": "companyName",
   });
 });
-
-/** @internal */
-export type DeprecatedLinkedSupplier$Outbound = {
-  id?: string | undefined;
-  display_id?: string | null | undefined;
-  display_name?: string | null | undefined;
-  company_name?: string | null | undefined;
-  address?: Address$Outbound | undefined;
-};
-
-/** @internal */
-export const DeprecatedLinkedSupplier$outboundSchema: z.ZodType<
-  DeprecatedLinkedSupplier$Outbound,
-  z.ZodTypeDef,
-  DeprecatedLinkedSupplier
-> = z.object({
-  id: z.string().optional(),
-  displayId: z.nullable(z.string()).optional(),
-  displayName: z.nullable(z.string()).optional(),
-  companyName: z.nullable(z.string()).optional(),
-  address: Address$outboundSchema.optional(),
-}).transform((v) => {
-  return remap$(v, {
-    displayId: "display_id",
-    displayName: "display_name",
-    companyName: "company_name",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DeprecatedLinkedSupplier$ {
-  /** @deprecated use `DeprecatedLinkedSupplier$inboundSchema` instead. */
-  export const inboundSchema = DeprecatedLinkedSupplier$inboundSchema;
-  /** @deprecated use `DeprecatedLinkedSupplier$outboundSchema` instead. */
-  export const outboundSchema = DeprecatedLinkedSupplier$outboundSchema;
-  /** @deprecated use `DeprecatedLinkedSupplier$Outbound` instead. */
-  export type Outbound = DeprecatedLinkedSupplier$Outbound;
-}
-
-export function deprecatedLinkedSupplierToJSON(
-  deprecatedLinkedSupplier: DeprecatedLinkedSupplier,
-): string {
-  return JSON.stringify(
-    DeprecatedLinkedSupplier$outboundSchema.parse(deprecatedLinkedSupplier),
-  );
-}
 
 export function deprecatedLinkedSupplierFromJSON(
   jsonString: string,

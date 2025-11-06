@@ -7,12 +7,7 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  Consumer,
-  Consumer$inboundSchema,
-  Consumer$Outbound,
-  Consumer$outboundSchema,
-} from "./consumer.js";
+import { Consumer, Consumer$inboundSchema } from "./consumer.js";
 
 /**
  * Consumer updated
@@ -49,52 +44,6 @@ export const UpdateConsumerResponse$inboundSchema: z.ZodType<
     "_raw": "raw",
   });
 });
-
-/** @internal */
-export type UpdateConsumerResponse$Outbound = {
-  status_code: number;
-  status: string;
-  data: Consumer$Outbound;
-  _raw?: { [k: string]: any } | null | undefined;
-};
-
-/** @internal */
-export const UpdateConsumerResponse$outboundSchema: z.ZodType<
-  UpdateConsumerResponse$Outbound,
-  z.ZodTypeDef,
-  UpdateConsumerResponse
-> = z.object({
-  statusCode: z.number().int(),
-  status: z.string(),
-  data: Consumer$outboundSchema,
-  raw: z.nullable(z.record(z.any())).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    statusCode: "status_code",
-    raw: "_raw",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace UpdateConsumerResponse$ {
-  /** @deprecated use `UpdateConsumerResponse$inboundSchema` instead. */
-  export const inboundSchema = UpdateConsumerResponse$inboundSchema;
-  /** @deprecated use `UpdateConsumerResponse$outboundSchema` instead. */
-  export const outboundSchema = UpdateConsumerResponse$outboundSchema;
-  /** @deprecated use `UpdateConsumerResponse$Outbound` instead. */
-  export type Outbound = UpdateConsumerResponse$Outbound;
-}
-
-export function updateConsumerResponseToJSON(
-  updateConsumerResponse: UpdateConsumerResponse,
-): string {
-  return JSON.stringify(
-    UpdateConsumerResponse$outboundSchema.parse(updateConsumerResponse),
-  );
-}
 
 export function updateConsumerResponseFromJSON(
   jsonString: string,

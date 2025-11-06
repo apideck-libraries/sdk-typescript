@@ -7,12 +7,7 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  Connection,
-  Connection$inboundSchema,
-  Connection$Outbound,
-  Connection$outboundSchema,
-} from "./connection.js";
+import { Connection, Connection$inboundSchema } from "./connection.js";
 
 /**
  * Connection created
@@ -49,52 +44,6 @@ export const CreateConnectionResponse$inboundSchema: z.ZodType<
     "_raw": "raw",
   });
 });
-
-/** @internal */
-export type CreateConnectionResponse$Outbound = {
-  status_code: number;
-  status: string;
-  data: Connection$Outbound;
-  _raw?: { [k: string]: any } | null | undefined;
-};
-
-/** @internal */
-export const CreateConnectionResponse$outboundSchema: z.ZodType<
-  CreateConnectionResponse$Outbound,
-  z.ZodTypeDef,
-  CreateConnectionResponse
-> = z.object({
-  statusCode: z.number().int(),
-  status: z.string(),
-  data: Connection$outboundSchema,
-  raw: z.nullable(z.record(z.any())).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    statusCode: "status_code",
-    raw: "_raw",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateConnectionResponse$ {
-  /** @deprecated use `CreateConnectionResponse$inboundSchema` instead. */
-  export const inboundSchema = CreateConnectionResponse$inboundSchema;
-  /** @deprecated use `CreateConnectionResponse$outboundSchema` instead. */
-  export const outboundSchema = CreateConnectionResponse$outboundSchema;
-  /** @deprecated use `CreateConnectionResponse$Outbound` instead. */
-  export type Outbound = CreateConnectionResponse$Outbound;
-}
-
-export function createConnectionResponseToJSON(
-  createConnectionResponse: CreateConnectionResponse,
-): string {
-  return JSON.stringify(
-    CreateConnectionResponse$outboundSchema.parse(createConnectionResponse),
-  );
-}
 
 export function createConnectionResponseFromJSON(
   jsonString: string,

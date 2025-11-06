@@ -36,8 +36,8 @@ type AccountingJournalEntriesAddRequest struct {
 	// The ID of your Unify application
 	AppID *string `header:"style=simple,explode=false,name=x-apideck-app-id"`
 	// Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
-	ServiceID    *string                      `header:"style=simple,explode=false,name=x-apideck-service-id"`
-	JournalEntry components.JournalEntryInput `request:"mediaType=application/json"`
+	ServiceID *string                      `header:"style=simple,explode=false,name=x-apideck-service-id"`
+	Body      components.JournalEntryInput `request:"mediaType=application/json"`
 }
 
 func (a AccountingJournalEntriesAddRequest) MarshalJSON() ([]byte, error) {
@@ -45,7 +45,7 @@ func (a AccountingJournalEntriesAddRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (a *AccountingJournalEntriesAddRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"JournalEntry"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"body"}); err != nil {
 		return err
 	}
 	return nil
@@ -79,11 +79,11 @@ func (o *AccountingJournalEntriesAddRequest) GetServiceID() *string {
 	return o.ServiceID
 }
 
-func (o *AccountingJournalEntriesAddRequest) GetJournalEntry() components.JournalEntryInput {
+func (o *AccountingJournalEntriesAddRequest) GetBody() components.JournalEntryInput {
 	if o == nil {
 		return components.JournalEntryInput{}
 	}
-	return o.JournalEntry
+	return o.Body
 }
 
 type AccountingJournalEntriesAddResponse struct {

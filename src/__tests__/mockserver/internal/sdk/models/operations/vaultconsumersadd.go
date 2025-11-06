@@ -20,8 +20,8 @@ func (o *VaultConsumersAddGlobals) GetAppID() *string {
 
 type VaultConsumersAddRequest struct {
 	// The ID of your Unify application
-	AppID                 *string                          `header:"style=simple,explode=false,name=x-apideck-app-id"`
-	CreateConsumerRequest components.CreateConsumerRequest `request:"mediaType=application/json"`
+	AppID *string                          `header:"style=simple,explode=false,name=x-apideck-app-id"`
+	Body  components.CreateConsumerRequest `request:"mediaType=application/json"`
 }
 
 func (o *VaultConsumersAddRequest) GetAppID() *string {
@@ -31,11 +31,11 @@ func (o *VaultConsumersAddRequest) GetAppID() *string {
 	return o.AppID
 }
 
-func (o *VaultConsumersAddRequest) GetCreateConsumerRequest() components.CreateConsumerRequest {
+func (o *VaultConsumersAddRequest) GetBody() components.CreateConsumerRequest {
 	if o == nil {
 		return components.CreateConsumerRequest{}
 	}
-	return o.CreateConsumerRequest
+	return o.Body
 }
 
 type VaultConsumersAddResponse struct {

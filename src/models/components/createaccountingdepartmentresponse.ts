@@ -7,12 +7,7 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  UnifiedId,
-  UnifiedId$inboundSchema,
-  UnifiedId$Outbound,
-  UnifiedId$outboundSchema,
-} from "./unifiedid.js";
+import { UnifiedId, UnifiedId$inboundSchema } from "./unifiedid.js";
 
 /**
  * Department
@@ -67,61 +62,6 @@ export const CreateAccountingDepartmentResponse$inboundSchema: z.ZodType<
     "_raw": "raw",
   });
 });
-
-/** @internal */
-export type CreateAccountingDepartmentResponse$Outbound = {
-  status_code: number;
-  status: string;
-  service: string;
-  resource: string;
-  operation: string;
-  data: UnifiedId$Outbound;
-  _raw?: { [k: string]: any } | null | undefined;
-};
-
-/** @internal */
-export const CreateAccountingDepartmentResponse$outboundSchema: z.ZodType<
-  CreateAccountingDepartmentResponse$Outbound,
-  z.ZodTypeDef,
-  CreateAccountingDepartmentResponse
-> = z.object({
-  statusCode: z.number().int(),
-  status: z.string(),
-  service: z.string(),
-  resource: z.string(),
-  operation: z.string(),
-  data: UnifiedId$outboundSchema,
-  raw: z.nullable(z.record(z.any())).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    statusCode: "status_code",
-    raw: "_raw",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateAccountingDepartmentResponse$ {
-  /** @deprecated use `CreateAccountingDepartmentResponse$inboundSchema` instead. */
-  export const inboundSchema = CreateAccountingDepartmentResponse$inboundSchema;
-  /** @deprecated use `CreateAccountingDepartmentResponse$outboundSchema` instead. */
-  export const outboundSchema =
-    CreateAccountingDepartmentResponse$outboundSchema;
-  /** @deprecated use `CreateAccountingDepartmentResponse$Outbound` instead. */
-  export type Outbound = CreateAccountingDepartmentResponse$Outbound;
-}
-
-export function createAccountingDepartmentResponseToJSON(
-  createAccountingDepartmentResponse: CreateAccountingDepartmentResponse,
-): string {
-  return JSON.stringify(
-    CreateAccountingDepartmentResponse$outboundSchema.parse(
-      createAccountingDepartmentResponse,
-    ),
-  );
-}
 
 export function createAccountingDepartmentResponseFromJSON(
   jsonString: string,

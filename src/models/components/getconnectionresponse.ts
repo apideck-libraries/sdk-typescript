@@ -7,12 +7,7 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  Connection,
-  Connection$inboundSchema,
-  Connection$Outbound,
-  Connection$outboundSchema,
-} from "./connection.js";
+import { Connection, Connection$inboundSchema } from "./connection.js";
 
 /**
  * Connection
@@ -49,52 +44,6 @@ export const GetConnectionResponse$inboundSchema: z.ZodType<
     "_raw": "raw",
   });
 });
-
-/** @internal */
-export type GetConnectionResponse$Outbound = {
-  status_code: number;
-  status: string;
-  data: Connection$Outbound;
-  _raw?: { [k: string]: any } | null | undefined;
-};
-
-/** @internal */
-export const GetConnectionResponse$outboundSchema: z.ZodType<
-  GetConnectionResponse$Outbound,
-  z.ZodTypeDef,
-  GetConnectionResponse
-> = z.object({
-  statusCode: z.number().int(),
-  status: z.string(),
-  data: Connection$outboundSchema,
-  raw: z.nullable(z.record(z.any())).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    statusCode: "status_code",
-    raw: "_raw",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetConnectionResponse$ {
-  /** @deprecated use `GetConnectionResponse$inboundSchema` instead. */
-  export const inboundSchema = GetConnectionResponse$inboundSchema;
-  /** @deprecated use `GetConnectionResponse$outboundSchema` instead. */
-  export const outboundSchema = GetConnectionResponse$outboundSchema;
-  /** @deprecated use `GetConnectionResponse$Outbound` instead. */
-  export type Outbound = GetConnectionResponse$Outbound;
-}
-
-export function getConnectionResponseToJSON(
-  getConnectionResponse: GetConnectionResponse,
-): string {
-  return JSON.stringify(
-    GetConnectionResponse$outboundSchema.parse(getConnectionResponse),
-  );
-}
 
 export function getConnectionResponseFromJSON(
   jsonString: string,

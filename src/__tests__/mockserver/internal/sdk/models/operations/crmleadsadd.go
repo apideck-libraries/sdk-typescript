@@ -37,7 +37,7 @@ type CrmLeadsAddRequest struct {
 	AppID *string `header:"style=simple,explode=false,name=x-apideck-app-id"`
 	// Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
 	ServiceID *string              `header:"style=simple,explode=false,name=x-apideck-service-id"`
-	Lead      components.LeadInput `request:"mediaType=application/json"`
+	Body      components.LeadInput `request:"mediaType=application/json"`
 }
 
 func (c CrmLeadsAddRequest) MarshalJSON() ([]byte, error) {
@@ -45,7 +45,7 @@ func (c CrmLeadsAddRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (c *CrmLeadsAddRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"Lead"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"body"}); err != nil {
 		return err
 	}
 	return nil
@@ -79,11 +79,11 @@ func (o *CrmLeadsAddRequest) GetServiceID() *string {
 	return o.ServiceID
 }
 
-func (o *CrmLeadsAddRequest) GetLead() components.LeadInput {
+func (o *CrmLeadsAddRequest) GetBody() components.LeadInput {
 	if o == nil {
 		return components.LeadInput{}
 	}
-	return o.Lead
+	return o.Body
 }
 
 type CrmLeadsAddResponse struct {

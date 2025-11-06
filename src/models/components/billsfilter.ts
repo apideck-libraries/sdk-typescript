@@ -4,10 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
  * Filter by bill status
@@ -31,41 +28,9 @@ export type BillsFilter = {
 };
 
 /** @internal */
-export const BillsFilterStatus$inboundSchema: z.ZodNativeEnum<
-  typeof BillsFilterStatus
-> = z.nativeEnum(BillsFilterStatus);
-
-/** @internal */
 export const BillsFilterStatus$outboundSchema: z.ZodNativeEnum<
   typeof BillsFilterStatus
-> = BillsFilterStatus$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace BillsFilterStatus$ {
-  /** @deprecated use `BillsFilterStatus$inboundSchema` instead. */
-  export const inboundSchema = BillsFilterStatus$inboundSchema;
-  /** @deprecated use `BillsFilterStatus$outboundSchema` instead. */
-  export const outboundSchema = BillsFilterStatus$outboundSchema;
-}
-
-/** @internal */
-export const BillsFilter$inboundSchema: z.ZodType<
-  BillsFilter,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  updated_since: z.string().datetime({ offset: true }).transform(v =>
-    new Date(v)
-  ).optional(),
-  status: BillsFilterStatus$inboundSchema.optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "updated_since": "updatedSince",
-  });
-});
+> = z.nativeEnum(BillsFilterStatus);
 
 /** @internal */
 export type BillsFilter$Outbound = {
@@ -87,29 +52,6 @@ export const BillsFilter$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace BillsFilter$ {
-  /** @deprecated use `BillsFilter$inboundSchema` instead. */
-  export const inboundSchema = BillsFilter$inboundSchema;
-  /** @deprecated use `BillsFilter$outboundSchema` instead. */
-  export const outboundSchema = BillsFilter$outboundSchema;
-  /** @deprecated use `BillsFilter$Outbound` instead. */
-  export type Outbound = BillsFilter$Outbound;
-}
-
 export function billsFilterToJSON(billsFilter: BillsFilter): string {
   return JSON.stringify(BillsFilter$outboundSchema.parse(billsFilter));
-}
-
-export function billsFilterFromJSON(
-  jsonString: string,
-): SafeParseResult<BillsFilter, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => BillsFilter$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'BillsFilter' from JSON`,
-  );
 }

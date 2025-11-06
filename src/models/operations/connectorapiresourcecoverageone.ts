@@ -46,81 +46,6 @@ export type ConnectorApiResourceCoverageOneResponse = {
 };
 
 /** @internal */
-export const ConnectorApiResourceCoverageOneGlobals$inboundSchema: z.ZodType<
-  ConnectorApiResourceCoverageOneGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  appId: z.string().optional(),
-});
-
-/** @internal */
-export type ConnectorApiResourceCoverageOneGlobals$Outbound = {
-  appId?: string | undefined;
-};
-
-/** @internal */
-export const ConnectorApiResourceCoverageOneGlobals$outboundSchema: z.ZodType<
-  ConnectorApiResourceCoverageOneGlobals$Outbound,
-  z.ZodTypeDef,
-  ConnectorApiResourceCoverageOneGlobals
-> = z.object({
-  appId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ConnectorApiResourceCoverageOneGlobals$ {
-  /** @deprecated use `ConnectorApiResourceCoverageOneGlobals$inboundSchema` instead. */
-  export const inboundSchema =
-    ConnectorApiResourceCoverageOneGlobals$inboundSchema;
-  /** @deprecated use `ConnectorApiResourceCoverageOneGlobals$outboundSchema` instead. */
-  export const outboundSchema =
-    ConnectorApiResourceCoverageOneGlobals$outboundSchema;
-  /** @deprecated use `ConnectorApiResourceCoverageOneGlobals$Outbound` instead. */
-  export type Outbound = ConnectorApiResourceCoverageOneGlobals$Outbound;
-}
-
-export function connectorApiResourceCoverageOneGlobalsToJSON(
-  connectorApiResourceCoverageOneGlobals:
-    ConnectorApiResourceCoverageOneGlobals,
-): string {
-  return JSON.stringify(
-    ConnectorApiResourceCoverageOneGlobals$outboundSchema.parse(
-      connectorApiResourceCoverageOneGlobals,
-    ),
-  );
-}
-
-export function connectorApiResourceCoverageOneGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<ConnectorApiResourceCoverageOneGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      ConnectorApiResourceCoverageOneGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ConnectorApiResourceCoverageOneGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const ConnectorApiResourceCoverageOneRequest$inboundSchema: z.ZodType<
-  ConnectorApiResourceCoverageOneRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  appId: z.string().optional(),
-  id: z.string(),
-  resource_id: z.string(),
-}).transform((v) => {
-  return remap$(v, {
-    "resource_id": "resourceId",
-  });
-});
-
-/** @internal */
 export type ConnectorApiResourceCoverageOneRequest$Outbound = {
   appId?: string | undefined;
   id: string;
@@ -142,21 +67,6 @@ export const ConnectorApiResourceCoverageOneRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ConnectorApiResourceCoverageOneRequest$ {
-  /** @deprecated use `ConnectorApiResourceCoverageOneRequest$inboundSchema` instead. */
-  export const inboundSchema =
-    ConnectorApiResourceCoverageOneRequest$inboundSchema;
-  /** @deprecated use `ConnectorApiResourceCoverageOneRequest$outboundSchema` instead. */
-  export const outboundSchema =
-    ConnectorApiResourceCoverageOneRequest$outboundSchema;
-  /** @deprecated use `ConnectorApiResourceCoverageOneRequest$Outbound` instead. */
-  export type Outbound = ConnectorApiResourceCoverageOneRequest$Outbound;
-}
-
 export function connectorApiResourceCoverageOneRequestToJSON(
   connectorApiResourceCoverageOneRequest:
     ConnectorApiResourceCoverageOneRequest,
@@ -165,17 +75,6 @@ export function connectorApiResourceCoverageOneRequestToJSON(
     ConnectorApiResourceCoverageOneRequest$outboundSchema.parse(
       connectorApiResourceCoverageOneRequest,
     ),
-  );
-}
-
-export function connectorApiResourceCoverageOneRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<ConnectorApiResourceCoverageOneRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      ConnectorApiResourceCoverageOneRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ConnectorApiResourceCoverageOneRequest' from JSON`,
   );
 }
 
@@ -197,62 +96,6 @@ export const ConnectorApiResourceCoverageOneResponse$inboundSchema: z.ZodType<
     "UnexpectedErrorResponse": "unexpectedErrorResponse",
   });
 });
-
-/** @internal */
-export type ConnectorApiResourceCoverageOneResponse$Outbound = {
-  HttpMeta: components.HTTPMetadata$Outbound;
-  GetApiResourceCoverageResponse?:
-    | components.GetApiResourceCoverageResponse$Outbound
-    | undefined;
-  UnexpectedErrorResponse?:
-    | components.UnexpectedErrorResponse$Outbound
-    | undefined;
-};
-
-/** @internal */
-export const ConnectorApiResourceCoverageOneResponse$outboundSchema: z.ZodType<
-  ConnectorApiResourceCoverageOneResponse$Outbound,
-  z.ZodTypeDef,
-  ConnectorApiResourceCoverageOneResponse
-> = z.object({
-  httpMeta: components.HTTPMetadata$outboundSchema,
-  getApiResourceCoverageResponse: components
-    .GetApiResourceCoverageResponse$outboundSchema.optional(),
-  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    httpMeta: "HttpMeta",
-    getApiResourceCoverageResponse: "GetApiResourceCoverageResponse",
-    unexpectedErrorResponse: "UnexpectedErrorResponse",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ConnectorApiResourceCoverageOneResponse$ {
-  /** @deprecated use `ConnectorApiResourceCoverageOneResponse$inboundSchema` instead. */
-  export const inboundSchema =
-    ConnectorApiResourceCoverageOneResponse$inboundSchema;
-  /** @deprecated use `ConnectorApiResourceCoverageOneResponse$outboundSchema` instead. */
-  export const outboundSchema =
-    ConnectorApiResourceCoverageOneResponse$outboundSchema;
-  /** @deprecated use `ConnectorApiResourceCoverageOneResponse$Outbound` instead. */
-  export type Outbound = ConnectorApiResourceCoverageOneResponse$Outbound;
-}
-
-export function connectorApiResourceCoverageOneResponseToJSON(
-  connectorApiResourceCoverageOneResponse:
-    ConnectorApiResourceCoverageOneResponse,
-): string {
-  return JSON.stringify(
-    ConnectorApiResourceCoverageOneResponse$outboundSchema.parse(
-      connectorApiResourceCoverageOneResponse,
-    ),
-  );
-}
 
 export function connectorApiResourceCoverageOneResponseFromJSON(
   jsonString: string,

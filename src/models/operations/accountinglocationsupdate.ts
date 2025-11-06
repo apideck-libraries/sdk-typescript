@@ -59,83 +59,6 @@ export type AccountingLocationsUpdateResponse = {
 };
 
 /** @internal */
-export const AccountingLocationsUpdateGlobals$inboundSchema: z.ZodType<
-  AccountingLocationsUpdateGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/** @internal */
-export type AccountingLocationsUpdateGlobals$Outbound = {
-  consumerId?: string | undefined;
-  appId?: string | undefined;
-};
-
-/** @internal */
-export const AccountingLocationsUpdateGlobals$outboundSchema: z.ZodType<
-  AccountingLocationsUpdateGlobals$Outbound,
-  z.ZodTypeDef,
-  AccountingLocationsUpdateGlobals
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AccountingLocationsUpdateGlobals$ {
-  /** @deprecated use `AccountingLocationsUpdateGlobals$inboundSchema` instead. */
-  export const inboundSchema = AccountingLocationsUpdateGlobals$inboundSchema;
-  /** @deprecated use `AccountingLocationsUpdateGlobals$outboundSchema` instead. */
-  export const outboundSchema = AccountingLocationsUpdateGlobals$outboundSchema;
-  /** @deprecated use `AccountingLocationsUpdateGlobals$Outbound` instead. */
-  export type Outbound = AccountingLocationsUpdateGlobals$Outbound;
-}
-
-export function accountingLocationsUpdateGlobalsToJSON(
-  accountingLocationsUpdateGlobals: AccountingLocationsUpdateGlobals,
-): string {
-  return JSON.stringify(
-    AccountingLocationsUpdateGlobals$outboundSchema.parse(
-      accountingLocationsUpdateGlobals,
-    ),
-  );
-}
-
-export function accountingLocationsUpdateGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<AccountingLocationsUpdateGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => AccountingLocationsUpdateGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'AccountingLocationsUpdateGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const AccountingLocationsUpdateRequest$inboundSchema: z.ZodType<
-  AccountingLocationsUpdateRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  id: z.string(),
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  raw: z.boolean().default(false),
-  AccountingLocation: components.AccountingLocationInput$inboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    "AccountingLocation": "accountingLocation",
-  });
-});
-
-/** @internal */
 export type AccountingLocationsUpdateRequest$Outbound = {
   id: string;
   consumerId?: string | undefined;
@@ -163,19 +86,6 @@ export const AccountingLocationsUpdateRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AccountingLocationsUpdateRequest$ {
-  /** @deprecated use `AccountingLocationsUpdateRequest$inboundSchema` instead. */
-  export const inboundSchema = AccountingLocationsUpdateRequest$inboundSchema;
-  /** @deprecated use `AccountingLocationsUpdateRequest$outboundSchema` instead. */
-  export const outboundSchema = AccountingLocationsUpdateRequest$outboundSchema;
-  /** @deprecated use `AccountingLocationsUpdateRequest$Outbound` instead. */
-  export type Outbound = AccountingLocationsUpdateRequest$Outbound;
-}
-
 export function accountingLocationsUpdateRequestToJSON(
   accountingLocationsUpdateRequest: AccountingLocationsUpdateRequest,
 ): string {
@@ -183,16 +93,6 @@ export function accountingLocationsUpdateRequestToJSON(
     AccountingLocationsUpdateRequest$outboundSchema.parse(
       accountingLocationsUpdateRequest,
     ),
-  );
-}
-
-export function accountingLocationsUpdateRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<AccountingLocationsUpdateRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => AccountingLocationsUpdateRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'AccountingLocationsUpdateRequest' from JSON`,
   );
 }
 
@@ -214,60 +114,6 @@ export const AccountingLocationsUpdateResponse$inboundSchema: z.ZodType<
     "UnexpectedErrorResponse": "unexpectedErrorResponse",
   });
 });
-
-/** @internal */
-export type AccountingLocationsUpdateResponse$Outbound = {
-  HttpMeta: components.HTTPMetadata$Outbound;
-  UpdateAccountingLocationResponse?:
-    | components.UpdateAccountingLocationResponse$Outbound
-    | undefined;
-  UnexpectedErrorResponse?:
-    | components.UnexpectedErrorResponse$Outbound
-    | undefined;
-};
-
-/** @internal */
-export const AccountingLocationsUpdateResponse$outboundSchema: z.ZodType<
-  AccountingLocationsUpdateResponse$Outbound,
-  z.ZodTypeDef,
-  AccountingLocationsUpdateResponse
-> = z.object({
-  httpMeta: components.HTTPMetadata$outboundSchema,
-  updateAccountingLocationResponse: components
-    .UpdateAccountingLocationResponse$outboundSchema.optional(),
-  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    httpMeta: "HttpMeta",
-    updateAccountingLocationResponse: "UpdateAccountingLocationResponse",
-    unexpectedErrorResponse: "UnexpectedErrorResponse",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AccountingLocationsUpdateResponse$ {
-  /** @deprecated use `AccountingLocationsUpdateResponse$inboundSchema` instead. */
-  export const inboundSchema = AccountingLocationsUpdateResponse$inboundSchema;
-  /** @deprecated use `AccountingLocationsUpdateResponse$outboundSchema` instead. */
-  export const outboundSchema =
-    AccountingLocationsUpdateResponse$outboundSchema;
-  /** @deprecated use `AccountingLocationsUpdateResponse$Outbound` instead. */
-  export type Outbound = AccountingLocationsUpdateResponse$Outbound;
-}
-
-export function accountingLocationsUpdateResponseToJSON(
-  accountingLocationsUpdateResponse: AccountingLocationsUpdateResponse,
-): string {
-  return JSON.stringify(
-    AccountingLocationsUpdateResponse$outboundSchema.parse(
-      accountingLocationsUpdateResponse,
-    ),
-  );
-}
 
 export function accountingLocationsUpdateResponseFromJSON(
   jsonString: string,

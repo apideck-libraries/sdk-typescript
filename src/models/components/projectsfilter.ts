@@ -4,10 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
  * Status of projects to filter by
@@ -44,44 +41,9 @@ export type ProjectsFilter = {
 };
 
 /** @internal */
-export const ProjectStatus$inboundSchema: z.ZodNativeEnum<
-  typeof ProjectStatus
-> = z.nativeEnum(ProjectStatus);
-
-/** @internal */
 export const ProjectStatus$outboundSchema: z.ZodNativeEnum<
   typeof ProjectStatus
-> = ProjectStatus$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ProjectStatus$ {
-  /** @deprecated use `ProjectStatus$inboundSchema` instead. */
-  export const inboundSchema = ProjectStatus$inboundSchema;
-  /** @deprecated use `ProjectStatus$outboundSchema` instead. */
-  export const outboundSchema = ProjectStatus$outboundSchema;
-}
-
-/** @internal */
-export const ProjectsFilter$inboundSchema: z.ZodType<
-  ProjectsFilter,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  name: z.string().optional(),
-  status: ProjectStatus$inboundSchema.optional(),
-  customer_id: z.string().optional(),
-  updated_since: z.string().datetime({ offset: true }).transform(v =>
-    new Date(v)
-  ).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "customer_id": "customerId",
-    "updated_since": "updatedSince",
-  });
-});
+> = z.nativeEnum(ProjectStatus);
 
 /** @internal */
 export type ProjectsFilter$Outbound = {
@@ -108,29 +70,6 @@ export const ProjectsFilter$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ProjectsFilter$ {
-  /** @deprecated use `ProjectsFilter$inboundSchema` instead. */
-  export const inboundSchema = ProjectsFilter$inboundSchema;
-  /** @deprecated use `ProjectsFilter$outboundSchema` instead. */
-  export const outboundSchema = ProjectsFilter$outboundSchema;
-  /** @deprecated use `ProjectsFilter$Outbound` instead. */
-  export type Outbound = ProjectsFilter$Outbound;
-}
-
 export function projectsFilterToJSON(projectsFilter: ProjectsFilter): string {
   return JSON.stringify(ProjectsFilter$outboundSchema.parse(projectsFilter));
-}
-
-export function projectsFilterFromJSON(
-  jsonString: string,
-): SafeParseResult<ProjectsFilter, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => ProjectsFilter$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ProjectsFilter' from JSON`,
-  );
 }

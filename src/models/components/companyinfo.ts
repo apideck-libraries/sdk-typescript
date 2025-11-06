@@ -9,35 +9,11 @@ import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { RFCDate } from "../../types/rfcdate.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  Address,
-  Address$inboundSchema,
-  Address$Outbound,
-  Address$outboundSchema,
-} from "./address.js";
-import {
-  Currency,
-  Currency$inboundSchema,
-  Currency$outboundSchema,
-} from "./currency.js";
-import {
-  Email,
-  Email$inboundSchema,
-  Email$Outbound,
-  Email$outboundSchema,
-} from "./email.js";
-import {
-  PhoneNumber,
-  PhoneNumber$inboundSchema,
-  PhoneNumber$Outbound,
-  PhoneNumber$outboundSchema,
-} from "./phonenumber.js";
-import {
-  TaxRate,
-  TaxRate$inboundSchema,
-  TaxRate$Outbound,
-  TaxRate$outboundSchema,
-} from "./taxrate.js";
+import { Address, Address$inboundSchema } from "./address.js";
+import { Currency, Currency$inboundSchema } from "./currency.js";
+import { Email, Email$inboundSchema } from "./email.js";
+import { PhoneNumber, PhoneNumber$inboundSchema } from "./phonenumber.js";
+import { TaxRate, TaxRate$inboundSchema } from "./taxrate.js";
 
 /**
  * Based on the status some functionality is enabled or disabled.
@@ -179,62 +155,14 @@ export const CompanyStatus$inboundSchema: z.ZodNativeEnum<
 > = z.nativeEnum(CompanyStatus);
 
 /** @internal */
-export const CompanyStatus$outboundSchema: z.ZodNativeEnum<
-  typeof CompanyStatus
-> = CompanyStatus$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CompanyStatus$ {
-  /** @deprecated use `CompanyStatus$inboundSchema` instead. */
-  export const inboundSchema = CompanyStatus$inboundSchema;
-  /** @deprecated use `CompanyStatus$outboundSchema` instead. */
-  export const outboundSchema = CompanyStatus$outboundSchema;
-}
-
-/** @internal */
 export const TheStartMonthOfFiscalYear$inboundSchema: z.ZodNativeEnum<
   typeof TheStartMonthOfFiscalYear
 > = z.nativeEnum(TheStartMonthOfFiscalYear);
 
 /** @internal */
-export const TheStartMonthOfFiscalYear$outboundSchema: z.ZodNativeEnum<
-  typeof TheStartMonthOfFiscalYear
-> = TheStartMonthOfFiscalYear$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace TheStartMonthOfFiscalYear$ {
-  /** @deprecated use `TheStartMonthOfFiscalYear$inboundSchema` instead. */
-  export const inboundSchema = TheStartMonthOfFiscalYear$inboundSchema;
-  /** @deprecated use `TheStartMonthOfFiscalYear$outboundSchema` instead. */
-  export const outboundSchema = TheStartMonthOfFiscalYear$outboundSchema;
-}
-
-/** @internal */
 export const TrackingCategoriesMode$inboundSchema: z.ZodNativeEnum<
   typeof TrackingCategoriesMode
 > = z.nativeEnum(TrackingCategoriesMode);
-
-/** @internal */
-export const TrackingCategoriesMode$outboundSchema: z.ZodNativeEnum<
-  typeof TrackingCategoriesMode
-> = TrackingCategoriesMode$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace TrackingCategoriesMode$ {
-  /** @deprecated use `TrackingCategoriesMode$inboundSchema` instead. */
-  export const inboundSchema = TrackingCategoriesMode$inboundSchema;
-  /** @deprecated use `TrackingCategoriesMode$outboundSchema` instead. */
-  export const outboundSchema = TrackingCategoriesMode$outboundSchema;
-}
 
 /** @internal */
 export const CompanyInfo$inboundSchema: z.ZodType<
@@ -291,104 +219,6 @@ export const CompanyInfo$inboundSchema: z.ZodType<
     "created_at": "createdAt",
   });
 });
-
-/** @internal */
-export type CompanyInfo$Outbound = {
-  id?: string | undefined;
-  company_name?: string | null | undefined;
-  status?: string | undefined;
-  legal_name?: string | undefined;
-  country?: string | null | undefined;
-  sales_tax_number?: string | null | undefined;
-  automated_sales_tax?: boolean | undefined;
-  sales_tax_enabled?: boolean | undefined;
-  default_sales_tax?: TaxRate$Outbound | undefined;
-  currency?: string | null | undefined;
-  language?: string | null | undefined;
-  fiscal_year_start_month?: string | undefined;
-  company_start_date?: string | undefined;
-  addresses?: Array<Address$Outbound> | undefined;
-  phone_numbers?: Array<PhoneNumber$Outbound> | undefined;
-  emails?: Array<Email$Outbound> | undefined;
-  custom_mappings?: { [k: string]: any } | null | undefined;
-  tracking_categories_enabled?: boolean | undefined;
-  tracking_categories_mode?: string | undefined;
-  row_version?: string | null | undefined;
-  updated_by?: string | null | undefined;
-  created_by?: string | null | undefined;
-  updated_at?: string | null | undefined;
-  created_at?: string | null | undefined;
-};
-
-/** @internal */
-export const CompanyInfo$outboundSchema: z.ZodType<
-  CompanyInfo$Outbound,
-  z.ZodTypeDef,
-  CompanyInfo
-> = z.object({
-  id: z.string().optional(),
-  companyName: z.nullable(z.string()).optional(),
-  status: CompanyStatus$outboundSchema.optional(),
-  legalName: z.string().optional(),
-  country: z.nullable(z.string()).optional(),
-  salesTaxNumber: z.nullable(z.string()).optional(),
-  automatedSalesTax: z.boolean().optional(),
-  salesTaxEnabled: z.boolean().optional(),
-  defaultSalesTax: TaxRate$outboundSchema.optional(),
-  currency: z.nullable(Currency$outboundSchema).optional(),
-  language: z.nullable(z.string()).optional(),
-  fiscalYearStartMonth: TheStartMonthOfFiscalYear$outboundSchema.optional(),
-  companyStartDate: z.instanceof(RFCDate).transform(v => v.toString())
-    .optional(),
-  addresses: z.array(Address$outboundSchema).optional(),
-  phoneNumbers: z.array(PhoneNumber$outboundSchema).optional(),
-  emails: z.array(Email$outboundSchema).optional(),
-  customMappings: z.nullable(z.record(z.any())).optional(),
-  trackingCategoriesEnabled: z.boolean().optional(),
-  trackingCategoriesMode: TrackingCategoriesMode$outboundSchema.optional(),
-  rowVersion: z.nullable(z.string()).optional(),
-  updatedBy: z.nullable(z.string()).optional(),
-  createdBy: z.nullable(z.string()).optional(),
-  updatedAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
-  createdAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    companyName: "company_name",
-    legalName: "legal_name",
-    salesTaxNumber: "sales_tax_number",
-    automatedSalesTax: "automated_sales_tax",
-    salesTaxEnabled: "sales_tax_enabled",
-    defaultSalesTax: "default_sales_tax",
-    fiscalYearStartMonth: "fiscal_year_start_month",
-    companyStartDate: "company_start_date",
-    phoneNumbers: "phone_numbers",
-    customMappings: "custom_mappings",
-    trackingCategoriesEnabled: "tracking_categories_enabled",
-    trackingCategoriesMode: "tracking_categories_mode",
-    rowVersion: "row_version",
-    updatedBy: "updated_by",
-    createdBy: "created_by",
-    updatedAt: "updated_at",
-    createdAt: "created_at",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CompanyInfo$ {
-  /** @deprecated use `CompanyInfo$inboundSchema` instead. */
-  export const inboundSchema = CompanyInfo$inboundSchema;
-  /** @deprecated use `CompanyInfo$outboundSchema` instead. */
-  export const outboundSchema = CompanyInfo$outboundSchema;
-  /** @deprecated use `CompanyInfo$Outbound` instead. */
-  export type Outbound = CompanyInfo$Outbound;
-}
-
-export function companyInfoToJSON(companyInfo: CompanyInfo): string {
-  return JSON.stringify(CompanyInfo$outboundSchema.parse(companyInfo));
-}
 
 export function companyInfoFromJSON(
   jsonString: string,

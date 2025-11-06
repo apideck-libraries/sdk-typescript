@@ -37,74 +37,6 @@ export type WebhookWebhooksAddResponse = {
 };
 
 /** @internal */
-export const WebhookWebhooksAddGlobals$inboundSchema: z.ZodType<
-  WebhookWebhooksAddGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  appId: z.string().optional(),
-});
-
-/** @internal */
-export type WebhookWebhooksAddGlobals$Outbound = {
-  appId?: string | undefined;
-};
-
-/** @internal */
-export const WebhookWebhooksAddGlobals$outboundSchema: z.ZodType<
-  WebhookWebhooksAddGlobals$Outbound,
-  z.ZodTypeDef,
-  WebhookWebhooksAddGlobals
-> = z.object({
-  appId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace WebhookWebhooksAddGlobals$ {
-  /** @deprecated use `WebhookWebhooksAddGlobals$inboundSchema` instead. */
-  export const inboundSchema = WebhookWebhooksAddGlobals$inboundSchema;
-  /** @deprecated use `WebhookWebhooksAddGlobals$outboundSchema` instead. */
-  export const outboundSchema = WebhookWebhooksAddGlobals$outboundSchema;
-  /** @deprecated use `WebhookWebhooksAddGlobals$Outbound` instead. */
-  export type Outbound = WebhookWebhooksAddGlobals$Outbound;
-}
-
-export function webhookWebhooksAddGlobalsToJSON(
-  webhookWebhooksAddGlobals: WebhookWebhooksAddGlobals,
-): string {
-  return JSON.stringify(
-    WebhookWebhooksAddGlobals$outboundSchema.parse(webhookWebhooksAddGlobals),
-  );
-}
-
-export function webhookWebhooksAddGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<WebhookWebhooksAddGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => WebhookWebhooksAddGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'WebhookWebhooksAddGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const WebhookWebhooksAddRequest$inboundSchema: z.ZodType<
-  WebhookWebhooksAddRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  appId: z.string().optional(),
-  CreateWebhookRequest: components.CreateWebhookRequest$inboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    "CreateWebhookRequest": "createWebhookRequest",
-  });
-});
-
-/** @internal */
 export type WebhookWebhooksAddRequest$Outbound = {
   appId?: string | undefined;
   CreateWebhookRequest: components.CreateWebhookRequest$Outbound;
@@ -124,34 +56,11 @@ export const WebhookWebhooksAddRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace WebhookWebhooksAddRequest$ {
-  /** @deprecated use `WebhookWebhooksAddRequest$inboundSchema` instead. */
-  export const inboundSchema = WebhookWebhooksAddRequest$inboundSchema;
-  /** @deprecated use `WebhookWebhooksAddRequest$outboundSchema` instead. */
-  export const outboundSchema = WebhookWebhooksAddRequest$outboundSchema;
-  /** @deprecated use `WebhookWebhooksAddRequest$Outbound` instead. */
-  export type Outbound = WebhookWebhooksAddRequest$Outbound;
-}
-
 export function webhookWebhooksAddRequestToJSON(
   webhookWebhooksAddRequest: WebhookWebhooksAddRequest,
 ): string {
   return JSON.stringify(
     WebhookWebhooksAddRequest$outboundSchema.parse(webhookWebhooksAddRequest),
-  );
-}
-
-export function webhookWebhooksAddRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<WebhookWebhooksAddRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => WebhookWebhooksAddRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'WebhookWebhooksAddRequest' from JSON`,
   );
 }
 
@@ -173,55 +82,6 @@ export const WebhookWebhooksAddResponse$inboundSchema: z.ZodType<
     "UnexpectedErrorResponse": "unexpectedErrorResponse",
   });
 });
-
-/** @internal */
-export type WebhookWebhooksAddResponse$Outbound = {
-  HttpMeta: components.HTTPMetadata$Outbound;
-  CreateWebhookResponse?: components.CreateWebhookResponse$Outbound | undefined;
-  UnexpectedErrorResponse?:
-    | components.UnexpectedErrorResponse$Outbound
-    | undefined;
-};
-
-/** @internal */
-export const WebhookWebhooksAddResponse$outboundSchema: z.ZodType<
-  WebhookWebhooksAddResponse$Outbound,
-  z.ZodTypeDef,
-  WebhookWebhooksAddResponse
-> = z.object({
-  httpMeta: components.HTTPMetadata$outboundSchema,
-  createWebhookResponse: components.CreateWebhookResponse$outboundSchema
-    .optional(),
-  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    httpMeta: "HttpMeta",
-    createWebhookResponse: "CreateWebhookResponse",
-    unexpectedErrorResponse: "UnexpectedErrorResponse",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace WebhookWebhooksAddResponse$ {
-  /** @deprecated use `WebhookWebhooksAddResponse$inboundSchema` instead. */
-  export const inboundSchema = WebhookWebhooksAddResponse$inboundSchema;
-  /** @deprecated use `WebhookWebhooksAddResponse$outboundSchema` instead. */
-  export const outboundSchema = WebhookWebhooksAddResponse$outboundSchema;
-  /** @deprecated use `WebhookWebhooksAddResponse$Outbound` instead. */
-  export type Outbound = WebhookWebhooksAddResponse$Outbound;
-}
-
-export function webhookWebhooksAddResponseToJSON(
-  webhookWebhooksAddResponse: WebhookWebhooksAddResponse,
-): string {
-  return JSON.stringify(
-    WebhookWebhooksAddResponse$outboundSchema.parse(webhookWebhooksAddResponse),
-  );
-}
 
 export function webhookWebhooksAddResponseFromJSON(
   jsonString: string,

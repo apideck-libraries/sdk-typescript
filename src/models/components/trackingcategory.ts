@@ -132,22 +132,10 @@ export type TrackingCategoryInput = {
 export const TrackingCategoryStatus$inboundSchema: z.ZodNativeEnum<
   typeof TrackingCategoryStatus
 > = z.nativeEnum(TrackingCategoryStatus);
-
 /** @internal */
 export const TrackingCategoryStatus$outboundSchema: z.ZodNativeEnum<
   typeof TrackingCategoryStatus
 > = TrackingCategoryStatus$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace TrackingCategoryStatus$ {
-  /** @deprecated use `TrackingCategoryStatus$inboundSchema` instead. */
-  export const inboundSchema = TrackingCategoryStatus$inboundSchema;
-  /** @deprecated use `TrackingCategoryStatus$outboundSchema` instead. */
-  export const outboundSchema = TrackingCategoryStatus$outboundSchema;
-}
 
 /** @internal */
 export const TrackingCategorySubsidiaries$inboundSchema: z.ZodType<
@@ -157,7 +145,6 @@ export const TrackingCategorySubsidiaries$inboundSchema: z.ZodType<
 > = z.object({
   id: z.string().optional(),
 });
-
 /** @internal */
 export type TrackingCategorySubsidiaries$Outbound = {
   id?: string | undefined;
@@ -172,19 +159,6 @@ export const TrackingCategorySubsidiaries$outboundSchema: z.ZodType<
   id: z.string().optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace TrackingCategorySubsidiaries$ {
-  /** @deprecated use `TrackingCategorySubsidiaries$inboundSchema` instead. */
-  export const inboundSchema = TrackingCategorySubsidiaries$inboundSchema;
-  /** @deprecated use `TrackingCategorySubsidiaries$outboundSchema` instead. */
-  export const outboundSchema = TrackingCategorySubsidiaries$outboundSchema;
-  /** @deprecated use `TrackingCategorySubsidiaries$Outbound` instead. */
-  export type Outbound = TrackingCategorySubsidiaries$Outbound;
-}
-
 export function trackingCategorySubsidiariesToJSON(
   trackingCategorySubsidiaries: TrackingCategorySubsidiaries,
 ): string {
@@ -194,7 +168,6 @@ export function trackingCategorySubsidiariesToJSON(
     ),
   );
 }
-
 export function trackingCategorySubsidiariesFromJSON(
   jsonString: string,
 ): SafeParseResult<TrackingCategorySubsidiaries, SDKValidationError> {
@@ -245,81 +218,6 @@ export const TrackingCategory$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type TrackingCategory$Outbound = {
-  id?: string | undefined;
-  parent_id?: string | null | undefined;
-  parent_name?: string | null | undefined;
-  name?: string | undefined;
-  code?: string | null | undefined;
-  status?: string | undefined;
-  custom_mappings?: { [k: string]: any } | null | undefined;
-  row_version?: string | null | undefined;
-  updated_by?: string | null | undefined;
-  created_by?: string | null | undefined;
-  updated_at?: string | null | undefined;
-  created_at?: string | null | undefined;
-  pass_through?: Array<PassThroughBody$Outbound> | undefined;
-  subsidiaries?: Array<TrackingCategorySubsidiaries$Outbound> | undefined;
-};
-
-/** @internal */
-export const TrackingCategory$outboundSchema: z.ZodType<
-  TrackingCategory$Outbound,
-  z.ZodTypeDef,
-  TrackingCategory
-> = z.object({
-  id: z.string().optional(),
-  parentId: z.nullable(z.string()).optional(),
-  parentName: z.nullable(z.string()).optional(),
-  name: z.string().optional(),
-  code: z.nullable(z.string()).optional(),
-  status: TrackingCategoryStatus$outboundSchema.optional(),
-  customMappings: z.nullable(z.record(z.any())).optional(),
-  rowVersion: z.nullable(z.string()).optional(),
-  updatedBy: z.nullable(z.string()).optional(),
-  createdBy: z.nullable(z.string()).optional(),
-  updatedAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
-  createdAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
-  passThrough: z.array(PassThroughBody$outboundSchema).optional(),
-  subsidiaries: z.array(
-    z.lazy(() => TrackingCategorySubsidiaries$outboundSchema),
-  ).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    parentId: "parent_id",
-    parentName: "parent_name",
-    customMappings: "custom_mappings",
-    rowVersion: "row_version",
-    updatedBy: "updated_by",
-    createdBy: "created_by",
-    updatedAt: "updated_at",
-    createdAt: "created_at",
-    passThrough: "pass_through",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace TrackingCategory$ {
-  /** @deprecated use `TrackingCategory$inboundSchema` instead. */
-  export const inboundSchema = TrackingCategory$inboundSchema;
-  /** @deprecated use `TrackingCategory$outboundSchema` instead. */
-  export const outboundSchema = TrackingCategory$outboundSchema;
-  /** @deprecated use `TrackingCategory$Outbound` instead. */
-  export type Outbound = TrackingCategory$Outbound;
-}
-
-export function trackingCategoryToJSON(
-  trackingCategory: TrackingCategory,
-): string {
-  return JSON.stringify(
-    TrackingCategory$outboundSchema.parse(trackingCategory),
-  );
-}
-
 export function trackingCategoryFromJSON(
   jsonString: string,
 ): SafeParseResult<TrackingCategory, SDKValidationError> {
@@ -329,31 +227,6 @@ export function trackingCategoryFromJSON(
     `Failed to parse 'TrackingCategory' from JSON`,
   );
 }
-
-/** @internal */
-export const TrackingCategoryInput$inboundSchema: z.ZodType<
-  TrackingCategoryInput,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  parent_id: z.nullable(z.string()).optional(),
-  parent_name: z.nullable(z.string()).optional(),
-  name: z.string().optional(),
-  code: z.nullable(z.string()).optional(),
-  status: TrackingCategoryStatus$inboundSchema.optional(),
-  row_version: z.nullable(z.string()).optional(),
-  pass_through: z.array(PassThroughBody$inboundSchema).optional(),
-  subsidiaries: z.array(
-    z.lazy(() => TrackingCategorySubsidiaries$inboundSchema),
-  ).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "parent_id": "parentId",
-    "parent_name": "parentName",
-    "row_version": "rowVersion",
-    "pass_through": "passThrough",
-  });
-});
 
 /** @internal */
 export type TrackingCategoryInput$Outbound = {
@@ -392,33 +265,10 @@ export const TrackingCategoryInput$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace TrackingCategoryInput$ {
-  /** @deprecated use `TrackingCategoryInput$inboundSchema` instead. */
-  export const inboundSchema = TrackingCategoryInput$inboundSchema;
-  /** @deprecated use `TrackingCategoryInput$outboundSchema` instead. */
-  export const outboundSchema = TrackingCategoryInput$outboundSchema;
-  /** @deprecated use `TrackingCategoryInput$Outbound` instead. */
-  export type Outbound = TrackingCategoryInput$Outbound;
-}
-
 export function trackingCategoryInputToJSON(
   trackingCategoryInput: TrackingCategoryInput,
 ): string {
   return JSON.stringify(
     TrackingCategoryInput$outboundSchema.parse(trackingCategoryInput),
-  );
-}
-
-export function trackingCategoryInputFromJSON(
-  jsonString: string,
-): SafeParseResult<TrackingCategoryInput, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => TrackingCategoryInput$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'TrackingCategoryInput' from JSON`,
   );
 }

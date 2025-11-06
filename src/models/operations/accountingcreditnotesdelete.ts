@@ -56,80 +56,6 @@ export type AccountingCreditNotesDeleteResponse = {
 };
 
 /** @internal */
-export const AccountingCreditNotesDeleteGlobals$inboundSchema: z.ZodType<
-  AccountingCreditNotesDeleteGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/** @internal */
-export type AccountingCreditNotesDeleteGlobals$Outbound = {
-  consumerId?: string | undefined;
-  appId?: string | undefined;
-};
-
-/** @internal */
-export const AccountingCreditNotesDeleteGlobals$outboundSchema: z.ZodType<
-  AccountingCreditNotesDeleteGlobals$Outbound,
-  z.ZodTypeDef,
-  AccountingCreditNotesDeleteGlobals
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AccountingCreditNotesDeleteGlobals$ {
-  /** @deprecated use `AccountingCreditNotesDeleteGlobals$inboundSchema` instead. */
-  export const inboundSchema = AccountingCreditNotesDeleteGlobals$inboundSchema;
-  /** @deprecated use `AccountingCreditNotesDeleteGlobals$outboundSchema` instead. */
-  export const outboundSchema =
-    AccountingCreditNotesDeleteGlobals$outboundSchema;
-  /** @deprecated use `AccountingCreditNotesDeleteGlobals$Outbound` instead. */
-  export type Outbound = AccountingCreditNotesDeleteGlobals$Outbound;
-}
-
-export function accountingCreditNotesDeleteGlobalsToJSON(
-  accountingCreditNotesDeleteGlobals: AccountingCreditNotesDeleteGlobals,
-): string {
-  return JSON.stringify(
-    AccountingCreditNotesDeleteGlobals$outboundSchema.parse(
-      accountingCreditNotesDeleteGlobals,
-    ),
-  );
-}
-
-export function accountingCreditNotesDeleteGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<AccountingCreditNotesDeleteGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      AccountingCreditNotesDeleteGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'AccountingCreditNotesDeleteGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const AccountingCreditNotesDeleteRequest$inboundSchema: z.ZodType<
-  AccountingCreditNotesDeleteRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  id: z.string(),
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  raw: z.boolean().default(false),
-});
-
-/** @internal */
 export type AccountingCreditNotesDeleteRequest$Outbound = {
   id: string;
   consumerId?: string | undefined;
@@ -151,20 +77,6 @@ export const AccountingCreditNotesDeleteRequest$outboundSchema: z.ZodType<
   raw: z.boolean().default(false),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AccountingCreditNotesDeleteRequest$ {
-  /** @deprecated use `AccountingCreditNotesDeleteRequest$inboundSchema` instead. */
-  export const inboundSchema = AccountingCreditNotesDeleteRequest$inboundSchema;
-  /** @deprecated use `AccountingCreditNotesDeleteRequest$outboundSchema` instead. */
-  export const outboundSchema =
-    AccountingCreditNotesDeleteRequest$outboundSchema;
-  /** @deprecated use `AccountingCreditNotesDeleteRequest$Outbound` instead. */
-  export type Outbound = AccountingCreditNotesDeleteRequest$Outbound;
-}
-
 export function accountingCreditNotesDeleteRequestToJSON(
   accountingCreditNotesDeleteRequest: AccountingCreditNotesDeleteRequest,
 ): string {
@@ -172,17 +84,6 @@ export function accountingCreditNotesDeleteRequestToJSON(
     AccountingCreditNotesDeleteRequest$outboundSchema.parse(
       accountingCreditNotesDeleteRequest,
     ),
-  );
-}
-
-export function accountingCreditNotesDeleteRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<AccountingCreditNotesDeleteRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      AccountingCreditNotesDeleteRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'AccountingCreditNotesDeleteRequest' from JSON`,
   );
 }
 
@@ -204,61 +105,6 @@ export const AccountingCreditNotesDeleteResponse$inboundSchema: z.ZodType<
     "UnexpectedErrorResponse": "unexpectedErrorResponse",
   });
 });
-
-/** @internal */
-export type AccountingCreditNotesDeleteResponse$Outbound = {
-  HttpMeta: components.HTTPMetadata$Outbound;
-  DeleteCreditNoteResponse?:
-    | components.DeleteCreditNoteResponse$Outbound
-    | undefined;
-  UnexpectedErrorResponse?:
-    | components.UnexpectedErrorResponse$Outbound
-    | undefined;
-};
-
-/** @internal */
-export const AccountingCreditNotesDeleteResponse$outboundSchema: z.ZodType<
-  AccountingCreditNotesDeleteResponse$Outbound,
-  z.ZodTypeDef,
-  AccountingCreditNotesDeleteResponse
-> = z.object({
-  httpMeta: components.HTTPMetadata$outboundSchema,
-  deleteCreditNoteResponse: components.DeleteCreditNoteResponse$outboundSchema
-    .optional(),
-  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    httpMeta: "HttpMeta",
-    deleteCreditNoteResponse: "DeleteCreditNoteResponse",
-    unexpectedErrorResponse: "UnexpectedErrorResponse",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AccountingCreditNotesDeleteResponse$ {
-  /** @deprecated use `AccountingCreditNotesDeleteResponse$inboundSchema` instead. */
-  export const inboundSchema =
-    AccountingCreditNotesDeleteResponse$inboundSchema;
-  /** @deprecated use `AccountingCreditNotesDeleteResponse$outboundSchema` instead. */
-  export const outboundSchema =
-    AccountingCreditNotesDeleteResponse$outboundSchema;
-  /** @deprecated use `AccountingCreditNotesDeleteResponse$Outbound` instead. */
-  export type Outbound = AccountingCreditNotesDeleteResponse$Outbound;
-}
-
-export function accountingCreditNotesDeleteResponseToJSON(
-  accountingCreditNotesDeleteResponse: AccountingCreditNotesDeleteResponse,
-): string {
-  return JSON.stringify(
-    AccountingCreditNotesDeleteResponse$outboundSchema.parse(
-      accountingCreditNotesDeleteResponse,
-    ),
-  );
-}
 
 export function accountingCreditNotesDeleteResponseFromJSON(
   jsonString: string,

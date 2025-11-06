@@ -4,19 +4,11 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   ConnectorStatus,
-  ConnectorStatus$inboundSchema,
   ConnectorStatus$outboundSchema,
 } from "./connectorstatus.js";
-import {
-  UnifiedApiId,
-  UnifiedApiId$inboundSchema,
-  UnifiedApiId$outboundSchema,
-} from "./unifiedapiid.js";
+import { UnifiedApiId, UnifiedApiId$outboundSchema } from "./unifiedapiid.js";
 
 export type ConnectorsFilter = {
   /**
@@ -28,20 +20,6 @@ export type ConnectorsFilter = {
    */
   status?: ConnectorStatus | undefined;
 };
-
-/** @internal */
-export const ConnectorsFilter$inboundSchema: z.ZodType<
-  ConnectorsFilter,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  unified_api: UnifiedApiId$inboundSchema.optional(),
-  status: ConnectorStatus$inboundSchema.optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "unified_api": "unifiedApi",
-  });
-});
 
 /** @internal */
 export type ConnectorsFilter$Outbound = {
@@ -63,33 +41,10 @@ export const ConnectorsFilter$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ConnectorsFilter$ {
-  /** @deprecated use `ConnectorsFilter$inboundSchema` instead. */
-  export const inboundSchema = ConnectorsFilter$inboundSchema;
-  /** @deprecated use `ConnectorsFilter$outboundSchema` instead. */
-  export const outboundSchema = ConnectorsFilter$outboundSchema;
-  /** @deprecated use `ConnectorsFilter$Outbound` instead. */
-  export type Outbound = ConnectorsFilter$Outbound;
-}
-
 export function connectorsFilterToJSON(
   connectorsFilter: ConnectorsFilter,
 ): string {
   return JSON.stringify(
     ConnectorsFilter$outboundSchema.parse(connectorsFilter),
-  );
-}
-
-export function connectorsFilterFromJSON(
-  jsonString: string,
-): SafeParseResult<ConnectorsFilter, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => ConnectorsFilter$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ConnectorsFilter' from JSON`,
   );
 }

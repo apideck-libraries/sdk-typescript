@@ -53,80 +53,6 @@ export type CrmActivitiesAddResponse = {
 };
 
 /** @internal */
-export const CrmActivitiesAddGlobals$inboundSchema: z.ZodType<
-  CrmActivitiesAddGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/** @internal */
-export type CrmActivitiesAddGlobals$Outbound = {
-  consumerId?: string | undefined;
-  appId?: string | undefined;
-};
-
-/** @internal */
-export const CrmActivitiesAddGlobals$outboundSchema: z.ZodType<
-  CrmActivitiesAddGlobals$Outbound,
-  z.ZodTypeDef,
-  CrmActivitiesAddGlobals
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CrmActivitiesAddGlobals$ {
-  /** @deprecated use `CrmActivitiesAddGlobals$inboundSchema` instead. */
-  export const inboundSchema = CrmActivitiesAddGlobals$inboundSchema;
-  /** @deprecated use `CrmActivitiesAddGlobals$outboundSchema` instead. */
-  export const outboundSchema = CrmActivitiesAddGlobals$outboundSchema;
-  /** @deprecated use `CrmActivitiesAddGlobals$Outbound` instead. */
-  export type Outbound = CrmActivitiesAddGlobals$Outbound;
-}
-
-export function crmActivitiesAddGlobalsToJSON(
-  crmActivitiesAddGlobals: CrmActivitiesAddGlobals,
-): string {
-  return JSON.stringify(
-    CrmActivitiesAddGlobals$outboundSchema.parse(crmActivitiesAddGlobals),
-  );
-}
-
-export function crmActivitiesAddGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<CrmActivitiesAddGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => CrmActivitiesAddGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CrmActivitiesAddGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const CrmActivitiesAddRequest$inboundSchema: z.ZodType<
-  CrmActivitiesAddRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  raw: z.boolean().default(false),
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  Activity: components.ActivityInput$inboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    "Activity": "activity",
-  });
-});
-
-/** @internal */
 export type CrmActivitiesAddRequest$Outbound = {
   raw: boolean;
   consumerId?: string | undefined;
@@ -152,34 +78,11 @@ export const CrmActivitiesAddRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CrmActivitiesAddRequest$ {
-  /** @deprecated use `CrmActivitiesAddRequest$inboundSchema` instead. */
-  export const inboundSchema = CrmActivitiesAddRequest$inboundSchema;
-  /** @deprecated use `CrmActivitiesAddRequest$outboundSchema` instead. */
-  export const outboundSchema = CrmActivitiesAddRequest$outboundSchema;
-  /** @deprecated use `CrmActivitiesAddRequest$Outbound` instead. */
-  export type Outbound = CrmActivitiesAddRequest$Outbound;
-}
-
 export function crmActivitiesAddRequestToJSON(
   crmActivitiesAddRequest: CrmActivitiesAddRequest,
 ): string {
   return JSON.stringify(
     CrmActivitiesAddRequest$outboundSchema.parse(crmActivitiesAddRequest),
-  );
-}
-
-export function crmActivitiesAddRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<CrmActivitiesAddRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => CrmActivitiesAddRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CrmActivitiesAddRequest' from JSON`,
   );
 }
 
@@ -201,57 +104,6 @@ export const CrmActivitiesAddResponse$inboundSchema: z.ZodType<
     "UnexpectedErrorResponse": "unexpectedErrorResponse",
   });
 });
-
-/** @internal */
-export type CrmActivitiesAddResponse$Outbound = {
-  HttpMeta: components.HTTPMetadata$Outbound;
-  CreateActivityResponse?:
-    | components.CreateActivityResponse$Outbound
-    | undefined;
-  UnexpectedErrorResponse?:
-    | components.UnexpectedErrorResponse$Outbound
-    | undefined;
-};
-
-/** @internal */
-export const CrmActivitiesAddResponse$outboundSchema: z.ZodType<
-  CrmActivitiesAddResponse$Outbound,
-  z.ZodTypeDef,
-  CrmActivitiesAddResponse
-> = z.object({
-  httpMeta: components.HTTPMetadata$outboundSchema,
-  createActivityResponse: components.CreateActivityResponse$outboundSchema
-    .optional(),
-  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    httpMeta: "HttpMeta",
-    createActivityResponse: "CreateActivityResponse",
-    unexpectedErrorResponse: "UnexpectedErrorResponse",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CrmActivitiesAddResponse$ {
-  /** @deprecated use `CrmActivitiesAddResponse$inboundSchema` instead. */
-  export const inboundSchema = CrmActivitiesAddResponse$inboundSchema;
-  /** @deprecated use `CrmActivitiesAddResponse$outboundSchema` instead. */
-  export const outboundSchema = CrmActivitiesAddResponse$outboundSchema;
-  /** @deprecated use `CrmActivitiesAddResponse$Outbound` instead. */
-  export type Outbound = CrmActivitiesAddResponse$Outbound;
-}
-
-export function crmActivitiesAddResponseToJSON(
-  crmActivitiesAddResponse: CrmActivitiesAddResponse,
-): string {
-  return JSON.stringify(
-    CrmActivitiesAddResponse$outboundSchema.parse(crmActivitiesAddResponse),
-  );
-}
 
 export function crmActivitiesAddResponseFromJSON(
   jsonString: string,

@@ -10,8 +10,6 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   EcommerceProduct,
   EcommerceProduct$inboundSchema,
-  EcommerceProduct$Outbound,
-  EcommerceProduct$outboundSchema,
 } from "./ecommerceproduct.js";
 
 /**
@@ -64,58 +62,6 @@ export const GetProductResponse$inboundSchema: z.ZodType<
     "_raw": "raw",
   });
 });
-
-/** @internal */
-export type GetProductResponse$Outbound = {
-  status_code: number;
-  status: string;
-  service: string;
-  resource: string;
-  operation: string;
-  data: EcommerceProduct$Outbound;
-  _raw?: { [k: string]: any } | null | undefined;
-};
-
-/** @internal */
-export const GetProductResponse$outboundSchema: z.ZodType<
-  GetProductResponse$Outbound,
-  z.ZodTypeDef,
-  GetProductResponse
-> = z.object({
-  statusCode: z.number().int(),
-  status: z.string(),
-  service: z.string(),
-  resource: z.string(),
-  operation: z.string(),
-  data: EcommerceProduct$outboundSchema,
-  raw: z.nullable(z.record(z.any())).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    statusCode: "status_code",
-    raw: "_raw",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetProductResponse$ {
-  /** @deprecated use `GetProductResponse$inboundSchema` instead. */
-  export const inboundSchema = GetProductResponse$inboundSchema;
-  /** @deprecated use `GetProductResponse$outboundSchema` instead. */
-  export const outboundSchema = GetProductResponse$outboundSchema;
-  /** @deprecated use `GetProductResponse$Outbound` instead. */
-  export type Outbound = GetProductResponse$Outbound;
-}
-
-export function getProductResponseToJSON(
-  getProductResponse: GetProductResponse,
-): string {
-  return JSON.stringify(
-    GetProductResponse$outboundSchema.parse(getProductResponse),
-  );
-}
 
 export function getProductResponseFromJSON(
   jsonString: string,

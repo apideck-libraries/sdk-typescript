@@ -24,18 +24,6 @@ export type ConsentState = ClosedEnum<typeof ConsentState>;
 /** @internal */
 export const ConsentState$inboundSchema: z.ZodNativeEnum<typeof ConsentState> =
   z.nativeEnum(ConsentState);
-
 /** @internal */
 export const ConsentState$outboundSchema: z.ZodNativeEnum<typeof ConsentState> =
   ConsentState$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ConsentState$ {
-  /** @deprecated use `ConsentState$inboundSchema` instead. */
-  export const inboundSchema = ConsentState$inboundSchema;
-  /** @deprecated use `ConsentState$outboundSchema` instead. */
-  export const outboundSchema = ConsentState$outboundSchema;
-}

@@ -7,12 +7,7 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  UnifiedId,
-  UnifiedId$inboundSchema,
-  UnifiedId$Outbound,
-  UnifiedId$outboundSchema,
-} from "./unifiedid.js";
+import { UnifiedId, UnifiedId$inboundSchema } from "./unifiedid.js";
 
 /**
  * Files
@@ -67,58 +62,6 @@ export const UpdateFileResponse$inboundSchema: z.ZodType<
     "_raw": "raw",
   });
 });
-
-/** @internal */
-export type UpdateFileResponse$Outbound = {
-  status_code: number;
-  status: string;
-  service: string;
-  resource: string;
-  operation: string;
-  data: UnifiedId$Outbound;
-  _raw?: { [k: string]: any } | null | undefined;
-};
-
-/** @internal */
-export const UpdateFileResponse$outboundSchema: z.ZodType<
-  UpdateFileResponse$Outbound,
-  z.ZodTypeDef,
-  UpdateFileResponse
-> = z.object({
-  statusCode: z.number().int(),
-  status: z.string(),
-  service: z.string(),
-  resource: z.string(),
-  operation: z.string(),
-  data: UnifiedId$outboundSchema,
-  raw: z.nullable(z.record(z.any())).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    statusCode: "status_code",
-    raw: "_raw",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace UpdateFileResponse$ {
-  /** @deprecated use `UpdateFileResponse$inboundSchema` instead. */
-  export const inboundSchema = UpdateFileResponse$inboundSchema;
-  /** @deprecated use `UpdateFileResponse$outboundSchema` instead. */
-  export const outboundSchema = UpdateFileResponse$outboundSchema;
-  /** @deprecated use `UpdateFileResponse$Outbound` instead. */
-  export type Outbound = UpdateFileResponse$Outbound;
-}
-
-export function updateFileResponseToJSON(
-  updateFileResponse: UpdateFileResponse,
-): string {
-  return JSON.stringify(
-    UpdateFileResponse$outboundSchema.parse(updateFileResponse),
-  );
-}
 
 export function updateFileResponseFromJSON(
   jsonString: string,

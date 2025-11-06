@@ -10,21 +10,9 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   AccountingBankAccount,
   AccountingBankAccount$inboundSchema,
-  AccountingBankAccount$Outbound,
-  AccountingBankAccount$outboundSchema,
 } from "./accountingbankaccount.js";
-import {
-  Links,
-  Links$inboundSchema,
-  Links$Outbound,
-  Links$outboundSchema,
-} from "./links.js";
-import {
-  Meta,
-  Meta$inboundSchema,
-  Meta$Outbound,
-  Meta$outboundSchema,
-} from "./meta.js";
+import { Links, Links$inboundSchema } from "./links.js";
+import { Meta, Meta$inboundSchema } from "./meta.js";
 
 /**
  * Bank Accounts
@@ -80,59 +68,6 @@ export const GetBankAccountsResponse$inboundSchema: z.ZodType<
     "status_code": "statusCode",
   });
 });
-
-/** @internal */
-export type GetBankAccountsResponse$Outbound = {
-  status_code: number;
-  status: string;
-  service?: string | undefined;
-  resource?: string | undefined;
-  operation?: string | undefined;
-  data: Array<AccountingBankAccount$Outbound>;
-  meta?: Meta$Outbound | undefined;
-  links?: Links$Outbound | undefined;
-};
-
-/** @internal */
-export const GetBankAccountsResponse$outboundSchema: z.ZodType<
-  GetBankAccountsResponse$Outbound,
-  z.ZodTypeDef,
-  GetBankAccountsResponse
-> = z.object({
-  statusCode: z.number().int(),
-  status: z.string(),
-  service: z.string().optional(),
-  resource: z.string().optional(),
-  operation: z.string().optional(),
-  data: z.array(AccountingBankAccount$outboundSchema),
-  meta: Meta$outboundSchema.optional(),
-  links: Links$outboundSchema.optional(),
-}).transform((v) => {
-  return remap$(v, {
-    statusCode: "status_code",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetBankAccountsResponse$ {
-  /** @deprecated use `GetBankAccountsResponse$inboundSchema` instead. */
-  export const inboundSchema = GetBankAccountsResponse$inboundSchema;
-  /** @deprecated use `GetBankAccountsResponse$outboundSchema` instead. */
-  export const outboundSchema = GetBankAccountsResponse$outboundSchema;
-  /** @deprecated use `GetBankAccountsResponse$Outbound` instead. */
-  export type Outbound = GetBankAccountsResponse$Outbound;
-}
-
-export function getBankAccountsResponseToJSON(
-  getBankAccountsResponse: GetBankAccountsResponse,
-): string {
-  return JSON.stringify(
-    GetBankAccountsResponse$outboundSchema.parse(getBankAccountsResponse),
-  );
-}
 
 export function getBankAccountsResponseFromJSON(
   jsonString: string,

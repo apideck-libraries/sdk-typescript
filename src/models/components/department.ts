@@ -10,8 +10,6 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   PassThroughBody,
   PassThroughBody$inboundSchema,
-  PassThroughBody$Outbound,
-  PassThroughBody$outboundSchema,
 } from "./passthroughbody.js";
 
 export type Department = {
@@ -87,67 +85,6 @@ export const Department$inboundSchema: z.ZodType<
     "pass_through": "passThrough",
   });
 });
-
-/** @internal */
-export type Department$Outbound = {
-  id?: string | undefined;
-  parent_id?: string | null | undefined;
-  name?: string | null | undefined;
-  code?: string | null | undefined;
-  description?: string | null | undefined;
-  custom_mappings?: { [k: string]: any } | null | undefined;
-  updated_by?: string | null | undefined;
-  created_by?: string | null | undefined;
-  updated_at?: string | null | undefined;
-  created_at?: string | null | undefined;
-  pass_through?: Array<PassThroughBody$Outbound> | undefined;
-};
-
-/** @internal */
-export const Department$outboundSchema: z.ZodType<
-  Department$Outbound,
-  z.ZodTypeDef,
-  Department
-> = z.object({
-  id: z.string().optional(),
-  parentId: z.nullable(z.string()).optional(),
-  name: z.nullable(z.string()).optional(),
-  code: z.nullable(z.string()).optional(),
-  description: z.nullable(z.string()).optional(),
-  customMappings: z.nullable(z.record(z.any())).optional(),
-  updatedBy: z.nullable(z.string()).optional(),
-  createdBy: z.nullable(z.string()).optional(),
-  updatedAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
-  createdAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
-  passThrough: z.array(PassThroughBody$outboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    parentId: "parent_id",
-    customMappings: "custom_mappings",
-    updatedBy: "updated_by",
-    createdBy: "created_by",
-    updatedAt: "updated_at",
-    createdAt: "created_at",
-    passThrough: "pass_through",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Department$ {
-  /** @deprecated use `Department$inboundSchema` instead. */
-  export const inboundSchema = Department$inboundSchema;
-  /** @deprecated use `Department$outboundSchema` instead. */
-  export const outboundSchema = Department$outboundSchema;
-  /** @deprecated use `Department$Outbound` instead. */
-  export type Outbound = Department$Outbound;
-}
-
-export function departmentToJSON(department: Department): string {
-  return JSON.stringify(Department$outboundSchema.parse(department));
-}
 
 export function departmentFromJSON(
   jsonString: string,

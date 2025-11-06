@@ -8,52 +8,32 @@ import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  Currency,
-  Currency$inboundSchema,
-  Currency$outboundSchema,
-} from "./currency.js";
+import { Currency, Currency$inboundSchema } from "./currency.js";
 import {
   EcommerceAddress,
   EcommerceAddress$inboundSchema,
-  EcommerceAddress$Outbound,
-  EcommerceAddress$outboundSchema,
 } from "./ecommerceaddress.js";
 import {
   EcommerceDiscount,
   EcommerceDiscount$inboundSchema,
-  EcommerceDiscount$Outbound,
-  EcommerceDiscount$outboundSchema,
 } from "./ecommercediscount.js";
 import {
   EcommerceOrderLineItem,
   EcommerceOrderLineItem$inboundSchema,
-  EcommerceOrderLineItem$Outbound,
-  EcommerceOrderLineItem$outboundSchema,
 } from "./ecommerceorderlineitem.js";
 import {
   EcommerceOrderRefund,
   EcommerceOrderRefund$inboundSchema,
-  EcommerceOrderRefund$Outbound,
-  EcommerceOrderRefund$outboundSchema,
 } from "./ecommerceorderrefund.js";
 import {
   EcommerceOrderStatus,
   EcommerceOrderStatus$inboundSchema,
-  EcommerceOrderStatus$outboundSchema,
 } from "./ecommerceorderstatus.js";
 import {
   LinkedEcommerceCustomer,
   LinkedEcommerceCustomer$inboundSchema,
-  LinkedEcommerceCustomer$Outbound,
-  LinkedEcommerceCustomer$outboundSchema,
 } from "./linkedecommercecustomer.js";
-import {
-  TrackingItem,
-  TrackingItem$inboundSchema,
-  TrackingItem$Outbound,
-  TrackingItem$outboundSchema,
-} from "./trackingitem.js";
+import { TrackingItem, TrackingItem$inboundSchema } from "./trackingitem.js";
 
 /**
  * Current payment status of the order.
@@ -189,41 +169,9 @@ export const EcommerceOrderPaymentStatus$inboundSchema: z.ZodNativeEnum<
 > = z.nativeEnum(EcommerceOrderPaymentStatus);
 
 /** @internal */
-export const EcommerceOrderPaymentStatus$outboundSchema: z.ZodNativeEnum<
-  typeof EcommerceOrderPaymentStatus
-> = EcommerceOrderPaymentStatus$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace EcommerceOrderPaymentStatus$ {
-  /** @deprecated use `EcommerceOrderPaymentStatus$inboundSchema` instead. */
-  export const inboundSchema = EcommerceOrderPaymentStatus$inboundSchema;
-  /** @deprecated use `EcommerceOrderPaymentStatus$outboundSchema` instead. */
-  export const outboundSchema = EcommerceOrderPaymentStatus$outboundSchema;
-}
-
-/** @internal */
 export const FulfillmentStatus$inboundSchema: z.ZodNativeEnum<
   typeof FulfillmentStatus
 > = z.nativeEnum(FulfillmentStatus);
-
-/** @internal */
-export const FulfillmentStatus$outboundSchema: z.ZodNativeEnum<
-  typeof FulfillmentStatus
-> = FulfillmentStatus$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace FulfillmentStatus$ {
-  /** @deprecated use `FulfillmentStatus$inboundSchema` instead. */
-  export const inboundSchema = FulfillmentStatus$inboundSchema;
-  /** @deprecated use `FulfillmentStatus$outboundSchema` instead. */
-  export const outboundSchema = FulfillmentStatus$outboundSchema;
-}
 
 /** @internal */
 export const EcommerceOrder$inboundSchema: z.ZodType<
@@ -282,106 +230,6 @@ export const EcommerceOrder$inboundSchema: z.ZodType<
     "updated_at": "updatedAt",
   });
 });
-
-/** @internal */
-export type EcommerceOrder$Outbound = {
-  id: string;
-  order_number?: string | null | undefined;
-  currency?: string | null | undefined;
-  discounts?: Array<EcommerceDiscount$Outbound> | undefined;
-  sub_total?: string | null | undefined;
-  shipping_cost?: string | null | undefined;
-  coupon_discount?: string | null | undefined;
-  total_discount?: string | null | undefined;
-  total_tax?: string | null | undefined;
-  total_amount?: string | null | undefined;
-  refunded_amount?: string | null | undefined;
-  status?: string | null | undefined;
-  payment_status?: string | null | undefined;
-  fulfillment_status?: string | null | undefined;
-  payment_method?: string | null | undefined;
-  customer?: LinkedEcommerceCustomer$Outbound | undefined;
-  billing_address?: EcommerceAddress$Outbound | undefined;
-  shipping_address?: EcommerceAddress$Outbound | undefined;
-  tracking?: Array<TrackingItem$Outbound> | undefined;
-  line_items?: Array<EcommerceOrderLineItem$Outbound> | undefined;
-  note?: string | null | undefined;
-  refunds?: Array<EcommerceOrderRefund$Outbound> | undefined;
-  custom_mappings?: { [k: string]: any } | null | undefined;
-  created_at?: string | null | undefined;
-  updated_at?: string | null | undefined;
-};
-
-/** @internal */
-export const EcommerceOrder$outboundSchema: z.ZodType<
-  EcommerceOrder$Outbound,
-  z.ZodTypeDef,
-  EcommerceOrder
-> = z.object({
-  id: z.string(),
-  orderNumber: z.nullable(z.string()).optional(),
-  currency: z.nullable(Currency$outboundSchema).optional(),
-  discounts: z.array(EcommerceDiscount$outboundSchema).optional(),
-  subTotal: z.nullable(z.string()).optional(),
-  shippingCost: z.nullable(z.string()).optional(),
-  couponDiscount: z.nullable(z.string()).optional(),
-  totalDiscount: z.nullable(z.string()).optional(),
-  totalTax: z.nullable(z.string()).optional(),
-  totalAmount: z.nullable(z.string()).optional(),
-  refundedAmount: z.nullable(z.string()).optional(),
-  status: z.nullable(EcommerceOrderStatus$outboundSchema).optional(),
-  paymentStatus: z.nullable(EcommerceOrderPaymentStatus$outboundSchema)
-    .optional(),
-  fulfillmentStatus: z.nullable(FulfillmentStatus$outboundSchema).optional(),
-  paymentMethod: z.nullable(z.string()).optional(),
-  customer: LinkedEcommerceCustomer$outboundSchema.optional(),
-  billingAddress: EcommerceAddress$outboundSchema.optional(),
-  shippingAddress: EcommerceAddress$outboundSchema.optional(),
-  tracking: z.array(TrackingItem$outboundSchema).optional(),
-  lineItems: z.array(EcommerceOrderLineItem$outboundSchema).optional(),
-  note: z.nullable(z.string()).optional(),
-  refunds: z.array(EcommerceOrderRefund$outboundSchema).optional(),
-  customMappings: z.nullable(z.record(z.any())).optional(),
-  createdAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
-  updatedAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    orderNumber: "order_number",
-    subTotal: "sub_total",
-    shippingCost: "shipping_cost",
-    couponDiscount: "coupon_discount",
-    totalDiscount: "total_discount",
-    totalTax: "total_tax",
-    totalAmount: "total_amount",
-    refundedAmount: "refunded_amount",
-    paymentStatus: "payment_status",
-    fulfillmentStatus: "fulfillment_status",
-    paymentMethod: "payment_method",
-    billingAddress: "billing_address",
-    shippingAddress: "shipping_address",
-    lineItems: "line_items",
-    customMappings: "custom_mappings",
-    createdAt: "created_at",
-    updatedAt: "updated_at",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace EcommerceOrder$ {
-  /** @deprecated use `EcommerceOrder$inboundSchema` instead. */
-  export const inboundSchema = EcommerceOrder$inboundSchema;
-  /** @deprecated use `EcommerceOrder$outboundSchema` instead. */
-  export const outboundSchema = EcommerceOrder$outboundSchema;
-  /** @deprecated use `EcommerceOrder$Outbound` instead. */
-  export type Outbound = EcommerceOrder$Outbound;
-}
-
-export function ecommerceOrderToJSON(ecommerceOrder: EcommerceOrder): string {
-  return JSON.stringify(EcommerceOrder$outboundSchema.parse(ecommerceOrder));
-}
 
 export function ecommerceOrderFromJSON(
   jsonString: string,

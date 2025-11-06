@@ -6,11 +6,7 @@ import * as z from "zod/v3";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  FileType,
-  FileType$inboundSchema,
-  FileType$outboundSchema,
-} from "./filetype.js";
+import { FileType, FileType$inboundSchema } from "./filetype.js";
 
 export type SharedLinkTarget = {
   /**
@@ -37,45 +33,6 @@ export const SharedLinkTarget$inboundSchema: z.ZodType<
   name: z.nullable(z.string()).optional(),
   type: z.nullable(FileType$inboundSchema).optional(),
 });
-
-/** @internal */
-export type SharedLinkTarget$Outbound = {
-  id: string;
-  name?: string | null | undefined;
-  type?: string | null | undefined;
-};
-
-/** @internal */
-export const SharedLinkTarget$outboundSchema: z.ZodType<
-  SharedLinkTarget$Outbound,
-  z.ZodTypeDef,
-  SharedLinkTarget
-> = z.object({
-  id: z.string(),
-  name: z.nullable(z.string()).optional(),
-  type: z.nullable(FileType$outboundSchema).optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SharedLinkTarget$ {
-  /** @deprecated use `SharedLinkTarget$inboundSchema` instead. */
-  export const inboundSchema = SharedLinkTarget$inboundSchema;
-  /** @deprecated use `SharedLinkTarget$outboundSchema` instead. */
-  export const outboundSchema = SharedLinkTarget$outboundSchema;
-  /** @deprecated use `SharedLinkTarget$Outbound` instead. */
-  export type Outbound = SharedLinkTarget$Outbound;
-}
-
-export function sharedLinkTargetToJSON(
-  sharedLinkTarget: SharedLinkTarget,
-): string {
-  return JSON.stringify(
-    SharedLinkTarget$outboundSchema.parse(sharedLinkTarget),
-  );
-}
 
 export function sharedLinkTargetFromJSON(
   jsonString: string,

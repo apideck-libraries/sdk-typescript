@@ -4,12 +4,8 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   PassThroughBody,
-  PassThroughBody$inboundSchema,
   PassThroughBody$Outbound,
   PassThroughBody$outboundSchema,
 } from "./passthroughbody.js";
@@ -32,23 +28,6 @@ export type UpdateFolderRequest = {
    */
   passThrough?: Array<PassThroughBody> | undefined;
 };
-
-/** @internal */
-export const UpdateFolderRequest$inboundSchema: z.ZodType<
-  UpdateFolderRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  name: z.string().optional(),
-  description: z.string().optional(),
-  parent_folder_id: z.string().optional(),
-  pass_through: z.array(PassThroughBody$inboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "parent_folder_id": "parentFolderId",
-    "pass_through": "passThrough",
-  });
-});
 
 /** @internal */
 export type UpdateFolderRequest$Outbound = {
@@ -75,33 +54,10 @@ export const UpdateFolderRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace UpdateFolderRequest$ {
-  /** @deprecated use `UpdateFolderRequest$inboundSchema` instead. */
-  export const inboundSchema = UpdateFolderRequest$inboundSchema;
-  /** @deprecated use `UpdateFolderRequest$outboundSchema` instead. */
-  export const outboundSchema = UpdateFolderRequest$outboundSchema;
-  /** @deprecated use `UpdateFolderRequest$Outbound` instead. */
-  export type Outbound = UpdateFolderRequest$Outbound;
-}
-
 export function updateFolderRequestToJSON(
   updateFolderRequest: UpdateFolderRequest,
 ): string {
   return JSON.stringify(
     UpdateFolderRequest$outboundSchema.parse(updateFolderRequest),
-  );
-}
-
-export function updateFolderRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<UpdateFolderRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => UpdateFolderRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'UpdateFolderRequest' from JSON`,
   );
 }

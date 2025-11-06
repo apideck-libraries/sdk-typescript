@@ -62,83 +62,6 @@ export type HrisTimeOffRequestsDeleteResponse = {
 };
 
 /** @internal */
-export const HrisTimeOffRequestsDeleteGlobals$inboundSchema: z.ZodType<
-  HrisTimeOffRequestsDeleteGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/** @internal */
-export type HrisTimeOffRequestsDeleteGlobals$Outbound = {
-  consumerId?: string | undefined;
-  appId?: string | undefined;
-};
-
-/** @internal */
-export const HrisTimeOffRequestsDeleteGlobals$outboundSchema: z.ZodType<
-  HrisTimeOffRequestsDeleteGlobals$Outbound,
-  z.ZodTypeDef,
-  HrisTimeOffRequestsDeleteGlobals
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace HrisTimeOffRequestsDeleteGlobals$ {
-  /** @deprecated use `HrisTimeOffRequestsDeleteGlobals$inboundSchema` instead. */
-  export const inboundSchema = HrisTimeOffRequestsDeleteGlobals$inboundSchema;
-  /** @deprecated use `HrisTimeOffRequestsDeleteGlobals$outboundSchema` instead. */
-  export const outboundSchema = HrisTimeOffRequestsDeleteGlobals$outboundSchema;
-  /** @deprecated use `HrisTimeOffRequestsDeleteGlobals$Outbound` instead. */
-  export type Outbound = HrisTimeOffRequestsDeleteGlobals$Outbound;
-}
-
-export function hrisTimeOffRequestsDeleteGlobalsToJSON(
-  hrisTimeOffRequestsDeleteGlobals: HrisTimeOffRequestsDeleteGlobals,
-): string {
-  return JSON.stringify(
-    HrisTimeOffRequestsDeleteGlobals$outboundSchema.parse(
-      hrisTimeOffRequestsDeleteGlobals,
-    ),
-  );
-}
-
-export function hrisTimeOffRequestsDeleteGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<HrisTimeOffRequestsDeleteGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => HrisTimeOffRequestsDeleteGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'HrisTimeOffRequestsDeleteGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const HrisTimeOffRequestsDeleteRequest$inboundSchema: z.ZodType<
-  HrisTimeOffRequestsDeleteRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  id: z.string(),
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  raw: z.boolean().default(false),
-  employee_id: z.string(),
-}).transform((v) => {
-  return remap$(v, {
-    "employee_id": "employeeId",
-  });
-});
-
-/** @internal */
 export type HrisTimeOffRequestsDeleteRequest$Outbound = {
   id: string;
   consumerId?: string | undefined;
@@ -166,19 +89,6 @@ export const HrisTimeOffRequestsDeleteRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace HrisTimeOffRequestsDeleteRequest$ {
-  /** @deprecated use `HrisTimeOffRequestsDeleteRequest$inboundSchema` instead. */
-  export const inboundSchema = HrisTimeOffRequestsDeleteRequest$inboundSchema;
-  /** @deprecated use `HrisTimeOffRequestsDeleteRequest$outboundSchema` instead. */
-  export const outboundSchema = HrisTimeOffRequestsDeleteRequest$outboundSchema;
-  /** @deprecated use `HrisTimeOffRequestsDeleteRequest$Outbound` instead. */
-  export type Outbound = HrisTimeOffRequestsDeleteRequest$Outbound;
-}
-
 export function hrisTimeOffRequestsDeleteRequestToJSON(
   hrisTimeOffRequestsDeleteRequest: HrisTimeOffRequestsDeleteRequest,
 ): string {
@@ -186,16 +96,6 @@ export function hrisTimeOffRequestsDeleteRequestToJSON(
     HrisTimeOffRequestsDeleteRequest$outboundSchema.parse(
       hrisTimeOffRequestsDeleteRequest,
     ),
-  );
-}
-
-export function hrisTimeOffRequestsDeleteRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<HrisTimeOffRequestsDeleteRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => HrisTimeOffRequestsDeleteRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'HrisTimeOffRequestsDeleteRequest' from JSON`,
   );
 }
 
@@ -217,60 +117,6 @@ export const HrisTimeOffRequestsDeleteResponse$inboundSchema: z.ZodType<
     "UnexpectedErrorResponse": "unexpectedErrorResponse",
   });
 });
-
-/** @internal */
-export type HrisTimeOffRequestsDeleteResponse$Outbound = {
-  HttpMeta: components.HTTPMetadata$Outbound;
-  DeleteTimeOffRequestResponse?:
-    | components.DeleteTimeOffRequestResponse$Outbound
-    | undefined;
-  UnexpectedErrorResponse?:
-    | components.UnexpectedErrorResponse$Outbound
-    | undefined;
-};
-
-/** @internal */
-export const HrisTimeOffRequestsDeleteResponse$outboundSchema: z.ZodType<
-  HrisTimeOffRequestsDeleteResponse$Outbound,
-  z.ZodTypeDef,
-  HrisTimeOffRequestsDeleteResponse
-> = z.object({
-  httpMeta: components.HTTPMetadata$outboundSchema,
-  deleteTimeOffRequestResponse: components
-    .DeleteTimeOffRequestResponse$outboundSchema.optional(),
-  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    httpMeta: "HttpMeta",
-    deleteTimeOffRequestResponse: "DeleteTimeOffRequestResponse",
-    unexpectedErrorResponse: "UnexpectedErrorResponse",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace HrisTimeOffRequestsDeleteResponse$ {
-  /** @deprecated use `HrisTimeOffRequestsDeleteResponse$inboundSchema` instead. */
-  export const inboundSchema = HrisTimeOffRequestsDeleteResponse$inboundSchema;
-  /** @deprecated use `HrisTimeOffRequestsDeleteResponse$outboundSchema` instead. */
-  export const outboundSchema =
-    HrisTimeOffRequestsDeleteResponse$outboundSchema;
-  /** @deprecated use `HrisTimeOffRequestsDeleteResponse$Outbound` instead. */
-  export type Outbound = HrisTimeOffRequestsDeleteResponse$Outbound;
-}
-
-export function hrisTimeOffRequestsDeleteResponseToJSON(
-  hrisTimeOffRequestsDeleteResponse: HrisTimeOffRequestsDeleteResponse,
-): string {
-  return JSON.stringify(
-    HrisTimeOffRequestsDeleteResponse$outboundSchema.parse(
-      hrisTimeOffRequestsDeleteResponse,
-    ),
-  );
-}
 
 export function hrisTimeOffRequestsDeleteResponseFromJSON(
   jsonString: string,

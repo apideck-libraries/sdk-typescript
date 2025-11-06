@@ -38,8 +38,8 @@ type AccountingProjectsUpdateRequest struct {
 	// Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
 	ServiceID *string `header:"style=simple,explode=false,name=x-apideck-service-id"`
 	// Include raw response. Mostly used for debugging purposes
-	Raw     *bool                   `default:"false" queryParam:"style=form,explode=true,name=raw"`
-	Project components.ProjectInput `request:"mediaType=application/json"`
+	Raw  *bool                   `default:"false" queryParam:"style=form,explode=true,name=raw"`
+	Body components.ProjectInput `request:"mediaType=application/json"`
 }
 
 func (a AccountingProjectsUpdateRequest) MarshalJSON() ([]byte, error) {
@@ -47,7 +47,7 @@ func (a AccountingProjectsUpdateRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (a *AccountingProjectsUpdateRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"id", "Project"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"id", "body"}); err != nil {
 		return err
 	}
 	return nil
@@ -88,11 +88,11 @@ func (o *AccountingProjectsUpdateRequest) GetRaw() *bool {
 	return o.Raw
 }
 
-func (o *AccountingProjectsUpdateRequest) GetProject() components.ProjectInput {
+func (o *AccountingProjectsUpdateRequest) GetBody() components.ProjectInput {
 	if o == nil {
 		return components.ProjectInput{}
 	}
-	return o.Project
+	return o.Body
 }
 
 type AccountingProjectsUpdateResponse struct {

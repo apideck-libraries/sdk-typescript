@@ -34,6 +34,7 @@ let value: AccountingCreditNotesUpdateRequest = {
     type: "accounts_receivable_credit",
     account: {
       id: "123456",
+      name: "Bank account",
       nominalCode: "N091",
       code: "453",
       parentId: "123456",
@@ -79,6 +80,7 @@ let value: AccountingCreditNotesUpdateRequest = {
         ],
         taxRate: {
           id: "123456",
+          code: "N-T",
           rate: 10,
         },
         trackingCategories: [
@@ -91,6 +93,7 @@ let value: AccountingCreditNotesUpdateRequest = {
         ],
         ledgerAccount: {
           id: "123456",
+          name: "Bank account",
           nominalCode: "N091",
           code: "453",
           parentId: "123456",

@@ -7,12 +7,7 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  CustomMapping,
-  CustomMapping$inboundSchema,
-  CustomMapping$Outbound,
-  CustomMapping$outboundSchema,
-} from "./custommapping.js";
+import { CustomMapping, CustomMapping$inboundSchema } from "./custommapping.js";
 
 /**
  * Custom mapping
@@ -49,52 +44,6 @@ export const GetCustomMappingsResponse$inboundSchema: z.ZodType<
     "_raw": "raw",
   });
 });
-
-/** @internal */
-export type GetCustomMappingsResponse$Outbound = {
-  status_code: number;
-  status: string;
-  data: Array<CustomMapping$Outbound>;
-  _raw?: { [k: string]: any } | null | undefined;
-};
-
-/** @internal */
-export const GetCustomMappingsResponse$outboundSchema: z.ZodType<
-  GetCustomMappingsResponse$Outbound,
-  z.ZodTypeDef,
-  GetCustomMappingsResponse
-> = z.object({
-  statusCode: z.number().int(),
-  status: z.string(),
-  data: z.array(CustomMapping$outboundSchema),
-  raw: z.nullable(z.record(z.any())).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    statusCode: "status_code",
-    raw: "_raw",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetCustomMappingsResponse$ {
-  /** @deprecated use `GetCustomMappingsResponse$inboundSchema` instead. */
-  export const inboundSchema = GetCustomMappingsResponse$inboundSchema;
-  /** @deprecated use `GetCustomMappingsResponse$outboundSchema` instead. */
-  export const outboundSchema = GetCustomMappingsResponse$outboundSchema;
-  /** @deprecated use `GetCustomMappingsResponse$Outbound` instead. */
-  export type Outbound = GetCustomMappingsResponse$Outbound;
-}
-
-export function getCustomMappingsResponseToJSON(
-  getCustomMappingsResponse: GetCustomMappingsResponse,
-): string {
-  return JSON.stringify(
-    GetCustomMappingsResponse$outboundSchema.parse(getCustomMappingsResponse),
-  );
-}
 
 export function getCustomMappingsResponseFromJSON(
   jsonString: string,

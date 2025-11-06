@@ -62,58 +62,6 @@ export const EcommerceAddress$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type EcommerceAddress$Outbound = {
-  line1?: string | null | undefined;
-  line2?: string | null | undefined;
-  company_name?: string | null | undefined;
-  city?: string | null | undefined;
-  state?: string | null | undefined;
-  postal_code?: string | null | undefined;
-  country?: string | null | undefined;
-};
-
-/** @internal */
-export const EcommerceAddress$outboundSchema: z.ZodType<
-  EcommerceAddress$Outbound,
-  z.ZodTypeDef,
-  EcommerceAddress
-> = z.object({
-  line1: z.nullable(z.string()).optional(),
-  line2: z.nullable(z.string()).optional(),
-  companyName: z.nullable(z.string()).optional(),
-  city: z.nullable(z.string()).optional(),
-  state: z.nullable(z.string()).optional(),
-  postalCode: z.nullable(z.string()).optional(),
-  country: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    companyName: "company_name",
-    postalCode: "postal_code",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace EcommerceAddress$ {
-  /** @deprecated use `EcommerceAddress$inboundSchema` instead. */
-  export const inboundSchema = EcommerceAddress$inboundSchema;
-  /** @deprecated use `EcommerceAddress$outboundSchema` instead. */
-  export const outboundSchema = EcommerceAddress$outboundSchema;
-  /** @deprecated use `EcommerceAddress$Outbound` instead. */
-  export type Outbound = EcommerceAddress$Outbound;
-}
-
-export function ecommerceAddressToJSON(
-  ecommerceAddress: EcommerceAddress,
-): string {
-  return JSON.stringify(
-    EcommerceAddress$outboundSchema.parse(ecommerceAddress),
-  );
-}
-
 export function ecommerceAddressFromJSON(
   jsonString: string,
 ): SafeParseResult<EcommerceAddress, SDKValidationError> {

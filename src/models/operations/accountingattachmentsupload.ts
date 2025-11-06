@@ -69,95 +69,6 @@ export type AccountingAttachmentsUploadResponse = {
 };
 
 /** @internal */
-export const AccountingAttachmentsUploadGlobals$inboundSchema: z.ZodType<
-  AccountingAttachmentsUploadGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/** @internal */
-export type AccountingAttachmentsUploadGlobals$Outbound = {
-  consumerId?: string | undefined;
-  appId?: string | undefined;
-};
-
-/** @internal */
-export const AccountingAttachmentsUploadGlobals$outboundSchema: z.ZodType<
-  AccountingAttachmentsUploadGlobals$Outbound,
-  z.ZodTypeDef,
-  AccountingAttachmentsUploadGlobals
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AccountingAttachmentsUploadGlobals$ {
-  /** @deprecated use `AccountingAttachmentsUploadGlobals$inboundSchema` instead. */
-  export const inboundSchema = AccountingAttachmentsUploadGlobals$inboundSchema;
-  /** @deprecated use `AccountingAttachmentsUploadGlobals$outboundSchema` instead. */
-  export const outboundSchema =
-    AccountingAttachmentsUploadGlobals$outboundSchema;
-  /** @deprecated use `AccountingAttachmentsUploadGlobals$Outbound` instead. */
-  export type Outbound = AccountingAttachmentsUploadGlobals$Outbound;
-}
-
-export function accountingAttachmentsUploadGlobalsToJSON(
-  accountingAttachmentsUploadGlobals: AccountingAttachmentsUploadGlobals,
-): string {
-  return JSON.stringify(
-    AccountingAttachmentsUploadGlobals$outboundSchema.parse(
-      accountingAttachmentsUploadGlobals,
-    ),
-  );
-}
-
-export function accountingAttachmentsUploadGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<AccountingAttachmentsUploadGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      AccountingAttachmentsUploadGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'AccountingAttachmentsUploadGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const AccountingAttachmentsUploadRequest$inboundSchema: z.ZodType<
-  AccountingAttachmentsUploadRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  reference_type: components.AttachmentReferenceType$inboundSchema,
-  reference_id: z.string(),
-  raw: z.boolean().default(false),
-  "x-apideck-metadata": z.string().optional(),
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  RequestBody: z.union([
-    z.instanceof(ReadableStream<Uint8Array>),
-    z.instanceof(Blob),
-    z.instanceof(ArrayBuffer),
-    z.instanceof(Uint8Array),
-  ]),
-}).transform((v) => {
-  return remap$(v, {
-    "reference_type": "referenceType",
-    "reference_id": "referenceId",
-    "x-apideck-metadata": "xApideckMetadata",
-    "RequestBody": "requestBody",
-  });
-});
-
-/** @internal */
 export type AccountingAttachmentsUploadRequest$Outbound = {
   reference_type: string;
   reference_id: string;
@@ -197,20 +108,6 @@ export const AccountingAttachmentsUploadRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AccountingAttachmentsUploadRequest$ {
-  /** @deprecated use `AccountingAttachmentsUploadRequest$inboundSchema` instead. */
-  export const inboundSchema = AccountingAttachmentsUploadRequest$inboundSchema;
-  /** @deprecated use `AccountingAttachmentsUploadRequest$outboundSchema` instead. */
-  export const outboundSchema =
-    AccountingAttachmentsUploadRequest$outboundSchema;
-  /** @deprecated use `AccountingAttachmentsUploadRequest$Outbound` instead. */
-  export type Outbound = AccountingAttachmentsUploadRequest$Outbound;
-}
-
 export function accountingAttachmentsUploadRequestToJSON(
   accountingAttachmentsUploadRequest: AccountingAttachmentsUploadRequest,
 ): string {
@@ -218,17 +115,6 @@ export function accountingAttachmentsUploadRequestToJSON(
     AccountingAttachmentsUploadRequest$outboundSchema.parse(
       accountingAttachmentsUploadRequest,
     ),
-  );
-}
-
-export function accountingAttachmentsUploadRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<AccountingAttachmentsUploadRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      AccountingAttachmentsUploadRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'AccountingAttachmentsUploadRequest' from JSON`,
   );
 }
 
@@ -250,61 +136,6 @@ export const AccountingAttachmentsUploadResponse$inboundSchema: z.ZodType<
     "UnexpectedErrorResponse": "unexpectedErrorResponse",
   });
 });
-
-/** @internal */
-export type AccountingAttachmentsUploadResponse$Outbound = {
-  HttpMeta: components.HTTPMetadata$Outbound;
-  CreateAttachmentResponse?:
-    | components.CreateAttachmentResponse$Outbound
-    | undefined;
-  UnexpectedErrorResponse?:
-    | components.UnexpectedErrorResponse$Outbound
-    | undefined;
-};
-
-/** @internal */
-export const AccountingAttachmentsUploadResponse$outboundSchema: z.ZodType<
-  AccountingAttachmentsUploadResponse$Outbound,
-  z.ZodTypeDef,
-  AccountingAttachmentsUploadResponse
-> = z.object({
-  httpMeta: components.HTTPMetadata$outboundSchema,
-  createAttachmentResponse: components.CreateAttachmentResponse$outboundSchema
-    .optional(),
-  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    httpMeta: "HttpMeta",
-    createAttachmentResponse: "CreateAttachmentResponse",
-    unexpectedErrorResponse: "UnexpectedErrorResponse",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AccountingAttachmentsUploadResponse$ {
-  /** @deprecated use `AccountingAttachmentsUploadResponse$inboundSchema` instead. */
-  export const inboundSchema =
-    AccountingAttachmentsUploadResponse$inboundSchema;
-  /** @deprecated use `AccountingAttachmentsUploadResponse$outboundSchema` instead. */
-  export const outboundSchema =
-    AccountingAttachmentsUploadResponse$outboundSchema;
-  /** @deprecated use `AccountingAttachmentsUploadResponse$Outbound` instead. */
-  export type Outbound = AccountingAttachmentsUploadResponse$Outbound;
-}
-
-export function accountingAttachmentsUploadResponseToJSON(
-  accountingAttachmentsUploadResponse: AccountingAttachmentsUploadResponse,
-): string {
-  return JSON.stringify(
-    AccountingAttachmentsUploadResponse$outboundSchema.parse(
-      accountingAttachmentsUploadResponse,
-    ),
-  );
-}
 
 export function accountingAttachmentsUploadResponseFromJSON(
   jsonString: string,

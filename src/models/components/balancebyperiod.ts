@@ -11,8 +11,6 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   BalanceByTransaction,
   BalanceByTransaction$inboundSchema,
-  BalanceByTransaction$Outbound,
-  BalanceByTransaction$outboundSchema,
 } from "./balancebytransaction.js";
 
 export type BalanceByPeriod = {
@@ -50,55 +48,6 @@ export const BalanceByPeriod$inboundSchema: z.ZodType<
     "balances_by_transaction": "balancesByTransaction",
   });
 });
-
-/** @internal */
-export type BalanceByPeriod$Outbound = {
-  start_date?: string | null | undefined;
-  end_date?: string | null | undefined;
-  total_amount?: number | undefined;
-  balances_by_transaction?: Array<BalanceByTransaction$Outbound> | undefined;
-};
-
-/** @internal */
-export const BalanceByPeriod$outboundSchema: z.ZodType<
-  BalanceByPeriod$Outbound,
-  z.ZodTypeDef,
-  BalanceByPeriod
-> = z.object({
-  startDate: z.nullable(z.instanceof(RFCDate).transform(v => v.toString()))
-    .optional(),
-  endDate: z.nullable(z.instanceof(RFCDate).transform(v => v.toString()))
-    .optional(),
-  totalAmount: z.number().optional(),
-  balancesByTransaction: z.array(BalanceByTransaction$outboundSchema)
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    startDate: "start_date",
-    endDate: "end_date",
-    totalAmount: "total_amount",
-    balancesByTransaction: "balances_by_transaction",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace BalanceByPeriod$ {
-  /** @deprecated use `BalanceByPeriod$inboundSchema` instead. */
-  export const inboundSchema = BalanceByPeriod$inboundSchema;
-  /** @deprecated use `BalanceByPeriod$outboundSchema` instead. */
-  export const outboundSchema = BalanceByPeriod$outboundSchema;
-  /** @deprecated use `BalanceByPeriod$Outbound` instead. */
-  export type Outbound = BalanceByPeriod$Outbound;
-}
-
-export function balanceByPeriodToJSON(
-  balanceByPeriod: BalanceByPeriod,
-): string {
-  return JSON.stringify(BalanceByPeriod$outboundSchema.parse(balanceByPeriod));
-}
 
 export function balanceByPeriodFromJSON(
   jsonString: string,

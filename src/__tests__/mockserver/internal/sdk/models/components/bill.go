@@ -129,9 +129,9 @@ type Bill struct {
 	Balance *float64 `json:"balance,omitempty"`
 	// Amount of deposit made to this bill.
 	Deposit *float64 `json:"deposit,omitempty"`
-	// Sub-total amount, normally before tax.
+	// Subtotal amount, normally before tax.
 	SubTotal *float64 `json:"sub_total,omitempty"`
-	// Total tax amount applied to this bill.
+	// Total tax amount applied to this transaction.
 	TotalTax *float64 `json:"total_tax,omitempty"`
 	// Total amount of bill, including tax.
 	Total *float64 `json:"total,omitempty"`
@@ -574,9 +574,9 @@ type BillInput struct {
 	Balance *float64 `json:"balance,omitempty"`
 	// Amount of deposit made to this bill.
 	Deposit *float64 `json:"deposit,omitempty"`
-	// Sub-total amount, normally before tax.
+	// Subtotal amount, normally before tax.
 	SubTotal *float64 `json:"sub_total,omitempty"`
-	// Total tax amount applied to this bill.
+	// Total tax amount applied to this transaction.
 	TotalTax *float64 `json:"total_tax,omitempty"`
 	// Total amount of bill, including tax.
 	Total *float64 `json:"total,omitempty"`
@@ -584,8 +584,8 @@ type BillInput struct {
 	TaxCode *string `json:"tax_code,omitempty"`
 	Notes   *string `json:"notes,omitempty"`
 	// Invoice status
-	Status        *BillStatus               `json:"status,omitempty"`
-	LedgerAccount *LinkedLedgerAccountInput `json:"ledger_account,omitempty"`
+	Status        *BillStatus          `json:"status,omitempty"`
+	LedgerAccount *LinkedLedgerAccount `json:"ledger_account,omitempty"`
 	// Payment method used for the transaction, such as cash, credit card, bank transfer, or check
 	PaymentMethod *string `json:"payment_method,omitempty"`
 	// The channel through which the transaction is processed.
@@ -793,7 +793,7 @@ func (o *BillInput) GetStatus() *BillStatus {
 	return o.Status
 }
 
-func (o *BillInput) GetLedgerAccount() *LinkedLedgerAccountInput {
+func (o *BillInput) GetLedgerAccount() *LinkedLedgerAccount {
 	if o == nil {
 		return nil
 	}

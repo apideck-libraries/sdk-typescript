@@ -20,8 +20,8 @@ func (o *WebhookWebhooksAddGlobals) GetAppID() *string {
 
 type WebhookWebhooksAddRequest struct {
 	// The ID of your Unify application
-	AppID                *string                         `header:"style=simple,explode=false,name=x-apideck-app-id"`
-	CreateWebhookRequest components.CreateWebhookRequest `request:"mediaType=application/json"`
+	AppID *string                         `header:"style=simple,explode=false,name=x-apideck-app-id"`
+	Body  components.CreateWebhookRequest `request:"mediaType=application/json"`
 }
 
 func (o *WebhookWebhooksAddRequest) GetAppID() *string {
@@ -31,11 +31,11 @@ func (o *WebhookWebhooksAddRequest) GetAppID() *string {
 	return o.AppID
 }
 
-func (o *WebhookWebhooksAddRequest) GetCreateWebhookRequest() components.CreateWebhookRequest {
+func (o *WebhookWebhooksAddRequest) GetBody() components.CreateWebhookRequest {
 	if o == nil {
 		return components.CreateWebhookRequest{}
 	}
-	return o.CreateWebhookRequest
+	return o.Body
 }
 
 type WebhookWebhooksAddResponse struct {

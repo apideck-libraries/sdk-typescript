@@ -336,7 +336,7 @@ type AccountingBankAccountInput struct {
 	AccountNumber *string `json:"account_number,omitempty"`
 	// The type of bank account
 	AccountType   *AccountingBankAccountAccountType `json:"account_type,omitempty"`
-	LedgerAccount *LinkedLedgerAccountInput         `json:"ledger_account,omitempty"`
+	LedgerAccount *LinkedLedgerAccount              `json:"ledger_account,omitempty"`
 	// The name of the bank or financial institution
 	BankName *string `json:"bank_name,omitempty"`
 	// Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
@@ -396,7 +396,7 @@ func (o *AccountingBankAccountInput) GetAccountType() *AccountingBankAccountAcco
 	return o.AccountType
 }
 
-func (o *AccountingBankAccountInput) GetLedgerAccount() *LinkedLedgerAccountInput {
+func (o *AccountingBankAccountInput) GetLedgerAccount() *LinkedLedgerAccount {
 	if o == nil {
 		return nil
 	}

@@ -217,7 +217,6 @@ export const Components$inboundSchema: z.ZodType<
   rate: z.nullable(z.number()).optional(),
   compound: z.nullable(z.boolean()).optional(),
 });
-
 /** @internal */
 export type Components$Outbound = {
   id?: string | null | undefined;
@@ -238,23 +237,9 @@ export const Components$outboundSchema: z.ZodType<
   compound: z.nullable(z.boolean()).optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Components$ {
-  /** @deprecated use `Components$inboundSchema` instead. */
-  export const inboundSchema = Components$inboundSchema;
-  /** @deprecated use `Components$outboundSchema` instead. */
-  export const outboundSchema = Components$outboundSchema;
-  /** @deprecated use `Components$Outbound` instead. */
-  export type Outbound = Components$Outbound;
-}
-
 export function componentsToJSON(components: Components): string {
   return JSON.stringify(Components$outboundSchema.parse(components));
 }
-
 export function componentsFromJSON(
   jsonString: string,
 ): SafeParseResult<Components, SDKValidationError> {
@@ -269,22 +254,10 @@ export function componentsFromJSON(
 export const TaxRateStatus$inboundSchema: z.ZodNativeEnum<
   typeof TaxRateStatus
 > = z.nativeEnum(TaxRateStatus);
-
 /** @internal */
 export const TaxRateStatus$outboundSchema: z.ZodNativeEnum<
   typeof TaxRateStatus
 > = TaxRateStatus$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace TaxRateStatus$ {
-  /** @deprecated use `TaxRateStatus$inboundSchema` instead. */
-  export const inboundSchema = TaxRateStatus$inboundSchema;
-  /** @deprecated use `TaxRateStatus$outboundSchema` instead. */
-  export const outboundSchema = TaxRateStatus$outboundSchema;
-}
 
 /** @internal */
 export const Subsidiaries$inboundSchema: z.ZodType<
@@ -294,7 +267,6 @@ export const Subsidiaries$inboundSchema: z.ZodType<
 > = z.object({
   id: z.string().optional(),
 });
-
 /** @internal */
 export type Subsidiaries$Outbound = {
   id?: string | undefined;
@@ -309,23 +281,9 @@ export const Subsidiaries$outboundSchema: z.ZodType<
   id: z.string().optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Subsidiaries$ {
-  /** @deprecated use `Subsidiaries$inboundSchema` instead. */
-  export const inboundSchema = Subsidiaries$inboundSchema;
-  /** @deprecated use `Subsidiaries$outboundSchema` instead. */
-  export const outboundSchema = Subsidiaries$outboundSchema;
-  /** @deprecated use `Subsidiaries$Outbound` instead. */
-  export type Outbound = Subsidiaries$Outbound;
-}
-
 export function subsidiariesToJSON(subsidiaries: Subsidiaries): string {
   return JSON.stringify(Subsidiaries$outboundSchema.parse(subsidiaries));
 }
-
 export function subsidiariesFromJSON(
   jsonString: string,
 ): SafeParseResult<Subsidiaries, SDKValidationError> {
@@ -387,100 +345,6 @@ export const TaxRate$inboundSchema: z.ZodType<TaxRate, z.ZodTypeDef, unknown> =
     });
   });
 
-/** @internal */
-export type TaxRate$Outbound = {
-  id?: string | null | undefined;
-  display_id?: string | null | undefined;
-  name?: string | undefined;
-  code?: string | null | undefined;
-  description?: string | null | undefined;
-  effective_tax_rate?: number | null | undefined;
-  total_tax_rate?: number | null | undefined;
-  tax_payable_account_id?: string | null | undefined;
-  tax_remitted_account_id?: string | null | undefined;
-  components?: Array<Components$Outbound> | null | undefined;
-  type?: string | null | undefined;
-  report_tax_type?: string | null | undefined;
-  original_tax_rate_id?: string | null | undefined;
-  status?: string | null | undefined;
-  custom_mappings?: { [k: string]: any } | null | undefined;
-  row_version?: string | null | undefined;
-  updated_by?: string | null | undefined;
-  created_by?: string | null | undefined;
-  updated_at?: string | null | undefined;
-  created_at?: string | null | undefined;
-  pass_through?: Array<PassThroughBody$Outbound> | undefined;
-  subsidiaries?: Array<Subsidiaries$Outbound> | undefined;
-  custom_fields?: Array<CustomField$Outbound> | undefined;
-};
-
-/** @internal */
-export const TaxRate$outboundSchema: z.ZodType<
-  TaxRate$Outbound,
-  z.ZodTypeDef,
-  TaxRate
-> = z.object({
-  id: z.nullable(z.string()).optional(),
-  displayId: z.nullable(z.string()).optional(),
-  name: z.string().optional(),
-  code: z.nullable(z.string()).optional(),
-  description: z.nullable(z.string()).optional(),
-  effectiveTaxRate: z.nullable(z.number()).optional(),
-  totalTaxRate: z.nullable(z.number()).optional(),
-  taxPayableAccountId: z.nullable(z.string()).optional(),
-  taxRemittedAccountId: z.nullable(z.string()).optional(),
-  components: z.nullable(z.array(z.lazy(() => Components$outboundSchema)))
-    .optional(),
-  type: z.nullable(z.string()).optional(),
-  reportTaxType: z.nullable(z.string()).optional(),
-  originalTaxRateId: z.nullable(z.string()).optional(),
-  status: z.nullable(TaxRateStatus$outboundSchema).optional(),
-  customMappings: z.nullable(z.record(z.any())).optional(),
-  rowVersion: z.nullable(z.string()).optional(),
-  updatedBy: z.nullable(z.string()).optional(),
-  createdBy: z.nullable(z.string()).optional(),
-  updatedAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
-  createdAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
-  passThrough: z.array(PassThroughBody$outboundSchema).optional(),
-  subsidiaries: z.array(z.lazy(() => Subsidiaries$outboundSchema)).optional(),
-  customFields: z.array(CustomField$outboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    displayId: "display_id",
-    effectiveTaxRate: "effective_tax_rate",
-    totalTaxRate: "total_tax_rate",
-    taxPayableAccountId: "tax_payable_account_id",
-    taxRemittedAccountId: "tax_remitted_account_id",
-    reportTaxType: "report_tax_type",
-    originalTaxRateId: "original_tax_rate_id",
-    customMappings: "custom_mappings",
-    rowVersion: "row_version",
-    updatedBy: "updated_by",
-    createdBy: "created_by",
-    updatedAt: "updated_at",
-    createdAt: "created_at",
-    passThrough: "pass_through",
-    customFields: "custom_fields",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace TaxRate$ {
-  /** @deprecated use `TaxRate$inboundSchema` instead. */
-  export const inboundSchema = TaxRate$inboundSchema;
-  /** @deprecated use `TaxRate$outboundSchema` instead. */
-  export const outboundSchema = TaxRate$outboundSchema;
-  /** @deprecated use `TaxRate$Outbound` instead. */
-  export type Outbound = TaxRate$Outbound;
-}
-
-export function taxRateToJSON(taxRate: TaxRate): string {
-  return JSON.stringify(TaxRate$outboundSchema.parse(taxRate));
-}
-
 export function taxRateFromJSON(
   jsonString: string,
 ): SafeParseResult<TaxRate, SDKValidationError> {
@@ -490,46 +354,6 @@ export function taxRateFromJSON(
     `Failed to parse 'TaxRate' from JSON`,
   );
 }
-
-/** @internal */
-export const TaxRateInput$inboundSchema: z.ZodType<
-  TaxRateInput,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  id: z.nullable(z.string()).optional(),
-  display_id: z.nullable(z.string()).optional(),
-  name: z.string().optional(),
-  code: z.nullable(z.string()).optional(),
-  description: z.nullable(z.string()).optional(),
-  effective_tax_rate: z.nullable(z.number()).optional(),
-  total_tax_rate: z.nullable(z.number()).optional(),
-  tax_payable_account_id: z.nullable(z.string()).optional(),
-  tax_remitted_account_id: z.nullable(z.string()).optional(),
-  components: z.nullable(z.array(z.lazy(() => Components$inboundSchema)))
-    .optional(),
-  type: z.nullable(z.string()).optional(),
-  report_tax_type: z.nullable(z.string()).optional(),
-  original_tax_rate_id: z.nullable(z.string()).optional(),
-  status: z.nullable(TaxRateStatus$inboundSchema).optional(),
-  row_version: z.nullable(z.string()).optional(),
-  pass_through: z.array(PassThroughBody$inboundSchema).optional(),
-  subsidiaries: z.array(z.lazy(() => Subsidiaries$inboundSchema)).optional(),
-  custom_fields: z.array(CustomField$inboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "display_id": "displayId",
-    "effective_tax_rate": "effectiveTaxRate",
-    "total_tax_rate": "totalTaxRate",
-    "tax_payable_account_id": "taxPayableAccountId",
-    "tax_remitted_account_id": "taxRemittedAccountId",
-    "report_tax_type": "reportTaxType",
-    "original_tax_rate_id": "originalTaxRateId",
-    "row_version": "rowVersion",
-    "pass_through": "passThrough",
-    "custom_fields": "customFields",
-  });
-});
 
 /** @internal */
 export type TaxRateInput$Outbound = {
@@ -593,29 +417,6 @@ export const TaxRateInput$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace TaxRateInput$ {
-  /** @deprecated use `TaxRateInput$inboundSchema` instead. */
-  export const inboundSchema = TaxRateInput$inboundSchema;
-  /** @deprecated use `TaxRateInput$outboundSchema` instead. */
-  export const outboundSchema = TaxRateInput$outboundSchema;
-  /** @deprecated use `TaxRateInput$Outbound` instead. */
-  export type Outbound = TaxRateInput$Outbound;
-}
-
 export function taxRateInputToJSON(taxRateInput: TaxRateInput): string {
   return JSON.stringify(TaxRateInput$outboundSchema.parse(taxRateInput));
-}
-
-export function taxRateInputFromJSON(
-  jsonString: string,
-): SafeParseResult<TaxRateInput, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => TaxRateInput$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'TaxRateInput' from JSON`,
-  );
 }

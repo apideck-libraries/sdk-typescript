@@ -54,7 +54,6 @@ export const LinkedLedgerAccount$inboundSchema: z.ZodType<
     "display_id": "displayId",
   });
 });
-
 /** @internal */
 export type LinkedLedgerAccount$Outbound = {
   id?: string | undefined;
@@ -85,19 +84,6 @@ export const LinkedLedgerAccount$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace LinkedLedgerAccount$ {
-  /** @deprecated use `LinkedLedgerAccount$inboundSchema` instead. */
-  export const inboundSchema = LinkedLedgerAccount$inboundSchema;
-  /** @deprecated use `LinkedLedgerAccount$outboundSchema` instead. */
-  export const outboundSchema = LinkedLedgerAccount$outboundSchema;
-  /** @deprecated use `LinkedLedgerAccount$Outbound` instead. */
-  export type Outbound = LinkedLedgerAccount$Outbound;
-}
-
 export function linkedLedgerAccountToJSON(
   linkedLedgerAccount: LinkedLedgerAccount,
 ): string {
@@ -105,7 +91,6 @@ export function linkedLedgerAccountToJSON(
     LinkedLedgerAccount$outboundSchema.parse(linkedLedgerAccount),
   );
 }
-
 export function linkedLedgerAccountFromJSON(
   jsonString: string,
 ): SafeParseResult<LinkedLedgerAccount, SDKValidationError> {

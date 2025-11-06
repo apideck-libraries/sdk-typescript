@@ -3,9 +3,6 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type AssigneeInput = {
   /**
@@ -13,15 +10,6 @@ export type AssigneeInput = {
    */
   id: string;
 };
-
-/** @internal */
-export const AssigneeInput$inboundSchema: z.ZodType<
-  AssigneeInput,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  id: z.string(),
-});
 
 /** @internal */
 export type AssigneeInput$Outbound = {
@@ -37,29 +25,6 @@ export const AssigneeInput$outboundSchema: z.ZodType<
   id: z.string(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AssigneeInput$ {
-  /** @deprecated use `AssigneeInput$inboundSchema` instead. */
-  export const inboundSchema = AssigneeInput$inboundSchema;
-  /** @deprecated use `AssigneeInput$outboundSchema` instead. */
-  export const outboundSchema = AssigneeInput$outboundSchema;
-  /** @deprecated use `AssigneeInput$Outbound` instead. */
-  export type Outbound = AssigneeInput$Outbound;
-}
-
 export function assigneeInputToJSON(assigneeInput: AssigneeInput): string {
   return JSON.stringify(AssigneeInput$outboundSchema.parse(assigneeInput));
-}
-
-export function assigneeInputFromJSON(
-  jsonString: string,
-): SafeParseResult<AssigneeInput, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => AssigneeInput$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'AssigneeInput' from JSON`,
-  );
 }

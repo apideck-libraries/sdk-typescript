@@ -544,11 +544,11 @@ type PurchaseOrderInput struct {
 	// Total amount of invoice, including tax.
 	Total *float64 `json:"total,omitempty"`
 	// Amounts are including tax
-	TaxInclusive    *bool                     `json:"tax_inclusive,omitempty"`
-	LineItems       []InvoiceLineItemInput    `json:"line_items,omitempty"`
-	BillingAddress  *Address                  `json:"billing_address,omitempty"`
-	ShippingAddress *Address                  `json:"shipping_address,omitempty"`
-	LedgerAccount   *LinkedLedgerAccountInput `json:"ledger_account,omitempty"`
+	TaxInclusive    *bool                  `json:"tax_inclusive,omitempty"`
+	LineItems       []InvoiceLineItemInput `json:"line_items,omitempty"`
+	BillingAddress  *Address               `json:"billing_address,omitempty"`
+	ShippingAddress *Address               `json:"shipping_address,omitempty"`
+	LedgerAccount   *LinkedLedgerAccount   `json:"ledger_account,omitempty"`
 	// Optional purchase order template
 	TemplateID *string `json:"template_id,omitempty"`
 	// Discount percentage applied to this transaction.
@@ -738,7 +738,7 @@ func (o *PurchaseOrderInput) GetShippingAddress() *Address {
 	return o.ShippingAddress
 }
 
-func (o *PurchaseOrderInput) GetLedgerAccount() *LinkedLedgerAccountInput {
+func (o *PurchaseOrderInput) GetLedgerAccount() *LinkedLedgerAccount {
 	if o == nil {
 		return nil
 	}

@@ -48,82 +48,6 @@ export type VaultConnectionsDeleteResponse = {
 };
 
 /** @internal */
-export const VaultConnectionsDeleteGlobals$inboundSchema: z.ZodType<
-  VaultConnectionsDeleteGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/** @internal */
-export type VaultConnectionsDeleteGlobals$Outbound = {
-  consumerId?: string | undefined;
-  appId?: string | undefined;
-};
-
-/** @internal */
-export const VaultConnectionsDeleteGlobals$outboundSchema: z.ZodType<
-  VaultConnectionsDeleteGlobals$Outbound,
-  z.ZodTypeDef,
-  VaultConnectionsDeleteGlobals
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace VaultConnectionsDeleteGlobals$ {
-  /** @deprecated use `VaultConnectionsDeleteGlobals$inboundSchema` instead. */
-  export const inboundSchema = VaultConnectionsDeleteGlobals$inboundSchema;
-  /** @deprecated use `VaultConnectionsDeleteGlobals$outboundSchema` instead. */
-  export const outboundSchema = VaultConnectionsDeleteGlobals$outboundSchema;
-  /** @deprecated use `VaultConnectionsDeleteGlobals$Outbound` instead. */
-  export type Outbound = VaultConnectionsDeleteGlobals$Outbound;
-}
-
-export function vaultConnectionsDeleteGlobalsToJSON(
-  vaultConnectionsDeleteGlobals: VaultConnectionsDeleteGlobals,
-): string {
-  return JSON.stringify(
-    VaultConnectionsDeleteGlobals$outboundSchema.parse(
-      vaultConnectionsDeleteGlobals,
-    ),
-  );
-}
-
-export function vaultConnectionsDeleteGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<VaultConnectionsDeleteGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => VaultConnectionsDeleteGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'VaultConnectionsDeleteGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const VaultConnectionsDeleteRequest$inboundSchema: z.ZodType<
-  VaultConnectionsDeleteRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  service_id: z.string(),
-  unified_api: z.string(),
-}).transform((v) => {
-  return remap$(v, {
-    "service_id": "serviceId",
-    "unified_api": "unifiedApi",
-  });
-});
-
-/** @internal */
 export type VaultConnectionsDeleteRequest$Outbound = {
   consumerId?: string | undefined;
   appId?: string | undefined;
@@ -148,19 +72,6 @@ export const VaultConnectionsDeleteRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace VaultConnectionsDeleteRequest$ {
-  /** @deprecated use `VaultConnectionsDeleteRequest$inboundSchema` instead. */
-  export const inboundSchema = VaultConnectionsDeleteRequest$inboundSchema;
-  /** @deprecated use `VaultConnectionsDeleteRequest$outboundSchema` instead. */
-  export const outboundSchema = VaultConnectionsDeleteRequest$outboundSchema;
-  /** @deprecated use `VaultConnectionsDeleteRequest$Outbound` instead. */
-  export type Outbound = VaultConnectionsDeleteRequest$Outbound;
-}
-
 export function vaultConnectionsDeleteRequestToJSON(
   vaultConnectionsDeleteRequest: VaultConnectionsDeleteRequest,
 ): string {
@@ -168,16 +79,6 @@ export function vaultConnectionsDeleteRequestToJSON(
     VaultConnectionsDeleteRequest$outboundSchema.parse(
       vaultConnectionsDeleteRequest,
     ),
-  );
-}
-
-export function vaultConnectionsDeleteRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<VaultConnectionsDeleteRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => VaultConnectionsDeleteRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'VaultConnectionsDeleteRequest' from JSON`,
   );
 }
 
@@ -196,53 +97,6 @@ export const VaultConnectionsDeleteResponse$inboundSchema: z.ZodType<
     "UnexpectedErrorResponse": "unexpectedErrorResponse",
   });
 });
-
-/** @internal */
-export type VaultConnectionsDeleteResponse$Outbound = {
-  HttpMeta: components.HTTPMetadata$Outbound;
-  UnexpectedErrorResponse?:
-    | components.UnexpectedErrorResponse$Outbound
-    | undefined;
-};
-
-/** @internal */
-export const VaultConnectionsDeleteResponse$outboundSchema: z.ZodType<
-  VaultConnectionsDeleteResponse$Outbound,
-  z.ZodTypeDef,
-  VaultConnectionsDeleteResponse
-> = z.object({
-  httpMeta: components.HTTPMetadata$outboundSchema,
-  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    httpMeta: "HttpMeta",
-    unexpectedErrorResponse: "UnexpectedErrorResponse",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace VaultConnectionsDeleteResponse$ {
-  /** @deprecated use `VaultConnectionsDeleteResponse$inboundSchema` instead. */
-  export const inboundSchema = VaultConnectionsDeleteResponse$inboundSchema;
-  /** @deprecated use `VaultConnectionsDeleteResponse$outboundSchema` instead. */
-  export const outboundSchema = VaultConnectionsDeleteResponse$outboundSchema;
-  /** @deprecated use `VaultConnectionsDeleteResponse$Outbound` instead. */
-  export type Outbound = VaultConnectionsDeleteResponse$Outbound;
-}
-
-export function vaultConnectionsDeleteResponseToJSON(
-  vaultConnectionsDeleteResponse: VaultConnectionsDeleteResponse,
-): string {
-  return JSON.stringify(
-    VaultConnectionsDeleteResponse$outboundSchema.parse(
-      vaultConnectionsDeleteResponse,
-    ),
-  );
-}
 
 export function vaultConnectionsDeleteResponseFromJSON(
   jsonString: string,

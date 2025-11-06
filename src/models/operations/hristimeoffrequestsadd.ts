@@ -55,82 +55,6 @@ export type HrisTimeOffRequestsAddResponse = {
 };
 
 /** @internal */
-export const HrisTimeOffRequestsAddGlobals$inboundSchema: z.ZodType<
-  HrisTimeOffRequestsAddGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/** @internal */
-export type HrisTimeOffRequestsAddGlobals$Outbound = {
-  consumerId?: string | undefined;
-  appId?: string | undefined;
-};
-
-/** @internal */
-export const HrisTimeOffRequestsAddGlobals$outboundSchema: z.ZodType<
-  HrisTimeOffRequestsAddGlobals$Outbound,
-  z.ZodTypeDef,
-  HrisTimeOffRequestsAddGlobals
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace HrisTimeOffRequestsAddGlobals$ {
-  /** @deprecated use `HrisTimeOffRequestsAddGlobals$inboundSchema` instead. */
-  export const inboundSchema = HrisTimeOffRequestsAddGlobals$inboundSchema;
-  /** @deprecated use `HrisTimeOffRequestsAddGlobals$outboundSchema` instead. */
-  export const outboundSchema = HrisTimeOffRequestsAddGlobals$outboundSchema;
-  /** @deprecated use `HrisTimeOffRequestsAddGlobals$Outbound` instead. */
-  export type Outbound = HrisTimeOffRequestsAddGlobals$Outbound;
-}
-
-export function hrisTimeOffRequestsAddGlobalsToJSON(
-  hrisTimeOffRequestsAddGlobals: HrisTimeOffRequestsAddGlobals,
-): string {
-  return JSON.stringify(
-    HrisTimeOffRequestsAddGlobals$outboundSchema.parse(
-      hrisTimeOffRequestsAddGlobals,
-    ),
-  );
-}
-
-export function hrisTimeOffRequestsAddGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<HrisTimeOffRequestsAddGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => HrisTimeOffRequestsAddGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'HrisTimeOffRequestsAddGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const HrisTimeOffRequestsAddRequest$inboundSchema: z.ZodType<
-  HrisTimeOffRequestsAddRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  raw: z.boolean().default(false),
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  TimeOffRequest: components.TimeOffRequestInput$inboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    "TimeOffRequest": "timeOffRequest",
-  });
-});
-
-/** @internal */
 export type HrisTimeOffRequestsAddRequest$Outbound = {
   raw: boolean;
   consumerId?: string | undefined;
@@ -156,19 +80,6 @@ export const HrisTimeOffRequestsAddRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace HrisTimeOffRequestsAddRequest$ {
-  /** @deprecated use `HrisTimeOffRequestsAddRequest$inboundSchema` instead. */
-  export const inboundSchema = HrisTimeOffRequestsAddRequest$inboundSchema;
-  /** @deprecated use `HrisTimeOffRequestsAddRequest$outboundSchema` instead. */
-  export const outboundSchema = HrisTimeOffRequestsAddRequest$outboundSchema;
-  /** @deprecated use `HrisTimeOffRequestsAddRequest$Outbound` instead. */
-  export type Outbound = HrisTimeOffRequestsAddRequest$Outbound;
-}
-
 export function hrisTimeOffRequestsAddRequestToJSON(
   hrisTimeOffRequestsAddRequest: HrisTimeOffRequestsAddRequest,
 ): string {
@@ -176,16 +87,6 @@ export function hrisTimeOffRequestsAddRequestToJSON(
     HrisTimeOffRequestsAddRequest$outboundSchema.parse(
       hrisTimeOffRequestsAddRequest,
     ),
-  );
-}
-
-export function hrisTimeOffRequestsAddRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<HrisTimeOffRequestsAddRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => HrisTimeOffRequestsAddRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'HrisTimeOffRequestsAddRequest' from JSON`,
   );
 }
 
@@ -207,59 +108,6 @@ export const HrisTimeOffRequestsAddResponse$inboundSchema: z.ZodType<
     "UnexpectedErrorResponse": "unexpectedErrorResponse",
   });
 });
-
-/** @internal */
-export type HrisTimeOffRequestsAddResponse$Outbound = {
-  HttpMeta: components.HTTPMetadata$Outbound;
-  CreateTimeOffRequestResponse?:
-    | components.CreateTimeOffRequestResponse$Outbound
-    | undefined;
-  UnexpectedErrorResponse?:
-    | components.UnexpectedErrorResponse$Outbound
-    | undefined;
-};
-
-/** @internal */
-export const HrisTimeOffRequestsAddResponse$outboundSchema: z.ZodType<
-  HrisTimeOffRequestsAddResponse$Outbound,
-  z.ZodTypeDef,
-  HrisTimeOffRequestsAddResponse
-> = z.object({
-  httpMeta: components.HTTPMetadata$outboundSchema,
-  createTimeOffRequestResponse: components
-    .CreateTimeOffRequestResponse$outboundSchema.optional(),
-  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    httpMeta: "HttpMeta",
-    createTimeOffRequestResponse: "CreateTimeOffRequestResponse",
-    unexpectedErrorResponse: "UnexpectedErrorResponse",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace HrisTimeOffRequestsAddResponse$ {
-  /** @deprecated use `HrisTimeOffRequestsAddResponse$inboundSchema` instead. */
-  export const inboundSchema = HrisTimeOffRequestsAddResponse$inboundSchema;
-  /** @deprecated use `HrisTimeOffRequestsAddResponse$outboundSchema` instead. */
-  export const outboundSchema = HrisTimeOffRequestsAddResponse$outboundSchema;
-  /** @deprecated use `HrisTimeOffRequestsAddResponse$Outbound` instead. */
-  export type Outbound = HrisTimeOffRequestsAddResponse$Outbound;
-}
-
-export function hrisTimeOffRequestsAddResponseToJSON(
-  hrisTimeOffRequestsAddResponse: HrisTimeOffRequestsAddResponse,
-): string {
-  return JSON.stringify(
-    HrisTimeOffRequestsAddResponse$outboundSchema.parse(
-      hrisTimeOffRequestsAddResponse,
-    ),
-  );
-}
 
 export function hrisTimeOffRequestsAddResponseFromJSON(
   jsonString: string,

@@ -7,12 +7,7 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  Webhook,
-  Webhook$inboundSchema,
-  Webhook$Outbound,
-  Webhook$outboundSchema,
-} from "./webhook.js";
+import { Webhook, Webhook$inboundSchema } from "./webhook.js";
 
 /**
  * Webhooks
@@ -49,52 +44,6 @@ export const DeleteWebhookResponse$inboundSchema: z.ZodType<
     "_raw": "raw",
   });
 });
-
-/** @internal */
-export type DeleteWebhookResponse$Outbound = {
-  status_code: number;
-  status: string;
-  data: Webhook$Outbound;
-  _raw?: { [k: string]: any } | null | undefined;
-};
-
-/** @internal */
-export const DeleteWebhookResponse$outboundSchema: z.ZodType<
-  DeleteWebhookResponse$Outbound,
-  z.ZodTypeDef,
-  DeleteWebhookResponse
-> = z.object({
-  statusCode: z.number().int(),
-  status: z.string(),
-  data: Webhook$outboundSchema,
-  raw: z.nullable(z.record(z.any())).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    statusCode: "status_code",
-    raw: "_raw",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DeleteWebhookResponse$ {
-  /** @deprecated use `DeleteWebhookResponse$inboundSchema` instead. */
-  export const inboundSchema = DeleteWebhookResponse$inboundSchema;
-  /** @deprecated use `DeleteWebhookResponse$outboundSchema` instead. */
-  export const outboundSchema = DeleteWebhookResponse$outboundSchema;
-  /** @deprecated use `DeleteWebhookResponse$Outbound` instead. */
-  export type Outbound = DeleteWebhookResponse$Outbound;
-}
-
-export function deleteWebhookResponseToJSON(
-  deleteWebhookResponse: DeleteWebhookResponse,
-): string {
-  return JSON.stringify(
-    DeleteWebhookResponse$outboundSchema.parse(deleteWebhookResponse),
-  );
-}
 
 export function deleteWebhookResponseFromJSON(
   jsonString: string,

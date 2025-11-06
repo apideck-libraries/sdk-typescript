@@ -56,76 +56,6 @@ export type CrmUsersDeleteResponse = {
 };
 
 /** @internal */
-export const CrmUsersDeleteGlobals$inboundSchema: z.ZodType<
-  CrmUsersDeleteGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/** @internal */
-export type CrmUsersDeleteGlobals$Outbound = {
-  consumerId?: string | undefined;
-  appId?: string | undefined;
-};
-
-/** @internal */
-export const CrmUsersDeleteGlobals$outboundSchema: z.ZodType<
-  CrmUsersDeleteGlobals$Outbound,
-  z.ZodTypeDef,
-  CrmUsersDeleteGlobals
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CrmUsersDeleteGlobals$ {
-  /** @deprecated use `CrmUsersDeleteGlobals$inboundSchema` instead. */
-  export const inboundSchema = CrmUsersDeleteGlobals$inboundSchema;
-  /** @deprecated use `CrmUsersDeleteGlobals$outboundSchema` instead. */
-  export const outboundSchema = CrmUsersDeleteGlobals$outboundSchema;
-  /** @deprecated use `CrmUsersDeleteGlobals$Outbound` instead. */
-  export type Outbound = CrmUsersDeleteGlobals$Outbound;
-}
-
-export function crmUsersDeleteGlobalsToJSON(
-  crmUsersDeleteGlobals: CrmUsersDeleteGlobals,
-): string {
-  return JSON.stringify(
-    CrmUsersDeleteGlobals$outboundSchema.parse(crmUsersDeleteGlobals),
-  );
-}
-
-export function crmUsersDeleteGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<CrmUsersDeleteGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => CrmUsersDeleteGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CrmUsersDeleteGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const CrmUsersDeleteRequest$inboundSchema: z.ZodType<
-  CrmUsersDeleteRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  id: z.string(),
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  raw: z.boolean().default(false),
-});
-
-/** @internal */
 export type CrmUsersDeleteRequest$Outbound = {
   id: string;
   consumerId?: string | undefined;
@@ -147,34 +77,11 @@ export const CrmUsersDeleteRequest$outboundSchema: z.ZodType<
   raw: z.boolean().default(false),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CrmUsersDeleteRequest$ {
-  /** @deprecated use `CrmUsersDeleteRequest$inboundSchema` instead. */
-  export const inboundSchema = CrmUsersDeleteRequest$inboundSchema;
-  /** @deprecated use `CrmUsersDeleteRequest$outboundSchema` instead. */
-  export const outboundSchema = CrmUsersDeleteRequest$outboundSchema;
-  /** @deprecated use `CrmUsersDeleteRequest$Outbound` instead. */
-  export type Outbound = CrmUsersDeleteRequest$Outbound;
-}
-
 export function crmUsersDeleteRequestToJSON(
   crmUsersDeleteRequest: CrmUsersDeleteRequest,
 ): string {
   return JSON.stringify(
     CrmUsersDeleteRequest$outboundSchema.parse(crmUsersDeleteRequest),
-  );
-}
-
-export function crmUsersDeleteRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<CrmUsersDeleteRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => CrmUsersDeleteRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CrmUsersDeleteRequest' from JSON`,
   );
 }
 
@@ -195,54 +102,6 @@ export const CrmUsersDeleteResponse$inboundSchema: z.ZodType<
     "UnexpectedErrorResponse": "unexpectedErrorResponse",
   });
 });
-
-/** @internal */
-export type CrmUsersDeleteResponse$Outbound = {
-  HttpMeta: components.HTTPMetadata$Outbound;
-  DeleteUserResponse?: components.DeleteUserResponse$Outbound | undefined;
-  UnexpectedErrorResponse?:
-    | components.UnexpectedErrorResponse$Outbound
-    | undefined;
-};
-
-/** @internal */
-export const CrmUsersDeleteResponse$outboundSchema: z.ZodType<
-  CrmUsersDeleteResponse$Outbound,
-  z.ZodTypeDef,
-  CrmUsersDeleteResponse
-> = z.object({
-  httpMeta: components.HTTPMetadata$outboundSchema,
-  deleteUserResponse: components.DeleteUserResponse$outboundSchema.optional(),
-  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    httpMeta: "HttpMeta",
-    deleteUserResponse: "DeleteUserResponse",
-    unexpectedErrorResponse: "UnexpectedErrorResponse",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CrmUsersDeleteResponse$ {
-  /** @deprecated use `CrmUsersDeleteResponse$inboundSchema` instead. */
-  export const inboundSchema = CrmUsersDeleteResponse$inboundSchema;
-  /** @deprecated use `CrmUsersDeleteResponse$outboundSchema` instead. */
-  export const outboundSchema = CrmUsersDeleteResponse$outboundSchema;
-  /** @deprecated use `CrmUsersDeleteResponse$Outbound` instead. */
-  export type Outbound = CrmUsersDeleteResponse$Outbound;
-}
-
-export function crmUsersDeleteResponseToJSON(
-  crmUsersDeleteResponse: CrmUsersDeleteResponse,
-): string {
-  return JSON.stringify(
-    CrmUsersDeleteResponse$outboundSchema.parse(crmUsersDeleteResponse),
-  );
-}
 
 export function crmUsersDeleteResponseFromJSON(
   jsonString: string,

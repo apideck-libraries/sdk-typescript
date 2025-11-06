@@ -47,45 +47,6 @@ export const DeleteConsumerResponseData$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type DeleteConsumerResponseData$Outbound = {
-  consumer_id?: string | undefined;
-};
-
-/** @internal */
-export const DeleteConsumerResponseData$outboundSchema: z.ZodType<
-  DeleteConsumerResponseData$Outbound,
-  z.ZodTypeDef,
-  DeleteConsumerResponseData
-> = z.object({
-  consumerId: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    consumerId: "consumer_id",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DeleteConsumerResponseData$ {
-  /** @deprecated use `DeleteConsumerResponseData$inboundSchema` instead. */
-  export const inboundSchema = DeleteConsumerResponseData$inboundSchema;
-  /** @deprecated use `DeleteConsumerResponseData$outboundSchema` instead. */
-  export const outboundSchema = DeleteConsumerResponseData$outboundSchema;
-  /** @deprecated use `DeleteConsumerResponseData$Outbound` instead. */
-  export type Outbound = DeleteConsumerResponseData$Outbound;
-}
-
-export function deleteConsumerResponseDataToJSON(
-  deleteConsumerResponseData: DeleteConsumerResponseData,
-): string {
-  return JSON.stringify(
-    DeleteConsumerResponseData$outboundSchema.parse(deleteConsumerResponseData),
-  );
-}
-
 export function deleteConsumerResponseDataFromJSON(
   jsonString: string,
 ): SafeParseResult<DeleteConsumerResponseData, SDKValidationError> {
@@ -112,52 +73,6 @@ export const DeleteConsumerResponse$inboundSchema: z.ZodType<
     "_raw": "raw",
   });
 });
-
-/** @internal */
-export type DeleteConsumerResponse$Outbound = {
-  status_code: number;
-  status: string;
-  data: DeleteConsumerResponseData$Outbound;
-  _raw?: { [k: string]: any } | null | undefined;
-};
-
-/** @internal */
-export const DeleteConsumerResponse$outboundSchema: z.ZodType<
-  DeleteConsumerResponse$Outbound,
-  z.ZodTypeDef,
-  DeleteConsumerResponse
-> = z.object({
-  statusCode: z.number().int(),
-  status: z.string(),
-  data: z.lazy(() => DeleteConsumerResponseData$outboundSchema),
-  raw: z.nullable(z.record(z.any())).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    statusCode: "status_code",
-    raw: "_raw",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DeleteConsumerResponse$ {
-  /** @deprecated use `DeleteConsumerResponse$inboundSchema` instead. */
-  export const inboundSchema = DeleteConsumerResponse$inboundSchema;
-  /** @deprecated use `DeleteConsumerResponse$outboundSchema` instead. */
-  export const outboundSchema = DeleteConsumerResponse$outboundSchema;
-  /** @deprecated use `DeleteConsumerResponse$Outbound` instead. */
-  export type Outbound = DeleteConsumerResponse$Outbound;
-}
-
-export function deleteConsumerResponseToJSON(
-  deleteConsumerResponse: DeleteConsumerResponse,
-): string {
-  return JSON.stringify(
-    DeleteConsumerResponse$outboundSchema.parse(deleteConsumerResponse),
-  );
-}
 
 export function deleteConsumerResponseFromJSON(
   jsonString: string,

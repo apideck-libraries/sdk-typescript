@@ -21,19 +21,7 @@ export type CreditOrDebit = ClosedEnum<typeof CreditOrDebit>;
 export const CreditOrDebit$inboundSchema: z.ZodNativeEnum<
   typeof CreditOrDebit
 > = z.nativeEnum(CreditOrDebit);
-
 /** @internal */
 export const CreditOrDebit$outboundSchema: z.ZodNativeEnum<
   typeof CreditOrDebit
 > = CreditOrDebit$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreditOrDebit$ {
-  /** @deprecated use `CreditOrDebit$inboundSchema` instead. */
-  export const inboundSchema = CreditOrDebit$inboundSchema;
-  /** @deprecated use `CreditOrDebit$outboundSchema` instead. */
-  export const outboundSchema = CreditOrDebit$outboundSchema;
-}

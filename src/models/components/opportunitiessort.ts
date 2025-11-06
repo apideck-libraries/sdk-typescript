@@ -3,13 +3,9 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   SortDirection,
-  SortDirection$inboundSchema,
   SortDirection$outboundSchema,
 } from "./sortdirection.js";
 
@@ -41,35 +37,9 @@ export type OpportunitiesSort = {
 };
 
 /** @internal */
-export const OpportunitiesSortBy$inboundSchema: z.ZodNativeEnum<
-  typeof OpportunitiesSortBy
-> = z.nativeEnum(OpportunitiesSortBy);
-
-/** @internal */
 export const OpportunitiesSortBy$outboundSchema: z.ZodNativeEnum<
   typeof OpportunitiesSortBy
-> = OpportunitiesSortBy$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace OpportunitiesSortBy$ {
-  /** @deprecated use `OpportunitiesSortBy$inboundSchema` instead. */
-  export const inboundSchema = OpportunitiesSortBy$inboundSchema;
-  /** @deprecated use `OpportunitiesSortBy$outboundSchema` instead. */
-  export const outboundSchema = OpportunitiesSortBy$outboundSchema;
-}
-
-/** @internal */
-export const OpportunitiesSort$inboundSchema: z.ZodType<
-  OpportunitiesSort,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  by: OpportunitiesSortBy$inboundSchema.optional(),
-  direction: SortDirection$inboundSchema.default("asc"),
-});
+> = z.nativeEnum(OpportunitiesSortBy);
 
 /** @internal */
 export type OpportunitiesSort$Outbound = {
@@ -87,33 +57,10 @@ export const OpportunitiesSort$outboundSchema: z.ZodType<
   direction: SortDirection$outboundSchema.default("asc"),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace OpportunitiesSort$ {
-  /** @deprecated use `OpportunitiesSort$inboundSchema` instead. */
-  export const inboundSchema = OpportunitiesSort$inboundSchema;
-  /** @deprecated use `OpportunitiesSort$outboundSchema` instead. */
-  export const outboundSchema = OpportunitiesSort$outboundSchema;
-  /** @deprecated use `OpportunitiesSort$Outbound` instead. */
-  export type Outbound = OpportunitiesSort$Outbound;
-}
-
 export function opportunitiesSortToJSON(
   opportunitiesSort: OpportunitiesSort,
 ): string {
   return JSON.stringify(
     OpportunitiesSort$outboundSchema.parse(opportunitiesSort),
-  );
-}
-
-export function opportunitiesSortFromJSON(
-  jsonString: string,
-): SafeParseResult<OpportunitiesSort, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => OpportunitiesSort$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'OpportunitiesSort' from JSON`,
   );
 }

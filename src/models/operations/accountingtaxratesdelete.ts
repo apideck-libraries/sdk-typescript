@@ -56,78 +56,6 @@ export type AccountingTaxRatesDeleteResponse = {
 };
 
 /** @internal */
-export const AccountingTaxRatesDeleteGlobals$inboundSchema: z.ZodType<
-  AccountingTaxRatesDeleteGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/** @internal */
-export type AccountingTaxRatesDeleteGlobals$Outbound = {
-  consumerId?: string | undefined;
-  appId?: string | undefined;
-};
-
-/** @internal */
-export const AccountingTaxRatesDeleteGlobals$outboundSchema: z.ZodType<
-  AccountingTaxRatesDeleteGlobals$Outbound,
-  z.ZodTypeDef,
-  AccountingTaxRatesDeleteGlobals
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AccountingTaxRatesDeleteGlobals$ {
-  /** @deprecated use `AccountingTaxRatesDeleteGlobals$inboundSchema` instead. */
-  export const inboundSchema = AccountingTaxRatesDeleteGlobals$inboundSchema;
-  /** @deprecated use `AccountingTaxRatesDeleteGlobals$outboundSchema` instead. */
-  export const outboundSchema = AccountingTaxRatesDeleteGlobals$outboundSchema;
-  /** @deprecated use `AccountingTaxRatesDeleteGlobals$Outbound` instead. */
-  export type Outbound = AccountingTaxRatesDeleteGlobals$Outbound;
-}
-
-export function accountingTaxRatesDeleteGlobalsToJSON(
-  accountingTaxRatesDeleteGlobals: AccountingTaxRatesDeleteGlobals,
-): string {
-  return JSON.stringify(
-    AccountingTaxRatesDeleteGlobals$outboundSchema.parse(
-      accountingTaxRatesDeleteGlobals,
-    ),
-  );
-}
-
-export function accountingTaxRatesDeleteGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<AccountingTaxRatesDeleteGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => AccountingTaxRatesDeleteGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'AccountingTaxRatesDeleteGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const AccountingTaxRatesDeleteRequest$inboundSchema: z.ZodType<
-  AccountingTaxRatesDeleteRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  id: z.string(),
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  raw: z.boolean().default(false),
-});
-
-/** @internal */
 export type AccountingTaxRatesDeleteRequest$Outbound = {
   id: string;
   consumerId?: string | undefined;
@@ -149,19 +77,6 @@ export const AccountingTaxRatesDeleteRequest$outboundSchema: z.ZodType<
   raw: z.boolean().default(false),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AccountingTaxRatesDeleteRequest$ {
-  /** @deprecated use `AccountingTaxRatesDeleteRequest$inboundSchema` instead. */
-  export const inboundSchema = AccountingTaxRatesDeleteRequest$inboundSchema;
-  /** @deprecated use `AccountingTaxRatesDeleteRequest$outboundSchema` instead. */
-  export const outboundSchema = AccountingTaxRatesDeleteRequest$outboundSchema;
-  /** @deprecated use `AccountingTaxRatesDeleteRequest$Outbound` instead. */
-  export type Outbound = AccountingTaxRatesDeleteRequest$Outbound;
-}
-
 export function accountingTaxRatesDeleteRequestToJSON(
   accountingTaxRatesDeleteRequest: AccountingTaxRatesDeleteRequest,
 ): string {
@@ -169,16 +84,6 @@ export function accountingTaxRatesDeleteRequestToJSON(
     AccountingTaxRatesDeleteRequest$outboundSchema.parse(
       accountingTaxRatesDeleteRequest,
     ),
-  );
-}
-
-export function accountingTaxRatesDeleteRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<AccountingTaxRatesDeleteRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => AccountingTaxRatesDeleteRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'AccountingTaxRatesDeleteRequest' from JSON`,
   );
 }
 
@@ -200,57 +105,6 @@ export const AccountingTaxRatesDeleteResponse$inboundSchema: z.ZodType<
     "UnexpectedErrorResponse": "unexpectedErrorResponse",
   });
 });
-
-/** @internal */
-export type AccountingTaxRatesDeleteResponse$Outbound = {
-  HttpMeta: components.HTTPMetadata$Outbound;
-  DeleteTaxRateResponse?: components.DeleteTaxRateResponse$Outbound | undefined;
-  UnexpectedErrorResponse?:
-    | components.UnexpectedErrorResponse$Outbound
-    | undefined;
-};
-
-/** @internal */
-export const AccountingTaxRatesDeleteResponse$outboundSchema: z.ZodType<
-  AccountingTaxRatesDeleteResponse$Outbound,
-  z.ZodTypeDef,
-  AccountingTaxRatesDeleteResponse
-> = z.object({
-  httpMeta: components.HTTPMetadata$outboundSchema,
-  deleteTaxRateResponse: components.DeleteTaxRateResponse$outboundSchema
-    .optional(),
-  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    httpMeta: "HttpMeta",
-    deleteTaxRateResponse: "DeleteTaxRateResponse",
-    unexpectedErrorResponse: "UnexpectedErrorResponse",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AccountingTaxRatesDeleteResponse$ {
-  /** @deprecated use `AccountingTaxRatesDeleteResponse$inboundSchema` instead. */
-  export const inboundSchema = AccountingTaxRatesDeleteResponse$inboundSchema;
-  /** @deprecated use `AccountingTaxRatesDeleteResponse$outboundSchema` instead. */
-  export const outboundSchema = AccountingTaxRatesDeleteResponse$outboundSchema;
-  /** @deprecated use `AccountingTaxRatesDeleteResponse$Outbound` instead. */
-  export type Outbound = AccountingTaxRatesDeleteResponse$Outbound;
-}
-
-export function accountingTaxRatesDeleteResponseToJSON(
-  accountingTaxRatesDeleteResponse: AccountingTaxRatesDeleteResponse,
-): string {
-  return JSON.stringify(
-    AccountingTaxRatesDeleteResponse$outboundSchema.parse(
-      accountingTaxRatesDeleteResponse,
-    ),
-  );
-}
 
 export function accountingTaxRatesDeleteResponseFromJSON(
   jsonString: string,

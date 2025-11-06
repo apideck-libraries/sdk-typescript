@@ -84,22 +84,10 @@ export type BankAccount2 = {
 export const BankAccount2AccountType$inboundSchema: z.ZodNativeEnum<
   typeof BankAccount2AccountType
 > = z.nativeEnum(BankAccount2AccountType);
-
 /** @internal */
 export const BankAccount2AccountType$outboundSchema: z.ZodNativeEnum<
   typeof BankAccount2AccountType
 > = BankAccount2AccountType$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace BankAccount2AccountType$ {
-  /** @deprecated use `BankAccount2AccountType$inboundSchema` instead. */
-  export const inboundSchema = BankAccount2AccountType$inboundSchema;
-  /** @deprecated use `BankAccount2AccountType$outboundSchema` instead. */
-  export const outboundSchema = BankAccount2AccountType$outboundSchema;
-}
 
 /** @internal */
 export const BankAccount2$inboundSchema: z.ZodType<
@@ -131,7 +119,6 @@ export const BankAccount2$inboundSchema: z.ZodType<
     "bank_code": "bankCode",
   });
 });
-
 /** @internal */
 export type BankAccount2$Outbound = {
   bank_name?: string | null | undefined;
@@ -179,23 +166,9 @@ export const BankAccount2$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace BankAccount2$ {
-  /** @deprecated use `BankAccount2$inboundSchema` instead. */
-  export const inboundSchema = BankAccount2$inboundSchema;
-  /** @deprecated use `BankAccount2$outboundSchema` instead. */
-  export const outboundSchema = BankAccount2$outboundSchema;
-  /** @deprecated use `BankAccount2$Outbound` instead. */
-  export type Outbound = BankAccount2$Outbound;
-}
-
 export function bankAccount2ToJSON(bankAccount2: BankAccount2): string {
   return JSON.stringify(BankAccount2$outboundSchema.parse(bankAccount2));
 }
-
 export function bankAccount2FromJSON(
   jsonString: string,
 ): SafeParseResult<BankAccount2, SDKValidationError> {

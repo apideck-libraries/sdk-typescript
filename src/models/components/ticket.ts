@@ -8,27 +8,15 @@ import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  Assignee,
-  Assignee$inboundSchema,
-  Assignee$Outbound,
-  Assignee$outboundSchema,
-} from "./assignee.js";
+import { Assignee, Assignee$inboundSchema } from "./assignee.js";
 import {
   AssigneeInput,
-  AssigneeInput$inboundSchema,
   AssigneeInput$Outbound,
   AssigneeInput$outboundSchema,
 } from "./assigneeinput.js";
-import {
-  CollectionTag,
-  CollectionTag$inboundSchema,
-  CollectionTag$Outbound,
-  CollectionTag$outboundSchema,
-} from "./collectiontag.js";
+import { CollectionTag, CollectionTag$inboundSchema } from "./collectiontag.js";
 import {
   CollectionTagInput,
-  CollectionTagInput$inboundSchema,
   CollectionTagInput$Outbound,
   CollectionTagInput$outboundSchema,
 } from "./collectiontaginput.js";
@@ -159,22 +147,10 @@ export type TicketInput = {
 export const TicketPriority$inboundSchema: z.ZodNativeEnum<
   typeof TicketPriority
 > = z.nativeEnum(TicketPriority);
-
 /** @internal */
 export const TicketPriority$outboundSchema: z.ZodNativeEnum<
   typeof TicketPriority
 > = TicketPriority$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace TicketPriority$ {
-  /** @deprecated use `TicketPriority$inboundSchema` instead. */
-  export const inboundSchema = TicketPriority$inboundSchema;
-  /** @deprecated use `TicketPriority$outboundSchema` instead. */
-  export const outboundSchema = TicketPriority$outboundSchema;
-}
 
 /** @internal */
 export const Ticket$inboundSchema: z.ZodType<Ticket, z.ZodTypeDef, unknown> = z
@@ -218,81 +194,6 @@ export const Ticket$inboundSchema: z.ZodType<Ticket, z.ZodTypeDef, unknown> = z
     });
   });
 
-/** @internal */
-export type Ticket$Outbound = {
-  id: string;
-  parent_id?: string | null | undefined;
-  collection_id?: string | null | undefined;
-  type?: string | null | undefined;
-  subject?: string | null | undefined;
-  description?: string | null | undefined;
-  status?: string | null | undefined;
-  priority?: string | null | undefined;
-  assignees?: Array<Assignee$Outbound> | undefined;
-  updated_at?: string | null | undefined;
-  created_at?: string | null | undefined;
-  created_by?: string | null | undefined;
-  due_date?: string | null | undefined;
-  completed_at?: string | null | undefined;
-  tags?: Array<CollectionTag$Outbound> | undefined;
-  custom_mappings?: { [k: string]: any } | null | undefined;
-  pass_through?: Array<PassThroughBody$Outbound> | undefined;
-};
-
-/** @internal */
-export const Ticket$outboundSchema: z.ZodType<
-  Ticket$Outbound,
-  z.ZodTypeDef,
-  Ticket
-> = z.object({
-  id: z.string(),
-  parentId: z.nullable(z.string()).optional(),
-  collectionId: z.nullable(z.string()).optional(),
-  type: z.nullable(z.string()).optional(),
-  subject: z.nullable(z.string()).optional(),
-  description: z.nullable(z.string()).optional(),
-  status: z.nullable(z.string()).optional(),
-  priority: z.nullable(TicketPriority$outboundSchema).optional(),
-  assignees: z.array(Assignee$outboundSchema).optional(),
-  updatedAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
-  createdAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
-  createdBy: z.nullable(z.string()).optional(),
-  dueDate: z.nullable(z.date().transform(v => v.toISOString())).optional(),
-  completedAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
-  tags: z.array(CollectionTag$outboundSchema).optional(),
-  customMappings: z.nullable(z.record(z.any())).optional(),
-  passThrough: z.array(PassThroughBody$outboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    parentId: "parent_id",
-    collectionId: "collection_id",
-    updatedAt: "updated_at",
-    createdAt: "created_at",
-    createdBy: "created_by",
-    dueDate: "due_date",
-    completedAt: "completed_at",
-    customMappings: "custom_mappings",
-    passThrough: "pass_through",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Ticket$ {
-  /** @deprecated use `Ticket$inboundSchema` instead. */
-  export const inboundSchema = Ticket$inboundSchema;
-  /** @deprecated use `Ticket$outboundSchema` instead. */
-  export const outboundSchema = Ticket$outboundSchema;
-  /** @deprecated use `Ticket$Outbound` instead. */
-  export type Outbound = Ticket$Outbound;
-}
-
-export function ticketToJSON(ticket: Ticket): string {
-  return JSON.stringify(Ticket$outboundSchema.parse(ticket));
-}
-
 export function ticketFromJSON(
   jsonString: string,
 ): SafeParseResult<Ticket, SDKValidationError> {
@@ -302,32 +203,6 @@ export function ticketFromJSON(
     `Failed to parse 'Ticket' from JSON`,
   );
 }
-
-/** @internal */
-export const TicketInput$inboundSchema: z.ZodType<
-  TicketInput,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  parent_id: z.nullable(z.string()).optional(),
-  type: z.nullable(z.string()).optional(),
-  subject: z.nullable(z.string()).optional(),
-  description: z.nullable(z.string()).optional(),
-  status: z.nullable(z.string()).optional(),
-  priority: z.nullable(TicketPriority$inboundSchema).optional(),
-  assignees: z.array(AssigneeInput$inboundSchema).optional(),
-  due_date: z.nullable(
-    z.string().datetime({ offset: true }).transform(v => new Date(v)),
-  ).optional(),
-  tags: z.array(CollectionTagInput$inboundSchema).optional(),
-  pass_through: z.array(PassThroughBody$inboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "parent_id": "parentId",
-    "due_date": "dueDate",
-    "pass_through": "passThrough",
-  });
-});
 
 /** @internal */
 export type TicketInput$Outbound = {
@@ -367,29 +242,6 @@ export const TicketInput$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace TicketInput$ {
-  /** @deprecated use `TicketInput$inboundSchema` instead. */
-  export const inboundSchema = TicketInput$inboundSchema;
-  /** @deprecated use `TicketInput$outboundSchema` instead. */
-  export const outboundSchema = TicketInput$outboundSchema;
-  /** @deprecated use `TicketInput$Outbound` instead. */
-  export type Outbound = TicketInput$Outbound;
-}
-
 export function ticketInputToJSON(ticketInput: TicketInput): string {
   return JSON.stringify(TicketInput$outboundSchema.parse(ticketInput));
-}
-
-export function ticketInputFromJSON(
-  jsonString: string,
-): SafeParseResult<TicketInput, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => TicketInput$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'TicketInput' from JSON`,
-  );
 }

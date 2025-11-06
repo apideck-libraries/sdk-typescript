@@ -18,22 +18,6 @@ export const SortDirection = {
 export type SortDirection = ClosedEnum<typeof SortDirection>;
 
 /** @internal */
-export const SortDirection$inboundSchema: z.ZodNativeEnum<
-  typeof SortDirection
-> = z.nativeEnum(SortDirection);
-
-/** @internal */
 export const SortDirection$outboundSchema: z.ZodNativeEnum<
   typeof SortDirection
-> = SortDirection$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SortDirection$ {
-  /** @deprecated use `SortDirection$inboundSchema` instead. */
-  export const inboundSchema = SortDirection$inboundSchema;
-  /** @deprecated use `SortDirection$outboundSchema` instead. */
-  export const outboundSchema = SortDirection$outboundSchema;
-}
+> = z.nativeEnum(SortDirection);

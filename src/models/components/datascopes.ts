@@ -10,8 +10,6 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   DataScopesResources,
   DataScopesResources$inboundSchema,
-  DataScopesResources$Outbound,
-  DataScopesResources$outboundSchema,
 } from "./datascopesresources.js";
 
 export type DataScopes = {
@@ -43,45 +41,6 @@ export const DataScopes$inboundSchema: z.ZodType<
     "updated_at": "updatedAt",
   });
 });
-
-/** @internal */
-export type DataScopes$Outbound = {
-  enabled?: boolean | undefined;
-  updated_at?: string | undefined;
-  resources?: DataScopesResources$Outbound | undefined;
-};
-
-/** @internal */
-export const DataScopes$outboundSchema: z.ZodType<
-  DataScopes$Outbound,
-  z.ZodTypeDef,
-  DataScopes
-> = z.object({
-  enabled: z.boolean().optional(),
-  updatedAt: z.string().optional(),
-  resources: DataScopesResources$outboundSchema.optional(),
-}).transform((v) => {
-  return remap$(v, {
-    updatedAt: "updated_at",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DataScopes$ {
-  /** @deprecated use `DataScopes$inboundSchema` instead. */
-  export const inboundSchema = DataScopes$inboundSchema;
-  /** @deprecated use `DataScopes$outboundSchema` instead. */
-  export const outboundSchema = DataScopes$outboundSchema;
-  /** @deprecated use `DataScopes$Outbound` instead. */
-  export type Outbound = DataScopes$Outbound;
-}
-
-export function dataScopesToJSON(dataScopes: DataScopes): string {
-  return JSON.stringify(DataScopes$outboundSchema.parse(dataScopes));
-}
 
 export function dataScopesFromJSON(
   jsonString: string,

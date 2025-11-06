@@ -53,82 +53,6 @@ export type AccountingTaxRatesAddResponse = {
 };
 
 /** @internal */
-export const AccountingTaxRatesAddGlobals$inboundSchema: z.ZodType<
-  AccountingTaxRatesAddGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/** @internal */
-export type AccountingTaxRatesAddGlobals$Outbound = {
-  consumerId?: string | undefined;
-  appId?: string | undefined;
-};
-
-/** @internal */
-export const AccountingTaxRatesAddGlobals$outboundSchema: z.ZodType<
-  AccountingTaxRatesAddGlobals$Outbound,
-  z.ZodTypeDef,
-  AccountingTaxRatesAddGlobals
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AccountingTaxRatesAddGlobals$ {
-  /** @deprecated use `AccountingTaxRatesAddGlobals$inboundSchema` instead. */
-  export const inboundSchema = AccountingTaxRatesAddGlobals$inboundSchema;
-  /** @deprecated use `AccountingTaxRatesAddGlobals$outboundSchema` instead. */
-  export const outboundSchema = AccountingTaxRatesAddGlobals$outboundSchema;
-  /** @deprecated use `AccountingTaxRatesAddGlobals$Outbound` instead. */
-  export type Outbound = AccountingTaxRatesAddGlobals$Outbound;
-}
-
-export function accountingTaxRatesAddGlobalsToJSON(
-  accountingTaxRatesAddGlobals: AccountingTaxRatesAddGlobals,
-): string {
-  return JSON.stringify(
-    AccountingTaxRatesAddGlobals$outboundSchema.parse(
-      accountingTaxRatesAddGlobals,
-    ),
-  );
-}
-
-export function accountingTaxRatesAddGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<AccountingTaxRatesAddGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => AccountingTaxRatesAddGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'AccountingTaxRatesAddGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const AccountingTaxRatesAddRequest$inboundSchema: z.ZodType<
-  AccountingTaxRatesAddRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  raw: z.boolean().default(false),
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  TaxRate: components.TaxRateInput$inboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    "TaxRate": "taxRate",
-  });
-});
-
-/** @internal */
 export type AccountingTaxRatesAddRequest$Outbound = {
   raw: boolean;
   consumerId?: string | undefined;
@@ -154,19 +78,6 @@ export const AccountingTaxRatesAddRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AccountingTaxRatesAddRequest$ {
-  /** @deprecated use `AccountingTaxRatesAddRequest$inboundSchema` instead. */
-  export const inboundSchema = AccountingTaxRatesAddRequest$inboundSchema;
-  /** @deprecated use `AccountingTaxRatesAddRequest$outboundSchema` instead. */
-  export const outboundSchema = AccountingTaxRatesAddRequest$outboundSchema;
-  /** @deprecated use `AccountingTaxRatesAddRequest$Outbound` instead. */
-  export type Outbound = AccountingTaxRatesAddRequest$Outbound;
-}
-
 export function accountingTaxRatesAddRequestToJSON(
   accountingTaxRatesAddRequest: AccountingTaxRatesAddRequest,
 ): string {
@@ -174,16 +85,6 @@ export function accountingTaxRatesAddRequestToJSON(
     AccountingTaxRatesAddRequest$outboundSchema.parse(
       accountingTaxRatesAddRequest,
     ),
-  );
-}
-
-export function accountingTaxRatesAddRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<AccountingTaxRatesAddRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => AccountingTaxRatesAddRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'AccountingTaxRatesAddRequest' from JSON`,
   );
 }
 
@@ -205,57 +106,6 @@ export const AccountingTaxRatesAddResponse$inboundSchema: z.ZodType<
     "UnexpectedErrorResponse": "unexpectedErrorResponse",
   });
 });
-
-/** @internal */
-export type AccountingTaxRatesAddResponse$Outbound = {
-  HttpMeta: components.HTTPMetadata$Outbound;
-  CreateTaxRateResponse?: components.CreateTaxRateResponse$Outbound | undefined;
-  UnexpectedErrorResponse?:
-    | components.UnexpectedErrorResponse$Outbound
-    | undefined;
-};
-
-/** @internal */
-export const AccountingTaxRatesAddResponse$outboundSchema: z.ZodType<
-  AccountingTaxRatesAddResponse$Outbound,
-  z.ZodTypeDef,
-  AccountingTaxRatesAddResponse
-> = z.object({
-  httpMeta: components.HTTPMetadata$outboundSchema,
-  createTaxRateResponse: components.CreateTaxRateResponse$outboundSchema
-    .optional(),
-  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    httpMeta: "HttpMeta",
-    createTaxRateResponse: "CreateTaxRateResponse",
-    unexpectedErrorResponse: "UnexpectedErrorResponse",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AccountingTaxRatesAddResponse$ {
-  /** @deprecated use `AccountingTaxRatesAddResponse$inboundSchema` instead. */
-  export const inboundSchema = AccountingTaxRatesAddResponse$inboundSchema;
-  /** @deprecated use `AccountingTaxRatesAddResponse$outboundSchema` instead. */
-  export const outboundSchema = AccountingTaxRatesAddResponse$outboundSchema;
-  /** @deprecated use `AccountingTaxRatesAddResponse$Outbound` instead. */
-  export type Outbound = AccountingTaxRatesAddResponse$Outbound;
-}
-
-export function accountingTaxRatesAddResponseToJSON(
-  accountingTaxRatesAddResponse: AccountingTaxRatesAddResponse,
-): string {
-  return JSON.stringify(
-    AccountingTaxRatesAddResponse$outboundSchema.parse(
-      accountingTaxRatesAddResponse,
-    ),
-  );
-}
 
 export function accountingTaxRatesAddResponseFromJSON(
   jsonString: string,

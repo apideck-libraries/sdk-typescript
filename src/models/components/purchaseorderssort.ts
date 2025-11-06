@@ -3,13 +3,9 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   SortDirection,
-  SortDirection$inboundSchema,
   SortDirection$outboundSchema,
 } from "./sortdirection.js";
 
@@ -37,35 +33,9 @@ export type PurchaseOrdersSort = {
 };
 
 /** @internal */
-export const PurchaseOrdersSortBy$inboundSchema: z.ZodNativeEnum<
-  typeof PurchaseOrdersSortBy
-> = z.nativeEnum(PurchaseOrdersSortBy);
-
-/** @internal */
 export const PurchaseOrdersSortBy$outboundSchema: z.ZodNativeEnum<
   typeof PurchaseOrdersSortBy
-> = PurchaseOrdersSortBy$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace PurchaseOrdersSortBy$ {
-  /** @deprecated use `PurchaseOrdersSortBy$inboundSchema` instead. */
-  export const inboundSchema = PurchaseOrdersSortBy$inboundSchema;
-  /** @deprecated use `PurchaseOrdersSortBy$outboundSchema` instead. */
-  export const outboundSchema = PurchaseOrdersSortBy$outboundSchema;
-}
-
-/** @internal */
-export const PurchaseOrdersSort$inboundSchema: z.ZodType<
-  PurchaseOrdersSort,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  by: PurchaseOrdersSortBy$inboundSchema.optional(),
-  direction: SortDirection$inboundSchema.default("asc"),
-});
+> = z.nativeEnum(PurchaseOrdersSortBy);
 
 /** @internal */
 export type PurchaseOrdersSort$Outbound = {
@@ -83,33 +53,10 @@ export const PurchaseOrdersSort$outboundSchema: z.ZodType<
   direction: SortDirection$outboundSchema.default("asc"),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace PurchaseOrdersSort$ {
-  /** @deprecated use `PurchaseOrdersSort$inboundSchema` instead. */
-  export const inboundSchema = PurchaseOrdersSort$inboundSchema;
-  /** @deprecated use `PurchaseOrdersSort$outboundSchema` instead. */
-  export const outboundSchema = PurchaseOrdersSort$outboundSchema;
-  /** @deprecated use `PurchaseOrdersSort$Outbound` instead. */
-  export type Outbound = PurchaseOrdersSort$Outbound;
-}
-
 export function purchaseOrdersSortToJSON(
   purchaseOrdersSort: PurchaseOrdersSort,
 ): string {
   return JSON.stringify(
     PurchaseOrdersSort$outboundSchema.parse(purchaseOrdersSort),
-  );
-}
-
-export function purchaseOrdersSortFromJSON(
-  jsonString: string,
-): SafeParseResult<PurchaseOrdersSort, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => PurchaseOrdersSort$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'PurchaseOrdersSort' from JSON`,
   );
 }

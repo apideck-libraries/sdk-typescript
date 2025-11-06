@@ -60,53 +60,6 @@ export const LinkedCustomer$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type LinkedCustomer$Outbound = {
-  id?: string | undefined;
-  display_id?: string | null | undefined;
-  display_name?: string | null | undefined;
-  name?: string | undefined;
-  company_name?: string | null | undefined;
-  email?: string | undefined;
-};
-
-/** @internal */
-export const LinkedCustomer$outboundSchema: z.ZodType<
-  LinkedCustomer$Outbound,
-  z.ZodTypeDef,
-  LinkedCustomer
-> = z.object({
-  id: z.string().optional(),
-  displayId: z.nullable(z.string()).optional(),
-  displayName: z.nullable(z.string()).optional(),
-  name: z.string().optional(),
-  companyName: z.nullable(z.string()).optional(),
-  email: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    displayId: "display_id",
-    displayName: "display_name",
-    companyName: "company_name",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace LinkedCustomer$ {
-  /** @deprecated use `LinkedCustomer$inboundSchema` instead. */
-  export const inboundSchema = LinkedCustomer$inboundSchema;
-  /** @deprecated use `LinkedCustomer$outboundSchema` instead. */
-  export const outboundSchema = LinkedCustomer$outboundSchema;
-  /** @deprecated use `LinkedCustomer$Outbound` instead. */
-  export type Outbound = LinkedCustomer$Outbound;
-}
-
-export function linkedCustomerToJSON(linkedCustomer: LinkedCustomer): string {
-  return JSON.stringify(LinkedCustomer$outboundSchema.parse(linkedCustomer));
-}
-
 export function linkedCustomerFromJSON(
   jsonString: string,
 ): SafeParseResult<LinkedCustomer, SDKValidationError> {

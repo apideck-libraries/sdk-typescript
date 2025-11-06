@@ -3,9 +3,6 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type SubsidiaryReferenceInput = {
   /**
@@ -13,15 +10,6 @@ export type SubsidiaryReferenceInput = {
    */
   name?: string | null | undefined;
 };
-
-/** @internal */
-export const SubsidiaryReferenceInput$inboundSchema: z.ZodType<
-  SubsidiaryReferenceInput,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  name: z.nullable(z.string()).optional(),
-});
 
 /** @internal */
 export type SubsidiaryReferenceInput$Outbound = {
@@ -37,33 +25,10 @@ export const SubsidiaryReferenceInput$outboundSchema: z.ZodType<
   name: z.nullable(z.string()).optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SubsidiaryReferenceInput$ {
-  /** @deprecated use `SubsidiaryReferenceInput$inboundSchema` instead. */
-  export const inboundSchema = SubsidiaryReferenceInput$inboundSchema;
-  /** @deprecated use `SubsidiaryReferenceInput$outboundSchema` instead. */
-  export const outboundSchema = SubsidiaryReferenceInput$outboundSchema;
-  /** @deprecated use `SubsidiaryReferenceInput$Outbound` instead. */
-  export type Outbound = SubsidiaryReferenceInput$Outbound;
-}
-
 export function subsidiaryReferenceInputToJSON(
   subsidiaryReferenceInput: SubsidiaryReferenceInput,
 ): string {
   return JSON.stringify(
     SubsidiaryReferenceInput$outboundSchema.parse(subsidiaryReferenceInput),
-  );
-}
-
-export function subsidiaryReferenceInputFromJSON(
-  jsonString: string,
-): SafeParseResult<SubsidiaryReferenceInput, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => SubsidiaryReferenceInput$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'SubsidiaryReferenceInput' from JSON`,
   );
 }

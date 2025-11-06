@@ -10,8 +10,6 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   PassThroughBody,
   PassThroughBody$inboundSchema,
-  PassThroughBody$Outbound,
-  PassThroughBody$outboundSchema,
 } from "./passthroughbody.js";
 
 export type Drive = {
@@ -79,62 +77,6 @@ export const Drive$inboundSchema: z.ZodType<Drive, z.ZodTypeDef, unknown> = z
       "pass_through": "passThrough",
     });
   });
-
-/** @internal */
-export type Drive$Outbound = {
-  id: string;
-  name: string;
-  description?: string | null | undefined;
-  custom_mappings?: { [k: string]: any } | null | undefined;
-  updated_by?: string | null | undefined;
-  created_by?: string | null | undefined;
-  updated_at?: string | null | undefined;
-  created_at?: string | null | undefined;
-  pass_through?: Array<PassThroughBody$Outbound> | undefined;
-};
-
-/** @internal */
-export const Drive$outboundSchema: z.ZodType<
-  Drive$Outbound,
-  z.ZodTypeDef,
-  Drive
-> = z.object({
-  id: z.string(),
-  name: z.string(),
-  description: z.nullable(z.string()).optional(),
-  customMappings: z.nullable(z.record(z.any())).optional(),
-  updatedBy: z.nullable(z.string()).optional(),
-  createdBy: z.nullable(z.string()).optional(),
-  updatedAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
-  createdAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
-  passThrough: z.array(PassThroughBody$outboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    customMappings: "custom_mappings",
-    updatedBy: "updated_by",
-    createdBy: "created_by",
-    updatedAt: "updated_at",
-    createdAt: "created_at",
-    passThrough: "pass_through",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Drive$ {
-  /** @deprecated use `Drive$inboundSchema` instead. */
-  export const inboundSchema = Drive$inboundSchema;
-  /** @deprecated use `Drive$outboundSchema` instead. */
-  export const outboundSchema = Drive$outboundSchema;
-  /** @deprecated use `Drive$Outbound` instead. */
-  export type Outbound = Drive$Outbound;
-}
-
-export function driveToJSON(drive: Drive): string {
-  return JSON.stringify(Drive$outboundSchema.parse(drive));
-}
 
 export function driveFromJSON(
   jsonString: string,

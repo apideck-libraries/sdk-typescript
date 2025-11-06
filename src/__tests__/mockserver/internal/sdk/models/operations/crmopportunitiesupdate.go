@@ -38,8 +38,8 @@ type CrmOpportunitiesUpdateRequest struct {
 	// Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
 	ServiceID *string `header:"style=simple,explode=false,name=x-apideck-service-id"`
 	// Include raw response. Mostly used for debugging purposes
-	Raw         *bool                       `default:"false" queryParam:"style=form,explode=true,name=raw"`
-	Opportunity components.OpportunityInput `request:"mediaType=application/json"`
+	Raw  *bool                       `default:"false" queryParam:"style=form,explode=true,name=raw"`
+	Body components.OpportunityInput `request:"mediaType=application/json"`
 }
 
 func (c CrmOpportunitiesUpdateRequest) MarshalJSON() ([]byte, error) {
@@ -47,7 +47,7 @@ func (c CrmOpportunitiesUpdateRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (c *CrmOpportunitiesUpdateRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"id", "Opportunity"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"id", "body"}); err != nil {
 		return err
 	}
 	return nil
@@ -88,11 +88,11 @@ func (o *CrmOpportunitiesUpdateRequest) GetRaw() *bool {
 	return o.Raw
 }
 
-func (o *CrmOpportunitiesUpdateRequest) GetOpportunity() components.OpportunityInput {
+func (o *CrmOpportunitiesUpdateRequest) GetBody() components.OpportunityInput {
 	if o == nil {
 		return components.OpportunityInput{}
 	}
-	return o.Opportunity
+	return o.Body
 }
 
 type CrmOpportunitiesUpdateResponse struct {

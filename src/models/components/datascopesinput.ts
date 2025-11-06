@@ -3,12 +3,8 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   DataScopesResources,
-  DataScopesResources$inboundSchema,
   DataScopesResources$Outbound,
   DataScopesResources$outboundSchema,
 } from "./datascopesresources.js";
@@ -23,16 +19,6 @@ export type DataScopesInput = {
    */
   resources?: DataScopesResources | undefined;
 };
-
-/** @internal */
-export const DataScopesInput$inboundSchema: z.ZodType<
-  DataScopesInput,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  enabled: z.boolean().optional(),
-  resources: DataScopesResources$inboundSchema.optional(),
-});
 
 /** @internal */
 export type DataScopesInput$Outbound = {
@@ -50,31 +36,8 @@ export const DataScopesInput$outboundSchema: z.ZodType<
   resources: DataScopesResources$outboundSchema.optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DataScopesInput$ {
-  /** @deprecated use `DataScopesInput$inboundSchema` instead. */
-  export const inboundSchema = DataScopesInput$inboundSchema;
-  /** @deprecated use `DataScopesInput$outboundSchema` instead. */
-  export const outboundSchema = DataScopesInput$outboundSchema;
-  /** @deprecated use `DataScopesInput$Outbound` instead. */
-  export type Outbound = DataScopesInput$Outbound;
-}
-
 export function dataScopesInputToJSON(
   dataScopesInput: DataScopesInput,
 ): string {
   return JSON.stringify(DataScopesInput$outboundSchema.parse(dataScopesInput));
-}
-
-export function dataScopesInputFromJSON(
-  jsonString: string,
-): SafeParseResult<DataScopesInput, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => DataScopesInput$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'DataScopesInput' from JSON`,
-  );
 }

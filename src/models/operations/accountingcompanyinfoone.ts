@@ -56,78 +56,6 @@ export type AccountingCompanyInfoOneResponse = {
 };
 
 /** @internal */
-export const AccountingCompanyInfoOneGlobals$inboundSchema: z.ZodType<
-  AccountingCompanyInfoOneGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/** @internal */
-export type AccountingCompanyInfoOneGlobals$Outbound = {
-  consumerId?: string | undefined;
-  appId?: string | undefined;
-};
-
-/** @internal */
-export const AccountingCompanyInfoOneGlobals$outboundSchema: z.ZodType<
-  AccountingCompanyInfoOneGlobals$Outbound,
-  z.ZodTypeDef,
-  AccountingCompanyInfoOneGlobals
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AccountingCompanyInfoOneGlobals$ {
-  /** @deprecated use `AccountingCompanyInfoOneGlobals$inboundSchema` instead. */
-  export const inboundSchema = AccountingCompanyInfoOneGlobals$inboundSchema;
-  /** @deprecated use `AccountingCompanyInfoOneGlobals$outboundSchema` instead. */
-  export const outboundSchema = AccountingCompanyInfoOneGlobals$outboundSchema;
-  /** @deprecated use `AccountingCompanyInfoOneGlobals$Outbound` instead. */
-  export type Outbound = AccountingCompanyInfoOneGlobals$Outbound;
-}
-
-export function accountingCompanyInfoOneGlobalsToJSON(
-  accountingCompanyInfoOneGlobals: AccountingCompanyInfoOneGlobals,
-): string {
-  return JSON.stringify(
-    AccountingCompanyInfoOneGlobals$outboundSchema.parse(
-      accountingCompanyInfoOneGlobals,
-    ),
-  );
-}
-
-export function accountingCompanyInfoOneGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<AccountingCompanyInfoOneGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => AccountingCompanyInfoOneGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'AccountingCompanyInfoOneGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const AccountingCompanyInfoOneRequest$inboundSchema: z.ZodType<
-  AccountingCompanyInfoOneRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  raw: z.boolean().default(false),
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  fields: z.nullable(z.string()).optional(),
-});
-
-/** @internal */
 export type AccountingCompanyInfoOneRequest$Outbound = {
   raw: boolean;
   consumerId?: string | undefined;
@@ -149,19 +77,6 @@ export const AccountingCompanyInfoOneRequest$outboundSchema: z.ZodType<
   fields: z.nullable(z.string()).optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AccountingCompanyInfoOneRequest$ {
-  /** @deprecated use `AccountingCompanyInfoOneRequest$inboundSchema` instead. */
-  export const inboundSchema = AccountingCompanyInfoOneRequest$inboundSchema;
-  /** @deprecated use `AccountingCompanyInfoOneRequest$outboundSchema` instead. */
-  export const outboundSchema = AccountingCompanyInfoOneRequest$outboundSchema;
-  /** @deprecated use `AccountingCompanyInfoOneRequest$Outbound` instead. */
-  export type Outbound = AccountingCompanyInfoOneRequest$Outbound;
-}
-
 export function accountingCompanyInfoOneRequestToJSON(
   accountingCompanyInfoOneRequest: AccountingCompanyInfoOneRequest,
 ): string {
@@ -169,16 +84,6 @@ export function accountingCompanyInfoOneRequestToJSON(
     AccountingCompanyInfoOneRequest$outboundSchema.parse(
       accountingCompanyInfoOneRequest,
     ),
-  );
-}
-
-export function accountingCompanyInfoOneRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<AccountingCompanyInfoOneRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => AccountingCompanyInfoOneRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'AccountingCompanyInfoOneRequest' from JSON`,
   );
 }
 
@@ -200,59 +105,6 @@ export const AccountingCompanyInfoOneResponse$inboundSchema: z.ZodType<
     "UnexpectedErrorResponse": "unexpectedErrorResponse",
   });
 });
-
-/** @internal */
-export type AccountingCompanyInfoOneResponse$Outbound = {
-  HttpMeta: components.HTTPMetadata$Outbound;
-  GetCompanyInfoResponse?:
-    | components.GetCompanyInfoResponse$Outbound
-    | undefined;
-  UnexpectedErrorResponse?:
-    | components.UnexpectedErrorResponse$Outbound
-    | undefined;
-};
-
-/** @internal */
-export const AccountingCompanyInfoOneResponse$outboundSchema: z.ZodType<
-  AccountingCompanyInfoOneResponse$Outbound,
-  z.ZodTypeDef,
-  AccountingCompanyInfoOneResponse
-> = z.object({
-  httpMeta: components.HTTPMetadata$outboundSchema,
-  getCompanyInfoResponse: components.GetCompanyInfoResponse$outboundSchema
-    .optional(),
-  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    httpMeta: "HttpMeta",
-    getCompanyInfoResponse: "GetCompanyInfoResponse",
-    unexpectedErrorResponse: "UnexpectedErrorResponse",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AccountingCompanyInfoOneResponse$ {
-  /** @deprecated use `AccountingCompanyInfoOneResponse$inboundSchema` instead. */
-  export const inboundSchema = AccountingCompanyInfoOneResponse$inboundSchema;
-  /** @deprecated use `AccountingCompanyInfoOneResponse$outboundSchema` instead. */
-  export const outboundSchema = AccountingCompanyInfoOneResponse$outboundSchema;
-  /** @deprecated use `AccountingCompanyInfoOneResponse$Outbound` instead. */
-  export type Outbound = AccountingCompanyInfoOneResponse$Outbound;
-}
-
-export function accountingCompanyInfoOneResponseToJSON(
-  accountingCompanyInfoOneResponse: AccountingCompanyInfoOneResponse,
-): string {
-  return JSON.stringify(
-    AccountingCompanyInfoOneResponse$outboundSchema.parse(
-      accountingCompanyInfoOneResponse,
-    ),
-  );
-}
 
 export function accountingCompanyInfoOneResponseFromJSON(
   jsonString: string,

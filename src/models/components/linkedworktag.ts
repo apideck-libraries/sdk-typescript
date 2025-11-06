@@ -27,7 +27,6 @@ export const LinkedWorktag$inboundSchema: z.ZodType<
   id: z.string().optional(),
   value: z.nullable(z.string()).optional(),
 });
-
 /** @internal */
 export type LinkedWorktag$Outbound = {
   id?: string | undefined;
@@ -44,23 +43,9 @@ export const LinkedWorktag$outboundSchema: z.ZodType<
   value: z.nullable(z.string()).optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace LinkedWorktag$ {
-  /** @deprecated use `LinkedWorktag$inboundSchema` instead. */
-  export const inboundSchema = LinkedWorktag$inboundSchema;
-  /** @deprecated use `LinkedWorktag$outboundSchema` instead. */
-  export const outboundSchema = LinkedWorktag$outboundSchema;
-  /** @deprecated use `LinkedWorktag$Outbound` instead. */
-  export type Outbound = LinkedWorktag$Outbound;
-}
-
 export function linkedWorktagToJSON(linkedWorktag: LinkedWorktag): string {
   return JSON.stringify(LinkedWorktag$outboundSchema.parse(linkedWorktag));
 }
-
 export function linkedWorktagFromJSON(
   jsonString: string,
 ): SafeParseResult<LinkedWorktag, SDKValidationError> {

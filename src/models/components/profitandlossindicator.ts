@@ -23,41 +23,6 @@ export const ProfitAndLossIndicator$inboundSchema: z.ZodType<
   total: z.nullable(z.number()).optional(),
 });
 
-/** @internal */
-export type ProfitAndLossIndicator$Outbound = {
-  total?: number | null | undefined;
-};
-
-/** @internal */
-export const ProfitAndLossIndicator$outboundSchema: z.ZodType<
-  ProfitAndLossIndicator$Outbound,
-  z.ZodTypeDef,
-  ProfitAndLossIndicator
-> = z.object({
-  total: z.nullable(z.number()).optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ProfitAndLossIndicator$ {
-  /** @deprecated use `ProfitAndLossIndicator$inboundSchema` instead. */
-  export const inboundSchema = ProfitAndLossIndicator$inboundSchema;
-  /** @deprecated use `ProfitAndLossIndicator$outboundSchema` instead. */
-  export const outboundSchema = ProfitAndLossIndicator$outboundSchema;
-  /** @deprecated use `ProfitAndLossIndicator$Outbound` instead. */
-  export type Outbound = ProfitAndLossIndicator$Outbound;
-}
-
-export function profitAndLossIndicatorToJSON(
-  profitAndLossIndicator: ProfitAndLossIndicator,
-): string {
-  return JSON.stringify(
-    ProfitAndLossIndicator$outboundSchema.parse(profitAndLossIndicator),
-  );
-}
-
 export function profitAndLossIndicatorFromJSON(
   jsonString: string,
 ): SafeParseResult<ProfitAndLossIndicator, SDKValidationError> {

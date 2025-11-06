@@ -4,12 +4,8 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   ConsumerMetadata,
-  ConsumerMetadata$inboundSchema,
   ConsumerMetadata$Outbound,
   ConsumerMetadata$outboundSchema,
 } from "./consumermetadata.js";
@@ -24,20 +20,6 @@ export type CreateConsumerRequest = {
    */
   metadata?: ConsumerMetadata | undefined;
 };
-
-/** @internal */
-export const CreateConsumerRequest$inboundSchema: z.ZodType<
-  CreateConsumerRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  consumer_id: z.string(),
-  metadata: ConsumerMetadata$inboundSchema.optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "consumer_id": "consumerId",
-  });
-});
 
 /** @internal */
 export type CreateConsumerRequest$Outbound = {
@@ -59,33 +41,10 @@ export const CreateConsumerRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateConsumerRequest$ {
-  /** @deprecated use `CreateConsumerRequest$inboundSchema` instead. */
-  export const inboundSchema = CreateConsumerRequest$inboundSchema;
-  /** @deprecated use `CreateConsumerRequest$outboundSchema` instead. */
-  export const outboundSchema = CreateConsumerRequest$outboundSchema;
-  /** @deprecated use `CreateConsumerRequest$Outbound` instead. */
-  export type Outbound = CreateConsumerRequest$Outbound;
-}
-
 export function createConsumerRequestToJSON(
   createConsumerRequest: CreateConsumerRequest,
 ): string {
   return JSON.stringify(
     CreateConsumerRequest$outboundSchema.parse(createConsumerRequest),
-  );
-}
-
-export function createConsumerRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<CreateConsumerRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => CreateConsumerRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CreateConsumerRequest' from JSON`,
   );
 }

@@ -35,10 +35,7 @@ import {
 import {
   InvoiceLineItem,
   InvoiceLineItem$inboundSchema,
-  InvoiceLineItem$Outbound,
-  InvoiceLineItem$outboundSchema,
   InvoiceLineItemInput,
-  InvoiceLineItemInput$inboundSchema,
   InvoiceLineItemInput$Outbound,
   InvoiceLineItemInput$outboundSchema,
 } from "./invoicelineitem.js";
@@ -49,20 +46,11 @@ import {
   LinkedLedgerAccount$outboundSchema,
 } from "./linkedledgeraccount.js";
 import {
-  LinkedLedgerAccountInput,
-  LinkedLedgerAccountInput$inboundSchema,
-  LinkedLedgerAccountInput$Outbound,
-  LinkedLedgerAccountInput$outboundSchema,
-} from "./linkedledgeraccountinput.js";
-import {
   LinkedSupplier,
   LinkedSupplier$inboundSchema,
-  LinkedSupplier$Outbound,
-  LinkedSupplier$outboundSchema,
 } from "./linkedsupplier.js";
 import {
   LinkedSupplierInput,
-  LinkedSupplierInput$inboundSchema,
   LinkedSupplierInput$Outbound,
   LinkedSupplierInput$outboundSchema,
 } from "./linkedsupplierinput.js";
@@ -344,7 +332,7 @@ export type PurchaseOrderInput = {
   lineItems?: Array<InvoiceLineItemInput> | undefined;
   billingAddress?: Address | undefined;
   shippingAddress?: Address | undefined;
-  ledgerAccount?: LinkedLedgerAccountInput | null | undefined;
+  ledgerAccount?: LinkedLedgerAccount | null | undefined;
   /**
    * Optional purchase order template
    */
@@ -421,43 +409,19 @@ export type PurchaseOrderInput = {
 export const PurchaseOrderStatus$inboundSchema: z.ZodNativeEnum<
   typeof PurchaseOrderStatus
 > = z.nativeEnum(PurchaseOrderStatus);
-
 /** @internal */
 export const PurchaseOrderStatus$outboundSchema: z.ZodNativeEnum<
   typeof PurchaseOrderStatus
 > = PurchaseOrderStatus$inboundSchema;
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace PurchaseOrderStatus$ {
-  /** @deprecated use `PurchaseOrderStatus$inboundSchema` instead. */
-  export const inboundSchema = PurchaseOrderStatus$inboundSchema;
-  /** @deprecated use `PurchaseOrderStatus$outboundSchema` instead. */
-  export const outboundSchema = PurchaseOrderStatus$outboundSchema;
-}
-
 /** @internal */
 export const PurchaseOrderAmortizationType$inboundSchema: z.ZodNativeEnum<
   typeof PurchaseOrderAmortizationType
 > = z.nativeEnum(PurchaseOrderAmortizationType);
-
 /** @internal */
 export const PurchaseOrderAmortizationType$outboundSchema: z.ZodNativeEnum<
   typeof PurchaseOrderAmortizationType
 > = PurchaseOrderAmortizationType$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace PurchaseOrderAmortizationType$ {
-  /** @deprecated use `PurchaseOrderAmortizationType$inboundSchema` instead. */
-  export const inboundSchema = PurchaseOrderAmortizationType$inboundSchema;
-  /** @deprecated use `PurchaseOrderAmortizationType$outboundSchema` instead. */
-  export const outboundSchema = PurchaseOrderAmortizationType$outboundSchema;
-}
 
 /** @internal */
 export const PurchaseOrder$inboundSchema: z.ZodType<
@@ -563,180 +527,6 @@ export const PurchaseOrder$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type PurchaseOrder$Outbound = {
-  id?: string | undefined;
-  downstream_id?: string | null | undefined;
-  display_id?: string | null | undefined;
-  po_number?: string | null | undefined;
-  reference?: string | null | undefined;
-  supplier?: LinkedSupplier$Outbound | null | undefined;
-  subsidiary_id?: string | null | undefined;
-  company_id?: string | null | undefined;
-  department_id?: string | null | undefined;
-  status?: string | null | undefined;
-  issued_date?: string | null | undefined;
-  delivery_date?: string | null | undefined;
-  expected_arrival_date?: string | null | undefined;
-  currency?: string | null | undefined;
-  currency_rate?: number | null | undefined;
-  sub_total?: number | null | undefined;
-  total_tax?: number | null | undefined;
-  total?: number | null | undefined;
-  tax_inclusive?: boolean | null | undefined;
-  line_items?: Array<InvoiceLineItem$Outbound> | undefined;
-  billing_address?: Address$Outbound | undefined;
-  shipping_address?: Address$Outbound | undefined;
-  ledger_account?: LinkedLedgerAccount$Outbound | null | undefined;
-  template_id?: string | null | undefined;
-  discount_percentage?: number | null | undefined;
-  bank_account?: BankAccount$Outbound | undefined;
-  accounting_by_row?: boolean | null | undefined;
-  due_date?: string | null | undefined;
-  payment_method?: string | null | undefined;
-  terms?: string | null | undefined;
-  amortization_type?: string | null | undefined;
-  tax_code?: string | null | undefined;
-  tax_method?: string | null | undefined;
-  issued_method?: string | null | undefined;
-  issued_email?: string | null | undefined;
-  channel?: string | null | undefined;
-  memo?: string | null | undefined;
-  notes?: string | null | undefined;
-  tracking_categories?:
-    | Array<LinkedTrackingCategory$Outbound | null>
-    | null
-    | undefined;
-  custom_mappings?: { [k: string]: any } | null | undefined;
-  custom_fields?: Array<CustomField$Outbound> | undefined;
-  row_version?: string | null | undefined;
-  updated_by?: string | null | undefined;
-  created_by?: string | null | undefined;
-  updated_at?: string | null | undefined;
-  created_at?: string | null | undefined;
-  pass_through?: Array<PassThroughBody$Outbound> | undefined;
-};
-
-/** @internal */
-export const PurchaseOrder$outboundSchema: z.ZodType<
-  PurchaseOrder$Outbound,
-  z.ZodTypeDef,
-  PurchaseOrder
-> = z.object({
-  id: z.string().optional(),
-  downstreamId: z.nullable(z.string()).optional(),
-  displayId: z.nullable(z.string()).optional(),
-  poNumber: z.nullable(z.string()).optional(),
-  reference: z.nullable(z.string()).optional(),
-  supplier: z.nullable(LinkedSupplier$outboundSchema).optional(),
-  subsidiaryId: z.nullable(z.string()).optional(),
-  companyId: z.nullable(z.string()).optional(),
-  departmentId: z.nullable(z.string()).optional(),
-  status: z.nullable(PurchaseOrderStatus$outboundSchema).optional(),
-  issuedDate: z.nullable(z.instanceof(RFCDate).transform(v => v.toString()))
-    .optional(),
-  deliveryDate: z.nullable(z.instanceof(RFCDate).transform(v => v.toString()))
-    .optional(),
-  expectedArrivalDate: z.nullable(
-    z.instanceof(RFCDate).transform(v => v.toString()),
-  ).optional(),
-  currency: z.nullable(Currency$outboundSchema).optional(),
-  currencyRate: z.nullable(z.number()).optional(),
-  subTotal: z.nullable(z.number()).optional(),
-  totalTax: z.nullable(z.number()).optional(),
-  total: z.nullable(z.number()).optional(),
-  taxInclusive: z.nullable(z.boolean()).optional(),
-  lineItems: z.array(InvoiceLineItem$outboundSchema).optional(),
-  billingAddress: Address$outboundSchema.optional(),
-  shippingAddress: Address$outboundSchema.optional(),
-  ledgerAccount: z.nullable(LinkedLedgerAccount$outboundSchema).optional(),
-  templateId: z.nullable(z.string()).optional(),
-  discountPercentage: z.nullable(z.number()).optional(),
-  bankAccount: BankAccount$outboundSchema.optional(),
-  accountingByRow: z.nullable(z.boolean()).optional(),
-  dueDate: z.nullable(z.instanceof(RFCDate).transform(v => v.toString()))
-    .optional(),
-  paymentMethod: z.nullable(z.string()).optional(),
-  terms: z.nullable(z.string()).optional(),
-  amortizationType: z.nullable(PurchaseOrderAmortizationType$outboundSchema)
-    .optional(),
-  taxCode: z.nullable(z.string()).optional(),
-  taxMethod: z.nullable(z.string()).optional(),
-  issuedMethod: z.nullable(z.string()).optional(),
-  issuedEmail: z.nullable(z.string()).optional(),
-  channel: z.nullable(z.string()).optional(),
-  memo: z.nullable(z.string()).optional(),
-  notes: z.nullable(z.string()).optional(),
-  trackingCategories: z.nullable(
-    z.array(z.nullable(LinkedTrackingCategory$outboundSchema)),
-  ).optional(),
-  customMappings: z.nullable(z.record(z.any())).optional(),
-  customFields: z.array(CustomField$outboundSchema).optional(),
-  rowVersion: z.nullable(z.string()).optional(),
-  updatedBy: z.nullable(z.string()).optional(),
-  createdBy: z.nullable(z.string()).optional(),
-  updatedAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
-  createdAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
-  passThrough: z.array(PassThroughBody$outboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    downstreamId: "downstream_id",
-    displayId: "display_id",
-    poNumber: "po_number",
-    subsidiaryId: "subsidiary_id",
-    companyId: "company_id",
-    departmentId: "department_id",
-    issuedDate: "issued_date",
-    deliveryDate: "delivery_date",
-    expectedArrivalDate: "expected_arrival_date",
-    currencyRate: "currency_rate",
-    subTotal: "sub_total",
-    totalTax: "total_tax",
-    taxInclusive: "tax_inclusive",
-    lineItems: "line_items",
-    billingAddress: "billing_address",
-    shippingAddress: "shipping_address",
-    ledgerAccount: "ledger_account",
-    templateId: "template_id",
-    discountPercentage: "discount_percentage",
-    bankAccount: "bank_account",
-    accountingByRow: "accounting_by_row",
-    dueDate: "due_date",
-    paymentMethod: "payment_method",
-    amortizationType: "amortization_type",
-    taxCode: "tax_code",
-    taxMethod: "tax_method",
-    issuedMethod: "issued_method",
-    issuedEmail: "issued_email",
-    trackingCategories: "tracking_categories",
-    customMappings: "custom_mappings",
-    customFields: "custom_fields",
-    rowVersion: "row_version",
-    updatedBy: "updated_by",
-    createdBy: "created_by",
-    updatedAt: "updated_at",
-    createdAt: "created_at",
-    passThrough: "pass_through",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace PurchaseOrder$ {
-  /** @deprecated use `PurchaseOrder$inboundSchema` instead. */
-  export const inboundSchema = PurchaseOrder$inboundSchema;
-  /** @deprecated use `PurchaseOrder$outboundSchema` instead. */
-  export const outboundSchema = PurchaseOrder$outboundSchema;
-  /** @deprecated use `PurchaseOrder$Outbound` instead. */
-  export type Outbound = PurchaseOrder$Outbound;
-}
-
-export function purchaseOrderToJSON(purchaseOrder: PurchaseOrder): string {
-  return JSON.stringify(PurchaseOrder$outboundSchema.parse(purchaseOrder));
-}
-
 export function purchaseOrderFromJSON(
   jsonString: string,
 ): SafeParseResult<PurchaseOrder, SDKValidationError> {
@@ -746,93 +536,6 @@ export function purchaseOrderFromJSON(
     `Failed to parse 'PurchaseOrder' from JSON`,
   );
 }
-
-/** @internal */
-export const PurchaseOrderInput$inboundSchema: z.ZodType<
-  PurchaseOrderInput,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  display_id: z.nullable(z.string()).optional(),
-  po_number: z.nullable(z.string()).optional(),
-  reference: z.nullable(z.string()).optional(),
-  supplier: z.nullable(LinkedSupplierInput$inboundSchema).optional(),
-  subsidiary_id: z.nullable(z.string()).optional(),
-  company_id: z.nullable(z.string()).optional(),
-  department_id: z.nullable(z.string()).optional(),
-  status: z.nullable(PurchaseOrderStatus$inboundSchema).optional(),
-  issued_date: z.nullable(z.string().transform(v => new RFCDate(v))).optional(),
-  delivery_date: z.nullable(z.string().transform(v => new RFCDate(v)))
-    .optional(),
-  expected_arrival_date: z.nullable(z.string().transform(v => new RFCDate(v)))
-    .optional(),
-  currency: z.nullable(Currency$inboundSchema).optional(),
-  currency_rate: z.nullable(z.number()).optional(),
-  sub_total: z.nullable(z.number()).optional(),
-  total_tax: z.nullable(z.number()).optional(),
-  total: z.nullable(z.number()).optional(),
-  tax_inclusive: z.nullable(z.boolean()).optional(),
-  line_items: z.array(InvoiceLineItemInput$inboundSchema).optional(),
-  billing_address: Address$inboundSchema.optional(),
-  shipping_address: Address$inboundSchema.optional(),
-  ledger_account: z.nullable(LinkedLedgerAccountInput$inboundSchema).optional(),
-  template_id: z.nullable(z.string()).optional(),
-  discount_percentage: z.nullable(z.number()).optional(),
-  bank_account: BankAccount$inboundSchema.optional(),
-  accounting_by_row: z.nullable(z.boolean()).optional(),
-  due_date: z.nullable(z.string().transform(v => new RFCDate(v))).optional(),
-  payment_method: z.nullable(z.string()).optional(),
-  terms: z.nullable(z.string()).optional(),
-  amortization_type: z.nullable(PurchaseOrderAmortizationType$inboundSchema)
-    .optional(),
-  tax_code: z.nullable(z.string()).optional(),
-  tax_method: z.nullable(z.string()).optional(),
-  issued_method: z.nullable(z.string()).optional(),
-  issued_email: z.nullable(z.string()).optional(),
-  channel: z.nullable(z.string()).optional(),
-  memo: z.nullable(z.string()).optional(),
-  notes: z.nullable(z.string()).optional(),
-  tracking_categories: z.nullable(
-    z.array(z.nullable(LinkedTrackingCategory$inboundSchema)),
-  ).optional(),
-  custom_fields: z.array(CustomField$inboundSchema).optional(),
-  row_version: z.nullable(z.string()).optional(),
-  pass_through: z.array(PassThroughBody$inboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "display_id": "displayId",
-    "po_number": "poNumber",
-    "subsidiary_id": "subsidiaryId",
-    "company_id": "companyId",
-    "department_id": "departmentId",
-    "issued_date": "issuedDate",
-    "delivery_date": "deliveryDate",
-    "expected_arrival_date": "expectedArrivalDate",
-    "currency_rate": "currencyRate",
-    "sub_total": "subTotal",
-    "total_tax": "totalTax",
-    "tax_inclusive": "taxInclusive",
-    "line_items": "lineItems",
-    "billing_address": "billingAddress",
-    "shipping_address": "shippingAddress",
-    "ledger_account": "ledgerAccount",
-    "template_id": "templateId",
-    "discount_percentage": "discountPercentage",
-    "bank_account": "bankAccount",
-    "accounting_by_row": "accountingByRow",
-    "due_date": "dueDate",
-    "payment_method": "paymentMethod",
-    "amortization_type": "amortizationType",
-    "tax_code": "taxCode",
-    "tax_method": "taxMethod",
-    "issued_method": "issuedMethod",
-    "issued_email": "issuedEmail",
-    "tracking_categories": "trackingCategories",
-    "custom_fields": "customFields",
-    "row_version": "rowVersion",
-    "pass_through": "passThrough",
-  });
-});
 
 /** @internal */
 export type PurchaseOrderInput$Outbound = {
@@ -856,7 +559,7 @@ export type PurchaseOrderInput$Outbound = {
   line_items?: Array<InvoiceLineItemInput$Outbound> | undefined;
   billing_address?: Address$Outbound | undefined;
   shipping_address?: Address$Outbound | undefined;
-  ledger_account?: LinkedLedgerAccountInput$Outbound | null | undefined;
+  ledger_account?: LinkedLedgerAccount$Outbound | null | undefined;
   template_id?: string | null | undefined;
   discount_percentage?: number | null | undefined;
   bank_account?: BankAccount$Outbound | undefined;
@@ -911,7 +614,7 @@ export const PurchaseOrderInput$outboundSchema: z.ZodType<
   lineItems: z.array(InvoiceLineItemInput$outboundSchema).optional(),
   billingAddress: Address$outboundSchema.optional(),
   shippingAddress: Address$outboundSchema.optional(),
-  ledgerAccount: z.nullable(LinkedLedgerAccountInput$outboundSchema).optional(),
+  ledgerAccount: z.nullable(LinkedLedgerAccount$outboundSchema).optional(),
   templateId: z.nullable(z.string()).optional(),
   discountPercentage: z.nullable(z.number()).optional(),
   bankAccount: BankAccount$outboundSchema.optional(),
@@ -971,33 +674,10 @@ export const PurchaseOrderInput$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace PurchaseOrderInput$ {
-  /** @deprecated use `PurchaseOrderInput$inboundSchema` instead. */
-  export const inboundSchema = PurchaseOrderInput$inboundSchema;
-  /** @deprecated use `PurchaseOrderInput$outboundSchema` instead. */
-  export const outboundSchema = PurchaseOrderInput$outboundSchema;
-  /** @deprecated use `PurchaseOrderInput$Outbound` instead. */
-  export type Outbound = PurchaseOrderInput$Outbound;
-}
-
 export function purchaseOrderInputToJSON(
   purchaseOrderInput: PurchaseOrderInput,
 ): string {
   return JSON.stringify(
     PurchaseOrderInput$outboundSchema.parse(purchaseOrderInput),
-  );
-}
-
-export function purchaseOrderInputFromJSON(
-  jsonString: string,
-): SafeParseResult<PurchaseOrderInput, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => PurchaseOrderInput$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'PurchaseOrderInput' from JSON`,
   );
 }

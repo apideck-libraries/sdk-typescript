@@ -4,9 +4,6 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type EcommerceCustomersFilter = {
   /**
@@ -18,20 +15,6 @@ export type EcommerceCustomersFilter = {
    */
   phoneNumber?: string | undefined;
 };
-
-/** @internal */
-export const EcommerceCustomersFilter$inboundSchema: z.ZodType<
-  EcommerceCustomersFilter,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  email: z.string().optional(),
-  phone_number: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "phone_number": "phoneNumber",
-  });
-});
 
 /** @internal */
 export type EcommerceCustomersFilter$Outbound = {
@@ -53,33 +36,10 @@ export const EcommerceCustomersFilter$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace EcommerceCustomersFilter$ {
-  /** @deprecated use `EcommerceCustomersFilter$inboundSchema` instead. */
-  export const inboundSchema = EcommerceCustomersFilter$inboundSchema;
-  /** @deprecated use `EcommerceCustomersFilter$outboundSchema` instead. */
-  export const outboundSchema = EcommerceCustomersFilter$outboundSchema;
-  /** @deprecated use `EcommerceCustomersFilter$Outbound` instead. */
-  export type Outbound = EcommerceCustomersFilter$Outbound;
-}
-
 export function ecommerceCustomersFilterToJSON(
   ecommerceCustomersFilter: EcommerceCustomersFilter,
 ): string {
   return JSON.stringify(
     EcommerceCustomersFilter$outboundSchema.parse(ecommerceCustomersFilter),
-  );
-}
-
-export function ecommerceCustomersFilterFromJSON(
-  jsonString: string,
-): SafeParseResult<EcommerceCustomersFilter, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => EcommerceCustomersFilter$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'EcommerceCustomersFilter' from JSON`,
   );
 }

@@ -66,85 +66,6 @@ export type HrisEmployeeSchedulesAllResponse = {
 };
 
 /** @internal */
-export const HrisEmployeeSchedulesAllGlobals$inboundSchema: z.ZodType<
-  HrisEmployeeSchedulesAllGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/** @internal */
-export type HrisEmployeeSchedulesAllGlobals$Outbound = {
-  consumerId?: string | undefined;
-  appId?: string | undefined;
-};
-
-/** @internal */
-export const HrisEmployeeSchedulesAllGlobals$outboundSchema: z.ZodType<
-  HrisEmployeeSchedulesAllGlobals$Outbound,
-  z.ZodTypeDef,
-  HrisEmployeeSchedulesAllGlobals
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace HrisEmployeeSchedulesAllGlobals$ {
-  /** @deprecated use `HrisEmployeeSchedulesAllGlobals$inboundSchema` instead. */
-  export const inboundSchema = HrisEmployeeSchedulesAllGlobals$inboundSchema;
-  /** @deprecated use `HrisEmployeeSchedulesAllGlobals$outboundSchema` instead. */
-  export const outboundSchema = HrisEmployeeSchedulesAllGlobals$outboundSchema;
-  /** @deprecated use `HrisEmployeeSchedulesAllGlobals$Outbound` instead. */
-  export type Outbound = HrisEmployeeSchedulesAllGlobals$Outbound;
-}
-
-export function hrisEmployeeSchedulesAllGlobalsToJSON(
-  hrisEmployeeSchedulesAllGlobals: HrisEmployeeSchedulesAllGlobals,
-): string {
-  return JSON.stringify(
-    HrisEmployeeSchedulesAllGlobals$outboundSchema.parse(
-      hrisEmployeeSchedulesAllGlobals,
-    ),
-  );
-}
-
-export function hrisEmployeeSchedulesAllGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<HrisEmployeeSchedulesAllGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => HrisEmployeeSchedulesAllGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'HrisEmployeeSchedulesAllGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const HrisEmployeeSchedulesAllRequest$inboundSchema: z.ZodType<
-  HrisEmployeeSchedulesAllRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  employee_id: z.string(),
-  raw: z.boolean().default(false),
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  pass_through: z.record(z.any()).optional(),
-  fields: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "employee_id": "employeeId",
-    "pass_through": "passThrough",
-  });
-});
-
-/** @internal */
 export type HrisEmployeeSchedulesAllRequest$Outbound = {
   employee_id: string;
   raw: boolean;
@@ -175,19 +96,6 @@ export const HrisEmployeeSchedulesAllRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace HrisEmployeeSchedulesAllRequest$ {
-  /** @deprecated use `HrisEmployeeSchedulesAllRequest$inboundSchema` instead. */
-  export const inboundSchema = HrisEmployeeSchedulesAllRequest$inboundSchema;
-  /** @deprecated use `HrisEmployeeSchedulesAllRequest$outboundSchema` instead. */
-  export const outboundSchema = HrisEmployeeSchedulesAllRequest$outboundSchema;
-  /** @deprecated use `HrisEmployeeSchedulesAllRequest$Outbound` instead. */
-  export type Outbound = HrisEmployeeSchedulesAllRequest$Outbound;
-}
-
 export function hrisEmployeeSchedulesAllRequestToJSON(
   hrisEmployeeSchedulesAllRequest: HrisEmployeeSchedulesAllRequest,
 ): string {
@@ -195,16 +103,6 @@ export function hrisEmployeeSchedulesAllRequestToJSON(
     HrisEmployeeSchedulesAllRequest$outboundSchema.parse(
       hrisEmployeeSchedulesAllRequest,
     ),
-  );
-}
-
-export function hrisEmployeeSchedulesAllRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<HrisEmployeeSchedulesAllRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => HrisEmployeeSchedulesAllRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'HrisEmployeeSchedulesAllRequest' from JSON`,
   );
 }
 
@@ -226,59 +124,6 @@ export const HrisEmployeeSchedulesAllResponse$inboundSchema: z.ZodType<
     "UnexpectedErrorResponse": "unexpectedErrorResponse",
   });
 });
-
-/** @internal */
-export type HrisEmployeeSchedulesAllResponse$Outbound = {
-  HttpMeta: components.HTTPMetadata$Outbound;
-  GetEmployeeSchedulesResponse?:
-    | components.GetEmployeeSchedulesResponse$Outbound
-    | undefined;
-  UnexpectedErrorResponse?:
-    | components.UnexpectedErrorResponse$Outbound
-    | undefined;
-};
-
-/** @internal */
-export const HrisEmployeeSchedulesAllResponse$outboundSchema: z.ZodType<
-  HrisEmployeeSchedulesAllResponse$Outbound,
-  z.ZodTypeDef,
-  HrisEmployeeSchedulesAllResponse
-> = z.object({
-  httpMeta: components.HTTPMetadata$outboundSchema,
-  getEmployeeSchedulesResponse: components
-    .GetEmployeeSchedulesResponse$outboundSchema.optional(),
-  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    httpMeta: "HttpMeta",
-    getEmployeeSchedulesResponse: "GetEmployeeSchedulesResponse",
-    unexpectedErrorResponse: "UnexpectedErrorResponse",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace HrisEmployeeSchedulesAllResponse$ {
-  /** @deprecated use `HrisEmployeeSchedulesAllResponse$inboundSchema` instead. */
-  export const inboundSchema = HrisEmployeeSchedulesAllResponse$inboundSchema;
-  /** @deprecated use `HrisEmployeeSchedulesAllResponse$outboundSchema` instead. */
-  export const outboundSchema = HrisEmployeeSchedulesAllResponse$outboundSchema;
-  /** @deprecated use `HrisEmployeeSchedulesAllResponse$Outbound` instead. */
-  export type Outbound = HrisEmployeeSchedulesAllResponse$Outbound;
-}
-
-export function hrisEmployeeSchedulesAllResponseToJSON(
-  hrisEmployeeSchedulesAllResponse: HrisEmployeeSchedulesAllResponse,
-): string {
-  return JSON.stringify(
-    HrisEmployeeSchedulesAllResponse$outboundSchema.parse(
-      hrisEmployeeSchedulesAllResponse,
-    ),
-  );
-}
 
 export function hrisEmployeeSchedulesAllResponseFromJSON(
   jsonString: string,

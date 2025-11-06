@@ -42,8 +42,8 @@ type IssueTrackingCollectionTicketCommentsUpdateRequest struct {
 	// The collection ID
 	CollectionID string `pathParam:"style=simple,explode=false,name=collection_id"`
 	// ID of the ticket you are acting upon.
-	TicketID                string                                  `pathParam:"style=simple,explode=false,name=ticket_id"`
-	CollectionTicketComment components.CollectionTicketCommentInput `request:"mediaType=application/json"`
+	TicketID string                                  `pathParam:"style=simple,explode=false,name=ticket_id"`
+	Body     components.CollectionTicketCommentInput `request:"mediaType=application/json"`
 }
 
 func (i IssueTrackingCollectionTicketCommentsUpdateRequest) MarshalJSON() ([]byte, error) {
@@ -51,7 +51,7 @@ func (i IssueTrackingCollectionTicketCommentsUpdateRequest) MarshalJSON() ([]byt
 }
 
 func (i *IssueTrackingCollectionTicketCommentsUpdateRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &i, "", false, []string{"id", "collection_id", "ticket_id", "CollectionTicketComment"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &i, "", false, []string{"id", "collection_id", "ticket_id", "body"}); err != nil {
 		return err
 	}
 	return nil
@@ -106,11 +106,11 @@ func (o *IssueTrackingCollectionTicketCommentsUpdateRequest) GetTicketID() strin
 	return o.TicketID
 }
 
-func (o *IssueTrackingCollectionTicketCommentsUpdateRequest) GetCollectionTicketComment() components.CollectionTicketCommentInput {
+func (o *IssueTrackingCollectionTicketCommentsUpdateRequest) GetBody() components.CollectionTicketCommentInput {
 	if o == nil {
 		return components.CollectionTicketCommentInput{}
 	}
-	return o.CollectionTicketComment
+	return o.Body
 }
 
 type IssueTrackingCollectionTicketCommentsUpdateResponse struct {

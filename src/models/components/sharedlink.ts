@@ -17,8 +17,6 @@ import {
 import {
   SharedLinkTarget,
   SharedLinkTarget$inboundSchema,
-  SharedLinkTarget$Outbound,
-  SharedLinkTarget$outboundSchema,
 } from "./sharedlinktarget.js";
 
 /**
@@ -93,21 +91,9 @@ export type SharedLinkInput = {
 export const Scope$inboundSchema: z.ZodNativeEnum<typeof Scope> = z.nativeEnum(
   Scope,
 );
-
 /** @internal */
 export const Scope$outboundSchema: z.ZodNativeEnum<typeof Scope> =
   Scope$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Scope$ {
-  /** @deprecated use `Scope$inboundSchema` instead. */
-  export const inboundSchema = Scope$inboundSchema;
-  /** @deprecated use `Scope$outboundSchema` instead. */
-  export const outboundSchema = Scope$outboundSchema;
-}
 
 /** @internal */
 export const SharedLink$inboundSchema: z.ZodType<
@@ -141,62 +127,6 @@ export const SharedLink$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type SharedLink$Outbound = {
-  url?: string | null | undefined;
-  download_url?: string | null | undefined;
-  target?: SharedLinkTarget$Outbound | undefined;
-  scope?: string | null | undefined;
-  password_protected?: boolean | null | undefined;
-  expires_at?: string | null | undefined;
-  updated_at?: string | null | undefined;
-  created_at?: string | null | undefined;
-  pass_through?: Array<PassThroughBody$Outbound> | undefined;
-};
-
-/** @internal */
-export const SharedLink$outboundSchema: z.ZodType<
-  SharedLink$Outbound,
-  z.ZodTypeDef,
-  SharedLink
-> = z.object({
-  url: z.nullable(z.string()).optional(),
-  downloadUrl: z.nullable(z.string()).optional(),
-  target: SharedLinkTarget$outboundSchema.optional(),
-  scope: z.nullable(Scope$outboundSchema).optional(),
-  passwordProtected: z.nullable(z.boolean()).optional(),
-  expiresAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
-  updatedAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
-  createdAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
-  passThrough: z.array(PassThroughBody$outboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    downloadUrl: "download_url",
-    passwordProtected: "password_protected",
-    expiresAt: "expires_at",
-    updatedAt: "updated_at",
-    createdAt: "created_at",
-    passThrough: "pass_through",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SharedLink$ {
-  /** @deprecated use `SharedLink$inboundSchema` instead. */
-  export const inboundSchema = SharedLink$inboundSchema;
-  /** @deprecated use `SharedLink$outboundSchema` instead. */
-  export const outboundSchema = SharedLink$outboundSchema;
-  /** @deprecated use `SharedLink$Outbound` instead. */
-  export type Outbound = SharedLink$Outbound;
-}
-
-export function sharedLinkToJSON(sharedLink: SharedLink): string {
-  return JSON.stringify(SharedLink$outboundSchema.parse(sharedLink));
-}
-
 export function sharedLinkFromJSON(
   jsonString: string,
 ): SafeParseResult<SharedLink, SDKValidationError> {
@@ -206,25 +136,6 @@ export function sharedLinkFromJSON(
     `Failed to parse 'SharedLink' from JSON`,
   );
 }
-
-/** @internal */
-export const SharedLinkInput$inboundSchema: z.ZodType<
-  SharedLinkInput,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  download_url: z.nullable(z.string()).optional(),
-  target_id: z.nullable(z.string()),
-  scope: z.nullable(Scope$inboundSchema).optional(),
-  password: z.nullable(z.string()).optional(),
-  pass_through: z.array(PassThroughBody$inboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "download_url": "downloadUrl",
-    "target_id": "targetId",
-    "pass_through": "passThrough",
-  });
-});
 
 /** @internal */
 export type SharedLinkInput$Outbound = {
@@ -254,31 +165,8 @@ export const SharedLinkInput$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SharedLinkInput$ {
-  /** @deprecated use `SharedLinkInput$inboundSchema` instead. */
-  export const inboundSchema = SharedLinkInput$inboundSchema;
-  /** @deprecated use `SharedLinkInput$outboundSchema` instead. */
-  export const outboundSchema = SharedLinkInput$outboundSchema;
-  /** @deprecated use `SharedLinkInput$Outbound` instead. */
-  export type Outbound = SharedLinkInput$Outbound;
-}
-
 export function sharedLinkInputToJSON(
   sharedLinkInput: SharedLinkInput,
 ): string {
   return JSON.stringify(SharedLinkInput$outboundSchema.parse(sharedLinkInput));
-}
-
-export function sharedLinkInputFromJSON(
-  jsonString: string,
-): SafeParseResult<SharedLinkInput, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => SharedLinkInput$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'SharedLinkInput' from JSON`,
-  );
 }

@@ -66,57 +66,6 @@ export const EcommerceStore$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type EcommerceStore$Outbound = {
-  id: string;
-  name?: string | null | undefined;
-  store_url?: string | null | undefined;
-  admin_url?: string | null | undefined;
-  custom_mappings?: { [k: string]: any } | null | undefined;
-  created_at?: string | null | undefined;
-  updated_at?: string | null | undefined;
-};
-
-/** @internal */
-export const EcommerceStore$outboundSchema: z.ZodType<
-  EcommerceStore$Outbound,
-  z.ZodTypeDef,
-  EcommerceStore
-> = z.object({
-  id: z.string(),
-  name: z.nullable(z.string()).optional(),
-  storeUrl: z.nullable(z.string()).optional(),
-  adminUrl: z.nullable(z.string()).optional(),
-  customMappings: z.nullable(z.record(z.any())).optional(),
-  createdAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
-  updatedAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    storeUrl: "store_url",
-    adminUrl: "admin_url",
-    customMappings: "custom_mappings",
-    createdAt: "created_at",
-    updatedAt: "updated_at",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace EcommerceStore$ {
-  /** @deprecated use `EcommerceStore$inboundSchema` instead. */
-  export const inboundSchema = EcommerceStore$inboundSchema;
-  /** @deprecated use `EcommerceStore$outboundSchema` instead. */
-  export const outboundSchema = EcommerceStore$outboundSchema;
-  /** @deprecated use `EcommerceStore$Outbound` instead. */
-  export type Outbound = EcommerceStore$Outbound;
-}
-
-export function ecommerceStoreToJSON(ecommerceStore: EcommerceStore): string {
-  return JSON.stringify(EcommerceStore$outboundSchema.parse(ecommerceStore));
-}
-
 export function ecommerceStoreFromJSON(
   jsonString: string,
 ): SafeParseResult<EcommerceStore, SDKValidationError> {

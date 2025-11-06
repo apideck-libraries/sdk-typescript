@@ -10,21 +10,9 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   BankFeedAccount,
   BankFeedAccount$inboundSchema,
-  BankFeedAccount$Outbound,
-  BankFeedAccount$outboundSchema,
 } from "./bankfeedaccount.js";
-import {
-  Links,
-  Links$inboundSchema,
-  Links$Outbound,
-  Links$outboundSchema,
-} from "./links.js";
-import {
-  Meta,
-  Meta$inboundSchema,
-  Meta$Outbound,
-  Meta$outboundSchema,
-} from "./meta.js";
+import { Links, Links$inboundSchema } from "./links.js";
+import { Meta, Meta$inboundSchema } from "./meta.js";
 
 /**
  * Bank Feed Accounts
@@ -86,64 +74,6 @@ export const GetBankFeedAccountsResponse$inboundSchema: z.ZodType<
     "_raw": "raw",
   });
 });
-
-/** @internal */
-export type GetBankFeedAccountsResponse$Outbound = {
-  status_code: number;
-  status: string;
-  service: string;
-  resource: string;
-  operation: string;
-  data: Array<BankFeedAccount$Outbound>;
-  meta?: Meta$Outbound | undefined;
-  links?: Links$Outbound | undefined;
-  _raw?: { [k: string]: any } | null | undefined;
-};
-
-/** @internal */
-export const GetBankFeedAccountsResponse$outboundSchema: z.ZodType<
-  GetBankFeedAccountsResponse$Outbound,
-  z.ZodTypeDef,
-  GetBankFeedAccountsResponse
-> = z.object({
-  statusCode: z.number().int(),
-  status: z.string(),
-  service: z.string(),
-  resource: z.string(),
-  operation: z.string(),
-  data: z.array(BankFeedAccount$outboundSchema),
-  meta: Meta$outboundSchema.optional(),
-  links: Links$outboundSchema.optional(),
-  raw: z.nullable(z.record(z.any())).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    statusCode: "status_code",
-    raw: "_raw",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetBankFeedAccountsResponse$ {
-  /** @deprecated use `GetBankFeedAccountsResponse$inboundSchema` instead. */
-  export const inboundSchema = GetBankFeedAccountsResponse$inboundSchema;
-  /** @deprecated use `GetBankFeedAccountsResponse$outboundSchema` instead. */
-  export const outboundSchema = GetBankFeedAccountsResponse$outboundSchema;
-  /** @deprecated use `GetBankFeedAccountsResponse$Outbound` instead. */
-  export type Outbound = GetBankFeedAccountsResponse$Outbound;
-}
-
-export function getBankFeedAccountsResponseToJSON(
-  getBankFeedAccountsResponse: GetBankFeedAccountsResponse,
-): string {
-  return JSON.stringify(
-    GetBankFeedAccountsResponse$outboundSchema.parse(
-      getBankFeedAccountsResponse,
-    ),
-  );
-}
 
 export function getBankFeedAccountsResponseFromJSON(
   jsonString: string,

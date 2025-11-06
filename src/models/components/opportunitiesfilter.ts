@@ -4,9 +4,6 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type OpportunitiesFilter = {
   /**
@@ -38,29 +35,6 @@ export type OpportunitiesFilter = {
    */
   primaryContactId?: string | undefined;
 };
-
-/** @internal */
-export const OpportunitiesFilter$inboundSchema: z.ZodType<
-  OpportunitiesFilter,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  title: z.string().optional(),
-  status: z.string().optional(),
-  monetary_amount: z.number().optional(),
-  win_probability: z.number().optional(),
-  company_id: z.string().optional(),
-  owner_id: z.string().optional(),
-  primary_contact_id: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "monetary_amount": "monetaryAmount",
-    "win_probability": "winProbability",
-    "company_id": "companyId",
-    "owner_id": "ownerId",
-    "primary_contact_id": "primaryContactId",
-  });
-});
 
 /** @internal */
 export type OpportunitiesFilter$Outbound = {
@@ -96,33 +70,10 @@ export const OpportunitiesFilter$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace OpportunitiesFilter$ {
-  /** @deprecated use `OpportunitiesFilter$inboundSchema` instead. */
-  export const inboundSchema = OpportunitiesFilter$inboundSchema;
-  /** @deprecated use `OpportunitiesFilter$outboundSchema` instead. */
-  export const outboundSchema = OpportunitiesFilter$outboundSchema;
-  /** @deprecated use `OpportunitiesFilter$Outbound` instead. */
-  export type Outbound = OpportunitiesFilter$Outbound;
-}
-
 export function opportunitiesFilterToJSON(
   opportunitiesFilter: OpportunitiesFilter,
 ): string {
   return JSON.stringify(
     OpportunitiesFilter$outboundSchema.parse(opportunitiesFilter),
-  );
-}
-
-export function opportunitiesFilterFromJSON(
-  jsonString: string,
-): SafeParseResult<OpportunitiesFilter, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => OpportunitiesFilter$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'OpportunitiesFilter' from JSON`,
   );
 }

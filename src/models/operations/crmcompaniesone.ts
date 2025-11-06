@@ -60,77 +60,6 @@ export type CrmCompaniesOneResponse = {
 };
 
 /** @internal */
-export const CrmCompaniesOneGlobals$inboundSchema: z.ZodType<
-  CrmCompaniesOneGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/** @internal */
-export type CrmCompaniesOneGlobals$Outbound = {
-  consumerId?: string | undefined;
-  appId?: string | undefined;
-};
-
-/** @internal */
-export const CrmCompaniesOneGlobals$outboundSchema: z.ZodType<
-  CrmCompaniesOneGlobals$Outbound,
-  z.ZodTypeDef,
-  CrmCompaniesOneGlobals
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CrmCompaniesOneGlobals$ {
-  /** @deprecated use `CrmCompaniesOneGlobals$inboundSchema` instead. */
-  export const inboundSchema = CrmCompaniesOneGlobals$inboundSchema;
-  /** @deprecated use `CrmCompaniesOneGlobals$outboundSchema` instead. */
-  export const outboundSchema = CrmCompaniesOneGlobals$outboundSchema;
-  /** @deprecated use `CrmCompaniesOneGlobals$Outbound` instead. */
-  export type Outbound = CrmCompaniesOneGlobals$Outbound;
-}
-
-export function crmCompaniesOneGlobalsToJSON(
-  crmCompaniesOneGlobals: CrmCompaniesOneGlobals,
-): string {
-  return JSON.stringify(
-    CrmCompaniesOneGlobals$outboundSchema.parse(crmCompaniesOneGlobals),
-  );
-}
-
-export function crmCompaniesOneGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<CrmCompaniesOneGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => CrmCompaniesOneGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CrmCompaniesOneGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const CrmCompaniesOneRequest$inboundSchema: z.ZodType<
-  CrmCompaniesOneRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  id: z.string(),
-  raw: z.boolean().default(false),
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  fields: z.nullable(z.string()).optional(),
-});
-
-/** @internal */
 export type CrmCompaniesOneRequest$Outbound = {
   id: string;
   raw: boolean;
@@ -154,34 +83,11 @@ export const CrmCompaniesOneRequest$outboundSchema: z.ZodType<
   fields: z.nullable(z.string()).optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CrmCompaniesOneRequest$ {
-  /** @deprecated use `CrmCompaniesOneRequest$inboundSchema` instead. */
-  export const inboundSchema = CrmCompaniesOneRequest$inboundSchema;
-  /** @deprecated use `CrmCompaniesOneRequest$outboundSchema` instead. */
-  export const outboundSchema = CrmCompaniesOneRequest$outboundSchema;
-  /** @deprecated use `CrmCompaniesOneRequest$Outbound` instead. */
-  export type Outbound = CrmCompaniesOneRequest$Outbound;
-}
-
 export function crmCompaniesOneRequestToJSON(
   crmCompaniesOneRequest: CrmCompaniesOneRequest,
 ): string {
   return JSON.stringify(
     CrmCompaniesOneRequest$outboundSchema.parse(crmCompaniesOneRequest),
-  );
-}
-
-export function crmCompaniesOneRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<CrmCompaniesOneRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => CrmCompaniesOneRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CrmCompaniesOneRequest' from JSON`,
   );
 }
 
@@ -202,54 +108,6 @@ export const CrmCompaniesOneResponse$inboundSchema: z.ZodType<
     "UnexpectedErrorResponse": "unexpectedErrorResponse",
   });
 });
-
-/** @internal */
-export type CrmCompaniesOneResponse$Outbound = {
-  HttpMeta: components.HTTPMetadata$Outbound;
-  GetCompanyResponse?: components.GetCompanyResponse$Outbound | undefined;
-  UnexpectedErrorResponse?:
-    | components.UnexpectedErrorResponse$Outbound
-    | undefined;
-};
-
-/** @internal */
-export const CrmCompaniesOneResponse$outboundSchema: z.ZodType<
-  CrmCompaniesOneResponse$Outbound,
-  z.ZodTypeDef,
-  CrmCompaniesOneResponse
-> = z.object({
-  httpMeta: components.HTTPMetadata$outboundSchema,
-  getCompanyResponse: components.GetCompanyResponse$outboundSchema.optional(),
-  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    httpMeta: "HttpMeta",
-    getCompanyResponse: "GetCompanyResponse",
-    unexpectedErrorResponse: "UnexpectedErrorResponse",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CrmCompaniesOneResponse$ {
-  /** @deprecated use `CrmCompaniesOneResponse$inboundSchema` instead. */
-  export const inboundSchema = CrmCompaniesOneResponse$inboundSchema;
-  /** @deprecated use `CrmCompaniesOneResponse$outboundSchema` instead. */
-  export const outboundSchema = CrmCompaniesOneResponse$outboundSchema;
-  /** @deprecated use `CrmCompaniesOneResponse$Outbound` instead. */
-  export type Outbound = CrmCompaniesOneResponse$Outbound;
-}
-
-export function crmCompaniesOneResponseToJSON(
-  crmCompaniesOneResponse: CrmCompaniesOneResponse,
-): string {
-  return JSON.stringify(
-    CrmCompaniesOneResponse$outboundSchema.parse(crmCompaniesOneResponse),
-  );
-}
 
 export function crmCompaniesOneResponseFromJSON(
   jsonString: string,

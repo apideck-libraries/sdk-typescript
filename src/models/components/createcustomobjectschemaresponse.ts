@@ -10,8 +10,6 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   CustomObjectSchema,
   CustomObjectSchema$inboundSchema,
-  CustomObjectSchema$Outbound,
-  CustomObjectSchema$outboundSchema,
 } from "./customobjectschema.js";
 
 /**
@@ -64,60 +62,6 @@ export const CreateCustomObjectSchemaResponse$inboundSchema: z.ZodType<
     "_raw": "raw",
   });
 });
-
-/** @internal */
-export type CreateCustomObjectSchemaResponse$Outbound = {
-  status_code: number;
-  status: string;
-  service: string;
-  resource: string;
-  operation: string;
-  data: CustomObjectSchema$Outbound;
-  _raw?: { [k: string]: any } | null | undefined;
-};
-
-/** @internal */
-export const CreateCustomObjectSchemaResponse$outboundSchema: z.ZodType<
-  CreateCustomObjectSchemaResponse$Outbound,
-  z.ZodTypeDef,
-  CreateCustomObjectSchemaResponse
-> = z.object({
-  statusCode: z.number().int(),
-  status: z.string(),
-  service: z.string(),
-  resource: z.string(),
-  operation: z.string(),
-  data: CustomObjectSchema$outboundSchema,
-  raw: z.nullable(z.record(z.any())).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    statusCode: "status_code",
-    raw: "_raw",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateCustomObjectSchemaResponse$ {
-  /** @deprecated use `CreateCustomObjectSchemaResponse$inboundSchema` instead. */
-  export const inboundSchema = CreateCustomObjectSchemaResponse$inboundSchema;
-  /** @deprecated use `CreateCustomObjectSchemaResponse$outboundSchema` instead. */
-  export const outboundSchema = CreateCustomObjectSchemaResponse$outboundSchema;
-  /** @deprecated use `CreateCustomObjectSchemaResponse$Outbound` instead. */
-  export type Outbound = CreateCustomObjectSchemaResponse$Outbound;
-}
-
-export function createCustomObjectSchemaResponseToJSON(
-  createCustomObjectSchemaResponse: CreateCustomObjectSchemaResponse,
-): string {
-  return JSON.stringify(
-    CreateCustomObjectSchemaResponse$outboundSchema.parse(
-      createCustomObjectSchemaResponse,
-    ),
-  );
-}
 
 export function createCustomObjectSchemaResponseFromJSON(
   jsonString: string,

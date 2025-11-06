@@ -56,81 +56,6 @@ export type FileStorageDriveGroupsDeleteResponse = {
 };
 
 /** @internal */
-export const FileStorageDriveGroupsDeleteGlobals$inboundSchema: z.ZodType<
-  FileStorageDriveGroupsDeleteGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/** @internal */
-export type FileStorageDriveGroupsDeleteGlobals$Outbound = {
-  consumerId?: string | undefined;
-  appId?: string | undefined;
-};
-
-/** @internal */
-export const FileStorageDriveGroupsDeleteGlobals$outboundSchema: z.ZodType<
-  FileStorageDriveGroupsDeleteGlobals$Outbound,
-  z.ZodTypeDef,
-  FileStorageDriveGroupsDeleteGlobals
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace FileStorageDriveGroupsDeleteGlobals$ {
-  /** @deprecated use `FileStorageDriveGroupsDeleteGlobals$inboundSchema` instead. */
-  export const inboundSchema =
-    FileStorageDriveGroupsDeleteGlobals$inboundSchema;
-  /** @deprecated use `FileStorageDriveGroupsDeleteGlobals$outboundSchema` instead. */
-  export const outboundSchema =
-    FileStorageDriveGroupsDeleteGlobals$outboundSchema;
-  /** @deprecated use `FileStorageDriveGroupsDeleteGlobals$Outbound` instead. */
-  export type Outbound = FileStorageDriveGroupsDeleteGlobals$Outbound;
-}
-
-export function fileStorageDriveGroupsDeleteGlobalsToJSON(
-  fileStorageDriveGroupsDeleteGlobals: FileStorageDriveGroupsDeleteGlobals,
-): string {
-  return JSON.stringify(
-    FileStorageDriveGroupsDeleteGlobals$outboundSchema.parse(
-      fileStorageDriveGroupsDeleteGlobals,
-    ),
-  );
-}
-
-export function fileStorageDriveGroupsDeleteGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<FileStorageDriveGroupsDeleteGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      FileStorageDriveGroupsDeleteGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'FileStorageDriveGroupsDeleteGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const FileStorageDriveGroupsDeleteRequest$inboundSchema: z.ZodType<
-  FileStorageDriveGroupsDeleteRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  id: z.string(),
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  raw: z.boolean().default(false),
-});
-
-/** @internal */
 export type FileStorageDriveGroupsDeleteRequest$Outbound = {
   id: string;
   consumerId?: string | undefined;
@@ -152,21 +77,6 @@ export const FileStorageDriveGroupsDeleteRequest$outboundSchema: z.ZodType<
   raw: z.boolean().default(false),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace FileStorageDriveGroupsDeleteRequest$ {
-  /** @deprecated use `FileStorageDriveGroupsDeleteRequest$inboundSchema` instead. */
-  export const inboundSchema =
-    FileStorageDriveGroupsDeleteRequest$inboundSchema;
-  /** @deprecated use `FileStorageDriveGroupsDeleteRequest$outboundSchema` instead. */
-  export const outboundSchema =
-    FileStorageDriveGroupsDeleteRequest$outboundSchema;
-  /** @deprecated use `FileStorageDriveGroupsDeleteRequest$Outbound` instead. */
-  export type Outbound = FileStorageDriveGroupsDeleteRequest$Outbound;
-}
-
 export function fileStorageDriveGroupsDeleteRequestToJSON(
   fileStorageDriveGroupsDeleteRequest: FileStorageDriveGroupsDeleteRequest,
 ): string {
@@ -174,17 +84,6 @@ export function fileStorageDriveGroupsDeleteRequestToJSON(
     FileStorageDriveGroupsDeleteRequest$outboundSchema.parse(
       fileStorageDriveGroupsDeleteRequest,
     ),
-  );
-}
-
-export function fileStorageDriveGroupsDeleteRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<FileStorageDriveGroupsDeleteRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      FileStorageDriveGroupsDeleteRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'FileStorageDriveGroupsDeleteRequest' from JSON`,
   );
 }
 
@@ -206,61 +105,6 @@ export const FileStorageDriveGroupsDeleteResponse$inboundSchema: z.ZodType<
     "UnexpectedErrorResponse": "unexpectedErrorResponse",
   });
 });
-
-/** @internal */
-export type FileStorageDriveGroupsDeleteResponse$Outbound = {
-  HttpMeta: components.HTTPMetadata$Outbound;
-  DeleteDriveGroupResponse?:
-    | components.DeleteDriveGroupResponse$Outbound
-    | undefined;
-  UnexpectedErrorResponse?:
-    | components.UnexpectedErrorResponse$Outbound
-    | undefined;
-};
-
-/** @internal */
-export const FileStorageDriveGroupsDeleteResponse$outboundSchema: z.ZodType<
-  FileStorageDriveGroupsDeleteResponse$Outbound,
-  z.ZodTypeDef,
-  FileStorageDriveGroupsDeleteResponse
-> = z.object({
-  httpMeta: components.HTTPMetadata$outboundSchema,
-  deleteDriveGroupResponse: components.DeleteDriveGroupResponse$outboundSchema
-    .optional(),
-  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    httpMeta: "HttpMeta",
-    deleteDriveGroupResponse: "DeleteDriveGroupResponse",
-    unexpectedErrorResponse: "UnexpectedErrorResponse",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace FileStorageDriveGroupsDeleteResponse$ {
-  /** @deprecated use `FileStorageDriveGroupsDeleteResponse$inboundSchema` instead. */
-  export const inboundSchema =
-    FileStorageDriveGroupsDeleteResponse$inboundSchema;
-  /** @deprecated use `FileStorageDriveGroupsDeleteResponse$outboundSchema` instead. */
-  export const outboundSchema =
-    FileStorageDriveGroupsDeleteResponse$outboundSchema;
-  /** @deprecated use `FileStorageDriveGroupsDeleteResponse$Outbound` instead. */
-  export type Outbound = FileStorageDriveGroupsDeleteResponse$Outbound;
-}
-
-export function fileStorageDriveGroupsDeleteResponseToJSON(
-  fileStorageDriveGroupsDeleteResponse: FileStorageDriveGroupsDeleteResponse,
-): string {
-  return JSON.stringify(
-    FileStorageDriveGroupsDeleteResponse$outboundSchema.parse(
-      fileStorageDriveGroupsDeleteResponse,
-    ),
-  );
-}
 
 export function fileStorageDriveGroupsDeleteResponseFromJSON(
   jsonString: string,

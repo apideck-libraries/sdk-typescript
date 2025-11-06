@@ -3,13 +3,9 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   SortDirection,
-  SortDirection$inboundSchema,
   SortDirection$outboundSchema,
 } from "./sortdirection.js";
 
@@ -37,35 +33,9 @@ export type ActivitiesSort = {
 };
 
 /** @internal */
-export const ActivitiesSortBy$inboundSchema: z.ZodNativeEnum<
-  typeof ActivitiesSortBy
-> = z.nativeEnum(ActivitiesSortBy);
-
-/** @internal */
 export const ActivitiesSortBy$outboundSchema: z.ZodNativeEnum<
   typeof ActivitiesSortBy
-> = ActivitiesSortBy$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ActivitiesSortBy$ {
-  /** @deprecated use `ActivitiesSortBy$inboundSchema` instead. */
-  export const inboundSchema = ActivitiesSortBy$inboundSchema;
-  /** @deprecated use `ActivitiesSortBy$outboundSchema` instead. */
-  export const outboundSchema = ActivitiesSortBy$outboundSchema;
-}
-
-/** @internal */
-export const ActivitiesSort$inboundSchema: z.ZodType<
-  ActivitiesSort,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  by: ActivitiesSortBy$inboundSchema.optional(),
-  direction: SortDirection$inboundSchema.default("asc"),
-});
+> = z.nativeEnum(ActivitiesSortBy);
 
 /** @internal */
 export type ActivitiesSort$Outbound = {
@@ -83,29 +53,6 @@ export const ActivitiesSort$outboundSchema: z.ZodType<
   direction: SortDirection$outboundSchema.default("asc"),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ActivitiesSort$ {
-  /** @deprecated use `ActivitiesSort$inboundSchema` instead. */
-  export const inboundSchema = ActivitiesSort$inboundSchema;
-  /** @deprecated use `ActivitiesSort$outboundSchema` instead. */
-  export const outboundSchema = ActivitiesSort$outboundSchema;
-  /** @deprecated use `ActivitiesSort$Outbound` instead. */
-  export type Outbound = ActivitiesSort$Outbound;
-}
-
 export function activitiesSortToJSON(activitiesSort: ActivitiesSort): string {
   return JSON.stringify(ActivitiesSort$outboundSchema.parse(activitiesSort));
-}
-
-export function activitiesSortFromJSON(
-  jsonString: string,
-): SafeParseResult<ActivitiesSort, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => ActivitiesSort$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ActivitiesSort' from JSON`,
-  );
 }

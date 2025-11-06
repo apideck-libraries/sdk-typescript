@@ -38,22 +38,6 @@ export const ConnectorSettingType$inboundSchema: z.ZodNativeEnum<
 > = z.nativeEnum(ConnectorSettingType);
 
 /** @internal */
-export const ConnectorSettingType$outboundSchema: z.ZodNativeEnum<
-  typeof ConnectorSettingType
-> = ConnectorSettingType$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ConnectorSettingType$ {
-  /** @deprecated use `ConnectorSettingType$inboundSchema` instead. */
-  export const inboundSchema = ConnectorSettingType$inboundSchema;
-  /** @deprecated use `ConnectorSettingType$outboundSchema` instead. */
-  export const outboundSchema = ConnectorSettingType$outboundSchema;
-}
-
-/** @internal */
 export const ConnectorSetting$inboundSchema: z.ZodType<
   ConnectorSetting,
   z.ZodTypeDef,
@@ -63,45 +47,6 @@ export const ConnectorSetting$inboundSchema: z.ZodType<
   label: z.string().optional(),
   type: ConnectorSettingType$inboundSchema.optional(),
 });
-
-/** @internal */
-export type ConnectorSetting$Outbound = {
-  id?: string | undefined;
-  label?: string | undefined;
-  type?: string | undefined;
-};
-
-/** @internal */
-export const ConnectorSetting$outboundSchema: z.ZodType<
-  ConnectorSetting$Outbound,
-  z.ZodTypeDef,
-  ConnectorSetting
-> = z.object({
-  id: z.string().optional(),
-  label: z.string().optional(),
-  type: ConnectorSettingType$outboundSchema.optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ConnectorSetting$ {
-  /** @deprecated use `ConnectorSetting$inboundSchema` instead. */
-  export const inboundSchema = ConnectorSetting$inboundSchema;
-  /** @deprecated use `ConnectorSetting$outboundSchema` instead. */
-  export const outboundSchema = ConnectorSetting$outboundSchema;
-  /** @deprecated use `ConnectorSetting$Outbound` instead. */
-  export type Outbound = ConnectorSetting$Outbound;
-}
-
-export function connectorSettingToJSON(
-  connectorSetting: ConnectorSetting,
-): string {
-  return JSON.stringify(
-    ConnectorSetting$outboundSchema.parse(connectorSetting),
-  );
-}
 
 export function connectorSettingFromJSON(
   jsonString: string,

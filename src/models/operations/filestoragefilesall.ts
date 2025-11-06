@@ -76,85 +76,6 @@ export type FileStorageFilesAllResponse = {
 };
 
 /** @internal */
-export const FileStorageFilesAllGlobals$inboundSchema: z.ZodType<
-  FileStorageFilesAllGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/** @internal */
-export type FileStorageFilesAllGlobals$Outbound = {
-  consumerId?: string | undefined;
-  appId?: string | undefined;
-};
-
-/** @internal */
-export const FileStorageFilesAllGlobals$outboundSchema: z.ZodType<
-  FileStorageFilesAllGlobals$Outbound,
-  z.ZodTypeDef,
-  FileStorageFilesAllGlobals
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace FileStorageFilesAllGlobals$ {
-  /** @deprecated use `FileStorageFilesAllGlobals$inboundSchema` instead. */
-  export const inboundSchema = FileStorageFilesAllGlobals$inboundSchema;
-  /** @deprecated use `FileStorageFilesAllGlobals$outboundSchema` instead. */
-  export const outboundSchema = FileStorageFilesAllGlobals$outboundSchema;
-  /** @deprecated use `FileStorageFilesAllGlobals$Outbound` instead. */
-  export type Outbound = FileStorageFilesAllGlobals$Outbound;
-}
-
-export function fileStorageFilesAllGlobalsToJSON(
-  fileStorageFilesAllGlobals: FileStorageFilesAllGlobals,
-): string {
-  return JSON.stringify(
-    FileStorageFilesAllGlobals$outboundSchema.parse(fileStorageFilesAllGlobals),
-  );
-}
-
-export function fileStorageFilesAllGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<FileStorageFilesAllGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => FileStorageFilesAllGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'FileStorageFilesAllGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const FileStorageFilesAllRequest$inboundSchema: z.ZodType<
-  FileStorageFilesAllRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  raw: z.boolean().default(false),
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  cursor: z.nullable(z.string()).optional(),
-  limit: z.number().int().default(20),
-  filter: components.FilesFilter$inboundSchema.optional(),
-  sort: components.FilesSort$inboundSchema.optional(),
-  pass_through: z.record(z.any()).optional(),
-  fields: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "pass_through": "passThrough",
-  });
-});
-
-/** @internal */
 export type FileStorageFilesAllRequest$Outbound = {
   raw: boolean;
   consumerId?: string | undefined;
@@ -190,34 +111,11 @@ export const FileStorageFilesAllRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace FileStorageFilesAllRequest$ {
-  /** @deprecated use `FileStorageFilesAllRequest$inboundSchema` instead. */
-  export const inboundSchema = FileStorageFilesAllRequest$inboundSchema;
-  /** @deprecated use `FileStorageFilesAllRequest$outboundSchema` instead. */
-  export const outboundSchema = FileStorageFilesAllRequest$outboundSchema;
-  /** @deprecated use `FileStorageFilesAllRequest$Outbound` instead. */
-  export type Outbound = FileStorageFilesAllRequest$Outbound;
-}
-
 export function fileStorageFilesAllRequestToJSON(
   fileStorageFilesAllRequest: FileStorageFilesAllRequest,
 ): string {
   return JSON.stringify(
     FileStorageFilesAllRequest$outboundSchema.parse(fileStorageFilesAllRequest),
-  );
-}
-
-export function fileStorageFilesAllRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<FileStorageFilesAllRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => FileStorageFilesAllRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'FileStorageFilesAllRequest' from JSON`,
   );
 }
 
@@ -238,56 +136,6 @@ export const FileStorageFilesAllResponse$inboundSchema: z.ZodType<
     "UnexpectedErrorResponse": "unexpectedErrorResponse",
   });
 });
-
-/** @internal */
-export type FileStorageFilesAllResponse$Outbound = {
-  HttpMeta: components.HTTPMetadata$Outbound;
-  GetFilesResponse?: components.GetFilesResponse$Outbound | undefined;
-  UnexpectedErrorResponse?:
-    | components.UnexpectedErrorResponse$Outbound
-    | undefined;
-};
-
-/** @internal */
-export const FileStorageFilesAllResponse$outboundSchema: z.ZodType<
-  FileStorageFilesAllResponse$Outbound,
-  z.ZodTypeDef,
-  FileStorageFilesAllResponse
-> = z.object({
-  httpMeta: components.HTTPMetadata$outboundSchema,
-  getFilesResponse: components.GetFilesResponse$outboundSchema.optional(),
-  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    httpMeta: "HttpMeta",
-    getFilesResponse: "GetFilesResponse",
-    unexpectedErrorResponse: "UnexpectedErrorResponse",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace FileStorageFilesAllResponse$ {
-  /** @deprecated use `FileStorageFilesAllResponse$inboundSchema` instead. */
-  export const inboundSchema = FileStorageFilesAllResponse$inboundSchema;
-  /** @deprecated use `FileStorageFilesAllResponse$outboundSchema` instead. */
-  export const outboundSchema = FileStorageFilesAllResponse$outboundSchema;
-  /** @deprecated use `FileStorageFilesAllResponse$Outbound` instead. */
-  export type Outbound = FileStorageFilesAllResponse$Outbound;
-}
-
-export function fileStorageFilesAllResponseToJSON(
-  fileStorageFilesAllResponse: FileStorageFilesAllResponse,
-): string {
-  return JSON.stringify(
-    FileStorageFilesAllResponse$outboundSchema.parse(
-      fileStorageFilesAllResponse,
-    ),
-  );
-}
 
 export function fileStorageFilesAllResponseFromJSON(
   jsonString: string,

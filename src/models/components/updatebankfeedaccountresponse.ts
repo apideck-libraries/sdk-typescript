@@ -7,12 +7,7 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  UnifiedId,
-  UnifiedId$inboundSchema,
-  UnifiedId$Outbound,
-  UnifiedId$outboundSchema,
-} from "./unifiedid.js";
+import { UnifiedId, UnifiedId$inboundSchema } from "./unifiedid.js";
 
 /**
  * Bank Feed Accounts
@@ -67,60 +62,6 @@ export const UpdateBankFeedAccountResponse$inboundSchema: z.ZodType<
     "_raw": "raw",
   });
 });
-
-/** @internal */
-export type UpdateBankFeedAccountResponse$Outbound = {
-  status_code: number;
-  status: string;
-  service: string;
-  resource: string;
-  operation: string;
-  data: UnifiedId$Outbound;
-  _raw?: { [k: string]: any } | null | undefined;
-};
-
-/** @internal */
-export const UpdateBankFeedAccountResponse$outboundSchema: z.ZodType<
-  UpdateBankFeedAccountResponse$Outbound,
-  z.ZodTypeDef,
-  UpdateBankFeedAccountResponse
-> = z.object({
-  statusCode: z.number().int(),
-  status: z.string(),
-  service: z.string(),
-  resource: z.string(),
-  operation: z.string(),
-  data: UnifiedId$outboundSchema,
-  raw: z.nullable(z.record(z.any())).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    statusCode: "status_code",
-    raw: "_raw",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace UpdateBankFeedAccountResponse$ {
-  /** @deprecated use `UpdateBankFeedAccountResponse$inboundSchema` instead. */
-  export const inboundSchema = UpdateBankFeedAccountResponse$inboundSchema;
-  /** @deprecated use `UpdateBankFeedAccountResponse$outboundSchema` instead. */
-  export const outboundSchema = UpdateBankFeedAccountResponse$outboundSchema;
-  /** @deprecated use `UpdateBankFeedAccountResponse$Outbound` instead. */
-  export type Outbound = UpdateBankFeedAccountResponse$Outbound;
-}
-
-export function updateBankFeedAccountResponseToJSON(
-  updateBankFeedAccountResponse: UpdateBankFeedAccountResponse,
-): string {
-  return JSON.stringify(
-    UpdateBankFeedAccountResponse$outboundSchema.parse(
-      updateBankFeedAccountResponse,
-    ),
-  );
-}
 
 export function updateBankFeedAccountResponseFromJSON(
   jsonString: string,

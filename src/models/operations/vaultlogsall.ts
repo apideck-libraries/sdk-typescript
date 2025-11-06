@@ -56,76 +56,6 @@ export type VaultLogsAllResponse = {
 };
 
 /** @internal */
-export const VaultLogsAllGlobals$inboundSchema: z.ZodType<
-  VaultLogsAllGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  appId: z.string().optional(),
-  consumerId: z.string().optional(),
-});
-
-/** @internal */
-export type VaultLogsAllGlobals$Outbound = {
-  appId?: string | undefined;
-  consumerId?: string | undefined;
-};
-
-/** @internal */
-export const VaultLogsAllGlobals$outboundSchema: z.ZodType<
-  VaultLogsAllGlobals$Outbound,
-  z.ZodTypeDef,
-  VaultLogsAllGlobals
-> = z.object({
-  appId: z.string().optional(),
-  consumerId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace VaultLogsAllGlobals$ {
-  /** @deprecated use `VaultLogsAllGlobals$inboundSchema` instead. */
-  export const inboundSchema = VaultLogsAllGlobals$inboundSchema;
-  /** @deprecated use `VaultLogsAllGlobals$outboundSchema` instead. */
-  export const outboundSchema = VaultLogsAllGlobals$outboundSchema;
-  /** @deprecated use `VaultLogsAllGlobals$Outbound` instead. */
-  export type Outbound = VaultLogsAllGlobals$Outbound;
-}
-
-export function vaultLogsAllGlobalsToJSON(
-  vaultLogsAllGlobals: VaultLogsAllGlobals,
-): string {
-  return JSON.stringify(
-    VaultLogsAllGlobals$outboundSchema.parse(vaultLogsAllGlobals),
-  );
-}
-
-export function vaultLogsAllGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<VaultLogsAllGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => VaultLogsAllGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'VaultLogsAllGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const VaultLogsAllRequest$inboundSchema: z.ZodType<
-  VaultLogsAllRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  appId: z.string().optional(),
-  consumerId: z.string().optional(),
-  filter: components.LogsFilter$inboundSchema.optional(),
-  cursor: z.nullable(z.string()).optional(),
-  limit: z.number().int().default(20),
-});
-
-/** @internal */
 export type VaultLogsAllRequest$Outbound = {
   appId?: string | undefined;
   consumerId?: string | undefined;
@@ -147,34 +77,11 @@ export const VaultLogsAllRequest$outboundSchema: z.ZodType<
   limit: z.number().int().default(20),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace VaultLogsAllRequest$ {
-  /** @deprecated use `VaultLogsAllRequest$inboundSchema` instead. */
-  export const inboundSchema = VaultLogsAllRequest$inboundSchema;
-  /** @deprecated use `VaultLogsAllRequest$outboundSchema` instead. */
-  export const outboundSchema = VaultLogsAllRequest$outboundSchema;
-  /** @deprecated use `VaultLogsAllRequest$Outbound` instead. */
-  export type Outbound = VaultLogsAllRequest$Outbound;
-}
-
 export function vaultLogsAllRequestToJSON(
   vaultLogsAllRequest: VaultLogsAllRequest,
 ): string {
   return JSON.stringify(
     VaultLogsAllRequest$outboundSchema.parse(vaultLogsAllRequest),
-  );
-}
-
-export function vaultLogsAllRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<VaultLogsAllRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => VaultLogsAllRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'VaultLogsAllRequest' from JSON`,
   );
 }
 
@@ -195,54 +102,6 @@ export const VaultLogsAllResponse$inboundSchema: z.ZodType<
     "UnexpectedErrorResponse": "unexpectedErrorResponse",
   });
 });
-
-/** @internal */
-export type VaultLogsAllResponse$Outbound = {
-  HttpMeta: components.HTTPMetadata$Outbound;
-  GetLogsResponse?: components.GetLogsResponse$Outbound | undefined;
-  UnexpectedErrorResponse?:
-    | components.UnexpectedErrorResponse$Outbound
-    | undefined;
-};
-
-/** @internal */
-export const VaultLogsAllResponse$outboundSchema: z.ZodType<
-  VaultLogsAllResponse$Outbound,
-  z.ZodTypeDef,
-  VaultLogsAllResponse
-> = z.object({
-  httpMeta: components.HTTPMetadata$outboundSchema,
-  getLogsResponse: components.GetLogsResponse$outboundSchema.optional(),
-  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    httpMeta: "HttpMeta",
-    getLogsResponse: "GetLogsResponse",
-    unexpectedErrorResponse: "UnexpectedErrorResponse",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace VaultLogsAllResponse$ {
-  /** @deprecated use `VaultLogsAllResponse$inboundSchema` instead. */
-  export const inboundSchema = VaultLogsAllResponse$inboundSchema;
-  /** @deprecated use `VaultLogsAllResponse$outboundSchema` instead. */
-  export const outboundSchema = VaultLogsAllResponse$outboundSchema;
-  /** @deprecated use `VaultLogsAllResponse$Outbound` instead. */
-  export type Outbound = VaultLogsAllResponse$Outbound;
-}
-
-export function vaultLogsAllResponseToJSON(
-  vaultLogsAllResponse: VaultLogsAllResponse,
-): string {
-  return JSON.stringify(
-    VaultLogsAllResponse$outboundSchema.parse(vaultLogsAllResponse),
-  );
-}
 
 export function vaultLogsAllResponseFromJSON(
   jsonString: string,

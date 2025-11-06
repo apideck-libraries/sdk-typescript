@@ -7,24 +7,9 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  Links,
-  Links$inboundSchema,
-  Links$Outbound,
-  Links$outboundSchema,
-} from "./links.js";
-import {
-  Meta,
-  Meta$inboundSchema,
-  Meta$Outbound,
-  Meta$outboundSchema,
-} from "./meta.js";
-import {
-  Supplier,
-  Supplier$inboundSchema,
-  Supplier$Outbound,
-  Supplier$outboundSchema,
-} from "./supplier.js";
+import { Links, Links$inboundSchema } from "./links.js";
+import { Meta, Meta$inboundSchema } from "./meta.js";
+import { Supplier, Supplier$inboundSchema } from "./supplier.js";
 
 /**
  * Suppliers
@@ -86,62 +71,6 @@ export const GetSuppliersResponse$inboundSchema: z.ZodType<
     "_raw": "raw",
   });
 });
-
-/** @internal */
-export type GetSuppliersResponse$Outbound = {
-  status_code: number;
-  status: string;
-  service: string;
-  resource: string;
-  operation: string;
-  data: Array<Supplier$Outbound>;
-  meta?: Meta$Outbound | undefined;
-  links?: Links$Outbound | undefined;
-  _raw?: { [k: string]: any } | null | undefined;
-};
-
-/** @internal */
-export const GetSuppliersResponse$outboundSchema: z.ZodType<
-  GetSuppliersResponse$Outbound,
-  z.ZodTypeDef,
-  GetSuppliersResponse
-> = z.object({
-  statusCode: z.number().int(),
-  status: z.string(),
-  service: z.string(),
-  resource: z.string(),
-  operation: z.string(),
-  data: z.array(Supplier$outboundSchema),
-  meta: Meta$outboundSchema.optional(),
-  links: Links$outboundSchema.optional(),
-  raw: z.nullable(z.record(z.any())).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    statusCode: "status_code",
-    raw: "_raw",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetSuppliersResponse$ {
-  /** @deprecated use `GetSuppliersResponse$inboundSchema` instead. */
-  export const inboundSchema = GetSuppliersResponse$inboundSchema;
-  /** @deprecated use `GetSuppliersResponse$outboundSchema` instead. */
-  export const outboundSchema = GetSuppliersResponse$outboundSchema;
-  /** @deprecated use `GetSuppliersResponse$Outbound` instead. */
-  export type Outbound = GetSuppliersResponse$Outbound;
-}
-
-export function getSuppliersResponseToJSON(
-  getSuppliersResponse: GetSuppliersResponse,
-): string {
-  return JSON.stringify(
-    GetSuppliersResponse$outboundSchema.parse(getSuppliersResponse),
-  );
-}
 
 export function getSuppliersResponseFromJSON(
   jsonString: string,

@@ -3,12 +3,8 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   DataScopesResources,
-  DataScopesResources$inboundSchema,
   DataScopesResources$Outbound,
   DataScopesResources$outboundSchema,
 } from "./datascopesresources.js";
@@ -23,16 +19,6 @@ export type ConsentRecordInput = {
    */
   resources: DataScopesResources;
 };
-
-/** @internal */
-export const ConsentRecordInput$inboundSchema: z.ZodType<
-  ConsentRecordInput,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  granted: z.boolean(),
-  resources: DataScopesResources$inboundSchema,
-});
 
 /** @internal */
 export type ConsentRecordInput$Outbound = {
@@ -50,33 +36,10 @@ export const ConsentRecordInput$outboundSchema: z.ZodType<
   resources: DataScopesResources$outboundSchema,
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ConsentRecordInput$ {
-  /** @deprecated use `ConsentRecordInput$inboundSchema` instead. */
-  export const inboundSchema = ConsentRecordInput$inboundSchema;
-  /** @deprecated use `ConsentRecordInput$outboundSchema` instead. */
-  export const outboundSchema = ConsentRecordInput$outboundSchema;
-  /** @deprecated use `ConsentRecordInput$Outbound` instead. */
-  export type Outbound = ConsentRecordInput$Outbound;
-}
-
 export function consentRecordInputToJSON(
   consentRecordInput: ConsentRecordInput,
 ): string {
   return JSON.stringify(
     ConsentRecordInput$outboundSchema.parse(consentRecordInput),
-  );
-}
-
-export function consentRecordInputFromJSON(
-  jsonString: string,
-): SafeParseResult<ConsentRecordInput, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => ConsentRecordInput$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ConsentRecordInput' from JSON`,
   );
 }

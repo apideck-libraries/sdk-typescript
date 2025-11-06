@@ -38,8 +38,8 @@ type AccountingJournalEntriesUpdateRequest struct {
 	// Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
 	ServiceID *string `header:"style=simple,explode=false,name=x-apideck-service-id"`
 	// Include raw response. Mostly used for debugging purposes
-	Raw          *bool                        `default:"false" queryParam:"style=form,explode=true,name=raw"`
-	JournalEntry components.JournalEntryInput `request:"mediaType=application/json"`
+	Raw  *bool                        `default:"false" queryParam:"style=form,explode=true,name=raw"`
+	Body components.JournalEntryInput `request:"mediaType=application/json"`
 }
 
 func (a AccountingJournalEntriesUpdateRequest) MarshalJSON() ([]byte, error) {
@@ -47,7 +47,7 @@ func (a AccountingJournalEntriesUpdateRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (a *AccountingJournalEntriesUpdateRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"id", "JournalEntry"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"id", "body"}); err != nil {
 		return err
 	}
 	return nil
@@ -88,11 +88,11 @@ func (o *AccountingJournalEntriesUpdateRequest) GetRaw() *bool {
 	return o.Raw
 }
 
-func (o *AccountingJournalEntriesUpdateRequest) GetJournalEntry() components.JournalEntryInput {
+func (o *AccountingJournalEntriesUpdateRequest) GetBody() components.JournalEntryInput {
 	if o == nil {
 		return components.JournalEntryInput{}
 	}
-	return o.JournalEntry
+	return o.Body
 }
 
 type AccountingJournalEntriesUpdateResponse struct {

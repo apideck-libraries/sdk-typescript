@@ -9,7 +9,6 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   EcommerceOrderStatus,
   EcommerceOrderStatus$inboundSchema,
-  EcommerceOrderStatus$outboundSchema,
 } from "./ecommerceorderstatus.js";
 
 /**
@@ -40,45 +39,6 @@ export const LinkedEcommerceOrder$inboundSchema: z.ZodType<
   total: z.nullable(z.string()).optional(),
   status: z.nullable(EcommerceOrderStatus$inboundSchema).optional(),
 });
-
-/** @internal */
-export type LinkedEcommerceOrder$Outbound = {
-  id?: string | undefined;
-  total?: string | null | undefined;
-  status?: string | null | undefined;
-};
-
-/** @internal */
-export const LinkedEcommerceOrder$outboundSchema: z.ZodType<
-  LinkedEcommerceOrder$Outbound,
-  z.ZodTypeDef,
-  LinkedEcommerceOrder
-> = z.object({
-  id: z.string().optional(),
-  total: z.nullable(z.string()).optional(),
-  status: z.nullable(EcommerceOrderStatus$outboundSchema).optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace LinkedEcommerceOrder$ {
-  /** @deprecated use `LinkedEcommerceOrder$inboundSchema` instead. */
-  export const inboundSchema = LinkedEcommerceOrder$inboundSchema;
-  /** @deprecated use `LinkedEcommerceOrder$outboundSchema` instead. */
-  export const outboundSchema = LinkedEcommerceOrder$outboundSchema;
-  /** @deprecated use `LinkedEcommerceOrder$Outbound` instead. */
-  export type Outbound = LinkedEcommerceOrder$Outbound;
-}
-
-export function linkedEcommerceOrderToJSON(
-  linkedEcommerceOrder: LinkedEcommerceOrder,
-): string {
-  return JSON.stringify(
-    LinkedEcommerceOrder$outboundSchema.parse(linkedEcommerceOrder),
-  );
-}
 
 export function linkedEcommerceOrderFromJSON(
   jsonString: string,

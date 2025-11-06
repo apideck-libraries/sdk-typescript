@@ -48,47 +48,6 @@ export const TrackingItem$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type TrackingItem$Outbound = {
-  provider: string | null;
-  number: string | null;
-  url?: string | null | undefined;
-  updated_at?: string | null | undefined;
-};
-
-/** @internal */
-export const TrackingItem$outboundSchema: z.ZodType<
-  TrackingItem$Outbound,
-  z.ZodTypeDef,
-  TrackingItem
-> = z.object({
-  provider: z.nullable(z.string()),
-  number: z.nullable(z.string()),
-  url: z.nullable(z.string()).optional(),
-  updatedAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    updatedAt: "updated_at",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace TrackingItem$ {
-  /** @deprecated use `TrackingItem$inboundSchema` instead. */
-  export const inboundSchema = TrackingItem$inboundSchema;
-  /** @deprecated use `TrackingItem$outboundSchema` instead. */
-  export const outboundSchema = TrackingItem$outboundSchema;
-  /** @deprecated use `TrackingItem$Outbound` instead. */
-  export type Outbound = TrackingItem$Outbound;
-}
-
-export function trackingItemToJSON(trackingItem: TrackingItem): string {
-  return JSON.stringify(TrackingItem$outboundSchema.parse(trackingItem));
-}
-
 export function trackingItemFromJSON(
   jsonString: string,
 ): SafeParseResult<TrackingItem, SDKValidationError> {

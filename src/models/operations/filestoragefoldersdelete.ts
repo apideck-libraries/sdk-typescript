@@ -56,78 +56,6 @@ export type FileStorageFoldersDeleteResponse = {
 };
 
 /** @internal */
-export const FileStorageFoldersDeleteGlobals$inboundSchema: z.ZodType<
-  FileStorageFoldersDeleteGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/** @internal */
-export type FileStorageFoldersDeleteGlobals$Outbound = {
-  consumerId?: string | undefined;
-  appId?: string | undefined;
-};
-
-/** @internal */
-export const FileStorageFoldersDeleteGlobals$outboundSchema: z.ZodType<
-  FileStorageFoldersDeleteGlobals$Outbound,
-  z.ZodTypeDef,
-  FileStorageFoldersDeleteGlobals
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace FileStorageFoldersDeleteGlobals$ {
-  /** @deprecated use `FileStorageFoldersDeleteGlobals$inboundSchema` instead. */
-  export const inboundSchema = FileStorageFoldersDeleteGlobals$inboundSchema;
-  /** @deprecated use `FileStorageFoldersDeleteGlobals$outboundSchema` instead. */
-  export const outboundSchema = FileStorageFoldersDeleteGlobals$outboundSchema;
-  /** @deprecated use `FileStorageFoldersDeleteGlobals$Outbound` instead. */
-  export type Outbound = FileStorageFoldersDeleteGlobals$Outbound;
-}
-
-export function fileStorageFoldersDeleteGlobalsToJSON(
-  fileStorageFoldersDeleteGlobals: FileStorageFoldersDeleteGlobals,
-): string {
-  return JSON.stringify(
-    FileStorageFoldersDeleteGlobals$outboundSchema.parse(
-      fileStorageFoldersDeleteGlobals,
-    ),
-  );
-}
-
-export function fileStorageFoldersDeleteGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<FileStorageFoldersDeleteGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => FileStorageFoldersDeleteGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'FileStorageFoldersDeleteGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const FileStorageFoldersDeleteRequest$inboundSchema: z.ZodType<
-  FileStorageFoldersDeleteRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  id: z.string(),
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  raw: z.boolean().default(false),
-});
-
-/** @internal */
 export type FileStorageFoldersDeleteRequest$Outbound = {
   id: string;
   consumerId?: string | undefined;
@@ -149,19 +77,6 @@ export const FileStorageFoldersDeleteRequest$outboundSchema: z.ZodType<
   raw: z.boolean().default(false),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace FileStorageFoldersDeleteRequest$ {
-  /** @deprecated use `FileStorageFoldersDeleteRequest$inboundSchema` instead. */
-  export const inboundSchema = FileStorageFoldersDeleteRequest$inboundSchema;
-  /** @deprecated use `FileStorageFoldersDeleteRequest$outboundSchema` instead. */
-  export const outboundSchema = FileStorageFoldersDeleteRequest$outboundSchema;
-  /** @deprecated use `FileStorageFoldersDeleteRequest$Outbound` instead. */
-  export type Outbound = FileStorageFoldersDeleteRequest$Outbound;
-}
-
 export function fileStorageFoldersDeleteRequestToJSON(
   fileStorageFoldersDeleteRequest: FileStorageFoldersDeleteRequest,
 ): string {
@@ -169,16 +84,6 @@ export function fileStorageFoldersDeleteRequestToJSON(
     FileStorageFoldersDeleteRequest$outboundSchema.parse(
       fileStorageFoldersDeleteRequest,
     ),
-  );
-}
-
-export function fileStorageFoldersDeleteRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<FileStorageFoldersDeleteRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => FileStorageFoldersDeleteRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'FileStorageFoldersDeleteRequest' from JSON`,
   );
 }
 
@@ -200,57 +105,6 @@ export const FileStorageFoldersDeleteResponse$inboundSchema: z.ZodType<
     "UnexpectedErrorResponse": "unexpectedErrorResponse",
   });
 });
-
-/** @internal */
-export type FileStorageFoldersDeleteResponse$Outbound = {
-  HttpMeta: components.HTTPMetadata$Outbound;
-  DeleteFolderResponse?: components.DeleteFolderResponse$Outbound | undefined;
-  UnexpectedErrorResponse?:
-    | components.UnexpectedErrorResponse$Outbound
-    | undefined;
-};
-
-/** @internal */
-export const FileStorageFoldersDeleteResponse$outboundSchema: z.ZodType<
-  FileStorageFoldersDeleteResponse$Outbound,
-  z.ZodTypeDef,
-  FileStorageFoldersDeleteResponse
-> = z.object({
-  httpMeta: components.HTTPMetadata$outboundSchema,
-  deleteFolderResponse: components.DeleteFolderResponse$outboundSchema
-    .optional(),
-  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    httpMeta: "HttpMeta",
-    deleteFolderResponse: "DeleteFolderResponse",
-    unexpectedErrorResponse: "UnexpectedErrorResponse",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace FileStorageFoldersDeleteResponse$ {
-  /** @deprecated use `FileStorageFoldersDeleteResponse$inboundSchema` instead. */
-  export const inboundSchema = FileStorageFoldersDeleteResponse$inboundSchema;
-  /** @deprecated use `FileStorageFoldersDeleteResponse$outboundSchema` instead. */
-  export const outboundSchema = FileStorageFoldersDeleteResponse$outboundSchema;
-  /** @deprecated use `FileStorageFoldersDeleteResponse$Outbound` instead. */
-  export type Outbound = FileStorageFoldersDeleteResponse$Outbound;
-}
-
-export function fileStorageFoldersDeleteResponseToJSON(
-  fileStorageFoldersDeleteResponse: FileStorageFoldersDeleteResponse,
-): string {
-  return JSON.stringify(
-    FileStorageFoldersDeleteResponse$outboundSchema.parse(
-      fileStorageFoldersDeleteResponse,
-    ),
-  );
-}
 
 export function fileStorageFoldersDeleteResponseFromJSON(
   jsonString: string,

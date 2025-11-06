@@ -7,11 +7,7 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  UnifiedApiId,
-  UnifiedApiId$inboundSchema,
-  UnifiedApiId$outboundSchema,
-} from "./unifiedapiid.js";
+import { UnifiedApiId, UnifiedApiId$inboundSchema } from "./unifiedapiid.js";
 
 /**
  * Apideck service provider associated with event.
@@ -124,43 +120,6 @@ export const WebhookEventLogService$inboundSchema: z.ZodType<
   name: z.string(),
 });
 
-/** @internal */
-export type WebhookEventLogService$Outbound = {
-  id: string;
-  name: string;
-};
-
-/** @internal */
-export const WebhookEventLogService$outboundSchema: z.ZodType<
-  WebhookEventLogService$Outbound,
-  z.ZodTypeDef,
-  WebhookEventLogService
-> = z.object({
-  id: z.string(),
-  name: z.string(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace WebhookEventLogService$ {
-  /** @deprecated use `WebhookEventLogService$inboundSchema` instead. */
-  export const inboundSchema = WebhookEventLogService$inboundSchema;
-  /** @deprecated use `WebhookEventLogService$outboundSchema` instead. */
-  export const outboundSchema = WebhookEventLogService$outboundSchema;
-  /** @deprecated use `WebhookEventLogService$Outbound` instead. */
-  export type Outbound = WebhookEventLogService$Outbound;
-}
-
-export function webhookEventLogServiceToJSON(
-  webhookEventLogService: WebhookEventLogService,
-): string {
-  return JSON.stringify(
-    WebhookEventLogService$outboundSchema.parse(webhookEventLogService),
-  );
-}
-
 export function webhookEventLogServiceFromJSON(
   jsonString: string,
 ): SafeParseResult<WebhookEventLogService, SDKValidationError> {
@@ -187,48 +146,6 @@ export const Attempts$inboundSchema: z.ZodType<
     "status_code": "statusCode",
   });
 });
-
-/** @internal */
-export type Attempts$Outbound = {
-  timestamp?: string | undefined;
-  execution_attempt?: number | undefined;
-  status_code?: number | undefined;
-  success?: boolean | undefined;
-};
-
-/** @internal */
-export const Attempts$outboundSchema: z.ZodType<
-  Attempts$Outbound,
-  z.ZodTypeDef,
-  Attempts
-> = z.object({
-  timestamp: z.string().optional(),
-  executionAttempt: z.number().optional(),
-  statusCode: z.number().int().optional(),
-  success: z.boolean().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    executionAttempt: "execution_attempt",
-    statusCode: "status_code",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Attempts$ {
-  /** @deprecated use `Attempts$inboundSchema` instead. */
-  export const inboundSchema = Attempts$inboundSchema;
-  /** @deprecated use `Attempts$outboundSchema` instead. */
-  export const outboundSchema = Attempts$outboundSchema;
-  /** @deprecated use `Attempts$Outbound` instead. */
-  export type Outbound = Attempts$Outbound;
-}
-
-export function attemptsToJSON(attempts: Attempts): string {
-  return JSON.stringify(Attempts$outboundSchema.parse(attempts));
-}
 
 export function attemptsFromJSON(
   jsonString: string,
@@ -278,85 +195,6 @@ export const WebhookEventLog$inboundSchema: z.ZodType<
     "retry_scheduled": "retryScheduled",
   });
 });
-
-/** @internal */
-export type WebhookEventLog$Outbound = {
-  id?: string | undefined;
-  status_code?: number | undefined;
-  success?: boolean | undefined;
-  application_id?: string | undefined;
-  consumer_id?: string | undefined;
-  unified_api?: string | undefined;
-  service?: WebhookEventLogService$Outbound | undefined;
-  endpoint?: string | undefined;
-  event_type?: string | undefined;
-  execution_attempt?: number | undefined;
-  http_method?: string | undefined;
-  timestamp?: string | undefined;
-  entity_type?: string | undefined;
-  request_body?: string | undefined;
-  response_body?: string | undefined;
-  retry_scheduled?: boolean | undefined;
-  attempts?: Array<Attempts$Outbound> | undefined;
-};
-
-/** @internal */
-export const WebhookEventLog$outboundSchema: z.ZodType<
-  WebhookEventLog$Outbound,
-  z.ZodTypeDef,
-  WebhookEventLog
-> = z.object({
-  id: z.string().optional(),
-  statusCode: z.number().int().optional(),
-  success: z.boolean().optional(),
-  applicationId: z.string().optional(),
-  consumerId: z.string().optional(),
-  unifiedApi: UnifiedApiId$outboundSchema.optional(),
-  service: z.lazy(() => WebhookEventLogService$outboundSchema).optional(),
-  endpoint: z.string().optional(),
-  eventType: z.string().optional(),
-  executionAttempt: z.number().optional(),
-  httpMethod: z.string().optional(),
-  timestamp: z.string().optional(),
-  entityType: z.string().optional(),
-  requestBody: z.string().optional(),
-  responseBody: z.string().optional(),
-  retryScheduled: z.boolean().optional(),
-  attempts: z.array(z.lazy(() => Attempts$outboundSchema)).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    statusCode: "status_code",
-    applicationId: "application_id",
-    consumerId: "consumer_id",
-    unifiedApi: "unified_api",
-    eventType: "event_type",
-    executionAttempt: "execution_attempt",
-    httpMethod: "http_method",
-    entityType: "entity_type",
-    requestBody: "request_body",
-    responseBody: "response_body",
-    retryScheduled: "retry_scheduled",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace WebhookEventLog$ {
-  /** @deprecated use `WebhookEventLog$inboundSchema` instead. */
-  export const inboundSchema = WebhookEventLog$inboundSchema;
-  /** @deprecated use `WebhookEventLog$outboundSchema` instead. */
-  export const outboundSchema = WebhookEventLog$outboundSchema;
-  /** @deprecated use `WebhookEventLog$Outbound` instead. */
-  export type Outbound = WebhookEventLog$Outbound;
-}
-
-export function webhookEventLogToJSON(
-  webhookEventLog: WebhookEventLog,
-): string {
-  return JSON.stringify(WebhookEventLog$outboundSchema.parse(webhookEventLog));
-}
 
 export function webhookEventLogFromJSON(
   jsonString: string,

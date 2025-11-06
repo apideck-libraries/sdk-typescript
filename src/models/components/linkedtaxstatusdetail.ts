@@ -32,7 +32,6 @@ export const LinkedTaxStatusDetail$inboundSchema: z.ZodType<
     "transaction_tax_status": "transactionTaxStatus",
   });
 });
-
 /** @internal */
 export type LinkedTaxStatusDetail$Outbound = {
   country?: string | undefined;
@@ -53,19 +52,6 @@ export const LinkedTaxStatusDetail$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace LinkedTaxStatusDetail$ {
-  /** @deprecated use `LinkedTaxStatusDetail$inboundSchema` instead. */
-  export const inboundSchema = LinkedTaxStatusDetail$inboundSchema;
-  /** @deprecated use `LinkedTaxStatusDetail$outboundSchema` instead. */
-  export const outboundSchema = LinkedTaxStatusDetail$outboundSchema;
-  /** @deprecated use `LinkedTaxStatusDetail$Outbound` instead. */
-  export type Outbound = LinkedTaxStatusDetail$Outbound;
-}
-
 export function linkedTaxStatusDetailToJSON(
   linkedTaxStatusDetail: LinkedTaxStatusDetail,
 ): string {
@@ -73,7 +59,6 @@ export function linkedTaxStatusDetailToJSON(
     LinkedTaxStatusDetail$outboundSchema.parse(linkedTaxStatusDetail),
   );
 }
-
 export function linkedTaxStatusDetailFromJSON(
   jsonString: string,
 ): SafeParseResult<LinkedTaxStatusDetail, SDKValidationError> {

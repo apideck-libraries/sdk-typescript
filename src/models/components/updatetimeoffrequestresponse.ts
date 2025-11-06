@@ -7,12 +7,7 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  UnifiedId,
-  UnifiedId$inboundSchema,
-  UnifiedId$Outbound,
-  UnifiedId$outboundSchema,
-} from "./unifiedid.js";
+import { UnifiedId, UnifiedId$inboundSchema } from "./unifiedid.js";
 
 /**
  * TimeOffRequests
@@ -67,60 +62,6 @@ export const UpdateTimeOffRequestResponse$inboundSchema: z.ZodType<
     "_raw": "raw",
   });
 });
-
-/** @internal */
-export type UpdateTimeOffRequestResponse$Outbound = {
-  status_code: number;
-  status: string;
-  service: string;
-  resource: string;
-  operation: string;
-  data: UnifiedId$Outbound;
-  _raw?: { [k: string]: any } | null | undefined;
-};
-
-/** @internal */
-export const UpdateTimeOffRequestResponse$outboundSchema: z.ZodType<
-  UpdateTimeOffRequestResponse$Outbound,
-  z.ZodTypeDef,
-  UpdateTimeOffRequestResponse
-> = z.object({
-  statusCode: z.number().int(),
-  status: z.string(),
-  service: z.string(),
-  resource: z.string(),
-  operation: z.string(),
-  data: UnifiedId$outboundSchema,
-  raw: z.nullable(z.record(z.any())).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    statusCode: "status_code",
-    raw: "_raw",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace UpdateTimeOffRequestResponse$ {
-  /** @deprecated use `UpdateTimeOffRequestResponse$inboundSchema` instead. */
-  export const inboundSchema = UpdateTimeOffRequestResponse$inboundSchema;
-  /** @deprecated use `UpdateTimeOffRequestResponse$outboundSchema` instead. */
-  export const outboundSchema = UpdateTimeOffRequestResponse$outboundSchema;
-  /** @deprecated use `UpdateTimeOffRequestResponse$Outbound` instead. */
-  export type Outbound = UpdateTimeOffRequestResponse$Outbound;
-}
-
-export function updateTimeOffRequestResponseToJSON(
-  updateTimeOffRequestResponse: UpdateTimeOffRequestResponse,
-): string {
-  return JSON.stringify(
-    UpdateTimeOffRequestResponse$outboundSchema.parse(
-      updateTimeOffRequestResponse,
-    ),
-  );
-}
 
 export function updateTimeOffRequestResponseFromJSON(
   jsonString: string,

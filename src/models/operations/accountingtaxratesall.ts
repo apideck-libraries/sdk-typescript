@@ -72,86 +72,6 @@ export type AccountingTaxRatesAllResponse = {
 };
 
 /** @internal */
-export const AccountingTaxRatesAllGlobals$inboundSchema: z.ZodType<
-  AccountingTaxRatesAllGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/** @internal */
-export type AccountingTaxRatesAllGlobals$Outbound = {
-  consumerId?: string | undefined;
-  appId?: string | undefined;
-};
-
-/** @internal */
-export const AccountingTaxRatesAllGlobals$outboundSchema: z.ZodType<
-  AccountingTaxRatesAllGlobals$Outbound,
-  z.ZodTypeDef,
-  AccountingTaxRatesAllGlobals
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AccountingTaxRatesAllGlobals$ {
-  /** @deprecated use `AccountingTaxRatesAllGlobals$inboundSchema` instead. */
-  export const inboundSchema = AccountingTaxRatesAllGlobals$inboundSchema;
-  /** @deprecated use `AccountingTaxRatesAllGlobals$outboundSchema` instead. */
-  export const outboundSchema = AccountingTaxRatesAllGlobals$outboundSchema;
-  /** @deprecated use `AccountingTaxRatesAllGlobals$Outbound` instead. */
-  export type Outbound = AccountingTaxRatesAllGlobals$Outbound;
-}
-
-export function accountingTaxRatesAllGlobalsToJSON(
-  accountingTaxRatesAllGlobals: AccountingTaxRatesAllGlobals,
-): string {
-  return JSON.stringify(
-    AccountingTaxRatesAllGlobals$outboundSchema.parse(
-      accountingTaxRatesAllGlobals,
-    ),
-  );
-}
-
-export function accountingTaxRatesAllGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<AccountingTaxRatesAllGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => AccountingTaxRatesAllGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'AccountingTaxRatesAllGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const AccountingTaxRatesAllRequest$inboundSchema: z.ZodType<
-  AccountingTaxRatesAllRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  raw: z.boolean().default(false),
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  cursor: z.nullable(z.string()).optional(),
-  limit: z.number().int().default(20),
-  filter: components.TaxRatesFilter$inboundSchema.optional(),
-  pass_through: z.record(z.any()).optional(),
-  fields: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "pass_through": "passThrough",
-  });
-});
-
-/** @internal */
 export type AccountingTaxRatesAllRequest$Outbound = {
   raw: boolean;
   consumerId?: string | undefined;
@@ -185,19 +105,6 @@ export const AccountingTaxRatesAllRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AccountingTaxRatesAllRequest$ {
-  /** @deprecated use `AccountingTaxRatesAllRequest$inboundSchema` instead. */
-  export const inboundSchema = AccountingTaxRatesAllRequest$inboundSchema;
-  /** @deprecated use `AccountingTaxRatesAllRequest$outboundSchema` instead. */
-  export const outboundSchema = AccountingTaxRatesAllRequest$outboundSchema;
-  /** @deprecated use `AccountingTaxRatesAllRequest$Outbound` instead. */
-  export type Outbound = AccountingTaxRatesAllRequest$Outbound;
-}
-
 export function accountingTaxRatesAllRequestToJSON(
   accountingTaxRatesAllRequest: AccountingTaxRatesAllRequest,
 ): string {
@@ -205,16 +112,6 @@ export function accountingTaxRatesAllRequestToJSON(
     AccountingTaxRatesAllRequest$outboundSchema.parse(
       accountingTaxRatesAllRequest,
     ),
-  );
-}
-
-export function accountingTaxRatesAllRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<AccountingTaxRatesAllRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => AccountingTaxRatesAllRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'AccountingTaxRatesAllRequest' from JSON`,
   );
 }
 
@@ -235,56 +132,6 @@ export const AccountingTaxRatesAllResponse$inboundSchema: z.ZodType<
     "UnexpectedErrorResponse": "unexpectedErrorResponse",
   });
 });
-
-/** @internal */
-export type AccountingTaxRatesAllResponse$Outbound = {
-  HttpMeta: components.HTTPMetadata$Outbound;
-  GetTaxRatesResponse?: components.GetTaxRatesResponse$Outbound | undefined;
-  UnexpectedErrorResponse?:
-    | components.UnexpectedErrorResponse$Outbound
-    | undefined;
-};
-
-/** @internal */
-export const AccountingTaxRatesAllResponse$outboundSchema: z.ZodType<
-  AccountingTaxRatesAllResponse$Outbound,
-  z.ZodTypeDef,
-  AccountingTaxRatesAllResponse
-> = z.object({
-  httpMeta: components.HTTPMetadata$outboundSchema,
-  getTaxRatesResponse: components.GetTaxRatesResponse$outboundSchema.optional(),
-  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    httpMeta: "HttpMeta",
-    getTaxRatesResponse: "GetTaxRatesResponse",
-    unexpectedErrorResponse: "UnexpectedErrorResponse",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AccountingTaxRatesAllResponse$ {
-  /** @deprecated use `AccountingTaxRatesAllResponse$inboundSchema` instead. */
-  export const inboundSchema = AccountingTaxRatesAllResponse$inboundSchema;
-  /** @deprecated use `AccountingTaxRatesAllResponse$outboundSchema` instead. */
-  export const outboundSchema = AccountingTaxRatesAllResponse$outboundSchema;
-  /** @deprecated use `AccountingTaxRatesAllResponse$Outbound` instead. */
-  export type Outbound = AccountingTaxRatesAllResponse$Outbound;
-}
-
-export function accountingTaxRatesAllResponseToJSON(
-  accountingTaxRatesAllResponse: AccountingTaxRatesAllResponse,
-): string {
-  return JSON.stringify(
-    AccountingTaxRatesAllResponse$outboundSchema.parse(
-      accountingTaxRatesAllResponse,
-    ),
-  );
-}
 
 export function accountingTaxRatesAllResponseFromJSON(
   jsonString: string,

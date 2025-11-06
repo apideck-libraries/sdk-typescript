@@ -456,8 +456,8 @@ type BillPaymentInput struct {
 	// Optional reference message returned by payment method on processing
 	PaymentMethodReference *string `json:"payment_method_reference,omitempty"`
 	// A unique identifier for an object.
-	PaymentMethodID *string                   `json:"payment_method_id,omitempty"`
-	Account         *LinkedLedgerAccountInput `json:"account,omitempty"`
+	PaymentMethodID *string              `json:"payment_method_id,omitempty"`
+	Account         *LinkedLedgerAccount `json:"account,omitempty"`
 	// The date of the transaction - YYYY:MM::DDThh:mm:ss.sTZD
 	TransactionDate *time.Time `json:"transaction_date"`
 	// The supplier this entity is linked to.
@@ -546,7 +546,7 @@ func (o *BillPaymentInput) GetPaymentMethodID() *string {
 	return o.PaymentMethodID
 }
 
-func (o *BillPaymentInput) GetAccount() *LinkedLedgerAccountInput {
+func (o *BillPaymentInput) GetAccount() *LinkedLedgerAccount {
 	if o == nil {
 		return nil
 	}

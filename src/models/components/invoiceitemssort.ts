@@ -3,13 +3,9 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   SortDirection,
-  SortDirection$inboundSchema,
   SortDirection$outboundSchema,
 } from "./sortdirection.js";
 
@@ -37,35 +33,9 @@ export type InvoiceItemsSort = {
 };
 
 /** @internal */
-export const InvoiceItemsSortBy$inboundSchema: z.ZodNativeEnum<
-  typeof InvoiceItemsSortBy
-> = z.nativeEnum(InvoiceItemsSortBy);
-
-/** @internal */
 export const InvoiceItemsSortBy$outboundSchema: z.ZodNativeEnum<
   typeof InvoiceItemsSortBy
-> = InvoiceItemsSortBy$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace InvoiceItemsSortBy$ {
-  /** @deprecated use `InvoiceItemsSortBy$inboundSchema` instead. */
-  export const inboundSchema = InvoiceItemsSortBy$inboundSchema;
-  /** @deprecated use `InvoiceItemsSortBy$outboundSchema` instead. */
-  export const outboundSchema = InvoiceItemsSortBy$outboundSchema;
-}
-
-/** @internal */
-export const InvoiceItemsSort$inboundSchema: z.ZodType<
-  InvoiceItemsSort,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  by: InvoiceItemsSortBy$inboundSchema.optional(),
-  direction: SortDirection$inboundSchema.default("asc"),
-});
+> = z.nativeEnum(InvoiceItemsSortBy);
 
 /** @internal */
 export type InvoiceItemsSort$Outbound = {
@@ -83,33 +53,10 @@ export const InvoiceItemsSort$outboundSchema: z.ZodType<
   direction: SortDirection$outboundSchema.default("asc"),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace InvoiceItemsSort$ {
-  /** @deprecated use `InvoiceItemsSort$inboundSchema` instead. */
-  export const inboundSchema = InvoiceItemsSort$inboundSchema;
-  /** @deprecated use `InvoiceItemsSort$outboundSchema` instead. */
-  export const outboundSchema = InvoiceItemsSort$outboundSchema;
-  /** @deprecated use `InvoiceItemsSort$Outbound` instead. */
-  export type Outbound = InvoiceItemsSort$Outbound;
-}
-
 export function invoiceItemsSortToJSON(
   invoiceItemsSort: InvoiceItemsSort,
 ): string {
   return JSON.stringify(
     InvoiceItemsSort$outboundSchema.parse(invoiceItemsSort),
-  );
-}
-
-export function invoiceItemsSortFromJSON(
-  jsonString: string,
-): SafeParseResult<InvoiceItemsSort, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => InvoiceItemsSort$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'InvoiceItemsSort' from JSON`,
   );
 }

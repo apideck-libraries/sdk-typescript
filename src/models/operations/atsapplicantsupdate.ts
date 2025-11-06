@@ -57,81 +57,6 @@ export type AtsApplicantsUpdateResponse = {
 };
 
 /** @internal */
-export const AtsApplicantsUpdateGlobals$inboundSchema: z.ZodType<
-  AtsApplicantsUpdateGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/** @internal */
-export type AtsApplicantsUpdateGlobals$Outbound = {
-  consumerId?: string | undefined;
-  appId?: string | undefined;
-};
-
-/** @internal */
-export const AtsApplicantsUpdateGlobals$outboundSchema: z.ZodType<
-  AtsApplicantsUpdateGlobals$Outbound,
-  z.ZodTypeDef,
-  AtsApplicantsUpdateGlobals
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AtsApplicantsUpdateGlobals$ {
-  /** @deprecated use `AtsApplicantsUpdateGlobals$inboundSchema` instead. */
-  export const inboundSchema = AtsApplicantsUpdateGlobals$inboundSchema;
-  /** @deprecated use `AtsApplicantsUpdateGlobals$outboundSchema` instead. */
-  export const outboundSchema = AtsApplicantsUpdateGlobals$outboundSchema;
-  /** @deprecated use `AtsApplicantsUpdateGlobals$Outbound` instead. */
-  export type Outbound = AtsApplicantsUpdateGlobals$Outbound;
-}
-
-export function atsApplicantsUpdateGlobalsToJSON(
-  atsApplicantsUpdateGlobals: AtsApplicantsUpdateGlobals,
-): string {
-  return JSON.stringify(
-    AtsApplicantsUpdateGlobals$outboundSchema.parse(atsApplicantsUpdateGlobals),
-  );
-}
-
-export function atsApplicantsUpdateGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<AtsApplicantsUpdateGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => AtsApplicantsUpdateGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'AtsApplicantsUpdateGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const AtsApplicantsUpdateRequest$inboundSchema: z.ZodType<
-  AtsApplicantsUpdateRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  id: z.string(),
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  raw: z.boolean().default(false),
-  Applicant: components.ApplicantInput$inboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    "Applicant": "applicant",
-  });
-});
-
-/** @internal */
 export type AtsApplicantsUpdateRequest$Outbound = {
   id: string;
   consumerId?: string | undefined;
@@ -159,34 +84,11 @@ export const AtsApplicantsUpdateRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AtsApplicantsUpdateRequest$ {
-  /** @deprecated use `AtsApplicantsUpdateRequest$inboundSchema` instead. */
-  export const inboundSchema = AtsApplicantsUpdateRequest$inboundSchema;
-  /** @deprecated use `AtsApplicantsUpdateRequest$outboundSchema` instead. */
-  export const outboundSchema = AtsApplicantsUpdateRequest$outboundSchema;
-  /** @deprecated use `AtsApplicantsUpdateRequest$Outbound` instead. */
-  export type Outbound = AtsApplicantsUpdateRequest$Outbound;
-}
-
 export function atsApplicantsUpdateRequestToJSON(
   atsApplicantsUpdateRequest: AtsApplicantsUpdateRequest,
 ): string {
   return JSON.stringify(
     AtsApplicantsUpdateRequest$outboundSchema.parse(atsApplicantsUpdateRequest),
-  );
-}
-
-export function atsApplicantsUpdateRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<AtsApplicantsUpdateRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => AtsApplicantsUpdateRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'AtsApplicantsUpdateRequest' from JSON`,
   );
 }
 
@@ -208,59 +110,6 @@ export const AtsApplicantsUpdateResponse$inboundSchema: z.ZodType<
     "UnexpectedErrorResponse": "unexpectedErrorResponse",
   });
 });
-
-/** @internal */
-export type AtsApplicantsUpdateResponse$Outbound = {
-  HttpMeta: components.HTTPMetadata$Outbound;
-  UpdateApplicantResponse?:
-    | components.UpdateApplicantResponse$Outbound
-    | undefined;
-  UnexpectedErrorResponse?:
-    | components.UnexpectedErrorResponse$Outbound
-    | undefined;
-};
-
-/** @internal */
-export const AtsApplicantsUpdateResponse$outboundSchema: z.ZodType<
-  AtsApplicantsUpdateResponse$Outbound,
-  z.ZodTypeDef,
-  AtsApplicantsUpdateResponse
-> = z.object({
-  httpMeta: components.HTTPMetadata$outboundSchema,
-  updateApplicantResponse: components.UpdateApplicantResponse$outboundSchema
-    .optional(),
-  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    httpMeta: "HttpMeta",
-    updateApplicantResponse: "UpdateApplicantResponse",
-    unexpectedErrorResponse: "UnexpectedErrorResponse",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AtsApplicantsUpdateResponse$ {
-  /** @deprecated use `AtsApplicantsUpdateResponse$inboundSchema` instead. */
-  export const inboundSchema = AtsApplicantsUpdateResponse$inboundSchema;
-  /** @deprecated use `AtsApplicantsUpdateResponse$outboundSchema` instead. */
-  export const outboundSchema = AtsApplicantsUpdateResponse$outboundSchema;
-  /** @deprecated use `AtsApplicantsUpdateResponse$Outbound` instead. */
-  export type Outbound = AtsApplicantsUpdateResponse$Outbound;
-}
-
-export function atsApplicantsUpdateResponseToJSON(
-  atsApplicantsUpdateResponse: AtsApplicantsUpdateResponse,
-): string {
-  return JSON.stringify(
-    AtsApplicantsUpdateResponse$outboundSchema.parse(
-      atsApplicantsUpdateResponse,
-    ),
-  );
-}
 
 export function atsApplicantsUpdateResponseFromJSON(
   jsonString: string,

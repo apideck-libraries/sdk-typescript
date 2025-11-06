@@ -56,76 +56,6 @@ export type SmsMessagesDeleteResponse = {
 };
 
 /** @internal */
-export const SmsMessagesDeleteGlobals$inboundSchema: z.ZodType<
-  SmsMessagesDeleteGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/** @internal */
-export type SmsMessagesDeleteGlobals$Outbound = {
-  consumerId?: string | undefined;
-  appId?: string | undefined;
-};
-
-/** @internal */
-export const SmsMessagesDeleteGlobals$outboundSchema: z.ZodType<
-  SmsMessagesDeleteGlobals$Outbound,
-  z.ZodTypeDef,
-  SmsMessagesDeleteGlobals
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SmsMessagesDeleteGlobals$ {
-  /** @deprecated use `SmsMessagesDeleteGlobals$inboundSchema` instead. */
-  export const inboundSchema = SmsMessagesDeleteGlobals$inboundSchema;
-  /** @deprecated use `SmsMessagesDeleteGlobals$outboundSchema` instead. */
-  export const outboundSchema = SmsMessagesDeleteGlobals$outboundSchema;
-  /** @deprecated use `SmsMessagesDeleteGlobals$Outbound` instead. */
-  export type Outbound = SmsMessagesDeleteGlobals$Outbound;
-}
-
-export function smsMessagesDeleteGlobalsToJSON(
-  smsMessagesDeleteGlobals: SmsMessagesDeleteGlobals,
-): string {
-  return JSON.stringify(
-    SmsMessagesDeleteGlobals$outboundSchema.parse(smsMessagesDeleteGlobals),
-  );
-}
-
-export function smsMessagesDeleteGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<SmsMessagesDeleteGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => SmsMessagesDeleteGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'SmsMessagesDeleteGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const SmsMessagesDeleteRequest$inboundSchema: z.ZodType<
-  SmsMessagesDeleteRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  id: z.string(),
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  raw: z.boolean().default(false),
-});
-
-/** @internal */
 export type SmsMessagesDeleteRequest$Outbound = {
   id: string;
   consumerId?: string | undefined;
@@ -147,34 +77,11 @@ export const SmsMessagesDeleteRequest$outboundSchema: z.ZodType<
   raw: z.boolean().default(false),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SmsMessagesDeleteRequest$ {
-  /** @deprecated use `SmsMessagesDeleteRequest$inboundSchema` instead. */
-  export const inboundSchema = SmsMessagesDeleteRequest$inboundSchema;
-  /** @deprecated use `SmsMessagesDeleteRequest$outboundSchema` instead. */
-  export const outboundSchema = SmsMessagesDeleteRequest$outboundSchema;
-  /** @deprecated use `SmsMessagesDeleteRequest$Outbound` instead. */
-  export type Outbound = SmsMessagesDeleteRequest$Outbound;
-}
-
 export function smsMessagesDeleteRequestToJSON(
   smsMessagesDeleteRequest: SmsMessagesDeleteRequest,
 ): string {
   return JSON.stringify(
     SmsMessagesDeleteRequest$outboundSchema.parse(smsMessagesDeleteRequest),
-  );
-}
-
-export function smsMessagesDeleteRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<SmsMessagesDeleteRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => SmsMessagesDeleteRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'SmsMessagesDeleteRequest' from JSON`,
   );
 }
 
@@ -196,55 +103,6 @@ export const SmsMessagesDeleteResponse$inboundSchema: z.ZodType<
     "UnexpectedErrorResponse": "unexpectedErrorResponse",
   });
 });
-
-/** @internal */
-export type SmsMessagesDeleteResponse$Outbound = {
-  HttpMeta: components.HTTPMetadata$Outbound;
-  DeleteMessageResponse?: components.DeleteMessageResponse$Outbound | undefined;
-  UnexpectedErrorResponse?:
-    | components.UnexpectedErrorResponse$Outbound
-    | undefined;
-};
-
-/** @internal */
-export const SmsMessagesDeleteResponse$outboundSchema: z.ZodType<
-  SmsMessagesDeleteResponse$Outbound,
-  z.ZodTypeDef,
-  SmsMessagesDeleteResponse
-> = z.object({
-  httpMeta: components.HTTPMetadata$outboundSchema,
-  deleteMessageResponse: components.DeleteMessageResponse$outboundSchema
-    .optional(),
-  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    httpMeta: "HttpMeta",
-    deleteMessageResponse: "DeleteMessageResponse",
-    unexpectedErrorResponse: "UnexpectedErrorResponse",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SmsMessagesDeleteResponse$ {
-  /** @deprecated use `SmsMessagesDeleteResponse$inboundSchema` instead. */
-  export const inboundSchema = SmsMessagesDeleteResponse$inboundSchema;
-  /** @deprecated use `SmsMessagesDeleteResponse$outboundSchema` instead. */
-  export const outboundSchema = SmsMessagesDeleteResponse$outboundSchema;
-  /** @deprecated use `SmsMessagesDeleteResponse$Outbound` instead. */
-  export type Outbound = SmsMessagesDeleteResponse$Outbound;
-}
-
-export function smsMessagesDeleteResponseToJSON(
-  smsMessagesDeleteResponse: SmsMessagesDeleteResponse,
-): string {
-  return JSON.stringify(
-    SmsMessagesDeleteResponse$outboundSchema.parse(smsMessagesDeleteResponse),
-  );
-}
 
 export function smsMessagesDeleteResponseFromJSON(
   jsonString: string,

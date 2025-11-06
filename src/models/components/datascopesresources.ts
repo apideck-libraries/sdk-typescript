@@ -41,22 +41,10 @@ export type DataScopesResources = {
 export const DataScopesResources2$inboundSchema: z.ZodNativeEnum<
   typeof DataScopesResources2
 > = z.nativeEnum(DataScopesResources2);
-
 /** @internal */
 export const DataScopesResources2$outboundSchema: z.ZodNativeEnum<
   typeof DataScopesResources2
 > = DataScopesResources2$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DataScopesResources2$ {
-  /** @deprecated use `DataScopesResources2$inboundSchema` instead. */
-  export const inboundSchema = DataScopesResources2$inboundSchema;
-  /** @deprecated use `DataScopesResources2$outboundSchema` instead. */
-  export const outboundSchema = DataScopesResources2$outboundSchema;
-}
 
 /** @internal */
 export const DataScopesResources1$inboundSchema: z.ZodType<
@@ -67,7 +55,6 @@ export const DataScopesResources1$inboundSchema: z.ZodType<
   read: z.boolean().optional(),
   write: z.boolean().optional(),
 });
-
 /** @internal */
 export type DataScopesResources1$Outbound = {
   read?: boolean | undefined;
@@ -84,19 +71,6 @@ export const DataScopesResources1$outboundSchema: z.ZodType<
   write: z.boolean().optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DataScopesResources1$ {
-  /** @deprecated use `DataScopesResources1$inboundSchema` instead. */
-  export const inboundSchema = DataScopesResources1$inboundSchema;
-  /** @deprecated use `DataScopesResources1$outboundSchema` instead. */
-  export const outboundSchema = DataScopesResources1$outboundSchema;
-  /** @deprecated use `DataScopesResources1$Outbound` instead. */
-  export type Outbound = DataScopesResources1$Outbound;
-}
-
 export function dataScopesResources1ToJSON(
   dataScopesResources1: DataScopesResources1,
 ): string {
@@ -104,7 +78,6 @@ export function dataScopesResources1ToJSON(
     DataScopesResources1$outboundSchema.parse(dataScopesResources1),
   );
 }
-
 export function dataScopesResources1FromJSON(
   jsonString: string,
 ): SafeParseResult<DataScopesResources1, SDKValidationError> {
@@ -124,7 +97,6 @@ export const DataScopesResources$inboundSchema: z.ZodType<
   z.record(z.record(z.lazy(() => DataScopesResources1$inboundSchema))),
   DataScopesResources2$inboundSchema,
 ]);
-
 /** @internal */
 export type DataScopesResources$Outbound = {
   [k: string]: { [k: string]: DataScopesResources1$Outbound };
@@ -140,19 +112,6 @@ export const DataScopesResources$outboundSchema: z.ZodType<
   DataScopesResources2$outboundSchema,
 ]);
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DataScopesResources$ {
-  /** @deprecated use `DataScopesResources$inboundSchema` instead. */
-  export const inboundSchema = DataScopesResources$inboundSchema;
-  /** @deprecated use `DataScopesResources$outboundSchema` instead. */
-  export const outboundSchema = DataScopesResources$outboundSchema;
-  /** @deprecated use `DataScopesResources$Outbound` instead. */
-  export type Outbound = DataScopesResources$Outbound;
-}
-
 export function dataScopesResourcesToJSON(
   dataScopesResources: DataScopesResources,
 ): string {
@@ -160,7 +119,6 @@ export function dataScopesResourcesToJSON(
     DataScopesResources$outboundSchema.parse(dataScopesResources),
   );
 }
-
 export function dataScopesResourcesFromJSON(
   jsonString: string,
 ): SafeParseResult<DataScopesResources, SDKValidationError> {

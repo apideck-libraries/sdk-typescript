@@ -7,23 +7,9 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  FileType,
-  FileType$inboundSchema,
-  FileType$outboundSchema,
-} from "./filetype.js";
-import {
-  LinkedFolder,
-  LinkedFolder$inboundSchema,
-  LinkedFolder$Outbound,
-  LinkedFolder$outboundSchema,
-} from "./linkedfolder.js";
-import {
-  Owner,
-  Owner$inboundSchema,
-  Owner$Outbound,
-  Owner$outboundSchema,
-} from "./owner.js";
+import { FileType, FileType$inboundSchema } from "./filetype.js";
+import { LinkedFolder, LinkedFolder$inboundSchema } from "./linkedfolder.js";
+import { Owner, Owner$inboundSchema } from "./owner.js";
 
 /**
  * Permissions the current user has on this file.
@@ -124,37 +110,6 @@ export const Permissions$inboundSchema: z.ZodType<
   download: z.boolean().optional(),
 });
 
-/** @internal */
-export type Permissions$Outbound = {
-  download?: boolean | undefined;
-};
-
-/** @internal */
-export const Permissions$outboundSchema: z.ZodType<
-  Permissions$Outbound,
-  z.ZodTypeDef,
-  Permissions
-> = z.object({
-  download: z.boolean().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Permissions$ {
-  /** @deprecated use `Permissions$inboundSchema` instead. */
-  export const inboundSchema = Permissions$inboundSchema;
-  /** @deprecated use `Permissions$outboundSchema` instead. */
-  export const outboundSchema = Permissions$outboundSchema;
-  /** @deprecated use `Permissions$Outbound` instead. */
-  export type Outbound = Permissions$Outbound;
-}
-
-export function permissionsToJSON(permissions: Permissions): string {
-  return JSON.stringify(Permissions$outboundSchema.parse(permissions));
-}
-
 export function permissionsFromJSON(
   jsonString: string,
 ): SafeParseResult<Permissions, SDKValidationError> {
@@ -209,88 +164,6 @@ export const UnifiedFile$inboundSchema: z.ZodType<
     "created_at": "createdAt",
   });
 });
-
-/** @internal */
-export type UnifiedFile$Outbound = {
-  id: string;
-  downstream_id?: string | null | undefined;
-  name: string | null;
-  description?: string | null | undefined;
-  type: string | null;
-  path?: string | null | undefined;
-  mime_type?: string | null | undefined;
-  downloadable?: boolean | undefined;
-  size?: number | null | undefined;
-  owner?: Owner$Outbound | undefined;
-  parent_folders?: Array<LinkedFolder$Outbound> | undefined;
-  parent_folders_complete?: boolean | undefined;
-  permissions?: Permissions$Outbound | undefined;
-  exportable?: boolean | undefined;
-  export_formats?: Array<string> | null | undefined;
-  custom_mappings?: { [k: string]: any } | null | undefined;
-  updated_by?: string | null | undefined;
-  created_by?: string | null | undefined;
-  updated_at?: string | null | undefined;
-  created_at?: string | null | undefined;
-};
-
-/** @internal */
-export const UnifiedFile$outboundSchema: z.ZodType<
-  UnifiedFile$Outbound,
-  z.ZodTypeDef,
-  UnifiedFile
-> = z.object({
-  id: z.string(),
-  downstreamId: z.nullable(z.string()).optional(),
-  name: z.nullable(z.string()),
-  description: z.nullable(z.string()).optional(),
-  type: z.nullable(FileType$outboundSchema),
-  path: z.nullable(z.string()).optional(),
-  mimeType: z.nullable(z.string()).optional(),
-  downloadable: z.boolean().optional(),
-  size: z.nullable(z.number().int()).optional(),
-  owner: Owner$outboundSchema.optional(),
-  parentFolders: z.array(LinkedFolder$outboundSchema).optional(),
-  parentFoldersComplete: z.boolean().optional(),
-  permissions: z.lazy(() => Permissions$outboundSchema).optional(),
-  exportable: z.boolean().optional(),
-  exportFormats: z.nullable(z.array(z.string())).optional(),
-  customMappings: z.nullable(z.record(z.any())).optional(),
-  updatedBy: z.nullable(z.string()).optional(),
-  createdBy: z.nullable(z.string()).optional(),
-  updatedAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
-  createdAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    downstreamId: "downstream_id",
-    mimeType: "mime_type",
-    parentFolders: "parent_folders",
-    parentFoldersComplete: "parent_folders_complete",
-    exportFormats: "export_formats",
-    customMappings: "custom_mappings",
-    updatedBy: "updated_by",
-    createdBy: "created_by",
-    updatedAt: "updated_at",
-    createdAt: "created_at",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace UnifiedFile$ {
-  /** @deprecated use `UnifiedFile$inboundSchema` instead. */
-  export const inboundSchema = UnifiedFile$inboundSchema;
-  /** @deprecated use `UnifiedFile$outboundSchema` instead. */
-  export const outboundSchema = UnifiedFile$outboundSchema;
-  /** @deprecated use `UnifiedFile$Outbound` instead. */
-  export type Outbound = UnifiedFile$Outbound;
-}
-
-export function unifiedFileToJSON(unifiedFile: UnifiedFile): string {
-  return JSON.stringify(UnifiedFile$outboundSchema.parse(unifiedFile));
-}
 
 export function unifiedFileFromJSON(
   jsonString: string,

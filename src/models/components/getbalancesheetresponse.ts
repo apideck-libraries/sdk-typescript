@@ -7,12 +7,7 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  BalanceSheet,
-  BalanceSheet$inboundSchema,
-  BalanceSheet$Outbound,
-  BalanceSheet$outboundSchema,
-} from "./balancesheet.js";
+import { BalanceSheet, BalanceSheet$inboundSchema } from "./balancesheet.js";
 
 /**
  * BalanceSheet
@@ -64,58 +59,6 @@ export const GetBalanceSheetResponse$inboundSchema: z.ZodType<
     "_raw": "raw",
   });
 });
-
-/** @internal */
-export type GetBalanceSheetResponse$Outbound = {
-  status_code: number;
-  status: string;
-  service: string;
-  resource: string;
-  operation: string;
-  data: BalanceSheet$Outbound;
-  _raw?: { [k: string]: any } | null | undefined;
-};
-
-/** @internal */
-export const GetBalanceSheetResponse$outboundSchema: z.ZodType<
-  GetBalanceSheetResponse$Outbound,
-  z.ZodTypeDef,
-  GetBalanceSheetResponse
-> = z.object({
-  statusCode: z.number().int(),
-  status: z.string(),
-  service: z.string(),
-  resource: z.string(),
-  operation: z.string(),
-  data: BalanceSheet$outboundSchema,
-  raw: z.nullable(z.record(z.any())).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    statusCode: "status_code",
-    raw: "_raw",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetBalanceSheetResponse$ {
-  /** @deprecated use `GetBalanceSheetResponse$inboundSchema` instead. */
-  export const inboundSchema = GetBalanceSheetResponse$inboundSchema;
-  /** @deprecated use `GetBalanceSheetResponse$outboundSchema` instead. */
-  export const outboundSchema = GetBalanceSheetResponse$outboundSchema;
-  /** @deprecated use `GetBalanceSheetResponse$Outbound` instead. */
-  export type Outbound = GetBalanceSheetResponse$Outbound;
-}
-
-export function getBalanceSheetResponseToJSON(
-  getBalanceSheetResponse: GetBalanceSheetResponse,
-): string {
-  return JSON.stringify(
-    GetBalanceSheetResponse$outboundSchema.parse(getBalanceSheetResponse),
-  );
-}
 
 export function getBalanceSheetResponseFromJSON(
   jsonString: string,

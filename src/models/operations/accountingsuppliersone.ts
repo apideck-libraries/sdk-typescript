@@ -60,79 +60,6 @@ export type AccountingSuppliersOneResponse = {
 };
 
 /** @internal */
-export const AccountingSuppliersOneGlobals$inboundSchema: z.ZodType<
-  AccountingSuppliersOneGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/** @internal */
-export type AccountingSuppliersOneGlobals$Outbound = {
-  consumerId?: string | undefined;
-  appId?: string | undefined;
-};
-
-/** @internal */
-export const AccountingSuppliersOneGlobals$outboundSchema: z.ZodType<
-  AccountingSuppliersOneGlobals$Outbound,
-  z.ZodTypeDef,
-  AccountingSuppliersOneGlobals
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AccountingSuppliersOneGlobals$ {
-  /** @deprecated use `AccountingSuppliersOneGlobals$inboundSchema` instead. */
-  export const inboundSchema = AccountingSuppliersOneGlobals$inboundSchema;
-  /** @deprecated use `AccountingSuppliersOneGlobals$outboundSchema` instead. */
-  export const outboundSchema = AccountingSuppliersOneGlobals$outboundSchema;
-  /** @deprecated use `AccountingSuppliersOneGlobals$Outbound` instead. */
-  export type Outbound = AccountingSuppliersOneGlobals$Outbound;
-}
-
-export function accountingSuppliersOneGlobalsToJSON(
-  accountingSuppliersOneGlobals: AccountingSuppliersOneGlobals,
-): string {
-  return JSON.stringify(
-    AccountingSuppliersOneGlobals$outboundSchema.parse(
-      accountingSuppliersOneGlobals,
-    ),
-  );
-}
-
-export function accountingSuppliersOneGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<AccountingSuppliersOneGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => AccountingSuppliersOneGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'AccountingSuppliersOneGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const AccountingSuppliersOneRequest$inboundSchema: z.ZodType<
-  AccountingSuppliersOneRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  id: z.string(),
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  raw: z.boolean().default(false),
-  fields: z.nullable(z.string()).optional(),
-});
-
-/** @internal */
 export type AccountingSuppliersOneRequest$Outbound = {
   id: string;
   consumerId?: string | undefined;
@@ -156,19 +83,6 @@ export const AccountingSuppliersOneRequest$outboundSchema: z.ZodType<
   fields: z.nullable(z.string()).optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AccountingSuppliersOneRequest$ {
-  /** @deprecated use `AccountingSuppliersOneRequest$inboundSchema` instead. */
-  export const inboundSchema = AccountingSuppliersOneRequest$inboundSchema;
-  /** @deprecated use `AccountingSuppliersOneRequest$outboundSchema` instead. */
-  export const outboundSchema = AccountingSuppliersOneRequest$outboundSchema;
-  /** @deprecated use `AccountingSuppliersOneRequest$Outbound` instead. */
-  export type Outbound = AccountingSuppliersOneRequest$Outbound;
-}
-
 export function accountingSuppliersOneRequestToJSON(
   accountingSuppliersOneRequest: AccountingSuppliersOneRequest,
 ): string {
@@ -176,16 +90,6 @@ export function accountingSuppliersOneRequestToJSON(
     AccountingSuppliersOneRequest$outboundSchema.parse(
       accountingSuppliersOneRequest,
     ),
-  );
-}
-
-export function accountingSuppliersOneRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<AccountingSuppliersOneRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => AccountingSuppliersOneRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'AccountingSuppliersOneRequest' from JSON`,
   );
 }
 
@@ -206,56 +110,6 @@ export const AccountingSuppliersOneResponse$inboundSchema: z.ZodType<
     "UnexpectedErrorResponse": "unexpectedErrorResponse",
   });
 });
-
-/** @internal */
-export type AccountingSuppliersOneResponse$Outbound = {
-  HttpMeta: components.HTTPMetadata$Outbound;
-  GetSupplierResponse?: components.GetSupplierResponse$Outbound | undefined;
-  UnexpectedErrorResponse?:
-    | components.UnexpectedErrorResponse$Outbound
-    | undefined;
-};
-
-/** @internal */
-export const AccountingSuppliersOneResponse$outboundSchema: z.ZodType<
-  AccountingSuppliersOneResponse$Outbound,
-  z.ZodTypeDef,
-  AccountingSuppliersOneResponse
-> = z.object({
-  httpMeta: components.HTTPMetadata$outboundSchema,
-  getSupplierResponse: components.GetSupplierResponse$outboundSchema.optional(),
-  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    httpMeta: "HttpMeta",
-    getSupplierResponse: "GetSupplierResponse",
-    unexpectedErrorResponse: "UnexpectedErrorResponse",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AccountingSuppliersOneResponse$ {
-  /** @deprecated use `AccountingSuppliersOneResponse$inboundSchema` instead. */
-  export const inboundSchema = AccountingSuppliersOneResponse$inboundSchema;
-  /** @deprecated use `AccountingSuppliersOneResponse$outboundSchema` instead. */
-  export const outboundSchema = AccountingSuppliersOneResponse$outboundSchema;
-  /** @deprecated use `AccountingSuppliersOneResponse$Outbound` instead. */
-  export type Outbound = AccountingSuppliersOneResponse$Outbound;
-}
-
-export function accountingSuppliersOneResponseToJSON(
-  accountingSuppliersOneResponse: AccountingSuppliersOneResponse,
-): string {
-  return JSON.stringify(
-    AccountingSuppliersOneResponse$outboundSchema.parse(
-      accountingSuppliersOneResponse,
-    ),
-  );
-}
 
 export function accountingSuppliersOneResponseFromJSON(
   jsonString: string,

@@ -7,18 +7,8 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  Email,
-  Email$inboundSchema,
-  Email$Outbound,
-  Email$outboundSchema,
-} from "./email.js";
-import {
-  PhoneNumber,
-  PhoneNumber$inboundSchema,
-  PhoneNumber$Outbound,
-  PhoneNumber$outboundSchema,
-} from "./phonenumber.js";
+import { Email, Email$inboundSchema } from "./email.js";
+import { PhoneNumber, PhoneNumber$inboundSchema } from "./phonenumber.js";
 
 /**
  * The customer this entity is linked to.
@@ -69,60 +59,6 @@ export const LinkedEcommerceCustomer$inboundSchema: z.ZodType<
     "phone_numbers": "phoneNumbers",
   });
 });
-
-/** @internal */
-export type LinkedEcommerceCustomer$Outbound = {
-  id?: string | null | undefined;
-  name?: string | null | undefined;
-  first_name?: string | null | undefined;
-  last_name?: string | null | undefined;
-  company_name?: string | null | undefined;
-  phone_numbers?: Array<PhoneNumber$Outbound> | null | undefined;
-  emails?: Array<Email$Outbound> | null | undefined;
-};
-
-/** @internal */
-export const LinkedEcommerceCustomer$outboundSchema: z.ZodType<
-  LinkedEcommerceCustomer$Outbound,
-  z.ZodTypeDef,
-  LinkedEcommerceCustomer
-> = z.object({
-  id: z.nullable(z.string()).optional(),
-  name: z.nullable(z.string()).optional(),
-  firstName: z.nullable(z.string()).optional(),
-  lastName: z.nullable(z.string()).optional(),
-  companyName: z.nullable(z.string()).optional(),
-  phoneNumbers: z.nullable(z.array(PhoneNumber$outboundSchema)).optional(),
-  emails: z.nullable(z.array(Email$outboundSchema)).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    firstName: "first_name",
-    lastName: "last_name",
-    companyName: "company_name",
-    phoneNumbers: "phone_numbers",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace LinkedEcommerceCustomer$ {
-  /** @deprecated use `LinkedEcommerceCustomer$inboundSchema` instead. */
-  export const inboundSchema = LinkedEcommerceCustomer$inboundSchema;
-  /** @deprecated use `LinkedEcommerceCustomer$outboundSchema` instead. */
-  export const outboundSchema = LinkedEcommerceCustomer$outboundSchema;
-  /** @deprecated use `LinkedEcommerceCustomer$Outbound` instead. */
-  export type Outbound = LinkedEcommerceCustomer$Outbound;
-}
-
-export function linkedEcommerceCustomerToJSON(
-  linkedEcommerceCustomer: LinkedEcommerceCustomer,
-): string {
-  return JSON.stringify(
-    LinkedEcommerceCustomer$outboundSchema.parse(linkedEcommerceCustomer),
-  );
-}
 
 export function linkedEcommerceCustomerFromJSON(
   jsonString: string,

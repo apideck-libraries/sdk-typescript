@@ -56,78 +56,6 @@ export type CrmOpportunitiesDeleteResponse = {
 };
 
 /** @internal */
-export const CrmOpportunitiesDeleteGlobals$inboundSchema: z.ZodType<
-  CrmOpportunitiesDeleteGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/** @internal */
-export type CrmOpportunitiesDeleteGlobals$Outbound = {
-  consumerId?: string | undefined;
-  appId?: string | undefined;
-};
-
-/** @internal */
-export const CrmOpportunitiesDeleteGlobals$outboundSchema: z.ZodType<
-  CrmOpportunitiesDeleteGlobals$Outbound,
-  z.ZodTypeDef,
-  CrmOpportunitiesDeleteGlobals
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CrmOpportunitiesDeleteGlobals$ {
-  /** @deprecated use `CrmOpportunitiesDeleteGlobals$inboundSchema` instead. */
-  export const inboundSchema = CrmOpportunitiesDeleteGlobals$inboundSchema;
-  /** @deprecated use `CrmOpportunitiesDeleteGlobals$outboundSchema` instead. */
-  export const outboundSchema = CrmOpportunitiesDeleteGlobals$outboundSchema;
-  /** @deprecated use `CrmOpportunitiesDeleteGlobals$Outbound` instead. */
-  export type Outbound = CrmOpportunitiesDeleteGlobals$Outbound;
-}
-
-export function crmOpportunitiesDeleteGlobalsToJSON(
-  crmOpportunitiesDeleteGlobals: CrmOpportunitiesDeleteGlobals,
-): string {
-  return JSON.stringify(
-    CrmOpportunitiesDeleteGlobals$outboundSchema.parse(
-      crmOpportunitiesDeleteGlobals,
-    ),
-  );
-}
-
-export function crmOpportunitiesDeleteGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<CrmOpportunitiesDeleteGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => CrmOpportunitiesDeleteGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CrmOpportunitiesDeleteGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const CrmOpportunitiesDeleteRequest$inboundSchema: z.ZodType<
-  CrmOpportunitiesDeleteRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  id: z.string(),
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  raw: z.boolean().default(false),
-});
-
-/** @internal */
 export type CrmOpportunitiesDeleteRequest$Outbound = {
   id: string;
   consumerId?: string | undefined;
@@ -149,19 +77,6 @@ export const CrmOpportunitiesDeleteRequest$outboundSchema: z.ZodType<
   raw: z.boolean().default(false),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CrmOpportunitiesDeleteRequest$ {
-  /** @deprecated use `CrmOpportunitiesDeleteRequest$inboundSchema` instead. */
-  export const inboundSchema = CrmOpportunitiesDeleteRequest$inboundSchema;
-  /** @deprecated use `CrmOpportunitiesDeleteRequest$outboundSchema` instead. */
-  export const outboundSchema = CrmOpportunitiesDeleteRequest$outboundSchema;
-  /** @deprecated use `CrmOpportunitiesDeleteRequest$Outbound` instead. */
-  export type Outbound = CrmOpportunitiesDeleteRequest$Outbound;
-}
-
 export function crmOpportunitiesDeleteRequestToJSON(
   crmOpportunitiesDeleteRequest: CrmOpportunitiesDeleteRequest,
 ): string {
@@ -169,16 +84,6 @@ export function crmOpportunitiesDeleteRequestToJSON(
     CrmOpportunitiesDeleteRequest$outboundSchema.parse(
       crmOpportunitiesDeleteRequest,
     ),
-  );
-}
-
-export function crmOpportunitiesDeleteRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<CrmOpportunitiesDeleteRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => CrmOpportunitiesDeleteRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CrmOpportunitiesDeleteRequest' from JSON`,
   );
 }
 
@@ -200,59 +105,6 @@ export const CrmOpportunitiesDeleteResponse$inboundSchema: z.ZodType<
     "UnexpectedErrorResponse": "unexpectedErrorResponse",
   });
 });
-
-/** @internal */
-export type CrmOpportunitiesDeleteResponse$Outbound = {
-  HttpMeta: components.HTTPMetadata$Outbound;
-  DeleteOpportunityResponse?:
-    | components.DeleteOpportunityResponse$Outbound
-    | undefined;
-  UnexpectedErrorResponse?:
-    | components.UnexpectedErrorResponse$Outbound
-    | undefined;
-};
-
-/** @internal */
-export const CrmOpportunitiesDeleteResponse$outboundSchema: z.ZodType<
-  CrmOpportunitiesDeleteResponse$Outbound,
-  z.ZodTypeDef,
-  CrmOpportunitiesDeleteResponse
-> = z.object({
-  httpMeta: components.HTTPMetadata$outboundSchema,
-  deleteOpportunityResponse: components.DeleteOpportunityResponse$outboundSchema
-    .optional(),
-  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    httpMeta: "HttpMeta",
-    deleteOpportunityResponse: "DeleteOpportunityResponse",
-    unexpectedErrorResponse: "UnexpectedErrorResponse",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CrmOpportunitiesDeleteResponse$ {
-  /** @deprecated use `CrmOpportunitiesDeleteResponse$inboundSchema` instead. */
-  export const inboundSchema = CrmOpportunitiesDeleteResponse$inboundSchema;
-  /** @deprecated use `CrmOpportunitiesDeleteResponse$outboundSchema` instead. */
-  export const outboundSchema = CrmOpportunitiesDeleteResponse$outboundSchema;
-  /** @deprecated use `CrmOpportunitiesDeleteResponse$Outbound` instead. */
-  export type Outbound = CrmOpportunitiesDeleteResponse$Outbound;
-}
-
-export function crmOpportunitiesDeleteResponseToJSON(
-  crmOpportunitiesDeleteResponse: CrmOpportunitiesDeleteResponse,
-): string {
-  return JSON.stringify(
-    CrmOpportunitiesDeleteResponse$outboundSchema.parse(
-      crmOpportunitiesDeleteResponse,
-    ),
-  );
-}
 
 export function crmOpportunitiesDeleteResponseFromJSON(
   jsonString: string,

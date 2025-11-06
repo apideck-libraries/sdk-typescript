@@ -144,41 +144,17 @@ export type BankFeedAccountInput = {
 export const BankAccountType$inboundSchema: z.ZodNativeEnum<
   typeof BankAccountType
 > = z.nativeEnum(BankAccountType);
-
 /** @internal */
 export const BankAccountType$outboundSchema: z.ZodNativeEnum<
   typeof BankAccountType
 > = BankAccountType$inboundSchema;
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace BankAccountType$ {
-  /** @deprecated use `BankAccountType$inboundSchema` instead. */
-  export const inboundSchema = BankAccountType$inboundSchema;
-  /** @deprecated use `BankAccountType$outboundSchema` instead. */
-  export const outboundSchema = BankAccountType$outboundSchema;
-}
-
 /** @internal */
 export const FeedStatus$inboundSchema: z.ZodNativeEnum<typeof FeedStatus> = z
   .nativeEnum(FeedStatus);
-
 /** @internal */
 export const FeedStatus$outboundSchema: z.ZodNativeEnum<typeof FeedStatus> =
   FeedStatus$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace FeedStatus$ {
-  /** @deprecated use `FeedStatus$inboundSchema` instead. */
-  export const inboundSchema = FeedStatus$inboundSchema;
-  /** @deprecated use `FeedStatus$outboundSchema` instead. */
-  export const outboundSchema = FeedStatus$outboundSchema;
-}
 
 /** @internal */
 export const BankFeedAccount$inboundSchema: z.ZodType<
@@ -222,82 +198,6 @@ export const BankFeedAccount$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type BankFeedAccount$Outbound = {
-  id: string;
-  bank_account_type?: string | undefined;
-  source_account_id?: string | undefined;
-  target_account_id?: string | undefined;
-  target_account_name?: string | undefined;
-  target_account_number?: string | undefined;
-  currency?: string | null | undefined;
-  feed_status?: string | undefined;
-  country?: string | null | undefined;
-  custom_fields?: Array<CustomField$Outbound> | undefined;
-  custom_mappings?: { [k: string]: any } | null | undefined;
-  created_at?: string | null | undefined;
-  updated_at?: string | null | undefined;
-  updated_by?: string | null | undefined;
-  created_by?: string | null | undefined;
-};
-
-/** @internal */
-export const BankFeedAccount$outboundSchema: z.ZodType<
-  BankFeedAccount$Outbound,
-  z.ZodTypeDef,
-  BankFeedAccount
-> = z.object({
-  id: z.string(),
-  bankAccountType: BankAccountType$outboundSchema.optional(),
-  sourceAccountId: z.string().optional(),
-  targetAccountId: z.string().optional(),
-  targetAccountName: z.string().optional(),
-  targetAccountNumber: z.string().optional(),
-  currency: z.nullable(Currency$outboundSchema).optional(),
-  feedStatus: FeedStatus$outboundSchema.optional(),
-  country: z.nullable(z.string()).optional(),
-  customFields: z.array(CustomField$outboundSchema).optional(),
-  customMappings: z.nullable(z.record(z.any())).optional(),
-  createdAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
-  updatedAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
-  updatedBy: z.nullable(z.string()).optional(),
-  createdBy: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    bankAccountType: "bank_account_type",
-    sourceAccountId: "source_account_id",
-    targetAccountId: "target_account_id",
-    targetAccountName: "target_account_name",
-    targetAccountNumber: "target_account_number",
-    feedStatus: "feed_status",
-    customFields: "custom_fields",
-    customMappings: "custom_mappings",
-    createdAt: "created_at",
-    updatedAt: "updated_at",
-    updatedBy: "updated_by",
-    createdBy: "created_by",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace BankFeedAccount$ {
-  /** @deprecated use `BankFeedAccount$inboundSchema` instead. */
-  export const inboundSchema = BankFeedAccount$inboundSchema;
-  /** @deprecated use `BankFeedAccount$outboundSchema` instead. */
-  export const outboundSchema = BankFeedAccount$outboundSchema;
-  /** @deprecated use `BankFeedAccount$Outbound` instead. */
-  export type Outbound = BankFeedAccount$Outbound;
-}
-
-export function bankFeedAccountToJSON(
-  bankFeedAccount: BankFeedAccount,
-): string {
-  return JSON.stringify(BankFeedAccount$outboundSchema.parse(bankFeedAccount));
-}
-
 export function bankFeedAccountFromJSON(
   jsonString: string,
 ): SafeParseResult<BankFeedAccount, SDKValidationError> {
@@ -307,33 +207,6 @@ export function bankFeedAccountFromJSON(
     `Failed to parse 'BankFeedAccount' from JSON`,
   );
 }
-
-/** @internal */
-export const BankFeedAccountInput$inboundSchema: z.ZodType<
-  BankFeedAccountInput,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  bank_account_type: BankAccountType$inboundSchema.optional(),
-  source_account_id: z.string().optional(),
-  target_account_id: z.string().optional(),
-  target_account_name: z.string().optional(),
-  target_account_number: z.string().optional(),
-  currency: z.nullable(Currency$inboundSchema).optional(),
-  feed_status: FeedStatus$inboundSchema.optional(),
-  country: z.nullable(z.string()).optional(),
-  custom_fields: z.array(CustomField$inboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "bank_account_type": "bankAccountType",
-    "source_account_id": "sourceAccountId",
-    "target_account_id": "targetAccountId",
-    "target_account_name": "targetAccountName",
-    "target_account_number": "targetAccountNumber",
-    "feed_status": "feedStatus",
-    "custom_fields": "customFields",
-  });
-});
 
 /** @internal */
 export type BankFeedAccountInput$Outbound = {
@@ -375,33 +248,10 @@ export const BankFeedAccountInput$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace BankFeedAccountInput$ {
-  /** @deprecated use `BankFeedAccountInput$inboundSchema` instead. */
-  export const inboundSchema = BankFeedAccountInput$inboundSchema;
-  /** @deprecated use `BankFeedAccountInput$outboundSchema` instead. */
-  export const outboundSchema = BankFeedAccountInput$outboundSchema;
-  /** @deprecated use `BankFeedAccountInput$Outbound` instead. */
-  export type Outbound = BankFeedAccountInput$Outbound;
-}
-
 export function bankFeedAccountInputToJSON(
   bankFeedAccountInput: BankFeedAccountInput,
 ): string {
   return JSON.stringify(
     BankFeedAccountInput$outboundSchema.parse(bankFeedAccountInput),
-  );
-}
-
-export function bankFeedAccountInputFromJSON(
-  jsonString: string,
-): SafeParseResult<BankFeedAccountInput, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => BankFeedAccountInput$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'BankFeedAccountInput' from JSON`,
   );
 }

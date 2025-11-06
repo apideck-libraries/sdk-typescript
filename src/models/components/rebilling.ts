@@ -47,21 +47,9 @@ export type Rebilling = {
 /** @internal */
 export const RebillStatus$inboundSchema: z.ZodNativeEnum<typeof RebillStatus> =
   z.nativeEnum(RebillStatus);
-
 /** @internal */
 export const RebillStatus$outboundSchema: z.ZodNativeEnum<typeof RebillStatus> =
   RebillStatus$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace RebillStatus$ {
-  /** @deprecated use `RebillStatus$inboundSchema` instead. */
-  export const inboundSchema = RebillStatus$inboundSchema;
-  /** @deprecated use `RebillStatus$outboundSchema` instead. */
-  export const outboundSchema = RebillStatus$outboundSchema;
-}
 
 /** @internal */
 export const Rebilling$inboundSchema: z.ZodType<
@@ -80,7 +68,6 @@ export const Rebilling$inboundSchema: z.ZodType<
     "linked_transaction_line_id": "linkedTransactionLineId",
   });
 });
-
 /** @internal */
 export type Rebilling$Outbound = {
   rebillable?: boolean | undefined;
@@ -107,23 +94,9 @@ export const Rebilling$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Rebilling$ {
-  /** @deprecated use `Rebilling$inboundSchema` instead. */
-  export const inboundSchema = Rebilling$inboundSchema;
-  /** @deprecated use `Rebilling$outboundSchema` instead. */
-  export const outboundSchema = Rebilling$outboundSchema;
-  /** @deprecated use `Rebilling$Outbound` instead. */
-  export type Outbound = Rebilling$Outbound;
-}
-
 export function rebillingToJSON(rebilling: Rebilling): string {
   return JSON.stringify(Rebilling$outboundSchema.parse(rebilling));
 }
-
 export function rebillingFromJSON(
   jsonString: string,
 ): SafeParseResult<Rebilling, SDKValidationError> {

@@ -10,21 +10,9 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   AccountingDepartment,
   AccountingDepartment$inboundSchema,
-  AccountingDepartment$Outbound,
-  AccountingDepartment$outboundSchema,
 } from "./accountingdepartment.js";
-import {
-  Links,
-  Links$inboundSchema,
-  Links$Outbound,
-  Links$outboundSchema,
-} from "./links.js";
-import {
-  Meta,
-  Meta$inboundSchema,
-  Meta$Outbound,
-  Meta$outboundSchema,
-} from "./meta.js";
+import { Links, Links$inboundSchema } from "./links.js";
+import { Meta, Meta$inboundSchema } from "./meta.js";
 
 /**
  * Departments
@@ -86,64 +74,6 @@ export const GetAccountingDepartmentsResponse$inboundSchema: z.ZodType<
     "_raw": "raw",
   });
 });
-
-/** @internal */
-export type GetAccountingDepartmentsResponse$Outbound = {
-  status_code: number;
-  status: string;
-  service: string;
-  resource: string;
-  operation: string;
-  data: Array<AccountingDepartment$Outbound>;
-  meta?: Meta$Outbound | undefined;
-  links?: Links$Outbound | undefined;
-  _raw?: { [k: string]: any } | null | undefined;
-};
-
-/** @internal */
-export const GetAccountingDepartmentsResponse$outboundSchema: z.ZodType<
-  GetAccountingDepartmentsResponse$Outbound,
-  z.ZodTypeDef,
-  GetAccountingDepartmentsResponse
-> = z.object({
-  statusCode: z.number().int(),
-  status: z.string(),
-  service: z.string(),
-  resource: z.string(),
-  operation: z.string(),
-  data: z.array(AccountingDepartment$outboundSchema),
-  meta: Meta$outboundSchema.optional(),
-  links: Links$outboundSchema.optional(),
-  raw: z.nullable(z.record(z.any())).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    statusCode: "status_code",
-    raw: "_raw",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetAccountingDepartmentsResponse$ {
-  /** @deprecated use `GetAccountingDepartmentsResponse$inboundSchema` instead. */
-  export const inboundSchema = GetAccountingDepartmentsResponse$inboundSchema;
-  /** @deprecated use `GetAccountingDepartmentsResponse$outboundSchema` instead. */
-  export const outboundSchema = GetAccountingDepartmentsResponse$outboundSchema;
-  /** @deprecated use `GetAccountingDepartmentsResponse$Outbound` instead. */
-  export type Outbound = GetAccountingDepartmentsResponse$Outbound;
-}
-
-export function getAccountingDepartmentsResponseToJSON(
-  getAccountingDepartmentsResponse: GetAccountingDepartmentsResponse,
-): string {
-  return JSON.stringify(
-    GetAccountingDepartmentsResponse$outboundSchema.parse(
-      getAccountingDepartmentsResponse,
-    ),
-  );
-}
 
 export function getAccountingDepartmentsResponseFromJSON(
   jsonString: string,

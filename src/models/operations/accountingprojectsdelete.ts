@@ -56,78 +56,6 @@ export type AccountingProjectsDeleteResponse = {
 };
 
 /** @internal */
-export const AccountingProjectsDeleteGlobals$inboundSchema: z.ZodType<
-  AccountingProjectsDeleteGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/** @internal */
-export type AccountingProjectsDeleteGlobals$Outbound = {
-  consumerId?: string | undefined;
-  appId?: string | undefined;
-};
-
-/** @internal */
-export const AccountingProjectsDeleteGlobals$outboundSchema: z.ZodType<
-  AccountingProjectsDeleteGlobals$Outbound,
-  z.ZodTypeDef,
-  AccountingProjectsDeleteGlobals
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AccountingProjectsDeleteGlobals$ {
-  /** @deprecated use `AccountingProjectsDeleteGlobals$inboundSchema` instead. */
-  export const inboundSchema = AccountingProjectsDeleteGlobals$inboundSchema;
-  /** @deprecated use `AccountingProjectsDeleteGlobals$outboundSchema` instead. */
-  export const outboundSchema = AccountingProjectsDeleteGlobals$outboundSchema;
-  /** @deprecated use `AccountingProjectsDeleteGlobals$Outbound` instead. */
-  export type Outbound = AccountingProjectsDeleteGlobals$Outbound;
-}
-
-export function accountingProjectsDeleteGlobalsToJSON(
-  accountingProjectsDeleteGlobals: AccountingProjectsDeleteGlobals,
-): string {
-  return JSON.stringify(
-    AccountingProjectsDeleteGlobals$outboundSchema.parse(
-      accountingProjectsDeleteGlobals,
-    ),
-  );
-}
-
-export function accountingProjectsDeleteGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<AccountingProjectsDeleteGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => AccountingProjectsDeleteGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'AccountingProjectsDeleteGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const AccountingProjectsDeleteRequest$inboundSchema: z.ZodType<
-  AccountingProjectsDeleteRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  id: z.string(),
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  raw: z.boolean().default(false),
-});
-
-/** @internal */
 export type AccountingProjectsDeleteRequest$Outbound = {
   id: string;
   consumerId?: string | undefined;
@@ -149,19 +77,6 @@ export const AccountingProjectsDeleteRequest$outboundSchema: z.ZodType<
   raw: z.boolean().default(false),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AccountingProjectsDeleteRequest$ {
-  /** @deprecated use `AccountingProjectsDeleteRequest$inboundSchema` instead. */
-  export const inboundSchema = AccountingProjectsDeleteRequest$inboundSchema;
-  /** @deprecated use `AccountingProjectsDeleteRequest$outboundSchema` instead. */
-  export const outboundSchema = AccountingProjectsDeleteRequest$outboundSchema;
-  /** @deprecated use `AccountingProjectsDeleteRequest$Outbound` instead. */
-  export type Outbound = AccountingProjectsDeleteRequest$Outbound;
-}
-
 export function accountingProjectsDeleteRequestToJSON(
   accountingProjectsDeleteRequest: AccountingProjectsDeleteRequest,
 ): string {
@@ -169,16 +84,6 @@ export function accountingProjectsDeleteRequestToJSON(
     AccountingProjectsDeleteRequest$outboundSchema.parse(
       accountingProjectsDeleteRequest,
     ),
-  );
-}
-
-export function accountingProjectsDeleteRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<AccountingProjectsDeleteRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => AccountingProjectsDeleteRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'AccountingProjectsDeleteRequest' from JSON`,
   );
 }
 
@@ -200,57 +105,6 @@ export const AccountingProjectsDeleteResponse$inboundSchema: z.ZodType<
     "UnexpectedErrorResponse": "unexpectedErrorResponse",
   });
 });
-
-/** @internal */
-export type AccountingProjectsDeleteResponse$Outbound = {
-  HttpMeta: components.HTTPMetadata$Outbound;
-  DeleteProjectResponse?: components.DeleteProjectResponse$Outbound | undefined;
-  UnexpectedErrorResponse?:
-    | components.UnexpectedErrorResponse$Outbound
-    | undefined;
-};
-
-/** @internal */
-export const AccountingProjectsDeleteResponse$outboundSchema: z.ZodType<
-  AccountingProjectsDeleteResponse$Outbound,
-  z.ZodTypeDef,
-  AccountingProjectsDeleteResponse
-> = z.object({
-  httpMeta: components.HTTPMetadata$outboundSchema,
-  deleteProjectResponse: components.DeleteProjectResponse$outboundSchema
-    .optional(),
-  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    httpMeta: "HttpMeta",
-    deleteProjectResponse: "DeleteProjectResponse",
-    unexpectedErrorResponse: "UnexpectedErrorResponse",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AccountingProjectsDeleteResponse$ {
-  /** @deprecated use `AccountingProjectsDeleteResponse$inboundSchema` instead. */
-  export const inboundSchema = AccountingProjectsDeleteResponse$inboundSchema;
-  /** @deprecated use `AccountingProjectsDeleteResponse$outboundSchema` instead. */
-  export const outboundSchema = AccountingProjectsDeleteResponse$outboundSchema;
-  /** @deprecated use `AccountingProjectsDeleteResponse$Outbound` instead. */
-  export type Outbound = AccountingProjectsDeleteResponse$Outbound;
-}
-
-export function accountingProjectsDeleteResponseToJSON(
-  accountingProjectsDeleteResponse: AccountingProjectsDeleteResponse,
-): string {
-  return JSON.stringify(
-    AccountingProjectsDeleteResponse$outboundSchema.parse(
-      accountingProjectsDeleteResponse,
-    ),
-  );
-}
 
 export function accountingProjectsDeleteResponseFromJSON(
   jsonString: string,

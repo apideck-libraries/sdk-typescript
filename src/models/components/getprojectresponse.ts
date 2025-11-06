@@ -7,12 +7,7 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  Project,
-  Project$inboundSchema,
-  Project$Outbound,
-  Project$outboundSchema,
-} from "./project.js";
+import { Project, Project$inboundSchema } from "./project.js";
 
 /**
  * Projects
@@ -58,55 +53,6 @@ export const GetProjectResponse$inboundSchema: z.ZodType<
     "status_code": "statusCode",
   });
 });
-
-/** @internal */
-export type GetProjectResponse$Outbound = {
-  status_code: number;
-  status: string;
-  service: string;
-  resource: string;
-  operation: string;
-  data: Project$Outbound;
-};
-
-/** @internal */
-export const GetProjectResponse$outboundSchema: z.ZodType<
-  GetProjectResponse$Outbound,
-  z.ZodTypeDef,
-  GetProjectResponse
-> = z.object({
-  statusCode: z.number().int(),
-  status: z.string(),
-  service: z.string(),
-  resource: z.string(),
-  operation: z.string(),
-  data: Project$outboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    statusCode: "status_code",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetProjectResponse$ {
-  /** @deprecated use `GetProjectResponse$inboundSchema` instead. */
-  export const inboundSchema = GetProjectResponse$inboundSchema;
-  /** @deprecated use `GetProjectResponse$outboundSchema` instead. */
-  export const outboundSchema = GetProjectResponse$outboundSchema;
-  /** @deprecated use `GetProjectResponse$Outbound` instead. */
-  export type Outbound = GetProjectResponse$Outbound;
-}
-
-export function getProjectResponseToJSON(
-  getProjectResponse: GetProjectResponse,
-): string {
-  return JSON.stringify(
-    GetProjectResponse$outboundSchema.parse(getProjectResponse),
-  );
-}
 
 export function getProjectResponseFromJSON(
   jsonString: string,

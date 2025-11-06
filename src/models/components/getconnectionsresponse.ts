@@ -7,12 +7,7 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  Connection,
-  Connection$inboundSchema,
-  Connection$Outbound,
-  Connection$outboundSchema,
-} from "./connection.js";
+import { Connection, Connection$inboundSchema } from "./connection.js";
 
 /**
  * Connections
@@ -49,52 +44,6 @@ export const GetConnectionsResponse$inboundSchema: z.ZodType<
     "_raw": "raw",
   });
 });
-
-/** @internal */
-export type GetConnectionsResponse$Outbound = {
-  status_code: number;
-  status: string;
-  data: Array<Connection$Outbound>;
-  _raw?: { [k: string]: any } | null | undefined;
-};
-
-/** @internal */
-export const GetConnectionsResponse$outboundSchema: z.ZodType<
-  GetConnectionsResponse$Outbound,
-  z.ZodTypeDef,
-  GetConnectionsResponse
-> = z.object({
-  statusCode: z.number().int(),
-  status: z.string(),
-  data: z.array(Connection$outboundSchema),
-  raw: z.nullable(z.record(z.any())).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    statusCode: "status_code",
-    raw: "_raw",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetConnectionsResponse$ {
-  /** @deprecated use `GetConnectionsResponse$inboundSchema` instead. */
-  export const inboundSchema = GetConnectionsResponse$inboundSchema;
-  /** @deprecated use `GetConnectionsResponse$outboundSchema` instead. */
-  export const outboundSchema = GetConnectionsResponse$outboundSchema;
-  /** @deprecated use `GetConnectionsResponse$Outbound` instead. */
-  export type Outbound = GetConnectionsResponse$Outbound;
-}
-
-export function getConnectionsResponseToJSON(
-  getConnectionsResponse: GetConnectionsResponse,
-): string {
-  return JSON.stringify(
-    GetConnectionsResponse$outboundSchema.parse(getConnectionsResponse),
-  );
-}
 
 export function getConnectionsResponseFromJSON(
   jsonString: string,

@@ -36,8 +36,8 @@ type FileStorageSharedLinksAddRequest struct {
 	// The ID of your Unify application
 	AppID *string `header:"style=simple,explode=false,name=x-apideck-app-id"`
 	// Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
-	ServiceID  *string                    `header:"style=simple,explode=false,name=x-apideck-service-id"`
-	SharedLink components.SharedLinkInput `request:"mediaType=application/json"`
+	ServiceID *string                    `header:"style=simple,explode=false,name=x-apideck-service-id"`
+	Body      components.SharedLinkInput `request:"mediaType=application/json"`
 }
 
 func (f FileStorageSharedLinksAddRequest) MarshalJSON() ([]byte, error) {
@@ -45,7 +45,7 @@ func (f FileStorageSharedLinksAddRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (f *FileStorageSharedLinksAddRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &f, "", false, []string{"SharedLink"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &f, "", false, []string{"body"}); err != nil {
 		return err
 	}
 	return nil
@@ -79,11 +79,11 @@ func (o *FileStorageSharedLinksAddRequest) GetServiceID() *string {
 	return o.ServiceID
 }
 
-func (o *FileStorageSharedLinksAddRequest) GetSharedLink() components.SharedLinkInput {
+func (o *FileStorageSharedLinksAddRequest) GetBody() components.SharedLinkInput {
 	if o == nil {
 		return components.SharedLinkInput{}
 	}
-	return o.SharedLink
+	return o.Body
 }
 
 type FileStorageSharedLinksAddResponse struct {

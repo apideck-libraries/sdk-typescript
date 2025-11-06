@@ -92,6 +92,7 @@ let value: AccountingSuppliersUpdateRequest = {
     notes: "Some notes about this supplier",
     taxRate: {
       id: "123456",
+      code: "N-T",
       rate: 10,
     },
     taxNumber: "US123945459",

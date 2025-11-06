@@ -30,7 +30,6 @@ export const LinkedParentCustomer$inboundSchema: z.ZodType<
   id: z.string(),
   name: z.string().optional(),
 });
-
 /** @internal */
 export type LinkedParentCustomer$Outbound = {
   id: string;
@@ -47,19 +46,6 @@ export const LinkedParentCustomer$outboundSchema: z.ZodType<
   name: z.string().optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace LinkedParentCustomer$ {
-  /** @deprecated use `LinkedParentCustomer$inboundSchema` instead. */
-  export const inboundSchema = LinkedParentCustomer$inboundSchema;
-  /** @deprecated use `LinkedParentCustomer$outboundSchema` instead. */
-  export const outboundSchema = LinkedParentCustomer$outboundSchema;
-  /** @deprecated use `LinkedParentCustomer$Outbound` instead. */
-  export type Outbound = LinkedParentCustomer$Outbound;
-}
-
 export function linkedParentCustomerToJSON(
   linkedParentCustomer: LinkedParentCustomer,
 ): string {
@@ -67,7 +53,6 @@ export function linkedParentCustomerToJSON(
     LinkedParentCustomer$outboundSchema.parse(linkedParentCustomer),
   );
 }
-
 export function linkedParentCustomerFromJSON(
   jsonString: string,
 ): SafeParseResult<LinkedParentCustomer, SDKValidationError> {

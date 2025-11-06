@@ -59,93 +59,6 @@ export type AccountingBankFeedStatementsUpdateResponse = {
 };
 
 /** @internal */
-export const AccountingBankFeedStatementsUpdateGlobals$inboundSchema: z.ZodType<
-  AccountingBankFeedStatementsUpdateGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/** @internal */
-export type AccountingBankFeedStatementsUpdateGlobals$Outbound = {
-  consumerId?: string | undefined;
-  appId?: string | undefined;
-};
-
-/** @internal */
-export const AccountingBankFeedStatementsUpdateGlobals$outboundSchema:
-  z.ZodType<
-    AccountingBankFeedStatementsUpdateGlobals$Outbound,
-    z.ZodTypeDef,
-    AccountingBankFeedStatementsUpdateGlobals
-  > = z.object({
-    consumerId: z.string().optional(),
-    appId: z.string().optional(),
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AccountingBankFeedStatementsUpdateGlobals$ {
-  /** @deprecated use `AccountingBankFeedStatementsUpdateGlobals$inboundSchema` instead. */
-  export const inboundSchema =
-    AccountingBankFeedStatementsUpdateGlobals$inboundSchema;
-  /** @deprecated use `AccountingBankFeedStatementsUpdateGlobals$outboundSchema` instead. */
-  export const outboundSchema =
-    AccountingBankFeedStatementsUpdateGlobals$outboundSchema;
-  /** @deprecated use `AccountingBankFeedStatementsUpdateGlobals$Outbound` instead. */
-  export type Outbound = AccountingBankFeedStatementsUpdateGlobals$Outbound;
-}
-
-export function accountingBankFeedStatementsUpdateGlobalsToJSON(
-  accountingBankFeedStatementsUpdateGlobals:
-    AccountingBankFeedStatementsUpdateGlobals,
-): string {
-  return JSON.stringify(
-    AccountingBankFeedStatementsUpdateGlobals$outboundSchema.parse(
-      accountingBankFeedStatementsUpdateGlobals,
-    ),
-  );
-}
-
-export function accountingBankFeedStatementsUpdateGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<
-  AccountingBankFeedStatementsUpdateGlobals,
-  SDKValidationError
-> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      AccountingBankFeedStatementsUpdateGlobals$inboundSchema.parse(
-        JSON.parse(x),
-      ),
-    `Failed to parse 'AccountingBankFeedStatementsUpdateGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const AccountingBankFeedStatementsUpdateRequest$inboundSchema: z.ZodType<
-  AccountingBankFeedStatementsUpdateRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  id: z.string(),
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  raw: z.boolean().default(false),
-  BankFeedStatement: components.BankFeedStatementInput$inboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    "BankFeedStatement": "bankFeedStatement",
-  });
-});
-
-/** @internal */
 export type AccountingBankFeedStatementsUpdateRequest$Outbound = {
   id: string;
   consumerId?: string | undefined;
@@ -174,21 +87,6 @@ export const AccountingBankFeedStatementsUpdateRequest$outboundSchema:
     });
   });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AccountingBankFeedStatementsUpdateRequest$ {
-  /** @deprecated use `AccountingBankFeedStatementsUpdateRequest$inboundSchema` instead. */
-  export const inboundSchema =
-    AccountingBankFeedStatementsUpdateRequest$inboundSchema;
-  /** @deprecated use `AccountingBankFeedStatementsUpdateRequest$outboundSchema` instead. */
-  export const outboundSchema =
-    AccountingBankFeedStatementsUpdateRequest$outboundSchema;
-  /** @deprecated use `AccountingBankFeedStatementsUpdateRequest$Outbound` instead. */
-  export type Outbound = AccountingBankFeedStatementsUpdateRequest$Outbound;
-}
-
 export function accountingBankFeedStatementsUpdateRequestToJSON(
   accountingBankFeedStatementsUpdateRequest:
     AccountingBankFeedStatementsUpdateRequest,
@@ -197,22 +95,6 @@ export function accountingBankFeedStatementsUpdateRequestToJSON(
     AccountingBankFeedStatementsUpdateRequest$outboundSchema.parse(
       accountingBankFeedStatementsUpdateRequest,
     ),
-  );
-}
-
-export function accountingBankFeedStatementsUpdateRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<
-  AccountingBankFeedStatementsUpdateRequest,
-  SDKValidationError
-> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      AccountingBankFeedStatementsUpdateRequest$inboundSchema.parse(
-        JSON.parse(x),
-      ),
-    `Failed to parse 'AccountingBankFeedStatementsUpdateRequest' from JSON`,
   );
 }
 
@@ -232,63 +114,6 @@ export const AccountingBankFeedStatementsUpdateResponse$inboundSchema:
         "UnexpectedErrorResponse": "unexpectedErrorResponse",
       });
     });
-
-/** @internal */
-export type AccountingBankFeedStatementsUpdateResponse$Outbound = {
-  HttpMeta: components.HTTPMetadata$Outbound;
-  UpdateBankFeedStatementResponse?:
-    | components.UpdateBankFeedStatementResponse$Outbound
-    | undefined;
-  UnexpectedErrorResponse?:
-    | components.UnexpectedErrorResponse$Outbound
-    | undefined;
-};
-
-/** @internal */
-export const AccountingBankFeedStatementsUpdateResponse$outboundSchema:
-  z.ZodType<
-    AccountingBankFeedStatementsUpdateResponse$Outbound,
-    z.ZodTypeDef,
-    AccountingBankFeedStatementsUpdateResponse
-  > = z.object({
-    httpMeta: components.HTTPMetadata$outboundSchema,
-    updateBankFeedStatementResponse: components
-      .UpdateBankFeedStatementResponse$outboundSchema.optional(),
-    unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
-      .optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      httpMeta: "HttpMeta",
-      updateBankFeedStatementResponse: "UpdateBankFeedStatementResponse",
-      unexpectedErrorResponse: "UnexpectedErrorResponse",
-    });
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AccountingBankFeedStatementsUpdateResponse$ {
-  /** @deprecated use `AccountingBankFeedStatementsUpdateResponse$inboundSchema` instead. */
-  export const inboundSchema =
-    AccountingBankFeedStatementsUpdateResponse$inboundSchema;
-  /** @deprecated use `AccountingBankFeedStatementsUpdateResponse$outboundSchema` instead. */
-  export const outboundSchema =
-    AccountingBankFeedStatementsUpdateResponse$outboundSchema;
-  /** @deprecated use `AccountingBankFeedStatementsUpdateResponse$Outbound` instead. */
-  export type Outbound = AccountingBankFeedStatementsUpdateResponse$Outbound;
-}
-
-export function accountingBankFeedStatementsUpdateResponseToJSON(
-  accountingBankFeedStatementsUpdateResponse:
-    AccountingBankFeedStatementsUpdateResponse,
-): string {
-  return JSON.stringify(
-    AccountingBankFeedStatementsUpdateResponse$outboundSchema.parse(
-      accountingBankFeedStatementsUpdateResponse,
-    ),
-  );
-}
 
 export function accountingBankFeedStatementsUpdateResponseFromJSON(
   jsonString: string,

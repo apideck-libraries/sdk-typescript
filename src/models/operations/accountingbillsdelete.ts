@@ -56,78 +56,6 @@ export type AccountingBillsDeleteResponse = {
 };
 
 /** @internal */
-export const AccountingBillsDeleteGlobals$inboundSchema: z.ZodType<
-  AccountingBillsDeleteGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/** @internal */
-export type AccountingBillsDeleteGlobals$Outbound = {
-  consumerId?: string | undefined;
-  appId?: string | undefined;
-};
-
-/** @internal */
-export const AccountingBillsDeleteGlobals$outboundSchema: z.ZodType<
-  AccountingBillsDeleteGlobals$Outbound,
-  z.ZodTypeDef,
-  AccountingBillsDeleteGlobals
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AccountingBillsDeleteGlobals$ {
-  /** @deprecated use `AccountingBillsDeleteGlobals$inboundSchema` instead. */
-  export const inboundSchema = AccountingBillsDeleteGlobals$inboundSchema;
-  /** @deprecated use `AccountingBillsDeleteGlobals$outboundSchema` instead. */
-  export const outboundSchema = AccountingBillsDeleteGlobals$outboundSchema;
-  /** @deprecated use `AccountingBillsDeleteGlobals$Outbound` instead. */
-  export type Outbound = AccountingBillsDeleteGlobals$Outbound;
-}
-
-export function accountingBillsDeleteGlobalsToJSON(
-  accountingBillsDeleteGlobals: AccountingBillsDeleteGlobals,
-): string {
-  return JSON.stringify(
-    AccountingBillsDeleteGlobals$outboundSchema.parse(
-      accountingBillsDeleteGlobals,
-    ),
-  );
-}
-
-export function accountingBillsDeleteGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<AccountingBillsDeleteGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => AccountingBillsDeleteGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'AccountingBillsDeleteGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const AccountingBillsDeleteRequest$inboundSchema: z.ZodType<
-  AccountingBillsDeleteRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  id: z.string(),
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  raw: z.boolean().default(false),
-});
-
-/** @internal */
 export type AccountingBillsDeleteRequest$Outbound = {
   id: string;
   consumerId?: string | undefined;
@@ -149,19 +77,6 @@ export const AccountingBillsDeleteRequest$outboundSchema: z.ZodType<
   raw: z.boolean().default(false),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AccountingBillsDeleteRequest$ {
-  /** @deprecated use `AccountingBillsDeleteRequest$inboundSchema` instead. */
-  export const inboundSchema = AccountingBillsDeleteRequest$inboundSchema;
-  /** @deprecated use `AccountingBillsDeleteRequest$outboundSchema` instead. */
-  export const outboundSchema = AccountingBillsDeleteRequest$outboundSchema;
-  /** @deprecated use `AccountingBillsDeleteRequest$Outbound` instead. */
-  export type Outbound = AccountingBillsDeleteRequest$Outbound;
-}
-
 export function accountingBillsDeleteRequestToJSON(
   accountingBillsDeleteRequest: AccountingBillsDeleteRequest,
 ): string {
@@ -169,16 +84,6 @@ export function accountingBillsDeleteRequestToJSON(
     AccountingBillsDeleteRequest$outboundSchema.parse(
       accountingBillsDeleteRequest,
     ),
-  );
-}
-
-export function accountingBillsDeleteRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<AccountingBillsDeleteRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => AccountingBillsDeleteRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'AccountingBillsDeleteRequest' from JSON`,
   );
 }
 
@@ -199,56 +104,6 @@ export const AccountingBillsDeleteResponse$inboundSchema: z.ZodType<
     "UnexpectedErrorResponse": "unexpectedErrorResponse",
   });
 });
-
-/** @internal */
-export type AccountingBillsDeleteResponse$Outbound = {
-  HttpMeta: components.HTTPMetadata$Outbound;
-  DeleteBillResponse?: components.DeleteBillResponse$Outbound | undefined;
-  UnexpectedErrorResponse?:
-    | components.UnexpectedErrorResponse$Outbound
-    | undefined;
-};
-
-/** @internal */
-export const AccountingBillsDeleteResponse$outboundSchema: z.ZodType<
-  AccountingBillsDeleteResponse$Outbound,
-  z.ZodTypeDef,
-  AccountingBillsDeleteResponse
-> = z.object({
-  httpMeta: components.HTTPMetadata$outboundSchema,
-  deleteBillResponse: components.DeleteBillResponse$outboundSchema.optional(),
-  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    httpMeta: "HttpMeta",
-    deleteBillResponse: "DeleteBillResponse",
-    unexpectedErrorResponse: "UnexpectedErrorResponse",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AccountingBillsDeleteResponse$ {
-  /** @deprecated use `AccountingBillsDeleteResponse$inboundSchema` instead. */
-  export const inboundSchema = AccountingBillsDeleteResponse$inboundSchema;
-  /** @deprecated use `AccountingBillsDeleteResponse$outboundSchema` instead. */
-  export const outboundSchema = AccountingBillsDeleteResponse$outboundSchema;
-  /** @deprecated use `AccountingBillsDeleteResponse$Outbound` instead. */
-  export type Outbound = AccountingBillsDeleteResponse$Outbound;
-}
-
-export function accountingBillsDeleteResponseToJSON(
-  accountingBillsDeleteResponse: AccountingBillsDeleteResponse,
-): string {
-  return JSON.stringify(
-    AccountingBillsDeleteResponse$outboundSchema.parse(
-      accountingBillsDeleteResponse,
-    ),
-  );
-}
 
 export function accountingBillsDeleteResponseFromJSON(
   jsonString: string,

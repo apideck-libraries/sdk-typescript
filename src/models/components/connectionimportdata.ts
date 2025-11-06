@@ -4,9 +4,6 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type Credentials = {
   /**
@@ -40,27 +37,6 @@ export type ConnectionImportData = {
 };
 
 /** @internal */
-export const Credentials$inboundSchema: z.ZodType<
-  Credentials,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  refresh_token: z.nullable(z.string()).optional(),
-  access_token: z.string().optional(),
-  issued_at: z.nullable(
-    z.string().datetime({ offset: true }).transform(v => new Date(v)),
-  ).optional(),
-  expires_in: z.nullable(z.number().int()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "refresh_token": "refreshToken",
-    "access_token": "accessToken",
-    "issued_at": "issuedAt",
-    "expires_in": "expiresIn",
-  });
-});
-
-/** @internal */
 export type Credentials$Outbound = {
   refresh_token?: string | null | undefined;
   access_token?: string | undefined;
@@ -87,43 +63,9 @@ export const Credentials$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Credentials$ {
-  /** @deprecated use `Credentials$inboundSchema` instead. */
-  export const inboundSchema = Credentials$inboundSchema;
-  /** @deprecated use `Credentials$outboundSchema` instead. */
-  export const outboundSchema = Credentials$outboundSchema;
-  /** @deprecated use `Credentials$Outbound` instead. */
-  export type Outbound = Credentials$Outbound;
-}
-
 export function credentialsToJSON(credentials: Credentials): string {
   return JSON.stringify(Credentials$outboundSchema.parse(credentials));
 }
-
-export function credentialsFromJSON(
-  jsonString: string,
-): SafeParseResult<Credentials, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => Credentials$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Credentials' from JSON`,
-  );
-}
-
-/** @internal */
-export const ConnectionImportData$inboundSchema: z.ZodType<
-  ConnectionImportData,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  credentials: z.lazy(() => Credentials$inboundSchema).optional(),
-  settings: z.nullable(z.record(z.any())).optional(),
-  metadata: z.nullable(z.record(z.any())).optional(),
-});
 
 /** @internal */
 export type ConnectionImportData$Outbound = {
@@ -143,33 +85,10 @@ export const ConnectionImportData$outboundSchema: z.ZodType<
   metadata: z.nullable(z.record(z.any())).optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ConnectionImportData$ {
-  /** @deprecated use `ConnectionImportData$inboundSchema` instead. */
-  export const inboundSchema = ConnectionImportData$inboundSchema;
-  /** @deprecated use `ConnectionImportData$outboundSchema` instead. */
-  export const outboundSchema = ConnectionImportData$outboundSchema;
-  /** @deprecated use `ConnectionImportData$Outbound` instead. */
-  export type Outbound = ConnectionImportData$Outbound;
-}
-
 export function connectionImportDataToJSON(
   connectionImportData: ConnectionImportData,
 ): string {
   return JSON.stringify(
     ConnectionImportData$outboundSchema.parse(connectionImportData),
-  );
-}
-
-export function connectionImportDataFromJSON(
-  jsonString: string,
-): SafeParseResult<ConnectionImportData, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => ConnectionImportData$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ConnectionImportData' from JSON`,
   );
 }

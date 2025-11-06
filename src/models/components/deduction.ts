@@ -28,39 +28,6 @@ export const Deduction$inboundSchema: z.ZodType<
   amount: z.nullable(z.number()).optional(),
 });
 
-/** @internal */
-export type Deduction$Outbound = {
-  name?: string | null | undefined;
-  amount?: number | null | undefined;
-};
-
-/** @internal */
-export const Deduction$outboundSchema: z.ZodType<
-  Deduction$Outbound,
-  z.ZodTypeDef,
-  Deduction
-> = z.object({
-  name: z.nullable(z.string()).optional(),
-  amount: z.nullable(z.number()).optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Deduction$ {
-  /** @deprecated use `Deduction$inboundSchema` instead. */
-  export const inboundSchema = Deduction$inboundSchema;
-  /** @deprecated use `Deduction$outboundSchema` instead. */
-  export const outboundSchema = Deduction$outboundSchema;
-  /** @deprecated use `Deduction$Outbound` instead. */
-  export type Outbound = Deduction$Outbound;
-}
-
-export function deductionToJSON(deduction: Deduction): string {
-  return JSON.stringify(Deduction$outboundSchema.parse(deduction));
-}
-
 export function deductionFromJSON(
   jsonString: string,
 ): SafeParseResult<Deduction, SDKValidationError> {

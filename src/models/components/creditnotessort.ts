@@ -3,13 +3,9 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   SortDirection,
-  SortDirection$inboundSchema,
   SortDirection$outboundSchema,
 } from "./sortdirection.js";
 
@@ -37,35 +33,9 @@ export type CreditNotesSort = {
 };
 
 /** @internal */
-export const CreditNotesSortBy$inboundSchema: z.ZodNativeEnum<
-  typeof CreditNotesSortBy
-> = z.nativeEnum(CreditNotesSortBy);
-
-/** @internal */
 export const CreditNotesSortBy$outboundSchema: z.ZodNativeEnum<
   typeof CreditNotesSortBy
-> = CreditNotesSortBy$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreditNotesSortBy$ {
-  /** @deprecated use `CreditNotesSortBy$inboundSchema` instead. */
-  export const inboundSchema = CreditNotesSortBy$inboundSchema;
-  /** @deprecated use `CreditNotesSortBy$outboundSchema` instead. */
-  export const outboundSchema = CreditNotesSortBy$outboundSchema;
-}
-
-/** @internal */
-export const CreditNotesSort$inboundSchema: z.ZodType<
-  CreditNotesSort,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  by: CreditNotesSortBy$inboundSchema.optional(),
-  direction: SortDirection$inboundSchema.default("asc"),
-});
+> = z.nativeEnum(CreditNotesSortBy);
 
 /** @internal */
 export type CreditNotesSort$Outbound = {
@@ -83,31 +53,8 @@ export const CreditNotesSort$outboundSchema: z.ZodType<
   direction: SortDirection$outboundSchema.default("asc"),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreditNotesSort$ {
-  /** @deprecated use `CreditNotesSort$inboundSchema` instead. */
-  export const inboundSchema = CreditNotesSort$inboundSchema;
-  /** @deprecated use `CreditNotesSort$outboundSchema` instead. */
-  export const outboundSchema = CreditNotesSort$outboundSchema;
-  /** @deprecated use `CreditNotesSort$Outbound` instead. */
-  export type Outbound = CreditNotesSort$Outbound;
-}
-
 export function creditNotesSortToJSON(
   creditNotesSort: CreditNotesSort,
 ): string {
   return JSON.stringify(CreditNotesSort$outboundSchema.parse(creditNotesSort));
-}
-
-export function creditNotesSortFromJSON(
-  jsonString: string,
-): SafeParseResult<CreditNotesSort, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => CreditNotesSort$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CreditNotesSort' from JSON`,
-  );
 }

@@ -7,24 +7,9 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  Links,
-  Links$inboundSchema,
-  Links$Outbound,
-  Links$outboundSchema,
-} from "./links.js";
-import {
-  Meta,
-  Meta$inboundSchema,
-  Meta$Outbound,
-  Meta$outboundSchema,
-} from "./meta.js";
-import {
-  Webhook,
-  Webhook$inboundSchema,
-  Webhook$Outbound,
-  Webhook$outboundSchema,
-} from "./webhook.js";
+import { Links, Links$inboundSchema } from "./links.js";
+import { Meta, Meta$inboundSchema } from "./meta.js";
+import { Webhook, Webhook$inboundSchema } from "./webhook.js";
 
 /**
  * Webhooks
@@ -71,56 +56,6 @@ export const GetWebhooksResponse$inboundSchema: z.ZodType<
     "_raw": "raw",
   });
 });
-
-/** @internal */
-export type GetWebhooksResponse$Outbound = {
-  status_code: number;
-  status: string;
-  data: Array<Webhook$Outbound>;
-  meta?: Meta$Outbound | undefined;
-  links?: Links$Outbound | undefined;
-  _raw?: { [k: string]: any } | null | undefined;
-};
-
-/** @internal */
-export const GetWebhooksResponse$outboundSchema: z.ZodType<
-  GetWebhooksResponse$Outbound,
-  z.ZodTypeDef,
-  GetWebhooksResponse
-> = z.object({
-  statusCode: z.number().int(),
-  status: z.string(),
-  data: z.array(Webhook$outboundSchema),
-  meta: Meta$outboundSchema.optional(),
-  links: Links$outboundSchema.optional(),
-  raw: z.nullable(z.record(z.any())).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    statusCode: "status_code",
-    raw: "_raw",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetWebhooksResponse$ {
-  /** @deprecated use `GetWebhooksResponse$inboundSchema` instead. */
-  export const inboundSchema = GetWebhooksResponse$inboundSchema;
-  /** @deprecated use `GetWebhooksResponse$outboundSchema` instead. */
-  export const outboundSchema = GetWebhooksResponse$outboundSchema;
-  /** @deprecated use `GetWebhooksResponse$Outbound` instead. */
-  export type Outbound = GetWebhooksResponse$Outbound;
-}
-
-export function getWebhooksResponseToJSON(
-  getWebhooksResponse: GetWebhooksResponse,
-): string {
-  return JSON.stringify(
-    GetWebhooksResponse$outboundSchema.parse(getWebhooksResponse),
-  );
-}
 
 export function getWebhooksResponseFromJSON(
   jsonString: string,

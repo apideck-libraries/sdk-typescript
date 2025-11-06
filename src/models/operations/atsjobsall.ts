@@ -68,83 +68,6 @@ export type AtsJobsAllResponse = {
 };
 
 /** @internal */
-export const AtsJobsAllGlobals$inboundSchema: z.ZodType<
-  AtsJobsAllGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/** @internal */
-export type AtsJobsAllGlobals$Outbound = {
-  consumerId?: string | undefined;
-  appId?: string | undefined;
-};
-
-/** @internal */
-export const AtsJobsAllGlobals$outboundSchema: z.ZodType<
-  AtsJobsAllGlobals$Outbound,
-  z.ZodTypeDef,
-  AtsJobsAllGlobals
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AtsJobsAllGlobals$ {
-  /** @deprecated use `AtsJobsAllGlobals$inboundSchema` instead. */
-  export const inboundSchema = AtsJobsAllGlobals$inboundSchema;
-  /** @deprecated use `AtsJobsAllGlobals$outboundSchema` instead. */
-  export const outboundSchema = AtsJobsAllGlobals$outboundSchema;
-  /** @deprecated use `AtsJobsAllGlobals$Outbound` instead. */
-  export type Outbound = AtsJobsAllGlobals$Outbound;
-}
-
-export function atsJobsAllGlobalsToJSON(
-  atsJobsAllGlobals: AtsJobsAllGlobals,
-): string {
-  return JSON.stringify(
-    AtsJobsAllGlobals$outboundSchema.parse(atsJobsAllGlobals),
-  );
-}
-
-export function atsJobsAllGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<AtsJobsAllGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => AtsJobsAllGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'AtsJobsAllGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const AtsJobsAllRequest$inboundSchema: z.ZodType<
-  AtsJobsAllRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  raw: z.boolean().default(false),
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  cursor: z.nullable(z.string()).optional(),
-  limit: z.number().int().default(20),
-  pass_through: z.record(z.any()).optional(),
-  fields: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "pass_through": "passThrough",
-  });
-});
-
-/** @internal */
 export type AtsJobsAllRequest$Outbound = {
   raw: boolean;
   consumerId?: string | undefined;
@@ -176,34 +99,11 @@ export const AtsJobsAllRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AtsJobsAllRequest$ {
-  /** @deprecated use `AtsJobsAllRequest$inboundSchema` instead. */
-  export const inboundSchema = AtsJobsAllRequest$inboundSchema;
-  /** @deprecated use `AtsJobsAllRequest$outboundSchema` instead. */
-  export const outboundSchema = AtsJobsAllRequest$outboundSchema;
-  /** @deprecated use `AtsJobsAllRequest$Outbound` instead. */
-  export type Outbound = AtsJobsAllRequest$Outbound;
-}
-
 export function atsJobsAllRequestToJSON(
   atsJobsAllRequest: AtsJobsAllRequest,
 ): string {
   return JSON.stringify(
     AtsJobsAllRequest$outboundSchema.parse(atsJobsAllRequest),
-  );
-}
-
-export function atsJobsAllRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<AtsJobsAllRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => AtsJobsAllRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'AtsJobsAllRequest' from JSON`,
   );
 }
 
@@ -224,54 +124,6 @@ export const AtsJobsAllResponse$inboundSchema: z.ZodType<
     "UnexpectedErrorResponse": "unexpectedErrorResponse",
   });
 });
-
-/** @internal */
-export type AtsJobsAllResponse$Outbound = {
-  HttpMeta: components.HTTPMetadata$Outbound;
-  GetJobsResponse?: components.GetJobsResponse$Outbound | undefined;
-  UnexpectedErrorResponse?:
-    | components.UnexpectedErrorResponse$Outbound
-    | undefined;
-};
-
-/** @internal */
-export const AtsJobsAllResponse$outboundSchema: z.ZodType<
-  AtsJobsAllResponse$Outbound,
-  z.ZodTypeDef,
-  AtsJobsAllResponse
-> = z.object({
-  httpMeta: components.HTTPMetadata$outboundSchema,
-  getJobsResponse: components.GetJobsResponse$outboundSchema.optional(),
-  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    httpMeta: "HttpMeta",
-    getJobsResponse: "GetJobsResponse",
-    unexpectedErrorResponse: "UnexpectedErrorResponse",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AtsJobsAllResponse$ {
-  /** @deprecated use `AtsJobsAllResponse$inboundSchema` instead. */
-  export const inboundSchema = AtsJobsAllResponse$inboundSchema;
-  /** @deprecated use `AtsJobsAllResponse$outboundSchema` instead. */
-  export const outboundSchema = AtsJobsAllResponse$outboundSchema;
-  /** @deprecated use `AtsJobsAllResponse$Outbound` instead. */
-  export type Outbound = AtsJobsAllResponse$Outbound;
-}
-
-export function atsJobsAllResponseToJSON(
-  atsJobsAllResponse: AtsJobsAllResponse,
-): string {
-  return JSON.stringify(
-    AtsJobsAllResponse$outboundSchema.parse(atsJobsAllResponse),
-  );
-}
 
 export function atsJobsAllResponseFromJSON(
   jsonString: string,

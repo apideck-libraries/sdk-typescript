@@ -13,8 +13,8 @@ type GetExpensesResponse struct {
 	// Unified API resource name
 	Resource string `json:"resource"`
 	// Operation performed
-	Operation string         `json:"operation"`
-	Data      []ExpenseUnion `json:"data"`
+	Operation string    `json:"operation"`
+	Data      []Expense `json:"data"`
 	// Response metadata
 	Meta *Meta `json:"meta,omitempty"`
 	// Links to navigate to previous or next pages through the API
@@ -58,9 +58,9 @@ func (o *GetExpensesResponse) GetOperation() string {
 	return o.Operation
 }
 
-func (o *GetExpensesResponse) GetData() []ExpenseUnion {
+func (o *GetExpensesResponse) GetData() []Expense {
 	if o == nil {
-		return []ExpenseUnion{}
+		return []Expense{}
 	}
 	return o.Data
 }

@@ -7,12 +7,7 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  Lead,
-  Lead$inboundSchema,
-  Lead$Outbound,
-  Lead$outboundSchema,
-} from "./lead.js";
+import { Lead, Lead$inboundSchema } from "./lead.js";
 
 /**
  * Lead
@@ -64,56 +59,6 @@ export const GetLeadResponse$inboundSchema: z.ZodType<
     "_raw": "raw",
   });
 });
-
-/** @internal */
-export type GetLeadResponse$Outbound = {
-  status_code: number;
-  status: string;
-  service: string;
-  resource: string;
-  operation: string;
-  data: Lead$Outbound;
-  _raw?: { [k: string]: any } | null | undefined;
-};
-
-/** @internal */
-export const GetLeadResponse$outboundSchema: z.ZodType<
-  GetLeadResponse$Outbound,
-  z.ZodTypeDef,
-  GetLeadResponse
-> = z.object({
-  statusCode: z.number().int(),
-  status: z.string(),
-  service: z.string(),
-  resource: z.string(),
-  operation: z.string(),
-  data: Lead$outboundSchema,
-  raw: z.nullable(z.record(z.any())).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    statusCode: "status_code",
-    raw: "_raw",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetLeadResponse$ {
-  /** @deprecated use `GetLeadResponse$inboundSchema` instead. */
-  export const inboundSchema = GetLeadResponse$inboundSchema;
-  /** @deprecated use `GetLeadResponse$outboundSchema` instead. */
-  export const outboundSchema = GetLeadResponse$outboundSchema;
-  /** @deprecated use `GetLeadResponse$Outbound` instead. */
-  export type Outbound = GetLeadResponse$Outbound;
-}
-
-export function getLeadResponseToJSON(
-  getLeadResponse: GetLeadResponse,
-): string {
-  return JSON.stringify(GetLeadResponse$outboundSchema.parse(getLeadResponse));
-}
 
 export function getLeadResponseFromJSON(
   jsonString: string,

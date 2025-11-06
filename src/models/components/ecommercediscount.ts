@@ -36,45 +36,6 @@ export const EcommerceDiscount$inboundSchema: z.ZodType<
   percentage: z.nullable(z.string()).optional(),
 });
 
-/** @internal */
-export type EcommerceDiscount$Outbound = {
-  code?: string | null | undefined;
-  amount?: string | null | undefined;
-  percentage?: string | null | undefined;
-};
-
-/** @internal */
-export const EcommerceDiscount$outboundSchema: z.ZodType<
-  EcommerceDiscount$Outbound,
-  z.ZodTypeDef,
-  EcommerceDiscount
-> = z.object({
-  code: z.nullable(z.string()).optional(),
-  amount: z.nullable(z.string()).optional(),
-  percentage: z.nullable(z.string()).optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace EcommerceDiscount$ {
-  /** @deprecated use `EcommerceDiscount$inboundSchema` instead. */
-  export const inboundSchema = EcommerceDiscount$inboundSchema;
-  /** @deprecated use `EcommerceDiscount$outboundSchema` instead. */
-  export const outboundSchema = EcommerceDiscount$outboundSchema;
-  /** @deprecated use `EcommerceDiscount$Outbound` instead. */
-  export type Outbound = EcommerceDiscount$Outbound;
-}
-
-export function ecommerceDiscountToJSON(
-  ecommerceDiscount: EcommerceDiscount,
-): string {
-  return JSON.stringify(
-    EcommerceDiscount$outboundSchema.parse(ecommerceDiscount),
-  );
-}
-
 export function ecommerceDiscountFromJSON(
   jsonString: string,
 ): SafeParseResult<EcommerceDiscount, SDKValidationError> {

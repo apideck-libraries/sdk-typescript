@@ -4,9 +4,6 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type LogsFilter = {
   connectorId?: string | null | undefined;
@@ -20,25 +17,6 @@ export type LogsFilter = {
   statusCodes?: Array<number> | null | undefined;
   excludeUnifiedApis?: string | null | undefined;
 };
-
-/** @internal */
-export const LogsFilter$inboundSchema: z.ZodType<
-  LogsFilter,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  connector_id: z.nullable(z.string()).optional(),
-  status_code: z.nullable(z.number()).optional(),
-  status_codes: z.nullable(z.array(z.number())).optional(),
-  exclude_unified_apis: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "connector_id": "connectorId",
-    "status_code": "statusCode",
-    "status_codes": "statusCodes",
-    "exclude_unified_apis": "excludeUnifiedApis",
-  });
-});
 
 /** @internal */
 export type LogsFilter$Outbound = {
@@ -67,29 +45,6 @@ export const LogsFilter$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace LogsFilter$ {
-  /** @deprecated use `LogsFilter$inboundSchema` instead. */
-  export const inboundSchema = LogsFilter$inboundSchema;
-  /** @deprecated use `LogsFilter$outboundSchema` instead. */
-  export const outboundSchema = LogsFilter$outboundSchema;
-  /** @deprecated use `LogsFilter$Outbound` instead. */
-  export type Outbound = LogsFilter$Outbound;
-}
-
 export function logsFilterToJSON(logsFilter: LogsFilter): string {
   return JSON.stringify(LogsFilter$outboundSchema.parse(logsFilter));
-}
-
-export function logsFilterFromJSON(
-  jsonString: string,
-): SafeParseResult<LogsFilter, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => LogsFilter$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'LogsFilter' from JSON`,
-  );
 }

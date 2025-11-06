@@ -37,7 +37,7 @@ type FileStorageDrivesAddRequest struct {
 	AppID *string `header:"style=simple,explode=false,name=x-apideck-app-id"`
 	// Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
 	ServiceID *string               `header:"style=simple,explode=false,name=x-apideck-service-id"`
-	Drive     components.DriveInput `request:"mediaType=application/json"`
+	Body      components.DriveInput `request:"mediaType=application/json"`
 }
 
 func (f FileStorageDrivesAddRequest) MarshalJSON() ([]byte, error) {
@@ -45,7 +45,7 @@ func (f FileStorageDrivesAddRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (f *FileStorageDrivesAddRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &f, "", false, []string{"Drive"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &f, "", false, []string{"body"}); err != nil {
 		return err
 	}
 	return nil
@@ -79,11 +79,11 @@ func (o *FileStorageDrivesAddRequest) GetServiceID() *string {
 	return o.ServiceID
 }
 
-func (o *FileStorageDrivesAddRequest) GetDrive() components.DriveInput {
+func (o *FileStorageDrivesAddRequest) GetBody() components.DriveInput {
 	if o == nil {
 		return components.DriveInput{}
 	}
-	return o.Drive
+	return o.Body
 }
 
 type FileStorageDrivesAddResponse struct {

@@ -4,9 +4,6 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type WebhookEventLogsFilterService = {
   id?: string | undefined;
@@ -19,15 +16,6 @@ export type WebhookEventLogsFilter = {
   entityType?: string | null | undefined;
   eventType?: string | null | undefined;
 };
-
-/** @internal */
-export const WebhookEventLogsFilterService$inboundSchema: z.ZodType<
-  WebhookEventLogsFilterService,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  id: z.string().optional(),
-});
 
 /** @internal */
 export type WebhookEventLogsFilterService$Outbound = {
@@ -43,19 +31,6 @@ export const WebhookEventLogsFilterService$outboundSchema: z.ZodType<
   id: z.string().optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace WebhookEventLogsFilterService$ {
-  /** @deprecated use `WebhookEventLogsFilterService$inboundSchema` instead. */
-  export const inboundSchema = WebhookEventLogsFilterService$inboundSchema;
-  /** @deprecated use `WebhookEventLogsFilterService$outboundSchema` instead. */
-  export const outboundSchema = WebhookEventLogsFilterService$outboundSchema;
-  /** @deprecated use `WebhookEventLogsFilterService$Outbound` instead. */
-  export type Outbound = WebhookEventLogsFilterService$Outbound;
-}
-
 export function webhookEventLogsFilterServiceToJSON(
   webhookEventLogsFilterService: WebhookEventLogsFilterService,
 ): string {
@@ -65,37 +40,6 @@ export function webhookEventLogsFilterServiceToJSON(
     ),
   );
 }
-
-export function webhookEventLogsFilterServiceFromJSON(
-  jsonString: string,
-): SafeParseResult<WebhookEventLogsFilterService, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => WebhookEventLogsFilterService$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'WebhookEventLogsFilterService' from JSON`,
-  );
-}
-
-/** @internal */
-export const WebhookEventLogsFilter$inboundSchema: z.ZodType<
-  WebhookEventLogsFilter,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  exclude_apis: z.nullable(z.string()).optional(),
-  service: z.nullable(z.lazy(() => WebhookEventLogsFilterService$inboundSchema))
-    .optional(),
-  consumer_id: z.nullable(z.string()).optional(),
-  entity_type: z.nullable(z.string()).optional(),
-  event_type: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "exclude_apis": "excludeApis",
-    "consumer_id": "consumerId",
-    "entity_type": "entityType",
-    "event_type": "eventType",
-  });
-});
 
 /** @internal */
 export type WebhookEventLogsFilter$Outbound = {
@@ -128,33 +72,10 @@ export const WebhookEventLogsFilter$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace WebhookEventLogsFilter$ {
-  /** @deprecated use `WebhookEventLogsFilter$inboundSchema` instead. */
-  export const inboundSchema = WebhookEventLogsFilter$inboundSchema;
-  /** @deprecated use `WebhookEventLogsFilter$outboundSchema` instead. */
-  export const outboundSchema = WebhookEventLogsFilter$outboundSchema;
-  /** @deprecated use `WebhookEventLogsFilter$Outbound` instead. */
-  export type Outbound = WebhookEventLogsFilter$Outbound;
-}
-
 export function webhookEventLogsFilterToJSON(
   webhookEventLogsFilter: WebhookEventLogsFilter,
 ): string {
   return JSON.stringify(
     WebhookEventLogsFilter$outboundSchema.parse(webhookEventLogsFilter),
-  );
-}
-
-export function webhookEventLogsFilterFromJSON(
-  jsonString: string,
-): SafeParseResult<WebhookEventLogsFilter, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => WebhookEventLogsFilter$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'WebhookEventLogsFilter' from JSON`,
   );
 }

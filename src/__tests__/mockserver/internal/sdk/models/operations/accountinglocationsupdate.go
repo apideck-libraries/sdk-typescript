@@ -38,8 +38,8 @@ type AccountingLocationsUpdateRequest struct {
 	// Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
 	ServiceID *string `header:"style=simple,explode=false,name=x-apideck-service-id"`
 	// Include raw response. Mostly used for debugging purposes
-	Raw                *bool                              `default:"false" queryParam:"style=form,explode=true,name=raw"`
-	AccountingLocation components.AccountingLocationInput `request:"mediaType=application/json"`
+	Raw  *bool                              `default:"false" queryParam:"style=form,explode=true,name=raw"`
+	Body components.AccountingLocationInput `request:"mediaType=application/json"`
 }
 
 func (a AccountingLocationsUpdateRequest) MarshalJSON() ([]byte, error) {
@@ -47,7 +47,7 @@ func (a AccountingLocationsUpdateRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (a *AccountingLocationsUpdateRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"id", "AccountingLocation"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"id", "body"}); err != nil {
 		return err
 	}
 	return nil
@@ -88,11 +88,11 @@ func (o *AccountingLocationsUpdateRequest) GetRaw() *bool {
 	return o.Raw
 }
 
-func (o *AccountingLocationsUpdateRequest) GetAccountingLocation() components.AccountingLocationInput {
+func (o *AccountingLocationsUpdateRequest) GetBody() components.AccountingLocationInput {
 	if o == nil {
 		return components.AccountingLocationInput{}
 	}
-	return o.AccountingLocation
+	return o.Body
 }
 
 type AccountingLocationsUpdateResponse struct {

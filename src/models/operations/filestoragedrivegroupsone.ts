@@ -60,79 +60,6 @@ export type FileStorageDriveGroupsOneResponse = {
 };
 
 /** @internal */
-export const FileStorageDriveGroupsOneGlobals$inboundSchema: z.ZodType<
-  FileStorageDriveGroupsOneGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/** @internal */
-export type FileStorageDriveGroupsOneGlobals$Outbound = {
-  consumerId?: string | undefined;
-  appId?: string | undefined;
-};
-
-/** @internal */
-export const FileStorageDriveGroupsOneGlobals$outboundSchema: z.ZodType<
-  FileStorageDriveGroupsOneGlobals$Outbound,
-  z.ZodTypeDef,
-  FileStorageDriveGroupsOneGlobals
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace FileStorageDriveGroupsOneGlobals$ {
-  /** @deprecated use `FileStorageDriveGroupsOneGlobals$inboundSchema` instead. */
-  export const inboundSchema = FileStorageDriveGroupsOneGlobals$inboundSchema;
-  /** @deprecated use `FileStorageDriveGroupsOneGlobals$outboundSchema` instead. */
-  export const outboundSchema = FileStorageDriveGroupsOneGlobals$outboundSchema;
-  /** @deprecated use `FileStorageDriveGroupsOneGlobals$Outbound` instead. */
-  export type Outbound = FileStorageDriveGroupsOneGlobals$Outbound;
-}
-
-export function fileStorageDriveGroupsOneGlobalsToJSON(
-  fileStorageDriveGroupsOneGlobals: FileStorageDriveGroupsOneGlobals,
-): string {
-  return JSON.stringify(
-    FileStorageDriveGroupsOneGlobals$outboundSchema.parse(
-      fileStorageDriveGroupsOneGlobals,
-    ),
-  );
-}
-
-export function fileStorageDriveGroupsOneGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<FileStorageDriveGroupsOneGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => FileStorageDriveGroupsOneGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'FileStorageDriveGroupsOneGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const FileStorageDriveGroupsOneRequest$inboundSchema: z.ZodType<
-  FileStorageDriveGroupsOneRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  id: z.string(),
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  raw: z.boolean().default(false),
-  fields: z.nullable(z.string()).optional(),
-});
-
-/** @internal */
 export type FileStorageDriveGroupsOneRequest$Outbound = {
   id: string;
   consumerId?: string | undefined;
@@ -156,19 +83,6 @@ export const FileStorageDriveGroupsOneRequest$outboundSchema: z.ZodType<
   fields: z.nullable(z.string()).optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace FileStorageDriveGroupsOneRequest$ {
-  /** @deprecated use `FileStorageDriveGroupsOneRequest$inboundSchema` instead. */
-  export const inboundSchema = FileStorageDriveGroupsOneRequest$inboundSchema;
-  /** @deprecated use `FileStorageDriveGroupsOneRequest$outboundSchema` instead. */
-  export const outboundSchema = FileStorageDriveGroupsOneRequest$outboundSchema;
-  /** @deprecated use `FileStorageDriveGroupsOneRequest$Outbound` instead. */
-  export type Outbound = FileStorageDriveGroupsOneRequest$Outbound;
-}
-
 export function fileStorageDriveGroupsOneRequestToJSON(
   fileStorageDriveGroupsOneRequest: FileStorageDriveGroupsOneRequest,
 ): string {
@@ -176,16 +90,6 @@ export function fileStorageDriveGroupsOneRequestToJSON(
     FileStorageDriveGroupsOneRequest$outboundSchema.parse(
       fileStorageDriveGroupsOneRequest,
     ),
-  );
-}
-
-export function fileStorageDriveGroupsOneRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<FileStorageDriveGroupsOneRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => FileStorageDriveGroupsOneRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'FileStorageDriveGroupsOneRequest' from JSON`,
   );
 }
 
@@ -207,58 +111,6 @@ export const FileStorageDriveGroupsOneResponse$inboundSchema: z.ZodType<
     "UnexpectedErrorResponse": "unexpectedErrorResponse",
   });
 });
-
-/** @internal */
-export type FileStorageDriveGroupsOneResponse$Outbound = {
-  HttpMeta: components.HTTPMetadata$Outbound;
-  GetDriveGroupResponse?: components.GetDriveGroupResponse$Outbound | undefined;
-  UnexpectedErrorResponse?:
-    | components.UnexpectedErrorResponse$Outbound
-    | undefined;
-};
-
-/** @internal */
-export const FileStorageDriveGroupsOneResponse$outboundSchema: z.ZodType<
-  FileStorageDriveGroupsOneResponse$Outbound,
-  z.ZodTypeDef,
-  FileStorageDriveGroupsOneResponse
-> = z.object({
-  httpMeta: components.HTTPMetadata$outboundSchema,
-  getDriveGroupResponse: components.GetDriveGroupResponse$outboundSchema
-    .optional(),
-  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    httpMeta: "HttpMeta",
-    getDriveGroupResponse: "GetDriveGroupResponse",
-    unexpectedErrorResponse: "UnexpectedErrorResponse",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace FileStorageDriveGroupsOneResponse$ {
-  /** @deprecated use `FileStorageDriveGroupsOneResponse$inboundSchema` instead. */
-  export const inboundSchema = FileStorageDriveGroupsOneResponse$inboundSchema;
-  /** @deprecated use `FileStorageDriveGroupsOneResponse$outboundSchema` instead. */
-  export const outboundSchema =
-    FileStorageDriveGroupsOneResponse$outboundSchema;
-  /** @deprecated use `FileStorageDriveGroupsOneResponse$Outbound` instead. */
-  export type Outbound = FileStorageDriveGroupsOneResponse$Outbound;
-}
-
-export function fileStorageDriveGroupsOneResponseToJSON(
-  fileStorageDriveGroupsOneResponse: FileStorageDriveGroupsOneResponse,
-): string {
-  return JSON.stringify(
-    FileStorageDriveGroupsOneResponse$outboundSchema.parse(
-      fileStorageDriveGroupsOneResponse,
-    ),
-  );
-}
 
 export function fileStorageDriveGroupsOneResponseFromJSON(
   jsonString: string,

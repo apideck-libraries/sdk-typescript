@@ -36,8 +36,8 @@ type HrisTimeOffRequestsAddRequest struct {
 	// The ID of your Unify application
 	AppID *string `header:"style=simple,explode=false,name=x-apideck-app-id"`
 	// Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
-	ServiceID      *string                        `header:"style=simple,explode=false,name=x-apideck-service-id"`
-	TimeOffRequest components.TimeOffRequestInput `request:"mediaType=application/json"`
+	ServiceID *string                        `header:"style=simple,explode=false,name=x-apideck-service-id"`
+	Body      components.TimeOffRequestInput `request:"mediaType=application/json"`
 }
 
 func (h HrisTimeOffRequestsAddRequest) MarshalJSON() ([]byte, error) {
@@ -45,7 +45,7 @@ func (h HrisTimeOffRequestsAddRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (h *HrisTimeOffRequestsAddRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &h, "", false, []string{"TimeOffRequest"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &h, "", false, []string{"body"}); err != nil {
 		return err
 	}
 	return nil
@@ -79,11 +79,11 @@ func (o *HrisTimeOffRequestsAddRequest) GetServiceID() *string {
 	return o.ServiceID
 }
 
-func (o *HrisTimeOffRequestsAddRequest) GetTimeOffRequest() components.TimeOffRequestInput {
+func (o *HrisTimeOffRequestsAddRequest) GetBody() components.TimeOffRequestInput {
 	if o == nil {
 		return components.TimeOffRequestInput{}
 	}
-	return o.TimeOffRequest
+	return o.Body
 }
 
 type HrisTimeOffRequestsAddResponse struct {

@@ -68,81 +68,6 @@ export type FileStorageDrivesAllResponse = {
 };
 
 /** @internal */
-export const FileStorageDrivesAllGlobals$inboundSchema: z.ZodType<
-  FileStorageDrivesAllGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/** @internal */
-export type FileStorageDrivesAllGlobals$Outbound = {
-  consumerId?: string | undefined;
-  appId?: string | undefined;
-};
-
-/** @internal */
-export const FileStorageDrivesAllGlobals$outboundSchema: z.ZodType<
-  FileStorageDrivesAllGlobals$Outbound,
-  z.ZodTypeDef,
-  FileStorageDrivesAllGlobals
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace FileStorageDrivesAllGlobals$ {
-  /** @deprecated use `FileStorageDrivesAllGlobals$inboundSchema` instead. */
-  export const inboundSchema = FileStorageDrivesAllGlobals$inboundSchema;
-  /** @deprecated use `FileStorageDrivesAllGlobals$outboundSchema` instead. */
-  export const outboundSchema = FileStorageDrivesAllGlobals$outboundSchema;
-  /** @deprecated use `FileStorageDrivesAllGlobals$Outbound` instead. */
-  export type Outbound = FileStorageDrivesAllGlobals$Outbound;
-}
-
-export function fileStorageDrivesAllGlobalsToJSON(
-  fileStorageDrivesAllGlobals: FileStorageDrivesAllGlobals,
-): string {
-  return JSON.stringify(
-    FileStorageDrivesAllGlobals$outboundSchema.parse(
-      fileStorageDrivesAllGlobals,
-    ),
-  );
-}
-
-export function fileStorageDrivesAllGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<FileStorageDrivesAllGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => FileStorageDrivesAllGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'FileStorageDrivesAllGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const FileStorageDrivesAllRequest$inboundSchema: z.ZodType<
-  FileStorageDrivesAllRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  raw: z.boolean().default(false),
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  cursor: z.nullable(z.string()).optional(),
-  limit: z.number().int().default(20),
-  filter: components.DrivesFilter$inboundSchema.optional(),
-  fields: z.nullable(z.string()).optional(),
-});
-
-/** @internal */
 export type FileStorageDrivesAllRequest$Outbound = {
   raw: boolean;
   consumerId?: string | undefined;
@@ -170,19 +95,6 @@ export const FileStorageDrivesAllRequest$outboundSchema: z.ZodType<
   fields: z.nullable(z.string()).optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace FileStorageDrivesAllRequest$ {
-  /** @deprecated use `FileStorageDrivesAllRequest$inboundSchema` instead. */
-  export const inboundSchema = FileStorageDrivesAllRequest$inboundSchema;
-  /** @deprecated use `FileStorageDrivesAllRequest$outboundSchema` instead. */
-  export const outboundSchema = FileStorageDrivesAllRequest$outboundSchema;
-  /** @deprecated use `FileStorageDrivesAllRequest$Outbound` instead. */
-  export type Outbound = FileStorageDrivesAllRequest$Outbound;
-}
-
 export function fileStorageDrivesAllRequestToJSON(
   fileStorageDrivesAllRequest: FileStorageDrivesAllRequest,
 ): string {
@@ -190,16 +102,6 @@ export function fileStorageDrivesAllRequestToJSON(
     FileStorageDrivesAllRequest$outboundSchema.parse(
       fileStorageDrivesAllRequest,
     ),
-  );
-}
-
-export function fileStorageDrivesAllRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<FileStorageDrivesAllRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => FileStorageDrivesAllRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'FileStorageDrivesAllRequest' from JSON`,
   );
 }
 
@@ -220,56 +122,6 @@ export const FileStorageDrivesAllResponse$inboundSchema: z.ZodType<
     "UnexpectedErrorResponse": "unexpectedErrorResponse",
   });
 });
-
-/** @internal */
-export type FileStorageDrivesAllResponse$Outbound = {
-  HttpMeta: components.HTTPMetadata$Outbound;
-  GetDrivesResponse?: components.GetDrivesResponse$Outbound | undefined;
-  UnexpectedErrorResponse?:
-    | components.UnexpectedErrorResponse$Outbound
-    | undefined;
-};
-
-/** @internal */
-export const FileStorageDrivesAllResponse$outboundSchema: z.ZodType<
-  FileStorageDrivesAllResponse$Outbound,
-  z.ZodTypeDef,
-  FileStorageDrivesAllResponse
-> = z.object({
-  httpMeta: components.HTTPMetadata$outboundSchema,
-  getDrivesResponse: components.GetDrivesResponse$outboundSchema.optional(),
-  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    httpMeta: "HttpMeta",
-    getDrivesResponse: "GetDrivesResponse",
-    unexpectedErrorResponse: "UnexpectedErrorResponse",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace FileStorageDrivesAllResponse$ {
-  /** @deprecated use `FileStorageDrivesAllResponse$inboundSchema` instead. */
-  export const inboundSchema = FileStorageDrivesAllResponse$inboundSchema;
-  /** @deprecated use `FileStorageDrivesAllResponse$outboundSchema` instead. */
-  export const outboundSchema = FileStorageDrivesAllResponse$outboundSchema;
-  /** @deprecated use `FileStorageDrivesAllResponse$Outbound` instead. */
-  export type Outbound = FileStorageDrivesAllResponse$Outbound;
-}
-
-export function fileStorageDrivesAllResponseToJSON(
-  fileStorageDrivesAllResponse: FileStorageDrivesAllResponse,
-): string {
-  return JSON.stringify(
-    FileStorageDrivesAllResponse$outboundSchema.parse(
-      fileStorageDrivesAllResponse,
-    ),
-  );
-}
 
 export function fileStorageDrivesAllResponseFromJSON(
   jsonString: string,

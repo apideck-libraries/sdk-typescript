@@ -7,30 +7,21 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
+import { LineItemType, LineItemType$inboundSchema } from "./lineitemtype.js";
+import {
+  LinkedInvoiceItem,
+  LinkedInvoiceItem$inboundSchema,
+} from "./linkedinvoiceitem.js";
 import {
   LinkedLedgerAccount,
   LinkedLedgerAccount$inboundSchema,
-  LinkedLedgerAccount$Outbound,
-  LinkedLedgerAccount$outboundSchema,
 } from "./linkedledgeraccount.js";
-import {
-  LinkedTaxRate,
-  LinkedTaxRate$inboundSchema,
-  LinkedTaxRate$Outbound,
-  LinkedTaxRate$outboundSchema,
-} from "./linkedtaxrate.js";
+import { LinkedTaxRate, LinkedTaxRate$inboundSchema } from "./linkedtaxrate.js";
 import {
   LinkedTrackingCategory,
   LinkedTrackingCategory$inboundSchema,
-  LinkedTrackingCategory$Outbound,
-  LinkedTrackingCategory$outboundSchema,
 } from "./linkedtrackingcategory.js";
-import {
-  Rebilling,
-  Rebilling$inboundSchema,
-  Rebilling$Outbound,
-  Rebilling$outboundSchema,
-} from "./rebilling.js";
+import { Rebilling, Rebilling$inboundSchema } from "./rebilling.js";
 
 export type ExpenseLineItem = {
   /**
@@ -70,11 +61,24 @@ export type ExpenseLineItem = {
    */
   description?: string | null | undefined;
   /**
+   * Line Item type
+   */
+  type?: LineItemType | null | undefined;
+  /**
    * The total amount of the expense line item.
    */
   totalAmount: number | null;
   /**
+   * Tax amount
+   */
+  taxAmount?: number | null | undefined;
+  quantity?: number | null | undefined;
+  unitPrice?: number | null | undefined;
+  item?: LinkedInvoiceItem | undefined;
+  /**
    * Boolean that indicates if the line item is billable or not.
+   *
+   * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
    */
   billable?: boolean | undefined;
   /**
@@ -105,7 +109,12 @@ export const ExpenseLineItem$inboundSchema: z.ZodType<
   subsidiary_id: z.nullable(z.string()).optional(),
   tax_rate: LinkedTaxRate$inboundSchema.optional(),
   description: z.nullable(z.string()).optional(),
+  type: z.nullable(LineItemType$inboundSchema).optional(),
   total_amount: z.nullable(z.number()),
+  tax_amount: z.nullable(z.number()).optional(),
+  quantity: z.nullable(z.number()).optional(),
+  unit_price: z.nullable(z.number()).optional(),
+  item: LinkedInvoiceItem$inboundSchema.optional(),
   billable: z.boolean().optional(),
   line_number: z.nullable(z.number().int()).optional(),
   rebilling: z.nullable(Rebilling$inboundSchema).optional(),
@@ -119,85 +128,11 @@ export const ExpenseLineItem$inboundSchema: z.ZodType<
     "subsidiary_id": "subsidiaryId",
     "tax_rate": "taxRate",
     "total_amount": "totalAmount",
+    "tax_amount": "taxAmount",
+    "unit_price": "unitPrice",
     "line_number": "lineNumber",
   });
 });
-
-/** @internal */
-export type ExpenseLineItem$Outbound = {
-  id?: string | undefined;
-  tracking_categories?:
-    | Array<LinkedTrackingCategory$Outbound | null>
-    | null
-    | undefined;
-  account_id?: string | undefined;
-  account?: LinkedLedgerAccount$Outbound | null | undefined;
-  customer_id?: string | undefined;
-  department_id?: string | null | undefined;
-  location_id?: string | null | undefined;
-  subsidiary_id?: string | null | undefined;
-  tax_rate?: LinkedTaxRate$Outbound | undefined;
-  description?: string | null | undefined;
-  total_amount: number | null;
-  billable?: boolean | undefined;
-  line_number?: number | null | undefined;
-  rebilling?: Rebilling$Outbound | null | undefined;
-};
-
-/** @internal */
-export const ExpenseLineItem$outboundSchema: z.ZodType<
-  ExpenseLineItem$Outbound,
-  z.ZodTypeDef,
-  ExpenseLineItem
-> = z.object({
-  id: z.string().optional(),
-  trackingCategories: z.nullable(
-    z.array(z.nullable(LinkedTrackingCategory$outboundSchema)),
-  ).optional(),
-  accountId: z.string().optional(),
-  account: z.nullable(LinkedLedgerAccount$outboundSchema).optional(),
-  customerId: z.string().optional(),
-  departmentId: z.nullable(z.string()).optional(),
-  locationId: z.nullable(z.string()).optional(),
-  subsidiaryId: z.nullable(z.string()).optional(),
-  taxRate: LinkedTaxRate$outboundSchema.optional(),
-  description: z.nullable(z.string()).optional(),
-  totalAmount: z.nullable(z.number()),
-  billable: z.boolean().optional(),
-  lineNumber: z.nullable(z.number().int()).optional(),
-  rebilling: z.nullable(Rebilling$outboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    trackingCategories: "tracking_categories",
-    accountId: "account_id",
-    customerId: "customer_id",
-    departmentId: "department_id",
-    locationId: "location_id",
-    subsidiaryId: "subsidiary_id",
-    taxRate: "tax_rate",
-    totalAmount: "total_amount",
-    lineNumber: "line_number",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ExpenseLineItem$ {
-  /** @deprecated use `ExpenseLineItem$inboundSchema` instead. */
-  export const inboundSchema = ExpenseLineItem$inboundSchema;
-  /** @deprecated use `ExpenseLineItem$outboundSchema` instead. */
-  export const outboundSchema = ExpenseLineItem$outboundSchema;
-  /** @deprecated use `ExpenseLineItem$Outbound` instead. */
-  export type Outbound = ExpenseLineItem$Outbound;
-}
-
-export function expenseLineItemToJSON(
-  expenseLineItem: ExpenseLineItem,
-): string {
-  return JSON.stringify(ExpenseLineItem$outboundSchema.parse(expenseLineItem));
-}
 
 export function expenseLineItemFromJSON(
   jsonString: string,

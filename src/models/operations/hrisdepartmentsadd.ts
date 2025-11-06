@@ -53,80 +53,6 @@ export type HrisDepartmentsAddResponse = {
 };
 
 /** @internal */
-export const HrisDepartmentsAddGlobals$inboundSchema: z.ZodType<
-  HrisDepartmentsAddGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/** @internal */
-export type HrisDepartmentsAddGlobals$Outbound = {
-  consumerId?: string | undefined;
-  appId?: string | undefined;
-};
-
-/** @internal */
-export const HrisDepartmentsAddGlobals$outboundSchema: z.ZodType<
-  HrisDepartmentsAddGlobals$Outbound,
-  z.ZodTypeDef,
-  HrisDepartmentsAddGlobals
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace HrisDepartmentsAddGlobals$ {
-  /** @deprecated use `HrisDepartmentsAddGlobals$inboundSchema` instead. */
-  export const inboundSchema = HrisDepartmentsAddGlobals$inboundSchema;
-  /** @deprecated use `HrisDepartmentsAddGlobals$outboundSchema` instead. */
-  export const outboundSchema = HrisDepartmentsAddGlobals$outboundSchema;
-  /** @deprecated use `HrisDepartmentsAddGlobals$Outbound` instead. */
-  export type Outbound = HrisDepartmentsAddGlobals$Outbound;
-}
-
-export function hrisDepartmentsAddGlobalsToJSON(
-  hrisDepartmentsAddGlobals: HrisDepartmentsAddGlobals,
-): string {
-  return JSON.stringify(
-    HrisDepartmentsAddGlobals$outboundSchema.parse(hrisDepartmentsAddGlobals),
-  );
-}
-
-export function hrisDepartmentsAddGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<HrisDepartmentsAddGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => HrisDepartmentsAddGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'HrisDepartmentsAddGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const HrisDepartmentsAddRequest$inboundSchema: z.ZodType<
-  HrisDepartmentsAddRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  raw: z.boolean().default(false),
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  Department: components.DepartmentInput$inboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    "Department": "department",
-  });
-});
-
-/** @internal */
 export type HrisDepartmentsAddRequest$Outbound = {
   raw: boolean;
   consumerId?: string | undefined;
@@ -152,34 +78,11 @@ export const HrisDepartmentsAddRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace HrisDepartmentsAddRequest$ {
-  /** @deprecated use `HrisDepartmentsAddRequest$inboundSchema` instead. */
-  export const inboundSchema = HrisDepartmentsAddRequest$inboundSchema;
-  /** @deprecated use `HrisDepartmentsAddRequest$outboundSchema` instead. */
-  export const outboundSchema = HrisDepartmentsAddRequest$outboundSchema;
-  /** @deprecated use `HrisDepartmentsAddRequest$Outbound` instead. */
-  export type Outbound = HrisDepartmentsAddRequest$Outbound;
-}
-
 export function hrisDepartmentsAddRequestToJSON(
   hrisDepartmentsAddRequest: HrisDepartmentsAddRequest,
 ): string {
   return JSON.stringify(
     HrisDepartmentsAddRequest$outboundSchema.parse(hrisDepartmentsAddRequest),
-  );
-}
-
-export function hrisDepartmentsAddRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<HrisDepartmentsAddRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => HrisDepartmentsAddRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'HrisDepartmentsAddRequest' from JSON`,
   );
 }
 
@@ -201,57 +104,6 @@ export const HrisDepartmentsAddResponse$inboundSchema: z.ZodType<
     "UnexpectedErrorResponse": "unexpectedErrorResponse",
   });
 });
-
-/** @internal */
-export type HrisDepartmentsAddResponse$Outbound = {
-  HttpMeta: components.HTTPMetadata$Outbound;
-  CreateDepartmentResponse?:
-    | components.CreateDepartmentResponse$Outbound
-    | undefined;
-  UnexpectedErrorResponse?:
-    | components.UnexpectedErrorResponse$Outbound
-    | undefined;
-};
-
-/** @internal */
-export const HrisDepartmentsAddResponse$outboundSchema: z.ZodType<
-  HrisDepartmentsAddResponse$Outbound,
-  z.ZodTypeDef,
-  HrisDepartmentsAddResponse
-> = z.object({
-  httpMeta: components.HTTPMetadata$outboundSchema,
-  createDepartmentResponse: components.CreateDepartmentResponse$outboundSchema
-    .optional(),
-  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    httpMeta: "HttpMeta",
-    createDepartmentResponse: "CreateDepartmentResponse",
-    unexpectedErrorResponse: "UnexpectedErrorResponse",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace HrisDepartmentsAddResponse$ {
-  /** @deprecated use `HrisDepartmentsAddResponse$inboundSchema` instead. */
-  export const inboundSchema = HrisDepartmentsAddResponse$inboundSchema;
-  /** @deprecated use `HrisDepartmentsAddResponse$outboundSchema` instead. */
-  export const outboundSchema = HrisDepartmentsAddResponse$outboundSchema;
-  /** @deprecated use `HrisDepartmentsAddResponse$Outbound` instead. */
-  export type Outbound = HrisDepartmentsAddResponse$Outbound;
-}
-
-export function hrisDepartmentsAddResponseToJSON(
-  hrisDepartmentsAddResponse: HrisDepartmentsAddResponse,
-): string {
-  return JSON.stringify(
-    HrisDepartmentsAddResponse$outboundSchema.parse(hrisDepartmentsAddResponse),
-  );
-}
 
 export function hrisDepartmentsAddResponseFromJSON(
   jsonString: string,

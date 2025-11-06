@@ -4,9 +4,6 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type FilesFilter = {
   /**
@@ -22,22 +19,6 @@ export type FilesFilter = {
    */
   shared?: boolean | undefined;
 };
-
-/** @internal */
-export const FilesFilter$inboundSchema: z.ZodType<
-  FilesFilter,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  drive_id: z.string().optional(),
-  folder_id: z.string().optional(),
-  shared: z.boolean().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "drive_id": "driveId",
-    "folder_id": "folderId",
-  });
-});
 
 /** @internal */
 export type FilesFilter$Outbound = {
@@ -62,29 +43,6 @@ export const FilesFilter$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace FilesFilter$ {
-  /** @deprecated use `FilesFilter$inboundSchema` instead. */
-  export const inboundSchema = FilesFilter$inboundSchema;
-  /** @deprecated use `FilesFilter$outboundSchema` instead. */
-  export const outboundSchema = FilesFilter$outboundSchema;
-  /** @deprecated use `FilesFilter$Outbound` instead. */
-  export type Outbound = FilesFilter$Outbound;
-}
-
 export function filesFilterToJSON(filesFilter: FilesFilter): string {
   return JSON.stringify(FilesFilter$outboundSchema.parse(filesFilter));
-}
-
-export function filesFilterFromJSON(
-  jsonString: string,
-): SafeParseResult<FilesFilter, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => FilesFilter$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'FilesFilter' from JSON`,
-  );
 }

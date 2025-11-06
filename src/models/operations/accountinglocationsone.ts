@@ -62,79 +62,6 @@ export type AccountingLocationsOneResponse = {
 };
 
 /** @internal */
-export const AccountingLocationsOneGlobals$inboundSchema: z.ZodType<
-  AccountingLocationsOneGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/** @internal */
-export type AccountingLocationsOneGlobals$Outbound = {
-  consumerId?: string | undefined;
-  appId?: string | undefined;
-};
-
-/** @internal */
-export const AccountingLocationsOneGlobals$outboundSchema: z.ZodType<
-  AccountingLocationsOneGlobals$Outbound,
-  z.ZodTypeDef,
-  AccountingLocationsOneGlobals
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AccountingLocationsOneGlobals$ {
-  /** @deprecated use `AccountingLocationsOneGlobals$inboundSchema` instead. */
-  export const inboundSchema = AccountingLocationsOneGlobals$inboundSchema;
-  /** @deprecated use `AccountingLocationsOneGlobals$outboundSchema` instead. */
-  export const outboundSchema = AccountingLocationsOneGlobals$outboundSchema;
-  /** @deprecated use `AccountingLocationsOneGlobals$Outbound` instead. */
-  export type Outbound = AccountingLocationsOneGlobals$Outbound;
-}
-
-export function accountingLocationsOneGlobalsToJSON(
-  accountingLocationsOneGlobals: AccountingLocationsOneGlobals,
-): string {
-  return JSON.stringify(
-    AccountingLocationsOneGlobals$outboundSchema.parse(
-      accountingLocationsOneGlobals,
-    ),
-  );
-}
-
-export function accountingLocationsOneGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<AccountingLocationsOneGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => AccountingLocationsOneGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'AccountingLocationsOneGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const AccountingLocationsOneRequest$inboundSchema: z.ZodType<
-  AccountingLocationsOneRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  id: z.string(),
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  raw: z.boolean().default(false),
-  fields: z.nullable(z.string()).optional(),
-});
-
-/** @internal */
 export type AccountingLocationsOneRequest$Outbound = {
   id: string;
   consumerId?: string | undefined;
@@ -158,19 +85,6 @@ export const AccountingLocationsOneRequest$outboundSchema: z.ZodType<
   fields: z.nullable(z.string()).optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AccountingLocationsOneRequest$ {
-  /** @deprecated use `AccountingLocationsOneRequest$inboundSchema` instead. */
-  export const inboundSchema = AccountingLocationsOneRequest$inboundSchema;
-  /** @deprecated use `AccountingLocationsOneRequest$outboundSchema` instead. */
-  export const outboundSchema = AccountingLocationsOneRequest$outboundSchema;
-  /** @deprecated use `AccountingLocationsOneRequest$Outbound` instead. */
-  export type Outbound = AccountingLocationsOneRequest$Outbound;
-}
-
 export function accountingLocationsOneRequestToJSON(
   accountingLocationsOneRequest: AccountingLocationsOneRequest,
 ): string {
@@ -178,16 +92,6 @@ export function accountingLocationsOneRequestToJSON(
     AccountingLocationsOneRequest$outboundSchema.parse(
       accountingLocationsOneRequest,
     ),
-  );
-}
-
-export function accountingLocationsOneRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<AccountingLocationsOneRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => AccountingLocationsOneRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'AccountingLocationsOneRequest' from JSON`,
   );
 }
 
@@ -209,59 +113,6 @@ export const AccountingLocationsOneResponse$inboundSchema: z.ZodType<
     "UnexpectedErrorResponse": "unexpectedErrorResponse",
   });
 });
-
-/** @internal */
-export type AccountingLocationsOneResponse$Outbound = {
-  HttpMeta: components.HTTPMetadata$Outbound;
-  GetAccountingLocationResponse?:
-    | components.GetAccountingLocationResponse$Outbound
-    | undefined;
-  UnexpectedErrorResponse?:
-    | components.UnexpectedErrorResponse$Outbound
-    | undefined;
-};
-
-/** @internal */
-export const AccountingLocationsOneResponse$outboundSchema: z.ZodType<
-  AccountingLocationsOneResponse$Outbound,
-  z.ZodTypeDef,
-  AccountingLocationsOneResponse
-> = z.object({
-  httpMeta: components.HTTPMetadata$outboundSchema,
-  getAccountingLocationResponse: components
-    .GetAccountingLocationResponse$outboundSchema.optional(),
-  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    httpMeta: "HttpMeta",
-    getAccountingLocationResponse: "GetAccountingLocationResponse",
-    unexpectedErrorResponse: "UnexpectedErrorResponse",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AccountingLocationsOneResponse$ {
-  /** @deprecated use `AccountingLocationsOneResponse$inboundSchema` instead. */
-  export const inboundSchema = AccountingLocationsOneResponse$inboundSchema;
-  /** @deprecated use `AccountingLocationsOneResponse$outboundSchema` instead. */
-  export const outboundSchema = AccountingLocationsOneResponse$outboundSchema;
-  /** @deprecated use `AccountingLocationsOneResponse$Outbound` instead. */
-  export type Outbound = AccountingLocationsOneResponse$Outbound;
-}
-
-export function accountingLocationsOneResponseToJSON(
-  accountingLocationsOneResponse: AccountingLocationsOneResponse,
-): string {
-  return JSON.stringify(
-    AccountingLocationsOneResponse$outboundSchema.parse(
-      accountingLocationsOneResponse,
-    ),
-  );
-}
 
 export function accountingLocationsOneResponseFromJSON(
   jsonString: string,

@@ -7,63 +7,31 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  Allocation,
-  Allocation$inboundSchema,
-  Allocation$Outbound,
-  Allocation$outboundSchema,
-} from "./allocation.js";
-import {
-  Currency,
-  Currency$inboundSchema,
-  Currency$outboundSchema,
-} from "./currency.js";
-import {
-  CustomField,
-  CustomField$inboundSchema,
-  CustomField$Outbound,
-  CustomField$outboundSchema,
-} from "./customfield.js";
+import { Allocation, Allocation$inboundSchema } from "./allocation.js";
+import { Currency, Currency$inboundSchema } from "./currency.js";
+import { CustomField, CustomField$inboundSchema } from "./customfield.js";
 import {
   DeprecatedLinkedSupplier,
   DeprecatedLinkedSupplier$inboundSchema,
-  DeprecatedLinkedSupplier$Outbound,
-  DeprecatedLinkedSupplier$outboundSchema,
 } from "./deprecatedlinkedsupplier.js";
 import {
   LinkedCustomer,
   LinkedCustomer$inboundSchema,
-  LinkedCustomer$Outbound,
-  LinkedCustomer$outboundSchema,
 } from "./linkedcustomer.js";
 import {
   LinkedLedgerAccount,
   LinkedLedgerAccount$inboundSchema,
-  LinkedLedgerAccount$Outbound,
-  LinkedLedgerAccount$outboundSchema,
 } from "./linkedledgeraccount.js";
 import {
   LinkedTrackingCategory,
   LinkedTrackingCategory$inboundSchema,
-  LinkedTrackingCategory$Outbound,
-  LinkedTrackingCategory$outboundSchema,
 } from "./linkedtrackingcategory.js";
 import {
   PassThroughBody,
   PassThroughBody$inboundSchema,
-  PassThroughBody$Outbound,
-  PassThroughBody$outboundSchema,
 } from "./passthroughbody.js";
-import {
-  PaymentStatus,
-  PaymentStatus$inboundSchema,
-  PaymentStatus$outboundSchema,
-} from "./paymentstatus.js";
-import {
-  PaymentType,
-  PaymentType$inboundSchema,
-  PaymentType$outboundSchema,
-} from "./paymenttype.js";
+import { PaymentStatus, PaymentStatus$inboundSchema } from "./paymentstatus.js";
+import { PaymentType, PaymentType$inboundSchema } from "./paymenttype.js";
 
 export type Payment = {
   /**
@@ -260,127 +228,6 @@ export const Payment$inboundSchema: z.ZodType<Payment, z.ZodTypeDef, unknown> =
       "pass_through": "passThrough",
     });
   });
-
-/** @internal */
-export type Payment$Outbound = {
-  id: string;
-  downstream_id?: string | null | undefined;
-  currency?: string | null | undefined;
-  currency_rate?: number | null | undefined;
-  total_amount: number | null;
-  reference?: string | null | undefined;
-  payment_method?: string | null | undefined;
-  payment_method_reference?: string | null | undefined;
-  payment_method_id?: string | null | undefined;
-  accounts_receivable_account_type?: string | null | undefined;
-  accounts_receivable_account_id?: string | null | undefined;
-  account?: LinkedLedgerAccount$Outbound | null | undefined;
-  transaction_date: string | null;
-  customer?: LinkedCustomer$Outbound | null | undefined;
-  supplier?: DeprecatedLinkedSupplier$Outbound | null | undefined;
-  company_id?: string | null | undefined;
-  reconciled?: boolean | null | undefined;
-  status?: string | undefined;
-  type?: string | undefined;
-  allocations?: Array<Allocation$Outbound> | undefined;
-  note?: string | null | undefined;
-  number?: string | null | undefined;
-  tracking_categories?:
-    | Array<LinkedTrackingCategory$Outbound | null>
-    | null
-    | undefined;
-  custom_fields?: Array<CustomField$Outbound> | undefined;
-  row_version?: string | null | undefined;
-  display_id?: string | null | undefined;
-  custom_mappings?: { [k: string]: any } | null | undefined;
-  updated_by?: string | null | undefined;
-  created_by?: string | null | undefined;
-  created_at?: string | null | undefined;
-  updated_at?: string | null | undefined;
-  pass_through?: Array<PassThroughBody$Outbound> | undefined;
-};
-
-/** @internal */
-export const Payment$outboundSchema: z.ZodType<
-  Payment$Outbound,
-  z.ZodTypeDef,
-  Payment
-> = z.object({
-  id: z.string(),
-  downstreamId: z.nullable(z.string()).optional(),
-  currency: z.nullable(Currency$outboundSchema).optional(),
-  currencyRate: z.nullable(z.number()).optional(),
-  totalAmount: z.nullable(z.number()),
-  reference: z.nullable(z.string()).optional(),
-  paymentMethod: z.nullable(z.string()).optional(),
-  paymentMethodReference: z.nullable(z.string()).optional(),
-  paymentMethodId: z.nullable(z.string()).optional(),
-  accountsReceivableAccountType: z.nullable(z.string()).optional(),
-  accountsReceivableAccountId: z.nullable(z.string()).optional(),
-  account: z.nullable(LinkedLedgerAccount$outboundSchema).optional(),
-  transactionDate: z.nullable(z.date().transform(v => v.toISOString())),
-  customer: z.nullable(LinkedCustomer$outboundSchema).optional(),
-  supplier: z.nullable(DeprecatedLinkedSupplier$outboundSchema).optional(),
-  companyId: z.nullable(z.string()).optional(),
-  reconciled: z.nullable(z.boolean()).optional(),
-  status: PaymentStatus$outboundSchema.optional(),
-  type: PaymentType$outboundSchema.optional(),
-  allocations: z.array(Allocation$outboundSchema).optional(),
-  note: z.nullable(z.string()).optional(),
-  number: z.nullable(z.string()).optional(),
-  trackingCategories: z.nullable(
-    z.array(z.nullable(LinkedTrackingCategory$outboundSchema)),
-  ).optional(),
-  customFields: z.array(CustomField$outboundSchema).optional(),
-  rowVersion: z.nullable(z.string()).optional(),
-  displayId: z.nullable(z.string()).optional(),
-  customMappings: z.nullable(z.record(z.any())).optional(),
-  updatedBy: z.nullable(z.string()).optional(),
-  createdBy: z.nullable(z.string()).optional(),
-  createdAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
-  updatedAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
-  passThrough: z.array(PassThroughBody$outboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    downstreamId: "downstream_id",
-    currencyRate: "currency_rate",
-    totalAmount: "total_amount",
-    paymentMethod: "payment_method",
-    paymentMethodReference: "payment_method_reference",
-    paymentMethodId: "payment_method_id",
-    accountsReceivableAccountType: "accounts_receivable_account_type",
-    accountsReceivableAccountId: "accounts_receivable_account_id",
-    transactionDate: "transaction_date",
-    companyId: "company_id",
-    trackingCategories: "tracking_categories",
-    customFields: "custom_fields",
-    rowVersion: "row_version",
-    displayId: "display_id",
-    customMappings: "custom_mappings",
-    updatedBy: "updated_by",
-    createdBy: "created_by",
-    createdAt: "created_at",
-    updatedAt: "updated_at",
-    passThrough: "pass_through",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Payment$ {
-  /** @deprecated use `Payment$inboundSchema` instead. */
-  export const inboundSchema = Payment$inboundSchema;
-  /** @deprecated use `Payment$outboundSchema` instead. */
-  export const outboundSchema = Payment$outboundSchema;
-  /** @deprecated use `Payment$Outbound` instead. */
-  export type Outbound = Payment$Outbound;
-}
-
-export function paymentToJSON(payment: Payment): string {
-  return JSON.stringify(Payment$outboundSchema.parse(payment));
-}
 
 export function paymentFromJSON(
   jsonString: string,

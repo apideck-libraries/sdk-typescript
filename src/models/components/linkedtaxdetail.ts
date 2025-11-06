@@ -43,7 +43,6 @@ export const LinkedTaxDetail$inboundSchema: z.ZodType<
     "is_primary_tax": "isPrimaryTax",
   });
 });
-
 /** @internal */
 export type LinkedTaxDetail$Outbound = {
   type?: string | undefined;
@@ -69,25 +68,11 @@ export const LinkedTaxDetail$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace LinkedTaxDetail$ {
-  /** @deprecated use `LinkedTaxDetail$inboundSchema` instead. */
-  export const inboundSchema = LinkedTaxDetail$inboundSchema;
-  /** @deprecated use `LinkedTaxDetail$outboundSchema` instead. */
-  export const outboundSchema = LinkedTaxDetail$outboundSchema;
-  /** @deprecated use `LinkedTaxDetail$Outbound` instead. */
-  export type Outbound = LinkedTaxDetail$Outbound;
-}
-
 export function linkedTaxDetailToJSON(
   linkedTaxDetail: LinkedTaxDetail,
 ): string {
   return JSON.stringify(LinkedTaxDetail$outboundSchema.parse(linkedTaxDetail));
 }
-
 export function linkedTaxDetailFromJSON(
   jsonString: string,
 ): SafeParseResult<LinkedTaxDetail, SDKValidationError> {

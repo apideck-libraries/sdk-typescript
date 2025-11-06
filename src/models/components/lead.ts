@@ -7,53 +7,17 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  Address,
-  Address$inboundSchema,
-  Address$Outbound,
-  Address$outboundSchema,
-} from "./address.js";
-import {
-  Currency,
-  Currency$inboundSchema,
-  Currency$outboundSchema,
-} from "./currency.js";
-import {
-  CustomField,
-  CustomField$inboundSchema,
-  CustomField$Outbound,
-  CustomField$outboundSchema,
-} from "./customfield.js";
-import {
-  Email,
-  Email$inboundSchema,
-  Email$Outbound,
-  Email$outboundSchema,
-} from "./email.js";
+import { Address, Address$inboundSchema } from "./address.js";
+import { Currency, Currency$inboundSchema } from "./currency.js";
+import { CustomField, CustomField$inboundSchema } from "./customfield.js";
+import { Email, Email$inboundSchema } from "./email.js";
 import {
   PassThroughBody,
   PassThroughBody$inboundSchema,
-  PassThroughBody$Outbound,
-  PassThroughBody$outboundSchema,
 } from "./passthroughbody.js";
-import {
-  PhoneNumber,
-  PhoneNumber$inboundSchema,
-  PhoneNumber$Outbound,
-  PhoneNumber$outboundSchema,
-} from "./phonenumber.js";
-import {
-  SocialLink,
-  SocialLink$inboundSchema,
-  SocialLink$Outbound,
-  SocialLink$outboundSchema,
-} from "./sociallink.js";
-import {
-  Website,
-  Website$inboundSchema,
-  Website$Outbound,
-  Website$outboundSchema,
-} from "./website.js";
+import { PhoneNumber, PhoneNumber$inboundSchema } from "./phonenumber.js";
+import { SocialLink, SocialLink$inboundSchema } from "./sociallink.js";
+import { Website, Website$inboundSchema } from "./website.js";
 
 export type Lead = {
   /**
@@ -202,109 +166,6 @@ export const Lead$inboundSchema: z.ZodType<Lead, z.ZodTypeDef, unknown> = z
       "pass_through": "passThrough",
     });
   });
-
-/** @internal */
-export type Lead$Outbound = {
-  id?: string | undefined;
-  name: string;
-  company_name?: string | null | undefined;
-  owner_id?: string | null | undefined;
-  owner_name?: string | null | undefined;
-  company_id?: string | null | undefined;
-  lead_id?: string | null | undefined;
-  lead_source?: string | null | undefined;
-  first_name?: string | null | undefined;
-  last_name?: string | null | undefined;
-  description?: string | null | undefined;
-  prefix?: string | null | undefined;
-  title?: string | null | undefined;
-  language?: string | null | undefined;
-  status?: string | null | undefined;
-  monetary_amount?: number | null | undefined;
-  currency?: string | null | undefined;
-  fax?: string | null | undefined;
-  websites?: Array<Website$Outbound> | undefined;
-  addresses?: Array<Address$Outbound> | undefined;
-  social_links?: Array<SocialLink$Outbound> | undefined;
-  phone_numbers?: Array<PhoneNumber$Outbound> | undefined;
-  emails?: Array<Email$Outbound> | undefined;
-  custom_fields?: Array<CustomField$Outbound> | null | undefined;
-  tags?: Array<string> | null | undefined;
-  custom_mappings?: { [k: string]: any } | null | undefined;
-  updated_at?: string | null | undefined;
-  created_at?: string | null | undefined;
-  pass_through?: Array<PassThroughBody$Outbound> | undefined;
-};
-
-/** @internal */
-export const Lead$outboundSchema: z.ZodType<Lead$Outbound, z.ZodTypeDef, Lead> =
-  z.object({
-    id: z.string().optional(),
-    name: z.string(),
-    companyName: z.nullable(z.string()).optional(),
-    ownerId: z.nullable(z.string()).optional(),
-    ownerName: z.nullable(z.string()).optional(),
-    companyId: z.nullable(z.string()).optional(),
-    leadId: z.nullable(z.string()).optional(),
-    leadSource: z.nullable(z.string()).optional(),
-    firstName: z.nullable(z.string()).optional(),
-    lastName: z.nullable(z.string()).optional(),
-    description: z.nullable(z.string()).optional(),
-    prefix: z.nullable(z.string()).optional(),
-    title: z.nullable(z.string()).optional(),
-    language: z.nullable(z.string()).optional(),
-    status: z.nullable(z.string()).optional(),
-    monetaryAmount: z.nullable(z.number()).optional(),
-    currency: z.nullable(Currency$outboundSchema).optional(),
-    fax: z.nullable(z.string()).optional(),
-    websites: z.array(Website$outboundSchema).optional(),
-    addresses: z.array(Address$outboundSchema).optional(),
-    socialLinks: z.array(SocialLink$outboundSchema).optional(),
-    phoneNumbers: z.array(PhoneNumber$outboundSchema).optional(),
-    emails: z.array(Email$outboundSchema).optional(),
-    customFields: z.nullable(z.array(CustomField$outboundSchema)).optional(),
-    tags: z.nullable(z.array(z.string())).optional(),
-    customMappings: z.nullable(z.record(z.any())).optional(),
-    updatedAt: z.nullable(z.string()).optional(),
-    createdAt: z.nullable(z.string()).optional(),
-    passThrough: z.array(PassThroughBody$outboundSchema).optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      companyName: "company_name",
-      ownerId: "owner_id",
-      ownerName: "owner_name",
-      companyId: "company_id",
-      leadId: "lead_id",
-      leadSource: "lead_source",
-      firstName: "first_name",
-      lastName: "last_name",
-      monetaryAmount: "monetary_amount",
-      socialLinks: "social_links",
-      phoneNumbers: "phone_numbers",
-      customFields: "custom_fields",
-      customMappings: "custom_mappings",
-      updatedAt: "updated_at",
-      createdAt: "created_at",
-      passThrough: "pass_through",
-    });
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Lead$ {
-  /** @deprecated use `Lead$inboundSchema` instead. */
-  export const inboundSchema = Lead$inboundSchema;
-  /** @deprecated use `Lead$outboundSchema` instead. */
-  export const outboundSchema = Lead$outboundSchema;
-  /** @deprecated use `Lead$Outbound` instead. */
-  export type Outbound = Lead$Outbound;
-}
-
-export function leadToJSON(lead: Lead): string {
-  return JSON.stringify(Lead$outboundSchema.parse(lead));
-}
 
 export function leadFromJSON(
   jsonString: string,

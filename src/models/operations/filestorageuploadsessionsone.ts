@@ -64,82 +64,6 @@ export type FileStorageUploadSessionsOneResponse = {
 };
 
 /** @internal */
-export const FileStorageUploadSessionsOneGlobals$inboundSchema: z.ZodType<
-  FileStorageUploadSessionsOneGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/** @internal */
-export type FileStorageUploadSessionsOneGlobals$Outbound = {
-  consumerId?: string | undefined;
-  appId?: string | undefined;
-};
-
-/** @internal */
-export const FileStorageUploadSessionsOneGlobals$outboundSchema: z.ZodType<
-  FileStorageUploadSessionsOneGlobals$Outbound,
-  z.ZodTypeDef,
-  FileStorageUploadSessionsOneGlobals
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace FileStorageUploadSessionsOneGlobals$ {
-  /** @deprecated use `FileStorageUploadSessionsOneGlobals$inboundSchema` instead. */
-  export const inboundSchema =
-    FileStorageUploadSessionsOneGlobals$inboundSchema;
-  /** @deprecated use `FileStorageUploadSessionsOneGlobals$outboundSchema` instead. */
-  export const outboundSchema =
-    FileStorageUploadSessionsOneGlobals$outboundSchema;
-  /** @deprecated use `FileStorageUploadSessionsOneGlobals$Outbound` instead. */
-  export type Outbound = FileStorageUploadSessionsOneGlobals$Outbound;
-}
-
-export function fileStorageUploadSessionsOneGlobalsToJSON(
-  fileStorageUploadSessionsOneGlobals: FileStorageUploadSessionsOneGlobals,
-): string {
-  return JSON.stringify(
-    FileStorageUploadSessionsOneGlobals$outboundSchema.parse(
-      fileStorageUploadSessionsOneGlobals,
-    ),
-  );
-}
-
-export function fileStorageUploadSessionsOneGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<FileStorageUploadSessionsOneGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      FileStorageUploadSessionsOneGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'FileStorageUploadSessionsOneGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const FileStorageUploadSessionsOneRequest$inboundSchema: z.ZodType<
-  FileStorageUploadSessionsOneRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  id: z.string(),
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  raw: z.boolean().default(false),
-  fields: z.nullable(z.string()).optional(),
-});
-
-/** @internal */
 export type FileStorageUploadSessionsOneRequest$Outbound = {
   id: string;
   consumerId?: string | undefined;
@@ -163,21 +87,6 @@ export const FileStorageUploadSessionsOneRequest$outboundSchema: z.ZodType<
   fields: z.nullable(z.string()).optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace FileStorageUploadSessionsOneRequest$ {
-  /** @deprecated use `FileStorageUploadSessionsOneRequest$inboundSchema` instead. */
-  export const inboundSchema =
-    FileStorageUploadSessionsOneRequest$inboundSchema;
-  /** @deprecated use `FileStorageUploadSessionsOneRequest$outboundSchema` instead. */
-  export const outboundSchema =
-    FileStorageUploadSessionsOneRequest$outboundSchema;
-  /** @deprecated use `FileStorageUploadSessionsOneRequest$Outbound` instead. */
-  export type Outbound = FileStorageUploadSessionsOneRequest$Outbound;
-}
-
 export function fileStorageUploadSessionsOneRequestToJSON(
   fileStorageUploadSessionsOneRequest: FileStorageUploadSessionsOneRequest,
 ): string {
@@ -185,17 +94,6 @@ export function fileStorageUploadSessionsOneRequestToJSON(
     FileStorageUploadSessionsOneRequest$outboundSchema.parse(
       fileStorageUploadSessionsOneRequest,
     ),
-  );
-}
-
-export function fileStorageUploadSessionsOneRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<FileStorageUploadSessionsOneRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      FileStorageUploadSessionsOneRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'FileStorageUploadSessionsOneRequest' from JSON`,
   );
 }
 
@@ -217,61 +115,6 @@ export const FileStorageUploadSessionsOneResponse$inboundSchema: z.ZodType<
     "UnexpectedErrorResponse": "unexpectedErrorResponse",
   });
 });
-
-/** @internal */
-export type FileStorageUploadSessionsOneResponse$Outbound = {
-  HttpMeta: components.HTTPMetadata$Outbound;
-  GetUploadSessionResponse?:
-    | components.GetUploadSessionResponse$Outbound
-    | undefined;
-  UnexpectedErrorResponse?:
-    | components.UnexpectedErrorResponse$Outbound
-    | undefined;
-};
-
-/** @internal */
-export const FileStorageUploadSessionsOneResponse$outboundSchema: z.ZodType<
-  FileStorageUploadSessionsOneResponse$Outbound,
-  z.ZodTypeDef,
-  FileStorageUploadSessionsOneResponse
-> = z.object({
-  httpMeta: components.HTTPMetadata$outboundSchema,
-  getUploadSessionResponse: components.GetUploadSessionResponse$outboundSchema
-    .optional(),
-  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    httpMeta: "HttpMeta",
-    getUploadSessionResponse: "GetUploadSessionResponse",
-    unexpectedErrorResponse: "UnexpectedErrorResponse",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace FileStorageUploadSessionsOneResponse$ {
-  /** @deprecated use `FileStorageUploadSessionsOneResponse$inboundSchema` instead. */
-  export const inboundSchema =
-    FileStorageUploadSessionsOneResponse$inboundSchema;
-  /** @deprecated use `FileStorageUploadSessionsOneResponse$outboundSchema` instead. */
-  export const outboundSchema =
-    FileStorageUploadSessionsOneResponse$outboundSchema;
-  /** @deprecated use `FileStorageUploadSessionsOneResponse$Outbound` instead. */
-  export type Outbound = FileStorageUploadSessionsOneResponse$Outbound;
-}
-
-export function fileStorageUploadSessionsOneResponseToJSON(
-  fileStorageUploadSessionsOneResponse: FileStorageUploadSessionsOneResponse,
-): string {
-  return JSON.stringify(
-    FileStorageUploadSessionsOneResponse$outboundSchema.parse(
-      fileStorageUploadSessionsOneResponse,
-    ),
-  );
-}
 
 export function fileStorageUploadSessionsOneResponseFromJSON(
   jsonString: string,

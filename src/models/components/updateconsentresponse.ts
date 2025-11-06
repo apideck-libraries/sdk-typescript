@@ -7,12 +7,7 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  ConsentRecord,
-  ConsentRecord$inboundSchema,
-  ConsentRecord$Outbound,
-  ConsentRecord$outboundSchema,
-} from "./consentrecord.js";
+import { ConsentRecord, ConsentRecord$inboundSchema } from "./consentrecord.js";
 
 /**
  * Consent updated
@@ -49,52 +44,6 @@ export const UpdateConsentResponse$inboundSchema: z.ZodType<
     "_raw": "raw",
   });
 });
-
-/** @internal */
-export type UpdateConsentResponse$Outbound = {
-  status_code: number;
-  status: string;
-  data: ConsentRecord$Outbound;
-  _raw?: { [k: string]: any } | null | undefined;
-};
-
-/** @internal */
-export const UpdateConsentResponse$outboundSchema: z.ZodType<
-  UpdateConsentResponse$Outbound,
-  z.ZodTypeDef,
-  UpdateConsentResponse
-> = z.object({
-  statusCode: z.number().int(),
-  status: z.string(),
-  data: ConsentRecord$outboundSchema,
-  raw: z.nullable(z.record(z.any())).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    statusCode: "status_code",
-    raw: "_raw",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace UpdateConsentResponse$ {
-  /** @deprecated use `UpdateConsentResponse$inboundSchema` instead. */
-  export const inboundSchema = UpdateConsentResponse$inboundSchema;
-  /** @deprecated use `UpdateConsentResponse$outboundSchema` instead. */
-  export const outboundSchema = UpdateConsentResponse$outboundSchema;
-  /** @deprecated use `UpdateConsentResponse$Outbound` instead. */
-  export type Outbound = UpdateConsentResponse$Outbound;
-}
-
-export function updateConsentResponseToJSON(
-  updateConsentResponse: UpdateConsentResponse,
-): string {
-  return JSON.stringify(
-    UpdateConsentResponse$outboundSchema.parse(updateConsentResponse),
-  );
-}
 
 export function updateConsentResponseFromJSON(
   jsonString: string,

@@ -64,87 +64,6 @@ export type AccountingAttachmentsDeleteResponse = {
 };
 
 /** @internal */
-export const AccountingAttachmentsDeleteGlobals$inboundSchema: z.ZodType<
-  AccountingAttachmentsDeleteGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/** @internal */
-export type AccountingAttachmentsDeleteGlobals$Outbound = {
-  consumerId?: string | undefined;
-  appId?: string | undefined;
-};
-
-/** @internal */
-export const AccountingAttachmentsDeleteGlobals$outboundSchema: z.ZodType<
-  AccountingAttachmentsDeleteGlobals$Outbound,
-  z.ZodTypeDef,
-  AccountingAttachmentsDeleteGlobals
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AccountingAttachmentsDeleteGlobals$ {
-  /** @deprecated use `AccountingAttachmentsDeleteGlobals$inboundSchema` instead. */
-  export const inboundSchema = AccountingAttachmentsDeleteGlobals$inboundSchema;
-  /** @deprecated use `AccountingAttachmentsDeleteGlobals$outboundSchema` instead. */
-  export const outboundSchema =
-    AccountingAttachmentsDeleteGlobals$outboundSchema;
-  /** @deprecated use `AccountingAttachmentsDeleteGlobals$Outbound` instead. */
-  export type Outbound = AccountingAttachmentsDeleteGlobals$Outbound;
-}
-
-export function accountingAttachmentsDeleteGlobalsToJSON(
-  accountingAttachmentsDeleteGlobals: AccountingAttachmentsDeleteGlobals,
-): string {
-  return JSON.stringify(
-    AccountingAttachmentsDeleteGlobals$outboundSchema.parse(
-      accountingAttachmentsDeleteGlobals,
-    ),
-  );
-}
-
-export function accountingAttachmentsDeleteGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<AccountingAttachmentsDeleteGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      AccountingAttachmentsDeleteGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'AccountingAttachmentsDeleteGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const AccountingAttachmentsDeleteRequest$inboundSchema: z.ZodType<
-  AccountingAttachmentsDeleteRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  reference_type: components.AttachmentReferenceType$inboundSchema,
-  reference_id: z.string(),
-  id: z.string(),
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  raw: z.boolean().default(false),
-}).transform((v) => {
-  return remap$(v, {
-    "reference_type": "referenceType",
-    "reference_id": "referenceId",
-  });
-});
-
-/** @internal */
 export type AccountingAttachmentsDeleteRequest$Outbound = {
   reference_type: string;
   reference_id: string;
@@ -175,20 +94,6 @@ export const AccountingAttachmentsDeleteRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AccountingAttachmentsDeleteRequest$ {
-  /** @deprecated use `AccountingAttachmentsDeleteRequest$inboundSchema` instead. */
-  export const inboundSchema = AccountingAttachmentsDeleteRequest$inboundSchema;
-  /** @deprecated use `AccountingAttachmentsDeleteRequest$outboundSchema` instead. */
-  export const outboundSchema =
-    AccountingAttachmentsDeleteRequest$outboundSchema;
-  /** @deprecated use `AccountingAttachmentsDeleteRequest$Outbound` instead. */
-  export type Outbound = AccountingAttachmentsDeleteRequest$Outbound;
-}
-
 export function accountingAttachmentsDeleteRequestToJSON(
   accountingAttachmentsDeleteRequest: AccountingAttachmentsDeleteRequest,
 ): string {
@@ -196,17 +101,6 @@ export function accountingAttachmentsDeleteRequestToJSON(
     AccountingAttachmentsDeleteRequest$outboundSchema.parse(
       accountingAttachmentsDeleteRequest,
     ),
-  );
-}
-
-export function accountingAttachmentsDeleteRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<AccountingAttachmentsDeleteRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      AccountingAttachmentsDeleteRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'AccountingAttachmentsDeleteRequest' from JSON`,
   );
 }
 
@@ -228,61 +122,6 @@ export const AccountingAttachmentsDeleteResponse$inboundSchema: z.ZodType<
     "UnexpectedErrorResponse": "unexpectedErrorResponse",
   });
 });
-
-/** @internal */
-export type AccountingAttachmentsDeleteResponse$Outbound = {
-  HttpMeta: components.HTTPMetadata$Outbound;
-  DeleteAttachmentResponse?:
-    | components.DeleteAttachmentResponse$Outbound
-    | undefined;
-  UnexpectedErrorResponse?:
-    | components.UnexpectedErrorResponse$Outbound
-    | undefined;
-};
-
-/** @internal */
-export const AccountingAttachmentsDeleteResponse$outboundSchema: z.ZodType<
-  AccountingAttachmentsDeleteResponse$Outbound,
-  z.ZodTypeDef,
-  AccountingAttachmentsDeleteResponse
-> = z.object({
-  httpMeta: components.HTTPMetadata$outboundSchema,
-  deleteAttachmentResponse: components.DeleteAttachmentResponse$outboundSchema
-    .optional(),
-  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    httpMeta: "HttpMeta",
-    deleteAttachmentResponse: "DeleteAttachmentResponse",
-    unexpectedErrorResponse: "UnexpectedErrorResponse",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AccountingAttachmentsDeleteResponse$ {
-  /** @deprecated use `AccountingAttachmentsDeleteResponse$inboundSchema` instead. */
-  export const inboundSchema =
-    AccountingAttachmentsDeleteResponse$inboundSchema;
-  /** @deprecated use `AccountingAttachmentsDeleteResponse$outboundSchema` instead. */
-  export const outboundSchema =
-    AccountingAttachmentsDeleteResponse$outboundSchema;
-  /** @deprecated use `AccountingAttachmentsDeleteResponse$Outbound` instead. */
-  export type Outbound = AccountingAttachmentsDeleteResponse$Outbound;
-}
-
-export function accountingAttachmentsDeleteResponseToJSON(
-  accountingAttachmentsDeleteResponse: AccountingAttachmentsDeleteResponse,
-): string {
-  return JSON.stringify(
-    AccountingAttachmentsDeleteResponse$outboundSchema.parse(
-      accountingAttachmentsDeleteResponse,
-    ),
-  );
-}
 
 export function accountingAttachmentsDeleteResponseFromJSON(
   jsonString: string,

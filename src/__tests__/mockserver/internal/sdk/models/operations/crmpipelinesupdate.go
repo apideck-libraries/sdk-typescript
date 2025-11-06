@@ -38,8 +38,8 @@ type CrmPipelinesUpdateRequest struct {
 	// Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
 	ServiceID *string `header:"style=simple,explode=false,name=x-apideck-service-id"`
 	// Include raw response. Mostly used for debugging purposes
-	Raw      *bool                    `default:"false" queryParam:"style=form,explode=true,name=raw"`
-	Pipeline components.PipelineInput `request:"mediaType=application/json"`
+	Raw  *bool                    `default:"false" queryParam:"style=form,explode=true,name=raw"`
+	Body components.PipelineInput `request:"mediaType=application/json"`
 }
 
 func (c CrmPipelinesUpdateRequest) MarshalJSON() ([]byte, error) {
@@ -47,7 +47,7 @@ func (c CrmPipelinesUpdateRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (c *CrmPipelinesUpdateRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"id", "Pipeline"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"id", "body"}); err != nil {
 		return err
 	}
 	return nil
@@ -88,11 +88,11 @@ func (o *CrmPipelinesUpdateRequest) GetRaw() *bool {
 	return o.Raw
 }
 
-func (o *CrmPipelinesUpdateRequest) GetPipeline() components.PipelineInput {
+func (o *CrmPipelinesUpdateRequest) GetBody() components.PipelineInput {
 	if o == nil {
 		return components.PipelineInput{}
 	}
-	return o.Pipeline
+	return o.Body
 }
 
 type CrmPipelinesUpdateResponse struct {
