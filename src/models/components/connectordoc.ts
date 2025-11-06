@@ -59,38 +59,8 @@ export const Audience$inboundSchema: z.ZodNativeEnum<typeof Audience> = z
   .nativeEnum(Audience);
 
 /** @internal */
-export const Audience$outboundSchema: z.ZodNativeEnum<typeof Audience> =
-  Audience$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Audience$ {
-  /** @deprecated use `Audience$inboundSchema` instead. */
-  export const inboundSchema = Audience$inboundSchema;
-  /** @deprecated use `Audience$outboundSchema` instead. */
-  export const outboundSchema = Audience$outboundSchema;
-}
-
-/** @internal */
 export const Format$inboundSchema: z.ZodNativeEnum<typeof Format> = z
   .nativeEnum(Format);
-
-/** @internal */
-export const Format$outboundSchema: z.ZodNativeEnum<typeof Format> =
-  Format$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Format$ {
-  /** @deprecated use `Format$inboundSchema` instead. */
-  export const inboundSchema = Format$inboundSchema;
-  /** @deprecated use `Format$outboundSchema` instead. */
-  export const outboundSchema = Format$outboundSchema;
-}
 
 /** @internal */
 export const ConnectorDoc$inboundSchema: z.ZodType<
@@ -104,45 +74,6 @@ export const ConnectorDoc$inboundSchema: z.ZodType<
   format: Format$inboundSchema.optional(),
   url: z.string().optional(),
 });
-
-/** @internal */
-export type ConnectorDoc$Outbound = {
-  id?: string | undefined;
-  name?: string | undefined;
-  audience?: string | undefined;
-  format?: string | undefined;
-  url?: string | undefined;
-};
-
-/** @internal */
-export const ConnectorDoc$outboundSchema: z.ZodType<
-  ConnectorDoc$Outbound,
-  z.ZodTypeDef,
-  ConnectorDoc
-> = z.object({
-  id: z.string().optional(),
-  name: z.string().optional(),
-  audience: Audience$outboundSchema.optional(),
-  format: Format$outboundSchema.optional(),
-  url: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ConnectorDoc$ {
-  /** @deprecated use `ConnectorDoc$inboundSchema` instead. */
-  export const inboundSchema = ConnectorDoc$inboundSchema;
-  /** @deprecated use `ConnectorDoc$outboundSchema` instead. */
-  export const outboundSchema = ConnectorDoc$outboundSchema;
-  /** @deprecated use `ConnectorDoc$Outbound` instead. */
-  export type Outbound = ConnectorDoc$Outbound;
-}
-
-export function connectorDocToJSON(connectorDoc: ConnectorDoc): string {
-  return JSON.stringify(ConnectorDoc$outboundSchema.parse(connectorDoc));
-}
 
 export function connectorDocFromJSON(
   jsonString: string,

@@ -3,13 +3,9 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   SortDirection,
-  SortDirection$inboundSchema,
   SortDirection$outboundSchema,
 } from "./sortdirection.js";
 
@@ -37,35 +33,9 @@ export type CustomersSort = {
 };
 
 /** @internal */
-export const CustomersSortBy$inboundSchema: z.ZodNativeEnum<
-  typeof CustomersSortBy
-> = z.nativeEnum(CustomersSortBy);
-
-/** @internal */
 export const CustomersSortBy$outboundSchema: z.ZodNativeEnum<
   typeof CustomersSortBy
-> = CustomersSortBy$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CustomersSortBy$ {
-  /** @deprecated use `CustomersSortBy$inboundSchema` instead. */
-  export const inboundSchema = CustomersSortBy$inboundSchema;
-  /** @deprecated use `CustomersSortBy$outboundSchema` instead. */
-  export const outboundSchema = CustomersSortBy$outboundSchema;
-}
-
-/** @internal */
-export const CustomersSort$inboundSchema: z.ZodType<
-  CustomersSort,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  by: CustomersSortBy$inboundSchema.optional(),
-  direction: SortDirection$inboundSchema.default("asc"),
-});
+> = z.nativeEnum(CustomersSortBy);
 
 /** @internal */
 export type CustomersSort$Outbound = {
@@ -83,29 +53,6 @@ export const CustomersSort$outboundSchema: z.ZodType<
   direction: SortDirection$outboundSchema.default("asc"),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CustomersSort$ {
-  /** @deprecated use `CustomersSort$inboundSchema` instead. */
-  export const inboundSchema = CustomersSort$inboundSchema;
-  /** @deprecated use `CustomersSort$outboundSchema` instead. */
-  export const outboundSchema = CustomersSort$outboundSchema;
-  /** @deprecated use `CustomersSort$Outbound` instead. */
-  export type Outbound = CustomersSort$Outbound;
-}
-
 export function customersSortToJSON(customersSort: CustomersSort): string {
   return JSON.stringify(CustomersSort$outboundSchema.parse(customersSort));
-}
-
-export function customersSortFromJSON(
-  jsonString: string,
-): SafeParseResult<CustomersSort, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => CustomersSort$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CustomersSort' from JSON`,
-  );
 }

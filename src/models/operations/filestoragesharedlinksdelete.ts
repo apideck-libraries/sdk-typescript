@@ -56,81 +56,6 @@ export type FileStorageSharedLinksDeleteResponse = {
 };
 
 /** @internal */
-export const FileStorageSharedLinksDeleteGlobals$inboundSchema: z.ZodType<
-  FileStorageSharedLinksDeleteGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/** @internal */
-export type FileStorageSharedLinksDeleteGlobals$Outbound = {
-  consumerId?: string | undefined;
-  appId?: string | undefined;
-};
-
-/** @internal */
-export const FileStorageSharedLinksDeleteGlobals$outboundSchema: z.ZodType<
-  FileStorageSharedLinksDeleteGlobals$Outbound,
-  z.ZodTypeDef,
-  FileStorageSharedLinksDeleteGlobals
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace FileStorageSharedLinksDeleteGlobals$ {
-  /** @deprecated use `FileStorageSharedLinksDeleteGlobals$inboundSchema` instead. */
-  export const inboundSchema =
-    FileStorageSharedLinksDeleteGlobals$inboundSchema;
-  /** @deprecated use `FileStorageSharedLinksDeleteGlobals$outboundSchema` instead. */
-  export const outboundSchema =
-    FileStorageSharedLinksDeleteGlobals$outboundSchema;
-  /** @deprecated use `FileStorageSharedLinksDeleteGlobals$Outbound` instead. */
-  export type Outbound = FileStorageSharedLinksDeleteGlobals$Outbound;
-}
-
-export function fileStorageSharedLinksDeleteGlobalsToJSON(
-  fileStorageSharedLinksDeleteGlobals: FileStorageSharedLinksDeleteGlobals,
-): string {
-  return JSON.stringify(
-    FileStorageSharedLinksDeleteGlobals$outboundSchema.parse(
-      fileStorageSharedLinksDeleteGlobals,
-    ),
-  );
-}
-
-export function fileStorageSharedLinksDeleteGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<FileStorageSharedLinksDeleteGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      FileStorageSharedLinksDeleteGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'FileStorageSharedLinksDeleteGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const FileStorageSharedLinksDeleteRequest$inboundSchema: z.ZodType<
-  FileStorageSharedLinksDeleteRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  id: z.string(),
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  raw: z.boolean().default(false),
-});
-
-/** @internal */
 export type FileStorageSharedLinksDeleteRequest$Outbound = {
   id: string;
   consumerId?: string | undefined;
@@ -152,21 +77,6 @@ export const FileStorageSharedLinksDeleteRequest$outboundSchema: z.ZodType<
   raw: z.boolean().default(false),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace FileStorageSharedLinksDeleteRequest$ {
-  /** @deprecated use `FileStorageSharedLinksDeleteRequest$inboundSchema` instead. */
-  export const inboundSchema =
-    FileStorageSharedLinksDeleteRequest$inboundSchema;
-  /** @deprecated use `FileStorageSharedLinksDeleteRequest$outboundSchema` instead. */
-  export const outboundSchema =
-    FileStorageSharedLinksDeleteRequest$outboundSchema;
-  /** @deprecated use `FileStorageSharedLinksDeleteRequest$Outbound` instead. */
-  export type Outbound = FileStorageSharedLinksDeleteRequest$Outbound;
-}
-
 export function fileStorageSharedLinksDeleteRequestToJSON(
   fileStorageSharedLinksDeleteRequest: FileStorageSharedLinksDeleteRequest,
 ): string {
@@ -174,17 +84,6 @@ export function fileStorageSharedLinksDeleteRequestToJSON(
     FileStorageSharedLinksDeleteRequest$outboundSchema.parse(
       fileStorageSharedLinksDeleteRequest,
     ),
-  );
-}
-
-export function fileStorageSharedLinksDeleteRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<FileStorageSharedLinksDeleteRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      FileStorageSharedLinksDeleteRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'FileStorageSharedLinksDeleteRequest' from JSON`,
   );
 }
 
@@ -206,61 +105,6 @@ export const FileStorageSharedLinksDeleteResponse$inboundSchema: z.ZodType<
     "UnexpectedErrorResponse": "unexpectedErrorResponse",
   });
 });
-
-/** @internal */
-export type FileStorageSharedLinksDeleteResponse$Outbound = {
-  HttpMeta: components.HTTPMetadata$Outbound;
-  DeleteSharedLinkResponse?:
-    | components.DeleteSharedLinkResponse$Outbound
-    | undefined;
-  UnexpectedErrorResponse?:
-    | components.UnexpectedErrorResponse$Outbound
-    | undefined;
-};
-
-/** @internal */
-export const FileStorageSharedLinksDeleteResponse$outboundSchema: z.ZodType<
-  FileStorageSharedLinksDeleteResponse$Outbound,
-  z.ZodTypeDef,
-  FileStorageSharedLinksDeleteResponse
-> = z.object({
-  httpMeta: components.HTTPMetadata$outboundSchema,
-  deleteSharedLinkResponse: components.DeleteSharedLinkResponse$outboundSchema
-    .optional(),
-  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    httpMeta: "HttpMeta",
-    deleteSharedLinkResponse: "DeleteSharedLinkResponse",
-    unexpectedErrorResponse: "UnexpectedErrorResponse",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace FileStorageSharedLinksDeleteResponse$ {
-  /** @deprecated use `FileStorageSharedLinksDeleteResponse$inboundSchema` instead. */
-  export const inboundSchema =
-    FileStorageSharedLinksDeleteResponse$inboundSchema;
-  /** @deprecated use `FileStorageSharedLinksDeleteResponse$outboundSchema` instead. */
-  export const outboundSchema =
-    FileStorageSharedLinksDeleteResponse$outboundSchema;
-  /** @deprecated use `FileStorageSharedLinksDeleteResponse$Outbound` instead. */
-  export type Outbound = FileStorageSharedLinksDeleteResponse$Outbound;
-}
-
-export function fileStorageSharedLinksDeleteResponseToJSON(
-  fileStorageSharedLinksDeleteResponse: FileStorageSharedLinksDeleteResponse,
-): string {
-  return JSON.stringify(
-    FileStorageSharedLinksDeleteResponse$outboundSchema.parse(
-      fileStorageSharedLinksDeleteResponse,
-    ),
-  );
-}
 
 export function fileStorageSharedLinksDeleteResponseFromJSON(
   jsonString: string,

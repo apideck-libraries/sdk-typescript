@@ -30,38 +30,6 @@ export const Tax$inboundSchema: z.ZodType<Tax, z.ZodTypeDef, unknown> = z
     amount: z.nullable(z.number()).optional(),
   });
 
-/** @internal */
-export type Tax$Outbound = {
-  name?: string | null | undefined;
-  employer?: boolean | null | undefined;
-  amount?: number | null | undefined;
-};
-
-/** @internal */
-export const Tax$outboundSchema: z.ZodType<Tax$Outbound, z.ZodTypeDef, Tax> = z
-  .object({
-    name: z.nullable(z.string()).optional(),
-    employer: z.nullable(z.boolean()).optional(),
-    amount: z.nullable(z.number()).optional(),
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Tax$ {
-  /** @deprecated use `Tax$inboundSchema` instead. */
-  export const inboundSchema = Tax$inboundSchema;
-  /** @deprecated use `Tax$outboundSchema` instead. */
-  export const outboundSchema = Tax$outboundSchema;
-  /** @deprecated use `Tax$Outbound` instead. */
-  export type Outbound = Tax$Outbound;
-}
-
-export function taxToJSON(tax: Tax): string {
-  return JSON.stringify(Tax$outboundSchema.parse(tax));
-}
-
 export function taxFromJSON(
   jsonString: string,
 ): SafeParseResult<Tax, SDKValidationError> {

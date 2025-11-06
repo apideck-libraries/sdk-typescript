@@ -50,83 +50,6 @@ export type VaultConsumerRequestCountsAllResponse = {
 };
 
 /** @internal */
-export const VaultConsumerRequestCountsAllGlobals$inboundSchema: z.ZodType<
-  VaultConsumerRequestCountsAllGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  appId: z.string().optional(),
-});
-
-/** @internal */
-export type VaultConsumerRequestCountsAllGlobals$Outbound = {
-  appId?: string | undefined;
-};
-
-/** @internal */
-export const VaultConsumerRequestCountsAllGlobals$outboundSchema: z.ZodType<
-  VaultConsumerRequestCountsAllGlobals$Outbound,
-  z.ZodTypeDef,
-  VaultConsumerRequestCountsAllGlobals
-> = z.object({
-  appId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace VaultConsumerRequestCountsAllGlobals$ {
-  /** @deprecated use `VaultConsumerRequestCountsAllGlobals$inboundSchema` instead. */
-  export const inboundSchema =
-    VaultConsumerRequestCountsAllGlobals$inboundSchema;
-  /** @deprecated use `VaultConsumerRequestCountsAllGlobals$outboundSchema` instead. */
-  export const outboundSchema =
-    VaultConsumerRequestCountsAllGlobals$outboundSchema;
-  /** @deprecated use `VaultConsumerRequestCountsAllGlobals$Outbound` instead. */
-  export type Outbound = VaultConsumerRequestCountsAllGlobals$Outbound;
-}
-
-export function vaultConsumerRequestCountsAllGlobalsToJSON(
-  vaultConsumerRequestCountsAllGlobals: VaultConsumerRequestCountsAllGlobals,
-): string {
-  return JSON.stringify(
-    VaultConsumerRequestCountsAllGlobals$outboundSchema.parse(
-      vaultConsumerRequestCountsAllGlobals,
-    ),
-  );
-}
-
-export function vaultConsumerRequestCountsAllGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<VaultConsumerRequestCountsAllGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      VaultConsumerRequestCountsAllGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'VaultConsumerRequestCountsAllGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const VaultConsumerRequestCountsAllRequest$inboundSchema: z.ZodType<
-  VaultConsumerRequestCountsAllRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  appId: z.string().optional(),
-  consumer_id: z.string(),
-  start_datetime: z.string(),
-  end_datetime: z.string(),
-}).transform((v) => {
-  return remap$(v, {
-    "consumer_id": "consumerId",
-    "start_datetime": "startDatetime",
-    "end_datetime": "endDatetime",
-  });
-});
-
-/** @internal */
 export type VaultConsumerRequestCountsAllRequest$Outbound = {
   appId?: string | undefined;
   consumer_id: string;
@@ -152,21 +75,6 @@ export const VaultConsumerRequestCountsAllRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace VaultConsumerRequestCountsAllRequest$ {
-  /** @deprecated use `VaultConsumerRequestCountsAllRequest$inboundSchema` instead. */
-  export const inboundSchema =
-    VaultConsumerRequestCountsAllRequest$inboundSchema;
-  /** @deprecated use `VaultConsumerRequestCountsAllRequest$outboundSchema` instead. */
-  export const outboundSchema =
-    VaultConsumerRequestCountsAllRequest$outboundSchema;
-  /** @deprecated use `VaultConsumerRequestCountsAllRequest$Outbound` instead. */
-  export type Outbound = VaultConsumerRequestCountsAllRequest$Outbound;
-}
-
 export function vaultConsumerRequestCountsAllRequestToJSON(
   vaultConsumerRequestCountsAllRequest: VaultConsumerRequestCountsAllRequest,
 ): string {
@@ -174,17 +82,6 @@ export function vaultConsumerRequestCountsAllRequestToJSON(
     VaultConsumerRequestCountsAllRequest$outboundSchema.parse(
       vaultConsumerRequestCountsAllRequest,
     ),
-  );
-}
-
-export function vaultConsumerRequestCountsAllRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<VaultConsumerRequestCountsAllRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      VaultConsumerRequestCountsAllRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'VaultConsumerRequestCountsAllRequest' from JSON`,
   );
 }
 
@@ -207,62 +104,6 @@ export const VaultConsumerRequestCountsAllResponse$inboundSchema: z.ZodType<
     "UnexpectedErrorResponse": "unexpectedErrorResponse",
   });
 });
-
-/** @internal */
-export type VaultConsumerRequestCountsAllResponse$Outbound = {
-  HttpMeta: components.HTTPMetadata$Outbound;
-  ConsumerRequestCountsInDateRangeResponse?:
-    | components.ConsumerRequestCountsInDateRangeResponse$Outbound
-    | undefined;
-  UnexpectedErrorResponse?:
-    | components.UnexpectedErrorResponse$Outbound
-    | undefined;
-};
-
-/** @internal */
-export const VaultConsumerRequestCountsAllResponse$outboundSchema: z.ZodType<
-  VaultConsumerRequestCountsAllResponse$Outbound,
-  z.ZodTypeDef,
-  VaultConsumerRequestCountsAllResponse
-> = z.object({
-  httpMeta: components.HTTPMetadata$outboundSchema,
-  consumerRequestCountsInDateRangeResponse: components
-    .ConsumerRequestCountsInDateRangeResponse$outboundSchema.optional(),
-  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    httpMeta: "HttpMeta",
-    consumerRequestCountsInDateRangeResponse:
-      "ConsumerRequestCountsInDateRangeResponse",
-    unexpectedErrorResponse: "UnexpectedErrorResponse",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace VaultConsumerRequestCountsAllResponse$ {
-  /** @deprecated use `VaultConsumerRequestCountsAllResponse$inboundSchema` instead. */
-  export const inboundSchema =
-    VaultConsumerRequestCountsAllResponse$inboundSchema;
-  /** @deprecated use `VaultConsumerRequestCountsAllResponse$outboundSchema` instead. */
-  export const outboundSchema =
-    VaultConsumerRequestCountsAllResponse$outboundSchema;
-  /** @deprecated use `VaultConsumerRequestCountsAllResponse$Outbound` instead. */
-  export type Outbound = VaultConsumerRequestCountsAllResponse$Outbound;
-}
-
-export function vaultConsumerRequestCountsAllResponseToJSON(
-  vaultConsumerRequestCountsAllResponse: VaultConsumerRequestCountsAllResponse,
-): string {
-  return JSON.stringify(
-    VaultConsumerRequestCountsAllResponse$outboundSchema.parse(
-      vaultConsumerRequestCountsAllResponse,
-    ),
-  );
-}
 
 export function vaultConsumerRequestCountsAllResponseFromJSON(
   jsonString: string,

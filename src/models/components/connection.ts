@@ -8,25 +8,14 @@ import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  AuthType,
-  AuthType$inboundSchema,
-  AuthType$outboundSchema,
-} from "./authtype.js";
+import { AuthType, AuthType$inboundSchema } from "./authtype.js";
 import {
   ConnectionState,
   ConnectionState$inboundSchema,
-  ConnectionState$outboundSchema,
 } from "./connectionstate.js";
-import {
-  ConsentRecord,
-  ConsentRecord$inboundSchema,
-  ConsentRecord$Outbound,
-  ConsentRecord$outboundSchema,
-} from "./consentrecord.js";
+import { ConsentRecord, ConsentRecord$inboundSchema } from "./consentrecord.js";
 import {
   ConsentRecordInput,
-  ConsentRecordInput$inboundSchema,
   ConsentRecordInput$Outbound,
   ConsentRecordInput$outboundSchema,
 } from "./consentrecordinput.js";
@@ -35,36 +24,19 @@ import {
   ConsentState$inboundSchema,
   ConsentState$outboundSchema,
 } from "./consentstate.js";
-import {
-  CustomMapping,
-  CustomMapping$inboundSchema,
-  CustomMapping$Outbound,
-  CustomMapping$outboundSchema,
-} from "./custommapping.js";
+import { CustomMapping, CustomMapping$inboundSchema } from "./custommapping.js";
 import {
   CustomMappingInput,
-  CustomMappingInput$inboundSchema,
   CustomMappingInput$Outbound,
   CustomMappingInput$outboundSchema,
 } from "./custommappinginput.js";
-import {
-  DataScopes,
-  DataScopes$inboundSchema,
-  DataScopes$Outbound,
-  DataScopes$outboundSchema,
-} from "./datascopes.js";
+import { DataScopes, DataScopes$inboundSchema } from "./datascopes.js";
 import {
   DataScopesInput,
-  DataScopesInput$inboundSchema,
   DataScopesInput$Outbound,
   DataScopesInput$outboundSchema,
 } from "./datascopesinput.js";
-import {
-  FormField,
-  FormField$inboundSchema,
-  FormField$Outbound,
-  FormField$outboundSchema,
-} from "./formfield.js";
+import { FormField, FormField$inboundSchema } from "./formfield.js";
 import {
   FormFieldOption,
   FormFieldOption$inboundSchema,
@@ -74,18 +46,14 @@ import {
 import {
   IntegrationState,
   IntegrationState$inboundSchema,
-  IntegrationState$outboundSchema,
 } from "./integrationstate.js";
 import {
   OAuthGrantType,
   OAuthGrantType$inboundSchema,
-  OAuthGrantType$outboundSchema,
 } from "./oauthgranttype.js";
 import {
   WebhookSubscription,
   WebhookSubscription$inboundSchema,
-  WebhookSubscription$Outbound,
-  WebhookSubscription$outboundSchema,
 } from "./webhooksubscription.js";
 
 /**
@@ -316,39 +284,8 @@ export const ConnectionStatus$inboundSchema: z.ZodNativeEnum<
 > = z.nativeEnum(ConnectionStatus);
 
 /** @internal */
-export const ConnectionStatus$outboundSchema: z.ZodNativeEnum<
-  typeof ConnectionStatus
-> = ConnectionStatus$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ConnectionStatus$ {
-  /** @deprecated use `ConnectionStatus$inboundSchema` instead. */
-  export const inboundSchema = ConnectionStatus$inboundSchema;
-  /** @deprecated use `ConnectionStatus$outboundSchema` instead. */
-  export const outboundSchema = ConnectionStatus$outboundSchema;
-}
-
-/** @internal */
 export const Target$inboundSchema: z.ZodNativeEnum<typeof Target> = z
   .nativeEnum(Target);
-
-/** @internal */
-export const Target$outboundSchema: z.ZodNativeEnum<typeof Target> =
-  Target$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Target$ {
-  /** @deprecated use `Target$inboundSchema` instead. */
-  export const inboundSchema = Target$inboundSchema;
-  /** @deprecated use `Target$outboundSchema` instead. */
-  export const outboundSchema = Target$outboundSchema;
-}
 
 /** @internal */
 export const ConnectionValue5$inboundSchema: z.ZodType<
@@ -356,7 +293,6 @@ export const ConnectionValue5$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.union([z.string(), z.number().int(), z.number()]);
-
 /** @internal */
 export type ConnectionValue5$Outbound = string | number | number;
 
@@ -367,19 +303,6 @@ export const ConnectionValue5$outboundSchema: z.ZodType<
   ConnectionValue5
 > = z.union([z.string(), z.number().int(), z.number()]);
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ConnectionValue5$ {
-  /** @deprecated use `ConnectionValue5$inboundSchema` instead. */
-  export const inboundSchema = ConnectionValue5$inboundSchema;
-  /** @deprecated use `ConnectionValue5$outboundSchema` instead. */
-  export const outboundSchema = ConnectionValue5$outboundSchema;
-  /** @deprecated use `ConnectionValue5$Outbound` instead. */
-  export type Outbound = ConnectionValue5$Outbound;
-}
-
 export function connectionValue5ToJSON(
   connectionValue5: ConnectionValue5,
 ): string {
@@ -387,7 +310,6 @@ export function connectionValue5ToJSON(
     ConnectionValue5$outboundSchema.parse(connectionValue5),
   );
 }
-
 export function connectionValue5FromJSON(
   jsonString: string,
 ): SafeParseResult<ConnectionValue5, SDKValidationError> {
@@ -410,7 +332,6 @@ export const ConnectionValue$inboundSchema: z.ZodType<
   z.boolean(),
   z.array(z.union([z.string(), z.number().int(), z.number()])),
 ]);
-
 /** @internal */
 export type ConnectionValue$Outbound =
   | string
@@ -432,25 +353,11 @@ export const ConnectionValue$outboundSchema: z.ZodType<
   z.array(z.union([z.string(), z.number().int(), z.number()])),
 ]);
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ConnectionValue$ {
-  /** @deprecated use `ConnectionValue$inboundSchema` instead. */
-  export const inboundSchema = ConnectionValue$inboundSchema;
-  /** @deprecated use `ConnectionValue$outboundSchema` instead. */
-  export const outboundSchema = ConnectionValue$outboundSchema;
-  /** @deprecated use `ConnectionValue$Outbound` instead. */
-  export type Outbound = ConnectionValue$Outbound;
-}
-
 export function connectionValueToJSON(
   connectionValue: ConnectionValue,
 ): string {
   return JSON.stringify(ConnectionValue$outboundSchema.parse(connectionValue));
 }
-
 export function connectionValueFromJSON(
   jsonString: string,
 ): SafeParseResult<ConnectionValue, SDKValidationError> {
@@ -479,55 +386,6 @@ export const Defaults$inboundSchema: z.ZodType<
   ]).optional(),
 });
 
-/** @internal */
-export type Defaults$Outbound = {
-  target?: string | undefined;
-  id?: string | undefined;
-  options?: Array<FormFieldOption$Outbound> | undefined;
-  value?:
-    | string
-    | number
-    | number
-    | boolean
-    | Array<string | number | number>
-    | undefined;
-};
-
-/** @internal */
-export const Defaults$outboundSchema: z.ZodType<
-  Defaults$Outbound,
-  z.ZodTypeDef,
-  Defaults
-> = z.object({
-  target: Target$outboundSchema.optional(),
-  id: z.string().optional(),
-  options: z.array(FormFieldOption$outboundSchema).optional(),
-  value: z.union([
-    z.string(),
-    z.number().int(),
-    z.number(),
-    z.boolean(),
-    z.array(z.union([z.string(), z.number().int(), z.number()])),
-  ]).optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Defaults$ {
-  /** @deprecated use `Defaults$inboundSchema` instead. */
-  export const inboundSchema = Defaults$inboundSchema;
-  /** @deprecated use `Defaults$outboundSchema` instead. */
-  export const outboundSchema = Defaults$outboundSchema;
-  /** @deprecated use `Defaults$Outbound` instead. */
-  export type Outbound = Defaults$Outbound;
-}
-
-export function defaultsToJSON(defaults: Defaults): string {
-  return JSON.stringify(Defaults$outboundSchema.parse(defaults));
-}
-
 export function defaultsFromJSON(
   jsonString: string,
 ): SafeParseResult<Defaults, SDKValidationError> {
@@ -548,39 +406,6 @@ export const Configuration$inboundSchema: z.ZodType<
   defaults: z.array(z.lazy(() => Defaults$inboundSchema)).optional(),
 });
 
-/** @internal */
-export type Configuration$Outbound = {
-  resource?: string | undefined;
-  defaults?: Array<Defaults$Outbound> | undefined;
-};
-
-/** @internal */
-export const Configuration$outboundSchema: z.ZodType<
-  Configuration$Outbound,
-  z.ZodTypeDef,
-  Configuration
-> = z.object({
-  resource: z.string().optional(),
-  defaults: z.array(z.lazy(() => Defaults$outboundSchema)).optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Configuration$ {
-  /** @deprecated use `Configuration$inboundSchema` instead. */
-  export const inboundSchema = Configuration$inboundSchema;
-  /** @deprecated use `Configuration$outboundSchema` instead. */
-  export const outboundSchema = Configuration$outboundSchema;
-  /** @deprecated use `Configuration$Outbound` instead. */
-  export type Outbound = Configuration$Outbound;
-}
-
-export function configurationToJSON(configuration: Configuration): string {
-  return JSON.stringify(Configuration$outboundSchema.parse(configuration));
-}
-
 export function configurationFromJSON(
   jsonString: string,
 ): SafeParseResult<Configuration, SDKValidationError> {
@@ -594,21 +419,6 @@ export function configurationFromJSON(
 /** @internal */
 export const Health$inboundSchema: z.ZodNativeEnum<typeof Health> = z
   .nativeEnum(Health);
-
-/** @internal */
-export const Health$outboundSchema: z.ZodNativeEnum<typeof Health> =
-  Health$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Health$ {
-  /** @deprecated use `Health$inboundSchema` instead. */
-  export const inboundSchema = Health$inboundSchema;
-  /** @deprecated use `Health$outboundSchema` instead. */
-  export const outboundSchema = Health$outboundSchema;
-}
 
 /** @internal */
 export const Connection$inboundSchema: z.ZodType<
@@ -683,138 +493,6 @@ export const Connection$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type Connection$Outbound = {
-  id?: string | undefined;
-  service_id?: string | undefined;
-  name?: string | undefined;
-  tag_line?: string | undefined;
-  unified_api?: string | undefined;
-  state?: string | undefined;
-  integration_state?: string | undefined;
-  auth_type?: string | undefined;
-  oauth_grant_type?: string | undefined;
-  status?: string | undefined;
-  enabled?: boolean | undefined;
-  website?: string | undefined;
-  icon?: string | undefined;
-  logo?: string | undefined;
-  authorize_url?: string | null | undefined;
-  revoke_url?: string | null | undefined;
-  settings?: { [k: string]: any } | null | undefined;
-  metadata?: { [k: string]: any } | null | undefined;
-  form_fields?: Array<FormField$Outbound> | undefined;
-  configuration?: Array<Configuration$Outbound> | undefined;
-  configurable_resources?: Array<string> | undefined;
-  resource_schema_support?: Array<string> | undefined;
-  resource_settings_support?: Array<string> | undefined;
-  validation_support?: boolean | undefined;
-  schema_support?: boolean | undefined;
-  settings_required_for_authorization?: Array<string> | undefined;
-  subscriptions?: Array<WebhookSubscription$Outbound> | undefined;
-  has_guide?: boolean | undefined;
-  custom_mappings?: Array<CustomMapping$Outbound> | undefined;
-  consent_state?: string | undefined;
-  consents?: Array<ConsentRecord$Outbound> | undefined;
-  latest_consent?: ConsentRecord$Outbound | undefined;
-  application_data_scopes?: DataScopes$Outbound | undefined;
-  health?: string | undefined;
-  credentials_expire_at?: number | undefined;
-  last_refresh_failed_at?: number | undefined;
-  created_at?: number | undefined;
-  updated_at?: number | null | undefined;
-};
-
-/** @internal */
-export const Connection$outboundSchema: z.ZodType<
-  Connection$Outbound,
-  z.ZodTypeDef,
-  Connection
-> = z.object({
-  id: z.string().optional(),
-  serviceId: z.string().optional(),
-  name: z.string().optional(),
-  tagLine: z.string().optional(),
-  unifiedApi: z.string().optional(),
-  state: ConnectionState$outboundSchema.optional(),
-  integrationState: IntegrationState$outboundSchema.optional(),
-  authType: AuthType$outboundSchema.optional(),
-  oauthGrantType: OAuthGrantType$outboundSchema.optional(),
-  status: ConnectionStatus$outboundSchema.optional(),
-  enabled: z.boolean().optional(),
-  website: z.string().optional(),
-  icon: z.string().optional(),
-  logo: z.string().optional(),
-  authorizeUrl: z.nullable(z.string()).optional(),
-  revokeUrl: z.nullable(z.string()).optional(),
-  settings: z.nullable(z.record(z.any())).optional(),
-  metadata: z.nullable(z.record(z.any())).optional(),
-  formFields: z.array(FormField$outboundSchema).optional(),
-  configuration: z.array(z.lazy(() => Configuration$outboundSchema)).optional(),
-  configurableResources: z.array(z.string()).optional(),
-  resourceSchemaSupport: z.array(z.string()).optional(),
-  resourceSettingsSupport: z.array(z.string()).optional(),
-  validationSupport: z.boolean().optional(),
-  schemaSupport: z.boolean().optional(),
-  settingsRequiredForAuthorization: z.array(z.string()).optional(),
-  subscriptions: z.array(WebhookSubscription$outboundSchema).optional(),
-  hasGuide: z.boolean().optional(),
-  customMappings: z.array(CustomMapping$outboundSchema).optional(),
-  consentState: ConsentState$outboundSchema.optional(),
-  consents: z.array(ConsentRecord$outboundSchema).optional(),
-  latestConsent: ConsentRecord$outboundSchema.optional(),
-  applicationDataScopes: DataScopes$outboundSchema.optional(),
-  health: Health$outboundSchema.optional(),
-  credentialsExpireAt: z.number().optional(),
-  lastRefreshFailedAt: z.number().optional(),
-  createdAt: z.number().optional(),
-  updatedAt: z.nullable(z.number()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    serviceId: "service_id",
-    tagLine: "tag_line",
-    unifiedApi: "unified_api",
-    integrationState: "integration_state",
-    authType: "auth_type",
-    oauthGrantType: "oauth_grant_type",
-    authorizeUrl: "authorize_url",
-    revokeUrl: "revoke_url",
-    formFields: "form_fields",
-    configurableResources: "configurable_resources",
-    resourceSchemaSupport: "resource_schema_support",
-    resourceSettingsSupport: "resource_settings_support",
-    validationSupport: "validation_support",
-    schemaSupport: "schema_support",
-    settingsRequiredForAuthorization: "settings_required_for_authorization",
-    hasGuide: "has_guide",
-    customMappings: "custom_mappings",
-    consentState: "consent_state",
-    latestConsent: "latest_consent",
-    applicationDataScopes: "application_data_scopes",
-    credentialsExpireAt: "credentials_expire_at",
-    lastRefreshFailedAt: "last_refresh_failed_at",
-    createdAt: "created_at",
-    updatedAt: "updated_at",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Connection$ {
-  /** @deprecated use `Connection$inboundSchema` instead. */
-  export const inboundSchema = Connection$inboundSchema;
-  /** @deprecated use `Connection$outboundSchema` instead. */
-  export const outboundSchema = Connection$outboundSchema;
-  /** @deprecated use `Connection$Outbound` instead. */
-  export type Outbound = Connection$Outbound;
-}
-
-export function connectionToJSON(connection: Connection): string {
-  return JSON.stringify(Connection$outboundSchema.parse(connection));
-}
-
 export function connectionFromJSON(
   jsonString: string,
 ): SafeParseResult<Connection, SDKValidationError> {
@@ -824,23 +502,6 @@ export function connectionFromJSON(
     `Failed to parse 'Connection' from JSON`,
   );
 }
-
-/** @internal */
-export const ConnectionDefaults$inboundSchema: z.ZodType<
-  ConnectionDefaults,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  id: z.string().optional(),
-  options: z.array(FormFieldOption$inboundSchema).optional(),
-  value: z.union([
-    z.string(),
-    z.number().int(),
-    z.number(),
-    z.boolean(),
-    z.array(z.union([z.string(), z.number().int(), z.number()])),
-  ]).optional(),
-});
 
 /** @internal */
 export type ConnectionDefaults$Outbound = {
@@ -872,19 +533,6 @@ export const ConnectionDefaults$outboundSchema: z.ZodType<
   ]).optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ConnectionDefaults$ {
-  /** @deprecated use `ConnectionDefaults$inboundSchema` instead. */
-  export const inboundSchema = ConnectionDefaults$inboundSchema;
-  /** @deprecated use `ConnectionDefaults$outboundSchema` instead. */
-  export const outboundSchema = ConnectionDefaults$outboundSchema;
-  /** @deprecated use `ConnectionDefaults$Outbound` instead. */
-  export type Outbound = ConnectionDefaults$Outbound;
-}
-
 export function connectionDefaultsToJSON(
   connectionDefaults: ConnectionDefaults,
 ): string {
@@ -892,26 +540,6 @@ export function connectionDefaultsToJSON(
     ConnectionDefaults$outboundSchema.parse(connectionDefaults),
   );
 }
-
-export function connectionDefaultsFromJSON(
-  jsonString: string,
-): SafeParseResult<ConnectionDefaults, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => ConnectionDefaults$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ConnectionDefaults' from JSON`,
-  );
-}
-
-/** @internal */
-export const ConnectionConfiguration$inboundSchema: z.ZodType<
-  ConnectionConfiguration,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  resource: z.string().optional(),
-  defaults: z.array(z.lazy(() => ConnectionDefaults$inboundSchema)).optional(),
-});
 
 /** @internal */
 export type ConnectionConfiguration$Outbound = {
@@ -929,19 +557,6 @@ export const ConnectionConfiguration$outboundSchema: z.ZodType<
   defaults: z.array(z.lazy(() => ConnectionDefaults$outboundSchema)).optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ConnectionConfiguration$ {
-  /** @deprecated use `ConnectionConfiguration$inboundSchema` instead. */
-  export const inboundSchema = ConnectionConfiguration$inboundSchema;
-  /** @deprecated use `ConnectionConfiguration$outboundSchema` instead. */
-  export const outboundSchema = ConnectionConfiguration$outboundSchema;
-  /** @deprecated use `ConnectionConfiguration$Outbound` instead. */
-  export type Outbound = ConnectionConfiguration$Outbound;
-}
-
 export function connectionConfigurationToJSON(
   connectionConfiguration: ConnectionConfiguration,
 ): string {
@@ -949,40 +564,6 @@ export function connectionConfigurationToJSON(
     ConnectionConfiguration$outboundSchema.parse(connectionConfiguration),
   );
 }
-
-export function connectionConfigurationFromJSON(
-  jsonString: string,
-): SafeParseResult<ConnectionConfiguration, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => ConnectionConfiguration$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ConnectionConfiguration' from JSON`,
-  );
-}
-
-/** @internal */
-export const ConnectionInput$inboundSchema: z.ZodType<
-  ConnectionInput,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  enabled: z.boolean().optional(),
-  settings: z.nullable(z.record(z.any())).optional(),
-  metadata: z.nullable(z.record(z.any())).optional(),
-  configuration: z.array(z.lazy(() => ConnectionConfiguration$inboundSchema))
-    .optional(),
-  custom_mappings: z.array(CustomMappingInput$inboundSchema).optional(),
-  consent_state: ConsentState$inboundSchema.optional(),
-  latest_consent: ConsentRecordInput$inboundSchema.optional(),
-  application_data_scopes: DataScopesInput$inboundSchema.optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "custom_mappings": "customMappings",
-    "consent_state": "consentState",
-    "latest_consent": "latestConsent",
-    "application_data_scopes": "applicationDataScopes",
-  });
-});
 
 /** @internal */
 export type ConnectionInput$Outbound = {
@@ -1020,31 +601,8 @@ export const ConnectionInput$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ConnectionInput$ {
-  /** @deprecated use `ConnectionInput$inboundSchema` instead. */
-  export const inboundSchema = ConnectionInput$inboundSchema;
-  /** @deprecated use `ConnectionInput$outboundSchema` instead. */
-  export const outboundSchema = ConnectionInput$outboundSchema;
-  /** @deprecated use `ConnectionInput$Outbound` instead. */
-  export type Outbound = ConnectionInput$Outbound;
-}
-
 export function connectionInputToJSON(
   connectionInput: ConnectionInput,
 ): string {
   return JSON.stringify(ConnectionInput$outboundSchema.parse(connectionInput));
-}
-
-export function connectionInputFromJSON(
-  jsonString: string,
-): SafeParseResult<ConnectionInput, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => ConnectionInput$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ConnectionInput' from JSON`,
-  );
 }

@@ -7,24 +7,9 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  Lead,
-  Lead$inboundSchema,
-  Lead$Outbound,
-  Lead$outboundSchema,
-} from "./lead.js";
-import {
-  Links,
-  Links$inboundSchema,
-  Links$Outbound,
-  Links$outboundSchema,
-} from "./links.js";
-import {
-  Meta,
-  Meta$inboundSchema,
-  Meta$Outbound,
-  Meta$outboundSchema,
-} from "./meta.js";
+import { Lead, Lead$inboundSchema } from "./lead.js";
+import { Links, Links$inboundSchema } from "./links.js";
+import { Meta, Meta$inboundSchema } from "./meta.js";
 
 /**
  * Leads
@@ -86,62 +71,6 @@ export const GetLeadsResponse$inboundSchema: z.ZodType<
     "_raw": "raw",
   });
 });
-
-/** @internal */
-export type GetLeadsResponse$Outbound = {
-  status_code: number;
-  status: string;
-  service: string;
-  resource: string;
-  operation: string;
-  data: Array<Lead$Outbound>;
-  meta?: Meta$Outbound | undefined;
-  links?: Links$Outbound | undefined;
-  _raw?: { [k: string]: any } | null | undefined;
-};
-
-/** @internal */
-export const GetLeadsResponse$outboundSchema: z.ZodType<
-  GetLeadsResponse$Outbound,
-  z.ZodTypeDef,
-  GetLeadsResponse
-> = z.object({
-  statusCode: z.number().int(),
-  status: z.string(),
-  service: z.string(),
-  resource: z.string(),
-  operation: z.string(),
-  data: z.array(Lead$outboundSchema),
-  meta: Meta$outboundSchema.optional(),
-  links: Links$outboundSchema.optional(),
-  raw: z.nullable(z.record(z.any())).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    statusCode: "status_code",
-    raw: "_raw",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetLeadsResponse$ {
-  /** @deprecated use `GetLeadsResponse$inboundSchema` instead. */
-  export const inboundSchema = GetLeadsResponse$inboundSchema;
-  /** @deprecated use `GetLeadsResponse$outboundSchema` instead. */
-  export const outboundSchema = GetLeadsResponse$outboundSchema;
-  /** @deprecated use `GetLeadsResponse$Outbound` instead. */
-  export type Outbound = GetLeadsResponse$Outbound;
-}
-
-export function getLeadsResponseToJSON(
-  getLeadsResponse: GetLeadsResponse,
-): string {
-  return JSON.stringify(
-    GetLeadsResponse$outboundSchema.parse(getLeadsResponse),
-  );
-}
 
 export function getLeadsResponseFromJSON(
   jsonString: string,

@@ -38,8 +38,8 @@ type CrmActivitiesUpdateRequest struct {
 	// Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
 	ServiceID *string `header:"style=simple,explode=false,name=x-apideck-service-id"`
 	// Include raw response. Mostly used for debugging purposes
-	Raw      *bool                    `default:"false" queryParam:"style=form,explode=true,name=raw"`
-	Activity components.ActivityInput `request:"mediaType=application/json"`
+	Raw  *bool                    `default:"false" queryParam:"style=form,explode=true,name=raw"`
+	Body components.ActivityInput `request:"mediaType=application/json"`
 }
 
 func (c CrmActivitiesUpdateRequest) MarshalJSON() ([]byte, error) {
@@ -47,7 +47,7 @@ func (c CrmActivitiesUpdateRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (c *CrmActivitiesUpdateRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"id", "Activity"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"id", "body"}); err != nil {
 		return err
 	}
 	return nil
@@ -88,11 +88,11 @@ func (o *CrmActivitiesUpdateRequest) GetRaw() *bool {
 	return o.Raw
 }
 
-func (o *CrmActivitiesUpdateRequest) GetActivity() components.ActivityInput {
+func (o *CrmActivitiesUpdateRequest) GetBody() components.ActivityInput {
 	if o == nil {
 		return components.ActivityInput{}
 	}
-	return o.Activity
+	return o.Body
 }
 
 type CrmActivitiesUpdateResponse struct {

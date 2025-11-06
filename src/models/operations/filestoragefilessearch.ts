@@ -73,88 +73,6 @@ export type FileStorageFilesSearchResponse = {
 };
 
 /** @internal */
-export const FileStorageFilesSearchGlobals$inboundSchema: z.ZodType<
-  FileStorageFilesSearchGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/** @internal */
-export type FileStorageFilesSearchGlobals$Outbound = {
-  consumerId?: string | undefined;
-  appId?: string | undefined;
-};
-
-/** @internal */
-export const FileStorageFilesSearchGlobals$outboundSchema: z.ZodType<
-  FileStorageFilesSearchGlobals$Outbound,
-  z.ZodTypeDef,
-  FileStorageFilesSearchGlobals
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace FileStorageFilesSearchGlobals$ {
-  /** @deprecated use `FileStorageFilesSearchGlobals$inboundSchema` instead. */
-  export const inboundSchema = FileStorageFilesSearchGlobals$inboundSchema;
-  /** @deprecated use `FileStorageFilesSearchGlobals$outboundSchema` instead. */
-  export const outboundSchema = FileStorageFilesSearchGlobals$outboundSchema;
-  /** @deprecated use `FileStorageFilesSearchGlobals$Outbound` instead. */
-  export type Outbound = FileStorageFilesSearchGlobals$Outbound;
-}
-
-export function fileStorageFilesSearchGlobalsToJSON(
-  fileStorageFilesSearchGlobals: FileStorageFilesSearchGlobals,
-): string {
-  return JSON.stringify(
-    FileStorageFilesSearchGlobals$outboundSchema.parse(
-      fileStorageFilesSearchGlobals,
-    ),
-  );
-}
-
-export function fileStorageFilesSearchGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<FileStorageFilesSearchGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => FileStorageFilesSearchGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'FileStorageFilesSearchGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const FileStorageFilesSearchRequest$inboundSchema: z.ZodType<
-  FileStorageFilesSearchRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  pass_through: z.record(z.any()).optional(),
-  fields: z.nullable(z.string()).optional(),
-  cursor: z.nullable(z.string()).optional(),
-  limit: z.number().int().default(20),
-  raw: z.boolean().default(false),
-  filter: components.FilesFilter$inboundSchema.optional(),
-  FilesSearch: components.FilesSearch$inboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    "pass_through": "passThrough",
-    "FilesSearch": "filesSearch",
-  });
-});
-
-/** @internal */
 export type FileStorageFilesSearchRequest$Outbound = {
   consumerId?: string | undefined;
   appId?: string | undefined;
@@ -191,19 +109,6 @@ export const FileStorageFilesSearchRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace FileStorageFilesSearchRequest$ {
-  /** @deprecated use `FileStorageFilesSearchRequest$inboundSchema` instead. */
-  export const inboundSchema = FileStorageFilesSearchRequest$inboundSchema;
-  /** @deprecated use `FileStorageFilesSearchRequest$outboundSchema` instead. */
-  export const outboundSchema = FileStorageFilesSearchRequest$outboundSchema;
-  /** @deprecated use `FileStorageFilesSearchRequest$Outbound` instead. */
-  export type Outbound = FileStorageFilesSearchRequest$Outbound;
-}
-
 export function fileStorageFilesSearchRequestToJSON(
   fileStorageFilesSearchRequest: FileStorageFilesSearchRequest,
 ): string {
@@ -211,16 +116,6 @@ export function fileStorageFilesSearchRequestToJSON(
     FileStorageFilesSearchRequest$outboundSchema.parse(
       fileStorageFilesSearchRequest,
     ),
-  );
-}
-
-export function fileStorageFilesSearchRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<FileStorageFilesSearchRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => FileStorageFilesSearchRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'FileStorageFilesSearchRequest' from JSON`,
   );
 }
 
@@ -241,56 +136,6 @@ export const FileStorageFilesSearchResponse$inboundSchema: z.ZodType<
     "UnexpectedErrorResponse": "unexpectedErrorResponse",
   });
 });
-
-/** @internal */
-export type FileStorageFilesSearchResponse$Outbound = {
-  HttpMeta: components.HTTPMetadata$Outbound;
-  GetFilesResponse?: components.GetFilesResponse$Outbound | undefined;
-  UnexpectedErrorResponse?:
-    | components.UnexpectedErrorResponse$Outbound
-    | undefined;
-};
-
-/** @internal */
-export const FileStorageFilesSearchResponse$outboundSchema: z.ZodType<
-  FileStorageFilesSearchResponse$Outbound,
-  z.ZodTypeDef,
-  FileStorageFilesSearchResponse
-> = z.object({
-  httpMeta: components.HTTPMetadata$outboundSchema,
-  getFilesResponse: components.GetFilesResponse$outboundSchema.optional(),
-  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    httpMeta: "HttpMeta",
-    getFilesResponse: "GetFilesResponse",
-    unexpectedErrorResponse: "UnexpectedErrorResponse",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace FileStorageFilesSearchResponse$ {
-  /** @deprecated use `FileStorageFilesSearchResponse$inboundSchema` instead. */
-  export const inboundSchema = FileStorageFilesSearchResponse$inboundSchema;
-  /** @deprecated use `FileStorageFilesSearchResponse$outboundSchema` instead. */
-  export const outboundSchema = FileStorageFilesSearchResponse$outboundSchema;
-  /** @deprecated use `FileStorageFilesSearchResponse$Outbound` instead. */
-  export type Outbound = FileStorageFilesSearchResponse$Outbound;
-}
-
-export function fileStorageFilesSearchResponseToJSON(
-  fileStorageFilesSearchResponse: FileStorageFilesSearchResponse,
-): string {
-  return JSON.stringify(
-    FileStorageFilesSearchResponse$outboundSchema.parse(
-      fileStorageFilesSearchResponse,
-    ),
-  );
-}
 
 export function fileStorageFilesSearchResponseFromJSON(
   jsonString: string,

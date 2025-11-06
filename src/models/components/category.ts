@@ -11,8 +11,6 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   PassThroughBody,
   PassThroughBody$inboundSchema,
-  PassThroughBody$Outbound,
-  PassThroughBody$outboundSchema,
 } from "./passthroughbody.js";
 
 /**
@@ -97,40 +95,9 @@ export const CategoryType$inboundSchema: z.ZodNativeEnum<typeof CategoryType> =
   z.nativeEnum(CategoryType);
 
 /** @internal */
-export const CategoryType$outboundSchema: z.ZodNativeEnum<typeof CategoryType> =
-  CategoryType$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CategoryType$ {
-  /** @deprecated use `CategoryType$inboundSchema` instead. */
-  export const inboundSchema = CategoryType$inboundSchema;
-  /** @deprecated use `CategoryType$outboundSchema` instead. */
-  export const outboundSchema = CategoryType$outboundSchema;
-}
-
-/** @internal */
 export const CategoryStatus$inboundSchema: z.ZodNativeEnum<
   typeof CategoryStatus
 > = z.nativeEnum(CategoryStatus);
-
-/** @internal */
-export const CategoryStatus$outboundSchema: z.ZodNativeEnum<
-  typeof CategoryStatus
-> = CategoryStatus$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CategoryStatus$ {
-  /** @deprecated use `CategoryStatus$inboundSchema` instead. */
-  export const inboundSchema = CategoryStatus$inboundSchema;
-  /** @deprecated use `CategoryStatus$outboundSchema` instead. */
-  export const outboundSchema = CategoryStatus$outboundSchema;
-}
 
 /** @internal */
 export const Category$inboundSchema: z.ZodType<
@@ -166,70 +133,6 @@ export const Category$inboundSchema: z.ZodType<
     "pass_through": "passThrough",
   });
 });
-
-/** @internal */
-export type Category$Outbound = {
-  id?: string | undefined;
-  name?: string | undefined;
-  display_id?: string | null | undefined;
-  type?: string | undefined;
-  status?: string | undefined;
-  custom_mappings?: { [k: string]: any } | null | undefined;
-  row_version?: string | null | undefined;
-  updated_by?: string | null | undefined;
-  created_by?: string | null | undefined;
-  updated_at?: string | null | undefined;
-  created_at?: string | null | undefined;
-  pass_through?: Array<PassThroughBody$Outbound> | undefined;
-};
-
-/** @internal */
-export const Category$outboundSchema: z.ZodType<
-  Category$Outbound,
-  z.ZodTypeDef,
-  Category
-> = z.object({
-  id: z.string().optional(),
-  name: z.string().optional(),
-  displayId: z.nullable(z.string()).optional(),
-  type: CategoryType$outboundSchema.optional(),
-  status: CategoryStatus$outboundSchema.optional(),
-  customMappings: z.nullable(z.record(z.any())).optional(),
-  rowVersion: z.nullable(z.string()).optional(),
-  updatedBy: z.nullable(z.string()).optional(),
-  createdBy: z.nullable(z.string()).optional(),
-  updatedAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
-  createdAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
-  passThrough: z.array(PassThroughBody$outboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    displayId: "display_id",
-    customMappings: "custom_mappings",
-    rowVersion: "row_version",
-    updatedBy: "updated_by",
-    createdBy: "created_by",
-    updatedAt: "updated_at",
-    createdAt: "created_at",
-    passThrough: "pass_through",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Category$ {
-  /** @deprecated use `Category$inboundSchema` instead. */
-  export const inboundSchema = Category$inboundSchema;
-  /** @deprecated use `Category$outboundSchema` instead. */
-  export const outboundSchema = Category$outboundSchema;
-  /** @deprecated use `Category$Outbound` instead. */
-  export type Outbound = Category$Outbound;
-}
-
-export function categoryToJSON(category: Category): string {
-  return JSON.stringify(Category$outboundSchema.parse(category));
-}
 
 export function categoryFromJSON(
   jsonString: string,

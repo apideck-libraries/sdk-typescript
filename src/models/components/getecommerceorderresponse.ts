@@ -10,8 +10,6 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   EcommerceOrder,
   EcommerceOrder$inboundSchema,
-  EcommerceOrder$Outbound,
-  EcommerceOrder$outboundSchema,
 } from "./ecommerceorder.js";
 
 /**
@@ -64,58 +62,6 @@ export const GetEcommerceOrderResponse$inboundSchema: z.ZodType<
     "_raw": "raw",
   });
 });
-
-/** @internal */
-export type GetEcommerceOrderResponse$Outbound = {
-  status_code: number;
-  status: string;
-  service: string;
-  resource: string;
-  operation: string;
-  data: EcommerceOrder$Outbound;
-  _raw?: { [k: string]: any } | null | undefined;
-};
-
-/** @internal */
-export const GetEcommerceOrderResponse$outboundSchema: z.ZodType<
-  GetEcommerceOrderResponse$Outbound,
-  z.ZodTypeDef,
-  GetEcommerceOrderResponse
-> = z.object({
-  statusCode: z.number().int(),
-  status: z.string(),
-  service: z.string(),
-  resource: z.string(),
-  operation: z.string(),
-  data: EcommerceOrder$outboundSchema,
-  raw: z.nullable(z.record(z.any())).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    statusCode: "status_code",
-    raw: "_raw",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetEcommerceOrderResponse$ {
-  /** @deprecated use `GetEcommerceOrderResponse$inboundSchema` instead. */
-  export const inboundSchema = GetEcommerceOrderResponse$inboundSchema;
-  /** @deprecated use `GetEcommerceOrderResponse$outboundSchema` instead. */
-  export const outboundSchema = GetEcommerceOrderResponse$outboundSchema;
-  /** @deprecated use `GetEcommerceOrderResponse$Outbound` instead. */
-  export type Outbound = GetEcommerceOrderResponse$Outbound;
-}
-
-export function getEcommerceOrderResponseToJSON(
-  getEcommerceOrderResponse: GetEcommerceOrderResponse,
-): string {
-  return JSON.stringify(
-    GetEcommerceOrderResponse$outboundSchema.parse(getEcommerceOrderResponse),
-  );
-}
 
 export function getEcommerceOrderResponseFromJSON(
   jsonString: string,

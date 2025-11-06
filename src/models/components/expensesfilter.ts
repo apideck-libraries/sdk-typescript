@@ -4,10 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export const ExpensesFilterStatus = {
   Draft: "draft",
@@ -34,63 +31,14 @@ export type ExpensesFilter = {
 };
 
 /** @internal */
-export const ExpensesFilterStatus$inboundSchema: z.ZodNativeEnum<
+export const ExpensesFilterStatus$outboundSchema: z.ZodNativeEnum<
   typeof ExpensesFilterStatus
 > = z.nativeEnum(ExpensesFilterStatus);
 
 /** @internal */
-export const ExpensesFilterStatus$outboundSchema: z.ZodNativeEnum<
-  typeof ExpensesFilterStatus
-> = ExpensesFilterStatus$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ExpensesFilterStatus$ {
-  /** @deprecated use `ExpensesFilterStatus$inboundSchema` instead. */
-  export const inboundSchema = ExpensesFilterStatus$inboundSchema;
-  /** @deprecated use `ExpensesFilterStatus$outboundSchema` instead. */
-  export const outboundSchema = ExpensesFilterStatus$outboundSchema;
-}
-
-/** @internal */
-export const ExpensesFilterType$inboundSchema: z.ZodNativeEnum<
-  typeof ExpensesFilterType
-> = z.nativeEnum(ExpensesFilterType);
-
-/** @internal */
 export const ExpensesFilterType$outboundSchema: z.ZodNativeEnum<
   typeof ExpensesFilterType
-> = ExpensesFilterType$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ExpensesFilterType$ {
-  /** @deprecated use `ExpensesFilterType$inboundSchema` instead. */
-  export const inboundSchema = ExpensesFilterType$inboundSchema;
-  /** @deprecated use `ExpensesFilterType$outboundSchema` instead. */
-  export const outboundSchema = ExpensesFilterType$outboundSchema;
-}
-
-/** @internal */
-export const ExpensesFilter$inboundSchema: z.ZodType<
-  ExpensesFilter,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  updated_since: z.string().datetime({ offset: true }).transform(v =>
-    new Date(v)
-  ).optional(),
-  status: ExpensesFilterStatus$inboundSchema.optional(),
-  type: ExpensesFilterType$inboundSchema.optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "updated_since": "updatedSince",
-  });
-});
+> = z.nativeEnum(ExpensesFilterType);
 
 /** @internal */
 export type ExpensesFilter$Outbound = {
@@ -114,29 +62,6 @@ export const ExpensesFilter$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ExpensesFilter$ {
-  /** @deprecated use `ExpensesFilter$inboundSchema` instead. */
-  export const inboundSchema = ExpensesFilter$inboundSchema;
-  /** @deprecated use `ExpensesFilter$outboundSchema` instead. */
-  export const outboundSchema = ExpensesFilter$outboundSchema;
-  /** @deprecated use `ExpensesFilter$Outbound` instead. */
-  export type Outbound = ExpensesFilter$Outbound;
-}
-
 export function expensesFilterToJSON(expensesFilter: ExpensesFilter): string {
   return JSON.stringify(ExpensesFilter$outboundSchema.parse(expensesFilter));
-}
-
-export function expensesFilterFromJSON(
-  jsonString: string,
-): SafeParseResult<ExpensesFilter, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => ExpensesFilter$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ExpensesFilter' from JSON`,
-  );
 }

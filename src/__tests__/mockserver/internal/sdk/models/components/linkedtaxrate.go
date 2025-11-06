@@ -2,10 +2,6 @@
 
 package components
 
-import (
-	"mockserver/internal/sdk/utils"
-)
-
 type LinkedTaxRate struct {
 	// The ID of the object.
 	ID *string `json:"id,omitempty"`
@@ -15,17 +11,6 @@ type LinkedTaxRate struct {
 	Name *string `json:"name,omitempty"`
 	// Rate of the tax rate
 	Rate *float64 `json:"rate,omitempty"`
-}
-
-func (l LinkedTaxRate) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(l, "", false)
-}
-
-func (l *LinkedTaxRate) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &l, "", false, nil); err != nil {
-		return err
-	}
-	return nil
 }
 
 func (o *LinkedTaxRate) GetID() *string {

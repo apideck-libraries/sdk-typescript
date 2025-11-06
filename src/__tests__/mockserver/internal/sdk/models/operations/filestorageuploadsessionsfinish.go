@@ -43,8 +43,8 @@ type FileStorageUploadSessionsFinishRequest struct {
 	// Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
 	ServiceID *string `header:"style=simple,explode=false,name=x-apideck-service-id"`
 	// The RFC3230 message digest of the uploaded part. Only required for the Box connector. More information on the Box API docs [here](https://developer.box.com/reference/put-files-upload-sessions-id/#param-digest)
-	Digest      *string                                     `header:"style=simple,explode=false,name=digest"`
-	RequestBody *FileStorageUploadSessionsFinishRequestBody `request:"mediaType=application/json"`
+	Digest *string                                     `header:"style=simple,explode=false,name=digest"`
+	Body   *FileStorageUploadSessionsFinishRequestBody `request:"mediaType=application/json"`
 }
 
 func (f FileStorageUploadSessionsFinishRequest) MarshalJSON() ([]byte, error) {
@@ -100,11 +100,11 @@ func (o *FileStorageUploadSessionsFinishRequest) GetDigest() *string {
 	return o.Digest
 }
 
-func (o *FileStorageUploadSessionsFinishRequest) GetRequestBody() *FileStorageUploadSessionsFinishRequestBody {
+func (o *FileStorageUploadSessionsFinishRequest) GetBody() *FileStorageUploadSessionsFinishRequestBody {
 	if o == nil {
 		return nil
 	}
-	return o.RequestBody
+	return o.Body
 }
 
 type FileStorageUploadSessionsFinishResponse struct {

@@ -7,12 +7,7 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  UnifiedId,
-  UnifiedId$inboundSchema,
-  UnifiedId$Outbound,
-  UnifiedId$outboundSchema,
-} from "./unifiedid.js";
+import { UnifiedId, UnifiedId$inboundSchema } from "./unifiedid.js";
 
 /**
  * Shared Links
@@ -67,58 +62,6 @@ export const UpdateSharedLinkResponse$inboundSchema: z.ZodType<
     "_raw": "raw",
   });
 });
-
-/** @internal */
-export type UpdateSharedLinkResponse$Outbound = {
-  status_code: number;
-  status: string;
-  service: string;
-  resource: string;
-  operation: string;
-  data: UnifiedId$Outbound;
-  _raw?: { [k: string]: any } | null | undefined;
-};
-
-/** @internal */
-export const UpdateSharedLinkResponse$outboundSchema: z.ZodType<
-  UpdateSharedLinkResponse$Outbound,
-  z.ZodTypeDef,
-  UpdateSharedLinkResponse
-> = z.object({
-  statusCode: z.number().int(),
-  status: z.string(),
-  service: z.string(),
-  resource: z.string(),
-  operation: z.string(),
-  data: UnifiedId$outboundSchema,
-  raw: z.nullable(z.record(z.any())).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    statusCode: "status_code",
-    raw: "_raw",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace UpdateSharedLinkResponse$ {
-  /** @deprecated use `UpdateSharedLinkResponse$inboundSchema` instead. */
-  export const inboundSchema = UpdateSharedLinkResponse$inboundSchema;
-  /** @deprecated use `UpdateSharedLinkResponse$outboundSchema` instead. */
-  export const outboundSchema = UpdateSharedLinkResponse$outboundSchema;
-  /** @deprecated use `UpdateSharedLinkResponse$Outbound` instead. */
-  export type Outbound = UpdateSharedLinkResponse$Outbound;
-}
-
-export function updateSharedLinkResponseToJSON(
-  updateSharedLinkResponse: UpdateSharedLinkResponse,
-): string {
-  return JSON.stringify(
-    UpdateSharedLinkResponse$outboundSchema.parse(updateSharedLinkResponse),
-  );
-}
 
 export function updateSharedLinkResponseFromJSON(
   jsonString: string,

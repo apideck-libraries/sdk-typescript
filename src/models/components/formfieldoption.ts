@@ -40,7 +40,6 @@ export const FormFieldOption$inboundSchema: z.ZodType<
     })),
   ),
 ]);
-
 /** @internal */
 export type FormFieldOption$Outbound =
   | (FormFieldOptionGroup$Outbound & { option_type: "group" })
@@ -64,25 +63,11 @@ export const FormFieldOption$outboundSchema: z.ZodType<
   ),
 ]);
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace FormFieldOption$ {
-  /** @deprecated use `FormFieldOption$inboundSchema` instead. */
-  export const inboundSchema = FormFieldOption$inboundSchema;
-  /** @deprecated use `FormFieldOption$outboundSchema` instead. */
-  export const outboundSchema = FormFieldOption$outboundSchema;
-  /** @deprecated use `FormFieldOption$Outbound` instead. */
-  export type Outbound = FormFieldOption$Outbound;
-}
-
 export function formFieldOptionToJSON(
   formFieldOption: FormFieldOption,
 ): string {
   return JSON.stringify(FormFieldOption$outboundSchema.parse(formFieldOption));
 }
-
 export function formFieldOptionFromJSON(
   jsonString: string,
 ): SafeParseResult<FormFieldOption, SDKValidationError> {

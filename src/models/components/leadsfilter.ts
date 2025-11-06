@@ -4,9 +4,6 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type LeadsFilter = {
   /**
@@ -30,25 +27,6 @@ export type LeadsFilter = {
    */
   phoneNumber?: string | undefined;
 };
-
-/** @internal */
-export const LeadsFilter$inboundSchema: z.ZodType<
-  LeadsFilter,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  name: z.string().optional(),
-  first_name: z.string().optional(),
-  last_name: z.string().optional(),
-  email: z.string().optional(),
-  phone_number: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "first_name": "firstName",
-    "last_name": "lastName",
-    "phone_number": "phoneNumber",
-  });
-});
 
 /** @internal */
 export type LeadsFilter$Outbound = {
@@ -78,29 +56,6 @@ export const LeadsFilter$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace LeadsFilter$ {
-  /** @deprecated use `LeadsFilter$inboundSchema` instead. */
-  export const inboundSchema = LeadsFilter$inboundSchema;
-  /** @deprecated use `LeadsFilter$outboundSchema` instead. */
-  export const outboundSchema = LeadsFilter$outboundSchema;
-  /** @deprecated use `LeadsFilter$Outbound` instead. */
-  export type Outbound = LeadsFilter$Outbound;
-}
-
 export function leadsFilterToJSON(leadsFilter: LeadsFilter): string {
   return JSON.stringify(LeadsFilter$outboundSchema.parse(leadsFilter));
-}
-
-export function leadsFilterFromJSON(
-  jsonString: string,
-): SafeParseResult<LeadsFilter, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => LeadsFilter$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'LeadsFilter' from JSON`,
-  );
 }

@@ -36,8 +36,8 @@ type AccountingPurchaseOrdersAddRequest struct {
 	// The ID of your Unify application
 	AppID *string `header:"style=simple,explode=false,name=x-apideck-app-id"`
 	// Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
-	ServiceID     *string                       `header:"style=simple,explode=false,name=x-apideck-service-id"`
-	PurchaseOrder components.PurchaseOrderInput `request:"mediaType=application/json"`
+	ServiceID *string                       `header:"style=simple,explode=false,name=x-apideck-service-id"`
+	Body      components.PurchaseOrderInput `request:"mediaType=application/json"`
 }
 
 func (a AccountingPurchaseOrdersAddRequest) MarshalJSON() ([]byte, error) {
@@ -45,7 +45,7 @@ func (a AccountingPurchaseOrdersAddRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (a *AccountingPurchaseOrdersAddRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"PurchaseOrder"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"body"}); err != nil {
 		return err
 	}
 	return nil
@@ -79,11 +79,11 @@ func (o *AccountingPurchaseOrdersAddRequest) GetServiceID() *string {
 	return o.ServiceID
 }
 
-func (o *AccountingPurchaseOrdersAddRequest) GetPurchaseOrder() components.PurchaseOrderInput {
+func (o *AccountingPurchaseOrdersAddRequest) GetBody() components.PurchaseOrderInput {
 	if o == nil {
 		return components.PurchaseOrderInput{}
 	}
-	return o.PurchaseOrder
+	return o.Body
 }
 
 type AccountingPurchaseOrdersAddResponse struct {

@@ -38,7 +38,6 @@ export const LinkedPurchaseOrder$inboundSchema: z.ZodType<
     "line_number": "lineNumber",
   });
 });
-
 /** @internal */
 export type LinkedPurchaseOrder$Outbound = {
   id?: string | undefined;
@@ -62,19 +61,6 @@ export const LinkedPurchaseOrder$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace LinkedPurchaseOrder$ {
-  /** @deprecated use `LinkedPurchaseOrder$inboundSchema` instead. */
-  export const inboundSchema = LinkedPurchaseOrder$inboundSchema;
-  /** @deprecated use `LinkedPurchaseOrder$outboundSchema` instead. */
-  export const outboundSchema = LinkedPurchaseOrder$outboundSchema;
-  /** @deprecated use `LinkedPurchaseOrder$Outbound` instead. */
-  export type Outbound = LinkedPurchaseOrder$Outbound;
-}
-
 export function linkedPurchaseOrderToJSON(
   linkedPurchaseOrder: LinkedPurchaseOrder,
 ): string {
@@ -82,7 +68,6 @@ export function linkedPurchaseOrderToJSON(
     LinkedPurchaseOrder$outboundSchema.parse(linkedPurchaseOrder),
   );
 }
-
 export function linkedPurchaseOrderFromJSON(
   jsonString: string,
 ): SafeParseResult<LinkedPurchaseOrder, SDKValidationError> {

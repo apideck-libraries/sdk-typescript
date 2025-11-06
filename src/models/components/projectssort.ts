@@ -3,13 +3,9 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   SortDirection,
-  SortDirection$inboundSchema,
   SortDirection$outboundSchema,
 } from "./sortdirection.js";
 
@@ -43,35 +39,9 @@ export type ProjectsSort = {
 };
 
 /** @internal */
-export const ProjectsSortSortBy$inboundSchema: z.ZodNativeEnum<
-  typeof ProjectsSortSortBy
-> = z.nativeEnum(ProjectsSortSortBy);
-
-/** @internal */
 export const ProjectsSortSortBy$outboundSchema: z.ZodNativeEnum<
   typeof ProjectsSortSortBy
-> = ProjectsSortSortBy$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ProjectsSortSortBy$ {
-  /** @deprecated use `ProjectsSortSortBy$inboundSchema` instead. */
-  export const inboundSchema = ProjectsSortSortBy$inboundSchema;
-  /** @deprecated use `ProjectsSortSortBy$outboundSchema` instead. */
-  export const outboundSchema = ProjectsSortSortBy$outboundSchema;
-}
-
-/** @internal */
-export const ProjectsSort$inboundSchema: z.ZodType<
-  ProjectsSort,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  by: ProjectsSortSortBy$inboundSchema.optional(),
-  direction: SortDirection$inboundSchema.default("asc"),
-});
+> = z.nativeEnum(ProjectsSortSortBy);
 
 /** @internal */
 export type ProjectsSort$Outbound = {
@@ -89,29 +59,6 @@ export const ProjectsSort$outboundSchema: z.ZodType<
   direction: SortDirection$outboundSchema.default("asc"),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ProjectsSort$ {
-  /** @deprecated use `ProjectsSort$inboundSchema` instead. */
-  export const inboundSchema = ProjectsSort$inboundSchema;
-  /** @deprecated use `ProjectsSort$outboundSchema` instead. */
-  export const outboundSchema = ProjectsSort$outboundSchema;
-  /** @deprecated use `ProjectsSort$Outbound` instead. */
-  export type Outbound = ProjectsSort$Outbound;
-}
-
 export function projectsSortToJSON(projectsSort: ProjectsSort): string {
   return JSON.stringify(ProjectsSort$outboundSchema.parse(projectsSort));
-}
-
-export function projectsSortFromJSON(
-  jsonString: string,
-): SafeParseResult<ProjectsSort, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => ProjectsSort$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ProjectsSort' from JSON`,
-  );
 }

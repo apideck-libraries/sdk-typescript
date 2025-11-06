@@ -2,10 +2,6 @@
 
 package components
 
-import (
-	"mockserver/internal/sdk/utils"
-)
-
 type ExpenseLineItem struct {
 	// A unique identifier for an object.
 	ID *string `json:"id,omitempty"`
@@ -27,25 +23,23 @@ type ExpenseLineItem struct {
 	TaxRate      *LinkedTaxRate `json:"tax_rate,omitempty"`
 	// The expense line item description
 	Description *string `json:"description,omitempty"`
+	// Line Item type
+	Type *LineItemType `json:"type,omitempty"`
 	// The total amount of the expense line item.
 	TotalAmount *float64 `json:"total_amount"`
+	// Tax amount
+	TaxAmount *float64           `json:"tax_amount,omitempty"`
+	Quantity  *float64           `json:"quantity,omitempty"`
+	UnitPrice *float64           `json:"unit_price,omitempty"`
+	Item      *LinkedInvoiceItem `json:"item,omitempty"`
 	// Boolean that indicates if the line item is billable or not.
+	//
+	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
 	Billable *bool `json:"billable,omitempty"`
 	// Line number of the resource
 	LineNumber *int64 `json:"line_number,omitempty"`
 	// Rebilling metadata for this line item.
 	Rebilling *Rebilling `json:"rebilling,omitempty"`
-}
-
-func (e ExpenseLineItem) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(e, "", false)
-}
-
-func (e *ExpenseLineItem) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &e, "", false, []string{"total_amount"}); err != nil {
-		return err
-	}
-	return nil
 }
 
 func (o *ExpenseLineItem) GetID() *string {
@@ -118,11 +112,46 @@ func (o *ExpenseLineItem) GetDescription() *string {
 	return o.Description
 }
 
+func (o *ExpenseLineItem) GetType() *LineItemType {
+	if o == nil {
+		return nil
+	}
+	return o.Type
+}
+
 func (o *ExpenseLineItem) GetTotalAmount() *float64 {
 	if o == nil {
 		return nil
 	}
 	return o.TotalAmount
+}
+
+func (o *ExpenseLineItem) GetTaxAmount() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.TaxAmount
+}
+
+func (o *ExpenseLineItem) GetQuantity() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.Quantity
+}
+
+func (o *ExpenseLineItem) GetUnitPrice() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.UnitPrice
+}
+
+func (o *ExpenseLineItem) GetItem() *LinkedInvoiceItem {
+	if o == nil {
+		return nil
+	}
+	return o.Item
 }
 
 func (o *ExpenseLineItem) GetBillable() *bool {

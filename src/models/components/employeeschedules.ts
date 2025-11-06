@@ -6,18 +6,8 @@ import * as z from "zod/v3";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  Employee,
-  Employee$inboundSchema,
-  Employee$Outbound,
-  Employee$outboundSchema,
-} from "./employee.js";
-import {
-  Schedule,
-  Schedule$inboundSchema,
-  Schedule$Outbound,
-  Schedule$outboundSchema,
-} from "./schedule.js";
+import { Employee, Employee$inboundSchema } from "./employee.js";
+import { Schedule, Schedule$inboundSchema } from "./schedule.js";
 
 export type EmployeeSchedules = {
   employee?: Employee | undefined;
@@ -33,43 +23,6 @@ export const EmployeeSchedules$inboundSchema: z.ZodType<
   employee: Employee$inboundSchema.optional(),
   schedules: z.nullable(z.array(Schedule$inboundSchema)).optional(),
 });
-
-/** @internal */
-export type EmployeeSchedules$Outbound = {
-  employee?: Employee$Outbound | undefined;
-  schedules?: Array<Schedule$Outbound> | null | undefined;
-};
-
-/** @internal */
-export const EmployeeSchedules$outboundSchema: z.ZodType<
-  EmployeeSchedules$Outbound,
-  z.ZodTypeDef,
-  EmployeeSchedules
-> = z.object({
-  employee: Employee$outboundSchema.optional(),
-  schedules: z.nullable(z.array(Schedule$outboundSchema)).optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace EmployeeSchedules$ {
-  /** @deprecated use `EmployeeSchedules$inboundSchema` instead. */
-  export const inboundSchema = EmployeeSchedules$inboundSchema;
-  /** @deprecated use `EmployeeSchedules$outboundSchema` instead. */
-  export const outboundSchema = EmployeeSchedules$outboundSchema;
-  /** @deprecated use `EmployeeSchedules$Outbound` instead. */
-  export type Outbound = EmployeeSchedules$Outbound;
-}
-
-export function employeeSchedulesToJSON(
-  employeeSchedules: EmployeeSchedules,
-): string {
-  return JSON.stringify(
-    EmployeeSchedules$outboundSchema.parse(employeeSchedules),
-  );
-}
 
 export function employeeSchedulesFromJSON(
   jsonString: string,

@@ -3,13 +3,9 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   SortDirection,
-  SortDirection$inboundSchema,
   SortDirection$outboundSchema,
 } from "./sortdirection.js";
 
@@ -37,35 +33,9 @@ export type PaymentsSort = {
 };
 
 /** @internal */
-export const PaymentsSortBy$inboundSchema: z.ZodNativeEnum<
-  typeof PaymentsSortBy
-> = z.nativeEnum(PaymentsSortBy);
-
-/** @internal */
 export const PaymentsSortBy$outboundSchema: z.ZodNativeEnum<
   typeof PaymentsSortBy
-> = PaymentsSortBy$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace PaymentsSortBy$ {
-  /** @deprecated use `PaymentsSortBy$inboundSchema` instead. */
-  export const inboundSchema = PaymentsSortBy$inboundSchema;
-  /** @deprecated use `PaymentsSortBy$outboundSchema` instead. */
-  export const outboundSchema = PaymentsSortBy$outboundSchema;
-}
-
-/** @internal */
-export const PaymentsSort$inboundSchema: z.ZodType<
-  PaymentsSort,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  by: PaymentsSortBy$inboundSchema.optional(),
-  direction: SortDirection$inboundSchema.default("asc"),
-});
+> = z.nativeEnum(PaymentsSortBy);
 
 /** @internal */
 export type PaymentsSort$Outbound = {
@@ -83,29 +53,6 @@ export const PaymentsSort$outboundSchema: z.ZodType<
   direction: SortDirection$outboundSchema.default("asc"),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace PaymentsSort$ {
-  /** @deprecated use `PaymentsSort$inboundSchema` instead. */
-  export const inboundSchema = PaymentsSort$inboundSchema;
-  /** @deprecated use `PaymentsSort$outboundSchema` instead. */
-  export const outboundSchema = PaymentsSort$outboundSchema;
-  /** @deprecated use `PaymentsSort$Outbound` instead. */
-  export type Outbound = PaymentsSort$Outbound;
-}
-
 export function paymentsSortToJSON(paymentsSort: PaymentsSort): string {
   return JSON.stringify(PaymentsSort$outboundSchema.parse(paymentsSort));
-}
-
-export function paymentsSortFromJSON(
-  jsonString: string,
-): SafeParseResult<PaymentsSort, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => PaymentsSort$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'PaymentsSort' from JSON`,
-  );
 }

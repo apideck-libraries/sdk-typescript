@@ -53,82 +53,6 @@ export type FileStorageSharedLinksAddResponse = {
 };
 
 /** @internal */
-export const FileStorageSharedLinksAddGlobals$inboundSchema: z.ZodType<
-  FileStorageSharedLinksAddGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/** @internal */
-export type FileStorageSharedLinksAddGlobals$Outbound = {
-  consumerId?: string | undefined;
-  appId?: string | undefined;
-};
-
-/** @internal */
-export const FileStorageSharedLinksAddGlobals$outboundSchema: z.ZodType<
-  FileStorageSharedLinksAddGlobals$Outbound,
-  z.ZodTypeDef,
-  FileStorageSharedLinksAddGlobals
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace FileStorageSharedLinksAddGlobals$ {
-  /** @deprecated use `FileStorageSharedLinksAddGlobals$inboundSchema` instead. */
-  export const inboundSchema = FileStorageSharedLinksAddGlobals$inboundSchema;
-  /** @deprecated use `FileStorageSharedLinksAddGlobals$outboundSchema` instead. */
-  export const outboundSchema = FileStorageSharedLinksAddGlobals$outboundSchema;
-  /** @deprecated use `FileStorageSharedLinksAddGlobals$Outbound` instead. */
-  export type Outbound = FileStorageSharedLinksAddGlobals$Outbound;
-}
-
-export function fileStorageSharedLinksAddGlobalsToJSON(
-  fileStorageSharedLinksAddGlobals: FileStorageSharedLinksAddGlobals,
-): string {
-  return JSON.stringify(
-    FileStorageSharedLinksAddGlobals$outboundSchema.parse(
-      fileStorageSharedLinksAddGlobals,
-    ),
-  );
-}
-
-export function fileStorageSharedLinksAddGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<FileStorageSharedLinksAddGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => FileStorageSharedLinksAddGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'FileStorageSharedLinksAddGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const FileStorageSharedLinksAddRequest$inboundSchema: z.ZodType<
-  FileStorageSharedLinksAddRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  raw: z.boolean().default(false),
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  SharedLink: components.SharedLinkInput$inboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    "SharedLink": "sharedLink",
-  });
-});
-
-/** @internal */
 export type FileStorageSharedLinksAddRequest$Outbound = {
   raw: boolean;
   consumerId?: string | undefined;
@@ -154,19 +78,6 @@ export const FileStorageSharedLinksAddRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace FileStorageSharedLinksAddRequest$ {
-  /** @deprecated use `FileStorageSharedLinksAddRequest$inboundSchema` instead. */
-  export const inboundSchema = FileStorageSharedLinksAddRequest$inboundSchema;
-  /** @deprecated use `FileStorageSharedLinksAddRequest$outboundSchema` instead. */
-  export const outboundSchema = FileStorageSharedLinksAddRequest$outboundSchema;
-  /** @deprecated use `FileStorageSharedLinksAddRequest$Outbound` instead. */
-  export type Outbound = FileStorageSharedLinksAddRequest$Outbound;
-}
-
 export function fileStorageSharedLinksAddRequestToJSON(
   fileStorageSharedLinksAddRequest: FileStorageSharedLinksAddRequest,
 ): string {
@@ -174,16 +85,6 @@ export function fileStorageSharedLinksAddRequestToJSON(
     FileStorageSharedLinksAddRequest$outboundSchema.parse(
       fileStorageSharedLinksAddRequest,
     ),
-  );
-}
-
-export function fileStorageSharedLinksAddRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<FileStorageSharedLinksAddRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => FileStorageSharedLinksAddRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'FileStorageSharedLinksAddRequest' from JSON`,
   );
 }
 
@@ -205,60 +106,6 @@ export const FileStorageSharedLinksAddResponse$inboundSchema: z.ZodType<
     "UnexpectedErrorResponse": "unexpectedErrorResponse",
   });
 });
-
-/** @internal */
-export type FileStorageSharedLinksAddResponse$Outbound = {
-  HttpMeta: components.HTTPMetadata$Outbound;
-  CreateSharedLinkResponse?:
-    | components.CreateSharedLinkResponse$Outbound
-    | undefined;
-  UnexpectedErrorResponse?:
-    | components.UnexpectedErrorResponse$Outbound
-    | undefined;
-};
-
-/** @internal */
-export const FileStorageSharedLinksAddResponse$outboundSchema: z.ZodType<
-  FileStorageSharedLinksAddResponse$Outbound,
-  z.ZodTypeDef,
-  FileStorageSharedLinksAddResponse
-> = z.object({
-  httpMeta: components.HTTPMetadata$outboundSchema,
-  createSharedLinkResponse: components.CreateSharedLinkResponse$outboundSchema
-    .optional(),
-  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    httpMeta: "HttpMeta",
-    createSharedLinkResponse: "CreateSharedLinkResponse",
-    unexpectedErrorResponse: "UnexpectedErrorResponse",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace FileStorageSharedLinksAddResponse$ {
-  /** @deprecated use `FileStorageSharedLinksAddResponse$inboundSchema` instead. */
-  export const inboundSchema = FileStorageSharedLinksAddResponse$inboundSchema;
-  /** @deprecated use `FileStorageSharedLinksAddResponse$outboundSchema` instead. */
-  export const outboundSchema =
-    FileStorageSharedLinksAddResponse$outboundSchema;
-  /** @deprecated use `FileStorageSharedLinksAddResponse$Outbound` instead. */
-  export type Outbound = FileStorageSharedLinksAddResponse$Outbound;
-}
-
-export function fileStorageSharedLinksAddResponseToJSON(
-  fileStorageSharedLinksAddResponse: FileStorageSharedLinksAddResponse,
-): string {
-  return JSON.stringify(
-    FileStorageSharedLinksAddResponse$outboundSchema.parse(
-      fileStorageSharedLinksAddResponse,
-    ),
-  );
-}
 
 export function fileStorageSharedLinksAddResponseFromJSON(
   jsonString: string,

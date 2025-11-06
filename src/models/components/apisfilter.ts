@@ -3,14 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  ApiStatus,
-  ApiStatus$inboundSchema,
-  ApiStatus$outboundSchema,
-} from "./apistatus.js";
+import { ApiStatus, ApiStatus$outboundSchema } from "./apistatus.js";
 
 export type ApisFilter = {
   /**
@@ -18,15 +11,6 @@ export type ApisFilter = {
    */
   status?: ApiStatus | undefined;
 };
-
-/** @internal */
-export const ApisFilter$inboundSchema: z.ZodType<
-  ApisFilter,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  status: ApiStatus$inboundSchema.optional(),
-});
 
 /** @internal */
 export type ApisFilter$Outbound = {
@@ -42,29 +26,6 @@ export const ApisFilter$outboundSchema: z.ZodType<
   status: ApiStatus$outboundSchema.optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ApisFilter$ {
-  /** @deprecated use `ApisFilter$inboundSchema` instead. */
-  export const inboundSchema = ApisFilter$inboundSchema;
-  /** @deprecated use `ApisFilter$outboundSchema` instead. */
-  export const outboundSchema = ApisFilter$outboundSchema;
-  /** @deprecated use `ApisFilter$Outbound` instead. */
-  export type Outbound = ApisFilter$Outbound;
-}
-
 export function apisFilterToJSON(apisFilter: ApisFilter): string {
   return JSON.stringify(ApisFilter$outboundSchema.parse(apisFilter));
-}
-
-export function apisFilterFromJSON(
-  jsonString: string,
-): SafeParseResult<ApisFilter, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => ApisFilter$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ApisFilter' from JSON`,
-  );
 }

@@ -10,8 +10,6 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   BankFeedAccount,
   BankFeedAccount$inboundSchema,
-  BankFeedAccount$Outbound,
-  BankFeedAccount$outboundSchema,
 } from "./bankfeedaccount.js";
 
 /**
@@ -64,58 +62,6 @@ export const GetBankFeedAccountResponse$inboundSchema: z.ZodType<
     "_raw": "raw",
   });
 });
-
-/** @internal */
-export type GetBankFeedAccountResponse$Outbound = {
-  status_code: number;
-  status: string;
-  service: string;
-  resource: string;
-  operation: string;
-  data: BankFeedAccount$Outbound;
-  _raw?: { [k: string]: any } | null | undefined;
-};
-
-/** @internal */
-export const GetBankFeedAccountResponse$outboundSchema: z.ZodType<
-  GetBankFeedAccountResponse$Outbound,
-  z.ZodTypeDef,
-  GetBankFeedAccountResponse
-> = z.object({
-  statusCode: z.number().int(),
-  status: z.string(),
-  service: z.string(),
-  resource: z.string(),
-  operation: z.string(),
-  data: BankFeedAccount$outboundSchema,
-  raw: z.nullable(z.record(z.any())).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    statusCode: "status_code",
-    raw: "_raw",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetBankFeedAccountResponse$ {
-  /** @deprecated use `GetBankFeedAccountResponse$inboundSchema` instead. */
-  export const inboundSchema = GetBankFeedAccountResponse$inboundSchema;
-  /** @deprecated use `GetBankFeedAccountResponse$outboundSchema` instead. */
-  export const outboundSchema = GetBankFeedAccountResponse$outboundSchema;
-  /** @deprecated use `GetBankFeedAccountResponse$Outbound` instead. */
-  export type Outbound = GetBankFeedAccountResponse$Outbound;
-}
-
-export function getBankFeedAccountResponseToJSON(
-  getBankFeedAccountResponse: GetBankFeedAccountResponse,
-): string {
-  return JSON.stringify(
-    GetBankFeedAccountResponse$outboundSchema.parse(getBankFeedAccountResponse),
-  );
-}
 
 export function getBankFeedAccountResponseFromJSON(
   jsonString: string,

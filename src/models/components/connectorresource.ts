@@ -10,19 +10,14 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   PaginationCoverage,
   PaginationCoverage$inboundSchema,
-  PaginationCoverage$Outbound,
-  PaginationCoverage$outboundSchema,
 } from "./paginationcoverage.js";
 import {
   ResourceStatus,
   ResourceStatus$inboundSchema,
-  ResourceStatus$outboundSchema,
 } from "./resourcestatus.js";
 import {
   SupportedProperty,
   SupportedProperty$inboundSchema,
-  SupportedProperty$Outbound,
-  SupportedProperty$outboundSchema,
 } from "./supportedproperty.js";
 
 export type ConnectorResource = {
@@ -115,80 +110,6 @@ export const ConnectorResource$inboundSchema: z.ZodType<
     "supported_list_fields": "supportedListFields",
   });
 });
-
-/** @internal */
-export type ConnectorResource$Outbound = {
-  id?: string | undefined;
-  name?: string | undefined;
-  downstream_id?: string | undefined;
-  downstream_name?: string | undefined;
-  status?: string | undefined;
-  pagination_supported?: boolean | undefined;
-  pagination?: PaginationCoverage$Outbound | undefined;
-  custom_fields_supported?: boolean | undefined;
-  supported_operations?: Array<string> | undefined;
-  downstream_unsupported_operations?: Array<string> | undefined;
-  supported_filters?: Array<string> | undefined;
-  supported_sort_by?: Array<string> | undefined;
-  supported_fields?: Array<SupportedProperty$Outbound> | undefined;
-  supported_list_fields?: Array<SupportedProperty$Outbound> | undefined;
-};
-
-/** @internal */
-export const ConnectorResource$outboundSchema: z.ZodType<
-  ConnectorResource$Outbound,
-  z.ZodTypeDef,
-  ConnectorResource
-> = z.object({
-  id: z.string().optional(),
-  name: z.string().optional(),
-  downstreamId: z.string().optional(),
-  downstreamName: z.string().optional(),
-  status: ResourceStatus$outboundSchema.optional(),
-  paginationSupported: z.boolean().optional(),
-  pagination: PaginationCoverage$outboundSchema.optional(),
-  customFieldsSupported: z.boolean().optional(),
-  supportedOperations: z.array(z.string()).optional(),
-  downstreamUnsupportedOperations: z.array(z.string()).optional(),
-  supportedFilters: z.array(z.string()).optional(),
-  supportedSortBy: z.array(z.string()).optional(),
-  supportedFields: z.array(SupportedProperty$outboundSchema).optional(),
-  supportedListFields: z.array(SupportedProperty$outboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    downstreamId: "downstream_id",
-    downstreamName: "downstream_name",
-    paginationSupported: "pagination_supported",
-    customFieldsSupported: "custom_fields_supported",
-    supportedOperations: "supported_operations",
-    downstreamUnsupportedOperations: "downstream_unsupported_operations",
-    supportedFilters: "supported_filters",
-    supportedSortBy: "supported_sort_by",
-    supportedFields: "supported_fields",
-    supportedListFields: "supported_list_fields",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ConnectorResource$ {
-  /** @deprecated use `ConnectorResource$inboundSchema` instead. */
-  export const inboundSchema = ConnectorResource$inboundSchema;
-  /** @deprecated use `ConnectorResource$outboundSchema` instead. */
-  export const outboundSchema = ConnectorResource$outboundSchema;
-  /** @deprecated use `ConnectorResource$Outbound` instead. */
-  export type Outbound = ConnectorResource$Outbound;
-}
-
-export function connectorResourceToJSON(
-  connectorResource: ConnectorResource,
-): string {
-  return JSON.stringify(
-    ConnectorResource$outboundSchema.parse(connectorResource),
-  );
-}
 
 export function connectorResourceFromJSON(
   jsonString: string,

@@ -62,22 +62,10 @@ export type PhoneNumber = {
 export const PhoneNumberType$inboundSchema: z.ZodNativeEnum<
   typeof PhoneNumberType
 > = z.nativeEnum(PhoneNumberType);
-
 /** @internal */
 export const PhoneNumberType$outboundSchema: z.ZodNativeEnum<
   typeof PhoneNumberType
 > = PhoneNumberType$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace PhoneNumberType$ {
-  /** @deprecated use `PhoneNumberType$inboundSchema` instead. */
-  export const inboundSchema = PhoneNumberType$inboundSchema;
-  /** @deprecated use `PhoneNumberType$outboundSchema` instead. */
-  export const outboundSchema = PhoneNumberType$outboundSchema;
-}
 
 /** @internal */
 export const PhoneNumber$inboundSchema: z.ZodType<
@@ -97,7 +85,6 @@ export const PhoneNumber$inboundSchema: z.ZodType<
     "area_code": "areaCode",
   });
 });
-
 /** @internal */
 export type PhoneNumber$Outbound = {
   id?: string | null | undefined;
@@ -127,23 +114,9 @@ export const PhoneNumber$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace PhoneNumber$ {
-  /** @deprecated use `PhoneNumber$inboundSchema` instead. */
-  export const inboundSchema = PhoneNumber$inboundSchema;
-  /** @deprecated use `PhoneNumber$outboundSchema` instead. */
-  export const outboundSchema = PhoneNumber$outboundSchema;
-  /** @deprecated use `PhoneNumber$Outbound` instead. */
-  export type Outbound = PhoneNumber$Outbound;
-}
-
 export function phoneNumberToJSON(phoneNumber: PhoneNumber): string {
   return JSON.stringify(PhoneNumber$outboundSchema.parse(phoneNumber));
 }
-
 export function phoneNumberFromJSON(
   jsonString: string,
 ): SafeParseResult<PhoneNumber, SDKValidationError> {

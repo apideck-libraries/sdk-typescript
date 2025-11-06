@@ -36,20 +36,14 @@ import {
 import {
   EmployeeCompensation,
   EmployeeCompensation$inboundSchema,
-  EmployeeCompensation$Outbound,
-  EmployeeCompensation$outboundSchema,
   EmployeeCompensationInput,
-  EmployeeCompensationInput$inboundSchema,
   EmployeeCompensationInput$Outbound,
   EmployeeCompensationInput$outboundSchema,
 } from "./employeecompensation.js";
 import {
   EmployeeJob,
   EmployeeJob$inboundSchema,
-  EmployeeJob$Outbound,
-  EmployeeJob$outboundSchema,
   EmployeeJobInput,
-  EmployeeJobInput$inboundSchema,
   EmployeeJobInput$Outbound,
   EmployeeJobInput$outboundSchema,
 } from "./employeejob.js";
@@ -69,15 +63,9 @@ import {
   PassThroughBody$Outbound,
   PassThroughBody$outboundSchema,
 } from "./passthroughbody.js";
-import {
-  Person,
-  Person$inboundSchema,
-  Person$Outbound,
-  Person$outboundSchema,
-} from "./person.js";
+import { Person, Person$inboundSchema } from "./person.js";
 import {
   PersonInput,
-  PersonInput$inboundSchema,
   PersonInput$Outbound,
   PersonInput$outboundSchema,
 } from "./personinput.js";
@@ -612,64 +600,28 @@ export type EmployeeInput = {
 export const LeavingReason$inboundSchema: z.ZodNativeEnum<
   typeof LeavingReason
 > = z.nativeEnum(LeavingReason);
-
 /** @internal */
 export const LeavingReason$outboundSchema: z.ZodNativeEnum<
   typeof LeavingReason
 > = LeavingReason$inboundSchema;
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace LeavingReason$ {
-  /** @deprecated use `LeavingReason$inboundSchema` instead. */
-  export const inboundSchema = LeavingReason$inboundSchema;
-  /** @deprecated use `LeavingReason$outboundSchema` instead. */
-  export const outboundSchema = LeavingReason$outboundSchema;
-}
-
 /** @internal */
 export const EmploymentType$inboundSchema: z.ZodNativeEnum<
   typeof EmploymentType
 > = z.nativeEnum(EmploymentType);
-
 /** @internal */
 export const EmploymentType$outboundSchema: z.ZodNativeEnum<
   typeof EmploymentType
 > = EmploymentType$inboundSchema;
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace EmploymentType$ {
-  /** @deprecated use `EmploymentType$inboundSchema` instead. */
-  export const inboundSchema = EmploymentType$inboundSchema;
-  /** @deprecated use `EmploymentType$outboundSchema` instead. */
-  export const outboundSchema = EmploymentType$outboundSchema;
-}
-
 /** @internal */
 export const EmploymentSubType$inboundSchema: z.ZodNativeEnum<
   typeof EmploymentSubType
 > = z.nativeEnum(EmploymentSubType);
-
 /** @internal */
 export const EmploymentSubType$outboundSchema: z.ZodNativeEnum<
   typeof EmploymentSubType
 > = EmploymentSubType$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace EmploymentSubType$ {
-  /** @deprecated use `EmploymentSubType$inboundSchema` instead. */
-  export const inboundSchema = EmploymentSubType$inboundSchema;
-  /** @deprecated use `EmploymentSubType$outboundSchema` instead. */
-  export const outboundSchema = EmploymentSubType$outboundSchema;
-}
 
 /** @internal */
 export const EmploymentRole$inboundSchema: z.ZodType<
@@ -684,7 +636,6 @@ export const EmploymentRole$inboundSchema: z.ZodType<
     "sub_type": "subType",
   });
 });
-
 /** @internal */
 export type EmploymentRole$Outbound = {
   type?: string | null | undefined;
@@ -705,23 +656,9 @@ export const EmploymentRole$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace EmploymentRole$ {
-  /** @deprecated use `EmploymentRole$inboundSchema` instead. */
-  export const inboundSchema = EmploymentRole$inboundSchema;
-  /** @deprecated use `EmploymentRole$outboundSchema` instead. */
-  export const outboundSchema = EmploymentRole$outboundSchema;
-  /** @deprecated use `EmploymentRole$Outbound` instead. */
-  export type Outbound = EmploymentRole$Outbound;
-}
-
 export function employmentRoleToJSON(employmentRole: EmploymentRole): string {
   return JSON.stringify(EmploymentRole$outboundSchema.parse(employmentRole));
 }
-
 export function employmentRoleFromJSON(
   jsonString: string,
 ): SafeParseResult<EmploymentRole, SDKValidationError> {
@@ -748,7 +685,6 @@ export const Manager$inboundSchema: z.ZodType<Manager, z.ZodTypeDef, unknown> =
       "employment_status": "employmentStatus",
     });
   });
-
 /** @internal */
 export type Manager$Outbound = {
   id?: string | null | undefined;
@@ -779,23 +715,9 @@ export const Manager$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Manager$ {
-  /** @deprecated use `Manager$inboundSchema` instead. */
-  export const inboundSchema = Manager$inboundSchema;
-  /** @deprecated use `Manager$outboundSchema` instead. */
-  export const outboundSchema = Manager$outboundSchema;
-  /** @deprecated use `Manager$Outbound` instead. */
-  export type Outbound = Manager$Outbound;
-}
-
 export function managerToJSON(manager: Manager): string {
   return JSON.stringify(Manager$outboundSchema.parse(manager));
 }
-
 export function managerFromJSON(
   jsonString: string,
 ): SafeParseResult<Manager, SDKValidationError> {
@@ -820,7 +742,6 @@ export const ProbationPeriod$inboundSchema: z.ZodType<
     "end_date": "endDate",
   });
 });
-
 /** @internal */
 export type ProbationPeriod$Outbound = {
   start_date?: string | null | undefined;
@@ -844,25 +765,11 @@ export const ProbationPeriod$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ProbationPeriod$ {
-  /** @deprecated use `ProbationPeriod$inboundSchema` instead. */
-  export const inboundSchema = ProbationPeriod$inboundSchema;
-  /** @deprecated use `ProbationPeriod$outboundSchema` instead. */
-  export const outboundSchema = ProbationPeriod$outboundSchema;
-  /** @deprecated use `ProbationPeriod$Outbound` instead. */
-  export type Outbound = ProbationPeriod$Outbound;
-}
-
 export function probationPeriodToJSON(
   probationPeriod: ProbationPeriod,
 ): string {
   return JSON.stringify(ProbationPeriod$outboundSchema.parse(probationPeriod));
 }
-
 export function probationPeriodFromJSON(
   jsonString: string,
 ): SafeParseResult<ProbationPeriod, SDKValidationError> {
@@ -999,218 +906,6 @@ export const Employee$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type Employee$Outbound = {
-  id?: string | null | undefined;
-  downstream_id?: string | null | undefined;
-  first_name?: string | null | undefined;
-  last_name?: string | null | undefined;
-  middle_name?: string | null | undefined;
-  display_name?: string | null | undefined;
-  preferred_name?: string | null | undefined;
-  initials?: string | null | undefined;
-  salutation?: string | null | undefined;
-  title?: string | null | undefined;
-  marital_status?: string | null | undefined;
-  partner?: Person$Outbound | undefined;
-  division?: string | null | undefined;
-  division_id?: string | null | undefined;
-  department?: string | null | undefined;
-  department_id?: string | null | undefined;
-  department_name?: string | null | undefined;
-  team?: Team$Outbound | null | undefined;
-  company_id?: string | null | undefined;
-  company_name?: string | null | undefined;
-  employment_start_date?: string | null | undefined;
-  employment_end_date?: string | null | undefined;
-  leaving_reason?: string | null | undefined;
-  employee_number?: string | null | undefined;
-  employment_status?: string | null | undefined;
-  employment_role?: EmploymentRole$Outbound | undefined;
-  ethnicity?: string | null | undefined;
-  manager?: Manager$Outbound | undefined;
-  direct_reports?: Array<string> | null | undefined;
-  social_security_number?: string | null | undefined;
-  birthday?: string | null | undefined;
-  deceased_on?: string | null | undefined;
-  country_of_birth?: string | null | undefined;
-  description?: string | null | undefined;
-  gender?: string | null | undefined;
-  pronouns?: string | null | undefined;
-  preferred_language?: string | null | undefined;
-  languages?: Array<string | null> | undefined;
-  nationalities?: Array<string | null> | undefined;
-  photo_url?: string | null | undefined;
-  timezone?: string | null | undefined;
-  source?: string | null | undefined;
-  source_id?: string | null | undefined;
-  record_url?: string | null | undefined;
-  jobs?: Array<EmployeeJob$Outbound> | null | undefined;
-  compensations?: Array<EmployeeCompensation$Outbound> | null | undefined;
-  works_remote?: boolean | null | undefined;
-  addresses?: Array<Address$Outbound> | undefined;
-  phone_numbers?: Array<PhoneNumber$Outbound> | undefined;
-  emails?: Array<Email$Outbound> | undefined;
-  custom_fields?: Array<CustomField$Outbound> | undefined;
-  social_links?: Array<SocialLink$Outbound> | undefined;
-  bank_accounts?: Array<BankAccount2$Outbound> | undefined;
-  tax_code?: string | null | undefined;
-  tax_id?: string | null | undefined;
-  dietary_preference?: string | null | undefined;
-  food_allergies?: Array<string> | null | undefined;
-  probation_period?: ProbationPeriod$Outbound | undefined;
-  tags?: Array<string> | null | undefined;
-  custom_mappings?: { [k: string]: any } | null | undefined;
-  row_version?: string | null | undefined;
-  deleted?: boolean | null | undefined;
-  updated_by?: string | null | undefined;
-  created_by?: string | null | undefined;
-  updated_at?: string | null | undefined;
-  created_at?: string | null | undefined;
-  pass_through?: Array<PassThroughBody$Outbound> | undefined;
-};
-
-/** @internal */
-export const Employee$outboundSchema: z.ZodType<
-  Employee$Outbound,
-  z.ZodTypeDef,
-  Employee
-> = z.object({
-  id: z.nullable(z.string()).optional(),
-  downstreamId: z.nullable(z.string()).optional(),
-  firstName: z.nullable(z.string()).optional(),
-  lastName: z.nullable(z.string()).optional(),
-  middleName: z.nullable(z.string()).optional(),
-  displayName: z.nullable(z.string()).optional(),
-  preferredName: z.nullable(z.string()).optional(),
-  initials: z.nullable(z.string()).optional(),
-  salutation: z.nullable(z.string()).optional(),
-  title: z.nullable(z.string()).optional(),
-  maritalStatus: z.nullable(z.string()).optional(),
-  partner: Person$outboundSchema.optional(),
-  division: z.nullable(z.string()).optional(),
-  divisionId: z.nullable(z.string()).optional(),
-  department: z.nullable(z.string()).optional(),
-  departmentId: z.nullable(z.string()).optional(),
-  departmentName: z.nullable(z.string()).optional(),
-  team: z.nullable(Team$outboundSchema).optional(),
-  companyId: z.nullable(z.string()).optional(),
-  companyName: z.nullable(z.string()).optional(),
-  employmentStartDate: z.nullable(z.string()).optional(),
-  employmentEndDate: z.nullable(z.string()).optional(),
-  leavingReason: z.nullable(LeavingReason$outboundSchema).optional(),
-  employeeNumber: z.nullable(z.string()).optional(),
-  employmentStatus: z.nullable(EmploymentStatus$outboundSchema).optional(),
-  employmentRole: z.lazy(() => EmploymentRole$outboundSchema).optional(),
-  ethnicity: z.nullable(z.string()).optional(),
-  manager: z.lazy(() => Manager$outboundSchema).optional(),
-  directReports: z.nullable(z.array(z.string())).optional(),
-  socialSecurityNumber: z.nullable(z.string()).optional(),
-  birthday: z.nullable(z.instanceof(RFCDate).transform(v => v.toString()))
-    .optional(),
-  deceasedOn: z.nullable(z.instanceof(RFCDate).transform(v => v.toString()))
-    .optional(),
-  countryOfBirth: z.nullable(z.string()).optional(),
-  description: z.nullable(z.string()).optional(),
-  gender: z.nullable(Gender$outboundSchema).optional(),
-  pronouns: z.nullable(z.string()).optional(),
-  preferredLanguage: z.nullable(z.string()).optional(),
-  languages: z.array(z.nullable(z.string())).optional(),
-  nationalities: z.array(z.nullable(z.string())).optional(),
-  photoUrl: z.nullable(z.string()).optional(),
-  timezone: z.nullable(z.string()).optional(),
-  source: z.nullable(z.string()).optional(),
-  sourceId: z.nullable(z.string()).optional(),
-  recordUrl: z.nullable(z.string()).optional(),
-  jobs: z.nullable(z.array(EmployeeJob$outboundSchema)).optional(),
-  compensations: z.nullable(z.array(EmployeeCompensation$outboundSchema))
-    .optional(),
-  worksRemote: z.nullable(z.boolean()).optional(),
-  addresses: z.array(Address$outboundSchema).optional(),
-  phoneNumbers: z.array(PhoneNumber$outboundSchema).optional(),
-  emails: z.array(Email$outboundSchema).optional(),
-  customFields: z.array(CustomField$outboundSchema).optional(),
-  socialLinks: z.array(SocialLink$outboundSchema).optional(),
-  bankAccounts: z.array(BankAccount2$outboundSchema).optional(),
-  taxCode: z.nullable(z.string()).optional(),
-  taxId: z.nullable(z.string()).optional(),
-  dietaryPreference: z.nullable(z.string()).optional(),
-  foodAllergies: z.nullable(z.array(z.string())).optional(),
-  probationPeriod: z.lazy(() => ProbationPeriod$outboundSchema).optional(),
-  tags: z.nullable(z.array(z.string())).optional(),
-  customMappings: z.nullable(z.record(z.any())).optional(),
-  rowVersion: z.nullable(z.string()).optional(),
-  deleted: z.nullable(z.boolean()).optional(),
-  updatedBy: z.nullable(z.string()).optional(),
-  createdBy: z.nullable(z.string()).optional(),
-  updatedAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
-  createdAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
-  passThrough: z.array(PassThroughBody$outboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    downstreamId: "downstream_id",
-    firstName: "first_name",
-    lastName: "last_name",
-    middleName: "middle_name",
-    displayName: "display_name",
-    preferredName: "preferred_name",
-    maritalStatus: "marital_status",
-    divisionId: "division_id",
-    departmentId: "department_id",
-    departmentName: "department_name",
-    companyId: "company_id",
-    companyName: "company_name",
-    employmentStartDate: "employment_start_date",
-    employmentEndDate: "employment_end_date",
-    leavingReason: "leaving_reason",
-    employeeNumber: "employee_number",
-    employmentStatus: "employment_status",
-    employmentRole: "employment_role",
-    directReports: "direct_reports",
-    socialSecurityNumber: "social_security_number",
-    deceasedOn: "deceased_on",
-    countryOfBirth: "country_of_birth",
-    preferredLanguage: "preferred_language",
-    photoUrl: "photo_url",
-    sourceId: "source_id",
-    recordUrl: "record_url",
-    worksRemote: "works_remote",
-    phoneNumbers: "phone_numbers",
-    customFields: "custom_fields",
-    socialLinks: "social_links",
-    bankAccounts: "bank_accounts",
-    taxCode: "tax_code",
-    taxId: "tax_id",
-    dietaryPreference: "dietary_preference",
-    foodAllergies: "food_allergies",
-    probationPeriod: "probation_period",
-    customMappings: "custom_mappings",
-    rowVersion: "row_version",
-    updatedBy: "updated_by",
-    createdBy: "created_by",
-    updatedAt: "updated_at",
-    createdAt: "created_at",
-    passThrough: "pass_through",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Employee$ {
-  /** @deprecated use `Employee$inboundSchema` instead. */
-  export const inboundSchema = Employee$inboundSchema;
-  /** @deprecated use `Employee$outboundSchema` instead. */
-  export const outboundSchema = Employee$outboundSchema;
-  /** @deprecated use `Employee$Outbound` instead. */
-  export type Outbound = Employee$Outbound;
-}
-
-export function employeeToJSON(employee: Employee): string {
-  return JSON.stringify(Employee$outboundSchema.parse(employee));
-}
-
 export function employeeFromJSON(
   jsonString: string,
 ): SafeParseResult<Employee, SDKValidationError> {
@@ -1220,116 +915,6 @@ export function employeeFromJSON(
     `Failed to parse 'Employee' from JSON`,
   );
 }
-
-/** @internal */
-export const EmployeeInput$inboundSchema: z.ZodType<
-  EmployeeInput,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  id: z.nullable(z.string()).optional(),
-  first_name: z.nullable(z.string()).optional(),
-  last_name: z.nullable(z.string()).optional(),
-  middle_name: z.nullable(z.string()).optional(),
-  display_name: z.nullable(z.string()).optional(),
-  preferred_name: z.nullable(z.string()).optional(),
-  initials: z.nullable(z.string()).optional(),
-  salutation: z.nullable(z.string()).optional(),
-  title: z.nullable(z.string()).optional(),
-  marital_status: z.nullable(z.string()).optional(),
-  partner: PersonInput$inboundSchema.optional(),
-  division: z.nullable(z.string()).optional(),
-  division_id: z.nullable(z.string()).optional(),
-  department: z.nullable(z.string()).optional(),
-  department_id: z.nullable(z.string()).optional(),
-  department_name: z.nullable(z.string()).optional(),
-  team: z.nullable(Team$inboundSchema).optional(),
-  company_id: z.nullable(z.string()).optional(),
-  company_name: z.nullable(z.string()).optional(),
-  employment_start_date: z.nullable(z.string()).optional(),
-  employment_end_date: z.nullable(z.string()).optional(),
-  leaving_reason: z.nullable(LeavingReason$inboundSchema).optional(),
-  employee_number: z.nullable(z.string()).optional(),
-  employment_status: z.nullable(EmploymentStatus$inboundSchema).optional(),
-  employment_role: z.lazy(() => EmploymentRole$inboundSchema).optional(),
-  ethnicity: z.nullable(z.string()).optional(),
-  manager: z.lazy(() => Manager$inboundSchema).optional(),
-  direct_reports: z.nullable(z.array(z.string())).optional(),
-  social_security_number: z.nullable(z.string()).optional(),
-  birthday: z.nullable(z.string().transform(v => new RFCDate(v))).optional(),
-  deceased_on: z.nullable(z.string().transform(v => new RFCDate(v))).optional(),
-  country_of_birth: z.nullable(z.string()).optional(),
-  description: z.nullable(z.string()).optional(),
-  gender: z.nullable(Gender$inboundSchema).optional(),
-  pronouns: z.nullable(z.string()).optional(),
-  preferred_language: z.nullable(z.string()).optional(),
-  languages: z.array(z.nullable(z.string())).optional(),
-  nationalities: z.array(z.nullable(z.string())).optional(),
-  photo_url: z.nullable(z.string()).optional(),
-  timezone: z.nullable(z.string()).optional(),
-  source: z.nullable(z.string()).optional(),
-  source_id: z.nullable(z.string()).optional(),
-  record_url: z.nullable(z.string()).optional(),
-  jobs: z.nullable(z.array(EmployeeJobInput$inboundSchema)).optional(),
-  compensations: z.nullable(z.array(EmployeeCompensationInput$inboundSchema))
-    .optional(),
-  works_remote: z.nullable(z.boolean()).optional(),
-  addresses: z.array(Address$inboundSchema).optional(),
-  phone_numbers: z.array(PhoneNumber$inboundSchema).optional(),
-  emails: z.array(Email$inboundSchema).optional(),
-  custom_fields: z.array(CustomField$inboundSchema).optional(),
-  social_links: z.array(SocialLink$inboundSchema).optional(),
-  bank_accounts: z.array(BankAccount2$inboundSchema).optional(),
-  tax_code: z.nullable(z.string()).optional(),
-  tax_id: z.nullable(z.string()).optional(),
-  dietary_preference: z.nullable(z.string()).optional(),
-  food_allergies: z.nullable(z.array(z.string())).optional(),
-  probation_period: z.lazy(() => ProbationPeriod$inboundSchema).optional(),
-  tags: z.nullable(z.array(z.string())).optional(),
-  row_version: z.nullable(z.string()).optional(),
-  deleted: z.nullable(z.boolean()).optional(),
-  pass_through: z.array(PassThroughBody$inboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "first_name": "firstName",
-    "last_name": "lastName",
-    "middle_name": "middleName",
-    "display_name": "displayName",
-    "preferred_name": "preferredName",
-    "marital_status": "maritalStatus",
-    "division_id": "divisionId",
-    "department_id": "departmentId",
-    "department_name": "departmentName",
-    "company_id": "companyId",
-    "company_name": "companyName",
-    "employment_start_date": "employmentStartDate",
-    "employment_end_date": "employmentEndDate",
-    "leaving_reason": "leavingReason",
-    "employee_number": "employeeNumber",
-    "employment_status": "employmentStatus",
-    "employment_role": "employmentRole",
-    "direct_reports": "directReports",
-    "social_security_number": "socialSecurityNumber",
-    "deceased_on": "deceasedOn",
-    "country_of_birth": "countryOfBirth",
-    "preferred_language": "preferredLanguage",
-    "photo_url": "photoUrl",
-    "source_id": "sourceId",
-    "record_url": "recordUrl",
-    "works_remote": "worksRemote",
-    "phone_numbers": "phoneNumbers",
-    "custom_fields": "customFields",
-    "social_links": "socialLinks",
-    "bank_accounts": "bankAccounts",
-    "tax_code": "taxCode",
-    "tax_id": "taxId",
-    "dietary_preference": "dietaryPreference",
-    "food_allergies": "foodAllergies",
-    "probation_period": "probationPeriod",
-    "row_version": "rowVersion",
-    "pass_through": "passThrough",
-  });
-});
 
 /** @internal */
 export type EmployeeInput$Outbound = {
@@ -1508,29 +1093,6 @@ export const EmployeeInput$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace EmployeeInput$ {
-  /** @deprecated use `EmployeeInput$inboundSchema` instead. */
-  export const inboundSchema = EmployeeInput$inboundSchema;
-  /** @deprecated use `EmployeeInput$outboundSchema` instead. */
-  export const outboundSchema = EmployeeInput$outboundSchema;
-  /** @deprecated use `EmployeeInput$Outbound` instead. */
-  export type Outbound = EmployeeInput$Outbound;
-}
-
 export function employeeInputToJSON(employeeInput: EmployeeInput): string {
   return JSON.stringify(EmployeeInput$outboundSchema.parse(employeeInput));
-}
-
-export function employeeInputFromJSON(
-  jsonString: string,
-): SafeParseResult<EmployeeInput, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => EmployeeInput$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'EmployeeInput' from JSON`,
-  );
 }

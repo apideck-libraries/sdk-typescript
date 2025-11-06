@@ -4,15 +4,8 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
 import { RFCDate } from "../../types/rfcdate.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  Gender,
-  Gender$inboundSchema,
-  Gender$outboundSchema,
-} from "./gender.js";
+import { Gender, Gender$outboundSchema } from "./gender.js";
 
 export type PersonInput = {
   /**
@@ -44,28 +37,6 @@ export type PersonInput = {
    */
   deceasedOn?: RFCDate | null | undefined;
 };
-
-/** @internal */
-export const PersonInput$inboundSchema: z.ZodType<
-  PersonInput,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  first_name: z.nullable(z.string()).optional(),
-  last_name: z.nullable(z.string()).optional(),
-  middle_name: z.nullable(z.string()).optional(),
-  gender: z.nullable(Gender$inboundSchema).optional(),
-  initials: z.nullable(z.string()).optional(),
-  birthday: z.nullable(z.string().transform(v => new RFCDate(v))).optional(),
-  deceased_on: z.nullable(z.string().transform(v => new RFCDate(v))).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "first_name": "firstName",
-    "last_name": "lastName",
-    "middle_name": "middleName",
-    "deceased_on": "deceasedOn",
-  });
-});
 
 /** @internal */
 export type PersonInput$Outbound = {
@@ -102,29 +73,6 @@ export const PersonInput$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace PersonInput$ {
-  /** @deprecated use `PersonInput$inboundSchema` instead. */
-  export const inboundSchema = PersonInput$inboundSchema;
-  /** @deprecated use `PersonInput$outboundSchema` instead. */
-  export const outboundSchema = PersonInput$outboundSchema;
-  /** @deprecated use `PersonInput$Outbound` instead. */
-  export type Outbound = PersonInput$Outbound;
-}
-
 export function personInputToJSON(personInput: PersonInput): string {
   return JSON.stringify(PersonInput$outboundSchema.parse(personInput));
-}
-
-export function personInputFromJSON(
-  jsonString: string,
-): SafeParseResult<PersonInput, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => PersonInput$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'PersonInput' from JSON`,
-  );
 }

@@ -8,11 +8,7 @@ import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { RFCDate } from "../../types/rfcdate.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  Gender,
-  Gender$inboundSchema,
-  Gender$outboundSchema,
-} from "./gender.js";
+import { Gender, Gender$inboundSchema } from "./gender.js";
 
 export type Person = {
   /**
@@ -75,63 +71,6 @@ export const Person$inboundSchema: z.ZodType<Person, z.ZodTypeDef, unknown> = z
       "custom_mappings": "customMappings",
     });
   });
-
-/** @internal */
-export type Person$Outbound = {
-  id?: string | null | undefined;
-  first_name?: string | null | undefined;
-  last_name?: string | null | undefined;
-  middle_name?: string | null | undefined;
-  gender?: string | null | undefined;
-  initials?: string | null | undefined;
-  birthday?: string | null | undefined;
-  deceased_on?: string | null | undefined;
-  custom_mappings?: { [k: string]: any } | null | undefined;
-};
-
-/** @internal */
-export const Person$outboundSchema: z.ZodType<
-  Person$Outbound,
-  z.ZodTypeDef,
-  Person
-> = z.object({
-  id: z.nullable(z.string()).optional(),
-  firstName: z.nullable(z.string()).optional(),
-  lastName: z.nullable(z.string()).optional(),
-  middleName: z.nullable(z.string()).optional(),
-  gender: z.nullable(Gender$outboundSchema).optional(),
-  initials: z.nullable(z.string()).optional(),
-  birthday: z.nullable(z.instanceof(RFCDate).transform(v => v.toString()))
-    .optional(),
-  deceasedOn: z.nullable(z.instanceof(RFCDate).transform(v => v.toString()))
-    .optional(),
-  customMappings: z.nullable(z.record(z.any())).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    firstName: "first_name",
-    lastName: "last_name",
-    middleName: "middle_name",
-    deceasedOn: "deceased_on",
-    customMappings: "custom_mappings",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Person$ {
-  /** @deprecated use `Person$inboundSchema` instead. */
-  export const inboundSchema = Person$inboundSchema;
-  /** @deprecated use `Person$outboundSchema` instead. */
-  export const outboundSchema = Person$outboundSchema;
-  /** @deprecated use `Person$Outbound` instead. */
-  export type Outbound = Person$Outbound;
-}
-
-export function personToJSON(person: Person): string {
-  return JSON.stringify(Person$outboundSchema.parse(person));
-}
 
 export function personFromJSON(
   jsonString: string,

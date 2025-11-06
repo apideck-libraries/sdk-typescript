@@ -37,7 +37,7 @@ type SmsMessagesAddRequest struct {
 	AppID *string `header:"style=simple,explode=false,name=x-apideck-app-id"`
 	// Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
 	ServiceID *string                 `header:"style=simple,explode=false,name=x-apideck-service-id"`
-	Message   components.MessageInput `request:"mediaType=application/json"`
+	Body      components.MessageInput `request:"mediaType=application/json"`
 }
 
 func (s SmsMessagesAddRequest) MarshalJSON() ([]byte, error) {
@@ -45,7 +45,7 @@ func (s SmsMessagesAddRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (s *SmsMessagesAddRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &s, "", false, []string{"Message"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &s, "", false, []string{"body"}); err != nil {
 		return err
 	}
 	return nil
@@ -79,11 +79,11 @@ func (o *SmsMessagesAddRequest) GetServiceID() *string {
 	return o.ServiceID
 }
 
-func (o *SmsMessagesAddRequest) GetMessage() components.MessageInput {
+func (o *SmsMessagesAddRequest) GetBody() components.MessageInput {
 	if o == nil {
 		return components.MessageInput{}
 	}
-	return o.Message
+	return o.Body
 }
 
 type SmsMessagesAddResponse struct {

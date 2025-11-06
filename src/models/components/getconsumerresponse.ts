@@ -7,12 +7,7 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  Consumer,
-  Consumer$inboundSchema,
-  Consumer$Outbound,
-  Consumer$outboundSchema,
-} from "./consumer.js";
+import { Consumer, Consumer$inboundSchema } from "./consumer.js";
 
 /**
  * Consumer
@@ -49,52 +44,6 @@ export const GetConsumerResponse$inboundSchema: z.ZodType<
     "_raw": "raw",
   });
 });
-
-/** @internal */
-export type GetConsumerResponse$Outbound = {
-  status_code: number;
-  status: string;
-  data: Consumer$Outbound;
-  _raw?: { [k: string]: any } | null | undefined;
-};
-
-/** @internal */
-export const GetConsumerResponse$outboundSchema: z.ZodType<
-  GetConsumerResponse$Outbound,
-  z.ZodTypeDef,
-  GetConsumerResponse
-> = z.object({
-  statusCode: z.number().int(),
-  status: z.string(),
-  data: Consumer$outboundSchema,
-  raw: z.nullable(z.record(z.any())).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    statusCode: "status_code",
-    raw: "_raw",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetConsumerResponse$ {
-  /** @deprecated use `GetConsumerResponse$inboundSchema` instead. */
-  export const inboundSchema = GetConsumerResponse$inboundSchema;
-  /** @deprecated use `GetConsumerResponse$outboundSchema` instead. */
-  export const outboundSchema = GetConsumerResponse$outboundSchema;
-  /** @deprecated use `GetConsumerResponse$Outbound` instead. */
-  export type Outbound = GetConsumerResponse$Outbound;
-}
-
-export function getConsumerResponseToJSON(
-  getConsumerResponse: GetConsumerResponse,
-): string {
-  return JSON.stringify(
-    GetConsumerResponse$outboundSchema.parse(getConsumerResponse),
-  );
-}
 
 export function getConsumerResponseFromJSON(
   jsonString: string,

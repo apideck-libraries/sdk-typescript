@@ -32,7 +32,6 @@ export const SocialLink$inboundSchema: z.ZodType<
   url: z.string(),
   type: z.nullable(z.string()).optional(),
 });
-
 /** @internal */
 export type SocialLink$Outbound = {
   id?: string | null | undefined;
@@ -51,23 +50,9 @@ export const SocialLink$outboundSchema: z.ZodType<
   type: z.nullable(z.string()).optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SocialLink$ {
-  /** @deprecated use `SocialLink$inboundSchema` instead. */
-  export const inboundSchema = SocialLink$inboundSchema;
-  /** @deprecated use `SocialLink$outboundSchema` instead. */
-  export const outboundSchema = SocialLink$outboundSchema;
-  /** @deprecated use `SocialLink$Outbound` instead. */
-  export type Outbound = SocialLink$Outbound;
-}
-
 export function socialLinkToJSON(socialLink: SocialLink): string {
   return JSON.stringify(SocialLink$outboundSchema.parse(socialLink));
 }
-
 export function socialLinkFromJSON(
   jsonString: string,
 ): SafeParseResult<SocialLink, SDKValidationError> {

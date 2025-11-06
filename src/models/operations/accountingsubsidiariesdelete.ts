@@ -56,81 +56,6 @@ export type AccountingSubsidiariesDeleteResponse = {
 };
 
 /** @internal */
-export const AccountingSubsidiariesDeleteGlobals$inboundSchema: z.ZodType<
-  AccountingSubsidiariesDeleteGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/** @internal */
-export type AccountingSubsidiariesDeleteGlobals$Outbound = {
-  consumerId?: string | undefined;
-  appId?: string | undefined;
-};
-
-/** @internal */
-export const AccountingSubsidiariesDeleteGlobals$outboundSchema: z.ZodType<
-  AccountingSubsidiariesDeleteGlobals$Outbound,
-  z.ZodTypeDef,
-  AccountingSubsidiariesDeleteGlobals
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AccountingSubsidiariesDeleteGlobals$ {
-  /** @deprecated use `AccountingSubsidiariesDeleteGlobals$inboundSchema` instead. */
-  export const inboundSchema =
-    AccountingSubsidiariesDeleteGlobals$inboundSchema;
-  /** @deprecated use `AccountingSubsidiariesDeleteGlobals$outboundSchema` instead. */
-  export const outboundSchema =
-    AccountingSubsidiariesDeleteGlobals$outboundSchema;
-  /** @deprecated use `AccountingSubsidiariesDeleteGlobals$Outbound` instead. */
-  export type Outbound = AccountingSubsidiariesDeleteGlobals$Outbound;
-}
-
-export function accountingSubsidiariesDeleteGlobalsToJSON(
-  accountingSubsidiariesDeleteGlobals: AccountingSubsidiariesDeleteGlobals,
-): string {
-  return JSON.stringify(
-    AccountingSubsidiariesDeleteGlobals$outboundSchema.parse(
-      accountingSubsidiariesDeleteGlobals,
-    ),
-  );
-}
-
-export function accountingSubsidiariesDeleteGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<AccountingSubsidiariesDeleteGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      AccountingSubsidiariesDeleteGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'AccountingSubsidiariesDeleteGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const AccountingSubsidiariesDeleteRequest$inboundSchema: z.ZodType<
-  AccountingSubsidiariesDeleteRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  id: z.string(),
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  raw: z.boolean().default(false),
-});
-
-/** @internal */
 export type AccountingSubsidiariesDeleteRequest$Outbound = {
   id: string;
   consumerId?: string | undefined;
@@ -152,21 +77,6 @@ export const AccountingSubsidiariesDeleteRequest$outboundSchema: z.ZodType<
   raw: z.boolean().default(false),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AccountingSubsidiariesDeleteRequest$ {
-  /** @deprecated use `AccountingSubsidiariesDeleteRequest$inboundSchema` instead. */
-  export const inboundSchema =
-    AccountingSubsidiariesDeleteRequest$inboundSchema;
-  /** @deprecated use `AccountingSubsidiariesDeleteRequest$outboundSchema` instead. */
-  export const outboundSchema =
-    AccountingSubsidiariesDeleteRequest$outboundSchema;
-  /** @deprecated use `AccountingSubsidiariesDeleteRequest$Outbound` instead. */
-  export type Outbound = AccountingSubsidiariesDeleteRequest$Outbound;
-}
-
 export function accountingSubsidiariesDeleteRequestToJSON(
   accountingSubsidiariesDeleteRequest: AccountingSubsidiariesDeleteRequest,
 ): string {
@@ -174,17 +84,6 @@ export function accountingSubsidiariesDeleteRequestToJSON(
     AccountingSubsidiariesDeleteRequest$outboundSchema.parse(
       accountingSubsidiariesDeleteRequest,
     ),
-  );
-}
-
-export function accountingSubsidiariesDeleteRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<AccountingSubsidiariesDeleteRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      AccountingSubsidiariesDeleteRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'AccountingSubsidiariesDeleteRequest' from JSON`,
   );
 }
 
@@ -206,61 +105,6 @@ export const AccountingSubsidiariesDeleteResponse$inboundSchema: z.ZodType<
     "UnexpectedErrorResponse": "unexpectedErrorResponse",
   });
 });
-
-/** @internal */
-export type AccountingSubsidiariesDeleteResponse$Outbound = {
-  HttpMeta: components.HTTPMetadata$Outbound;
-  DeleteSubsidiaryResponse?:
-    | components.DeleteSubsidiaryResponse$Outbound
-    | undefined;
-  UnexpectedErrorResponse?:
-    | components.UnexpectedErrorResponse$Outbound
-    | undefined;
-};
-
-/** @internal */
-export const AccountingSubsidiariesDeleteResponse$outboundSchema: z.ZodType<
-  AccountingSubsidiariesDeleteResponse$Outbound,
-  z.ZodTypeDef,
-  AccountingSubsidiariesDeleteResponse
-> = z.object({
-  httpMeta: components.HTTPMetadata$outboundSchema,
-  deleteSubsidiaryResponse: components.DeleteSubsidiaryResponse$outboundSchema
-    .optional(),
-  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    httpMeta: "HttpMeta",
-    deleteSubsidiaryResponse: "DeleteSubsidiaryResponse",
-    unexpectedErrorResponse: "UnexpectedErrorResponse",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AccountingSubsidiariesDeleteResponse$ {
-  /** @deprecated use `AccountingSubsidiariesDeleteResponse$inboundSchema` instead. */
-  export const inboundSchema =
-    AccountingSubsidiariesDeleteResponse$inboundSchema;
-  /** @deprecated use `AccountingSubsidiariesDeleteResponse$outboundSchema` instead. */
-  export const outboundSchema =
-    AccountingSubsidiariesDeleteResponse$outboundSchema;
-  /** @deprecated use `AccountingSubsidiariesDeleteResponse$Outbound` instead. */
-  export type Outbound = AccountingSubsidiariesDeleteResponse$Outbound;
-}
-
-export function accountingSubsidiariesDeleteResponseToJSON(
-  accountingSubsidiariesDeleteResponse: AccountingSubsidiariesDeleteResponse,
-): string {
-  return JSON.stringify(
-    AccountingSubsidiariesDeleteResponse$outboundSchema.parse(
-      accountingSubsidiariesDeleteResponse,
-    ),
-  );
-}
 
 export function accountingSubsidiariesDeleteResponseFromJSON(
   jsonString: string,

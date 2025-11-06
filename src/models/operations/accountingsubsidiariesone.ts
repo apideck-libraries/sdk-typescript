@@ -60,79 +60,6 @@ export type AccountingSubsidiariesOneResponse = {
 };
 
 /** @internal */
-export const AccountingSubsidiariesOneGlobals$inboundSchema: z.ZodType<
-  AccountingSubsidiariesOneGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/** @internal */
-export type AccountingSubsidiariesOneGlobals$Outbound = {
-  consumerId?: string | undefined;
-  appId?: string | undefined;
-};
-
-/** @internal */
-export const AccountingSubsidiariesOneGlobals$outboundSchema: z.ZodType<
-  AccountingSubsidiariesOneGlobals$Outbound,
-  z.ZodTypeDef,
-  AccountingSubsidiariesOneGlobals
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AccountingSubsidiariesOneGlobals$ {
-  /** @deprecated use `AccountingSubsidiariesOneGlobals$inboundSchema` instead. */
-  export const inboundSchema = AccountingSubsidiariesOneGlobals$inboundSchema;
-  /** @deprecated use `AccountingSubsidiariesOneGlobals$outboundSchema` instead. */
-  export const outboundSchema = AccountingSubsidiariesOneGlobals$outboundSchema;
-  /** @deprecated use `AccountingSubsidiariesOneGlobals$Outbound` instead. */
-  export type Outbound = AccountingSubsidiariesOneGlobals$Outbound;
-}
-
-export function accountingSubsidiariesOneGlobalsToJSON(
-  accountingSubsidiariesOneGlobals: AccountingSubsidiariesOneGlobals,
-): string {
-  return JSON.stringify(
-    AccountingSubsidiariesOneGlobals$outboundSchema.parse(
-      accountingSubsidiariesOneGlobals,
-    ),
-  );
-}
-
-export function accountingSubsidiariesOneGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<AccountingSubsidiariesOneGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => AccountingSubsidiariesOneGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'AccountingSubsidiariesOneGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const AccountingSubsidiariesOneRequest$inboundSchema: z.ZodType<
-  AccountingSubsidiariesOneRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  id: z.string(),
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  raw: z.boolean().default(false),
-  fields: z.nullable(z.string()).optional(),
-});
-
-/** @internal */
 export type AccountingSubsidiariesOneRequest$Outbound = {
   id: string;
   consumerId?: string | undefined;
@@ -156,19 +83,6 @@ export const AccountingSubsidiariesOneRequest$outboundSchema: z.ZodType<
   fields: z.nullable(z.string()).optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AccountingSubsidiariesOneRequest$ {
-  /** @deprecated use `AccountingSubsidiariesOneRequest$inboundSchema` instead. */
-  export const inboundSchema = AccountingSubsidiariesOneRequest$inboundSchema;
-  /** @deprecated use `AccountingSubsidiariesOneRequest$outboundSchema` instead. */
-  export const outboundSchema = AccountingSubsidiariesOneRequest$outboundSchema;
-  /** @deprecated use `AccountingSubsidiariesOneRequest$Outbound` instead. */
-  export type Outbound = AccountingSubsidiariesOneRequest$Outbound;
-}
-
 export function accountingSubsidiariesOneRequestToJSON(
   accountingSubsidiariesOneRequest: AccountingSubsidiariesOneRequest,
 ): string {
@@ -176,16 +90,6 @@ export function accountingSubsidiariesOneRequestToJSON(
     AccountingSubsidiariesOneRequest$outboundSchema.parse(
       accountingSubsidiariesOneRequest,
     ),
-  );
-}
-
-export function accountingSubsidiariesOneRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<AccountingSubsidiariesOneRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => AccountingSubsidiariesOneRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'AccountingSubsidiariesOneRequest' from JSON`,
   );
 }
 
@@ -207,58 +111,6 @@ export const AccountingSubsidiariesOneResponse$inboundSchema: z.ZodType<
     "UnexpectedErrorResponse": "unexpectedErrorResponse",
   });
 });
-
-/** @internal */
-export type AccountingSubsidiariesOneResponse$Outbound = {
-  HttpMeta: components.HTTPMetadata$Outbound;
-  GetSubsidiaryResponse?: components.GetSubsidiaryResponse$Outbound | undefined;
-  UnexpectedErrorResponse?:
-    | components.UnexpectedErrorResponse$Outbound
-    | undefined;
-};
-
-/** @internal */
-export const AccountingSubsidiariesOneResponse$outboundSchema: z.ZodType<
-  AccountingSubsidiariesOneResponse$Outbound,
-  z.ZodTypeDef,
-  AccountingSubsidiariesOneResponse
-> = z.object({
-  httpMeta: components.HTTPMetadata$outboundSchema,
-  getSubsidiaryResponse: components.GetSubsidiaryResponse$outboundSchema
-    .optional(),
-  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    httpMeta: "HttpMeta",
-    getSubsidiaryResponse: "GetSubsidiaryResponse",
-    unexpectedErrorResponse: "UnexpectedErrorResponse",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AccountingSubsidiariesOneResponse$ {
-  /** @deprecated use `AccountingSubsidiariesOneResponse$inboundSchema` instead. */
-  export const inboundSchema = AccountingSubsidiariesOneResponse$inboundSchema;
-  /** @deprecated use `AccountingSubsidiariesOneResponse$outboundSchema` instead. */
-  export const outboundSchema =
-    AccountingSubsidiariesOneResponse$outboundSchema;
-  /** @deprecated use `AccountingSubsidiariesOneResponse$Outbound` instead. */
-  export type Outbound = AccountingSubsidiariesOneResponse$Outbound;
-}
-
-export function accountingSubsidiariesOneResponseToJSON(
-  accountingSubsidiariesOneResponse: AccountingSubsidiariesOneResponse,
-): string {
-  return JSON.stringify(
-    AccountingSubsidiariesOneResponse$outboundSchema.parse(
-      accountingSubsidiariesOneResponse,
-    ),
-  );
-}
 
 export function accountingSubsidiariesOneResponseFromJSON(
   jsonString: string,

@@ -10,8 +10,6 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   PassThroughBody,
   PassThroughBody$inboundSchema,
-  PassThroughBody$Outbound,
-  PassThroughBody$outboundSchema,
 } from "./passthroughbody.js";
 
 export type CollectionTicketComment = {
@@ -71,61 +69,6 @@ export const CollectionTicketComment$inboundSchema: z.ZodType<
     "pass_through": "passThrough",
   });
 });
-
-/** @internal */
-export type CollectionTicketComment$Outbound = {
-  id?: string | undefined;
-  body?: string | null | undefined;
-  custom_mappings?: { [k: string]: any } | null | undefined;
-  created_by?: string | null | undefined;
-  updated_at?: string | null | undefined;
-  created_at?: string | null | undefined;
-  pass_through?: Array<PassThroughBody$Outbound> | undefined;
-};
-
-/** @internal */
-export const CollectionTicketComment$outboundSchema: z.ZodType<
-  CollectionTicketComment$Outbound,
-  z.ZodTypeDef,
-  CollectionTicketComment
-> = z.object({
-  id: z.string().optional(),
-  body: z.nullable(z.string()).optional(),
-  customMappings: z.nullable(z.record(z.any())).optional(),
-  createdBy: z.nullable(z.string()).optional(),
-  updatedAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
-  createdAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
-  passThrough: z.array(PassThroughBody$outboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    customMappings: "custom_mappings",
-    createdBy: "created_by",
-    updatedAt: "updated_at",
-    createdAt: "created_at",
-    passThrough: "pass_through",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CollectionTicketComment$ {
-  /** @deprecated use `CollectionTicketComment$inboundSchema` instead. */
-  export const inboundSchema = CollectionTicketComment$inboundSchema;
-  /** @deprecated use `CollectionTicketComment$outboundSchema` instead. */
-  export const outboundSchema = CollectionTicketComment$outboundSchema;
-  /** @deprecated use `CollectionTicketComment$Outbound` instead. */
-  export type Outbound = CollectionTicketComment$Outbound;
-}
-
-export function collectionTicketCommentToJSON(
-  collectionTicketComment: CollectionTicketComment,
-): string {
-  return JSON.stringify(
-    CollectionTicketComment$outboundSchema.parse(collectionTicketComment),
-  );
-}
 
 export function collectionTicketCommentFromJSON(
   jsonString: string,

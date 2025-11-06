@@ -7,24 +7,9 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  Api,
-  Api$inboundSchema,
-  Api$Outbound,
-  Api$outboundSchema,
-} from "./api.js";
-import {
-  Links,
-  Links$inboundSchema,
-  Links$Outbound,
-  Links$outboundSchema,
-} from "./links.js";
-import {
-  Meta,
-  Meta$inboundSchema,
-  Meta$Outbound,
-  Meta$outboundSchema,
-} from "./meta.js";
+import { Api, Api$inboundSchema } from "./api.js";
+import { Links, Links$inboundSchema } from "./links.js";
+import { Meta, Meta$inboundSchema } from "./meta.js";
 
 /**
  * Apis
@@ -71,52 +56,6 @@ export const GetApiResponse$inboundSchema: z.ZodType<
     "_raw": "raw",
   });
 });
-
-/** @internal */
-export type GetApiResponse$Outbound = {
-  status_code: number;
-  status: string;
-  data: Api$Outbound;
-  _raw?: { [k: string]: any } | null | undefined;
-  meta?: Meta$Outbound | undefined;
-  links?: Links$Outbound | undefined;
-};
-
-/** @internal */
-export const GetApiResponse$outboundSchema: z.ZodType<
-  GetApiResponse$Outbound,
-  z.ZodTypeDef,
-  GetApiResponse
-> = z.object({
-  statusCode: z.number().int(),
-  status: z.string(),
-  data: Api$outboundSchema,
-  raw: z.nullable(z.record(z.any())).optional(),
-  meta: Meta$outboundSchema.optional(),
-  links: Links$outboundSchema.optional(),
-}).transform((v) => {
-  return remap$(v, {
-    statusCode: "status_code",
-    raw: "_raw",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetApiResponse$ {
-  /** @deprecated use `GetApiResponse$inboundSchema` instead. */
-  export const inboundSchema = GetApiResponse$inboundSchema;
-  /** @deprecated use `GetApiResponse$outboundSchema` instead. */
-  export const outboundSchema = GetApiResponse$outboundSchema;
-  /** @deprecated use `GetApiResponse$Outbound` instead. */
-  export type Outbound = GetApiResponse$Outbound;
-}
-
-export function getApiResponseToJSON(getApiResponse: GetApiResponse): string {
-  return JSON.stringify(GetApiResponse$outboundSchema.parse(getApiResponse));
-}
 
 export function getApiResponseFromJSON(
   jsonString: string,

@@ -63,85 +63,6 @@ export type HrisTimeOffRequestsUpdateResponse = {
 };
 
 /** @internal */
-export const HrisTimeOffRequestsUpdateGlobals$inboundSchema: z.ZodType<
-  HrisTimeOffRequestsUpdateGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/** @internal */
-export type HrisTimeOffRequestsUpdateGlobals$Outbound = {
-  consumerId?: string | undefined;
-  appId?: string | undefined;
-};
-
-/** @internal */
-export const HrisTimeOffRequestsUpdateGlobals$outboundSchema: z.ZodType<
-  HrisTimeOffRequestsUpdateGlobals$Outbound,
-  z.ZodTypeDef,
-  HrisTimeOffRequestsUpdateGlobals
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace HrisTimeOffRequestsUpdateGlobals$ {
-  /** @deprecated use `HrisTimeOffRequestsUpdateGlobals$inboundSchema` instead. */
-  export const inboundSchema = HrisTimeOffRequestsUpdateGlobals$inboundSchema;
-  /** @deprecated use `HrisTimeOffRequestsUpdateGlobals$outboundSchema` instead. */
-  export const outboundSchema = HrisTimeOffRequestsUpdateGlobals$outboundSchema;
-  /** @deprecated use `HrisTimeOffRequestsUpdateGlobals$Outbound` instead. */
-  export type Outbound = HrisTimeOffRequestsUpdateGlobals$Outbound;
-}
-
-export function hrisTimeOffRequestsUpdateGlobalsToJSON(
-  hrisTimeOffRequestsUpdateGlobals: HrisTimeOffRequestsUpdateGlobals,
-): string {
-  return JSON.stringify(
-    HrisTimeOffRequestsUpdateGlobals$outboundSchema.parse(
-      hrisTimeOffRequestsUpdateGlobals,
-    ),
-  );
-}
-
-export function hrisTimeOffRequestsUpdateGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<HrisTimeOffRequestsUpdateGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => HrisTimeOffRequestsUpdateGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'HrisTimeOffRequestsUpdateGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const HrisTimeOffRequestsUpdateRequest$inboundSchema: z.ZodType<
-  HrisTimeOffRequestsUpdateRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  id: z.string(),
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  raw: z.boolean().default(false),
-  employee_id: z.string(),
-  TimeOffRequest: components.TimeOffRequestInput$inboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    "employee_id": "employeeId",
-    "TimeOffRequest": "timeOffRequest",
-  });
-});
-
-/** @internal */
 export type HrisTimeOffRequestsUpdateRequest$Outbound = {
   id: string;
   consumerId?: string | undefined;
@@ -172,19 +93,6 @@ export const HrisTimeOffRequestsUpdateRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace HrisTimeOffRequestsUpdateRequest$ {
-  /** @deprecated use `HrisTimeOffRequestsUpdateRequest$inboundSchema` instead. */
-  export const inboundSchema = HrisTimeOffRequestsUpdateRequest$inboundSchema;
-  /** @deprecated use `HrisTimeOffRequestsUpdateRequest$outboundSchema` instead. */
-  export const outboundSchema = HrisTimeOffRequestsUpdateRequest$outboundSchema;
-  /** @deprecated use `HrisTimeOffRequestsUpdateRequest$Outbound` instead. */
-  export type Outbound = HrisTimeOffRequestsUpdateRequest$Outbound;
-}
-
 export function hrisTimeOffRequestsUpdateRequestToJSON(
   hrisTimeOffRequestsUpdateRequest: HrisTimeOffRequestsUpdateRequest,
 ): string {
@@ -192,16 +100,6 @@ export function hrisTimeOffRequestsUpdateRequestToJSON(
     HrisTimeOffRequestsUpdateRequest$outboundSchema.parse(
       hrisTimeOffRequestsUpdateRequest,
     ),
-  );
-}
-
-export function hrisTimeOffRequestsUpdateRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<HrisTimeOffRequestsUpdateRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => HrisTimeOffRequestsUpdateRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'HrisTimeOffRequestsUpdateRequest' from JSON`,
   );
 }
 
@@ -223,60 +121,6 @@ export const HrisTimeOffRequestsUpdateResponse$inboundSchema: z.ZodType<
     "UnexpectedErrorResponse": "unexpectedErrorResponse",
   });
 });
-
-/** @internal */
-export type HrisTimeOffRequestsUpdateResponse$Outbound = {
-  HttpMeta: components.HTTPMetadata$Outbound;
-  UpdateTimeOffRequestResponse?:
-    | components.UpdateTimeOffRequestResponse$Outbound
-    | undefined;
-  UnexpectedErrorResponse?:
-    | components.UnexpectedErrorResponse$Outbound
-    | undefined;
-};
-
-/** @internal */
-export const HrisTimeOffRequestsUpdateResponse$outboundSchema: z.ZodType<
-  HrisTimeOffRequestsUpdateResponse$Outbound,
-  z.ZodTypeDef,
-  HrisTimeOffRequestsUpdateResponse
-> = z.object({
-  httpMeta: components.HTTPMetadata$outboundSchema,
-  updateTimeOffRequestResponse: components
-    .UpdateTimeOffRequestResponse$outboundSchema.optional(),
-  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    httpMeta: "HttpMeta",
-    updateTimeOffRequestResponse: "UpdateTimeOffRequestResponse",
-    unexpectedErrorResponse: "UnexpectedErrorResponse",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace HrisTimeOffRequestsUpdateResponse$ {
-  /** @deprecated use `HrisTimeOffRequestsUpdateResponse$inboundSchema` instead. */
-  export const inboundSchema = HrisTimeOffRequestsUpdateResponse$inboundSchema;
-  /** @deprecated use `HrisTimeOffRequestsUpdateResponse$outboundSchema` instead. */
-  export const outboundSchema =
-    HrisTimeOffRequestsUpdateResponse$outboundSchema;
-  /** @deprecated use `HrisTimeOffRequestsUpdateResponse$Outbound` instead. */
-  export type Outbound = HrisTimeOffRequestsUpdateResponse$Outbound;
-}
-
-export function hrisTimeOffRequestsUpdateResponseToJSON(
-  hrisTimeOffRequestsUpdateResponse: HrisTimeOffRequestsUpdateResponse,
-): string {
-  return JSON.stringify(
-    HrisTimeOffRequestsUpdateResponse$outboundSchema.parse(
-      hrisTimeOffRequestsUpdateResponse,
-    ),
-  );
-}
 
 export function hrisTimeOffRequestsUpdateResponseFromJSON(
   jsonString: string,

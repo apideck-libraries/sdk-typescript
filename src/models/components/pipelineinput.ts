@@ -4,17 +4,9 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  Currency,
-  Currency$inboundSchema,
-  Currency$outboundSchema,
-} from "./currency.js";
+import { Currency, Currency$outboundSchema } from "./currency.js";
 import {
   PassThroughBody,
-  PassThroughBody$inboundSchema,
   PassThroughBody$Outbound,
   PassThroughBody$outboundSchema,
 } from "./passthroughbody.js";
@@ -78,23 +70,6 @@ export type PipelineInput = {
 };
 
 /** @internal */
-export const PipelineStages$inboundSchema: z.ZodType<
-  PipelineStages,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  name: z.nullable(z.string()).optional(),
-  value: z.nullable(z.string()).optional(),
-  win_probability: z.nullable(z.number().int()).optional(),
-  display_order: z.nullable(z.number().int()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "win_probability": "winProbability",
-    "display_order": "displayOrder",
-  });
-});
-
-/** @internal */
 export type PipelineStages$Outbound = {
   name?: string | null | undefined;
   value?: string | null | undefined;
@@ -119,55 +94,9 @@ export const PipelineStages$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace PipelineStages$ {
-  /** @deprecated use `PipelineStages$inboundSchema` instead. */
-  export const inboundSchema = PipelineStages$inboundSchema;
-  /** @deprecated use `PipelineStages$outboundSchema` instead. */
-  export const outboundSchema = PipelineStages$outboundSchema;
-  /** @deprecated use `PipelineStages$Outbound` instead. */
-  export type Outbound = PipelineStages$Outbound;
-}
-
 export function pipelineStagesToJSON(pipelineStages: PipelineStages): string {
   return JSON.stringify(PipelineStages$outboundSchema.parse(pipelineStages));
 }
-
-export function pipelineStagesFromJSON(
-  jsonString: string,
-): SafeParseResult<PipelineStages, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => PipelineStages$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'PipelineStages' from JSON`,
-  );
-}
-
-/** @internal */
-export const PipelineInput$inboundSchema: z.ZodType<
-  PipelineInput,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  id: z.string().optional(),
-  name: z.string(),
-  currency: z.nullable(Currency$inboundSchema).optional(),
-  archived: z.boolean().optional(),
-  active: z.boolean().optional(),
-  display_order: z.nullable(z.number().int()).optional(),
-  win_probability_enabled: z.boolean().optional(),
-  stages: z.array(z.lazy(() => PipelineStages$inboundSchema)).optional(),
-  pass_through: z.array(PassThroughBody$inboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "display_order": "displayOrder",
-    "win_probability_enabled": "winProbabilityEnabled",
-    "pass_through": "passThrough",
-  });
-});
 
 /** @internal */
 export type PipelineInput$Outbound = {
@@ -205,29 +134,6 @@ export const PipelineInput$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace PipelineInput$ {
-  /** @deprecated use `PipelineInput$inboundSchema` instead. */
-  export const inboundSchema = PipelineInput$inboundSchema;
-  /** @deprecated use `PipelineInput$outboundSchema` instead. */
-  export const outboundSchema = PipelineInput$outboundSchema;
-  /** @deprecated use `PipelineInput$Outbound` instead. */
-  export type Outbound = PipelineInput$Outbound;
-}
-
 export function pipelineInputToJSON(pipelineInput: PipelineInput): string {
   return JSON.stringify(PipelineInput$outboundSchema.parse(pipelineInput));
-}
-
-export function pipelineInputFromJSON(
-  jsonString: string,
-): SafeParseResult<PipelineInput, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => PipelineInput$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'PipelineInput' from JSON`,
-  );
 }

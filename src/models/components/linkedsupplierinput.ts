@@ -4,12 +4,8 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   Address,
-  Address$inboundSchema,
   Address$Outbound,
   Address$outboundSchema,
 } from "./address.js";
@@ -28,21 +24,6 @@ export type LinkedSupplierInput = {
   displayName?: string | null | undefined;
   address?: Address | undefined;
 };
-
-/** @internal */
-export const LinkedSupplierInput$inboundSchema: z.ZodType<
-  LinkedSupplierInput,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  id: z.string().optional(),
-  display_name: z.nullable(z.string()).optional(),
-  address: Address$inboundSchema.optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "display_name": "displayName",
-  });
-});
 
 /** @internal */
 export type LinkedSupplierInput$Outbound = {
@@ -66,33 +47,10 @@ export const LinkedSupplierInput$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace LinkedSupplierInput$ {
-  /** @deprecated use `LinkedSupplierInput$inboundSchema` instead. */
-  export const inboundSchema = LinkedSupplierInput$inboundSchema;
-  /** @deprecated use `LinkedSupplierInput$outboundSchema` instead. */
-  export const outboundSchema = LinkedSupplierInput$outboundSchema;
-  /** @deprecated use `LinkedSupplierInput$Outbound` instead. */
-  export type Outbound = LinkedSupplierInput$Outbound;
-}
-
 export function linkedSupplierInputToJSON(
   linkedSupplierInput: LinkedSupplierInput,
 ): string {
   return JSON.stringify(
     LinkedSupplierInput$outboundSchema.parse(linkedSupplierInput),
-  );
-}
-
-export function linkedSupplierInputFromJSON(
-  jsonString: string,
-): SafeParseResult<LinkedSupplierInput, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => LinkedSupplierInput$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'LinkedSupplierInput' from JSON`,
   );
 }

@@ -52,83 +52,6 @@ export type VaultConnectionConsentsAllResponse = {
 };
 
 /** @internal */
-export const VaultConnectionConsentsAllGlobals$inboundSchema: z.ZodType<
-  VaultConnectionConsentsAllGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/** @internal */
-export type VaultConnectionConsentsAllGlobals$Outbound = {
-  consumerId?: string | undefined;
-  appId?: string | undefined;
-};
-
-/** @internal */
-export const VaultConnectionConsentsAllGlobals$outboundSchema: z.ZodType<
-  VaultConnectionConsentsAllGlobals$Outbound,
-  z.ZodTypeDef,
-  VaultConnectionConsentsAllGlobals
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace VaultConnectionConsentsAllGlobals$ {
-  /** @deprecated use `VaultConnectionConsentsAllGlobals$inboundSchema` instead. */
-  export const inboundSchema = VaultConnectionConsentsAllGlobals$inboundSchema;
-  /** @deprecated use `VaultConnectionConsentsAllGlobals$outboundSchema` instead. */
-  export const outboundSchema =
-    VaultConnectionConsentsAllGlobals$outboundSchema;
-  /** @deprecated use `VaultConnectionConsentsAllGlobals$Outbound` instead. */
-  export type Outbound = VaultConnectionConsentsAllGlobals$Outbound;
-}
-
-export function vaultConnectionConsentsAllGlobalsToJSON(
-  vaultConnectionConsentsAllGlobals: VaultConnectionConsentsAllGlobals,
-): string {
-  return JSON.stringify(
-    VaultConnectionConsentsAllGlobals$outboundSchema.parse(
-      vaultConnectionConsentsAllGlobals,
-    ),
-  );
-}
-
-export function vaultConnectionConsentsAllGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<VaultConnectionConsentsAllGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => VaultConnectionConsentsAllGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'VaultConnectionConsentsAllGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const VaultConnectionConsentsAllRequest$inboundSchema: z.ZodType<
-  VaultConnectionConsentsAllRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  service_id: z.string(),
-  unified_api: z.string(),
-}).transform((v) => {
-  return remap$(v, {
-    "service_id": "serviceId",
-    "unified_api": "unifiedApi",
-  });
-});
-
-/** @internal */
 export type VaultConnectionConsentsAllRequest$Outbound = {
   consumerId?: string | undefined;
   appId?: string | undefined;
@@ -153,20 +76,6 @@ export const VaultConnectionConsentsAllRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace VaultConnectionConsentsAllRequest$ {
-  /** @deprecated use `VaultConnectionConsentsAllRequest$inboundSchema` instead. */
-  export const inboundSchema = VaultConnectionConsentsAllRequest$inboundSchema;
-  /** @deprecated use `VaultConnectionConsentsAllRequest$outboundSchema` instead. */
-  export const outboundSchema =
-    VaultConnectionConsentsAllRequest$outboundSchema;
-  /** @deprecated use `VaultConnectionConsentsAllRequest$Outbound` instead. */
-  export type Outbound = VaultConnectionConsentsAllRequest$Outbound;
-}
-
 export function vaultConnectionConsentsAllRequestToJSON(
   vaultConnectionConsentsAllRequest: VaultConnectionConsentsAllRequest,
 ): string {
@@ -174,16 +83,6 @@ export function vaultConnectionConsentsAllRequestToJSON(
     VaultConnectionConsentsAllRequest$outboundSchema.parse(
       vaultConnectionConsentsAllRequest,
     ),
-  );
-}
-
-export function vaultConnectionConsentsAllRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<VaultConnectionConsentsAllRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => VaultConnectionConsentsAllRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'VaultConnectionConsentsAllRequest' from JSON`,
   );
 }
 
@@ -205,60 +104,6 @@ export const VaultConnectionConsentsAllResponse$inboundSchema: z.ZodType<
     "UnexpectedErrorResponse": "unexpectedErrorResponse",
   });
 });
-
-/** @internal */
-export type VaultConnectionConsentsAllResponse$Outbound = {
-  HttpMeta: components.HTTPMetadata$Outbound;
-  GetConsentRecordsResponse?:
-    | components.GetConsentRecordsResponse$Outbound
-    | undefined;
-  UnexpectedErrorResponse?:
-    | components.UnexpectedErrorResponse$Outbound
-    | undefined;
-};
-
-/** @internal */
-export const VaultConnectionConsentsAllResponse$outboundSchema: z.ZodType<
-  VaultConnectionConsentsAllResponse$Outbound,
-  z.ZodTypeDef,
-  VaultConnectionConsentsAllResponse
-> = z.object({
-  httpMeta: components.HTTPMetadata$outboundSchema,
-  getConsentRecordsResponse: components.GetConsentRecordsResponse$outboundSchema
-    .optional(),
-  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    httpMeta: "HttpMeta",
-    getConsentRecordsResponse: "GetConsentRecordsResponse",
-    unexpectedErrorResponse: "UnexpectedErrorResponse",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace VaultConnectionConsentsAllResponse$ {
-  /** @deprecated use `VaultConnectionConsentsAllResponse$inboundSchema` instead. */
-  export const inboundSchema = VaultConnectionConsentsAllResponse$inboundSchema;
-  /** @deprecated use `VaultConnectionConsentsAllResponse$outboundSchema` instead. */
-  export const outboundSchema =
-    VaultConnectionConsentsAllResponse$outboundSchema;
-  /** @deprecated use `VaultConnectionConsentsAllResponse$Outbound` instead. */
-  export type Outbound = VaultConnectionConsentsAllResponse$Outbound;
-}
-
-export function vaultConnectionConsentsAllResponseToJSON(
-  vaultConnectionConsentsAllResponse: VaultConnectionConsentsAllResponse,
-): string {
-  return JSON.stringify(
-    VaultConnectionConsentsAllResponse$outboundSchema.parse(
-      vaultConnectionConsentsAllResponse,
-    ),
-  );
-}
 
 export function vaultConnectionConsentsAllResponseFromJSON(
   jsonString: string,

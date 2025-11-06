@@ -60,79 +60,6 @@ export type FileStorageFoldersOneResponse = {
 };
 
 /** @internal */
-export const FileStorageFoldersOneGlobals$inboundSchema: z.ZodType<
-  FileStorageFoldersOneGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/** @internal */
-export type FileStorageFoldersOneGlobals$Outbound = {
-  consumerId?: string | undefined;
-  appId?: string | undefined;
-};
-
-/** @internal */
-export const FileStorageFoldersOneGlobals$outboundSchema: z.ZodType<
-  FileStorageFoldersOneGlobals$Outbound,
-  z.ZodTypeDef,
-  FileStorageFoldersOneGlobals
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace FileStorageFoldersOneGlobals$ {
-  /** @deprecated use `FileStorageFoldersOneGlobals$inboundSchema` instead. */
-  export const inboundSchema = FileStorageFoldersOneGlobals$inboundSchema;
-  /** @deprecated use `FileStorageFoldersOneGlobals$outboundSchema` instead. */
-  export const outboundSchema = FileStorageFoldersOneGlobals$outboundSchema;
-  /** @deprecated use `FileStorageFoldersOneGlobals$Outbound` instead. */
-  export type Outbound = FileStorageFoldersOneGlobals$Outbound;
-}
-
-export function fileStorageFoldersOneGlobalsToJSON(
-  fileStorageFoldersOneGlobals: FileStorageFoldersOneGlobals,
-): string {
-  return JSON.stringify(
-    FileStorageFoldersOneGlobals$outboundSchema.parse(
-      fileStorageFoldersOneGlobals,
-    ),
-  );
-}
-
-export function fileStorageFoldersOneGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<FileStorageFoldersOneGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => FileStorageFoldersOneGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'FileStorageFoldersOneGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const FileStorageFoldersOneRequest$inboundSchema: z.ZodType<
-  FileStorageFoldersOneRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  id: z.string(),
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  raw: z.boolean().default(false),
-  fields: z.nullable(z.string()).optional(),
-});
-
-/** @internal */
 export type FileStorageFoldersOneRequest$Outbound = {
   id: string;
   consumerId?: string | undefined;
@@ -156,19 +83,6 @@ export const FileStorageFoldersOneRequest$outboundSchema: z.ZodType<
   fields: z.nullable(z.string()).optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace FileStorageFoldersOneRequest$ {
-  /** @deprecated use `FileStorageFoldersOneRequest$inboundSchema` instead. */
-  export const inboundSchema = FileStorageFoldersOneRequest$inboundSchema;
-  /** @deprecated use `FileStorageFoldersOneRequest$outboundSchema` instead. */
-  export const outboundSchema = FileStorageFoldersOneRequest$outboundSchema;
-  /** @deprecated use `FileStorageFoldersOneRequest$Outbound` instead. */
-  export type Outbound = FileStorageFoldersOneRequest$Outbound;
-}
-
 export function fileStorageFoldersOneRequestToJSON(
   fileStorageFoldersOneRequest: FileStorageFoldersOneRequest,
 ): string {
@@ -176,16 +90,6 @@ export function fileStorageFoldersOneRequestToJSON(
     FileStorageFoldersOneRequest$outboundSchema.parse(
       fileStorageFoldersOneRequest,
     ),
-  );
-}
-
-export function fileStorageFoldersOneRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<FileStorageFoldersOneRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => FileStorageFoldersOneRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'FileStorageFoldersOneRequest' from JSON`,
   );
 }
 
@@ -206,56 +110,6 @@ export const FileStorageFoldersOneResponse$inboundSchema: z.ZodType<
     "UnexpectedErrorResponse": "unexpectedErrorResponse",
   });
 });
-
-/** @internal */
-export type FileStorageFoldersOneResponse$Outbound = {
-  HttpMeta: components.HTTPMetadata$Outbound;
-  GetFolderResponse?: components.GetFolderResponse$Outbound | undefined;
-  UnexpectedErrorResponse?:
-    | components.UnexpectedErrorResponse$Outbound
-    | undefined;
-};
-
-/** @internal */
-export const FileStorageFoldersOneResponse$outboundSchema: z.ZodType<
-  FileStorageFoldersOneResponse$Outbound,
-  z.ZodTypeDef,
-  FileStorageFoldersOneResponse
-> = z.object({
-  httpMeta: components.HTTPMetadata$outboundSchema,
-  getFolderResponse: components.GetFolderResponse$outboundSchema.optional(),
-  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    httpMeta: "HttpMeta",
-    getFolderResponse: "GetFolderResponse",
-    unexpectedErrorResponse: "UnexpectedErrorResponse",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace FileStorageFoldersOneResponse$ {
-  /** @deprecated use `FileStorageFoldersOneResponse$inboundSchema` instead. */
-  export const inboundSchema = FileStorageFoldersOneResponse$inboundSchema;
-  /** @deprecated use `FileStorageFoldersOneResponse$outboundSchema` instead. */
-  export const outboundSchema = FileStorageFoldersOneResponse$outboundSchema;
-  /** @deprecated use `FileStorageFoldersOneResponse$Outbound` instead. */
-  export type Outbound = FileStorageFoldersOneResponse$Outbound;
-}
-
-export function fileStorageFoldersOneResponseToJSON(
-  fileStorageFoldersOneResponse: FileStorageFoldersOneResponse,
-): string {
-  return JSON.stringify(
-    FileStorageFoldersOneResponse$outboundSchema.parse(
-      fileStorageFoldersOneResponse,
-    ),
-  );
-}
 
 export function fileStorageFoldersOneResponseFromJSON(
   jsonString: string,

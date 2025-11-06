@@ -36,8 +36,8 @@ type AccountingSubsidiariesAddRequest struct {
 	// The ID of your Unify application
 	AppID *string `header:"style=simple,explode=false,name=x-apideck-app-id"`
 	// Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
-	ServiceID  *string                    `header:"style=simple,explode=false,name=x-apideck-service-id"`
-	Subsidiary components.SubsidiaryInput `request:"mediaType=application/json"`
+	ServiceID *string                    `header:"style=simple,explode=false,name=x-apideck-service-id"`
+	Body      components.SubsidiaryInput `request:"mediaType=application/json"`
 }
 
 func (a AccountingSubsidiariesAddRequest) MarshalJSON() ([]byte, error) {
@@ -45,7 +45,7 @@ func (a AccountingSubsidiariesAddRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (a *AccountingSubsidiariesAddRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"Subsidiary"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"body"}); err != nil {
 		return err
 	}
 	return nil
@@ -79,11 +79,11 @@ func (o *AccountingSubsidiariesAddRequest) GetServiceID() *string {
 	return o.ServiceID
 }
 
-func (o *AccountingSubsidiariesAddRequest) GetSubsidiary() components.SubsidiaryInput {
+func (o *AccountingSubsidiariesAddRequest) GetBody() components.SubsidiaryInput {
 	if o == nil {
 		return components.SubsidiaryInput{}
 	}
-	return o.Subsidiary
+	return o.Body
 }
 
 type AccountingSubsidiariesAddResponse struct {

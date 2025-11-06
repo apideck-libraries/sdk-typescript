@@ -10,8 +10,6 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   TrackingCategory,
   TrackingCategory$inboundSchema,
-  TrackingCategory$Outbound,
-  TrackingCategory$outboundSchema,
 } from "./trackingcategory.js";
 
 /**
@@ -64,60 +62,6 @@ export const GetTrackingCategoryResponse$inboundSchema: z.ZodType<
     "_raw": "raw",
   });
 });
-
-/** @internal */
-export type GetTrackingCategoryResponse$Outbound = {
-  status_code: number;
-  status: string;
-  service: string;
-  resource: string;
-  operation: string;
-  data: TrackingCategory$Outbound;
-  _raw?: { [k: string]: any } | null | undefined;
-};
-
-/** @internal */
-export const GetTrackingCategoryResponse$outboundSchema: z.ZodType<
-  GetTrackingCategoryResponse$Outbound,
-  z.ZodTypeDef,
-  GetTrackingCategoryResponse
-> = z.object({
-  statusCode: z.number().int(),
-  status: z.string(),
-  service: z.string(),
-  resource: z.string(),
-  operation: z.string(),
-  data: TrackingCategory$outboundSchema,
-  raw: z.nullable(z.record(z.any())).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    statusCode: "status_code",
-    raw: "_raw",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetTrackingCategoryResponse$ {
-  /** @deprecated use `GetTrackingCategoryResponse$inboundSchema` instead. */
-  export const inboundSchema = GetTrackingCategoryResponse$inboundSchema;
-  /** @deprecated use `GetTrackingCategoryResponse$outboundSchema` instead. */
-  export const outboundSchema = GetTrackingCategoryResponse$outboundSchema;
-  /** @deprecated use `GetTrackingCategoryResponse$Outbound` instead. */
-  export type Outbound = GetTrackingCategoryResponse$Outbound;
-}
-
-export function getTrackingCategoryResponseToJSON(
-  getTrackingCategoryResponse: GetTrackingCategoryResponse,
-): string {
-  return JSON.stringify(
-    GetTrackingCategoryResponse$outboundSchema.parse(
-      getTrackingCategoryResponse,
-    ),
-  );
-}
 
 export function getTrackingCategoryResponseFromJSON(
   jsonString: string,

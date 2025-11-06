@@ -4,10 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
  * Employment status to filter on
@@ -73,54 +70,9 @@ export type EmployeesFilter = {
 };
 
 /** @internal */
-export const EmployeesFilterEmploymentStatus$inboundSchema: z.ZodNativeEnum<
-  typeof EmployeesFilterEmploymentStatus
-> = z.nativeEnum(EmployeesFilterEmploymentStatus);
-
-/** @internal */
 export const EmployeesFilterEmploymentStatus$outboundSchema: z.ZodNativeEnum<
   typeof EmployeesFilterEmploymentStatus
-> = EmployeesFilterEmploymentStatus$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace EmployeesFilterEmploymentStatus$ {
-  /** @deprecated use `EmployeesFilterEmploymentStatus$inboundSchema` instead. */
-  export const inboundSchema = EmployeesFilterEmploymentStatus$inboundSchema;
-  /** @deprecated use `EmployeesFilterEmploymentStatus$outboundSchema` instead. */
-  export const outboundSchema = EmployeesFilterEmploymentStatus$outboundSchema;
-}
-
-/** @internal */
-export const EmployeesFilter$inboundSchema: z.ZodType<
-  EmployeesFilter,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  company_id: z.string().optional(),
-  email: z.string().optional(),
-  first_name: z.string().optional(),
-  title: z.string().optional(),
-  last_name: z.string().optional(),
-  manager_id: z.string().optional(),
-  employment_status: EmployeesFilterEmploymentStatus$inboundSchema.optional(),
-  employee_number: z.string().optional(),
-  department_id: z.string().optional(),
-  city: z.string().optional(),
-  country: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "company_id": "companyId",
-    "first_name": "firstName",
-    "last_name": "lastName",
-    "manager_id": "managerId",
-    "employment_status": "employmentStatus",
-    "employee_number": "employeeNumber",
-    "department_id": "departmentId",
-  });
-});
+> = z.nativeEnum(EmployeesFilterEmploymentStatus);
 
 /** @internal */
 export type EmployeesFilter$Outbound = {
@@ -166,31 +118,8 @@ export const EmployeesFilter$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace EmployeesFilter$ {
-  /** @deprecated use `EmployeesFilter$inboundSchema` instead. */
-  export const inboundSchema = EmployeesFilter$inboundSchema;
-  /** @deprecated use `EmployeesFilter$outboundSchema` instead. */
-  export const outboundSchema = EmployeesFilter$outboundSchema;
-  /** @deprecated use `EmployeesFilter$Outbound` instead. */
-  export type Outbound = EmployeesFilter$Outbound;
-}
-
 export function employeesFilterToJSON(
   employeesFilter: EmployeesFilter,
 ): string {
   return JSON.stringify(EmployeesFilter$outboundSchema.parse(employeesFilter));
-}
-
-export function employeesFilterFromJSON(
-  jsonString: string,
-): SafeParseResult<EmployeesFilter, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => EmployeesFilter$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'EmployeesFilter' from JSON`,
-  );
 }

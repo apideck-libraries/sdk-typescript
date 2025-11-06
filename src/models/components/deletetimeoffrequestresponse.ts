@@ -7,12 +7,7 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  UnifiedId,
-  UnifiedId$inboundSchema,
-  UnifiedId$Outbound,
-  UnifiedId$outboundSchema,
-} from "./unifiedid.js";
+import { UnifiedId, UnifiedId$inboundSchema } from "./unifiedid.js";
 
 /**
  * TimeOffRequests
@@ -67,60 +62,6 @@ export const DeleteTimeOffRequestResponse$inboundSchema: z.ZodType<
     "_raw": "raw",
   });
 });
-
-/** @internal */
-export type DeleteTimeOffRequestResponse$Outbound = {
-  status_code: number;
-  status: string;
-  service: string;
-  resource: string;
-  operation: string;
-  data: UnifiedId$Outbound;
-  _raw?: { [k: string]: any } | null | undefined;
-};
-
-/** @internal */
-export const DeleteTimeOffRequestResponse$outboundSchema: z.ZodType<
-  DeleteTimeOffRequestResponse$Outbound,
-  z.ZodTypeDef,
-  DeleteTimeOffRequestResponse
-> = z.object({
-  statusCode: z.number().int(),
-  status: z.string(),
-  service: z.string(),
-  resource: z.string(),
-  operation: z.string(),
-  data: UnifiedId$outboundSchema,
-  raw: z.nullable(z.record(z.any())).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    statusCode: "status_code",
-    raw: "_raw",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DeleteTimeOffRequestResponse$ {
-  /** @deprecated use `DeleteTimeOffRequestResponse$inboundSchema` instead. */
-  export const inboundSchema = DeleteTimeOffRequestResponse$inboundSchema;
-  /** @deprecated use `DeleteTimeOffRequestResponse$outboundSchema` instead. */
-  export const outboundSchema = DeleteTimeOffRequestResponse$outboundSchema;
-  /** @deprecated use `DeleteTimeOffRequestResponse$Outbound` instead. */
-  export type Outbound = DeleteTimeOffRequestResponse$Outbound;
-}
-
-export function deleteTimeOffRequestResponseToJSON(
-  deleteTimeOffRequestResponse: DeleteTimeOffRequestResponse,
-): string {
-  return JSON.stringify(
-    DeleteTimeOffRequestResponse$outboundSchema.parse(
-      deleteTimeOffRequestResponse,
-    ),
-  );
-}
 
 export function deleteTimeOffRequestResponseFromJSON(
   jsonString: string,

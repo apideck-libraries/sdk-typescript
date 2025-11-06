@@ -3,9 +3,6 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type CollectionTagInput = {
   /**
@@ -13,15 +10,6 @@ export type CollectionTagInput = {
    */
   id: string | null;
 };
-
-/** @internal */
-export const CollectionTagInput$inboundSchema: z.ZodType<
-  CollectionTagInput,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  id: z.nullable(z.string()),
-});
 
 /** @internal */
 export type CollectionTagInput$Outbound = {
@@ -37,33 +25,10 @@ export const CollectionTagInput$outboundSchema: z.ZodType<
   id: z.nullable(z.string()),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CollectionTagInput$ {
-  /** @deprecated use `CollectionTagInput$inboundSchema` instead. */
-  export const inboundSchema = CollectionTagInput$inboundSchema;
-  /** @deprecated use `CollectionTagInput$outboundSchema` instead. */
-  export const outboundSchema = CollectionTagInput$outboundSchema;
-  /** @deprecated use `CollectionTagInput$Outbound` instead. */
-  export type Outbound = CollectionTagInput$Outbound;
-}
-
 export function collectionTagInputToJSON(
   collectionTagInput: CollectionTagInput,
 ): string {
   return JSON.stringify(
     CollectionTagInput$outboundSchema.parse(collectionTagInput),
-  );
-}
-
-export function collectionTagInputFromJSON(
-  jsonString: string,
-): SafeParseResult<CollectionTagInput, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => CollectionTagInput$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CollectionTagInput' from JSON`,
   );
 }

@@ -3,9 +3,6 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type TaxRatesFilter = {
   /**
@@ -31,19 +28,6 @@ export type TaxRatesFilter = {
 };
 
 /** @internal */
-export const TaxRatesFilter$inboundSchema: z.ZodType<
-  TaxRatesFilter,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  assets: z.boolean().optional(),
-  equity: z.boolean().optional(),
-  expenses: z.boolean().optional(),
-  liabilities: z.boolean().optional(),
-  revenue: z.boolean().optional(),
-});
-
-/** @internal */
 export type TaxRatesFilter$Outbound = {
   assets?: boolean | undefined;
   equity?: boolean | undefined;
@@ -65,29 +49,6 @@ export const TaxRatesFilter$outboundSchema: z.ZodType<
   revenue: z.boolean().optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace TaxRatesFilter$ {
-  /** @deprecated use `TaxRatesFilter$inboundSchema` instead. */
-  export const inboundSchema = TaxRatesFilter$inboundSchema;
-  /** @deprecated use `TaxRatesFilter$outboundSchema` instead. */
-  export const outboundSchema = TaxRatesFilter$outboundSchema;
-  /** @deprecated use `TaxRatesFilter$Outbound` instead. */
-  export type Outbound = TaxRatesFilter$Outbound;
-}
-
 export function taxRatesFilterToJSON(taxRatesFilter: TaxRatesFilter): string {
   return JSON.stringify(TaxRatesFilter$outboundSchema.parse(taxRatesFilter));
-}
-
-export function taxRatesFilterFromJSON(
-  jsonString: string,
-): SafeParseResult<TaxRatesFilter, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => TaxRatesFilter$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'TaxRatesFilter' from JSON`,
-  );
 }

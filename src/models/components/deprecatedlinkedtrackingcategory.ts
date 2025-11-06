@@ -30,7 +30,6 @@ export const DeprecatedLinkedTrackingCategory$inboundSchema: z.ZodType<
   id: z.string().optional(),
   name: z.nullable(z.string()).optional(),
 });
-
 /** @internal */
 export type DeprecatedLinkedTrackingCategory$Outbound = {
   id?: string | undefined;
@@ -47,19 +46,6 @@ export const DeprecatedLinkedTrackingCategory$outboundSchema: z.ZodType<
   name: z.nullable(z.string()).optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DeprecatedLinkedTrackingCategory$ {
-  /** @deprecated use `DeprecatedLinkedTrackingCategory$inboundSchema` instead. */
-  export const inboundSchema = DeprecatedLinkedTrackingCategory$inboundSchema;
-  /** @deprecated use `DeprecatedLinkedTrackingCategory$outboundSchema` instead. */
-  export const outboundSchema = DeprecatedLinkedTrackingCategory$outboundSchema;
-  /** @deprecated use `DeprecatedLinkedTrackingCategory$Outbound` instead. */
-  export type Outbound = DeprecatedLinkedTrackingCategory$Outbound;
-}
-
 export function deprecatedLinkedTrackingCategoryToJSON(
   deprecatedLinkedTrackingCategory: DeprecatedLinkedTrackingCategory,
 ): string {
@@ -69,7 +55,6 @@ export function deprecatedLinkedTrackingCategoryToJSON(
     ),
   );
 }
-
 export function deprecatedLinkedTrackingCategoryFromJSON(
   jsonString: string,
 ): SafeParseResult<DeprecatedLinkedTrackingCategory, SDKValidationError> {

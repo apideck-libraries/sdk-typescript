@@ -59,86 +59,6 @@ export type CrmCustomObjectSchemasUpdateResponse = {
 };
 
 /** @internal */
-export const CrmCustomObjectSchemasUpdateGlobals$inboundSchema: z.ZodType<
-  CrmCustomObjectSchemasUpdateGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/** @internal */
-export type CrmCustomObjectSchemasUpdateGlobals$Outbound = {
-  consumerId?: string | undefined;
-  appId?: string | undefined;
-};
-
-/** @internal */
-export const CrmCustomObjectSchemasUpdateGlobals$outboundSchema: z.ZodType<
-  CrmCustomObjectSchemasUpdateGlobals$Outbound,
-  z.ZodTypeDef,
-  CrmCustomObjectSchemasUpdateGlobals
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CrmCustomObjectSchemasUpdateGlobals$ {
-  /** @deprecated use `CrmCustomObjectSchemasUpdateGlobals$inboundSchema` instead. */
-  export const inboundSchema =
-    CrmCustomObjectSchemasUpdateGlobals$inboundSchema;
-  /** @deprecated use `CrmCustomObjectSchemasUpdateGlobals$outboundSchema` instead. */
-  export const outboundSchema =
-    CrmCustomObjectSchemasUpdateGlobals$outboundSchema;
-  /** @deprecated use `CrmCustomObjectSchemasUpdateGlobals$Outbound` instead. */
-  export type Outbound = CrmCustomObjectSchemasUpdateGlobals$Outbound;
-}
-
-export function crmCustomObjectSchemasUpdateGlobalsToJSON(
-  crmCustomObjectSchemasUpdateGlobals: CrmCustomObjectSchemasUpdateGlobals,
-): string {
-  return JSON.stringify(
-    CrmCustomObjectSchemasUpdateGlobals$outboundSchema.parse(
-      crmCustomObjectSchemasUpdateGlobals,
-    ),
-  );
-}
-
-export function crmCustomObjectSchemasUpdateGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<CrmCustomObjectSchemasUpdateGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      CrmCustomObjectSchemasUpdateGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CrmCustomObjectSchemasUpdateGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const CrmCustomObjectSchemasUpdateRequest$inboundSchema: z.ZodType<
-  CrmCustomObjectSchemasUpdateRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  id: z.string(),
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  raw: z.boolean().default(false),
-  CustomObjectSchema: components.CustomObjectSchemaInput$inboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    "CustomObjectSchema": "customObjectSchema",
-  });
-});
-
-/** @internal */
 export type CrmCustomObjectSchemasUpdateRequest$Outbound = {
   id: string;
   consumerId?: string | undefined;
@@ -166,21 +86,6 @@ export const CrmCustomObjectSchemasUpdateRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CrmCustomObjectSchemasUpdateRequest$ {
-  /** @deprecated use `CrmCustomObjectSchemasUpdateRequest$inboundSchema` instead. */
-  export const inboundSchema =
-    CrmCustomObjectSchemasUpdateRequest$inboundSchema;
-  /** @deprecated use `CrmCustomObjectSchemasUpdateRequest$outboundSchema` instead. */
-  export const outboundSchema =
-    CrmCustomObjectSchemasUpdateRequest$outboundSchema;
-  /** @deprecated use `CrmCustomObjectSchemasUpdateRequest$Outbound` instead. */
-  export type Outbound = CrmCustomObjectSchemasUpdateRequest$Outbound;
-}
-
 export function crmCustomObjectSchemasUpdateRequestToJSON(
   crmCustomObjectSchemasUpdateRequest: CrmCustomObjectSchemasUpdateRequest,
 ): string {
@@ -188,17 +93,6 @@ export function crmCustomObjectSchemasUpdateRequestToJSON(
     CrmCustomObjectSchemasUpdateRequest$outboundSchema.parse(
       crmCustomObjectSchemasUpdateRequest,
     ),
-  );
-}
-
-export function crmCustomObjectSchemasUpdateRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<CrmCustomObjectSchemasUpdateRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      CrmCustomObjectSchemasUpdateRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CrmCustomObjectSchemasUpdateRequest' from JSON`,
   );
 }
 
@@ -220,61 +114,6 @@ export const CrmCustomObjectSchemasUpdateResponse$inboundSchema: z.ZodType<
     "UnexpectedErrorResponse": "unexpectedErrorResponse",
   });
 });
-
-/** @internal */
-export type CrmCustomObjectSchemasUpdateResponse$Outbound = {
-  HttpMeta: components.HTTPMetadata$Outbound;
-  UpdateCustomObjectSchemaResponse?:
-    | components.UpdateCustomObjectSchemaResponse$Outbound
-    | undefined;
-  UnexpectedErrorResponse?:
-    | components.UnexpectedErrorResponse$Outbound
-    | undefined;
-};
-
-/** @internal */
-export const CrmCustomObjectSchemasUpdateResponse$outboundSchema: z.ZodType<
-  CrmCustomObjectSchemasUpdateResponse$Outbound,
-  z.ZodTypeDef,
-  CrmCustomObjectSchemasUpdateResponse
-> = z.object({
-  httpMeta: components.HTTPMetadata$outboundSchema,
-  updateCustomObjectSchemaResponse: components
-    .UpdateCustomObjectSchemaResponse$outboundSchema.optional(),
-  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    httpMeta: "HttpMeta",
-    updateCustomObjectSchemaResponse: "UpdateCustomObjectSchemaResponse",
-    unexpectedErrorResponse: "UnexpectedErrorResponse",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CrmCustomObjectSchemasUpdateResponse$ {
-  /** @deprecated use `CrmCustomObjectSchemasUpdateResponse$inboundSchema` instead. */
-  export const inboundSchema =
-    CrmCustomObjectSchemasUpdateResponse$inboundSchema;
-  /** @deprecated use `CrmCustomObjectSchemasUpdateResponse$outboundSchema` instead. */
-  export const outboundSchema =
-    CrmCustomObjectSchemasUpdateResponse$outboundSchema;
-  /** @deprecated use `CrmCustomObjectSchemasUpdateResponse$Outbound` instead. */
-  export type Outbound = CrmCustomObjectSchemasUpdateResponse$Outbound;
-}
-
-export function crmCustomObjectSchemasUpdateResponseToJSON(
-  crmCustomObjectSchemasUpdateResponse: CrmCustomObjectSchemasUpdateResponse,
-): string {
-  return JSON.stringify(
-    CrmCustomObjectSchemasUpdateResponse$outboundSchema.parse(
-      crmCustomObjectSchemasUpdateResponse,
-    ),
-  );
-}
 
 export function crmCustomObjectSchemasUpdateResponseFromJSON(
   jsonString: string,

@@ -37,7 +37,7 @@ type VaultConnectionConsentUpdateRequest struct {
 	// Unified API
 	UnifiedAPI string `pathParam:"style=simple,explode=false,name=unified_api"`
 	// New consent state
-	UpdateConsentRequest components.UpdateConsentRequest `request:"mediaType=application/json"`
+	Body components.UpdateConsentRequest `request:"mediaType=application/json"`
 }
 
 func (o *VaultConnectionConsentUpdateRequest) GetConsumerID() *string {
@@ -68,11 +68,11 @@ func (o *VaultConnectionConsentUpdateRequest) GetUnifiedAPI() string {
 	return o.UnifiedAPI
 }
 
-func (o *VaultConnectionConsentUpdateRequest) GetUpdateConsentRequest() components.UpdateConsentRequest {
+func (o *VaultConnectionConsentUpdateRequest) GetBody() components.UpdateConsentRequest {
 	if o == nil {
 		return components.UpdateConsentRequest{}
 	}
-	return o.UpdateConsentRequest
+	return o.Body
 }
 
 type VaultConnectionConsentUpdateResponse struct {

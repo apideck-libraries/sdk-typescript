@@ -72,90 +72,6 @@ export type IssueTrackingCollectionTagsAllResponse = {
 };
 
 /** @internal */
-export const IssueTrackingCollectionTagsAllGlobals$inboundSchema: z.ZodType<
-  IssueTrackingCollectionTagsAllGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/** @internal */
-export type IssueTrackingCollectionTagsAllGlobals$Outbound = {
-  consumerId?: string | undefined;
-  appId?: string | undefined;
-};
-
-/** @internal */
-export const IssueTrackingCollectionTagsAllGlobals$outboundSchema: z.ZodType<
-  IssueTrackingCollectionTagsAllGlobals$Outbound,
-  z.ZodTypeDef,
-  IssueTrackingCollectionTagsAllGlobals
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace IssueTrackingCollectionTagsAllGlobals$ {
-  /** @deprecated use `IssueTrackingCollectionTagsAllGlobals$inboundSchema` instead. */
-  export const inboundSchema =
-    IssueTrackingCollectionTagsAllGlobals$inboundSchema;
-  /** @deprecated use `IssueTrackingCollectionTagsAllGlobals$outboundSchema` instead. */
-  export const outboundSchema =
-    IssueTrackingCollectionTagsAllGlobals$outboundSchema;
-  /** @deprecated use `IssueTrackingCollectionTagsAllGlobals$Outbound` instead. */
-  export type Outbound = IssueTrackingCollectionTagsAllGlobals$Outbound;
-}
-
-export function issueTrackingCollectionTagsAllGlobalsToJSON(
-  issueTrackingCollectionTagsAllGlobals: IssueTrackingCollectionTagsAllGlobals,
-): string {
-  return JSON.stringify(
-    IssueTrackingCollectionTagsAllGlobals$outboundSchema.parse(
-      issueTrackingCollectionTagsAllGlobals,
-    ),
-  );
-}
-
-export function issueTrackingCollectionTagsAllGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<IssueTrackingCollectionTagsAllGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      IssueTrackingCollectionTagsAllGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'IssueTrackingCollectionTagsAllGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const IssueTrackingCollectionTagsAllRequest$inboundSchema: z.ZodType<
-  IssueTrackingCollectionTagsAllRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  collection_id: z.string(),
-  raw: z.boolean().default(false),
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  cursor: z.nullable(z.string()).optional(),
-  limit: z.number().int().default(20),
-  pass_through: z.record(z.any()).optional(),
-  fields: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "collection_id": "collectionId",
-    "pass_through": "passThrough",
-  });
-});
-
-/** @internal */
 export type IssueTrackingCollectionTagsAllRequest$Outbound = {
   collection_id: string;
   raw: boolean;
@@ -190,21 +106,6 @@ export const IssueTrackingCollectionTagsAllRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace IssueTrackingCollectionTagsAllRequest$ {
-  /** @deprecated use `IssueTrackingCollectionTagsAllRequest$inboundSchema` instead. */
-  export const inboundSchema =
-    IssueTrackingCollectionTagsAllRequest$inboundSchema;
-  /** @deprecated use `IssueTrackingCollectionTagsAllRequest$outboundSchema` instead. */
-  export const outboundSchema =
-    IssueTrackingCollectionTagsAllRequest$outboundSchema;
-  /** @deprecated use `IssueTrackingCollectionTagsAllRequest$Outbound` instead. */
-  export type Outbound = IssueTrackingCollectionTagsAllRequest$Outbound;
-}
-
 export function issueTrackingCollectionTagsAllRequestToJSON(
   issueTrackingCollectionTagsAllRequest: IssueTrackingCollectionTagsAllRequest,
 ): string {
@@ -212,17 +113,6 @@ export function issueTrackingCollectionTagsAllRequestToJSON(
     IssueTrackingCollectionTagsAllRequest$outboundSchema.parse(
       issueTrackingCollectionTagsAllRequest,
     ),
-  );
-}
-
-export function issueTrackingCollectionTagsAllRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<IssueTrackingCollectionTagsAllRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      IssueTrackingCollectionTagsAllRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'IssueTrackingCollectionTagsAllRequest' from JSON`,
   );
 }
 
@@ -244,62 +134,6 @@ export const IssueTrackingCollectionTagsAllResponse$inboundSchema: z.ZodType<
     "UnexpectedErrorResponse": "unexpectedErrorResponse",
   });
 });
-
-/** @internal */
-export type IssueTrackingCollectionTagsAllResponse$Outbound = {
-  HttpMeta: components.HTTPMetadata$Outbound;
-  GetCollectionTagsResponse?:
-    | components.GetCollectionTagsResponse$Outbound
-    | undefined;
-  UnexpectedErrorResponse?:
-    | components.UnexpectedErrorResponse$Outbound
-    | undefined;
-};
-
-/** @internal */
-export const IssueTrackingCollectionTagsAllResponse$outboundSchema: z.ZodType<
-  IssueTrackingCollectionTagsAllResponse$Outbound,
-  z.ZodTypeDef,
-  IssueTrackingCollectionTagsAllResponse
-> = z.object({
-  httpMeta: components.HTTPMetadata$outboundSchema,
-  getCollectionTagsResponse: components.GetCollectionTagsResponse$outboundSchema
-    .optional(),
-  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    httpMeta: "HttpMeta",
-    getCollectionTagsResponse: "GetCollectionTagsResponse",
-    unexpectedErrorResponse: "UnexpectedErrorResponse",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace IssueTrackingCollectionTagsAllResponse$ {
-  /** @deprecated use `IssueTrackingCollectionTagsAllResponse$inboundSchema` instead. */
-  export const inboundSchema =
-    IssueTrackingCollectionTagsAllResponse$inboundSchema;
-  /** @deprecated use `IssueTrackingCollectionTagsAllResponse$outboundSchema` instead. */
-  export const outboundSchema =
-    IssueTrackingCollectionTagsAllResponse$outboundSchema;
-  /** @deprecated use `IssueTrackingCollectionTagsAllResponse$Outbound` instead. */
-  export type Outbound = IssueTrackingCollectionTagsAllResponse$Outbound;
-}
-
-export function issueTrackingCollectionTagsAllResponseToJSON(
-  issueTrackingCollectionTagsAllResponse:
-    IssueTrackingCollectionTagsAllResponse,
-): string {
-  return JSON.stringify(
-    IssueTrackingCollectionTagsAllResponse$outboundSchema.parse(
-      issueTrackingCollectionTagsAllResponse,
-    ),
-  );
-}
 
 export function issueTrackingCollectionTagsAllResponseFromJSON(
   jsonString: string,

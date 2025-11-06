@@ -26,15 +26,9 @@ import {
   CustomField$Outbound,
   CustomField$outboundSchema,
 } from "./customfield.js";
-import {
-  LinkedTaxRate,
-  LinkedTaxRate$inboundSchema,
-  LinkedTaxRate$Outbound,
-  LinkedTaxRate$outboundSchema,
-} from "./linkedtaxrate.js";
+import { LinkedTaxRate, LinkedTaxRate$inboundSchema } from "./linkedtaxrate.js";
 import {
   LinkedTaxRateInput,
-  LinkedTaxRateInput$inboundSchema,
   LinkedTaxRateInput$Outbound,
   LinkedTaxRateInput$outboundSchema,
 } from "./linkedtaxrateinput.js";
@@ -375,64 +369,28 @@ export type LedgerAccountInput = {
 export const LedgerAccountClassification$inboundSchema: z.ZodNativeEnum<
   typeof LedgerAccountClassification
 > = z.nativeEnum(LedgerAccountClassification);
-
 /** @internal */
 export const LedgerAccountClassification$outboundSchema: z.ZodNativeEnum<
   typeof LedgerAccountClassification
 > = LedgerAccountClassification$inboundSchema;
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace LedgerAccountClassification$ {
-  /** @deprecated use `LedgerAccountClassification$inboundSchema` instead. */
-  export const inboundSchema = LedgerAccountClassification$inboundSchema;
-  /** @deprecated use `LedgerAccountClassification$outboundSchema` instead. */
-  export const outboundSchema = LedgerAccountClassification$outboundSchema;
-}
-
 /** @internal */
 export const LedgerAccountType$inboundSchema: z.ZodNativeEnum<
   typeof LedgerAccountType
 > = z.nativeEnum(LedgerAccountType);
-
 /** @internal */
 export const LedgerAccountType$outboundSchema: z.ZodNativeEnum<
   typeof LedgerAccountType
 > = LedgerAccountType$inboundSchema;
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace LedgerAccountType$ {
-  /** @deprecated use `LedgerAccountType$inboundSchema` instead. */
-  export const inboundSchema = LedgerAccountType$inboundSchema;
-  /** @deprecated use `LedgerAccountType$outboundSchema` instead. */
-  export const outboundSchema = LedgerAccountType$outboundSchema;
-}
-
 /** @internal */
 export const AccountStatus$inboundSchema: z.ZodNativeEnum<
   typeof AccountStatus
 > = z.nativeEnum(AccountStatus);
-
 /** @internal */
 export const AccountStatus$outboundSchema: z.ZodNativeEnum<
   typeof AccountStatus
 > = AccountStatus$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AccountStatus$ {
-  /** @deprecated use `AccountStatus$inboundSchema` instead. */
-  export const inboundSchema = AccountStatus$inboundSchema;
-  /** @deprecated use `AccountStatus$outboundSchema` instead. */
-  export const outboundSchema = AccountStatus$outboundSchema;
-}
 
 /** @internal */
 export const Categories$inboundSchema: z.ZodType<
@@ -443,39 +401,6 @@ export const Categories$inboundSchema: z.ZodType<
   id: z.string().optional(),
   name: z.string().optional(),
 });
-
-/** @internal */
-export type Categories$Outbound = {
-  id?: string | undefined;
-  name?: string | undefined;
-};
-
-/** @internal */
-export const Categories$outboundSchema: z.ZodType<
-  Categories$Outbound,
-  z.ZodTypeDef,
-  Categories
-> = z.object({
-  id: z.string().optional(),
-  name: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Categories$ {
-  /** @deprecated use `Categories$inboundSchema` instead. */
-  export const inboundSchema = Categories$inboundSchema;
-  /** @deprecated use `Categories$outboundSchema` instead. */
-  export const outboundSchema = Categories$outboundSchema;
-  /** @deprecated use `Categories$Outbound` instead. */
-  export type Outbound = Categories$Outbound;
-}
-
-export function categoriesToJSON(categories: Categories): string {
-  return JSON.stringify(Categories$outboundSchema.parse(categories));
-}
 
 export function categoriesFromJSON(
   jsonString: string,
@@ -501,7 +426,6 @@ export const ParentAccount$inboundSchema: z.ZodType<
     "display_id": "displayId",
   });
 });
-
 /** @internal */
 export type ParentAccount$Outbound = {
   id?: string | undefined;
@@ -524,23 +448,9 @@ export const ParentAccount$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ParentAccount$ {
-  /** @deprecated use `ParentAccount$inboundSchema` instead. */
-  export const inboundSchema = ParentAccount$inboundSchema;
-  /** @deprecated use `ParentAccount$outboundSchema` instead. */
-  export const outboundSchema = ParentAccount$outboundSchema;
-  /** @deprecated use `ParentAccount$Outbound` instead. */
-  export type Outbound = ParentAccount$Outbound;
-}
-
 export function parentAccountToJSON(parentAccount: ParentAccount): string {
   return JSON.stringify(ParentAccount$outboundSchema.parse(parentAccount));
 }
-
 export function parentAccountFromJSON(
   jsonString: string,
 ): SafeParseResult<ParentAccount, SDKValidationError> {
@@ -565,43 +475,6 @@ export const SubAccounts$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type SubAccounts$Outbound = {
-  id?: string | undefined;
-  account_sub_name?: string | undefined;
-};
-
-/** @internal */
-export const SubAccounts$outboundSchema: z.ZodType<
-  SubAccounts$Outbound,
-  z.ZodTypeDef,
-  SubAccounts
-> = z.object({
-  id: z.string().optional(),
-  accountSubName: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    accountSubName: "account_sub_name",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SubAccounts$ {
-  /** @deprecated use `SubAccounts$inboundSchema` instead. */
-  export const inboundSchema = SubAccounts$inboundSchema;
-  /** @deprecated use `SubAccounts$outboundSchema` instead. */
-  export const outboundSchema = SubAccounts$outboundSchema;
-  /** @deprecated use `SubAccounts$Outbound` instead. */
-  export type Outbound = SubAccounts$Outbound;
-}
-
-export function subAccountsToJSON(subAccounts: SubAccounts): string {
-  return JSON.stringify(SubAccounts$outboundSchema.parse(subAccounts));
-}
-
 export function subAccountsFromJSON(
   jsonString: string,
 ): SafeParseResult<SubAccounts, SDKValidationError> {
@@ -620,7 +493,6 @@ export const LedgerAccountSubsidiaries$inboundSchema: z.ZodType<
 > = z.object({
   id: z.string().optional(),
 });
-
 /** @internal */
 export type LedgerAccountSubsidiaries$Outbound = {
   id?: string | undefined;
@@ -635,19 +507,6 @@ export const LedgerAccountSubsidiaries$outboundSchema: z.ZodType<
   id: z.string().optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace LedgerAccountSubsidiaries$ {
-  /** @deprecated use `LedgerAccountSubsidiaries$inboundSchema` instead. */
-  export const inboundSchema = LedgerAccountSubsidiaries$inboundSchema;
-  /** @deprecated use `LedgerAccountSubsidiaries$outboundSchema` instead. */
-  export const outboundSchema = LedgerAccountSubsidiaries$outboundSchema;
-  /** @deprecated use `LedgerAccountSubsidiaries$Outbound` instead. */
-  export type Outbound = LedgerAccountSubsidiaries$Outbound;
-}
-
 export function ledgerAccountSubsidiariesToJSON(
   ledgerAccountSubsidiaries: LedgerAccountSubsidiaries,
 ): string {
@@ -655,7 +514,6 @@ export function ledgerAccountSubsidiariesToJSON(
     LedgerAccountSubsidiaries$outboundSchema.parse(ledgerAccountSubsidiaries),
   );
 }
-
 export function ledgerAccountSubsidiariesFromJSON(
   jsonString: string,
 ): SafeParseResult<LedgerAccountSubsidiaries, SDKValidationError> {
@@ -740,131 +598,6 @@ export const LedgerAccount$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type LedgerAccount$Outbound = {
-  id?: string | undefined;
-  display_id?: string | undefined;
-  nominal_code?: string | null | undefined;
-  code?: string | null | undefined;
-  classification?: string | null | undefined;
-  type?: string | undefined;
-  sub_type?: string | null | undefined;
-  name?: string | null | undefined;
-  fully_qualified_name?: string | null | undefined;
-  description?: string | null | undefined;
-  opening_balance?: number | null | undefined;
-  current_balance?: number | null | undefined;
-  currency?: string | null | undefined;
-  tax_type?: string | null | undefined;
-  tax_rate?: LinkedTaxRate$Outbound | undefined;
-  level?: number | null | undefined;
-  active?: boolean | null | undefined;
-  status?: string | null | undefined;
-  header?: boolean | null | undefined;
-  bank_account?: BankAccount$Outbound | undefined;
-  categories?: Array<Categories$Outbound> | undefined;
-  parent_account?: ParentAccount$Outbound | undefined;
-  sub_account?: boolean | null | undefined;
-  sub_accounts?: Array<SubAccounts$Outbound> | undefined;
-  last_reconciliation_date?: string | null | undefined;
-  subsidiaries?: Array<LedgerAccountSubsidiaries$Outbound> | undefined;
-  custom_mappings?: { [k: string]: any } | null | undefined;
-  custom_fields?: Array<CustomField$Outbound> | undefined;
-  row_version?: string | null | undefined;
-  updated_by?: string | null | undefined;
-  created_by?: string | null | undefined;
-  updated_at?: string | null | undefined;
-  created_at?: string | null | undefined;
-  pass_through?: Array<PassThroughBody$Outbound> | undefined;
-};
-
-/** @internal */
-export const LedgerAccount$outboundSchema: z.ZodType<
-  LedgerAccount$Outbound,
-  z.ZodTypeDef,
-  LedgerAccount
-> = z.object({
-  id: z.string().optional(),
-  displayId: z.string().optional(),
-  nominalCode: z.nullable(z.string()).optional(),
-  code: z.nullable(z.string()).optional(),
-  classification: z.nullable(LedgerAccountClassification$outboundSchema)
-    .optional(),
-  type: LedgerAccountType$outboundSchema.optional(),
-  subType: z.nullable(z.string()).optional(),
-  name: z.nullable(z.string()).optional(),
-  fullyQualifiedName: z.nullable(z.string()).optional(),
-  description: z.nullable(z.string()).optional(),
-  openingBalance: z.nullable(z.number()).optional(),
-  currentBalance: z.nullable(z.number()).optional(),
-  currency: z.nullable(Currency$outboundSchema).optional(),
-  taxType: z.nullable(z.string()).optional(),
-  taxRate: LinkedTaxRate$outboundSchema.optional(),
-  level: z.nullable(z.number()).optional(),
-  active: z.nullable(z.boolean()).optional(),
-  status: z.nullable(AccountStatus$outboundSchema).optional(),
-  header: z.nullable(z.boolean()).optional(),
-  bankAccount: BankAccount$outboundSchema.optional(),
-  categories: z.array(z.lazy(() => Categories$outboundSchema)).optional(),
-  parentAccount: z.lazy(() => ParentAccount$outboundSchema).optional(),
-  subAccount: z.nullable(z.boolean()).optional(),
-  subAccounts: z.array(z.lazy(() => SubAccounts$outboundSchema)).optional(),
-  lastReconciliationDate: z.nullable(
-    z.instanceof(RFCDate).transform(v => v.toString()),
-  ).optional(),
-  subsidiaries: z.array(z.lazy(() => LedgerAccountSubsidiaries$outboundSchema))
-    .optional(),
-  customMappings: z.nullable(z.record(z.any())).optional(),
-  customFields: z.array(CustomField$outboundSchema).optional(),
-  rowVersion: z.nullable(z.string()).optional(),
-  updatedBy: z.nullable(z.string()).optional(),
-  createdBy: z.nullable(z.string()).optional(),
-  updatedAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
-  createdAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
-  passThrough: z.array(PassThroughBody$outboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    displayId: "display_id",
-    nominalCode: "nominal_code",
-    subType: "sub_type",
-    fullyQualifiedName: "fully_qualified_name",
-    openingBalance: "opening_balance",
-    currentBalance: "current_balance",
-    taxType: "tax_type",
-    taxRate: "tax_rate",
-    bankAccount: "bank_account",
-    parentAccount: "parent_account",
-    subAccount: "sub_account",
-    subAccounts: "sub_accounts",
-    lastReconciliationDate: "last_reconciliation_date",
-    customMappings: "custom_mappings",
-    customFields: "custom_fields",
-    rowVersion: "row_version",
-    updatedBy: "updated_by",
-    createdBy: "created_by",
-    updatedAt: "updated_at",
-    createdAt: "created_at",
-    passThrough: "pass_through",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace LedgerAccount$ {
-  /** @deprecated use `LedgerAccount$inboundSchema` instead. */
-  export const inboundSchema = LedgerAccount$inboundSchema;
-  /** @deprecated use `LedgerAccount$outboundSchema` instead. */
-  export const outboundSchema = LedgerAccount$outboundSchema;
-  /** @deprecated use `LedgerAccount$Outbound` instead. */
-  export type Outbound = LedgerAccount$Outbound;
-}
-
-export function ledgerAccountToJSON(ledgerAccount: LedgerAccount): string {
-  return JSON.stringify(LedgerAccount$outboundSchema.parse(ledgerAccount));
-}
-
 export function ledgerAccountFromJSON(
   jsonString: string,
 ): SafeParseResult<LedgerAccount, SDKValidationError> {
@@ -874,62 +607,6 @@ export function ledgerAccountFromJSON(
     `Failed to parse 'LedgerAccount' from JSON`,
   );
 }
-
-/** @internal */
-export const LedgerAccountInput$inboundSchema: z.ZodType<
-  LedgerAccountInput,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  display_id: z.string().optional(),
-  nominal_code: z.nullable(z.string()).optional(),
-  code: z.nullable(z.string()).optional(),
-  classification: z.nullable(LedgerAccountClassification$inboundSchema)
-    .optional(),
-  type: LedgerAccountType$inboundSchema.optional(),
-  sub_type: z.nullable(z.string()).optional(),
-  name: z.nullable(z.string()).optional(),
-  fully_qualified_name: z.nullable(z.string()).optional(),
-  description: z.nullable(z.string()).optional(),
-  opening_balance: z.nullable(z.number()).optional(),
-  current_balance: z.nullable(z.number()).optional(),
-  currency: z.nullable(Currency$inboundSchema).optional(),
-  tax_type: z.nullable(z.string()).optional(),
-  tax_rate: LinkedTaxRateInput$inboundSchema.optional(),
-  level: z.nullable(z.number()).optional(),
-  active: z.nullable(z.boolean()).optional(),
-  status: z.nullable(AccountStatus$inboundSchema).optional(),
-  header: z.nullable(z.boolean()).optional(),
-  bank_account: BankAccount$inboundSchema.optional(),
-  parent_account: z.lazy(() => ParentAccount$inboundSchema).optional(),
-  sub_account: z.nullable(z.boolean()).optional(),
-  last_reconciliation_date: z.nullable(
-    z.string().transform(v => new RFCDate(v)),
-  ).optional(),
-  subsidiaries: z.array(z.lazy(() => LedgerAccountSubsidiaries$inboundSchema))
-    .optional(),
-  custom_fields: z.array(CustomField$inboundSchema).optional(),
-  row_version: z.nullable(z.string()).optional(),
-  pass_through: z.array(PassThroughBody$inboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "display_id": "displayId",
-    "nominal_code": "nominalCode",
-    "sub_type": "subType",
-    "fully_qualified_name": "fullyQualifiedName",
-    "opening_balance": "openingBalance",
-    "current_balance": "currentBalance",
-    "tax_type": "taxType",
-    "tax_rate": "taxRate",
-    "bank_account": "bankAccount",
-    "parent_account": "parentAccount",
-    "sub_account": "subAccount",
-    "last_reconciliation_date": "lastReconciliationDate",
-    "custom_fields": "customFields",
-    "row_version": "rowVersion",
-    "pass_through": "passThrough",
-  });
-});
 
 /** @internal */
 export type LedgerAccountInput$Outbound = {
@@ -1017,33 +694,10 @@ export const LedgerAccountInput$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace LedgerAccountInput$ {
-  /** @deprecated use `LedgerAccountInput$inboundSchema` instead. */
-  export const inboundSchema = LedgerAccountInput$inboundSchema;
-  /** @deprecated use `LedgerAccountInput$outboundSchema` instead. */
-  export const outboundSchema = LedgerAccountInput$outboundSchema;
-  /** @deprecated use `LedgerAccountInput$Outbound` instead. */
-  export type Outbound = LedgerAccountInput$Outbound;
-}
-
 export function ledgerAccountInputToJSON(
   ledgerAccountInput: LedgerAccountInput,
 ): string {
   return JSON.stringify(
     LedgerAccountInput$outboundSchema.parse(ledgerAccountInput),
-  );
-}
-
-export function ledgerAccountInputFromJSON(
-  jsonString: string,
-): SafeParseResult<LedgerAccountInput, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => LedgerAccountInput$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'LedgerAccountInput' from JSON`,
   );
 }

@@ -56,78 +56,6 @@ export type FileStorageDrivesDeleteResponse = {
 };
 
 /** @internal */
-export const FileStorageDrivesDeleteGlobals$inboundSchema: z.ZodType<
-  FileStorageDrivesDeleteGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/** @internal */
-export type FileStorageDrivesDeleteGlobals$Outbound = {
-  consumerId?: string | undefined;
-  appId?: string | undefined;
-};
-
-/** @internal */
-export const FileStorageDrivesDeleteGlobals$outboundSchema: z.ZodType<
-  FileStorageDrivesDeleteGlobals$Outbound,
-  z.ZodTypeDef,
-  FileStorageDrivesDeleteGlobals
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace FileStorageDrivesDeleteGlobals$ {
-  /** @deprecated use `FileStorageDrivesDeleteGlobals$inboundSchema` instead. */
-  export const inboundSchema = FileStorageDrivesDeleteGlobals$inboundSchema;
-  /** @deprecated use `FileStorageDrivesDeleteGlobals$outboundSchema` instead. */
-  export const outboundSchema = FileStorageDrivesDeleteGlobals$outboundSchema;
-  /** @deprecated use `FileStorageDrivesDeleteGlobals$Outbound` instead. */
-  export type Outbound = FileStorageDrivesDeleteGlobals$Outbound;
-}
-
-export function fileStorageDrivesDeleteGlobalsToJSON(
-  fileStorageDrivesDeleteGlobals: FileStorageDrivesDeleteGlobals,
-): string {
-  return JSON.stringify(
-    FileStorageDrivesDeleteGlobals$outboundSchema.parse(
-      fileStorageDrivesDeleteGlobals,
-    ),
-  );
-}
-
-export function fileStorageDrivesDeleteGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<FileStorageDrivesDeleteGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => FileStorageDrivesDeleteGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'FileStorageDrivesDeleteGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const FileStorageDrivesDeleteRequest$inboundSchema: z.ZodType<
-  FileStorageDrivesDeleteRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  id: z.string(),
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  raw: z.boolean().default(false),
-});
-
-/** @internal */
 export type FileStorageDrivesDeleteRequest$Outbound = {
   id: string;
   consumerId?: string | undefined;
@@ -149,19 +77,6 @@ export const FileStorageDrivesDeleteRequest$outboundSchema: z.ZodType<
   raw: z.boolean().default(false),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace FileStorageDrivesDeleteRequest$ {
-  /** @deprecated use `FileStorageDrivesDeleteRequest$inboundSchema` instead. */
-  export const inboundSchema = FileStorageDrivesDeleteRequest$inboundSchema;
-  /** @deprecated use `FileStorageDrivesDeleteRequest$outboundSchema` instead. */
-  export const outboundSchema = FileStorageDrivesDeleteRequest$outboundSchema;
-  /** @deprecated use `FileStorageDrivesDeleteRequest$Outbound` instead. */
-  export type Outbound = FileStorageDrivesDeleteRequest$Outbound;
-}
-
 export function fileStorageDrivesDeleteRequestToJSON(
   fileStorageDrivesDeleteRequest: FileStorageDrivesDeleteRequest,
 ): string {
@@ -169,16 +84,6 @@ export function fileStorageDrivesDeleteRequestToJSON(
     FileStorageDrivesDeleteRequest$outboundSchema.parse(
       fileStorageDrivesDeleteRequest,
     ),
-  );
-}
-
-export function fileStorageDrivesDeleteRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<FileStorageDrivesDeleteRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => FileStorageDrivesDeleteRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'FileStorageDrivesDeleteRequest' from JSON`,
   );
 }
 
@@ -199,56 +104,6 @@ export const FileStorageDrivesDeleteResponse$inboundSchema: z.ZodType<
     "UnexpectedErrorResponse": "unexpectedErrorResponse",
   });
 });
-
-/** @internal */
-export type FileStorageDrivesDeleteResponse$Outbound = {
-  HttpMeta: components.HTTPMetadata$Outbound;
-  DeleteDriveResponse?: components.DeleteDriveResponse$Outbound | undefined;
-  UnexpectedErrorResponse?:
-    | components.UnexpectedErrorResponse$Outbound
-    | undefined;
-};
-
-/** @internal */
-export const FileStorageDrivesDeleteResponse$outboundSchema: z.ZodType<
-  FileStorageDrivesDeleteResponse$Outbound,
-  z.ZodTypeDef,
-  FileStorageDrivesDeleteResponse
-> = z.object({
-  httpMeta: components.HTTPMetadata$outboundSchema,
-  deleteDriveResponse: components.DeleteDriveResponse$outboundSchema.optional(),
-  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    httpMeta: "HttpMeta",
-    deleteDriveResponse: "DeleteDriveResponse",
-    unexpectedErrorResponse: "UnexpectedErrorResponse",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace FileStorageDrivesDeleteResponse$ {
-  /** @deprecated use `FileStorageDrivesDeleteResponse$inboundSchema` instead. */
-  export const inboundSchema = FileStorageDrivesDeleteResponse$inboundSchema;
-  /** @deprecated use `FileStorageDrivesDeleteResponse$outboundSchema` instead. */
-  export const outboundSchema = FileStorageDrivesDeleteResponse$outboundSchema;
-  /** @deprecated use `FileStorageDrivesDeleteResponse$Outbound` instead. */
-  export type Outbound = FileStorageDrivesDeleteResponse$Outbound;
-}
-
-export function fileStorageDrivesDeleteResponseToJSON(
-  fileStorageDrivesDeleteResponse: FileStorageDrivesDeleteResponse,
-): string {
-  return JSON.stringify(
-    FileStorageDrivesDeleteResponse$outboundSchema.parse(
-      fileStorageDrivesDeleteResponse,
-    ),
-  );
-}
 
 export function fileStorageDrivesDeleteResponseFromJSON(
   jsonString: string,

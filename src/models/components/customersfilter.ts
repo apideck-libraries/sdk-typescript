@@ -4,10 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
  * Status of customer to filter on
@@ -56,52 +53,9 @@ export type CustomersFilter = {
 };
 
 /** @internal */
-export const CustomersFilterStatus$inboundSchema: z.ZodNativeEnum<
-  typeof CustomersFilterStatus
-> = z.nativeEnum(CustomersFilterStatus);
-
-/** @internal */
 export const CustomersFilterStatus$outboundSchema: z.ZodNativeEnum<
   typeof CustomersFilterStatus
-> = CustomersFilterStatus$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CustomersFilterStatus$ {
-  /** @deprecated use `CustomersFilterStatus$inboundSchema` instead. */
-  export const inboundSchema = CustomersFilterStatus$inboundSchema;
-  /** @deprecated use `CustomersFilterStatus$outboundSchema` instead. */
-  export const outboundSchema = CustomersFilterStatus$outboundSchema;
-}
-
-/** @internal */
-export const CustomersFilter$inboundSchema: z.ZodType<
-  CustomersFilter,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  company_name: z.string().optional(),
-  display_name: z.string().optional(),
-  first_name: z.string().optional(),
-  last_name: z.string().optional(),
-  email: z.string().optional(),
-  status: z.nullable(CustomersFilterStatus$inboundSchema).optional(),
-  updated_since: z.string().datetime({ offset: true }).transform(v =>
-    new Date(v)
-  ).optional(),
-  supplier_id: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "company_name": "companyName",
-    "display_name": "displayName",
-    "first_name": "firstName",
-    "last_name": "lastName",
-    "updated_since": "updatedSince",
-    "supplier_id": "supplierId",
-  });
-});
+> = z.nativeEnum(CustomersFilterStatus);
 
 /** @internal */
 export type CustomersFilter$Outbound = {
@@ -140,31 +94,8 @@ export const CustomersFilter$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CustomersFilter$ {
-  /** @deprecated use `CustomersFilter$inboundSchema` instead. */
-  export const inboundSchema = CustomersFilter$inboundSchema;
-  /** @deprecated use `CustomersFilter$outboundSchema` instead. */
-  export const outboundSchema = CustomersFilter$outboundSchema;
-  /** @deprecated use `CustomersFilter$Outbound` instead. */
-  export type Outbound = CustomersFilter$Outbound;
-}
-
 export function customersFilterToJSON(
   customersFilter: CustomersFilter,
 ): string {
   return JSON.stringify(CustomersFilter$outboundSchema.parse(customersFilter));
-}
-
-export function customersFilterFromJSON(
-  jsonString: string,
-): SafeParseResult<CustomersFilter, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => CustomersFilter$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CustomersFilter' from JSON`,
-  );
 }

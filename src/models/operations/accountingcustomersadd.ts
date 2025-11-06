@@ -53,82 +53,6 @@ export type AccountingCustomersAddResponse = {
 };
 
 /** @internal */
-export const AccountingCustomersAddGlobals$inboundSchema: z.ZodType<
-  AccountingCustomersAddGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/** @internal */
-export type AccountingCustomersAddGlobals$Outbound = {
-  consumerId?: string | undefined;
-  appId?: string | undefined;
-};
-
-/** @internal */
-export const AccountingCustomersAddGlobals$outboundSchema: z.ZodType<
-  AccountingCustomersAddGlobals$Outbound,
-  z.ZodTypeDef,
-  AccountingCustomersAddGlobals
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AccountingCustomersAddGlobals$ {
-  /** @deprecated use `AccountingCustomersAddGlobals$inboundSchema` instead. */
-  export const inboundSchema = AccountingCustomersAddGlobals$inboundSchema;
-  /** @deprecated use `AccountingCustomersAddGlobals$outboundSchema` instead. */
-  export const outboundSchema = AccountingCustomersAddGlobals$outboundSchema;
-  /** @deprecated use `AccountingCustomersAddGlobals$Outbound` instead. */
-  export type Outbound = AccountingCustomersAddGlobals$Outbound;
-}
-
-export function accountingCustomersAddGlobalsToJSON(
-  accountingCustomersAddGlobals: AccountingCustomersAddGlobals,
-): string {
-  return JSON.stringify(
-    AccountingCustomersAddGlobals$outboundSchema.parse(
-      accountingCustomersAddGlobals,
-    ),
-  );
-}
-
-export function accountingCustomersAddGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<AccountingCustomersAddGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => AccountingCustomersAddGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'AccountingCustomersAddGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const AccountingCustomersAddRequest$inboundSchema: z.ZodType<
-  AccountingCustomersAddRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  raw: z.boolean().default(false),
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  Customer: components.CustomerInput$inboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    "Customer": "customer",
-  });
-});
-
-/** @internal */
 export type AccountingCustomersAddRequest$Outbound = {
   raw: boolean;
   consumerId?: string | undefined;
@@ -154,19 +78,6 @@ export const AccountingCustomersAddRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AccountingCustomersAddRequest$ {
-  /** @deprecated use `AccountingCustomersAddRequest$inboundSchema` instead. */
-  export const inboundSchema = AccountingCustomersAddRequest$inboundSchema;
-  /** @deprecated use `AccountingCustomersAddRequest$outboundSchema` instead. */
-  export const outboundSchema = AccountingCustomersAddRequest$outboundSchema;
-  /** @deprecated use `AccountingCustomersAddRequest$Outbound` instead. */
-  export type Outbound = AccountingCustomersAddRequest$Outbound;
-}
-
 export function accountingCustomersAddRequestToJSON(
   accountingCustomersAddRequest: AccountingCustomersAddRequest,
 ): string {
@@ -174,16 +85,6 @@ export function accountingCustomersAddRequestToJSON(
     AccountingCustomersAddRequest$outboundSchema.parse(
       accountingCustomersAddRequest,
     ),
-  );
-}
-
-export function accountingCustomersAddRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<AccountingCustomersAddRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => AccountingCustomersAddRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'AccountingCustomersAddRequest' from JSON`,
   );
 }
 
@@ -205,59 +106,6 @@ export const AccountingCustomersAddResponse$inboundSchema: z.ZodType<
     "UnexpectedErrorResponse": "unexpectedErrorResponse",
   });
 });
-
-/** @internal */
-export type AccountingCustomersAddResponse$Outbound = {
-  HttpMeta: components.HTTPMetadata$Outbound;
-  CreateCustomerResponse?:
-    | components.CreateCustomerResponse$Outbound
-    | undefined;
-  UnexpectedErrorResponse?:
-    | components.UnexpectedErrorResponse$Outbound
-    | undefined;
-};
-
-/** @internal */
-export const AccountingCustomersAddResponse$outboundSchema: z.ZodType<
-  AccountingCustomersAddResponse$Outbound,
-  z.ZodTypeDef,
-  AccountingCustomersAddResponse
-> = z.object({
-  httpMeta: components.HTTPMetadata$outboundSchema,
-  createCustomerResponse: components.CreateCustomerResponse$outboundSchema
-    .optional(),
-  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    httpMeta: "HttpMeta",
-    createCustomerResponse: "CreateCustomerResponse",
-    unexpectedErrorResponse: "UnexpectedErrorResponse",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AccountingCustomersAddResponse$ {
-  /** @deprecated use `AccountingCustomersAddResponse$inboundSchema` instead. */
-  export const inboundSchema = AccountingCustomersAddResponse$inboundSchema;
-  /** @deprecated use `AccountingCustomersAddResponse$outboundSchema` instead. */
-  export const outboundSchema = AccountingCustomersAddResponse$outboundSchema;
-  /** @deprecated use `AccountingCustomersAddResponse$Outbound` instead. */
-  export type Outbound = AccountingCustomersAddResponse$Outbound;
-}
-
-export function accountingCustomersAddResponseToJSON(
-  accountingCustomersAddResponse: AccountingCustomersAddResponse,
-): string {
-  return JSON.stringify(
-    AccountingCustomersAddResponse$outboundSchema.parse(
-      accountingCustomersAddResponse,
-    ),
-  );
-}
 
 export function accountingCustomersAddResponseFromJSON(
   jsonString: string,

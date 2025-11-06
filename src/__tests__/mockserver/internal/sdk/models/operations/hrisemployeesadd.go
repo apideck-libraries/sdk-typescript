@@ -37,7 +37,7 @@ type HrisEmployeesAddRequest struct {
 	AppID *string `header:"style=simple,explode=false,name=x-apideck-app-id"`
 	// Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
 	ServiceID *string                  `header:"style=simple,explode=false,name=x-apideck-service-id"`
-	Employee  components.EmployeeInput `request:"mediaType=application/json"`
+	Body      components.EmployeeInput `request:"mediaType=application/json"`
 }
 
 func (h HrisEmployeesAddRequest) MarshalJSON() ([]byte, error) {
@@ -45,7 +45,7 @@ func (h HrisEmployeesAddRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (h *HrisEmployeesAddRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &h, "", false, []string{"Employee"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &h, "", false, []string{"body"}); err != nil {
 		return err
 	}
 	return nil
@@ -79,11 +79,11 @@ func (o *HrisEmployeesAddRequest) GetServiceID() *string {
 	return o.ServiceID
 }
 
-func (o *HrisEmployeesAddRequest) GetEmployee() components.EmployeeInput {
+func (o *HrisEmployeesAddRequest) GetBody() components.EmployeeInput {
 	if o == nil {
 		return components.EmployeeInput{}
 	}
-	return o.Employee
+	return o.Body
 }
 
 type HrisEmployeesAddResponse struct {

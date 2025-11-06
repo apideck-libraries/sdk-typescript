@@ -68,86 +68,6 @@ export type AccountingAttachmentsOneResponse = {
 };
 
 /** @internal */
-export const AccountingAttachmentsOneGlobals$inboundSchema: z.ZodType<
-  AccountingAttachmentsOneGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/** @internal */
-export type AccountingAttachmentsOneGlobals$Outbound = {
-  consumerId?: string | undefined;
-  appId?: string | undefined;
-};
-
-/** @internal */
-export const AccountingAttachmentsOneGlobals$outboundSchema: z.ZodType<
-  AccountingAttachmentsOneGlobals$Outbound,
-  z.ZodTypeDef,
-  AccountingAttachmentsOneGlobals
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AccountingAttachmentsOneGlobals$ {
-  /** @deprecated use `AccountingAttachmentsOneGlobals$inboundSchema` instead. */
-  export const inboundSchema = AccountingAttachmentsOneGlobals$inboundSchema;
-  /** @deprecated use `AccountingAttachmentsOneGlobals$outboundSchema` instead. */
-  export const outboundSchema = AccountingAttachmentsOneGlobals$outboundSchema;
-  /** @deprecated use `AccountingAttachmentsOneGlobals$Outbound` instead. */
-  export type Outbound = AccountingAttachmentsOneGlobals$Outbound;
-}
-
-export function accountingAttachmentsOneGlobalsToJSON(
-  accountingAttachmentsOneGlobals: AccountingAttachmentsOneGlobals,
-): string {
-  return JSON.stringify(
-    AccountingAttachmentsOneGlobals$outboundSchema.parse(
-      accountingAttachmentsOneGlobals,
-    ),
-  );
-}
-
-export function accountingAttachmentsOneGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<AccountingAttachmentsOneGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => AccountingAttachmentsOneGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'AccountingAttachmentsOneGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const AccountingAttachmentsOneRequest$inboundSchema: z.ZodType<
-  AccountingAttachmentsOneRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  reference_type: components.AttachmentReferenceType$inboundSchema,
-  reference_id: z.string(),
-  id: z.string(),
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  raw: z.boolean().default(false),
-  fields: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "reference_type": "referenceType",
-    "reference_id": "referenceId",
-  });
-});
-
-/** @internal */
 export type AccountingAttachmentsOneRequest$Outbound = {
   reference_type: string;
   reference_id: string;
@@ -180,19 +100,6 @@ export const AccountingAttachmentsOneRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AccountingAttachmentsOneRequest$ {
-  /** @deprecated use `AccountingAttachmentsOneRequest$inboundSchema` instead. */
-  export const inboundSchema = AccountingAttachmentsOneRequest$inboundSchema;
-  /** @deprecated use `AccountingAttachmentsOneRequest$outboundSchema` instead. */
-  export const outboundSchema = AccountingAttachmentsOneRequest$outboundSchema;
-  /** @deprecated use `AccountingAttachmentsOneRequest$Outbound` instead. */
-  export type Outbound = AccountingAttachmentsOneRequest$Outbound;
-}
-
 export function accountingAttachmentsOneRequestToJSON(
   accountingAttachmentsOneRequest: AccountingAttachmentsOneRequest,
 ): string {
@@ -200,16 +107,6 @@ export function accountingAttachmentsOneRequestToJSON(
     AccountingAttachmentsOneRequest$outboundSchema.parse(
       accountingAttachmentsOneRequest,
     ),
-  );
-}
-
-export function accountingAttachmentsOneRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<AccountingAttachmentsOneRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => AccountingAttachmentsOneRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'AccountingAttachmentsOneRequest' from JSON`,
   );
 }
 
@@ -231,57 +128,6 @@ export const AccountingAttachmentsOneResponse$inboundSchema: z.ZodType<
     "UnexpectedErrorResponse": "unexpectedErrorResponse",
   });
 });
-
-/** @internal */
-export type AccountingAttachmentsOneResponse$Outbound = {
-  HttpMeta: components.HTTPMetadata$Outbound;
-  GetAttachmentResponse?: components.GetAttachmentResponse$Outbound | undefined;
-  UnexpectedErrorResponse?:
-    | components.UnexpectedErrorResponse$Outbound
-    | undefined;
-};
-
-/** @internal */
-export const AccountingAttachmentsOneResponse$outboundSchema: z.ZodType<
-  AccountingAttachmentsOneResponse$Outbound,
-  z.ZodTypeDef,
-  AccountingAttachmentsOneResponse
-> = z.object({
-  httpMeta: components.HTTPMetadata$outboundSchema,
-  getAttachmentResponse: components.GetAttachmentResponse$outboundSchema
-    .optional(),
-  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    httpMeta: "HttpMeta",
-    getAttachmentResponse: "GetAttachmentResponse",
-    unexpectedErrorResponse: "UnexpectedErrorResponse",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AccountingAttachmentsOneResponse$ {
-  /** @deprecated use `AccountingAttachmentsOneResponse$inboundSchema` instead. */
-  export const inboundSchema = AccountingAttachmentsOneResponse$inboundSchema;
-  /** @deprecated use `AccountingAttachmentsOneResponse$outboundSchema` instead. */
-  export const outboundSchema = AccountingAttachmentsOneResponse$outboundSchema;
-  /** @deprecated use `AccountingAttachmentsOneResponse$Outbound` instead. */
-  export type Outbound = AccountingAttachmentsOneResponse$Outbound;
-}
-
-export function accountingAttachmentsOneResponseToJSON(
-  accountingAttachmentsOneResponse: AccountingAttachmentsOneResponse,
-): string {
-  return JSON.stringify(
-    AccountingAttachmentsOneResponse$outboundSchema.parse(
-      accountingAttachmentsOneResponse,
-    ),
-  );
-}
 
 export function accountingAttachmentsOneResponseFromJSON(
   jsonString: string,

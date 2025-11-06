@@ -7,24 +7,9 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  Benefit,
-  Benefit$inboundSchema,
-  Benefit$Outbound,
-  Benefit$outboundSchema,
-} from "./benefit.js";
-import {
-  Deduction,
-  Deduction$inboundSchema,
-  Deduction$Outbound,
-  Deduction$outboundSchema,
-} from "./deduction.js";
-import {
-  Tax,
-  Tax$inboundSchema,
-  Tax$Outbound,
-  Tax$outboundSchema,
-} from "./tax.js";
+import { Benefit, Benefit$inboundSchema } from "./benefit.js";
+import { Deduction, Deduction$inboundSchema } from "./deduction.js";
+import { Tax, Tax$inboundSchema } from "./tax.js";
 
 export type Compensation = {
   /**
@@ -72,53 +57,6 @@ export const Compensation$inboundSchema: z.ZodType<
     "gross_pay": "grossPay",
   });
 });
-
-/** @internal */
-export type Compensation$Outbound = {
-  employee_id: string | null;
-  net_pay?: number | null | undefined;
-  gross_pay?: number | null | undefined;
-  taxes?: Array<Tax$Outbound> | null | undefined;
-  deductions?: Array<Deduction$Outbound> | null | undefined;
-  benefits?: Array<Benefit$Outbound> | null | undefined;
-};
-
-/** @internal */
-export const Compensation$outboundSchema: z.ZodType<
-  Compensation$Outbound,
-  z.ZodTypeDef,
-  Compensation
-> = z.object({
-  employeeId: z.nullable(z.string()),
-  netPay: z.nullable(z.number()).optional(),
-  grossPay: z.nullable(z.number()).optional(),
-  taxes: z.nullable(z.array(Tax$outboundSchema)).optional(),
-  deductions: z.nullable(z.array(Deduction$outboundSchema)).optional(),
-  benefits: z.nullable(z.array(Benefit$outboundSchema)).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    employeeId: "employee_id",
-    netPay: "net_pay",
-    grossPay: "gross_pay",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Compensation$ {
-  /** @deprecated use `Compensation$inboundSchema` instead. */
-  export const inboundSchema = Compensation$inboundSchema;
-  /** @deprecated use `Compensation$outboundSchema` instead. */
-  export const outboundSchema = Compensation$outboundSchema;
-  /** @deprecated use `Compensation$Outbound` instead. */
-  export type Outbound = Compensation$Outbound;
-}
-
-export function compensationToJSON(compensation: Compensation): string {
-  return JSON.stringify(Compensation$outboundSchema.parse(compensation));
-}
 
 export function compensationFromJSON(
   jsonString: string,

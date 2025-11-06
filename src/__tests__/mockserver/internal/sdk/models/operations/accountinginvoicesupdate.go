@@ -38,8 +38,8 @@ type AccountingInvoicesUpdateRequest struct {
 	// Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
 	ServiceID *string `header:"style=simple,explode=false,name=x-apideck-service-id"`
 	// Include raw response. Mostly used for debugging purposes
-	Raw     *bool                   `default:"false" queryParam:"style=form,explode=true,name=raw"`
-	Invoice components.InvoiceInput `request:"mediaType=application/json"`
+	Raw  *bool                   `default:"false" queryParam:"style=form,explode=true,name=raw"`
+	Body components.InvoiceInput `request:"mediaType=application/json"`
 }
 
 func (a AccountingInvoicesUpdateRequest) MarshalJSON() ([]byte, error) {
@@ -47,7 +47,7 @@ func (a AccountingInvoicesUpdateRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (a *AccountingInvoicesUpdateRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"id", "Invoice"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"id", "body"}); err != nil {
 		return err
 	}
 	return nil
@@ -88,11 +88,11 @@ func (o *AccountingInvoicesUpdateRequest) GetRaw() *bool {
 	return o.Raw
 }
 
-func (o *AccountingInvoicesUpdateRequest) GetInvoice() components.InvoiceInput {
+func (o *AccountingInvoicesUpdateRequest) GetBody() components.InvoiceInput {
 	if o == nil {
 		return components.InvoiceInput{}
 	}
-	return o.Invoice
+	return o.Body
 }
 
 type AccountingInvoicesUpdateResponse struct {

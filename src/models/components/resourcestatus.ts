@@ -24,19 +24,3 @@ export type ResourceStatus = ClosedEnum<typeof ResourceStatus>;
 export const ResourceStatus$inboundSchema: z.ZodNativeEnum<
   typeof ResourceStatus
 > = z.nativeEnum(ResourceStatus);
-
-/** @internal */
-export const ResourceStatus$outboundSchema: z.ZodNativeEnum<
-  typeof ResourceStatus
-> = ResourceStatus$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ResourceStatus$ {
-  /** @deprecated use `ResourceStatus$inboundSchema` instead. */
-  export const inboundSchema = ResourceStatus$inboundSchema;
-  /** @deprecated use `ResourceStatus$outboundSchema` instead. */
-  export const outboundSchema = ResourceStatus$outboundSchema;
-}

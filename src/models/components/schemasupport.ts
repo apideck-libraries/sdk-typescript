@@ -26,37 +26,6 @@ export const SchemaSupport$inboundSchema: z.ZodType<
   supported: z.boolean().optional(),
 });
 
-/** @internal */
-export type SchemaSupport$Outbound = {
-  supported?: boolean | undefined;
-};
-
-/** @internal */
-export const SchemaSupport$outboundSchema: z.ZodType<
-  SchemaSupport$Outbound,
-  z.ZodTypeDef,
-  SchemaSupport
-> = z.object({
-  supported: z.boolean().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SchemaSupport$ {
-  /** @deprecated use `SchemaSupport$inboundSchema` instead. */
-  export const inboundSchema = SchemaSupport$inboundSchema;
-  /** @deprecated use `SchemaSupport$outboundSchema` instead. */
-  export const outboundSchema = SchemaSupport$outboundSchema;
-  /** @deprecated use `SchemaSupport$Outbound` instead. */
-  export type Outbound = SchemaSupport$Outbound;
-}
-
-export function schemaSupportToJSON(schemaSupport: SchemaSupport): string {
-  return JSON.stringify(SchemaSupport$outboundSchema.parse(schemaSupport));
-}
-
 export function schemaSupportFromJSON(
   jsonString: string,
 ): SafeParseResult<SchemaSupport, SDKValidationError> {

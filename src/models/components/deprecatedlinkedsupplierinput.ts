@@ -4,12 +4,8 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   Address,
-  Address$inboundSchema,
   Address$Outbound,
   Address$outboundSchema,
 } from "./address.js";
@@ -26,20 +22,6 @@ export type DeprecatedLinkedSupplierInput = {
   displayName?: string | null | undefined;
   address?: Address | undefined;
 };
-
-/** @internal */
-export const DeprecatedLinkedSupplierInput$inboundSchema: z.ZodType<
-  DeprecatedLinkedSupplierInput,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  display_name: z.nullable(z.string()).optional(),
-  address: Address$inboundSchema.optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "display_name": "displayName",
-  });
-});
 
 /** @internal */
 export type DeprecatedLinkedSupplierInput$Outbound = {
@@ -61,19 +43,6 @@ export const DeprecatedLinkedSupplierInput$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DeprecatedLinkedSupplierInput$ {
-  /** @deprecated use `DeprecatedLinkedSupplierInput$inboundSchema` instead. */
-  export const inboundSchema = DeprecatedLinkedSupplierInput$inboundSchema;
-  /** @deprecated use `DeprecatedLinkedSupplierInput$outboundSchema` instead. */
-  export const outboundSchema = DeprecatedLinkedSupplierInput$outboundSchema;
-  /** @deprecated use `DeprecatedLinkedSupplierInput$Outbound` instead. */
-  export type Outbound = DeprecatedLinkedSupplierInput$Outbound;
-}
-
 export function deprecatedLinkedSupplierInputToJSON(
   deprecatedLinkedSupplierInput: DeprecatedLinkedSupplierInput,
 ): string {
@@ -81,15 +50,5 @@ export function deprecatedLinkedSupplierInputToJSON(
     DeprecatedLinkedSupplierInput$outboundSchema.parse(
       deprecatedLinkedSupplierInput,
     ),
-  );
-}
-
-export function deprecatedLinkedSupplierInputFromJSON(
-  jsonString: string,
-): SafeParseResult<DeprecatedLinkedSupplierInput, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => DeprecatedLinkedSupplierInput$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'DeprecatedLinkedSupplierInput' from JSON`,
   );
 }

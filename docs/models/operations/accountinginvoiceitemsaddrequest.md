@@ -26,6 +26,7 @@ let value: AccountingInvoiceItemsAddRequest = {
       taxInclusive: true,
       taxRate: {
         id: "123456",
+        code: "N-T",
         rate: 10,
       },
     },
@@ -35,6 +36,7 @@ let value: AccountingInvoiceItemsAddRequest = {
       taxInclusive: true,
       taxRate: {
         id: "123456",
+        code: "N-T",
         rate: 10,
       },
     },
@@ -43,6 +45,7 @@ let value: AccountingInvoiceItemsAddRequest = {
     currency: "USD",
     assetAccount: {
       id: "123456",
+      name: "Bank account",
       nominalCode: "N091",
       code: "453",
       parentId: "123456",
@@ -50,6 +53,7 @@ let value: AccountingInvoiceItemsAddRequest = {
     },
     incomeAccount: {
       id: "123456",
+      name: "Bank account",
       nominalCode: "N091",
       code: "453",
       parentId: "123456",
@@ -57,6 +61,7 @@ let value: AccountingInvoiceItemsAddRequest = {
     },
     expenseAccount: {
       id: "123456",
+      name: "Bank account",
       nominalCode: "N091",
       code: "453",
       parentId: "123456",

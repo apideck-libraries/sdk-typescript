@@ -2,18 +2,14 @@
 
 package components
 
-import (
-	"mockserver/internal/sdk/utils"
-)
-
 type ExpenseLineItemInput struct {
 	// A list of linked tracking categories.
 	TrackingCategories []*LinkedTrackingCategory `json:"tracking_categories,omitempty"`
 	// The unique identifier for the ledger account. Deprecated, use account instead.
 	//
 	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
-	AccountID *string                   `json:"account_id,omitempty"`
-	Account   *LinkedLedgerAccountInput `json:"account,omitempty"`
+	AccountID *string              `json:"account_id,omitempty"`
+	Account   *LinkedLedgerAccount `json:"account,omitempty"`
 	// The ID of the customer this expense item is linked to.
 	CustomerID *string `json:"customer_id,omitempty"`
 	// The ID of the department
@@ -25,25 +21,23 @@ type ExpenseLineItemInput struct {
 	TaxRate      *LinkedTaxRateInput `json:"tax_rate,omitempty"`
 	// The expense line item description
 	Description *string `json:"description,omitempty"`
+	// Line Item type
+	Type *LineItemType `json:"type,omitempty"`
 	// The total amount of the expense line item.
 	TotalAmount *float64 `json:"total_amount"`
+	// Tax amount
+	TaxAmount *float64           `json:"tax_amount,omitempty"`
+	Quantity  *float64           `json:"quantity,omitempty"`
+	UnitPrice *float64           `json:"unit_price,omitempty"`
+	Item      *LinkedInvoiceItem `json:"item,omitempty"`
 	// Boolean that indicates if the line item is billable or not.
+	//
+	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
 	Billable *bool `json:"billable,omitempty"`
 	// Line number of the resource
 	LineNumber *int64 `json:"line_number,omitempty"`
 	// Rebilling metadata for this line item.
 	Rebilling *Rebilling `json:"rebilling,omitempty"`
-}
-
-func (e ExpenseLineItemInput) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(e, "", false)
-}
-
-func (e *ExpenseLineItemInput) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &e, "", false, []string{"total_amount"}); err != nil {
-		return err
-	}
-	return nil
 }
 
 func (o *ExpenseLineItemInput) GetTrackingCategories() []*LinkedTrackingCategory {
@@ -60,7 +54,7 @@ func (o *ExpenseLineItemInput) GetAccountID() *string {
 	return o.AccountID
 }
 
-func (o *ExpenseLineItemInput) GetAccount() *LinkedLedgerAccountInput {
+func (o *ExpenseLineItemInput) GetAccount() *LinkedLedgerAccount {
 	if o == nil {
 		return nil
 	}
@@ -109,11 +103,46 @@ func (o *ExpenseLineItemInput) GetDescription() *string {
 	return o.Description
 }
 
+func (o *ExpenseLineItemInput) GetType() *LineItemType {
+	if o == nil {
+		return nil
+	}
+	return o.Type
+}
+
 func (o *ExpenseLineItemInput) GetTotalAmount() *float64 {
 	if o == nil {
 		return nil
 	}
 	return o.TotalAmount
+}
+
+func (o *ExpenseLineItemInput) GetTaxAmount() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.TaxAmount
+}
+
+func (o *ExpenseLineItemInput) GetQuantity() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.Quantity
+}
+
+func (o *ExpenseLineItemInput) GetUnitPrice() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.UnitPrice
+}
+
+func (o *ExpenseLineItemInput) GetItem() *LinkedInvoiceItem {
+	if o == nil {
+		return nil
+	}
+	return o.Item
 }
 
 func (o *ExpenseLineItemInput) GetBillable() *bool {

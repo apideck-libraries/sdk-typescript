@@ -42,22 +42,6 @@ export const PaginationCoverageMode$inboundSchema: z.ZodNativeEnum<
 > = z.nativeEnum(PaginationCoverageMode);
 
 /** @internal */
-export const PaginationCoverageMode$outboundSchema: z.ZodNativeEnum<
-  typeof PaginationCoverageMode
-> = PaginationCoverageMode$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace PaginationCoverageMode$ {
-  /** @deprecated use `PaginationCoverageMode$inboundSchema` instead. */
-  export const inboundSchema = PaginationCoverageMode$inboundSchema;
-  /** @deprecated use `PaginationCoverageMode$outboundSchema` instead. */
-  export const outboundSchema = PaginationCoverageMode$outboundSchema;
-}
-
-/** @internal */
 export const PaginationCoverage$inboundSchema: z.ZodType<
   PaginationCoverage,
   z.ZodTypeDef,
@@ -72,50 +56,6 @@ export const PaginationCoverage$inboundSchema: z.ZodType<
     "limit_support": "limitSupport",
   });
 });
-
-/** @internal */
-export type PaginationCoverage$Outbound = {
-  mode?: string | undefined;
-  paging_support?: boolean | undefined;
-  limit_support?: boolean | undefined;
-};
-
-/** @internal */
-export const PaginationCoverage$outboundSchema: z.ZodType<
-  PaginationCoverage$Outbound,
-  z.ZodTypeDef,
-  PaginationCoverage
-> = z.object({
-  mode: PaginationCoverageMode$outboundSchema.optional(),
-  pagingSupport: z.boolean().optional(),
-  limitSupport: z.boolean().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    pagingSupport: "paging_support",
-    limitSupport: "limit_support",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace PaginationCoverage$ {
-  /** @deprecated use `PaginationCoverage$inboundSchema` instead. */
-  export const inboundSchema = PaginationCoverage$inboundSchema;
-  /** @deprecated use `PaginationCoverage$outboundSchema` instead. */
-  export const outboundSchema = PaginationCoverage$outboundSchema;
-  /** @deprecated use `PaginationCoverage$Outbound` instead. */
-  export type Outbound = PaginationCoverage$Outbound;
-}
-
-export function paginationCoverageToJSON(
-  paginationCoverage: PaginationCoverage,
-): string {
-  return JSON.stringify(
-    PaginationCoverage$outboundSchema.parse(paginationCoverage),
-  );
-}
 
 export function paginationCoverageFromJSON(
   jsonString: string,

@@ -7,12 +7,7 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  Category,
-  Category$inboundSchema,
-  Category$Outbound,
-  Category$outboundSchema,
-} from "./category.js";
+import { Category, Category$inboundSchema } from "./category.js";
 
 /**
  * Category
@@ -64,58 +59,6 @@ export const GetCategoryResponse$inboundSchema: z.ZodType<
     "_raw": "raw",
   });
 });
-
-/** @internal */
-export type GetCategoryResponse$Outbound = {
-  status_code: number;
-  status: string;
-  service: string;
-  resource: string;
-  operation: string;
-  data: Category$Outbound;
-  _raw?: { [k: string]: any } | null | undefined;
-};
-
-/** @internal */
-export const GetCategoryResponse$outboundSchema: z.ZodType<
-  GetCategoryResponse$Outbound,
-  z.ZodTypeDef,
-  GetCategoryResponse
-> = z.object({
-  statusCode: z.number().int(),
-  status: z.string(),
-  service: z.string(),
-  resource: z.string(),
-  operation: z.string(),
-  data: Category$outboundSchema,
-  raw: z.nullable(z.record(z.any())).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    statusCode: "status_code",
-    raw: "_raw",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetCategoryResponse$ {
-  /** @deprecated use `GetCategoryResponse$inboundSchema` instead. */
-  export const inboundSchema = GetCategoryResponse$inboundSchema;
-  /** @deprecated use `GetCategoryResponse$outboundSchema` instead. */
-  export const outboundSchema = GetCategoryResponse$outboundSchema;
-  /** @deprecated use `GetCategoryResponse$Outbound` instead. */
-  export type Outbound = GetCategoryResponse$Outbound;
-}
-
-export function getCategoryResponseToJSON(
-  getCategoryResponse: GetCategoryResponse,
-): string {
-  return JSON.stringify(
-    GetCategoryResponse$outboundSchema.parse(getCategoryResponse),
-  );
-}
 
 export function getCategoryResponseFromJSON(
   jsonString: string,

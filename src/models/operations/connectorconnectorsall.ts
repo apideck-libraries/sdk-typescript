@@ -48,74 +48,6 @@ export type ConnectorConnectorsAllResponse = {
 };
 
 /** @internal */
-export const ConnectorConnectorsAllGlobals$inboundSchema: z.ZodType<
-  ConnectorConnectorsAllGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  appId: z.string().optional(),
-});
-
-/** @internal */
-export type ConnectorConnectorsAllGlobals$Outbound = {
-  appId?: string | undefined;
-};
-
-/** @internal */
-export const ConnectorConnectorsAllGlobals$outboundSchema: z.ZodType<
-  ConnectorConnectorsAllGlobals$Outbound,
-  z.ZodTypeDef,
-  ConnectorConnectorsAllGlobals
-> = z.object({
-  appId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ConnectorConnectorsAllGlobals$ {
-  /** @deprecated use `ConnectorConnectorsAllGlobals$inboundSchema` instead. */
-  export const inboundSchema = ConnectorConnectorsAllGlobals$inboundSchema;
-  /** @deprecated use `ConnectorConnectorsAllGlobals$outboundSchema` instead. */
-  export const outboundSchema = ConnectorConnectorsAllGlobals$outboundSchema;
-  /** @deprecated use `ConnectorConnectorsAllGlobals$Outbound` instead. */
-  export type Outbound = ConnectorConnectorsAllGlobals$Outbound;
-}
-
-export function connectorConnectorsAllGlobalsToJSON(
-  connectorConnectorsAllGlobals: ConnectorConnectorsAllGlobals,
-): string {
-  return JSON.stringify(
-    ConnectorConnectorsAllGlobals$outboundSchema.parse(
-      connectorConnectorsAllGlobals,
-    ),
-  );
-}
-
-export function connectorConnectorsAllGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<ConnectorConnectorsAllGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => ConnectorConnectorsAllGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ConnectorConnectorsAllGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const ConnectorConnectorsAllRequest$inboundSchema: z.ZodType<
-  ConnectorConnectorsAllRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  appId: z.string().optional(),
-  cursor: z.nullable(z.string()).optional(),
-  limit: z.number().int().default(20),
-  filter: components.ConnectorsFilter$inboundSchema.optional(),
-});
-
-/** @internal */
 export type ConnectorConnectorsAllRequest$Outbound = {
   appId?: string | undefined;
   cursor?: string | null | undefined;
@@ -135,19 +67,6 @@ export const ConnectorConnectorsAllRequest$outboundSchema: z.ZodType<
   filter: components.ConnectorsFilter$outboundSchema.optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ConnectorConnectorsAllRequest$ {
-  /** @deprecated use `ConnectorConnectorsAllRequest$inboundSchema` instead. */
-  export const inboundSchema = ConnectorConnectorsAllRequest$inboundSchema;
-  /** @deprecated use `ConnectorConnectorsAllRequest$outboundSchema` instead. */
-  export const outboundSchema = ConnectorConnectorsAllRequest$outboundSchema;
-  /** @deprecated use `ConnectorConnectorsAllRequest$Outbound` instead. */
-  export type Outbound = ConnectorConnectorsAllRequest$Outbound;
-}
-
 export function connectorConnectorsAllRequestToJSON(
   connectorConnectorsAllRequest: ConnectorConnectorsAllRequest,
 ): string {
@@ -155,16 +74,6 @@ export function connectorConnectorsAllRequestToJSON(
     ConnectorConnectorsAllRequest$outboundSchema.parse(
       connectorConnectorsAllRequest,
     ),
-  );
-}
-
-export function connectorConnectorsAllRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<ConnectorConnectorsAllRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => ConnectorConnectorsAllRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ConnectorConnectorsAllRequest' from JSON`,
   );
 }
 
@@ -186,57 +95,6 @@ export const ConnectorConnectorsAllResponse$inboundSchema: z.ZodType<
     "UnexpectedErrorResponse": "unexpectedErrorResponse",
   });
 });
-
-/** @internal */
-export type ConnectorConnectorsAllResponse$Outbound = {
-  HttpMeta: components.HTTPMetadata$Outbound;
-  GetConnectorsResponse?: components.GetConnectorsResponse$Outbound | undefined;
-  UnexpectedErrorResponse?:
-    | components.UnexpectedErrorResponse$Outbound
-    | undefined;
-};
-
-/** @internal */
-export const ConnectorConnectorsAllResponse$outboundSchema: z.ZodType<
-  ConnectorConnectorsAllResponse$Outbound,
-  z.ZodTypeDef,
-  ConnectorConnectorsAllResponse
-> = z.object({
-  httpMeta: components.HTTPMetadata$outboundSchema,
-  getConnectorsResponse: components.GetConnectorsResponse$outboundSchema
-    .optional(),
-  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    httpMeta: "HttpMeta",
-    getConnectorsResponse: "GetConnectorsResponse",
-    unexpectedErrorResponse: "UnexpectedErrorResponse",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ConnectorConnectorsAllResponse$ {
-  /** @deprecated use `ConnectorConnectorsAllResponse$inboundSchema` instead. */
-  export const inboundSchema = ConnectorConnectorsAllResponse$inboundSchema;
-  /** @deprecated use `ConnectorConnectorsAllResponse$outboundSchema` instead. */
-  export const outboundSchema = ConnectorConnectorsAllResponse$outboundSchema;
-  /** @deprecated use `ConnectorConnectorsAllResponse$Outbound` instead. */
-  export type Outbound = ConnectorConnectorsAllResponse$Outbound;
-}
-
-export function connectorConnectorsAllResponseToJSON(
-  connectorConnectorsAllResponse: ConnectorConnectorsAllResponse,
-): string {
-  return JSON.stringify(
-    ConnectorConnectorsAllResponse$outboundSchema.parse(
-      connectorConnectorsAllResponse,
-    ),
-  );
-}
 
 export function connectorConnectorsAllResponseFromJSON(
   jsonString: string,

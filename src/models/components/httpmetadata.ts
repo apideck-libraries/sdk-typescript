@@ -34,48 +34,6 @@ export const HTTPMetadata$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type HTTPMetadata$Outbound = {
-  Response: never;
-  Request: never;
-};
-
-/** @internal */
-export const HTTPMetadata$outboundSchema: z.ZodType<
-  HTTPMetadata$Outbound,
-  z.ZodTypeDef,
-  HTTPMetadata
-> = z.object({
-  response: z.instanceof(Response).transform(() => {
-    throw new Error("Response cannot be serialized");
-  }),
-  request: z.instanceof(Request).transform(() => {
-    throw new Error("Response cannot be serialized");
-  }),
-}).transform((v) => {
-  return remap$(v, {
-    response: "Response",
-    request: "Request",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace HTTPMetadata$ {
-  /** @deprecated use `HTTPMetadata$inboundSchema` instead. */
-  export const inboundSchema = HTTPMetadata$inboundSchema;
-  /** @deprecated use `HTTPMetadata$outboundSchema` instead. */
-  export const outboundSchema = HTTPMetadata$outboundSchema;
-  /** @deprecated use `HTTPMetadata$Outbound` instead. */
-  export type Outbound = HTTPMetadata$Outbound;
-}
-
-export function httpMetadataToJSON(httpMetadata: HTTPMetadata): string {
-  return JSON.stringify(HTTPMetadata$outboundSchema.parse(httpMetadata));
-}
-
 export function httpMetadataFromJSON(
   jsonString: string,
 ): SafeParseResult<HTTPMetadata, SDKValidationError> {

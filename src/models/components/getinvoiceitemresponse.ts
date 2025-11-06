@@ -7,12 +7,7 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  InvoiceItem,
-  InvoiceItem$inboundSchema,
-  InvoiceItem$Outbound,
-  InvoiceItem$outboundSchema,
-} from "./invoiceitem.js";
+import { InvoiceItem, InvoiceItem$inboundSchema } from "./invoiceitem.js";
 
 /**
  * InvoiceItems
@@ -64,58 +59,6 @@ export const GetInvoiceItemResponse$inboundSchema: z.ZodType<
     "_raw": "raw",
   });
 });
-
-/** @internal */
-export type GetInvoiceItemResponse$Outbound = {
-  status_code: number;
-  status: string;
-  service: string;
-  resource: string;
-  operation: string;
-  data: InvoiceItem$Outbound;
-  _raw?: { [k: string]: any } | null | undefined;
-};
-
-/** @internal */
-export const GetInvoiceItemResponse$outboundSchema: z.ZodType<
-  GetInvoiceItemResponse$Outbound,
-  z.ZodTypeDef,
-  GetInvoiceItemResponse
-> = z.object({
-  statusCode: z.number().int(),
-  status: z.string(),
-  service: z.string(),
-  resource: z.string(),
-  operation: z.string(),
-  data: InvoiceItem$outboundSchema,
-  raw: z.nullable(z.record(z.any())).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    statusCode: "status_code",
-    raw: "_raw",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetInvoiceItemResponse$ {
-  /** @deprecated use `GetInvoiceItemResponse$inboundSchema` instead. */
-  export const inboundSchema = GetInvoiceItemResponse$inboundSchema;
-  /** @deprecated use `GetInvoiceItemResponse$outboundSchema` instead. */
-  export const outboundSchema = GetInvoiceItemResponse$outboundSchema;
-  /** @deprecated use `GetInvoiceItemResponse$Outbound` instead. */
-  export type Outbound = GetInvoiceItemResponse$Outbound;
-}
-
-export function getInvoiceItemResponseToJSON(
-  getInvoiceItemResponse: GetInvoiceItemResponse,
-): string {
-  return JSON.stringify(
-    GetInvoiceItemResponse$outboundSchema.parse(getInvoiceItemResponse),
-  );
-}
 
 export function getInvoiceItemResponseFromJSON(
   jsonString: string,

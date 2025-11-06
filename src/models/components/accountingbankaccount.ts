@@ -25,12 +25,6 @@ import {
   LinkedLedgerAccount$Outbound,
   LinkedLedgerAccount$outboundSchema,
 } from "./linkedledgeraccount.js";
-import {
-  LinkedLedgerAccountInput,
-  LinkedLedgerAccountInput$inboundSchema,
-  LinkedLedgerAccountInput$Outbound,
-  LinkedLedgerAccountInput$outboundSchema,
-} from "./linkedledgeraccountinput.js";
 
 /**
  * The type of bank account
@@ -184,7 +178,7 @@ export type AccountingBankAccountInput = {
    * The type of bank account
    */
   accountType?: AccountingBankAccountAccountType | undefined;
-  ledgerAccount?: LinkedLedgerAccountInput | null | undefined;
+  ledgerAccount?: LinkedLedgerAccount | null | undefined;
   /**
    * The name of the bank or financial institution
    */
@@ -248,43 +242,19 @@ export type AccountingBankAccountInput = {
 export const AccountingBankAccountAccountType$inboundSchema: z.ZodNativeEnum<
   typeof AccountingBankAccountAccountType
 > = z.nativeEnum(AccountingBankAccountAccountType);
-
 /** @internal */
 export const AccountingBankAccountAccountType$outboundSchema: z.ZodNativeEnum<
   typeof AccountingBankAccountAccountType
 > = AccountingBankAccountAccountType$inboundSchema;
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AccountingBankAccountAccountType$ {
-  /** @deprecated use `AccountingBankAccountAccountType$inboundSchema` instead. */
-  export const inboundSchema = AccountingBankAccountAccountType$inboundSchema;
-  /** @deprecated use `AccountingBankAccountAccountType$outboundSchema` instead. */
-  export const outboundSchema = AccountingBankAccountAccountType$outboundSchema;
-}
-
 /** @internal */
 export const AccountingBankAccountStatus$inboundSchema: z.ZodNativeEnum<
   typeof AccountingBankAccountStatus
 > = z.nativeEnum(AccountingBankAccountStatus);
-
 /** @internal */
 export const AccountingBankAccountStatus$outboundSchema: z.ZodNativeEnum<
   typeof AccountingBankAccountStatus
 > = AccountingBankAccountStatus$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AccountingBankAccountStatus$ {
-  /** @deprecated use `AccountingBankAccountStatus$inboundSchema` instead. */
-  export const inboundSchema = AccountingBankAccountStatus$inboundSchema;
-  /** @deprecated use `AccountingBankAccountStatus$outboundSchema` instead. */
-  export const outboundSchema = AccountingBankAccountStatus$outboundSchema;
-}
 
 /** @internal */
 export const AccountingBankAccount$inboundSchema: z.ZodType<
@@ -344,111 +314,6 @@ export const AccountingBankAccount$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type AccountingBankAccount$Outbound = {
-  id: string;
-  display_id?: string | null | undefined;
-  name?: string | null | undefined;
-  account_number?: string | null | undefined;
-  account_type?: string | undefined;
-  ledger_account?: LinkedLedgerAccount$Outbound | null | undefined;
-  bank_name?: string | null | undefined;
-  currency?: string | null | undefined;
-  balance?: number | null | undefined;
-  available_balance?: number | null | undefined;
-  overdraft_limit?: number | null | undefined;
-  routing_number?: string | null | undefined;
-  iban?: string | null | undefined;
-  bic?: string | null | undefined;
-  bsb_number?: string | null | undefined;
-  branch_identifier?: string | null | undefined;
-  bank_code?: string | null | undefined;
-  country?: string | null | undefined;
-  status?: string | null | undefined;
-  description?: string | null | undefined;
-  custom_fields?: Array<CustomField$Outbound> | undefined;
-  custom_mappings?: { [k: string]: any } | null | undefined;
-  created_at?: string | null | undefined;
-  updated_at?: string | null | undefined;
-  created_by?: string | null | undefined;
-  updated_by?: string | null | undefined;
-};
-
-/** @internal */
-export const AccountingBankAccount$outboundSchema: z.ZodType<
-  AccountingBankAccount$Outbound,
-  z.ZodTypeDef,
-  AccountingBankAccount
-> = z.object({
-  id: z.string(),
-  displayId: z.nullable(z.string()).optional(),
-  name: z.nullable(z.string()).optional(),
-  accountNumber: z.nullable(z.string()).optional(),
-  accountType: AccountingBankAccountAccountType$outboundSchema.optional(),
-  ledgerAccount: z.nullable(LinkedLedgerAccount$outboundSchema).optional(),
-  bankName: z.nullable(z.string()).optional(),
-  currency: z.nullable(Currency$outboundSchema).optional(),
-  balance: z.nullable(z.number()).optional(),
-  availableBalance: z.nullable(z.number()).optional(),
-  overdraftLimit: z.nullable(z.number()).optional(),
-  routingNumber: z.nullable(z.string()).optional(),
-  iban: z.nullable(z.string()).optional(),
-  bic: z.nullable(z.string()).optional(),
-  bsbNumber: z.nullable(z.string()).optional(),
-  branchIdentifier: z.nullable(z.string()).optional(),
-  bankCode: z.nullable(z.string()).optional(),
-  country: z.nullable(z.string()).optional(),
-  status: z.nullable(AccountingBankAccountStatus$outboundSchema).optional(),
-  description: z.nullable(z.string()).optional(),
-  customFields: z.array(CustomField$outboundSchema).optional(),
-  customMappings: z.nullable(z.record(z.any())).optional(),
-  createdAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
-  updatedAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
-  createdBy: z.nullable(z.string()).optional(),
-  updatedBy: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    displayId: "display_id",
-    accountNumber: "account_number",
-    accountType: "account_type",
-    ledgerAccount: "ledger_account",
-    bankName: "bank_name",
-    availableBalance: "available_balance",
-    overdraftLimit: "overdraft_limit",
-    routingNumber: "routing_number",
-    bsbNumber: "bsb_number",
-    branchIdentifier: "branch_identifier",
-    bankCode: "bank_code",
-    customFields: "custom_fields",
-    customMappings: "custom_mappings",
-    createdAt: "created_at",
-    updatedAt: "updated_at",
-    createdBy: "created_by",
-    updatedBy: "updated_by",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AccountingBankAccount$ {
-  /** @deprecated use `AccountingBankAccount$inboundSchema` instead. */
-  export const inboundSchema = AccountingBankAccount$inboundSchema;
-  /** @deprecated use `AccountingBankAccount$outboundSchema` instead. */
-  export const outboundSchema = AccountingBankAccount$outboundSchema;
-  /** @deprecated use `AccountingBankAccount$Outbound` instead. */
-  export type Outbound = AccountingBankAccount$Outbound;
-}
-
-export function accountingBankAccountToJSON(
-  accountingBankAccount: AccountingBankAccount,
-): string {
-  return JSON.stringify(
-    AccountingBankAccount$outboundSchema.parse(accountingBankAccount),
-  );
-}
-
 export function accountingBankAccountFromJSON(
   jsonString: string,
 ): SafeParseResult<AccountingBankAccount, SDKValidationError> {
@@ -460,55 +325,12 @@ export function accountingBankAccountFromJSON(
 }
 
 /** @internal */
-export const AccountingBankAccountInput$inboundSchema: z.ZodType<
-  AccountingBankAccountInput,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  display_id: z.nullable(z.string()).optional(),
-  name: z.nullable(z.string()).optional(),
-  account_number: z.nullable(z.string()).optional(),
-  account_type: AccountingBankAccountAccountType$inboundSchema.optional(),
-  ledger_account: z.nullable(LinkedLedgerAccountInput$inboundSchema).optional(),
-  bank_name: z.nullable(z.string()).optional(),
-  currency: z.nullable(Currency$inboundSchema).optional(),
-  balance: z.nullable(z.number()).optional(),
-  available_balance: z.nullable(z.number()).optional(),
-  overdraft_limit: z.nullable(z.number()).optional(),
-  routing_number: z.nullable(z.string()).optional(),
-  iban: z.nullable(z.string()).optional(),
-  bic: z.nullable(z.string()).optional(),
-  bsb_number: z.nullable(z.string()).optional(),
-  branch_identifier: z.nullable(z.string()).optional(),
-  bank_code: z.nullable(z.string()).optional(),
-  country: z.nullable(z.string()).optional(),
-  status: z.nullable(AccountingBankAccountStatus$inboundSchema).optional(),
-  description: z.nullable(z.string()).optional(),
-  custom_fields: z.array(CustomField$inboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "display_id": "displayId",
-    "account_number": "accountNumber",
-    "account_type": "accountType",
-    "ledger_account": "ledgerAccount",
-    "bank_name": "bankName",
-    "available_balance": "availableBalance",
-    "overdraft_limit": "overdraftLimit",
-    "routing_number": "routingNumber",
-    "bsb_number": "bsbNumber",
-    "branch_identifier": "branchIdentifier",
-    "bank_code": "bankCode",
-    "custom_fields": "customFields",
-  });
-});
-
-/** @internal */
 export type AccountingBankAccountInput$Outbound = {
   display_id?: string | null | undefined;
   name?: string | null | undefined;
   account_number?: string | null | undefined;
   account_type?: string | undefined;
-  ledger_account?: LinkedLedgerAccountInput$Outbound | null | undefined;
+  ledger_account?: LinkedLedgerAccount$Outbound | null | undefined;
   bank_name?: string | null | undefined;
   currency?: string | null | undefined;
   balance?: number | null | undefined;
@@ -536,7 +358,7 @@ export const AccountingBankAccountInput$outboundSchema: z.ZodType<
   name: z.nullable(z.string()).optional(),
   accountNumber: z.nullable(z.string()).optional(),
   accountType: AccountingBankAccountAccountType$outboundSchema.optional(),
-  ledgerAccount: z.nullable(LinkedLedgerAccountInput$outboundSchema).optional(),
+  ledgerAccount: z.nullable(LinkedLedgerAccount$outboundSchema).optional(),
   bankName: z.nullable(z.string()).optional(),
   currency: z.nullable(Currency$outboundSchema).optional(),
   balance: z.nullable(z.number()).optional(),
@@ -569,33 +391,10 @@ export const AccountingBankAccountInput$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AccountingBankAccountInput$ {
-  /** @deprecated use `AccountingBankAccountInput$inboundSchema` instead. */
-  export const inboundSchema = AccountingBankAccountInput$inboundSchema;
-  /** @deprecated use `AccountingBankAccountInput$outboundSchema` instead. */
-  export const outboundSchema = AccountingBankAccountInput$outboundSchema;
-  /** @deprecated use `AccountingBankAccountInput$Outbound` instead. */
-  export type Outbound = AccountingBankAccountInput$Outbound;
-}
-
 export function accountingBankAccountInputToJSON(
   accountingBankAccountInput: AccountingBankAccountInput,
 ): string {
   return JSON.stringify(
     AccountingBankAccountInput$outboundSchema.parse(accountingBankAccountInput),
-  );
-}
-
-export function accountingBankAccountInputFromJSON(
-  jsonString: string,
-): SafeParseResult<AccountingBankAccountInput, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => AccountingBankAccountInput$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'AccountingBankAccountInput' from JSON`,
   );
 }

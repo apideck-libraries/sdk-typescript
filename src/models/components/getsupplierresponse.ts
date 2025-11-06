@@ -7,12 +7,7 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  Supplier,
-  Supplier$inboundSchema,
-  Supplier$Outbound,
-  Supplier$outboundSchema,
-} from "./supplier.js";
+import { Supplier, Supplier$inboundSchema } from "./supplier.js";
 
 /**
  * Supplier
@@ -64,58 +59,6 @@ export const GetSupplierResponse$inboundSchema: z.ZodType<
     "_raw": "raw",
   });
 });
-
-/** @internal */
-export type GetSupplierResponse$Outbound = {
-  status_code: number;
-  status: string;
-  service: string;
-  resource: string;
-  operation: string;
-  data: Supplier$Outbound;
-  _raw?: { [k: string]: any } | null | undefined;
-};
-
-/** @internal */
-export const GetSupplierResponse$outboundSchema: z.ZodType<
-  GetSupplierResponse$Outbound,
-  z.ZodTypeDef,
-  GetSupplierResponse
-> = z.object({
-  statusCode: z.number().int(),
-  status: z.string(),
-  service: z.string(),
-  resource: z.string(),
-  operation: z.string(),
-  data: Supplier$outboundSchema,
-  raw: z.nullable(z.record(z.any())).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    statusCode: "status_code",
-    raw: "_raw",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetSupplierResponse$ {
-  /** @deprecated use `GetSupplierResponse$inboundSchema` instead. */
-  export const inboundSchema = GetSupplierResponse$inboundSchema;
-  /** @deprecated use `GetSupplierResponse$outboundSchema` instead. */
-  export const outboundSchema = GetSupplierResponse$outboundSchema;
-  /** @deprecated use `GetSupplierResponse$Outbound` instead. */
-  export type Outbound = GetSupplierResponse$Outbound;
-}
-
-export function getSupplierResponseToJSON(
-  getSupplierResponse: GetSupplierResponse,
-): string {
-  return JSON.stringify(
-    GetSupplierResponse$outboundSchema.parse(getSupplierResponse),
-  );
-}
 
 export function getSupplierResponseFromJSON(
   jsonString: string,

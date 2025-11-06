@@ -11,8 +11,6 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   FormFieldOption,
   FormFieldOption$inboundSchema,
-  FormFieldOption$Outbound,
-  FormFieldOption$outboundSchema,
 } from "./formfieldoption.js";
 
 export const FormFieldType = {
@@ -93,22 +91,6 @@ export const FormFieldType$inboundSchema: z.ZodNativeEnum<
 > = z.nativeEnum(FormFieldType);
 
 /** @internal */
-export const FormFieldType$outboundSchema: z.ZodNativeEnum<
-  typeof FormFieldType
-> = FormFieldType$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace FormFieldType$ {
-  /** @deprecated use `FormFieldType$inboundSchema` instead. */
-  export const inboundSchema = FormFieldType$inboundSchema;
-  /** @deprecated use `FormFieldType$outboundSchema` instead. */
-  export const outboundSchema = FormFieldType$outboundSchema;
-}
-
-/** @internal */
 export const FormField$inboundSchema: z.ZodType<
   FormField,
   z.ZodTypeDef,
@@ -135,70 +117,6 @@ export const FormField$inboundSchema: z.ZodType<
     "allow_custom_values": "allowCustomValues",
   });
 });
-
-/** @internal */
-export type FormField$Outbound = {
-  id?: string | undefined;
-  label?: string | undefined;
-  placeholder?: string | null | undefined;
-  description?: string | null | undefined;
-  type?: string | undefined;
-  required?: boolean | undefined;
-  custom_field?: boolean | undefined;
-  allow_custom_values: boolean;
-  disabled?: boolean | null | undefined;
-  hidden?: boolean | null | undefined;
-  deprecated?: boolean | null | undefined;
-  sensitive?: boolean | null | undefined;
-  prefix?: string | null | undefined;
-  suffix?: string | null | undefined;
-  options?: Array<FormFieldOption$Outbound> | undefined;
-};
-
-/** @internal */
-export const FormField$outboundSchema: z.ZodType<
-  FormField$Outbound,
-  z.ZodTypeDef,
-  FormField
-> = z.object({
-  id: z.string().optional(),
-  label: z.string().optional(),
-  placeholder: z.nullable(z.string()).optional(),
-  description: z.nullable(z.string()).optional(),
-  type: FormFieldType$outboundSchema.optional(),
-  required: z.boolean().optional(),
-  customField: z.boolean().optional(),
-  allowCustomValues: z.boolean().default(false),
-  disabled: z.nullable(z.boolean()).optional(),
-  hidden: z.nullable(z.boolean()).optional(),
-  deprecated: z.nullable(z.boolean()).optional(),
-  sensitive: z.nullable(z.boolean()).optional(),
-  prefix: z.nullable(z.string()).optional(),
-  suffix: z.nullable(z.string()).optional(),
-  options: z.array(FormFieldOption$outboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    customField: "custom_field",
-    allowCustomValues: "allow_custom_values",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace FormField$ {
-  /** @deprecated use `FormField$inboundSchema` instead. */
-  export const inboundSchema = FormField$inboundSchema;
-  /** @deprecated use `FormField$outboundSchema` instead. */
-  export const outboundSchema = FormField$outboundSchema;
-  /** @deprecated use `FormField$Outbound` instead. */
-  export type Outbound = FormField$Outbound;
-}
-
-export function formFieldToJSON(formField: FormField): string {
-  return JSON.stringify(FormField$outboundSchema.parse(formField));
-}
 
 export function formFieldFromJSON(
   jsonString: string,

@@ -57,83 +57,6 @@ export type AccountingQuotesUpdateResponse = {
 };
 
 /** @internal */
-export const AccountingQuotesUpdateGlobals$inboundSchema: z.ZodType<
-  AccountingQuotesUpdateGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/** @internal */
-export type AccountingQuotesUpdateGlobals$Outbound = {
-  consumerId?: string | undefined;
-  appId?: string | undefined;
-};
-
-/** @internal */
-export const AccountingQuotesUpdateGlobals$outboundSchema: z.ZodType<
-  AccountingQuotesUpdateGlobals$Outbound,
-  z.ZodTypeDef,
-  AccountingQuotesUpdateGlobals
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AccountingQuotesUpdateGlobals$ {
-  /** @deprecated use `AccountingQuotesUpdateGlobals$inboundSchema` instead. */
-  export const inboundSchema = AccountingQuotesUpdateGlobals$inboundSchema;
-  /** @deprecated use `AccountingQuotesUpdateGlobals$outboundSchema` instead. */
-  export const outboundSchema = AccountingQuotesUpdateGlobals$outboundSchema;
-  /** @deprecated use `AccountingQuotesUpdateGlobals$Outbound` instead. */
-  export type Outbound = AccountingQuotesUpdateGlobals$Outbound;
-}
-
-export function accountingQuotesUpdateGlobalsToJSON(
-  accountingQuotesUpdateGlobals: AccountingQuotesUpdateGlobals,
-): string {
-  return JSON.stringify(
-    AccountingQuotesUpdateGlobals$outboundSchema.parse(
-      accountingQuotesUpdateGlobals,
-    ),
-  );
-}
-
-export function accountingQuotesUpdateGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<AccountingQuotesUpdateGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => AccountingQuotesUpdateGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'AccountingQuotesUpdateGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const AccountingQuotesUpdateRequest$inboundSchema: z.ZodType<
-  AccountingQuotesUpdateRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  id: z.string(),
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  raw: z.boolean().default(false),
-  Quote: components.QuoteInput$inboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    "Quote": "quote",
-  });
-});
-
-/** @internal */
 export type AccountingQuotesUpdateRequest$Outbound = {
   id: string;
   consumerId?: string | undefined;
@@ -161,19 +84,6 @@ export const AccountingQuotesUpdateRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AccountingQuotesUpdateRequest$ {
-  /** @deprecated use `AccountingQuotesUpdateRequest$inboundSchema` instead. */
-  export const inboundSchema = AccountingQuotesUpdateRequest$inboundSchema;
-  /** @deprecated use `AccountingQuotesUpdateRequest$outboundSchema` instead. */
-  export const outboundSchema = AccountingQuotesUpdateRequest$outboundSchema;
-  /** @deprecated use `AccountingQuotesUpdateRequest$Outbound` instead. */
-  export type Outbound = AccountingQuotesUpdateRequest$Outbound;
-}
-
 export function accountingQuotesUpdateRequestToJSON(
   accountingQuotesUpdateRequest: AccountingQuotesUpdateRequest,
 ): string {
@@ -181,16 +91,6 @@ export function accountingQuotesUpdateRequestToJSON(
     AccountingQuotesUpdateRequest$outboundSchema.parse(
       accountingQuotesUpdateRequest,
     ),
-  );
-}
-
-export function accountingQuotesUpdateRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<AccountingQuotesUpdateRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => AccountingQuotesUpdateRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'AccountingQuotesUpdateRequest' from JSON`,
   );
 }
 
@@ -211,56 +111,6 @@ export const AccountingQuotesUpdateResponse$inboundSchema: z.ZodType<
     "UnexpectedErrorResponse": "unexpectedErrorResponse",
   });
 });
-
-/** @internal */
-export type AccountingQuotesUpdateResponse$Outbound = {
-  HttpMeta: components.HTTPMetadata$Outbound;
-  UpdateQuoteResponse?: components.UpdateQuoteResponse$Outbound | undefined;
-  UnexpectedErrorResponse?:
-    | components.UnexpectedErrorResponse$Outbound
-    | undefined;
-};
-
-/** @internal */
-export const AccountingQuotesUpdateResponse$outboundSchema: z.ZodType<
-  AccountingQuotesUpdateResponse$Outbound,
-  z.ZodTypeDef,
-  AccountingQuotesUpdateResponse
-> = z.object({
-  httpMeta: components.HTTPMetadata$outboundSchema,
-  updateQuoteResponse: components.UpdateQuoteResponse$outboundSchema.optional(),
-  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    httpMeta: "HttpMeta",
-    updateQuoteResponse: "UpdateQuoteResponse",
-    unexpectedErrorResponse: "UnexpectedErrorResponse",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AccountingQuotesUpdateResponse$ {
-  /** @deprecated use `AccountingQuotesUpdateResponse$inboundSchema` instead. */
-  export const inboundSchema = AccountingQuotesUpdateResponse$inboundSchema;
-  /** @deprecated use `AccountingQuotesUpdateResponse$outboundSchema` instead. */
-  export const outboundSchema = AccountingQuotesUpdateResponse$outboundSchema;
-  /** @deprecated use `AccountingQuotesUpdateResponse$Outbound` instead. */
-  export type Outbound = AccountingQuotesUpdateResponse$Outbound;
-}
-
-export function accountingQuotesUpdateResponseToJSON(
-  accountingQuotesUpdateResponse: AccountingQuotesUpdateResponse,
-): string {
-  return JSON.stringify(
-    AccountingQuotesUpdateResponse$outboundSchema.parse(
-      accountingQuotesUpdateResponse,
-    ),
-  );
-}
 
 export function accountingQuotesUpdateResponseFromJSON(
   jsonString: string,

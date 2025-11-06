@@ -7,12 +7,7 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  UnifiedId,
-  UnifiedId$inboundSchema,
-  UnifiedId$Outbound,
-  UnifiedId$outboundSchema,
-} from "./unifiedid.js";
+import { UnifiedId, UnifiedId$inboundSchema } from "./unifiedid.js";
 
 /**
  * Bill Payment updated
@@ -67,58 +62,6 @@ export const UpdateBillPaymentResponse$inboundSchema: z.ZodType<
     "_raw": "raw",
   });
 });
-
-/** @internal */
-export type UpdateBillPaymentResponse$Outbound = {
-  status_code: number;
-  status: string;
-  service: string;
-  resource: string;
-  operation: string;
-  data: UnifiedId$Outbound;
-  _raw?: { [k: string]: any } | null | undefined;
-};
-
-/** @internal */
-export const UpdateBillPaymentResponse$outboundSchema: z.ZodType<
-  UpdateBillPaymentResponse$Outbound,
-  z.ZodTypeDef,
-  UpdateBillPaymentResponse
-> = z.object({
-  statusCode: z.number().int(),
-  status: z.string(),
-  service: z.string(),
-  resource: z.string(),
-  operation: z.string(),
-  data: UnifiedId$outboundSchema,
-  raw: z.nullable(z.record(z.any())).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    statusCode: "status_code",
-    raw: "_raw",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace UpdateBillPaymentResponse$ {
-  /** @deprecated use `UpdateBillPaymentResponse$inboundSchema` instead. */
-  export const inboundSchema = UpdateBillPaymentResponse$inboundSchema;
-  /** @deprecated use `UpdateBillPaymentResponse$outboundSchema` instead. */
-  export const outboundSchema = UpdateBillPaymentResponse$outboundSchema;
-  /** @deprecated use `UpdateBillPaymentResponse$Outbound` instead. */
-  export type Outbound = UpdateBillPaymentResponse$Outbound;
-}
-
-export function updateBillPaymentResponseToJSON(
-  updateBillPaymentResponse: UpdateBillPaymentResponse,
-): string {
-  return JSON.stringify(
-    UpdateBillPaymentResponse$outboundSchema.parse(updateBillPaymentResponse),
-  );
-}
 
 export function updateBillPaymentResponseFromJSON(
   jsonString: string,

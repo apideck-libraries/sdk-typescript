@@ -7,24 +7,9 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  HrisCompany,
-  HrisCompany$inboundSchema,
-  HrisCompany$Outbound,
-  HrisCompany$outboundSchema,
-} from "./hriscompany.js";
-import {
-  Links,
-  Links$inboundSchema,
-  Links$Outbound,
-  Links$outboundSchema,
-} from "./links.js";
-import {
-  Meta,
-  Meta$inboundSchema,
-  Meta$Outbound,
-  Meta$outboundSchema,
-} from "./meta.js";
+import { HrisCompany, HrisCompany$inboundSchema } from "./hriscompany.js";
+import { Links, Links$inboundSchema } from "./links.js";
+import { Meta, Meta$inboundSchema } from "./meta.js";
 
 /**
  * Companies
@@ -86,62 +71,6 @@ export const GetHrisCompaniesResponse$inboundSchema: z.ZodType<
     "_raw": "raw",
   });
 });
-
-/** @internal */
-export type GetHrisCompaniesResponse$Outbound = {
-  status_code: number;
-  status: string;
-  service: string;
-  resource: string;
-  operation: string;
-  data: Array<HrisCompany$Outbound>;
-  _raw?: { [k: string]: any } | null | undefined;
-  meta?: Meta$Outbound | undefined;
-  links?: Links$Outbound | undefined;
-};
-
-/** @internal */
-export const GetHrisCompaniesResponse$outboundSchema: z.ZodType<
-  GetHrisCompaniesResponse$Outbound,
-  z.ZodTypeDef,
-  GetHrisCompaniesResponse
-> = z.object({
-  statusCode: z.number().int(),
-  status: z.string(),
-  service: z.string(),
-  resource: z.string(),
-  operation: z.string(),
-  data: z.array(HrisCompany$outboundSchema),
-  raw: z.nullable(z.record(z.any())).optional(),
-  meta: Meta$outboundSchema.optional(),
-  links: Links$outboundSchema.optional(),
-}).transform((v) => {
-  return remap$(v, {
-    statusCode: "status_code",
-    raw: "_raw",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetHrisCompaniesResponse$ {
-  /** @deprecated use `GetHrisCompaniesResponse$inboundSchema` instead. */
-  export const inboundSchema = GetHrisCompaniesResponse$inboundSchema;
-  /** @deprecated use `GetHrisCompaniesResponse$outboundSchema` instead. */
-  export const outboundSchema = GetHrisCompaniesResponse$outboundSchema;
-  /** @deprecated use `GetHrisCompaniesResponse$Outbound` instead. */
-  export type Outbound = GetHrisCompaniesResponse$Outbound;
-}
-
-export function getHrisCompaniesResponseToJSON(
-  getHrisCompaniesResponse: GetHrisCompaniesResponse,
-): string {
-  return JSON.stringify(
-    GetHrisCompaniesResponse$outboundSchema.parse(getHrisCompaniesResponse),
-  );
-}
 
 export function getHrisCompaniesResponseFromJSON(
   jsonString: string,

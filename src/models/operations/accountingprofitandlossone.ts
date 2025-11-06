@@ -64,85 +64,6 @@ export type AccountingProfitAndLossOneResponse = {
 };
 
 /** @internal */
-export const AccountingProfitAndLossOneGlobals$inboundSchema: z.ZodType<
-  AccountingProfitAndLossOneGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/** @internal */
-export type AccountingProfitAndLossOneGlobals$Outbound = {
-  consumerId?: string | undefined;
-  appId?: string | undefined;
-};
-
-/** @internal */
-export const AccountingProfitAndLossOneGlobals$outboundSchema: z.ZodType<
-  AccountingProfitAndLossOneGlobals$Outbound,
-  z.ZodTypeDef,
-  AccountingProfitAndLossOneGlobals
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AccountingProfitAndLossOneGlobals$ {
-  /** @deprecated use `AccountingProfitAndLossOneGlobals$inboundSchema` instead. */
-  export const inboundSchema = AccountingProfitAndLossOneGlobals$inboundSchema;
-  /** @deprecated use `AccountingProfitAndLossOneGlobals$outboundSchema` instead. */
-  export const outboundSchema =
-    AccountingProfitAndLossOneGlobals$outboundSchema;
-  /** @deprecated use `AccountingProfitAndLossOneGlobals$Outbound` instead. */
-  export type Outbound = AccountingProfitAndLossOneGlobals$Outbound;
-}
-
-export function accountingProfitAndLossOneGlobalsToJSON(
-  accountingProfitAndLossOneGlobals: AccountingProfitAndLossOneGlobals,
-): string {
-  return JSON.stringify(
-    AccountingProfitAndLossOneGlobals$outboundSchema.parse(
-      accountingProfitAndLossOneGlobals,
-    ),
-  );
-}
-
-export function accountingProfitAndLossOneGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<AccountingProfitAndLossOneGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => AccountingProfitAndLossOneGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'AccountingProfitAndLossOneGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const AccountingProfitAndLossOneRequest$inboundSchema: z.ZodType<
-  AccountingProfitAndLossOneRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  raw: z.boolean().default(false),
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  filter: components.ProfitAndLossFilter$inboundSchema.optional(),
-  pass_through: z.record(z.any()).optional(),
-  fields: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "pass_through": "passThrough",
-  });
-});
-
-/** @internal */
 export type AccountingProfitAndLossOneRequest$Outbound = {
   raw: boolean;
   consumerId?: string | undefined;
@@ -172,20 +93,6 @@ export const AccountingProfitAndLossOneRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AccountingProfitAndLossOneRequest$ {
-  /** @deprecated use `AccountingProfitAndLossOneRequest$inboundSchema` instead. */
-  export const inboundSchema = AccountingProfitAndLossOneRequest$inboundSchema;
-  /** @deprecated use `AccountingProfitAndLossOneRequest$outboundSchema` instead. */
-  export const outboundSchema =
-    AccountingProfitAndLossOneRequest$outboundSchema;
-  /** @deprecated use `AccountingProfitAndLossOneRequest$Outbound` instead. */
-  export type Outbound = AccountingProfitAndLossOneRequest$Outbound;
-}
-
 export function accountingProfitAndLossOneRequestToJSON(
   accountingProfitAndLossOneRequest: AccountingProfitAndLossOneRequest,
 ): string {
@@ -193,16 +100,6 @@ export function accountingProfitAndLossOneRequestToJSON(
     AccountingProfitAndLossOneRequest$outboundSchema.parse(
       accountingProfitAndLossOneRequest,
     ),
-  );
-}
-
-export function accountingProfitAndLossOneRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<AccountingProfitAndLossOneRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => AccountingProfitAndLossOneRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'AccountingProfitAndLossOneRequest' from JSON`,
   );
 }
 
@@ -224,60 +121,6 @@ export const AccountingProfitAndLossOneResponse$inboundSchema: z.ZodType<
     "UnexpectedErrorResponse": "unexpectedErrorResponse",
   });
 });
-
-/** @internal */
-export type AccountingProfitAndLossOneResponse$Outbound = {
-  HttpMeta: components.HTTPMetadata$Outbound;
-  GetProfitAndLossResponse?:
-    | components.GetProfitAndLossResponse$Outbound
-    | undefined;
-  UnexpectedErrorResponse?:
-    | components.UnexpectedErrorResponse$Outbound
-    | undefined;
-};
-
-/** @internal */
-export const AccountingProfitAndLossOneResponse$outboundSchema: z.ZodType<
-  AccountingProfitAndLossOneResponse$Outbound,
-  z.ZodTypeDef,
-  AccountingProfitAndLossOneResponse
-> = z.object({
-  httpMeta: components.HTTPMetadata$outboundSchema,
-  getProfitAndLossResponse: components.GetProfitAndLossResponse$outboundSchema
-    .optional(),
-  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    httpMeta: "HttpMeta",
-    getProfitAndLossResponse: "GetProfitAndLossResponse",
-    unexpectedErrorResponse: "UnexpectedErrorResponse",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AccountingProfitAndLossOneResponse$ {
-  /** @deprecated use `AccountingProfitAndLossOneResponse$inboundSchema` instead. */
-  export const inboundSchema = AccountingProfitAndLossOneResponse$inboundSchema;
-  /** @deprecated use `AccountingProfitAndLossOneResponse$outboundSchema` instead. */
-  export const outboundSchema =
-    AccountingProfitAndLossOneResponse$outboundSchema;
-  /** @deprecated use `AccountingProfitAndLossOneResponse$Outbound` instead. */
-  export type Outbound = AccountingProfitAndLossOneResponse$Outbound;
-}
-
-export function accountingProfitAndLossOneResponseToJSON(
-  accountingProfitAndLossOneResponse: AccountingProfitAndLossOneResponse,
-): string {
-  return JSON.stringify(
-    AccountingProfitAndLossOneResponse$outboundSchema.parse(
-      accountingProfitAndLossOneResponse,
-    ),
-  );
-}
 
 export function accountingProfitAndLossOneResponseFromJSON(
   jsonString: string,

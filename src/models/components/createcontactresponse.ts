@@ -7,12 +7,7 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  UnifiedId,
-  UnifiedId$inboundSchema,
-  UnifiedId$Outbound,
-  UnifiedId$outboundSchema,
-} from "./unifiedid.js";
+import { UnifiedId, UnifiedId$inboundSchema } from "./unifiedid.js";
 
 /**
  * Contact created
@@ -67,58 +62,6 @@ export const CreateContactResponse$inboundSchema: z.ZodType<
     "_raw": "raw",
   });
 });
-
-/** @internal */
-export type CreateContactResponse$Outbound = {
-  status_code: number;
-  status: string;
-  service: string;
-  resource: string;
-  operation: string;
-  data: UnifiedId$Outbound;
-  _raw?: { [k: string]: any } | null | undefined;
-};
-
-/** @internal */
-export const CreateContactResponse$outboundSchema: z.ZodType<
-  CreateContactResponse$Outbound,
-  z.ZodTypeDef,
-  CreateContactResponse
-> = z.object({
-  statusCode: z.number().int(),
-  status: z.string(),
-  service: z.string(),
-  resource: z.string(),
-  operation: z.string(),
-  data: UnifiedId$outboundSchema,
-  raw: z.nullable(z.record(z.any())).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    statusCode: "status_code",
-    raw: "_raw",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateContactResponse$ {
-  /** @deprecated use `CreateContactResponse$inboundSchema` instead. */
-  export const inboundSchema = CreateContactResponse$inboundSchema;
-  /** @deprecated use `CreateContactResponse$outboundSchema` instead. */
-  export const outboundSchema = CreateContactResponse$outboundSchema;
-  /** @deprecated use `CreateContactResponse$Outbound` instead. */
-  export type Outbound = CreateContactResponse$Outbound;
-}
-
-export function createContactResponseToJSON(
-  createContactResponse: CreateContactResponse,
-): string {
-  return JSON.stringify(
-    CreateContactResponse$outboundSchema.parse(createContactResponse),
-  );
-}
 
 export function createContactResponseFromJSON(
   jsonString: string,

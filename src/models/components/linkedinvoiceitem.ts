@@ -32,7 +32,6 @@ export const LinkedInvoiceItem$inboundSchema: z.ZodType<
   code: z.nullable(z.string()).optional(),
   name: z.nullable(z.string()).optional(),
 });
-
 /** @internal */
 export type LinkedInvoiceItem$Outbound = {
   id?: string | null | undefined;
@@ -51,19 +50,6 @@ export const LinkedInvoiceItem$outboundSchema: z.ZodType<
   name: z.nullable(z.string()).optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace LinkedInvoiceItem$ {
-  /** @deprecated use `LinkedInvoiceItem$inboundSchema` instead. */
-  export const inboundSchema = LinkedInvoiceItem$inboundSchema;
-  /** @deprecated use `LinkedInvoiceItem$outboundSchema` instead. */
-  export const outboundSchema = LinkedInvoiceItem$outboundSchema;
-  /** @deprecated use `LinkedInvoiceItem$Outbound` instead. */
-  export type Outbound = LinkedInvoiceItem$Outbound;
-}
-
 export function linkedInvoiceItemToJSON(
   linkedInvoiceItem: LinkedInvoiceItem,
 ): string {
@@ -71,7 +57,6 @@ export function linkedInvoiceItemToJSON(
     LinkedInvoiceItem$outboundSchema.parse(linkedInvoiceItem),
   );
 }
-
 export function linkedInvoiceItemFromJSON(
   jsonString: string,
 ): SafeParseResult<LinkedInvoiceItem, SDKValidationError> {

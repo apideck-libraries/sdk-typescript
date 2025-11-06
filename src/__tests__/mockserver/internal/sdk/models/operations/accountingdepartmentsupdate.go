@@ -38,8 +38,8 @@ type AccountingDepartmentsUpdateRequest struct {
 	// Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
 	ServiceID *string `header:"style=simple,explode=false,name=x-apideck-service-id"`
 	// Include raw response. Mostly used for debugging purposes
-	Raw                  *bool                                `default:"false" queryParam:"style=form,explode=true,name=raw"`
-	AccountingDepartment components.AccountingDepartmentInput `request:"mediaType=application/json"`
+	Raw  *bool                                `default:"false" queryParam:"style=form,explode=true,name=raw"`
+	Body components.AccountingDepartmentInput `request:"mediaType=application/json"`
 }
 
 func (a AccountingDepartmentsUpdateRequest) MarshalJSON() ([]byte, error) {
@@ -47,7 +47,7 @@ func (a AccountingDepartmentsUpdateRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (a *AccountingDepartmentsUpdateRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"id", "AccountingDepartment"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"id", "body"}); err != nil {
 		return err
 	}
 	return nil
@@ -88,11 +88,11 @@ func (o *AccountingDepartmentsUpdateRequest) GetRaw() *bool {
 	return o.Raw
 }
 
-func (o *AccountingDepartmentsUpdateRequest) GetAccountingDepartment() components.AccountingDepartmentInput {
+func (o *AccountingDepartmentsUpdateRequest) GetBody() components.AccountingDepartmentInput {
 	if o == nil {
 		return components.AccountingDepartmentInput{}
 	}
-	return o.AccountingDepartment
+	return o.Body
 }
 
 type AccountingDepartmentsUpdateResponse struct {

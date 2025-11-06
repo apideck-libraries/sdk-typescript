@@ -38,8 +38,8 @@ type CrmContactsUpdateRequest struct {
 	// Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
 	ServiceID *string `header:"style=simple,explode=false,name=x-apideck-service-id"`
 	// Include raw response. Mostly used for debugging purposes
-	Raw     *bool                   `default:"false" queryParam:"style=form,explode=true,name=raw"`
-	Contact components.ContactInput `request:"mediaType=application/json"`
+	Raw  *bool                   `default:"false" queryParam:"style=form,explode=true,name=raw"`
+	Body components.ContactInput `request:"mediaType=application/json"`
 }
 
 func (c CrmContactsUpdateRequest) MarshalJSON() ([]byte, error) {
@@ -47,7 +47,7 @@ func (c CrmContactsUpdateRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (c *CrmContactsUpdateRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"id", "Contact"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"id", "body"}); err != nil {
 		return err
 	}
 	return nil
@@ -88,11 +88,11 @@ func (o *CrmContactsUpdateRequest) GetRaw() *bool {
 	return o.Raw
 }
 
-func (o *CrmContactsUpdateRequest) GetContact() components.ContactInput {
+func (o *CrmContactsUpdateRequest) GetBody() components.ContactInput {
 	if o == nil {
 		return components.ContactInput{}
 	}
-	return o.Contact
+	return o.Body
 }
 
 type CrmContactsUpdateResponse struct {

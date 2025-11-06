@@ -7,12 +7,7 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  Job,
-  Job$inboundSchema,
-  Job$Outbound,
-  Job$outboundSchema,
-} from "./job.js";
+import { Job, Job$inboundSchema } from "./job.js";
 
 /**
  * Jobs
@@ -64,54 +59,6 @@ export const GetJobResponse$inboundSchema: z.ZodType<
     "_raw": "raw",
   });
 });
-
-/** @internal */
-export type GetJobResponse$Outbound = {
-  status_code: number;
-  status: string;
-  service: string;
-  resource: string;
-  operation: string;
-  data: Job$Outbound;
-  _raw?: { [k: string]: any } | null | undefined;
-};
-
-/** @internal */
-export const GetJobResponse$outboundSchema: z.ZodType<
-  GetJobResponse$Outbound,
-  z.ZodTypeDef,
-  GetJobResponse
-> = z.object({
-  statusCode: z.number().int(),
-  status: z.string(),
-  service: z.string(),
-  resource: z.string(),
-  operation: z.string(),
-  data: Job$outboundSchema,
-  raw: z.nullable(z.record(z.any())).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    statusCode: "status_code",
-    raw: "_raw",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetJobResponse$ {
-  /** @deprecated use `GetJobResponse$inboundSchema` instead. */
-  export const inboundSchema = GetJobResponse$inboundSchema;
-  /** @deprecated use `GetJobResponse$outboundSchema` instead. */
-  export const outboundSchema = GetJobResponse$outboundSchema;
-  /** @deprecated use `GetJobResponse$Outbound` instead. */
-  export type Outbound = GetJobResponse$Outbound;
-}
-
-export function getJobResponseToJSON(getJobResponse: GetJobResponse): string {
-  return JSON.stringify(GetJobResponse$outboundSchema.parse(getJobResponse));
-}
 
 export function getJobResponseFromJSON(
   jsonString: string,

@@ -4,9 +4,6 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type ApplicantsFilter = {
   /**
@@ -14,19 +11,6 @@ export type ApplicantsFilter = {
    */
   jobId?: string | undefined;
 };
-
-/** @internal */
-export const ApplicantsFilter$inboundSchema: z.ZodType<
-  ApplicantsFilter,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  job_id: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "job_id": "jobId",
-  });
-});
 
 /** @internal */
 export type ApplicantsFilter$Outbound = {
@@ -46,33 +30,10 @@ export const ApplicantsFilter$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ApplicantsFilter$ {
-  /** @deprecated use `ApplicantsFilter$inboundSchema` instead. */
-  export const inboundSchema = ApplicantsFilter$inboundSchema;
-  /** @deprecated use `ApplicantsFilter$outboundSchema` instead. */
-  export const outboundSchema = ApplicantsFilter$outboundSchema;
-  /** @deprecated use `ApplicantsFilter$Outbound` instead. */
-  export type Outbound = ApplicantsFilter$Outbound;
-}
-
 export function applicantsFilterToJSON(
   applicantsFilter: ApplicantsFilter,
 ): string {
   return JSON.stringify(
     ApplicantsFilter$outboundSchema.parse(applicantsFilter),
-  );
-}
-
-export function applicantsFilterFromJSON(
-  jsonString: string,
-): SafeParseResult<ApplicantsFilter, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => ApplicantsFilter$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ApplicantsFilter' from JSON`,
   );
 }

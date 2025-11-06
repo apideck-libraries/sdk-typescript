@@ -46,7 +46,6 @@ export const ConsumerMetadata$inboundSchema: z.ZodType<
     "user_name": "userName",
   });
 });
-
 /** @internal */
 export type ConsumerMetadata$Outbound = {
   account_name?: string | undefined;
@@ -72,19 +71,6 @@ export const ConsumerMetadata$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ConsumerMetadata$ {
-  /** @deprecated use `ConsumerMetadata$inboundSchema` instead. */
-  export const inboundSchema = ConsumerMetadata$inboundSchema;
-  /** @deprecated use `ConsumerMetadata$outboundSchema` instead. */
-  export const outboundSchema = ConsumerMetadata$outboundSchema;
-  /** @deprecated use `ConsumerMetadata$Outbound` instead. */
-  export type Outbound = ConsumerMetadata$Outbound;
-}
-
 export function consumerMetadataToJSON(
   consumerMetadata: ConsumerMetadata,
 ): string {
@@ -92,7 +78,6 @@ export function consumerMetadataToJSON(
     ConsumerMetadata$outboundSchema.parse(consumerMetadata),
   );
 }
-
 export function consumerMetadataFromJSON(
   jsonString: string,
 ): SafeParseResult<ConsumerMetadata, SDKValidationError> {

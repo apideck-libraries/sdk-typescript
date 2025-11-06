@@ -7,24 +7,9 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  Links,
-  Links$inboundSchema,
-  Links$Outbound,
-  Links$outboundSchema,
-} from "./links.js";
-import {
-  Meta,
-  Meta$inboundSchema,
-  Meta$Outbound,
-  Meta$outboundSchema,
-} from "./meta.js";
-import {
-  Quote,
-  Quote$inboundSchema,
-  Quote$Outbound,
-  Quote$outboundSchema,
-} from "./quote.js";
+import { Links, Links$inboundSchema } from "./links.js";
+import { Meta, Meta$inboundSchema } from "./meta.js";
+import { Quote, Quote$inboundSchema } from "./quote.js";
 
 /**
  * Quotes
@@ -80,59 +65,6 @@ export const GetQuotesResponse$inboundSchema: z.ZodType<
     "status_code": "statusCode",
   });
 });
-
-/** @internal */
-export type GetQuotesResponse$Outbound = {
-  status_code: number;
-  status: string;
-  service: string;
-  resource: string;
-  operation: string;
-  data: Array<Quote$Outbound>;
-  meta?: Meta$Outbound | undefined;
-  links?: Links$Outbound | undefined;
-};
-
-/** @internal */
-export const GetQuotesResponse$outboundSchema: z.ZodType<
-  GetQuotesResponse$Outbound,
-  z.ZodTypeDef,
-  GetQuotesResponse
-> = z.object({
-  statusCode: z.number().int(),
-  status: z.string(),
-  service: z.string(),
-  resource: z.string(),
-  operation: z.string(),
-  data: z.array(Quote$outboundSchema),
-  meta: Meta$outboundSchema.optional(),
-  links: Links$outboundSchema.optional(),
-}).transform((v) => {
-  return remap$(v, {
-    statusCode: "status_code",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetQuotesResponse$ {
-  /** @deprecated use `GetQuotesResponse$inboundSchema` instead. */
-  export const inboundSchema = GetQuotesResponse$inboundSchema;
-  /** @deprecated use `GetQuotesResponse$outboundSchema` instead. */
-  export const outboundSchema = GetQuotesResponse$outboundSchema;
-  /** @deprecated use `GetQuotesResponse$Outbound` instead. */
-  export type Outbound = GetQuotesResponse$Outbound;
-}
-
-export function getQuotesResponseToJSON(
-  getQuotesResponse: GetQuotesResponse,
-): string {
-  return JSON.stringify(
-    GetQuotesResponse$outboundSchema.parse(getQuotesResponse),
-  );
-}
 
 export function getQuotesResponseFromJSON(
   jsonString: string,

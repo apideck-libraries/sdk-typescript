@@ -30,41 +30,6 @@ export const Owner$inboundSchema: z.ZodType<Owner, z.ZodTypeDef, unknown> = z
     name: z.nullable(z.string()).optional(),
   });
 
-/** @internal */
-export type Owner$Outbound = {
-  id?: string | undefined;
-  email?: string | null | undefined;
-  name?: string | null | undefined;
-};
-
-/** @internal */
-export const Owner$outboundSchema: z.ZodType<
-  Owner$Outbound,
-  z.ZodTypeDef,
-  Owner
-> = z.object({
-  id: z.string().optional(),
-  email: z.nullable(z.string()).optional(),
-  name: z.nullable(z.string()).optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Owner$ {
-  /** @deprecated use `Owner$inboundSchema` instead. */
-  export const inboundSchema = Owner$inboundSchema;
-  /** @deprecated use `Owner$outboundSchema` instead. */
-  export const outboundSchema = Owner$outboundSchema;
-  /** @deprecated use `Owner$Outbound` instead. */
-  export type Outbound = Owner$Outbound;
-}
-
-export function ownerToJSON(owner: Owner): string {
-  return JSON.stringify(Owner$outboundSchema.parse(owner));
-}
-
 export function ownerFromJSON(
   jsonString: string,
 ): SafeParseResult<Owner, SDKValidationError> {

@@ -7,24 +7,9 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  Links,
-  Links$inboundSchema,
-  Links$Outbound,
-  Links$outboundSchema,
-} from "./links.js";
-import {
-  Meta,
-  Meta$inboundSchema,
-  Meta$Outbound,
-  Meta$outboundSchema,
-} from "./meta.js";
-import {
-  SharedLink,
-  SharedLink$inboundSchema,
-  SharedLink$Outbound,
-  SharedLink$outboundSchema,
-} from "./sharedlink.js";
+import { Links, Links$inboundSchema } from "./links.js";
+import { Meta, Meta$inboundSchema } from "./meta.js";
+import { SharedLink, SharedLink$inboundSchema } from "./sharedlink.js";
 
 /**
  * Shared Links
@@ -86,62 +71,6 @@ export const GetSharedLinksResponse$inboundSchema: z.ZodType<
     "_raw": "raw",
   });
 });
-
-/** @internal */
-export type GetSharedLinksResponse$Outbound = {
-  status_code: number;
-  status: string;
-  service: string;
-  resource: string;
-  operation: string;
-  data: Array<SharedLink$Outbound>;
-  _raw?: { [k: string]: any } | null | undefined;
-  meta?: Meta$Outbound | undefined;
-  links?: Links$Outbound | undefined;
-};
-
-/** @internal */
-export const GetSharedLinksResponse$outboundSchema: z.ZodType<
-  GetSharedLinksResponse$Outbound,
-  z.ZodTypeDef,
-  GetSharedLinksResponse
-> = z.object({
-  statusCode: z.number().int(),
-  status: z.string(),
-  service: z.string(),
-  resource: z.string(),
-  operation: z.string(),
-  data: z.array(SharedLink$outboundSchema),
-  raw: z.nullable(z.record(z.any())).optional(),
-  meta: Meta$outboundSchema.optional(),
-  links: Links$outboundSchema.optional(),
-}).transform((v) => {
-  return remap$(v, {
-    statusCode: "status_code",
-    raw: "_raw",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetSharedLinksResponse$ {
-  /** @deprecated use `GetSharedLinksResponse$inboundSchema` instead. */
-  export const inboundSchema = GetSharedLinksResponse$inboundSchema;
-  /** @deprecated use `GetSharedLinksResponse$outboundSchema` instead. */
-  export const outboundSchema = GetSharedLinksResponse$outboundSchema;
-  /** @deprecated use `GetSharedLinksResponse$Outbound` instead. */
-  export type Outbound = GetSharedLinksResponse$Outbound;
-}
-
-export function getSharedLinksResponseToJSON(
-  getSharedLinksResponse: GetSharedLinksResponse,
-): string {
-  return JSON.stringify(
-    GetSharedLinksResponse$outboundSchema.parse(getSharedLinksResponse),
-  );
-}
 
 export function getSharedLinksResponseFromJSON(
   jsonString: string,

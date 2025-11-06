@@ -8,11 +8,7 @@ import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  Currency,
-  Currency$inboundSchema,
-  Currency$outboundSchema,
-} from "./currency.js";
+import { Currency, Currency$inboundSchema } from "./currency.js";
 import {
   PassThroughBody,
   PassThroughBody$inboundSchema,
@@ -227,61 +223,18 @@ export type MessageInput = {
 /** @internal */
 export const MessageType$inboundSchema: z.ZodNativeEnum<typeof MessageType> = z
   .nativeEnum(MessageType);
-
 /** @internal */
 export const MessageType$outboundSchema: z.ZodNativeEnum<typeof MessageType> =
   MessageType$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace MessageType$ {
-  /** @deprecated use `MessageType$inboundSchema` instead. */
-  export const inboundSchema = MessageType$inboundSchema;
-  /** @deprecated use `MessageType$outboundSchema` instead. */
-  export const outboundSchema = MessageType$outboundSchema;
-}
 
 /** @internal */
 export const Direction$inboundSchema: z.ZodNativeEnum<typeof Direction> = z
   .nativeEnum(Direction);
 
 /** @internal */
-export const Direction$outboundSchema: z.ZodNativeEnum<typeof Direction> =
-  Direction$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Direction$ {
-  /** @deprecated use `Direction$inboundSchema` instead. */
-  export const inboundSchema = Direction$inboundSchema;
-  /** @deprecated use `Direction$outboundSchema` instead. */
-  export const outboundSchema = Direction$outboundSchema;
-}
-
-/** @internal */
 export const MessageStatus$inboundSchema: z.ZodNativeEnum<
   typeof MessageStatus
 > = z.nativeEnum(MessageStatus);
-
-/** @internal */
-export const MessageStatus$outboundSchema: z.ZodNativeEnum<
-  typeof MessageStatus
-> = MessageStatus$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace MessageStatus$ {
-  /** @deprecated use `MessageStatus$inboundSchema` instead. */
-  export const inboundSchema = MessageStatus$inboundSchema;
-  /** @deprecated use `MessageStatus$outboundSchema` instead. */
-  export const outboundSchema = MessageStatus$outboundSchema;
-}
 
 /** @internal */
 export const Price$inboundSchema: z.ZodType<Price, z.ZodTypeDef, unknown> = z
@@ -295,46 +248,6 @@ export const Price$inboundSchema: z.ZodType<Price, z.ZodTypeDef, unknown> = z
       "total_amount": "totalAmount",
     });
   });
-
-/** @internal */
-export type Price$Outbound = {
-  per_unit?: string | undefined;
-  total_amount?: string | undefined;
-  currency?: string | null | undefined;
-};
-
-/** @internal */
-export const Price$outboundSchema: z.ZodType<
-  Price$Outbound,
-  z.ZodTypeDef,
-  Price
-> = z.object({
-  perUnit: z.string().optional(),
-  totalAmount: z.string().optional(),
-  currency: z.nullable(Currency$outboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    perUnit: "per_unit",
-    totalAmount: "total_amount",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Price$ {
-  /** @deprecated use `Price$inboundSchema` instead. */
-  export const inboundSchema = Price$inboundSchema;
-  /** @deprecated use `Price$outboundSchema` instead. */
-  export const outboundSchema = Price$outboundSchema;
-  /** @deprecated use `Price$Outbound` instead. */
-  export type Outbound = Price$Outbound;
-}
-
-export function priceToJSON(price: Price): string {
-  return JSON.stringify(Price$outboundSchema.parse(price));
-}
 
 export function priceFromJSON(
   jsonString: string,
@@ -352,39 +265,6 @@ export const ErrorT$inboundSchema: z.ZodType<ErrorT, z.ZodTypeDef, unknown> = z
     code: z.string().optional(),
     message: z.string().optional(),
   });
-
-/** @internal */
-export type ErrorT$Outbound = {
-  code?: string | undefined;
-  message?: string | undefined;
-};
-
-/** @internal */
-export const ErrorT$outboundSchema: z.ZodType<
-  ErrorT$Outbound,
-  z.ZodTypeDef,
-  ErrorT
-> = z.object({
-  code: z.string().optional(),
-  message: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ErrorT$ {
-  /** @deprecated use `ErrorT$inboundSchema` instead. */
-  export const inboundSchema = ErrorT$inboundSchema;
-  /** @deprecated use `ErrorT$outboundSchema` instead. */
-  export const outboundSchema = ErrorT$outboundSchema;
-  /** @deprecated use `ErrorT$Outbound` instead. */
-  export type Outbound = ErrorT$Outbound;
-}
-
-export function errorToJSON(errorT: ErrorT): string {
-  return JSON.stringify(ErrorT$outboundSchema.parse(errorT));
-}
 
 export function errorFromJSON(
   jsonString: string,
@@ -446,96 +326,6 @@ export const Message$inboundSchema: z.ZodType<Message, z.ZodTypeDef, unknown> =
     });
   });
 
-/** @internal */
-export type Message$Outbound = {
-  id?: string | undefined;
-  from: string;
-  to: string;
-  subject?: string | undefined;
-  body: string;
-  type?: string | undefined;
-  number_of_units?: number | undefined;
-  number_of_media_files?: number | undefined;
-  direction?: string | undefined;
-  status?: string | undefined;
-  scheduled_at?: string | undefined;
-  sent_at?: string | undefined;
-  webhook_url?: string | undefined;
-  reference?: string | undefined;
-  price?: Price$Outbound | undefined;
-  error?: ErrorT$Outbound | undefined;
-  messaging_service_id?: string | undefined;
-  custom_mappings?: { [k: string]: any } | null | undefined;
-  updated_by?: string | null | undefined;
-  created_by?: string | null | undefined;
-  updated_at?: string | null | undefined;
-  created_at?: string | null | undefined;
-  pass_through?: Array<PassThroughBody$Outbound> | undefined;
-};
-
-/** @internal */
-export const Message$outboundSchema: z.ZodType<
-  Message$Outbound,
-  z.ZodTypeDef,
-  Message
-> = z.object({
-  id: z.string().optional(),
-  from: z.string(),
-  to: z.string(),
-  subject: z.string().optional(),
-  body: z.string(),
-  type: MessageType$outboundSchema.optional(),
-  numberOfUnits: z.number().int().optional(),
-  numberOfMediaFiles: z.number().int().optional(),
-  direction: Direction$outboundSchema.optional(),
-  status: MessageStatus$outboundSchema.optional(),
-  scheduledAt: z.date().transform(v => v.toISOString()).optional(),
-  sentAt: z.date().transform(v => v.toISOString()).optional(),
-  webhookUrl: z.string().optional(),
-  reference: z.string().optional(),
-  price: z.lazy(() => Price$outboundSchema).optional(),
-  error: z.lazy(() => ErrorT$outboundSchema).optional(),
-  messagingServiceId: z.string().optional(),
-  customMappings: z.nullable(z.record(z.any())).optional(),
-  updatedBy: z.nullable(z.string()).optional(),
-  createdBy: z.nullable(z.string()).optional(),
-  updatedAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
-  createdAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
-  passThrough: z.array(PassThroughBody$outboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    numberOfUnits: "number_of_units",
-    numberOfMediaFiles: "number_of_media_files",
-    scheduledAt: "scheduled_at",
-    sentAt: "sent_at",
-    webhookUrl: "webhook_url",
-    messagingServiceId: "messaging_service_id",
-    customMappings: "custom_mappings",
-    updatedBy: "updated_by",
-    createdBy: "created_by",
-    updatedAt: "updated_at",
-    createdAt: "created_at",
-    passThrough: "pass_through",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Message$ {
-  /** @deprecated use `Message$inboundSchema` instead. */
-  export const inboundSchema = Message$inboundSchema;
-  /** @deprecated use `Message$outboundSchema` instead. */
-  export const outboundSchema = Message$outboundSchema;
-  /** @deprecated use `Message$Outbound` instead. */
-  export type Outbound = Message$Outbound;
-}
-
-export function messageToJSON(message: Message): string {
-  return JSON.stringify(Message$outboundSchema.parse(message));
-}
-
 export function messageFromJSON(
   jsonString: string,
 ): SafeParseResult<Message, SDKValidationError> {
@@ -545,33 +335,6 @@ export function messageFromJSON(
     `Failed to parse 'Message' from JSON`,
   );
 }
-
-/** @internal */
-export const MessageInput$inboundSchema: z.ZodType<
-  MessageInput,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  from: z.string(),
-  to: z.string(),
-  subject: z.string().optional(),
-  body: z.string(),
-  type: MessageType$inboundSchema.optional(),
-  scheduled_at: z.string().datetime({ offset: true }).transform(v =>
-    new Date(v)
-  ).optional(),
-  webhook_url: z.string().optional(),
-  reference: z.string().optional(),
-  messaging_service_id: z.string().optional(),
-  pass_through: z.array(PassThroughBody$inboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "scheduled_at": "scheduledAt",
-    "webhook_url": "webhookUrl",
-    "messaging_service_id": "messagingServiceId",
-    "pass_through": "passThrough",
-  });
-});
 
 /** @internal */
 export type MessageInput$Outbound = {
@@ -612,29 +375,6 @@ export const MessageInput$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace MessageInput$ {
-  /** @deprecated use `MessageInput$inboundSchema` instead. */
-  export const inboundSchema = MessageInput$inboundSchema;
-  /** @deprecated use `MessageInput$outboundSchema` instead. */
-  export const outboundSchema = MessageInput$outboundSchema;
-  /** @deprecated use `MessageInput$Outbound` instead. */
-  export type Outbound = MessageInput$Outbound;
-}
-
 export function messageInputToJSON(messageInput: MessageInput): string {
   return JSON.stringify(MessageInput$outboundSchema.parse(messageInput));
-}
-
-export function messageInputFromJSON(
-  jsonString: string,
-): SafeParseResult<MessageInput, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => MessageInput$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'MessageInput' from JSON`,
-  );
 }

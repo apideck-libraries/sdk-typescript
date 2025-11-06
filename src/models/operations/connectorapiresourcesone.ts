@@ -44,77 +44,6 @@ export type ConnectorApiResourcesOneResponse = {
 };
 
 /** @internal */
-export const ConnectorApiResourcesOneGlobals$inboundSchema: z.ZodType<
-  ConnectorApiResourcesOneGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  appId: z.string().optional(),
-});
-
-/** @internal */
-export type ConnectorApiResourcesOneGlobals$Outbound = {
-  appId?: string | undefined;
-};
-
-/** @internal */
-export const ConnectorApiResourcesOneGlobals$outboundSchema: z.ZodType<
-  ConnectorApiResourcesOneGlobals$Outbound,
-  z.ZodTypeDef,
-  ConnectorApiResourcesOneGlobals
-> = z.object({
-  appId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ConnectorApiResourcesOneGlobals$ {
-  /** @deprecated use `ConnectorApiResourcesOneGlobals$inboundSchema` instead. */
-  export const inboundSchema = ConnectorApiResourcesOneGlobals$inboundSchema;
-  /** @deprecated use `ConnectorApiResourcesOneGlobals$outboundSchema` instead. */
-  export const outboundSchema = ConnectorApiResourcesOneGlobals$outboundSchema;
-  /** @deprecated use `ConnectorApiResourcesOneGlobals$Outbound` instead. */
-  export type Outbound = ConnectorApiResourcesOneGlobals$Outbound;
-}
-
-export function connectorApiResourcesOneGlobalsToJSON(
-  connectorApiResourcesOneGlobals: ConnectorApiResourcesOneGlobals,
-): string {
-  return JSON.stringify(
-    ConnectorApiResourcesOneGlobals$outboundSchema.parse(
-      connectorApiResourcesOneGlobals,
-    ),
-  );
-}
-
-export function connectorApiResourcesOneGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<ConnectorApiResourcesOneGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => ConnectorApiResourcesOneGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ConnectorApiResourcesOneGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const ConnectorApiResourcesOneRequest$inboundSchema: z.ZodType<
-  ConnectorApiResourcesOneRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  appId: z.string().optional(),
-  id: z.string(),
-  resource_id: z.string(),
-}).transform((v) => {
-  return remap$(v, {
-    "resource_id": "resourceId",
-  });
-});
-
-/** @internal */
 export type ConnectorApiResourcesOneRequest$Outbound = {
   appId?: string | undefined;
   id: string;
@@ -136,19 +65,6 @@ export const ConnectorApiResourcesOneRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ConnectorApiResourcesOneRequest$ {
-  /** @deprecated use `ConnectorApiResourcesOneRequest$inboundSchema` instead. */
-  export const inboundSchema = ConnectorApiResourcesOneRequest$inboundSchema;
-  /** @deprecated use `ConnectorApiResourcesOneRequest$outboundSchema` instead. */
-  export const outboundSchema = ConnectorApiResourcesOneRequest$outboundSchema;
-  /** @deprecated use `ConnectorApiResourcesOneRequest$Outbound` instead. */
-  export type Outbound = ConnectorApiResourcesOneRequest$Outbound;
-}
-
 export function connectorApiResourcesOneRequestToJSON(
   connectorApiResourcesOneRequest: ConnectorApiResourcesOneRequest,
 ): string {
@@ -156,16 +72,6 @@ export function connectorApiResourcesOneRequestToJSON(
     ConnectorApiResourcesOneRequest$outboundSchema.parse(
       connectorApiResourcesOneRequest,
     ),
-  );
-}
-
-export function connectorApiResourcesOneRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<ConnectorApiResourcesOneRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => ConnectorApiResourcesOneRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ConnectorApiResourcesOneRequest' from JSON`,
   );
 }
 
@@ -187,59 +93,6 @@ export const ConnectorApiResourcesOneResponse$inboundSchema: z.ZodType<
     "UnexpectedErrorResponse": "unexpectedErrorResponse",
   });
 });
-
-/** @internal */
-export type ConnectorApiResourcesOneResponse$Outbound = {
-  HttpMeta: components.HTTPMetadata$Outbound;
-  GetApiResourceResponse?:
-    | components.GetApiResourceResponse$Outbound
-    | undefined;
-  UnexpectedErrorResponse?:
-    | components.UnexpectedErrorResponse$Outbound
-    | undefined;
-};
-
-/** @internal */
-export const ConnectorApiResourcesOneResponse$outboundSchema: z.ZodType<
-  ConnectorApiResourcesOneResponse$Outbound,
-  z.ZodTypeDef,
-  ConnectorApiResourcesOneResponse
-> = z.object({
-  httpMeta: components.HTTPMetadata$outboundSchema,
-  getApiResourceResponse: components.GetApiResourceResponse$outboundSchema
-    .optional(),
-  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    httpMeta: "HttpMeta",
-    getApiResourceResponse: "GetApiResourceResponse",
-    unexpectedErrorResponse: "UnexpectedErrorResponse",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ConnectorApiResourcesOneResponse$ {
-  /** @deprecated use `ConnectorApiResourcesOneResponse$inboundSchema` instead. */
-  export const inboundSchema = ConnectorApiResourcesOneResponse$inboundSchema;
-  /** @deprecated use `ConnectorApiResourcesOneResponse$outboundSchema` instead. */
-  export const outboundSchema = ConnectorApiResourcesOneResponse$outboundSchema;
-  /** @deprecated use `ConnectorApiResourcesOneResponse$Outbound` instead. */
-  export type Outbound = ConnectorApiResourcesOneResponse$Outbound;
-}
-
-export function connectorApiResourcesOneResponseToJSON(
-  connectorApiResourcesOneResponse: ConnectorApiResourcesOneResponse,
-): string {
-  return JSON.stringify(
-    ConnectorApiResourcesOneResponse$outboundSchema.parse(
-      connectorApiResourcesOneResponse,
-    ),
-  );
-}
 
 export function connectorApiResourcesOneResponseFromJSON(
   jsonString: string,

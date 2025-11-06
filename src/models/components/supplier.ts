@@ -44,26 +44,14 @@ import {
   LinkedLedgerAccount$outboundSchema,
 } from "./linkedledgeraccount.js";
 import {
-  LinkedLedgerAccountInput,
-  LinkedLedgerAccountInput$inboundSchema,
-  LinkedLedgerAccountInput$Outbound,
-  LinkedLedgerAccountInput$outboundSchema,
-} from "./linkedledgeraccountinput.js";
-import {
   LinkedTaxDetail,
   LinkedTaxDetail$inboundSchema,
   LinkedTaxDetail$Outbound,
   LinkedTaxDetail$outboundSchema,
 } from "./linkedtaxdetail.js";
-import {
-  LinkedTaxRate,
-  LinkedTaxRate$inboundSchema,
-  LinkedTaxRate$Outbound,
-  LinkedTaxRate$outboundSchema,
-} from "./linkedtaxrate.js";
+import { LinkedTaxRate, LinkedTaxRate$inboundSchema } from "./linkedtaxrate.js";
 import {
   LinkedTaxRateInput,
-  LinkedTaxRateInput$inboundSchema,
   LinkedTaxRateInput$Outbound,
   LinkedTaxRateInput$outboundSchema,
 } from "./linkedtaxrateinput.js";
@@ -295,7 +283,7 @@ export type SupplierInput = {
    * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
    */
   currency?: Currency | null | undefined;
-  account?: LinkedLedgerAccountInput | null | undefined;
+  account?: LinkedLedgerAccount | null | undefined;
   /**
    * Supplier status
    */
@@ -345,22 +333,10 @@ export type SupplierInput = {
 export const SupplierStatus$inboundSchema: z.ZodNativeEnum<
   typeof SupplierStatus
 > = z.nativeEnum(SupplierStatus);
-
 /** @internal */
 export const SupplierStatus$outboundSchema: z.ZodNativeEnum<
   typeof SupplierStatus
 > = SupplierStatus$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SupplierStatus$ {
-  /** @deprecated use `SupplierStatus$inboundSchema` instead. */
-  export const inboundSchema = SupplierStatus$inboundSchema;
-  /** @deprecated use `SupplierStatus$outboundSchema` instead. */
-  export const outboundSchema = SupplierStatus$outboundSchema;
-}
 
 /** @internal */
 export const Supplier$inboundSchema: z.ZodType<
@@ -447,149 +423,6 @@ export const Supplier$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type Supplier$Outbound = {
-  id: string;
-  downstream_id?: string | null | undefined;
-  display_id?: string | null | undefined;
-  display_name?: string | null | undefined;
-  company_name?: string | null | undefined;
-  company_id?: string | null | undefined;
-  supplier_category?: string | null | undefined;
-  title?: string | null | undefined;
-  first_name?: string | null | undefined;
-  middle_name?: string | null | undefined;
-  last_name?: string | null | undefined;
-  suffix?: string | null | undefined;
-  individual?: boolean | null | undefined;
-  addresses?: Array<Address$Outbound> | undefined;
-  phone_numbers?: Array<PhoneNumber$Outbound> | undefined;
-  emails?: Array<Email$Outbound> | undefined;
-  websites?: Array<Website$Outbound> | undefined;
-  bank_accounts?: Array<BankAccount$Outbound> | undefined;
-  notes?: string | null | undefined;
-  tax_rate?: LinkedTaxRate$Outbound | undefined;
-  tax_number?: string | null | undefined;
-  currency?: string | null | undefined;
-  account?: LinkedLedgerAccount$Outbound | null | undefined;
-  status?: string | null | undefined;
-  payment_method?: string | null | undefined;
-  terms?: string | null | undefined;
-  channel?: string | null | undefined;
-  issued_method?: string | null | undefined;
-  issued_email?: string | null | undefined;
-  custom_mappings?: { [k: string]: any } | null | undefined;
-  custom_fields?: Array<CustomField$Outbound> | undefined;
-  tax_details?: Array<LinkedTaxDetail$Outbound | null> | undefined;
-  tax_status_details?: Array<LinkedTaxStatusDetail$Outbound | null> | undefined;
-  updated_by?: string | null | undefined;
-  created_by?: string | null | undefined;
-  updated_at?: string | null | undefined;
-  created_at?: string | null | undefined;
-  row_version?: string | null | undefined;
-  pass_through?: Array<PassThroughBody$Outbound> | undefined;
-  subsidiary_id?: string | undefined;
-  integration_system_id?: string | undefined;
-};
-
-/** @internal */
-export const Supplier$outboundSchema: z.ZodType<
-  Supplier$Outbound,
-  z.ZodTypeDef,
-  Supplier
-> = z.object({
-  id: z.string(),
-  downstreamId: z.nullable(z.string()).optional(),
-  displayId: z.nullable(z.string()).optional(),
-  displayName: z.nullable(z.string()).optional(),
-  companyName: z.nullable(z.string()).optional(),
-  companyId: z.nullable(z.string()).optional(),
-  supplierCategory: z.nullable(z.string()).optional(),
-  title: z.nullable(z.string()).optional(),
-  firstName: z.nullable(z.string()).optional(),
-  middleName: z.nullable(z.string()).optional(),
-  lastName: z.nullable(z.string()).optional(),
-  suffix: z.nullable(z.string()).optional(),
-  individual: z.nullable(z.boolean()).optional(),
-  addresses: z.array(Address$outboundSchema).optional(),
-  phoneNumbers: z.array(PhoneNumber$outboundSchema).optional(),
-  emails: z.array(Email$outboundSchema).optional(),
-  websites: z.array(Website$outboundSchema).optional(),
-  bankAccounts: z.array(BankAccount$outboundSchema).optional(),
-  notes: z.nullable(z.string()).optional(),
-  taxRate: LinkedTaxRate$outboundSchema.optional(),
-  taxNumber: z.nullable(z.string()).optional(),
-  currency: z.nullable(Currency$outboundSchema).optional(),
-  account: z.nullable(LinkedLedgerAccount$outboundSchema).optional(),
-  status: z.nullable(SupplierStatus$outboundSchema).optional(),
-  paymentMethod: z.nullable(z.string()).optional(),
-  terms: z.nullable(z.string()).optional(),
-  channel: z.nullable(z.string()).optional(),
-  issuedMethod: z.nullable(z.string()).optional(),
-  issuedEmail: z.nullable(z.string()).optional(),
-  customMappings: z.nullable(z.record(z.any())).optional(),
-  customFields: z.array(CustomField$outboundSchema).optional(),
-  taxDetails: z.array(z.nullable(LinkedTaxDetail$outboundSchema)).optional(),
-  taxStatusDetails: z.array(z.nullable(LinkedTaxStatusDetail$outboundSchema))
-    .optional(),
-  updatedBy: z.nullable(z.string()).optional(),
-  createdBy: z.nullable(z.string()).optional(),
-  updatedAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
-  createdAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
-  rowVersion: z.nullable(z.string()).optional(),
-  passThrough: z.array(PassThroughBody$outboundSchema).optional(),
-  subsidiaryId: z.string().optional(),
-  integrationSystemId: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    downstreamId: "downstream_id",
-    displayId: "display_id",
-    displayName: "display_name",
-    companyName: "company_name",
-    companyId: "company_id",
-    supplierCategory: "supplier_category",
-    firstName: "first_name",
-    middleName: "middle_name",
-    lastName: "last_name",
-    phoneNumbers: "phone_numbers",
-    bankAccounts: "bank_accounts",
-    taxRate: "tax_rate",
-    taxNumber: "tax_number",
-    paymentMethod: "payment_method",
-    issuedMethod: "issued_method",
-    issuedEmail: "issued_email",
-    customMappings: "custom_mappings",
-    customFields: "custom_fields",
-    taxDetails: "tax_details",
-    taxStatusDetails: "tax_status_details",
-    updatedBy: "updated_by",
-    createdBy: "created_by",
-    updatedAt: "updated_at",
-    createdAt: "created_at",
-    rowVersion: "row_version",
-    passThrough: "pass_through",
-    subsidiaryId: "subsidiary_id",
-    integrationSystemId: "integration_system_id",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Supplier$ {
-  /** @deprecated use `Supplier$inboundSchema` instead. */
-  export const inboundSchema = Supplier$inboundSchema;
-  /** @deprecated use `Supplier$outboundSchema` instead. */
-  export const outboundSchema = Supplier$outboundSchema;
-  /** @deprecated use `Supplier$Outbound` instead. */
-  export type Outbound = Supplier$Outbound;
-}
-
-export function supplierToJSON(supplier: Supplier): string {
-  return JSON.stringify(Supplier$outboundSchema.parse(supplier));
-}
-
 export function supplierFromJSON(
   jsonString: string,
 ): SafeParseResult<Supplier, SDKValidationError> {
@@ -599,74 +432,6 @@ export function supplierFromJSON(
     `Failed to parse 'Supplier' from JSON`,
   );
 }
-
-/** @internal */
-export const SupplierInput$inboundSchema: z.ZodType<
-  SupplierInput,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  display_id: z.nullable(z.string()).optional(),
-  display_name: z.nullable(z.string()).optional(),
-  company_name: z.nullable(z.string()).optional(),
-  company_id: z.nullable(z.string()).optional(),
-  supplier_category: z.nullable(z.string()).optional(),
-  title: z.nullable(z.string()).optional(),
-  first_name: z.nullable(z.string()).optional(),
-  middle_name: z.nullable(z.string()).optional(),
-  last_name: z.nullable(z.string()).optional(),
-  suffix: z.nullable(z.string()).optional(),
-  individual: z.nullable(z.boolean()).optional(),
-  addresses: z.array(Address$inboundSchema).optional(),
-  phone_numbers: z.array(PhoneNumber$inboundSchema).optional(),
-  emails: z.array(Email$inboundSchema).optional(),
-  websites: z.array(Website$inboundSchema).optional(),
-  bank_accounts: z.array(BankAccount$inboundSchema).optional(),
-  notes: z.nullable(z.string()).optional(),
-  tax_rate: LinkedTaxRateInput$inboundSchema.optional(),
-  tax_number: z.nullable(z.string()).optional(),
-  currency: z.nullable(Currency$inboundSchema).optional(),
-  account: z.nullable(LinkedLedgerAccountInput$inboundSchema).optional(),
-  status: z.nullable(SupplierStatus$inboundSchema).optional(),
-  payment_method: z.nullable(z.string()).optional(),
-  terms: z.nullable(z.string()).optional(),
-  channel: z.nullable(z.string()).optional(),
-  issued_method: z.nullable(z.string()).optional(),
-  issued_email: z.nullable(z.string()).optional(),
-  custom_fields: z.array(CustomField$inboundSchema).optional(),
-  tax_details: z.array(z.nullable(LinkedTaxDetail$inboundSchema)).optional(),
-  tax_status_details: z.array(z.nullable(LinkedTaxStatusDetail$inboundSchema))
-    .optional(),
-  row_version: z.nullable(z.string()).optional(),
-  pass_through: z.array(PassThroughBody$inboundSchema).optional(),
-  subsidiary_id: z.string().optional(),
-  integration_system_id: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "display_id": "displayId",
-    "display_name": "displayName",
-    "company_name": "companyName",
-    "company_id": "companyId",
-    "supplier_category": "supplierCategory",
-    "first_name": "firstName",
-    "middle_name": "middleName",
-    "last_name": "lastName",
-    "phone_numbers": "phoneNumbers",
-    "bank_accounts": "bankAccounts",
-    "tax_rate": "taxRate",
-    "tax_number": "taxNumber",
-    "payment_method": "paymentMethod",
-    "issued_method": "issuedMethod",
-    "issued_email": "issuedEmail",
-    "custom_fields": "customFields",
-    "tax_details": "taxDetails",
-    "tax_status_details": "taxStatusDetails",
-    "row_version": "rowVersion",
-    "pass_through": "passThrough",
-    "subsidiary_id": "subsidiaryId",
-    "integration_system_id": "integrationSystemId",
-  });
-});
 
 /** @internal */
 export type SupplierInput$Outbound = {
@@ -690,7 +455,7 @@ export type SupplierInput$Outbound = {
   tax_rate?: LinkedTaxRateInput$Outbound | undefined;
   tax_number?: string | null | undefined;
   currency?: string | null | undefined;
-  account?: LinkedLedgerAccountInput$Outbound | null | undefined;
+  account?: LinkedLedgerAccount$Outbound | null | undefined;
   status?: string | null | undefined;
   payment_method?: string | null | undefined;
   terms?: string | null | undefined;
@@ -732,7 +497,7 @@ export const SupplierInput$outboundSchema: z.ZodType<
   taxRate: LinkedTaxRateInput$outboundSchema.optional(),
   taxNumber: z.nullable(z.string()).optional(),
   currency: z.nullable(Currency$outboundSchema).optional(),
-  account: z.nullable(LinkedLedgerAccountInput$outboundSchema).optional(),
+  account: z.nullable(LinkedLedgerAccount$outboundSchema).optional(),
   status: z.nullable(SupplierStatus$outboundSchema).optional(),
   paymentMethod: z.nullable(z.string()).optional(),
   terms: z.nullable(z.string()).optional(),
@@ -774,29 +539,6 @@ export const SupplierInput$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SupplierInput$ {
-  /** @deprecated use `SupplierInput$inboundSchema` instead. */
-  export const inboundSchema = SupplierInput$inboundSchema;
-  /** @deprecated use `SupplierInput$outboundSchema` instead. */
-  export const outboundSchema = SupplierInput$outboundSchema;
-  /** @deprecated use `SupplierInput$Outbound` instead. */
-  export type Outbound = SupplierInput$Outbound;
-}
-
 export function supplierInputToJSON(supplierInput: SupplierInput): string {
   return JSON.stringify(SupplierInput$outboundSchema.parse(supplierInput));
-}
-
-export function supplierInputFromJSON(
-  jsonString: string,
-): SafeParseResult<SupplierInput, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => SupplierInput$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'SupplierInput' from JSON`,
-  );
 }

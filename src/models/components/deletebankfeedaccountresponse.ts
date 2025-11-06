@@ -7,12 +7,7 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  UnifiedId,
-  UnifiedId$inboundSchema,
-  UnifiedId$Outbound,
-  UnifiedId$outboundSchema,
-} from "./unifiedid.js";
+import { UnifiedId, UnifiedId$inboundSchema } from "./unifiedid.js";
 
 /**
  * Bank Feed Accounts
@@ -67,60 +62,6 @@ export const DeleteBankFeedAccountResponse$inboundSchema: z.ZodType<
     "_raw": "raw",
   });
 });
-
-/** @internal */
-export type DeleteBankFeedAccountResponse$Outbound = {
-  status_code: number;
-  status: string;
-  service: string;
-  resource: string;
-  operation: string;
-  data: UnifiedId$Outbound;
-  _raw?: { [k: string]: any } | null | undefined;
-};
-
-/** @internal */
-export const DeleteBankFeedAccountResponse$outboundSchema: z.ZodType<
-  DeleteBankFeedAccountResponse$Outbound,
-  z.ZodTypeDef,
-  DeleteBankFeedAccountResponse
-> = z.object({
-  statusCode: z.number().int(),
-  status: z.string(),
-  service: z.string(),
-  resource: z.string(),
-  operation: z.string(),
-  data: UnifiedId$outboundSchema,
-  raw: z.nullable(z.record(z.any())).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    statusCode: "status_code",
-    raw: "_raw",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DeleteBankFeedAccountResponse$ {
-  /** @deprecated use `DeleteBankFeedAccountResponse$inboundSchema` instead. */
-  export const inboundSchema = DeleteBankFeedAccountResponse$inboundSchema;
-  /** @deprecated use `DeleteBankFeedAccountResponse$outboundSchema` instead. */
-  export const outboundSchema = DeleteBankFeedAccountResponse$outboundSchema;
-  /** @deprecated use `DeleteBankFeedAccountResponse$Outbound` instead. */
-  export type Outbound = DeleteBankFeedAccountResponse$Outbound;
-}
-
-export function deleteBankFeedAccountResponseToJSON(
-  deleteBankFeedAccountResponse: DeleteBankFeedAccountResponse,
-): string {
-  return JSON.stringify(
-    DeleteBankFeedAccountResponse$outboundSchema.parse(
-      deleteBankFeedAccountResponse,
-    ),
-  );
-}
 
 export function deleteBankFeedAccountResponseFromJSON(
   jsonString: string,

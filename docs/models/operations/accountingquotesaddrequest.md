@@ -61,6 +61,7 @@ let value: AccountingQuotesAddRequest = {
         },
         taxRate: {
           id: "123456",
+          code: "N-T",
           rate: 10,
         },
         trackingCategories: [
@@ -73,6 +74,7 @@ let value: AccountingQuotesAddRequest = {
         ],
         ledgerAccount: {
           id: "123456",
+          name: "Bank account",
           nominalCode: "N091",
           code: "453",
           parentId: "123456",

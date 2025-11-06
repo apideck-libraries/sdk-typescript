@@ -10,20 +10,14 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   ConsumerConnection,
   ConsumerConnection$inboundSchema,
-  ConsumerConnection$Outbound,
-  ConsumerConnection$outboundSchema,
 } from "./consumerconnection.js";
 import {
   ConsumerMetadata,
   ConsumerMetadata$inboundSchema,
-  ConsumerMetadata$Outbound,
-  ConsumerMetadata$outboundSchema,
 } from "./consumermetadata.js";
 import {
   RequestCountAllocation,
   RequestCountAllocation$inboundSchema,
-  RequestCountAllocation$Outbound,
-  RequestCountAllocation$outboundSchema,
 } from "./requestcountallocation.js";
 
 export type Consumer = {
@@ -73,63 +67,6 @@ export const Consumer$inboundSchema: z.ZodType<
     "request_count_updated": "requestCountUpdated",
   });
 });
-
-/** @internal */
-export type Consumer$Outbound = {
-  consumer_id: string;
-  application_id?: string | undefined;
-  metadata?: ConsumerMetadata$Outbound | undefined;
-  connections?: Array<ConsumerConnection$Outbound> | undefined;
-  services?: Array<string> | undefined;
-  aggregated_request_count?: number | undefined;
-  request_counts?: RequestCountAllocation$Outbound | undefined;
-  created?: string | undefined;
-  modified?: string | undefined;
-  request_count_updated?: string | undefined;
-};
-
-/** @internal */
-export const Consumer$outboundSchema: z.ZodType<
-  Consumer$Outbound,
-  z.ZodTypeDef,
-  Consumer
-> = z.object({
-  consumerId: z.string(),
-  applicationId: z.string().optional(),
-  metadata: ConsumerMetadata$outboundSchema.optional(),
-  connections: z.array(ConsumerConnection$outboundSchema).optional(),
-  services: z.array(z.string()).optional(),
-  aggregatedRequestCount: z.number().optional(),
-  requestCounts: RequestCountAllocation$outboundSchema.optional(),
-  created: z.string().optional(),
-  modified: z.string().optional(),
-  requestCountUpdated: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    consumerId: "consumer_id",
-    applicationId: "application_id",
-    aggregatedRequestCount: "aggregated_request_count",
-    requestCounts: "request_counts",
-    requestCountUpdated: "request_count_updated",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Consumer$ {
-  /** @deprecated use `Consumer$inboundSchema` instead. */
-  export const inboundSchema = Consumer$inboundSchema;
-  /** @deprecated use `Consumer$outboundSchema` instead. */
-  export const outboundSchema = Consumer$outboundSchema;
-  /** @deprecated use `Consumer$Outbound` instead. */
-  export type Outbound = Consumer$Outbound;
-}
-
-export function consumerToJSON(consumer: Consumer): string {
-  return JSON.stringify(Consumer$outboundSchema.parse(consumer));
-}
 
 export function consumerFromJSON(
   jsonString: string,

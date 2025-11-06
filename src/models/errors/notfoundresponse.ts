@@ -96,37 +96,6 @@ export const NotFoundResponseDetail$inboundSchema: z.ZodType<
   unknown
 > = z.union([z.string(), z.record(z.any())]);
 
-/** @internal */
-export type NotFoundResponseDetail$Outbound = string | { [k: string]: any };
-
-/** @internal */
-export const NotFoundResponseDetail$outboundSchema: z.ZodType<
-  NotFoundResponseDetail$Outbound,
-  z.ZodTypeDef,
-  unknown
-> = z.union([z.string(), z.record(z.any())]);
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace NotFoundResponseDetail$ {
-  /** @deprecated use `NotFoundResponseDetail$inboundSchema` instead. */
-  export const inboundSchema = NotFoundResponseDetail$inboundSchema;
-  /** @deprecated use `NotFoundResponseDetail$outboundSchema` instead. */
-  export const outboundSchema = NotFoundResponseDetail$outboundSchema;
-  /** @deprecated use `NotFoundResponseDetail$Outbound` instead. */
-  export type Outbound = NotFoundResponseDetail$Outbound;
-}
-
-export function notFoundResponseDetailToJSON(
-  notFoundResponseDetail: NotFoundResponseDetail,
-): string {
-  return JSON.stringify(
-    NotFoundResponseDetail$outboundSchema.parse(notFoundResponseDetail),
-  );
-}
-
 export function notFoundResponseDetailFromJSON(
   jsonString: string,
 ): SafeParseResult<NotFoundResponseDetail, SDKValidationError> {
@@ -165,49 +134,3 @@ export const NotFoundResponse$inboundSchema: z.ZodType<
       body: v.body$,
     });
   });
-
-/** @internal */
-export type NotFoundResponse$Outbound = {
-  status_code?: number | undefined;
-  error?: string | undefined;
-  type_name?: string | undefined;
-  message?: string | undefined;
-  detail?: string | { [k: string]: any } | undefined;
-  ref?: string | undefined;
-};
-
-/** @internal */
-export const NotFoundResponse$outboundSchema: z.ZodType<
-  NotFoundResponse$Outbound,
-  z.ZodTypeDef,
-  NotFoundResponse
-> = z.instanceof(NotFoundResponse)
-  .transform(v => v.data$)
-  .pipe(
-    z.object({
-      statusCode: z.number().optional(),
-      error: z.string().optional(),
-      typeName: z.string().optional(),
-      message: z.string().optional(),
-      detail: z.union([z.string(), z.record(z.any())]).optional(),
-      ref: z.string().optional(),
-    }).transform((v) => {
-      return remap$(v, {
-        statusCode: "status_code",
-        typeName: "type_name",
-      });
-    }),
-  );
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace NotFoundResponse$ {
-  /** @deprecated use `NotFoundResponse$inboundSchema` instead. */
-  export const inboundSchema = NotFoundResponse$inboundSchema;
-  /** @deprecated use `NotFoundResponse$outboundSchema` instead. */
-  export const outboundSchema = NotFoundResponse$outboundSchema;
-  /** @deprecated use `NotFoundResponse$Outbound` instead. */
-  export type Outbound = NotFoundResponse$Outbound;
-}

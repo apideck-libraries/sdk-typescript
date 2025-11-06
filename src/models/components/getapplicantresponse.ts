@@ -7,12 +7,7 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  Applicant,
-  Applicant$inboundSchema,
-  Applicant$Outbound,
-  Applicant$outboundSchema,
-} from "./applicant.js";
+import { Applicant, Applicant$inboundSchema } from "./applicant.js";
 
 /**
  * Applicants
@@ -64,58 +59,6 @@ export const GetApplicantResponse$inboundSchema: z.ZodType<
     "_raw": "raw",
   });
 });
-
-/** @internal */
-export type GetApplicantResponse$Outbound = {
-  status_code: number;
-  status: string;
-  service: string;
-  resource: string;
-  operation: string;
-  data: Applicant$Outbound;
-  _raw?: { [k: string]: any } | null | undefined;
-};
-
-/** @internal */
-export const GetApplicantResponse$outboundSchema: z.ZodType<
-  GetApplicantResponse$Outbound,
-  z.ZodTypeDef,
-  GetApplicantResponse
-> = z.object({
-  statusCode: z.number().int(),
-  status: z.string(),
-  service: z.string(),
-  resource: z.string(),
-  operation: z.string(),
-  data: Applicant$outboundSchema,
-  raw: z.nullable(z.record(z.any())).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    statusCode: "status_code",
-    raw: "_raw",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetApplicantResponse$ {
-  /** @deprecated use `GetApplicantResponse$inboundSchema` instead. */
-  export const inboundSchema = GetApplicantResponse$inboundSchema;
-  /** @deprecated use `GetApplicantResponse$outboundSchema` instead. */
-  export const outboundSchema = GetApplicantResponse$outboundSchema;
-  /** @deprecated use `GetApplicantResponse$Outbound` instead. */
-  export type Outbound = GetApplicantResponse$Outbound;
-}
-
-export function getApplicantResponseToJSON(
-  getApplicantResponse: GetApplicantResponse,
-): string {
-  return JSON.stringify(
-    GetApplicantResponse$outboundSchema.parse(getApplicantResponse),
-  );
-}
 
 export function getApplicantResponseFromJSON(
   jsonString: string,

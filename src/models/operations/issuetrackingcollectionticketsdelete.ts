@@ -60,96 +60,6 @@ export type IssueTrackingCollectionTicketsDeleteResponse = {
 };
 
 /** @internal */
-export const IssueTrackingCollectionTicketsDeleteGlobals$inboundSchema:
-  z.ZodType<
-    IssueTrackingCollectionTicketsDeleteGlobals,
-    z.ZodTypeDef,
-    unknown
-  > = z.object({
-    consumerId: z.string().optional(),
-    appId: z.string().optional(),
-  });
-
-/** @internal */
-export type IssueTrackingCollectionTicketsDeleteGlobals$Outbound = {
-  consumerId?: string | undefined;
-  appId?: string | undefined;
-};
-
-/** @internal */
-export const IssueTrackingCollectionTicketsDeleteGlobals$outboundSchema:
-  z.ZodType<
-    IssueTrackingCollectionTicketsDeleteGlobals$Outbound,
-    z.ZodTypeDef,
-    IssueTrackingCollectionTicketsDeleteGlobals
-  > = z.object({
-    consumerId: z.string().optional(),
-    appId: z.string().optional(),
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace IssueTrackingCollectionTicketsDeleteGlobals$ {
-  /** @deprecated use `IssueTrackingCollectionTicketsDeleteGlobals$inboundSchema` instead. */
-  export const inboundSchema =
-    IssueTrackingCollectionTicketsDeleteGlobals$inboundSchema;
-  /** @deprecated use `IssueTrackingCollectionTicketsDeleteGlobals$outboundSchema` instead. */
-  export const outboundSchema =
-    IssueTrackingCollectionTicketsDeleteGlobals$outboundSchema;
-  /** @deprecated use `IssueTrackingCollectionTicketsDeleteGlobals$Outbound` instead. */
-  export type Outbound = IssueTrackingCollectionTicketsDeleteGlobals$Outbound;
-}
-
-export function issueTrackingCollectionTicketsDeleteGlobalsToJSON(
-  issueTrackingCollectionTicketsDeleteGlobals:
-    IssueTrackingCollectionTicketsDeleteGlobals,
-): string {
-  return JSON.stringify(
-    IssueTrackingCollectionTicketsDeleteGlobals$outboundSchema.parse(
-      issueTrackingCollectionTicketsDeleteGlobals,
-    ),
-  );
-}
-
-export function issueTrackingCollectionTicketsDeleteGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<
-  IssueTrackingCollectionTicketsDeleteGlobals,
-  SDKValidationError
-> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      IssueTrackingCollectionTicketsDeleteGlobals$inboundSchema.parse(
-        JSON.parse(x),
-      ),
-    `Failed to parse 'IssueTrackingCollectionTicketsDeleteGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const IssueTrackingCollectionTicketsDeleteRequest$inboundSchema:
-  z.ZodType<
-    IssueTrackingCollectionTicketsDeleteRequest,
-    z.ZodTypeDef,
-    unknown
-  > = z.object({
-    ticket_id: z.string(),
-    consumerId: z.string().optional(),
-    appId: z.string().optional(),
-    serviceId: z.string().optional(),
-    raw: z.boolean().default(false),
-    collection_id: z.string(),
-  }).transform((v) => {
-    return remap$(v, {
-      "ticket_id": "ticketId",
-      "collection_id": "collectionId",
-    });
-  });
-
-/** @internal */
 export type IssueTrackingCollectionTicketsDeleteRequest$Outbound = {
   ticket_id: string;
   consumerId?: string | undefined;
@@ -179,21 +89,6 @@ export const IssueTrackingCollectionTicketsDeleteRequest$outboundSchema:
     });
   });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace IssueTrackingCollectionTicketsDeleteRequest$ {
-  /** @deprecated use `IssueTrackingCollectionTicketsDeleteRequest$inboundSchema` instead. */
-  export const inboundSchema =
-    IssueTrackingCollectionTicketsDeleteRequest$inboundSchema;
-  /** @deprecated use `IssueTrackingCollectionTicketsDeleteRequest$outboundSchema` instead. */
-  export const outboundSchema =
-    IssueTrackingCollectionTicketsDeleteRequest$outboundSchema;
-  /** @deprecated use `IssueTrackingCollectionTicketsDeleteRequest$Outbound` instead. */
-  export type Outbound = IssueTrackingCollectionTicketsDeleteRequest$Outbound;
-}
-
 export function issueTrackingCollectionTicketsDeleteRequestToJSON(
   issueTrackingCollectionTicketsDeleteRequest:
     IssueTrackingCollectionTicketsDeleteRequest,
@@ -202,22 +97,6 @@ export function issueTrackingCollectionTicketsDeleteRequestToJSON(
     IssueTrackingCollectionTicketsDeleteRequest$outboundSchema.parse(
       issueTrackingCollectionTicketsDeleteRequest,
     ),
-  );
-}
-
-export function issueTrackingCollectionTicketsDeleteRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<
-  IssueTrackingCollectionTicketsDeleteRequest,
-  SDKValidationError
-> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      IssueTrackingCollectionTicketsDeleteRequest$inboundSchema.parse(
-        JSON.parse(x),
-      ),
-    `Failed to parse 'IssueTrackingCollectionTicketsDeleteRequest' from JSON`,
   );
 }
 
@@ -240,61 +119,6 @@ export const IssueTrackingCollectionTicketsDeleteResponse$inboundSchema:
       "UnexpectedErrorResponse": "unexpectedErrorResponse",
     });
   });
-
-/** @internal */
-export type IssueTrackingCollectionTicketsDeleteResponse$Outbound = {
-  HttpMeta: components.HTTPMetadata$Outbound;
-  DeleteTicketResponse?: components.DeleteTicketResponse$Outbound | undefined;
-  UnexpectedErrorResponse?:
-    | components.UnexpectedErrorResponse$Outbound
-    | undefined;
-};
-
-/** @internal */
-export const IssueTrackingCollectionTicketsDeleteResponse$outboundSchema:
-  z.ZodType<
-    IssueTrackingCollectionTicketsDeleteResponse$Outbound,
-    z.ZodTypeDef,
-    IssueTrackingCollectionTicketsDeleteResponse
-  > = z.object({
-    httpMeta: components.HTTPMetadata$outboundSchema,
-    deleteTicketResponse: components.DeleteTicketResponse$outboundSchema
-      .optional(),
-    unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
-      .optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      httpMeta: "HttpMeta",
-      deleteTicketResponse: "DeleteTicketResponse",
-      unexpectedErrorResponse: "UnexpectedErrorResponse",
-    });
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace IssueTrackingCollectionTicketsDeleteResponse$ {
-  /** @deprecated use `IssueTrackingCollectionTicketsDeleteResponse$inboundSchema` instead. */
-  export const inboundSchema =
-    IssueTrackingCollectionTicketsDeleteResponse$inboundSchema;
-  /** @deprecated use `IssueTrackingCollectionTicketsDeleteResponse$outboundSchema` instead. */
-  export const outboundSchema =
-    IssueTrackingCollectionTicketsDeleteResponse$outboundSchema;
-  /** @deprecated use `IssueTrackingCollectionTicketsDeleteResponse$Outbound` instead. */
-  export type Outbound = IssueTrackingCollectionTicketsDeleteResponse$Outbound;
-}
-
-export function issueTrackingCollectionTicketsDeleteResponseToJSON(
-  issueTrackingCollectionTicketsDeleteResponse:
-    IssueTrackingCollectionTicketsDeleteResponse,
-): string {
-  return JSON.stringify(
-    IssueTrackingCollectionTicketsDeleteResponse$outboundSchema.parse(
-      issueTrackingCollectionTicketsDeleteResponse,
-    ),
-  );
-}
 
 export function issueTrackingCollectionTicketsDeleteResponseFromJSON(
   jsonString: string,

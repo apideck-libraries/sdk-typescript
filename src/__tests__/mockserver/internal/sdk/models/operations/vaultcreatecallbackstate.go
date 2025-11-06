@@ -37,7 +37,7 @@ type VaultCreateCallbackStateRequest struct {
 	// Unified API
 	UnifiedAPI string `pathParam:"style=simple,explode=false,name=unified_api"`
 	// Callback state data
-	CreateCallbackState components.CreateCallbackState `request:"mediaType=application/json"`
+	Body components.CreateCallbackState `request:"mediaType=application/json"`
 }
 
 func (o *VaultCreateCallbackStateRequest) GetConsumerID() *string {
@@ -68,11 +68,11 @@ func (o *VaultCreateCallbackStateRequest) GetUnifiedAPI() string {
 	return o.UnifiedAPI
 }
 
-func (o *VaultCreateCallbackStateRequest) GetCreateCallbackState() components.CreateCallbackState {
+func (o *VaultCreateCallbackStateRequest) GetBody() components.CreateCallbackState {
 	if o == nil {
 		return components.CreateCallbackState{}
 	}
-	return o.CreateCallbackState
+	return o.Body
 }
 
 type VaultCreateCallbackStateResponse struct {

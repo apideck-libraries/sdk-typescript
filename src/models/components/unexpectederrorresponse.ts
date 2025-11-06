@@ -47,33 +47,6 @@ export type UnexpectedErrorResponse = {
 export const Detail$inboundSchema: z.ZodType<Detail, z.ZodTypeDef, unknown> = z
   .union([z.string(), z.record(z.any())]);
 
-/** @internal */
-export type Detail$Outbound = string | { [k: string]: any };
-
-/** @internal */
-export const Detail$outboundSchema: z.ZodType<
-  Detail$Outbound,
-  z.ZodTypeDef,
-  Detail
-> = z.union([z.string(), z.record(z.any())]);
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Detail$ {
-  /** @deprecated use `Detail$inboundSchema` instead. */
-  export const inboundSchema = Detail$inboundSchema;
-  /** @deprecated use `Detail$outboundSchema` instead. */
-  export const outboundSchema = Detail$outboundSchema;
-  /** @deprecated use `Detail$Outbound` instead. */
-  export type Outbound = Detail$Outbound;
-}
-
-export function detailToJSON(detail: Detail): string {
-  return JSON.stringify(Detail$outboundSchema.parse(detail));
-}
-
 export function detailFromJSON(
   jsonString: string,
 ): SafeParseResult<Detail, SDKValidationError> {
@@ -102,56 +75,6 @@ export const UnexpectedErrorResponse$inboundSchema: z.ZodType<
     "type_name": "typeName",
   });
 });
-
-/** @internal */
-export type UnexpectedErrorResponse$Outbound = {
-  status_code?: number | undefined;
-  error?: string | undefined;
-  type_name?: string | undefined;
-  message?: string | undefined;
-  detail?: string | { [k: string]: any } | undefined;
-  ref?: string | undefined;
-};
-
-/** @internal */
-export const UnexpectedErrorResponse$outboundSchema: z.ZodType<
-  UnexpectedErrorResponse$Outbound,
-  z.ZodTypeDef,
-  UnexpectedErrorResponse
-> = z.object({
-  statusCode: z.number().optional(),
-  error: z.string().optional(),
-  typeName: z.string().optional(),
-  message: z.string().optional(),
-  detail: z.union([z.string(), z.record(z.any())]).optional(),
-  ref: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    statusCode: "status_code",
-    typeName: "type_name",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace UnexpectedErrorResponse$ {
-  /** @deprecated use `UnexpectedErrorResponse$inboundSchema` instead. */
-  export const inboundSchema = UnexpectedErrorResponse$inboundSchema;
-  /** @deprecated use `UnexpectedErrorResponse$outboundSchema` instead. */
-  export const outboundSchema = UnexpectedErrorResponse$outboundSchema;
-  /** @deprecated use `UnexpectedErrorResponse$Outbound` instead. */
-  export type Outbound = UnexpectedErrorResponse$Outbound;
-}
-
-export function unexpectedErrorResponseToJSON(
-  unexpectedErrorResponse: UnexpectedErrorResponse,
-): string {
-  return JSON.stringify(
-    UnexpectedErrorResponse$outboundSchema.parse(unexpectedErrorResponse),
-  );
-}
 
 export function unexpectedErrorResponseFromJSON(
   jsonString: string,

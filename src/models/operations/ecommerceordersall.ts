@@ -78,85 +78,6 @@ export type EcommerceOrdersAllResponse = {
 };
 
 /** @internal */
-export const EcommerceOrdersAllGlobals$inboundSchema: z.ZodType<
-  EcommerceOrdersAllGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/** @internal */
-export type EcommerceOrdersAllGlobals$Outbound = {
-  consumerId?: string | undefined;
-  appId?: string | undefined;
-};
-
-/** @internal */
-export const EcommerceOrdersAllGlobals$outboundSchema: z.ZodType<
-  EcommerceOrdersAllGlobals$Outbound,
-  z.ZodTypeDef,
-  EcommerceOrdersAllGlobals
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace EcommerceOrdersAllGlobals$ {
-  /** @deprecated use `EcommerceOrdersAllGlobals$inboundSchema` instead. */
-  export const inboundSchema = EcommerceOrdersAllGlobals$inboundSchema;
-  /** @deprecated use `EcommerceOrdersAllGlobals$outboundSchema` instead. */
-  export const outboundSchema = EcommerceOrdersAllGlobals$outboundSchema;
-  /** @deprecated use `EcommerceOrdersAllGlobals$Outbound` instead. */
-  export type Outbound = EcommerceOrdersAllGlobals$Outbound;
-}
-
-export function ecommerceOrdersAllGlobalsToJSON(
-  ecommerceOrdersAllGlobals: EcommerceOrdersAllGlobals,
-): string {
-  return JSON.stringify(
-    EcommerceOrdersAllGlobals$outboundSchema.parse(ecommerceOrdersAllGlobals),
-  );
-}
-
-export function ecommerceOrdersAllGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<EcommerceOrdersAllGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => EcommerceOrdersAllGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'EcommerceOrdersAllGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const EcommerceOrdersAllRequest$inboundSchema: z.ZodType<
-  EcommerceOrdersAllRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  raw: z.boolean().default(false),
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  cursor: z.nullable(z.string()).optional(),
-  limit: z.number().int().default(20),
-  filter: components.EcommerceOrdersFilter$inboundSchema.optional(),
-  sort: components.OrdersSort$inboundSchema.optional(),
-  pass_through: z.record(z.any()).optional(),
-  fields: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "pass_through": "passThrough",
-  });
-});
-
-/** @internal */
 export type EcommerceOrdersAllRequest$Outbound = {
   raw: boolean;
   consumerId?: string | undefined;
@@ -192,34 +113,11 @@ export const EcommerceOrdersAllRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace EcommerceOrdersAllRequest$ {
-  /** @deprecated use `EcommerceOrdersAllRequest$inboundSchema` instead. */
-  export const inboundSchema = EcommerceOrdersAllRequest$inboundSchema;
-  /** @deprecated use `EcommerceOrdersAllRequest$outboundSchema` instead. */
-  export const outboundSchema = EcommerceOrdersAllRequest$outboundSchema;
-  /** @deprecated use `EcommerceOrdersAllRequest$Outbound` instead. */
-  export type Outbound = EcommerceOrdersAllRequest$Outbound;
-}
-
 export function ecommerceOrdersAllRequestToJSON(
   ecommerceOrdersAllRequest: EcommerceOrdersAllRequest,
 ): string {
   return JSON.stringify(
     EcommerceOrdersAllRequest$outboundSchema.parse(ecommerceOrdersAllRequest),
-  );
-}
-
-export function ecommerceOrdersAllRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<EcommerceOrdersAllRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => EcommerceOrdersAllRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'EcommerceOrdersAllRequest' from JSON`,
   );
 }
 
@@ -241,57 +139,6 @@ export const EcommerceOrdersAllResponse$inboundSchema: z.ZodType<
     "UnexpectedErrorResponse": "unexpectedErrorResponse",
   });
 });
-
-/** @internal */
-export type EcommerceOrdersAllResponse$Outbound = {
-  HttpMeta: components.HTTPMetadata$Outbound;
-  GetEcommerceOrdersResponse?:
-    | components.GetEcommerceOrdersResponse$Outbound
-    | undefined;
-  UnexpectedErrorResponse?:
-    | components.UnexpectedErrorResponse$Outbound
-    | undefined;
-};
-
-/** @internal */
-export const EcommerceOrdersAllResponse$outboundSchema: z.ZodType<
-  EcommerceOrdersAllResponse$Outbound,
-  z.ZodTypeDef,
-  EcommerceOrdersAllResponse
-> = z.object({
-  httpMeta: components.HTTPMetadata$outboundSchema,
-  getEcommerceOrdersResponse: components
-    .GetEcommerceOrdersResponse$outboundSchema.optional(),
-  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    httpMeta: "HttpMeta",
-    getEcommerceOrdersResponse: "GetEcommerceOrdersResponse",
-    unexpectedErrorResponse: "UnexpectedErrorResponse",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace EcommerceOrdersAllResponse$ {
-  /** @deprecated use `EcommerceOrdersAllResponse$inboundSchema` instead. */
-  export const inboundSchema = EcommerceOrdersAllResponse$inboundSchema;
-  /** @deprecated use `EcommerceOrdersAllResponse$outboundSchema` instead. */
-  export const outboundSchema = EcommerceOrdersAllResponse$outboundSchema;
-  /** @deprecated use `EcommerceOrdersAllResponse$Outbound` instead. */
-  export type Outbound = EcommerceOrdersAllResponse$Outbound;
-}
-
-export function ecommerceOrdersAllResponseToJSON(
-  ecommerceOrdersAllResponse: EcommerceOrdersAllResponse,
-): string {
-  return JSON.stringify(
-    EcommerceOrdersAllResponse$outboundSchema.parse(ecommerceOrdersAllResponse),
-  );
-}
 
 export function ecommerceOrdersAllResponseFromJSON(
   jsonString: string,

@@ -40,72 +40,6 @@ export type WebhookWebhooksDeleteResponse = {
 };
 
 /** @internal */
-export const WebhookWebhooksDeleteGlobals$inboundSchema: z.ZodType<
-  WebhookWebhooksDeleteGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  appId: z.string().optional(),
-});
-
-/** @internal */
-export type WebhookWebhooksDeleteGlobals$Outbound = {
-  appId?: string | undefined;
-};
-
-/** @internal */
-export const WebhookWebhooksDeleteGlobals$outboundSchema: z.ZodType<
-  WebhookWebhooksDeleteGlobals$Outbound,
-  z.ZodTypeDef,
-  WebhookWebhooksDeleteGlobals
-> = z.object({
-  appId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace WebhookWebhooksDeleteGlobals$ {
-  /** @deprecated use `WebhookWebhooksDeleteGlobals$inboundSchema` instead. */
-  export const inboundSchema = WebhookWebhooksDeleteGlobals$inboundSchema;
-  /** @deprecated use `WebhookWebhooksDeleteGlobals$outboundSchema` instead. */
-  export const outboundSchema = WebhookWebhooksDeleteGlobals$outboundSchema;
-  /** @deprecated use `WebhookWebhooksDeleteGlobals$Outbound` instead. */
-  export type Outbound = WebhookWebhooksDeleteGlobals$Outbound;
-}
-
-export function webhookWebhooksDeleteGlobalsToJSON(
-  webhookWebhooksDeleteGlobals: WebhookWebhooksDeleteGlobals,
-): string {
-  return JSON.stringify(
-    WebhookWebhooksDeleteGlobals$outboundSchema.parse(
-      webhookWebhooksDeleteGlobals,
-    ),
-  );
-}
-
-export function webhookWebhooksDeleteGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<WebhookWebhooksDeleteGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => WebhookWebhooksDeleteGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'WebhookWebhooksDeleteGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const WebhookWebhooksDeleteRequest$inboundSchema: z.ZodType<
-  WebhookWebhooksDeleteRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  id: z.string(),
-  appId: z.string().optional(),
-});
-
-/** @internal */
 export type WebhookWebhooksDeleteRequest$Outbound = {
   id: string;
   appId?: string | undefined;
@@ -121,19 +55,6 @@ export const WebhookWebhooksDeleteRequest$outboundSchema: z.ZodType<
   appId: z.string().optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace WebhookWebhooksDeleteRequest$ {
-  /** @deprecated use `WebhookWebhooksDeleteRequest$inboundSchema` instead. */
-  export const inboundSchema = WebhookWebhooksDeleteRequest$inboundSchema;
-  /** @deprecated use `WebhookWebhooksDeleteRequest$outboundSchema` instead. */
-  export const outboundSchema = WebhookWebhooksDeleteRequest$outboundSchema;
-  /** @deprecated use `WebhookWebhooksDeleteRequest$Outbound` instead. */
-  export type Outbound = WebhookWebhooksDeleteRequest$Outbound;
-}
-
 export function webhookWebhooksDeleteRequestToJSON(
   webhookWebhooksDeleteRequest: WebhookWebhooksDeleteRequest,
 ): string {
@@ -141,16 +62,6 @@ export function webhookWebhooksDeleteRequestToJSON(
     WebhookWebhooksDeleteRequest$outboundSchema.parse(
       webhookWebhooksDeleteRequest,
     ),
-  );
-}
-
-export function webhookWebhooksDeleteRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<WebhookWebhooksDeleteRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => WebhookWebhooksDeleteRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'WebhookWebhooksDeleteRequest' from JSON`,
   );
 }
 
@@ -172,57 +83,6 @@ export const WebhookWebhooksDeleteResponse$inboundSchema: z.ZodType<
     "UnexpectedErrorResponse": "unexpectedErrorResponse",
   });
 });
-
-/** @internal */
-export type WebhookWebhooksDeleteResponse$Outbound = {
-  HttpMeta: components.HTTPMetadata$Outbound;
-  DeleteWebhookResponse?: components.DeleteWebhookResponse$Outbound | undefined;
-  UnexpectedErrorResponse?:
-    | components.UnexpectedErrorResponse$Outbound
-    | undefined;
-};
-
-/** @internal */
-export const WebhookWebhooksDeleteResponse$outboundSchema: z.ZodType<
-  WebhookWebhooksDeleteResponse$Outbound,
-  z.ZodTypeDef,
-  WebhookWebhooksDeleteResponse
-> = z.object({
-  httpMeta: components.HTTPMetadata$outboundSchema,
-  deleteWebhookResponse: components.DeleteWebhookResponse$outboundSchema
-    .optional(),
-  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    httpMeta: "HttpMeta",
-    deleteWebhookResponse: "DeleteWebhookResponse",
-    unexpectedErrorResponse: "UnexpectedErrorResponse",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace WebhookWebhooksDeleteResponse$ {
-  /** @deprecated use `WebhookWebhooksDeleteResponse$inboundSchema` instead. */
-  export const inboundSchema = WebhookWebhooksDeleteResponse$inboundSchema;
-  /** @deprecated use `WebhookWebhooksDeleteResponse$outboundSchema` instead. */
-  export const outboundSchema = WebhookWebhooksDeleteResponse$outboundSchema;
-  /** @deprecated use `WebhookWebhooksDeleteResponse$Outbound` instead. */
-  export type Outbound = WebhookWebhooksDeleteResponse$Outbound;
-}
-
-export function webhookWebhooksDeleteResponseToJSON(
-  webhookWebhooksDeleteResponse: WebhookWebhooksDeleteResponse,
-): string {
-  return JSON.stringify(
-    WebhookWebhooksDeleteResponse$outboundSchema.parse(
-      webhookWebhooksDeleteResponse,
-    ),
-  );
-}
 
 export function webhookWebhooksDeleteResponseFromJSON(
   jsonString: string,

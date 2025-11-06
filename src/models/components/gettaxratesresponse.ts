@@ -7,24 +7,9 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  Links,
-  Links$inboundSchema,
-  Links$Outbound,
-  Links$outboundSchema,
-} from "./links.js";
-import {
-  Meta,
-  Meta$inboundSchema,
-  Meta$Outbound,
-  Meta$outboundSchema,
-} from "./meta.js";
-import {
-  TaxRate,
-  TaxRate$inboundSchema,
-  TaxRate$Outbound,
-  TaxRate$outboundSchema,
-} from "./taxrate.js";
+import { Links, Links$inboundSchema } from "./links.js";
+import { Meta, Meta$inboundSchema } from "./meta.js";
+import { TaxRate, TaxRate$inboundSchema } from "./taxrate.js";
 
 /**
  * TaxRates
@@ -86,62 +71,6 @@ export const GetTaxRatesResponse$inboundSchema: z.ZodType<
     "_raw": "raw",
   });
 });
-
-/** @internal */
-export type GetTaxRatesResponse$Outbound = {
-  status_code: number;
-  status: string;
-  service: string;
-  resource: string;
-  operation: string;
-  data: Array<TaxRate$Outbound>;
-  meta?: Meta$Outbound | undefined;
-  links?: Links$Outbound | undefined;
-  _raw?: { [k: string]: any } | null | undefined;
-};
-
-/** @internal */
-export const GetTaxRatesResponse$outboundSchema: z.ZodType<
-  GetTaxRatesResponse$Outbound,
-  z.ZodTypeDef,
-  GetTaxRatesResponse
-> = z.object({
-  statusCode: z.number().int(),
-  status: z.string(),
-  service: z.string(),
-  resource: z.string(),
-  operation: z.string(),
-  data: z.array(TaxRate$outboundSchema),
-  meta: Meta$outboundSchema.optional(),
-  links: Links$outboundSchema.optional(),
-  raw: z.nullable(z.record(z.any())).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    statusCode: "status_code",
-    raw: "_raw",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetTaxRatesResponse$ {
-  /** @deprecated use `GetTaxRatesResponse$inboundSchema` instead. */
-  export const inboundSchema = GetTaxRatesResponse$inboundSchema;
-  /** @deprecated use `GetTaxRatesResponse$outboundSchema` instead. */
-  export const outboundSchema = GetTaxRatesResponse$outboundSchema;
-  /** @deprecated use `GetTaxRatesResponse$Outbound` instead. */
-  export type Outbound = GetTaxRatesResponse$Outbound;
-}
-
-export function getTaxRatesResponseToJSON(
-  getTaxRatesResponse: GetTaxRatesResponse,
-): string {
-  return JSON.stringify(
-    GetTaxRatesResponse$outboundSchema.parse(getTaxRatesResponse),
-  );
-}
 
 export function getTaxRatesResponseFromJSON(
   jsonString: string,

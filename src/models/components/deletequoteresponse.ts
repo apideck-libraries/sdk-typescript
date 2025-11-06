@@ -7,12 +7,7 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  UnifiedId,
-  UnifiedId$inboundSchema,
-  UnifiedId$Outbound,
-  UnifiedId$outboundSchema,
-} from "./unifiedid.js";
+import { UnifiedId, UnifiedId$inboundSchema } from "./unifiedid.js";
 
 /**
  * Quotes
@@ -61,55 +56,6 @@ export const DeleteQuoteResponse$inboundSchema: z.ZodType<
     "status_code": "statusCode",
   });
 });
-
-/** @internal */
-export type DeleteQuoteResponse$Outbound = {
-  status_code: number;
-  status: string;
-  service: string;
-  resource: string;
-  operation: string;
-  data: UnifiedId$Outbound;
-};
-
-/** @internal */
-export const DeleteQuoteResponse$outboundSchema: z.ZodType<
-  DeleteQuoteResponse$Outbound,
-  z.ZodTypeDef,
-  DeleteQuoteResponse
-> = z.object({
-  statusCode: z.number().int(),
-  status: z.string(),
-  service: z.string(),
-  resource: z.string(),
-  operation: z.string(),
-  data: UnifiedId$outboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    statusCode: "status_code",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DeleteQuoteResponse$ {
-  /** @deprecated use `DeleteQuoteResponse$inboundSchema` instead. */
-  export const inboundSchema = DeleteQuoteResponse$inboundSchema;
-  /** @deprecated use `DeleteQuoteResponse$outboundSchema` instead. */
-  export const outboundSchema = DeleteQuoteResponse$outboundSchema;
-  /** @deprecated use `DeleteQuoteResponse$Outbound` instead. */
-  export type Outbound = DeleteQuoteResponse$Outbound;
-}
-
-export function deleteQuoteResponseToJSON(
-  deleteQuoteResponse: DeleteQuoteResponse,
-): string {
-  return JSON.stringify(
-    DeleteQuoteResponse$outboundSchema.parse(deleteQuoteResponse),
-  );
-}
 
 export function deleteQuoteResponseFromJSON(
   jsonString: string,

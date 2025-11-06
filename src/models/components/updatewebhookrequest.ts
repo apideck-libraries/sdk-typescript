@@ -4,17 +4,9 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  Status,
-  Status$inboundSchema,
-  Status$outboundSchema,
-} from "./status.js";
+import { Status, Status$outboundSchema } from "./status.js";
 import {
   WebhookEventType,
-  WebhookEventType$inboundSchema,
   WebhookEventType$outboundSchema,
 } from "./webhookeventtype.js";
 
@@ -36,22 +28,6 @@ export type UpdateWebhookRequest = {
    */
   events?: Array<WebhookEventType> | undefined;
 };
-
-/** @internal */
-export const UpdateWebhookRequest$inboundSchema: z.ZodType<
-  UpdateWebhookRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  description: z.nullable(z.string()).optional(),
-  status: Status$inboundSchema.optional(),
-  delivery_url: z.string().optional(),
-  events: z.array(WebhookEventType$inboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "delivery_url": "deliveryUrl",
-  });
-});
 
 /** @internal */
 export type UpdateWebhookRequest$Outbound = {
@@ -77,33 +53,10 @@ export const UpdateWebhookRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace UpdateWebhookRequest$ {
-  /** @deprecated use `UpdateWebhookRequest$inboundSchema` instead. */
-  export const inboundSchema = UpdateWebhookRequest$inboundSchema;
-  /** @deprecated use `UpdateWebhookRequest$outboundSchema` instead. */
-  export const outboundSchema = UpdateWebhookRequest$outboundSchema;
-  /** @deprecated use `UpdateWebhookRequest$Outbound` instead. */
-  export type Outbound = UpdateWebhookRequest$Outbound;
-}
-
 export function updateWebhookRequestToJSON(
   updateWebhookRequest: UpdateWebhookRequest,
 ): string {
   return JSON.stringify(
     UpdateWebhookRequest$outboundSchema.parse(updateWebhookRequest),
-  );
-}
-
-export function updateWebhookRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<UpdateWebhookRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => UpdateWebhookRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'UpdateWebhookRequest' from JSON`,
   );
 }

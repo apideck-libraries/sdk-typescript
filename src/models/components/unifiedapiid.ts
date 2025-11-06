@@ -45,18 +45,6 @@ export type UnifiedApiId = ClosedEnum<typeof UnifiedApiId>;
 /** @internal */
 export const UnifiedApiId$inboundSchema: z.ZodNativeEnum<typeof UnifiedApiId> =
   z.nativeEnum(UnifiedApiId);
-
 /** @internal */
 export const UnifiedApiId$outboundSchema: z.ZodNativeEnum<typeof UnifiedApiId> =
   UnifiedApiId$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace UnifiedApiId$ {
-  /** @deprecated use `UnifiedApiId$inboundSchema` instead. */
-  export const inboundSchema = UnifiedApiId$inboundSchema;
-  /** @deprecated use `UnifiedApiId$outboundSchema` instead. */
-  export const outboundSchema = UnifiedApiId$outboundSchema;
-}

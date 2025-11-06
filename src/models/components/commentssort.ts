@@ -3,13 +3,9 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   SortDirection,
-  SortDirection$inboundSchema,
   SortDirection$outboundSchema,
 } from "./sortdirection.js";
 
@@ -37,35 +33,9 @@ export type CommentsSort = {
 };
 
 /** @internal */
-export const CommentsSortBy$inboundSchema: z.ZodNativeEnum<
-  typeof CommentsSortBy
-> = z.nativeEnum(CommentsSortBy);
-
-/** @internal */
 export const CommentsSortBy$outboundSchema: z.ZodNativeEnum<
   typeof CommentsSortBy
-> = CommentsSortBy$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CommentsSortBy$ {
-  /** @deprecated use `CommentsSortBy$inboundSchema` instead. */
-  export const inboundSchema = CommentsSortBy$inboundSchema;
-  /** @deprecated use `CommentsSortBy$outboundSchema` instead. */
-  export const outboundSchema = CommentsSortBy$outboundSchema;
-}
-
-/** @internal */
-export const CommentsSort$inboundSchema: z.ZodType<
-  CommentsSort,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  by: CommentsSortBy$inboundSchema.optional(),
-  direction: SortDirection$inboundSchema.default("asc"),
-});
+> = z.nativeEnum(CommentsSortBy);
 
 /** @internal */
 export type CommentsSort$Outbound = {
@@ -83,29 +53,6 @@ export const CommentsSort$outboundSchema: z.ZodType<
   direction: SortDirection$outboundSchema.default("asc"),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CommentsSort$ {
-  /** @deprecated use `CommentsSort$inboundSchema` instead. */
-  export const inboundSchema = CommentsSort$inboundSchema;
-  /** @deprecated use `CommentsSort$outboundSchema` instead. */
-  export const outboundSchema = CommentsSort$outboundSchema;
-  /** @deprecated use `CommentsSort$Outbound` instead. */
-  export type Outbound = CommentsSort$Outbound;
-}
-
 export function commentsSortToJSON(commentsSort: CommentsSort): string {
   return JSON.stringify(CommentsSort$outboundSchema.parse(commentsSort));
-}
-
-export function commentsSortFromJSON(
-  jsonString: string,
-): SafeParseResult<CommentsSort, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => CommentsSort$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CommentsSort' from JSON`,
-  );
 }

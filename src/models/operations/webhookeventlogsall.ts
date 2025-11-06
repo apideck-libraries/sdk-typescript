@@ -50,72 +50,6 @@ export type WebhookEventLogsAllResponse = {
 };
 
 /** @internal */
-export const WebhookEventLogsAllGlobals$inboundSchema: z.ZodType<
-  WebhookEventLogsAllGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  appId: z.string().optional(),
-});
-
-/** @internal */
-export type WebhookEventLogsAllGlobals$Outbound = {
-  appId?: string | undefined;
-};
-
-/** @internal */
-export const WebhookEventLogsAllGlobals$outboundSchema: z.ZodType<
-  WebhookEventLogsAllGlobals$Outbound,
-  z.ZodTypeDef,
-  WebhookEventLogsAllGlobals
-> = z.object({
-  appId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace WebhookEventLogsAllGlobals$ {
-  /** @deprecated use `WebhookEventLogsAllGlobals$inboundSchema` instead. */
-  export const inboundSchema = WebhookEventLogsAllGlobals$inboundSchema;
-  /** @deprecated use `WebhookEventLogsAllGlobals$outboundSchema` instead. */
-  export const outboundSchema = WebhookEventLogsAllGlobals$outboundSchema;
-  /** @deprecated use `WebhookEventLogsAllGlobals$Outbound` instead. */
-  export type Outbound = WebhookEventLogsAllGlobals$Outbound;
-}
-
-export function webhookEventLogsAllGlobalsToJSON(
-  webhookEventLogsAllGlobals: WebhookEventLogsAllGlobals,
-): string {
-  return JSON.stringify(
-    WebhookEventLogsAllGlobals$outboundSchema.parse(webhookEventLogsAllGlobals),
-  );
-}
-
-export function webhookEventLogsAllGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<WebhookEventLogsAllGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => WebhookEventLogsAllGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'WebhookEventLogsAllGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const WebhookEventLogsAllRequest$inboundSchema: z.ZodType<
-  WebhookEventLogsAllRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  appId: z.string().optional(),
-  cursor: z.nullable(z.string()).optional(),
-  limit: z.number().int().default(20),
-  filter: components.WebhookEventLogsFilter$inboundSchema.optional(),
-});
-
-/** @internal */
 export type WebhookEventLogsAllRequest$Outbound = {
   appId?: string | undefined;
   cursor?: string | null | undefined;
@@ -135,34 +69,11 @@ export const WebhookEventLogsAllRequest$outboundSchema: z.ZodType<
   filter: components.WebhookEventLogsFilter$outboundSchema.optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace WebhookEventLogsAllRequest$ {
-  /** @deprecated use `WebhookEventLogsAllRequest$inboundSchema` instead. */
-  export const inboundSchema = WebhookEventLogsAllRequest$inboundSchema;
-  /** @deprecated use `WebhookEventLogsAllRequest$outboundSchema` instead. */
-  export const outboundSchema = WebhookEventLogsAllRequest$outboundSchema;
-  /** @deprecated use `WebhookEventLogsAllRequest$Outbound` instead. */
-  export type Outbound = WebhookEventLogsAllRequest$Outbound;
-}
-
 export function webhookEventLogsAllRequestToJSON(
   webhookEventLogsAllRequest: WebhookEventLogsAllRequest,
 ): string {
   return JSON.stringify(
     WebhookEventLogsAllRequest$outboundSchema.parse(webhookEventLogsAllRequest),
-  );
-}
-
-export function webhookEventLogsAllRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<WebhookEventLogsAllRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => WebhookEventLogsAllRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'WebhookEventLogsAllRequest' from JSON`,
   );
 }
 
@@ -184,59 +95,6 @@ export const WebhookEventLogsAllResponse$inboundSchema: z.ZodType<
     "UnexpectedErrorResponse": "unexpectedErrorResponse",
   });
 });
-
-/** @internal */
-export type WebhookEventLogsAllResponse$Outbound = {
-  HttpMeta: components.HTTPMetadata$Outbound;
-  GetWebhookEventLogsResponse?:
-    | components.GetWebhookEventLogsResponse$Outbound
-    | undefined;
-  UnexpectedErrorResponse?:
-    | components.UnexpectedErrorResponse$Outbound
-    | undefined;
-};
-
-/** @internal */
-export const WebhookEventLogsAllResponse$outboundSchema: z.ZodType<
-  WebhookEventLogsAllResponse$Outbound,
-  z.ZodTypeDef,
-  WebhookEventLogsAllResponse
-> = z.object({
-  httpMeta: components.HTTPMetadata$outboundSchema,
-  getWebhookEventLogsResponse: components
-    .GetWebhookEventLogsResponse$outboundSchema.optional(),
-  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    httpMeta: "HttpMeta",
-    getWebhookEventLogsResponse: "GetWebhookEventLogsResponse",
-    unexpectedErrorResponse: "UnexpectedErrorResponse",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace WebhookEventLogsAllResponse$ {
-  /** @deprecated use `WebhookEventLogsAllResponse$inboundSchema` instead. */
-  export const inboundSchema = WebhookEventLogsAllResponse$inboundSchema;
-  /** @deprecated use `WebhookEventLogsAllResponse$outboundSchema` instead. */
-  export const outboundSchema = WebhookEventLogsAllResponse$outboundSchema;
-  /** @deprecated use `WebhookEventLogsAllResponse$Outbound` instead. */
-  export type Outbound = WebhookEventLogsAllResponse$Outbound;
-}
-
-export function webhookEventLogsAllResponseToJSON(
-  webhookEventLogsAllResponse: WebhookEventLogsAllResponse,
-): string {
-  return JSON.stringify(
-    WebhookEventLogsAllResponse$outboundSchema.parse(
-      webhookEventLogsAllResponse,
-    ),
-  );
-}
 
 export function webhookEventLogsAllResponseFromJSON(
   jsonString: string,

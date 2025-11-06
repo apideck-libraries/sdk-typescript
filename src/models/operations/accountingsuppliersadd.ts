@@ -53,82 +53,6 @@ export type AccountingSuppliersAddResponse = {
 };
 
 /** @internal */
-export const AccountingSuppliersAddGlobals$inboundSchema: z.ZodType<
-  AccountingSuppliersAddGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/** @internal */
-export type AccountingSuppliersAddGlobals$Outbound = {
-  consumerId?: string | undefined;
-  appId?: string | undefined;
-};
-
-/** @internal */
-export const AccountingSuppliersAddGlobals$outboundSchema: z.ZodType<
-  AccountingSuppliersAddGlobals$Outbound,
-  z.ZodTypeDef,
-  AccountingSuppliersAddGlobals
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AccountingSuppliersAddGlobals$ {
-  /** @deprecated use `AccountingSuppliersAddGlobals$inboundSchema` instead. */
-  export const inboundSchema = AccountingSuppliersAddGlobals$inboundSchema;
-  /** @deprecated use `AccountingSuppliersAddGlobals$outboundSchema` instead. */
-  export const outboundSchema = AccountingSuppliersAddGlobals$outboundSchema;
-  /** @deprecated use `AccountingSuppliersAddGlobals$Outbound` instead. */
-  export type Outbound = AccountingSuppliersAddGlobals$Outbound;
-}
-
-export function accountingSuppliersAddGlobalsToJSON(
-  accountingSuppliersAddGlobals: AccountingSuppliersAddGlobals,
-): string {
-  return JSON.stringify(
-    AccountingSuppliersAddGlobals$outboundSchema.parse(
-      accountingSuppliersAddGlobals,
-    ),
-  );
-}
-
-export function accountingSuppliersAddGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<AccountingSuppliersAddGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => AccountingSuppliersAddGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'AccountingSuppliersAddGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const AccountingSuppliersAddRequest$inboundSchema: z.ZodType<
-  AccountingSuppliersAddRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  raw: z.boolean().default(false),
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  Supplier: components.SupplierInput$inboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    "Supplier": "supplier",
-  });
-});
-
-/** @internal */
 export type AccountingSuppliersAddRequest$Outbound = {
   raw: boolean;
   consumerId?: string | undefined;
@@ -154,19 +78,6 @@ export const AccountingSuppliersAddRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AccountingSuppliersAddRequest$ {
-  /** @deprecated use `AccountingSuppliersAddRequest$inboundSchema` instead. */
-  export const inboundSchema = AccountingSuppliersAddRequest$inboundSchema;
-  /** @deprecated use `AccountingSuppliersAddRequest$outboundSchema` instead. */
-  export const outboundSchema = AccountingSuppliersAddRequest$outboundSchema;
-  /** @deprecated use `AccountingSuppliersAddRequest$Outbound` instead. */
-  export type Outbound = AccountingSuppliersAddRequest$Outbound;
-}
-
 export function accountingSuppliersAddRequestToJSON(
   accountingSuppliersAddRequest: AccountingSuppliersAddRequest,
 ): string {
@@ -174,16 +85,6 @@ export function accountingSuppliersAddRequestToJSON(
     AccountingSuppliersAddRequest$outboundSchema.parse(
       accountingSuppliersAddRequest,
     ),
-  );
-}
-
-export function accountingSuppliersAddRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<AccountingSuppliersAddRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => AccountingSuppliersAddRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'AccountingSuppliersAddRequest' from JSON`,
   );
 }
 
@@ -205,59 +106,6 @@ export const AccountingSuppliersAddResponse$inboundSchema: z.ZodType<
     "UnexpectedErrorResponse": "unexpectedErrorResponse",
   });
 });
-
-/** @internal */
-export type AccountingSuppliersAddResponse$Outbound = {
-  HttpMeta: components.HTTPMetadata$Outbound;
-  CreateSupplierResponse?:
-    | components.CreateSupplierResponse$Outbound
-    | undefined;
-  UnexpectedErrorResponse?:
-    | components.UnexpectedErrorResponse$Outbound
-    | undefined;
-};
-
-/** @internal */
-export const AccountingSuppliersAddResponse$outboundSchema: z.ZodType<
-  AccountingSuppliersAddResponse$Outbound,
-  z.ZodTypeDef,
-  AccountingSuppliersAddResponse
-> = z.object({
-  httpMeta: components.HTTPMetadata$outboundSchema,
-  createSupplierResponse: components.CreateSupplierResponse$outboundSchema
-    .optional(),
-  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    httpMeta: "HttpMeta",
-    createSupplierResponse: "CreateSupplierResponse",
-    unexpectedErrorResponse: "UnexpectedErrorResponse",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AccountingSuppliersAddResponse$ {
-  /** @deprecated use `AccountingSuppliersAddResponse$inboundSchema` instead. */
-  export const inboundSchema = AccountingSuppliersAddResponse$inboundSchema;
-  /** @deprecated use `AccountingSuppliersAddResponse$outboundSchema` instead. */
-  export const outboundSchema = AccountingSuppliersAddResponse$outboundSchema;
-  /** @deprecated use `AccountingSuppliersAddResponse$Outbound` instead. */
-  export type Outbound = AccountingSuppliersAddResponse$Outbound;
-}
-
-export function accountingSuppliersAddResponseToJSON(
-  accountingSuppliersAddResponse: AccountingSuppliersAddResponse,
-): string {
-  return JSON.stringify(
-    AccountingSuppliersAddResponse$outboundSchema.parse(
-      accountingSuppliersAddResponse,
-    ),
-  );
-}
 
 export function accountingSuppliersAddResponseFromJSON(
   jsonString: string,

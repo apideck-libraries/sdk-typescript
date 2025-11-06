@@ -156,39 +156,6 @@ export const Operation$inboundSchema: z.ZodType<
   name: z.string(),
 });
 
-/** @internal */
-export type Operation$Outbound = {
-  id: string;
-  name: string;
-};
-
-/** @internal */
-export const Operation$outboundSchema: z.ZodType<
-  Operation$Outbound,
-  z.ZodTypeDef,
-  Operation
-> = z.object({
-  id: z.string(),
-  name: z.string(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Operation$ {
-  /** @deprecated use `Operation$inboundSchema` instead. */
-  export const inboundSchema = Operation$inboundSchema;
-  /** @deprecated use `Operation$outboundSchema` instead. */
-  export const outboundSchema = Operation$outboundSchema;
-  /** @deprecated use `Operation$Outbound` instead. */
-  export type Outbound = Operation$Outbound;
-}
-
-export function operationToJSON(operation: Operation): string {
-  return JSON.stringify(Operation$outboundSchema.parse(operation));
-}
-
 export function operationFromJSON(
   jsonString: string,
 ): SafeParseResult<Operation, SDKValidationError> {
@@ -206,39 +173,6 @@ export const Service$inboundSchema: z.ZodType<Service, z.ZodTypeDef, unknown> =
     name: z.string(),
   });
 
-/** @internal */
-export type Service$Outbound = {
-  id: string;
-  name: string;
-};
-
-/** @internal */
-export const Service$outboundSchema: z.ZodType<
-  Service$Outbound,
-  z.ZodTypeDef,
-  Service
-> = z.object({
-  id: z.string(),
-  name: z.string(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Service$ {
-  /** @deprecated use `Service$inboundSchema` instead. */
-  export const inboundSchema = Service$inboundSchema;
-  /** @deprecated use `Service$outboundSchema` instead. */
-  export const outboundSchema = Service$outboundSchema;
-  /** @deprecated use `Service$Outbound` instead. */
-  export type Outbound = Service$Outbound;
-}
-
-export function serviceToJSON(service: Service): string {
-  return JSON.stringify(Service$outboundSchema.parse(service));
-}
-
 export function serviceFromJSON(
   jsonString: string,
 ): SafeParseResult<Service, SDKValidationError> {
@@ -252,21 +186,6 @@ export function serviceFromJSON(
 /** @internal */
 export const UnifiedApi$inboundSchema: z.ZodNativeEnum<typeof UnifiedApi> = z
   .nativeEnum(UnifiedApi);
-
-/** @internal */
-export const UnifiedApi$outboundSchema: z.ZodNativeEnum<typeof UnifiedApi> =
-  UnifiedApi$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace UnifiedApi$ {
-  /** @deprecated use `UnifiedApi$inboundSchema` instead. */
-  export const inboundSchema = UnifiedApi$inboundSchema;
-  /** @deprecated use `UnifiedApi$outboundSchema` instead. */
-  export const outboundSchema = UnifiedApi$outboundSchema;
-}
 
 /** @internal */
 export const Log$inboundSchema: z.ZodType<Log, z.ZodTypeDef, unknown> = z
@@ -307,88 +226,6 @@ export const Log$inboundSchema: z.ZodType<Log, z.ZodTypeDef, unknown> = z
       "unified_api": "unifiedApi",
     });
   });
-
-/** @internal */
-export type Log$Outbound = {
-  api_style: string;
-  base_url: string;
-  child_request: boolean;
-  consumer_id: string;
-  duration: number;
-  error_message?: string | null | undefined;
-  execution: number;
-  has_children: boolean;
-  http_method: string;
-  id: string;
-  latency: number;
-  operation: Operation$Outbound;
-  parent_id: string | null;
-  path: string;
-  sandbox: boolean;
-  service: Service$Outbound;
-  source_ip?: string | null | undefined;
-  status_code: number;
-  success: boolean;
-  timestamp: string;
-  unified_api: string;
-};
-
-/** @internal */
-export const Log$outboundSchema: z.ZodType<Log$Outbound, z.ZodTypeDef, Log> = z
-  .object({
-    apiStyle: z.string(),
-    baseUrl: z.string(),
-    childRequest: z.boolean(),
-    consumerId: z.string(),
-    duration: z.number(),
-    errorMessage: z.nullable(z.string()).optional(),
-    execution: z.number().int(),
-    hasChildren: z.boolean(),
-    httpMethod: z.string(),
-    id: z.string(),
-    latency: z.number(),
-    operation: z.lazy(() => Operation$outboundSchema),
-    parentId: z.nullable(z.string()),
-    path: z.string(),
-    sandbox: z.boolean(),
-    service: z.lazy(() => Service$outboundSchema),
-    sourceIp: z.nullable(z.string()).optional(),
-    statusCode: z.number().int(),
-    success: z.boolean(),
-    timestamp: z.string(),
-    unifiedApi: UnifiedApi$outboundSchema,
-  }).transform((v) => {
-    return remap$(v, {
-      apiStyle: "api_style",
-      baseUrl: "base_url",
-      childRequest: "child_request",
-      consumerId: "consumer_id",
-      errorMessage: "error_message",
-      hasChildren: "has_children",
-      httpMethod: "http_method",
-      parentId: "parent_id",
-      sourceIp: "source_ip",
-      statusCode: "status_code",
-      unifiedApi: "unified_api",
-    });
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Log$ {
-  /** @deprecated use `Log$inboundSchema` instead. */
-  export const inboundSchema = Log$inboundSchema;
-  /** @deprecated use `Log$outboundSchema` instead. */
-  export const outboundSchema = Log$outboundSchema;
-  /** @deprecated use `Log$Outbound` instead. */
-  export type Outbound = Log$Outbound;
-}
-
-export function logToJSON(log: Log): string {
-  return JSON.stringify(Log$outboundSchema.parse(log));
-}
 
 export function logFromJSON(
   jsonString: string,

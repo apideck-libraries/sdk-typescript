@@ -37,74 +37,6 @@ export type VaultConsumersAddResponse = {
 };
 
 /** @internal */
-export const VaultConsumersAddGlobals$inboundSchema: z.ZodType<
-  VaultConsumersAddGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  appId: z.string().optional(),
-});
-
-/** @internal */
-export type VaultConsumersAddGlobals$Outbound = {
-  appId?: string | undefined;
-};
-
-/** @internal */
-export const VaultConsumersAddGlobals$outboundSchema: z.ZodType<
-  VaultConsumersAddGlobals$Outbound,
-  z.ZodTypeDef,
-  VaultConsumersAddGlobals
-> = z.object({
-  appId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace VaultConsumersAddGlobals$ {
-  /** @deprecated use `VaultConsumersAddGlobals$inboundSchema` instead. */
-  export const inboundSchema = VaultConsumersAddGlobals$inboundSchema;
-  /** @deprecated use `VaultConsumersAddGlobals$outboundSchema` instead. */
-  export const outboundSchema = VaultConsumersAddGlobals$outboundSchema;
-  /** @deprecated use `VaultConsumersAddGlobals$Outbound` instead. */
-  export type Outbound = VaultConsumersAddGlobals$Outbound;
-}
-
-export function vaultConsumersAddGlobalsToJSON(
-  vaultConsumersAddGlobals: VaultConsumersAddGlobals,
-): string {
-  return JSON.stringify(
-    VaultConsumersAddGlobals$outboundSchema.parse(vaultConsumersAddGlobals),
-  );
-}
-
-export function vaultConsumersAddGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<VaultConsumersAddGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => VaultConsumersAddGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'VaultConsumersAddGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const VaultConsumersAddRequest$inboundSchema: z.ZodType<
-  VaultConsumersAddRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  appId: z.string().optional(),
-  CreateConsumerRequest: components.CreateConsumerRequest$inboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    "CreateConsumerRequest": "createConsumerRequest",
-  });
-});
-
-/** @internal */
 export type VaultConsumersAddRequest$Outbound = {
   appId?: string | undefined;
   CreateConsumerRequest: components.CreateConsumerRequest$Outbound;
@@ -124,34 +56,11 @@ export const VaultConsumersAddRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace VaultConsumersAddRequest$ {
-  /** @deprecated use `VaultConsumersAddRequest$inboundSchema` instead. */
-  export const inboundSchema = VaultConsumersAddRequest$inboundSchema;
-  /** @deprecated use `VaultConsumersAddRequest$outboundSchema` instead. */
-  export const outboundSchema = VaultConsumersAddRequest$outboundSchema;
-  /** @deprecated use `VaultConsumersAddRequest$Outbound` instead. */
-  export type Outbound = VaultConsumersAddRequest$Outbound;
-}
-
 export function vaultConsumersAddRequestToJSON(
   vaultConsumersAddRequest: VaultConsumersAddRequest,
 ): string {
   return JSON.stringify(
     VaultConsumersAddRequest$outboundSchema.parse(vaultConsumersAddRequest),
-  );
-}
-
-export function vaultConsumersAddRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<VaultConsumersAddRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => VaultConsumersAddRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'VaultConsumersAddRequest' from JSON`,
   );
 }
 
@@ -173,57 +82,6 @@ export const VaultConsumersAddResponse$inboundSchema: z.ZodType<
     "UnexpectedErrorResponse": "unexpectedErrorResponse",
   });
 });
-
-/** @internal */
-export type VaultConsumersAddResponse$Outbound = {
-  HttpMeta: components.HTTPMetadata$Outbound;
-  CreateConsumerResponse?:
-    | components.CreateConsumerResponse$Outbound
-    | undefined;
-  UnexpectedErrorResponse?:
-    | components.UnexpectedErrorResponse$Outbound
-    | undefined;
-};
-
-/** @internal */
-export const VaultConsumersAddResponse$outboundSchema: z.ZodType<
-  VaultConsumersAddResponse$Outbound,
-  z.ZodTypeDef,
-  VaultConsumersAddResponse
-> = z.object({
-  httpMeta: components.HTTPMetadata$outboundSchema,
-  createConsumerResponse: components.CreateConsumerResponse$outboundSchema
-    .optional(),
-  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    httpMeta: "HttpMeta",
-    createConsumerResponse: "CreateConsumerResponse",
-    unexpectedErrorResponse: "UnexpectedErrorResponse",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace VaultConsumersAddResponse$ {
-  /** @deprecated use `VaultConsumersAddResponse$inboundSchema` instead. */
-  export const inboundSchema = VaultConsumersAddResponse$inboundSchema;
-  /** @deprecated use `VaultConsumersAddResponse$outboundSchema` instead. */
-  export const outboundSchema = VaultConsumersAddResponse$outboundSchema;
-  /** @deprecated use `VaultConsumersAddResponse$Outbound` instead. */
-  export type Outbound = VaultConsumersAddResponse$Outbound;
-}
-
-export function vaultConsumersAddResponseToJSON(
-  vaultConsumersAddResponse: VaultConsumersAddResponse,
-): string {
-  return JSON.stringify(
-    VaultConsumersAddResponse$outboundSchema.parse(vaultConsumersAddResponse),
-  );
-}
 
 export function vaultConsumersAddResponseFromJSON(
   jsonString: string,

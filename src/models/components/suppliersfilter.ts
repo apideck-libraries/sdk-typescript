@@ -4,9 +4,6 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type SuppliersFilter = {
   /**
@@ -31,30 +28,6 @@ export type SuppliersFilter = {
   email?: string | undefined;
   updatedSince?: Date | undefined;
 };
-
-/** @internal */
-export const SuppliersFilter$inboundSchema: z.ZodType<
-  SuppliersFilter,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  company_name: z.string().optional(),
-  display_name: z.string().optional(),
-  first_name: z.string().optional(),
-  last_name: z.string().optional(),
-  email: z.string().optional(),
-  updated_since: z.string().datetime({ offset: true }).transform(v =>
-    new Date(v)
-  ).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "company_name": "companyName",
-    "display_name": "displayName",
-    "first_name": "firstName",
-    "last_name": "lastName",
-    "updated_since": "updatedSince",
-  });
-});
 
 /** @internal */
 export type SuppliersFilter$Outbound = {
@@ -88,31 +61,8 @@ export const SuppliersFilter$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SuppliersFilter$ {
-  /** @deprecated use `SuppliersFilter$inboundSchema` instead. */
-  export const inboundSchema = SuppliersFilter$inboundSchema;
-  /** @deprecated use `SuppliersFilter$outboundSchema` instead. */
-  export const outboundSchema = SuppliersFilter$outboundSchema;
-  /** @deprecated use `SuppliersFilter$Outbound` instead. */
-  export type Outbound = SuppliersFilter$Outbound;
-}
-
 export function suppliersFilterToJSON(
   suppliersFilter: SuppliersFilter,
 ): string {
   return JSON.stringify(SuppliersFilter$outboundSchema.parse(suppliersFilter));
-}
-
-export function suppliersFilterFromJSON(
-  jsonString: string,
-): SafeParseResult<SuppliersFilter, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => SuppliersFilter$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'SuppliersFilter' from JSON`,
-  );
 }

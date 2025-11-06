@@ -38,45 +38,6 @@ export const CollectionTag$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type CollectionTag$Outbound = {
-  id: string | null;
-  name?: string | null | undefined;
-  custom_mappings?: { [k: string]: any } | null | undefined;
-};
-
-/** @internal */
-export const CollectionTag$outboundSchema: z.ZodType<
-  CollectionTag$Outbound,
-  z.ZodTypeDef,
-  CollectionTag
-> = z.object({
-  id: z.nullable(z.string()),
-  name: z.nullable(z.string()).optional(),
-  customMappings: z.nullable(z.record(z.any())).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    customMappings: "custom_mappings",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CollectionTag$ {
-  /** @deprecated use `CollectionTag$inboundSchema` instead. */
-  export const inboundSchema = CollectionTag$inboundSchema;
-  /** @deprecated use `CollectionTag$outboundSchema` instead. */
-  export const outboundSchema = CollectionTag$outboundSchema;
-  /** @deprecated use `CollectionTag$Outbound` instead. */
-  export type Outbound = CollectionTag$Outbound;
-}
-
-export function collectionTagToJSON(collectionTag: CollectionTag): string {
-  return JSON.stringify(CollectionTag$outboundSchema.parse(collectionTag));
-}
-
 export function collectionTagFromJSON(
   jsonString: string,
 ): SafeParseResult<CollectionTag, SDKValidationError> {

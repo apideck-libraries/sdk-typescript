@@ -8,29 +8,13 @@ import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  Currency,
-  Currency$inboundSchema,
-  Currency$outboundSchema,
-} from "./currency.js";
-import {
-  Email,
-  Email$inboundSchema,
-  Email$Outbound,
-  Email$outboundSchema,
-} from "./email.js";
+import { Currency, Currency$inboundSchema } from "./currency.js";
+import { Email, Email$inboundSchema } from "./email.js";
 import {
   LinkedEcommerceOrder,
   LinkedEcommerceOrder$inboundSchema,
-  LinkedEcommerceOrder$Outbound,
-  LinkedEcommerceOrder$outboundSchema,
 } from "./linkedecommerceorder.js";
-import {
-  PhoneNumber,
-  PhoneNumber$inboundSchema,
-  PhoneNumber$Outbound,
-  PhoneNumber$outboundSchema,
-} from "./phonenumber.js";
+import { PhoneNumber, PhoneNumber$inboundSchema } from "./phonenumber.js";
 
 /**
  * The current status of the customer
@@ -145,41 +129,9 @@ export const CustomerStatus$inboundSchema: z.ZodNativeEnum<
 > = z.nativeEnum(CustomerStatus);
 
 /** @internal */
-export const CustomerStatus$outboundSchema: z.ZodNativeEnum<
-  typeof CustomerStatus
-> = CustomerStatus$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CustomerStatus$ {
-  /** @deprecated use `CustomerStatus$inboundSchema` instead. */
-  export const inboundSchema = CustomerStatus$inboundSchema;
-  /** @deprecated use `CustomerStatus$outboundSchema` instead. */
-  export const outboundSchema = CustomerStatus$outboundSchema;
-}
-
-/** @internal */
 export const EcommerceCustomerType$inboundSchema: z.ZodNativeEnum<
   typeof EcommerceCustomerType
 > = z.nativeEnum(EcommerceCustomerType);
-
-/** @internal */
-export const EcommerceCustomerType$outboundSchema: z.ZodNativeEnum<
-  typeof EcommerceCustomerType
-> = EcommerceCustomerType$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace EcommerceCustomerType$ {
-  /** @deprecated use `EcommerceCustomerType$inboundSchema` instead. */
-  export const inboundSchema = EcommerceCustomerType$inboundSchema;
-  /** @deprecated use `EcommerceCustomerType$outboundSchema` instead. */
-  export const outboundSchema = EcommerceCustomerType$outboundSchema;
-}
 
 /** @internal */
 export const Addresses$inboundSchema: z.ZodType<
@@ -200,55 +152,6 @@ export const Addresses$inboundSchema: z.ZodType<
     "postal_code": "postalCode",
   });
 });
-
-/** @internal */
-export type Addresses$Outbound = {
-  type?: string | undefined;
-  id?: string | null | undefined;
-  line1?: string | null | undefined;
-  line2?: string | null | undefined;
-  city?: string | null | undefined;
-  state?: string | null | undefined;
-  postal_code?: string | null | undefined;
-  country?: string | null | undefined;
-};
-
-/** @internal */
-export const Addresses$outboundSchema: z.ZodType<
-  Addresses$Outbound,
-  z.ZodTypeDef,
-  Addresses
-> = z.object({
-  type: EcommerceCustomerType$outboundSchema.optional(),
-  id: z.nullable(z.string()).optional(),
-  line1: z.nullable(z.string()).optional(),
-  line2: z.nullable(z.string()).optional(),
-  city: z.nullable(z.string()).optional(),
-  state: z.nullable(z.string()).optional(),
-  postalCode: z.nullable(z.string()).optional(),
-  country: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    postalCode: "postal_code",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Addresses$ {
-  /** @deprecated use `Addresses$inboundSchema` instead. */
-  export const inboundSchema = Addresses$inboundSchema;
-  /** @deprecated use `Addresses$outboundSchema` instead. */
-  export const outboundSchema = Addresses$outboundSchema;
-  /** @deprecated use `Addresses$Outbound` instead. */
-  export type Outbound = Addresses$Outbound;
-}
-
-export function addressesToJSON(addresses: Addresses): string {
-  return JSON.stringify(Addresses$outboundSchema.parse(addresses));
-}
 
 export function addressesFromJSON(
   jsonString: string,
@@ -295,77 +198,6 @@ export const EcommerceCustomer$inboundSchema: z.ZodType<
     "updated_at": "updatedAt",
   });
 });
-
-/** @internal */
-export type EcommerceCustomer$Outbound = {
-  id: string;
-  name?: string | null | undefined;
-  first_name?: string | null | undefined;
-  last_name?: string | null | undefined;
-  company_name?: string | null | undefined;
-  status?: string | null | undefined;
-  currency?: string | null | undefined;
-  emails?: Array<Email$Outbound> | null | undefined;
-  phone_numbers?: Array<PhoneNumber$Outbound> | null | undefined;
-  addresses?: Array<Addresses$Outbound> | undefined;
-  orders?: Array<LinkedEcommerceOrder$Outbound> | undefined;
-  custom_mappings?: { [k: string]: any } | null | undefined;
-  created_at?: string | null | undefined;
-  updated_at?: string | null | undefined;
-};
-
-/** @internal */
-export const EcommerceCustomer$outboundSchema: z.ZodType<
-  EcommerceCustomer$Outbound,
-  z.ZodTypeDef,
-  EcommerceCustomer
-> = z.object({
-  id: z.string(),
-  name: z.nullable(z.string()).optional(),
-  firstName: z.nullable(z.string()).optional(),
-  lastName: z.nullable(z.string()).optional(),
-  companyName: z.nullable(z.string()).optional(),
-  status: z.nullable(CustomerStatus$outboundSchema).optional(),
-  currency: z.nullable(Currency$outboundSchema).optional(),
-  emails: z.nullable(z.array(Email$outboundSchema)).optional(),
-  phoneNumbers: z.nullable(z.array(PhoneNumber$outboundSchema)).optional(),
-  addresses: z.array(z.lazy(() => Addresses$outboundSchema)).optional(),
-  orders: z.array(LinkedEcommerceOrder$outboundSchema).optional(),
-  customMappings: z.nullable(z.record(z.any())).optional(),
-  createdAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
-  updatedAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    firstName: "first_name",
-    lastName: "last_name",
-    companyName: "company_name",
-    phoneNumbers: "phone_numbers",
-    customMappings: "custom_mappings",
-    createdAt: "created_at",
-    updatedAt: "updated_at",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace EcommerceCustomer$ {
-  /** @deprecated use `EcommerceCustomer$inboundSchema` instead. */
-  export const inboundSchema = EcommerceCustomer$inboundSchema;
-  /** @deprecated use `EcommerceCustomer$outboundSchema` instead. */
-  export const outboundSchema = EcommerceCustomer$outboundSchema;
-  /** @deprecated use `EcommerceCustomer$Outbound` instead. */
-  export type Outbound = EcommerceCustomer$Outbound;
-}
-
-export function ecommerceCustomerToJSON(
-  ecommerceCustomer: EcommerceCustomer,
-): string {
-  return JSON.stringify(
-    EcommerceCustomer$outboundSchema.parse(ecommerceCustomer),
-  );
-}
 
 export function ecommerceCustomerFromJSON(
   jsonString: string,

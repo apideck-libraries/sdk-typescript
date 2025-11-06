@@ -3,9 +3,6 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type AccountingDepartmentsFilter = {
   /**
@@ -13,15 +10,6 @@ export type AccountingDepartmentsFilter = {
    */
   subsidiary?: string | undefined;
 };
-
-/** @internal */
-export const AccountingDepartmentsFilter$inboundSchema: z.ZodType<
-  AccountingDepartmentsFilter,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  subsidiary: z.string().optional(),
-});
 
 /** @internal */
 export type AccountingDepartmentsFilter$Outbound = {
@@ -37,19 +25,6 @@ export const AccountingDepartmentsFilter$outboundSchema: z.ZodType<
   subsidiary: z.string().optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AccountingDepartmentsFilter$ {
-  /** @deprecated use `AccountingDepartmentsFilter$inboundSchema` instead. */
-  export const inboundSchema = AccountingDepartmentsFilter$inboundSchema;
-  /** @deprecated use `AccountingDepartmentsFilter$outboundSchema` instead. */
-  export const outboundSchema = AccountingDepartmentsFilter$outboundSchema;
-  /** @deprecated use `AccountingDepartmentsFilter$Outbound` instead. */
-  export type Outbound = AccountingDepartmentsFilter$Outbound;
-}
-
 export function accountingDepartmentsFilterToJSON(
   accountingDepartmentsFilter: AccountingDepartmentsFilter,
 ): string {
@@ -57,15 +32,5 @@ export function accountingDepartmentsFilterToJSON(
     AccountingDepartmentsFilter$outboundSchema.parse(
       accountingDepartmentsFilter,
     ),
-  );
-}
-
-export function accountingDepartmentsFilterFromJSON(
-  jsonString: string,
-): SafeParseResult<AccountingDepartmentsFilter, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => AccountingDepartmentsFilter$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'AccountingDepartmentsFilter' from JSON`,
   );
 }

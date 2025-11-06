@@ -23,6 +23,7 @@ let value: AccountingLedgerAccountsAddRequest = {
     taxType: "NONE",
     taxRate: {
       id: "123456",
+      code: "N-T",
       rate: 10,
     },
     level: 1,

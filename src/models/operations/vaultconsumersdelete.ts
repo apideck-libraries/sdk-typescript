@@ -40,76 +40,6 @@ export type VaultConsumersDeleteResponse = {
 };
 
 /** @internal */
-export const VaultConsumersDeleteGlobals$inboundSchema: z.ZodType<
-  VaultConsumersDeleteGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  appId: z.string().optional(),
-});
-
-/** @internal */
-export type VaultConsumersDeleteGlobals$Outbound = {
-  appId?: string | undefined;
-};
-
-/** @internal */
-export const VaultConsumersDeleteGlobals$outboundSchema: z.ZodType<
-  VaultConsumersDeleteGlobals$Outbound,
-  z.ZodTypeDef,
-  VaultConsumersDeleteGlobals
-> = z.object({
-  appId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace VaultConsumersDeleteGlobals$ {
-  /** @deprecated use `VaultConsumersDeleteGlobals$inboundSchema` instead. */
-  export const inboundSchema = VaultConsumersDeleteGlobals$inboundSchema;
-  /** @deprecated use `VaultConsumersDeleteGlobals$outboundSchema` instead. */
-  export const outboundSchema = VaultConsumersDeleteGlobals$outboundSchema;
-  /** @deprecated use `VaultConsumersDeleteGlobals$Outbound` instead. */
-  export type Outbound = VaultConsumersDeleteGlobals$Outbound;
-}
-
-export function vaultConsumersDeleteGlobalsToJSON(
-  vaultConsumersDeleteGlobals: VaultConsumersDeleteGlobals,
-): string {
-  return JSON.stringify(
-    VaultConsumersDeleteGlobals$outboundSchema.parse(
-      vaultConsumersDeleteGlobals,
-    ),
-  );
-}
-
-export function vaultConsumersDeleteGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<VaultConsumersDeleteGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => VaultConsumersDeleteGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'VaultConsumersDeleteGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const VaultConsumersDeleteRequest$inboundSchema: z.ZodType<
-  VaultConsumersDeleteRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  appId: z.string().optional(),
-  consumer_id: z.string(),
-}).transform((v) => {
-  return remap$(v, {
-    "consumer_id": "consumerId",
-  });
-});
-
-/** @internal */
 export type VaultConsumersDeleteRequest$Outbound = {
   appId?: string | undefined;
   consumer_id: string;
@@ -129,19 +59,6 @@ export const VaultConsumersDeleteRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace VaultConsumersDeleteRequest$ {
-  /** @deprecated use `VaultConsumersDeleteRequest$inboundSchema` instead. */
-  export const inboundSchema = VaultConsumersDeleteRequest$inboundSchema;
-  /** @deprecated use `VaultConsumersDeleteRequest$outboundSchema` instead. */
-  export const outboundSchema = VaultConsumersDeleteRequest$outboundSchema;
-  /** @deprecated use `VaultConsumersDeleteRequest$Outbound` instead. */
-  export type Outbound = VaultConsumersDeleteRequest$Outbound;
-}
-
 export function vaultConsumersDeleteRequestToJSON(
   vaultConsumersDeleteRequest: VaultConsumersDeleteRequest,
 ): string {
@@ -149,16 +66,6 @@ export function vaultConsumersDeleteRequestToJSON(
     VaultConsumersDeleteRequest$outboundSchema.parse(
       vaultConsumersDeleteRequest,
     ),
-  );
-}
-
-export function vaultConsumersDeleteRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<VaultConsumersDeleteRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => VaultConsumersDeleteRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'VaultConsumersDeleteRequest' from JSON`,
   );
 }
 
@@ -180,59 +87,6 @@ export const VaultConsumersDeleteResponse$inboundSchema: z.ZodType<
     "UnexpectedErrorResponse": "unexpectedErrorResponse",
   });
 });
-
-/** @internal */
-export type VaultConsumersDeleteResponse$Outbound = {
-  HttpMeta: components.HTTPMetadata$Outbound;
-  DeleteConsumerResponse?:
-    | components.DeleteConsumerResponse$Outbound
-    | undefined;
-  UnexpectedErrorResponse?:
-    | components.UnexpectedErrorResponse$Outbound
-    | undefined;
-};
-
-/** @internal */
-export const VaultConsumersDeleteResponse$outboundSchema: z.ZodType<
-  VaultConsumersDeleteResponse$Outbound,
-  z.ZodTypeDef,
-  VaultConsumersDeleteResponse
-> = z.object({
-  httpMeta: components.HTTPMetadata$outboundSchema,
-  deleteConsumerResponse: components.DeleteConsumerResponse$outboundSchema
-    .optional(),
-  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    httpMeta: "HttpMeta",
-    deleteConsumerResponse: "DeleteConsumerResponse",
-    unexpectedErrorResponse: "UnexpectedErrorResponse",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace VaultConsumersDeleteResponse$ {
-  /** @deprecated use `VaultConsumersDeleteResponse$inboundSchema` instead. */
-  export const inboundSchema = VaultConsumersDeleteResponse$inboundSchema;
-  /** @deprecated use `VaultConsumersDeleteResponse$outboundSchema` instead. */
-  export const outboundSchema = VaultConsumersDeleteResponse$outboundSchema;
-  /** @deprecated use `VaultConsumersDeleteResponse$Outbound` instead. */
-  export type Outbound = VaultConsumersDeleteResponse$Outbound;
-}
-
-export function vaultConsumersDeleteResponseToJSON(
-  vaultConsumersDeleteResponse: VaultConsumersDeleteResponse,
-): string {
-  return JSON.stringify(
-    VaultConsumersDeleteResponse$outboundSchema.parse(
-      vaultConsumersDeleteResponse,
-    ),
-  );
-}
 
 export function vaultConsumersDeleteResponseFromJSON(
   jsonString: string,

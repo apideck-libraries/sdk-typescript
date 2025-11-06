@@ -58,84 +58,6 @@ export type VaultCreateCallbackStateResponse = {
 };
 
 /** @internal */
-export const VaultCreateCallbackStateGlobals$inboundSchema: z.ZodType<
-  VaultCreateCallbackStateGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/** @internal */
-export type VaultCreateCallbackStateGlobals$Outbound = {
-  consumerId?: string | undefined;
-  appId?: string | undefined;
-};
-
-/** @internal */
-export const VaultCreateCallbackStateGlobals$outboundSchema: z.ZodType<
-  VaultCreateCallbackStateGlobals$Outbound,
-  z.ZodTypeDef,
-  VaultCreateCallbackStateGlobals
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace VaultCreateCallbackStateGlobals$ {
-  /** @deprecated use `VaultCreateCallbackStateGlobals$inboundSchema` instead. */
-  export const inboundSchema = VaultCreateCallbackStateGlobals$inboundSchema;
-  /** @deprecated use `VaultCreateCallbackStateGlobals$outboundSchema` instead. */
-  export const outboundSchema = VaultCreateCallbackStateGlobals$outboundSchema;
-  /** @deprecated use `VaultCreateCallbackStateGlobals$Outbound` instead. */
-  export type Outbound = VaultCreateCallbackStateGlobals$Outbound;
-}
-
-export function vaultCreateCallbackStateGlobalsToJSON(
-  vaultCreateCallbackStateGlobals: VaultCreateCallbackStateGlobals,
-): string {
-  return JSON.stringify(
-    VaultCreateCallbackStateGlobals$outboundSchema.parse(
-      vaultCreateCallbackStateGlobals,
-    ),
-  );
-}
-
-export function vaultCreateCallbackStateGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<VaultCreateCallbackStateGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => VaultCreateCallbackStateGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'VaultCreateCallbackStateGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const VaultCreateCallbackStateRequest$inboundSchema: z.ZodType<
-  VaultCreateCallbackStateRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  service_id: z.string(),
-  unified_api: z.string(),
-  CreateCallbackState: components.CreateCallbackState$inboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    "service_id": "serviceId",
-    "unified_api": "unifiedApi",
-    "CreateCallbackState": "createCallbackState",
-  });
-});
-
-/** @internal */
 export type VaultCreateCallbackStateRequest$Outbound = {
   consumerId?: string | undefined;
   appId?: string | undefined;
@@ -163,19 +85,6 @@ export const VaultCreateCallbackStateRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace VaultCreateCallbackStateRequest$ {
-  /** @deprecated use `VaultCreateCallbackStateRequest$inboundSchema` instead. */
-  export const inboundSchema = VaultCreateCallbackStateRequest$inboundSchema;
-  /** @deprecated use `VaultCreateCallbackStateRequest$outboundSchema` instead. */
-  export const outboundSchema = VaultCreateCallbackStateRequest$outboundSchema;
-  /** @deprecated use `VaultCreateCallbackStateRequest$Outbound` instead. */
-  export type Outbound = VaultCreateCallbackStateRequest$Outbound;
-}
-
 export function vaultCreateCallbackStateRequestToJSON(
   vaultCreateCallbackStateRequest: VaultCreateCallbackStateRequest,
 ): string {
@@ -183,16 +92,6 @@ export function vaultCreateCallbackStateRequestToJSON(
     VaultCreateCallbackStateRequest$outboundSchema.parse(
       vaultCreateCallbackStateRequest,
     ),
-  );
-}
-
-export function vaultCreateCallbackStateRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<VaultCreateCallbackStateRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => VaultCreateCallbackStateRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'VaultCreateCallbackStateRequest' from JSON`,
   );
 }
 
@@ -214,59 +113,6 @@ export const VaultCreateCallbackStateResponse$inboundSchema: z.ZodType<
     "UnexpectedErrorResponse": "unexpectedErrorResponse",
   });
 });
-
-/** @internal */
-export type VaultCreateCallbackStateResponse$Outbound = {
-  HttpMeta: components.HTTPMetadata$Outbound;
-  CreateCallbackStateResponse?:
-    | components.CreateCallbackStateResponse$Outbound
-    | undefined;
-  UnexpectedErrorResponse?:
-    | components.UnexpectedErrorResponse$Outbound
-    | undefined;
-};
-
-/** @internal */
-export const VaultCreateCallbackStateResponse$outboundSchema: z.ZodType<
-  VaultCreateCallbackStateResponse$Outbound,
-  z.ZodTypeDef,
-  VaultCreateCallbackStateResponse
-> = z.object({
-  httpMeta: components.HTTPMetadata$outboundSchema,
-  createCallbackStateResponse: components
-    .CreateCallbackStateResponse$outboundSchema.optional(),
-  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    httpMeta: "HttpMeta",
-    createCallbackStateResponse: "CreateCallbackStateResponse",
-    unexpectedErrorResponse: "UnexpectedErrorResponse",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace VaultCreateCallbackStateResponse$ {
-  /** @deprecated use `VaultCreateCallbackStateResponse$inboundSchema` instead. */
-  export const inboundSchema = VaultCreateCallbackStateResponse$inboundSchema;
-  /** @deprecated use `VaultCreateCallbackStateResponse$outboundSchema` instead. */
-  export const outboundSchema = VaultCreateCallbackStateResponse$outboundSchema;
-  /** @deprecated use `VaultCreateCallbackStateResponse$Outbound` instead. */
-  export type Outbound = VaultCreateCallbackStateResponse$Outbound;
-}
-
-export function vaultCreateCallbackStateResponseToJSON(
-  vaultCreateCallbackStateResponse: VaultCreateCallbackStateResponse,
-): string {
-  return JSON.stringify(
-    VaultCreateCallbackStateResponse$outboundSchema.parse(
-      vaultCreateCallbackStateResponse,
-    ),
-  );
-}
 
 export function vaultCreateCallbackStateResponseFromJSON(
   jsonString: string,

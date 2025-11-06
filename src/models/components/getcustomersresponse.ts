@@ -7,24 +7,9 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  Customer,
-  Customer$inboundSchema,
-  Customer$Outbound,
-  Customer$outboundSchema,
-} from "./customer.js";
-import {
-  Links,
-  Links$inboundSchema,
-  Links$Outbound,
-  Links$outboundSchema,
-} from "./links.js";
-import {
-  Meta,
-  Meta$inboundSchema,
-  Meta$Outbound,
-  Meta$outboundSchema,
-} from "./meta.js";
+import { Customer, Customer$inboundSchema } from "./customer.js";
+import { Links, Links$inboundSchema } from "./links.js";
+import { Meta, Meta$inboundSchema } from "./meta.js";
 
 /**
  * Customers
@@ -86,62 +71,6 @@ export const GetCustomersResponse$inboundSchema: z.ZodType<
     "_raw": "raw",
   });
 });
-
-/** @internal */
-export type GetCustomersResponse$Outbound = {
-  status_code: number;
-  status: string;
-  service: string;
-  resource: string;
-  operation: string;
-  data: Array<Customer$Outbound>;
-  meta?: Meta$Outbound | undefined;
-  links?: Links$Outbound | undefined;
-  _raw?: { [k: string]: any } | null | undefined;
-};
-
-/** @internal */
-export const GetCustomersResponse$outboundSchema: z.ZodType<
-  GetCustomersResponse$Outbound,
-  z.ZodTypeDef,
-  GetCustomersResponse
-> = z.object({
-  statusCode: z.number().int(),
-  status: z.string(),
-  service: z.string(),
-  resource: z.string(),
-  operation: z.string(),
-  data: z.array(Customer$outboundSchema),
-  meta: Meta$outboundSchema.optional(),
-  links: Links$outboundSchema.optional(),
-  raw: z.nullable(z.record(z.any())).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    statusCode: "status_code",
-    raw: "_raw",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetCustomersResponse$ {
-  /** @deprecated use `GetCustomersResponse$inboundSchema` instead. */
-  export const inboundSchema = GetCustomersResponse$inboundSchema;
-  /** @deprecated use `GetCustomersResponse$outboundSchema` instead. */
-  export const outboundSchema = GetCustomersResponse$outboundSchema;
-  /** @deprecated use `GetCustomersResponse$Outbound` instead. */
-  export type Outbound = GetCustomersResponse$Outbound;
-}
-
-export function getCustomersResponseToJSON(
-  getCustomersResponse: GetCustomersResponse,
-): string {
-  return JSON.stringify(
-    GetCustomersResponse$outboundSchema.parse(getCustomersResponse),
-  );
-}
 
 export function getCustomersResponseFromJSON(
   jsonString: string,

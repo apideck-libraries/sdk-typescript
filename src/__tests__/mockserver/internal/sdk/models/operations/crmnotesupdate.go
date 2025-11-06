@@ -39,7 +39,7 @@ type CrmNotesUpdateRequest struct {
 	ServiceID *string `header:"style=simple,explode=false,name=x-apideck-service-id"`
 	// Include raw response. Mostly used for debugging purposes
 	Raw  *bool                `default:"false" queryParam:"style=form,explode=true,name=raw"`
-	Note components.NoteInput `request:"mediaType=application/json"`
+	Body components.NoteInput `request:"mediaType=application/json"`
 }
 
 func (c CrmNotesUpdateRequest) MarshalJSON() ([]byte, error) {
@@ -47,7 +47,7 @@ func (c CrmNotesUpdateRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (c *CrmNotesUpdateRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"id", "Note"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"id", "body"}); err != nil {
 		return err
 	}
 	return nil
@@ -88,11 +88,11 @@ func (o *CrmNotesUpdateRequest) GetRaw() *bool {
 	return o.Raw
 }
 
-func (o *CrmNotesUpdateRequest) GetNote() components.NoteInput {
+func (o *CrmNotesUpdateRequest) GetBody() components.NoteInput {
 	if o == nil {
 		return components.NoteInput{}
 	}
-	return o.Note
+	return o.Body
 }
 
 type CrmNotesUpdateResponse struct {

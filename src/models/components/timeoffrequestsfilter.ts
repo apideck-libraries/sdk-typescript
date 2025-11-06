@@ -4,10 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
  * Time off request status to filter on
@@ -53,48 +50,9 @@ export type TimeOffRequestsFilter = {
 };
 
 /** @internal */
-export const TimeOffRequestStatus$inboundSchema: z.ZodNativeEnum<
-  typeof TimeOffRequestStatus
-> = z.nativeEnum(TimeOffRequestStatus);
-
-/** @internal */
 export const TimeOffRequestStatus$outboundSchema: z.ZodNativeEnum<
   typeof TimeOffRequestStatus
-> = TimeOffRequestStatus$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace TimeOffRequestStatus$ {
-  /** @deprecated use `TimeOffRequestStatus$inboundSchema` instead. */
-  export const inboundSchema = TimeOffRequestStatus$inboundSchema;
-  /** @deprecated use `TimeOffRequestStatus$outboundSchema` instead. */
-  export const outboundSchema = TimeOffRequestStatus$outboundSchema;
-}
-
-/** @internal */
-export const TimeOffRequestsFilter$inboundSchema: z.ZodType<
-  TimeOffRequestsFilter,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  start_date: z.string().optional(),
-  end_date: z.string().optional(),
-  updated_since: z.string().optional(),
-  employee_id: z.string().optional(),
-  time_off_request_status: TimeOffRequestStatus$inboundSchema.optional(),
-  company_id: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "start_date": "startDate",
-    "end_date": "endDate",
-    "updated_since": "updatedSince",
-    "employee_id": "employeeId",
-    "time_off_request_status": "timeOffRequestStatus",
-    "company_id": "companyId",
-  });
-});
+> = z.nativeEnum(TimeOffRequestStatus);
 
 /** @internal */
 export type TimeOffRequestsFilter$Outbound = {
@@ -129,33 +87,10 @@ export const TimeOffRequestsFilter$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace TimeOffRequestsFilter$ {
-  /** @deprecated use `TimeOffRequestsFilter$inboundSchema` instead. */
-  export const inboundSchema = TimeOffRequestsFilter$inboundSchema;
-  /** @deprecated use `TimeOffRequestsFilter$outboundSchema` instead. */
-  export const outboundSchema = TimeOffRequestsFilter$outboundSchema;
-  /** @deprecated use `TimeOffRequestsFilter$Outbound` instead. */
-  export type Outbound = TimeOffRequestsFilter$Outbound;
-}
-
 export function timeOffRequestsFilterToJSON(
   timeOffRequestsFilter: TimeOffRequestsFilter,
 ): string {
   return JSON.stringify(
     TimeOffRequestsFilter$outboundSchema.parse(timeOffRequestsFilter),
-  );
-}
-
-export function timeOffRequestsFilterFromJSON(
-  jsonString: string,
-): SafeParseResult<TimeOffRequestsFilter, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => TimeOffRequestsFilter$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'TimeOffRequestsFilter' from JSON`,
   );
 }

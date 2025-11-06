@@ -4,12 +4,8 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   PassThroughBody,
-  PassThroughBody$inboundSchema,
   PassThroughBody$Outbound,
   PassThroughBody$outboundSchema,
 } from "./passthroughbody.js";
@@ -26,22 +22,6 @@ export type DepartmentInput = {
    */
   passThrough?: Array<PassThroughBody> | undefined;
 };
-
-/** @internal */
-export const DepartmentInput$inboundSchema: z.ZodType<
-  DepartmentInput,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  name: z.nullable(z.string()).optional(),
-  code: z.nullable(z.string()).optional(),
-  description: z.nullable(z.string()).optional(),
-  pass_through: z.array(PassThroughBody$inboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "pass_through": "passThrough",
-  });
-});
 
 /** @internal */
 export type DepartmentInput$Outbound = {
@@ -67,31 +47,8 @@ export const DepartmentInput$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DepartmentInput$ {
-  /** @deprecated use `DepartmentInput$inboundSchema` instead. */
-  export const inboundSchema = DepartmentInput$inboundSchema;
-  /** @deprecated use `DepartmentInput$outboundSchema` instead. */
-  export const outboundSchema = DepartmentInput$outboundSchema;
-  /** @deprecated use `DepartmentInput$Outbound` instead. */
-  export type Outbound = DepartmentInput$Outbound;
-}
-
 export function departmentInputToJSON(
   departmentInput: DepartmentInput,
 ): string {
   return JSON.stringify(DepartmentInput$outboundSchema.parse(departmentInput));
-}
-
-export function departmentInputFromJSON(
-  jsonString: string,
-): SafeParseResult<DepartmentInput, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => DepartmentInput$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'DepartmentInput' from JSON`,
-  );
 }

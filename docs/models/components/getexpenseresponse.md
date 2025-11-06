@@ -32,7 +32,39 @@ let value: GetExpenseResponse = {
       bankName: "Chase Bank",
     },
     customerId: "12345",
-    supplierId: "12345",
+    supplier: {
+      id: "12345",
+      displayId: "SUPP00101",
+      displayName: "Windsurf Shop",
+      companyName: "The boring company",
+      address: {
+        id: "123",
+        type: "primary",
+        string: "25 Spring Street, Blackburn, VIC 3130",
+        name: "HQ US",
+        line1: "Main street",
+        line2: "apt #",
+        line3: "Suite #",
+        line4: "delivery instructions",
+        line5: "Attention: Finance Dept",
+        streetNumber: "25",
+        city: "San Francisco",
+        state: "CA",
+        postalCode: "94104",
+        country: "US",
+        latitude: "40.759211",
+        longitude: "-73.984638",
+        county: "Santa Clara",
+        contactName: "Elon Musk",
+        salutation: "Mr",
+        phoneNumber: "111-111-1111",
+        fax: "122-111-1111",
+        email: "elon@musk.com",
+        website: "https://elonmusk.com",
+        notes: "Address notes or delivery instructions.",
+        rowVersion: "1-12345",
+      },
+    },
     companyId: "12345",
     departmentId: "12345",
     paymentType: "cash",
@@ -46,6 +78,9 @@ let value: GetExpenseResponse = {
       name: "GST on Purchases",
       rate: 10,
     },
+    taxInclusive: true,
+    subTotal: 250,
+    totalTax: 25,
     totalAmount: 275,
     lineItems: [
       {
@@ -77,8 +112,16 @@ let value: GetExpenseResponse = {
           rate: 10,
         },
         description: "Travel US.",
+        type: "expense_account",
         totalAmount: 275,
-        billable: true,
+        taxAmount: 27.5,
+        quantity: 1,
+        unitPrice: 27500.5,
+        item: {
+          id: "12344",
+          code: "120-C",
+          name: "Model Y",
+        },
         lineNumber: 1,
         rebilling: null,
       },
@@ -127,5 +170,5 @@ let value: GetExpenseResponse = {
 | `service`                                                               | *string*                                                                | :heavy_check_mark:                                                      | Apideck ID of service provider                                          | quickbooks                                                              |
 | `resource`                                                              | *string*                                                                | :heavy_check_mark:                                                      | Unified API resource name                                               | Expenses                                                                |
 | `operation`                                                             | *string*                                                                | :heavy_check_mark:                                                      | Operation performed                                                     | one                                                                     |
-| `data`                                                                  | *components.Expense*                                                    | :heavy_check_mark:                                                      | N/A                                                                     |                                                                         |
+| `data`                                                                  | [components.Expense](../../models/components/expense.md)                | :heavy_check_mark:                                                      | N/A                                                                     |                                                                         |
 | `raw`                                                                   | Record<string, *any*>                                                   | :heavy_minus_sign:                                                      | Raw response from the integration when raw=true query param is provided |                                                                         |

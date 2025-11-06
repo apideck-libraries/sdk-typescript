@@ -2,10 +2,6 @@
 
 package components
 
-import (
-	"mockserver/internal/sdk/utils"
-)
-
 type LinkedBankAccount struct {
 	// The unique identifier for the bank account.
 	ID *string `json:"id,omitempty"`
@@ -15,17 +11,6 @@ type LinkedBankAccount struct {
 	AccountNumber *string `json:"account_number,omitempty"`
 	// The name of the bank or financial institution
 	BankName *string `json:"bank_name,omitempty"`
-}
-
-func (l LinkedBankAccount) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(l, "", false)
-}
-
-func (l *LinkedBankAccount) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &l, "", false, nil); err != nil {
-		return err
-	}
-	return nil
 }
 
 func (o *LinkedBankAccount) GetID() *string {

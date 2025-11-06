@@ -43,7 +43,6 @@ export const LinkedTrackingCategory$inboundSchema: z.ZodType<
     "parent_name": "parentName",
   });
 });
-
 /** @internal */
 export type LinkedTrackingCategory$Outbound = {
   id?: string | undefined;
@@ -69,19 +68,6 @@ export const LinkedTrackingCategory$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace LinkedTrackingCategory$ {
-  /** @deprecated use `LinkedTrackingCategory$inboundSchema` instead. */
-  export const inboundSchema = LinkedTrackingCategory$inboundSchema;
-  /** @deprecated use `LinkedTrackingCategory$outboundSchema` instead. */
-  export const outboundSchema = LinkedTrackingCategory$outboundSchema;
-  /** @deprecated use `LinkedTrackingCategory$Outbound` instead. */
-  export type Outbound = LinkedTrackingCategory$Outbound;
-}
-
 export function linkedTrackingCategoryToJSON(
   linkedTrackingCategory: LinkedTrackingCategory,
 ): string {
@@ -89,7 +75,6 @@ export function linkedTrackingCategoryToJSON(
     LinkedTrackingCategory$outboundSchema.parse(linkedTrackingCategory),
   );
 }
-
 export function linkedTrackingCategoryFromJSON(
   jsonString: string,
 ): SafeParseResult<LinkedTrackingCategory, SDKValidationError> {

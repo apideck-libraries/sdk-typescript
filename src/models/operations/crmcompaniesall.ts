@@ -76,85 +76,6 @@ export type CrmCompaniesAllResponse = {
 };
 
 /** @internal */
-export const CrmCompaniesAllGlobals$inboundSchema: z.ZodType<
-  CrmCompaniesAllGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/** @internal */
-export type CrmCompaniesAllGlobals$Outbound = {
-  consumerId?: string | undefined;
-  appId?: string | undefined;
-};
-
-/** @internal */
-export const CrmCompaniesAllGlobals$outboundSchema: z.ZodType<
-  CrmCompaniesAllGlobals$Outbound,
-  z.ZodTypeDef,
-  CrmCompaniesAllGlobals
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CrmCompaniesAllGlobals$ {
-  /** @deprecated use `CrmCompaniesAllGlobals$inboundSchema` instead. */
-  export const inboundSchema = CrmCompaniesAllGlobals$inboundSchema;
-  /** @deprecated use `CrmCompaniesAllGlobals$outboundSchema` instead. */
-  export const outboundSchema = CrmCompaniesAllGlobals$outboundSchema;
-  /** @deprecated use `CrmCompaniesAllGlobals$Outbound` instead. */
-  export type Outbound = CrmCompaniesAllGlobals$Outbound;
-}
-
-export function crmCompaniesAllGlobalsToJSON(
-  crmCompaniesAllGlobals: CrmCompaniesAllGlobals,
-): string {
-  return JSON.stringify(
-    CrmCompaniesAllGlobals$outboundSchema.parse(crmCompaniesAllGlobals),
-  );
-}
-
-export function crmCompaniesAllGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<CrmCompaniesAllGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => CrmCompaniesAllGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CrmCompaniesAllGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const CrmCompaniesAllRequest$inboundSchema: z.ZodType<
-  CrmCompaniesAllRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  raw: z.boolean().default(false),
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  cursor: z.nullable(z.string()).optional(),
-  limit: z.number().int().default(20),
-  filter: components.CompaniesFilter$inboundSchema.optional(),
-  sort: components.CompaniesSort$inboundSchema.optional(),
-  pass_through: z.record(z.any()).optional(),
-  fields: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "pass_through": "passThrough",
-  });
-});
-
-/** @internal */
 export type CrmCompaniesAllRequest$Outbound = {
   raw: boolean;
   consumerId?: string | undefined;
@@ -190,34 +111,11 @@ export const CrmCompaniesAllRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CrmCompaniesAllRequest$ {
-  /** @deprecated use `CrmCompaniesAllRequest$inboundSchema` instead. */
-  export const inboundSchema = CrmCompaniesAllRequest$inboundSchema;
-  /** @deprecated use `CrmCompaniesAllRequest$outboundSchema` instead. */
-  export const outboundSchema = CrmCompaniesAllRequest$outboundSchema;
-  /** @deprecated use `CrmCompaniesAllRequest$Outbound` instead. */
-  export type Outbound = CrmCompaniesAllRequest$Outbound;
-}
-
 export function crmCompaniesAllRequestToJSON(
   crmCompaniesAllRequest: CrmCompaniesAllRequest,
 ): string {
   return JSON.stringify(
     CrmCompaniesAllRequest$outboundSchema.parse(crmCompaniesAllRequest),
-  );
-}
-
-export function crmCompaniesAllRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<CrmCompaniesAllRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => CrmCompaniesAllRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CrmCompaniesAllRequest' from JSON`,
   );
 }
 
@@ -239,55 +137,6 @@ export const CrmCompaniesAllResponse$inboundSchema: z.ZodType<
     "UnexpectedErrorResponse": "unexpectedErrorResponse",
   });
 });
-
-/** @internal */
-export type CrmCompaniesAllResponse$Outbound = {
-  HttpMeta: components.HTTPMetadata$Outbound;
-  GetCompaniesResponse?: components.GetCompaniesResponse$Outbound | undefined;
-  UnexpectedErrorResponse?:
-    | components.UnexpectedErrorResponse$Outbound
-    | undefined;
-};
-
-/** @internal */
-export const CrmCompaniesAllResponse$outboundSchema: z.ZodType<
-  CrmCompaniesAllResponse$Outbound,
-  z.ZodTypeDef,
-  CrmCompaniesAllResponse
-> = z.object({
-  httpMeta: components.HTTPMetadata$outboundSchema,
-  getCompaniesResponse: components.GetCompaniesResponse$outboundSchema
-    .optional(),
-  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    httpMeta: "HttpMeta",
-    getCompaniesResponse: "GetCompaniesResponse",
-    unexpectedErrorResponse: "UnexpectedErrorResponse",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CrmCompaniesAllResponse$ {
-  /** @deprecated use `CrmCompaniesAllResponse$inboundSchema` instead. */
-  export const inboundSchema = CrmCompaniesAllResponse$inboundSchema;
-  /** @deprecated use `CrmCompaniesAllResponse$outboundSchema` instead. */
-  export const outboundSchema = CrmCompaniesAllResponse$outboundSchema;
-  /** @deprecated use `CrmCompaniesAllResponse$Outbound` instead. */
-  export type Outbound = CrmCompaniesAllResponse$Outbound;
-}
-
-export function crmCompaniesAllResponseToJSON(
-  crmCompaniesAllResponse: CrmCompaniesAllResponse,
-): string {
-  return JSON.stringify(
-    CrmCompaniesAllResponse$outboundSchema.parse(crmCompaniesAllResponse),
-  );
-}
 
 export function crmCompaniesAllResponseFromJSON(
   jsonString: string,

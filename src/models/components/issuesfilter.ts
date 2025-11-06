@@ -4,9 +4,6 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type IssuesFilter = {
   /**
@@ -22,22 +19,6 @@ export type IssuesFilter = {
    */
   assigneeId?: string | undefined;
 };
-
-/** @internal */
-export const IssuesFilter$inboundSchema: z.ZodType<
-  IssuesFilter,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  status: z.array(z.string()).optional(),
-  since: z.string().datetime({ offset: true }).transform(v => new Date(v))
-    .optional(),
-  assignee_id: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "assignee_id": "assigneeId",
-  });
-});
 
 /** @internal */
 export type IssuesFilter$Outbound = {
@@ -61,29 +42,6 @@ export const IssuesFilter$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace IssuesFilter$ {
-  /** @deprecated use `IssuesFilter$inboundSchema` instead. */
-  export const inboundSchema = IssuesFilter$inboundSchema;
-  /** @deprecated use `IssuesFilter$outboundSchema` instead. */
-  export const outboundSchema = IssuesFilter$outboundSchema;
-  /** @deprecated use `IssuesFilter$Outbound` instead. */
-  export type Outbound = IssuesFilter$Outbound;
-}
-
 export function issuesFilterToJSON(issuesFilter: IssuesFilter): string {
   return JSON.stringify(IssuesFilter$outboundSchema.parse(issuesFilter));
-}
-
-export function issuesFilterFromJSON(
-  jsonString: string,
-): SafeParseResult<IssuesFilter, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => IssuesFilter$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'IssuesFilter' from JSON`,
-  );
 }

@@ -13,8 +13,8 @@ type GetExpenseResponse struct {
 	// Unified API resource name
 	Resource string `json:"resource"`
 	// Operation performed
-	Operation string       `json:"operation"`
-	Data      ExpenseUnion `json:"data"`
+	Operation string  `json:"operation"`
+	Data      Expense `json:"data"`
 	// Raw response from the integration when raw=true query param is provided
 	Raw map[string]any `json:"_raw,omitempty"`
 }
@@ -54,9 +54,9 @@ func (o *GetExpenseResponse) GetOperation() string {
 	return o.Operation
 }
 
-func (o *GetExpenseResponse) GetData() ExpenseUnion {
+func (o *GetExpenseResponse) GetData() Expense {
 	if o == nil {
-		return ExpenseUnion{}
+		return Expense{}
 	}
 	return o.Data
 }

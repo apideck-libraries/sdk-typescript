@@ -7,24 +7,9 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  Links,
-  Links$inboundSchema,
-  Links$Outbound,
-  Links$outboundSchema,
-} from "./links.js";
-import {
-  Meta,
-  Meta$inboundSchema,
-  Meta$Outbound,
-  Meta$outboundSchema,
-} from "./meta.js";
-import {
-  Subsidiary,
-  Subsidiary$inboundSchema,
-  Subsidiary$Outbound,
-  Subsidiary$outboundSchema,
-} from "./subsidiary.js";
+import { Links, Links$inboundSchema } from "./links.js";
+import { Meta, Meta$inboundSchema } from "./meta.js";
+import { Subsidiary, Subsidiary$inboundSchema } from "./subsidiary.js";
 
 /**
  * Subsidiaries
@@ -86,62 +71,6 @@ export const GetSubsidiariesResponse$inboundSchema: z.ZodType<
     "_raw": "raw",
   });
 });
-
-/** @internal */
-export type GetSubsidiariesResponse$Outbound = {
-  status_code: number;
-  status: string;
-  service: string;
-  resource: string;
-  operation: string;
-  data: Array<Subsidiary$Outbound>;
-  meta?: Meta$Outbound | undefined;
-  links?: Links$Outbound | undefined;
-  _raw?: { [k: string]: any } | null | undefined;
-};
-
-/** @internal */
-export const GetSubsidiariesResponse$outboundSchema: z.ZodType<
-  GetSubsidiariesResponse$Outbound,
-  z.ZodTypeDef,
-  GetSubsidiariesResponse
-> = z.object({
-  statusCode: z.number().int(),
-  status: z.string(),
-  service: z.string(),
-  resource: z.string(),
-  operation: z.string(),
-  data: z.array(Subsidiary$outboundSchema),
-  meta: Meta$outboundSchema.optional(),
-  links: Links$outboundSchema.optional(),
-  raw: z.nullable(z.record(z.any())).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    statusCode: "status_code",
-    raw: "_raw",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetSubsidiariesResponse$ {
-  /** @deprecated use `GetSubsidiariesResponse$inboundSchema` instead. */
-  export const inboundSchema = GetSubsidiariesResponse$inboundSchema;
-  /** @deprecated use `GetSubsidiariesResponse$outboundSchema` instead. */
-  export const outboundSchema = GetSubsidiariesResponse$outboundSchema;
-  /** @deprecated use `GetSubsidiariesResponse$Outbound` instead. */
-  export type Outbound = GetSubsidiariesResponse$Outbound;
-}
-
-export function getSubsidiariesResponseToJSON(
-  getSubsidiariesResponse: GetSubsidiariesResponse,
-): string {
-  return JSON.stringify(
-    GetSubsidiariesResponse$outboundSchema.parse(getSubsidiariesResponse),
-  );
-}
 
 export function getSubsidiariesResponseFromJSON(
   jsonString: string,

@@ -22,10 +22,7 @@ import {
 import {
   JournalEntryLineItem,
   JournalEntryLineItem$inboundSchema,
-  JournalEntryLineItem$Outbound,
-  JournalEntryLineItem$outboundSchema,
   JournalEntryLineItemInput,
-  JournalEntryLineItemInput$inboundSchema,
   JournalEntryLineItemInput$Outbound,
   JournalEntryLineItemInput$outboundSchema,
 } from "./journalentrylineitem.js";
@@ -260,22 +257,10 @@ export type JournalEntryInput = {
 export const JournalEntryStatus$inboundSchema: z.ZodNativeEnum<
   typeof JournalEntryStatus
 > = z.nativeEnum(JournalEntryStatus);
-
 /** @internal */
 export const JournalEntryStatus$outboundSchema: z.ZodNativeEnum<
   typeof JournalEntryStatus
 > = JournalEntryStatus$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace JournalEntryStatus$ {
-  /** @deprecated use `JournalEntryStatus$inboundSchema` instead. */
-  export const inboundSchema = JournalEntryStatus$inboundSchema;
-  /** @deprecated use `JournalEntryStatus$outboundSchema` instead. */
-  export const outboundSchema = JournalEntryStatus$outboundSchema;
-}
 
 /** @internal */
 export const JournalEntry$inboundSchema: z.ZodType<
@@ -345,121 +330,6 @@ export const JournalEntry$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type JournalEntry$Outbound = {
-  id?: string | undefined;
-  downstream_id?: string | null | undefined;
-  display_id?: string | null | undefined;
-  title?: string | null | undefined;
-  currency_rate?: number | null | undefined;
-  currency?: string | null | undefined;
-  company_id?: string | null | undefined;
-  line_items?: Array<JournalEntryLineItem$Outbound> | undefined;
-  status?: string | null | undefined;
-  memo?: string | null | undefined;
-  posted_at?: string | undefined;
-  journal_symbol?: string | null | undefined;
-  tax_type?: string | null | undefined;
-  tax_code?: string | null | undefined;
-  number?: string | null | undefined;
-  tracking_categories?:
-    | Array<LinkedTrackingCategory$Outbound | null>
-    | null
-    | undefined;
-  accounting_period?: string | null | undefined;
-  tax_inclusive?: boolean | null | undefined;
-  source_type?: string | null | undefined;
-  source_id?: string | null | undefined;
-  custom_mappings?: { [k: string]: any } | null | undefined;
-  updated_by?: string | null | undefined;
-  created_by?: string | null | undefined;
-  updated_at?: string | null | undefined;
-  created_at?: string | null | undefined;
-  row_version?: string | null | undefined;
-  custom_fields?: Array<CustomField$Outbound> | undefined;
-  pass_through?: Array<PassThroughBody$Outbound> | undefined;
-};
-
-/** @internal */
-export const JournalEntry$outboundSchema: z.ZodType<
-  JournalEntry$Outbound,
-  z.ZodTypeDef,
-  JournalEntry
-> = z.object({
-  id: z.string().optional(),
-  downstreamId: z.nullable(z.string()).optional(),
-  displayId: z.nullable(z.string()).optional(),
-  title: z.nullable(z.string()).optional(),
-  currencyRate: z.nullable(z.number()).optional(),
-  currency: z.nullable(Currency$outboundSchema).optional(),
-  companyId: z.nullable(z.string()).optional(),
-  lineItems: z.array(JournalEntryLineItem$outboundSchema).optional(),
-  status: z.nullable(JournalEntryStatus$outboundSchema).optional(),
-  memo: z.nullable(z.string()).optional(),
-  postedAt: z.date().transform(v => v.toISOString()).optional(),
-  journalSymbol: z.nullable(z.string()).optional(),
-  taxType: z.nullable(z.string()).optional(),
-  taxCode: z.nullable(z.string()).optional(),
-  number: z.nullable(z.string()).optional(),
-  trackingCategories: z.nullable(
-    z.array(z.nullable(LinkedTrackingCategory$outboundSchema)),
-  ).optional(),
-  accountingPeriod: z.nullable(z.string()).optional(),
-  taxInclusive: z.nullable(z.boolean()).optional(),
-  sourceType: z.nullable(z.string()).optional(),
-  sourceId: z.nullable(z.string()).optional(),
-  customMappings: z.nullable(z.record(z.any())).optional(),
-  updatedBy: z.nullable(z.string()).optional(),
-  createdBy: z.nullable(z.string()).optional(),
-  updatedAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
-  createdAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
-  rowVersion: z.nullable(z.string()).optional(),
-  customFields: z.array(CustomField$outboundSchema).optional(),
-  passThrough: z.array(PassThroughBody$outboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    downstreamId: "downstream_id",
-    displayId: "display_id",
-    currencyRate: "currency_rate",
-    companyId: "company_id",
-    lineItems: "line_items",
-    postedAt: "posted_at",
-    journalSymbol: "journal_symbol",
-    taxType: "tax_type",
-    taxCode: "tax_code",
-    trackingCategories: "tracking_categories",
-    accountingPeriod: "accounting_period",
-    taxInclusive: "tax_inclusive",
-    sourceType: "source_type",
-    sourceId: "source_id",
-    customMappings: "custom_mappings",
-    updatedBy: "updated_by",
-    createdBy: "created_by",
-    updatedAt: "updated_at",
-    createdAt: "created_at",
-    rowVersion: "row_version",
-    customFields: "custom_fields",
-    passThrough: "pass_through",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace JournalEntry$ {
-  /** @deprecated use `JournalEntry$inboundSchema` instead. */
-  export const inboundSchema = JournalEntry$inboundSchema;
-  /** @deprecated use `JournalEntry$outboundSchema` instead. */
-  export const outboundSchema = JournalEntry$outboundSchema;
-  /** @deprecated use `JournalEntry$Outbound` instead. */
-  export type Outbound = JournalEntry$Outbound;
-}
-
-export function journalEntryToJSON(journalEntry: JournalEntry): string {
-  return JSON.stringify(JournalEntry$outboundSchema.parse(journalEntry));
-}
-
 export function journalEntryFromJSON(
   jsonString: string,
 ): SafeParseResult<JournalEntry, SDKValidationError> {
@@ -469,57 +339,6 @@ export function journalEntryFromJSON(
     `Failed to parse 'JournalEntry' from JSON`,
   );
 }
-
-/** @internal */
-export const JournalEntryInput$inboundSchema: z.ZodType<
-  JournalEntryInput,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  display_id: z.nullable(z.string()).optional(),
-  title: z.nullable(z.string()).optional(),
-  currency_rate: z.nullable(z.number()).optional(),
-  currency: z.nullable(Currency$inboundSchema).optional(),
-  company_id: z.nullable(z.string()).optional(),
-  line_items: z.array(JournalEntryLineItemInput$inboundSchema).optional(),
-  status: z.nullable(JournalEntryStatus$inboundSchema).optional(),
-  memo: z.nullable(z.string()).optional(),
-  posted_at: z.string().datetime({ offset: true }).transform(v => new Date(v))
-    .optional(),
-  journal_symbol: z.nullable(z.string()).optional(),
-  tax_type: z.nullable(z.string()).optional(),
-  tax_code: z.nullable(z.string()).optional(),
-  number: z.nullable(z.string()).optional(),
-  tracking_categories: z.nullable(
-    z.array(z.nullable(LinkedTrackingCategory$inboundSchema)),
-  ).optional(),
-  accounting_period: z.nullable(z.string()).optional(),
-  tax_inclusive: z.nullable(z.boolean()).optional(),
-  source_type: z.nullable(z.string()).optional(),
-  source_id: z.nullable(z.string()).optional(),
-  row_version: z.nullable(z.string()).optional(),
-  custom_fields: z.array(CustomField$inboundSchema).optional(),
-  pass_through: z.array(PassThroughBody$inboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "display_id": "displayId",
-    "currency_rate": "currencyRate",
-    "company_id": "companyId",
-    "line_items": "lineItems",
-    "posted_at": "postedAt",
-    "journal_symbol": "journalSymbol",
-    "tax_type": "taxType",
-    "tax_code": "taxCode",
-    "tracking_categories": "trackingCategories",
-    "accounting_period": "accountingPeriod",
-    "tax_inclusive": "taxInclusive",
-    "source_type": "sourceType",
-    "source_id": "sourceId",
-    "row_version": "rowVersion",
-    "custom_fields": "customFields",
-    "pass_through": "passThrough",
-  });
-});
 
 /** @internal */
 export type JournalEntryInput$Outbound = {
@@ -599,33 +418,10 @@ export const JournalEntryInput$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace JournalEntryInput$ {
-  /** @deprecated use `JournalEntryInput$inboundSchema` instead. */
-  export const inboundSchema = JournalEntryInput$inboundSchema;
-  /** @deprecated use `JournalEntryInput$outboundSchema` instead. */
-  export const outboundSchema = JournalEntryInput$outboundSchema;
-  /** @deprecated use `JournalEntryInput$Outbound` instead. */
-  export type Outbound = JournalEntryInput$Outbound;
-}
-
 export function journalEntryInputToJSON(
   journalEntryInput: JournalEntryInput,
 ): string {
   return JSON.stringify(
     JournalEntryInput$outboundSchema.parse(journalEntryInput),
-  );
-}
-
-export function journalEntryInputFromJSON(
-  jsonString: string,
-): SafeParseResult<JournalEntryInput, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => JournalEntryInput$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'JournalEntryInput' from JSON`,
   );
 }

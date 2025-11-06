@@ -254,17 +254,6 @@ type CustomField struct {
 	Value       *CustomFieldValue2 `json:"value,omitempty"`
 }
 
-func (c CustomField) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(c, "", false)
-}
-
-func (c *CustomField) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"id"}); err != nil {
-		return err
-	}
-	return nil
-}
-
 func (o *CustomField) GetID() *string {
 	if o == nil {
 		return nil

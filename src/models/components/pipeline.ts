@@ -7,16 +7,10 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  Currency,
-  Currency$inboundSchema,
-  Currency$outboundSchema,
-} from "./currency.js";
+import { Currency, Currency$inboundSchema } from "./currency.js";
 import {
   PassThroughBody,
   PassThroughBody$inboundSchema,
-  PassThroughBody$Outbound,
-  PassThroughBody$outboundSchema,
 } from "./passthroughbody.js";
 
 export type Stages = {
@@ -104,50 +98,6 @@ export const Stages$inboundSchema: z.ZodType<Stages, z.ZodTypeDef, unknown> = z
     });
   });
 
-/** @internal */
-export type Stages$Outbound = {
-  id?: string | null | undefined;
-  name?: string | null | undefined;
-  value?: string | null | undefined;
-  win_probability?: number | null | undefined;
-  display_order?: number | null | undefined;
-};
-
-/** @internal */
-export const Stages$outboundSchema: z.ZodType<
-  Stages$Outbound,
-  z.ZodTypeDef,
-  Stages
-> = z.object({
-  id: z.nullable(z.string()).optional(),
-  name: z.nullable(z.string()).optional(),
-  value: z.nullable(z.string()).optional(),
-  winProbability: z.nullable(z.number().int()).optional(),
-  displayOrder: z.nullable(z.number().int()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    winProbability: "win_probability",
-    displayOrder: "display_order",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Stages$ {
-  /** @deprecated use `Stages$inboundSchema` instead. */
-  export const inboundSchema = Stages$inboundSchema;
-  /** @deprecated use `Stages$outboundSchema` instead. */
-  export const outboundSchema = Stages$outboundSchema;
-  /** @deprecated use `Stages$Outbound` instead. */
-  export type Outbound = Stages$Outbound;
-}
-
-export function stagesToJSON(stages: Stages): string {
-  return JSON.stringify(Stages$outboundSchema.parse(stages));
-}
-
 export function stagesFromJSON(
   jsonString: string,
 ): SafeParseResult<Stages, SDKValidationError> {
@@ -188,65 +138,6 @@ export const Pipeline$inboundSchema: z.ZodType<
     "pass_through": "passThrough",
   });
 });
-
-/** @internal */
-export type Pipeline$Outbound = {
-  id?: string | undefined;
-  name: string;
-  currency?: string | null | undefined;
-  archived?: boolean | undefined;
-  active?: boolean | undefined;
-  display_order?: number | null | undefined;
-  win_probability_enabled?: boolean | undefined;
-  stages?: Array<Stages$Outbound> | undefined;
-  updated_at?: string | null | undefined;
-  created_at?: string | null | undefined;
-  pass_through?: Array<PassThroughBody$Outbound> | undefined;
-};
-
-/** @internal */
-export const Pipeline$outboundSchema: z.ZodType<
-  Pipeline$Outbound,
-  z.ZodTypeDef,
-  Pipeline
-> = z.object({
-  id: z.string().optional(),
-  name: z.string(),
-  currency: z.nullable(Currency$outboundSchema).optional(),
-  archived: z.boolean().optional(),
-  active: z.boolean().optional(),
-  displayOrder: z.nullable(z.number().int()).optional(),
-  winProbabilityEnabled: z.boolean().optional(),
-  stages: z.array(z.lazy(() => Stages$outboundSchema)).optional(),
-  updatedAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
-  createdAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
-  passThrough: z.array(PassThroughBody$outboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    displayOrder: "display_order",
-    winProbabilityEnabled: "win_probability_enabled",
-    updatedAt: "updated_at",
-    createdAt: "created_at",
-    passThrough: "pass_through",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Pipeline$ {
-  /** @deprecated use `Pipeline$inboundSchema` instead. */
-  export const inboundSchema = Pipeline$inboundSchema;
-  /** @deprecated use `Pipeline$outboundSchema` instead. */
-  export const outboundSchema = Pipeline$outboundSchema;
-  /** @deprecated use `Pipeline$Outbound` instead. */
-  export type Outbound = Pipeline$Outbound;
-}
-
-export function pipelineToJSON(pipeline: Pipeline): string {
-  return JSON.stringify(Pipeline$outboundSchema.parse(pipeline));
-}
 
 export function pipelineFromJSON(
   jsonString: string,

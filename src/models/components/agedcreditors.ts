@@ -11,8 +11,6 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   OutstandingBalanceBySupplier,
   OutstandingBalanceBySupplier$inboundSchema,
-  OutstandingBalanceBySupplier$Outbound,
-  OutstandingBalanceBySupplier$outboundSchema,
 } from "./outstandingbalancebysupplier.js";
 
 export type AgedCreditors = {
@@ -58,56 +56,6 @@ export const AgedCreditors$inboundSchema: z.ZodType<
     "outstanding_balances": "outstandingBalances",
   });
 });
-
-/** @internal */
-export type AgedCreditors$Outbound = {
-  report_generated_at?: string | undefined;
-  report_as_of_date?: string | undefined;
-  period_count: number;
-  period_length: number;
-  outstanding_balances?:
-    | Array<OutstandingBalanceBySupplier$Outbound>
-    | undefined;
-};
-
-/** @internal */
-export const AgedCreditors$outboundSchema: z.ZodType<
-  AgedCreditors$Outbound,
-  z.ZodTypeDef,
-  AgedCreditors
-> = z.object({
-  reportGeneratedAt: z.date().transform(v => v.toISOString()).optional(),
-  reportAsOfDate: z.instanceof(RFCDate).transform(v => v.toString()).optional(),
-  periodCount: z.number().int().default(4),
-  periodLength: z.number().int().default(30),
-  outstandingBalances: z.array(OutstandingBalanceBySupplier$outboundSchema)
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    reportGeneratedAt: "report_generated_at",
-    reportAsOfDate: "report_as_of_date",
-    periodCount: "period_count",
-    periodLength: "period_length",
-    outstandingBalances: "outstanding_balances",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AgedCreditors$ {
-  /** @deprecated use `AgedCreditors$inboundSchema` instead. */
-  export const inboundSchema = AgedCreditors$inboundSchema;
-  /** @deprecated use `AgedCreditors$outboundSchema` instead. */
-  export const outboundSchema = AgedCreditors$outboundSchema;
-  /** @deprecated use `AgedCreditors$Outbound` instead. */
-  export type Outbound = AgedCreditors$Outbound;
-}
-
-export function agedCreditorsToJSON(agedCreditors: AgedCreditors): string {
-  return JSON.stringify(AgedCreditors$outboundSchema.parse(agedCreditors));
-}
 
 export function agedCreditorsFromJSON(
   jsonString: string,

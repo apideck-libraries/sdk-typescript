@@ -10,21 +10,9 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   CollectionUser,
   CollectionUser$inboundSchema,
-  CollectionUser$Outbound,
-  CollectionUser$outboundSchema,
 } from "./collectionuser.js";
-import {
-  Links,
-  Links$inboundSchema,
-  Links$Outbound,
-  Links$outboundSchema,
-} from "./links.js";
-import {
-  Meta,
-  Meta$inboundSchema,
-  Meta$Outbound,
-  Meta$outboundSchema,
-} from "./meta.js";
+import { Links, Links$inboundSchema } from "./links.js";
+import { Meta, Meta$inboundSchema } from "./meta.js";
 
 /**
  * Users
@@ -86,62 +74,6 @@ export const GetCollectionUsersResponse$inboundSchema: z.ZodType<
     "_raw": "raw",
   });
 });
-
-/** @internal */
-export type GetCollectionUsersResponse$Outbound = {
-  status_code: number;
-  status: string;
-  service: string;
-  resource: string;
-  operation: string;
-  data: Array<CollectionUser$Outbound>;
-  meta?: Meta$Outbound | undefined;
-  links?: Links$Outbound | undefined;
-  _raw?: { [k: string]: any } | null | undefined;
-};
-
-/** @internal */
-export const GetCollectionUsersResponse$outboundSchema: z.ZodType<
-  GetCollectionUsersResponse$Outbound,
-  z.ZodTypeDef,
-  GetCollectionUsersResponse
-> = z.object({
-  statusCode: z.number().int(),
-  status: z.string(),
-  service: z.string(),
-  resource: z.string(),
-  operation: z.string(),
-  data: z.array(CollectionUser$outboundSchema),
-  meta: Meta$outboundSchema.optional(),
-  links: Links$outboundSchema.optional(),
-  raw: z.nullable(z.record(z.any())).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    statusCode: "status_code",
-    raw: "_raw",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetCollectionUsersResponse$ {
-  /** @deprecated use `GetCollectionUsersResponse$inboundSchema` instead. */
-  export const inboundSchema = GetCollectionUsersResponse$inboundSchema;
-  /** @deprecated use `GetCollectionUsersResponse$outboundSchema` instead. */
-  export const outboundSchema = GetCollectionUsersResponse$outboundSchema;
-  /** @deprecated use `GetCollectionUsersResponse$Outbound` instead. */
-  export type Outbound = GetCollectionUsersResponse$Outbound;
-}
-
-export function getCollectionUsersResponseToJSON(
-  getCollectionUsersResponse: GetCollectionUsersResponse,
-): string {
-  return JSON.stringify(
-    GetCollectionUsersResponse$outboundSchema.parse(getCollectionUsersResponse),
-  );
-}
 
 export function getCollectionUsersResponseFromJSON(
   jsonString: string,

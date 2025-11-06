@@ -61,100 +61,6 @@ export type IssueTrackingCollectionTicketCommentsAddResponse = {
 };
 
 /** @internal */
-export const IssueTrackingCollectionTicketCommentsAddGlobals$inboundSchema:
-  z.ZodType<
-    IssueTrackingCollectionTicketCommentsAddGlobals,
-    z.ZodTypeDef,
-    unknown
-  > = z.object({
-    consumerId: z.string().optional(),
-    appId: z.string().optional(),
-  });
-
-/** @internal */
-export type IssueTrackingCollectionTicketCommentsAddGlobals$Outbound = {
-  consumerId?: string | undefined;
-  appId?: string | undefined;
-};
-
-/** @internal */
-export const IssueTrackingCollectionTicketCommentsAddGlobals$outboundSchema:
-  z.ZodType<
-    IssueTrackingCollectionTicketCommentsAddGlobals$Outbound,
-    z.ZodTypeDef,
-    IssueTrackingCollectionTicketCommentsAddGlobals
-  > = z.object({
-    consumerId: z.string().optional(),
-    appId: z.string().optional(),
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace IssueTrackingCollectionTicketCommentsAddGlobals$ {
-  /** @deprecated use `IssueTrackingCollectionTicketCommentsAddGlobals$inboundSchema` instead. */
-  export const inboundSchema =
-    IssueTrackingCollectionTicketCommentsAddGlobals$inboundSchema;
-  /** @deprecated use `IssueTrackingCollectionTicketCommentsAddGlobals$outboundSchema` instead. */
-  export const outboundSchema =
-    IssueTrackingCollectionTicketCommentsAddGlobals$outboundSchema;
-  /** @deprecated use `IssueTrackingCollectionTicketCommentsAddGlobals$Outbound` instead. */
-  export type Outbound =
-    IssueTrackingCollectionTicketCommentsAddGlobals$Outbound;
-}
-
-export function issueTrackingCollectionTicketCommentsAddGlobalsToJSON(
-  issueTrackingCollectionTicketCommentsAddGlobals:
-    IssueTrackingCollectionTicketCommentsAddGlobals,
-): string {
-  return JSON.stringify(
-    IssueTrackingCollectionTicketCommentsAddGlobals$outboundSchema.parse(
-      issueTrackingCollectionTicketCommentsAddGlobals,
-    ),
-  );
-}
-
-export function issueTrackingCollectionTicketCommentsAddGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<
-  IssueTrackingCollectionTicketCommentsAddGlobals,
-  SDKValidationError
-> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      IssueTrackingCollectionTicketCommentsAddGlobals$inboundSchema.parse(
-        JSON.parse(x),
-      ),
-    `Failed to parse 'IssueTrackingCollectionTicketCommentsAddGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const IssueTrackingCollectionTicketCommentsAddRequest$inboundSchema:
-  z.ZodType<
-    IssueTrackingCollectionTicketCommentsAddRequest,
-    z.ZodTypeDef,
-    unknown
-  > = z.object({
-    raw: z.boolean().default(false),
-    consumerId: z.string().optional(),
-    appId: z.string().optional(),
-    serviceId: z.string().optional(),
-    collection_id: z.string(),
-    ticket_id: z.string(),
-    CollectionTicketComment:
-      components.CollectionTicketCommentInput$inboundSchema,
-  }).transform((v) => {
-    return remap$(v, {
-      "collection_id": "collectionId",
-      "ticket_id": "ticketId",
-      "CollectionTicketComment": "collectionTicketComment",
-    });
-  });
-
-/** @internal */
 export type IssueTrackingCollectionTicketCommentsAddRequest$Outbound = {
   raw: boolean;
   consumerId?: string | undefined;
@@ -188,22 +94,6 @@ export const IssueTrackingCollectionTicketCommentsAddRequest$outboundSchema:
     });
   });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace IssueTrackingCollectionTicketCommentsAddRequest$ {
-  /** @deprecated use `IssueTrackingCollectionTicketCommentsAddRequest$inboundSchema` instead. */
-  export const inboundSchema =
-    IssueTrackingCollectionTicketCommentsAddRequest$inboundSchema;
-  /** @deprecated use `IssueTrackingCollectionTicketCommentsAddRequest$outboundSchema` instead. */
-  export const outboundSchema =
-    IssueTrackingCollectionTicketCommentsAddRequest$outboundSchema;
-  /** @deprecated use `IssueTrackingCollectionTicketCommentsAddRequest$Outbound` instead. */
-  export type Outbound =
-    IssueTrackingCollectionTicketCommentsAddRequest$Outbound;
-}
-
 export function issueTrackingCollectionTicketCommentsAddRequestToJSON(
   issueTrackingCollectionTicketCommentsAddRequest:
     IssueTrackingCollectionTicketCommentsAddRequest,
@@ -212,22 +102,6 @@ export function issueTrackingCollectionTicketCommentsAddRequestToJSON(
     IssueTrackingCollectionTicketCommentsAddRequest$outboundSchema.parse(
       issueTrackingCollectionTicketCommentsAddRequest,
     ),
-  );
-}
-
-export function issueTrackingCollectionTicketCommentsAddRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<
-  IssueTrackingCollectionTicketCommentsAddRequest,
-  SDKValidationError
-> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      IssueTrackingCollectionTicketCommentsAddRequest$inboundSchema.parse(
-        JSON.parse(x),
-      ),
-    `Failed to parse 'IssueTrackingCollectionTicketCommentsAddRequest' from JSON`,
   );
 }
 
@@ -250,62 +124,6 @@ export const IssueTrackingCollectionTicketCommentsAddResponse$inboundSchema:
       "UnexpectedErrorResponse": "unexpectedErrorResponse",
     });
   });
-
-/** @internal */
-export type IssueTrackingCollectionTicketCommentsAddResponse$Outbound = {
-  HttpMeta: components.HTTPMetadata$Outbound;
-  CreateCommentResponse?: components.CreateCommentResponse$Outbound | undefined;
-  UnexpectedErrorResponse?:
-    | components.UnexpectedErrorResponse$Outbound
-    | undefined;
-};
-
-/** @internal */
-export const IssueTrackingCollectionTicketCommentsAddResponse$outboundSchema:
-  z.ZodType<
-    IssueTrackingCollectionTicketCommentsAddResponse$Outbound,
-    z.ZodTypeDef,
-    IssueTrackingCollectionTicketCommentsAddResponse
-  > = z.object({
-    httpMeta: components.HTTPMetadata$outboundSchema,
-    createCommentResponse: components.CreateCommentResponse$outboundSchema
-      .optional(),
-    unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
-      .optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      httpMeta: "HttpMeta",
-      createCommentResponse: "CreateCommentResponse",
-      unexpectedErrorResponse: "UnexpectedErrorResponse",
-    });
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace IssueTrackingCollectionTicketCommentsAddResponse$ {
-  /** @deprecated use `IssueTrackingCollectionTicketCommentsAddResponse$inboundSchema` instead. */
-  export const inboundSchema =
-    IssueTrackingCollectionTicketCommentsAddResponse$inboundSchema;
-  /** @deprecated use `IssueTrackingCollectionTicketCommentsAddResponse$outboundSchema` instead. */
-  export const outboundSchema =
-    IssueTrackingCollectionTicketCommentsAddResponse$outboundSchema;
-  /** @deprecated use `IssueTrackingCollectionTicketCommentsAddResponse$Outbound` instead. */
-  export type Outbound =
-    IssueTrackingCollectionTicketCommentsAddResponse$Outbound;
-}
-
-export function issueTrackingCollectionTicketCommentsAddResponseToJSON(
-  issueTrackingCollectionTicketCommentsAddResponse:
-    IssueTrackingCollectionTicketCommentsAddResponse,
-): string {
-  return JSON.stringify(
-    IssueTrackingCollectionTicketCommentsAddResponse$outboundSchema.parse(
-      issueTrackingCollectionTicketCommentsAddResponse,
-    ),
-  );
-}
 
 export function issueTrackingCollectionTicketCommentsAddResponseFromJSON(
   jsonString: string,

@@ -4,12 +4,8 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   PassThroughBody,
-  PassThroughBody$inboundSchema,
   PassThroughBody$Outbound,
   PassThroughBody$outboundSchema,
 } from "./passthroughbody.js";
@@ -32,23 +28,6 @@ export type DriveGroupInput = {
    */
   passThrough?: Array<PassThroughBody> | undefined;
 };
-
-/** @internal */
-export const DriveGroupInput$inboundSchema: z.ZodType<
-  DriveGroupInput,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  name: z.string(),
-  display_name: z.nullable(z.string()).optional(),
-  description: z.nullable(z.string()).optional(),
-  pass_through: z.array(PassThroughBody$inboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "display_name": "displayName",
-    "pass_through": "passThrough",
-  });
-});
 
 /** @internal */
 export type DriveGroupInput$Outbound = {
@@ -75,31 +54,8 @@ export const DriveGroupInput$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DriveGroupInput$ {
-  /** @deprecated use `DriveGroupInput$inboundSchema` instead. */
-  export const inboundSchema = DriveGroupInput$inboundSchema;
-  /** @deprecated use `DriveGroupInput$outboundSchema` instead. */
-  export const outboundSchema = DriveGroupInput$outboundSchema;
-  /** @deprecated use `DriveGroupInput$Outbound` instead. */
-  export type Outbound = DriveGroupInput$Outbound;
-}
-
 export function driveGroupInputToJSON(
   driveGroupInput: DriveGroupInput,
 ): string {
   return JSON.stringify(DriveGroupInput$outboundSchema.parse(driveGroupInput));
-}
-
-export function driveGroupInputFromJSON(
-  jsonString: string,
-): SafeParseResult<DriveGroupInput, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => DriveGroupInput$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'DriveGroupInput' from JSON`,
-  );
 }

@@ -41,7 +41,7 @@ type IssueTrackingCollectionTicketsUpdateRequest struct {
 	Raw *bool `default:"false" queryParam:"style=form,explode=true,name=raw"`
 	// The collection ID
 	CollectionID string                 `pathParam:"style=simple,explode=false,name=collection_id"`
-	Ticket       components.TicketInput `request:"mediaType=application/json"`
+	Body         components.TicketInput `request:"mediaType=application/json"`
 }
 
 func (i IssueTrackingCollectionTicketsUpdateRequest) MarshalJSON() ([]byte, error) {
@@ -49,7 +49,7 @@ func (i IssueTrackingCollectionTicketsUpdateRequest) MarshalJSON() ([]byte, erro
 }
 
 func (i *IssueTrackingCollectionTicketsUpdateRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &i, "", false, []string{"ticket_id", "collection_id", "Ticket"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &i, "", false, []string{"ticket_id", "collection_id", "body"}); err != nil {
 		return err
 	}
 	return nil
@@ -97,11 +97,11 @@ func (o *IssueTrackingCollectionTicketsUpdateRequest) GetCollectionID() string {
 	return o.CollectionID
 }
 
-func (o *IssueTrackingCollectionTicketsUpdateRequest) GetTicket() components.TicketInput {
+func (o *IssueTrackingCollectionTicketsUpdateRequest) GetBody() components.TicketInput {
 	if o == nil {
 		return components.TicketInput{}
 	}
-	return o.Ticket
+	return o.Body
 }
 
 type IssueTrackingCollectionTicketsUpdateResponse struct {

@@ -8,15 +8,10 @@ import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  ApiStatus,
-  ApiStatus$inboundSchema,
-  ApiStatus$outboundSchema,
-} from "./apistatus.js";
+import { ApiStatus, ApiStatus$inboundSchema } from "./apistatus.js";
 import {
   ResourceStatus,
   ResourceStatus$inboundSchema,
-  ResourceStatus$outboundSchema,
 } from "./resourcestatus.js";
 
 /**
@@ -102,21 +97,6 @@ export const ApiType$inboundSchema: z.ZodNativeEnum<typeof ApiType> = z
   .nativeEnum(ApiType);
 
 /** @internal */
-export const ApiType$outboundSchema: z.ZodNativeEnum<typeof ApiType> =
-  ApiType$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ApiType$ {
-  /** @deprecated use `ApiType$inboundSchema` instead. */
-  export const inboundSchema = ApiType$inboundSchema;
-  /** @deprecated use `ApiType$outboundSchema` instead. */
-  export const outboundSchema = ApiType$outboundSchema;
-}
-
-/** @internal */
 export const Resources$inboundSchema: z.ZodType<
   Resources,
   z.ZodTypeDef,
@@ -131,47 +111,6 @@ export const Resources$inboundSchema: z.ZodType<
     "excluded_from_coverage": "excludedFromCoverage",
   });
 });
-
-/** @internal */
-export type Resources$Outbound = {
-  id?: string | undefined;
-  name?: string | undefined;
-  status?: string | undefined;
-  excluded_from_coverage?: boolean | undefined;
-};
-
-/** @internal */
-export const Resources$outboundSchema: z.ZodType<
-  Resources$Outbound,
-  z.ZodTypeDef,
-  Resources
-> = z.object({
-  id: z.string().optional(),
-  name: z.string().optional(),
-  status: ResourceStatus$outboundSchema.optional(),
-  excludedFromCoverage: z.boolean().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    excludedFromCoverage: "excluded_from_coverage",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Resources$ {
-  /** @deprecated use `Resources$inboundSchema` instead. */
-  export const inboundSchema = Resources$inboundSchema;
-  /** @deprecated use `Resources$outboundSchema` instead. */
-  export const outboundSchema = Resources$outboundSchema;
-  /** @deprecated use `Resources$Outbound` instead. */
-  export type Outbound = Resources$Outbound;
-}
-
-export function resourcesToJSON(resources: Resources): string {
-  return JSON.stringify(Resources$outboundSchema.parse(resources));
-}
 
 export function resourcesFromJSON(
   jsonString: string,
@@ -204,60 +143,6 @@ export const Api$inboundSchema: z.ZodType<Api, z.ZodTypeDef, unknown> = z
       "postman_collection_id": "postmanCollectionId",
     });
   });
-
-/** @internal */
-export type Api$Outbound = {
-  id?: string | undefined;
-  type?: string | undefined;
-  name?: string | undefined;
-  description?: string | null | undefined;
-  status?: string | undefined;
-  spec_url?: string | undefined;
-  api_reference_url?: string | undefined;
-  postman_collection_id?: string | null | undefined;
-  categories?: Array<string> | undefined;
-  resources?: Array<Resources$Outbound> | undefined;
-  events?: Array<string> | undefined;
-};
-
-/** @internal */
-export const Api$outboundSchema: z.ZodType<Api$Outbound, z.ZodTypeDef, Api> = z
-  .object({
-    id: z.string().optional(),
-    type: ApiType$outboundSchema.optional(),
-    name: z.string().optional(),
-    description: z.nullable(z.string()).optional(),
-    status: ApiStatus$outboundSchema.optional(),
-    specUrl: z.string().optional(),
-    apiReferenceUrl: z.string().optional(),
-    postmanCollectionId: z.nullable(z.string()).optional(),
-    categories: z.array(z.string()).optional(),
-    resources: z.array(z.lazy(() => Resources$outboundSchema)).optional(),
-    events: z.array(z.string()).optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      specUrl: "spec_url",
-      apiReferenceUrl: "api_reference_url",
-      postmanCollectionId: "postman_collection_id",
-    });
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Api$ {
-  /** @deprecated use `Api$inboundSchema` instead. */
-  export const inboundSchema = Api$inboundSchema;
-  /** @deprecated use `Api$outboundSchema` instead. */
-  export const outboundSchema = Api$outboundSchema;
-  /** @deprecated use `Api$Outbound` instead. */
-  export type Outbound = Api$Outbound;
-}
-
-export function apiToJSON(api: Api): string {
-  return JSON.stringify(Api$outboundSchema.parse(api));
-}
 
 export function apiFromJSON(
   jsonString: string,

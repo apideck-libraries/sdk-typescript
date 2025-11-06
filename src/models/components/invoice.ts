@@ -41,22 +41,16 @@ import {
 import {
   InvoiceLineItem,
   InvoiceLineItem$inboundSchema,
-  InvoiceLineItem$Outbound,
-  InvoiceLineItem$outboundSchema,
   InvoiceLineItemInput,
-  InvoiceLineItemInput$inboundSchema,
   InvoiceLineItemInput$Outbound,
   InvoiceLineItemInput$outboundSchema,
 } from "./invoicelineitem.js";
 import {
   LinkedCustomer,
   LinkedCustomer$inboundSchema,
-  LinkedCustomer$Outbound,
-  LinkedCustomer$outboundSchema,
 } from "./linkedcustomer.js";
 import {
   LinkedCustomerInput,
-  LinkedCustomerInput$inboundSchema,
   LinkedCustomerInput$Outbound,
   LinkedCustomerInput$outboundSchema,
 } from "./linkedcustomerinput.js";
@@ -66,12 +60,6 @@ import {
   LinkedLedgerAccount$Outbound,
   LinkedLedgerAccount$outboundSchema,
 } from "./linkedledgeraccount.js";
-import {
-  LinkedLedgerAccountInput,
-  LinkedLedgerAccountInput$inboundSchema,
-  LinkedLedgerAccountInput$Outbound,
-  LinkedLedgerAccountInput$outboundSchema,
-} from "./linkedledgeraccountinput.js";
 import {
   LinkedTrackingCategory,
   LinkedTrackingCategory$inboundSchema,
@@ -457,7 +445,7 @@ export type InvoiceInput = {
    */
   accountingByRow?: boolean | null | undefined;
   bankAccount?: BankAccount | undefined;
-  ledgerAccount?: LinkedLedgerAccountInput | null | undefined;
+  ledgerAccount?: LinkedLedgerAccount | null | undefined;
   customFields?: Array<CustomField> | undefined;
   /**
    * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
@@ -472,42 +460,18 @@ export type InvoiceInput = {
 /** @internal */
 export const InvoiceType$inboundSchema: z.ZodNativeEnum<typeof InvoiceType> = z
   .nativeEnum(InvoiceType);
-
 /** @internal */
 export const InvoiceType$outboundSchema: z.ZodNativeEnum<typeof InvoiceType> =
   InvoiceType$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace InvoiceType$ {
-  /** @deprecated use `InvoiceType$inboundSchema` instead. */
-  export const inboundSchema = InvoiceType$inboundSchema;
-  /** @deprecated use `InvoiceType$outboundSchema` instead. */
-  export const outboundSchema = InvoiceType$outboundSchema;
-}
 
 /** @internal */
 export const InvoiceStatus$inboundSchema: z.ZodNativeEnum<
   typeof InvoiceStatus
 > = z.nativeEnum(InvoiceStatus);
-
 /** @internal */
 export const InvoiceStatus$outboundSchema: z.ZodNativeEnum<
   typeof InvoiceStatus
 > = InvoiceStatus$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace InvoiceStatus$ {
-  /** @deprecated use `InvoiceStatus$inboundSchema` instead. */
-  export const inboundSchema = InvoiceStatus$inboundSchema;
-  /** @deprecated use `InvoiceStatus$outboundSchema` instead. */
-  export const outboundSchema = InvoiceStatus$outboundSchema;
-}
 
 /** @internal */
 export const PaymentAllocations$inboundSchema: z.ZodType<
@@ -525,7 +489,6 @@ export const PaymentAllocations$inboundSchema: z.ZodType<
     "allocated_amount": "allocatedAmount",
   });
 });
-
 /** @internal */
 export type PaymentAllocations$Outbound = {
   id?: string | undefined;
@@ -548,19 +511,6 @@ export const PaymentAllocations$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace PaymentAllocations$ {
-  /** @deprecated use `PaymentAllocations$inboundSchema` instead. */
-  export const inboundSchema = PaymentAllocations$inboundSchema;
-  /** @deprecated use `PaymentAllocations$outboundSchema` instead. */
-  export const outboundSchema = PaymentAllocations$outboundSchema;
-  /** @deprecated use `PaymentAllocations$Outbound` instead. */
-  export type Outbound = PaymentAllocations$Outbound;
-}
-
 export function paymentAllocationsToJSON(
   paymentAllocations: PaymentAllocations,
 ): string {
@@ -568,7 +518,6 @@ export function paymentAllocationsToJSON(
     PaymentAllocations$outboundSchema.parse(paymentAllocations),
   );
 }
-
 export function paymentAllocationsFromJSON(
   jsonString: string,
 ): SafeParseResult<PaymentAllocations, SDKValidationError> {
@@ -683,185 +632,6 @@ export const Invoice$inboundSchema: z.ZodType<Invoice, z.ZodTypeDef, unknown> =
     });
   });
 
-/** @internal */
-export type Invoice$Outbound = {
-  id?: string | undefined;
-  downstream_id?: string | null | undefined;
-  display_id?: string | null | undefined;
-  type?: string | null | undefined;
-  number?: string | null | undefined;
-  customer?: LinkedCustomer$Outbound | null | undefined;
-  company_id?: string | null | undefined;
-  department_id?: string | null | undefined;
-  invoice_date?: string | null | undefined;
-  due_date?: string | null | undefined;
-  terms?: string | null | undefined;
-  po_number?: string | null | undefined;
-  reference?: string | null | undefined;
-  status?: string | null | undefined;
-  invoice_sent?: boolean | undefined;
-  currency?: string | null | undefined;
-  currency_rate?: number | null | undefined;
-  tax_inclusive?: boolean | null | undefined;
-  sub_total?: number | null | undefined;
-  total_tax?: number | null | undefined;
-  tax_code?: string | null | undefined;
-  discount_percentage?: number | null | undefined;
-  discount_amount?: number | null | undefined;
-  total?: number | null | undefined;
-  balance?: number | null | undefined;
-  deposit?: number | null | undefined;
-  customer_memo?: string | null | undefined;
-  tracking_category?:
-    | DeprecatedLinkedTrackingCategory$Outbound
-    | null
-    | undefined;
-  tracking_categories?:
-    | Array<LinkedTrackingCategory$Outbound | null>
-    | null
-    | undefined;
-  line_items?: Array<InvoiceLineItem$Outbound> | undefined;
-  billing_address?: Address$Outbound | undefined;
-  shipping_address?: Address$Outbound | undefined;
-  template_id?: string | null | undefined;
-  source_document_url?: string | null | undefined;
-  payment_allocations?: Array<PaymentAllocations$Outbound> | null | undefined;
-  payment_method?: string | null | undefined;
-  channel?: string | null | undefined;
-  language?: string | null | undefined;
-  accounting_by_row?: boolean | null | undefined;
-  bank_account?: BankAccount$Outbound | undefined;
-  ledger_account?: LinkedLedgerAccount$Outbound | null | undefined;
-  custom_mappings?: { [k: string]: any } | null | undefined;
-  custom_fields?: Array<CustomField$Outbound> | undefined;
-  row_version?: string | null | undefined;
-  updated_by?: string | null | undefined;
-  created_by?: string | null | undefined;
-  updated_at?: string | null | undefined;
-  created_at?: string | null | undefined;
-  pass_through?: Array<PassThroughBody$Outbound> | undefined;
-};
-
-/** @internal */
-export const Invoice$outboundSchema: z.ZodType<
-  Invoice$Outbound,
-  z.ZodTypeDef,
-  Invoice
-> = z.object({
-  id: z.string().optional(),
-  downstreamId: z.nullable(z.string()).optional(),
-  displayId: z.nullable(z.string()).optional(),
-  type: z.nullable(InvoiceType$outboundSchema).optional(),
-  number: z.nullable(z.string()).optional(),
-  customer: z.nullable(LinkedCustomer$outboundSchema).optional(),
-  companyId: z.nullable(z.string()).optional(),
-  departmentId: z.nullable(z.string()).optional(),
-  invoiceDate: z.nullable(z.instanceof(RFCDate).transform(v => v.toString()))
-    .optional(),
-  dueDate: z.nullable(z.instanceof(RFCDate).transform(v => v.toString()))
-    .optional(),
-  terms: z.nullable(z.string()).optional(),
-  poNumber: z.nullable(z.string()).optional(),
-  reference: z.nullable(z.string()).optional(),
-  status: z.nullable(InvoiceStatus$outboundSchema).optional(),
-  invoiceSent: z.boolean().optional(),
-  currency: z.nullable(Currency$outboundSchema).optional(),
-  currencyRate: z.nullable(z.number()).optional(),
-  taxInclusive: z.nullable(z.boolean()).optional(),
-  subTotal: z.nullable(z.number()).optional(),
-  totalTax: z.nullable(z.number()).optional(),
-  taxCode: z.nullable(z.string()).optional(),
-  discountPercentage: z.nullable(z.number()).optional(),
-  discountAmount: z.nullable(z.number()).optional(),
-  total: z.nullable(z.number()).optional(),
-  balance: z.nullable(z.number()).optional(),
-  deposit: z.nullable(z.number()).optional(),
-  customerMemo: z.nullable(z.string()).optional(),
-  trackingCategory: z.nullable(DeprecatedLinkedTrackingCategory$outboundSchema)
-    .optional(),
-  trackingCategories: z.nullable(
-    z.array(z.nullable(LinkedTrackingCategory$outboundSchema)),
-  ).optional(),
-  lineItems: z.array(InvoiceLineItem$outboundSchema).optional(),
-  billingAddress: Address$outboundSchema.optional(),
-  shippingAddress: Address$outboundSchema.optional(),
-  templateId: z.nullable(z.string()).optional(),
-  sourceDocumentUrl: z.nullable(z.string()).optional(),
-  paymentAllocations: z.nullable(
-    z.array(z.lazy(() => PaymentAllocations$outboundSchema)),
-  ).optional(),
-  paymentMethod: z.nullable(z.string()).optional(),
-  channel: z.nullable(z.string()).optional(),
-  language: z.nullable(z.string()).optional(),
-  accountingByRow: z.nullable(z.boolean()).optional(),
-  bankAccount: BankAccount$outboundSchema.optional(),
-  ledgerAccount: z.nullable(LinkedLedgerAccount$outboundSchema).optional(),
-  customMappings: z.nullable(z.record(z.any())).optional(),
-  customFields: z.array(CustomField$outboundSchema).optional(),
-  rowVersion: z.nullable(z.string()).optional(),
-  updatedBy: z.nullable(z.string()).optional(),
-  createdBy: z.nullable(z.string()).optional(),
-  updatedAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
-  createdAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
-  passThrough: z.array(PassThroughBody$outboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    downstreamId: "downstream_id",
-    displayId: "display_id",
-    companyId: "company_id",
-    departmentId: "department_id",
-    invoiceDate: "invoice_date",
-    dueDate: "due_date",
-    poNumber: "po_number",
-    invoiceSent: "invoice_sent",
-    currencyRate: "currency_rate",
-    taxInclusive: "tax_inclusive",
-    subTotal: "sub_total",
-    totalTax: "total_tax",
-    taxCode: "tax_code",
-    discountPercentage: "discount_percentage",
-    discountAmount: "discount_amount",
-    customerMemo: "customer_memo",
-    trackingCategory: "tracking_category",
-    trackingCategories: "tracking_categories",
-    lineItems: "line_items",
-    billingAddress: "billing_address",
-    shippingAddress: "shipping_address",
-    templateId: "template_id",
-    sourceDocumentUrl: "source_document_url",
-    paymentAllocations: "payment_allocations",
-    paymentMethod: "payment_method",
-    accountingByRow: "accounting_by_row",
-    bankAccount: "bank_account",
-    ledgerAccount: "ledger_account",
-    customMappings: "custom_mappings",
-    customFields: "custom_fields",
-    rowVersion: "row_version",
-    updatedBy: "updated_by",
-    createdBy: "created_by",
-    updatedAt: "updated_at",
-    createdAt: "created_at",
-    passThrough: "pass_through",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Invoice$ {
-  /** @deprecated use `Invoice$inboundSchema` instead. */
-  export const inboundSchema = Invoice$inboundSchema;
-  /** @deprecated use `Invoice$outboundSchema` instead. */
-  export const outboundSchema = Invoice$outboundSchema;
-  /** @deprecated use `Invoice$Outbound` instead. */
-  export type Outbound = Invoice$Outbound;
-}
-
-export function invoiceToJSON(invoice: Invoice): string {
-  return JSON.stringify(Invoice$outboundSchema.parse(invoice));
-}
-
 export function invoiceFromJSON(
   jsonString: string,
 ): SafeParseResult<Invoice, SDKValidationError> {
@@ -871,95 +641,6 @@ export function invoiceFromJSON(
     `Failed to parse 'Invoice' from JSON`,
   );
 }
-
-/** @internal */
-export const InvoiceInput$inboundSchema: z.ZodType<
-  InvoiceInput,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  display_id: z.nullable(z.string()).optional(),
-  type: z.nullable(InvoiceType$inboundSchema).optional(),
-  number: z.nullable(z.string()).optional(),
-  customer: z.nullable(LinkedCustomerInput$inboundSchema).optional(),
-  company_id: z.nullable(z.string()).optional(),
-  department_id: z.nullable(z.string()).optional(),
-  invoice_date: z.nullable(z.string().transform(v => new RFCDate(v)))
-    .optional(),
-  due_date: z.nullable(z.string().transform(v => new RFCDate(v))).optional(),
-  terms: z.nullable(z.string()).optional(),
-  po_number: z.nullable(z.string()).optional(),
-  reference: z.nullable(z.string()).optional(),
-  status: z.nullable(InvoiceStatus$inboundSchema).optional(),
-  invoice_sent: z.boolean().optional(),
-  currency: z.nullable(Currency$inboundSchema).optional(),
-  currency_rate: z.nullable(z.number()).optional(),
-  tax_inclusive: z.nullable(z.boolean()).optional(),
-  sub_total: z.nullable(z.number()).optional(),
-  total_tax: z.nullable(z.number()).optional(),
-  tax_code: z.nullable(z.string()).optional(),
-  discount_percentage: z.nullable(z.number()).optional(),
-  discount_amount: z.nullable(z.number()).optional(),
-  total: z.nullable(z.number()).optional(),
-  balance: z.nullable(z.number()).optional(),
-  deposit: z.nullable(z.number()).optional(),
-  customer_memo: z.nullable(z.string()).optional(),
-  tracking_category: z.nullable(DeprecatedLinkedTrackingCategory$inboundSchema)
-    .optional(),
-  tracking_categories: z.nullable(
-    z.array(z.nullable(LinkedTrackingCategory$inboundSchema)),
-  ).optional(),
-  line_items: z.array(InvoiceLineItemInput$inboundSchema).optional(),
-  billing_address: Address$inboundSchema.optional(),
-  shipping_address: Address$inboundSchema.optional(),
-  template_id: z.nullable(z.string()).optional(),
-  source_document_url: z.nullable(z.string()).optional(),
-  payment_allocations: z.nullable(
-    z.array(z.lazy(() => PaymentAllocations$inboundSchema)),
-  ).optional(),
-  payment_method: z.nullable(z.string()).optional(),
-  channel: z.nullable(z.string()).optional(),
-  language: z.nullable(z.string()).optional(),
-  accounting_by_row: z.nullable(z.boolean()).optional(),
-  bank_account: BankAccount$inboundSchema.optional(),
-  ledger_account: z.nullable(LinkedLedgerAccountInput$inboundSchema).optional(),
-  custom_fields: z.array(CustomField$inboundSchema).optional(),
-  row_version: z.nullable(z.string()).optional(),
-  pass_through: z.array(PassThroughBody$inboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "display_id": "displayId",
-    "company_id": "companyId",
-    "department_id": "departmentId",
-    "invoice_date": "invoiceDate",
-    "due_date": "dueDate",
-    "po_number": "poNumber",
-    "invoice_sent": "invoiceSent",
-    "currency_rate": "currencyRate",
-    "tax_inclusive": "taxInclusive",
-    "sub_total": "subTotal",
-    "total_tax": "totalTax",
-    "tax_code": "taxCode",
-    "discount_percentage": "discountPercentage",
-    "discount_amount": "discountAmount",
-    "customer_memo": "customerMemo",
-    "tracking_category": "trackingCategory",
-    "tracking_categories": "trackingCategories",
-    "line_items": "lineItems",
-    "billing_address": "billingAddress",
-    "shipping_address": "shippingAddress",
-    "template_id": "templateId",
-    "source_document_url": "sourceDocumentUrl",
-    "payment_allocations": "paymentAllocations",
-    "payment_method": "paymentMethod",
-    "accounting_by_row": "accountingByRow",
-    "bank_account": "bankAccount",
-    "ledger_account": "ledgerAccount",
-    "custom_fields": "customFields",
-    "row_version": "rowVersion",
-    "pass_through": "passThrough",
-  });
-});
 
 /** @internal */
 export type InvoiceInput$Outbound = {
@@ -1007,7 +688,7 @@ export type InvoiceInput$Outbound = {
   language?: string | null | undefined;
   accounting_by_row?: boolean | null | undefined;
   bank_account?: BankAccount$Outbound | undefined;
-  ledger_account?: LinkedLedgerAccountInput$Outbound | null | undefined;
+  ledger_account?: LinkedLedgerAccount$Outbound | null | undefined;
   custom_fields?: Array<CustomField$Outbound> | undefined;
   row_version?: string | null | undefined;
   pass_through?: Array<PassThroughBody$Outbound> | undefined;
@@ -1064,7 +745,7 @@ export const InvoiceInput$outboundSchema: z.ZodType<
   language: z.nullable(z.string()).optional(),
   accountingByRow: z.nullable(z.boolean()).optional(),
   bankAccount: BankAccount$outboundSchema.optional(),
-  ledgerAccount: z.nullable(LinkedLedgerAccountInput$outboundSchema).optional(),
+  ledgerAccount: z.nullable(LinkedLedgerAccount$outboundSchema).optional(),
   customFields: z.array(CustomField$outboundSchema).optional(),
   rowVersion: z.nullable(z.string()).optional(),
   passThrough: z.array(PassThroughBody$outboundSchema).optional(),
@@ -1103,29 +784,6 @@ export const InvoiceInput$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace InvoiceInput$ {
-  /** @deprecated use `InvoiceInput$inboundSchema` instead. */
-  export const inboundSchema = InvoiceInput$inboundSchema;
-  /** @deprecated use `InvoiceInput$outboundSchema` instead. */
-  export const outboundSchema = InvoiceInput$outboundSchema;
-  /** @deprecated use `InvoiceInput$Outbound` instead. */
-  export type Outbound = InvoiceInput$Outbound;
-}
-
 export function invoiceInputToJSON(invoiceInput: InvoiceInput): string {
   return JSON.stringify(InvoiceInput$outboundSchema.parse(invoiceInput));
-}
-
-export function invoiceInputFromJSON(
-  jsonString: string,
-): SafeParseResult<InvoiceInput, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => InvoiceInput$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'InvoiceInput' from JSON`,
-  );
 }

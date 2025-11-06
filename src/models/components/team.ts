@@ -27,7 +27,6 @@ export const Team$inboundSchema: z.ZodType<Team, z.ZodTypeDef, unknown> = z
     id: z.nullable(z.string()).optional(),
     name: z.nullable(z.string()).optional(),
   });
-
 /** @internal */
 export type Team$Outbound = {
   id?: string | null | undefined;
@@ -41,23 +40,9 @@ export const Team$outboundSchema: z.ZodType<Team$Outbound, z.ZodTypeDef, Team> =
     name: z.nullable(z.string()).optional(),
   });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Team$ {
-  /** @deprecated use `Team$inboundSchema` instead. */
-  export const inboundSchema = Team$inboundSchema;
-  /** @deprecated use `Team$outboundSchema` instead. */
-  export const outboundSchema = Team$outboundSchema;
-  /** @deprecated use `Team$Outbound` instead. */
-  export type Outbound = Team$Outbound;
-}
-
 export function teamToJSON(team: Team): string {
   return JSON.stringify(Team$outboundSchema.parse(team));
 }
-
 export function teamFromJSON(
   jsonString: string,
 ): SafeParseResult<Team, SDKValidationError> {

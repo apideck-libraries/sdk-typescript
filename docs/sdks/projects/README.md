@@ -179,6 +179,7 @@ async function run() {
       phase: "execution",
       taxRate: {
         id: "123456",
+        code: "N-T",
         rate: 10,
       },
       trackingCategories: [
@@ -302,6 +303,7 @@ async function run() {
       phase: "execution",
       taxRate: {
         id: "123456",
+        code: "N-T",
         rate: 10,
       },
       trackingCategories: [
@@ -534,6 +536,7 @@ async function run() {
       phase: "execution",
       taxRate: {
         id: "123456",
+        code: "N-T",
         rate: 10,
       },
       trackingCategories: [
@@ -654,6 +657,7 @@ async function run() {
       phase: "execution",
       taxRate: {
         id: "123456",
+        code: "N-T",
         rate: 10,
       },
       trackingCategories: [

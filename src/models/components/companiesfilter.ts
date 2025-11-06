@@ -3,9 +3,6 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type CompaniesFilter = {
   /**
@@ -13,15 +10,6 @@ export type CompaniesFilter = {
    */
   name?: string | undefined;
 };
-
-/** @internal */
-export const CompaniesFilter$inboundSchema: z.ZodType<
-  CompaniesFilter,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  name: z.string().optional(),
-});
 
 /** @internal */
 export type CompaniesFilter$Outbound = {
@@ -37,31 +25,8 @@ export const CompaniesFilter$outboundSchema: z.ZodType<
   name: z.string().optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CompaniesFilter$ {
-  /** @deprecated use `CompaniesFilter$inboundSchema` instead. */
-  export const inboundSchema = CompaniesFilter$inboundSchema;
-  /** @deprecated use `CompaniesFilter$outboundSchema` instead. */
-  export const outboundSchema = CompaniesFilter$outboundSchema;
-  /** @deprecated use `CompaniesFilter$Outbound` instead. */
-  export type Outbound = CompaniesFilter$Outbound;
-}
-
 export function companiesFilterToJSON(
   companiesFilter: CompaniesFilter,
 ): string {
   return JSON.stringify(CompaniesFilter$outboundSchema.parse(companiesFilter));
-}
-
-export function companiesFilterFromJSON(
-  jsonString: string,
-): SafeParseResult<CompaniesFilter, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => CompaniesFilter$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CompaniesFilter' from JSON`,
-  );
 }

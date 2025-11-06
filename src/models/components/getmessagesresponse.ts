@@ -7,24 +7,9 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  Links,
-  Links$inboundSchema,
-  Links$Outbound,
-  Links$outboundSchema,
-} from "./links.js";
-import {
-  Message,
-  Message$inboundSchema,
-  Message$Outbound,
-  Message$outboundSchema,
-} from "./message.js";
-import {
-  Meta,
-  Meta$inboundSchema,
-  Meta$Outbound,
-  Meta$outboundSchema,
-} from "./meta.js";
+import { Links, Links$inboundSchema } from "./links.js";
+import { Message, Message$inboundSchema } from "./message.js";
+import { Meta, Meta$inboundSchema } from "./meta.js";
 
 /**
  * Messages
@@ -86,62 +71,6 @@ export const GetMessagesResponse$inboundSchema: z.ZodType<
     "_raw": "raw",
   });
 });
-
-/** @internal */
-export type GetMessagesResponse$Outbound = {
-  status_code: number;
-  status: string;
-  service: string;
-  resource: string;
-  operation: string;
-  data: Array<Message$Outbound>;
-  _raw?: { [k: string]: any } | null | undefined;
-  meta?: Meta$Outbound | undefined;
-  links?: Links$Outbound | undefined;
-};
-
-/** @internal */
-export const GetMessagesResponse$outboundSchema: z.ZodType<
-  GetMessagesResponse$Outbound,
-  z.ZodTypeDef,
-  GetMessagesResponse
-> = z.object({
-  statusCode: z.number().int(),
-  status: z.string(),
-  service: z.string(),
-  resource: z.string(),
-  operation: z.string(),
-  data: z.array(Message$outboundSchema),
-  raw: z.nullable(z.record(z.any())).optional(),
-  meta: Meta$outboundSchema.optional(),
-  links: Links$outboundSchema.optional(),
-}).transform((v) => {
-  return remap$(v, {
-    statusCode: "status_code",
-    raw: "_raw",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetMessagesResponse$ {
-  /** @deprecated use `GetMessagesResponse$inboundSchema` instead. */
-  export const inboundSchema = GetMessagesResponse$inboundSchema;
-  /** @deprecated use `GetMessagesResponse$outboundSchema` instead. */
-  export const outboundSchema = GetMessagesResponse$outboundSchema;
-  /** @deprecated use `GetMessagesResponse$Outbound` instead. */
-  export type Outbound = GetMessagesResponse$Outbound;
-}
-
-export function getMessagesResponseToJSON(
-  getMessagesResponse: GetMessagesResponse,
-): string {
-  return JSON.stringify(
-    GetMessagesResponse$outboundSchema.parse(getMessagesResponse),
-  );
-}
 
 export function getMessagesResponseFromJSON(
   jsonString: string,

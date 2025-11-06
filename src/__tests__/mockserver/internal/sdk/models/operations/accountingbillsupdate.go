@@ -39,7 +39,7 @@ type AccountingBillsUpdateRequest struct {
 	ServiceID *string `header:"style=simple,explode=false,name=x-apideck-service-id"`
 	// Include raw response. Mostly used for debugging purposes
 	Raw  *bool                `default:"false" queryParam:"style=form,explode=true,name=raw"`
-	Bill components.BillInput `request:"mediaType=application/json"`
+	Body components.BillInput `request:"mediaType=application/json"`
 }
 
 func (a AccountingBillsUpdateRequest) MarshalJSON() ([]byte, error) {
@@ -47,7 +47,7 @@ func (a AccountingBillsUpdateRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (a *AccountingBillsUpdateRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"id", "Bill"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"id", "body"}); err != nil {
 		return err
 	}
 	return nil
@@ -88,11 +88,11 @@ func (o *AccountingBillsUpdateRequest) GetRaw() *bool {
 	return o.Raw
 }
 
-func (o *AccountingBillsUpdateRequest) GetBill() components.BillInput {
+func (o *AccountingBillsUpdateRequest) GetBody() components.BillInput {
 	if o == nil {
 		return components.BillInput{}
 	}
-	return o.Bill
+	return o.Body
 }
 
 type AccountingBillsUpdateResponse struct {

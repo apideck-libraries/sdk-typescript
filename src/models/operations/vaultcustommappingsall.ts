@@ -52,82 +52,6 @@ export type VaultCustomMappingsAllResponse = {
 };
 
 /** @internal */
-export const VaultCustomMappingsAllGlobals$inboundSchema: z.ZodType<
-  VaultCustomMappingsAllGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/** @internal */
-export type VaultCustomMappingsAllGlobals$Outbound = {
-  consumerId?: string | undefined;
-  appId?: string | undefined;
-};
-
-/** @internal */
-export const VaultCustomMappingsAllGlobals$outboundSchema: z.ZodType<
-  VaultCustomMappingsAllGlobals$Outbound,
-  z.ZodTypeDef,
-  VaultCustomMappingsAllGlobals
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace VaultCustomMappingsAllGlobals$ {
-  /** @deprecated use `VaultCustomMappingsAllGlobals$inboundSchema` instead. */
-  export const inboundSchema = VaultCustomMappingsAllGlobals$inboundSchema;
-  /** @deprecated use `VaultCustomMappingsAllGlobals$outboundSchema` instead. */
-  export const outboundSchema = VaultCustomMappingsAllGlobals$outboundSchema;
-  /** @deprecated use `VaultCustomMappingsAllGlobals$Outbound` instead. */
-  export type Outbound = VaultCustomMappingsAllGlobals$Outbound;
-}
-
-export function vaultCustomMappingsAllGlobalsToJSON(
-  vaultCustomMappingsAllGlobals: VaultCustomMappingsAllGlobals,
-): string {
-  return JSON.stringify(
-    VaultCustomMappingsAllGlobals$outboundSchema.parse(
-      vaultCustomMappingsAllGlobals,
-    ),
-  );
-}
-
-export function vaultCustomMappingsAllGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<VaultCustomMappingsAllGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => VaultCustomMappingsAllGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'VaultCustomMappingsAllGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const VaultCustomMappingsAllRequest$inboundSchema: z.ZodType<
-  VaultCustomMappingsAllRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  unified_api: z.string(),
-  service_id: z.string(),
-}).transform((v) => {
-  return remap$(v, {
-    "unified_api": "unifiedApi",
-    "service_id": "serviceId",
-  });
-});
-
-/** @internal */
 export type VaultCustomMappingsAllRequest$Outbound = {
   consumerId?: string | undefined;
   appId?: string | undefined;
@@ -152,19 +76,6 @@ export const VaultCustomMappingsAllRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace VaultCustomMappingsAllRequest$ {
-  /** @deprecated use `VaultCustomMappingsAllRequest$inboundSchema` instead. */
-  export const inboundSchema = VaultCustomMappingsAllRequest$inboundSchema;
-  /** @deprecated use `VaultCustomMappingsAllRequest$outboundSchema` instead. */
-  export const outboundSchema = VaultCustomMappingsAllRequest$outboundSchema;
-  /** @deprecated use `VaultCustomMappingsAllRequest$Outbound` instead. */
-  export type Outbound = VaultCustomMappingsAllRequest$Outbound;
-}
-
 export function vaultCustomMappingsAllRequestToJSON(
   vaultCustomMappingsAllRequest: VaultCustomMappingsAllRequest,
 ): string {
@@ -172,16 +83,6 @@ export function vaultCustomMappingsAllRequestToJSON(
     VaultCustomMappingsAllRequest$outboundSchema.parse(
       vaultCustomMappingsAllRequest,
     ),
-  );
-}
-
-export function vaultCustomMappingsAllRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<VaultCustomMappingsAllRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => VaultCustomMappingsAllRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'VaultCustomMappingsAllRequest' from JSON`,
   );
 }
 
@@ -203,59 +104,6 @@ export const VaultCustomMappingsAllResponse$inboundSchema: z.ZodType<
     "UnexpectedErrorResponse": "unexpectedErrorResponse",
   });
 });
-
-/** @internal */
-export type VaultCustomMappingsAllResponse$Outbound = {
-  HttpMeta: components.HTTPMetadata$Outbound;
-  GetCustomMappingsResponse?:
-    | components.GetCustomMappingsResponse$Outbound
-    | undefined;
-  UnexpectedErrorResponse?:
-    | components.UnexpectedErrorResponse$Outbound
-    | undefined;
-};
-
-/** @internal */
-export const VaultCustomMappingsAllResponse$outboundSchema: z.ZodType<
-  VaultCustomMappingsAllResponse$Outbound,
-  z.ZodTypeDef,
-  VaultCustomMappingsAllResponse
-> = z.object({
-  httpMeta: components.HTTPMetadata$outboundSchema,
-  getCustomMappingsResponse: components.GetCustomMappingsResponse$outboundSchema
-    .optional(),
-  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    httpMeta: "HttpMeta",
-    getCustomMappingsResponse: "GetCustomMappingsResponse",
-    unexpectedErrorResponse: "UnexpectedErrorResponse",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace VaultCustomMappingsAllResponse$ {
-  /** @deprecated use `VaultCustomMappingsAllResponse$inboundSchema` instead. */
-  export const inboundSchema = VaultCustomMappingsAllResponse$inboundSchema;
-  /** @deprecated use `VaultCustomMappingsAllResponse$outboundSchema` instead. */
-  export const outboundSchema = VaultCustomMappingsAllResponse$outboundSchema;
-  /** @deprecated use `VaultCustomMappingsAllResponse$Outbound` instead. */
-  export type Outbound = VaultCustomMappingsAllResponse$Outbound;
-}
-
-export function vaultCustomMappingsAllResponseToJSON(
-  vaultCustomMappingsAllResponse: VaultCustomMappingsAllResponse,
-): string {
-  return JSON.stringify(
-    VaultCustomMappingsAllResponse$outboundSchema.parse(
-      vaultCustomMappingsAllResponse,
-    ),
-  );
-}
 
 export function vaultCustomMappingsAllResponseFromJSON(
   jsonString: string,

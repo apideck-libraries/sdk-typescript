@@ -26,20 +26,11 @@ import {
   LinkedLedgerAccount$outboundSchema,
 } from "./linkedledgeraccount.js";
 import {
-  LinkedLedgerAccountInput,
-  LinkedLedgerAccountInput$inboundSchema,
-  LinkedLedgerAccountInput$Outbound,
-  LinkedLedgerAccountInput$outboundSchema,
-} from "./linkedledgeraccountinput.js";
-import {
   LinkedSupplier,
   LinkedSupplier$inboundSchema,
-  LinkedSupplier$Outbound,
-  LinkedSupplier$outboundSchema,
 } from "./linkedsupplier.js";
 import {
   LinkedSupplierInput,
-  LinkedSupplierInput$inboundSchema,
   LinkedSupplierInput$Outbound,
   LinkedSupplierInput$outboundSchema,
 } from "./linkedsupplierinput.js";
@@ -272,7 +263,7 @@ export type BillPaymentInput = {
    * A unique identifier for an object.
    */
   paymentMethodId?: string | null | undefined;
-  account?: LinkedLedgerAccountInput | null | undefined;
+  account?: LinkedLedgerAccount | null | undefined;
   /**
    * The date of the transaction - YYYY:MM::DDThh:mm:ss.sTZD
    */
@@ -329,43 +320,19 @@ export type BillPaymentInput = {
 export const BillPaymentType$inboundSchema: z.ZodNativeEnum<
   typeof BillPaymentType
 > = z.nativeEnum(BillPaymentType);
-
 /** @internal */
 export const BillPaymentType$outboundSchema: z.ZodNativeEnum<
   typeof BillPaymentType
 > = BillPaymentType$inboundSchema;
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace BillPaymentType$ {
-  /** @deprecated use `BillPaymentType$inboundSchema` instead. */
-  export const inboundSchema = BillPaymentType$inboundSchema;
-  /** @deprecated use `BillPaymentType$outboundSchema` instead. */
-  export const outboundSchema = BillPaymentType$outboundSchema;
-}
-
 /** @internal */
 export const BillPaymentAllocationType$inboundSchema: z.ZodNativeEnum<
   typeof BillPaymentAllocationType
 > = z.nativeEnum(BillPaymentAllocationType);
-
 /** @internal */
 export const BillPaymentAllocationType$outboundSchema: z.ZodNativeEnum<
   typeof BillPaymentAllocationType
 > = BillPaymentAllocationType$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace BillPaymentAllocationType$ {
-  /** @deprecated use `BillPaymentAllocationType$inboundSchema` instead. */
-  export const inboundSchema = BillPaymentAllocationType$inboundSchema;
-  /** @deprecated use `BillPaymentAllocationType$outboundSchema` instead. */
-  export const outboundSchema = BillPaymentAllocationType$outboundSchema;
-}
 
 /** @internal */
 export const Allocations$inboundSchema: z.ZodType<
@@ -383,49 +350,6 @@ export const Allocations$inboundSchema: z.ZodType<
     "allocation_id": "allocationId",
   });
 });
-
-/** @internal */
-export type Allocations$Outbound = {
-  id?: string | null | undefined;
-  type?: string | undefined;
-  code?: string | undefined;
-  amount?: number | null | undefined;
-  allocation_id?: string | undefined;
-};
-
-/** @internal */
-export const Allocations$outboundSchema: z.ZodType<
-  Allocations$Outbound,
-  z.ZodTypeDef,
-  Allocations
-> = z.object({
-  id: z.nullable(z.string()).optional(),
-  type: BillPaymentAllocationType$outboundSchema.optional(),
-  code: z.string().optional(),
-  amount: z.nullable(z.number()).optional(),
-  allocationId: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    allocationId: "allocation_id",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Allocations$ {
-  /** @deprecated use `Allocations$inboundSchema` instead. */
-  export const inboundSchema = Allocations$inboundSchema;
-  /** @deprecated use `Allocations$outboundSchema` instead. */
-  export const outboundSchema = Allocations$outboundSchema;
-  /** @deprecated use `Allocations$Outbound` instead. */
-  export type Outbound = Allocations$Outbound;
-}
-
-export function allocationsToJSON(allocations: Allocations): string {
-  return JSON.stringify(Allocations$outboundSchema.parse(allocations));
-}
 
 export function allocationsFromJSON(
   jsonString: string,
@@ -503,119 +427,6 @@ export const BillPayment$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type BillPayment$Outbound = {
-  id: string;
-  downstream_id?: string | null | undefined;
-  currency?: string | null | undefined;
-  currency_rate?: number | null | undefined;
-  total_amount: number | null;
-  reference?: string | null | undefined;
-  payment_method?: string | null | undefined;
-  payment_method_reference?: string | null | undefined;
-  payment_method_id?: string | null | undefined;
-  account?: LinkedLedgerAccount$Outbound | null | undefined;
-  transaction_date: string | null;
-  supplier?: LinkedSupplier$Outbound | null | undefined;
-  company_id?: string | null | undefined;
-  reconciled?: boolean | null | undefined;
-  status?: string | undefined;
-  type?: string | undefined;
-  allocations?: Array<Allocations$Outbound> | undefined;
-  note?: string | null | undefined;
-  number?: string | null | undefined;
-  tracking_categories?:
-    | Array<LinkedTrackingCategory$Outbound | null>
-    | null
-    | undefined;
-  custom_fields?: Array<CustomField$Outbound> | undefined;
-  row_version?: string | null | undefined;
-  display_id?: string | null | undefined;
-  custom_mappings?: { [k: string]: any } | null | undefined;
-  updated_by?: string | null | undefined;
-  created_by?: string | null | undefined;
-  created_at?: string | null | undefined;
-  updated_at?: string | null | undefined;
-  pass_through?: Array<PassThroughBody$Outbound> | undefined;
-};
-
-/** @internal */
-export const BillPayment$outboundSchema: z.ZodType<
-  BillPayment$Outbound,
-  z.ZodTypeDef,
-  BillPayment
-> = z.object({
-  id: z.string(),
-  downstreamId: z.nullable(z.string()).optional(),
-  currency: z.nullable(Currency$outboundSchema).optional(),
-  currencyRate: z.nullable(z.number()).optional(),
-  totalAmount: z.nullable(z.number()),
-  reference: z.nullable(z.string()).optional(),
-  paymentMethod: z.nullable(z.string()).optional(),
-  paymentMethodReference: z.nullable(z.string()).optional(),
-  paymentMethodId: z.nullable(z.string()).optional(),
-  account: z.nullable(LinkedLedgerAccount$outboundSchema).optional(),
-  transactionDate: z.nullable(z.date().transform(v => v.toISOString())),
-  supplier: z.nullable(LinkedSupplier$outboundSchema).optional(),
-  companyId: z.nullable(z.string()).optional(),
-  reconciled: z.nullable(z.boolean()).optional(),
-  status: PaymentStatus$outboundSchema.optional(),
-  type: BillPaymentType$outboundSchema.optional(),
-  allocations: z.array(z.lazy(() => Allocations$outboundSchema)).optional(),
-  note: z.nullable(z.string()).optional(),
-  number: z.nullable(z.string()).optional(),
-  trackingCategories: z.nullable(
-    z.array(z.nullable(LinkedTrackingCategory$outboundSchema)),
-  ).optional(),
-  customFields: z.array(CustomField$outboundSchema).optional(),
-  rowVersion: z.nullable(z.string()).optional(),
-  displayId: z.nullable(z.string()).optional(),
-  customMappings: z.nullable(z.record(z.any())).optional(),
-  updatedBy: z.nullable(z.string()).optional(),
-  createdBy: z.nullable(z.string()).optional(),
-  createdAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
-  updatedAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
-  passThrough: z.array(PassThroughBody$outboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    downstreamId: "downstream_id",
-    currencyRate: "currency_rate",
-    totalAmount: "total_amount",
-    paymentMethod: "payment_method",
-    paymentMethodReference: "payment_method_reference",
-    paymentMethodId: "payment_method_id",
-    transactionDate: "transaction_date",
-    companyId: "company_id",
-    trackingCategories: "tracking_categories",
-    customFields: "custom_fields",
-    rowVersion: "row_version",
-    displayId: "display_id",
-    customMappings: "custom_mappings",
-    updatedBy: "updated_by",
-    createdBy: "created_by",
-    createdAt: "created_at",
-    updatedAt: "updated_at",
-    passThrough: "pass_through",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace BillPayment$ {
-  /** @deprecated use `BillPayment$inboundSchema` instead. */
-  export const inboundSchema = BillPayment$inboundSchema;
-  /** @deprecated use `BillPayment$outboundSchema` instead. */
-  export const outboundSchema = BillPayment$outboundSchema;
-  /** @deprecated use `BillPayment$Outbound` instead. */
-  export type Outbound = BillPayment$Outbound;
-}
-
-export function billPaymentToJSON(billPayment: BillPayment): string {
-  return JSON.stringify(BillPayment$outboundSchema.parse(billPayment));
-}
-
 export function billPaymentFromJSON(
   jsonString: string,
 ): SafeParseResult<BillPayment, SDKValidationError> {
@@ -625,22 +436,6 @@ export function billPaymentFromJSON(
     `Failed to parse 'BillPayment' from JSON`,
   );
 }
-
-/** @internal */
-export const BillPaymentAllocations$inboundSchema: z.ZodType<
-  BillPaymentAllocations,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  id: z.nullable(z.string()).optional(),
-  type: BillPaymentAllocationType$inboundSchema.optional(),
-  amount: z.nullable(z.number()).optional(),
-  allocation_id: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "allocation_id": "allocationId",
-  });
-});
 
 /** @internal */
 export type BillPaymentAllocations$Outbound = {
@@ -666,19 +461,6 @@ export const BillPaymentAllocations$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace BillPaymentAllocations$ {
-  /** @deprecated use `BillPaymentAllocations$inboundSchema` instead. */
-  export const inboundSchema = BillPaymentAllocations$inboundSchema;
-  /** @deprecated use `BillPaymentAllocations$outboundSchema` instead. */
-  export const outboundSchema = BillPaymentAllocations$outboundSchema;
-  /** @deprecated use `BillPaymentAllocations$Outbound` instead. */
-  export type Outbound = BillPaymentAllocations$Outbound;
-}
-
 export function billPaymentAllocationsToJSON(
   billPaymentAllocations: BillPaymentAllocations,
 ): string {
@@ -686,66 +468,6 @@ export function billPaymentAllocationsToJSON(
     BillPaymentAllocations$outboundSchema.parse(billPaymentAllocations),
   );
 }
-
-export function billPaymentAllocationsFromJSON(
-  jsonString: string,
-): SafeParseResult<BillPaymentAllocations, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => BillPaymentAllocations$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'BillPaymentAllocations' from JSON`,
-  );
-}
-
-/** @internal */
-export const BillPaymentInput$inboundSchema: z.ZodType<
-  BillPaymentInput,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  currency: z.nullable(Currency$inboundSchema).optional(),
-  currency_rate: z.nullable(z.number()).optional(),
-  total_amount: z.nullable(z.number()),
-  reference: z.nullable(z.string()).optional(),
-  payment_method: z.nullable(z.string()).optional(),
-  payment_method_reference: z.nullable(z.string()).optional(),
-  payment_method_id: z.nullable(z.string()).optional(),
-  account: z.nullable(LinkedLedgerAccountInput$inboundSchema).optional(),
-  transaction_date: z.nullable(
-    z.string().datetime({ offset: true }).transform(v => new Date(v)),
-  ),
-  supplier: z.nullable(LinkedSupplierInput$inboundSchema).optional(),
-  company_id: z.nullable(z.string()).optional(),
-  reconciled: z.nullable(z.boolean()).optional(),
-  status: PaymentStatus$inboundSchema.optional(),
-  type: BillPaymentType$inboundSchema.optional(),
-  allocations: z.array(z.lazy(() => BillPaymentAllocations$inboundSchema))
-    .optional(),
-  note: z.nullable(z.string()).optional(),
-  number: z.nullable(z.string()).optional(),
-  tracking_categories: z.nullable(
-    z.array(z.nullable(LinkedTrackingCategory$inboundSchema)),
-  ).optional(),
-  custom_fields: z.array(CustomField$inboundSchema).optional(),
-  row_version: z.nullable(z.string()).optional(),
-  display_id: z.nullable(z.string()).optional(),
-  pass_through: z.array(PassThroughBody$inboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "currency_rate": "currencyRate",
-    "total_amount": "totalAmount",
-    "payment_method": "paymentMethod",
-    "payment_method_reference": "paymentMethodReference",
-    "payment_method_id": "paymentMethodId",
-    "transaction_date": "transactionDate",
-    "company_id": "companyId",
-    "tracking_categories": "trackingCategories",
-    "custom_fields": "customFields",
-    "row_version": "rowVersion",
-    "display_id": "displayId",
-    "pass_through": "passThrough",
-  });
-});
 
 /** @internal */
 export type BillPaymentInput$Outbound = {
@@ -756,7 +478,7 @@ export type BillPaymentInput$Outbound = {
   payment_method?: string | null | undefined;
   payment_method_reference?: string | null | undefined;
   payment_method_id?: string | null | undefined;
-  account?: LinkedLedgerAccountInput$Outbound | null | undefined;
+  account?: LinkedLedgerAccount$Outbound | null | undefined;
   transaction_date: string | null;
   supplier?: LinkedSupplierInput$Outbound | null | undefined;
   company_id?: string | null | undefined;
@@ -789,7 +511,7 @@ export const BillPaymentInput$outboundSchema: z.ZodType<
   paymentMethod: z.nullable(z.string()).optional(),
   paymentMethodReference: z.nullable(z.string()).optional(),
   paymentMethodId: z.nullable(z.string()).optional(),
-  account: z.nullable(LinkedLedgerAccountInput$outboundSchema).optional(),
+  account: z.nullable(LinkedLedgerAccount$outboundSchema).optional(),
   transactionDate: z.nullable(z.date().transform(v => v.toISOString())),
   supplier: z.nullable(LinkedSupplierInput$outboundSchema).optional(),
   companyId: z.nullable(z.string()).optional(),
@@ -824,33 +546,10 @@ export const BillPaymentInput$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace BillPaymentInput$ {
-  /** @deprecated use `BillPaymentInput$inboundSchema` instead. */
-  export const inboundSchema = BillPaymentInput$inboundSchema;
-  /** @deprecated use `BillPaymentInput$outboundSchema` instead. */
-  export const outboundSchema = BillPaymentInput$outboundSchema;
-  /** @deprecated use `BillPaymentInput$Outbound` instead. */
-  export type Outbound = BillPaymentInput$Outbound;
-}
-
 export function billPaymentInputToJSON(
   billPaymentInput: BillPaymentInput,
 ): string {
   return JSON.stringify(
     BillPaymentInput$outboundSchema.parse(billPaymentInput),
-  );
-}
-
-export function billPaymentInputFromJSON(
-  jsonString: string,
-): SafeParseResult<BillPaymentInput, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => BillPaymentInput$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'BillPaymentInput' from JSON`,
   );
 }

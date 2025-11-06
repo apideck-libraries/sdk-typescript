@@ -4,12 +4,8 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   PassThroughBody,
-  PassThroughBody$inboundSchema,
   PassThroughBody$Outbound,
   PassThroughBody$outboundSchema,
 } from "./passthroughbody.js";
@@ -36,25 +32,6 @@ export type CreateUploadSessionRequest = {
    */
   passThrough?: Array<PassThroughBody> | undefined;
 };
-
-/** @internal */
-export const CreateUploadSessionRequest$inboundSchema: z.ZodType<
-  CreateUploadSessionRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  name: z.string(),
-  parent_folder_id: z.string(),
-  drive_id: z.string().optional(),
-  size: z.nullable(z.number().int()),
-  pass_through: z.array(PassThroughBody$inboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "parent_folder_id": "parentFolderId",
-    "drive_id": "driveId",
-    "pass_through": "passThrough",
-  });
-});
 
 /** @internal */
 export type CreateUploadSessionRequest$Outbound = {
@@ -84,33 +61,10 @@ export const CreateUploadSessionRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateUploadSessionRequest$ {
-  /** @deprecated use `CreateUploadSessionRequest$inboundSchema` instead. */
-  export const inboundSchema = CreateUploadSessionRequest$inboundSchema;
-  /** @deprecated use `CreateUploadSessionRequest$outboundSchema` instead. */
-  export const outboundSchema = CreateUploadSessionRequest$outboundSchema;
-  /** @deprecated use `CreateUploadSessionRequest$Outbound` instead. */
-  export type Outbound = CreateUploadSessionRequest$Outbound;
-}
-
 export function createUploadSessionRequestToJSON(
   createUploadSessionRequest: CreateUploadSessionRequest,
 ): string {
   return JSON.stringify(
     CreateUploadSessionRequest$outboundSchema.parse(createUploadSessionRequest),
-  );
-}
-
-export function createUploadSessionRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<CreateUploadSessionRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => CreateUploadSessionRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CreateUploadSessionRequest' from JSON`,
   );
 }

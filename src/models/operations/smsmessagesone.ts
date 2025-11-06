@@ -60,77 +60,6 @@ export type SmsMessagesOneResponse = {
 };
 
 /** @internal */
-export const SmsMessagesOneGlobals$inboundSchema: z.ZodType<
-  SmsMessagesOneGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/** @internal */
-export type SmsMessagesOneGlobals$Outbound = {
-  consumerId?: string | undefined;
-  appId?: string | undefined;
-};
-
-/** @internal */
-export const SmsMessagesOneGlobals$outboundSchema: z.ZodType<
-  SmsMessagesOneGlobals$Outbound,
-  z.ZodTypeDef,
-  SmsMessagesOneGlobals
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SmsMessagesOneGlobals$ {
-  /** @deprecated use `SmsMessagesOneGlobals$inboundSchema` instead. */
-  export const inboundSchema = SmsMessagesOneGlobals$inboundSchema;
-  /** @deprecated use `SmsMessagesOneGlobals$outboundSchema` instead. */
-  export const outboundSchema = SmsMessagesOneGlobals$outboundSchema;
-  /** @deprecated use `SmsMessagesOneGlobals$Outbound` instead. */
-  export type Outbound = SmsMessagesOneGlobals$Outbound;
-}
-
-export function smsMessagesOneGlobalsToJSON(
-  smsMessagesOneGlobals: SmsMessagesOneGlobals,
-): string {
-  return JSON.stringify(
-    SmsMessagesOneGlobals$outboundSchema.parse(smsMessagesOneGlobals),
-  );
-}
-
-export function smsMessagesOneGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<SmsMessagesOneGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => SmsMessagesOneGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'SmsMessagesOneGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const SmsMessagesOneRequest$inboundSchema: z.ZodType<
-  SmsMessagesOneRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  id: z.string(),
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  raw: z.boolean().default(false),
-  fields: z.nullable(z.string()).optional(),
-});
-
-/** @internal */
 export type SmsMessagesOneRequest$Outbound = {
   id: string;
   consumerId?: string | undefined;
@@ -154,34 +83,11 @@ export const SmsMessagesOneRequest$outboundSchema: z.ZodType<
   fields: z.nullable(z.string()).optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SmsMessagesOneRequest$ {
-  /** @deprecated use `SmsMessagesOneRequest$inboundSchema` instead. */
-  export const inboundSchema = SmsMessagesOneRequest$inboundSchema;
-  /** @deprecated use `SmsMessagesOneRequest$outboundSchema` instead. */
-  export const outboundSchema = SmsMessagesOneRequest$outboundSchema;
-  /** @deprecated use `SmsMessagesOneRequest$Outbound` instead. */
-  export type Outbound = SmsMessagesOneRequest$Outbound;
-}
-
 export function smsMessagesOneRequestToJSON(
   smsMessagesOneRequest: SmsMessagesOneRequest,
 ): string {
   return JSON.stringify(
     SmsMessagesOneRequest$outboundSchema.parse(smsMessagesOneRequest),
-  );
-}
-
-export function smsMessagesOneRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<SmsMessagesOneRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => SmsMessagesOneRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'SmsMessagesOneRequest' from JSON`,
   );
 }
 
@@ -202,54 +108,6 @@ export const SmsMessagesOneResponse$inboundSchema: z.ZodType<
     "UnexpectedErrorResponse": "unexpectedErrorResponse",
   });
 });
-
-/** @internal */
-export type SmsMessagesOneResponse$Outbound = {
-  HttpMeta: components.HTTPMetadata$Outbound;
-  GetMessageResponse?: components.GetMessageResponse$Outbound | undefined;
-  UnexpectedErrorResponse?:
-    | components.UnexpectedErrorResponse$Outbound
-    | undefined;
-};
-
-/** @internal */
-export const SmsMessagesOneResponse$outboundSchema: z.ZodType<
-  SmsMessagesOneResponse$Outbound,
-  z.ZodTypeDef,
-  SmsMessagesOneResponse
-> = z.object({
-  httpMeta: components.HTTPMetadata$outboundSchema,
-  getMessageResponse: components.GetMessageResponse$outboundSchema.optional(),
-  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    httpMeta: "HttpMeta",
-    getMessageResponse: "GetMessageResponse",
-    unexpectedErrorResponse: "UnexpectedErrorResponse",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SmsMessagesOneResponse$ {
-  /** @deprecated use `SmsMessagesOneResponse$inboundSchema` instead. */
-  export const inboundSchema = SmsMessagesOneResponse$inboundSchema;
-  /** @deprecated use `SmsMessagesOneResponse$outboundSchema` instead. */
-  export const outboundSchema = SmsMessagesOneResponse$outboundSchema;
-  /** @deprecated use `SmsMessagesOneResponse$Outbound` instead. */
-  export type Outbound = SmsMessagesOneResponse$Outbound;
-}
-
-export function smsMessagesOneResponseToJSON(
-  smsMessagesOneResponse: SmsMessagesOneResponse,
-): string {
-  return JSON.stringify(
-    SmsMessagesOneResponse$outboundSchema.parse(smsMessagesOneResponse),
-  );
-}
 
 export function smsMessagesOneResponseFromJSON(
   jsonString: string,

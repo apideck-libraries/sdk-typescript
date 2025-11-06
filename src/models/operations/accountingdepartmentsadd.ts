@@ -55,82 +55,6 @@ export type AccountingDepartmentsAddResponse = {
 };
 
 /** @internal */
-export const AccountingDepartmentsAddGlobals$inboundSchema: z.ZodType<
-  AccountingDepartmentsAddGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/** @internal */
-export type AccountingDepartmentsAddGlobals$Outbound = {
-  consumerId?: string | undefined;
-  appId?: string | undefined;
-};
-
-/** @internal */
-export const AccountingDepartmentsAddGlobals$outboundSchema: z.ZodType<
-  AccountingDepartmentsAddGlobals$Outbound,
-  z.ZodTypeDef,
-  AccountingDepartmentsAddGlobals
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AccountingDepartmentsAddGlobals$ {
-  /** @deprecated use `AccountingDepartmentsAddGlobals$inboundSchema` instead. */
-  export const inboundSchema = AccountingDepartmentsAddGlobals$inboundSchema;
-  /** @deprecated use `AccountingDepartmentsAddGlobals$outboundSchema` instead. */
-  export const outboundSchema = AccountingDepartmentsAddGlobals$outboundSchema;
-  /** @deprecated use `AccountingDepartmentsAddGlobals$Outbound` instead. */
-  export type Outbound = AccountingDepartmentsAddGlobals$Outbound;
-}
-
-export function accountingDepartmentsAddGlobalsToJSON(
-  accountingDepartmentsAddGlobals: AccountingDepartmentsAddGlobals,
-): string {
-  return JSON.stringify(
-    AccountingDepartmentsAddGlobals$outboundSchema.parse(
-      accountingDepartmentsAddGlobals,
-    ),
-  );
-}
-
-export function accountingDepartmentsAddGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<AccountingDepartmentsAddGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => AccountingDepartmentsAddGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'AccountingDepartmentsAddGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const AccountingDepartmentsAddRequest$inboundSchema: z.ZodType<
-  AccountingDepartmentsAddRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  raw: z.boolean().default(false),
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  AccountingDepartment: components.AccountingDepartmentInput$inboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    "AccountingDepartment": "accountingDepartment",
-  });
-});
-
-/** @internal */
 export type AccountingDepartmentsAddRequest$Outbound = {
   raw: boolean;
   consumerId?: string | undefined;
@@ -156,19 +80,6 @@ export const AccountingDepartmentsAddRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AccountingDepartmentsAddRequest$ {
-  /** @deprecated use `AccountingDepartmentsAddRequest$inboundSchema` instead. */
-  export const inboundSchema = AccountingDepartmentsAddRequest$inboundSchema;
-  /** @deprecated use `AccountingDepartmentsAddRequest$outboundSchema` instead. */
-  export const outboundSchema = AccountingDepartmentsAddRequest$outboundSchema;
-  /** @deprecated use `AccountingDepartmentsAddRequest$Outbound` instead. */
-  export type Outbound = AccountingDepartmentsAddRequest$Outbound;
-}
-
 export function accountingDepartmentsAddRequestToJSON(
   accountingDepartmentsAddRequest: AccountingDepartmentsAddRequest,
 ): string {
@@ -176,16 +87,6 @@ export function accountingDepartmentsAddRequestToJSON(
     AccountingDepartmentsAddRequest$outboundSchema.parse(
       accountingDepartmentsAddRequest,
     ),
-  );
-}
-
-export function accountingDepartmentsAddRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<AccountingDepartmentsAddRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => AccountingDepartmentsAddRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'AccountingDepartmentsAddRequest' from JSON`,
   );
 }
 
@@ -207,59 +108,6 @@ export const AccountingDepartmentsAddResponse$inboundSchema: z.ZodType<
     "UnexpectedErrorResponse": "unexpectedErrorResponse",
   });
 });
-
-/** @internal */
-export type AccountingDepartmentsAddResponse$Outbound = {
-  HttpMeta: components.HTTPMetadata$Outbound;
-  CreateAccountingDepartmentResponse?:
-    | components.CreateAccountingDepartmentResponse$Outbound
-    | undefined;
-  UnexpectedErrorResponse?:
-    | components.UnexpectedErrorResponse$Outbound
-    | undefined;
-};
-
-/** @internal */
-export const AccountingDepartmentsAddResponse$outboundSchema: z.ZodType<
-  AccountingDepartmentsAddResponse$Outbound,
-  z.ZodTypeDef,
-  AccountingDepartmentsAddResponse
-> = z.object({
-  httpMeta: components.HTTPMetadata$outboundSchema,
-  createAccountingDepartmentResponse: components
-    .CreateAccountingDepartmentResponse$outboundSchema.optional(),
-  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    httpMeta: "HttpMeta",
-    createAccountingDepartmentResponse: "CreateAccountingDepartmentResponse",
-    unexpectedErrorResponse: "UnexpectedErrorResponse",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AccountingDepartmentsAddResponse$ {
-  /** @deprecated use `AccountingDepartmentsAddResponse$inboundSchema` instead. */
-  export const inboundSchema = AccountingDepartmentsAddResponse$inboundSchema;
-  /** @deprecated use `AccountingDepartmentsAddResponse$outboundSchema` instead. */
-  export const outboundSchema = AccountingDepartmentsAddResponse$outboundSchema;
-  /** @deprecated use `AccountingDepartmentsAddResponse$Outbound` instead. */
-  export type Outbound = AccountingDepartmentsAddResponse$Outbound;
-}
-
-export function accountingDepartmentsAddResponseToJSON(
-  accountingDepartmentsAddResponse: AccountingDepartmentsAddResponse,
-): string {
-  return JSON.stringify(
-    AccountingDepartmentsAddResponse$outboundSchema.parse(
-      accountingDepartmentsAddResponse,
-    ),
-  );
-}
 
 export function accountingDepartmentsAddResponseFromJSON(
   jsonString: string,

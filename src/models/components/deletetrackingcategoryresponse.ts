@@ -7,12 +7,7 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  UnifiedId,
-  UnifiedId$inboundSchema,
-  UnifiedId$Outbound,
-  UnifiedId$outboundSchema,
-} from "./unifiedid.js";
+import { UnifiedId, UnifiedId$inboundSchema } from "./unifiedid.js";
 
 /**
  * Tracking category deleted
@@ -67,60 +62,6 @@ export const DeleteTrackingCategoryResponse$inboundSchema: z.ZodType<
     "_raw": "raw",
   });
 });
-
-/** @internal */
-export type DeleteTrackingCategoryResponse$Outbound = {
-  status_code: number;
-  status: string;
-  service: string;
-  resource: string;
-  operation: string;
-  data: UnifiedId$Outbound;
-  _raw?: { [k: string]: any } | null | undefined;
-};
-
-/** @internal */
-export const DeleteTrackingCategoryResponse$outboundSchema: z.ZodType<
-  DeleteTrackingCategoryResponse$Outbound,
-  z.ZodTypeDef,
-  DeleteTrackingCategoryResponse
-> = z.object({
-  statusCode: z.number().int(),
-  status: z.string(),
-  service: z.string(),
-  resource: z.string(),
-  operation: z.string(),
-  data: UnifiedId$outboundSchema,
-  raw: z.nullable(z.record(z.any())).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    statusCode: "status_code",
-    raw: "_raw",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DeleteTrackingCategoryResponse$ {
-  /** @deprecated use `DeleteTrackingCategoryResponse$inboundSchema` instead. */
-  export const inboundSchema = DeleteTrackingCategoryResponse$inboundSchema;
-  /** @deprecated use `DeleteTrackingCategoryResponse$outboundSchema` instead. */
-  export const outboundSchema = DeleteTrackingCategoryResponse$outboundSchema;
-  /** @deprecated use `DeleteTrackingCategoryResponse$Outbound` instead. */
-  export type Outbound = DeleteTrackingCategoryResponse$Outbound;
-}
-
-export function deleteTrackingCategoryResponseToJSON(
-  deleteTrackingCategoryResponse: DeleteTrackingCategoryResponse,
-): string {
-  return JSON.stringify(
-    DeleteTrackingCategoryResponse$outboundSchema.parse(
-      deleteTrackingCategoryResponse,
-    ),
-  );
-}
 
 export function deleteTrackingCategoryResponseFromJSON(
   jsonString: string,

@@ -7,12 +7,7 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  DriveGroup,
-  DriveGroup$inboundSchema,
-  DriveGroup$Outbound,
-  DriveGroup$outboundSchema,
-} from "./drivegroup.js";
+import { DriveGroup, DriveGroup$inboundSchema } from "./drivegroup.js";
 
 /**
  * DriveGroups
@@ -64,58 +59,6 @@ export const GetDriveGroupResponse$inboundSchema: z.ZodType<
     "_raw": "raw",
   });
 });
-
-/** @internal */
-export type GetDriveGroupResponse$Outbound = {
-  status_code: number;
-  status: string;
-  service: string;
-  resource: string;
-  operation: string;
-  data: DriveGroup$Outbound;
-  _raw?: { [k: string]: any } | null | undefined;
-};
-
-/** @internal */
-export const GetDriveGroupResponse$outboundSchema: z.ZodType<
-  GetDriveGroupResponse$Outbound,
-  z.ZodTypeDef,
-  GetDriveGroupResponse
-> = z.object({
-  statusCode: z.number().int(),
-  status: z.string(),
-  service: z.string(),
-  resource: z.string(),
-  operation: z.string(),
-  data: DriveGroup$outboundSchema,
-  raw: z.nullable(z.record(z.any())).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    statusCode: "status_code",
-    raw: "_raw",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetDriveGroupResponse$ {
-  /** @deprecated use `GetDriveGroupResponse$inboundSchema` instead. */
-  export const inboundSchema = GetDriveGroupResponse$inboundSchema;
-  /** @deprecated use `GetDriveGroupResponse$outboundSchema` instead. */
-  export const outboundSchema = GetDriveGroupResponse$outboundSchema;
-  /** @deprecated use `GetDriveGroupResponse$Outbound` instead. */
-  export type Outbound = GetDriveGroupResponse$Outbound;
-}
-
-export function getDriveGroupResponseToJSON(
-  getDriveGroupResponse: GetDriveGroupResponse,
-): string {
-  return JSON.stringify(
-    GetDriveGroupResponse$outboundSchema.parse(getDriveGroupResponse),
-  );
-}
 
 export function getDriveGroupResponseFromJSON(
   jsonString: string,

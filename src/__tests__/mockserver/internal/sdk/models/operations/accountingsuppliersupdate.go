@@ -38,8 +38,8 @@ type AccountingSuppliersUpdateRequest struct {
 	// Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
 	ServiceID *string `header:"style=simple,explode=false,name=x-apideck-service-id"`
 	// Include raw response. Mostly used for debugging purposes
-	Raw      *bool                    `default:"false" queryParam:"style=form,explode=true,name=raw"`
-	Supplier components.SupplierInput `request:"mediaType=application/json"`
+	Raw  *bool                    `default:"false" queryParam:"style=form,explode=true,name=raw"`
+	Body components.SupplierInput `request:"mediaType=application/json"`
 }
 
 func (a AccountingSuppliersUpdateRequest) MarshalJSON() ([]byte, error) {
@@ -47,7 +47,7 @@ func (a AccountingSuppliersUpdateRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (a *AccountingSuppliersUpdateRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"id", "Supplier"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"id", "body"}); err != nil {
 		return err
 	}
 	return nil
@@ -88,11 +88,11 @@ func (o *AccountingSuppliersUpdateRequest) GetRaw() *bool {
 	return o.Raw
 }
 
-func (o *AccountingSuppliersUpdateRequest) GetSupplier() components.SupplierInput {
+func (o *AccountingSuppliersUpdateRequest) GetBody() components.SupplierInput {
 	if o == nil {
 		return components.SupplierInput{}
 	}
-	return o.Supplier
+	return o.Body
 }
 
 type AccountingSuppliersUpdateResponse struct {

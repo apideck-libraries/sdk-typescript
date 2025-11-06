@@ -3,9 +3,6 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type LinkedTaxRateInput = {
   /**
@@ -13,24 +10,19 @@ export type LinkedTaxRateInput = {
    */
   id?: string | null | undefined;
   /**
+   * Tax rate code
+   */
+  code?: string | null | undefined;
+  /**
    * Rate of the tax rate
    */
   rate?: number | null | undefined;
 };
 
 /** @internal */
-export const LinkedTaxRateInput$inboundSchema: z.ZodType<
-  LinkedTaxRateInput,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  id: z.nullable(z.string()).optional(),
-  rate: z.nullable(z.number()).optional(),
-});
-
-/** @internal */
 export type LinkedTaxRateInput$Outbound = {
   id?: string | null | undefined;
+  code?: string | null | undefined;
   rate?: number | null | undefined;
 };
 
@@ -41,36 +33,14 @@ export const LinkedTaxRateInput$outboundSchema: z.ZodType<
   LinkedTaxRateInput
 > = z.object({
   id: z.nullable(z.string()).optional(),
+  code: z.nullable(z.string()).optional(),
   rate: z.nullable(z.number()).optional(),
 });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace LinkedTaxRateInput$ {
-  /** @deprecated use `LinkedTaxRateInput$inboundSchema` instead. */
-  export const inboundSchema = LinkedTaxRateInput$inboundSchema;
-  /** @deprecated use `LinkedTaxRateInput$outboundSchema` instead. */
-  export const outboundSchema = LinkedTaxRateInput$outboundSchema;
-  /** @deprecated use `LinkedTaxRateInput$Outbound` instead. */
-  export type Outbound = LinkedTaxRateInput$Outbound;
-}
 
 export function linkedTaxRateInputToJSON(
   linkedTaxRateInput: LinkedTaxRateInput,
 ): string {
   return JSON.stringify(
     LinkedTaxRateInput$outboundSchema.parse(linkedTaxRateInput),
-  );
-}
-
-export function linkedTaxRateInputFromJSON(
-  jsonString: string,
-): SafeParseResult<LinkedTaxRateInput, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => LinkedTaxRateInput$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'LinkedTaxRateInput' from JSON`,
   );
 }

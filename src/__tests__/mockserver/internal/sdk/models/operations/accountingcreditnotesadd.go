@@ -36,8 +36,8 @@ type AccountingCreditNotesAddRequest struct {
 	// The ID of your Unify application
 	AppID *string `header:"style=simple,explode=false,name=x-apideck-app-id"`
 	// Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
-	ServiceID  *string                    `header:"style=simple,explode=false,name=x-apideck-service-id"`
-	CreditNote components.CreditNoteInput `request:"mediaType=application/json"`
+	ServiceID *string                    `header:"style=simple,explode=false,name=x-apideck-service-id"`
+	Body      components.CreditNoteInput `request:"mediaType=application/json"`
 }
 
 func (a AccountingCreditNotesAddRequest) MarshalJSON() ([]byte, error) {
@@ -45,7 +45,7 @@ func (a AccountingCreditNotesAddRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (a *AccountingCreditNotesAddRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"CreditNote"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"body"}); err != nil {
 		return err
 	}
 	return nil
@@ -79,11 +79,11 @@ func (o *AccountingCreditNotesAddRequest) GetServiceID() *string {
 	return o.ServiceID
 }
 
-func (o *AccountingCreditNotesAddRequest) GetCreditNote() components.CreditNoteInput {
+func (o *AccountingCreditNotesAddRequest) GetBody() components.CreditNoteInput {
 	if o == nil {
 		return components.CreditNoteInput{}
 	}
-	return o.CreditNote
+	return o.Body
 }
 
 type AccountingCreditNotesAddResponse struct {

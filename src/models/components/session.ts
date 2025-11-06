@@ -4,21 +4,13 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   ConsumerMetadata,
-  ConsumerMetadata$inboundSchema,
   ConsumerMetadata$Outbound,
   ConsumerMetadata$outboundSchema,
 } from "./consumermetadata.js";
-import {
-  UnifiedApiId,
-  UnifiedApiId$inboundSchema,
-  UnifiedApiId$outboundSchema,
-} from "./unifiedapiid.js";
+import { UnifiedApiId, UnifiedApiId$outboundSchema } from "./unifiedapiid.js";
 
 export const AllowActions = {
   Delete: "delete",
@@ -144,56 +136,8 @@ export type Session = {
 };
 
 /** @internal */
-export const AllowActions$inboundSchema: z.ZodNativeEnum<typeof AllowActions> =
-  z.nativeEnum(AllowActions);
-
-/** @internal */
 export const AllowActions$outboundSchema: z.ZodNativeEnum<typeof AllowActions> =
-  AllowActions$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AllowActions$ {
-  /** @deprecated use `AllowActions$inboundSchema` instead. */
-  export const inboundSchema = AllowActions$inboundSchema;
-  /** @deprecated use `AllowActions$outboundSchema` instead. */
-  export const outboundSchema = AllowActions$outboundSchema;
-}
-
-/** @internal */
-export const Settings$inboundSchema: z.ZodType<
-  Settings,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  unified_apis: z.array(UnifiedApiId$inboundSchema).optional(),
-  hide_resource_settings: z.boolean().default(false),
-  sandbox_mode: z.boolean().default(false),
-  isolation_mode: z.boolean().default(false),
-  session_length: z.string().default("1h"),
-  show_logs: z.boolean().default(true),
-  show_suggestions: z.boolean().default(false),
-  show_sidebar: z.boolean().default(true),
-  auto_redirect: z.boolean().default(false),
-  hide_guides: z.boolean().default(false),
-  allow_actions: z.array(AllowActions$inboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "unified_apis": "unifiedApis",
-    "hide_resource_settings": "hideResourceSettings",
-    "sandbox_mode": "sandboxMode",
-    "isolation_mode": "isolationMode",
-    "session_length": "sessionLength",
-    "show_logs": "showLogs",
-    "show_suggestions": "showSuggestions",
-    "show_sidebar": "showSidebar",
-    "auto_redirect": "autoRedirect",
-    "hide_guides": "hideGuides",
-    "allow_actions": "allowActions",
-  });
-});
+  z.nativeEnum(AllowActions);
 
 /** @internal */
 export type Settings$Outbound = {
@@ -243,54 +187,9 @@ export const Settings$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Settings$ {
-  /** @deprecated use `Settings$inboundSchema` instead. */
-  export const inboundSchema = Settings$inboundSchema;
-  /** @deprecated use `Settings$outboundSchema` instead. */
-  export const outboundSchema = Settings$outboundSchema;
-  /** @deprecated use `Settings$Outbound` instead. */
-  export type Outbound = Settings$Outbound;
-}
-
 export function settingsToJSON(settings: Settings): string {
   return JSON.stringify(Settings$outboundSchema.parse(settings));
 }
-
-export function settingsFromJSON(
-  jsonString: string,
-): SafeParseResult<Settings, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => Settings$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Settings' from JSON`,
-  );
-}
-
-/** @internal */
-export const Theme$inboundSchema: z.ZodType<Theme, z.ZodTypeDef, unknown> = z
-  .object({
-    favicon: z.string().optional(),
-    logo: z.string().optional(),
-    primary_color: z.string().optional(),
-    sidepanel_background_color: z.string().optional(),
-    sidepanel_text_color: z.string().optional(),
-    vault_name: z.string().optional(),
-    privacy_url: z.string().optional(),
-    terms_url: z.string().optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      "primary_color": "primaryColor",
-      "sidepanel_background_color": "sidepanelBackgroundColor",
-      "sidepanel_text_color": "sidepanelTextColor",
-      "vault_name": "vaultName",
-      "privacy_url": "privacyUrl",
-      "terms_url": "termsUrl",
-    });
-  });
 
 /** @internal */
 export type Theme$Outbound = {
@@ -329,48 +228,9 @@ export const Theme$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Theme$ {
-  /** @deprecated use `Theme$inboundSchema` instead. */
-  export const inboundSchema = Theme$inboundSchema;
-  /** @deprecated use `Theme$outboundSchema` instead. */
-  export const outboundSchema = Theme$outboundSchema;
-  /** @deprecated use `Theme$Outbound` instead. */
-  export type Outbound = Theme$Outbound;
-}
-
 export function themeToJSON(theme: Theme): string {
   return JSON.stringify(Theme$outboundSchema.parse(theme));
 }
-
-export function themeFromJSON(
-  jsonString: string,
-): SafeParseResult<Theme, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => Theme$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Theme' from JSON`,
-  );
-}
-
-/** @internal */
-export const Session$inboundSchema: z.ZodType<Session, z.ZodTypeDef, unknown> =
-  z.object({
-    consumer_metadata: ConsumerMetadata$inboundSchema.optional(),
-    redirect_uri: z.string().optional(),
-    settings: z.lazy(() => Settings$inboundSchema).optional(),
-    theme: z.lazy(() => Theme$inboundSchema).optional(),
-    custom_consumer_settings: z.record(z.any()).optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      "consumer_metadata": "consumerMetadata",
-      "redirect_uri": "redirectUri",
-      "custom_consumer_settings": "customConsumerSettings",
-    });
-  });
 
 /** @internal */
 export type Session$Outbound = {
@@ -400,29 +260,6 @@ export const Session$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Session$ {
-  /** @deprecated use `Session$inboundSchema` instead. */
-  export const inboundSchema = Session$inboundSchema;
-  /** @deprecated use `Session$outboundSchema` instead. */
-  export const outboundSchema = Session$outboundSchema;
-  /** @deprecated use `Session$Outbound` instead. */
-  export type Outbound = Session$Outbound;
-}
-
 export function sessionToJSON(session: Session): string {
   return JSON.stringify(Session$outboundSchema.parse(session));
-}
-
-export function sessionFromJSON(
-  jsonString: string,
-): SafeParseResult<Session, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => Session$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Session' from JSON`,
-  );
 }

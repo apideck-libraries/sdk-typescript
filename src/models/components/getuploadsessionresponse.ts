@@ -7,12 +7,7 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  UploadSession,
-  UploadSession$inboundSchema,
-  UploadSession$Outbound,
-  UploadSession$outboundSchema,
-} from "./uploadsession.js";
+import { UploadSession, UploadSession$inboundSchema } from "./uploadsession.js";
 
 /**
  * UploadSessions
@@ -64,58 +59,6 @@ export const GetUploadSessionResponse$inboundSchema: z.ZodType<
     "_raw": "raw",
   });
 });
-
-/** @internal */
-export type GetUploadSessionResponse$Outbound = {
-  status_code: number;
-  status: string;
-  service: string;
-  resource: string;
-  operation: string;
-  data: UploadSession$Outbound;
-  _raw?: { [k: string]: any } | null | undefined;
-};
-
-/** @internal */
-export const GetUploadSessionResponse$outboundSchema: z.ZodType<
-  GetUploadSessionResponse$Outbound,
-  z.ZodTypeDef,
-  GetUploadSessionResponse
-> = z.object({
-  statusCode: z.number().int(),
-  status: z.string(),
-  service: z.string(),
-  resource: z.string(),
-  operation: z.string(),
-  data: UploadSession$outboundSchema,
-  raw: z.nullable(z.record(z.any())).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    statusCode: "status_code",
-    raw: "_raw",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetUploadSessionResponse$ {
-  /** @deprecated use `GetUploadSessionResponse$inboundSchema` instead. */
-  export const inboundSchema = GetUploadSessionResponse$inboundSchema;
-  /** @deprecated use `GetUploadSessionResponse$outboundSchema` instead. */
-  export const outboundSchema = GetUploadSessionResponse$outboundSchema;
-  /** @deprecated use `GetUploadSessionResponse$Outbound` instead. */
-  export type Outbound = GetUploadSessionResponse$Outbound;
-}
-
-export function getUploadSessionResponseToJSON(
-  getUploadSessionResponse: GetUploadSessionResponse,
-): string {
-  return JSON.stringify(
-    GetUploadSessionResponse$outboundSchema.parse(getUploadSessionResponse),
-  );
-}
 
 export function getUploadSessionResponseFromJSON(
   jsonString: string,

@@ -33,7 +33,7 @@ type VaultSessionsCreateRequest struct {
 	// The ID of your Unify application
 	AppID *string `header:"style=simple,explode=false,name=x-apideck-app-id"`
 	// Additional redirect uri and/or consumer metadata
-	Session *components.Session `request:"mediaType=application/json"`
+	Body *components.Session `request:"mediaType=application/json"`
 }
 
 func (o *VaultSessionsCreateRequest) GetConsumerID() *string {
@@ -50,11 +50,11 @@ func (o *VaultSessionsCreateRequest) GetAppID() *string {
 	return o.AppID
 }
 
-func (o *VaultSessionsCreateRequest) GetSession() *components.Session {
+func (o *VaultSessionsCreateRequest) GetBody() *components.Session {
 	if o == nil {
 		return nil
 	}
-	return o.Session
+	return o.Body
 }
 
 type VaultSessionsCreateResponse struct {

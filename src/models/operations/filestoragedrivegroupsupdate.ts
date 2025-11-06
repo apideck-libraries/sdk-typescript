@@ -57,86 +57,6 @@ export type FileStorageDriveGroupsUpdateResponse = {
 };
 
 /** @internal */
-export const FileStorageDriveGroupsUpdateGlobals$inboundSchema: z.ZodType<
-  FileStorageDriveGroupsUpdateGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/** @internal */
-export type FileStorageDriveGroupsUpdateGlobals$Outbound = {
-  consumerId?: string | undefined;
-  appId?: string | undefined;
-};
-
-/** @internal */
-export const FileStorageDriveGroupsUpdateGlobals$outboundSchema: z.ZodType<
-  FileStorageDriveGroupsUpdateGlobals$Outbound,
-  z.ZodTypeDef,
-  FileStorageDriveGroupsUpdateGlobals
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace FileStorageDriveGroupsUpdateGlobals$ {
-  /** @deprecated use `FileStorageDriveGroupsUpdateGlobals$inboundSchema` instead. */
-  export const inboundSchema =
-    FileStorageDriveGroupsUpdateGlobals$inboundSchema;
-  /** @deprecated use `FileStorageDriveGroupsUpdateGlobals$outboundSchema` instead. */
-  export const outboundSchema =
-    FileStorageDriveGroupsUpdateGlobals$outboundSchema;
-  /** @deprecated use `FileStorageDriveGroupsUpdateGlobals$Outbound` instead. */
-  export type Outbound = FileStorageDriveGroupsUpdateGlobals$Outbound;
-}
-
-export function fileStorageDriveGroupsUpdateGlobalsToJSON(
-  fileStorageDriveGroupsUpdateGlobals: FileStorageDriveGroupsUpdateGlobals,
-): string {
-  return JSON.stringify(
-    FileStorageDriveGroupsUpdateGlobals$outboundSchema.parse(
-      fileStorageDriveGroupsUpdateGlobals,
-    ),
-  );
-}
-
-export function fileStorageDriveGroupsUpdateGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<FileStorageDriveGroupsUpdateGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      FileStorageDriveGroupsUpdateGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'FileStorageDriveGroupsUpdateGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const FileStorageDriveGroupsUpdateRequest$inboundSchema: z.ZodType<
-  FileStorageDriveGroupsUpdateRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  id: z.string(),
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  raw: z.boolean().default(false),
-  DriveGroup: components.DriveGroupInput$inboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    "DriveGroup": "driveGroup",
-  });
-});
-
-/** @internal */
 export type FileStorageDriveGroupsUpdateRequest$Outbound = {
   id: string;
   consumerId?: string | undefined;
@@ -164,21 +84,6 @@ export const FileStorageDriveGroupsUpdateRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace FileStorageDriveGroupsUpdateRequest$ {
-  /** @deprecated use `FileStorageDriveGroupsUpdateRequest$inboundSchema` instead. */
-  export const inboundSchema =
-    FileStorageDriveGroupsUpdateRequest$inboundSchema;
-  /** @deprecated use `FileStorageDriveGroupsUpdateRequest$outboundSchema` instead. */
-  export const outboundSchema =
-    FileStorageDriveGroupsUpdateRequest$outboundSchema;
-  /** @deprecated use `FileStorageDriveGroupsUpdateRequest$Outbound` instead. */
-  export type Outbound = FileStorageDriveGroupsUpdateRequest$Outbound;
-}
-
 export function fileStorageDriveGroupsUpdateRequestToJSON(
   fileStorageDriveGroupsUpdateRequest: FileStorageDriveGroupsUpdateRequest,
 ): string {
@@ -186,17 +91,6 @@ export function fileStorageDriveGroupsUpdateRequestToJSON(
     FileStorageDriveGroupsUpdateRequest$outboundSchema.parse(
       fileStorageDriveGroupsUpdateRequest,
     ),
-  );
-}
-
-export function fileStorageDriveGroupsUpdateRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<FileStorageDriveGroupsUpdateRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      FileStorageDriveGroupsUpdateRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'FileStorageDriveGroupsUpdateRequest' from JSON`,
   );
 }
 
@@ -218,61 +112,6 @@ export const FileStorageDriveGroupsUpdateResponse$inboundSchema: z.ZodType<
     "UnexpectedErrorResponse": "unexpectedErrorResponse",
   });
 });
-
-/** @internal */
-export type FileStorageDriveGroupsUpdateResponse$Outbound = {
-  HttpMeta: components.HTTPMetadata$Outbound;
-  UpdateDriveGroupResponse?:
-    | components.UpdateDriveGroupResponse$Outbound
-    | undefined;
-  UnexpectedErrorResponse?:
-    | components.UnexpectedErrorResponse$Outbound
-    | undefined;
-};
-
-/** @internal */
-export const FileStorageDriveGroupsUpdateResponse$outboundSchema: z.ZodType<
-  FileStorageDriveGroupsUpdateResponse$Outbound,
-  z.ZodTypeDef,
-  FileStorageDriveGroupsUpdateResponse
-> = z.object({
-  httpMeta: components.HTTPMetadata$outboundSchema,
-  updateDriveGroupResponse: components.UpdateDriveGroupResponse$outboundSchema
-    .optional(),
-  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    httpMeta: "HttpMeta",
-    updateDriveGroupResponse: "UpdateDriveGroupResponse",
-    unexpectedErrorResponse: "UnexpectedErrorResponse",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace FileStorageDriveGroupsUpdateResponse$ {
-  /** @deprecated use `FileStorageDriveGroupsUpdateResponse$inboundSchema` instead. */
-  export const inboundSchema =
-    FileStorageDriveGroupsUpdateResponse$inboundSchema;
-  /** @deprecated use `FileStorageDriveGroupsUpdateResponse$outboundSchema` instead. */
-  export const outboundSchema =
-    FileStorageDriveGroupsUpdateResponse$outboundSchema;
-  /** @deprecated use `FileStorageDriveGroupsUpdateResponse$Outbound` instead. */
-  export type Outbound = FileStorageDriveGroupsUpdateResponse$Outbound;
-}
-
-export function fileStorageDriveGroupsUpdateResponseToJSON(
-  fileStorageDriveGroupsUpdateResponse: FileStorageDriveGroupsUpdateResponse,
-): string {
-  return JSON.stringify(
-    FileStorageDriveGroupsUpdateResponse$outboundSchema.parse(
-      fileStorageDriveGroupsUpdateResponse,
-    ),
-  );
-}
 
 export function fileStorageDriveGroupsUpdateResponseFromJSON(
   jsonString: string,

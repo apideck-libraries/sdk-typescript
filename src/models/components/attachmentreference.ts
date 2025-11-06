@@ -9,7 +9,6 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   AttachmentReferenceType,
   AttachmentReferenceType$inboundSchema,
-  AttachmentReferenceType$outboundSchema,
 } from "./attachmentreferencetype.js";
 
 export type AttachmentReference = {
@@ -29,43 +28,6 @@ export const AttachmentReference$inboundSchema: z.ZodType<
   type: AttachmentReferenceType$inboundSchema.optional(),
   id: z.string().optional(),
 });
-
-/** @internal */
-export type AttachmentReference$Outbound = {
-  type?: string | undefined;
-  id?: string | undefined;
-};
-
-/** @internal */
-export const AttachmentReference$outboundSchema: z.ZodType<
-  AttachmentReference$Outbound,
-  z.ZodTypeDef,
-  AttachmentReference
-> = z.object({
-  type: AttachmentReferenceType$outboundSchema.optional(),
-  id: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AttachmentReference$ {
-  /** @deprecated use `AttachmentReference$inboundSchema` instead. */
-  export const inboundSchema = AttachmentReference$inboundSchema;
-  /** @deprecated use `AttachmentReference$outboundSchema` instead. */
-  export const outboundSchema = AttachmentReference$outboundSchema;
-  /** @deprecated use `AttachmentReference$Outbound` instead. */
-  export type Outbound = AttachmentReference$Outbound;
-}
-
-export function attachmentReferenceToJSON(
-  attachmentReference: AttachmentReference,
-): string {
-  return JSON.stringify(
-    AttachmentReference$outboundSchema.parse(attachmentReference),
-  );
-}
 
 export function attachmentReferenceFromJSON(
   jsonString: string,

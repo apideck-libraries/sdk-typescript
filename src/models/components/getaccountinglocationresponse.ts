@@ -10,8 +10,6 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   AccountingLocation,
   AccountingLocation$inboundSchema,
-  AccountingLocation$Outbound,
-  AccountingLocation$outboundSchema,
 } from "./accountinglocation.js";
 
 /**
@@ -64,60 +62,6 @@ export const GetAccountingLocationResponse$inboundSchema: z.ZodType<
     "_raw": "raw",
   });
 });
-
-/** @internal */
-export type GetAccountingLocationResponse$Outbound = {
-  status_code: number;
-  status: string;
-  service: string;
-  resource: string;
-  operation: string;
-  data: AccountingLocation$Outbound;
-  _raw?: { [k: string]: any } | null | undefined;
-};
-
-/** @internal */
-export const GetAccountingLocationResponse$outboundSchema: z.ZodType<
-  GetAccountingLocationResponse$Outbound,
-  z.ZodTypeDef,
-  GetAccountingLocationResponse
-> = z.object({
-  statusCode: z.number().int(),
-  status: z.string(),
-  service: z.string(),
-  resource: z.string(),
-  operation: z.string(),
-  data: AccountingLocation$outboundSchema,
-  raw: z.nullable(z.record(z.any())).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    statusCode: "status_code",
-    raw: "_raw",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetAccountingLocationResponse$ {
-  /** @deprecated use `GetAccountingLocationResponse$inboundSchema` instead. */
-  export const inboundSchema = GetAccountingLocationResponse$inboundSchema;
-  /** @deprecated use `GetAccountingLocationResponse$outboundSchema` instead. */
-  export const outboundSchema = GetAccountingLocationResponse$outboundSchema;
-  /** @deprecated use `GetAccountingLocationResponse$Outbound` instead. */
-  export type Outbound = GetAccountingLocationResponse$Outbound;
-}
-
-export function getAccountingLocationResponseToJSON(
-  getAccountingLocationResponse: GetAccountingLocationResponse,
-): string {
-  return JSON.stringify(
-    GetAccountingLocationResponse$outboundSchema.parse(
-      getAccountingLocationResponse,
-    ),
-  );
-}
 
 export function getAccountingLocationResponseFromJSON(
   jsonString: string,

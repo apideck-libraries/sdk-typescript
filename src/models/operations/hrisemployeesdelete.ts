@@ -56,76 +56,6 @@ export type HrisEmployeesDeleteResponse = {
 };
 
 /** @internal */
-export const HrisEmployeesDeleteGlobals$inboundSchema: z.ZodType<
-  HrisEmployeesDeleteGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/** @internal */
-export type HrisEmployeesDeleteGlobals$Outbound = {
-  consumerId?: string | undefined;
-  appId?: string | undefined;
-};
-
-/** @internal */
-export const HrisEmployeesDeleteGlobals$outboundSchema: z.ZodType<
-  HrisEmployeesDeleteGlobals$Outbound,
-  z.ZodTypeDef,
-  HrisEmployeesDeleteGlobals
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace HrisEmployeesDeleteGlobals$ {
-  /** @deprecated use `HrisEmployeesDeleteGlobals$inboundSchema` instead. */
-  export const inboundSchema = HrisEmployeesDeleteGlobals$inboundSchema;
-  /** @deprecated use `HrisEmployeesDeleteGlobals$outboundSchema` instead. */
-  export const outboundSchema = HrisEmployeesDeleteGlobals$outboundSchema;
-  /** @deprecated use `HrisEmployeesDeleteGlobals$Outbound` instead. */
-  export type Outbound = HrisEmployeesDeleteGlobals$Outbound;
-}
-
-export function hrisEmployeesDeleteGlobalsToJSON(
-  hrisEmployeesDeleteGlobals: HrisEmployeesDeleteGlobals,
-): string {
-  return JSON.stringify(
-    HrisEmployeesDeleteGlobals$outboundSchema.parse(hrisEmployeesDeleteGlobals),
-  );
-}
-
-export function hrisEmployeesDeleteGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<HrisEmployeesDeleteGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => HrisEmployeesDeleteGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'HrisEmployeesDeleteGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const HrisEmployeesDeleteRequest$inboundSchema: z.ZodType<
-  HrisEmployeesDeleteRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  id: z.string(),
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  raw: z.boolean().default(false),
-});
-
-/** @internal */
 export type HrisEmployeesDeleteRequest$Outbound = {
   id: string;
   consumerId?: string | undefined;
@@ -147,34 +77,11 @@ export const HrisEmployeesDeleteRequest$outboundSchema: z.ZodType<
   raw: z.boolean().default(false),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace HrisEmployeesDeleteRequest$ {
-  /** @deprecated use `HrisEmployeesDeleteRequest$inboundSchema` instead. */
-  export const inboundSchema = HrisEmployeesDeleteRequest$inboundSchema;
-  /** @deprecated use `HrisEmployeesDeleteRequest$outboundSchema` instead. */
-  export const outboundSchema = HrisEmployeesDeleteRequest$outboundSchema;
-  /** @deprecated use `HrisEmployeesDeleteRequest$Outbound` instead. */
-  export type Outbound = HrisEmployeesDeleteRequest$Outbound;
-}
-
 export function hrisEmployeesDeleteRequestToJSON(
   hrisEmployeesDeleteRequest: HrisEmployeesDeleteRequest,
 ): string {
   return JSON.stringify(
     HrisEmployeesDeleteRequest$outboundSchema.parse(hrisEmployeesDeleteRequest),
-  );
-}
-
-export function hrisEmployeesDeleteRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<HrisEmployeesDeleteRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => HrisEmployeesDeleteRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'HrisEmployeesDeleteRequest' from JSON`,
   );
 }
 
@@ -196,59 +103,6 @@ export const HrisEmployeesDeleteResponse$inboundSchema: z.ZodType<
     "UnexpectedErrorResponse": "unexpectedErrorResponse",
   });
 });
-
-/** @internal */
-export type HrisEmployeesDeleteResponse$Outbound = {
-  HttpMeta: components.HTTPMetadata$Outbound;
-  DeleteEmployeeResponse?:
-    | components.DeleteEmployeeResponse$Outbound
-    | undefined;
-  UnexpectedErrorResponse?:
-    | components.UnexpectedErrorResponse$Outbound
-    | undefined;
-};
-
-/** @internal */
-export const HrisEmployeesDeleteResponse$outboundSchema: z.ZodType<
-  HrisEmployeesDeleteResponse$Outbound,
-  z.ZodTypeDef,
-  HrisEmployeesDeleteResponse
-> = z.object({
-  httpMeta: components.HTTPMetadata$outboundSchema,
-  deleteEmployeeResponse: components.DeleteEmployeeResponse$outboundSchema
-    .optional(),
-  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    httpMeta: "HttpMeta",
-    deleteEmployeeResponse: "DeleteEmployeeResponse",
-    unexpectedErrorResponse: "UnexpectedErrorResponse",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace HrisEmployeesDeleteResponse$ {
-  /** @deprecated use `HrisEmployeesDeleteResponse$inboundSchema` instead. */
-  export const inboundSchema = HrisEmployeesDeleteResponse$inboundSchema;
-  /** @deprecated use `HrisEmployeesDeleteResponse$outboundSchema` instead. */
-  export const outboundSchema = HrisEmployeesDeleteResponse$outboundSchema;
-  /** @deprecated use `HrisEmployeesDeleteResponse$Outbound` instead. */
-  export type Outbound = HrisEmployeesDeleteResponse$Outbound;
-}
-
-export function hrisEmployeesDeleteResponseToJSON(
-  hrisEmployeesDeleteResponse: HrisEmployeesDeleteResponse,
-): string {
-  return JSON.stringify(
-    HrisEmployeesDeleteResponse$outboundSchema.parse(
-      hrisEmployeesDeleteResponse,
-    ),
-  );
-}
 
 export function hrisEmployeesDeleteResponseFromJSON(
   jsonString: string,

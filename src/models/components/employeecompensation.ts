@@ -104,21 +104,9 @@ export type EmployeeCompensationInput = {
 /** @internal */
 export const FlsaStatus$inboundSchema: z.ZodNativeEnum<typeof FlsaStatus> = z
   .nativeEnum(FlsaStatus);
-
 /** @internal */
 export const FlsaStatus$outboundSchema: z.ZodNativeEnum<typeof FlsaStatus> =
   FlsaStatus$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace FlsaStatus$ {
-  /** @deprecated use `FlsaStatus$inboundSchema` instead. */
-  export const inboundSchema = FlsaStatus$inboundSchema;
-  /** @deprecated use `FlsaStatus$outboundSchema` instead. */
-  export const outboundSchema = FlsaStatus$outboundSchema;
-}
 
 /** @internal */
 export const EmployeeCompensation$inboundSchema: z.ZodType<
@@ -144,63 +132,6 @@ export const EmployeeCompensation$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type EmployeeCompensation$Outbound = {
-  id?: string | null | undefined;
-  job_id?: string | null | undefined;
-  rate?: number | null | undefined;
-  payment_unit?: string | null | undefined;
-  currency?: string | null | undefined;
-  flsa_status?: string | null | undefined;
-  effective_date?: string | null | undefined;
-  payment_frequency?: string | null | undefined;
-};
-
-/** @internal */
-export const EmployeeCompensation$outboundSchema: z.ZodType<
-  EmployeeCompensation$Outbound,
-  z.ZodTypeDef,
-  EmployeeCompensation
-> = z.object({
-  id: z.nullable(z.string()).optional(),
-  jobId: z.nullable(z.string()).optional(),
-  rate: z.nullable(z.number()).optional(),
-  paymentUnit: z.nullable(PaymentUnit$outboundSchema).optional(),
-  currency: z.nullable(Currency$outboundSchema).optional(),
-  flsaStatus: z.nullable(FlsaStatus$outboundSchema).optional(),
-  effectiveDate: z.nullable(z.string()).optional(),
-  paymentFrequency: z.nullable(PaymentFrequency$outboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    jobId: "job_id",
-    paymentUnit: "payment_unit",
-    flsaStatus: "flsa_status",
-    effectiveDate: "effective_date",
-    paymentFrequency: "payment_frequency",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace EmployeeCompensation$ {
-  /** @deprecated use `EmployeeCompensation$inboundSchema` instead. */
-  export const inboundSchema = EmployeeCompensation$inboundSchema;
-  /** @deprecated use `EmployeeCompensation$outboundSchema` instead. */
-  export const outboundSchema = EmployeeCompensation$outboundSchema;
-  /** @deprecated use `EmployeeCompensation$Outbound` instead. */
-  export type Outbound = EmployeeCompensation$Outbound;
-}
-
-export function employeeCompensationToJSON(
-  employeeCompensation: EmployeeCompensation,
-): string {
-  return JSON.stringify(
-    EmployeeCompensation$outboundSchema.parse(employeeCompensation),
-  );
-}
-
 export function employeeCompensationFromJSON(
   jsonString: string,
 ): SafeParseResult<EmployeeCompensation, SDKValidationError> {
@@ -210,27 +141,6 @@ export function employeeCompensationFromJSON(
     `Failed to parse 'EmployeeCompensation' from JSON`,
   );
 }
-
-/** @internal */
-export const EmployeeCompensationInput$inboundSchema: z.ZodType<
-  EmployeeCompensationInput,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  rate: z.nullable(z.number()).optional(),
-  payment_unit: z.nullable(PaymentUnit$inboundSchema).optional(),
-  currency: z.nullable(Currency$inboundSchema).optional(),
-  flsa_status: z.nullable(FlsaStatus$inboundSchema).optional(),
-  effective_date: z.nullable(z.string()).optional(),
-  payment_frequency: z.nullable(PaymentFrequency$inboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "payment_unit": "paymentUnit",
-    "flsa_status": "flsaStatus",
-    "effective_date": "effectiveDate",
-    "payment_frequency": "paymentFrequency",
-  });
-});
 
 /** @internal */
 export type EmployeeCompensationInput$Outbound = {
@@ -263,33 +173,10 @@ export const EmployeeCompensationInput$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace EmployeeCompensationInput$ {
-  /** @deprecated use `EmployeeCompensationInput$inboundSchema` instead. */
-  export const inboundSchema = EmployeeCompensationInput$inboundSchema;
-  /** @deprecated use `EmployeeCompensationInput$outboundSchema` instead. */
-  export const outboundSchema = EmployeeCompensationInput$outboundSchema;
-  /** @deprecated use `EmployeeCompensationInput$Outbound` instead. */
-  export type Outbound = EmployeeCompensationInput$Outbound;
-}
-
 export function employeeCompensationInputToJSON(
   employeeCompensationInput: EmployeeCompensationInput,
 ): string {
   return JSON.stringify(
     EmployeeCompensationInput$outboundSchema.parse(employeeCompensationInput),
-  );
-}
-
-export function employeeCompensationInputFromJSON(
-  jsonString: string,
-): SafeParseResult<EmployeeCompensationInput, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => EmployeeCompensationInput$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'EmployeeCompensationInput' from JSON`,
   );
 }

@@ -26,37 +26,6 @@ export const UnifiedId$inboundSchema: z.ZodType<
   id: z.string(),
 });
 
-/** @internal */
-export type UnifiedId$Outbound = {
-  id: string;
-};
-
-/** @internal */
-export const UnifiedId$outboundSchema: z.ZodType<
-  UnifiedId$Outbound,
-  z.ZodTypeDef,
-  UnifiedId
-> = z.object({
-  id: z.string(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace UnifiedId$ {
-  /** @deprecated use `UnifiedId$inboundSchema` instead. */
-  export const inboundSchema = UnifiedId$inboundSchema;
-  /** @deprecated use `UnifiedId$outboundSchema` instead. */
-  export const outboundSchema = UnifiedId$outboundSchema;
-  /** @deprecated use `UnifiedId$Outbound` instead. */
-  export type Outbound = UnifiedId$Outbound;
-}
-
-export function unifiedIdToJSON(unifiedId: UnifiedId): string {
-  return JSON.stringify(UnifiedId$outboundSchema.parse(unifiedId));
-}
-
 export function unifiedIdFromJSON(
   jsonString: string,
 ): SafeParseResult<UnifiedId, SDKValidationError> {

@@ -4,9 +4,6 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type ContactsFilter = {
   /**
@@ -38,29 +35,6 @@ export type ContactsFilter = {
    */
   ownerId?: string | undefined;
 };
-
-/** @internal */
-export const ContactsFilter$inboundSchema: z.ZodType<
-  ContactsFilter,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  name: z.string().optional(),
-  first_name: z.string().optional(),
-  last_name: z.string().optional(),
-  email: z.string().optional(),
-  phone_number: z.string().optional(),
-  company_id: z.string().optional(),
-  owner_id: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "first_name": "firstName",
-    "last_name": "lastName",
-    "phone_number": "phoneNumber",
-    "company_id": "companyId",
-    "owner_id": "ownerId",
-  });
-});
 
 /** @internal */
 export type ContactsFilter$Outbound = {
@@ -96,29 +70,6 @@ export const ContactsFilter$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ContactsFilter$ {
-  /** @deprecated use `ContactsFilter$inboundSchema` instead. */
-  export const inboundSchema = ContactsFilter$inboundSchema;
-  /** @deprecated use `ContactsFilter$outboundSchema` instead. */
-  export const outboundSchema = ContactsFilter$outboundSchema;
-  /** @deprecated use `ContactsFilter$Outbound` instead. */
-  export type Outbound = ContactsFilter$Outbound;
-}
-
 export function contactsFilterToJSON(contactsFilter: ContactsFilter): string {
   return JSON.stringify(ContactsFilter$outboundSchema.parse(contactsFilter));
-}
-
-export function contactsFilterFromJSON(
-  jsonString: string,
-): SafeParseResult<ContactsFilter, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => ContactsFilter$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ContactsFilter' from JSON`,
-  );
 }

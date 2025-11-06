@@ -38,8 +38,8 @@ type FileStorageDrivesUpdateRequest struct {
 	// Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
 	ServiceID *string `header:"style=simple,explode=false,name=x-apideck-service-id"`
 	// Include raw response. Mostly used for debugging purposes
-	Raw   *bool                 `default:"false" queryParam:"style=form,explode=true,name=raw"`
-	Drive components.DriveInput `request:"mediaType=application/json"`
+	Raw  *bool                 `default:"false" queryParam:"style=form,explode=true,name=raw"`
+	Body components.DriveInput `request:"mediaType=application/json"`
 }
 
 func (f FileStorageDrivesUpdateRequest) MarshalJSON() ([]byte, error) {
@@ -47,7 +47,7 @@ func (f FileStorageDrivesUpdateRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (f *FileStorageDrivesUpdateRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &f, "", false, []string{"id", "Drive"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &f, "", false, []string{"id", "body"}); err != nil {
 		return err
 	}
 	return nil
@@ -88,11 +88,11 @@ func (o *FileStorageDrivesUpdateRequest) GetRaw() *bool {
 	return o.Raw
 }
 
-func (o *FileStorageDrivesUpdateRequest) GetDrive() components.DriveInput {
+func (o *FileStorageDrivesUpdateRequest) GetBody() components.DriveInput {
 	if o == nil {
 		return components.DriveInput{}
 	}
-	return o.Drive
+	return o.Body
 }
 
 type FileStorageDrivesUpdateResponse struct {

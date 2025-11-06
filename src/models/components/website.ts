@@ -41,21 +41,9 @@ export type Website = {
 /** @internal */
 export const WebsiteType$inboundSchema: z.ZodNativeEnum<typeof WebsiteType> = z
   .nativeEnum(WebsiteType);
-
 /** @internal */
 export const WebsiteType$outboundSchema: z.ZodNativeEnum<typeof WebsiteType> =
   WebsiteType$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace WebsiteType$ {
-  /** @deprecated use `WebsiteType$inboundSchema` instead. */
-  export const inboundSchema = WebsiteType$inboundSchema;
-  /** @deprecated use `WebsiteType$outboundSchema` instead. */
-  export const outboundSchema = WebsiteType$outboundSchema;
-}
 
 /** @internal */
 export const Website$inboundSchema: z.ZodType<Website, z.ZodTypeDef, unknown> =
@@ -64,7 +52,6 @@ export const Website$inboundSchema: z.ZodType<Website, z.ZodTypeDef, unknown> =
     url: z.string(),
     type: z.nullable(WebsiteType$inboundSchema).optional(),
   });
-
 /** @internal */
 export type Website$Outbound = {
   id?: string | null | undefined;
@@ -83,23 +70,9 @@ export const Website$outboundSchema: z.ZodType<
   type: z.nullable(WebsiteType$outboundSchema).optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Website$ {
-  /** @deprecated use `Website$inboundSchema` instead. */
-  export const inboundSchema = Website$inboundSchema;
-  /** @deprecated use `Website$outboundSchema` instead. */
-  export const outboundSchema = Website$outboundSchema;
-  /** @deprecated use `Website$Outbound` instead. */
-  export type Outbound = Website$Outbound;
-}
-
 export function websiteToJSON(website: Website): string {
   return JSON.stringify(Website$outboundSchema.parse(website));
 }
-
 export function websiteFromJSON(
   jsonString: string,
 ): SafeParseResult<Website, SDKValidationError> {

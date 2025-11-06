@@ -62,79 +62,6 @@ export type EcommerceCustomersOneResponse = {
 };
 
 /** @internal */
-export const EcommerceCustomersOneGlobals$inboundSchema: z.ZodType<
-  EcommerceCustomersOneGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/** @internal */
-export type EcommerceCustomersOneGlobals$Outbound = {
-  consumerId?: string | undefined;
-  appId?: string | undefined;
-};
-
-/** @internal */
-export const EcommerceCustomersOneGlobals$outboundSchema: z.ZodType<
-  EcommerceCustomersOneGlobals$Outbound,
-  z.ZodTypeDef,
-  EcommerceCustomersOneGlobals
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace EcommerceCustomersOneGlobals$ {
-  /** @deprecated use `EcommerceCustomersOneGlobals$inboundSchema` instead. */
-  export const inboundSchema = EcommerceCustomersOneGlobals$inboundSchema;
-  /** @deprecated use `EcommerceCustomersOneGlobals$outboundSchema` instead. */
-  export const outboundSchema = EcommerceCustomersOneGlobals$outboundSchema;
-  /** @deprecated use `EcommerceCustomersOneGlobals$Outbound` instead. */
-  export type Outbound = EcommerceCustomersOneGlobals$Outbound;
-}
-
-export function ecommerceCustomersOneGlobalsToJSON(
-  ecommerceCustomersOneGlobals: EcommerceCustomersOneGlobals,
-): string {
-  return JSON.stringify(
-    EcommerceCustomersOneGlobals$outboundSchema.parse(
-      ecommerceCustomersOneGlobals,
-    ),
-  );
-}
-
-export function ecommerceCustomersOneGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<EcommerceCustomersOneGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => EcommerceCustomersOneGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'EcommerceCustomersOneGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const EcommerceCustomersOneRequest$inboundSchema: z.ZodType<
-  EcommerceCustomersOneRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  id: z.string(),
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  raw: z.boolean().default(false),
-  fields: z.nullable(z.string()).optional(),
-});
-
-/** @internal */
 export type EcommerceCustomersOneRequest$Outbound = {
   id: string;
   consumerId?: string | undefined;
@@ -158,19 +85,6 @@ export const EcommerceCustomersOneRequest$outboundSchema: z.ZodType<
   fields: z.nullable(z.string()).optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace EcommerceCustomersOneRequest$ {
-  /** @deprecated use `EcommerceCustomersOneRequest$inboundSchema` instead. */
-  export const inboundSchema = EcommerceCustomersOneRequest$inboundSchema;
-  /** @deprecated use `EcommerceCustomersOneRequest$outboundSchema` instead. */
-  export const outboundSchema = EcommerceCustomersOneRequest$outboundSchema;
-  /** @deprecated use `EcommerceCustomersOneRequest$Outbound` instead. */
-  export type Outbound = EcommerceCustomersOneRequest$Outbound;
-}
-
 export function ecommerceCustomersOneRequestToJSON(
   ecommerceCustomersOneRequest: EcommerceCustomersOneRequest,
 ): string {
@@ -178,16 +92,6 @@ export function ecommerceCustomersOneRequestToJSON(
     EcommerceCustomersOneRequest$outboundSchema.parse(
       ecommerceCustomersOneRequest,
     ),
-  );
-}
-
-export function ecommerceCustomersOneRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<EcommerceCustomersOneRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => EcommerceCustomersOneRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'EcommerceCustomersOneRequest' from JSON`,
   );
 }
 
@@ -209,59 +113,6 @@ export const EcommerceCustomersOneResponse$inboundSchema: z.ZodType<
     "UnexpectedErrorResponse": "unexpectedErrorResponse",
   });
 });
-
-/** @internal */
-export type EcommerceCustomersOneResponse$Outbound = {
-  HttpMeta: components.HTTPMetadata$Outbound;
-  GetEcommerceCustomerResponse?:
-    | components.GetEcommerceCustomerResponse$Outbound
-    | undefined;
-  UnexpectedErrorResponse?:
-    | components.UnexpectedErrorResponse$Outbound
-    | undefined;
-};
-
-/** @internal */
-export const EcommerceCustomersOneResponse$outboundSchema: z.ZodType<
-  EcommerceCustomersOneResponse$Outbound,
-  z.ZodTypeDef,
-  EcommerceCustomersOneResponse
-> = z.object({
-  httpMeta: components.HTTPMetadata$outboundSchema,
-  getEcommerceCustomerResponse: components
-    .GetEcommerceCustomerResponse$outboundSchema.optional(),
-  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    httpMeta: "HttpMeta",
-    getEcommerceCustomerResponse: "GetEcommerceCustomerResponse",
-    unexpectedErrorResponse: "UnexpectedErrorResponse",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace EcommerceCustomersOneResponse$ {
-  /** @deprecated use `EcommerceCustomersOneResponse$inboundSchema` instead. */
-  export const inboundSchema = EcommerceCustomersOneResponse$inboundSchema;
-  /** @deprecated use `EcommerceCustomersOneResponse$outboundSchema` instead. */
-  export const outboundSchema = EcommerceCustomersOneResponse$outboundSchema;
-  /** @deprecated use `EcommerceCustomersOneResponse$Outbound` instead. */
-  export type Outbound = EcommerceCustomersOneResponse$Outbound;
-}
-
-export function ecommerceCustomersOneResponseToJSON(
-  ecommerceCustomersOneResponse: EcommerceCustomersOneResponse,
-): string {
-  return JSON.stringify(
-    EcommerceCustomersOneResponse$outboundSchema.parse(
-      ecommerceCustomersOneResponse,
-    ),
-  );
-}
 
 export function ecommerceCustomersOneResponseFromJSON(
   jsonString: string,

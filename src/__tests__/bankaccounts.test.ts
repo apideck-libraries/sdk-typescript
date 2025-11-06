@@ -110,6 +110,7 @@ test("Bankaccounts Accounting Bank Accounts Add", async () => {
       accountType: "checking",
       ledgerAccount: {
         id: "123456",
+        name: "Bank account",
         nominalCode: "N091",
         code: "453",
         parentId: "123456",
@@ -242,6 +243,7 @@ test("Bankaccounts Accounting Bank Accounts Update", async () => {
       accountType: "checking",
       ledgerAccount: {
         id: "123456",
+        name: "Bank account",
         nominalCode: "N091",
         code: "453",
         parentId: "123456",

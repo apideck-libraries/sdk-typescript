@@ -4,9 +4,6 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type EcommerceOrdersFilter = {
   /**
@@ -26,24 +23,6 @@ export type EcommerceOrdersFilter = {
    */
   createdSince?: string | undefined;
 };
-
-/** @internal */
-export const EcommerceOrdersFilter$inboundSchema: z.ZodType<
-  EcommerceOrdersFilter,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  email: z.string().optional(),
-  customer_id: z.string().optional(),
-  updated_since: z.string().optional(),
-  created_since: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "customer_id": "customerId",
-    "updated_since": "updatedSince",
-    "created_since": "createdSince",
-  });
-});
 
 /** @internal */
 export type EcommerceOrdersFilter$Outbound = {
@@ -71,33 +50,10 @@ export const EcommerceOrdersFilter$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace EcommerceOrdersFilter$ {
-  /** @deprecated use `EcommerceOrdersFilter$inboundSchema` instead. */
-  export const inboundSchema = EcommerceOrdersFilter$inboundSchema;
-  /** @deprecated use `EcommerceOrdersFilter$outboundSchema` instead. */
-  export const outboundSchema = EcommerceOrdersFilter$outboundSchema;
-  /** @deprecated use `EcommerceOrdersFilter$Outbound` instead. */
-  export type Outbound = EcommerceOrdersFilter$Outbound;
-}
-
 export function ecommerceOrdersFilterToJSON(
   ecommerceOrdersFilter: EcommerceOrdersFilter,
 ): string {
   return JSON.stringify(
     EcommerceOrdersFilter$outboundSchema.parse(ecommerceOrdersFilter),
-  );
-}
-
-export function ecommerceOrdersFilterFromJSON(
-  jsonString: string,
-): SafeParseResult<EcommerceOrdersFilter, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => EcommerceOrdersFilter$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'EcommerceOrdersFilter' from JSON`,
   );
 }

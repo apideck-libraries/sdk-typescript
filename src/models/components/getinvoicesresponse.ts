@@ -7,24 +7,9 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  Invoice,
-  Invoice$inboundSchema,
-  Invoice$Outbound,
-  Invoice$outboundSchema,
-} from "./invoice.js";
-import {
-  Links,
-  Links$inboundSchema,
-  Links$Outbound,
-  Links$outboundSchema,
-} from "./links.js";
-import {
-  Meta,
-  Meta$inboundSchema,
-  Meta$Outbound,
-  Meta$outboundSchema,
-} from "./meta.js";
+import { Invoice, Invoice$inboundSchema } from "./invoice.js";
+import { Links, Links$inboundSchema } from "./links.js";
+import { Meta, Meta$inboundSchema } from "./meta.js";
 
 /**
  * Invoices
@@ -86,62 +71,6 @@ export const GetInvoicesResponse$inboundSchema: z.ZodType<
     "_raw": "raw",
   });
 });
-
-/** @internal */
-export type GetInvoicesResponse$Outbound = {
-  status_code: number;
-  status: string;
-  service: string;
-  resource: string;
-  operation: string;
-  data: Array<Invoice$Outbound>;
-  meta?: Meta$Outbound | undefined;
-  links?: Links$Outbound | undefined;
-  _raw?: { [k: string]: any } | null | undefined;
-};
-
-/** @internal */
-export const GetInvoicesResponse$outboundSchema: z.ZodType<
-  GetInvoicesResponse$Outbound,
-  z.ZodTypeDef,
-  GetInvoicesResponse
-> = z.object({
-  statusCode: z.number().int(),
-  status: z.string(),
-  service: z.string(),
-  resource: z.string(),
-  operation: z.string(),
-  data: z.array(Invoice$outboundSchema),
-  meta: Meta$outboundSchema.optional(),
-  links: Links$outboundSchema.optional(),
-  raw: z.nullable(z.record(z.any())).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    statusCode: "status_code",
-    raw: "_raw",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetInvoicesResponse$ {
-  /** @deprecated use `GetInvoicesResponse$inboundSchema` instead. */
-  export const inboundSchema = GetInvoicesResponse$inboundSchema;
-  /** @deprecated use `GetInvoicesResponse$outboundSchema` instead. */
-  export const outboundSchema = GetInvoicesResponse$outboundSchema;
-  /** @deprecated use `GetInvoicesResponse$Outbound` instead. */
-  export type Outbound = GetInvoicesResponse$Outbound;
-}
-
-export function getInvoicesResponseToJSON(
-  getInvoicesResponse: GetInvoicesResponse,
-): string {
-  return JSON.stringify(
-    GetInvoicesResponse$outboundSchema.parse(getInvoicesResponse),
-  );
-}
 
 export function getInvoicesResponseFromJSON(
   jsonString: string,

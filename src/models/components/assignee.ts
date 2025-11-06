@@ -25,39 +25,6 @@ export const Assignee$inboundSchema: z.ZodType<
   username: z.nullable(z.string()).optional(),
 });
 
-/** @internal */
-export type Assignee$Outbound = {
-  id: string;
-  username?: string | null | undefined;
-};
-
-/** @internal */
-export const Assignee$outboundSchema: z.ZodType<
-  Assignee$Outbound,
-  z.ZodTypeDef,
-  Assignee
-> = z.object({
-  id: z.string(),
-  username: z.nullable(z.string()).optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Assignee$ {
-  /** @deprecated use `Assignee$inboundSchema` instead. */
-  export const inboundSchema = Assignee$inboundSchema;
-  /** @deprecated use `Assignee$outboundSchema` instead. */
-  export const outboundSchema = Assignee$outboundSchema;
-  /** @deprecated use `Assignee$Outbound` instead. */
-  export type Outbound = Assignee$Outbound;
-}
-
-export function assigneeToJSON(assignee: Assignee): string {
-  return JSON.stringify(Assignee$outboundSchema.parse(assignee));
-}
-
 export function assigneeFromJSON(
   jsonString: string,
 ): SafeParseResult<Assignee, SDKValidationError> {

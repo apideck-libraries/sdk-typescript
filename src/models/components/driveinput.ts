@@ -4,12 +4,8 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   PassThroughBody,
-  PassThroughBody$inboundSchema,
   PassThroughBody$Outbound,
   PassThroughBody$outboundSchema,
 } from "./passthroughbody.js";
@@ -28,21 +24,6 @@ export type DriveInput = {
    */
   passThrough?: Array<PassThroughBody> | undefined;
 };
-
-/** @internal */
-export const DriveInput$inboundSchema: z.ZodType<
-  DriveInput,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  name: z.string(),
-  description: z.nullable(z.string()).optional(),
-  pass_through: z.array(PassThroughBody$inboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "pass_through": "passThrough",
-  });
-});
 
 /** @internal */
 export type DriveInput$Outbound = {
@@ -66,29 +47,6 @@ export const DriveInput$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DriveInput$ {
-  /** @deprecated use `DriveInput$inboundSchema` instead. */
-  export const inboundSchema = DriveInput$inboundSchema;
-  /** @deprecated use `DriveInput$outboundSchema` instead. */
-  export const outboundSchema = DriveInput$outboundSchema;
-  /** @deprecated use `DriveInput$Outbound` instead. */
-  export type Outbound = DriveInput$Outbound;
-}
-
 export function driveInputToJSON(driveInput: DriveInput): string {
   return JSON.stringify(DriveInput$outboundSchema.parse(driveInput));
-}
-
-export function driveInputFromJSON(
-  jsonString: string,
-): SafeParseResult<DriveInput, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => DriveInput$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'DriveInput' from JSON`,
-  );
 }

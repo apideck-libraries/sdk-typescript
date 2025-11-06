@@ -4,24 +4,15 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
 import { RFCDate } from "../../types/rfcdate.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  Currency,
-  Currency$inboundSchema,
-  Currency$outboundSchema,
-} from "./currency.js";
+import { Currency, Currency$outboundSchema } from "./currency.js";
 import {
   CustomField,
-  CustomField$inboundSchema,
   CustomField$Outbound,
   CustomField$outboundSchema,
 } from "./customfield.js";
 import {
   PassThroughBody,
-  PassThroughBody$inboundSchema,
   PassThroughBody$Outbound,
   PassThroughBody$outboundSchema,
 } from "./passthroughbody.js";
@@ -140,70 +131,6 @@ export type OpportunityInput = {
 };
 
 /** @internal */
-export const OpportunityInput$inboundSchema: z.ZodType<
-  OpportunityInput,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  title: z.string(),
-  primary_contact_id: z.nullable(z.string()).optional(),
-  description: z.nullable(z.string()).optional(),
-  type: z.nullable(z.string()).optional(),
-  monetary_amount: z.nullable(z.number()).optional(),
-  currency: z.nullable(Currency$inboundSchema).optional(),
-  win_probability: z.nullable(z.number()).optional(),
-  close_date: z.nullable(z.string().transform(v => new RFCDate(v))).optional(),
-  loss_reason_id: z.nullable(z.string()).optional(),
-  loss_reason: z.nullable(z.string()).optional(),
-  won_reason_id: z.nullable(z.string()).optional(),
-  won_reason: z.nullable(z.string()).optional(),
-  pipeline_id: z.nullable(z.string()).optional(),
-  pipeline_stage_id: z.nullable(z.string()).optional(),
-  source_id: z.nullable(z.string()).optional(),
-  lead_id: z.nullable(z.string()).optional(),
-  lead_source: z.nullable(z.string()).optional(),
-  contact_id: z.nullable(z.string()).optional(),
-  contact_ids: z.array(z.string()).optional(),
-  company_id: z.nullable(z.string()).optional(),
-  company_name: z.nullable(z.string()).optional(),
-  owner_id: z.nullable(z.string()).optional(),
-  priority: z.nullable(z.string()).optional(),
-  status: z.nullable(z.string()).optional(),
-  status_id: z.nullable(z.string()).optional(),
-  tags: z.nullable(z.array(z.string())).optional(),
-  custom_fields: z.array(CustomField$inboundSchema).optional(),
-  stage_last_changed_at: z.nullable(
-    z.string().datetime({ offset: true }).transform(v => new Date(v)),
-  ).optional(),
-  pass_through: z.array(PassThroughBody$inboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "primary_contact_id": "primaryContactId",
-    "monetary_amount": "monetaryAmount",
-    "win_probability": "winProbability",
-    "close_date": "closeDate",
-    "loss_reason_id": "lossReasonId",
-    "loss_reason": "lossReason",
-    "won_reason_id": "wonReasonId",
-    "won_reason": "wonReason",
-    "pipeline_id": "pipelineId",
-    "pipeline_stage_id": "pipelineStageId",
-    "source_id": "sourceId",
-    "lead_id": "leadId",
-    "lead_source": "leadSource",
-    "contact_id": "contactId",
-    "contact_ids": "contactIds",
-    "company_id": "companyId",
-    "company_name": "companyName",
-    "owner_id": "ownerId",
-    "status_id": "statusId",
-    "custom_fields": "customFields",
-    "stage_last_changed_at": "stageLastChangedAt",
-    "pass_through": "passThrough",
-  });
-});
-
-/** @internal */
 export type OpportunityInput$Outbound = {
   title: string;
   primary_contact_id?: string | null | undefined;
@@ -300,33 +227,10 @@ export const OpportunityInput$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace OpportunityInput$ {
-  /** @deprecated use `OpportunityInput$inboundSchema` instead. */
-  export const inboundSchema = OpportunityInput$inboundSchema;
-  /** @deprecated use `OpportunityInput$outboundSchema` instead. */
-  export const outboundSchema = OpportunityInput$outboundSchema;
-  /** @deprecated use `OpportunityInput$Outbound` instead. */
-  export type Outbound = OpportunityInput$Outbound;
-}
-
 export function opportunityInputToJSON(
   opportunityInput: OpportunityInput,
 ): string {
   return JSON.stringify(
     OpportunityInput$outboundSchema.parse(opportunityInput),
-  );
-}
-
-export function opportunityInputFromJSON(
-  jsonString: string,
-): SafeParseResult<OpportunityInput, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => OpportunityInput$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'OpportunityInput' from JSON`,
   );
 }

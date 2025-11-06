@@ -8,22 +8,11 @@ import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { RFCDate } from "../../types/rfcdate.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  Currency,
-  Currency$inboundSchema,
-  Currency$outboundSchema,
-} from "./currency.js";
-import {
-  CustomField,
-  CustomField$inboundSchema,
-  CustomField$Outbound,
-  CustomField$outboundSchema,
-} from "./customfield.js";
+import { Currency, Currency$inboundSchema } from "./currency.js";
+import { CustomField, CustomField$inboundSchema } from "./customfield.js";
 import {
   PassThroughBody,
   PassThroughBody$inboundSchema,
-  PassThroughBody$Outbound,
-  PassThroughBody$outboundSchema,
 } from "./passthroughbody.js";
 
 export type Opportunity = {
@@ -288,160 +277,6 @@ export const Opportunity$inboundSchema: z.ZodType<
     "pass_through": "passThrough",
   });
 });
-
-/** @internal */
-export type Opportunity$Outbound = {
-  id?: string | undefined;
-  title: string;
-  primary_contact_id?: string | null | undefined;
-  description?: string | null | undefined;
-  type?: string | null | undefined;
-  monetary_amount?: number | null | undefined;
-  currency?: string | null | undefined;
-  win_probability?: number | null | undefined;
-  expected_revenue?: number | null | undefined;
-  close_date?: string | null | undefined;
-  loss_reason_id?: string | null | undefined;
-  loss_reason?: string | null | undefined;
-  won_reason_id?: string | null | undefined;
-  won_reason?: string | null | undefined;
-  pipeline_id?: string | null | undefined;
-  pipeline_stage_id?: string | null | undefined;
-  source_id?: string | null | undefined;
-  lead_id?: string | null | undefined;
-  lead_source?: string | null | undefined;
-  contact_id?: string | null | undefined;
-  contact_ids?: Array<string> | undefined;
-  company_id?: string | null | undefined;
-  company_name?: string | null | undefined;
-  owner_id?: string | null | undefined;
-  priority?: string | null | undefined;
-  status?: string | null | undefined;
-  status_id?: string | null | undefined;
-  tags?: Array<string> | null | undefined;
-  interaction_count?: number | null | undefined;
-  custom_fields?: Array<CustomField$Outbound> | undefined;
-  stage_last_changed_at?: string | null | undefined;
-  last_activity_at?: string | null | undefined;
-  deleted?: boolean | undefined;
-  date_stage_changed?: string | null | undefined;
-  date_last_contacted?: string | null | undefined;
-  date_lead_created?: string | null | undefined;
-  custom_mappings?: { [k: string]: any } | null | undefined;
-  updated_by?: string | null | undefined;
-  created_by?: string | null | undefined;
-  updated_at?: string | null | undefined;
-  created_at?: string | null | undefined;
-  pass_through?: Array<PassThroughBody$Outbound> | undefined;
-};
-
-/** @internal */
-export const Opportunity$outboundSchema: z.ZodType<
-  Opportunity$Outbound,
-  z.ZodTypeDef,
-  Opportunity
-> = z.object({
-  id: z.string().optional(),
-  title: z.string(),
-  primaryContactId: z.nullable(z.string()).optional(),
-  description: z.nullable(z.string()).optional(),
-  type: z.nullable(z.string()).optional(),
-  monetaryAmount: z.nullable(z.number()).optional(),
-  currency: z.nullable(Currency$outboundSchema).optional(),
-  winProbability: z.nullable(z.number()).optional(),
-  expectedRevenue: z.nullable(z.number()).optional(),
-  closeDate: z.nullable(z.instanceof(RFCDate).transform(v => v.toString()))
-    .optional(),
-  lossReasonId: z.nullable(z.string()).optional(),
-  lossReason: z.nullable(z.string()).optional(),
-  wonReasonId: z.nullable(z.string()).optional(),
-  wonReason: z.nullable(z.string()).optional(),
-  pipelineId: z.nullable(z.string()).optional(),
-  pipelineStageId: z.nullable(z.string()).optional(),
-  sourceId: z.nullable(z.string()).optional(),
-  leadId: z.nullable(z.string()).optional(),
-  leadSource: z.nullable(z.string()).optional(),
-  contactId: z.nullable(z.string()).optional(),
-  contactIds: z.array(z.string()).optional(),
-  companyId: z.nullable(z.string()).optional(),
-  companyName: z.nullable(z.string()).optional(),
-  ownerId: z.nullable(z.string()).optional(),
-  priority: z.nullable(z.string()).optional(),
-  status: z.nullable(z.string()).optional(),
-  statusId: z.nullable(z.string()).optional(),
-  tags: z.nullable(z.array(z.string())).optional(),
-  interactionCount: z.nullable(z.number()).optional(),
-  customFields: z.array(CustomField$outboundSchema).optional(),
-  stageLastChangedAt: z.nullable(z.date().transform(v => v.toISOString()))
-    .optional(),
-  lastActivityAt: z.nullable(z.string()).optional(),
-  deleted: z.boolean().optional(),
-  dateStageChanged: z.nullable(z.date().transform(v => v.toISOString()))
-    .optional(),
-  dateLastContacted: z.nullable(z.date().transform(v => v.toISOString()))
-    .optional(),
-  dateLeadCreated: z.nullable(z.date().transform(v => v.toISOString()))
-    .optional(),
-  customMappings: z.nullable(z.record(z.any())).optional(),
-  updatedBy: z.nullable(z.string()).optional(),
-  createdBy: z.nullable(z.string()).optional(),
-  updatedAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
-  createdAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
-  passThrough: z.array(PassThroughBody$outboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    primaryContactId: "primary_contact_id",
-    monetaryAmount: "monetary_amount",
-    winProbability: "win_probability",
-    expectedRevenue: "expected_revenue",
-    closeDate: "close_date",
-    lossReasonId: "loss_reason_id",
-    lossReason: "loss_reason",
-    wonReasonId: "won_reason_id",
-    wonReason: "won_reason",
-    pipelineId: "pipeline_id",
-    pipelineStageId: "pipeline_stage_id",
-    sourceId: "source_id",
-    leadId: "lead_id",
-    leadSource: "lead_source",
-    contactId: "contact_id",
-    contactIds: "contact_ids",
-    companyId: "company_id",
-    companyName: "company_name",
-    ownerId: "owner_id",
-    statusId: "status_id",
-    interactionCount: "interaction_count",
-    customFields: "custom_fields",
-    stageLastChangedAt: "stage_last_changed_at",
-    lastActivityAt: "last_activity_at",
-    dateStageChanged: "date_stage_changed",
-    dateLastContacted: "date_last_contacted",
-    dateLeadCreated: "date_lead_created",
-    customMappings: "custom_mappings",
-    updatedBy: "updated_by",
-    createdBy: "created_by",
-    updatedAt: "updated_at",
-    createdAt: "created_at",
-    passThrough: "pass_through",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Opportunity$ {
-  /** @deprecated use `Opportunity$inboundSchema` instead. */
-  export const inboundSchema = Opportunity$inboundSchema;
-  /** @deprecated use `Opportunity$outboundSchema` instead. */
-  export const outboundSchema = Opportunity$outboundSchema;
-  /** @deprecated use `Opportunity$Outbound` instead. */
-  export type Outbound = Opportunity$Outbound;
-}
-
-export function opportunityToJSON(opportunity: Opportunity): string {
-  return JSON.stringify(Opportunity$outboundSchema.parse(opportunity));
-}
 
 export function opportunityFromJSON(
   jsonString: string,

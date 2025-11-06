@@ -10,21 +10,9 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   ConnectorResource,
   ConnectorResource$inboundSchema,
-  ConnectorResource$Outbound,
-  ConnectorResource$outboundSchema,
 } from "./connectorresource.js";
-import {
-  Links,
-  Links$inboundSchema,
-  Links$Outbound,
-  Links$outboundSchema,
-} from "./links.js";
-import {
-  Meta,
-  Meta$inboundSchema,
-  Meta$Outbound,
-  Meta$outboundSchema,
-} from "./meta.js";
+import { Links, Links$inboundSchema } from "./links.js";
+import { Meta, Meta$inboundSchema } from "./meta.js";
 
 /**
  * ConnectorResources
@@ -71,58 +59,6 @@ export const GetConnectorResourceResponse$inboundSchema: z.ZodType<
     "_raw": "raw",
   });
 });
-
-/** @internal */
-export type GetConnectorResourceResponse$Outbound = {
-  status_code: number;
-  status: string;
-  data: ConnectorResource$Outbound;
-  _raw?: { [k: string]: any } | null | undefined;
-  meta?: Meta$Outbound | undefined;
-  links?: Links$Outbound | undefined;
-};
-
-/** @internal */
-export const GetConnectorResourceResponse$outboundSchema: z.ZodType<
-  GetConnectorResourceResponse$Outbound,
-  z.ZodTypeDef,
-  GetConnectorResourceResponse
-> = z.object({
-  statusCode: z.number().int(),
-  status: z.string(),
-  data: ConnectorResource$outboundSchema,
-  raw: z.nullable(z.record(z.any())).optional(),
-  meta: Meta$outboundSchema.optional(),
-  links: Links$outboundSchema.optional(),
-}).transform((v) => {
-  return remap$(v, {
-    statusCode: "status_code",
-    raw: "_raw",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetConnectorResourceResponse$ {
-  /** @deprecated use `GetConnectorResourceResponse$inboundSchema` instead. */
-  export const inboundSchema = GetConnectorResourceResponse$inboundSchema;
-  /** @deprecated use `GetConnectorResourceResponse$outboundSchema` instead. */
-  export const outboundSchema = GetConnectorResourceResponse$outboundSchema;
-  /** @deprecated use `GetConnectorResourceResponse$Outbound` instead. */
-  export type Outbound = GetConnectorResourceResponse$Outbound;
-}
-
-export function getConnectorResourceResponseToJSON(
-  getConnectorResourceResponse: GetConnectorResourceResponse,
-): string {
-  return JSON.stringify(
-    GetConnectorResourceResponse$outboundSchema.parse(
-      getConnectorResourceResponse,
-    ),
-  );
-}
 
 export function getConnectorResourceResponseFromJSON(
   jsonString: string,

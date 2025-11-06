@@ -22,19 +22,3 @@ export type IntegrationState = ClosedEnum<typeof IntegrationState>;
 export const IntegrationState$inboundSchema: z.ZodNativeEnum<
   typeof IntegrationState
 > = z.nativeEnum(IntegrationState);
-
-/** @internal */
-export const IntegrationState$outboundSchema: z.ZodNativeEnum<
-  typeof IntegrationState
-> = IntegrationState$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace IntegrationState$ {
-  /** @deprecated use `IntegrationState$inboundSchema` instead. */
-  export const inboundSchema = IntegrationState$inboundSchema;
-  /** @deprecated use `IntegrationState$outboundSchema` instead. */
-  export const outboundSchema = IntegrationState$outboundSchema;
-}

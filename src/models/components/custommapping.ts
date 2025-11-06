@@ -69,58 +69,6 @@ export const CustomMapping$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type CustomMapping$Outbound = {
-  id?: string | undefined;
-  label?: string | undefined;
-  description?: string | null | undefined;
-  value?: string | undefined;
-  key?: string | undefined;
-  required?: boolean | undefined;
-  custom_field?: boolean | undefined;
-  consumer_id?: string | null | undefined;
-  example?: string | null | undefined;
-};
-
-/** @internal */
-export const CustomMapping$outboundSchema: z.ZodType<
-  CustomMapping$Outbound,
-  z.ZodTypeDef,
-  CustomMapping
-> = z.object({
-  id: z.string().optional(),
-  label: z.string().optional(),
-  description: z.nullable(z.string()).optional(),
-  value: z.string().optional(),
-  key: z.string().optional(),
-  required: z.boolean().optional(),
-  customField: z.boolean().optional(),
-  consumerId: z.nullable(z.string()).optional(),
-  example: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    customField: "custom_field",
-    consumerId: "consumer_id",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CustomMapping$ {
-  /** @deprecated use `CustomMapping$inboundSchema` instead. */
-  export const inboundSchema = CustomMapping$inboundSchema;
-  /** @deprecated use `CustomMapping$outboundSchema` instead. */
-  export const outboundSchema = CustomMapping$outboundSchema;
-  /** @deprecated use `CustomMapping$Outbound` instead. */
-  export type Outbound = CustomMapping$Outbound;
-}
-
-export function customMappingToJSON(customMapping: CustomMapping): string {
-  return JSON.stringify(CustomMapping$outboundSchema.parse(customMapping));
-}
-
 export function customMappingFromJSON(
   jsonString: string,
 ): SafeParseResult<CustomMapping, SDKValidationError> {

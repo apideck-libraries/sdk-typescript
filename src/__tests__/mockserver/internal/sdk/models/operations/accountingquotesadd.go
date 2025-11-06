@@ -37,7 +37,7 @@ type AccountingQuotesAddRequest struct {
 	AppID *string `header:"style=simple,explode=false,name=x-apideck-app-id"`
 	// Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
 	ServiceID *string               `header:"style=simple,explode=false,name=x-apideck-service-id"`
-	Quote     components.QuoteInput `request:"mediaType=application/json"`
+	Body      components.QuoteInput `request:"mediaType=application/json"`
 }
 
 func (a AccountingQuotesAddRequest) MarshalJSON() ([]byte, error) {
@@ -45,7 +45,7 @@ func (a AccountingQuotesAddRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (a *AccountingQuotesAddRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"Quote"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"body"}); err != nil {
 		return err
 	}
 	return nil
@@ -79,11 +79,11 @@ func (o *AccountingQuotesAddRequest) GetServiceID() *string {
 	return o.ServiceID
 }
 
-func (o *AccountingQuotesAddRequest) GetQuote() components.QuoteInput {
+func (o *AccountingQuotesAddRequest) GetBody() components.QuoteInput {
 	if o == nil {
 		return components.QuoteInput{}
 	}
-	return o.Quote
+	return o.Body
 }
 
 type AccountingQuotesAddResponse struct {

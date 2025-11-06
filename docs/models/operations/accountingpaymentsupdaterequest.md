@@ -18,6 +18,7 @@ let value: AccountingPaymentsUpdateRequest = {
     paymentMethodId: "12345",
     account: {
       id: "123456",
+      name: "Bank account",
       nominalCode: "N091",
       code: "453",
       parentId: "123456",

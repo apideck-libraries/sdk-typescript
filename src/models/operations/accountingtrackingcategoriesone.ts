@@ -62,83 +62,6 @@ export type AccountingTrackingCategoriesOneResponse = {
 };
 
 /** @internal */
-export const AccountingTrackingCategoriesOneGlobals$inboundSchema: z.ZodType<
-  AccountingTrackingCategoriesOneGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/** @internal */
-export type AccountingTrackingCategoriesOneGlobals$Outbound = {
-  consumerId?: string | undefined;
-  appId?: string | undefined;
-};
-
-/** @internal */
-export const AccountingTrackingCategoriesOneGlobals$outboundSchema: z.ZodType<
-  AccountingTrackingCategoriesOneGlobals$Outbound,
-  z.ZodTypeDef,
-  AccountingTrackingCategoriesOneGlobals
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AccountingTrackingCategoriesOneGlobals$ {
-  /** @deprecated use `AccountingTrackingCategoriesOneGlobals$inboundSchema` instead. */
-  export const inboundSchema =
-    AccountingTrackingCategoriesOneGlobals$inboundSchema;
-  /** @deprecated use `AccountingTrackingCategoriesOneGlobals$outboundSchema` instead. */
-  export const outboundSchema =
-    AccountingTrackingCategoriesOneGlobals$outboundSchema;
-  /** @deprecated use `AccountingTrackingCategoriesOneGlobals$Outbound` instead. */
-  export type Outbound = AccountingTrackingCategoriesOneGlobals$Outbound;
-}
-
-export function accountingTrackingCategoriesOneGlobalsToJSON(
-  accountingTrackingCategoriesOneGlobals:
-    AccountingTrackingCategoriesOneGlobals,
-): string {
-  return JSON.stringify(
-    AccountingTrackingCategoriesOneGlobals$outboundSchema.parse(
-      accountingTrackingCategoriesOneGlobals,
-    ),
-  );
-}
-
-export function accountingTrackingCategoriesOneGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<AccountingTrackingCategoriesOneGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      AccountingTrackingCategoriesOneGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'AccountingTrackingCategoriesOneGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const AccountingTrackingCategoriesOneRequest$inboundSchema: z.ZodType<
-  AccountingTrackingCategoriesOneRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  id: z.string(),
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  raw: z.boolean().default(false),
-  fields: z.nullable(z.string()).optional(),
-});
-
-/** @internal */
 export type AccountingTrackingCategoriesOneRequest$Outbound = {
   id: string;
   consumerId?: string | undefined;
@@ -162,21 +85,6 @@ export const AccountingTrackingCategoriesOneRequest$outboundSchema: z.ZodType<
   fields: z.nullable(z.string()).optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AccountingTrackingCategoriesOneRequest$ {
-  /** @deprecated use `AccountingTrackingCategoriesOneRequest$inboundSchema` instead. */
-  export const inboundSchema =
-    AccountingTrackingCategoriesOneRequest$inboundSchema;
-  /** @deprecated use `AccountingTrackingCategoriesOneRequest$outboundSchema` instead. */
-  export const outboundSchema =
-    AccountingTrackingCategoriesOneRequest$outboundSchema;
-  /** @deprecated use `AccountingTrackingCategoriesOneRequest$Outbound` instead. */
-  export type Outbound = AccountingTrackingCategoriesOneRequest$Outbound;
-}
-
 export function accountingTrackingCategoriesOneRequestToJSON(
   accountingTrackingCategoriesOneRequest:
     AccountingTrackingCategoriesOneRequest,
@@ -185,17 +93,6 @@ export function accountingTrackingCategoriesOneRequestToJSON(
     AccountingTrackingCategoriesOneRequest$outboundSchema.parse(
       accountingTrackingCategoriesOneRequest,
     ),
-  );
-}
-
-export function accountingTrackingCategoriesOneRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<AccountingTrackingCategoriesOneRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      AccountingTrackingCategoriesOneRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'AccountingTrackingCategoriesOneRequest' from JSON`,
   );
 }
 
@@ -217,62 +114,6 @@ export const AccountingTrackingCategoriesOneResponse$inboundSchema: z.ZodType<
     "UnexpectedErrorResponse": "unexpectedErrorResponse",
   });
 });
-
-/** @internal */
-export type AccountingTrackingCategoriesOneResponse$Outbound = {
-  HttpMeta: components.HTTPMetadata$Outbound;
-  GetTrackingCategoryResponse?:
-    | components.GetTrackingCategoryResponse$Outbound
-    | undefined;
-  UnexpectedErrorResponse?:
-    | components.UnexpectedErrorResponse$Outbound
-    | undefined;
-};
-
-/** @internal */
-export const AccountingTrackingCategoriesOneResponse$outboundSchema: z.ZodType<
-  AccountingTrackingCategoriesOneResponse$Outbound,
-  z.ZodTypeDef,
-  AccountingTrackingCategoriesOneResponse
-> = z.object({
-  httpMeta: components.HTTPMetadata$outboundSchema,
-  getTrackingCategoryResponse: components
-    .GetTrackingCategoryResponse$outboundSchema.optional(),
-  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    httpMeta: "HttpMeta",
-    getTrackingCategoryResponse: "GetTrackingCategoryResponse",
-    unexpectedErrorResponse: "UnexpectedErrorResponse",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AccountingTrackingCategoriesOneResponse$ {
-  /** @deprecated use `AccountingTrackingCategoriesOneResponse$inboundSchema` instead. */
-  export const inboundSchema =
-    AccountingTrackingCategoriesOneResponse$inboundSchema;
-  /** @deprecated use `AccountingTrackingCategoriesOneResponse$outboundSchema` instead. */
-  export const outboundSchema =
-    AccountingTrackingCategoriesOneResponse$outboundSchema;
-  /** @deprecated use `AccountingTrackingCategoriesOneResponse$Outbound` instead. */
-  export type Outbound = AccountingTrackingCategoriesOneResponse$Outbound;
-}
-
-export function accountingTrackingCategoriesOneResponseToJSON(
-  accountingTrackingCategoriesOneResponse:
-    AccountingTrackingCategoriesOneResponse,
-): string {
-  return JSON.stringify(
-    AccountingTrackingCategoriesOneResponse$outboundSchema.parse(
-      accountingTrackingCategoriesOneResponse,
-    ),
-  );
-}
 
 export function accountingTrackingCategoriesOneResponseFromJSON(
   jsonString: string,

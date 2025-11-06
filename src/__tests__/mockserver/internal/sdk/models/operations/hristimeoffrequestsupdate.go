@@ -40,8 +40,8 @@ type HrisTimeOffRequestsUpdateRequest struct {
 	// Include raw response. Mostly used for debugging purposes
 	Raw *bool `default:"false" queryParam:"style=form,explode=true,name=raw"`
 	// ID of the employee you are acting upon.
-	EmployeeID     string                         `pathParam:"style=simple,explode=false,name=employee_id"`
-	TimeOffRequest components.TimeOffRequestInput `request:"mediaType=application/json"`
+	EmployeeID string                         `pathParam:"style=simple,explode=false,name=employee_id"`
+	Body       components.TimeOffRequestInput `request:"mediaType=application/json"`
 }
 
 func (h HrisTimeOffRequestsUpdateRequest) MarshalJSON() ([]byte, error) {
@@ -49,7 +49,7 @@ func (h HrisTimeOffRequestsUpdateRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (h *HrisTimeOffRequestsUpdateRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &h, "", false, []string{"id", "employee_id", "TimeOffRequest"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &h, "", false, []string{"id", "employee_id", "body"}); err != nil {
 		return err
 	}
 	return nil
@@ -97,11 +97,11 @@ func (o *HrisTimeOffRequestsUpdateRequest) GetEmployeeID() string {
 	return o.EmployeeID
 }
 
-func (o *HrisTimeOffRequestsUpdateRequest) GetTimeOffRequest() components.TimeOffRequestInput {
+func (o *HrisTimeOffRequestsUpdateRequest) GetBody() components.TimeOffRequestInput {
 	if o == nil {
 		return components.TimeOffRequestInput{}
 	}
-	return o.TimeOffRequest
+	return o.Body
 }
 
 type HrisTimeOffRequestsUpdateResponse struct {

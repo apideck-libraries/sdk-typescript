@@ -29,24 +29,15 @@ import {
 import {
   LinkedCustomer,
   LinkedCustomer$inboundSchema,
-  LinkedCustomer$Outbound,
-  LinkedCustomer$outboundSchema,
 } from "./linkedcustomer.js";
 import {
   LinkedCustomerInput,
-  LinkedCustomerInput$inboundSchema,
   LinkedCustomerInput$Outbound,
   LinkedCustomerInput$outboundSchema,
 } from "./linkedcustomerinput.js";
-import {
-  LinkedTaxRate,
-  LinkedTaxRate$inboundSchema,
-  LinkedTaxRate$Outbound,
-  LinkedTaxRate$outboundSchema,
-} from "./linkedtaxrate.js";
+import { LinkedTaxRate, LinkedTaxRate$inboundSchema } from "./linkedtaxrate.js";
 import {
   LinkedTaxRateInput,
-  LinkedTaxRateInput$inboundSchema,
   LinkedTaxRateInput$Outbound,
   LinkedTaxRateInput$outboundSchema,
 } from "./linkedtaxrateinput.js";
@@ -488,60 +479,24 @@ export type ProjectInput = {
 export const ProjectProjectStatus$inboundSchema: z.ZodNativeEnum<
   typeof ProjectProjectStatus
 > = z.nativeEnum(ProjectProjectStatus);
-
 /** @internal */
 export const ProjectProjectStatus$outboundSchema: z.ZodNativeEnum<
   typeof ProjectProjectStatus
 > = ProjectProjectStatus$inboundSchema;
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ProjectProjectStatus$ {
-  /** @deprecated use `ProjectProjectStatus$inboundSchema` instead. */
-  export const inboundSchema = ProjectProjectStatus$inboundSchema;
-  /** @deprecated use `ProjectProjectStatus$outboundSchema` instead. */
-  export const outboundSchema = ProjectProjectStatus$outboundSchema;
-}
-
 /** @internal */
 export const ProjectType$inboundSchema: z.ZodNativeEnum<typeof ProjectType> = z
   .nativeEnum(ProjectType);
-
 /** @internal */
 export const ProjectType$outboundSchema: z.ZodNativeEnum<typeof ProjectType> =
   ProjectType$inboundSchema;
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ProjectType$ {
-  /** @deprecated use `ProjectType$inboundSchema` instead. */
-  export const inboundSchema = ProjectType$inboundSchema;
-  /** @deprecated use `ProjectType$outboundSchema` instead. */
-  export const outboundSchema = ProjectType$outboundSchema;
-}
-
 /** @internal */
 export const Priority$inboundSchema: z.ZodNativeEnum<typeof Priority> = z
   .nativeEnum(Priority);
-
 /** @internal */
 export const Priority$outboundSchema: z.ZodNativeEnum<typeof Priority> =
   Priority$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Priority$ {
-  /** @deprecated use `Priority$inboundSchema` instead. */
-  export const inboundSchema = Priority$inboundSchema;
-  /** @deprecated use `Priority$outboundSchema` instead. */
-  export const outboundSchema = Priority$outboundSchema;
-}
 
 /** @internal */
 export const ProjectDepartment$inboundSchema: z.ZodType<
@@ -552,7 +507,6 @@ export const ProjectDepartment$inboundSchema: z.ZodType<
   id: z.string().optional(),
   name: z.string().optional(),
 });
-
 /** @internal */
 export type ProjectDepartment$Outbound = {
   id?: string | undefined;
@@ -569,19 +523,6 @@ export const ProjectDepartment$outboundSchema: z.ZodType<
   name: z.string().optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ProjectDepartment$ {
-  /** @deprecated use `ProjectDepartment$inboundSchema` instead. */
-  export const inboundSchema = ProjectDepartment$inboundSchema;
-  /** @deprecated use `ProjectDepartment$outboundSchema` instead. */
-  export const outboundSchema = ProjectDepartment$outboundSchema;
-  /** @deprecated use `ProjectDepartment$Outbound` instead. */
-  export type Outbound = ProjectDepartment$Outbound;
-}
-
 export function projectDepartmentToJSON(
   projectDepartment: ProjectDepartment,
 ): string {
@@ -589,7 +530,6 @@ export function projectDepartmentToJSON(
     ProjectDepartment$outboundSchema.parse(projectDepartment),
   );
 }
-
 export function projectDepartmentFromJSON(
   jsonString: string,
 ): SafeParseResult<ProjectDepartment, SDKValidationError> {
@@ -609,7 +549,6 @@ export const ParentProject$inboundSchema: z.ZodType<
   id: z.string().optional(),
   name: z.string().optional(),
 });
-
 /** @internal */
 export type ParentProject$Outbound = {
   id?: string | undefined;
@@ -626,23 +565,9 @@ export const ParentProject$outboundSchema: z.ZodType<
   name: z.string().optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ParentProject$ {
-  /** @deprecated use `ParentProject$inboundSchema` instead. */
-  export const inboundSchema = ParentProject$inboundSchema;
-  /** @deprecated use `ParentProject$outboundSchema` instead. */
-  export const outboundSchema = ParentProject$outboundSchema;
-  /** @deprecated use `ParentProject$Outbound` instead. */
-  export type Outbound = ParentProject$Outbound;
-}
-
 export function parentProjectToJSON(parentProject: ParentProject): string {
   return JSON.stringify(ParentProject$outboundSchema.parse(parentProject));
 }
-
 export function parentProjectFromJSON(
   jsonString: string,
 ): SafeParseResult<ParentProject, SDKValidationError> {
@@ -657,62 +582,26 @@ export function parentProjectFromJSON(
 export const BillingMethod$inboundSchema: z.ZodNativeEnum<
   typeof BillingMethod
 > = z.nativeEnum(BillingMethod);
-
 /** @internal */
 export const BillingMethod$outboundSchema: z.ZodNativeEnum<
   typeof BillingMethod
 > = BillingMethod$inboundSchema;
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace BillingMethod$ {
-  /** @deprecated use `BillingMethod$inboundSchema` instead. */
-  export const inboundSchema = BillingMethod$inboundSchema;
-  /** @deprecated use `BillingMethod$outboundSchema` instead. */
-  export const outboundSchema = BillingMethod$outboundSchema;
-}
-
 /** @internal */
 export const ProjectPhase$inboundSchema: z.ZodNativeEnum<typeof ProjectPhase> =
   z.nativeEnum(ProjectPhase);
-
 /** @internal */
 export const ProjectPhase$outboundSchema: z.ZodNativeEnum<typeof ProjectPhase> =
   ProjectPhase$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ProjectPhase$ {
-  /** @deprecated use `ProjectPhase$inboundSchema` instead. */
-  export const inboundSchema = ProjectPhase$inboundSchema;
-  /** @deprecated use `ProjectPhase$outboundSchema` instead. */
-  export const outboundSchema = ProjectPhase$outboundSchema;
-}
 
 /** @internal */
 export const ScheduleStatus$inboundSchema: z.ZodNativeEnum<
   typeof ScheduleStatus
 > = z.nativeEnum(ScheduleStatus);
-
 /** @internal */
 export const ScheduleStatus$outboundSchema: z.ZodNativeEnum<
   typeof ScheduleStatus
 > = ScheduleStatus$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ScheduleStatus$ {
-  /** @deprecated use `ScheduleStatus$inboundSchema` instead. */
-  export const inboundSchema = ScheduleStatus$inboundSchema;
-  /** @deprecated use `ScheduleStatus$outboundSchema` instead. */
-  export const outboundSchema = ScheduleStatus$outboundSchema;
-}
 
 /** @internal */
 export const Project$inboundSchema: z.ZodType<Project, z.ZodTypeDef, unknown> =
@@ -804,163 +693,6 @@ export const Project$inboundSchema: z.ZodType<Project, z.ZodTypeDef, unknown> =
     });
   });
 
-/** @internal */
-export type Project$Outbound = {
-  id?: string | undefined;
-  downstream_id?: string | null | undefined;
-  name: string;
-  display_id?: string | null | undefined;
-  reference_id?: string | null | undefined;
-  description?: string | null | undefined;
-  status?: string | null | undefined;
-  active?: boolean | null | undefined;
-  project_type?: string | null | undefined;
-  priority?: string | null | undefined;
-  completion_percentage?: number | null | undefined;
-  start_date?: string | null | undefined;
-  end_date?: string | null | undefined;
-  customer?: LinkedCustomer$Outbound | null | undefined;
-  department?: ProjectDepartment$Outbound | null | undefined;
-  company_id?: string | null | undefined;
-  owner_id?: string | null | undefined;
-  parent_project?: ParentProject$Outbound | null | undefined;
-  currency?: string | null | undefined;
-  budget_amount?: number | null | undefined;
-  approved_amount?: number | null | undefined;
-  actual_amount?: number | null | undefined;
-  budget_hours?: number | null | undefined;
-  actual_hours?: number | null | undefined;
-  hourly_rate?: number | null | undefined;
-  billing_method?: string | null | undefined;
-  is_billable: boolean | null;
-  phase?: string | null | undefined;
-  tax_rate?: LinkedTaxRate$Outbound | undefined;
-  tracking_categories?:
-    | Array<LinkedTrackingCategory$Outbound | null>
-    | null
-    | undefined;
-  tags?: Array<string> | undefined;
-  notes?: string | null | undefined;
-  contract_number?: string | null | undefined;
-  profit_margin?: number | null | undefined;
-  schedule_status?: string | null | undefined;
-  addresses?: Array<Address$Outbound> | undefined;
-  team_size?: number | null | undefined;
-  custom_fields?: Array<CustomField$Outbound> | undefined;
-  row_version?: string | null | undefined;
-  updated_by?: string | null | undefined;
-  created_by?: string | null | undefined;
-  created_at?: string | null | undefined;
-  updated_at?: string | null | undefined;
-};
-
-/** @internal */
-export const Project$outboundSchema: z.ZodType<
-  Project$Outbound,
-  z.ZodTypeDef,
-  Project
-> = z.object({
-  id: z.string().optional(),
-  downstreamId: z.nullable(z.string()).optional(),
-  name: z.string(),
-  displayId: z.nullable(z.string()).optional(),
-  referenceId: z.nullable(z.string()).optional(),
-  description: z.nullable(z.string()).optional(),
-  status: z.nullable(ProjectProjectStatus$outboundSchema).optional(),
-  active: z.nullable(z.boolean()).optional(),
-  projectType: z.nullable(ProjectType$outboundSchema).optional(),
-  priority: z.nullable(Priority$outboundSchema).optional(),
-  completionPercentage: z.nullable(z.number()).optional(),
-  startDate: z.nullable(z.instanceof(RFCDate).transform(v => v.toString()))
-    .optional(),
-  endDate: z.nullable(z.instanceof(RFCDate).transform(v => v.toString()))
-    .optional(),
-  customer: z.nullable(LinkedCustomer$outboundSchema).optional(),
-  department: z.nullable(z.lazy(() => ProjectDepartment$outboundSchema))
-    .optional(),
-  companyId: z.nullable(z.string()).optional(),
-  ownerId: z.nullable(z.string()).optional(),
-  parentProject: z.nullable(z.lazy(() => ParentProject$outboundSchema))
-    .optional(),
-  currency: z.nullable(Currency$outboundSchema).optional(),
-  budgetAmount: z.nullable(z.number()).optional(),
-  approvedAmount: z.nullable(z.number()).optional(),
-  actualAmount: z.nullable(z.number()).optional(),
-  budgetHours: z.nullable(z.number()).optional(),
-  actualHours: z.nullable(z.number()).optional(),
-  hourlyRate: z.nullable(z.number()).optional(),
-  billingMethod: z.nullable(BillingMethod$outboundSchema).optional(),
-  isBillable: z.nullable(z.boolean().default(true)),
-  phase: z.nullable(ProjectPhase$outboundSchema).optional(),
-  taxRate: LinkedTaxRate$outboundSchema.optional(),
-  trackingCategories: z.nullable(
-    z.array(z.nullable(LinkedTrackingCategory$outboundSchema)),
-  ).optional(),
-  tags: z.array(z.string()).optional(),
-  notes: z.nullable(z.string()).optional(),
-  contractNumber: z.nullable(z.string()).optional(),
-  profitMargin: z.nullable(z.number()).optional(),
-  scheduleStatus: z.nullable(ScheduleStatus$outboundSchema).optional(),
-  addresses: z.array(Address$outboundSchema).optional(),
-  teamSize: z.nullable(z.number().int()).optional(),
-  customFields: z.array(CustomField$outboundSchema).optional(),
-  rowVersion: z.nullable(z.string()).optional(),
-  updatedBy: z.nullable(z.string()).optional(),
-  createdBy: z.nullable(z.string()).optional(),
-  createdAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
-  updatedAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    downstreamId: "downstream_id",
-    displayId: "display_id",
-    referenceId: "reference_id",
-    projectType: "project_type",
-    completionPercentage: "completion_percentage",
-    startDate: "start_date",
-    endDate: "end_date",
-    companyId: "company_id",
-    ownerId: "owner_id",
-    parentProject: "parent_project",
-    budgetAmount: "budget_amount",
-    approvedAmount: "approved_amount",
-    actualAmount: "actual_amount",
-    budgetHours: "budget_hours",
-    actualHours: "actual_hours",
-    hourlyRate: "hourly_rate",
-    billingMethod: "billing_method",
-    isBillable: "is_billable",
-    taxRate: "tax_rate",
-    trackingCategories: "tracking_categories",
-    contractNumber: "contract_number",
-    profitMargin: "profit_margin",
-    scheduleStatus: "schedule_status",
-    teamSize: "team_size",
-    customFields: "custom_fields",
-    rowVersion: "row_version",
-    updatedBy: "updated_by",
-    createdBy: "created_by",
-    createdAt: "created_at",
-    updatedAt: "updated_at",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Project$ {
-  /** @deprecated use `Project$inboundSchema` instead. */
-  export const inboundSchema = Project$inboundSchema;
-  /** @deprecated use `Project$outboundSchema` instead. */
-  export const outboundSchema = Project$outboundSchema;
-  /** @deprecated use `Project$Outbound` instead. */
-  export type Outbound = Project$Outbound;
-}
-
-export function projectToJSON(project: Project): string {
-  return JSON.stringify(Project$outboundSchema.parse(project));
-}
-
 export function projectFromJSON(
   jsonString: string,
 ): SafeParseResult<Project, SDKValidationError> {
@@ -970,79 +702,6 @@ export function projectFromJSON(
     `Failed to parse 'Project' from JSON`,
   );
 }
-
-/** @internal */
-export const ProjectInput$inboundSchema: z.ZodType<
-  ProjectInput,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  name: z.string(),
-  display_id: z.nullable(z.string()).optional(),
-  reference_id: z.nullable(z.string()).optional(),
-  description: z.nullable(z.string()).optional(),
-  status: z.nullable(ProjectProjectStatus$inboundSchema).optional(),
-  active: z.nullable(z.boolean()).optional(),
-  project_type: z.nullable(ProjectType$inboundSchema).optional(),
-  priority: z.nullable(Priority$inboundSchema).optional(),
-  completion_percentage: z.nullable(z.number()).optional(),
-  start_date: z.nullable(z.string().transform(v => new RFCDate(v))).optional(),
-  end_date: z.nullable(z.string().transform(v => new RFCDate(v))).optional(),
-  customer: z.nullable(LinkedCustomerInput$inboundSchema).optional(),
-  department: z.nullable(z.lazy(() => ProjectDepartment$inboundSchema))
-    .optional(),
-  company_id: z.nullable(z.string()).optional(),
-  owner_id: z.nullable(z.string()).optional(),
-  parent_project: z.nullable(z.lazy(() => ParentProject$inboundSchema))
-    .optional(),
-  currency: z.nullable(Currency$inboundSchema).optional(),
-  budget_amount: z.nullable(z.number()).optional(),
-  approved_amount: z.nullable(z.number()).optional(),
-  budget_hours: z.nullable(z.number()).optional(),
-  hourly_rate: z.nullable(z.number()).optional(),
-  billing_method: z.nullable(BillingMethod$inboundSchema).optional(),
-  is_billable: z.nullable(z.boolean().default(true)),
-  phase: z.nullable(ProjectPhase$inboundSchema).optional(),
-  tax_rate: LinkedTaxRateInput$inboundSchema.optional(),
-  tracking_categories: z.nullable(
-    z.array(z.nullable(LinkedTrackingCategory$inboundSchema)),
-  ).optional(),
-  tags: z.array(z.string()).optional(),
-  notes: z.nullable(z.string()).optional(),
-  contract_number: z.nullable(z.string()).optional(),
-  profit_margin: z.nullable(z.number()).optional(),
-  schedule_status: z.nullable(ScheduleStatus$inboundSchema).optional(),
-  addresses: z.array(Address$inboundSchema).optional(),
-  team_size: z.nullable(z.number().int()).optional(),
-  custom_fields: z.array(CustomField$inboundSchema).optional(),
-  row_version: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "display_id": "displayId",
-    "reference_id": "referenceId",
-    "project_type": "projectType",
-    "completion_percentage": "completionPercentage",
-    "start_date": "startDate",
-    "end_date": "endDate",
-    "company_id": "companyId",
-    "owner_id": "ownerId",
-    "parent_project": "parentProject",
-    "budget_amount": "budgetAmount",
-    "approved_amount": "approvedAmount",
-    "budget_hours": "budgetHours",
-    "hourly_rate": "hourlyRate",
-    "billing_method": "billingMethod",
-    "is_billable": "isBillable",
-    "tax_rate": "taxRate",
-    "tracking_categories": "trackingCategories",
-    "contract_number": "contractNumber",
-    "profit_margin": "profitMargin",
-    "schedule_status": "scheduleStatus",
-    "team_size": "teamSize",
-    "custom_fields": "customFields",
-    "row_version": "rowVersion",
-  });
-});
 
 /** @internal */
 export type ProjectInput$Outbound = {
@@ -1161,29 +820,6 @@ export const ProjectInput$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ProjectInput$ {
-  /** @deprecated use `ProjectInput$inboundSchema` instead. */
-  export const inboundSchema = ProjectInput$inboundSchema;
-  /** @deprecated use `ProjectInput$outboundSchema` instead. */
-  export const outboundSchema = ProjectInput$outboundSchema;
-  /** @deprecated use `ProjectInput$Outbound` instead. */
-  export type Outbound = ProjectInput$Outbound;
-}
-
 export function projectInputToJSON(projectInput: ProjectInput): string {
   return JSON.stringify(ProjectInput$outboundSchema.parse(projectInput));
-}
-
-export function projectInputFromJSON(
-  jsonString: string,
-): SafeParseResult<ProjectInput, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => ProjectInput$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ProjectInput' from JSON`,
-  );
 }

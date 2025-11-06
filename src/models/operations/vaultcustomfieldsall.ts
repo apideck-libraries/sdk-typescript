@@ -60,85 +60,6 @@ export type VaultCustomFieldsAllResponse = {
 };
 
 /** @internal */
-export const VaultCustomFieldsAllGlobals$inboundSchema: z.ZodType<
-  VaultCustomFieldsAllGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/** @internal */
-export type VaultCustomFieldsAllGlobals$Outbound = {
-  consumerId?: string | undefined;
-  appId?: string | undefined;
-};
-
-/** @internal */
-export const VaultCustomFieldsAllGlobals$outboundSchema: z.ZodType<
-  VaultCustomFieldsAllGlobals$Outbound,
-  z.ZodTypeDef,
-  VaultCustomFieldsAllGlobals
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace VaultCustomFieldsAllGlobals$ {
-  /** @deprecated use `VaultCustomFieldsAllGlobals$inboundSchema` instead. */
-  export const inboundSchema = VaultCustomFieldsAllGlobals$inboundSchema;
-  /** @deprecated use `VaultCustomFieldsAllGlobals$outboundSchema` instead. */
-  export const outboundSchema = VaultCustomFieldsAllGlobals$outboundSchema;
-  /** @deprecated use `VaultCustomFieldsAllGlobals$Outbound` instead. */
-  export type Outbound = VaultCustomFieldsAllGlobals$Outbound;
-}
-
-export function vaultCustomFieldsAllGlobalsToJSON(
-  vaultCustomFieldsAllGlobals: VaultCustomFieldsAllGlobals,
-): string {
-  return JSON.stringify(
-    VaultCustomFieldsAllGlobals$outboundSchema.parse(
-      vaultCustomFieldsAllGlobals,
-    ),
-  );
-}
-
-export function vaultCustomFieldsAllGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<VaultCustomFieldsAllGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => VaultCustomFieldsAllGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'VaultCustomFieldsAllGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const VaultCustomFieldsAllRequest$inboundSchema: z.ZodType<
-  VaultCustomFieldsAllRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  unified_api: z.string(),
-  service_id: z.string(),
-  resource: z.string(),
-  resource_id: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "unified_api": "unifiedApi",
-    "service_id": "serviceId",
-    "resource_id": "resourceId",
-  });
-});
-
-/** @internal */
 export type VaultCustomFieldsAllRequest$Outbound = {
   consumerId?: string | undefined;
   appId?: string | undefined;
@@ -168,19 +89,6 @@ export const VaultCustomFieldsAllRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace VaultCustomFieldsAllRequest$ {
-  /** @deprecated use `VaultCustomFieldsAllRequest$inboundSchema` instead. */
-  export const inboundSchema = VaultCustomFieldsAllRequest$inboundSchema;
-  /** @deprecated use `VaultCustomFieldsAllRequest$outboundSchema` instead. */
-  export const outboundSchema = VaultCustomFieldsAllRequest$outboundSchema;
-  /** @deprecated use `VaultCustomFieldsAllRequest$Outbound` instead. */
-  export type Outbound = VaultCustomFieldsAllRequest$Outbound;
-}
-
 export function vaultCustomFieldsAllRequestToJSON(
   vaultCustomFieldsAllRequest: VaultCustomFieldsAllRequest,
 ): string {
@@ -188,16 +96,6 @@ export function vaultCustomFieldsAllRequestToJSON(
     VaultCustomFieldsAllRequest$outboundSchema.parse(
       vaultCustomFieldsAllRequest,
     ),
-  );
-}
-
-export function vaultCustomFieldsAllRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<VaultCustomFieldsAllRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => VaultCustomFieldsAllRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'VaultCustomFieldsAllRequest' from JSON`,
   );
 }
 
@@ -219,59 +117,6 @@ export const VaultCustomFieldsAllResponse$inboundSchema: z.ZodType<
     "UnexpectedErrorResponse": "unexpectedErrorResponse",
   });
 });
-
-/** @internal */
-export type VaultCustomFieldsAllResponse$Outbound = {
-  HttpMeta: components.HTTPMetadata$Outbound;
-  GetCustomFieldsResponse?:
-    | components.GetCustomFieldsResponse$Outbound
-    | undefined;
-  UnexpectedErrorResponse?:
-    | components.UnexpectedErrorResponse$Outbound
-    | undefined;
-};
-
-/** @internal */
-export const VaultCustomFieldsAllResponse$outboundSchema: z.ZodType<
-  VaultCustomFieldsAllResponse$Outbound,
-  z.ZodTypeDef,
-  VaultCustomFieldsAllResponse
-> = z.object({
-  httpMeta: components.HTTPMetadata$outboundSchema,
-  getCustomFieldsResponse: components.GetCustomFieldsResponse$outboundSchema
-    .optional(),
-  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    httpMeta: "HttpMeta",
-    getCustomFieldsResponse: "GetCustomFieldsResponse",
-    unexpectedErrorResponse: "UnexpectedErrorResponse",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace VaultCustomFieldsAllResponse$ {
-  /** @deprecated use `VaultCustomFieldsAllResponse$inboundSchema` instead. */
-  export const inboundSchema = VaultCustomFieldsAllResponse$inboundSchema;
-  /** @deprecated use `VaultCustomFieldsAllResponse$outboundSchema` instead. */
-  export const outboundSchema = VaultCustomFieldsAllResponse$outboundSchema;
-  /** @deprecated use `VaultCustomFieldsAllResponse$Outbound` instead. */
-  export type Outbound = VaultCustomFieldsAllResponse$Outbound;
-}
-
-export function vaultCustomFieldsAllResponseToJSON(
-  vaultCustomFieldsAllResponse: VaultCustomFieldsAllResponse,
-): string {
-  return JSON.stringify(
-    VaultCustomFieldsAllResponse$outboundSchema.parse(
-      vaultCustomFieldsAllResponse,
-    ),
-  );
-}
 
 export function vaultCustomFieldsAllResponseFromJSON(
   jsonString: string,

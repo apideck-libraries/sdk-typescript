@@ -55,84 +55,6 @@ export type AccountingJournalEntriesAddResponse = {
 };
 
 /** @internal */
-export const AccountingJournalEntriesAddGlobals$inboundSchema: z.ZodType<
-  AccountingJournalEntriesAddGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/** @internal */
-export type AccountingJournalEntriesAddGlobals$Outbound = {
-  consumerId?: string | undefined;
-  appId?: string | undefined;
-};
-
-/** @internal */
-export const AccountingJournalEntriesAddGlobals$outboundSchema: z.ZodType<
-  AccountingJournalEntriesAddGlobals$Outbound,
-  z.ZodTypeDef,
-  AccountingJournalEntriesAddGlobals
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AccountingJournalEntriesAddGlobals$ {
-  /** @deprecated use `AccountingJournalEntriesAddGlobals$inboundSchema` instead. */
-  export const inboundSchema = AccountingJournalEntriesAddGlobals$inboundSchema;
-  /** @deprecated use `AccountingJournalEntriesAddGlobals$outboundSchema` instead. */
-  export const outboundSchema =
-    AccountingJournalEntriesAddGlobals$outboundSchema;
-  /** @deprecated use `AccountingJournalEntriesAddGlobals$Outbound` instead. */
-  export type Outbound = AccountingJournalEntriesAddGlobals$Outbound;
-}
-
-export function accountingJournalEntriesAddGlobalsToJSON(
-  accountingJournalEntriesAddGlobals: AccountingJournalEntriesAddGlobals,
-): string {
-  return JSON.stringify(
-    AccountingJournalEntriesAddGlobals$outboundSchema.parse(
-      accountingJournalEntriesAddGlobals,
-    ),
-  );
-}
-
-export function accountingJournalEntriesAddGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<AccountingJournalEntriesAddGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      AccountingJournalEntriesAddGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'AccountingJournalEntriesAddGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const AccountingJournalEntriesAddRequest$inboundSchema: z.ZodType<
-  AccountingJournalEntriesAddRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  raw: z.boolean().default(false),
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  JournalEntry: components.JournalEntryInput$inboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    "JournalEntry": "journalEntry",
-  });
-});
-
-/** @internal */
 export type AccountingJournalEntriesAddRequest$Outbound = {
   raw: boolean;
   consumerId?: string | undefined;
@@ -158,20 +80,6 @@ export const AccountingJournalEntriesAddRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AccountingJournalEntriesAddRequest$ {
-  /** @deprecated use `AccountingJournalEntriesAddRequest$inboundSchema` instead. */
-  export const inboundSchema = AccountingJournalEntriesAddRequest$inboundSchema;
-  /** @deprecated use `AccountingJournalEntriesAddRequest$outboundSchema` instead. */
-  export const outboundSchema =
-    AccountingJournalEntriesAddRequest$outboundSchema;
-  /** @deprecated use `AccountingJournalEntriesAddRequest$Outbound` instead. */
-  export type Outbound = AccountingJournalEntriesAddRequest$Outbound;
-}
-
 export function accountingJournalEntriesAddRequestToJSON(
   accountingJournalEntriesAddRequest: AccountingJournalEntriesAddRequest,
 ): string {
@@ -179,17 +87,6 @@ export function accountingJournalEntriesAddRequestToJSON(
     AccountingJournalEntriesAddRequest$outboundSchema.parse(
       accountingJournalEntriesAddRequest,
     ),
-  );
-}
-
-export function accountingJournalEntriesAddRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<AccountingJournalEntriesAddRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      AccountingJournalEntriesAddRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'AccountingJournalEntriesAddRequest' from JSON`,
   );
 }
 
@@ -211,61 +108,6 @@ export const AccountingJournalEntriesAddResponse$inboundSchema: z.ZodType<
     "UnexpectedErrorResponse": "unexpectedErrorResponse",
   });
 });
-
-/** @internal */
-export type AccountingJournalEntriesAddResponse$Outbound = {
-  HttpMeta: components.HTTPMetadata$Outbound;
-  CreateJournalEntryResponse?:
-    | components.CreateJournalEntryResponse$Outbound
-    | undefined;
-  UnexpectedErrorResponse?:
-    | components.UnexpectedErrorResponse$Outbound
-    | undefined;
-};
-
-/** @internal */
-export const AccountingJournalEntriesAddResponse$outboundSchema: z.ZodType<
-  AccountingJournalEntriesAddResponse$Outbound,
-  z.ZodTypeDef,
-  AccountingJournalEntriesAddResponse
-> = z.object({
-  httpMeta: components.HTTPMetadata$outboundSchema,
-  createJournalEntryResponse: components
-    .CreateJournalEntryResponse$outboundSchema.optional(),
-  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    httpMeta: "HttpMeta",
-    createJournalEntryResponse: "CreateJournalEntryResponse",
-    unexpectedErrorResponse: "UnexpectedErrorResponse",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AccountingJournalEntriesAddResponse$ {
-  /** @deprecated use `AccountingJournalEntriesAddResponse$inboundSchema` instead. */
-  export const inboundSchema =
-    AccountingJournalEntriesAddResponse$inboundSchema;
-  /** @deprecated use `AccountingJournalEntriesAddResponse$outboundSchema` instead. */
-  export const outboundSchema =
-    AccountingJournalEntriesAddResponse$outboundSchema;
-  /** @deprecated use `AccountingJournalEntriesAddResponse$Outbound` instead. */
-  export type Outbound = AccountingJournalEntriesAddResponse$Outbound;
-}
-
-export function accountingJournalEntriesAddResponseToJSON(
-  accountingJournalEntriesAddResponse: AccountingJournalEntriesAddResponse,
-): string {
-  return JSON.stringify(
-    AccountingJournalEntriesAddResponse$outboundSchema.parse(
-      accountingJournalEntriesAddResponse,
-    ),
-  );
-}
 
 export function accountingJournalEntriesAddResponseFromJSON(
   jsonString: string,

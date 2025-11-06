@@ -36,8 +36,8 @@ type AccountingBankAccountsAddRequest struct {
 	// The ID of your Unify application
 	AppID *string `header:"style=simple,explode=false,name=x-apideck-app-id"`
 	// Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
-	ServiceID             *string                               `header:"style=simple,explode=false,name=x-apideck-service-id"`
-	AccountingBankAccount components.AccountingBankAccountInput `request:"mediaType=application/json"`
+	ServiceID *string                               `header:"style=simple,explode=false,name=x-apideck-service-id"`
+	Body      components.AccountingBankAccountInput `request:"mediaType=application/json"`
 }
 
 func (a AccountingBankAccountsAddRequest) MarshalJSON() ([]byte, error) {
@@ -45,7 +45,7 @@ func (a AccountingBankAccountsAddRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (a *AccountingBankAccountsAddRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"AccountingBankAccount"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"body"}); err != nil {
 		return err
 	}
 	return nil
@@ -79,11 +79,11 @@ func (o *AccountingBankAccountsAddRequest) GetServiceID() *string {
 	return o.ServiceID
 }
 
-func (o *AccountingBankAccountsAddRequest) GetAccountingBankAccount() components.AccountingBankAccountInput {
+func (o *AccountingBankAccountsAddRequest) GetBody() components.AccountingBankAccountInput {
 	if o == nil {
 		return components.AccountingBankAccountInput{}
 	}
-	return o.AccountingBankAccount
+	return o.Body
 }
 
 type AccountingBankAccountsAddResponse struct {

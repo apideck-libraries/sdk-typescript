@@ -10,14 +10,8 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   BalanceByPeriod,
   BalanceByPeriod$inboundSchema,
-  BalanceByPeriod$Outbound,
-  BalanceByPeriod$outboundSchema,
 } from "./balancebyperiod.js";
-import {
-  Currency,
-  Currency$inboundSchema,
-  Currency$outboundSchema,
-} from "./currency.js";
+import { Currency, Currency$inboundSchema } from "./currency.js";
 
 export type OutstandingBalanceByCurrency = {
   /**
@@ -46,52 +40,6 @@ export const OutstandingBalanceByCurrency$inboundSchema: z.ZodType<
     "balances_by_period": "balancesByPeriod",
   });
 });
-
-/** @internal */
-export type OutstandingBalanceByCurrency$Outbound = {
-  currency?: string | null | undefined;
-  total_amount?: number | undefined;
-  balances_by_period?: Array<BalanceByPeriod$Outbound> | undefined;
-};
-
-/** @internal */
-export const OutstandingBalanceByCurrency$outboundSchema: z.ZodType<
-  OutstandingBalanceByCurrency$Outbound,
-  z.ZodTypeDef,
-  OutstandingBalanceByCurrency
-> = z.object({
-  currency: z.nullable(Currency$outboundSchema).optional(),
-  totalAmount: z.number().optional(),
-  balancesByPeriod: z.array(BalanceByPeriod$outboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    totalAmount: "total_amount",
-    balancesByPeriod: "balances_by_period",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace OutstandingBalanceByCurrency$ {
-  /** @deprecated use `OutstandingBalanceByCurrency$inboundSchema` instead. */
-  export const inboundSchema = OutstandingBalanceByCurrency$inboundSchema;
-  /** @deprecated use `OutstandingBalanceByCurrency$outboundSchema` instead. */
-  export const outboundSchema = OutstandingBalanceByCurrency$outboundSchema;
-  /** @deprecated use `OutstandingBalanceByCurrency$Outbound` instead. */
-  export type Outbound = OutstandingBalanceByCurrency$Outbound;
-}
-
-export function outstandingBalanceByCurrencyToJSON(
-  outstandingBalanceByCurrency: OutstandingBalanceByCurrency,
-): string {
-  return JSON.stringify(
-    OutstandingBalanceByCurrency$outboundSchema.parse(
-      outstandingBalanceByCurrency,
-    ),
-  );
-}
 
 export function outstandingBalanceByCurrencyFromJSON(
   jsonString: string,

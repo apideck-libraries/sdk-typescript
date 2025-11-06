@@ -7,11 +7,7 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  Currency,
-  Currency$inboundSchema,
-  Currency$outboundSchema,
-} from "./currency.js";
+import { Currency, Currency$inboundSchema } from "./currency.js";
 
 /**
  * A refund for an ecommerce order.
@@ -57,53 +53,6 @@ export const EcommerceOrderRefund$inboundSchema: z.ZodType<
     "created_at": "createdAt",
   });
 });
-
-/** @internal */
-export type EcommerceOrderRefund$Outbound = {
-  id?: string | null | undefined;
-  amount?: string | undefined;
-  currency?: string | null | undefined;
-  reason?: string | undefined;
-  created_at?: string | null | undefined;
-};
-
-/** @internal */
-export const EcommerceOrderRefund$outboundSchema: z.ZodType<
-  EcommerceOrderRefund$Outbound,
-  z.ZodTypeDef,
-  EcommerceOrderRefund
-> = z.object({
-  id: z.nullable(z.string()).optional(),
-  amount: z.string().optional(),
-  currency: z.nullable(Currency$outboundSchema).optional(),
-  reason: z.string().optional(),
-  createdAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    createdAt: "created_at",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace EcommerceOrderRefund$ {
-  /** @deprecated use `EcommerceOrderRefund$inboundSchema` instead. */
-  export const inboundSchema = EcommerceOrderRefund$inboundSchema;
-  /** @deprecated use `EcommerceOrderRefund$outboundSchema` instead. */
-  export const outboundSchema = EcommerceOrderRefund$outboundSchema;
-  /** @deprecated use `EcommerceOrderRefund$Outbound` instead. */
-  export type Outbound = EcommerceOrderRefund$Outbound;
-}
-
-export function ecommerceOrderRefundToJSON(
-  ecommerceOrderRefund: EcommerceOrderRefund,
-): string {
-  return JSON.stringify(
-    EcommerceOrderRefund$outboundSchema.parse(ecommerceOrderRefund),
-  );
-}
 
 export function ecommerceOrderRefundFromJSON(
   jsonString: string,

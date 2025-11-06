@@ -7,12 +7,7 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  UnifiedId,
-  UnifiedId$inboundSchema,
-  UnifiedId$Outbound,
-  UnifiedId$outboundSchema,
-} from "./unifiedid.js";
+import { UnifiedId, UnifiedId$inboundSchema } from "./unifiedid.js";
 
 /**
  * Update a Ticket
@@ -67,58 +62,6 @@ export const UpdateTicketResponse$inboundSchema: z.ZodType<
     "_raw": "raw",
   });
 });
-
-/** @internal */
-export type UpdateTicketResponse$Outbound = {
-  status_code: number;
-  status: string;
-  service: string;
-  resource: string;
-  operation: string;
-  data: UnifiedId$Outbound;
-  _raw?: { [k: string]: any } | null | undefined;
-};
-
-/** @internal */
-export const UpdateTicketResponse$outboundSchema: z.ZodType<
-  UpdateTicketResponse$Outbound,
-  z.ZodTypeDef,
-  UpdateTicketResponse
-> = z.object({
-  statusCode: z.number().int(),
-  status: z.string(),
-  service: z.string(),
-  resource: z.string(),
-  operation: z.string(),
-  data: UnifiedId$outboundSchema,
-  raw: z.nullable(z.record(z.any())).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    statusCode: "status_code",
-    raw: "_raw",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace UpdateTicketResponse$ {
-  /** @deprecated use `UpdateTicketResponse$inboundSchema` instead. */
-  export const inboundSchema = UpdateTicketResponse$inboundSchema;
-  /** @deprecated use `UpdateTicketResponse$outboundSchema` instead. */
-  export const outboundSchema = UpdateTicketResponse$outboundSchema;
-  /** @deprecated use `UpdateTicketResponse$Outbound` instead. */
-  export type Outbound = UpdateTicketResponse$Outbound;
-}
-
-export function updateTicketResponseToJSON(
-  updateTicketResponse: UpdateTicketResponse,
-): string {
-  return JSON.stringify(
-    UpdateTicketResponse$outboundSchema.parse(updateTicketResponse),
-  );
-}
 
 export function updateTicketResponseFromJSON(
   jsonString: string,

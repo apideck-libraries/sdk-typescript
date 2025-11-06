@@ -7,12 +7,7 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  Payment,
-  Payment$inboundSchema,
-  Payment$Outbound,
-  Payment$outboundSchema,
-} from "./payment.js";
+import { Payment, Payment$inboundSchema } from "./payment.js";
 
 /**
  * Payment
@@ -64,58 +59,6 @@ export const GetPaymentResponse$inboundSchema: z.ZodType<
     "_raw": "raw",
   });
 });
-
-/** @internal */
-export type GetPaymentResponse$Outbound = {
-  status_code: number;
-  status: string;
-  service: string;
-  resource: string;
-  operation: string;
-  data: Payment$Outbound;
-  _raw?: { [k: string]: any } | null | undefined;
-};
-
-/** @internal */
-export const GetPaymentResponse$outboundSchema: z.ZodType<
-  GetPaymentResponse$Outbound,
-  z.ZodTypeDef,
-  GetPaymentResponse
-> = z.object({
-  statusCode: z.number().int(),
-  status: z.string(),
-  service: z.string(),
-  resource: z.string(),
-  operation: z.string(),
-  data: Payment$outboundSchema,
-  raw: z.nullable(z.record(z.any())).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    statusCode: "status_code",
-    raw: "_raw",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetPaymentResponse$ {
-  /** @deprecated use `GetPaymentResponse$inboundSchema` instead. */
-  export const inboundSchema = GetPaymentResponse$inboundSchema;
-  /** @deprecated use `GetPaymentResponse$outboundSchema` instead. */
-  export const outboundSchema = GetPaymentResponse$outboundSchema;
-  /** @deprecated use `GetPaymentResponse$Outbound` instead. */
-  export type Outbound = GetPaymentResponse$Outbound;
-}
-
-export function getPaymentResponseToJSON(
-  getPaymentResponse: GetPaymentResponse,
-): string {
-  return JSON.stringify(
-    GetPaymentResponse$outboundSchema.parse(getPaymentResponse),
-  );
-}
 
 export function getPaymentResponseFromJSON(
   jsonString: string,

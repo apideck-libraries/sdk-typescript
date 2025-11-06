@@ -431,10 +431,10 @@ type CreditNoteInput struct {
 	// Date credit note paid - YYYY:MM::DDThh:mm:ss.sTZD
 	DatePaid *time.Time `json:"date_paid,omitempty"`
 	// Type of payment
-	Type        *CreditNoteType           `json:"type,omitempty"`
-	Account     *LinkedLedgerAccountInput `json:"account,omitempty"`
-	LineItems   []InvoiceLineItemInput    `json:"line_items,omitempty"`
-	Allocations []AllocationInput         `json:"allocations,omitempty"`
+	Type        *CreditNoteType        `json:"type,omitempty"`
+	Account     *LinkedLedgerAccount   `json:"account,omitempty"`
+	LineItems   []InvoiceLineItemInput `json:"line_items,omitempty"`
+	Allocations []AllocationInput      `json:"allocations,omitempty"`
 	// Optional note to be associated with the credit note.
 	Note *string `json:"note,omitempty"`
 	// Optional terms to be associated with the credit note.
@@ -587,7 +587,7 @@ func (o *CreditNoteInput) GetType() *CreditNoteType {
 	return o.Type
 }
 
-func (o *CreditNoteInput) GetAccount() *LinkedLedgerAccountInput {
+func (o *CreditNoteInput) GetAccount() *LinkedLedgerAccount {
 	if o == nil {
 		return nil
 	}

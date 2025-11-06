@@ -7,12 +7,7 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  Opportunity,
-  Opportunity$inboundSchema,
-  Opportunity$Outbound,
-  Opportunity$outboundSchema,
-} from "./opportunity.js";
+import { Opportunity, Opportunity$inboundSchema } from "./opportunity.js";
 
 /**
  * Opportunity
@@ -64,58 +59,6 @@ export const GetOpportunityResponse$inboundSchema: z.ZodType<
     "_raw": "raw",
   });
 });
-
-/** @internal */
-export type GetOpportunityResponse$Outbound = {
-  status_code: number;
-  status: string;
-  service: string;
-  resource: string;
-  operation: string;
-  data: Opportunity$Outbound;
-  _raw?: { [k: string]: any } | null | undefined;
-};
-
-/** @internal */
-export const GetOpportunityResponse$outboundSchema: z.ZodType<
-  GetOpportunityResponse$Outbound,
-  z.ZodTypeDef,
-  GetOpportunityResponse
-> = z.object({
-  statusCode: z.number().int(),
-  status: z.string(),
-  service: z.string(),
-  resource: z.string(),
-  operation: z.string(),
-  data: Opportunity$outboundSchema,
-  raw: z.nullable(z.record(z.any())).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    statusCode: "status_code",
-    raw: "_raw",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetOpportunityResponse$ {
-  /** @deprecated use `GetOpportunityResponse$inboundSchema` instead. */
-  export const inboundSchema = GetOpportunityResponse$inboundSchema;
-  /** @deprecated use `GetOpportunityResponse$outboundSchema` instead. */
-  export const outboundSchema = GetOpportunityResponse$outboundSchema;
-  /** @deprecated use `GetOpportunityResponse$Outbound` instead. */
-  export type Outbound = GetOpportunityResponse$Outbound;
-}
-
-export function getOpportunityResponseToJSON(
-  getOpportunityResponse: GetOpportunityResponse,
-): string {
-  return JSON.stringify(
-    GetOpportunityResponse$outboundSchema.parse(getOpportunityResponse),
-  );
-}
 
 export function getOpportunityResponseFromJSON(
   jsonString: string,

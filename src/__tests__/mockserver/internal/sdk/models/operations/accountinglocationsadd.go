@@ -36,8 +36,8 @@ type AccountingLocationsAddRequest struct {
 	// The ID of your Unify application
 	AppID *string `header:"style=simple,explode=false,name=x-apideck-app-id"`
 	// Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
-	ServiceID          *string                            `header:"style=simple,explode=false,name=x-apideck-service-id"`
-	AccountingLocation components.AccountingLocationInput `request:"mediaType=application/json"`
+	ServiceID *string                            `header:"style=simple,explode=false,name=x-apideck-service-id"`
+	Body      components.AccountingLocationInput `request:"mediaType=application/json"`
 }
 
 func (a AccountingLocationsAddRequest) MarshalJSON() ([]byte, error) {
@@ -45,7 +45,7 @@ func (a AccountingLocationsAddRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (a *AccountingLocationsAddRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"AccountingLocation"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"body"}); err != nil {
 		return err
 	}
 	return nil
@@ -79,11 +79,11 @@ func (o *AccountingLocationsAddRequest) GetServiceID() *string {
 	return o.ServiceID
 }
 
-func (o *AccountingLocationsAddRequest) GetAccountingLocation() components.AccountingLocationInput {
+func (o *AccountingLocationsAddRequest) GetBody() components.AccountingLocationInput {
 	if o == nil {
 		return components.AccountingLocationInput{}
 	}
-	return o.AccountingLocation
+	return o.Body
 }
 
 type AccountingLocationsAddResponse struct {

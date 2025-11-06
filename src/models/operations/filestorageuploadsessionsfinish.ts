@@ -67,74 +67,6 @@ export type FileStorageUploadSessionsFinishResponse = {
 };
 
 /** @internal */
-export const FileStorageUploadSessionsFinishGlobals$inboundSchema: z.ZodType<
-  FileStorageUploadSessionsFinishGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/** @internal */
-export type FileStorageUploadSessionsFinishGlobals$Outbound = {
-  consumerId?: string | undefined;
-  appId?: string | undefined;
-};
-
-/** @internal */
-export const FileStorageUploadSessionsFinishGlobals$outboundSchema: z.ZodType<
-  FileStorageUploadSessionsFinishGlobals$Outbound,
-  z.ZodTypeDef,
-  FileStorageUploadSessionsFinishGlobals
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace FileStorageUploadSessionsFinishGlobals$ {
-  /** @deprecated use `FileStorageUploadSessionsFinishGlobals$inboundSchema` instead. */
-  export const inboundSchema =
-    FileStorageUploadSessionsFinishGlobals$inboundSchema;
-  /** @deprecated use `FileStorageUploadSessionsFinishGlobals$outboundSchema` instead. */
-  export const outboundSchema =
-    FileStorageUploadSessionsFinishGlobals$outboundSchema;
-  /** @deprecated use `FileStorageUploadSessionsFinishGlobals$Outbound` instead. */
-  export type Outbound = FileStorageUploadSessionsFinishGlobals$Outbound;
-}
-
-export function fileStorageUploadSessionsFinishGlobalsToJSON(
-  fileStorageUploadSessionsFinishGlobals:
-    FileStorageUploadSessionsFinishGlobals,
-): string {
-  return JSON.stringify(
-    FileStorageUploadSessionsFinishGlobals$outboundSchema.parse(
-      fileStorageUploadSessionsFinishGlobals,
-    ),
-  );
-}
-
-export function fileStorageUploadSessionsFinishGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<FileStorageUploadSessionsFinishGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      FileStorageUploadSessionsFinishGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'FileStorageUploadSessionsFinishGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const FileStorageUploadSessionsFinishRequestBody$inboundSchema:
-  z.ZodType<FileStorageUploadSessionsFinishRequestBody, z.ZodTypeDef, unknown> =
-    z.object({});
-
-/** @internal */
 export type FileStorageUploadSessionsFinishRequestBody$Outbound = {};
 
 /** @internal */
@@ -144,21 +76,6 @@ export const FileStorageUploadSessionsFinishRequestBody$outboundSchema:
     z.ZodTypeDef,
     FileStorageUploadSessionsFinishRequestBody
   > = z.object({});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace FileStorageUploadSessionsFinishRequestBody$ {
-  /** @deprecated use `FileStorageUploadSessionsFinishRequestBody$inboundSchema` instead. */
-  export const inboundSchema =
-    FileStorageUploadSessionsFinishRequestBody$inboundSchema;
-  /** @deprecated use `FileStorageUploadSessionsFinishRequestBody$outboundSchema` instead. */
-  export const outboundSchema =
-    FileStorageUploadSessionsFinishRequestBody$outboundSchema;
-  /** @deprecated use `FileStorageUploadSessionsFinishRequestBody$Outbound` instead. */
-  export type Outbound = FileStorageUploadSessionsFinishRequestBody$Outbound;
-}
 
 export function fileStorageUploadSessionsFinishRequestBodyToJSON(
   fileStorageUploadSessionsFinishRequestBody:
@@ -170,43 +87,6 @@ export function fileStorageUploadSessionsFinishRequestBodyToJSON(
     ),
   );
 }
-
-export function fileStorageUploadSessionsFinishRequestBodyFromJSON(
-  jsonString: string,
-): SafeParseResult<
-  FileStorageUploadSessionsFinishRequestBody,
-  SDKValidationError
-> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      FileStorageUploadSessionsFinishRequestBody$inboundSchema.parse(
-        JSON.parse(x),
-      ),
-    `Failed to parse 'FileStorageUploadSessionsFinishRequestBody' from JSON`,
-  );
-}
-
-/** @internal */
-export const FileStorageUploadSessionsFinishRequest$inboundSchema: z.ZodType<
-  FileStorageUploadSessionsFinishRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  id: z.string(),
-  raw: z.boolean().default(false),
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  digest: z.string().optional(),
-  RequestBody: z.lazy(() =>
-    FileStorageUploadSessionsFinishRequestBody$inboundSchema
-  ).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "RequestBody": "requestBody",
-  });
-});
 
 /** @internal */
 export type FileStorageUploadSessionsFinishRequest$Outbound = {
@@ -240,21 +120,6 @@ export const FileStorageUploadSessionsFinishRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace FileStorageUploadSessionsFinishRequest$ {
-  /** @deprecated use `FileStorageUploadSessionsFinishRequest$inboundSchema` instead. */
-  export const inboundSchema =
-    FileStorageUploadSessionsFinishRequest$inboundSchema;
-  /** @deprecated use `FileStorageUploadSessionsFinishRequest$outboundSchema` instead. */
-  export const outboundSchema =
-    FileStorageUploadSessionsFinishRequest$outboundSchema;
-  /** @deprecated use `FileStorageUploadSessionsFinishRequest$Outbound` instead. */
-  export type Outbound = FileStorageUploadSessionsFinishRequest$Outbound;
-}
-
 export function fileStorageUploadSessionsFinishRequestToJSON(
   fileStorageUploadSessionsFinishRequest:
     FileStorageUploadSessionsFinishRequest,
@@ -263,17 +128,6 @@ export function fileStorageUploadSessionsFinishRequestToJSON(
     FileStorageUploadSessionsFinishRequest$outboundSchema.parse(
       fileStorageUploadSessionsFinishRequest,
     ),
-  );
-}
-
-export function fileStorageUploadSessionsFinishRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<FileStorageUploadSessionsFinishRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      FileStorageUploadSessionsFinishRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'FileStorageUploadSessionsFinishRequest' from JSON`,
   );
 }
 
@@ -294,59 +148,6 @@ export const FileStorageUploadSessionsFinishResponse$inboundSchema: z.ZodType<
     "UnexpectedErrorResponse": "unexpectedErrorResponse",
   });
 });
-
-/** @internal */
-export type FileStorageUploadSessionsFinishResponse$Outbound = {
-  HttpMeta: components.HTTPMetadata$Outbound;
-  GetFileResponse?: components.GetFileResponse$Outbound | undefined;
-  UnexpectedErrorResponse?:
-    | components.UnexpectedErrorResponse$Outbound
-    | undefined;
-};
-
-/** @internal */
-export const FileStorageUploadSessionsFinishResponse$outboundSchema: z.ZodType<
-  FileStorageUploadSessionsFinishResponse$Outbound,
-  z.ZodTypeDef,
-  FileStorageUploadSessionsFinishResponse
-> = z.object({
-  httpMeta: components.HTTPMetadata$outboundSchema,
-  getFileResponse: components.GetFileResponse$outboundSchema.optional(),
-  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    httpMeta: "HttpMeta",
-    getFileResponse: "GetFileResponse",
-    unexpectedErrorResponse: "UnexpectedErrorResponse",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace FileStorageUploadSessionsFinishResponse$ {
-  /** @deprecated use `FileStorageUploadSessionsFinishResponse$inboundSchema` instead. */
-  export const inboundSchema =
-    FileStorageUploadSessionsFinishResponse$inboundSchema;
-  /** @deprecated use `FileStorageUploadSessionsFinishResponse$outboundSchema` instead. */
-  export const outboundSchema =
-    FileStorageUploadSessionsFinishResponse$outboundSchema;
-  /** @deprecated use `FileStorageUploadSessionsFinishResponse$Outbound` instead. */
-  export type Outbound = FileStorageUploadSessionsFinishResponse$Outbound;
-}
-
-export function fileStorageUploadSessionsFinishResponseToJSON(
-  fileStorageUploadSessionsFinishResponse:
-    FileStorageUploadSessionsFinishResponse,
-): string {
-  return JSON.stringify(
-    FileStorageUploadSessionsFinishResponse$outboundSchema.parse(
-      fileStorageUploadSessionsFinishResponse,
-    ),
-  );
-}
 
 export function fileStorageUploadSessionsFinishResponseFromJSON(
   jsonString: string,

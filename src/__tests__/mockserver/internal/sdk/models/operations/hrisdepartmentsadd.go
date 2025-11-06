@@ -36,8 +36,8 @@ type HrisDepartmentsAddRequest struct {
 	// The ID of your Unify application
 	AppID *string `header:"style=simple,explode=false,name=x-apideck-app-id"`
 	// Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
-	ServiceID  *string                    `header:"style=simple,explode=false,name=x-apideck-service-id"`
-	Department components.DepartmentInput `request:"mediaType=application/json"`
+	ServiceID *string                    `header:"style=simple,explode=false,name=x-apideck-service-id"`
+	Body      components.DepartmentInput `request:"mediaType=application/json"`
 }
 
 func (h HrisDepartmentsAddRequest) MarshalJSON() ([]byte, error) {
@@ -45,7 +45,7 @@ func (h HrisDepartmentsAddRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (h *HrisDepartmentsAddRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &h, "", false, []string{"Department"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &h, "", false, []string{"body"}); err != nil {
 		return err
 	}
 	return nil
@@ -79,11 +79,11 @@ func (o *HrisDepartmentsAddRequest) GetServiceID() *string {
 	return o.ServiceID
 }
 
-func (o *HrisDepartmentsAddRequest) GetDepartment() components.DepartmentInput {
+func (o *HrisDepartmentsAddRequest) GetBody() components.DepartmentInput {
 	if o == nil {
 		return components.DepartmentInput{}
 	}
-	return o.Department
+	return o.Body
 }
 
 type HrisDepartmentsAddResponse struct {

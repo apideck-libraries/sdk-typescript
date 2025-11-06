@@ -60,83 +60,6 @@ export type AccountingBalanceSheetOneResponse = {
 };
 
 /** @internal */
-export const AccountingBalanceSheetOneGlobals$inboundSchema: z.ZodType<
-  AccountingBalanceSheetOneGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/** @internal */
-export type AccountingBalanceSheetOneGlobals$Outbound = {
-  consumerId?: string | undefined;
-  appId?: string | undefined;
-};
-
-/** @internal */
-export const AccountingBalanceSheetOneGlobals$outboundSchema: z.ZodType<
-  AccountingBalanceSheetOneGlobals$Outbound,
-  z.ZodTypeDef,
-  AccountingBalanceSheetOneGlobals
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AccountingBalanceSheetOneGlobals$ {
-  /** @deprecated use `AccountingBalanceSheetOneGlobals$inboundSchema` instead. */
-  export const inboundSchema = AccountingBalanceSheetOneGlobals$inboundSchema;
-  /** @deprecated use `AccountingBalanceSheetOneGlobals$outboundSchema` instead. */
-  export const outboundSchema = AccountingBalanceSheetOneGlobals$outboundSchema;
-  /** @deprecated use `AccountingBalanceSheetOneGlobals$Outbound` instead. */
-  export type Outbound = AccountingBalanceSheetOneGlobals$Outbound;
-}
-
-export function accountingBalanceSheetOneGlobalsToJSON(
-  accountingBalanceSheetOneGlobals: AccountingBalanceSheetOneGlobals,
-): string {
-  return JSON.stringify(
-    AccountingBalanceSheetOneGlobals$outboundSchema.parse(
-      accountingBalanceSheetOneGlobals,
-    ),
-  );
-}
-
-export function accountingBalanceSheetOneGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<AccountingBalanceSheetOneGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => AccountingBalanceSheetOneGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'AccountingBalanceSheetOneGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const AccountingBalanceSheetOneRequest$inboundSchema: z.ZodType<
-  AccountingBalanceSheetOneRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  pass_through: z.record(z.any()).optional(),
-  filter: components.BalanceSheetFilter$inboundSchema.optional(),
-  raw: z.boolean().default(false),
-}).transform((v) => {
-  return remap$(v, {
-    "pass_through": "passThrough",
-  });
-});
-
-/** @internal */
 export type AccountingBalanceSheetOneRequest$Outbound = {
   consumerId?: string | undefined;
   appId?: string | undefined;
@@ -164,19 +87,6 @@ export const AccountingBalanceSheetOneRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AccountingBalanceSheetOneRequest$ {
-  /** @deprecated use `AccountingBalanceSheetOneRequest$inboundSchema` instead. */
-  export const inboundSchema = AccountingBalanceSheetOneRequest$inboundSchema;
-  /** @deprecated use `AccountingBalanceSheetOneRequest$outboundSchema` instead. */
-  export const outboundSchema = AccountingBalanceSheetOneRequest$outboundSchema;
-  /** @deprecated use `AccountingBalanceSheetOneRequest$Outbound` instead. */
-  export type Outbound = AccountingBalanceSheetOneRequest$Outbound;
-}
-
 export function accountingBalanceSheetOneRequestToJSON(
   accountingBalanceSheetOneRequest: AccountingBalanceSheetOneRequest,
 ): string {
@@ -184,16 +94,6 @@ export function accountingBalanceSheetOneRequestToJSON(
     AccountingBalanceSheetOneRequest$outboundSchema.parse(
       accountingBalanceSheetOneRequest,
     ),
-  );
-}
-
-export function accountingBalanceSheetOneRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<AccountingBalanceSheetOneRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => AccountingBalanceSheetOneRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'AccountingBalanceSheetOneRequest' from JSON`,
   );
 }
 
@@ -215,60 +115,6 @@ export const AccountingBalanceSheetOneResponse$inboundSchema: z.ZodType<
     "UnexpectedErrorResponse": "unexpectedErrorResponse",
   });
 });
-
-/** @internal */
-export type AccountingBalanceSheetOneResponse$Outbound = {
-  HttpMeta: components.HTTPMetadata$Outbound;
-  GetBalanceSheetResponse?:
-    | components.GetBalanceSheetResponse$Outbound
-    | undefined;
-  UnexpectedErrorResponse?:
-    | components.UnexpectedErrorResponse$Outbound
-    | undefined;
-};
-
-/** @internal */
-export const AccountingBalanceSheetOneResponse$outboundSchema: z.ZodType<
-  AccountingBalanceSheetOneResponse$Outbound,
-  z.ZodTypeDef,
-  AccountingBalanceSheetOneResponse
-> = z.object({
-  httpMeta: components.HTTPMetadata$outboundSchema,
-  getBalanceSheetResponse: components.GetBalanceSheetResponse$outboundSchema
-    .optional(),
-  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    httpMeta: "HttpMeta",
-    getBalanceSheetResponse: "GetBalanceSheetResponse",
-    unexpectedErrorResponse: "UnexpectedErrorResponse",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AccountingBalanceSheetOneResponse$ {
-  /** @deprecated use `AccountingBalanceSheetOneResponse$inboundSchema` instead. */
-  export const inboundSchema = AccountingBalanceSheetOneResponse$inboundSchema;
-  /** @deprecated use `AccountingBalanceSheetOneResponse$outboundSchema` instead. */
-  export const outboundSchema =
-    AccountingBalanceSheetOneResponse$outboundSchema;
-  /** @deprecated use `AccountingBalanceSheetOneResponse$Outbound` instead. */
-  export type Outbound = AccountingBalanceSheetOneResponse$Outbound;
-}
-
-export function accountingBalanceSheetOneResponseToJSON(
-  accountingBalanceSheetOneResponse: AccountingBalanceSheetOneResponse,
-): string {
-  return JSON.stringify(
-    AccountingBalanceSheetOneResponse$outboundSchema.parse(
-      accountingBalanceSheetOneResponse,
-    ),
-  );
-}
 
 export function accountingBalanceSheetOneResponseFromJSON(
   jsonString: string,

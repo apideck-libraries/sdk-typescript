@@ -43,7 +43,6 @@ export const LinkedBankAccount$inboundSchema: z.ZodType<
     "bank_name": "bankName",
   });
 });
-
 /** @internal */
 export type LinkedBankAccount$Outbound = {
   id?: string | undefined;
@@ -69,19 +68,6 @@ export const LinkedBankAccount$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace LinkedBankAccount$ {
-  /** @deprecated use `LinkedBankAccount$inboundSchema` instead. */
-  export const inboundSchema = LinkedBankAccount$inboundSchema;
-  /** @deprecated use `LinkedBankAccount$outboundSchema` instead. */
-  export const outboundSchema = LinkedBankAccount$outboundSchema;
-  /** @deprecated use `LinkedBankAccount$Outbound` instead. */
-  export type Outbound = LinkedBankAccount$Outbound;
-}
-
 export function linkedBankAccountToJSON(
   linkedBankAccount: LinkedBankAccount,
 ): string {
@@ -89,7 +75,6 @@ export function linkedBankAccountToJSON(
     LinkedBankAccount$outboundSchema.parse(linkedBankAccount),
   );
 }
-
 export function linkedBankAccountFromJSON(
   jsonString: string,
 ): SafeParseResult<LinkedBankAccount, SDKValidationError> {

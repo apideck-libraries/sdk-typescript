@@ -57,83 +57,6 @@ export type CrmOpportunitiesUpdateResponse = {
 };
 
 /** @internal */
-export const CrmOpportunitiesUpdateGlobals$inboundSchema: z.ZodType<
-  CrmOpportunitiesUpdateGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/** @internal */
-export type CrmOpportunitiesUpdateGlobals$Outbound = {
-  consumerId?: string | undefined;
-  appId?: string | undefined;
-};
-
-/** @internal */
-export const CrmOpportunitiesUpdateGlobals$outboundSchema: z.ZodType<
-  CrmOpportunitiesUpdateGlobals$Outbound,
-  z.ZodTypeDef,
-  CrmOpportunitiesUpdateGlobals
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CrmOpportunitiesUpdateGlobals$ {
-  /** @deprecated use `CrmOpportunitiesUpdateGlobals$inboundSchema` instead. */
-  export const inboundSchema = CrmOpportunitiesUpdateGlobals$inboundSchema;
-  /** @deprecated use `CrmOpportunitiesUpdateGlobals$outboundSchema` instead. */
-  export const outboundSchema = CrmOpportunitiesUpdateGlobals$outboundSchema;
-  /** @deprecated use `CrmOpportunitiesUpdateGlobals$Outbound` instead. */
-  export type Outbound = CrmOpportunitiesUpdateGlobals$Outbound;
-}
-
-export function crmOpportunitiesUpdateGlobalsToJSON(
-  crmOpportunitiesUpdateGlobals: CrmOpportunitiesUpdateGlobals,
-): string {
-  return JSON.stringify(
-    CrmOpportunitiesUpdateGlobals$outboundSchema.parse(
-      crmOpportunitiesUpdateGlobals,
-    ),
-  );
-}
-
-export function crmOpportunitiesUpdateGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<CrmOpportunitiesUpdateGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => CrmOpportunitiesUpdateGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CrmOpportunitiesUpdateGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const CrmOpportunitiesUpdateRequest$inboundSchema: z.ZodType<
-  CrmOpportunitiesUpdateRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  id: z.string(),
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  raw: z.boolean().default(false),
-  Opportunity: components.OpportunityInput$inboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    "Opportunity": "opportunity",
-  });
-});
-
-/** @internal */
 export type CrmOpportunitiesUpdateRequest$Outbound = {
   id: string;
   consumerId?: string | undefined;
@@ -161,19 +84,6 @@ export const CrmOpportunitiesUpdateRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CrmOpportunitiesUpdateRequest$ {
-  /** @deprecated use `CrmOpportunitiesUpdateRequest$inboundSchema` instead. */
-  export const inboundSchema = CrmOpportunitiesUpdateRequest$inboundSchema;
-  /** @deprecated use `CrmOpportunitiesUpdateRequest$outboundSchema` instead. */
-  export const outboundSchema = CrmOpportunitiesUpdateRequest$outboundSchema;
-  /** @deprecated use `CrmOpportunitiesUpdateRequest$Outbound` instead. */
-  export type Outbound = CrmOpportunitiesUpdateRequest$Outbound;
-}
-
 export function crmOpportunitiesUpdateRequestToJSON(
   crmOpportunitiesUpdateRequest: CrmOpportunitiesUpdateRequest,
 ): string {
@@ -181,16 +91,6 @@ export function crmOpportunitiesUpdateRequestToJSON(
     CrmOpportunitiesUpdateRequest$outboundSchema.parse(
       crmOpportunitiesUpdateRequest,
     ),
-  );
-}
-
-export function crmOpportunitiesUpdateRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<CrmOpportunitiesUpdateRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => CrmOpportunitiesUpdateRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CrmOpportunitiesUpdateRequest' from JSON`,
   );
 }
 
@@ -212,59 +112,6 @@ export const CrmOpportunitiesUpdateResponse$inboundSchema: z.ZodType<
     "UnexpectedErrorResponse": "unexpectedErrorResponse",
   });
 });
-
-/** @internal */
-export type CrmOpportunitiesUpdateResponse$Outbound = {
-  HttpMeta: components.HTTPMetadata$Outbound;
-  UpdateOpportunityResponse?:
-    | components.UpdateOpportunityResponse$Outbound
-    | undefined;
-  UnexpectedErrorResponse?:
-    | components.UnexpectedErrorResponse$Outbound
-    | undefined;
-};
-
-/** @internal */
-export const CrmOpportunitiesUpdateResponse$outboundSchema: z.ZodType<
-  CrmOpportunitiesUpdateResponse$Outbound,
-  z.ZodTypeDef,
-  CrmOpportunitiesUpdateResponse
-> = z.object({
-  httpMeta: components.HTTPMetadata$outboundSchema,
-  updateOpportunityResponse: components.UpdateOpportunityResponse$outboundSchema
-    .optional(),
-  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    httpMeta: "HttpMeta",
-    updateOpportunityResponse: "UpdateOpportunityResponse",
-    unexpectedErrorResponse: "UnexpectedErrorResponse",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CrmOpportunitiesUpdateResponse$ {
-  /** @deprecated use `CrmOpportunitiesUpdateResponse$inboundSchema` instead. */
-  export const inboundSchema = CrmOpportunitiesUpdateResponse$inboundSchema;
-  /** @deprecated use `CrmOpportunitiesUpdateResponse$outboundSchema` instead. */
-  export const outboundSchema = CrmOpportunitiesUpdateResponse$outboundSchema;
-  /** @deprecated use `CrmOpportunitiesUpdateResponse$Outbound` instead. */
-  export type Outbound = CrmOpportunitiesUpdateResponse$Outbound;
-}
-
-export function crmOpportunitiesUpdateResponseToJSON(
-  crmOpportunitiesUpdateResponse: CrmOpportunitiesUpdateResponse,
-): string {
-  return JSON.stringify(
-    CrmOpportunitiesUpdateResponse$outboundSchema.parse(
-      crmOpportunitiesUpdateResponse,
-    ),
-  );
-}
 
 export function crmOpportunitiesUpdateResponseFromJSON(
   jsonString: string,

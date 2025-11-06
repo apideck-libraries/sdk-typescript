@@ -62,82 +62,6 @@ export type AccountingBankFeedAccountsOneResponse = {
 };
 
 /** @internal */
-export const AccountingBankFeedAccountsOneGlobals$inboundSchema: z.ZodType<
-  AccountingBankFeedAccountsOneGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/** @internal */
-export type AccountingBankFeedAccountsOneGlobals$Outbound = {
-  consumerId?: string | undefined;
-  appId?: string | undefined;
-};
-
-/** @internal */
-export const AccountingBankFeedAccountsOneGlobals$outboundSchema: z.ZodType<
-  AccountingBankFeedAccountsOneGlobals$Outbound,
-  z.ZodTypeDef,
-  AccountingBankFeedAccountsOneGlobals
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AccountingBankFeedAccountsOneGlobals$ {
-  /** @deprecated use `AccountingBankFeedAccountsOneGlobals$inboundSchema` instead. */
-  export const inboundSchema =
-    AccountingBankFeedAccountsOneGlobals$inboundSchema;
-  /** @deprecated use `AccountingBankFeedAccountsOneGlobals$outboundSchema` instead. */
-  export const outboundSchema =
-    AccountingBankFeedAccountsOneGlobals$outboundSchema;
-  /** @deprecated use `AccountingBankFeedAccountsOneGlobals$Outbound` instead. */
-  export type Outbound = AccountingBankFeedAccountsOneGlobals$Outbound;
-}
-
-export function accountingBankFeedAccountsOneGlobalsToJSON(
-  accountingBankFeedAccountsOneGlobals: AccountingBankFeedAccountsOneGlobals,
-): string {
-  return JSON.stringify(
-    AccountingBankFeedAccountsOneGlobals$outboundSchema.parse(
-      accountingBankFeedAccountsOneGlobals,
-    ),
-  );
-}
-
-export function accountingBankFeedAccountsOneGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<AccountingBankFeedAccountsOneGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      AccountingBankFeedAccountsOneGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'AccountingBankFeedAccountsOneGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const AccountingBankFeedAccountsOneRequest$inboundSchema: z.ZodType<
-  AccountingBankFeedAccountsOneRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  id: z.string(),
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  raw: z.boolean().default(false),
-  fields: z.nullable(z.string()).optional(),
-});
-
-/** @internal */
 export type AccountingBankFeedAccountsOneRequest$Outbound = {
   id: string;
   consumerId?: string | undefined;
@@ -161,21 +85,6 @@ export const AccountingBankFeedAccountsOneRequest$outboundSchema: z.ZodType<
   fields: z.nullable(z.string()).optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AccountingBankFeedAccountsOneRequest$ {
-  /** @deprecated use `AccountingBankFeedAccountsOneRequest$inboundSchema` instead. */
-  export const inboundSchema =
-    AccountingBankFeedAccountsOneRequest$inboundSchema;
-  /** @deprecated use `AccountingBankFeedAccountsOneRequest$outboundSchema` instead. */
-  export const outboundSchema =
-    AccountingBankFeedAccountsOneRequest$outboundSchema;
-  /** @deprecated use `AccountingBankFeedAccountsOneRequest$Outbound` instead. */
-  export type Outbound = AccountingBankFeedAccountsOneRequest$Outbound;
-}
-
 export function accountingBankFeedAccountsOneRequestToJSON(
   accountingBankFeedAccountsOneRequest: AccountingBankFeedAccountsOneRequest,
 ): string {
@@ -183,17 +92,6 @@ export function accountingBankFeedAccountsOneRequestToJSON(
     AccountingBankFeedAccountsOneRequest$outboundSchema.parse(
       accountingBankFeedAccountsOneRequest,
     ),
-  );
-}
-
-export function accountingBankFeedAccountsOneRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<AccountingBankFeedAccountsOneRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      AccountingBankFeedAccountsOneRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'AccountingBankFeedAccountsOneRequest' from JSON`,
   );
 }
 
@@ -215,61 +113,6 @@ export const AccountingBankFeedAccountsOneResponse$inboundSchema: z.ZodType<
     "UnexpectedErrorResponse": "unexpectedErrorResponse",
   });
 });
-
-/** @internal */
-export type AccountingBankFeedAccountsOneResponse$Outbound = {
-  HttpMeta: components.HTTPMetadata$Outbound;
-  GetBankFeedAccountResponse?:
-    | components.GetBankFeedAccountResponse$Outbound
-    | undefined;
-  UnexpectedErrorResponse?:
-    | components.UnexpectedErrorResponse$Outbound
-    | undefined;
-};
-
-/** @internal */
-export const AccountingBankFeedAccountsOneResponse$outboundSchema: z.ZodType<
-  AccountingBankFeedAccountsOneResponse$Outbound,
-  z.ZodTypeDef,
-  AccountingBankFeedAccountsOneResponse
-> = z.object({
-  httpMeta: components.HTTPMetadata$outboundSchema,
-  getBankFeedAccountResponse: components
-    .GetBankFeedAccountResponse$outboundSchema.optional(),
-  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    httpMeta: "HttpMeta",
-    getBankFeedAccountResponse: "GetBankFeedAccountResponse",
-    unexpectedErrorResponse: "UnexpectedErrorResponse",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AccountingBankFeedAccountsOneResponse$ {
-  /** @deprecated use `AccountingBankFeedAccountsOneResponse$inboundSchema` instead. */
-  export const inboundSchema =
-    AccountingBankFeedAccountsOneResponse$inboundSchema;
-  /** @deprecated use `AccountingBankFeedAccountsOneResponse$outboundSchema` instead. */
-  export const outboundSchema =
-    AccountingBankFeedAccountsOneResponse$outboundSchema;
-  /** @deprecated use `AccountingBankFeedAccountsOneResponse$Outbound` instead. */
-  export type Outbound = AccountingBankFeedAccountsOneResponse$Outbound;
-}
-
-export function accountingBankFeedAccountsOneResponseToJSON(
-  accountingBankFeedAccountsOneResponse: AccountingBankFeedAccountsOneResponse,
-): string {
-  return JSON.stringify(
-    AccountingBankFeedAccountsOneResponse$outboundSchema.parse(
-      accountingBankFeedAccountsOneResponse,
-    ),
-  );
-}
 
 export function accountingBankFeedAccountsOneResponseFromJSON(
   jsonString: string,

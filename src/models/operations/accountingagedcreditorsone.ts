@@ -64,85 +64,6 @@ export type AccountingAgedCreditorsOneResponse = {
 };
 
 /** @internal */
-export const AccountingAgedCreditorsOneGlobals$inboundSchema: z.ZodType<
-  AccountingAgedCreditorsOneGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/** @internal */
-export type AccountingAgedCreditorsOneGlobals$Outbound = {
-  consumerId?: string | undefined;
-  appId?: string | undefined;
-};
-
-/** @internal */
-export const AccountingAgedCreditorsOneGlobals$outboundSchema: z.ZodType<
-  AccountingAgedCreditorsOneGlobals$Outbound,
-  z.ZodTypeDef,
-  AccountingAgedCreditorsOneGlobals
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AccountingAgedCreditorsOneGlobals$ {
-  /** @deprecated use `AccountingAgedCreditorsOneGlobals$inboundSchema` instead. */
-  export const inboundSchema = AccountingAgedCreditorsOneGlobals$inboundSchema;
-  /** @deprecated use `AccountingAgedCreditorsOneGlobals$outboundSchema` instead. */
-  export const outboundSchema =
-    AccountingAgedCreditorsOneGlobals$outboundSchema;
-  /** @deprecated use `AccountingAgedCreditorsOneGlobals$Outbound` instead. */
-  export type Outbound = AccountingAgedCreditorsOneGlobals$Outbound;
-}
-
-export function accountingAgedCreditorsOneGlobalsToJSON(
-  accountingAgedCreditorsOneGlobals: AccountingAgedCreditorsOneGlobals,
-): string {
-  return JSON.stringify(
-    AccountingAgedCreditorsOneGlobals$outboundSchema.parse(
-      accountingAgedCreditorsOneGlobals,
-    ),
-  );
-}
-
-export function accountingAgedCreditorsOneGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<AccountingAgedCreditorsOneGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => AccountingAgedCreditorsOneGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'AccountingAgedCreditorsOneGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const AccountingAgedCreditorsOneRequest$inboundSchema: z.ZodType<
-  AccountingAgedCreditorsOneRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  raw: z.boolean().default(false),
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  filter: components.AgedReportFilter$inboundSchema.optional(),
-  pass_through: z.record(z.any()).optional(),
-  fields: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "pass_through": "passThrough",
-  });
-});
-
-/** @internal */
 export type AccountingAgedCreditorsOneRequest$Outbound = {
   raw: boolean;
   consumerId?: string | undefined;
@@ -172,20 +93,6 @@ export const AccountingAgedCreditorsOneRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AccountingAgedCreditorsOneRequest$ {
-  /** @deprecated use `AccountingAgedCreditorsOneRequest$inboundSchema` instead. */
-  export const inboundSchema = AccountingAgedCreditorsOneRequest$inboundSchema;
-  /** @deprecated use `AccountingAgedCreditorsOneRequest$outboundSchema` instead. */
-  export const outboundSchema =
-    AccountingAgedCreditorsOneRequest$outboundSchema;
-  /** @deprecated use `AccountingAgedCreditorsOneRequest$Outbound` instead. */
-  export type Outbound = AccountingAgedCreditorsOneRequest$Outbound;
-}
-
 export function accountingAgedCreditorsOneRequestToJSON(
   accountingAgedCreditorsOneRequest: AccountingAgedCreditorsOneRequest,
 ): string {
@@ -193,16 +100,6 @@ export function accountingAgedCreditorsOneRequestToJSON(
     AccountingAgedCreditorsOneRequest$outboundSchema.parse(
       accountingAgedCreditorsOneRequest,
     ),
-  );
-}
-
-export function accountingAgedCreditorsOneRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<AccountingAgedCreditorsOneRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => AccountingAgedCreditorsOneRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'AccountingAgedCreditorsOneRequest' from JSON`,
   );
 }
 
@@ -224,60 +121,6 @@ export const AccountingAgedCreditorsOneResponse$inboundSchema: z.ZodType<
     "UnexpectedErrorResponse": "unexpectedErrorResponse",
   });
 });
-
-/** @internal */
-export type AccountingAgedCreditorsOneResponse$Outbound = {
-  HttpMeta: components.HTTPMetadata$Outbound;
-  GetAgedCreditorsResponse?:
-    | components.GetAgedCreditorsResponse$Outbound
-    | undefined;
-  UnexpectedErrorResponse?:
-    | components.UnexpectedErrorResponse$Outbound
-    | undefined;
-};
-
-/** @internal */
-export const AccountingAgedCreditorsOneResponse$outboundSchema: z.ZodType<
-  AccountingAgedCreditorsOneResponse$Outbound,
-  z.ZodTypeDef,
-  AccountingAgedCreditorsOneResponse
-> = z.object({
-  httpMeta: components.HTTPMetadata$outboundSchema,
-  getAgedCreditorsResponse: components.GetAgedCreditorsResponse$outboundSchema
-    .optional(),
-  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    httpMeta: "HttpMeta",
-    getAgedCreditorsResponse: "GetAgedCreditorsResponse",
-    unexpectedErrorResponse: "UnexpectedErrorResponse",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AccountingAgedCreditorsOneResponse$ {
-  /** @deprecated use `AccountingAgedCreditorsOneResponse$inboundSchema` instead. */
-  export const inboundSchema = AccountingAgedCreditorsOneResponse$inboundSchema;
-  /** @deprecated use `AccountingAgedCreditorsOneResponse$outboundSchema` instead. */
-  export const outboundSchema =
-    AccountingAgedCreditorsOneResponse$outboundSchema;
-  /** @deprecated use `AccountingAgedCreditorsOneResponse$Outbound` instead. */
-  export type Outbound = AccountingAgedCreditorsOneResponse$Outbound;
-}
-
-export function accountingAgedCreditorsOneResponseToJSON(
-  accountingAgedCreditorsOneResponse: AccountingAgedCreditorsOneResponse,
-): string {
-  return JSON.stringify(
-    AccountingAgedCreditorsOneResponse$outboundSchema.parse(
-      accountingAgedCreditorsOneResponse,
-    ),
-  );
-}
 
 export function accountingAgedCreditorsOneResponseFromJSON(
   jsonString: string,

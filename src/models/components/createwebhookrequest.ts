@@ -4,22 +4,10 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  Status,
-  Status$inboundSchema,
-  Status$outboundSchema,
-} from "./status.js";
-import {
-  UnifiedApiId,
-  UnifiedApiId$inboundSchema,
-  UnifiedApiId$outboundSchema,
-} from "./unifiedapiid.js";
+import { Status, Status$outboundSchema } from "./status.js";
+import { UnifiedApiId, UnifiedApiId$outboundSchema } from "./unifiedapiid.js";
 import {
   WebhookEventType,
-  WebhookEventType$inboundSchema,
   WebhookEventType$outboundSchema,
 } from "./webhookeventtype.js";
 
@@ -45,24 +33,6 @@ export type CreateWebhookRequest = {
    */
   events: Array<WebhookEventType>;
 };
-
-/** @internal */
-export const CreateWebhookRequest$inboundSchema: z.ZodType<
-  CreateWebhookRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  description: z.nullable(z.string()).optional(),
-  unified_api: UnifiedApiId$inboundSchema,
-  status: Status$inboundSchema,
-  delivery_url: z.string(),
-  events: z.array(WebhookEventType$inboundSchema),
-}).transform((v) => {
-  return remap$(v, {
-    "unified_api": "unifiedApi",
-    "delivery_url": "deliveryUrl",
-  });
-});
 
 /** @internal */
 export type CreateWebhookRequest$Outbound = {
@@ -91,33 +61,10 @@ export const CreateWebhookRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateWebhookRequest$ {
-  /** @deprecated use `CreateWebhookRequest$inboundSchema` instead. */
-  export const inboundSchema = CreateWebhookRequest$inboundSchema;
-  /** @deprecated use `CreateWebhookRequest$outboundSchema` instead. */
-  export const outboundSchema = CreateWebhookRequest$outboundSchema;
-  /** @deprecated use `CreateWebhookRequest$Outbound` instead. */
-  export type Outbound = CreateWebhookRequest$Outbound;
-}
-
 export function createWebhookRequestToJSON(
   createWebhookRequest: CreateWebhookRequest,
 ): string {
   return JSON.stringify(
     CreateWebhookRequest$outboundSchema.parse(createWebhookRequest),
-  );
-}
-
-export function createWebhookRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<CreateWebhookRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => CreateWebhookRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CreateWebhookRequest' from JSON`,
   );
 }

@@ -7,24 +7,9 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  Company1,
-  Company1$inboundSchema,
-  Company1$Outbound,
-  Company1$outboundSchema,
-} from "./company1.js";
-import {
-  Links,
-  Links$inboundSchema,
-  Links$Outbound,
-  Links$outboundSchema,
-} from "./links.js";
-import {
-  Meta,
-  Meta$inboundSchema,
-  Meta$Outbound,
-  Meta$outboundSchema,
-} from "./meta.js";
+import { Company1, Company1$inboundSchema } from "./company1.js";
+import { Links, Links$inboundSchema } from "./links.js";
+import { Meta, Meta$inboundSchema } from "./meta.js";
 
 /**
  * Companies
@@ -86,62 +71,6 @@ export const GetCompaniesResponse$inboundSchema: z.ZodType<
     "_raw": "raw",
   });
 });
-
-/** @internal */
-export type GetCompaniesResponse$Outbound = {
-  status_code: number;
-  status: string;
-  service: string;
-  resource: string;
-  operation: string;
-  data: Array<Company1$Outbound>;
-  meta?: Meta$Outbound | undefined;
-  links?: Links$Outbound | undefined;
-  _raw?: { [k: string]: any } | null | undefined;
-};
-
-/** @internal */
-export const GetCompaniesResponse$outboundSchema: z.ZodType<
-  GetCompaniesResponse$Outbound,
-  z.ZodTypeDef,
-  GetCompaniesResponse
-> = z.object({
-  statusCode: z.number().int(),
-  status: z.string(),
-  service: z.string(),
-  resource: z.string(),
-  operation: z.string(),
-  data: z.array(Company1$outboundSchema),
-  meta: Meta$outboundSchema.optional(),
-  links: Links$outboundSchema.optional(),
-  raw: z.nullable(z.record(z.any())).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    statusCode: "status_code",
-    raw: "_raw",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetCompaniesResponse$ {
-  /** @deprecated use `GetCompaniesResponse$inboundSchema` instead. */
-  export const inboundSchema = GetCompaniesResponse$inboundSchema;
-  /** @deprecated use `GetCompaniesResponse$outboundSchema` instead. */
-  export const outboundSchema = GetCompaniesResponse$outboundSchema;
-  /** @deprecated use `GetCompaniesResponse$Outbound` instead. */
-  export type Outbound = GetCompaniesResponse$Outbound;
-}
-
-export function getCompaniesResponseToJSON(
-  getCompaniesResponse: GetCompaniesResponse,
-): string {
-  return JSON.stringify(
-    GetCompaniesResponse$outboundSchema.parse(getCompaniesResponse),
-  );
-}
 
 export function getCompaniesResponseFromJSON(
   jsonString: string,

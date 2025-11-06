@@ -10,8 +10,6 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   PassThroughBody,
   PassThroughBody$inboundSchema,
-  PassThroughBody$Outbound,
-  PassThroughBody$outboundSchema,
 } from "./passthroughbody.js";
 
 export type Note = {
@@ -116,79 +114,6 @@ export const Note$inboundSchema: z.ZodType<Note, z.ZodTypeDef, unknown> = z
       "pass_through": "passThrough",
     });
   });
-
-/** @internal */
-export type Note$Outbound = {
-  id?: string | undefined;
-  title?: string | null | undefined;
-  content?: string | null | undefined;
-  owner_id?: string | null | undefined;
-  contact_id?: string | null | undefined;
-  company_id?: string | null | undefined;
-  opportunity_id?: string | null | undefined;
-  activity_id?: string | null | undefined;
-  lead_id?: string | null | undefined;
-  active?: boolean | null | undefined;
-  custom_mappings?: { [k: string]: any } | null | undefined;
-  updated_by?: string | null | undefined;
-  created_by?: string | null | undefined;
-  updated_at?: string | null | undefined;
-  created_at?: string | null | undefined;
-  pass_through?: Array<PassThroughBody$Outbound> | undefined;
-};
-
-/** @internal */
-export const Note$outboundSchema: z.ZodType<Note$Outbound, z.ZodTypeDef, Note> =
-  z.object({
-    id: z.string().optional(),
-    title: z.nullable(z.string()).optional(),
-    content: z.nullable(z.string()).optional(),
-    ownerId: z.nullable(z.string()).optional(),
-    contactId: z.nullable(z.string()).optional(),
-    companyId: z.nullable(z.string()).optional(),
-    opportunityId: z.nullable(z.string()).optional(),
-    activityId: z.nullable(z.string()).optional(),
-    leadId: z.nullable(z.string()).optional(),
-    active: z.nullable(z.boolean()).optional(),
-    customMappings: z.nullable(z.record(z.any())).optional(),
-    updatedBy: z.nullable(z.string()).optional(),
-    createdBy: z.nullable(z.string()).optional(),
-    updatedAt: z.nullable(z.string()).optional(),
-    createdAt: z.nullable(z.string()).optional(),
-    passThrough: z.array(PassThroughBody$outboundSchema).optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      ownerId: "owner_id",
-      contactId: "contact_id",
-      companyId: "company_id",
-      opportunityId: "opportunity_id",
-      activityId: "activity_id",
-      leadId: "lead_id",
-      customMappings: "custom_mappings",
-      updatedBy: "updated_by",
-      createdBy: "created_by",
-      updatedAt: "updated_at",
-      createdAt: "created_at",
-      passThrough: "pass_through",
-    });
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Note$ {
-  /** @deprecated use `Note$inboundSchema` instead. */
-  export const inboundSchema = Note$inboundSchema;
-  /** @deprecated use `Note$outboundSchema` instead. */
-  export const outboundSchema = Note$outboundSchema;
-  /** @deprecated use `Note$Outbound` instead. */
-  export type Outbound = Note$Outbound;
-}
-
-export function noteToJSON(note: Note): string {
-  return JSON.stringify(Note$outboundSchema.parse(note));
-}
 
 export function noteFromJSON(
   jsonString: string,

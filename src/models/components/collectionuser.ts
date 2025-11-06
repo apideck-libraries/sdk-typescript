@@ -77,62 +77,6 @@ export const CollectionUser$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type CollectionUser$Outbound = {
-  id?: string | null | undefined;
-  name?: string | null | undefined;
-  first_name?: string | null | undefined;
-  last_name?: string | null | undefined;
-  email?: string | null | undefined;
-  photo_url?: string | null | undefined;
-  custom_mappings?: { [k: string]: any } | null | undefined;
-  updated_at?: string | null | undefined;
-  created_at?: string | null | undefined;
-};
-
-/** @internal */
-export const CollectionUser$outboundSchema: z.ZodType<
-  CollectionUser$Outbound,
-  z.ZodTypeDef,
-  CollectionUser
-> = z.object({
-  id: z.nullable(z.string()).optional(),
-  name: z.nullable(z.string()).optional(),
-  firstName: z.nullable(z.string()).optional(),
-  lastName: z.nullable(z.string()).optional(),
-  email: z.nullable(z.string()).optional(),
-  photoUrl: z.nullable(z.string()).optional(),
-  customMappings: z.nullable(z.record(z.any())).optional(),
-  updatedAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
-  createdAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    firstName: "first_name",
-    lastName: "last_name",
-    photoUrl: "photo_url",
-    customMappings: "custom_mappings",
-    updatedAt: "updated_at",
-    createdAt: "created_at",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CollectionUser$ {
-  /** @deprecated use `CollectionUser$inboundSchema` instead. */
-  export const inboundSchema = CollectionUser$inboundSchema;
-  /** @deprecated use `CollectionUser$outboundSchema` instead. */
-  export const outboundSchema = CollectionUser$outboundSchema;
-  /** @deprecated use `CollectionUser$Outbound` instead. */
-  export type Outbound = CollectionUser$Outbound;
-}
-
-export function collectionUserToJSON(collectionUser: CollectionUser): string {
-  return JSON.stringify(CollectionUser$outboundSchema.parse(collectionUser));
-}
-
 export function collectionUserFromJSON(
   jsonString: string,
 ): SafeParseResult<CollectionUser, SDKValidationError> {

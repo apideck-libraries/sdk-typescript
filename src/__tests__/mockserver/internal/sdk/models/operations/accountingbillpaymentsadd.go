@@ -36,8 +36,8 @@ type AccountingBillPaymentsAddRequest struct {
 	// The ID of your Unify application
 	AppID *string `header:"style=simple,explode=false,name=x-apideck-app-id"`
 	// Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
-	ServiceID   *string                     `header:"style=simple,explode=false,name=x-apideck-service-id"`
-	BillPayment components.BillPaymentInput `request:"mediaType=application/json"`
+	ServiceID *string                     `header:"style=simple,explode=false,name=x-apideck-service-id"`
+	Body      components.BillPaymentInput `request:"mediaType=application/json"`
 }
 
 func (a AccountingBillPaymentsAddRequest) MarshalJSON() ([]byte, error) {
@@ -45,7 +45,7 @@ func (a AccountingBillPaymentsAddRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (a *AccountingBillPaymentsAddRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"BillPayment"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"body"}); err != nil {
 		return err
 	}
 	return nil
@@ -79,11 +79,11 @@ func (o *AccountingBillPaymentsAddRequest) GetServiceID() *string {
 	return o.ServiceID
 }
 
-func (o *AccountingBillPaymentsAddRequest) GetBillPayment() components.BillPaymentInput {
+func (o *AccountingBillPaymentsAddRequest) GetBody() components.BillPaymentInput {
 	if o == nil {
 		return components.BillPaymentInput{}
 	}
-	return o.BillPayment
+	return o.Body
 }
 
 type AccountingBillPaymentsAddResponse struct {

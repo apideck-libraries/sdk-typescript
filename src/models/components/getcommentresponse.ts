@@ -10,8 +10,6 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   CollectionTicketComment,
   CollectionTicketComment$inboundSchema,
-  CollectionTicketComment$Outbound,
-  CollectionTicketComment$outboundSchema,
 } from "./collectionticketcomment.js";
 
 /**
@@ -64,58 +62,6 @@ export const GetCommentResponse$inboundSchema: z.ZodType<
     "_raw": "raw",
   });
 });
-
-/** @internal */
-export type GetCommentResponse$Outbound = {
-  status_code: number;
-  status: string;
-  service: string;
-  resource: string;
-  operation: string;
-  data: CollectionTicketComment$Outbound;
-  _raw?: { [k: string]: any } | null | undefined;
-};
-
-/** @internal */
-export const GetCommentResponse$outboundSchema: z.ZodType<
-  GetCommentResponse$Outbound,
-  z.ZodTypeDef,
-  GetCommentResponse
-> = z.object({
-  statusCode: z.number().int(),
-  status: z.string(),
-  service: z.string(),
-  resource: z.string(),
-  operation: z.string(),
-  data: CollectionTicketComment$outboundSchema,
-  raw: z.nullable(z.record(z.any())).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    statusCode: "status_code",
-    raw: "_raw",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetCommentResponse$ {
-  /** @deprecated use `GetCommentResponse$inboundSchema` instead. */
-  export const inboundSchema = GetCommentResponse$inboundSchema;
-  /** @deprecated use `GetCommentResponse$outboundSchema` instead. */
-  export const outboundSchema = GetCommentResponse$outboundSchema;
-  /** @deprecated use `GetCommentResponse$Outbound` instead. */
-  export type Outbound = GetCommentResponse$Outbound;
-}
-
-export function getCommentResponseToJSON(
-  getCommentResponse: GetCommentResponse,
-): string {
-  return JSON.stringify(
-    GetCommentResponse$outboundSchema.parse(getCommentResponse),
-  );
-}
 
 export function getCommentResponseFromJSON(
   jsonString: string,

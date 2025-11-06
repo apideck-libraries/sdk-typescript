@@ -3,10 +3,7 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
  * Wildcard indicating all resources and fields when Data Scopes is disabled
@@ -43,29 +40,9 @@ export type UpdateConsentRequest = {
 };
 
 /** @internal */
-export const Two$inboundSchema: z.ZodNativeEnum<typeof Two> = z.nativeEnum(Two);
-
-/** @internal */
-export const Two$outboundSchema: z.ZodNativeEnum<typeof Two> =
-  Two$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Two$ {
-  /** @deprecated use `Two$inboundSchema` instead. */
-  export const inboundSchema = Two$inboundSchema;
-  /** @deprecated use `Two$outboundSchema` instead. */
-  export const outboundSchema = Two$outboundSchema;
-}
-
-/** @internal */
-export const One$inboundSchema: z.ZodType<One, z.ZodTypeDef, unknown> = z
-  .object({
-    read: z.boolean().optional(),
-    write: z.boolean().optional(),
-  });
+export const Two$outboundSchema: z.ZodNativeEnum<typeof Two> = z.nativeEnum(
+  Two,
+);
 
 /** @internal */
 export type One$Outbound = {
@@ -80,42 +57,9 @@ export const One$outboundSchema: z.ZodType<One$Outbound, z.ZodTypeDef, One> = z
     write: z.boolean().optional(),
   });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace One$ {
-  /** @deprecated use `One$inboundSchema` instead. */
-  export const inboundSchema = One$inboundSchema;
-  /** @deprecated use `One$outboundSchema` instead. */
-  export const outboundSchema = One$outboundSchema;
-  /** @deprecated use `One$Outbound` instead. */
-  export type Outbound = One$Outbound;
-}
-
 export function oneToJSON(one: One): string {
   return JSON.stringify(One$outboundSchema.parse(one));
 }
-
-export function oneFromJSON(
-  jsonString: string,
-): SafeParseResult<One, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => One$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'One' from JSON`,
-  );
-}
-
-/** @internal */
-export const UpdateConsentRequestResources$inboundSchema: z.ZodType<
-  UpdateConsentRequestResources,
-  z.ZodTypeDef,
-  unknown
-> = z.union([
-  z.record(z.record(z.lazy(() => One$inboundSchema))),
-  Two$inboundSchema,
-]);
 
 /** @internal */
 export type UpdateConsentRequestResources$Outbound = {
@@ -132,19 +76,6 @@ export const UpdateConsentRequestResources$outboundSchema: z.ZodType<
   Two$outboundSchema,
 ]);
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace UpdateConsentRequestResources$ {
-  /** @deprecated use `UpdateConsentRequestResources$inboundSchema` instead. */
-  export const inboundSchema = UpdateConsentRequestResources$inboundSchema;
-  /** @deprecated use `UpdateConsentRequestResources$outboundSchema` instead. */
-  export const outboundSchema = UpdateConsentRequestResources$outboundSchema;
-  /** @deprecated use `UpdateConsentRequestResources$Outbound` instead. */
-  export type Outbound = UpdateConsentRequestResources$Outbound;
-}
-
 export function updateConsentRequestResourcesToJSON(
   updateConsentRequestResources: UpdateConsentRequestResources,
 ): string {
@@ -154,29 +85,6 @@ export function updateConsentRequestResourcesToJSON(
     ),
   );
 }
-
-export function updateConsentRequestResourcesFromJSON(
-  jsonString: string,
-): SafeParseResult<UpdateConsentRequestResources, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => UpdateConsentRequestResources$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'UpdateConsentRequestResources' from JSON`,
-  );
-}
-
-/** @internal */
-export const UpdateConsentRequest$inboundSchema: z.ZodType<
-  UpdateConsentRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  resources: z.union([
-    z.record(z.record(z.lazy(() => One$inboundSchema))),
-    Two$inboundSchema,
-  ]),
-  granted: z.boolean(),
-});
 
 /** @internal */
 export type UpdateConsentRequest$Outbound = {
@@ -197,33 +105,10 @@ export const UpdateConsentRequest$outboundSchema: z.ZodType<
   granted: z.boolean(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace UpdateConsentRequest$ {
-  /** @deprecated use `UpdateConsentRequest$inboundSchema` instead. */
-  export const inboundSchema = UpdateConsentRequest$inboundSchema;
-  /** @deprecated use `UpdateConsentRequest$outboundSchema` instead. */
-  export const outboundSchema = UpdateConsentRequest$outboundSchema;
-  /** @deprecated use `UpdateConsentRequest$Outbound` instead. */
-  export type Outbound = UpdateConsentRequest$Outbound;
-}
-
 export function updateConsentRequestToJSON(
   updateConsentRequest: UpdateConsentRequest,
 ): string {
   return JSON.stringify(
     UpdateConsentRequest$outboundSchema.parse(updateConsentRequest),
-  );
-}
-
-export function updateConsentRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<UpdateConsentRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => UpdateConsentRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'UpdateConsentRequest' from JSON`,
   );
 }

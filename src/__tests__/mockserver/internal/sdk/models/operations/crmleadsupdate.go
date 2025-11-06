@@ -39,7 +39,7 @@ type CrmLeadsUpdateRequest struct {
 	ServiceID *string `header:"style=simple,explode=false,name=x-apideck-service-id"`
 	// Include raw response. Mostly used for debugging purposes
 	Raw  *bool                `default:"false" queryParam:"style=form,explode=true,name=raw"`
-	Lead components.LeadInput `request:"mediaType=application/json"`
+	Body components.LeadInput `request:"mediaType=application/json"`
 }
 
 func (c CrmLeadsUpdateRequest) MarshalJSON() ([]byte, error) {
@@ -47,7 +47,7 @@ func (c CrmLeadsUpdateRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (c *CrmLeadsUpdateRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"id", "Lead"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"id", "body"}); err != nil {
 		return err
 	}
 	return nil
@@ -88,11 +88,11 @@ func (o *CrmLeadsUpdateRequest) GetRaw() *bool {
 	return o.Raw
 }
 
-func (o *CrmLeadsUpdateRequest) GetLead() components.LeadInput {
+func (o *CrmLeadsUpdateRequest) GetBody() components.LeadInput {
 	if o == nil {
 		return components.LeadInput{}
 	}
-	return o.Lead
+	return o.Body
 }
 
 type CrmLeadsUpdateResponse struct {

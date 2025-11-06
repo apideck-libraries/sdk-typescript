@@ -10,8 +10,6 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   OutstandingBalanceByCurrency,
   OutstandingBalanceByCurrency$inboundSchema,
-  OutstandingBalanceByCurrency$Outbound,
-  OutstandingBalanceByCurrency$outboundSchema,
 } from "./outstandingbalancebycurrency.js";
 
 export type OutstandingBalanceBySupplier = {
@@ -46,57 +44,6 @@ export const OutstandingBalanceBySupplier$inboundSchema: z.ZodType<
     "outstanding_balances_by_currency": "outstandingBalancesByCurrency",
   });
 });
-
-/** @internal */
-export type OutstandingBalanceBySupplier$Outbound = {
-  supplier_id?: string | undefined;
-  supplier_name?: string | undefined;
-  outstanding_balances_by_currency?:
-    | Array<OutstandingBalanceByCurrency$Outbound>
-    | undefined;
-};
-
-/** @internal */
-export const OutstandingBalanceBySupplier$outboundSchema: z.ZodType<
-  OutstandingBalanceBySupplier$Outbound,
-  z.ZodTypeDef,
-  OutstandingBalanceBySupplier
-> = z.object({
-  supplierId: z.string().optional(),
-  supplierName: z.string().optional(),
-  outstandingBalancesByCurrency: z.array(
-    OutstandingBalanceByCurrency$outboundSchema,
-  ).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    supplierId: "supplier_id",
-    supplierName: "supplier_name",
-    outstandingBalancesByCurrency: "outstanding_balances_by_currency",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace OutstandingBalanceBySupplier$ {
-  /** @deprecated use `OutstandingBalanceBySupplier$inboundSchema` instead. */
-  export const inboundSchema = OutstandingBalanceBySupplier$inboundSchema;
-  /** @deprecated use `OutstandingBalanceBySupplier$outboundSchema` instead. */
-  export const outboundSchema = OutstandingBalanceBySupplier$outboundSchema;
-  /** @deprecated use `OutstandingBalanceBySupplier$Outbound` instead. */
-  export type Outbound = OutstandingBalanceBySupplier$Outbound;
-}
-
-export function outstandingBalanceBySupplierToJSON(
-  outstandingBalanceBySupplier: OutstandingBalanceBySupplier,
-): string {
-  return JSON.stringify(
-    OutstandingBalanceBySupplier$outboundSchema.parse(
-      outstandingBalanceBySupplier,
-    ),
-  );
-}
 
 export function outstandingBalanceBySupplierFromJSON(
   jsonString: string,

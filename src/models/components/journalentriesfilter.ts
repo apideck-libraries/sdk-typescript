@@ -4,10 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export const JournalEntriesFilterStatus = {
   Draft: "draft",
@@ -29,41 +26,9 @@ export type JournalEntriesFilter = {
 };
 
 /** @internal */
-export const JournalEntriesFilterStatus$inboundSchema: z.ZodNativeEnum<
-  typeof JournalEntriesFilterStatus
-> = z.nativeEnum(JournalEntriesFilterStatus);
-
-/** @internal */
 export const JournalEntriesFilterStatus$outboundSchema: z.ZodNativeEnum<
   typeof JournalEntriesFilterStatus
-> = JournalEntriesFilterStatus$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace JournalEntriesFilterStatus$ {
-  /** @deprecated use `JournalEntriesFilterStatus$inboundSchema` instead. */
-  export const inboundSchema = JournalEntriesFilterStatus$inboundSchema;
-  /** @deprecated use `JournalEntriesFilterStatus$outboundSchema` instead. */
-  export const outboundSchema = JournalEntriesFilterStatus$outboundSchema;
-}
-
-/** @internal */
-export const JournalEntriesFilter$inboundSchema: z.ZodType<
-  JournalEntriesFilter,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  updated_since: z.string().datetime({ offset: true }).transform(v =>
-    new Date(v)
-  ).optional(),
-  status: JournalEntriesFilterStatus$inboundSchema.optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "updated_since": "updatedSince",
-  });
-});
+> = z.nativeEnum(JournalEntriesFilterStatus);
 
 /** @internal */
 export type JournalEntriesFilter$Outbound = {
@@ -85,33 +50,10 @@ export const JournalEntriesFilter$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace JournalEntriesFilter$ {
-  /** @deprecated use `JournalEntriesFilter$inboundSchema` instead. */
-  export const inboundSchema = JournalEntriesFilter$inboundSchema;
-  /** @deprecated use `JournalEntriesFilter$outboundSchema` instead. */
-  export const outboundSchema = JournalEntriesFilter$outboundSchema;
-  /** @deprecated use `JournalEntriesFilter$Outbound` instead. */
-  export type Outbound = JournalEntriesFilter$Outbound;
-}
-
 export function journalEntriesFilterToJSON(
   journalEntriesFilter: JournalEntriesFilter,
 ): string {
   return JSON.stringify(
     JournalEntriesFilter$outboundSchema.parse(journalEntriesFilter),
-  );
-}
-
-export function journalEntriesFilterFromJSON(
-  jsonString: string,
-): SafeParseResult<JournalEntriesFilter, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => JournalEntriesFilter$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'JournalEntriesFilter' from JSON`,
   );
 }

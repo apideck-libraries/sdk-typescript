@@ -33,41 +33,6 @@ export const Links$inboundSchema: z.ZodType<Links, z.ZodTypeDef, unknown> = z
     next: z.nullable(z.string()).optional(),
   });
 
-/** @internal */
-export type Links$Outbound = {
-  previous?: string | null | undefined;
-  current?: string | undefined;
-  next?: string | null | undefined;
-};
-
-/** @internal */
-export const Links$outboundSchema: z.ZodType<
-  Links$Outbound,
-  z.ZodTypeDef,
-  Links
-> = z.object({
-  previous: z.nullable(z.string()).optional(),
-  current: z.string().optional(),
-  next: z.nullable(z.string()).optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Links$ {
-  /** @deprecated use `Links$inboundSchema` instead. */
-  export const inboundSchema = Links$inboundSchema;
-  /** @deprecated use `Links$outboundSchema` instead. */
-  export const outboundSchema = Links$outboundSchema;
-  /** @deprecated use `Links$Outbound` instead. */
-  export type Outbound = Links$Outbound;
-}
-
-export function linksToJSON(links: Links): string {
-  return JSON.stringify(Links$outboundSchema.parse(links));
-}
-
 export function linksFromJSON(
   jsonString: string,
 ): SafeParseResult<Links, SDKValidationError> {

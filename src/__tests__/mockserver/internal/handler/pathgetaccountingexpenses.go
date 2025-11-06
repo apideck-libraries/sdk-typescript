@@ -52,371 +52,365 @@ func testAccountingExpensesAllAccountingExpensesAll0(w http.ResponseWriter, req 
 		Service:    "quickbooks",
 		Resource:   "Expenses",
 		Operation:  "all",
-		Data: []components.ExpenseUnion{
-			components.CreateExpenseUnionExpense1(
-				components.Expense1{
-					ID:              types.String("12345"),
-					Number:          types.String("OIT00546"),
-					TransactionDate: types.MustNewTimeFromString("2021-05-01T12:00:00.000Z"),
-					AccountID:       "123456",
-					CustomerID:      types.String("12345"),
-					SupplierID:      types.String("12345"),
-					CompanyID:       types.String("12345"),
-					DepartmentID:    types.String("12345"),
-					PaymentType:     components.ExpensePaymentType1Cash.ToPointer(),
-					Currency:        components.CurrencyUsd.ToPointer(),
-					CurrencyRate:    types.Float64(0.69),
-					Type:            components.ExpenseType1Expense.ToPointer(),
-					Memo:            types.String("For travel expenses incurred on 2024-05-15"),
-					TaxRate: &components.LinkedTaxRate{
-						ID:   types.String("123456"),
-						Code: types.String("N-T"),
-						Name: types.String("GST on Purchases"),
-						Rate: types.Float64(10),
-					},
-					TotalAmount: types.Float64(275),
-					LineItems: []components.ExpenseLineItem{
-						components.ExpenseLineItem{
-							ID: types.String("12345"),
-							TrackingCategories: []*components.LinkedTrackingCategory{
-								&components.LinkedTrackingCategory{
-									ID:   types.String("123456"),
-									Name: types.String("New York"),
-								},
-								&components.LinkedTrackingCategory{
-									ID:   types.String("123456"),
-									Name: types.String("New York"),
-								},
-								&components.LinkedTrackingCategory{
-									ID:   types.String("123456"),
-									Name: types.String("New York"),
-								},
-							},
-							AccountID:    types.String("123456"),
-							CustomerID:   types.String("12345"),
-							DepartmentID: types.String("12345"),
-							LocationID:   types.String("12345"),
-							SubsidiaryID: types.String("12345"),
-							TaxRate: &components.LinkedTaxRate{
+		Data: []components.Expense{
+			components.Expense{
+				ID:              types.String("12345"),
+				Number:          types.String("OIT00546"),
+				TransactionDate: types.MustNewTimeFromString("2021-05-01T12:00:00.000Z"),
+				AccountID:       types.String("123456"),
+				CustomerID:      types.String("12345"),
+				SupplierID:      types.String("12345"),
+				CompanyID:       types.String("12345"),
+				DepartmentID:    types.String("12345"),
+				PaymentType:     components.ExpensePaymentTypeCash.ToPointer(),
+				Currency:        components.CurrencyUsd.ToPointer(),
+				CurrencyRate:    types.Float64(0.69),
+				Type:            components.ExpenseTypeExpense.ToPointer(),
+				Memo:            types.String("For travel expenses incurred on 2024-05-15"),
+				TaxRate: &components.LinkedTaxRate{
+					ID:   types.String("123456"),
+					Code: types.String("N-T"),
+					Name: types.String("GST on Purchases"),
+					Rate: types.Float64(10),
+				},
+				TotalAmount: types.Float64(275),
+				LineItems: []components.ExpenseLineItem{
+					components.ExpenseLineItem{
+						ID: types.String("12345"),
+						TrackingCategories: []*components.LinkedTrackingCategory{
+							&components.LinkedTrackingCategory{
 								ID:   types.String("123456"),
-								Code: types.String("N-T"),
-								Name: types.String("GST on Purchases"),
-								Rate: types.Float64(10),
+								Name: types.String("New York"),
 							},
-							Description: types.String("Travel US."),
-							TotalAmount: types.Float64(275),
-							Billable:    types.Bool(true),
-						},
-						components.ExpenseLineItem{
-							ID: types.String("12345"),
-							TrackingCategories: []*components.LinkedTrackingCategory{
-								&components.LinkedTrackingCategory{
-									ID:   types.String("123456"),
-									Name: types.String("New York"),
-								},
-							},
-							AccountID:    types.String("123456"),
-							CustomerID:   types.String("12345"),
-							DepartmentID: types.String("12345"),
-							LocationID:   types.String("12345"),
-							SubsidiaryID: types.String("12345"),
-							TaxRate: &components.LinkedTaxRate{
+							&components.LinkedTrackingCategory{
 								ID:   types.String("123456"),
-								Code: types.String("N-T"),
-								Name: types.String("GST on Purchases"),
-								Rate: types.Float64(10),
+								Name: types.String("New York"),
 							},
-							Description: types.String("Travel US."),
-							TotalAmount: types.Float64(275),
-							Billable:    types.Bool(true),
+							&components.LinkedTrackingCategory{
+								ID:   types.String("123456"),
+								Name: types.String("New York"),
+							},
 						},
-					},
-					CustomFields: []components.CustomField{
-						components.CustomField{
-							ID:          types.String("2389328923893298"),
-							Name:        types.String("employee_level"),
-							Description: types.String("Employee Level"),
-							Value: types.Pointer(components.CreateCustomFieldValue2Str(
-								"Uses Salesforce and Marketo",
-							)),
+						AccountID:    types.String("123456"),
+						CustomerID:   types.String("12345"),
+						DepartmentID: types.String("12345"),
+						LocationID:   types.String("12345"),
+						SubsidiaryID: types.String("12345"),
+						TaxRate: &components.LinkedTaxRate{
+							ID:   types.String("123456"),
+							Code: types.String("N-T"),
+							Name: types.String("GST on Purchases"),
+							Rate: types.Float64(10),
 						},
+						Description: types.String("Travel US."),
+						TotalAmount: types.Float64(275),
+						Billable:    types.Bool(true),
 					},
-					UpdatedAt:  types.MustNewTimeFromString("2020-09-30T07:43:32.000Z"),
-					CreatedAt:  types.MustNewTimeFromString("2020-09-30T07:43:32.000Z"),
-					RowVersion: types.String("1-12345"),
-					PassThrough: []components.PassThroughBody{
-						components.PassThroughBody{
-							ServiceID: "<id>",
-							ExtendPaths: []components.ExtendPath{
-								components.ExtendPath{
-									Path: "$.nested.property",
-									Value: map[string]any{
-										"TaxClassificationRef": map[string]any{
-											"value": "EUC-99990201-V1-00020000",
-										},
-									},
-								},
-								components.ExtendPath{
-									Path: "$.nested.property",
-									Value: map[string]any{
-										"TaxClassificationRef": map[string]any{
-											"value": "EUC-99990201-V1-00020000",
-										},
+					components.ExpenseLineItem{
+						ID: types.String("12345"),
+						TrackingCategories: []*components.LinkedTrackingCategory{
+							&components.LinkedTrackingCategory{
+								ID:   types.String("123456"),
+								Name: types.String("New York"),
+							},
+						},
+						AccountID:    types.String("123456"),
+						CustomerID:   types.String("12345"),
+						DepartmentID: types.String("12345"),
+						LocationID:   types.String("12345"),
+						SubsidiaryID: types.String("12345"),
+						TaxRate: &components.LinkedTaxRate{
+							ID:   types.String("123456"),
+							Code: types.String("N-T"),
+							Name: types.String("GST on Purchases"),
+							Rate: types.Float64(10),
+						},
+						Description: types.String("Travel US."),
+						TotalAmount: types.Float64(275),
+						Billable:    types.Bool(true),
+					},
+				},
+				CustomFields: []components.CustomField{
+					components.CustomField{
+						ID:          types.String("2389328923893298"),
+						Name:        types.String("employee_level"),
+						Description: types.String("Employee Level"),
+						Value: types.Pointer(components.CreateCustomFieldValue2Str(
+							"Uses Salesforce and Marketo",
+						)),
+					},
+				},
+				UpdatedAt:  types.MustNewTimeFromString("2020-09-30T07:43:32.000Z"),
+				CreatedAt:  types.MustNewTimeFromString("2020-09-30T07:43:32.000Z"),
+				RowVersion: types.String("1-12345"),
+				PassThrough: []components.PassThroughBody{
+					components.PassThroughBody{
+						ServiceID: "<id>",
+						ExtendPaths: []components.ExtendPath{
+							components.ExtendPath{
+								Path: "$.nested.property",
+								Value: map[string]any{
+									"TaxClassificationRef": map[string]any{
+										"value": "EUC-99990201-V1-00020000",
 									},
 								},
 							},
+							components.ExtendPath{
+								Path: "$.nested.property",
+								Value: map[string]any{
+									"TaxClassificationRef": map[string]any{
+										"value": "EUC-99990201-V1-00020000",
+									},
+								},
+							},
 						},
-						components.PassThroughBody{
-							ServiceID: "<id>",
-							ExtendPaths: []components.ExtendPath{
-								components.ExtendPath{
-									Path: "$.nested.property",
-									Value: map[string]any{
-										"TaxClassificationRef": map[string]any{
-											"value": "EUC-99990201-V1-00020000",
-										},
+					},
+					components.PassThroughBody{
+						ServiceID: "<id>",
+						ExtendPaths: []components.ExtendPath{
+							components.ExtendPath{
+								Path: "$.nested.property",
+								Value: map[string]any{
+									"TaxClassificationRef": map[string]any{
+										"value": "EUC-99990201-V1-00020000",
 									},
 								},
 							},
 						},
 					},
 				},
-			),
-			components.CreateExpenseUnionExpense1(
-				components.Expense1{
-					ID:              types.String("12345"),
-					Number:          types.String("OIT00546"),
-					TransactionDate: types.MustNewTimeFromString("2021-05-01T12:00:00.000Z"),
-					AccountID:       "123456",
-					CustomerID:      types.String("12345"),
-					SupplierID:      types.String("12345"),
-					CompanyID:       types.String("12345"),
-					DepartmentID:    types.String("12345"),
-					PaymentType:     components.ExpensePaymentType1Cash.ToPointer(),
-					Currency:        components.CurrencyUsd.ToPointer(),
-					CurrencyRate:    types.Float64(0.69),
-					Type:            components.ExpenseType1Expense.ToPointer(),
-					Memo:            types.String("For travel expenses incurred on 2024-05-15"),
-					TaxRate: &components.LinkedTaxRate{
-						ID:   types.String("123456"),
-						Code: types.String("N-T"),
-						Name: types.String("GST on Purchases"),
-						Rate: types.Float64(10),
-					},
-					TotalAmount: types.Float64(275),
-					LineItems: []components.ExpenseLineItem{
-						components.ExpenseLineItem{
-							ID: types.String("12345"),
-							TrackingCategories: []*components.LinkedTrackingCategory{
-								&components.LinkedTrackingCategory{
-									ID:   types.String("123456"),
-									Name: types.String("New York"),
-								},
-							},
-							AccountID:    types.String("123456"),
-							CustomerID:   types.String("12345"),
-							DepartmentID: types.String("12345"),
-							LocationID:   types.String("12345"),
-							SubsidiaryID: types.String("12345"),
-							TaxRate: &components.LinkedTaxRate{
+			},
+			components.Expense{
+				ID:              types.String("12345"),
+				Number:          types.String("OIT00546"),
+				TransactionDate: types.MustNewTimeFromString("2021-05-01T12:00:00.000Z"),
+				AccountID:       types.String("123456"),
+				CustomerID:      types.String("12345"),
+				SupplierID:      types.String("12345"),
+				CompanyID:       types.String("12345"),
+				DepartmentID:    types.String("12345"),
+				PaymentType:     components.ExpensePaymentTypeCash.ToPointer(),
+				Currency:        components.CurrencyUsd.ToPointer(),
+				CurrencyRate:    types.Float64(0.69),
+				Type:            components.ExpenseTypeExpense.ToPointer(),
+				Memo:            types.String("For travel expenses incurred on 2024-05-15"),
+				TaxRate: &components.LinkedTaxRate{
+					ID:   types.String("123456"),
+					Code: types.String("N-T"),
+					Name: types.String("GST on Purchases"),
+					Rate: types.Float64(10),
+				},
+				TotalAmount: types.Float64(275),
+				LineItems: []components.ExpenseLineItem{
+					components.ExpenseLineItem{
+						ID: types.String("12345"),
+						TrackingCategories: []*components.LinkedTrackingCategory{
+							&components.LinkedTrackingCategory{
 								ID:   types.String("123456"),
-								Code: types.String("N-T"),
-								Name: types.String("GST on Purchases"),
-								Rate: types.Float64(10),
+								Name: types.String("New York"),
 							},
-							Description: types.String("Travel US."),
-							TotalAmount: types.Float64(275),
-							Billable:    types.Bool(true),
 						},
-						components.ExpenseLineItem{
-							ID: types.String("12345"),
-							TrackingCategories: []*components.LinkedTrackingCategory{
-								&components.LinkedTrackingCategory{
-									ID:   types.String("123456"),
-									Name: types.String("New York"),
-								},
-							},
-							AccountID:    types.String("123456"),
-							CustomerID:   types.String("12345"),
-							DepartmentID: types.String("12345"),
-							LocationID:   types.String("12345"),
-							SubsidiaryID: types.String("12345"),
-							TaxRate: &components.LinkedTaxRate{
+						AccountID:    types.String("123456"),
+						CustomerID:   types.String("12345"),
+						DepartmentID: types.String("12345"),
+						LocationID:   types.String("12345"),
+						SubsidiaryID: types.String("12345"),
+						TaxRate: &components.LinkedTaxRate{
+							ID:   types.String("123456"),
+							Code: types.String("N-T"),
+							Name: types.String("GST on Purchases"),
+							Rate: types.Float64(10),
+						},
+						Description: types.String("Travel US."),
+						TotalAmount: types.Float64(275),
+						Billable:    types.Bool(true),
+					},
+					components.ExpenseLineItem{
+						ID: types.String("12345"),
+						TrackingCategories: []*components.LinkedTrackingCategory{
+							&components.LinkedTrackingCategory{
 								ID:   types.String("123456"),
-								Code: types.String("N-T"),
-								Name: types.String("GST on Purchases"),
-								Rate: types.Float64(10),
+								Name: types.String("New York"),
 							},
-							Description: types.String("Travel US."),
-							TotalAmount: types.Float64(275),
-							Billable:    types.Bool(true),
 						},
+						AccountID:    types.String("123456"),
+						CustomerID:   types.String("12345"),
+						DepartmentID: types.String("12345"),
+						LocationID:   types.String("12345"),
+						SubsidiaryID: types.String("12345"),
+						TaxRate: &components.LinkedTaxRate{
+							ID:   types.String("123456"),
+							Code: types.String("N-T"),
+							Name: types.String("GST on Purchases"),
+							Rate: types.Float64(10),
+						},
+						Description: types.String("Travel US."),
+						TotalAmount: types.Float64(275),
+						Billable:    types.Bool(true),
 					},
-					CustomFields: []components.CustomField{
-						components.CustomField{
-							ID:          types.String("2389328923893298"),
-							Name:        types.String("employee_level"),
-							Description: types.String("Employee Level"),
-							Value: types.Pointer(components.CreateCustomFieldValue2MapOfAny(
-								map[string]any{},
-							)),
-						},
-						components.CustomField{
-							ID:          types.String("2389328923893298"),
-							Name:        types.String("employee_level"),
-							Description: types.String("Employee Level"),
-							Value: types.Pointer(components.CreateCustomFieldValue2MapOfAny(
-								map[string]any{},
-							)),
-						},
-						components.CustomField{
-							ID:          types.String("2389328923893298"),
-							Name:        types.String("employee_level"),
-							Description: types.String("Employee Level"),
-							Value: types.Pointer(components.CreateCustomFieldValue2Str(
-								"Uses Salesforce and Marketo",
-							)),
-						},
+				},
+				CustomFields: []components.CustomField{
+					components.CustomField{
+						ID:          types.String("2389328923893298"),
+						Name:        types.String("employee_level"),
+						Description: types.String("Employee Level"),
+						Value: types.Pointer(components.CreateCustomFieldValue2MapOfAny(
+							map[string]any{},
+						)),
 					},
-					UpdatedAt:  types.MustNewTimeFromString("2020-09-30T07:43:32.000Z"),
-					CreatedAt:  types.MustNewTimeFromString("2020-09-30T07:43:32.000Z"),
-					RowVersion: types.String("1-12345"),
-					PassThrough: []components.PassThroughBody{
-						components.PassThroughBody{
-							ServiceID: "<id>",
-							ExtendPaths: []components.ExtendPath{
-								components.ExtendPath{
-									Path: "$.nested.property",
-									Value: map[string]any{
-										"TaxClassificationRef": map[string]any{
-											"value": "EUC-99990201-V1-00020000",
-										},
+					components.CustomField{
+						ID:          types.String("2389328923893298"),
+						Name:        types.String("employee_level"),
+						Description: types.String("Employee Level"),
+						Value: types.Pointer(components.CreateCustomFieldValue2MapOfAny(
+							map[string]any{},
+						)),
+					},
+					components.CustomField{
+						ID:          types.String("2389328923893298"),
+						Name:        types.String("employee_level"),
+						Description: types.String("Employee Level"),
+						Value: types.Pointer(components.CreateCustomFieldValue2Str(
+							"Uses Salesforce and Marketo",
+						)),
+					},
+				},
+				UpdatedAt:  types.MustNewTimeFromString("2020-09-30T07:43:32.000Z"),
+				CreatedAt:  types.MustNewTimeFromString("2020-09-30T07:43:32.000Z"),
+				RowVersion: types.String("1-12345"),
+				PassThrough: []components.PassThroughBody{
+					components.PassThroughBody{
+						ServiceID: "<id>",
+						ExtendPaths: []components.ExtendPath{
+							components.ExtendPath{
+								Path: "$.nested.property",
+								Value: map[string]any{
+									"TaxClassificationRef": map[string]any{
+										"value": "EUC-99990201-V1-00020000",
 									},
 								},
-								components.ExtendPath{
-									Path: "$.nested.property",
-									Value: map[string]any{
-										"TaxClassificationRef": map[string]any{
-											"value": "EUC-99990201-V1-00020000",
-										},
+							},
+							components.ExtendPath{
+								Path: "$.nested.property",
+								Value: map[string]any{
+									"TaxClassificationRef": map[string]any{
+										"value": "EUC-99990201-V1-00020000",
 									},
 								},
 							},
 						},
 					},
 				},
-			),
-			components.CreateExpenseUnionExpense1(
-				components.Expense1{
-					ID:              types.String("12345"),
-					Number:          types.String("OIT00546"),
-					TransactionDate: types.MustNewTimeFromString("2021-05-01T12:00:00.000Z"),
-					AccountID:       "123456",
-					CustomerID:      types.String("12345"),
-					SupplierID:      types.String("12345"),
-					CompanyID:       types.String("12345"),
-					DepartmentID:    types.String("12345"),
-					PaymentType:     components.ExpensePaymentType1Cash.ToPointer(),
-					Currency:        components.CurrencyUsd.ToPointer(),
-					CurrencyRate:    types.Float64(0.69),
-					Type:            components.ExpenseType1Expense.ToPointer(),
-					Memo:            types.String("For travel expenses incurred on 2024-05-15"),
-					TaxRate: &components.LinkedTaxRate{
-						ID:   types.String("123456"),
-						Code: types.String("N-T"),
-						Name: types.String("GST on Purchases"),
-						Rate: types.Float64(10),
-					},
-					TotalAmount: types.Float64(275),
-					LineItems: []components.ExpenseLineItem{
-						components.ExpenseLineItem{
-							ID: types.String("12345"),
-							TrackingCategories: []*components.LinkedTrackingCategory{
-								&components.LinkedTrackingCategory{
-									ID:   types.String("123456"),
-									Name: types.String("New York"),
-								},
-							},
-							AccountID:    types.String("123456"),
-							CustomerID:   types.String("12345"),
-							DepartmentID: types.String("12345"),
-							LocationID:   types.String("12345"),
-							SubsidiaryID: types.String("12345"),
-							TaxRate: &components.LinkedTaxRate{
+			},
+			components.Expense{
+				ID:              types.String("12345"),
+				Number:          types.String("OIT00546"),
+				TransactionDate: types.MustNewTimeFromString("2021-05-01T12:00:00.000Z"),
+				AccountID:       types.String("123456"),
+				CustomerID:      types.String("12345"),
+				SupplierID:      types.String("12345"),
+				CompanyID:       types.String("12345"),
+				DepartmentID:    types.String("12345"),
+				PaymentType:     components.ExpensePaymentTypeCash.ToPointer(),
+				Currency:        components.CurrencyUsd.ToPointer(),
+				CurrencyRate:    types.Float64(0.69),
+				Type:            components.ExpenseTypeExpense.ToPointer(),
+				Memo:            types.String("For travel expenses incurred on 2024-05-15"),
+				TaxRate: &components.LinkedTaxRate{
+					ID:   types.String("123456"),
+					Code: types.String("N-T"),
+					Name: types.String("GST on Purchases"),
+					Rate: types.Float64(10),
+				},
+				TotalAmount: types.Float64(275),
+				LineItems: []components.ExpenseLineItem{
+					components.ExpenseLineItem{
+						ID: types.String("12345"),
+						TrackingCategories: []*components.LinkedTrackingCategory{
+							&components.LinkedTrackingCategory{
 								ID:   types.String("123456"),
-								Code: types.String("N-T"),
-								Name: types.String("GST on Purchases"),
-								Rate: types.Float64(10),
+								Name: types.String("New York"),
 							},
-							Description: types.String("Travel US."),
-							TotalAmount: types.Float64(275),
-							Billable:    types.Bool(true),
 						},
+						AccountID:    types.String("123456"),
+						CustomerID:   types.String("12345"),
+						DepartmentID: types.String("12345"),
+						LocationID:   types.String("12345"),
+						SubsidiaryID: types.String("12345"),
+						TaxRate: &components.LinkedTaxRate{
+							ID:   types.String("123456"),
+							Code: types.String("N-T"),
+							Name: types.String("GST on Purchases"),
+							Rate: types.Float64(10),
+						},
+						Description: types.String("Travel US."),
+						TotalAmount: types.Float64(275),
+						Billable:    types.Bool(true),
 					},
-					CustomFields: []components.CustomField{
-						components.CustomField{
-							ID:          types.String("2389328923893298"),
-							Name:        types.String("employee_level"),
-							Description: types.String("Employee Level"),
-							Value: types.Pointer(components.CreateCustomFieldValue2MapOfAny(
-								map[string]any{},
-							)),
-						},
-						components.CustomField{
-							ID:          types.String("2389328923893298"),
-							Name:        types.String("employee_level"),
-							Description: types.String("Employee Level"),
-							Value: types.Pointer(components.CreateCustomFieldValue2MapOfAny(
-								map[string]any{
-									"0": map[string]any{},
-								},
-							)),
-						},
-						components.CustomField{
-							ID:          types.String("2389328923893298"),
-							Name:        types.String("employee_level"),
-							Description: types.String("Employee Level"),
-							Value: types.Pointer(components.CreateCustomFieldValue2Str(
-								"Uses Salesforce and Marketo",
-							)),
-						},
+				},
+				CustomFields: []components.CustomField{
+					components.CustomField{
+						ID:          types.String("2389328923893298"),
+						Name:        types.String("employee_level"),
+						Description: types.String("Employee Level"),
+						Value: types.Pointer(components.CreateCustomFieldValue2MapOfAny(
+							map[string]any{},
+						)),
 					},
-					UpdatedAt:  types.MustNewTimeFromString("2020-09-30T07:43:32.000Z"),
-					CreatedAt:  types.MustNewTimeFromString("2020-09-30T07:43:32.000Z"),
-					RowVersion: types.String("1-12345"),
-					PassThrough: []components.PassThroughBody{
-						components.PassThroughBody{
-							ServiceID: "<id>",
-							ExtendPaths: []components.ExtendPath{
-								components.ExtendPath{
-									Path: "$.nested.property",
-									Value: map[string]any{
-										"TaxClassificationRef": map[string]any{
-											"value": "EUC-99990201-V1-00020000",
-										},
+					components.CustomField{
+						ID:          types.String("2389328923893298"),
+						Name:        types.String("employee_level"),
+						Description: types.String("Employee Level"),
+						Value: types.Pointer(components.CreateCustomFieldValue2MapOfAny(
+							map[string]any{
+								"0": map[string]any{},
+							},
+						)),
+					},
+					components.CustomField{
+						ID:          types.String("2389328923893298"),
+						Name:        types.String("employee_level"),
+						Description: types.String("Employee Level"),
+						Value: types.Pointer(components.CreateCustomFieldValue2Str(
+							"Uses Salesforce and Marketo",
+						)),
+					},
+				},
+				UpdatedAt:  types.MustNewTimeFromString("2020-09-30T07:43:32.000Z"),
+				CreatedAt:  types.MustNewTimeFromString("2020-09-30T07:43:32.000Z"),
+				RowVersion: types.String("1-12345"),
+				PassThrough: []components.PassThroughBody{
+					components.PassThroughBody{
+						ServiceID: "<id>",
+						ExtendPaths: []components.ExtendPath{
+							components.ExtendPath{
+								Path: "$.nested.property",
+								Value: map[string]any{
+									"TaxClassificationRef": map[string]any{
+										"value": "EUC-99990201-V1-00020000",
 									},
 								},
-								components.ExtendPath{
-									Path: "$.nested.property",
-									Value: map[string]any{
-										"TaxClassificationRef": map[string]any{
-											"value": "EUC-99990201-V1-00020000",
-										},
+							},
+							components.ExtendPath{
+								Path: "$.nested.property",
+								Value: map[string]any{
+									"TaxClassificationRef": map[string]any{
+										"value": "EUC-99990201-V1-00020000",
 									},
 								},
-								components.ExtendPath{
-									Path: "$.nested.property",
-									Value: map[string]any{
-										"TaxClassificationRef": map[string]any{
-											"value": "EUC-99990201-V1-00020000",
-										},
+							},
+							components.ExtendPath{
+								Path: "$.nested.property",
+								Value: map[string]any{
+									"TaxClassificationRef": map[string]any{
+										"value": "EUC-99990201-V1-00020000",
 									},
 								},
 							},
 						},
 					},
 				},
-			),
+			},
 		},
 		Meta: &components.Meta{
 			ItemsOnPage: types.Int64(50),

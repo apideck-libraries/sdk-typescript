@@ -7,21 +7,14 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  Currency,
-  Currency$inboundSchema,
-  Currency$outboundSchema,
-} from "./currency.js";
+import { Currency, Currency$inboundSchema } from "./currency.js";
 import {
   ProfitAndLossIndicator,
   ProfitAndLossIndicator$inboundSchema,
-  ProfitAndLossIndicator$Outbound,
-  ProfitAndLossIndicator$outboundSchema,
 } from "./profitandlossindicator.js";
 import {
   ProfitAndLossType,
   ProfitAndLossType$inboundSchema,
-  ProfitAndLossType$outboundSchema,
 } from "./profitandlosstype.js";
 
 /**
@@ -255,47 +248,6 @@ export const Income$inboundSchema: z.ZodType<Income, z.ZodTypeDef, unknown> = z
     records: z.any().optional(),
   });
 
-/** @internal */
-export type Income$Outbound = {
-  id?: string | undefined;
-  code?: string | undefined;
-  title?: string | undefined;
-  type?: string | null | undefined;
-  total: number | null;
-  records?: any | undefined;
-};
-
-/** @internal */
-export const Income$outboundSchema: z.ZodType<
-  Income$Outbound,
-  z.ZodTypeDef,
-  Income
-> = z.object({
-  id: z.string().optional(),
-  code: z.string().optional(),
-  title: z.string().optional(),
-  type: z.nullable(ProfitAndLossType$outboundSchema).optional(),
-  total: z.nullable(z.number()),
-  records: z.any().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Income$ {
-  /** @deprecated use `Income$inboundSchema` instead. */
-  export const inboundSchema = Income$inboundSchema;
-  /** @deprecated use `Income$outboundSchema` instead. */
-  export const outboundSchema = Income$outboundSchema;
-  /** @deprecated use `Income$Outbound` instead. */
-  export type Outbound = Income$Outbound;
-}
-
-export function incomeToJSON(income: Income): string {
-  return JSON.stringify(Income$outboundSchema.parse(income));
-}
-
 export function incomeFromJSON(
   jsonString: string,
 ): SafeParseResult<Income, SDKValidationError> {
@@ -319,49 +271,6 @@ export const CostOfGoodsSold$inboundSchema: z.ZodType<
   total: z.nullable(z.number()).optional(),
   records: z.any().optional(),
 });
-
-/** @internal */
-export type CostOfGoodsSold$Outbound = {
-  id?: string | undefined;
-  code?: string | undefined;
-  title?: string | undefined;
-  type?: string | null | undefined;
-  total?: number | null | undefined;
-  records?: any | undefined;
-};
-
-/** @internal */
-export const CostOfGoodsSold$outboundSchema: z.ZodType<
-  CostOfGoodsSold$Outbound,
-  z.ZodTypeDef,
-  CostOfGoodsSold
-> = z.object({
-  id: z.string().optional(),
-  code: z.string().optional(),
-  title: z.string().optional(),
-  type: z.nullable(ProfitAndLossType$outboundSchema).optional(),
-  total: z.nullable(z.number()).optional(),
-  records: z.any().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CostOfGoodsSold$ {
-  /** @deprecated use `CostOfGoodsSold$inboundSchema` instead. */
-  export const inboundSchema = CostOfGoodsSold$inboundSchema;
-  /** @deprecated use `CostOfGoodsSold$outboundSchema` instead. */
-  export const outboundSchema = CostOfGoodsSold$outboundSchema;
-  /** @deprecated use `CostOfGoodsSold$Outbound` instead. */
-  export type Outbound = CostOfGoodsSold$Outbound;
-}
-
-export function costOfGoodsSoldToJSON(
-  costOfGoodsSold: CostOfGoodsSold,
-): string {
-  return JSON.stringify(CostOfGoodsSold$outboundSchema.parse(costOfGoodsSold));
-}
 
 export function costOfGoodsSoldFromJSON(
   jsonString: string,
@@ -387,47 +296,6 @@ export const Expenses$inboundSchema: z.ZodType<
   records: z.any().optional(),
 });
 
-/** @internal */
-export type Expenses$Outbound = {
-  id?: string | undefined;
-  code?: string | undefined;
-  title?: string | undefined;
-  type?: string | null | undefined;
-  total: number | null;
-  records?: any | undefined;
-};
-
-/** @internal */
-export const Expenses$outboundSchema: z.ZodType<
-  Expenses$Outbound,
-  z.ZodTypeDef,
-  Expenses
-> = z.object({
-  id: z.string().optional(),
-  code: z.string().optional(),
-  title: z.string().optional(),
-  type: z.nullable(ProfitAndLossType$outboundSchema).optional(),
-  total: z.nullable(z.number()),
-  records: z.any().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Expenses$ {
-  /** @deprecated use `Expenses$inboundSchema` instead. */
-  export const inboundSchema = Expenses$inboundSchema;
-  /** @deprecated use `Expenses$outboundSchema` instead. */
-  export const outboundSchema = Expenses$outboundSchema;
-  /** @deprecated use `Expenses$Outbound` instead. */
-  export type Outbound = Expenses$Outbound;
-}
-
-export function expensesToJSON(expenses: Expenses): string {
-  return JSON.stringify(Expenses$outboundSchema.parse(expenses));
-}
-
 export function expensesFromJSON(
   jsonString: string,
 ): SafeParseResult<Expenses, SDKValidationError> {
@@ -451,47 +319,6 @@ export const OtherIncome$inboundSchema: z.ZodType<
   total: z.nullable(z.number()).optional(),
   records: z.any().optional(),
 });
-
-/** @internal */
-export type OtherIncome$Outbound = {
-  id?: string | undefined;
-  code?: string | undefined;
-  title?: string | undefined;
-  type?: string | null | undefined;
-  total?: number | null | undefined;
-  records?: any | undefined;
-};
-
-/** @internal */
-export const OtherIncome$outboundSchema: z.ZodType<
-  OtherIncome$Outbound,
-  z.ZodTypeDef,
-  OtherIncome
-> = z.object({
-  id: z.string().optional(),
-  code: z.string().optional(),
-  title: z.string().optional(),
-  type: z.nullable(ProfitAndLossType$outboundSchema).optional(),
-  total: z.nullable(z.number()).optional(),
-  records: z.any().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace OtherIncome$ {
-  /** @deprecated use `OtherIncome$inboundSchema` instead. */
-  export const inboundSchema = OtherIncome$inboundSchema;
-  /** @deprecated use `OtherIncome$outboundSchema` instead. */
-  export const outboundSchema = OtherIncome$outboundSchema;
-  /** @deprecated use `OtherIncome$Outbound` instead. */
-  export type Outbound = OtherIncome$Outbound;
-}
-
-export function otherIncomeToJSON(otherIncome: OtherIncome): string {
-  return JSON.stringify(OtherIncome$outboundSchema.parse(otherIncome));
-}
 
 export function otherIncomeFromJSON(
   jsonString: string,
@@ -517,47 +344,6 @@ export const OtherExpenses$inboundSchema: z.ZodType<
   records: z.any().optional(),
 });
 
-/** @internal */
-export type OtherExpenses$Outbound = {
-  id?: string | undefined;
-  code?: string | undefined;
-  title?: string | undefined;
-  type?: string | null | undefined;
-  total?: number | null | undefined;
-  records?: any | undefined;
-};
-
-/** @internal */
-export const OtherExpenses$outboundSchema: z.ZodType<
-  OtherExpenses$Outbound,
-  z.ZodTypeDef,
-  OtherExpenses
-> = z.object({
-  id: z.string().optional(),
-  code: z.string().optional(),
-  title: z.string().optional(),
-  type: z.nullable(ProfitAndLossType$outboundSchema).optional(),
-  total: z.nullable(z.number()).optional(),
-  records: z.any().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace OtherExpenses$ {
-  /** @deprecated use `OtherExpenses$inboundSchema` instead. */
-  export const inboundSchema = OtherExpenses$inboundSchema;
-  /** @deprecated use `OtherExpenses$outboundSchema` instead. */
-  export const outboundSchema = OtherExpenses$outboundSchema;
-  /** @deprecated use `OtherExpenses$Outbound` instead. */
-  export type Outbound = OtherExpenses$Outbound;
-}
-
-export function otherExpensesToJSON(otherExpenses: OtherExpenses): string {
-  return JSON.stringify(OtherExpenses$outboundSchema.parse(otherExpenses));
-}
-
 export function otherExpensesFromJSON(
   jsonString: string,
 ): SafeParseResult<OtherExpenses, SDKValidationError> {
@@ -581,51 +367,6 @@ export const UncategorizedAccounts$inboundSchema: z.ZodType<
   total: z.nullable(z.number()),
   records: z.any().optional(),
 });
-
-/** @internal */
-export type UncategorizedAccounts$Outbound = {
-  id?: string | undefined;
-  code?: string | undefined;
-  title?: string | undefined;
-  type?: string | null | undefined;
-  total: number | null;
-  records?: any | undefined;
-};
-
-/** @internal */
-export const UncategorizedAccounts$outboundSchema: z.ZodType<
-  UncategorizedAccounts$Outbound,
-  z.ZodTypeDef,
-  UncategorizedAccounts
-> = z.object({
-  id: z.string().optional(),
-  code: z.string().optional(),
-  title: z.string().optional(),
-  type: z.nullable(ProfitAndLossType$outboundSchema).optional(),
-  total: z.nullable(z.number()),
-  records: z.any().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace UncategorizedAccounts$ {
-  /** @deprecated use `UncategorizedAccounts$inboundSchema` instead. */
-  export const inboundSchema = UncategorizedAccounts$inboundSchema;
-  /** @deprecated use `UncategorizedAccounts$outboundSchema` instead. */
-  export const outboundSchema = UncategorizedAccounts$outboundSchema;
-  /** @deprecated use `UncategorizedAccounts$Outbound` instead. */
-  export type Outbound = UncategorizedAccounts$Outbound;
-}
-
-export function uncategorizedAccountsToJSON(
-  uncategorizedAccounts: UncategorizedAccounts,
-): string {
-  return JSON.stringify(
-    UncategorizedAccounts$outboundSchema.parse(uncategorizedAccounts),
-  );
-}
 
 export function uncategorizedAccountsFromJSON(
   jsonString: string,
@@ -675,82 +416,6 @@ export const ProfitAndLoss$inboundSchema: z.ZodType<
     "custom_mappings": "customMappings",
   });
 });
-
-/** @internal */
-export type ProfitAndLoss$Outbound = {
-  id?: string | undefined;
-  report_name: string;
-  start_date?: string | undefined;
-  end_date?: string | undefined;
-  currency?: string | null | undefined;
-  income: Income$Outbound;
-  cost_of_goods_sold?: CostOfGoodsSold$Outbound | undefined;
-  expenses: Expenses$Outbound;
-  other_income?: OtherIncome$Outbound | undefined;
-  other_expenses?: OtherExpenses$Outbound | undefined;
-  uncategorized_accounts?: UncategorizedAccounts$Outbound | undefined;
-  gross_profit?: ProfitAndLossIndicator$Outbound | undefined;
-  net_operating_income?: ProfitAndLossIndicator$Outbound | undefined;
-  net_income?: ProfitAndLossIndicator$Outbound | undefined;
-  custom_mappings?: { [k: string]: any } | null | undefined;
-  customer?: string | undefined;
-};
-
-/** @internal */
-export const ProfitAndLoss$outboundSchema: z.ZodType<
-  ProfitAndLoss$Outbound,
-  z.ZodTypeDef,
-  ProfitAndLoss
-> = z.object({
-  id: z.string().optional(),
-  reportName: z.string(),
-  startDate: z.string().optional(),
-  endDate: z.string().optional(),
-  currency: z.nullable(Currency$outboundSchema).optional(),
-  income: z.lazy(() => Income$outboundSchema),
-  costOfGoodsSold: z.lazy(() => CostOfGoodsSold$outboundSchema).optional(),
-  expenses: z.lazy(() => Expenses$outboundSchema),
-  otherIncome: z.lazy(() => OtherIncome$outboundSchema).optional(),
-  otherExpenses: z.lazy(() => OtherExpenses$outboundSchema).optional(),
-  uncategorizedAccounts: z.lazy(() => UncategorizedAccounts$outboundSchema)
-    .optional(),
-  grossProfit: ProfitAndLossIndicator$outboundSchema.optional(),
-  netOperatingIncome: ProfitAndLossIndicator$outboundSchema.optional(),
-  netIncome: ProfitAndLossIndicator$outboundSchema.optional(),
-  customMappings: z.nullable(z.record(z.any())).optional(),
-  customer: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    reportName: "report_name",
-    startDate: "start_date",
-    endDate: "end_date",
-    costOfGoodsSold: "cost_of_goods_sold",
-    otherIncome: "other_income",
-    otherExpenses: "other_expenses",
-    uncategorizedAccounts: "uncategorized_accounts",
-    grossProfit: "gross_profit",
-    netOperatingIncome: "net_operating_income",
-    netIncome: "net_income",
-    customMappings: "custom_mappings",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ProfitAndLoss$ {
-  /** @deprecated use `ProfitAndLoss$inboundSchema` instead. */
-  export const inboundSchema = ProfitAndLoss$inboundSchema;
-  /** @deprecated use `ProfitAndLoss$outboundSchema` instead. */
-  export const outboundSchema = ProfitAndLoss$outboundSchema;
-  /** @deprecated use `ProfitAndLoss$Outbound` instead. */
-  export type Outbound = ProfitAndLoss$Outbound;
-}
-
-export function profitAndLossToJSON(profitAndLoss: ProfitAndLoss): string {
-  return JSON.stringify(ProfitAndLoss$outboundSchema.parse(profitAndLoss));
-}
 
 export function profitAndLossFromJSON(
   jsonString: string,

@@ -76,87 +76,6 @@ export type AccountingCreditNotesAllResponse = {
 };
 
 /** @internal */
-export const AccountingCreditNotesAllGlobals$inboundSchema: z.ZodType<
-  AccountingCreditNotesAllGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/** @internal */
-export type AccountingCreditNotesAllGlobals$Outbound = {
-  consumerId?: string | undefined;
-  appId?: string | undefined;
-};
-
-/** @internal */
-export const AccountingCreditNotesAllGlobals$outboundSchema: z.ZodType<
-  AccountingCreditNotesAllGlobals$Outbound,
-  z.ZodTypeDef,
-  AccountingCreditNotesAllGlobals
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AccountingCreditNotesAllGlobals$ {
-  /** @deprecated use `AccountingCreditNotesAllGlobals$inboundSchema` instead. */
-  export const inboundSchema = AccountingCreditNotesAllGlobals$inboundSchema;
-  /** @deprecated use `AccountingCreditNotesAllGlobals$outboundSchema` instead. */
-  export const outboundSchema = AccountingCreditNotesAllGlobals$outboundSchema;
-  /** @deprecated use `AccountingCreditNotesAllGlobals$Outbound` instead. */
-  export type Outbound = AccountingCreditNotesAllGlobals$Outbound;
-}
-
-export function accountingCreditNotesAllGlobalsToJSON(
-  accountingCreditNotesAllGlobals: AccountingCreditNotesAllGlobals,
-): string {
-  return JSON.stringify(
-    AccountingCreditNotesAllGlobals$outboundSchema.parse(
-      accountingCreditNotesAllGlobals,
-    ),
-  );
-}
-
-export function accountingCreditNotesAllGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<AccountingCreditNotesAllGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => AccountingCreditNotesAllGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'AccountingCreditNotesAllGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const AccountingCreditNotesAllRequest$inboundSchema: z.ZodType<
-  AccountingCreditNotesAllRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  raw: z.boolean().default(false),
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  cursor: z.nullable(z.string()).optional(),
-  limit: z.number().int().default(20),
-  filter: components.CreditNotesFilter$inboundSchema.optional(),
-  sort: components.CreditNotesSort$inboundSchema.optional(),
-  pass_through: z.record(z.any()).optional(),
-  fields: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "pass_through": "passThrough",
-  });
-});
-
-/** @internal */
 export type AccountingCreditNotesAllRequest$Outbound = {
   raw: boolean;
   consumerId?: string | undefined;
@@ -192,19 +111,6 @@ export const AccountingCreditNotesAllRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AccountingCreditNotesAllRequest$ {
-  /** @deprecated use `AccountingCreditNotesAllRequest$inboundSchema` instead. */
-  export const inboundSchema = AccountingCreditNotesAllRequest$inboundSchema;
-  /** @deprecated use `AccountingCreditNotesAllRequest$outboundSchema` instead. */
-  export const outboundSchema = AccountingCreditNotesAllRequest$outboundSchema;
-  /** @deprecated use `AccountingCreditNotesAllRequest$Outbound` instead. */
-  export type Outbound = AccountingCreditNotesAllRequest$Outbound;
-}
-
 export function accountingCreditNotesAllRequestToJSON(
   accountingCreditNotesAllRequest: AccountingCreditNotesAllRequest,
 ): string {
@@ -212,16 +118,6 @@ export function accountingCreditNotesAllRequestToJSON(
     AccountingCreditNotesAllRequest$outboundSchema.parse(
       accountingCreditNotesAllRequest,
     ),
-  );
-}
-
-export function accountingCreditNotesAllRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<AccountingCreditNotesAllRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => AccountingCreditNotesAllRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'AccountingCreditNotesAllRequest' from JSON`,
   );
 }
 
@@ -243,59 +139,6 @@ export const AccountingCreditNotesAllResponse$inboundSchema: z.ZodType<
     "UnexpectedErrorResponse": "unexpectedErrorResponse",
   });
 });
-
-/** @internal */
-export type AccountingCreditNotesAllResponse$Outbound = {
-  HttpMeta: components.HTTPMetadata$Outbound;
-  GetCreditNotesResponse?:
-    | components.GetCreditNotesResponse$Outbound
-    | undefined;
-  UnexpectedErrorResponse?:
-    | components.UnexpectedErrorResponse$Outbound
-    | undefined;
-};
-
-/** @internal */
-export const AccountingCreditNotesAllResponse$outboundSchema: z.ZodType<
-  AccountingCreditNotesAllResponse$Outbound,
-  z.ZodTypeDef,
-  AccountingCreditNotesAllResponse
-> = z.object({
-  httpMeta: components.HTTPMetadata$outboundSchema,
-  getCreditNotesResponse: components.GetCreditNotesResponse$outboundSchema
-    .optional(),
-  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    httpMeta: "HttpMeta",
-    getCreditNotesResponse: "GetCreditNotesResponse",
-    unexpectedErrorResponse: "UnexpectedErrorResponse",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AccountingCreditNotesAllResponse$ {
-  /** @deprecated use `AccountingCreditNotesAllResponse$inboundSchema` instead. */
-  export const inboundSchema = AccountingCreditNotesAllResponse$inboundSchema;
-  /** @deprecated use `AccountingCreditNotesAllResponse$outboundSchema` instead. */
-  export const outboundSchema = AccountingCreditNotesAllResponse$outboundSchema;
-  /** @deprecated use `AccountingCreditNotesAllResponse$Outbound` instead. */
-  export type Outbound = AccountingCreditNotesAllResponse$Outbound;
-}
-
-export function accountingCreditNotesAllResponseToJSON(
-  accountingCreditNotesAllResponse: AccountingCreditNotesAllResponse,
-): string {
-  return JSON.stringify(
-    AccountingCreditNotesAllResponse$outboundSchema.parse(
-      accountingCreditNotesAllResponse,
-    ),
-  );
-}
 
 export function accountingCreditNotesAllResponseFromJSON(
   jsonString: string,

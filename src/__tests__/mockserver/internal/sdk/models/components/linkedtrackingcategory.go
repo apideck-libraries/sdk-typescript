@@ -2,10 +2,6 @@
 
 package components
 
-import (
-	"mockserver/internal/sdk/utils"
-)
-
 type LinkedTrackingCategory struct {
 	// The unique identifier for the tracking category.
 	ID *string `json:"id,omitempty"`
@@ -15,17 +11,6 @@ type LinkedTrackingCategory struct {
 	ParentID *string `json:"parent_id,omitempty"`
 	// The name of the parent tracking category.
 	ParentName *string `json:"parent_name,omitempty"`
-}
-
-func (l LinkedTrackingCategory) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(l, "", false)
-}
-
-func (l *LinkedTrackingCategory) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &l, "", false, nil); err != nil {
-		return err
-	}
-	return nil
 }
 
 func (o *LinkedTrackingCategory) GetID() *string {

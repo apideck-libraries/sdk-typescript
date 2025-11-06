@@ -416,8 +416,8 @@ type CustomerInput struct {
 	TaxRate   *LinkedTaxRateInput `json:"tax_rate,omitempty"`
 	TaxNumber *string             `json:"tax_number,omitempty"`
 	// Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
-	Currency *Currency                 `json:"currency,omitempty"`
-	Account  *LinkedLedgerAccountInput `json:"account,omitempty"`
+	Currency *Currency            `json:"currency,omitempty"`
+	Account  *LinkedLedgerAccount `json:"account,omitempty"`
 	// The parent customer this entity is linked to.
 	Parent *LinkedParentCustomer `json:"parent,omitempty"`
 	// Customer status
@@ -582,7 +582,7 @@ func (o *CustomerInput) GetCurrency() *Currency {
 	return o.Currency
 }
 
-func (o *CustomerInput) GetAccount() *LinkedLedgerAccountInput {
+func (o *CustomerInput) GetAccount() *LinkedLedgerAccount {
 	if o == nil {
 		return nil
 	}

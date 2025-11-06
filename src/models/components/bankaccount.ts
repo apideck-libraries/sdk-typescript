@@ -81,21 +81,9 @@ export type BankAccount = {
 /** @internal */
 export const AccountType$inboundSchema: z.ZodNativeEnum<typeof AccountType> = z
   .nativeEnum(AccountType);
-
 /** @internal */
 export const AccountType$outboundSchema: z.ZodNativeEnum<typeof AccountType> =
   AccountType$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AccountType$ {
-  /** @deprecated use `AccountType$inboundSchema` instead. */
-  export const inboundSchema = AccountType$inboundSchema;
-  /** @deprecated use `AccountType$outboundSchema` instead. */
-  export const outboundSchema = AccountType$outboundSchema;
-}
 
 /** @internal */
 export const BankAccount$inboundSchema: z.ZodType<
@@ -127,7 +115,6 @@ export const BankAccount$inboundSchema: z.ZodType<
     "bank_code": "bankCode",
   });
 });
-
 /** @internal */
 export type BankAccount$Outbound = {
   bank_name?: string | null | undefined;
@@ -175,23 +162,9 @@ export const BankAccount$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace BankAccount$ {
-  /** @deprecated use `BankAccount$inboundSchema` instead. */
-  export const inboundSchema = BankAccount$inboundSchema;
-  /** @deprecated use `BankAccount$outboundSchema` instead. */
-  export const outboundSchema = BankAccount$outboundSchema;
-  /** @deprecated use `BankAccount$Outbound` instead. */
-  export type Outbound = BankAccount$Outbound;
-}
-
 export function bankAccountToJSON(bankAccount: BankAccount): string {
   return JSON.stringify(BankAccount$outboundSchema.parse(bankAccount));
 }
-
 export function bankAccountFromJSON(
   jsonString: string,
 ): SafeParseResult<BankAccount, SDKValidationError> {

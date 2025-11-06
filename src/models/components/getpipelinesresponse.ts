@@ -7,24 +7,9 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  Links,
-  Links$inboundSchema,
-  Links$Outbound,
-  Links$outboundSchema,
-} from "./links.js";
-import {
-  Meta,
-  Meta$inboundSchema,
-  Meta$Outbound,
-  Meta$outboundSchema,
-} from "./meta.js";
-import {
-  Pipeline,
-  Pipeline$inboundSchema,
-  Pipeline$Outbound,
-  Pipeline$outboundSchema,
-} from "./pipeline.js";
+import { Links, Links$inboundSchema } from "./links.js";
+import { Meta, Meta$inboundSchema } from "./meta.js";
+import { Pipeline, Pipeline$inboundSchema } from "./pipeline.js";
 
 /**
  * Pipelines
@@ -86,62 +71,6 @@ export const GetPipelinesResponse$inboundSchema: z.ZodType<
     "_raw": "raw",
   });
 });
-
-/** @internal */
-export type GetPipelinesResponse$Outbound = {
-  status_code: number;
-  status: string;
-  service: string;
-  resource: string;
-  operation: string;
-  data: Array<Pipeline$Outbound>;
-  _raw?: { [k: string]: any } | null | undefined;
-  meta?: Meta$Outbound | undefined;
-  links?: Links$Outbound | undefined;
-};
-
-/** @internal */
-export const GetPipelinesResponse$outboundSchema: z.ZodType<
-  GetPipelinesResponse$Outbound,
-  z.ZodTypeDef,
-  GetPipelinesResponse
-> = z.object({
-  statusCode: z.number().int(),
-  status: z.string(),
-  service: z.string(),
-  resource: z.string(),
-  operation: z.string(),
-  data: z.array(Pipeline$outboundSchema),
-  raw: z.nullable(z.record(z.any())).optional(),
-  meta: Meta$outboundSchema.optional(),
-  links: Links$outboundSchema.optional(),
-}).transform((v) => {
-  return remap$(v, {
-    statusCode: "status_code",
-    raw: "_raw",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetPipelinesResponse$ {
-  /** @deprecated use `GetPipelinesResponse$inboundSchema` instead. */
-  export const inboundSchema = GetPipelinesResponse$inboundSchema;
-  /** @deprecated use `GetPipelinesResponse$outboundSchema` instead. */
-  export const outboundSchema = GetPipelinesResponse$outboundSchema;
-  /** @deprecated use `GetPipelinesResponse$Outbound` instead. */
-  export type Outbound = GetPipelinesResponse$Outbound;
-}
-
-export function getPipelinesResponseToJSON(
-  getPipelinesResponse: GetPipelinesResponse,
-): string {
-  return JSON.stringify(
-    GetPipelinesResponse$outboundSchema.parse(getPipelinesResponse),
-  );
-}
 
 export function getPipelinesResponseFromJSON(
   jsonString: string,

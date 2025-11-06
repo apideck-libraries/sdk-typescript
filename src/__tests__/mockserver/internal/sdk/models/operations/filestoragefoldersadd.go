@@ -38,8 +38,8 @@ type FileStorageFoldersAddRequest struct {
 	// Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
 	ServiceID *string `header:"style=simple,explode=false,name=x-apideck-service-id"`
 	// The 'fields' parameter allows API users to specify the fields they want to include in the API response. If this parameter is not present, the API will return all available fields. If this parameter is present, only the fields specified in the comma-separated string will be included in the response. Nested properties can also be requested by using a dot notation. <br /><br />Example: `fields=name,email,addresses.city`<br /><br />In the example above, the response will only include the fields "name", "email" and "addresses.city". If any other fields are available, they will be excluded.
-	Fields              *string                        `queryParam:"style=form,explode=true,name=fields"`
-	CreateFolderRequest components.CreateFolderRequest `request:"mediaType=application/json"`
+	Fields *string                        `queryParam:"style=form,explode=true,name=fields"`
+	Body   components.CreateFolderRequest `request:"mediaType=application/json"`
 }
 
 func (f FileStorageFoldersAddRequest) MarshalJSON() ([]byte, error) {
@@ -47,7 +47,7 @@ func (f FileStorageFoldersAddRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (f *FileStorageFoldersAddRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &f, "", false, []string{"CreateFolderRequest"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &f, "", false, []string{"body"}); err != nil {
 		return err
 	}
 	return nil
@@ -88,11 +88,11 @@ func (o *FileStorageFoldersAddRequest) GetFields() *string {
 	return o.Fields
 }
 
-func (o *FileStorageFoldersAddRequest) GetCreateFolderRequest() components.CreateFolderRequest {
+func (o *FileStorageFoldersAddRequest) GetBody() components.CreateFolderRequest {
 	if o == nil {
 		return components.CreateFolderRequest{}
 	}
-	return o.CreateFolderRequest
+	return o.Body
 }
 
 type FileStorageFoldersAddResponse struct {

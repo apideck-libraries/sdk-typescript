@@ -10,21 +10,9 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   EcommerceProduct,
   EcommerceProduct$inboundSchema,
-  EcommerceProduct$Outbound,
-  EcommerceProduct$outboundSchema,
 } from "./ecommerceproduct.js";
-import {
-  Links,
-  Links$inboundSchema,
-  Links$Outbound,
-  Links$outboundSchema,
-} from "./links.js";
-import {
-  Meta,
-  Meta$inboundSchema,
-  Meta$Outbound,
-  Meta$outboundSchema,
-} from "./meta.js";
+import { Links, Links$inboundSchema } from "./links.js";
+import { Meta, Meta$inboundSchema } from "./meta.js";
 
 /**
  * Products
@@ -86,62 +74,6 @@ export const GetProductsResponse$inboundSchema: z.ZodType<
     "_raw": "raw",
   });
 });
-
-/** @internal */
-export type GetProductsResponse$Outbound = {
-  status_code: number;
-  status: string;
-  service: string;
-  resource: string;
-  operation: string;
-  data: Array<EcommerceProduct$Outbound>;
-  _raw?: { [k: string]: any } | null | undefined;
-  meta?: Meta$Outbound | undefined;
-  links?: Links$Outbound | undefined;
-};
-
-/** @internal */
-export const GetProductsResponse$outboundSchema: z.ZodType<
-  GetProductsResponse$Outbound,
-  z.ZodTypeDef,
-  GetProductsResponse
-> = z.object({
-  statusCode: z.number().int(),
-  status: z.string(),
-  service: z.string(),
-  resource: z.string(),
-  operation: z.string(),
-  data: z.array(EcommerceProduct$outboundSchema),
-  raw: z.nullable(z.record(z.any())).optional(),
-  meta: Meta$outboundSchema.optional(),
-  links: Links$outboundSchema.optional(),
-}).transform((v) => {
-  return remap$(v, {
-    statusCode: "status_code",
-    raw: "_raw",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetProductsResponse$ {
-  /** @deprecated use `GetProductsResponse$inboundSchema` instead. */
-  export const inboundSchema = GetProductsResponse$inboundSchema;
-  /** @deprecated use `GetProductsResponse$outboundSchema` instead. */
-  export const outboundSchema = GetProductsResponse$outboundSchema;
-  /** @deprecated use `GetProductsResponse$Outbound` instead. */
-  export type Outbound = GetProductsResponse$Outbound;
-}
-
-export function getProductsResponseToJSON(
-  getProductsResponse: GetProductsResponse,
-): string {
-  return JSON.stringify(
-    GetProductsResponse$outboundSchema.parse(getProductsResponse),
-  );
-}
 
 export function getProductsResponseFromJSON(
   jsonString: string,

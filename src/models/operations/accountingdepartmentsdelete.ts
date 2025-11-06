@@ -58,80 +58,6 @@ export type AccountingDepartmentsDeleteResponse = {
 };
 
 /** @internal */
-export const AccountingDepartmentsDeleteGlobals$inboundSchema: z.ZodType<
-  AccountingDepartmentsDeleteGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/** @internal */
-export type AccountingDepartmentsDeleteGlobals$Outbound = {
-  consumerId?: string | undefined;
-  appId?: string | undefined;
-};
-
-/** @internal */
-export const AccountingDepartmentsDeleteGlobals$outboundSchema: z.ZodType<
-  AccountingDepartmentsDeleteGlobals$Outbound,
-  z.ZodTypeDef,
-  AccountingDepartmentsDeleteGlobals
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AccountingDepartmentsDeleteGlobals$ {
-  /** @deprecated use `AccountingDepartmentsDeleteGlobals$inboundSchema` instead. */
-  export const inboundSchema = AccountingDepartmentsDeleteGlobals$inboundSchema;
-  /** @deprecated use `AccountingDepartmentsDeleteGlobals$outboundSchema` instead. */
-  export const outboundSchema =
-    AccountingDepartmentsDeleteGlobals$outboundSchema;
-  /** @deprecated use `AccountingDepartmentsDeleteGlobals$Outbound` instead. */
-  export type Outbound = AccountingDepartmentsDeleteGlobals$Outbound;
-}
-
-export function accountingDepartmentsDeleteGlobalsToJSON(
-  accountingDepartmentsDeleteGlobals: AccountingDepartmentsDeleteGlobals,
-): string {
-  return JSON.stringify(
-    AccountingDepartmentsDeleteGlobals$outboundSchema.parse(
-      accountingDepartmentsDeleteGlobals,
-    ),
-  );
-}
-
-export function accountingDepartmentsDeleteGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<AccountingDepartmentsDeleteGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      AccountingDepartmentsDeleteGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'AccountingDepartmentsDeleteGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const AccountingDepartmentsDeleteRequest$inboundSchema: z.ZodType<
-  AccountingDepartmentsDeleteRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  id: z.string(),
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  raw: z.boolean().default(false),
-});
-
-/** @internal */
 export type AccountingDepartmentsDeleteRequest$Outbound = {
   id: string;
   consumerId?: string | undefined;
@@ -153,20 +79,6 @@ export const AccountingDepartmentsDeleteRequest$outboundSchema: z.ZodType<
   raw: z.boolean().default(false),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AccountingDepartmentsDeleteRequest$ {
-  /** @deprecated use `AccountingDepartmentsDeleteRequest$inboundSchema` instead. */
-  export const inboundSchema = AccountingDepartmentsDeleteRequest$inboundSchema;
-  /** @deprecated use `AccountingDepartmentsDeleteRequest$outboundSchema` instead. */
-  export const outboundSchema =
-    AccountingDepartmentsDeleteRequest$outboundSchema;
-  /** @deprecated use `AccountingDepartmentsDeleteRequest$Outbound` instead. */
-  export type Outbound = AccountingDepartmentsDeleteRequest$Outbound;
-}
-
 export function accountingDepartmentsDeleteRequestToJSON(
   accountingDepartmentsDeleteRequest: AccountingDepartmentsDeleteRequest,
 ): string {
@@ -174,17 +86,6 @@ export function accountingDepartmentsDeleteRequestToJSON(
     AccountingDepartmentsDeleteRequest$outboundSchema.parse(
       accountingDepartmentsDeleteRequest,
     ),
-  );
-}
-
-export function accountingDepartmentsDeleteRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<AccountingDepartmentsDeleteRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      AccountingDepartmentsDeleteRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'AccountingDepartmentsDeleteRequest' from JSON`,
   );
 }
 
@@ -206,61 +107,6 @@ export const AccountingDepartmentsDeleteResponse$inboundSchema: z.ZodType<
     "UnexpectedErrorResponse": "unexpectedErrorResponse",
   });
 });
-
-/** @internal */
-export type AccountingDepartmentsDeleteResponse$Outbound = {
-  HttpMeta: components.HTTPMetadata$Outbound;
-  DeleteAccountingDepartmentResponse?:
-    | components.DeleteAccountingDepartmentResponse$Outbound
-    | undefined;
-  UnexpectedErrorResponse?:
-    | components.UnexpectedErrorResponse$Outbound
-    | undefined;
-};
-
-/** @internal */
-export const AccountingDepartmentsDeleteResponse$outboundSchema: z.ZodType<
-  AccountingDepartmentsDeleteResponse$Outbound,
-  z.ZodTypeDef,
-  AccountingDepartmentsDeleteResponse
-> = z.object({
-  httpMeta: components.HTTPMetadata$outboundSchema,
-  deleteAccountingDepartmentResponse: components
-    .DeleteAccountingDepartmentResponse$outboundSchema.optional(),
-  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    httpMeta: "HttpMeta",
-    deleteAccountingDepartmentResponse: "DeleteAccountingDepartmentResponse",
-    unexpectedErrorResponse: "UnexpectedErrorResponse",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AccountingDepartmentsDeleteResponse$ {
-  /** @deprecated use `AccountingDepartmentsDeleteResponse$inboundSchema` instead. */
-  export const inboundSchema =
-    AccountingDepartmentsDeleteResponse$inboundSchema;
-  /** @deprecated use `AccountingDepartmentsDeleteResponse$outboundSchema` instead. */
-  export const outboundSchema =
-    AccountingDepartmentsDeleteResponse$outboundSchema;
-  /** @deprecated use `AccountingDepartmentsDeleteResponse$Outbound` instead. */
-  export type Outbound = AccountingDepartmentsDeleteResponse$Outbound;
-}
-
-export function accountingDepartmentsDeleteResponseToJSON(
-  accountingDepartmentsDeleteResponse: AccountingDepartmentsDeleteResponse,
-): string {
-  return JSON.stringify(
-    AccountingDepartmentsDeleteResponse$outboundSchema.parse(
-      accountingDepartmentsDeleteResponse,
-    ),
-  );
-}
 
 export function accountingDepartmentsDeleteResponseFromJSON(
   jsonString: string,

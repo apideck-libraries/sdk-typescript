@@ -38,8 +38,8 @@ type AtsApplicationsUpdateRequest struct {
 	// Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
 	ServiceID *string `header:"style=simple,explode=false,name=x-apideck-service-id"`
 	// Include raw response. Mostly used for debugging purposes
-	Raw         *bool                       `default:"false" queryParam:"style=form,explode=true,name=raw"`
-	Application components.ApplicationInput `request:"mediaType=application/json"`
+	Raw  *bool                       `default:"false" queryParam:"style=form,explode=true,name=raw"`
+	Body components.ApplicationInput `request:"mediaType=application/json"`
 }
 
 func (a AtsApplicationsUpdateRequest) MarshalJSON() ([]byte, error) {
@@ -47,7 +47,7 @@ func (a AtsApplicationsUpdateRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (a *AtsApplicationsUpdateRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"id", "Application"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"id", "body"}); err != nil {
 		return err
 	}
 	return nil
@@ -88,11 +88,11 @@ func (o *AtsApplicationsUpdateRequest) GetRaw() *bool {
 	return o.Raw
 }
 
-func (o *AtsApplicationsUpdateRequest) GetApplication() components.ApplicationInput {
+func (o *AtsApplicationsUpdateRequest) GetBody() components.ApplicationInput {
 	if o == nil {
 		return components.ApplicationInput{}
 	}
-	return o.Application
+	return o.Body
 }
 
 type AtsApplicationsUpdateResponse struct {

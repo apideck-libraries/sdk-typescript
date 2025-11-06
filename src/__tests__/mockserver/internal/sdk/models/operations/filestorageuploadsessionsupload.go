@@ -43,8 +43,8 @@ type FileStorageUploadSessionsUploadRequest struct {
 	// The RFC3230 message digest of the uploaded part. Only required for the Box connector. More information on the Box API docs [here](https://developer.box.com/reference/put-files-upload-sessions-id/#param-digest)
 	Digest *string `header:"style=simple,explode=false,name=digest"`
 	// Include raw response. Mostly used for debugging purposes
-	Raw         *bool     `default:"false" queryParam:"style=form,explode=true,name=raw"`
-	RequestBody io.Reader `request:"mediaType=*/*"`
+	Raw  *bool     `default:"false" queryParam:"style=form,explode=true,name=raw"`
+	Body io.Reader `request:"mediaType=*/*"`
 }
 
 func (f FileStorageUploadSessionsUploadRequest) MarshalJSON() ([]byte, error) {
@@ -52,7 +52,7 @@ func (f FileStorageUploadSessionsUploadRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (f *FileStorageUploadSessionsUploadRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &f, "", false, []string{"id", "part_number", "RequestBody"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &f, "", false, []string{"id", "part_number", "body"}); err != nil {
 		return err
 	}
 	return nil
@@ -107,11 +107,11 @@ func (o *FileStorageUploadSessionsUploadRequest) GetRaw() *bool {
 	return o.Raw
 }
 
-func (o *FileStorageUploadSessionsUploadRequest) GetRequestBody() io.Reader {
+func (o *FileStorageUploadSessionsUploadRequest) GetBody() io.Reader {
 	if o == nil {
 		return nil
 	}
-	return o.RequestBody
+	return o.Body
 }
 
 type FileStorageUploadSessionsUploadResponse struct {

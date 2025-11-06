@@ -7,15 +7,10 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  AuthType,
-  AuthType$inboundSchema,
-  AuthType$outboundSchema,
-} from "./authtype.js";
+import { AuthType, AuthType$inboundSchema } from "./authtype.js";
 import {
   ConnectionState,
   ConnectionState$inboundSchema,
-  ConnectionState$outboundSchema,
 } from "./connectionstate.js";
 
 export type ConsumerConnection = {
@@ -82,81 +77,6 @@ export const ConsumerConnection$inboundSchema: z.ZodType<
     "updated_at": "updatedAt",
   });
 });
-
-/** @internal */
-export type ConsumerConnection$Outbound = {
-  id?: string | undefined;
-  name?: string | undefined;
-  icon?: string | undefined;
-  logo?: string | undefined;
-  website?: string | undefined;
-  tag_line?: string | undefined;
-  service_id?: string | undefined;
-  unified_api?: string | undefined;
-  consumer_id?: string | undefined;
-  auth_type?: string | undefined;
-  enabled?: boolean | undefined;
-  settings?: { [k: string]: any } | null | undefined;
-  metadata?: { [k: string]: any } | null | undefined;
-  created_at?: string | undefined;
-  updated_at?: string | null | undefined;
-  state?: string | undefined;
-};
-
-/** @internal */
-export const ConsumerConnection$outboundSchema: z.ZodType<
-  ConsumerConnection$Outbound,
-  z.ZodTypeDef,
-  ConsumerConnection
-> = z.object({
-  id: z.string().optional(),
-  name: z.string().optional(),
-  icon: z.string().optional(),
-  logo: z.string().optional(),
-  website: z.string().optional(),
-  tagLine: z.string().optional(),
-  serviceId: z.string().optional(),
-  unifiedApi: z.string().optional(),
-  consumerId: z.string().optional(),
-  authType: AuthType$outboundSchema.optional(),
-  enabled: z.boolean().optional(),
-  settings: z.nullable(z.record(z.any())).optional(),
-  metadata: z.nullable(z.record(z.any())).optional(),
-  createdAt: z.string().optional(),
-  updatedAt: z.nullable(z.string()).optional(),
-  state: ConnectionState$outboundSchema.optional(),
-}).transform((v) => {
-  return remap$(v, {
-    tagLine: "tag_line",
-    serviceId: "service_id",
-    unifiedApi: "unified_api",
-    consumerId: "consumer_id",
-    authType: "auth_type",
-    createdAt: "created_at",
-    updatedAt: "updated_at",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ConsumerConnection$ {
-  /** @deprecated use `ConsumerConnection$inboundSchema` instead. */
-  export const inboundSchema = ConsumerConnection$inboundSchema;
-  /** @deprecated use `ConsumerConnection$outboundSchema` instead. */
-  export const outboundSchema = ConsumerConnection$outboundSchema;
-  /** @deprecated use `ConsumerConnection$Outbound` instead. */
-  export type Outbound = ConsumerConnection$Outbound;
-}
-
-export function consumerConnectionToJSON(
-  consumerConnection: ConsumerConnection,
-): string {
-  return JSON.stringify(
-    ConsumerConnection$outboundSchema.parse(consumerConnection),
-  );
-}
 
 export function consumerConnectionFromJSON(
   jsonString: string,

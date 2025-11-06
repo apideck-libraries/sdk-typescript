@@ -43,43 +43,6 @@ export const CreateCallbackStateResponseData$inboundSchema: z.ZodType<
   state: z.string().optional(),
 });
 
-/** @internal */
-export type CreateCallbackStateResponseData$Outbound = {
-  state?: string | undefined;
-};
-
-/** @internal */
-export const CreateCallbackStateResponseData$outboundSchema: z.ZodType<
-  CreateCallbackStateResponseData$Outbound,
-  z.ZodTypeDef,
-  CreateCallbackStateResponseData
-> = z.object({
-  state: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateCallbackStateResponseData$ {
-  /** @deprecated use `CreateCallbackStateResponseData$inboundSchema` instead. */
-  export const inboundSchema = CreateCallbackStateResponseData$inboundSchema;
-  /** @deprecated use `CreateCallbackStateResponseData$outboundSchema` instead. */
-  export const outboundSchema = CreateCallbackStateResponseData$outboundSchema;
-  /** @deprecated use `CreateCallbackStateResponseData$Outbound` instead. */
-  export type Outbound = CreateCallbackStateResponseData$Outbound;
-}
-
-export function createCallbackStateResponseDataToJSON(
-  createCallbackStateResponseData: CreateCallbackStateResponseData,
-): string {
-  return JSON.stringify(
-    CreateCallbackStateResponseData$outboundSchema.parse(
-      createCallbackStateResponseData,
-    ),
-  );
-}
-
 export function createCallbackStateResponseDataFromJSON(
   jsonString: string,
 ): SafeParseResult<CreateCallbackStateResponseData, SDKValidationError> {
@@ -106,54 +69,6 @@ export const CreateCallbackStateResponse$inboundSchema: z.ZodType<
     "_raw": "raw",
   });
 });
-
-/** @internal */
-export type CreateCallbackStateResponse$Outbound = {
-  status_code: number;
-  status: string;
-  data: CreateCallbackStateResponseData$Outbound;
-  _raw?: { [k: string]: any } | null | undefined;
-};
-
-/** @internal */
-export const CreateCallbackStateResponse$outboundSchema: z.ZodType<
-  CreateCallbackStateResponse$Outbound,
-  z.ZodTypeDef,
-  CreateCallbackStateResponse
-> = z.object({
-  statusCode: z.number().int(),
-  status: z.string(),
-  data: z.lazy(() => CreateCallbackStateResponseData$outboundSchema),
-  raw: z.nullable(z.record(z.any())).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    statusCode: "status_code",
-    raw: "_raw",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateCallbackStateResponse$ {
-  /** @deprecated use `CreateCallbackStateResponse$inboundSchema` instead. */
-  export const inboundSchema = CreateCallbackStateResponse$inboundSchema;
-  /** @deprecated use `CreateCallbackStateResponse$outboundSchema` instead. */
-  export const outboundSchema = CreateCallbackStateResponse$outboundSchema;
-  /** @deprecated use `CreateCallbackStateResponse$Outbound` instead. */
-  export type Outbound = CreateCallbackStateResponse$Outbound;
-}
-
-export function createCallbackStateResponseToJSON(
-  createCallbackStateResponse: CreateCallbackStateResponse,
-): string {
-  return JSON.stringify(
-    CreateCallbackStateResponse$outboundSchema.parse(
-      createCallbackStateResponse,
-    ),
-  );
-}
 
 export function createCallbackStateResponseFromJSON(
   jsonString: string,

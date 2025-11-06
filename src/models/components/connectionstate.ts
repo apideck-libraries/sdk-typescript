@@ -24,19 +24,3 @@ export type ConnectionState = ClosedEnum<typeof ConnectionState>;
 export const ConnectionState$inboundSchema: z.ZodNativeEnum<
   typeof ConnectionState
 > = z.nativeEnum(ConnectionState);
-
-/** @internal */
-export const ConnectionState$outboundSchema: z.ZodNativeEnum<
-  typeof ConnectionState
-> = ConnectionState$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ConnectionState$ {
-  /** @deprecated use `ConnectionState$inboundSchema` instead. */
-  export const inboundSchema = ConnectionState$inboundSchema;
-  /** @deprecated use `ConnectionState$outboundSchema` instead. */
-  export const outboundSchema = ConnectionState$outboundSchema;
-}

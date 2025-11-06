@@ -52,57 +52,6 @@ export const WebhookSubscription$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type WebhookSubscription$Outbound = {
-  downstream_id?: string | undefined;
-  unify_event_types?: Array<string> | undefined;
-  downstream_event_types?: Array<string> | undefined;
-  execute_url?: string | undefined;
-  created_at?: string | undefined;
-};
-
-/** @internal */
-export const WebhookSubscription$outboundSchema: z.ZodType<
-  WebhookSubscription$Outbound,
-  z.ZodTypeDef,
-  WebhookSubscription
-> = z.object({
-  downstreamId: z.string().optional(),
-  unifyEventTypes: z.array(z.string()).optional(),
-  downstreamEventTypes: z.array(z.string()).optional(),
-  executeUrl: z.string().optional(),
-  createdAt: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    downstreamId: "downstream_id",
-    unifyEventTypes: "unify_event_types",
-    downstreamEventTypes: "downstream_event_types",
-    executeUrl: "execute_url",
-    createdAt: "created_at",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace WebhookSubscription$ {
-  /** @deprecated use `WebhookSubscription$inboundSchema` instead. */
-  export const inboundSchema = WebhookSubscription$inboundSchema;
-  /** @deprecated use `WebhookSubscription$outboundSchema` instead. */
-  export const outboundSchema = WebhookSubscription$outboundSchema;
-  /** @deprecated use `WebhookSubscription$Outbound` instead. */
-  export type Outbound = WebhookSubscription$Outbound;
-}
-
-export function webhookSubscriptionToJSON(
-  webhookSubscription: WebhookSubscription,
-): string {
-  return JSON.stringify(
-    WebhookSubscription$outboundSchema.parse(webhookSubscription),
-  );
-}
-
 export function webhookSubscriptionFromJSON(
   jsonString: string,
 ): SafeParseResult<WebhookSubscription, SDKValidationError> {

@@ -38,8 +38,8 @@ type CrmCustomObjectsAddRequest struct {
 	// Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
 	ServiceID *string `header:"style=simple,explode=false,name=x-apideck-service-id"`
 	// The id of the custom object to query
-	ObjectID     string                       `pathParam:"style=simple,explode=false,name=object_id"`
-	CustomObject components.CustomObjectInput `request:"mediaType=application/json"`
+	ObjectID string                       `pathParam:"style=simple,explode=false,name=object_id"`
+	Body     components.CustomObjectInput `request:"mediaType=application/json"`
 }
 
 func (c CrmCustomObjectsAddRequest) MarshalJSON() ([]byte, error) {
@@ -47,7 +47,7 @@ func (c CrmCustomObjectsAddRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (c *CrmCustomObjectsAddRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"object_id", "CustomObject"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"object_id", "body"}); err != nil {
 		return err
 	}
 	return nil
@@ -88,11 +88,11 @@ func (o *CrmCustomObjectsAddRequest) GetObjectID() string {
 	return o.ObjectID
 }
 
-func (o *CrmCustomObjectsAddRequest) GetCustomObject() components.CustomObjectInput {
+func (o *CrmCustomObjectsAddRequest) GetBody() components.CustomObjectInput {
 	if o == nil {
 		return components.CustomObjectInput{}
 	}
-	return o.CustomObject
+	return o.Body
 }
 
 type CrmCustomObjectsAddResponse struct {

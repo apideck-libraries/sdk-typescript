@@ -7,24 +7,9 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  CustomObject,
-  CustomObject$inboundSchema,
-  CustomObject$Outbound,
-  CustomObject$outboundSchema,
-} from "./customobject.js";
-import {
-  Links,
-  Links$inboundSchema,
-  Links$Outbound,
-  Links$outboundSchema,
-} from "./links.js";
-import {
-  Meta,
-  Meta$inboundSchema,
-  Meta$Outbound,
-  Meta$outboundSchema,
-} from "./meta.js";
+import { CustomObject, CustomObject$inboundSchema } from "./customobject.js";
+import { Links, Links$inboundSchema } from "./links.js";
+import { Meta, Meta$inboundSchema } from "./meta.js";
 
 /**
  * Custom objects
@@ -86,62 +71,6 @@ export const GetCustomObjectsResponse$inboundSchema: z.ZodType<
     "_raw": "raw",
   });
 });
-
-/** @internal */
-export type GetCustomObjectsResponse$Outbound = {
-  status_code: number;
-  status: string;
-  service: string;
-  resource: string;
-  operation: string;
-  data: Array<CustomObject$Outbound>;
-  _raw?: { [k: string]: any } | null | undefined;
-  meta?: Meta$Outbound | undefined;
-  links?: Links$Outbound | undefined;
-};
-
-/** @internal */
-export const GetCustomObjectsResponse$outboundSchema: z.ZodType<
-  GetCustomObjectsResponse$Outbound,
-  z.ZodTypeDef,
-  GetCustomObjectsResponse
-> = z.object({
-  statusCode: z.number().int(),
-  status: z.string(),
-  service: z.string(),
-  resource: z.string(),
-  operation: z.string(),
-  data: z.array(CustomObject$outboundSchema),
-  raw: z.nullable(z.record(z.any())).optional(),
-  meta: Meta$outboundSchema.optional(),
-  links: Links$outboundSchema.optional(),
-}).transform((v) => {
-  return remap$(v, {
-    statusCode: "status_code",
-    raw: "_raw",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetCustomObjectsResponse$ {
-  /** @deprecated use `GetCustomObjectsResponse$inboundSchema` instead. */
-  export const inboundSchema = GetCustomObjectsResponse$inboundSchema;
-  /** @deprecated use `GetCustomObjectsResponse$outboundSchema` instead. */
-  export const outboundSchema = GetCustomObjectsResponse$outboundSchema;
-  /** @deprecated use `GetCustomObjectsResponse$Outbound` instead. */
-  export type Outbound = GetCustomObjectsResponse$Outbound;
-}
-
-export function getCustomObjectsResponseToJSON(
-  getCustomObjectsResponse: GetCustomObjectsResponse,
-): string {
-  return JSON.stringify(
-    GetCustomObjectsResponse$outboundSchema.parse(getCustomObjectsResponse),
-  );
-}
 
 export function getCustomObjectsResponseFromJSON(
   jsonString: string,

@@ -24,6 +24,7 @@ let value: InvoiceItemInput = {
     taxInclusive: true,
     taxRate: {
       id: "123456",
+      code: "N-T",
       rate: 10,
     },
   },
@@ -33,6 +34,7 @@ let value: InvoiceItemInput = {
     taxInclusive: true,
     taxRate: {
       id: "123456",
+      code: "N-T",
       rate: 10,
     },
   },
@@ -41,6 +43,7 @@ let value: InvoiceItemInput = {
   currency: "USD",
   assetAccount: {
     id: "123456",
+    name: "Bank account",
     nominalCode: "N091",
     code: "453",
     parentId: "123456",
@@ -48,6 +51,7 @@ let value: InvoiceItemInput = {
   },
   incomeAccount: {
     id: "123456",
+    name: "Bank account",
     nominalCode: "N091",
     code: "453",
     parentId: "123456",
@@ -55,6 +59,7 @@ let value: InvoiceItemInput = {
   },
   expenseAccount: {
     id: "123456",
+    name: "Bank account",
     nominalCode: "N091",
     code: "453",
     parentId: "123456",
@@ -111,9 +116,9 @@ let value: InvoiceItemInput = {
 | `quantity`                                                                                                                                              | *number*                                                                                                                                                | :heavy_minus_sign:                                                                                                                                      | N/A                                                                                                                                                     | 1                                                                                                                                                       |
 | `unitPrice`                                                                                                                                             | *number*                                                                                                                                                | :heavy_minus_sign:                                                                                                                                      | N/A                                                                                                                                                     | 27500.5                                                                                                                                                 |
 | `currency`                                                                                                                                              | [components.Currency](../../models/components/currency.md)                                                                                              | :heavy_minus_sign:                                                                                                                                      | Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).                      | USD                                                                                                                                                     |
-| `assetAccount`                                                                                                                                          | [components.LinkedLedgerAccountInput](../../models/components/linkedledgeraccountinput.md)                                                              | :heavy_minus_sign:                                                                                                                                      | N/A                                                                                                                                                     |                                                                                                                                                         |
-| `incomeAccount`                                                                                                                                         | [components.LinkedLedgerAccountInput](../../models/components/linkedledgeraccountinput.md)                                                              | :heavy_minus_sign:                                                                                                                                      | N/A                                                                                                                                                     |                                                                                                                                                         |
-| `expenseAccount`                                                                                                                                        | [components.LinkedLedgerAccountInput](../../models/components/linkedledgeraccountinput.md)                                                              | :heavy_minus_sign:                                                                                                                                      | N/A                                                                                                                                                     |                                                                                                                                                         |
+| `assetAccount`                                                                                                                                          | [components.LinkedLedgerAccount](../../models/components/linkedledgeraccount.md)                                                                        | :heavy_minus_sign:                                                                                                                                      | N/A                                                                                                                                                     |                                                                                                                                                         |
+| `incomeAccount`                                                                                                                                         | [components.LinkedLedgerAccount](../../models/components/linkedledgeraccount.md)                                                                        | :heavy_minus_sign:                                                                                                                                      | N/A                                                                                                                                                     |                                                                                                                                                         |
+| `expenseAccount`                                                                                                                                        | [components.LinkedLedgerAccount](../../models/components/linkedledgeraccount.md)                                                                        | :heavy_minus_sign:                                                                                                                                      | N/A                                                                                                                                                     |                                                                                                                                                         |
 | ~~`trackingCategory`~~                                                                                                                                  | [components.DeprecatedLinkedTrackingCategory](../../models/components/deprecatedlinkedtrackingcategory.md)                                              | :heavy_minus_sign:                                                                                                                                      | : warning: ** DEPRECATED **: This will be removed in a future release, please migrate away from it as soon as possible.                                 |                                                                                                                                                         |
 | `trackingCategories`                                                                                                                                    | [components.LinkedTrackingCategory](../../models/components/linkedtrackingcategory.md)[]                                                                | :heavy_minus_sign:                                                                                                                                      | A list of linked tracking categories.                                                                                                                   |                                                                                                                                                         |
 | `active`                                                                                                                                                | *boolean*                                                                                                                                               | :heavy_minus_sign:                                                                                                                                      | N/A                                                                                                                                                     | true                                                                                                                                                    |

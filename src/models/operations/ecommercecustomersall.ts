@@ -74,86 +74,6 @@ export type EcommerceCustomersAllResponse = {
 };
 
 /** @internal */
-export const EcommerceCustomersAllGlobals$inboundSchema: z.ZodType<
-  EcommerceCustomersAllGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/** @internal */
-export type EcommerceCustomersAllGlobals$Outbound = {
-  consumerId?: string | undefined;
-  appId?: string | undefined;
-};
-
-/** @internal */
-export const EcommerceCustomersAllGlobals$outboundSchema: z.ZodType<
-  EcommerceCustomersAllGlobals$Outbound,
-  z.ZodTypeDef,
-  EcommerceCustomersAllGlobals
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace EcommerceCustomersAllGlobals$ {
-  /** @deprecated use `EcommerceCustomersAllGlobals$inboundSchema` instead. */
-  export const inboundSchema = EcommerceCustomersAllGlobals$inboundSchema;
-  /** @deprecated use `EcommerceCustomersAllGlobals$outboundSchema` instead. */
-  export const outboundSchema = EcommerceCustomersAllGlobals$outboundSchema;
-  /** @deprecated use `EcommerceCustomersAllGlobals$Outbound` instead. */
-  export type Outbound = EcommerceCustomersAllGlobals$Outbound;
-}
-
-export function ecommerceCustomersAllGlobalsToJSON(
-  ecommerceCustomersAllGlobals: EcommerceCustomersAllGlobals,
-): string {
-  return JSON.stringify(
-    EcommerceCustomersAllGlobals$outboundSchema.parse(
-      ecommerceCustomersAllGlobals,
-    ),
-  );
-}
-
-export function ecommerceCustomersAllGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<EcommerceCustomersAllGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => EcommerceCustomersAllGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'EcommerceCustomersAllGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const EcommerceCustomersAllRequest$inboundSchema: z.ZodType<
-  EcommerceCustomersAllRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  raw: z.boolean().default(false),
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  cursor: z.nullable(z.string()).optional(),
-  limit: z.number().int().default(20),
-  filter: components.EcommerceCustomersFilter$inboundSchema.optional(),
-  pass_through: z.record(z.any()).optional(),
-  fields: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "pass_through": "passThrough",
-  });
-});
-
-/** @internal */
 export type EcommerceCustomersAllRequest$Outbound = {
   raw: boolean;
   consumerId?: string | undefined;
@@ -187,19 +107,6 @@ export const EcommerceCustomersAllRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace EcommerceCustomersAllRequest$ {
-  /** @deprecated use `EcommerceCustomersAllRequest$inboundSchema` instead. */
-  export const inboundSchema = EcommerceCustomersAllRequest$inboundSchema;
-  /** @deprecated use `EcommerceCustomersAllRequest$outboundSchema` instead. */
-  export const outboundSchema = EcommerceCustomersAllRequest$outboundSchema;
-  /** @deprecated use `EcommerceCustomersAllRequest$Outbound` instead. */
-  export type Outbound = EcommerceCustomersAllRequest$Outbound;
-}
-
 export function ecommerceCustomersAllRequestToJSON(
   ecommerceCustomersAllRequest: EcommerceCustomersAllRequest,
 ): string {
@@ -207,16 +114,6 @@ export function ecommerceCustomersAllRequestToJSON(
     EcommerceCustomersAllRequest$outboundSchema.parse(
       ecommerceCustomersAllRequest,
     ),
-  );
-}
-
-export function ecommerceCustomersAllRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<EcommerceCustomersAllRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => EcommerceCustomersAllRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'EcommerceCustomersAllRequest' from JSON`,
   );
 }
 
@@ -238,59 +135,6 @@ export const EcommerceCustomersAllResponse$inboundSchema: z.ZodType<
     "UnexpectedErrorResponse": "unexpectedErrorResponse",
   });
 });
-
-/** @internal */
-export type EcommerceCustomersAllResponse$Outbound = {
-  HttpMeta: components.HTTPMetadata$Outbound;
-  GetEcommerceCustomersResponse?:
-    | components.GetEcommerceCustomersResponse$Outbound
-    | undefined;
-  UnexpectedErrorResponse?:
-    | components.UnexpectedErrorResponse$Outbound
-    | undefined;
-};
-
-/** @internal */
-export const EcommerceCustomersAllResponse$outboundSchema: z.ZodType<
-  EcommerceCustomersAllResponse$Outbound,
-  z.ZodTypeDef,
-  EcommerceCustomersAllResponse
-> = z.object({
-  httpMeta: components.HTTPMetadata$outboundSchema,
-  getEcommerceCustomersResponse: components
-    .GetEcommerceCustomersResponse$outboundSchema.optional(),
-  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    httpMeta: "HttpMeta",
-    getEcommerceCustomersResponse: "GetEcommerceCustomersResponse",
-    unexpectedErrorResponse: "UnexpectedErrorResponse",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace EcommerceCustomersAllResponse$ {
-  /** @deprecated use `EcommerceCustomersAllResponse$inboundSchema` instead. */
-  export const inboundSchema = EcommerceCustomersAllResponse$inboundSchema;
-  /** @deprecated use `EcommerceCustomersAllResponse$outboundSchema` instead. */
-  export const outboundSchema = EcommerceCustomersAllResponse$outboundSchema;
-  /** @deprecated use `EcommerceCustomersAllResponse$Outbound` instead. */
-  export type Outbound = EcommerceCustomersAllResponse$Outbound;
-}
-
-export function ecommerceCustomersAllResponseToJSON(
-  ecommerceCustomersAllResponse: EcommerceCustomersAllResponse,
-): string {
-  return JSON.stringify(
-    EcommerceCustomersAllResponse$outboundSchema.parse(
-      ecommerceCustomersAllResponse,
-    ),
-  );
-}
 
 export function ecommerceCustomersAllResponseFromJSON(
   jsonString: string,

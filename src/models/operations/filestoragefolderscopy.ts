@@ -61,84 +61,6 @@ export type FileStorageFoldersCopyResponse = {
 };
 
 /** @internal */
-export const FileStorageFoldersCopyGlobals$inboundSchema: z.ZodType<
-  FileStorageFoldersCopyGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/** @internal */
-export type FileStorageFoldersCopyGlobals$Outbound = {
-  consumerId?: string | undefined;
-  appId?: string | undefined;
-};
-
-/** @internal */
-export const FileStorageFoldersCopyGlobals$outboundSchema: z.ZodType<
-  FileStorageFoldersCopyGlobals$Outbound,
-  z.ZodTypeDef,
-  FileStorageFoldersCopyGlobals
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace FileStorageFoldersCopyGlobals$ {
-  /** @deprecated use `FileStorageFoldersCopyGlobals$inboundSchema` instead. */
-  export const inboundSchema = FileStorageFoldersCopyGlobals$inboundSchema;
-  /** @deprecated use `FileStorageFoldersCopyGlobals$outboundSchema` instead. */
-  export const outboundSchema = FileStorageFoldersCopyGlobals$outboundSchema;
-  /** @deprecated use `FileStorageFoldersCopyGlobals$Outbound` instead. */
-  export type Outbound = FileStorageFoldersCopyGlobals$Outbound;
-}
-
-export function fileStorageFoldersCopyGlobalsToJSON(
-  fileStorageFoldersCopyGlobals: FileStorageFoldersCopyGlobals,
-): string {
-  return JSON.stringify(
-    FileStorageFoldersCopyGlobals$outboundSchema.parse(
-      fileStorageFoldersCopyGlobals,
-    ),
-  );
-}
-
-export function fileStorageFoldersCopyGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<FileStorageFoldersCopyGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => FileStorageFoldersCopyGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'FileStorageFoldersCopyGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const FileStorageFoldersCopyRequest$inboundSchema: z.ZodType<
-  FileStorageFoldersCopyRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  id: z.string(),
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  raw: z.boolean().default(false),
-  fields: z.nullable(z.string()).optional(),
-  CopyFolderRequest: components.CopyFolderRequest$inboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    "CopyFolderRequest": "copyFolderRequest",
-  });
-});
-
-/** @internal */
 export type FileStorageFoldersCopyRequest$Outbound = {
   id: string;
   consumerId?: string | undefined;
@@ -168,19 +90,6 @@ export const FileStorageFoldersCopyRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace FileStorageFoldersCopyRequest$ {
-  /** @deprecated use `FileStorageFoldersCopyRequest$inboundSchema` instead. */
-  export const inboundSchema = FileStorageFoldersCopyRequest$inboundSchema;
-  /** @deprecated use `FileStorageFoldersCopyRequest$outboundSchema` instead. */
-  export const outboundSchema = FileStorageFoldersCopyRequest$outboundSchema;
-  /** @deprecated use `FileStorageFoldersCopyRequest$Outbound` instead. */
-  export type Outbound = FileStorageFoldersCopyRequest$Outbound;
-}
-
 export function fileStorageFoldersCopyRequestToJSON(
   fileStorageFoldersCopyRequest: FileStorageFoldersCopyRequest,
 ): string {
@@ -188,16 +97,6 @@ export function fileStorageFoldersCopyRequestToJSON(
     FileStorageFoldersCopyRequest$outboundSchema.parse(
       fileStorageFoldersCopyRequest,
     ),
-  );
-}
-
-export function fileStorageFoldersCopyRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<FileStorageFoldersCopyRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => FileStorageFoldersCopyRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'FileStorageFoldersCopyRequest' from JSON`,
   );
 }
 
@@ -219,57 +118,6 @@ export const FileStorageFoldersCopyResponse$inboundSchema: z.ZodType<
     "UnexpectedErrorResponse": "unexpectedErrorResponse",
   });
 });
-
-/** @internal */
-export type FileStorageFoldersCopyResponse$Outbound = {
-  HttpMeta: components.HTTPMetadata$Outbound;
-  UpdateFolderResponse?: components.UpdateFolderResponse$Outbound | undefined;
-  UnexpectedErrorResponse?:
-    | components.UnexpectedErrorResponse$Outbound
-    | undefined;
-};
-
-/** @internal */
-export const FileStorageFoldersCopyResponse$outboundSchema: z.ZodType<
-  FileStorageFoldersCopyResponse$Outbound,
-  z.ZodTypeDef,
-  FileStorageFoldersCopyResponse
-> = z.object({
-  httpMeta: components.HTTPMetadata$outboundSchema,
-  updateFolderResponse: components.UpdateFolderResponse$outboundSchema
-    .optional(),
-  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    httpMeta: "HttpMeta",
-    updateFolderResponse: "UpdateFolderResponse",
-    unexpectedErrorResponse: "UnexpectedErrorResponse",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace FileStorageFoldersCopyResponse$ {
-  /** @deprecated use `FileStorageFoldersCopyResponse$inboundSchema` instead. */
-  export const inboundSchema = FileStorageFoldersCopyResponse$inboundSchema;
-  /** @deprecated use `FileStorageFoldersCopyResponse$outboundSchema` instead. */
-  export const outboundSchema = FileStorageFoldersCopyResponse$outboundSchema;
-  /** @deprecated use `FileStorageFoldersCopyResponse$Outbound` instead. */
-  export type Outbound = FileStorageFoldersCopyResponse$Outbound;
-}
-
-export function fileStorageFoldersCopyResponseToJSON(
-  fileStorageFoldersCopyResponse: FileStorageFoldersCopyResponse,
-): string {
-  return JSON.stringify(
-    FileStorageFoldersCopyResponse$outboundSchema.parse(
-      fileStorageFoldersCopyResponse,
-    ),
-  );
-}
 
 export function fileStorageFoldersCopyResponseFromJSON(
   jsonString: string,

@@ -4,9 +4,6 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type EcommerceProductsFilter = {
   /**
@@ -22,22 +19,6 @@ export type EcommerceProductsFilter = {
    */
   createdSince?: string | undefined;
 };
-
-/** @internal */
-export const EcommerceProductsFilter$inboundSchema: z.ZodType<
-  EcommerceProductsFilter,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  name: z.string().optional(),
-  updated_since: z.string().optional(),
-  created_since: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "updated_since": "updatedSince",
-    "created_since": "createdSince",
-  });
-});
 
 /** @internal */
 export type EcommerceProductsFilter$Outbound = {
@@ -62,33 +43,10 @@ export const EcommerceProductsFilter$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace EcommerceProductsFilter$ {
-  /** @deprecated use `EcommerceProductsFilter$inboundSchema` instead. */
-  export const inboundSchema = EcommerceProductsFilter$inboundSchema;
-  /** @deprecated use `EcommerceProductsFilter$outboundSchema` instead. */
-  export const outboundSchema = EcommerceProductsFilter$outboundSchema;
-  /** @deprecated use `EcommerceProductsFilter$Outbound` instead. */
-  export type Outbound = EcommerceProductsFilter$Outbound;
-}
-
 export function ecommerceProductsFilterToJSON(
   ecommerceProductsFilter: EcommerceProductsFilter,
 ): string {
   return JSON.stringify(
     EcommerceProductsFilter$outboundSchema.parse(ecommerceProductsFilter),
-  );
-}
-
-export function ecommerceProductsFilterFromJSON(
-  jsonString: string,
-): SafeParseResult<EcommerceProductsFilter, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => EcommerceProductsFilter$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'EcommerceProductsFilter' from JSON`,
   );
 }

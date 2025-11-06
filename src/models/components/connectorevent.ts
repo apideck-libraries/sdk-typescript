@@ -49,21 +49,6 @@ export const EventSource$inboundSchema: z.ZodNativeEnum<typeof EventSource> = z
   .nativeEnum(EventSource);
 
 /** @internal */
-export const EventSource$outboundSchema: z.ZodNativeEnum<typeof EventSource> =
-  EventSource$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace EventSource$ {
-  /** @deprecated use `EventSource$inboundSchema` instead. */
-  export const inboundSchema = EventSource$inboundSchema;
-  /** @deprecated use `EventSource$outboundSchema` instead. */
-  export const outboundSchema = EventSource$outboundSchema;
-}
-
-/** @internal */
 export const ConnectorEvent$inboundSchema: z.ZodType<
   ConnectorEvent,
   z.ZodTypeDef,
@@ -82,52 +67,6 @@ export const ConnectorEvent$inboundSchema: z.ZodType<
     "entity_type": "entityType",
   });
 });
-
-/** @internal */
-export type ConnectorEvent$Outbound = {
-  event_type?: string | undefined;
-  event_source?: string | undefined;
-  downstream_event_type?: string | undefined;
-  resources?: Array<string> | undefined;
-  entity_type?: string | undefined;
-};
-
-/** @internal */
-export const ConnectorEvent$outboundSchema: z.ZodType<
-  ConnectorEvent$Outbound,
-  z.ZodTypeDef,
-  ConnectorEvent
-> = z.object({
-  eventType: z.string().optional(),
-  eventSource: EventSource$outboundSchema.optional(),
-  downstreamEventType: z.string().optional(),
-  resources: z.array(z.string()).optional(),
-  entityType: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    eventType: "event_type",
-    eventSource: "event_source",
-    downstreamEventType: "downstream_event_type",
-    entityType: "entity_type",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ConnectorEvent$ {
-  /** @deprecated use `ConnectorEvent$inboundSchema` instead. */
-  export const inboundSchema = ConnectorEvent$inboundSchema;
-  /** @deprecated use `ConnectorEvent$outboundSchema` instead. */
-  export const outboundSchema = ConnectorEvent$outboundSchema;
-  /** @deprecated use `ConnectorEvent$Outbound` instead. */
-  export type Outbound = ConnectorEvent$Outbound;
-}
-
-export function connectorEventToJSON(connectorEvent: ConnectorEvent): string {
-  return JSON.stringify(ConnectorEvent$outboundSchema.parse(connectorEvent));
-}
 
 export function connectorEventFromJSON(
   jsonString: string,

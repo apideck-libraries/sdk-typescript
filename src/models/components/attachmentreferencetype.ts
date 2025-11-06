@@ -19,19 +19,7 @@ export type AttachmentReferenceType = ClosedEnum<
 export const AttachmentReferenceType$inboundSchema: z.ZodNativeEnum<
   typeof AttachmentReferenceType
 > = z.nativeEnum(AttachmentReferenceType);
-
 /** @internal */
 export const AttachmentReferenceType$outboundSchema: z.ZodNativeEnum<
   typeof AttachmentReferenceType
 > = AttachmentReferenceType$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AttachmentReferenceType$ {
-  /** @deprecated use `AttachmentReferenceType$inboundSchema` instead. */
-  export const inboundSchema = AttachmentReferenceType$inboundSchema;
-  /** @deprecated use `AttachmentReferenceType$outboundSchema` instead. */
-  export const outboundSchema = AttachmentReferenceType$outboundSchema;
-}

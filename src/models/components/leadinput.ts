@@ -4,53 +4,35 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   Address,
-  Address$inboundSchema,
   Address$Outbound,
   Address$outboundSchema,
 } from "./address.js";
-import {
-  Currency,
-  Currency$inboundSchema,
-  Currency$outboundSchema,
-} from "./currency.js";
+import { Currency, Currency$outboundSchema } from "./currency.js";
 import {
   CustomField,
-  CustomField$inboundSchema,
   CustomField$Outbound,
   CustomField$outboundSchema,
 } from "./customfield.js";
-import {
-  Email,
-  Email$inboundSchema,
-  Email$Outbound,
-  Email$outboundSchema,
-} from "./email.js";
+import { Email, Email$Outbound, Email$outboundSchema } from "./email.js";
 import {
   PassThroughBody,
-  PassThroughBody$inboundSchema,
   PassThroughBody$Outbound,
   PassThroughBody$outboundSchema,
 } from "./passthroughbody.js";
 import {
   PhoneNumber,
-  PhoneNumber$inboundSchema,
   PhoneNumber$Outbound,
   PhoneNumber$outboundSchema,
 } from "./phonenumber.js";
 import {
   SocialLink,
-  SocialLink$inboundSchema,
   SocialLink$Outbound,
   SocialLink$outboundSchema,
 } from "./sociallink.js";
 import {
   Website,
-  Website$inboundSchema,
   Website$Outbound,
   Website$outboundSchema,
 } from "./website.js";
@@ -135,55 +117,6 @@ export type LeadInput = {
 };
 
 /** @internal */
-export const LeadInput$inboundSchema: z.ZodType<
-  LeadInput,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  name: z.string(),
-  company_name: z.nullable(z.string()).optional(),
-  owner_id: z.nullable(z.string()).optional(),
-  owner_name: z.nullable(z.string()).optional(),
-  company_id: z.nullable(z.string()).optional(),
-  lead_id: z.nullable(z.string()).optional(),
-  lead_source: z.nullable(z.string()).optional(),
-  first_name: z.nullable(z.string()).optional(),
-  last_name: z.nullable(z.string()).optional(),
-  description: z.nullable(z.string()).optional(),
-  prefix: z.nullable(z.string()).optional(),
-  title: z.nullable(z.string()).optional(),
-  language: z.nullable(z.string()).optional(),
-  status: z.nullable(z.string()).optional(),
-  monetary_amount: z.nullable(z.number()).optional(),
-  currency: z.nullable(Currency$inboundSchema).optional(),
-  fax: z.nullable(z.string()).optional(),
-  websites: z.array(Website$inboundSchema).optional(),
-  addresses: z.array(Address$inboundSchema).optional(),
-  social_links: z.array(SocialLink$inboundSchema).optional(),
-  phone_numbers: z.array(PhoneNumber$inboundSchema).optional(),
-  emails: z.array(Email$inboundSchema).optional(),
-  custom_fields: z.nullable(z.array(CustomField$inboundSchema)).optional(),
-  tags: z.nullable(z.array(z.string())).optional(),
-  pass_through: z.array(PassThroughBody$inboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "company_name": "companyName",
-    "owner_id": "ownerId",
-    "owner_name": "ownerName",
-    "company_id": "companyId",
-    "lead_id": "leadId",
-    "lead_source": "leadSource",
-    "first_name": "firstName",
-    "last_name": "lastName",
-    "monetary_amount": "monetaryAmount",
-    "social_links": "socialLinks",
-    "phone_numbers": "phoneNumbers",
-    "custom_fields": "customFields",
-    "pass_through": "passThrough",
-  });
-});
-
-/** @internal */
 export type LeadInput$Outbound = {
   name: string;
   company_name?: string | null | undefined;
@@ -261,29 +194,6 @@ export const LeadInput$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace LeadInput$ {
-  /** @deprecated use `LeadInput$inboundSchema` instead. */
-  export const inboundSchema = LeadInput$inboundSchema;
-  /** @deprecated use `LeadInput$outboundSchema` instead. */
-  export const outboundSchema = LeadInput$outboundSchema;
-  /** @deprecated use `LeadInput$Outbound` instead. */
-  export type Outbound = LeadInput$Outbound;
-}
-
 export function leadInputToJSON(leadInput: LeadInput): string {
   return JSON.stringify(LeadInput$outboundSchema.parse(leadInput));
-}
-
-export function leadInputFromJSON(
-  jsonString: string,
-): SafeParseResult<LeadInput, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => LeadInput$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'LeadInput' from JSON`,
-  );
 }

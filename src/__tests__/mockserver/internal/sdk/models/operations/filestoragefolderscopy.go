@@ -40,8 +40,8 @@ type FileStorageFoldersCopyRequest struct {
 	// Include raw response. Mostly used for debugging purposes
 	Raw *bool `default:"false" queryParam:"style=form,explode=true,name=raw"`
 	// The 'fields' parameter allows API users to specify the fields they want to include in the API response. If this parameter is not present, the API will return all available fields. If this parameter is present, only the fields specified in the comma-separated string will be included in the response. Nested properties can also be requested by using a dot notation. <br /><br />Example: `fields=name,email,addresses.city`<br /><br />In the example above, the response will only include the fields "name", "email" and "addresses.city". If any other fields are available, they will be excluded.
-	Fields            *string                      `queryParam:"style=form,explode=true,name=fields"`
-	CopyFolderRequest components.CopyFolderRequest `request:"mediaType=application/json"`
+	Fields *string                      `queryParam:"style=form,explode=true,name=fields"`
+	Body   components.CopyFolderRequest `request:"mediaType=application/json"`
 }
 
 func (f FileStorageFoldersCopyRequest) MarshalJSON() ([]byte, error) {
@@ -49,7 +49,7 @@ func (f FileStorageFoldersCopyRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (f *FileStorageFoldersCopyRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &f, "", false, []string{"id", "CopyFolderRequest"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &f, "", false, []string{"id", "body"}); err != nil {
 		return err
 	}
 	return nil
@@ -97,11 +97,11 @@ func (o *FileStorageFoldersCopyRequest) GetFields() *string {
 	return o.Fields
 }
 
-func (o *FileStorageFoldersCopyRequest) GetCopyFolderRequest() components.CopyFolderRequest {
+func (o *FileStorageFoldersCopyRequest) GetBody() components.CopyFolderRequest {
 	if o == nil {
 		return components.CopyFolderRequest{}
 	}
-	return o.CopyFolderRequest
+	return o.Body
 }
 
 type FileStorageFoldersCopyResponse struct {

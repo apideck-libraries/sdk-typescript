@@ -56,78 +56,6 @@ export type FileStorageFilesDownloadResponse = {
 };
 
 /** @internal */
-export const FileStorageFilesDownloadGlobals$inboundSchema: z.ZodType<
-  FileStorageFilesDownloadGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/** @internal */
-export type FileStorageFilesDownloadGlobals$Outbound = {
-  consumerId?: string | undefined;
-  appId?: string | undefined;
-};
-
-/** @internal */
-export const FileStorageFilesDownloadGlobals$outboundSchema: z.ZodType<
-  FileStorageFilesDownloadGlobals$Outbound,
-  z.ZodTypeDef,
-  FileStorageFilesDownloadGlobals
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace FileStorageFilesDownloadGlobals$ {
-  /** @deprecated use `FileStorageFilesDownloadGlobals$inboundSchema` instead. */
-  export const inboundSchema = FileStorageFilesDownloadGlobals$inboundSchema;
-  /** @deprecated use `FileStorageFilesDownloadGlobals$outboundSchema` instead. */
-  export const outboundSchema = FileStorageFilesDownloadGlobals$outboundSchema;
-  /** @deprecated use `FileStorageFilesDownloadGlobals$Outbound` instead. */
-  export type Outbound = FileStorageFilesDownloadGlobals$Outbound;
-}
-
-export function fileStorageFilesDownloadGlobalsToJSON(
-  fileStorageFilesDownloadGlobals: FileStorageFilesDownloadGlobals,
-): string {
-  return JSON.stringify(
-    FileStorageFilesDownloadGlobals$outboundSchema.parse(
-      fileStorageFilesDownloadGlobals,
-    ),
-  );
-}
-
-export function fileStorageFilesDownloadGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<FileStorageFilesDownloadGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => FileStorageFilesDownloadGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'FileStorageFilesDownloadGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const FileStorageFilesDownloadRequest$inboundSchema: z.ZodType<
-  FileStorageFilesDownloadRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  id: z.string(),
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  fields: z.nullable(z.string()).optional(),
-});
-
-/** @internal */
 export type FileStorageFilesDownloadRequest$Outbound = {
   id: string;
   consumerId?: string | undefined;
@@ -149,19 +77,6 @@ export const FileStorageFilesDownloadRequest$outboundSchema: z.ZodType<
   fields: z.nullable(z.string()).optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace FileStorageFilesDownloadRequest$ {
-  /** @deprecated use `FileStorageFilesDownloadRequest$inboundSchema` instead. */
-  export const inboundSchema = FileStorageFilesDownloadRequest$inboundSchema;
-  /** @deprecated use `FileStorageFilesDownloadRequest$outboundSchema` instead. */
-  export const outboundSchema = FileStorageFilesDownloadRequest$outboundSchema;
-  /** @deprecated use `FileStorageFilesDownloadRequest$Outbound` instead. */
-  export type Outbound = FileStorageFilesDownloadRequest$Outbound;
-}
-
 export function fileStorageFilesDownloadRequestToJSON(
   fileStorageFilesDownloadRequest: FileStorageFilesDownloadRequest,
 ): string {
@@ -169,16 +84,6 @@ export function fileStorageFilesDownloadRequestToJSON(
     FileStorageFilesDownloadRequest$outboundSchema.parse(
       fileStorageFilesDownloadRequest,
     ),
-  );
-}
-
-export function fileStorageFilesDownloadRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<FileStorageFilesDownloadRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => FileStorageFilesDownloadRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'FileStorageFilesDownloadRequest' from JSON`,
   );
 }
 
@@ -199,56 +104,6 @@ export const FileStorageFilesDownloadResponse$inboundSchema: z.ZodType<
     "UnexpectedErrorResponse": "unexpectedErrorResponse",
   });
 });
-
-/** @internal */
-export type FileStorageFilesDownloadResponse$Outbound = {
-  HttpMeta: components.HTTPMetadata$Outbound;
-  GetFileDownloadResponse?: ReadableStream<Uint8Array> | undefined;
-  UnexpectedErrorResponse?:
-    | components.UnexpectedErrorResponse$Outbound
-    | undefined;
-};
-
-/** @internal */
-export const FileStorageFilesDownloadResponse$outboundSchema: z.ZodType<
-  FileStorageFilesDownloadResponse$Outbound,
-  z.ZodTypeDef,
-  FileStorageFilesDownloadResponse
-> = z.object({
-  httpMeta: components.HTTPMetadata$outboundSchema,
-  getFileDownloadResponse: z.instanceof(ReadableStream<Uint8Array>).optional(),
-  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    httpMeta: "HttpMeta",
-    getFileDownloadResponse: "GetFileDownloadResponse",
-    unexpectedErrorResponse: "UnexpectedErrorResponse",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace FileStorageFilesDownloadResponse$ {
-  /** @deprecated use `FileStorageFilesDownloadResponse$inboundSchema` instead. */
-  export const inboundSchema = FileStorageFilesDownloadResponse$inboundSchema;
-  /** @deprecated use `FileStorageFilesDownloadResponse$outboundSchema` instead. */
-  export const outboundSchema = FileStorageFilesDownloadResponse$outboundSchema;
-  /** @deprecated use `FileStorageFilesDownloadResponse$Outbound` instead. */
-  export type Outbound = FileStorageFilesDownloadResponse$Outbound;
-}
-
-export function fileStorageFilesDownloadResponseToJSON(
-  fileStorageFilesDownloadResponse: FileStorageFilesDownloadResponse,
-): string {
-  return JSON.stringify(
-    FileStorageFilesDownloadResponse$outboundSchema.parse(
-      fileStorageFilesDownloadResponse,
-    ),
-  );
-}
 
 export function fileStorageFilesDownloadResponseFromJSON(
   jsonString: string,

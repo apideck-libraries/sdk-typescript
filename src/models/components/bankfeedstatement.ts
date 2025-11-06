@@ -182,43 +182,19 @@ export type BankFeedStatementInput = {
 export const StatementStatus$inboundSchema: z.ZodNativeEnum<
   typeof StatementStatus
 > = z.nativeEnum(StatementStatus);
-
 /** @internal */
 export const StatementStatus$outboundSchema: z.ZodNativeEnum<
   typeof StatementStatus
 > = StatementStatus$inboundSchema;
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace StatementStatus$ {
-  /** @deprecated use `StatementStatus$inboundSchema` instead. */
-  export const inboundSchema = StatementStatus$inboundSchema;
-  /** @deprecated use `StatementStatus$outboundSchema` instead. */
-  export const outboundSchema = StatementStatus$outboundSchema;
-}
-
 /** @internal */
 export const BankFeedStatementTransactionType$inboundSchema: z.ZodNativeEnum<
   typeof BankFeedStatementTransactionType
 > = z.nativeEnum(BankFeedStatementTransactionType);
-
 /** @internal */
 export const BankFeedStatementTransactionType$outboundSchema: z.ZodNativeEnum<
   typeof BankFeedStatementTransactionType
 > = BankFeedStatementTransactionType$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace BankFeedStatementTransactionType$ {
-  /** @deprecated use `BankFeedStatementTransactionType$inboundSchema` instead. */
-  export const inboundSchema = BankFeedStatementTransactionType$inboundSchema;
-  /** @deprecated use `BankFeedStatementTransactionType$outboundSchema` instead. */
-  export const outboundSchema = BankFeedStatementTransactionType$outboundSchema;
-}
 
 /** @internal */
 export const Transactions$inboundSchema: z.ZodType<
@@ -244,7 +220,6 @@ export const Transactions$inboundSchema: z.ZodType<
     "transaction_type": "transactionType",
   });
 });
-
 /** @internal */
 export type Transactions$Outbound = {
   posted_date: string;
@@ -280,23 +255,9 @@ export const Transactions$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Transactions$ {
-  /** @deprecated use `Transactions$inboundSchema` instead. */
-  export const inboundSchema = Transactions$inboundSchema;
-  /** @deprecated use `Transactions$outboundSchema` instead. */
-  export const outboundSchema = Transactions$outboundSchema;
-  /** @deprecated use `Transactions$Outbound` instead. */
-  export type Outbound = Transactions$Outbound;
-}
-
 export function transactionsToJSON(transactions: Transactions): string {
   return JSON.stringify(Transactions$outboundSchema.parse(transactions));
 }
-
 export function transactionsFromJSON(
   jsonString: string,
 ): SafeParseResult<Transactions, SDKValidationError> {
@@ -349,81 +310,6 @@ export const BankFeedStatement$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type BankFeedStatement$Outbound = {
-  id: string;
-  bank_feed_account_id?: string | undefined;
-  status?: string | undefined;
-  start_date?: string | undefined;
-  end_date?: string | undefined;
-  start_balance?: number | undefined;
-  start_balance_credit_or_debit?: string | undefined;
-  end_balance?: number | undefined;
-  end_balance_credit_or_debit?: string | undefined;
-  transactions?: Array<Transactions$Outbound> | undefined;
-  created_at?: string | null | undefined;
-  created_by?: string | null | undefined;
-  updated_at?: string | null | undefined;
-  updated_by?: string | null | undefined;
-};
-
-/** @internal */
-export const BankFeedStatement$outboundSchema: z.ZodType<
-  BankFeedStatement$Outbound,
-  z.ZodTypeDef,
-  BankFeedStatement
-> = z.object({
-  id: z.string(),
-  bankFeedAccountId: z.string().optional(),
-  status: StatementStatus$outboundSchema.optional(),
-  startDate: z.date().transform(v => v.toISOString()).optional(),
-  endDate: z.date().transform(v => v.toISOString()).optional(),
-  startBalance: z.number().optional(),
-  startBalanceCreditOrDebit: CreditOrDebit$outboundSchema.optional(),
-  endBalance: z.number().optional(),
-  endBalanceCreditOrDebit: CreditOrDebit$outboundSchema.optional(),
-  transactions: z.array(z.lazy(() => Transactions$outboundSchema)).optional(),
-  createdAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
-  createdBy: z.nullable(z.string()).optional(),
-  updatedAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
-  updatedBy: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    bankFeedAccountId: "bank_feed_account_id",
-    startDate: "start_date",
-    endDate: "end_date",
-    startBalance: "start_balance",
-    startBalanceCreditOrDebit: "start_balance_credit_or_debit",
-    endBalance: "end_balance",
-    endBalanceCreditOrDebit: "end_balance_credit_or_debit",
-    createdAt: "created_at",
-    createdBy: "created_by",
-    updatedAt: "updated_at",
-    updatedBy: "updated_by",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace BankFeedStatement$ {
-  /** @deprecated use `BankFeedStatement$inboundSchema` instead. */
-  export const inboundSchema = BankFeedStatement$inboundSchema;
-  /** @deprecated use `BankFeedStatement$outboundSchema` instead. */
-  export const outboundSchema = BankFeedStatement$outboundSchema;
-  /** @deprecated use `BankFeedStatement$Outbound` instead. */
-  export type Outbound = BankFeedStatement$Outbound;
-}
-
-export function bankFeedStatementToJSON(
-  bankFeedStatement: BankFeedStatement,
-): string {
-  return JSON.stringify(
-    BankFeedStatement$outboundSchema.parse(bankFeedStatement),
-  );
-}
-
 export function bankFeedStatementFromJSON(
   jsonString: string,
 ): SafeParseResult<BankFeedStatement, SDKValidationError> {
@@ -433,35 +319,6 @@ export function bankFeedStatementFromJSON(
     `Failed to parse 'BankFeedStatement' from JSON`,
   );
 }
-
-/** @internal */
-export const BankFeedStatementInput$inboundSchema: z.ZodType<
-  BankFeedStatementInput,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  bank_feed_account_id: z.string().optional(),
-  status: StatementStatus$inboundSchema.optional(),
-  start_date: z.string().datetime({ offset: true }).transform(v => new Date(v))
-    .optional(),
-  end_date: z.string().datetime({ offset: true }).transform(v => new Date(v))
-    .optional(),
-  start_balance: z.number().optional(),
-  start_balance_credit_or_debit: CreditOrDebit$inboundSchema.optional(),
-  end_balance: z.number().optional(),
-  end_balance_credit_or_debit: CreditOrDebit$inboundSchema.optional(),
-  transactions: z.array(z.lazy(() => Transactions$inboundSchema)).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "bank_feed_account_id": "bankFeedAccountId",
-    "start_date": "startDate",
-    "end_date": "endDate",
-    "start_balance": "startBalance",
-    "start_balance_credit_or_debit": "startBalanceCreditOrDebit",
-    "end_balance": "endBalance",
-    "end_balance_credit_or_debit": "endBalanceCreditOrDebit",
-  });
-});
 
 /** @internal */
 export type BankFeedStatementInput$Outbound = {
@@ -503,33 +360,10 @@ export const BankFeedStatementInput$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace BankFeedStatementInput$ {
-  /** @deprecated use `BankFeedStatementInput$inboundSchema` instead. */
-  export const inboundSchema = BankFeedStatementInput$inboundSchema;
-  /** @deprecated use `BankFeedStatementInput$outboundSchema` instead. */
-  export const outboundSchema = BankFeedStatementInput$outboundSchema;
-  /** @deprecated use `BankFeedStatementInput$Outbound` instead. */
-  export type Outbound = BankFeedStatementInput$Outbound;
-}
-
 export function bankFeedStatementInputToJSON(
   bankFeedStatementInput: BankFeedStatementInput,
 ): string {
   return JSON.stringify(
     BankFeedStatementInput$outboundSchema.parse(bankFeedStatementInput),
-  );
-}
-
-export function bankFeedStatementInputFromJSON(
-  jsonString: string,
-): SafeParseResult<BankFeedStatementInput, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => BankFeedStatementInput$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'BankFeedStatementInput' from JSON`,
   );
 }

@@ -28,43 +28,6 @@ export const SubsidiaryReference$inboundSchema: z.ZodType<
   name: z.nullable(z.string()).optional(),
 });
 
-/** @internal */
-export type SubsidiaryReference$Outbound = {
-  id?: string | undefined;
-  name?: string | null | undefined;
-};
-
-/** @internal */
-export const SubsidiaryReference$outboundSchema: z.ZodType<
-  SubsidiaryReference$Outbound,
-  z.ZodTypeDef,
-  SubsidiaryReference
-> = z.object({
-  id: z.string().optional(),
-  name: z.nullable(z.string()).optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SubsidiaryReference$ {
-  /** @deprecated use `SubsidiaryReference$inboundSchema` instead. */
-  export const inboundSchema = SubsidiaryReference$inboundSchema;
-  /** @deprecated use `SubsidiaryReference$outboundSchema` instead. */
-  export const outboundSchema = SubsidiaryReference$outboundSchema;
-  /** @deprecated use `SubsidiaryReference$Outbound` instead. */
-  export type Outbound = SubsidiaryReference$Outbound;
-}
-
-export function subsidiaryReferenceToJSON(
-  subsidiaryReference: SubsidiaryReference,
-): string {
-  return JSON.stringify(
-    SubsidiaryReference$outboundSchema.parse(subsidiaryReference),
-  );
-}
-
 export function subsidiaryReferenceFromJSON(
   jsonString: string,
 ): SafeParseResult<SubsidiaryReference, SDKValidationError> {

@@ -4,10 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
  * Filter by account classification.
@@ -38,41 +35,9 @@ export type LedgerAccountsFilter = {
 };
 
 /** @internal */
-export const Classification$inboundSchema: z.ZodNativeEnum<
-  typeof Classification
-> = z.nativeEnum(Classification);
-
-/** @internal */
 export const Classification$outboundSchema: z.ZodNativeEnum<
   typeof Classification
-> = Classification$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Classification$ {
-  /** @deprecated use `Classification$inboundSchema` instead. */
-  export const inboundSchema = Classification$inboundSchema;
-  /** @deprecated use `Classification$outboundSchema` instead. */
-  export const outboundSchema = Classification$outboundSchema;
-}
-
-/** @internal */
-export const LedgerAccountsFilter$inboundSchema: z.ZodType<
-  LedgerAccountsFilter,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  updated_since: z.string().datetime({ offset: true }).transform(v =>
-    new Date(v)
-  ).optional(),
-  classification: Classification$inboundSchema.optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "updated_since": "updatedSince",
-  });
-});
+> = z.nativeEnum(Classification);
 
 /** @internal */
 export type LedgerAccountsFilter$Outbound = {
@@ -94,33 +59,10 @@ export const LedgerAccountsFilter$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace LedgerAccountsFilter$ {
-  /** @deprecated use `LedgerAccountsFilter$inboundSchema` instead. */
-  export const inboundSchema = LedgerAccountsFilter$inboundSchema;
-  /** @deprecated use `LedgerAccountsFilter$outboundSchema` instead. */
-  export const outboundSchema = LedgerAccountsFilter$outboundSchema;
-  /** @deprecated use `LedgerAccountsFilter$Outbound` instead. */
-  export type Outbound = LedgerAccountsFilter$Outbound;
-}
-
 export function ledgerAccountsFilterToJSON(
   ledgerAccountsFilter: LedgerAccountsFilter,
 ): string {
   return JSON.stringify(
     LedgerAccountsFilter$outboundSchema.parse(ledgerAccountsFilter),
-  );
-}
-
-export function ledgerAccountsFilterFromJSON(
-  jsonString: string,
-): SafeParseResult<LedgerAccountsFilter, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => LedgerAccountsFilter$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'LedgerAccountsFilter' from JSON`,
   );
 }

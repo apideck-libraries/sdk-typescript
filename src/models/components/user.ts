@@ -7,30 +7,13 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  Address,
-  Address$inboundSchema,
-  Address$Outbound,
-  Address$outboundSchema,
-} from "./address.js";
-import {
-  Email,
-  Email$inboundSchema,
-  Email$Outbound,
-  Email$outboundSchema,
-} from "./email.js";
+import { Address, Address$inboundSchema } from "./address.js";
+import { Email, Email$inboundSchema } from "./email.js";
 import {
   PassThroughBody,
   PassThroughBody$inboundSchema,
-  PassThroughBody$Outbound,
-  PassThroughBody$outboundSchema,
 } from "./passthroughbody.js";
-import {
-  PhoneNumber,
-  PhoneNumber$inboundSchema,
-  PhoneNumber$Outbound,
-  PhoneNumber$outboundSchema,
-} from "./phonenumber.js";
+import { PhoneNumber, PhoneNumber$inboundSchema } from "./phonenumber.js";
 
 export type User = {
   /**
@@ -150,87 +133,6 @@ export const User$inboundSchema: z.ZodType<User, z.ZodTypeDef, unknown> = z
       "pass_through": "passThrough",
     });
   });
-
-/** @internal */
-export type User$Outbound = {
-  id?: string | undefined;
-  parent_id?: string | null | undefined;
-  username?: string | null | undefined;
-  first_name?: string | null | undefined;
-  last_name?: string | null | undefined;
-  title?: string | null | undefined;
-  division?: string | null | undefined;
-  department?: string | null | undefined;
-  company_name?: string | null | undefined;
-  employee_number?: string | null | undefined;
-  description?: string | null | undefined;
-  image?: string | null | undefined;
-  language?: string | null | undefined;
-  status?: string | null | undefined;
-  addresses?: Array<Address$Outbound> | undefined;
-  phone_numbers?: Array<PhoneNumber$Outbound> | undefined;
-  emails: Array<Email$Outbound>;
-  custom_mappings?: { [k: string]: any } | null | undefined;
-  updated_at?: string | null | undefined;
-  created_at?: string | null | undefined;
-  pass_through?: Array<PassThroughBody$Outbound> | undefined;
-};
-
-/** @internal */
-export const User$outboundSchema: z.ZodType<User$Outbound, z.ZodTypeDef, User> =
-  z.object({
-    id: z.string().optional(),
-    parentId: z.nullable(z.string()).optional(),
-    username: z.nullable(z.string()).optional(),
-    firstName: z.nullable(z.string()).optional(),
-    lastName: z.nullable(z.string()).optional(),
-    title: z.nullable(z.string()).optional(),
-    division: z.nullable(z.string()).optional(),
-    department: z.nullable(z.string()).optional(),
-    companyName: z.nullable(z.string()).optional(),
-    employeeNumber: z.nullable(z.string()).optional(),
-    description: z.nullable(z.string()).optional(),
-    image: z.nullable(z.string()).optional(),
-    language: z.nullable(z.string()).optional(),
-    status: z.nullable(z.string()).optional(),
-    addresses: z.array(Address$outboundSchema).optional(),
-    phoneNumbers: z.array(PhoneNumber$outboundSchema).optional(),
-    emails: z.array(Email$outboundSchema),
-    customMappings: z.nullable(z.record(z.any())).optional(),
-    updatedAt: z.nullable(z.string()).optional(),
-    createdAt: z.nullable(z.string()).optional(),
-    passThrough: z.array(PassThroughBody$outboundSchema).optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      parentId: "parent_id",
-      firstName: "first_name",
-      lastName: "last_name",
-      companyName: "company_name",
-      employeeNumber: "employee_number",
-      phoneNumbers: "phone_numbers",
-      customMappings: "custom_mappings",
-      updatedAt: "updated_at",
-      createdAt: "created_at",
-      passThrough: "pass_through",
-    });
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace User$ {
-  /** @deprecated use `User$inboundSchema` instead. */
-  export const inboundSchema = User$inboundSchema;
-  /** @deprecated use `User$outboundSchema` instead. */
-  export const outboundSchema = User$outboundSchema;
-  /** @deprecated use `User$Outbound` instead. */
-  export type Outbound = User$Outbound;
-}
-
-export function userToJSON(user: User): string {
-  return JSON.stringify(User$outboundSchema.parse(user));
-}
 
 export function userFromJSON(
   jsonString: string,

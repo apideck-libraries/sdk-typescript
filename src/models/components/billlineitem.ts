@@ -5,88 +5,32 @@
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
-import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
+import { LineItemType, LineItemType$inboundSchema } from "./lineitemtype.js";
 import {
   LinkedCustomer,
   LinkedCustomer$inboundSchema,
-  LinkedCustomer$Outbound,
-  LinkedCustomer$outboundSchema,
 } from "./linkedcustomer.js";
-import {
-  LinkedCustomerInput,
-  LinkedCustomerInput$inboundSchema,
-  LinkedCustomerInput$Outbound,
-  LinkedCustomerInput$outboundSchema,
-} from "./linkedcustomerinput.js";
 import {
   LinkedInvoiceItem,
   LinkedInvoiceItem$inboundSchema,
-  LinkedInvoiceItem$Outbound,
-  LinkedInvoiceItem$outboundSchema,
 } from "./linkedinvoiceitem.js";
 import {
   LinkedLedgerAccount,
   LinkedLedgerAccount$inboundSchema,
-  LinkedLedgerAccount$Outbound,
-  LinkedLedgerAccount$outboundSchema,
 } from "./linkedledgeraccount.js";
-import {
-  LinkedLedgerAccountInput,
-  LinkedLedgerAccountInput$inboundSchema,
-  LinkedLedgerAccountInput$Outbound,
-  LinkedLedgerAccountInput$outboundSchema,
-} from "./linkedledgeraccountinput.js";
 import {
   LinkedPurchaseOrder,
   LinkedPurchaseOrder$inboundSchema,
-  LinkedPurchaseOrder$Outbound,
-  LinkedPurchaseOrder$outboundSchema,
 } from "./linkedpurchaseorder.js";
-import {
-  LinkedTaxRate,
-  LinkedTaxRate$inboundSchema,
-  LinkedTaxRate$Outbound,
-  LinkedTaxRate$outboundSchema,
-} from "./linkedtaxrate.js";
-import {
-  LinkedTaxRateInput,
-  LinkedTaxRateInput$inboundSchema,
-  LinkedTaxRateInput$Outbound,
-  LinkedTaxRateInput$outboundSchema,
-} from "./linkedtaxrateinput.js";
+import { LinkedTaxRate, LinkedTaxRate$inboundSchema } from "./linkedtaxrate.js";
 import {
   LinkedTrackingCategory,
   LinkedTrackingCategory$inboundSchema,
-  LinkedTrackingCategory$Outbound,
-  LinkedTrackingCategory$outboundSchema,
 } from "./linkedtrackingcategory.js";
-import {
-  LinkedWorktag,
-  LinkedWorktag$inboundSchema,
-  LinkedWorktag$Outbound,
-  LinkedWorktag$outboundSchema,
-} from "./linkedworktag.js";
-import {
-  Rebilling,
-  Rebilling$inboundSchema,
-  Rebilling$Outbound,
-  Rebilling$outboundSchema,
-} from "./rebilling.js";
-
-/**
- * Bill Line Item type
- */
-export const BillLineItemType = {
-  ExpenseItem: "expense_item",
-  ExpenseAccount: "expense_account",
-  Other: "other",
-} as const;
-/**
- * Bill Line Item type
- */
-export type BillLineItemType = ClosedEnum<typeof BillLineItemType>;
+import { LinkedWorktag, LinkedWorktag$inboundSchema } from "./linkedworktag.js";
+import { Rebilling, Rebilling$inboundSchema } from "./rebilling.js";
 
 export type BillLineItem = {
   /**
@@ -110,9 +54,9 @@ export type BillLineItem = {
    */
   description?: string | null | undefined;
   /**
-   * Bill Line Item type
+   * Line Item type
    */
-  type?: BillLineItemType | null | undefined;
+  type?: LineItemType | null | undefined;
   /**
    * Tax amount
    */
@@ -225,144 +169,6 @@ export type BillLineItem = {
   worktags?: Array<LinkedWorktag | null> | undefined;
 };
 
-export type BillLineItemInput = {
-  /**
-   * Row ID
-   */
-  rowId?: string | undefined;
-  /**
-   * User defined item code
-   */
-  code?: string | null | undefined;
-  /**
-   * Line number in the invoice
-   */
-  lineNumber?: number | null | undefined;
-  /**
-   * User defined description
-   */
-  description?: string | null | undefined;
-  /**
-   * Bill Line Item type
-   */
-  type?: BillLineItemType | null | undefined;
-  /**
-   * Tax amount
-   */
-  taxAmount?: number | null | undefined;
-  /**
-   * Total amount of the line item
-   */
-  totalAmount?: number | null | undefined;
-  quantity?: number | null | undefined;
-  unitPrice?: number | null | undefined;
-  /**
-   * Description of the unit type the item is sold as, ie: kg, hour.
-   */
-  unitOfMeasure?: string | null | undefined;
-  /**
-   * Discount percentage applied to the line item when supported downstream.
-   */
-  discountPercentage?: number | null | undefined;
-  /**
-   * Discount amount applied to the line item when supported downstream.
-   */
-  discountAmount?: number | null | undefined;
-  /**
-   * The ID of the location
-   */
-  locationId?: string | null | undefined;
-  /**
-   * The ID of the department
-   */
-  departmentId?: string | null | undefined;
-  /**
-   * The ID of the subsidiary
-   */
-  subsidiaryId?: string | null | undefined;
-  /**
-   * ID of the category of the line item
-   */
-  categoryId?: string | null | undefined;
-  /**
-   * ID of the shipping of the line item
-   */
-  shippingId?: string | null | undefined;
-  /**
-   * Memo
-   */
-  memo?: string | null | undefined;
-  /**
-   * Whether the line item is prepaid
-   */
-  prepaid?: boolean | null | undefined;
-  /**
-   * Tax applicable on
-   */
-  taxApplicableOn?: string | null | undefined;
-  /**
-   * Tax recoverability
-   */
-  taxRecoverability?: string | null | undefined;
-  /**
-   * Method of tax calculation
-   */
-  taxMethod?: string | null | undefined;
-  /**
-   * Retention amount
-   */
-  retentionAmount?: number | null | undefined;
-  /**
-   * Payment amount
-   */
-  paymentAmount?: number | null | undefined;
-  item?: LinkedInvoiceItem | undefined;
-  taxRate?: LinkedTaxRateInput | undefined;
-  ledgerAccount?: LinkedLedgerAccountInput | null | undefined;
-  purchaseOrder?: LinkedPurchaseOrder | null | undefined;
-  /**
-   * A list of linked tracking categories.
-   */
-  trackingCategories?: Array<LinkedTrackingCategory | null> | null | undefined;
-  /**
-   * The customer this entity is linked to.
-   */
-  customer?: LinkedCustomerInput | null | undefined;
-  /**
-   * Rebilling metadata for this line item.
-   */
-  rebilling?: Rebilling | null | undefined;
-  /**
-   * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
-   */
-  rowVersion?: string | null | undefined;
-  /**
-   * A list of linked worktags. This is only supported for Workday.
-   */
-  worktags?: Array<LinkedWorktag | null> | undefined;
-};
-
-/** @internal */
-export const BillLineItemType$inboundSchema: z.ZodNativeEnum<
-  typeof BillLineItemType
-> = z.nativeEnum(BillLineItemType);
-
-/** @internal */
-export const BillLineItemType$outboundSchema: z.ZodNativeEnum<
-  typeof BillLineItemType
-> = BillLineItemType$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace BillLineItemType$ {
-  /** @deprecated use `BillLineItemType$inboundSchema` instead. */
-  export const inboundSchema = BillLineItemType$inboundSchema;
-  /** @deprecated use `BillLineItemType$outboundSchema` instead. */
-  export const outboundSchema = BillLineItemType$outboundSchema;
-}
-
 /** @internal */
 export const BillLineItem$inboundSchema: z.ZodType<
   BillLineItem,
@@ -374,7 +180,7 @@ export const BillLineItem$inboundSchema: z.ZodType<
   code: z.nullable(z.string()).optional(),
   line_number: z.nullable(z.number().int()).optional(),
   description: z.nullable(z.string()).optional(),
-  type: z.nullable(BillLineItemType$inboundSchema).optional(),
+  type: z.nullable(LineItemType$inboundSchema).optional(),
   tax_amount: z.nullable(z.number()).optional(),
   total_amount: z.nullable(z.number()).optional(),
   quantity: z.nullable(z.number()).optional(),
@@ -445,146 +251,6 @@ export const BillLineItem$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type BillLineItem$Outbound = {
-  id?: string | undefined;
-  row_id?: string | undefined;
-  code?: string | null | undefined;
-  line_number?: number | null | undefined;
-  description?: string | null | undefined;
-  type?: string | null | undefined;
-  tax_amount?: number | null | undefined;
-  total_amount?: number | null | undefined;
-  quantity?: number | null | undefined;
-  unit_price?: number | null | undefined;
-  unit_of_measure?: string | null | undefined;
-  discount_percentage?: number | null | undefined;
-  discount_amount?: number | null | undefined;
-  location_id?: string | null | undefined;
-  department_id?: string | null | undefined;
-  subsidiary_id?: string | null | undefined;
-  category_id?: string | null | undefined;
-  shipping_id?: string | null | undefined;
-  memo?: string | null | undefined;
-  prepaid?: boolean | null | undefined;
-  tax_applicable_on?: string | null | undefined;
-  tax_recoverability?: string | null | undefined;
-  tax_method?: string | null | undefined;
-  retention_amount?: number | null | undefined;
-  payment_amount?: number | null | undefined;
-  item?: LinkedInvoiceItem$Outbound | undefined;
-  tax_rate?: LinkedTaxRate$Outbound | undefined;
-  ledger_account?: LinkedLedgerAccount$Outbound | null | undefined;
-  purchase_order?: LinkedPurchaseOrder$Outbound | null | undefined;
-  tracking_categories?:
-    | Array<LinkedTrackingCategory$Outbound | null>
-    | null
-    | undefined;
-  customer?: LinkedCustomer$Outbound | null | undefined;
-  rebilling?: Rebilling$Outbound | null | undefined;
-  row_version?: string | null | undefined;
-  updated_by?: string | null | undefined;
-  created_by?: string | null | undefined;
-  created_at?: string | null | undefined;
-  updated_at?: string | null | undefined;
-  worktags?: Array<LinkedWorktag$Outbound | null> | undefined;
-};
-
-/** @internal */
-export const BillLineItem$outboundSchema: z.ZodType<
-  BillLineItem$Outbound,
-  z.ZodTypeDef,
-  BillLineItem
-> = z.object({
-  id: z.string().optional(),
-  rowId: z.string().optional(),
-  code: z.nullable(z.string()).optional(),
-  lineNumber: z.nullable(z.number().int()).optional(),
-  description: z.nullable(z.string()).optional(),
-  type: z.nullable(BillLineItemType$outboundSchema).optional(),
-  taxAmount: z.nullable(z.number()).optional(),
-  totalAmount: z.nullable(z.number()).optional(),
-  quantity: z.nullable(z.number()).optional(),
-  unitPrice: z.nullable(z.number()).optional(),
-  unitOfMeasure: z.nullable(z.string()).optional(),
-  discountPercentage: z.nullable(z.number()).optional(),
-  discountAmount: z.nullable(z.number()).optional(),
-  locationId: z.nullable(z.string()).optional(),
-  departmentId: z.nullable(z.string()).optional(),
-  subsidiaryId: z.nullable(z.string()).optional(),
-  categoryId: z.nullable(z.string()).optional(),
-  shippingId: z.nullable(z.string()).optional(),
-  memo: z.nullable(z.string()).optional(),
-  prepaid: z.nullable(z.boolean()).optional(),
-  taxApplicableOn: z.nullable(z.string()).optional(),
-  taxRecoverability: z.nullable(z.string()).optional(),
-  taxMethod: z.nullable(z.string()).optional(),
-  retentionAmount: z.nullable(z.number()).optional(),
-  paymentAmount: z.nullable(z.number()).optional(),
-  item: LinkedInvoiceItem$outboundSchema.optional(),
-  taxRate: LinkedTaxRate$outboundSchema.optional(),
-  ledgerAccount: z.nullable(LinkedLedgerAccount$outboundSchema).optional(),
-  purchaseOrder: z.nullable(LinkedPurchaseOrder$outboundSchema).optional(),
-  trackingCategories: z.nullable(
-    z.array(z.nullable(LinkedTrackingCategory$outboundSchema)),
-  ).optional(),
-  customer: z.nullable(LinkedCustomer$outboundSchema).optional(),
-  rebilling: z.nullable(Rebilling$outboundSchema).optional(),
-  rowVersion: z.nullable(z.string()).optional(),
-  updatedBy: z.nullable(z.string()).optional(),
-  createdBy: z.nullable(z.string()).optional(),
-  createdAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
-  updatedAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
-  worktags: z.array(z.nullable(LinkedWorktag$outboundSchema)).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    rowId: "row_id",
-    lineNumber: "line_number",
-    taxAmount: "tax_amount",
-    totalAmount: "total_amount",
-    unitPrice: "unit_price",
-    unitOfMeasure: "unit_of_measure",
-    discountPercentage: "discount_percentage",
-    discountAmount: "discount_amount",
-    locationId: "location_id",
-    departmentId: "department_id",
-    subsidiaryId: "subsidiary_id",
-    categoryId: "category_id",
-    shippingId: "shipping_id",
-    taxApplicableOn: "tax_applicable_on",
-    taxRecoverability: "tax_recoverability",
-    taxMethod: "tax_method",
-    retentionAmount: "retention_amount",
-    paymentAmount: "payment_amount",
-    taxRate: "tax_rate",
-    ledgerAccount: "ledger_account",
-    purchaseOrder: "purchase_order",
-    trackingCategories: "tracking_categories",
-    rowVersion: "row_version",
-    updatedBy: "updated_by",
-    createdBy: "created_by",
-    createdAt: "created_at",
-    updatedAt: "updated_at",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace BillLineItem$ {
-  /** @deprecated use `BillLineItem$inboundSchema` instead. */
-  export const inboundSchema = BillLineItem$inboundSchema;
-  /** @deprecated use `BillLineItem$outboundSchema` instead. */
-  export const outboundSchema = BillLineItem$outboundSchema;
-  /** @deprecated use `BillLineItem$Outbound` instead. */
-  export type Outbound = BillLineItem$Outbound;
-}
-
-export function billLineItemToJSON(billLineItem: BillLineItem): string {
-  return JSON.stringify(BillLineItem$outboundSchema.parse(billLineItem));
-}
-
 export function billLineItemFromJSON(
   jsonString: string,
 ): SafeParseResult<BillLineItem, SDKValidationError> {
@@ -592,214 +258,5 @@ export function billLineItemFromJSON(
     jsonString,
     (x) => BillLineItem$inboundSchema.parse(JSON.parse(x)),
     `Failed to parse 'BillLineItem' from JSON`,
-  );
-}
-
-/** @internal */
-export const BillLineItemInput$inboundSchema: z.ZodType<
-  BillLineItemInput,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  row_id: z.string().optional(),
-  code: z.nullable(z.string()).optional(),
-  line_number: z.nullable(z.number().int()).optional(),
-  description: z.nullable(z.string()).optional(),
-  type: z.nullable(BillLineItemType$inboundSchema).optional(),
-  tax_amount: z.nullable(z.number()).optional(),
-  total_amount: z.nullable(z.number()).optional(),
-  quantity: z.nullable(z.number()).optional(),
-  unit_price: z.nullable(z.number()).optional(),
-  unit_of_measure: z.nullable(z.string()).optional(),
-  discount_percentage: z.nullable(z.number()).optional(),
-  discount_amount: z.nullable(z.number()).optional(),
-  location_id: z.nullable(z.string()).optional(),
-  department_id: z.nullable(z.string()).optional(),
-  subsidiary_id: z.nullable(z.string()).optional(),
-  category_id: z.nullable(z.string()).optional(),
-  shipping_id: z.nullable(z.string()).optional(),
-  memo: z.nullable(z.string()).optional(),
-  prepaid: z.nullable(z.boolean()).optional(),
-  tax_applicable_on: z.nullable(z.string()).optional(),
-  tax_recoverability: z.nullable(z.string()).optional(),
-  tax_method: z.nullable(z.string()).optional(),
-  retention_amount: z.nullable(z.number()).optional(),
-  payment_amount: z.nullable(z.number()).optional(),
-  item: LinkedInvoiceItem$inboundSchema.optional(),
-  tax_rate: LinkedTaxRateInput$inboundSchema.optional(),
-  ledger_account: z.nullable(LinkedLedgerAccountInput$inboundSchema).optional(),
-  purchase_order: z.nullable(LinkedPurchaseOrder$inboundSchema).optional(),
-  tracking_categories: z.nullable(
-    z.array(z.nullable(LinkedTrackingCategory$inboundSchema)),
-  ).optional(),
-  customer: z.nullable(LinkedCustomerInput$inboundSchema).optional(),
-  rebilling: z.nullable(Rebilling$inboundSchema).optional(),
-  row_version: z.nullable(z.string()).optional(),
-  worktags: z.array(z.nullable(LinkedWorktag$inboundSchema)).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "row_id": "rowId",
-    "line_number": "lineNumber",
-    "tax_amount": "taxAmount",
-    "total_amount": "totalAmount",
-    "unit_price": "unitPrice",
-    "unit_of_measure": "unitOfMeasure",
-    "discount_percentage": "discountPercentage",
-    "discount_amount": "discountAmount",
-    "location_id": "locationId",
-    "department_id": "departmentId",
-    "subsidiary_id": "subsidiaryId",
-    "category_id": "categoryId",
-    "shipping_id": "shippingId",
-    "tax_applicable_on": "taxApplicableOn",
-    "tax_recoverability": "taxRecoverability",
-    "tax_method": "taxMethod",
-    "retention_amount": "retentionAmount",
-    "payment_amount": "paymentAmount",
-    "tax_rate": "taxRate",
-    "ledger_account": "ledgerAccount",
-    "purchase_order": "purchaseOrder",
-    "tracking_categories": "trackingCategories",
-    "row_version": "rowVersion",
-  });
-});
-
-/** @internal */
-export type BillLineItemInput$Outbound = {
-  row_id?: string | undefined;
-  code?: string | null | undefined;
-  line_number?: number | null | undefined;
-  description?: string | null | undefined;
-  type?: string | null | undefined;
-  tax_amount?: number | null | undefined;
-  total_amount?: number | null | undefined;
-  quantity?: number | null | undefined;
-  unit_price?: number | null | undefined;
-  unit_of_measure?: string | null | undefined;
-  discount_percentage?: number | null | undefined;
-  discount_amount?: number | null | undefined;
-  location_id?: string | null | undefined;
-  department_id?: string | null | undefined;
-  subsidiary_id?: string | null | undefined;
-  category_id?: string | null | undefined;
-  shipping_id?: string | null | undefined;
-  memo?: string | null | undefined;
-  prepaid?: boolean | null | undefined;
-  tax_applicable_on?: string | null | undefined;
-  tax_recoverability?: string | null | undefined;
-  tax_method?: string | null | undefined;
-  retention_amount?: number | null | undefined;
-  payment_amount?: number | null | undefined;
-  item?: LinkedInvoiceItem$Outbound | undefined;
-  tax_rate?: LinkedTaxRateInput$Outbound | undefined;
-  ledger_account?: LinkedLedgerAccountInput$Outbound | null | undefined;
-  purchase_order?: LinkedPurchaseOrder$Outbound | null | undefined;
-  tracking_categories?:
-    | Array<LinkedTrackingCategory$Outbound | null>
-    | null
-    | undefined;
-  customer?: LinkedCustomerInput$Outbound | null | undefined;
-  rebilling?: Rebilling$Outbound | null | undefined;
-  row_version?: string | null | undefined;
-  worktags?: Array<LinkedWorktag$Outbound | null> | undefined;
-};
-
-/** @internal */
-export const BillLineItemInput$outboundSchema: z.ZodType<
-  BillLineItemInput$Outbound,
-  z.ZodTypeDef,
-  BillLineItemInput
-> = z.object({
-  rowId: z.string().optional(),
-  code: z.nullable(z.string()).optional(),
-  lineNumber: z.nullable(z.number().int()).optional(),
-  description: z.nullable(z.string()).optional(),
-  type: z.nullable(BillLineItemType$outboundSchema).optional(),
-  taxAmount: z.nullable(z.number()).optional(),
-  totalAmount: z.nullable(z.number()).optional(),
-  quantity: z.nullable(z.number()).optional(),
-  unitPrice: z.nullable(z.number()).optional(),
-  unitOfMeasure: z.nullable(z.string()).optional(),
-  discountPercentage: z.nullable(z.number()).optional(),
-  discountAmount: z.nullable(z.number()).optional(),
-  locationId: z.nullable(z.string()).optional(),
-  departmentId: z.nullable(z.string()).optional(),
-  subsidiaryId: z.nullable(z.string()).optional(),
-  categoryId: z.nullable(z.string()).optional(),
-  shippingId: z.nullable(z.string()).optional(),
-  memo: z.nullable(z.string()).optional(),
-  prepaid: z.nullable(z.boolean()).optional(),
-  taxApplicableOn: z.nullable(z.string()).optional(),
-  taxRecoverability: z.nullable(z.string()).optional(),
-  taxMethod: z.nullable(z.string()).optional(),
-  retentionAmount: z.nullable(z.number()).optional(),
-  paymentAmount: z.nullable(z.number()).optional(),
-  item: LinkedInvoiceItem$outboundSchema.optional(),
-  taxRate: LinkedTaxRateInput$outboundSchema.optional(),
-  ledgerAccount: z.nullable(LinkedLedgerAccountInput$outboundSchema).optional(),
-  purchaseOrder: z.nullable(LinkedPurchaseOrder$outboundSchema).optional(),
-  trackingCategories: z.nullable(
-    z.array(z.nullable(LinkedTrackingCategory$outboundSchema)),
-  ).optional(),
-  customer: z.nullable(LinkedCustomerInput$outboundSchema).optional(),
-  rebilling: z.nullable(Rebilling$outboundSchema).optional(),
-  rowVersion: z.nullable(z.string()).optional(),
-  worktags: z.array(z.nullable(LinkedWorktag$outboundSchema)).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    rowId: "row_id",
-    lineNumber: "line_number",
-    taxAmount: "tax_amount",
-    totalAmount: "total_amount",
-    unitPrice: "unit_price",
-    unitOfMeasure: "unit_of_measure",
-    discountPercentage: "discount_percentage",
-    discountAmount: "discount_amount",
-    locationId: "location_id",
-    departmentId: "department_id",
-    subsidiaryId: "subsidiary_id",
-    categoryId: "category_id",
-    shippingId: "shipping_id",
-    taxApplicableOn: "tax_applicable_on",
-    taxRecoverability: "tax_recoverability",
-    taxMethod: "tax_method",
-    retentionAmount: "retention_amount",
-    paymentAmount: "payment_amount",
-    taxRate: "tax_rate",
-    ledgerAccount: "ledger_account",
-    purchaseOrder: "purchase_order",
-    trackingCategories: "tracking_categories",
-    rowVersion: "row_version",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace BillLineItemInput$ {
-  /** @deprecated use `BillLineItemInput$inboundSchema` instead. */
-  export const inboundSchema = BillLineItemInput$inboundSchema;
-  /** @deprecated use `BillLineItemInput$outboundSchema` instead. */
-  export const outboundSchema = BillLineItemInput$outboundSchema;
-  /** @deprecated use `BillLineItemInput$Outbound` instead. */
-  export type Outbound = BillLineItemInput$Outbound;
-}
-
-export function billLineItemInputToJSON(
-  billLineItemInput: BillLineItemInput,
-): string {
-  return JSON.stringify(
-    BillLineItemInput$outboundSchema.parse(billLineItemInput),
-  );
-}
-
-export function billLineItemInputFromJSON(
-  jsonString: string,
-): SafeParseResult<BillLineItemInput, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => BillLineItemInput$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'BillLineItemInput' from JSON`,
   );
 }

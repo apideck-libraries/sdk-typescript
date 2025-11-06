@@ -4,9 +4,6 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type InvoicesFilter = {
   updatedSince?: Date | undefined;
@@ -20,28 +17,6 @@ export type InvoicesFilter = {
    */
   supplierId?: string | undefined;
 };
-
-/** @internal */
-export const InvoicesFilter$inboundSchema: z.ZodType<
-  InvoicesFilter,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  updated_since: z.string().datetime({ offset: true }).transform(v =>
-    new Date(v)
-  ).optional(),
-  created_since: z.string().datetime({ offset: true }).transform(v =>
-    new Date(v)
-  ).optional(),
-  number: z.string().optional(),
-  supplier_id: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "updated_since": "updatedSince",
-    "created_since": "createdSince",
-    "supplier_id": "supplierId",
-  });
-});
 
 /** @internal */
 export type InvoicesFilter$Outbound = {
@@ -69,29 +44,6 @@ export const InvoicesFilter$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace InvoicesFilter$ {
-  /** @deprecated use `InvoicesFilter$inboundSchema` instead. */
-  export const inboundSchema = InvoicesFilter$inboundSchema;
-  /** @deprecated use `InvoicesFilter$outboundSchema` instead. */
-  export const outboundSchema = InvoicesFilter$outboundSchema;
-  /** @deprecated use `InvoicesFilter$Outbound` instead. */
-  export type Outbound = InvoicesFilter$Outbound;
-}
-
 export function invoicesFilterToJSON(invoicesFilter: InvoicesFilter): string {
   return JSON.stringify(InvoicesFilter$outboundSchema.parse(invoicesFilter));
-}
-
-export function invoicesFilterFromJSON(
-  jsonString: string,
-): SafeParseResult<InvoicesFilter, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => InvoicesFilter$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'InvoicesFilter' from JSON`,
-  );
 }

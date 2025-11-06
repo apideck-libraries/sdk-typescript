@@ -25,19 +25,3 @@ export type EcommerceOrderStatus = ClosedEnum<typeof EcommerceOrderStatus>;
 export const EcommerceOrderStatus$inboundSchema: z.ZodNativeEnum<
   typeof EcommerceOrderStatus
 > = z.nativeEnum(EcommerceOrderStatus);
-
-/** @internal */
-export const EcommerceOrderStatus$outboundSchema: z.ZodNativeEnum<
-  typeof EcommerceOrderStatus
-> = EcommerceOrderStatus$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace EcommerceOrderStatus$ {
-  /** @deprecated use `EcommerceOrderStatus$inboundSchema` instead. */
-  export const inboundSchema = EcommerceOrderStatus$inboundSchema;
-  /** @deprecated use `EcommerceOrderStatus$outboundSchema` instead. */
-  export const outboundSchema = EcommerceOrderStatus$outboundSchema;
-}

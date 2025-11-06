@@ -129,22 +129,10 @@ export type HrisCompanyInput = {
 export const HrisCompanyStatus$inboundSchema: z.ZodNativeEnum<
   typeof HrisCompanyStatus
 > = z.nativeEnum(HrisCompanyStatus);
-
 /** @internal */
 export const HrisCompanyStatus$outboundSchema: z.ZodNativeEnum<
   typeof HrisCompanyStatus
 > = HrisCompanyStatus$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace HrisCompanyStatus$ {
-  /** @deprecated use `HrisCompanyStatus$inboundSchema` instead. */
-  export const inboundSchema = HrisCompanyStatus$inboundSchema;
-  /** @deprecated use `HrisCompanyStatus$outboundSchema` instead. */
-  export const outboundSchema = HrisCompanyStatus$outboundSchema;
-}
 
 /** @internal */
 export const HrisCompany$inboundSchema: z.ZodType<
@@ -191,87 +179,6 @@ export const HrisCompany$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type HrisCompany$Outbound = {
-  id?: string | undefined;
-  legal_name: string | null;
-  display_name?: string | null | undefined;
-  subdomain?: string | null | undefined;
-  status?: string | undefined;
-  company_number?: string | null | undefined;
-  currency?: string | null | undefined;
-  addresses?: Array<Address$Outbound> | undefined;
-  phone_numbers?: Array<PhoneNumber$Outbound> | undefined;
-  emails?: Array<Email$Outbound> | undefined;
-  websites?: Array<Website$Outbound> | undefined;
-  debtor_id?: string | null | undefined;
-  custom_mappings?: { [k: string]: any } | null | undefined;
-  deleted?: boolean | undefined;
-  updated_by?: string | null | undefined;
-  created_by?: string | null | undefined;
-  updated_at?: string | null | undefined;
-  created_at?: string | null | undefined;
-  pass_through?: Array<PassThroughBody$Outbound> | undefined;
-};
-
-/** @internal */
-export const HrisCompany$outboundSchema: z.ZodType<
-  HrisCompany$Outbound,
-  z.ZodTypeDef,
-  HrisCompany
-> = z.object({
-  id: z.string().optional(),
-  legalName: z.nullable(z.string()),
-  displayName: z.nullable(z.string()).optional(),
-  subdomain: z.nullable(z.string()).optional(),
-  status: HrisCompanyStatus$outboundSchema.optional(),
-  companyNumber: z.nullable(z.string()).optional(),
-  currency: z.nullable(Currency$outboundSchema).optional(),
-  addresses: z.array(Address$outboundSchema).optional(),
-  phoneNumbers: z.array(PhoneNumber$outboundSchema).optional(),
-  emails: z.array(Email$outboundSchema).optional(),
-  websites: z.array(Website$outboundSchema).optional(),
-  debtorId: z.nullable(z.string()).optional(),
-  customMappings: z.nullable(z.record(z.any())).optional(),
-  deleted: z.boolean().optional(),
-  updatedBy: z.nullable(z.string()).optional(),
-  createdBy: z.nullable(z.string()).optional(),
-  updatedAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
-  createdAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
-  passThrough: z.array(PassThroughBody$outboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    legalName: "legal_name",
-    displayName: "display_name",
-    companyNumber: "company_number",
-    phoneNumbers: "phone_numbers",
-    debtorId: "debtor_id",
-    customMappings: "custom_mappings",
-    updatedBy: "updated_by",
-    createdBy: "created_by",
-    updatedAt: "updated_at",
-    createdAt: "created_at",
-    passThrough: "pass_through",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace HrisCompany$ {
-  /** @deprecated use `HrisCompany$inboundSchema` instead. */
-  export const inboundSchema = HrisCompany$inboundSchema;
-  /** @deprecated use `HrisCompany$outboundSchema` instead. */
-  export const outboundSchema = HrisCompany$outboundSchema;
-  /** @deprecated use `HrisCompany$Outbound` instead. */
-  export type Outbound = HrisCompany$Outbound;
-}
-
-export function hrisCompanyToJSON(hrisCompany: HrisCompany): string {
-  return JSON.stringify(HrisCompany$outboundSchema.parse(hrisCompany));
-}
-
 export function hrisCompanyFromJSON(
   jsonString: string,
 ): SafeParseResult<HrisCompany, SDKValidationError> {
@@ -281,35 +188,6 @@ export function hrisCompanyFromJSON(
     `Failed to parse 'HrisCompany' from JSON`,
   );
 }
-
-/** @internal */
-export const HrisCompanyInput$inboundSchema: z.ZodType<
-  HrisCompanyInput,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  legal_name: z.nullable(z.string()),
-  display_name: z.nullable(z.string()).optional(),
-  subdomain: z.nullable(z.string()).optional(),
-  status: HrisCompanyStatus$inboundSchema.optional(),
-  company_number: z.nullable(z.string()).optional(),
-  currency: z.nullable(Currency$inboundSchema).optional(),
-  addresses: z.array(Address$inboundSchema).optional(),
-  phone_numbers: z.array(PhoneNumber$inboundSchema).optional(),
-  emails: z.array(Email$inboundSchema).optional(),
-  websites: z.array(Website$inboundSchema).optional(),
-  debtor_id: z.nullable(z.string()).optional(),
-  pass_through: z.array(PassThroughBody$inboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "legal_name": "legalName",
-    "display_name": "displayName",
-    "company_number": "companyNumber",
-    "phone_numbers": "phoneNumbers",
-    "debtor_id": "debtorId",
-    "pass_through": "passThrough",
-  });
-});
 
 /** @internal */
 export type HrisCompanyInput$Outbound = {
@@ -356,33 +234,10 @@ export const HrisCompanyInput$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace HrisCompanyInput$ {
-  /** @deprecated use `HrisCompanyInput$inboundSchema` instead. */
-  export const inboundSchema = HrisCompanyInput$inboundSchema;
-  /** @deprecated use `HrisCompanyInput$outboundSchema` instead. */
-  export const outboundSchema = HrisCompanyInput$outboundSchema;
-  /** @deprecated use `HrisCompanyInput$Outbound` instead. */
-  export type Outbound = HrisCompanyInput$Outbound;
-}
-
 export function hrisCompanyInputToJSON(
   hrisCompanyInput: HrisCompanyInput,
 ): string {
   return JSON.stringify(
     HrisCompanyInput$outboundSchema.parse(hrisCompanyInput),
-  );
-}
-
-export function hrisCompanyInputFromJSON(
-  jsonString: string,
-): SafeParseResult<HrisCompanyInput, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => HrisCompanyInput$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'HrisCompanyInput' from JSON`,
   );
 }

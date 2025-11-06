@@ -58,82 +58,6 @@ export type FileStorageUploadSessionsDeleteResponse = {
 };
 
 /** @internal */
-export const FileStorageUploadSessionsDeleteGlobals$inboundSchema: z.ZodType<
-  FileStorageUploadSessionsDeleteGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/** @internal */
-export type FileStorageUploadSessionsDeleteGlobals$Outbound = {
-  consumerId?: string | undefined;
-  appId?: string | undefined;
-};
-
-/** @internal */
-export const FileStorageUploadSessionsDeleteGlobals$outboundSchema: z.ZodType<
-  FileStorageUploadSessionsDeleteGlobals$Outbound,
-  z.ZodTypeDef,
-  FileStorageUploadSessionsDeleteGlobals
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace FileStorageUploadSessionsDeleteGlobals$ {
-  /** @deprecated use `FileStorageUploadSessionsDeleteGlobals$inboundSchema` instead. */
-  export const inboundSchema =
-    FileStorageUploadSessionsDeleteGlobals$inboundSchema;
-  /** @deprecated use `FileStorageUploadSessionsDeleteGlobals$outboundSchema` instead. */
-  export const outboundSchema =
-    FileStorageUploadSessionsDeleteGlobals$outboundSchema;
-  /** @deprecated use `FileStorageUploadSessionsDeleteGlobals$Outbound` instead. */
-  export type Outbound = FileStorageUploadSessionsDeleteGlobals$Outbound;
-}
-
-export function fileStorageUploadSessionsDeleteGlobalsToJSON(
-  fileStorageUploadSessionsDeleteGlobals:
-    FileStorageUploadSessionsDeleteGlobals,
-): string {
-  return JSON.stringify(
-    FileStorageUploadSessionsDeleteGlobals$outboundSchema.parse(
-      fileStorageUploadSessionsDeleteGlobals,
-    ),
-  );
-}
-
-export function fileStorageUploadSessionsDeleteGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<FileStorageUploadSessionsDeleteGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      FileStorageUploadSessionsDeleteGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'FileStorageUploadSessionsDeleteGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const FileStorageUploadSessionsDeleteRequest$inboundSchema: z.ZodType<
-  FileStorageUploadSessionsDeleteRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  id: z.string(),
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  raw: z.boolean().default(false),
-});
-
-/** @internal */
 export type FileStorageUploadSessionsDeleteRequest$Outbound = {
   id: string;
   consumerId?: string | undefined;
@@ -155,21 +79,6 @@ export const FileStorageUploadSessionsDeleteRequest$outboundSchema: z.ZodType<
   raw: z.boolean().default(false),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace FileStorageUploadSessionsDeleteRequest$ {
-  /** @deprecated use `FileStorageUploadSessionsDeleteRequest$inboundSchema` instead. */
-  export const inboundSchema =
-    FileStorageUploadSessionsDeleteRequest$inboundSchema;
-  /** @deprecated use `FileStorageUploadSessionsDeleteRequest$outboundSchema` instead. */
-  export const outboundSchema =
-    FileStorageUploadSessionsDeleteRequest$outboundSchema;
-  /** @deprecated use `FileStorageUploadSessionsDeleteRequest$Outbound` instead. */
-  export type Outbound = FileStorageUploadSessionsDeleteRequest$Outbound;
-}
-
 export function fileStorageUploadSessionsDeleteRequestToJSON(
   fileStorageUploadSessionsDeleteRequest:
     FileStorageUploadSessionsDeleteRequest,
@@ -178,17 +87,6 @@ export function fileStorageUploadSessionsDeleteRequestToJSON(
     FileStorageUploadSessionsDeleteRequest$outboundSchema.parse(
       fileStorageUploadSessionsDeleteRequest,
     ),
-  );
-}
-
-export function fileStorageUploadSessionsDeleteRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<FileStorageUploadSessionsDeleteRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      FileStorageUploadSessionsDeleteRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'FileStorageUploadSessionsDeleteRequest' from JSON`,
   );
 }
 
@@ -210,62 +108,6 @@ export const FileStorageUploadSessionsDeleteResponse$inboundSchema: z.ZodType<
     "UnexpectedErrorResponse": "unexpectedErrorResponse",
   });
 });
-
-/** @internal */
-export type FileStorageUploadSessionsDeleteResponse$Outbound = {
-  HttpMeta: components.HTTPMetadata$Outbound;
-  DeleteUploadSessionResponse?:
-    | components.DeleteUploadSessionResponse$Outbound
-    | undefined;
-  UnexpectedErrorResponse?:
-    | components.UnexpectedErrorResponse$Outbound
-    | undefined;
-};
-
-/** @internal */
-export const FileStorageUploadSessionsDeleteResponse$outboundSchema: z.ZodType<
-  FileStorageUploadSessionsDeleteResponse$Outbound,
-  z.ZodTypeDef,
-  FileStorageUploadSessionsDeleteResponse
-> = z.object({
-  httpMeta: components.HTTPMetadata$outboundSchema,
-  deleteUploadSessionResponse: components
-    .DeleteUploadSessionResponse$outboundSchema.optional(),
-  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    httpMeta: "HttpMeta",
-    deleteUploadSessionResponse: "DeleteUploadSessionResponse",
-    unexpectedErrorResponse: "UnexpectedErrorResponse",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace FileStorageUploadSessionsDeleteResponse$ {
-  /** @deprecated use `FileStorageUploadSessionsDeleteResponse$inboundSchema` instead. */
-  export const inboundSchema =
-    FileStorageUploadSessionsDeleteResponse$inboundSchema;
-  /** @deprecated use `FileStorageUploadSessionsDeleteResponse$outboundSchema` instead. */
-  export const outboundSchema =
-    FileStorageUploadSessionsDeleteResponse$outboundSchema;
-  /** @deprecated use `FileStorageUploadSessionsDeleteResponse$Outbound` instead. */
-  export type Outbound = FileStorageUploadSessionsDeleteResponse$Outbound;
-}
-
-export function fileStorageUploadSessionsDeleteResponseToJSON(
-  fileStorageUploadSessionsDeleteResponse:
-    FileStorageUploadSessionsDeleteResponse,
-): string {
-  return JSON.stringify(
-    FileStorageUploadSessionsDeleteResponse$outboundSchema.parse(
-      fileStorageUploadSessionsDeleteResponse,
-    ),
-  );
-}
 
 export function fileStorageUploadSessionsDeleteResponseFromJSON(
   jsonString: string,

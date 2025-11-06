@@ -38,8 +38,8 @@ type VaultValidateConnectionStateRequest struct {
 	// Service ID of the resource to return
 	ServiceID string `pathParam:"style=simple,explode=false,name=service_id"`
 	// Unified API
-	UnifiedAPI  string                                   `pathParam:"style=simple,explode=false,name=unified_api"`
-	RequestBody *VaultValidateConnectionStateRequestBody `request:"mediaType=application/json"`
+	UnifiedAPI string                                   `pathParam:"style=simple,explode=false,name=unified_api"`
+	Body       *VaultValidateConnectionStateRequestBody `request:"mediaType=application/json"`
 }
 
 func (o *VaultValidateConnectionStateRequest) GetConsumerID() *string {
@@ -70,11 +70,11 @@ func (o *VaultValidateConnectionStateRequest) GetUnifiedAPI() string {
 	return o.UnifiedAPI
 }
 
-func (o *VaultValidateConnectionStateRequest) GetRequestBody() *VaultValidateConnectionStateRequestBody {
+func (o *VaultValidateConnectionStateRequest) GetBody() *VaultValidateConnectionStateRequestBody {
 	if o == nil {
 		return nil
 	}
-	return o.RequestBody
+	return o.Body
 }
 
 type VaultValidateConnectionStateResponse struct {

@@ -37,7 +37,7 @@ type AccountingInvoicesAddRequest struct {
 	AppID *string `header:"style=simple,explode=false,name=x-apideck-app-id"`
 	// Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
 	ServiceID *string                 `header:"style=simple,explode=false,name=x-apideck-service-id"`
-	Invoice   components.InvoiceInput `request:"mediaType=application/json"`
+	Body      components.InvoiceInput `request:"mediaType=application/json"`
 }
 
 func (a AccountingInvoicesAddRequest) MarshalJSON() ([]byte, error) {
@@ -45,7 +45,7 @@ func (a AccountingInvoicesAddRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (a *AccountingInvoicesAddRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"Invoice"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"body"}); err != nil {
 		return err
 	}
 	return nil
@@ -79,11 +79,11 @@ func (o *AccountingInvoicesAddRequest) GetServiceID() *string {
 	return o.ServiceID
 }
 
-func (o *AccountingInvoicesAddRequest) GetInvoice() components.InvoiceInput {
+func (o *AccountingInvoicesAddRequest) GetBody() components.InvoiceInput {
 	if o == nil {
 		return components.InvoiceInput{}
 	}
-	return o.Invoice
+	return o.Body
 }
 
 type AccountingInvoicesAddResponse struct {

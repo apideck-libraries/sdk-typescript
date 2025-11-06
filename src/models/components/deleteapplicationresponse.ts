@@ -7,12 +7,7 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  UnifiedId,
-  UnifiedId$inboundSchema,
-  UnifiedId$Outbound,
-  UnifiedId$outboundSchema,
-} from "./unifiedid.js";
+import { UnifiedId, UnifiedId$inboundSchema } from "./unifiedid.js";
 
 /**
  * Applications
@@ -67,58 +62,6 @@ export const DeleteApplicationResponse$inboundSchema: z.ZodType<
     "_raw": "raw",
   });
 });
-
-/** @internal */
-export type DeleteApplicationResponse$Outbound = {
-  status_code: number;
-  status: string;
-  service: string;
-  resource: string;
-  operation: string;
-  data: UnifiedId$Outbound;
-  _raw?: { [k: string]: any } | null | undefined;
-};
-
-/** @internal */
-export const DeleteApplicationResponse$outboundSchema: z.ZodType<
-  DeleteApplicationResponse$Outbound,
-  z.ZodTypeDef,
-  DeleteApplicationResponse
-> = z.object({
-  statusCode: z.number().int(),
-  status: z.string(),
-  service: z.string(),
-  resource: z.string(),
-  operation: z.string(),
-  data: UnifiedId$outboundSchema,
-  raw: z.nullable(z.record(z.any())).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    statusCode: "status_code",
-    raw: "_raw",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DeleteApplicationResponse$ {
-  /** @deprecated use `DeleteApplicationResponse$inboundSchema` instead. */
-  export const inboundSchema = DeleteApplicationResponse$inboundSchema;
-  /** @deprecated use `DeleteApplicationResponse$outboundSchema` instead. */
-  export const outboundSchema = DeleteApplicationResponse$outboundSchema;
-  /** @deprecated use `DeleteApplicationResponse$Outbound` instead. */
-  export type Outbound = DeleteApplicationResponse$Outbound;
-}
-
-export function deleteApplicationResponseToJSON(
-  deleteApplicationResponse: DeleteApplicationResponse,
-): string {
-  return JSON.stringify(
-    DeleteApplicationResponse$outboundSchema.parse(deleteApplicationResponse),
-  );
-}
 
 export function deleteApplicationResponseFromJSON(
   jsonString: string,

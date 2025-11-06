@@ -4,9 +4,6 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
  * The customer this entity is linked to.
@@ -33,22 +30,6 @@ export type LinkedCustomerInput = {
 };
 
 /** @internal */
-export const LinkedCustomerInput$inboundSchema: z.ZodType<
-  LinkedCustomerInput,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  id: z.string().optional(),
-  display_name: z.nullable(z.string()).optional(),
-  name: z.string().optional(),
-  email: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "display_name": "displayName",
-  });
-});
-
-/** @internal */
 export type LinkedCustomerInput$Outbound = {
   id?: string | undefined;
   display_name?: string | null | undefined;
@@ -72,33 +53,10 @@ export const LinkedCustomerInput$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace LinkedCustomerInput$ {
-  /** @deprecated use `LinkedCustomerInput$inboundSchema` instead. */
-  export const inboundSchema = LinkedCustomerInput$inboundSchema;
-  /** @deprecated use `LinkedCustomerInput$outboundSchema` instead. */
-  export const outboundSchema = LinkedCustomerInput$outboundSchema;
-  /** @deprecated use `LinkedCustomerInput$Outbound` instead. */
-  export type Outbound = LinkedCustomerInput$Outbound;
-}
-
 export function linkedCustomerInputToJSON(
   linkedCustomerInput: LinkedCustomerInput,
 ): string {
   return JSON.stringify(
     LinkedCustomerInput$outboundSchema.parse(linkedCustomerInput),
-  );
-}
-
-export function linkedCustomerInputFromJSON(
-  jsonString: string,
-): SafeParseResult<LinkedCustomerInput, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => LinkedCustomerInput$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'LinkedCustomerInput' from JSON`,
   );
 }

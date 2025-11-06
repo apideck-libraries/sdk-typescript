@@ -10,8 +10,6 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   RequestCountAllocation,
   RequestCountAllocation$inboundSchema,
-  RequestCountAllocation$Outbound,
-  RequestCountAllocation$outboundSchema,
 } from "./requestcountallocation.js";
 
 export type ConsumerRequestCountsInDateRangeResponseData = {
@@ -66,66 +64,6 @@ export const ConsumerRequestCountsInDateRangeResponseData$inboundSchema:
     });
   });
 
-/** @internal */
-export type ConsumerRequestCountsInDateRangeResponseData$Outbound = {
-  application_id?: string | undefined;
-  consumer_id?: string | undefined;
-  start_datetime?: string | undefined;
-  end_datetime?: string | undefined;
-  aggregated_request_count?: number | undefined;
-  request_counts?: RequestCountAllocation$Outbound | undefined;
-};
-
-/** @internal */
-export const ConsumerRequestCountsInDateRangeResponseData$outboundSchema:
-  z.ZodType<
-    ConsumerRequestCountsInDateRangeResponseData$Outbound,
-    z.ZodTypeDef,
-    ConsumerRequestCountsInDateRangeResponseData
-  > = z.object({
-    applicationId: z.string().optional(),
-    consumerId: z.string().optional(),
-    startDatetime: z.string().optional(),
-    endDatetime: z.string().optional(),
-    aggregatedRequestCount: z.number().optional(),
-    requestCounts: RequestCountAllocation$outboundSchema.optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      applicationId: "application_id",
-      consumerId: "consumer_id",
-      startDatetime: "start_datetime",
-      endDatetime: "end_datetime",
-      aggregatedRequestCount: "aggregated_request_count",
-      requestCounts: "request_counts",
-    });
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ConsumerRequestCountsInDateRangeResponseData$ {
-  /** @deprecated use `ConsumerRequestCountsInDateRangeResponseData$inboundSchema` instead. */
-  export const inboundSchema =
-    ConsumerRequestCountsInDateRangeResponseData$inboundSchema;
-  /** @deprecated use `ConsumerRequestCountsInDateRangeResponseData$outboundSchema` instead. */
-  export const outboundSchema =
-    ConsumerRequestCountsInDateRangeResponseData$outboundSchema;
-  /** @deprecated use `ConsumerRequestCountsInDateRangeResponseData$Outbound` instead. */
-  export type Outbound = ConsumerRequestCountsInDateRangeResponseData$Outbound;
-}
-
-export function consumerRequestCountsInDateRangeResponseDataToJSON(
-  consumerRequestCountsInDateRangeResponseData:
-    ConsumerRequestCountsInDateRangeResponseData,
-): string {
-  return JSON.stringify(
-    ConsumerRequestCountsInDateRangeResponseData$outboundSchema.parse(
-      consumerRequestCountsInDateRangeResponseData,
-    ),
-  );
-}
-
 export function consumerRequestCountsInDateRangeResponseDataFromJSON(
   jsonString: string,
 ): SafeParseResult<
@@ -160,59 +98,6 @@ export const ConsumerRequestCountsInDateRangeResponse$inboundSchema: z.ZodType<
     "_raw": "raw",
   });
 });
-
-/** @internal */
-export type ConsumerRequestCountsInDateRangeResponse$Outbound = {
-  status_code: number;
-  status: string;
-  data: ConsumerRequestCountsInDateRangeResponseData$Outbound;
-  _raw?: { [k: string]: any } | null | undefined;
-};
-
-/** @internal */
-export const ConsumerRequestCountsInDateRangeResponse$outboundSchema: z.ZodType<
-  ConsumerRequestCountsInDateRangeResponse$Outbound,
-  z.ZodTypeDef,
-  ConsumerRequestCountsInDateRangeResponse
-> = z.object({
-  statusCode: z.number().int(),
-  status: z.string(),
-  data: z.lazy(() =>
-    ConsumerRequestCountsInDateRangeResponseData$outboundSchema
-  ),
-  raw: z.nullable(z.record(z.any())).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    statusCode: "status_code",
-    raw: "_raw",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ConsumerRequestCountsInDateRangeResponse$ {
-  /** @deprecated use `ConsumerRequestCountsInDateRangeResponse$inboundSchema` instead. */
-  export const inboundSchema =
-    ConsumerRequestCountsInDateRangeResponse$inboundSchema;
-  /** @deprecated use `ConsumerRequestCountsInDateRangeResponse$outboundSchema` instead. */
-  export const outboundSchema =
-    ConsumerRequestCountsInDateRangeResponse$outboundSchema;
-  /** @deprecated use `ConsumerRequestCountsInDateRangeResponse$Outbound` instead. */
-  export type Outbound = ConsumerRequestCountsInDateRangeResponse$Outbound;
-}
-
-export function consumerRequestCountsInDateRangeResponseToJSON(
-  consumerRequestCountsInDateRangeResponse:
-    ConsumerRequestCountsInDateRangeResponse,
-): string {
-  return JSON.stringify(
-    ConsumerRequestCountsInDateRangeResponse$outboundSchema.parse(
-      consumerRequestCountsInDateRangeResponse,
-    ),
-  );
-}
 
 export function consumerRequestCountsInDateRangeResponseFromJSON(
   jsonString: string,

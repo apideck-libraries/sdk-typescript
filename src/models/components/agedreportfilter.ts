@@ -4,9 +4,6 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type AgedReportFilter = {
   /**
@@ -30,27 +27,6 @@ export type AgedReportFilter = {
    */
   periodLength?: number | undefined;
 };
-
-/** @internal */
-export const AgedReportFilter$inboundSchema: z.ZodType<
-  AgedReportFilter,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  customer_id: z.string().optional(),
-  supplier_id: z.string().optional(),
-  report_as_of_date: z.string().optional(),
-  period_count: z.number().int().optional(),
-  period_length: z.number().int().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "customer_id": "customerId",
-    "supplier_id": "supplierId",
-    "report_as_of_date": "reportAsOfDate",
-    "period_count": "periodCount",
-    "period_length": "periodLength",
-  });
-});
 
 /** @internal */
 export type AgedReportFilter$Outbound = {
@@ -82,33 +58,10 @@ export const AgedReportFilter$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AgedReportFilter$ {
-  /** @deprecated use `AgedReportFilter$inboundSchema` instead. */
-  export const inboundSchema = AgedReportFilter$inboundSchema;
-  /** @deprecated use `AgedReportFilter$outboundSchema` instead. */
-  export const outboundSchema = AgedReportFilter$outboundSchema;
-  /** @deprecated use `AgedReportFilter$Outbound` instead. */
-  export type Outbound = AgedReportFilter$Outbound;
-}
-
 export function agedReportFilterToJSON(
   agedReportFilter: AgedReportFilter,
 ): string {
   return JSON.stringify(
     AgedReportFilter$outboundSchema.parse(agedReportFilter),
-  );
-}
-
-export function agedReportFilterFromJSON(
-  jsonString: string,
-): SafeParseResult<AgedReportFilter, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => AgedReportFilter$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'AgedReportFilter' from JSON`,
   );
 }

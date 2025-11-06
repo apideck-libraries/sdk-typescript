@@ -70,58 +70,6 @@ export const Collection$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type Collection$Outbound = {
-  id: string;
-  parent_id?: string | null | undefined;
-  type?: string | null | undefined;
-  name?: string | null | undefined;
-  description?: string | null | undefined;
-  custom_mappings?: { [k: string]: any } | null | undefined;
-  updated_at?: string | null | undefined;
-  created_at?: string | null | undefined;
-};
-
-/** @internal */
-export const Collection$outboundSchema: z.ZodType<
-  Collection$Outbound,
-  z.ZodTypeDef,
-  Collection
-> = z.object({
-  id: z.string(),
-  parentId: z.nullable(z.string()).optional(),
-  type: z.nullable(z.string()).optional(),
-  name: z.nullable(z.string()).optional(),
-  description: z.nullable(z.string()).optional(),
-  customMappings: z.nullable(z.record(z.any())).optional(),
-  updatedAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
-  createdAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    parentId: "parent_id",
-    customMappings: "custom_mappings",
-    updatedAt: "updated_at",
-    createdAt: "created_at",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Collection$ {
-  /** @deprecated use `Collection$inboundSchema` instead. */
-  export const inboundSchema = Collection$inboundSchema;
-  /** @deprecated use `Collection$outboundSchema` instead. */
-  export const outboundSchema = Collection$outboundSchema;
-  /** @deprecated use `Collection$Outbound` instead. */
-  export type Outbound = Collection$Outbound;
-}
-
-export function collectionToJSON(collection: Collection): string {
-  return JSON.stringify(Collection$outboundSchema.parse(collection));
-}
-
 export function collectionFromJSON(
   jsonString: string,
 ): SafeParseResult<Collection, SDKValidationError> {

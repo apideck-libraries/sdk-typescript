@@ -53,80 +53,6 @@ export type CrmNotesAddResponse = {
 };
 
 /** @internal */
-export const CrmNotesAddGlobals$inboundSchema: z.ZodType<
-  CrmNotesAddGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/** @internal */
-export type CrmNotesAddGlobals$Outbound = {
-  consumerId?: string | undefined;
-  appId?: string | undefined;
-};
-
-/** @internal */
-export const CrmNotesAddGlobals$outboundSchema: z.ZodType<
-  CrmNotesAddGlobals$Outbound,
-  z.ZodTypeDef,
-  CrmNotesAddGlobals
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CrmNotesAddGlobals$ {
-  /** @deprecated use `CrmNotesAddGlobals$inboundSchema` instead. */
-  export const inboundSchema = CrmNotesAddGlobals$inboundSchema;
-  /** @deprecated use `CrmNotesAddGlobals$outboundSchema` instead. */
-  export const outboundSchema = CrmNotesAddGlobals$outboundSchema;
-  /** @deprecated use `CrmNotesAddGlobals$Outbound` instead. */
-  export type Outbound = CrmNotesAddGlobals$Outbound;
-}
-
-export function crmNotesAddGlobalsToJSON(
-  crmNotesAddGlobals: CrmNotesAddGlobals,
-): string {
-  return JSON.stringify(
-    CrmNotesAddGlobals$outboundSchema.parse(crmNotesAddGlobals),
-  );
-}
-
-export function crmNotesAddGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<CrmNotesAddGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => CrmNotesAddGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CrmNotesAddGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const CrmNotesAddRequest$inboundSchema: z.ZodType<
-  CrmNotesAddRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  raw: z.boolean().default(false),
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  Note: components.NoteInput$inboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    "Note": "note",
-  });
-});
-
-/** @internal */
 export type CrmNotesAddRequest$Outbound = {
   raw: boolean;
   consumerId?: string | undefined;
@@ -152,34 +78,11 @@ export const CrmNotesAddRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CrmNotesAddRequest$ {
-  /** @deprecated use `CrmNotesAddRequest$inboundSchema` instead. */
-  export const inboundSchema = CrmNotesAddRequest$inboundSchema;
-  /** @deprecated use `CrmNotesAddRequest$outboundSchema` instead. */
-  export const outboundSchema = CrmNotesAddRequest$outboundSchema;
-  /** @deprecated use `CrmNotesAddRequest$Outbound` instead. */
-  export type Outbound = CrmNotesAddRequest$Outbound;
-}
-
 export function crmNotesAddRequestToJSON(
   crmNotesAddRequest: CrmNotesAddRequest,
 ): string {
   return JSON.stringify(
     CrmNotesAddRequest$outboundSchema.parse(crmNotesAddRequest),
-  );
-}
-
-export function crmNotesAddRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<CrmNotesAddRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => CrmNotesAddRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CrmNotesAddRequest' from JSON`,
   );
 }
 
@@ -200,54 +103,6 @@ export const CrmNotesAddResponse$inboundSchema: z.ZodType<
     "UnexpectedErrorResponse": "unexpectedErrorResponse",
   });
 });
-
-/** @internal */
-export type CrmNotesAddResponse$Outbound = {
-  HttpMeta: components.HTTPMetadata$Outbound;
-  CreateNoteResponse?: components.CreateNoteResponse$Outbound | undefined;
-  UnexpectedErrorResponse?:
-    | components.UnexpectedErrorResponse$Outbound
-    | undefined;
-};
-
-/** @internal */
-export const CrmNotesAddResponse$outboundSchema: z.ZodType<
-  CrmNotesAddResponse$Outbound,
-  z.ZodTypeDef,
-  CrmNotesAddResponse
-> = z.object({
-  httpMeta: components.HTTPMetadata$outboundSchema,
-  createNoteResponse: components.CreateNoteResponse$outboundSchema.optional(),
-  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    httpMeta: "HttpMeta",
-    createNoteResponse: "CreateNoteResponse",
-    unexpectedErrorResponse: "UnexpectedErrorResponse",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CrmNotesAddResponse$ {
-  /** @deprecated use `CrmNotesAddResponse$inboundSchema` instead. */
-  export const inboundSchema = CrmNotesAddResponse$inboundSchema;
-  /** @deprecated use `CrmNotesAddResponse$outboundSchema` instead. */
-  export const outboundSchema = CrmNotesAddResponse$outboundSchema;
-  /** @deprecated use `CrmNotesAddResponse$Outbound` instead. */
-  export type Outbound = CrmNotesAddResponse$Outbound;
-}
-
-export function crmNotesAddResponseToJSON(
-  crmNotesAddResponse: CrmNotesAddResponse,
-): string {
-  return JSON.stringify(
-    CrmNotesAddResponse$outboundSchema.parse(crmNotesAddResponse),
-  );
-}
 
 export function crmNotesAddResponseFromJSON(
   jsonString: string,

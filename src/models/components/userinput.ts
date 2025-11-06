@@ -4,30 +4,19 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   Address,
-  Address$inboundSchema,
   Address$Outbound,
   Address$outboundSchema,
 } from "./address.js";
-import {
-  Email,
-  Email$inboundSchema,
-  Email$Outbound,
-  Email$outboundSchema,
-} from "./email.js";
+import { Email, Email$Outbound, Email$outboundSchema } from "./email.js";
 import {
   PassThroughBody,
-  PassThroughBody$inboundSchema,
   PassThroughBody$Outbound,
   PassThroughBody$outboundSchema,
 } from "./passthroughbody.js";
 import {
   PhoneNumber,
-  PhoneNumber$inboundSchema,
   PhoneNumber$Outbound,
   PhoneNumber$outboundSchema,
 } from "./phonenumber.js";
@@ -101,42 +90,6 @@ export type UserInput = {
 };
 
 /** @internal */
-export const UserInput$inboundSchema: z.ZodType<
-  UserInput,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  parent_id: z.nullable(z.string()).optional(),
-  username: z.nullable(z.string()).optional(),
-  first_name: z.nullable(z.string()).optional(),
-  last_name: z.nullable(z.string()).optional(),
-  title: z.nullable(z.string()).optional(),
-  division: z.nullable(z.string()).optional(),
-  department: z.nullable(z.string()).optional(),
-  company_name: z.nullable(z.string()).optional(),
-  employee_number: z.nullable(z.string()).optional(),
-  description: z.nullable(z.string()).optional(),
-  image: z.nullable(z.string()).optional(),
-  language: z.nullable(z.string()).optional(),
-  status: z.nullable(z.string()).optional(),
-  password: z.nullable(z.string()).optional(),
-  addresses: z.array(Address$inboundSchema).optional(),
-  phone_numbers: z.array(PhoneNumber$inboundSchema).optional(),
-  emails: z.array(Email$inboundSchema),
-  pass_through: z.array(PassThroughBody$inboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "parent_id": "parentId",
-    "first_name": "firstName",
-    "last_name": "lastName",
-    "company_name": "companyName",
-    "employee_number": "employeeNumber",
-    "phone_numbers": "phoneNumbers",
-    "pass_through": "passThrough",
-  });
-});
-
-/** @internal */
 export type UserInput$Outbound = {
   parent_id?: string | null | undefined;
   username?: string | null | undefined;
@@ -194,29 +147,6 @@ export const UserInput$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace UserInput$ {
-  /** @deprecated use `UserInput$inboundSchema` instead. */
-  export const inboundSchema = UserInput$inboundSchema;
-  /** @deprecated use `UserInput$outboundSchema` instead. */
-  export const outboundSchema = UserInput$outboundSchema;
-  /** @deprecated use `UserInput$Outbound` instead. */
-  export type Outbound = UserInput$Outbound;
-}
-
 export function userInputToJSON(userInput: UserInput): string {
   return JSON.stringify(UserInput$outboundSchema.parse(userInput));
-}
-
-export function userInputFromJSON(
-  jsonString: string,
-): SafeParseResult<UserInput, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => UserInput$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'UserInput' from JSON`,
-  );
 }

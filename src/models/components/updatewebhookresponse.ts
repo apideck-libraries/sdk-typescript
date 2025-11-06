@@ -7,12 +7,7 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  Webhook,
-  Webhook$inboundSchema,
-  Webhook$Outbound,
-  Webhook$outboundSchema,
-} from "./webhook.js";
+import { Webhook, Webhook$inboundSchema } from "./webhook.js";
 
 /**
  * Webhooks
@@ -49,52 +44,6 @@ export const UpdateWebhookResponse$inboundSchema: z.ZodType<
     "_raw": "raw",
   });
 });
-
-/** @internal */
-export type UpdateWebhookResponse$Outbound = {
-  status_code: number;
-  status: string;
-  data: Webhook$Outbound;
-  _raw?: { [k: string]: any } | null | undefined;
-};
-
-/** @internal */
-export const UpdateWebhookResponse$outboundSchema: z.ZodType<
-  UpdateWebhookResponse$Outbound,
-  z.ZodTypeDef,
-  UpdateWebhookResponse
-> = z.object({
-  statusCode: z.number().int(),
-  status: z.string(),
-  data: Webhook$outboundSchema,
-  raw: z.nullable(z.record(z.any())).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    statusCode: "status_code",
-    raw: "_raw",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace UpdateWebhookResponse$ {
-  /** @deprecated use `UpdateWebhookResponse$inboundSchema` instead. */
-  export const inboundSchema = UpdateWebhookResponse$inboundSchema;
-  /** @deprecated use `UpdateWebhookResponse$outboundSchema` instead. */
-  export const outboundSchema = UpdateWebhookResponse$outboundSchema;
-  /** @deprecated use `UpdateWebhookResponse$Outbound` instead. */
-  export type Outbound = UpdateWebhookResponse$Outbound;
-}
-
-export function updateWebhookResponseToJSON(
-  updateWebhookResponse: UpdateWebhookResponse,
-): string {
-  return JSON.stringify(
-    UpdateWebhookResponse$outboundSchema.parse(updateWebhookResponse),
-  );
-}
 
 export function updateWebhookResponseFromJSON(
   jsonString: string,

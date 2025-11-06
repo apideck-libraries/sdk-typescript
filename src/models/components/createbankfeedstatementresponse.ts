@@ -7,12 +7,7 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  UnifiedId,
-  UnifiedId$inboundSchema,
-  UnifiedId$Outbound,
-  UnifiedId$outboundSchema,
-} from "./unifiedid.js";
+import { UnifiedId, UnifiedId$inboundSchema } from "./unifiedid.js";
 
 /**
  * Bank Feed Statements
@@ -67,60 +62,6 @@ export const CreateBankFeedStatementResponse$inboundSchema: z.ZodType<
     "_raw": "raw",
   });
 });
-
-/** @internal */
-export type CreateBankFeedStatementResponse$Outbound = {
-  status_code: number;
-  status: string;
-  service: string;
-  resource: string;
-  operation: string;
-  data: UnifiedId$Outbound;
-  _raw?: { [k: string]: any } | null | undefined;
-};
-
-/** @internal */
-export const CreateBankFeedStatementResponse$outboundSchema: z.ZodType<
-  CreateBankFeedStatementResponse$Outbound,
-  z.ZodTypeDef,
-  CreateBankFeedStatementResponse
-> = z.object({
-  statusCode: z.number().int(),
-  status: z.string(),
-  service: z.string(),
-  resource: z.string(),
-  operation: z.string(),
-  data: UnifiedId$outboundSchema,
-  raw: z.nullable(z.record(z.any())).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    statusCode: "status_code",
-    raw: "_raw",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateBankFeedStatementResponse$ {
-  /** @deprecated use `CreateBankFeedStatementResponse$inboundSchema` instead. */
-  export const inboundSchema = CreateBankFeedStatementResponse$inboundSchema;
-  /** @deprecated use `CreateBankFeedStatementResponse$outboundSchema` instead. */
-  export const outboundSchema = CreateBankFeedStatementResponse$outboundSchema;
-  /** @deprecated use `CreateBankFeedStatementResponse$Outbound` instead. */
-  export type Outbound = CreateBankFeedStatementResponse$Outbound;
-}
-
-export function createBankFeedStatementResponseToJSON(
-  createBankFeedStatementResponse: CreateBankFeedStatementResponse,
-): string {
-  return JSON.stringify(
-    CreateBankFeedStatementResponse$outboundSchema.parse(
-      createBankFeedStatementResponse,
-    ),
-  );
-}
 
 export function createBankFeedStatementResponseFromJSON(
   jsonString: string,

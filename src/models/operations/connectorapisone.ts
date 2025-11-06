@@ -40,70 +40,6 @@ export type ConnectorApisOneResponse = {
 };
 
 /** @internal */
-export const ConnectorApisOneGlobals$inboundSchema: z.ZodType<
-  ConnectorApisOneGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  appId: z.string().optional(),
-});
-
-/** @internal */
-export type ConnectorApisOneGlobals$Outbound = {
-  appId?: string | undefined;
-};
-
-/** @internal */
-export const ConnectorApisOneGlobals$outboundSchema: z.ZodType<
-  ConnectorApisOneGlobals$Outbound,
-  z.ZodTypeDef,
-  ConnectorApisOneGlobals
-> = z.object({
-  appId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ConnectorApisOneGlobals$ {
-  /** @deprecated use `ConnectorApisOneGlobals$inboundSchema` instead. */
-  export const inboundSchema = ConnectorApisOneGlobals$inboundSchema;
-  /** @deprecated use `ConnectorApisOneGlobals$outboundSchema` instead. */
-  export const outboundSchema = ConnectorApisOneGlobals$outboundSchema;
-  /** @deprecated use `ConnectorApisOneGlobals$Outbound` instead. */
-  export type Outbound = ConnectorApisOneGlobals$Outbound;
-}
-
-export function connectorApisOneGlobalsToJSON(
-  connectorApisOneGlobals: ConnectorApisOneGlobals,
-): string {
-  return JSON.stringify(
-    ConnectorApisOneGlobals$outboundSchema.parse(connectorApisOneGlobals),
-  );
-}
-
-export function connectorApisOneGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<ConnectorApisOneGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => ConnectorApisOneGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ConnectorApisOneGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const ConnectorApisOneRequest$inboundSchema: z.ZodType<
-  ConnectorApisOneRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  appId: z.string().optional(),
-  id: z.string(),
-});
-
-/** @internal */
 export type ConnectorApisOneRequest$Outbound = {
   appId?: string | undefined;
   id: string;
@@ -119,34 +55,11 @@ export const ConnectorApisOneRequest$outboundSchema: z.ZodType<
   id: z.string(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ConnectorApisOneRequest$ {
-  /** @deprecated use `ConnectorApisOneRequest$inboundSchema` instead. */
-  export const inboundSchema = ConnectorApisOneRequest$inboundSchema;
-  /** @deprecated use `ConnectorApisOneRequest$outboundSchema` instead. */
-  export const outboundSchema = ConnectorApisOneRequest$outboundSchema;
-  /** @deprecated use `ConnectorApisOneRequest$Outbound` instead. */
-  export type Outbound = ConnectorApisOneRequest$Outbound;
-}
-
 export function connectorApisOneRequestToJSON(
   connectorApisOneRequest: ConnectorApisOneRequest,
 ): string {
   return JSON.stringify(
     ConnectorApisOneRequest$outboundSchema.parse(connectorApisOneRequest),
-  );
-}
-
-export function connectorApisOneRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<ConnectorApisOneRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => ConnectorApisOneRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ConnectorApisOneRequest' from JSON`,
   );
 }
 
@@ -167,54 +80,6 @@ export const ConnectorApisOneResponse$inboundSchema: z.ZodType<
     "UnexpectedErrorResponse": "unexpectedErrorResponse",
   });
 });
-
-/** @internal */
-export type ConnectorApisOneResponse$Outbound = {
-  HttpMeta: components.HTTPMetadata$Outbound;
-  GetApiResponse?: components.GetApiResponse$Outbound | undefined;
-  UnexpectedErrorResponse?:
-    | components.UnexpectedErrorResponse$Outbound
-    | undefined;
-};
-
-/** @internal */
-export const ConnectorApisOneResponse$outboundSchema: z.ZodType<
-  ConnectorApisOneResponse$Outbound,
-  z.ZodTypeDef,
-  ConnectorApisOneResponse
-> = z.object({
-  httpMeta: components.HTTPMetadata$outboundSchema,
-  getApiResponse: components.GetApiResponse$outboundSchema.optional(),
-  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    httpMeta: "HttpMeta",
-    getApiResponse: "GetApiResponse",
-    unexpectedErrorResponse: "UnexpectedErrorResponse",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ConnectorApisOneResponse$ {
-  /** @deprecated use `ConnectorApisOneResponse$inboundSchema` instead. */
-  export const inboundSchema = ConnectorApisOneResponse$inboundSchema;
-  /** @deprecated use `ConnectorApisOneResponse$outboundSchema` instead. */
-  export const outboundSchema = ConnectorApisOneResponse$outboundSchema;
-  /** @deprecated use `ConnectorApisOneResponse$Outbound` instead. */
-  export type Outbound = ConnectorApisOneResponse$Outbound;
-}
-
-export function connectorApisOneResponseToJSON(
-  connectorApisOneResponse: ConnectorApisOneResponse,
-): string {
-  return JSON.stringify(
-    ConnectorApisOneResponse$outboundSchema.parse(connectorApisOneResponse),
-  );
-}
 
 export function connectorApisOneResponseFromJSON(
   jsonString: string,

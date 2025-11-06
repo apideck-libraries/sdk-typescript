@@ -7,12 +7,7 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  Subsidiary,
-  Subsidiary$inboundSchema,
-  Subsidiary$Outbound,
-  Subsidiary$outboundSchema,
-} from "./subsidiary.js";
+import { Subsidiary, Subsidiary$inboundSchema } from "./subsidiary.js";
 
 /**
  * Subsidiary
@@ -64,58 +59,6 @@ export const GetSubsidiaryResponse$inboundSchema: z.ZodType<
     "_raw": "raw",
   });
 });
-
-/** @internal */
-export type GetSubsidiaryResponse$Outbound = {
-  status_code: number;
-  status: string;
-  service: string;
-  resource: string;
-  operation: string;
-  data: Subsidiary$Outbound;
-  _raw?: { [k: string]: any } | null | undefined;
-};
-
-/** @internal */
-export const GetSubsidiaryResponse$outboundSchema: z.ZodType<
-  GetSubsidiaryResponse$Outbound,
-  z.ZodTypeDef,
-  GetSubsidiaryResponse
-> = z.object({
-  statusCode: z.number().int(),
-  status: z.string(),
-  service: z.string(),
-  resource: z.string(),
-  operation: z.string(),
-  data: Subsidiary$outboundSchema,
-  raw: z.nullable(z.record(z.any())).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    statusCode: "status_code",
-    raw: "_raw",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetSubsidiaryResponse$ {
-  /** @deprecated use `GetSubsidiaryResponse$inboundSchema` instead. */
-  export const inboundSchema = GetSubsidiaryResponse$inboundSchema;
-  /** @deprecated use `GetSubsidiaryResponse$outboundSchema` instead. */
-  export const outboundSchema = GetSubsidiaryResponse$outboundSchema;
-  /** @deprecated use `GetSubsidiaryResponse$Outbound` instead. */
-  export type Outbound = GetSubsidiaryResponse$Outbound;
-}
-
-export function getSubsidiaryResponseToJSON(
-  getSubsidiaryResponse: GetSubsidiaryResponse,
-): string {
-  return JSON.stringify(
-    GetSubsidiaryResponse$outboundSchema.parse(getSubsidiaryResponse),
-  );
-}
 
 export function getSubsidiaryResponseFromJSON(
   jsonString: string,

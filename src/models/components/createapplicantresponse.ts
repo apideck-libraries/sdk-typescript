@@ -7,12 +7,7 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  UnifiedId,
-  UnifiedId$inboundSchema,
-  UnifiedId$Outbound,
-  UnifiedId$outboundSchema,
-} from "./unifiedid.js";
+import { UnifiedId, UnifiedId$inboundSchema } from "./unifiedid.js";
 
 /**
  * Applicants
@@ -67,58 +62,6 @@ export const CreateApplicantResponse$inboundSchema: z.ZodType<
     "_raw": "raw",
   });
 });
-
-/** @internal */
-export type CreateApplicantResponse$Outbound = {
-  status_code: number;
-  status: string;
-  service: string;
-  resource: string;
-  operation: string;
-  data: UnifiedId$Outbound;
-  _raw?: { [k: string]: any } | null | undefined;
-};
-
-/** @internal */
-export const CreateApplicantResponse$outboundSchema: z.ZodType<
-  CreateApplicantResponse$Outbound,
-  z.ZodTypeDef,
-  CreateApplicantResponse
-> = z.object({
-  statusCode: z.number().int(),
-  status: z.string(),
-  service: z.string(),
-  resource: z.string(),
-  operation: z.string(),
-  data: UnifiedId$outboundSchema,
-  raw: z.nullable(z.record(z.any())).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    statusCode: "status_code",
-    raw: "_raw",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateApplicantResponse$ {
-  /** @deprecated use `CreateApplicantResponse$inboundSchema` instead. */
-  export const inboundSchema = CreateApplicantResponse$inboundSchema;
-  /** @deprecated use `CreateApplicantResponse$outboundSchema` instead. */
-  export const outboundSchema = CreateApplicantResponse$outboundSchema;
-  /** @deprecated use `CreateApplicantResponse$Outbound` instead. */
-  export type Outbound = CreateApplicantResponse$Outbound;
-}
-
-export function createApplicantResponseToJSON(
-  createApplicantResponse: CreateApplicantResponse,
-): string {
-  return JSON.stringify(
-    CreateApplicantResponse$outboundSchema.parse(createApplicantResponse),
-  );
-}
 
 export function createApplicantResponseFromJSON(
   jsonString: string,

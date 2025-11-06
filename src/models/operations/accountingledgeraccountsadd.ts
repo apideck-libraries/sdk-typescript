@@ -55,84 +55,6 @@ export type AccountingLedgerAccountsAddResponse = {
 };
 
 /** @internal */
-export const AccountingLedgerAccountsAddGlobals$inboundSchema: z.ZodType<
-  AccountingLedgerAccountsAddGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/** @internal */
-export type AccountingLedgerAccountsAddGlobals$Outbound = {
-  consumerId?: string | undefined;
-  appId?: string | undefined;
-};
-
-/** @internal */
-export const AccountingLedgerAccountsAddGlobals$outboundSchema: z.ZodType<
-  AccountingLedgerAccountsAddGlobals$Outbound,
-  z.ZodTypeDef,
-  AccountingLedgerAccountsAddGlobals
-> = z.object({
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AccountingLedgerAccountsAddGlobals$ {
-  /** @deprecated use `AccountingLedgerAccountsAddGlobals$inboundSchema` instead. */
-  export const inboundSchema = AccountingLedgerAccountsAddGlobals$inboundSchema;
-  /** @deprecated use `AccountingLedgerAccountsAddGlobals$outboundSchema` instead. */
-  export const outboundSchema =
-    AccountingLedgerAccountsAddGlobals$outboundSchema;
-  /** @deprecated use `AccountingLedgerAccountsAddGlobals$Outbound` instead. */
-  export type Outbound = AccountingLedgerAccountsAddGlobals$Outbound;
-}
-
-export function accountingLedgerAccountsAddGlobalsToJSON(
-  accountingLedgerAccountsAddGlobals: AccountingLedgerAccountsAddGlobals,
-): string {
-  return JSON.stringify(
-    AccountingLedgerAccountsAddGlobals$outboundSchema.parse(
-      accountingLedgerAccountsAddGlobals,
-    ),
-  );
-}
-
-export function accountingLedgerAccountsAddGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<AccountingLedgerAccountsAddGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      AccountingLedgerAccountsAddGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'AccountingLedgerAccountsAddGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const AccountingLedgerAccountsAddRequest$inboundSchema: z.ZodType<
-  AccountingLedgerAccountsAddRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  raw: z.boolean().default(false),
-  consumerId: z.string().optional(),
-  appId: z.string().optional(),
-  serviceId: z.string().optional(),
-  LedgerAccount: components.LedgerAccountInput$inboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    "LedgerAccount": "ledgerAccount",
-  });
-});
-
-/** @internal */
 export type AccountingLedgerAccountsAddRequest$Outbound = {
   raw: boolean;
   consumerId?: string | undefined;
@@ -158,20 +80,6 @@ export const AccountingLedgerAccountsAddRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AccountingLedgerAccountsAddRequest$ {
-  /** @deprecated use `AccountingLedgerAccountsAddRequest$inboundSchema` instead. */
-  export const inboundSchema = AccountingLedgerAccountsAddRequest$inboundSchema;
-  /** @deprecated use `AccountingLedgerAccountsAddRequest$outboundSchema` instead. */
-  export const outboundSchema =
-    AccountingLedgerAccountsAddRequest$outboundSchema;
-  /** @deprecated use `AccountingLedgerAccountsAddRequest$Outbound` instead. */
-  export type Outbound = AccountingLedgerAccountsAddRequest$Outbound;
-}
-
 export function accountingLedgerAccountsAddRequestToJSON(
   accountingLedgerAccountsAddRequest: AccountingLedgerAccountsAddRequest,
 ): string {
@@ -179,17 +87,6 @@ export function accountingLedgerAccountsAddRequestToJSON(
     AccountingLedgerAccountsAddRequest$outboundSchema.parse(
       accountingLedgerAccountsAddRequest,
     ),
-  );
-}
-
-export function accountingLedgerAccountsAddRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<AccountingLedgerAccountsAddRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      AccountingLedgerAccountsAddRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'AccountingLedgerAccountsAddRequest' from JSON`,
   );
 }
 
@@ -211,61 +108,6 @@ export const AccountingLedgerAccountsAddResponse$inboundSchema: z.ZodType<
     "UnexpectedErrorResponse": "unexpectedErrorResponse",
   });
 });
-
-/** @internal */
-export type AccountingLedgerAccountsAddResponse$Outbound = {
-  HttpMeta: components.HTTPMetadata$Outbound;
-  CreateLedgerAccountResponse?:
-    | components.CreateLedgerAccountResponse$Outbound
-    | undefined;
-  UnexpectedErrorResponse?:
-    | components.UnexpectedErrorResponse$Outbound
-    | undefined;
-};
-
-/** @internal */
-export const AccountingLedgerAccountsAddResponse$outboundSchema: z.ZodType<
-  AccountingLedgerAccountsAddResponse$Outbound,
-  z.ZodTypeDef,
-  AccountingLedgerAccountsAddResponse
-> = z.object({
-  httpMeta: components.HTTPMetadata$outboundSchema,
-  createLedgerAccountResponse: components
-    .CreateLedgerAccountResponse$outboundSchema.optional(),
-  unexpectedErrorResponse: components.UnexpectedErrorResponse$outboundSchema
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    httpMeta: "HttpMeta",
-    createLedgerAccountResponse: "CreateLedgerAccountResponse",
-    unexpectedErrorResponse: "UnexpectedErrorResponse",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AccountingLedgerAccountsAddResponse$ {
-  /** @deprecated use `AccountingLedgerAccountsAddResponse$inboundSchema` instead. */
-  export const inboundSchema =
-    AccountingLedgerAccountsAddResponse$inboundSchema;
-  /** @deprecated use `AccountingLedgerAccountsAddResponse$outboundSchema` instead. */
-  export const outboundSchema =
-    AccountingLedgerAccountsAddResponse$outboundSchema;
-  /** @deprecated use `AccountingLedgerAccountsAddResponse$Outbound` instead. */
-  export type Outbound = AccountingLedgerAccountsAddResponse$Outbound;
-}
-
-export function accountingLedgerAccountsAddResponseToJSON(
-  accountingLedgerAccountsAddResponse: AccountingLedgerAccountsAddResponse,
-): string {
-  return JSON.stringify(
-    AccountingLedgerAccountsAddResponse$outboundSchema.parse(
-      accountingLedgerAccountsAddResponse,
-    ),
-  );
-}
 
 export function accountingLedgerAccountsAddResponseFromJSON(
   jsonString: string,
