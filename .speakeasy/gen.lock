@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 7bffa198-5d29-4efa-9942-d549cc832085
 management:
-  docChecksum: 57b4bbe6a7692f54a6b642d0741788e2
-  docVersion: 10.21.11
-  speakeasyVersion: 1.650.0
-  generationVersion: 2.743.2
-  releaseVersion: 0.34.1
-  configChecksum: e813c498ccc52a4d10b09b961baac271
+  docChecksum: 37075682a3ec50b147e5d33dd5c7eeb9
+  docVersion: 10.21.12
+  speakeasyVersion: 1.651.0
+  generationVersion: 2.745.2
+  releaseVersion: 0.34.2
+  configChecksum: 49893b3b96431a527103bc11540a05f1
   repoURL: https://github.com/apideck-libraries/sdk-typescript.git
   installationURL: https://github.com/apideck-libraries/sdk-typescript
   published: true
@@ -20413,4 +20413,3 @@ generatedTests:
   accounting.projectsOne: "2025-10-13T00:03:48Z"
   accounting.projectsUpdate: "2025-10-13T00:03:48Z"
   accounting.projectsDelete: "2025-10-13T00:03:48Z"
-releaseNotes: "## Typescript SDK Changes Detected:\n* `apideck.accounting.expenses.list()`:  `response.data.[]` **Changed** **Breaking** :warning:\n* `apideck.accounting.expenses.update()`: \n  *  `request.expense` **Changed** **Breaking** :warning:\n* `apideck.accounting.expenses.get()`:  `response.data` **Changed** **Breaking** :warning:\n* `apideck.accounting.expenses.create()`: \n  *  `request.expense` **Changed** **Breaking** :warning:\n* `apideck.accounting.creditNotes.create()`: \n  *  `request.creditNote` **Changed**\n* `apideck.accounting.journalEntries.update()`: \n  *  `request.journalEntry.lineItems.[]` **Changed**\n* `apideck.accounting.invoiceItems.create()`: \n  *  `request.invoiceItem` **Changed**\n* `apideck.accounting.invoiceItems.update()`: \n  *  `request.invoiceItem` **Changed**\n* `apideck.accounting.bills.create()`: \n  *  `request.bill.lineItems.[]` **Changed**\n* `apideck.accounting.creditNotes.update()`: \n  *  `request.creditNote` **Changed**\n* `apideck.accounting.customers.create()`: \n  *  `request.customer` **Changed**\n* `apideck.accounting.customers.update()`: \n  *  `request.customer` **Changed**\n* `apideck.accounting.suppliers.create()`: \n  *  `request.supplier` **Changed**\n* `apideck.accounting.suppliers.update()`: \n  *  `request.supplier` **Changed**\n* `apideck.accounting.payments.create()`: \n  *  `request.payment.account.name` **Added**\n* `apideck.accounting.payments.update()`: \n  *  `request.payment.account.name` **Added**\n* `apideck.accounting.journalEntries.create()`: \n  *  `request.journalEntry.lineItems.[]` **Changed**\n* `apideck.accounting.ledgerAccounts.update()`: \n  *  `request.ledgerAccount.taxRate.code` **Added**\n* `apideck.accounting.purchaseOrders.create()`: \n  *  `request.purchaseOrder.lineItems.[]` **Changed**\n* `apideck.accounting.purchaseOrders.update()`: \n  *  `request.purchaseOrder.lineItems.[]` **Changed**\n* `apideck.accounting.bankAccounts.create()`: \n  *  `request.accountingBankAccount.ledgerAccount.name` **Added**\n* `apideck.accounting.bankAccounts.update()`: \n  *  `request.accountingBankAccount.ledgerAccount.name` **Added**\n* `apideck.accounting.billPayments.create()`: \n  *  `request.billPayment.account.name` **Added**\n* `apideck.accounting.billPayments.update()`: \n  *  `request.billPayment.account.name` **Added**\n* `apideck.accounting.ledgerAccounts.create()`: \n  *  `request.ledgerAccount.taxRate.code` **Added**\n* `apideck.accounting.invoices.update()`: \n  *  `request.invoice.lineItems.[]` **Changed**\n* `apideck.accounting.invoices.create()`: \n  *  `request.invoice.lineItems.[]` **Changed**\n* `apideck.accounting.bills.update()`: \n  *  `request.bill.lineItems.[]` **Changed**\n* `apideck.accounting.quotes.create()`: \n  *  `request.quote.lineItems.[]` **Changed**\n* `apideck.accounting.quotes.update()`: \n  *  `request.quote.lineItems.[]` **Changed**\n* `apideck.accounting.projects.create()`: \n  *  `request.project.taxRate.code` **Added**\n* `apideck.accounting.projects.update()`: \n  *  `request.project.taxRate.code` **Added**\n"
