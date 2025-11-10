@@ -9,6 +9,12 @@ import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
+  Address,
+  Address$inboundSchema,
+  Address$Outbound,
+  Address$outboundSchema,
+} from "./address.js";
+import {
   Currency,
   Currency$inboundSchema,
   Currency$outboundSchema,
@@ -53,6 +59,7 @@ export type Subsidiary = {
    * Based on the status some functionality is enabled or disabled.
    */
   status?: SubsidiaryStatus | undefined;
+  address?: Address | undefined;
   /**
    * List of currencies supported by this subsidiary
    */
@@ -104,6 +111,7 @@ export type SubsidiaryInput = {
    * Based on the status some functionality is enabled or disabled.
    */
   status?: SubsidiaryStatus | undefined;
+  address?: Address | undefined;
   /**
    * List of currencies supported by this subsidiary
    */
@@ -138,6 +146,7 @@ export const Subsidiary$inboundSchema: z.ZodType<
   name: z.nullable(z.string()).optional(),
   display_id: z.nullable(z.string()).optional(),
   status: SubsidiaryStatus$inboundSchema.optional(),
+  address: Address$inboundSchema.optional(),
   currencies: z.nullable(z.array(z.nullable(Currency$inboundSchema)))
     .optional(),
   custom_mappings: z.nullable(z.record(z.any())).optional(),
@@ -181,6 +190,7 @@ export type SubsidiaryInput$Outbound = {
   name?: string | null | undefined;
   display_id?: string | null | undefined;
   status?: string | undefined;
+  address?: Address$Outbound | undefined;
   currencies?: Array<string | null> | null | undefined;
   row_version?: string | null | undefined;
   pass_through?: Array<PassThroughBody$Outbound> | undefined;
@@ -196,6 +206,7 @@ export const SubsidiaryInput$outboundSchema: z.ZodType<
   name: z.nullable(z.string()).optional(),
   displayId: z.nullable(z.string()).optional(),
   status: SubsidiaryStatus$outboundSchema.optional(),
+  address: Address$outboundSchema.optional(),
   currencies: z.nullable(z.array(z.nullable(Currency$outboundSchema)))
     .optional(),
   rowVersion: z.nullable(z.string()).optional(),
