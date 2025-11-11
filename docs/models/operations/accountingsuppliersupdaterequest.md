@@ -96,6 +96,7 @@ let value: AccountingSuppliersUpdateRequest = {
       rate: 10,
     },
     taxNumber: "US123945459",
+    taxable: true,
     currency: "USD",
     account: null,
     status: "active",
