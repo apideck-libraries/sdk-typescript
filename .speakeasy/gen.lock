@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 7bffa198-5d29-4efa-9942-d549cc832085
 management:
-  docChecksum: a127b1f3e4fd52b93118790c2603c291
-  docVersion: 10.21.14
+  docChecksum: db29eaf7f3b64d56236d11d01eac1adc
+  docVersion: 10.21.15
   speakeasyVersion: 1.653.0
   generationVersion: 2.748.0
-  releaseVersion: 0.34.4
-  configChecksum: 26839a05fd57fd38236db980146bfd48
+  releaseVersion: 0.34.5
+  configChecksum: a4693d5db4511a2d275040baae2496bf
   repoURL: https://github.com/apideck-libraries/sdk-typescript.git
   installationURL: https://github.com/apideck-libraries/sdk-typescript
   published: true
@@ -20413,4 +20413,3 @@ generatedTests:
   accounting.projectsOne: "2025-10-13T00:03:48Z"
   accounting.projectsUpdate: "2025-10-13T00:03:48Z"
   accounting.projectsDelete: "2025-10-13T00:03:48Z"
-releaseNotes: "## Typescript SDK Changes Detected:\n* `apideck.accounting.customers.list()`:  `response.data.[].taxable` **Added**\n* `apideck.accounting.customers.create()`: \n  *  `request.customer.taxable` **Added**\n* `apideck.accounting.customers.get()`:  `response.data.taxable` **Added**\n* `apideck.accounting.customers.update()`: \n  *  `request.customer.taxable` **Added**\n* `apideck.accounting.suppliers.list()`:  `response.data.[].taxable` **Added**\n* `apideck.accounting.suppliers.create()`: \n  *  `request.supplier.taxable` **Added**\n* `apideck.accounting.suppliers.get()`:  `response.data.taxable` **Added**\n* `apideck.accounting.suppliers.update()`: \n  *  `request.supplier.taxable` **Added**\n"
