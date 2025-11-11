@@ -97,6 +97,7 @@ let value: AccountingCustomersUpdateRequest = {
       rate: 10,
     },
     taxNumber: "US123945459",
+    taxable: true,
     currency: "USD",
     account: {
       id: "123456",

@@ -157,6 +157,10 @@ export type Supplier = {
   taxRate?: LinkedTaxRate | undefined;
   taxNumber?: string | null | undefined;
   /**
+   * Whether the entity is subject to taxation
+   */
+  taxable?: boolean | null | undefined;
+  /**
    * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
    */
   currency?: Currency | null | undefined;
@@ -280,6 +284,10 @@ export type SupplierInput = {
   taxRate?: LinkedTaxRateInput | undefined;
   taxNumber?: string | null | undefined;
   /**
+   * Whether the entity is subject to taxation
+   */
+  taxable?: boolean | null | undefined;
+  /**
    * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
    */
   currency?: Currency | null | undefined;
@@ -365,6 +373,7 @@ export const Supplier$inboundSchema: z.ZodType<
   notes: z.nullable(z.string()).optional(),
   tax_rate: LinkedTaxRate$inboundSchema.optional(),
   tax_number: z.nullable(z.string()).optional(),
+  taxable: z.nullable(z.boolean()).optional(),
   currency: z.nullable(Currency$inboundSchema).optional(),
   account: z.nullable(LinkedLedgerAccount$inboundSchema).optional(),
   status: z.nullable(SupplierStatus$inboundSchema).optional(),
@@ -454,6 +463,7 @@ export type SupplierInput$Outbound = {
   notes?: string | null | undefined;
   tax_rate?: LinkedTaxRateInput$Outbound | undefined;
   tax_number?: string | null | undefined;
+  taxable?: boolean | null | undefined;
   currency?: string | null | undefined;
   account?: LinkedLedgerAccount$Outbound | null | undefined;
   status?: string | null | undefined;
@@ -496,6 +506,7 @@ export const SupplierInput$outboundSchema: z.ZodType<
   notes: z.nullable(z.string()).optional(),
   taxRate: LinkedTaxRateInput$outboundSchema.optional(),
   taxNumber: z.nullable(z.string()).optional(),
+  taxable: z.nullable(z.boolean()).optional(),
   currency: z.nullable(Currency$outboundSchema).optional(),
   account: z.nullable(LinkedLedgerAccount$outboundSchema).optional(),
   status: z.nullable(SupplierStatus$outboundSchema).optional(),
