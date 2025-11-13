@@ -106,7 +106,9 @@ export type Configuration = {
  * Operational health status of the connection
  */
 export const Health = {
+  Revoked: "revoked",
   MissingSettings: "missing_settings",
+  NeedsConsent: "needs_consent",
   NeedsAuth: "needs_auth",
   PendingRefresh: "pending_refresh",
   Ok: "ok",
