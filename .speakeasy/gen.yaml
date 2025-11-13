@@ -28,7 +28,7 @@ generation:
     generateNewTests: true
     skipResponseBodyAssertions: false
 typescript:
-  version: 0.34.5
+  version: 0.34.6
   acceptHeaderEnum: true
   additionalDependencies:
     dependencies: {}
@@ -70,6 +70,7 @@ typescript:
   responseFormat: envelope-http
   sseFlatResponse: false
   templateVersion: v2
+  unionStrategy: left-to-right
   usageSDKInitImports: []
   useIndexModules: true
   zodVersion: v3

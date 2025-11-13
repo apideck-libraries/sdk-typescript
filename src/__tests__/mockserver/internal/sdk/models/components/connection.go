@@ -337,7 +337,9 @@ func (o *Configuration) GetDefaults() []Default {
 type Health string
 
 const (
+	HealthRevoked         Health = "revoked"
 	HealthMissingSettings Health = "missing_settings"
+	HealthNeedsConsent    Health = "needs_consent"
 	HealthNeedsAuth       Health = "needs_auth"
 	HealthPendingRefresh  Health = "pending_refresh"
 	HealthOk              Health = "ok"
@@ -352,7 +354,11 @@ func (e *Health) UnmarshalJSON(data []byte) error {
 		return err
 	}
 	switch v {
+	case "revoked":
+		fallthrough
 	case "missing_settings":
+		fallthrough
+	case "needs_consent":
 		fallthrough
 	case "needs_auth":
 		fallthrough

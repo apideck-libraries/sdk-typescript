@@ -1,6 +1,6 @@
 {
   "name": "@apideck/unify",
-  "version": "0.34.5",
+  "version": "0.34.6",
   "author": "Speakeasy",
   "main": "./index.js",
   "sideEffects": false,
