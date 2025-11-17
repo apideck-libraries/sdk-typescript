@@ -58,6 +58,7 @@ const (
 	InvoiceStatusAuthorised    InvoiceStatus = "authorised"
 	InvoiceStatusPartiallyPaid InvoiceStatus = "partially_paid"
 	InvoiceStatusPaid          InvoiceStatus = "paid"
+	InvoiceStatusUnpaid        InvoiceStatus = "unpaid"
 	InvoiceStatusVoid          InvoiceStatus = "void"
 	InvoiceStatusCredit        InvoiceStatus = "credit"
 	InvoiceStatusDeleted       InvoiceStatus = "deleted"
@@ -82,6 +83,8 @@ func (e *InvoiceStatus) UnmarshalJSON(data []byte) error {
 	case "partially_paid":
 		fallthrough
 	case "paid":
+		fallthrough
+	case "unpaid":
 		fallthrough
 	case "void":
 		fallthrough
