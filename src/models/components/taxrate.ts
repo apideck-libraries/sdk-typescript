@@ -74,6 +74,10 @@ export type TaxRate = {
    */
   effectiveTaxRate?: number | null | undefined;
   /**
+   * Country code according to ISO 3166-1 alpha-2.
+   */
+  country?: string | null | undefined;
+  /**
    * Not compounded sum of the components of a tax rate
    */
   totalTaxRate?: number | null | undefined;
@@ -162,6 +166,10 @@ export type TaxRateInput = {
    * Effective tax rate
    */
   effectiveTaxRate?: number | null | undefined;
+  /**
+   * Country code according to ISO 3166-1 alpha-2.
+   */
+  country?: string | null | undefined;
   /**
    * Not compounded sum of the components of a tax rate
    */
@@ -303,6 +311,7 @@ export const TaxRate$inboundSchema: z.ZodType<TaxRate, z.ZodTypeDef, unknown> =
     code: z.nullable(z.string()).optional(),
     description: z.nullable(z.string()).optional(),
     effective_tax_rate: z.nullable(z.number()).optional(),
+    country: z.nullable(z.string()).optional(),
     total_tax_rate: z.nullable(z.number()).optional(),
     tax_payable_account_id: z.nullable(z.string()).optional(),
     tax_remitted_account_id: z.nullable(z.string()).optional(),
@@ -363,6 +372,7 @@ export type TaxRateInput$Outbound = {
   code?: string | null | undefined;
   description?: string | null | undefined;
   effective_tax_rate?: number | null | undefined;
+  country?: string | null | undefined;
   total_tax_rate?: number | null | undefined;
   tax_payable_account_id?: string | null | undefined;
   tax_remitted_account_id?: string | null | undefined;
@@ -389,6 +399,7 @@ export const TaxRateInput$outboundSchema: z.ZodType<
   code: z.nullable(z.string()).optional(),
   description: z.nullable(z.string()).optional(),
   effectiveTaxRate: z.nullable(z.number()).optional(),
+  country: z.nullable(z.string()).optional(),
   totalTaxRate: z.nullable(z.number()).optional(),
   taxPayableAccountId: z.nullable(z.string()).optional(),
   taxRemittedAccountId: z.nullable(z.string()).optional(),
