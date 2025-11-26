@@ -28,7 +28,7 @@ jobs:
         with:
           app-id: ${{ secrets.GH_CI_BOT_APP_ID }}
           private-key: ${{ secrets.GH_CI_BOT_APP_PRIVATE_KEY }}
-          owner: apideck-io
+          owner: apideck-libraries
 
   test:
     needs: generate-token
