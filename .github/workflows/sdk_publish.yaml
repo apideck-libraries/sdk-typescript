@@ -30,8 +30,8 @@ jobs:
     needs: generate-token
     uses: speakeasy-api/sdk-generation-action/.github/workflows/sdk-publish.yaml@v15
     with:
+      github_access_token: ${{ needs.generate-token.outputs.token }}
       target: apideck
     secrets:
-      github_access_token: ${{ needs.generate-token.outputs.token }}
       npm_token: ${{ secrets.NPM_TOKEN }}
       speakeasy_api_key: ${{ secrets.SPEAKEASY_API_KEY }}

@@ -34,7 +34,7 @@ jobs:
     needs: generate-token
     uses: speakeasy-api/sdk-generation-action/.github/workflows/sdk-test.yaml@v15
     with:
+      github_access_token: ${{ needs.generate-token.outputs.token }}
       target: ${{ github.event.inputs.target || 'apideck' }}
     secrets:
-      github_access_token: ${{ needs.generate-token.outputs.token }}
       speakeasy_api_key: ${{ secrets.SPEAKEASY_API_KEY }}

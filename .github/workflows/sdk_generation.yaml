@@ -43,11 +43,11 @@ jobs:
     needs: generate-token
     uses: speakeasy-api/sdk-generation-action/.github/workflows/workflow-executor.yaml@v15
     with:
+      github_access_token: ${{ needs.generate-token.outputs.token }}
       force: ${{ github.event.inputs.force }}
       mode: pr
       set_version: ${{ github.event.inputs.set_version }}
       speakeasy_version: latest
     secrets:
-      github_access_token: ${{ needs.generate-token.outputs.token }}
       npm_token: ${{ secrets.NPM_TOKEN }}
       speakeasy_api_key: ${{ secrets.SPEAKEASY_API_KEY }}
