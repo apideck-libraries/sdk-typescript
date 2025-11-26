@@ -18,7 +18,21 @@ permissions:
   schedule:
     - cron: 0 0 * * *
 jobs:
+  generate-token:
+    runs-on: ubuntu-latest
+    outputs:
+      token: ${{ steps.app-token.outputs.token }}
+    steps:
+      - name: Generate GitHub App Token
+        id: app-token
+        uses: actions/create-github-app-token@v1
+        with:
+          app-id: ${{ secrets.GH_CI_BOT_APP_ID }}
+          private-key: ${{ secrets.GH_CI_BOT_APP_PRIVATE_KEY }}
+          owner: apideck-io
+
   generate:
+    needs: generate-token
     uses: speakeasy-api/sdk-generation-action/.github/workflows/workflow-executor.yaml@v15
     with:
       force: ${{ github.event.inputs.force }}
@@ -26,6 +40,6 @@ jobs:
       set_version: ${{ github.event.inputs.set_version }}
       speakeasy_version: latest
     secrets:
-      github_access_token: ${{ secrets.GITHUB_TOKEN }}
+      github_access_token: ${{ needs.generate-token.outputs.token }}
       npm_token: ${{ secrets.NPM_TOKEN }}
       speakeasy_api_key: ${{ secrets.SPEAKEASY_API_KEY }}
