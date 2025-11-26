@@ -28,6 +28,7 @@ let value: GetCompanyInfoResponse = {
       code: "ABN",
       description: "Reduced rate GST Purchases",
       effectiveTaxRate: 10,
+      country: "US",
       totalTaxRate: 10,
       taxPayableAccountId: "123456",
       taxRemittedAccountId: "123456",

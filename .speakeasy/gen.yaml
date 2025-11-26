@@ -28,7 +28,7 @@ generation:
     generateNewTests: true
     skipResponseBodyAssertions: false
 typescript:
-  version: 0.34.11
+  version: 0.34.12
   acceptHeaderEnum: true
   additionalDependencies:
     dependencies: {}
@@ -50,6 +50,7 @@ typescript:
   exportZodModelNamespace: false
   flattenGlobalSecurity: true
   flatteningOrder: parameters-first
+  formStringArrayEncodeMode: encoded-string
   forwardCompatibleEnumsByDefault: false
   generateExamples: true
   imports:
@@ -60,6 +61,7 @@ typescript:
       operations: models/operations
       shared: models/components
       webhooks: models/webhooks
+  inferUnionDiscriminators: true
   inputModelSuffix: input
   jsonpath: legacy
   laxMode: strict
