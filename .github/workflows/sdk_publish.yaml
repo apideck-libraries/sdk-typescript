@@ -13,25 +13,10 @@ permissions:
       - .speakeasy/gen.lock
   workflow_dispatch: {}
 jobs:
-  generate-token:
-    runs-on: ubuntu-latest
-    outputs:
-      token: ${{ steps.app-token.outputs.token }}
-    steps:
-      - name: Generate GitHub App Token
-        id: app-token
-        uses: actions/create-github-app-token@v1
-        with:
-          app-id: ${{ secrets.GH_CI_BOT_APP_ID }}
-          private-key: ${{ secrets.GH_CI_BOT_APP_PRIVATE_KEY }}
-          owner: apideck-io
-
   publish:
-    needs: generate-token
     uses: speakeasy-api/sdk-generation-action/.github/workflows/sdk-publish.yaml@v15
     with:
       target: apideck
     secrets:
-      github_access_token: ${{ needs.generate-token.outputs.token }}
-      npm_token: ${{ secrets.NPM_TOKEN }}
+      github_access_token: ${{ secrets.GITHUB_TOKEN }}
       speakeasy_api_key: ${{ secrets.SPEAKEASY_API_KEY }}
