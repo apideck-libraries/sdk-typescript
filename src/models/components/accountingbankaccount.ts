@@ -66,6 +66,10 @@ export type AccountingBankAccount = {
    */
   id: string;
   /**
+   * The third-party API ID of original entity
+   */
+  downstreamId?: string | null | undefined;
+  /**
    * Display ID for the bank account
    */
   displayId?: string | null | undefined;
@@ -263,6 +267,7 @@ export const AccountingBankAccount$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   id: z.string(),
+  downstream_id: z.nullable(z.string()).optional(),
   display_id: z.nullable(z.string()).optional(),
   name: z.nullable(z.string()).optional(),
   account_number: z.nullable(z.string()).optional(),
@@ -294,6 +299,7 @@ export const AccountingBankAccount$inboundSchema: z.ZodType<
   updated_by: z.nullable(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
+    "downstream_id": "downstreamId",
     "display_id": "displayId",
     "account_number": "accountNumber",
     "account_type": "accountType",

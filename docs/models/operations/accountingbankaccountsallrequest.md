@@ -9,6 +9,7 @@ let value: AccountingBankAccountsAllRequest = {
   serviceId: "salesforce",
   filter: {
     name: "Main Operating",
+    accountType: "checking",
     status: "active",
   },
   sort: {},

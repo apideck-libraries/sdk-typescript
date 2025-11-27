@@ -2,6 +2,38 @@
 
 package components
 
+import (
+	"encoding/json"
+	"fmt"
+)
+
+// ProfitAndLossFilterAccountingMethod - The accounting method used for the report: cash or accrual.
+type ProfitAndLossFilterAccountingMethod string
+
+const (
+	ProfitAndLossFilterAccountingMethodCash    ProfitAndLossFilterAccountingMethod = "cash"
+	ProfitAndLossFilterAccountingMethodAccrual ProfitAndLossFilterAccountingMethod = "accrual"
+)
+
+func (e ProfitAndLossFilterAccountingMethod) ToPointer() *ProfitAndLossFilterAccountingMethod {
+	return &e
+}
+func (e *ProfitAndLossFilterAccountingMethod) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "cash":
+		fallthrough
+	case "accrual":
+		*e = ProfitAndLossFilterAccountingMethod(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ProfitAndLossFilterAccountingMethod: %v", v)
+	}
+}
+
 type ProfitAndLossFilter struct {
 	// Filter by customer id
 	CustomerID *string `queryParam:"name=customer_id"`
@@ -11,6 +43,8 @@ type ProfitAndLossFilter struct {
 	EndDate *string `queryParam:"name=end_date"`
 	// Filter by location id
 	LocationID *string `queryParam:"name=location_id"`
+	// The accounting method used for the report: cash or accrual.
+	AccountingMethod *ProfitAndLossFilterAccountingMethod `queryParam:"name=accounting_method"`
 }
 
 func (o *ProfitAndLossFilter) GetCustomerID() *string {
@@ -39,4 +73,11 @@ func (o *ProfitAndLossFilter) GetLocationID() *string {
 		return nil
 	}
 	return o.LocationID
+}
+
+func (o *ProfitAndLossFilter) GetAccountingMethod() *ProfitAndLossFilterAccountingMethod {
+	if o == nil {
+		return nil
+	}
+	return o.AccountingMethod
 }

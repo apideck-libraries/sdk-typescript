@@ -7,6 +7,48 @@ import (
 	"fmt"
 )
 
+// BankAccountsFilterAccountType - Filter by account type
+type BankAccountsFilterAccountType string
+
+const (
+	BankAccountsFilterAccountTypeChecking     BankAccountsFilterAccountType = "checking"
+	BankAccountsFilterAccountTypeSavings      BankAccountsFilterAccountType = "savings"
+	BankAccountsFilterAccountTypeCreditCard   BankAccountsFilterAccountType = "credit_card"
+	BankAccountsFilterAccountTypeMoneyMarket  BankAccountsFilterAccountType = "money_market"
+	BankAccountsFilterAccountTypeLineOfCredit BankAccountsFilterAccountType = "line_of_credit"
+	BankAccountsFilterAccountTypeOther        BankAccountsFilterAccountType = "other"
+	BankAccountsFilterAccountTypeCash         BankAccountsFilterAccountType = "cash"
+)
+
+func (e BankAccountsFilterAccountType) ToPointer() *BankAccountsFilterAccountType {
+	return &e
+}
+func (e *BankAccountsFilterAccountType) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "checking":
+		fallthrough
+	case "savings":
+		fallthrough
+	case "credit_card":
+		fallthrough
+	case "money_market":
+		fallthrough
+	case "line_of_credit":
+		fallthrough
+	case "other":
+		fallthrough
+	case "cash":
+		*e = BankAccountsFilterAccountType(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for BankAccountsFilterAccountType: %v", v)
+	}
+}
+
 // BankAccountsFilterStatus - Filter by account status
 type BankAccountsFilterStatus string
 
@@ -40,6 +82,8 @@ func (e *BankAccountsFilterStatus) UnmarshalJSON(data []byte) error {
 type BankAccountsFilter struct {
 	// Filter by bank account name
 	Name *string `queryParam:"name=name"`
+	// Filter by account type
+	AccountType *BankAccountsFilterAccountType `queryParam:"name=account_type"`
 	// Filter by account status
 	Status *BankAccountsFilterStatus `queryParam:"name=status"`
 }
@@ -49,6 +93,13 @@ func (o *BankAccountsFilter) GetName() *string {
 		return nil
 	}
 	return o.Name
+}
+
+func (o *BankAccountsFilter) GetAccountType() *BankAccountsFilterAccountType {
+	if o == nil {
+		return nil
+	}
+	return o.AccountType
 }
 
 func (o *BankAccountsFilter) GetStatus() *BankAccountsFilterStatus {
