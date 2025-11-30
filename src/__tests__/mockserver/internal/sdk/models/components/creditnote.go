@@ -13,11 +13,12 @@ import (
 type CreditNoteStatus string
 
 const (
-	CreditNoteStatusDraft      CreditNoteStatus = "draft"
-	CreditNoteStatusAuthorised CreditNoteStatus = "authorised"
-	CreditNoteStatusPaid       CreditNoteStatus = "paid"
-	CreditNoteStatusVoided     CreditNoteStatus = "voided"
-	CreditNoteStatusDeleted    CreditNoteStatus = "deleted"
+	CreditNoteStatusDraft         CreditNoteStatus = "draft"
+	CreditNoteStatusAuthorised    CreditNoteStatus = "authorised"
+	CreditNoteStatusPartiallyPaid CreditNoteStatus = "partially_paid"
+	CreditNoteStatusPaid          CreditNoteStatus = "paid"
+	CreditNoteStatusVoided        CreditNoteStatus = "voided"
+	CreditNoteStatusDeleted       CreditNoteStatus = "deleted"
 )
 
 func (e CreditNoteStatus) ToPointer() *CreditNoteStatus {
@@ -32,6 +33,8 @@ func (e *CreditNoteStatus) UnmarshalJSON(data []byte) error {
 	case "draft":
 		fallthrough
 	case "authorised":
+		fallthrough
+	case "partially_paid":
 		fallthrough
 	case "paid":
 		fallthrough

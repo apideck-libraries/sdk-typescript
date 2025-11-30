@@ -32,6 +32,7 @@ async function run() {
     serviceId: "salesforce",
     filter: {
       name: "Main Operating",
+      accountType: "checking",
       status: "active",
     },
     sort: {},
@@ -70,6 +71,7 @@ async function run() {
     serviceId: "salesforce",
     filter: {
       name: "Main Operating",
+      accountType: "checking",
       status: "active",
     },
     sort: {},

@@ -21,6 +21,7 @@ test("Bankaccounts Accounting Bank Accounts All", async () => {
     serviceId: "salesforce",
     filter: {
       name: "Main Operating",
+      accountType: "checking",
       status: "active",
     },
     sort: {},
@@ -180,6 +181,7 @@ test("Bankaccounts Accounting Bank Accounts One", async () => {
     operation: "one",
     data: {
       id: "12345",
+      downstreamId: "12345",
       displayId: "BA-001",
       name: "Main Operating Account",
       accountNumber: "123465",

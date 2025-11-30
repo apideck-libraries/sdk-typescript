@@ -2,7 +2,6 @@
 
 package components
 
-// UpdateApplicationResponse - Applications
 type UpdateApplicationResponse struct {
 	// HTTP Response Status Code
 	StatusCode int64 `json:"status_code"`

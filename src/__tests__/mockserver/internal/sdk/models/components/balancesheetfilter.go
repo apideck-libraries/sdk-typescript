@@ -37,6 +37,33 @@ func (e *PeriodType) UnmarshalJSON(data []byte) error {
 	}
 }
 
+// BalanceSheetFilterAccountingMethod - The accounting method used for the report: cash or accrual.
+type BalanceSheetFilterAccountingMethod string
+
+const (
+	BalanceSheetFilterAccountingMethodCash    BalanceSheetFilterAccountingMethod = "cash"
+	BalanceSheetFilterAccountingMethodAccrual BalanceSheetFilterAccountingMethod = "accrual"
+)
+
+func (e BalanceSheetFilterAccountingMethod) ToPointer() *BalanceSheetFilterAccountingMethod {
+	return &e
+}
+func (e *BalanceSheetFilterAccountingMethod) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "cash":
+		fallthrough
+	case "accrual":
+		*e = BalanceSheetFilterAccountingMethod(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for BalanceSheetFilterAccountingMethod: %v", v)
+	}
+}
+
 type BalanceSheetFilter struct {
 	// The start date of the period to include in the resource.
 	//
@@ -50,6 +77,8 @@ type BalanceSheetFilter struct {
 	PeriodType *PeriodType `queryParam:"name=period_type"`
 	// The ID of the location to include in the resource.
 	LocationID *string `queryParam:"name=location_id"`
+	// The accounting method used for the report: cash or accrual.
+	AccountingMethod *BalanceSheetFilterAccountingMethod `queryParam:"name=accounting_method"`
 }
 
 func (o *BalanceSheetFilter) GetStartDate() *string {
@@ -85,4 +114,11 @@ func (o *BalanceSheetFilter) GetLocationID() *string {
 		return nil
 	}
 	return o.LocationID
+}
+
+func (o *BalanceSheetFilter) GetAccountingMethod() *BalanceSheetFilterAccountingMethod {
+	if o == nil {
+		return nil
+	}
+	return o.AccountingMethod
 }
