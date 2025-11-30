@@ -13,5 +13,5 @@ let value: CreditNoteStatus = "authorised";
 ## Values
 
 ```typescript
-"draft" | "authorised" | "paid" | "voided" | "deleted"
+"draft" | "authorised" | "partially_paid" | "paid" | "voided" | "deleted"
 ```

@@ -19,6 +19,18 @@ export const PeriodType = {
  */
 export type PeriodType = ClosedEnum<typeof PeriodType>;
 
+/**
+ * The accounting method used for the report: cash or accrual.
+ */
+export const AccountingMethod = {
+  Cash: "cash",
+  Accrual: "accrual",
+} as const;
+/**
+ * The accounting method used for the report: cash or accrual.
+ */
+export type AccountingMethod = ClosedEnum<typeof AccountingMethod>;
+
 export type BalanceSheetFilter = {
   /**
    * The start date of the period to include in the resource.
@@ -42,11 +54,20 @@ export type BalanceSheetFilter = {
    * The ID of the location to include in the resource.
    */
   locationId?: string | undefined;
+  /**
+   * The accounting method used for the report: cash or accrual.
+   */
+  accountingMethod?: AccountingMethod | undefined;
 };
 
 /** @internal */
 export const PeriodType$outboundSchema: z.ZodNativeEnum<typeof PeriodType> = z
   .nativeEnum(PeriodType);
+
+/** @internal */
+export const AccountingMethod$outboundSchema: z.ZodNativeEnum<
+  typeof AccountingMethod
+> = z.nativeEnum(AccountingMethod);
 
 /** @internal */
 export type BalanceSheetFilter$Outbound = {
@@ -55,6 +76,7 @@ export type BalanceSheetFilter$Outbound = {
   period_count?: number | undefined;
   period_type?: string | undefined;
   location_id?: string | undefined;
+  accounting_method?: string | undefined;
 };
 
 /** @internal */
@@ -68,6 +90,7 @@ export const BalanceSheetFilter$outboundSchema: z.ZodType<
   periodCount: z.number().int().optional(),
   periodType: PeriodType$outboundSchema.optional(),
   locationId: z.string().optional(),
+  accountingMethod: AccountingMethod$outboundSchema.optional(),
 }).transform((v) => {
   return remap$(v, {
     startDate: "start_date",
@@ -75,6 +98,7 @@ export const BalanceSheetFilter$outboundSchema: z.ZodType<
     periodCount: "period_count",
     periodType: "period_type",
     locationId: "location_id",
+    accountingMethod: "accounting_method",
   });
 });
 

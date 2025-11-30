@@ -4,6 +4,21 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { ClosedEnum } from "../../types/enums.js";
+
+/**
+ * The accounting method used for the report: cash or accrual.
+ */
+export const ProfitAndLossFilterAccountingMethod = {
+  Cash: "cash",
+  Accrual: "accrual",
+} as const;
+/**
+ * The accounting method used for the report: cash or accrual.
+ */
+export type ProfitAndLossFilterAccountingMethod = ClosedEnum<
+  typeof ProfitAndLossFilterAccountingMethod
+>;
 
 export type ProfitAndLossFilter = {
   /**
@@ -22,7 +37,17 @@ export type ProfitAndLossFilter = {
    * Filter by location id
    */
   locationId?: string | undefined;
+  /**
+   * The accounting method used for the report: cash or accrual.
+   */
+  accountingMethod?: ProfitAndLossFilterAccountingMethod | undefined;
 };
+
+/** @internal */
+export const ProfitAndLossFilterAccountingMethod$outboundSchema:
+  z.ZodNativeEnum<typeof ProfitAndLossFilterAccountingMethod> = z.nativeEnum(
+    ProfitAndLossFilterAccountingMethod,
+  );
 
 /** @internal */
 export type ProfitAndLossFilter$Outbound = {
@@ -30,6 +55,7 @@ export type ProfitAndLossFilter$Outbound = {
   start_date?: string | undefined;
   end_date?: string | undefined;
   location_id?: string | undefined;
+  accounting_method?: string | undefined;
 };
 
 /** @internal */
@@ -42,12 +68,15 @@ export const ProfitAndLossFilter$outboundSchema: z.ZodType<
   startDate: z.string().optional(),
   endDate: z.string().optional(),
   locationId: z.string().optional(),
+  accountingMethod: ProfitAndLossFilterAccountingMethod$outboundSchema
+    .optional(),
 }).transform((v) => {
   return remap$(v, {
     customerId: "customer_id",
     startDate: "start_date",
     endDate: "end_date",
     locationId: "location_id",
+    accountingMethod: "accounting_method",
   });
 });
 
