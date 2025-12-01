@@ -54,6 +54,7 @@ func testAccountingBankAccountsOneAccountingBankAccountsOne0(w http.ResponseWrit
 		Operation:  types.String("one"),
 		Data: components.AccountingBankAccount{
 			ID:            "12345",
+			DownstreamID:  types.String("12345"),
 			DisplayID:     types.String("BA-001"),
 			Name:          types.String("Main Operating Account"),
 			AccountNumber: types.String("123465"),

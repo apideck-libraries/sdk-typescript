@@ -15,6 +15,7 @@ let value: GetBankAccountResponse = {
   operation: "one",
   data: {
     id: "12345",
+    downstreamId: "12345",
     displayId: "BA-001",
     name: "Main Operating Account",
     accountNumber: "123465",
