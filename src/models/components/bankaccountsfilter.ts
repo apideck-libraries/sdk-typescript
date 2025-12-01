@@ -3,7 +3,27 @@
  */
 
 import * as z from "zod/v3";
+import { remap as remap$ } from "../../lib/primitives.js";
 import { ClosedEnum } from "../../types/enums.js";
+
+/**
+ * Filter by account type
+ */
+export const BankAccountsFilterAccountType = {
+  Checking: "checking",
+  Savings: "savings",
+  CreditCard: "credit_card",
+  MoneyMarket: "money_market",
+  LineOfCredit: "line_of_credit",
+  Other: "other",
+  Cash: "cash",
+} as const;
+/**
+ * Filter by account type
+ */
+export type BankAccountsFilterAccountType = ClosedEnum<
+  typeof BankAccountsFilterAccountType
+>;
 
 /**
  * Filter by account status
@@ -26,10 +46,19 @@ export type BankAccountsFilter = {
    */
   name?: string | undefined;
   /**
+   * Filter by account type
+   */
+  accountType?: BankAccountsFilterAccountType | undefined;
+  /**
    * Filter by account status
    */
   status?: BankAccountsFilterStatus | undefined;
 };
+
+/** @internal */
+export const BankAccountsFilterAccountType$outboundSchema: z.ZodNativeEnum<
+  typeof BankAccountsFilterAccountType
+> = z.nativeEnum(BankAccountsFilterAccountType);
 
 /** @internal */
 export const BankAccountsFilterStatus$outboundSchema: z.ZodNativeEnum<
@@ -39,6 +68,7 @@ export const BankAccountsFilterStatus$outboundSchema: z.ZodNativeEnum<
 /** @internal */
 export type BankAccountsFilter$Outbound = {
   name?: string | undefined;
+  account_type?: string | undefined;
   status?: string | undefined;
 };
 
@@ -49,7 +79,12 @@ export const BankAccountsFilter$outboundSchema: z.ZodType<
   BankAccountsFilter
 > = z.object({
   name: z.string().optional(),
+  accountType: BankAccountsFilterAccountType$outboundSchema.optional(),
   status: BankAccountsFilterStatus$outboundSchema.optional(),
+}).transform((v) => {
+  return remap$(v, {
+    accountType: "account_type",
+  });
 });
 
 export function bankAccountsFilterToJSON(
