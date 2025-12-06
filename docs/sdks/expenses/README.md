@@ -1,5 +1,4 @@
-# Expenses
-(*accounting.expenses*)
+# Accounting.Expenses
 
 ## Overview
 

@@ -1,5 +1,4 @@
-# ValidateConnection
-(*vault.validateConnection*)
+# Vault.ValidateConnection
 
 ## Overview
 

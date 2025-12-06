@@ -1,5 +1,4 @@
-# TrackingCategories
-(*accounting.trackingCategories*)
+# Accounting.TrackingCategories
 
 ## Overview
 

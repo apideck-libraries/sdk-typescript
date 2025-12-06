@@ -1,5 +1,4 @@
-# Consumers
-(*vault.consumers*)
+# Vault.Consumers
 
 ## Overview
 

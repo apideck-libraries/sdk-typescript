@@ -1,5 +1,4 @@
-# ApideckDepartments
-(*hris.departments*)
+# Hris.Departments
 
 ## Overview
 

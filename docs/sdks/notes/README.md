@@ -1,5 +1,4 @@
-# Notes
-(*crm.notes*)
+# Crm.Notes
 
 ## Overview
 

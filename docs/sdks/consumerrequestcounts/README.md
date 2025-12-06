@@ -1,5 +1,4 @@
-# ConsumerRequestCounts
-(*vault.consumerRequestCounts*)
+# Vault.ConsumerRequestCounts
 
 ## Overview
 

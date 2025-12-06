@@ -1,5 +1,4 @@
-# Pipelines
-(*crm.pipelines*)
+# Crm.Pipelines
 
 ## Overview
 

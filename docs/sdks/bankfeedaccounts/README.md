@@ -1,5 +1,4 @@
-# BankFeedAccounts
-(*accounting.bankFeedAccounts*)
+# Accounting.BankFeedAccounts
 
 ## Overview
 
