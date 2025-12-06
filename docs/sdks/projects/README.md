@@ -1,5 +1,4 @@
-# Projects
-(*accounting.projects*)
+# Accounting.Projects
 
 ## Overview
 

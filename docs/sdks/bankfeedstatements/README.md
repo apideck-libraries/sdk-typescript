@@ -1,5 +1,4 @@
-# BankFeedStatements
-(*accounting.bankFeedStatements*)
+# Accounting.BankFeedStatements
 
 ## Overview
 

@@ -1,5 +1,4 @@
-# Leads
-(*crm.leads*)
+# Crm.Leads
 
 ## Overview
 

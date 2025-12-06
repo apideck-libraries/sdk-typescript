@@ -1,5 +1,4 @@
-# Sessions
-(*vault.sessions*)
+# Vault.Sessions
 
 ## Overview
 

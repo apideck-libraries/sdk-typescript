@@ -1,5 +1,4 @@
-# Connectors
-(*connector.connectors*)
+# Connector.Connectors
 
 ## Overview
 

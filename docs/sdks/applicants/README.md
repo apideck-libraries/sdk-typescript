@@ -1,5 +1,4 @@
-# Applicants
-(*ats.applicants*)
+# Ats.Applicants
 
 ## Overview
 

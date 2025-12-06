@@ -1,5 +1,4 @@
-# BalanceSheet
-(*accounting.balanceSheet*)
+# Accounting.BalanceSheet
 
 ## Overview
 

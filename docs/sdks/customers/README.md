@@ -1,5 +1,4 @@
-# Customers
-(*accounting.customers*)
+# Accounting.Customers
 
 ## Overview
 

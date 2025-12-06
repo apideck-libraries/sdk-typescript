@@ -5,7 +5,6 @@
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
-import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
@@ -15,28 +14,12 @@ import {
   SimpleFormFieldOption$outboundSchema,
 } from "./simpleformfieldoption.js";
 
-export const FormFieldOptionGroupOptionType = {
-  Group: "group",
-} as const;
-export type FormFieldOptionGroupOptionType = ClosedEnum<
-  typeof FormFieldOptionGroupOptionType
->;
-
 export type FormFieldOptionGroup = {
   id?: string | undefined;
   label: string;
   options: Array<SimpleFormFieldOption>;
-  optionType: FormFieldOptionGroupOptionType;
+  optionType: "group";
 };
-
-/** @internal */
-export const FormFieldOptionGroupOptionType$inboundSchema: z.ZodNativeEnum<
-  typeof FormFieldOptionGroupOptionType
-> = z.nativeEnum(FormFieldOptionGroupOptionType);
-/** @internal */
-export const FormFieldOptionGroupOptionType$outboundSchema: z.ZodNativeEnum<
-  typeof FormFieldOptionGroupOptionType
-> = FormFieldOptionGroupOptionType$inboundSchema;
 
 /** @internal */
 export const FormFieldOptionGroup$inboundSchema: z.ZodType<
@@ -47,7 +30,7 @@ export const FormFieldOptionGroup$inboundSchema: z.ZodType<
   id: z.string().optional(),
   label: z.string(),
   options: z.array(SimpleFormFieldOption$inboundSchema),
-  option_type: FormFieldOptionGroupOptionType$inboundSchema,
+  option_type: z.literal("group"),
 }).transform((v) => {
   return remap$(v, {
     "option_type": "optionType",
@@ -58,7 +41,7 @@ export type FormFieldOptionGroup$Outbound = {
   id?: string | undefined;
   label: string;
   options: Array<SimpleFormFieldOption$Outbound>;
-  option_type: string;
+  option_type: "group";
 };
 
 /** @internal */
@@ -70,7 +53,7 @@ export const FormFieldOptionGroup$outboundSchema: z.ZodType<
   id: z.string().optional(),
   label: z.string(),
   options: z.array(SimpleFormFieldOption$outboundSchema),
-  optionType: FormFieldOptionGroupOptionType$outboundSchema,
+  optionType: z.literal("group"),
 }).transform((v) => {
   return remap$(v, {
     optionType: "option_type",

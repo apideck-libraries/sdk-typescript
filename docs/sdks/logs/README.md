@@ -1,5 +1,4 @@
-# Logs
-(*vault.logs*)
+# Vault.Logs
 
 ## Overview
 
