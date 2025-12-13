@@ -3,14 +3,61 @@
 package components
 
 import (
+	"encoding/json"
+	"fmt"
 	"mockserver/internal/sdk/utils"
 	"time"
 )
 
+type PaymentsFilterType string
+
+const (
+	PaymentsFilterTypeAccountsReceivable            PaymentsFilterType = "accounts_receivable"
+	PaymentsFilterTypeAccountsPayable               PaymentsFilterType = "accounts_payable"
+	PaymentsFilterTypeAccountsReceivableCredit      PaymentsFilterType = "accounts_receivable_credit"
+	PaymentsFilterTypeAccountsPayableCredit         PaymentsFilterType = "accounts_payable_credit"
+	PaymentsFilterTypeAccountsReceivableOverpayment PaymentsFilterType = "accounts_receivable_overpayment"
+	PaymentsFilterTypeAccountsPayableOverpayment    PaymentsFilterType = "accounts_payable_overpayment"
+	PaymentsFilterTypeAccountsReceivablePrepayment  PaymentsFilterType = "accounts_receivable_prepayment"
+	PaymentsFilterTypeAccountsPayablePrepayment     PaymentsFilterType = "accounts_payable_prepayment"
+)
+
+func (e PaymentsFilterType) ToPointer() *PaymentsFilterType {
+	return &e
+}
+func (e *PaymentsFilterType) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "accounts_receivable":
+		fallthrough
+	case "accounts_payable":
+		fallthrough
+	case "accounts_receivable_credit":
+		fallthrough
+	case "accounts_payable_credit":
+		fallthrough
+	case "accounts_receivable_overpayment":
+		fallthrough
+	case "accounts_payable_overpayment":
+		fallthrough
+	case "accounts_receivable_prepayment":
+		fallthrough
+	case "accounts_payable_prepayment":
+		*e = PaymentsFilterType(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for PaymentsFilterType: %v", v)
+	}
+}
+
 type PaymentsFilter struct {
-	UpdatedSince *time.Time `queryParam:"name=updated_since"`
-	InvoiceID    *string    `queryParam:"name=invoice_id"`
-	SupplierID   *string    `queryParam:"name=supplier_id"`
+	UpdatedSince *time.Time          `queryParam:"name=updated_since"`
+	InvoiceID    *string             `queryParam:"name=invoice_id"`
+	SupplierID   *string             `queryParam:"name=supplier_id"`
+	Type         *PaymentsFilterType `queryParam:"name=type"`
 }
 
 func (p PaymentsFilter) MarshalJSON() ([]byte, error) {
@@ -43,4 +90,11 @@ func (o *PaymentsFilter) GetSupplierID() *string {
 		return nil
 	}
 	return o.SupplierID
+}
+
+func (o *PaymentsFilter) GetType() *PaymentsFilterType {
+	if o == nil {
+		return nil
+	}
+	return o.Type
 }

@@ -302,23 +302,27 @@ func testAccountingJournalEntriesOneAccountingJournalEntriesOne0(w http.Response
 			UpdatedAt:        types.MustNewTimeFromString("2020-09-30T07:43:32.000Z"),
 			CreatedAt:        types.MustNewTimeFromString("2020-09-30T07:43:32.000Z"),
 			RowVersion:       types.String("1-12345"),
-			CustomFields: []components.CustomField{
-				components.CustomField{
-					ID:          types.String("2389328923893298"),
-					Name:        types.String("employee_level"),
-					Description: types.String("Employee Level"),
-					Value: types.Pointer(components.CreateCustomFieldValue2Boolean(
-						true,
-					)),
-				},
-				components.CustomField{
-					ID:          types.String("2389328923893298"),
-					Name:        types.String("employee_level"),
-					Description: types.String("Employee Level"),
-					Value: types.Pointer(components.CreateCustomFieldValue2Number(
-						10,
-					)),
-				},
+			CustomFields: []components.CustomFieldUnion{
+				components.CreateCustomFieldUnionCustomField1(
+					components.CustomField1{
+						ID:          types.String("2389328923893298"),
+						Name:        types.String("employee_level"),
+						Description: types.String("Employee Level"),
+						Value: types.Pointer(components.CreateCustomFieldValue2Boolean(
+							true,
+						)),
+					},
+				),
+				components.CreateCustomFieldUnionCustomField1(
+					components.CustomField1{
+						ID:          types.String("2389328923893298"),
+						Name:        types.String("employee_level"),
+						Description: types.String("Employee Level"),
+						Value: types.Pointer(components.CreateCustomFieldValue2Number(
+							10,
+						)),
+					},
+				),
 			},
 			PassThrough: []components.PassThroughBody{
 				components.PassThroughBody{

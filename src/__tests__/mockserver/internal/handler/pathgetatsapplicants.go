@@ -78,31 +78,37 @@ func testAtsApplicantsAllAtsApplicantsAll0(w http.ResponseWriter, req *http.Requ
 						Type:  components.EmailTypePrimary.ToPointer(),
 					},
 				},
-				CustomFields: []components.CustomField{
-					components.CustomField{
-						ID:          types.String("2389328923893298"),
-						Name:        types.String("employee_level"),
-						Description: types.String("Employee Level"),
-						Value: types.Pointer(components.CreateCustomFieldValue2Number(
-							10,
-						)),
-					},
-					components.CustomField{
-						ID:          types.String("2389328923893298"),
-						Name:        types.String("employee_level"),
-						Description: types.String("Employee Level"),
-						Value: types.Pointer(components.CreateCustomFieldValue2Number(
-							10,
-						)),
-					},
-					components.CustomField{
-						ID:          types.String("2389328923893298"),
-						Name:        types.String("employee_level"),
-						Description: types.String("Employee Level"),
-						Value: types.Pointer(components.CreateCustomFieldValue2Str(
-							"Uses Salesforce and Marketo",
-						)),
-					},
+				CustomFields: []components.CustomFieldUnion{
+					components.CreateCustomFieldUnionCustomField1(
+						components.CustomField1{
+							ID:          types.String("2389328923893298"),
+							Name:        types.String("employee_level"),
+							Description: types.String("Employee Level"),
+							Value: types.Pointer(components.CreateCustomFieldValue2Number(
+								10,
+							)),
+						},
+					),
+					components.CreateCustomFieldUnionCustomField1(
+						components.CustomField1{
+							ID:          types.String("2389328923893298"),
+							Name:        types.String("employee_level"),
+							Description: types.String("Employee Level"),
+							Value: types.Pointer(components.CreateCustomFieldValue2Number(
+								10,
+							)),
+						},
+					),
+					components.CreateCustomFieldUnionCustomField1(
+						components.CustomField1{
+							ID:          types.String("2389328923893298"),
+							Name:        types.String("employee_level"),
+							Description: types.String("Employee Level"),
+							Value: types.Pointer(components.CreateCustomFieldValue2Str(
+								"Uses Salesforce and Marketo",
+							)),
+						},
+					),
 				},
 				PhoneNumbers: []components.PhoneNumber{
 					components.PhoneNumber{
@@ -284,23 +290,27 @@ func testAtsApplicantsAllAtsApplicantsAll0(w http.ResponseWriter, req *http.Requ
 						Type:  components.EmailTypePrimary.ToPointer(),
 					},
 				},
-				CustomFields: []components.CustomField{
-					components.CustomField{
-						ID:          types.String("2389328923893298"),
-						Name:        types.String("employee_level"),
-						Description: types.String("Employee Level"),
-						Value: types.Pointer(components.CreateCustomFieldValue2MapOfAny(
-							map[string]any{},
-						)),
-					},
-					components.CustomField{
-						ID:          types.String("2389328923893298"),
-						Name:        types.String("employee_level"),
-						Description: types.String("Employee Level"),
-						Value: types.Pointer(components.CreateCustomFieldValue2Str(
-							"Uses Salesforce and Marketo",
-						)),
-					},
+				CustomFields: []components.CustomFieldUnion{
+					components.CreateCustomFieldUnionCustomField1(
+						components.CustomField1{
+							ID:          types.String("2389328923893298"),
+							Name:        types.String("employee_level"),
+							Description: types.String("Employee Level"),
+							Value: types.Pointer(components.CreateCustomFieldValue2MapOfAny(
+								map[string]any{},
+							)),
+						},
+					),
+					components.CreateCustomFieldUnionCustomField1(
+						components.CustomField1{
+							ID:          types.String("2389328923893298"),
+							Name:        types.String("employee_level"),
+							Description: types.String("Employee Level"),
+							Value: types.Pointer(components.CreateCustomFieldValue2Str(
+								"Uses Salesforce and Marketo",
+							)),
+						},
+					),
 				},
 				PhoneNumbers: []components.PhoneNumber{
 					components.PhoneNumber{
@@ -517,15 +527,17 @@ func testAtsApplicantsAllAtsApplicantsAll0(w http.ResponseWriter, req *http.Requ
 						Type:  components.EmailTypePrimary.ToPointer(),
 					},
 				},
-				CustomFields: []components.CustomField{
-					components.CustomField{
-						ID:          types.String("2389328923893298"),
-						Name:        types.String("employee_level"),
-						Description: types.String("Employee Level"),
-						Value: types.Pointer(components.CreateCustomFieldValue2MapOfAny(
-							map[string]any{},
-						)),
-					},
+				CustomFields: []components.CustomFieldUnion{
+					components.CreateCustomFieldUnionCustomField1(
+						components.CustomField1{
+							ID:          types.String("2389328923893298"),
+							Name:        types.String("employee_level"),
+							Description: types.String("Employee Level"),
+							Value: types.Pointer(components.CreateCustomFieldValue2MapOfAny(
+								map[string]any{},
+							)),
+						},
+					),
 				},
 				PhoneNumbers: []components.PhoneNumber{
 					components.PhoneNumber{

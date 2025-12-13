@@ -59,6 +59,10 @@ export type LeadInput = {
    */
   companyId?: string | null | undefined;
   /**
+   * The contact the lead is associated with.
+   */
+  contactId?: string | null | undefined;
+  /**
    * The identifier of the lead.
    */
   leadId?: string | null | undefined;
@@ -123,6 +127,7 @@ export type LeadInput$Outbound = {
   owner_id?: string | null | undefined;
   owner_name?: string | null | undefined;
   company_id?: string | null | undefined;
+  contact_id?: string | null | undefined;
   lead_id?: string | null | undefined;
   lead_source?: string | null | undefined;
   first_name?: string | null | undefined;
@@ -156,6 +161,7 @@ export const LeadInput$outboundSchema: z.ZodType<
   ownerId: z.nullable(z.string()).optional(),
   ownerName: z.nullable(z.string()).optional(),
   companyId: z.nullable(z.string()).optional(),
+  contactId: z.nullable(z.string()).optional(),
   leadId: z.nullable(z.string()).optional(),
   leadSource: z.nullable(z.string()).optional(),
   firstName: z.nullable(z.string()).optional(),
@@ -182,6 +188,7 @@ export const LeadInput$outboundSchema: z.ZodType<
     ownerId: "owner_id",
     ownerName: "owner_name",
     companyId: "company_id",
+    contactId: "contact_id",
     leadId: "lead_id",
     leadSource: "lead_source",
     firstName: "first_name",

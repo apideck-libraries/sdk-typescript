@@ -175,8 +175,8 @@ type Bill struct {
 	// The date and time when the object was created.
 	CreatedAt *time.Time `json:"created_at,omitempty"`
 	// A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
-	RowVersion   *string       `json:"row_version,omitempty"`
-	CustomFields []CustomField `json:"custom_fields,omitempty"`
+	RowVersion   *string            `json:"row_version,omitempty"`
+	CustomFields []CustomFieldUnion `json:"custom_fields,omitempty"`
 	// When custom mappings are configured on the resource, the result is included here.
 	CustomMappings map[string]any `json:"custom_mappings,omitempty"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
@@ -505,7 +505,7 @@ func (o *Bill) GetRowVersion() *string {
 	return o.RowVersion
 }
 
-func (o *Bill) GetCustomFields() []CustomField {
+func (o *Bill) GetCustomFields() []CustomFieldUnion {
 	if o == nil {
 		return nil
 	}
@@ -612,8 +612,8 @@ type BillInput struct {
 	// A list of linked tracking categories.
 	TrackingCategories []*LinkedTrackingCategory `json:"tracking_categories,omitempty"`
 	// A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
-	RowVersion   *string       `json:"row_version,omitempty"`
-	CustomFields []CustomField `json:"custom_fields,omitempty"`
+	RowVersion   *string            `json:"row_version,omitempty"`
+	CustomFields []CustomFieldUnion `json:"custom_fields,omitempty"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
 	PassThrough []PassThroughBody `json:"pass_through,omitempty"`
 	// Accounting period
@@ -898,7 +898,7 @@ func (o *BillInput) GetRowVersion() *string {
 	return o.RowVersion
 }
 
-func (o *BillInput) GetCustomFields() []CustomField {
+func (o *BillInput) GetCustomFields() []CustomFieldUnion {
 	if o == nil {
 		return nil
 	}

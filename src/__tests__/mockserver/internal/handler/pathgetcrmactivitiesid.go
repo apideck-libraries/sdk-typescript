@@ -122,31 +122,37 @@ func testCrmActivitiesOneCrmActivitiesOne0(w http.ResponseWriter, req *http.Requ
 			ReminderSet:        types.Bool(false),
 			VideoConferenceURL: types.String("https://us02web.zoom.us/j/88120759396"),
 			VideoConferenceID:  types.String("zoom:88120759396"),
-			CustomFields: []components.CustomField{
-				components.CustomField{
-					ID:          types.String("2389328923893298"),
-					Name:        types.String("employee_level"),
-					Description: types.String("Employee Level"),
-					Value: types.Pointer(components.CreateCustomFieldValue2MapOfAny(
-						map[string]any{},
-					)),
-				},
-				components.CustomField{
-					ID:          types.String("2389328923893298"),
-					Name:        types.String("employee_level"),
-					Description: types.String("Employee Level"),
-					Value: types.Pointer(components.CreateCustomFieldValue2MapOfAny(
-						map[string]any{},
-					)),
-				},
-				components.CustomField{
-					ID:          types.String("2389328923893298"),
-					Name:        types.String("employee_level"),
-					Description: types.String("Employee Level"),
-					Value: types.Pointer(components.CreateCustomFieldValue2MapOfAny(
-						map[string]any{},
-					)),
-				},
+			CustomFields: []components.CustomFieldUnion{
+				components.CreateCustomFieldUnionCustomField1(
+					components.CustomField1{
+						ID:          types.String("2389328923893298"),
+						Name:        types.String("employee_level"),
+						Description: types.String("Employee Level"),
+						Value: types.Pointer(components.CreateCustomFieldValue2MapOfAny(
+							map[string]any{},
+						)),
+					},
+				),
+				components.CreateCustomFieldUnionCustomField1(
+					components.CustomField1{
+						ID:          types.String("2389328923893298"),
+						Name:        types.String("employee_level"),
+						Description: types.String("Employee Level"),
+						Value: types.Pointer(components.CreateCustomFieldValue2MapOfAny(
+							map[string]any{},
+						)),
+					},
+				),
+				components.CreateCustomFieldUnionCustomField1(
+					components.CustomField1{
+						ID:          types.String("2389328923893298"),
+						Name:        types.String("employee_level"),
+						Description: types.String("Employee Level"),
+						Value: types.Pointer(components.CreateCustomFieldValue2MapOfAny(
+							map[string]any{},
+						)),
+					},
+				),
 			},
 			Attendees: []components.ActivityAttendee{
 				components.ActivityAttendee{

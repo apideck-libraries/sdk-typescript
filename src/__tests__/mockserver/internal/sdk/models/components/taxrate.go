@@ -132,7 +132,7 @@ type TaxRate struct {
 	PassThrough []PassThroughBody `json:"pass_through,omitempty"`
 	// The subsidiaries this belongs to.
 	Subsidiaries []TaxRateSubsidiary `json:"subsidiaries,omitempty"`
-	CustomFields []CustomField       `json:"custom_fields,omitempty"`
+	CustomFields []CustomFieldUnion  `json:"custom_fields,omitempty"`
 }
 
 func (t TaxRate) MarshalJSON() ([]byte, error) {
@@ -307,7 +307,7 @@ func (o *TaxRate) GetSubsidiaries() []TaxRateSubsidiary {
 	return o.Subsidiaries
 }
 
-func (o *TaxRate) GetCustomFields() []CustomField {
+func (o *TaxRate) GetCustomFields() []CustomFieldUnion {
 	if o == nil {
 		return nil
 	}
@@ -350,7 +350,7 @@ type TaxRateInput struct {
 	PassThrough []PassThroughBody `json:"pass_through,omitempty"`
 	// The subsidiaries this belongs to.
 	Subsidiaries []TaxRateSubsidiary `json:"subsidiaries,omitempty"`
-	CustomFields []CustomField       `json:"custom_fields,omitempty"`
+	CustomFields []CustomFieldUnion  `json:"custom_fields,omitempty"`
 }
 
 func (o *TaxRateInput) GetID() *string {
@@ -479,7 +479,7 @@ func (o *TaxRateInput) GetSubsidiaries() []TaxRateSubsidiary {
 	return o.Subsidiaries
 }
 
-func (o *TaxRateInput) GetCustomFields() []CustomField {
+func (o *TaxRateInput) GetCustomFields() []CustomFieldUnion {
 	if o == nil {
 		return nil
 	}

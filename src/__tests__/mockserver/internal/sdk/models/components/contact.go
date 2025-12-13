@@ -122,15 +122,15 @@ type Contact struct {
 	// The status of the contact.
 	Status *string `json:"status,omitempty"`
 	// The active status of the contact.
-	Active       *bool         `json:"active,omitempty"`
-	Websites     []Website     `json:"websites,omitempty"`
-	Addresses    []Address     `json:"addresses,omitempty"`
-	SocialLinks  []SocialLink  `json:"social_links,omitempty"`
-	PhoneNumbers []PhoneNumber `json:"phone_numbers,omitempty"`
-	Emails       []Email       `json:"emails,omitempty"`
-	EmailDomain  *string       `json:"email_domain,omitempty"`
-	CustomFields []CustomField `json:"custom_fields,omitempty"`
-	Tags         []string      `json:"tags,omitempty"`
+	Active       *bool              `json:"active,omitempty"`
+	Websites     []Website          `json:"websites,omitempty"`
+	Addresses    []Address          `json:"addresses,omitempty"`
+	SocialLinks  []SocialLink       `json:"social_links,omitempty"`
+	PhoneNumbers []PhoneNumber      `json:"phone_numbers,omitempty"`
+	Emails       []Email            `json:"emails,omitempty"`
+	EmailDomain  *string            `json:"email_domain,omitempty"`
+	CustomFields []CustomFieldUnion `json:"custom_fields,omitempty"`
+	Tags         []string           `json:"tags,omitempty"`
 	// The first call date of the contact.
 	FirstCallAt *time.Time `json:"first_call_at,omitempty"`
 	// The first email date of the contact.
@@ -377,7 +377,7 @@ func (o *Contact) GetEmailDomain() *string {
 	return o.EmailDomain
 }
 
-func (o *Contact) GetCustomFields() []CustomField {
+func (o *Contact) GetCustomFields() []CustomFieldUnion {
 	if o == nil {
 		return nil
 	}
@@ -495,15 +495,15 @@ type ContactInput struct {
 	// The status of the contact.
 	Status *string `json:"status,omitempty"`
 	// The active status of the contact.
-	Active       *bool         `json:"active,omitempty"`
-	Websites     []Website     `json:"websites,omitempty"`
-	Addresses    []Address     `json:"addresses,omitempty"`
-	SocialLinks  []SocialLink  `json:"social_links,omitempty"`
-	PhoneNumbers []PhoneNumber `json:"phone_numbers,omitempty"`
-	Emails       []Email       `json:"emails,omitempty"`
-	EmailDomain  *string       `json:"email_domain,omitempty"`
-	CustomFields []CustomField `json:"custom_fields,omitempty"`
-	Tags         []string      `json:"tags,omitempty"`
+	Active       *bool              `json:"active,omitempty"`
+	Websites     []Website          `json:"websites,omitempty"`
+	Addresses    []Address          `json:"addresses,omitempty"`
+	SocialLinks  []SocialLink       `json:"social_links,omitempty"`
+	PhoneNumbers []PhoneNumber      `json:"phone_numbers,omitempty"`
+	Emails       []Email            `json:"emails,omitempty"`
+	EmailDomain  *string            `json:"email_domain,omitempty"`
+	CustomFields []CustomFieldUnion `json:"custom_fields,omitempty"`
+	Tags         []string           `json:"tags,omitempty"`
 	// The opportunity ids of the contact.
 	OpportunityIds []string `json:"opportunity_ids,omitempty"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
@@ -720,7 +720,7 @@ func (o *ContactInput) GetEmailDomain() *string {
 	return o.EmailDomain
 }
 
-func (o *ContactInput) GetCustomFields() []CustomField {
+func (o *ContactInput) GetCustomFields() []CustomFieldUnion {
 	if o == nil {
 		return nil
 	}

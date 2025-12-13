@@ -34,6 +34,18 @@ export type Stages = {
    * The order in which the Pipeline Stage is displayed in the UI.
    */
   displayOrder?: number | null | undefined;
+  /**
+   * Whether the Pipeline Stage is archived or not.
+   */
+  archived?: boolean | null | undefined;
+  /**
+   * The date and time when the Pipeline Stage was created.
+   */
+  createdAt?: Date | null | undefined;
+  /**
+   * The date and time when the Pipeline Stage was last updated.
+   */
+  updatedAt?: Date | null | undefined;
 };
 
 export type Pipeline = {
@@ -91,10 +103,19 @@ export const Stages$inboundSchema: z.ZodType<Stages, z.ZodTypeDef, unknown> = z
     value: z.nullable(z.string()).optional(),
     win_probability: z.nullable(z.number().int()).optional(),
     display_order: z.nullable(z.number().int()).optional(),
+    archived: z.nullable(z.boolean()).optional(),
+    created_at: z.nullable(
+      z.string().datetime({ offset: true }).transform(v => new Date(v)),
+    ).optional(),
+    updated_at: z.nullable(
+      z.string().datetime({ offset: true }).transform(v => new Date(v)),
+    ).optional(),
   }).transform((v) => {
     return remap$(v, {
       "win_probability": "winProbability",
       "display_order": "displayOrder",
+      "created_at": "createdAt",
+      "updated_at": "updatedAt",
     });
   });
 

@@ -166,6 +166,9 @@ test("Bankaccounts Accounting Bank Accounts One", async () => {
 
   const result = await apideck.accounting.bankAccounts.get({
     id: "<id>",
+    filter: {
+      accountType: "checking",
+    },
     consumerId: "test-consumer",
     appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
     serviceId: "salesforce",

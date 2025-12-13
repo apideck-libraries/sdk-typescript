@@ -112,8 +112,8 @@ type Quote struct {
 	// Optional quote template
 	TemplateID *string `json:"template_id,omitempty"`
 	// URL link to a source document - shown as 'Go to [appName]' in the downstream app.
-	SourceDocumentURL *string       `json:"source_document_url,omitempty"`
-	CustomFields      []CustomField `json:"custom_fields,omitempty"`
+	SourceDocumentURL *string            `json:"source_document_url,omitempty"`
+	CustomFields      []CustomFieldUnion `json:"custom_fields,omitempty"`
 	// A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
 	RowVersion *string `json:"row_version,omitempty"`
 	// The user who last updated the object.
@@ -349,7 +349,7 @@ func (o *Quote) GetSourceDocumentURL() *string {
 	return o.SourceDocumentURL
 }
 
-func (o *Quote) GetCustomFields() []CustomField {
+func (o *Quote) GetCustomFields() []CustomFieldUnion {
 	if o == nil {
 		return nil
 	}
@@ -449,8 +449,8 @@ type QuoteInput struct {
 	// Optional quote template
 	TemplateID *string `json:"template_id,omitempty"`
 	// URL link to a source document - shown as 'Go to [appName]' in the downstream app.
-	SourceDocumentURL *string       `json:"source_document_url,omitempty"`
-	CustomFields      []CustomField `json:"custom_fields,omitempty"`
+	SourceDocumentURL *string            `json:"source_document_url,omitempty"`
+	CustomFields      []CustomFieldUnion `json:"custom_fields,omitempty"`
 	// A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
 	RowVersion *string `json:"row_version,omitempty"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
@@ -657,7 +657,7 @@ func (o *QuoteInput) GetSourceDocumentURL() *string {
 	return o.SourceDocumentURL
 }
 
-func (o *QuoteInput) GetCustomFields() []CustomField {
+func (o *QuoteInput) GetCustomFields() []CustomFieldUnion {
 	if o == nil {
 		return nil
 	}

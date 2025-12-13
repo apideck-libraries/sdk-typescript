@@ -13,6 +13,8 @@ type LeadInput struct {
 	OwnerName *string `json:"owner_name,omitempty"`
 	// The company the lead is associated with.
 	CompanyID *string `json:"company_id,omitempty"`
+	// The contact the lead is associated with.
+	ContactID *string `json:"contact_id,omitempty"`
 	// The identifier of the lead.
 	LeadID *string `json:"lead_id,omitempty"`
 	// The source of the lead.
@@ -35,14 +37,14 @@ type LeadInput struct {
 	// Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
 	Currency *Currency `json:"currency,omitempty"`
 	// The fax number of the lead.
-	Fax          *string       `json:"fax,omitempty"`
-	Websites     []Website     `json:"websites,omitempty"`
-	Addresses    []Address     `json:"addresses,omitempty"`
-	SocialLinks  []SocialLink  `json:"social_links,omitempty"`
-	PhoneNumbers []PhoneNumber `json:"phone_numbers,omitempty"`
-	Emails       []Email       `json:"emails,omitempty"`
-	CustomFields []CustomField `json:"custom_fields,omitempty"`
-	Tags         []string      `json:"tags,omitempty"`
+	Fax          *string            `json:"fax,omitempty"`
+	Websites     []Website          `json:"websites,omitempty"`
+	Addresses    []Address          `json:"addresses,omitempty"`
+	SocialLinks  []SocialLink       `json:"social_links,omitempty"`
+	PhoneNumbers []PhoneNumber      `json:"phone_numbers,omitempty"`
+	Emails       []Email            `json:"emails,omitempty"`
+	CustomFields []CustomFieldUnion `json:"custom_fields,omitempty"`
+	Tags         []string           `json:"tags,omitempty"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
 	PassThrough []PassThroughBody `json:"pass_through,omitempty"`
 }
@@ -80,6 +82,13 @@ func (o *LeadInput) GetCompanyID() *string {
 		return nil
 	}
 	return o.CompanyID
+}
+
+func (o *LeadInput) GetContactID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ContactID
 }
 
 func (o *LeadInput) GetLeadID() *string {
@@ -201,7 +210,7 @@ func (o *LeadInput) GetEmails() []Email {
 	return o.Emails
 }
 
-func (o *LeadInput) GetCustomFields() []CustomField {
+func (o *LeadInput) GetCustomFields() []CustomFieldUnion {
 	if o == nil {
 		return nil
 	}

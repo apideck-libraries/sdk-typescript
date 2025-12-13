@@ -10,6 +10,7 @@ let value: PipelineStages = {
   value: "CONTRACT_SENT",
   winProbability: 50,
   displayOrder: 1,
+  archived: false,
 };
 ```
 
@@ -21,3 +22,4 @@ let value: PipelineStages = {
 | `value`                                                                                              | *string*                                                                                             | :heavy_minus_sign:                                                                                   | The value of the Pipeline Stage.                                                                     | CONTRACT_SENT                                                                                        |
 | `winProbability`                                                                                     | *number*                                                                                             | :heavy_minus_sign:                                                                                   | The expected probability of winning an Opportunity in this Pipeline Stage. Valid values are [0-100]. | 50                                                                                                   |
 | `displayOrder`                                                                                       | *number*                                                                                             | :heavy_minus_sign:                                                                                   | The order in which the Pipeline Stage is displayed in the UI.                                        | 1                                                                                                    |
+| `archived`                                                                                           | *boolean*                                                                                            | :heavy_minus_sign:                                                                                   | Whether the Pipeline Stage is archived or not.                                                       | false                                                                                                |

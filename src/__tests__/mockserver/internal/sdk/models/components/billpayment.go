@@ -170,7 +170,7 @@ type BillPayment struct {
 	Number *string `json:"number,omitempty"`
 	// A list of linked tracking categories.
 	TrackingCategories []*LinkedTrackingCategory `json:"tracking_categories,omitempty"`
-	CustomFields       []CustomField             `json:"custom_fields,omitempty"`
+	CustomFields       []CustomFieldUnion        `json:"custom_fields,omitempty"`
 	// A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
 	RowVersion *string `json:"row_version,omitempty"`
 	// Id to be displayed.
@@ -340,7 +340,7 @@ func (o *BillPayment) GetTrackingCategories() []*LinkedTrackingCategory {
 	return o.TrackingCategories
 }
 
-func (o *BillPayment) GetCustomFields() []CustomField {
+func (o *BillPayment) GetCustomFields() []CustomFieldUnion {
 	if o == nil {
 		return nil
 	}
@@ -477,7 +477,7 @@ type BillPaymentInput struct {
 	Number *string `json:"number,omitempty"`
 	// A list of linked tracking categories.
 	TrackingCategories []*LinkedTrackingCategory `json:"tracking_categories,omitempty"`
-	CustomFields       []CustomField             `json:"custom_fields,omitempty"`
+	CustomFields       []CustomFieldUnion        `json:"custom_fields,omitempty"`
 	// A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
 	RowVersion *string `json:"row_version,omitempty"`
 	// Id to be displayed.
@@ -623,7 +623,7 @@ func (o *BillPaymentInput) GetTrackingCategories() []*LinkedTrackingCategory {
 	return o.TrackingCategories
 }
 
-func (o *BillPaymentInput) GetCustomFields() []CustomField {
+func (o *BillPaymentInput) GetCustomFields() []CustomFieldUnion {
 	if o == nil {
 		return nil
 	}

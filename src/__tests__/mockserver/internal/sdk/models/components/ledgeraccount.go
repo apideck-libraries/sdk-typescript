@@ -307,8 +307,8 @@ type LedgerAccount struct {
 	// The subsidiaries the account belongs to.
 	Subsidiaries []LedgerAccountSubsidiary `json:"subsidiaries,omitempty"`
 	// When custom mappings are configured on the resource, the result is included here.
-	CustomMappings map[string]any `json:"custom_mappings,omitempty"`
-	CustomFields   []CustomField  `json:"custom_fields,omitempty"`
+	CustomMappings map[string]any     `json:"custom_mappings,omitempty"`
+	CustomFields   []CustomFieldUnion `json:"custom_fields,omitempty"`
 	// A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
 	RowVersion *string `json:"row_version,omitempty"`
 	// The user who last updated the object.
@@ -523,7 +523,7 @@ func (o *LedgerAccount) GetCustomMappings() map[string]any {
 	return o.CustomMappings
 }
 
-func (o *LedgerAccount) GetCustomFields() []CustomField {
+func (o *LedgerAccount) GetCustomFields() []CustomFieldUnion {
 	if o == nil {
 		return nil
 	}
@@ -617,7 +617,7 @@ type LedgerAccountInput struct {
 	LastReconciliationDate *types.Date `json:"last_reconciliation_date,omitempty"`
 	// The subsidiaries the account belongs to.
 	Subsidiaries []LedgerAccountSubsidiary `json:"subsidiaries,omitempty"`
-	CustomFields []CustomField             `json:"custom_fields,omitempty"`
+	CustomFields []CustomFieldUnion        `json:"custom_fields,omitempty"`
 	// A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
 	RowVersion *string `json:"row_version,omitempty"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
@@ -796,7 +796,7 @@ func (o *LedgerAccountInput) GetSubsidiaries() []LedgerAccountSubsidiary {
 	return o.Subsidiaries
 }
 
-func (o *LedgerAccountInput) GetCustomFields() []CustomField {
+func (o *LedgerAccountInput) GetCustomFields() []CustomFieldUnion {
 	if o == nil {
 		return nil
 	}

@@ -13,5 +13,5 @@ let value: FilesSortBy = "updated_at";
 ## Values
 
 ```typescript
-"updated_at" | "name"
+"created_at" | "updated_at" | "name"
 ```

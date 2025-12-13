@@ -4,18 +4,38 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { ClosedEnum } from "../../types/enums.js";
+
+export const PaymentsFilterType = {
+  AccountsReceivable: "accounts_receivable",
+  AccountsPayable: "accounts_payable",
+  AccountsReceivableCredit: "accounts_receivable_credit",
+  AccountsPayableCredit: "accounts_payable_credit",
+  AccountsReceivableOverpayment: "accounts_receivable_overpayment",
+  AccountsPayableOverpayment: "accounts_payable_overpayment",
+  AccountsReceivablePrepayment: "accounts_receivable_prepayment",
+  AccountsPayablePrepayment: "accounts_payable_prepayment",
+} as const;
+export type PaymentsFilterType = ClosedEnum<typeof PaymentsFilterType>;
 
 export type PaymentsFilter = {
   updatedSince?: Date | undefined;
   invoiceId?: string | undefined;
   supplierId?: string | undefined;
+  type?: PaymentsFilterType | undefined;
 };
+
+/** @internal */
+export const PaymentsFilterType$outboundSchema: z.ZodNativeEnum<
+  typeof PaymentsFilterType
+> = z.nativeEnum(PaymentsFilterType);
 
 /** @internal */
 export type PaymentsFilter$Outbound = {
   updated_since?: string | undefined;
   invoice_id?: string | undefined;
   supplier_id?: string | undefined;
+  type?: string | undefined;
 };
 
 /** @internal */
@@ -27,6 +47,7 @@ export const PaymentsFilter$outboundSchema: z.ZodType<
   updatedSince: z.date().transform(v => v.toISOString()).optional(),
   invoiceId: z.string().optional(),
   supplierId: z.string().optional(),
+  type: PaymentsFilterType$outboundSchema.optional(),
 }).transform((v) => {
   return remap$(v, {
     updatedSince: "updated_since",

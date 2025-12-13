@@ -149,15 +149,17 @@ func testAccountingPurchaseOrdersAllAccountingPurchaseOrdersAll0(w http.Response
 							NominalCode: types.String("N091"),
 							Code:        types.String("453"),
 						},
-						CustomFields: []components.CustomField{
-							components.CustomField{
-								ID:          types.String("2389328923893298"),
-								Name:        types.String("employee_level"),
-								Description: types.String("Employee Level"),
-								Value: types.Pointer(components.CreateCustomFieldValue2Number(
-									10,
-								)),
-							},
+						CustomFields: []components.CustomFieldUnion{
+							components.CreateCustomFieldUnionCustomField1(
+								components.CustomField1{
+									ID:          types.String("2389328923893298"),
+									Name:        types.String("employee_level"),
+									Description: types.String("Employee Level"),
+									Value: types.Pointer(components.CreateCustomFieldValue2Number(
+										10,
+									)),
+								},
+							),
 						},
 						RowVersion: types.String("1-12345"),
 						UpdatedBy:  types.String("12345"),
@@ -204,23 +206,27 @@ func testAccountingPurchaseOrdersAllAccountingPurchaseOrdersAll0(w http.Response
 							NominalCode: types.String("N091"),
 							Code:        types.String("453"),
 						},
-						CustomFields: []components.CustomField{
-							components.CustomField{
-								ID:          types.String("2389328923893298"),
-								Name:        types.String("employee_level"),
-								Description: types.String("Employee Level"),
-								Value: types.Pointer(components.CreateCustomFieldValue2MapOfAny(
-									map[string]any{},
-								)),
-							},
-							components.CustomField{
-								ID:          types.String("2389328923893298"),
-								Name:        types.String("employee_level"),
-								Description: types.String("Employee Level"),
-								Value: types.Pointer(components.CreateCustomFieldValue2Str(
-									"Uses Salesforce and Marketo",
-								)),
-							},
+						CustomFields: []components.CustomFieldUnion{
+							components.CreateCustomFieldUnionCustomField1(
+								components.CustomField1{
+									ID:          types.String("2389328923893298"),
+									Name:        types.String("employee_level"),
+									Description: types.String("Employee Level"),
+									Value: types.Pointer(components.CreateCustomFieldValue2MapOfAny(
+										map[string]any{},
+									)),
+								},
+							),
+							components.CreateCustomFieldUnionCustomField1(
+								components.CustomField1{
+									ID:          types.String("2389328923893298"),
+									Name:        types.String("employee_level"),
+									Description: types.String("Employee Level"),
+									Value: types.Pointer(components.CreateCustomFieldValue2Str(
+										"Uses Salesforce and Marketo",
+									)),
+								},
+							),
 						},
 						RowVersion: types.String("1-12345"),
 						UpdatedBy:  types.String("12345"),
@@ -296,15 +302,17 @@ func testAccountingPurchaseOrdersAllAccountingPurchaseOrdersAll0(w http.Response
 						Name: types.String("New York"),
 					},
 				},
-				CustomFields: []components.CustomField{
-					components.CustomField{
-						ID:          types.String("2389328923893298"),
-						Name:        types.String("employee_level"),
-						Description: types.String("Employee Level"),
-						Value: types.Pointer(components.CreateCustomFieldValue2Str(
-							"Uses Salesforce and Marketo",
-						)),
-					},
+				CustomFields: []components.CustomFieldUnion{
+					components.CreateCustomFieldUnionCustomField1(
+						components.CustomField1{
+							ID:          types.String("2389328923893298"),
+							Name:        types.String("employee_level"),
+							Description: types.String("Employee Level"),
+							Value: types.Pointer(components.CreateCustomFieldValue2Str(
+								"Uses Salesforce and Marketo",
+							)),
+						},
+					),
 				},
 				RowVersion: types.String("1-12345"),
 				UpdatedBy:  types.String("12345"),
@@ -461,26 +469,30 @@ func testAccountingPurchaseOrdersAllAccountingPurchaseOrdersAll0(w http.Response
 							NominalCode: types.String("N091"),
 							Code:        types.String("453"),
 						},
-						CustomFields: []components.CustomField{
-							components.CustomField{
-								ID:          types.String("2389328923893298"),
-								Name:        types.String("employee_level"),
-								Description: types.String("Employee Level"),
-								Value: types.Pointer(components.CreateCustomFieldValue2Str(
-									"Uses Salesforce and Marketo",
-								)),
-							},
-							components.CustomField{
-								ID:          types.String("2389328923893298"),
-								Name:        types.String("employee_level"),
-								Description: types.String("Employee Level"),
-								Value: types.Pointer(components.CreateCustomFieldValue2MapOfAny(
-									map[string]any{
-										"0": map[string]any{},
-										"1": map[string]any{},
-									},
-								)),
-							},
+						CustomFields: []components.CustomFieldUnion{
+							components.CreateCustomFieldUnionCustomField1(
+								components.CustomField1{
+									ID:          types.String("2389328923893298"),
+									Name:        types.String("employee_level"),
+									Description: types.String("Employee Level"),
+									Value: types.Pointer(components.CreateCustomFieldValue2Str(
+										"Uses Salesforce and Marketo",
+									)),
+								},
+							),
+							components.CreateCustomFieldUnionCustomField1(
+								components.CustomField1{
+									ID:          types.String("2389328923893298"),
+									Name:        types.String("employee_level"),
+									Description: types.String("Employee Level"),
+									Value: types.Pointer(components.CreateCustomFieldValue2MapOfAny(
+										map[string]any{
+											"0": map[string]any{},
+											"1": map[string]any{},
+										},
+									)),
+								},
+							),
 						},
 						RowVersion: types.String("1-12345"),
 						UpdatedBy:  types.String("12345"),
@@ -556,23 +568,27 @@ func testAccountingPurchaseOrdersAllAccountingPurchaseOrdersAll0(w http.Response
 						Name: types.String("New York"),
 					},
 				},
-				CustomFields: []components.CustomField{
-					components.CustomField{
-						ID:          types.String("2389328923893298"),
-						Name:        types.String("employee_level"),
-						Description: types.String("Employee Level"),
-						Value: types.Pointer(components.CreateCustomFieldValue2Str(
-							"Uses Salesforce and Marketo",
-						)),
-					},
-					components.CustomField{
-						ID:          types.String("2389328923893298"),
-						Name:        types.String("employee_level"),
-						Description: types.String("Employee Level"),
-						Value: types.Pointer(components.CreateCustomFieldValue2Number(
-							10,
-						)),
-					},
+				CustomFields: []components.CustomFieldUnion{
+					components.CreateCustomFieldUnionCustomField1(
+						components.CustomField1{
+							ID:          types.String("2389328923893298"),
+							Name:        types.String("employee_level"),
+							Description: types.String("Employee Level"),
+							Value: types.Pointer(components.CreateCustomFieldValue2Str(
+								"Uses Salesforce and Marketo",
+							)),
+						},
+					),
+					components.CreateCustomFieldUnionCustomField1(
+						components.CustomField1{
+							ID:          types.String("2389328923893298"),
+							Name:        types.String("employee_level"),
+							Description: types.String("Employee Level"),
+							Value: types.Pointer(components.CreateCustomFieldValue2Number(
+								10,
+							)),
+						},
+					),
 				},
 				RowVersion: types.String("1-12345"),
 				UpdatedBy:  types.String("12345"),
@@ -733,15 +749,17 @@ func testAccountingPurchaseOrdersAllAccountingPurchaseOrdersAll0(w http.Response
 							NominalCode: types.String("N091"),
 							Code:        types.String("453"),
 						},
-						CustomFields: []components.CustomField{
-							components.CustomField{
-								ID:          types.String("2389328923893298"),
-								Name:        types.String("employee_level"),
-								Description: types.String("Employee Level"),
-								Value: types.Pointer(components.CreateCustomFieldValue2MapOfAny(
-									map[string]any{},
-								)),
-							},
+						CustomFields: []components.CustomFieldUnion{
+							components.CreateCustomFieldUnionCustomField1(
+								components.CustomField1{
+									ID:          types.String("2389328923893298"),
+									Name:        types.String("employee_level"),
+									Description: types.String("Employee Level"),
+									Value: types.Pointer(components.CreateCustomFieldValue2MapOfAny(
+										map[string]any{},
+									)),
+								},
+							),
 						},
 						RowVersion: types.String("1-12345"),
 						UpdatedBy:  types.String("12345"),
@@ -792,23 +810,27 @@ func testAccountingPurchaseOrdersAllAccountingPurchaseOrdersAll0(w http.Response
 							NominalCode: types.String("N091"),
 							Code:        types.String("453"),
 						},
-						CustomFields: []components.CustomField{
-							components.CustomField{
-								ID:          types.String("2389328923893298"),
-								Name:        types.String("employee_level"),
-								Description: types.String("Employee Level"),
-								Value: types.Pointer(components.CreateCustomFieldValue2Boolean(
-									true,
-								)),
-							},
-							components.CustomField{
-								ID:          types.String("2389328923893298"),
-								Name:        types.String("employee_level"),
-								Description: types.String("Employee Level"),
-								Value: types.Pointer(components.CreateCustomFieldValue2Boolean(
-									true,
-								)),
-							},
+						CustomFields: []components.CustomFieldUnion{
+							components.CreateCustomFieldUnionCustomField1(
+								components.CustomField1{
+									ID:          types.String("2389328923893298"),
+									Name:        types.String("employee_level"),
+									Description: types.String("Employee Level"),
+									Value: types.Pointer(components.CreateCustomFieldValue2Boolean(
+										true,
+									)),
+								},
+							),
+							components.CreateCustomFieldUnionCustomField1(
+								components.CustomField1{
+									ID:          types.String("2389328923893298"),
+									Name:        types.String("employee_level"),
+									Description: types.String("Employee Level"),
+									Value: types.Pointer(components.CreateCustomFieldValue2Boolean(
+										true,
+									)),
+								},
+							),
 						},
 						RowVersion: types.String("1-12345"),
 						UpdatedBy:  types.String("12345"),
@@ -855,27 +877,31 @@ func testAccountingPurchaseOrdersAllAccountingPurchaseOrdersAll0(w http.Response
 							NominalCode: types.String("N091"),
 							Code:        types.String("453"),
 						},
-						CustomFields: []components.CustomField{
-							components.CustomField{
-								ID:          types.String("2389328923893298"),
-								Name:        types.String("employee_level"),
-								Description: types.String("Employee Level"),
-								Value: types.Pointer(components.CreateCustomFieldValue2MapOfAny(
-									map[string]any{
-										"0": map[string]any{},
-									},
-								)),
-							},
-							components.CustomField{
-								ID:          types.String("2389328923893298"),
-								Name:        types.String("employee_level"),
-								Description: types.String("Employee Level"),
-								Value: types.Pointer(components.CreateCustomFieldValue2MapOfAny(
-									map[string]any{
-										"0": map[string]any{},
-									},
-								)),
-							},
+						CustomFields: []components.CustomFieldUnion{
+							components.CreateCustomFieldUnionCustomField1(
+								components.CustomField1{
+									ID:          types.String("2389328923893298"),
+									Name:        types.String("employee_level"),
+									Description: types.String("Employee Level"),
+									Value: types.Pointer(components.CreateCustomFieldValue2MapOfAny(
+										map[string]any{
+											"0": map[string]any{},
+										},
+									)),
+								},
+							),
+							components.CreateCustomFieldUnionCustomField1(
+								components.CustomField1{
+									ID:          types.String("2389328923893298"),
+									Name:        types.String("employee_level"),
+									Description: types.String("Employee Level"),
+									Value: types.Pointer(components.CreateCustomFieldValue2MapOfAny(
+										map[string]any{
+											"0": map[string]any{},
+										},
+									)),
+								},
+							),
 						},
 						RowVersion: types.String("1-12345"),
 						UpdatedBy:  types.String("12345"),
@@ -947,15 +973,17 @@ func testAccountingPurchaseOrdersAllAccountingPurchaseOrdersAll0(w http.Response
 						Name: types.String("New York"),
 					},
 				},
-				CustomFields: []components.CustomField{
-					components.CustomField{
-						ID:          types.String("2389328923893298"),
-						Name:        types.String("employee_level"),
-						Description: types.String("Employee Level"),
-						Value: types.Pointer(components.CreateCustomFieldValue2Number(
-							10,
-						)),
-					},
+				CustomFields: []components.CustomFieldUnion{
+					components.CreateCustomFieldUnionCustomField1(
+						components.CustomField1{
+							ID:          types.String("2389328923893298"),
+							Name:        types.String("employee_level"),
+							Description: types.String("Employee Level"),
+							Value: types.Pointer(components.CreateCustomFieldValue2Number(
+								10,
+							)),
+						},
+					),
 				},
 				RowVersion: types.String("1-12345"),
 				UpdatedBy:  types.String("12345"),

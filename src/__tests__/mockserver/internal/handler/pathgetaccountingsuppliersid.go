@@ -246,23 +246,27 @@ func testAccountingSuppliersOneAccountingSuppliersOne0(w http.ResponseWriter, re
 			Status:        components.SupplierStatusActive.ToPointer(),
 			PaymentMethod: types.String("cash"),
 			Channel:       types.String("email"),
-			CustomFields: []components.CustomField{
-				components.CustomField{
-					ID:          types.String("2389328923893298"),
-					Name:        types.String("employee_level"),
-					Description: types.String("Employee Level"),
-					Value: types.Pointer(components.CreateCustomFieldValue2Boolean(
-						true,
-					)),
-				},
-				components.CustomField{
-					ID:          types.String("2389328923893298"),
-					Name:        types.String("employee_level"),
-					Description: types.String("Employee Level"),
-					Value: types.Pointer(components.CreateCustomFieldValue2Number(
-						10,
-					)),
-				},
+			CustomFields: []components.CustomFieldUnion{
+				components.CreateCustomFieldUnionCustomField1(
+					components.CustomField1{
+						ID:          types.String("2389328923893298"),
+						Name:        types.String("employee_level"),
+						Description: types.String("Employee Level"),
+						Value: types.Pointer(components.CreateCustomFieldValue2Boolean(
+							true,
+						)),
+					},
+				),
+				components.CreateCustomFieldUnionCustomField1(
+					components.CustomField1{
+						ID:          types.String("2389328923893298"),
+						Name:        types.String("employee_level"),
+						Description: types.String("Employee Level"),
+						Value: types.Pointer(components.CreateCustomFieldValue2Number(
+							10,
+						)),
+					},
+				),
 			},
 			UpdatedBy:  types.String("12345"),
 			CreatedBy:  types.String("12345"),

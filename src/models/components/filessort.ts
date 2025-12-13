@@ -13,6 +13,7 @@ import {
  * The field on which to sort the Files
  */
 export const FilesSortBy = {
+  CreatedAt: "created_at",
   UpdatedAt: "updated_at",
   Name: "name",
 } as const;

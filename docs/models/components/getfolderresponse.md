@@ -15,6 +15,7 @@ let value: GetFolderResponse = {
   operation: "one",
   data: {
     id: "12345",
+    downstreamId: "12345",
     name: "Documents",
     description: "My Personal Documents",
     path: "/Personal/Documents",

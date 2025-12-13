@@ -71,16 +71,16 @@ type Company1 struct {
 	// The last name of the person.
 	LastName *string `json:"last_name,omitempty"`
 	// Parent ID
-	ParentID     *string         `json:"parent_id,omitempty"`
-	BankAccounts []BankAccount1  `json:"bank_accounts,omitempty"`
-	Websites     []Website       `json:"websites,omitempty"`
-	Addresses    []Address       `json:"addresses,omitempty"`
-	SocialLinks  []SocialLink    `json:"social_links,omitempty"`
-	PhoneNumbers []PhoneNumber   `json:"phone_numbers,omitempty"`
-	Emails       []Email         `json:"emails,omitempty"`
-	RowType      *CompanyRowType `json:"row_type,omitempty"`
-	CustomFields []CustomField   `json:"custom_fields,omitempty"`
-	Tags         []string        `json:"tags,omitempty"`
+	ParentID     *string            `json:"parent_id,omitempty"`
+	BankAccounts []BankAccount1     `json:"bank_accounts,omitempty"`
+	Websites     []Website          `json:"websites,omitempty"`
+	Addresses    []Address          `json:"addresses,omitempty"`
+	SocialLinks  []SocialLink       `json:"social_links,omitempty"`
+	PhoneNumbers []PhoneNumber      `json:"phone_numbers,omitempty"`
+	Emails       []Email            `json:"emails,omitempty"`
+	RowType      *CompanyRowType    `json:"row_type,omitempty"`
+	CustomFields []CustomFieldUnion `json:"custom_fields,omitempty"`
+	Tags         []string           `json:"tags,omitempty"`
 	// Whether the company is read-only or not
 	ReadOnly *bool `json:"read_only,omitempty"`
 	// Last activity date
@@ -319,7 +319,7 @@ func (o *Company1) GetRowType() *CompanyRowType {
 	return o.RowType
 }
 
-func (o *Company1) GetCustomFields() []CustomField {
+func (o *Company1) GetCustomFields() []CustomFieldUnion {
 	if o == nil {
 		return nil
 	}
@@ -448,16 +448,16 @@ type Company1Input struct {
 	// The first name of the person.
 	FirstName *string `json:"first_name,omitempty"`
 	// The last name of the person.
-	LastName     *string         `json:"last_name,omitempty"`
-	BankAccounts []BankAccount1  `json:"bank_accounts,omitempty"`
-	Websites     []Website       `json:"websites,omitempty"`
-	Addresses    []Address       `json:"addresses,omitempty"`
-	SocialLinks  []SocialLink    `json:"social_links,omitempty"`
-	PhoneNumbers []PhoneNumber   `json:"phone_numbers,omitempty"`
-	Emails       []Email         `json:"emails,omitempty"`
-	RowType      *CompanyRowType `json:"row_type,omitempty"`
-	CustomFields []CustomField   `json:"custom_fields,omitempty"`
-	Tags         []string        `json:"tags,omitempty"`
+	LastName     *string            `json:"last_name,omitempty"`
+	BankAccounts []BankAccount1     `json:"bank_accounts,omitempty"`
+	Websites     []Website          `json:"websites,omitempty"`
+	Addresses    []Address          `json:"addresses,omitempty"`
+	SocialLinks  []SocialLink       `json:"social_links,omitempty"`
+	PhoneNumbers []PhoneNumber      `json:"phone_numbers,omitempty"`
+	Emails       []Email            `json:"emails,omitempty"`
+	RowType      *CompanyRowType    `json:"row_type,omitempty"`
+	CustomFields []CustomFieldUnion `json:"custom_fields,omitempty"`
+	Tags         []string           `json:"tags,omitempty"`
 	// Whether the company is read-only or not
 	ReadOnly *bool `json:"read_only,omitempty"`
 	// A formal salutation for the person. For example, 'Mr', 'Mrs'
@@ -661,7 +661,7 @@ func (o *Company1Input) GetRowType() *CompanyRowType {
 	return o.RowType
 }
 
-func (o *Company1Input) GetCustomFields() []CustomField {
+func (o *Company1Input) GetCustomFields() []CustomFieldUnion {
 	if o == nil {
 		return nil
 	}
