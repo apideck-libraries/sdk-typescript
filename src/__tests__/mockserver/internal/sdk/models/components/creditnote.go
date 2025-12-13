@@ -126,8 +126,8 @@ type CreditNote struct {
 	// A list of linked tracking categories.
 	TrackingCategories []*LinkedTrackingCategory `json:"tracking_categories,omitempty"`
 	// When custom mappings are configured on the resource, the result is included here.
-	CustomMappings map[string]any `json:"custom_mappings,omitempty"`
-	CustomFields   []CustomField  `json:"custom_fields,omitempty"`
+	CustomMappings map[string]any     `json:"custom_mappings,omitempty"`
+	CustomFields   []CustomFieldUnion `json:"custom_fields,omitempty"`
 	// A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
 	RowVersion *string `json:"row_version,omitempty"`
 	// The user who last updated the object.
@@ -349,7 +349,7 @@ func (o *CreditNote) GetCustomMappings() map[string]any {
 	return o.CustomMappings
 }
 
-func (o *CreditNote) GetCustomFields() []CustomField {
+func (o *CreditNote) GetCustomFields() []CustomFieldUnion {
 	if o == nil {
 		return nil
 	}
@@ -446,7 +446,7 @@ type CreditNoteInput struct {
 	ShippingAddress *Address `json:"shipping_address,omitempty"`
 	// A list of linked tracking categories.
 	TrackingCategories []*LinkedTrackingCategory `json:"tracking_categories,omitempty"`
-	CustomFields       []CustomField             `json:"custom_fields,omitempty"`
+	CustomFields       []CustomFieldUnion        `json:"custom_fields,omitempty"`
 	// A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
 	RowVersion *string `json:"row_version,omitempty"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
@@ -646,7 +646,7 @@ func (o *CreditNoteInput) GetTrackingCategories() []*LinkedTrackingCategory {
 	return o.TrackingCategories
 }
 
-func (o *CreditNoteInput) GetCustomFields() []CustomField {
+func (o *CreditNoteInput) GetCustomFields() []CustomFieldUnion {
 	if o == nil {
 		return nil
 	}

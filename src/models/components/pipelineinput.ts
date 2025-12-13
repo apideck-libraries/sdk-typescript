@@ -28,6 +28,10 @@ export type PipelineStages = {
    * The order in which the Pipeline Stage is displayed in the UI.
    */
   displayOrder?: number | null | undefined;
+  /**
+   * Whether the Pipeline Stage is archived or not.
+   */
+  archived?: boolean | null | undefined;
 };
 
 export type PipelineInput = {
@@ -75,6 +79,7 @@ export type PipelineStages$Outbound = {
   value?: string | null | undefined;
   win_probability?: number | null | undefined;
   display_order?: number | null | undefined;
+  archived?: boolean | null | undefined;
 };
 
 /** @internal */
@@ -87,6 +92,7 @@ export const PipelineStages$outboundSchema: z.ZodType<
   value: z.nullable(z.string()).optional(),
   winProbability: z.nullable(z.number().int()).optional(),
   displayOrder: z.nullable(z.number().int()).optional(),
+  archived: z.nullable(z.boolean()).optional(),
 }).transform((v) => {
   return remap$(v, {
     winProbability: "win_probability",

@@ -269,10 +269,10 @@ type Job struct {
 	Links        []Link  `json:"links,omitempty"`
 	Confidential *bool   `json:"confidential,omitempty"`
 	// Specifies whether an employee of the organization can apply for the job.
-	AvailableToEmployees *bool         `json:"available_to_employees,omitempty"`
-	Tags                 []string      `json:"tags,omitempty"`
-	Addresses            []Address     `json:"addresses,omitempty"`
-	CustomFields         []CustomField `json:"custom_fields,omitempty"`
+	AvailableToEmployees *bool              `json:"available_to_employees,omitempty"`
+	Tags                 []string           `json:"tags,omitempty"`
+	Addresses            []Address          `json:"addresses,omitempty"`
+	CustomFields         []CustomFieldUnion `json:"custom_fields,omitempty"`
 	// Flag to indicate if the object is deleted.
 	Deleted     *bool      `json:"deleted,omitempty"`
 	OwnerID     *string    `json:"owner_id,omitempty"`
@@ -531,7 +531,7 @@ func (o *Job) GetAddresses() []Address {
 	return o.Addresses
 }
 
-func (o *Job) GetCustomFields() []CustomField {
+func (o *Job) GetCustomFields() []CustomFieldUnion {
 	if o == nil {
 		return nil
 	}

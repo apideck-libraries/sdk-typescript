@@ -37,6 +37,7 @@ export * from "./balancesheetfilter.js";
 export * from "./bankaccount.js";
 export * from "./bankaccount1.js";
 export * from "./bankaccount2.js";
+export * from "./bankaccountfilter.js";
 export * from "./bankaccountsfilter.js";
 export * from "./bankaccountssort.js";
 export * from "./bankfeedaccount.js";

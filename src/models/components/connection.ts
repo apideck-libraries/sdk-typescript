@@ -75,7 +75,7 @@ export const Target = {
 } as const;
 export type Target = ClosedEnum<typeof Target>;
 
-export type ConnectionValue5 = string | number | number;
+export type Value5 = string | number | number;
 
 export type ConnectionValue =
   | string
@@ -290,35 +290,28 @@ export const Target$inboundSchema: z.ZodNativeEnum<typeof Target> = z
   .nativeEnum(Target);
 
 /** @internal */
-export const ConnectionValue5$inboundSchema: z.ZodType<
-  ConnectionValue5,
-  z.ZodTypeDef,
-  unknown
-> = z.union([z.string(), z.number().int(), z.number()]);
+export const Value5$inboundSchema: z.ZodType<Value5, z.ZodTypeDef, unknown> = z
+  .union([z.string(), z.number().int(), z.number()]);
 /** @internal */
-export type ConnectionValue5$Outbound = string | number | number;
+export type Value5$Outbound = string | number | number;
 
 /** @internal */
-export const ConnectionValue5$outboundSchema: z.ZodType<
-  ConnectionValue5$Outbound,
+export const Value5$outboundSchema: z.ZodType<
+  Value5$Outbound,
   z.ZodTypeDef,
-  ConnectionValue5
+  Value5
 > = z.union([z.string(), z.number().int(), z.number()]);
 
-export function connectionValue5ToJSON(
-  connectionValue5: ConnectionValue5,
-): string {
-  return JSON.stringify(
-    ConnectionValue5$outboundSchema.parse(connectionValue5),
-  );
+export function value5ToJSON(value5: Value5): string {
+  return JSON.stringify(Value5$outboundSchema.parse(value5));
 }
-export function connectionValue5FromJSON(
+export function value5FromJSON(
   jsonString: string,
-): SafeParseResult<ConnectionValue5, SDKValidationError> {
+): SafeParseResult<Value5, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => ConnectionValue5$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ConnectionValue5' from JSON`,
+    (x) => Value5$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Value5' from JSON`,
   );
 }
 

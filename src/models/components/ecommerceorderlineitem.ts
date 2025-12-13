@@ -50,7 +50,7 @@ export type EcommerceOrderLineItem = {
   /**
    * The name of the product or variant associated with the line item.
    */
-  name: string | null;
+  name?: string | null | undefined;
   /**
    * The description of the product or variant associated with the line item.
    */
@@ -123,7 +123,7 @@ export const EcommerceOrderLineItem$inboundSchema: z.ZodType<
   product_id: z.nullable(z.string()).optional(),
   variant_id: z.nullable(z.string()).optional(),
   sku: z.nullable(z.string()).optional(),
-  name: z.nullable(z.string()),
+  name: z.nullable(z.string()).optional(),
   description: z.nullable(z.string()).optional(),
   options: z.array(z.lazy(() => Options$inboundSchema)).optional(),
   quantity: z.nullable(z.string()),

@@ -164,6 +164,10 @@ export type InvoiceItem = {
    */
   subsidiaryId?: string | null | undefined;
   /**
+   * ID of the category of the item
+   */
+  categoryId?: string | null | undefined;
+  /**
    * The ID of the tax schedule
    */
   taxScheduleId?: string | null | undefined;
@@ -297,6 +301,10 @@ export type InvoiceItemInput = {
    */
   subsidiaryId?: string | null | undefined;
   /**
+   * ID of the category of the item
+   */
+  categoryId?: string | null | undefined;
+  /**
    * The ID of the tax schedule
    */
   taxScheduleId?: string | null | undefined;
@@ -412,6 +420,7 @@ export const InvoiceItem$inboundSchema: z.ZodType<
   department_id: z.nullable(z.string()).optional(),
   location_id: z.nullable(z.string()).optional(),
   subsidiary_id: z.nullable(z.string()).optional(),
+  category_id: z.nullable(z.string()).optional(),
   tax_schedule_id: z.nullable(z.string()).optional(),
   custom_mappings: z.nullable(z.record(z.any())).optional(),
   row_version: z.nullable(z.string()).optional(),
@@ -439,6 +448,7 @@ export const InvoiceItem$inboundSchema: z.ZodType<
     "department_id": "departmentId",
     "location_id": "locationId",
     "subsidiary_id": "subsidiaryId",
+    "category_id": "categoryId",
     "tax_schedule_id": "taxScheduleId",
     "custom_mappings": "customMappings",
     "row_version": "rowVersion",
@@ -562,6 +572,7 @@ export type InvoiceItemInput$Outbound = {
   department_id?: string | null | undefined;
   location_id?: string | null | undefined;
   subsidiary_id?: string | null | undefined;
+  category_id?: string | null | undefined;
   tax_schedule_id?: string | null | undefined;
   row_version?: string | null | undefined;
   pass_through?: Array<PassThroughBody$Outbound> | undefined;
@@ -602,6 +613,7 @@ export const InvoiceItemInput$outboundSchema: z.ZodType<
   departmentId: z.nullable(z.string()).optional(),
   locationId: z.nullable(z.string()).optional(),
   subsidiaryId: z.nullable(z.string()).optional(),
+  categoryId: z.nullable(z.string()).optional(),
   taxScheduleId: z.nullable(z.string()).optional(),
   rowVersion: z.nullable(z.string()).optional(),
   passThrough: z.array(PassThroughBody$outboundSchema).optional(),
@@ -620,6 +632,7 @@ export const InvoiceItemInput$outboundSchema: z.ZodType<
     departmentId: "department_id",
     locationId: "location_id",
     subsidiaryId: "subsidiary_id",
+    categoryId: "category_id",
     taxScheduleId: "tax_schedule_id",
     rowVersion: "row_version",
     passThrough: "pass_through",

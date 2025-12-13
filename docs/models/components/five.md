@@ -6,26 +6,18 @@
 ### `string`
 
 ```typescript
-const value: string = "Uses Salesforce and Marketo";
+const value: string = "<value>";
 ```
 
 ### `number`
 
 ```typescript
-const value: number = 10;
+const value: number = 128403;
 ```
 
-### `boolean`
+### `number`
 
 ```typescript
-const value: boolean = true;
-```
-
-### `{ [k: string]: any }`
-
-```typescript
-const value: { [k: string]: any } = {
-  "foo": "bar",
-};
+const value: number = 1284.03;
 ```
 

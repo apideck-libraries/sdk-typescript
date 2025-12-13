@@ -43,7 +43,7 @@ type EcommerceOrderLineItem struct {
 	// The SKU of the product or variant associated with the line item.
 	Sku *string `json:"sku,omitempty"`
 	// The name of the product or variant associated with the line item.
-	Name *string `json:"name"`
+	Name *string `json:"name,omitempty"`
 	// The description of the product or variant associated with the line item.
 	Description *string                        `json:"description,omitempty"`
 	Options     []EcommerceOrderLineItemOption `json:"options,omitempty"`

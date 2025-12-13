@@ -51475,6 +51475,10 @@ workflows:
           - name: fields
             in: query
             value: id,updated_at
+          - name: filter
+            in: query
+            value:
+              account_type: checking
           - name: x-apideck-consumer-id
             in: header
             value: test-consumer

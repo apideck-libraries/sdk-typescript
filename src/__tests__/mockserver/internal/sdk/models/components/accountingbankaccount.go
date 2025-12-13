@@ -122,8 +122,8 @@ type AccountingBankAccount struct {
 	// The status of the bank account
 	Status *AccountingBankAccountStatus `json:"status,omitempty"`
 	// Description or notes about the bank account
-	Description  *string       `json:"description,omitempty"`
-	CustomFields []CustomField `json:"custom_fields,omitempty"`
+	Description  *string            `json:"description,omitempty"`
+	CustomFields []CustomFieldUnion `json:"custom_fields,omitempty"`
 	// When custom mappings are configured on the resource, the result is included here.
 	CustomMappings map[string]any `json:"custom_mappings,omitempty"`
 	// The date and time when the object was created.
@@ -294,7 +294,7 @@ func (o *AccountingBankAccount) GetDescription() *string {
 	return o.Description
 }
 
-func (o *AccountingBankAccount) GetCustomFields() []CustomField {
+func (o *AccountingBankAccount) GetCustomFields() []CustomFieldUnion {
 	if o == nil {
 		return nil
 	}
@@ -373,8 +373,8 @@ type AccountingBankAccountInput struct {
 	// The status of the bank account
 	Status *AccountingBankAccountStatus `json:"status,omitempty"`
 	// Description or notes about the bank account
-	Description  *string       `json:"description,omitempty"`
-	CustomFields []CustomField `json:"custom_fields,omitempty"`
+	Description  *string            `json:"description,omitempty"`
+	CustomFields []CustomFieldUnion `json:"custom_fields,omitempty"`
 }
 
 func (o *AccountingBankAccountInput) GetDisplayID() *string {
@@ -510,7 +510,7 @@ func (o *AccountingBankAccountInput) GetDescription() *string {
 	return o.Description
 }
 
-func (o *AccountingBankAccountInput) GetCustomFields() []CustomField {
+func (o *AccountingBankAccountInput) GetCustomFields() []CustomFieldUnion {
 	if o == nil {
 		return nil
 	}

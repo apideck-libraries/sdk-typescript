@@ -173,7 +173,7 @@ type Applicant struct {
 	// The job title of the person.
 	Title          *string               `json:"title,omitempty"`
 	Emails         []Email               `json:"emails,omitempty"`
-	CustomFields   []CustomField         `json:"custom_fields,omitempty"`
+	CustomFields   []CustomFieldUnion    `json:"custom_fields,omitempty"`
 	PhoneNumbers   []PhoneNumber         `json:"phone_numbers,omitempty"`
 	Addresses      []Address             `json:"addresses,omitempty"`
 	Websites       []ApplicantWebsite    `json:"websites,omitempty"`
@@ -349,7 +349,7 @@ func (o *Applicant) GetEmails() []Email {
 	return o.Emails
 }
 
-func (o *Applicant) GetCustomFields() []CustomField {
+func (o *Applicant) GetCustomFields() []CustomFieldUnion {
 	if o == nil {
 		return nil
 	}
@@ -601,7 +601,7 @@ type ApplicantInput struct {
 	// The job title of the person.
 	Title          *string               `json:"title,omitempty"`
 	Emails         []Email               `json:"emails,omitempty"`
-	CustomFields   []CustomField         `json:"custom_fields,omitempty"`
+	CustomFields   []CustomFieldUnion    `json:"custom_fields,omitempty"`
 	PhoneNumbers   []PhoneNumber         `json:"phone_numbers,omitempty"`
 	Addresses      []Address             `json:"addresses,omitempty"`
 	Websites       []ApplicantWebsite    `json:"websites,omitempty"`
@@ -744,7 +744,7 @@ func (o *ApplicantInput) GetEmails() []Email {
 	return o.Emails
 }
 
-func (o *ApplicantInput) GetCustomFields() []CustomField {
+func (o *ApplicantInput) GetCustomFields() []CustomFieldUnion {
 	if o == nil {
 		return nil
 	}

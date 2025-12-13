@@ -352,8 +352,8 @@ type Project struct {
 	// An array of addresses associated with the project (billing, job site, etc.)
 	Addresses []Address `json:"addresses,omitempty"`
 	// Number of team members assigned to the project
-	TeamSize     *int64        `json:"team_size,omitempty"`
-	CustomFields []CustomField `json:"custom_fields,omitempty"`
+	TeamSize     *int64             `json:"team_size,omitempty"`
+	CustomFields []CustomFieldUnion `json:"custom_fields,omitempty"`
 	// A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
 	RowVersion *string `json:"row_version,omitempty"`
 	// The user who last updated the object.
@@ -636,7 +636,7 @@ func (o *Project) GetTeamSize() *int64 {
 	return o.TeamSize
 }
 
-func (o *Project) GetCustomFields() []CustomField {
+func (o *Project) GetCustomFields() []CustomFieldUnion {
 	if o == nil {
 		return nil
 	}
@@ -743,8 +743,8 @@ type ProjectInput struct {
 	// An array of addresses associated with the project (billing, job site, etc.)
 	Addresses []Address `json:"addresses,omitempty"`
 	// Number of team members assigned to the project
-	TeamSize     *int64        `json:"team_size,omitempty"`
-	CustomFields []CustomField `json:"custom_fields,omitempty"`
+	TeamSize     *int64             `json:"team_size,omitempty"`
+	CustomFields []CustomFieldUnion `json:"custom_fields,omitempty"`
 	// A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
 	RowVersion *string `json:"row_version,omitempty"`
 }
@@ -991,7 +991,7 @@ func (o *ProjectInput) GetTeamSize() *int64 {
 	return o.TeamSize
 }
 
-func (o *ProjectInput) GetCustomFields() []CustomField {
+func (o *ProjectInput) GetCustomFields() []CustomFieldUnion {
 	if o == nil {
 		return nil
 	}

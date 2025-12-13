@@ -106,8 +106,8 @@ type JournalEntry struct {
 	// The date and time when the object was created.
 	CreatedAt *time.Time `json:"created_at,omitempty"`
 	// A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
-	RowVersion   *string       `json:"row_version,omitempty"`
-	CustomFields []CustomField `json:"custom_fields,omitempty"`
+	RowVersion   *string            `json:"row_version,omitempty"`
+	CustomFields []CustomFieldUnion `json:"custom_fields,omitempty"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
 	PassThrough []PassThroughBody `json:"pass_through,omitempty"`
 }
@@ -305,7 +305,7 @@ func (o *JournalEntry) GetRowVersion() *string {
 	return o.RowVersion
 }
 
-func (o *JournalEntry) GetCustomFields() []CustomField {
+func (o *JournalEntry) GetCustomFields() []CustomFieldUnion {
 	if o == nil {
 		return nil
 	}
@@ -357,8 +357,8 @@ type JournalEntryInput struct {
 	// A unique identifier for the source of the journal entry
 	SourceID *string `json:"source_id,omitempty"`
 	// A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
-	RowVersion   *string       `json:"row_version,omitempty"`
-	CustomFields []CustomField `json:"custom_fields,omitempty"`
+	RowVersion   *string            `json:"row_version,omitempty"`
+	CustomFields []CustomFieldUnion `json:"custom_fields,omitempty"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
 	PassThrough []PassThroughBody `json:"pass_through,omitempty"`
 }
@@ -507,7 +507,7 @@ func (o *JournalEntryInput) GetRowVersion() *string {
 	return o.RowVersion
 }
 
-func (o *JournalEntryInput) GetCustomFields() []CustomField {
+func (o *JournalEntryInput) GetCustomFields() []CustomFieldUnion {
 	if o == nil {
 		return nil
 	}

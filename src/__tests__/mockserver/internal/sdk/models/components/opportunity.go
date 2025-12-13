@@ -65,8 +65,8 @@ type Opportunity struct {
 	StatusID *string  `json:"status_id,omitempty"`
 	Tags     []string `json:"tags,omitempty"`
 	// The number of interactions with the opportunity.
-	InteractionCount *float64      `json:"interaction_count,omitempty"`
-	CustomFields     []CustomField `json:"custom_fields,omitempty"`
+	InteractionCount *float64           `json:"interaction_count,omitempty"`
+	CustomFields     []CustomFieldUnion `json:"custom_fields,omitempty"`
 	// The date and time when the stage of the opportunity was last changed.
 	StageLastChangedAt *time.Time `json:"stage_last_changed_at,omitempty"`
 	// The date and time of the last activity associated with the opportunity.
@@ -307,7 +307,7 @@ func (o *Opportunity) GetInteractionCount() *float64 {
 	return o.InteractionCount
 }
 
-func (o *Opportunity) GetCustomFields() []CustomField {
+func (o *Opportunity) GetCustomFields() []CustomFieldUnion {
 	if o == nil {
 		return nil
 	}

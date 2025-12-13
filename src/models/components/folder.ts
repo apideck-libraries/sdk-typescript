@@ -16,6 +16,10 @@ export type Folder = {
    */
   id?: string | undefined;
   /**
+   * The third-party API ID of original entity
+   */
+  downstreamId?: string | null | undefined;
+  /**
    * The name of the folder
    */
   name: string;
@@ -31,6 +35,10 @@ export type Folder = {
    * The size of the folder in bytes
    */
   size?: number | null | undefined;
+  /**
+   * Whether the current user can download the contents of this folder
+   */
+  downloadable?: boolean | null | undefined;
   owner?: Owner | undefined;
   /**
    * The parent folders of the file, starting from the root
@@ -66,10 +74,12 @@ export type Folder = {
 export const Folder$inboundSchema: z.ZodType<Folder, z.ZodTypeDef, unknown> = z
   .object({
     id: z.string().optional(),
+    downstream_id: z.nullable(z.string()).optional(),
     name: z.string(),
     description: z.nullable(z.string()).optional(),
     path: z.nullable(z.string()).optional(),
     size: z.nullable(z.number().int()).optional(),
+    downloadable: z.nullable(z.boolean()).optional(),
     owner: Owner$inboundSchema.optional(),
     parent_folders: z.array(LinkedFolder$inboundSchema),
     parent_folders_complete: z.boolean().optional(),
@@ -84,6 +94,7 @@ export const Folder$inboundSchema: z.ZodType<Folder, z.ZodTypeDef, unknown> = z
     ).optional(),
   }).transform((v) => {
     return remap$(v, {
+      "downstream_id": "downstreamId",
       "parent_folders": "parentFolders",
       "parent_folders_complete": "parentFoldersComplete",
       "custom_mappings": "customMappings",
