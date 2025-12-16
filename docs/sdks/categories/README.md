@@ -1,5 +1,4 @@
-# Categories
-(*accounting.categories*)
+# Accounting.Categories
 
 ## Overview
 

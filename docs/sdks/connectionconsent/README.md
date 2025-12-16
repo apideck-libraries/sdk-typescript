@@ -1,5 +1,4 @@
-# ConnectionConsent
-(*vault.connectionConsent*)
+# Vault.ConnectionConsent
 
 ## Overview
 

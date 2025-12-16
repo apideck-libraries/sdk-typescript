@@ -1,5 +1,4 @@
-# Employees
-(*hris.employees*)
+# Hris.Employees
 
 ## Overview
 

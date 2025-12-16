@@ -1,5 +1,4 @@
-# Subsidiaries
-(*accounting.subsidiaries*)
+# Accounting.Subsidiaries
 
 ## Overview
 

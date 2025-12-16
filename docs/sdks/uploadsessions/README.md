@@ -1,5 +1,4 @@
-# UploadSessions
-(*fileStorage.uploadSessions*)
+# FileStorage.UploadSessions
 
 ## Overview
 
