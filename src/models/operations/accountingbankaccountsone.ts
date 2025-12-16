@@ -26,6 +26,10 @@ export type AccountingBankAccountsOneRequest = {
    */
   id: string;
   /**
+   * Apply filters
+   */
+  filter?: components.BankAccountFilter | undefined;
+  /**
    * ID of the consumer which you want to get or push data from
    */
   consumerId?: string | undefined;
@@ -62,6 +66,7 @@ export type AccountingBankAccountsOneResponse = {
 /** @internal */
 export type AccountingBankAccountsOneRequest$Outbound = {
   id: string;
+  filter?: components.BankAccountFilter$Outbound | undefined;
   consumerId?: string | undefined;
   appId?: string | undefined;
   serviceId?: string | undefined;
@@ -76,6 +81,7 @@ export const AccountingBankAccountsOneRequest$outboundSchema: z.ZodType<
   AccountingBankAccountsOneRequest
 > = z.object({
   id: z.string(),
+  filter: components.BankAccountFilter$outboundSchema.optional(),
   consumerId: z.string().optional(),
   appId: z.string().optional(),
   serviceId: z.string().optional(),

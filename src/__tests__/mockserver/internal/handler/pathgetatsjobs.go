@@ -190,23 +190,27 @@ func testAtsJobsAllAtsJobsAll0(w http.ResponseWriter, req *http.Request) {
 						RowVersion:   types.String("1-12345"),
 					},
 				},
-				CustomFields: []components.CustomField{
-					components.CustomField{
-						ID:          types.String("2389328923893298"),
-						Name:        types.String("employee_level"),
-						Description: types.String("Employee Level"),
-						Value: types.Pointer(components.CreateCustomFieldValue2MapOfAny(
-							map[string]any{},
-						)),
-					},
-					components.CustomField{
-						ID:          types.String("2389328923893298"),
-						Name:        types.String("employee_level"),
-						Description: types.String("Employee Level"),
-						Value: types.Pointer(components.CreateCustomFieldValue2Str(
-							"Uses Salesforce and Marketo",
-						)),
-					},
+				CustomFields: []components.CustomFieldUnion{
+					components.CreateCustomFieldUnionCustomField1(
+						components.CustomField1{
+							ID:          types.String("2389328923893298"),
+							Name:        types.String("employee_level"),
+							Description: types.String("Employee Level"),
+							Value: types.Pointer(components.CreateCustomFieldValue2MapOfAny(
+								map[string]any{},
+							)),
+						},
+					),
+					components.CreateCustomFieldUnionCustomField1(
+						components.CustomField1{
+							ID:          types.String("2389328923893298"),
+							Name:        types.String("employee_level"),
+							Description: types.String("Employee Level"),
+							Value: types.Pointer(components.CreateCustomFieldValue2Str(
+								"Uses Salesforce and Marketo",
+							)),
+						},
+					),
 				},
 				Deleted:     types.Bool(true),
 				OwnerID:     types.String("54321"),
@@ -396,15 +400,17 @@ func testAtsJobsAllAtsJobsAll0(w http.ResponseWriter, req *http.Request) {
 						RowVersion:   types.String("1-12345"),
 					},
 				},
-				CustomFields: []components.CustomField{
-					components.CustomField{
-						ID:          types.String("2389328923893298"),
-						Name:        types.String("employee_level"),
-						Description: types.String("Employee Level"),
-						Value: types.Pointer(components.CreateCustomFieldValue2Str(
-							"Uses Salesforce and Marketo",
-						)),
-					},
+				CustomFields: []components.CustomFieldUnion{
+					components.CreateCustomFieldUnionCustomField1(
+						components.CustomField1{
+							ID:          types.String("2389328923893298"),
+							Name:        types.String("employee_level"),
+							Description: types.String("Employee Level"),
+							Value: types.Pointer(components.CreateCustomFieldValue2Str(
+								"Uses Salesforce and Marketo",
+							)),
+						},
+					),
 				},
 				Deleted:     types.Bool(true),
 				OwnerID:     types.String("54321"),
@@ -577,31 +583,37 @@ func testAtsJobsAllAtsJobsAll0(w http.ResponseWriter, req *http.Request) {
 						RowVersion:   types.String("1-12345"),
 					},
 				},
-				CustomFields: []components.CustomField{
-					components.CustomField{
-						ID:          types.String("2389328923893298"),
-						Name:        types.String("employee_level"),
-						Description: types.String("Employee Level"),
-						Value: types.Pointer(components.CreateCustomFieldValue2Boolean(
-							true,
-						)),
-					},
-					components.CustomField{
-						ID:          types.String("2389328923893298"),
-						Name:        types.String("employee_level"),
-						Description: types.String("Employee Level"),
-						Value: types.Pointer(components.CreateCustomFieldValue2Str(
-							"Uses Salesforce and Marketo",
-						)),
-					},
-					components.CustomField{
-						ID:          types.String("2389328923893298"),
-						Name:        types.String("employee_level"),
-						Description: types.String("Employee Level"),
-						Value: types.Pointer(components.CreateCustomFieldValue2Number(
-							10,
-						)),
-					},
+				CustomFields: []components.CustomFieldUnion{
+					components.CreateCustomFieldUnionCustomField1(
+						components.CustomField1{
+							ID:          types.String("2389328923893298"),
+							Name:        types.String("employee_level"),
+							Description: types.String("Employee Level"),
+							Value: types.Pointer(components.CreateCustomFieldValue2Boolean(
+								true,
+							)),
+						},
+					),
+					components.CreateCustomFieldUnionCustomField1(
+						components.CustomField1{
+							ID:          types.String("2389328923893298"),
+							Name:        types.String("employee_level"),
+							Description: types.String("Employee Level"),
+							Value: types.Pointer(components.CreateCustomFieldValue2Str(
+								"Uses Salesforce and Marketo",
+							)),
+						},
+					),
+					components.CreateCustomFieldUnionCustomField1(
+						components.CustomField1{
+							ID:          types.String("2389328923893298"),
+							Name:        types.String("employee_level"),
+							Description: types.String("Employee Level"),
+							Value: types.Pointer(components.CreateCustomFieldValue2Number(
+								10,
+							)),
+						},
+					),
 				},
 				Deleted:     types.Bool(true),
 				OwnerID:     types.String("54321"),

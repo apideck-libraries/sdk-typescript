@@ -124,8 +124,7 @@ let value: GetApplicantResponse = {
     lastInteractionAt: new Date("2020-09-30T07:43:32.000Z"),
     ownerId: "54321",
     sourcedBy: "12345",
-    cvUrl:
-      "https://recruitee-main.s3.eu-central-1.amazonaws.com/candidates/36615291/pdf_cv_38swhu4w42k1.pdf?response-content-disposition=inline&response-content-type=application%2Fpdf&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAQYHB7CA5RLR4Y3ON%2F20220514%2Feu-central-1%2Fs3%2Faws4_request&X-Amz-Date=20220514T235654Z&X-Amz-Expires=36000&X-Amz-SignedHeaders=host&X-Amz-Signature=72c0621f5976db75b54de487eb821a8e73480d7f2a6a4a9713ab997944b0561f",
+    cvUrl: "https://files.example.com/candidates/36615291/cv.pdf",
     recordUrl: "https://app.intercom.io/contacts/12345",
     rejectedAt: new Date("2020-09-30T07:43:32.000Z"),
     deleted: true,

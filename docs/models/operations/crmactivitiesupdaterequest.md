@@ -74,7 +74,7 @@ let value: CrmActivitiesUpdateRequest = {
     recurrent: false,
     reminderDatetime: "2021-05-01T17:00:00.000Z",
     reminderSet: false,
-    videoConferenceUrl: "https://us02web.zoom.us/j/88120759396",
+    videoConferenceUrl: "https://meet.example.com/j/88120759396",
     videoConferenceId: "zoom:88120759396",
     customFields: [
       {

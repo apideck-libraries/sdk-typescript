@@ -169,7 +169,7 @@ type Activity struct {
 	// The ID of the video conference
 	VideoConferenceID *string `json:"video_conference_id,omitempty"`
 	// Custom fields of the activity
-	CustomFields []CustomField      `json:"custom_fields,omitempty"`
+	CustomFields []CustomFieldUnion `json:"custom_fields,omitempty"`
 	Attendees    []ActivityAttendee `json:"attendees,omitempty"`
 	// When custom mappings are configured on the resource, the result is included here.
 	CustomMappings map[string]any `json:"custom_mappings,omitempty"`
@@ -493,7 +493,7 @@ func (o *Activity) GetVideoConferenceID() *string {
 	return o.VideoConferenceID
 }
 
-func (o *Activity) GetCustomFields() []CustomField {
+func (o *Activity) GetCustomFields() []CustomFieldUnion {
 	if o == nil {
 		return nil
 	}
@@ -631,7 +631,7 @@ type ActivityInput struct {
 	// The ID of the video conference
 	VideoConferenceID *string `json:"video_conference_id,omitempty"`
 	// Custom fields of the activity
-	CustomFields []CustomField           `json:"custom_fields,omitempty"`
+	CustomFields []CustomFieldUnion      `json:"custom_fields,omitempty"`
 	Attendees    []ActivityAttendeeInput `json:"attendees,omitempty"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
 	PassThrough []PassThroughBody `json:"pass_through,omitempty"`
@@ -924,7 +924,7 @@ func (o *ActivityInput) GetVideoConferenceID() *string {
 	return o.VideoConferenceID
 }
 
-func (o *ActivityInput) GetCustomFields() []CustomField {
+func (o *ActivityInput) GetCustomFields() []CustomFieldUnion {
 	if o == nil {
 		return nil
 	}

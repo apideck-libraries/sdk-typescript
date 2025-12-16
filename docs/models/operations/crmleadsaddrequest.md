@@ -13,6 +13,7 @@ let value: CrmLeadsAddRequest = {
     ownerId: "54321",
     ownerName: "John Doe",
     companyId: "2",
+    contactId: "3",
     leadId: "2",
     leadSource: "Cold Call",
     firstName: "Elon",

@@ -63,23 +63,27 @@ func testAccountingBankFeedAccountsAllAccountingBankFeedAccountsAll0(w http.Resp
 				Currency:            components.CurrencyUsd.ToPointer(),
 				FeedStatus:          components.FeedStatusPending.ToPointer(),
 				Country:             types.String("US"),
-				CustomFields: []components.CustomField{
-					components.CustomField{
-						ID:          types.String("2389328923893298"),
-						Name:        types.String("employee_level"),
-						Description: types.String("Employee Level"),
-						Value: types.Pointer(components.CreateCustomFieldValue2MapOfAny(
-							map[string]any{},
-						)),
-					},
-					components.CustomField{
-						ID:          types.String("2389328923893298"),
-						Name:        types.String("employee_level"),
-						Description: types.String("Employee Level"),
-						Value: types.Pointer(components.CreateCustomFieldValue2Number(
-							10,
-						)),
-					},
+				CustomFields: []components.CustomFieldUnion{
+					components.CreateCustomFieldUnionCustomField1(
+						components.CustomField1{
+							ID:          types.String("2389328923893298"),
+							Name:        types.String("employee_level"),
+							Description: types.String("Employee Level"),
+							Value: types.Pointer(components.CreateCustomFieldValue2MapOfAny(
+								map[string]any{},
+							)),
+						},
+					),
+					components.CreateCustomFieldUnionCustomField1(
+						components.CustomField1{
+							ID:          types.String("2389328923893298"),
+							Name:        types.String("employee_level"),
+							Description: types.String("Employee Level"),
+							Value: types.Pointer(components.CreateCustomFieldValue2Number(
+								10,
+							)),
+						},
+					),
 				},
 				CreatedAt: types.MustNewTimeFromString("2020-09-30T07:43:32.000Z"),
 				UpdatedAt: types.MustNewTimeFromString("2020-09-30T07:43:32.000Z"),
@@ -96,15 +100,17 @@ func testAccountingBankFeedAccountsAllAccountingBankFeedAccountsAll0(w http.Resp
 				Currency:            components.CurrencyUsd.ToPointer(),
 				FeedStatus:          components.FeedStatusPending.ToPointer(),
 				Country:             types.String("US"),
-				CustomFields: []components.CustomField{
-					components.CustomField{
-						ID:          types.String("2389328923893298"),
-						Name:        types.String("employee_level"),
-						Description: types.String("Employee Level"),
-						Value: types.Pointer(components.CreateCustomFieldValue2MapOfAny(
-							map[string]any{},
-						)),
-					},
+				CustomFields: []components.CustomFieldUnion{
+					components.CreateCustomFieldUnionCustomField1(
+						components.CustomField1{
+							ID:          types.String("2389328923893298"),
+							Name:        types.String("employee_level"),
+							Description: types.String("Employee Level"),
+							Value: types.Pointer(components.CreateCustomFieldValue2MapOfAny(
+								map[string]any{},
+							)),
+						},
+					),
 				},
 				CreatedAt: types.MustNewTimeFromString("2020-09-30T07:43:32.000Z"),
 				UpdatedAt: types.MustNewTimeFromString("2020-09-30T07:43:32.000Z"),
@@ -121,23 +127,27 @@ func testAccountingBankFeedAccountsAllAccountingBankFeedAccountsAll0(w http.Resp
 				Currency:            components.CurrencyUsd.ToPointer(),
 				FeedStatus:          components.FeedStatusPending.ToPointer(),
 				Country:             types.String("US"),
-				CustomFields: []components.CustomField{
-					components.CustomField{
-						ID:          types.String("2389328923893298"),
-						Name:        types.String("employee_level"),
-						Description: types.String("Employee Level"),
-						Value: types.Pointer(components.CreateCustomFieldValue2Str(
-							"Uses Salesforce and Marketo",
-						)),
-					},
-					components.CustomField{
-						ID:          types.String("2389328923893298"),
-						Name:        types.String("employee_level"),
-						Description: types.String("Employee Level"),
-						Value: types.Pointer(components.CreateCustomFieldValue2MapOfAny(
-							map[string]any{},
-						)),
-					},
+				CustomFields: []components.CustomFieldUnion{
+					components.CreateCustomFieldUnionCustomField1(
+						components.CustomField1{
+							ID:          types.String("2389328923893298"),
+							Name:        types.String("employee_level"),
+							Description: types.String("Employee Level"),
+							Value: types.Pointer(components.CreateCustomFieldValue2Str(
+								"Uses Salesforce and Marketo",
+							)),
+						},
+					),
+					components.CreateCustomFieldUnionCustomField1(
+						components.CustomField1{
+							ID:          types.String("2389328923893298"),
+							Name:        types.String("employee_level"),
+							Description: types.String("Employee Level"),
+							Value: types.Pointer(components.CreateCustomFieldValue2MapOfAny(
+								map[string]any{},
+							)),
+						},
+					),
 				},
 				CreatedAt: types.MustNewTimeFromString("2020-09-30T07:43:32.000Z"),
 				UpdatedAt: types.MustNewTimeFromString("2020-09-30T07:43:32.000Z"),

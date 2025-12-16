@@ -18,6 +18,23 @@ type PipelineStage struct {
 	WinProbability *int64 `json:"win_probability,omitempty"`
 	// The order in which the Pipeline Stage is displayed in the UI.
 	DisplayOrder *int64 `json:"display_order,omitempty"`
+	// Whether the Pipeline Stage is archived or not.
+	Archived *bool `json:"archived,omitempty"`
+	// The date and time when the Pipeline Stage was created.
+	CreatedAt *time.Time `json:"created_at,omitempty"`
+	// The date and time when the Pipeline Stage was last updated.
+	UpdatedAt *time.Time `json:"updated_at,omitempty"`
+}
+
+func (p PipelineStage) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(p, "", false)
+}
+
+func (p *PipelineStage) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &p, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *PipelineStage) GetID() *string {
@@ -53,6 +70,27 @@ func (o *PipelineStage) GetDisplayOrder() *int64 {
 		return nil
 	}
 	return o.DisplayOrder
+}
+
+func (o *PipelineStage) GetArchived() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Archived
+}
+
+func (o *PipelineStage) GetCreatedAt() *time.Time {
+	if o == nil {
+		return nil
+	}
+	return o.CreatedAt
+}
+
+func (o *PipelineStage) GetUpdatedAt() *time.Time {
+	if o == nil {
+		return nil
+	}
+	return o.UpdatedAt
 }
 
 type Pipeline struct {

@@ -99,7 +99,7 @@ type Supplier struct {
 	IssuedEmail *string `json:"issued_email,omitempty"`
 	// When custom mappings are configured on the resource, the result is included here.
 	CustomMappings   map[string]any           `json:"custom_mappings,omitempty"`
-	CustomFields     []CustomField            `json:"custom_fields,omitempty"`
+	CustomFields     []CustomFieldUnion       `json:"custom_fields,omitempty"`
 	TaxDetails       []*LinkedTaxDetail       `json:"tax_details,omitempty"`
 	TaxStatusDetails []*LinkedTaxStatusDetail `json:"tax_status_details,omitempty"`
 	// The user who last updated the object.
@@ -348,7 +348,7 @@ func (o *Supplier) GetCustomMappings() map[string]any {
 	return o.CustomMappings
 }
 
-func (o *Supplier) GetCustomFields() []CustomField {
+func (o *Supplier) GetCustomFields() []CustomFieldUnion {
 	if o == nil {
 		return nil
 	}
@@ -473,7 +473,7 @@ type SupplierInput struct {
 	IssuedMethod *string `json:"issued_method,omitempty"`
 	// Email address of the person who issued the purchase order for the supplier
 	IssuedEmail      *string                  `json:"issued_email,omitempty"`
-	CustomFields     []CustomField            `json:"custom_fields,omitempty"`
+	CustomFields     []CustomFieldUnion       `json:"custom_fields,omitempty"`
 	TaxDetails       []*LinkedTaxDetail       `json:"tax_details,omitempty"`
 	TaxStatusDetails []*LinkedTaxStatusDetail `json:"tax_status_details,omitempty"`
 	// A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
@@ -682,7 +682,7 @@ func (o *SupplierInput) GetIssuedEmail() *string {
 	return o.IssuedEmail
 }
 
-func (o *SupplierInput) GetCustomFields() []CustomField {
+func (o *SupplierInput) GetCustomFields() []CustomFieldUnion {
 	if o == nil {
 		return nil
 	}

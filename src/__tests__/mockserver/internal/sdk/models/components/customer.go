@@ -96,8 +96,8 @@ type Customer struct {
 	// Terms of payment.
 	Terms *string `json:"terms,omitempty"`
 	// The channel through which the transaction is processed.
-	Channel      *string       `json:"channel,omitempty"`
-	CustomFields []CustomField `json:"custom_fields,omitempty"`
+	Channel      *string            `json:"channel,omitempty"`
+	CustomFields []CustomFieldUnion `json:"custom_fields,omitempty"`
 	// When custom mappings are configured on the resource, the result is included here.
 	CustomMappings map[string]any `json:"custom_mappings,omitempty"`
 	// The user who last updated the object.
@@ -335,7 +335,7 @@ func (o *Customer) GetChannel() *string {
 	return o.Channel
 }
 
-func (o *Customer) GetCustomFields() []CustomField {
+func (o *Customer) GetCustomFields() []CustomFieldUnion {
 	if o == nil {
 		return nil
 	}
@@ -438,8 +438,8 @@ type CustomerInput struct {
 	// Terms of payment.
 	Terms *string `json:"terms,omitempty"`
 	// The channel through which the transaction is processed.
-	Channel      *string       `json:"channel,omitempty"`
-	CustomFields []CustomField `json:"custom_fields,omitempty"`
+	Channel      *string            `json:"channel,omitempty"`
+	CustomFields []CustomFieldUnion `json:"custom_fields,omitempty"`
 	// A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
 	RowVersion *string `json:"row_version,omitempty"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
@@ -642,7 +642,7 @@ func (o *CustomerInput) GetChannel() *string {
 	return o.Channel
 }
 
-func (o *CustomerInput) GetCustomFields() []CustomField {
+func (o *CustomerInput) GetCustomFields() []CustomFieldUnion {
 	if o == nil {
 		return nil
 	}

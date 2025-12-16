@@ -10,6 +10,8 @@ import (
 type Folder struct {
 	// A unique identifier for an object.
 	ID *string `json:"id,omitempty"`
+	// The third-party API ID of original entity
+	DownstreamID *string `json:"downstream_id,omitempty"`
 	// The name of the folder
 	Name string `json:"name"`
 	// Optional description of the folder
@@ -17,8 +19,10 @@ type Folder struct {
 	// The full path of the folder (includes the folder name)
 	Path *string `json:"path,omitempty"`
 	// The size of the folder in bytes
-	Size  *int64 `json:"size,omitempty"`
-	Owner *Owner `json:"owner,omitempty"`
+	Size *int64 `json:"size,omitempty"`
+	// Whether the current user can download the contents of this folder
+	Downloadable *bool  `json:"downloadable,omitempty"`
+	Owner        *Owner `json:"owner,omitempty"`
 	// The parent folders of the file, starting from the root
 	ParentFolders []LinkedFolder `json:"parent_folders"`
 	// Whether the list of parent folder is complete. Some connectors only return the direct parent of a folder
@@ -53,6 +57,13 @@ func (o *Folder) GetID() *string {
 	return o.ID
 }
 
+func (o *Folder) GetDownstreamID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.DownstreamID
+}
+
 func (o *Folder) GetName() string {
 	if o == nil {
 		return ""
@@ -79,6 +90,13 @@ func (o *Folder) GetSize() *int64 {
 		return nil
 	}
 	return o.Size
+}
+
+func (o *Folder) GetDownloadable() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Downloadable
 }
 
 func (o *Folder) GetOwner() *Owner {

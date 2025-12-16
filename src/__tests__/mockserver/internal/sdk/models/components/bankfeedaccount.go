@@ -81,8 +81,8 @@ type BankFeedAccount struct {
 	// Current status of the bank feed.
 	FeedStatus *FeedStatus `json:"feed_status,omitempty"`
 	// Country code according to ISO 3166-1 alpha-2.
-	Country      *string       `json:"country,omitempty"`
-	CustomFields []CustomField `json:"custom_fields,omitempty"`
+	Country      *string            `json:"country,omitempty"`
+	CustomFields []CustomFieldUnion `json:"custom_fields,omitempty"`
 	// When custom mappings are configured on the resource, the result is included here.
 	CustomMappings map[string]any `json:"custom_mappings,omitempty"`
 	// The date and time when the object was created.
@@ -169,7 +169,7 @@ func (o *BankFeedAccount) GetCountry() *string {
 	return o.Country
 }
 
-func (o *BankFeedAccount) GetCustomFields() []CustomField {
+func (o *BankFeedAccount) GetCustomFields() []CustomFieldUnion {
 	if o == nil {
 		return nil
 	}
@@ -227,8 +227,8 @@ type BankFeedAccountInput struct {
 	// Current status of the bank feed.
 	FeedStatus *FeedStatus `json:"feed_status,omitempty"`
 	// Country code according to ISO 3166-1 alpha-2.
-	Country      *string       `json:"country,omitempty"`
-	CustomFields []CustomField `json:"custom_fields,omitempty"`
+	Country      *string            `json:"country,omitempty"`
+	CustomFields []CustomFieldUnion `json:"custom_fields,omitempty"`
 }
 
 func (o *BankFeedAccountInput) GetBankAccountType() *BankAccountType {
@@ -287,7 +287,7 @@ func (o *BankFeedAccountInput) GetCountry() *string {
 	return o.Country
 }
 
-func (o *BankFeedAccountInput) GetCustomFields() []CustomField {
+func (o *BankFeedAccountInput) GetCustomFields() []CustomFieldUnion {
 	if o == nil {
 		return nil
 	}

@@ -58,9 +58,9 @@ type OpportunityInput struct {
 	// The current status of the opportunity.
 	Status *string `json:"status,omitempty"`
 	// The unique identifier of the current status of the opportunity.
-	StatusID     *string       `json:"status_id,omitempty"`
-	Tags         []string      `json:"tags,omitempty"`
-	CustomFields []CustomField `json:"custom_fields,omitempty"`
+	StatusID     *string            `json:"status_id,omitempty"`
+	Tags         []string           `json:"tags,omitempty"`
+	CustomFields []CustomFieldUnion `json:"custom_fields,omitempty"`
 	// The date and time when the stage of the opportunity was last changed.
 	StageLastChangedAt *time.Time `json:"stage_last_changed_at,omitempty"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
@@ -260,7 +260,7 @@ func (o *OpportunityInput) GetTags() []string {
 	return o.Tags
 }
 
-func (o *OpportunityInput) GetCustomFields() []CustomField {
+func (o *OpportunityInput) GetCustomFields() []CustomFieldUnion {
 	if o == nil {
 		return nil
 	}

@@ -163,6 +163,8 @@ type InvoiceItem struct {
 	LocationID *string `json:"location_id,omitempty"`
 	// The ID of the subsidiary
 	SubsidiaryID *string `json:"subsidiary_id,omitempty"`
+	// ID of the category of the item
+	CategoryID *string `json:"category_id,omitempty"`
 	// The ID of the tax schedule
 	TaxScheduleID *string `json:"tax_schedule_id,omitempty"`
 	// When custom mappings are configured on the resource, the result is included here.
@@ -367,6 +369,13 @@ func (o *InvoiceItem) GetSubsidiaryID() *string {
 	return o.SubsidiaryID
 }
 
+func (o *InvoiceItem) GetCategoryID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CategoryID
+}
+
 func (o *InvoiceItem) GetTaxScheduleID() *string {
 	if o == nil {
 		return nil
@@ -538,6 +547,8 @@ type InvoiceItemInput struct {
 	LocationID *string `json:"location_id,omitempty"`
 	// The ID of the subsidiary
 	SubsidiaryID *string `json:"subsidiary_id,omitempty"`
+	// ID of the category of the item
+	CategoryID *string `json:"category_id,omitempty"`
 	// The ID of the tax schedule
 	TaxScheduleID *string `json:"tax_schedule_id,omitempty"`
 	// A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
@@ -723,6 +734,13 @@ func (o *InvoiceItemInput) GetSubsidiaryID() *string {
 		return nil
 	}
 	return o.SubsidiaryID
+}
+
+func (o *InvoiceItemInput) GetCategoryID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CategoryID
 }
 
 func (o *InvoiceItemInput) GetTaxScheduleID() *string {
