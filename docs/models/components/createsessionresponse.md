@@ -11,10 +11,8 @@ let value: CreateSessionResponse = {
   statusCode: 200,
   status: "OK",
   data: {
-    sessionUri:
-      "http://vault.apideck.com/session/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjb25zdW1lcl9pZCI6InRlc3RfdXNlcl9pZCIsImFwcGxpY2F0aW9uX2lkIj",
-    sessionToken:
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjb25zdW1lcl9pZCI6InRlc3RfdXNlcl9pZCIsImFwcGxpY2F0aW9uX2lkIj",
+    sessionUri: "https://vault.apideck.com/session/<session_token>",
+    sessionToken: "<session_token>",
   },
 };
 ```

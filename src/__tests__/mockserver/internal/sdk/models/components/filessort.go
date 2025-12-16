@@ -12,6 +12,7 @@ import (
 type FilesSortBy string
 
 const (
+	FilesSortByCreatedAt FilesSortBy = "created_at"
 	FilesSortByUpdatedAt FilesSortBy = "updated_at"
 	FilesSortByName      FilesSortBy = "name"
 )
@@ -25,6 +26,8 @@ func (e *FilesSortBy) UnmarshalJSON(data []byte) error {
 		return err
 	}
 	switch v {
+	case "created_at":
+		fallthrough
 	case "updated_at":
 		fallthrough
 	case "name":

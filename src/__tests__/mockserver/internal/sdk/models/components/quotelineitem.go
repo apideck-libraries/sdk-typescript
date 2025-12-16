@@ -87,7 +87,7 @@ type QuoteLineItem struct {
 	// A list of linked tracking categories.
 	TrackingCategories []*LinkedTrackingCategory `json:"tracking_categories,omitempty"`
 	LedgerAccount      *LinkedLedgerAccount      `json:"ledger_account,omitempty"`
-	CustomFields       []CustomField             `json:"custom_fields,omitempty"`
+	CustomFields       []CustomFieldUnion        `json:"custom_fields,omitempty"`
 	// A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
 	RowVersion *string `json:"row_version,omitempty"`
 	// The user who last updated the object.
@@ -258,7 +258,7 @@ func (o *QuoteLineItem) GetLedgerAccount() *LinkedLedgerAccount {
 	return o.LedgerAccount
 }
 
-func (o *QuoteLineItem) GetCustomFields() []CustomField {
+func (o *QuoteLineItem) GetCustomFields() []CustomFieldUnion {
 	if o == nil {
 		return nil
 	}
@@ -338,7 +338,7 @@ type QuoteLineItemInput struct {
 	// A list of linked tracking categories.
 	TrackingCategories []*LinkedTrackingCategory `json:"tracking_categories,omitempty"`
 	LedgerAccount      *LinkedLedgerAccount      `json:"ledger_account,omitempty"`
-	CustomFields       []CustomField             `json:"custom_fields,omitempty"`
+	CustomFields       []CustomFieldUnion        `json:"custom_fields,omitempty"`
 	// A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
 	RowVersion *string `json:"row_version,omitempty"`
 }
@@ -501,7 +501,7 @@ func (o *QuoteLineItemInput) GetLedgerAccount() *LinkedLedgerAccount {
 	return o.LedgerAccount
 }
 
-func (o *QuoteLineItemInput) GetCustomFields() []CustomField {
+func (o *QuoteLineItemInput) GetCustomFields() []CustomFieldUnion {
 	if o == nil {
 		return nil
 	}

@@ -145,8 +145,8 @@ type Expense struct {
 	// Optional reference identifier for the transaction.
 	Reference *string `json:"reference,omitempty"`
 	// URL link to a source document - shown as 'Go to [appName]' in the downstream app. Currently only supported for Xero.
-	SourceDocumentURL *string       `json:"source_document_url,omitempty"`
-	CustomFields      []CustomField `json:"custom_fields,omitempty"`
+	SourceDocumentURL *string            `json:"source_document_url,omitempty"`
+	CustomFields      []CustomFieldUnion `json:"custom_fields,omitempty"`
 	// When custom mappings are configured on the resource, the result is included here.
 	CustomMappings map[string]any `json:"custom_mappings,omitempty"`
 	// Expense status
@@ -344,7 +344,7 @@ func (o *Expense) GetSourceDocumentURL() *string {
 	return o.SourceDocumentURL
 }
 
-func (o *Expense) GetCustomFields() []CustomField {
+func (o *Expense) GetCustomFields() []CustomFieldUnion {
 	if o == nil {
 		return nil
 	}
@@ -454,8 +454,8 @@ type ExpenseInput struct {
 	// Optional reference identifier for the transaction.
 	Reference *string `json:"reference,omitempty"`
 	// URL link to a source document - shown as 'Go to [appName]' in the downstream app. Currently only supported for Xero.
-	SourceDocumentURL *string       `json:"source_document_url,omitempty"`
-	CustomFields      []CustomField `json:"custom_fields,omitempty"`
+	SourceDocumentURL *string            `json:"source_document_url,omitempty"`
+	CustomFields      []CustomFieldUnion `json:"custom_fields,omitempty"`
 	// Expense status
 	Status *ExpenseStatus `json:"status,omitempty"`
 	// A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
@@ -636,7 +636,7 @@ func (o *ExpenseInput) GetSourceDocumentURL() *string {
 	return o.SourceDocumentURL
 }
 
-func (o *ExpenseInput) GetCustomFields() []CustomField {
+func (o *ExpenseInput) GetCustomFields() []CustomFieldUnion {
 	if o == nil {
 		return nil
 	}

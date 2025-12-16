@@ -73,15 +73,17 @@ func testAccountingBankAccountsAllAccountingBankAccountsAll0(w http.ResponseWrit
 				Country:          types.String("US"),
 				Status:           components.AccountingBankAccountStatusActive.ToPointer(),
 				Description:      types.String("Primary operating account for daily transactions"),
-				CustomFields: []components.CustomField{
-					components.CustomField{
-						ID:          types.String("2389328923893298"),
-						Name:        types.String("employee_level"),
-						Description: types.String("Employee Level"),
-						Value: types.Pointer(components.CreateCustomFieldValue2Str(
-							"Uses Salesforce and Marketo",
-						)),
-					},
+				CustomFields: []components.CustomFieldUnion{
+					components.CreateCustomFieldUnionCustomField1(
+						components.CustomField1{
+							ID:          types.String("2389328923893298"),
+							Name:        types.String("employee_level"),
+							Description: types.String("Employee Level"),
+							Value: types.Pointer(components.CreateCustomFieldValue2Str(
+								"Uses Salesforce and Marketo",
+							)),
+						},
+					),
 				},
 				CreatedAt: types.MustNewTimeFromString("2020-09-30T07:43:32.000Z"),
 				UpdatedAt: types.MustNewTimeFromString("2020-09-30T07:43:32.000Z"),

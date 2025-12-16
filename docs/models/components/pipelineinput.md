@@ -19,6 +19,7 @@ let value: PipelineInput = {
       value: "CONTRACT_SENT",
       winProbability: 50,
       displayOrder: 1,
+      archived: false,
     },
   ],
   passThrough: [

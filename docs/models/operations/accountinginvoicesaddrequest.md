@@ -190,14 +190,7 @@ let value: AccountingInvoicesAddRequest = {
       currency: "USD",
       country: "US",
     },
-    ledgerAccount: {
-      id: "123456",
-      name: "Bank account",
-      nominalCode: "N091",
-      code: "453",
-      parentId: "123456",
-      displayId: "123456",
-    },
+    ledgerAccount: null,
     customFields: [
       {
         id: "2389328923893298",

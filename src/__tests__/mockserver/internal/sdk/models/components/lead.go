@@ -15,6 +15,8 @@ type Lead struct {
 	OwnerName *string `json:"owner_name,omitempty"`
 	// The company the lead is associated with.
 	CompanyID *string `json:"company_id,omitempty"`
+	// The contact the lead is associated with.
+	ContactID *string `json:"contact_id,omitempty"`
 	// The identifier of the lead.
 	LeadID *string `json:"lead_id,omitempty"`
 	// The source of the lead.
@@ -37,14 +39,14 @@ type Lead struct {
 	// Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
 	Currency *Currency `json:"currency,omitempty"`
 	// The fax number of the lead.
-	Fax          *string       `json:"fax,omitempty"`
-	Websites     []Website     `json:"websites,omitempty"`
-	Addresses    []Address     `json:"addresses,omitempty"`
-	SocialLinks  []SocialLink  `json:"social_links,omitempty"`
-	PhoneNumbers []PhoneNumber `json:"phone_numbers,omitempty"`
-	Emails       []Email       `json:"emails,omitempty"`
-	CustomFields []CustomField `json:"custom_fields,omitempty"`
-	Tags         []string      `json:"tags,omitempty"`
+	Fax          *string            `json:"fax,omitempty"`
+	Websites     []Website          `json:"websites,omitempty"`
+	Addresses    []Address          `json:"addresses,omitempty"`
+	SocialLinks  []SocialLink       `json:"social_links,omitempty"`
+	PhoneNumbers []PhoneNumber      `json:"phone_numbers,omitempty"`
+	Emails       []Email            `json:"emails,omitempty"`
+	CustomFields []CustomFieldUnion `json:"custom_fields,omitempty"`
+	Tags         []string           `json:"tags,omitempty"`
 	// When custom mappings are configured on the resource, the result is included here.
 	CustomMappings map[string]any `json:"custom_mappings,omitempty"`
 	// Date updated in ISO 8601 format
@@ -95,6 +97,13 @@ func (o *Lead) GetCompanyID() *string {
 		return nil
 	}
 	return o.CompanyID
+}
+
+func (o *Lead) GetContactID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ContactID
 }
 
 func (o *Lead) GetLeadID() *string {
@@ -216,7 +225,7 @@ func (o *Lead) GetEmails() []Email {
 	return o.Emails
 }
 
-func (o *Lead) GetCustomFields() []CustomField {
+func (o *Lead) GetCustomFields() []CustomFieldUnion {
 	if o == nil {
 		return nil
 	}

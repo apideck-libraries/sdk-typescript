@@ -290,6 +290,9 @@ const apideck = new Apideck({
 async function run() {
   const result = await apideck.accounting.bankAccounts.get({
     id: "<id>",
+    filter: {
+      accountType: "checking",
+    },
     serviceId: "salesforce",
     fields: "id,updated_at",
   });
@@ -319,6 +322,9 @@ const apideck = new ApideckCore({
 async function run() {
   const res = await accountingBankAccountsGet(apideck, {
     id: "<id>",
+    filter: {
+      accountType: "checking",
+    },
     serviceId: "salesforce",
     fields: "id,updated_at",
   });

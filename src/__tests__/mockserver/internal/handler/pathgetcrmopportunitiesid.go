@@ -86,31 +86,37 @@ func testCrmOpportunitiesOneCrmOpportunitiesOne0(w http.ResponseWriter, req *htt
 				"New",
 			},
 			InteractionCount: types.Float64(0),
-			CustomFields: []components.CustomField{
-				components.CustomField{
-					ID:          types.String("2389328923893298"),
-					Name:        types.String("employee_level"),
-					Description: types.String("Employee Level"),
-					Value: types.Pointer(components.CreateCustomFieldValue2MapOfAny(
-						map[string]any{},
-					)),
-				},
-				components.CustomField{
-					ID:          types.String("2389328923893298"),
-					Name:        types.String("employee_level"),
-					Description: types.String("Employee Level"),
-					Value: types.Pointer(components.CreateCustomFieldValue2MapOfAny(
-						map[string]any{},
-					)),
-				},
-				components.CustomField{
-					ID:          types.String("2389328923893298"),
-					Name:        types.String("employee_level"),
-					Description: types.String("Employee Level"),
-					Value: types.Pointer(components.CreateCustomFieldValue2MapOfAny(
-						map[string]any{},
-					)),
-				},
+			CustomFields: []components.CustomFieldUnion{
+				components.CreateCustomFieldUnionCustomField1(
+					components.CustomField1{
+						ID:          types.String("2389328923893298"),
+						Name:        types.String("employee_level"),
+						Description: types.String("Employee Level"),
+						Value: types.Pointer(components.CreateCustomFieldValue2MapOfAny(
+							map[string]any{},
+						)),
+					},
+				),
+				components.CreateCustomFieldUnionCustomField1(
+					components.CustomField1{
+						ID:          types.String("2389328923893298"),
+						Name:        types.String("employee_level"),
+						Description: types.String("Employee Level"),
+						Value: types.Pointer(components.CreateCustomFieldValue2MapOfAny(
+							map[string]any{},
+						)),
+					},
+				),
+				components.CreateCustomFieldUnionCustomField1(
+					components.CustomField1{
+						ID:          types.String("2389328923893298"),
+						Name:        types.String("employee_level"),
+						Description: types.String("Employee Level"),
+						Value: types.Pointer(components.CreateCustomFieldValue2MapOfAny(
+							map[string]any{},
+						)),
+					},
+				),
 			},
 			StageLastChangedAt: types.MustNewTimeFromString("2020-09-30T07:43:32.000Z"),
 			LastActivityAt:     types.String("2020-09-30T07:43:32.000Z"),

@@ -27,8 +27,9 @@ generation:
     generateTests: true
     generateNewTests: true
     skipResponseBodyAssertions: false
+  persistentEdits: {}
 typescript:
-  version: 0.35.0
+  version: 0.36.0
   acceptHeaderEnum: true
   additionalDependencies:
     dependencies: {}
@@ -40,7 +41,7 @@ typescript:
   author: Speakeasy
   baseErrorName: ApideckError
   clientServerStatusCodesAsErrors: true
-  constFieldsAlwaysOptional: true
+  constFieldsAlwaysOptional: false
   defaultErrorName: APIError
   enableCustomCodeRegions: false
   enableMCPServer: true
@@ -73,6 +74,7 @@ typescript:
   multipartArrayFormat: legacy
   outputModelSuffix: output
   packageName: '@apideck/unify'
+  preApplyUnionDiscriminators: true
   responseFormat: envelope-http
   sseFlatResponse: false
   templateVersion: v2
