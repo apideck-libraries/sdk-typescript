@@ -1,5 +1,4 @@
-# ConnectionCustomMappings
-(*vault.connectionCustomMappings*)
+# Vault.ConnectionCustomMappings
 
 ## Overview
 

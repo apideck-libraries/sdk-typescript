@@ -1,5 +1,4 @@
-# Companies
-(*crm.companies*)
+# Crm.Companies
 
 ## Overview
 

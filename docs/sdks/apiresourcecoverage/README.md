@@ -1,5 +1,4 @@
-# ApiResourceCoverage
-(*connector.apiResourceCoverage*)
+# Connector.ApiResourceCoverage
 
 ## Overview
 

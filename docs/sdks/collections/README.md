@@ -1,5 +1,4 @@
-# Collections
-(*issueTracking.collections*)
+# IssueTracking.Collections
 
 ## Overview
 

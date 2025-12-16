@@ -1,5 +1,4 @@
-# ApiResources
-(*connector.apiResources*)
+# Connector.ApiResources
 
 ## Overview
 

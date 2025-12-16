@@ -1,5 +1,4 @@
-# ApideckCustomers
-(*ecommerce.customers*)
+# Ecommerce.Customers
 
 ## Overview
 

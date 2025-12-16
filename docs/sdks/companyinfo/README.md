@@ -1,5 +1,4 @@
-# CompanyInfo
-(*accounting.companyInfo*)
+# Accounting.CompanyInfo
 
 ## Overview
 

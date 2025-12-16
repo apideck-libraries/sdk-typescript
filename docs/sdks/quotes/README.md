@@ -1,5 +1,4 @@
-# Quotes
-(*accounting.quotes*)
+# Accounting.Quotes
 
 ## Overview
 

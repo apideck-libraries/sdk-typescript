@@ -5,7 +5,6 @@
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
-import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
@@ -18,11 +17,6 @@ export type Value =
   | boolean
   | Array<string | number | number>;
 
-export const OptionType = {
-  Simple: "simple",
-} as const;
-export type OptionType = ClosedEnum<typeof OptionType>;
-
 export type SimpleFormFieldOption = {
   label: string;
   value?:
@@ -32,7 +26,7 @@ export type SimpleFormFieldOption = {
     | boolean
     | Array<string | number | number>
     | undefined;
-  optionType: OptionType;
+  optionType: "simple";
 };
 
 /** @internal */
@@ -102,13 +96,6 @@ export function valueFromJSON(
 }
 
 /** @internal */
-export const OptionType$inboundSchema: z.ZodNativeEnum<typeof OptionType> = z
-  .nativeEnum(OptionType);
-/** @internal */
-export const OptionType$outboundSchema: z.ZodNativeEnum<typeof OptionType> =
-  OptionType$inboundSchema;
-
-/** @internal */
 export const SimpleFormFieldOption$inboundSchema: z.ZodType<
   SimpleFormFieldOption,
   z.ZodTypeDef,
@@ -122,7 +109,7 @@ export const SimpleFormFieldOption$inboundSchema: z.ZodType<
     z.boolean(),
     z.array(z.union([z.string(), z.number().int(), z.number()])),
   ]).optional(),
-  option_type: OptionType$inboundSchema,
+  option_type: z.literal("simple"),
 }).transform((v) => {
   return remap$(v, {
     "option_type": "optionType",
@@ -138,7 +125,7 @@ export type SimpleFormFieldOption$Outbound = {
     | boolean
     | Array<string | number | number>
     | undefined;
-  option_type: string;
+  option_type: "simple";
 };
 
 /** @internal */
@@ -155,7 +142,7 @@ export const SimpleFormFieldOption$outboundSchema: z.ZodType<
     z.boolean(),
     z.array(z.union([z.string(), z.number().int(), z.number()])),
   ]).optional(),
-  optionType: OptionType$outboundSchema,
+  optionType: z.literal("simple"),
 }).transform((v) => {
   return remap$(v, {
     optionType: "option_type",

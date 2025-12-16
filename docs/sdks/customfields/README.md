@@ -1,5 +1,4 @@
-# CustomFields
-(*vault.customFields*)
+# Vault.CustomFields
 
 ## Overview
 

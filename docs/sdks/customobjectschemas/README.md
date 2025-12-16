@@ -1,5 +1,4 @@
-# CustomObjectSchemas
-(*crm.customObjectSchemas*)
+# Crm.CustomObjectSchemas
 
 ## Overview
 
