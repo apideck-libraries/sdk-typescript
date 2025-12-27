@@ -95,6 +95,7 @@ let value: GetCreditNoteResponse = {
         trackingCategories: [
           {
             id: "123456",
+            code: "100",
             name: "New York",
             parentId: "123456",
             parentName: "New York",
@@ -190,6 +191,7 @@ let value: GetCreditNoteResponse = {
     trackingCategories: [
       {
         id: "123456",
+        code: "100",
         name: "New York",
         parentId: "123456",
         parentName: "New York",

@@ -99,6 +99,8 @@ func (e *ExpenseStatus) UnmarshalJSON(data []byte) error {
 type Expense struct {
 	// A unique identifier for an object.
 	ID *string `json:"id,omitempty"`
+	// Id to be displayed.
+	DisplayID *string `json:"display_id,omitempty"`
 	// Number.
 	Number *string `json:"number,omitempty"`
 	// The date of the transaction - YYYY:MM::DDThh:mm:ss.sTZD
@@ -106,11 +108,10 @@ type Expense struct {
 	// The unique identifier for the ledger account that this expense should be credited to. Deprecated, use account instead.
 	//
 	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
-	AccountID   *string              `json:"account_id,omitempty"`
-	Account     *LinkedLedgerAccount `json:"account,omitempty"`
-	BankAccount *LinkedBankAccount   `json:"bank_account,omitempty"`
-	// The ID of the customer this entity is linked to. Used for expenses that should be marked as billable to customers.
-	CustomerID *string `json:"customer_id,omitempty"`
+	AccountID *string `json:"account_id,omitempty"`
+	// A flexible account reference that can represent either a ledger account (GL account) or a bank account, depending on the connector's requirements.
+	Account     *LinkedFinancialAccount `json:"account,omitempty"`
+	BankAccount *LinkedBankAccount      `json:"bank_account,omitempty"`
 	// The ID of the supplier this entity is linked to. Deprecated, use supplier instead.
 	//
 	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
@@ -120,7 +121,8 @@ type Expense struct {
 	// The company ID the transaction belongs to
 	CompanyID *string `json:"company_id,omitempty"`
 	// The ID of the department
-	DepartmentID *string `json:"department_id,omitempty"`
+	DepartmentID *string           `json:"department_id,omitempty"`
+	Department   *LinkedDepartment `json:"department,omitempty"`
 	// The type of payment for the expense.
 	PaymentType *ExpensePaymentType `json:"payment_type,omitempty"`
 	// Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
@@ -183,6 +185,13 @@ func (o *Expense) GetID() *string {
 	return o.ID
 }
 
+func (o *Expense) GetDisplayID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.DisplayID
+}
+
 func (o *Expense) GetNumber() *string {
 	if o == nil {
 		return nil
@@ -204,7 +213,7 @@ func (o *Expense) GetAccountID() *string {
 	return o.AccountID
 }
 
-func (o *Expense) GetAccount() *LinkedLedgerAccount {
+func (o *Expense) GetAccount() *LinkedFinancialAccount {
 	if o == nil {
 		return nil
 	}
@@ -216,13 +225,6 @@ func (o *Expense) GetBankAccount() *LinkedBankAccount {
 		return nil
 	}
 	return o.BankAccount
-}
-
-func (o *Expense) GetCustomerID() *string {
-	if o == nil {
-		return nil
-	}
-	return o.CustomerID
 }
 
 func (o *Expense) GetSupplierID() *string {
@@ -251,6 +253,13 @@ func (o *Expense) GetDepartmentID() *string {
 		return nil
 	}
 	return o.DepartmentID
+}
+
+func (o *Expense) GetDepartment() *LinkedDepartment {
+	if o == nil {
+		return nil
+	}
+	return o.Department
 }
 
 func (o *Expense) GetPaymentType() *ExpensePaymentType {
@@ -408,6 +417,8 @@ func (o *Expense) GetPassThrough() []PassThroughBody {
 }
 
 type ExpenseInput struct {
+	// Id to be displayed.
+	DisplayID *string `json:"display_id,omitempty"`
 	// Number.
 	Number *string `json:"number,omitempty"`
 	// The date of the transaction - YYYY:MM::DDThh:mm:ss.sTZD
@@ -415,11 +426,10 @@ type ExpenseInput struct {
 	// The unique identifier for the ledger account that this expense should be credited to. Deprecated, use account instead.
 	//
 	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
-	AccountID   *string              `json:"account_id,omitempty"`
-	Account     *LinkedLedgerAccount `json:"account,omitempty"`
-	BankAccount *LinkedBankAccount   `json:"bank_account,omitempty"`
-	// The ID of the customer this entity is linked to. Used for expenses that should be marked as billable to customers.
-	CustomerID *string `json:"customer_id,omitempty"`
+	AccountID *string `json:"account_id,omitempty"`
+	// A flexible account reference that can represent either a ledger account (GL account) or a bank account, depending on the connector's requirements.
+	Account     *LinkedFinancialAccountInput `json:"account,omitempty"`
+	BankAccount *LinkedBankAccount           `json:"bank_account,omitempty"`
 	// The ID of the supplier this entity is linked to. Deprecated, use supplier instead.
 	//
 	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
@@ -429,7 +439,8 @@ type ExpenseInput struct {
 	// The company ID the transaction belongs to
 	CompanyID *string `json:"company_id,omitempty"`
 	// The ID of the department
-	DepartmentID *string `json:"department_id,omitempty"`
+	DepartmentID *string                `json:"department_id,omitempty"`
+	Department   *LinkedDepartmentInput `json:"department,omitempty"`
 	// The type of payment for the expense.
 	PaymentType *ExpensePaymentType `json:"payment_type,omitempty"`
 	// Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
@@ -475,6 +486,13 @@ func (e *ExpenseInput) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
+func (o *ExpenseInput) GetDisplayID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.DisplayID
+}
+
 func (o *ExpenseInput) GetNumber() *string {
 	if o == nil {
 		return nil
@@ -496,7 +514,7 @@ func (o *ExpenseInput) GetAccountID() *string {
 	return o.AccountID
 }
 
-func (o *ExpenseInput) GetAccount() *LinkedLedgerAccount {
+func (o *ExpenseInput) GetAccount() *LinkedFinancialAccountInput {
 	if o == nil {
 		return nil
 	}
@@ -508,13 +526,6 @@ func (o *ExpenseInput) GetBankAccount() *LinkedBankAccount {
 		return nil
 	}
 	return o.BankAccount
-}
-
-func (o *ExpenseInput) GetCustomerID() *string {
-	if o == nil {
-		return nil
-	}
-	return o.CustomerID
 }
 
 func (o *ExpenseInput) GetSupplierID() *string {
@@ -543,6 +554,13 @@ func (o *ExpenseInput) GetDepartmentID() *string {
 		return nil
 	}
 	return o.DepartmentID
+}
+
+func (o *ExpenseInput) GetDepartment() *LinkedDepartmentInput {
+	if o == nil {
+		return nil
+	}
+	return o.Department
 }
 
 func (o *ExpenseInput) GetPaymentType() *ExpensePaymentType {

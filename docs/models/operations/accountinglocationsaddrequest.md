@@ -9,6 +9,7 @@ let value: AccountingLocationsAddRequest = {
   serviceId: "salesforce",
   accountingLocation: {
     parentId: "12345",
+    displayId: "123456",
     companyName: "SpaceX",
     displayName: "11 UT - South Jordan",
     status: "active",
