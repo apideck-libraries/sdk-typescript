@@ -73,6 +73,7 @@ import {
 export const CreditNoteStatus = {
   Draft: "draft",
   Authorised: "authorised",
+  Posted: "posted",
   PartiallyPaid: "partially_paid",
   Paid: "paid",
   Voided: "voided",

@@ -15,6 +15,7 @@ type CreditNoteStatus string
 const (
 	CreditNoteStatusDraft         CreditNoteStatus = "draft"
 	CreditNoteStatusAuthorised    CreditNoteStatus = "authorised"
+	CreditNoteStatusPosted        CreditNoteStatus = "posted"
 	CreditNoteStatusPartiallyPaid CreditNoteStatus = "partially_paid"
 	CreditNoteStatusPaid          CreditNoteStatus = "paid"
 	CreditNoteStatusVoided        CreditNoteStatus = "voided"
@@ -33,6 +34,8 @@ func (e *CreditNoteStatus) UnmarshalJSON(data []byte) error {
 	case "draft":
 		fallthrough
 	case "authorised":
+		fallthrough
+	case "posted":
 		fallthrough
 	case "partially_paid":
 		fallthrough
