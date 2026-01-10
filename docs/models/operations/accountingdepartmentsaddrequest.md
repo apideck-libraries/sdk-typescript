@@ -9,6 +9,7 @@ let value: AccountingDepartmentsAddRequest = {
   serviceId: "salesforce",
   accountingDepartment: {
     parentId: "12345",
+    displayId: "123456",
     name: "Sales",
     status: "active",
     subsidiaries: [

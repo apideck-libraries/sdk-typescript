@@ -16,6 +16,8 @@ let value: GetAccountingLocationResponse = {
   data: {
     id: "12345",
     parentId: "12345",
+    displayId: "123456",
+    downstreamId: "12345",
     companyName: "SpaceX",
     displayName: "11 UT - South Jordan",
     status: "active",

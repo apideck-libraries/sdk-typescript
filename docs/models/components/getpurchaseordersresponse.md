@@ -56,6 +56,7 @@ let value: GetPurchaseOrdersResponse = {
       },
       subsidiaryId: "12345",
       companyId: "12345",
+      locationId: "12345",
       departmentId: "12345",
       status: "open",
       issuedDate: new RFCDate("2020-09-30"),
@@ -114,6 +115,7 @@ let value: GetPurchaseOrdersResponse = {
           trackingCategories: [
             {
               id: "123456",
+              code: "100",
               name: "New York",
               parentId: "123456",
               parentName: "New York",
@@ -234,6 +236,7 @@ let value: GetPurchaseOrdersResponse = {
       trackingCategories: [
         {
           id: "123456",
+          code: "100",
           name: "New York",
           parentId: "123456",
           parentName: "New York",
