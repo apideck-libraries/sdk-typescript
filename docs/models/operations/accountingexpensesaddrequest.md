@@ -8,15 +8,14 @@ import { AccountingExpensesAddRequest } from "@apideck/unify/models/operations";
 let value: AccountingExpensesAddRequest = {
   serviceId: "salesforce",
   expense: {
+    displayId: "123456",
     number: "OIT00546",
     transactionDate: new Date("2021-05-01T12:00:00.000Z"),
     account: {
       id: "123456",
-      name: "Bank account",
-      nominalCode: "N091",
-      code: "453",
-      parentId: "123456",
+      type: "ledger_account",
       displayId: "123456",
+      accountNumber: "123465",
     },
     bankAccount: {
       id: "ba_123456",
@@ -24,7 +23,6 @@ let value: AccountingExpensesAddRequest = {
       accountNumber: "123465",
       bankName: "Chase Bank",
     },
-    customerId: "12345",
     supplier: {
       id: "12345",
       displayName: "Windsurf Shop",
@@ -57,7 +55,13 @@ let value: AccountingExpensesAddRequest = {
       },
     },
     companyId: "12345",
+    location: {
+      id: "123456",
+      displayId: "123456",
+      name: "New York Office",
+    },
     departmentId: "12345",
+    department: null,
     paymentType: "cash",
     currency: "USD",
     currencyRate: 0.69,
@@ -74,7 +78,15 @@ let value: AccountingExpensesAddRequest = {
     totalAmount: 275,
     lineItems: [
       {
-        trackingCategories: null,
+        trackingCategories: [
+          {
+            id: "123456",
+            code: "100",
+            name: "New York",
+            parentId: "123456",
+            parentName: "New York",
+          },
+        ],
         account: {
           id: "123456",
           name: "Bank account",
@@ -83,10 +95,18 @@ let value: AccountingExpensesAddRequest = {
           parentId: "123456",
           displayId: "123456",
         },
-        customerId: "12345",
+        customer: {
+          id: "12345",
+          displayName: "Windsurf Shop",
+          email: "boring@boring.com",
+        },
         departmentId: "12345",
+        department: {
+          displayId: "123456",
+          name: "Acme Inc.",
+        },
         locationId: "12345",
-        subsidiaryId: "12345",
+        location: null,
         taxRate: {
           id: "123456",
           code: "N-T",
@@ -104,12 +124,7 @@ let value: AccountingExpensesAddRequest = {
           name: "Model Y",
         },
         lineNumber: 1,
-        rebilling: {
-          rebillable: true,
-          rebillStatus: "billed",
-          linkedTransactionId: "txn_abc123",
-          linkedTransactionLineId: "line_xyz789",
-        },
+        rebilling: null,
       },
     ],
     reference: "INV-2024-001",

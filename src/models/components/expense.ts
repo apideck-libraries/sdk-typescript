@@ -35,11 +35,30 @@ import {
   LinkedBankAccount$outboundSchema,
 } from "./linkedbankaccount.js";
 import {
-  LinkedLedgerAccount,
-  LinkedLedgerAccount$inboundSchema,
-  LinkedLedgerAccount$Outbound,
-  LinkedLedgerAccount$outboundSchema,
-} from "./linkedledgeraccount.js";
+  LinkedDepartment,
+  LinkedDepartment$inboundSchema,
+} from "./linkeddepartment.js";
+import {
+  LinkedDepartmentInput,
+  LinkedDepartmentInput$Outbound,
+  LinkedDepartmentInput$outboundSchema,
+} from "./linkeddepartmentinput.js";
+import {
+  LinkedFinancialAccount,
+  LinkedFinancialAccount$inboundSchema,
+  LinkedFinancialAccountInput,
+  LinkedFinancialAccountInput$Outbound,
+  LinkedFinancialAccountInput$outboundSchema,
+} from "./linkedfinancialaccount.js";
+import {
+  LinkedLocation,
+  LinkedLocation$inboundSchema,
+} from "./linkedlocation.js";
+import {
+  LinkedLocationInput,
+  LinkedLocationInput$Outbound,
+  LinkedLocationInput$outboundSchema,
+} from "./linkedlocationinput.js";
 import {
   LinkedSupplier,
   LinkedSupplier$inboundSchema,
@@ -106,6 +125,10 @@ export type Expense = {
    */
   id?: string | undefined;
   /**
+   * Id to be displayed.
+   */
+  displayId?: string | null | undefined;
+  /**
    * Number.
    */
   number?: string | null | undefined;
@@ -119,12 +142,11 @@ export type Expense = {
    * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
    */
   accountId?: string | undefined;
-  account?: LinkedLedgerAccount | null | undefined;
-  bankAccount?: LinkedBankAccount | null | undefined;
   /**
-   * The ID of the customer this entity is linked to. Used for expenses that should be marked as billable to customers.
+   * A flexible account reference that can represent either a ledger account (GL account) or a bank account, depending on the connector's requirements.
    */
-  customerId?: string | undefined;
+  account?: LinkedFinancialAccount | null | undefined;
+  bankAccount?: LinkedBankAccount | null | undefined;
   /**
    * The ID of the supplier this entity is linked to. Deprecated, use supplier instead.
    *
@@ -139,10 +161,12 @@ export type Expense = {
    * The company ID the transaction belongs to
    */
   companyId?: string | null | undefined;
+  location?: LinkedLocation | null | undefined;
   /**
    * The ID of the department
    */
   departmentId?: string | null | undefined;
+  department?: LinkedDepartment | null | undefined;
   /**
    * The type of payment for the expense.
    */
@@ -229,6 +253,10 @@ export type Expense = {
 
 export type ExpenseInput = {
   /**
+   * Id to be displayed.
+   */
+  displayId?: string | null | undefined;
+  /**
    * Number.
    */
   number?: string | null | undefined;
@@ -242,12 +270,11 @@ export type ExpenseInput = {
    * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
    */
   accountId?: string | undefined;
-  account?: LinkedLedgerAccount | null | undefined;
-  bankAccount?: LinkedBankAccount | null | undefined;
   /**
-   * The ID of the customer this entity is linked to. Used for expenses that should be marked as billable to customers.
+   * A flexible account reference that can represent either a ledger account (GL account) or a bank account, depending on the connector's requirements.
    */
-  customerId?: string | undefined;
+  account?: LinkedFinancialAccountInput | null | undefined;
+  bankAccount?: LinkedBankAccount | null | undefined;
   /**
    * The ID of the supplier this entity is linked to. Deprecated, use supplier instead.
    *
@@ -262,10 +289,12 @@ export type ExpenseInput = {
    * The company ID the transaction belongs to
    */
   companyId?: string | null | undefined;
+  location?: LinkedLocationInput | null | undefined;
   /**
    * The ID of the department
    */
   departmentId?: string | null | undefined;
+  department?: LinkedDepartmentInput | null | undefined;
   /**
    * The type of payment for the expense.
    */
@@ -359,18 +388,20 @@ export const ExpenseStatus$outboundSchema: z.ZodNativeEnum<
 export const Expense$inboundSchema: z.ZodType<Expense, z.ZodTypeDef, unknown> =
   z.object({
     id: z.string().optional(),
+    display_id: z.nullable(z.string()).optional(),
     number: z.nullable(z.string()).optional(),
     transaction_date: z.nullable(
       z.string().datetime({ offset: true }).transform(v => new Date(v)),
     ),
     account_id: z.string().optional(),
-    account: z.nullable(LinkedLedgerAccount$inboundSchema).optional(),
+    account: z.nullable(LinkedFinancialAccount$inboundSchema).optional(),
     bank_account: z.nullable(LinkedBankAccount$inboundSchema).optional(),
-    customer_id: z.string().optional(),
     supplier_id: z.string().optional(),
     supplier: z.nullable(LinkedSupplier$inboundSchema).optional(),
     company_id: z.nullable(z.string()).optional(),
+    location: z.nullable(LinkedLocation$inboundSchema).optional(),
     department_id: z.nullable(z.string()).optional(),
+    department: z.nullable(LinkedDepartment$inboundSchema).optional(),
     payment_type: z.nullable(ExpensePaymentType$inboundSchema).optional(),
     currency: z.nullable(Currency$inboundSchema).optional(),
     currency_rate: z.nullable(z.number()).optional(),
@@ -399,10 +430,10 @@ export const Expense$inboundSchema: z.ZodType<Expense, z.ZodTypeDef, unknown> =
     pass_through: z.array(PassThroughBody$inboundSchema).optional(),
   }).transform((v) => {
     return remap$(v, {
+      "display_id": "displayId",
       "transaction_date": "transactionDate",
       "account_id": "accountId",
       "bank_account": "bankAccount",
-      "customer_id": "customerId",
       "supplier_id": "supplierId",
       "company_id": "companyId",
       "department_id": "departmentId",
@@ -438,16 +469,18 @@ export function expenseFromJSON(
 
 /** @internal */
 export type ExpenseInput$Outbound = {
+  display_id?: string | null | undefined;
   number?: string | null | undefined;
   transaction_date: string | null;
   account_id?: string | undefined;
-  account?: LinkedLedgerAccount$Outbound | null | undefined;
+  account?: LinkedFinancialAccountInput$Outbound | null | undefined;
   bank_account?: LinkedBankAccount$Outbound | null | undefined;
-  customer_id?: string | undefined;
   supplier_id?: string | undefined;
   supplier?: LinkedSupplierInput$Outbound | null | undefined;
   company_id?: string | null | undefined;
+  location?: LinkedLocationInput$Outbound | null | undefined;
   department_id?: string | null | undefined;
+  department?: LinkedDepartmentInput$Outbound | null | undefined;
   payment_type?: string | null | undefined;
   currency?: string | null | undefined;
   currency_rate?: number | null | undefined;
@@ -473,16 +506,18 @@ export const ExpenseInput$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   ExpenseInput
 > = z.object({
+  displayId: z.nullable(z.string()).optional(),
   number: z.nullable(z.string()).optional(),
   transactionDate: z.nullable(z.date().transform(v => v.toISOString())),
   accountId: z.string().optional(),
-  account: z.nullable(LinkedLedgerAccount$outboundSchema).optional(),
+  account: z.nullable(LinkedFinancialAccountInput$outboundSchema).optional(),
   bankAccount: z.nullable(LinkedBankAccount$outboundSchema).optional(),
-  customerId: z.string().optional(),
   supplierId: z.string().optional(),
   supplier: z.nullable(LinkedSupplierInput$outboundSchema).optional(),
   companyId: z.nullable(z.string()).optional(),
+  location: z.nullable(LinkedLocationInput$outboundSchema).optional(),
   departmentId: z.nullable(z.string()).optional(),
+  department: z.nullable(LinkedDepartmentInput$outboundSchema).optional(),
   paymentType: z.nullable(ExpensePaymentType$outboundSchema).optional(),
   currency: z.nullable(Currency$outboundSchema).optional(),
   currencyRate: z.nullable(z.number()).optional(),
@@ -502,10 +537,10 @@ export const ExpenseInput$outboundSchema: z.ZodType<
   passThrough: z.array(PassThroughBody$outboundSchema).optional(),
 }).transform((v) => {
   return remap$(v, {
+    displayId: "display_id",
     transactionDate: "transaction_date",
     accountId: "account_id",
     bankAccount: "bank_account",
-    customerId: "customer_id",
     supplierId: "supplier_id",
     companyId: "company_id",
     departmentId: "department_id",

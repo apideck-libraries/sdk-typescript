@@ -14,6 +14,10 @@ export type LinkedTrackingCategory = {
    */
   id?: string | undefined;
   /**
+   * The code of the tracking category.
+   */
+  code?: string | null | undefined;
+  /**
    * The name of the tracking category.
    */
   name?: string | null | undefined;
@@ -34,6 +38,7 @@ export const LinkedTrackingCategory$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   id: z.string().optional(),
+  code: z.nullable(z.string()).optional(),
   name: z.nullable(z.string()).optional(),
   parent_id: z.string().optional(),
   parent_name: z.nullable(z.string()).optional(),
@@ -46,6 +51,7 @@ export const LinkedTrackingCategory$inboundSchema: z.ZodType<
 /** @internal */
 export type LinkedTrackingCategory$Outbound = {
   id?: string | undefined;
+  code?: string | null | undefined;
   name?: string | null | undefined;
   parent_id?: string | undefined;
   parent_name?: string | null | undefined;
@@ -58,6 +64,7 @@ export const LinkedTrackingCategory$outboundSchema: z.ZodType<
   LinkedTrackingCategory
 > = z.object({
   id: z.string().optional(),
+  code: z.nullable(z.string()).optional(),
   name: z.nullable(z.string()).optional(),
   parentId: z.string().optional(),
   parentName: z.nullable(z.string()).optional(),

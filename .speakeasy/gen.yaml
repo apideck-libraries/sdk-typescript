@@ -29,7 +29,7 @@ generation:
     generateNewTests: true
     skipResponseBodyAssertions: false
 typescript:
-  version: 0.36.1
+  version: 0.36.2
   acceptHeaderEnum: true
   additionalDependencies:
     dependencies: {}
@@ -49,6 +49,7 @@ typescript:
   enumFormat: union
   envVarPrefix: APIDECK
   exportZodModelNamespace: false
+  flatAdditionalProperties: false
   flattenGlobalSecurity: true
   flatteningOrder: parameters-first
   formStringArrayEncodeMode: encoded-string
@@ -75,6 +76,7 @@ typescript:
   outputModelSuffix: output
   packageName: '@apideck/unify'
   preApplyUnionDiscriminators: true
+  preserveModelFieldNames: false
   responseFormat: envelope-http
   sseFlatResponse: false
   templateVersion: v2

@@ -16,6 +16,7 @@ let value: AccountingCreditNotesAddRequest = {
       email: "boring@boring.com",
     },
     companyId: "12345",
+    locationId: "12345",
     departmentId: "12345",
     currency: "USD",
     currencyRate: 0.69,
@@ -85,6 +86,7 @@ let value: AccountingCreditNotesAddRequest = {
         trackingCategories: [
           {
             id: "123456",
+            code: "100",
             name: "New York",
             parentId: "123456",
             parentName: "New York",
@@ -175,6 +177,7 @@ let value: AccountingCreditNotesAddRequest = {
     trackingCategories: [
       {
         id: "123456",
+        code: "100",
         name: "New York",
         parentId: "123456",
         parentName: "New York",

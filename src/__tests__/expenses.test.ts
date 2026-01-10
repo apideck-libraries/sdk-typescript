@@ -34,7 +34,6 @@ test("Expenses Accounting Expenses All", async () => {
         number: "OIT00546",
         transactionDate: new Date("2021-05-01T12:00:00.000Z"),
         accountId: "123456",
-        customerId: "12345",
         supplierId: "12345",
         companyId: "12345",
         departmentId: "12345",
@@ -71,7 +70,6 @@ test("Expenses Accounting Expenses All", async () => {
             customerId: "12345",
             departmentId: "12345",
             locationId: "12345",
-            subsidiaryId: "12345",
             taxRate: {
               id: "123456",
               code: "N-T",
@@ -80,7 +78,6 @@ test("Expenses Accounting Expenses All", async () => {
             },
             description: "Travel US.",
             totalAmount: 275,
-            billable: true,
           },
           {
             id: "12345",
@@ -94,7 +91,6 @@ test("Expenses Accounting Expenses All", async () => {
             customerId: "12345",
             departmentId: "12345",
             locationId: "12345",
-            subsidiaryId: "12345",
             taxRate: {
               id: "123456",
               code: "N-T",
@@ -103,7 +99,6 @@ test("Expenses Accounting Expenses All", async () => {
             },
             description: "Travel US.",
             totalAmount: 275,
-            billable: true,
           },
         ],
         customFields: [
@@ -159,7 +154,6 @@ test("Expenses Accounting Expenses All", async () => {
         number: "OIT00546",
         transactionDate: new Date("2021-05-01T12:00:00.000Z"),
         accountId: "123456",
-        customerId: "12345",
         supplierId: "12345",
         companyId: "12345",
         departmentId: "12345",
@@ -188,7 +182,6 @@ test("Expenses Accounting Expenses All", async () => {
             customerId: "12345",
             departmentId: "12345",
             locationId: "12345",
-            subsidiaryId: "12345",
             taxRate: {
               id: "123456",
               code: "N-T",
@@ -197,7 +190,6 @@ test("Expenses Accounting Expenses All", async () => {
             },
             description: "Travel US.",
             totalAmount: 275,
-            billable: true,
           },
           {
             id: "12345",
@@ -211,7 +203,6 @@ test("Expenses Accounting Expenses All", async () => {
             customerId: "12345",
             departmentId: "12345",
             locationId: "12345",
-            subsidiaryId: "12345",
             taxRate: {
               id: "123456",
               code: "N-T",
@@ -220,7 +211,6 @@ test("Expenses Accounting Expenses All", async () => {
             },
             description: "Travel US.",
             totalAmount: 275,
-            billable: true,
           },
         ],
         customFields: [
@@ -275,7 +265,6 @@ test("Expenses Accounting Expenses All", async () => {
         number: "OIT00546",
         transactionDate: new Date("2021-05-01T12:00:00.000Z"),
         accountId: "123456",
-        customerId: "12345",
         supplierId: "12345",
         companyId: "12345",
         departmentId: "12345",
@@ -304,7 +293,6 @@ test("Expenses Accounting Expenses All", async () => {
             customerId: "12345",
             departmentId: "12345",
             locationId: "12345",
-            subsidiaryId: "12345",
             taxRate: {
               id: "123456",
               code: "N-T",
@@ -313,7 +301,6 @@ test("Expenses Accounting Expenses All", async () => {
             },
             description: "Travel US.",
             totalAmount: 275,
-            billable: true,
           },
         ],
         customFields: [
@@ -409,7 +396,6 @@ test("Expenses Accounting Expenses Add", async () => {
       number: "OIT00546",
       transactionDate: new Date("2021-05-01T12:00:00.000Z"),
       accountId: "123456",
-      customerId: "12345",
       supplierId: "12345",
       companyId: "12345",
       departmentId: "12345",
@@ -439,14 +425,12 @@ test("Expenses Accounting Expenses Add", async () => {
           customerId: "12345",
           departmentId: "12345",
           locationId: "12345",
-          subsidiaryId: "12345",
           taxRate: {
             id: "123456",
             rate: 10,
           },
           description: "Travel US.",
           totalAmount: 275,
-          billable: true,
         },
       ],
       customFields: [
@@ -565,7 +549,6 @@ test("Expenses Accounting Expenses One", async () => {
       number: "OIT00546",
       transactionDate: new Date("2021-05-01T12:00:00.000Z"),
       accountId: "123456",
-      customerId: "12345",
       supplierId: "12345",
       companyId: "12345",
       departmentId: "12345",
@@ -598,7 +581,6 @@ test("Expenses Accounting Expenses One", async () => {
           customerId: "12345",
           departmentId: "12345",
           locationId: "12345",
-          subsidiaryId: "12345",
           taxRate: {
             id: "123456",
             code: "N-T",
@@ -607,7 +589,6 @@ test("Expenses Accounting Expenses One", async () => {
           },
           description: "Travel US.",
           totalAmount: 275,
-          billable: true,
         },
         {
           id: "12345",
@@ -625,7 +606,6 @@ test("Expenses Accounting Expenses One", async () => {
           customerId: "12345",
           departmentId: "12345",
           locationId: "12345",
-          subsidiaryId: "12345",
           taxRate: {
             id: "123456",
             code: "N-T",
@@ -634,7 +614,6 @@ test("Expenses Accounting Expenses One", async () => {
           },
           description: "Travel US.",
           totalAmount: 275,
-          billable: true,
         },
       ],
       customFields: [
@@ -693,7 +672,6 @@ test("Expenses Accounting Expenses Update", async () => {
       number: "OIT00546",
       transactionDate: new Date("2021-05-01T12:00:00.000Z"),
       accountId: "123456",
-      customerId: "12345",
       supplierId: "12345",
       companyId: "12345",
       departmentId: "12345",
@@ -723,14 +701,12 @@ test("Expenses Accounting Expenses Update", async () => {
           customerId: "12345",
           departmentId: "12345",
           locationId: "12345",
-          subsidiaryId: "12345",
           taxRate: {
             id: "123456",
             rate: 10,
           },
           description: "Travel US.",
           totalAmount: 275,
-          billable: true,
         },
         {
           trackingCategories: [
@@ -747,14 +723,12 @@ test("Expenses Accounting Expenses Update", async () => {
           customerId: "12345",
           departmentId: "12345",
           locationId: "12345",
-          subsidiaryId: "12345",
           taxRate: {
             id: "123456",
             rate: 10,
           },
           description: "Travel US.",
           totalAmount: 275,
-          billable: true,
         },
         {
           trackingCategories: [
@@ -775,14 +749,12 @@ test("Expenses Accounting Expenses Update", async () => {
           customerId: "12345",
           departmentId: "12345",
           locationId: "12345",
-          subsidiaryId: "12345",
           taxRate: {
             id: "123456",
             rate: 10,
           },
           description: "Travel US.",
           totalAmount: 275,
-          billable: true,
         },
       ],
       customFields: [
