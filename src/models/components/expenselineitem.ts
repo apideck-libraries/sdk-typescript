@@ -9,6 +9,14 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { LineItemType, LineItemType$inboundSchema } from "./lineitemtype.js";
 import {
+  LinkedCustomer,
+  LinkedCustomer$inboundSchema,
+} from "./linkedcustomer.js";
+import {
+  LinkedDepartment,
+  LinkedDepartment$inboundSchema,
+} from "./linkeddepartment.js";
+import {
   LinkedInvoiceItem,
   LinkedInvoiceItem$inboundSchema,
 } from "./linkedinvoiceitem.js";
@@ -16,6 +24,10 @@ import {
   LinkedLedgerAccount,
   LinkedLedgerAccount$inboundSchema,
 } from "./linkedledgeraccount.js";
+import {
+  LinkedLocation,
+  LinkedLocation$inboundSchema,
+} from "./linkedlocation.js";
 import { LinkedTaxRate, LinkedTaxRate$inboundSchema } from "./linkedtaxrate.js";
 import {
   LinkedTrackingCategory,
@@ -40,21 +52,25 @@ export type ExpenseLineItem = {
   accountId?: string | undefined;
   account?: LinkedLedgerAccount | null | undefined;
   /**
-   * The ID of the customer this expense item is linked to.
+   * The ID of the customer this expense item is linked to. Deprecated in favor of `customer`.
+   *
+   * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
    */
   customerId?: string | undefined;
+  /**
+   * The customer this entity is linked to.
+   */
+  customer?: LinkedCustomer | null | undefined;
   /**
    * The ID of the department
    */
   departmentId?: string | null | undefined;
+  department?: LinkedDepartment | null | undefined;
   /**
    * The ID of the location
    */
   locationId?: string | null | undefined;
-  /**
-   * The ID of the subsidiary
-   */
-  subsidiaryId?: string | null | undefined;
+  location?: LinkedLocation | null | undefined;
   taxRate?: LinkedTaxRate | undefined;
   /**
    * The expense line item description
@@ -75,12 +91,6 @@ export type ExpenseLineItem = {
   quantity?: number | null | undefined;
   unitPrice?: number | null | undefined;
   item?: LinkedInvoiceItem | undefined;
-  /**
-   * Boolean that indicates if the line item is billable or not.
-   *
-   * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
-   */
-  billable?: boolean | undefined;
   /**
    * Line number of the resource
    */
@@ -104,9 +114,11 @@ export const ExpenseLineItem$inboundSchema: z.ZodType<
   account_id: z.string().optional(),
   account: z.nullable(LinkedLedgerAccount$inboundSchema).optional(),
   customer_id: z.string().optional(),
+  customer: z.nullable(LinkedCustomer$inboundSchema).optional(),
   department_id: z.nullable(z.string()).optional(),
+  department: z.nullable(LinkedDepartment$inboundSchema).optional(),
   location_id: z.nullable(z.string()).optional(),
-  subsidiary_id: z.nullable(z.string()).optional(),
+  location: z.nullable(LinkedLocation$inboundSchema).optional(),
   tax_rate: LinkedTaxRate$inboundSchema.optional(),
   description: z.nullable(z.string()).optional(),
   type: z.nullable(LineItemType$inboundSchema).optional(),
@@ -115,7 +127,6 @@ export const ExpenseLineItem$inboundSchema: z.ZodType<
   quantity: z.nullable(z.number()).optional(),
   unit_price: z.nullable(z.number()).optional(),
   item: LinkedInvoiceItem$inboundSchema.optional(),
-  billable: z.boolean().optional(),
   line_number: z.nullable(z.number().int()).optional(),
   rebilling: z.nullable(Rebilling$inboundSchema).optional(),
 }).transform((v) => {
@@ -125,7 +136,6 @@ export const ExpenseLineItem$inboundSchema: z.ZodType<
     "customer_id": "customerId",
     "department_id": "departmentId",
     "location_id": "locationId",
-    "subsidiary_id": "subsidiaryId",
     "tax_rate": "taxRate",
     "total_amount": "totalAmount",
     "tax_amount": "taxAmount",

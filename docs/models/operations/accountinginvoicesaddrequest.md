@@ -18,6 +18,7 @@ let value: AccountingInvoicesAddRequest = {
       email: "boring@boring.com",
     },
     companyId: "12345",
+    locationId: "12345",
     departmentId: "12345",
     invoiceDate: new RFCDate("2020-09-30"),
     dueDate: new RFCDate("2020-09-30"),
@@ -85,6 +86,7 @@ let value: AccountingInvoicesAddRequest = {
         trackingCategories: [
           {
             id: "123456",
+            code: "100",
             name: "New York",
             parentId: "123456",
             parentName: "New York",
