@@ -29,17 +29,30 @@ import {
   ExpenseLineItemInput$outboundSchema,
 } from "./expenselineiteminput.js";
 import {
-  LinkedBankAccount,
-  LinkedBankAccount$inboundSchema,
-  LinkedBankAccount$Outbound,
-  LinkedBankAccount$outboundSchema,
-} from "./linkedbankaccount.js";
+  LinkedDepartment,
+  LinkedDepartment$inboundSchema,
+} from "./linkeddepartment.js";
 import {
-  LinkedLedgerAccount,
-  LinkedLedgerAccount$inboundSchema,
-  LinkedLedgerAccount$Outbound,
-  LinkedLedgerAccount$outboundSchema,
-} from "./linkedledgeraccount.js";
+  LinkedDepartmentInput,
+  LinkedDepartmentInput$Outbound,
+  LinkedDepartmentInput$outboundSchema,
+} from "./linkeddepartmentinput.js";
+import {
+  LinkedFinancialAccount,
+  LinkedFinancialAccount$inboundSchema,
+  LinkedFinancialAccountInput,
+  LinkedFinancialAccountInput$Outbound,
+  LinkedFinancialAccountInput$outboundSchema,
+} from "./linkedfinancialaccount.js";
+import {
+  LinkedLocation,
+  LinkedLocation$inboundSchema,
+} from "./linkedlocation.js";
+import {
+  LinkedLocationInput,
+  LinkedLocationInput$Outbound,
+  LinkedLocationInput$outboundSchema,
+} from "./linkedlocationinput.js";
 import {
   LinkedSupplier,
   LinkedSupplier$inboundSchema,
@@ -55,6 +68,12 @@ import {
   LinkedTaxRateInput$Outbound,
   LinkedTaxRateInput$outboundSchema,
 } from "./linkedtaxrateinput.js";
+import {
+  LinkedTrackingCategory,
+  LinkedTrackingCategory$inboundSchema,
+  LinkedTrackingCategory$Outbound,
+  LinkedTrackingCategory$outboundSchema,
+} from "./linkedtrackingcategory.js";
 import {
   PassThroughBody,
   PassThroughBody$inboundSchema,
@@ -106,6 +125,10 @@ export type Expense = {
    */
   id?: string | undefined;
   /**
+   * Id to be displayed.
+   */
+  displayId?: string | null | undefined;
+  /**
    * Number.
    */
   number?: string | null | undefined;
@@ -119,12 +142,10 @@ export type Expense = {
    * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
    */
   accountId?: string | undefined;
-  account?: LinkedLedgerAccount | null | undefined;
-  bankAccount?: LinkedBankAccount | null | undefined;
   /**
-   * The ID of the customer this entity is linked to. Used for expenses that should be marked as billable to customers.
+   * A flexible account reference that can represent either a ledger account (GL account) or a bank account, depending on the connector's requirements.
    */
-  customerId?: string | undefined;
+  account?: LinkedFinancialAccount | null | undefined;
   /**
    * The ID of the supplier this entity is linked to. Deprecated, use supplier instead.
    *
@@ -139,10 +160,12 @@ export type Expense = {
    * The company ID the transaction belongs to
    */
   companyId?: string | null | undefined;
+  location?: LinkedLocation | null | undefined;
   /**
    * The ID of the department
    */
   departmentId?: string | null | undefined;
+  department?: LinkedDepartment | null | undefined;
   /**
    * The type of payment for the expense.
    */
@@ -180,6 +203,10 @@ export type Expense = {
    * The total amount of the expense line item.
    */
   totalAmount?: number | null | undefined;
+  /**
+   * A list of linked tracking categories.
+   */
+  trackingCategories?: Array<LinkedTrackingCategory | null> | null | undefined;
   /**
    * Expense line items linked to this expense.
    */
@@ -229,6 +256,10 @@ export type Expense = {
 
 export type ExpenseInput = {
   /**
+   * Id to be displayed.
+   */
+  displayId?: string | null | undefined;
+  /**
    * Number.
    */
   number?: string | null | undefined;
@@ -242,12 +273,10 @@ export type ExpenseInput = {
    * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
    */
   accountId?: string | undefined;
-  account?: LinkedLedgerAccount | null | undefined;
-  bankAccount?: LinkedBankAccount | null | undefined;
   /**
-   * The ID of the customer this entity is linked to. Used for expenses that should be marked as billable to customers.
+   * A flexible account reference that can represent either a ledger account (GL account) or a bank account, depending on the connector's requirements.
    */
-  customerId?: string | undefined;
+  account?: LinkedFinancialAccountInput | null | undefined;
   /**
    * The ID of the supplier this entity is linked to. Deprecated, use supplier instead.
    *
@@ -262,10 +291,12 @@ export type ExpenseInput = {
    * The company ID the transaction belongs to
    */
   companyId?: string | null | undefined;
+  location?: LinkedLocationInput | null | undefined;
   /**
    * The ID of the department
    */
   departmentId?: string | null | undefined;
+  department?: LinkedDepartmentInput | null | undefined;
   /**
    * The type of payment for the expense.
    */
@@ -303,6 +334,10 @@ export type ExpenseInput = {
    * The total amount of the expense line item.
    */
   totalAmount?: number | null | undefined;
+  /**
+   * A list of linked tracking categories.
+   */
+  trackingCategories?: Array<LinkedTrackingCategory | null> | null | undefined;
   /**
    * Expense line items linked to this expense.
    */
@@ -359,18 +394,19 @@ export const ExpenseStatus$outboundSchema: z.ZodNativeEnum<
 export const Expense$inboundSchema: z.ZodType<Expense, z.ZodTypeDef, unknown> =
   z.object({
     id: z.string().optional(),
+    display_id: z.nullable(z.string()).optional(),
     number: z.nullable(z.string()).optional(),
     transaction_date: z.nullable(
       z.string().datetime({ offset: true }).transform(v => new Date(v)),
     ),
     account_id: z.string().optional(),
-    account: z.nullable(LinkedLedgerAccount$inboundSchema).optional(),
-    bank_account: z.nullable(LinkedBankAccount$inboundSchema).optional(),
-    customer_id: z.string().optional(),
+    account: z.nullable(LinkedFinancialAccount$inboundSchema).optional(),
     supplier_id: z.string().optional(),
     supplier: z.nullable(LinkedSupplier$inboundSchema).optional(),
     company_id: z.nullable(z.string()).optional(),
+    location: z.nullable(LinkedLocation$inboundSchema).optional(),
     department_id: z.nullable(z.string()).optional(),
+    department: z.nullable(LinkedDepartment$inboundSchema).optional(),
     payment_type: z.nullable(ExpensePaymentType$inboundSchema).optional(),
     currency: z.nullable(Currency$inboundSchema).optional(),
     currency_rate: z.nullable(z.number()).optional(),
@@ -381,6 +417,9 @@ export const Expense$inboundSchema: z.ZodType<Expense, z.ZodTypeDef, unknown> =
     sub_total: z.nullable(z.number()).optional(),
     total_tax: z.nullable(z.number()).optional(),
     total_amount: z.nullable(z.number()).optional(),
+    tracking_categories: z.nullable(
+      z.array(z.nullable(LinkedTrackingCategory$inboundSchema)),
+    ).optional(),
     line_items: z.array(ExpenseLineItem$inboundSchema),
     reference: z.nullable(z.string()).optional(),
     source_document_url: z.nullable(z.string()).optional(),
@@ -399,10 +438,9 @@ export const Expense$inboundSchema: z.ZodType<Expense, z.ZodTypeDef, unknown> =
     pass_through: z.array(PassThroughBody$inboundSchema).optional(),
   }).transform((v) => {
     return remap$(v, {
+      "display_id": "displayId",
       "transaction_date": "transactionDate",
       "account_id": "accountId",
-      "bank_account": "bankAccount",
-      "customer_id": "customerId",
       "supplier_id": "supplierId",
       "company_id": "companyId",
       "department_id": "departmentId",
@@ -413,6 +451,7 @@ export const Expense$inboundSchema: z.ZodType<Expense, z.ZodTypeDef, unknown> =
       "sub_total": "subTotal",
       "total_tax": "totalTax",
       "total_amount": "totalAmount",
+      "tracking_categories": "trackingCategories",
       "line_items": "lineItems",
       "source_document_url": "sourceDocumentUrl",
       "custom_fields": "customFields",
@@ -438,16 +477,17 @@ export function expenseFromJSON(
 
 /** @internal */
 export type ExpenseInput$Outbound = {
+  display_id?: string | null | undefined;
   number?: string | null | undefined;
   transaction_date: string | null;
   account_id?: string | undefined;
-  account?: LinkedLedgerAccount$Outbound | null | undefined;
-  bank_account?: LinkedBankAccount$Outbound | null | undefined;
-  customer_id?: string | undefined;
+  account?: LinkedFinancialAccountInput$Outbound | null | undefined;
   supplier_id?: string | undefined;
   supplier?: LinkedSupplierInput$Outbound | null | undefined;
   company_id?: string | null | undefined;
+  location?: LinkedLocationInput$Outbound | null | undefined;
   department_id?: string | null | undefined;
+  department?: LinkedDepartmentInput$Outbound | null | undefined;
   payment_type?: string | null | undefined;
   currency?: string | null | undefined;
   currency_rate?: number | null | undefined;
@@ -458,6 +498,10 @@ export type ExpenseInput$Outbound = {
   sub_total?: number | null | undefined;
   total_tax?: number | null | undefined;
   total_amount?: number | null | undefined;
+  tracking_categories?:
+    | Array<LinkedTrackingCategory$Outbound | null>
+    | null
+    | undefined;
   line_items: Array<ExpenseLineItemInput$Outbound>;
   reference?: string | null | undefined;
   source_document_url?: string | null | undefined;
@@ -473,16 +517,17 @@ export const ExpenseInput$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   ExpenseInput
 > = z.object({
+  displayId: z.nullable(z.string()).optional(),
   number: z.nullable(z.string()).optional(),
   transactionDate: z.nullable(z.date().transform(v => v.toISOString())),
   accountId: z.string().optional(),
-  account: z.nullable(LinkedLedgerAccount$outboundSchema).optional(),
-  bankAccount: z.nullable(LinkedBankAccount$outboundSchema).optional(),
-  customerId: z.string().optional(),
+  account: z.nullable(LinkedFinancialAccountInput$outboundSchema).optional(),
   supplierId: z.string().optional(),
   supplier: z.nullable(LinkedSupplierInput$outboundSchema).optional(),
   companyId: z.nullable(z.string()).optional(),
+  location: z.nullable(LinkedLocationInput$outboundSchema).optional(),
   departmentId: z.nullable(z.string()).optional(),
+  department: z.nullable(LinkedDepartmentInput$outboundSchema).optional(),
   paymentType: z.nullable(ExpensePaymentType$outboundSchema).optional(),
   currency: z.nullable(Currency$outboundSchema).optional(),
   currencyRate: z.nullable(z.number()).optional(),
@@ -493,6 +538,9 @@ export const ExpenseInput$outboundSchema: z.ZodType<
   subTotal: z.nullable(z.number()).optional(),
   totalTax: z.nullable(z.number()).optional(),
   totalAmount: z.nullable(z.number()).optional(),
+  trackingCategories: z.nullable(
+    z.array(z.nullable(LinkedTrackingCategory$outboundSchema)),
+  ).optional(),
   lineItems: z.array(ExpenseLineItemInput$outboundSchema),
   reference: z.nullable(z.string()).optional(),
   sourceDocumentUrl: z.nullable(z.string()).optional(),
@@ -502,10 +550,9 @@ export const ExpenseInput$outboundSchema: z.ZodType<
   passThrough: z.array(PassThroughBody$outboundSchema).optional(),
 }).transform((v) => {
   return remap$(v, {
+    displayId: "display_id",
     transactionDate: "transaction_date",
     accountId: "account_id",
-    bankAccount: "bank_account",
-    customerId: "customer_id",
     supplierId: "supplier_id",
     companyId: "company_id",
     departmentId: "department_id",
@@ -516,6 +563,7 @@ export const ExpenseInput$outboundSchema: z.ZodType<
     subTotal: "sub_total",
     totalTax: "total_tax",
     totalAmount: "total_amount",
+    trackingCategories: "tracking_categories",
     lineItems: "line_items",
     sourceDocumentUrl: "source_document_url",
     customFields: "custom_fields",

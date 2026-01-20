@@ -38,10 +38,10 @@ import {
 } from "../types/operations.js";
 
 /**
- * List SharedLinks
+ * List Shared Links
  *
  * @remarks
- * List SharedLinks
+ * List Shared Links
  */
 export function fileStorageSharedLinksList(
   client: ApideckCore,

@@ -6,6 +6,16 @@ import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { LineItemType, LineItemType$outboundSchema } from "./lineitemtype.js";
 import {
+  LinkedCustomerInput,
+  LinkedCustomerInput$Outbound,
+  LinkedCustomerInput$outboundSchema,
+} from "./linkedcustomerinput.js";
+import {
+  LinkedDepartmentInput,
+  LinkedDepartmentInput$Outbound,
+  LinkedDepartmentInput$outboundSchema,
+} from "./linkeddepartmentinput.js";
+import {
   LinkedInvoiceItem,
   LinkedInvoiceItem$Outbound,
   LinkedInvoiceItem$outboundSchema,
@@ -15,6 +25,11 @@ import {
   LinkedLedgerAccount$Outbound,
   LinkedLedgerAccount$outboundSchema,
 } from "./linkedledgeraccount.js";
+import {
+  LinkedLocationInput,
+  LinkedLocationInput$Outbound,
+  LinkedLocationInput$outboundSchema,
+} from "./linkedlocationinput.js";
 import {
   LinkedTaxRateInput,
   LinkedTaxRateInput$Outbound,
@@ -44,21 +59,25 @@ export type ExpenseLineItemInput = {
   accountId?: string | undefined;
   account?: LinkedLedgerAccount | null | undefined;
   /**
-   * The ID of the customer this expense item is linked to.
+   * The ID of the customer this expense item is linked to. Deprecated in favor of `customer`.
+   *
+   * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
    */
   customerId?: string | undefined;
+  /**
+   * The customer this entity is linked to.
+   */
+  customer?: LinkedCustomerInput | null | undefined;
   /**
    * The ID of the department
    */
   departmentId?: string | null | undefined;
+  department?: LinkedDepartmentInput | null | undefined;
   /**
    * The ID of the location
    */
   locationId?: string | null | undefined;
-  /**
-   * The ID of the subsidiary
-   */
-  subsidiaryId?: string | null | undefined;
+  location?: LinkedLocationInput | null | undefined;
   taxRate?: LinkedTaxRateInput | undefined;
   /**
    * The expense line item description
@@ -80,12 +99,6 @@ export type ExpenseLineItemInput = {
   unitPrice?: number | null | undefined;
   item?: LinkedInvoiceItem | undefined;
   /**
-   * Boolean that indicates if the line item is billable or not.
-   *
-   * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
-   */
-  billable?: boolean | undefined;
-  /**
    * Line number of the resource
    */
   lineNumber?: number | null | undefined;
@@ -104,9 +117,11 @@ export type ExpenseLineItemInput$Outbound = {
   account_id?: string | undefined;
   account?: LinkedLedgerAccount$Outbound | null | undefined;
   customer_id?: string | undefined;
+  customer?: LinkedCustomerInput$Outbound | null | undefined;
   department_id?: string | null | undefined;
+  department?: LinkedDepartmentInput$Outbound | null | undefined;
   location_id?: string | null | undefined;
-  subsidiary_id?: string | null | undefined;
+  location?: LinkedLocationInput$Outbound | null | undefined;
   tax_rate?: LinkedTaxRateInput$Outbound | undefined;
   description?: string | null | undefined;
   type?: string | null | undefined;
@@ -115,7 +130,6 @@ export type ExpenseLineItemInput$Outbound = {
   quantity?: number | null | undefined;
   unit_price?: number | null | undefined;
   item?: LinkedInvoiceItem$Outbound | undefined;
-  billable?: boolean | undefined;
   line_number?: number | null | undefined;
   rebilling?: Rebilling$Outbound | null | undefined;
 };
@@ -132,9 +146,11 @@ export const ExpenseLineItemInput$outboundSchema: z.ZodType<
   accountId: z.string().optional(),
   account: z.nullable(LinkedLedgerAccount$outboundSchema).optional(),
   customerId: z.string().optional(),
+  customer: z.nullable(LinkedCustomerInput$outboundSchema).optional(),
   departmentId: z.nullable(z.string()).optional(),
+  department: z.nullable(LinkedDepartmentInput$outboundSchema).optional(),
   locationId: z.nullable(z.string()).optional(),
-  subsidiaryId: z.nullable(z.string()).optional(),
+  location: z.nullable(LinkedLocationInput$outboundSchema).optional(),
   taxRate: LinkedTaxRateInput$outboundSchema.optional(),
   description: z.nullable(z.string()).optional(),
   type: z.nullable(LineItemType$outboundSchema).optional(),
@@ -143,7 +159,6 @@ export const ExpenseLineItemInput$outboundSchema: z.ZodType<
   quantity: z.nullable(z.number()).optional(),
   unitPrice: z.nullable(z.number()).optional(),
   item: LinkedInvoiceItem$outboundSchema.optional(),
-  billable: z.boolean().optional(),
   lineNumber: z.nullable(z.number().int()).optional(),
   rebilling: z.nullable(Rebilling$outboundSchema).optional(),
 }).transform((v) => {
@@ -153,7 +168,6 @@ export const ExpenseLineItemInput$outboundSchema: z.ZodType<
     customerId: "customer_id",
     departmentId: "department_id",
     locationId: "location_id",
-    subsidiaryId: "subsidiary_id",
     taxRate: "tax_rate",
     totalAmount: "total_amount",
     taxAmount: "tax_amount",

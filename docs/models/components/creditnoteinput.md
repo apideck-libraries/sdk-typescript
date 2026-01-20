@@ -14,6 +14,7 @@ let value: CreditNoteInput = {
     email: "boring@boring.com",
   },
   companyId: "12345",
+  locationId: "12345",
   departmentId: "12345",
   currency: "USD",
   currencyRate: 0.69,
@@ -83,6 +84,7 @@ let value: CreditNoteInput = {
       trackingCategories: [
         {
           id: "123456",
+          code: "100",
           name: "New York",
           parentId: "123456",
           parentName: "New York",
@@ -173,6 +175,7 @@ let value: CreditNoteInput = {
   trackingCategories: [
     {
       id: "123456",
+      code: "100",
       name: "New York",
       parentId: "123456",
       parentName: "New York",
@@ -212,6 +215,7 @@ let value: CreditNoteInput = {
 | `number`                                                                                                                                                | *string*                                                                                                                                                | :heavy_minus_sign:                                                                                                                                      | Credit note number.                                                                                                                                     | OIT00546                                                                                                                                                |
 | `customer`                                                                                                                                              | [components.LinkedCustomerInput](../../models/components/linkedcustomerinput.md)                                                                        | :heavy_minus_sign:                                                                                                                                      | The customer this entity is linked to.                                                                                                                  |                                                                                                                                                         |
 | `companyId`                                                                                                                                             | *string*                                                                                                                                                | :heavy_minus_sign:                                                                                                                                      | The company ID the transaction belongs to                                                                                                               | 12345                                                                                                                                                   |
+| `locationId`                                                                                                                                            | *string*                                                                                                                                                | :heavy_minus_sign:                                                                                                                                      | The ID of the location                                                                                                                                  | 12345                                                                                                                                                   |
 | `departmentId`                                                                                                                                          | *string*                                                                                                                                                | :heavy_minus_sign:                                                                                                                                      | The ID of the department                                                                                                                                | 12345                                                                                                                                                   |
 | `currency`                                                                                                                                              | [components.Currency](../../models/components/currency.md)                                                                                              | :heavy_minus_sign:                                                                                                                                      | Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).                      | USD                                                                                                                                                     |
 | `currencyRate`                                                                                                                                          | *number*                                                                                                                                                | :heavy_minus_sign:                                                                                                                                      | Currency Exchange Rate at the time entity was recorded/generated.                                                                                       | 0.69                                                                                                                                                    |

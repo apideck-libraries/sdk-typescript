@@ -27,6 +27,10 @@ export const Classification = {
 export type Classification = ClosedEnum<typeof Classification>;
 
 export type LedgerAccountsFilter = {
+  /**
+   * Filter by ledger account name
+   */
+  name?: string | undefined;
   updatedSince?: Date | undefined;
   /**
    * Filter by account classification.
@@ -41,6 +45,7 @@ export const Classification$outboundSchema: z.ZodNativeEnum<
 
 /** @internal */
 export type LedgerAccountsFilter$Outbound = {
+  name?: string | undefined;
   updated_since?: string | undefined;
   classification?: string | undefined;
 };
@@ -51,6 +56,7 @@ export const LedgerAccountsFilter$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   LedgerAccountsFilter
 > = z.object({
+  name: z.string().optional(),
   updatedSince: z.date().transform(v => v.toISOString()).optional(),
   classification: Classification$outboundSchema.optional(),
 }).transform((v) => {

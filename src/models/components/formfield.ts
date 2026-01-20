@@ -57,7 +57,7 @@ export type FormField = {
   /**
    * Only applicable to select fields. Allow the user to add a custom value though the option select if the desired value is not in the option select list.
    */
-  allowCustomValues?: boolean | undefined;
+  allowCustomValues: boolean;
   /**
    * Indicates if the form field is displayed in a “read-only” mode.
    */

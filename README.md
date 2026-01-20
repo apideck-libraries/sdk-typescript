@@ -514,7 +514,7 @@ run();
 
 ### [FileStorage.SharedLinks](docs/sdks/sharedlinks/README.md)
 
-* [list](docs/sdks/sharedlinks/README.md#list) - List SharedLinks
+* [list](docs/sdks/sharedlinks/README.md#list) - List Shared Links
 * [create](docs/sdks/sharedlinks/README.md#create) - Create Shared Link
 * [get](docs/sdks/sharedlinks/README.md#get) - Get Shared Link
 * [update](docs/sdks/sharedlinks/README.md#update) - Update Shared Link
@@ -928,7 +928,7 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`fileStorageSharedLinksCreate`](docs/sdks/sharedlinks/README.md#create) - Create Shared Link
 - [`fileStorageSharedLinksDelete`](docs/sdks/sharedlinks/README.md#delete) - Delete Shared Link
 - [`fileStorageSharedLinksGet`](docs/sdks/sharedlinks/README.md#get) - Get Shared Link
-- [`fileStorageSharedLinksList`](docs/sdks/sharedlinks/README.md#list) - List SharedLinks
+- [`fileStorageSharedLinksList`](docs/sdks/sharedlinks/README.md#list) - List Shared Links
 - [`fileStorageSharedLinksUpdate`](docs/sdks/sharedlinks/README.md#update) - Update Shared Link
 - [`fileStorageUploadSessionsCreate`](docs/sdks/uploadsessions/README.md#create) - Start Upload Session
 - [`fileStorageUploadSessionsDelete`](docs/sdks/uploadsessions/README.md#delete) - Abort Upload Session

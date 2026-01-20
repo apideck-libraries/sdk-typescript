@@ -18,6 +18,7 @@ let value: GetSubsidiaryResponse = {
     parentId: "12345",
     name: "SpaceX",
     displayId: "12345",
+    downstreamId: "12345",
     status: "active",
     address: {
       id: "123",

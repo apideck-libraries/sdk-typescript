@@ -56,6 +56,10 @@ export type Subsidiary = {
    */
   displayId?: string | null | undefined;
   /**
+   * The third-party API ID of original entity
+   */
+  downstreamId?: string | null | undefined;
+  /**
    * Based on the status some functionality is enabled or disabled.
    */
   status?: SubsidiaryStatus | undefined;
@@ -145,6 +149,7 @@ export const Subsidiary$inboundSchema: z.ZodType<
   parent_id: z.nullable(z.string()).optional(),
   name: z.nullable(z.string()).optional(),
   display_id: z.nullable(z.string()).optional(),
+  downstream_id: z.nullable(z.string()).optional(),
   status: SubsidiaryStatus$inboundSchema.optional(),
   address: Address$inboundSchema.optional(),
   currencies: z.nullable(z.array(z.nullable(Currency$inboundSchema)))
@@ -164,6 +169,7 @@ export const Subsidiary$inboundSchema: z.ZodType<
   return remap$(v, {
     "parent_id": "parentId",
     "display_id": "displayId",
+    "downstream_id": "downstreamId",
     "custom_mappings": "customMappings",
     "row_version": "rowVersion",
     "updated_by": "updatedBy",

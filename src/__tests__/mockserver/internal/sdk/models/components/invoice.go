@@ -156,6 +156,8 @@ type Invoice struct {
 	Customer *LinkedCustomer `json:"customer,omitempty"`
 	// The company ID the transaction belongs to
 	CompanyID *string `json:"company_id,omitempty"`
+	// The ID of the location
+	LocationID *string `json:"location_id,omitempty"`
 	// The ID of the department
 	DepartmentID *string `json:"department_id,omitempty"`
 	// Date invoice was issued - YYYY-MM-DD.
@@ -294,6 +296,13 @@ func (o *Invoice) GetCompanyID() *string {
 		return nil
 	}
 	return o.CompanyID
+}
+
+func (o *Invoice) GetLocationID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.LocationID
 }
 
 func (o *Invoice) GetDepartmentID() *string {
@@ -601,6 +610,8 @@ type InvoiceInput struct {
 	Customer *LinkedCustomerInput `json:"customer,omitempty"`
 	// The company ID the transaction belongs to
 	CompanyID *string `json:"company_id,omitempty"`
+	// The ID of the location
+	LocationID *string `json:"location_id,omitempty"`
 	// The ID of the department
 	DepartmentID *string `json:"department_id,omitempty"`
 	// Date invoice was issued - YYYY-MM-DD.
@@ -715,6 +726,13 @@ func (o *InvoiceInput) GetCompanyID() *string {
 		return nil
 	}
 	return o.CompanyID
+}
+
+func (o *InvoiceInput) GetLocationID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.LocationID
 }
 
 func (o *InvoiceInput) GetDepartmentID() *string {
