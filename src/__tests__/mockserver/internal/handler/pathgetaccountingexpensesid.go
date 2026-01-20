@@ -57,7 +57,6 @@ func testAccountingExpensesOneAccountingExpensesOne0(w http.ResponseWriter, req 
 			Number:          types.String("OIT00546"),
 			TransactionDate: types.MustNewTimeFromString("2021-05-01T12:00:00.000Z"),
 			AccountID:       types.String("123456"),
-			CustomerID:      types.String("12345"),
 			SupplierID:      types.String("12345"),
 			CompanyID:       types.String("12345"),
 			DepartmentID:    types.String("12345"),
@@ -90,7 +89,6 @@ func testAccountingExpensesOneAccountingExpensesOne0(w http.ResponseWriter, req 
 					CustomerID:   types.String("12345"),
 					DepartmentID: types.String("12345"),
 					LocationID:   types.String("12345"),
-					SubsidiaryID: types.String("12345"),
 					TaxRate: &components.LinkedTaxRate{
 						ID:   types.String("123456"),
 						Code: types.String("N-T"),
@@ -99,7 +97,6 @@ func testAccountingExpensesOneAccountingExpensesOne0(w http.ResponseWriter, req 
 					},
 					Description: types.String("Travel US."),
 					TotalAmount: types.Float64(275),
-					Billable:    types.Bool(true),
 				},
 				components.ExpenseLineItem{
 					ID: types.String("12345"),
@@ -117,7 +114,6 @@ func testAccountingExpensesOneAccountingExpensesOne0(w http.ResponseWriter, req 
 					CustomerID:   types.String("12345"),
 					DepartmentID: types.String("12345"),
 					LocationID:   types.String("12345"),
-					SubsidiaryID: types.String("12345"),
 					TaxRate: &components.LinkedTaxRate{
 						ID:   types.String("123456"),
 						Code: types.String("N-T"),
@@ -126,7 +122,6 @@ func testAccountingExpensesOneAccountingExpensesOne0(w http.ResponseWriter, req 
 					},
 					Description: types.String("Travel US."),
 					TotalAmount: types.Float64(275),
-					Billable:    types.Bool(true),
 				},
 			},
 			CustomFields: []components.CustomFieldUnion{

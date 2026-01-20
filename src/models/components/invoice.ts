@@ -154,6 +154,10 @@ export type Invoice = {
    */
   companyId?: string | null | undefined;
   /**
+   * The ID of the location
+   */
+  locationId?: string | null | undefined;
+  /**
    * The ID of the department
    */
   departmentId?: string | null | undefined;
@@ -326,6 +330,10 @@ export type InvoiceInput = {
    * The company ID the transaction belongs to
    */
   companyId?: string | null | undefined;
+  /**
+   * The ID of the location
+   */
+  locationId?: string | null | undefined;
   /**
    * The ID of the department
    */
@@ -539,6 +547,7 @@ export const Invoice$inboundSchema: z.ZodType<Invoice, z.ZodTypeDef, unknown> =
     number: z.nullable(z.string()).optional(),
     customer: z.nullable(LinkedCustomer$inboundSchema).optional(),
     company_id: z.nullable(z.string()).optional(),
+    location_id: z.nullable(z.string()).optional(),
     department_id: z.nullable(z.string()).optional(),
     invoice_date: z.nullable(z.string().transform(v => new RFCDate(v)))
       .optional(),
@@ -597,6 +606,7 @@ export const Invoice$inboundSchema: z.ZodType<Invoice, z.ZodTypeDef, unknown> =
       "downstream_id": "downstreamId",
       "display_id": "displayId",
       "company_id": "companyId",
+      "location_id": "locationId",
       "department_id": "departmentId",
       "invoice_date": "invoiceDate",
       "due_date": "dueDate",
@@ -650,6 +660,7 @@ export type InvoiceInput$Outbound = {
   number?: string | null | undefined;
   customer?: LinkedCustomerInput$Outbound | null | undefined;
   company_id?: string | null | undefined;
+  location_id?: string | null | undefined;
   department_id?: string | null | undefined;
   invoice_date?: string | null | undefined;
   due_date?: string | null | undefined;
@@ -706,6 +717,7 @@ export const InvoiceInput$outboundSchema: z.ZodType<
   number: z.nullable(z.string()).optional(),
   customer: z.nullable(LinkedCustomerInput$outboundSchema).optional(),
   companyId: z.nullable(z.string()).optional(),
+  locationId: z.nullable(z.string()).optional(),
   departmentId: z.nullable(z.string()).optional(),
   invoiceDate: z.nullable(z.instanceof(RFCDate).transform(v => v.toString()))
     .optional(),
@@ -754,6 +766,7 @@ export const InvoiceInput$outboundSchema: z.ZodType<
   return remap$(v, {
     displayId: "display_id",
     companyId: "company_id",
+    locationId: "location_id",
     departmentId: "department_id",
     invoiceDate: "invoice_date",
     dueDate: "due_date",

@@ -52,6 +52,14 @@ export type AccountingLocation = {
    */
   parentId?: string | null | undefined;
   /**
+   * Id to be displayed.
+   */
+  displayId?: string | null | undefined;
+  /**
+   * The third-party API ID of original entity
+   */
+  downstreamId?: string | null | undefined;
+  /**
    * The name of the company.
    */
   companyName?: string | null | undefined;
@@ -101,6 +109,10 @@ export type AccountingLocationInput = {
    */
   parentId?: string | null | undefined;
   /**
+   * Id to be displayed.
+   */
+  displayId?: string | null | undefined;
+  /**
    * The name of the company.
    */
   companyName?: string | null | undefined;
@@ -141,6 +153,8 @@ export const AccountingLocation$inboundSchema: z.ZodType<
 > = z.object({
   id: z.string().optional(),
   parent_id: z.nullable(z.string()).optional(),
+  display_id: z.nullable(z.string()).optional(),
+  downstream_id: z.nullable(z.string()).optional(),
   company_name: z.nullable(z.string()).optional(),
   display_name: z.nullable(z.string()).optional(),
   status: LocationStatus$inboundSchema.optional(),
@@ -160,6 +174,8 @@ export const AccountingLocation$inboundSchema: z.ZodType<
 }).transform((v) => {
   return remap$(v, {
     "parent_id": "parentId",
+    "display_id": "displayId",
+    "downstream_id": "downstreamId",
     "company_name": "companyName",
     "display_name": "displayName",
     "custom_mappings": "customMappings",
@@ -185,6 +201,7 @@ export function accountingLocationFromJSON(
 /** @internal */
 export type AccountingLocationInput$Outbound = {
   parent_id?: string | null | undefined;
+  display_id?: string | null | undefined;
   company_name?: string | null | undefined;
   display_name?: string | null | undefined;
   status?: string | undefined;
@@ -201,6 +218,7 @@ export const AccountingLocationInput$outboundSchema: z.ZodType<
   AccountingLocationInput
 > = z.object({
   parentId: z.nullable(z.string()).optional(),
+  displayId: z.nullable(z.string()).optional(),
   companyName: z.nullable(z.string()).optional(),
   displayName: z.nullable(z.string()).optional(),
   status: LocationStatus$outboundSchema.optional(),
@@ -211,6 +229,7 @@ export const AccountingLocationInput$outboundSchema: z.ZodType<
 }).transform((v) => {
   return remap$(v, {
     parentId: "parent_id",
+    displayId: "display_id",
     companyName: "company_name",
     displayName: "display_name",
     rowVersion: "row_version",

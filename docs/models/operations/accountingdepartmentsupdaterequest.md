@@ -10,6 +10,7 @@ let value: AccountingDepartmentsUpdateRequest = {
   serviceId: "salesforce",
   accountingDepartment: {
     parentId: "12345",
+    displayId: "123456",
     name: "Sales",
     status: "active",
     subsidiaries: [

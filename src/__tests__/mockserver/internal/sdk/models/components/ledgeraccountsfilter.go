@@ -61,6 +61,8 @@ func (e *LedgerAccountsFilterClassification) UnmarshalJSON(data []byte) error {
 }
 
 type LedgerAccountsFilter struct {
+	// Filter by ledger account name
+	Name         *string    `queryParam:"name=name"`
 	UpdatedSince *time.Time `queryParam:"name=updated_since"`
 	// Filter by account classification.
 	Classification *LedgerAccountsFilterClassification `queryParam:"name=classification"`
@@ -75,6 +77,13 @@ func (l *LedgerAccountsFilter) UnmarshalJSON(data []byte) error {
 		return err
 	}
 	return nil
+}
+
+func (o *LedgerAccountsFilter) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
 }
 
 func (o *LedgerAccountsFilter) GetUpdatedSince() *time.Time {

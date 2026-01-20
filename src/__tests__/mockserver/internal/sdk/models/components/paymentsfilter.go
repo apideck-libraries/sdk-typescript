@@ -54,10 +54,12 @@ func (e *PaymentsFilterType) UnmarshalJSON(data []byte) error {
 }
 
 type PaymentsFilter struct {
-	UpdatedSince *time.Time          `queryParam:"name=updated_since"`
-	InvoiceID    *string             `queryParam:"name=invoice_id"`
-	SupplierID   *string             `queryParam:"name=supplier_id"`
-	Type         *PaymentsFilterType `queryParam:"name=type"`
+	UpdatedSince *time.Time `queryParam:"name=updated_since"`
+	InvoiceID    *string    `queryParam:"name=invoice_id"`
+	SupplierID   *string    `queryParam:"name=supplier_id"`
+	// Filter by customer id
+	CustomerID *string             `queryParam:"name=customer_id"`
+	Type       *PaymentsFilterType `queryParam:"name=type"`
 }
 
 func (p PaymentsFilter) MarshalJSON() ([]byte, error) {
@@ -90,6 +92,13 @@ func (o *PaymentsFilter) GetSupplierID() *string {
 		return nil
 	}
 	return o.SupplierID
+}
+
+func (o *PaymentsFilter) GetCustomerID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CustomerID
 }
 
 func (o *PaymentsFilter) GetType() *PaymentsFilterType {

@@ -22,6 +22,10 @@ export type PaymentsFilter = {
   updatedSince?: Date | undefined;
   invoiceId?: string | undefined;
   supplierId?: string | undefined;
+  /**
+   * Filter by customer id
+   */
+  customerId?: string | undefined;
   type?: PaymentsFilterType | undefined;
 };
 
@@ -35,6 +39,7 @@ export type PaymentsFilter$Outbound = {
   updated_since?: string | undefined;
   invoice_id?: string | undefined;
   supplier_id?: string | undefined;
+  customer_id?: string | undefined;
   type?: string | undefined;
 };
 
@@ -47,12 +52,14 @@ export const PaymentsFilter$outboundSchema: z.ZodType<
   updatedSince: z.date().transform(v => v.toISOString()).optional(),
   invoiceId: z.string().optional(),
   supplierId: z.string().optional(),
+  customerId: z.string().optional(),
   type: PaymentsFilterType$outboundSchema.optional(),
 }).transform((v) => {
   return remap$(v, {
     updatedSince: "updated_since",
     invoiceId: "invoice_id",
     supplierId: "supplier_id",
+    customerId: "customer_id",
   });
 });
 

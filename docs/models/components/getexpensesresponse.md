@@ -16,23 +16,18 @@ let value: GetExpensesResponse = {
   data: [
     {
       id: "12345",
+      displayId: "123456",
       number: "OIT00546",
       transactionDate: new Date("2021-05-01T12:00:00.000Z"),
       account: {
         id: "123456",
-        name: "Bank account",
-        nominalCode: "N091",
-        code: "453",
-        parentId: "123456",
+        type: "ledger_account",
+        code: "1100",
         displayId: "123456",
-      },
-      bankAccount: {
-        id: "ba_123456",
-        name: "Main Operating Account",
         accountNumber: "123465",
-        bankName: "Chase Bank",
+        name: "Current assets",
+        downstreamId: "12345",
       },
-      customerId: "12345",
       supplier: {
         id: "12345",
         displayId: "SUPP00101",
@@ -67,7 +62,19 @@ let value: GetExpensesResponse = {
         },
       },
       companyId: "12345",
+      location: {
+        id: "123456",
+        displayId: "123456",
+        name: "New York Office",
+        downstreamId: "12345",
+      },
       departmentId: "12345",
+      department: {
+        id: "12345",
+        displayId: "123456",
+        name: "Acme Inc.",
+        downstreamId: "12345",
+      },
       paymentType: "cash",
       currency: "USD",
       currencyRate: 0.69,
@@ -83,17 +90,19 @@ let value: GetExpensesResponse = {
       subTotal: 250,
       totalTax: 25,
       totalAmount: 275,
+      trackingCategories: [
+        {
+          id: "123456",
+          code: "100",
+          name: "New York",
+          parentId: "123456",
+          parentName: "New York",
+        },
+      ],
       lineItems: [
         {
           id: "12345",
-          trackingCategories: [
-            {
-              id: "123456",
-              name: "New York",
-              parentId: "123456",
-              parentName: "New York",
-            },
-          ],
+          trackingCategories: null,
           account: {
             id: "123456",
             name: "Bank account",
@@ -102,10 +111,27 @@ let value: GetExpensesResponse = {
             parentId: "123456",
             displayId: "123456",
           },
-          customerId: "12345",
+          customer: {
+            id: "12345",
+            displayId: "CUST00101",
+            displayName: "Windsurf Shop",
+            companyName: "The boring company",
+            email: "boring@boring.com",
+          },
           departmentId: "12345",
+          department: {
+            id: "12345",
+            displayId: "123456",
+            name: "Acme Inc.",
+            downstreamId: "12345",
+          },
           locationId: "12345",
-          subsidiaryId: "12345",
+          location: {
+            id: "123456",
+            displayId: "123456",
+            name: "New York Office",
+            downstreamId: "12345",
+          },
           taxRate: {
             id: "123456",
             code: "N-T",

@@ -46,6 +46,10 @@ export type AccountingDepartment = {
    */
   parentId?: string | null | undefined;
   /**
+   * Id to be displayed.
+   */
+  displayId?: string | null | undefined;
+  /**
    * The name of the department.
    */
   name?: string | null | undefined;
@@ -58,6 +62,10 @@ export type AccountingDepartment = {
    * The code of the department.
    */
   code?: string | undefined;
+  /**
+   * The third-party API ID of original entity
+   */
+  downstreamId?: string | null | undefined;
   /**
    * When custom mappings are configured on the resource, the result is included here.
    */
@@ -93,6 +101,10 @@ export type AccountingDepartmentInput = {
    * A unique identifier for an object.
    */
   parentId?: string | null | undefined;
+  /**
+   * Id to be displayed.
+   */
+  displayId?: string | null | undefined;
   /**
    * The name of the department.
    */
@@ -133,10 +145,12 @@ export const AccountingDepartment$inboundSchema: z.ZodType<
 > = z.object({
   id: z.string().optional(),
   parent_id: z.nullable(z.string()).optional(),
+  display_id: z.nullable(z.string()).optional(),
   name: z.nullable(z.string()).optional(),
   status: DepartmentStatus$inboundSchema.optional(),
   subsidiaries: z.array(SubsidiaryReference$inboundSchema).optional(),
   code: z.string().optional(),
+  downstream_id: z.nullable(z.string()).optional(),
   custom_mappings: z.nullable(z.record(z.any())).optional(),
   row_version: z.nullable(z.string()).optional(),
   updated_by: z.nullable(z.string()).optional(),
@@ -151,6 +165,8 @@ export const AccountingDepartment$inboundSchema: z.ZodType<
 }).transform((v) => {
   return remap$(v, {
     "parent_id": "parentId",
+    "display_id": "displayId",
+    "downstream_id": "downstreamId",
     "custom_mappings": "customMappings",
     "row_version": "rowVersion",
     "updated_by": "updatedBy",
@@ -174,6 +190,7 @@ export function accountingDepartmentFromJSON(
 /** @internal */
 export type AccountingDepartmentInput$Outbound = {
   parent_id?: string | null | undefined;
+  display_id?: string | null | undefined;
   name?: string | null | undefined;
   status?: string | undefined;
   subsidiaries?: Array<SubsidiaryReferenceInput$Outbound> | undefined;
@@ -189,6 +206,7 @@ export const AccountingDepartmentInput$outboundSchema: z.ZodType<
   AccountingDepartmentInput
 > = z.object({
   parentId: z.nullable(z.string()).optional(),
+  displayId: z.nullable(z.string()).optional(),
   name: z.nullable(z.string()).optional(),
   status: DepartmentStatus$outboundSchema.optional(),
   subsidiaries: z.array(SubsidiaryReferenceInput$outboundSchema).optional(),
@@ -198,6 +216,7 @@ export const AccountingDepartmentInput$outboundSchema: z.ZodType<
 }).transform((v) => {
   return remap$(v, {
     parentId: "parent_id",
+    displayId: "display_id",
     rowVersion: "row_version",
     passThrough: "pass_through",
   });

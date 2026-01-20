@@ -125,6 +125,10 @@ export type Bill = {
    */
   companyId?: string | null | undefined;
   /**
+   * The ID of the location
+   */
+  locationId?: string | null | undefined;
+  /**
    * The ID of the department
    */
   departmentId?: string | null | undefined;
@@ -298,6 +302,10 @@ export type BillInput = {
    */
   companyId?: string | null | undefined;
   /**
+   * The ID of the location
+   */
+  locationId?: string | null | undefined;
+  /**
    * The ID of the department
    */
   departmentId?: string | null | undefined;
@@ -458,6 +466,7 @@ export const Bill$inboundSchema: z.ZodType<Bill, z.ZodTypeDef, unknown> = z
     bill_number: z.nullable(z.string()).optional(),
     supplier: z.nullable(LinkedSupplier$inboundSchema).optional(),
     company_id: z.nullable(z.string()).optional(),
+    location_id: z.nullable(z.string()).optional(),
     department_id: z.nullable(z.string()).optional(),
     currency: z.nullable(Currency$inboundSchema).optional(),
     currency_rate: z.nullable(z.number()).optional(),
@@ -513,6 +522,7 @@ export const Bill$inboundSchema: z.ZodType<Bill, z.ZodTypeDef, unknown> = z
       "display_id": "displayId",
       "bill_number": "billNumber",
       "company_id": "companyId",
+      "location_id": "locationId",
       "department_id": "departmentId",
       "currency_rate": "currencyRate",
       "tax_inclusive": "taxInclusive",
@@ -564,6 +574,7 @@ export type BillInput$Outbound = {
   bill_number?: string | null | undefined;
   supplier?: LinkedSupplierInput$Outbound | null | undefined;
   company_id?: string | null | undefined;
+  location_id?: string | null | undefined;
   department_id?: string | null | undefined;
   currency?: string | null | undefined;
   currency_rate?: number | null | undefined;
@@ -617,6 +628,7 @@ export const BillInput$outboundSchema: z.ZodType<
   billNumber: z.nullable(z.string()).optional(),
   supplier: z.nullable(LinkedSupplierInput$outboundSchema).optional(),
   companyId: z.nullable(z.string()).optional(),
+  locationId: z.nullable(z.string()).optional(),
   departmentId: z.nullable(z.string()).optional(),
   currency: z.nullable(Currency$outboundSchema).optional(),
   currencyRate: z.nullable(z.number()).optional(),
@@ -665,6 +677,7 @@ export const BillInput$outboundSchema: z.ZodType<
     displayId: "display_id",
     billNumber: "bill_number",
     companyId: "company_id",
+    locationId: "location_id",
     departmentId: "department_id",
     currencyRate: "currency_rate",
     taxInclusive: "tax_inclusive",

@@ -14,10 +14,10 @@ import { PageIterator, unwrapResultIterator } from "../types/operations.js";
 
 export class SharedLinks extends ClientSDK {
   /**
-   * List SharedLinks
+   * List Shared Links
    *
    * @remarks
-   * List SharedLinks
+   * List Shared Links
    */
   async list(
     request: operations.FileStorageSharedLinksAllRequest,

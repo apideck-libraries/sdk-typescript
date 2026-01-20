@@ -277,7 +277,7 @@ export type Project = {
   /**
    * Indicates if the project is billable to the customer
    */
-  isBillable?: boolean | null | undefined;
+  isBillable: boolean | null;
   /**
    * Current phase of the project lifecycle
    */

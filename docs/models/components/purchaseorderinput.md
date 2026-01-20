@@ -43,6 +43,7 @@ let value: PurchaseOrderInput = {
   },
   subsidiaryId: "12345",
   companyId: "12345",
+  locationId: "12345",
   departmentId: "12345",
   status: "open",
   issuedDate: new RFCDate("2020-09-30"),
@@ -100,6 +101,7 @@ let value: PurchaseOrderInput = {
       trackingCategories: [
         {
           id: "123456",
+          code: "100",
           name: "New York",
           parentId: "123456",
           parentName: "New York",
@@ -216,6 +218,7 @@ let value: PurchaseOrderInput = {
   trackingCategories: [
     {
       id: "123456",
+      code: "100",
       name: "New York",
       parentId: "123456",
       parentName: "New York",
@@ -258,6 +261,7 @@ let value: PurchaseOrderInput = {
 | `supplier`                                                                                                                                              | [components.LinkedSupplierInput](../../models/components/linkedsupplierinput.md)                                                                        | :heavy_minus_sign:                                                                                                                                      | The supplier this entity is linked to.                                                                                                                  |                                                                                                                                                         |
 | `subsidiaryId`                                                                                                                                          | *string*                                                                                                                                                | :heavy_minus_sign:                                                                                                                                      | The ID of the subsidiary                                                                                                                                | 12345                                                                                                                                                   |
 | `companyId`                                                                                                                                             | *string*                                                                                                                                                | :heavy_minus_sign:                                                                                                                                      | The company ID the transaction belongs to                                                                                                               | 12345                                                                                                                                                   |
+| `locationId`                                                                                                                                            | *string*                                                                                                                                                | :heavy_minus_sign:                                                                                                                                      | The ID of the location                                                                                                                                  | 12345                                                                                                                                                   |
 | `departmentId`                                                                                                                                          | *string*                                                                                                                                                | :heavy_minus_sign:                                                                                                                                      | The ID of the department                                                                                                                                | 12345                                                                                                                                                   |
 | `status`                                                                                                                                                | [components.PurchaseOrderStatus](../../models/components/purchaseorderstatus.md)                                                                        | :heavy_minus_sign:                                                                                                                                      | N/A                                                                                                                                                     | open                                                                                                                                                    |
 | `issuedDate`                                                                                                                                            | [RFCDate](../../types/rfcdate.md)                                                                                                                       | :heavy_minus_sign:                                                                                                                                      | Date purchase order was issued - YYYY-MM-DD.                                                                                                            | 2020-09-30                                                                                                                                              |

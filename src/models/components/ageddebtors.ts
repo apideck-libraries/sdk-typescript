@@ -25,11 +25,11 @@ export type AgedDebtors = {
   /**
    * Number of aging periods shown in the report.
    */
-  periodCount?: number | undefined;
+  periodCount: number;
   /**
    * Length of each aging period in days.
    */
-  periodLength?: number | undefined;
+  periodLength: number;
   outstandingBalances?: Array<OutstandingBalanceByCustomer> | undefined;
 };
 

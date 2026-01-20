@@ -127,6 +127,10 @@ export type PurchaseOrder = {
    */
   companyId?: string | null | undefined;
   /**
+   * The ID of the location
+   */
+  locationId?: string | null | undefined;
+  /**
    * The ID of the department
    */
   departmentId?: string | null | undefined;
@@ -289,6 +293,10 @@ export type PurchaseOrderInput = {
    */
   companyId?: string | null | undefined;
   /**
+   * The ID of the location
+   */
+  locationId?: string | null | undefined;
+  /**
    * The ID of the department
    */
   departmentId?: string | null | undefined;
@@ -437,6 +445,7 @@ export const PurchaseOrder$inboundSchema: z.ZodType<
   supplier: z.nullable(LinkedSupplier$inboundSchema).optional(),
   subsidiary_id: z.nullable(z.string()).optional(),
   company_id: z.nullable(z.string()).optional(),
+  location_id: z.nullable(z.string()).optional(),
   department_id: z.nullable(z.string()).optional(),
   status: z.nullable(PurchaseOrderStatus$inboundSchema).optional(),
   issued_date: z.nullable(z.string().transform(v => new RFCDate(v))).optional(),
@@ -492,6 +501,7 @@ export const PurchaseOrder$inboundSchema: z.ZodType<
     "po_number": "poNumber",
     "subsidiary_id": "subsidiaryId",
     "company_id": "companyId",
+    "location_id": "locationId",
     "department_id": "departmentId",
     "issued_date": "issuedDate",
     "delivery_date": "deliveryDate",
@@ -545,6 +555,7 @@ export type PurchaseOrderInput$Outbound = {
   supplier?: LinkedSupplierInput$Outbound | null | undefined;
   subsidiary_id?: string | null | undefined;
   company_id?: string | null | undefined;
+  location_id?: string | null | undefined;
   department_id?: string | null | undefined;
   status?: string | null | undefined;
   issued_date?: string | null | undefined;
@@ -596,6 +607,7 @@ export const PurchaseOrderInput$outboundSchema: z.ZodType<
   supplier: z.nullable(LinkedSupplierInput$outboundSchema).optional(),
   subsidiaryId: z.nullable(z.string()).optional(),
   companyId: z.nullable(z.string()).optional(),
+  locationId: z.nullable(z.string()).optional(),
   departmentId: z.nullable(z.string()).optional(),
   status: z.nullable(PurchaseOrderStatus$outboundSchema).optional(),
   issuedDate: z.nullable(z.instanceof(RFCDate).transform(v => v.toString()))
@@ -644,6 +656,7 @@ export const PurchaseOrderInput$outboundSchema: z.ZodType<
     poNumber: "po_number",
     subsidiaryId: "subsidiary_id",
     companyId: "company_id",
+    locationId: "location_id",
     departmentId: "department_id",
     issuedDate: "issued_date",
     deliveryDate: "delivery_date",

@@ -104,6 +104,8 @@ type Bill struct {
 	Supplier *LinkedSupplier `json:"supplier,omitempty"`
 	// The company ID the transaction belongs to
 	CompanyID *string `json:"company_id,omitempty"`
+	// The ID of the location
+	LocationID *string `json:"location_id,omitempty"`
 	// The ID of the department
 	DepartmentID *string `json:"department_id,omitempty"`
 	// Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
@@ -237,6 +239,13 @@ func (o *Bill) GetCompanyID() *string {
 		return nil
 	}
 	return o.CompanyID
+}
+
+func (o *Bill) GetLocationID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.LocationID
 }
 
 func (o *Bill) GetDepartmentID() *string {
@@ -549,6 +558,8 @@ type BillInput struct {
 	Supplier *LinkedSupplierInput `json:"supplier,omitempty"`
 	// The company ID the transaction belongs to
 	CompanyID *string `json:"company_id,omitempty"`
+	// The ID of the location
+	LocationID *string `json:"location_id,omitempty"`
 	// The ID of the department
 	DepartmentID *string `json:"department_id,omitempty"`
 	// Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
@@ -658,6 +669,13 @@ func (o *BillInput) GetCompanyID() *string {
 		return nil
 	}
 	return o.CompanyID
+}
+
+func (o *BillInput) GetLocationID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.LocationID
 }
 
 func (o *BillInput) GetDepartmentID() *string {

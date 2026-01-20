@@ -10,15 +10,19 @@ type ExpenseLineItemInput struct {
 	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
 	AccountID *string              `json:"account_id,omitempty"`
 	Account   *LinkedLedgerAccount `json:"account,omitempty"`
-	// The ID of the customer this expense item is linked to.
+	// The ID of the customer this expense item is linked to. Deprecated in favor of `customer`.
+	//
+	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
 	CustomerID *string `json:"customer_id,omitempty"`
+	// The customer this entity is linked to.
+	Customer *LinkedCustomerInput `json:"customer,omitempty"`
 	// The ID of the department
-	DepartmentID *string `json:"department_id,omitempty"`
+	DepartmentID *string                `json:"department_id,omitempty"`
+	Department   *LinkedDepartmentInput `json:"department,omitempty"`
 	// The ID of the location
-	LocationID *string `json:"location_id,omitempty"`
-	// The ID of the subsidiary
-	SubsidiaryID *string             `json:"subsidiary_id,omitempty"`
-	TaxRate      *LinkedTaxRateInput `json:"tax_rate,omitempty"`
+	LocationID *string              `json:"location_id,omitempty"`
+	Location   *LinkedLocationInput `json:"location,omitempty"`
+	TaxRate    *LinkedTaxRateInput  `json:"tax_rate,omitempty"`
 	// The expense line item description
 	Description *string `json:"description,omitempty"`
 	// Line Item type
@@ -30,10 +34,6 @@ type ExpenseLineItemInput struct {
 	Quantity  *float64           `json:"quantity,omitempty"`
 	UnitPrice *float64           `json:"unit_price,omitempty"`
 	Item      *LinkedInvoiceItem `json:"item,omitempty"`
-	// Boolean that indicates if the line item is billable or not.
-	//
-	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
-	Billable *bool `json:"billable,omitempty"`
 	// Line number of the resource
 	LineNumber *int64 `json:"line_number,omitempty"`
 	// Rebilling metadata for this line item.
@@ -68,11 +68,25 @@ func (o *ExpenseLineItemInput) GetCustomerID() *string {
 	return o.CustomerID
 }
 
+func (o *ExpenseLineItemInput) GetCustomer() *LinkedCustomerInput {
+	if o == nil {
+		return nil
+	}
+	return o.Customer
+}
+
 func (o *ExpenseLineItemInput) GetDepartmentID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.DepartmentID
+}
+
+func (o *ExpenseLineItemInput) GetDepartment() *LinkedDepartmentInput {
+	if o == nil {
+		return nil
+	}
+	return o.Department
 }
 
 func (o *ExpenseLineItemInput) GetLocationID() *string {
@@ -82,11 +96,11 @@ func (o *ExpenseLineItemInput) GetLocationID() *string {
 	return o.LocationID
 }
 
-func (o *ExpenseLineItemInput) GetSubsidiaryID() *string {
+func (o *ExpenseLineItemInput) GetLocation() *LinkedLocationInput {
 	if o == nil {
 		return nil
 	}
-	return o.SubsidiaryID
+	return o.Location
 }
 
 func (o *ExpenseLineItemInput) GetTaxRate() *LinkedTaxRateInput {
@@ -143,13 +157,6 @@ func (o *ExpenseLineItemInput) GetItem() *LinkedInvoiceItem {
 		return nil
 	}
 	return o.Item
-}
-
-func (o *ExpenseLineItemInput) GetBillable() *bool {
-	if o == nil {
-		return nil
-	}
-	return o.Billable
 }
 
 func (o *ExpenseLineItemInput) GetLineNumber() *int64 {

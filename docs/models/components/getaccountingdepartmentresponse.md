@@ -16,6 +16,7 @@ let value: GetAccountingDepartmentResponse = {
   data: {
     id: "12345",
     parentId: "12345",
+    displayId: "123456",
     name: "Sales",
     status: "active",
     subsidiaries: [
@@ -25,6 +26,7 @@ let value: GetAccountingDepartmentResponse = {
       },
     ],
     code: "123",
+    downstreamId: "12345",
     rowVersion: "1-12345",
     updatedBy: "12345",
     createdBy: "12345",

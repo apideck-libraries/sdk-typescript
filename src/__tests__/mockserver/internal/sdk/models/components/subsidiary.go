@@ -45,6 +45,8 @@ type Subsidiary struct {
 	Name *string `json:"name,omitempty"`
 	// Display ID of the subsidiary
 	DisplayID *string `json:"display_id,omitempty"`
+	// The third-party API ID of original entity
+	DownstreamID *string `json:"downstream_id,omitempty"`
 	// Based on the status some functionality is enabled or disabled.
 	Status  *SubsidiaryStatus `json:"status,omitempty"`
 	Address *Address          `json:"address,omitempty"`
@@ -103,6 +105,13 @@ func (o *Subsidiary) GetDisplayID() *string {
 		return nil
 	}
 	return o.DisplayID
+}
+
+func (o *Subsidiary) GetDownstreamID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.DownstreamID
 }
 
 func (o *Subsidiary) GetStatus() *SubsidiaryStatus {
