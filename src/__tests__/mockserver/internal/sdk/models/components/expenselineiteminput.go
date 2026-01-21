@@ -7,12 +7,12 @@ type ExpenseLineItemInput struct {
 	TrackingCategories []*LinkedTrackingCategory `json:"tracking_categories,omitempty"`
 	// The unique identifier for the ledger account. Deprecated, use account instead.
 	//
-	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
+	// Deprecated: Deprecated. Use account instead..
 	AccountID *string              `json:"account_id,omitempty"`
 	Account   *LinkedLedgerAccount `json:"account,omitempty"`
 	// The ID of the customer this expense item is linked to. Deprecated in favor of `customer`.
 	//
-	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
+	// Deprecated: Deprecated. Use customer instead..
 	CustomerID *string `json:"customer_id,omitempty"`
 	// The customer this entity is linked to.
 	Customer *LinkedCustomerInput `json:"customer,omitempty"`

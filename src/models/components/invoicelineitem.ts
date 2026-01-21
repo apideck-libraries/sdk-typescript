@@ -5,7 +5,8 @@
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
-import { ClosedEnum } from "../../types/enums.js";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { RFCDate } from "../../types/rfcdate.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -60,7 +61,7 @@ export const InvoiceLineItemType = {
 /**
  * Item type
  */
-export type InvoiceLineItemType = ClosedEnum<typeof InvoiceLineItemType>;
+export type InvoiceLineItemType = OpenEnum<typeof InvoiceLineItemType>;
 
 export type InvoiceLineItem = {
   /**
@@ -297,13 +298,17 @@ export type InvoiceLineItemInput = {
 };
 
 /** @internal */
-export const InvoiceLineItemType$inboundSchema: z.ZodNativeEnum<
-  typeof InvoiceLineItemType
-> = z.nativeEnum(InvoiceLineItemType);
+export const InvoiceLineItemType$inboundSchema: z.ZodType<
+  InvoiceLineItemType,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(InvoiceLineItemType);
 /** @internal */
-export const InvoiceLineItemType$outboundSchema: z.ZodNativeEnum<
-  typeof InvoiceLineItemType
-> = InvoiceLineItemType$inboundSchema;
+export const InvoiceLineItemType$outboundSchema: z.ZodType<
+  string,
+  z.ZodTypeDef,
+  InvoiceLineItemType
+> = openEnums.outboundSchema(InvoiceLineItemType);
 
 /** @internal */
 export const InvoiceLineItem$inboundSchema: z.ZodType<

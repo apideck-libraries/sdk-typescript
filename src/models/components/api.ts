@@ -5,7 +5,8 @@
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
-import { ClosedEnum } from "../../types/enums.js";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { ApiStatus, ApiStatus$inboundSchema } from "./apistatus.js";
@@ -24,7 +25,7 @@ export const ApiType = {
 /**
  * Indicates whether the API is a Unified API. If unified_api is false, the API is a Platform API.
  */
-export type ApiType = ClosedEnum<typeof ApiType>;
+export type ApiType = OpenEnum<typeof ApiType>;
 
 export type Resources = {
   /**
@@ -93,8 +94,8 @@ export type Api = {
 };
 
 /** @internal */
-export const ApiType$inboundSchema: z.ZodNativeEnum<typeof ApiType> = z
-  .nativeEnum(ApiType);
+export const ApiType$inboundSchema: z.ZodType<ApiType, z.ZodTypeDef, unknown> =
+  openEnums.inboundSchema(ApiType);
 
 /** @internal */
 export const Resources$inboundSchema: z.ZodType<

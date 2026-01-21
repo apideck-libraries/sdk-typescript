@@ -5,7 +5,8 @@
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
-import { ClosedEnum } from "../../types/enums.js";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
@@ -25,7 +26,7 @@ export const StatementStatus = {
 /**
  * The current status of the bank feed statement.
  */
-export type StatementStatus = ClosedEnum<typeof StatementStatus>;
+export type StatementStatus = OpenEnum<typeof StatementStatus>;
 
 /**
  * Type of transaction.
@@ -41,7 +42,7 @@ export const BankFeedStatementTransactionType = {
 /**
  * Type of transaction.
  */
-export type BankFeedStatementTransactionType = ClosedEnum<
+export type BankFeedStatementTransactionType = OpenEnum<
   typeof BankFeedStatementTransactionType
 >;
 
@@ -179,22 +180,30 @@ export type BankFeedStatementInput = {
 };
 
 /** @internal */
-export const StatementStatus$inboundSchema: z.ZodNativeEnum<
-  typeof StatementStatus
-> = z.nativeEnum(StatementStatus);
+export const StatementStatus$inboundSchema: z.ZodType<
+  StatementStatus,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(StatementStatus);
 /** @internal */
-export const StatementStatus$outboundSchema: z.ZodNativeEnum<
-  typeof StatementStatus
-> = StatementStatus$inboundSchema;
+export const StatementStatus$outboundSchema: z.ZodType<
+  string,
+  z.ZodTypeDef,
+  StatementStatus
+> = openEnums.outboundSchema(StatementStatus);
 
 /** @internal */
-export const BankFeedStatementTransactionType$inboundSchema: z.ZodNativeEnum<
-  typeof BankFeedStatementTransactionType
-> = z.nativeEnum(BankFeedStatementTransactionType);
+export const BankFeedStatementTransactionType$inboundSchema: z.ZodType<
+  BankFeedStatementTransactionType,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(BankFeedStatementTransactionType);
 /** @internal */
-export const BankFeedStatementTransactionType$outboundSchema: z.ZodNativeEnum<
-  typeof BankFeedStatementTransactionType
-> = BankFeedStatementTransactionType$inboundSchema;
+export const BankFeedStatementTransactionType$outboundSchema: z.ZodType<
+  string,
+  z.ZodTypeDef,
+  BankFeedStatementTransactionType
+> = openEnums.outboundSchema(BankFeedStatementTransactionType);
 
 /** @internal */
 export const Transactions$inboundSchema: z.ZodType<

@@ -5,7 +5,8 @@
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
-import { ClosedEnum } from "../../types/enums.js";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
@@ -29,7 +30,7 @@ export const Scope = {
 /**
  * The scope of the shared link.
  */
-export type Scope = ClosedEnum<typeof Scope>;
+export type Scope = OpenEnum<typeof Scope>;
 
 export type SharedLink = {
   /**
@@ -88,12 +89,11 @@ export type SharedLinkInput = {
 };
 
 /** @internal */
-export const Scope$inboundSchema: z.ZodNativeEnum<typeof Scope> = z.nativeEnum(
-  Scope,
-);
+export const Scope$inboundSchema: z.ZodType<Scope, z.ZodTypeDef, unknown> =
+  openEnums.inboundSchema(Scope);
 /** @internal */
-export const Scope$outboundSchema: z.ZodNativeEnum<typeof Scope> =
-  Scope$inboundSchema;
+export const Scope$outboundSchema: z.ZodType<string, z.ZodTypeDef, Scope> =
+  openEnums.outboundSchema(Scope);
 
 /** @internal */
 export const SharedLink$inboundSchema: z.ZodType<

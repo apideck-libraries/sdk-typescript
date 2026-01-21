@@ -3,7 +3,8 @@
  */
 
 import * as z from "zod/v3";
-import { ClosedEnum } from "../../types/enums.js";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
 
 /**
  * Whether the amount is a credit or debit.
@@ -15,13 +16,17 @@ export const CreditOrDebit = {
 /**
  * Whether the amount is a credit or debit.
  */
-export type CreditOrDebit = ClosedEnum<typeof CreditOrDebit>;
+export type CreditOrDebit = OpenEnum<typeof CreditOrDebit>;
 
 /** @internal */
-export const CreditOrDebit$inboundSchema: z.ZodNativeEnum<
-  typeof CreditOrDebit
-> = z.nativeEnum(CreditOrDebit);
+export const CreditOrDebit$inboundSchema: z.ZodType<
+  CreditOrDebit,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(CreditOrDebit);
 /** @internal */
-export const CreditOrDebit$outboundSchema: z.ZodNativeEnum<
-  typeof CreditOrDebit
-> = CreditOrDebit$inboundSchema;
+export const CreditOrDebit$outboundSchema: z.ZodType<
+  string,
+  z.ZodTypeDef,
+  CreditOrDebit
+> = openEnums.outboundSchema(CreditOrDebit);

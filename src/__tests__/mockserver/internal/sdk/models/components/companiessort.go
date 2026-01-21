@@ -3,8 +3,6 @@
 package components
 
 import (
-	"encoding/json"
-	"fmt"
 	"mockserver/internal/sdk/utils"
 )
 
@@ -19,23 +17,6 @@ const (
 
 func (e CompaniesSortBy) ToPointer() *CompaniesSortBy {
 	return &e
-}
-func (e *CompaniesSortBy) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "created_at":
-		fallthrough
-	case "updated_at":
-		fallthrough
-	case "name":
-		*e = CompaniesSortBy(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for CompaniesSortBy: %v", v)
-	}
 }
 
 type CompaniesSort struct {

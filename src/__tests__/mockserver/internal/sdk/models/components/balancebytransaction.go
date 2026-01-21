@@ -3,8 +3,6 @@
 package components
 
 import (
-	"encoding/json"
-	"fmt"
 	"mockserver/internal/sdk/types"
 	"mockserver/internal/sdk/utils"
 )
@@ -22,27 +20,6 @@ const (
 
 func (e BalanceByTransactionTransactionType) ToPointer() *BalanceByTransactionTransactionType {
 	return &e
-}
-func (e *BalanceByTransactionTransactionType) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "invoice":
-		fallthrough
-	case "credit_note":
-		fallthrough
-	case "bill":
-		fallthrough
-	case "payment":
-		fallthrough
-	case "bill_payment":
-		*e = BalanceByTransactionTransactionType(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for BalanceByTransactionTransactionType: %v", v)
-	}
 }
 
 type BalanceByTransaction struct {

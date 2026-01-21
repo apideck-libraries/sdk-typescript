@@ -12,6 +12,8 @@ let value: CreditNoteStatus = "authorised";
 
 ## Values
 
+This is an open enum. Unrecognized values will be captured as the `Unrecognized<string>` branded type.
+
 ```typescript
-"draft" | "authorised" | "posted" | "partially_paid" | "paid" | "voided" | "deleted"
+"draft" | "authorised" | "posted" | "partially_paid" | "paid" | "voided" | "deleted" | Unrecognized<string>
 ```

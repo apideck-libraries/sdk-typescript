@@ -12,6 +12,8 @@ let value: EmailType = "primary";
 
 ## Values
 
+This is an open enum. Unrecognized values will be captured as the `Unrecognized<string>` branded type.
+
 ```typescript
-"primary" | "secondary" | "work" | "personal" | "billing" | "other"
+"primary" | "secondary" | "work" | "personal" | "billing" | "other" | Unrecognized<string>
 ```

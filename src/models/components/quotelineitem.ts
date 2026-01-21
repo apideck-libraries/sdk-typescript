@@ -5,7 +5,8 @@
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
-import { ClosedEnum } from "../../types/enums.js";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { RFCDate } from "../../types/rfcdate.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -54,7 +55,7 @@ export const QuoteLineItemType = {
 /**
  * Item type
  */
-export type QuoteLineItemType = ClosedEnum<typeof QuoteLineItemType>;
+export type QuoteLineItemType = OpenEnum<typeof QuoteLineItemType>;
 
 export type QuoteLineItem = {
   /**
@@ -227,13 +228,17 @@ export type QuoteLineItemInput = {
 };
 
 /** @internal */
-export const QuoteLineItemType$inboundSchema: z.ZodNativeEnum<
-  typeof QuoteLineItemType
-> = z.nativeEnum(QuoteLineItemType);
+export const QuoteLineItemType$inboundSchema: z.ZodType<
+  QuoteLineItemType,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(QuoteLineItemType);
 /** @internal */
-export const QuoteLineItemType$outboundSchema: z.ZodNativeEnum<
-  typeof QuoteLineItemType
-> = QuoteLineItemType$inboundSchema;
+export const QuoteLineItemType$outboundSchema: z.ZodType<
+  string,
+  z.ZodTypeDef,
+  QuoteLineItemType
+> = openEnums.outboundSchema(QuoteLineItemType);
 
 /** @internal */
 export const QuoteLineItem$inboundSchema: z.ZodType<

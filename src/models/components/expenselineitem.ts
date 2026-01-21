@@ -47,14 +47,14 @@ export type ExpenseLineItem = {
   /**
    * The unique identifier for the ledger account. Deprecated, use account instead.
    *
-   * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+   * @deprecated field: Deprecated. Use account instead..
    */
   accountId?: string | undefined;
   account?: LinkedLedgerAccount | null | undefined;
   /**
    * The ID of the customer this expense item is linked to. Deprecated in favor of `customer`.
    *
-   * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+   * @deprecated field: Deprecated. Use customer instead..
    */
   customerId?: string | undefined;
   /**

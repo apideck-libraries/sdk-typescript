@@ -5,7 +5,8 @@
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
-import { ClosedEnum } from "../../types/enums.js";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { RFCDate } from "../../types/rfcdate.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -71,7 +72,7 @@ export const QuoteStatus = {
 /**
  * Quote status
  */
-export type QuoteStatus = ClosedEnum<typeof QuoteStatus>;
+export type QuoteStatus = OpenEnum<typeof QuoteStatus>;
 
 export type Quote = {
   /**
@@ -324,11 +325,17 @@ export type QuoteInput = {
 };
 
 /** @internal */
-export const QuoteStatus$inboundSchema: z.ZodNativeEnum<typeof QuoteStatus> = z
-  .nativeEnum(QuoteStatus);
+export const QuoteStatus$inboundSchema: z.ZodType<
+  QuoteStatus,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(QuoteStatus);
 /** @internal */
-export const QuoteStatus$outboundSchema: z.ZodNativeEnum<typeof QuoteStatus> =
-  QuoteStatus$inboundSchema;
+export const QuoteStatus$outboundSchema: z.ZodType<
+  string,
+  z.ZodTypeDef,
+  QuoteStatus
+> = openEnums.outboundSchema(QuoteStatus);
 
 /** @internal */
 export const Quote$inboundSchema: z.ZodType<Quote, z.ZodTypeDef, unknown> = z

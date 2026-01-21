@@ -2,11 +2,6 @@
 
 package components
 
-import (
-	"encoding/json"
-	"fmt"
-)
-
 // ConnectorStatus - Status of the connector. Connectors with status live or beta are callable.
 type ConnectorStatus string
 
@@ -20,25 +15,4 @@ const (
 
 func (e ConnectorStatus) ToPointer() *ConnectorStatus {
 	return &e
-}
-func (e *ConnectorStatus) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "live":
-		fallthrough
-	case "beta":
-		fallthrough
-	case "early-access":
-		fallthrough
-	case "development":
-		fallthrough
-	case "considering":
-		*e = ConnectorStatus(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for ConnectorStatus: %v", v)
-	}
 }

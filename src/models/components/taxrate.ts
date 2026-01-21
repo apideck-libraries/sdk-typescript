@@ -5,7 +5,8 @@
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
-import { ClosedEnum } from "../../types/enums.js";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
@@ -39,7 +40,7 @@ export const TaxRateStatus = {
 /**
  * Tax rate status
  */
-export type TaxRateStatus = ClosedEnum<typeof TaxRateStatus>;
+export type TaxRateStatus = OpenEnum<typeof TaxRateStatus>;
 
 export type Subsidiaries = {
   /**
@@ -259,13 +260,17 @@ export function componentsFromJSON(
 }
 
 /** @internal */
-export const TaxRateStatus$inboundSchema: z.ZodNativeEnum<
-  typeof TaxRateStatus
-> = z.nativeEnum(TaxRateStatus);
+export const TaxRateStatus$inboundSchema: z.ZodType<
+  TaxRateStatus,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(TaxRateStatus);
 /** @internal */
-export const TaxRateStatus$outboundSchema: z.ZodNativeEnum<
-  typeof TaxRateStatus
-> = TaxRateStatus$inboundSchema;
+export const TaxRateStatus$outboundSchema: z.ZodType<
+  string,
+  z.ZodTypeDef,
+  TaxRateStatus
+> = openEnums.outboundSchema(TaxRateStatus);
 
 /** @internal */
 export const Subsidiaries$inboundSchema: z.ZodType<

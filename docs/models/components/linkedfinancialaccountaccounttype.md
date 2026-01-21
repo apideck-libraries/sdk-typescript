@@ -12,6 +12,8 @@ let value: LinkedFinancialAccountAccountType = "ledger_account";
 
 ## Values
 
+This is an open enum. Unrecognized values will be captured as the `Unrecognized<string>` branded type.
+
 ```typescript
-"ledger_account" | "bank_account"
+"ledger_account" | "bank_account" | Unrecognized<string>
 ```

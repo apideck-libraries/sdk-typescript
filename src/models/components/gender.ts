@@ -3,7 +3,8 @@
  */
 
 import * as z from "zod/v3";
-import { ClosedEnum } from "../../types/enums.js";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
 
 /**
  * The gender represents the gender identity of a person.
@@ -18,11 +19,11 @@ export const Gender = {
 /**
  * The gender represents the gender identity of a person.
  */
-export type Gender = ClosedEnum<typeof Gender>;
+export type Gender = OpenEnum<typeof Gender>;
 
 /** @internal */
-export const Gender$inboundSchema: z.ZodNativeEnum<typeof Gender> = z
-  .nativeEnum(Gender);
+export const Gender$inboundSchema: z.ZodType<Gender, z.ZodTypeDef, unknown> =
+  openEnums.inboundSchema(Gender);
 /** @internal */
-export const Gender$outboundSchema: z.ZodNativeEnum<typeof Gender> =
-  Gender$inboundSchema;
+export const Gender$outboundSchema: z.ZodType<string, z.ZodTypeDef, Gender> =
+  openEnums.outboundSchema(Gender);

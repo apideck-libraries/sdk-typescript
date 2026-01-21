@@ -2,11 +2,6 @@
 
 package components
 
-import (
-	"encoding/json"
-	"fmt"
-)
-
 // JournalEntryLineItemType - Debit entries are considered positive, and credit entries are considered negative.
 type JournalEntryLineItemType string
 
@@ -17,21 +12,6 @@ const (
 
 func (e JournalEntryLineItemType) ToPointer() *JournalEntryLineItemType {
 	return &e
-}
-func (e *JournalEntryLineItemType) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "debit":
-		fallthrough
-	case "credit":
-		*e = JournalEntryLineItemType(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for JournalEntryLineItemType: %v", v)
-	}
 }
 
 type JournalEntryLineItem struct {
@@ -48,7 +28,7 @@ type JournalEntryLineItem struct {
 	// Debit entries are considered positive, and credit entries are considered negative.
 	Type    JournalEntryLineItemType `json:"type"`
 	TaxRate *LinkedTaxRate           `json:"tax_rate,omitempty"`
-	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
+	// Deprecated: This field is deprecated and may be removed in a future version..
 	TrackingCategory *DeprecatedLinkedTrackingCategory `json:"tracking_category,omitempty"`
 	// A list of linked tracking categories.
 	TrackingCategories []*LinkedTrackingCategory `json:"tracking_categories,omitempty"`
@@ -191,7 +171,7 @@ type JournalEntryLineItemInput struct {
 	// Debit entries are considered positive, and credit entries are considered negative.
 	Type    JournalEntryLineItemType `json:"type"`
 	TaxRate *LinkedTaxRateInput      `json:"tax_rate,omitempty"`
-	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
+	// Deprecated: This field is deprecated and may be removed in a future version..
 	TrackingCategory *DeprecatedLinkedTrackingCategory `json:"tracking_category,omitempty"`
 	// A list of linked tracking categories.
 	TrackingCategories []*LinkedTrackingCategory `json:"tracking_categories,omitempty"`

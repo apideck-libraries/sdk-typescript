@@ -2,11 +2,6 @@
 
 package components
 
-import (
-	"encoding/json"
-	"fmt"
-)
-
 // WebsiteType - The type of website
 type WebsiteType string
 
@@ -20,27 +15,6 @@ const (
 
 func (e WebsiteType) ToPointer() *WebsiteType {
 	return &e
-}
-func (e *WebsiteType) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "primary":
-		fallthrough
-	case "secondary":
-		fallthrough
-	case "work":
-		fallthrough
-	case "personal":
-		fallthrough
-	case "other":
-		*e = WebsiteType(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for WebsiteType: %v", v)
-	}
 }
 
 type Website struct {

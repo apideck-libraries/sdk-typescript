@@ -3,7 +3,8 @@
  */
 
 import * as z from "zod/v3";
-import { ClosedEnum } from "../../types/enums.js";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
 
 /**
  * [Connection state flow](#section/Connection-state)
@@ -18,9 +19,11 @@ export const ConnectionState = {
 /**
  * [Connection state flow](#section/Connection-state)
  */
-export type ConnectionState = ClosedEnum<typeof ConnectionState>;
+export type ConnectionState = OpenEnum<typeof ConnectionState>;
 
 /** @internal */
-export const ConnectionState$inboundSchema: z.ZodNativeEnum<
-  typeof ConnectionState
-> = z.nativeEnum(ConnectionState);
+export const ConnectionState$inboundSchema: z.ZodType<
+  ConnectionState,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(ConnectionState);

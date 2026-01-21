@@ -3,8 +3,6 @@
 package components
 
 import (
-	"encoding/json"
-	"fmt"
 	"mockserver/internal/sdk/types"
 	"mockserver/internal/sdk/utils"
 	"time"
@@ -24,29 +22,6 @@ const (
 func (e PurchaseOrderStatus) ToPointer() *PurchaseOrderStatus {
 	return &e
 }
-func (e *PurchaseOrderStatus) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "draft":
-		fallthrough
-	case "open":
-		fallthrough
-	case "closed":
-		fallthrough
-	case "deleted":
-		fallthrough
-	case "billed":
-		fallthrough
-	case "other":
-		*e = PurchaseOrderStatus(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for PurchaseOrderStatus: %v", v)
-	}
-}
 
 // PurchaseOrderAmortizationType - Type of amortization
 type PurchaseOrderAmortizationType string
@@ -60,25 +35,6 @@ const (
 
 func (e PurchaseOrderAmortizationType) ToPointer() *PurchaseOrderAmortizationType {
 	return &e
-}
-func (e *PurchaseOrderAmortizationType) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "manual":
-		fallthrough
-	case "receipt":
-		fallthrough
-	case "schedule":
-		fallthrough
-	case "other":
-		*e = PurchaseOrderAmortizationType(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for PurchaseOrderAmortizationType: %v", v)
-	}
 }
 
 type PurchaseOrder struct {

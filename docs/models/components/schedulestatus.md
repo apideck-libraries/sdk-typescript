@@ -12,6 +12,8 @@ let value: ScheduleStatus = "on_schedule";
 
 ## Values
 
+This is an open enum. Unrecognized values will be captured as the `Unrecognized<string>` branded type.
+
 ```typescript
-"ahead_of_schedule" | "on_schedule" | "behind_schedule" | "critical_delay"
+"ahead_of_schedule" | "on_schedule" | "behind_schedule" | "critical_delay" | Unrecognized<string>
 ```

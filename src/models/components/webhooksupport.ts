@@ -5,7 +5,8 @@
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
-import { ClosedEnum } from "../../types/enums.js";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
@@ -20,7 +21,7 @@ export const Mode = {
 /**
  * Mode of the webhook support.
  */
-export type Mode = ClosedEnum<typeof Mode>;
+export type Mode = OpenEnum<typeof Mode>;
 
 /**
  * Received events are scoped to connection or across integration.
@@ -32,7 +33,7 @@ export const SubscriptionLevel = {
 /**
  * Received events are scoped to connection or across integration.
  */
-export type SubscriptionLevel = ClosedEnum<typeof SubscriptionLevel>;
+export type SubscriptionLevel = OpenEnum<typeof SubscriptionLevel>;
 
 /**
  * How the subscription is managed in the downstream.
@@ -44,7 +45,7 @@ export const ManagedVia = {
 /**
  * How the subscription is managed in the downstream.
  */
-export type ManagedVia = ClosedEnum<typeof ManagedVia>;
+export type ManagedVia = OpenEnum<typeof ManagedVia>;
 
 /**
  * The window unit for the rate.
@@ -58,7 +59,7 @@ export const Unit = {
 /**
  * The window unit for the rate.
  */
-export type Unit = ClosedEnum<typeof Unit>;
+export type Unit = OpenEnum<typeof Unit>;
 
 /**
  * The rate at which requests for resources will be made to downstream.
@@ -119,23 +120,26 @@ export type WebhookSupport = {
 };
 
 /** @internal */
-export const Mode$inboundSchema: z.ZodNativeEnum<typeof Mode> = z.nativeEnum(
-  Mode,
-);
+export const Mode$inboundSchema: z.ZodType<Mode, z.ZodTypeDef, unknown> =
+  openEnums.inboundSchema(Mode);
 
 /** @internal */
-export const SubscriptionLevel$inboundSchema: z.ZodNativeEnum<
-  typeof SubscriptionLevel
-> = z.nativeEnum(SubscriptionLevel);
+export const SubscriptionLevel$inboundSchema: z.ZodType<
+  SubscriptionLevel,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(SubscriptionLevel);
 
 /** @internal */
-export const ManagedVia$inboundSchema: z.ZodNativeEnum<typeof ManagedVia> = z
-  .nativeEnum(ManagedVia);
+export const ManagedVia$inboundSchema: z.ZodType<
+  ManagedVia,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(ManagedVia);
 
 /** @internal */
-export const Unit$inboundSchema: z.ZodNativeEnum<typeof Unit> = z.nativeEnum(
-  Unit,
-);
+export const Unit$inboundSchema: z.ZodType<Unit, z.ZodTypeDef, unknown> =
+  openEnums.inboundSchema(Unit);
 
 /** @internal */
 export const RequestRate$inboundSchema: z.ZodType<

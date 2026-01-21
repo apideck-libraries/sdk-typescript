@@ -12,6 +12,8 @@ let value: Status = "enabled";
 
 ## Values
 
+This is an open enum. Unrecognized values will be captured as the `Unrecognized<string>` branded type.
+
 ```typescript
-"enabled" | "disabled"
+"enabled" | "disabled" | Unrecognized<string>
 ```

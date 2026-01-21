@@ -2,11 +2,6 @@
 
 package components
 
-import (
-	"encoding/json"
-	"fmt"
-)
-
 // EmployeesFilterEmploymentStatus - Employment status to filter on
 type EmployeesFilterEmploymentStatus string
 
@@ -19,25 +14,6 @@ const (
 
 func (e EmployeesFilterEmploymentStatus) ToPointer() *EmployeesFilterEmploymentStatus {
 	return &e
-}
-func (e *EmployeesFilterEmploymentStatus) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "active":
-		fallthrough
-	case "inactive":
-		fallthrough
-	case "terminated":
-		fallthrough
-	case "other":
-		*e = EmployeesFilterEmploymentStatus(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for EmployeesFilterEmploymentStatus: %v", v)
-	}
 }
 
 type EmployeesFilter struct {

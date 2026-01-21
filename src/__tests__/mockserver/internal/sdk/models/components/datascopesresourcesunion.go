@@ -3,7 +3,6 @@
 package components
 
 import (
-	"encoding/json"
 	"errors"
 	"fmt"
 	"mockserver/internal/sdk/utils"
@@ -18,19 +17,6 @@ const (
 
 func (e DataScopesResourcesEnum) ToPointer() *DataScopesResourcesEnum {
 	return &e
-}
-func (e *DataScopesResourcesEnum) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "*":
-		*e = DataScopesResourcesEnum(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for DataScopesResourcesEnum: %v", v)
-	}
 }
 
 type DataScopesResources struct {

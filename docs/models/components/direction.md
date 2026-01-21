@@ -12,6 +12,8 @@ let value: Direction = "outbound-api";
 
 ## Values
 
+This is an open enum. Unrecognized values will be captured as the `Unrecognized<string>` branded type.
+
 ```typescript
-"inbound" | "outbound-api" | "outbound-call" | "outbound-reply" | "unknown"
+"inbound" | "outbound-api" | "outbound-call" | "outbound-reply" | "unknown" | Unrecognized<string>
 ```

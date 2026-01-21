@@ -5,7 +5,8 @@
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
-import { ClosedEnum } from "../../types/enums.js";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
@@ -36,7 +37,7 @@ export const SubsidiaryStatus = {
 /**
  * Based on the status some functionality is enabled or disabled.
  */
-export type SubsidiaryStatus = ClosedEnum<typeof SubsidiaryStatus>;
+export type SubsidiaryStatus = OpenEnum<typeof SubsidiaryStatus>;
 
 export type Subsidiary = {
   /**
@@ -131,13 +132,17 @@ export type SubsidiaryInput = {
 };
 
 /** @internal */
-export const SubsidiaryStatus$inboundSchema: z.ZodNativeEnum<
-  typeof SubsidiaryStatus
-> = z.nativeEnum(SubsidiaryStatus);
+export const SubsidiaryStatus$inboundSchema: z.ZodType<
+  SubsidiaryStatus,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(SubsidiaryStatus);
 /** @internal */
-export const SubsidiaryStatus$outboundSchema: z.ZodNativeEnum<
-  typeof SubsidiaryStatus
-> = SubsidiaryStatus$inboundSchema;
+export const SubsidiaryStatus$outboundSchema: z.ZodType<
+  string,
+  z.ZodTypeDef,
+  SubsidiaryStatus
+> = openEnums.outboundSchema(SubsidiaryStatus);
 
 /** @internal */
 export const Subsidiary$inboundSchema: z.ZodType<

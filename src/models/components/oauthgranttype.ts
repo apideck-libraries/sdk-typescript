@@ -3,7 +3,8 @@
  */
 
 import * as z from "zod/v3";
-import { ClosedEnum } from "../../types/enums.js";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
 
 /**
  * OAuth grant type used by the connector. More info: https://oauth.net/2/grant-types
@@ -16,9 +17,11 @@ export const OAuthGrantType = {
 /**
  * OAuth grant type used by the connector. More info: https://oauth.net/2/grant-types
  */
-export type OAuthGrantType = ClosedEnum<typeof OAuthGrantType>;
+export type OAuthGrantType = OpenEnum<typeof OAuthGrantType>;
 
 /** @internal */
-export const OAuthGrantType$inboundSchema: z.ZodNativeEnum<
-  typeof OAuthGrantType
-> = z.nativeEnum(OAuthGrantType);
+export const OAuthGrantType$inboundSchema: z.ZodType<
+  OAuthGrantType,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(OAuthGrantType);

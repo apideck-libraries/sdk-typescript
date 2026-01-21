@@ -2,11 +2,6 @@
 
 package components
 
-import (
-	"encoding/json"
-	"fmt"
-)
-
 type CustomObjectSchemaType string
 
 const (
@@ -26,41 +21,6 @@ const (
 
 func (e CustomObjectSchemaType) ToPointer() *CustomObjectSchemaType {
 	return &e
-}
-func (e *CustomObjectSchemaType) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "string":
-		fallthrough
-	case "number":
-		fallthrough
-	case "integer":
-		fallthrough
-	case "boolean":
-		fallthrough
-	case "date":
-		fallthrough
-	case "datetime":
-		fallthrough
-	case "currency":
-		fallthrough
-	case "email":
-		fallthrough
-	case "phone":
-		fallthrough
-	case "reference":
-		fallthrough
-	case "select":
-		fallthrough
-	case "multiselect":
-		*e = CustomObjectSchemaType(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for CustomObjectSchemaType: %v", v)
-	}
 }
 
 type CustomObjectSchemaOption struct {

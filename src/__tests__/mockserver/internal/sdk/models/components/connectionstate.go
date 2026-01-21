@@ -2,11 +2,6 @@
 
 package components
 
-import (
-	"encoding/json"
-	"fmt"
-)
-
 // ConnectionState - [Connection state flow](#section/Connection-state)
 type ConnectionState string
 
@@ -20,25 +15,4 @@ const (
 
 func (e ConnectionState) ToPointer() *ConnectionState {
 	return &e
-}
-func (e *ConnectionState) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "available":
-		fallthrough
-	case "callable":
-		fallthrough
-	case "added":
-		fallthrough
-	case "authorized":
-		fallthrough
-	case "invalid":
-		*e = ConnectionState(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for ConnectionState: %v", v)
-	}
 }

@@ -3,8 +3,6 @@
 package components
 
 import (
-	"encoding/json"
-	"fmt"
 	"mockserver/internal/sdk/utils"
 	"time"
 )
@@ -22,25 +20,6 @@ const (
 func (e BillPaymentType) ToPointer() *BillPaymentType {
 	return &e
 }
-func (e *BillPaymentType) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "accounts_payable_credit":
-		fallthrough
-	case "accounts_payable_overpayment":
-		fallthrough
-	case "accounts_payable_prepayment":
-		fallthrough
-	case "accounts_payable":
-		*e = BillPaymentType(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for BillPaymentType: %v", v)
-	}
-}
 
 // BillPaymentAllocationType - Type of entity this payment should be attributed to.
 type BillPaymentAllocationType string
@@ -57,31 +36,6 @@ const (
 
 func (e BillPaymentAllocationType) ToPointer() *BillPaymentAllocationType {
 	return &e
-}
-func (e *BillPaymentAllocationType) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "bill":
-		fallthrough
-	case "expense":
-		fallthrough
-	case "credit_memo":
-		fallthrough
-	case "over_payment":
-		fallthrough
-	case "pre_payment":
-		fallthrough
-	case "journal_entry":
-		fallthrough
-	case "other":
-		*e = BillPaymentAllocationType(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for BillPaymentAllocationType: %v", v)
-	}
 }
 
 type BillPaymentAllocation struct {

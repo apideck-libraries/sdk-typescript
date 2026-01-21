@@ -5,7 +5,8 @@
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
-import { ClosedEnum } from "../../types/enums.js";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
@@ -19,7 +20,7 @@ export const PaginationCoverageMode = {
 /**
  * How pagination is implemented on this connector. Native mode means Apideck is using the pagination parameters of the connector. With virtual pagination, the connector does not support pagination, but Apideck emulates it.
  */
-export type PaginationCoverageMode = ClosedEnum<typeof PaginationCoverageMode>;
+export type PaginationCoverageMode = OpenEnum<typeof PaginationCoverageMode>;
 
 export type PaginationCoverage = {
   /**
@@ -37,9 +38,11 @@ export type PaginationCoverage = {
 };
 
 /** @internal */
-export const PaginationCoverageMode$inboundSchema: z.ZodNativeEnum<
-  typeof PaginationCoverageMode
-> = z.nativeEnum(PaginationCoverageMode);
+export const PaginationCoverageMode$inboundSchema: z.ZodType<
+  PaginationCoverageMode,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(PaginationCoverageMode);
 
 /** @internal */
 export const PaginationCoverage$inboundSchema: z.ZodType<

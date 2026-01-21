@@ -3,7 +3,8 @@
  */
 
 import * as z from "zod/v3";
-import { ClosedEnum } from "../../types/enums.js";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
 import {
   SortDirection,
   SortDirection$outboundSchema,
@@ -19,7 +20,7 @@ export const By = {
 /**
  * The field on which to sort the Bills
  */
-export type By = ClosedEnum<typeof By>;
+export type By = OpenEnum<typeof By>;
 
 export type BillsSort = {
   /**
@@ -33,7 +34,8 @@ export type BillsSort = {
 };
 
 /** @internal */
-export const By$outboundSchema: z.ZodNativeEnum<typeof By> = z.nativeEnum(By);
+export const By$outboundSchema: z.ZodType<string, z.ZodTypeDef, By> = openEnums
+  .outboundSchema(By);
 
 /** @internal */
 export type BillsSort$Outbound = {

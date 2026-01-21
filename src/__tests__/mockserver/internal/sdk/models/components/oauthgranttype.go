@@ -2,11 +2,6 @@
 
 package components
 
-import (
-	"encoding/json"
-	"fmt"
-)
-
 // OAuthGrantType - OAuth grant type used by the connector. More info: https://oauth.net/2/grant-types
 type OAuthGrantType string
 
@@ -18,21 +13,4 @@ const (
 
 func (e OAuthGrantType) ToPointer() *OAuthGrantType {
 	return &e
-}
-func (e *OAuthGrantType) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "authorization_code":
-		fallthrough
-	case "client_credentials":
-		fallthrough
-	case "password":
-		*e = OAuthGrantType(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for OAuthGrantType: %v", v)
-	}
 }

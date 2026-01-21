@@ -4,7 +4,8 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { ClosedEnum } from "../../types/enums.js";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
 
 export const ExpensesFilterStatus = {
   Draft: "draft",
@@ -16,13 +17,13 @@ export const ExpensesFilterStatus = {
   Deleted: "deleted",
   Other: "other",
 } as const;
-export type ExpensesFilterStatus = ClosedEnum<typeof ExpensesFilterStatus>;
+export type ExpensesFilterStatus = OpenEnum<typeof ExpensesFilterStatus>;
 
 export const ExpensesFilterType = {
   Expense: "expense",
   Refund: "refund",
 } as const;
-export type ExpensesFilterType = ClosedEnum<typeof ExpensesFilterType>;
+export type ExpensesFilterType = OpenEnum<typeof ExpensesFilterType>;
 
 export type ExpensesFilter = {
   updatedSince?: Date | undefined;
@@ -31,14 +32,18 @@ export type ExpensesFilter = {
 };
 
 /** @internal */
-export const ExpensesFilterStatus$outboundSchema: z.ZodNativeEnum<
-  typeof ExpensesFilterStatus
-> = z.nativeEnum(ExpensesFilterStatus);
+export const ExpensesFilterStatus$outboundSchema: z.ZodType<
+  string,
+  z.ZodTypeDef,
+  ExpensesFilterStatus
+> = openEnums.outboundSchema(ExpensesFilterStatus);
 
 /** @internal */
-export const ExpensesFilterType$outboundSchema: z.ZodNativeEnum<
-  typeof ExpensesFilterType
-> = z.nativeEnum(ExpensesFilterType);
+export const ExpensesFilterType$outboundSchema: z.ZodType<
+  string,
+  z.ZodTypeDef,
+  ExpensesFilterType
+> = openEnums.outboundSchema(ExpensesFilterType);
 
 /** @internal */
 export type ExpensesFilter$Outbound = {

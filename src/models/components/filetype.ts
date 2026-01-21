@@ -3,7 +3,8 @@
  */
 
 import * as z from "zod/v3";
-import { ClosedEnum } from "../../types/enums.js";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
 
 /**
  * The type of resource. Could be file, folder or url
@@ -16,8 +17,11 @@ export const FileType = {
 /**
  * The type of resource. Could be file, folder or url
  */
-export type FileType = ClosedEnum<typeof FileType>;
+export type FileType = OpenEnum<typeof FileType>;
 
 /** @internal */
-export const FileType$inboundSchema: z.ZodNativeEnum<typeof FileType> = z
-  .nativeEnum(FileType);
+export const FileType$inboundSchema: z.ZodType<
+  FileType,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(FileType);

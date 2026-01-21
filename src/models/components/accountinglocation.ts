@@ -5,7 +5,8 @@
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
-import { ClosedEnum } from "../../types/enums.js";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
@@ -40,7 +41,7 @@ export const LocationStatus = {
 /**
  * Based on the status some functionality is enabled or disabled.
  */
-export type LocationStatus = ClosedEnum<typeof LocationStatus>;
+export type LocationStatus = OpenEnum<typeof LocationStatus>;
 
 export type AccountingLocation = {
   /**
@@ -137,13 +138,17 @@ export type AccountingLocationInput = {
 };
 
 /** @internal */
-export const LocationStatus$inboundSchema: z.ZodNativeEnum<
-  typeof LocationStatus
-> = z.nativeEnum(LocationStatus);
+export const LocationStatus$inboundSchema: z.ZodType<
+  LocationStatus,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(LocationStatus);
 /** @internal */
-export const LocationStatus$outboundSchema: z.ZodNativeEnum<
-  typeof LocationStatus
-> = LocationStatus$inboundSchema;
+export const LocationStatus$outboundSchema: z.ZodType<
+  string,
+  z.ZodTypeDef,
+  LocationStatus
+> = openEnums.outboundSchema(LocationStatus);
 
 /** @internal */
 export const AccountingLocation$inboundSchema: z.ZodType<

@@ -3,8 +3,6 @@
 package components
 
 import (
-	"encoding/json"
-	"fmt"
 	"mockserver/internal/sdk/types"
 	"mockserver/internal/sdk/utils"
 	"time"
@@ -24,27 +22,6 @@ const (
 func (e ApplicantGender) ToPointer() *ApplicantGender {
 	return &e
 }
-func (e *ApplicantGender) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "male":
-		fallthrough
-	case "female":
-		fallthrough
-	case "unisex":
-		fallthrough
-	case "other":
-		fallthrough
-	case "not_specified":
-		*e = ApplicantGender(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for ApplicantGender: %v", v)
-	}
-}
 
 // ApplicantType - The type of website
 type ApplicantType string
@@ -59,27 +36,6 @@ const (
 
 func (e ApplicantType) ToPointer() *ApplicantType {
 	return &e
-}
-func (e *ApplicantType) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "primary":
-		fallthrough
-	case "secondary":
-		fallthrough
-	case "work":
-		fallthrough
-	case "personal":
-		fallthrough
-	case "other":
-		*e = ApplicantType(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for ApplicantType: %v", v)
-	}
 }
 
 type ApplicantWebsite struct {
@@ -184,7 +140,7 @@ type Applicant struct {
 	ApplicationIds []string              `json:"application_ids,omitempty"`
 	// Deprecated: Use application_ids instead. Array of application IDs associated with the applicant.
 	//
-	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
+	// Deprecated: Deprecated. Use application_ids instead..
 	Applications      []string   `json:"applications,omitempty"`
 	Followers         []string   `json:"followers,omitempty"`
 	Sources           []string   `json:"sources,omitempty"`
@@ -612,7 +568,7 @@ type ApplicantInput struct {
 	ApplicationIds []string              `json:"application_ids,omitempty"`
 	// Deprecated: Use application_ids instead. Array of application IDs associated with the applicant.
 	//
-	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
+	// Deprecated: Deprecated. Use application_ids instead..
 	Applications []string `json:"applications,omitempty"`
 	Followers    []string `json:"followers,omitempty"`
 	Sources      []string `json:"sources,omitempty"`

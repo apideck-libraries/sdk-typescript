@@ -5,7 +5,8 @@
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
-import { ClosedEnum } from "../../types/enums.js";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { RFCDate } from "../../types/rfcdate.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -37,7 +38,7 @@ export const EmployeeJobStatus = {
 /**
  * Indicates the status of the job.
  */
-export type EmployeeJobStatus = ClosedEnum<typeof EmployeeJobStatus>;
+export type EmployeeJobStatus = OpenEnum<typeof EmployeeJobStatus>;
 
 export type EmployeeJob = {
   /**
@@ -144,13 +145,17 @@ export type EmployeeJobInput = {
 };
 
 /** @internal */
-export const EmployeeJobStatus$inboundSchema: z.ZodNativeEnum<
-  typeof EmployeeJobStatus
-> = z.nativeEnum(EmployeeJobStatus);
+export const EmployeeJobStatus$inboundSchema: z.ZodType<
+  EmployeeJobStatus,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(EmployeeJobStatus);
 /** @internal */
-export const EmployeeJobStatus$outboundSchema: z.ZodNativeEnum<
-  typeof EmployeeJobStatus
-> = EmployeeJobStatus$inboundSchema;
+export const EmployeeJobStatus$outboundSchema: z.ZodType<
+  string,
+  z.ZodTypeDef,
+  EmployeeJobStatus
+> = openEnums.outboundSchema(EmployeeJobStatus);
 
 /** @internal */
 export const EmployeeJob$inboundSchema: z.ZodType<

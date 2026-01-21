@@ -3,8 +3,6 @@
 package components
 
 import (
-	"encoding/json"
-	"fmt"
 	"mockserver/internal/sdk/types"
 	"mockserver/internal/sdk/utils"
 	"time"
@@ -27,33 +25,6 @@ const (
 func (e ProjectProjectStatus) ToPointer() *ProjectProjectStatus {
 	return &e
 }
-func (e *ProjectProjectStatus) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "active":
-		fallthrough
-	case "completed":
-		fallthrough
-	case "on_hold":
-		fallthrough
-	case "cancelled":
-		fallthrough
-	case "draft":
-		fallthrough
-	case "in_progress":
-		fallthrough
-	case "approved":
-		fallthrough
-	case "other":
-		*e = ProjectProjectStatus(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for ProjectProjectStatus: %v", v)
-	}
-}
 
 // ProjectType - Type or category of the project
 type ProjectType string
@@ -70,29 +41,6 @@ const (
 func (e ProjectType) ToPointer() *ProjectType {
 	return &e
 }
-func (e *ProjectType) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "client_project":
-		fallthrough
-	case "internal_project":
-		fallthrough
-	case "maintenance":
-		fallthrough
-	case "research_development":
-		fallthrough
-	case "training":
-		fallthrough
-	case "other":
-		*e = ProjectType(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for ProjectType: %v", v)
-	}
-}
 
 // ProjectPriority - Priority level of the project
 type ProjectPriority string
@@ -106,25 +54,6 @@ const (
 
 func (e ProjectPriority) ToPointer() *ProjectPriority {
 	return &e
-}
-func (e *ProjectPriority) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "low":
-		fallthrough
-	case "medium":
-		fallthrough
-	case "high":
-		fallthrough
-	case "critical":
-		*e = ProjectPriority(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for ProjectPriority: %v", v)
-	}
 }
 
 // ProjectDepartment - Department or organizational unit associated with the project
@@ -185,27 +114,6 @@ const (
 func (e BillingMethod) ToPointer() *BillingMethod {
 	return &e
 }
-func (e *BillingMethod) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "fixed_price":
-		fallthrough
-	case "time_and_materials":
-		fallthrough
-	case "milestone_based":
-		fallthrough
-	case "retainer":
-		fallthrough
-	case "non_billable":
-		*e = BillingMethod(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for BillingMethod: %v", v)
-	}
-}
 
 // ProjectPhase - Current phase of the project lifecycle
 type ProjectPhase string
@@ -222,29 +130,6 @@ const (
 func (e ProjectPhase) ToPointer() *ProjectPhase {
 	return &e
 }
-func (e *ProjectPhase) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "initiation":
-		fallthrough
-	case "planning":
-		fallthrough
-	case "execution":
-		fallthrough
-	case "monitoring":
-		fallthrough
-	case "closure":
-		fallthrough
-	case "other":
-		*e = ProjectPhase(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for ProjectPhase: %v", v)
-	}
-}
 
 // ScheduleStatus - Current status of project schedule compared to plan
 type ScheduleStatus string
@@ -258,25 +143,6 @@ const (
 
 func (e ScheduleStatus) ToPointer() *ScheduleStatus {
 	return &e
-}
-func (e *ScheduleStatus) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "ahead_of_schedule":
-		fallthrough
-	case "on_schedule":
-		fallthrough
-	case "behind_schedule":
-		fallthrough
-	case "critical_delay":
-		*e = ScheduleStatus(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for ScheduleStatus: %v", v)
-	}
 }
 
 type Project struct {

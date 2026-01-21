@@ -2,11 +2,6 @@
 
 package components
 
-import (
-	"encoding/json"
-	"fmt"
-)
-
 // LinkedFinancialAccountAccountType - The type of account being referenced. Use `ledger_account` for GL accounts from the chart of accounts, or `bank_account` for bank account entities. When not specified, the connector will use its default behavior.
 type LinkedFinancialAccountAccountType string
 
@@ -17,21 +12,6 @@ const (
 
 func (e LinkedFinancialAccountAccountType) ToPointer() *LinkedFinancialAccountAccountType {
 	return &e
-}
-func (e *LinkedFinancialAccountAccountType) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "ledger_account":
-		fallthrough
-	case "bank_account":
-		*e = LinkedFinancialAccountAccountType(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for LinkedFinancialAccountAccountType: %v", v)
-	}
 }
 
 // LinkedFinancialAccount - A flexible account reference that can represent either a ledger account (GL account) or a bank account, depending on the connector's requirements.

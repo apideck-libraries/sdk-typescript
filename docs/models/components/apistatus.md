@@ -12,6 +12,8 @@ let value: ApiStatus = "live";
 
 ## Values
 
+This is an open enum. Unrecognized values will be captured as the `Unrecognized<string>` branded type.
+
 ```typescript
-"live" | "beta" | "development" | "considering"
+"live" | "beta" | "development" | "considering" | Unrecognized<string>
 ```

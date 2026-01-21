@@ -3,7 +3,8 @@
  */
 
 import * as z from "zod/v3";
-import { ClosedEnum } from "../../types/enums.js";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
 
 /**
  * Frequency of employee compensation.
@@ -18,13 +19,17 @@ export const PaymentFrequency = {
 /**
  * Frequency of employee compensation.
  */
-export type PaymentFrequency = ClosedEnum<typeof PaymentFrequency>;
+export type PaymentFrequency = OpenEnum<typeof PaymentFrequency>;
 
 /** @internal */
-export const PaymentFrequency$inboundSchema: z.ZodNativeEnum<
-  typeof PaymentFrequency
-> = z.nativeEnum(PaymentFrequency);
+export const PaymentFrequency$inboundSchema: z.ZodType<
+  PaymentFrequency,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(PaymentFrequency);
 /** @internal */
-export const PaymentFrequency$outboundSchema: z.ZodNativeEnum<
-  typeof PaymentFrequency
-> = PaymentFrequency$inboundSchema;
+export const PaymentFrequency$outboundSchema: z.ZodType<
+  string,
+  z.ZodTypeDef,
+  PaymentFrequency
+> = openEnums.outboundSchema(PaymentFrequency);

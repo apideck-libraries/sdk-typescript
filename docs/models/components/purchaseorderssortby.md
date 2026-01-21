@@ -12,6 +12,8 @@ let value: PurchaseOrdersSortBy = "updated_at";
 
 ## Values
 
+This is an open enum. Unrecognized values will be captured as the `Unrecognized<string>` branded type.
+
 ```typescript
-"updated_at" | "created_at"
+"updated_at" | "created_at" | Unrecognized<string>
 ```

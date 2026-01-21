@@ -5,7 +5,8 @@
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
-import { ClosedEnum } from "../../types/enums.js";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { RFCDate } from "../../types/rfcdate.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -64,7 +65,7 @@ export const ProjectProjectStatus = {
 /**
  * Current status of the project
  */
-export type ProjectProjectStatus = ClosedEnum<typeof ProjectProjectStatus>;
+export type ProjectProjectStatus = OpenEnum<typeof ProjectProjectStatus>;
 
 /**
  * Type or category of the project
@@ -80,7 +81,7 @@ export const ProjectType = {
 /**
  * Type or category of the project
  */
-export type ProjectType = ClosedEnum<typeof ProjectType>;
+export type ProjectType = OpenEnum<typeof ProjectType>;
 
 /**
  * Priority level of the project
@@ -94,7 +95,7 @@ export const Priority = {
 /**
  * Priority level of the project
  */
-export type Priority = ClosedEnum<typeof Priority>;
+export type Priority = OpenEnum<typeof Priority>;
 
 /**
  * Department or organizational unit associated with the project
@@ -137,7 +138,7 @@ export const BillingMethod = {
 /**
  * Method used for billing this project
  */
-export type BillingMethod = ClosedEnum<typeof BillingMethod>;
+export type BillingMethod = OpenEnum<typeof BillingMethod>;
 
 /**
  * Current phase of the project lifecycle
@@ -153,7 +154,7 @@ export const ProjectPhase = {
 /**
  * Current phase of the project lifecycle
  */
-export type ProjectPhase = ClosedEnum<typeof ProjectPhase>;
+export type ProjectPhase = OpenEnum<typeof ProjectPhase>;
 
 /**
  * Current status of project schedule compared to plan
@@ -167,7 +168,7 @@ export const ScheduleStatus = {
 /**
  * Current status of project schedule compared to plan
  */
-export type ScheduleStatus = ClosedEnum<typeof ScheduleStatus>;
+export type ScheduleStatus = OpenEnum<typeof ScheduleStatus>;
 
 export type Project = {
   /**
@@ -476,27 +477,43 @@ export type ProjectInput = {
 };
 
 /** @internal */
-export const ProjectProjectStatus$inboundSchema: z.ZodNativeEnum<
-  typeof ProjectProjectStatus
-> = z.nativeEnum(ProjectProjectStatus);
+export const ProjectProjectStatus$inboundSchema: z.ZodType<
+  ProjectProjectStatus,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(ProjectProjectStatus);
 /** @internal */
-export const ProjectProjectStatus$outboundSchema: z.ZodNativeEnum<
-  typeof ProjectProjectStatus
-> = ProjectProjectStatus$inboundSchema;
+export const ProjectProjectStatus$outboundSchema: z.ZodType<
+  string,
+  z.ZodTypeDef,
+  ProjectProjectStatus
+> = openEnums.outboundSchema(ProjectProjectStatus);
 
 /** @internal */
-export const ProjectType$inboundSchema: z.ZodNativeEnum<typeof ProjectType> = z
-  .nativeEnum(ProjectType);
+export const ProjectType$inboundSchema: z.ZodType<
+  ProjectType,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(ProjectType);
 /** @internal */
-export const ProjectType$outboundSchema: z.ZodNativeEnum<typeof ProjectType> =
-  ProjectType$inboundSchema;
+export const ProjectType$outboundSchema: z.ZodType<
+  string,
+  z.ZodTypeDef,
+  ProjectType
+> = openEnums.outboundSchema(ProjectType);
 
 /** @internal */
-export const Priority$inboundSchema: z.ZodNativeEnum<typeof Priority> = z
-  .nativeEnum(Priority);
+export const Priority$inboundSchema: z.ZodType<
+  Priority,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(Priority);
 /** @internal */
-export const Priority$outboundSchema: z.ZodNativeEnum<typeof Priority> =
-  Priority$inboundSchema;
+export const Priority$outboundSchema: z.ZodType<
+  string,
+  z.ZodTypeDef,
+  Priority
+> = openEnums.outboundSchema(Priority);
 
 /** @internal */
 export const ProjectDepartment$inboundSchema: z.ZodType<
@@ -579,29 +596,43 @@ export function parentProjectFromJSON(
 }
 
 /** @internal */
-export const BillingMethod$inboundSchema: z.ZodNativeEnum<
-  typeof BillingMethod
-> = z.nativeEnum(BillingMethod);
+export const BillingMethod$inboundSchema: z.ZodType<
+  BillingMethod,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(BillingMethod);
 /** @internal */
-export const BillingMethod$outboundSchema: z.ZodNativeEnum<
-  typeof BillingMethod
-> = BillingMethod$inboundSchema;
+export const BillingMethod$outboundSchema: z.ZodType<
+  string,
+  z.ZodTypeDef,
+  BillingMethod
+> = openEnums.outboundSchema(BillingMethod);
 
 /** @internal */
-export const ProjectPhase$inboundSchema: z.ZodNativeEnum<typeof ProjectPhase> =
-  z.nativeEnum(ProjectPhase);
+export const ProjectPhase$inboundSchema: z.ZodType<
+  ProjectPhase,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(ProjectPhase);
 /** @internal */
-export const ProjectPhase$outboundSchema: z.ZodNativeEnum<typeof ProjectPhase> =
-  ProjectPhase$inboundSchema;
+export const ProjectPhase$outboundSchema: z.ZodType<
+  string,
+  z.ZodTypeDef,
+  ProjectPhase
+> = openEnums.outboundSchema(ProjectPhase);
 
 /** @internal */
-export const ScheduleStatus$inboundSchema: z.ZodNativeEnum<
-  typeof ScheduleStatus
-> = z.nativeEnum(ScheduleStatus);
+export const ScheduleStatus$inboundSchema: z.ZodType<
+  ScheduleStatus,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(ScheduleStatus);
 /** @internal */
-export const ScheduleStatus$outboundSchema: z.ZodNativeEnum<
-  typeof ScheduleStatus
-> = ScheduleStatus$inboundSchema;
+export const ScheduleStatus$outboundSchema: z.ZodType<
+  string,
+  z.ZodTypeDef,
+  ScheduleStatus
+> = openEnums.outboundSchema(ScheduleStatus);
 
 /** @internal */
 export const Project$inboundSchema: z.ZodType<Project, z.ZodTypeDef, unknown> =

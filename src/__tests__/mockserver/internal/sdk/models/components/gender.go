@@ -2,11 +2,6 @@
 
 package components
 
-import (
-	"encoding/json"
-	"fmt"
-)
-
 // Gender - The gender represents the gender identity of a person.
 type Gender string
 
@@ -20,25 +15,4 @@ const (
 
 func (e Gender) ToPointer() *Gender {
 	return &e
-}
-func (e *Gender) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "male":
-		fallthrough
-	case "female":
-		fallthrough
-	case "unisex":
-		fallthrough
-	case "other":
-		fallthrough
-	case "not_specified":
-		*e = Gender(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for Gender: %v", v)
-	}
 }

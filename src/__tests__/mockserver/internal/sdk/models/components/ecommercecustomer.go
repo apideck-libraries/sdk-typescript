@@ -3,8 +3,6 @@
 package components
 
 import (
-	"encoding/json"
-	"fmt"
 	"mockserver/internal/sdk/utils"
 	"time"
 )
@@ -20,21 +18,6 @@ const (
 func (e EcommerceCustomerStatusCustomerStatus) ToPointer() *EcommerceCustomerStatusCustomerStatus {
 	return &e
 }
-func (e *EcommerceCustomerStatusCustomerStatus) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "active":
-		fallthrough
-	case "archived":
-		*e = EcommerceCustomerStatusCustomerStatus(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for EcommerceCustomerStatusCustomerStatus: %v", v)
-	}
-}
 
 type EcommerceCustomerType string
 
@@ -46,23 +29,6 @@ const (
 
 func (e EcommerceCustomerType) ToPointer() *EcommerceCustomerType {
 	return &e
-}
-func (e *EcommerceCustomerType) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "billing":
-		fallthrough
-	case "shipping":
-		fallthrough
-	case "other":
-		*e = EcommerceCustomerType(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for EcommerceCustomerType: %v", v)
-	}
 }
 
 type EcommerceCustomerAddress struct {

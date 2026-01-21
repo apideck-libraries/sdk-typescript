@@ -12,6 +12,8 @@ let value: ContactType = "personal";
 
 ## Values
 
+This is an open enum. Unrecognized values will be captured as the `Unrecognized<string>` branded type.
+
 ```typescript
-"customer" | "supplier" | "employee" | "personal"
+"customer" | "supplier" | "employee" | "personal" | Unrecognized<string>
 ```

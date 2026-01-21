@@ -3,8 +3,6 @@
 package components
 
 import (
-	"encoding/json"
-	"fmt"
 	"mockserver/internal/sdk/utils"
 	"time"
 )
@@ -21,23 +19,6 @@ const (
 func (e StatementStatus) ToPointer() *StatementStatus {
 	return &e
 }
-func (e *StatementStatus) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "pending":
-		fallthrough
-	case "rejected":
-		fallthrough
-	case "success":
-		*e = StatementStatus(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for StatementStatus: %v", v)
-	}
-}
 
 // BankFeedStatementTransactionType - Type of transaction.
 type BankFeedStatementTransactionType string
@@ -53,29 +34,6 @@ const (
 
 func (e BankFeedStatementTransactionType) ToPointer() *BankFeedStatementTransactionType {
 	return &e
-}
-func (e *BankFeedStatementTransactionType) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "credit":
-		fallthrough
-	case "debit":
-		fallthrough
-	case "deposit":
-		fallthrough
-	case "transfer":
-		fallthrough
-	case "payment":
-		fallthrough
-	case "other":
-		*e = BankFeedStatementTransactionType(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for BankFeedStatementTransactionType: %v", v)
-	}
 }
 
 type Transaction struct {

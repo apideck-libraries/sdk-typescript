@@ -4,7 +4,8 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { ClosedEnum } from "../../types/enums.js";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
 
 /**
  * Filter by bill status
@@ -17,7 +18,7 @@ export const BillsFilterStatus = {
 /**
  * Filter by bill status
  */
-export type BillsFilterStatus = ClosedEnum<typeof BillsFilterStatus>;
+export type BillsFilterStatus = OpenEnum<typeof BillsFilterStatus>;
 
 export type BillsFilter = {
   updatedSince?: Date | undefined;
@@ -28,9 +29,11 @@ export type BillsFilter = {
 };
 
 /** @internal */
-export const BillsFilterStatus$outboundSchema: z.ZodNativeEnum<
-  typeof BillsFilterStatus
-> = z.nativeEnum(BillsFilterStatus);
+export const BillsFilterStatus$outboundSchema: z.ZodType<
+  string,
+  z.ZodTypeDef,
+  BillsFilterStatus
+> = openEnums.outboundSchema(BillsFilterStatus);
 
 /** @internal */
 export type BillsFilter$Outbound = {

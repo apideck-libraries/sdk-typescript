@@ -4,7 +4,8 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { ClosedEnum } from "../../types/enums.js";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
 import {
   ConsumerMetadata,
   ConsumerMetadata$Outbound,
@@ -18,7 +19,7 @@ export const AllowActions = {
   Reauthorize: "reauthorize",
   Disable: "disable",
 } as const;
-export type AllowActions = ClosedEnum<typeof AllowActions>;
+export type AllowActions = OpenEnum<typeof AllowActions>;
 
 /**
  * Settings to change the way the Vault is displayed.
@@ -136,8 +137,11 @@ export type Session = {
 };
 
 /** @internal */
-export const AllowActions$outboundSchema: z.ZodNativeEnum<typeof AllowActions> =
-  z.nativeEnum(AllowActions);
+export const AllowActions$outboundSchema: z.ZodType<
+  string,
+  z.ZodTypeDef,
+  AllowActions
+> = openEnums.outboundSchema(AllowActions);
 
 /** @internal */
 export type Settings$Outbound = {

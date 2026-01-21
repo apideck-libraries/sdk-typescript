@@ -5,7 +5,8 @@
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
-import { ClosedEnum } from "../../types/enums.js";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { ConnectorDoc, ConnectorDoc$inboundSchema } from "./connectordoc.js";
@@ -45,7 +46,7 @@ export const ConnectorAuthType = {
 /**
  * Type of authorization used by the connector
  */
-export type ConnectorAuthType = ClosedEnum<typeof ConnectorAuthType>;
+export type ConnectorAuthType = OpenEnum<typeof ConnectorAuthType>;
 
 /**
  * OAuth grant type used by the connector. More info: https://oauth.net/2/grant-types
@@ -58,9 +59,7 @@ export const ConnectorOauthGrantType = {
 /**
  * OAuth grant type used by the connector. More info: https://oauth.net/2/grant-types
  */
-export type ConnectorOauthGrantType = ClosedEnum<
-  typeof ConnectorOauthGrantType
->;
+export type ConnectorOauthGrantType = OpenEnum<typeof ConnectorOauthGrantType>;
 
 /**
  * Location of the OAuth client credentials. For most connectors the OAuth client credentials are stored on integration and managed by the application owner. For others they are stored on connection and managed by the consumer in Vault.
@@ -72,7 +71,7 @@ export const OauthCredentialsSource = {
 /**
  * Location of the OAuth client credentials. For most connectors the OAuth client credentials are stored on integration and managed by the application owner. For others they are stored on connection and managed by the consumer in Vault.
  */
-export type OauthCredentialsSource = ClosedEnum<typeof OauthCredentialsSource>;
+export type OauthCredentialsSource = OpenEnum<typeof OauthCredentialsSource>;
 
 export type OauthScopes = {
   /**
@@ -246,19 +245,25 @@ export type Connector = {
 };
 
 /** @internal */
-export const ConnectorAuthType$inboundSchema: z.ZodNativeEnum<
-  typeof ConnectorAuthType
-> = z.nativeEnum(ConnectorAuthType);
+export const ConnectorAuthType$inboundSchema: z.ZodType<
+  ConnectorAuthType,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(ConnectorAuthType);
 
 /** @internal */
-export const ConnectorOauthGrantType$inboundSchema: z.ZodNativeEnum<
-  typeof ConnectorOauthGrantType
-> = z.nativeEnum(ConnectorOauthGrantType);
+export const ConnectorOauthGrantType$inboundSchema: z.ZodType<
+  ConnectorOauthGrantType,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(ConnectorOauthGrantType);
 
 /** @internal */
-export const OauthCredentialsSource$inboundSchema: z.ZodNativeEnum<
-  typeof OauthCredentialsSource
-> = z.nativeEnum(OauthCredentialsSource);
+export const OauthCredentialsSource$inboundSchema: z.ZodType<
+  OauthCredentialsSource,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(OauthCredentialsSource);
 
 /** @internal */
 export const OauthScopes$inboundSchema: z.ZodType<

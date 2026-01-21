@@ -5,7 +5,8 @@
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
-import { ClosedEnum } from "../../types/enums.js";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { RFCDate } from "../../types/rfcdate.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -25,7 +26,7 @@ export const CompanyStatus = {
 /**
  * Based on the status some functionality is enabled or disabled.
  */
-export type CompanyStatus = ClosedEnum<typeof CompanyStatus>;
+export type CompanyStatus = OpenEnum<typeof CompanyStatus>;
 
 /**
  * The start month of fiscal year.
@@ -47,7 +48,7 @@ export const TheStartMonthOfFiscalYear = {
 /**
  * The start month of fiscal year.
  */
-export type TheStartMonthOfFiscalYear = ClosedEnum<
+export type TheStartMonthOfFiscalYear = OpenEnum<
   typeof TheStartMonthOfFiscalYear
 >;
 
@@ -63,7 +64,7 @@ export const TrackingCategoriesMode = {
 /**
  * The mode of tracking categories for the company on transactions
  */
-export type TrackingCategoriesMode = ClosedEnum<typeof TrackingCategoriesMode>;
+export type TrackingCategoriesMode = OpenEnum<typeof TrackingCategoriesMode>;
 
 export type CompanyInfo = {
   /**
@@ -150,19 +151,25 @@ export type CompanyInfo = {
 };
 
 /** @internal */
-export const CompanyStatus$inboundSchema: z.ZodNativeEnum<
-  typeof CompanyStatus
-> = z.nativeEnum(CompanyStatus);
+export const CompanyStatus$inboundSchema: z.ZodType<
+  CompanyStatus,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(CompanyStatus);
 
 /** @internal */
-export const TheStartMonthOfFiscalYear$inboundSchema: z.ZodNativeEnum<
-  typeof TheStartMonthOfFiscalYear
-> = z.nativeEnum(TheStartMonthOfFiscalYear);
+export const TheStartMonthOfFiscalYear$inboundSchema: z.ZodType<
+  TheStartMonthOfFiscalYear,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(TheStartMonthOfFiscalYear);
 
 /** @internal */
-export const TrackingCategoriesMode$inboundSchema: z.ZodNativeEnum<
-  typeof TrackingCategoriesMode
-> = z.nativeEnum(TrackingCategoriesMode);
+export const TrackingCategoriesMode$inboundSchema: z.ZodType<
+  TrackingCategoriesMode,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(TrackingCategoriesMode);
 
 /** @internal */
 export const CompanyInfo$inboundSchema: z.ZodType<

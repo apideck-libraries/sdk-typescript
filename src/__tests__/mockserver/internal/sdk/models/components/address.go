@@ -2,11 +2,6 @@
 
 package components
 
-import (
-	"encoding/json"
-	"fmt"
-)
-
 // AddressType - The type of address.
 type AddressType string
 
@@ -23,33 +18,6 @@ const (
 
 func (e AddressType) ToPointer() *AddressType {
 	return &e
-}
-func (e *AddressType) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "primary":
-		fallthrough
-	case "secondary":
-		fallthrough
-	case "home":
-		fallthrough
-	case "office":
-		fallthrough
-	case "shipping":
-		fallthrough
-	case "billing":
-		fallthrough
-	case "work":
-		fallthrough
-	case "other":
-		*e = AddressType(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for AddressType: %v", v)
-	}
 }
 
 type Address struct {

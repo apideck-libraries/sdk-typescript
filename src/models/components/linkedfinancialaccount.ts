@@ -5,7 +5,8 @@
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
-import { ClosedEnum } from "../../types/enums.js";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
@@ -19,7 +20,7 @@ export const LinkedFinancialAccountAccountType = {
 /**
  * The type of account being referenced. Use `ledger_account` for GL accounts from the chart of accounts, or `bank_account` for bank account entities. When not specified, the connector will use its default behavior.
  */
-export type LinkedFinancialAccountAccountType = ClosedEnum<
+export type LinkedFinancialAccountAccountType = OpenEnum<
   typeof LinkedFinancialAccountAccountType
 >;
 
@@ -84,13 +85,17 @@ export type LinkedFinancialAccountInput = {
 };
 
 /** @internal */
-export const LinkedFinancialAccountAccountType$inboundSchema: z.ZodNativeEnum<
-  typeof LinkedFinancialAccountAccountType
-> = z.nativeEnum(LinkedFinancialAccountAccountType);
+export const LinkedFinancialAccountAccountType$inboundSchema: z.ZodType<
+  LinkedFinancialAccountAccountType,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(LinkedFinancialAccountAccountType);
 /** @internal */
-export const LinkedFinancialAccountAccountType$outboundSchema: z.ZodNativeEnum<
-  typeof LinkedFinancialAccountAccountType
-> = LinkedFinancialAccountAccountType$inboundSchema;
+export const LinkedFinancialAccountAccountType$outboundSchema: z.ZodType<
+  string,
+  z.ZodTypeDef,
+  LinkedFinancialAccountAccountType
+> = openEnums.outboundSchema(LinkedFinancialAccountAccountType);
 
 /** @internal */
 export const LinkedFinancialAccount$inboundSchema: z.ZodType<

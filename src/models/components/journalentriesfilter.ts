@@ -4,7 +4,8 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { ClosedEnum } from "../../types/enums.js";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
 
 export const JournalEntriesFilterStatus = {
   Draft: "draft",
@@ -16,7 +17,7 @@ export const JournalEntriesFilterStatus = {
   Deleted: "deleted",
   Other: "other",
 } as const;
-export type JournalEntriesFilterStatus = ClosedEnum<
+export type JournalEntriesFilterStatus = OpenEnum<
   typeof JournalEntriesFilterStatus
 >;
 
@@ -26,9 +27,11 @@ export type JournalEntriesFilter = {
 };
 
 /** @internal */
-export const JournalEntriesFilterStatus$outboundSchema: z.ZodNativeEnum<
-  typeof JournalEntriesFilterStatus
-> = z.nativeEnum(JournalEntriesFilterStatus);
+export const JournalEntriesFilterStatus$outboundSchema: z.ZodType<
+  string,
+  z.ZodTypeDef,
+  JournalEntriesFilterStatus
+> = openEnums.outboundSchema(JournalEntriesFilterStatus);
 
 /** @internal */
 export type JournalEntriesFilter$Outbound = {

@@ -5,7 +5,8 @@
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
-import { ClosedEnum } from "../../types/enums.js";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { RFCDate } from "../../types/rfcdate.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -75,7 +76,7 @@ export const PurchaseOrderStatus = {
   Billed: "billed",
   Other: "other",
 } as const;
-export type PurchaseOrderStatus = ClosedEnum<typeof PurchaseOrderStatus>;
+export type PurchaseOrderStatus = OpenEnum<typeof PurchaseOrderStatus>;
 
 /**
  * Type of amortization
@@ -89,7 +90,7 @@ export const PurchaseOrderAmortizationType = {
 /**
  * Type of amortization
  */
-export type PurchaseOrderAmortizationType = ClosedEnum<
+export type PurchaseOrderAmortizationType = OpenEnum<
   typeof PurchaseOrderAmortizationType
 >;
 
@@ -414,22 +415,30 @@ export type PurchaseOrderInput = {
 };
 
 /** @internal */
-export const PurchaseOrderStatus$inboundSchema: z.ZodNativeEnum<
-  typeof PurchaseOrderStatus
-> = z.nativeEnum(PurchaseOrderStatus);
+export const PurchaseOrderStatus$inboundSchema: z.ZodType<
+  PurchaseOrderStatus,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(PurchaseOrderStatus);
 /** @internal */
-export const PurchaseOrderStatus$outboundSchema: z.ZodNativeEnum<
-  typeof PurchaseOrderStatus
-> = PurchaseOrderStatus$inboundSchema;
+export const PurchaseOrderStatus$outboundSchema: z.ZodType<
+  string,
+  z.ZodTypeDef,
+  PurchaseOrderStatus
+> = openEnums.outboundSchema(PurchaseOrderStatus);
 
 /** @internal */
-export const PurchaseOrderAmortizationType$inboundSchema: z.ZodNativeEnum<
-  typeof PurchaseOrderAmortizationType
-> = z.nativeEnum(PurchaseOrderAmortizationType);
+export const PurchaseOrderAmortizationType$inboundSchema: z.ZodType<
+  PurchaseOrderAmortizationType,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(PurchaseOrderAmortizationType);
 /** @internal */
-export const PurchaseOrderAmortizationType$outboundSchema: z.ZodNativeEnum<
-  typeof PurchaseOrderAmortizationType
-> = PurchaseOrderAmortizationType$inboundSchema;
+export const PurchaseOrderAmortizationType$outboundSchema: z.ZodType<
+  string,
+  z.ZodTypeDef,
+  PurchaseOrderAmortizationType
+> = openEnums.outboundSchema(PurchaseOrderAmortizationType);
 
 /** @internal */
 export const PurchaseOrder$inboundSchema: z.ZodType<

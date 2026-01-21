@@ -5,7 +5,8 @@
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
-import { ClosedEnum } from "../../types/enums.js";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
@@ -57,7 +58,7 @@ export const UnifiedApi = {
 /**
  * Which Unified Api request was made to.
  */
-export type UnifiedApi = ClosedEnum<typeof UnifiedApi>;
+export type UnifiedApi = OpenEnum<typeof UnifiedApi>;
 
 export type Log = {
   /**
@@ -184,8 +185,11 @@ export function serviceFromJSON(
 }
 
 /** @internal */
-export const UnifiedApi$inboundSchema: z.ZodNativeEnum<typeof UnifiedApi> = z
-  .nativeEnum(UnifiedApi);
+export const UnifiedApi$inboundSchema: z.ZodType<
+  UnifiedApi,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(UnifiedApi);
 
 /** @internal */
 export const Log$inboundSchema: z.ZodType<Log, z.ZodTypeDef, unknown> = z

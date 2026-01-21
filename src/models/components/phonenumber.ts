@@ -5,7 +5,8 @@
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
-import { ClosedEnum } from "../../types/enums.js";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
@@ -29,7 +30,7 @@ export const PhoneNumberType = {
 /**
  * The type of phone number
  */
-export type PhoneNumberType = ClosedEnum<typeof PhoneNumberType>;
+export type PhoneNumberType = OpenEnum<typeof PhoneNumberType>;
 
 export type PhoneNumber = {
   /**
@@ -59,13 +60,17 @@ export type PhoneNumber = {
 };
 
 /** @internal */
-export const PhoneNumberType$inboundSchema: z.ZodNativeEnum<
-  typeof PhoneNumberType
-> = z.nativeEnum(PhoneNumberType);
+export const PhoneNumberType$inboundSchema: z.ZodType<
+  PhoneNumberType,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(PhoneNumberType);
 /** @internal */
-export const PhoneNumberType$outboundSchema: z.ZodNativeEnum<
-  typeof PhoneNumberType
-> = PhoneNumberType$inboundSchema;
+export const PhoneNumberType$outboundSchema: z.ZodType<
+  string,
+  z.ZodTypeDef,
+  PhoneNumberType
+> = openEnums.outboundSchema(PhoneNumberType);
 
 /** @internal */
 export const PhoneNumber$inboundSchema: z.ZodType<

@@ -3,7 +3,6 @@
 package components
 
 import (
-	"encoding/json"
 	"errors"
 	"fmt"
 	"mockserver/internal/sdk/utils"
@@ -231,19 +230,6 @@ const (
 
 func (e SimpleFormFieldOptionOptionType) ToPointer() *SimpleFormFieldOptionOptionType {
 	return &e
-}
-func (e *SimpleFormFieldOptionOptionType) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "simple":
-		*e = SimpleFormFieldOptionOptionType(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for SimpleFormFieldOptionOptionType: %v", v)
-	}
 }
 
 type SimpleFormFieldOption struct {

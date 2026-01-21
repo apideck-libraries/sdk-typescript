@@ -2,11 +2,6 @@
 
 package components
 
-import (
-	"encoding/json"
-	"fmt"
-)
-
 // BankAccountFilterAccountType - Filter by account type
 type BankAccountFilterAccountType string
 
@@ -22,31 +17,6 @@ const (
 
 func (e BankAccountFilterAccountType) ToPointer() *BankAccountFilterAccountType {
 	return &e
-}
-func (e *BankAccountFilterAccountType) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "checking":
-		fallthrough
-	case "savings":
-		fallthrough
-	case "credit_card":
-		fallthrough
-	case "money_market":
-		fallthrough
-	case "line_of_credit":
-		fallthrough
-	case "other":
-		fallthrough
-	case "cash":
-		*e = BankAccountFilterAccountType(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for BankAccountFilterAccountType: %v", v)
-	}
 }
 
 type BankAccountFilter struct {

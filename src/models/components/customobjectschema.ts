@@ -5,7 +5,8 @@
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
-import { ClosedEnum } from "../../types/enums.js";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
@@ -29,7 +30,7 @@ export const CustomObjectSchemaType = {
   Select: "select",
   Multiselect: "multiselect",
 } as const;
-export type CustomObjectSchemaType = ClosedEnum<typeof CustomObjectSchemaType>;
+export type CustomObjectSchemaType = OpenEnum<typeof CustomObjectSchemaType>;
 
 export type CustomObjectSchemaOptions = {
   value?: string | undefined;
@@ -127,13 +128,17 @@ export type CustomObjectSchemaInput = {
 };
 
 /** @internal */
-export const CustomObjectSchemaType$inboundSchema: z.ZodNativeEnum<
-  typeof CustomObjectSchemaType
-> = z.nativeEnum(CustomObjectSchemaType);
+export const CustomObjectSchemaType$inboundSchema: z.ZodType<
+  CustomObjectSchemaType,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(CustomObjectSchemaType);
 /** @internal */
-export const CustomObjectSchemaType$outboundSchema: z.ZodNativeEnum<
-  typeof CustomObjectSchemaType
-> = CustomObjectSchemaType$inboundSchema;
+export const CustomObjectSchemaType$outboundSchema: z.ZodType<
+  string,
+  z.ZodTypeDef,
+  CustomObjectSchemaType
+> = openEnums.outboundSchema(CustomObjectSchemaType);
 
 /** @internal */
 export const CustomObjectSchemaOptions$inboundSchema: z.ZodType<

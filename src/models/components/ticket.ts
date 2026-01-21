@@ -5,7 +5,8 @@
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
-import { ClosedEnum } from "../../types/enums.js";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { Assignee, Assignee$inboundSchema } from "./assignee.js";
@@ -39,7 +40,7 @@ export const TicketPriority = {
 /**
  * Priority of the ticket
  */
-export type TicketPriority = ClosedEnum<typeof TicketPriority>;
+export type TicketPriority = OpenEnum<typeof TicketPriority>;
 
 export type Ticket = {
   /**
@@ -144,13 +145,17 @@ export type TicketInput = {
 };
 
 /** @internal */
-export const TicketPriority$inboundSchema: z.ZodNativeEnum<
-  typeof TicketPriority
-> = z.nativeEnum(TicketPriority);
+export const TicketPriority$inboundSchema: z.ZodType<
+  TicketPriority,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(TicketPriority);
 /** @internal */
-export const TicketPriority$outboundSchema: z.ZodNativeEnum<
-  typeof TicketPriority
-> = TicketPriority$inboundSchema;
+export const TicketPriority$outboundSchema: z.ZodType<
+  string,
+  z.ZodTypeDef,
+  TicketPriority
+> = openEnums.outboundSchema(TicketPriority);
 
 /** @internal */
 export const Ticket$inboundSchema: z.ZodType<Ticket, z.ZodTypeDef, unknown> = z

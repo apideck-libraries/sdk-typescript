@@ -3,8 +3,6 @@
 package components
 
 import (
-	"encoding/json"
-	"fmt"
 	"mockserver/internal/sdk/types"
 	"mockserver/internal/sdk/utils"
 )
@@ -20,23 +18,6 @@ const (
 
 func (e EmployeeJobStatus) ToPointer() *EmployeeJobStatus {
 	return &e
-}
-func (e *EmployeeJobStatus) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "active":
-		fallthrough
-	case "inactive":
-		fallthrough
-	case "other":
-		*e = EmployeeJobStatus(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for EmployeeJobStatus: %v", v)
-	}
 }
 
 type EmployeeJob struct {

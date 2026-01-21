@@ -12,6 +12,8 @@ let value: InvoiceType = "service";
 
 ## Values
 
+This is an open enum. Unrecognized values will be captured as the `Unrecognized<string>` branded type.
+
 ```typescript
-"standard" | "credit" | "service" | "product" | "supplier" | "other"
+"standard" | "credit" | "service" | "product" | "supplier" | "other" | Unrecognized<string>
 ```

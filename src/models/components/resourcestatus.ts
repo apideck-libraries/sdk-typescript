@@ -3,7 +3,8 @@
  */
 
 import * as z from "zod/v3";
-import { ClosedEnum } from "../../types/enums.js";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
 
 /**
  * Status of the resource. Resources with status live or beta are callable.
@@ -18,9 +19,11 @@ export const ResourceStatus = {
 /**
  * Status of the resource. Resources with status live or beta are callable.
  */
-export type ResourceStatus = ClosedEnum<typeof ResourceStatus>;
+export type ResourceStatus = OpenEnum<typeof ResourceStatus>;
 
 /** @internal */
-export const ResourceStatus$inboundSchema: z.ZodNativeEnum<
-  typeof ResourceStatus
-> = z.nativeEnum(ResourceStatus);
+export const ResourceStatus$inboundSchema: z.ZodType<
+  ResourceStatus,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(ResourceStatus);

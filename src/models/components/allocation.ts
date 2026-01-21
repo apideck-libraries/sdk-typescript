@@ -5,7 +5,8 @@
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
-import { ClosedEnum } from "../../types/enums.js";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
@@ -26,7 +27,7 @@ export const AllocationType = {
 /**
  * Type of entity this payment should be attributed to.
  */
-export type AllocationType = ClosedEnum<typeof AllocationType>;
+export type AllocationType = OpenEnum<typeof AllocationType>;
 
 export type Allocation = {
   /**
@@ -68,13 +69,17 @@ export type AllocationInput = {
 };
 
 /** @internal */
-export const AllocationType$inboundSchema: z.ZodNativeEnum<
-  typeof AllocationType
-> = z.nativeEnum(AllocationType);
+export const AllocationType$inboundSchema: z.ZodType<
+  AllocationType,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(AllocationType);
 /** @internal */
-export const AllocationType$outboundSchema: z.ZodNativeEnum<
-  typeof AllocationType
-> = AllocationType$inboundSchema;
+export const AllocationType$outboundSchema: z.ZodType<
+  string,
+  z.ZodTypeDef,
+  AllocationType
+> = openEnums.outboundSchema(AllocationType);
 
 /** @internal */
 export const Allocation$inboundSchema: z.ZodType<

@@ -5,7 +5,8 @@
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
-import { ClosedEnum } from "../../types/enums.js";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { RFCDate } from "../../types/rfcdate.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -83,7 +84,7 @@ export const BillStatus = {
 /**
  * Invoice status
  */
-export type BillStatus = ClosedEnum<typeof BillStatus>;
+export type BillStatus = OpenEnum<typeof BillStatus>;
 
 /**
  * Type of amortization
@@ -97,7 +98,7 @@ export const AmortizationType = {
 /**
  * Type of amortization
  */
-export type AmortizationType = ClosedEnum<typeof AmortizationType>;
+export type AmortizationType = OpenEnum<typeof AmortizationType>;
 
 export type Bill = {
   /**
@@ -442,20 +443,30 @@ export type BillInput = {
 };
 
 /** @internal */
-export const BillStatus$inboundSchema: z.ZodNativeEnum<typeof BillStatus> = z
-  .nativeEnum(BillStatus);
+export const BillStatus$inboundSchema: z.ZodType<
+  BillStatus,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(BillStatus);
 /** @internal */
-export const BillStatus$outboundSchema: z.ZodNativeEnum<typeof BillStatus> =
-  BillStatus$inboundSchema;
+export const BillStatus$outboundSchema: z.ZodType<
+  string,
+  z.ZodTypeDef,
+  BillStatus
+> = openEnums.outboundSchema(BillStatus);
 
 /** @internal */
-export const AmortizationType$inboundSchema: z.ZodNativeEnum<
-  typeof AmortizationType
-> = z.nativeEnum(AmortizationType);
+export const AmortizationType$inboundSchema: z.ZodType<
+  AmortizationType,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(AmortizationType);
 /** @internal */
-export const AmortizationType$outboundSchema: z.ZodNativeEnum<
-  typeof AmortizationType
-> = AmortizationType$inboundSchema;
+export const AmortizationType$outboundSchema: z.ZodType<
+  string,
+  z.ZodTypeDef,
+  AmortizationType
+> = openEnums.outboundSchema(AmortizationType);
 
 /** @internal */
 export const Bill$inboundSchema: z.ZodType<Bill, z.ZodTypeDef, unknown> = z

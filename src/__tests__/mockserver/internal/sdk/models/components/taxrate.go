@@ -3,8 +3,6 @@
 package components
 
 import (
-	"encoding/json"
-	"fmt"
 	"mockserver/internal/sdk/utils"
 	"time"
 )
@@ -55,23 +53,6 @@ const (
 
 func (e TaxRateStatus) ToPointer() *TaxRateStatus {
 	return &e
-}
-func (e *TaxRateStatus) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "active":
-		fallthrough
-	case "inactive":
-		fallthrough
-	case "archived":
-		*e = TaxRateStatus(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for TaxRateStatus: %v", v)
-	}
 }
 
 type TaxRateSubsidiary struct {

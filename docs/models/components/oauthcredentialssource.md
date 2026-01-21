@@ -12,6 +12,8 @@ let value: OauthCredentialsSource = "integration";
 
 ## Values
 
+This is an open enum. Unrecognized values will be captured as the `Unrecognized<string>` branded type.
+
 ```typescript
-"integration" | "connection"
+"integration" | "connection" | Unrecognized<string>
 ```

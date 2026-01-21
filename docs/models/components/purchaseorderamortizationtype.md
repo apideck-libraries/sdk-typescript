@@ -12,6 +12,8 @@ let value: PurchaseOrderAmortizationType = "manual";
 
 ## Values
 
+This is an open enum. Unrecognized values will be captured as the `Unrecognized<string>` branded type.
+
 ```typescript
-"manual" | "receipt" | "schedule" | "other"
+"manual" | "receipt" | "schedule" | "other" | Unrecognized<string>
 ```

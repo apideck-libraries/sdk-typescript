@@ -5,7 +5,8 @@
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
-import { ClosedEnum } from "../../types/enums.js";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
@@ -22,7 +23,7 @@ export const ApplicationStatus = {
   Converted: "converted",
   Other: "other",
 } as const;
-export type ApplicationStatus = ClosedEnum<typeof ApplicationStatus>;
+export type ApplicationStatus = OpenEnum<typeof ApplicationStatus>;
 
 export type Stage = {
   /**
@@ -79,13 +80,17 @@ export type ApplicationInput = {
 };
 
 /** @internal */
-export const ApplicationStatus$inboundSchema: z.ZodNativeEnum<
-  typeof ApplicationStatus
-> = z.nativeEnum(ApplicationStatus);
+export const ApplicationStatus$inboundSchema: z.ZodType<
+  ApplicationStatus,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(ApplicationStatus);
 /** @internal */
-export const ApplicationStatus$outboundSchema: z.ZodNativeEnum<
-  typeof ApplicationStatus
-> = ApplicationStatus$inboundSchema;
+export const ApplicationStatus$outboundSchema: z.ZodType<
+  string,
+  z.ZodTypeDef,
+  ApplicationStatus
+> = openEnums.outboundSchema(ApplicationStatus);
 
 /** @internal */
 export const Stage$inboundSchema: z.ZodType<Stage, z.ZodTypeDef, unknown> = z

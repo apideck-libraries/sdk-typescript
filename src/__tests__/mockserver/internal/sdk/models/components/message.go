@@ -3,8 +3,6 @@
 package components
 
 import (
-	"encoding/json"
-	"fmt"
 	"mockserver/internal/sdk/utils"
 	"time"
 )
@@ -20,21 +18,6 @@ const (
 func (e MessageType) ToPointer() *MessageType {
 	return &e
 }
-func (e *MessageType) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "sms":
-		fallthrough
-	case "mms":
-		*e = MessageType(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for MessageType: %v", v)
-	}
-}
 
 // Direction - The direction of the message.
 type Direction string
@@ -49,27 +32,6 @@ const (
 
 func (e Direction) ToPointer() *Direction {
 	return &e
-}
-func (e *Direction) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "inbound":
-		fallthrough
-	case "outbound-api":
-		fallthrough
-	case "outbound-call":
-		fallthrough
-	case "outbound-reply":
-		fallthrough
-	case "unknown":
-		*e = Direction(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for Direction: %v", v)
-	}
 }
 
 // MessageStatus - Status of the delivery of the message.
@@ -92,41 +54,6 @@ const (
 
 func (e MessageStatus) ToPointer() *MessageStatus {
 	return &e
-}
-func (e *MessageStatus) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "accepted":
-		fallthrough
-	case "scheduled":
-		fallthrough
-	case "canceled":
-		fallthrough
-	case "queued":
-		fallthrough
-	case "sending":
-		fallthrough
-	case "sent":
-		fallthrough
-	case "failed":
-		fallthrough
-	case "delivered":
-		fallthrough
-	case "undelivered":
-		fallthrough
-	case "receiving":
-		fallthrough
-	case "received":
-		fallthrough
-	case "read":
-		*e = MessageStatus(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for MessageStatus: %v", v)
-	}
 }
 
 // Price of the message.

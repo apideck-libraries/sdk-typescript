@@ -2,11 +2,6 @@
 
 package components
 
-import (
-	"encoding/json"
-	"fmt"
-)
-
 // ConnectorAuthType - Type of authorization used by the connector
 type ConnectorAuthType string
 
@@ -21,27 +16,6 @@ const (
 func (e ConnectorAuthType) ToPointer() *ConnectorAuthType {
 	return &e
 }
-func (e *ConnectorAuthType) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "oauth2":
-		fallthrough
-	case "apiKey":
-		fallthrough
-	case "basic":
-		fallthrough
-	case "custom":
-		fallthrough
-	case "none":
-		*e = ConnectorAuthType(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for ConnectorAuthType: %v", v)
-	}
-}
 
 // ConnectorOauthGrantType - OAuth grant type used by the connector. More info: https://oauth.net/2/grant-types
 type ConnectorOauthGrantType string
@@ -55,23 +29,6 @@ const (
 func (e ConnectorOauthGrantType) ToPointer() *ConnectorOauthGrantType {
 	return &e
 }
-func (e *ConnectorOauthGrantType) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "authorization_code":
-		fallthrough
-	case "client_credentials":
-		fallthrough
-	case "password":
-		*e = ConnectorOauthGrantType(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for ConnectorOauthGrantType: %v", v)
-	}
-}
 
 // OauthCredentialsSource - Location of the OAuth client credentials. For most connectors the OAuth client credentials are stored on integration and managed by the application owner. For others they are stored on connection and managed by the consumer in Vault.
 type OauthCredentialsSource string
@@ -83,21 +40,6 @@ const (
 
 func (e OauthCredentialsSource) ToPointer() *OauthCredentialsSource {
 	return &e
-}
-func (e *OauthCredentialsSource) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "integration":
-		fallthrough
-	case "connection":
-		*e = OauthCredentialsSource(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for OauthCredentialsSource: %v", v)
-	}
 }
 
 type OauthScope struct {

@@ -3,7 +3,8 @@
  */
 
 import * as z from "zod/v3";
-import { ClosedEnum } from "../../types/enums.js";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
 
 /**
  * Status of payment
@@ -19,13 +20,17 @@ export const PaymentStatus = {
 /**
  * Status of payment
  */
-export type PaymentStatus = ClosedEnum<typeof PaymentStatus>;
+export type PaymentStatus = OpenEnum<typeof PaymentStatus>;
 
 /** @internal */
-export const PaymentStatus$inboundSchema: z.ZodNativeEnum<
-  typeof PaymentStatus
-> = z.nativeEnum(PaymentStatus);
+export const PaymentStatus$inboundSchema: z.ZodType<
+  PaymentStatus,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(PaymentStatus);
 /** @internal */
-export const PaymentStatus$outboundSchema: z.ZodNativeEnum<
-  typeof PaymentStatus
-> = PaymentStatus$inboundSchema;
+export const PaymentStatus$outboundSchema: z.ZodType<
+  string,
+  z.ZodTypeDef,
+  PaymentStatus
+> = openEnums.outboundSchema(PaymentStatus);

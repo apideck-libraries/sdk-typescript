@@ -12,6 +12,8 @@ let value: PaymentStatus = "authorised";
 
 ## Values
 
+This is an open enum. Unrecognized values will be captured as the `Unrecognized<string>` branded type.
+
 ```typescript
-"draft" | "authorised" | "rejected" | "paid" | "voided" | "deleted"
+"draft" | "authorised" | "rejected" | "paid" | "voided" | "deleted" | Unrecognized<string>
 ```

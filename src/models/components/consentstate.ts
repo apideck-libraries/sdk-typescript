@@ -3,7 +3,8 @@
  */
 
 import * as z from "zod/v3";
-import { ClosedEnum } from "../../types/enums.js";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
 
 /**
  * The current consent state of the connection
@@ -19,11 +20,17 @@ export const ConsentState = {
 /**
  * The current consent state of the connection
  */
-export type ConsentState = ClosedEnum<typeof ConsentState>;
+export type ConsentState = OpenEnum<typeof ConsentState>;
 
 /** @internal */
-export const ConsentState$inboundSchema: z.ZodNativeEnum<typeof ConsentState> =
-  z.nativeEnum(ConsentState);
+export const ConsentState$inboundSchema: z.ZodType<
+  ConsentState,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(ConsentState);
 /** @internal */
-export const ConsentState$outboundSchema: z.ZodNativeEnum<typeof ConsentState> =
-  ConsentState$inboundSchema;
+export const ConsentState$outboundSchema: z.ZodType<
+  string,
+  z.ZodTypeDef,
+  ConsentState
+> = openEnums.outboundSchema(ConsentState);

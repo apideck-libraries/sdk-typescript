@@ -12,6 +12,8 @@ let value: ApplicantType = "primary";
 
 ## Values
 
+This is an open enum. Unrecognized values will be captured as the `Unrecognized<string>` branded type.
+
 ```typescript
-"primary" | "secondary" | "work" | "personal" | "other"
+"primary" | "secondary" | "work" | "personal" | "other" | Unrecognized<string>
 ```

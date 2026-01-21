@@ -12,6 +12,8 @@ let value: ProjectType = "client_project";
 
 ## Values
 
+This is an open enum. Unrecognized values will be captured as the `Unrecognized<string>` branded type.
+
 ```typescript
-"client_project" | "internal_project" | "maintenance" | "research_development" | "training" | "other"
+"client_project" | "internal_project" | "maintenance" | "research_development" | "training" | "other" | Unrecognized<string>
 ```

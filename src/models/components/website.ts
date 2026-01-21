@@ -4,7 +4,8 @@
 
 import * as z from "zod/v3";
 import { safeParse } from "../../lib/schemas.js";
-import { ClosedEnum } from "../../types/enums.js";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
@@ -21,7 +22,7 @@ export const WebsiteType = {
 /**
  * The type of website
  */
-export type WebsiteType = ClosedEnum<typeof WebsiteType>;
+export type WebsiteType = OpenEnum<typeof WebsiteType>;
 
 export type Website = {
   /**
@@ -39,11 +40,17 @@ export type Website = {
 };
 
 /** @internal */
-export const WebsiteType$inboundSchema: z.ZodNativeEnum<typeof WebsiteType> = z
-  .nativeEnum(WebsiteType);
+export const WebsiteType$inboundSchema: z.ZodType<
+  WebsiteType,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(WebsiteType);
 /** @internal */
-export const WebsiteType$outboundSchema: z.ZodNativeEnum<typeof WebsiteType> =
-  WebsiteType$inboundSchema;
+export const WebsiteType$outboundSchema: z.ZodType<
+  string,
+  z.ZodTypeDef,
+  WebsiteType
+> = openEnums.outboundSchema(WebsiteType);
 
 /** @internal */
 export const Website$inboundSchema: z.ZodType<Website, z.ZodTypeDef, unknown> =

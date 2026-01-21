@@ -5,7 +5,8 @@
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
-import { ClosedEnum } from "../../types/enums.js";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
@@ -93,7 +94,7 @@ export const SupplierStatus = {
 /**
  * Supplier status
  */
-export type SupplierStatus = ClosedEnum<typeof SupplierStatus>;
+export type SupplierStatus = OpenEnum<typeof SupplierStatus>;
 
 export type Supplier = {
   /**
@@ -338,13 +339,17 @@ export type SupplierInput = {
 };
 
 /** @internal */
-export const SupplierStatus$inboundSchema: z.ZodNativeEnum<
-  typeof SupplierStatus
-> = z.nativeEnum(SupplierStatus);
+export const SupplierStatus$inboundSchema: z.ZodType<
+  SupplierStatus,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(SupplierStatus);
 /** @internal */
-export const SupplierStatus$outboundSchema: z.ZodNativeEnum<
-  typeof SupplierStatus
-> = SupplierStatus$inboundSchema;
+export const SupplierStatus$outboundSchema: z.ZodType<
+  string,
+  z.ZodTypeDef,
+  SupplierStatus
+> = openEnums.outboundSchema(SupplierStatus);
 
 /** @internal */
 export const Supplier$inboundSchema: z.ZodType<

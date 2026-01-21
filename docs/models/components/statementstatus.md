@@ -12,6 +12,8 @@ let value: StatementStatus = "pending";
 
 ## Values
 
+This is an open enum. Unrecognized values will be captured as the `Unrecognized<string>` branded type.
+
 ```typescript
-"pending" | "rejected" | "success"
+"pending" | "rejected" | "success" | Unrecognized<string>
 ```

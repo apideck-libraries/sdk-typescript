@@ -4,7 +4,8 @@
 
 import * as z from "zod/v3";
 import { safeParse } from "../../lib/schemas.js";
-import { ClosedEnum } from "../../types/enums.js";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
@@ -22,7 +23,7 @@ export const EmailType = {
 /**
  * Email type
  */
-export type EmailType = ClosedEnum<typeof EmailType>;
+export type EmailType = OpenEnum<typeof EmailType>;
 
 export type Email = {
   /**
@@ -40,11 +41,17 @@ export type Email = {
 };
 
 /** @internal */
-export const EmailType$inboundSchema: z.ZodNativeEnum<typeof EmailType> = z
-  .nativeEnum(EmailType);
+export const EmailType$inboundSchema: z.ZodType<
+  EmailType,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(EmailType);
 /** @internal */
-export const EmailType$outboundSchema: z.ZodNativeEnum<typeof EmailType> =
-  EmailType$inboundSchema;
+export const EmailType$outboundSchema: z.ZodType<
+  string,
+  z.ZodTypeDef,
+  EmailType
+> = openEnums.outboundSchema(EmailType);
 
 /** @internal */
 export const Email$inboundSchema: z.ZodType<Email, z.ZodTypeDef, unknown> = z

@@ -5,7 +5,8 @@
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
-import { ClosedEnum } from "../../types/enums.js";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
@@ -20,7 +21,7 @@ export const RebillStatus = {
 /**
  * Status of the rebilling process for this line item.
  */
-export type RebillStatus = ClosedEnum<typeof RebillStatus>;
+export type RebillStatus = OpenEnum<typeof RebillStatus>;
 
 /**
  * Rebilling metadata for this line item.
@@ -45,11 +46,17 @@ export type Rebilling = {
 };
 
 /** @internal */
-export const RebillStatus$inboundSchema: z.ZodNativeEnum<typeof RebillStatus> =
-  z.nativeEnum(RebillStatus);
+export const RebillStatus$inboundSchema: z.ZodType<
+  RebillStatus,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(RebillStatus);
 /** @internal */
-export const RebillStatus$outboundSchema: z.ZodNativeEnum<typeof RebillStatus> =
-  RebillStatus$inboundSchema;
+export const RebillStatus$outboundSchema: z.ZodType<
+  string,
+  z.ZodTypeDef,
+  RebillStatus
+> = openEnums.outboundSchema(RebillStatus);
 
 /** @internal */
 export const Rebilling$inboundSchema: z.ZodType<

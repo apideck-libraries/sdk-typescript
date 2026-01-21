@@ -12,6 +12,8 @@ let value: ProductStatus = "active";
 
 ## Values
 
+This is an open enum. Unrecognized values will be captured as the `Unrecognized<string>` branded type.
+
 ```typescript
-"active" | "archived"
+"active" | "archived" | Unrecognized<string>
 ```

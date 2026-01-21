@@ -2,11 +2,6 @@
 
 package components
 
-import (
-	"encoding/json"
-	"fmt"
-)
-
 // AuthType - Type of authorization used by the connector
 type AuthType string
 
@@ -20,25 +15,4 @@ const (
 
 func (e AuthType) ToPointer() *AuthType {
 	return &e
-}
-func (e *AuthType) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "oauth2":
-		fallthrough
-	case "apiKey":
-		fallthrough
-	case "basic":
-		fallthrough
-	case "custom":
-		fallthrough
-	case "none":
-		*e = AuthType(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for AuthType: %v", v)
-	}
 }

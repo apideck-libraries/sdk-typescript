@@ -3,8 +3,6 @@
 package components
 
 import (
-	"encoding/json"
-	"fmt"
 	"mockserver/internal/sdk/utils"
 )
 
@@ -16,19 +14,6 @@ const (
 
 func (e FormFieldOptionGroupOptionType) ToPointer() *FormFieldOptionGroupOptionType {
 	return &e
-}
-func (e *FormFieldOptionGroupOptionType) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "group":
-		*e = FormFieldOptionGroupOptionType(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for FormFieldOptionGroupOptionType: %v", v)
-	}
 }
 
 type FormFieldOptionGroup struct {

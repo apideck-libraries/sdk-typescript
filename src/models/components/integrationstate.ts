@@ -3,7 +3,8 @@
  */
 
 import * as z from "zod/v3";
-import { ClosedEnum } from "../../types/enums.js";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
 
 /**
  * The current state of the Integration.
@@ -16,9 +17,11 @@ export const IntegrationState = {
 /**
  * The current state of the Integration.
  */
-export type IntegrationState = ClosedEnum<typeof IntegrationState>;
+export type IntegrationState = OpenEnum<typeof IntegrationState>;
 
 /** @internal */
-export const IntegrationState$inboundSchema: z.ZodNativeEnum<
-  typeof IntegrationState
-> = z.nativeEnum(IntegrationState);
+export const IntegrationState$inboundSchema: z.ZodType<
+  IntegrationState,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(IntegrationState);

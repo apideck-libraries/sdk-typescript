@@ -4,7 +4,7 @@ package components
 
 // DeprecatedLinkedSupplierInput - The supplier this entity is linked to.
 //
-// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
+// Deprecated: This field is deprecated and may be removed in a future version..
 type DeprecatedLinkedSupplierInput struct {
 	// The display name of the supplier.
 	DisplayName *string  `json:"display_name,omitempty"`

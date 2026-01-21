@@ -5,7 +5,8 @@
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
-import { ClosedEnum } from "../../types/enums.js";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
@@ -87,7 +88,7 @@ export const CustomerStatusStatus = {
 /**
  * Customer status
  */
-export type CustomerStatusStatus = ClosedEnum<typeof CustomerStatusStatus>;
+export type CustomerStatusStatus = OpenEnum<typeof CustomerStatusStatus>;
 
 export type Customer = {
   /**
@@ -312,13 +313,17 @@ export type CustomerInput = {
 };
 
 /** @internal */
-export const CustomerStatusStatus$inboundSchema: z.ZodNativeEnum<
-  typeof CustomerStatusStatus
-> = z.nativeEnum(CustomerStatusStatus);
+export const CustomerStatusStatus$inboundSchema: z.ZodType<
+  CustomerStatusStatus,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(CustomerStatusStatus);
 /** @internal */
-export const CustomerStatusStatus$outboundSchema: z.ZodNativeEnum<
-  typeof CustomerStatusStatus
-> = CustomerStatusStatus$inboundSchema;
+export const CustomerStatusStatus$outboundSchema: z.ZodType<
+  string,
+  z.ZodTypeDef,
+  CustomerStatusStatus
+> = openEnums.outboundSchema(CustomerStatusStatus);
 
 /** @internal */
 export const Customer$inboundSchema: z.ZodType<

@@ -5,7 +5,8 @@
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
-import { ClosedEnum } from "../../types/enums.js";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
@@ -41,7 +42,7 @@ export const AccountingBankAccountAccountType = {
 /**
  * The type of bank account
  */
-export type AccountingBankAccountAccountType = ClosedEnum<
+export type AccountingBankAccountAccountType = OpenEnum<
   typeof AccountingBankAccountAccountType
 >;
 
@@ -56,7 +57,7 @@ export const AccountingBankAccountStatus = {
 /**
  * The status of the bank account
  */
-export type AccountingBankAccountStatus = ClosedEnum<
+export type AccountingBankAccountStatus = OpenEnum<
   typeof AccountingBankAccountStatus
 >;
 
@@ -243,22 +244,30 @@ export type AccountingBankAccountInput = {
 };
 
 /** @internal */
-export const AccountingBankAccountAccountType$inboundSchema: z.ZodNativeEnum<
-  typeof AccountingBankAccountAccountType
-> = z.nativeEnum(AccountingBankAccountAccountType);
+export const AccountingBankAccountAccountType$inboundSchema: z.ZodType<
+  AccountingBankAccountAccountType,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(AccountingBankAccountAccountType);
 /** @internal */
-export const AccountingBankAccountAccountType$outboundSchema: z.ZodNativeEnum<
-  typeof AccountingBankAccountAccountType
-> = AccountingBankAccountAccountType$inboundSchema;
+export const AccountingBankAccountAccountType$outboundSchema: z.ZodType<
+  string,
+  z.ZodTypeDef,
+  AccountingBankAccountAccountType
+> = openEnums.outboundSchema(AccountingBankAccountAccountType);
 
 /** @internal */
-export const AccountingBankAccountStatus$inboundSchema: z.ZodNativeEnum<
-  typeof AccountingBankAccountStatus
-> = z.nativeEnum(AccountingBankAccountStatus);
+export const AccountingBankAccountStatus$inboundSchema: z.ZodType<
+  AccountingBankAccountStatus,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(AccountingBankAccountStatus);
 /** @internal */
-export const AccountingBankAccountStatus$outboundSchema: z.ZodNativeEnum<
-  typeof AccountingBankAccountStatus
-> = AccountingBankAccountStatus$inboundSchema;
+export const AccountingBankAccountStatus$outboundSchema: z.ZodType<
+  string,
+  z.ZodTypeDef,
+  AccountingBankAccountStatus
+> = openEnums.outboundSchema(AccountingBankAccountStatus);
 
 /** @internal */
 export const AccountingBankAccount$inboundSchema: z.ZodType<

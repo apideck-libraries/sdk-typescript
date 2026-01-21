@@ -2,11 +2,6 @@
 
 package components
 
-import (
-	"encoding/json"
-	"fmt"
-)
-
 // ProfitAndLossType - The type of profit and loss
 type ProfitAndLossType string
 
@@ -17,19 +12,4 @@ const (
 
 func (e ProfitAndLossType) ToPointer() *ProfitAndLossType {
 	return &e
-}
-func (e *ProfitAndLossType) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "Section":
-		fallthrough
-	case "Record":
-		*e = ProfitAndLossType(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for ProfitAndLossType: %v", v)
-	}
 }

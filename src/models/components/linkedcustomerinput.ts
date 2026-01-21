@@ -20,7 +20,7 @@ export type LinkedCustomerInput = {
   /**
    * The name of the customer. Deprecated, use display_name instead.
    *
-   * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+   * @deprecated field: Deprecated. Use display_name instead..
    */
   name?: string | undefined;
   /**

@@ -2,11 +2,6 @@
 
 package components
 
-import (
-	"encoding/json"
-	"fmt"
-)
-
 // JobStatus - The status of the job.
 type JobStatus string
 
@@ -26,37 +21,4 @@ const (
 
 func (e JobStatus) ToPointer() *JobStatus {
 	return &e
-}
-func (e *JobStatus) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "draft":
-		fallthrough
-	case "internal":
-		fallthrough
-	case "published":
-		fallthrough
-	case "completed":
-		fallthrough
-	case "placed":
-		fallthrough
-	case "on-hold":
-		fallthrough
-	case "private":
-		fallthrough
-	case "accepting_candidates":
-		fallthrough
-	case "open":
-		fallthrough
-	case "closed":
-		fallthrough
-	case "archived":
-		*e = JobStatus(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for JobStatus: %v", v)
-	}
 }

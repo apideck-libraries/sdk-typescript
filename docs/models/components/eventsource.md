@@ -12,6 +12,8 @@ let value: EventSource = "native";
 
 ## Values
 
+This is an open enum. Unrecognized values will be captured as the `Unrecognized<string>` branded type.
+
 ```typescript
-"native" | "virtual"
+"native" | "virtual" | Unrecognized<string>
 ```

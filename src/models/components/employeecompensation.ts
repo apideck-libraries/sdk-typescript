@@ -5,7 +5,8 @@
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
-import { ClosedEnum } from "../../types/enums.js";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
@@ -37,7 +38,7 @@ export const FlsaStatus = {
 /**
  * The FLSA status for this compensation.
  */
-export type FlsaStatus = ClosedEnum<typeof FlsaStatus>;
+export type FlsaStatus = OpenEnum<typeof FlsaStatus>;
 
 export type EmployeeCompensation = {
   /**
@@ -102,11 +103,17 @@ export type EmployeeCompensationInput = {
 };
 
 /** @internal */
-export const FlsaStatus$inboundSchema: z.ZodNativeEnum<typeof FlsaStatus> = z
-  .nativeEnum(FlsaStatus);
+export const FlsaStatus$inboundSchema: z.ZodType<
+  FlsaStatus,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(FlsaStatus);
 /** @internal */
-export const FlsaStatus$outboundSchema: z.ZodNativeEnum<typeof FlsaStatus> =
-  FlsaStatus$inboundSchema;
+export const FlsaStatus$outboundSchema: z.ZodType<
+  string,
+  z.ZodTypeDef,
+  FlsaStatus
+> = openEnums.outboundSchema(FlsaStatus);
 
 /** @internal */
 export const EmployeeCompensation$inboundSchema: z.ZodType<

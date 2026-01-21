@@ -12,6 +12,8 @@ let value: EcommerceOrderPaymentStatus = "paid";
 
 ## Values
 
+This is an open enum. Unrecognized values will be captured as the `Unrecognized<string>` branded type.
+
 ```typescript
-"pending" | "authorized" | "paid" | "partial" | "refunded" | "voided" | "unknown" | "partially_refunded"
+"pending" | "authorized" | "paid" | "partial" | "refunded" | "voided" | "unknown" | "partially_refunded" | Unrecognized<string>
 ```

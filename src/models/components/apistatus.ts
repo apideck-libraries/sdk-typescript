@@ -3,7 +3,8 @@
  */
 
 import * as z from "zod/v3";
-import { ClosedEnum } from "../../types/enums.js";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
 
 /**
  * Status of the API. APIs with status live or beta are callable.
@@ -17,11 +18,17 @@ export const ApiStatus = {
 /**
  * Status of the API. APIs with status live or beta are callable.
  */
-export type ApiStatus = ClosedEnum<typeof ApiStatus>;
+export type ApiStatus = OpenEnum<typeof ApiStatus>;
 
 /** @internal */
-export const ApiStatus$inboundSchema: z.ZodNativeEnum<typeof ApiStatus> = z
-  .nativeEnum(ApiStatus);
+export const ApiStatus$inboundSchema: z.ZodType<
+  ApiStatus,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(ApiStatus);
 /** @internal */
-export const ApiStatus$outboundSchema: z.ZodNativeEnum<typeof ApiStatus> =
-  ApiStatus$inboundSchema;
+export const ApiStatus$outboundSchema: z.ZodType<
+  string,
+  z.ZodTypeDef,
+  ApiStatus
+> = openEnums.outboundSchema(ApiStatus);

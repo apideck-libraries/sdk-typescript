@@ -12,6 +12,8 @@ let value: ProjectStatus = "active";
 
 ## Values
 
+This is an open enum. Unrecognized values will be captured as the `Unrecognized<string>` branded type.
+
 ```typescript
-"active" | "completed" | "on_hold" | "cancelled" | "draft"
+"active" | "completed" | "on_hold" | "cancelled" | "draft" | Unrecognized<string>
 ```

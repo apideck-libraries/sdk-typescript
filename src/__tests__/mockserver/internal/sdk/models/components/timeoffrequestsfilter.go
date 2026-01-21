@@ -2,11 +2,6 @@
 
 package components
 
-import (
-	"encoding/json"
-	"fmt"
-)
-
 // TimeOffRequestsFilterTimeOffRequestStatus - Time off request status to filter on
 type TimeOffRequestsFilterTimeOffRequestStatus string
 
@@ -21,29 +16,6 @@ const (
 
 func (e TimeOffRequestsFilterTimeOffRequestStatus) ToPointer() *TimeOffRequestsFilterTimeOffRequestStatus {
 	return &e
-}
-func (e *TimeOffRequestsFilterTimeOffRequestStatus) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "requested":
-		fallthrough
-	case "approved":
-		fallthrough
-	case "declined":
-		fallthrough
-	case "cancelled":
-		fallthrough
-	case "deleted":
-		fallthrough
-	case "other":
-		*e = TimeOffRequestsFilterTimeOffRequestStatus(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for TimeOffRequestsFilterTimeOffRequestStatus: %v", v)
-	}
 }
 
 type TimeOffRequestsFilter struct {

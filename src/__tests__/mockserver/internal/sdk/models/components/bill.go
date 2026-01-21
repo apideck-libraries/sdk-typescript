@@ -3,8 +3,6 @@
 package components
 
 import (
-	"encoding/json"
-	"fmt"
 	"mockserver/internal/sdk/types"
 	"mockserver/internal/sdk/utils"
 	"time"
@@ -28,35 +26,6 @@ const (
 func (e BillStatus) ToPointer() *BillStatus {
 	return &e
 }
-func (e *BillStatus) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "draft":
-		fallthrough
-	case "submitted":
-		fallthrough
-	case "authorised":
-		fallthrough
-	case "partially_paid":
-		fallthrough
-	case "paid":
-		fallthrough
-	case "void":
-		fallthrough
-	case "credit":
-		fallthrough
-	case "deleted":
-		fallthrough
-	case "posted":
-		*e = BillStatus(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for BillStatus: %v", v)
-	}
-}
 
 // BillAmortizationType - Type of amortization
 type BillAmortizationType string
@@ -70,25 +39,6 @@ const (
 
 func (e BillAmortizationType) ToPointer() *BillAmortizationType {
 	return &e
-}
-func (e *BillAmortizationType) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "manual":
-		fallthrough
-	case "receipt":
-		fallthrough
-	case "schedule":
-		fallthrough
-	case "other":
-		*e = BillAmortizationType(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for BillAmortizationType: %v", v)
-	}
 }
 
 type Bill struct {

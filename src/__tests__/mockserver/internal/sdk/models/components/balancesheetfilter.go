@@ -2,11 +2,6 @@
 
 package components
 
-import (
-	"encoding/json"
-	"fmt"
-)
-
 // PeriodType - The type of period to include in the resource: month, quarter, year.
 type PeriodType string
 
@@ -18,23 +13,6 @@ const (
 
 func (e PeriodType) ToPointer() *PeriodType {
 	return &e
-}
-func (e *PeriodType) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "month":
-		fallthrough
-	case "quarter":
-		fallthrough
-	case "year":
-		*e = PeriodType(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for PeriodType: %v", v)
-	}
 }
 
 // BalanceSheetFilterAccountingMethod - The accounting method used for the report: cash or accrual.
@@ -48,26 +26,11 @@ const (
 func (e BalanceSheetFilterAccountingMethod) ToPointer() *BalanceSheetFilterAccountingMethod {
 	return &e
 }
-func (e *BalanceSheetFilterAccountingMethod) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "cash":
-		fallthrough
-	case "accrual":
-		*e = BalanceSheetFilterAccountingMethod(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for BalanceSheetFilterAccountingMethod: %v", v)
-	}
-}
 
 type BalanceSheetFilter struct {
 	// The start date of the period to include in the resource.
 	//
-	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
+	// Deprecated: This field is deprecated and may be removed in a future version..
 	StartDate *string `queryParam:"name=start_date"`
 	// The end date of the period to include in the resource.
 	EndDate *string `queryParam:"name=end_date"`

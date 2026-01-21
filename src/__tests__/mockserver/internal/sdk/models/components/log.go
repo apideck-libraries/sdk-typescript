@@ -2,11 +2,6 @@
 
 package components
 
-import (
-	"encoding/json"
-	"fmt"
-)
-
 // Operation - The request as defined in OpenApi Spec.
 type Operation struct {
 	// The OpenApi Operation Id associated with the request
@@ -71,41 +66,6 @@ const (
 
 func (e UnifiedAPIEnum) ToPointer() *UnifiedAPIEnum {
 	return &e
-}
-func (e *UnifiedAPIEnum) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "crm":
-		fallthrough
-	case "lead":
-		fallthrough
-	case "proxy":
-		fallthrough
-	case "vault":
-		fallthrough
-	case "accounting":
-		fallthrough
-	case "hris":
-		fallthrough
-	case "ats":
-		fallthrough
-	case "ecommerce":
-		fallthrough
-	case "issue-tracking":
-		fallthrough
-	case "pos":
-		fallthrough
-	case "file-storage":
-		fallthrough
-	case "sms":
-		*e = UnifiedAPIEnum(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for UnifiedAPIEnum: %v", v)
-	}
 }
 
 type Log struct {

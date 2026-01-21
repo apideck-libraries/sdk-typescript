@@ -3,7 +3,8 @@
  */
 
 import * as z from "zod/v3";
-import { ClosedEnum } from "../../types/enums.js";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
 
 /**
  * Wildcard indicating all resources and fields when Data Scopes is disabled
@@ -14,7 +15,7 @@ export const Two = {
 /**
  * Wildcard indicating all resources and fields when Data Scopes is disabled
  */
-export type Two = ClosedEnum<typeof Two>;
+export type Two = OpenEnum<typeof Two>;
 
 export type One = {
   /**
@@ -40,9 +41,8 @@ export type UpdateConsentRequest = {
 };
 
 /** @internal */
-export const Two$outboundSchema: z.ZodNativeEnum<typeof Two> = z.nativeEnum(
-  Two,
-);
+export const Two$outboundSchema: z.ZodType<string, z.ZodTypeDef, Two> =
+  openEnums.outboundSchema(Two);
 
 /** @internal */
 export type One$Outbound = {

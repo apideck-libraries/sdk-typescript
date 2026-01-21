@@ -2,11 +2,6 @@
 
 package components
 
-import (
-	"encoding/json"
-	"fmt"
-)
-
 // ConsentState - The current consent state of the connection
 type ConsentState string
 
@@ -21,27 +16,4 @@ const (
 
 func (e ConsentState) ToPointer() *ConsentState {
 	return &e
-}
-func (e *ConsentState) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "implicit":
-		fallthrough
-	case "pending":
-		fallthrough
-	case "granted":
-		fallthrough
-	case "denied":
-		fallthrough
-	case "revoked":
-		fallthrough
-	case "requires_reconsent":
-		*e = ConsentState(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for ConsentState: %v", v)
-	}
 }

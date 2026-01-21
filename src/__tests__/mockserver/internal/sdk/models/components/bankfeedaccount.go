@@ -3,8 +3,6 @@
 package components
 
 import (
-	"encoding/json"
-	"fmt"
 	"mockserver/internal/sdk/utils"
 	"time"
 )
@@ -20,21 +18,6 @@ const (
 func (e BankAccountType) ToPointer() *BankAccountType {
 	return &e
 }
-func (e *BankAccountType) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "bank":
-		fallthrough
-	case "credit_card":
-		*e = BankAccountType(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for BankAccountType: %v", v)
-	}
-}
 
 // FeedStatus - Current status of the bank feed.
 type FeedStatus string
@@ -46,21 +29,6 @@ const (
 
 func (e FeedStatus) ToPointer() *FeedStatus {
 	return &e
-}
-func (e *FeedStatus) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "pending":
-		fallthrough
-	case "rejected":
-		*e = FeedStatus(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for FeedStatus: %v", v)
-	}
 }
 
 type BankFeedAccount struct {
