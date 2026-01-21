@@ -2,11 +2,6 @@
 
 package components
 
-import (
-	"encoding/json"
-	"fmt"
-)
-
 // InvoiceItemFilterInvoiceItemType - The type of invoice item, indicating whether it is an inventory item, a service, or another type.
 type InvoiceItemFilterInvoiceItemType string
 
@@ -19,23 +14,6 @@ const (
 func (e InvoiceItemFilterInvoiceItemType) ToPointer() *InvoiceItemFilterInvoiceItemType {
 	return &e
 }
-func (e *InvoiceItemFilterInvoiceItemType) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "inventory":
-		fallthrough
-	case "service":
-		fallthrough
-	case "other":
-		*e = InvoiceItemFilterInvoiceItemType(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for InvoiceItemFilterInvoiceItemType: %v", v)
-	}
-}
 
 // InvoiceItemFilterTransactionType - The kind of transaction, indicating whether it is a sales transaction or a purchase transaction.
 type InvoiceItemFilterTransactionType string
@@ -47,21 +25,6 @@ const (
 
 func (e InvoiceItemFilterTransactionType) ToPointer() *InvoiceItemFilterTransactionType {
 	return &e
-}
-func (e *InvoiceItemFilterTransactionType) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "sale":
-		fallthrough
-	case "purchase":
-		*e = InvoiceItemFilterTransactionType(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for InvoiceItemFilterTransactionType: %v", v)
-	}
 }
 
 type InvoiceItemFilter struct {

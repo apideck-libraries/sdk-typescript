@@ -12,6 +12,8 @@ let value: SubscriptionLevel = "integration";
 
 ## Values
 
+This is an open enum. Unrecognized values will be captured as the `Unrecognized<string>` branded type.
+
 ```typescript
-"connection" | "integration"
+"connection" | "integration" | Unrecognized<string>
 ```

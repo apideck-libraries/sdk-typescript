@@ -3,8 +3,6 @@
 package components
 
 import (
-	"encoding/json"
-	"fmt"
 	"mockserver/internal/sdk/types"
 	"mockserver/internal/sdk/utils"
 	"time"
@@ -21,23 +19,6 @@ const (
 
 func (e Visibility) ToPointer() *Visibility {
 	return &e
-}
-func (e *Visibility) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "draft":
-		fallthrough
-	case "public":
-		fallthrough
-	case "internal":
-		*e = Visibility(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for Visibility: %v", v)
-	}
 }
 
 type EmploymentTerms string
@@ -57,37 +38,6 @@ const (
 
 func (e EmploymentTerms) ToPointer() *EmploymentTerms {
 	return &e
-}
-func (e *EmploymentTerms) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "full-time":
-		fallthrough
-	case "part-time":
-		fallthrough
-	case "internship":
-		fallthrough
-	case "contractor":
-		fallthrough
-	case "employee":
-		fallthrough
-	case "freelance":
-		fallthrough
-	case "temp":
-		fallthrough
-	case "seasonal":
-		fallthrough
-	case "volunteer":
-		fallthrough
-	case "other":
-		*e = EmploymentTerms(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for EmploymentTerms: %v", v)
-	}
 }
 
 // Branch - Details of the branch for which the job is created.
@@ -179,21 +129,6 @@ const (
 func (e JobType) ToPointer() *JobType {
 	return &e
 }
-func (e *JobType) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "job_portal":
-		fallthrough
-	case "job_description":
-		*e = JobType(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for JobType: %v", v)
-	}
-}
 
 type Link struct {
 	Type *JobType `json:"type,omitempty"`
@@ -258,13 +193,13 @@ type Job struct {
 	Salary      *Salary     `json:"salary,omitempty"`
 	// URL of the job description
 	//
-	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
+	// Deprecated: This field is deprecated and may be removed in a future version..
 	URL *string `json:"url,omitempty"`
 	// URL of the job portal
 	//
-	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
+	// Deprecated: This field is deprecated and may be removed in a future version..
 	JobPortalURL *string `json:"job_portal_url,omitempty"`
-	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
+	// Deprecated: This field is deprecated and may be removed in a future version..
 	RecordURL    *string `json:"record_url,omitempty"`
 	Links        []Link  `json:"links,omitempty"`
 	Confidential *bool   `json:"confidential,omitempty"`

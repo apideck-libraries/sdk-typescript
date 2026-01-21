@@ -5,7 +5,8 @@
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
-import { ClosedEnum } from "../../types/enums.js";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
@@ -93,7 +94,7 @@ export const ExpensePaymentType = {
 /**
  * The type of payment for the expense.
  */
-export type ExpensePaymentType = ClosedEnum<typeof ExpensePaymentType>;
+export type ExpensePaymentType = OpenEnum<typeof ExpensePaymentType>;
 
 /**
  * The type of expense.
@@ -105,7 +106,7 @@ export const ExpenseType = {
 /**
  * The type of expense.
  */
-export type ExpenseType = ClosedEnum<typeof ExpenseType>;
+export type ExpenseType = OpenEnum<typeof ExpenseType>;
 
 /**
  * Expense status
@@ -117,7 +118,7 @@ export const ExpenseStatus = {
 /**
  * Expense status
  */
-export type ExpenseStatus = ClosedEnum<typeof ExpenseStatus>;
+export type ExpenseStatus = OpenEnum<typeof ExpenseStatus>;
 
 export type Expense = {
   /**
@@ -139,7 +140,7 @@ export type Expense = {
   /**
    * The unique identifier for the ledger account that this expense should be credited to. Deprecated, use account instead.
    *
-   * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+   * @deprecated field: Deprecated. Use account instead..
    */
   accountId?: string | undefined;
   /**
@@ -149,7 +150,7 @@ export type Expense = {
   /**
    * The ID of the supplier this entity is linked to. Deprecated, use supplier instead.
    *
-   * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+   * @deprecated field: Deprecated. Use supplier instead..
    */
   supplierId?: string | undefined;
   /**
@@ -270,7 +271,7 @@ export type ExpenseInput = {
   /**
    * The unique identifier for the ledger account that this expense should be credited to. Deprecated, use account instead.
    *
-   * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+   * @deprecated field: Deprecated. Use account instead..
    */
   accountId?: string | undefined;
   /**
@@ -280,7 +281,7 @@ export type ExpenseInput = {
   /**
    * The ID of the supplier this entity is linked to. Deprecated, use supplier instead.
    *
-   * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+   * @deprecated field: Deprecated. Use supplier instead..
    */
   supplierId?: string | undefined;
   /**
@@ -366,29 +367,43 @@ export type ExpenseInput = {
 };
 
 /** @internal */
-export const ExpensePaymentType$inboundSchema: z.ZodNativeEnum<
-  typeof ExpensePaymentType
-> = z.nativeEnum(ExpensePaymentType);
+export const ExpensePaymentType$inboundSchema: z.ZodType<
+  ExpensePaymentType,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(ExpensePaymentType);
 /** @internal */
-export const ExpensePaymentType$outboundSchema: z.ZodNativeEnum<
-  typeof ExpensePaymentType
-> = ExpensePaymentType$inboundSchema;
+export const ExpensePaymentType$outboundSchema: z.ZodType<
+  string,
+  z.ZodTypeDef,
+  ExpensePaymentType
+> = openEnums.outboundSchema(ExpensePaymentType);
 
 /** @internal */
-export const ExpenseType$inboundSchema: z.ZodNativeEnum<typeof ExpenseType> = z
-  .nativeEnum(ExpenseType);
+export const ExpenseType$inboundSchema: z.ZodType<
+  ExpenseType,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(ExpenseType);
 /** @internal */
-export const ExpenseType$outboundSchema: z.ZodNativeEnum<typeof ExpenseType> =
-  ExpenseType$inboundSchema;
+export const ExpenseType$outboundSchema: z.ZodType<
+  string,
+  z.ZodTypeDef,
+  ExpenseType
+> = openEnums.outboundSchema(ExpenseType);
 
 /** @internal */
-export const ExpenseStatus$inboundSchema: z.ZodNativeEnum<
-  typeof ExpenseStatus
-> = z.nativeEnum(ExpenseStatus);
+export const ExpenseStatus$inboundSchema: z.ZodType<
+  ExpenseStatus,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(ExpenseStatus);
 /** @internal */
-export const ExpenseStatus$outboundSchema: z.ZodNativeEnum<
-  typeof ExpenseStatus
-> = ExpenseStatus$inboundSchema;
+export const ExpenseStatus$outboundSchema: z.ZodType<
+  string,
+  z.ZodTypeDef,
+  ExpenseStatus
+> = openEnums.outboundSchema(ExpenseStatus);
 
 /** @internal */
 export const Expense$inboundSchema: z.ZodType<Expense, z.ZodTypeDef, unknown> =

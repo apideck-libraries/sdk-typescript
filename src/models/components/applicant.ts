@@ -5,7 +5,8 @@
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
-import { ClosedEnum } from "../../types/enums.js";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { RFCDate } from "../../types/rfcdate.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -53,7 +54,7 @@ export const ApplicantGender = {
 /**
  * The gender represents the gender identity of a person.
  */
-export type ApplicantGender = ClosedEnum<typeof ApplicantGender>;
+export type ApplicantGender = OpenEnum<typeof ApplicantGender>;
 
 /**
  * The type of website
@@ -68,7 +69,7 @@ export const ApplicantType = {
 /**
  * The type of website
  */
-export type ApplicantType = ClosedEnum<typeof ApplicantType>;
+export type ApplicantType = OpenEnum<typeof ApplicantType>;
 
 export type Websites = {
   /**
@@ -169,7 +170,7 @@ export type Applicant = {
   /**
    * Deprecated: Use application_ids instead. Array of application IDs associated with the applicant.
    *
-   * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+   * @deprecated field: Deprecated. Use application_ids instead..
    */
   applications?: Array<string> | null | undefined;
   followers?: Array<string> | null | undefined;
@@ -287,7 +288,7 @@ export type ApplicantInput = {
   /**
    * Deprecated: Use application_ids instead. Array of application IDs associated with the applicant.
    *
-   * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+   * @deprecated field: Deprecated. Use application_ids instead..
    */
   applications?: Array<string> | null | undefined;
   followers?: Array<string> | null | undefined;
@@ -309,22 +310,30 @@ export type ApplicantInput = {
 };
 
 /** @internal */
-export const ApplicantGender$inboundSchema: z.ZodNativeEnum<
-  typeof ApplicantGender
-> = z.nativeEnum(ApplicantGender);
+export const ApplicantGender$inboundSchema: z.ZodType<
+  ApplicantGender,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(ApplicantGender);
 /** @internal */
-export const ApplicantGender$outboundSchema: z.ZodNativeEnum<
-  typeof ApplicantGender
-> = ApplicantGender$inboundSchema;
+export const ApplicantGender$outboundSchema: z.ZodType<
+  string,
+  z.ZodTypeDef,
+  ApplicantGender
+> = openEnums.outboundSchema(ApplicantGender);
 
 /** @internal */
-export const ApplicantType$inboundSchema: z.ZodNativeEnum<
-  typeof ApplicantType
-> = z.nativeEnum(ApplicantType);
+export const ApplicantType$inboundSchema: z.ZodType<
+  ApplicantType,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(ApplicantType);
 /** @internal */
-export const ApplicantType$outboundSchema: z.ZodNativeEnum<
-  typeof ApplicantType
-> = ApplicantType$inboundSchema;
+export const ApplicantType$outboundSchema: z.ZodType<
+  string,
+  z.ZodTypeDef,
+  ApplicantType
+> = openEnums.outboundSchema(ApplicantType);
 
 /** @internal */
 export const Websites$inboundSchema: z.ZodType<

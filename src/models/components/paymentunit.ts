@@ -3,7 +3,8 @@
  */
 
 import * as z from "zod/v3";
-import { ClosedEnum } from "../../types/enums.js";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
 
 /**
  * Unit of measurement for employee compensation.
@@ -19,11 +20,17 @@ export const PaymentUnit = {
 /**
  * Unit of measurement for employee compensation.
  */
-export type PaymentUnit = ClosedEnum<typeof PaymentUnit>;
+export type PaymentUnit = OpenEnum<typeof PaymentUnit>;
 
 /** @internal */
-export const PaymentUnit$inboundSchema: z.ZodNativeEnum<typeof PaymentUnit> = z
-  .nativeEnum(PaymentUnit);
+export const PaymentUnit$inboundSchema: z.ZodType<
+  PaymentUnit,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(PaymentUnit);
 /** @internal */
-export const PaymentUnit$outboundSchema: z.ZodNativeEnum<typeof PaymentUnit> =
-  PaymentUnit$inboundSchema;
+export const PaymentUnit$outboundSchema: z.ZodType<
+  string,
+  z.ZodTypeDef,
+  PaymentUnit
+> = openEnums.outboundSchema(PaymentUnit);

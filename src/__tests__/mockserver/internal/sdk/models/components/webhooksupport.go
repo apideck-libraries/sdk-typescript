@@ -2,11 +2,6 @@
 
 package components
 
-import (
-	"encoding/json"
-	"fmt"
-)
-
 // WebhookSupportMode - Mode of the webhook support.
 type WebhookSupportMode string
 
@@ -18,23 +13,6 @@ const (
 
 func (e WebhookSupportMode) ToPointer() *WebhookSupportMode {
 	return &e
-}
-func (e *WebhookSupportMode) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "native":
-		fallthrough
-	case "virtual":
-		fallthrough
-	case "none":
-		*e = WebhookSupportMode(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for WebhookSupportMode: %v", v)
-	}
 }
 
 // SubscriptionLevel - Received events are scoped to connection or across integration.
@@ -48,21 +26,6 @@ const (
 func (e SubscriptionLevel) ToPointer() *SubscriptionLevel {
 	return &e
 }
-func (e *SubscriptionLevel) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "connection":
-		fallthrough
-	case "integration":
-		*e = SubscriptionLevel(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for SubscriptionLevel: %v", v)
-	}
-}
 
 // ManagedVia - How the subscription is managed in the downstream.
 type ManagedVia string
@@ -74,21 +37,6 @@ const (
 
 func (e ManagedVia) ToPointer() *ManagedVia {
 	return &e
-}
-func (e *ManagedVia) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "manual":
-		fallthrough
-	case "api":
-		*e = ManagedVia(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for ManagedVia: %v", v)
-	}
 }
 
 // Unit - The window unit for the rate.
@@ -103,25 +51,6 @@ const (
 
 func (e Unit) ToPointer() *Unit {
 	return &e
-}
-func (e *Unit) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "second":
-		fallthrough
-	case "minute":
-		fallthrough
-	case "hour":
-		fallthrough
-	case "day":
-		*e = Unit(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for Unit: %v", v)
-	}
 }
 
 // RequestRate - The rate at which requests for resources will be made to downstream.

@@ -5,7 +5,8 @@
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
-import { ClosedEnum } from "../../types/enums.js";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
@@ -55,7 +56,7 @@ export const JournalEntryStatus = {
 /**
  * Journal entry status
  */
-export type JournalEntryStatus = ClosedEnum<typeof JournalEntryStatus>;
+export type JournalEntryStatus = OpenEnum<typeof JournalEntryStatus>;
 
 export type JournalEntry = {
   /**
@@ -254,13 +255,17 @@ export type JournalEntryInput = {
 };
 
 /** @internal */
-export const JournalEntryStatus$inboundSchema: z.ZodNativeEnum<
-  typeof JournalEntryStatus
-> = z.nativeEnum(JournalEntryStatus);
+export const JournalEntryStatus$inboundSchema: z.ZodType<
+  JournalEntryStatus,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(JournalEntryStatus);
 /** @internal */
-export const JournalEntryStatus$outboundSchema: z.ZodNativeEnum<
-  typeof JournalEntryStatus
-> = JournalEntryStatus$inboundSchema;
+export const JournalEntryStatus$outboundSchema: z.ZodType<
+  string,
+  z.ZodTypeDef,
+  JournalEntryStatus
+> = openEnums.outboundSchema(JournalEntryStatus);
 
 /** @internal */
 export const JournalEntry$inboundSchema: z.ZodType<

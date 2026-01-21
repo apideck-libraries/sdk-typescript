@@ -5,7 +5,8 @@
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
-import { ClosedEnum } from "../../types/enums.js";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { RFCDate } from "../../types/rfcdate.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -57,7 +58,7 @@ export const LedgerAccountClassification = {
 /**
  * The classification of account.
  */
-export type LedgerAccountClassification = ClosedEnum<
+export type LedgerAccountClassification = OpenEnum<
   typeof LedgerAccountClassification
 >;
 
@@ -89,7 +90,7 @@ export const LedgerAccountType = {
 /**
  * The type of account.
  */
-export type LedgerAccountType = ClosedEnum<typeof LedgerAccountType>;
+export type LedgerAccountType = OpenEnum<typeof LedgerAccountType>;
 
 /**
  * The status of the account.
@@ -102,7 +103,7 @@ export const AccountStatus = {
 /**
  * The status of the account.
  */
-export type AccountStatus = ClosedEnum<typeof AccountStatus>;
+export type AccountStatus = OpenEnum<typeof AccountStatus>;
 
 export type Categories = {
   id?: string | undefined;
@@ -157,7 +158,7 @@ export type LedgerAccount = {
   /**
    * The nominal code of the ledger account.
    *
-   * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+   * @deprecated field: This field is deprecated and may be removed in a future version..
    */
   nominalCode?: string | null | undefined;
   /**
@@ -279,7 +280,7 @@ export type LedgerAccountInput = {
   /**
    * The nominal code of the ledger account.
    *
-   * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+   * @deprecated field: This field is deprecated and may be removed in a future version..
    */
   nominalCode?: string | null | undefined;
   /**
@@ -366,31 +367,43 @@ export type LedgerAccountInput = {
 };
 
 /** @internal */
-export const LedgerAccountClassification$inboundSchema: z.ZodNativeEnum<
-  typeof LedgerAccountClassification
-> = z.nativeEnum(LedgerAccountClassification);
+export const LedgerAccountClassification$inboundSchema: z.ZodType<
+  LedgerAccountClassification,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(LedgerAccountClassification);
 /** @internal */
-export const LedgerAccountClassification$outboundSchema: z.ZodNativeEnum<
-  typeof LedgerAccountClassification
-> = LedgerAccountClassification$inboundSchema;
+export const LedgerAccountClassification$outboundSchema: z.ZodType<
+  string,
+  z.ZodTypeDef,
+  LedgerAccountClassification
+> = openEnums.outboundSchema(LedgerAccountClassification);
 
 /** @internal */
-export const LedgerAccountType$inboundSchema: z.ZodNativeEnum<
-  typeof LedgerAccountType
-> = z.nativeEnum(LedgerAccountType);
+export const LedgerAccountType$inboundSchema: z.ZodType<
+  LedgerAccountType,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(LedgerAccountType);
 /** @internal */
-export const LedgerAccountType$outboundSchema: z.ZodNativeEnum<
-  typeof LedgerAccountType
-> = LedgerAccountType$inboundSchema;
+export const LedgerAccountType$outboundSchema: z.ZodType<
+  string,
+  z.ZodTypeDef,
+  LedgerAccountType
+> = openEnums.outboundSchema(LedgerAccountType);
 
 /** @internal */
-export const AccountStatus$inboundSchema: z.ZodNativeEnum<
-  typeof AccountStatus
-> = z.nativeEnum(AccountStatus);
+export const AccountStatus$inboundSchema: z.ZodType<
+  AccountStatus,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(AccountStatus);
 /** @internal */
-export const AccountStatus$outboundSchema: z.ZodNativeEnum<
-  typeof AccountStatus
-> = AccountStatus$inboundSchema;
+export const AccountStatus$outboundSchema: z.ZodType<
+  string,
+  z.ZodTypeDef,
+  AccountStatus
+> = openEnums.outboundSchema(AccountStatus);
 
 /** @internal */
 export const Categories$inboundSchema: z.ZodType<

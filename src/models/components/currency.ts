@@ -3,7 +3,8 @@
  */
 
 import * as z from "zod/v3";
-import { ClosedEnum } from "../../types/enums.js";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
 
 /**
  * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
@@ -196,11 +197,17 @@ export const Currency = {
 /**
  * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
  */
-export type Currency = ClosedEnum<typeof Currency>;
+export type Currency = OpenEnum<typeof Currency>;
 
 /** @internal */
-export const Currency$inboundSchema: z.ZodNativeEnum<typeof Currency> = z
-  .nativeEnum(Currency);
+export const Currency$inboundSchema: z.ZodType<
+  Currency,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(Currency);
 /** @internal */
-export const Currency$outboundSchema: z.ZodNativeEnum<typeof Currency> =
-  Currency$inboundSchema;
+export const Currency$outboundSchema: z.ZodType<
+  string,
+  z.ZodTypeDef,
+  Currency
+> = openEnums.outboundSchema(Currency);

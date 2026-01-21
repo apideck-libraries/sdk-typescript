@@ -12,6 +12,8 @@ let value: InvoiceItemFilterTransactionType = "purchase";
 
 ## Values
 
+This is an open enum. Unrecognized values will be captured as the `Unrecognized<string>` branded type.
+
 ```typescript
-"sale" | "purchase"
+"sale" | "purchase" | Unrecognized<string>
 ```

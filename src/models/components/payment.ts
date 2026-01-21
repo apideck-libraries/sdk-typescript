@@ -73,13 +73,13 @@ export type Payment = {
   /**
    * Type of accounts receivable account.
    *
-   * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+   * @deprecated field: This field is deprecated and may be removed in a future version..
    */
   accountsReceivableAccountType?: string | null | undefined;
   /**
    * Unique identifier for the account to allocate payment to.
    *
-   * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+   * @deprecated field: This field is deprecated and may be removed in a future version..
    */
   accountsReceivableAccountId?: string | null | undefined;
   account?: LinkedLedgerAccount | null | undefined;
@@ -94,7 +94,7 @@ export type Payment = {
   /**
    * The supplier this entity is linked to.
    *
-   * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+   * @deprecated field: This field is deprecated and may be removed in a future version..
    */
   supplier?: DeprecatedLinkedSupplier | null | undefined;
   /**

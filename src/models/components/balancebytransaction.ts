@@ -5,7 +5,8 @@
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
-import { ClosedEnum } from "../../types/enums.js";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { RFCDate } from "../../types/rfcdate.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -23,7 +24,7 @@ export const BalanceByTransactionTransactionType = {
 /**
  * Type of the transaction.
  */
-export type BalanceByTransactionTransactionType = ClosedEnum<
+export type BalanceByTransactionTransactionType = OpenEnum<
   typeof BalanceByTransactionTransactionType
 >;
 
@@ -59,9 +60,11 @@ export type BalanceByTransaction = {
 };
 
 /** @internal */
-export const BalanceByTransactionTransactionType$inboundSchema: z.ZodNativeEnum<
-  typeof BalanceByTransactionTransactionType
-> = z.nativeEnum(BalanceByTransactionTransactionType);
+export const BalanceByTransactionTransactionType$inboundSchema: z.ZodType<
+  BalanceByTransactionTransactionType,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(BalanceByTransactionTransactionType);
 
 /** @internal */
 export const BalanceByTransaction$inboundSchema: z.ZodType<

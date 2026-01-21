@@ -12,6 +12,8 @@ let value: ExpensePaymentType = "cash";
 
 ## Values
 
+This is an open enum. Unrecognized values will be captured as the `Unrecognized<string>` branded type.
+
 ```typescript
-"cash" | "check" | "credit_card" | "other"
+"cash" | "check" | "credit_card" | "other" | Unrecognized<string>
 ```

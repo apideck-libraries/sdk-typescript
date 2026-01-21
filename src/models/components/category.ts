@@ -5,7 +5,8 @@
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
-import { ClosedEnum } from "../../types/enums.js";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
@@ -25,7 +26,7 @@ export const CategoryType = {
 /**
  * The type of the category.
  */
-export type CategoryType = ClosedEnum<typeof CategoryType>;
+export type CategoryType = OpenEnum<typeof CategoryType>;
 
 /**
  * Based on the status some functionality is enabled or disabled.
@@ -37,7 +38,7 @@ export const CategoryStatus = {
 /**
  * Based on the status some functionality is enabled or disabled.
  */
-export type CategoryStatus = ClosedEnum<typeof CategoryStatus>;
+export type CategoryStatus = OpenEnum<typeof CategoryStatus>;
 
 export type Category = {
   /**
@@ -91,13 +92,18 @@ export type Category = {
 };
 
 /** @internal */
-export const CategoryType$inboundSchema: z.ZodNativeEnum<typeof CategoryType> =
-  z.nativeEnum(CategoryType);
+export const CategoryType$inboundSchema: z.ZodType<
+  CategoryType,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(CategoryType);
 
 /** @internal */
-export const CategoryStatus$inboundSchema: z.ZodNativeEnum<
-  typeof CategoryStatus
-> = z.nativeEnum(CategoryStatus);
+export const CategoryStatus$inboundSchema: z.ZodType<
+  CategoryStatus,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(CategoryStatus);
 
 /** @internal */
 export const Category$inboundSchema: z.ZodType<

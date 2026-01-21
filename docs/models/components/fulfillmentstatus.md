@@ -12,6 +12,8 @@ let value: FulfillmentStatus = "shipped";
 
 ## Values
 
+This is an open enum. Unrecognized values will be captured as the `Unrecognized<string>` branded type.
+
 ```typescript
-"pending" | "shipped" | "partial" | "delivered" | "cancelled" | "returned" | "unknown"
+"pending" | "shipped" | "partial" | "delivered" | "cancelled" | "returned" | "unknown" | Unrecognized<string>
 ```

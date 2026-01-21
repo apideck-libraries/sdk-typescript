@@ -4,7 +4,8 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { ClosedEnum } from "../../types/enums.js";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
 
 /**
  * The accounting method used for the report: cash or accrual.
@@ -16,7 +17,7 @@ export const ProfitAndLossFilterAccountingMethod = {
 /**
  * The accounting method used for the report: cash or accrual.
  */
-export type ProfitAndLossFilterAccountingMethod = ClosedEnum<
+export type ProfitAndLossFilterAccountingMethod = OpenEnum<
   typeof ProfitAndLossFilterAccountingMethod
 >;
 
@@ -44,10 +45,11 @@ export type ProfitAndLossFilter = {
 };
 
 /** @internal */
-export const ProfitAndLossFilterAccountingMethod$outboundSchema:
-  z.ZodNativeEnum<typeof ProfitAndLossFilterAccountingMethod> = z.nativeEnum(
-    ProfitAndLossFilterAccountingMethod,
-  );
+export const ProfitAndLossFilterAccountingMethod$outboundSchema: z.ZodType<
+  string,
+  z.ZodTypeDef,
+  ProfitAndLossFilterAccountingMethod
+> = openEnums.outboundSchema(ProfitAndLossFilterAccountingMethod);
 
 /** @internal */
 export type ProfitAndLossFilter$Outbound = {

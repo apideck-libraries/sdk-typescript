@@ -3,8 +3,6 @@
 package components
 
 import (
-	"encoding/json"
-	"fmt"
 	"mockserver/internal/sdk/types"
 	"mockserver/internal/sdk/utils"
 	"time"
@@ -20,21 +18,6 @@ const (
 
 func (e CompanyStatus) ToPointer() *CompanyStatus {
 	return &e
-}
-func (e *CompanyStatus) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "active":
-		fallthrough
-	case "inactive":
-		*e = CompanyStatus(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for CompanyStatus: %v", v)
-	}
 }
 
 // TheStartMonthOfFiscalYear - The start month of fiscal year.
@@ -58,41 +41,6 @@ const (
 func (e TheStartMonthOfFiscalYear) ToPointer() *TheStartMonthOfFiscalYear {
 	return &e
 }
-func (e *TheStartMonthOfFiscalYear) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "January":
-		fallthrough
-	case "February":
-		fallthrough
-	case "March":
-		fallthrough
-	case "April":
-		fallthrough
-	case "May":
-		fallthrough
-	case "June":
-		fallthrough
-	case "July":
-		fallthrough
-	case "August":
-		fallthrough
-	case "September":
-		fallthrough
-	case "October":
-		fallthrough
-	case "November":
-		fallthrough
-	case "December":
-		*e = TheStartMonthOfFiscalYear(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for TheStartMonthOfFiscalYear: %v", v)
-	}
-}
 
 // TrackingCategoriesMode - The mode of tracking categories for the company on transactions
 type TrackingCategoriesMode string
@@ -106,25 +54,6 @@ const (
 
 func (e TrackingCategoriesMode) ToPointer() *TrackingCategoriesMode {
 	return &e
-}
-func (e *TrackingCategoriesMode) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "transaction":
-		fallthrough
-	case "line":
-		fallthrough
-	case "both":
-		fallthrough
-	case "disabled":
-		*e = TrackingCategoriesMode(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for TrackingCategoriesMode: %v", v)
-	}
 }
 
 type CompanyInfo struct {

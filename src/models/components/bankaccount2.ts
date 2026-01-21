@@ -5,7 +5,8 @@
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
-import { ClosedEnum } from "../../types/enums.js";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
@@ -25,9 +26,7 @@ export const BankAccount2AccountType = {
 /**
  * The type of bank account.
  */
-export type BankAccount2AccountType = ClosedEnum<
-  typeof BankAccount2AccountType
->;
+export type BankAccount2AccountType = OpenEnum<typeof BankAccount2AccountType>;
 
 export type BankAccount2 = {
   /**
@@ -81,13 +80,17 @@ export type BankAccount2 = {
 };
 
 /** @internal */
-export const BankAccount2AccountType$inboundSchema: z.ZodNativeEnum<
-  typeof BankAccount2AccountType
-> = z.nativeEnum(BankAccount2AccountType);
+export const BankAccount2AccountType$inboundSchema: z.ZodType<
+  BankAccount2AccountType,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(BankAccount2AccountType);
 /** @internal */
-export const BankAccount2AccountType$outboundSchema: z.ZodNativeEnum<
-  typeof BankAccount2AccountType
-> = BankAccount2AccountType$inboundSchema;
+export const BankAccount2AccountType$outboundSchema: z.ZodType<
+  string,
+  z.ZodTypeDef,
+  BankAccount2AccountType
+> = openEnums.outboundSchema(BankAccount2AccountType);
 
 /** @internal */
 export const BankAccount2$inboundSchema: z.ZodType<

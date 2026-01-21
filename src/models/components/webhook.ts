@@ -5,7 +5,8 @@
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
-import { ClosedEnum } from "../../types/enums.js";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { Status, Status$inboundSchema } from "./status.js";
@@ -27,7 +28,7 @@ export const DisabledReason = {
 /**
  * Indicates why the webhook has been disabled. `retry_limit`: webhook reached its retry limit. `usage_limit`: account is over its usage limit. `delivery_url_validation_failed`: delivery URL failed validation during webhook creation or update.
  */
-export type DisabledReason = ClosedEnum<typeof DisabledReason>;
+export type DisabledReason = OpenEnum<typeof DisabledReason>;
 
 export type Webhook = {
   id?: string | undefined;
@@ -70,9 +71,11 @@ export type Webhook = {
 };
 
 /** @internal */
-export const DisabledReason$inboundSchema: z.ZodNativeEnum<
-  typeof DisabledReason
-> = z.nativeEnum(DisabledReason);
+export const DisabledReason$inboundSchema: z.ZodType<
+  DisabledReason,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(DisabledReason);
 
 /** @internal */
 export const Webhook$inboundSchema: z.ZodType<Webhook, z.ZodTypeDef, unknown> =

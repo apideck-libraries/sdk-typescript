@@ -4,7 +4,8 @@
 
 import * as z from "zod/v3";
 import { safeParse } from "../../lib/schemas.js";
-import { ClosedEnum } from "../../types/enums.js";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
@@ -17,7 +18,7 @@ export const DataScopesResources2 = {
 /**
  * Wildcard indicating all resources and fields when Data Scopes is selected
  */
-export type DataScopesResources2 = ClosedEnum<typeof DataScopesResources2>;
+export type DataScopesResources2 = OpenEnum<typeof DataScopesResources2>;
 
 export type DataScopesResources1 = {
   /**
@@ -38,13 +39,17 @@ export type DataScopesResources = {
 } | DataScopesResources2;
 
 /** @internal */
-export const DataScopesResources2$inboundSchema: z.ZodNativeEnum<
-  typeof DataScopesResources2
-> = z.nativeEnum(DataScopesResources2);
+export const DataScopesResources2$inboundSchema: z.ZodType<
+  DataScopesResources2,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(DataScopesResources2);
 /** @internal */
-export const DataScopesResources2$outboundSchema: z.ZodNativeEnum<
-  typeof DataScopesResources2
-> = DataScopesResources2$inboundSchema;
+export const DataScopesResources2$outboundSchema: z.ZodType<
+  string,
+  z.ZodTypeDef,
+  DataScopesResources2
+> = openEnums.outboundSchema(DataScopesResources2);
 
 /** @internal */
 export const DataScopesResources1$inboundSchema: z.ZodType<

@@ -5,7 +5,8 @@
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
-import { ClosedEnum } from "../../types/enums.js";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { RFCDate } from "../../types/rfcdate.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -26,7 +27,7 @@ export const Visibility = {
 /**
  * The visibility of the job
  */
-export type Visibility = ClosedEnum<typeof Visibility>;
+export type Visibility = OpenEnum<typeof Visibility>;
 
 export const EmploymentTerms = {
   FullTime: "full-time",
@@ -40,7 +41,7 @@ export const EmploymentTerms = {
   Volunteer: "volunteer",
   Other: "other",
 } as const;
-export type EmploymentTerms = ClosedEnum<typeof EmploymentTerms>;
+export type EmploymentTerms = OpenEnum<typeof EmploymentTerms>;
 
 /**
  * Details of the branch for which the job is created.
@@ -81,7 +82,7 @@ export const JobType = {
   JobPortal: "job_portal",
   JobDescription: "job_description",
 } as const;
-export type JobType = ClosedEnum<typeof JobType>;
+export type JobType = OpenEnum<typeof JobType>;
 
 export type JobLinks = {
   type?: JobType | undefined;
@@ -165,17 +166,17 @@ export type Job = {
   /**
    * URL of the job description
    *
-   * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+   * @deprecated field: This field is deprecated and may be removed in a future version..
    */
   url?: string | null | undefined;
   /**
    * URL of the job portal
    *
-   * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+   * @deprecated field: This field is deprecated and may be removed in a future version..
    */
   jobPortalUrl?: string | null | undefined;
   /**
-   * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+   * @deprecated field: This field is deprecated and may be removed in a future version..
    */
   recordUrl?: string | null | undefined;
   links?: Array<JobLinks> | undefined;
@@ -216,13 +217,18 @@ export type Job = {
 };
 
 /** @internal */
-export const Visibility$inboundSchema: z.ZodNativeEnum<typeof Visibility> = z
-  .nativeEnum(Visibility);
+export const Visibility$inboundSchema: z.ZodType<
+  Visibility,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(Visibility);
 
 /** @internal */
-export const EmploymentTerms$inboundSchema: z.ZodNativeEnum<
-  typeof EmploymentTerms
-> = z.nativeEnum(EmploymentTerms);
+export const EmploymentTerms$inboundSchema: z.ZodType<
+  EmploymentTerms,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(EmploymentTerms);
 
 /** @internal */
 export const Branch$inboundSchema: z.ZodType<Branch, z.ZodTypeDef, unknown> = z
@@ -278,8 +284,8 @@ export function salaryFromJSON(
 }
 
 /** @internal */
-export const JobType$inboundSchema: z.ZodNativeEnum<typeof JobType> = z
-  .nativeEnum(JobType);
+export const JobType$inboundSchema: z.ZodType<JobType, z.ZodTypeDef, unknown> =
+  openEnums.inboundSchema(JobType);
 
 /** @internal */
 export const JobLinks$inboundSchema: z.ZodType<

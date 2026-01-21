@@ -19,7 +19,7 @@ type UserOutput struct {
 	Division *string `json:"division,omitempty"`
 	// The department the person is currently in. [Deprecated](https://developers.apideck.com/changelog) in favor of the dedicated department_id and department_name field.
 	//
-	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
+	// Deprecated: Deprecated. Use department_id instead..
 	Department *string `json:"department,omitempty"`
 	// The name of the company.
 	CompanyName *string `json:"company_name,omitempty"`

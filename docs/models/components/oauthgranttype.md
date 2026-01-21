@@ -12,6 +12,8 @@ let value: OAuthGrantType = "authorization_code";
 
 ## Values
 
+This is an open enum. Unrecognized values will be captured as the `Unrecognized<string>` branded type.
+
 ```typescript
-"authorization_code" | "client_credentials" | "password"
+"authorization_code" | "client_credentials" | "password" | Unrecognized<string>
 ```

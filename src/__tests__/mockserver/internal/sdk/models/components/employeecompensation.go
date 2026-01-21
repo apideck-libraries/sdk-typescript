@@ -2,11 +2,6 @@
 
 package components
 
-import (
-	"encoding/json"
-	"fmt"
-)
-
 // FlsaStatus - The FLSA status for this compensation.
 type FlsaStatus string
 
@@ -20,27 +15,6 @@ const (
 
 func (e FlsaStatus) ToPointer() *FlsaStatus {
 	return &e
-}
-func (e *FlsaStatus) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "exempt":
-		fallthrough
-	case "salaried-nonexempt":
-		fallthrough
-	case "nonexempt":
-		fallthrough
-	case "owner":
-		fallthrough
-	case "other":
-		*e = FlsaStatus(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for FlsaStatus: %v", v)
-	}
 }
 
 type EmployeeCompensation struct {

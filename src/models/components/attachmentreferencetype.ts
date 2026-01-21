@@ -3,7 +3,8 @@
  */
 
 import * as z from "zod/v3";
-import { ClosedEnum } from "../../types/enums.js";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
 
 export const AttachmentReferenceType = {
   Invoice: "invoice",
@@ -11,15 +12,17 @@ export const AttachmentReferenceType = {
   Expense: "expense",
   Quote: "quote",
 } as const;
-export type AttachmentReferenceType = ClosedEnum<
-  typeof AttachmentReferenceType
->;
+export type AttachmentReferenceType = OpenEnum<typeof AttachmentReferenceType>;
 
 /** @internal */
-export const AttachmentReferenceType$inboundSchema: z.ZodNativeEnum<
-  typeof AttachmentReferenceType
-> = z.nativeEnum(AttachmentReferenceType);
+export const AttachmentReferenceType$inboundSchema: z.ZodType<
+  AttachmentReferenceType,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(AttachmentReferenceType);
 /** @internal */
-export const AttachmentReferenceType$outboundSchema: z.ZodNativeEnum<
-  typeof AttachmentReferenceType
-> = AttachmentReferenceType$inboundSchema;
+export const AttachmentReferenceType$outboundSchema: z.ZodType<
+  string,
+  z.ZodTypeDef,
+  AttachmentReferenceType
+> = openEnums.outboundSchema(AttachmentReferenceType);

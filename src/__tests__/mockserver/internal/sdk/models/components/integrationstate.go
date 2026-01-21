@@ -2,11 +2,6 @@
 
 package components
 
-import (
-	"encoding/json"
-	"fmt"
-)
-
 // IntegrationState - The current state of the Integration.
 type IntegrationState string
 
@@ -18,21 +13,4 @@ const (
 
 func (e IntegrationState) ToPointer() *IntegrationState {
 	return &e
-}
-func (e *IntegrationState) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "disabled":
-		fallthrough
-	case "needs_configuration":
-		fallthrough
-	case "configured":
-		*e = IntegrationState(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for IntegrationState: %v", v)
-	}
 }

@@ -3,8 +3,6 @@
 package components
 
 import (
-	"encoding/json"
-	"fmt"
 	"mockserver/internal/sdk/utils"
 	"time"
 )
@@ -19,21 +17,6 @@ const (
 
 func (e TrackingCategoryStatus) ToPointer() *TrackingCategoryStatus {
 	return &e
-}
-func (e *TrackingCategoryStatus) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "active":
-		fallthrough
-	case "inactive":
-		*e = TrackingCategoryStatus(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for TrackingCategoryStatus: %v", v)
-	}
 }
 
 type TrackingCategorySubsidiary struct {

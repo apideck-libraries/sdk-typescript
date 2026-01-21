@@ -3,8 +3,6 @@
 package components
 
 import (
-	"encoding/json"
-	"fmt"
 	"mockserver/internal/sdk/utils"
 	"time"
 )
@@ -22,27 +20,6 @@ const (
 
 func (e ProjectsFilterProjectStatus) ToPointer() *ProjectsFilterProjectStatus {
 	return &e
-}
-func (e *ProjectsFilterProjectStatus) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "active":
-		fallthrough
-	case "completed":
-		fallthrough
-	case "on_hold":
-		fallthrough
-	case "cancelled":
-		fallthrough
-	case "draft":
-		*e = ProjectsFilterProjectStatus(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for ProjectsFilterProjectStatus: %v", v)
-	}
 }
 
 type ProjectsFilter struct {

@@ -5,7 +5,8 @@
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
-import { ClosedEnum } from "../../types/enums.js";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { Currency, Currency$inboundSchema } from "./currency.js";
@@ -26,14 +27,14 @@ export const CustomerStatus = {
 /**
  * The current status of the customer
  */
-export type CustomerStatus = ClosedEnum<typeof CustomerStatus>;
+export type CustomerStatus = OpenEnum<typeof CustomerStatus>;
 
 export const EcommerceCustomerType = {
   Billing: "billing",
   Shipping: "shipping",
   Other: "other",
 } as const;
-export type EcommerceCustomerType = ClosedEnum<typeof EcommerceCustomerType>;
+export type EcommerceCustomerType = OpenEnum<typeof EcommerceCustomerType>;
 
 export type Addresses = {
   type?: EcommerceCustomerType | undefined;
@@ -124,14 +125,18 @@ export type EcommerceCustomer = {
 };
 
 /** @internal */
-export const CustomerStatus$inboundSchema: z.ZodNativeEnum<
-  typeof CustomerStatus
-> = z.nativeEnum(CustomerStatus);
+export const CustomerStatus$inboundSchema: z.ZodType<
+  CustomerStatus,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(CustomerStatus);
 
 /** @internal */
-export const EcommerceCustomerType$inboundSchema: z.ZodNativeEnum<
-  typeof EcommerceCustomerType
-> = z.nativeEnum(EcommerceCustomerType);
+export const EcommerceCustomerType$inboundSchema: z.ZodType<
+  EcommerceCustomerType,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(EcommerceCustomerType);
 
 /** @internal */
 export const Addresses$inboundSchema: z.ZodType<

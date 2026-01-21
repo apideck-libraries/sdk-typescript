@@ -5,7 +5,8 @@
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
-import { ClosedEnum } from "../../types/enums.js";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { RFCDate } from "../../types/rfcdate.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -100,7 +101,7 @@ export const LeavingReason = {
 /**
  * The reason because the employment ended.
  */
-export type LeavingReason = ClosedEnum<typeof LeavingReason>;
+export type LeavingReason = OpenEnum<typeof LeavingReason>;
 
 /**
  * The type of employment relationship the employee has with the organization.
@@ -116,7 +117,7 @@ export const EmploymentType = {
 /**
  * The type of employment relationship the employee has with the organization.
  */
-export type EmploymentType = ClosedEnum<typeof EmploymentType>;
+export type EmploymentType = OpenEnum<typeof EmploymentType>;
 
 /**
  * The work schedule of the employee.
@@ -131,7 +132,7 @@ export const EmploymentSubType = {
 /**
  * The work schedule of the employee.
  */
-export type EmploymentSubType = ClosedEnum<typeof EmploymentSubType>;
+export type EmploymentSubType = OpenEnum<typeof EmploymentSubType>;
 
 export type EmploymentRole = {
   /**
@@ -239,7 +240,7 @@ export type Employee = {
   /**
    * The department the person is currently in. [Deprecated](https://developers.apideck.com/changelog) in favor of the dedicated department_id and department_name field.
    *
-   * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+   * @deprecated field: Deprecated. Use department_id instead..
    */
   department?: string | null | undefined;
   /**
@@ -454,7 +455,7 @@ export type EmployeeInput = {
   /**
    * The department the person is currently in. [Deprecated](https://developers.apideck.com/changelog) in favor of the dedicated department_id and department_name field.
    *
-   * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+   * @deprecated field: Deprecated. Use department_id instead..
    */
   department?: string | null | undefined;
   /**
@@ -597,31 +598,43 @@ export type EmployeeInput = {
 };
 
 /** @internal */
-export const LeavingReason$inboundSchema: z.ZodNativeEnum<
-  typeof LeavingReason
-> = z.nativeEnum(LeavingReason);
+export const LeavingReason$inboundSchema: z.ZodType<
+  LeavingReason,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(LeavingReason);
 /** @internal */
-export const LeavingReason$outboundSchema: z.ZodNativeEnum<
-  typeof LeavingReason
-> = LeavingReason$inboundSchema;
+export const LeavingReason$outboundSchema: z.ZodType<
+  string,
+  z.ZodTypeDef,
+  LeavingReason
+> = openEnums.outboundSchema(LeavingReason);
 
 /** @internal */
-export const EmploymentType$inboundSchema: z.ZodNativeEnum<
-  typeof EmploymentType
-> = z.nativeEnum(EmploymentType);
+export const EmploymentType$inboundSchema: z.ZodType<
+  EmploymentType,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(EmploymentType);
 /** @internal */
-export const EmploymentType$outboundSchema: z.ZodNativeEnum<
-  typeof EmploymentType
-> = EmploymentType$inboundSchema;
+export const EmploymentType$outboundSchema: z.ZodType<
+  string,
+  z.ZodTypeDef,
+  EmploymentType
+> = openEnums.outboundSchema(EmploymentType);
 
 /** @internal */
-export const EmploymentSubType$inboundSchema: z.ZodNativeEnum<
-  typeof EmploymentSubType
-> = z.nativeEnum(EmploymentSubType);
+export const EmploymentSubType$inboundSchema: z.ZodType<
+  EmploymentSubType,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(EmploymentSubType);
 /** @internal */
-export const EmploymentSubType$outboundSchema: z.ZodNativeEnum<
-  typeof EmploymentSubType
-> = EmploymentSubType$inboundSchema;
+export const EmploymentSubType$outboundSchema: z.ZodType<
+  string,
+  z.ZodTypeDef,
+  EmploymentSubType
+> = openEnums.outboundSchema(EmploymentSubType);
 
 /** @internal */
 export const EmploymentRole$inboundSchema: z.ZodType<

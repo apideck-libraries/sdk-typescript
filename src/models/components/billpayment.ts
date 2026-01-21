@@ -5,7 +5,8 @@
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
-import { ClosedEnum } from "../../types/enums.js";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
@@ -64,7 +65,7 @@ export const BillPaymentType = {
 /**
  * Type of payment
  */
-export type BillPaymentType = ClosedEnum<typeof BillPaymentType>;
+export type BillPaymentType = OpenEnum<typeof BillPaymentType>;
 
 /**
  * Type of entity this payment should be attributed to.
@@ -81,7 +82,7 @@ export const BillPaymentAllocationType = {
 /**
  * Type of entity this payment should be attributed to.
  */
-export type BillPaymentAllocationType = ClosedEnum<
+export type BillPaymentAllocationType = OpenEnum<
   typeof BillPaymentAllocationType
 >;
 
@@ -317,22 +318,30 @@ export type BillPaymentInput = {
 };
 
 /** @internal */
-export const BillPaymentType$inboundSchema: z.ZodNativeEnum<
-  typeof BillPaymentType
-> = z.nativeEnum(BillPaymentType);
+export const BillPaymentType$inboundSchema: z.ZodType<
+  BillPaymentType,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(BillPaymentType);
 /** @internal */
-export const BillPaymentType$outboundSchema: z.ZodNativeEnum<
-  typeof BillPaymentType
-> = BillPaymentType$inboundSchema;
+export const BillPaymentType$outboundSchema: z.ZodType<
+  string,
+  z.ZodTypeDef,
+  BillPaymentType
+> = openEnums.outboundSchema(BillPaymentType);
 
 /** @internal */
-export const BillPaymentAllocationType$inboundSchema: z.ZodNativeEnum<
-  typeof BillPaymentAllocationType
-> = z.nativeEnum(BillPaymentAllocationType);
+export const BillPaymentAllocationType$inboundSchema: z.ZodType<
+  BillPaymentAllocationType,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(BillPaymentAllocationType);
 /** @internal */
-export const BillPaymentAllocationType$outboundSchema: z.ZodNativeEnum<
-  typeof BillPaymentAllocationType
-> = BillPaymentAllocationType$inboundSchema;
+export const BillPaymentAllocationType$outboundSchema: z.ZodType<
+  string,
+  z.ZodTypeDef,
+  BillPaymentAllocationType
+> = openEnums.outboundSchema(BillPaymentAllocationType);
 
 /** @internal */
 export const Allocations$inboundSchema: z.ZodType<

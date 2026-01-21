@@ -5,7 +5,8 @@
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
-import { ClosedEnum } from "../../types/enums.js";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { AuthType, AuthType$inboundSchema } from "./authtype.js";
@@ -67,13 +68,13 @@ export const ConnectionStatus = {
 /**
  * Status of the connection.
  */
-export type ConnectionStatus = ClosedEnum<typeof ConnectionStatus>;
+export type ConnectionStatus = OpenEnum<typeof ConnectionStatus>;
 
 export const Target = {
   CustomFields: "custom_fields",
   Resource: "resource",
 } as const;
-export type Target = ClosedEnum<typeof Target>;
+export type Target = OpenEnum<typeof Target>;
 
 export type Value5 = string | number | number;
 
@@ -116,7 +117,7 @@ export const Health = {
 /**
  * Operational health status of the connection
  */
-export type Health = ClosedEnum<typeof Health>;
+export type Health = OpenEnum<typeof Health>;
 
 export type Connection = {
   /**
@@ -281,13 +282,15 @@ export type ConnectionInput = {
 };
 
 /** @internal */
-export const ConnectionStatus$inboundSchema: z.ZodNativeEnum<
-  typeof ConnectionStatus
-> = z.nativeEnum(ConnectionStatus);
+export const ConnectionStatus$inboundSchema: z.ZodType<
+  ConnectionStatus,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(ConnectionStatus);
 
 /** @internal */
-export const Target$inboundSchema: z.ZodNativeEnum<typeof Target> = z
-  .nativeEnum(Target);
+export const Target$inboundSchema: z.ZodType<Target, z.ZodTypeDef, unknown> =
+  openEnums.inboundSchema(Target);
 
 /** @internal */
 export const Value5$inboundSchema: z.ZodType<Value5, z.ZodTypeDef, unknown> = z
@@ -412,8 +415,8 @@ export function configurationFromJSON(
 }
 
 /** @internal */
-export const Health$inboundSchema: z.ZodNativeEnum<typeof Health> = z
-  .nativeEnum(Health);
+export const Health$inboundSchema: z.ZodType<Health, z.ZodTypeDef, unknown> =
+  openEnums.inboundSchema(Health);
 
 /** @internal */
 export const Connection$inboundSchema: z.ZodType<

@@ -4,7 +4,8 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { ClosedEnum } from "../../types/enums.js";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
 
 export const PaymentsFilterType = {
   AccountsReceivable: "accounts_receivable",
@@ -16,7 +17,7 @@ export const PaymentsFilterType = {
   AccountsReceivablePrepayment: "accounts_receivable_prepayment",
   AccountsPayablePrepayment: "accounts_payable_prepayment",
 } as const;
-export type PaymentsFilterType = ClosedEnum<typeof PaymentsFilterType>;
+export type PaymentsFilterType = OpenEnum<typeof PaymentsFilterType>;
 
 export type PaymentsFilter = {
   updatedSince?: Date | undefined;
@@ -30,9 +31,11 @@ export type PaymentsFilter = {
 };
 
 /** @internal */
-export const PaymentsFilterType$outboundSchema: z.ZodNativeEnum<
-  typeof PaymentsFilterType
-> = z.nativeEnum(PaymentsFilterType);
+export const PaymentsFilterType$outboundSchema: z.ZodType<
+  string,
+  z.ZodTypeDef,
+  PaymentsFilterType
+> = openEnums.outboundSchema(PaymentsFilterType);
 
 /** @internal */
 export type PaymentsFilter$Outbound = {

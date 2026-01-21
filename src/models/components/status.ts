@@ -3,7 +3,8 @@
  */
 
 import * as z from "zod/v3";
-import { ClosedEnum } from "../../types/enums.js";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
 
 /**
  * The status of the webhook.
@@ -15,11 +16,11 @@ export const Status = {
 /**
  * The status of the webhook.
  */
-export type Status = ClosedEnum<typeof Status>;
+export type Status = OpenEnum<typeof Status>;
 
 /** @internal */
-export const Status$inboundSchema: z.ZodNativeEnum<typeof Status> = z
-  .nativeEnum(Status);
+export const Status$inboundSchema: z.ZodType<Status, z.ZodTypeDef, unknown> =
+  openEnums.inboundSchema(Status);
 /** @internal */
-export const Status$outboundSchema: z.ZodNativeEnum<typeof Status> =
-  Status$inboundSchema;
+export const Status$outboundSchema: z.ZodType<string, z.ZodTypeDef, Status> =
+  openEnums.outboundSchema(Status);

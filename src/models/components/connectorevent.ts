@@ -5,7 +5,8 @@
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
-import { ClosedEnum } from "../../types/enums.js";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
@@ -19,7 +20,7 @@ export const EventSource = {
 /**
  * Unify event source
  */
-export type EventSource = ClosedEnum<typeof EventSource>;
+export type EventSource = OpenEnum<typeof EventSource>;
 
 /**
  * Unify event that is supported on the connector. Events are delivered via Webhooks.
@@ -45,8 +46,11 @@ export type ConnectorEvent = {
 };
 
 /** @internal */
-export const EventSource$inboundSchema: z.ZodNativeEnum<typeof EventSource> = z
-  .nativeEnum(EventSource);
+export const EventSource$inboundSchema: z.ZodType<
+  EventSource,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(EventSource);
 
 /** @internal */
 export const ConnectorEvent$inboundSchema: z.ZodType<

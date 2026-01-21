@@ -3,7 +3,8 @@
  */
 
 import * as z from "zod/v3";
-import { ClosedEnum } from "../../types/enums.js";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
 
 /**
  * Type of authorization used by the connector
@@ -18,8 +19,11 @@ export const AuthType = {
 /**
  * Type of authorization used by the connector
  */
-export type AuthType = ClosedEnum<typeof AuthType>;
+export type AuthType = OpenEnum<typeof AuthType>;
 
 /** @internal */
-export const AuthType$inboundSchema: z.ZodNativeEnum<typeof AuthType> = z
-  .nativeEnum(AuthType);
+export const AuthType$inboundSchema: z.ZodType<
+  AuthType,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(AuthType);

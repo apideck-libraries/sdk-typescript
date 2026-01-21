@@ -3,8 +3,6 @@
 package components
 
 import (
-	"encoding/json"
-	"fmt"
 	"mockserver/internal/sdk/utils"
 	"time"
 )
@@ -21,25 +19,6 @@ const (
 
 func (e TicketPriority) ToPointer() *TicketPriority {
 	return &e
-}
-func (e *TicketPriority) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "low":
-		fallthrough
-	case "normal":
-		fallthrough
-	case "high":
-		fallthrough
-	case "urgent":
-		*e = TicketPriority(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for TicketPriority: %v", v)
-	}
 }
 
 type Ticket struct {

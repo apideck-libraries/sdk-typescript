@@ -12,6 +12,8 @@ let value: TimeOffRequestStatus = "requested";
 
 ## Values
 
+This is an open enum. Unrecognized values will be captured as the `Unrecognized<string>` branded type.
+
 ```typescript
-"requested" | "approved" | "declined" | "cancelled" | "deleted" | "other"
+"requested" | "approved" | "declined" | "cancelled" | "deleted" | "other" | Unrecognized<string>
 ```

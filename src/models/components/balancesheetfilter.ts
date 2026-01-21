@@ -4,7 +4,8 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { ClosedEnum } from "../../types/enums.js";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
 
 /**
  * The type of period to include in the resource: month, quarter, year.
@@ -17,7 +18,7 @@ export const PeriodType = {
 /**
  * The type of period to include in the resource: month, quarter, year.
  */
-export type PeriodType = ClosedEnum<typeof PeriodType>;
+export type PeriodType = OpenEnum<typeof PeriodType>;
 
 /**
  * The accounting method used for the report: cash or accrual.
@@ -29,13 +30,13 @@ export const AccountingMethod = {
 /**
  * The accounting method used for the report: cash or accrual.
  */
-export type AccountingMethod = ClosedEnum<typeof AccountingMethod>;
+export type AccountingMethod = OpenEnum<typeof AccountingMethod>;
 
 export type BalanceSheetFilter = {
   /**
    * The start date of the period to include in the resource.
    *
-   * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+   * @deprecated field: This field is deprecated and may be removed in a future version..
    */
   startDate?: string | undefined;
   /**
@@ -61,13 +62,18 @@ export type BalanceSheetFilter = {
 };
 
 /** @internal */
-export const PeriodType$outboundSchema: z.ZodNativeEnum<typeof PeriodType> = z
-  .nativeEnum(PeriodType);
+export const PeriodType$outboundSchema: z.ZodType<
+  string,
+  z.ZodTypeDef,
+  PeriodType
+> = openEnums.outboundSchema(PeriodType);
 
 /** @internal */
-export const AccountingMethod$outboundSchema: z.ZodNativeEnum<
-  typeof AccountingMethod
-> = z.nativeEnum(AccountingMethod);
+export const AccountingMethod$outboundSchema: z.ZodType<
+  string,
+  z.ZodTypeDef,
+  AccountingMethod
+> = openEnums.outboundSchema(AccountingMethod);
 
 /** @internal */
 export type BalanceSheetFilter$Outbound = {

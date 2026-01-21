@@ -3,8 +3,6 @@
 package components
 
 import (
-	"encoding/json"
-	"fmt"
 	"mockserver/internal/sdk/types"
 	"mockserver/internal/sdk/utils"
 	"time"
@@ -28,37 +26,6 @@ const (
 
 func (e LedgerAccountClassification) ToPointer() *LedgerAccountClassification {
 	return &e
-}
-func (e *LedgerAccountClassification) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "asset":
-		fallthrough
-	case "equity":
-		fallthrough
-	case "expense":
-		fallthrough
-	case "liability":
-		fallthrough
-	case "revenue":
-		fallthrough
-	case "income":
-		fallthrough
-	case "other_income":
-		fallthrough
-	case "other_expense":
-		fallthrough
-	case "costs_of_sales":
-		fallthrough
-	case "other":
-		*e = LedgerAccountClassification(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for LedgerAccountClassification: %v", v)
-	}
 }
 
 // LedgerAccountType - The type of account.
@@ -90,57 +57,6 @@ const (
 func (e LedgerAccountType) ToPointer() *LedgerAccountType {
 	return &e
 }
-func (e *LedgerAccountType) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "accounts_payable":
-		fallthrough
-	case "accounts_receivable":
-		fallthrough
-	case "balancesheet":
-		fallthrough
-	case "bank":
-		fallthrough
-	case "costs_of_sales":
-		fallthrough
-	case "credit_card":
-		fallthrough
-	case "current_asset":
-		fallthrough
-	case "current_liability":
-		fallthrough
-	case "equity":
-		fallthrough
-	case "expense":
-		fallthrough
-	case "fixed_asset":
-		fallthrough
-	case "non_current_asset":
-		fallthrough
-	case "non_current_liability":
-		fallthrough
-	case "other_asset":
-		fallthrough
-	case "other_expense":
-		fallthrough
-	case "other_income":
-		fallthrough
-	case "other_liability":
-		fallthrough
-	case "revenue":
-		fallthrough
-	case "sales":
-		fallthrough
-	case "other":
-		*e = LedgerAccountType(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for LedgerAccountType: %v", v)
-	}
-}
 
 // AccountStatus - The status of the account.
 type AccountStatus string
@@ -153,23 +69,6 @@ const (
 
 func (e AccountStatus) ToPointer() *AccountStatus {
 	return &e
-}
-func (e *AccountStatus) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "active":
-		fallthrough
-	case "inactive":
-		fallthrough
-	case "archived":
-		*e = AccountStatus(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for AccountStatus: %v", v)
-	}
 }
 
 type LedgerAccountCategory struct {
@@ -262,7 +161,7 @@ type LedgerAccount struct {
 	DisplayID *string `json:"display_id,omitempty"`
 	// The nominal code of the ledger account.
 	//
-	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
+	// Deprecated: This field is deprecated and may be removed in a future version..
 	NominalCode *string `json:"nominal_code,omitempty"`
 	// The code assigned to the account.
 	Code *string `json:"code,omitempty"`
@@ -577,7 +476,7 @@ type LedgerAccountInput struct {
 	DisplayID *string `json:"display_id,omitempty"`
 	// The nominal code of the ledger account.
 	//
-	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
+	// Deprecated: This field is deprecated and may be removed in a future version..
 	NominalCode *string `json:"nominal_code,omitempty"`
 	// The code assigned to the account.
 	Code *string `json:"code,omitempty"`

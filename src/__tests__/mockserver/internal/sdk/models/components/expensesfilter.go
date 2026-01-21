@@ -3,8 +3,6 @@
 package components
 
 import (
-	"encoding/json"
-	"fmt"
 	"mockserver/internal/sdk/utils"
 	"time"
 )
@@ -25,33 +23,6 @@ const (
 func (e ExpensesFilterStatus) ToPointer() *ExpensesFilterStatus {
 	return &e
 }
-func (e *ExpensesFilterStatus) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "draft":
-		fallthrough
-	case "pending_approval":
-		fallthrough
-	case "approved":
-		fallthrough
-	case "posted":
-		fallthrough
-	case "voided":
-		fallthrough
-	case "rejected":
-		fallthrough
-	case "deleted":
-		fallthrough
-	case "other":
-		*e = ExpensesFilterStatus(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for ExpensesFilterStatus: %v", v)
-	}
-}
 
 type ExpensesFilterType string
 
@@ -62,21 +33,6 @@ const (
 
 func (e ExpensesFilterType) ToPointer() *ExpensesFilterType {
 	return &e
-}
-func (e *ExpensesFilterType) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "expense":
-		fallthrough
-	case "refund":
-		*e = ExpensesFilterType(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for ExpensesFilterType: %v", v)
-	}
 }
 
 type ExpensesFilter struct {

@@ -4,7 +4,8 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { ClosedEnum } from "../../types/enums.js";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
 
 /**
  * Status of projects to filter by
@@ -19,7 +20,7 @@ export const ProjectStatus = {
 /**
  * Status of projects to filter by
  */
-export type ProjectStatus = ClosedEnum<typeof ProjectStatus>;
+export type ProjectStatus = OpenEnum<typeof ProjectStatus>;
 
 export type ProjectsFilter = {
   /**
@@ -41,9 +42,11 @@ export type ProjectsFilter = {
 };
 
 /** @internal */
-export const ProjectStatus$outboundSchema: z.ZodNativeEnum<
-  typeof ProjectStatus
-> = z.nativeEnum(ProjectStatus);
+export const ProjectStatus$outboundSchema: z.ZodType<
+  string,
+  z.ZodTypeDef,
+  ProjectStatus
+> = openEnums.outboundSchema(ProjectStatus);
 
 /** @internal */
 export type ProjectsFilter$Outbound = {

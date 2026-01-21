@@ -5,7 +5,8 @@
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
-import { ClosedEnum } from "../../types/enums.js";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
@@ -25,7 +26,7 @@ export const TrackingCategoryStatus = {
 /**
  * Based on the status some functionality is enabled or disabled.
  */
-export type TrackingCategoryStatus = ClosedEnum<typeof TrackingCategoryStatus>;
+export type TrackingCategoryStatus = OpenEnum<typeof TrackingCategoryStatus>;
 
 export type TrackingCategorySubsidiaries = {
   /**
@@ -129,13 +130,17 @@ export type TrackingCategoryInput = {
 };
 
 /** @internal */
-export const TrackingCategoryStatus$inboundSchema: z.ZodNativeEnum<
-  typeof TrackingCategoryStatus
-> = z.nativeEnum(TrackingCategoryStatus);
+export const TrackingCategoryStatus$inboundSchema: z.ZodType<
+  TrackingCategoryStatus,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(TrackingCategoryStatus);
 /** @internal */
-export const TrackingCategoryStatus$outboundSchema: z.ZodNativeEnum<
-  typeof TrackingCategoryStatus
-> = TrackingCategoryStatus$inboundSchema;
+export const TrackingCategoryStatus$outboundSchema: z.ZodType<
+  string,
+  z.ZodTypeDef,
+  TrackingCategoryStatus
+> = openEnums.outboundSchema(TrackingCategoryStatus);
 
 /** @internal */
 export const TrackingCategorySubsidiaries$inboundSchema: z.ZodType<

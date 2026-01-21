@@ -12,6 +12,8 @@ let value: ActivityType = "meeting";
 
 ## Values
 
+This is an open enum. Unrecognized values will be captured as the `Unrecognized<string>` branded type.
+
 ```typescript
-"call" | "meeting" | "email" | "note" | "task" | "deadline" | "send-letter" | "send-quote" | "other"
+"call" | "meeting" | "email" | "note" | "task" | "deadline" | "send-letter" | "send-quote" | "other" | Unrecognized<string>
 ```

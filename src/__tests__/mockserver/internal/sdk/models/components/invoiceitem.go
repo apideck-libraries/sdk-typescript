@@ -3,8 +3,6 @@
 package components
 
 import (
-	"encoding/json"
-	"fmt"
 	"mockserver/internal/sdk/types"
 	"mockserver/internal/sdk/utils"
 	"time"
@@ -23,27 +21,6 @@ const (
 
 func (e InvoiceItemType) ToPointer() *InvoiceItemType {
 	return &e
-}
-func (e *InvoiceItemType) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "inventory":
-		fallthrough
-	case "non_inventory":
-		fallthrough
-	case "service":
-		fallthrough
-	case "description":
-		fallthrough
-	case "other":
-		*e = InvoiceItemType(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for InvoiceItemType: %v", v)
-	}
 }
 
 type SalesDetails struct {
@@ -152,7 +129,7 @@ type InvoiceItem struct {
 	AssetAccount   *LinkedLedgerAccount `json:"asset_account,omitempty"`
 	IncomeAccount  *LinkedLedgerAccount `json:"income_account,omitempty"`
 	ExpenseAccount *LinkedLedgerAccount `json:"expense_account,omitempty"`
-	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
+	// Deprecated: This field is deprecated and may be removed in a future version..
 	TrackingCategory *DeprecatedLinkedTrackingCategory `json:"tracking_category,omitempty"`
 	// A list of linked tracking categories.
 	TrackingCategories []*LinkedTrackingCategory `json:"tracking_categories,omitempty"`
@@ -536,7 +513,7 @@ type InvoiceItemInput struct {
 	AssetAccount   *LinkedLedgerAccount `json:"asset_account,omitempty"`
 	IncomeAccount  *LinkedLedgerAccount `json:"income_account,omitempty"`
 	ExpenseAccount *LinkedLedgerAccount `json:"expense_account,omitempty"`
-	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
+	// Deprecated: This field is deprecated and may be removed in a future version..
 	TrackingCategory *DeprecatedLinkedTrackingCategory `json:"tracking_category,omitempty"`
 	// A list of linked tracking categories.
 	TrackingCategories []*LinkedTrackingCategory `json:"tracking_categories,omitempty"`

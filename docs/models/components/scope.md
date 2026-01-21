@@ -12,6 +12,8 @@ let value: Scope = "company";
 
 ## Values
 
+This is an open enum. Unrecognized values will be captured as the `Unrecognized<string>` branded type.
+
 ```typescript
-"public" | "company"
+"public" | "company" | Unrecognized<string>
 ```

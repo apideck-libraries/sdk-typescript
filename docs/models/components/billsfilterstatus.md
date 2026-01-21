@@ -12,6 +12,8 @@ let value: BillsFilterStatus = "paid";
 
 ## Values
 
+This is an open enum. Unrecognized values will be captured as the `Unrecognized<string>` branded type.
+
 ```typescript
-"paid" | "unpaid" | "partially_paid"
+"paid" | "unpaid" | "partially_paid" | Unrecognized<string>
 ```

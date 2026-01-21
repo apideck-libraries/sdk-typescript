@@ -3,7 +3,8 @@
  */
 
 import * as z from "zod/v3";
-import { ClosedEnum } from "../../types/enums.js";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
 
 /**
  * The type of profit and loss
@@ -15,9 +16,11 @@ export const ProfitAndLossType = {
 /**
  * The type of profit and loss
  */
-export type ProfitAndLossType = ClosedEnum<typeof ProfitAndLossType>;
+export type ProfitAndLossType = OpenEnum<typeof ProfitAndLossType>;
 
 /** @internal */
-export const ProfitAndLossType$inboundSchema: z.ZodNativeEnum<
-  typeof ProfitAndLossType
-> = z.nativeEnum(ProfitAndLossType);
+export const ProfitAndLossType$inboundSchema: z.ZodType<
+  ProfitAndLossType,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(ProfitAndLossType);

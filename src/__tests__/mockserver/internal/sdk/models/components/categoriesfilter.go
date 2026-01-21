@@ -2,11 +2,6 @@
 
 package components
 
-import (
-	"encoding/json"
-	"fmt"
-)
-
 // CategoriesFilterType - The type of the category.
 type CategoriesFilterType string
 
@@ -19,25 +14,6 @@ const (
 
 func (e CategoriesFilterType) ToPointer() *CategoriesFilterType {
 	return &e
-}
-func (e *CategoriesFilterType) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "supplier":
-		fallthrough
-	case "expense":
-		fallthrough
-	case "revenue":
-		fallthrough
-	case "customer":
-		*e = CategoriesFilterType(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for CategoriesFilterType: %v", v)
-	}
 }
 
 type CategoriesFilter struct {

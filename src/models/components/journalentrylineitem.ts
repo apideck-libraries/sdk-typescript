@@ -5,7 +5,8 @@
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
-import { ClosedEnum } from "../../types/enums.js";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
@@ -67,7 +68,7 @@ export const JournalEntryLineItemType = {
 /**
  * Debit entries are considered positive, and credit entries are considered negative.
  */
-export type JournalEntryLineItemType = ClosedEnum<
+export type JournalEntryLineItemType = OpenEnum<
   typeof JournalEntryLineItemType
 >;
 
@@ -98,7 +99,7 @@ export type JournalEntryLineItem = {
   type: JournalEntryLineItemType;
   taxRate?: LinkedTaxRate | undefined;
   /**
-   * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+   * @deprecated field: This field is deprecated and may be removed in a future version..
    */
   trackingCategory?: DeprecatedLinkedTrackingCategory | null | undefined;
   /**
@@ -155,7 +156,7 @@ export type JournalEntryLineItemInput = {
   type: JournalEntryLineItemType;
   taxRate?: LinkedTaxRateInput | undefined;
   /**
-   * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+   * @deprecated field: This field is deprecated and may be removed in a future version..
    */
   trackingCategory?: DeprecatedLinkedTrackingCategory | null | undefined;
   /**
@@ -190,13 +191,17 @@ export type JournalEntryLineItemInput = {
 };
 
 /** @internal */
-export const JournalEntryLineItemType$inboundSchema: z.ZodNativeEnum<
-  typeof JournalEntryLineItemType
-> = z.nativeEnum(JournalEntryLineItemType);
+export const JournalEntryLineItemType$inboundSchema: z.ZodType<
+  JournalEntryLineItemType,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(JournalEntryLineItemType);
 /** @internal */
-export const JournalEntryLineItemType$outboundSchema: z.ZodNativeEnum<
-  typeof JournalEntryLineItemType
-> = JournalEntryLineItemType$inboundSchema;
+export const JournalEntryLineItemType$outboundSchema: z.ZodType<
+  string,
+  z.ZodTypeDef,
+  JournalEntryLineItemType
+> = openEnums.outboundSchema(JournalEntryLineItemType);
 
 /** @internal */
 export const JournalEntryLineItem$inboundSchema: z.ZodType<

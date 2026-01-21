@@ -5,7 +5,8 @@
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
-import { ClosedEnum } from "../../types/enums.js";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
@@ -19,7 +20,7 @@ export const ProductStatus = {
 /**
  * The current status of the product (active or archived).
  */
-export type ProductStatus = ClosedEnum<typeof ProductStatus>;
+export type ProductStatus = OpenEnum<typeof ProductStatus>;
 
 export type Images = {
   /**
@@ -183,9 +184,11 @@ export type EcommerceProduct = {
 };
 
 /** @internal */
-export const ProductStatus$inboundSchema: z.ZodNativeEnum<
-  typeof ProductStatus
-> = z.nativeEnum(ProductStatus);
+export const ProductStatus$inboundSchema: z.ZodType<
+  ProductStatus,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(ProductStatus);
 
 /** @internal */
 export const Images$inboundSchema: z.ZodType<Images, z.ZodTypeDef, unknown> = z

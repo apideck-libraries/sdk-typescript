@@ -3,8 +3,6 @@
 package components
 
 import (
-	"encoding/json"
-	"fmt"
 	"mockserver/internal/sdk/utils"
 	"time"
 )
@@ -21,25 +19,6 @@ const (
 
 func (e DisabledReason) ToPointer() *DisabledReason {
 	return &e
-}
-func (e *DisabledReason) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "none":
-		fallthrough
-	case "retry_limit":
-		fallthrough
-	case "usage_limit":
-		fallthrough
-	case "delivery_url_validation_failed":
-		*e = DisabledReason(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for DisabledReason: %v", v)
-	}
 }
 
 type Webhook struct {

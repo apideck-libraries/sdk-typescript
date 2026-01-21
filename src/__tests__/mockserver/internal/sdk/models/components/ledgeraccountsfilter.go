@@ -3,8 +3,6 @@
 package components
 
 import (
-	"encoding/json"
-	"fmt"
 	"mockserver/internal/sdk/utils"
 	"time"
 )
@@ -27,37 +25,6 @@ const (
 
 func (e LedgerAccountsFilterClassification) ToPointer() *LedgerAccountsFilterClassification {
 	return &e
-}
-func (e *LedgerAccountsFilterClassification) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "asset":
-		fallthrough
-	case "equity":
-		fallthrough
-	case "expense":
-		fallthrough
-	case "liability":
-		fallthrough
-	case "revenue":
-		fallthrough
-	case "income":
-		fallthrough
-	case "other_income":
-		fallthrough
-	case "other_expense":
-		fallthrough
-	case "costs_of_sales":
-		fallthrough
-	case "other":
-		*e = LedgerAccountsFilterClassification(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for LedgerAccountsFilterClassification: %v", v)
-	}
 }
 
 type LedgerAccountsFilter struct {

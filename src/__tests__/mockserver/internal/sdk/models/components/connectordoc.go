@@ -2,11 +2,6 @@
 
 package components
 
-import (
-	"encoding/json"
-	"fmt"
-)
-
 // Audience for the doc.
 type Audience string
 
@@ -18,21 +13,6 @@ const (
 func (e Audience) ToPointer() *Audience {
 	return &e
 }
-func (e *Audience) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "application_owner":
-		fallthrough
-	case "consumer":
-		*e = Audience(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for Audience: %v", v)
-	}
-}
 
 // Format of the doc.
 type Format string
@@ -43,19 +23,6 @@ const (
 
 func (e Format) ToPointer() *Format {
 	return &e
-}
-func (e *Format) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "markdown":
-		*e = Format(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for Format: %v", v)
-	}
 }
 
 type ConnectorDoc struct {

@@ -5,7 +5,8 @@
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
-import { ClosedEnum } from "../../types/enums.js";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { RFCDate } from "../../types/rfcdate.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -87,7 +88,7 @@ export const InvoiceType = {
 /**
  * Invoice type
  */
-export type InvoiceType = ClosedEnum<typeof InvoiceType>;
+export type InvoiceType = OpenEnum<typeof InvoiceType>;
 
 /**
  * Invoice status
@@ -107,7 +108,7 @@ export const InvoiceStatus = {
 /**
  * Invoice status
  */
-export type InvoiceStatus = ClosedEnum<typeof InvoiceStatus>;
+export type InvoiceStatus = OpenEnum<typeof InvoiceStatus>;
 
 export type PaymentAllocations = {
   /**
@@ -238,7 +239,7 @@ export type Invoice = {
    */
   customerMemo?: string | null | undefined;
   /**
-   * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+   * @deprecated field: This field is deprecated and may be removed in a future version..
    */
   trackingCategory?: DeprecatedLinkedTrackingCategory | null | undefined;
   /**
@@ -415,7 +416,7 @@ export type InvoiceInput = {
    */
   customerMemo?: string | null | undefined;
   /**
-   * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+   * @deprecated field: This field is deprecated and may be removed in a future version..
    */
   trackingCategory?: DeprecatedLinkedTrackingCategory | null | undefined;
   /**
@@ -467,20 +468,30 @@ export type InvoiceInput = {
 };
 
 /** @internal */
-export const InvoiceType$inboundSchema: z.ZodNativeEnum<typeof InvoiceType> = z
-  .nativeEnum(InvoiceType);
+export const InvoiceType$inboundSchema: z.ZodType<
+  InvoiceType,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(InvoiceType);
 /** @internal */
-export const InvoiceType$outboundSchema: z.ZodNativeEnum<typeof InvoiceType> =
-  InvoiceType$inboundSchema;
+export const InvoiceType$outboundSchema: z.ZodType<
+  string,
+  z.ZodTypeDef,
+  InvoiceType
+> = openEnums.outboundSchema(InvoiceType);
 
 /** @internal */
-export const InvoiceStatus$inboundSchema: z.ZodNativeEnum<
-  typeof InvoiceStatus
-> = z.nativeEnum(InvoiceStatus);
+export const InvoiceStatus$inboundSchema: z.ZodType<
+  InvoiceStatus,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(InvoiceStatus);
 /** @internal */
-export const InvoiceStatus$outboundSchema: z.ZodNativeEnum<
-  typeof InvoiceStatus
-> = InvoiceStatus$inboundSchema;
+export const InvoiceStatus$outboundSchema: z.ZodType<
+  string,
+  z.ZodTypeDef,
+  InvoiceStatus
+> = openEnums.outboundSchema(InvoiceStatus);
 
 /** @internal */
 export const PaymentAllocations$inboundSchema: z.ZodType<

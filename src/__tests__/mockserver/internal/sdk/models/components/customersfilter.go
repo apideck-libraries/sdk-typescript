@@ -3,8 +3,6 @@
 package components
 
 import (
-	"encoding/json"
-	"fmt"
 	"mockserver/internal/sdk/utils"
 	"time"
 )
@@ -21,25 +19,6 @@ const (
 
 func (e CustomersFilterStatus) ToPointer() *CustomersFilterStatus {
 	return &e
-}
-func (e *CustomersFilterStatus) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "active":
-		fallthrough
-	case "inactive":
-		fallthrough
-	case "archived":
-		fallthrough
-	case "all":
-		*e = CustomersFilterStatus(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for CustomersFilterStatus: %v", v)
-	}
 }
 
 type CustomersFilter struct {

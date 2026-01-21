@@ -3,8 +3,6 @@
 package components
 
 import (
-	"encoding/json"
-	"fmt"
 	"mockserver/internal/sdk/types"
 	"mockserver/internal/sdk/utils"
 	"time"
@@ -26,33 +24,6 @@ const (
 
 func (e QuoteStatus) ToPointer() *QuoteStatus {
 	return &e
-}
-func (e *QuoteStatus) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "draft":
-		fallthrough
-	case "sent":
-		fallthrough
-	case "accepted":
-		fallthrough
-	case "rejected":
-		fallthrough
-	case "expired":
-		fallthrough
-	case "converted":
-		fallthrough
-	case "void":
-		fallthrough
-	case "deleted":
-		*e = QuoteStatus(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for QuoteStatus: %v", v)
-	}
 }
 
 type Quote struct {

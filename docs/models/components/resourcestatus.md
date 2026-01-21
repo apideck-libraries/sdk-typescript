@@ -12,6 +12,8 @@ let value: ResourceStatus = "upcoming";
 
 ## Values
 
+This is an open enum. Unrecognized values will be captured as the `Unrecognized<string>` branded type.
+
 ```typescript
-"live" | "beta" | "development" | "upcoming" | "considering"
+"live" | "beta" | "development" | "upcoming" | "considering" | Unrecognized<string>
 ```

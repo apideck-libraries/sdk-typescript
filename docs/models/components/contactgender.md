@@ -12,6 +12,8 @@ let value: ContactGender = "female";
 
 ## Values
 
+This is an open enum. Unrecognized values will be captured as the `Unrecognized<string>` branded type.
+
 ```typescript
-"male" | "female" | "unisex"
+"male" | "female" | "unisex" | Unrecognized<string>
 ```

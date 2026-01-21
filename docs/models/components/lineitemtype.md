@@ -12,6 +12,8 @@ let value: LineItemType = "expense_account";
 
 ## Values
 
+This is an open enum. Unrecognized values will be captured as the `Unrecognized<string>` branded type.
+
 ```typescript
-"expense_item" | "expense_account" | "other"
+"expense_item" | "expense_account" | "other" | Unrecognized<string>
 ```

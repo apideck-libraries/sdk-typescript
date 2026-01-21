@@ -5,7 +5,8 @@
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
-import { ClosedEnum } from "../../types/enums.js";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
@@ -50,7 +51,7 @@ export const HrisCompanyStatus = {
   Trial: "trial",
   Other: "other",
 } as const;
-export type HrisCompanyStatus = ClosedEnum<typeof HrisCompanyStatus>;
+export type HrisCompanyStatus = OpenEnum<typeof HrisCompanyStatus>;
 
 export type HrisCompany = {
   /**
@@ -126,13 +127,17 @@ export type HrisCompanyInput = {
 };
 
 /** @internal */
-export const HrisCompanyStatus$inboundSchema: z.ZodNativeEnum<
-  typeof HrisCompanyStatus
-> = z.nativeEnum(HrisCompanyStatus);
+export const HrisCompanyStatus$inboundSchema: z.ZodType<
+  HrisCompanyStatus,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(HrisCompanyStatus);
 /** @internal */
-export const HrisCompanyStatus$outboundSchema: z.ZodNativeEnum<
-  typeof HrisCompanyStatus
-> = HrisCompanyStatus$inboundSchema;
+export const HrisCompanyStatus$outboundSchema: z.ZodType<
+  string,
+  z.ZodTypeDef,
+  HrisCompanyStatus
+> = openEnums.outboundSchema(HrisCompanyStatus);
 
 /** @internal */
 export const HrisCompany$inboundSchema: z.ZodType<

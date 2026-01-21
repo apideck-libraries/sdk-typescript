@@ -5,7 +5,8 @@
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
-import { ClosedEnum } from "../../types/enums.js";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
@@ -34,7 +35,7 @@ export const DepartmentStatus = {
 /**
  * Based on the status some functionality is enabled or disabled.
  */
-export type DepartmentStatus = ClosedEnum<typeof DepartmentStatus>;
+export type DepartmentStatus = OpenEnum<typeof DepartmentStatus>;
 
 export type AccountingDepartment = {
   /**
@@ -129,13 +130,17 @@ export type AccountingDepartmentInput = {
 };
 
 /** @internal */
-export const DepartmentStatus$inboundSchema: z.ZodNativeEnum<
-  typeof DepartmentStatus
-> = z.nativeEnum(DepartmentStatus);
+export const DepartmentStatus$inboundSchema: z.ZodType<
+  DepartmentStatus,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(DepartmentStatus);
 /** @internal */
-export const DepartmentStatus$outboundSchema: z.ZodNativeEnum<
-  typeof DepartmentStatus
-> = DepartmentStatus$inboundSchema;
+export const DepartmentStatus$outboundSchema: z.ZodType<
+  string,
+  z.ZodTypeDef,
+  DepartmentStatus
+> = openEnums.outboundSchema(DepartmentStatus);
 
 /** @internal */
 export const AccountingDepartment$inboundSchema: z.ZodType<

@@ -3,7 +3,8 @@
  */
 
 import * as z from "zod/v3";
-import { ClosedEnum } from "../../types/enums.js";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
 
 /**
  * Name of Apideck Unified API
@@ -40,11 +41,17 @@ export const UnifiedApiId = {
 /**
  * Name of Apideck Unified API
  */
-export type UnifiedApiId = ClosedEnum<typeof UnifiedApiId>;
+export type UnifiedApiId = OpenEnum<typeof UnifiedApiId>;
 
 /** @internal */
-export const UnifiedApiId$inboundSchema: z.ZodNativeEnum<typeof UnifiedApiId> =
-  z.nativeEnum(UnifiedApiId);
+export const UnifiedApiId$inboundSchema: z.ZodType<
+  UnifiedApiId,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(UnifiedApiId);
 /** @internal */
-export const UnifiedApiId$outboundSchema: z.ZodNativeEnum<typeof UnifiedApiId> =
-  UnifiedApiId$inboundSchema;
+export const UnifiedApiId$outboundSchema: z.ZodType<
+  string,
+  z.ZodTypeDef,
+  UnifiedApiId
+> = openEnums.outboundSchema(UnifiedApiId);

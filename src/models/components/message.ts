@@ -5,7 +5,8 @@
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
-import { ClosedEnum } from "../../types/enums.js";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { Currency, Currency$inboundSchema } from "./currency.js";
@@ -26,7 +27,7 @@ export const MessageType = {
 /**
  * Set to sms for SMS messages and mms for MMS messages.
  */
-export type MessageType = ClosedEnum<typeof MessageType>;
+export type MessageType = OpenEnum<typeof MessageType>;
 
 /**
  * The direction of the message.
@@ -41,7 +42,7 @@ export const Direction = {
 /**
  * The direction of the message.
  */
-export type Direction = ClosedEnum<typeof Direction>;
+export type Direction = OpenEnum<typeof Direction>;
 
 /**
  * Status of the delivery of the message.
@@ -63,7 +64,7 @@ export const MessageStatus = {
 /**
  * Status of the delivery of the message.
  */
-export type MessageStatus = ClosedEnum<typeof MessageStatus>;
+export type MessageStatus = OpenEnum<typeof MessageStatus>;
 
 /**
  * Price of the message.
@@ -221,20 +222,31 @@ export type MessageInput = {
 };
 
 /** @internal */
-export const MessageType$inboundSchema: z.ZodNativeEnum<typeof MessageType> = z
-  .nativeEnum(MessageType);
+export const MessageType$inboundSchema: z.ZodType<
+  MessageType,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(MessageType);
 /** @internal */
-export const MessageType$outboundSchema: z.ZodNativeEnum<typeof MessageType> =
-  MessageType$inboundSchema;
+export const MessageType$outboundSchema: z.ZodType<
+  string,
+  z.ZodTypeDef,
+  MessageType
+> = openEnums.outboundSchema(MessageType);
 
 /** @internal */
-export const Direction$inboundSchema: z.ZodNativeEnum<typeof Direction> = z
-  .nativeEnum(Direction);
+export const Direction$inboundSchema: z.ZodType<
+  Direction,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(Direction);
 
 /** @internal */
-export const MessageStatus$inboundSchema: z.ZodNativeEnum<
-  typeof MessageStatus
-> = z.nativeEnum(MessageStatus);
+export const MessageStatus$inboundSchema: z.ZodType<
+  MessageStatus,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(MessageStatus);
 
 /** @internal */
 export const Price$inboundSchema: z.ZodType<Price, z.ZodTypeDef, unknown> = z

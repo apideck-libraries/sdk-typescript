@@ -5,7 +5,8 @@
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
-import { ClosedEnum } from "../../types/enums.js";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
@@ -51,13 +52,13 @@ export const ActivityType = {
 /**
  * The type of the activity
  */
-export type ActivityType = ClosedEnum<typeof ActivityType>;
+export type ActivityType = OpenEnum<typeof ActivityType>;
 
 export const ShowAs = {
   Free: "free",
   Busy: "busy",
 } as const;
-export type ShowAs = ClosedEnum<typeof ShowAs>;
+export type ShowAs = OpenEnum<typeof ShowAs>;
 
 export type Activity = {
   /**
@@ -432,18 +433,24 @@ export type ActivityInput = {
 };
 
 /** @internal */
-export const ActivityType$inboundSchema: z.ZodNativeEnum<typeof ActivityType> =
-  z.nativeEnum(ActivityType);
+export const ActivityType$inboundSchema: z.ZodType<
+  ActivityType,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(ActivityType);
 /** @internal */
-export const ActivityType$outboundSchema: z.ZodNativeEnum<typeof ActivityType> =
-  ActivityType$inboundSchema;
+export const ActivityType$outboundSchema: z.ZodType<
+  string,
+  z.ZodTypeDef,
+  ActivityType
+> = openEnums.outboundSchema(ActivityType);
 
 /** @internal */
-export const ShowAs$inboundSchema: z.ZodNativeEnum<typeof ShowAs> = z
-  .nativeEnum(ShowAs);
+export const ShowAs$inboundSchema: z.ZodType<ShowAs, z.ZodTypeDef, unknown> =
+  openEnums.inboundSchema(ShowAs);
 /** @internal */
-export const ShowAs$outboundSchema: z.ZodNativeEnum<typeof ShowAs> =
-  ShowAs$inboundSchema;
+export const ShowAs$outboundSchema: z.ZodType<string, z.ZodTypeDef, ShowAs> =
+  openEnums.outboundSchema(ShowAs);
 
 /** @internal */
 export const Activity$inboundSchema: z.ZodType<

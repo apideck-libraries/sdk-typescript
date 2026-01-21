@@ -28,11 +28,11 @@ type Payment struct {
 	PaymentMethodID *string `json:"payment_method_id,omitempty"`
 	// Type of accounts receivable account.
 	//
-	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
+	// Deprecated: This field is deprecated and may be removed in a future version..
 	AccountsReceivableAccountType *string `json:"accounts_receivable_account_type,omitempty"`
 	// Unique identifier for the account to allocate payment to.
 	//
-	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
+	// Deprecated: This field is deprecated and may be removed in a future version..
 	AccountsReceivableAccountID *string              `json:"accounts_receivable_account_id,omitempty"`
 	Account                     *LinkedLedgerAccount `json:"account,omitempty"`
 	// The date of the transaction - YYYY:MM::DDThh:mm:ss.sTZD
@@ -41,7 +41,7 @@ type Payment struct {
 	Customer *LinkedCustomer `json:"customer,omitempty"`
 	// The supplier this entity is linked to.
 	//
-	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
+	// Deprecated: This field is deprecated and may be removed in a future version..
 	Supplier *DeprecatedLinkedSupplier `json:"supplier,omitempty"`
 	// The company ID the transaction belongs to
 	CompanyID *string `json:"company_id,omitempty"`

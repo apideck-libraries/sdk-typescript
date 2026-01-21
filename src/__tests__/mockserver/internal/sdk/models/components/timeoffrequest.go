@@ -3,8 +3,6 @@
 package components
 
 import (
-	"encoding/json"
-	"fmt"
 	"mockserver/internal/sdk/utils"
 	"time"
 )
@@ -24,29 +22,6 @@ const (
 func (e TimeOffRequestStatus) ToPointer() *TimeOffRequestStatus {
 	return &e
 }
-func (e *TimeOffRequestStatus) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "requested":
-		fallthrough
-	case "approved":
-		fallthrough
-	case "declined":
-		fallthrough
-	case "cancelled":
-		fallthrough
-	case "deleted":
-		fallthrough
-	case "other":
-		*e = TimeOffRequestStatus(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for TimeOffRequestStatus: %v", v)
-	}
-}
 
 // RequestType - The type of request
 type RequestType string
@@ -64,31 +39,6 @@ const (
 func (e RequestType) ToPointer() *RequestType {
 	return &e
 }
-func (e *RequestType) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "vacation":
-		fallthrough
-	case "sick":
-		fallthrough
-	case "personal":
-		fallthrough
-	case "jury_duty":
-		fallthrough
-	case "volunteer":
-		fallthrough
-	case "bereavement":
-		fallthrough
-	case "other":
-		*e = RequestType(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for RequestType: %v", v)
-	}
-}
 
 // Units - The unit of time off requested. Possible values include: `hours`, `days`, or `other`.
 type Units string
@@ -101,23 +51,6 @@ const (
 
 func (e Units) ToPointer() *Units {
 	return &e
-}
-func (e *Units) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "days":
-		fallthrough
-	case "hours":
-		fallthrough
-	case "other":
-		*e = Units(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for Units: %v", v)
-	}
 }
 
 type Notes struct {

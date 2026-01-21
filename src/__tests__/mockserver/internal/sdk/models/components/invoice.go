@@ -3,8 +3,6 @@
 package components
 
 import (
-	"encoding/json"
-	"fmt"
 	"mockserver/internal/sdk/types"
 	"mockserver/internal/sdk/utils"
 	"time"
@@ -25,29 +23,6 @@ const (
 func (e InvoiceType) ToPointer() *InvoiceType {
 	return &e
 }
-func (e *InvoiceType) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "standard":
-		fallthrough
-	case "credit":
-		fallthrough
-	case "service":
-		fallthrough
-	case "product":
-		fallthrough
-	case "supplier":
-		fallthrough
-	case "other":
-		*e = InvoiceType(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for InvoiceType: %v", v)
-	}
-}
 
 // InvoiceStatus - Invoice status
 type InvoiceStatus string
@@ -67,37 +42,6 @@ const (
 
 func (e InvoiceStatus) ToPointer() *InvoiceStatus {
 	return &e
-}
-func (e *InvoiceStatus) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "draft":
-		fallthrough
-	case "submitted":
-		fallthrough
-	case "authorised":
-		fallthrough
-	case "partially_paid":
-		fallthrough
-	case "paid":
-		fallthrough
-	case "unpaid":
-		fallthrough
-	case "void":
-		fallthrough
-	case "credit":
-		fallthrough
-	case "deleted":
-		fallthrough
-	case "posted":
-		*e = InvoiceStatus(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for InvoiceStatus: %v", v)
-	}
 }
 
 type PaymentAllocation struct {
@@ -198,7 +142,7 @@ type Invoice struct {
 	Deposit *float64 `json:"deposit,omitempty"`
 	// Customer memo
 	CustomerMemo *string `json:"customer_memo,omitempty"`
-	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
+	// Deprecated: This field is deprecated and may be removed in a future version..
 	TrackingCategory *DeprecatedLinkedTrackingCategory `json:"tracking_category,omitempty"`
 	// A list of linked tracking categories.
 	TrackingCategories []*LinkedTrackingCategory `json:"tracking_categories,omitempty"`
@@ -652,7 +596,7 @@ type InvoiceInput struct {
 	Deposit *float64 `json:"deposit,omitempty"`
 	// Customer memo
 	CustomerMemo *string `json:"customer_memo,omitempty"`
-	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
+	// Deprecated: This field is deprecated and may be removed in a future version..
 	TrackingCategory *DeprecatedLinkedTrackingCategory `json:"tracking_category,omitempty"`
 	// A list of linked tracking categories.
 	TrackingCategories []*LinkedTrackingCategory `json:"tracking_categories,omitempty"`

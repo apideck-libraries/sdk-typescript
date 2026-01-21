@@ -4,7 +4,8 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { ClosedEnum } from "../../types/enums.js";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
 
 /**
  * The type of invoice item, indicating whether it is an inventory item, a service, or another type.
@@ -17,7 +18,7 @@ export const InvoiceItemFilterInvoiceItemType = {
 /**
  * The type of invoice item, indicating whether it is an inventory item, a service, or another type.
  */
-export type InvoiceItemFilterInvoiceItemType = ClosedEnum<
+export type InvoiceItemFilterInvoiceItemType = OpenEnum<
   typeof InvoiceItemFilterInvoiceItemType
 >;
 
@@ -31,7 +32,7 @@ export const InvoiceItemFilterTransactionType = {
 /**
  * The kind of transaction, indicating whether it is a sales transaction or a purchase transaction.
  */
-export type InvoiceItemFilterTransactionType = ClosedEnum<
+export type InvoiceItemFilterTransactionType = OpenEnum<
   typeof InvoiceItemFilterTransactionType
 >;
 
@@ -47,14 +48,18 @@ export type InvoiceItemFilter = {
 };
 
 /** @internal */
-export const InvoiceItemFilterInvoiceItemType$outboundSchema: z.ZodNativeEnum<
-  typeof InvoiceItemFilterInvoiceItemType
-> = z.nativeEnum(InvoiceItemFilterInvoiceItemType);
+export const InvoiceItemFilterInvoiceItemType$outboundSchema: z.ZodType<
+  string,
+  z.ZodTypeDef,
+  InvoiceItemFilterInvoiceItemType
+> = openEnums.outboundSchema(InvoiceItemFilterInvoiceItemType);
 
 /** @internal */
-export const InvoiceItemFilterTransactionType$outboundSchema: z.ZodNativeEnum<
-  typeof InvoiceItemFilterTransactionType
-> = z.nativeEnum(InvoiceItemFilterTransactionType);
+export const InvoiceItemFilterTransactionType$outboundSchema: z.ZodType<
+  string,
+  z.ZodTypeDef,
+  InvoiceItemFilterTransactionType
+> = openEnums.outboundSchema(InvoiceItemFilterTransactionType);
 
 /** @internal */
 export type InvoiceItemFilter$Outbound = {

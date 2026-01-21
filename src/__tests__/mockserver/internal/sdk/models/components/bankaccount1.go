@@ -2,11 +2,6 @@
 
 package components
 
-import (
-	"encoding/json"
-	"fmt"
-)
-
 // BankAccount1AccountType - The type of bank account.
 type BankAccount1AccountType string
 
@@ -18,23 +13,6 @@ const (
 
 func (e BankAccount1AccountType) ToPointer() *BankAccount1AccountType {
 	return &e
-}
-func (e *BankAccount1AccountType) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "bank_account":
-		fallthrough
-	case "credit_card":
-		fallthrough
-	case "other":
-		*e = BankAccount1AccountType(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for BankAccount1AccountType: %v", v)
-	}
 }
 
 type BankAccount1 struct {

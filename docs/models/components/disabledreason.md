@@ -12,6 +12,8 @@ let value: DisabledReason = "retry_limit";
 
 ## Values
 
+This is an open enum. Unrecognized values will be captured as the `Unrecognized<string>` branded type.
+
 ```typescript
-"none" | "retry_limit" | "usage_limit" | "delivery_url_validation_failed"
+"none" | "retry_limit" | "usage_limit" | "delivery_url_validation_failed" | Unrecognized<string>
 ```

@@ -3,8 +3,6 @@
 package components
 
 import (
-	"encoding/json"
-	"fmt"
 	"mockserver/internal/sdk/utils"
 	"time"
 )
@@ -25,33 +23,6 @@ const (
 
 func (e JournalEntryStatus) ToPointer() *JournalEntryStatus {
 	return &e
-}
-func (e *JournalEntryStatus) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "draft":
-		fallthrough
-	case "pending_approval":
-		fallthrough
-	case "approved":
-		fallthrough
-	case "posted":
-		fallthrough
-	case "voided":
-		fallthrough
-	case "rejected":
-		fallthrough
-	case "deleted":
-		fallthrough
-	case "other":
-		*e = JournalEntryStatus(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for JournalEntryStatus: %v", v)
-	}
 }
 
 type JournalEntry struct {

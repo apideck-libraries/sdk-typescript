@@ -2,11 +2,6 @@
 
 package components
 
-import (
-	"encoding/json"
-	"fmt"
-)
-
 // PaginationCoverageMode - How pagination is implemented on this connector. Native mode means Apideck is using the pagination parameters of the connector. With virtual pagination, the connector does not support pagination, but Apideck emulates it.
 type PaginationCoverageMode string
 
@@ -17,21 +12,6 @@ const (
 
 func (e PaginationCoverageMode) ToPointer() *PaginationCoverageMode {
 	return &e
-}
-func (e *PaginationCoverageMode) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "native":
-		fallthrough
-	case "virtual":
-		*e = PaginationCoverageMode(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for PaginationCoverageMode: %v", v)
-	}
 }
 
 type PaginationCoverage struct {

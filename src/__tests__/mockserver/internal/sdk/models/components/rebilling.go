@@ -2,11 +2,6 @@
 
 package components
 
-import (
-	"encoding/json"
-	"fmt"
-)
-
 // RebillStatus - Status of the rebilling process for this line item.
 type RebillStatus string
 
@@ -18,23 +13,6 @@ const (
 
 func (e RebillStatus) ToPointer() *RebillStatus {
 	return &e
-}
-func (e *RebillStatus) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "pending":
-		fallthrough
-	case "billed":
-		fallthrough
-	case "voided":
-		*e = RebillStatus(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for RebillStatus: %v", v)
-	}
 }
 
 // Rebilling metadata for this line item.

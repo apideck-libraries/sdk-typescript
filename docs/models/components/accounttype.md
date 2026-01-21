@@ -12,6 +12,8 @@ let value: AccountType = "credit_card";
 
 ## Values
 
+This is an open enum. Unrecognized values will be captured as the `Unrecognized<string>` branded type.
+
 ```typescript
-"bank_account" | "credit_card" | "other"
+"bank_account" | "credit_card" | "other" | Unrecognized<string>
 ```

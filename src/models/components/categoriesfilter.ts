@@ -3,7 +3,8 @@
  */
 
 import * as z from "zod/v3";
-import { ClosedEnum } from "../../types/enums.js";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
 
 /**
  * The type of the category.
@@ -17,7 +18,7 @@ export const CategoriesFilterType = {
 /**
  * The type of the category.
  */
-export type CategoriesFilterType = ClosedEnum<typeof CategoriesFilterType>;
+export type CategoriesFilterType = OpenEnum<typeof CategoriesFilterType>;
 
 export type CategoriesFilter = {
   /**
@@ -27,9 +28,11 @@ export type CategoriesFilter = {
 };
 
 /** @internal */
-export const CategoriesFilterType$outboundSchema: z.ZodNativeEnum<
-  typeof CategoriesFilterType
-> = z.nativeEnum(CategoriesFilterType);
+export const CategoriesFilterType$outboundSchema: z.ZodType<
+  string,
+  z.ZodTypeDef,
+  CategoriesFilterType
+> = openEnums.outboundSchema(CategoriesFilterType);
 
 /** @internal */
 export type CategoriesFilter$Outbound = {

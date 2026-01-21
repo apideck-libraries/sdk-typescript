@@ -3,7 +3,6 @@
 package components
 
 import (
-	"encoding/json"
 	"errors"
 	"fmt"
 	"mockserver/internal/sdk/utils"
@@ -21,23 +20,6 @@ const (
 func (e ConnectionStatus) ToPointer() *ConnectionStatus {
 	return &e
 }
-func (e *ConnectionStatus) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "live":
-		fallthrough
-	case "upcoming":
-		fallthrough
-	case "requested":
-		*e = ConnectionStatus(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for ConnectionStatus: %v", v)
-	}
-}
 
 type Target string
 
@@ -48,21 +30,6 @@ const (
 
 func (e Target) ToPointer() *Target {
 	return &e
-}
-func (e *Target) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "custom_fields":
-		fallthrough
-	case "resource":
-		*e = Target(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for Target: %v", v)
-	}
 }
 
 type ConnectionValue1Type string
@@ -347,29 +314,6 @@ const (
 
 func (e Health) ToPointer() *Health {
 	return &e
-}
-func (e *Health) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "revoked":
-		fallthrough
-	case "missing_settings":
-		fallthrough
-	case "needs_consent":
-		fallthrough
-	case "needs_auth":
-		fallthrough
-	case "pending_refresh":
-		fallthrough
-	case "ok":
-		*e = Health(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for Health: %v", v)
-	}
 }
 
 type Connection struct {

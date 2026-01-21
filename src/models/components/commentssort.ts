@@ -3,7 +3,8 @@
  */
 
 import * as z from "zod/v3";
-import { ClosedEnum } from "../../types/enums.js";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
 import {
   SortDirection,
   SortDirection$outboundSchema,
@@ -19,7 +20,7 @@ export const CommentsSortBy = {
 /**
  * The field on which to sort the Comments
  */
-export type CommentsSortBy = ClosedEnum<typeof CommentsSortBy>;
+export type CommentsSortBy = OpenEnum<typeof CommentsSortBy>;
 
 export type CommentsSort = {
   /**
@@ -33,9 +34,11 @@ export type CommentsSort = {
 };
 
 /** @internal */
-export const CommentsSortBy$outboundSchema: z.ZodNativeEnum<
-  typeof CommentsSortBy
-> = z.nativeEnum(CommentsSortBy);
+export const CommentsSortBy$outboundSchema: z.ZodType<
+  string,
+  z.ZodTypeDef,
+  CommentsSortBy
+> = openEnums.outboundSchema(CommentsSortBy);
 
 /** @internal */
 export type CommentsSort$Outbound = {

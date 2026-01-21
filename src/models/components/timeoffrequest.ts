@@ -5,7 +5,8 @@
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
-import { ClosedEnum } from "../../types/enums.js";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
@@ -29,7 +30,7 @@ export const TimeOffRequestStatusStatus = {
 /**
  * The status of the time off request.
  */
-export type TimeOffRequestStatusStatus = ClosedEnum<
+export type TimeOffRequestStatusStatus = OpenEnum<
   typeof TimeOffRequestStatusStatus
 >;
 
@@ -48,7 +49,7 @@ export const RequestType = {
 /**
  * The type of request
  */
-export type RequestType = ClosedEnum<typeof RequestType>;
+export type RequestType = OpenEnum<typeof RequestType>;
 
 /**
  * The unit of time off requested. Possible values include: `hours`, `days`, or `other`.
@@ -61,7 +62,7 @@ export const Units = {
 /**
  * The unit of time off requested. Possible values include: `hours`, `days`, or `other`.
  */
-export type Units = ClosedEnum<typeof Units>;
+export type Units = OpenEnum<typeof Units>;
 
 export type Notes = {
   employee?: string | null | undefined;
@@ -213,28 +214,37 @@ export type TimeOffRequestInput = {
 };
 
 /** @internal */
-export const TimeOffRequestStatusStatus$inboundSchema: z.ZodNativeEnum<
-  typeof TimeOffRequestStatusStatus
-> = z.nativeEnum(TimeOffRequestStatusStatus);
+export const TimeOffRequestStatusStatus$inboundSchema: z.ZodType<
+  TimeOffRequestStatusStatus,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(TimeOffRequestStatusStatus);
 /** @internal */
-export const TimeOffRequestStatusStatus$outboundSchema: z.ZodNativeEnum<
-  typeof TimeOffRequestStatusStatus
-> = TimeOffRequestStatusStatus$inboundSchema;
+export const TimeOffRequestStatusStatus$outboundSchema: z.ZodType<
+  string,
+  z.ZodTypeDef,
+  TimeOffRequestStatusStatus
+> = openEnums.outboundSchema(TimeOffRequestStatusStatus);
 
 /** @internal */
-export const RequestType$inboundSchema: z.ZodNativeEnum<typeof RequestType> = z
-  .nativeEnum(RequestType);
+export const RequestType$inboundSchema: z.ZodType<
+  RequestType,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(RequestType);
 /** @internal */
-export const RequestType$outboundSchema: z.ZodNativeEnum<typeof RequestType> =
-  RequestType$inboundSchema;
+export const RequestType$outboundSchema: z.ZodType<
+  string,
+  z.ZodTypeDef,
+  RequestType
+> = openEnums.outboundSchema(RequestType);
 
 /** @internal */
-export const Units$inboundSchema: z.ZodNativeEnum<typeof Units> = z.nativeEnum(
-  Units,
-);
+export const Units$inboundSchema: z.ZodType<Units, z.ZodTypeDef, unknown> =
+  openEnums.inboundSchema(Units);
 /** @internal */
-export const Units$outboundSchema: z.ZodNativeEnum<typeof Units> =
-  Units$inboundSchema;
+export const Units$outboundSchema: z.ZodType<string, z.ZodTypeDef, Units> =
+  openEnums.outboundSchema(Units);
 
 /** @internal */
 export const Notes$inboundSchema: z.ZodType<Notes, z.ZodTypeDef, unknown> = z

@@ -3,8 +3,6 @@
 package components
 
 import (
-	"encoding/json"
-	"fmt"
 	"mockserver/internal/sdk/utils"
 	"time"
 )
@@ -25,31 +23,6 @@ const (
 func (e AccountingBankAccountAccountType) ToPointer() *AccountingBankAccountAccountType {
 	return &e
 }
-func (e *AccountingBankAccountAccountType) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "checking":
-		fallthrough
-	case "savings":
-		fallthrough
-	case "credit_card":
-		fallthrough
-	case "money_market":
-		fallthrough
-	case "line_of_credit":
-		fallthrough
-	case "other":
-		fallthrough
-	case "cash":
-		*e = AccountingBankAccountAccountType(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for AccountingBankAccountAccountType: %v", v)
-	}
-}
 
 // AccountingBankAccountStatus - The status of the bank account
 type AccountingBankAccountStatus string
@@ -62,23 +35,6 @@ const (
 
 func (e AccountingBankAccountStatus) ToPointer() *AccountingBankAccountStatus {
 	return &e
-}
-func (e *AccountingBankAccountStatus) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "active":
-		fallthrough
-	case "inactive":
-		fallthrough
-	case "closed":
-		*e = AccountingBankAccountStatus(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for AccountingBankAccountStatus: %v", v)
-	}
 }
 
 type AccountingBankAccount struct {

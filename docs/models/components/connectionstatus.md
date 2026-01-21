@@ -12,6 +12,8 @@ let value: ConnectionStatus = "live";
 
 ## Values
 
+This is an open enum. Unrecognized values will be captured as the `Unrecognized<string>` branded type.
+
 ```typescript
-"live" | "upcoming" | "requested"
+"live" | "upcoming" | "requested" | Unrecognized<string>
 ```

@@ -5,7 +5,8 @@
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
-import { ClosedEnum } from "../../types/enums.js";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
@@ -82,7 +83,7 @@ export const CreditNoteStatus = {
 /**
  * Status of credit notes
  */
-export type CreditNoteStatus = ClosedEnum<typeof CreditNoteStatus>;
+export type CreditNoteStatus = OpenEnum<typeof CreditNoteStatus>;
 
 /**
  * Type of payment
@@ -94,7 +95,7 @@ export const CreditNoteType = {
 /**
  * Type of payment
  */
-export type CreditNoteType = ClosedEnum<typeof CreditNoteType>;
+export type CreditNoteType = OpenEnum<typeof CreditNoteType>;
 
 export type CreditNote = {
   /**
@@ -331,22 +332,30 @@ export type CreditNoteInput = {
 };
 
 /** @internal */
-export const CreditNoteStatus$inboundSchema: z.ZodNativeEnum<
-  typeof CreditNoteStatus
-> = z.nativeEnum(CreditNoteStatus);
+export const CreditNoteStatus$inboundSchema: z.ZodType<
+  CreditNoteStatus,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(CreditNoteStatus);
 /** @internal */
-export const CreditNoteStatus$outboundSchema: z.ZodNativeEnum<
-  typeof CreditNoteStatus
-> = CreditNoteStatus$inboundSchema;
+export const CreditNoteStatus$outboundSchema: z.ZodType<
+  string,
+  z.ZodTypeDef,
+  CreditNoteStatus
+> = openEnums.outboundSchema(CreditNoteStatus);
 
 /** @internal */
-export const CreditNoteType$inboundSchema: z.ZodNativeEnum<
-  typeof CreditNoteType
-> = z.nativeEnum(CreditNoteType);
+export const CreditNoteType$inboundSchema: z.ZodType<
+  CreditNoteType,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(CreditNoteType);
 /** @internal */
-export const CreditNoteType$outboundSchema: z.ZodNativeEnum<
-  typeof CreditNoteType
-> = CreditNoteType$inboundSchema;
+export const CreditNoteType$outboundSchema: z.ZodType<
+  string,
+  z.ZodTypeDef,
+  CreditNoteType
+> = openEnums.outboundSchema(CreditNoteType);
 
 /** @internal */
 export const CreditNote$inboundSchema: z.ZodType<

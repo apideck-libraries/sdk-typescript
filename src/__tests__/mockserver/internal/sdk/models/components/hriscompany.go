@@ -3,8 +3,6 @@
 package components
 
 import (
-	"encoding/json"
-	"fmt"
 	"mockserver/internal/sdk/utils"
 	"time"
 )
@@ -20,25 +18,6 @@ const (
 
 func (e HrisCompanyStatus) ToPointer() *HrisCompanyStatus {
 	return &e
-}
-func (e *HrisCompanyStatus) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "active":
-		fallthrough
-	case "inactive":
-		fallthrough
-	case "trial":
-		fallthrough
-	case "other":
-		*e = HrisCompanyStatus(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for HrisCompanyStatus: %v", v)
-	}
 }
 
 type HrisCompany struct {

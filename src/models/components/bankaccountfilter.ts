@@ -4,7 +4,8 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { ClosedEnum } from "../../types/enums.js";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
 
 /**
  * Filter by account type
@@ -21,7 +22,7 @@ export const BankAccountFilterAccountType = {
 /**
  * Filter by account type
  */
-export type BankAccountFilterAccountType = ClosedEnum<
+export type BankAccountFilterAccountType = OpenEnum<
   typeof BankAccountFilterAccountType
 >;
 
@@ -33,9 +34,11 @@ export type BankAccountFilter = {
 };
 
 /** @internal */
-export const BankAccountFilterAccountType$outboundSchema: z.ZodNativeEnum<
-  typeof BankAccountFilterAccountType
-> = z.nativeEnum(BankAccountFilterAccountType);
+export const BankAccountFilterAccountType$outboundSchema: z.ZodType<
+  string,
+  z.ZodTypeDef,
+  BankAccountFilterAccountType
+> = openEnums.outboundSchema(BankAccountFilterAccountType);
 
 /** @internal */
 export type BankAccountFilter$Outbound = {

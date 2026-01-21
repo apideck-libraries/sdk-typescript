@@ -2,11 +2,6 @@
 
 package components
 
-import (
-	"encoding/json"
-	"fmt"
-)
-
 // PaymentFrequency - Frequency of employee compensation.
 type PaymentFrequency string
 
@@ -20,25 +15,4 @@ const (
 
 func (e PaymentFrequency) ToPointer() *PaymentFrequency {
 	return &e
-}
-func (e *PaymentFrequency) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "weekly":
-		fallthrough
-	case "biweekly":
-		fallthrough
-	case "monthly":
-		fallthrough
-	case "pro-rata":
-		fallthrough
-	case "other":
-		*e = PaymentFrequency(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for PaymentFrequency: %v", v)
-	}
 }

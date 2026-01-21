@@ -12,6 +12,8 @@ let value: LeavingReason = "resigned";
 
 ## Values
 
+This is an open enum. Unrecognized values will be captured as the `Unrecognized<string>` branded type.
+
 ```typescript
-"dismissed" | "resigned" | "redundancy" | "other"
+"dismissed" | "resigned" | "redundancy" | "other" | Unrecognized<string>
 ```

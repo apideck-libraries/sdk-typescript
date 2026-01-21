@@ -2,11 +2,6 @@
 
 package components
 
-import (
-	"encoding/json"
-	"fmt"
-)
-
 // CreditOrDebit - Whether the amount is a credit or debit.
 type CreditOrDebit string
 
@@ -17,19 +12,4 @@ const (
 
 func (e CreditOrDebit) ToPointer() *CreditOrDebit {
 	return &e
-}
-func (e *CreditOrDebit) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "credit":
-		fallthrough
-	case "debit":
-		*e = CreditOrDebit(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for CreditOrDebit: %v", v)
-	}
 }

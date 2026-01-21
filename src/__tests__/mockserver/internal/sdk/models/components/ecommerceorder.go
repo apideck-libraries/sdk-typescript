@@ -3,8 +3,6 @@
 package components
 
 import (
-	"encoding/json"
-	"fmt"
 	"mockserver/internal/sdk/utils"
 	"time"
 )
@@ -26,33 +24,6 @@ const (
 func (e EcommerceOrderPaymentStatus) ToPointer() *EcommerceOrderPaymentStatus {
 	return &e
 }
-func (e *EcommerceOrderPaymentStatus) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "pending":
-		fallthrough
-	case "authorized":
-		fallthrough
-	case "paid":
-		fallthrough
-	case "partial":
-		fallthrough
-	case "refunded":
-		fallthrough
-	case "voided":
-		fallthrough
-	case "unknown":
-		fallthrough
-	case "partially_refunded":
-		*e = EcommerceOrderPaymentStatus(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for EcommerceOrderPaymentStatus: %v", v)
-	}
-}
 
 // FulfillmentStatus - Current fulfillment status of the order.
 type FulfillmentStatus string
@@ -69,31 +40,6 @@ const (
 
 func (e FulfillmentStatus) ToPointer() *FulfillmentStatus {
 	return &e
-}
-func (e *FulfillmentStatus) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "pending":
-		fallthrough
-	case "shipped":
-		fallthrough
-	case "partial":
-		fallthrough
-	case "delivered":
-		fallthrough
-	case "cancelled":
-		fallthrough
-	case "returned":
-		fallthrough
-	case "unknown":
-		*e = FulfillmentStatus(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for FulfillmentStatus: %v", v)
-	}
 }
 
 type EcommerceOrder struct {

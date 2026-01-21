@@ -3,7 +3,8 @@
  */
 
 import * as z from "zod/v3";
-import { ClosedEnum } from "../../types/enums.js";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
 
 /**
  * The status of the job.
@@ -24,8 +25,11 @@ export const JobStatus = {
 /**
  * The status of the job.
  */
-export type JobStatus = ClosedEnum<typeof JobStatus>;
+export type JobStatus = OpenEnum<typeof JobStatus>;
 
 /** @internal */
-export const JobStatus$inboundSchema: z.ZodNativeEnum<typeof JobStatus> = z
-  .nativeEnum(JobStatus);
+export const JobStatus$inboundSchema: z.ZodType<
+  JobStatus,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(JobStatus);

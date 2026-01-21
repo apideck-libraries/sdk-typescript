@@ -10,7 +10,7 @@ type LinkedCustomerInput struct {
 	DisplayName *string `json:"display_name,omitempty"`
 	// The name of the customer. Deprecated, use display_name instead.
 	//
-	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
+	// Deprecated: Deprecated. Use display_name instead..
 	Name *string `json:"name,omitempty"`
 	// The email address of the customer.
 	Email *string `json:"email,omitempty"`

@@ -12,6 +12,8 @@ let value: PeriodType = "month";
 
 ## Values
 
+This is an open enum. Unrecognized values will be captured as the `Unrecognized<string>` branded type.
+
 ```typescript
-"month" | "quarter" | "year"
+"month" | "quarter" | "year" | Unrecognized<string>
 ```

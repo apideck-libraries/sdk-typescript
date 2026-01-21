@@ -3,8 +3,6 @@
 package components
 
 import (
-	"encoding/json"
-	"fmt"
 	"mockserver/internal/sdk/utils"
 )
 
@@ -19,25 +17,6 @@ const (
 
 func (e AllowAction) ToPointer() *AllowAction {
 	return &e
-}
-func (e *AllowAction) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "delete":
-		fallthrough
-	case "disconnect":
-		fallthrough
-	case "reauthorize":
-		fallthrough
-	case "disable":
-		*e = AllowAction(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for AllowAction: %v", v)
-	}
 }
 
 // Settings to change the way the Vault is displayed.

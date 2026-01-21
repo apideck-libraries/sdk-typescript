@@ -3,8 +3,6 @@
 package components
 
 import (
-	"encoding/json"
-	"fmt"
 	"mockserver/internal/sdk/types"
 	"mockserver/internal/sdk/utils"
 	"time"
@@ -24,29 +22,6 @@ const (
 
 func (e InvoiceLineItemType) ToPointer() *InvoiceLineItemType {
 	return &e
-}
-func (e *InvoiceLineItemType) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "sales_item":
-		fallthrough
-	case "discount":
-		fallthrough
-	case "info":
-		fallthrough
-	case "sub_total":
-		fallthrough
-	case "service":
-		fallthrough
-	case "other":
-		*e = InvoiceLineItemType(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for InvoiceLineItemType: %v", v)
-	}
 }
 
 type InvoiceLineItem struct {

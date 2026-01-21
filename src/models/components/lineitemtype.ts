@@ -3,7 +3,8 @@
  */
 
 import * as z from "zod/v3";
-import { ClosedEnum } from "../../types/enums.js";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
 
 /**
  * Line Item type
@@ -16,11 +17,17 @@ export const LineItemType = {
 /**
  * Line Item type
  */
-export type LineItemType = ClosedEnum<typeof LineItemType>;
+export type LineItemType = OpenEnum<typeof LineItemType>;
 
 /** @internal */
-export const LineItemType$inboundSchema: z.ZodNativeEnum<typeof LineItemType> =
-  z.nativeEnum(LineItemType);
+export const LineItemType$inboundSchema: z.ZodType<
+  LineItemType,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(LineItemType);
 /** @internal */
-export const LineItemType$outboundSchema: z.ZodNativeEnum<typeof LineItemType> =
-  LineItemType$inboundSchema;
+export const LineItemType$outboundSchema: z.ZodType<
+  string,
+  z.ZodTypeDef,
+  LineItemType
+> = openEnums.outboundSchema(LineItemType);

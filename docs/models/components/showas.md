@@ -10,6 +10,8 @@ let value: ShowAs = "busy";
 
 ## Values
 
+This is an open enum. Unrecognized values will be captured as the `Unrecognized<string>` branded type.
+
 ```typescript
-"free" | "busy"
+"free" | "busy" | Unrecognized<string>
 ```

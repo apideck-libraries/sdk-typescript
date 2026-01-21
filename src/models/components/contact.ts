@@ -5,7 +5,8 @@
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
-import { ClosedEnum } from "../../types/enums.js";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
@@ -63,7 +64,7 @@ export const ContactType = {
 /**
  * The type of the contact.
  */
-export type ContactType = ClosedEnum<typeof ContactType>;
+export type ContactType = OpenEnum<typeof ContactType>;
 
 /**
  * The gender of the contact.
@@ -76,7 +77,7 @@ export const ContactGender = {
 /**
  * The gender of the contact.
  */
-export type ContactGender = ClosedEnum<typeof ContactGender>;
+export type ContactGender = OpenEnum<typeof ContactGender>;
 
 export type Contact = {
   /**
@@ -148,7 +149,7 @@ export type Contact = {
    */
   birthday?: string | null | undefined;
   /**
-   * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+   * @deprecated field: This field is deprecated and may be removed in a future version..
    */
   image?: string | null | undefined;
   /**
@@ -287,7 +288,7 @@ export type ContactInput = {
    */
   birthday?: string | null | undefined;
   /**
-   * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+   * @deprecated field: This field is deprecated and may be removed in a future version..
    */
   image?: string | null | undefined;
   /**
@@ -337,20 +338,30 @@ export type ContactInput = {
 };
 
 /** @internal */
-export const ContactType$inboundSchema: z.ZodNativeEnum<typeof ContactType> = z
-  .nativeEnum(ContactType);
+export const ContactType$inboundSchema: z.ZodType<
+  ContactType,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(ContactType);
 /** @internal */
-export const ContactType$outboundSchema: z.ZodNativeEnum<typeof ContactType> =
-  ContactType$inboundSchema;
+export const ContactType$outboundSchema: z.ZodType<
+  string,
+  z.ZodTypeDef,
+  ContactType
+> = openEnums.outboundSchema(ContactType);
 
 /** @internal */
-export const ContactGender$inboundSchema: z.ZodNativeEnum<
-  typeof ContactGender
-> = z.nativeEnum(ContactGender);
+export const ContactGender$inboundSchema: z.ZodType<
+  ContactGender,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(ContactGender);
 /** @internal */
-export const ContactGender$outboundSchema: z.ZodNativeEnum<
-  typeof ContactGender
-> = ContactGender$inboundSchema;
+export const ContactGender$outboundSchema: z.ZodType<
+  string,
+  z.ZodTypeDef,
+  ContactGender
+> = openEnums.outboundSchema(ContactGender);
 
 /** @internal */
 export const Contact$inboundSchema: z.ZodType<Contact, z.ZodTypeDef, unknown> =

@@ -4,7 +4,8 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { ClosedEnum } from "../../types/enums.js";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
 
 /**
  * Time off request status to filter on
@@ -20,7 +21,7 @@ export const TimeOffRequestStatus = {
 /**
  * Time off request status to filter on
  */
-export type TimeOffRequestStatus = ClosedEnum<typeof TimeOffRequestStatus>;
+export type TimeOffRequestStatus = OpenEnum<typeof TimeOffRequestStatus>;
 
 export type TimeOffRequestsFilter = {
   /**
@@ -50,9 +51,11 @@ export type TimeOffRequestsFilter = {
 };
 
 /** @internal */
-export const TimeOffRequestStatus$outboundSchema: z.ZodNativeEnum<
-  typeof TimeOffRequestStatus
-> = z.nativeEnum(TimeOffRequestStatus);
+export const TimeOffRequestStatus$outboundSchema: z.ZodType<
+  string,
+  z.ZodTypeDef,
+  TimeOffRequestStatus
+> = openEnums.outboundSchema(TimeOffRequestStatus);
 
 /** @internal */
 export type TimeOffRequestsFilter$Outbound = {
