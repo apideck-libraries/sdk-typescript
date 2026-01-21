@@ -6,6 +6,7 @@ import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type OddWeeks = {
@@ -55,13 +56,13 @@ export const OddWeeks$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  hours_monday: z.number().optional(),
-  hours_tuesday: z.number().optional(),
-  hours_wednesday: z.number().optional(),
-  hours_thursday: z.number().optional(),
-  hours_friday: z.number().optional(),
-  hours_saturday: z.number().optional(),
-  hours_sunday: z.number().optional(),
+  hours_monday: types.optional(types.number()),
+  hours_tuesday: types.optional(types.number()),
+  hours_wednesday: types.optional(types.number()),
+  hours_thursday: types.optional(types.number()),
+  hours_friday: types.optional(types.number()),
+  hours_saturday: types.optional(types.number()),
+  hours_sunday: types.optional(types.number()),
 }).transform((v) => {
   return remap$(v, {
     "hours_monday": "hoursMonday",
@@ -90,13 +91,13 @@ export const EvenWeeks$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  hours_monday: z.number().optional(),
-  hours_tuesday: z.number().optional(),
-  hours_wednesday: z.number().optional(),
-  hours_thursday: z.number().optional(),
-  hours_friday: z.number().optional(),
-  hours_saturday: z.number().optional(),
-  hours_sunday: z.number().optional(),
+  hours_monday: types.optional(types.number()),
+  hours_tuesday: types.optional(types.number()),
+  hours_wednesday: types.optional(types.number()),
+  hours_thursday: types.optional(types.number()),
+  hours_friday: types.optional(types.number()),
+  hours_saturday: types.optional(types.number()),
+  hours_sunday: types.optional(types.number()),
 }).transform((v) => {
   return remap$(v, {
     "hours_monday": "hoursMonday",
@@ -125,8 +126,8 @@ export const WorkPattern$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  odd_weeks: z.lazy(() => OddWeeks$inboundSchema).optional(),
-  even_weeks: z.lazy(() => EvenWeeks$inboundSchema).optional(),
+  odd_weeks: types.optional(z.lazy(() => OddWeeks$inboundSchema)),
+  even_weeks: types.optional(z.lazy(() => EvenWeeks$inboundSchema)),
 }).transform((v) => {
   return remap$(v, {
     "odd_weeks": "oddWeeks",
@@ -150,9 +151,9 @@ export const Schedule$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  id: z.string(),
-  start_date: z.string(),
-  end_date: z.string(),
+  id: types.string(),
+  start_date: types.string(),
+  end_date: types.string(),
   work_pattern: z.lazy(() => WorkPattern$inboundSchema),
 }).transform((v) => {
   return remap$(v, {

@@ -8,6 +8,7 @@ import { safeParse } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   Currency,
@@ -275,37 +276,33 @@ export const AccountingBankAccount$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  id: z.string(),
-  downstream_id: z.nullable(z.string()).optional(),
-  display_id: z.nullable(z.string()).optional(),
-  name: z.nullable(z.string()).optional(),
-  account_number: z.nullable(z.string()).optional(),
-  account_type: AccountingBankAccountAccountType$inboundSchema.optional(),
+  id: types.string(),
+  downstream_id: z.nullable(types.string()).optional(),
+  display_id: z.nullable(types.string()).optional(),
+  name: z.nullable(types.string()).optional(),
+  account_number: z.nullable(types.string()).optional(),
+  account_type: types.optional(AccountingBankAccountAccountType$inboundSchema),
   ledger_account: z.nullable(LinkedLedgerAccount$inboundSchema).optional(),
-  bank_name: z.nullable(z.string()).optional(),
+  bank_name: z.nullable(types.string()).optional(),
   currency: z.nullable(Currency$inboundSchema).optional(),
-  balance: z.nullable(z.number()).optional(),
-  available_balance: z.nullable(z.number()).optional(),
-  overdraft_limit: z.nullable(z.number()).optional(),
-  routing_number: z.nullable(z.string()).optional(),
-  iban: z.nullable(z.string()).optional(),
-  bic: z.nullable(z.string()).optional(),
-  bsb_number: z.nullable(z.string()).optional(),
-  branch_identifier: z.nullable(z.string()).optional(),
-  bank_code: z.nullable(z.string()).optional(),
-  country: z.nullable(z.string()).optional(),
+  balance: z.nullable(types.number()).optional(),
+  available_balance: z.nullable(types.number()).optional(),
+  overdraft_limit: z.nullable(types.number()).optional(),
+  routing_number: z.nullable(types.string()).optional(),
+  iban: z.nullable(types.string()).optional(),
+  bic: z.nullable(types.string()).optional(),
+  bsb_number: z.nullable(types.string()).optional(),
+  branch_identifier: z.nullable(types.string()).optional(),
+  bank_code: z.nullable(types.string()).optional(),
+  country: z.nullable(types.string()).optional(),
   status: z.nullable(AccountingBankAccountStatus$inboundSchema).optional(),
-  description: z.nullable(z.string()).optional(),
-  custom_fields: z.array(CustomField$inboundSchema).optional(),
+  description: z.nullable(types.string()).optional(),
+  custom_fields: types.optional(z.array(CustomField$inboundSchema)),
   custom_mappings: z.nullable(z.record(z.any())).optional(),
-  created_at: z.nullable(
-    z.string().datetime({ offset: true }).transform(v => new Date(v)),
-  ).optional(),
-  updated_at: z.nullable(
-    z.string().datetime({ offset: true }).transform(v => new Date(v)),
-  ).optional(),
-  created_by: z.nullable(z.string()).optional(),
-  updated_by: z.nullable(z.string()).optional(),
+  created_at: z.nullable(types.date()).optional(),
+  updated_at: z.nullable(types.date()).optional(),
+  created_by: z.nullable(types.string()).optional(),
+  updated_by: z.nullable(types.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     "downstream_id": "downstreamId",

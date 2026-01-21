@@ -6,6 +6,7 @@ import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { AuthType, AuthType$inboundSchema } from "./authtype.js";
 import {
@@ -50,22 +51,22 @@ export const ConsumerConnection$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  id: z.string().optional(),
-  name: z.string().optional(),
-  icon: z.string().optional(),
-  logo: z.string().optional(),
-  website: z.string().optional(),
-  tag_line: z.string().optional(),
-  service_id: z.string().optional(),
-  unified_api: z.string().optional(),
-  consumer_id: z.string().optional(),
-  auth_type: AuthType$inboundSchema.optional(),
-  enabled: z.boolean().optional(),
+  id: types.optional(types.string()),
+  name: types.optional(types.string()),
+  icon: types.optional(types.string()),
+  logo: types.optional(types.string()),
+  website: types.optional(types.string()),
+  tag_line: types.optional(types.string()),
+  service_id: types.optional(types.string()),
+  unified_api: types.optional(types.string()),
+  consumer_id: types.optional(types.string()),
+  auth_type: types.optional(AuthType$inboundSchema),
+  enabled: types.optional(types.boolean()),
   settings: z.nullable(z.record(z.any())).optional(),
   metadata: z.nullable(z.record(z.any())).optional(),
-  created_at: z.string().optional(),
-  updated_at: z.nullable(z.string()).optional(),
-  state: ConnectionState$inboundSchema.optional(),
+  created_at: types.optional(types.string()),
+  updated_at: z.nullable(types.string()).optional(),
+  state: types.optional(ConnectionState$inboundSchema),
 }).transform((v) => {
   return remap$(v, {
     "tag_line": "tagLine",

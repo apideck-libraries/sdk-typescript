@@ -6,6 +6,7 @@ import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { Compensation, Compensation$inboundSchema } from "./compensation.js";
 import { PayrollTotals, PayrollTotals$inboundSchema } from "./payrolltotals.js";
@@ -56,15 +57,15 @@ export type Payroll = {
 /** @internal */
 export const Payroll$inboundSchema: z.ZodType<Payroll, z.ZodTypeDef, unknown> =
   z.object({
-    id: z.nullable(z.string()),
-    company_id: z.nullable(z.string()).optional(),
-    processed: z.nullable(z.boolean()),
-    processed_date: z.nullable(z.string()).optional(),
-    check_date: z.nullable(z.string()),
-    start_date: z.nullable(z.string()),
-    end_date: z.nullable(z.string()),
-    totals: PayrollTotals$inboundSchema.optional(),
-    compensations: z.array(Compensation$inboundSchema).optional(),
+    id: types.nullable(types.string()),
+    company_id: z.nullable(types.string()).optional(),
+    processed: types.nullable(types.boolean()),
+    processed_date: z.nullable(types.string()).optional(),
+    check_date: types.nullable(types.string()),
+    start_date: types.nullable(types.string()),
+    end_date: types.nullable(types.string()),
+    totals: types.optional(PayrollTotals$inboundSchema),
+    compensations: types.optional(z.array(Compensation$inboundSchema)),
     custom_mappings: z.nullable(z.record(z.any())).optional(),
   }).transform((v) => {
     return remap$(v, {

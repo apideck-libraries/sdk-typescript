@@ -8,6 +8,7 @@ import { safeParse } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
@@ -87,11 +88,11 @@ export const Allocation$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  id: z.string().optional(),
-  type: AllocationType$inboundSchema.optional(),
-  code: z.string().optional(),
-  amount: z.nullable(z.number()).optional(),
-  allocation_id: z.string().optional(),
+  id: types.optional(types.string()),
+  type: types.optional(AllocationType$inboundSchema),
+  code: types.optional(types.string()),
+  amount: z.nullable(types.number()).optional(),
+  allocation_id: types.optional(types.string()),
 }).transform((v) => {
   return remap$(v, {
     "allocation_id": "allocationId",

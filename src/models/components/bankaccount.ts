@@ -8,6 +8,7 @@ import { safeParse } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   Currency,
@@ -98,18 +99,18 @@ export const BankAccount$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  bank_name: z.nullable(z.string()).optional(),
-  account_number: z.nullable(z.string()).optional(),
-  account_name: z.nullable(z.string()).optional(),
+  bank_name: z.nullable(types.string()).optional(),
+  account_number: z.nullable(types.string()).optional(),
+  account_name: z.nullable(types.string()).optional(),
   account_type: z.nullable(AccountType$inboundSchema).optional(),
-  iban: z.nullable(z.string()).optional(),
-  bic: z.nullable(z.string()).optional(),
-  routing_number: z.nullable(z.string()).optional(),
-  bsb_number: z.nullable(z.string()).optional(),
-  branch_identifier: z.nullable(z.string()).optional(),
-  bank_code: z.nullable(z.string()).optional(),
+  iban: z.nullable(types.string()).optional(),
+  bic: z.nullable(types.string()).optional(),
+  routing_number: z.nullable(types.string()).optional(),
+  bsb_number: z.nullable(types.string()).optional(),
+  branch_identifier: z.nullable(types.string()).optional(),
+  bank_code: z.nullable(types.string()).optional(),
   currency: z.nullable(Currency$inboundSchema).optional(),
-  country: z.nullable(z.string()).optional(),
+  country: z.nullable(types.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     "bank_name": "bankName",

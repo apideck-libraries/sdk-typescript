@@ -105,7 +105,6 @@ Create Quote
 <!-- UsageSnippet language="typescript" operationID="accounting.quotesAdd" method="post" path="/accounting/quotes" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
-import { RFCDate } from "@apideck/unify/types";
 
 const apideck = new Apideck({
   consumerId: "test-consumer",
@@ -127,8 +126,8 @@ async function run() {
       companyId: "12345",
       departmentId: "12345",
       projectId: "12345",
-      quoteDate: new RFCDate("2020-09-30"),
-      expiryDate: new RFCDate("2020-10-30"),
+      quoteDate: new Date("2020-09-30"),
+      expiryDate: new Date("2020-10-30"),
       terms: "Valid for 30 days",
       reference: "INV-2024-001",
       status: "draft",
@@ -297,7 +296,6 @@ The standalone function version of this method:
 ```typescript
 import { ApideckCore } from "@apideck/unify/core.js";
 import { accountingQuotesCreate } from "@apideck/unify/funcs/accountingQuotesCreate.js";
-import { RFCDate } from "@apideck/unify/types";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -321,8 +319,8 @@ async function run() {
       companyId: "12345",
       departmentId: "12345",
       projectId: "12345",
-      quoteDate: new RFCDate("2020-09-30"),
-      expiryDate: new RFCDate("2020-10-30"),
+      quoteDate: new Date("2020-09-30"),
+      expiryDate: new Date("2020-10-30"),
       terms: "Valid for 30 days",
       reference: "INV-2024-001",
       status: "draft",
@@ -605,7 +603,6 @@ Update Quote
 <!-- UsageSnippet language="typescript" operationID="accounting.quotesUpdate" method="patch" path="/accounting/quotes/{id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
-import { RFCDate } from "@apideck/unify/types";
 
 const apideck = new Apideck({
   consumerId: "test-consumer",
@@ -628,8 +625,8 @@ async function run() {
       companyId: "12345",
       departmentId: "12345",
       projectId: "12345",
-      quoteDate: new RFCDate("2020-09-30"),
-      expiryDate: new RFCDate("2020-10-30"),
+      quoteDate: new Date("2020-09-30"),
+      expiryDate: new Date("2020-10-30"),
       terms: "Valid for 30 days",
       reference: "INV-2024-001",
       status: "draft",
@@ -791,7 +788,6 @@ The standalone function version of this method:
 ```typescript
 import { ApideckCore } from "@apideck/unify/core.js";
 import { accountingQuotesUpdate } from "@apideck/unify/funcs/accountingQuotesUpdate.js";
-import { RFCDate } from "@apideck/unify/types";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -816,8 +812,8 @@ async function run() {
       companyId: "12345",
       departmentId: "12345",
       projectId: "12345",
-      quoteDate: new RFCDate("2020-09-30"),
-      expiryDate: new RFCDate("2020-10-30"),
+      quoteDate: new Date("2020-09-30"),
+      expiryDate: new Date("2020-10-30"),
       terms: "Valid for 30 days",
       reference: "INV-2024-001",
       status: "draft",

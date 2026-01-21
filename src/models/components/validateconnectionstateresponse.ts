@@ -6,6 +6,7 @@ import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   ConnectionState,
@@ -48,8 +49,8 @@ export const ValidateConnectionStateResponseData$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  id: z.string().optional(),
-  state: ConnectionState$inboundSchema.optional(),
+  id: types.optional(types.string()),
+  state: types.optional(ConnectionState$inboundSchema),
 });
 
 export function validateConnectionStateResponseDataFromJSON(
@@ -69,8 +70,8 @@ export const ValidateConnectionStateResponse$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  status_code: z.number().int(),
-  status: z.string(),
+  status_code: types.number(),
+  status: types.string(),
   data: z.lazy(() => ValidateConnectionStateResponseData$inboundSchema),
   _raw: z.nullable(z.record(z.any())).optional(),
 }).transform((v) => {

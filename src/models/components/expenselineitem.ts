@@ -6,6 +6,7 @@ import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { LineItemType, LineItemType$inboundSchema } from "./lineitemtype.js";
 import {
@@ -107,27 +108,27 @@ export const ExpenseLineItem$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  id: z.string().optional(),
+  id: types.optional(types.string()),
   tracking_categories: z.nullable(
-    z.array(z.nullable(LinkedTrackingCategory$inboundSchema)),
+    z.array(types.nullable(LinkedTrackingCategory$inboundSchema)),
   ).optional(),
-  account_id: z.string().optional(),
+  account_id: types.optional(types.string()),
   account: z.nullable(LinkedLedgerAccount$inboundSchema).optional(),
-  customer_id: z.string().optional(),
+  customer_id: types.optional(types.string()),
   customer: z.nullable(LinkedCustomer$inboundSchema).optional(),
-  department_id: z.nullable(z.string()).optional(),
+  department_id: z.nullable(types.string()).optional(),
   department: z.nullable(LinkedDepartment$inboundSchema).optional(),
-  location_id: z.nullable(z.string()).optional(),
+  location_id: z.nullable(types.string()).optional(),
   location: z.nullable(LinkedLocation$inboundSchema).optional(),
-  tax_rate: LinkedTaxRate$inboundSchema.optional(),
-  description: z.nullable(z.string()).optional(),
+  tax_rate: types.optional(LinkedTaxRate$inboundSchema),
+  description: z.nullable(types.string()).optional(),
   type: z.nullable(LineItemType$inboundSchema).optional(),
-  total_amount: z.nullable(z.number()),
-  tax_amount: z.nullable(z.number()).optional(),
-  quantity: z.nullable(z.number()).optional(),
-  unit_price: z.nullable(z.number()).optional(),
-  item: LinkedInvoiceItem$inboundSchema.optional(),
-  line_number: z.nullable(z.number().int()).optional(),
+  total_amount: types.nullable(types.number()),
+  tax_amount: z.nullable(types.number()).optional(),
+  quantity: z.nullable(types.number()).optional(),
+  unit_price: z.nullable(types.number()).optional(),
+  item: types.optional(LinkedInvoiceItem$inboundSchema),
+  line_number: z.nullable(types.number()).optional(),
   rebilling: z.nullable(Rebilling$inboundSchema).optional(),
 }).transform((v) => {
   return remap$(v, {

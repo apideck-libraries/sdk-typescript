@@ -4,7 +4,6 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { RFCDate } from "../../types/rfcdate.js";
 import { Currency, Currency$outboundSchema } from "./currency.js";
 import {
   CustomField,
@@ -49,7 +48,7 @@ export type OpportunityInput = {
   /**
    * The actual closing date for the opportunity. If close_date is null, the opportunity is not closed yet.
    */
-  closeDate?: RFCDate | null | undefined;
+  closeDate?: Date | null | undefined;
   /**
    * The unique identifier of the reason why the opportunity was lost.
    */
@@ -176,8 +175,9 @@ export const OpportunityInput$outboundSchema: z.ZodType<
   monetaryAmount: z.nullable(z.number()).optional(),
   currency: z.nullable(Currency$outboundSchema).optional(),
   winProbability: z.nullable(z.number()).optional(),
-  closeDate: z.nullable(z.instanceof(RFCDate).transform(v => v.toString()))
-    .optional(),
+  closeDate: z.nullable(
+    z.date().transform(v => v.toISOString().slice(0, "YYYY-MM-DD".length)),
+  ).optional(),
   lossReasonId: z.nullable(z.string()).optional(),
   lossReason: z.nullable(z.string()).optional(),
   wonReasonId: z.nullable(z.string()).optional(),

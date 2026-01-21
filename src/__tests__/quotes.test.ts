@@ -4,7 +4,6 @@
 
 import { expect, test } from "vitest";
 import { Apideck } from "../index.js";
-import { RFCDate } from "../types/index.js";
 import { createTestHTTPClient } from "./testclient.js";
 
 test("Quotes Accounting Quotes All", async () => {
@@ -72,8 +71,8 @@ test("Quotes Accounting Quotes Add", async () => {
       companyId: "12345",
       departmentId: "12345",
       projectId: "12345",
-      quoteDate: new RFCDate("2020-09-30"),
-      expiryDate: new RFCDate("2020-10-30"),
+      quoteDate: new Date("2020-09-30"),
+      expiryDate: new Date("2020-10-30"),
       terms: "Valid for 30 days",
       reference: "INV-2024-001",
       status: "draft",
@@ -282,8 +281,8 @@ test("Quotes Accounting Quotes One", async () => {
       companyId: "12345",
       departmentId: "12345",
       projectId: "12345",
-      quoteDate: new RFCDate("2020-09-30"),
-      expiryDate: new RFCDate("2020-10-30"),
+      quoteDate: new Date("2020-09-30"),
+      expiryDate: new Date("2020-10-30"),
       terms: "Valid for 30 days",
       reference: "INV-2024-001",
       status: "draft",
@@ -477,8 +476,8 @@ test("Quotes Accounting Quotes Update", async () => {
       companyId: "12345",
       departmentId: "12345",
       projectId: "12345",
-      quoteDate: new RFCDate("2020-09-30"),
-      expiryDate: new RFCDate("2020-10-30"),
+      quoteDate: new Date("2020-09-30"),
+      expiryDate: new Date("2020-10-30"),
       terms: "Valid for 30 days",
       reference: "INV-2024-001",
       status: "draft",

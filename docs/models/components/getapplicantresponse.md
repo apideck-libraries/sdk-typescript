@@ -6,7 +6,6 @@ Applicants
 
 ```typescript
 import { GetApplicantResponse } from "@apideck/unify/models/components";
-import { RFCDate } from "@apideck/unify/types";
 
 let value: GetApplicantResponse = {
   statusCode: 200,
@@ -22,7 +21,7 @@ let value: GetApplicantResponse = {
     lastName: "Musk",
     middleName: "D.",
     initials: "EM",
-    birthday: new RFCDate("2000-08-12"),
+    birthday: new Date("2000-08-12"),
     gender: "male",
     socialSecurityNumber: "123456789",
     type: "Candidate",

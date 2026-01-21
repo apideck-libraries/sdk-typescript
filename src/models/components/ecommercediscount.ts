@@ -5,6 +5,7 @@
 import * as z from "zod/v3";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
@@ -31,9 +32,9 @@ export const EcommerceDiscount$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  code: z.nullable(z.string()).optional(),
-  amount: z.nullable(z.string()).optional(),
-  percentage: z.nullable(z.string()).optional(),
+  code: z.nullable(types.string()).optional(),
+  amount: z.nullable(types.string()).optional(),
+  percentage: z.nullable(types.string()).optional(),
 });
 
 export function ecommerceDiscountFromJSON(

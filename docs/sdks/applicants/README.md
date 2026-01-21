@@ -119,7 +119,6 @@ Create Applicant
 <!-- UsageSnippet language="typescript" operationID="ats.applicantsAdd" method="post" path="/ats/applicants" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
-import { RFCDate } from "@apideck/unify/types";
 
 const apideck = new Apideck({
   consumerId: "test-consumer",
@@ -136,7 +135,7 @@ async function run() {
       lastName: "Musk",
       middleName: "D.",
       initials: "EM",
-      birthday: new RFCDate("2000-08-12"),
+      birthday: new Date("2000-08-12"),
       coverLetter: "I submit this application to express my sincere interest in the API developer position. In the previous role, I was responsible for leadership and ...",
       photoUrl: "https://unavatar.io/elon-musk",
       headline: "PepsiCo, Inc, Central Perk",
@@ -358,7 +357,6 @@ The standalone function version of this method:
 ```typescript
 import { ApideckCore } from "@apideck/unify/core.js";
 import { atsApplicantsCreate } from "@apideck/unify/funcs/atsApplicantsCreate.js";
-import { RFCDate } from "@apideck/unify/types";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -377,7 +375,7 @@ async function run() {
       lastName: "Musk",
       middleName: "D.",
       initials: "EM",
-      birthday: new RFCDate("2000-08-12"),
+      birthday: new Date("2000-08-12"),
       coverLetter: "I submit this application to express my sincere interest in the API developer position. In the previous role, I was responsible for leadership and ...",
       photoUrl: "https://unavatar.io/elon-musk",
       headline: "PepsiCo, Inc, Central Perk",
@@ -715,7 +713,6 @@ Update Applicant
 <!-- UsageSnippet language="typescript" operationID="ats.applicantsUpdate" method="patch" path="/ats/applicants/{id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
-import { RFCDate } from "@apideck/unify/types";
 
 const apideck = new Apideck({
   consumerId: "test-consumer",
@@ -733,7 +730,7 @@ async function run() {
       lastName: "Musk",
       middleName: "D.",
       initials: "EM",
-      birthday: new RFCDate("2000-08-12"),
+      birthday: new Date("2000-08-12"),
       coverLetter: "I submit this application to express my sincere interest in the API developer position. In the previous role, I was responsible for leadership and ...",
       photoUrl: "https://unavatar.io/elon-musk",
       headline: "PepsiCo, Inc, Central Perk",
@@ -964,7 +961,6 @@ The standalone function version of this method:
 ```typescript
 import { ApideckCore } from "@apideck/unify/core.js";
 import { atsApplicantsUpdate } from "@apideck/unify/funcs/atsApplicantsUpdate.js";
-import { RFCDate } from "@apideck/unify/types";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -984,7 +980,7 @@ async function run() {
       lastName: "Musk",
       middleName: "D.",
       initials: "EM",
-      birthday: new RFCDate("2000-08-12"),
+      birthday: new Date("2000-08-12"),
       coverLetter: "I submit this application to express my sincere interest in the API developer position. In the previous role, I was responsible for leadership and ...",
       photoUrl: "https://unavatar.io/elon-musk",
       headline: "PepsiCo, Inc, Central Perk",

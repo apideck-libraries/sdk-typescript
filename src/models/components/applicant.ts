@@ -8,7 +8,7 @@ import { safeParse } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
-import { RFCDate } from "../../types/rfcdate.js";
+import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   Address,
@@ -133,7 +133,7 @@ export type Applicant = {
   /**
    * The date of birth of the person.
    */
-  birthday?: RFCDate | null | undefined;
+  birthday?: Date | null | undefined;
   /**
    * The gender represents the gender identity of a person.
    */
@@ -252,7 +252,7 @@ export type ApplicantInput = {
   /**
    * The date of birth of the person.
    */
-  birthday?: RFCDate | null | undefined;
+  birthday?: Date | null | undefined;
   /**
    * The gender represents the gender identity of a person.
    */
@@ -341,8 +341,8 @@ export const Websites$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  id: z.nullable(z.string()).optional(),
-  url: z.string(),
+  id: z.nullable(types.string()).optional(),
+  url: types.string(),
   type: z.nullable(ApplicantType$inboundSchema).optional(),
 });
 /** @internal */
@@ -382,9 +382,9 @@ export const SocialLinks$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  id: z.nullable(z.string()).optional(),
-  url: z.string(),
-  type: z.nullable(z.string()).optional(),
+  id: z.nullable(types.string()).optional(),
+  url: types.string(),
+  type: z.nullable(types.string()).optional(),
 });
 /** @internal */
 export type SocialLinks$Outbound = {
@@ -423,65 +423,57 @@ export const Applicant$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  id: z.string().optional(),
-  name: z.string().optional(),
-  salutation: z.nullable(z.string()).optional(),
-  first_name: z.nullable(z.string()).optional(),
-  last_name: z.nullable(z.string()).optional(),
-  middle_name: z.nullable(z.string()).optional(),
-  initials: z.nullable(z.string()).optional(),
-  birthday: z.nullable(z.string().transform(v => new RFCDate(v))).optional(),
+  id: types.optional(types.string()),
+  name: types.optional(types.string()),
+  salutation: z.nullable(types.string()).optional(),
+  first_name: z.nullable(types.string()).optional(),
+  last_name: z.nullable(types.string()).optional(),
+  middle_name: z.nullable(types.string()).optional(),
+  initials: z.nullable(types.string()).optional(),
+  birthday: z.nullable(types.date()).optional(),
   gender: z.nullable(ApplicantGender$inboundSchema).optional(),
-  social_security_number: z.nullable(z.string()).optional(),
-  type: z.string().optional(),
-  cover_letter: z.string().optional(),
-  job_url: z.nullable(z.string()).optional(),
-  photo_url: z.nullable(z.string()).optional(),
-  headline: z.string().optional(),
-  title: z.nullable(z.string()).optional(),
-  emails: z.array(Email$inboundSchema).optional(),
-  custom_fields: z.array(CustomField$inboundSchema).optional(),
-  phone_numbers: z.array(PhoneNumber$inboundSchema).optional(),
-  addresses: z.array(Address$inboundSchema).optional(),
-  websites: z.array(z.lazy(() => Websites$inboundSchema)).optional(),
-  social_links: z.array(z.lazy(() => SocialLinks$inboundSchema)).optional(),
-  stage_id: z.string().optional(),
-  recruiter_id: z.string().optional(),
-  coordinator_id: z.string().optional(),
-  application_ids: z.nullable(z.array(z.string())).optional(),
-  applications: z.nullable(z.array(z.string())).optional(),
-  followers: z.nullable(z.array(z.string())).optional(),
-  sources: z.nullable(z.array(z.string())).optional(),
-  source_id: z.string().optional(),
-  confidential: z.boolean().optional(),
-  anonymized: z.boolean().optional(),
-  tags: z.nullable(z.array(z.string())).optional(),
-  archived: z.nullable(z.boolean()).optional(),
-  last_interaction_at: z.nullable(
-    z.string().datetime({ offset: true }).transform(v => new Date(v)),
-  ).optional(),
-  owner_id: z.nullable(z.string()).optional(),
-  sourced_by: z.nullable(z.string()).optional(),
-  cv_url: z.string().optional(),
-  record_url: z.nullable(z.string()).optional(),
-  rejected_at: z.nullable(
-    z.string().datetime({ offset: true }).transform(v => new Date(v)),
-  ).optional(),
+  social_security_number: z.nullable(types.string()).optional(),
+  type: types.optional(types.string()),
+  cover_letter: types.optional(types.string()),
+  job_url: z.nullable(types.string()).optional(),
+  photo_url: z.nullable(types.string()).optional(),
+  headline: types.optional(types.string()),
+  title: z.nullable(types.string()).optional(),
+  emails: types.optional(z.array(Email$inboundSchema)),
+  custom_fields: types.optional(z.array(CustomField$inboundSchema)),
+  phone_numbers: types.optional(z.array(PhoneNumber$inboundSchema)),
+  addresses: types.optional(z.array(Address$inboundSchema)),
+  websites: types.optional(z.array(z.lazy(() => Websites$inboundSchema))),
+  social_links: types.optional(
+    z.array(z.lazy(() => SocialLinks$inboundSchema)),
+  ),
+  stage_id: types.optional(types.string()),
+  recruiter_id: types.optional(types.string()),
+  coordinator_id: types.optional(types.string()),
+  application_ids: z.nullable(z.array(types.string())).optional(),
+  applications: z.nullable(z.array(types.string())).optional(),
+  followers: z.nullable(z.array(types.string())).optional(),
+  sources: z.nullable(z.array(types.string())).optional(),
+  source_id: types.optional(types.string()),
+  confidential: types.optional(types.boolean()),
+  anonymized: types.optional(types.boolean()),
+  tags: z.nullable(z.array(types.string())).optional(),
+  archived: z.nullable(types.boolean()).optional(),
+  last_interaction_at: z.nullable(types.date()).optional(),
+  owner_id: z.nullable(types.string()).optional(),
+  sourced_by: z.nullable(types.string()).optional(),
+  cv_url: types.optional(types.string()),
+  record_url: z.nullable(types.string()).optional(),
+  rejected_at: z.nullable(types.date()).optional(),
   custom_mappings: z.nullable(z.record(z.any())).optional(),
-  deleted: z.nullable(z.boolean()).optional(),
-  deleted_by: z.nullable(z.string()).optional(),
-  deleted_at: z.nullable(
-    z.string().datetime({ offset: true }).transform(v => new Date(v)),
-  ).optional(),
-  updated_by: z.nullable(z.string()).optional(),
-  created_by: z.nullable(z.string()).optional(),
-  updated_at: z.nullable(
-    z.string().datetime({ offset: true }).transform(v => new Date(v)),
-  ).optional(),
-  created_at: z.nullable(
-    z.string().datetime({ offset: true }).transform(v => new Date(v)),
-  ).optional(),
-  pass_through: z.array(PassThroughBody$inboundSchema).optional(),
+  deleted: z.nullable(types.boolean()).optional(),
+  deleted_by: z.nullable(types.string()).optional(),
+  deleted_at: z.nullable(types.date()).optional(),
+  updated_by: z.nullable(types.string()).optional(),
+  created_by: z.nullable(types.string()).optional(),
+  updated_at: z.nullable(types.date()).optional(),
+  created_at: z.nullable(types.date()).optional(),
+  pass_through: types.optional(z.array(PassThroughBody$inboundSchema)),
 }).transform((v) => {
   return remap$(v, {
     "first_name": "firstName",
@@ -577,8 +569,9 @@ export const ApplicantInput$outboundSchema: z.ZodType<
   lastName: z.nullable(z.string()).optional(),
   middleName: z.nullable(z.string()).optional(),
   initials: z.nullable(z.string()).optional(),
-  birthday: z.nullable(z.instanceof(RFCDate).transform(v => v.toString()))
-    .optional(),
+  birthday: z.nullable(
+    z.date().transform(v => v.toISOString().slice(0, "YYYY-MM-DD".length)),
+  ).optional(),
   gender: z.nullable(ApplicantGender$outboundSchema).optional(),
   socialSecurityNumber: z.nullable(z.string()).optional(),
   type: z.string().optional(),

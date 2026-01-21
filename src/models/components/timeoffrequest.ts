@@ -8,6 +8,7 @@ import { safeParse } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   PassThroughBody,
@@ -249,8 +250,8 @@ export const Units$outboundSchema: z.ZodType<string, z.ZodTypeDef, Units> =
 /** @internal */
 export const Notes$inboundSchema: z.ZodType<Notes, z.ZodTypeDef, unknown> = z
   .object({
-    employee: z.nullable(z.string()).optional(),
-    manager: z.nullable(z.string()).optional(),
+    employee: z.nullable(types.string()).optional(),
+    manager: z.nullable(types.string()).optional(),
   });
 /** @internal */
 export type Notes$Outbound = {
@@ -287,31 +288,27 @@ export const TimeOffRequest$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  id: z.string().optional(),
-  employee_id: z.nullable(z.string()).optional(),
-  policy_id: z.nullable(z.string()).optional(),
+  id: types.optional(types.string()),
+  employee_id: z.nullable(types.string()).optional(),
+  policy_id: z.nullable(types.string()).optional(),
   status: z.nullable(TimeOffRequestStatusStatus$inboundSchema).optional(),
-  description: z.nullable(z.string()).optional(),
-  start_date: z.nullable(z.string()).optional(),
-  end_date: z.nullable(z.string()).optional(),
-  request_date: z.nullable(z.string()).optional(),
+  description: z.nullable(types.string()).optional(),
+  start_date: z.nullable(types.string()).optional(),
+  end_date: z.nullable(types.string()).optional(),
+  request_date: z.nullable(types.string()).optional(),
   request_type: z.nullable(RequestType$inboundSchema).optional(),
-  approval_date: z.nullable(z.string()).optional(),
+  approval_date: z.nullable(types.string()).optional(),
   units: z.nullable(Units$inboundSchema).optional(),
-  amount: z.nullable(z.number()).optional(),
-  day_part: z.nullable(z.string()).optional(),
-  notes: z.lazy(() => Notes$inboundSchema).optional(),
+  amount: z.nullable(types.number()).optional(),
+  day_part: z.nullable(types.string()).optional(),
+  notes: types.optional(z.lazy(() => Notes$inboundSchema)),
   custom_mappings: z.nullable(z.record(z.any())).optional(),
-  updated_by: z.nullable(z.string()).optional(),
-  created_by: z.nullable(z.string()).optional(),
-  updated_at: z.nullable(
-    z.string().datetime({ offset: true }).transform(v => new Date(v)),
-  ).optional(),
-  created_at: z.nullable(
-    z.string().datetime({ offset: true }).transform(v => new Date(v)),
-  ).optional(),
-  pass_through: z.array(PassThroughBody$inboundSchema).optional(),
-  policy_type: z.string().optional(),
+  updated_by: z.nullable(types.string()).optional(),
+  created_by: z.nullable(types.string()).optional(),
+  updated_at: z.nullable(types.date()).optional(),
+  created_at: z.nullable(types.date()).optional(),
+  pass_through: types.optional(z.array(PassThroughBody$inboundSchema)),
+  policy_type: types.optional(types.string()),
 }).transform((v) => {
   return remap$(v, {
     "employee_id": "employeeId",

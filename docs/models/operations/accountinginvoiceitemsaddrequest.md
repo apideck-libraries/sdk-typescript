@@ -4,7 +4,6 @@
 
 ```typescript
 import { AccountingInvoiceItemsAddRequest } from "@apideck/unify/models/operations";
-import { RFCDate } from "@apideck/unify/types";
 
 let value: AccountingInvoiceItemsAddRequest = {
   serviceId: "salesforce",
@@ -18,7 +17,7 @@ let value: AccountingInvoiceItemsAddRequest = {
     purchased: true,
     tracked: true,
     taxable: true,
-    inventoryDate: new RFCDate("2020-10-30"),
+    inventoryDate: new Date("2020-10-30"),
     type: "inventory",
     salesDetails: {
       unitPrice: 27500.5,

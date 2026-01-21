@@ -6,6 +6,7 @@ import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type EcommerceStore = {
@@ -45,17 +46,13 @@ export const EcommerceStore$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  id: z.string(),
-  name: z.nullable(z.string()).optional(),
-  store_url: z.nullable(z.string()).optional(),
-  admin_url: z.nullable(z.string()).optional(),
+  id: types.string(),
+  name: z.nullable(types.string()).optional(),
+  store_url: z.nullable(types.string()).optional(),
+  admin_url: z.nullable(types.string()).optional(),
   custom_mappings: z.nullable(z.record(z.any())).optional(),
-  created_at: z.nullable(
-    z.string().datetime({ offset: true }).transform(v => new Date(v)),
-  ).optional(),
-  updated_at: z.nullable(
-    z.string().datetime({ offset: true }).transform(v => new Date(v)),
-  ).optional(),
+  created_at: z.nullable(types.date()).optional(),
+  updated_at: z.nullable(types.date()).optional(),
 }).transform((v) => {
   return remap$(v, {
     "store_url": "storeUrl",

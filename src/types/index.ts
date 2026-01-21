@@ -3,9 +3,11 @@
  */
 
 export { blobLikeSchema, isBlobLike } from "./blobs.js";
+export * from "./defaultToZeroValue.js";
 export type { ClosedEnum, OpenEnum } from "./enums.js";
 export type { Result } from "./fp.js";
 export type { PageIterator, Paginator } from "./operations.js";
 export { createPageIterator } from "./operations.js";
+export * from "./primitives.js";
 export { RFCDate } from "./rfcdate.js";
 export * from "./unrecognized.js";

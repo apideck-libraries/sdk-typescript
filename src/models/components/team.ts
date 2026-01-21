@@ -5,6 +5,7 @@
 import * as z from "zod/v3";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
@@ -24,8 +25,8 @@ export type Team = {
 /** @internal */
 export const Team$inboundSchema: z.ZodType<Team, z.ZodTypeDef, unknown> = z
   .object({
-    id: z.nullable(z.string()).optional(),
-    name: z.nullable(z.string()).optional(),
+    id: z.nullable(types.string()).optional(),
+    name: z.nullable(types.string()).optional(),
   });
 /** @internal */
 export type Team$Outbound = {

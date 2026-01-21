@@ -8,6 +8,8 @@ import { safeParse } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import * as types from "../../types/primitives.js";
+import { smartUnion } from "../../types/smartUnion.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { AuthType, AuthType$inboundSchema } from "./authtype.js";
 import {
@@ -293,8 +295,8 @@ export const Target$inboundSchema: z.ZodType<Target, z.ZodTypeDef, unknown> =
   openEnums.inboundSchema(Target);
 
 /** @internal */
-export const Value5$inboundSchema: z.ZodType<Value5, z.ZodTypeDef, unknown> = z
-  .union([z.string(), z.number().int(), z.number()]);
+export const Value5$inboundSchema: z.ZodType<Value5, z.ZodTypeDef, unknown> =
+  smartUnion([types.string(), types.number(), types.number()]);
 /** @internal */
 export type Value5$Outbound = string | number | number;
 
@@ -303,7 +305,7 @@ export const Value5$outboundSchema: z.ZodType<
   Value5$Outbound,
   z.ZodTypeDef,
   Value5
-> = z.union([z.string(), z.number().int(), z.number()]);
+> = smartUnion([z.string(), z.number().int(), z.number()]);
 
 export function value5ToJSON(value5: Value5): string {
   return JSON.stringify(Value5$outboundSchema.parse(value5));
@@ -323,12 +325,12 @@ export const ConnectionValue$inboundSchema: z.ZodType<
   ConnectionValue,
   z.ZodTypeDef,
   unknown
-> = z.union([
-  z.string(),
-  z.number().int(),
-  z.number(),
-  z.boolean(),
-  z.array(z.union([z.string(), z.number().int(), z.number()])),
+> = smartUnion([
+  types.string(),
+  types.number(),
+  types.number(),
+  types.boolean(),
+  z.array(smartUnion([types.string(), types.number(), types.number()])),
 ]);
 /** @internal */
 export type ConnectionValue$Outbound =
@@ -343,12 +345,12 @@ export const ConnectionValue$outboundSchema: z.ZodType<
   ConnectionValue$Outbound,
   z.ZodTypeDef,
   ConnectionValue
-> = z.union([
+> = smartUnion([
   z.string(),
   z.number().int(),
   z.number(),
   z.boolean(),
-  z.array(z.union([z.string(), z.number().int(), z.number()])),
+  z.array(smartUnion([z.string(), z.number().int(), z.number()])),
 ]);
 
 export function connectionValueToJSON(
@@ -372,16 +374,18 @@ export const Defaults$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  target: Target$inboundSchema.optional(),
-  id: z.string().optional(),
-  options: z.array(FormFieldOption$inboundSchema).optional(),
-  value: z.union([
-    z.string(),
-    z.number().int(),
-    z.number(),
-    z.boolean(),
-    z.array(z.union([z.string(), z.number().int(), z.number()])),
-  ]).optional(),
+  target: types.optional(Target$inboundSchema),
+  id: types.optional(types.string()),
+  options: types.optional(z.array(FormFieldOption$inboundSchema)),
+  value: types.optional(
+    smartUnion([
+      types.string(),
+      types.number(),
+      types.number(),
+      types.boolean(),
+      z.array(smartUnion([types.string(), types.number(), types.number()])),
+    ]),
+  ),
 });
 
 export function defaultsFromJSON(
@@ -400,8 +404,8 @@ export const Configuration$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  resource: z.string().optional(),
-  defaults: z.array(z.lazy(() => Defaults$inboundSchema)).optional(),
+  resource: types.optional(types.string()),
+  defaults: types.optional(z.array(z.lazy(() => Defaults$inboundSchema))),
 });
 
 export function configurationFromJSON(
@@ -424,44 +428,46 @@ export const Connection$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  id: z.string().optional(),
-  service_id: z.string().optional(),
-  name: z.string().optional(),
-  tag_line: z.string().optional(),
-  unified_api: z.string().optional(),
-  state: ConnectionState$inboundSchema.optional(),
-  integration_state: IntegrationState$inboundSchema.optional(),
-  auth_type: AuthType$inboundSchema.optional(),
-  oauth_grant_type: OAuthGrantType$inboundSchema.optional(),
-  status: ConnectionStatus$inboundSchema.optional(),
-  enabled: z.boolean().optional(),
-  website: z.string().optional(),
-  icon: z.string().optional(),
-  logo: z.string().optional(),
-  authorize_url: z.nullable(z.string()).optional(),
-  revoke_url: z.nullable(z.string()).optional(),
+  id: types.optional(types.string()),
+  service_id: types.optional(types.string()),
+  name: types.optional(types.string()),
+  tag_line: types.optional(types.string()),
+  unified_api: types.optional(types.string()),
+  state: types.optional(ConnectionState$inboundSchema),
+  integration_state: types.optional(IntegrationState$inboundSchema),
+  auth_type: types.optional(AuthType$inboundSchema),
+  oauth_grant_type: types.optional(OAuthGrantType$inboundSchema),
+  status: types.optional(ConnectionStatus$inboundSchema),
+  enabled: types.optional(types.boolean()),
+  website: types.optional(types.string()),
+  icon: types.optional(types.string()),
+  logo: types.optional(types.string()),
+  authorize_url: z.nullable(types.string()).optional(),
+  revoke_url: z.nullable(types.string()).optional(),
   settings: z.nullable(z.record(z.any())).optional(),
   metadata: z.nullable(z.record(z.any())).optional(),
-  form_fields: z.array(FormField$inboundSchema).optional(),
-  configuration: z.array(z.lazy(() => Configuration$inboundSchema)).optional(),
-  configurable_resources: z.array(z.string()).optional(),
-  resource_schema_support: z.array(z.string()).optional(),
-  resource_settings_support: z.array(z.string()).optional(),
-  validation_support: z.boolean().optional(),
-  schema_support: z.boolean().optional(),
-  settings_required_for_authorization: z.array(z.string()).optional(),
-  subscriptions: z.array(WebhookSubscription$inboundSchema).optional(),
-  has_guide: z.boolean().optional(),
-  custom_mappings: z.array(CustomMapping$inboundSchema).optional(),
-  consent_state: ConsentState$inboundSchema.optional(),
-  consents: z.array(ConsentRecord$inboundSchema).optional(),
-  latest_consent: ConsentRecord$inboundSchema.optional(),
-  application_data_scopes: DataScopes$inboundSchema.optional(),
-  health: Health$inboundSchema.optional(),
-  credentials_expire_at: z.number().optional(),
-  last_refresh_failed_at: z.number().optional(),
-  created_at: z.number().optional(),
-  updated_at: z.nullable(z.number()).optional(),
+  form_fields: types.optional(z.array(FormField$inboundSchema)),
+  configuration: types.optional(
+    z.array(z.lazy(() => Configuration$inboundSchema)),
+  ),
+  configurable_resources: types.optional(z.array(types.string())),
+  resource_schema_support: types.optional(z.array(types.string())),
+  resource_settings_support: types.optional(z.array(types.string())),
+  validation_support: types.optional(types.boolean()),
+  schema_support: types.optional(types.boolean()),
+  settings_required_for_authorization: types.optional(z.array(types.string())),
+  subscriptions: types.optional(z.array(WebhookSubscription$inboundSchema)),
+  has_guide: types.optional(types.boolean()),
+  custom_mappings: types.optional(z.array(CustomMapping$inboundSchema)),
+  consent_state: types.optional(ConsentState$inboundSchema),
+  consents: types.optional(z.array(ConsentRecord$inboundSchema)),
+  latest_consent: types.optional(ConsentRecord$inboundSchema),
+  application_data_scopes: types.optional(DataScopes$inboundSchema),
+  health: types.optional(Health$inboundSchema),
+  credentials_expire_at: types.optional(types.number()),
+  last_refresh_failed_at: types.optional(types.number()),
+  created_at: types.optional(types.number()),
+  updated_at: z.nullable(types.number()).optional(),
 }).transform((v) => {
   return remap$(v, {
     "service_id": "serviceId",
@@ -522,12 +528,12 @@ export const ConnectionDefaults$outboundSchema: z.ZodType<
 > = z.object({
   id: z.string().optional(),
   options: z.array(FormFieldOption$outboundSchema).optional(),
-  value: z.union([
+  value: smartUnion([
     z.string(),
     z.number().int(),
     z.number(),
     z.boolean(),
-    z.array(z.union([z.string(), z.number().int(), z.number()])),
+    z.array(smartUnion([z.string(), z.number().int(), z.number()])),
   ]).optional(),
 });
 

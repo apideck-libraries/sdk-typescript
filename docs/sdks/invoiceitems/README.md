@@ -129,7 +129,6 @@ Create Invoice Item
 <!-- UsageSnippet language="typescript" operationID="accounting.invoiceItemsAdd" method="post" path="/accounting/invoice-items" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
-import { RFCDate } from "@apideck/unify/types";
 
 const apideck = new Apideck({
   consumerId: "test-consumer",
@@ -148,7 +147,7 @@ async function run() {
       purchased: true,
       tracked: true,
       taxable: true,
-      inventoryDate: new RFCDate("2020-10-30"),
+      inventoryDate: new Date("2020-10-30"),
       type: "inventory",
       salesDetails: {
         unitPrice: 27500.5,
@@ -231,7 +230,6 @@ The standalone function version of this method:
 ```typescript
 import { ApideckCore } from "@apideck/unify/core.js";
 import { accountingInvoiceItemsCreate } from "@apideck/unify/funcs/accountingInvoiceItemsCreate.js";
-import { RFCDate } from "@apideck/unify/types";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -252,7 +250,7 @@ async function run() {
       purchased: true,
       tracked: true,
       taxable: true,
-      inventoryDate: new RFCDate("2020-10-30"),
+      inventoryDate: new Date("2020-10-30"),
       type: "inventory",
       salesDetails: {
         unitPrice: 27500.5,
@@ -457,7 +455,6 @@ Update Invoice Item
 <!-- UsageSnippet language="typescript" operationID="accounting.invoiceItemsUpdate" method="patch" path="/accounting/invoice-items/{id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
-import { RFCDate } from "@apideck/unify/types";
 
 const apideck = new Apideck({
   consumerId: "test-consumer",
@@ -477,7 +474,7 @@ async function run() {
       purchased: true,
       tracked: true,
       taxable: true,
-      inventoryDate: new RFCDate("2020-10-30"),
+      inventoryDate: new Date("2020-10-30"),
       type: "inventory",
       salesDetails: {
         unitPrice: 27500.5,
@@ -570,7 +567,6 @@ The standalone function version of this method:
 ```typescript
 import { ApideckCore } from "@apideck/unify/core.js";
 import { accountingInvoiceItemsUpdate } from "@apideck/unify/funcs/accountingInvoiceItemsUpdate.js";
-import { RFCDate } from "@apideck/unify/types";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -592,7 +588,7 @@ async function run() {
       purchased: true,
       tracked: true,
       taxable: true,
-      inventoryDate: new RFCDate("2020-10-30"),
+      inventoryDate: new Date("2020-10-30"),
       type: "inventory",
       salesDetails: {
         unitPrice: 27500.5,

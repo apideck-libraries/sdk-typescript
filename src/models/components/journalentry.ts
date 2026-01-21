@@ -8,6 +8,7 @@ import { safeParse } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   Currency,
@@ -273,41 +274,36 @@ export const JournalEntry$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  id: z.string().optional(),
-  downstream_id: z.nullable(z.string()).optional(),
-  display_id: z.nullable(z.string()).optional(),
-  title: z.nullable(z.string()).optional(),
-  currency_rate: z.nullable(z.number()).optional(),
+  id: types.optional(types.string()),
+  downstream_id: z.nullable(types.string()).optional(),
+  display_id: z.nullable(types.string()).optional(),
+  title: z.nullable(types.string()).optional(),
+  currency_rate: z.nullable(types.number()).optional(),
   currency: z.nullable(Currency$inboundSchema).optional(),
-  company_id: z.nullable(z.string()).optional(),
-  line_items: z.array(JournalEntryLineItem$inboundSchema).optional(),
+  company_id: z.nullable(types.string()).optional(),
+  line_items: types.optional(z.array(JournalEntryLineItem$inboundSchema)),
   status: z.nullable(JournalEntryStatus$inboundSchema).optional(),
-  memo: z.nullable(z.string()).optional(),
-  posted_at: z.string().datetime({ offset: true }).transform(v => new Date(v))
-    .optional(),
-  journal_symbol: z.nullable(z.string()).optional(),
-  tax_type: z.nullable(z.string()).optional(),
-  tax_code: z.nullable(z.string()).optional(),
-  number: z.nullable(z.string()).optional(),
+  memo: z.nullable(types.string()).optional(),
+  posted_at: types.optional(types.date()),
+  journal_symbol: z.nullable(types.string()).optional(),
+  tax_type: z.nullable(types.string()).optional(),
+  tax_code: z.nullable(types.string()).optional(),
+  number: z.nullable(types.string()).optional(),
   tracking_categories: z.nullable(
-    z.array(z.nullable(LinkedTrackingCategory$inboundSchema)),
+    z.array(types.nullable(LinkedTrackingCategory$inboundSchema)),
   ).optional(),
-  accounting_period: z.nullable(z.string()).optional(),
-  tax_inclusive: z.nullable(z.boolean()).optional(),
-  source_type: z.nullable(z.string()).optional(),
-  source_id: z.nullable(z.string()).optional(),
+  accounting_period: z.nullable(types.string()).optional(),
+  tax_inclusive: z.nullable(types.boolean()).optional(),
+  source_type: z.nullable(types.string()).optional(),
+  source_id: z.nullable(types.string()).optional(),
   custom_mappings: z.nullable(z.record(z.any())).optional(),
-  updated_by: z.nullable(z.string()).optional(),
-  created_by: z.nullable(z.string()).optional(),
-  updated_at: z.nullable(
-    z.string().datetime({ offset: true }).transform(v => new Date(v)),
-  ).optional(),
-  created_at: z.nullable(
-    z.string().datetime({ offset: true }).transform(v => new Date(v)),
-  ).optional(),
-  row_version: z.nullable(z.string()).optional(),
-  custom_fields: z.array(CustomField$inboundSchema).optional(),
-  pass_through: z.array(PassThroughBody$inboundSchema).optional(),
+  updated_by: z.nullable(types.string()).optional(),
+  created_by: z.nullable(types.string()).optional(),
+  updated_at: z.nullable(types.date()).optional(),
+  created_at: z.nullable(types.date()).optional(),
+  row_version: z.nullable(types.string()).optional(),
+  custom_fields: types.optional(z.array(CustomField$inboundSchema)),
+  pass_through: types.optional(z.array(PassThroughBody$inboundSchema)),
 }).transform((v) => {
   return remap$(v, {
     "downstream_id": "downstreamId",

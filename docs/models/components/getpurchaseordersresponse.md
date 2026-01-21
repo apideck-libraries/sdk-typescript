@@ -6,7 +6,6 @@ PurchaseOrders
 
 ```typescript
 import { GetPurchaseOrdersResponse } from "@apideck/unify/models/components";
-import { RFCDate } from "@apideck/unify/types";
 
 let value: GetPurchaseOrdersResponse = {
   statusCode: 200,
@@ -59,9 +58,9 @@ let value: GetPurchaseOrdersResponse = {
       locationId: "12345",
       departmentId: "12345",
       status: "open",
-      issuedDate: new RFCDate("2020-09-30"),
-      deliveryDate: new RFCDate("2020-09-30"),
-      expectedArrivalDate: new RFCDate("2020-09-30"),
+      issuedDate: new Date("2020-09-30"),
+      deliveryDate: new Date("2020-09-30"),
+      expectedArrivalDate: new Date("2020-09-30"),
       currency: "USD",
       currencyRate: 0.69,
       subTotal: 27500,
@@ -84,7 +83,7 @@ let value: GetPurchaseOrdersResponse = {
           unitOfMeasure: "pc.",
           discountPercentage: 0.01,
           discountAmount: 19.99,
-          serviceDate: new RFCDate("2024-01-15"),
+          serviceDate: new Date("2024-01-15"),
           categoryId: "12345",
           locationId: "12345",
           departmentId: "12345",
@@ -223,7 +222,7 @@ let value: GetPurchaseOrdersResponse = {
         country: "US",
       },
       accountingByRow: false,
-      dueDate: new RFCDate("2020-10-30"),
+      dueDate: new Date("2020-10-30"),
       paymentMethod: "cash",
       terms: "Net 30 days",
       taxCode: "1234",

@@ -4,7 +4,6 @@
 
 ```typescript
 import { AccountingLedgerAccountsUpdateRequest } from "@apideck/unify/models/operations";
-import { RFCDate } from "@apideck/unify/types";
 
 let value: AccountingLedgerAccountsUpdateRequest = {
   id: "<id>",
@@ -51,7 +50,7 @@ let value: AccountingLedgerAccountsUpdateRequest = {
       displayId: "1-1100",
     },
     subAccount: false,
-    lastReconciliationDate: new RFCDate("2020-09-30"),
+    lastReconciliationDate: new Date("2020-09-30"),
     customFields: [
       {
         id: "2389328923893298",

@@ -127,7 +127,6 @@ Create Ledger Account
 <!-- UsageSnippet language="typescript" operationID="accounting.ledgerAccountsAdd" method="post" path="/accounting/ledger-accounts" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
-import { RFCDate } from "@apideck/unify/types";
 
 const apideck = new Apideck({
   consumerId: "test-consumer",
@@ -178,7 +177,7 @@ async function run() {
         displayId: "1-1100",
       },
       subAccount: false,
-      lastReconciliationDate: new RFCDate("2020-09-30"),
+      lastReconciliationDate: new Date("2020-09-30"),
       customFields: [
         {
           id: "2389328923893298",
@@ -245,7 +244,6 @@ The standalone function version of this method:
 ```typescript
 import { ApideckCore } from "@apideck/unify/core.js";
 import { accountingLedgerAccountsCreate } from "@apideck/unify/funcs/accountingLedgerAccountsCreate.js";
-import { RFCDate } from "@apideck/unify/types";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -298,7 +296,7 @@ async function run() {
         displayId: "1-1100",
       },
       subAccount: false,
-      lastReconciliationDate: new RFCDate("2020-09-30"),
+      lastReconciliationDate: new Date("2020-09-30"),
       customFields: [
         {
           id: "2389328923893298",
@@ -481,7 +479,6 @@ Update Ledger Account
 <!-- UsageSnippet language="typescript" operationID="accounting.ledgerAccountsUpdate" method="patch" path="/accounting/ledger-accounts/{id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
-import { RFCDate } from "@apideck/unify/types";
 
 const apideck = new Apideck({
   consumerId: "test-consumer",
@@ -533,7 +530,7 @@ async function run() {
         displayId: "1-1100",
       },
       subAccount: false,
-      lastReconciliationDate: new RFCDate("2020-09-30"),
+      lastReconciliationDate: new Date("2020-09-30"),
       customFields: [
         {
           id: "2389328923893298",
@@ -588,7 +585,6 @@ The standalone function version of this method:
 ```typescript
 import { ApideckCore } from "@apideck/unify/core.js";
 import { accountingLedgerAccountsUpdate } from "@apideck/unify/funcs/accountingLedgerAccountsUpdate.js";
-import { RFCDate } from "@apideck/unify/types";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -642,7 +638,7 @@ async function run() {
         displayId: "1-1100",
       },
       subAccount: false,
-      lastReconciliationDate: new RFCDate("2020-09-30"),
+      lastReconciliationDate: new Date("2020-09-30"),
       customFields: [
         {
           id: "2389328923893298",

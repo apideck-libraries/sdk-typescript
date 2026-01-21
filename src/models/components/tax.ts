@@ -5,6 +5,7 @@
 import * as z from "zod/v3";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type Tax = {
@@ -25,9 +26,9 @@ export type Tax = {
 /** @internal */
 export const Tax$inboundSchema: z.ZodType<Tax, z.ZodTypeDef, unknown> = z
   .object({
-    name: z.nullable(z.string()).optional(),
-    employer: z.nullable(z.boolean()).optional(),
-    amount: z.nullable(z.number()).optional(),
+    name: z.nullable(types.string()).optional(),
+    employer: z.nullable(types.boolean()).optional(),
+    amount: z.nullable(types.number()).optional(),
   });
 
 export function taxFromJSON(

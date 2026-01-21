@@ -6,7 +6,7 @@ import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
-import { RFCDate } from "../../types/rfcdate.js";
+import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   BalanceByTransaction,
@@ -17,11 +17,11 @@ export type BalanceByPeriod = {
   /**
    * The starting date of the period. If not provided, it represents the oldest period, where all transactions due before the specified `end_date` are included.
    */
-  startDate?: RFCDate | null | undefined;
+  startDate?: Date | null | undefined;
   /**
    * The ending date of the period. If not provided, it represents an open-ended period starting from the `start_date`, typically capturing future-dated transactions that are not yet aged.
    */
-  endDate?: RFCDate | null | undefined;
+  endDate?: Date | null | undefined;
   /**
    * Total amount of the period.
    */
@@ -35,11 +35,12 @@ export const BalanceByPeriod$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  start_date: z.nullable(z.string().transform(v => new RFCDate(v))).optional(),
-  end_date: z.nullable(z.string().transform(v => new RFCDate(v))).optional(),
-  total_amount: z.number().optional(),
-  balances_by_transaction: z.array(BalanceByTransaction$inboundSchema)
-    .optional(),
+  start_date: z.nullable(types.date()).optional(),
+  end_date: z.nullable(types.date()).optional(),
+  total_amount: types.optional(types.number()),
+  balances_by_transaction: types.optional(
+    z.array(BalanceByTransaction$inboundSchema),
+  ),
 }).transform((v) => {
   return remap$(v, {
     "start_date": "startDate",

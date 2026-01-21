@@ -4,7 +4,6 @@
 
 import { expect, test } from "vitest";
 import { Apideck } from "../index.js";
-import { RFCDate } from "../types/index.js";
 import { createTestHTTPClient } from "./testclient.js";
 
 test("Opportunities Crm Opportunities All", async () => {
@@ -53,7 +52,7 @@ test("Opportunities Crm Opportunities All", async () => {
         currency: "USD",
         winProbability: 40,
         expectedRevenue: 75000,
-        closeDate: new RFCDate("2020-10-30"),
+        closeDate: new Date("2020-10-30"),
         lossReasonId: "12345",
         lossReason: "No budget",
         wonReasonId: "12345",
@@ -136,7 +135,7 @@ test("Opportunities Crm Opportunities All", async () => {
         currency: "USD",
         winProbability: 40,
         expectedRevenue: 75000,
-        closeDate: new RFCDate("2020-10-30"),
+        closeDate: new Date("2020-10-30"),
         lossReasonId: "12345",
         lossReason: "No budget",
         wonReasonId: "12345",
@@ -227,7 +226,7 @@ test("Opportunities Crm Opportunities All", async () => {
         currency: "USD",
         winProbability: 40,
         expectedRevenue: 75000,
-        closeDate: new RFCDate("2020-10-30"),
+        closeDate: new Date("2020-10-30"),
         lossReasonId: "12345",
         lossReason: "No budget",
         wonReasonId: "12345",
@@ -340,7 +339,7 @@ test("Opportunities Crm Opportunities Add", async () => {
       monetaryAmount: 75000,
       currency: "USD",
       winProbability: 40,
-      closeDate: new RFCDate("2020-10-30"),
+      closeDate: new Date("2020-10-30"),
       lossReasonId: "12345",
       lossReason: "No budget",
       wonReasonId: "12345",
@@ -444,7 +443,7 @@ test("Opportunities Crm Opportunities One", async () => {
       currency: "USD",
       winProbability: 40,
       expectedRevenue: 75000,
-      closeDate: new RFCDate("2020-10-30"),
+      closeDate: new Date("2020-10-30"),
       lossReasonId: "12345",
       lossReason: "No budget",
       wonReasonId: "12345",
@@ -582,7 +581,7 @@ test("Opportunities Crm Opportunities Update", async () => {
       monetaryAmount: 75000,
       currency: "USD",
       winProbability: 40,
-      closeDate: new RFCDate("2020-10-30"),
+      closeDate: new Date("2020-10-30"),
       lossReasonId: "12345",
       lossReason: "No budget",
       wonReasonId: "12345",

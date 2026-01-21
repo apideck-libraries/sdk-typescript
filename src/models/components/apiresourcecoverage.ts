@@ -6,6 +6,7 @@ import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   PaginationCoverage,
@@ -78,15 +79,17 @@ export const Coverage$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  downstream_id: z.string().optional(),
-  downstream_name: z.string().optional(),
-  pagination_supported: z.boolean().optional(),
-  pagination: PaginationCoverage$inboundSchema.optional(),
-  supported_operations: z.array(z.string()).optional(),
-  supported_filters: z.array(z.string()).optional(),
-  supported_sort_by: z.array(z.string()).optional(),
-  supported_fields: z.array(SupportedProperty$inboundSchema).optional(),
-  supported_list_fields: z.array(SupportedProperty$inboundSchema).optional(),
+  downstream_id: types.optional(types.string()),
+  downstream_name: types.optional(types.string()),
+  pagination_supported: types.optional(types.boolean()),
+  pagination: types.optional(PaginationCoverage$inboundSchema),
+  supported_operations: types.optional(z.array(types.string())),
+  supported_filters: types.optional(z.array(types.string())),
+  supported_sort_by: types.optional(z.array(types.string())),
+  supported_fields: types.optional(z.array(SupportedProperty$inboundSchema)),
+  supported_list_fields: types.optional(
+    z.array(SupportedProperty$inboundSchema),
+  ),
 }).transform((v) => {
   return remap$(v, {
     "downstream_id": "downstreamId",
@@ -116,10 +119,10 @@ export const ApiResourceCoverage$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  id: z.string().optional(),
-  name: z.string().optional(),
-  status: ResourceStatus$inboundSchema.optional(),
-  coverage: z.array(z.lazy(() => Coverage$inboundSchema)).optional(),
+  id: types.optional(types.string()),
+  name: types.optional(types.string()),
+  status: types.optional(ResourceStatus$inboundSchema),
+  coverage: types.optional(z.array(z.lazy(() => Coverage$inboundSchema))),
 });
 
 export function apiResourceCoverageFromJSON(

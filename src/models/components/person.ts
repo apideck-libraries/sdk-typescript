@@ -6,7 +6,7 @@ import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
-import { RFCDate } from "../../types/rfcdate.js";
+import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { Gender, Gender$inboundSchema } from "./gender.js";
 
@@ -38,11 +38,11 @@ export type Person = {
   /**
    * Date of birth
    */
-  birthday?: RFCDate | null | undefined;
+  birthday?: Date | null | undefined;
   /**
    * Date of death
    */
-  deceasedOn?: RFCDate | null | undefined;
+  deceasedOn?: Date | null | undefined;
   /**
    * When custom mappings are configured on the resource, the result is included here.
    */
@@ -52,15 +52,14 @@ export type Person = {
 /** @internal */
 export const Person$inboundSchema: z.ZodType<Person, z.ZodTypeDef, unknown> = z
   .object({
-    id: z.nullable(z.string()).optional(),
-    first_name: z.nullable(z.string()).optional(),
-    last_name: z.nullable(z.string()).optional(),
-    middle_name: z.nullable(z.string()).optional(),
+    id: z.nullable(types.string()).optional(),
+    first_name: z.nullable(types.string()).optional(),
+    last_name: z.nullable(types.string()).optional(),
+    middle_name: z.nullable(types.string()).optional(),
     gender: z.nullable(Gender$inboundSchema).optional(),
-    initials: z.nullable(z.string()).optional(),
-    birthday: z.nullable(z.string().transform(v => new RFCDate(v))).optional(),
-    deceased_on: z.nullable(z.string().transform(v => new RFCDate(v)))
-      .optional(),
+    initials: z.nullable(types.string()).optional(),
+    birthday: z.nullable(types.date()).optional(),
+    deceased_on: z.nullable(types.date()).optional(),
     custom_mappings: z.nullable(z.record(z.any())).optional(),
   }).transform((v) => {
     return remap$(v, {

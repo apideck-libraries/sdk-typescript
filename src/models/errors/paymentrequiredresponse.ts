@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
+import * as types from "../../types/primitives.js";
 import { ApideckError } from "./apideckerror.js";
 
 /**
@@ -87,12 +88,12 @@ export const PaymentRequiredResponse$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  status_code: z.number().optional(),
-  error: z.string().optional(),
-  type_name: z.string().optional(),
-  message: z.string().optional(),
-  detail: z.string().optional(),
-  ref: z.string().optional(),
+  status_code: types.optional(types.number()),
+  error: types.optional(types.string()),
+  type_name: types.optional(types.string()),
+  message: types.optional(types.string()),
+  detail: types.optional(types.string()),
+  ref: types.optional(types.string()),
   request$: z.instanceof(Request),
   response$: z.instanceof(Response),
   body$: z.string(),

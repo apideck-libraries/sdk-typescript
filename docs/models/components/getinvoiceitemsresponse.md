@@ -6,7 +6,6 @@ InvoiceItems
 
 ```typescript
 import { GetInvoiceItemsResponse } from "@apideck/unify/models/components";
-import { RFCDate } from "@apideck/unify/types";
 
 let value: GetInvoiceItemsResponse = {
   statusCode: 200,
@@ -26,7 +25,7 @@ let value: GetInvoiceItemsResponse = {
       purchased: true,
       tracked: true,
       taxable: true,
-      inventoryDate: new RFCDate("2020-10-30"),
+      inventoryDate: new Date("2020-10-30"),
       type: "inventory",
       salesDetails: {
         unitPrice: 27500.5,

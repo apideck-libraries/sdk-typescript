@@ -6,6 +6,7 @@ import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
@@ -46,12 +47,12 @@ export const LinkedCustomer$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  id: z.string().optional(),
-  display_id: z.nullable(z.string()).optional(),
-  display_name: z.nullable(z.string()).optional(),
-  name: z.string().optional(),
-  company_name: z.nullable(z.string()).optional(),
-  email: z.string().optional(),
+  id: types.optional(types.string()),
+  display_id: z.nullable(types.string()).optional(),
+  display_name: z.nullable(types.string()).optional(),
+  name: types.optional(types.string()),
+  company_name: z.nullable(types.string()).optional(),
+  email: types.optional(types.string()),
 }).transform((v) => {
   return remap$(v, {
     "display_id": "displayId",

@@ -8,6 +8,7 @@ import { safeParse } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   Address,
@@ -145,29 +146,25 @@ export const HrisCompany$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  id: z.string().optional(),
-  legal_name: z.nullable(z.string()),
-  display_name: z.nullable(z.string()).optional(),
-  subdomain: z.nullable(z.string()).optional(),
-  status: HrisCompanyStatus$inboundSchema.optional(),
-  company_number: z.nullable(z.string()).optional(),
+  id: types.optional(types.string()),
+  legal_name: types.nullable(types.string()),
+  display_name: z.nullable(types.string()).optional(),
+  subdomain: z.nullable(types.string()).optional(),
+  status: types.optional(HrisCompanyStatus$inboundSchema),
+  company_number: z.nullable(types.string()).optional(),
   currency: z.nullable(Currency$inboundSchema).optional(),
-  addresses: z.array(Address$inboundSchema).optional(),
-  phone_numbers: z.array(PhoneNumber$inboundSchema).optional(),
-  emails: z.array(Email$inboundSchema).optional(),
-  websites: z.array(Website$inboundSchema).optional(),
-  debtor_id: z.nullable(z.string()).optional(),
+  addresses: types.optional(z.array(Address$inboundSchema)),
+  phone_numbers: types.optional(z.array(PhoneNumber$inboundSchema)),
+  emails: types.optional(z.array(Email$inboundSchema)),
+  websites: types.optional(z.array(Website$inboundSchema)),
+  debtor_id: z.nullable(types.string()).optional(),
   custom_mappings: z.nullable(z.record(z.any())).optional(),
-  deleted: z.boolean().optional(),
-  updated_by: z.nullable(z.string()).optional(),
-  created_by: z.nullable(z.string()).optional(),
-  updated_at: z.nullable(
-    z.string().datetime({ offset: true }).transform(v => new Date(v)),
-  ).optional(),
-  created_at: z.nullable(
-    z.string().datetime({ offset: true }).transform(v => new Date(v)),
-  ).optional(),
-  pass_through: z.array(PassThroughBody$inboundSchema).optional(),
+  deleted: types.optional(types.boolean()),
+  updated_by: z.nullable(types.string()).optional(),
+  created_by: z.nullable(types.string()).optional(),
+  updated_at: z.nullable(types.date()).optional(),
+  created_at: z.nullable(types.date()).optional(),
+  pass_through: types.optional(z.array(PassThroughBody$inboundSchema)),
 }).transform((v) => {
   return remap$(v, {
     "legal_name": "legalName",

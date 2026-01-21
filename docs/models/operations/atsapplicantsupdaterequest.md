@@ -4,7 +4,6 @@
 
 ```typescript
 import { AtsApplicantsUpdateRequest } from "@apideck/unify/models/operations";
-import { RFCDate } from "@apideck/unify/types";
 
 let value: AtsApplicantsUpdateRequest = {
   id: "<id>",
@@ -16,7 +15,7 @@ let value: AtsApplicantsUpdateRequest = {
     lastName: "Musk",
     middleName: "D.",
     initials: "EM",
-    birthday: new RFCDate("2000-08-12"),
+    birthday: new Date("2000-08-12"),
     gender: "male",
     socialSecurityNumber: "123456789",
     type: "Candidate",

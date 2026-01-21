@@ -6,6 +6,7 @@ import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { Currency, Currency$inboundSchema } from "./currency.js";
 
@@ -186,11 +187,11 @@ export const BalanceSheetAssetsAccount$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  account_id: z.string().optional(),
-  code: z.string().optional(),
-  name: z.string().optional(),
-  value: z.number().optional(),
-  items: z.any().optional(),
+  account_id: types.optional(types.string()),
+  code: types.optional(types.string()),
+  name: types.optional(types.string()),
+  value: types.optional(types.number()),
+  items: types.optional(z.any()),
 }).transform((v) => {
   return remap$(v, {
     "account_id": "accountId",
@@ -213,11 +214,11 @@ export const BalanceSheetLiabilitiesAccount$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  account_id: z.string().optional(),
-  code: z.string().optional(),
-  name: z.string().optional(),
-  value: z.number().optional(),
-  items: z.any().optional(),
+  account_id: types.optional(types.string()),
+  code: types.optional(types.string()),
+  name: types.optional(types.string()),
+  value: types.optional(types.number()),
+  items: types.optional(z.any()),
 }).transform((v) => {
   return remap$(v, {
     "account_id": "accountId",
@@ -240,11 +241,11 @@ export const BalanceSheetEquityAccount$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  account_id: z.string().optional(),
-  code: z.string().optional(),
-  name: z.string().optional(),
-  value: z.number().optional(),
-  items: z.any().optional(),
+  account_id: types.optional(types.string()),
+  code: types.optional(types.string()),
+  name: types.optional(types.string()),
+  value: types.optional(types.number()),
+  items: types.optional(z.any()),
 }).transform((v) => {
   return remap$(v, {
     "account_id": "accountId",
@@ -267,11 +268,11 @@ export const BalanceSheetUncategorizedItemsAccount$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  account_id: z.string().optional(),
-  code: z.string().optional(),
-  name: z.string().optional(),
-  value: z.number().optional(),
-  items: z.any().optional(),
+  account_id: types.optional(types.string()),
+  code: types.optional(types.string()),
+  name: types.optional(types.string()),
+  value: types.optional(types.number()),
+  items: types.optional(z.any()),
 }).transform((v) => {
   return remap$(v, {
     "account_id": "accountId",
@@ -292,27 +293,23 @@ export function balanceSheetUncategorizedItemsAccountFromJSON(
 /** @internal */
 export const Reports$inboundSchema: z.ZodType<Reports, z.ZodTypeDef, unknown> =
   z.object({
-    id: z.string().optional(),
-    report_name: z.string().optional(),
-    start_date: z.string().optional(),
-    end_date: z.string(),
+    id: types.optional(types.string()),
+    report_name: types.optional(types.string()),
+    start_date: types.optional(types.string()),
+    end_date: types.string(),
     currency: z.nullable(Currency$inboundSchema).optional(),
     assets: z.lazy(() => BalanceSheetAssetsAccount$inboundSchema),
     liabilities: z.lazy(() => BalanceSheetLiabilitiesAccount$inboundSchema),
     equity: z.lazy(() => BalanceSheetEquityAccount$inboundSchema),
-    net_assets: z.number().optional(),
+    net_assets: types.optional(types.number()),
     custom_mappings: z.nullable(z.record(z.any())).optional(),
-    updated_by: z.nullable(z.string()).optional(),
-    created_by: z.nullable(z.string()).optional(),
-    updated_at: z.nullable(
-      z.string().datetime({ offset: true }).transform(v => new Date(v)),
-    ).optional(),
-    created_at: z.nullable(
-      z.string().datetime({ offset: true }).transform(v => new Date(v)),
-    ).optional(),
-    uncategorized_items: z.lazy(() =>
-      BalanceSheetUncategorizedItemsAccount$inboundSchema
-    ).optional(),
+    updated_by: z.nullable(types.string()).optional(),
+    created_by: z.nullable(types.string()).optional(),
+    updated_at: z.nullable(types.date()).optional(),
+    created_at: z.nullable(types.date()).optional(),
+    uncategorized_items: types.optional(
+      z.lazy(() => BalanceSheetUncategorizedItemsAccount$inboundSchema),
+    ),
   }).transform((v) => {
     return remap$(v, {
       "report_name": "reportName",

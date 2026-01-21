@@ -6,6 +6,7 @@ import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   PassThroughBody,
@@ -82,22 +83,22 @@ export type Note = {
 /** @internal */
 export const Note$inboundSchema: z.ZodType<Note, z.ZodTypeDef, unknown> = z
   .object({
-    id: z.string().optional(),
-    title: z.nullable(z.string()).optional(),
-    content: z.nullable(z.string()).optional(),
-    owner_id: z.nullable(z.string()).optional(),
-    contact_id: z.nullable(z.string()).optional(),
-    company_id: z.nullable(z.string()).optional(),
-    opportunity_id: z.nullable(z.string()).optional(),
-    activity_id: z.nullable(z.string()).optional(),
-    lead_id: z.nullable(z.string()).optional(),
-    active: z.nullable(z.boolean()).optional(),
+    id: types.optional(types.string()),
+    title: z.nullable(types.string()).optional(),
+    content: z.nullable(types.string()).optional(),
+    owner_id: z.nullable(types.string()).optional(),
+    contact_id: z.nullable(types.string()).optional(),
+    company_id: z.nullable(types.string()).optional(),
+    opportunity_id: z.nullable(types.string()).optional(),
+    activity_id: z.nullable(types.string()).optional(),
+    lead_id: z.nullable(types.string()).optional(),
+    active: z.nullable(types.boolean()).optional(),
     custom_mappings: z.nullable(z.record(z.any())).optional(),
-    updated_by: z.nullable(z.string()).optional(),
-    created_by: z.nullable(z.string()).optional(),
-    updated_at: z.nullable(z.string()).optional(),
-    created_at: z.nullable(z.string()).optional(),
-    pass_through: z.array(PassThroughBody$inboundSchema).optional(),
+    updated_by: z.nullable(types.string()).optional(),
+    created_by: z.nullable(types.string()).optional(),
+    updated_at: z.nullable(types.string()).optional(),
+    created_at: z.nullable(types.string()).optional(),
+    pass_through: types.optional(z.array(PassThroughBody$inboundSchema)),
   }).transform((v) => {
     return remap$(v, {
       "owner_id": "ownerId",

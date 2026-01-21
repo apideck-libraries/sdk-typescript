@@ -6,6 +6,7 @@ import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   RequestCountAllocation,
@@ -47,12 +48,12 @@ export const ConsumerRequestCountsInDateRangeResponseData$inboundSchema:
     z.ZodTypeDef,
     unknown
   > = z.object({
-    application_id: z.string().optional(),
-    consumer_id: z.string().optional(),
-    start_datetime: z.string().optional(),
-    end_datetime: z.string().optional(),
-    aggregated_request_count: z.number().optional(),
-    request_counts: RequestCountAllocation$inboundSchema.optional(),
+    application_id: types.optional(types.string()),
+    consumer_id: types.optional(types.string()),
+    start_datetime: types.optional(types.string()),
+    end_datetime: types.optional(types.string()),
+    aggregated_request_count: types.optional(types.number()),
+    request_counts: types.optional(RequestCountAllocation$inboundSchema),
   }).transform((v) => {
     return remap$(v, {
       "application_id": "applicationId",
@@ -86,8 +87,8 @@ export const ConsumerRequestCountsInDateRangeResponse$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  status_code: z.number().int(),
-  status: z.string(),
+  status_code: types.number(),
+  status: types.string(),
   data: z.lazy(() =>
     ConsumerRequestCountsInDateRangeResponseData$inboundSchema
   ),

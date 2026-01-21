@@ -4,7 +4,6 @@
 
 import { expect, test } from "vitest";
 import { Apideck } from "../index.js";
-import { RFCDate } from "../types/index.js";
 import { createTestHTTPClient } from "./testclient.js";
 
 test("Companies Crm Companies All", async () => {
@@ -192,7 +191,7 @@ test("Companies Crm Companies All", async () => {
         lastActivityAt: new Date("2020-09-30T07:43:32.000Z"),
         deleted: false,
         salutation: "Mr",
-        birthday: new RFCDate("2000-08-12"),
+        birthday: new Date("2000-08-12"),
         updatedBy: "12345",
         createdBy: "12345",
         updatedAt: new Date("2020-09-30T07:43:32.000Z"),
@@ -380,7 +379,7 @@ test("Companies Crm Companies All", async () => {
         lastActivityAt: new Date("2020-09-30T07:43:32.000Z"),
         deleted: false,
         salutation: "Mr",
-        birthday: new RFCDate("2000-08-12"),
+        birthday: new Date("2000-08-12"),
         updatedBy: "12345",
         createdBy: "12345",
         updatedAt: new Date("2020-09-30T07:43:32.000Z"),
@@ -651,7 +650,7 @@ test("Companies Crm Companies All", async () => {
         lastActivityAt: new Date("2020-09-30T07:43:32.000Z"),
         deleted: false,
         salutation: "Mr",
-        birthday: new RFCDate("2000-08-12"),
+        birthday: new Date("2000-08-12"),
         updatedBy: "12345",
         createdBy: "12345",
         updatedAt: new Date("2020-09-30T07:43:32.000Z"),
@@ -911,7 +910,7 @@ test("Companies Crm Companies Add", async () => {
       ],
       readOnly: false,
       salutation: "Mr",
-      birthday: new RFCDate("2000-08-12"),
+      birthday: new Date("2000-08-12"),
       passThrough: [
         {
           serviceId: "<id>",
@@ -1239,7 +1238,7 @@ test("Companies Crm Companies One", async () => {
       lastActivityAt: new Date("2020-09-30T07:43:32.000Z"),
       deleted: false,
       salutation: "Mr",
-      birthday: new RFCDate("2000-08-12"),
+      birthday: new Date("2000-08-12"),
       updatedBy: "12345",
       createdBy: "12345",
       updatedAt: new Date("2020-09-30T07:43:32.000Z"),
@@ -1533,7 +1532,7 @@ test("Companies Crm Companies Update", async () => {
       ],
       readOnly: false,
       salutation: "Mr",
-      birthday: new RFCDate("2000-08-12"),
+      birthday: new Date("2000-08-12"),
       passThrough: [
         {
           serviceId: "<id>",

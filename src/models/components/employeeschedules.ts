@@ -5,6 +5,7 @@
 import * as z from "zod/v3";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { Employee, Employee$inboundSchema } from "./employee.js";
 import { Schedule, Schedule$inboundSchema } from "./schedule.js";
@@ -20,7 +21,7 @@ export const EmployeeSchedules$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  employee: Employee$inboundSchema.optional(),
+  employee: types.optional(Employee$inboundSchema),
   schedules: z.nullable(z.array(Schedule$inboundSchema)).optional(),
 });
 

@@ -6,6 +6,8 @@ import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import * as types from "../../types/primitives.js";
+import { smartUnion } from "../../types/smartUnion.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
@@ -44,8 +46,8 @@ export type UnexpectedErrorResponse = {
 };
 
 /** @internal */
-export const Detail$inboundSchema: z.ZodType<Detail, z.ZodTypeDef, unknown> = z
-  .union([z.string(), z.record(z.any())]);
+export const Detail$inboundSchema: z.ZodType<Detail, z.ZodTypeDef, unknown> =
+  smartUnion([types.string(), z.record(z.any())]);
 
 export function detailFromJSON(
   jsonString: string,
@@ -63,12 +65,12 @@ export const UnexpectedErrorResponse$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  status_code: z.number().optional(),
-  error: z.string().optional(),
-  type_name: z.string().optional(),
-  message: z.string().optional(),
-  detail: z.union([z.string(), z.record(z.any())]).optional(),
-  ref: z.string().optional(),
+  status_code: types.optional(types.number()),
+  error: types.optional(types.string()),
+  type_name: types.optional(types.string()),
+  message: types.optional(types.string()),
+  detail: types.optional(smartUnion([types.string(), z.record(z.any())])),
+  ref: types.optional(types.string()),
 }).transform((v) => {
   return remap$(v, {
     "status_code": "statusCode",

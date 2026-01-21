@@ -6,6 +6,7 @@ import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { FileType, FileType$inboundSchema } from "./filetype.js";
 import { LinkedFolder, LinkedFolder$inboundSchema } from "./linkedfolder.js";
@@ -107,7 +108,7 @@ export const Permissions$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  download: z.boolean().optional(),
+  download: types.optional(types.boolean()),
 });
 
 export function permissionsFromJSON(
@@ -126,30 +127,26 @@ export const UnifiedFile$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  id: z.string(),
-  downstream_id: z.nullable(z.string()).optional(),
-  name: z.nullable(z.string()),
-  description: z.nullable(z.string()).optional(),
-  type: z.nullable(FileType$inboundSchema),
-  path: z.nullable(z.string()).optional(),
-  mime_type: z.nullable(z.string()).optional(),
-  downloadable: z.boolean().optional(),
-  size: z.nullable(z.number().int()).optional(),
-  owner: Owner$inboundSchema.optional(),
-  parent_folders: z.array(LinkedFolder$inboundSchema).optional(),
-  parent_folders_complete: z.boolean().optional(),
-  permissions: z.lazy(() => Permissions$inboundSchema).optional(),
-  exportable: z.boolean().optional(),
-  export_formats: z.nullable(z.array(z.string())).optional(),
+  id: types.string(),
+  downstream_id: z.nullable(types.string()).optional(),
+  name: types.nullable(types.string()),
+  description: z.nullable(types.string()).optional(),
+  type: types.nullable(FileType$inboundSchema),
+  path: z.nullable(types.string()).optional(),
+  mime_type: z.nullable(types.string()).optional(),
+  downloadable: types.optional(types.boolean()),
+  size: z.nullable(types.number()).optional(),
+  owner: types.optional(Owner$inboundSchema),
+  parent_folders: types.optional(z.array(LinkedFolder$inboundSchema)),
+  parent_folders_complete: types.optional(types.boolean()),
+  permissions: types.optional(z.lazy(() => Permissions$inboundSchema)),
+  exportable: types.optional(types.boolean()),
+  export_formats: z.nullable(z.array(types.string())).optional(),
   custom_mappings: z.nullable(z.record(z.any())).optional(),
-  updated_by: z.nullable(z.string()).optional(),
-  created_by: z.nullable(z.string()).optional(),
-  updated_at: z.nullable(
-    z.string().datetime({ offset: true }).transform(v => new Date(v)),
-  ).optional(),
-  created_at: z.nullable(
-    z.string().datetime({ offset: true }).transform(v => new Date(v)),
-  ).optional(),
+  updated_by: z.nullable(types.string()).optional(),
+  created_by: z.nullable(types.string()).optional(),
+  updated_at: z.nullable(types.date()).optional(),
+  created_at: z.nullable(types.date()).optional(),
 }).transform((v) => {
   return remap$(v, {
     "downstream_id": "downstreamId",

@@ -8,7 +8,7 @@ import { safeParse } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
-import { RFCDate } from "../../types/rfcdate.js";
+import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { Address, Address$inboundSchema } from "./address.js";
 import { Currency, Currency$inboundSchema } from "./currency.js";
@@ -112,7 +112,7 @@ export type CompanyInfo = {
   /**
    * Date when company file was created
    */
-  companyStartDate?: RFCDate | undefined;
+  companyStartDate?: Date | undefined;
   addresses?: Array<Address> | undefined;
   phoneNumbers?: Array<PhoneNumber> | undefined;
   emails?: Array<Email> | undefined;
@@ -177,34 +177,34 @@ export const CompanyInfo$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  id: z.string().optional(),
-  company_name: z.nullable(z.string()).optional(),
-  status: CompanyStatus$inboundSchema.optional(),
-  legal_name: z.string().optional(),
-  country: z.nullable(z.string()).optional(),
-  sales_tax_number: z.nullable(z.string()).optional(),
-  automated_sales_tax: z.boolean().optional(),
-  sales_tax_enabled: z.boolean().optional(),
-  default_sales_tax: TaxRate$inboundSchema.optional(),
+  id: types.optional(types.string()),
+  company_name: z.nullable(types.string()).optional(),
+  status: types.optional(CompanyStatus$inboundSchema),
+  legal_name: types.optional(types.string()),
+  country: z.nullable(types.string()).optional(),
+  sales_tax_number: z.nullable(types.string()).optional(),
+  automated_sales_tax: types.optional(types.boolean()),
+  sales_tax_enabled: types.optional(types.boolean()),
+  default_sales_tax: types.optional(TaxRate$inboundSchema),
   currency: z.nullable(Currency$inboundSchema).optional(),
-  language: z.nullable(z.string()).optional(),
-  fiscal_year_start_month: TheStartMonthOfFiscalYear$inboundSchema.optional(),
-  company_start_date: z.string().transform(v => new RFCDate(v)).optional(),
-  addresses: z.array(Address$inboundSchema).optional(),
-  phone_numbers: z.array(PhoneNumber$inboundSchema).optional(),
-  emails: z.array(Email$inboundSchema).optional(),
+  language: z.nullable(types.string()).optional(),
+  fiscal_year_start_month: types.optional(
+    TheStartMonthOfFiscalYear$inboundSchema,
+  ),
+  company_start_date: types.optional(types.date()),
+  addresses: types.optional(z.array(Address$inboundSchema)),
+  phone_numbers: types.optional(z.array(PhoneNumber$inboundSchema)),
+  emails: types.optional(z.array(Email$inboundSchema)),
   custom_mappings: z.nullable(z.record(z.any())).optional(),
-  tracking_categories_enabled: z.boolean().optional(),
-  tracking_categories_mode: TrackingCategoriesMode$inboundSchema.optional(),
-  row_version: z.nullable(z.string()).optional(),
-  updated_by: z.nullable(z.string()).optional(),
-  created_by: z.nullable(z.string()).optional(),
-  updated_at: z.nullable(
-    z.string().datetime({ offset: true }).transform(v => new Date(v)),
-  ).optional(),
-  created_at: z.nullable(
-    z.string().datetime({ offset: true }).transform(v => new Date(v)),
-  ).optional(),
+  tracking_categories_enabled: types.optional(types.boolean()),
+  tracking_categories_mode: types.optional(
+    TrackingCategoriesMode$inboundSchema,
+  ),
+  row_version: z.nullable(types.string()).optional(),
+  updated_by: z.nullable(types.string()).optional(),
+  created_by: z.nullable(types.string()).optional(),
+  updated_at: z.nullable(types.date()).optional(),
+  created_at: z.nullable(types.date()).optional(),
 }).transform((v) => {
   return remap$(v, {
     "company_name": "companyName",
