@@ -54,8 +54,8 @@ typescript:
   flattenGlobalSecurity: true
   flatteningOrder: parameters-first
   formStringArrayEncodeMode: encoded-string
-  forwardCompatibleEnumsByDefault: false
-  forwardCompatibleUnionsByDefault: "false"
+  forwardCompatibleEnumsByDefault: true
+  forwardCompatibleUnionsByDefault: "tagged-only"
   generateExamples: true
   imports:
     option: openapi
@@ -68,7 +68,7 @@ typescript:
   inferUnionDiscriminators: true
   inputModelSuffix: input
   jsonpath: legacy
-  laxMode: strict
+  laxMode: lax
   maxMethodParams: 0
   methodArguments: require-security-and-request
   modelPropertyCasing: camel
@@ -81,7 +81,7 @@ typescript:
   responseFormat: envelope-http
   sseFlatResponse: false
   templateVersion: v2
-  unionStrategy: left-to-right
+  unionStrategy: populated-fields
   usageSDKInitImports: []
   useIndexModules: true
   zodVersion: v3
