@@ -6,6 +6,7 @@ import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { Allocation, Allocation$inboundSchema } from "./allocation.js";
 import { Currency, Currency$inboundSchema } from "./currency.js";
@@ -164,46 +165,40 @@ export type Payment = {
 /** @internal */
 export const Payment$inboundSchema: z.ZodType<Payment, z.ZodTypeDef, unknown> =
   z.object({
-    id: z.string(),
-    downstream_id: z.nullable(z.string()).optional(),
+    id: types.string(),
+    downstream_id: z.nullable(types.string()).optional(),
     currency: z.nullable(Currency$inboundSchema).optional(),
-    currency_rate: z.nullable(z.number()).optional(),
-    total_amount: z.nullable(z.number()),
-    reference: z.nullable(z.string()).optional(),
-    payment_method: z.nullable(z.string()).optional(),
-    payment_method_reference: z.nullable(z.string()).optional(),
-    payment_method_id: z.nullable(z.string()).optional(),
-    accounts_receivable_account_type: z.nullable(z.string()).optional(),
-    accounts_receivable_account_id: z.nullable(z.string()).optional(),
+    currency_rate: z.nullable(types.number()).optional(),
+    total_amount: types.nullable(types.number()),
+    reference: z.nullable(types.string()).optional(),
+    payment_method: z.nullable(types.string()).optional(),
+    payment_method_reference: z.nullable(types.string()).optional(),
+    payment_method_id: z.nullable(types.string()).optional(),
+    accounts_receivable_account_type: z.nullable(types.string()).optional(),
+    accounts_receivable_account_id: z.nullable(types.string()).optional(),
     account: z.nullable(LinkedLedgerAccount$inboundSchema).optional(),
-    transaction_date: z.nullable(
-      z.string().datetime({ offset: true }).transform(v => new Date(v)),
-    ),
+    transaction_date: types.nullable(types.date()),
     customer: z.nullable(LinkedCustomer$inboundSchema).optional(),
     supplier: z.nullable(DeprecatedLinkedSupplier$inboundSchema).optional(),
-    company_id: z.nullable(z.string()).optional(),
-    reconciled: z.nullable(z.boolean()).optional(),
-    status: PaymentStatus$inboundSchema.optional(),
-    type: PaymentType$inboundSchema.optional(),
-    allocations: z.array(Allocation$inboundSchema).optional(),
-    note: z.nullable(z.string()).optional(),
-    number: z.nullable(z.string()).optional(),
+    company_id: z.nullable(types.string()).optional(),
+    reconciled: z.nullable(types.boolean()).optional(),
+    status: types.optional(PaymentStatus$inboundSchema),
+    type: types.optional(PaymentType$inboundSchema),
+    allocations: types.optional(z.array(Allocation$inboundSchema)),
+    note: z.nullable(types.string()).optional(),
+    number: z.nullable(types.string()).optional(),
     tracking_categories: z.nullable(
-      z.array(z.nullable(LinkedTrackingCategory$inboundSchema)),
+      z.array(types.nullable(LinkedTrackingCategory$inboundSchema)),
     ).optional(),
-    custom_fields: z.array(CustomField$inboundSchema).optional(),
-    row_version: z.nullable(z.string()).optional(),
-    display_id: z.nullable(z.string()).optional(),
+    custom_fields: types.optional(z.array(CustomField$inboundSchema)),
+    row_version: z.nullable(types.string()).optional(),
+    display_id: z.nullable(types.string()).optional(),
     custom_mappings: z.nullable(z.record(z.any())).optional(),
-    updated_by: z.nullable(z.string()).optional(),
-    created_by: z.nullable(z.string()).optional(),
-    created_at: z.nullable(
-      z.string().datetime({ offset: true }).transform(v => new Date(v)),
-    ).optional(),
-    updated_at: z.nullable(
-      z.string().datetime({ offset: true }).transform(v => new Date(v)),
-    ).optional(),
-    pass_through: z.array(PassThroughBody$inboundSchema).optional(),
+    updated_by: z.nullable(types.string()).optional(),
+    created_by: z.nullable(types.string()).optional(),
+    created_at: z.nullable(types.date()).optional(),
+    updated_at: z.nullable(types.date()).optional(),
+    pass_through: types.optional(z.array(PassThroughBody$inboundSchema)),
   }).transform((v) => {
     return remap$(v, {
       "downstream_id": "downstreamId",

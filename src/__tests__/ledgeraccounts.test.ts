@@ -4,7 +4,6 @@
 
 import { expect, test } from "vitest";
 import { Apideck } from "../index.js";
-import { RFCDate } from "../types/index.js";
 import { createTestHTTPClient } from "./testclient.js";
 
 test("Ledgeraccounts Accounting Ledger Accounts All", async () => {
@@ -108,7 +107,7 @@ test("Ledgeraccounts Accounting Ledger Accounts All", async () => {
             accountSubName: "Petty Cash",
           },
         ],
-        lastReconciliationDate: new RFCDate("2020-09-30"),
+        lastReconciliationDate: new Date("2020-09-30"),
         customFields: [
           {
             id: "2389328923893298",
@@ -205,7 +204,7 @@ test("Ledgeraccounts Accounting Ledger Accounts All", async () => {
             accountSubName: "Petty Cash",
           },
         ],
-        lastReconciliationDate: new RFCDate("2020-09-30"),
+        lastReconciliationDate: new Date("2020-09-30"),
         customFields: [
           {
             id: "2389328923893298",
@@ -326,7 +325,7 @@ test("Ledgeraccounts Accounting Ledger Accounts All", async () => {
             accountSubName: "Petty Cash",
           },
         ],
-        lastReconciliationDate: new RFCDate("2020-09-30"),
+        lastReconciliationDate: new Date("2020-09-30"),
         customFields: [
           {
             id: "2389328923893298",
@@ -465,7 +464,7 @@ test("Ledgeraccounts Accounting Ledger Accounts Add", async () => {
         displayId: "1-1100",
       },
       subAccount: false,
-      lastReconciliationDate: new RFCDate("2020-09-30"),
+      lastReconciliationDate: new Date("2020-09-30"),
       customFields: [
         {
           id: "2389328923893298",
@@ -603,7 +602,7 @@ test("Ledgeraccounts Accounting Ledger Accounts One", async () => {
           accountSubName: "Petty Cash",
         },
       ],
-      lastReconciliationDate: new RFCDate("2020-09-30"),
+      lastReconciliationDate: new Date("2020-09-30"),
       customFields: [
         {
           id: "2389328923893298",
@@ -713,7 +712,7 @@ test("Ledgeraccounts Accounting Ledger Accounts Update", async () => {
         displayId: "1-1100",
       },
       subAccount: false,
-      lastReconciliationDate: new RFCDate("2020-09-30"),
+      lastReconciliationDate: new Date("2020-09-30"),
       customFields: [
         {
           id: "2389328923893298",

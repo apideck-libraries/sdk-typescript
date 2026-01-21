@@ -6,7 +6,6 @@ Aged Creditors
 
 ```typescript
 import { GetAgedCreditorsResponse } from "@apideck/unify/models/components";
-import { RFCDate } from "@apideck/unify/types";
 
 let value: GetAgedCreditorsResponse = {
   statusCode: 200,
@@ -16,7 +15,7 @@ let value: GetAgedCreditorsResponse = {
   operation: "one",
   data: {
     reportGeneratedAt: new Date("2024-11-14T12:00:00.000Z"),
-    reportAsOfDate: new RFCDate("2024-11-13"),
+    reportAsOfDate: new Date("2024-11-13"),
     outstandingBalances: [
       {
         supplierId: "123",
@@ -26,15 +25,15 @@ let value: GetAgedCreditorsResponse = {
             currency: "USD",
             balancesByPeriod: [
               {
-                startDate: new RFCDate("2024-01-01"),
-                endDate: new RFCDate("2024-01-30"),
+                startDate: new Date("2024-01-01"),
+                endDate: new Date("2024-01-30"),
                 totalAmount: 1500,
                 balancesByTransaction: [
                   {
                     transactionId: "INV-1001",
-                    transactionDate: new RFCDate("2024-01-15"),
+                    transactionDate: new Date("2024-01-15"),
                     transactionType: "invoice",
-                    dueDate: new RFCDate("2024-02-15"),
+                    dueDate: new Date("2024-02-15"),
                     originalAmount: 1000,
                     outstandingBalance: 800,
                     transactionNumber: "INV-1001",

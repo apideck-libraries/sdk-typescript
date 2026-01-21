@@ -6,7 +6,6 @@ Jobs
 
 ```typescript
 import { GetJobResponse } from "@apideck/unify/models/components";
-import { RFCDate } from "@apideck/unify/types";
 
 let value: GetJobResponse = {
   statusCode: 200,
@@ -76,7 +75,7 @@ let value: GetJobResponse = {
       },
     ],
     closing: "The closing section of the job description",
-    closingDate: new RFCDate("2020-10-30"),
+    closingDate: new Date("2020-10-30"),
     salary: {
       min: 8000,
       max: 10000,

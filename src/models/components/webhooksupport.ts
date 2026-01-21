@@ -8,6 +8,7 @@ import { safeParse } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
@@ -147,8 +148,8 @@ export const RequestRate$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  rate: z.number().int(),
-  size: z.number().int(),
+  rate: types.number(),
+  size: types.number(),
   unit: Unit$inboundSchema,
 });
 
@@ -168,7 +169,7 @@ export const WebhookSupportResources$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  events: z.array(z.string()).optional(),
+  events: types.optional(z.array(types.string())),
 });
 
 export function webhookSupportResourcesFromJSON(
@@ -188,8 +189,9 @@ export const VirtualWebhooks$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   request_rate: z.lazy(() => RequestRate$inboundSchema),
-  resources: z.record(z.lazy(() => WebhookSupportResources$inboundSchema))
-    .optional(),
+  resources: types.optional(
+    z.record(z.lazy(() => WebhookSupportResources$inboundSchema)),
+  ),
 }).transform((v) => {
   return remap$(v, {
     "request_rate": "requestRate",
@@ -212,10 +214,10 @@ export const WebhookSupport$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  mode: Mode$inboundSchema.optional(),
-  subscription_level: SubscriptionLevel$inboundSchema.optional(),
-  managed_via: ManagedVia$inboundSchema.optional(),
-  virtual_webhooks: z.lazy(() => VirtualWebhooks$inboundSchema).optional(),
+  mode: types.optional(Mode$inboundSchema),
+  subscription_level: types.optional(SubscriptionLevel$inboundSchema),
+  managed_via: types.optional(ManagedVia$inboundSchema),
+  virtual_webhooks: types.optional(z.lazy(() => VirtualWebhooks$inboundSchema)),
 }).transform((v) => {
   return remap$(v, {
     "subscription_level": "subscriptionLevel",

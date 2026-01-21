@@ -6,7 +6,6 @@ LedgerAccount
 
 ```typescript
 import { GetLedgerAccountResponse } from "@apideck/unify/models/components";
-import { RFCDate } from "@apideck/unify/types";
 
 let value: GetLedgerAccountResponse = {
   statusCode: 200,
@@ -70,7 +69,7 @@ let value: GetLedgerAccountResponse = {
         accountSubName: "Petty Cash",
       },
     ],
-    lastReconciliationDate: new RFCDate("2020-09-30"),
+    lastReconciliationDate: new Date("2020-09-30"),
     customFields: [
       {
         id: "2389328923893298",

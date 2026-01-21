@@ -4,7 +4,6 @@
 
 import { expect, test } from "vitest";
 import { Apideck } from "../index.js";
-import { RFCDate } from "../types/index.js";
 import { createTestHTTPClient } from "./testclient.js";
 
 test("Ageddebtors Accounting Aged Debtors One", async () => {
@@ -42,7 +41,7 @@ test("Ageddebtors Accounting Aged Debtors One", async () => {
     operation: "one",
     data: {
       reportGeneratedAt: new Date("2024-11-14T12:00:00.000Z"),
-      reportAsOfDate: new RFCDate("2024-11-13"),
+      reportAsOfDate: new Date("2024-11-13"),
       periodCount: 4,
       periodLength: 30,
       outstandingBalances: [
@@ -54,24 +53,24 @@ test("Ageddebtors Accounting Aged Debtors One", async () => {
               currency: "USD",
               balancesByPeriod: [
                 {
-                  startDate: new RFCDate("2024-01-01"),
-                  endDate: new RFCDate("2024-01-30"),
+                  startDate: new Date("2024-01-01"),
+                  endDate: new Date("2024-01-30"),
                   totalAmount: 1500,
                   balancesByTransaction: [
                     {
                       transactionId: "INV-1001",
-                      transactionDate: new RFCDate("2024-01-15"),
+                      transactionDate: new Date("2024-01-15"),
                       transactionType: "invoice",
-                      dueDate: new RFCDate("2024-02-15"),
+                      dueDate: new Date("2024-02-15"),
                       originalAmount: 1000,
                       outstandingBalance: 800,
                       transactionNumber: "INV-1001",
                     },
                     {
                       transactionId: "INV-1001",
-                      transactionDate: new RFCDate("2024-01-15"),
+                      transactionDate: new Date("2024-01-15"),
                       transactionType: "invoice",
-                      dueDate: new RFCDate("2024-02-15"),
+                      dueDate: new Date("2024-02-15"),
                       originalAmount: 1000,
                       outstandingBalance: 800,
                       transactionNumber: "INV-1001",
@@ -79,33 +78,33 @@ test("Ageddebtors Accounting Aged Debtors One", async () => {
                   ],
                 },
                 {
-                  startDate: new RFCDate("2024-01-01"),
-                  endDate: new RFCDate("2024-01-30"),
+                  startDate: new Date("2024-01-01"),
+                  endDate: new Date("2024-01-30"),
                   totalAmount: 1500,
                   balancesByTransaction: [
                     {
                       transactionId: "INV-1001",
-                      transactionDate: new RFCDate("2024-01-15"),
+                      transactionDate: new Date("2024-01-15"),
                       transactionType: "invoice",
-                      dueDate: new RFCDate("2024-02-15"),
+                      dueDate: new Date("2024-02-15"),
                       originalAmount: 1000,
                       outstandingBalance: 800,
                       transactionNumber: "INV-1001",
                     },
                     {
                       transactionId: "INV-1001",
-                      transactionDate: new RFCDate("2024-01-15"),
+                      transactionDate: new Date("2024-01-15"),
                       transactionType: "invoice",
-                      dueDate: new RFCDate("2024-02-15"),
+                      dueDate: new Date("2024-02-15"),
                       originalAmount: 1000,
                       outstandingBalance: 800,
                       transactionNumber: "INV-1001",
                     },
                     {
                       transactionId: "INV-1001",
-                      transactionDate: new RFCDate("2024-01-15"),
+                      transactionDate: new Date("2024-01-15"),
                       transactionType: "invoice",
-                      dueDate: new RFCDate("2024-02-15"),
+                      dueDate: new Date("2024-02-15"),
                       originalAmount: 1000,
                       outstandingBalance: 800,
                       transactionNumber: "INV-1001",
@@ -118,24 +117,24 @@ test("Ageddebtors Accounting Aged Debtors One", async () => {
               currency: "USD",
               balancesByPeriod: [
                 {
-                  startDate: new RFCDate("2024-01-01"),
-                  endDate: new RFCDate("2024-01-30"),
+                  startDate: new Date("2024-01-01"),
+                  endDate: new Date("2024-01-30"),
                   totalAmount: 1500,
                   balancesByTransaction: [
                     {
                       transactionId: "INV-1001",
-                      transactionDate: new RFCDate("2024-01-15"),
+                      transactionDate: new Date("2024-01-15"),
                       transactionType: "invoice",
-                      dueDate: new RFCDate("2024-02-15"),
+                      dueDate: new Date("2024-02-15"),
                       originalAmount: 1000,
                       outstandingBalance: 800,
                       transactionNumber: "INV-1001",
                     },
                     {
                       transactionId: "INV-1001",
-                      transactionDate: new RFCDate("2024-01-15"),
+                      transactionDate: new Date("2024-01-15"),
                       transactionType: "invoice",
-                      dueDate: new RFCDate("2024-02-15"),
+                      dueDate: new Date("2024-02-15"),
                       originalAmount: 1000,
                       outstandingBalance: 800,
                       transactionNumber: "INV-1001",
@@ -143,101 +142,15 @@ test("Ageddebtors Accounting Aged Debtors One", async () => {
                   ],
                 },
                 {
-                  startDate: new RFCDate("2024-01-01"),
-                  endDate: new RFCDate("2024-01-30"),
+                  startDate: new Date("2024-01-01"),
+                  endDate: new Date("2024-01-30"),
                   totalAmount: 1500,
                   balancesByTransaction: [
                     {
                       transactionId: "INV-1001",
-                      transactionDate: new RFCDate("2024-01-15"),
+                      transactionDate: new Date("2024-01-15"),
                       transactionType: "invoice",
-                      dueDate: new RFCDate("2024-02-15"),
-                      originalAmount: 1000,
-                      outstandingBalance: 800,
-                      transactionNumber: "INV-1001",
-                    },
-                  ],
-                },
-              ],
-            },
-          ],
-        },
-        {
-          customerId: "123",
-          customerName: "Super Store",
-          outstandingBalancesByCurrency: [
-            {
-              currency: "USD",
-              balancesByPeriod: [
-                {
-                  startDate: new RFCDate("2024-01-01"),
-                  endDate: new RFCDate("2024-01-30"),
-                  totalAmount: 1500,
-                  balancesByTransaction: [
-                    {
-                      transactionId: "INV-1001",
-                      transactionDate: new RFCDate("2024-01-15"),
-                      transactionType: "invoice",
-                      dueDate: new RFCDate("2024-02-15"),
-                      originalAmount: 1000,
-                      outstandingBalance: 800,
-                      transactionNumber: "INV-1001",
-                    },
-                    {
-                      transactionId: "INV-1001",
-                      transactionDate: new RFCDate("2024-01-15"),
-                      transactionType: "invoice",
-                      dueDate: new RFCDate("2024-02-15"),
-                      originalAmount: 1000,
-                      outstandingBalance: 800,
-                      transactionNumber: "INV-1001",
-                    },
-                  ],
-                },
-                {
-                  startDate: new RFCDate("2024-01-01"),
-                  endDate: new RFCDate("2024-01-30"),
-                  totalAmount: 1500,
-                  balancesByTransaction: [
-                    {
-                      transactionId: "INV-1001",
-                      transactionDate: new RFCDate("2024-01-15"),
-                      transactionType: "invoice",
-                      dueDate: new RFCDate("2024-02-15"),
-                      originalAmount: 1000,
-                      outstandingBalance: 800,
-                      transactionNumber: "INV-1001",
-                    },
-                    {
-                      transactionId: "INV-1001",
-                      transactionDate: new RFCDate("2024-01-15"),
-                      transactionType: "invoice",
-                      dueDate: new RFCDate("2024-02-15"),
-                      originalAmount: 1000,
-                      outstandingBalance: 800,
-                      transactionNumber: "INV-1001",
-                    },
-                    {
-                      transactionId: "INV-1001",
-                      transactionDate: new RFCDate("2024-01-15"),
-                      transactionType: "invoice",
-                      dueDate: new RFCDate("2024-02-15"),
-                      originalAmount: 1000,
-                      outstandingBalance: 800,
-                      transactionNumber: "INV-1001",
-                    },
-                  ],
-                },
-                {
-                  startDate: new RFCDate("2024-01-01"),
-                  endDate: new RFCDate("2024-01-30"),
-                  totalAmount: 1500,
-                  balancesByTransaction: [
-                    {
-                      transactionId: "INV-1001",
-                      transactionDate: new RFCDate("2024-01-15"),
-                      transactionType: "invoice",
-                      dueDate: new RFCDate("2024-02-15"),
+                      dueDate: new Date("2024-02-15"),
                       originalAmount: 1000,
                       outstandingBalance: 800,
                       transactionNumber: "INV-1001",
@@ -256,15 +169,101 @@ test("Ageddebtors Accounting Aged Debtors One", async () => {
               currency: "USD",
               balancesByPeriod: [
                 {
-                  startDate: new RFCDate("2024-01-01"),
-                  endDate: new RFCDate("2024-01-30"),
+                  startDate: new Date("2024-01-01"),
+                  endDate: new Date("2024-01-30"),
                   totalAmount: 1500,
                   balancesByTransaction: [
                     {
                       transactionId: "INV-1001",
-                      transactionDate: new RFCDate("2024-01-15"),
+                      transactionDate: new Date("2024-01-15"),
                       transactionType: "invoice",
-                      dueDate: new RFCDate("2024-02-15"),
+                      dueDate: new Date("2024-02-15"),
+                      originalAmount: 1000,
+                      outstandingBalance: 800,
+                      transactionNumber: "INV-1001",
+                    },
+                    {
+                      transactionId: "INV-1001",
+                      transactionDate: new Date("2024-01-15"),
+                      transactionType: "invoice",
+                      dueDate: new Date("2024-02-15"),
+                      originalAmount: 1000,
+                      outstandingBalance: 800,
+                      transactionNumber: "INV-1001",
+                    },
+                  ],
+                },
+                {
+                  startDate: new Date("2024-01-01"),
+                  endDate: new Date("2024-01-30"),
+                  totalAmount: 1500,
+                  balancesByTransaction: [
+                    {
+                      transactionId: "INV-1001",
+                      transactionDate: new Date("2024-01-15"),
+                      transactionType: "invoice",
+                      dueDate: new Date("2024-02-15"),
+                      originalAmount: 1000,
+                      outstandingBalance: 800,
+                      transactionNumber: "INV-1001",
+                    },
+                    {
+                      transactionId: "INV-1001",
+                      transactionDate: new Date("2024-01-15"),
+                      transactionType: "invoice",
+                      dueDate: new Date("2024-02-15"),
+                      originalAmount: 1000,
+                      outstandingBalance: 800,
+                      transactionNumber: "INV-1001",
+                    },
+                    {
+                      transactionId: "INV-1001",
+                      transactionDate: new Date("2024-01-15"),
+                      transactionType: "invoice",
+                      dueDate: new Date("2024-02-15"),
+                      originalAmount: 1000,
+                      outstandingBalance: 800,
+                      transactionNumber: "INV-1001",
+                    },
+                  ],
+                },
+                {
+                  startDate: new Date("2024-01-01"),
+                  endDate: new Date("2024-01-30"),
+                  totalAmount: 1500,
+                  balancesByTransaction: [
+                    {
+                      transactionId: "INV-1001",
+                      transactionDate: new Date("2024-01-15"),
+                      transactionType: "invoice",
+                      dueDate: new Date("2024-02-15"),
+                      originalAmount: 1000,
+                      outstandingBalance: 800,
+                      transactionNumber: "INV-1001",
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+        {
+          customerId: "123",
+          customerName: "Super Store",
+          outstandingBalancesByCurrency: [
+            {
+              currency: "USD",
+              balancesByPeriod: [
+                {
+                  startDate: new Date("2024-01-01"),
+                  endDate: new Date("2024-01-30"),
+                  totalAmount: 1500,
+                  balancesByTransaction: [
+                    {
+                      transactionId: "INV-1001",
+                      transactionDate: new Date("2024-01-15"),
+                      transactionType: "invoice",
+                      dueDate: new Date("2024-02-15"),
                       originalAmount: 1000,
                       outstandingBalance: 800,
                       transactionNumber: "INV-1001",

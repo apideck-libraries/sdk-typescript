@@ -5,6 +5,7 @@
 import * as z from "zod/v3";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   AttachmentReferenceType,
@@ -25,8 +26,8 @@ export const AttachmentReference$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  type: AttachmentReferenceType$inboundSchema.optional(),
-  id: z.string().optional(),
+  type: types.optional(AttachmentReferenceType$inboundSchema),
+  id: types.optional(types.string()),
 });
 
 export function attachmentReferenceFromJSON(

@@ -131,7 +131,6 @@ Create project
 <!-- UsageSnippet language="typescript" operationID="accounting.projectsAdd" method="post" path="/accounting/projects" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
-import { RFCDate } from "@apideck/unify/types";
 
 const apideck = new Apideck({
   consumerId: "test-consumer",
@@ -152,8 +151,8 @@ async function run() {
       projectType: "client_project",
       priority: "high",
       completionPercentage: 75.5,
-      startDate: new RFCDate("2024-01-15"),
-      endDate: new RFCDate("2024-06-30"),
+      startDate: new Date("2024-01-15"),
+      endDate: new Date("2024-06-30"),
       customer: {
         id: "12345",
         displayName: "Windsurf Shop",
@@ -253,7 +252,6 @@ The standalone function version of this method:
 ```typescript
 import { ApideckCore } from "@apideck/unify/core.js";
 import { accountingProjectsCreate } from "@apideck/unify/funcs/accountingProjectsCreate.js";
-import { RFCDate } from "@apideck/unify/types";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -276,8 +274,8 @@ async function run() {
       projectType: "client_project",
       priority: "high",
       completionPercentage: 75.5,
-      startDate: new RFCDate("2024-01-15"),
-      endDate: new RFCDate("2024-06-30"),
+      startDate: new Date("2024-01-15"),
+      endDate: new Date("2024-06-30"),
       customer: {
         id: "12345",
         displayName: "Windsurf Shop",
@@ -491,7 +489,6 @@ Update project
 <!-- UsageSnippet language="typescript" operationID="accounting.projectsUpdate" method="patch" path="/accounting/projects/{id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
-import { RFCDate } from "@apideck/unify/types";
 
 const apideck = new Apideck({
   consumerId: "test-consumer",
@@ -513,8 +510,8 @@ async function run() {
       projectType: "client_project",
       priority: "high",
       completionPercentage: 75.5,
-      startDate: new RFCDate("2024-01-15"),
-      endDate: new RFCDate("2024-06-30"),
+      startDate: new Date("2024-01-15"),
+      endDate: new Date("2024-06-30"),
       customer: null,
       department: {
         id: "DEPT-001",
@@ -610,7 +607,6 @@ The standalone function version of this method:
 ```typescript
 import { ApideckCore } from "@apideck/unify/core.js";
 import { accountingProjectsUpdate } from "@apideck/unify/funcs/accountingProjectsUpdate.js";
-import { RFCDate } from "@apideck/unify/types";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -634,8 +630,8 @@ async function run() {
       projectType: "client_project",
       priority: "high",
       completionPercentage: 75.5,
-      startDate: new RFCDate("2024-01-15"),
-      endDate: new RFCDate("2024-06-30"),
+      startDate: new Date("2024-01-15"),
+      endDate: new Date("2024-06-30"),
       customer: null,
       department: {
         id: "DEPT-001",

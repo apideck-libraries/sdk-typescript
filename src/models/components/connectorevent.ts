@@ -8,6 +8,7 @@ import { safeParse } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
@@ -58,11 +59,11 @@ export const ConnectorEvent$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  event_type: z.string().optional(),
-  event_source: EventSource$inboundSchema.optional(),
-  downstream_event_type: z.string().optional(),
-  resources: z.array(z.string()).optional(),
-  entity_type: z.string().optional(),
+  event_type: types.optional(types.string()),
+  event_source: types.optional(EventSource$inboundSchema),
+  downstream_event_type: types.optional(types.string()),
+  resources: types.optional(z.array(types.string())),
+  entity_type: types.optional(types.string()),
 }).transform((v) => {
   return remap$(v, {
     "event_type": "eventType",

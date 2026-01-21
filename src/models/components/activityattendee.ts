@@ -8,6 +8,7 @@ import { safeParse } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
@@ -140,24 +141,20 @@ export const ActivityAttendee$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  id: z.nullable(z.string()).optional(),
-  name: z.nullable(z.string()).optional(),
-  first_name: z.nullable(z.string()).optional(),
-  middle_name: z.nullable(z.string()).optional(),
-  last_name: z.nullable(z.string()).optional(),
-  prefix: z.nullable(z.string()).optional(),
-  suffix: z.nullable(z.string()).optional(),
-  email_address: z.nullable(z.string()).optional(),
-  is_organizer: z.nullable(z.boolean()).optional(),
+  id: z.nullable(types.string()).optional(),
+  name: z.nullable(types.string()).optional(),
+  first_name: z.nullable(types.string()).optional(),
+  middle_name: z.nullable(types.string()).optional(),
+  last_name: z.nullable(types.string()).optional(),
+  prefix: z.nullable(types.string()).optional(),
+  suffix: z.nullable(types.string()).optional(),
+  email_address: z.nullable(types.string()).optional(),
+  is_organizer: z.nullable(types.boolean()).optional(),
   status: z.nullable(ActivityAttendeeStatus$inboundSchema).optional(),
-  user_id: z.nullable(z.string()).optional(),
-  contact_id: z.nullable(z.string()).optional(),
-  updated_at: z.nullable(
-    z.string().datetime({ offset: true }).transform(v => new Date(v)),
-  ).optional(),
-  created_at: z.nullable(
-    z.string().datetime({ offset: true }).transform(v => new Date(v)),
-  ).optional(),
+  user_id: z.nullable(types.string()).optional(),
+  contact_id: z.nullable(types.string()).optional(),
+  updated_at: z.nullable(types.date()).optional(),
+  created_at: z.nullable(types.date()).optional(),
 }).transform((v) => {
   return remap$(v, {
     "first_name": "firstName",

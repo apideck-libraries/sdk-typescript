@@ -4,7 +4,6 @@
 
 ```typescript
 import { AccountingPurchaseOrdersAddRequest } from "@apideck/unify/models/operations";
-import { RFCDate } from "@apideck/unify/types";
 
 let value: AccountingPurchaseOrdersAddRequest = {
   serviceId: "salesforce",
@@ -18,9 +17,9 @@ let value: AccountingPurchaseOrdersAddRequest = {
     locationId: "12345",
     departmentId: "12345",
     status: "open",
-    issuedDate: new RFCDate("2020-09-30"),
-    deliveryDate: new RFCDate("2020-09-30"),
-    expectedArrivalDate: new RFCDate("2020-09-30"),
+    issuedDate: new Date("2020-09-30"),
+    deliveryDate: new Date("2020-09-30"),
+    expectedArrivalDate: new Date("2020-09-30"),
     currency: "USD",
     currencyRate: 0.69,
     subTotal: 27500,
@@ -43,7 +42,7 @@ let value: AccountingPurchaseOrdersAddRequest = {
         unitOfMeasure: "pc.",
         discountPercentage: 0.01,
         discountAmount: 19.99,
-        serviceDate: new RFCDate("2024-01-15"),
+        serviceDate: new Date("2024-01-15"),
         categoryId: "12345",
         locationId: "12345",
         departmentId: "12345",
@@ -177,7 +176,7 @@ let value: AccountingPurchaseOrdersAddRequest = {
       country: "US",
     },
     accountingByRow: false,
-    dueDate: new RFCDate("2020-10-30"),
+    dueDate: new Date("2020-10-30"),
     paymentMethod: "cash",
     terms: "Net 30 days",
     taxCode: "1234",

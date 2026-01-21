@@ -6,7 +6,6 @@ Projects
 
 ```typescript
 import { GetProjectsResponse } from "@apideck/unify/models/components";
-import { RFCDate } from "@apideck/unify/types";
 
 let value: GetProjectsResponse = {
   statusCode: 200,
@@ -28,8 +27,8 @@ let value: GetProjectsResponse = {
       projectType: "client_project",
       priority: "high",
       completionPercentage: 75.5,
-      startDate: new RFCDate("2024-01-15"),
-      endDate: new RFCDate("2024-06-30"),
+      startDate: new Date("2024-01-15"),
+      endDate: new Date("2024-06-30"),
       customer: {
         id: "12345",
         displayId: "CUST00101",

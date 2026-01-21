@@ -6,6 +6,7 @@ import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   ResourceStatus,
@@ -41,11 +42,11 @@ export const LinkedConnectorResource$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  id: z.string().optional(),
-  name: z.string().optional(),
-  status: ResourceStatus$inboundSchema.optional(),
-  downstream_id: z.string().optional(),
-  downstream_name: z.string().optional(),
+  id: types.optional(types.string()),
+  name: types.optional(types.string()),
+  status: types.optional(ResourceStatus$inboundSchema),
+  downstream_id: types.optional(types.string()),
+  downstream_name: types.optional(types.string()),
 }).transform((v) => {
   return remap$(v, {
     "downstream_id": "downstreamId",

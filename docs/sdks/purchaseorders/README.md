@@ -127,7 +127,6 @@ Create Purchase Order
 <!-- UsageSnippet language="typescript" operationID="accounting.purchaseOrdersAdd" method="post" path="/accounting/purchase-orders" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
-import { RFCDate } from "@apideck/unify/types";
 
 const apideck = new Apideck({
   consumerId: "test-consumer",
@@ -174,9 +173,9 @@ async function run() {
       subsidiaryId: "12345",
       companyId: "12345",
       status: "open",
-      issuedDate: new RFCDate("2020-09-30"),
-      deliveryDate: new RFCDate("2020-09-30"),
-      expectedArrivalDate: new RFCDate("2020-09-30"),
+      issuedDate: new Date("2020-09-30"),
+      deliveryDate: new Date("2020-09-30"),
+      expectedArrivalDate: new Date("2020-09-30"),
       currency: "USD",
       currencyRate: 0.69,
       subTotal: 27500,
@@ -370,7 +369,7 @@ async function run() {
         currency: "USD",
       },
       accountingByRow: false,
-      dueDate: new RFCDate("2020-10-30"),
+      dueDate: new Date("2020-10-30"),
       paymentMethod: "cash",
       taxCode: "1234",
       channel: "email",
@@ -471,7 +470,6 @@ The standalone function version of this method:
 ```typescript
 import { ApideckCore } from "@apideck/unify/core.js";
 import { accountingPurchaseOrdersCreate } from "@apideck/unify/funcs/accountingPurchaseOrdersCreate.js";
-import { RFCDate } from "@apideck/unify/types";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -520,9 +518,9 @@ async function run() {
       subsidiaryId: "12345",
       companyId: "12345",
       status: "open",
-      issuedDate: new RFCDate("2020-09-30"),
-      deliveryDate: new RFCDate("2020-09-30"),
-      expectedArrivalDate: new RFCDate("2020-09-30"),
+      issuedDate: new Date("2020-09-30"),
+      deliveryDate: new Date("2020-09-30"),
+      expectedArrivalDate: new Date("2020-09-30"),
       currency: "USD",
       currencyRate: 0.69,
       subTotal: 27500,
@@ -716,7 +714,7 @@ async function run() {
         currency: "USD",
       },
       accountingByRow: false,
-      dueDate: new RFCDate("2020-10-30"),
+      dueDate: new Date("2020-10-30"),
       paymentMethod: "cash",
       taxCode: "1234",
       channel: "email",
@@ -931,7 +929,6 @@ Update Purchase Order
 <!-- UsageSnippet language="typescript" operationID="accounting.purchaseOrdersUpdate" method="patch" path="/accounting/purchase-orders/{id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
-import { RFCDate } from "@apideck/unify/types";
 
 const apideck = new Apideck({
   consumerId: "test-consumer",
@@ -979,9 +976,9 @@ async function run() {
       subsidiaryId: "12345",
       companyId: "12345",
       status: "open",
-      issuedDate: new RFCDate("2020-09-30"),
-      deliveryDate: new RFCDate("2020-09-30"),
-      expectedArrivalDate: new RFCDate("2020-09-30"),
+      issuedDate: new Date("2020-09-30"),
+      deliveryDate: new Date("2020-09-30"),
+      expectedArrivalDate: new Date("2020-09-30"),
       currency: "USD",
       currencyRate: 0.69,
       subTotal: 27500,
@@ -1143,7 +1140,7 @@ async function run() {
         currency: "USD",
       },
       accountingByRow: false,
-      dueDate: new RFCDate("2020-10-30"),
+      dueDate: new Date("2020-10-30"),
       paymentMethod: "cash",
       taxCode: "1234",
       channel: "email",
@@ -1216,7 +1213,6 @@ The standalone function version of this method:
 ```typescript
 import { ApideckCore } from "@apideck/unify/core.js";
 import { accountingPurchaseOrdersUpdate } from "@apideck/unify/funcs/accountingPurchaseOrdersUpdate.js";
-import { RFCDate } from "@apideck/unify/types";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -1266,9 +1262,9 @@ async function run() {
       subsidiaryId: "12345",
       companyId: "12345",
       status: "open",
-      issuedDate: new RFCDate("2020-09-30"),
-      deliveryDate: new RFCDate("2020-09-30"),
-      expectedArrivalDate: new RFCDate("2020-09-30"),
+      issuedDate: new Date("2020-09-30"),
+      deliveryDate: new Date("2020-09-30"),
+      expectedArrivalDate: new Date("2020-09-30"),
       currency: "USD",
       currencyRate: 0.69,
       subTotal: 27500,
@@ -1430,7 +1426,7 @@ async function run() {
         currency: "USD",
       },
       accountingByRow: false,
-      dueDate: new RFCDate("2020-10-30"),
+      dueDate: new Date("2020-10-30"),
       paymentMethod: "cash",
       taxCode: "1234",
       channel: "email",

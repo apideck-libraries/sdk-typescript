@@ -8,7 +8,7 @@ import { safeParse } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
-import { RFCDate } from "../../types/rfcdate.js";
+import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   BankAccount,
@@ -236,7 +236,7 @@ export type LedgerAccount = {
   /**
    * Reconciliation Date means the last calendar day of each Reconciliation Period.
    */
-  lastReconciliationDate?: RFCDate | null | undefined;
+  lastReconciliationDate?: Date | null | undefined;
   /**
    * The subsidiaries the account belongs to.
    */
@@ -350,7 +350,7 @@ export type LedgerAccountInput = {
   /**
    * Reconciliation Date means the last calendar day of each Reconciliation Period.
    */
-  lastReconciliationDate?: RFCDate | null | undefined;
+  lastReconciliationDate?: Date | null | undefined;
   /**
    * The subsidiaries the account belongs to.
    */
@@ -411,8 +411,8 @@ export const Categories$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  id: z.string().optional(),
-  name: z.string().optional(),
+  id: types.optional(types.string()),
+  name: types.optional(types.string()),
 });
 
 export function categoriesFromJSON(
@@ -431,9 +431,9 @@ export const ParentAccount$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  id: z.string().optional(),
-  name: z.string().optional(),
-  display_id: z.string().optional(),
+  id: types.optional(types.string()),
+  name: types.optional(types.string()),
+  display_id: types.optional(types.string()),
 }).transform((v) => {
   return remap$(v, {
     "display_id": "displayId",
@@ -480,8 +480,8 @@ export const SubAccounts$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  id: z.string().optional(),
-  account_sub_name: z.string().optional(),
+  id: types.optional(types.string()),
+  account_sub_name: types.optional(types.string()),
 }).transform((v) => {
   return remap$(v, {
     "account_sub_name": "accountSubName",
@@ -504,7 +504,7 @@ export const LedgerAccountSubsidiaries$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  id: z.string().optional(),
+  id: types.optional(types.string()),
 });
 /** @internal */
 export type LedgerAccountSubsidiaries$Outbound = {
@@ -543,48 +543,45 @@ export const LedgerAccount$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  id: z.string().optional(),
-  display_id: z.string().optional(),
-  nominal_code: z.nullable(z.string()).optional(),
-  code: z.nullable(z.string()).optional(),
+  id: types.optional(types.string()),
+  display_id: types.optional(types.string()),
+  nominal_code: z.nullable(types.string()).optional(),
+  code: z.nullable(types.string()).optional(),
   classification: z.nullable(LedgerAccountClassification$inboundSchema)
     .optional(),
-  type: LedgerAccountType$inboundSchema.optional(),
-  sub_type: z.nullable(z.string()).optional(),
-  name: z.nullable(z.string()).optional(),
-  fully_qualified_name: z.nullable(z.string()).optional(),
-  description: z.nullable(z.string()).optional(),
-  opening_balance: z.nullable(z.number()).optional(),
-  current_balance: z.nullable(z.number()).optional(),
+  type: types.optional(LedgerAccountType$inboundSchema),
+  sub_type: z.nullable(types.string()).optional(),
+  name: z.nullable(types.string()).optional(),
+  fully_qualified_name: z.nullable(types.string()).optional(),
+  description: z.nullable(types.string()).optional(),
+  opening_balance: z.nullable(types.number()).optional(),
+  current_balance: z.nullable(types.number()).optional(),
   currency: z.nullable(Currency$inboundSchema).optional(),
-  tax_type: z.nullable(z.string()).optional(),
-  tax_rate: LinkedTaxRate$inboundSchema.optional(),
-  level: z.nullable(z.number()).optional(),
-  active: z.nullable(z.boolean()).optional(),
+  tax_type: z.nullable(types.string()).optional(),
+  tax_rate: types.optional(LinkedTaxRate$inboundSchema),
+  level: z.nullable(types.number()).optional(),
+  active: z.nullable(types.boolean()).optional(),
   status: z.nullable(AccountStatus$inboundSchema).optional(),
-  header: z.nullable(z.boolean()).optional(),
-  bank_account: BankAccount$inboundSchema.optional(),
-  categories: z.array(z.lazy(() => Categories$inboundSchema)).optional(),
-  parent_account: z.lazy(() => ParentAccount$inboundSchema).optional(),
-  sub_account: z.nullable(z.boolean()).optional(),
-  sub_accounts: z.array(z.lazy(() => SubAccounts$inboundSchema)).optional(),
-  last_reconciliation_date: z.nullable(
-    z.string().transform(v => new RFCDate(v)),
-  ).optional(),
-  subsidiaries: z.array(z.lazy(() => LedgerAccountSubsidiaries$inboundSchema))
-    .optional(),
+  header: z.nullable(types.boolean()).optional(),
+  bank_account: types.optional(BankAccount$inboundSchema),
+  categories: types.optional(z.array(z.lazy(() => Categories$inboundSchema))),
+  parent_account: types.optional(z.lazy(() => ParentAccount$inboundSchema)),
+  sub_account: z.nullable(types.boolean()).optional(),
+  sub_accounts: types.optional(
+    z.array(z.lazy(() => SubAccounts$inboundSchema)),
+  ),
+  last_reconciliation_date: z.nullable(types.date()).optional(),
+  subsidiaries: types.optional(
+    z.array(z.lazy(() => LedgerAccountSubsidiaries$inboundSchema)),
+  ),
   custom_mappings: z.nullable(z.record(z.any())).optional(),
-  custom_fields: z.array(CustomField$inboundSchema).optional(),
-  row_version: z.nullable(z.string()).optional(),
-  updated_by: z.nullable(z.string()).optional(),
-  created_by: z.nullable(z.string()).optional(),
-  updated_at: z.nullable(
-    z.string().datetime({ offset: true }).transform(v => new Date(v)),
-  ).optional(),
-  created_at: z.nullable(
-    z.string().datetime({ offset: true }).transform(v => new Date(v)),
-  ).optional(),
-  pass_through: z.array(PassThroughBody$inboundSchema).optional(),
+  custom_fields: types.optional(z.array(CustomField$inboundSchema)),
+  row_version: z.nullable(types.string()).optional(),
+  updated_by: z.nullable(types.string()).optional(),
+  created_by: z.nullable(types.string()).optional(),
+  updated_at: z.nullable(types.date()).optional(),
+  created_at: z.nullable(types.date()).optional(),
+  pass_through: types.optional(z.array(PassThroughBody$inboundSchema)),
 }).transform((v) => {
   return remap$(v, {
     "display_id": "displayId",
@@ -680,7 +677,7 @@ export const LedgerAccountInput$outboundSchema: z.ZodType<
   parentAccount: z.lazy(() => ParentAccount$outboundSchema).optional(),
   subAccount: z.nullable(z.boolean()).optional(),
   lastReconciliationDate: z.nullable(
-    z.instanceof(RFCDate).transform(v => v.toString()),
+    z.date().transform(v => v.toISOString().slice(0, "YYYY-MM-DD".length)),
   ).optional(),
   subsidiaries: z.array(z.lazy(() => LedgerAccountSubsidiaries$outboundSchema))
     .optional(),

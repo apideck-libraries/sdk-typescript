@@ -30,7 +30,7 @@ generation:
     generateNewTests: true
     skipResponseBodyAssertions: false
 typescript:
-  version: 0.37.0
+  version: 0.37.1
   acceptHeaderEnum: true
   additionalDependencies:
     dependencies: {}
@@ -55,7 +55,7 @@ typescript:
   flatteningOrder: parameters-first
   formStringArrayEncodeMode: encoded-string
   forwardCompatibleEnumsByDefault: true
-  forwardCompatibleUnionsByDefault: "tagged-only"
+  forwardCompatibleUnionsByDefault: tagged-only
   generateExamples: true
   imports:
     option: openapi

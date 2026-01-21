@@ -6,6 +6,7 @@ import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { Api, Api$inboundSchema } from "./api.js";
 import { Links, Links$inboundSchema } from "./links.js";
@@ -44,12 +45,12 @@ export const GetApiResponse$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  status_code: z.number().int(),
-  status: z.string(),
+  status_code: types.number(),
+  status: types.string(),
   data: Api$inboundSchema,
   _raw: z.nullable(z.record(z.any())).optional(),
-  meta: Meta$inboundSchema.optional(),
-  links: Links$inboundSchema.optional(),
+  meta: types.optional(Meta$inboundSchema),
+  links: types.optional(Links$inboundSchema),
 }).transform((v) => {
   return remap$(v, {
     "status_code": "statusCode",

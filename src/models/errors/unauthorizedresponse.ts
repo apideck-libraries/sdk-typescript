@@ -9,6 +9,8 @@ import {
   safeParse,
 } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import * as types from "../../types/primitives.js";
+import { smartUnion } from "../../types/smartUnion.js";
 import { ApideckError } from "./apideckerror.js";
 import { SDKValidationError } from "./sdkvalidationerror.js";
 
@@ -189,13 +191,13 @@ export function responseFromJSON(
 /** @internal */
 export const Debug$inboundSchema: z.ZodType<Debug, z.ZodTypeDef, unknown> = z
   .object({
-    request: z.lazy(() => RequestT$inboundSchema).optional(),
-    response: z.lazy(() => ResponseT$inboundSchema).optional(),
-    message: z.string().optional(),
-    code: z.string().optional(),
-    credentials_expire_at_ms: z.number().optional(),
-    retry_after_ms: z.number().optional(),
-    cooldown_remaining_ms: z.number().optional(),
+    request: types.optional(z.lazy(() => RequestT$inboundSchema)),
+    response: types.optional(z.lazy(() => ResponseT$inboundSchema)),
+    message: types.optional(types.string()),
+    code: types.optional(types.string()),
+    credentials_expire_at_ms: types.optional(types.number()),
+    retry_after_ms: types.optional(types.number()),
+    cooldown_remaining_ms: types.optional(types.number()),
   }).transform((v) => {
     return remap$(v, {
       "credentials_expire_at_ms": "credentialsExpireAtMs",
@@ -218,9 +220,9 @@ export function debugFromJSON(
 export const Two$inboundSchema: z.ZodType<Two, z.ZodTypeDef, unknown> =
   collectExtraKeys$(
     z.object({
-      type: z.string().optional(),
-      message: z.string().optional(),
-      debug: z.lazy(() => Debug$inboundSchema).optional(),
+      type: types.optional(types.string()),
+      message: types.optional(types.string()),
+      debug: types.optional(z.lazy(() => Debug$inboundSchema)),
     }).catchall(z.any()),
     "additionalProperties",
     true,
@@ -241,7 +243,7 @@ export const UnauthorizedResponseDetail$inboundSchema: z.ZodType<
   UnauthorizedResponseDetail,
   z.ZodTypeDef,
   unknown
-> = z.union([z.string(), z.lazy(() => Two$inboundSchema)]);
+> = smartUnion([types.string(), z.lazy(() => Two$inboundSchema)]);
 
 export function unauthorizedResponseDetailFromJSON(
   jsonString: string,
@@ -259,12 +261,14 @@ export const UnauthorizedResponse$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  status_code: z.number().optional(),
-  error: z.string().optional(),
-  type_name: z.string().optional(),
-  message: z.string().optional(),
-  detail: z.union([z.string(), z.lazy(() => Two$inboundSchema)]).optional(),
-  ref: z.string().optional(),
+  status_code: types.optional(types.number()),
+  error: types.optional(types.string()),
+  type_name: types.optional(types.string()),
+  message: types.optional(types.string()),
+  detail: types.optional(
+    smartUnion([types.string(), z.lazy(() => Two$inboundSchema)]),
+  ),
+  ref: types.optional(types.string()),
   request$: z.instanceof(Request),
   response$: z.instanceof(Response),
   body$: z.string(),

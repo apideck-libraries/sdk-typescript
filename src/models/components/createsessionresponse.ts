@@ -6,6 +6,7 @@ import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type CreateSessionResponseData = {
@@ -38,8 +39,8 @@ export const CreateSessionResponseData$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  session_uri: z.string(),
-  session_token: z.string(),
+  session_uri: types.string(),
+  session_token: types.string(),
 }).transform((v) => {
   return remap$(v, {
     "session_uri": "sessionUri",
@@ -63,8 +64,8 @@ export const CreateSessionResponse$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  status_code: z.number().int(),
-  status: z.string(),
+  status_code: types.number(),
+  status: types.string(),
   data: z.lazy(() => CreateSessionResponseData$inboundSchema),
   _raw: z.nullable(z.record(z.any())).optional(),
 }).transform((v) => {

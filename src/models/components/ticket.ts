@@ -8,6 +8,7 @@ import { safeParse } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { Assignee, Assignee$inboundSchema } from "./assignee.js";
 import {
@@ -160,31 +161,23 @@ export const TicketPriority$outboundSchema: z.ZodType<
 /** @internal */
 export const Ticket$inboundSchema: z.ZodType<Ticket, z.ZodTypeDef, unknown> = z
   .object({
-    id: z.string(),
-    parent_id: z.nullable(z.string()).optional(),
-    collection_id: z.nullable(z.string()).optional(),
-    type: z.nullable(z.string()).optional(),
-    subject: z.nullable(z.string()).optional(),
-    description: z.nullable(z.string()).optional(),
-    status: z.nullable(z.string()).optional(),
+    id: types.string(),
+    parent_id: z.nullable(types.string()).optional(),
+    collection_id: z.nullable(types.string()).optional(),
+    type: z.nullable(types.string()).optional(),
+    subject: z.nullable(types.string()).optional(),
+    description: z.nullable(types.string()).optional(),
+    status: z.nullable(types.string()).optional(),
     priority: z.nullable(TicketPriority$inboundSchema).optional(),
-    assignees: z.array(Assignee$inboundSchema).optional(),
-    updated_at: z.nullable(
-      z.string().datetime({ offset: true }).transform(v => new Date(v)),
-    ).optional(),
-    created_at: z.nullable(
-      z.string().datetime({ offset: true }).transform(v => new Date(v)),
-    ).optional(),
-    created_by: z.nullable(z.string()).optional(),
-    due_date: z.nullable(
-      z.string().datetime({ offset: true }).transform(v => new Date(v)),
-    ).optional(),
-    completed_at: z.nullable(
-      z.string().datetime({ offset: true }).transform(v => new Date(v)),
-    ).optional(),
-    tags: z.array(CollectionTag$inboundSchema).optional(),
+    assignees: types.optional(z.array(Assignee$inboundSchema)),
+    updated_at: z.nullable(types.date()).optional(),
+    created_at: z.nullable(types.date()).optional(),
+    created_by: z.nullable(types.string()).optional(),
+    due_date: z.nullable(types.date()).optional(),
+    completed_at: z.nullable(types.date()).optional(),
+    tags: types.optional(z.array(CollectionTag$inboundSchema)),
     custom_mappings: z.nullable(z.record(z.any())).optional(),
-    pass_through: z.array(PassThroughBody$inboundSchema).optional(),
+    pass_through: types.optional(z.array(PassThroughBody$inboundSchema)),
   }).transform((v) => {
     return remap$(v, {
       "parent_id": "parentId",

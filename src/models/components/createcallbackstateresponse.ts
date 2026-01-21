@@ -6,6 +6,7 @@ import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type CreateCallbackStateResponseData = {
@@ -40,7 +41,7 @@ export const CreateCallbackStateResponseData$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  state: z.string().optional(),
+  state: types.optional(types.string()),
 });
 
 export function createCallbackStateResponseDataFromJSON(
@@ -59,8 +60,8 @@ export const CreateCallbackStateResponse$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  status_code: z.number().int(),
-  status: z.string(),
+  status_code: types.number(),
+  status: types.string(),
   data: z.lazy(() => CreateCallbackStateResponseData$inboundSchema),
   _raw: z.nullable(z.record(z.any())).optional(),
 }).transform((v) => {

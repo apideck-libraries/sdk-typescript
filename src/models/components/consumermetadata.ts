@@ -6,6 +6,7 @@ import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
@@ -36,10 +37,10 @@ export const ConsumerMetadata$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  account_name: z.string().optional(),
-  user_name: z.string().optional(),
-  email: z.string().optional(),
-  image: z.string().optional(),
+  account_name: types.optional(types.string()),
+  user_name: types.optional(types.string()),
+  email: types.optional(types.string()),
+  image: types.optional(types.string()),
 }).transform((v) => {
   return remap$(v, {
     "account_name": "accountName",

@@ -6,6 +6,7 @@ import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type Collection = {
@@ -49,18 +50,14 @@ export const Collection$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  id: z.string(),
-  parent_id: z.nullable(z.string()).optional(),
-  type: z.nullable(z.string()).optional(),
-  name: z.nullable(z.string()).optional(),
-  description: z.nullable(z.string()).optional(),
+  id: types.string(),
+  parent_id: z.nullable(types.string()).optional(),
+  type: z.nullable(types.string()).optional(),
+  name: z.nullable(types.string()).optional(),
+  description: z.nullable(types.string()).optional(),
   custom_mappings: z.nullable(z.record(z.any())).optional(),
-  updated_at: z.nullable(
-    z.string().datetime({ offset: true }).transform(v => new Date(v)),
-  ).optional(),
-  created_at: z.nullable(
-    z.string().datetime({ offset: true }).transform(v => new Date(v)),
-  ).optional(),
+  updated_at: z.nullable(types.date()).optional(),
+  created_at: z.nullable(types.date()).optional(),
 }).transform((v) => {
   return remap$(v, {
     "parent_id": "parentId",

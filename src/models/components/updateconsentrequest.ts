@@ -5,6 +5,7 @@
 import * as z from "zod/v3";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
+import { smartUnion } from "../../types/smartUnion.js";
 
 /**
  * Wildcard indicating all resources and fields when Data Scopes is disabled
@@ -71,7 +72,7 @@ export const UpdateConsentRequestResources$outboundSchema: z.ZodType<
   UpdateConsentRequestResources$Outbound,
   z.ZodTypeDef,
   UpdateConsentRequestResources
-> = z.union([
+> = smartUnion([
   z.record(z.record(z.lazy(() => One$outboundSchema))),
   Two$outboundSchema,
 ]);
@@ -98,7 +99,7 @@ export const UpdateConsentRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   UpdateConsentRequest
 > = z.object({
-  resources: z.union([
+  resources: smartUnion([
     z.record(z.record(z.lazy(() => One$outboundSchema))),
     Two$outboundSchema,
   ]),

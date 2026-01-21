@@ -8,6 +8,7 @@ import { safeParse } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
@@ -103,13 +104,13 @@ export const LinkedFinancialAccount$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  id: z.string().optional(),
+  id: types.optional(types.string()),
   type: z.nullable(LinkedFinancialAccountAccountType$inboundSchema).optional(),
-  code: z.string().optional(),
-  display_id: z.nullable(z.string()).optional(),
-  account_number: z.nullable(z.string()).optional(),
-  name: z.string().optional(),
-  downstream_id: z.nullable(z.string()).optional(),
+  code: types.optional(types.string()),
+  display_id: z.nullable(types.string()).optional(),
+  account_number: z.nullable(types.string()).optional(),
+  name: types.optional(types.string()),
+  downstream_id: z.nullable(types.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     "display_id": "displayId",

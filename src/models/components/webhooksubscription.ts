@@ -6,6 +6,7 @@ import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type WebhookSubscription = {
@@ -37,11 +38,11 @@ export const WebhookSubscription$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  downstream_id: z.string().optional(),
-  unify_event_types: z.array(z.string()).optional(),
-  downstream_event_types: z.array(z.string()).optional(),
-  execute_url: z.string().optional(),
-  created_at: z.string().optional(),
+  downstream_id: types.optional(types.string()),
+  unify_event_types: types.optional(z.array(types.string())),
+  downstream_event_types: types.optional(z.array(types.string())),
+  execute_url: types.optional(types.string()),
+  created_at: types.optional(types.string()),
 }).transform((v) => {
   return remap$(v, {
     "downstream_id": "downstreamId",

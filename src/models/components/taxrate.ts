@@ -8,6 +8,7 @@ import { safeParse } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   CustomField,
@@ -221,10 +222,10 @@ export const Components$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  id: z.nullable(z.string()).optional(),
-  name: z.string().optional(),
-  rate: z.nullable(z.number()).optional(),
-  compound: z.nullable(z.boolean()).optional(),
+  id: z.nullable(types.string()).optional(),
+  name: types.optional(types.string()),
+  rate: z.nullable(types.number()).optional(),
+  compound: z.nullable(types.boolean()).optional(),
 });
 /** @internal */
 export type Components$Outbound = {
@@ -278,7 +279,7 @@ export const Subsidiaries$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  id: z.string().optional(),
+  id: types.optional(types.string()),
 });
 /** @internal */
 export type Subsidiaries$Outbound = {
@@ -310,35 +311,33 @@ export function subsidiariesFromJSON(
 /** @internal */
 export const TaxRate$inboundSchema: z.ZodType<TaxRate, z.ZodTypeDef, unknown> =
   z.object({
-    id: z.nullable(z.string()).optional(),
-    display_id: z.nullable(z.string()).optional(),
-    name: z.string().optional(),
-    code: z.nullable(z.string()).optional(),
-    description: z.nullable(z.string()).optional(),
-    effective_tax_rate: z.nullable(z.number()).optional(),
-    country: z.nullable(z.string()).optional(),
-    total_tax_rate: z.nullable(z.number()).optional(),
-    tax_payable_account_id: z.nullable(z.string()).optional(),
-    tax_remitted_account_id: z.nullable(z.string()).optional(),
+    id: z.nullable(types.string()).optional(),
+    display_id: z.nullable(types.string()).optional(),
+    name: types.optional(types.string()),
+    code: z.nullable(types.string()).optional(),
+    description: z.nullable(types.string()).optional(),
+    effective_tax_rate: z.nullable(types.number()).optional(),
+    country: z.nullable(types.string()).optional(),
+    total_tax_rate: z.nullable(types.number()).optional(),
+    tax_payable_account_id: z.nullable(types.string()).optional(),
+    tax_remitted_account_id: z.nullable(types.string()).optional(),
     components: z.nullable(z.array(z.lazy(() => Components$inboundSchema)))
       .optional(),
-    type: z.nullable(z.string()).optional(),
-    report_tax_type: z.nullable(z.string()).optional(),
-    original_tax_rate_id: z.nullable(z.string()).optional(),
+    type: z.nullable(types.string()).optional(),
+    report_tax_type: z.nullable(types.string()).optional(),
+    original_tax_rate_id: z.nullable(types.string()).optional(),
     status: z.nullable(TaxRateStatus$inboundSchema).optional(),
     custom_mappings: z.nullable(z.record(z.any())).optional(),
-    row_version: z.nullable(z.string()).optional(),
-    updated_by: z.nullable(z.string()).optional(),
-    created_by: z.nullable(z.string()).optional(),
-    updated_at: z.nullable(
-      z.string().datetime({ offset: true }).transform(v => new Date(v)),
-    ).optional(),
-    created_at: z.nullable(
-      z.string().datetime({ offset: true }).transform(v => new Date(v)),
-    ).optional(),
-    pass_through: z.array(PassThroughBody$inboundSchema).optional(),
-    subsidiaries: z.array(z.lazy(() => Subsidiaries$inboundSchema)).optional(),
-    custom_fields: z.array(CustomField$inboundSchema).optional(),
+    row_version: z.nullable(types.string()).optional(),
+    updated_by: z.nullable(types.string()).optional(),
+    created_by: z.nullable(types.string()).optional(),
+    updated_at: z.nullable(types.date()).optional(),
+    created_at: z.nullable(types.date()).optional(),
+    pass_through: types.optional(z.array(PassThroughBody$inboundSchema)),
+    subsidiaries: types.optional(
+      z.array(z.lazy(() => Subsidiaries$inboundSchema)),
+    ),
+    custom_fields: types.optional(z.array(CustomField$inboundSchema)),
   }).transform((v) => {
     return remap$(v, {
       "display_id": "displayId",

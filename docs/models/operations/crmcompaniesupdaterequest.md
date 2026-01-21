@@ -4,7 +4,6 @@
 
 ```typescript
 import { CrmCompaniesUpdateRequest } from "@apideck/unify/models/operations";
-import { RFCDate } from "@apideck/unify/types";
 
 let value: CrmCompaniesUpdateRequest = {
   id: "<id>",
@@ -123,7 +122,7 @@ let value: CrmCompaniesUpdateRequest = {
     ],
     readOnly: false,
     salutation: "Mr",
-    birthday: new RFCDate("2000-08-12"),
+    birthday: new Date("2000-08-12"),
     passThrough: [
       {
         serviceId: "<id>",

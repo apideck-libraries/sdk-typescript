@@ -127,7 +127,6 @@ Create Bill
 <!-- UsageSnippet language="typescript" operationID="accounting.billsAdd" method="post" path="/accounting/bills" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
-import { RFCDate } from "@apideck/unify/types";
 
 const apideck = new Apideck({
   consumerId: "test-consumer",
@@ -174,9 +173,9 @@ async function run() {
       currency: "USD",
       currencyRate: 0.69,
       taxInclusive: true,
-      billDate: new RFCDate("2020-09-30"),
-      dueDate: new RFCDate("2020-10-30"),
-      paidDate: new RFCDate("2020-10-30"),
+      billDate: new Date("2020-09-30"),
+      dueDate: new Date("2020-10-30"),
+      paidDate: new Date("2020-10-30"),
       poNumber: "90000117",
       reference: "123456",
       lineItems: [
@@ -387,7 +386,6 @@ The standalone function version of this method:
 ```typescript
 import { ApideckCore } from "@apideck/unify/core.js";
 import { accountingBillsCreate } from "@apideck/unify/funcs/accountingBillsCreate.js";
-import { RFCDate } from "@apideck/unify/types";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -436,9 +434,9 @@ async function run() {
       currency: "USD",
       currencyRate: 0.69,
       taxInclusive: true,
-      billDate: new RFCDate("2020-09-30"),
-      dueDate: new RFCDate("2020-10-30"),
-      paidDate: new RFCDate("2020-10-30"),
+      billDate: new Date("2020-09-30"),
+      dueDate: new Date("2020-10-30"),
+      paidDate: new Date("2020-10-30"),
       poNumber: "90000117",
       reference: "123456",
       lineItems: [
@@ -765,7 +763,6 @@ Update Bill
 <!-- UsageSnippet language="typescript" operationID="accounting.billsUpdate" method="patch" path="/accounting/bills/{id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
-import { RFCDate } from "@apideck/unify/types";
 
 const apideck = new Apideck({
   consumerId: "test-consumer",
@@ -813,9 +810,9 @@ async function run() {
       currency: "USD",
       currencyRate: 0.69,
       taxInclusive: true,
-      billDate: new RFCDate("2020-09-30"),
-      dueDate: new RFCDate("2020-10-30"),
-      paidDate: new RFCDate("2020-10-30"),
+      billDate: new Date("2020-09-30"),
+      dueDate: new Date("2020-10-30"),
+      paidDate: new Date("2020-10-30"),
       poNumber: "90000117",
       reference: "123456",
       lineItems: [
@@ -993,7 +990,6 @@ The standalone function version of this method:
 ```typescript
 import { ApideckCore } from "@apideck/unify/core.js";
 import { accountingBillsUpdate } from "@apideck/unify/funcs/accountingBillsUpdate.js";
-import { RFCDate } from "@apideck/unify/types";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -1043,9 +1039,9 @@ async function run() {
       currency: "USD",
       currencyRate: 0.69,
       taxInclusive: true,
-      billDate: new RFCDate("2020-09-30"),
-      dueDate: new RFCDate("2020-10-30"),
-      paidDate: new RFCDate("2020-10-30"),
+      billDate: new Date("2020-09-30"),
+      dueDate: new Date("2020-10-30"),
+      paidDate: new Date("2020-10-30"),
       poNumber: "90000117",
       reference: "123456",
       lineItems: [

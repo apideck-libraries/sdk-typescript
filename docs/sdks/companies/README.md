@@ -127,7 +127,6 @@ Create company
 <!-- UsageSnippet language="typescript" operationID="crm.companiesAdd" method="post" path="/crm/companies" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
-import { RFCDate } from "@apideck/unify/types";
 
 const apideck = new Apideck({
   consumerId: "test-consumer",
@@ -297,7 +296,7 @@ async function run() {
       ],
       readOnly: false,
       salutation: "Mr",
-      birthday: new RFCDate("2000-08-12"),
+      birthday: new Date("2000-08-12"),
       passThrough: [
         {
           serviceId: "<id>",
@@ -345,7 +344,6 @@ The standalone function version of this method:
 ```typescript
 import { ApideckCore } from "@apideck/unify/core.js";
 import { crmCompaniesCreate } from "@apideck/unify/funcs/crmCompaniesCreate.js";
-import { RFCDate } from "@apideck/unify/types";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -517,7 +515,7 @@ async function run() {
       ],
       readOnly: false,
       salutation: "Mr",
-      birthday: new RFCDate("2000-08-12"),
+      birthday: new Date("2000-08-12"),
       passThrough: [
         {
           serviceId: "<id>",
@@ -681,7 +679,6 @@ Update company
 <!-- UsageSnippet language="typescript" operationID="crm.companiesUpdate" method="patch" path="/crm/companies/{id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
-import { RFCDate } from "@apideck/unify/types";
 
 const apideck = new Apideck({
   consumerId: "test-consumer",
@@ -880,7 +877,7 @@ async function run() {
       ],
       readOnly: false,
       salutation: "Mr",
-      birthday: new RFCDate("2000-08-12"),
+      birthday: new Date("2000-08-12"),
       passThrough: [
         {
           serviceId: "<id>",
@@ -938,7 +935,6 @@ The standalone function version of this method:
 ```typescript
 import { ApideckCore } from "@apideck/unify/core.js";
 import { crmCompaniesUpdate } from "@apideck/unify/funcs/crmCompaniesUpdate.js";
-import { RFCDate } from "@apideck/unify/types";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -1139,7 +1135,7 @@ async function run() {
       ],
       readOnly: false,
       salutation: "Mr",
-      birthday: new RFCDate("2000-08-12"),
+      birthday: new Date("2000-08-12"),
       passThrough: [
         {
           serviceId: "<id>",

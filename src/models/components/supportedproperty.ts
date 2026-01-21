@@ -6,6 +6,7 @@ import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type SupportedProperty = {
@@ -25,9 +26,10 @@ export const SupportedProperty$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  unified_property: z.string().optional(),
-  child_properties: z.array(z.lazy(() => SupportedProperty$inboundSchema))
-    .optional(),
+  unified_property: types.optional(types.string()),
+  child_properties: types.optional(
+    z.array(z.lazy(() => SupportedProperty$inboundSchema)),
+  ),
 }).transform((v) => {
   return remap$(v, {
     "unified_property": "unifiedProperty",

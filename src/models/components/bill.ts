@@ -8,7 +8,7 @@ import { safeParse } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
-import { RFCDate } from "../../types/rfcdate.js";
+import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   BankAccount,
@@ -148,15 +148,15 @@ export type Bill = {
   /**
    * Date bill was issued - YYYY-MM-DD.
    */
-  billDate?: RFCDate | null | undefined;
+  billDate?: Date | null | undefined;
   /**
    * The due date is the date on which a payment is scheduled to be received - YYYY-MM-DD.
    */
-  dueDate?: RFCDate | null | undefined;
+  dueDate?: Date | null | undefined;
   /**
    * The paid date is the date on which a payment was sent to the supplier - YYYY-MM-DD.
    */
-  paidDate?: RFCDate | null | undefined;
+  paidDate?: Date | null | undefined;
   /**
    * A PO Number uniquely identifies a purchase order and is generally defined by the buyer. The buyer will match the PO number in the invoice to the Purchase Order.
    */
@@ -325,15 +325,15 @@ export type BillInput = {
   /**
    * Date bill was issued - YYYY-MM-DD.
    */
-  billDate?: RFCDate | null | undefined;
+  billDate?: Date | null | undefined;
   /**
    * The due date is the date on which a payment is scheduled to be received - YYYY-MM-DD.
    */
-  dueDate?: RFCDate | null | undefined;
+  dueDate?: Date | null | undefined;
   /**
    * The paid date is the date on which a payment was sent to the supplier - YYYY-MM-DD.
    */
-  paidDate?: RFCDate | null | undefined;
+  paidDate?: Date | null | undefined;
   /**
    * A PO Number uniquely identifies a purchase order and is generally defined by the buyer. The buyer will match the PO number in the invoice to the Purchase Order.
    */
@@ -471,62 +471,60 @@ export const AmortizationType$outboundSchema: z.ZodType<
 /** @internal */
 export const Bill$inboundSchema: z.ZodType<Bill, z.ZodTypeDef, unknown> = z
   .object({
-    id: z.string().optional(),
-    downstream_id: z.nullable(z.string()).optional(),
-    display_id: z.nullable(z.string()).optional(),
-    bill_number: z.nullable(z.string()).optional(),
+    id: types.optional(types.string()),
+    downstream_id: z.nullable(types.string()).optional(),
+    display_id: z.nullable(types.string()).optional(),
+    bill_number: z.nullable(types.string()).optional(),
     supplier: z.nullable(LinkedSupplier$inboundSchema).optional(),
-    company_id: z.nullable(z.string()).optional(),
-    location_id: z.nullable(z.string()).optional(),
-    department_id: z.nullable(z.string()).optional(),
+    company_id: z.nullable(types.string()).optional(),
+    location_id: z.nullable(types.string()).optional(),
+    department_id: z.nullable(types.string()).optional(),
     currency: z.nullable(Currency$inboundSchema).optional(),
-    currency_rate: z.nullable(z.number()).optional(),
-    tax_inclusive: z.nullable(z.boolean()).optional(),
-    bill_date: z.nullable(z.string().transform(v => new RFCDate(v))).optional(),
-    due_date: z.nullable(z.string().transform(v => new RFCDate(v))).optional(),
-    paid_date: z.nullable(z.string().transform(v => new RFCDate(v))).optional(),
-    po_number: z.nullable(z.string()).optional(),
-    reference: z.nullable(z.string()).optional(),
-    line_items: z.array(BillLineItem$inboundSchema).optional(),
-    terms: z.nullable(z.string()).optional(),
-    balance: z.nullable(z.number()).optional(),
-    deposit: z.nullable(z.number()).optional(),
-    sub_total: z.nullable(z.number()).optional(),
-    total_tax: z.nullable(z.number()).optional(),
-    total: z.nullable(z.number()).optional(),
-    tax_code: z.nullable(z.string()).optional(),
-    notes: z.nullable(z.string()).optional(),
+    currency_rate: z.nullable(types.number()).optional(),
+    tax_inclusive: z.nullable(types.boolean()).optional(),
+    bill_date: z.nullable(types.date()).optional(),
+    due_date: z.nullable(types.date()).optional(),
+    paid_date: z.nullable(types.date()).optional(),
+    po_number: z.nullable(types.string()).optional(),
+    reference: z.nullable(types.string()).optional(),
+    line_items: types.optional(z.array(BillLineItem$inboundSchema)),
+    terms: z.nullable(types.string()).optional(),
+    balance: z.nullable(types.number()).optional(),
+    deposit: z.nullable(types.number()).optional(),
+    sub_total: z.nullable(types.number()).optional(),
+    total_tax: z.nullable(types.number()).optional(),
+    total: z.nullable(types.number()).optional(),
+    tax_code: z.nullable(types.string()).optional(),
+    notes: z.nullable(types.string()).optional(),
     status: z.nullable(BillStatus$inboundSchema).optional(),
     ledger_account: z.nullable(LinkedLedgerAccount$inboundSchema).optional(),
-    payment_method: z.nullable(z.string()).optional(),
-    channel: z.nullable(z.string()).optional(),
-    language: z.nullable(z.string()).optional(),
-    accounting_by_row: z.nullable(z.boolean()).optional(),
-    bank_account: BankAccount$inboundSchema.optional(),
-    discount_percentage: z.nullable(z.number()).optional(),
-    template_id: z.nullable(z.string()).optional(),
-    approved_by: z.nullable(z.string()).optional(),
+    payment_method: z.nullable(types.string()).optional(),
+    channel: z.nullable(types.string()).optional(),
+    language: z.nullable(types.string()).optional(),
+    accounting_by_row: z.nullable(types.boolean()).optional(),
+    bank_account: types.optional(BankAccount$inboundSchema),
+    discount_percentage: z.nullable(types.number()).optional(),
+    template_id: z.nullable(types.string()).optional(),
+    approved_by: z.nullable(types.string()).optional(),
     amortization_type: z.nullable(AmortizationType$inboundSchema).optional(),
-    tax_method: z.nullable(z.string()).optional(),
-    document_received: z.nullable(z.boolean()).optional(),
-    source_document_url: z.nullable(z.string()).optional(),
+    tax_method: z.nullable(types.string()).optional(),
+    document_received: z.nullable(types.boolean()).optional(),
+    source_document_url: z.nullable(types.string()).optional(),
     tracking_categories: z.nullable(
-      z.array(z.nullable(LinkedTrackingCategory$inboundSchema)),
+      z.array(types.nullable(LinkedTrackingCategory$inboundSchema)),
     ).optional(),
-    updated_by: z.nullable(z.string()).optional(),
-    created_by: z.nullable(z.string()).optional(),
-    updated_at: z.nullable(
-      z.string().datetime({ offset: true }).transform(v => new Date(v)),
-    ).optional(),
-    created_at: z.nullable(
-      z.string().datetime({ offset: true }).transform(v => new Date(v)),
-    ).optional(),
-    row_version: z.nullable(z.string()).optional(),
-    custom_fields: z.array(CustomField$inboundSchema).optional(),
+    updated_by: z.nullable(types.string()).optional(),
+    created_by: z.nullable(types.string()).optional(),
+    updated_at: z.nullable(types.date()).optional(),
+    created_at: z.nullable(types.date()).optional(),
+    row_version: z.nullable(types.string()).optional(),
+    custom_fields: types.optional(z.array(CustomField$inboundSchema)),
     custom_mappings: z.nullable(z.record(z.any())).optional(),
-    pass_through: z.array(PassThroughBody$inboundSchema).optional(),
-    accounting_period: z.nullable(z.string()).optional(),
-    attachments: z.array(z.nullable(LinkedAttachment$inboundSchema)).optional(),
+    pass_through: types.optional(z.array(PassThroughBody$inboundSchema)),
+    accounting_period: z.nullable(types.string()).optional(),
+    attachments: types.optional(
+      z.array(types.nullable(LinkedAttachment$inboundSchema)),
+    ),
   }).transform((v) => {
     return remap$(v, {
       "downstream_id": "downstreamId",
@@ -644,12 +642,15 @@ export const BillInput$outboundSchema: z.ZodType<
   currency: z.nullable(Currency$outboundSchema).optional(),
   currencyRate: z.nullable(z.number()).optional(),
   taxInclusive: z.nullable(z.boolean()).optional(),
-  billDate: z.nullable(z.instanceof(RFCDate).transform(v => v.toString()))
-    .optional(),
-  dueDate: z.nullable(z.instanceof(RFCDate).transform(v => v.toString()))
-    .optional(),
-  paidDate: z.nullable(z.instanceof(RFCDate).transform(v => v.toString()))
-    .optional(),
+  billDate: z.nullable(
+    z.date().transform(v => v.toISOString().slice(0, "YYYY-MM-DD".length)),
+  ).optional(),
+  dueDate: z.nullable(
+    z.date().transform(v => v.toISOString().slice(0, "YYYY-MM-DD".length)),
+  ).optional(),
+  paidDate: z.nullable(
+    z.date().transform(v => v.toISOString().slice(0, "YYYY-MM-DD".length)),
+  ).optional(),
   poNumber: z.nullable(z.string()).optional(),
   reference: z.nullable(z.string()).optional(),
   lineItems: z.array(BillLineItemInput$outboundSchema).optional(),

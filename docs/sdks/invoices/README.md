@@ -131,7 +131,6 @@ Create Invoice
 <!-- UsageSnippet language="typescript" operationID="accounting.invoicesAdd" method="post" path="/accounting/invoices" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
-import { RFCDate } from "@apideck/unify/types";
 
 const apideck = new Apideck({
   consumerId: "test-consumer",
@@ -151,8 +150,8 @@ async function run() {
         email: "boring@boring.com",
       },
       companyId: "12345",
-      invoiceDate: new RFCDate("2020-09-30"),
-      dueDate: new RFCDate("2020-09-30"),
+      invoiceDate: new Date("2020-09-30"),
+      dueDate: new Date("2020-09-30"),
       terms: "Net 30 days",
       poNumber: "90000117",
       reference: "123456",
@@ -369,7 +368,6 @@ The standalone function version of this method:
 ```typescript
 import { ApideckCore } from "@apideck/unify/core.js";
 import { accountingInvoicesCreate } from "@apideck/unify/funcs/accountingInvoicesCreate.js";
-import { RFCDate } from "@apideck/unify/types";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -391,8 +389,8 @@ async function run() {
         email: "boring@boring.com",
       },
       companyId: "12345",
-      invoiceDate: new RFCDate("2020-09-30"),
-      dueDate: new RFCDate("2020-09-30"),
+      invoiceDate: new Date("2020-09-30"),
+      dueDate: new Date("2020-09-30"),
       terms: "Net 30 days",
       poNumber: "90000117",
       reference: "123456",
@@ -725,7 +723,6 @@ Update Invoice
 <!-- UsageSnippet language="typescript" operationID="accounting.invoicesUpdate" method="patch" path="/accounting/invoices/{id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
-import { RFCDate } from "@apideck/unify/types";
 
 const apideck = new Apideck({
   consumerId: "test-consumer",
@@ -746,8 +743,8 @@ async function run() {
         email: "boring@boring.com",
       },
       companyId: "12345",
-      invoiceDate: new RFCDate("2020-09-30"),
-      dueDate: new RFCDate("2020-09-30"),
+      invoiceDate: new Date("2020-09-30"),
+      dueDate: new Date("2020-09-30"),
       terms: "Net 30 days",
       poNumber: "90000117",
       reference: "123456",
@@ -1041,7 +1038,6 @@ The standalone function version of this method:
 ```typescript
 import { ApideckCore } from "@apideck/unify/core.js";
 import { accountingInvoicesUpdate } from "@apideck/unify/funcs/accountingInvoicesUpdate.js";
-import { RFCDate } from "@apideck/unify/types";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -1064,8 +1060,8 @@ async function run() {
         email: "boring@boring.com",
       },
       companyId: "12345",
-      invoiceDate: new RFCDate("2020-09-30"),
-      dueDate: new RFCDate("2020-09-30"),
+      invoiceDate: new Date("2020-09-30"),
+      dueDate: new Date("2020-09-30"),
       terms: "Net 30 days",
       poNumber: "90000117",
       reference: "123456",

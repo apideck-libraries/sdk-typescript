@@ -6,6 +6,7 @@ import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
@@ -43,9 +44,9 @@ export type Meta = {
 /** @internal */
 export const Cursors$inboundSchema: z.ZodType<Cursors, z.ZodTypeDef, unknown> =
   z.object({
-    previous: z.nullable(z.string()).optional(),
-    current: z.nullable(z.string()).optional(),
-    next: z.nullable(z.string()).optional(),
+    previous: z.nullable(types.string()).optional(),
+    current: z.nullable(types.string()).optional(),
+    next: z.nullable(types.string()).optional(),
   });
 
 export function cursorsFromJSON(
@@ -61,8 +62,8 @@ export function cursorsFromJSON(
 /** @internal */
 export const Meta$inboundSchema: z.ZodType<Meta, z.ZodTypeDef, unknown> = z
   .object({
-    items_on_page: z.number().int().optional(),
-    cursors: z.lazy(() => Cursors$inboundSchema).optional(),
+    items_on_page: types.optional(types.number()),
+    cursors: types.optional(z.lazy(() => Cursors$inboundSchema)),
   }).transform((v) => {
     return remap$(v, {
       "items_on_page": "itemsOnPage",

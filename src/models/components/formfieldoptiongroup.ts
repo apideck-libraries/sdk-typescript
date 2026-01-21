@@ -6,6 +6,7 @@ import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   SimpleFormFieldOption,
@@ -27,10 +28,10 @@ export const FormFieldOptionGroup$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  id: z.string().optional(),
-  label: z.string(),
+  id: types.optional(types.string()),
+  label: types.string(),
   options: z.array(SimpleFormFieldOption$inboundSchema),
-  option_type: z.literal("group"),
+  option_type: types.literal("group"),
 }).transform((v) => {
   return remap$(v, {
     "option_type": "optionType",

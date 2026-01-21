@@ -6,6 +6,7 @@ import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   PaginationCoverage,
@@ -82,20 +83,22 @@ export const ConnectorResource$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  id: z.string().optional(),
-  name: z.string().optional(),
-  downstream_id: z.string().optional(),
-  downstream_name: z.string().optional(),
-  status: ResourceStatus$inboundSchema.optional(),
-  pagination_supported: z.boolean().optional(),
-  pagination: PaginationCoverage$inboundSchema.optional(),
-  custom_fields_supported: z.boolean().optional(),
-  supported_operations: z.array(z.string()).optional(),
-  downstream_unsupported_operations: z.array(z.string()).optional(),
-  supported_filters: z.array(z.string()).optional(),
-  supported_sort_by: z.array(z.string()).optional(),
-  supported_fields: z.array(SupportedProperty$inboundSchema).optional(),
-  supported_list_fields: z.array(SupportedProperty$inboundSchema).optional(),
+  id: types.optional(types.string()),
+  name: types.optional(types.string()),
+  downstream_id: types.optional(types.string()),
+  downstream_name: types.optional(types.string()),
+  status: types.optional(ResourceStatus$inboundSchema),
+  pagination_supported: types.optional(types.boolean()),
+  pagination: types.optional(PaginationCoverage$inboundSchema),
+  custom_fields_supported: types.optional(types.boolean()),
+  supported_operations: types.optional(z.array(types.string())),
+  downstream_unsupported_operations: types.optional(z.array(types.string())),
+  supported_filters: types.optional(z.array(types.string())),
+  supported_sort_by: types.optional(z.array(types.string())),
+  supported_fields: types.optional(z.array(SupportedProperty$inboundSchema)),
+  supported_list_fields: types.optional(
+    z.array(SupportedProperty$inboundSchema),
+  ),
 }).transform((v) => {
   return remap$(v, {
     "downstream_id": "downstreamId",

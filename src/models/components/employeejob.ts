@@ -8,7 +8,7 @@ import { safeParse } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
-import { RFCDate } from "../../types/rfcdate.js";
+import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   Address,
@@ -60,11 +60,11 @@ export type EmployeeJob = {
   /**
    * The date on which the employee starts working in their current job role.
    */
-  startDate?: RFCDate | null | undefined;
+  startDate?: Date | null | undefined;
   /**
    * The date on which the employee leaves or is expected to leave their current job role.
    */
-  endDate?: RFCDate | null | undefined;
+  endDate?: Date | null | undefined;
   /**
    * The rate of pay for the employee in their current job role.
    */
@@ -80,7 +80,7 @@ export type EmployeeJob = {
   /**
    * The date on which the employee was hired by the organization
    */
-  hiredAt?: RFCDate | null | undefined;
+  hiredAt?: Date | null | undefined;
   /**
    * Indicates whether this the employee's primary job.
    */
@@ -108,11 +108,11 @@ export type EmployeeJobInput = {
   /**
    * The date on which the employee starts working in their current job role.
    */
-  startDate?: RFCDate | null | undefined;
+  startDate?: Date | null | undefined;
   /**
    * The date on which the employee leaves or is expected to leave their current job role.
    */
-  endDate?: RFCDate | null | undefined;
+  endDate?: Date | null | undefined;
   /**
    * The rate of pay for the employee in their current job role.
    */
@@ -128,7 +128,7 @@ export type EmployeeJobInput = {
   /**
    * The date on which the employee was hired by the organization
    */
-  hiredAt?: RFCDate | null | undefined;
+  hiredAt?: Date | null | undefined;
   /**
    * Indicates whether this the employee's primary job.
    */
@@ -163,20 +163,20 @@ export const EmployeeJob$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  id: z.nullable(z.string()).optional(),
-  employee_id: z.nullable(z.string()).optional(),
-  title: z.nullable(z.string()).optional(),
-  role: z.nullable(z.string()).optional(),
-  start_date: z.nullable(z.string().transform(v => new RFCDate(v))).optional(),
-  end_date: z.nullable(z.string().transform(v => new RFCDate(v))).optional(),
-  compensation_rate: z.nullable(z.number()).optional(),
+  id: z.nullable(types.string()).optional(),
+  employee_id: z.nullable(types.string()).optional(),
+  title: z.nullable(types.string()).optional(),
+  role: z.nullable(types.string()).optional(),
+  start_date: z.nullable(types.date()).optional(),
+  end_date: z.nullable(types.date()).optional(),
+  compensation_rate: z.nullable(types.number()).optional(),
   currency: z.nullable(Currency$inboundSchema).optional(),
   payment_unit: z.nullable(PaymentUnit$inboundSchema).optional(),
-  hired_at: z.nullable(z.string().transform(v => new RFCDate(v))).optional(),
-  is_primary: z.nullable(z.boolean()).optional(),
-  is_manager: z.nullable(z.boolean()).optional(),
+  hired_at: z.nullable(types.date()).optional(),
+  is_primary: z.nullable(types.boolean()).optional(),
+  is_manager: z.nullable(types.boolean()).optional(),
   status: z.nullable(EmployeeJobStatus$inboundSchema).optional(),
-  location: Address$inboundSchema.optional(),
+  location: types.optional(Address$inboundSchema),
 }).transform((v) => {
   return remap$(v, {
     "employee_id": "employeeId",
@@ -224,15 +224,18 @@ export const EmployeeJobInput$outboundSchema: z.ZodType<
 > = z.object({
   title: z.nullable(z.string()).optional(),
   role: z.nullable(z.string()).optional(),
-  startDate: z.nullable(z.instanceof(RFCDate).transform(v => v.toString()))
-    .optional(),
-  endDate: z.nullable(z.instanceof(RFCDate).transform(v => v.toString()))
-    .optional(),
+  startDate: z.nullable(
+    z.date().transform(v => v.toISOString().slice(0, "YYYY-MM-DD".length)),
+  ).optional(),
+  endDate: z.nullable(
+    z.date().transform(v => v.toISOString().slice(0, "YYYY-MM-DD".length)),
+  ).optional(),
   compensationRate: z.nullable(z.number()).optional(),
   currency: z.nullable(Currency$outboundSchema).optional(),
   paymentUnit: z.nullable(PaymentUnit$outboundSchema).optional(),
-  hiredAt: z.nullable(z.instanceof(RFCDate).transform(v => v.toString()))
-    .optional(),
+  hiredAt: z.nullable(
+    z.date().transform(v => v.toISOString().slice(0, "YYYY-MM-DD".length)),
+  ).optional(),
   isPrimary: z.nullable(z.boolean()).optional(),
   isManager: z.nullable(z.boolean()).optional(),
   status: z.nullable(EmployeeJobStatus$outboundSchema).optional(),

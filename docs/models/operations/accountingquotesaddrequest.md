@@ -4,7 +4,6 @@
 
 ```typescript
 import { AccountingQuotesAddRequest } from "@apideck/unify/models/operations";
-import { RFCDate } from "@apideck/unify/types";
 
 let value: AccountingQuotesAddRequest = {
   serviceId: "salesforce",
@@ -19,8 +18,8 @@ let value: AccountingQuotesAddRequest = {
     companyId: "12345",
     departmentId: "12345",
     projectId: "12345",
-    quoteDate: new RFCDate("2020-09-30"),
-    expiryDate: new RFCDate("2020-10-30"),
+    quoteDate: new Date("2020-09-30"),
+    expiryDate: new Date("2020-10-30"),
     terms: "Valid for 30 days",
     reference: "INV-2024-001",
     status: "draft",
@@ -50,7 +49,7 @@ let value: AccountingQuotesAddRequest = {
         unitOfMeasure: "pc.",
         discountPercentage: 0.01,
         discountAmount: 19.99,
-        serviceDate: new RFCDate("2024-01-15"),
+        serviceDate: new Date("2024-01-15"),
         categoryId: "12345",
         locationId: "12345",
         departmentId: "12345",

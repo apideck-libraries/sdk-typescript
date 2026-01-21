@@ -8,6 +8,7 @@ import { safeParse } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   PassThroughBody,
@@ -146,8 +147,8 @@ export const CustomObjectSchemaOptions$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  value: z.string().optional(),
-  label: z.string().optional(),
+  value: types.optional(types.string()),
+  label: types.optional(types.string()),
 });
 /** @internal */
 export type CustomObjectSchemaOptions$Outbound = {
@@ -185,15 +186,15 @@ export function customObjectSchemaOptionsFromJSON(
 /** @internal */
 export const Fields$inboundSchema: z.ZodType<Fields, z.ZodTypeDef, unknown> = z
   .object({
-    id: z.string().optional(),
-    name: z.string().optional(),
-    description: z.nullable(z.string()).optional(),
-    type: CustomObjectSchemaType$inboundSchema.optional(),
-    required: z.boolean().optional(),
+    id: types.optional(types.string()),
+    name: types.optional(types.string()),
+    description: z.nullable(types.string()).optional(),
+    type: types.optional(CustomObjectSchemaType$inboundSchema),
+    required: types.optional(types.boolean()),
     options: z.nullable(
       z.array(z.lazy(() => CustomObjectSchemaOptions$inboundSchema)),
     ).optional(),
-    default_value: z.nullable(z.string()).optional(),
+    default_value: z.nullable(types.string()).optional(),
   }).transform((v) => {
     return remap$(v, {
       "default_value": "defaultValue",
@@ -250,17 +251,17 @@ export const CustomObjectSchema$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  id: z.string().optional(),
-  name: z.nullable(z.string()).optional(),
-  description: z.nullable(z.string()).optional(),
-  fields: z.array(z.lazy(() => Fields$inboundSchema)).optional(),
-  visible: z.nullable(z.boolean()).optional(),
-  active: z.nullable(z.boolean()).optional(),
-  created_by: z.nullable(z.string()).optional(),
-  updated_by: z.nullable(z.string()).optional(),
-  updated_at: z.nullable(z.string()).optional(),
-  created_at: z.nullable(z.string()).optional(),
-  pass_through: z.array(PassThroughBody$inboundSchema).optional(),
+  id: types.optional(types.string()),
+  name: z.nullable(types.string()).optional(),
+  description: z.nullable(types.string()).optional(),
+  fields: types.optional(z.array(z.lazy(() => Fields$inboundSchema))),
+  visible: z.nullable(types.boolean()).optional(),
+  active: z.nullable(types.boolean()).optional(),
+  created_by: z.nullable(types.string()).optional(),
+  updated_by: z.nullable(types.string()).optional(),
+  updated_at: z.nullable(types.string()).optional(),
+  created_at: z.nullable(types.string()).optional(),
+  pass_through: types.optional(z.array(PassThroughBody$inboundSchema)),
 }).transform((v) => {
   return remap$(v, {
     "created_by": "createdBy",

@@ -8,6 +8,7 @@ import { safeParse } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   PassThroughBody,
@@ -101,21 +102,15 @@ export const SharedLink$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  url: z.nullable(z.string()).optional(),
-  download_url: z.nullable(z.string()).optional(),
-  target: SharedLinkTarget$inboundSchema.optional(),
+  url: z.nullable(types.string()).optional(),
+  download_url: z.nullable(types.string()).optional(),
+  target: types.optional(SharedLinkTarget$inboundSchema),
   scope: z.nullable(Scope$inboundSchema).optional(),
-  password_protected: z.nullable(z.boolean()).optional(),
-  expires_at: z.nullable(
-    z.string().datetime({ offset: true }).transform(v => new Date(v)),
-  ).optional(),
-  updated_at: z.nullable(
-    z.string().datetime({ offset: true }).transform(v => new Date(v)),
-  ).optional(),
-  created_at: z.nullable(
-    z.string().datetime({ offset: true }).transform(v => new Date(v)),
-  ).optional(),
-  pass_through: z.array(PassThroughBody$inboundSchema).optional(),
+  password_protected: z.nullable(types.boolean()).optional(),
+  expires_at: z.nullable(types.date()).optional(),
+  updated_at: z.nullable(types.date()).optional(),
+  created_at: z.nullable(types.date()).optional(),
+  pass_through: types.optional(z.array(PassThroughBody$inboundSchema)),
 }).transform((v) => {
   return remap$(v, {
     "download_url": "downloadUrl",

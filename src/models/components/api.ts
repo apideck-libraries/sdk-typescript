@@ -8,6 +8,7 @@ import { safeParse } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { ApiStatus, ApiStatus$inboundSchema } from "./apistatus.js";
 import {
@@ -103,10 +104,10 @@ export const Resources$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  id: z.string().optional(),
-  name: z.string().optional(),
-  status: ResourceStatus$inboundSchema.optional(),
-  excluded_from_coverage: z.boolean().optional(),
+  id: types.optional(types.string()),
+  name: types.optional(types.string()),
+  status: types.optional(ResourceStatus$inboundSchema),
+  excluded_from_coverage: types.optional(types.boolean()),
 }).transform((v) => {
   return remap$(v, {
     "excluded_from_coverage": "excludedFromCoverage",
@@ -126,17 +127,17 @@ export function resourcesFromJSON(
 /** @internal */
 export const Api$inboundSchema: z.ZodType<Api, z.ZodTypeDef, unknown> = z
   .object({
-    id: z.string().optional(),
-    type: ApiType$inboundSchema.optional(),
-    name: z.string().optional(),
-    description: z.nullable(z.string()).optional(),
-    status: ApiStatus$inboundSchema.optional(),
-    spec_url: z.string().optional(),
-    api_reference_url: z.string().optional(),
-    postman_collection_id: z.nullable(z.string()).optional(),
-    categories: z.array(z.string()).optional(),
-    resources: z.array(z.lazy(() => Resources$inboundSchema)).optional(),
-    events: z.array(z.string()).optional(),
+    id: types.optional(types.string()),
+    type: types.optional(ApiType$inboundSchema),
+    name: types.optional(types.string()),
+    description: z.nullable(types.string()).optional(),
+    status: types.optional(ApiStatus$inboundSchema),
+    spec_url: types.optional(types.string()),
+    api_reference_url: types.optional(types.string()),
+    postman_collection_id: z.nullable(types.string()).optional(),
+    categories: types.optional(z.array(types.string())),
+    resources: types.optional(z.array(z.lazy(() => Resources$inboundSchema))),
+    events: types.optional(z.array(types.string())),
   }).transform((v) => {
     return remap$(v, {
       "spec_url": "specUrl",

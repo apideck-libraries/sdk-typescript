@@ -5,6 +5,8 @@
 import * as z from "zod/v3";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import * as types from "../../types/primitives.js";
+import { smartUnion } from "../../types/smartUnion.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type CustomFieldValue25 = string | number | boolean | {
@@ -82,7 +84,12 @@ export const CustomFieldValue25$inboundSchema: z.ZodType<
   CustomFieldValue25,
   z.ZodTypeDef,
   unknown
-> = z.union([z.string(), z.number(), z.boolean(), z.record(z.any())]);
+> = smartUnion([
+  types.string(),
+  types.number(),
+  types.boolean(),
+  z.record(z.any()),
+]);
 /** @internal */
 export type CustomFieldValue25$Outbound = string | number | boolean | {
   [k: string]: any;
@@ -93,7 +100,7 @@ export const CustomFieldValue25$outboundSchema: z.ZodType<
   CustomFieldValue25$Outbound,
   z.ZodTypeDef,
   CustomFieldValue25
-> = z.union([z.string(), z.number(), z.boolean(), z.record(z.any())]);
+> = smartUnion([z.string(), z.number(), z.boolean(), z.record(z.any())]);
 
 export function customFieldValue25ToJSON(
   customFieldValue25: CustomFieldValue25,
@@ -117,14 +124,19 @@ export const CustomFieldValue$inboundSchema: z.ZodType<
   CustomFieldValue,
   z.ZodTypeDef,
   unknown
-> = z.union([
-  z.string(),
-  z.number(),
-  z.boolean(),
+> = smartUnion([
+  types.string(),
+  types.number(),
+  types.boolean(),
   z.record(z.any()),
   z.array(
-    z.nullable(
-      z.union([z.string(), z.number(), z.boolean(), z.record(z.any())]),
+    types.nullable(
+      smartUnion([
+        types.string(),
+        types.number(),
+        types.boolean(),
+        z.record(z.any()),
+      ]),
     ),
   ),
 ]);
@@ -138,14 +150,14 @@ export const CustomFieldValue$outboundSchema: z.ZodType<
   CustomFieldValue$Outbound,
   z.ZodTypeDef,
   CustomFieldValue
-> = z.union([
+> = smartUnion([
   z.string(),
   z.number(),
   z.boolean(),
   z.record(z.any()),
   z.array(
     z.nullable(
-      z.union([z.string(), z.number(), z.boolean(), z.record(z.any())]),
+      smartUnion([z.string(), z.number(), z.boolean(), z.record(z.any())]),
     ),
   ),
 ]);
@@ -173,18 +185,23 @@ export const CustomField2$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  id: z.nullable(z.string()).optional(),
-  name: z.nullable(z.string()),
-  description: z.nullable(z.string()).optional(),
+  id: z.nullable(types.string()).optional(),
+  name: types.nullable(types.string()),
+  description: z.nullable(types.string()).optional(),
   value: z.nullable(
-    z.union([
-      z.string(),
-      z.number(),
-      z.boolean(),
+    smartUnion([
+      types.string(),
+      types.number(),
+      types.boolean(),
       z.record(z.any()),
       z.array(
-        z.nullable(
-          z.union([z.string(), z.number(), z.boolean(), z.record(z.any())]),
+        types.nullable(
+          smartUnion([
+            types.string(),
+            types.number(),
+            types.boolean(),
+            z.record(z.any()),
+          ]),
         ),
       ),
     ]),
@@ -215,14 +232,14 @@ export const CustomField2$outboundSchema: z.ZodType<
   name: z.nullable(z.string()),
   description: z.nullable(z.string()).optional(),
   value: z.nullable(
-    z.union([
+    smartUnion([
       z.string(),
       z.number(),
       z.boolean(),
       z.record(z.any()),
       z.array(
         z.nullable(
-          z.union([z.string(), z.number(), z.boolean(), z.record(z.any())]),
+          smartUnion([z.string(), z.number(), z.boolean(), z.record(z.any())]),
         ),
       ),
     ]),
@@ -247,7 +264,12 @@ export const CustomFieldValue5$inboundSchema: z.ZodType<
   CustomFieldValue5,
   z.ZodTypeDef,
   unknown
-> = z.union([z.string(), z.number(), z.boolean(), z.record(z.any())]);
+> = smartUnion([
+  types.string(),
+  types.number(),
+  types.boolean(),
+  z.record(z.any()),
+]);
 /** @internal */
 export type CustomFieldValue5$Outbound = string | number | boolean | {
   [k: string]: any;
@@ -258,7 +280,7 @@ export const CustomFieldValue5$outboundSchema: z.ZodType<
   CustomFieldValue5$Outbound,
   z.ZodTypeDef,
   CustomFieldValue5
-> = z.union([z.string(), z.number(), z.boolean(), z.record(z.any())]);
+> = smartUnion([z.string(), z.number(), z.boolean(), z.record(z.any())]);
 
 export function customFieldValue5ToJSON(
   customFieldValue5: CustomFieldValue5,
@@ -282,14 +304,19 @@ export const CustomField1Value$inboundSchema: z.ZodType<
   CustomField1Value,
   z.ZodTypeDef,
   unknown
-> = z.union([
-  z.string(),
-  z.number(),
-  z.boolean(),
+> = smartUnion([
+  types.string(),
+  types.number(),
+  types.boolean(),
   z.record(z.any()),
   z.array(
-    z.nullable(
-      z.union([z.string(), z.number(), z.boolean(), z.record(z.any())]),
+    types.nullable(
+      smartUnion([
+        types.string(),
+        types.number(),
+        types.boolean(),
+        z.record(z.any()),
+      ]),
     ),
   ),
 ]);
@@ -303,14 +330,14 @@ export const CustomField1Value$outboundSchema: z.ZodType<
   CustomField1Value$Outbound,
   z.ZodTypeDef,
   CustomField1Value
-> = z.union([
+> = smartUnion([
   z.string(),
   z.number(),
   z.boolean(),
   z.record(z.any()),
   z.array(
     z.nullable(
-      z.union([z.string(), z.number(), z.boolean(), z.record(z.any())]),
+      smartUnion([z.string(), z.number(), z.boolean(), z.record(z.any())]),
     ),
   ),
 ]);
@@ -338,18 +365,23 @@ export const CustomField1$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  id: z.nullable(z.string()),
-  name: z.nullable(z.string()).optional(),
-  description: z.nullable(z.string()).optional(),
+  id: types.nullable(types.string()),
+  name: z.nullable(types.string()).optional(),
+  description: z.nullable(types.string()).optional(),
   value: z.nullable(
-    z.union([
-      z.string(),
-      z.number(),
-      z.boolean(),
+    smartUnion([
+      types.string(),
+      types.number(),
+      types.boolean(),
       z.record(z.any()),
       z.array(
-        z.nullable(
-          z.union([z.string(), z.number(), z.boolean(), z.record(z.any())]),
+        types.nullable(
+          smartUnion([
+            types.string(),
+            types.number(),
+            types.boolean(),
+            z.record(z.any()),
+          ]),
         ),
       ),
     ]),
@@ -380,14 +412,14 @@ export const CustomField1$outboundSchema: z.ZodType<
   name: z.nullable(z.string()).optional(),
   description: z.nullable(z.string()).optional(),
   value: z.nullable(
-    z.union([
+    smartUnion([
       z.string(),
       z.number(),
       z.boolean(),
       z.record(z.any()),
       z.array(
         z.nullable(
-          z.union([z.string(), z.number(), z.boolean(), z.record(z.any())]),
+          smartUnion([z.string(), z.number(), z.boolean(), z.record(z.any())]),
         ),
       ),
     ]),
@@ -412,7 +444,7 @@ export const CustomField$inboundSchema: z.ZodType<
   CustomField,
   z.ZodTypeDef,
   unknown
-> = z.union([
+> = smartUnion([
   z.lazy(() => CustomField1$inboundSchema),
   z.lazy(() => CustomField2$inboundSchema),
 ]);
@@ -426,7 +458,7 @@ export const CustomField$outboundSchema: z.ZodType<
   CustomField$Outbound,
   z.ZodTypeDef,
   CustomField
-> = z.union([
+> = smartUnion([
   z.lazy(() => CustomField1$outboundSchema),
   z.lazy(() => CustomField2$outboundSchema),
 ]);

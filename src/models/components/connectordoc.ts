@@ -7,6 +7,7 @@ import { safeParse } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
@@ -72,11 +73,11 @@ export const ConnectorDoc$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  id: z.string().optional(),
-  name: z.string().optional(),
-  audience: Audience$inboundSchema.optional(),
-  format: Format$inboundSchema.optional(),
-  url: z.string().optional(),
+  id: types.optional(types.string()),
+  name: types.optional(types.string()),
+  audience: types.optional(Audience$inboundSchema),
+  format: types.optional(Format$inboundSchema),
+  url: types.optional(types.string()),
 });
 
 export function connectorDocFromJSON(

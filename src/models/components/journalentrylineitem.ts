@@ -8,6 +8,7 @@ import { safeParse } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   DeprecatedLinkedTrackingCategory,
@@ -209,25 +210,27 @@ export const JournalEntryLineItem$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  id: z.string().optional(),
-  description: z.nullable(z.string()).optional(),
-  tax_amount: z.nullable(z.number()).optional(),
-  sub_total: z.nullable(z.number()).optional(),
-  total_amount: z.nullable(z.number()).optional(),
+  id: types.optional(types.string()),
+  description: z.nullable(types.string()).optional(),
+  tax_amount: z.nullable(types.number()).optional(),
+  sub_total: z.nullable(types.number()).optional(),
+  total_amount: z.nullable(types.number()).optional(),
   type: JournalEntryLineItemType$inboundSchema,
-  tax_rate: LinkedTaxRate$inboundSchema.optional(),
+  tax_rate: types.optional(LinkedTaxRate$inboundSchema),
   tracking_category: z.nullable(DeprecatedLinkedTrackingCategory$inboundSchema)
     .optional(),
   tracking_categories: z.nullable(
-    z.array(z.nullable(LinkedTrackingCategory$inboundSchema)),
+    z.array(types.nullable(LinkedTrackingCategory$inboundSchema)),
   ).optional(),
-  ledger_account: z.nullable(LinkedLedgerAccount$inboundSchema),
+  ledger_account: types.nullable(LinkedLedgerAccount$inboundSchema),
   customer: z.nullable(LinkedCustomer$inboundSchema).optional(),
   supplier: z.nullable(LinkedSupplier$inboundSchema).optional(),
-  department_id: z.nullable(z.string()).optional(),
-  location_id: z.nullable(z.string()).optional(),
-  line_number: z.nullable(z.number().int()).optional(),
-  worktags: z.array(z.nullable(LinkedWorktag$inboundSchema)).optional(),
+  department_id: z.nullable(types.string()).optional(),
+  location_id: z.nullable(types.string()).optional(),
+  line_number: z.nullable(types.number()).optional(),
+  worktags: types.optional(
+    z.array(types.nullable(LinkedWorktag$inboundSchema)),
+  ),
 }).transform((v) => {
   return remap$(v, {
     "tax_amount": "taxAmount",

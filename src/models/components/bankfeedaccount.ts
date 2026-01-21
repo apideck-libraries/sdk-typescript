@@ -8,6 +8,7 @@ import { safeParse } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   Currency,
@@ -173,25 +174,21 @@ export const BankFeedAccount$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  id: z.string(),
-  bank_account_type: BankAccountType$inboundSchema.optional(),
-  source_account_id: z.string().optional(),
-  target_account_id: z.string().optional(),
-  target_account_name: z.string().optional(),
-  target_account_number: z.string().optional(),
+  id: types.string(),
+  bank_account_type: types.optional(BankAccountType$inboundSchema),
+  source_account_id: types.optional(types.string()),
+  target_account_id: types.optional(types.string()),
+  target_account_name: types.optional(types.string()),
+  target_account_number: types.optional(types.string()),
   currency: z.nullable(Currency$inboundSchema).optional(),
-  feed_status: FeedStatus$inboundSchema.optional(),
-  country: z.nullable(z.string()).optional(),
-  custom_fields: z.array(CustomField$inboundSchema).optional(),
+  feed_status: types.optional(FeedStatus$inboundSchema),
+  country: z.nullable(types.string()).optional(),
+  custom_fields: types.optional(z.array(CustomField$inboundSchema)),
   custom_mappings: z.nullable(z.record(z.any())).optional(),
-  created_at: z.nullable(
-    z.string().datetime({ offset: true }).transform(v => new Date(v)),
-  ).optional(),
-  updated_at: z.nullable(
-    z.string().datetime({ offset: true }).transform(v => new Date(v)),
-  ).optional(),
-  updated_by: z.nullable(z.string()).optional(),
-  created_by: z.nullable(z.string()).optional(),
+  created_at: z.nullable(types.date()).optional(),
+  updated_at: z.nullable(types.date()).optional(),
+  updated_by: z.nullable(types.string()).optional(),
+  created_by: z.nullable(types.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     "bank_account_type": "bankAccountType",

@@ -6,6 +6,7 @@ import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   BalanceByPeriod,
@@ -32,8 +33,8 @@ export const OutstandingBalanceByCurrency$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   currency: z.nullable(Currency$inboundSchema).optional(),
-  total_amount: z.number().optional(),
-  balances_by_period: z.array(BalanceByPeriod$inboundSchema).optional(),
+  total_amount: types.optional(types.number()),
+  balances_by_period: types.optional(z.array(BalanceByPeriod$inboundSchema)),
 }).transform((v) => {
   return remap$(v, {
     "total_amount": "totalAmount",

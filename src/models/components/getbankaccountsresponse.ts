@@ -6,6 +6,7 @@ import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   AccountingBankAccount,
@@ -55,14 +56,14 @@ export const GetBankAccountsResponse$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  status_code: z.number().int(),
-  status: z.string(),
-  service: z.string().optional(),
-  resource: z.string().optional(),
-  operation: z.string().optional(),
+  status_code: types.number(),
+  status: types.string(),
+  service: types.optional(types.string()),
+  resource: types.optional(types.string()),
+  operation: types.optional(types.string()),
   data: z.array(AccountingBankAccount$inboundSchema),
-  meta: Meta$inboundSchema.optional(),
-  links: Links$inboundSchema.optional(),
+  meta: types.optional(Meta$inboundSchema),
+  links: types.optional(Links$inboundSchema),
 }).transform((v) => {
   return remap$(v, {
     "status_code": "statusCode",

@@ -6,6 +6,7 @@ import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import * as types from "../../types/primitives.js";
 import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
@@ -128,10 +129,12 @@ export const AccountingCreditNotesAllResponse$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   HttpMeta: components.HTTPMetadata$inboundSchema,
-  GetCreditNotesResponse: components.GetCreditNotesResponse$inboundSchema
-    .optional(),
-  UnexpectedErrorResponse: components.UnexpectedErrorResponse$inboundSchema
-    .optional(),
+  GetCreditNotesResponse: types.optional(
+    components.GetCreditNotesResponse$inboundSchema,
+  ),
+  UnexpectedErrorResponse: types.optional(
+    components.UnexpectedErrorResponse$inboundSchema,
+  ),
 }).transform((v) => {
   return remap$(v, {
     "HttpMeta": "httpMeta",

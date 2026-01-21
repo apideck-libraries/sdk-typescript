@@ -4,8 +4,10 @@
 
 import * as z from "zod/v3";
 import { safeParse } from "../../lib/schemas.js";
-import { ClosedEnum } from "../../types/enums.js";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export const ConnectorSettingType = {
@@ -24,7 +26,7 @@ export const ConnectorSettingType = {
   Number: "number",
   Password: "password",
 } as const;
-export type ConnectorSettingType = ClosedEnum<typeof ConnectorSettingType>;
+export type ConnectorSettingType = OpenEnum<typeof ConnectorSettingType>;
 
 export type ConnectorSetting = {
   id?: string | undefined;
@@ -33,9 +35,11 @@ export type ConnectorSetting = {
 };
 
 /** @internal */
-export const ConnectorSettingType$inboundSchema: z.ZodNativeEnum<
-  typeof ConnectorSettingType
-> = z.nativeEnum(ConnectorSettingType);
+export const ConnectorSettingType$inboundSchema: z.ZodType<
+  ConnectorSettingType,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(ConnectorSettingType);
 
 /** @internal */
 export const ConnectorSetting$inboundSchema: z.ZodType<
@@ -43,9 +47,9 @@ export const ConnectorSetting$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  id: z.string().optional(),
-  label: z.string().optional(),
-  type: ConnectorSettingType$inboundSchema.optional(),
+  id: types.optional(types.string()),
+  label: types.optional(types.string()),
+  type: types.optional(ConnectorSettingType$inboundSchema),
 });
 
 export function connectorSettingFromJSON(

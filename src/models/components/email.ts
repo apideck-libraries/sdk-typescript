@@ -7,6 +7,7 @@ import { safeParse } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
@@ -56,8 +57,8 @@ export const EmailType$outboundSchema: z.ZodType<
 /** @internal */
 export const Email$inboundSchema: z.ZodType<Email, z.ZodTypeDef, unknown> = z
   .object({
-    id: z.nullable(z.string()).optional(),
-    email: z.nullable(z.string()),
+    id: z.nullable(types.string()).optional(),
+    email: types.nullable(types.string()),
     type: z.nullable(EmailType$inboundSchema).optional(),
   });
 /** @internal */

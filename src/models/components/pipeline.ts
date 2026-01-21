@@ -6,6 +6,7 @@ import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { Currency, Currency$inboundSchema } from "./currency.js";
 import {
@@ -98,18 +99,14 @@ export type Pipeline = {
 /** @internal */
 export const Stages$inboundSchema: z.ZodType<Stages, z.ZodTypeDef, unknown> = z
   .object({
-    id: z.nullable(z.string()).optional(),
-    name: z.nullable(z.string()).optional(),
-    value: z.nullable(z.string()).optional(),
-    win_probability: z.nullable(z.number().int()).optional(),
-    display_order: z.nullable(z.number().int()).optional(),
-    archived: z.nullable(z.boolean()).optional(),
-    created_at: z.nullable(
-      z.string().datetime({ offset: true }).transform(v => new Date(v)),
-    ).optional(),
-    updated_at: z.nullable(
-      z.string().datetime({ offset: true }).transform(v => new Date(v)),
-    ).optional(),
+    id: z.nullable(types.string()).optional(),
+    name: z.nullable(types.string()).optional(),
+    value: z.nullable(types.string()).optional(),
+    win_probability: z.nullable(types.number()).optional(),
+    display_order: z.nullable(types.number()).optional(),
+    archived: z.nullable(types.boolean()).optional(),
+    created_at: z.nullable(types.date()).optional(),
+    updated_at: z.nullable(types.date()).optional(),
   }).transform((v) => {
     return remap$(v, {
       "win_probability": "winProbability",
@@ -135,21 +132,17 @@ export const Pipeline$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  id: z.string().optional(),
-  name: z.string(),
+  id: types.optional(types.string()),
+  name: types.string(),
   currency: z.nullable(Currency$inboundSchema).optional(),
-  archived: z.boolean().optional(),
-  active: z.boolean().optional(),
-  display_order: z.nullable(z.number().int()).optional(),
-  win_probability_enabled: z.boolean().optional(),
-  stages: z.array(z.lazy(() => Stages$inboundSchema)).optional(),
-  updated_at: z.nullable(
-    z.string().datetime({ offset: true }).transform(v => new Date(v)),
-  ).optional(),
-  created_at: z.nullable(
-    z.string().datetime({ offset: true }).transform(v => new Date(v)),
-  ).optional(),
-  pass_through: z.array(PassThroughBody$inboundSchema).optional(),
+  archived: types.optional(types.boolean()),
+  active: types.optional(types.boolean()),
+  display_order: z.nullable(types.number()).optional(),
+  win_probability_enabled: types.optional(types.boolean()),
+  stages: types.optional(z.array(z.lazy(() => Stages$inboundSchema))),
+  updated_at: z.nullable(types.date()).optional(),
+  created_at: z.nullable(types.date()).optional(),
+  pass_through: types.optional(z.array(PassThroughBody$inboundSchema)),
 }).transform((v) => {
   return remap$(v, {
     "display_order": "displayOrder",

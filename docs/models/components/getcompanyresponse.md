@@ -6,7 +6,6 @@ Company
 
 ```typescript
 import { GetCompanyResponse } from "@apideck/unify/models/components";
-import { RFCDate } from "@apideck/unify/types";
 
 let value: GetCompanyResponse = {
   statusCode: 200,
@@ -133,7 +132,7 @@ let value: GetCompanyResponse = {
     lastActivityAt: new Date("2020-09-30T07:43:32.000Z"),
     deleted: false,
     salutation: "Mr",
-    birthday: new RFCDate("2000-08-12"),
+    birthday: new Date("2000-08-12"),
     updatedBy: "12345",
     createdBy: "12345",
     updatedAt: new Date("2020-09-30T07:43:32.000Z"),
