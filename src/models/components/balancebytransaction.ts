@@ -8,7 +8,7 @@ import { safeParse } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
-import { RFCDate } from "../../types/rfcdate.js";
+import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
@@ -36,7 +36,7 @@ export type BalanceByTransaction = {
   /**
    * Date of the transaction.
    */
-  transactionDate?: RFCDate | undefined;
+  transactionDate?: Date | undefined;
   /**
    * Type of the transaction.
    */
@@ -44,7 +44,7 @@ export type BalanceByTransaction = {
   /**
    * Due date of the transaction.
    */
-  dueDate?: RFCDate | undefined;
+  dueDate?: Date | undefined;
   /**
    * Original amount of the transaction.
    */
@@ -72,14 +72,15 @@ export const BalanceByTransaction$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  transaction_id: z.string().optional(),
-  transaction_date: z.string().transform(v => new RFCDate(v)).optional(),
-  transaction_type: BalanceByTransactionTransactionType$inboundSchema
-    .optional(),
-  due_date: z.string().transform(v => new RFCDate(v)).optional(),
-  original_amount: z.number().optional(),
-  outstanding_balance: z.number().optional(),
-  transaction_number: z.string().optional(),
+  transaction_id: types.optional(types.string()),
+  transaction_date: types.optional(types.date()),
+  transaction_type: types.optional(
+    BalanceByTransactionTransactionType$inboundSchema,
+  ),
+  due_date: types.optional(types.date()),
+  original_amount: types.optional(types.number()),
+  outstanding_balance: types.optional(types.number()),
+  transaction_number: types.optional(types.string()),
 }).transform((v) => {
   return remap$(v, {
     "transaction_id": "transactionId",

@@ -8,6 +8,7 @@ import { safeParse } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
@@ -153,8 +154,8 @@ export const Operation$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  id: z.string(),
-  name: z.string(),
+  id: types.string(),
+  name: types.string(),
 });
 
 export function operationFromJSON(
@@ -170,8 +171,8 @@ export function operationFromJSON(
 /** @internal */
 export const Service$inboundSchema: z.ZodType<Service, z.ZodTypeDef, unknown> =
   z.object({
-    id: z.string(),
-    name: z.string(),
+    id: types.string(),
+    name: types.string(),
   });
 
 export function serviceFromJSON(
@@ -194,26 +195,26 @@ export const UnifiedApi$inboundSchema: z.ZodType<
 /** @internal */
 export const Log$inboundSchema: z.ZodType<Log, z.ZodTypeDef, unknown> = z
   .object({
-    api_style: z.string(),
-    base_url: z.string(),
-    child_request: z.boolean(),
-    consumer_id: z.string(),
-    duration: z.number(),
-    error_message: z.nullable(z.string()).optional(),
-    execution: z.number().int(),
-    has_children: z.boolean(),
-    http_method: z.string(),
-    id: z.string(),
-    latency: z.number(),
+    api_style: types.string(),
+    base_url: types.string(),
+    child_request: types.boolean(),
+    consumer_id: types.string(),
+    duration: types.number(),
+    error_message: z.nullable(types.string()).optional(),
+    execution: types.number(),
+    has_children: types.boolean(),
+    http_method: types.string(),
+    id: types.string(),
+    latency: types.number(),
     operation: z.lazy(() => Operation$inboundSchema),
-    parent_id: z.nullable(z.string()),
-    path: z.string(),
-    sandbox: z.boolean(),
+    parent_id: types.nullable(types.string()),
+    path: types.string(),
+    sandbox: types.boolean(),
     service: z.lazy(() => Service$inboundSchema),
-    source_ip: z.nullable(z.string()).optional(),
-    status_code: z.number().int(),
-    success: z.boolean(),
-    timestamp: z.string(),
+    source_ip: z.nullable(types.string()).optional(),
+    status_code: types.number(),
+    success: types.boolean(),
+    timestamp: types.string(),
     unified_api: UnifiedApi$inboundSchema,
   }).transform((v) => {
     return remap$(v, {

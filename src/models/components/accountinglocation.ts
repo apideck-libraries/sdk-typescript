@@ -8,6 +8,7 @@ import { safeParse } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   Address,
@@ -156,26 +157,22 @@ export const AccountingLocation$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  id: z.string().optional(),
-  parent_id: z.nullable(z.string()).optional(),
-  display_id: z.nullable(z.string()).optional(),
-  downstream_id: z.nullable(z.string()).optional(),
-  company_name: z.nullable(z.string()).optional(),
-  display_name: z.nullable(z.string()).optional(),
-  status: LocationStatus$inboundSchema.optional(),
-  addresses: z.array(Address$inboundSchema).optional(),
-  subsidiaries: z.array(SubsidiaryReference$inboundSchema).optional(),
+  id: types.optional(types.string()),
+  parent_id: z.nullable(types.string()).optional(),
+  display_id: z.nullable(types.string()).optional(),
+  downstream_id: z.nullable(types.string()).optional(),
+  company_name: z.nullable(types.string()).optional(),
+  display_name: z.nullable(types.string()).optional(),
+  status: types.optional(LocationStatus$inboundSchema),
+  addresses: types.optional(z.array(Address$inboundSchema)),
+  subsidiaries: types.optional(z.array(SubsidiaryReference$inboundSchema)),
   custom_mappings: z.nullable(z.record(z.any())).optional(),
-  row_version: z.nullable(z.string()).optional(),
-  updated_by: z.nullable(z.string()).optional(),
-  created_by: z.nullable(z.string()).optional(),
-  updated_at: z.nullable(
-    z.string().datetime({ offset: true }).transform(v => new Date(v)),
-  ).optional(),
-  created_at: z.nullable(
-    z.string().datetime({ offset: true }).transform(v => new Date(v)),
-  ).optional(),
-  pass_through: z.array(PassThroughBody$inboundSchema).optional(),
+  row_version: z.nullable(types.string()).optional(),
+  updated_by: z.nullable(types.string()).optional(),
+  created_by: z.nullable(types.string()).optional(),
+  updated_at: z.nullable(types.date()).optional(),
+  created_at: z.nullable(types.date()).optional(),
+  pass_through: types.optional(z.array(PassThroughBody$inboundSchema)),
 }).transform((v) => {
   return remap$(v, {
     "parent_id": "parentId",

@@ -8,6 +8,7 @@ import { safeParse } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
@@ -50,9 +51,9 @@ export const PaginationCoverage$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  mode: PaginationCoverageMode$inboundSchema.optional(),
-  paging_support: z.boolean().optional(),
-  limit_support: z.boolean().optional(),
+  mode: types.optional(PaginationCoverageMode$inboundSchema),
+  paging_support: types.optional(types.boolean()),
+  limit_support: types.optional(types.boolean()),
 }).transform((v) => {
   return remap$(v, {
     "paging_support": "pagingSupport",

@@ -8,6 +8,7 @@ import { safeParse } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
@@ -78,11 +79,11 @@ export const PhoneNumber$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  id: z.nullable(z.string()).optional(),
-  country_code: z.nullable(z.string()).optional(),
-  area_code: z.nullable(z.string()).optional(),
-  number: z.string(),
-  extension: z.nullable(z.string()).optional(),
+  id: z.nullable(types.string()).optional(),
+  country_code: z.nullable(types.string()).optional(),
+  area_code: z.nullable(types.string()).optional(),
+  number: types.string(),
+  extension: z.nullable(types.string()).optional(),
   type: z.nullable(PhoneNumberType$inboundSchema).optional(),
 }).transform((v) => {
   return remap$(v, {

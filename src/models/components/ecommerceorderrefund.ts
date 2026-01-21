@@ -6,6 +6,7 @@ import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { Currency, Currency$inboundSchema } from "./currency.js";
 
@@ -41,13 +42,11 @@ export const EcommerceOrderRefund$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  id: z.nullable(z.string()).optional(),
-  amount: z.string().optional(),
+  id: z.nullable(types.string()).optional(),
+  amount: types.optional(types.string()),
   currency: z.nullable(Currency$inboundSchema).optional(),
-  reason: z.string().optional(),
-  created_at: z.nullable(
-    z.string().datetime({ offset: true }).transform(v => new Date(v)),
-  ).optional(),
+  reason: types.optional(types.string()),
+  created_at: z.nullable(types.date()).optional(),
 }).transform((v) => {
   return remap$(v, {
     "created_at": "createdAt",

@@ -4,7 +4,6 @@
 
 import { expect, test } from "vitest";
 import { Apideck } from "../index.js";
-import { RFCDate } from "../types/index.js";
 import { createTestHTTPClient } from "./testclient.js";
 
 test("Invoiceitems Accounting Invoice Items All", async () => {
@@ -52,7 +51,7 @@ test("Invoiceitems Accounting Invoice Items All", async () => {
         purchased: true,
         tracked: true,
         taxable: true,
-        inventoryDate: new RFCDate("2020-10-30"),
+        inventoryDate: new Date("2020-10-30"),
         type: "inventory",
         salesDetails: {
           unitPrice: 27500.5,
@@ -168,7 +167,7 @@ test("Invoiceitems Accounting Invoice Items All", async () => {
         purchased: true,
         tracked: true,
         taxable: true,
-        inventoryDate: new RFCDate("2020-10-30"),
+        inventoryDate: new Date("2020-10-30"),
         type: "inventory",
         salesDetails: {
           unitPrice: 27500.5,
@@ -287,7 +286,7 @@ test("Invoiceitems Accounting Invoice Items All", async () => {
         purchased: true,
         tracked: true,
         taxable: true,
-        inventoryDate: new RFCDate("2020-10-30"),
+        inventoryDate: new Date("2020-10-30"),
         type: "inventory",
         salesDetails: {
           unitPrice: 27500.5,
@@ -420,7 +419,7 @@ test("Invoiceitems Accounting Invoice Items Add", async () => {
       purchased: true,
       tracked: true,
       taxable: true,
-      inventoryDate: new RFCDate("2020-10-30"),
+      inventoryDate: new Date("2020-10-30"),
       type: "inventory",
       salesDetails: {
         unitPrice: 27500.5,
@@ -562,7 +561,7 @@ test("Invoiceitems Accounting Invoice Items One", async () => {
       purchased: true,
       tracked: true,
       taxable: true,
-      inventoryDate: new RFCDate("2020-10-30"),
+      inventoryDate: new Date("2020-10-30"),
       type: "inventory",
       salesDetails: {
         unitPrice: 27500.5,
@@ -701,7 +700,7 @@ test("Invoiceitems Accounting Invoice Items Update", async () => {
       purchased: true,
       tracked: true,
       taxable: true,
-      inventoryDate: new RFCDate("2020-10-30"),
+      inventoryDate: new Date("2020-10-30"),
       type: "inventory",
       salesDetails: {
         unitPrice: 27500.5,

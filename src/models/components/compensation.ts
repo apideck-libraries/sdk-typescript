@@ -6,6 +6,7 @@ import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { Benefit, Benefit$inboundSchema } from "./benefit.js";
 import { Deduction, Deduction$inboundSchema } from "./deduction.js";
@@ -44,9 +45,9 @@ export const Compensation$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  employee_id: z.nullable(z.string()),
-  net_pay: z.nullable(z.number()).optional(),
-  gross_pay: z.nullable(z.number()).optional(),
+  employee_id: types.nullable(types.string()),
+  net_pay: z.nullable(types.number()).optional(),
+  gross_pay: z.nullable(types.number()).optional(),
   taxes: z.nullable(z.array(Tax$inboundSchema)).optional(),
   deductions: z.nullable(z.array(Deduction$inboundSchema)).optional(),
   benefits: z.nullable(z.array(Benefit$inboundSchema)).optional(),

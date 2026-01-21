@@ -6,6 +6,7 @@ import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   DataScopesResources,
@@ -37,9 +38,9 @@ export const ConsentRecord$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  id: z.string(),
-  created_at: z.string(),
-  granted: z.boolean(),
+  id: types.string(),
+  created_at: types.string(),
+  granted: types.boolean(),
   resources: DataScopesResources$inboundSchema,
 }).transform((v) => {
   return remap$(v, {

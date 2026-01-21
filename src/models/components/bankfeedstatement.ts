@@ -8,6 +8,7 @@ import { safeParse } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   CreditOrDebit,
@@ -211,16 +212,16 @@ export const Transactions$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  posted_date: z.string().datetime({ offset: true }).transform(v =>
-    new Date(v)
-  ),
-  description: z.string().optional(),
-  amount: z.number(),
+  posted_date: types.date(),
+  description: types.optional(types.string()),
+  amount: types.number(),
   credit_or_debit: CreditOrDebit$inboundSchema,
-  source_transaction_id: z.string(),
-  counterparty: z.string().optional(),
-  reference: z.string().optional(),
-  transaction_type: BankFeedStatementTransactionType$inboundSchema.optional(),
+  source_transaction_id: types.string(),
+  counterparty: types.optional(types.string()),
+  reference: types.optional(types.string()),
+  transaction_type: types.optional(
+    BankFeedStatementTransactionType$inboundSchema,
+  ),
 }).transform((v) => {
   return remap$(v, {
     "posted_date": "postedDate",
@@ -283,26 +284,22 @@ export const BankFeedStatement$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  id: z.string(),
-  bank_feed_account_id: z.string().optional(),
-  status: StatementStatus$inboundSchema.optional(),
-  start_date: z.string().datetime({ offset: true }).transform(v => new Date(v))
-    .optional(),
-  end_date: z.string().datetime({ offset: true }).transform(v => new Date(v))
-    .optional(),
-  start_balance: z.number().optional(),
-  start_balance_credit_or_debit: CreditOrDebit$inboundSchema.optional(),
-  end_balance: z.number().optional(),
-  end_balance_credit_or_debit: CreditOrDebit$inboundSchema.optional(),
-  transactions: z.array(z.lazy(() => Transactions$inboundSchema)).optional(),
-  created_at: z.nullable(
-    z.string().datetime({ offset: true }).transform(v => new Date(v)),
-  ).optional(),
-  created_by: z.nullable(z.string()).optional(),
-  updated_at: z.nullable(
-    z.string().datetime({ offset: true }).transform(v => new Date(v)),
-  ).optional(),
-  updated_by: z.nullable(z.string()).optional(),
+  id: types.string(),
+  bank_feed_account_id: types.optional(types.string()),
+  status: types.optional(StatementStatus$inboundSchema),
+  start_date: types.optional(types.date()),
+  end_date: types.optional(types.date()),
+  start_balance: types.optional(types.number()),
+  start_balance_credit_or_debit: types.optional(CreditOrDebit$inboundSchema),
+  end_balance: types.optional(types.number()),
+  end_balance_credit_or_debit: types.optional(CreditOrDebit$inboundSchema),
+  transactions: types.optional(
+    z.array(z.lazy(() => Transactions$inboundSchema)),
+  ),
+  created_at: z.nullable(types.date()).optional(),
+  created_by: z.nullable(types.string()).optional(),
+  updated_at: z.nullable(types.date()).optional(),
+  updated_by: z.nullable(types.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     "bank_feed_account_id": "bankFeedAccountId",

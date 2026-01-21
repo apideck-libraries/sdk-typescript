@@ -6,7 +6,7 @@ import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
-import { RFCDate } from "../../types/rfcdate.js";
+import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { Currency, Currency$inboundSchema } from "./currency.js";
 import { CustomField, CustomField$inboundSchema } from "./customfield.js";
@@ -55,7 +55,7 @@ export type Opportunity = {
   /**
    * The actual closing date for the opportunity. If close_date is null, the opportunity is not closed yet.
    */
-  closeDate?: RFCDate | null | undefined;
+  closeDate?: Date | null | undefined;
   /**
    * The unique identifier of the reason why the opportunity was lost.
    */
@@ -186,60 +186,48 @@ export const Opportunity$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  id: z.string().optional(),
-  title: z.string(),
-  primary_contact_id: z.nullable(z.string()).optional(),
-  description: z.nullable(z.string()).optional(),
-  type: z.nullable(z.string()).optional(),
-  monetary_amount: z.nullable(z.number()).optional(),
+  id: types.optional(types.string()),
+  title: types.string(),
+  primary_contact_id: z.nullable(types.string()).optional(),
+  description: z.nullable(types.string()).optional(),
+  type: z.nullable(types.string()).optional(),
+  monetary_amount: z.nullable(types.number()).optional(),
   currency: z.nullable(Currency$inboundSchema).optional(),
-  win_probability: z.nullable(z.number()).optional(),
-  expected_revenue: z.nullable(z.number()).optional(),
-  close_date: z.nullable(z.string().transform(v => new RFCDate(v))).optional(),
-  loss_reason_id: z.nullable(z.string()).optional(),
-  loss_reason: z.nullable(z.string()).optional(),
-  won_reason_id: z.nullable(z.string()).optional(),
-  won_reason: z.nullable(z.string()).optional(),
-  pipeline_id: z.nullable(z.string()).optional(),
-  pipeline_stage_id: z.nullable(z.string()).optional(),
-  source_id: z.nullable(z.string()).optional(),
-  lead_id: z.nullable(z.string()).optional(),
-  lead_source: z.nullable(z.string()).optional(),
-  contact_id: z.nullable(z.string()).optional(),
-  contact_ids: z.array(z.string()).optional(),
-  company_id: z.nullable(z.string()).optional(),
-  company_name: z.nullable(z.string()).optional(),
-  owner_id: z.nullable(z.string()).optional(),
-  priority: z.nullable(z.string()).optional(),
-  status: z.nullable(z.string()).optional(),
-  status_id: z.nullable(z.string()).optional(),
-  tags: z.nullable(z.array(z.string())).optional(),
-  interaction_count: z.nullable(z.number()).optional(),
-  custom_fields: z.array(CustomField$inboundSchema).optional(),
-  stage_last_changed_at: z.nullable(
-    z.string().datetime({ offset: true }).transform(v => new Date(v)),
-  ).optional(),
-  last_activity_at: z.nullable(z.string()).optional(),
-  deleted: z.boolean().optional(),
-  date_stage_changed: z.nullable(
-    z.string().datetime({ offset: true }).transform(v => new Date(v)),
-  ).optional(),
-  date_last_contacted: z.nullable(
-    z.string().datetime({ offset: true }).transform(v => new Date(v)),
-  ).optional(),
-  date_lead_created: z.nullable(
-    z.string().datetime({ offset: true }).transform(v => new Date(v)),
-  ).optional(),
+  win_probability: z.nullable(types.number()).optional(),
+  expected_revenue: z.nullable(types.number()).optional(),
+  close_date: z.nullable(types.date()).optional(),
+  loss_reason_id: z.nullable(types.string()).optional(),
+  loss_reason: z.nullable(types.string()).optional(),
+  won_reason_id: z.nullable(types.string()).optional(),
+  won_reason: z.nullable(types.string()).optional(),
+  pipeline_id: z.nullable(types.string()).optional(),
+  pipeline_stage_id: z.nullable(types.string()).optional(),
+  source_id: z.nullable(types.string()).optional(),
+  lead_id: z.nullable(types.string()).optional(),
+  lead_source: z.nullable(types.string()).optional(),
+  contact_id: z.nullable(types.string()).optional(),
+  contact_ids: types.optional(z.array(types.string())),
+  company_id: z.nullable(types.string()).optional(),
+  company_name: z.nullable(types.string()).optional(),
+  owner_id: z.nullable(types.string()).optional(),
+  priority: z.nullable(types.string()).optional(),
+  status: z.nullable(types.string()).optional(),
+  status_id: z.nullable(types.string()).optional(),
+  tags: z.nullable(z.array(types.string())).optional(),
+  interaction_count: z.nullable(types.number()).optional(),
+  custom_fields: types.optional(z.array(CustomField$inboundSchema)),
+  stage_last_changed_at: z.nullable(types.date()).optional(),
+  last_activity_at: z.nullable(types.string()).optional(),
+  deleted: types.optional(types.boolean()),
+  date_stage_changed: z.nullable(types.date()).optional(),
+  date_last_contacted: z.nullable(types.date()).optional(),
+  date_lead_created: z.nullable(types.date()).optional(),
   custom_mappings: z.nullable(z.record(z.any())).optional(),
-  updated_by: z.nullable(z.string()).optional(),
-  created_by: z.nullable(z.string()).optional(),
-  updated_at: z.nullable(
-    z.string().datetime({ offset: true }).transform(v => new Date(v)),
-  ).optional(),
-  created_at: z.nullable(
-    z.string().datetime({ offset: true }).transform(v => new Date(v)),
-  ).optional(),
-  pass_through: z.array(PassThroughBody$inboundSchema).optional(),
+  updated_by: z.nullable(types.string()).optional(),
+  created_by: z.nullable(types.string()).optional(),
+  updated_at: z.nullable(types.date()).optional(),
+  created_at: z.nullable(types.date()).optional(),
+  pass_through: types.optional(z.array(PassThroughBody$inboundSchema)),
 }).transform((v) => {
   return remap$(v, {
     "primary_contact_id": "primaryContactId",

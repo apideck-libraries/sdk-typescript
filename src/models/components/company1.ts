@@ -6,7 +6,7 @@ import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
-import { RFCDate } from "../../types/rfcdate.js";
+import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   Address,
@@ -184,7 +184,7 @@ export type Company1 = {
   /**
    * The date of birth of the person.
    */
-  birthday?: RFCDate | null | undefined;
+  birthday?: Date | null | undefined;
   /**
    * When custom mappings are configured on the resource, the result is included here.
    */
@@ -308,7 +308,7 @@ export type Company1Input = {
   /**
    * The date of birth of the person.
    */
-  birthday?: RFCDate | null | undefined;
+  birthday?: Date | null | undefined;
   /**
    * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
    */
@@ -321,8 +321,8 @@ export const CompanyRowType$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  id: z.nullable(z.string()).optional(),
-  name: z.nullable(z.string()).optional(),
+  id: z.nullable(types.string()).optional(),
+  name: z.nullable(types.string()).optional(),
 });
 /** @internal */
 export type CompanyRowType$Outbound = {
@@ -359,54 +359,48 @@ export const Company1$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  id: z.string().optional(),
-  name: z.nullable(z.string()),
-  interaction_count: z.nullable(z.number().int()).optional(),
-  owner_id: z.nullable(z.string()).optional(),
-  image: z.nullable(z.string()).optional(),
-  description: z.nullable(z.string()).optional(),
-  vat_number: z.nullable(z.string()).optional(),
+  id: types.optional(types.string()),
+  name: types.nullable(types.string()),
+  interaction_count: z.nullable(types.number()).optional(),
+  owner_id: z.nullable(types.string()).optional(),
+  image: z.nullable(types.string()).optional(),
+  description: z.nullable(types.string()).optional(),
+  vat_number: z.nullable(types.string()).optional(),
   currency: z.nullable(Currency$inboundSchema).optional(),
-  status: z.nullable(z.string()).optional(),
-  fax: z.nullable(z.string()).optional(),
-  annual_revenue: z.nullable(z.string()).optional(),
-  number_of_employees: z.nullable(z.string()).optional(),
-  industry: z.nullable(z.string()).optional(),
-  ownership: z.nullable(z.string()).optional(),
-  sales_tax_number: z.nullable(z.string()).optional(),
-  payee_number: z.nullable(z.string()).optional(),
-  abn_or_tfn: z.nullable(z.string()).optional(),
-  abn_branch: z.nullable(z.string()).optional(),
-  acn: z.nullable(z.string()).optional(),
-  first_name: z.nullable(z.string()).optional(),
-  last_name: z.nullable(z.string()).optional(),
-  parent_id: z.nullable(z.string()).optional(),
-  bank_accounts: z.array(BankAccount1$inboundSchema).optional(),
-  websites: z.array(Website$inboundSchema).optional(),
-  addresses: z.array(Address$inboundSchema).optional(),
-  social_links: z.array(SocialLink$inboundSchema).optional(),
-  phone_numbers: z.array(PhoneNumber$inboundSchema).optional(),
-  emails: z.array(Email$inboundSchema).optional(),
-  row_type: z.lazy(() => CompanyRowType$inboundSchema).optional(),
-  custom_fields: z.array(CustomField$inboundSchema).optional(),
-  tags: z.nullable(z.array(z.string())).optional(),
-  read_only: z.nullable(z.boolean()).optional(),
-  last_activity_at: z.nullable(
-    z.string().datetime({ offset: true }).transform(v => new Date(v)),
-  ).optional(),
-  deleted: z.boolean().optional(),
-  salutation: z.nullable(z.string()).optional(),
-  birthday: z.nullable(z.string().transform(v => new RFCDate(v))).optional(),
+  status: z.nullable(types.string()).optional(),
+  fax: z.nullable(types.string()).optional(),
+  annual_revenue: z.nullable(types.string()).optional(),
+  number_of_employees: z.nullable(types.string()).optional(),
+  industry: z.nullable(types.string()).optional(),
+  ownership: z.nullable(types.string()).optional(),
+  sales_tax_number: z.nullable(types.string()).optional(),
+  payee_number: z.nullable(types.string()).optional(),
+  abn_or_tfn: z.nullable(types.string()).optional(),
+  abn_branch: z.nullable(types.string()).optional(),
+  acn: z.nullable(types.string()).optional(),
+  first_name: z.nullable(types.string()).optional(),
+  last_name: z.nullable(types.string()).optional(),
+  parent_id: z.nullable(types.string()).optional(),
+  bank_accounts: types.optional(z.array(BankAccount1$inboundSchema)),
+  websites: types.optional(z.array(Website$inboundSchema)),
+  addresses: types.optional(z.array(Address$inboundSchema)),
+  social_links: types.optional(z.array(SocialLink$inboundSchema)),
+  phone_numbers: types.optional(z.array(PhoneNumber$inboundSchema)),
+  emails: types.optional(z.array(Email$inboundSchema)),
+  row_type: types.optional(z.lazy(() => CompanyRowType$inboundSchema)),
+  custom_fields: types.optional(z.array(CustomField$inboundSchema)),
+  tags: z.nullable(z.array(types.string())).optional(),
+  read_only: z.nullable(types.boolean()).optional(),
+  last_activity_at: z.nullable(types.date()).optional(),
+  deleted: types.optional(types.boolean()),
+  salutation: z.nullable(types.string()).optional(),
+  birthday: z.nullable(types.date()).optional(),
   custom_mappings: z.nullable(z.record(z.any())).optional(),
-  updated_by: z.nullable(z.string()).optional(),
-  created_by: z.nullable(z.string()).optional(),
-  updated_at: z.nullable(
-    z.string().datetime({ offset: true }).transform(v => new Date(v)),
-  ).optional(),
-  created_at: z.nullable(
-    z.string().datetime({ offset: true }).transform(v => new Date(v)),
-  ).optional(),
-  pass_through: z.array(PassThroughBody$inboundSchema).optional(),
+  updated_by: z.nullable(types.string()).optional(),
+  created_by: z.nullable(types.string()).optional(),
+  updated_at: z.nullable(types.date()).optional(),
+  created_at: z.nullable(types.date()).optional(),
+  pass_through: types.optional(z.array(PassThroughBody$inboundSchema)),
 }).transform((v) => {
   return remap$(v, {
     "interaction_count": "interactionCount",
@@ -519,8 +513,9 @@ export const Company1Input$outboundSchema: z.ZodType<
   tags: z.nullable(z.array(z.string())).optional(),
   readOnly: z.nullable(z.boolean()).optional(),
   salutation: z.nullable(z.string()).optional(),
-  birthday: z.nullable(z.instanceof(RFCDate).transform(v => v.toString()))
-    .optional(),
+  birthday: z.nullable(
+    z.date().transform(v => v.toISOString().slice(0, "YYYY-MM-DD".length)),
+  ).optional(),
   passThrough: z.array(PassThroughBody$outboundSchema).optional(),
 }).transform((v) => {
   return remap$(v, {

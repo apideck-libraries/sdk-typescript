@@ -6,6 +6,7 @@ import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
@@ -56,15 +57,15 @@ export const PayrollTotals$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  company_debit: z.nullable(z.number()).optional(),
-  tax_debit: z.nullable(z.number()).optional(),
-  check_amount: z.nullable(z.number()).optional(),
-  net_pay: z.nullable(z.number()).optional(),
-  gross_pay: z.nullable(z.number()).optional(),
-  employer_taxes: z.nullable(z.number()).optional(),
-  employee_taxes: z.nullable(z.number()).optional(),
-  employer_benefit_contributions: z.nullable(z.number()).optional(),
-  employee_benefit_deductions: z.nullable(z.number()).optional(),
+  company_debit: z.nullable(types.number()).optional(),
+  tax_debit: z.nullable(types.number()).optional(),
+  check_amount: z.nullable(types.number()).optional(),
+  net_pay: z.nullable(types.number()).optional(),
+  gross_pay: z.nullable(types.number()).optional(),
+  employer_taxes: z.nullable(types.number()).optional(),
+  employee_taxes: z.nullable(types.number()).optional(),
+  employer_benefit_contributions: z.nullable(types.number()).optional(),
+  employee_benefit_deductions: z.nullable(types.number()).optional(),
 }).transform((v) => {
   return remap$(v, {
     "company_debit": "companyDebit",

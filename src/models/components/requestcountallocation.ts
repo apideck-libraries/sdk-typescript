@@ -5,6 +5,7 @@
 import * as z from "zod/v3";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type RequestCountAllocation = {
@@ -19,9 +20,9 @@ export const RequestCountAllocation$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  unify: z.number().optional(),
-  proxy: z.number().optional(),
-  vault: z.number().optional(),
+  unify: types.optional(types.number()),
+  proxy: types.optional(types.number()),
+  vault: types.optional(types.number()),
 });
 
 export function requestCountAllocationFromJSON(

@@ -6,6 +6,7 @@ import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import * as types from "../../types/primitives.js";
 import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
@@ -95,10 +96,12 @@ export const FileStorageDriveGroupsAddResponse$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   HttpMeta: components.HTTPMetadata$inboundSchema,
-  CreateDriveGroupResponse: components.CreateDriveGroupResponse$inboundSchema
-    .optional(),
-  UnexpectedErrorResponse: components.UnexpectedErrorResponse$inboundSchema
-    .optional(),
+  CreateDriveGroupResponse: types.optional(
+    components.CreateDriveGroupResponse$inboundSchema,
+  ),
+  UnexpectedErrorResponse: types.optional(
+    components.UnexpectedErrorResponse$inboundSchema,
+  ),
 }).transform((v) => {
   return remap$(v, {
     "HttpMeta": "httpMeta",

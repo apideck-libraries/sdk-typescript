@@ -6,6 +6,8 @@ import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import * as types from "../../types/primitives.js";
+import { smartUnion } from "../../types/smartUnion.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type Five = string | number | number;
@@ -30,14 +32,14 @@ export type SimpleFormFieldOption = {
 };
 
 /** @internal */
-export const Five$inboundSchema: z.ZodType<Five, z.ZodTypeDef, unknown> = z
-  .union([z.string(), z.number().int(), z.number()]);
+export const Five$inboundSchema: z.ZodType<Five, z.ZodTypeDef, unknown> =
+  smartUnion([types.string(), types.number(), types.number()]);
 /** @internal */
 export type Five$Outbound = string | number | number;
 
 /** @internal */
 export const Five$outboundSchema: z.ZodType<Five$Outbound, z.ZodTypeDef, Five> =
-  z.union([z.string(), z.number().int(), z.number()]);
+  smartUnion([z.string(), z.number().int(), z.number()]);
 
 export function fiveToJSON(five: Five): string {
   return JSON.stringify(Five$outboundSchema.parse(five));
@@ -53,13 +55,13 @@ export function fiveFromJSON(
 }
 
 /** @internal */
-export const Value$inboundSchema: z.ZodType<Value, z.ZodTypeDef, unknown> = z
-  .union([
-    z.string(),
-    z.number().int(),
-    z.number(),
-    z.boolean(),
-    z.array(z.union([z.string(), z.number().int(), z.number()])),
+export const Value$inboundSchema: z.ZodType<Value, z.ZodTypeDef, unknown> =
+  smartUnion([
+    types.string(),
+    types.number(),
+    types.number(),
+    types.boolean(),
+    z.array(smartUnion([types.string(), types.number(), types.number()])),
   ]);
 /** @internal */
 export type Value$Outbound =
@@ -74,12 +76,12 @@ export const Value$outboundSchema: z.ZodType<
   Value$Outbound,
   z.ZodTypeDef,
   Value
-> = z.union([
+> = smartUnion([
   z.string(),
   z.number().int(),
   z.number(),
   z.boolean(),
-  z.array(z.union([z.string(), z.number().int(), z.number()])),
+  z.array(smartUnion([z.string(), z.number().int(), z.number()])),
 ]);
 
 export function valueToJSON(value: Value): string {
@@ -101,15 +103,17 @@ export const SimpleFormFieldOption$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  label: z.string(),
-  value: z.union([
-    z.string(),
-    z.number().int(),
-    z.number(),
-    z.boolean(),
-    z.array(z.union([z.string(), z.number().int(), z.number()])),
-  ]).optional(),
-  option_type: z.literal("simple"),
+  label: types.string(),
+  value: types.optional(
+    smartUnion([
+      types.string(),
+      types.number(),
+      types.number(),
+      types.boolean(),
+      z.array(smartUnion([types.string(), types.number(), types.number()])),
+    ]),
+  ),
+  option_type: types.literal("simple"),
 }).transform((v) => {
   return remap$(v, {
     "option_type": "optionType",
@@ -135,12 +139,12 @@ export const SimpleFormFieldOption$outboundSchema: z.ZodType<
   SimpleFormFieldOption
 > = z.object({
   label: z.string(),
-  value: z.union([
+  value: smartUnion([
     z.string(),
     z.number().int(),
     z.number(),
     z.boolean(),
-    z.array(z.union([z.string(), z.number().int(), z.number()])),
+    z.array(smartUnion([z.string(), z.number().int(), z.number()])),
   ]).optional(),
   optionType: z.literal("simple"),
 }).transform((v) => {

@@ -8,6 +8,7 @@ import { safeParse } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { Currency, Currency$inboundSchema } from "./currency.js";
 import {
@@ -184,36 +185,32 @@ export const EcommerceOrder$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  id: z.string(),
-  order_number: z.nullable(z.string()).optional(),
+  id: types.string(),
+  order_number: z.nullable(types.string()).optional(),
   currency: z.nullable(Currency$inboundSchema).optional(),
-  discounts: z.array(EcommerceDiscount$inboundSchema).optional(),
-  sub_total: z.nullable(z.string()).optional(),
-  shipping_cost: z.nullable(z.string()).optional(),
-  coupon_discount: z.nullable(z.string()).optional(),
-  total_discount: z.nullable(z.string()).optional(),
-  total_tax: z.nullable(z.string()).optional(),
-  total_amount: z.nullable(z.string()).optional(),
-  refunded_amount: z.nullable(z.string()).optional(),
+  discounts: types.optional(z.array(EcommerceDiscount$inboundSchema)),
+  sub_total: z.nullable(types.string()).optional(),
+  shipping_cost: z.nullable(types.string()).optional(),
+  coupon_discount: z.nullable(types.string()).optional(),
+  total_discount: z.nullable(types.string()).optional(),
+  total_tax: z.nullable(types.string()).optional(),
+  total_amount: z.nullable(types.string()).optional(),
+  refunded_amount: z.nullable(types.string()).optional(),
   status: z.nullable(EcommerceOrderStatus$inboundSchema).optional(),
   payment_status: z.nullable(EcommerceOrderPaymentStatus$inboundSchema)
     .optional(),
   fulfillment_status: z.nullable(FulfillmentStatus$inboundSchema).optional(),
-  payment_method: z.nullable(z.string()).optional(),
-  customer: LinkedEcommerceCustomer$inboundSchema.optional(),
-  billing_address: EcommerceAddress$inboundSchema.optional(),
-  shipping_address: EcommerceAddress$inboundSchema.optional(),
-  tracking: z.array(TrackingItem$inboundSchema).optional(),
-  line_items: z.array(EcommerceOrderLineItem$inboundSchema).optional(),
-  note: z.nullable(z.string()).optional(),
-  refunds: z.array(EcommerceOrderRefund$inboundSchema).optional(),
+  payment_method: z.nullable(types.string()).optional(),
+  customer: types.optional(LinkedEcommerceCustomer$inboundSchema),
+  billing_address: types.optional(EcommerceAddress$inboundSchema),
+  shipping_address: types.optional(EcommerceAddress$inboundSchema),
+  tracking: types.optional(z.array(TrackingItem$inboundSchema)),
+  line_items: types.optional(z.array(EcommerceOrderLineItem$inboundSchema)),
+  note: z.nullable(types.string()).optional(),
+  refunds: types.optional(z.array(EcommerceOrderRefund$inboundSchema)),
   custom_mappings: z.nullable(z.record(z.any())).optional(),
-  created_at: z.nullable(
-    z.string().datetime({ offset: true }).transform(v => new Date(v)),
-  ).optional(),
-  updated_at: z.nullable(
-    z.string().datetime({ offset: true }).transform(v => new Date(v)),
-  ).optional(),
+  created_at: z.nullable(types.date()).optional(),
+  updated_at: z.nullable(types.date()).optional(),
 }).transform((v) => {
   return remap$(v, {
     "order_number": "orderNumber",

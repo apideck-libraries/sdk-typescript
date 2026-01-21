@@ -6,6 +6,7 @@ import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   EcommerceDiscount,
@@ -98,9 +99,9 @@ export type EcommerceOrderLineItem = {
 /** @internal */
 export const Options$inboundSchema: z.ZodType<Options, z.ZodTypeDef, unknown> =
   z.object({
-    id: z.nullable(z.string()).optional(),
-    name: z.nullable(z.string()).optional(),
-    value: z.nullable(z.string()).optional(),
+    id: z.nullable(types.string()).optional(),
+    name: z.nullable(types.string()).optional(),
+    value: z.nullable(types.string()).optional(),
   });
 
 export function optionsFromJSON(
@@ -119,23 +120,23 @@ export const EcommerceOrderLineItem$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  id: z.nullable(z.string()).optional(),
-  product_id: z.nullable(z.string()).optional(),
-  variant_id: z.nullable(z.string()).optional(),
-  sku: z.nullable(z.string()).optional(),
-  name: z.nullable(z.string()).optional(),
-  description: z.nullable(z.string()).optional(),
-  options: z.array(z.lazy(() => Options$inboundSchema)).optional(),
-  quantity: z.nullable(z.string()),
-  unit_price: z.nullable(z.string()).optional(),
-  tax_rate: z.nullable(z.string()).optional(),
-  tax_amount: z.nullable(z.string()).optional(),
-  is_refunded: z.nullable(z.boolean()).optional(),
-  refunded_amount: z.nullable(z.string()).optional(),
-  refunded_quantity: z.nullable(z.string()).optional(),
-  sub_total: z.nullable(z.string()).optional(),
-  total_amount: z.nullable(z.string()).optional(),
-  discounts: z.array(EcommerceDiscount$inboundSchema).optional(),
+  id: z.nullable(types.string()).optional(),
+  product_id: z.nullable(types.string()).optional(),
+  variant_id: z.nullable(types.string()).optional(),
+  sku: z.nullable(types.string()).optional(),
+  name: z.nullable(types.string()).optional(),
+  description: z.nullable(types.string()).optional(),
+  options: types.optional(z.array(z.lazy(() => Options$inboundSchema))),
+  quantity: types.nullable(types.string()),
+  unit_price: z.nullable(types.string()).optional(),
+  tax_rate: z.nullable(types.string()).optional(),
+  tax_amount: z.nullable(types.string()).optional(),
+  is_refunded: z.nullable(types.boolean()).optional(),
+  refunded_amount: z.nullable(types.string()).optional(),
+  refunded_quantity: z.nullable(types.string()).optional(),
+  sub_total: z.nullable(types.string()).optional(),
+  total_amount: z.nullable(types.string()).optional(),
+  discounts: types.optional(z.array(EcommerceDiscount$inboundSchema)),
 }).transform((v) => {
   return remap$(v, {
     "product_id": "productId",

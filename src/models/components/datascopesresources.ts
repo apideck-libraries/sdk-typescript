@@ -7,6 +7,8 @@ import { safeParse } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import * as types from "../../types/primitives.js";
+import { smartUnion } from "../../types/smartUnion.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
@@ -57,8 +59,8 @@ export const DataScopesResources1$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  read: z.boolean().optional(),
-  write: z.boolean().optional(),
+  read: types.optional(types.boolean()),
+  write: types.optional(types.boolean()),
 });
 /** @internal */
 export type DataScopesResources1$Outbound = {
@@ -98,7 +100,7 @@ export const DataScopesResources$inboundSchema: z.ZodType<
   DataScopesResources,
   z.ZodTypeDef,
   unknown
-> = z.union([
+> = smartUnion([
   z.record(z.record(z.lazy(() => DataScopesResources1$inboundSchema))),
   DataScopesResources2$inboundSchema,
 ]);
@@ -112,7 +114,7 @@ export const DataScopesResources$outboundSchema: z.ZodType<
   DataScopesResources$Outbound,
   z.ZodTypeDef,
   DataScopesResources
-> = z.union([
+> = smartUnion([
   z.record(z.record(z.lazy(() => DataScopesResources1$outboundSchema))),
   DataScopesResources2$outboundSchema,
 ]);

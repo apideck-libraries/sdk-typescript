@@ -5,6 +5,7 @@
 import * as z from "zod/v3";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type Owner = {
@@ -25,9 +26,9 @@ export type Owner = {
 /** @internal */
 export const Owner$inboundSchema: z.ZodType<Owner, z.ZodTypeDef, unknown> = z
   .object({
-    id: z.string().optional(),
-    email: z.nullable(z.string()).optional(),
-    name: z.nullable(z.string()).optional(),
+    id: types.optional(types.string()),
+    email: z.nullable(types.string()).optional(),
+    name: z.nullable(types.string()).optional(),
   });
 
 export function ownerFromJSON(

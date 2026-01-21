@@ -6,6 +6,7 @@ import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type UploadSession = {
@@ -38,14 +39,12 @@ export const UploadSession$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  id: z.string().optional(),
-  success: z.boolean().optional(),
-  part_size: z.number().optional(),
-  parallel_upload_supported: z.boolean().optional(),
-  uploaded_byte_range: z.string().optional(),
-  expires_at: z.nullable(
-    z.string().datetime({ offset: true }).transform(v => new Date(v)),
-  ).optional(),
+  id: types.optional(types.string()),
+  success: types.optional(types.boolean()),
+  part_size: types.optional(types.number()),
+  parallel_upload_supported: types.optional(types.boolean()),
+  uploaded_byte_range: types.optional(types.string()),
+  expires_at: z.nullable(types.date()).optional(),
 }).transform((v) => {
   return remap$(v, {
     "part_size": "partSize",

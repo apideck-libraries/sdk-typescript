@@ -6,6 +6,7 @@ import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type LinkedTaxDetail = {
@@ -33,10 +34,10 @@ export const LinkedTaxDetail$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  type: z.string().optional(),
-  number: z.nullable(z.string()).optional(),
-  is_transaction_tax: z.boolean().optional(),
-  is_primary_tax: z.boolean().optional(),
+  type: types.optional(types.string()),
+  number: z.nullable(types.string()).optional(),
+  is_transaction_tax: types.optional(types.boolean()),
+  is_primary_tax: types.optional(types.boolean()),
 }).transform((v) => {
   return remap$(v, {
     "is_transaction_tax": "isTransactionTax",

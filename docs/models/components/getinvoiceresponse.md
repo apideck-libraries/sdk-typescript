@@ -6,7 +6,6 @@ Invoice
 
 ```typescript
 import { GetInvoiceResponse } from "@apideck/unify/models/components";
-import { RFCDate } from "@apideck/unify/types";
 
 let value: GetInvoiceResponse = {
   statusCode: 200,
@@ -30,8 +29,8 @@ let value: GetInvoiceResponse = {
     companyId: "12345",
     locationId: "12345",
     departmentId: "12345",
-    invoiceDate: new RFCDate("2020-09-30"),
-    dueDate: new RFCDate("2020-09-30"),
+    invoiceDate: new Date("2020-09-30"),
+    dueDate: new Date("2020-09-30"),
     terms: "Net 30 days",
     poNumber: "90000117",
     reference: "INV-2024-001",
@@ -74,7 +73,7 @@ let value: GetInvoiceResponse = {
         unitOfMeasure: "pc.",
         discountPercentage: 0.01,
         discountAmount: 19.99,
-        serviceDate: new RFCDate("2024-01-15"),
+        serviceDate: new Date("2024-01-15"),
         categoryId: "12345",
         locationId: "12345",
         departmentId: "12345",

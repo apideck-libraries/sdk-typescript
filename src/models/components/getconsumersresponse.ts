@@ -6,6 +6,7 @@ import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   ConsumerMetadata,
@@ -63,15 +64,15 @@ export type GetConsumersResponse = {
 /** @internal */
 export const Data$inboundSchema: z.ZodType<Data, z.ZodTypeDef, unknown> = z
   .object({
-    consumer_id: z.string().optional(),
-    application_id: z.string().optional(),
-    metadata: ConsumerMetadata$inboundSchema.optional(),
-    aggregated_request_count: z.number().optional(),
-    request_counts: RequestCountAllocation$inboundSchema.optional(),
-    created: z.string().optional(),
-    modified: z.string().optional(),
-    request_count_updated: z.string().optional(),
-    services: z.array(z.string()).optional(),
+    consumer_id: types.optional(types.string()),
+    application_id: types.optional(types.string()),
+    metadata: types.optional(ConsumerMetadata$inboundSchema),
+    aggregated_request_count: types.optional(types.number()),
+    request_counts: types.optional(RequestCountAllocation$inboundSchema),
+    created: types.optional(types.string()),
+    modified: types.optional(types.string()),
+    request_count_updated: types.optional(types.string()),
+    services: types.optional(z.array(types.string())),
   }).transform((v) => {
     return remap$(v, {
       "consumer_id": "consumerId",
@@ -98,11 +99,11 @@ export const GetConsumersResponse$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  status_code: z.number().int(),
-  status: z.string(),
+  status_code: types.number(),
+  status: types.string(),
   data: z.array(z.lazy(() => Data$inboundSchema)),
-  meta: Meta$inboundSchema.optional(),
-  links: Links$inboundSchema.optional(),
+  meta: types.optional(Meta$inboundSchema),
+  links: types.optional(Links$inboundSchema),
   _raw: z.nullable(z.record(z.any())).optional(),
 }).transform((v) => {
   return remap$(v, {

@@ -4,7 +4,6 @@
 
 ```typescript
 import { CrmOpportunitiesUpdateRequest } from "@apideck/unify/models/operations";
-import { RFCDate } from "@apideck/unify/types";
 
 let value: CrmOpportunitiesUpdateRequest = {
   id: "<id>",
@@ -18,7 +17,7 @@ let value: CrmOpportunitiesUpdateRequest = {
     monetaryAmount: 75000,
     currency: "USD",
     winProbability: 40,
-    closeDate: new RFCDate("2020-10-30"),
+    closeDate: new Date("2020-10-30"),
     lossReasonId: "12345",
     lossReason: "No budget",
     wonReasonId: "12345",

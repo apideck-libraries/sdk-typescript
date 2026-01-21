@@ -4,7 +4,6 @@
 
 ```typescript
 import { AccountingCreditNotesUpdateRequest } from "@apideck/unify/models/operations";
-import { RFCDate } from "@apideck/unify/types";
 
 let value: AccountingCreditNotesUpdateRequest = {
   id: "<id>",
@@ -57,7 +56,7 @@ let value: AccountingCreditNotesUpdateRequest = {
         unitOfMeasure: "pc.",
         discountPercentage: 0.01,
         discountAmount: 19.99,
-        serviceDate: new RFCDate("2024-01-15"),
+        serviceDate: new Date("2024-01-15"),
         categoryId: "12345",
         locationId: "12345",
         departmentId: "12345",

@@ -8,6 +8,7 @@ import { safeParse } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
@@ -64,10 +65,10 @@ export const Rebilling$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  rebillable: z.boolean().optional(),
+  rebillable: types.optional(types.boolean()),
   rebill_status: z.nullable(RebillStatus$inboundSchema).optional(),
-  linked_transaction_id: z.nullable(z.string()).optional(),
-  linked_transaction_line_id: z.nullable(z.string()).optional(),
+  linked_transaction_id: z.nullable(types.string()).optional(),
+  linked_transaction_line_id: z.nullable(types.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     "rebill_status": "rebillStatus",

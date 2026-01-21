@@ -6,7 +6,7 @@ import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
-import { RFCDate } from "../../types/rfcdate.js";
+import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   OutstandingBalanceByCustomer,
@@ -21,7 +21,7 @@ export type AgedDebtors = {
   /**
    * The cutoff date for transactions included in the report.
    */
-  reportAsOfDate?: RFCDate | undefined;
+  reportAsOfDate?: Date | undefined;
   /**
    * Number of aging periods shown in the report.
    */
@@ -39,14 +39,13 @@ export const AgedDebtors$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  report_generated_at: z.string().datetime({ offset: true }).transform(v =>
-    new Date(v)
-  ).optional(),
-  report_as_of_date: z.string().transform(v => new RFCDate(v)).optional(),
-  period_count: z.number().int().default(4),
-  period_length: z.number().int().default(30),
-  outstanding_balances: z.array(OutstandingBalanceByCustomer$inboundSchema)
-    .optional(),
+  report_generated_at: types.optional(types.date()),
+  report_as_of_date: types.optional(types.date()),
+  period_count: types.number().default(4),
+  period_length: types.number().default(30),
+  outstanding_balances: types.optional(
+    z.array(OutstandingBalanceByCustomer$inboundSchema),
+  ),
 }).transform((v) => {
   return remap$(v, {
     "report_generated_at": "reportGeneratedAt",

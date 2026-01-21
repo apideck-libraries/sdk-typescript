@@ -129,7 +129,6 @@ Create opportunity
 <!-- UsageSnippet language="typescript" operationID="crm.opportunitiesAdd" method="post" path="/crm/opportunities" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
-import { RFCDate } from "@apideck/unify/types";
 
 const apideck = new Apideck({
   consumerId: "test-consumer",
@@ -148,7 +147,7 @@ async function run() {
       monetaryAmount: 75000,
       currency: "USD",
       winProbability: 40,
-      closeDate: new RFCDate("2020-10-30"),
+      closeDate: new Date("2020-10-30"),
       lossReasonId: "12345",
       lossReason: "No budget",
       wonReasonId: "12345",
@@ -231,7 +230,6 @@ The standalone function version of this method:
 ```typescript
 import { ApideckCore } from "@apideck/unify/core.js";
 import { crmOpportunitiesCreate } from "@apideck/unify/funcs/crmOpportunitiesCreate.js";
-import { RFCDate } from "@apideck/unify/types";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -252,7 +250,7 @@ async function run() {
       monetaryAmount: 75000,
       currency: "USD",
       winProbability: 40,
-      closeDate: new RFCDate("2020-10-30"),
+      closeDate: new Date("2020-10-30"),
       lossReasonId: "12345",
       lossReason: "No budget",
       wonReasonId: "12345",
@@ -451,7 +449,6 @@ Update opportunity
 <!-- UsageSnippet language="typescript" operationID="crm.opportunitiesUpdate" method="patch" path="/crm/opportunities/{id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
-import { RFCDate } from "@apideck/unify/types";
 
 const apideck = new Apideck({
   consumerId: "test-consumer",
@@ -471,7 +468,7 @@ async function run() {
       monetaryAmount: 75000,
       currency: "USD",
       winProbability: 40,
-      closeDate: new RFCDate("2020-10-30"),
+      closeDate: new Date("2020-10-30"),
       lossReasonId: "12345",
       lossReason: "No budget",
       wonReasonId: "12345",
@@ -562,7 +559,6 @@ The standalone function version of this method:
 ```typescript
 import { ApideckCore } from "@apideck/unify/core.js";
 import { crmOpportunitiesUpdate } from "@apideck/unify/funcs/crmOpportunitiesUpdate.js";
-import { RFCDate } from "@apideck/unify/types";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -584,7 +580,7 @@ async function run() {
       monetaryAmount: 75000,
       currency: "USD",
       winProbability: 40,
-      closeDate: new RFCDate("2020-10-30"),
+      closeDate: new Date("2020-10-30"),
       lossReasonId: "12345",
       lossReason: "No budget",
       wonReasonId: "12345",

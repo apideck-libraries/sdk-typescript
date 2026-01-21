@@ -8,6 +8,7 @@ import { safeParse } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   PassThroughBody,
@@ -95,8 +96,8 @@ export const ApplicationStatus$outboundSchema: z.ZodType<
 /** @internal */
 export const Stage$inboundSchema: z.ZodType<Stage, z.ZodTypeDef, unknown> = z
   .object({
-    id: z.nullable(z.string()).optional(),
-    name: z.nullable(z.string()).optional(),
+    id: z.nullable(types.string()).optional(),
+    name: z.nullable(types.string()).optional(),
   });
 /** @internal */
 export type Stage$Outbound = {
@@ -133,21 +134,17 @@ export const Application$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  id: z.string().optional(),
-  applicant_id: z.nullable(z.string()),
-  job_id: z.nullable(z.string()),
+  id: types.optional(types.string()),
+  applicant_id: types.nullable(types.string()),
+  job_id: types.nullable(types.string()),
   status: z.nullable(ApplicationStatus$inboundSchema).optional(),
-  stage: z.lazy(() => Stage$inboundSchema).optional(),
+  stage: types.optional(z.lazy(() => Stage$inboundSchema)),
   custom_mappings: z.nullable(z.record(z.any())).optional(),
-  updated_by: z.nullable(z.string()).optional(),
-  created_by: z.nullable(z.string()).optional(),
-  updated_at: z.nullable(
-    z.string().datetime({ offset: true }).transform(v => new Date(v)),
-  ).optional(),
-  created_at: z.nullable(
-    z.string().datetime({ offset: true }).transform(v => new Date(v)),
-  ).optional(),
-  pass_through: z.array(PassThroughBody$inboundSchema).optional(),
+  updated_by: z.nullable(types.string()).optional(),
+  created_by: z.nullable(types.string()).optional(),
+  updated_at: z.nullable(types.date()).optional(),
+  created_at: z.nullable(types.date()).optional(),
+  pass_through: types.optional(z.array(PassThroughBody$inboundSchema)),
 }).transform((v) => {
   return remap$(v, {
     "applicant_id": "applicantId",

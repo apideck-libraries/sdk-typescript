@@ -4,7 +4,6 @@
 
 import { expect, test } from "vitest";
 import { Apideck } from "../index.js";
-import { RFCDate } from "../types/index.js";
 import { createTestHTTPClient } from "./testclient.js";
 
 test("Applicants Ats Applicants All", async () => {
@@ -44,7 +43,7 @@ test("Applicants Ats Applicants All", async () => {
         lastName: "Musk",
         middleName: "D.",
         initials: "EM",
-        birthday: new RFCDate("2000-08-12"),
+        birthday: new Date("2000-08-12"),
         coverLetter:
           "I submit this application to express my sincere interest in the API developer position. In the previous role, I was responsible for leadership and ...",
         jobUrl: "https://democompany.recruitee.com/o/example-talent-pool",
@@ -241,7 +240,7 @@ test("Applicants Ats Applicants All", async () => {
         lastName: "Musk",
         middleName: "D.",
         initials: "EM",
-        birthday: new RFCDate("2000-08-12"),
+        birthday: new Date("2000-08-12"),
         coverLetter:
           "I submit this application to express my sincere interest in the API developer position. In the previous role, I was responsible for leadership and ...",
         jobUrl: "https://democompany.recruitee.com/o/example-talent-pool",
@@ -482,7 +481,7 @@ test("Applicants Ats Applicants All", async () => {
         lastName: "Musk",
         middleName: "D.",
         initials: "EM",
-        birthday: new RFCDate("2000-08-12"),
+        birthday: new Date("2000-08-12"),
         coverLetter:
           "I submit this application to express my sincere interest in the API developer position. In the previous role, I was responsible for leadership and ...",
         jobUrl: "https://democompany.recruitee.com/o/example-talent-pool",
@@ -717,7 +716,7 @@ test("Applicants Ats Applicants Add", async () => {
       lastName: "Musk",
       middleName: "D.",
       initials: "EM",
-      birthday: new RFCDate("2000-08-12"),
+      birthday: new Date("2000-08-12"),
       coverLetter:
         "I submit this application to express my sincere interest in the API developer position. In the previous role, I was responsible for leadership and ...",
       photoUrl: "https://unavatar.io/elon-musk",
@@ -952,7 +951,7 @@ test("Applicants Ats Applicants One", async () => {
       lastName: "Musk",
       middleName: "D.",
       initials: "EM",
-      birthday: new RFCDate("2000-08-12"),
+      birthday: new Date("2000-08-12"),
       coverLetter:
         "I submit this application to express my sincere interest in the API developer position. In the previous role, I was responsible for leadership and ...",
       jobUrl: "https://democompany.recruitee.com/o/example-talent-pool",
@@ -1183,7 +1182,7 @@ test("Applicants Ats Applicants Update", async () => {
       lastName: "Musk",
       middleName: "D.",
       initials: "EM",
-      birthday: new RFCDate("2000-08-12"),
+      birthday: new Date("2000-08-12"),
       coverLetter:
         "I submit this application to express my sincere interest in the API developer position. In the previous role, I was responsible for leadership and ...",
       photoUrl: "https://unavatar.io/elon-musk",

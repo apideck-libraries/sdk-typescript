@@ -4,7 +4,6 @@
 
 import { expect, test } from "vitest";
 import { Apideck } from "../index.js";
-import { RFCDate } from "../types/index.js";
 import { createTestHTTPClient } from "./testclient.js";
 
 test("Invoices Accounting Invoices All", async () => {
@@ -56,8 +55,8 @@ test("Invoices Accounting Invoices All", async () => {
           email: "boring@boring.com",
         },
         companyId: "12345",
-        invoiceDate: new RFCDate("2020-09-30"),
-        dueDate: new RFCDate("2020-09-30"),
+        invoiceDate: new Date("2020-09-30"),
+        dueDate: new Date("2020-09-30"),
         terms: "Net 30 days",
         poNumber: "90000117",
         reference: "123456",
@@ -419,8 +418,8 @@ test("Invoices Accounting Invoices All", async () => {
           email: "boring@boring.com",
         },
         companyId: "12345",
-        invoiceDate: new RFCDate("2020-09-30"),
-        dueDate: new RFCDate("2020-09-30"),
+        invoiceDate: new Date("2020-09-30"),
+        dueDate: new Date("2020-09-30"),
         terms: "Net 30 days",
         poNumber: "90000117",
         reference: "123456",
@@ -786,8 +785,8 @@ test("Invoices Accounting Invoices All", async () => {
           email: "boring@boring.com",
         },
         companyId: "12345",
-        invoiceDate: new RFCDate("2020-09-30"),
-        dueDate: new RFCDate("2020-09-30"),
+        invoiceDate: new Date("2020-09-30"),
+        dueDate: new Date("2020-09-30"),
         terms: "Net 30 days",
         poNumber: "90000117",
         reference: "123456",
@@ -1224,8 +1223,8 @@ test("Invoices Accounting Invoices Add", async () => {
         email: "boring@boring.com",
       },
       companyId: "12345",
-      invoiceDate: new RFCDate("2020-09-30"),
-      dueDate: new RFCDate("2020-09-30"),
+      invoiceDate: new Date("2020-09-30"),
+      dueDate: new Date("2020-09-30"),
       terms: "Net 30 days",
       poNumber: "90000117",
       reference: "123456",
@@ -1546,8 +1545,8 @@ test("Invoices Accounting Invoices One", async () => {
         email: "boring@boring.com",
       },
       companyId: "12345",
-      invoiceDate: new RFCDate("2020-09-30"),
-      dueDate: new RFCDate("2020-09-30"),
+      invoiceDate: new Date("2020-09-30"),
+      dueDate: new Date("2020-09-30"),
       terms: "Net 30 days",
       poNumber: "90000117",
       reference: "123456",
@@ -1855,8 +1854,8 @@ test("Invoices Accounting Invoices Update", async () => {
         email: "boring@boring.com",
       },
       companyId: "12345",
-      invoiceDate: new RFCDate("2020-09-30"),
-      dueDate: new RFCDate("2020-09-30"),
+      invoiceDate: new Date("2020-09-30"),
+      dueDate: new Date("2020-09-30"),
       terms: "Net 30 days",
       poNumber: "90000117",
       reference: "123456",

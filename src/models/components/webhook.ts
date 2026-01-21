@@ -8,6 +8,7 @@ import { safeParse } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { Status, Status$inboundSchema } from "./status.js";
 import { UnifiedApiId, UnifiedApiId$inboundSchema } from "./unifiedapiid.js";
@@ -80,20 +81,16 @@ export const DisabledReason$inboundSchema: z.ZodType<
 /** @internal */
 export const Webhook$inboundSchema: z.ZodType<Webhook, z.ZodTypeDef, unknown> =
   z.object({
-    id: z.string().optional(),
-    description: z.nullable(z.string()).optional(),
+    id: types.optional(types.string()),
+    description: z.nullable(types.string()).optional(),
     unified_api: UnifiedApiId$inboundSchema,
     status: Status$inboundSchema,
-    disabled_reason: DisabledReason$inboundSchema.optional(),
-    delivery_url: z.string(),
-    execute_base_url: z.string(),
+    disabled_reason: types.optional(DisabledReason$inboundSchema),
+    delivery_url: types.string(),
+    execute_base_url: types.string(),
     events: z.array(WebhookEventType$inboundSchema),
-    updated_at: z.nullable(
-      z.string().datetime({ offset: true }).transform(v => new Date(v)),
-    ).optional(),
-    created_at: z.nullable(
-      z.string().datetime({ offset: true }).transform(v => new Date(v)),
-    ).optional(),
+    updated_at: z.nullable(types.date()).optional(),
+    created_at: z.nullable(types.date()).optional(),
   }).transform((v) => {
     return remap$(v, {
       "unified_api": "unifiedApi",

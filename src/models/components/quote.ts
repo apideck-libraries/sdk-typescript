@@ -8,7 +8,7 @@ import { safeParse } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
-import { RFCDate } from "../../types/rfcdate.js";
+import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   Address,
@@ -114,11 +114,11 @@ export type Quote = {
   /**
    * Date quote was issued - YYYY-MM-DD.
    */
-  quoteDate?: RFCDate | null | undefined;
+  quoteDate?: Date | null | undefined;
   /**
    * The date until which the quote is valid - YYYY-MM-DD.
    */
-  expiryDate?: RFCDate | null | undefined;
+  expiryDate?: Date | null | undefined;
   /**
    * Terms of the quote.
    */
@@ -241,11 +241,11 @@ export type QuoteInput = {
   /**
    * Date quote was issued - YYYY-MM-DD.
    */
-  quoteDate?: RFCDate | null | undefined;
+  quoteDate?: Date | null | undefined;
   /**
    * The date until which the quote is valid - YYYY-MM-DD.
    */
-  expiryDate?: RFCDate | null | undefined;
+  expiryDate?: Date | null | undefined;
   /**
    * Terms of the quote.
    */
@@ -340,51 +340,45 @@ export const QuoteStatus$outboundSchema: z.ZodType<
 /** @internal */
 export const Quote$inboundSchema: z.ZodType<Quote, z.ZodTypeDef, unknown> = z
   .object({
-    id: z.string().optional(),
-    downstream_id: z.nullable(z.string()).optional(),
-    number: z.nullable(z.string()).optional(),
+    id: types.optional(types.string()),
+    downstream_id: z.nullable(types.string()).optional(),
+    number: z.nullable(types.string()).optional(),
     customer: z.nullable(LinkedCustomer$inboundSchema).optional(),
-    invoice_id: z.string().optional(),
-    sales_order_id: z.nullable(z.string()).optional(),
-    company_id: z.nullable(z.string()).optional(),
-    department_id: z.nullable(z.string()).optional(),
-    project_id: z.string().optional(),
-    quote_date: z.nullable(z.string().transform(v => new RFCDate(v)))
-      .optional(),
-    expiry_date: z.nullable(z.string().transform(v => new RFCDate(v)))
-      .optional(),
-    terms: z.nullable(z.string()).optional(),
-    reference: z.nullable(z.string()).optional(),
+    invoice_id: types.optional(types.string()),
+    sales_order_id: z.nullable(types.string()).optional(),
+    company_id: z.nullable(types.string()).optional(),
+    department_id: z.nullable(types.string()).optional(),
+    project_id: types.optional(types.string()),
+    quote_date: z.nullable(types.date()).optional(),
+    expiry_date: z.nullable(types.date()).optional(),
+    terms: z.nullable(types.string()).optional(),
+    reference: z.nullable(types.string()).optional(),
     status: z.nullable(QuoteStatus$inboundSchema).optional(),
     currency: z.nullable(Currency$inboundSchema).optional(),
-    currency_rate: z.nullable(z.number()).optional(),
-    tax_inclusive: z.nullable(z.boolean()).optional(),
-    sub_total: z.nullable(z.number()).optional(),
-    total_tax: z.nullable(z.number()).optional(),
-    tax_code: z.nullable(z.string()).optional(),
-    discount_percentage: z.nullable(z.number()).optional(),
-    discount_amount: z.nullable(z.number()).optional(),
-    total: z.nullable(z.number()).optional(),
-    customer_memo: z.nullable(z.string()).optional(),
-    line_items: z.array(QuoteLineItem$inboundSchema).optional(),
-    billing_address: Address$inboundSchema.optional(),
-    shipping_address: Address$inboundSchema.optional(),
+    currency_rate: z.nullable(types.number()).optional(),
+    tax_inclusive: z.nullable(types.boolean()).optional(),
+    sub_total: z.nullable(types.number()).optional(),
+    total_tax: z.nullable(types.number()).optional(),
+    tax_code: z.nullable(types.string()).optional(),
+    discount_percentage: z.nullable(types.number()).optional(),
+    discount_amount: z.nullable(types.number()).optional(),
+    total: z.nullable(types.number()).optional(),
+    customer_memo: z.nullable(types.string()).optional(),
+    line_items: types.optional(z.array(QuoteLineItem$inboundSchema)),
+    billing_address: types.optional(Address$inboundSchema),
+    shipping_address: types.optional(Address$inboundSchema),
     tracking_categories: z.nullable(
-      z.array(z.nullable(LinkedTrackingCategory$inboundSchema)),
+      z.array(types.nullable(LinkedTrackingCategory$inboundSchema)),
     ).optional(),
-    template_id: z.nullable(z.string()).optional(),
-    source_document_url: z.nullable(z.string()).optional(),
-    custom_fields: z.array(CustomField$inboundSchema).optional(),
-    row_version: z.nullable(z.string()).optional(),
-    updated_by: z.nullable(z.string()).optional(),
-    created_by: z.nullable(z.string()).optional(),
-    updated_at: z.nullable(
-      z.string().datetime({ offset: true }).transform(v => new Date(v)),
-    ).optional(),
-    created_at: z.nullable(
-      z.string().datetime({ offset: true }).transform(v => new Date(v)),
-    ).optional(),
-    pass_through: z.array(PassThroughBody$inboundSchema).optional(),
+    template_id: z.nullable(types.string()).optional(),
+    source_document_url: z.nullable(types.string()).optional(),
+    custom_fields: types.optional(z.array(CustomField$inboundSchema)),
+    row_version: z.nullable(types.string()).optional(),
+    updated_by: z.nullable(types.string()).optional(),
+    created_by: z.nullable(types.string()).optional(),
+    updated_at: z.nullable(types.date()).optional(),
+    created_at: z.nullable(types.date()).optional(),
+    pass_through: types.optional(z.array(PassThroughBody$inboundSchema)),
   }).transform((v) => {
     return remap$(v, {
       "downstream_id": "downstreamId",
@@ -478,10 +472,12 @@ export const QuoteInput$outboundSchema: z.ZodType<
   companyId: z.nullable(z.string()).optional(),
   departmentId: z.nullable(z.string()).optional(),
   projectId: z.string().optional(),
-  quoteDate: z.nullable(z.instanceof(RFCDate).transform(v => v.toString()))
-    .optional(),
-  expiryDate: z.nullable(z.instanceof(RFCDate).transform(v => v.toString()))
-    .optional(),
+  quoteDate: z.nullable(
+    z.date().transform(v => v.toISOString().slice(0, "YYYY-MM-DD".length)),
+  ).optional(),
+  expiryDate: z.nullable(
+    z.date().transform(v => v.toISOString().slice(0, "YYYY-MM-DD".length)),
+  ).optional(),
   terms: z.nullable(z.string()).optional(),
   reference: z.nullable(z.string()).optional(),
   status: z.nullable(QuoteStatus$outboundSchema).optional(),

@@ -4,7 +4,6 @@
 
 import { expect, test } from "vitest";
 import { Apideck } from "../index.js";
-import { RFCDate } from "../types/index.js";
 import { createTestHTTPClient } from "./testclient.js";
 
 test("Projects Accounting Projects All", async () => {
@@ -85,8 +84,8 @@ test("Projects Accounting Projects Add", async () => {
       projectType: "client_project",
       priority: "high",
       completionPercentage: 75.5,
-      startDate: new RFCDate("2024-01-15"),
-      endDate: new RFCDate("2024-06-30"),
+      startDate: new Date("2024-01-15"),
+      endDate: new Date("2024-06-30"),
       customer: {
         id: "12345",
         displayName: "Windsurf Shop",
@@ -222,8 +221,8 @@ test("Projects Accounting Projects One", async () => {
       projectType: "client_project",
       priority: "high",
       completionPercentage: 75.5,
-      startDate: new RFCDate("2024-01-15"),
-      endDate: new RFCDate("2024-06-30"),
+      startDate: new Date("2024-01-15"),
+      endDate: new Date("2024-06-30"),
       customer: {
         id: "12345",
         displayId: "CUST00101",
@@ -346,8 +345,8 @@ test("Projects Accounting Projects Update", async () => {
       projectType: "client_project",
       priority: "high",
       completionPercentage: 75.5,
-      startDate: new RFCDate("2024-01-15"),
-      endDate: new RFCDate("2024-06-30"),
+      startDate: new Date("2024-01-15"),
+      endDate: new Date("2024-06-30"),
       customer: null,
       department: {
         id: "DEPT-001",

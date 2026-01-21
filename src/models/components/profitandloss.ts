@@ -6,6 +6,7 @@ import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { Currency, Currency$inboundSchema } from "./currency.js";
 import {
@@ -240,12 +241,12 @@ export type ProfitAndLoss = {
 /** @internal */
 export const Income$inboundSchema: z.ZodType<Income, z.ZodTypeDef, unknown> = z
   .object({
-    id: z.string().optional(),
-    code: z.string().optional(),
-    title: z.string().optional(),
+    id: types.optional(types.string()),
+    code: types.optional(types.string()),
+    title: types.optional(types.string()),
     type: z.nullable(ProfitAndLossType$inboundSchema).optional(),
-    total: z.nullable(z.number()),
-    records: z.any().optional(),
+    total: types.nullable(types.number()),
+    records: types.optional(z.any()),
   });
 
 export function incomeFromJSON(
@@ -264,12 +265,12 @@ export const CostOfGoodsSold$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  id: z.string().optional(),
-  code: z.string().optional(),
-  title: z.string().optional(),
+  id: types.optional(types.string()),
+  code: types.optional(types.string()),
+  title: types.optional(types.string()),
   type: z.nullable(ProfitAndLossType$inboundSchema).optional(),
-  total: z.nullable(z.number()).optional(),
-  records: z.any().optional(),
+  total: z.nullable(types.number()).optional(),
+  records: types.optional(z.any()),
 });
 
 export function costOfGoodsSoldFromJSON(
@@ -288,12 +289,12 @@ export const Expenses$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  id: z.string().optional(),
-  code: z.string().optional(),
-  title: z.string().optional(),
+  id: types.optional(types.string()),
+  code: types.optional(types.string()),
+  title: types.optional(types.string()),
   type: z.nullable(ProfitAndLossType$inboundSchema).optional(),
-  total: z.nullable(z.number()),
-  records: z.any().optional(),
+  total: types.nullable(types.number()),
+  records: types.optional(z.any()),
 });
 
 export function expensesFromJSON(
@@ -312,12 +313,12 @@ export const OtherIncome$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  id: z.string().optional(),
-  code: z.string().optional(),
-  title: z.string().optional(),
+  id: types.optional(types.string()),
+  code: types.optional(types.string()),
+  title: types.optional(types.string()),
   type: z.nullable(ProfitAndLossType$inboundSchema).optional(),
-  total: z.nullable(z.number()).optional(),
-  records: z.any().optional(),
+  total: z.nullable(types.number()).optional(),
+  records: types.optional(z.any()),
 });
 
 export function otherIncomeFromJSON(
@@ -336,12 +337,12 @@ export const OtherExpenses$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  id: z.string().optional(),
-  code: z.string().optional(),
-  title: z.string().optional(),
+  id: types.optional(types.string()),
+  code: types.optional(types.string()),
+  title: types.optional(types.string()),
   type: z.nullable(ProfitAndLossType$inboundSchema).optional(),
-  total: z.nullable(z.number()).optional(),
-  records: z.any().optional(),
+  total: z.nullable(types.number()).optional(),
+  records: types.optional(z.any()),
 });
 
 export function otherExpensesFromJSON(
@@ -360,12 +361,12 @@ export const UncategorizedAccounts$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  id: z.string().optional(),
-  code: z.string().optional(),
-  title: z.string().optional(),
+  id: types.optional(types.string()),
+  code: types.optional(types.string()),
+  title: types.optional(types.string()),
   type: z.nullable(ProfitAndLossType$inboundSchema).optional(),
-  total: z.nullable(z.number()),
-  records: z.any().optional(),
+  total: types.nullable(types.number()),
+  records: types.optional(z.any()),
 });
 
 export function uncategorizedAccountsFromJSON(
@@ -384,23 +385,26 @@ export const ProfitAndLoss$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  id: z.string().optional(),
-  report_name: z.string(),
-  start_date: z.string().optional(),
-  end_date: z.string().optional(),
+  id: types.optional(types.string()),
+  report_name: types.string(),
+  start_date: types.optional(types.string()),
+  end_date: types.optional(types.string()),
   currency: z.nullable(Currency$inboundSchema).optional(),
   income: z.lazy(() => Income$inboundSchema),
-  cost_of_goods_sold: z.lazy(() => CostOfGoodsSold$inboundSchema).optional(),
+  cost_of_goods_sold: types.optional(
+    z.lazy(() => CostOfGoodsSold$inboundSchema),
+  ),
   expenses: z.lazy(() => Expenses$inboundSchema),
-  other_income: z.lazy(() => OtherIncome$inboundSchema).optional(),
-  other_expenses: z.lazy(() => OtherExpenses$inboundSchema).optional(),
-  uncategorized_accounts: z.lazy(() => UncategorizedAccounts$inboundSchema)
-    .optional(),
-  gross_profit: ProfitAndLossIndicator$inboundSchema.optional(),
-  net_operating_income: ProfitAndLossIndicator$inboundSchema.optional(),
-  net_income: ProfitAndLossIndicator$inboundSchema.optional(),
+  other_income: types.optional(z.lazy(() => OtherIncome$inboundSchema)),
+  other_expenses: types.optional(z.lazy(() => OtherExpenses$inboundSchema)),
+  uncategorized_accounts: types.optional(
+    z.lazy(() => UncategorizedAccounts$inboundSchema),
+  ),
+  gross_profit: types.optional(ProfitAndLossIndicator$inboundSchema),
+  net_operating_income: types.optional(ProfitAndLossIndicator$inboundSchema),
+  net_income: types.optional(ProfitAndLossIndicator$inboundSchema),
   custom_mappings: z.nullable(z.record(z.any())).optional(),
-  customer: z.string().optional(),
+  customer: types.optional(types.string()),
 }).transform((v) => {
   return remap$(v, {
     "report_name": "reportName",

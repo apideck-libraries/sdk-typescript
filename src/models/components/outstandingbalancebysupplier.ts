@@ -6,6 +6,7 @@ import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   OutstandingBalanceByCurrency,
@@ -32,11 +33,11 @@ export const OutstandingBalanceBySupplier$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  supplier_id: z.string().optional(),
-  supplier_name: z.string().optional(),
-  outstanding_balances_by_currency: z.array(
-    OutstandingBalanceByCurrency$inboundSchema,
-  ).optional(),
+  supplier_id: types.optional(types.string()),
+  supplier_name: types.optional(types.string()),
+  outstanding_balances_by_currency: types.optional(
+    z.array(OutstandingBalanceByCurrency$inboundSchema),
+  ),
 }).transform((v) => {
   return remap$(v, {
     "supplier_id": "supplierId",

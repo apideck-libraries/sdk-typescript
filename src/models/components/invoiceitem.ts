@@ -8,7 +8,7 @@ import { safeParse } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
-import { RFCDate } from "../../types/rfcdate.js";
+import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   Currency,
@@ -127,7 +127,7 @@ export type InvoiceItem = {
   /**
    * The date of opening balance if inventory item is tracked - YYYY-MM-DD.
    */
-  inventoryDate?: RFCDate | null | undefined;
+  inventoryDate?: Date | null | undefined;
   /**
    * Item type
    */
@@ -264,7 +264,7 @@ export type InvoiceItemInput = {
   /**
    * The date of opening balance if inventory item is tracked - YYYY-MM-DD.
    */
-  inventoryDate?: RFCDate | null | undefined;
+  inventoryDate?: Date | null | undefined;
   /**
    * Item type
    */
@@ -338,10 +338,10 @@ export const SalesDetails$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  unit_price: z.nullable(z.number()).optional(),
-  unit_of_measure: z.nullable(z.string()).optional(),
-  tax_inclusive: z.nullable(z.boolean()).optional(),
-  tax_rate: LinkedTaxRate$inboundSchema.optional(),
+  unit_price: z.nullable(types.number()).optional(),
+  unit_of_measure: z.nullable(types.string()).optional(),
+  tax_inclusive: z.nullable(types.boolean()).optional(),
+  tax_rate: types.optional(LinkedTaxRate$inboundSchema),
 }).transform((v) => {
   return remap$(v, {
     "unit_price": "unitPrice",
@@ -367,10 +367,10 @@ export const PurchaseDetails$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  unit_price: z.nullable(z.number()).optional(),
-  unit_of_measure: z.nullable(z.string()).optional(),
-  tax_inclusive: z.nullable(z.boolean()).optional(),
-  tax_rate: LinkedTaxRate$inboundSchema.optional(),
+  unit_price: z.nullable(types.number()).optional(),
+  unit_of_measure: z.nullable(types.string()).optional(),
+  tax_inclusive: z.nullable(types.boolean()).optional(),
+  tax_rate: types.optional(LinkedTaxRate$inboundSchema),
 }).transform((v) => {
   return remap$(v, {
     "unit_price": "unitPrice",
@@ -396,22 +396,21 @@ export const InvoiceItem$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  id: z.string().optional(),
-  name: z.nullable(z.string()).optional(),
-  description: z.nullable(z.string()).optional(),
-  display_id: z.nullable(z.string()).optional(),
-  code: z.nullable(z.string()).optional(),
-  sold: z.nullable(z.boolean()).optional(),
-  purchased: z.nullable(z.boolean()).optional(),
-  tracked: z.nullable(z.boolean()).optional(),
-  taxable: z.nullable(z.boolean()).optional(),
-  inventory_date: z.nullable(z.string().transform(v => new RFCDate(v)))
-    .optional(),
+  id: types.optional(types.string()),
+  name: z.nullable(types.string()).optional(),
+  description: z.nullable(types.string()).optional(),
+  display_id: z.nullable(types.string()).optional(),
+  code: z.nullable(types.string()).optional(),
+  sold: z.nullable(types.boolean()).optional(),
+  purchased: z.nullable(types.boolean()).optional(),
+  tracked: z.nullable(types.boolean()).optional(),
+  taxable: z.nullable(types.boolean()).optional(),
+  inventory_date: z.nullable(types.date()).optional(),
   type: z.nullable(InvoiceItemTypeType$inboundSchema).optional(),
-  sales_details: z.lazy(() => SalesDetails$inboundSchema).optional(),
-  purchase_details: z.lazy(() => PurchaseDetails$inboundSchema).optional(),
-  quantity: z.nullable(z.number()).optional(),
-  unit_price: z.nullable(z.number()).optional(),
+  sales_details: types.optional(z.lazy(() => SalesDetails$inboundSchema)),
+  purchase_details: types.optional(z.lazy(() => PurchaseDetails$inboundSchema)),
+  quantity: z.nullable(types.number()).optional(),
+  unit_price: z.nullable(types.number()).optional(),
   currency: z.nullable(Currency$inboundSchema).optional(),
   asset_account: z.nullable(LinkedLedgerAccount$inboundSchema).optional(),
   income_account: z.nullable(LinkedLedgerAccount$inboundSchema).optional(),
@@ -419,25 +418,21 @@ export const InvoiceItem$inboundSchema: z.ZodType<
   tracking_category: z.nullable(DeprecatedLinkedTrackingCategory$inboundSchema)
     .optional(),
   tracking_categories: z.nullable(
-    z.array(z.nullable(LinkedTrackingCategory$inboundSchema)),
+    z.array(types.nullable(LinkedTrackingCategory$inboundSchema)),
   ).optional(),
-  active: z.nullable(z.boolean()).optional(),
-  department_id: z.nullable(z.string()).optional(),
-  location_id: z.nullable(z.string()).optional(),
-  subsidiary_id: z.nullable(z.string()).optional(),
-  category_id: z.nullable(z.string()).optional(),
-  tax_schedule_id: z.nullable(z.string()).optional(),
+  active: z.nullable(types.boolean()).optional(),
+  department_id: z.nullable(types.string()).optional(),
+  location_id: z.nullable(types.string()).optional(),
+  subsidiary_id: z.nullable(types.string()).optional(),
+  category_id: z.nullable(types.string()).optional(),
+  tax_schedule_id: z.nullable(types.string()).optional(),
   custom_mappings: z.nullable(z.record(z.any())).optional(),
-  row_version: z.nullable(z.string()).optional(),
-  updated_by: z.nullable(z.string()).optional(),
-  created_by: z.nullable(z.string()).optional(),
-  updated_at: z.nullable(
-    z.string().datetime({ offset: true }).transform(v => new Date(v)),
-  ).optional(),
-  created_at: z.nullable(
-    z.string().datetime({ offset: true }).transform(v => new Date(v)),
-  ).optional(),
-  pass_through: z.array(PassThroughBody$inboundSchema).optional(),
+  row_version: z.nullable(types.string()).optional(),
+  updated_by: z.nullable(types.string()).optional(),
+  created_by: z.nullable(types.string()).optional(),
+  updated_at: z.nullable(types.date()).optional(),
+  created_at: z.nullable(types.date()).optional(),
+  pass_through: types.optional(z.array(PassThroughBody$inboundSchema)),
 }).transform((v) => {
   return remap$(v, {
     "display_id": "displayId",
@@ -597,8 +592,9 @@ export const InvoiceItemInput$outboundSchema: z.ZodType<
   purchased: z.nullable(z.boolean()).optional(),
   tracked: z.nullable(z.boolean()).optional(),
   taxable: z.nullable(z.boolean()).optional(),
-  inventoryDate: z.nullable(z.instanceof(RFCDate).transform(v => v.toString()))
-    .optional(),
+  inventoryDate: z.nullable(
+    z.date().transform(v => v.toISOString().slice(0, "YYYY-MM-DD".length)),
+  ).optional(),
   type: z.nullable(InvoiceItemTypeType$outboundSchema).optional(),
   salesDetails: z.lazy(() => InvoiceItemSalesDetails$outboundSchema).optional(),
   purchaseDetails: z.lazy(() => InvoiceItemPurchaseDetails$outboundSchema)

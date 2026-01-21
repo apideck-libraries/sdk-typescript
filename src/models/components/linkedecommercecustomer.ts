@@ -6,6 +6,7 @@ import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { Email, Email$inboundSchema } from "./email.js";
 import { PhoneNumber, PhoneNumber$inboundSchema } from "./phonenumber.js";
@@ -44,11 +45,11 @@ export const LinkedEcommerceCustomer$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  id: z.nullable(z.string()).optional(),
-  name: z.nullable(z.string()).optional(),
-  first_name: z.nullable(z.string()).optional(),
-  last_name: z.nullable(z.string()).optional(),
-  company_name: z.nullable(z.string()).optional(),
+  id: z.nullable(types.string()).optional(),
+  name: z.nullable(types.string()).optional(),
+  first_name: z.nullable(types.string()).optional(),
+  last_name: z.nullable(types.string()).optional(),
+  company_name: z.nullable(types.string()).optional(),
   phone_numbers: z.nullable(z.array(PhoneNumber$inboundSchema)).optional(),
   emails: z.nullable(z.array(Email$inboundSchema)).optional(),
 }).transform((v) => {

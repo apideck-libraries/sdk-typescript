@@ -8,7 +8,7 @@ import { safeParse } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
-import { RFCDate } from "../../types/rfcdate.js";
+import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   Address,
@@ -139,15 +139,15 @@ export type PurchaseOrder = {
   /**
    * Date purchase order was issued - YYYY-MM-DD.
    */
-  issuedDate?: RFCDate | null | undefined;
+  issuedDate?: Date | null | undefined;
   /**
    * The date on which the purchase order is to be delivered - YYYY-MM-DD.
    */
-  deliveryDate?: RFCDate | null | undefined;
+  deliveryDate?: Date | null | undefined;
   /**
    * The date on which the order is expected to arrive - YYYY-MM-DD.
    */
-  expectedArrivalDate?: RFCDate | null | undefined;
+  expectedArrivalDate?: Date | null | undefined;
   /**
    * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
    */
@@ -192,7 +192,7 @@ export type PurchaseOrder = {
   /**
    * The due date is the date on which a payment is scheduled to be received - YYYY-MM-DD.
    */
-  dueDate?: RFCDate | null | undefined;
+  dueDate?: Date | null | undefined;
   /**
    * Payment method used for the transaction, such as cash, credit card, bank transfer, or check
    */
@@ -305,15 +305,15 @@ export type PurchaseOrderInput = {
   /**
    * Date purchase order was issued - YYYY-MM-DD.
    */
-  issuedDate?: RFCDate | null | undefined;
+  issuedDate?: Date | null | undefined;
   /**
    * The date on which the purchase order is to be delivered - YYYY-MM-DD.
    */
-  deliveryDate?: RFCDate | null | undefined;
+  deliveryDate?: Date | null | undefined;
   /**
    * The date on which the order is expected to arrive - YYYY-MM-DD.
    */
-  expectedArrivalDate?: RFCDate | null | undefined;
+  expectedArrivalDate?: Date | null | undefined;
   /**
    * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
    */
@@ -358,7 +358,7 @@ export type PurchaseOrderInput = {
   /**
    * The due date is the date on which a payment is scheduled to be received - YYYY-MM-DD.
    */
-  dueDate?: RFCDate | null | undefined;
+  dueDate?: Date | null | undefined;
   /**
    * Payment method used for the transaction, such as cash, credit card, bank transfer, or check
    */
@@ -446,63 +446,57 @@ export const PurchaseOrder$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  id: z.string().optional(),
-  downstream_id: z.nullable(z.string()).optional(),
-  display_id: z.nullable(z.string()).optional(),
-  po_number: z.nullable(z.string()).optional(),
-  reference: z.nullable(z.string()).optional(),
+  id: types.optional(types.string()),
+  downstream_id: z.nullable(types.string()).optional(),
+  display_id: z.nullable(types.string()).optional(),
+  po_number: z.nullable(types.string()).optional(),
+  reference: z.nullable(types.string()).optional(),
   supplier: z.nullable(LinkedSupplier$inboundSchema).optional(),
-  subsidiary_id: z.nullable(z.string()).optional(),
-  company_id: z.nullable(z.string()).optional(),
-  location_id: z.nullable(z.string()).optional(),
-  department_id: z.nullable(z.string()).optional(),
+  subsidiary_id: z.nullable(types.string()).optional(),
+  company_id: z.nullable(types.string()).optional(),
+  location_id: z.nullable(types.string()).optional(),
+  department_id: z.nullable(types.string()).optional(),
   status: z.nullable(PurchaseOrderStatus$inboundSchema).optional(),
-  issued_date: z.nullable(z.string().transform(v => new RFCDate(v))).optional(),
-  delivery_date: z.nullable(z.string().transform(v => new RFCDate(v)))
-    .optional(),
-  expected_arrival_date: z.nullable(z.string().transform(v => new RFCDate(v)))
-    .optional(),
+  issued_date: z.nullable(types.date()).optional(),
+  delivery_date: z.nullable(types.date()).optional(),
+  expected_arrival_date: z.nullable(types.date()).optional(),
   currency: z.nullable(Currency$inboundSchema).optional(),
-  currency_rate: z.nullable(z.number()).optional(),
-  sub_total: z.nullable(z.number()).optional(),
-  total_tax: z.nullable(z.number()).optional(),
-  total: z.nullable(z.number()).optional(),
-  tax_inclusive: z.nullable(z.boolean()).optional(),
-  line_items: z.array(InvoiceLineItem$inboundSchema).optional(),
-  billing_address: Address$inboundSchema.optional(),
-  shipping_address: Address$inboundSchema.optional(),
+  currency_rate: z.nullable(types.number()).optional(),
+  sub_total: z.nullable(types.number()).optional(),
+  total_tax: z.nullable(types.number()).optional(),
+  total: z.nullable(types.number()).optional(),
+  tax_inclusive: z.nullable(types.boolean()).optional(),
+  line_items: types.optional(z.array(InvoiceLineItem$inboundSchema)),
+  billing_address: types.optional(Address$inboundSchema),
+  shipping_address: types.optional(Address$inboundSchema),
   ledger_account: z.nullable(LinkedLedgerAccount$inboundSchema).optional(),
-  template_id: z.nullable(z.string()).optional(),
-  discount_percentage: z.nullable(z.number()).optional(),
-  bank_account: BankAccount$inboundSchema.optional(),
-  accounting_by_row: z.nullable(z.boolean()).optional(),
-  due_date: z.nullable(z.string().transform(v => new RFCDate(v))).optional(),
-  payment_method: z.nullable(z.string()).optional(),
-  terms: z.nullable(z.string()).optional(),
+  template_id: z.nullable(types.string()).optional(),
+  discount_percentage: z.nullable(types.number()).optional(),
+  bank_account: types.optional(BankAccount$inboundSchema),
+  accounting_by_row: z.nullable(types.boolean()).optional(),
+  due_date: z.nullable(types.date()).optional(),
+  payment_method: z.nullable(types.string()).optional(),
+  terms: z.nullable(types.string()).optional(),
   amortization_type: z.nullable(PurchaseOrderAmortizationType$inboundSchema)
     .optional(),
-  tax_code: z.nullable(z.string()).optional(),
-  tax_method: z.nullable(z.string()).optional(),
-  issued_method: z.nullable(z.string()).optional(),
-  issued_email: z.nullable(z.string()).optional(),
-  channel: z.nullable(z.string()).optional(),
-  memo: z.nullable(z.string()).optional(),
-  notes: z.nullable(z.string()).optional(),
+  tax_code: z.nullable(types.string()).optional(),
+  tax_method: z.nullable(types.string()).optional(),
+  issued_method: z.nullable(types.string()).optional(),
+  issued_email: z.nullable(types.string()).optional(),
+  channel: z.nullable(types.string()).optional(),
+  memo: z.nullable(types.string()).optional(),
+  notes: z.nullable(types.string()).optional(),
   tracking_categories: z.nullable(
-    z.array(z.nullable(LinkedTrackingCategory$inboundSchema)),
+    z.array(types.nullable(LinkedTrackingCategory$inboundSchema)),
   ).optional(),
   custom_mappings: z.nullable(z.record(z.any())).optional(),
-  custom_fields: z.array(CustomField$inboundSchema).optional(),
-  row_version: z.nullable(z.string()).optional(),
-  updated_by: z.nullable(z.string()).optional(),
-  created_by: z.nullable(z.string()).optional(),
-  updated_at: z.nullable(
-    z.string().datetime({ offset: true }).transform(v => new Date(v)),
-  ).optional(),
-  created_at: z.nullable(
-    z.string().datetime({ offset: true }).transform(v => new Date(v)),
-  ).optional(),
-  pass_through: z.array(PassThroughBody$inboundSchema).optional(),
+  custom_fields: types.optional(z.array(CustomField$inboundSchema)),
+  row_version: z.nullable(types.string()).optional(),
+  updated_by: z.nullable(types.string()).optional(),
+  created_by: z.nullable(types.string()).optional(),
+  updated_at: z.nullable(types.date()).optional(),
+  created_at: z.nullable(types.date()).optional(),
+  pass_through: types.optional(z.array(PassThroughBody$inboundSchema)),
 }).transform((v) => {
   return remap$(v, {
     "downstream_id": "downstreamId",
@@ -619,12 +613,14 @@ export const PurchaseOrderInput$outboundSchema: z.ZodType<
   locationId: z.nullable(z.string()).optional(),
   departmentId: z.nullable(z.string()).optional(),
   status: z.nullable(PurchaseOrderStatus$outboundSchema).optional(),
-  issuedDate: z.nullable(z.instanceof(RFCDate).transform(v => v.toString()))
-    .optional(),
-  deliveryDate: z.nullable(z.instanceof(RFCDate).transform(v => v.toString()))
-    .optional(),
+  issuedDate: z.nullable(
+    z.date().transform(v => v.toISOString().slice(0, "YYYY-MM-DD".length)),
+  ).optional(),
+  deliveryDate: z.nullable(
+    z.date().transform(v => v.toISOString().slice(0, "YYYY-MM-DD".length)),
+  ).optional(),
   expectedArrivalDate: z.nullable(
-    z.instanceof(RFCDate).transform(v => v.toString()),
+    z.date().transform(v => v.toISOString().slice(0, "YYYY-MM-DD".length)),
   ).optional(),
   currency: z.nullable(Currency$outboundSchema).optional(),
   currencyRate: z.nullable(z.number()).optional(),
@@ -640,8 +636,9 @@ export const PurchaseOrderInput$outboundSchema: z.ZodType<
   discountPercentage: z.nullable(z.number()).optional(),
   bankAccount: BankAccount$outboundSchema.optional(),
   accountingByRow: z.nullable(z.boolean()).optional(),
-  dueDate: z.nullable(z.instanceof(RFCDate).transform(v => v.toString()))
-    .optional(),
+  dueDate: z.nullable(
+    z.date().transform(v => v.toISOString().slice(0, "YYYY-MM-DD".length)),
+  ).optional(),
   paymentMethod: z.nullable(z.string()).optional(),
   terms: z.nullable(z.string()).optional(),
   amortizationType: z.nullable(PurchaseOrderAmortizationType$outboundSchema)

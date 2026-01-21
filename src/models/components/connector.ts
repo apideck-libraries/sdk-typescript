@@ -8,6 +8,7 @@ import { safeParse } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { ConnectorDoc, ConnectorDoc$inboundSchema } from "./connectordoc.js";
 import {
@@ -271,9 +272,9 @@ export const OauthScopes$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  id: z.string().optional(),
-  label: z.string().optional(),
-  default_apis: z.array(z.string()).optional(),
+  id: types.optional(types.string()),
+  label: types.optional(types.string()),
+  default_apis: types.optional(z.array(types.string())),
 }).transform((v) => {
   return remap$(v, {
     "default_apis": "defaultApis",
@@ -296,8 +297,8 @@ export const ConnectorOauthScopes$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  id: z.string().optional(),
-  label: z.string().optional(),
+  id: types.optional(types.string()),
+  label: types.optional(types.string()),
 });
 
 export function connectorOauthScopesFromJSON(
@@ -316,15 +317,17 @@ export const UnifiedApis$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  id: UnifiedApiId$inboundSchema.optional(),
-  name: z.string().optional(),
-  auth_only: z.boolean().optional(),
-  oauth_scopes: z.array(z.lazy(() => ConnectorOauthScopes$inboundSchema))
-    .optional(),
-  supported_resources: z.array(LinkedConnectorResource$inboundSchema)
-    .optional(),
-  downstream_unsupported_resources: z.array(z.string()).optional(),
-  supported_events: z.array(ConnectorEvent$inboundSchema).optional(),
+  id: types.optional(UnifiedApiId$inboundSchema),
+  name: types.optional(types.string()),
+  auth_only: types.optional(types.boolean()),
+  oauth_scopes: types.optional(
+    z.array(z.lazy(() => ConnectorOauthScopes$inboundSchema)),
+  ),
+  supported_resources: types.optional(
+    z.array(LinkedConnectorResource$inboundSchema),
+  ),
+  downstream_unsupported_resources: types.optional(z.array(types.string())),
+  supported_events: types.optional(z.array(ConnectorEvent$inboundSchema)),
 }).transform((v) => {
   return remap$(v, {
     "auth_only": "authOnly",
@@ -351,8 +354,8 @@ export const TlsSupport$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  type: z.string().optional(),
-  description: z.string().optional(),
+  type: types.optional(types.string()),
+  description: types.optional(types.string()),
 });
 
 export function tlsSupportFromJSON(
@@ -371,35 +374,42 @@ export const Connector$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  id: z.string().optional(),
-  name: z.string().optional(),
-  status: ConnectorStatus$inboundSchema.optional(),
-  description: z.nullable(z.string()).optional(),
-  icon_url: z.string().optional(),
-  logo_url: z.string().optional(),
-  website_url: z.string().optional(),
-  signup_url: z.string().optional(),
-  partner_signup_url: z.string().optional(),
-  free_trial_available: z.boolean().optional(),
-  auth_type: ConnectorAuthType$inboundSchema.optional(),
-  auth_only: z.boolean().optional(),
-  blind_mapped: z.boolean().optional(),
-  oauth_grant_type: ConnectorOauthGrantType$inboundSchema.optional(),
-  oauth_credentials_source: OauthCredentialsSource$inboundSchema.optional(),
-  oauth_scopes: z.array(z.lazy(() => OauthScopes$inboundSchema)).optional(),
-  custom_scopes: z.boolean().optional(),
-  has_sandbox_credentials: z.boolean().optional(),
-  settings: z.array(ConnectorSetting$inboundSchema).optional(),
-  service_id: z.string().optional(),
-  unified_apis: z.array(z.lazy(() => UnifiedApis$inboundSchema)).optional(),
-  supported_resources: z.array(LinkedConnectorResource$inboundSchema)
-    .optional(),
-  configurable_resources: z.array(z.string()).optional(),
-  supported_events: z.array(ConnectorEvent$inboundSchema).optional(),
-  webhook_support: WebhookSupport$inboundSchema.optional(),
-  schema_support: SchemaSupport$inboundSchema.optional(),
-  docs: z.array(ConnectorDoc$inboundSchema).optional(),
-  tls_support: z.lazy(() => TlsSupport$inboundSchema).optional(),
+  id: types.optional(types.string()),
+  name: types.optional(types.string()),
+  status: types.optional(ConnectorStatus$inboundSchema),
+  description: z.nullable(types.string()).optional(),
+  icon_url: types.optional(types.string()),
+  logo_url: types.optional(types.string()),
+  website_url: types.optional(types.string()),
+  signup_url: types.optional(types.string()),
+  partner_signup_url: types.optional(types.string()),
+  free_trial_available: types.optional(types.boolean()),
+  auth_type: types.optional(ConnectorAuthType$inboundSchema),
+  auth_only: types.optional(types.boolean()),
+  blind_mapped: types.optional(types.boolean()),
+  oauth_grant_type: types.optional(ConnectorOauthGrantType$inboundSchema),
+  oauth_credentials_source: types.optional(
+    OauthCredentialsSource$inboundSchema,
+  ),
+  oauth_scopes: types.optional(
+    z.array(z.lazy(() => OauthScopes$inboundSchema)),
+  ),
+  custom_scopes: types.optional(types.boolean()),
+  has_sandbox_credentials: types.optional(types.boolean()),
+  settings: types.optional(z.array(ConnectorSetting$inboundSchema)),
+  service_id: types.optional(types.string()),
+  unified_apis: types.optional(
+    z.array(z.lazy(() => UnifiedApis$inboundSchema)),
+  ),
+  supported_resources: types.optional(
+    z.array(LinkedConnectorResource$inboundSchema),
+  ),
+  configurable_resources: types.optional(z.array(types.string())),
+  supported_events: types.optional(z.array(ConnectorEvent$inboundSchema)),
+  webhook_support: types.optional(WebhookSupport$inboundSchema),
+  schema_support: types.optional(SchemaSupport$inboundSchema),
+  docs: types.optional(z.array(ConnectorDoc$inboundSchema)),
+  tls_support: types.optional(z.lazy(() => TlsSupport$inboundSchema)),
 }).transform((v) => {
   return remap$(v, {
     "icon_url": "iconUrl",

@@ -6,7 +6,6 @@ Opportunity
 
 ```typescript
 import { GetOpportunityResponse } from "@apideck/unify/models/components";
-import { RFCDate } from "@apideck/unify/types";
 
 let value: GetOpportunityResponse = {
   statusCode: 200,
@@ -25,7 +24,7 @@ let value: GetOpportunityResponse = {
     currency: "USD",
     winProbability: 40,
     expectedRevenue: 75000,
-    closeDate: new RFCDate("2020-10-30"),
+    closeDate: new Date("2020-10-30"),
     lossReasonId: "12345",
     lossReason: "No budget",
     wonReasonId: "12345",

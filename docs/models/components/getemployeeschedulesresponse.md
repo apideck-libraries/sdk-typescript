@@ -6,7 +6,6 @@ EmployeeSchedules
 
 ```typescript
 import { GetEmployeeSchedulesResponse } from "@apideck/unify/models/components";
-import { RFCDate } from "@apideck/unify/types";
 
 let value: GetEmployeeSchedulesResponse = {
   statusCode: 200,
@@ -34,8 +33,8 @@ let value: GetEmployeeSchedulesResponse = {
         middleName: "D.",
         gender: "male",
         initials: "EM",
-        birthday: new RFCDate("2000-08-12"),
-        deceasedOn: new RFCDate("2000-08-12"),
+        birthday: new Date("2000-08-12"),
+        deceasedOn: new Date("2000-08-12"),
       },
       division: "Europe",
       divisionId: "12345",
@@ -66,8 +65,8 @@ let value: GetEmployeeSchedulesResponse = {
         "a98lfd96-43b3-4bde-8c70-85b707d992e6",
       ],
       socialSecurityNumber: "123456789",
-      birthday: new RFCDate("2000-08-12"),
-      deceasedOn: new RFCDate("2000-08-12"),
+      birthday: new Date("2000-08-12"),
+      deceasedOn: new Date("2000-08-12"),
       countryOfBirth: "US",
       description: "A description",
       gender: "male",
@@ -90,12 +89,12 @@ let value: GetEmployeeSchedulesResponse = {
           employeeId: "12345",
           title: "CEO",
           role: "Sales",
-          startDate: new RFCDate("2020-08-12"),
-          endDate: new RFCDate("2020-08-12"),
+          startDate: new Date("2020-08-12"),
+          endDate: new Date("2020-08-12"),
           compensationRate: 72000,
           currency: "USD",
           paymentUnit: "year",
-          hiredAt: new RFCDate("2020-08-12"),
+          hiredAt: new Date("2020-08-12"),
           isPrimary: true,
           isManager: true,
           status: "active",
@@ -223,8 +222,8 @@ let value: GetEmployeeSchedulesResponse = {
         "No allergies",
       ],
       probationPeriod: {
-        startDate: new RFCDate("2021-10-01"),
-        endDate: new RFCDate("2021-11-28"),
+        startDate: new Date("2021-10-01"),
+        endDate: new Date("2021-11-28"),
       },
       tags: [
         "New",

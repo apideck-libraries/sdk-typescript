@@ -8,6 +8,7 @@ import { safeParse } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   Currency,
@@ -121,13 +122,13 @@ export const EmployeeCompensation$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  id: z.nullable(z.string()).optional(),
-  job_id: z.nullable(z.string()).optional(),
-  rate: z.nullable(z.number()).optional(),
+  id: z.nullable(types.string()).optional(),
+  job_id: z.nullable(types.string()).optional(),
+  rate: z.nullable(types.number()).optional(),
   payment_unit: z.nullable(PaymentUnit$inboundSchema).optional(),
   currency: z.nullable(Currency$inboundSchema).optional(),
   flsa_status: z.nullable(FlsaStatus$inboundSchema).optional(),
-  effective_date: z.nullable(z.string()).optional(),
+  effective_date: z.nullable(types.string()).optional(),
   payment_frequency: z.nullable(PaymentFrequency$inboundSchema).optional(),
 }).transform((v) => {
   return remap$(v, {

@@ -6,6 +6,7 @@ import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type ExtendPaths = {
@@ -44,8 +45,8 @@ export const ExtendPaths$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  path: z.string(),
-  value: z.any().optional(),
+  path: types.string(),
+  value: types.optional(z.any()),
 });
 /** @internal */
 export type ExtendPaths$Outbound = {
@@ -82,10 +83,12 @@ export const PassThroughBody$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  service_id: z.string(),
-  operation_id: z.string().optional(),
-  extend_object: z.record(z.any()).optional(),
-  extend_paths: z.array(z.lazy(() => ExtendPaths$inboundSchema)).optional(),
+  service_id: types.string(),
+  operation_id: types.optional(types.string()),
+  extend_object: types.optional(z.record(z.any())),
+  extend_paths: types.optional(
+    z.array(z.lazy(() => ExtendPaths$inboundSchema)),
+  ),
 }).transform((v) => {
   return remap$(v, {
     "service_id": "serviceId",

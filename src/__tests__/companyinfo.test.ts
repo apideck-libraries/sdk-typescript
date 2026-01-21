@@ -4,7 +4,6 @@
 
 import { expect, test } from "vitest";
 import { Apideck } from "../index.js";
-import { RFCDate } from "../types/index.js";
 import { createTestHTTPClient } from "./testclient.js";
 
 test("Companyinfo Accounting Company Info One", async () => {
@@ -143,7 +142,7 @@ test("Companyinfo Accounting Company Info One", async () => {
       currency: "USD",
       language: "EN",
       fiscalYearStartMonth: "January",
-      companyStartDate: new RFCDate("2015-06-05"),
+      companyStartDate: new Date("2015-06-05"),
       addresses: [
         {
           id: "123",

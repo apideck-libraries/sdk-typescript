@@ -6,6 +6,7 @@ import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   ResourceStatus,
@@ -57,8 +58,8 @@ export const LinkedResources$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  id: z.string().optional(),
-  unified_property: z.string().optional(),
+  id: types.optional(types.string()),
+  unified_property: types.optional(types.string()),
 }).transform((v) => {
   return remap$(v, {
     "unified_property": "unifiedProperty",
@@ -95,12 +96,13 @@ export const ApiResource$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  id: z.string().optional(),
-  name: z.string().optional(),
-  status: ResourceStatus$inboundSchema.optional(),
-  linked_resources: z.array(z.lazy(() => LinkedResources$inboundSchema))
-    .optional(),
-  schema: z.lazy(() => Schema$inboundSchema).optional(),
+  id: types.optional(types.string()),
+  name: types.optional(types.string()),
+  status: types.optional(ResourceStatus$inboundSchema),
+  linked_resources: types.optional(
+    z.array(z.lazy(() => LinkedResources$inboundSchema)),
+  ),
+  schema: types.optional(z.lazy(() => Schema$inboundSchema)),
 }).transform((v) => {
   return remap$(v, {
     "linked_resources": "linkedResources",

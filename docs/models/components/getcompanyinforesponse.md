@@ -6,7 +6,6 @@ CompanyInfo
 
 ```typescript
 import { GetCompanyInfoResponse } from "@apideck/unify/models/components";
-import { RFCDate } from "@apideck/unify/types";
 
 let value: GetCompanyInfoResponse = {
   statusCode: 200,
@@ -76,7 +75,7 @@ let value: GetCompanyInfoResponse = {
     currency: "USD",
     language: "EN",
     fiscalYearStartMonth: "January",
-    companyStartDate: new RFCDate("2015-06-05"),
+    companyStartDate: new Date("2015-06-05"),
     addresses: [
       {
         id: "123",

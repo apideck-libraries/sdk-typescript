@@ -4,7 +4,6 @@
 
 ```typescript
 import { AccountingBillsAddRequest } from "@apideck/unify/models/operations";
-import { RFCDate } from "@apideck/unify/types";
 
 let value: AccountingBillsAddRequest = {
   serviceId: "salesforce",
@@ -48,9 +47,9 @@ let value: AccountingBillsAddRequest = {
     currency: "USD",
     currencyRate: 0.69,
     taxInclusive: true,
-    billDate: new RFCDate("2020-09-30"),
-    dueDate: new RFCDate("2020-10-30"),
-    paidDate: new RFCDate("2020-10-30"),
+    billDate: new Date("2020-09-30"),
+    dueDate: new Date("2020-10-30"),
+    paidDate: new Date("2020-10-30"),
     poNumber: "90000117",
     reference: "INV-2024-001",
     lineItems: [

@@ -6,6 +6,7 @@ import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { Links, Links$inboundSchema } from "./links.js";
 import { Meta, Meta$inboundSchema } from "./meta.js";
@@ -47,11 +48,11 @@ export const GetWebhookEventLogsResponse$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  status_code: z.number().int(),
-  status: z.string(),
+  status_code: types.number(),
+  status: types.string(),
   data: z.array(WebhookEventLog$inboundSchema),
-  meta: Meta$inboundSchema.optional(),
-  links: Links$inboundSchema.optional(),
+  meta: types.optional(Meta$inboundSchema),
+  links: types.optional(Links$inboundSchema),
   _raw: z.nullable(z.record(z.any())).optional(),
 }).transform((v) => {
   return remap$(v, {

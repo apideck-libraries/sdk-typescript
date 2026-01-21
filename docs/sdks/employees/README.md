@@ -147,7 +147,6 @@ Create Employee
 <!-- UsageSnippet language="typescript" operationID="hris.employeesAdd" method="post" path="/hris/employees" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
-import { RFCDate } from "@apideck/unify/types";
 
 const apideck = new Apideck({
   consumerId: "test-consumer",
@@ -175,8 +174,8 @@ async function run() {
         middleName: "D.",
         gender: "male",
         initials: "EM",
-        birthday: new RFCDate("2000-08-12"),
-        deceasedOn: new RFCDate("2000-08-12"),
+        birthday: new Date("2000-08-12"),
+        deceasedOn: new Date("2000-08-12"),
       },
       division: "Europe",
       divisionId: "12345",
@@ -207,8 +206,8 @@ async function run() {
         "a98lfd96-43b3-4bde-8c70-85b707d992e6",
       ],
       socialSecurityNumber: "123456789",
-      birthday: new RFCDate("2000-08-12"),
-      deceasedOn: new RFCDate("2000-08-12"),
+      birthday: new Date("2000-08-12"),
+      deceasedOn: new Date("2000-08-12"),
       countryOfBirth: "US",
       description: "A description",
       gender: "male",
@@ -229,12 +228,12 @@ async function run() {
         {
           title: "CEO",
           role: "Sales",
-          startDate: new RFCDate("2020-08-12"),
-          endDate: new RFCDate("2020-08-12"),
+          startDate: new Date("2020-08-12"),
+          endDate: new Date("2020-08-12"),
           compensationRate: 72000,
           currency: "USD",
           paymentUnit: "year",
-          hiredAt: new RFCDate("2020-08-12"),
+          hiredAt: new Date("2020-08-12"),
           isPrimary: true,
           isManager: true,
           status: "active",
@@ -268,12 +267,12 @@ async function run() {
         {
           title: "CEO",
           role: "Sales",
-          startDate: new RFCDate("2020-08-12"),
-          endDate: new RFCDate("2020-08-12"),
+          startDate: new Date("2020-08-12"),
+          endDate: new Date("2020-08-12"),
           compensationRate: 72000,
           currency: "USD",
           paymentUnit: "year",
-          hiredAt: new RFCDate("2020-08-12"),
+          hiredAt: new Date("2020-08-12"),
           isPrimary: true,
           isManager: true,
           status: "active",
@@ -307,12 +306,12 @@ async function run() {
         {
           title: "CEO",
           role: "Sales",
-          startDate: new RFCDate("2020-08-12"),
-          endDate: new RFCDate("2020-08-12"),
+          startDate: new Date("2020-08-12"),
+          endDate: new Date("2020-08-12"),
           compensationRate: 72000,
           currency: "USD",
           paymentUnit: "year",
-          hiredAt: new RFCDate("2020-08-12"),
+          hiredAt: new Date("2020-08-12"),
           isPrimary: true,
           isManager: true,
           status: "active",
@@ -498,8 +497,8 @@ async function run() {
         "No allergies",
       ],
       probationPeriod: {
-        startDate: new RFCDate("2021-10-01"),
-        endDate: new RFCDate("2021-11-28"),
+        startDate: new Date("2021-10-01"),
+        endDate: new Date("2021-11-28"),
       },
       tags: [
         "New",
@@ -587,7 +586,6 @@ The standalone function version of this method:
 ```typescript
 import { ApideckCore } from "@apideck/unify/core.js";
 import { hrisEmployeesCreate } from "@apideck/unify/funcs/hrisEmployeesCreate.js";
-import { RFCDate } from "@apideck/unify/types";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -617,8 +615,8 @@ async function run() {
         middleName: "D.",
         gender: "male",
         initials: "EM",
-        birthday: new RFCDate("2000-08-12"),
-        deceasedOn: new RFCDate("2000-08-12"),
+        birthday: new Date("2000-08-12"),
+        deceasedOn: new Date("2000-08-12"),
       },
       division: "Europe",
       divisionId: "12345",
@@ -649,8 +647,8 @@ async function run() {
         "a98lfd96-43b3-4bde-8c70-85b707d992e6",
       ],
       socialSecurityNumber: "123456789",
-      birthday: new RFCDate("2000-08-12"),
-      deceasedOn: new RFCDate("2000-08-12"),
+      birthday: new Date("2000-08-12"),
+      deceasedOn: new Date("2000-08-12"),
       countryOfBirth: "US",
       description: "A description",
       gender: "male",
@@ -671,12 +669,12 @@ async function run() {
         {
           title: "CEO",
           role: "Sales",
-          startDate: new RFCDate("2020-08-12"),
-          endDate: new RFCDate("2020-08-12"),
+          startDate: new Date("2020-08-12"),
+          endDate: new Date("2020-08-12"),
           compensationRate: 72000,
           currency: "USD",
           paymentUnit: "year",
-          hiredAt: new RFCDate("2020-08-12"),
+          hiredAt: new Date("2020-08-12"),
           isPrimary: true,
           isManager: true,
           status: "active",
@@ -710,12 +708,12 @@ async function run() {
         {
           title: "CEO",
           role: "Sales",
-          startDate: new RFCDate("2020-08-12"),
-          endDate: new RFCDate("2020-08-12"),
+          startDate: new Date("2020-08-12"),
+          endDate: new Date("2020-08-12"),
           compensationRate: 72000,
           currency: "USD",
           paymentUnit: "year",
-          hiredAt: new RFCDate("2020-08-12"),
+          hiredAt: new Date("2020-08-12"),
           isPrimary: true,
           isManager: true,
           status: "active",
@@ -749,12 +747,12 @@ async function run() {
         {
           title: "CEO",
           role: "Sales",
-          startDate: new RFCDate("2020-08-12"),
-          endDate: new RFCDate("2020-08-12"),
+          startDate: new Date("2020-08-12"),
+          endDate: new Date("2020-08-12"),
           compensationRate: 72000,
           currency: "USD",
           paymentUnit: "year",
-          hiredAt: new RFCDate("2020-08-12"),
+          hiredAt: new Date("2020-08-12"),
           isPrimary: true,
           isManager: true,
           status: "active",
@@ -940,8 +938,8 @@ async function run() {
         "No allergies",
       ],
       probationPeriod: {
-        startDate: new RFCDate("2021-10-01"),
-        endDate: new RFCDate("2021-11-28"),
+        startDate: new Date("2021-10-01"),
+        endDate: new Date("2021-11-28"),
       },
       tags: [
         "New",
@@ -1157,7 +1155,6 @@ Update Employee
 <!-- UsageSnippet language="typescript" operationID="hris.employeesUpdate" method="patch" path="/hris/employees/{id}" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
-import { RFCDate } from "@apideck/unify/types";
 
 const apideck = new Apideck({
   consumerId: "test-consumer",
@@ -1186,8 +1183,8 @@ async function run() {
         middleName: "D.",
         gender: "male",
         initials: "EM",
-        birthday: new RFCDate("2000-08-12"),
-        deceasedOn: new RFCDate("2000-08-12"),
+        birthday: new Date("2000-08-12"),
+        deceasedOn: new Date("2000-08-12"),
       },
       division: "Europe",
       divisionId: "12345",
@@ -1218,8 +1215,8 @@ async function run() {
         "a98lfd96-43b3-4bde-8c70-85b707d992e6",
       ],
       socialSecurityNumber: "123456789",
-      birthday: new RFCDate("2000-08-12"),
-      deceasedOn: new RFCDate("2000-08-12"),
+      birthday: new Date("2000-08-12"),
+      deceasedOn: new Date("2000-08-12"),
       countryOfBirth: "US",
       description: "A description",
       gender: "male",
@@ -1240,12 +1237,12 @@ async function run() {
         {
           title: "CEO",
           role: "Sales",
-          startDate: new RFCDate("2020-08-12"),
-          endDate: new RFCDate("2020-08-12"),
+          startDate: new Date("2020-08-12"),
+          endDate: new Date("2020-08-12"),
           compensationRate: 72000,
           currency: "USD",
           paymentUnit: "year",
-          hiredAt: new RFCDate("2020-08-12"),
+          hiredAt: new Date("2020-08-12"),
           isPrimary: true,
           isManager: true,
           status: "active",
@@ -1393,8 +1390,8 @@ async function run() {
         "No allergies",
       ],
       probationPeriod: {
-        startDate: new RFCDate("2021-10-01"),
-        endDate: new RFCDate("2021-11-28"),
+        startDate: new Date("2021-10-01"),
+        endDate: new Date("2021-11-28"),
       },
       tags: [
         "New",
@@ -1445,7 +1442,6 @@ The standalone function version of this method:
 ```typescript
 import { ApideckCore } from "@apideck/unify/core.js";
 import { hrisEmployeesUpdate } from "@apideck/unify/funcs/hrisEmployeesUpdate.js";
-import { RFCDate } from "@apideck/unify/types";
 
 // Use `ApideckCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -1476,8 +1472,8 @@ async function run() {
         middleName: "D.",
         gender: "male",
         initials: "EM",
-        birthday: new RFCDate("2000-08-12"),
-        deceasedOn: new RFCDate("2000-08-12"),
+        birthday: new Date("2000-08-12"),
+        deceasedOn: new Date("2000-08-12"),
       },
       division: "Europe",
       divisionId: "12345",
@@ -1508,8 +1504,8 @@ async function run() {
         "a98lfd96-43b3-4bde-8c70-85b707d992e6",
       ],
       socialSecurityNumber: "123456789",
-      birthday: new RFCDate("2000-08-12"),
-      deceasedOn: new RFCDate("2000-08-12"),
+      birthday: new Date("2000-08-12"),
+      deceasedOn: new Date("2000-08-12"),
       countryOfBirth: "US",
       description: "A description",
       gender: "male",
@@ -1530,12 +1526,12 @@ async function run() {
         {
           title: "CEO",
           role: "Sales",
-          startDate: new RFCDate("2020-08-12"),
-          endDate: new RFCDate("2020-08-12"),
+          startDate: new Date("2020-08-12"),
+          endDate: new Date("2020-08-12"),
           compensationRate: 72000,
           currency: "USD",
           paymentUnit: "year",
-          hiredAt: new RFCDate("2020-08-12"),
+          hiredAt: new Date("2020-08-12"),
           isPrimary: true,
           isManager: true,
           status: "active",
@@ -1683,8 +1679,8 @@ async function run() {
         "No allergies",
       ],
       probationPeriod: {
-        startDate: new RFCDate("2021-10-01"),
-        endDate: new RFCDate("2021-11-28"),
+        startDate: new Date("2021-10-01"),
+        endDate: new Date("2021-11-28"),
       },
       tags: [
         "New",

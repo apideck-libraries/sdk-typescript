@@ -8,7 +8,7 @@ import { safeParse } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
-import { RFCDate } from "../../types/rfcdate.js";
+import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   CustomField,
@@ -107,7 +107,7 @@ export type QuoteLineItem = {
   /**
    * Date on which the service was provided or performed - YYYY-MM-DD.
    */
-  serviceDate?: RFCDate | null | undefined;
+  serviceDate?: Date | null | undefined;
   /**
    * ID of the category of the line item
    */
@@ -200,7 +200,7 @@ export type QuoteLineItemInput = {
   /**
    * Date on which the service was provided or performed - YYYY-MM-DD.
    */
-  serviceDate?: RFCDate | null | undefined;
+  serviceDate?: Date | null | undefined;
   /**
    * ID of the category of the line item
    */
@@ -246,40 +246,35 @@ export const QuoteLineItem$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  id: z.nullable(z.string()).optional(),
-  row_id: z.string().optional(),
-  code: z.nullable(z.string()).optional(),
-  line_number: z.nullable(z.number().int()).optional(),
-  description: z.nullable(z.string()).optional(),
+  id: z.nullable(types.string()).optional(),
+  row_id: types.optional(types.string()),
+  code: z.nullable(types.string()).optional(),
+  line_number: z.nullable(types.number()).optional(),
+  description: z.nullable(types.string()).optional(),
   type: z.nullable(QuoteLineItemType$inboundSchema).optional(),
-  tax_amount: z.nullable(z.number()).optional(),
-  total_amount: z.nullable(z.number()).optional(),
-  quantity: z.nullable(z.number()).optional(),
-  unit_price: z.nullable(z.number()).optional(),
-  unit_of_measure: z.nullable(z.string()).optional(),
-  discount_percentage: z.nullable(z.number()).optional(),
-  discount_amount: z.nullable(z.number()).optional(),
-  service_date: z.nullable(z.string().transform(v => new RFCDate(v)))
-    .optional(),
-  category_id: z.nullable(z.string()).optional(),
-  location_id: z.nullable(z.string()).optional(),
-  department_id: z.nullable(z.string()).optional(),
-  item: LinkedInvoiceItem$inboundSchema.optional(),
-  tax_rate: LinkedTaxRate$inboundSchema.optional(),
+  tax_amount: z.nullable(types.number()).optional(),
+  total_amount: z.nullable(types.number()).optional(),
+  quantity: z.nullable(types.number()).optional(),
+  unit_price: z.nullable(types.number()).optional(),
+  unit_of_measure: z.nullable(types.string()).optional(),
+  discount_percentage: z.nullable(types.number()).optional(),
+  discount_amount: z.nullable(types.number()).optional(),
+  service_date: z.nullable(types.date()).optional(),
+  category_id: z.nullable(types.string()).optional(),
+  location_id: z.nullable(types.string()).optional(),
+  department_id: z.nullable(types.string()).optional(),
+  item: types.optional(LinkedInvoiceItem$inboundSchema),
+  tax_rate: types.optional(LinkedTaxRate$inboundSchema),
   tracking_categories: z.nullable(
-    z.array(z.nullable(LinkedTrackingCategory$inboundSchema)),
+    z.array(types.nullable(LinkedTrackingCategory$inboundSchema)),
   ).optional(),
   ledger_account: z.nullable(LinkedLedgerAccount$inboundSchema).optional(),
-  custom_fields: z.array(CustomField$inboundSchema).optional(),
-  row_version: z.nullable(z.string()).optional(),
-  updated_by: z.nullable(z.string()).optional(),
-  created_by: z.nullable(z.string()).optional(),
-  created_at: z.nullable(
-    z.string().datetime({ offset: true }).transform(v => new Date(v)),
-  ).optional(),
-  updated_at: z.nullable(
-    z.string().datetime({ offset: true }).transform(v => new Date(v)),
-  ).optional(),
+  custom_fields: types.optional(z.array(CustomField$inboundSchema)),
+  row_version: z.nullable(types.string()).optional(),
+  updated_by: z.nullable(types.string()).optional(),
+  created_by: z.nullable(types.string()).optional(),
+  created_at: z.nullable(types.date()).optional(),
+  updated_at: z.nullable(types.date()).optional(),
 }).transform((v) => {
   return remap$(v, {
     "row_id": "rowId",
@@ -365,8 +360,9 @@ export const QuoteLineItemInput$outboundSchema: z.ZodType<
   unitOfMeasure: z.nullable(z.string()).optional(),
   discountPercentage: z.nullable(z.number()).optional(),
   discountAmount: z.nullable(z.number()).optional(),
-  serviceDate: z.nullable(z.instanceof(RFCDate).transform(v => v.toString()))
-    .optional(),
+  serviceDate: z.nullable(
+    z.date().transform(v => v.toISOString().slice(0, "YYYY-MM-DD".length)),
+  ).optional(),
   categoryId: z.nullable(z.string()).optional(),
   locationId: z.nullable(z.string()).optional(),
   departmentId: z.nullable(z.string()).optional(),

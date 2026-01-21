@@ -6,6 +6,7 @@ import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { Address, Address$inboundSchema } from "./address.js";
 import { Email, Email$inboundSchema } from "./email.js";
@@ -98,27 +99,27 @@ export type User = {
 /** @internal */
 export const User$inboundSchema: z.ZodType<User, z.ZodTypeDef, unknown> = z
   .object({
-    id: z.string().optional(),
-    parent_id: z.nullable(z.string()).optional(),
-    username: z.nullable(z.string()).optional(),
-    first_name: z.nullable(z.string()).optional(),
-    last_name: z.nullable(z.string()).optional(),
-    title: z.nullable(z.string()).optional(),
-    division: z.nullable(z.string()).optional(),
-    department: z.nullable(z.string()).optional(),
-    company_name: z.nullable(z.string()).optional(),
-    employee_number: z.nullable(z.string()).optional(),
-    description: z.nullable(z.string()).optional(),
-    image: z.nullable(z.string()).optional(),
-    language: z.nullable(z.string()).optional(),
-    status: z.nullable(z.string()).optional(),
-    addresses: z.array(Address$inboundSchema).optional(),
-    phone_numbers: z.array(PhoneNumber$inboundSchema).optional(),
+    id: types.optional(types.string()),
+    parent_id: z.nullable(types.string()).optional(),
+    username: z.nullable(types.string()).optional(),
+    first_name: z.nullable(types.string()).optional(),
+    last_name: z.nullable(types.string()).optional(),
+    title: z.nullable(types.string()).optional(),
+    division: z.nullable(types.string()).optional(),
+    department: z.nullable(types.string()).optional(),
+    company_name: z.nullable(types.string()).optional(),
+    employee_number: z.nullable(types.string()).optional(),
+    description: z.nullable(types.string()).optional(),
+    image: z.nullable(types.string()).optional(),
+    language: z.nullable(types.string()).optional(),
+    status: z.nullable(types.string()).optional(),
+    addresses: types.optional(z.array(Address$inboundSchema)),
+    phone_numbers: types.optional(z.array(PhoneNumber$inboundSchema)),
     emails: z.array(Email$inboundSchema),
     custom_mappings: z.nullable(z.record(z.any())).optional(),
-    updated_at: z.nullable(z.string()).optional(),
-    created_at: z.nullable(z.string()).optional(),
-    pass_through: z.array(PassThroughBody$inboundSchema).optional(),
+    updated_at: z.nullable(types.string()).optional(),
+    created_at: z.nullable(types.string()).optional(),
+    pass_through: types.optional(z.array(PassThroughBody$inboundSchema)),
   }).transform((v) => {
     return remap$(v, {
       "parent_id": "parentId",

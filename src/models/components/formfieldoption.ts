@@ -4,6 +4,8 @@
 
 import * as z from "zod/v3";
 import { safeParse } from "../../lib/schemas.js";
+import * as discriminatedUnionTypes from "../../types/discriminatedUnion.js";
+import { discriminatedUnion } from "../../types/discriminatedUnion.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
@@ -19,17 +21,20 @@ import {
   SimpleFormFieldOption$outboundSchema,
 } from "./simpleformfieldoption.js";
 
-export type FormFieldOption = SimpleFormFieldOption | FormFieldOptionGroup;
+export type FormFieldOption =
+  | SimpleFormFieldOption
+  | FormFieldOptionGroup
+  | discriminatedUnionTypes.Unknown<"optionType">;
 
 /** @internal */
 export const FormFieldOption$inboundSchema: z.ZodType<
   FormFieldOption,
   z.ZodTypeDef,
   unknown
-> = z.union([
-  SimpleFormFieldOption$inboundSchema,
-  FormFieldOptionGroup$inboundSchema,
-]);
+> = discriminatedUnion("option_type", {
+  simple: SimpleFormFieldOption$inboundSchema,
+  group: FormFieldOptionGroup$inboundSchema,
+}, { outputPropertyName: "optionType" });
 /** @internal */
 export type FormFieldOption$Outbound =
   | SimpleFormFieldOption$Outbound

@@ -6,6 +6,7 @@ import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type LinkedPurchaseOrder = {
@@ -29,9 +30,9 @@ export const LinkedPurchaseOrder$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  id: z.string().optional(),
-  line_id: z.nullable(z.string()).optional(),
-  line_number: z.nullable(z.string()).optional(),
+  id: types.optional(types.string()),
+  line_id: z.nullable(types.string()).optional(),
+  line_number: z.nullable(types.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     "line_id": "lineId",

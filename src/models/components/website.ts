@@ -7,6 +7,7 @@ import { safeParse } from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
@@ -55,8 +56,8 @@ export const WebsiteType$outboundSchema: z.ZodType<
 /** @internal */
 export const Website$inboundSchema: z.ZodType<Website, z.ZodTypeDef, unknown> =
   z.object({
-    id: z.nullable(z.string()).optional(),
-    url: z.string(),
+    id: z.nullable(types.string()).optional(),
+    url: types.string(),
     type: z.nullable(WebsiteType$inboundSchema).optional(),
   });
 /** @internal */

@@ -4,7 +4,6 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { RFCDate } from "../../types/rfcdate.js";
 import { Gender, Gender$outboundSchema } from "./gender.js";
 
 export type PersonInput = {
@@ -31,11 +30,11 @@ export type PersonInput = {
   /**
    * Date of birth
    */
-  birthday?: RFCDate | null | undefined;
+  birthday?: Date | null | undefined;
   /**
    * Date of death
    */
-  deceasedOn?: RFCDate | null | undefined;
+  deceasedOn?: Date | null | undefined;
 };
 
 /** @internal */
@@ -60,10 +59,12 @@ export const PersonInput$outboundSchema: z.ZodType<
   middleName: z.nullable(z.string()).optional(),
   gender: z.nullable(Gender$outboundSchema).optional(),
   initials: z.nullable(z.string()).optional(),
-  birthday: z.nullable(z.instanceof(RFCDate).transform(v => v.toString()))
-    .optional(),
-  deceasedOn: z.nullable(z.instanceof(RFCDate).transform(v => v.toString()))
-    .optional(),
+  birthday: z.nullable(
+    z.date().transform(v => v.toISOString().slice(0, "YYYY-MM-DD".length)),
+  ).optional(),
+  deceasedOn: z.nullable(
+    z.date().transform(v => v.toISOString().slice(0, "YYYY-MM-DD".length)),
+  ).optional(),
 }).transform((v) => {
   return remap$(v, {
     firstName: "first_name",
