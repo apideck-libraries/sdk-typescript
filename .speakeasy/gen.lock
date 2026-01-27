@@ -1,26 +1,26 @@
 lockVersion: 2.0.0
 id: 7bffa198-5d29-4efa-9942-d549cc832085
 management:
-  docChecksum: 39aae8d40e55105bc1e048ac01f04376
-  docVersion: 10.23.10
-  speakeasyVersion: 1.692.0
-  generationVersion: 2.797.1
-  releaseVersion: 0.37.1
-  configChecksum: eaf75ce1a22cdd471f6f0cf21f5ad1b5
+  docChecksum: 2aab0c769b29d535b97cfe244da95d30
+  docVersion: 10.23.11
+  speakeasyVersion: 1.698.0
+  generationVersion: 2.801.0
+  releaseVersion: 0.37.2
+  configChecksum: df0d3cfb88d0e30b507c1e261a6ab193
   repoURL: https://github.com/apideck-libraries/sdk-typescript.git
   installationURL: https://github.com/apideck-libraries/sdk-typescript
   published: true
 persistentEdits:
-  generation_id: 38357769-92b6-4670-b5df-16b606d231c6
-  pristine_commit_hash: 13352ddf85b24e32a827a79c806b6c1f83502dd2
-  pristine_tree_hash: ae54b450f99858191f9dc51f1d8ebaefdec9df74
+  generation_id: 2c259ab8-869d-4c74-ba21-a4d74f07fda5
+  pristine_commit_hash: 8b77de2396f0205afac589f3db4d965ef01508a7
+  pristine_tree_hash: f8927938773c97de286b76bcd3cd1086bdbe234a
 features:
   typescript:
     acceptHeaders: 2.81.2
     additionalDependencies: 0.1.0
     additionalProperties: 0.1.3
     constsAndDefaults: 0.1.12
-    core: 3.26.22
+    core: 3.26.23
     deepObjectParams: 0.1.0
     defaultEnabledRetries: 0.1.0
     deprecations: 2.81.1
@@ -1411,8 +1411,8 @@ trackedFiles:
     pristine_git_object: ef4006bb85640fc65d35d20669a97ff234380722
   docs/models/components/ecommercecustomersfilter.md:
     id: acb5d029327f
-    last_write_checksum: sha1:7f9eb5fea5741687f04cb653a94acf64979b00c0
-    pristine_git_object: 0b5179e2d10c2fa8ae0d408a30a4ddec3e34bd36
+    last_write_checksum: sha1:9ad7bebb76c8ae13b67bfef6bcb4c525164af6ae
+    pristine_git_object: 9e17f5f53bc410dd01a493a7dc3b789a371fccf9
   docs/models/components/ecommercecustomertype.md:
     id: 0b20c4b856ab
     last_write_checksum: sha1:38d60edd37c8ea4743841f2dd505c4a8b24fa428
@@ -5999,8 +5999,8 @@ trackedFiles:
     pristine_git_object: 5dee305dba0c36e447a53f85af9dca3fb94c089d
   docs/models/operations/ecommercecustomersallrequest.md:
     id: 7c4bc13c279a
-    last_write_checksum: sha1:c2c75032a9203a997fe24e36d70b27d2fa139be4
-    pristine_git_object: 985a61ed3d98cf3add91543908d6e3e1e332c556
+    last_write_checksum: sha1:7fc3eee329b389050e7abf9e834b1d8d9ebaf399
+    pristine_git_object: e915272622ff865a10960c307b0e13e24d579daa
   docs/models/operations/ecommercecustomersallresponse.md:
     id: bae1237d2115
     last_write_checksum: sha1:ab4cf61cd96764767b9d6bdcdc173aedcd51421b
@@ -7731,12 +7731,12 @@ trackedFiles:
     pristine_git_object: 3437dbb549ac891d15af546c72c9d3e8bf45dcde
   jsr.json:
     id: 7f6ab7767282
-    last_write_checksum: sha1:5007006eecb767332a3e314681a0737b77994ade
-    pristine_git_object: 79a21608d79d6fefdbbe814a07e44f5ce2885d21
+    last_write_checksum: sha1:8442e2e8bdb71f50181be51afc76bbc290b57fa8
+    pristine_git_object: 413bc2b09bec09fd4fbecaea05f35ccf3f42d2bf
   package.json:
     id: 7030d0b2f71b
-    last_write_checksum: sha1:3c480b2c772aeb40f57a191ad920bfc2e39fd93f
-    pristine_git_object: 1e829a643932d0ee57319185da894d8dc19be7f9
+    last_write_checksum: sha1:45e2c94d5659d5ac986d4150959e43ceee79f3b4
+    pristine_git_object: c9d556f8372ee73db1735b163c76cbbe9ffcedf7
   src/__tests__/activities.test.ts:
     id: 65fa859b8f59
     last_write_checksum: sha1:04e5b12f71d6a6aa39dfa26efc143e269e7ef469
@@ -9080,7 +9080,7 @@ trackedFiles:
   src/__tests__/mockserver/internal/sdk/models/components/ecommercecustomer.go:
     last_write_checksum: sha1:ce43551e7465fbbe4f92f4c056b3d6a965571dcf
   src/__tests__/mockserver/internal/sdk/models/components/ecommercecustomersfilter.go:
-    last_write_checksum: sha1:f136887785abf7d8ff18f74d55f36226fe767804
+    last_write_checksum: sha1:4b34aafbe24e5bb5a920dd5b9c2e36842cec92da
   src/__tests__/mockserver/internal/sdk/models/components/ecommercediscount.go:
     last_write_checksum: sha1:f948c9d28f545ada1a8e4d926d0893f3eb719671
   src/__tests__/mockserver/internal/sdk/models/components/ecommerceorder.go:
@@ -11825,8 +11825,8 @@ trackedFiles:
     pristine_git_object: 0aebd8b0a4867e35cb3348fc52921c3c0b4725b7
   src/lib/config.ts:
     id: 320761608fb3
-    last_write_checksum: sha1:72a8397a92d310f5138b882663a126dc51c41d08
-    pristine_git_object: 2842cc0221d1b16426d63295e7648a65ed721cac
+    last_write_checksum: sha1:472cb2f94380c8db2847c755f307c2eb9bdc8f4c
+    pristine_git_object: ebdf0dd20ea65a61a273d34b1ec896538f5d022b
   src/lib/dlv.ts:
     id: b1988214835a
     last_write_checksum: sha1:1dd3e3fbb4550c4bf31f5ef997faff355d6f3250
@@ -12765,8 +12765,8 @@ trackedFiles:
     pristine_git_object: 634bdd2f1ee9b5a4f2cd6dbab756d7f2bed63727
   src/models/components/ecommercecustomersfilter.ts:
     id: a429eeb3993f
-    last_write_checksum: sha1:904f30c69f334eee3870b02e7e5ca111ddbbbdc4
-    pristine_git_object: f6ac4afe35611445396010b35a4ac455953b521c
+    last_write_checksum: sha1:8e5641ee808fd167551855e4bde03dd6027f9a6b
+    pristine_git_object: cb05f0b26b130f4a9e3ebe6dc2aa56b7c82e5bab
   src/models/components/ecommercediscount.ts:
     id: 77926dcbf6f2
     last_write_checksum: sha1:dfed688c396c9f44c290588a6397cd980fd84c5d
@@ -24581,7 +24581,7 @@ examples:
         query:
           raw: false
           limit: 20
-          filter: {"email": "elon@musk.com", "phone_number": "111-111-1111"}
+          filter: {"email": "elon@musk.com", "phone_number": "111-111-1111", "customer_ids": ["12345", "67890"]}
           pass_through: {"search": "San Francisco"}
           fields: "id,updated_at"
         header:
@@ -31766,6 +31766,7 @@ generatedTests:
   accounting.projectsOne: "2025-10-13T00:03:48Z"
   accounting.projectsUpdate: "2025-10-13T00:03:48Z"
   accounting.projectsDelete: "2025-10-13T00:03:48Z"
+releaseNotes: "## Typescript SDK Changes:\n* `apideck.ecommerce.customers.list()`: \n  *  `request.filter` **Changed**\n"
 generatedFiles:
   - .gitattributes
   - .npmignore
