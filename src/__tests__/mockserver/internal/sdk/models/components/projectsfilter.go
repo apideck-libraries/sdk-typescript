@@ -11,11 +11,14 @@ import (
 type ProjectsFilterProjectStatus string
 
 const (
-	ProjectsFilterProjectStatusActive    ProjectsFilterProjectStatus = "active"
-	ProjectsFilterProjectStatusCompleted ProjectsFilterProjectStatus = "completed"
-	ProjectsFilterProjectStatusOnHold    ProjectsFilterProjectStatus = "on_hold"
-	ProjectsFilterProjectStatusCancelled ProjectsFilterProjectStatus = "cancelled"
-	ProjectsFilterProjectStatusDraft     ProjectsFilterProjectStatus = "draft"
+	ProjectsFilterProjectStatusActive     ProjectsFilterProjectStatus = "active"
+	ProjectsFilterProjectStatusCompleted  ProjectsFilterProjectStatus = "completed"
+	ProjectsFilterProjectStatusOnHold     ProjectsFilterProjectStatus = "on_hold"
+	ProjectsFilterProjectStatusCancelled  ProjectsFilterProjectStatus = "cancelled"
+	ProjectsFilterProjectStatusDraft      ProjectsFilterProjectStatus = "draft"
+	ProjectsFilterProjectStatusInProgress ProjectsFilterProjectStatus = "in_progress"
+	ProjectsFilterProjectStatusApproved   ProjectsFilterProjectStatus = "approved"
+	ProjectsFilterProjectStatusOther      ProjectsFilterProjectStatus = "other"
 )
 
 func (e ProjectsFilterProjectStatus) ToPointer() *ProjectsFilterProjectStatus {

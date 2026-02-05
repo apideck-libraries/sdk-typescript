@@ -86,6 +86,7 @@ test("Projects Accounting Projects Add", async () => {
       completionPercentage: 75.5,
       startDate: new Date("2024-01-15"),
       endDate: new Date("2024-06-30"),
+      completionDate: new Date("2024-08-06"),
       customer: {
         id: "12345",
         displayName: "Windsurf Shop",
@@ -223,6 +224,7 @@ test("Projects Accounting Projects One", async () => {
       completionPercentage: 75.5,
       startDate: new Date("2024-01-15"),
       endDate: new Date("2024-06-30"),
+      completionDate: new Date("2024-08-06"),
       customer: {
         id: "12345",
         displayId: "CUST00101",
@@ -347,6 +349,7 @@ test("Projects Accounting Projects Update", async () => {
       completionPercentage: 75.5,
       startDate: new Date("2024-01-15"),
       endDate: new Date("2024-06-30"),
+      completionDate: new Date("2024-08-06"),
       customer: null,
       department: {
         id: "DEPT-001",

@@ -19,8 +19,10 @@ type BadRequestResponseError struct {
 	// Contains parameter or domain specific information related to the error and why it occurred.
 	Detail *components.BadRequestResponseDetail `json:"detail,omitempty"`
 	// Link to documentation of error type
-	Ref      *string                 `json:"ref,omitempty"`
-	HTTPMeta components.HTTPMetadata `json:"-"`
+	Ref *string `json:"ref,omitempty"`
+	// Contains downstream errors returned from the connector. Only present when type_name is ConnectorExecutionError.
+	DownstreamErrors []components.DownstreamError `json:"downstream_errors,omitempty"`
+	HTTPMeta         components.HTTPMetadata      `json:"-"`
 }
 
 var _ error = &BadRequestResponseError{}

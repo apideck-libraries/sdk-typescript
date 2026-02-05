@@ -16,6 +16,9 @@ export const ProjectStatus = {
   OnHold: "on_hold",
   Cancelled: "cancelled",
   Draft: "draft",
+  InProgress: "in_progress",
+  Approved: "approved",
+  Other: "other",
 } as const;
 /**
  * Status of projects to filter by

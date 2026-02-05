@@ -16,6 +16,21 @@ import { SDKValidationError } from "./sdkvalidationerror.js";
  */
 export type Detail = string | { [k: string]: any };
 
+export type DownstreamErrors = {
+  /**
+   * Error message from the downstream provider
+   */
+  message?: string | undefined;
+  /**
+   * Additional error details
+   */
+  detail?: string | undefined;
+  /**
+   * Error code from the downstream provider
+   */
+  code?: string | undefined;
+};
+
 /**
  * Bad Request
  */
@@ -44,6 +59,10 @@ export type BadRequestResponseData = {
    * Link to documentation of error type
    */
   ref?: string | undefined;
+  /**
+   * Contains downstream errors returned from the connector. Only present when type_name is ConnectorExecutionError.
+   */
+  downstreamErrors?: Array<DownstreamErrors> | undefined;
 };
 
 /**
@@ -70,6 +89,10 @@ export class BadRequestResponse extends ApideckError {
    * Link to documentation of error type
    */
   ref?: string | undefined;
+  /**
+   * Contains downstream errors returned from the connector. Only present when type_name is ConnectorExecutionError.
+   */
+  downstreamErrors?: Array<DownstreamErrors> | undefined;
 
   /** The original data that was passed to this error instance. */
   data$: BadRequestResponseData;
@@ -86,6 +109,9 @@ export class BadRequestResponse extends ApideckError {
     if (err.typeName != null) this.typeName = err.typeName;
     if (err.detail != null) this.detail = err.detail;
     if (err.ref != null) this.ref = err.ref;
+    if (err.downstreamErrors != null) {
+      this.downstreamErrors = err.downstreamErrors;
+    }
 
     this.name = "BadRequestResponse";
   }
@@ -106,6 +132,27 @@ export function detailFromJSON(
 }
 
 /** @internal */
+export const DownstreamErrors$inboundSchema: z.ZodType<
+  DownstreamErrors,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  message: types.optional(types.string()),
+  detail: types.optional(types.string()),
+  code: types.optional(types.string()),
+});
+
+export function downstreamErrorsFromJSON(
+  jsonString: string,
+): SafeParseResult<DownstreamErrors, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => DownstreamErrors$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'DownstreamErrors' from JSON`,
+  );
+}
+
+/** @internal */
 export const BadRequestResponse$inboundSchema: z.ZodType<
   BadRequestResponse,
   z.ZodTypeDef,
@@ -117,6 +164,9 @@ export const BadRequestResponse$inboundSchema: z.ZodType<
   message: types.optional(types.string()),
   detail: types.optional(smartUnion([types.string(), z.record(z.any())])),
   ref: types.optional(types.string()),
+  downstream_errors: types.optional(
+    z.array(z.lazy(() => DownstreamErrors$inboundSchema)),
+  ),
   request$: z.instanceof(Request),
   response$: z.instanceof(Response),
   body$: z.string(),
@@ -125,6 +175,7 @@ export const BadRequestResponse$inboundSchema: z.ZodType<
     const remapped = remap$(v, {
       "status_code": "statusCode",
       "type_name": "typeName",
+      "downstream_errors": "downstreamErrors",
     });
 
     return new BadRequestResponse(remapped, {

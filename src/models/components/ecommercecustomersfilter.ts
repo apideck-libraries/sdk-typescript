@@ -14,12 +14,17 @@ export type EcommerceCustomersFilter = {
    * Customer phone number to filter on
    */
   phoneNumber?: string | undefined;
+  /**
+   * Filter by customer IDs. Specify multiple IDs as a comma-separated string.
+   */
+  customerIds?: string | undefined;
 };
 
 /** @internal */
 export type EcommerceCustomersFilter$Outbound = {
   email?: string | undefined;
   phone_number?: string | undefined;
+  customer_ids?: string | undefined;
 };
 
 /** @internal */
@@ -30,9 +35,11 @@ export const EcommerceCustomersFilter$outboundSchema: z.ZodType<
 > = z.object({
   email: z.string().optional(),
   phoneNumber: z.string().optional(),
+  customerIds: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
     phoneNumber: "phone_number",
+    customerIds: "customer_ids",
   });
 });
 

@@ -170,8 +170,10 @@ type Project struct {
 	CompletionPercentage *float64 `json:"completion_percentage,omitempty"`
 	// Start date of the project
 	StartDate *types.Date `json:"start_date,omitempty"`
-	// Expected or actual end date of the project
+	// Expected or planned end date of the project
 	EndDate *types.Date `json:"end_date,omitempty"`
+	// Actual end date of the project
+	CompletionDate *types.Date `json:"completion_date,omitempty"`
 	// The customer this entity is linked to.
 	Customer *LinkedCustomer `json:"customer,omitempty"`
 	// Department or organizational unit associated with the project
@@ -332,6 +334,13 @@ func (o *Project) GetEndDate() *types.Date {
 		return nil
 	}
 	return o.EndDate
+}
+
+func (o *Project) GetCompletionDate() *types.Date {
+	if o == nil {
+		return nil
+	}
+	return o.CompletionDate
 }
 
 func (o *Project) GetCustomer() *LinkedCustomer {
@@ -565,8 +574,10 @@ type ProjectInput struct {
 	CompletionPercentage *float64 `json:"completion_percentage,omitempty"`
 	// Start date of the project
 	StartDate *types.Date `json:"start_date,omitempty"`
-	// Expected or actual end date of the project
+	// Expected or planned end date of the project
 	EndDate *types.Date `json:"end_date,omitempty"`
+	// Actual end date of the project
+	CompletionDate *types.Date `json:"completion_date,omitempty"`
 	// The customer this entity is linked to.
 	Customer *LinkedCustomerInput `json:"customer,omitempty"`
 	// Department or organizational unit associated with the project
@@ -701,6 +712,13 @@ func (o *ProjectInput) GetEndDate() *types.Date {
 		return nil
 	}
 	return o.EndDate
+}
+
+func (o *ProjectInput) GetCompletionDate() *types.Date {
+	if o == nil {
+		return nil
+	}
+	return o.CompletionDate
 }
 
 func (o *ProjectInput) GetCustomer() *LinkedCustomerInput {
