@@ -220,9 +220,13 @@ export type Project = {
    */
   startDate?: Date | null | undefined;
   /**
-   * Expected or actual end date of the project
+   * Expected or planned end date of the project
    */
   endDate?: Date | null | undefined;
+  /**
+   * Actual end date of the project
+   */
+  completionDate?: Date | null | undefined;
   /**
    * The customer this entity is linked to.
    */
@@ -381,9 +385,13 @@ export type ProjectInput = {
    */
   startDate?: Date | null | undefined;
   /**
-   * Expected or actual end date of the project
+   * Expected or planned end date of the project
    */
   endDate?: Date | null | undefined;
+  /**
+   * Actual end date of the project
+   */
+  completionDate?: Date | null | undefined;
   /**
    * The customer this entity is linked to.
    */
@@ -650,6 +658,7 @@ export const Project$inboundSchema: z.ZodType<Project, z.ZodTypeDef, unknown> =
     completion_percentage: z.nullable(types.number()).optional(),
     start_date: z.nullable(types.date()).optional(),
     end_date: z.nullable(types.date()).optional(),
+    completion_date: z.nullable(types.date()).optional(),
     customer: z.nullable(LinkedCustomer$inboundSchema).optional(),
     department: z.nullable(z.lazy(() => ProjectDepartment$inboundSchema))
       .optional(),
@@ -693,6 +702,7 @@ export const Project$inboundSchema: z.ZodType<Project, z.ZodTypeDef, unknown> =
       "completion_percentage": "completionPercentage",
       "start_date": "startDate",
       "end_date": "endDate",
+      "completion_date": "completionDate",
       "company_id": "companyId",
       "owner_id": "ownerId",
       "parent_project": "parentProject",
@@ -742,6 +752,7 @@ export type ProjectInput$Outbound = {
   completion_percentage?: number | null | undefined;
   start_date?: string | null | undefined;
   end_date?: string | null | undefined;
+  completion_date?: string | null | undefined;
   customer?: LinkedCustomerInput$Outbound | null | undefined;
   department?: ProjectDepartment$Outbound | null | undefined;
   company_id?: string | null | undefined;
@@ -792,6 +803,9 @@ export const ProjectInput$outboundSchema: z.ZodType<
   endDate: z.nullable(
     z.date().transform(v => v.toISOString().slice(0, "YYYY-MM-DD".length)),
   ).optional(),
+  completionDate: z.nullable(
+    z.date().transform(v => v.toISOString().slice(0, "YYYY-MM-DD".length)),
+  ).optional(),
   customer: z.nullable(LinkedCustomerInput$outboundSchema).optional(),
   department: z.nullable(z.lazy(() => ProjectDepartment$outboundSchema))
     .optional(),
@@ -828,6 +842,7 @@ export const ProjectInput$outboundSchema: z.ZodType<
     completionPercentage: "completion_percentage",
     startDate: "start_date",
     endDate: "end_date",
+    completionDate: "completion_date",
     companyId: "company_id",
     ownerId: "owner_id",
     parentProject: "parent_project",

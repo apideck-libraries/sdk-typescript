@@ -71,3 +71,33 @@ func (u BadRequestResponseDetail) MarshalJSON() ([]byte, error) {
 
 	return nil, errors.New("could not marshal union type BadRequestResponseDetail: all fields are null")
 }
+
+type DownstreamError struct {
+	// Error message from the downstream provider
+	Message *string `json:"message,omitempty"`
+	// Additional error details
+	Detail *string `json:"detail,omitempty"`
+	// Error code from the downstream provider
+	Code *string `json:"code,omitempty"`
+}
+
+func (o *DownstreamError) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *DownstreamError) GetDetail() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Detail
+}
+
+func (o *DownstreamError) GetCode() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Code
+}

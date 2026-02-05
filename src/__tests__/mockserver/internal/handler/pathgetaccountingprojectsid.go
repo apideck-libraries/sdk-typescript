@@ -66,6 +66,7 @@ func testAccountingProjectsOneAccountingProjectsOne0(w http.ResponseWriter, req 
 			CompletionPercentage: types.Float64(75.5),
 			StartDate:            types.MustNewDateFromString("2024-01-15"),
 			EndDate:              types.MustNewDateFromString("2024-06-30"),
+			CompletionDate:       types.MustNewDateFromString("2024-08-06"),
 			Customer: &components.LinkedCustomer{
 				ID:          types.String("12345"),
 				DisplayID:   types.String("CUST00101"),

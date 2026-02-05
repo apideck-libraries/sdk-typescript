@@ -7,6 +7,8 @@ type EcommerceCustomersFilter struct {
 	Email *string `queryParam:"name=email"`
 	// Customer phone number to filter on
 	PhoneNumber *string `queryParam:"name=phone_number"`
+	// Filter by customer IDs. Specify multiple IDs as a comma-separated string.
+	CustomerIds *string `queryParam:"name=customer_ids"`
 }
 
 func (o *EcommerceCustomersFilter) GetEmail() *string {
@@ -21,4 +23,11 @@ func (o *EcommerceCustomersFilter) GetPhoneNumber() *string {
 		return nil
 	}
 	return o.PhoneNumber
+}
+
+func (o *EcommerceCustomersFilter) GetCustomerIds() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CustomerIds
 }
