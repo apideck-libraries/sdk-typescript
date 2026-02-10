@@ -604,6 +604,15 @@ run();
 * [list](docs/sdks/collectionusers/README.md#list) - List Users
 * [get](docs/sdks/collectionusers/README.md#get) - Get user
 
+### [Proxy](docs/sdks/proxy/README.md)
+
+* [get](docs/sdks/proxy/README.md#get) - GET
+* [options](docs/sdks/proxy/README.md#options) - OPTIONS
+* [post](docs/sdks/proxy/README.md#post) - POST
+* [put](docs/sdks/proxy/README.md#put) - PUT
+* [patch](docs/sdks/proxy/README.md#patch) - PATCH
+* [delete](docs/sdks/proxy/README.md#delete) - DELETE
+
 ### [Sms.Messages](docs/sdks/messages/README.md)
 
 * [list](docs/sdks/messages/README.md#list) - List Messages
@@ -975,6 +984,12 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`issueTrackingCollectionTicketsUpdate`](docs/sdks/collectiontickets/README.md#update) - Update Ticket
 - [`issueTrackingCollectionUsersGet`](docs/sdks/collectionusers/README.md#get) - Get user
 - [`issueTrackingCollectionUsersList`](docs/sdks/collectionusers/README.md#list) - List Users
+- [`proxyDelete`](docs/sdks/proxy/README.md#delete) - DELETE
+- [`proxyGet`](docs/sdks/proxy/README.md#get) - GET
+- [`proxyOptions`](docs/sdks/proxy/README.md#options) - OPTIONS
+- [`proxyPatch`](docs/sdks/proxy/README.md#patch) - PATCH
+- [`proxyPost`](docs/sdks/proxy/README.md#post) - POST
+- [`proxyPut`](docs/sdks/proxy/README.md#put) - PUT
 - [`smsMessagesCreate`](docs/sdks/messages/README.md#create) - Create Message
 - [`smsMessagesDelete`](docs/sdks/messages/README.md#delete) - Delete Message
 - [`smsMessagesGet`](docs/sdks/messages/README.md#get) - Get Message
@@ -1269,13 +1284,13 @@ run();
 ### Error Classes
 **Primary errors:**
 * [`ApideckError`](./src/models/errors/apideckerror.ts): The base class for HTTP error responses.
-  * [`UnauthorizedResponse`](./src/models/errors/unauthorizedresponse.ts): Unauthorized. Status code `401`.
-  * [`PaymentRequiredResponse`](./src/models/errors/paymentrequiredresponse.ts): Payment Required. Status code `402`.
+  * [`UnauthorizedResponse`](./src/models/errors/unauthorizedresponse.ts): Unauthorized. Status code `401`. *
+  * [`PaymentRequiredResponse`](./src/models/errors/paymentrequiredresponse.ts): Payment Required. Status code `402`. *
   * [`NotFoundResponse`](./src/models/errors/notfoundresponse.ts): The specified resource was not found. Status code `404`. *
   * [`BadRequestResponse`](./src/models/errors/badrequestresponse.ts): Bad Request. Status code `400`. *
   * [`UnprocessableResponse`](./src/models/errors/unprocessableresponse.ts): Unprocessable. Status code `422`. *
 
-<details><summary>Less common errors (6)</summary>
+<details><summary>Less common errors (7)</summary>
 
 <br />
 
@@ -1288,6 +1303,7 @@ run();
 
 
 **Inherit from [`ApideckError`](./src/models/errors/apideckerror.ts)**:
+* [`Unauthorized`](./src/models/errors/unauthorized.ts): Unauthorized. Status code `401`. Applicable to 6 of 311 methods.*
 * [`ResponseValidationError`](./src/models/errors/responsevalidationerror.ts): Type mismatch between the data returned from the server and the structure expected by the SDK. See `error.rawValue` for the raw value and `error.pretty()` for a nicely formatted multi-line string.
 
 </details>

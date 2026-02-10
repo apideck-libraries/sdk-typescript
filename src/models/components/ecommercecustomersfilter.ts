@@ -18,6 +18,14 @@ export type EcommerceCustomersFilter = {
    * Filter by customer IDs. Specify multiple IDs as a comma-separated string.
    */
   customerIds?: string | undefined;
+  /**
+   * Minimum date the customer was last modified
+   */
+  updatedSince?: string | undefined;
+  /**
+   * Minimum date the customer was created
+   */
+  createdSince?: string | undefined;
 };
 
 /** @internal */
@@ -25,6 +33,8 @@ export type EcommerceCustomersFilter$Outbound = {
   email?: string | undefined;
   phone_number?: string | undefined;
   customer_ids?: string | undefined;
+  updated_since?: string | undefined;
+  created_since?: string | undefined;
 };
 
 /** @internal */
@@ -36,10 +46,14 @@ export const EcommerceCustomersFilter$outboundSchema: z.ZodType<
   email: z.string().optional(),
   phoneNumber: z.string().optional(),
   customerIds: z.string().optional(),
+  updatedSince: z.string().optional(),
+  createdSince: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
     phoneNumber: "phone_number",
     customerIds: "customer_ids",
+    updatedSince: "updated_since",
+    createdSince: "created_since",
   });
 });
 

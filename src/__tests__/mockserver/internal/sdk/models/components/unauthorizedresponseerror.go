@@ -8,42 +8,42 @@ import (
 	"mockserver/internal/sdk/utils"
 )
 
-// Request - HTTP request details
-type Request struct {
+// UnauthorizedResponseRequest - HTTP request details
+type UnauthorizedResponseRequest struct {
 }
 
-func (r Request) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(r, "", false)
+func (u UnauthorizedResponseRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(u, "", false)
 }
 
-func (r *Request) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &r, "", false, nil); err != nil {
+func (u *UnauthorizedResponseRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &u, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-// Response - HTTP response details
-type Response struct {
+// UnauthorizedResponseResponse - HTTP response details
+type UnauthorizedResponseResponse struct {
 }
 
-func (r Response) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(r, "", false)
+func (u UnauthorizedResponseResponse) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(u, "", false)
 }
 
-func (r *Response) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &r, "", false, nil); err != nil {
+func (u *UnauthorizedResponseResponse) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &u, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-// Debug information including request/response details and OAuth timing metadata
-type Debug struct {
+// UnauthorizedResponseDebug - Debug information including request/response details and OAuth timing metadata
+type UnauthorizedResponseDebug struct {
 	// HTTP request details
-	Request *Request `json:"request,omitempty"`
+	Request *UnauthorizedResponseRequest `json:"request,omitempty"`
 	// HTTP response details
-	Response *Response `json:"response,omitempty"`
+	Response *UnauthorizedResponseResponse `json:"response,omitempty"`
 	// Error message from downstream provider or network layer
 	Message *string `json:"message,omitempty"`
 	// Error code (e.g., ETIMEDOUT, ECONNREFUSED)
@@ -56,60 +56,60 @@ type Debug struct {
 	CooldownRemainingMs *float64 `json:"cooldown_remaining_ms,omitempty"`
 }
 
-func (d Debug) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(d, "", false)
+func (u UnauthorizedResponseDebug) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(u, "", false)
 }
 
-func (d *Debug) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &d, "", false, nil); err != nil {
+func (u *UnauthorizedResponseDebug) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &u, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *Debug) GetRequest() *Request {
+func (o *UnauthorizedResponseDebug) GetRequest() *UnauthorizedResponseRequest {
 	if o == nil {
 		return nil
 	}
 	return o.Request
 }
 
-func (o *Debug) GetResponse() *Response {
+func (o *UnauthorizedResponseDebug) GetResponse() *UnauthorizedResponseResponse {
 	if o == nil {
 		return nil
 	}
 	return o.Response
 }
 
-func (o *Debug) GetMessage() *string {
+func (o *UnauthorizedResponseDebug) GetMessage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Message
 }
 
-func (o *Debug) GetCode() *string {
+func (o *UnauthorizedResponseDebug) GetCode() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Code
 }
 
-func (o *Debug) GetCredentialsExpireAtMs() *float64 {
+func (o *UnauthorizedResponseDebug) GetCredentialsExpireAtMs() *float64 {
 	if o == nil {
 		return nil
 	}
 	return o.CredentialsExpireAtMs
 }
 
-func (o *Debug) GetRetryAfterMs() *float64 {
+func (o *UnauthorizedResponseDebug) GetRetryAfterMs() *float64 {
 	if o == nil {
 		return nil
 	}
 	return o.RetryAfterMs
 }
 
-func (o *Debug) GetCooldownRemainingMs() *float64 {
+func (o *UnauthorizedResponseDebug) GetCooldownRemainingMs() *float64 {
 	if o == nil {
 		return nil
 	}
@@ -122,8 +122,8 @@ type UnauthorizedResponseDetail struct {
 	// Detailed error message
 	Message *string `json:"message,omitempty"`
 	// Debug information including request/response details and OAuth timing metadata
-	Debug                *Debug         `json:"debug,omitempty"`
-	AdditionalProperties map[string]any `additionalProperties:"true" json:"-"`
+	Debug                *UnauthorizedResponseDebug `json:"debug,omitempty"`
+	AdditionalProperties map[string]any             `additionalProperties:"true" json:"-"`
 }
 
 func (u UnauthorizedResponseDetail) MarshalJSON() ([]byte, error) {
@@ -151,7 +151,7 @@ func (o *UnauthorizedResponseDetail) GetMessage() *string {
 	return o.Message
 }
 
-func (o *UnauthorizedResponseDetail) GetDebug() *Debug {
+func (o *UnauthorizedResponseDetail) GetDebug() *UnauthorizedResponseDebug {
 	if o == nil {
 		return nil
 	}
