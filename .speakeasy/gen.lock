@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 7bffa198-5d29-4efa-9942-d549cc832085
 management:
-  docChecksum: 179ad4e8db1c81434203ca70d9c69104
-  docVersion: 10.23.13
-  speakeasyVersion: 1.705.0
-  generationVersion: 2.808.1
-  releaseVersion: 0.38.0
-  configChecksum: 5185abee250f7226695d032d965a9db7
+  docChecksum: 17dd0b0804183497bf670f3b2064ba68
+  docVersion: 10.23.16
+  speakeasyVersion: 1.709.3
+  generationVersion: 2.814.0
+  releaseVersion: 0.38.1
+  configChecksum: 7cfd8fc6dcc006d6dcfaf16ab99633a6
   repoURL: https://github.com/apideck-libraries/sdk-typescript.git
   installationURL: https://github.com/apideck-libraries/sdk-typescript
   published: true
 persistentEdits:
-  generation_id: 4b187795-4197-4d93-96a6-990943d8c9d3
-  pristine_commit_hash: 6baf0f5e3ef097318cc7451e952e0aa1916d04b6
-  pristine_tree_hash: 6f6db22b2eaba82581e61c63ca86f9be671117b5
+  generation_id: baea9993-e556-4869-85c5-773e566f5556
+  pristine_commit_hash: 5e5173868b10f8089d7074d9c91bcd4327874eed
+  pristine_tree_hash: ad3dfdae712499799053d744ece6987ab8c6a924
 features:
   typescript:
     acceptHeaders: 2.81.2
@@ -1411,8 +1411,8 @@ trackedFiles:
     pristine_git_object: ef4006bb85640fc65d35d20669a97ff234380722
   docs/models/components/ecommercecustomersfilter.md:
     id: acb5d029327f
-    last_write_checksum: sha1:09e497e322fb050cb150dd23892751c79cf5042f
-    pristine_git_object: 845ddb92f6a7ba9219c7629280738a8f61467ee8
+    last_write_checksum: sha1:96e14041f00bd5613ca1b4284baaf304446f0800
+    pristine_git_object: 01e8f6577a74a8fe8f78c86fe60d23d74ac6f581
   docs/models/components/ecommercecustomertype.md:
     id: 0b20c4b856ab
     last_write_checksum: sha1:38d60edd37c8ea4743841f2dd505c4a8b24fa428
@@ -3649,6 +3649,22 @@ trackedFiles:
     id: 4e667fb50a4d
     last_write_checksum: sha1:249390450fc1cafff79e3e4c997885201d0b6157
     pristine_git_object: 250200f84c851a0fc6572d38e64181a411194b56
+  docs/models/errors/detail2.md:
+    id: 83b80da2dc50
+    last_write_checksum: sha1:05f1a72eba2c0f702f6bf66ef1ca3038e6056f32
+    pristine_git_object: c3dfd0c3da021ea293cdf4dd62a1479727749ef7
+  docs/models/errors/detaildebug.md:
+    id: e7d3b62edf55
+    last_write_checksum: sha1:89784ad12f0ffdd0c93cc8de582ec442bf8d1382
+    pristine_git_object: e34ec528ebbd9dee65015596b4a0cf0047c553e6
+  docs/models/errors/detailrequest.md:
+    id: 3d9eadb0443b
+    last_write_checksum: sha1:d6f11e1a960fd2f30076a7e35182a3c39451fa50
+    pristine_git_object: a3a4db8bdec1df685ec8b13425cbc6ad1723bb9b
+  docs/models/errors/detailresponse.md:
+    id: d696469432c8
+    last_write_checksum: sha1:8c69009480ff4bb9d4d07e2e3f36f4d193bd7106
+    pristine_git_object: ced9abe513a463a799c335b87405ba3f53bd6499
   docs/models/errors/downstreamerrors.md:
     id: bc180fea1e84
     last_write_checksum: sha1:edf0bfd3419bb92a364e10127a2687d8893623e1
@@ -3677,6 +3693,14 @@ trackedFiles:
     id: 2fa699790266
     last_write_checksum: sha1:016c97123ea503cc5202771d7e9ed18d6d4d8697
     pristine_git_object: 638679713876e2cfee97ff04458c96b81714a39a
+  docs/models/errors/unauthorized.md:
+    id: 9b4414680030
+    last_write_checksum: sha1:4abfbb6cd60e881a525f65d8afd1865c631ff44e
+    pristine_git_object: 56a11aa682a7722b61f5f2a2a583a4a406e8898a
+  docs/models/errors/unauthorizeddetail.md:
+    id: bbd2a8542e44
+    last_write_checksum: sha1:680b89ba353b862bc45261eb5d04f3b891a8596e
+    pristine_git_object: c3b15b1c8f02d7e7c3f747151c398c49afab5b3f
   docs/models/errors/unauthorizedresponse.md:
     id: 324a5495ab1a
     last_write_checksum: sha1:d063b7a3daa9281ba2ad5ba037e5ad0797a544d8
@@ -6003,8 +6027,8 @@ trackedFiles:
     pristine_git_object: 5dee305dba0c36e447a53f85af9dca3fb94c089d
   docs/models/operations/ecommercecustomersallrequest.md:
     id: 7c4bc13c279a
-    last_write_checksum: sha1:b01ed36670eb77208eecf789de432c06ce69bcfb
-    pristine_git_object: d3bf3655f63bb7edfe4b908b1c3ffa9824a785b0
+    last_write_checksum: sha1:b1db5a41b40e43c92a7bcb04db433bf8d983bf1c
+    pristine_git_object: 5380361c130019c5e5aa34c54b3ec30491e38ed3
   docs/models/operations/ecommercecustomersallresponse.md:
     id: bae1237d2115
     last_write_checksum: sha1:ab4cf61cd96764767b9d6bdcdc173aedcd51421b
@@ -6949,6 +6973,98 @@ trackedFiles:
     id: 1334bfdeac3b
     last_write_checksum: sha1:82d5b65acdb75bd99ed21d9e9bd2f41e619e2b4d
     pristine_git_object: 5ca87c26ae05f4ac93997d041f5c11d9a0e63253
+  docs/models/operations/one.md:
+    id: b4b6bf675469
+    last_write_checksum: sha1:8538f47611398ef9e9517f3ba8567d9342e16dcf
+    pristine_git_object: a0da5b4f80a0a5268737f4b064050e24cc9b3edc
+  docs/models/operations/proxydeleteproxyglobals.md:
+    id: a5c35f7b9309
+    last_write_checksum: sha1:f95a90f3561d504b0020556da7c28720ba9bc100
+    pristine_git_object: 7318f59e670e1594a25043d0918b01ab21a0bdb8
+  docs/models/operations/proxydeleteproxyrequest.md:
+    id: 87a3164a6b8b
+    last_write_checksum: sha1:ce0fad6850cf201aad477565506cf7af41247fcd
+    pristine_git_object: 4d017f029f78eb06467d01d517aaaba90fe24388
+  docs/models/operations/proxydeleteproxyresponse.md:
+    id: df4a0bb99e82
+    last_write_checksum: sha1:b58d0ec4464287f276f9a599b69a56afac6e1563
+    pristine_git_object: 6d29ac0f342b4240a80f928853ac75133f4fccce
+  docs/models/operations/proxygetproxyglobals.md:
+    id: b942736499b8
+    last_write_checksum: sha1:cb54b388b5395ce9c7ab5b0187fa911782e8c707
+    pristine_git_object: 875b16c9f099392955a6cf012ebe176f5e420e2a
+  docs/models/operations/proxygetproxyrequest.md:
+    id: a536b7375a5d
+    last_write_checksum: sha1:eea12132d84b3d2eb5f9e680840d0da4dcabbdff
+    pristine_git_object: b5f496b1707b350cc5a1d03fc6580222213f955c
+  docs/models/operations/proxygetproxyresponse.md:
+    id: 967009e66f09
+    last_write_checksum: sha1:5a3e9c6f3002ee9401d323988b9b68ab9f97c7b6
+    pristine_git_object: 0ab74d34d6cff91fa0070770ef3cd84a586ffa53
+  docs/models/operations/proxyoptionsproxyglobals.md:
+    id: 4859d2c7ffb4
+    last_write_checksum: sha1:f6325d734928a35b046362b0a5abd7d3bdd129b2
+    pristine_git_object: 03da40aa2f57320b98740799607c42350b1a2195
+  docs/models/operations/proxyoptionsproxyrequest.md:
+    id: acb4a0755a57
+    last_write_checksum: sha1:8d6f5438333e32baf065396ec9d4221cd1e7213a
+    pristine_git_object: 4f982ae68037c6471a6ffcebcc13fdfb0dad76b8
+  docs/models/operations/proxyoptionsproxyresponse.md:
+    id: a25ef8821382
+    last_write_checksum: sha1:af51b55f622f24675d9649e579815f953979ab3c
+    pristine_git_object: 1ea200bd1242c9970c15630d08eb1fda571ec7b6
+  docs/models/operations/proxypatchproxyglobals.md:
+    id: 35768f573eae
+    last_write_checksum: sha1:c92543c44f2c9d1e047ea051e6d240dc0e973af4
+    pristine_git_object: 197409b4259392a9db4630792eea6f87a6485951
+  docs/models/operations/proxypatchproxyrequest.md:
+    id: 1b68291e4740
+    last_write_checksum: sha1:106a81f6b15c51fe7012b0aa68740eea82d68185
+    pristine_git_object: 69ebde128c935d16080a6b0cfa12eeafb14fe67f
+  docs/models/operations/proxypatchproxyrequestbody1.md:
+    id: "0728008240e7"
+    last_write_checksum: sha1:893569b32e9ac2dee8008a3fbae4081d27a9e568
+    pristine_git_object: 4895e95b9d2ec814012b0475e3afa86ae9b35129
+  docs/models/operations/proxypatchproxyrequestbody3.md:
+    id: 7d503f740702
+    last_write_checksum: sha1:980fcf74b0e0d5e6e88f26532e1c246caae2e68f
+    pristine_git_object: 8ae67e4336f003f528e86ddfb40d848a21823773
+  docs/models/operations/proxypatchproxyresponse.md:
+    id: a1ebcc4f4c46
+    last_write_checksum: sha1:fe17df615408489f3a94161076a60c8765f23668
+    pristine_git_object: 3bc398bf9d400addd7f0776cf8491d4634dc585a
+  docs/models/operations/proxypostproxyglobals.md:
+    id: 0140d840710c
+    last_write_checksum: sha1:217f332b0e6ebe49453154c3559cfbe731c10099
+    pristine_git_object: a123b58307983b485608c7b6142d30392f8e78b2
+  docs/models/operations/proxypostproxyrequest.md:
+    id: 07511d842c51
+    last_write_checksum: sha1:faa37403a33a6531286e9abe8d1b63aaae10ba02
+    pristine_git_object: 2106b74b14741e3ae07489e7b15b9c02804378e9
+  docs/models/operations/proxypostproxyresponse.md:
+    id: 0d6217eaf683
+    last_write_checksum: sha1:2a7d23cc989afa05a44b93e56da86c125fa7e047
+    pristine_git_object: 70fb32555c295856c45cdc50e3b96f53b189389c
+  docs/models/operations/proxyputproxyglobals.md:
+    id: 203b5ea70d48
+    last_write_checksum: sha1:be5b701c448c24c2c9bcc7af9b9c6ffc3d8fa321
+    pristine_git_object: f60d5cf5cf52f119741db9a6e7a5bb922fb03b40
+  docs/models/operations/proxyputproxyrequest.md:
+    id: 9f53dd3b3f54
+    last_write_checksum: sha1:7fd60f1ff8be86910bdb361176edbd48c8fe6269
+    pristine_git_object: 172cfbb907a0e7723b4a4deb0df42ff98d5ef7ea
+  docs/models/operations/proxyputproxyresponse.md:
+    id: 416fd65e46ad
+    last_write_checksum: sha1:4fa0cc66fb33d04448e36e14f737c5a9f3e7c6d9
+    pristine_git_object: 9454aae60f653cb5bc42e59c45a506b5bc771b66
+  docs/models/operations/requestbody1.md:
+    id: 871009b490c3
+    last_write_checksum: sha1:6e21cf1a86c305808edb867f85fde47e473d4624
+    pristine_git_object: b229b050ba3538ceab489b622faeda69bb4188a5
+  docs/models/operations/requestbody3.md:
+    id: f4bad0c7c5d5
+    last_write_checksum: sha1:7b9d49be2281fa34523c56ca98c4a4f2dffc09db
+    pristine_git_object: 0fedf977f8dc0b81f34ce6010594be332e9660ba
   docs/models/operations/smsmessagesaddglobals.md:
     id: ea942bc82d3d
     last_write_checksum: sha1:fc62ecd2343cfed1536ab1d3684da322a8b1bad7
@@ -7009,6 +7125,10 @@ trackedFiles:
     id: ca412cf40e30
     last_write_checksum: sha1:3e9d25819d66cce05bfb7340057f8be0f022a6a8
     pristine_git_object: d528845882a0de966e67663ea922bbe7b30a2bbf
+  docs/models/operations/three.md:
+    id: 9765d1cffca2
+    last_write_checksum: sha1:1467c344b15b8ed3793adbf6474513bae710a46a
+    pristine_git_object: c32bfb45f373baafd8ca4950c7a68c1781351446
   docs/models/operations/vaultconnectionconsentsallglobals.md:
     id: 0b76dc01a7d6
     last_write_checksum: sha1:40db99c3c73462de84a5248e6b69ffbe5845e0c4
@@ -7411,8 +7531,8 @@ trackedFiles:
     pristine_git_object: b8d259c3c403a54948fee0b905bd0993dd34f485
   docs/sdks/attachments/README.md:
     id: b60e6ecf628b
-    last_write_checksum: sha1:45651c3ae46815a1b79ef5e27e3850716e44ec5e
-    pristine_git_object: 3c4afac9592db45e594c340f83843396f426ddcd
+    last_write_checksum: sha1:22bc5ad0be65556a86d8f727f18f4d904bb515c5
+    pristine_git_object: c78953b85ecc3c29081e91f50db173158bfd59bd
   docs/sdks/balancesheet/README.md:
     id: b360644f6413
     last_write_checksum: sha1:e24804357efe670c796839521a4ea404562fbcdb
@@ -7653,6 +7773,10 @@ trackedFiles:
     id: 1c5f71754e17
     last_write_checksum: sha1:8d344a7771f243c8bf5a4b46234d0e0aa5b6f28a
     pristine_git_object: 2a525d72379a7688c685fb0cba3e0e3259690b3e
+  docs/sdks/proxy/README.md:
+    id: 2c72b780f1d0
+    last_write_checksum: sha1:6ac68d6bdad9cdca6f7ff090f158739f1dc5d793
+    pristine_git_object: fbd4226db63cca94e0fdf72c4d5eb16b659e1e9b
   docs/sdks/purchaseorders/README.md:
     id: bdb6c1926bcc
     last_write_checksum: sha1:8275c63fe5d08c45ba5023a9cd33b40604d13f73
@@ -7735,12 +7859,12 @@ trackedFiles:
     pristine_git_object: 3437dbb549ac891d15af546c72c9d3e8bf45dcde
   jsr.json:
     id: 7f6ab7767282
-    last_write_checksum: sha1:8e06e73a2990d094f76a26653a1fd13d6100232e
-    pristine_git_object: 45f98dbd96acf21f7f8b3515e17e15e74627e12e
+    last_write_checksum: sha1:8b73c2d8a208834f85aa42781845e7e9d60145a1
+    pristine_git_object: 396b1742cc20b0c2eabeecec2ad1d6fcb2d64b0b
   package.json:
     id: 7030d0b2f71b
-    last_write_checksum: sha1:384e3530ec16fcb4aa8c1698b89d44e773114365
-    pristine_git_object: 4406a0686d1dc19b2982609dcd8b2aa3e323cdaf
+    last_write_checksum: sha1:aabab3cd43001bd86a7299b64f97adb5bc5b9715
+    pristine_git_object: 82d02bbf6d9b2eb5fa6b5755bddaca95719df3ad
   src/__tests__/activities.test.ts:
     id: 65fa859b8f59
     last_write_checksum: sha1:04e5b12f71d6a6aa39dfa26efc143e269e7ef469
@@ -9084,7 +9208,7 @@ trackedFiles:
   src/__tests__/mockserver/internal/sdk/models/components/ecommercecustomer.go:
     last_write_checksum: sha1:ce43551e7465fbbe4f92f4c056b3d6a965571dcf
   src/__tests__/mockserver/internal/sdk/models/components/ecommercecustomersfilter.go:
-    last_write_checksum: sha1:3748ef4531a1235a9ff6cfa44155a83d618d5a00
+    last_write_checksum: sha1:6e3b575f6e18d2d0ffdf87e58a709b17bd6e3ab7
   src/__tests__/mockserver/internal/sdk/models/components/ecommercediscount.go:
     last_write_checksum: sha1:f948c9d28f545ada1a8e4d926d0893f3eb719671
   src/__tests__/mockserver/internal/sdk/models/components/ecommerceorder.go:
@@ -9683,8 +9807,10 @@ trackedFiles:
     last_write_checksum: sha1:78fd70aab6ef8a6452075c10cecc1635486ba044
   src/__tests__/mockserver/internal/sdk/models/components/trackingitem.go:
     last_write_checksum: sha1:6326960a8c13896dce618839204215fc1d7ce1ba
+  src/__tests__/mockserver/internal/sdk/models/components/unauthorizederror.go:
+    last_write_checksum: sha1:0b72b85d594b9147da4ff5e35efa999381cd28b1
   src/__tests__/mockserver/internal/sdk/models/components/unauthorizedresponseerror.go:
-    last_write_checksum: sha1:14b1bbd7ed02ee4d493f256215df331b60ddf53e
+    last_write_checksum: sha1:3a6f0746e9f5f312b1b0e3d8f126ed1b9313595a
   src/__tests__/mockserver/internal/sdk/models/components/unexpectederrorresponse.go:
     last_write_checksum: sha1:d1fd10850e2e90d5ad25786ce8ac466bc47b8d40
   src/__tests__/mockserver/internal/sdk/models/components/unifiedapiid.go:
@@ -10371,6 +10497,18 @@ trackedFiles:
     last_write_checksum: sha1:3c03d561328de8bd67cb7118dbb1ff45f14f5e31
   src/__tests__/mockserver/internal/sdk/models/operations/issuetrackingcollectionusersone.go:
     last_write_checksum: sha1:5d0907793f4c3cf1f614bbeb8b565ab3fc4a4e4e
+  src/__tests__/mockserver/internal/sdk/models/operations/proxydeleteproxy.go:
+    last_write_checksum: sha1:ee9fe0300ea880e929dabd3017d0389fcce37a09
+  src/__tests__/mockserver/internal/sdk/models/operations/proxygetproxy.go:
+    last_write_checksum: sha1:f7cd0476528139b26f1ad553daad30e53b52ab2f
+  src/__tests__/mockserver/internal/sdk/models/operations/proxyoptionsproxy.go:
+    last_write_checksum: sha1:7fc92e84a1f6ffa359ee44196617f72e5b84ff65
+  src/__tests__/mockserver/internal/sdk/models/operations/proxypatchproxy.go:
+    last_write_checksum: sha1:3a0a8152d9de194ed89dad3c52e90e71fcff0a2f
+  src/__tests__/mockserver/internal/sdk/models/operations/proxypostproxy.go:
+    last_write_checksum: sha1:5824aa65c7783b409bc281b2090d6ad7ac46a434
+  src/__tests__/mockserver/internal/sdk/models/operations/proxyputproxy.go:
+    last_write_checksum: sha1:18568dfc802be252d9f7c1e67b6d2ea0313faa3c
   src/__tests__/mockserver/internal/sdk/models/operations/smsmessagesadd.go:
     last_write_checksum: sha1:7b31581b4192ad7cc3efcc54da9fd1bc7391943e
   src/__tests__/mockserver/internal/sdk/models/operations/smsmessagesall.go:
@@ -10445,6 +10583,8 @@ trackedFiles:
     last_write_checksum: sha1:05fff59465694a82af9276ad81038f5ccd3e20cd
   src/__tests__/mockserver/internal/sdk/models/sdkerrors/paymentrequiredresponseerror.go:
     last_write_checksum: sha1:8d5edd4759d7e440dc8e65a929add44f612de62e
+  src/__tests__/mockserver/internal/sdk/models/sdkerrors/unauthorizederror.go:
+    last_write_checksum: sha1:f7ed10ff162c5ff407149fffe454e2a92f915b9f
   src/__tests__/mockserver/internal/sdk/models/sdkerrors/unauthorizedresponseerror.go:
     last_write_checksum: sha1:daff36eb7a36b3f7ea94e185dfa12a763d469ac6
   src/__tests__/mockserver/internal/sdk/models/sdkerrors/unprocessableresponseerror.go:
@@ -10523,6 +10663,10 @@ trackedFiles:
     id: c3efd228934b
     last_write_checksum: sha1:2a523745dcebb542a2deedf2befe9d721ad56882
     pristine_git_object: 9d5ead1ded52349ba6661008ee030f1bd7e1d826
+  src/__tests__/proxy.test.ts:
+    id: 03f555cbd483
+    last_write_checksum: sha1:3f0580005fba2f01fa8463a6780e9bd66e2cab1c
+    pristine_git_object: b46bb077ffcd5483c25aca71e753376c31ab0081
   src/__tests__/purchaseorders.test.ts:
     id: e545e99d3968
     last_write_checksum: sha1:ee6244918cdd82ae533f2e9a949b9ca77b0a3467
@@ -11671,6 +11815,30 @@ trackedFiles:
     id: b30c32e83860
     last_write_checksum: sha1:76a44ae95e9b229ac0fcda8378857e526df7857d
     pristine_git_object: ddedf216a18c6fe3558f50ad384eaa5be2db2717
+  src/funcs/proxyDelete.ts:
+    id: b643ac268675
+    last_write_checksum: sha1:175587f48278cb014061028ff6d55a1d2b87def4
+    pristine_git_object: 193e0c729c182c2ae2cc3b3c69030c79cf455437
+  src/funcs/proxyGet.ts:
+    id: 82c2208d75a2
+    last_write_checksum: sha1:31e22b7eb9b219187cbc0854215214b991eced23
+    pristine_git_object: ff3b7afba5c3ea500511b5140d7b33b4788bcd6b
+  src/funcs/proxyOptions.ts:
+    id: e39640e9f3d1
+    last_write_checksum: sha1:30c6b518cfd9b1d1e253c4bc7d747a59aeee4def
+    pristine_git_object: 30971c08e220d32be783f08dc4e93db3b5741e8a
+  src/funcs/proxyPatch.ts:
+    id: 3207759d30e6
+    last_write_checksum: sha1:74fe56c9b8c73a5e868195557b1047f61ac52554
+    pristine_git_object: b69ac2d86b4d1862817d04cbad98520b21210fe9
+  src/funcs/proxyPost.ts:
+    id: ec76405f2504
+    last_write_checksum: sha1:ee7becb10e2adf309c3fd4e4109b1a7fa6f639a2
+    pristine_git_object: 6a4e3aa3a5437ef32b920d23595b154fb8cb4441
+  src/funcs/proxyPut.ts:
+    id: da49f9ca6761
+    last_write_checksum: sha1:e39f206907898cf3cf215d0e199cfa8d0c6c2cf7
+    pristine_git_object: 4a68f4212b7e0201c28c150aae5b53cdf7966f86
   src/funcs/smsMessagesCreate.ts:
     id: 7cd06cdde756
     last_write_checksum: sha1:be2d3e2dda0f933fd60f46993e8fdbfe02978089
@@ -11829,8 +11997,8 @@ trackedFiles:
     pristine_git_object: 0aebd8b0a4867e35cb3348fc52921c3c0b4725b7
   src/lib/config.ts:
     id: 320761608fb3
-    last_write_checksum: sha1:e28edc856afcd1e9e118919a297db2be7dbae541
-    pristine_git_object: fed97903144f8cd3062557cf69a81f2a086d3da7
+    last_write_checksum: sha1:625eb9bec1cde6ed08f1f8903d6f6b1b6e01e761
+    pristine_git_object: cca150896d490cf675904975ae8bdf1dbe73248d
   src/lib/dlv.ts:
     id: b1988214835a
     last_write_checksum: sha1:1dd3e3fbb4550c4bf31f5ef997faff355d6f3250
@@ -12769,8 +12937,8 @@ trackedFiles:
     pristine_git_object: 634bdd2f1ee9b5a4f2cd6dbab756d7f2bed63727
   src/models/components/ecommercecustomersfilter.ts:
     id: a429eeb3993f
-    last_write_checksum: sha1:daee04e98e2e7049156152bf7ee576032116b82b
-    pristine_git_object: 9b49aa9bd51d063603e36045bc2b735d584af8df
+    last_write_checksum: sha1:4e1d9fd593a1b3c061f2ff5f54de50e742a67369
+    pristine_git_object: 611047a1d675de62e745d4317f7a07795ed9fb74
   src/models/components/ecommercediscount.ts:
     id: 77926dcbf6f2
     last_write_checksum: sha1:dfed688c396c9f44c290588a6397cd980fd84c5d
@@ -14269,8 +14437,8 @@ trackedFiles:
     pristine_git_object: b34f612124c797c2a1106b9735708f679a90b74f
   src/models/errors/index.ts:
     id: c4e22507cb83
-    last_write_checksum: sha1:bcdf41a3f9b99f6165be3b7c289ce5a7c247a52d
-    pristine_git_object: 5df94ef2e6c5c282ebd9da1b7932298c4d568acf
+    last_write_checksum: sha1:45be958cb4ae41fb36b7d5a960f40a3ea1ad0cc9
+    pristine_git_object: 0b2cdf2b17ecf5430d3c9b9e479bc465bcaf69c5
   src/models/errors/notfoundresponse.ts:
     id: 6fcf9c9f1bc1
     last_write_checksum: sha1:6ba544a86af014c99accb1d2d070d4334d1eec8d
@@ -14287,6 +14455,10 @@ trackedFiles:
     id: fb6b2b49c445
     last_write_checksum: sha1:a69da17627bcc32b820544608f3400423ea53f26
     pristine_git_object: 6826e1208a5d7b7d310535d18909646522bf0fbd
+  src/models/errors/unauthorized.ts:
+    id: 080905fc3240
+    last_write_checksum: sha1:c664114bcebfbbb18cf050ed46b97147735ac5eb
+    pristine_git_object: 4e01429606c962671092d89b1fc8c99ef69c9603
   src/models/errors/unauthorizedresponse.ts:
     id: 1425f493cf99
     last_write_checksum: sha1:ed15f03a41d828f8e7d032108f8a94aa0eefe3cb
@@ -15321,8 +15493,8 @@ trackedFiles:
     pristine_git_object: a050e482005d5e78d421d1a49e2aeb1e88430e55
   src/models/operations/index.ts:
     id: 0d9ffaf774d2
-    last_write_checksum: sha1:b970638074fce7c906af1a8a106a95de7cd6505d
-    pristine_git_object: 78318e416694e86dad943ce14e80657f200f2e74
+    last_write_checksum: sha1:b2d4bed4564965a29f44e40dcf6b7ab830ebaace
+    pristine_git_object: 0da31f5aa2f581a8acd780937288b80e47b41e7b
   src/models/operations/issuetrackingcollectionsall.ts:
     id: 983c9105664d
     last_write_checksum: sha1:9e0d1853de82f1f3a10e629bfba2e7220553d440
@@ -15383,6 +15555,30 @@ trackedFiles:
     id: eaa95f761db0
     last_write_checksum: sha1:a62638c838775f684b809f821ff8e359830ee0ba
     pristine_git_object: 5124803ec9283a2f072c26bff6191f3580dbc914
+  src/models/operations/proxydeleteproxy.ts:
+    id: 083c12fa860a
+    last_write_checksum: sha1:24f65f56a41999149093c18a92a3e517b6f0f6b2
+    pristine_git_object: ac7e27d4e0b102eb509b3b6095107f1d56ca7b9a
+  src/models/operations/proxygetproxy.ts:
+    id: b90989b84bc9
+    last_write_checksum: sha1:eb0c690bb1b2c3ce157452d31bd0edca6c4b09bf
+    pristine_git_object: d9ad197862a42a39bbfee9e3b2175371f192b6f2
+  src/models/operations/proxyoptionsproxy.ts:
+    id: 725f2e02af2c
+    last_write_checksum: sha1:b889189904a1f5468ab2e668b6a39114a15f0da2
+    pristine_git_object: 3c21bc6e125686f38d462271efbb5c1197c29238
+  src/models/operations/proxypatchproxy.ts:
+    id: 889168452ae8
+    last_write_checksum: sha1:a229064118e2166976b508922d5e962321305410
+    pristine_git_object: cb35a39bea2a994bce67432a8cc93f1bffa57fa2
+  src/models/operations/proxypostproxy.ts:
+    id: c5aba79b5dfe
+    last_write_checksum: sha1:ff9e3f1e108a2a5ba6d77bd6596002af3f3e54b4
+    pristine_git_object: ccf5a3745d1132172d5cb4849c7783c5e8f283ef
+  src/models/operations/proxyputproxy.ts:
+    id: 9e9db1cdfee7
+    last_write_checksum: sha1:5426ba771b6f509afbd1a9de9dffc467cd4b415f
+    pristine_git_object: ab59b12459124c7f86a80fda79fc9eaf99127ddc
   src/models/operations/smsmessagesadd.ts:
     id: 8379ba0bd2a1
     last_write_checksum: sha1:d7a6d776728eaaa22b444de4854c06e448e83f23
@@ -15843,6 +16039,10 @@ trackedFiles:
     id: 28088373a118
     last_write_checksum: sha1:c08652634951dcf5c270a9f645f08978c2335ea4
     pristine_git_object: 65503b70b7f17ca4f55de6fca51ac1524d37f16c
+  src/sdk/proxy.ts:
+    id: 8bce89a877ac
+    last_write_checksum: sha1:11b0e39c19176f92f0c3db9e0a623fa0a5312781
+    pristine_git_object: c98a4fc85f826d9c9494c0dc037ec2610c8874fb
   src/sdk/purchaseorders.ts:
     id: f7f676d38ab0
     last_write_checksum: sha1:501a4483a40bd0c7854e38f50b1bc00ddb6b7d0b
@@ -15853,8 +16053,8 @@ trackedFiles:
     pristine_git_object: 66af9e85395b7c697df804b0ae020dc9f3060334
   src/sdk/sdk.ts:
     id: 784571af2f69
-    last_write_checksum: sha1:199d812c7fe4fa4dd56f0089a4f64b03f94ee88f
-    pristine_git_object: 412d764d134a0806dc5210a8413f863d993f3899
+    last_write_checksum: sha1:2b6a144d2790b11d3e077cd162d44b6e50b54074
+    pristine_git_object: 43ac0bd0d099ad859f52c27c93dbfb4c64664851
   src/sdk/sessions.ts:
     id: 8dd1c8430722
     last_write_checksum: sha1:4dd7ce4a14902db5a2345857c5631a027c50e33d
@@ -24585,7 +24785,7 @@ examples:
         query:
           raw: false
           limit: 20
-          filter: {"email": "elon@musk.com", "phone_number": "111-111-1111", "customer_ids": "12345,67890"}
+          filter: {"email": "elon@musk.com", "phone_number": "111-111-1111", "customer_ids": "12345,67890", "updated_since": "2020-09-30T07:43:32.000Z", "created_since": "2020-09-30T07:43:32.000Z"}
           pass_through: {"search": "San Francisco"}
           fields: "id,updated_at"
         header:
@@ -31467,6 +31667,156 @@ examples:
           application/json: {"status_code": 422, "error": "Unprocessable Entity", "type_name": "InvalidStateError", "message": "Invalid State", "detail": "Unprocessable request, please verify your request headers and body.", "ref": "https://developers.apideck.com/errors#invalidstateerror"}
         default:
           application/json: {"status_code": 400, "error": "Bad Request", "type_name": "RequestHeadersValidationError", "message": "Invalid Params", "detail": "Missing Header: x-apideck-consumer-id", "ref": "https://developers.apideck.com/errors#unauthorizederror"}
+  proxy.getProxy:
+    speakeasy-default-proxy-get-proxy:
+      parameters:
+        header:
+          x-apideck-consumer-id: "test-consumer"
+          x-apideck-app-id: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
+          x-apideck-service-id: "close"
+          x-apideck-unified-api: "hris"
+          x-apideck-downstream-url: "https://api.close.com/api/v1/lead"
+          x-apideck-downstream-authorization: "Bearer <token>"
+      responses:
+        "200":
+          application/json: {"key": "<value>", "key1": "<value>", "key2": "<value>"}
+          application/octet-stream: "x-file: example.file"
+          application/pdf: "x-file: example.file"
+          application/xml: "<value>"
+          text/csv: "<value>"
+          text/plain: "<value>"
+        "401":
+          application/json: {"status_code": 401, "error": "Unauthorized", "type_name": "UnauthorizedError", "message": "Unauthorized Request", "detail": "Missing authentication", "ref": "https://developers.apideck.com/errors#unauthorizederror"}
+        default:
+          application/json: {"key": "<value>", "key1": "<value>"}
+          application/xml: "<value>"
+          text/html: "<value>"
+          text/plain: "<value>"
+  proxy.optionsProxy:
+    speakeasy-default-proxy-options-proxy:
+      parameters:
+        header:
+          x-apideck-consumer-id: "test-consumer"
+          x-apideck-app-id: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
+          x-apideck-service-id: "close"
+          x-apideck-unified-api: "hris"
+          x-apideck-downstream-url: "https://api.close.com/api/v1/lead"
+          x-apideck-downstream-authorization: "Bearer <token>"
+      responses:
+        "200":
+          application/json: {"key": "<value>", "key1": "<value>"}
+          application/octet-stream: "x-file: example.file"
+          application/pdf: "x-file: example.file"
+          application/xml: "<value>"
+          text/csv: "<value>"
+          text/plain: "<value>"
+        "401":
+          application/json: {"status_code": 401, "error": "Unauthorized", "type_name": "UnauthorizedError", "message": "Unauthorized Request", "detail": "Missing authentication", "ref": "https://developers.apideck.com/errors#unauthorizederror"}
+        default:
+          application/json: {"key": "<value>", "key1": "<value>", "key2": "<value>"}
+          application/xml: "<value>"
+          text/html: "<value>"
+          text/plain: "<value>"
+  proxy.postProxy:
+    speakeasy-default-proxy-post-proxy:
+      parameters:
+        header:
+          x-apideck-consumer-id: "test-consumer"
+          x-apideck-app-id: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
+          x-apideck-service-id: "close"
+          x-apideck-unified-api: "hris"
+          x-apideck-downstream-url: "https://api.close.com/api/v1/lead"
+          x-apideck-downstream-authorization: "Bearer <token>"
+      responses:
+        "200":
+          application/json: {"key": "<value>"}
+          application/octet-stream: "x-file: example.file"
+          application/pdf: "x-file: example.file"
+          application/xml: "<value>"
+          text/csv: "<value>"
+          text/plain: "<value>"
+        "401":
+          application/json: {"status_code": 401, "error": "Unauthorized", "type_name": "UnauthorizedError", "message": "Unauthorized Request", "detail": "Missing authentication", "ref": "https://developers.apideck.com/errors#unauthorizederror"}
+        default:
+          application/json: {"key": "<value>", "key1": "<value>", "key2": "<value>"}
+          application/xml: "<value>"
+          text/html: "<value>"
+          text/plain: "<value>"
+  proxy.putProxy:
+    speakeasy-default-proxy-put-proxy:
+      parameters:
+        header:
+          x-apideck-consumer-id: "test-consumer"
+          x-apideck-app-id: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
+          x-apideck-service-id: "close"
+          x-apideck-unified-api: "hris"
+          x-apideck-downstream-url: "https://api.close.com/api/v1/lead"
+          x-apideck-downstream-authorization: "Bearer <token>"
+      responses:
+        "200":
+          application/json: {"key": "<value>"}
+          application/octet-stream: "x-file: example.file"
+          application/pdf: "x-file: example.file"
+          application/xml: "<value>"
+          text/csv: "<value>"
+          text/plain: "<value>"
+        "401":
+          application/json: {"status_code": 401, "error": "Unauthorized", "type_name": "UnauthorizedError", "message": "Unauthorized Request", "detail": "Missing authentication", "ref": "https://developers.apideck.com/errors#unauthorizederror"}
+        default:
+          application/json: {"key": "<value>"}
+          application/xml: "<value>"
+          text/html: "<value>"
+          text/plain: "<value>"
+  proxy.patchProxy:
+    speakeasy-default-proxy-patch-proxy:
+      parameters:
+        header:
+          x-apideck-consumer-id: "test-consumer"
+          x-apideck-app-id: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
+          x-apideck-service-id: "close"
+          x-apideck-unified-api: "hris"
+          x-apideck-downstream-url: "https://api.close.com/api/v1/lead"
+          x-apideck-downstream-authorization: "Bearer <token>"
+      responses:
+        "200":
+          application/json: {"key": "<value>", "key1": "<value>"}
+          application/octet-stream: "x-file: example.file"
+          application/pdf: "x-file: example.file"
+          application/xml: "<value>"
+          text/csv: "<value>"
+          text/plain: "<value>"
+        "401":
+          application/json: {"status_code": 401, "error": "Unauthorized", "type_name": "UnauthorizedError", "message": "Unauthorized Request", "detail": "Missing authentication", "ref": "https://developers.apideck.com/errors#unauthorizederror"}
+        default:
+          application/json: {"key": "<value>", "key1": "<value>"}
+          application/xml: "<value>"
+          text/html: "<value>"
+          text/plain: "<value>"
+  proxy.deleteProxy:
+    speakeasy-default-proxy-delete-proxy:
+      parameters:
+        header:
+          x-apideck-consumer-id: "test-consumer"
+          x-apideck-app-id: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
+          x-apideck-service-id: "close"
+          x-apideck-unified-api: "hris"
+          x-apideck-downstream-url: "https://api.close.com/api/v1/lead"
+          x-apideck-downstream-authorization: "Bearer <token>"
+      responses:
+        "200":
+          application/json: {"key": "<value>", "key1": "<value>"}
+          application/octet-stream: "x-file: example.file"
+          application/pdf: "x-file: example.file"
+          application/xml: "<value>"
+          text/csv: "<value>"
+          text/plain: "<value>"
+        "401":
+          application/json: {"status_code": 401, "error": "Unauthorized", "type_name": "UnauthorizedError", "message": "Unauthorized Request", "detail": "Missing authentication", "ref": "https://developers.apideck.com/errors#unauthorizederror"}
+        default:
+          application/json: {"key": "<value>", "key1": "<value>", "key2": "<value>"}
+          application/xml: "<value>"
+          text/html: "<value>"
+          text/plain: "<value>"
 examplesVersion: 1.0.2
 generatedTests:
   accounting.taxRatesAll: "2025-04-22T11:14:40+01:00"
@@ -31770,7 +32120,13 @@ generatedTests:
   accounting.projectsOne: "2025-10-13T00:03:48Z"
   accounting.projectsUpdate: "2025-10-13T00:03:48Z"
   accounting.projectsDelete: "2025-10-13T00:03:48Z"
-releaseNotes: "## Typescript SDK Changes:\n* `apideck.accounting.taxRates.list()`:  `error.downstreamErrors` **Added**\n* `apideck.accounting.taxRates.create()`:  `error.downstreamErrors` **Added**\n* `apideck.accounting.taxRates.get()`:  `error.downstreamErrors` **Added**\n* `apideck.accounting.taxRates.update()`:  `error.downstreamErrors` **Added**\n* `apideck.accounting.taxRates.delete()`:  `error.downstreamErrors` **Added**\n* `apideck.accounting.bills.list()`:  `error.downstreamErrors` **Added**\n* `apideck.accounting.bills.create()`:  `error.downstreamErrors` **Added**\n* `apideck.accounting.bills.get()`:  `error.downstreamErrors` **Added**\n* `apideck.accounting.bills.update()`:  `error.downstreamErrors` **Added**\n* `apideck.accounting.bills.delete()`:  `error.downstreamErrors` **Added**\n* `apideck.accounting.invoices.list()`:  `error.downstreamErrors` **Added**\n* `apideck.accounting.invoices.create()`:  `error.downstreamErrors` **Added**\n* `apideck.accounting.invoices.get()`:  `error.downstreamErrors` **Added**\n* `apideck.accounting.invoices.update()`:  `error.downstreamErrors` **Added**\n* `apideck.accounting.invoices.delete()`:  `error.downstreamErrors` **Added**\n* `apideck.accounting.ledgerAccounts.list()`:  `error.downstreamErrors` **Added**\n* `apideck.accounting.ledgerAccounts.create()`:  `error.downstreamErrors` **Added**\n* `apideck.accounting.ledgerAccounts.get()`:  `error.downstreamErrors` **Added**\n* `apideck.accounting.ledgerAccounts.update()`:  `error.downstreamErrors` **Added**\n* `apideck.accounting.ledgerAccounts.delete()`:  `error.downstreamErrors` **Added**\n* `apideck.accounting.invoiceItems.list()`:  `error.downstreamErrors` **Added**\n* `apideck.accounting.invoiceItems.create()`:  `error.downstreamErrors` **Added**\n* `apideck.accounting.invoiceItems.get()`:  `error.downstreamErrors` **Added**\n* `apideck.accounting.invoiceItems.update()`:  `error.downstreamErrors` **Added**\n* `apideck.accounting.invoiceItems.delete()`:  `error.downstreamErrors` **Added**\n* `apideck.accounting.creditNotes.list()`:  `error.downstreamErrors` **Added**\n* `apideck.accounting.creditNotes.create()`:  `error.downstreamErrors` **Added**\n* `apideck.accounting.creditNotes.get()`:  `error.downstreamErrors` **Added**\n* `apideck.accounting.creditNotes.update()`:  `error.downstreamErrors` **Added**\n* `apideck.accounting.creditNotes.delete()`:  `error.downstreamErrors` **Added**\n* `apideck.accounting.customers.list()`:  `error.downstreamErrors` **Added**\n* `apideck.accounting.customers.create()`:  `error.downstreamErrors` **Added**\n* `apideck.accounting.customers.get()`:  `error.downstreamErrors` **Added**\n* `apideck.accounting.customers.update()`:  `error.downstreamErrors` **Added**\n* `apideck.accounting.customers.delete()`:  `error.downstreamErrors` **Added**\n* `apideck.accounting.suppliers.list()`:  `error.downstreamErrors` **Added**\n* `apideck.accounting.suppliers.create()`:  `error.downstreamErrors` **Added**\n* `apideck.accounting.suppliers.get()`:  `error.downstreamErrors` **Added**\n* `apideck.accounting.suppliers.update()`:  `error.downstreamErrors` **Added**\n* `apideck.accounting.suppliers.delete()`:  `error.downstreamErrors` **Added**\n* `apideck.accounting.payments.list()`:  `error.downstreamErrors` **Added**\n* `apideck.accounting.payments.create()`:  `error.downstreamErrors` **Added**\n* `apideck.accounting.payments.get()`:  `error.downstreamErrors` **Added**\n* `apideck.accounting.payments.update()`:  `error.downstreamErrors` **Added**\n* `apideck.accounting.payments.delete()`:  `error.downstreamErrors` **Added**\n* `apideck.accounting.companyInfo.get()`:  `error.downstreamErrors` **Added**\n* `apideck.accounting.balanceSheet.get()`:  `error.downstreamErrors` **Added**\n* `apideck.accounting.profitAndLoss.get()`:  `error.downstreamErrors` **Added**\n* `apideck.accounting.journalEntries.list()`:  `error.downstreamErrors` **Added**\n* `apideck.accounting.journalEntries.create()`:  `error.downstreamErrors` **Added**\n* `apideck.accounting.journalEntries.get()`:  `error.downstreamErrors` **Added**\n* `apideck.accounting.journalEntries.update()`:  `error.downstreamErrors` **Added**\n* `apideck.accounting.journalEntries.delete()`:  `error.downstreamErrors` **Added**\n* `apideck.accounting.purchaseOrders.list()`:  `error.downstreamErrors` **Added**\n* `apideck.accounting.purchaseOrders.create()`:  `error.downstreamErrors` **Added**\n* `apideck.accounting.purchaseOrders.get()`:  `error.downstreamErrors` **Added**\n* `apideck.accounting.purchaseOrders.update()`:  `error.downstreamErrors` **Added**\n* `apideck.accounting.purchaseOrders.delete()`:  `error.downstreamErrors` **Added**\n* `apideck.accounting.subsidiaries.list()`:  `error.downstreamErrors` **Added**\n* `apideck.accounting.subsidiaries.create()`:  `error.downstreamErrors` **Added**\n* `apideck.accounting.subsidiaries.get()`:  `error.downstreamErrors` **Added**\n* `apideck.accounting.subsidiaries.update()`:  `error.downstreamErrors` **Added**\n* `apideck.accounting.subsidiaries.delete()`:  `error.downstreamErrors` **Added**\n* `apideck.accounting.locations.list()`:  `error.downstreamErrors` **Added**\n* `apideck.accounting.locations.create()`:  `error.downstreamErrors` **Added**\n* `apideck.accounting.locations.get()`:  `error.downstreamErrors` **Added**\n* `apideck.accounting.locations.update()`:  `error.downstreamErrors` **Added**\n* `apideck.accounting.locations.delete()`:  `error.downstreamErrors` **Added**\n* `apideck.accounting.departments.list()`:  `error.downstreamErrors` **Added**\n* `apideck.accounting.departments.create()`:  `error.downstreamErrors` **Added**\n* `apideck.accounting.departments.get()`:  `error.downstreamErrors` **Added**\n* `apideck.accounting.departments.update()`:  `error.downstreamErrors` **Added**\n* `apideck.accounting.departments.delete()`:  `error.downstreamErrors` **Added**\n* `apideck.accounting.attachments.list()`:  `error.downstreamErrors` **Added**\n* `apideck.accounting.attachments.upload()`:  `error.downstreamErrors` **Added**\n* `apideck.accounting.attachments.get()`:  `error.downstreamErrors` **Added**\n* `apideck.accounting.attachments.delete()`:  `error.downstreamErrors` **Added**\n* `apideck.accounting.attachments.download()`:  `error.downstreamErrors` **Added**\n* `apideck.accounting.bankAccounts.list()`:  `error.downstreamErrors` **Added**\n* `apideck.accounting.bankAccounts.create()`:  `error.downstreamErrors` **Added**\n* `apideck.accounting.bankAccounts.get()`:  `error.downstreamErrors` **Added**\n* `apideck.accounting.bankAccounts.update()`:  `error.downstreamErrors` **Added**\n* `apideck.accounting.bankAccounts.delete()`:  `error.downstreamErrors` **Added**\n* `apideck.accounting.trackingCategories.list()`:  `error.downstreamErrors` **Added**\n* `apideck.accounting.trackingCategories.create()`:  `error.downstreamErrors` **Added**\n* `apideck.accounting.trackingCategories.get()`:  `error.downstreamErrors` **Added**\n* `apideck.accounting.trackingCategories.update()`:  `error.downstreamErrors` **Added**\n* `apideck.accounting.trackingCategories.delete()`:  `error.downstreamErrors` **Added**\n* `apideck.accounting.billPayments.list()`:  `error.downstreamErrors` **Added**\n* `apideck.accounting.billPayments.create()`:  `error.downstreamErrors` **Added**\n* `apideck.accounting.billPayments.get()`:  `error.downstreamErrors` **Added**\n* `apideck.accounting.billPayments.update()`:  `error.downstreamErrors` **Added**\n* `apideck.accounting.billPayments.delete()`:  `error.downstreamErrors` **Added**\n* `apideck.accounting.expenses.list()`:  `error.downstreamErrors` **Added**\n* `apideck.accounting.expenses.create()`:  `error.downstreamErrors` **Added**\n* `apideck.accounting.expenses.get()`:  `error.downstreamErrors` **Added**\n* `apideck.accounting.expenses.update()`:  `error.downstreamErrors` **Added**\n* `apideck.accounting.expenses.delete()`:  `error.downstreamErrors` **Added**\n* `apideck.accounting.agedCreditors.get()`:  `error.downstreamErrors` **Added**\n* `apideck.accounting.agedDebtors.get()`:  `error.downstreamErrors` **Added**\n* `apideck.accounting.bankFeedAccounts.list()`:  `error.downstreamErrors` **Added**\n* `apideck.accounting.bankFeedAccounts.create()`:  `error.downstreamErrors` **Added**\n* `apideck.accounting.bankFeedAccounts.get()`:  `error.downstreamErrors` **Added**\n* `apideck.accounting.bankFeedAccounts.update()`:  `error.downstreamErrors` **Added**\n* `apideck.accounting.bankFeedAccounts.delete()`:  `error.downstreamErrors` **Added**\n* `apideck.accounting.bankFeedStatements.list()`:  `error.downstreamErrors` **Added**\n* `apideck.accounting.bankFeedStatements.create()`:  `error.downstreamErrors` **Added**\n* `apideck.accounting.bankFeedStatements.get()`:  `error.downstreamErrors` **Added**\n* `apideck.accounting.bankFeedStatements.update()`:  `error.downstreamErrors` **Added**\n* `apideck.accounting.bankFeedStatements.delete()`:  `error.downstreamErrors` **Added**\n* `apideck.accounting.categories.list()`:  `error.downstreamErrors` **Added**\n* `apideck.accounting.categories.get()`:  `error.downstreamErrors` **Added**\n* `apideck.accounting.quotes.list()`:  `error.downstreamErrors` **Added**\n* `apideck.accounting.quotes.create()`:  `error.downstreamErrors` **Added**\n* `apideck.accounting.quotes.get()`:  `error.downstreamErrors` **Added**\n* `apideck.accounting.quotes.update()`:  `error.downstreamErrors` **Added**\n* `apideck.accounting.quotes.delete()`:  `error.downstreamErrors` **Added**\n* `apideck.accounting.projects.list()`: \n  *  `request.filter` **Changed**\n  *  `response.data[].completionDate` **Added**\n  *  `error.downstreamErrors` **Added**\n* `apideck.accounting.projects.create()`: \n  *  `request.project.completionDate` **Added**\n  *  `error.downstreamErrors` **Added**\n* `apideck.accounting.projects.get()`: \n  *  `response.data.completionDate` **Added**\n  *  `error.downstreamErrors` **Added**\n* `apideck.accounting.projects.update()`: \n  *  `request.project.completionDate` **Added**\n  *  `error.downstreamErrors` **Added**\n* `apideck.accounting.projects.delete()`:  `error.downstreamErrors` **Added**\n* `apideck.ats.jobs.list()`:  `error.downstreamErrors` **Added**\n* `apideck.ats.jobs.get()`:  `error.downstreamErrors` **Added**\n* `apideck.ats.applicants.list()`:  `error.downstreamErrors` **Added**\n* `apideck.ats.applicants.create()`:  `error.downstreamErrors` **Added**\n* `apideck.ats.applicants.get()`:  `error.downstreamErrors` **Added**\n* `apideck.ats.applicants.update()`:  `error.downstreamErrors` **Added**\n* `apideck.ats.applicants.delete()`:  `error.downstreamErrors` **Added**\n* `apideck.ats.applications.list()`:  `error.downstreamErrors` **Added**\n* `apideck.ats.applications.create()`:  `error.downstreamErrors` **Added**\n* `apideck.ats.applications.get()`:  `error.downstreamErrors` **Added**\n* `apideck.ats.applications.update()`:  `error.downstreamErrors` **Added**\n* `apideck.ats.applications.delete()`:  `error.downstreamErrors` **Added**\n* `apideck.crm.companies.list()`:  `error.downstreamErrors` **Added**\n* `apideck.crm.companies.create()`:  `error.downstreamErrors` **Added**\n* `apideck.crm.companies.get()`:  `error.downstreamErrors` **Added**\n* `apideck.crm.companies.update()`:  `error.downstreamErrors` **Added**\n* `apideck.crm.companies.delete()`:  `error.downstreamErrors` **Added**\n* `apideck.crm.contacts.list()`:  `error.downstreamErrors` **Added**\n* `apideck.crm.contacts.create()`:  `error.downstreamErrors` **Added**\n* `apideck.crm.contacts.get()`:  `error.downstreamErrors` **Added**\n* `apideck.crm.contacts.update()`:  `error.downstreamErrors` **Added**\n* `apideck.crm.contacts.delete()`:  `error.downstreamErrors` **Added**\n* `apideck.crm.opportunities.list()`:  `error.downstreamErrors` **Added**\n* `apideck.crm.opportunities.create()`:  `error.downstreamErrors` **Added**\n* `apideck.crm.opportunities.get()`:  `error.downstreamErrors` **Added**\n* `apideck.crm.opportunities.update()`:  `error.downstreamErrors` **Added**\n* `apideck.crm.opportunities.delete()`:  `error.downstreamErrors` **Added**\n* `apideck.crm.leads.list()`:  `error.downstreamErrors` **Added**\n* `apideck.crm.leads.create()`:  `error.downstreamErrors` **Added**\n* `apideck.crm.leads.get()`:  `error.downstreamErrors` **Added**\n* `apideck.crm.leads.update()`:  `error.downstreamErrors` **Added**\n* `apideck.crm.leads.delete()`:  `error.downstreamErrors` **Added**\n* `apideck.crm.pipelines.list()`:  `error.downstreamErrors` **Added**\n* `apideck.crm.pipelines.create()`:  `error.downstreamErrors` **Added**\n* `apideck.crm.pipelines.get()`:  `error.downstreamErrors` **Added**\n* `apideck.crm.pipelines.update()`:  `error.downstreamErrors` **Added**\n* `apideck.crm.pipelines.delete()`:  `error.downstreamErrors` **Added**\n* `apideck.crm.notes.list()`:  `error.downstreamErrors` **Added**\n* `apideck.crm.notes.create()`:  `error.downstreamErrors` **Added**\n* `apideck.crm.notes.get()`:  `error.downstreamErrors` **Added**\n* `apideck.crm.notes.update()`:  `error.downstreamErrors` **Added**\n* `apideck.crm.notes.delete()`:  `error.downstreamErrors` **Added**\n* `apideck.crm.users.list()`:  `error.downstreamErrors` **Added**\n* `apideck.crm.users.create()`:  `error.downstreamErrors` **Added**\n* `apideck.crm.users.get()`:  `error.downstreamErrors` **Added**\n* `apideck.crm.users.update()`:  `error.downstreamErrors` **Added**\n* `apideck.crm.users.delete()`:  `error.downstreamErrors` **Added**\n* `apideck.crm.activities.list()`:  `error.downstreamErrors` **Added**\n* `apideck.crm.activities.create()`:  `error.downstreamErrors` **Added**\n* `apideck.crm.activities.get()`:  `error.downstreamErrors` **Added**\n* `apideck.crm.activities.update()`:  `error.downstreamErrors` **Added**\n* `apideck.crm.activities.delete()`:  `error.downstreamErrors` **Added**\n* `apideck.crm.customObjectSchemas.list()`:  `error.downstreamErrors` **Added**\n* `apideck.crm.customObjectSchemas.create()`:  `error.downstreamErrors` **Added**\n* `apideck.crm.customObjectSchemas.get()`:  `error.downstreamErrors` **Added**\n* `apideck.crm.customObjectSchemas.update()`:  `error.downstreamErrors` **Added**\n* `apideck.crm.customObjectSchemas.delete()`:  `error.downstreamErrors` **Added**\n* `apideck.crm.customObjects.list()`:  `error.downstreamErrors` **Added**\n* `apideck.crm.customObjects.create()`:  `error.downstreamErrors` **Added**\n* `apideck.crm.customObjects.get()`:  `error.downstreamErrors` **Added**\n* `apideck.crm.customObjects.update()`:  `error.downstreamErrors` **Added**\n* `apideck.crm.customObjects.delete()`:  `error.downstreamErrors` **Added**\n* `apideck.ecommerce.orders.list()`:  `error.downstreamErrors` **Added**\n* `apideck.ecommerce.orders.get()`:  `error.downstreamErrors` **Added**\n* `apideck.ecommerce.products.list()`:  `error.downstreamErrors` **Added**\n* `apideck.ecommerce.products.get()`:  `error.downstreamErrors` **Added**\n* `apideck.ecommerce.customers.list()`: \n  *  `request.filter` **Changed**\n  *  `error.downstreamErrors` **Added**\n* `apideck.ecommerce.customers.get()`:  `error.downstreamErrors` **Added**\n* `apideck.ecommerce.stores.get()`:  `error.downstreamErrors` **Added**\n* `apideck.fileStorage.files.list()`:  `error.downstreamErrors` **Added**\n* `apideck.fileStorage.files.search()`:  `error.downstreamErrors` **Added**\n* `apideck.fileStorage.files.get()`:  `error.downstreamErrors` **Added**\n* `apideck.fileStorage.files.update()`:  `error.downstreamErrors` **Added**\n* `apideck.fileStorage.files.delete()`:  `error.downstreamErrors` **Added**\n* `apideck.fileStorage.files.download()`:  `error.downstreamErrors` **Added**\n* `apideck.fileStorage.files.export()`:  `error.downstreamErrors` **Added**\n* `apideck.fileStorage.folders.create()`:  `error.downstreamErrors` **Added**\n* `apideck.fileStorage.folders.get()`:  `error.downstreamErrors` **Added**\n* `apideck.fileStorage.folders.update()`:  `error.downstreamErrors` **Added**\n* `apideck.fileStorage.folders.delete()`:  `error.downstreamErrors` **Added**\n* `apideck.fileStorage.folders.copy()`:  `error.downstreamErrors` **Added**\n* `apideck.fileStorage.sharedLinks.list()`:  `error.downstreamErrors` **Added**\n* `apideck.fileStorage.sharedLinks.create()`:  `error.downstreamErrors` **Added**\n* `apideck.fileStorage.sharedLinks.get()`:  `error.downstreamErrors` **Added**\n* `apideck.fileStorage.sharedLinks.update()`:  `error.downstreamErrors` **Added**\n* `apideck.fileStorage.sharedLinks.delete()`:  `error.downstreamErrors` **Added**\n* `apideck.fileStorage.uploadSessions.create()`:  `error.downstreamErrors` **Added**\n* `apideck.fileStorage.uploadSessions.get()`:  `error.downstreamErrors` **Added**\n* `apideck.fileStorage.uploadSessions.upload()`:  `error.downstreamErrors` **Added**\n* `apideck.fileStorage.uploadSessions.delete()`:  `error.downstreamErrors` **Added**\n* `apideck.fileStorage.uploadSessions.finish()`:  `error.downstreamErrors` **Added**\n* `apideck.fileStorage.drives.list()`:  `error.downstreamErrors` **Added**\n* `apideck.fileStorage.drives.create()`:  `error.downstreamErrors` **Added**\n* `apideck.fileStorage.drives.get()`:  `error.downstreamErrors` **Added**\n* `apideck.fileStorage.drives.update()`:  `error.downstreamErrors` **Added**\n* `apideck.fileStorage.drives.delete()`:  `error.downstreamErrors` **Added**\n* `apideck.fileStorage.driveGroups.list()`:  `error.downstreamErrors` **Added**\n* `apideck.fileStorage.driveGroups.create()`:  `error.downstreamErrors` **Added**\n* `apideck.fileStorage.driveGroups.get()`:  `error.downstreamErrors` **Added**\n* `apideck.fileStorage.driveGroups.update()`:  `error.downstreamErrors` **Added**\n* `apideck.fileStorage.driveGroups.delete()`:  `error.downstreamErrors` **Added**\n* `apideck.hris.employees.list()`:  `error.downstreamErrors` **Added**\n* `apideck.hris.employees.create()`:  `error.downstreamErrors` **Added**\n* `apideck.hris.employees.get()`:  `error.downstreamErrors` **Added**\n* `apideck.hris.employees.update()`:  `error.downstreamErrors` **Added**\n* `apideck.hris.employees.delete()`:  `error.downstreamErrors` **Added**\n* `apideck.hris.companies.list()`:  `error.downstreamErrors` **Added**\n* `apideck.hris.companies.create()`:  `error.downstreamErrors` **Added**\n* `apideck.hris.companies.get()`:  `error.downstreamErrors` **Added**\n* `apideck.hris.companies.update()`:  `error.downstreamErrors` **Added**\n* `apideck.hris.companies.delete()`:  `error.downstreamErrors` **Added**\n* `apideck.hris.departments.list()`:  `error.downstreamErrors` **Added**\n* `apideck.hris.departments.create()`:  `error.downstreamErrors` **Added**\n* `apideck.hris.departments.get()`:  `error.downstreamErrors` **Added**\n* `apideck.hris.departments.update()`:  `error.downstreamErrors` **Added**\n* `apideck.hris.departments.delete()`:  `error.downstreamErrors` **Added**\n* `apideck.hris.payrolls.list()`:  `error.downstreamErrors` **Added**\n* `apideck.hris.payrolls.get()`:  `error.downstreamErrors` **Added**\n* `apideck.hris.employeePayrolls.list()`:  `error.downstreamErrors` **Added**\n* `apideck.hris.employeePayrolls.get()`:  `error.downstreamErrors` **Added**\n* `apideck.hris.employeeSchedules.list()`:  `error.downstreamErrors` **Added**\n* `apideck.hris.timeOffRequests.list()`:  `error.downstreamErrors` **Added**\n* `apideck.hris.timeOffRequests.create()`:  `error.downstreamErrors` **Added**\n* `apideck.hris.timeOffRequests.get()`:  `error.downstreamErrors` **Added**\n* `apideck.hris.timeOffRequests.update()`:  `error.downstreamErrors` **Added**\n* `apideck.hris.timeOffRequests.delete()`:  `error.downstreamErrors` **Added**\n* `apideck.sms.messages.list()`:  `error.downstreamErrors` **Added**\n* `apideck.sms.messages.create()`:  `error.downstreamErrors` **Added**\n* `apideck.sms.messages.get()`:  `error.downstreamErrors` **Added**\n* `apideck.sms.messages.update()`:  `error.downstreamErrors` **Added**\n* `apideck.sms.messages.delete()`:  `error.downstreamErrors` **Added**\n* `apideck.issueTracking.collections.list()`:  `error.downstreamErrors` **Added**\n* `apideck.issueTracking.collections.get()`:  `error.downstreamErrors` **Added**\n* `apideck.issueTracking.collectionTickets.list()`:  `error.downstreamErrors` **Added**\n* `apideck.issueTracking.collectionTickets.create()`:  `error.downstreamErrors` **Added**\n* `apideck.issueTracking.collectionTickets.get()`:  `error.downstreamErrors` **Added**\n* `apideck.issueTracking.collectionTickets.update()`:  `error.downstreamErrors` **Added**\n* `apideck.issueTracking.collectionTickets.delete()`:  `error.downstreamErrors` **Added**\n* `apideck.issueTracking.collectionTicketComments.list()`:  `error.downstreamErrors` **Added**\n* `apideck.issueTracking.collectionTicketComments.create()`:  `error.downstreamErrors` **Added**\n* `apideck.issueTracking.collectionTicketComments.get()`:  `error.downstreamErrors` **Added**\n* `apideck.issueTracking.collectionTicketComments.update()`:  `error.downstreamErrors` **Added**\n* `apideck.issueTracking.collectionTicketComments.delete()`:  `error.downstreamErrors` **Added**\n* `apideck.issueTracking.collectionUsers.list()`:  `error.downstreamErrors` **Added**\n* `apideck.issueTracking.collectionUsers.get()`:  `error.downstreamErrors` **Added**\n* `apideck.issueTracking.collectionTags.list()`:  `error.downstreamErrors` **Added**\n* `apideck.connector.connectors.list()`:  `error.downstreamErrors` **Added**\n* `apideck.connector.apis.list()`:  `error.downstreamErrors` **Added**\n* `apideck.vault.consumers.create()`:  `error.downstreamErrors` **Added**\n* `apideck.vault.consumers.list()`:  `error.downstreamErrors` **Added**\n* `apideck.vault.consumers.get()`:  `error.downstreamErrors` **Added**\n* `apideck.vault.consumers.update()`:  `error.downstreamErrors` **Added**\n* `apideck.vault.consumers.delete()`:  `error.downstreamErrors` **Added**\n* `apideck.vault.consumerRequestCounts.list()`:  `error.downstreamErrors` **Added**\n* `apideck.vault.connections.list()`:  `error.downstreamErrors` **Added**\n* `apideck.vault.connections.get()`:  `error.downstreamErrors` **Added**\n* `apideck.vault.connections.update()`:  `error.downstreamErrors` **Added**\n* `apideck.vault.connections.delete()`:  `error.downstreamErrors` **Added**\n* `apideck.vault.connections.imports()`:  `error.downstreamErrors` **Added**\n* `apideck.vault.connections.token()`:  `error.downstreamErrors` **Added**\n* `apideck.vault.validateConnection.state()`:  `error.downstreamErrors` **Added**\n* `apideck.vault.connectionConsents.list()`:  `error.downstreamErrors` **Added**\n* `apideck.vault.connectionConsent.update()`:  `error.downstreamErrors` **Added**\n* `apideck.vault.createCallback.state()`:  `error.downstreamErrors` **Added**\n* `apideck.vault.connectionSettings.list()`:  `error.downstreamErrors` **Added**\n* `apideck.vault.connectionSettings.update()`:  `error.downstreamErrors` **Added**\n* `apideck.vault.customFields.list()`:  `error.downstreamErrors` **Added**\n* `apideck.vault.connectionCustomMappings.list()`:  `error.downstreamErrors` **Added**\n* `apideck.vault.customMappings.list()`:  `error.downstreamErrors` **Added**\n* `apideck.vault.sessions.create()`:  `error.downstreamErrors` **Added**\n* `apideck.vault.logs.list()`:  `error.downstreamErrors` **Added**\n* `apideck.webhook.webhooks.list()`:  `error.downstreamErrors` **Added**\n* `apideck.webhook.webhooks.create()`:  `error.downstreamErrors` **Added**\n* `apideck.webhook.webhooks.get()`:  `error.downstreamErrors` **Added**\n* `apideck.webhook.webhooks.update()`:  `error.downstreamErrors` **Added**\n* `apideck.webhook.webhooks.delete()`:  `error.downstreamErrors` **Added**\n* `apideck.webhook.eventLogs.list()`:  `error.downstreamErrors` **Added**\n"
+  proxy.getProxy: "2026-02-10T10:09:16Z"
+  proxy.optionsProxy: "2026-02-10T10:09:16Z"
+  proxy.postProxy: "2026-02-10T10:09:16Z"
+  proxy.putProxy: "2026-02-10T10:09:16Z"
+  proxy.patchProxy: "2026-02-10T10:09:16Z"
+  proxy.deleteProxy: "2026-02-10T10:09:16Z"
+releaseNotes: "## Typescript SDK Changes:\n* `apideck.proxy.get()`: **Added**\n* `apideck.proxy.options()`: **Added**\n* `apideck.proxy.post()`: **Added**\n* `apideck.proxy.put()`: **Added**\n* `apideck.proxy.patch()`: **Added**\n* `apideck.proxy.delete()`: **Added**\n* `apideck.ecommerce.customers.list()`: \n  *  `request.filter` **Changed**\n"
 generatedFiles:
   - .gitattributes
   - .npmignore

@@ -11,6 +11,7 @@ import { Ecommerce } from "./ecommerce.js";
 import { FileStorage } from "./filestorage.js";
 import { Hris } from "./hris.js";
 import { IssueTracking } from "./issuetracking.js";
+import { Proxy } from "./proxy.js";
 import { Sms } from "./sms.js";
 import { Vault } from "./vault.js";
 import { Webhook } from "./webhook.js";
@@ -59,6 +60,11 @@ export class Apideck extends ClientSDK {
   private _connector?: Connector;
   get connector(): Connector {
     return (this._connector ??= new Connector(this._options));
+  }
+
+  private _proxy?: Proxy;
+  get proxy(): Proxy {
+    return (this._proxy ??= new Proxy(this._options));
   }
 
   private _vault?: Vault;

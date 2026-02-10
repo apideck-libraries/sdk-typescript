@@ -10,5 +10,6 @@ export * from "./notfoundresponse.js";
 export * from "./paymentrequiredresponse.js";
 export * from "./responsevalidationerror.js";
 export * from "./sdkvalidationerror.js";
+export * from "./unauthorized.js";
 export * from "./unauthorizedresponse.js";
 export * from "./unprocessableresponse.js";

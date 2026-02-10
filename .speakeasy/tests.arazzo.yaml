@@ -51916,3 +51916,195 @@ workflows:
             type: simple
     x-speakeasy-test-group: projects
     x-speakeasy-test-rebuild: true
+  - workflowId: proxy.getProxy
+    steps:
+      - stepId: test
+        operationId: proxy.getProxy
+        parameters:
+          - name: x-apideck-consumer-id
+            in: header
+            value: test-consumer
+          - name: x-apideck-app-id
+            in: header
+            value: dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX
+          - name: x-apideck-service-id
+            in: header
+            value: close
+          - name: x-apideck-unified-api
+            in: header
+            value: hris
+          - name: x-apideck-downstream-url
+            in: header
+            value: https://api.close.com/api/v1/lead
+          - name: x-apideck-downstream-authorization
+            in: header
+            value: Bearer <token>
+        successCriteria:
+          - condition: $statusCode == 200
+          - condition: $response.header.Content-Type == application/json
+          - context: $response.body
+            condition: |
+              {"key":"<value>","key1":"<value>","key2":"<value>"}
+            type: simple
+    x-speakeasy-test-group: proxy
+    x-speakeasy-test-rebuild: true
+  - workflowId: proxy.optionsProxy
+    steps:
+      - stepId: test
+        operationId: proxy.optionsProxy
+        parameters:
+          - name: x-apideck-consumer-id
+            in: header
+            value: test-consumer
+          - name: x-apideck-app-id
+            in: header
+            value: dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX
+          - name: x-apideck-service-id
+            in: header
+            value: close
+          - name: x-apideck-unified-api
+            in: header
+            value: hris
+          - name: x-apideck-downstream-url
+            in: header
+            value: https://api.close.com/api/v1/lead
+          - name: x-apideck-downstream-authorization
+            in: header
+            value: Bearer <token>
+        successCriteria:
+          - condition: $statusCode == 200
+          - condition: $response.header.Content-Type == application/json
+          - context: $response.body
+            condition: |
+              {"key":"<value>","key1":"<value>"}
+            type: simple
+    x-speakeasy-test-group: proxy
+    x-speakeasy-test-rebuild: true
+  - workflowId: proxy.postProxy
+    steps:
+      - stepId: test
+        operationId: proxy.postProxy
+        parameters:
+          - name: x-apideck-consumer-id
+            in: header
+            value: test-consumer
+          - name: x-apideck-app-id
+            in: header
+            value: dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX
+          - name: x-apideck-service-id
+            in: header
+            value: close
+          - name: x-apideck-unified-api
+            in: header
+            value: hris
+          - name: x-apideck-downstream-url
+            in: header
+            value: https://api.close.com/api/v1/lead
+          - name: x-apideck-downstream-authorization
+            in: header
+            value: Bearer <token>
+        successCriteria:
+          - condition: $statusCode == 200
+          - condition: $response.header.Content-Type == application/json
+          - context: $response.body
+            condition: |
+              {"key":"<value>"}
+            type: simple
+    x-speakeasy-test-group: proxy
+    x-speakeasy-test-rebuild: true
+  - workflowId: proxy.putProxy
+    steps:
+      - stepId: test
+        operationId: proxy.putProxy
+        parameters:
+          - name: x-apideck-consumer-id
+            in: header
+            value: test-consumer
+          - name: x-apideck-app-id
+            in: header
+            value: dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX
+          - name: x-apideck-service-id
+            in: header
+            value: close
+          - name: x-apideck-unified-api
+            in: header
+            value: hris
+          - name: x-apideck-downstream-url
+            in: header
+            value: https://api.close.com/api/v1/lead
+          - name: x-apideck-downstream-authorization
+            in: header
+            value: Bearer <token>
+        successCriteria:
+          - condition: $statusCode == 200
+          - condition: $response.header.Content-Type == application/json
+          - context: $response.body
+            condition: |
+              {"key":"<value>"}
+            type: simple
+    x-speakeasy-test-group: proxy
+    x-speakeasy-test-rebuild: true
+  - workflowId: proxy.patchProxy
+    steps:
+      - stepId: test
+        operationId: proxy.patchProxy
+        parameters:
+          - name: x-apideck-consumer-id
+            in: header
+            value: test-consumer
+          - name: x-apideck-app-id
+            in: header
+            value: dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX
+          - name: x-apideck-service-id
+            in: header
+            value: close
+          - name: x-apideck-unified-api
+            in: header
+            value: hris
+          - name: x-apideck-downstream-url
+            in: header
+            value: https://api.close.com/api/v1/lead
+          - name: x-apideck-downstream-authorization
+            in: header
+            value: Bearer <token>
+        successCriteria:
+          - condition: $statusCode == 200
+          - condition: $response.header.Content-Type == application/json
+          - context: $response.body
+            condition: |
+              {"key":"<value>","key1":"<value>"}
+            type: simple
+    x-speakeasy-test-group: proxy
+    x-speakeasy-test-rebuild: true
+  - workflowId: proxy.deleteProxy
+    steps:
+      - stepId: test
+        operationId: proxy.deleteProxy
+        parameters:
+          - name: x-apideck-consumer-id
+            in: header
+            value: test-consumer
+          - name: x-apideck-app-id
+            in: header
+            value: dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX
+          - name: x-apideck-service-id
+            in: header
+            value: close
+          - name: x-apideck-unified-api
+            in: header
+            value: hris
+          - name: x-apideck-downstream-url
+            in: header
+            value: https://api.close.com/api/v1/lead
+          - name: x-apideck-downstream-authorization
+            in: header
+            value: Bearer <token>
+        successCriteria:
+          - condition: $statusCode == 200
+          - condition: $response.header.Content-Type == application/json
+          - context: $response.body
+            condition: |
+              {"key":"<value>","key1":"<value>"}
+            type: simple
+    x-speakeasy-test-group: proxy
+    x-speakeasy-test-rebuild: true

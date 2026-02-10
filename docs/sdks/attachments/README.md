@@ -108,7 +108,7 @@ Upload attachment
 
 ### Example Usage
 
-<!-- UsageSnippet language="typescript" operationID="accounting.attachmentsUpload" method="post" path="/accounting/attachments/{reference_type}/{reference_id}" -->
+<!-- UsageSnippet language="typescript" operationID="accounting.attachmentsUpload" method="post" path="/accounting/attachments/{reference_type}/{reference_id}" example="basic" -->
 ```typescript
 import { Apideck } from "@apideck/unify";
 import { openAsBlob } from "node:fs";
@@ -122,7 +122,7 @@ const apideck = new Apideck({
 async function run() {
   const result = await apideck.accounting.attachments.upload({
     referenceType: "invoice",
-    referenceId: "123456",
+    referenceId: "12345",
     xApideckMetadata: "{\"name\":\"document.pdf\",\"description\":\"Invoice attachment\"}",
     serviceId: "salesforce",
     requestBody: await openAsBlob("example.file"),
@@ -154,7 +154,7 @@ const apideck = new ApideckCore({
 async function run() {
   const res = await accountingAttachmentsUpload(apideck, {
     referenceType: "invoice",
-    referenceId: "123456",
+    referenceId: "12345",
     xApideckMetadata: "{\"name\":\"document.pdf\",\"description\":\"Invoice attachment\"}",
     serviceId: "salesforce",
     requestBody: await openAsBlob("example.file"),
