@@ -34,6 +34,8 @@ export type ContactsFilter = {
    * Unique identifier for the owner of the contact to filter on
    */
   ownerId?: string | undefined;
+  updatedSince?: Date | undefined;
+  createdSince?: Date | undefined;
 };
 
 /** @internal */
@@ -45,6 +47,8 @@ export type ContactsFilter$Outbound = {
   phone_number?: string | undefined;
   company_id?: string | undefined;
   owner_id?: string | undefined;
+  updated_since?: string | undefined;
+  created_since?: string | undefined;
 };
 
 /** @internal */
@@ -60,6 +64,8 @@ export const ContactsFilter$outboundSchema: z.ZodType<
   phoneNumber: z.string().optional(),
   companyId: z.string().optional(),
   ownerId: z.string().optional(),
+  updatedSince: z.date().transform(v => v.toISOString()).optional(),
+  createdSince: z.date().transform(v => v.toISOString()).optional(),
 }).transform((v) => {
   return remap$(v, {
     firstName: "first_name",
@@ -67,6 +73,8 @@ export const ContactsFilter$outboundSchema: z.ZodType<
     phoneNumber: "phone_number",
     companyId: "company_id",
     ownerId: "owner_id",
+    updatedSince: "updated_since",
+    createdSince: "created_since",
   });
 });
 

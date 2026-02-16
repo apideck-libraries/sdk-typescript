@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 7bffa198-5d29-4efa-9942-d549cc832085
 management:
-  docChecksum: 17dd0b0804183497bf670f3b2064ba68
-  docVersion: 10.23.16
-  speakeasyVersion: 1.709.3
-  generationVersion: 2.814.0
-  releaseVersion: 0.38.1
-  configChecksum: 7cfd8fc6dcc006d6dcfaf16ab99633a6
+  docChecksum: 324c5a112761a7f8c856fc76717396c2
+  docVersion: 10.23.19
+  speakeasyVersion: 1.718.0
+  generationVersion: 2.824.1
+  releaseVersion: 0.38.2
+  configChecksum: 94df50b2b48bfad2d9331ba4ec68e385
   repoURL: https://github.com/apideck-libraries/sdk-typescript.git
   installationURL: https://github.com/apideck-libraries/sdk-typescript
   published: true
 persistentEdits:
-  generation_id: baea9993-e556-4869-85c5-773e566f5556
-  pristine_commit_hash: 5e5173868b10f8089d7074d9c91bcd4327874eed
-  pristine_tree_hash: ad3dfdae712499799053d744ece6987ab8c6a924
+  generation_id: d21e9b66-89ad-4fa1-ae22-b755f40c46df
+  pristine_commit_hash: aa1530420b79ae5cb677d8d9adfacf1d179778e9
+  pristine_tree_hash: 34a057a71aa52fbc37ef1aafafbb19a1ea8ee69b
 features:
   typescript:
     acceptHeaders: 2.81.2
@@ -539,8 +539,8 @@ trackedFiles:
     pristine_git_object: d2edee7d22c6252dd240b89a9c5dbd1de4190bcf
   docs/models/components/companiesfilter.md:
     id: 647b750426ef
-    last_write_checksum: sha1:4ebedbd3e696b2c5cbd666cadcf5d26b9ab2f11f
-    pristine_git_object: a6eafeead4e9b3da3127cd3a228d9d935e7f6fc5
+    last_write_checksum: sha1:cfd1ede7599c10da2d529e4c1b5d9fb6572c3dbf
+    pristine_git_object: da9b68eb1cc169e1f2589ae374fce718140acdb0
   docs/models/components/companiessort.md:
     id: 67469c57e8c9
     last_write_checksum: sha1:aad0f00cc1e986e9c186185ab03df5c48e9b3f89
@@ -703,8 +703,8 @@ trackedFiles:
     pristine_git_object: ee00bea2432c1613170cfc14f05ae28b8ac36c2d
   docs/models/components/contactsfilter.md:
     id: 532c20c78fbc
-    last_write_checksum: sha1:1cf1945c1991e688759dde4ea543505dbb6c31ae
-    pristine_git_object: 7d2f1b8ffe73f5b983808aa36b57079426463527
+    last_write_checksum: sha1:b2db85acf06a74f3a28c8e523f51bdc74fc0501f
+    pristine_git_object: d667f3a6a517412b94d5cce5252dffb00b74a886
   docs/models/components/contactssort.md:
     id: afd6c7cd7b73
     last_write_checksum: sha1:4ef75669b261835b4c4a30366950001a5bce36fe
@@ -2307,8 +2307,8 @@ trackedFiles:
     pristine_git_object: a1899c4c65a723bdb81dc2f33a2a814a5ff03b1d
   docs/models/components/invoiceitemsfilter.md:
     id: 0ad5d7b875fd
-    last_write_checksum: sha1:3d458a0daa709e3c3f19c2615bff3692645e89a7
-    pristine_git_object: f7aaac08177ce89d8f41d28331df26c93eaaa1ad
+    last_write_checksum: sha1:3bd1be0561730de61f9e63ced7995abfeb5b0e01
+    pristine_git_object: df7ba21d05220f983a624b39c818abd4ea2b4364
   docs/models/components/invoiceitemssort.md:
     id: cd8a5bb067cf
     last_write_checksum: sha1:63270851a86880d78823ec67321efcffb5ef73b7
@@ -2443,8 +2443,8 @@ trackedFiles:
     pristine_git_object: 4cc8fa01eaf7683b45a21ff7d125ebb9163abf68
   docs/models/components/leavingreason.md:
     id: 0c8fcd1b46b3
-    last_write_checksum: sha1:b287f6710b89fb31d365e9658b04690499929807
-    pristine_git_object: 86ed55796b03a6b31c10777e3bc0b3b009705b37
+    last_write_checksum: sha1:02977ca027224b25a834c78b6795b5f2e93cfc74
+    pristine_git_object: ce098c3beb0cdf7093b2249b9180168363fb306d
   docs/models/components/ledgeraccount.md:
     id: 37948e6262bb
     last_write_checksum: sha1:5bf400fb1d03ac2a0feecc21f86601c258fc5df5
@@ -4407,8 +4407,8 @@ trackedFiles:
     pristine_git_object: a5d67b0828f988948abbf7266ffa1d1ddf689171
   docs/models/operations/accountinginvoiceitemsallrequest.md:
     id: 5da36406170f
-    last_write_checksum: sha1:9a940aecd8422762600304f3d780b5470c9a3529
-    pristine_git_object: 5980beaadfb205609c46efbf95099d9f3dc439d9
+    last_write_checksum: sha1:a4ffcf19cca297863264dbbbfd4b49c330753c83
+    pristine_git_object: 607e1fbccd69f405f780300ce789385931d09bcf
   docs/models/operations/accountinginvoiceitemsallresponse.md:
     id: 7fb462f503b3
     last_write_checksum: sha1:5b1e6321fb9539dd0d3078a7bddca94ddbf50623
@@ -5499,8 +5499,8 @@ trackedFiles:
     pristine_git_object: 0f22709bc3de920eb064fb683b3b89acaf2f6e57
   docs/models/operations/crmcompaniesallrequest.md:
     id: b2bada080cfe
-    last_write_checksum: sha1:ec7f1c1eecef3201f9d0efee15fba273069dd923
-    pristine_git_object: d2ac44a542f23cc6eb71b3b1dcecbe3d8eb78226
+    last_write_checksum: sha1:b28201c282345b5c9d9847306ebe369ca3737638
+    pristine_git_object: 06e4c71e9a901703f93d22152cc11822602a362c
   docs/models/operations/crmcompaniesallresponse.md:
     id: 6067fbdbb833
     last_write_checksum: sha1:8274da333c871f0a72f3ed40524cdd6fd4900519
@@ -5559,8 +5559,8 @@ trackedFiles:
     pristine_git_object: d471c24bd57c43572ebf4829637ab3d9af5fe956
   docs/models/operations/crmcontactsallrequest.md:
     id: baa862873afb
-    last_write_checksum: sha1:45dc552b142eb6896f6f8ddd75006b3021396214
-    pristine_git_object: 42d68ee31f16dfd06e9e65514c6f413900a5e0b5
+    last_write_checksum: sha1:ee8faafee294e50e1136591c3a6ada4023f0410b
+    pristine_git_object: 03119392d7f67894c300e959af038e9cc5b63e6a
   docs/models/operations/crmcontactsallresponse.md:
     id: 41f21b8e69fd
     last_write_checksum: sha1:d433608cccd1c062f072e35fcc0fdfcd2e31a0e3
@@ -5583,8 +5583,8 @@ trackedFiles:
     pristine_git_object: 4832bc4ec12e00e3ea15f7009b0eddaaf1fd89d2
   docs/models/operations/crmcontactsonerequest.md:
     id: 600fe8496147
-    last_write_checksum: sha1:3420e11fc9901eb4bcfa3ccbc47ecccd9197038d
-    pristine_git_object: fd00ebbb23f0a95e62e9f7938df2145a6febb584
+    last_write_checksum: sha1:f175ef54a0685b39addeacdbaaf4f9840af053a4
+    pristine_git_object: 7ebca41d2e1ee13072d4d9c7c5614b347b3a0918
   docs/models/operations/crmcontactsoneresponse.md:
     id: 7e85e9d6d5f0
     last_write_checksum: sha1:f4576e67d0809222d70536f759723bc61584049f
@@ -7859,12 +7859,12 @@ trackedFiles:
     pristine_git_object: 3437dbb549ac891d15af546c72c9d3e8bf45dcde
   jsr.json:
     id: 7f6ab7767282
-    last_write_checksum: sha1:8b73c2d8a208834f85aa42781845e7e9d60145a1
-    pristine_git_object: 396b1742cc20b0c2eabeecec2ad1d6fcb2d64b0b
+    last_write_checksum: sha1:00890ab9678d524ce7f06bc06e362826a8c1c423
+    pristine_git_object: c51da287bc5f02726d34b32b9bcaf9e8864a9343
   package.json:
     id: 7030d0b2f71b
-    last_write_checksum: sha1:aabab3cd43001bd86a7299b64f97adb5bc5b9715
-    pristine_git_object: 82d02bbf6d9b2eb5fa6b5755bddaca95719df3ad
+    last_write_checksum: sha1:99d583acca64248822b8986320a4cc621f8c3d3a
+    pristine_git_object: ade2e3b7ab3402abed08bbbe8759c019b854fcf1
   src/__tests__/activities.test.ts:
     id: 65fa859b8f59
     last_write_checksum: sha1:04e5b12f71d6a6aa39dfa26efc143e269e7ef469
@@ -8882,7 +8882,7 @@ trackedFiles:
   src/__tests__/mockserver/internal/sdk/models/components/commentssort.go:
     last_write_checksum: sha1:a706ff8893522a97fa6475db07da378fc325ab3b
   src/__tests__/mockserver/internal/sdk/models/components/companiesfilter.go:
-    last_write_checksum: sha1:6577da6ca95493e51e2369da2164ce41a708d855
+    last_write_checksum: sha1:ac4667a36e2c557f244fba383cd24ce0833ae9b3
   src/__tests__/mockserver/internal/sdk/models/components/companiessort.go:
     last_write_checksum: sha1:e764b7f33bf61ad522665d9e84f87ac3a46b3707
   src/__tests__/mockserver/internal/sdk/models/components/company1.go:
@@ -8928,7 +8928,7 @@ trackedFiles:
   src/__tests__/mockserver/internal/sdk/models/components/contact.go:
     last_write_checksum: sha1:8212b39505984a6583f866d44566519ae49ad2ff
   src/__tests__/mockserver/internal/sdk/models/components/contactsfilter.go:
-    last_write_checksum: sha1:b53d9a3d0b82190cd66586693b05468c6b344b49
+    last_write_checksum: sha1:d5f343b7ee71509dfa59cbdde6bf4067c2cd9ab6
   src/__tests__/mockserver/internal/sdk/models/components/contactssort.go:
     last_write_checksum: sha1:adf2a89788d26bc8c43323f4cb48836612af5093
   src/__tests__/mockserver/internal/sdk/models/components/copyfolderrequest.go:
@@ -9230,7 +9230,7 @@ trackedFiles:
   src/__tests__/mockserver/internal/sdk/models/components/email.go:
     last_write_checksum: sha1:738736d6507c87fdfefc1d1dcde66fc165df2eb7
   src/__tests__/mockserver/internal/sdk/models/components/employee.go:
-    last_write_checksum: sha1:3abb6195f0dd4d73009be042cb3e9c7fef5c0140
+    last_write_checksum: sha1:526a137942abff7f4af86249494529e93b85a7b8
   src/__tests__/mockserver/internal/sdk/models/components/employeecompensation.go:
     last_write_checksum: sha1:614241c9e9f48dc2565032b6d2e5e60ba1dda14f
   src/__tests__/mockserver/internal/sdk/models/components/employeejob.go:
@@ -9562,7 +9562,7 @@ trackedFiles:
   src/__tests__/mockserver/internal/sdk/models/components/invoiceitemfilter.go:
     last_write_checksum: sha1:187e4887d1e104d4cb733d4f7228246dcadc395f
   src/__tests__/mockserver/internal/sdk/models/components/invoiceitemsfilter.go:
-    last_write_checksum: sha1:b9f1c48f939d5af58147317a40ffd37c0200d1d2
+    last_write_checksum: sha1:a6fc7eae9057ff64b162900a2fd8f2fa5a1bbcf7
   src/__tests__/mockserver/internal/sdk/models/components/invoiceitemssort.go:
     last_write_checksum: sha1:f3b75cbd4b6b93b202c9a412dbbf4ca41f2a46a5
   src/__tests__/mockserver/internal/sdk/models/components/invoicelineitem.go:
@@ -11997,8 +11997,8 @@ trackedFiles:
     pristine_git_object: 0aebd8b0a4867e35cb3348fc52921c3c0b4725b7
   src/lib/config.ts:
     id: 320761608fb3
-    last_write_checksum: sha1:625eb9bec1cde6ed08f1f8903d6f6b1b6e01e761
-    pristine_git_object: cca150896d490cf675904975ae8bdf1dbe73248d
+    last_write_checksum: sha1:06fb5632f1792c9b1da052495ac8ea77eb4c0d9b
+    pristine_git_object: 6fb5afb21d49ae6d21acdad92919bf85734d6ef6
   src/lib/dlv.ts:
     id: b1988214835a
     last_write_checksum: sha1:1dd3e3fbb4550c4bf31f5ef997faff355d6f3250
@@ -12285,8 +12285,8 @@ trackedFiles:
     pristine_git_object: fb6989d541c50e4ecac447551e57abf9396a7490
   src/models/components/companiesfilter.ts:
     id: a36d66c6c981
-    last_write_checksum: sha1:771684e3b6b4ce086b07d65da303f5f0e2707606
-    pristine_git_object: 12710556a433563b453b0109638f7883e23dfe43
+    last_write_checksum: sha1:7de75837e16514c834a646a624b79090af49740f
+    pristine_git_object: 1df490003f94dd564c3fb8a5c351bd0600422601
   src/models/components/companiessort.ts:
     id: 11a56b558134
     last_write_checksum: sha1:01c0ef3921e7cba203a9d265142fc5eba8a61def
@@ -12377,8 +12377,8 @@ trackedFiles:
     pristine_git_object: 22be04aaba01b16a801a68eb10149b3b1eb4865b
   src/models/components/contactsfilter.ts:
     id: 12fc4e1121e8
-    last_write_checksum: sha1:1b49b5165c83fd72d5ae20010089aaea75c00a87
-    pristine_git_object: 8e8a35b96d213d564a66876ceb4eab7cbce67f2f
+    last_write_checksum: sha1:a54bc760af9e7f50703578191548b6d9c0916453
+    pristine_git_object: 449dd8eae08f03ec49ced5441d8062440dcee8b8
   src/models/components/contactssort.ts:
     id: 61bdd4cbf810
     last_write_checksum: sha1:d77903a2eaa1465e5aeff6eb02d28691d28f8d2d
@@ -12981,8 +12981,8 @@ trackedFiles:
     pristine_git_object: f7cf3916939345d28f090a0fc8b679e347bfba62
   src/models/components/employee.ts:
     id: a35431351ad0
-    last_write_checksum: sha1:de0ed988c23c89ebd2a60867c9524ee2fb51a2eb
-    pristine_git_object: c6c1337c38465ebd1d96a2e3d9bd27b374f22da7
+    last_write_checksum: sha1:3c9779052e4aa440ef275fe58bde00f2d81dd912
+    pristine_git_object: ed79d19e68931740b2047e6702a2e0c3e7429381
   src/models/components/employeecompensation.ts:
     id: 5073032c65f1
     last_write_checksum: sha1:e55d383522184c01fc1e69db43e2b28e70538d1e
@@ -13649,8 +13649,8 @@ trackedFiles:
     pristine_git_object: 48bacfeaf24715a0f0926b651dfda67997b1be9f
   src/models/components/invoiceitemsfilter.ts:
     id: "749986494749"
-    last_write_checksum: sha1:9c2955d17ab01972333e3ab810a18cc5ee987905
-    pristine_git_object: b9336ec9a491d3caefc1263cf6181bd609a7c11f
+    last_write_checksum: sha1:925b68a2f4e7cdd6fd977a98b0b3f186ad1f937b
+    pristine_git_object: 424b4622fc4d66b74b9305c5dede525d2b7a2a96
   src/models/components/invoiceitemssort.ts:
     id: 9a0c152d1af5
     last_write_checksum: sha1:a1956f3b8adb70ce54c4d2f5ce1f0b3381f86f1b
@@ -17276,7 +17276,7 @@ examples:
         query:
           raw: false
           limit: 20
-          filter: {"name": "Widgets Large", "type": "service", "transaction_type": "sale"}
+          filter: {"updated_since": "2020-09-30T07:43:32.000Z", "name": "Widgets Large", "type": "service", "transaction_type": "sale"}
           sort: {"by": "updated_at", "direction": "desc"}
           pass_through: {"search": "San Francisco"}
           fields: "id,updated_at"
@@ -22443,7 +22443,7 @@ examples:
         query:
           raw: false
           limit: 20
-          filter: {"name": "SpaceX"}
+          filter: {"name": "SpaceX", "updated_since": "2020-09-30T07:43:32.000Z", "created_since": "2020-09-30T07:43:32.000Z"}
           sort: {"by": "created_at", "direction": "desc"}
           pass_through: {"search": "San Francisco"}
           fields: "id,updated_at"
@@ -22710,7 +22710,7 @@ examples:
         query:
           raw: false
           limit: 20
-          filter: {"first_name": "Elon", "last_name": "Musk", "email": "elon@tesla.com", "company_id": "12345", "owner_id": "12345"}
+          filter: {"first_name": "Elon", "last_name": "Musk", "email": "elon@tesla.com", "company_id": "12345", "owner_id": "12345", "updated_since": "2020-09-30T07:43:32.000Z", "created_since": "2020-09-30T07:43:32.000Z"}
           sort: {"by": "created_at", "direction": "desc"}
           pass_through: {"search": "San Francisco"}
           fields: "id,updated_at"
@@ -22819,7 +22819,7 @@ examples:
         query:
           raw: false
           fields: "id,updated_at"
-          filter: {"first_name": "Elon", "last_name": "Musk", "email": "elon@tesla.com", "company_id": "12345", "owner_id": "12345"}
+          filter: {"first_name": "Elon", "last_name": "Musk", "email": "elon@tesla.com", "company_id": "12345", "owner_id": "12345", "updated_since": "2020-09-30T07:43:32.000Z", "created_since": "2020-09-30T07:43:32.000Z"}
         header:
           x-apideck-consumer-id: "test-consumer"
           x-apideck-app-id: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
@@ -32126,7 +32126,7 @@ generatedTests:
   proxy.putProxy: "2026-02-10T10:09:16Z"
   proxy.patchProxy: "2026-02-10T10:09:16Z"
   proxy.deleteProxy: "2026-02-10T10:09:16Z"
-releaseNotes: "## Typescript SDK Changes:\n* `apideck.proxy.get()`: **Added**\n* `apideck.proxy.options()`: **Added**\n* `apideck.proxy.post()`: **Added**\n* `apideck.proxy.put()`: **Added**\n* `apideck.proxy.patch()`: **Added**\n* `apideck.proxy.delete()`: **Added**\n* `apideck.ecommerce.customers.list()`: \n  *  `request.filter` **Changed**\n"
+releaseNotes: "## Typescript SDK Changes:\n* `apideck.accounting.invoiceItems.list()`: \n  *  `request.filter` **Changed**\n* `apideck.crm.companies.list()`: \n  *  `request.filter` **Changed**\n* `apideck.crm.contacts.list()`: \n  *  `request.filter` **Changed**\n* `apideck.crm.contacts.get()`: \n  *  `request.filter` **Changed**\n* `apideck.hris.employees.list()`:  `response.data[].leavingReason.enum(retired)` **Added**\n* `apideck.hris.employees.create()`: \n  *  `request.employee.leavingReason.enum(retired)` **Added**\n* `apideck.hris.employees.get()`:  `response.data.leavingReason.enum(retired)` **Added**\n* `apideck.hris.employees.update()`: \n  *  `request.employee.leavingReason.enum(retired)` **Added**\n* `apideck.hris.employeeSchedules.list()`:  `response.data.employee.leavingReason.enum(retired)` **Added**\n"
 generatedFiles:
   - .gitattributes
   - .npmignore

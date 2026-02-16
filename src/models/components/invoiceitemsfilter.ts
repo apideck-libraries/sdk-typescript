@@ -33,6 +33,7 @@ export const TransactionType = {
 export type TransactionType = OpenEnum<typeof TransactionType>;
 
 export type InvoiceItemsFilter = {
+  updatedSince?: Date | undefined;
   /**
    * Name of Invoice Items to search for
    */
@@ -63,6 +64,7 @@ export const TransactionType$outboundSchema: z.ZodType<
 
 /** @internal */
 export type InvoiceItemsFilter$Outbound = {
+  updated_since?: string | undefined;
   name?: string | undefined;
   type?: string | null | undefined;
   transaction_type?: string | null | undefined;
@@ -74,11 +76,13 @@ export const InvoiceItemsFilter$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   InvoiceItemsFilter
 > = z.object({
+  updatedSince: z.date().transform(v => v.toISOString()).optional(),
   name: z.string().optional(),
   type: z.nullable(InvoiceItemType$outboundSchema).optional(),
   transactionType: z.nullable(TransactionType$outboundSchema).optional(),
 }).transform((v) => {
   return remap$(v, {
+    updatedSince: "updated_since",
     transactionType: "transaction_type",
   });
 });

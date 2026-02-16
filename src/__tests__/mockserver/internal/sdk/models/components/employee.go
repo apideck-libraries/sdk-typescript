@@ -15,6 +15,7 @@ const (
 	LeavingReasonDismissed  LeavingReason = "dismissed"
 	LeavingReasonResigned   LeavingReason = "resigned"
 	LeavingReasonRedundancy LeavingReason = "redundancy"
+	LeavingReasonRetired    LeavingReason = "retired"
 	LeavingReasonOther      LeavingReason = "other"
 )
 
