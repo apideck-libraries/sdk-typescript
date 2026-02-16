@@ -2,9 +2,27 @@
 
 package components
 
+import (
+	"mockserver/internal/sdk/utils"
+	"time"
+)
+
 type CompaniesFilter struct {
 	// Name of the company to filter on
-	Name *string `queryParam:"name=name"`
+	Name         *string    `queryParam:"name=name"`
+	UpdatedSince *time.Time `queryParam:"name=updated_since"`
+	CreatedSince *time.Time `queryParam:"name=created_since"`
+}
+
+func (c CompaniesFilter) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(c, "", false)
+}
+
+func (c *CompaniesFilter) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &c, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *CompaniesFilter) GetName() *string {
@@ -12,4 +30,18 @@ func (o *CompaniesFilter) GetName() *string {
 		return nil
 	}
 	return o.Name
+}
+
+func (o *CompaniesFilter) GetUpdatedSince() *time.Time {
+	if o == nil {
+		return nil
+	}
+	return o.UpdatedSince
+}
+
+func (o *CompaniesFilter) GetCreatedSince() *time.Time {
+	if o == nil {
+		return nil
+	}
+	return o.CreatedSince
 }

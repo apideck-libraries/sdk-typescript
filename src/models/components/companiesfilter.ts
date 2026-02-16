@@ -3,17 +3,22 @@
  */
 
 import * as z from "zod/v3";
+import { remap as remap$ } from "../../lib/primitives.js";
 
 export type CompaniesFilter = {
   /**
    * Name of the company to filter on
    */
   name?: string | undefined;
+  updatedSince?: Date | undefined;
+  createdSince?: Date | undefined;
 };
 
 /** @internal */
 export type CompaniesFilter$Outbound = {
   name?: string | undefined;
+  updated_since?: string | undefined;
+  created_since?: string | undefined;
 };
 
 /** @internal */
@@ -23,6 +28,13 @@ export const CompaniesFilter$outboundSchema: z.ZodType<
   CompaniesFilter
 > = z.object({
   name: z.string().optional(),
+  updatedSince: z.date().transform(v => v.toISOString()).optional(),
+  createdSince: z.date().transform(v => v.toISOString()).optional(),
+}).transform((v) => {
+  return remap$(v, {
+    updatedSince: "updated_since",
+    createdSince: "created_since",
+  });
 });
 
 export function companiesFilterToJSON(

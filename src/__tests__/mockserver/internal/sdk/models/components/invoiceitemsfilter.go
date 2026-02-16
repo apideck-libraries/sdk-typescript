@@ -2,6 +2,11 @@
 
 package components
 
+import (
+	"mockserver/internal/sdk/utils"
+	"time"
+)
+
 // InvoiceItemsFilterInvoiceItemType - The type of invoice item, indicating whether it is an inventory item, a service, or another type.
 type InvoiceItemsFilterInvoiceItemType string
 
@@ -28,12 +33,31 @@ func (e InvoiceItemsFilterTransactionType) ToPointer() *InvoiceItemsFilterTransa
 }
 
 type InvoiceItemsFilter struct {
+	UpdatedSince *time.Time `queryParam:"name=updated_since"`
 	// Name of Invoice Items to search for
 	Name *string `queryParam:"name=name"`
 	// The type of invoice item, indicating whether it is an inventory item, a service, or another type.
 	Type *InvoiceItemsFilterInvoiceItemType `queryParam:"name=type"`
 	// The kind of transaction, indicating whether it is a sales transaction or a purchase transaction.
 	TransactionType *InvoiceItemsFilterTransactionType `queryParam:"name=transaction_type"`
+}
+
+func (i InvoiceItemsFilter) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(i, "", false)
+}
+
+func (i *InvoiceItemsFilter) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &i, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (o *InvoiceItemsFilter) GetUpdatedSince() *time.Time {
+	if o == nil {
+		return nil
+	}
+	return o.UpdatedSince
 }
 
 func (o *InvoiceItemsFilter) GetName() *string {

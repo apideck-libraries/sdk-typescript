@@ -96,6 +96,7 @@ export const LeavingReason = {
   Dismissed: "dismissed",
   Resigned: "resigned",
   Redundancy: "redundancy",
+  Retired: "retired",
   Other: "other",
 } as const;
 /**
