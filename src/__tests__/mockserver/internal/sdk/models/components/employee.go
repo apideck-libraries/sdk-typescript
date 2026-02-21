@@ -75,7 +75,7 @@ func (o *EmploymentRole) GetSubType() *EmploymentSubType {
 	return o.SubType
 }
 
-type Manager struct {
+type EmployeeManager struct {
 	// A unique identifier for an object.
 	ID *string `json:"id,omitempty"`
 	// The name of the manager, often a combination of their first and last names.
@@ -90,42 +90,42 @@ type Manager struct {
 	EmploymentStatus *EmploymentStatus `json:"employment_status,omitempty"`
 }
 
-func (o *Manager) GetID() *string {
+func (o *EmployeeManager) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *Manager) GetName() *string {
+func (o *EmployeeManager) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-func (o *Manager) GetFirstName() *string {
+func (o *EmployeeManager) GetFirstName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.FirstName
 }
 
-func (o *Manager) GetLastName() *string {
+func (o *EmployeeManager) GetLastName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.LastName
 }
 
-func (o *Manager) GetEmail() *string {
+func (o *EmployeeManager) GetEmail() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Email
 }
 
-func (o *Manager) GetEmploymentStatus() *EmploymentStatus {
+func (o *EmployeeManager) GetEmploymentStatus() *EmploymentStatus {
 	if o == nil {
 		return nil
 	}
@@ -218,8 +218,8 @@ type Employee struct {
 	EmploymentStatus *EmploymentStatus `json:"employment_status,omitempty"`
 	EmploymentRole   *EmploymentRole   `json:"employment_role,omitempty"`
 	// The ethnicity of the employee
-	Ethnicity *string  `json:"ethnicity,omitempty"`
-	Manager   *Manager `json:"manager,omitempty"`
+	Ethnicity *string          `json:"ethnicity,omitempty"`
+	Manager   *EmployeeManager `json:"manager,omitempty"`
 	// Direct reports is an array of ids that reflect the individuals in an organizational hierarchy who are directly supervised by this specific employee.
 	DirectReports []string `json:"direct_reports,omitempty"`
 	// A unique identifier assigned by the government. This field is considered sensitive information and may be subject to special security and privacy restrictions.
@@ -485,7 +485,7 @@ func (o *Employee) GetEthnicity() *string {
 	return o.Ethnicity
 }
 
-func (o *Employee) GetManager() *Manager {
+func (o *Employee) GetManager() *EmployeeManager {
 	if o == nil {
 		return nil
 	}
@@ -817,8 +817,8 @@ type EmployeeInput struct {
 	EmploymentStatus *EmploymentStatus `json:"employment_status,omitempty"`
 	EmploymentRole   *EmploymentRole   `json:"employment_role,omitempty"`
 	// The ethnicity of the employee
-	Ethnicity *string  `json:"ethnicity,omitempty"`
-	Manager   *Manager `json:"manager,omitempty"`
+	Ethnicity *string          `json:"ethnicity,omitempty"`
+	Manager   *EmployeeManager `json:"manager,omitempty"`
 	// Direct reports is an array of ids that reflect the individuals in an organizational hierarchy who are directly supervised by this specific employee.
 	DirectReports []string `json:"direct_reports,omitempty"`
 	// A unique identifier assigned by the government. This field is considered sensitive information and may be subject to special security and privacy restrictions.
@@ -1067,7 +1067,7 @@ func (o *EmployeeInput) GetEthnicity() *string {
 	return o.Ethnicity
 }
 
-func (o *EmployeeInput) GetManager() *Manager {
+func (o *EmployeeInput) GetManager() *EmployeeManager {
 	if o == nil {
 		return nil
 	}

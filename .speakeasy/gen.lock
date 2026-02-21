@@ -1,26 +1,26 @@
 lockVersion: 2.0.0
 id: 7bffa198-5d29-4efa-9942-d549cc832085
 management:
-  docChecksum: 324c5a112761a7f8c856fc76717396c2
-  docVersion: 10.23.19
-  speakeasyVersion: 1.718.0
-  generationVersion: 2.824.1
-  releaseVersion: 0.38.2
-  configChecksum: 94df50b2b48bfad2d9331ba4ec68e385
+  docChecksum: e9c39bb0b4ed846e121feb7cf6c671c0
+  docVersion: 10.23.21
+  speakeasyVersion: 1.723.0
+  generationVersion: 2.835.2
+  releaseVersion: 0.38.3
+  configChecksum: 787eafe9b125dd0613a37e9842018df6
   repoURL: https://github.com/apideck-libraries/sdk-typescript.git
   installationURL: https://github.com/apideck-libraries/sdk-typescript
   published: true
 persistentEdits:
-  generation_id: d21e9b66-89ad-4fa1-ae22-b755f40c46df
-  pristine_commit_hash: aa1530420b79ae5cb677d8d9adfacf1d179778e9
-  pristine_tree_hash: 34a057a71aa52fbc37ef1aafafbb19a1ea8ee69b
+  generation_id: b2840775-6db4-4904-8983-e14e514bde12
+  pristine_commit_hash: e2f6e05ab18daf6d4d1392c202a1eb3d3718593d
+  pristine_tree_hash: 9f9de4cd4225b22d25740f9ab98bedeaf5357a47
 features:
   typescript:
     acceptHeaders: 2.81.2
     additionalDependencies: 0.1.0
     additionalProperties: 0.1.3
     constsAndDefaults: 0.1.13
-    core: 3.26.27
+    core: 3.26.31
     deepObjectParams: 0.1.0
     defaultEnabledRetries: 0.1.0
     deprecations: 2.81.1
@@ -37,7 +37,7 @@ features:
     inputOutputModels: 2.82.1
     methodServerURLs: 2.82.1
     mockServer: 0.1.1
-    nameOverrides: 2.81.2
+    nameOverrides: 2.81.4
     nullables: 0.1.1
     openEnums: 0.1.2
     pagination: 2.83.0
@@ -101,6 +101,26 @@ trackedFiles:
     id: f52e1a0665ed
     last_write_checksum: sha1:e3ee09332bbee0cdfa90c84c99ba0b0bef0b8cad
     pristine_git_object: 377505ad54595c6c0f5610525ba570a0dc7326ba
+  docs/models/components/accountingemployee.md:
+    id: 394c58f466d7
+    last_write_checksum: sha1:2017158f54ad7ffe0c8b2928200bd0e4a05ab239
+    pristine_git_object: b407bc022747a38f6d80266ac408c19b3c67afc6
+  docs/models/components/accountingemployeeinput.md:
+    id: bf01003380e4
+    last_write_checksum: sha1:1e6534304202efd46613b8bac1da84ad852bb711
+    pristine_git_object: 22da3dd0f8865c662504c76765835a55dcd16164
+  docs/models/components/accountingemployeemanager.md:
+    id: 11c2e6a4cc00
+    last_write_checksum: sha1:b6cd1ce67970be15e154e31d9aedd14713c108ed
+    pristine_git_object: 3b0c8a0c004a4e4711dc03c7a97e3274b4b73be8
+  docs/models/components/accountingemployeesfilter.md:
+    id: dd6a5dbaf1f6
+    last_write_checksum: sha1:db26dc7e90a0406893582b6b77b1d436b36863cf
+    pristine_git_object: 55b783e2d8f45f32d4815f2c06eaebf2cce4efb5
+  docs/models/components/accountingemployeesfilterstatus.md:
+    id: f5c9e1b8b129
+    last_write_checksum: sha1:6f7ebd90f958af34e6c3974f5cc5c3c0068c13b5
+    pristine_git_object: 4f0e8e570d2ebe5321d0c96ca00245ae8e26276c
   docs/models/components/accountinglocation.md:
     id: f6d00c92bdbf
     last_write_checksum: sha1:2b9814fd282e2d63226f96d3a6d2c6c33c32fd76
@@ -117,6 +137,10 @@ trackedFiles:
     id: a62835908fda
     last_write_checksum: sha1:94872102a1220e79093af40869669cd1c03b868a
     pristine_git_object: 8d6cca16640df78164ff1b9fc6c3a9e44d7270ee
+  docs/models/components/accountingperiod.md:
+    id: 8a080b210a32
+    last_write_checksum: sha1:78a842857d60891c44b6034a8d5110eb23510e8f
+    pristine_git_object: 224af60e14cf9de486c0d57b0e86d5de10ab2c55
   docs/models/components/accountstatus.md:
     id: f87a6ebbfd40
     last_write_checksum: sha1:c84a2b007184a4cd249114b1ab46bd1a52dfaa54
@@ -261,6 +285,10 @@ trackedFiles:
     id: 7d4a1fff64ca
     last_write_checksum: sha1:bbeb3f8209a5eac0eee3c174ba6040f4e174f601
     pristine_git_object: 7dc8588a3ab48d9b157de94fffc1fc145814f5d4
+  docs/models/components/approvedby.md:
+    id: 2012b7b7ae3c
+    last_write_checksum: sha1:1c044df712d8a204fa41c3a031696559a6310e4e
+    pristine_git_object: 8a0c096986bed710b37268161075ea1e50828d0c
   docs/models/components/assignee.md:
     id: 257b14503a25
     last_write_checksum: sha1:45345d41e23e799a2c3852356366e76ce1a981f4
@@ -733,6 +761,10 @@ trackedFiles:
     id: 7b42024aa42e
     last_write_checksum: sha1:bf672cbf44819174e70ecf93d81d64217c7698ae
     pristine_git_object: 2db991e9672000d50141682bcca1270873dadfcd
+  docs/models/components/createaccountingemployeeresponse.md:
+    id: d8ad3565067f
+    last_write_checksum: sha1:2fbc63302ecdda2a5357015139125d475dcbfc63
+    pristine_git_object: ab745594d5a66932cc9275b6d2265dd68d078c04
   docs/models/components/createaccountinglocationresponse.md:
     id: 2c6b55bb0f32
     last_write_checksum: sha1:4f9a00df2a99b948836388e89f911fa911c3ba83
@@ -841,6 +873,14 @@ trackedFiles:
     id: 52f504ea9ef5
     last_write_checksum: sha1:4ab142f557ca628af6612dfd914e370ab945ffd9
     pristine_git_object: f6f2659f85d3873400ad02b591b6295df89db96e
+  docs/models/components/createexpensecategoryresponse.md:
+    id: 86c5200ffd4d
+    last_write_checksum: sha1:6d9ed72cf89ab16dbfa765facefa3195622ba80e
+    pristine_git_object: 5ce61f2a30f910bf76f8c49d886a5241ffb7eaca
+  docs/models/components/createexpensereportresponse.md:
+    id: 8c1a91319fb8
+    last_write_checksum: sha1:6d0bb130a58e96646aa67749286e7d2f883a8889
+    pristine_git_object: 000c3aff9e84ddb5b5b6c9f5e9010dbf255b513e
   docs/models/components/createexpenseresponse.md:
     id: 428079563d6b
     last_write_checksum: sha1:d930437db7cb66121ceb22e2c9c233d561f45faf
@@ -1145,6 +1185,10 @@ trackedFiles:
     id: c16bdaa1cf14
     last_write_checksum: sha1:b6db1b2fe866749ad6953286bb8eb48d97cc0f19
     pristine_git_object: 176458ea92570233f5724d4e939488465f77d293
+  docs/models/components/deleteaccountingemployeeresponse.md:
+    id: 65daa4fd60c3
+    last_write_checksum: sha1:3b9d1de77ac56a82e1a7deee424fc2706afe76c1
+    pristine_git_object: a75bc2a6d32ff5c85b0e350f6695fa789ce5bc28
   docs/models/components/deleteaccountinglocationresponse.md:
     id: 4d0786ea0f2e
     last_write_checksum: sha1:068a4a83d3b5f599c5a59dcdd93497f6a1d51dcf
@@ -1237,6 +1281,14 @@ trackedFiles:
     id: 73e16183096d
     last_write_checksum: sha1:ccb125ef17ef6332de02746e322e6f2a2dd42acf
     pristine_git_object: 64654702486d8e57855e4c9d8c4d2cb65d84b9a0
+  docs/models/components/deleteexpensecategoryresponse.md:
+    id: 78b4cce71b87
+    last_write_checksum: sha1:82c9b795f2d6fa8863f198423cb239a6074d9b48
+    pristine_git_object: 08f678942ef79e3389f6fc5eb9e9c284c0acc20e
+  docs/models/components/deleteexpensereportresponse.md:
+    id: 40a7fa41a250
+    last_write_checksum: sha1:08c3dfcd61a3a2c5c992fdfde226575b869513e0
+    pristine_git_object: c77c0a3d21d2c69bf37f5e17f2fd8db4ead09392
   docs/models/components/deleteexpenseresponse.md:
     id: c33aa83568f0
     last_write_checksum: sha1:869d5313857513e5d91f44bccc71e67556a49074
@@ -1537,6 +1589,10 @@ trackedFiles:
     id: 10189d7c56dc
     last_write_checksum: sha1:1bca709d929cac5e6bc546f079c325799fe7eb3e
     pristine_git_object: ed07645ad124853453ca4555748418aace9b14d7
+  docs/models/components/employeestatus.md:
+    id: a90f2754f8bb
+    last_write_checksum: sha1:5a1eb4c15e2ba009fb81b875d865c7ac0adeaf86
+    pristine_git_object: 24496e7ad73281edfb43ee7646a1bcace525ae6e
   docs/models/components/employmentrole.md:
     id: 21e7ae798074
     last_write_checksum: sha1:891d132eee3e87c4365d8dc14a97c908abc299f1
@@ -1573,6 +1629,26 @@ trackedFiles:
     id: 745e21cd36c6
     last_write_checksum: sha1:63b3194708035a6f0e7d9b96bdc68a88346679f5
     pristine_git_object: 8a2d8676581ffcdca1a76fc952ef01bdae0c6c94
+  docs/models/components/expensecategoriesfilter.md:
+    id: b90199f3ae1c
+    last_write_checksum: sha1:ea81ddc1c74692d8e9c6959c4f1ec15031f474f5
+    pristine_git_object: d2102c510949fa9ab6c03ef89b0d83696123bea3
+  docs/models/components/expensecategoriesfilterstatus.md:
+    id: 7c00c706ed7b
+    last_write_checksum: sha1:0a8dd1d8c87a58709019a7b7c4ff137a9d18bd44
+    pristine_git_object: e34c3255f1c489b9230122fed44b3ed1b3d87a45
+  docs/models/components/expensecategory.md:
+    id: 8c90c6f7bb12
+    last_write_checksum: sha1:7b344b385ebfc7c8391a70ac2459dbd788658cae
+    pristine_git_object: 1072041b581482239432f6dbcfe054c136fc6324
+  docs/models/components/expensecategoryinput.md:
+    id: dedfec479ecb
+    last_write_checksum: sha1:6680c2c30572de651fc380097ae28b040fadb087
+    pristine_git_object: 823b4ac6905551df55b886eff8c9d17712c1a6cb
+  docs/models/components/expensecategorystatus.md:
+    id: 820819b7fea2
+    last_write_checksum: sha1:e834902545e7dbfbd193c8f0dc069a5a1d02df50
+    pristine_git_object: 2ef5645d059d6db9a9acae0a2dcbb147830de18d
   docs/models/components/expenseinput.md:
     id: 565c4d3c0b61
     last_write_checksum: sha1:cea06bd314706bfd2d2d28e67233e9b78c6d120e
@@ -1589,6 +1665,42 @@ trackedFiles:
     id: 6e77cabcd329
     last_write_checksum: sha1:11c3c47ef920fa9292cae827e8ba003d4c8c6776
     pristine_git_object: a2deaac5f0f8e099cd6e3bb9b2d6e9d5f60c22de
+  docs/models/components/expensereport.md:
+    id: 3818353fe4d5
+    last_write_checksum: sha1:1d49c6d523bf2de3279607ee9dab52a75b5676c1
+    pristine_git_object: 5d3d66a03590fa560798254657065c1fc17c1986
+  docs/models/components/expensereportemployee.md:
+    id: c03f491e1065
+    last_write_checksum: sha1:d537afd31ae41553a4c35bad4bcac53bc1819f3d
+    pristine_git_object: 15c4e225fc0bbcb6cda95ceef81621a371d2f49b
+  docs/models/components/expensereportinput.md:
+    id: 3da9830565ca
+    last_write_checksum: sha1:4199e4b1c0efa9b17f43accec1239281245d640c
+    pristine_git_object: 867e30e29fce2f5cb8abb3f3464dbbaf859bbe03
+  docs/models/components/expensereportlineitem.md:
+    id: 1d06772066a4
+    last_write_checksum: sha1:b6a11ff3574fa07981fb132a6f66aaca0f5cd572
+    pristine_git_object: f3a1fa1f2078b1e2a4b7d391df036b99354b73f8
+  docs/models/components/expensereportlineitemexpensecategory.md:
+    id: c9599781950a
+    last_write_checksum: sha1:25698cc169a7732f56a767f6aa5d2deb3dd17084
+    pristine_git_object: 2aeb12c2d41a5aa2541f021dcc46c0c4e2ec0b24
+  docs/models/components/expensereportlineiteminput.md:
+    id: 05d194cd901b
+    last_write_checksum: sha1:26e2fcfa378befb3a9f2b9c4869e6912fc9dc99f
+    pristine_git_object: c07db4a98903109ea7c949e3808d4928d30c54b1
+  docs/models/components/expensereportsfilter.md:
+    id: fbeeb54088fe
+    last_write_checksum: sha1:ed2b8addb87569da0cf5f972dcc5da35591cf952
+    pristine_git_object: dd2925c84e423522acffde39f4d214726e105805
+  docs/models/components/expensereportsfilterstatus.md:
+    id: 42003313c390
+    last_write_checksum: sha1:93d1b6b4b9b432a731f09d4bfd9ac008e8c8bab9
+    pristine_git_object: eec8dd51965edf689559def56c2d1905f89d0245
+  docs/models/components/expensereportstatus.md:
+    id: 378e8e5a7790
+    last_write_checksum: sha1:92d292d0e9b2834501c0575ec5d7d1ec3faf208d
+    pristine_git_object: 684c6e959cdb09c60b92adbe4aec6ec307fddd37
   docs/models/components/expenses.md:
     id: 9e039877296f
     last_write_checksum: sha1:73a2c9e83d3a417044029e48c0cb8684c4e2ba8c
@@ -1693,6 +1805,14 @@ trackedFiles:
     id: 9cb00f29be4d
     last_write_checksum: sha1:f9a3ba2e8c24f86b12a67e191b4b365a611a2736
     pristine_git_object: 8a0b6e376b8c0dad70bf5c8e3259986dcb769d7d
+  docs/models/components/getaccountingemployeeresponse.md:
+    id: c0c6841bf645
+    last_write_checksum: sha1:674f85b3c779ba0bc81aa536a89097fce285cf1f
+    pristine_git_object: 3c4e8ee229df1a9931598282cc7b0da01ff49612
+  docs/models/components/getaccountingemployeesresponse.md:
+    id: 78a518e2ee8b
+    last_write_checksum: sha1:cc69ad436c88e4dcbc664d0c63dfcd95bb0d319a
+    pristine_git_object: 3b9adfe095830098d5e77a0830172c5fcf00ff1f
   docs/models/components/getaccountinglocationresponse.md:
     id: fe6ac55c9815
     last_write_checksum: sha1:d14d91a736d15790913886019305449b306cb81f
@@ -1989,6 +2109,22 @@ trackedFiles:
     id: 3974ad9c4b16
     last_write_checksum: sha1:fc097ccce180c416411498cc01915b0754e6ab4b
     pristine_git_object: 11cd8ee2bf40255c7961bd4bbf383d229edbdbbd
+  docs/models/components/getexpensecategoriesresponse.md:
+    id: abfe2f16da4d
+    last_write_checksum: sha1:2687e1ad71f65f4752701630cce33ddc3850b770
+    pristine_git_object: 96b498c167f2d6b311573c09bd238ad39ec041af
+  docs/models/components/getexpensecategoryresponse.md:
+    id: 7653b582aa2d
+    last_write_checksum: sha1:7c9510bcf79a2beeb8565d149ea03dac6acee864
+    pristine_git_object: 8cd066d02be07784436fcc06d45facf1a4a1e9dc
+  docs/models/components/getexpensereportresponse.md:
+    id: c1f5cb8bde2b
+    last_write_checksum: sha1:9b962c6d1ddcd42bb6201a3fd198f2c3ac17d92c
+    pristine_git_object: d4fba6ba40a76b1c89db1e32e3971e9bd7703dd3
+  docs/models/components/getexpensereportsresponse.md:
+    id: "746366546964"
+    last_write_checksum: sha1:b169c02252159393c421e342e4759abed750c3f4
+    pristine_git_object: 312c4a7f2efbfbea2958c960ea5c1a07b52f182d
   docs/models/components/getexpenseresponse.md:
     id: 5be66ddbb35c
     last_write_checksum: sha1:17d81e3b991a1827da07726c80bbb2a515fa8f1e
@@ -2557,6 +2693,14 @@ trackedFiles:
     id: da42f42a63d3
     last_write_checksum: sha1:01f22f379cc3e7aac7bf714320b145be181d69b4
     pristine_git_object: 0af27f35127cf617512279fd3241ea71a5a7e981
+  docs/models/components/linkedsubsidiary.md:
+    id: fe9ce39b7c4e
+    last_write_checksum: sha1:01ac644d6ebf6e70c92081baa1cbc559286e620a
+    pristine_git_object: b54dd5d0f23c2dbd970e97d962b5fd8add9f0655
+  docs/models/components/linkedsubsidiaryinput.md:
+    id: a63f280bc70d
+    last_write_checksum: sha1:c7d53378398f6c88d8d51d1879dc34eee2f40228
+    pristine_git_object: db868c81f75852472b7c65127b96a9241ee5a4ae
   docs/models/components/linkedsupplier.md:
     id: cb26284ebb63
     last_write_checksum: sha1:18c57344d9573f61f752ded73ca835a258318039
@@ -3321,6 +3465,10 @@ trackedFiles:
     id: f7a1283fbc44
     last_write_checksum: sha1:164d2a81517f2ac8af2229ff5c741918f8fd1c75
     pristine_git_object: 7db21802b9a08ed330cc13de16730be6ed448df0
+  docs/models/components/updateaccountingemployeeresponse.md:
+    id: 7255e9425017
+    last_write_checksum: sha1:e5e3fc8d36df64afeb2af23ad9bddaf1961a1145
+    pristine_git_object: 4687d804ffc6a249f33cf27c0a80afa0aa5bc767
   docs/models/components/updateaccountinglocationresponse.md:
     id: afc5f5d12dff
     last_write_checksum: sha1:888c512b71f64b7e335358d0355486859f1a6e79
@@ -3425,6 +3573,14 @@ trackedFiles:
     id: ee12ae528a7e
     last_write_checksum: sha1:740bcf55e3c2b382bb49334778d700b6891546f5
     pristine_git_object: 6050065aafe1a7c864ec0f0204cac0162ab2633d
+  docs/models/components/updateexpensecategoryresponse.md:
+    id: d116d4c70372
+    last_write_checksum: sha1:9cb418584276223cabd2ac9850075415bb3fc4da
+    pristine_git_object: 7e2e53862f87918afcda57b9b4d52a42cf0f1003
+  docs/models/components/updateexpensereportresponse.md:
+    id: d470fb468063
+    last_write_checksum: sha1:ecd95de2809f1bf42f0a25bac9a4963875f883e5
+    pristine_git_object: cb7e103c7f7b9b263f93e7012ff917942e62a6cf
   docs/models/components/updateexpenseresponse.md:
     id: 02aec80bc9dc
     last_write_checksum: sha1:7e55ce2c066239c4ce63035a471b57252334cd93
@@ -4329,6 +4485,186 @@ trackedFiles:
     id: ad731fb4aef0
     last_write_checksum: sha1:4aec4635ab049848e1710890d2a0f12ae5fd007e
     pristine_git_object: 457d37aa1b0f925718bd02d7fbd8fe4bc0db4038
+  docs/models/operations/accountingemployeesaddglobals.md:
+    id: 25c2473555bd
+    last_write_checksum: sha1:963bba6d1059418f061e5f5f7d7a5bf23f52295e
+    pristine_git_object: 344746cfa4e3ba5a98aad8e5b8e7ed1cd1739c53
+  docs/models/operations/accountingemployeesaddrequest.md:
+    id: 3a21f6b24633
+    last_write_checksum: sha1:3e22a4bda0090219fcd6e2fb1a7c1a0936672640
+    pristine_git_object: 4204034b1351becb53eea66f68c0bb2d5644dbab
+  docs/models/operations/accountingemployeesaddresponse.md:
+    id: 63a34192c68f
+    last_write_checksum: sha1:8a7fe371c6e21a9e90ed84148117d3bb397683cc
+    pristine_git_object: fb5abbdb3ff0ef7327f638db753dfe0e09d71b43
+  docs/models/operations/accountingemployeesallglobals.md:
+    id: a8dde06fa89b
+    last_write_checksum: sha1:831a1a33ae251bfc295467d6b7dae953a87cdbbb
+    pristine_git_object: e28de9d730ccf3c5f919b50c4381a4ab639ed6fb
+  docs/models/operations/accountingemployeesallrequest.md:
+    id: c98971dcba7a
+    last_write_checksum: sha1:25dc37ea15d81a718973e6d049cf3e0b99050f61
+    pristine_git_object: d74fb337ab3fabb60386ae387eedba2b93c311ad
+  docs/models/operations/accountingemployeesallresponse.md:
+    id: 1fce46f11ecc
+    last_write_checksum: sha1:ea646be99249287f5f13bc927d3ea730e45d179f
+    pristine_git_object: 085154ecc788194b16aecb087e9803e4f50e89c7
+  docs/models/operations/accountingemployeesdeleteglobals.md:
+    id: f8e2f2118b3b
+    last_write_checksum: sha1:f0a4ca292a4d16726584a34b312b68dfd501684f
+    pristine_git_object: f84e6f946140291a3d7807b7f3627d38cf187fd2
+  docs/models/operations/accountingemployeesdeleterequest.md:
+    id: 7f6257e37185
+    last_write_checksum: sha1:bce981610264e1c6fb672f08a2444bc3040a2aa3
+    pristine_git_object: e83a7bfc272cfafb81a0bff84a00e4ee0ce62b03
+  docs/models/operations/accountingemployeesdeleteresponse.md:
+    id: 19a61a66c131
+    last_write_checksum: sha1:b9630bcf7c8c115b7f233409ba6f9c5def6853a4
+    pristine_git_object: 58955d514bd1bac6c669c5e7316ad0d982247eac
+  docs/models/operations/accountingemployeesoneglobals.md:
+    id: 872dc6f48a1c
+    last_write_checksum: sha1:427a79b6a0302b929b9608c43bf6c8467ce9e644
+    pristine_git_object: cdc822a0d973910fdb2cf0a4f6b2b5b762ac38fd
+  docs/models/operations/accountingemployeesonerequest.md:
+    id: 5d6ad2386d1d
+    last_write_checksum: sha1:b7c5e0bba0050e7a06c816e97b46b28ac634f228
+    pristine_git_object: 6cb96ff9a0f0ef7a356db2e75eaf4bb78e3519a3
+  docs/models/operations/accountingemployeesoneresponse.md:
+    id: 123356ba6a22
+    last_write_checksum: sha1:472dae3c7867db2d78d93b4ccd9d8db81417a465
+    pristine_git_object: b6aa918dc1f8dd8d9d4ba6862288a6c5541615d0
+  docs/models/operations/accountingemployeesupdateglobals.md:
+    id: 9940cf7fcffa
+    last_write_checksum: sha1:e831abec8b7ba043d7786e2a9c858b141932a0c5
+    pristine_git_object: f6187b4a9c38d95f39355a9831628a1f83fd66e0
+  docs/models/operations/accountingemployeesupdaterequest.md:
+    id: 720585089a53
+    last_write_checksum: sha1:9da337c70cf8dbe68443bfb2c3932c883fdb6f84
+    pristine_git_object: f7606e1ba274c1c1c08f4e459e34b62a50e5c7c4
+  docs/models/operations/accountingemployeesupdateresponse.md:
+    id: 32b57b42daba
+    last_write_checksum: sha1:2a1f8d99a26abc8ae68edeecdab99753002ab3b4
+    pristine_git_object: 009f088ee19ec315634bae5075426650f62d649a
+  docs/models/operations/accountingexpensecategoriesaddglobals.md:
+    id: e97f795f0560
+    last_write_checksum: sha1:9379d0fce2b5d29a7825486173f3f65f583c33da
+    pristine_git_object: cf7c09c71d9e6c2da9105fa23f307ac7bbb9c328
+  docs/models/operations/accountingexpensecategoriesaddrequest.md:
+    id: 605deb3c95cc
+    last_write_checksum: sha1:b72de3edfe0b8b42b1a90f38f897e83031380101
+    pristine_git_object: 4577756b940c9af35bb921ffee01c91e25fc83bc
+  docs/models/operations/accountingexpensecategoriesaddresponse.md:
+    id: 39c99273bdb8
+    last_write_checksum: sha1:f89a75fccbeee9b865a2750603d17ff382fdd854
+    pristine_git_object: 8c9328d2b9270732f1aa7942da6105881b269695
+  docs/models/operations/accountingexpensecategoriesallglobals.md:
+    id: f2dfca9d95cd
+    last_write_checksum: sha1:30315e4f44fe91197d2a6933ebffc4a0237cb1a9
+    pristine_git_object: 3869abaf50b51345fb2303ca096b42d293114a5c
+  docs/models/operations/accountingexpensecategoriesallrequest.md:
+    id: 15bc67af5ff4
+    last_write_checksum: sha1:e996d3edf93c22893e4352d3161fff78c083fa61
+    pristine_git_object: c230558fd82285030c8a4a3b98730fc7106f5bd3
+  docs/models/operations/accountingexpensecategoriesallresponse.md:
+    id: 106d2bfae44b
+    last_write_checksum: sha1:7b5ffabe4a613e2c73d8ede28fc37c97fe29978b
+    pristine_git_object: 9134794200f17ad42e76dda776ccf3d6f98cc9d0
+  docs/models/operations/accountingexpensecategoriesdeleteglobals.md:
+    id: e35f3399f071
+    last_write_checksum: sha1:6d5510d98791fd3fd56608e66aecafa685bbb88c
+    pristine_git_object: 3575f297ccffe502aa0e69472361fa0205bf9d5a
+  docs/models/operations/accountingexpensecategoriesdeleterequest.md:
+    id: a70471e40eda
+    last_write_checksum: sha1:6d93e940629a11435e5f92b49dd44762d2b95cf6
+    pristine_git_object: bf55c0f643d5c029cab6d42eb1815a9768174fa1
+  docs/models/operations/accountingexpensecategoriesdeleteresponse.md:
+    id: 52a3d14ed6c4
+    last_write_checksum: sha1:409949681f384b65250a6008a8c86e6bae50f85b
+    pristine_git_object: c07cdda033f3e29123de35fca0426b6173760a14
+  docs/models/operations/accountingexpensecategoriesoneglobals.md:
+    id: 917b2e7d15dd
+    last_write_checksum: sha1:2b60ad4cd188103a3b1175f7151c9cbac2e80678
+    pristine_git_object: e52adbdb5acaea783c3127357445dd88a7021366
+  docs/models/operations/accountingexpensecategoriesonerequest.md:
+    id: 605019c97f40
+    last_write_checksum: sha1:40797197490589c1d6c2a1bbccc84fc82d7ec540
+    pristine_git_object: 94a7f6f1daa40e48d509a0f678af13810bef1da5
+  docs/models/operations/accountingexpensecategoriesoneresponse.md:
+    id: 581775b3f15e
+    last_write_checksum: sha1:1a0e495f6cb471f6f6840abee6026536f61b8d00
+    pristine_git_object: 64e28137f412b3fc464dfcc76d412fff21db9fa3
+  docs/models/operations/accountingexpensecategoriesupdateglobals.md:
+    id: a52b81933f31
+    last_write_checksum: sha1:5f1df1b1694cc4834ae681b09d2260739334a51f
+    pristine_git_object: db73458cb56ba72404acf5a31f964885d13bf27e
+  docs/models/operations/accountingexpensecategoriesupdaterequest.md:
+    id: f3629a9e9fe2
+    last_write_checksum: sha1:408f550679ee9e7037d8086a540e1f8f8b8bac40
+    pristine_git_object: fae63e322e49927b69d550227b3ab5e235aa5f96
+  docs/models/operations/accountingexpensecategoriesupdateresponse.md:
+    id: 34a6e0f3d3fa
+    last_write_checksum: sha1:24120fc0a32b73d1ebcebf9a2ca41cc2c65915eb
+    pristine_git_object: 8c68b535180707aeae99e4eb7c3388fc18e76aa5
+  docs/models/operations/accountingexpensereportsaddglobals.md:
+    id: ec493044952d
+    last_write_checksum: sha1:a08641ef68c4a3a0b67a77f987cd0551b1df5f72
+    pristine_git_object: 4e12cf2840e2e2ff045a6214443a5cb802fc64c4
+  docs/models/operations/accountingexpensereportsaddrequest.md:
+    id: e52776efc95a
+    last_write_checksum: sha1:55a023189e2afc3decc647e5ecb473306d12aa11
+    pristine_git_object: 9cc0f64afe46712931ebf0e847e777dd10d6c5ea
+  docs/models/operations/accountingexpensereportsaddresponse.md:
+    id: f793d88260a5
+    last_write_checksum: sha1:16a2beaca4fdf00017e36a1d7546d7d87e5a1dee
+    pristine_git_object: 3ea7df72eb56e6e5d9dc2a05248cea09b19f25d2
+  docs/models/operations/accountingexpensereportsallglobals.md:
+    id: d5b2f93b2123
+    last_write_checksum: sha1:cbe22c3c94cfbdf503a9dba74df2fb2e55af3734
+    pristine_git_object: 733c4ab0de6f7dbdcb563292ecc2edabc13f04fb
+  docs/models/operations/accountingexpensereportsallrequest.md:
+    id: ae9067b149a0
+    last_write_checksum: sha1:86b68b9c811ed2c59f9788a8d446abb7ad268f9b
+    pristine_git_object: c7cf33a61c70a18dbb2ffa1daa0d0156d7600299
+  docs/models/operations/accountingexpensereportsallresponse.md:
+    id: 03a64f97c757
+    last_write_checksum: sha1:f25ace7e8e39e5091d28cec3ed3a1eec184fcb0d
+    pristine_git_object: 50ad48a1e2be8714a57c6f4f148227168f4121b4
+  docs/models/operations/accountingexpensereportsdeleteglobals.md:
+    id: fb9328eae45b
+    last_write_checksum: sha1:1bf2448e819c11aafaee634d6c9d845bc61872fc
+    pristine_git_object: d9960b741968193483b22bb440022fe8bda93873
+  docs/models/operations/accountingexpensereportsdeleterequest.md:
+    id: a0b293b11b08
+    last_write_checksum: sha1:11306566d271a5b488c13b7225aedb24b221d019
+    pristine_git_object: 2ec11f26e4afcec7150f67e74f53c8ba26b5687c
+  docs/models/operations/accountingexpensereportsdeleteresponse.md:
+    id: 55fd3cbeccdb
+    last_write_checksum: sha1:4ed89b7134a45b5d901ea1e08a58502d68f842fe
+    pristine_git_object: 493503f481852b2fc0018379908acfce8758dfd4
+  docs/models/operations/accountingexpensereportsoneglobals.md:
+    id: 5e1701481ca0
+    last_write_checksum: sha1:83a85dcbaadb530cf6a3e0d10f01575168aebe43
+    pristine_git_object: 2c2703f5cb07c928cc64e1ec06dcbef8c4493039
+  docs/models/operations/accountingexpensereportsonerequest.md:
+    id: 2d1a8aaf2e20
+    last_write_checksum: sha1:90ad5d2e2bd1c85611a3367ea673d6fc2883419e
+    pristine_git_object: 8c7ec67b72c07a2cdf80b9e48072077575770a2c
+  docs/models/operations/accountingexpensereportsoneresponse.md:
+    id: 2d5b00c05517
+    last_write_checksum: sha1:65d23de8fdc87b4aa4ea4f3ef8ab4a80d3f257d0
+    pristine_git_object: 15f7b1a641f90b3306306b2e59186a386bb482c4
+  docs/models/operations/accountingexpensereportsupdateglobals.md:
+    id: c6a4b28d5227
+    last_write_checksum: sha1:f56284f0d9da7e93f8ba2c38fb757f395da3d33c
+    pristine_git_object: e0eda2ef8e82ec5c39cf2320efff9c465fd1080f
+  docs/models/operations/accountingexpensereportsupdaterequest.md:
+    id: 46918e29d6ef
+    last_write_checksum: sha1:d087f7a3908b6fbdc8d7cebb31bf9d05cb30fa9f
+    pristine_git_object: 075101a769521ff66e0d888ab4515f7572b5ef86
+  docs/models/operations/accountingexpensereportsupdateresponse.md:
+    id: 62b3fd2c958f
+    last_write_checksum: sha1:f3fe85eca529885ba48d27c7f4e810ce759c7fc3
+    pristine_git_object: 393bb2f92f8b1d334a5333fa4efad00598e7f279
   docs/models/operations/accountingexpensesaddglobals.md:
     id: cb2a2181df6f
     last_write_checksum: sha1:8c16cf25afe90f1b0f44d221a38589892132c7c5
@@ -7509,6 +7845,10 @@ trackedFiles:
     id: aba46004a169
     last_write_checksum: sha1:011a1e20266623190ce2c8e4c75577b8887ae05e
     pristine_git_object: 9c2f3073dd63f273e16f2f17f7fb75bfb8aa19e0
+  docs/sdks/apideckemployees/README.md:
+    id: b99b038bb0b0
+    last_write_checksum: sha1:4d9fe78cabc2bb27034e2b9da3b1b4cee3f49e64
+    pristine_git_object: cc29e6768b99f27dfc0d3dcbffe56584eef7e247
   docs/sdks/apiresourcecoverage/README.md:
     id: b21a4fa7d12d
     last_write_checksum: sha1:02376fcb5139a3c3deb1cf23424e6e14d308b435
@@ -7679,8 +8019,8 @@ trackedFiles:
     pristine_git_object: 7bd4309c0ea486276194bd4bda3a23b142502bf3
   docs/sdks/employees/README.md:
     id: 3adbd327ce9d
-    last_write_checksum: sha1:4d9fe78cabc2bb27034e2b9da3b1b4cee3f49e64
-    pristine_git_object: cc29e6768b99f27dfc0d3dcbffe56584eef7e247
+    last_write_checksum: sha1:1473e29b1e70069e1931a537c09b361569c5e104
+    pristine_git_object: a77b939f6aaa52aad51fd3d428907aed2eac7e2e
   docs/sdks/employeeschedules/README.md:
     id: 9855d4282404
     last_write_checksum: sha1:e624110d5fdaf9252e9b88237b10cc22c03e1e80
@@ -7689,6 +8029,14 @@ trackedFiles:
     id: 5e8900eaf6cf
     last_write_checksum: sha1:740dedb05ec2ce5d9ccede516abcfed6e874028e
     pristine_git_object: bd765117ff45a87e6b5d2ff039215ce328e25572
+  docs/sdks/expensecategories/README.md:
+    id: b3b488c373df
+    last_write_checksum: sha1:d95d99ea0b838c944ebc4aaaa4c95e823e0bdcd7
+    pristine_git_object: 900343e3701a5a11d5fb587f3d151a960562f2f9
+  docs/sdks/expensereports/README.md:
+    id: bd1c9bec7278
+    last_write_checksum: sha1:253c1f94ab38f124f1981cd3064664b9ce50dc50
+    pristine_git_object: 35e77cdc6449983c696e62df69a6b0999dfa0b37
   docs/sdks/expenses/README.md:
     id: 5692d1aab79d
     last_write_checksum: sha1:ace698a9f95fb35429d8ef2c2a34a5cd61f708d7
@@ -7859,12 +8207,12 @@ trackedFiles:
     pristine_git_object: 3437dbb549ac891d15af546c72c9d3e8bf45dcde
   jsr.json:
     id: 7f6ab7767282
-    last_write_checksum: sha1:00890ab9678d524ce7f06bc06e362826a8c1c423
-    pristine_git_object: c51da287bc5f02726d34b32b9bcaf9e8864a9343
+    last_write_checksum: sha1:a5cb4573c425e690fba1a8207c1d03628d12b761
+    pristine_git_object: 59d2ccbb51981055d62064118a0220080f2e50d1
   package.json:
     id: 7030d0b2f71b
-    last_write_checksum: sha1:99d583acca64248822b8986320a4cc621f8c3d3a
-    pristine_git_object: ade2e3b7ab3402abed08bbbe8759c019b854fcf1
+    last_write_checksum: sha1:5d951dc3e3180b52f532d637b82be3ddf44d7e5c
+    pristine_git_object: d38fc92ef6d805cf17dd9a76d3f6b837fc5f8a6c
   src/__tests__/activities.test.ts:
     id: 65fa859b8f59
     last_write_checksum: sha1:04e5b12f71d6a6aa39dfa26efc143e269e7ef469
@@ -8055,8 +8403,8 @@ trackedFiles:
     pristine_git_object: 652e0a2dbeedbac7076d18a0eab576848c59704c
   src/__tests__/employees.test.ts:
     id: c7a67d0ed4eb
-    last_write_checksum: sha1:6947dfc1c4b5995847c618430cb6070d5e1cfe95
-    pristine_git_object: d8bfd75529c9eb05a55ff6eb4a396ce2ac4cc82c
+    last_write_checksum: sha1:683c887407349b3daec7254710aef2bc60f58475
+    pristine_git_object: 63e9675066475d0511391cd20e988ae10a3e914b
   src/__tests__/employeeschedules.test.ts:
     id: f3caedb825cf
     last_write_checksum: sha1:540e79df2cfded9bb1c1146f86b8c055a8f18308
@@ -8065,6 +8413,14 @@ trackedFiles:
     id: 09eba11af7ca
     last_write_checksum: sha1:f64c970c428f9bef8563485bdfc93bbcefb66849
     pristine_git_object: 4a167a33d543dd62a22e8bd49c52fbd229283027
+  src/__tests__/expensecategories.test.ts:
+    id: 2b791aa2dda7
+    last_write_checksum: sha1:06b1a1ba70cad7fb6563cf510ae25bbe6aaeb9da
+    pristine_git_object: 4f366a7da44bc10ecde9b1787273773c68602af6
+  src/__tests__/expensereports.test.ts:
+    id: 861e34ebd8d3
+    last_write_checksum: sha1:3b8651dabf2d79e9e0c5a51e5040a55c1c325d98
+    pristine_git_object: d01f8c927f8899fdb4841705e353fa96b4be7212
   src/__tests__/expenses.test.ts:
     id: 6d4a53c2167a
     last_write_checksum: sha1:6c5f0239fd705bd625113142f27a91e422fc62c2
@@ -8144,7 +8500,7 @@ trackedFiles:
   src/__tests__/mockserver/internal/handler/generated_handler.go:
     last_write_checksum: sha1:32101ddff940c59f43a805af303cf645a2bcca0d
   src/__tests__/mockserver/internal/handler/generated_handlers.go:
-    last_write_checksum: sha1:ffcbd06fc1a9d5e61439a7a9133f2ee4643e614a
+    last_write_checksum: sha1:38bd40831b355ebe4fa3bad0e823a7bd6c60e064
   src/__tests__/mockserver/internal/handler/pathdeleteaccountingattachmentsreferencetypereferenceidid.go:
     last_write_checksum: sha1:63decca7386674de8b1560093cf23035b9fad952
   src/__tests__/mockserver/internal/handler/pathdeleteaccountingbankaccountsid.go:
@@ -8163,6 +8519,12 @@ trackedFiles:
     last_write_checksum: sha1:b370113ec767aad4744e2935d7655269c3b3cb25
   src/__tests__/mockserver/internal/handler/pathdeleteaccountingdepartmentsid.go:
     last_write_checksum: sha1:b35e62b96a3f62724e061c456d6af6e4906c9df7
+  src/__tests__/mockserver/internal/handler/pathdeleteaccountingemployeesid.go:
+    last_write_checksum: sha1:290112031abc1ad10fda92d650cd225dac912420
+  src/__tests__/mockserver/internal/handler/pathdeleteaccountingexpensecategoriesid.go:
+    last_write_checksum: sha1:8ebf240f446ea72dc09bc0b7384e7556ea1b38e7
+  src/__tests__/mockserver/internal/handler/pathdeleteaccountingexpensereportsid.go:
+    last_write_checksum: sha1:d9ce4d428072c41e987d41577d6803aa250205e3
   src/__tests__/mockserver/internal/handler/pathdeleteaccountingexpensesid.go:
     last_write_checksum: sha1:f759f14b0ef0ab59682663c4d0df37c584cdd289
   src/__tests__/mockserver/internal/handler/pathdeleteaccountinginvoiceitemsid.go:
@@ -8297,6 +8659,18 @@ trackedFiles:
     last_write_checksum: sha1:d280c11168a0df226eddc3f58a05f24422dede67
   src/__tests__/mockserver/internal/handler/pathgetaccountingdepartmentsid.go:
     last_write_checksum: sha1:6125ec33296a7bf0c63c3f36cc3f19b1eb874272
+  src/__tests__/mockserver/internal/handler/pathgetaccountingemployees.go:
+    last_write_checksum: sha1:93c06ec75b46539e23a56ecdb92b4a0da2903051
+  src/__tests__/mockserver/internal/handler/pathgetaccountingemployeesid.go:
+    last_write_checksum: sha1:a86c8530f1dbfb0ae6bb07630edfdc94c426c280
+  src/__tests__/mockserver/internal/handler/pathgetaccountingexpensecategories.go:
+    last_write_checksum: sha1:99cee8f2e77133e313b415d119ce05fff9d62adc
+  src/__tests__/mockserver/internal/handler/pathgetaccountingexpensecategoriesid.go:
+    last_write_checksum: sha1:66cc534fc1218a4d095830c63463d11be7f53fcb
+  src/__tests__/mockserver/internal/handler/pathgetaccountingexpensereports.go:
+    last_write_checksum: sha1:f9dde983ec7e52e34b19fd09e1ee9181264c25d3
+  src/__tests__/mockserver/internal/handler/pathgetaccountingexpensereportsid.go:
+    last_write_checksum: sha1:c475be3886fce3035e5dcebf87657ca4aa572c83
   src/__tests__/mockserver/internal/handler/pathgetaccountingexpenses.go:
     last_write_checksum: sha1:688e1ffd5aa45e81e8e9ff0c42af848592310cc9
   src/__tests__/mockserver/internal/handler/pathgetaccountingexpensesid.go:
@@ -8466,9 +8840,9 @@ trackedFiles:
   src/__tests__/mockserver/internal/handler/pathgethrisdepartmentsid.go:
     last_write_checksum: sha1:b16752fa372ab7e0e73a695ec4e8feb8cf120021
   src/__tests__/mockserver/internal/handler/pathgethrisemployees.go:
-    last_write_checksum: sha1:11516e12406801dfadc979a82f60707bdd7b2dad
+    last_write_checksum: sha1:e6a862988b4dfb5beb4a3c17eb5d345fe703fca6
   src/__tests__/mockserver/internal/handler/pathgethrisemployeesid.go:
-    last_write_checksum: sha1:b60d1a75b06addc1cb6d3e940f4760a210b1a858
+    last_write_checksum: sha1:3f4789da07e089f0e66a52606b137c407bf2b3b6
   src/__tests__/mockserver/internal/handler/pathgethrispayrolls.go:
     last_write_checksum: sha1:995b1811ea894c2178ffc2b685420da4ffeef64f
   src/__tests__/mockserver/internal/handler/pathgethrispayrollsemployeesemployeeid.go:
@@ -8478,7 +8852,7 @@ trackedFiles:
   src/__tests__/mockserver/internal/handler/pathgethrispayrollspayrollid.go:
     last_write_checksum: sha1:0ad6f4e3ae6b594dcfd6bc241a1612acd504304c
   src/__tests__/mockserver/internal/handler/pathgethrisschedulesemployeesemployeeid.go:
-    last_write_checksum: sha1:8f06416d8bc4bd7afed66b07cb3919d6c858c419
+    last_write_checksum: sha1:1d24d8a68eda5b384019a7a9ea5922d5ba0b20a4
   src/__tests__/mockserver/internal/handler/pathgethristimeoffrequests.go:
     last_write_checksum: sha1:0d33447e406047593a7da358faba0969045a1079
   src/__tests__/mockserver/internal/handler/pathgethristimeoffrequestsemployeesemployeeidtimeoffrequestsid.go:
@@ -8549,6 +8923,12 @@ trackedFiles:
     last_write_checksum: sha1:65d0f28824d464f0804bd2099363961076a805d5
   src/__tests__/mockserver/internal/handler/pathpatchaccountingdepartmentsid.go:
     last_write_checksum: sha1:ee518d1a5892c101f9a410854538884b503dd42f
+  src/__tests__/mockserver/internal/handler/pathpatchaccountingemployeesid.go:
+    last_write_checksum: sha1:3cbd908d6643c1ce0cfdafb8b146d7c6971c8fac
+  src/__tests__/mockserver/internal/handler/pathpatchaccountingexpensecategoriesid.go:
+    last_write_checksum: sha1:3277f762e893f6cecb0e8583eff62d02d21cf065
+  src/__tests__/mockserver/internal/handler/pathpatchaccountingexpensereportsid.go:
+    last_write_checksum: sha1:f4f85956316cfc484a23bef1d4a8bd6d8fd8f3a4
   src/__tests__/mockserver/internal/handler/pathpatchaccountingexpensesid.go:
     last_write_checksum: sha1:05991634913206688796b29357f1c9db335a147d
   src/__tests__/mockserver/internal/handler/pathpatchaccountinginvoiceitemsid.go:
@@ -8651,6 +9031,12 @@ trackedFiles:
     last_write_checksum: sha1:47091bf46d15ce61339c2b66590eab214b81679d
   src/__tests__/mockserver/internal/handler/pathpostaccountingdepartments.go:
     last_write_checksum: sha1:6140f832800b725e2dd6211681711c9daa22aca5
+  src/__tests__/mockserver/internal/handler/pathpostaccountingemployees.go:
+    last_write_checksum: sha1:3fb7e56178d133c7d848640599023798773b0c0e
+  src/__tests__/mockserver/internal/handler/pathpostaccountingexpensecategories.go:
+    last_write_checksum: sha1:ca3769d0b85046747c635645da7076a2b373b3ae
+  src/__tests__/mockserver/internal/handler/pathpostaccountingexpensereports.go:
+    last_write_checksum: sha1:ce53995d0d04976b58e9178184821188fc112090
   src/__tests__/mockserver/internal/handler/pathpostaccountingexpenses.go:
     last_write_checksum: sha1:385ae51b865d59c819c882b42152c0c6f5a38de1
   src/__tests__/mockserver/internal/handler/pathpostaccountinginvoiceitems.go:
@@ -8771,6 +9157,10 @@ trackedFiles:
     last_write_checksum: sha1:d9d91e569ff3175a12527c736693733a37f50d3e
   src/__tests__/mockserver/internal/sdk/models/components/accountingdepartmentsfilter.go:
     last_write_checksum: sha1:2abcd44375f6e02b445b93da047b7188333fdfbd
+  src/__tests__/mockserver/internal/sdk/models/components/accountingemployee.go:
+    last_write_checksum: sha1:19099a5c1b48038690a4295b76693dc13ffe4fb8
+  src/__tests__/mockserver/internal/sdk/models/components/accountingemployeesfilter.go:
+    last_write_checksum: sha1:026d47054ad3609b95e19713d383b548b11ed57f
   src/__tests__/mockserver/internal/sdk/models/components/accountinglocation.go:
     last_write_checksum: sha1:410feef2952df59c7948f7166c063dc9e3f09311
   src/__tests__/mockserver/internal/sdk/models/components/accountinglocationsfilter.go:
@@ -8935,6 +9325,8 @@ trackedFiles:
     last_write_checksum: sha1:f55d675085de41df89c8811ba5021a0f8f7cadd5
   src/__tests__/mockserver/internal/sdk/models/components/createaccountingdepartmentresponse.go:
     last_write_checksum: sha1:fb835a0452ad0bdb629e93be1032507b9f10d76c
+  src/__tests__/mockserver/internal/sdk/models/components/createaccountingemployeeresponse.go:
+    last_write_checksum: sha1:34911dee4b3e79377d6fb4c3009e4d89e983e8d0
   src/__tests__/mockserver/internal/sdk/models/components/createaccountinglocationresponse.go:
     last_write_checksum: sha1:f0654e37ece4268f57ed38f5546930711a7e8650
   src/__tests__/mockserver/internal/sdk/models/components/createactivityresponse.go:
@@ -8987,6 +9379,10 @@ trackedFiles:
     last_write_checksum: sha1:492a273150e2fc218bb0780141a0354ce83f0a1a
   src/__tests__/mockserver/internal/sdk/models/components/createemployeeresponse.go:
     last_write_checksum: sha1:bbd732fef1122d7cb4a77c2b53009b5d2c4557ed
+  src/__tests__/mockserver/internal/sdk/models/components/createexpensecategoryresponse.go:
+    last_write_checksum: sha1:d844f186c5c706d862cf92009408960ea79710f6
+  src/__tests__/mockserver/internal/sdk/models/components/createexpensereportresponse.go:
+    last_write_checksum: sha1:a99c6e7526c77aff15b1dcb02d0a45da88f82a53
   src/__tests__/mockserver/internal/sdk/models/components/createexpenseresponse.go:
     last_write_checksum: sha1:befded4a07320ea62a0472bcdb4eedd173e8e0b4
   src/__tests__/mockserver/internal/sdk/models/components/createfolderrequest.go:
@@ -9085,6 +9481,8 @@ trackedFiles:
     last_write_checksum: sha1:6798fd77cfb462c7a77017e00de81c548de0363c
   src/__tests__/mockserver/internal/sdk/models/components/deleteaccountingdepartmentresponse.go:
     last_write_checksum: sha1:9576b6f50bb101f52d7406836c3943cd1f6e9167
+  src/__tests__/mockserver/internal/sdk/models/components/deleteaccountingemployeeresponse.go:
+    last_write_checksum: sha1:71d5a23af1166d84ec18498921bbe9b3a38fd4c8
   src/__tests__/mockserver/internal/sdk/models/components/deleteaccountinglocationresponse.go:
     last_write_checksum: sha1:146a073c043806b9768c19ef62f54af49c56e7f3
   src/__tests__/mockserver/internal/sdk/models/components/deleteactivityresponse.go:
@@ -9129,6 +9527,10 @@ trackedFiles:
     last_write_checksum: sha1:4129994db1308688a6320339909d746d553c1f2f
   src/__tests__/mockserver/internal/sdk/models/components/deleteemployeeresponse.go:
     last_write_checksum: sha1:d6461d078efb32d344c1ee2b0d9a41c756418427
+  src/__tests__/mockserver/internal/sdk/models/components/deleteexpensecategoryresponse.go:
+    last_write_checksum: sha1:2d5f210429e9196543e232909aa89cc1ef610d03
+  src/__tests__/mockserver/internal/sdk/models/components/deleteexpensereportresponse.go:
+    last_write_checksum: sha1:96cadcc916394af2610cc938cd7d08a7b774c22e
   src/__tests__/mockserver/internal/sdk/models/components/deleteexpenseresponse.go:
     last_write_checksum: sha1:4219660880c260e9e95d6352a3378b05b7a49afd
   src/__tests__/mockserver/internal/sdk/models/components/deletefileresponse.go:
@@ -9230,7 +9632,7 @@ trackedFiles:
   src/__tests__/mockserver/internal/sdk/models/components/email.go:
     last_write_checksum: sha1:738736d6507c87fdfefc1d1dcde66fc165df2eb7
   src/__tests__/mockserver/internal/sdk/models/components/employee.go:
-    last_write_checksum: sha1:526a137942abff7f4af86249494529e93b85a7b8
+    last_write_checksum: sha1:016a8b066c3e7eaf2b78aa6e92243c190fda31cb
   src/__tests__/mockserver/internal/sdk/models/components/employeecompensation.go:
     last_write_checksum: sha1:614241c9e9f48dc2565032b6d2e5e60ba1dda14f
   src/__tests__/mockserver/internal/sdk/models/components/employeejob.go:
@@ -9249,10 +9651,20 @@ trackedFiles:
     last_write_checksum: sha1:1513a16f3e0368b6ec96af54e8ae64a01850f896
   src/__tests__/mockserver/internal/sdk/models/components/expense.go:
     last_write_checksum: sha1:30811a9b4c2e442c699eed6aab07e8388c440876
+  src/__tests__/mockserver/internal/sdk/models/components/expensecategoriesfilter.go:
+    last_write_checksum: sha1:249ac5e7c93231f76024b5935e5e2049be72acc9
+  src/__tests__/mockserver/internal/sdk/models/components/expensecategory.go:
+    last_write_checksum: sha1:15a6b50bca32070fa4c4680362237c7d21c2663a
   src/__tests__/mockserver/internal/sdk/models/components/expenselineitem.go:
     last_write_checksum: sha1:eaded60847bcb4ea2ad0e657b77b53cba704a338
   src/__tests__/mockserver/internal/sdk/models/components/expenselineiteminput.go:
     last_write_checksum: sha1:68e4ab3ea846cf6de61881206d8d713e2a92fac7
+  src/__tests__/mockserver/internal/sdk/models/components/expensereport.go:
+    last_write_checksum: sha1:8be0b50769a1cdd92b5e6ce59361e3014e23b2cf
+  src/__tests__/mockserver/internal/sdk/models/components/expensereportlineitem.go:
+    last_write_checksum: sha1:8dc5beaa25764af719b5ac3f3bbfc99b43e8c142
+  src/__tests__/mockserver/internal/sdk/models/components/expensereportsfilter.go:
+    last_write_checksum: sha1:43ea0c1efc4bbedcbf761ad34b5ce5da8c0fc599
   src/__tests__/mockserver/internal/sdk/models/components/expensesfilter.go:
     last_write_checksum: sha1:cb8407ae3d4313e8a0f17ece1ee4d02d010e2d7f
   src/__tests__/mockserver/internal/sdk/models/components/filesfilter.go:
@@ -9277,6 +9689,10 @@ trackedFiles:
     last_write_checksum: sha1:3fe71ff3f118e52ed30399b478b5306948448db5
   src/__tests__/mockserver/internal/sdk/models/components/getaccountingdepartmentsresponse.go:
     last_write_checksum: sha1:a5ec508e5d334a6ac766ef85c21bf761c1addf30
+  src/__tests__/mockserver/internal/sdk/models/components/getaccountingemployeeresponse.go:
+    last_write_checksum: sha1:43ff3d97515f3e4562ddd8dcecd51989d63fffbd
+  src/__tests__/mockserver/internal/sdk/models/components/getaccountingemployeesresponse.go:
+    last_write_checksum: sha1:5c0a25de1db99c71402050ff3be5479fd00a2b6b
   src/__tests__/mockserver/internal/sdk/models/components/getaccountinglocationresponse.go:
     last_write_checksum: sha1:9943dcdd522a6c22b154fecd03c48ef784a61928
   src/__tests__/mockserver/internal/sdk/models/components/getaccountinglocationsresponse.go:
@@ -9425,6 +9841,14 @@ trackedFiles:
     last_write_checksum: sha1:b6d912f1feccb2cfbb76c7f61efc388b5c27d8bf
   src/__tests__/mockserver/internal/sdk/models/components/getemployeesresponse.go:
     last_write_checksum: sha1:d35799e1a53f4f1cd39cbdb4565084d341918ff5
+  src/__tests__/mockserver/internal/sdk/models/components/getexpensecategoriesresponse.go:
+    last_write_checksum: sha1:965b9cf052164137ef2708e0da333bb4112bc31a
+  src/__tests__/mockserver/internal/sdk/models/components/getexpensecategoryresponse.go:
+    last_write_checksum: sha1:d449217c0ffc11f1c1aed5a0efc502e04c989aad
+  src/__tests__/mockserver/internal/sdk/models/components/getexpensereportresponse.go:
+    last_write_checksum: sha1:02123c1849037f98b11e25b1da3d311a6110aa0d
+  src/__tests__/mockserver/internal/sdk/models/components/getexpensereportsresponse.go:
+    last_write_checksum: sha1:e17633e58d7edc93d586796a9da9e76ac775739a
   src/__tests__/mockserver/internal/sdk/models/components/getexpenseresponse.go:
     last_write_checksum: sha1:da168a955e21177e222a9131976f75c9e23ff776
   src/__tests__/mockserver/internal/sdk/models/components/getexpensesresponse.go:
@@ -9635,6 +10059,10 @@ trackedFiles:
     last_write_checksum: sha1:e683175b7f20d291d136b7ff0a78d5a6a2efe320
   src/__tests__/mockserver/internal/sdk/models/components/linkedpurchaseorder.go:
     last_write_checksum: sha1:dc96d6843279b215f742f21a6dcec4b085684fda
+  src/__tests__/mockserver/internal/sdk/models/components/linkedsubsidiary.go:
+    last_write_checksum: sha1:0d0953cfd5ecc1c9b086830137dcba07ae246d29
+  src/__tests__/mockserver/internal/sdk/models/components/linkedsubsidiaryinput.go:
+    last_write_checksum: sha1:0e85267b5dbd82ec12d677d44b9f8872149f3683
   src/__tests__/mockserver/internal/sdk/models/components/linkedsupplier.go:
     last_write_checksum: sha1:50dd4a9711a76007a09599e876e4feb7ed2121f6
   src/__tests__/mockserver/internal/sdk/models/components/linkedsupplierinput.go:
@@ -9823,6 +10251,8 @@ trackedFiles:
     last_write_checksum: sha1:347b08c5ca924e8b8ebf07bfe65d60808c9ed48a
   src/__tests__/mockserver/internal/sdk/models/components/updateaccountingdepartmentresponse.go:
     last_write_checksum: sha1:ec602f6981bae23356936ed1c205948b66b1303a
+  src/__tests__/mockserver/internal/sdk/models/components/updateaccountingemployeeresponse.go:
+    last_write_checksum: sha1:a6f37ff7a944868f8e8bc08629ef33e1c7d187af
   src/__tests__/mockserver/internal/sdk/models/components/updateaccountinglocationresponse.go:
     last_write_checksum: sha1:f086f7ae498eb21442ed1131a98e5734425921c9
   src/__tests__/mockserver/internal/sdk/models/components/updateactivityresponse.go:
@@ -9873,6 +10303,10 @@ trackedFiles:
     last_write_checksum: sha1:a44ae096e4d679a86cb4ce61aa2bf8cf9a4e0744
   src/__tests__/mockserver/internal/sdk/models/components/updateemployeeresponse.go:
     last_write_checksum: sha1:db96f4574399af94eeaef146ae525b5aef892528
+  src/__tests__/mockserver/internal/sdk/models/components/updateexpensecategoryresponse.go:
+    last_write_checksum: sha1:c08f3e7af9f766b121b5ad9f00f135b8e0b526db
+  src/__tests__/mockserver/internal/sdk/models/components/updateexpensereportresponse.go:
+    last_write_checksum: sha1:f12c41493a2ba9370091b63d59ca753e34369f13
   src/__tests__/mockserver/internal/sdk/models/components/updateexpenseresponse.go:
     last_write_checksum: sha1:dd46dc40da5a718a944dad9d889c2ee9404429dc
   src/__tests__/mockserver/internal/sdk/models/components/updatefilerequest.go:
@@ -10057,6 +10491,36 @@ trackedFiles:
     last_write_checksum: sha1:aceeee2b0f20c530367f46593975ff35dde33ee6
   src/__tests__/mockserver/internal/sdk/models/operations/accountingdepartmentsupdate.go:
     last_write_checksum: sha1:b23aa4c0b6487b02f2a1311a44e0d7d4ee6cca2e
+  src/__tests__/mockserver/internal/sdk/models/operations/accountingemployeesadd.go:
+    last_write_checksum: sha1:c4b2bbf6d29bb9e9b1489ab5ec0174a43beb9a80
+  src/__tests__/mockserver/internal/sdk/models/operations/accountingemployeesall.go:
+    last_write_checksum: sha1:bd135e45260f3198048a552cf66c52c0b5fa378f
+  src/__tests__/mockserver/internal/sdk/models/operations/accountingemployeesdelete.go:
+    last_write_checksum: sha1:259f2b992cf49e21c9d0e034b91e777913a91d56
+  src/__tests__/mockserver/internal/sdk/models/operations/accountingemployeesone.go:
+    last_write_checksum: sha1:55b3452ec3b872394376413ced9ce9a10e5470ff
+  src/__tests__/mockserver/internal/sdk/models/operations/accountingemployeesupdate.go:
+    last_write_checksum: sha1:47f456e109191b50a58db8fa4806022c01e75b76
+  src/__tests__/mockserver/internal/sdk/models/operations/accountingexpensecategoriesadd.go:
+    last_write_checksum: sha1:a00ede2e1fd05077939af3e6fae3f02c47921ce2
+  src/__tests__/mockserver/internal/sdk/models/operations/accountingexpensecategoriesall.go:
+    last_write_checksum: sha1:d320a01d01f3971afc548e3507318760b5a1390f
+  src/__tests__/mockserver/internal/sdk/models/operations/accountingexpensecategoriesdelete.go:
+    last_write_checksum: sha1:5f5f61986376766b6d4613c6f704fda741bb5679
+  src/__tests__/mockserver/internal/sdk/models/operations/accountingexpensecategoriesone.go:
+    last_write_checksum: sha1:1642259a0b878129257cc8605d24a653b7d4a415
+  src/__tests__/mockserver/internal/sdk/models/operations/accountingexpensecategoriesupdate.go:
+    last_write_checksum: sha1:f6c569889a238972b1702ba1e08907e0de762405
+  src/__tests__/mockserver/internal/sdk/models/operations/accountingexpensereportsadd.go:
+    last_write_checksum: sha1:410338cf67e5c714d725e94ea5e5e37e63cbb307
+  src/__tests__/mockserver/internal/sdk/models/operations/accountingexpensereportsall.go:
+    last_write_checksum: sha1:2efa143559eb140487d1d770e575423181309f57
+  src/__tests__/mockserver/internal/sdk/models/operations/accountingexpensereportsdelete.go:
+    last_write_checksum: sha1:d2667251a01ad2e656a15b010d0988ad0ee1111d
+  src/__tests__/mockserver/internal/sdk/models/operations/accountingexpensereportsone.go:
+    last_write_checksum: sha1:3b049eb4e6ab7408fc0a3dcaaa8b831a69c0be9e
+  src/__tests__/mockserver/internal/sdk/models/operations/accountingexpensereportsupdate.go:
+    last_write_checksum: sha1:abffb6c2cc80b25dfe5fc9fa13e0ec02fc63ba93
   src/__tests__/mockserver/internal/sdk/models/operations/accountingexpensesadd.go:
     last_write_checksum: sha1:f91ac5c0dd4d7d25754f12835ce72fcbb200bf99
   src/__tests__/mockserver/internal/sdk/models/operations/accountingexpensesall.go:
@@ -10935,6 +11399,66 @@ trackedFiles:
     id: 4102193ad5d9
     last_write_checksum: sha1:149a93e9aa40d93309f8d70a2e5747cb6b104f56
     pristine_git_object: 0b7e4266078e42bb89ad5e96bae38d4a0bae7acc
+  src/funcs/accountingEmployeesCreate.ts:
+    id: 5453b2797db1
+    last_write_checksum: sha1:b92f4a79ab662c810f45417e16c6201eda8c6090
+    pristine_git_object: 278f135bb9b18ec9d193afdfe7c0edcec9686640
+  src/funcs/accountingEmployeesDelete.ts:
+    id: 895c9172ac06
+    last_write_checksum: sha1:6c4737e13c1c59dd2853e267be6c22d625c33830
+    pristine_git_object: 96d7b494e8f71539eb200c9c22e783c6cc7179c6
+  src/funcs/accountingEmployeesGet.ts:
+    id: 11a651db4f96
+    last_write_checksum: sha1:53ac2bcacf6c1a4a5b46ab5bbcfa7865f9d3403e
+    pristine_git_object: 26fec21a62b98cb6107b454ce826086f5676da17
+  src/funcs/accountingEmployeesList.ts:
+    id: db9b9d6801a7
+    last_write_checksum: sha1:b6b5988b847806e2c209a28aaade093fba51595f
+    pristine_git_object: 5ce170c80f76ed00c6ff3e4e05dacd327bbd0a9d
+  src/funcs/accountingEmployeesUpdate.ts:
+    id: 9d0522db75c1
+    last_write_checksum: sha1:d4d8df33ca46d525dcea406da29ad5dcc741559f
+    pristine_git_object: 619950c23c6bab6c92b72ca3f3ab176c251553b4
+  src/funcs/accountingExpenseCategoriesCreate.ts:
+    id: 93d71428af3f
+    last_write_checksum: sha1:ead710239ee921ff68fc255f3847264a2cf4dae3
+    pristine_git_object: 4faa91f5a30e7f575e23d759558ed1fda25a0ae1
+  src/funcs/accountingExpenseCategoriesDelete.ts:
+    id: 8118b48ff133
+    last_write_checksum: sha1:85fc12e0645bc9cfc5024f48241e3fb4c667998b
+    pristine_git_object: f9f05de7c622c63912155345372bb88304afa652
+  src/funcs/accountingExpenseCategoriesGet.ts:
+    id: f2b2aad20d70
+    last_write_checksum: sha1:c7a9dc3b843d495d8943373db9c8c390338247eb
+    pristine_git_object: ae6ff3b2f5da3823078e55a8c498c5833a2cb8e4
+  src/funcs/accountingExpenseCategoriesList.ts:
+    id: c45eb8a1b7de
+    last_write_checksum: sha1:acf1c37269c9507372d4f24ebdbf3e0325f7be4b
+    pristine_git_object: c6114bd70d71f5b34604dd586e933287326d29d1
+  src/funcs/accountingExpenseCategoriesUpdate.ts:
+    id: a31b8feb449b
+    last_write_checksum: sha1:360e2fe9c84585e23bef4e60e1636a6173f9dd16
+    pristine_git_object: 21e482d4350a613993271a94ac0bbf49ce4de16d
+  src/funcs/accountingExpenseReportsCreate.ts:
+    id: 7efa358ebbc6
+    last_write_checksum: sha1:9b5707958eb83b3e2fc5faeb01ba71b0eedb745c
+    pristine_git_object: db053b334f3e84413bb69f88a97d12d01206cff5
+  src/funcs/accountingExpenseReportsDelete.ts:
+    id: 97a5aec65d90
+    last_write_checksum: sha1:0a4508e02eab70058668a6054eb4866bd92a27c6
+    pristine_git_object: 79271c031b4ccdedc342b453c3dff3bec158d8f3
+  src/funcs/accountingExpenseReportsGet.ts:
+    id: 4b2f74e96b6c
+    last_write_checksum: sha1:e22528e4d821044aa4028bf121dee378f519bce9
+    pristine_git_object: 8fbf566160c0c11fa6f782eb96e793defecfc47f
+  src/funcs/accountingExpenseReportsList.ts:
+    id: 37db8580e06a
+    last_write_checksum: sha1:0830e3c544a32f334db10d1ebb29271cf6bcda43
+    pristine_git_object: 1616ae7e4e00ec1d34f9be0d0fb49bd68f6c992c
+  src/funcs/accountingExpenseReportsUpdate.ts:
+    id: 81f9e96dfa6e
+    last_write_checksum: sha1:4c2e630ce94aa3547cc4bf4bc34208412cf8f0fd
+    pristine_git_object: e1099ded162a200fdc0e1c45f41d8e3b852113a4
   src/funcs/accountingExpensesCreate.ts:
     id: a07cf43ea92e
     last_write_checksum: sha1:6ba908b2514092dfd415a9391965e90d3e6cc16b
@@ -11997,8 +12521,8 @@ trackedFiles:
     pristine_git_object: 0aebd8b0a4867e35cb3348fc52921c3c0b4725b7
   src/lib/config.ts:
     id: 320761608fb3
-    last_write_checksum: sha1:06fb5632f1792c9b1da052495ac8ea77eb4c0d9b
-    pristine_git_object: 6fb5afb21d49ae6d21acdad92919bf85734d6ef6
+    last_write_checksum: sha1:298dd38c168a6848fbfdd0bb200b886a7033230c
+    pristine_git_object: 84646d1c429132fe38c2e1a9579b82cc7361e43a
   src/lib/dlv.ts:
     id: b1988214835a
     last_write_checksum: sha1:1dd3e3fbb4550c4bf31f5ef997faff355d6f3250
@@ -12067,6 +12591,14 @@ trackedFiles:
     id: 42fc67174a76
     last_write_checksum: sha1:c3cb34657fdc20bbe776a7e7b454b72539c3cb67
     pristine_git_object: 1ea802a1217399702c5eec284a2e67b8d4b4ca7a
+  src/models/components/accountingemployee.ts:
+    id: 10625a7e03a1
+    last_write_checksum: sha1:c9f620634afc54a8c35fbdcce84b3cca7244ed9f
+    pristine_git_object: 0b1aed02209ad3b07309da246b4b444dfe0cee6f
+  src/models/components/accountingemployeesfilter.ts:
+    id: fd31e42e46be
+    last_write_checksum: sha1:95e81dfa66ed3f9455a1999f14230090d9645d0d
+    pristine_git_object: b9e94a6bfd7ab99408e77e3b115076ea09afd704
   src/models/components/accountinglocation.ts:
     id: e0720baf75e6
     last_write_checksum: sha1:23269f522739d2c377e196394f1d86f6ae74a4c7
@@ -12391,6 +12923,10 @@ trackedFiles:
     id: 0f1f6ec5f05f
     last_write_checksum: sha1:8bc7711ed0d4c29452cb40cdcd39c128b0ad4576
     pristine_git_object: d005ac90304f2e785056c45f1178cbb9c435eb15
+  src/models/components/createaccountingemployeeresponse.ts:
+    id: 391a2b514cf1
+    last_write_checksum: sha1:ca74863b1c33765c2bf5da2f4c3d7768d03e9aad
+    pristine_git_object: 74a96d913b9b0ba3252e8f346809b2bc3403b45a
   src/models/components/createaccountinglocationresponse.ts:
     id: 4efdbb08e508
     last_write_checksum: sha1:c47efd12087d671f06cba03d36ccbdae3ee23495
@@ -12495,6 +13031,14 @@ trackedFiles:
     id: 6d8cf5036f39
     last_write_checksum: sha1:7bdd6c171f2f5a8e9b8a37ba8c45e808014312af
     pristine_git_object: 1a2913625da8dae6858fc07269e7edf7a023642c
+  src/models/components/createexpensecategoryresponse.ts:
+    id: 805b39ba38fc
+    last_write_checksum: sha1:5b16be314c7da6f95fc6dfbaaf12d402c682bb85
+    pristine_git_object: 0b985a8c4f8ba8ac27f98fe21df139009094faf7
+  src/models/components/createexpensereportresponse.ts:
+    id: abd952f0355e
+    last_write_checksum: sha1:404086baeafe7db1e0fa020402075641e2f3b741
+    pristine_git_object: b3c6b822cefe31ed6f5c0db7d32ed5a6061087ed
   src/models/components/createexpenseresponse.ts:
     id: 8910c4eca6a8
     last_write_checksum: sha1:d9b9122cfc1c1632ef8a12f58f3baa72ca960bb7
@@ -12691,6 +13235,10 @@ trackedFiles:
     id: 39483ff8cbde
     last_write_checksum: sha1:a7325e301521078aaa66c12eb9981d57e685470a
     pristine_git_object: cb4b5ee52077af16d76cee903d590498290c9fa2
+  src/models/components/deleteaccountingemployeeresponse.ts:
+    id: 4e75b22c6a11
+    last_write_checksum: sha1:0f245ebcc41827ec756eb9de7bb88c6b2752fd48
+    pristine_git_object: 28a65792e522c5efb887f2d656778021d6d47103
   src/models/components/deleteaccountinglocationresponse.ts:
     id: 439a7449c506
     last_write_checksum: sha1:adf282ff23a6286a294a35c1ca0c20a68a2c5345
@@ -12779,6 +13327,14 @@ trackedFiles:
     id: 608240514a0c
     last_write_checksum: sha1:4237490664736fd65cd4b7186d87f24bb7159c83
     pristine_git_object: 839f43dd683134d5b315ba33b5dc02c1c3505491
+  src/models/components/deleteexpensecategoryresponse.ts:
+    id: a6ae84d4be7f
+    last_write_checksum: sha1:002a8405fbca4df405e903f512df3aa2ad776091
+    pristine_git_object: 48cddc8767fa51ce23c159dfafbdf9c559c06170
+  src/models/components/deleteexpensereportresponse.ts:
+    id: e8ccb272c766
+    last_write_checksum: sha1:145b7dce216e5821a83005e1b54740ad5c062cd6
+    pristine_git_object: d63bc72e96d49941318a642aefdf4be6ecc87f0b
   src/models/components/deleteexpenseresponse.ts:
     id: ed5eb917bbfe
     last_write_checksum: sha1:d6a8e1549c753a26d400606ebc06e5e0f8eabea1
@@ -13019,6 +13575,14 @@ trackedFiles:
     id: 8a801377db58
     last_write_checksum: sha1:ed5c26e215663b59b4f0c7980efce15cf77e0348
     pristine_git_object: 63f89fda1bab5f97e5ea5de8ad209f6b3cd10d38
+  src/models/components/expensecategoriesfilter.ts:
+    id: dfa4b3219727
+    last_write_checksum: sha1:b4b1e67c27e267ca715baa80cb2e2cd8fef12b30
+    pristine_git_object: 7aa12d1e889ca108715d3b852fb0019a9d41ed80
+  src/models/components/expensecategory.ts:
+    id: 86d08530bd73
+    last_write_checksum: sha1:ce62f5aedfa2440109c2e72dc04c90f20de7dfb7
+    pristine_git_object: 570615f1f82c1966ffae3fb55b6ea2e3525b5e13
   src/models/components/expenselineitem.ts:
     id: 0c0ecc328039
     last_write_checksum: sha1:d7c35f0414959bbc111fc334ad2e1c4af260a366
@@ -13027,6 +13591,18 @@ trackedFiles:
     id: d542cc72f952
     last_write_checksum: sha1:c47767e82cf72aac98508fcc79d538721a8e11d0
     pristine_git_object: 0bfb97e16e3a748bfc68e768b8432f535aaf9d52
+  src/models/components/expensereport.ts:
+    id: 64ede6ae738e
+    last_write_checksum: sha1:f605624400f5fac7b0002db2c5e7ddf3517fbf63
+    pristine_git_object: 915d111d968fcbeef2afab9bfde592440751e4f0
+  src/models/components/expensereportlineitem.ts:
+    id: f8fe0330517e
+    last_write_checksum: sha1:29321a99999bbf6b7aee82e3dbeaecb378a71a41
+    pristine_git_object: f2887aba5f20e08c356590530973a71bdd451757
+  src/models/components/expensereportsfilter.ts:
+    id: e85cdfab09f0
+    last_write_checksum: sha1:b43f2d592891c178a9b1c48923409ffc2c0244a8
+    pristine_git_object: c2db4bb6e1e12f0dfd8883c2dc770c291e7d0536
   src/models/components/expensesfilter.ts:
     id: 9ef062cd690d
     last_write_checksum: sha1:de91aa13b66b2633fffa75d762979464f3571a87
@@ -13075,6 +13651,14 @@ trackedFiles:
     id: 02fe7676da86
     last_write_checksum: sha1:eaf76a4aa331333cfa6e3cd4999afc29352b8f1c
     pristine_git_object: 699fab27f4aabb9ce31f2c618b335f94246bd803
+  src/models/components/getaccountingemployeeresponse.ts:
+    id: 497d77627d2a
+    last_write_checksum: sha1:30b0f35ed430b3fd969ea362dd4e3d03763cae8c
+    pristine_git_object: 31d438c87d7be1e84bb45fbdf6b5153bc78fd08a
+  src/models/components/getaccountingemployeesresponse.ts:
+    id: 6d1fe02194f4
+    last_write_checksum: sha1:16625e86b38628319c31a59062fce5375a7b7db0
+    pristine_git_object: 4991a38bf757dec8e53363758f9f597d4bca41e2
   src/models/components/getaccountinglocationresponse.ts:
     id: ca984b9ee2c5
     last_write_checksum: sha1:16f0579671417878ae9d4182c8aa9ebad1e70510
@@ -13371,6 +13955,22 @@ trackedFiles:
     id: 6d4332d36f10
     last_write_checksum: sha1:072ce48d5c83d2cde1b7fe733dd34744fb59109a
     pristine_git_object: 5e26896b11280272df16e004936c99b38086b5e5
+  src/models/components/getexpensecategoriesresponse.ts:
+    id: b17d2f914742
+    last_write_checksum: sha1:68e7b75cb3ac9818cd8042054b6b15c1686ffcdc
+    pristine_git_object: ee1823bb04c5aa15e5a019ec827d4c8a50582b49
+  src/models/components/getexpensecategoryresponse.ts:
+    id: "066621177787"
+    last_write_checksum: sha1:b95cb9ffa08bf7980160e7032f49cf1053d77635
+    pristine_git_object: bb2d0c698c68e7bbc4c0b556a37c4e91b5c6c631
+  src/models/components/getexpensereportresponse.ts:
+    id: 94f735ef7fa0
+    last_write_checksum: sha1:e1619dbb8b5fca96ad98372e3255ee7cf4cde5da
+    pristine_git_object: 78a21b0c731c0c7dc84ce90254a0feae8d53555e
+  src/models/components/getexpensereportsresponse.ts:
+    id: cbeb97a9c91e
+    last_write_checksum: sha1:ee5cd4bfa03fc1ec701ea3e34ea2e2a93f1679a9
+    pristine_git_object: 8e9ab8c6b72e648a7cfa7890239a0625cf6e8589
   src/models/components/getexpenseresponse.ts:
     id: 3c20170a4958
     last_write_checksum: sha1:fca303b4b3488af65fc5036747b8fc6764f696b2
@@ -13629,8 +14229,8 @@ trackedFiles:
     pristine_git_object: 3e67d85a4e57fc0795209c6461e6f74c2c4ace32
   src/models/components/index.ts:
     id: 0aa842dce54d
-    last_write_checksum: sha1:8a8366fc51565e4e6eb634b3228fa544db2d6fee
-    pristine_git_object: fd27e05c295daf588143c122e392a53889044e31
+    last_write_checksum: sha1:1df6bf53a181dac299640f895c960b382242f237
+    pristine_git_object: 68d1478e15cb6d464955b9ca7e4b3ede69ff7079
   src/models/components/integrationstate.ts:
     id: 8bf93ce382c4
     last_write_checksum: sha1:2e71bd757ba028681d86d1c2d901b3888409097d
@@ -13795,6 +14395,14 @@ trackedFiles:
     id: 6725b8346136
     last_write_checksum: sha1:a1d26b155ff71c2342a95d22242659b0dae31eac
     pristine_git_object: ea35cb804e3838381e39e84103f256c874e2fa3d
+  src/models/components/linkedsubsidiary.ts:
+    id: c315ae75f20b
+    last_write_checksum: sha1:b053dc5ea34d68e6600601f3c0863cace689928e
+    pristine_git_object: dc503cc79b66e07731d443dd1281238b2ef00f3e
+  src/models/components/linkedsubsidiaryinput.ts:
+    id: 0612df23ec1c
+    last_write_checksum: sha1:51e1a1af25f627cd1c056fbeed341f06fa49d0e5
+    pristine_git_object: 12ceddf55aa1dd4ba439571d7e9a8f624e57b20b
   src/models/components/linkedsupplier.ts:
     id: db3358d0d52d
     last_write_checksum: sha1:c7389c3d386bbe40c42cd3bc5ed74e00adfc179b
@@ -14155,6 +14763,10 @@ trackedFiles:
     id: 35c33e2e476f
     last_write_checksum: sha1:75db62e34ab8a71f679800abf349a8bd590416b1
     pristine_git_object: 335795e974a8a9e4fbb5f6627549d74e1728b55e
+  src/models/components/updateaccountingemployeeresponse.ts:
+    id: 0c8bcbdd59b3
+    last_write_checksum: sha1:b50d0b315b53c09b662cdded6d4048dbb956b411
+    pristine_git_object: e5d8f89ce98afd23d673129f9e53fbae38405cce
   src/models/components/updateaccountinglocationresponse.ts:
     id: 33e3959ab1f7
     last_write_checksum: sha1:13fd3f69de145041c13f23ef27781bfd37273eed
@@ -14255,6 +14867,14 @@ trackedFiles:
     id: 24b6920c9354
     last_write_checksum: sha1:7c69d61e98cc4514fe10dcc530c838032271c218
     pristine_git_object: 2543a8d98fbc8b729a4790d7de628bde80aeb163
+  src/models/components/updateexpensecategoryresponse.ts:
+    id: 15a3c16182b6
+    last_write_checksum: sha1:6612fb51e1012d4604a72d801b467a273982262a
+    pristine_git_object: e87940142f3581532ea06594c8e56fcb5a8652f2
+  src/models/components/updateexpensereportresponse.ts:
+    id: a9a03177bf8d
+    last_write_checksum: sha1:6aaa016a0313651e246a535be3cd7279fb030e85
+    pristine_git_object: 5d1ce768e642603c525b67644b610e46b47e318b
   src/models/components/updateexpenseresponse.ts:
     id: 2796e4f690d3
     last_write_checksum: sha1:c154b94bc7d3db797fec6e702558016d507943b9
@@ -14671,6 +15291,66 @@ trackedFiles:
     id: f132dbfafc40
     last_write_checksum: sha1:105cc7b12ef5b7cba6f8766b705fe90a4a21c001
     pristine_git_object: 58658ef681d59747cdf81f5a37a09f7b36892c19
+  src/models/operations/accountingemployeesadd.ts:
+    id: 563b3c436b8c
+    last_write_checksum: sha1:803b3ebac0e835362dcd3320055351e30943aa16
+    pristine_git_object: 6dc10a8f4f1fd432b81bd739081d0b0b4240e09f
+  src/models/operations/accountingemployeesall.ts:
+    id: eabf13147078
+    last_write_checksum: sha1:704280bba3576ddf48803ecb27b2419404128ee8
+    pristine_git_object: f2d18382a167c582b4b869228521e1342d9e6d89
+  src/models/operations/accountingemployeesdelete.ts:
+    id: b99563cdf580
+    last_write_checksum: sha1:9398e0deb9af4544a2120f2c977a842aab5e54cc
+    pristine_git_object: b081115467f410e4bed8bd826aa29becc6e49f76
+  src/models/operations/accountingemployeesone.ts:
+    id: 8a0aa14b5be3
+    last_write_checksum: sha1:d8657c32ca7a523783a2b05ba396882d984ed7fb
+    pristine_git_object: 7868d974a34ea4787c25f9c9023e01345fbb7b06
+  src/models/operations/accountingemployeesupdate.ts:
+    id: b3339d61849e
+    last_write_checksum: sha1:807be0ea79cd16c1f70e6705546c78a0d3cb7fa7
+    pristine_git_object: d94bd7ce022802d039d33e12896d5a82fff7a1e3
+  src/models/operations/accountingexpensecategoriesadd.ts:
+    id: dae1a729899a
+    last_write_checksum: sha1:cf85eb8ad64c3b7a1e508171749d2acdb739bcac
+    pristine_git_object: 881176092fb205e36330cd80f1506eef71e51cfe
+  src/models/operations/accountingexpensecategoriesall.ts:
+    id: 924a4c4c7639
+    last_write_checksum: sha1:0b0f78e387981462faed7b0d64c01ca218e15ac8
+    pristine_git_object: 084ad628305dc54d6863d1bf329923fe2924b479
+  src/models/operations/accountingexpensecategoriesdelete.ts:
+    id: ec79b4abb7b4
+    last_write_checksum: sha1:93230fd690bcadc4b3207e5acd119df10f8e2abf
+    pristine_git_object: d581152f03cbfe1d7888c0acd82d57e910a3b438
+  src/models/operations/accountingexpensecategoriesone.ts:
+    id: 63fd5367c89f
+    last_write_checksum: sha1:af8a289b3e38cecd40246cecbfa067cd6c08c185
+    pristine_git_object: 172833cdada651f5477d5667fe5582004ba68e28
+  src/models/operations/accountingexpensecategoriesupdate.ts:
+    id: caa6a3403a81
+    last_write_checksum: sha1:aec5d980aa10e01350b365ef5b4af8e5da640da1
+    pristine_git_object: 0fe1c3dde054d2aa42fd27b0ec6de3ea2981c408
+  src/models/operations/accountingexpensereportsadd.ts:
+    id: c11dc664a03f
+    last_write_checksum: sha1:285c6c1d2567bb65c07a15996f8390df548304c2
+    pristine_git_object: fa2010982d111305567ca8cd2d947eaa96220f64
+  src/models/operations/accountingexpensereportsall.ts:
+    id: 9c570b55b65a
+    last_write_checksum: sha1:bb1536560517663ec055f8b101422ee0cc96b820
+    pristine_git_object: 75eafebc2c0c6bf5b61b09b6c953847ee8deeab9
+  src/models/operations/accountingexpensereportsdelete.ts:
+    id: 7e88036eb762
+    last_write_checksum: sha1:1eeec82c47d2da8a88d3b3f8352dba7e17cc6415
+    pristine_git_object: a41e6cbbb4826259606c8a03f958102c9f2bcf0e
+  src/models/operations/accountingexpensereportsone.ts:
+    id: 07a5b938df4c
+    last_write_checksum: sha1:6f534f47c6c7910bb18188c1252abb6020fd1af2
+    pristine_git_object: a1b7de60431df668ae17dac8092ebf45f0b52562
+  src/models/operations/accountingexpensereportsupdate.ts:
+    id: a8046b71b887
+    last_write_checksum: sha1:9d33b781d66fa94afc96d279b914013cb802d579
+    pristine_git_object: f8b6e29472baa2962b4b55d6eb9600769d865c84
   src/models/operations/accountingexpensesadd.ts:
     id: af1d3b37c1c4
     last_write_checksum: sha1:f1455fabb80ebf93d35e5e3789040e29f45be269
@@ -15493,8 +16173,8 @@ trackedFiles:
     pristine_git_object: a050e482005d5e78d421d1a49e2aeb1e88430e55
   src/models/operations/index.ts:
     id: 0d9ffaf774d2
-    last_write_checksum: sha1:b2d4bed4564965a29f44e40dcf6b7ab830ebaace
-    pristine_git_object: 0da31f5aa2f581a8acd780937288b80e47b41e7b
+    last_write_checksum: sha1:8e3312b404391a4e1b1a3c560181d7b713fc3df5
+    pristine_git_object: 1722669a99d4facfa4e4801cfcb25436fad0acd5
   src/models/operations/issuetrackingcollectionsall.ts:
     id: 983c9105664d
     last_write_checksum: sha1:9e0d1853de82f1f3a10e629bfba2e7220553d440
@@ -15717,8 +16397,8 @@ trackedFiles:
     pristine_git_object: 7b089a00bfb8f1529eb315fefd1cc7163c6f8a2a
   src/sdk/accounting.ts:
     id: e0128a734bc9
-    last_write_checksum: sha1:b0aeda8bc9d09d5a84a03b54b3c7d7aa2a2679cd
-    pristine_git_object: 540ea0e4600d5b903734e7861d4dfbcc0bba92dd
+    last_write_checksum: sha1:e45279e61161d09bb95b757b0ba12453b2ca9278
+    pristine_git_object: 0db84565dae91dd8c7cfd87e41e654e002257489
   src/sdk/activities.ts:
     id: 44c47815e433
     last_write_checksum: sha1:b2eb8039f8e92a2cf97260610e5751e45bfb9a17
@@ -15743,6 +16423,10 @@ trackedFiles:
     id: 428815e09878
     last_write_checksum: sha1:ec0882fabeb68a0e79bc56b2043016dde27852ee
     pristine_git_object: 914e718dc571b60db2abd21b70c1820d1926da30
+  src/sdk/apideckemployees.ts:
+    id: 2bc945884b91
+    last_write_checksum: sha1:b63332554517d506010cb6170e5ac2e8a30a1612
+    pristine_git_object: 374993ca0cce4745a3f7bd5edac883cdcfa4732c
   src/sdk/apiresourcecoverage.ts:
     id: 9db5ac38e34c
     last_write_checksum: sha1:bb739839768afe5f5c023f839191a8a667ec05ec
@@ -15929,8 +16613,8 @@ trackedFiles:
     pristine_git_object: a09acb75b9cc5bebf40cd68efd5b9ccb315e1e3f
   src/sdk/employees.ts:
     id: c13a0923df24
-    last_write_checksum: sha1:0f850b57fe63f390151fefdfeda1ea459c4ae538
-    pristine_git_object: dd00332e60e8d177b915b97c10ec0eaca7488f86
+    last_write_checksum: sha1:a335e1fb3d421c123fff72c7b63b8cacaeed5f16
+    pristine_git_object: 7309fa7e6ff30454fa21fff7b883613a08707903
   src/sdk/employeeschedules.ts:
     id: 8af76866ba89
     last_write_checksum: sha1:2920a456ecbf9a417dfac757187d617ab2b53295
@@ -15939,6 +16623,14 @@ trackedFiles:
     id: 7556761018d5
     last_write_checksum: sha1:db1d76209d9b3c44c78b06cf82450bf7b904d9a9
     pristine_git_object: 39294de22bbf3e846ca70b4b4ae4037bd43dbe96
+  src/sdk/expensecategories.ts:
+    id: 517c2f165eaa
+    last_write_checksum: sha1:84db10d048399848bac7971b02755c98461bcefa
+    pristine_git_object: f52ef75afb57243f1dd42152cb565c2659d263ef
+  src/sdk/expensereports.ts:
+    id: b8a9e3169a44
+    last_write_checksum: sha1:ef1f8bce40b715363320e92fa3d360d145364f59
+    pristine_git_object: 7b988905627f1af86e1aaa372e1cb0644a111186
   src/sdk/expenses.ts:
     id: 89aab5f46e2b
     last_write_checksum: sha1:c5b6402a2f132bdd2fcb96df9f6cb03a0d18a0c0
@@ -15957,8 +16649,8 @@ trackedFiles:
     pristine_git_object: 36f43fe6e0c47a4066bf1c9fef7d855aa703e067
   src/sdk/hris.ts:
     id: b7831a6209ac
-    last_write_checksum: sha1:ad3409bd5022a7a588aa4904db444d17958ea3bb
-    pristine_git_object: fbf412ef3958f8f6b93ff304ca201fcd04b7fae7
+    last_write_checksum: sha1:7e2846b0b34f34701e5fbabb90686eddff76a320
+    pristine_git_object: b37a06b318fcf358ef05fe1a4e3ce37095578afd
   src/sdk/index.ts:
     id: a857902a703f
     last_write_checksum: sha1:ed6d64f2a6135349aa8498b8d8cff9ba85c7fb8f
@@ -31817,6 +32509,408 @@ examples:
           application/xml: "<value>"
           text/html: "<value>"
           text/plain: "<value>"
+  accounting.employeesAll:
+    speakeasy-default-accounting-employees-all:
+      parameters:
+        query:
+          raw: false
+          limit: 20
+          fields: "id,updated_at"
+          filter: {"updated_since": "2020-09-30T07:43:32.000Z", "status": "active"}
+        header:
+          x-apideck-consumer-id: "test-consumer"
+          x-apideck-app-id: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
+          x-apideck-service-id: "salesforce"
+      responses:
+        "200":
+          application/json: {"status_code": 200, "status": "OK", "service": "quickbooks", "resource": "Employees", "operation": "all", "data": [], "meta": {"items_on_page": 50, "cursors": {"previous": "em9oby1jcm06OnBhZ2U6OjE=", "current": "em9oby1jcm06OnBhZ2U6OjI=", "next": "em9oby1jcm06OnBhZ2U6OjM="}}, "links": {"previous": "https://unify.apideck.com/crm/companies?cursor=em9oby1jcm06OnBhZ2U6OjE%3D", "current": "https://unify.apideck.com/crm/companies", "next": "https://unify.apideck.com/crm/companies?cursor=em9oby1jcm06OnBhZ2U6OjM"}}
+        "400":
+          application/json: {"status_code": 400, "error": "Bad Request", "type_name": "RequestValidationError", "message": "Invalid Params", "detail": "Missing property foobar", "ref": "https://developers.apideck.com/errors#requestvalidationerror", "downstream_errors": [{"message": "Account code '100' has been archived or deleted", "detail": "Each line item must reference a valid account", "code": "VALIDATION_ERROR"}]}
+        "401":
+          application/json: {"status_code": 401, "error": "Unauthorized", "type_name": "UnauthorizedError", "message": "Unauthorized Request", "detail": "Missing authentication", "ref": "https://developers.apideck.com/errors#unauthorizederror"}
+        "402":
+          application/json: {"status_code": 402, "error": "Payment Required", "type_name": "RequestLimitError", "message": "Request Limit Reached", "detail": "You have reached your limit of 2000", "ref": "https://developers.apideck.com/errors#requestlimiterror"}
+        "404":
+          application/json: {"status_code": 404, "error": "Not Found", "type_name": "EntityNotFoundError", "message": "Unknown Widget", "detail": "Could not find widget with id: '123'", "ref": "https://developers.apideck.com/errors#entitynotfounderror"}
+        "422":
+          application/json: {"status_code": 422, "error": "Unprocessable Entity", "type_name": "InvalidStateError", "message": "Invalid State", "detail": "Unprocessable request, please verify your request headers and body.", "ref": "https://developers.apideck.com/errors#invalidstateerror"}
+        default:
+          application/json: {"status_code": 400, "error": "Bad Request", "type_name": "RequestHeadersValidationError", "message": "Invalid Params", "detail": "Missing Header: x-apideck-consumer-id", "ref": "https://developers.apideck.com/errors#unauthorizederror"}
+  accounting.employeesAdd:
+    speakeasy-default-accounting-employees-add:
+      parameters:
+        query:
+          raw: false
+        header:
+          x-apideck-consumer-id: "test-consumer"
+          x-apideck-app-id: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
+          x-apideck-service-id: "salesforce"
+      requestBody:
+        application/json: {"display_id": "123456", "first_name": "John", "last_name": "Doe", "display_name": "John Doe", "emails": [{"id": "123", "email": "elon@musk.com", "type": "primary"}], "employee_number": "EMP-001", "job_title": "Senior Accountant", "status": "active", "is_contractor": false, "department": {"display_id": "123456", "name": "Acme Inc."}, "location": {"id": "123456", "display_id": "123456", "name": "New York Office"}, "manager": {"id": "12345", "name": "Jane Smith"}, "hire_date": "2020-01-15", "termination_date": "2025-12-31", "gender": "male", "birth_date": "1990-05-20", "subsidiary": {"display_id": "123456", "name": "Acme Inc."}, "tracking_categories": [{"id": "123456", "code": "100", "name": "New York", "parent_id": "123456", "parent_name": "New York"}], "currency": "USD", "notes": "Some notes about this employee", "addresses": [{"id": "123", "type": "primary", "string": "25 Spring Street, Blackburn, VIC 3130", "name": "HQ US", "line1": "Main street", "line2": "apt #", "line3": "Suite #", "line4": "delivery instructions", "line5": "Attention: Finance Dept", "street_number": "25", "city": "San Francisco", "state": "CA", "postal_code": "94104", "country": "US", "latitude": "40.759211", "longitude": "-73.984638", "county": "Santa Clara", "contact_name": "Elon Musk", "salutation": "Mr", "phone_number": "111-111-1111", "fax": "122-111-1111", "email": "elon@musk.com", "website": "https://elonmusk.com", "notes": "Address notes or delivery instructions.", "row_version": "1-12345"}], "phone_numbers": [{"id": "12345", "country_code": "1", "area_code": "323", "number": "111-111-1111", "extension": "105", "type": "primary"}], "custom_fields": [{"id": "2389328923893298", "name": "employee_level", "description": "Employee Level", "value": "Uses Salesforce and Marketo"}], "row_version": "1-12345", "pass_through": [{"service_id": "<id>", "extend_paths": [{"path": "$.nested.property", "value": {"TaxClassificationRef": {"value": "EUC-99990201-V1-00020000"}}}]}]}
+      responses:
+        "201":
+          application/json: {"status_code": 200, "status": "OK", "service": "quickbooks", "resource": "Employees", "operation": "add", "data": {"id": "12345"}}
+        "400":
+          application/json: {"status_code": 400, "error": "Bad Request", "type_name": "RequestValidationError", "message": "Invalid Params", "detail": "Missing property foobar", "ref": "https://developers.apideck.com/errors#requestvalidationerror", "downstream_errors": [{"message": "Account code '100' has been archived or deleted", "detail": "Each line item must reference a valid account", "code": "VALIDATION_ERROR"}]}
+        "401":
+          application/json: {"status_code": 401, "error": "Unauthorized", "type_name": "UnauthorizedError", "message": "Unauthorized Request", "detail": "Missing authentication", "ref": "https://developers.apideck.com/errors#unauthorizederror"}
+        "402":
+          application/json: {"status_code": 402, "error": "Payment Required", "type_name": "RequestLimitError", "message": "Request Limit Reached", "detail": "You have reached your limit of 2000", "ref": "https://developers.apideck.com/errors#requestlimiterror"}
+        "404":
+          application/json: {"status_code": 404, "error": "Not Found", "type_name": "EntityNotFoundError", "message": "Unknown Widget", "detail": "Could not find widget with id: '123'", "ref": "https://developers.apideck.com/errors#entitynotfounderror"}
+        "422":
+          application/json: {"status_code": 422, "error": "Unprocessable Entity", "type_name": "InvalidStateError", "message": "Invalid State", "detail": "Unprocessable request, please verify your request headers and body.", "ref": "https://developers.apideck.com/errors#invalidstateerror"}
+        default:
+          application/json: {"status_code": 400, "error": "Bad Request", "type_name": "RequestHeadersValidationError", "message": "Invalid Params", "detail": "Missing Header: x-apideck-consumer-id", "ref": "https://developers.apideck.com/errors#unauthorizederror"}
+  accounting.employeesOne:
+    speakeasy-default-accounting-employees-one:
+      parameters:
+        path:
+          id: "<id>"
+        query:
+          raw: false
+          fields: "id,updated_at"
+        header:
+          x-apideck-consumer-id: "test-consumer"
+          x-apideck-app-id: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
+          x-apideck-service-id: "salesforce"
+      responses:
+        "200":
+          application/json: {"status_code": 200, "status": "OK", "service": "quickbooks", "resource": "Employees", "operation": "one", "data": {"id": "12345", "downstream_id": "12345", "display_id": "123456", "first_name": "John", "last_name": "Doe", "display_name": "John Doe", "emails": [{"id": "123", "email": "elon@musk.com", "type": "primary"}], "employee_number": "EMP-001", "job_title": "Senior Accountant", "status": "active", "is_contractor": false, "department": {"id": "12345", "display_id": "123456", "name": "Acme Inc.", "downstream_id": "12345"}, "location": {"id": "123456", "display_id": "123456", "name": "New York Office", "downstream_id": "12345"}, "manager": {"id": "12345", "name": "Jane Smith"}, "hire_date": "2020-01-15", "termination_date": "2025-12-31", "gender": "male", "birth_date": "1990-05-20", "subsidiary": {"id": "12345", "display_id": "123456", "name": "Acme Inc."}, "tracking_categories": [{"id": "123456", "code": "100", "name": "New York", "parent_id": "123456", "parent_name": "New York"}], "currency": "USD", "notes": "Some notes about this employee", "addresses": [{"id": "123", "type": "primary", "string": "25 Spring Street, Blackburn, VIC 3130", "name": "HQ US", "line1": "Main street", "line2": "apt #", "line3": "Suite #", "line4": "delivery instructions", "line5": "Attention: Finance Dept", "street_number": "25", "city": "San Francisco", "state": "CA", "postal_code": "94104", "country": "US", "latitude": "40.759211", "longitude": "-73.984638", "county": "Santa Clara", "contact_name": "Elon Musk", "salutation": "Mr", "phone_number": "111-111-1111", "fax": "122-111-1111", "email": "elon@musk.com", "website": "https://elonmusk.com", "notes": "Address notes or delivery instructions.", "row_version": "1-12345"}], "phone_numbers": [{"id": "12345", "country_code": "1", "area_code": "323", "number": "111-111-1111", "extension": "105", "type": "primary"}], "custom_fields": [{"id": "2389328923893298", "name": "employee_level", "description": "Employee Level", "value": "Uses Salesforce and Marketo"}], "row_version": "1-12345", "updated_at": "2020-09-30T07:43:32.000Z", "created_at": "2020-09-30T07:43:32.000Z", "pass_through": [{"service_id": "<id>", "extend_paths": [{"path": "$.nested.property", "value": {"TaxClassificationRef": {"value": "EUC-99990201-V1-00020000"}}}]}]}}
+        "400":
+          application/json: {"status_code": 400, "error": "Bad Request", "type_name": "RequestValidationError", "message": "Invalid Params", "detail": "Missing property foobar", "ref": "https://developers.apideck.com/errors#requestvalidationerror", "downstream_errors": [{"message": "Account code '100' has been archived or deleted", "detail": "Each line item must reference a valid account", "code": "VALIDATION_ERROR"}]}
+        "401":
+          application/json: {"status_code": 401, "error": "Unauthorized", "type_name": "UnauthorizedError", "message": "Unauthorized Request", "detail": "Missing authentication", "ref": "https://developers.apideck.com/errors#unauthorizederror"}
+        "402":
+          application/json: {"status_code": 402, "error": "Payment Required", "type_name": "RequestLimitError", "message": "Request Limit Reached", "detail": "You have reached your limit of 2000", "ref": "https://developers.apideck.com/errors#requestlimiterror"}
+        "404":
+          application/json: {"status_code": 404, "error": "Not Found", "type_name": "EntityNotFoundError", "message": "Unknown Widget", "detail": "Could not find widget with id: '123'", "ref": "https://developers.apideck.com/errors#entitynotfounderror"}
+        "422":
+          application/json: {"status_code": 422, "error": "Unprocessable Entity", "type_name": "InvalidStateError", "message": "Invalid State", "detail": "Unprocessable request, please verify your request headers and body.", "ref": "https://developers.apideck.com/errors#invalidstateerror"}
+        default:
+          application/json: {"status_code": 400, "error": "Bad Request", "type_name": "RequestHeadersValidationError", "message": "Invalid Params", "detail": "Missing Header: x-apideck-consumer-id", "ref": "https://developers.apideck.com/errors#unauthorizederror"}
+  accounting.employeesUpdate:
+    speakeasy-default-accounting-employees-update:
+      parameters:
+        path:
+          id: "<id>"
+        query:
+          raw: false
+        header:
+          x-apideck-consumer-id: "test-consumer"
+          x-apideck-app-id: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
+          x-apideck-service-id: "salesforce"
+      requestBody:
+        application/json: {"display_id": "123456", "first_name": "John", "last_name": "Doe", "display_name": "John Doe", "emails": [{"id": "123", "email": "elon@musk.com", "type": "primary"}], "employee_number": "EMP-001", "job_title": "Senior Accountant", "status": "active", "is_contractor": false, "department": {"display_id": "123456", "name": "Acme Inc."}, "location": {"id": "123456", "display_id": "123456", "name": "New York Office"}, "manager": {"id": "12345", "name": "Jane Smith"}, "hire_date": "2020-01-15", "termination_date": "2025-12-31", "gender": "male", "birth_date": "1990-05-20", "subsidiary": {"display_id": "123456", "name": "Acme Inc."}, "tracking_categories": [{"id": "123456", "code": "100", "name": "New York", "parent_id": "123456", "parent_name": "New York"}], "currency": "USD", "notes": "Some notes about this employee", "addresses": [{"id": "123", "type": "primary", "string": "25 Spring Street, Blackburn, VIC 3130", "name": "HQ US", "line1": "Main street", "line2": "apt #", "line3": "Suite #", "line4": "delivery instructions", "line5": "Attention: Finance Dept", "street_number": "25", "city": "San Francisco", "state": "CA", "postal_code": "94104", "country": "US", "latitude": "40.759211", "longitude": "-73.984638", "county": "Santa Clara", "contact_name": "Elon Musk", "salutation": "Mr", "phone_number": "111-111-1111", "fax": "122-111-1111", "email": "elon@musk.com", "website": "https://elonmusk.com", "notes": "Address notes or delivery instructions.", "row_version": "1-12345"}], "phone_numbers": [{"id": "12345", "country_code": "1", "area_code": "323", "number": "111-111-1111", "extension": "105", "type": "primary"}], "custom_fields": [{"id": "2389328923893298", "name": "employee_level", "description": "Employee Level", "value": "Uses Salesforce and Marketo"}], "row_version": "1-12345", "pass_through": [{"service_id": "<id>", "extend_paths": [{"path": "$.nested.property", "value": {"TaxClassificationRef": {"value": "EUC-99990201-V1-00020000"}}}]}]}
+      responses:
+        "200":
+          application/json: {"status_code": 200, "status": "OK", "service": "quickbooks", "resource": "Employees", "operation": "update", "data": {"id": "12345"}}
+        "400":
+          application/json: {"status_code": 400, "error": "Bad Request", "type_name": "RequestValidationError", "message": "Invalid Params", "detail": "Missing property foobar", "ref": "https://developers.apideck.com/errors#requestvalidationerror", "downstream_errors": [{"message": "Account code '100' has been archived or deleted", "detail": "Each line item must reference a valid account", "code": "VALIDATION_ERROR"}]}
+        "401":
+          application/json: {"status_code": 401, "error": "Unauthorized", "type_name": "UnauthorizedError", "message": "Unauthorized Request", "detail": "Missing authentication", "ref": "https://developers.apideck.com/errors#unauthorizederror"}
+        "402":
+          application/json: {"status_code": 402, "error": "Payment Required", "type_name": "RequestLimitError", "message": "Request Limit Reached", "detail": "You have reached your limit of 2000", "ref": "https://developers.apideck.com/errors#requestlimiterror"}
+        "404":
+          application/json: {"status_code": 404, "error": "Not Found", "type_name": "EntityNotFoundError", "message": "Unknown Widget", "detail": "Could not find widget with id: '123'", "ref": "https://developers.apideck.com/errors#entitynotfounderror"}
+        "422":
+          application/json: {"status_code": 422, "error": "Unprocessable Entity", "type_name": "InvalidStateError", "message": "Invalid State", "detail": "Unprocessable request, please verify your request headers and body.", "ref": "https://developers.apideck.com/errors#invalidstateerror"}
+        default:
+          application/json: {"status_code": 400, "error": "Bad Request", "type_name": "RequestHeadersValidationError", "message": "Invalid Params", "detail": "Missing Header: x-apideck-consumer-id", "ref": "https://developers.apideck.com/errors#unauthorizederror"}
+  accounting.employeesDelete:
+    speakeasy-default-accounting-employees-delete:
+      parameters:
+        path:
+          id: "<id>"
+        query:
+          raw: false
+        header:
+          x-apideck-consumer-id: "test-consumer"
+          x-apideck-app-id: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
+          x-apideck-service-id: "salesforce"
+      responses:
+        "200":
+          application/json: {"status_code": 200, "status": "OK", "service": "quickbooks", "resource": "Employees", "operation": "delete", "data": {"id": "12345"}}
+        "400":
+          application/json: {"status_code": 400, "error": "Bad Request", "type_name": "RequestValidationError", "message": "Invalid Params", "detail": "Missing property foobar", "ref": "https://developers.apideck.com/errors#requestvalidationerror", "downstream_errors": [{"message": "Account code '100' has been archived or deleted", "detail": "Each line item must reference a valid account", "code": "VALIDATION_ERROR"}]}
+        "401":
+          application/json: {"status_code": 401, "error": "Unauthorized", "type_name": "UnauthorizedError", "message": "Unauthorized Request", "detail": "Missing authentication", "ref": "https://developers.apideck.com/errors#unauthorizederror"}
+        "402":
+          application/json: {"status_code": 402, "error": "Payment Required", "type_name": "RequestLimitError", "message": "Request Limit Reached", "detail": "You have reached your limit of 2000", "ref": "https://developers.apideck.com/errors#requestlimiterror"}
+        "404":
+          application/json: {"status_code": 404, "error": "Not Found", "type_name": "EntityNotFoundError", "message": "Unknown Widget", "detail": "Could not find widget with id: '123'", "ref": "https://developers.apideck.com/errors#entitynotfounderror"}
+        "422":
+          application/json: {"status_code": 422, "error": "Unprocessable Entity", "type_name": "InvalidStateError", "message": "Invalid State", "detail": "Unprocessable request, please verify your request headers and body.", "ref": "https://developers.apideck.com/errors#invalidstateerror"}
+        default:
+          application/json: {"status_code": 400, "error": "Bad Request", "type_name": "RequestHeadersValidationError", "message": "Invalid Params", "detail": "Missing Header: x-apideck-consumer-id", "ref": "https://developers.apideck.com/errors#unauthorizederror"}
+  accounting.expenseCategoriesAll:
+    speakeasy-default-accounting-expense-categories-all:
+      parameters:
+        query:
+          raw: false
+          limit: 20
+          fields: "id,updated_at"
+          filter: {"updated_since": "2020-09-30T07:43:32.000Z", "status": "active"}
+        header:
+          x-apideck-consumer-id: "test-consumer"
+          x-apideck-app-id: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
+          x-apideck-service-id: "salesforce"
+      responses:
+        "200":
+          application/json: {"status_code": 200, "status": "OK", "service": "netsuite", "resource": "ExpenseCategories", "operation": "all", "data": [], "meta": {"items_on_page": 50, "cursors": {"previous": "em9oby1jcm06OnBhZ2U6OjE=", "current": "em9oby1jcm06OnBhZ2U6OjI=", "next": "em9oby1jcm06OnBhZ2U6OjM="}}, "links": {"previous": "https://unify.apideck.com/crm/companies?cursor=em9oby1jcm06OnBhZ2U6OjE%3D", "current": "https://unify.apideck.com/crm/companies", "next": "https://unify.apideck.com/crm/companies?cursor=em9oby1jcm06OnBhZ2U6OjM"}}
+        "400":
+          application/json: {"status_code": 400, "error": "Bad Request", "type_name": "RequestValidationError", "message": "Invalid Params", "detail": "Missing property foobar", "ref": "https://developers.apideck.com/errors#requestvalidationerror", "downstream_errors": [{"message": "Account code '100' has been archived or deleted", "detail": "Each line item must reference a valid account", "code": "VALIDATION_ERROR"}]}
+        "401":
+          application/json: {"status_code": 401, "error": "Unauthorized", "type_name": "UnauthorizedError", "message": "Unauthorized Request", "detail": "Missing authentication", "ref": "https://developers.apideck.com/errors#unauthorizederror"}
+        "402":
+          application/json: {"status_code": 402, "error": "Payment Required", "type_name": "RequestLimitError", "message": "Request Limit Reached", "detail": "You have reached your limit of 2000", "ref": "https://developers.apideck.com/errors#requestlimiterror"}
+        "404":
+          application/json: {"status_code": 404, "error": "Not Found", "type_name": "EntityNotFoundError", "message": "Unknown Widget", "detail": "Could not find widget with id: '123'", "ref": "https://developers.apideck.com/errors#entitynotfounderror"}
+        "422":
+          application/json: {"status_code": 422, "error": "Unprocessable Entity", "type_name": "InvalidStateError", "message": "Invalid State", "detail": "Unprocessable request, please verify your request headers and body.", "ref": "https://developers.apideck.com/errors#invalidstateerror"}
+        default:
+          application/json: {"status_code": 400, "error": "Bad Request", "type_name": "RequestHeadersValidationError", "message": "Invalid Params", "detail": "Missing Header: x-apideck-consumer-id", "ref": "https://developers.apideck.com/errors#unauthorizederror"}
+  accounting.expenseCategoriesAdd:
+    speakeasy-default-accounting-expense-categories-add:
+      parameters:
+        query:
+          raw: false
+        header:
+          x-apideck-consumer-id: "test-consumer"
+          x-apideck-app-id: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
+          x-apideck-service-id: "salesforce"
+      requestBody:
+        application/json: {"display_id": "123456", "name": "Travel", "code": "TRAVEL-001", "description": "Travel-related expenses including flights, hotels, and ground transportation.", "status": "active", "account": {"id": "123456", "name": "Bank account", "nominal_code": "N091", "code": "453", "parent_id": "123456", "display_id": "123456"}, "offset_account": {"id": "123456", "name": "Bank account", "nominal_code": "N091", "code": "453", "parent_id": "123456", "display_id": "123456"}, "tax_rate": {"id": "123456", "code": "N-T", "rate": 10}, "rate_required": false, "default_rate": 0.67, "row_version": "1-12345", "pass_through": [{"service_id": "<id>", "extend_paths": [{"path": "$.nested.property", "value": {"TaxClassificationRef": {"value": "EUC-99990201-V1-00020000"}}}]}]}
+      responses:
+        "201":
+          application/json: {"status_code": 200, "status": "OK", "service": "netsuite", "resource": "ExpenseCategories", "operation": "add", "data": {"id": "12345"}}
+        "400":
+          application/json: {"status_code": 400, "error": "Bad Request", "type_name": "RequestValidationError", "message": "Invalid Params", "detail": "Missing property foobar", "ref": "https://developers.apideck.com/errors#requestvalidationerror", "downstream_errors": [{"message": "Account code '100' has been archived or deleted", "detail": "Each line item must reference a valid account", "code": "VALIDATION_ERROR"}]}
+        "401":
+          application/json: {"status_code": 401, "error": "Unauthorized", "type_name": "UnauthorizedError", "message": "Unauthorized Request", "detail": "Missing authentication", "ref": "https://developers.apideck.com/errors#unauthorizederror"}
+        "402":
+          application/json: {"status_code": 402, "error": "Payment Required", "type_name": "RequestLimitError", "message": "Request Limit Reached", "detail": "You have reached your limit of 2000", "ref": "https://developers.apideck.com/errors#requestlimiterror"}
+        "404":
+          application/json: {"status_code": 404, "error": "Not Found", "type_name": "EntityNotFoundError", "message": "Unknown Widget", "detail": "Could not find widget with id: '123'", "ref": "https://developers.apideck.com/errors#entitynotfounderror"}
+        "422":
+          application/json: {"status_code": 422, "error": "Unprocessable Entity", "type_name": "InvalidStateError", "message": "Invalid State", "detail": "Unprocessable request, please verify your request headers and body.", "ref": "https://developers.apideck.com/errors#invalidstateerror"}
+        default:
+          application/json: {"status_code": 400, "error": "Bad Request", "type_name": "RequestHeadersValidationError", "message": "Invalid Params", "detail": "Missing Header: x-apideck-consumer-id", "ref": "https://developers.apideck.com/errors#unauthorizederror"}
+  accounting.expenseCategoriesOne:
+    speakeasy-default-accounting-expense-categories-one:
+      parameters:
+        path:
+          id: "<id>"
+        query:
+          raw: false
+          fields: "id,updated_at"
+        header:
+          x-apideck-consumer-id: "test-consumer"
+          x-apideck-app-id: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
+          x-apideck-service-id: "salesforce"
+      responses:
+        "200":
+          application/json: {"status_code": 200, "status": "OK", "service": "netsuite", "resource": "ExpenseCategories", "operation": "one", "data": {"id": "12345", "display_id": "123456", "name": "Travel", "code": "TRAVEL-001", "description": "Travel-related expenses including flights, hotels, and ground transportation.", "status": "active", "account": {"id": "123456", "name": "Bank account", "nominal_code": "N091", "code": "453", "parent_id": "123456", "display_id": "123456"}, "offset_account": {"id": "123456", "name": "Bank account", "nominal_code": "N091", "code": "453", "parent_id": "123456", "display_id": "123456"}, "tax_rate": {"id": "123456", "code": "N-T", "name": "GST on Purchases", "rate": 10}, "rate_required": false, "default_rate": 0.67, "row_version": "1-12345", "updated_at": "2020-09-30T07:43:32.000Z", "created_at": "2020-09-30T07:43:32.000Z", "pass_through": [{"service_id": "<id>", "extend_paths": [{"path": "$.nested.property", "value": {"TaxClassificationRef": {"value": "EUC-99990201-V1-00020000"}}}]}]}}
+        "400":
+          application/json: {"status_code": 400, "error": "Bad Request", "type_name": "RequestValidationError", "message": "Invalid Params", "detail": "Missing property foobar", "ref": "https://developers.apideck.com/errors#requestvalidationerror", "downstream_errors": [{"message": "Account code '100' has been archived or deleted", "detail": "Each line item must reference a valid account", "code": "VALIDATION_ERROR"}]}
+        "401":
+          application/json: {"status_code": 401, "error": "Unauthorized", "type_name": "UnauthorizedError", "message": "Unauthorized Request", "detail": "Missing authentication", "ref": "https://developers.apideck.com/errors#unauthorizederror"}
+        "402":
+          application/json: {"status_code": 402, "error": "Payment Required", "type_name": "RequestLimitError", "message": "Request Limit Reached", "detail": "You have reached your limit of 2000", "ref": "https://developers.apideck.com/errors#requestlimiterror"}
+        "404":
+          application/json: {"status_code": 404, "error": "Not Found", "type_name": "EntityNotFoundError", "message": "Unknown Widget", "detail": "Could not find widget with id: '123'", "ref": "https://developers.apideck.com/errors#entitynotfounderror"}
+        "422":
+          application/json: {"status_code": 422, "error": "Unprocessable Entity", "type_name": "InvalidStateError", "message": "Invalid State", "detail": "Unprocessable request, please verify your request headers and body.", "ref": "https://developers.apideck.com/errors#invalidstateerror"}
+        default:
+          application/json: {"status_code": 400, "error": "Bad Request", "type_name": "RequestHeadersValidationError", "message": "Invalid Params", "detail": "Missing Header: x-apideck-consumer-id", "ref": "https://developers.apideck.com/errors#unauthorizederror"}
+  accounting.expenseCategoriesUpdate:
+    speakeasy-default-accounting-expense-categories-update:
+      parameters:
+        path:
+          id: "<id>"
+        query:
+          raw: false
+        header:
+          x-apideck-consumer-id: "test-consumer"
+          x-apideck-app-id: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
+          x-apideck-service-id: "salesforce"
+      requestBody:
+        application/json: {"display_id": "123456", "name": "Travel", "code": "TRAVEL-001", "description": "Travel-related expenses including flights, hotels, and ground transportation.", "status": "active", "account": {"id": "123456", "name": "Bank account", "nominal_code": "N091", "code": "453", "parent_id": "123456", "display_id": "123456"}, "offset_account": {"id": "123456", "name": "Bank account", "nominal_code": "N091", "code": "453", "parent_id": "123456", "display_id": "123456"}, "tax_rate": {"id": "123456", "code": "N-T", "rate": 10}, "rate_required": false, "default_rate": 0.67, "row_version": "1-12345", "pass_through": [{"service_id": "<id>", "extend_paths": [{"path": "$.nested.property", "value": {"TaxClassificationRef": {"value": "EUC-99990201-V1-00020000"}}}]}]}
+      responses:
+        "200":
+          application/json: {"status_code": 200, "status": "OK", "service": "netsuite", "resource": "ExpenseCategories", "operation": "update", "data": {"id": "12345"}}
+        "400":
+          application/json: {"status_code": 400, "error": "Bad Request", "type_name": "RequestValidationError", "message": "Invalid Params", "detail": "Missing property foobar", "ref": "https://developers.apideck.com/errors#requestvalidationerror", "downstream_errors": [{"message": "Account code '100' has been archived or deleted", "detail": "Each line item must reference a valid account", "code": "VALIDATION_ERROR"}]}
+        "401":
+          application/json: {"status_code": 401, "error": "Unauthorized", "type_name": "UnauthorizedError", "message": "Unauthorized Request", "detail": "Missing authentication", "ref": "https://developers.apideck.com/errors#unauthorizederror"}
+        "402":
+          application/json: {"status_code": 402, "error": "Payment Required", "type_name": "RequestLimitError", "message": "Request Limit Reached", "detail": "You have reached your limit of 2000", "ref": "https://developers.apideck.com/errors#requestlimiterror"}
+        "404":
+          application/json: {"status_code": 404, "error": "Not Found", "type_name": "EntityNotFoundError", "message": "Unknown Widget", "detail": "Could not find widget with id: '123'", "ref": "https://developers.apideck.com/errors#entitynotfounderror"}
+        "422":
+          application/json: {"status_code": 422, "error": "Unprocessable Entity", "type_name": "InvalidStateError", "message": "Invalid State", "detail": "Unprocessable request, please verify your request headers and body.", "ref": "https://developers.apideck.com/errors#invalidstateerror"}
+        default:
+          application/json: {"status_code": 400, "error": "Bad Request", "type_name": "RequestHeadersValidationError", "message": "Invalid Params", "detail": "Missing Header: x-apideck-consumer-id", "ref": "https://developers.apideck.com/errors#unauthorizederror"}
+  accounting.expenseCategoriesDelete:
+    speakeasy-default-accounting-expense-categories-delete:
+      parameters:
+        path:
+          id: "<id>"
+        query:
+          raw: false
+        header:
+          x-apideck-consumer-id: "test-consumer"
+          x-apideck-app-id: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
+          x-apideck-service-id: "salesforce"
+      responses:
+        "200":
+          application/json: {"status_code": 200, "status": "OK", "service": "netsuite", "resource": "ExpenseCategories", "operation": "delete", "data": {"id": "12345"}}
+        "400":
+          application/json: {"status_code": 400, "error": "Bad Request", "type_name": "RequestValidationError", "message": "Invalid Params", "detail": "Missing property foobar", "ref": "https://developers.apideck.com/errors#requestvalidationerror", "downstream_errors": [{"message": "Account code '100' has been archived or deleted", "detail": "Each line item must reference a valid account", "code": "VALIDATION_ERROR"}]}
+        "401":
+          application/json: {"status_code": 401, "error": "Unauthorized", "type_name": "UnauthorizedError", "message": "Unauthorized Request", "detail": "Missing authentication", "ref": "https://developers.apideck.com/errors#unauthorizederror"}
+        "402":
+          application/json: {"status_code": 402, "error": "Payment Required", "type_name": "RequestLimitError", "message": "Request Limit Reached", "detail": "You have reached your limit of 2000", "ref": "https://developers.apideck.com/errors#requestlimiterror"}
+        "404":
+          application/json: {"status_code": 404, "error": "Not Found", "type_name": "EntityNotFoundError", "message": "Unknown Widget", "detail": "Could not find widget with id: '123'", "ref": "https://developers.apideck.com/errors#entitynotfounderror"}
+        "422":
+          application/json: {"status_code": 422, "error": "Unprocessable Entity", "type_name": "InvalidStateError", "message": "Invalid State", "detail": "Unprocessable request, please verify your request headers and body.", "ref": "https://developers.apideck.com/errors#invalidstateerror"}
+        default:
+          application/json: {"status_code": 400, "error": "Bad Request", "type_name": "RequestHeadersValidationError", "message": "Invalid Params", "detail": "Missing Header: x-apideck-consumer-id", "ref": "https://developers.apideck.com/errors#unauthorizederror"}
+  accounting.expenseReportsAll:
+    speakeasy-default-accounting-expense-reports-all:
+      parameters:
+        query:
+          raw: false
+          limit: 20
+          fields: "id,updated_at"
+          filter: {"updated_since": "2020-09-30T07:43:32.000Z", "status": "submitted"}
+        header:
+          x-apideck-consumer-id: "test-consumer"
+          x-apideck-app-id: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
+          x-apideck-service-id: "salesforce"
+      responses:
+        "200":
+          application/json: {"status_code": 200, "status": "OK", "service": "netsuite", "resource": "ExpenseReports", "operation": "all", "data": [{"id": "12345", "display_id": "123456", "number": "ER-001", "title": "Q1 Business Travel", "employee": {"id": "12345", "display_name": "John Doe"}, "status": "submitted", "transaction_date": "2021-05-01T12:00:00.000Z", "posting_date": "2024-06-01", "due_date": "2024-06-15", "currency": "USD", "currency_rate": 0.69, "sub_total": 250, "total_tax": 25, "total_amount": 1250.75, "reimbursable_amount": 1100, "memo": "Business travel expenses for Q1 client meetings", "department": {"id": "12345", "display_id": "123456", "name": "Acme Inc.", "downstream_id": "12345"}, "location": {"id": "123456", "display_id": "123456", "name": "New York Office", "downstream_id": "12345"}, "account": {"id": "123456", "name": "Bank account", "nominal_code": "N091", "code": "453", "parent_id": "123456", "display_id": "123456"}, "accounting_period": {"id": "12345", "name": "Q1 2024"}, "line_items": [{"id": "12345", "expense_category": {"id": "12345", "name": "Travel"}, "account": null, "description": "Flight to New York", "quantity": 1, "unit_price": 27500.5, "amount": 275, "tax_rate": {"id": "123456", "code": "N-T", "name": "GST on Purchases", "rate": 10}, "tax_amount": 27.5, "total_amount": 302.5, "transaction_date": "2024-05-15", "billable": true, "reimbursable": true, "customer": {"id": "12345", "display_id": "CUST00101", "display_name": "Windsurf Shop", "company_name": "The boring company", "email": "boring@boring.com"}, "department": {"id": "12345", "display_id": "123456", "name": "Acme Inc.", "downstream_id": "12345"}, "location": {"id": "123456", "display_id": "123456", "name": "New York Office", "downstream_id": "12345"}, "tracking_categories": [{"id": "123456", "code": "100", "name": "New York", "parent_id": "123456", "parent_name": "New York"}], "receipt_url": "https://example.com/receipts/123.pdf", "currency": "USD"}], "subsidiary": {"id": "12345", "display_id": "123456", "name": "Acme Inc."}, "tracking_categories": [{"id": "123456", "code": "100", "name": "New York", "parent_id": "123456", "parent_name": "New York"}], "tax_inclusive": true, "approved_by": {"id": "12345", "display_name": "Jane Smith"}, "custom_fields": [{"id": "2389328923893298", "name": "employee_level", "description": "Employee Level", "value": "Uses Salesforce and Marketo"}], "row_version": "1-12345", "updated_at": "2020-09-30T07:43:32.000Z", "created_at": "2020-09-30T07:43:32.000Z", "pass_through": [{"service_id": "<id>", "extend_paths": [{"path": "$.nested.property", "value": {"TaxClassificationRef": {"value": "EUC-99990201-V1-00020000"}}}]}]}], "meta": {"items_on_page": 50, "cursors": {"previous": "em9oby1jcm06OnBhZ2U6OjE=", "current": "em9oby1jcm06OnBhZ2U6OjI=", "next": "em9oby1jcm06OnBhZ2U6OjM="}}, "links": {"previous": "https://unify.apideck.com/crm/companies?cursor=em9oby1jcm06OnBhZ2U6OjE%3D", "current": "https://unify.apideck.com/crm/companies", "next": "https://unify.apideck.com/crm/companies?cursor=em9oby1jcm06OnBhZ2U6OjM"}}
+        "400":
+          application/json: {"status_code": 400, "error": "Bad Request", "type_name": "RequestValidationError", "message": "Invalid Params", "detail": "Missing property foobar", "ref": "https://developers.apideck.com/errors#requestvalidationerror", "downstream_errors": [{"message": "Account code '100' has been archived or deleted", "detail": "Each line item must reference a valid account", "code": "VALIDATION_ERROR"}]}
+        "401":
+          application/json: {"status_code": 401, "error": "Unauthorized", "type_name": "UnauthorizedError", "message": "Unauthorized Request", "detail": "Missing authentication", "ref": "https://developers.apideck.com/errors#unauthorizederror"}
+        "402":
+          application/json: {"status_code": 402, "error": "Payment Required", "type_name": "RequestLimitError", "message": "Request Limit Reached", "detail": "You have reached your limit of 2000", "ref": "https://developers.apideck.com/errors#requestlimiterror"}
+        "404":
+          application/json: {"status_code": 404, "error": "Not Found", "type_name": "EntityNotFoundError", "message": "Unknown Widget", "detail": "Could not find widget with id: '123'", "ref": "https://developers.apideck.com/errors#entitynotfounderror"}
+        "422":
+          application/json: {"status_code": 422, "error": "Unprocessable Entity", "type_name": "InvalidStateError", "message": "Invalid State", "detail": "Unprocessable request, please verify your request headers and body.", "ref": "https://developers.apideck.com/errors#invalidstateerror"}
+        default:
+          application/json: {"status_code": 400, "error": "Bad Request", "type_name": "RequestHeadersValidationError", "message": "Invalid Params", "detail": "Missing Header: x-apideck-consumer-id", "ref": "https://developers.apideck.com/errors#unauthorizederror"}
+  accounting.expenseReportsAdd:
+    speakeasy-default-accounting-expense-reports-add:
+      parameters:
+        query:
+          raw: false
+        header:
+          x-apideck-consumer-id: "test-consumer"
+          x-apideck-app-id: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
+          x-apideck-service-id: "salesforce"
+      requestBody:
+        application/json: {"display_id": "123456", "number": "ER-001", "title": "Q1 Business Travel", "employee": {"id": "12345", "display_name": "John Doe"}, "status": "submitted", "transaction_date": "2021-05-01T12:00:00.000Z", "posting_date": "2024-06-01", "due_date": "2024-06-15", "currency": "USD", "currency_rate": 0.69, "sub_total": 250, "total_tax": 25, "total_amount": 1250.75, "reimbursable_amount": 1100, "memo": "Business travel expenses for Q1 client meetings", "department": {"display_id": "123456", "name": "Acme Inc."}, "location": {"id": "123456", "display_id": "123456", "name": "New York Office"}, "account": null, "accounting_period": {"id": "12345", "name": "Q1 2024"}, "line_items": [], "subsidiary": {"display_id": "123456", "name": "Acme Inc."}, "tracking_categories": [{"id": "123456", "code": "100", "name": "New York", "parent_id": "123456", "parent_name": "New York"}], "tax_inclusive": true, "approved_by": {"id": "12345", "display_name": "Jane Smith"}, "custom_fields": [{"id": "2389328923893298", "name": "employee_level", "description": "Employee Level", "value": "Uses Salesforce and Marketo"}], "row_version": "1-12345", "pass_through": [{"service_id": "<id>", "extend_paths": [{"path": "$.nested.property", "value": {"TaxClassificationRef": {"value": "EUC-99990201-V1-00020000"}}}]}]}
+      responses:
+        "201":
+          application/json: {"status_code": 200, "status": "OK", "service": "netsuite", "resource": "ExpenseReports", "operation": "add", "data": {"id": "12345"}}
+        "400":
+          application/json: {"status_code": 400, "error": "Bad Request", "type_name": "RequestValidationError", "message": "Invalid Params", "detail": "Missing property foobar", "ref": "https://developers.apideck.com/errors#requestvalidationerror", "downstream_errors": [{"message": "Account code '100' has been archived or deleted", "detail": "Each line item must reference a valid account", "code": "VALIDATION_ERROR"}]}
+        "401":
+          application/json: {"status_code": 401, "error": "Unauthorized", "type_name": "UnauthorizedError", "message": "Unauthorized Request", "detail": "Missing authentication", "ref": "https://developers.apideck.com/errors#unauthorizederror"}
+        "402":
+          application/json: {"status_code": 402, "error": "Payment Required", "type_name": "RequestLimitError", "message": "Request Limit Reached", "detail": "You have reached your limit of 2000", "ref": "https://developers.apideck.com/errors#requestlimiterror"}
+        "404":
+          application/json: {"status_code": 404, "error": "Not Found", "type_name": "EntityNotFoundError", "message": "Unknown Widget", "detail": "Could not find widget with id: '123'", "ref": "https://developers.apideck.com/errors#entitynotfounderror"}
+        "422":
+          application/json: {"status_code": 422, "error": "Unprocessable Entity", "type_name": "InvalidStateError", "message": "Invalid State", "detail": "Unprocessable request, please verify your request headers and body.", "ref": "https://developers.apideck.com/errors#invalidstateerror"}
+        default:
+          application/json: {"status_code": 400, "error": "Bad Request", "type_name": "RequestHeadersValidationError", "message": "Invalid Params", "detail": "Missing Header: x-apideck-consumer-id", "ref": "https://developers.apideck.com/errors#unauthorizederror"}
+  accounting.expenseReportsOne:
+    speakeasy-default-accounting-expense-reports-one:
+      parameters:
+        path:
+          id: "<id>"
+        query:
+          raw: false
+          fields: "id,updated_at"
+        header:
+          x-apideck-consumer-id: "test-consumer"
+          x-apideck-app-id: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
+          x-apideck-service-id: "salesforce"
+      responses:
+        "200":
+          application/json: {"status_code": 200, "status": "OK", "service": "netsuite", "resource": "ExpenseReports", "operation": "one", "data": {"id": "12345", "display_id": "123456", "number": "ER-001", "title": "Q1 Business Travel", "employee": {"id": "12345", "display_name": "John Doe"}, "status": "submitted", "transaction_date": "2021-05-01T12:00:00.000Z", "posting_date": "2024-06-01", "due_date": "2024-06-15", "currency": "USD", "currency_rate": 0.69, "sub_total": 250, "total_tax": 25, "total_amount": 1250.75, "reimbursable_amount": 1100, "memo": "Business travel expenses for Q1 client meetings", "department": {"id": "12345", "display_id": "123456", "name": "Acme Inc.", "downstream_id": "12345"}, "location": {"id": "123456", "display_id": "123456", "name": "New York Office", "downstream_id": "12345"}, "account": {"id": "123456", "name": "Bank account", "nominal_code": "N091", "code": "453", "parent_id": "123456", "display_id": "123456"}, "accounting_period": {"id": "12345", "name": "Q1 2024"}, "line_items": [{"id": "12345", "expense_category": {"id": "12345", "name": "Travel"}, "account": {"id": "123456", "name": "Bank account", "nominal_code": "N091", "code": "453", "parent_id": "123456", "display_id": "123456"}, "description": "Flight to New York", "quantity": 1, "unit_price": 27500.5, "amount": 275, "tax_rate": {"id": "123456", "code": "N-T", "name": "GST on Purchases", "rate": 10}, "tax_amount": 27.5, "total_amount": 302.5, "transaction_date": "2024-05-15", "billable": true, "reimbursable": true, "customer": {"id": "12345", "display_id": "CUST00101", "display_name": "Windsurf Shop", "company_name": "The boring company", "email": "boring@boring.com"}, "department": {"id": "12345", "display_id": "123456", "name": "Acme Inc.", "downstream_id": "12345"}, "location": null, "tracking_categories": [{"id": "123456", "code": "100", "name": "New York", "parent_id": "123456", "parent_name": "New York"}], "receipt_url": "https://example.com/receipts/123.pdf", "currency": "USD"}], "subsidiary": {"id": "12345", "display_id": "123456", "name": "Acme Inc."}, "tracking_categories": [{"id": "123456", "code": "100", "name": "New York", "parent_id": "123456", "parent_name": "New York"}], "tax_inclusive": true, "approved_by": {"id": "12345", "display_name": "Jane Smith"}, "custom_fields": [{"id": "2389328923893298", "name": "employee_level", "description": "Employee Level", "value": "Uses Salesforce and Marketo"}], "row_version": "1-12345", "updated_at": "2020-09-30T07:43:32.000Z", "created_at": "2020-09-30T07:43:32.000Z", "pass_through": [{"service_id": "<id>", "extend_paths": [{"path": "$.nested.property", "value": {"TaxClassificationRef": {"value": "EUC-99990201-V1-00020000"}}}]}]}}
+        "400":
+          application/json: {"status_code": 400, "error": "Bad Request", "type_name": "RequestValidationError", "message": "Invalid Params", "detail": "Missing property foobar", "ref": "https://developers.apideck.com/errors#requestvalidationerror", "downstream_errors": [{"message": "Account code '100' has been archived or deleted", "detail": "Each line item must reference a valid account", "code": "VALIDATION_ERROR"}]}
+        "401":
+          application/json: {"status_code": 401, "error": "Unauthorized", "type_name": "UnauthorizedError", "message": "Unauthorized Request", "detail": "Missing authentication", "ref": "https://developers.apideck.com/errors#unauthorizederror"}
+        "402":
+          application/json: {"status_code": 402, "error": "Payment Required", "type_name": "RequestLimitError", "message": "Request Limit Reached", "detail": "You have reached your limit of 2000", "ref": "https://developers.apideck.com/errors#requestlimiterror"}
+        "404":
+          application/json: {"status_code": 404, "error": "Not Found", "type_name": "EntityNotFoundError", "message": "Unknown Widget", "detail": "Could not find widget with id: '123'", "ref": "https://developers.apideck.com/errors#entitynotfounderror"}
+        "422":
+          application/json: {"status_code": 422, "error": "Unprocessable Entity", "type_name": "InvalidStateError", "message": "Invalid State", "detail": "Unprocessable request, please verify your request headers and body.", "ref": "https://developers.apideck.com/errors#invalidstateerror"}
+        default:
+          application/json: {"status_code": 400, "error": "Bad Request", "type_name": "RequestHeadersValidationError", "message": "Invalid Params", "detail": "Missing Header: x-apideck-consumer-id", "ref": "https://developers.apideck.com/errors#unauthorizederror"}
+  accounting.expenseReportsUpdate:
+    speakeasy-default-accounting-expense-reports-update:
+      parameters:
+        path:
+          id: "<id>"
+        query:
+          raw: false
+        header:
+          x-apideck-consumer-id: "test-consumer"
+          x-apideck-app-id: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
+          x-apideck-service-id: "salesforce"
+      requestBody:
+        application/json: {"display_id": "123456", "number": "ER-001", "title": "Q1 Business Travel", "employee": {"id": "12345", "display_name": "John Doe"}, "status": "submitted", "transaction_date": "2021-05-01T12:00:00.000Z", "posting_date": "2024-06-01", "due_date": "2024-06-15", "currency": "USD", "currency_rate": 0.69, "sub_total": 250, "total_tax": 25, "total_amount": 1250.75, "reimbursable_amount": 1100, "memo": "Business travel expenses for Q1 client meetings", "department": {"display_id": "123456", "name": "Acme Inc."}, "location": {"id": "123456", "display_id": "123456", "name": "New York Office"}, "account": {"id": "123456", "name": "Bank account", "nominal_code": "N091", "code": "453", "parent_id": "123456", "display_id": "123456"}, "accounting_period": {"id": "12345", "name": "Q1 2024"}, "line_items": [], "subsidiary": {"display_id": "123456", "name": "Acme Inc."}, "tracking_categories": null, "tax_inclusive": true, "approved_by": {"id": "12345", "display_name": "Jane Smith"}, "custom_fields": [{"id": "2389328923893298", "name": "employee_level", "description": "Employee Level", "value": "Uses Salesforce and Marketo"}], "row_version": "1-12345", "pass_through": [{"service_id": "<id>", "extend_paths": [{"path": "$.nested.property", "value": {"TaxClassificationRef": {"value": "EUC-99990201-V1-00020000"}}}]}]}
+      responses:
+        "200":
+          application/json: {"status_code": 200, "status": "OK", "service": "netsuite", "resource": "ExpenseReports", "operation": "update", "data": {"id": "12345"}}
+        "400":
+          application/json: {"status_code": 400, "error": "Bad Request", "type_name": "RequestValidationError", "message": "Invalid Params", "detail": "Missing property foobar", "ref": "https://developers.apideck.com/errors#requestvalidationerror", "downstream_errors": [{"message": "Account code '100' has been archived or deleted", "detail": "Each line item must reference a valid account", "code": "VALIDATION_ERROR"}]}
+        "401":
+          application/json: {"status_code": 401, "error": "Unauthorized", "type_name": "UnauthorizedError", "message": "Unauthorized Request", "detail": "Missing authentication", "ref": "https://developers.apideck.com/errors#unauthorizederror"}
+        "402":
+          application/json: {"status_code": 402, "error": "Payment Required", "type_name": "RequestLimitError", "message": "Request Limit Reached", "detail": "You have reached your limit of 2000", "ref": "https://developers.apideck.com/errors#requestlimiterror"}
+        "404":
+          application/json: {"status_code": 404, "error": "Not Found", "type_name": "EntityNotFoundError", "message": "Unknown Widget", "detail": "Could not find widget with id: '123'", "ref": "https://developers.apideck.com/errors#entitynotfounderror"}
+        "422":
+          application/json: {"status_code": 422, "error": "Unprocessable Entity", "type_name": "InvalidStateError", "message": "Invalid State", "detail": "Unprocessable request, please verify your request headers and body.", "ref": "https://developers.apideck.com/errors#invalidstateerror"}
+        default:
+          application/json: {"status_code": 400, "error": "Bad Request", "type_name": "RequestHeadersValidationError", "message": "Invalid Params", "detail": "Missing Header: x-apideck-consumer-id", "ref": "https://developers.apideck.com/errors#unauthorizederror"}
+  accounting.expenseReportsDelete:
+    speakeasy-default-accounting-expense-reports-delete:
+      parameters:
+        path:
+          id: "<id>"
+        query:
+          raw: false
+        header:
+          x-apideck-consumer-id: "test-consumer"
+          x-apideck-app-id: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
+          x-apideck-service-id: "salesforce"
+      responses:
+        "200":
+          application/json: {"status_code": 200, "status": "OK", "service": "netsuite", "resource": "ExpenseReports", "operation": "delete", "data": {"id": "12345"}}
+        "400":
+          application/json: {"status_code": 400, "error": "Bad Request", "type_name": "RequestValidationError", "message": "Invalid Params", "detail": "Missing property foobar", "ref": "https://developers.apideck.com/errors#requestvalidationerror", "downstream_errors": [{"message": "Account code '100' has been archived or deleted", "detail": "Each line item must reference a valid account", "code": "VALIDATION_ERROR"}]}
+        "401":
+          application/json: {"status_code": 401, "error": "Unauthorized", "type_name": "UnauthorizedError", "message": "Unauthorized Request", "detail": "Missing authentication", "ref": "https://developers.apideck.com/errors#unauthorizederror"}
+        "402":
+          application/json: {"status_code": 402, "error": "Payment Required", "type_name": "RequestLimitError", "message": "Request Limit Reached", "detail": "You have reached your limit of 2000", "ref": "https://developers.apideck.com/errors#requestlimiterror"}
+        "404":
+          application/json: {"status_code": 404, "error": "Not Found", "type_name": "EntityNotFoundError", "message": "Unknown Widget", "detail": "Could not find widget with id: '123'", "ref": "https://developers.apideck.com/errors#entitynotfounderror"}
+        "422":
+          application/json: {"status_code": 422, "error": "Unprocessable Entity", "type_name": "InvalidStateError", "message": "Invalid State", "detail": "Unprocessable request, please verify your request headers and body.", "ref": "https://developers.apideck.com/errors#invalidstateerror"}
+        default:
+          application/json: {"status_code": 400, "error": "Bad Request", "type_name": "RequestHeadersValidationError", "message": "Invalid Params", "detail": "Missing Header: x-apideck-consumer-id", "ref": "https://developers.apideck.com/errors#unauthorizederror"}
 examplesVersion: 1.0.2
 generatedTests:
   accounting.taxRatesAll: "2025-04-22T11:14:40+01:00"
@@ -32126,7 +33220,38 @@ generatedTests:
   proxy.putProxy: "2026-02-10T10:09:16Z"
   proxy.patchProxy: "2026-02-10T10:09:16Z"
   proxy.deleteProxy: "2026-02-10T10:09:16Z"
-releaseNotes: "## Typescript SDK Changes:\n* `apideck.accounting.invoiceItems.list()`: \n  *  `request.filter` **Changed**\n* `apideck.crm.companies.list()`: \n  *  `request.filter` **Changed**\n* `apideck.crm.contacts.list()`: \n  *  `request.filter` **Changed**\n* `apideck.crm.contacts.get()`: \n  *  `request.filter` **Changed**\n* `apideck.hris.employees.list()`:  `response.data[].leavingReason.enum(retired)` **Added**\n* `apideck.hris.employees.create()`: \n  *  `request.employee.leavingReason.enum(retired)` **Added**\n* `apideck.hris.employees.get()`:  `response.data.leavingReason.enum(retired)` **Added**\n* `apideck.hris.employees.update()`: \n  *  `request.employee.leavingReason.enum(retired)` **Added**\n* `apideck.hris.employeeSchedules.list()`:  `response.data.employee.leavingReason.enum(retired)` **Added**\n"
+  accounting.employeesAll: "2026-02-21T00:06:36Z"
+  accounting.employeesAdd: "2026-02-21T00:06:36Z"
+  accounting.employeesOne: "2026-02-21T00:06:36Z"
+  accounting.employeesUpdate: "2026-02-21T00:06:36Z"
+  accounting.employeesDelete: "2026-02-21T00:06:36Z"
+  accounting.expenseCategoriesAll: "2026-02-21T00:06:36Z"
+  accounting.expenseCategoriesAdd: "2026-02-21T00:06:36Z"
+  accounting.expenseCategoriesOne: "2026-02-21T00:06:36Z"
+  accounting.expenseCategoriesUpdate: "2026-02-21T00:06:36Z"
+  accounting.expenseCategoriesDelete: "2026-02-21T00:06:36Z"
+  accounting.expenseReportsAll: "2026-02-21T00:06:36Z"
+  accounting.expenseReportsAdd: "2026-02-21T00:06:36Z"
+  accounting.expenseReportsOne: "2026-02-21T00:06:36Z"
+  accounting.expenseReportsUpdate: "2026-02-21T00:06:36Z"
+  accounting.expenseReportsDelete: "2026-02-21T00:06:36Z"
+releaseNotes: |
+  ## Typescript SDK Changes:
+  * `apideck.accounting.employees.list()`: **Added**
+  * `apideck.accounting.employees.create()`: **Added**
+  * `apideck.accounting.employees.get()`: **Added**
+  * `apideck.accounting.employees.update()`: **Added**
+  * `apideck.accounting.employees.delete()`: **Added**
+  * `apideck.accounting.expenseCategories.list()`: **Added**
+  * `apideck.accounting.expenseCategories.create()`: **Added**
+  * `apideck.accounting.expenseCategories.get()`: **Added**
+  * `apideck.accounting.expenseCategories.update()`: **Added**
+  * `apideck.accounting.expenseCategories.delete()`: **Added**
+  * `apideck.accounting.expenseReports.list()`: **Added**
+  * `apideck.accounting.expenseReports.create()`: **Added**
+  * `apideck.accounting.expenseReports.get()`: **Added**
+  * `apideck.accounting.expenseReports.update()`: **Added**
+  * `apideck.accounting.expenseReports.delete()`: **Added**
 generatedFiles:
   - .gitattributes
   - .npmignore

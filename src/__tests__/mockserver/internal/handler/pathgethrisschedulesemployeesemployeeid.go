@@ -91,7 +91,7 @@ func testHrisEmployeeSchedulesAllHrisEmployeeSchedulesAll0(w http.ResponseWriter
 				EmployeeNumber:      types.String("123456-AB"),
 				EmploymentStatus:    components.EmploymentStatusActive.ToPointer(),
 				Ethnicity:           types.String("African American"),
-				Manager: &components.Manager{
+				Manager: &components.EmployeeManager{
 					ID:               types.String("12345"),
 					Name:             types.String("Elon Musk"),
 					FirstName:        types.String("Elon"),
