@@ -5,16 +5,16 @@
 import { ClientSDK } from "../lib/sdks.js";
 import { ApideckCompanies } from "./apideckcompanies.js";
 import { ApideckDepartments } from "./apideckdepartments.js";
+import { ApideckEmployees } from "./apideckemployees.js";
 import { EmployeePayrolls } from "./employeepayrolls.js";
-import { Employees } from "./employees.js";
 import { EmployeeSchedules } from "./employeeschedules.js";
 import { Payrolls } from "./payrolls.js";
 import { TimeOffRequests } from "./timeoffrequests.js";
 
 export class Hris extends ClientSDK {
-  private _employees?: Employees;
-  get employees(): Employees {
-    return (this._employees ??= new Employees(this._options));
+  private _employees?: ApideckEmployees;
+  get employees(): ApideckEmployees {
+    return (this._employees ??= new ApideckEmployees(this._options));
   }
 
   private _companies?: ApideckCompanies;
