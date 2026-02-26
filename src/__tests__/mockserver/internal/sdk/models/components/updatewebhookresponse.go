@@ -2,6 +2,10 @@
 
 package components
 
+import (
+	"mockserver/internal/sdk/optionalnullable"
+)
+
 // UpdateWebhookResponse - Webhooks
 type UpdateWebhookResponse struct {
 	// HTTP Response Status Code
@@ -10,7 +14,7 @@ type UpdateWebhookResponse struct {
 	Status string  `json:"status"`
 	Data   Webhook `json:"data"`
 	// Raw response from the integration when raw=true query param is provided
-	Raw map[string]any `json:"_raw,omitempty"`
+	Raw optionalnullable.OptionalNullable[map[string]any] `json:"_raw,omitempty"`
 }
 
 func (o *UpdateWebhookResponse) GetStatusCode() int64 {
@@ -34,7 +38,7 @@ func (o *UpdateWebhookResponse) GetData() Webhook {
 	return o.Data
 }
 
-func (o *UpdateWebhookResponse) GetRaw() map[string]any {
+func (o *UpdateWebhookResponse) GetRaw() optionalnullable.OptionalNullable[map[string]any] {
 	if o == nil {
 		return nil
 	}

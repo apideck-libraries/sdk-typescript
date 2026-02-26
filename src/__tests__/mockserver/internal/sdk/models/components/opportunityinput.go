@@ -3,6 +3,7 @@
 package components
 
 import (
+	"mockserver/internal/sdk/optionalnullable"
 	"mockserver/internal/sdk/types"
 	"mockserver/internal/sdk/utils"
 	"time"
@@ -12,57 +13,57 @@ type OpportunityInput struct {
 	// The title or name of the opportunity.
 	Title string `json:"title"`
 	// The unique identifier of the primary contact associated with the opportunity.
-	PrimaryContactID *string `json:"primary_contact_id,omitempty"`
+	PrimaryContactID optionalnullable.OptionalNullable[string] `json:"primary_contact_id,omitempty"`
 	// A description of the opportunity.
-	Description *string `json:"description,omitempty"`
+	Description optionalnullable.OptionalNullable[string] `json:"description,omitempty"`
 	// The type of the opportunity
-	Type *string `json:"type,omitempty"`
+	Type optionalnullable.OptionalNullable[string] `json:"type,omitempty"`
 	// The monetary value associated with the opportunity
-	MonetaryAmount *float64 `json:"monetary_amount,omitempty"`
+	MonetaryAmount optionalnullable.OptionalNullable[float64] `json:"monetary_amount,omitempty"`
 	// Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
-	Currency *Currency `json:"currency,omitempty"`
+	Currency optionalnullable.OptionalNullable[Currency] `json:"currency,omitempty"`
 	// The probability of winning the opportunity, expressed as a percentage.
-	WinProbability *float64 `json:"win_probability,omitempty"`
+	WinProbability optionalnullable.OptionalNullable[float64] `json:"win_probability,omitempty"`
 	// The actual closing date for the opportunity. If close_date is null, the opportunity is not closed yet.
-	CloseDate *types.Date `json:"close_date,omitempty"`
+	CloseDate optionalnullable.OptionalNullable[types.Date] `json:"close_date,omitempty"`
 	// The unique identifier of the reason why the opportunity was lost.
-	LossReasonID *string `json:"loss_reason_id,omitempty"`
+	LossReasonID optionalnullable.OptionalNullable[string] `json:"loss_reason_id,omitempty"`
 	// The reason why the opportunity was lost.
-	LossReason *string `json:"loss_reason,omitempty"`
+	LossReason optionalnullable.OptionalNullable[string] `json:"loss_reason,omitempty"`
 	// The unique identifier of the reason why the opportunity was won.
-	WonReasonID *string `json:"won_reason_id,omitempty"`
+	WonReasonID optionalnullable.OptionalNullable[string] `json:"won_reason_id,omitempty"`
 	// The reason why the opportunity was won.
-	WonReason *string `json:"won_reason,omitempty"`
+	WonReason optionalnullable.OptionalNullable[string] `json:"won_reason,omitempty"`
 	// The unique identifier of the pipeline associated with the opportunity
-	PipelineID *string `json:"pipeline_id,omitempty"`
+	PipelineID optionalnullable.OptionalNullable[string] `json:"pipeline_id,omitempty"`
 	// The unique identifier of the stage in the pipeline associated with the opportunity.
-	PipelineStageID *string `json:"pipeline_stage_id,omitempty"`
+	PipelineStageID optionalnullable.OptionalNullable[string] `json:"pipeline_stage_id,omitempty"`
 	// The unique identifier of the source of the opportunity.
-	SourceID *string `json:"source_id,omitempty"`
+	SourceID optionalnullable.OptionalNullable[string] `json:"source_id,omitempty"`
 	// The unique identifier of the lead associated with the opportunity.
-	LeadID *string `json:"lead_id,omitempty"`
+	LeadID optionalnullable.OptionalNullable[string] `json:"lead_id,omitempty"`
 	// The source of the lead associated with the opportunity.
-	LeadSource *string `json:"lead_source,omitempty"`
+	LeadSource optionalnullable.OptionalNullable[string] `json:"lead_source,omitempty"`
 	// The unique identifier of the contact associated with the opportunity.
-	ContactID *string `json:"contact_id,omitempty"`
+	ContactID optionalnullable.OptionalNullable[string] `json:"contact_id,omitempty"`
 	// An array of unique identifiers of all contacts associated with the opportunity.
 	ContactIds []string `json:"contact_ids,omitempty"`
 	// The unique identifier of the company associated with the opportunity.
-	CompanyID *string `json:"company_id,omitempty"`
+	CompanyID optionalnullable.OptionalNullable[string] `json:"company_id,omitempty"`
 	// The name of the company associated with the opportunity.
-	CompanyName *string `json:"company_name,omitempty"`
+	CompanyName optionalnullable.OptionalNullable[string] `json:"company_name,omitempty"`
 	// The unique identifier of the user who owns the opportunity.
-	OwnerID *string `json:"owner_id,omitempty"`
+	OwnerID optionalnullable.OptionalNullable[string] `json:"owner_id,omitempty"`
 	// The priority level of the opportunity.
-	Priority *string `json:"priority,omitempty"`
+	Priority optionalnullable.OptionalNullable[string] `json:"priority,omitempty"`
 	// The current status of the opportunity.
-	Status *string `json:"status,omitempty"`
+	Status optionalnullable.OptionalNullable[string] `json:"status,omitempty"`
 	// The unique identifier of the current status of the opportunity.
-	StatusID     *string            `json:"status_id,omitempty"`
-	Tags         []string           `json:"tags,omitempty"`
-	CustomFields []CustomFieldUnion `json:"custom_fields,omitempty"`
+	StatusID     optionalnullable.OptionalNullable[string]   `json:"status_id,omitempty"`
+	Tags         optionalnullable.OptionalNullable[[]string] `json:"tags,omitempty"`
+	CustomFields []CustomFieldUnion                          `json:"custom_fields,omitempty"`
 	// The date and time when the stage of the opportunity was last changed.
-	StageLastChangedAt *time.Time `json:"stage_last_changed_at,omitempty"`
+	StageLastChangedAt optionalnullable.OptionalNullable[time.Time] `json:"stage_last_changed_at,omitempty"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
 	PassThrough []PassThroughBody `json:"pass_through,omitempty"`
 }
@@ -85,119 +86,119 @@ func (o *OpportunityInput) GetTitle() string {
 	return o.Title
 }
 
-func (o *OpportunityInput) GetPrimaryContactID() *string {
+func (o *OpportunityInput) GetPrimaryContactID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.PrimaryContactID
 }
 
-func (o *OpportunityInput) GetDescription() *string {
+func (o *OpportunityInput) GetDescription() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Description
 }
 
-func (o *OpportunityInput) GetType() *string {
+func (o *OpportunityInput) GetType() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Type
 }
 
-func (o *OpportunityInput) GetMonetaryAmount() *float64 {
+func (o *OpportunityInput) GetMonetaryAmount() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}
 	return o.MonetaryAmount
 }
 
-func (o *OpportunityInput) GetCurrency() *Currency {
+func (o *OpportunityInput) GetCurrency() optionalnullable.OptionalNullable[Currency] {
 	if o == nil {
 		return nil
 	}
 	return o.Currency
 }
 
-func (o *OpportunityInput) GetWinProbability() *float64 {
+func (o *OpportunityInput) GetWinProbability() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}
 	return o.WinProbability
 }
 
-func (o *OpportunityInput) GetCloseDate() *types.Date {
+func (o *OpportunityInput) GetCloseDate() optionalnullable.OptionalNullable[types.Date] {
 	if o == nil {
 		return nil
 	}
 	return o.CloseDate
 }
 
-func (o *OpportunityInput) GetLossReasonID() *string {
+func (o *OpportunityInput) GetLossReasonID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.LossReasonID
 }
 
-func (o *OpportunityInput) GetLossReason() *string {
+func (o *OpportunityInput) GetLossReason() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.LossReason
 }
 
-func (o *OpportunityInput) GetWonReasonID() *string {
+func (o *OpportunityInput) GetWonReasonID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.WonReasonID
 }
 
-func (o *OpportunityInput) GetWonReason() *string {
+func (o *OpportunityInput) GetWonReason() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.WonReason
 }
 
-func (o *OpportunityInput) GetPipelineID() *string {
+func (o *OpportunityInput) GetPipelineID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.PipelineID
 }
 
-func (o *OpportunityInput) GetPipelineStageID() *string {
+func (o *OpportunityInput) GetPipelineStageID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.PipelineStageID
 }
 
-func (o *OpportunityInput) GetSourceID() *string {
+func (o *OpportunityInput) GetSourceID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.SourceID
 }
 
-func (o *OpportunityInput) GetLeadID() *string {
+func (o *OpportunityInput) GetLeadID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.LeadID
 }
 
-func (o *OpportunityInput) GetLeadSource() *string {
+func (o *OpportunityInput) GetLeadSource() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.LeadSource
 }
 
-func (o *OpportunityInput) GetContactID() *string {
+func (o *OpportunityInput) GetContactID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -211,49 +212,49 @@ func (o *OpportunityInput) GetContactIds() []string {
 	return o.ContactIds
 }
 
-func (o *OpportunityInput) GetCompanyID() *string {
+func (o *OpportunityInput) GetCompanyID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.CompanyID
 }
 
-func (o *OpportunityInput) GetCompanyName() *string {
+func (o *OpportunityInput) GetCompanyName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.CompanyName
 }
 
-func (o *OpportunityInput) GetOwnerID() *string {
+func (o *OpportunityInput) GetOwnerID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.OwnerID
 }
 
-func (o *OpportunityInput) GetPriority() *string {
+func (o *OpportunityInput) GetPriority() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Priority
 }
 
-func (o *OpportunityInput) GetStatus() *string {
+func (o *OpportunityInput) GetStatus() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Status
 }
 
-func (o *OpportunityInput) GetStatusID() *string {
+func (o *OpportunityInput) GetStatusID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.StatusID
 }
 
-func (o *OpportunityInput) GetTags() []string {
+func (o *OpportunityInput) GetTags() optionalnullable.OptionalNullable[[]string] {
 	if o == nil {
 		return nil
 	}
@@ -267,7 +268,7 @@ func (o *OpportunityInput) GetCustomFields() []CustomFieldUnion {
 	return o.CustomFields
 }
 
-func (o *OpportunityInput) GetStageLastChangedAt() *time.Time {
+func (o *OpportunityInput) GetStageLastChangedAt() optionalnullable.OptionalNullable[time.Time] {
 	if o == nil {
 		return nil
 	}

@@ -8,6 +8,7 @@ import (
 	"mockserver/internal/handler/assert"
 	"mockserver/internal/logging"
 	"mockserver/internal/sdk/models/components"
+	"mockserver/internal/sdk/optionalnullable"
 	"mockserver/internal/sdk/types"
 	"mockserver/internal/sdk/utils"
 	"mockserver/internal/tracking"
@@ -54,17 +55,17 @@ func testFileStorageSharedLinksAllFileStorageSharedLinksAll0(w http.ResponseWrit
 		Operation:  "all",
 		Data: []components.SharedLinkOutput{
 			components.SharedLinkOutput{
-				URL:         types.String("https://www.box.com/s/vspke7y05sb214wjokpk"),
-				DownloadURL: types.String("https://www.box.com/shared/static/rh935iit6ewrmw0unyul.jpeg"),
+				URL:         optionalnullable.From(types.String("https://www.box.com/s/vspke7y05sb214wjokpk")),
+				DownloadURL: optionalnullable.From(types.String("https://www.box.com/shared/static/rh935iit6ewrmw0unyul.jpeg")),
 				Target: &components.SharedLinkTarget{
 					ID:   "12345",
-					Name: types.String("sample.jpg"),
-					Type: components.FileTypeFile.ToPointer(),
+					Name: optionalnullable.From(types.String("sample.jpg")),
+					Type: optionalnullable.From(components.FileTypeFile.ToPointer()),
 				},
-				Scope:     components.ScopeCompany.ToPointer(),
-				ExpiresAt: types.MustNewTimeFromString("2022-09-30T07:43:32.000Z"),
-				UpdatedAt: types.MustNewTimeFromString("2020-09-30T07:43:32.000Z"),
-				CreatedAt: types.MustNewTimeFromString("2020-09-30T07:43:32.000Z"),
+				Scope:     optionalnullable.From(components.ScopeCompany.ToPointer()),
+				ExpiresAt: optionalnullable.From(types.MustNewTimeFromString("2022-09-30T07:43:32.000Z")),
+				UpdatedAt: optionalnullable.From(types.MustNewTimeFromString("2020-09-30T07:43:32.000Z")),
+				CreatedAt: optionalnullable.From(types.MustNewTimeFromString("2020-09-30T07:43:32.000Z")),
 				PassThrough: []components.PassThroughBody{
 					components.PassThroughBody{
 						ServiceID: "<id>",
@@ -111,17 +112,17 @@ func testFileStorageSharedLinksAllFileStorageSharedLinksAll0(w http.ResponseWrit
 				},
 			},
 			components.SharedLinkOutput{
-				URL:         types.String("https://www.box.com/s/vspke7y05sb214wjokpk"),
-				DownloadURL: types.String("https://www.box.com/shared/static/rh935iit6ewrmw0unyul.jpeg"),
+				URL:         optionalnullable.From(types.String("https://www.box.com/s/vspke7y05sb214wjokpk")),
+				DownloadURL: optionalnullable.From(types.String("https://www.box.com/shared/static/rh935iit6ewrmw0unyul.jpeg")),
 				Target: &components.SharedLinkTarget{
 					ID:   "12345",
-					Name: types.String("sample.jpg"),
-					Type: components.FileTypeFile.ToPointer(),
+					Name: optionalnullable.From(types.String("sample.jpg")),
+					Type: optionalnullable.From(components.FileTypeFile.ToPointer()),
 				},
-				Scope:     components.ScopeCompany.ToPointer(),
-				ExpiresAt: types.MustNewTimeFromString("2022-09-30T07:43:32.000Z"),
-				UpdatedAt: types.MustNewTimeFromString("2020-09-30T07:43:32.000Z"),
-				CreatedAt: types.MustNewTimeFromString("2020-09-30T07:43:32.000Z"),
+				Scope:     optionalnullable.From(components.ScopeCompany.ToPointer()),
+				ExpiresAt: optionalnullable.From(types.MustNewTimeFromString("2022-09-30T07:43:32.000Z")),
+				UpdatedAt: optionalnullable.From(types.MustNewTimeFromString("2020-09-30T07:43:32.000Z")),
+				CreatedAt: optionalnullable.From(types.MustNewTimeFromString("2020-09-30T07:43:32.000Z")),
 				PassThrough: []components.PassThroughBody{
 					components.PassThroughBody{
 						ServiceID: "<id>",
@@ -139,17 +140,17 @@ func testFileStorageSharedLinksAllFileStorageSharedLinksAll0(w http.ResponseWrit
 				},
 			},
 			components.SharedLinkOutput{
-				URL:         types.String("https://www.box.com/s/vspke7y05sb214wjokpk"),
-				DownloadURL: types.String("https://www.box.com/shared/static/rh935iit6ewrmw0unyul.jpeg"),
+				URL:         optionalnullable.From(types.String("https://www.box.com/s/vspke7y05sb214wjokpk")),
+				DownloadURL: optionalnullable.From(types.String("https://www.box.com/shared/static/rh935iit6ewrmw0unyul.jpeg")),
 				Target: &components.SharedLinkTarget{
 					ID:   "12345",
-					Name: types.String("sample.jpg"),
-					Type: components.FileTypeFile.ToPointer(),
+					Name: optionalnullable.From(types.String("sample.jpg")),
+					Type: optionalnullable.From(components.FileTypeFile.ToPointer()),
 				},
-				Scope:     components.ScopeCompany.ToPointer(),
-				ExpiresAt: types.MustNewTimeFromString("2022-09-30T07:43:32.000Z"),
-				UpdatedAt: types.MustNewTimeFromString("2020-09-30T07:43:32.000Z"),
-				CreatedAt: types.MustNewTimeFromString("2020-09-30T07:43:32.000Z"),
+				Scope:     optionalnullable.From(components.ScopeCompany.ToPointer()),
+				ExpiresAt: optionalnullable.From(types.MustNewTimeFromString("2022-09-30T07:43:32.000Z")),
+				UpdatedAt: optionalnullable.From(types.MustNewTimeFromString("2020-09-30T07:43:32.000Z")),
+				CreatedAt: optionalnullable.From(types.MustNewTimeFromString("2020-09-30T07:43:32.000Z")),
 				PassThrough: []components.PassThroughBody{
 					components.PassThroughBody{
 						ServiceID: "<id>",
@@ -191,15 +192,15 @@ func testFileStorageSharedLinksAllFileStorageSharedLinksAll0(w http.ResponseWrit
 		Meta: &components.Meta{
 			ItemsOnPage: types.Int64(50),
 			Cursors: &components.Cursors{
-				Previous: types.String("em9oby1jcm06OnBhZ2U6OjE="),
-				Current:  types.String("em9oby1jcm06OnBhZ2U6OjI="),
-				Next:     types.String("em9oby1jcm06OnBhZ2U6OjM="),
+				Previous: optionalnullable.From(types.String("em9oby1jcm06OnBhZ2U6OjE=")),
+				Current:  optionalnullable.From(types.String("em9oby1jcm06OnBhZ2U6OjI=")),
+				Next:     optionalnullable.From(types.String("em9oby1jcm06OnBhZ2U6OjM=")),
 			},
 		},
 		Links: &components.Links{
-			Previous: types.String("https://unify.apideck.com/crm/companies?cursor=em9oby1jcm06OnBhZ2U6OjE%3D"),
+			Previous: optionalnullable.From(types.String("https://unify.apideck.com/crm/companies?cursor=em9oby1jcm06OnBhZ2U6OjE%3D")),
 			Current:  types.String("https://unify.apideck.com/crm/companies"),
-			Next:     types.String("https://unify.apideck.com/crm/companies?cursor=em9oby1jcm06OnBhZ2U6OjM"),
+			Next:     optionalnullable.From(types.String("https://unify.apideck.com/crm/companies?cursor=em9oby1jcm06OnBhZ2U6OjM")),
 		},
 	}
 	respBodyBytes, err := utils.MarshalJSON(respBody, "", true)

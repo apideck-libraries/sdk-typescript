@@ -4,6 +4,7 @@ package operations
 
 import (
 	"mockserver/internal/sdk/models/components"
+	"mockserver/internal/sdk/optionalnullable"
 	"mockserver/internal/sdk/utils"
 )
 
@@ -23,7 +24,7 @@ type WebhookEventLogsAllRequest struct {
 	// The ID of your Unify application
 	AppID *string `header:"style=simple,explode=false,name=x-apideck-app-id"`
 	// Cursor to start from. You can find cursors for next/previous pages in the meta.cursors property of the response.
-	Cursor *string `queryParam:"style=form,explode=true,name=cursor"`
+	Cursor optionalnullable.OptionalNullable[string] `queryParam:"style=form,explode=true,name=cursor"`
 	// Number of results to return. Minimum 1, Maximum 200, Default 20
 	Limit *int64 `default:"20" queryParam:"style=form,explode=true,name=limit"`
 	// Filter results
@@ -48,7 +49,7 @@ func (o *WebhookEventLogsAllRequest) GetAppID() *string {
 	return o.AppID
 }
 
-func (o *WebhookEventLogsAllRequest) GetCursor() *string {
+func (o *WebhookEventLogsAllRequest) GetCursor() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}

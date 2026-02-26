@@ -2,6 +2,10 @@
 
 package components
 
+import (
+	"mockserver/internal/sdk/optionalnullable"
+)
+
 // Income - The operating income accounts
 type Income struct {
 	// A unique identifier for an object.
@@ -11,7 +15,7 @@ type Income struct {
 	// The name of the account.
 	Title *string `json:"title,omitempty"`
 	// The type of profit and loss
-	Type *ProfitAndLossType `json:"type,omitempty"`
+	Type optionalnullable.OptionalNullable[ProfitAndLossType] `json:"type,omitempty"`
 	// The aggregated total of all accounts within this category.
 	Total   *float64 `json:"total"`
 	Records any      `json:"records"`
@@ -38,7 +42,7 @@ func (o *Income) GetTitle() *string {
 	return o.Title
 }
 
-func (o *Income) GetType() *ProfitAndLossType {
+func (o *Income) GetType() optionalnullable.OptionalNullable[ProfitAndLossType] {
 	if o == nil {
 		return nil
 	}
@@ -68,10 +72,10 @@ type CostOfGoodsSold struct {
 	// The name of the account.
 	Title *string `json:"title,omitempty"`
 	// The type of profit and loss
-	Type *ProfitAndLossType `json:"type,omitempty"`
+	Type optionalnullable.OptionalNullable[ProfitAndLossType] `json:"type,omitempty"`
 	// The aggregated total of all accounts within this category.
-	Total   *float64 `json:"total,omitempty"`
-	Records any      `json:"records"`
+	Total   optionalnullable.OptionalNullable[float64] `json:"total,omitempty"`
+	Records any                                        `json:"records"`
 }
 
 func (o *CostOfGoodsSold) GetID() *string {
@@ -95,14 +99,14 @@ func (o *CostOfGoodsSold) GetTitle() *string {
 	return o.Title
 }
 
-func (o *CostOfGoodsSold) GetType() *ProfitAndLossType {
+func (o *CostOfGoodsSold) GetType() optionalnullable.OptionalNullable[ProfitAndLossType] {
 	if o == nil {
 		return nil
 	}
 	return o.Type
 }
 
-func (o *CostOfGoodsSold) GetTotal() *float64 {
+func (o *CostOfGoodsSold) GetTotal() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}
@@ -125,7 +129,7 @@ type Expenses struct {
 	// The name of the account.
 	Title *string `json:"title,omitempty"`
 	// The type of profit and loss
-	Type *ProfitAndLossType `json:"type,omitempty"`
+	Type optionalnullable.OptionalNullable[ProfitAndLossType] `json:"type,omitempty"`
 	// The aggregated total of all accounts within this category.
 	Total   *float64 `json:"total"`
 	Records any      `json:"records"`
@@ -152,7 +156,7 @@ func (o *Expenses) GetTitle() *string {
 	return o.Title
 }
 
-func (o *Expenses) GetType() *ProfitAndLossType {
+func (o *Expenses) GetType() optionalnullable.OptionalNullable[ProfitAndLossType] {
 	if o == nil {
 		return nil
 	}
@@ -182,10 +186,10 @@ type OtherIncome struct {
 	// The name of the account.
 	Title *string `json:"title,omitempty"`
 	// The type of profit and loss
-	Type *ProfitAndLossType `json:"type,omitempty"`
+	Type optionalnullable.OptionalNullable[ProfitAndLossType] `json:"type,omitempty"`
 	// The aggregated total of all accounts within this category.
-	Total   *float64 `json:"total,omitempty"`
-	Records any      `json:"records"`
+	Total   optionalnullable.OptionalNullable[float64] `json:"total,omitempty"`
+	Records any                                        `json:"records"`
 }
 
 func (o *OtherIncome) GetID() *string {
@@ -209,14 +213,14 @@ func (o *OtherIncome) GetTitle() *string {
 	return o.Title
 }
 
-func (o *OtherIncome) GetType() *ProfitAndLossType {
+func (o *OtherIncome) GetType() optionalnullable.OptionalNullable[ProfitAndLossType] {
 	if o == nil {
 		return nil
 	}
 	return o.Type
 }
 
-func (o *OtherIncome) GetTotal() *float64 {
+func (o *OtherIncome) GetTotal() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}
@@ -239,10 +243,10 @@ type OtherExpenses struct {
 	// The name of the account.
 	Title *string `json:"title,omitempty"`
 	// The type of profit and loss
-	Type *ProfitAndLossType `json:"type,omitempty"`
+	Type optionalnullable.OptionalNullable[ProfitAndLossType] `json:"type,omitempty"`
 	// The aggregated total of all accounts within this category.
-	Total   *float64 `json:"total,omitempty"`
-	Records any      `json:"records"`
+	Total   optionalnullable.OptionalNullable[float64] `json:"total,omitempty"`
+	Records any                                        `json:"records"`
 }
 
 func (o *OtherExpenses) GetID() *string {
@@ -266,14 +270,14 @@ func (o *OtherExpenses) GetTitle() *string {
 	return o.Title
 }
 
-func (o *OtherExpenses) GetType() *ProfitAndLossType {
+func (o *OtherExpenses) GetType() optionalnullable.OptionalNullable[ProfitAndLossType] {
 	if o == nil {
 		return nil
 	}
 	return o.Type
 }
 
-func (o *OtherExpenses) GetTotal() *float64 {
+func (o *OtherExpenses) GetTotal() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}
@@ -296,7 +300,7 @@ type UncategorizedAccounts struct {
 	// The name of the account.
 	Title *string `json:"title,omitempty"`
 	// The type of profit and loss
-	Type *ProfitAndLossType `json:"type,omitempty"`
+	Type optionalnullable.OptionalNullable[ProfitAndLossType] `json:"type,omitempty"`
 	// The aggregated total of all accounts within this category.
 	Total   *float64 `json:"total"`
 	Records any      `json:"records"`
@@ -323,7 +327,7 @@ func (o *UncategorizedAccounts) GetTitle() *string {
 	return o.Title
 }
 
-func (o *UncategorizedAccounts) GetType() *ProfitAndLossType {
+func (o *UncategorizedAccounts) GetType() optionalnullable.OptionalNullable[ProfitAndLossType] {
 	if o == nil {
 		return nil
 	}
@@ -354,7 +358,7 @@ type ProfitAndLoss struct {
 	// The end date of the report
 	EndDate *string `json:"end_date,omitempty"`
 	// Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
-	Currency *Currency `json:"currency,omitempty"`
+	Currency optionalnullable.OptionalNullable[Currency] `json:"currency,omitempty"`
 	// The operating income accounts
 	Income Income `json:"income"`
 	// The cost of goods sold accounts
@@ -371,7 +375,7 @@ type ProfitAndLoss struct {
 	NetOperatingIncome    *ProfitAndLossIndicator `json:"net_operating_income,omitempty"`
 	NetIncome             *ProfitAndLossIndicator `json:"net_income,omitempty"`
 	// When custom mappings are configured on the resource, the result is included here.
-	CustomMappings map[string]any `json:"custom_mappings,omitempty"`
+	CustomMappings optionalnullable.OptionalNullable[map[string]any] `json:"custom_mappings,omitempty"`
 	// The customer id
 	Customer *string `json:"customer,omitempty"`
 }
@@ -404,7 +408,7 @@ func (o *ProfitAndLoss) GetEndDate() *string {
 	return o.EndDate
 }
 
-func (o *ProfitAndLoss) GetCurrency() *Currency {
+func (o *ProfitAndLoss) GetCurrency() optionalnullable.OptionalNullable[Currency] {
 	if o == nil {
 		return nil
 	}
@@ -474,7 +478,7 @@ func (o *ProfitAndLoss) GetNetIncome() *ProfitAndLossIndicator {
 	return o.NetIncome
 }
 
-func (o *ProfitAndLoss) GetCustomMappings() map[string]any {
+func (o *ProfitAndLoss) GetCustomMappings() optionalnullable.OptionalNullable[map[string]any] {
 	if o == nil {
 		return nil
 	}

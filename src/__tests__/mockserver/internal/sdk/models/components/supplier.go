@@ -3,6 +3,7 @@
 package components
 
 import (
+	"mockserver/internal/sdk/optionalnullable"
 	"mockserver/internal/sdk/utils"
 	"time"
 )
@@ -26,69 +27,69 @@ type Supplier struct {
 	// A unique identifier for an object.
 	ID string `json:"id"`
 	// The third-party API ID of original entity
-	DownstreamID *string `json:"downstream_id,omitempty"`
+	DownstreamID optionalnullable.OptionalNullable[string] `json:"downstream_id,omitempty"`
 	// Display ID
-	DisplayID *string `json:"display_id,omitempty"`
+	DisplayID optionalnullable.OptionalNullable[string] `json:"display_id,omitempty"`
 	// Display name
-	DisplayName *string `json:"display_name,omitempty"`
+	DisplayName optionalnullable.OptionalNullable[string] `json:"display_name,omitempty"`
 	// The name of the company.
-	CompanyName *string `json:"company_name,omitempty"`
+	CompanyName optionalnullable.OptionalNullable[string] `json:"company_name,omitempty"`
 	// The company ID the transaction belongs to
-	CompanyID *string `json:"company_id,omitempty"`
+	CompanyID optionalnullable.OptionalNullable[string] `json:"company_id,omitempty"`
 	// The category/type of the supplier
-	SupplierCategory *string `json:"supplier_category,omitempty"`
+	SupplierCategory optionalnullable.OptionalNullable[string] `json:"supplier_category,omitempty"`
 	// The job title of the person.
-	Title *string `json:"title,omitempty"`
+	Title optionalnullable.OptionalNullable[string] `json:"title,omitempty"`
 	// The first name of the person.
-	FirstName *string `json:"first_name,omitempty"`
+	FirstName optionalnullable.OptionalNullable[string] `json:"first_name,omitempty"`
 	// Middle name of the person.
-	MiddleName *string `json:"middle_name,omitempty"`
+	MiddleName optionalnullable.OptionalNullable[string] `json:"middle_name,omitempty"`
 	// The last name of the person.
-	LastName *string `json:"last_name,omitempty"`
-	Suffix   *string `json:"suffix,omitempty"`
+	LastName optionalnullable.OptionalNullable[string] `json:"last_name,omitempty"`
+	Suffix   optionalnullable.OptionalNullable[string] `json:"suffix,omitempty"`
 	// Is this an individual or business supplier
-	Individual   *bool         `json:"individual,omitempty"`
-	Addresses    []Address     `json:"addresses,omitempty"`
-	PhoneNumbers []PhoneNumber `json:"phone_numbers,omitempty"`
-	Emails       []Email       `json:"emails,omitempty"`
-	Websites     []Website     `json:"websites,omitempty"`
-	BankAccounts []BankAccount `json:"bank_accounts,omitempty"`
+	Individual   optionalnullable.OptionalNullable[bool] `json:"individual,omitempty"`
+	Addresses    []Address                               `json:"addresses,omitempty"`
+	PhoneNumbers []PhoneNumber                           `json:"phone_numbers,omitempty"`
+	Emails       []Email                                 `json:"emails,omitempty"`
+	Websites     []Website                               `json:"websites,omitempty"`
+	BankAccounts []BankAccount                           `json:"bank_accounts,omitempty"`
 	// Some notes about this supplier
-	Notes     *string        `json:"notes,omitempty"`
-	TaxRate   *LinkedTaxRate `json:"tax_rate,omitempty"`
-	TaxNumber *string        `json:"tax_number,omitempty"`
+	Notes     optionalnullable.OptionalNullable[string] `json:"notes,omitempty"`
+	TaxRate   *LinkedTaxRate                            `json:"tax_rate,omitempty"`
+	TaxNumber optionalnullable.OptionalNullable[string] `json:"tax_number,omitempty"`
 	// Whether the entity is subject to taxation
-	Taxable *bool `json:"taxable,omitempty"`
+	Taxable optionalnullable.OptionalNullable[bool] `json:"taxable,omitempty"`
 	// Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
-	Currency *Currency            `json:"currency,omitempty"`
-	Account  *LinkedLedgerAccount `json:"account,omitempty"`
+	Currency optionalnullable.OptionalNullable[Currency]            `json:"currency,omitempty"`
+	Account  optionalnullable.OptionalNullable[LinkedLedgerAccount] `json:"account,omitempty"`
 	// Supplier status
-	Status *SupplierStatus `json:"status,omitempty"`
+	Status optionalnullable.OptionalNullable[SupplierStatus] `json:"status,omitempty"`
 	// Payment method used for the transaction, such as cash, credit card, bank transfer, or check
-	PaymentMethod *string `json:"payment_method,omitempty"`
+	PaymentMethod optionalnullable.OptionalNullable[string] `json:"payment_method,omitempty"`
 	// Terms of payment.
-	Terms *string `json:"terms,omitempty"`
+	Terms optionalnullable.OptionalNullable[string] `json:"terms,omitempty"`
 	// The channel through which the transaction is processed.
-	Channel *string `json:"channel,omitempty"`
+	Channel optionalnullable.OptionalNullable[string] `json:"channel,omitempty"`
 	// Method of issuance of the purchase order for the supplier
-	IssuedMethod *string `json:"issued_method,omitempty"`
+	IssuedMethod optionalnullable.OptionalNullable[string] `json:"issued_method,omitempty"`
 	// Email address of the person who issued the purchase order for the supplier
-	IssuedEmail *string `json:"issued_email,omitempty"`
+	IssuedEmail optionalnullable.OptionalNullable[string] `json:"issued_email,omitempty"`
 	// When custom mappings are configured on the resource, the result is included here.
-	CustomMappings   map[string]any           `json:"custom_mappings,omitempty"`
-	CustomFields     []CustomFieldUnion       `json:"custom_fields,omitempty"`
-	TaxDetails       []*LinkedTaxDetail       `json:"tax_details,omitempty"`
-	TaxStatusDetails []*LinkedTaxStatusDetail `json:"tax_status_details,omitempty"`
+	CustomMappings   optionalnullable.OptionalNullable[map[string]any] `json:"custom_mappings,omitempty"`
+	CustomFields     []CustomFieldUnion                                `json:"custom_fields,omitempty"`
+	TaxDetails       []*LinkedTaxDetail                                `json:"tax_details,omitempty"`
+	TaxStatusDetails []*LinkedTaxStatusDetail                          `json:"tax_status_details,omitempty"`
 	// The user who last updated the object.
-	UpdatedBy *string `json:"updated_by,omitempty"`
+	UpdatedBy optionalnullable.OptionalNullable[string] `json:"updated_by,omitempty"`
 	// The user who created the object.
-	CreatedBy *string `json:"created_by,omitempty"`
+	CreatedBy optionalnullable.OptionalNullable[string] `json:"created_by,omitempty"`
 	// The date and time when the object was last updated.
-	UpdatedAt *time.Time `json:"updated_at,omitempty"`
+	UpdatedAt optionalnullable.OptionalNullable[time.Time] `json:"updated_at,omitempty"`
 	// The date and time when the object was created.
-	CreatedAt *time.Time `json:"created_at,omitempty"`
+	CreatedAt optionalnullable.OptionalNullable[time.Time] `json:"created_at,omitempty"`
 	// A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
-	RowVersion *string `json:"row_version,omitempty"`
+	RowVersion optionalnullable.OptionalNullable[string] `json:"row_version,omitempty"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
 	PassThrough []PassThroughBody `json:"pass_through,omitempty"`
 	// The subsidiary the supplier belongs to.
@@ -115,84 +116,84 @@ func (o *Supplier) GetID() string {
 	return o.ID
 }
 
-func (o *Supplier) GetDownstreamID() *string {
+func (o *Supplier) GetDownstreamID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.DownstreamID
 }
 
-func (o *Supplier) GetDisplayID() *string {
+func (o *Supplier) GetDisplayID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.DisplayID
 }
 
-func (o *Supplier) GetDisplayName() *string {
+func (o *Supplier) GetDisplayName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.DisplayName
 }
 
-func (o *Supplier) GetCompanyName() *string {
+func (o *Supplier) GetCompanyName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.CompanyName
 }
 
-func (o *Supplier) GetCompanyID() *string {
+func (o *Supplier) GetCompanyID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.CompanyID
 }
 
-func (o *Supplier) GetSupplierCategory() *string {
+func (o *Supplier) GetSupplierCategory() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.SupplierCategory
 }
 
-func (o *Supplier) GetTitle() *string {
+func (o *Supplier) GetTitle() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Title
 }
 
-func (o *Supplier) GetFirstName() *string {
+func (o *Supplier) GetFirstName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.FirstName
 }
 
-func (o *Supplier) GetMiddleName() *string {
+func (o *Supplier) GetMiddleName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.MiddleName
 }
 
-func (o *Supplier) GetLastName() *string {
+func (o *Supplier) GetLastName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.LastName
 }
 
-func (o *Supplier) GetSuffix() *string {
+func (o *Supplier) GetSuffix() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Suffix
 }
 
-func (o *Supplier) GetIndividual() *bool {
+func (o *Supplier) GetIndividual() optionalnullable.OptionalNullable[bool] {
 	if o == nil {
 		return nil
 	}
@@ -234,7 +235,7 @@ func (o *Supplier) GetBankAccounts() []BankAccount {
 	return o.BankAccounts
 }
 
-func (o *Supplier) GetNotes() *string {
+func (o *Supplier) GetNotes() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -248,77 +249,77 @@ func (o *Supplier) GetTaxRate() *LinkedTaxRate {
 	return o.TaxRate
 }
 
-func (o *Supplier) GetTaxNumber() *string {
+func (o *Supplier) GetTaxNumber() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.TaxNumber
 }
 
-func (o *Supplier) GetTaxable() *bool {
+func (o *Supplier) GetTaxable() optionalnullable.OptionalNullable[bool] {
 	if o == nil {
 		return nil
 	}
 	return o.Taxable
 }
 
-func (o *Supplier) GetCurrency() *Currency {
+func (o *Supplier) GetCurrency() optionalnullable.OptionalNullable[Currency] {
 	if o == nil {
 		return nil
 	}
 	return o.Currency
 }
 
-func (o *Supplier) GetAccount() *LinkedLedgerAccount {
+func (o *Supplier) GetAccount() optionalnullable.OptionalNullable[LinkedLedgerAccount] {
 	if o == nil {
 		return nil
 	}
 	return o.Account
 }
 
-func (o *Supplier) GetStatus() *SupplierStatus {
+func (o *Supplier) GetStatus() optionalnullable.OptionalNullable[SupplierStatus] {
 	if o == nil {
 		return nil
 	}
 	return o.Status
 }
 
-func (o *Supplier) GetPaymentMethod() *string {
+func (o *Supplier) GetPaymentMethod() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.PaymentMethod
 }
 
-func (o *Supplier) GetTerms() *string {
+func (o *Supplier) GetTerms() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Terms
 }
 
-func (o *Supplier) GetChannel() *string {
+func (o *Supplier) GetChannel() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Channel
 }
 
-func (o *Supplier) GetIssuedMethod() *string {
+func (o *Supplier) GetIssuedMethod() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.IssuedMethod
 }
 
-func (o *Supplier) GetIssuedEmail() *string {
+func (o *Supplier) GetIssuedEmail() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.IssuedEmail
 }
 
-func (o *Supplier) GetCustomMappings() map[string]any {
+func (o *Supplier) GetCustomMappings() optionalnullable.OptionalNullable[map[string]any] {
 	if o == nil {
 		return nil
 	}
@@ -346,35 +347,35 @@ func (o *Supplier) GetTaxStatusDetails() []*LinkedTaxStatusDetail {
 	return o.TaxStatusDetails
 }
 
-func (o *Supplier) GetUpdatedBy() *string {
+func (o *Supplier) GetUpdatedBy() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.UpdatedBy
 }
 
-func (o *Supplier) GetCreatedBy() *string {
+func (o *Supplier) GetCreatedBy() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.CreatedBy
 }
 
-func (o *Supplier) GetUpdatedAt() *time.Time {
+func (o *Supplier) GetUpdatedAt() optionalnullable.OptionalNullable[time.Time] {
 	if o == nil {
 		return nil
 	}
 	return o.UpdatedAt
 }
 
-func (o *Supplier) GetCreatedAt() *time.Time {
+func (o *Supplier) GetCreatedAt() optionalnullable.OptionalNullable[time.Time] {
 	if o == nil {
 		return nil
 	}
 	return o.CreatedAt
 }
 
-func (o *Supplier) GetRowVersion() *string {
+func (o *Supplier) GetRowVersion() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -404,57 +405,57 @@ func (o *Supplier) GetIntegrationSystemID() *string {
 
 type SupplierInput struct {
 	// Display ID
-	DisplayID *string `json:"display_id,omitempty"`
+	DisplayID optionalnullable.OptionalNullable[string] `json:"display_id,omitempty"`
 	// Display name
-	DisplayName *string `json:"display_name,omitempty"`
+	DisplayName optionalnullable.OptionalNullable[string] `json:"display_name,omitempty"`
 	// The name of the company.
-	CompanyName *string `json:"company_name,omitempty"`
+	CompanyName optionalnullable.OptionalNullable[string] `json:"company_name,omitempty"`
 	// The company ID the transaction belongs to
-	CompanyID *string `json:"company_id,omitempty"`
+	CompanyID optionalnullable.OptionalNullable[string] `json:"company_id,omitempty"`
 	// The category/type of the supplier
-	SupplierCategory *string `json:"supplier_category,omitempty"`
+	SupplierCategory optionalnullable.OptionalNullable[string] `json:"supplier_category,omitempty"`
 	// The job title of the person.
-	Title *string `json:"title,omitempty"`
+	Title optionalnullable.OptionalNullable[string] `json:"title,omitempty"`
 	// The first name of the person.
-	FirstName *string `json:"first_name,omitempty"`
+	FirstName optionalnullable.OptionalNullable[string] `json:"first_name,omitempty"`
 	// Middle name of the person.
-	MiddleName *string `json:"middle_name,omitempty"`
+	MiddleName optionalnullable.OptionalNullable[string] `json:"middle_name,omitempty"`
 	// The last name of the person.
-	LastName *string `json:"last_name,omitempty"`
-	Suffix   *string `json:"suffix,omitempty"`
+	LastName optionalnullable.OptionalNullable[string] `json:"last_name,omitempty"`
+	Suffix   optionalnullable.OptionalNullable[string] `json:"suffix,omitempty"`
 	// Is this an individual or business supplier
-	Individual   *bool         `json:"individual,omitempty"`
-	Addresses    []Address     `json:"addresses,omitempty"`
-	PhoneNumbers []PhoneNumber `json:"phone_numbers,omitempty"`
-	Emails       []Email       `json:"emails,omitempty"`
-	Websites     []Website     `json:"websites,omitempty"`
-	BankAccounts []BankAccount `json:"bank_accounts,omitempty"`
+	Individual   optionalnullable.OptionalNullable[bool] `json:"individual,omitempty"`
+	Addresses    []Address                               `json:"addresses,omitempty"`
+	PhoneNumbers []PhoneNumber                           `json:"phone_numbers,omitempty"`
+	Emails       []Email                                 `json:"emails,omitempty"`
+	Websites     []Website                               `json:"websites,omitempty"`
+	BankAccounts []BankAccount                           `json:"bank_accounts,omitempty"`
 	// Some notes about this supplier
-	Notes     *string             `json:"notes,omitempty"`
-	TaxRate   *LinkedTaxRateInput `json:"tax_rate,omitempty"`
-	TaxNumber *string             `json:"tax_number,omitempty"`
+	Notes     optionalnullable.OptionalNullable[string] `json:"notes,omitempty"`
+	TaxRate   *LinkedTaxRateInput                       `json:"tax_rate,omitempty"`
+	TaxNumber optionalnullable.OptionalNullable[string] `json:"tax_number,omitempty"`
 	// Whether the entity is subject to taxation
-	Taxable *bool `json:"taxable,omitempty"`
+	Taxable optionalnullable.OptionalNullable[bool] `json:"taxable,omitempty"`
 	// Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
-	Currency *Currency            `json:"currency,omitempty"`
-	Account  *LinkedLedgerAccount `json:"account,omitempty"`
+	Currency optionalnullable.OptionalNullable[Currency]            `json:"currency,omitempty"`
+	Account  optionalnullable.OptionalNullable[LinkedLedgerAccount] `json:"account,omitempty"`
 	// Supplier status
-	Status *SupplierStatus `json:"status,omitempty"`
+	Status optionalnullable.OptionalNullable[SupplierStatus] `json:"status,omitempty"`
 	// Payment method used for the transaction, such as cash, credit card, bank transfer, or check
-	PaymentMethod *string `json:"payment_method,omitempty"`
+	PaymentMethod optionalnullable.OptionalNullable[string] `json:"payment_method,omitempty"`
 	// Terms of payment.
-	Terms *string `json:"terms,omitempty"`
+	Terms optionalnullable.OptionalNullable[string] `json:"terms,omitempty"`
 	// The channel through which the transaction is processed.
-	Channel *string `json:"channel,omitempty"`
+	Channel optionalnullable.OptionalNullable[string] `json:"channel,omitempty"`
 	// Method of issuance of the purchase order for the supplier
-	IssuedMethod *string `json:"issued_method,omitempty"`
+	IssuedMethod optionalnullable.OptionalNullable[string] `json:"issued_method,omitempty"`
 	// Email address of the person who issued the purchase order for the supplier
-	IssuedEmail      *string                  `json:"issued_email,omitempty"`
-	CustomFields     []CustomFieldUnion       `json:"custom_fields,omitempty"`
-	TaxDetails       []*LinkedTaxDetail       `json:"tax_details,omitempty"`
-	TaxStatusDetails []*LinkedTaxStatusDetail `json:"tax_status_details,omitempty"`
+	IssuedEmail      optionalnullable.OptionalNullable[string] `json:"issued_email,omitempty"`
+	CustomFields     []CustomFieldUnion                        `json:"custom_fields,omitempty"`
+	TaxDetails       []*LinkedTaxDetail                        `json:"tax_details,omitempty"`
+	TaxStatusDetails []*LinkedTaxStatusDetail                  `json:"tax_status_details,omitempty"`
 	// A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
-	RowVersion *string `json:"row_version,omitempty"`
+	RowVersion optionalnullable.OptionalNullable[string] `json:"row_version,omitempty"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
 	PassThrough []PassThroughBody `json:"pass_through,omitempty"`
 	// The subsidiary the supplier belongs to.
@@ -463,77 +464,77 @@ type SupplierInput struct {
 	IntegrationSystemID *string `json:"integration_system_id,omitempty"`
 }
 
-func (o *SupplierInput) GetDisplayID() *string {
+func (o *SupplierInput) GetDisplayID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.DisplayID
 }
 
-func (o *SupplierInput) GetDisplayName() *string {
+func (o *SupplierInput) GetDisplayName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.DisplayName
 }
 
-func (o *SupplierInput) GetCompanyName() *string {
+func (o *SupplierInput) GetCompanyName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.CompanyName
 }
 
-func (o *SupplierInput) GetCompanyID() *string {
+func (o *SupplierInput) GetCompanyID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.CompanyID
 }
 
-func (o *SupplierInput) GetSupplierCategory() *string {
+func (o *SupplierInput) GetSupplierCategory() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.SupplierCategory
 }
 
-func (o *SupplierInput) GetTitle() *string {
+func (o *SupplierInput) GetTitle() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Title
 }
 
-func (o *SupplierInput) GetFirstName() *string {
+func (o *SupplierInput) GetFirstName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.FirstName
 }
 
-func (o *SupplierInput) GetMiddleName() *string {
+func (o *SupplierInput) GetMiddleName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.MiddleName
 }
 
-func (o *SupplierInput) GetLastName() *string {
+func (o *SupplierInput) GetLastName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.LastName
 }
 
-func (o *SupplierInput) GetSuffix() *string {
+func (o *SupplierInput) GetSuffix() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Suffix
 }
 
-func (o *SupplierInput) GetIndividual() *bool {
+func (o *SupplierInput) GetIndividual() optionalnullable.OptionalNullable[bool] {
 	if o == nil {
 		return nil
 	}
@@ -575,7 +576,7 @@ func (o *SupplierInput) GetBankAccounts() []BankAccount {
 	return o.BankAccounts
 }
 
-func (o *SupplierInput) GetNotes() *string {
+func (o *SupplierInput) GetNotes() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -589,70 +590,70 @@ func (o *SupplierInput) GetTaxRate() *LinkedTaxRateInput {
 	return o.TaxRate
 }
 
-func (o *SupplierInput) GetTaxNumber() *string {
+func (o *SupplierInput) GetTaxNumber() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.TaxNumber
 }
 
-func (o *SupplierInput) GetTaxable() *bool {
+func (o *SupplierInput) GetTaxable() optionalnullable.OptionalNullable[bool] {
 	if o == nil {
 		return nil
 	}
 	return o.Taxable
 }
 
-func (o *SupplierInput) GetCurrency() *Currency {
+func (o *SupplierInput) GetCurrency() optionalnullable.OptionalNullable[Currency] {
 	if o == nil {
 		return nil
 	}
 	return o.Currency
 }
 
-func (o *SupplierInput) GetAccount() *LinkedLedgerAccount {
+func (o *SupplierInput) GetAccount() optionalnullable.OptionalNullable[LinkedLedgerAccount] {
 	if o == nil {
 		return nil
 	}
 	return o.Account
 }
 
-func (o *SupplierInput) GetStatus() *SupplierStatus {
+func (o *SupplierInput) GetStatus() optionalnullable.OptionalNullable[SupplierStatus] {
 	if o == nil {
 		return nil
 	}
 	return o.Status
 }
 
-func (o *SupplierInput) GetPaymentMethod() *string {
+func (o *SupplierInput) GetPaymentMethod() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.PaymentMethod
 }
 
-func (o *SupplierInput) GetTerms() *string {
+func (o *SupplierInput) GetTerms() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Terms
 }
 
-func (o *SupplierInput) GetChannel() *string {
+func (o *SupplierInput) GetChannel() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Channel
 }
 
-func (o *SupplierInput) GetIssuedMethod() *string {
+func (o *SupplierInput) GetIssuedMethod() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.IssuedMethod
 }
 
-func (o *SupplierInput) GetIssuedEmail() *string {
+func (o *SupplierInput) GetIssuedEmail() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -680,7 +681,7 @@ func (o *SupplierInput) GetTaxStatusDetails() []*LinkedTaxStatusDetail {
 	return o.TaxStatusDetails
 }
 
-func (o *SupplierInput) GetRowVersion() *string {
+func (o *SupplierInput) GetRowVersion() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}

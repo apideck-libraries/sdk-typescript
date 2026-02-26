@@ -2,6 +2,10 @@
 
 package components
 
+import (
+	"mockserver/internal/sdk/optionalnullable"
+)
+
 // GetCustomMappingsResponse - Custom mapping
 type GetCustomMappingsResponse struct {
 	// HTTP Response Status Code
@@ -10,7 +14,7 @@ type GetCustomMappingsResponse struct {
 	Status string          `json:"status"`
 	Data   []CustomMapping `json:"data"`
 	// Raw response from the integration when raw=true query param is provided
-	Raw map[string]any `json:"_raw,omitempty"`
+	Raw optionalnullable.OptionalNullable[map[string]any] `json:"_raw,omitempty"`
 }
 
 func (o *GetCustomMappingsResponse) GetStatusCode() int64 {
@@ -34,7 +38,7 @@ func (o *GetCustomMappingsResponse) GetData() []CustomMapping {
 	return o.Data
 }
 
-func (o *GetCustomMappingsResponse) GetRaw() map[string]any {
+func (o *GetCustomMappingsResponse) GetRaw() optionalnullable.OptionalNullable[map[string]any] {
 	if o == nil {
 		return nil
 	}

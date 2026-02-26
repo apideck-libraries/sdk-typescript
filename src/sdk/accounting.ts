@@ -17,6 +17,9 @@ import { CompanyInfo } from "./companyinfo.js";
 import { CreditNotes } from "./creditnotes.js";
 import { Customers } from "./customers.js";
 import { Departments } from "./departments.js";
+import { Employees } from "./employees.js";
+import { ExpenseCategories } from "./expensecategories.js";
+import { ExpenseReports } from "./expensereports.js";
 import { Expenses } from "./expenses.js";
 import { InvoiceItems } from "./invoiceitems.js";
 import { Invoices } from "./invoices.js";
@@ -177,5 +180,20 @@ export class Accounting extends ClientSDK {
   private _projects?: Projects;
   get projects(): Projects {
     return (this._projects ??= new Projects(this._options));
+  }
+
+  private _employees?: Employees;
+  get employees(): Employees {
+    return (this._employees ??= new Employees(this._options));
+  }
+
+  private _expenseCategories?: ExpenseCategories;
+  get expenseCategories(): ExpenseCategories {
+    return (this._expenseCategories ??= new ExpenseCategories(this._options));
+  }
+
+  private _expenseReports?: ExpenseReports;
+  get expenseReports(): ExpenseReports {
+    return (this._expenseReports ??= new ExpenseReports(this._options));
   }
 }

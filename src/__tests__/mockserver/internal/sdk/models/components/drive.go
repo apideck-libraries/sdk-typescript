@@ -3,6 +3,7 @@
 package components
 
 import (
+	"mockserver/internal/sdk/optionalnullable"
 	"mockserver/internal/sdk/utils"
 	"time"
 )
@@ -13,17 +14,17 @@ type Drive struct {
 	// The name of the drive
 	Name string `json:"name"`
 	// A description of the object.
-	Description *string `json:"description,omitempty"`
+	Description optionalnullable.OptionalNullable[string] `json:"description,omitempty"`
 	// When custom mappings are configured on the resource, the result is included here.
-	CustomMappings map[string]any `json:"custom_mappings,omitempty"`
+	CustomMappings optionalnullable.OptionalNullable[map[string]any] `json:"custom_mappings,omitempty"`
 	// The user who last updated the object.
-	UpdatedBy *string `json:"updated_by,omitempty"`
+	UpdatedBy optionalnullable.OptionalNullable[string] `json:"updated_by,omitempty"`
 	// The user who created the object.
-	CreatedBy *string `json:"created_by,omitempty"`
+	CreatedBy optionalnullable.OptionalNullable[string] `json:"created_by,omitempty"`
 	// The date and time when the object was last updated.
-	UpdatedAt *time.Time `json:"updated_at,omitempty"`
+	UpdatedAt optionalnullable.OptionalNullable[time.Time] `json:"updated_at,omitempty"`
 	// The date and time when the object was created.
-	CreatedAt *time.Time `json:"created_at,omitempty"`
+	CreatedAt optionalnullable.OptionalNullable[time.Time] `json:"created_at,omitempty"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
 	PassThrough []PassThroughBody `json:"pass_through,omitempty"`
 }
@@ -53,42 +54,42 @@ func (o *Drive) GetName() string {
 	return o.Name
 }
 
-func (o *Drive) GetDescription() *string {
+func (o *Drive) GetDescription() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Description
 }
 
-func (o *Drive) GetCustomMappings() map[string]any {
+func (o *Drive) GetCustomMappings() optionalnullable.OptionalNullable[map[string]any] {
 	if o == nil {
 		return nil
 	}
 	return o.CustomMappings
 }
 
-func (o *Drive) GetUpdatedBy() *string {
+func (o *Drive) GetUpdatedBy() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.UpdatedBy
 }
 
-func (o *Drive) GetCreatedBy() *string {
+func (o *Drive) GetCreatedBy() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.CreatedBy
 }
 
-func (o *Drive) GetUpdatedAt() *time.Time {
+func (o *Drive) GetUpdatedAt() optionalnullable.OptionalNullable[time.Time] {
 	if o == nil {
 		return nil
 	}
 	return o.UpdatedAt
 }
 
-func (o *Drive) GetCreatedAt() *time.Time {
+func (o *Drive) GetCreatedAt() optionalnullable.OptionalNullable[time.Time] {
 	if o == nil {
 		return nil
 	}

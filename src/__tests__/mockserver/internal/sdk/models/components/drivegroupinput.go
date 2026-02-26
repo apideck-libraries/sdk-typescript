@@ -2,13 +2,17 @@
 
 package components
 
+import (
+	"mockserver/internal/sdk/optionalnullable"
+)
+
 type DriveGroupInput struct {
 	// The name of the drive group
 	Name string `json:"name"`
 	// The display name of the drive group
-	DisplayName *string `json:"display_name,omitempty"`
+	DisplayName optionalnullable.OptionalNullable[string] `json:"display_name,omitempty"`
 	// A description of the object.
-	Description *string `json:"description,omitempty"`
+	Description optionalnullable.OptionalNullable[string] `json:"description,omitempty"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
 	PassThrough []PassThroughBody `json:"pass_through,omitempty"`
 }
@@ -20,14 +24,14 @@ func (o *DriveGroupInput) GetName() string {
 	return o.Name
 }
 
-func (o *DriveGroupInput) GetDisplayName() *string {
+func (o *DriveGroupInput) GetDisplayName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.DisplayName
 }
 
-func (o *DriveGroupInput) GetDescription() *string {
+func (o *DriveGroupInput) GetDescription() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}

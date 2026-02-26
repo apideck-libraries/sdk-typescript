@@ -2,136 +2,140 @@
 
 package components
 
+import (
+	"mockserver/internal/sdk/optionalnullable"
+)
+
 type UserInput struct {
 	// The parent user id
-	ParentID *string `json:"parent_id,omitempty"`
+	ParentID optionalnullable.OptionalNullable[string] `json:"parent_id,omitempty"`
 	// The username of the user
-	Username *string `json:"username,omitempty"`
+	Username optionalnullable.OptionalNullable[string] `json:"username,omitempty"`
 	// The first name of the person.
-	FirstName *string `json:"first_name,omitempty"`
+	FirstName optionalnullable.OptionalNullable[string] `json:"first_name,omitempty"`
 	// The last name of the person.
-	LastName *string `json:"last_name,omitempty"`
+	LastName optionalnullable.OptionalNullable[string] `json:"last_name,omitempty"`
 	// The job title of the person.
-	Title *string `json:"title,omitempty"`
+	Title optionalnullable.OptionalNullable[string] `json:"title,omitempty"`
 	// The division the person is currently in. Usually a collection of departments or teams or regions.
-	Division *string `json:"division,omitempty"`
+	Division optionalnullable.OptionalNullable[string] `json:"division,omitempty"`
 	// The department the person is currently in. [Deprecated](https://developers.apideck.com/changelog) in favor of the dedicated department_id and department_name field.
 	//
 	// Deprecated: Deprecated. Use department_id instead..
-	Department *string `json:"department,omitempty"`
+	Department optionalnullable.OptionalNullable[string] `json:"department,omitempty"`
 	// The name of the company.
-	CompanyName *string `json:"company_name,omitempty"`
+	CompanyName optionalnullable.OptionalNullable[string] `json:"company_name,omitempty"`
 	// An Employee Number, Employee ID or Employee Code, is a unique number that has been assigned to each individual staff member within a company.
-	EmployeeNumber *string `json:"employee_number,omitempty"`
+	EmployeeNumber optionalnullable.OptionalNullable[string] `json:"employee_number,omitempty"`
 	// A description of the object.
-	Description *string `json:"description,omitempty"`
+	Description optionalnullable.OptionalNullable[string] `json:"description,omitempty"`
 	// The URL of the user's avatar
-	Image *string `json:"image,omitempty"`
+	Image optionalnullable.OptionalNullable[string] `json:"image,omitempty"`
 	// language code according to ISO 639-1. For the United States - EN
-	Language *string `json:"language,omitempty"`
+	Language optionalnullable.OptionalNullable[string] `json:"language,omitempty"`
 	// The status of the user
-	Status *string `json:"status,omitempty"`
+	Status optionalnullable.OptionalNullable[string] `json:"status,omitempty"`
 	// The password of the user
-	Password     *string       `json:"password,omitempty"`
-	Addresses    []Address     `json:"addresses,omitempty"`
-	PhoneNumbers []PhoneNumber `json:"phone_numbers,omitempty"`
-	Emails       []Email       `json:"emails"`
+	Password     optionalnullable.OptionalNullable[string] `json:"password,omitempty"`
+	Addresses    []Address                                 `json:"addresses,omitempty"`
+	PhoneNumbers []PhoneNumber                             `json:"phone_numbers,omitempty"`
+	Emails       []Email                                   `json:"emails"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
 	PassThrough []PassThroughBody `json:"pass_through,omitempty"`
 }
 
-func (o *UserInput) GetParentID() *string {
+func (o *UserInput) GetParentID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.ParentID
 }
 
-func (o *UserInput) GetUsername() *string {
+func (o *UserInput) GetUsername() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Username
 }
 
-func (o *UserInput) GetFirstName() *string {
+func (o *UserInput) GetFirstName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.FirstName
 }
 
-func (o *UserInput) GetLastName() *string {
+func (o *UserInput) GetLastName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.LastName
 }
 
-func (o *UserInput) GetTitle() *string {
+func (o *UserInput) GetTitle() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Title
 }
 
-func (o *UserInput) GetDivision() *string {
+func (o *UserInput) GetDivision() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Division
 }
 
-func (o *UserInput) GetDepartment() *string {
+func (o *UserInput) GetDepartment() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Department
 }
 
-func (o *UserInput) GetCompanyName() *string {
+func (o *UserInput) GetCompanyName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.CompanyName
 }
 
-func (o *UserInput) GetEmployeeNumber() *string {
+func (o *UserInput) GetEmployeeNumber() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.EmployeeNumber
 }
 
-func (o *UserInput) GetDescription() *string {
+func (o *UserInput) GetDescription() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Description
 }
 
-func (o *UserInput) GetImage() *string {
+func (o *UserInput) GetImage() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Image
 }
 
-func (o *UserInput) GetLanguage() *string {
+func (o *UserInput) GetLanguage() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Language
 }
 
-func (o *UserInput) GetStatus() *string {
+func (o *UserInput) GetStatus() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Status
 }
 
-func (o *UserInput) GetPassword() *string {
+func (o *UserInput) GetPassword() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}

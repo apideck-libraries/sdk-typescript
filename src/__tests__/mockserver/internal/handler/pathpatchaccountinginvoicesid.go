@@ -8,6 +8,7 @@ import (
 	"mockserver/internal/handler/assert"
 	"mockserver/internal/logging"
 	"mockserver/internal/sdk/models/components"
+	"mockserver/internal/sdk/optionalnullable"
 	"mockserver/internal/sdk/types"
 	"mockserver/internal/sdk/utils"
 	"mockserver/internal/tracking"
@@ -59,7 +60,7 @@ func testAccountingInvoicesUpdateAccountingInvoicesUpdate0(w http.ResponseWriter
 		Operation:  "update",
 		Data: components.InvoiceResponse{
 			ID:           types.String("12345"),
-			DownstreamID: types.String("12345"),
+			DownstreamID: optionalnullable.From(types.String("12345")),
 		},
 	}
 	respBodyBytes, err := utils.MarshalJSON(respBody, "", true)

@@ -2,31 +2,35 @@
 
 package components
 
+import (
+	"mockserver/internal/sdk/optionalnullable"
+)
+
 // Cursors to navigate to previous or next pages through the API
 type Cursors struct {
 	// Cursor to navigate to the previous page of results through the API
-	Previous *string `json:"previous,omitempty"`
+	Previous optionalnullable.OptionalNullable[string] `json:"previous,omitempty"`
 	// Cursor to navigate to the current page of results through the API
-	Current *string `json:"current,omitempty"`
+	Current optionalnullable.OptionalNullable[string] `json:"current,omitempty"`
 	// Cursor to navigate to the next page of results through the API
-	Next *string `json:"next,omitempty"`
+	Next optionalnullable.OptionalNullable[string] `json:"next,omitempty"`
 }
 
-func (o *Cursors) GetPrevious() *string {
+func (o *Cursors) GetPrevious() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Previous
 }
 
-func (o *Cursors) GetCurrent() *string {
+func (o *Cursors) GetCurrent() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Current
 }
 
-func (o *Cursors) GetNext() *string {
+func (o *Cursors) GetNext() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}

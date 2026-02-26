@@ -2,57 +2,61 @@
 
 package components
 
+import (
+	"mockserver/internal/sdk/optionalnullable"
+)
+
 type Lead struct {
 	// Unique identifier for the contact.
 	ID *string `json:"id,omitempty"`
 	// Full name of the lead.
 	Name string `json:"name"`
 	// The name of the company the lead is associated with.
-	CompanyName *string `json:"company_name,omitempty"`
+	CompanyName optionalnullable.OptionalNullable[string] `json:"company_name,omitempty"`
 	// The owner of the lead.
-	OwnerID *string `json:"owner_id,omitempty"`
+	OwnerID optionalnullable.OptionalNullable[string] `json:"owner_id,omitempty"`
 	// The name of the owner of the lead.
-	OwnerName *string `json:"owner_name,omitempty"`
+	OwnerName optionalnullable.OptionalNullable[string] `json:"owner_name,omitempty"`
 	// The company the lead is associated with.
-	CompanyID *string `json:"company_id,omitempty"`
+	CompanyID optionalnullable.OptionalNullable[string] `json:"company_id,omitempty"`
 	// The contact the lead is associated with.
-	ContactID *string `json:"contact_id,omitempty"`
+	ContactID optionalnullable.OptionalNullable[string] `json:"contact_id,omitempty"`
 	// The identifier of the lead.
-	LeadID *string `json:"lead_id,omitempty"`
+	LeadID optionalnullable.OptionalNullable[string] `json:"lead_id,omitempty"`
 	// The source of the lead.
-	LeadSource *string `json:"lead_source,omitempty"`
+	LeadSource optionalnullable.OptionalNullable[string] `json:"lead_source,omitempty"`
 	// The first name of the lead.
-	FirstName *string `json:"first_name,omitempty"`
+	FirstName optionalnullable.OptionalNullable[string] `json:"first_name,omitempty"`
 	// The last name of the lead.
-	LastName *string `json:"last_name,omitempty"`
+	LastName optionalnullable.OptionalNullable[string] `json:"last_name,omitempty"`
 	// The description of the lead.
-	Description *string `json:"description,omitempty"`
+	Description optionalnullable.OptionalNullable[string] `json:"description,omitempty"`
 	// The prefix of the lead.
-	Prefix *string `json:"prefix,omitempty"`
+	Prefix optionalnullable.OptionalNullable[string] `json:"prefix,omitempty"`
 	// The job title of the lead.
-	Title *string `json:"title,omitempty"`
+	Title optionalnullable.OptionalNullable[string] `json:"title,omitempty"`
 	// language code according to ISO 639-1. For the United States - EN
-	Language *string `json:"language,omitempty"`
-	Status   *string `json:"status,omitempty"`
+	Language optionalnullable.OptionalNullable[string] `json:"language,omitempty"`
+	Status   optionalnullable.OptionalNullable[string] `json:"status,omitempty"`
 	// The monetary amount of the lead.
-	MonetaryAmount *float64 `json:"monetary_amount,omitempty"`
+	MonetaryAmount optionalnullable.OptionalNullable[float64] `json:"monetary_amount,omitempty"`
 	// Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
-	Currency *Currency `json:"currency,omitempty"`
+	Currency optionalnullable.OptionalNullable[Currency] `json:"currency,omitempty"`
 	// The fax number of the lead.
-	Fax          *string            `json:"fax,omitempty"`
-	Websites     []Website          `json:"websites,omitempty"`
-	Addresses    []Address          `json:"addresses,omitempty"`
-	SocialLinks  []SocialLink       `json:"social_links,omitempty"`
-	PhoneNumbers []PhoneNumber      `json:"phone_numbers,omitempty"`
-	Emails       []Email            `json:"emails,omitempty"`
-	CustomFields []CustomFieldUnion `json:"custom_fields,omitempty"`
-	Tags         []string           `json:"tags,omitempty"`
+	Fax          optionalnullable.OptionalNullable[string]             `json:"fax,omitempty"`
+	Websites     []Website                                             `json:"websites,omitempty"`
+	Addresses    []Address                                             `json:"addresses,omitempty"`
+	SocialLinks  []SocialLink                                          `json:"social_links,omitempty"`
+	PhoneNumbers []PhoneNumber                                         `json:"phone_numbers,omitempty"`
+	Emails       []Email                                               `json:"emails,omitempty"`
+	CustomFields optionalnullable.OptionalNullable[[]CustomFieldUnion] `json:"custom_fields,omitempty"`
+	Tags         optionalnullable.OptionalNullable[[]string]           `json:"tags,omitempty"`
 	// When custom mappings are configured on the resource, the result is included here.
-	CustomMappings map[string]any `json:"custom_mappings,omitempty"`
+	CustomMappings optionalnullable.OptionalNullable[map[string]any] `json:"custom_mappings,omitempty"`
 	// Date updated in ISO 8601 format
-	UpdatedAt *string `json:"updated_at,omitempty"`
+	UpdatedAt optionalnullable.OptionalNullable[string] `json:"updated_at,omitempty"`
 	// Date created in ISO 8601 format
-	CreatedAt *string `json:"created_at,omitempty"`
+	CreatedAt optionalnullable.OptionalNullable[string] `json:"created_at,omitempty"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
 	PassThrough []PassThroughBody `json:"pass_through,omitempty"`
 }
@@ -71,119 +75,119 @@ func (o *Lead) GetName() string {
 	return o.Name
 }
 
-func (o *Lead) GetCompanyName() *string {
+func (o *Lead) GetCompanyName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.CompanyName
 }
 
-func (o *Lead) GetOwnerID() *string {
+func (o *Lead) GetOwnerID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.OwnerID
 }
 
-func (o *Lead) GetOwnerName() *string {
+func (o *Lead) GetOwnerName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.OwnerName
 }
 
-func (o *Lead) GetCompanyID() *string {
+func (o *Lead) GetCompanyID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.CompanyID
 }
 
-func (o *Lead) GetContactID() *string {
+func (o *Lead) GetContactID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.ContactID
 }
 
-func (o *Lead) GetLeadID() *string {
+func (o *Lead) GetLeadID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.LeadID
 }
 
-func (o *Lead) GetLeadSource() *string {
+func (o *Lead) GetLeadSource() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.LeadSource
 }
 
-func (o *Lead) GetFirstName() *string {
+func (o *Lead) GetFirstName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.FirstName
 }
 
-func (o *Lead) GetLastName() *string {
+func (o *Lead) GetLastName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.LastName
 }
 
-func (o *Lead) GetDescription() *string {
+func (o *Lead) GetDescription() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Description
 }
 
-func (o *Lead) GetPrefix() *string {
+func (o *Lead) GetPrefix() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Prefix
 }
 
-func (o *Lead) GetTitle() *string {
+func (o *Lead) GetTitle() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Title
 }
 
-func (o *Lead) GetLanguage() *string {
+func (o *Lead) GetLanguage() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Language
 }
 
-func (o *Lead) GetStatus() *string {
+func (o *Lead) GetStatus() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Status
 }
 
-func (o *Lead) GetMonetaryAmount() *float64 {
+func (o *Lead) GetMonetaryAmount() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}
 	return o.MonetaryAmount
 }
 
-func (o *Lead) GetCurrency() *Currency {
+func (o *Lead) GetCurrency() optionalnullable.OptionalNullable[Currency] {
 	if o == nil {
 		return nil
 	}
 	return o.Currency
 }
 
-func (o *Lead) GetFax() *string {
+func (o *Lead) GetFax() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -225,35 +229,35 @@ func (o *Lead) GetEmails() []Email {
 	return o.Emails
 }
 
-func (o *Lead) GetCustomFields() []CustomFieldUnion {
+func (o *Lead) GetCustomFields() optionalnullable.OptionalNullable[[]CustomFieldUnion] {
 	if o == nil {
 		return nil
 	}
 	return o.CustomFields
 }
 
-func (o *Lead) GetTags() []string {
+func (o *Lead) GetTags() optionalnullable.OptionalNullable[[]string] {
 	if o == nil {
 		return nil
 	}
 	return o.Tags
 }
 
-func (o *Lead) GetCustomMappings() map[string]any {
+func (o *Lead) GetCustomMappings() optionalnullable.OptionalNullable[map[string]any] {
 	if o == nil {
 		return nil
 	}
 	return o.CustomMappings
 }
 
-func (o *Lead) GetUpdatedAt() *string {
+func (o *Lead) GetUpdatedAt() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.UpdatedAt
 }
 
-func (o *Lead) GetCreatedAt() *string {
+func (o *Lead) GetCreatedAt() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}

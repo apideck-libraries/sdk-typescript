@@ -8,6 +8,7 @@ import (
 	"mockserver/internal/handler/assert"
 	"mockserver/internal/logging"
 	"mockserver/internal/sdk/models/components"
+	"mockserver/internal/sdk/optionalnullable"
 	"mockserver/internal/sdk/types"
 	"mockserver/internal/sdk/utils"
 	"mockserver/internal/tracking"
@@ -52,10 +53,10 @@ func testConnectorApisOneConnectorApisOne0(w http.ResponseWriter, req *http.Requ
 		Data: components.API{
 			ID:                  types.String("file-storage"),
 			Name:                types.String("File Storage API"),
-			Description:         types.String("Manage API keys, access tokens, OAuth flows and integrations."),
+			Description:         optionalnullable.From(types.String("Manage API keys, access tokens, OAuth flows and integrations.")),
 			SpecURL:             types.String("https://specs.apideck.com/file-storage.yml"),
 			APIReferenceURL:     types.String("https://developers.apideck.com/apis/file-storage/reference"),
-			PostmanCollectionID: types.String("1311564-00e7266b-a3d6-4f40-b172-baaa66a3ed6f"),
+			PostmanCollectionID: optionalnullable.From(types.String("1311564-00e7266b-a3d6-4f40-b172-baaa66a3ed6f")),
 			Categories: []string{
 				"files",
 				"file-storage",
@@ -87,15 +88,15 @@ func testConnectorApisOneConnectorApisOne0(w http.ResponseWriter, req *http.Requ
 		Meta: &components.Meta{
 			ItemsOnPage: types.Int64(50),
 			Cursors: &components.Cursors{
-				Previous: types.String("em9oby1jcm06OnBhZ2U6OjE="),
-				Current:  types.String("em9oby1jcm06OnBhZ2U6OjI="),
-				Next:     types.String("em9oby1jcm06OnBhZ2U6OjM="),
+				Previous: optionalnullable.From(types.String("em9oby1jcm06OnBhZ2U6OjE=")),
+				Current:  optionalnullable.From(types.String("em9oby1jcm06OnBhZ2U6OjI=")),
+				Next:     optionalnullable.From(types.String("em9oby1jcm06OnBhZ2U6OjM=")),
 			},
 		},
 		Links: &components.Links{
-			Previous: types.String("https://unify.apideck.com/crm/companies?cursor=em9oby1jcm06OnBhZ2U6OjE%3D"),
+			Previous: optionalnullable.From(types.String("https://unify.apideck.com/crm/companies?cursor=em9oby1jcm06OnBhZ2U6OjE%3D")),
 			Current:  types.String("https://unify.apideck.com/crm/companies"),
-			Next:     types.String("https://unify.apideck.com/crm/companies?cursor=em9oby1jcm06OnBhZ2U6OjM"),
+			Next:     optionalnullable.From(types.String("https://unify.apideck.com/crm/companies?cursor=em9oby1jcm06OnBhZ2U6OjM")),
 		},
 	}
 	respBodyBytes, err := utils.MarshalJSON(respBody, "", true)

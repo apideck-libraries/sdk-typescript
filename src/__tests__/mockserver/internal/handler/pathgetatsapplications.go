@@ -8,6 +8,7 @@ import (
 	"mockserver/internal/handler/assert"
 	"mockserver/internal/logging"
 	"mockserver/internal/sdk/models/components"
+	"mockserver/internal/sdk/optionalnullable"
 	"mockserver/internal/sdk/types"
 	"mockserver/internal/sdk/utils"
 	"mockserver/internal/tracking"
@@ -57,15 +58,15 @@ func testAtsApplicationsAllAtsApplicationsAll0(w http.ResponseWriter, req *http.
 				ID:          types.String("12345"),
 				ApplicantID: types.String("12345"),
 				JobID:       types.String("12345"),
-				Status:      components.ApplicationStatusOpen.ToPointer(),
+				Status:      optionalnullable.From(components.ApplicationStatusOpen.ToPointer()),
 				Stage: &components.ApplicationStage{
-					ID:   types.String("12345"),
-					Name: types.String("12345"),
+					ID:   optionalnullable.From(types.String("12345")),
+					Name: optionalnullable.From(types.String("12345")),
 				},
-				UpdatedBy: types.String("12345"),
-				CreatedBy: types.String("12345"),
-				UpdatedAt: types.MustNewTimeFromString("2020-09-30T07:43:32.000Z"),
-				CreatedAt: types.MustNewTimeFromString("2020-09-30T07:43:32.000Z"),
+				UpdatedBy: optionalnullable.From(types.String("12345")),
+				CreatedBy: optionalnullable.From(types.String("12345")),
+				UpdatedAt: optionalnullable.From(types.MustNewTimeFromString("2020-09-30T07:43:32.000Z")),
+				CreatedAt: optionalnullable.From(types.MustNewTimeFromString("2020-09-30T07:43:32.000Z")),
 				PassThrough: []components.PassThroughBody{
 					components.PassThroughBody{
 						ServiceID: "<id>",
@@ -115,15 +116,15 @@ func testAtsApplicationsAllAtsApplicationsAll0(w http.ResponseWriter, req *http.
 				ID:          types.String("12345"),
 				ApplicantID: types.String("12345"),
 				JobID:       types.String("12345"),
-				Status:      components.ApplicationStatusOpen.ToPointer(),
+				Status:      optionalnullable.From(components.ApplicationStatusOpen.ToPointer()),
 				Stage: &components.ApplicationStage{
-					ID:   types.String("12345"),
-					Name: types.String("12345"),
+					ID:   optionalnullable.From(types.String("12345")),
+					Name: optionalnullable.From(types.String("12345")),
 				},
-				UpdatedBy: types.String("12345"),
-				CreatedBy: types.String("12345"),
-				UpdatedAt: types.MustNewTimeFromString("2020-09-30T07:43:32.000Z"),
-				CreatedAt: types.MustNewTimeFromString("2020-09-30T07:43:32.000Z"),
+				UpdatedBy: optionalnullable.From(types.String("12345")),
+				CreatedBy: optionalnullable.From(types.String("12345")),
+				UpdatedAt: optionalnullable.From(types.MustNewTimeFromString("2020-09-30T07:43:32.000Z")),
+				CreatedAt: optionalnullable.From(types.MustNewTimeFromString("2020-09-30T07:43:32.000Z")),
 				PassThrough: []components.PassThroughBody{
 					components.PassThroughBody{
 						ServiceID: "<id>",
@@ -144,15 +145,15 @@ func testAtsApplicationsAllAtsApplicationsAll0(w http.ResponseWriter, req *http.
 				ID:          types.String("12345"),
 				ApplicantID: types.String("12345"),
 				JobID:       types.String("12345"),
-				Status:      components.ApplicationStatusOpen.ToPointer(),
+				Status:      optionalnullable.From(components.ApplicationStatusOpen.ToPointer()),
 				Stage: &components.ApplicationStage{
-					ID:   types.String("12345"),
-					Name: types.String("12345"),
+					ID:   optionalnullable.From(types.String("12345")),
+					Name: optionalnullable.From(types.String("12345")),
 				},
-				UpdatedBy: types.String("12345"),
-				CreatedBy: types.String("12345"),
-				UpdatedAt: types.MustNewTimeFromString("2020-09-30T07:43:32.000Z"),
-				CreatedAt: types.MustNewTimeFromString("2020-09-30T07:43:32.000Z"),
+				UpdatedBy: optionalnullable.From(types.String("12345")),
+				CreatedBy: optionalnullable.From(types.String("12345")),
+				UpdatedAt: optionalnullable.From(types.MustNewTimeFromString("2020-09-30T07:43:32.000Z")),
+				CreatedAt: optionalnullable.From(types.MustNewTimeFromString("2020-09-30T07:43:32.000Z")),
 				PassThrough: []components.PassThroughBody{
 					components.PassThroughBody{
 						ServiceID: "<id>",
@@ -194,15 +195,15 @@ func testAtsApplicationsAllAtsApplicationsAll0(w http.ResponseWriter, req *http.
 		Meta: &components.Meta{
 			ItemsOnPage: types.Int64(50),
 			Cursors: &components.Cursors{
-				Previous: types.String("em9oby1jcm06OnBhZ2U6OjE="),
-				Current:  types.String("em9oby1jcm06OnBhZ2U6OjI="),
-				Next:     types.String("em9oby1jcm06OnBhZ2U6OjM="),
+				Previous: optionalnullable.From(types.String("em9oby1jcm06OnBhZ2U6OjE=")),
+				Current:  optionalnullable.From(types.String("em9oby1jcm06OnBhZ2U6OjI=")),
+				Next:     optionalnullable.From(types.String("em9oby1jcm06OnBhZ2U6OjM=")),
 			},
 		},
 		Links: &components.Links{
-			Previous: types.String("https://unify.apideck.com/crm/companies?cursor=em9oby1jcm06OnBhZ2U6OjE%3D"),
+			Previous: optionalnullable.From(types.String("https://unify.apideck.com/crm/companies?cursor=em9oby1jcm06OnBhZ2U6OjE%3D")),
 			Current:  types.String("https://unify.apideck.com/crm/companies"),
-			Next:     types.String("https://unify.apideck.com/crm/companies?cursor=em9oby1jcm06OnBhZ2U6OjM"),
+			Next:     optionalnullable.From(types.String("https://unify.apideck.com/crm/companies?cursor=em9oby1jcm06OnBhZ2U6OjM")),
 		},
 	}
 	respBodyBytes, err := utils.MarshalJSON(respBody, "", true)

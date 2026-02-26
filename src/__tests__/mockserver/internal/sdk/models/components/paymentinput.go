@@ -3,62 +3,63 @@
 package components
 
 import (
+	"mockserver/internal/sdk/optionalnullable"
 	"mockserver/internal/sdk/utils"
 	"time"
 )
 
 type PaymentInput struct {
 	// Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
-	Currency *Currency `json:"currency,omitempty"`
+	Currency optionalnullable.OptionalNullable[Currency] `json:"currency,omitempty"`
 	// Currency Exchange Rate at the time entity was recorded/generated.
-	CurrencyRate *float64 `json:"currency_rate,omitempty"`
+	CurrencyRate optionalnullable.OptionalNullable[float64] `json:"currency_rate,omitempty"`
 	// The total amount of the transaction or record
 	TotalAmount *float64 `json:"total_amount"`
 	// Optional transaction reference message ie: Debit remittance detail.
-	Reference *string `json:"reference,omitempty"`
+	Reference optionalnullable.OptionalNullable[string] `json:"reference,omitempty"`
 	// Payment method used for the transaction, such as cash, credit card, bank transfer, or check
-	PaymentMethod *string `json:"payment_method,omitempty"`
+	PaymentMethod optionalnullable.OptionalNullable[string] `json:"payment_method,omitempty"`
 	// Optional reference message returned by payment method on processing
-	PaymentMethodReference *string `json:"payment_method_reference,omitempty"`
+	PaymentMethodReference optionalnullable.OptionalNullable[string] `json:"payment_method_reference,omitempty"`
 	// A unique identifier for an object.
-	PaymentMethodID *string `json:"payment_method_id,omitempty"`
+	PaymentMethodID optionalnullable.OptionalNullable[string] `json:"payment_method_id,omitempty"`
 	// Type of accounts receivable account.
 	//
 	// Deprecated: This field is deprecated and may be removed in a future version..
-	AccountsReceivableAccountType *string `json:"accounts_receivable_account_type,omitempty"`
+	AccountsReceivableAccountType optionalnullable.OptionalNullable[string] `json:"accounts_receivable_account_type,omitempty"`
 	// Unique identifier for the account to allocate payment to.
 	//
 	// Deprecated: This field is deprecated and may be removed in a future version..
-	AccountsReceivableAccountID *string              `json:"accounts_receivable_account_id,omitempty"`
-	Account                     *LinkedLedgerAccount `json:"account,omitempty"`
+	AccountsReceivableAccountID optionalnullable.OptionalNullable[string]              `json:"accounts_receivable_account_id,omitempty"`
+	Account                     optionalnullable.OptionalNullable[LinkedLedgerAccount] `json:"account,omitempty"`
 	// The date of the transaction - YYYY:MM::DDThh:mm:ss.sTZD
 	TransactionDate *time.Time `json:"transaction_date"`
 	// The customer this entity is linked to.
-	Customer *LinkedCustomerInput `json:"customer,omitempty"`
+	Customer optionalnullable.OptionalNullable[LinkedCustomerInput] `json:"customer,omitempty"`
 	// The supplier this entity is linked to.
 	//
 	// Deprecated: This field is deprecated and may be removed in a future version..
-	Supplier *DeprecatedLinkedSupplierInput `json:"supplier,omitempty"`
+	Supplier optionalnullable.OptionalNullable[DeprecatedLinkedSupplierInput] `json:"supplier,omitempty"`
 	// The company ID the transaction belongs to
-	CompanyID *string `json:"company_id,omitempty"`
+	CompanyID optionalnullable.OptionalNullable[string] `json:"company_id,omitempty"`
 	// Indicates if the transaction has been reconciled.
-	Reconciled *bool `json:"reconciled,omitempty"`
+	Reconciled optionalnullable.OptionalNullable[bool] `json:"reconciled,omitempty"`
 	// Status of payment
 	Status *PaymentStatus `json:"status,omitempty"`
 	// Type of payment
 	Type        *PaymentType      `json:"type,omitempty"`
 	Allocations []AllocationInput `json:"allocations,omitempty"`
 	// Note associated with the transaction
-	Note *string `json:"note,omitempty"`
+	Note optionalnullable.OptionalNullable[string] `json:"note,omitempty"`
 	// Number associated with the transaction
-	Number *string `json:"number,omitempty"`
+	Number optionalnullable.OptionalNullable[string] `json:"number,omitempty"`
 	// A list of linked tracking categories.
-	TrackingCategories []*LinkedTrackingCategory `json:"tracking_categories,omitempty"`
-	CustomFields       []CustomFieldUnion        `json:"custom_fields,omitempty"`
+	TrackingCategories optionalnullable.OptionalNullable[[]*LinkedTrackingCategory] `json:"tracking_categories,omitempty"`
+	CustomFields       []CustomFieldUnion                                           `json:"custom_fields,omitempty"`
 	// A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
-	RowVersion *string `json:"row_version,omitempty"`
+	RowVersion optionalnullable.OptionalNullable[string] `json:"row_version,omitempty"`
 	// Id to be displayed.
-	DisplayID *string `json:"display_id,omitempty"`
+	DisplayID optionalnullable.OptionalNullable[string] `json:"display_id,omitempty"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
 	PassThrough []PassThroughBody `json:"pass_through,omitempty"`
 }
@@ -74,14 +75,14 @@ func (p *PaymentInput) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *PaymentInput) GetCurrency() *Currency {
+func (o *PaymentInput) GetCurrency() optionalnullable.OptionalNullable[Currency] {
 	if o == nil {
 		return nil
 	}
 	return o.Currency
 }
 
-func (o *PaymentInput) GetCurrencyRate() *float64 {
+func (o *PaymentInput) GetCurrencyRate() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}
@@ -95,49 +96,49 @@ func (o *PaymentInput) GetTotalAmount() *float64 {
 	return o.TotalAmount
 }
 
-func (o *PaymentInput) GetReference() *string {
+func (o *PaymentInput) GetReference() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Reference
 }
 
-func (o *PaymentInput) GetPaymentMethod() *string {
+func (o *PaymentInput) GetPaymentMethod() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.PaymentMethod
 }
 
-func (o *PaymentInput) GetPaymentMethodReference() *string {
+func (o *PaymentInput) GetPaymentMethodReference() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.PaymentMethodReference
 }
 
-func (o *PaymentInput) GetPaymentMethodID() *string {
+func (o *PaymentInput) GetPaymentMethodID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.PaymentMethodID
 }
 
-func (o *PaymentInput) GetAccountsReceivableAccountType() *string {
+func (o *PaymentInput) GetAccountsReceivableAccountType() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.AccountsReceivableAccountType
 }
 
-func (o *PaymentInput) GetAccountsReceivableAccountID() *string {
+func (o *PaymentInput) GetAccountsReceivableAccountID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.AccountsReceivableAccountID
 }
 
-func (o *PaymentInput) GetAccount() *LinkedLedgerAccount {
+func (o *PaymentInput) GetAccount() optionalnullable.OptionalNullable[LinkedLedgerAccount] {
 	if o == nil {
 		return nil
 	}
@@ -151,28 +152,28 @@ func (o *PaymentInput) GetTransactionDate() *time.Time {
 	return o.TransactionDate
 }
 
-func (o *PaymentInput) GetCustomer() *LinkedCustomerInput {
+func (o *PaymentInput) GetCustomer() optionalnullable.OptionalNullable[LinkedCustomerInput] {
 	if o == nil {
 		return nil
 	}
 	return o.Customer
 }
 
-func (o *PaymentInput) GetSupplier() *DeprecatedLinkedSupplierInput {
+func (o *PaymentInput) GetSupplier() optionalnullable.OptionalNullable[DeprecatedLinkedSupplierInput] {
 	if o == nil {
 		return nil
 	}
 	return o.Supplier
 }
 
-func (o *PaymentInput) GetCompanyID() *string {
+func (o *PaymentInput) GetCompanyID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.CompanyID
 }
 
-func (o *PaymentInput) GetReconciled() *bool {
+func (o *PaymentInput) GetReconciled() optionalnullable.OptionalNullable[bool] {
 	if o == nil {
 		return nil
 	}
@@ -200,21 +201,21 @@ func (o *PaymentInput) GetAllocations() []AllocationInput {
 	return o.Allocations
 }
 
-func (o *PaymentInput) GetNote() *string {
+func (o *PaymentInput) GetNote() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Note
 }
 
-func (o *PaymentInput) GetNumber() *string {
+func (o *PaymentInput) GetNumber() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Number
 }
 
-func (o *PaymentInput) GetTrackingCategories() []*LinkedTrackingCategory {
+func (o *PaymentInput) GetTrackingCategories() optionalnullable.OptionalNullable[[]*LinkedTrackingCategory] {
 	if o == nil {
 		return nil
 	}
@@ -228,14 +229,14 @@ func (o *PaymentInput) GetCustomFields() []CustomFieldUnion {
 	return o.CustomFields
 }
 
-func (o *PaymentInput) GetRowVersion() *string {
+func (o *PaymentInput) GetRowVersion() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.RowVersion
 }
 
-func (o *PaymentInput) GetDisplayID() *string {
+func (o *PaymentInput) GetDisplayID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}

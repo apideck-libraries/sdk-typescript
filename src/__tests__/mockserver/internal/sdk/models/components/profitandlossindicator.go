@@ -2,12 +2,16 @@
 
 package components
 
+import (
+	"mockserver/internal/sdk/optionalnullable"
+)
+
 type ProfitAndLossIndicator struct {
 	// The total amount of the transaction or record
-	Total *float64 `json:"total,omitempty"`
+	Total optionalnullable.OptionalNullable[float64] `json:"total,omitempty"`
 }
 
-func (o *ProfitAndLossIndicator) GetTotal() *float64 {
+func (o *ProfitAndLossIndicator) GetTotal() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}

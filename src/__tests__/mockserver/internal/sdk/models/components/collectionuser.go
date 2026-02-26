@@ -3,29 +3,30 @@
 package components
 
 import (
+	"mockserver/internal/sdk/optionalnullable"
 	"mockserver/internal/sdk/utils"
 	"time"
 )
 
 type CollectionUser struct {
 	// A unique identifier for an object.
-	ID *string `json:"id,omitempty"`
+	ID optionalnullable.OptionalNullable[string] `json:"id,omitempty"`
 	// Full name of the user
-	Name *string `json:"name,omitempty"`
+	Name optionalnullable.OptionalNullable[string] `json:"name,omitempty"`
 	// First name of the user
-	FirstName *string `json:"first_name,omitempty"`
+	FirstName optionalnullable.OptionalNullable[string] `json:"first_name,omitempty"`
 	// Last name of the user
-	LastName *string `json:"last_name,omitempty"`
+	LastName optionalnullable.OptionalNullable[string] `json:"last_name,omitempty"`
 	// Email address of the user
-	Email *string `json:"email,omitempty"`
+	Email optionalnullable.OptionalNullable[string] `json:"email,omitempty"`
 	// The URL of the photo of a person.
-	PhotoURL *string `json:"photo_url,omitempty"`
+	PhotoURL optionalnullable.OptionalNullable[string] `json:"photo_url,omitempty"`
 	// When custom mappings are configured on the resource, the result is included here.
-	CustomMappings map[string]any `json:"custom_mappings,omitempty"`
+	CustomMappings optionalnullable.OptionalNullable[map[string]any] `json:"custom_mappings,omitempty"`
 	// The date and time when the object was last updated.
-	UpdatedAt *time.Time `json:"updated_at,omitempty"`
+	UpdatedAt optionalnullable.OptionalNullable[time.Time] `json:"updated_at,omitempty"`
 	// The date and time when the object was created.
-	CreatedAt *time.Time `json:"created_at,omitempty"`
+	CreatedAt optionalnullable.OptionalNullable[time.Time] `json:"created_at,omitempty"`
 }
 
 func (c CollectionUser) MarshalJSON() ([]byte, error) {
@@ -39,63 +40,63 @@ func (c *CollectionUser) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *CollectionUser) GetID() *string {
+func (o *CollectionUser) GetID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *CollectionUser) GetName() *string {
+func (o *CollectionUser) GetName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-func (o *CollectionUser) GetFirstName() *string {
+func (o *CollectionUser) GetFirstName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.FirstName
 }
 
-func (o *CollectionUser) GetLastName() *string {
+func (o *CollectionUser) GetLastName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.LastName
 }
 
-func (o *CollectionUser) GetEmail() *string {
+func (o *CollectionUser) GetEmail() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Email
 }
 
-func (o *CollectionUser) GetPhotoURL() *string {
+func (o *CollectionUser) GetPhotoURL() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.PhotoURL
 }
 
-func (o *CollectionUser) GetCustomMappings() map[string]any {
+func (o *CollectionUser) GetCustomMappings() optionalnullable.OptionalNullable[map[string]any] {
 	if o == nil {
 		return nil
 	}
 	return o.CustomMappings
 }
 
-func (o *CollectionUser) GetUpdatedAt() *time.Time {
+func (o *CollectionUser) GetUpdatedAt() optionalnullable.OptionalNullable[time.Time] {
 	if o == nil {
 		return nil
 	}
 	return o.UpdatedAt
 }
 
-func (o *CollectionUser) GetCreatedAt() *time.Time {
+func (o *CollectionUser) GetCreatedAt() optionalnullable.OptionalNullable[time.Time] {
 	if o == nil {
 		return nil
 	}

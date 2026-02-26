@@ -8,6 +8,7 @@ import (
 	"mockserver/internal/handler/assert"
 	"mockserver/internal/logging"
 	"mockserver/internal/sdk/models/components"
+	"mockserver/internal/sdk/optionalnullable"
 	"mockserver/internal/sdk/types"
 	"mockserver/internal/sdk/utils"
 	"mockserver/internal/tracking"
@@ -55,10 +56,10 @@ func testIssueTrackingCollectionTicketCommentsAllIssueTrackingCollectionTicketCo
 		Data: []components.CollectionTicketComment{
 			components.CollectionTicketComment{
 				ID:        types.String("12345"),
-				Body:      types.String("What internet provider do you use?"),
-				CreatedBy: types.String("12345"),
-				UpdatedAt: types.MustNewTimeFromString("2020-09-30T07:43:32.000Z"),
-				CreatedAt: types.MustNewTimeFromString("2020-09-30T07:43:32.000Z"),
+				Body:      optionalnullable.From(types.String("What internet provider do you use?")),
+				CreatedBy: optionalnullable.From(types.String("12345")),
+				UpdatedAt: optionalnullable.From(types.MustNewTimeFromString("2020-09-30T07:43:32.000Z")),
+				CreatedAt: optionalnullable.From(types.MustNewTimeFromString("2020-09-30T07:43:32.000Z")),
 				PassThrough: []components.PassThroughBody{
 					components.PassThroughBody{
 						ServiceID: "<id>",
@@ -106,10 +107,10 @@ func testIssueTrackingCollectionTicketCommentsAllIssueTrackingCollectionTicketCo
 			},
 			components.CollectionTicketComment{
 				ID:        types.String("12345"),
-				Body:      types.String("What internet provider do you use?"),
-				CreatedBy: types.String("12345"),
-				UpdatedAt: types.MustNewTimeFromString("2020-09-30T07:43:32.000Z"),
-				CreatedAt: types.MustNewTimeFromString("2020-09-30T07:43:32.000Z"),
+				Body:      optionalnullable.From(types.String("What internet provider do you use?")),
+				CreatedBy: optionalnullable.From(types.String("12345")),
+				UpdatedAt: optionalnullable.From(types.MustNewTimeFromString("2020-09-30T07:43:32.000Z")),
+				CreatedAt: optionalnullable.From(types.MustNewTimeFromString("2020-09-30T07:43:32.000Z")),
 				PassThrough: []components.PassThroughBody{
 					components.PassThroughBody{
 						ServiceID: "<id>",
@@ -128,10 +129,10 @@ func testIssueTrackingCollectionTicketCommentsAllIssueTrackingCollectionTicketCo
 			},
 			components.CollectionTicketComment{
 				ID:        types.String("12345"),
-				Body:      types.String("What internet provider do you use?"),
-				CreatedBy: types.String("12345"),
-				UpdatedAt: types.MustNewTimeFromString("2020-09-30T07:43:32.000Z"),
-				CreatedAt: types.MustNewTimeFromString("2020-09-30T07:43:32.000Z"),
+				Body:      optionalnullable.From(types.String("What internet provider do you use?")),
+				CreatedBy: optionalnullable.From(types.String("12345")),
+				UpdatedAt: optionalnullable.From(types.MustNewTimeFromString("2020-09-30T07:43:32.000Z")),
+				CreatedAt: optionalnullable.From(types.MustNewTimeFromString("2020-09-30T07:43:32.000Z")),
 				PassThrough: []components.PassThroughBody{
 					components.PassThroughBody{
 						ServiceID: "<id>",
@@ -173,15 +174,15 @@ func testIssueTrackingCollectionTicketCommentsAllIssueTrackingCollectionTicketCo
 		Meta: &components.Meta{
 			ItemsOnPage: types.Int64(50),
 			Cursors: &components.Cursors{
-				Previous: types.String("em9oby1jcm06OnBhZ2U6OjE="),
-				Current:  types.String("em9oby1jcm06OnBhZ2U6OjI="),
-				Next:     types.String("em9oby1jcm06OnBhZ2U6OjM="),
+				Previous: optionalnullable.From(types.String("em9oby1jcm06OnBhZ2U6OjE=")),
+				Current:  optionalnullable.From(types.String("em9oby1jcm06OnBhZ2U6OjI=")),
+				Next:     optionalnullable.From(types.String("em9oby1jcm06OnBhZ2U6OjM=")),
 			},
 		},
 		Links: &components.Links{
-			Previous: types.String("https://unify.apideck.com/crm/companies?cursor=em9oby1jcm06OnBhZ2U6OjE%3D"),
+			Previous: optionalnullable.From(types.String("https://unify.apideck.com/crm/companies?cursor=em9oby1jcm06OnBhZ2U6OjE%3D")),
 			Current:  types.String("https://unify.apideck.com/crm/companies"),
-			Next:     types.String("https://unify.apideck.com/crm/companies?cursor=em9oby1jcm06OnBhZ2U6OjM"),
+			Next:     optionalnullable.From(types.String("https://unify.apideck.com/crm/companies?cursor=em9oby1jcm06OnBhZ2U6OjM")),
 		},
 	}
 	respBodyBytes, err := utils.MarshalJSON(respBody, "", true)

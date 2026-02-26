@@ -5,6 +5,7 @@ package operations
 import (
 	"io"
 	"mockserver/internal/sdk/models/components"
+	"mockserver/internal/sdk/optionalnullable"
 )
 
 type FileStorageFilesExportGlobals struct {
@@ -38,7 +39,7 @@ type FileStorageFilesExportRequest struct {
 	// Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
 	ServiceID *string `header:"style=simple,explode=false,name=x-apideck-service-id"`
 	// The 'fields' parameter allows API users to specify the fields they want to include in the API response. If this parameter is not present, the API will return all available fields. If this parameter is present, only the fields specified in the comma-separated string will be included in the response. Nested properties can also be requested by using a dot notation. <br /><br />Example: `fields=name,email,addresses.city`<br /><br />In the example above, the response will only include the fields "name", "email" and "addresses.city". If any other fields are available, they will be excluded.
-	Fields *string `queryParam:"style=form,explode=true,name=fields"`
+	Fields optionalnullable.OptionalNullable[string] `queryParam:"style=form,explode=true,name=fields"`
 	// File format to export this file to. A list of available file formats for the current file is available as `export_formats` on the File resource.
 	Format string `queryParam:"style=form,explode=true,name=format"`
 }
@@ -71,7 +72,7 @@ func (o *FileStorageFilesExportRequest) GetServiceID() *string {
 	return o.ServiceID
 }
 
-func (o *FileStorageFilesExportRequest) GetFields() *string {
+func (o *FileStorageFilesExportRequest) GetFields() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}

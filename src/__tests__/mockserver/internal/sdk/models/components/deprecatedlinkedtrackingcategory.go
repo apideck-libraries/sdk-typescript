@@ -2,6 +2,10 @@
 
 package components
 
+import (
+	"mockserver/internal/sdk/optionalnullable"
+)
+
 // DeprecatedLinkedTrackingCategory
 //
 // Deprecated: This field is deprecated and may be removed in a future version..
@@ -9,7 +13,7 @@ type DeprecatedLinkedTrackingCategory struct {
 	// The unique identifier for the tracking category.
 	ID *string `json:"id,omitempty"`
 	// The name of the tracking category.
-	Name *string `json:"name,omitempty"`
+	Name optionalnullable.OptionalNullable[string] `json:"name,omitempty"`
 }
 
 func (o *DeprecatedLinkedTrackingCategory) GetID() *string {
@@ -19,7 +23,7 @@ func (o *DeprecatedLinkedTrackingCategory) GetID() *string {
 	return o.ID
 }
 
-func (o *DeprecatedLinkedTrackingCategory) GetName() *string {
+func (o *DeprecatedLinkedTrackingCategory) GetName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}

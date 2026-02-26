@@ -3,6 +3,7 @@
 package components
 
 import (
+	"mockserver/internal/sdk/optionalnullable"
 	"mockserver/internal/sdk/utils"
 	"time"
 )
@@ -40,67 +41,67 @@ type CreditNote struct {
 	// Unique identifier representing the entity
 	ID string `json:"id"`
 	// Credit note number.
-	Number *string `json:"number,omitempty"`
+	Number optionalnullable.OptionalNullable[string] `json:"number,omitempty"`
 	// The customer this entity is linked to.
-	Customer *LinkedCustomer `json:"customer,omitempty"`
+	Customer optionalnullable.OptionalNullable[LinkedCustomer] `json:"customer,omitempty"`
 	// The company ID the transaction belongs to
-	CompanyID *string `json:"company_id,omitempty"`
+	CompanyID optionalnullable.OptionalNullable[string] `json:"company_id,omitempty"`
 	// The ID of the location
-	LocationID *string `json:"location_id,omitempty"`
+	LocationID optionalnullable.OptionalNullable[string] `json:"location_id,omitempty"`
 	// The ID of the department
-	DepartmentID *string `json:"department_id,omitempty"`
+	DepartmentID optionalnullable.OptionalNullable[string] `json:"department_id,omitempty"`
 	// Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
-	Currency *Currency `json:"currency,omitempty"`
+	Currency optionalnullable.OptionalNullable[Currency] `json:"currency,omitempty"`
 	// Currency Exchange Rate at the time entity was recorded/generated.
-	CurrencyRate *float64 `json:"currency_rate,omitempty"`
+	CurrencyRate optionalnullable.OptionalNullable[float64] `json:"currency_rate,omitempty"`
 	// Amounts are including tax
-	TaxInclusive *bool `json:"tax_inclusive,omitempty"`
+	TaxInclusive optionalnullable.OptionalNullable[bool] `json:"tax_inclusive,omitempty"`
 	// Sub-total amount, normally before tax.
-	SubTotal *float64 `json:"sub_total,omitempty"`
+	SubTotal optionalnullable.OptionalNullable[float64] `json:"sub_total,omitempty"`
 	// Amount of transaction
 	TotalAmount float64 `json:"total_amount"`
 	// Total tax amount applied to this invoice.
-	TotalTax *float64 `json:"total_tax,omitempty"`
+	TotalTax optionalnullable.OptionalNullable[float64] `json:"total_tax,omitempty"`
 	// Applicable tax id/code override if tax is not supplied on a line item basis.
-	TaxCode *string `json:"tax_code,omitempty"`
+	TaxCode optionalnullable.OptionalNullable[string] `json:"tax_code,omitempty"`
 	// The balance reflecting any payments made against the transaction.
-	Balance *float64 `json:"balance,omitempty"`
+	Balance optionalnullable.OptionalNullable[float64] `json:"balance,omitempty"`
 	// Indicates the total credit amount still available to apply towards the payment.
-	RemainingCredit *float64 `json:"remaining_credit,omitempty"`
+	RemainingCredit optionalnullable.OptionalNullable[float64] `json:"remaining_credit,omitempty"`
 	// Status of credit notes
 	Status *CreditNoteStatus `json:"status,omitempty"`
 	// Optional reference message ie: Debit remittance detail.
-	Reference *string `json:"reference,omitempty"`
+	Reference optionalnullable.OptionalNullable[string] `json:"reference,omitempty"`
 	// Date credit note issued - YYYY:MM::DDThh:mm:ss.sTZD
 	DateIssued *time.Time `json:"date_issued,omitempty"`
 	// Date credit note paid - YYYY:MM::DDThh:mm:ss.sTZD
-	DatePaid *time.Time `json:"date_paid,omitempty"`
+	DatePaid optionalnullable.OptionalNullable[time.Time] `json:"date_paid,omitempty"`
 	// Type of payment
-	Type        *CreditNoteType      `json:"type,omitempty"`
-	Account     *LinkedLedgerAccount `json:"account,omitempty"`
-	LineItems   []InvoiceLineItem    `json:"line_items,omitempty"`
-	Allocations []Allocation         `json:"allocations,omitempty"`
+	Type        *CreditNoteType                                        `json:"type,omitempty"`
+	Account     optionalnullable.OptionalNullable[LinkedLedgerAccount] `json:"account,omitempty"`
+	LineItems   []InvoiceLineItem                                      `json:"line_items,omitempty"`
+	Allocations []Allocation                                           `json:"allocations,omitempty"`
 	// Optional note to be associated with the credit note.
-	Note *string `json:"note,omitempty"`
+	Note optionalnullable.OptionalNullable[string] `json:"note,omitempty"`
 	// Optional terms to be associated with the credit note.
-	Terms           *string  `json:"terms,omitempty"`
-	BillingAddress  *Address `json:"billing_address,omitempty"`
-	ShippingAddress *Address `json:"shipping_address,omitempty"`
+	Terms           optionalnullable.OptionalNullable[string] `json:"terms,omitempty"`
+	BillingAddress  *Address                                  `json:"billing_address,omitempty"`
+	ShippingAddress *Address                                  `json:"shipping_address,omitempty"`
 	// A list of linked tracking categories.
-	TrackingCategories []*LinkedTrackingCategory `json:"tracking_categories,omitempty"`
+	TrackingCategories optionalnullable.OptionalNullable[[]*LinkedTrackingCategory] `json:"tracking_categories,omitempty"`
 	// When custom mappings are configured on the resource, the result is included here.
-	CustomMappings map[string]any     `json:"custom_mappings,omitempty"`
-	CustomFields   []CustomFieldUnion `json:"custom_fields,omitempty"`
+	CustomMappings optionalnullable.OptionalNullable[map[string]any] `json:"custom_mappings,omitempty"`
+	CustomFields   []CustomFieldUnion                                `json:"custom_fields,omitempty"`
 	// A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
-	RowVersion *string `json:"row_version,omitempty"`
+	RowVersion optionalnullable.OptionalNullable[string] `json:"row_version,omitempty"`
 	// The user who last updated the object.
-	UpdatedBy *string `json:"updated_by,omitempty"`
+	UpdatedBy optionalnullable.OptionalNullable[string] `json:"updated_by,omitempty"`
 	// The user who created the object.
-	CreatedBy *string `json:"created_by,omitempty"`
+	CreatedBy optionalnullable.OptionalNullable[string] `json:"created_by,omitempty"`
 	// The date and time when the object was last updated.
-	UpdatedAt *time.Time `json:"updated_at,omitempty"`
+	UpdatedAt optionalnullable.OptionalNullable[time.Time] `json:"updated_at,omitempty"`
 	// The date and time when the object was created.
-	CreatedAt *time.Time `json:"created_at,omitempty"`
+	CreatedAt optionalnullable.OptionalNullable[time.Time] `json:"created_at,omitempty"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
 	PassThrough []PassThroughBody `json:"pass_through,omitempty"`
 }
@@ -123,63 +124,63 @@ func (o *CreditNote) GetID() string {
 	return o.ID
 }
 
-func (o *CreditNote) GetNumber() *string {
+func (o *CreditNote) GetNumber() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Number
 }
 
-func (o *CreditNote) GetCustomer() *LinkedCustomer {
+func (o *CreditNote) GetCustomer() optionalnullable.OptionalNullable[LinkedCustomer] {
 	if o == nil {
 		return nil
 	}
 	return o.Customer
 }
 
-func (o *CreditNote) GetCompanyID() *string {
+func (o *CreditNote) GetCompanyID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.CompanyID
 }
 
-func (o *CreditNote) GetLocationID() *string {
+func (o *CreditNote) GetLocationID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.LocationID
 }
 
-func (o *CreditNote) GetDepartmentID() *string {
+func (o *CreditNote) GetDepartmentID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.DepartmentID
 }
 
-func (o *CreditNote) GetCurrency() *Currency {
+func (o *CreditNote) GetCurrency() optionalnullable.OptionalNullable[Currency] {
 	if o == nil {
 		return nil
 	}
 	return o.Currency
 }
 
-func (o *CreditNote) GetCurrencyRate() *float64 {
+func (o *CreditNote) GetCurrencyRate() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}
 	return o.CurrencyRate
 }
 
-func (o *CreditNote) GetTaxInclusive() *bool {
+func (o *CreditNote) GetTaxInclusive() optionalnullable.OptionalNullable[bool] {
 	if o == nil {
 		return nil
 	}
 	return o.TaxInclusive
 }
 
-func (o *CreditNote) GetSubTotal() *float64 {
+func (o *CreditNote) GetSubTotal() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}
@@ -193,28 +194,28 @@ func (o *CreditNote) GetTotalAmount() float64 {
 	return o.TotalAmount
 }
 
-func (o *CreditNote) GetTotalTax() *float64 {
+func (o *CreditNote) GetTotalTax() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}
 	return o.TotalTax
 }
 
-func (o *CreditNote) GetTaxCode() *string {
+func (o *CreditNote) GetTaxCode() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.TaxCode
 }
 
-func (o *CreditNote) GetBalance() *float64 {
+func (o *CreditNote) GetBalance() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}
 	return o.Balance
 }
 
-func (o *CreditNote) GetRemainingCredit() *float64 {
+func (o *CreditNote) GetRemainingCredit() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}
@@ -228,7 +229,7 @@ func (o *CreditNote) GetStatus() *CreditNoteStatus {
 	return o.Status
 }
 
-func (o *CreditNote) GetReference() *string {
+func (o *CreditNote) GetReference() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -242,7 +243,7 @@ func (o *CreditNote) GetDateIssued() *time.Time {
 	return o.DateIssued
 }
 
-func (o *CreditNote) GetDatePaid() *time.Time {
+func (o *CreditNote) GetDatePaid() optionalnullable.OptionalNullable[time.Time] {
 	if o == nil {
 		return nil
 	}
@@ -256,7 +257,7 @@ func (o *CreditNote) GetType() *CreditNoteType {
 	return o.Type
 }
 
-func (o *CreditNote) GetAccount() *LinkedLedgerAccount {
+func (o *CreditNote) GetAccount() optionalnullable.OptionalNullable[LinkedLedgerAccount] {
 	if o == nil {
 		return nil
 	}
@@ -277,14 +278,14 @@ func (o *CreditNote) GetAllocations() []Allocation {
 	return o.Allocations
 }
 
-func (o *CreditNote) GetNote() *string {
+func (o *CreditNote) GetNote() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Note
 }
 
-func (o *CreditNote) GetTerms() *string {
+func (o *CreditNote) GetTerms() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -305,14 +306,14 @@ func (o *CreditNote) GetShippingAddress() *Address {
 	return o.ShippingAddress
 }
 
-func (o *CreditNote) GetTrackingCategories() []*LinkedTrackingCategory {
+func (o *CreditNote) GetTrackingCategories() optionalnullable.OptionalNullable[[]*LinkedTrackingCategory] {
 	if o == nil {
 		return nil
 	}
 	return o.TrackingCategories
 }
 
-func (o *CreditNote) GetCustomMappings() map[string]any {
+func (o *CreditNote) GetCustomMappings() optionalnullable.OptionalNullable[map[string]any] {
 	if o == nil {
 		return nil
 	}
@@ -326,35 +327,35 @@ func (o *CreditNote) GetCustomFields() []CustomFieldUnion {
 	return o.CustomFields
 }
 
-func (o *CreditNote) GetRowVersion() *string {
+func (o *CreditNote) GetRowVersion() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.RowVersion
 }
 
-func (o *CreditNote) GetUpdatedBy() *string {
+func (o *CreditNote) GetUpdatedBy() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.UpdatedBy
 }
 
-func (o *CreditNote) GetCreatedBy() *string {
+func (o *CreditNote) GetCreatedBy() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.CreatedBy
 }
 
-func (o *CreditNote) GetUpdatedAt() *time.Time {
+func (o *CreditNote) GetUpdatedAt() optionalnullable.OptionalNullable[time.Time] {
 	if o == nil {
 		return nil
 	}
 	return o.UpdatedAt
 }
 
-func (o *CreditNote) GetCreatedAt() *time.Time {
+func (o *CreditNote) GetCreatedAt() optionalnullable.OptionalNullable[time.Time] {
 	if o == nil {
 		return nil
 	}
@@ -370,57 +371,57 @@ func (o *CreditNote) GetPassThrough() []PassThroughBody {
 
 type CreditNoteInput struct {
 	// Credit note number.
-	Number *string `json:"number,omitempty"`
+	Number optionalnullable.OptionalNullable[string] `json:"number,omitempty"`
 	// The customer this entity is linked to.
-	Customer *LinkedCustomerInput `json:"customer,omitempty"`
+	Customer optionalnullable.OptionalNullable[LinkedCustomerInput] `json:"customer,omitempty"`
 	// The company ID the transaction belongs to
-	CompanyID *string `json:"company_id,omitempty"`
+	CompanyID optionalnullable.OptionalNullable[string] `json:"company_id,omitempty"`
 	// The ID of the location
-	LocationID *string `json:"location_id,omitempty"`
+	LocationID optionalnullable.OptionalNullable[string] `json:"location_id,omitempty"`
 	// The ID of the department
-	DepartmentID *string `json:"department_id,omitempty"`
+	DepartmentID optionalnullable.OptionalNullable[string] `json:"department_id,omitempty"`
 	// Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
-	Currency *Currency `json:"currency,omitempty"`
+	Currency optionalnullable.OptionalNullable[Currency] `json:"currency,omitempty"`
 	// Currency Exchange Rate at the time entity was recorded/generated.
-	CurrencyRate *float64 `json:"currency_rate,omitempty"`
+	CurrencyRate optionalnullable.OptionalNullable[float64] `json:"currency_rate,omitempty"`
 	// Amounts are including tax
-	TaxInclusive *bool `json:"tax_inclusive,omitempty"`
+	TaxInclusive optionalnullable.OptionalNullable[bool] `json:"tax_inclusive,omitempty"`
 	// Sub-total amount, normally before tax.
-	SubTotal *float64 `json:"sub_total,omitempty"`
+	SubTotal optionalnullable.OptionalNullable[float64] `json:"sub_total,omitempty"`
 	// Amount of transaction
 	TotalAmount float64 `json:"total_amount"`
 	// Total tax amount applied to this invoice.
-	TotalTax *float64 `json:"total_tax,omitempty"`
+	TotalTax optionalnullable.OptionalNullable[float64] `json:"total_tax,omitempty"`
 	// Applicable tax id/code override if tax is not supplied on a line item basis.
-	TaxCode *string `json:"tax_code,omitempty"`
+	TaxCode optionalnullable.OptionalNullable[string] `json:"tax_code,omitempty"`
 	// The balance reflecting any payments made against the transaction.
-	Balance *float64 `json:"balance,omitempty"`
+	Balance optionalnullable.OptionalNullable[float64] `json:"balance,omitempty"`
 	// Indicates the total credit amount still available to apply towards the payment.
-	RemainingCredit *float64 `json:"remaining_credit,omitempty"`
+	RemainingCredit optionalnullable.OptionalNullable[float64] `json:"remaining_credit,omitempty"`
 	// Status of credit notes
 	Status *CreditNoteStatus `json:"status,omitempty"`
 	// Optional reference message ie: Debit remittance detail.
-	Reference *string `json:"reference,omitempty"`
+	Reference optionalnullable.OptionalNullable[string] `json:"reference,omitempty"`
 	// Date credit note issued - YYYY:MM::DDThh:mm:ss.sTZD
 	DateIssued *time.Time `json:"date_issued,omitempty"`
 	// Date credit note paid - YYYY:MM::DDThh:mm:ss.sTZD
-	DatePaid *time.Time `json:"date_paid,omitempty"`
+	DatePaid optionalnullable.OptionalNullable[time.Time] `json:"date_paid,omitempty"`
 	// Type of payment
-	Type        *CreditNoteType        `json:"type,omitempty"`
-	Account     *LinkedLedgerAccount   `json:"account,omitempty"`
-	LineItems   []InvoiceLineItemInput `json:"line_items,omitempty"`
-	Allocations []AllocationInput      `json:"allocations,omitempty"`
+	Type        *CreditNoteType                                        `json:"type,omitempty"`
+	Account     optionalnullable.OptionalNullable[LinkedLedgerAccount] `json:"account,omitempty"`
+	LineItems   []InvoiceLineItemInput                                 `json:"line_items,omitempty"`
+	Allocations []AllocationInput                                      `json:"allocations,omitempty"`
 	// Optional note to be associated with the credit note.
-	Note *string `json:"note,omitempty"`
+	Note optionalnullable.OptionalNullable[string] `json:"note,omitempty"`
 	// Optional terms to be associated with the credit note.
-	Terms           *string  `json:"terms,omitempty"`
-	BillingAddress  *Address `json:"billing_address,omitempty"`
-	ShippingAddress *Address `json:"shipping_address,omitempty"`
+	Terms           optionalnullable.OptionalNullable[string] `json:"terms,omitempty"`
+	BillingAddress  *Address                                  `json:"billing_address,omitempty"`
+	ShippingAddress *Address                                  `json:"shipping_address,omitempty"`
 	// A list of linked tracking categories.
-	TrackingCategories []*LinkedTrackingCategory `json:"tracking_categories,omitempty"`
-	CustomFields       []CustomFieldUnion        `json:"custom_fields,omitempty"`
+	TrackingCategories optionalnullable.OptionalNullable[[]*LinkedTrackingCategory] `json:"tracking_categories,omitempty"`
+	CustomFields       []CustomFieldUnion                                           `json:"custom_fields,omitempty"`
 	// A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
-	RowVersion *string `json:"row_version,omitempty"`
+	RowVersion optionalnullable.OptionalNullable[string] `json:"row_version,omitempty"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
 	PassThrough []PassThroughBody `json:"pass_through,omitempty"`
 }
@@ -436,63 +437,63 @@ func (c *CreditNoteInput) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *CreditNoteInput) GetNumber() *string {
+func (o *CreditNoteInput) GetNumber() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Number
 }
 
-func (o *CreditNoteInput) GetCustomer() *LinkedCustomerInput {
+func (o *CreditNoteInput) GetCustomer() optionalnullable.OptionalNullable[LinkedCustomerInput] {
 	if o == nil {
 		return nil
 	}
 	return o.Customer
 }
 
-func (o *CreditNoteInput) GetCompanyID() *string {
+func (o *CreditNoteInput) GetCompanyID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.CompanyID
 }
 
-func (o *CreditNoteInput) GetLocationID() *string {
+func (o *CreditNoteInput) GetLocationID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.LocationID
 }
 
-func (o *CreditNoteInput) GetDepartmentID() *string {
+func (o *CreditNoteInput) GetDepartmentID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.DepartmentID
 }
 
-func (o *CreditNoteInput) GetCurrency() *Currency {
+func (o *CreditNoteInput) GetCurrency() optionalnullable.OptionalNullable[Currency] {
 	if o == nil {
 		return nil
 	}
 	return o.Currency
 }
 
-func (o *CreditNoteInput) GetCurrencyRate() *float64 {
+func (o *CreditNoteInput) GetCurrencyRate() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}
 	return o.CurrencyRate
 }
 
-func (o *CreditNoteInput) GetTaxInclusive() *bool {
+func (o *CreditNoteInput) GetTaxInclusive() optionalnullable.OptionalNullable[bool] {
 	if o == nil {
 		return nil
 	}
 	return o.TaxInclusive
 }
 
-func (o *CreditNoteInput) GetSubTotal() *float64 {
+func (o *CreditNoteInput) GetSubTotal() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}
@@ -506,28 +507,28 @@ func (o *CreditNoteInput) GetTotalAmount() float64 {
 	return o.TotalAmount
 }
 
-func (o *CreditNoteInput) GetTotalTax() *float64 {
+func (o *CreditNoteInput) GetTotalTax() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}
 	return o.TotalTax
 }
 
-func (o *CreditNoteInput) GetTaxCode() *string {
+func (o *CreditNoteInput) GetTaxCode() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.TaxCode
 }
 
-func (o *CreditNoteInput) GetBalance() *float64 {
+func (o *CreditNoteInput) GetBalance() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}
 	return o.Balance
 }
 
-func (o *CreditNoteInput) GetRemainingCredit() *float64 {
+func (o *CreditNoteInput) GetRemainingCredit() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}
@@ -541,7 +542,7 @@ func (o *CreditNoteInput) GetStatus() *CreditNoteStatus {
 	return o.Status
 }
 
-func (o *CreditNoteInput) GetReference() *string {
+func (o *CreditNoteInput) GetReference() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -555,7 +556,7 @@ func (o *CreditNoteInput) GetDateIssued() *time.Time {
 	return o.DateIssued
 }
 
-func (o *CreditNoteInput) GetDatePaid() *time.Time {
+func (o *CreditNoteInput) GetDatePaid() optionalnullable.OptionalNullable[time.Time] {
 	if o == nil {
 		return nil
 	}
@@ -569,7 +570,7 @@ func (o *CreditNoteInput) GetType() *CreditNoteType {
 	return o.Type
 }
 
-func (o *CreditNoteInput) GetAccount() *LinkedLedgerAccount {
+func (o *CreditNoteInput) GetAccount() optionalnullable.OptionalNullable[LinkedLedgerAccount] {
 	if o == nil {
 		return nil
 	}
@@ -590,14 +591,14 @@ func (o *CreditNoteInput) GetAllocations() []AllocationInput {
 	return o.Allocations
 }
 
-func (o *CreditNoteInput) GetNote() *string {
+func (o *CreditNoteInput) GetNote() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Note
 }
 
-func (o *CreditNoteInput) GetTerms() *string {
+func (o *CreditNoteInput) GetTerms() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -618,7 +619,7 @@ func (o *CreditNoteInput) GetShippingAddress() *Address {
 	return o.ShippingAddress
 }
 
-func (o *CreditNoteInput) GetTrackingCategories() []*LinkedTrackingCategory {
+func (o *CreditNoteInput) GetTrackingCategories() optionalnullable.OptionalNullable[[]*LinkedTrackingCategory] {
 	if o == nil {
 		return nil
 	}
@@ -632,7 +633,7 @@ func (o *CreditNoteInput) GetCustomFields() []CustomFieldUnion {
 	return o.CustomFields
 }
 
-func (o *CreditNoteInput) GetRowVersion() *string {
+func (o *CreditNoteInput) GetRowVersion() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}

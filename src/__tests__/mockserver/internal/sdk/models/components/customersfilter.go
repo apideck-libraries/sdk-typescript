@@ -3,6 +3,7 @@
 package components
 
 import (
+	"mockserver/internal/sdk/optionalnullable"
 	"mockserver/internal/sdk/utils"
 	"time"
 )
@@ -33,8 +34,8 @@ type CustomersFilter struct {
 	// Email of customer to search for
 	Email *string `queryParam:"name=email"`
 	// Status of customer to filter on
-	Status       *CustomersFilterStatus `queryParam:"name=status"`
-	UpdatedSince *time.Time             `queryParam:"name=updated_since"`
+	Status       optionalnullable.OptionalNullable[CustomersFilterStatus] `queryParam:"name=status"`
+	UpdatedSince *time.Time                                               `queryParam:"name=updated_since"`
 	// Supplier ID of customer to search for
 	SupplierID *string `queryParam:"name=supplier_id"`
 }
@@ -85,7 +86,7 @@ func (o *CustomersFilter) GetEmail() *string {
 	return o.Email
 }
 
-func (o *CustomersFilter) GetStatus() *CustomersFilterStatus {
+func (o *CustomersFilter) GetStatus() optionalnullable.OptionalNullable[CustomersFilterStatus] {
 	if o == nil {
 		return nil
 	}

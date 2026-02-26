@@ -3,6 +3,7 @@
 package components
 
 import (
+	"mockserver/internal/sdk/optionalnullable"
 	"mockserver/internal/sdk/utils"
 	"time"
 )
@@ -11,19 +12,19 @@ type Collection struct {
 	// A unique identifier for an object.
 	ID string `json:"id"`
 	// The collections's parent ID
-	ParentID *string `json:"parent_id,omitempty"`
+	ParentID optionalnullable.OptionalNullable[string] `json:"parent_id,omitempty"`
 	// The collections's type
-	Type *string `json:"type,omitempty"`
+	Type optionalnullable.OptionalNullable[string] `json:"type,omitempty"`
 	// Name of the collection
-	Name *string `json:"name,omitempty"`
+	Name optionalnullable.OptionalNullable[string] `json:"name,omitempty"`
 	// Description of the collection
-	Description *string `json:"description,omitempty"`
+	Description optionalnullable.OptionalNullable[string] `json:"description,omitempty"`
 	// When custom mappings are configured on the resource, the result is included here.
-	CustomMappings map[string]any `json:"custom_mappings,omitempty"`
+	CustomMappings optionalnullable.OptionalNullable[map[string]any] `json:"custom_mappings,omitempty"`
 	// The date and time when the object was last updated.
-	UpdatedAt *time.Time `json:"updated_at,omitempty"`
+	UpdatedAt optionalnullable.OptionalNullable[time.Time] `json:"updated_at,omitempty"`
 	// The date and time when the object was created.
-	CreatedAt *time.Time `json:"created_at,omitempty"`
+	CreatedAt optionalnullable.OptionalNullable[time.Time] `json:"created_at,omitempty"`
 }
 
 func (c Collection) MarshalJSON() ([]byte, error) {
@@ -44,49 +45,49 @@ func (o *Collection) GetID() string {
 	return o.ID
 }
 
-func (o *Collection) GetParentID() *string {
+func (o *Collection) GetParentID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.ParentID
 }
 
-func (o *Collection) GetType() *string {
+func (o *Collection) GetType() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Type
 }
 
-func (o *Collection) GetName() *string {
+func (o *Collection) GetName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-func (o *Collection) GetDescription() *string {
+func (o *Collection) GetDescription() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Description
 }
 
-func (o *Collection) GetCustomMappings() map[string]any {
+func (o *Collection) GetCustomMappings() optionalnullable.OptionalNullable[map[string]any] {
 	if o == nil {
 		return nil
 	}
 	return o.CustomMappings
 }
 
-func (o *Collection) GetUpdatedAt() *time.Time {
+func (o *Collection) GetUpdatedAt() optionalnullable.OptionalNullable[time.Time] {
 	if o == nil {
 		return nil
 	}
 	return o.UpdatedAt
 }
 
-func (o *Collection) GetCreatedAt() *time.Time {
+func (o *Collection) GetCreatedAt() optionalnullable.OptionalNullable[time.Time] {
 	if o == nil {
 		return nil
 	}

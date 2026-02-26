@@ -3,6 +3,7 @@
 package components
 
 import (
+	"mockserver/internal/sdk/optionalnullable"
 	"mockserver/internal/sdk/utils"
 	"time"
 )
@@ -34,19 +35,19 @@ func (e EcommerceCustomerType) ToPointer() *EcommerceCustomerType {
 type EcommerceCustomerAddress struct {
 	Type *EcommerceCustomerType `json:"type,omitempty"`
 	// A unique identifier for an object.
-	ID *string `json:"id,omitempty"`
+	ID optionalnullable.OptionalNullable[string] `json:"id,omitempty"`
 	// First line of the street address of the customer
-	Line1 *string `json:"line1,omitempty"`
+	Line1 optionalnullable.OptionalNullable[string] `json:"line1,omitempty"`
 	// Second line of the street address of the customer
-	Line2 *string `json:"line2,omitempty"`
+	Line2 optionalnullable.OptionalNullable[string] `json:"line2,omitempty"`
 	// City of the customer
-	City *string `json:"city,omitempty"`
+	City optionalnullable.OptionalNullable[string] `json:"city,omitempty"`
 	// State of the customer
-	State *string `json:"state,omitempty"`
+	State optionalnullable.OptionalNullable[string] `json:"state,omitempty"`
 	// Postal code of the customer
-	PostalCode *string `json:"postal_code,omitempty"`
+	PostalCode optionalnullable.OptionalNullable[string] `json:"postal_code,omitempty"`
 	// Country of the customer
-	Country *string `json:"country,omitempty"`
+	Country optionalnullable.OptionalNullable[string] `json:"country,omitempty"`
 }
 
 func (o *EcommerceCustomerAddress) GetType() *EcommerceCustomerType {
@@ -56,49 +57,49 @@ func (o *EcommerceCustomerAddress) GetType() *EcommerceCustomerType {
 	return o.Type
 }
 
-func (o *EcommerceCustomerAddress) GetID() *string {
+func (o *EcommerceCustomerAddress) GetID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *EcommerceCustomerAddress) GetLine1() *string {
+func (o *EcommerceCustomerAddress) GetLine1() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Line1
 }
 
-func (o *EcommerceCustomerAddress) GetLine2() *string {
+func (o *EcommerceCustomerAddress) GetLine2() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Line2
 }
 
-func (o *EcommerceCustomerAddress) GetCity() *string {
+func (o *EcommerceCustomerAddress) GetCity() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.City
 }
 
-func (o *EcommerceCustomerAddress) GetState() *string {
+func (o *EcommerceCustomerAddress) GetState() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.State
 }
 
-func (o *EcommerceCustomerAddress) GetPostalCode() *string {
+func (o *EcommerceCustomerAddress) GetPostalCode() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.PostalCode
 }
 
-func (o *EcommerceCustomerAddress) GetCountry() *string {
+func (o *EcommerceCustomerAddress) GetCountry() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -109,30 +110,30 @@ type EcommerceCustomer struct {
 	// A unique identifier for an object.
 	ID string `json:"id"`
 	// Full name of the customer
-	Name *string `json:"name,omitempty"`
+	Name optionalnullable.OptionalNullable[string] `json:"name,omitempty"`
 	// First name of the customer
-	FirstName *string `json:"first_name,omitempty"`
+	FirstName optionalnullable.OptionalNullable[string] `json:"first_name,omitempty"`
 	// Last name of the customer
-	LastName *string `json:"last_name,omitempty"`
+	LastName optionalnullable.OptionalNullable[string] `json:"last_name,omitempty"`
 	// Company name of the customer
-	CompanyName *string `json:"company_name,omitempty"`
+	CompanyName optionalnullable.OptionalNullable[string] `json:"company_name,omitempty"`
 	// The current status of the customer
-	Status *EcommerceCustomerStatusCustomerStatus `json:"status,omitempty"`
+	Status optionalnullable.OptionalNullable[EcommerceCustomerStatusCustomerStatus] `json:"status,omitempty"`
 	// Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
-	Currency *Currency `json:"currency,omitempty"`
+	Currency optionalnullable.OptionalNullable[Currency] `json:"currency,omitempty"`
 	// An array of email addresses for the customer.
-	Emails []Email `json:"emails,omitempty"`
+	Emails optionalnullable.OptionalNullable[[]Email] `json:"emails,omitempty"`
 	// An array of phone numbers for the customer.
-	PhoneNumbers []PhoneNumber `json:"phone_numbers,omitempty"`
+	PhoneNumbers optionalnullable.OptionalNullable[[]PhoneNumber] `json:"phone_numbers,omitempty"`
 	// An array of addresses for the customer.
 	Addresses []EcommerceCustomerAddress `json:"addresses,omitempty"`
 	Orders    []LinkedEcommerceOrder     `json:"orders,omitempty"`
 	// When custom mappings are configured on the resource, the result is included here.
-	CustomMappings map[string]any `json:"custom_mappings,omitempty"`
+	CustomMappings optionalnullable.OptionalNullable[map[string]any] `json:"custom_mappings,omitempty"`
 	// The date and time when the object was created.
-	CreatedAt *time.Time `json:"created_at,omitempty"`
+	CreatedAt optionalnullable.OptionalNullable[time.Time] `json:"created_at,omitempty"`
 	// The date and time when the object was last updated.
-	UpdatedAt *time.Time `json:"updated_at,omitempty"`
+	UpdatedAt optionalnullable.OptionalNullable[time.Time] `json:"updated_at,omitempty"`
 }
 
 func (e EcommerceCustomer) MarshalJSON() ([]byte, error) {
@@ -153,56 +154,56 @@ func (o *EcommerceCustomer) GetID() string {
 	return o.ID
 }
 
-func (o *EcommerceCustomer) GetName() *string {
+func (o *EcommerceCustomer) GetName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-func (o *EcommerceCustomer) GetFirstName() *string {
+func (o *EcommerceCustomer) GetFirstName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.FirstName
 }
 
-func (o *EcommerceCustomer) GetLastName() *string {
+func (o *EcommerceCustomer) GetLastName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.LastName
 }
 
-func (o *EcommerceCustomer) GetCompanyName() *string {
+func (o *EcommerceCustomer) GetCompanyName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.CompanyName
 }
 
-func (o *EcommerceCustomer) GetStatus() *EcommerceCustomerStatusCustomerStatus {
+func (o *EcommerceCustomer) GetStatus() optionalnullable.OptionalNullable[EcommerceCustomerStatusCustomerStatus] {
 	if o == nil {
 		return nil
 	}
 	return o.Status
 }
 
-func (o *EcommerceCustomer) GetCurrency() *Currency {
+func (o *EcommerceCustomer) GetCurrency() optionalnullable.OptionalNullable[Currency] {
 	if o == nil {
 		return nil
 	}
 	return o.Currency
 }
 
-func (o *EcommerceCustomer) GetEmails() []Email {
+func (o *EcommerceCustomer) GetEmails() optionalnullable.OptionalNullable[[]Email] {
 	if o == nil {
 		return nil
 	}
 	return o.Emails
 }
 
-func (o *EcommerceCustomer) GetPhoneNumbers() []PhoneNumber {
+func (o *EcommerceCustomer) GetPhoneNumbers() optionalnullable.OptionalNullable[[]PhoneNumber] {
 	if o == nil {
 		return nil
 	}
@@ -223,21 +224,21 @@ func (o *EcommerceCustomer) GetOrders() []LinkedEcommerceOrder {
 	return o.Orders
 }
 
-func (o *EcommerceCustomer) GetCustomMappings() map[string]any {
+func (o *EcommerceCustomer) GetCustomMappings() optionalnullable.OptionalNullable[map[string]any] {
 	if o == nil {
 		return nil
 	}
 	return o.CustomMappings
 }
 
-func (o *EcommerceCustomer) GetCreatedAt() *time.Time {
+func (o *EcommerceCustomer) GetCreatedAt() optionalnullable.OptionalNullable[time.Time] {
 	if o == nil {
 		return nil
 	}
 	return o.CreatedAt
 }
 
-func (o *EcommerceCustomer) GetUpdatedAt() *time.Time {
+func (o *EcommerceCustomer) GetUpdatedAt() optionalnullable.OptionalNullable[time.Time] {
 	if o == nil {
 		return nil
 	}

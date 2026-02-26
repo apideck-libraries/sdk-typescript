@@ -3,6 +3,7 @@
 package components
 
 import (
+	"mockserver/internal/sdk/optionalnullable"
 	"mockserver/internal/sdk/utils"
 	"time"
 )
@@ -14,9 +15,9 @@ type TrackingItem struct {
 	//  The tracking number associated with the shipment, which can be used to track the progress of the delivery.
 	Number *string `json:"number"`
 	// The URL of the carrier's tracking page, which can be used to view detailed information about the shipment's progress.
-	URL *string `json:"url,omitempty"`
+	URL optionalnullable.OptionalNullable[string] `json:"url,omitempty"`
 	// The date and time when the object was last updated.
-	UpdatedAt *time.Time `json:"updated_at,omitempty"`
+	UpdatedAt optionalnullable.OptionalNullable[time.Time] `json:"updated_at,omitempty"`
 }
 
 func (t TrackingItem) MarshalJSON() ([]byte, error) {
@@ -44,14 +45,14 @@ func (o *TrackingItem) GetNumber() *string {
 	return o.Number
 }
 
-func (o *TrackingItem) GetURL() *string {
+func (o *TrackingItem) GetURL() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.URL
 }
 
-func (o *TrackingItem) GetUpdatedAt() *time.Time {
+func (o *TrackingItem) GetUpdatedAt() optionalnullable.OptionalNullable[time.Time] {
 	if o == nil {
 		return nil
 	}

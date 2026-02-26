@@ -2,6 +2,10 @@
 
 package components
 
+import (
+	"mockserver/internal/sdk/optionalnullable"
+)
+
 // CreateActivityResponse - Activity created
 type CreateActivityResponse struct {
 	// HTTP Response Status Code
@@ -17,7 +21,7 @@ type CreateActivityResponse struct {
 	// A object containing a unique identifier for the resource that was created, updated, or deleted.
 	Data UnifiedID `json:"data"`
 	// Raw response from the integration when raw=true query param is provided
-	Raw map[string]any `json:"_raw,omitempty"`
+	Raw optionalnullable.OptionalNullable[map[string]any] `json:"_raw,omitempty"`
 }
 
 func (o *CreateActivityResponse) GetStatusCode() int64 {
@@ -62,7 +66,7 @@ func (o *CreateActivityResponse) GetData() UnifiedID {
 	return o.Data
 }
 
-func (o *CreateActivityResponse) GetRaw() map[string]any {
+func (o *CreateActivityResponse) GetRaw() optionalnullable.OptionalNullable[map[string]any] {
 	if o == nil {
 		return nil
 	}

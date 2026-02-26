@@ -2,6 +2,10 @@
 
 package components
 
+import (
+	"mockserver/internal/sdk/optionalnullable"
+)
+
 // EmailType - Email type
 type EmailType string
 
@@ -20,14 +24,14 @@ func (e EmailType) ToPointer() *EmailType {
 
 type Email struct {
 	// Unique identifier for the email address
-	ID *string `json:"id,omitempty"`
+	ID optionalnullable.OptionalNullable[string] `json:"id,omitempty"`
 	// Email address
 	Email *string `json:"email"`
 	// Email type
-	Type *EmailType `json:"type,omitempty"`
+	Type optionalnullable.OptionalNullable[EmailType] `json:"type,omitempty"`
 }
 
-func (o *Email) GetID() *string {
+func (o *Email) GetID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -41,7 +45,7 @@ func (o *Email) GetEmail() *string {
 	return o.Email
 }
 
-func (o *Email) GetType() *EmailType {
+func (o *Email) GetType() optionalnullable.OptionalNullable[EmailType] {
 	if o == nil {
 		return nil
 	}

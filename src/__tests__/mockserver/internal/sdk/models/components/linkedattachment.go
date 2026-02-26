@@ -2,57 +2,61 @@
 
 package components
 
+import (
+	"mockserver/internal/sdk/optionalnullable"
+)
+
 type LinkedAttachment struct {
 	// The name of the file
-	Name *string `json:"name,omitempty"`
+	Name optionalnullable.OptionalNullable[string] `json:"name,omitempty"`
 	// The MIME type of the file.
-	MimeType *string `json:"mime_type,omitempty"`
+	MimeType optionalnullable.OptionalNullable[string] `json:"mime_type,omitempty"`
 	// Whether the file is c ompressed.
-	IsCompressed *bool `json:"is_compressed,omitempty"`
+	IsCompressed optionalnullable.OptionalNullable[bool] `json:"is_compressed,omitempty"`
 	// The encoding of the file.
-	Encoding *string `json:"encoding,omitempty"`
+	Encoding optionalnullable.OptionalNullable[string] `json:"encoding,omitempty"`
 	// The content of the file.
-	Content *string `json:"content,omitempty"`
+	Content optionalnullable.OptionalNullable[string] `json:"content,omitempty"`
 	// The notes of the file.
-	Notes *string `json:"notes,omitempty"`
+	Notes optionalnullable.OptionalNullable[string] `json:"notes,omitempty"`
 }
 
-func (o *LinkedAttachment) GetName() *string {
+func (o *LinkedAttachment) GetName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-func (o *LinkedAttachment) GetMimeType() *string {
+func (o *LinkedAttachment) GetMimeType() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.MimeType
 }
 
-func (o *LinkedAttachment) GetIsCompressed() *bool {
+func (o *LinkedAttachment) GetIsCompressed() optionalnullable.OptionalNullable[bool] {
 	if o == nil {
 		return nil
 	}
 	return o.IsCompressed
 }
 
-func (o *LinkedAttachment) GetEncoding() *string {
+func (o *LinkedAttachment) GetEncoding() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Encoding
 }
 
-func (o *LinkedAttachment) GetContent() *string {
+func (o *LinkedAttachment) GetContent() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Content
 }
 
-func (o *LinkedAttachment) GetNotes() *string {
+func (o *LinkedAttachment) GetNotes() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}

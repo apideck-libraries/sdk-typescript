@@ -8,6 +8,7 @@ import (
 	"mockserver/internal/handler/assert"
 	"mockserver/internal/logging"
 	"mockserver/internal/sdk/models/components"
+	"mockserver/internal/sdk/optionalnullable"
 	"mockserver/internal/sdk/types"
 	"mockserver/internal/sdk/utils"
 	"mockserver/internal/tracking"
@@ -54,20 +55,20 @@ func testAccountingAttachmentsOneAccountingAttachmentsOne0(w http.ResponseWriter
 		Operation:  "one",
 		Data: components.Attachment{
 			ID:        types.String("12345"),
-			DisplayID: types.String("sample ID"),
-			Name:      types.String("sample.jpg"),
-			MimeType:  types.String("image/jpeg"),
-			Size:      types.Int64(1810673),
+			DisplayID: optionalnullable.From(types.String("sample ID")),
+			Name:      optionalnullable.From(types.String("sample.jpg")),
+			MimeType:  optionalnullable.From(types.String("image/jpeg")),
+			Size:      optionalnullable.From(types.Int64(1810673)),
 			Reference: &components.AttachmentReference{
 				Type: components.AttachmentReferenceTypeInvoice.ToPointer(),
 				ID:   types.String("12345"),
 			},
-			Description:    types.String("A sample image"),
-			ParentFolderID: types.String("123"),
-			UpdatedBy:      types.String("12345"),
-			CreatedBy:      types.String("12345"),
-			UpdatedAt:      types.MustNewTimeFromString("2020-09-30T07:43:32.000Z"),
-			CreatedAt:      types.MustNewTimeFromString("2020-09-30T07:43:32.000Z"),
+			Description:    optionalnullable.From(types.String("A sample image")),
+			ParentFolderID: optionalnullable.From(types.String("123")),
+			UpdatedBy:      optionalnullable.From(types.String("12345")),
+			CreatedBy:      optionalnullable.From(types.String("12345")),
+			UpdatedAt:      optionalnullable.From(types.MustNewTimeFromString("2020-09-30T07:43:32.000Z")),
+			CreatedAt:      optionalnullable.From(types.MustNewTimeFromString("2020-09-30T07:43:32.000Z")),
 			PassThrough: []components.PassThroughBody{
 				components.PassThroughBody{
 					ServiceID: "<id>",

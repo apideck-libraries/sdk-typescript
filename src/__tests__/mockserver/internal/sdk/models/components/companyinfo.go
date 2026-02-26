@@ -3,6 +3,7 @@
 package components
 
 import (
+	"mockserver/internal/sdk/optionalnullable"
 	"mockserver/internal/sdk/types"
 	"mockserver/internal/sdk/utils"
 	"time"
@@ -60,23 +61,23 @@ type CompanyInfo struct {
 	// A unique identifier for an object.
 	ID *string `json:"id,omitempty"`
 	// The name of the company.
-	CompanyName *string `json:"company_name,omitempty"`
+	CompanyName optionalnullable.OptionalNullable[string] `json:"company_name,omitempty"`
 	// Based on the status some functionality is enabled or disabled.
 	Status *CompanyStatus `json:"status,omitempty"`
 	// The legal name of the company
 	LegalName *string `json:"legal_name,omitempty"`
 	// country code according to ISO 3166-1 alpha-2.
-	Country        *string `json:"country,omitempty"`
-	SalesTaxNumber *string `json:"sales_tax_number,omitempty"`
+	Country        optionalnullable.OptionalNullable[string] `json:"country,omitempty"`
+	SalesTaxNumber optionalnullable.OptionalNullable[string] `json:"sales_tax_number,omitempty"`
 	// Whether sales tax is calculated automatically for the company
 	AutomatedSalesTax *bool `json:"automated_sales_tax,omitempty"`
 	// Whether sales tax is enabled for the company
 	SalesTaxEnabled *bool    `json:"sales_tax_enabled,omitempty"`
 	DefaultSalesTax *TaxRate `json:"default_sales_tax,omitempty"`
 	// Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
-	Currency *Currency `json:"currency,omitempty"`
+	Currency optionalnullable.OptionalNullable[Currency] `json:"currency,omitempty"`
 	// language code according to ISO 639-1. For the United States - EN
-	Language *string `json:"language,omitempty"`
+	Language optionalnullable.OptionalNullable[string] `json:"language,omitempty"`
 	// The start month of fiscal year.
 	FiscalYearStartMonth *TheStartMonthOfFiscalYear `json:"fiscal_year_start_month,omitempty"`
 	// Date when company file was created
@@ -85,21 +86,21 @@ type CompanyInfo struct {
 	PhoneNumbers     []PhoneNumber `json:"phone_numbers,omitempty"`
 	Emails           []Email       `json:"emails,omitempty"`
 	// When custom mappings are configured on the resource, the result is included here.
-	CustomMappings map[string]any `json:"custom_mappings,omitempty"`
+	CustomMappings optionalnullable.OptionalNullable[map[string]any] `json:"custom_mappings,omitempty"`
 	// Whether tracking categories are enabled for the company on transactions
 	TrackingCategoriesEnabled *bool `json:"tracking_categories_enabled,omitempty"`
 	// The mode of tracking categories for the company on transactions
 	TrackingCategoriesMode *TrackingCategoriesMode `json:"tracking_categories_mode,omitempty"`
 	// A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
-	RowVersion *string `json:"row_version,omitempty"`
+	RowVersion optionalnullable.OptionalNullable[string] `json:"row_version,omitempty"`
 	// The user who last updated the object.
-	UpdatedBy *string `json:"updated_by,omitempty"`
+	UpdatedBy optionalnullable.OptionalNullable[string] `json:"updated_by,omitempty"`
 	// The user who created the object.
-	CreatedBy *string `json:"created_by,omitempty"`
+	CreatedBy optionalnullable.OptionalNullable[string] `json:"created_by,omitempty"`
 	// The date and time when the object was last updated.
-	UpdatedAt *time.Time `json:"updated_at,omitempty"`
+	UpdatedAt optionalnullable.OptionalNullable[time.Time] `json:"updated_at,omitempty"`
 	// The date and time when the object was created.
-	CreatedAt *time.Time `json:"created_at,omitempty"`
+	CreatedAt optionalnullable.OptionalNullable[time.Time] `json:"created_at,omitempty"`
 }
 
 func (c CompanyInfo) MarshalJSON() ([]byte, error) {
@@ -120,7 +121,7 @@ func (o *CompanyInfo) GetID() *string {
 	return o.ID
 }
 
-func (o *CompanyInfo) GetCompanyName() *string {
+func (o *CompanyInfo) GetCompanyName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -141,14 +142,14 @@ func (o *CompanyInfo) GetLegalName() *string {
 	return o.LegalName
 }
 
-func (o *CompanyInfo) GetCountry() *string {
+func (o *CompanyInfo) GetCountry() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Country
 }
 
-func (o *CompanyInfo) GetSalesTaxNumber() *string {
+func (o *CompanyInfo) GetSalesTaxNumber() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -176,14 +177,14 @@ func (o *CompanyInfo) GetDefaultSalesTax() *TaxRate {
 	return o.DefaultSalesTax
 }
 
-func (o *CompanyInfo) GetCurrency() *Currency {
+func (o *CompanyInfo) GetCurrency() optionalnullable.OptionalNullable[Currency] {
 	if o == nil {
 		return nil
 	}
 	return o.Currency
 }
 
-func (o *CompanyInfo) GetLanguage() *string {
+func (o *CompanyInfo) GetLanguage() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -225,7 +226,7 @@ func (o *CompanyInfo) GetEmails() []Email {
 	return o.Emails
 }
 
-func (o *CompanyInfo) GetCustomMappings() map[string]any {
+func (o *CompanyInfo) GetCustomMappings() optionalnullable.OptionalNullable[map[string]any] {
 	if o == nil {
 		return nil
 	}
@@ -246,35 +247,35 @@ func (o *CompanyInfo) GetTrackingCategoriesMode() *TrackingCategoriesMode {
 	return o.TrackingCategoriesMode
 }
 
-func (o *CompanyInfo) GetRowVersion() *string {
+func (o *CompanyInfo) GetRowVersion() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.RowVersion
 }
 
-func (o *CompanyInfo) GetUpdatedBy() *string {
+func (o *CompanyInfo) GetUpdatedBy() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.UpdatedBy
 }
 
-func (o *CompanyInfo) GetCreatedBy() *string {
+func (o *CompanyInfo) GetCreatedBy() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.CreatedBy
 }
 
-func (o *CompanyInfo) GetUpdatedAt() *time.Time {
+func (o *CompanyInfo) GetUpdatedAt() optionalnullable.OptionalNullable[time.Time] {
 	if o == nil {
 		return nil
 	}
 	return o.UpdatedAt
 }
 
-func (o *CompanyInfo) GetCreatedAt() *time.Time {
+func (o *CompanyInfo) GetCreatedAt() optionalnullable.OptionalNullable[time.Time] {
 	if o == nil {
 		return nil
 	}

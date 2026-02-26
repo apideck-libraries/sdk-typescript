@@ -2,67 +2,71 @@
 
 package components
 
+import (
+	"mockserver/internal/sdk/optionalnullable"
+)
+
 // EcommerceAddress - An object representing a shipping or billing address.
 type EcommerceAddress struct {
 	// Address line 1 of the billing address.
-	Line1 *string `json:"line1,omitempty"`
+	Line1 optionalnullable.OptionalNullable[string] `json:"line1,omitempty"`
 	// Address line 2 of the billing address.
-	Line2 *string `json:"line2,omitempty"`
+	Line2 optionalnullable.OptionalNullable[string] `json:"line2,omitempty"`
 	// Company name of the customer
-	CompanyName *string `json:"company_name,omitempty"`
+	CompanyName optionalnullable.OptionalNullable[string] `json:"company_name,omitempty"`
 	// City of the billing address.
-	City *string `json:"city,omitempty"`
+	City optionalnullable.OptionalNullable[string] `json:"city,omitempty"`
 	// State/province of the billing address.
-	State *string `json:"state,omitempty"`
+	State optionalnullable.OptionalNullable[string] `json:"state,omitempty"`
 	// Postal/ZIP code of the billing address.
-	PostalCode *string `json:"postal_code,omitempty"`
+	PostalCode optionalnullable.OptionalNullable[string] `json:"postal_code,omitempty"`
 	// Country of the billing address.
-	Country *string `json:"country,omitempty"`
+	Country optionalnullable.OptionalNullable[string] `json:"country,omitempty"`
 }
 
-func (o *EcommerceAddress) GetLine1() *string {
+func (o *EcommerceAddress) GetLine1() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Line1
 }
 
-func (o *EcommerceAddress) GetLine2() *string {
+func (o *EcommerceAddress) GetLine2() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Line2
 }
 
-func (o *EcommerceAddress) GetCompanyName() *string {
+func (o *EcommerceAddress) GetCompanyName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.CompanyName
 }
 
-func (o *EcommerceAddress) GetCity() *string {
+func (o *EcommerceAddress) GetCity() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.City
 }
 
-func (o *EcommerceAddress) GetState() *string {
+func (o *EcommerceAddress) GetState() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.State
 }
 
-func (o *EcommerceAddress) GetPostalCode() *string {
+func (o *EcommerceAddress) GetPostalCode() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.PostalCode
 }
 
-func (o *EcommerceAddress) GetCountry() *string {
+func (o *EcommerceAddress) GetCountry() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}

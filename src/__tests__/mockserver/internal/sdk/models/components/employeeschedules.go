@@ -2,9 +2,13 @@
 
 package components
 
+import (
+	"mockserver/internal/sdk/optionalnullable"
+)
+
 type EmployeeSchedules struct {
-	Employee  *Employee  `json:"employee,omitempty"`
-	Schedules []Schedule `json:"schedules,omitempty"`
+	Employee  *Employee                                     `json:"employee,omitempty"`
+	Schedules optionalnullable.OptionalNullable[[]Schedule] `json:"schedules,omitempty"`
 }
 
 func (o *EmployeeSchedules) GetEmployee() *Employee {
@@ -14,7 +18,7 @@ func (o *EmployeeSchedules) GetEmployee() *Employee {
 	return o.Employee
 }
 
-func (o *EmployeeSchedules) GetSchedules() []Schedule {
+func (o *EmployeeSchedules) GetSchedules() optionalnullable.OptionalNullable[[]Schedule] {
 	if o == nil {
 		return nil
 	}

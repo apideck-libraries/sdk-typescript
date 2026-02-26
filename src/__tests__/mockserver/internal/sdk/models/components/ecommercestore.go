@@ -3,6 +3,7 @@
 package components
 
 import (
+	"mockserver/internal/sdk/optionalnullable"
 	"mockserver/internal/sdk/utils"
 	"time"
 )
@@ -11,17 +12,17 @@ type EcommerceStore struct {
 	// A unique identifier for an object.
 	ID string `json:"id"`
 	// The store's name
-	Name *string `json:"name,omitempty"`
+	Name optionalnullable.OptionalNullable[string] `json:"name,omitempty"`
 	// The store's website URL
-	StoreURL *string `json:"store_url,omitempty"`
+	StoreURL optionalnullable.OptionalNullable[string] `json:"store_url,omitempty"`
 	// The store's admin login URL
-	AdminURL *string `json:"admin_url,omitempty"`
+	AdminURL optionalnullable.OptionalNullable[string] `json:"admin_url,omitempty"`
 	// When custom mappings are configured on the resource, the result is included here.
-	CustomMappings map[string]any `json:"custom_mappings,omitempty"`
+	CustomMappings optionalnullable.OptionalNullable[map[string]any] `json:"custom_mappings,omitempty"`
 	// The date and time when the object was created.
-	CreatedAt *time.Time `json:"created_at,omitempty"`
+	CreatedAt optionalnullable.OptionalNullable[time.Time] `json:"created_at,omitempty"`
 	// The date and time when the object was last updated.
-	UpdatedAt *time.Time `json:"updated_at,omitempty"`
+	UpdatedAt optionalnullable.OptionalNullable[time.Time] `json:"updated_at,omitempty"`
 }
 
 func (e EcommerceStore) MarshalJSON() ([]byte, error) {
@@ -42,42 +43,42 @@ func (o *EcommerceStore) GetID() string {
 	return o.ID
 }
 
-func (o *EcommerceStore) GetName() *string {
+func (o *EcommerceStore) GetName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-func (o *EcommerceStore) GetStoreURL() *string {
+func (o *EcommerceStore) GetStoreURL() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.StoreURL
 }
 
-func (o *EcommerceStore) GetAdminURL() *string {
+func (o *EcommerceStore) GetAdminURL() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.AdminURL
 }
 
-func (o *EcommerceStore) GetCustomMappings() map[string]any {
+func (o *EcommerceStore) GetCustomMappings() optionalnullable.OptionalNullable[map[string]any] {
 	if o == nil {
 		return nil
 	}
 	return o.CustomMappings
 }
 
-func (o *EcommerceStore) GetCreatedAt() *time.Time {
+func (o *EcommerceStore) GetCreatedAt() optionalnullable.OptionalNullable[time.Time] {
 	if o == nil {
 		return nil
 	}
 	return o.CreatedAt
 }
 
-func (o *EcommerceStore) GetUpdatedAt() *time.Time {
+func (o *EcommerceStore) GetUpdatedAt() optionalnullable.OptionalNullable[time.Time] {
 	if o == nil {
 		return nil
 	}

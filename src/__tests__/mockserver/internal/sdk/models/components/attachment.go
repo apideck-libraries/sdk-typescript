@@ -3,6 +3,7 @@
 package components
 
 import (
+	"mockserver/internal/sdk/optionalnullable"
 	"mockserver/internal/sdk/utils"
 	"time"
 )
@@ -11,26 +12,26 @@ type Attachment struct {
 	// A unique identifier for an object.
 	ID *string `json:"id,omitempty"`
 	// The display id of the file
-	DisplayID *string `json:"display_id,omitempty"`
+	DisplayID optionalnullable.OptionalNullable[string] `json:"display_id,omitempty"`
 	// The name of the file
-	Name *string `json:"name,omitempty"`
+	Name optionalnullable.OptionalNullable[string] `json:"name,omitempty"`
 	// The MIME type of the file.
-	MimeType *string `json:"mime_type,omitempty"`
+	MimeType optionalnullable.OptionalNullable[string] `json:"mime_type,omitempty"`
 	// The size of the file in bytes
-	Size      *int64               `json:"size,omitempty"`
-	Reference *AttachmentReference `json:"reference,omitempty"`
+	Size      optionalnullable.OptionalNullable[int64] `json:"size,omitempty"`
+	Reference *AttachmentReference                     `json:"reference,omitempty"`
 	// Optional description of the file
-	Description *string `json:"description,omitempty"`
+	Description optionalnullable.OptionalNullable[string] `json:"description,omitempty"`
 	// The folder id where this attachment belong to
-	ParentFolderID *string `json:"parent_folder_id,omitempty"`
+	ParentFolderID optionalnullable.OptionalNullable[string] `json:"parent_folder_id,omitempty"`
 	// The user who last updated the object.
-	UpdatedBy *string `json:"updated_by,omitempty"`
+	UpdatedBy optionalnullable.OptionalNullable[string] `json:"updated_by,omitempty"`
 	// The user who created the object.
-	CreatedBy *string `json:"created_by,omitempty"`
+	CreatedBy optionalnullable.OptionalNullable[string] `json:"created_by,omitempty"`
 	// The date and time when the object was last updated.
-	UpdatedAt *time.Time `json:"updated_at,omitempty"`
+	UpdatedAt optionalnullable.OptionalNullable[time.Time] `json:"updated_at,omitempty"`
 	// The date and time when the object was created.
-	CreatedAt *time.Time `json:"created_at,omitempty"`
+	CreatedAt optionalnullable.OptionalNullable[time.Time] `json:"created_at,omitempty"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
 	PassThrough []PassThroughBody `json:"pass_through,omitempty"`
 }
@@ -53,28 +54,28 @@ func (o *Attachment) GetID() *string {
 	return o.ID
 }
 
-func (o *Attachment) GetDisplayID() *string {
+func (o *Attachment) GetDisplayID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.DisplayID
 }
 
-func (o *Attachment) GetName() *string {
+func (o *Attachment) GetName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-func (o *Attachment) GetMimeType() *string {
+func (o *Attachment) GetMimeType() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.MimeType
 }
 
-func (o *Attachment) GetSize() *int64 {
+func (o *Attachment) GetSize() optionalnullable.OptionalNullable[int64] {
 	if o == nil {
 		return nil
 	}
@@ -88,42 +89,42 @@ func (o *Attachment) GetReference() *AttachmentReference {
 	return o.Reference
 }
 
-func (o *Attachment) GetDescription() *string {
+func (o *Attachment) GetDescription() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Description
 }
 
-func (o *Attachment) GetParentFolderID() *string {
+func (o *Attachment) GetParentFolderID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.ParentFolderID
 }
 
-func (o *Attachment) GetUpdatedBy() *string {
+func (o *Attachment) GetUpdatedBy() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.UpdatedBy
 }
 
-func (o *Attachment) GetCreatedBy() *string {
+func (o *Attachment) GetCreatedBy() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.CreatedBy
 }
 
-func (o *Attachment) GetUpdatedAt() *time.Time {
+func (o *Attachment) GetUpdatedAt() optionalnullable.OptionalNullable[time.Time] {
 	if o == nil {
 		return nil
 	}
 	return o.UpdatedAt
 }
 
-func (o *Attachment) GetCreatedAt() *time.Time {
+func (o *Attachment) GetCreatedAt() optionalnullable.OptionalNullable[time.Time] {
 	if o == nil {
 		return nil
 	}

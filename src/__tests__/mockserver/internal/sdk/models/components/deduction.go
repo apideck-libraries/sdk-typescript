@@ -2,21 +2,25 @@
 
 package components
 
+import (
+	"mockserver/internal/sdk/optionalnullable"
+)
+
 type Deduction struct {
 	// The name of the deduction.
-	Name *string `json:"name,omitempty"`
+	Name optionalnullable.OptionalNullable[string] `json:"name,omitempty"`
 	// The amount deducted.
-	Amount *float64 `json:"amount,omitempty"`
+	Amount optionalnullable.OptionalNullable[float64] `json:"amount,omitempty"`
 }
 
-func (o *Deduction) GetName() *string {
+func (o *Deduction) GetName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-func (o *Deduction) GetAmount() *float64 {
+func (o *Deduction) GetAmount() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}

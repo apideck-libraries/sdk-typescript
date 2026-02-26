@@ -2,39 +2,43 @@
 
 package components
 
+import (
+	"mockserver/internal/sdk/optionalnullable"
+)
+
 type LinkedTaxRate struct {
 	// The ID of the object.
-	ID *string `json:"id,omitempty"`
+	ID optionalnullable.OptionalNullable[string] `json:"id,omitempty"`
 	// Tax rate code
-	Code *string `json:"code,omitempty"`
+	Code optionalnullable.OptionalNullable[string] `json:"code,omitempty"`
 	// Name of the tax rate
-	Name *string `json:"name,omitempty"`
+	Name optionalnullable.OptionalNullable[string] `json:"name,omitempty"`
 	// Rate of the tax rate
-	Rate *float64 `json:"rate,omitempty"`
+	Rate optionalnullable.OptionalNullable[float64] `json:"rate,omitempty"`
 }
 
-func (o *LinkedTaxRate) GetID() *string {
+func (o *LinkedTaxRate) GetID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *LinkedTaxRate) GetCode() *string {
+func (o *LinkedTaxRate) GetCode() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Code
 }
 
-func (o *LinkedTaxRate) GetName() *string {
+func (o *LinkedTaxRate) GetName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-func (o *LinkedTaxRate) GetRate() *float64 {
+func (o *LinkedTaxRate) GetRate() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}

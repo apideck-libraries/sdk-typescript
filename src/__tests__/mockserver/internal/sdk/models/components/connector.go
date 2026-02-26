@@ -2,6 +2,10 @@
 
 package components
 
+import (
+	"mockserver/internal/sdk/optionalnullable"
+)
+
 // ConnectorAuthType - Type of authorization used by the connector
 type ConnectorAuthType string
 
@@ -187,7 +191,7 @@ type Connector struct {
 	// Status of the connector. Connectors with status live or beta are callable.
 	Status *ConnectorStatus `json:"status,omitempty"`
 	// A description of the object.
-	Description *string `json:"description,omitempty"`
+	Description optionalnullable.OptionalNullable[string] `json:"description,omitempty"`
 	// Link to a small square icon for the connector.
 	IconURL *string `json:"icon_url,omitempty"`
 	// Link to the full logo for the connector.
@@ -256,7 +260,7 @@ func (o *Connector) GetStatus() *ConnectorStatus {
 	return o.Status
 }
 
-func (o *Connector) GetDescription() *string {
+func (o *Connector) GetDescription() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}

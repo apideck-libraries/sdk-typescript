@@ -2,11 +2,15 @@
 
 package components
 
+import (
+	"mockserver/internal/sdk/optionalnullable"
+)
+
 type InvoiceResponse struct {
 	// A unique identifier for an object.
 	ID *string `json:"id,omitempty"`
 	// The third-party API ID of original entity
-	DownstreamID *string `json:"downstream_id,omitempty"`
+	DownstreamID optionalnullable.OptionalNullable[string] `json:"downstream_id,omitempty"`
 }
 
 func (o *InvoiceResponse) GetID() *string {
@@ -16,7 +20,7 @@ func (o *InvoiceResponse) GetID() *string {
 	return o.ID
 }
 
-func (o *InvoiceResponse) GetDownstreamID() *string {
+func (o *InvoiceResponse) GetDownstreamID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}

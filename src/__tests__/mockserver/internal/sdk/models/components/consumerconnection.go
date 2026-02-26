@@ -2,6 +2,10 @@
 
 package components
 
+import (
+	"mockserver/internal/sdk/optionalnullable"
+)
+
 type ConsumerConnection struct {
 	ID         *string `json:"id,omitempty"`
 	Name       *string `json:"name,omitempty"`
@@ -16,11 +20,11 @@ type ConsumerConnection struct {
 	AuthType *AuthType `json:"auth_type,omitempty"`
 	Enabled  *bool     `json:"enabled,omitempty"`
 	// Connection settings. Values will persist to `form_fields` with corresponding id
-	Settings map[string]any `json:"settings,omitempty"`
+	Settings optionalnullable.OptionalNullable[map[string]any] `json:"settings,omitempty"`
 	// Attach your own consumer specific metadata
-	Metadata  map[string]any `json:"metadata,omitempty"`
-	CreatedAt *string        `json:"created_at,omitempty"`
-	UpdatedAt *string        `json:"updated_at,omitempty"`
+	Metadata  optionalnullable.OptionalNullable[map[string]any] `json:"metadata,omitempty"`
+	CreatedAt *string                                           `json:"created_at,omitempty"`
+	UpdatedAt optionalnullable.OptionalNullable[string]         `json:"updated_at,omitempty"`
 	// [Connection state flow](#section/Connection-state)
 	State *ConnectionState `json:"state,omitempty"`
 }
@@ -102,14 +106,14 @@ func (o *ConsumerConnection) GetEnabled() *bool {
 	return o.Enabled
 }
 
-func (o *ConsumerConnection) GetSettings() map[string]any {
+func (o *ConsumerConnection) GetSettings() optionalnullable.OptionalNullable[map[string]any] {
 	if o == nil {
 		return nil
 	}
 	return o.Settings
 }
 
-func (o *ConsumerConnection) GetMetadata() map[string]any {
+func (o *ConsumerConnection) GetMetadata() optionalnullable.OptionalNullable[map[string]any] {
 	if o == nil {
 		return nil
 	}
@@ -123,7 +127,7 @@ func (o *ConsumerConnection) GetCreatedAt() *string {
 	return o.CreatedAt
 }
 
-func (o *ConsumerConnection) GetUpdatedAt() *string {
+func (o *ConsumerConnection) GetUpdatedAt() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}

@@ -3,6 +3,7 @@
 package components
 
 import (
+	"mockserver/internal/sdk/optionalnullable"
 	"mockserver/internal/sdk/utils"
 	"time"
 )
@@ -54,18 +55,18 @@ func (e Units) ToPointer() *Units {
 }
 
 type Notes struct {
-	Employee *string `json:"employee,omitempty"`
-	Manager  *string `json:"manager,omitempty"`
+	Employee optionalnullable.OptionalNullable[string] `json:"employee,omitempty"`
+	Manager  optionalnullable.OptionalNullable[string] `json:"manager,omitempty"`
 }
 
-func (o *Notes) GetEmployee() *string {
+func (o *Notes) GetEmployee() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Employee
 }
 
-func (o *Notes) GetManager() *string {
+func (o *Notes) GetManager() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -76,40 +77,40 @@ type TimeOffRequest struct {
 	// A unique identifier for an object.
 	ID *string `json:"id,omitempty"`
 	// ID of the employee
-	EmployeeID *string `json:"employee_id,omitempty"`
+	EmployeeID optionalnullable.OptionalNullable[string] `json:"employee_id,omitempty"`
 	// ID of the policy
-	PolicyID *string `json:"policy_id,omitempty"`
+	PolicyID optionalnullable.OptionalNullable[string] `json:"policy_id,omitempty"`
 	// The status of the time off request.
-	Status *TimeOffRequestStatus `json:"status,omitempty"`
+	Status optionalnullable.OptionalNullable[TimeOffRequestStatus] `json:"status,omitempty"`
 	// Description of the time off request.
-	Description *string `json:"description,omitempty"`
+	Description optionalnullable.OptionalNullable[string] `json:"description,omitempty"`
 	// The start date of the time off request.
-	StartDate *string `json:"start_date,omitempty"`
+	StartDate optionalnullable.OptionalNullable[string] `json:"start_date,omitempty"`
 	// The end date of the time off request.
-	EndDate *string `json:"end_date,omitempty"`
+	EndDate optionalnullable.OptionalNullable[string] `json:"end_date,omitempty"`
 	// The date the request was made.
-	RequestDate *string `json:"request_date,omitempty"`
+	RequestDate optionalnullable.OptionalNullable[string] `json:"request_date,omitempty"`
 	// The type of request
-	RequestType *RequestType `json:"request_type,omitempty"`
+	RequestType optionalnullable.OptionalNullable[RequestType] `json:"request_type,omitempty"`
 	// The date the request was approved
-	ApprovalDate *string `json:"approval_date,omitempty"`
+	ApprovalDate optionalnullable.OptionalNullable[string] `json:"approval_date,omitempty"`
 	// The unit of time off requested. Possible values include: `hours`, `days`, or `other`.
-	Units *Units `json:"units,omitempty"`
+	Units optionalnullable.OptionalNullable[Units] `json:"units,omitempty"`
 	// The amount of time off requested.
-	Amount *float64 `json:"amount,omitempty"`
+	Amount optionalnullable.OptionalNullable[float64] `json:"amount,omitempty"`
 	// The day part of the time off request.
-	DayPart *string `json:"day_part,omitempty"`
-	Notes   *Notes  `json:"notes,omitempty"`
+	DayPart optionalnullable.OptionalNullable[string] `json:"day_part,omitempty"`
+	Notes   *Notes                                    `json:"notes,omitempty"`
 	// When custom mappings are configured on the resource, the result is included here.
-	CustomMappings map[string]any `json:"custom_mappings,omitempty"`
+	CustomMappings optionalnullable.OptionalNullable[map[string]any] `json:"custom_mappings,omitempty"`
 	// The user who last updated the object.
-	UpdatedBy *string `json:"updated_by,omitempty"`
+	UpdatedBy optionalnullable.OptionalNullable[string] `json:"updated_by,omitempty"`
 	// The user who created the object.
-	CreatedBy *string `json:"created_by,omitempty"`
+	CreatedBy optionalnullable.OptionalNullable[string] `json:"created_by,omitempty"`
 	// The date and time when the object was last updated.
-	UpdatedAt *time.Time `json:"updated_at,omitempty"`
+	UpdatedAt optionalnullable.OptionalNullable[time.Time] `json:"updated_at,omitempty"`
 	// The date and time when the object was created.
-	CreatedAt *time.Time `json:"created_at,omitempty"`
+	CreatedAt optionalnullable.OptionalNullable[time.Time] `json:"created_at,omitempty"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
 	PassThrough []PassThroughBody `json:"pass_through,omitempty"`
 	// The policy type of the time off request
@@ -134,84 +135,84 @@ func (o *TimeOffRequest) GetID() *string {
 	return o.ID
 }
 
-func (o *TimeOffRequest) GetEmployeeID() *string {
+func (o *TimeOffRequest) GetEmployeeID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.EmployeeID
 }
 
-func (o *TimeOffRequest) GetPolicyID() *string {
+func (o *TimeOffRequest) GetPolicyID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.PolicyID
 }
 
-func (o *TimeOffRequest) GetStatus() *TimeOffRequestStatus {
+func (o *TimeOffRequest) GetStatus() optionalnullable.OptionalNullable[TimeOffRequestStatus] {
 	if o == nil {
 		return nil
 	}
 	return o.Status
 }
 
-func (o *TimeOffRequest) GetDescription() *string {
+func (o *TimeOffRequest) GetDescription() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Description
 }
 
-func (o *TimeOffRequest) GetStartDate() *string {
+func (o *TimeOffRequest) GetStartDate() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.StartDate
 }
 
-func (o *TimeOffRequest) GetEndDate() *string {
+func (o *TimeOffRequest) GetEndDate() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.EndDate
 }
 
-func (o *TimeOffRequest) GetRequestDate() *string {
+func (o *TimeOffRequest) GetRequestDate() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.RequestDate
 }
 
-func (o *TimeOffRequest) GetRequestType() *RequestType {
+func (o *TimeOffRequest) GetRequestType() optionalnullable.OptionalNullable[RequestType] {
 	if o == nil {
 		return nil
 	}
 	return o.RequestType
 }
 
-func (o *TimeOffRequest) GetApprovalDate() *string {
+func (o *TimeOffRequest) GetApprovalDate() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.ApprovalDate
 }
 
-func (o *TimeOffRequest) GetUnits() *Units {
+func (o *TimeOffRequest) GetUnits() optionalnullable.OptionalNullable[Units] {
 	if o == nil {
 		return nil
 	}
 	return o.Units
 }
 
-func (o *TimeOffRequest) GetAmount() *float64 {
+func (o *TimeOffRequest) GetAmount() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}
 	return o.Amount
 }
 
-func (o *TimeOffRequest) GetDayPart() *string {
+func (o *TimeOffRequest) GetDayPart() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -225,35 +226,35 @@ func (o *TimeOffRequest) GetNotes() *Notes {
 	return o.Notes
 }
 
-func (o *TimeOffRequest) GetCustomMappings() map[string]any {
+func (o *TimeOffRequest) GetCustomMappings() optionalnullable.OptionalNullable[map[string]any] {
 	if o == nil {
 		return nil
 	}
 	return o.CustomMappings
 }
 
-func (o *TimeOffRequest) GetUpdatedBy() *string {
+func (o *TimeOffRequest) GetUpdatedBy() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.UpdatedBy
 }
 
-func (o *TimeOffRequest) GetCreatedBy() *string {
+func (o *TimeOffRequest) GetCreatedBy() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.CreatedBy
 }
 
-func (o *TimeOffRequest) GetUpdatedAt() *time.Time {
+func (o *TimeOffRequest) GetUpdatedAt() optionalnullable.OptionalNullable[time.Time] {
 	if o == nil {
 		return nil
 	}
 	return o.UpdatedAt
 }
 
-func (o *TimeOffRequest) GetCreatedAt() *time.Time {
+func (o *TimeOffRequest) GetCreatedAt() optionalnullable.OptionalNullable[time.Time] {
 	if o == nil {
 		return nil
 	}
@@ -276,114 +277,114 @@ func (o *TimeOffRequest) GetPolicyType() *string {
 
 type TimeOffRequestInput struct {
 	// ID of the employee
-	EmployeeID *string `json:"employee_id,omitempty"`
+	EmployeeID optionalnullable.OptionalNullable[string] `json:"employee_id,omitempty"`
 	// ID of the policy
-	PolicyID *string `json:"policy_id,omitempty"`
+	PolicyID optionalnullable.OptionalNullable[string] `json:"policy_id,omitempty"`
 	// The status of the time off request.
-	Status *TimeOffRequestStatus `json:"status,omitempty"`
+	Status optionalnullable.OptionalNullable[TimeOffRequestStatus] `json:"status,omitempty"`
 	// Description of the time off request.
-	Description *string `json:"description,omitempty"`
+	Description optionalnullable.OptionalNullable[string] `json:"description,omitempty"`
 	// The start date of the time off request.
-	StartDate *string `json:"start_date,omitempty"`
+	StartDate optionalnullable.OptionalNullable[string] `json:"start_date,omitempty"`
 	// The end date of the time off request.
-	EndDate *string `json:"end_date,omitempty"`
+	EndDate optionalnullable.OptionalNullable[string] `json:"end_date,omitempty"`
 	// The date the request was made.
-	RequestDate *string `json:"request_date,omitempty"`
+	RequestDate optionalnullable.OptionalNullable[string] `json:"request_date,omitempty"`
 	// The type of request
-	RequestType *RequestType `json:"request_type,omitempty"`
+	RequestType optionalnullable.OptionalNullable[RequestType] `json:"request_type,omitempty"`
 	// The date the request was approved
-	ApprovalDate *string `json:"approval_date,omitempty"`
+	ApprovalDate optionalnullable.OptionalNullable[string] `json:"approval_date,omitempty"`
 	// The unit of time off requested. Possible values include: `hours`, `days`, or `other`.
-	Units *Units `json:"units,omitempty"`
+	Units optionalnullable.OptionalNullable[Units] `json:"units,omitempty"`
 	// The amount of time off requested.
-	Amount *float64 `json:"amount,omitempty"`
+	Amount optionalnullable.OptionalNullable[float64] `json:"amount,omitempty"`
 	// The day part of the time off request.
-	DayPart *string `json:"day_part,omitempty"`
-	Notes   *Notes  `json:"notes,omitempty"`
+	DayPart optionalnullable.OptionalNullable[string] `json:"day_part,omitempty"`
+	Notes   *Notes                                    `json:"notes,omitempty"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
 	PassThrough []PassThroughBody `json:"pass_through,omitempty"`
 	// The policy type of the time off request
 	PolicyType *string `json:"policy_type,omitempty"`
 }
 
-func (o *TimeOffRequestInput) GetEmployeeID() *string {
+func (o *TimeOffRequestInput) GetEmployeeID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.EmployeeID
 }
 
-func (o *TimeOffRequestInput) GetPolicyID() *string {
+func (o *TimeOffRequestInput) GetPolicyID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.PolicyID
 }
 
-func (o *TimeOffRequestInput) GetStatus() *TimeOffRequestStatus {
+func (o *TimeOffRequestInput) GetStatus() optionalnullable.OptionalNullable[TimeOffRequestStatus] {
 	if o == nil {
 		return nil
 	}
 	return o.Status
 }
 
-func (o *TimeOffRequestInput) GetDescription() *string {
+func (o *TimeOffRequestInput) GetDescription() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Description
 }
 
-func (o *TimeOffRequestInput) GetStartDate() *string {
+func (o *TimeOffRequestInput) GetStartDate() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.StartDate
 }
 
-func (o *TimeOffRequestInput) GetEndDate() *string {
+func (o *TimeOffRequestInput) GetEndDate() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.EndDate
 }
 
-func (o *TimeOffRequestInput) GetRequestDate() *string {
+func (o *TimeOffRequestInput) GetRequestDate() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.RequestDate
 }
 
-func (o *TimeOffRequestInput) GetRequestType() *RequestType {
+func (o *TimeOffRequestInput) GetRequestType() optionalnullable.OptionalNullable[RequestType] {
 	if o == nil {
 		return nil
 	}
 	return o.RequestType
 }
 
-func (o *TimeOffRequestInput) GetApprovalDate() *string {
+func (o *TimeOffRequestInput) GetApprovalDate() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.ApprovalDate
 }
 
-func (o *TimeOffRequestInput) GetUnits() *Units {
+func (o *TimeOffRequestInput) GetUnits() optionalnullable.OptionalNullable[Units] {
 	if o == nil {
 		return nil
 	}
 	return o.Units
 }
 
-func (o *TimeOffRequestInput) GetAmount() *float64 {
+func (o *TimeOffRequestInput) GetAmount() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}
 	return o.Amount
 }
 
-func (o *TimeOffRequestInput) GetDayPart() *string {
+func (o *TimeOffRequestInput) GetDayPart() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}

@@ -2,6 +2,10 @@
 
 package components
 
+import (
+	"mockserver/internal/sdk/optionalnullable"
+)
+
 // AllocationAllocationType - Type of entity this payment should be attributed to.
 type AllocationAllocationType string
 
@@ -28,7 +32,7 @@ type Allocation struct {
 	Type *AllocationAllocationType `json:"type,omitempty"`
 	Code *string                   `json:"code,omitempty"`
 	// Amount of payment that should be attributed to this allocation. If null, the total_amount will be used.
-	Amount *float64 `json:"amount,omitempty"`
+	Amount optionalnullable.OptionalNullable[float64] `json:"amount,omitempty"`
 	// Unique identifier of the allocation
 	AllocationID *string `json:"allocation_id,omitempty"`
 }
@@ -54,7 +58,7 @@ func (o *Allocation) GetCode() *string {
 	return o.Code
 }
 
-func (o *Allocation) GetAmount() *float64 {
+func (o *Allocation) GetAmount() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}
@@ -74,7 +78,7 @@ type AllocationInput struct {
 	// Type of entity this payment should be attributed to.
 	Type *AllocationAllocationType `json:"type,omitempty"`
 	// Amount of payment that should be attributed to this allocation. If null, the total_amount will be used.
-	Amount *float64 `json:"amount,omitempty"`
+	Amount optionalnullable.OptionalNullable[float64] `json:"amount,omitempty"`
 	// Unique identifier of the allocation
 	AllocationID *string `json:"allocation_id,omitempty"`
 }
@@ -93,7 +97,7 @@ func (o *AllocationInput) GetType() *AllocationAllocationType {
 	return o.Type
 }
 
-func (o *AllocationInput) GetAmount() *float64 {
+func (o *AllocationInput) GetAmount() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}

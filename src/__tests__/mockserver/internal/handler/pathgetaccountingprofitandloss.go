@@ -8,6 +8,7 @@ import (
 	"mockserver/internal/handler/assert"
 	"mockserver/internal/logging"
 	"mockserver/internal/sdk/models/components"
+	"mockserver/internal/sdk/optionalnullable"
 	"mockserver/internal/sdk/types"
 	"mockserver/internal/sdk/utils"
 	"mockserver/internal/tracking"
@@ -57,12 +58,12 @@ func testAccountingProfitAndLossOneAccountingProfitAndLossOne0(w http.ResponseWr
 			ReportName: "ProfitAndLoss",
 			StartDate:  types.String("2017-01-01"),
 			EndDate:    types.String("2017-01-31"),
-			Currency:   components.CurrencyUsd.ToPointer(),
+			Currency:   optionalnullable.From(components.CurrencyUsd.ToPointer()),
 			Income: components.Income{
 				ID:    types.String("123"),
 				Code:  types.String("123"),
 				Title: types.String("Operating Income"),
-				Type:  components.ProfitAndLossTypeSection.ToPointer(),
+				Type:  optionalnullable.From(components.ProfitAndLossTypeSection.ToPointer()),
 				Total: types.Float64(60000),
 				Records: []any{
 					map[string]any{
@@ -110,8 +111,8 @@ func testAccountingProfitAndLossOneAccountingProfitAndLossOne0(w http.ResponseWr
 				ID:    types.String("123"),
 				Code:  types.String("123"),
 				Title: types.String("Cost of Goods Sold"),
-				Type:  components.ProfitAndLossTypeSection.ToPointer(),
-				Total: types.Float64(12000),
+				Type:  optionalnullable.From(components.ProfitAndLossTypeSection.ToPointer()),
+				Total: optionalnullable.From(types.Float64(12000)),
 				Records: []any{
 					map[string]any{
 						"id":    "123",
@@ -126,7 +127,7 @@ func testAccountingProfitAndLossOneAccountingProfitAndLossOne0(w http.ResponseWr
 				ID:    types.String("123"),
 				Code:  types.String("123"),
 				Title: types.String("Operating Expenses"),
-				Type:  components.ProfitAndLossTypeSection.ToPointer(),
+				Type:  optionalnullable.From(components.ProfitAndLossTypeSection.ToPointer()),
 				Total: types.Float64(14000),
 				Records: []any{
 					map[string]any{
@@ -172,8 +173,8 @@ func testAccountingProfitAndLossOneAccountingProfitAndLossOne0(w http.ResponseWr
 				ID:    types.String("123"),
 				Code:  types.String("123"),
 				Title: types.String("Other Income"),
-				Type:  components.ProfitAndLossTypeSection.ToPointer(),
-				Total: types.Float64(3000),
+				Type:  optionalnullable.From(components.ProfitAndLossTypeSection.ToPointer()),
+				Total: optionalnullable.From(types.Float64(3000)),
 				Records: []any{
 					map[string]any{
 						"id":    "123",
@@ -195,8 +196,8 @@ func testAccountingProfitAndLossOneAccountingProfitAndLossOne0(w http.ResponseWr
 				ID:    types.String("123"),
 				Code:  types.String("123"),
 				Title: types.String("Other Expenses"),
-				Type:  components.ProfitAndLossTypeSection.ToPointer(),
-				Total: types.Float64(1000),
+				Type:  optionalnullable.From(components.ProfitAndLossTypeSection.ToPointer()),
+				Total: optionalnullable.From(types.Float64(1000)),
 				Records: []any{
 					map[string]any{
 						"id":    "123",
@@ -211,7 +212,7 @@ func testAccountingProfitAndLossOneAccountingProfitAndLossOne0(w http.ResponseWr
 				ID:    types.String("123"),
 				Code:  types.String("123"),
 				Title: types.String("Uncategorized Accounts"),
-				Type:  components.ProfitAndLossTypeSection.ToPointer(),
+				Type:  optionalnullable.From(components.ProfitAndLossTypeSection.ToPointer()),
 				Total: types.Float64(0),
 				Records: []any{
 					map[string]any{
@@ -224,13 +225,13 @@ func testAccountingProfitAndLossOneAccountingProfitAndLossOne0(w http.ResponseWr
 				},
 			},
 			GrossProfit: &components.ProfitAndLossIndicator{
-				Total: types.Float64(10000),
+				Total: optionalnullable.From(types.Float64(10000)),
 			},
 			NetOperatingIncome: &components.ProfitAndLossIndicator{
-				Total: types.Float64(10000),
+				Total: optionalnullable.From(types.Float64(10000)),
 			},
 			NetIncome: &components.ProfitAndLossIndicator{
-				Total: types.Float64(10000),
+				Total: optionalnullable.From(types.Float64(10000)),
 			},
 			Customer: types.String("123"),
 		},

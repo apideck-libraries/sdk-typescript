@@ -2,6 +2,10 @@
 
 package components
 
+import (
+	"mockserver/internal/sdk/optionalnullable"
+)
+
 // InvoiceItemFilterInvoiceItemType - The type of invoice item, indicating whether it is an inventory item, a service, or another type.
 type InvoiceItemFilterInvoiceItemType string
 
@@ -29,19 +33,19 @@ func (e InvoiceItemFilterTransactionType) ToPointer() *InvoiceItemFilterTransact
 
 type InvoiceItemFilter struct {
 	// The type of invoice item, indicating whether it is an inventory item, a service, or another type.
-	Type *InvoiceItemFilterInvoiceItemType `queryParam:"name=type"`
+	Type optionalnullable.OptionalNullable[InvoiceItemFilterInvoiceItemType] `queryParam:"name=type"`
 	// The kind of transaction, indicating whether it is a sales transaction or a purchase transaction.
-	TransactionType *InvoiceItemFilterTransactionType `queryParam:"name=transaction_type"`
+	TransactionType optionalnullable.OptionalNullable[InvoiceItemFilterTransactionType] `queryParam:"name=transaction_type"`
 }
 
-func (o *InvoiceItemFilter) GetType() *InvoiceItemFilterInvoiceItemType {
+func (o *InvoiceItemFilter) GetType() optionalnullable.OptionalNullable[InvoiceItemFilterInvoiceItemType] {
 	if o == nil {
 		return nil
 	}
 	return o.Type
 }
 
-func (o *InvoiceItemFilter) GetTransactionType() *InvoiceItemFilterTransactionType {
+func (o *InvoiceItemFilter) GetTransactionType() optionalnullable.OptionalNullable[InvoiceItemFilterTransactionType] {
 	if o == nil {
 		return nil
 	}

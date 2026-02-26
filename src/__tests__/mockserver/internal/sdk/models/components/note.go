@@ -2,37 +2,41 @@
 
 package components
 
+import (
+	"mockserver/internal/sdk/optionalnullable"
+)
+
 type Note struct {
 	// The unique identifier of the note
 	ID *string `json:"id,omitempty"`
 	// The title of the note
-	Title *string `json:"title,omitempty"`
+	Title optionalnullable.OptionalNullable[string] `json:"title,omitempty"`
 	// The content of the note.
-	Content *string `json:"content,omitempty"`
+	Content optionalnullable.OptionalNullable[string] `json:"content,omitempty"`
 	// The user that owns the note.
-	OwnerID *string `json:"owner_id,omitempty"`
+	OwnerID optionalnullable.OptionalNullable[string] `json:"owner_id,omitempty"`
 	// The contact that is related to the note.
-	ContactID *string `json:"contact_id,omitempty"`
+	ContactID optionalnullable.OptionalNullable[string] `json:"contact_id,omitempty"`
 	// The company that is related to the note.
-	CompanyID *string `json:"company_id,omitempty"`
+	CompanyID optionalnullable.OptionalNullable[string] `json:"company_id,omitempty"`
 	// The opportunity that is related to the note.
-	OpportunityID *string `json:"opportunity_id,omitempty"`
+	OpportunityID optionalnullable.OptionalNullable[string] `json:"opportunity_id,omitempty"`
 	// The activity that is related to the note.
-	ActivityID *string `json:"activity_id,omitempty"`
+	ActivityID optionalnullable.OptionalNullable[string] `json:"activity_id,omitempty"`
 	// The lead that is related to the note.
-	LeadID *string `json:"lead_id,omitempty"`
+	LeadID optionalnullable.OptionalNullable[string] `json:"lead_id,omitempty"`
 	// Whether the Note is active or not.
-	Active *bool `json:"active,omitempty"`
+	Active optionalnullable.OptionalNullable[bool] `json:"active,omitempty"`
 	// When custom mappings are configured on the resource, the result is included here.
-	CustomMappings map[string]any `json:"custom_mappings,omitempty"`
+	CustomMappings optionalnullable.OptionalNullable[map[string]any] `json:"custom_mappings,omitempty"`
 	// The user that last updated the note.
-	UpdatedBy *string `json:"updated_by,omitempty"`
+	UpdatedBy optionalnullable.OptionalNullable[string] `json:"updated_by,omitempty"`
 	// The user that created the note.
-	CreatedBy *string `json:"created_by,omitempty"`
+	CreatedBy optionalnullable.OptionalNullable[string] `json:"created_by,omitempty"`
 	// The timestamp when the note was last updated
-	UpdatedAt *string `json:"updated_at,omitempty"`
+	UpdatedAt optionalnullable.OptionalNullable[string] `json:"updated_at,omitempty"`
 	// The timestamp when the note was created
-	CreatedAt *string `json:"created_at,omitempty"`
+	CreatedAt optionalnullable.OptionalNullable[string] `json:"created_at,omitempty"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
 	PassThrough []PassThroughBody `json:"pass_through,omitempty"`
 }
@@ -44,98 +48,98 @@ func (o *Note) GetID() *string {
 	return o.ID
 }
 
-func (o *Note) GetTitle() *string {
+func (o *Note) GetTitle() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Title
 }
 
-func (o *Note) GetContent() *string {
+func (o *Note) GetContent() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Content
 }
 
-func (o *Note) GetOwnerID() *string {
+func (o *Note) GetOwnerID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.OwnerID
 }
 
-func (o *Note) GetContactID() *string {
+func (o *Note) GetContactID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.ContactID
 }
 
-func (o *Note) GetCompanyID() *string {
+func (o *Note) GetCompanyID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.CompanyID
 }
 
-func (o *Note) GetOpportunityID() *string {
+func (o *Note) GetOpportunityID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.OpportunityID
 }
 
-func (o *Note) GetActivityID() *string {
+func (o *Note) GetActivityID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.ActivityID
 }
 
-func (o *Note) GetLeadID() *string {
+func (o *Note) GetLeadID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.LeadID
 }
 
-func (o *Note) GetActive() *bool {
+func (o *Note) GetActive() optionalnullable.OptionalNullable[bool] {
 	if o == nil {
 		return nil
 	}
 	return o.Active
 }
 
-func (o *Note) GetCustomMappings() map[string]any {
+func (o *Note) GetCustomMappings() optionalnullable.OptionalNullable[map[string]any] {
 	if o == nil {
 		return nil
 	}
 	return o.CustomMappings
 }
 
-func (o *Note) GetUpdatedBy() *string {
+func (o *Note) GetUpdatedBy() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.UpdatedBy
 }
 
-func (o *Note) GetCreatedBy() *string {
+func (o *Note) GetCreatedBy() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.CreatedBy
 }
 
-func (o *Note) GetUpdatedAt() *string {
+func (o *Note) GetUpdatedAt() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.UpdatedAt
 }
 
-func (o *Note) GetCreatedAt() *string {
+func (o *Note) GetCreatedAt() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}

@@ -3,6 +3,7 @@
 package components
 
 import (
+	"mockserver/internal/sdk/optionalnullable"
 	"mockserver/internal/sdk/utils"
 	"time"
 )
@@ -25,33 +26,33 @@ type Ticket struct {
 	// A unique identifier for an object.
 	ID string `json:"id"`
 	// The ticket's parent ID
-	ParentID *string `json:"parent_id,omitempty"`
+	ParentID optionalnullable.OptionalNullable[string] `json:"parent_id,omitempty"`
 	// The ticket's collection ID
-	CollectionID *string `json:"collection_id,omitempty"`
+	CollectionID optionalnullable.OptionalNullable[string] `json:"collection_id,omitempty"`
 	// The ticket's type
-	Type *string `json:"type,omitempty"`
+	Type optionalnullable.OptionalNullable[string] `json:"type,omitempty"`
 	// Subject of the ticket
-	Subject *string `json:"subject,omitempty"`
+	Subject optionalnullable.OptionalNullable[string] `json:"subject,omitempty"`
 	// The ticket's description. HTML version of description is mapped if supported by the third-party platform
-	Description *string `json:"description,omitempty"`
+	Description optionalnullable.OptionalNullable[string] `json:"description,omitempty"`
 	// The current status of the ticket. Possible values include: open, in_progress, closed, or - in cases where there is no clear mapping - the original value passed through.
-	Status *string `json:"status,omitempty"`
+	Status optionalnullable.OptionalNullable[string] `json:"status,omitempty"`
 	// Priority of the ticket
-	Priority  *TicketPriority `json:"priority,omitempty"`
-	Assignees []Assignee      `json:"assignees,omitempty"`
+	Priority  optionalnullable.OptionalNullable[TicketPriority] `json:"priority,omitempty"`
+	Assignees []Assignee                                        `json:"assignees,omitempty"`
 	// The date and time when the object was last updated.
-	UpdatedAt *time.Time `json:"updated_at,omitempty"`
+	UpdatedAt optionalnullable.OptionalNullable[time.Time] `json:"updated_at,omitempty"`
 	// The date and time when the object was created.
-	CreatedAt *time.Time `json:"created_at,omitempty"`
+	CreatedAt optionalnullable.OptionalNullable[time.Time] `json:"created_at,omitempty"`
 	// The user who created the object.
-	CreatedBy *string `json:"created_by,omitempty"`
+	CreatedBy optionalnullable.OptionalNullable[string] `json:"created_by,omitempty"`
 	// Due date of the ticket
-	DueDate *time.Time `json:"due_date,omitempty"`
+	DueDate optionalnullable.OptionalNullable[time.Time] `json:"due_date,omitempty"`
 	// When the ticket was completed
-	CompletedAt *time.Time      `json:"completed_at,omitempty"`
-	Tags        []CollectionTag `json:"tags,omitempty"`
+	CompletedAt optionalnullable.OptionalNullable[time.Time] `json:"completed_at,omitempty"`
+	Tags        []CollectionTag                              `json:"tags,omitempty"`
 	// When custom mappings are configured on the resource, the result is included here.
-	CustomMappings map[string]any `json:"custom_mappings,omitempty"`
+	CustomMappings optionalnullable.OptionalNullable[map[string]any] `json:"custom_mappings,omitempty"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
 	PassThrough []PassThroughBody `json:"pass_through,omitempty"`
 }
@@ -74,49 +75,49 @@ func (o *Ticket) GetID() string {
 	return o.ID
 }
 
-func (o *Ticket) GetParentID() *string {
+func (o *Ticket) GetParentID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.ParentID
 }
 
-func (o *Ticket) GetCollectionID() *string {
+func (o *Ticket) GetCollectionID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.CollectionID
 }
 
-func (o *Ticket) GetType() *string {
+func (o *Ticket) GetType() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Type
 }
 
-func (o *Ticket) GetSubject() *string {
+func (o *Ticket) GetSubject() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Subject
 }
 
-func (o *Ticket) GetDescription() *string {
+func (o *Ticket) GetDescription() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Description
 }
 
-func (o *Ticket) GetStatus() *string {
+func (o *Ticket) GetStatus() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Status
 }
 
-func (o *Ticket) GetPriority() *TicketPriority {
+func (o *Ticket) GetPriority() optionalnullable.OptionalNullable[TicketPriority] {
 	if o == nil {
 		return nil
 	}
@@ -130,35 +131,35 @@ func (o *Ticket) GetAssignees() []Assignee {
 	return o.Assignees
 }
 
-func (o *Ticket) GetUpdatedAt() *time.Time {
+func (o *Ticket) GetUpdatedAt() optionalnullable.OptionalNullable[time.Time] {
 	if o == nil {
 		return nil
 	}
 	return o.UpdatedAt
 }
 
-func (o *Ticket) GetCreatedAt() *time.Time {
+func (o *Ticket) GetCreatedAt() optionalnullable.OptionalNullable[time.Time] {
 	if o == nil {
 		return nil
 	}
 	return o.CreatedAt
 }
 
-func (o *Ticket) GetCreatedBy() *string {
+func (o *Ticket) GetCreatedBy() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.CreatedBy
 }
 
-func (o *Ticket) GetDueDate() *time.Time {
+func (o *Ticket) GetDueDate() optionalnullable.OptionalNullable[time.Time] {
 	if o == nil {
 		return nil
 	}
 	return o.DueDate
 }
 
-func (o *Ticket) GetCompletedAt() *time.Time {
+func (o *Ticket) GetCompletedAt() optionalnullable.OptionalNullable[time.Time] {
 	if o == nil {
 		return nil
 	}
@@ -172,7 +173,7 @@ func (o *Ticket) GetTags() []CollectionTag {
 	return o.Tags
 }
 
-func (o *Ticket) GetCustomMappings() map[string]any {
+func (o *Ticket) GetCustomMappings() optionalnullable.OptionalNullable[map[string]any] {
 	if o == nil {
 		return nil
 	}
@@ -188,21 +189,21 @@ func (o *Ticket) GetPassThrough() []PassThroughBody {
 
 type TicketInput struct {
 	// The ticket's parent ID
-	ParentID *string `json:"parent_id,omitempty"`
+	ParentID optionalnullable.OptionalNullable[string] `json:"parent_id,omitempty"`
 	// The ticket's type
-	Type *string `json:"type,omitempty"`
+	Type optionalnullable.OptionalNullable[string] `json:"type,omitempty"`
 	// Subject of the ticket
-	Subject *string `json:"subject,omitempty"`
+	Subject optionalnullable.OptionalNullable[string] `json:"subject,omitempty"`
 	// The ticket's description. HTML version of description is mapped if supported by the third-party platform
-	Description *string `json:"description,omitempty"`
+	Description optionalnullable.OptionalNullable[string] `json:"description,omitempty"`
 	// The current status of the ticket. Possible values include: open, in_progress, closed, or - in cases where there is no clear mapping - the original value passed through.
-	Status *string `json:"status,omitempty"`
+	Status optionalnullable.OptionalNullable[string] `json:"status,omitempty"`
 	// Priority of the ticket
-	Priority  *TicketPriority `json:"priority,omitempty"`
-	Assignees []AssigneeInput `json:"assignees,omitempty"`
+	Priority  optionalnullable.OptionalNullable[TicketPriority] `json:"priority,omitempty"`
+	Assignees []AssigneeInput                                   `json:"assignees,omitempty"`
 	// Due date of the ticket
-	DueDate *time.Time           `json:"due_date,omitempty"`
-	Tags    []CollectionTagInput `json:"tags,omitempty"`
+	DueDate optionalnullable.OptionalNullable[time.Time] `json:"due_date,omitempty"`
+	Tags    []CollectionTagInput                         `json:"tags,omitempty"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
 	PassThrough []PassThroughBody `json:"pass_through,omitempty"`
 }
@@ -218,42 +219,42 @@ func (t *TicketInput) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *TicketInput) GetParentID() *string {
+func (o *TicketInput) GetParentID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.ParentID
 }
 
-func (o *TicketInput) GetType() *string {
+func (o *TicketInput) GetType() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Type
 }
 
-func (o *TicketInput) GetSubject() *string {
+func (o *TicketInput) GetSubject() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Subject
 }
 
-func (o *TicketInput) GetDescription() *string {
+func (o *TicketInput) GetDescription() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Description
 }
 
-func (o *TicketInput) GetStatus() *string {
+func (o *TicketInput) GetStatus() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Status
 }
 
-func (o *TicketInput) GetPriority() *TicketPriority {
+func (o *TicketInput) GetPriority() optionalnullable.OptionalNullable[TicketPriority] {
 	if o == nil {
 		return nil
 	}
@@ -267,7 +268,7 @@ func (o *TicketInput) GetAssignees() []AssigneeInput {
 	return o.Assignees
 }
 
-func (o *TicketInput) GetDueDate() *time.Time {
+func (o *TicketInput) GetDueDate() optionalnullable.OptionalNullable[time.Time] {
 	if o == nil {
 		return nil
 	}

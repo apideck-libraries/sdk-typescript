@@ -2,15 +2,19 @@
 
 package components
 
+import (
+	"mockserver/internal/sdk/optionalnullable"
+)
+
 type OutstandingBalanceByCurrency struct {
 	// Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
-	Currency *Currency `json:"currency,omitempty"`
+	Currency optionalnullable.OptionalNullable[Currency] `json:"currency,omitempty"`
 	// Total amount of the outstanding balance.
 	TotalAmount      *float64          `json:"total_amount,omitempty"`
 	BalancesByPeriod []BalanceByPeriod `json:"balances_by_period,omitempty"`
 }
 
-func (o *OutstandingBalanceByCurrency) GetCurrency() *Currency {
+func (o *OutstandingBalanceByCurrency) GetCurrency() optionalnullable.OptionalNullable[Currency] {
 	if o == nil {
 		return nil
 	}

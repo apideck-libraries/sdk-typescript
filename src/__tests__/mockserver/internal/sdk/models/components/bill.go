@@ -3,6 +3,7 @@
 package components
 
 import (
+	"mockserver/internal/sdk/optionalnullable"
 	"mockserver/internal/sdk/types"
 	"mockserver/internal/sdk/utils"
 	"time"
@@ -45,97 +46,97 @@ type Bill struct {
 	// A unique identifier for an object.
 	ID *string `json:"id,omitempty"`
 	// The third-party API ID of original entity
-	DownstreamID *string `json:"downstream_id,omitempty"`
+	DownstreamID optionalnullable.OptionalNullable[string] `json:"downstream_id,omitempty"`
 	// Id to be displayed.
-	DisplayID *string `json:"display_id,omitempty"`
+	DisplayID optionalnullable.OptionalNullable[string] `json:"display_id,omitempty"`
 	// Reference to supplier bill number
-	BillNumber *string `json:"bill_number,omitempty"`
+	BillNumber optionalnullable.OptionalNullable[string] `json:"bill_number,omitempty"`
 	// The supplier this entity is linked to.
-	Supplier *LinkedSupplier `json:"supplier,omitempty"`
+	Supplier optionalnullable.OptionalNullable[LinkedSupplier] `json:"supplier,omitempty"`
 	// The company ID the transaction belongs to
-	CompanyID *string `json:"company_id,omitempty"`
+	CompanyID optionalnullable.OptionalNullable[string] `json:"company_id,omitempty"`
 	// The ID of the location
-	LocationID *string `json:"location_id,omitempty"`
+	LocationID optionalnullable.OptionalNullable[string] `json:"location_id,omitempty"`
 	// The ID of the department
-	DepartmentID *string `json:"department_id,omitempty"`
+	DepartmentID optionalnullable.OptionalNullable[string] `json:"department_id,omitempty"`
 	// Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
-	Currency *Currency `json:"currency,omitempty"`
+	Currency optionalnullable.OptionalNullable[Currency] `json:"currency,omitempty"`
 	// Currency Exchange Rate at the time entity was recorded/generated.
-	CurrencyRate *float64 `json:"currency_rate,omitempty"`
+	CurrencyRate optionalnullable.OptionalNullable[float64] `json:"currency_rate,omitempty"`
 	// Amounts are including tax
-	TaxInclusive *bool `json:"tax_inclusive,omitempty"`
+	TaxInclusive optionalnullable.OptionalNullable[bool] `json:"tax_inclusive,omitempty"`
 	// Date bill was issued - YYYY-MM-DD.
-	BillDate *types.Date `json:"bill_date,omitempty"`
+	BillDate optionalnullable.OptionalNullable[types.Date] `json:"bill_date,omitempty"`
 	// The due date is the date on which a payment is scheduled to be received - YYYY-MM-DD.
-	DueDate *types.Date `json:"due_date,omitempty"`
+	DueDate optionalnullable.OptionalNullable[types.Date] `json:"due_date,omitempty"`
 	// The paid date is the date on which a payment was sent to the supplier - YYYY-MM-DD.
-	PaidDate *types.Date `json:"paid_date,omitempty"`
+	PaidDate optionalnullable.OptionalNullable[types.Date] `json:"paid_date,omitempty"`
 	// A PO Number uniquely identifies a purchase order and is generally defined by the buyer. The buyer will match the PO number in the invoice to the Purchase Order.
-	PoNumber *string `json:"po_number,omitempty"`
+	PoNumber optionalnullable.OptionalNullable[string] `json:"po_number,omitempty"`
 	// Optional reference identifier for the transaction.
-	Reference *string        `json:"reference,omitempty"`
-	LineItems []BillLineItem `json:"line_items,omitempty"`
+	Reference optionalnullable.OptionalNullable[string] `json:"reference,omitempty"`
+	LineItems []BillLineItem                            `json:"line_items,omitempty"`
 	// Terms of payment.
-	Terms *string `json:"terms,omitempty"`
+	Terms optionalnullable.OptionalNullable[string] `json:"terms,omitempty"`
 	// Balance of bill due.
-	Balance *float64 `json:"balance,omitempty"`
+	Balance optionalnullable.OptionalNullable[float64] `json:"balance,omitempty"`
 	// Amount of deposit made to this bill.
-	Deposit *float64 `json:"deposit,omitempty"`
+	Deposit optionalnullable.OptionalNullable[float64] `json:"deposit,omitempty"`
 	// Subtotal amount, normally before tax.
-	SubTotal *float64 `json:"sub_total,omitempty"`
+	SubTotal optionalnullable.OptionalNullable[float64] `json:"sub_total,omitempty"`
 	// Total tax amount applied to this transaction.
-	TotalTax *float64 `json:"total_tax,omitempty"`
+	TotalTax optionalnullable.OptionalNullable[float64] `json:"total_tax,omitempty"`
 	// Total amount of bill, including tax.
-	Total *float64 `json:"total,omitempty"`
+	Total optionalnullable.OptionalNullable[float64] `json:"total,omitempty"`
 	// Applicable tax id/code override if tax is not supplied on a line item basis.
-	TaxCode *string `json:"tax_code,omitempty"`
-	Notes   *string `json:"notes,omitempty"`
+	TaxCode optionalnullable.OptionalNullable[string] `json:"tax_code,omitempty"`
+	Notes   optionalnullable.OptionalNullable[string] `json:"notes,omitempty"`
 	// Invoice status
-	Status        *BillStatus          `json:"status,omitempty"`
-	LedgerAccount *LinkedLedgerAccount `json:"ledger_account,omitempty"`
+	Status        optionalnullable.OptionalNullable[BillStatus]          `json:"status,omitempty"`
+	LedgerAccount optionalnullable.OptionalNullable[LinkedLedgerAccount] `json:"ledger_account,omitempty"`
 	// Payment method used for the transaction, such as cash, credit card, bank transfer, or check
-	PaymentMethod *string `json:"payment_method,omitempty"`
+	PaymentMethod optionalnullable.OptionalNullable[string] `json:"payment_method,omitempty"`
 	// The channel through which the transaction is processed.
-	Channel *string `json:"channel,omitempty"`
+	Channel optionalnullable.OptionalNullable[string] `json:"channel,omitempty"`
 	// language code according to ISO 639-1. For the United States - EN
-	Language *string `json:"language,omitempty"`
+	Language optionalnullable.OptionalNullable[string] `json:"language,omitempty"`
 	// Indicates if accounting by row is used (true) or not (false). Accounting by row means that a separate ledger transaction is created for each row.
-	AccountingByRow *bool        `json:"accounting_by_row,omitempty"`
-	BankAccount     *BankAccount `json:"bank_account,omitempty"`
+	AccountingByRow optionalnullable.OptionalNullable[bool] `json:"accounting_by_row,omitempty"`
+	BankAccount     *BankAccount                            `json:"bank_account,omitempty"`
 	// Discount percentage applied to this transaction.
-	DiscountPercentage *float64 `json:"discount_percentage,omitempty"`
+	DiscountPercentage optionalnullable.OptionalNullable[float64] `json:"discount_percentage,omitempty"`
 	// Optional bill template
-	TemplateID *string `json:"template_id,omitempty"`
+	TemplateID optionalnullable.OptionalNullable[string] `json:"template_id,omitempty"`
 	// The user who approved the bill
-	ApprovedBy *string `json:"approved_by,omitempty"`
+	ApprovedBy optionalnullable.OptionalNullable[string] `json:"approved_by,omitempty"`
 	// Type of amortization
-	AmortizationType *BillAmortizationType `json:"amortization_type,omitempty"`
+	AmortizationType optionalnullable.OptionalNullable[BillAmortizationType] `json:"amortization_type,omitempty"`
 	// Method of tax calculation
-	TaxMethod *string `json:"tax_method,omitempty"`
+	TaxMethod optionalnullable.OptionalNullable[string] `json:"tax_method,omitempty"`
 	// Whether the document has been received
-	DocumentReceived *bool `json:"document_received,omitempty"`
+	DocumentReceived optionalnullable.OptionalNullable[bool] `json:"document_received,omitempty"`
 	// URL link to a source document - shown as 'Go to [appName]' in the downstream app. Currently only supported for Xero.
-	SourceDocumentURL *string `json:"source_document_url,omitempty"`
+	SourceDocumentURL optionalnullable.OptionalNullable[string] `json:"source_document_url,omitempty"`
 	// A list of linked tracking categories.
-	TrackingCategories []*LinkedTrackingCategory `json:"tracking_categories,omitempty"`
+	TrackingCategories optionalnullable.OptionalNullable[[]*LinkedTrackingCategory] `json:"tracking_categories,omitempty"`
 	// The user who last updated the object.
-	UpdatedBy *string `json:"updated_by,omitempty"`
+	UpdatedBy optionalnullable.OptionalNullable[string] `json:"updated_by,omitempty"`
 	// The user who created the object.
-	CreatedBy *string `json:"created_by,omitempty"`
+	CreatedBy optionalnullable.OptionalNullable[string] `json:"created_by,omitempty"`
 	// The date and time when the object was last updated.
-	UpdatedAt *time.Time `json:"updated_at,omitempty"`
+	UpdatedAt optionalnullable.OptionalNullable[time.Time] `json:"updated_at,omitempty"`
 	// The date and time when the object was created.
-	CreatedAt *time.Time `json:"created_at,omitempty"`
+	CreatedAt optionalnullable.OptionalNullable[time.Time] `json:"created_at,omitempty"`
 	// A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
-	RowVersion   *string            `json:"row_version,omitempty"`
-	CustomFields []CustomFieldUnion `json:"custom_fields,omitempty"`
+	RowVersion   optionalnullable.OptionalNullable[string] `json:"row_version,omitempty"`
+	CustomFields []CustomFieldUnion                        `json:"custom_fields,omitempty"`
 	// When custom mappings are configured on the resource, the result is included here.
-	CustomMappings map[string]any `json:"custom_mappings,omitempty"`
+	CustomMappings optionalnullable.OptionalNullable[map[string]any] `json:"custom_mappings,omitempty"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
 	PassThrough []PassThroughBody `json:"pass_through,omitempty"`
 	// Accounting period
-	AccountingPeriod *string             `json:"accounting_period,omitempty"`
-	Attachments      []*LinkedAttachment `json:"attachments,omitempty"`
+	AccountingPeriod optionalnullable.OptionalNullable[string] `json:"accounting_period,omitempty"`
+	Attachments      []*LinkedAttachment                       `json:"attachments,omitempty"`
 }
 
 func (b Bill) MarshalJSON() ([]byte, error) {
@@ -156,105 +157,105 @@ func (o *Bill) GetID() *string {
 	return o.ID
 }
 
-func (o *Bill) GetDownstreamID() *string {
+func (o *Bill) GetDownstreamID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.DownstreamID
 }
 
-func (o *Bill) GetDisplayID() *string {
+func (o *Bill) GetDisplayID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.DisplayID
 }
 
-func (o *Bill) GetBillNumber() *string {
+func (o *Bill) GetBillNumber() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.BillNumber
 }
 
-func (o *Bill) GetSupplier() *LinkedSupplier {
+func (o *Bill) GetSupplier() optionalnullable.OptionalNullable[LinkedSupplier] {
 	if o == nil {
 		return nil
 	}
 	return o.Supplier
 }
 
-func (o *Bill) GetCompanyID() *string {
+func (o *Bill) GetCompanyID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.CompanyID
 }
 
-func (o *Bill) GetLocationID() *string {
+func (o *Bill) GetLocationID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.LocationID
 }
 
-func (o *Bill) GetDepartmentID() *string {
+func (o *Bill) GetDepartmentID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.DepartmentID
 }
 
-func (o *Bill) GetCurrency() *Currency {
+func (o *Bill) GetCurrency() optionalnullable.OptionalNullable[Currency] {
 	if o == nil {
 		return nil
 	}
 	return o.Currency
 }
 
-func (o *Bill) GetCurrencyRate() *float64 {
+func (o *Bill) GetCurrencyRate() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}
 	return o.CurrencyRate
 }
 
-func (o *Bill) GetTaxInclusive() *bool {
+func (o *Bill) GetTaxInclusive() optionalnullable.OptionalNullable[bool] {
 	if o == nil {
 		return nil
 	}
 	return o.TaxInclusive
 }
 
-func (o *Bill) GetBillDate() *types.Date {
+func (o *Bill) GetBillDate() optionalnullable.OptionalNullable[types.Date] {
 	if o == nil {
 		return nil
 	}
 	return o.BillDate
 }
 
-func (o *Bill) GetDueDate() *types.Date {
+func (o *Bill) GetDueDate() optionalnullable.OptionalNullable[types.Date] {
 	if o == nil {
 		return nil
 	}
 	return o.DueDate
 }
 
-func (o *Bill) GetPaidDate() *types.Date {
+func (o *Bill) GetPaidDate() optionalnullable.OptionalNullable[types.Date] {
 	if o == nil {
 		return nil
 	}
 	return o.PaidDate
 }
 
-func (o *Bill) GetPoNumber() *string {
+func (o *Bill) GetPoNumber() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.PoNumber
 }
 
-func (o *Bill) GetReference() *string {
+func (o *Bill) GetReference() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -268,98 +269,98 @@ func (o *Bill) GetLineItems() []BillLineItem {
 	return o.LineItems
 }
 
-func (o *Bill) GetTerms() *string {
+func (o *Bill) GetTerms() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Terms
 }
 
-func (o *Bill) GetBalance() *float64 {
+func (o *Bill) GetBalance() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}
 	return o.Balance
 }
 
-func (o *Bill) GetDeposit() *float64 {
+func (o *Bill) GetDeposit() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}
 	return o.Deposit
 }
 
-func (o *Bill) GetSubTotal() *float64 {
+func (o *Bill) GetSubTotal() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}
 	return o.SubTotal
 }
 
-func (o *Bill) GetTotalTax() *float64 {
+func (o *Bill) GetTotalTax() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}
 	return o.TotalTax
 }
 
-func (o *Bill) GetTotal() *float64 {
+func (o *Bill) GetTotal() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}
 	return o.Total
 }
 
-func (o *Bill) GetTaxCode() *string {
+func (o *Bill) GetTaxCode() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.TaxCode
 }
 
-func (o *Bill) GetNotes() *string {
+func (o *Bill) GetNotes() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Notes
 }
 
-func (o *Bill) GetStatus() *BillStatus {
+func (o *Bill) GetStatus() optionalnullable.OptionalNullable[BillStatus] {
 	if o == nil {
 		return nil
 	}
 	return o.Status
 }
 
-func (o *Bill) GetLedgerAccount() *LinkedLedgerAccount {
+func (o *Bill) GetLedgerAccount() optionalnullable.OptionalNullable[LinkedLedgerAccount] {
 	if o == nil {
 		return nil
 	}
 	return o.LedgerAccount
 }
 
-func (o *Bill) GetPaymentMethod() *string {
+func (o *Bill) GetPaymentMethod() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.PaymentMethod
 }
 
-func (o *Bill) GetChannel() *string {
+func (o *Bill) GetChannel() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Channel
 }
 
-func (o *Bill) GetLanguage() *string {
+func (o *Bill) GetLanguage() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Language
 }
 
-func (o *Bill) GetAccountingByRow() *bool {
+func (o *Bill) GetAccountingByRow() optionalnullable.OptionalNullable[bool] {
 	if o == nil {
 		return nil
 	}
@@ -373,91 +374,91 @@ func (o *Bill) GetBankAccount() *BankAccount {
 	return o.BankAccount
 }
 
-func (o *Bill) GetDiscountPercentage() *float64 {
+func (o *Bill) GetDiscountPercentage() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}
 	return o.DiscountPercentage
 }
 
-func (o *Bill) GetTemplateID() *string {
+func (o *Bill) GetTemplateID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.TemplateID
 }
 
-func (o *Bill) GetApprovedBy() *string {
+func (o *Bill) GetApprovedBy() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.ApprovedBy
 }
 
-func (o *Bill) GetAmortizationType() *BillAmortizationType {
+func (o *Bill) GetAmortizationType() optionalnullable.OptionalNullable[BillAmortizationType] {
 	if o == nil {
 		return nil
 	}
 	return o.AmortizationType
 }
 
-func (o *Bill) GetTaxMethod() *string {
+func (o *Bill) GetTaxMethod() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.TaxMethod
 }
 
-func (o *Bill) GetDocumentReceived() *bool {
+func (o *Bill) GetDocumentReceived() optionalnullable.OptionalNullable[bool] {
 	if o == nil {
 		return nil
 	}
 	return o.DocumentReceived
 }
 
-func (o *Bill) GetSourceDocumentURL() *string {
+func (o *Bill) GetSourceDocumentURL() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.SourceDocumentURL
 }
 
-func (o *Bill) GetTrackingCategories() []*LinkedTrackingCategory {
+func (o *Bill) GetTrackingCategories() optionalnullable.OptionalNullable[[]*LinkedTrackingCategory] {
 	if o == nil {
 		return nil
 	}
 	return o.TrackingCategories
 }
 
-func (o *Bill) GetUpdatedBy() *string {
+func (o *Bill) GetUpdatedBy() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.UpdatedBy
 }
 
-func (o *Bill) GetCreatedBy() *string {
+func (o *Bill) GetCreatedBy() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.CreatedBy
 }
 
-func (o *Bill) GetUpdatedAt() *time.Time {
+func (o *Bill) GetUpdatedAt() optionalnullable.OptionalNullable[time.Time] {
 	if o == nil {
 		return nil
 	}
 	return o.UpdatedAt
 }
 
-func (o *Bill) GetCreatedAt() *time.Time {
+func (o *Bill) GetCreatedAt() optionalnullable.OptionalNullable[time.Time] {
 	if o == nil {
 		return nil
 	}
 	return o.CreatedAt
 }
 
-func (o *Bill) GetRowVersion() *string {
+func (o *Bill) GetRowVersion() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -471,7 +472,7 @@ func (o *Bill) GetCustomFields() []CustomFieldUnion {
 	return o.CustomFields
 }
 
-func (o *Bill) GetCustomMappings() map[string]any {
+func (o *Bill) GetCustomMappings() optionalnullable.OptionalNullable[map[string]any] {
 	if o == nil {
 		return nil
 	}
@@ -485,7 +486,7 @@ func (o *Bill) GetPassThrough() []PassThroughBody {
 	return o.PassThrough
 }
 
-func (o *Bill) GetAccountingPeriod() *string {
+func (o *Bill) GetAccountingPeriod() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -501,85 +502,85 @@ func (o *Bill) GetAttachments() []*LinkedAttachment {
 
 type BillInput struct {
 	// Id to be displayed.
-	DisplayID *string `json:"display_id,omitempty"`
+	DisplayID optionalnullable.OptionalNullable[string] `json:"display_id,omitempty"`
 	// Reference to supplier bill number
-	BillNumber *string `json:"bill_number,omitempty"`
+	BillNumber optionalnullable.OptionalNullable[string] `json:"bill_number,omitempty"`
 	// The supplier this entity is linked to.
-	Supplier *LinkedSupplierInput `json:"supplier,omitempty"`
+	Supplier optionalnullable.OptionalNullable[LinkedSupplierInput] `json:"supplier,omitempty"`
 	// The company ID the transaction belongs to
-	CompanyID *string `json:"company_id,omitempty"`
+	CompanyID optionalnullable.OptionalNullable[string] `json:"company_id,omitempty"`
 	// The ID of the location
-	LocationID *string `json:"location_id,omitempty"`
+	LocationID optionalnullable.OptionalNullable[string] `json:"location_id,omitempty"`
 	// The ID of the department
-	DepartmentID *string `json:"department_id,omitempty"`
+	DepartmentID optionalnullable.OptionalNullable[string] `json:"department_id,omitempty"`
 	// Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
-	Currency *Currency `json:"currency,omitempty"`
+	Currency optionalnullable.OptionalNullable[Currency] `json:"currency,omitempty"`
 	// Currency Exchange Rate at the time entity was recorded/generated.
-	CurrencyRate *float64 `json:"currency_rate,omitempty"`
+	CurrencyRate optionalnullable.OptionalNullable[float64] `json:"currency_rate,omitempty"`
 	// Amounts are including tax
-	TaxInclusive *bool `json:"tax_inclusive,omitempty"`
+	TaxInclusive optionalnullable.OptionalNullable[bool] `json:"tax_inclusive,omitempty"`
 	// Date bill was issued - YYYY-MM-DD.
-	BillDate *types.Date `json:"bill_date,omitempty"`
+	BillDate optionalnullable.OptionalNullable[types.Date] `json:"bill_date,omitempty"`
 	// The due date is the date on which a payment is scheduled to be received - YYYY-MM-DD.
-	DueDate *types.Date `json:"due_date,omitempty"`
+	DueDate optionalnullable.OptionalNullable[types.Date] `json:"due_date,omitempty"`
 	// The paid date is the date on which a payment was sent to the supplier - YYYY-MM-DD.
-	PaidDate *types.Date `json:"paid_date,omitempty"`
+	PaidDate optionalnullable.OptionalNullable[types.Date] `json:"paid_date,omitempty"`
 	// A PO Number uniquely identifies a purchase order and is generally defined by the buyer. The buyer will match the PO number in the invoice to the Purchase Order.
-	PoNumber *string `json:"po_number,omitempty"`
+	PoNumber optionalnullable.OptionalNullable[string] `json:"po_number,omitempty"`
 	// Optional reference identifier for the transaction.
-	Reference *string             `json:"reference,omitempty"`
-	LineItems []BillLineItemInput `json:"line_items,omitempty"`
+	Reference optionalnullable.OptionalNullable[string] `json:"reference,omitempty"`
+	LineItems []BillLineItemInput                       `json:"line_items,omitempty"`
 	// Terms of payment.
-	Terms *string `json:"terms,omitempty"`
+	Terms optionalnullable.OptionalNullable[string] `json:"terms,omitempty"`
 	// Balance of bill due.
-	Balance *float64 `json:"balance,omitempty"`
+	Balance optionalnullable.OptionalNullable[float64] `json:"balance,omitempty"`
 	// Amount of deposit made to this bill.
-	Deposit *float64 `json:"deposit,omitempty"`
+	Deposit optionalnullable.OptionalNullable[float64] `json:"deposit,omitempty"`
 	// Subtotal amount, normally before tax.
-	SubTotal *float64 `json:"sub_total,omitempty"`
+	SubTotal optionalnullable.OptionalNullable[float64] `json:"sub_total,omitempty"`
 	// Total tax amount applied to this transaction.
-	TotalTax *float64 `json:"total_tax,omitempty"`
+	TotalTax optionalnullable.OptionalNullable[float64] `json:"total_tax,omitempty"`
 	// Total amount of bill, including tax.
-	Total *float64 `json:"total,omitempty"`
+	Total optionalnullable.OptionalNullable[float64] `json:"total,omitempty"`
 	// Applicable tax id/code override if tax is not supplied on a line item basis.
-	TaxCode *string `json:"tax_code,omitempty"`
-	Notes   *string `json:"notes,omitempty"`
+	TaxCode optionalnullable.OptionalNullable[string] `json:"tax_code,omitempty"`
+	Notes   optionalnullable.OptionalNullable[string] `json:"notes,omitempty"`
 	// Invoice status
-	Status        *BillStatus          `json:"status,omitempty"`
-	LedgerAccount *LinkedLedgerAccount `json:"ledger_account,omitempty"`
+	Status        optionalnullable.OptionalNullable[BillStatus]          `json:"status,omitempty"`
+	LedgerAccount optionalnullable.OptionalNullable[LinkedLedgerAccount] `json:"ledger_account,omitempty"`
 	// Payment method used for the transaction, such as cash, credit card, bank transfer, or check
-	PaymentMethod *string `json:"payment_method,omitempty"`
+	PaymentMethod optionalnullable.OptionalNullable[string] `json:"payment_method,omitempty"`
 	// The channel through which the transaction is processed.
-	Channel *string `json:"channel,omitempty"`
+	Channel optionalnullable.OptionalNullable[string] `json:"channel,omitempty"`
 	// language code according to ISO 639-1. For the United States - EN
-	Language *string `json:"language,omitempty"`
+	Language optionalnullable.OptionalNullable[string] `json:"language,omitempty"`
 	// Indicates if accounting by row is used (true) or not (false). Accounting by row means that a separate ledger transaction is created for each row.
-	AccountingByRow *bool        `json:"accounting_by_row,omitempty"`
-	BankAccount     *BankAccount `json:"bank_account,omitempty"`
+	AccountingByRow optionalnullable.OptionalNullable[bool] `json:"accounting_by_row,omitempty"`
+	BankAccount     *BankAccount                            `json:"bank_account,omitempty"`
 	// Discount percentage applied to this transaction.
-	DiscountPercentage *float64 `json:"discount_percentage,omitempty"`
+	DiscountPercentage optionalnullable.OptionalNullable[float64] `json:"discount_percentage,omitempty"`
 	// Optional bill template
-	TemplateID *string `json:"template_id,omitempty"`
+	TemplateID optionalnullable.OptionalNullable[string] `json:"template_id,omitempty"`
 	// The user who approved the bill
-	ApprovedBy *string `json:"approved_by,omitempty"`
+	ApprovedBy optionalnullable.OptionalNullable[string] `json:"approved_by,omitempty"`
 	// Type of amortization
-	AmortizationType *BillAmortizationType `json:"amortization_type,omitempty"`
+	AmortizationType optionalnullable.OptionalNullable[BillAmortizationType] `json:"amortization_type,omitempty"`
 	// Method of tax calculation
-	TaxMethod *string `json:"tax_method,omitempty"`
+	TaxMethod optionalnullable.OptionalNullable[string] `json:"tax_method,omitempty"`
 	// Whether the document has been received
-	DocumentReceived *bool `json:"document_received,omitempty"`
+	DocumentReceived optionalnullable.OptionalNullable[bool] `json:"document_received,omitempty"`
 	// URL link to a source document - shown as 'Go to [appName]' in the downstream app. Currently only supported for Xero.
-	SourceDocumentURL *string `json:"source_document_url,omitempty"`
+	SourceDocumentURL optionalnullable.OptionalNullable[string] `json:"source_document_url,omitempty"`
 	// A list of linked tracking categories.
-	TrackingCategories []*LinkedTrackingCategory `json:"tracking_categories,omitempty"`
+	TrackingCategories optionalnullable.OptionalNullable[[]*LinkedTrackingCategory] `json:"tracking_categories,omitempty"`
 	// A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
-	RowVersion   *string            `json:"row_version,omitempty"`
-	CustomFields []CustomFieldUnion `json:"custom_fields,omitempty"`
+	RowVersion   optionalnullable.OptionalNullable[string] `json:"row_version,omitempty"`
+	CustomFields []CustomFieldUnion                        `json:"custom_fields,omitempty"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
 	PassThrough []PassThroughBody `json:"pass_through,omitempty"`
 	// Accounting period
-	AccountingPeriod *string             `json:"accounting_period,omitempty"`
-	Attachments      []*LinkedAttachment `json:"attachments,omitempty"`
+	AccountingPeriod optionalnullable.OptionalNullable[string] `json:"accounting_period,omitempty"`
+	Attachments      []*LinkedAttachment                       `json:"attachments,omitempty"`
 }
 
 func (b BillInput) MarshalJSON() ([]byte, error) {
@@ -593,98 +594,98 @@ func (b *BillInput) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *BillInput) GetDisplayID() *string {
+func (o *BillInput) GetDisplayID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.DisplayID
 }
 
-func (o *BillInput) GetBillNumber() *string {
+func (o *BillInput) GetBillNumber() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.BillNumber
 }
 
-func (o *BillInput) GetSupplier() *LinkedSupplierInput {
+func (o *BillInput) GetSupplier() optionalnullable.OptionalNullable[LinkedSupplierInput] {
 	if o == nil {
 		return nil
 	}
 	return o.Supplier
 }
 
-func (o *BillInput) GetCompanyID() *string {
+func (o *BillInput) GetCompanyID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.CompanyID
 }
 
-func (o *BillInput) GetLocationID() *string {
+func (o *BillInput) GetLocationID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.LocationID
 }
 
-func (o *BillInput) GetDepartmentID() *string {
+func (o *BillInput) GetDepartmentID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.DepartmentID
 }
 
-func (o *BillInput) GetCurrency() *Currency {
+func (o *BillInput) GetCurrency() optionalnullable.OptionalNullable[Currency] {
 	if o == nil {
 		return nil
 	}
 	return o.Currency
 }
 
-func (o *BillInput) GetCurrencyRate() *float64 {
+func (o *BillInput) GetCurrencyRate() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}
 	return o.CurrencyRate
 }
 
-func (o *BillInput) GetTaxInclusive() *bool {
+func (o *BillInput) GetTaxInclusive() optionalnullable.OptionalNullable[bool] {
 	if o == nil {
 		return nil
 	}
 	return o.TaxInclusive
 }
 
-func (o *BillInput) GetBillDate() *types.Date {
+func (o *BillInput) GetBillDate() optionalnullable.OptionalNullable[types.Date] {
 	if o == nil {
 		return nil
 	}
 	return o.BillDate
 }
 
-func (o *BillInput) GetDueDate() *types.Date {
+func (o *BillInput) GetDueDate() optionalnullable.OptionalNullable[types.Date] {
 	if o == nil {
 		return nil
 	}
 	return o.DueDate
 }
 
-func (o *BillInput) GetPaidDate() *types.Date {
+func (o *BillInput) GetPaidDate() optionalnullable.OptionalNullable[types.Date] {
 	if o == nil {
 		return nil
 	}
 	return o.PaidDate
 }
 
-func (o *BillInput) GetPoNumber() *string {
+func (o *BillInput) GetPoNumber() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.PoNumber
 }
 
-func (o *BillInput) GetReference() *string {
+func (o *BillInput) GetReference() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -698,98 +699,98 @@ func (o *BillInput) GetLineItems() []BillLineItemInput {
 	return o.LineItems
 }
 
-func (o *BillInput) GetTerms() *string {
+func (o *BillInput) GetTerms() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Terms
 }
 
-func (o *BillInput) GetBalance() *float64 {
+func (o *BillInput) GetBalance() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}
 	return o.Balance
 }
 
-func (o *BillInput) GetDeposit() *float64 {
+func (o *BillInput) GetDeposit() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}
 	return o.Deposit
 }
 
-func (o *BillInput) GetSubTotal() *float64 {
+func (o *BillInput) GetSubTotal() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}
 	return o.SubTotal
 }
 
-func (o *BillInput) GetTotalTax() *float64 {
+func (o *BillInput) GetTotalTax() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}
 	return o.TotalTax
 }
 
-func (o *BillInput) GetTotal() *float64 {
+func (o *BillInput) GetTotal() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}
 	return o.Total
 }
 
-func (o *BillInput) GetTaxCode() *string {
+func (o *BillInput) GetTaxCode() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.TaxCode
 }
 
-func (o *BillInput) GetNotes() *string {
+func (o *BillInput) GetNotes() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Notes
 }
 
-func (o *BillInput) GetStatus() *BillStatus {
+func (o *BillInput) GetStatus() optionalnullable.OptionalNullable[BillStatus] {
 	if o == nil {
 		return nil
 	}
 	return o.Status
 }
 
-func (o *BillInput) GetLedgerAccount() *LinkedLedgerAccount {
+func (o *BillInput) GetLedgerAccount() optionalnullable.OptionalNullable[LinkedLedgerAccount] {
 	if o == nil {
 		return nil
 	}
 	return o.LedgerAccount
 }
 
-func (o *BillInput) GetPaymentMethod() *string {
+func (o *BillInput) GetPaymentMethod() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.PaymentMethod
 }
 
-func (o *BillInput) GetChannel() *string {
+func (o *BillInput) GetChannel() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Channel
 }
 
-func (o *BillInput) GetLanguage() *string {
+func (o *BillInput) GetLanguage() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Language
 }
 
-func (o *BillInput) GetAccountingByRow() *bool {
+func (o *BillInput) GetAccountingByRow() optionalnullable.OptionalNullable[bool] {
 	if o == nil {
 		return nil
 	}
@@ -803,63 +804,63 @@ func (o *BillInput) GetBankAccount() *BankAccount {
 	return o.BankAccount
 }
 
-func (o *BillInput) GetDiscountPercentage() *float64 {
+func (o *BillInput) GetDiscountPercentage() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}
 	return o.DiscountPercentage
 }
 
-func (o *BillInput) GetTemplateID() *string {
+func (o *BillInput) GetTemplateID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.TemplateID
 }
 
-func (o *BillInput) GetApprovedBy() *string {
+func (o *BillInput) GetApprovedBy() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.ApprovedBy
 }
 
-func (o *BillInput) GetAmortizationType() *BillAmortizationType {
+func (o *BillInput) GetAmortizationType() optionalnullable.OptionalNullable[BillAmortizationType] {
 	if o == nil {
 		return nil
 	}
 	return o.AmortizationType
 }
 
-func (o *BillInput) GetTaxMethod() *string {
+func (o *BillInput) GetTaxMethod() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.TaxMethod
 }
 
-func (o *BillInput) GetDocumentReceived() *bool {
+func (o *BillInput) GetDocumentReceived() optionalnullable.OptionalNullable[bool] {
 	if o == nil {
 		return nil
 	}
 	return o.DocumentReceived
 }
 
-func (o *BillInput) GetSourceDocumentURL() *string {
+func (o *BillInput) GetSourceDocumentURL() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.SourceDocumentURL
 }
 
-func (o *BillInput) GetTrackingCategories() []*LinkedTrackingCategory {
+func (o *BillInput) GetTrackingCategories() optionalnullable.OptionalNullable[[]*LinkedTrackingCategory] {
 	if o == nil {
 		return nil
 	}
 	return o.TrackingCategories
 }
 
-func (o *BillInput) GetRowVersion() *string {
+func (o *BillInput) GetRowVersion() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -880,7 +881,7 @@ func (o *BillInput) GetPassThrough() []PassThroughBody {
 	return o.PassThrough
 }
 
-func (o *BillInput) GetAccountingPeriod() *string {
+func (o *BillInput) GetAccountingPeriod() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}

@@ -8,6 +8,7 @@ import (
 	"mockserver/internal/handler/assert"
 	"mockserver/internal/logging"
 	"mockserver/internal/sdk/models/components"
+	"mockserver/internal/sdk/optionalnullable"
 	"mockserver/internal/sdk/types"
 	"mockserver/internal/sdk/utils"
 	"mockserver/internal/tracking"
@@ -55,36 +56,36 @@ func testCrmPipelinesOneCrmPipelinesOne0(w http.ResponseWriter, req *http.Reques
 		Data: components.Pipeline{
 			ID:                    types.String("default"),
 			Name:                  "Sales Pipeline",
-			Currency:              components.CurrencyUsd.ToPointer(),
+			Currency:              optionalnullable.From(components.CurrencyUsd.ToPointer()),
 			Archived:              types.Bool(false),
 			Active:                types.Bool(false),
-			DisplayOrder:          types.Int64(1),
+			DisplayOrder:          optionalnullable.From(types.Int64(1)),
 			WinProbabilityEnabled: types.Bool(true),
 			Stages: []components.PipelineStage{
 				components.PipelineStage{
-					ID:             types.String("contractsent"),
-					Name:           types.String("Contract Sent"),
-					Value:          types.String("CONTRACT_SENT"),
-					WinProbability: types.Int64(50),
-					DisplayOrder:   types.Int64(1),
+					ID:             optionalnullable.From(types.String("contractsent")),
+					Name:           optionalnullable.From(types.String("Contract Sent")),
+					Value:          optionalnullable.From(types.String("CONTRACT_SENT")),
+					WinProbability: optionalnullable.From(types.Int64(50)),
+					DisplayOrder:   optionalnullable.From(types.Int64(1)),
 				},
 				components.PipelineStage{
-					ID:             types.String("contractsent"),
-					Name:           types.String("Contract Sent"),
-					Value:          types.String("CONTRACT_SENT"),
-					WinProbability: types.Int64(50),
-					DisplayOrder:   types.Int64(1),
+					ID:             optionalnullable.From(types.String("contractsent")),
+					Name:           optionalnullable.From(types.String("Contract Sent")),
+					Value:          optionalnullable.From(types.String("CONTRACT_SENT")),
+					WinProbability: optionalnullable.From(types.Int64(50)),
+					DisplayOrder:   optionalnullable.From(types.Int64(1)),
 				},
 				components.PipelineStage{
-					ID:             types.String("contractsent"),
-					Name:           types.String("Contract Sent"),
-					Value:          types.String("CONTRACT_SENT"),
-					WinProbability: types.Int64(50),
-					DisplayOrder:   types.Int64(1),
+					ID:             optionalnullable.From(types.String("contractsent")),
+					Name:           optionalnullable.From(types.String("Contract Sent")),
+					Value:          optionalnullable.From(types.String("CONTRACT_SENT")),
+					WinProbability: optionalnullable.From(types.Int64(50)),
+					DisplayOrder:   optionalnullable.From(types.Int64(1)),
 				},
 			},
-			UpdatedAt: types.MustNewTimeFromString("2020-09-30T07:43:32.000Z"),
-			CreatedAt: types.MustNewTimeFromString("2020-09-30T07:43:32.000Z"),
+			UpdatedAt: optionalnullable.From(types.MustNewTimeFromString("2020-09-30T07:43:32.000Z")),
+			CreatedAt: optionalnullable.From(types.MustNewTimeFromString("2020-09-30T07:43:32.000Z")),
 			PassThrough: []components.PassThroughBody{
 				components.PassThroughBody{
 					ServiceID: "<id>",

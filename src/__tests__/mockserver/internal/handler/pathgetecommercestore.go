@@ -8,6 +8,7 @@ import (
 	"mockserver/internal/handler/assert"
 	"mockserver/internal/logging"
 	"mockserver/internal/sdk/models/components"
+	"mockserver/internal/sdk/optionalnullable"
 	"mockserver/internal/sdk/types"
 	"mockserver/internal/sdk/utils"
 	"mockserver/internal/tracking"
@@ -54,11 +55,11 @@ func testEcommerceStoresOneEcommerceStoresOne0(w http.ResponseWriter, req *http.
 		Operation:  "one",
 		Data: components.EcommerceStore{
 			ID:        "12345",
-			Name:      types.String("My Store"),
-			StoreURL:  types.String("https://mybrand.com/shop"),
-			AdminURL:  types.String("https://mybrand.com/admin"),
-			CreatedAt: types.MustNewTimeFromString("2020-09-30T07:43:32.000Z"),
-			UpdatedAt: types.MustNewTimeFromString("2020-09-30T07:43:32.000Z"),
+			Name:      optionalnullable.From(types.String("My Store")),
+			StoreURL:  optionalnullable.From(types.String("https://mybrand.com/shop")),
+			AdminURL:  optionalnullable.From(types.String("https://mybrand.com/admin")),
+			CreatedAt: optionalnullable.From(types.MustNewTimeFromString("2020-09-30T07:43:32.000Z")),
+			UpdatedAt: optionalnullable.From(types.MustNewTimeFromString("2020-09-30T07:43:32.000Z")),
 		},
 	}
 	respBodyBytes, err := utils.MarshalJSON(respBody, "", true)

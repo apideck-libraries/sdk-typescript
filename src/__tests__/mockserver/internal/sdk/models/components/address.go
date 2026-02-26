@@ -2,6 +2,10 @@
 
 package components
 
+import (
+	"mockserver/internal/sdk/optionalnullable"
+)
+
 // AddressType - The type of address.
 type AddressType string
 
@@ -22,226 +26,226 @@ func (e AddressType) ToPointer() *AddressType {
 
 type Address struct {
 	// Unique identifier for the address.
-	ID *string `json:"id,omitempty"`
+	ID optionalnullable.OptionalNullable[string] `json:"id,omitempty"`
 	// The type of address.
-	Type *AddressType `json:"type,omitempty"`
+	Type optionalnullable.OptionalNullable[AddressType] `json:"type,omitempty"`
 	// The address string. Some APIs don't provide structured address data.
-	String *string `json:"string,omitempty"`
+	String optionalnullable.OptionalNullable[string] `json:"string,omitempty"`
 	// The name of the address.
-	Name *string `json:"name,omitempty"`
+	Name optionalnullable.OptionalNullable[string] `json:"name,omitempty"`
 	// Line 1 of the address e.g. number, street, suite, apt #, etc.
-	Line1 *string `json:"line1,omitempty"`
+	Line1 optionalnullable.OptionalNullable[string] `json:"line1,omitempty"`
 	// Line 2 of the address
-	Line2 *string `json:"line2,omitempty"`
+	Line2 optionalnullable.OptionalNullable[string] `json:"line2,omitempty"`
 	// Line 3 of the address
-	Line3 *string `json:"line3,omitempty"`
+	Line3 optionalnullable.OptionalNullable[string] `json:"line3,omitempty"`
 	// Line 4 of the address
-	Line4 *string `json:"line4,omitempty"`
+	Line4 optionalnullable.OptionalNullable[string] `json:"line4,omitempty"`
 	// Line 5 of the address
-	Line5 *string `json:"line5,omitempty"`
+	Line5 optionalnullable.OptionalNullable[string] `json:"line5,omitempty"`
 	// Street number
-	StreetNumber *string `json:"street_number,omitempty"`
+	StreetNumber optionalnullable.OptionalNullable[string] `json:"street_number,omitempty"`
 	// Name of city.
-	City *string `json:"city,omitempty"`
+	City optionalnullable.OptionalNullable[string] `json:"city,omitempty"`
 	// Name of state
-	State *string `json:"state,omitempty"`
+	State optionalnullable.OptionalNullable[string] `json:"state,omitempty"`
 	// Zip code or equivalent.
-	PostalCode *string `json:"postal_code,omitempty"`
+	PostalCode optionalnullable.OptionalNullable[string] `json:"postal_code,omitempty"`
 	// country code according to ISO 3166-1 alpha-2.
-	Country *string `json:"country,omitempty"`
+	Country optionalnullable.OptionalNullable[string] `json:"country,omitempty"`
 	// Latitude of the address
-	Latitude *string `json:"latitude,omitempty"`
+	Latitude optionalnullable.OptionalNullable[string] `json:"latitude,omitempty"`
 	// Longitude of the address
-	Longitude *string `json:"longitude,omitempty"`
+	Longitude optionalnullable.OptionalNullable[string] `json:"longitude,omitempty"`
 	// Address field that holds a sublocality, such as a county
-	County *string `json:"county,omitempty"`
+	County optionalnullable.OptionalNullable[string] `json:"county,omitempty"`
 	// Name of the contact person at the address
-	ContactName *string `json:"contact_name,omitempty"`
+	ContactName optionalnullable.OptionalNullable[string] `json:"contact_name,omitempty"`
 	// Salutation of the contact person at the address
-	Salutation *string `json:"salutation,omitempty"`
+	Salutation optionalnullable.OptionalNullable[string] `json:"salutation,omitempty"`
 	// Phone number of the address
-	PhoneNumber *string `json:"phone_number,omitempty"`
+	PhoneNumber optionalnullable.OptionalNullable[string] `json:"phone_number,omitempty"`
 	// Fax number of the address
-	Fax *string `json:"fax,omitempty"`
+	Fax optionalnullable.OptionalNullable[string] `json:"fax,omitempty"`
 	// Email address of the address
-	Email *string `json:"email,omitempty"`
+	Email optionalnullable.OptionalNullable[string] `json:"email,omitempty"`
 	// Website of the address
-	Website *string `json:"website,omitempty"`
+	Website optionalnullable.OptionalNullable[string] `json:"website,omitempty"`
 	// Additional notes
-	Notes *string `json:"notes,omitempty"`
+	Notes optionalnullable.OptionalNullable[string] `json:"notes,omitempty"`
 	// A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
-	RowVersion *string `json:"row_version,omitempty"`
+	RowVersion optionalnullable.OptionalNullable[string] `json:"row_version,omitempty"`
 }
 
-func (o *Address) GetID() *string {
+func (o *Address) GetID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *Address) GetType() *AddressType {
+func (o *Address) GetType() optionalnullable.OptionalNullable[AddressType] {
 	if o == nil {
 		return nil
 	}
 	return o.Type
 }
 
-func (o *Address) GetString() *string {
+func (o *Address) GetString() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.String
 }
 
-func (o *Address) GetName() *string {
+func (o *Address) GetName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-func (o *Address) GetLine1() *string {
+func (o *Address) GetLine1() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Line1
 }
 
-func (o *Address) GetLine2() *string {
+func (o *Address) GetLine2() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Line2
 }
 
-func (o *Address) GetLine3() *string {
+func (o *Address) GetLine3() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Line3
 }
 
-func (o *Address) GetLine4() *string {
+func (o *Address) GetLine4() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Line4
 }
 
-func (o *Address) GetLine5() *string {
+func (o *Address) GetLine5() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Line5
 }
 
-func (o *Address) GetStreetNumber() *string {
+func (o *Address) GetStreetNumber() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.StreetNumber
 }
 
-func (o *Address) GetCity() *string {
+func (o *Address) GetCity() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.City
 }
 
-func (o *Address) GetState() *string {
+func (o *Address) GetState() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.State
 }
 
-func (o *Address) GetPostalCode() *string {
+func (o *Address) GetPostalCode() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.PostalCode
 }
 
-func (o *Address) GetCountry() *string {
+func (o *Address) GetCountry() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Country
 }
 
-func (o *Address) GetLatitude() *string {
+func (o *Address) GetLatitude() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Latitude
 }
 
-func (o *Address) GetLongitude() *string {
+func (o *Address) GetLongitude() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Longitude
 }
 
-func (o *Address) GetCounty() *string {
+func (o *Address) GetCounty() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.County
 }
 
-func (o *Address) GetContactName() *string {
+func (o *Address) GetContactName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.ContactName
 }
 
-func (o *Address) GetSalutation() *string {
+func (o *Address) GetSalutation() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Salutation
 }
 
-func (o *Address) GetPhoneNumber() *string {
+func (o *Address) GetPhoneNumber() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.PhoneNumber
 }
 
-func (o *Address) GetFax() *string {
+func (o *Address) GetFax() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Fax
 }
 
-func (o *Address) GetEmail() *string {
+func (o *Address) GetEmail() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Email
 }
 
-func (o *Address) GetWebsite() *string {
+func (o *Address) GetWebsite() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Website
 }
 
-func (o *Address) GetNotes() *string {
+func (o *Address) GetNotes() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Notes
 }
 
-func (o *Address) GetRowVersion() *string {
+func (o *Address) GetRowVersion() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}

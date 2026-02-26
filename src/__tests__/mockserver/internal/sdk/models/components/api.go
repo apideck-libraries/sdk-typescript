@@ -2,6 +2,10 @@
 
 package components
 
+import (
+	"mockserver/internal/sdk/optionalnullable"
+)
+
 // APIType - Indicates whether the API is a Unified API. If unified_api is false, the API is a Platform API.
 type APIType string
 
@@ -61,7 +65,7 @@ type API struct {
 	// Name of the API.
 	Name *string `json:"name,omitempty"`
 	// Description of the API.
-	Description *string `json:"description,omitempty"`
+	Description optionalnullable.OptionalNullable[string] `json:"description,omitempty"`
 	// Status of the API. APIs with status live or beta are callable.
 	Status *APIStatus `json:"status,omitempty"`
 	// Link to the latest OpenAPI specification of the API.
@@ -69,7 +73,7 @@ type API struct {
 	// Link to the API reference of the API.
 	APIReferenceURL *string `json:"api_reference_url,omitempty"`
 	// ID of the Postman collection of the API.
-	PostmanCollectionID *string `json:"postman_collection_id,omitempty"`
+	PostmanCollectionID optionalnullable.OptionalNullable[string] `json:"postman_collection_id,omitempty"`
 	// List of categories the API belongs to.
 	Categories []string `json:"categories,omitempty"`
 	// List of resources supported in this API.
@@ -99,7 +103,7 @@ func (o *API) GetName() *string {
 	return o.Name
 }
 
-func (o *API) GetDescription() *string {
+func (o *API) GetDescription() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -127,7 +131,7 @@ func (o *API) GetAPIReferenceURL() *string {
 	return o.APIReferenceURL
 }
 
-func (o *API) GetPostmanCollectionID() *string {
+func (o *API) GetPostmanCollectionID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}

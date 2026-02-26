@@ -2,6 +2,10 @@
 
 package components
 
+import (
+	"mockserver/internal/sdk/optionalnullable"
+)
+
 // FlsaStatus - The FLSA status for this compensation.
 type FlsaStatus string
 
@@ -19,73 +23,73 @@ func (e FlsaStatus) ToPointer() *FlsaStatus {
 
 type EmployeeCompensation struct {
 	// A unique identifier for an object.
-	ID *string `json:"id,omitempty"`
+	ID optionalnullable.OptionalNullable[string] `json:"id,omitempty"`
 	// The ID of the job to which the compensation belongs.
-	JobID *string `json:"job_id,omitempty"`
+	JobID optionalnullable.OptionalNullable[string] `json:"job_id,omitempty"`
 	// The amount paid per payment unit.
-	Rate *float64 `json:"rate,omitempty"`
+	Rate optionalnullable.OptionalNullable[float64] `json:"rate,omitempty"`
 	// Unit of measurement for employee compensation.
-	PaymentUnit *PaymentUnit `json:"payment_unit,omitempty"`
+	PaymentUnit optionalnullable.OptionalNullable[PaymentUnit] `json:"payment_unit,omitempty"`
 	// Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
-	Currency *Currency `json:"currency,omitempty"`
+	Currency optionalnullable.OptionalNullable[Currency] `json:"currency,omitempty"`
 	// The FLSA status for this compensation.
-	FlsaStatus *FlsaStatus `json:"flsa_status,omitempty"`
+	FlsaStatus optionalnullable.OptionalNullable[FlsaStatus] `json:"flsa_status,omitempty"`
 	// The date on which a change to an employee's compensation takes effect.
-	EffectiveDate *string `json:"effective_date,omitempty"`
+	EffectiveDate optionalnullable.OptionalNullable[string] `json:"effective_date,omitempty"`
 	// Frequency of employee compensation.
-	PaymentFrequency *PaymentFrequency `json:"payment_frequency,omitempty"`
+	PaymentFrequency optionalnullable.OptionalNullable[PaymentFrequency] `json:"payment_frequency,omitempty"`
 }
 
-func (o *EmployeeCompensation) GetID() *string {
+func (o *EmployeeCompensation) GetID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *EmployeeCompensation) GetJobID() *string {
+func (o *EmployeeCompensation) GetJobID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.JobID
 }
 
-func (o *EmployeeCompensation) GetRate() *float64 {
+func (o *EmployeeCompensation) GetRate() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}
 	return o.Rate
 }
 
-func (o *EmployeeCompensation) GetPaymentUnit() *PaymentUnit {
+func (o *EmployeeCompensation) GetPaymentUnit() optionalnullable.OptionalNullable[PaymentUnit] {
 	if o == nil {
 		return nil
 	}
 	return o.PaymentUnit
 }
 
-func (o *EmployeeCompensation) GetCurrency() *Currency {
+func (o *EmployeeCompensation) GetCurrency() optionalnullable.OptionalNullable[Currency] {
 	if o == nil {
 		return nil
 	}
 	return o.Currency
 }
 
-func (o *EmployeeCompensation) GetFlsaStatus() *FlsaStatus {
+func (o *EmployeeCompensation) GetFlsaStatus() optionalnullable.OptionalNullable[FlsaStatus] {
 	if o == nil {
 		return nil
 	}
 	return o.FlsaStatus
 }
 
-func (o *EmployeeCompensation) GetEffectiveDate() *string {
+func (o *EmployeeCompensation) GetEffectiveDate() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.EffectiveDate
 }
 
-func (o *EmployeeCompensation) GetPaymentFrequency() *PaymentFrequency {
+func (o *EmployeeCompensation) GetPaymentFrequency() optionalnullable.OptionalNullable[PaymentFrequency] {
 	if o == nil {
 		return nil
 	}
@@ -94,55 +98,55 @@ func (o *EmployeeCompensation) GetPaymentFrequency() *PaymentFrequency {
 
 type EmployeeCompensationInput struct {
 	// The amount paid per payment unit.
-	Rate *float64 `json:"rate,omitempty"`
+	Rate optionalnullable.OptionalNullable[float64] `json:"rate,omitempty"`
 	// Unit of measurement for employee compensation.
-	PaymentUnit *PaymentUnit `json:"payment_unit,omitempty"`
+	PaymentUnit optionalnullable.OptionalNullable[PaymentUnit] `json:"payment_unit,omitempty"`
 	// Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
-	Currency *Currency `json:"currency,omitempty"`
+	Currency optionalnullable.OptionalNullable[Currency] `json:"currency,omitempty"`
 	// The FLSA status for this compensation.
-	FlsaStatus *FlsaStatus `json:"flsa_status,omitempty"`
+	FlsaStatus optionalnullable.OptionalNullable[FlsaStatus] `json:"flsa_status,omitempty"`
 	// The date on which a change to an employee's compensation takes effect.
-	EffectiveDate *string `json:"effective_date,omitempty"`
+	EffectiveDate optionalnullable.OptionalNullable[string] `json:"effective_date,omitempty"`
 	// Frequency of employee compensation.
-	PaymentFrequency *PaymentFrequency `json:"payment_frequency,omitempty"`
+	PaymentFrequency optionalnullable.OptionalNullable[PaymentFrequency] `json:"payment_frequency,omitempty"`
 }
 
-func (o *EmployeeCompensationInput) GetRate() *float64 {
+func (o *EmployeeCompensationInput) GetRate() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}
 	return o.Rate
 }
 
-func (o *EmployeeCompensationInput) GetPaymentUnit() *PaymentUnit {
+func (o *EmployeeCompensationInput) GetPaymentUnit() optionalnullable.OptionalNullable[PaymentUnit] {
 	if o == nil {
 		return nil
 	}
 	return o.PaymentUnit
 }
 
-func (o *EmployeeCompensationInput) GetCurrency() *Currency {
+func (o *EmployeeCompensationInput) GetCurrency() optionalnullable.OptionalNullable[Currency] {
 	if o == nil {
 		return nil
 	}
 	return o.Currency
 }
 
-func (o *EmployeeCompensationInput) GetFlsaStatus() *FlsaStatus {
+func (o *EmployeeCompensationInput) GetFlsaStatus() optionalnullable.OptionalNullable[FlsaStatus] {
 	if o == nil {
 		return nil
 	}
 	return o.FlsaStatus
 }
 
-func (o *EmployeeCompensationInput) GetEffectiveDate() *string {
+func (o *EmployeeCompensationInput) GetEffectiveDate() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.EffectiveDate
 }
 
-func (o *EmployeeCompensationInput) GetPaymentFrequency() *PaymentFrequency {
+func (o *EmployeeCompensationInput) GetPaymentFrequency() optionalnullable.OptionalNullable[PaymentFrequency] {
 	if o == nil {
 		return nil
 	}

@@ -2,6 +2,10 @@
 
 package components
 
+import (
+	"mockserver/internal/sdk/optionalnullable"
+)
+
 // GetSubsidiaryResponse - Subsidiary
 type GetSubsidiaryResponse struct {
 	// HTTP Response Status Code
@@ -16,7 +20,7 @@ type GetSubsidiaryResponse struct {
 	Operation string     `json:"operation"`
 	Data      Subsidiary `json:"data"`
 	// Raw response from the integration when raw=true query param is provided
-	Raw map[string]any `json:"_raw,omitempty"`
+	Raw optionalnullable.OptionalNullable[map[string]any] `json:"_raw,omitempty"`
 }
 
 func (o *GetSubsidiaryResponse) GetStatusCode() int64 {
@@ -61,7 +65,7 @@ func (o *GetSubsidiaryResponse) GetData() Subsidiary {
 	return o.Data
 }
 
-func (o *GetSubsidiaryResponse) GetRaw() map[string]any {
+func (o *GetSubsidiaryResponse) GetRaw() optionalnullable.OptionalNullable[map[string]any] {
 	if o == nil {
 		return nil
 	}

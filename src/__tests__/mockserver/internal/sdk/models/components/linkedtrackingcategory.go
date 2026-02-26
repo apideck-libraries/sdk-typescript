@@ -2,17 +2,21 @@
 
 package components
 
+import (
+	"mockserver/internal/sdk/optionalnullable"
+)
+
 type LinkedTrackingCategory struct {
 	// The unique identifier for the tracking category.
 	ID *string `json:"id,omitempty"`
 	// The code of the tracking category.
-	Code *string `json:"code,omitempty"`
+	Code optionalnullable.OptionalNullable[string] `json:"code,omitempty"`
 	// The name of the tracking category.
-	Name *string `json:"name,omitempty"`
+	Name optionalnullable.OptionalNullable[string] `json:"name,omitempty"`
 	// The unique identifier for the parent tracking category.
 	ParentID *string `json:"parent_id,omitempty"`
 	// The name of the parent tracking category.
-	ParentName *string `json:"parent_name,omitempty"`
+	ParentName optionalnullable.OptionalNullable[string] `json:"parent_name,omitempty"`
 }
 
 func (o *LinkedTrackingCategory) GetID() *string {
@@ -22,14 +26,14 @@ func (o *LinkedTrackingCategory) GetID() *string {
 	return o.ID
 }
 
-func (o *LinkedTrackingCategory) GetCode() *string {
+func (o *LinkedTrackingCategory) GetCode() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Code
 }
 
-func (o *LinkedTrackingCategory) GetName() *string {
+func (o *LinkedTrackingCategory) GetName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -43,7 +47,7 @@ func (o *LinkedTrackingCategory) GetParentID() *string {
 	return o.ParentID
 }
 
-func (o *LinkedTrackingCategory) GetParentName() *string {
+func (o *LinkedTrackingCategory) GetParentName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}

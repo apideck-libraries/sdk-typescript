@@ -2,6 +2,10 @@
 
 package components
 
+import (
+	"mockserver/internal/sdk/optionalnullable"
+)
+
 // CreateConnectionResponse - Connection created
 type CreateConnectionResponse struct {
 	// HTTP Response Status Code
@@ -10,7 +14,7 @@ type CreateConnectionResponse struct {
 	Status string     `json:"status"`
 	Data   Connection `json:"data"`
 	// Raw response from the integration when raw=true query param is provided
-	Raw map[string]any `json:"_raw,omitempty"`
+	Raw optionalnullable.OptionalNullable[map[string]any] `json:"_raw,omitempty"`
 }
 
 func (o *CreateConnectionResponse) GetStatusCode() int64 {
@@ -34,7 +38,7 @@ func (o *CreateConnectionResponse) GetData() Connection {
 	return o.Data
 }
 
-func (o *CreateConnectionResponse) GetRaw() map[string]any {
+func (o *CreateConnectionResponse) GetRaw() optionalnullable.OptionalNullable[map[string]any] {
 	if o == nil {
 		return nil
 	}

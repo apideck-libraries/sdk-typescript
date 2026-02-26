@@ -8,6 +8,7 @@ import (
 	"mockserver/internal/handler/assert"
 	"mockserver/internal/logging"
 	"mockserver/internal/sdk/models/components"
+	"mockserver/internal/sdk/optionalnullable"
 	"mockserver/internal/sdk/types"
 	"mockserver/internal/sdk/utils"
 	"mockserver/internal/tracking"
@@ -55,15 +56,15 @@ func testAccountingTrackingCategoriesAllAccountingTrackingCategoriesAll0(w http.
 		Data: []components.TrackingCategory{
 			components.TrackingCategory{
 				ID:         types.String("12345"),
-				ParentID:   types.String("12345"),
+				ParentID:   optionalnullable.From(types.String("12345")),
 				Name:       types.String("Department"),
-				Code:       types.String("100"),
+				Code:       optionalnullable.From(types.String("100")),
 				Status:     components.TrackingCategoryStatusActive.ToPointer(),
-				RowVersion: types.String("1-12345"),
-				UpdatedBy:  types.String("12345"),
-				CreatedBy:  types.String("12345"),
-				UpdatedAt:  types.MustNewTimeFromString("2020-09-30T07:43:32.000Z"),
-				CreatedAt:  types.MustNewTimeFromString("2020-09-30T07:43:32.000Z"),
+				RowVersion: optionalnullable.From(types.String("1-12345")),
+				UpdatedBy:  optionalnullable.From(types.String("12345")),
+				CreatedBy:  optionalnullable.From(types.String("12345")),
+				UpdatedAt:  optionalnullable.From(types.MustNewTimeFromString("2020-09-30T07:43:32.000Z")),
+				CreatedAt:  optionalnullable.From(types.MustNewTimeFromString("2020-09-30T07:43:32.000Z")),
 				PassThrough: []components.PassThroughBody{
 					components.PassThroughBody{
 						ServiceID: "<id>",
@@ -111,15 +112,15 @@ func testAccountingTrackingCategoriesAllAccountingTrackingCategoriesAll0(w http.
 			},
 			components.TrackingCategory{
 				ID:         types.String("12345"),
-				ParentID:   types.String("12345"),
+				ParentID:   optionalnullable.From(types.String("12345")),
 				Name:       types.String("Department"),
-				Code:       types.String("100"),
+				Code:       optionalnullable.From(types.String("100")),
 				Status:     components.TrackingCategoryStatusActive.ToPointer(),
-				RowVersion: types.String("1-12345"),
-				UpdatedBy:  types.String("12345"),
-				CreatedBy:  types.String("12345"),
-				UpdatedAt:  types.MustNewTimeFromString("2020-09-30T07:43:32.000Z"),
-				CreatedAt:  types.MustNewTimeFromString("2020-09-30T07:43:32.000Z"),
+				RowVersion: optionalnullable.From(types.String("1-12345")),
+				UpdatedBy:  optionalnullable.From(types.String("12345")),
+				CreatedBy:  optionalnullable.From(types.String("12345")),
+				UpdatedAt:  optionalnullable.From(types.MustNewTimeFromString("2020-09-30T07:43:32.000Z")),
+				CreatedAt:  optionalnullable.From(types.MustNewTimeFromString("2020-09-30T07:43:32.000Z")),
 				PassThrough: []components.PassThroughBody{
 					components.PassThroughBody{
 						ServiceID: "<id>",
@@ -138,15 +139,15 @@ func testAccountingTrackingCategoriesAllAccountingTrackingCategoriesAll0(w http.
 			},
 			components.TrackingCategory{
 				ID:         types.String("12345"),
-				ParentID:   types.String("12345"),
+				ParentID:   optionalnullable.From(types.String("12345")),
 				Name:       types.String("Department"),
-				Code:       types.String("100"),
+				Code:       optionalnullable.From(types.String("100")),
 				Status:     components.TrackingCategoryStatusActive.ToPointer(),
-				RowVersion: types.String("1-12345"),
-				UpdatedBy:  types.String("12345"),
-				CreatedBy:  types.String("12345"),
-				UpdatedAt:  types.MustNewTimeFromString("2020-09-30T07:43:32.000Z"),
-				CreatedAt:  types.MustNewTimeFromString("2020-09-30T07:43:32.000Z"),
+				RowVersion: optionalnullable.From(types.String("1-12345")),
+				UpdatedBy:  optionalnullable.From(types.String("12345")),
+				CreatedBy:  optionalnullable.From(types.String("12345")),
+				UpdatedAt:  optionalnullable.From(types.MustNewTimeFromString("2020-09-30T07:43:32.000Z")),
+				CreatedAt:  optionalnullable.From(types.MustNewTimeFromString("2020-09-30T07:43:32.000Z")),
 				PassThrough: []components.PassThroughBody{
 					components.PassThroughBody{
 						ServiceID: "<id>",
@@ -188,15 +189,15 @@ func testAccountingTrackingCategoriesAllAccountingTrackingCategoriesAll0(w http.
 		Meta: &components.Meta{
 			ItemsOnPage: types.Int64(50),
 			Cursors: &components.Cursors{
-				Previous: types.String("em9oby1jcm06OnBhZ2U6OjE="),
-				Current:  types.String("em9oby1jcm06OnBhZ2U6OjI="),
-				Next:     types.String("em9oby1jcm06OnBhZ2U6OjM="),
+				Previous: optionalnullable.From(types.String("em9oby1jcm06OnBhZ2U6OjE=")),
+				Current:  optionalnullable.From(types.String("em9oby1jcm06OnBhZ2U6OjI=")),
+				Next:     optionalnullable.From(types.String("em9oby1jcm06OnBhZ2U6OjM=")),
 			},
 		},
 		Links: &components.Links{
-			Previous: types.String("https://unify.apideck.com/crm/companies?cursor=em9oby1jcm06OnBhZ2U6OjE%3D"),
+			Previous: optionalnullable.From(types.String("https://unify.apideck.com/crm/companies?cursor=em9oby1jcm06OnBhZ2U6OjE%3D")),
 			Current:  types.String("https://unify.apideck.com/crm/companies"),
-			Next:     types.String("https://unify.apideck.com/crm/companies?cursor=em9oby1jcm06OnBhZ2U6OjM"),
+			Next:     optionalnullable.From(types.String("https://unify.apideck.com/crm/companies?cursor=em9oby1jcm06OnBhZ2U6OjM")),
 		},
 	}
 	respBodyBytes, err := utils.MarshalJSON(respBody, "", true)

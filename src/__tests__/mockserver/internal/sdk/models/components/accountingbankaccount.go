@@ -3,6 +3,7 @@
 package components
 
 import (
+	"mockserver/internal/sdk/optionalnullable"
 	"mockserver/internal/sdk/utils"
 	"time"
 )
@@ -41,55 +42,55 @@ type AccountingBankAccount struct {
 	// A unique identifier for an object.
 	ID string `json:"id"`
 	// The third-party API ID of original entity
-	DownstreamID *string `json:"downstream_id,omitempty"`
+	DownstreamID optionalnullable.OptionalNullable[string] `json:"downstream_id,omitempty"`
 	// Display ID for the bank account
-	DisplayID *string `json:"display_id,omitempty"`
+	DisplayID optionalnullable.OptionalNullable[string] `json:"display_id,omitempty"`
 	// The name of the bank account
-	Name *string `json:"name,omitempty"`
+	Name optionalnullable.OptionalNullable[string] `json:"name,omitempty"`
 	// The bank account number
-	AccountNumber *string `json:"account_number,omitempty"`
+	AccountNumber optionalnullable.OptionalNullable[string] `json:"account_number,omitempty"`
 	// The type of bank account
-	AccountType   *AccountingBankAccountAccountType `json:"account_type,omitempty"`
-	LedgerAccount *LinkedLedgerAccount              `json:"ledger_account,omitempty"`
+	AccountType   *AccountingBankAccountAccountType                      `json:"account_type,omitempty"`
+	LedgerAccount optionalnullable.OptionalNullable[LinkedLedgerAccount] `json:"ledger_account,omitempty"`
 	// The name of the bank or financial institution
-	BankName *string `json:"bank_name,omitempty"`
+	BankName optionalnullable.OptionalNullable[string] `json:"bank_name,omitempty"`
 	// Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
-	Currency *Currency `json:"currency,omitempty"`
+	Currency optionalnullable.OptionalNullable[Currency] `json:"currency,omitempty"`
 	// The current balance of the bank account
-	Balance *float64 `json:"balance,omitempty"`
+	Balance optionalnullable.OptionalNullable[float64] `json:"balance,omitempty"`
 	// The available balance (considering pending transactions and overdraft)
-	AvailableBalance *float64 `json:"available_balance,omitempty"`
+	AvailableBalance optionalnullable.OptionalNullable[float64] `json:"available_balance,omitempty"`
 	// The overdraft limit for the account
-	OverdraftLimit *float64 `json:"overdraft_limit,omitempty"`
+	OverdraftLimit optionalnullable.OptionalNullable[float64] `json:"overdraft_limit,omitempty"`
 	// Bank routing number (US)
-	RoutingNumber *string `json:"routing_number,omitempty"`
+	RoutingNumber optionalnullable.OptionalNullable[string] `json:"routing_number,omitempty"`
 	// International Bank Account Number
-	Iban *string `json:"iban,omitempty"`
+	Iban optionalnullable.OptionalNullable[string] `json:"iban,omitempty"`
 	// Bank Identifier Code / SWIFT Code
-	Bic *string `json:"bic,omitempty"`
+	Bic optionalnullable.OptionalNullable[string] `json:"bic,omitempty"`
 	// Bank State Branch number (Australia/New Zealand)
-	BsbNumber *string `json:"bsb_number,omitempty"`
+	BsbNumber optionalnullable.OptionalNullable[string] `json:"bsb_number,omitempty"`
 	// Bank branch identifier
-	BranchIdentifier *string `json:"branch_identifier,omitempty"`
+	BranchIdentifier optionalnullable.OptionalNullable[string] `json:"branch_identifier,omitempty"`
 	// Bank code assigned by central bank
-	BankCode *string `json:"bank_code,omitempty"`
+	BankCode optionalnullable.OptionalNullable[string] `json:"bank_code,omitempty"`
 	// Country code according to ISO 3166-1 alpha-2.
-	Country *string `json:"country,omitempty"`
+	Country optionalnullable.OptionalNullable[string] `json:"country,omitempty"`
 	// The status of the bank account
-	Status *AccountingBankAccountStatus `json:"status,omitempty"`
+	Status optionalnullable.OptionalNullable[AccountingBankAccountStatus] `json:"status,omitempty"`
 	// Description or notes about the bank account
-	Description  *string            `json:"description,omitempty"`
-	CustomFields []CustomFieldUnion `json:"custom_fields,omitempty"`
+	Description  optionalnullable.OptionalNullable[string] `json:"description,omitempty"`
+	CustomFields []CustomFieldUnion                        `json:"custom_fields,omitempty"`
 	// When custom mappings are configured on the resource, the result is included here.
-	CustomMappings map[string]any `json:"custom_mappings,omitempty"`
+	CustomMappings optionalnullable.OptionalNullable[map[string]any] `json:"custom_mappings,omitempty"`
 	// The date and time when the object was created.
-	CreatedAt *time.Time `json:"created_at,omitempty"`
+	CreatedAt optionalnullable.OptionalNullable[time.Time] `json:"created_at,omitempty"`
 	// The date and time when the object was last updated.
-	UpdatedAt *time.Time `json:"updated_at,omitempty"`
+	UpdatedAt optionalnullable.OptionalNullable[time.Time] `json:"updated_at,omitempty"`
 	// The user who created the object.
-	CreatedBy *string `json:"created_by,omitempty"`
+	CreatedBy optionalnullable.OptionalNullable[string] `json:"created_by,omitempty"`
 	// The user who last updated the object.
-	UpdatedBy *string `json:"updated_by,omitempty"`
+	UpdatedBy optionalnullable.OptionalNullable[string] `json:"updated_by,omitempty"`
 }
 
 func (a AccountingBankAccount) MarshalJSON() ([]byte, error) {
@@ -110,28 +111,28 @@ func (o *AccountingBankAccount) GetID() string {
 	return o.ID
 }
 
-func (o *AccountingBankAccount) GetDownstreamID() *string {
+func (o *AccountingBankAccount) GetDownstreamID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.DownstreamID
 }
 
-func (o *AccountingBankAccount) GetDisplayID() *string {
+func (o *AccountingBankAccount) GetDisplayID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.DisplayID
 }
 
-func (o *AccountingBankAccount) GetName() *string {
+func (o *AccountingBankAccount) GetName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-func (o *AccountingBankAccount) GetAccountNumber() *string {
+func (o *AccountingBankAccount) GetAccountNumber() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -145,105 +146,105 @@ func (o *AccountingBankAccount) GetAccountType() *AccountingBankAccountAccountTy
 	return o.AccountType
 }
 
-func (o *AccountingBankAccount) GetLedgerAccount() *LinkedLedgerAccount {
+func (o *AccountingBankAccount) GetLedgerAccount() optionalnullable.OptionalNullable[LinkedLedgerAccount] {
 	if o == nil {
 		return nil
 	}
 	return o.LedgerAccount
 }
 
-func (o *AccountingBankAccount) GetBankName() *string {
+func (o *AccountingBankAccount) GetBankName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.BankName
 }
 
-func (o *AccountingBankAccount) GetCurrency() *Currency {
+func (o *AccountingBankAccount) GetCurrency() optionalnullable.OptionalNullable[Currency] {
 	if o == nil {
 		return nil
 	}
 	return o.Currency
 }
 
-func (o *AccountingBankAccount) GetBalance() *float64 {
+func (o *AccountingBankAccount) GetBalance() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}
 	return o.Balance
 }
 
-func (o *AccountingBankAccount) GetAvailableBalance() *float64 {
+func (o *AccountingBankAccount) GetAvailableBalance() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}
 	return o.AvailableBalance
 }
 
-func (o *AccountingBankAccount) GetOverdraftLimit() *float64 {
+func (o *AccountingBankAccount) GetOverdraftLimit() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}
 	return o.OverdraftLimit
 }
 
-func (o *AccountingBankAccount) GetRoutingNumber() *string {
+func (o *AccountingBankAccount) GetRoutingNumber() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.RoutingNumber
 }
 
-func (o *AccountingBankAccount) GetIban() *string {
+func (o *AccountingBankAccount) GetIban() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Iban
 }
 
-func (o *AccountingBankAccount) GetBic() *string {
+func (o *AccountingBankAccount) GetBic() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Bic
 }
 
-func (o *AccountingBankAccount) GetBsbNumber() *string {
+func (o *AccountingBankAccount) GetBsbNumber() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.BsbNumber
 }
 
-func (o *AccountingBankAccount) GetBranchIdentifier() *string {
+func (o *AccountingBankAccount) GetBranchIdentifier() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.BranchIdentifier
 }
 
-func (o *AccountingBankAccount) GetBankCode() *string {
+func (o *AccountingBankAccount) GetBankCode() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.BankCode
 }
 
-func (o *AccountingBankAccount) GetCountry() *string {
+func (o *AccountingBankAccount) GetCountry() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Country
 }
 
-func (o *AccountingBankAccount) GetStatus() *AccountingBankAccountStatus {
+func (o *AccountingBankAccount) GetStatus() optionalnullable.OptionalNullable[AccountingBankAccountStatus] {
 	if o == nil {
 		return nil
 	}
 	return o.Status
 }
 
-func (o *AccountingBankAccount) GetDescription() *string {
+func (o *AccountingBankAccount) GetDescription() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -257,35 +258,35 @@ func (o *AccountingBankAccount) GetCustomFields() []CustomFieldUnion {
 	return o.CustomFields
 }
 
-func (o *AccountingBankAccount) GetCustomMappings() map[string]any {
+func (o *AccountingBankAccount) GetCustomMappings() optionalnullable.OptionalNullable[map[string]any] {
 	if o == nil {
 		return nil
 	}
 	return o.CustomMappings
 }
 
-func (o *AccountingBankAccount) GetCreatedAt() *time.Time {
+func (o *AccountingBankAccount) GetCreatedAt() optionalnullable.OptionalNullable[time.Time] {
 	if o == nil {
 		return nil
 	}
 	return o.CreatedAt
 }
 
-func (o *AccountingBankAccount) GetUpdatedAt() *time.Time {
+func (o *AccountingBankAccount) GetUpdatedAt() optionalnullable.OptionalNullable[time.Time] {
 	if o == nil {
 		return nil
 	}
 	return o.UpdatedAt
 }
 
-func (o *AccountingBankAccount) GetCreatedBy() *string {
+func (o *AccountingBankAccount) GetCreatedBy() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.CreatedBy
 }
 
-func (o *AccountingBankAccount) GetUpdatedBy() *string {
+func (o *AccountingBankAccount) GetUpdatedBy() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -294,60 +295,60 @@ func (o *AccountingBankAccount) GetUpdatedBy() *string {
 
 type AccountingBankAccountInput struct {
 	// Display ID for the bank account
-	DisplayID *string `json:"display_id,omitempty"`
+	DisplayID optionalnullable.OptionalNullable[string] `json:"display_id,omitempty"`
 	// The name of the bank account
-	Name *string `json:"name,omitempty"`
+	Name optionalnullable.OptionalNullable[string] `json:"name,omitempty"`
 	// The bank account number
-	AccountNumber *string `json:"account_number,omitempty"`
+	AccountNumber optionalnullable.OptionalNullable[string] `json:"account_number,omitempty"`
 	// The type of bank account
-	AccountType   *AccountingBankAccountAccountType `json:"account_type,omitempty"`
-	LedgerAccount *LinkedLedgerAccount              `json:"ledger_account,omitempty"`
+	AccountType   *AccountingBankAccountAccountType                      `json:"account_type,omitempty"`
+	LedgerAccount optionalnullable.OptionalNullable[LinkedLedgerAccount] `json:"ledger_account,omitempty"`
 	// The name of the bank or financial institution
-	BankName *string `json:"bank_name,omitempty"`
+	BankName optionalnullable.OptionalNullable[string] `json:"bank_name,omitempty"`
 	// Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
-	Currency *Currency `json:"currency,omitempty"`
+	Currency optionalnullable.OptionalNullable[Currency] `json:"currency,omitempty"`
 	// The current balance of the bank account
-	Balance *float64 `json:"balance,omitempty"`
+	Balance optionalnullable.OptionalNullable[float64] `json:"balance,omitempty"`
 	// The available balance (considering pending transactions and overdraft)
-	AvailableBalance *float64 `json:"available_balance,omitempty"`
+	AvailableBalance optionalnullable.OptionalNullable[float64] `json:"available_balance,omitempty"`
 	// The overdraft limit for the account
-	OverdraftLimit *float64 `json:"overdraft_limit,omitempty"`
+	OverdraftLimit optionalnullable.OptionalNullable[float64] `json:"overdraft_limit,omitempty"`
 	// Bank routing number (US)
-	RoutingNumber *string `json:"routing_number,omitempty"`
+	RoutingNumber optionalnullable.OptionalNullable[string] `json:"routing_number,omitempty"`
 	// International Bank Account Number
-	Iban *string `json:"iban,omitempty"`
+	Iban optionalnullable.OptionalNullable[string] `json:"iban,omitempty"`
 	// Bank Identifier Code / SWIFT Code
-	Bic *string `json:"bic,omitempty"`
+	Bic optionalnullable.OptionalNullable[string] `json:"bic,omitempty"`
 	// Bank State Branch number (Australia/New Zealand)
-	BsbNumber *string `json:"bsb_number,omitempty"`
+	BsbNumber optionalnullable.OptionalNullable[string] `json:"bsb_number,omitempty"`
 	// Bank branch identifier
-	BranchIdentifier *string `json:"branch_identifier,omitempty"`
+	BranchIdentifier optionalnullable.OptionalNullable[string] `json:"branch_identifier,omitempty"`
 	// Bank code assigned by central bank
-	BankCode *string `json:"bank_code,omitempty"`
+	BankCode optionalnullable.OptionalNullable[string] `json:"bank_code,omitempty"`
 	// Country code according to ISO 3166-1 alpha-2.
-	Country *string `json:"country,omitempty"`
+	Country optionalnullable.OptionalNullable[string] `json:"country,omitempty"`
 	// The status of the bank account
-	Status *AccountingBankAccountStatus `json:"status,omitempty"`
+	Status optionalnullable.OptionalNullable[AccountingBankAccountStatus] `json:"status,omitempty"`
 	// Description or notes about the bank account
-	Description  *string            `json:"description,omitempty"`
-	CustomFields []CustomFieldUnion `json:"custom_fields,omitempty"`
+	Description  optionalnullable.OptionalNullable[string] `json:"description,omitempty"`
+	CustomFields []CustomFieldUnion                        `json:"custom_fields,omitempty"`
 }
 
-func (o *AccountingBankAccountInput) GetDisplayID() *string {
+func (o *AccountingBankAccountInput) GetDisplayID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.DisplayID
 }
 
-func (o *AccountingBankAccountInput) GetName() *string {
+func (o *AccountingBankAccountInput) GetName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-func (o *AccountingBankAccountInput) GetAccountNumber() *string {
+func (o *AccountingBankAccountInput) GetAccountNumber() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -361,105 +362,105 @@ func (o *AccountingBankAccountInput) GetAccountType() *AccountingBankAccountAcco
 	return o.AccountType
 }
 
-func (o *AccountingBankAccountInput) GetLedgerAccount() *LinkedLedgerAccount {
+func (o *AccountingBankAccountInput) GetLedgerAccount() optionalnullable.OptionalNullable[LinkedLedgerAccount] {
 	if o == nil {
 		return nil
 	}
 	return o.LedgerAccount
 }
 
-func (o *AccountingBankAccountInput) GetBankName() *string {
+func (o *AccountingBankAccountInput) GetBankName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.BankName
 }
 
-func (o *AccountingBankAccountInput) GetCurrency() *Currency {
+func (o *AccountingBankAccountInput) GetCurrency() optionalnullable.OptionalNullable[Currency] {
 	if o == nil {
 		return nil
 	}
 	return o.Currency
 }
 
-func (o *AccountingBankAccountInput) GetBalance() *float64 {
+func (o *AccountingBankAccountInput) GetBalance() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}
 	return o.Balance
 }
 
-func (o *AccountingBankAccountInput) GetAvailableBalance() *float64 {
+func (o *AccountingBankAccountInput) GetAvailableBalance() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}
 	return o.AvailableBalance
 }
 
-func (o *AccountingBankAccountInput) GetOverdraftLimit() *float64 {
+func (o *AccountingBankAccountInput) GetOverdraftLimit() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}
 	return o.OverdraftLimit
 }
 
-func (o *AccountingBankAccountInput) GetRoutingNumber() *string {
+func (o *AccountingBankAccountInput) GetRoutingNumber() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.RoutingNumber
 }
 
-func (o *AccountingBankAccountInput) GetIban() *string {
+func (o *AccountingBankAccountInput) GetIban() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Iban
 }
 
-func (o *AccountingBankAccountInput) GetBic() *string {
+func (o *AccountingBankAccountInput) GetBic() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Bic
 }
 
-func (o *AccountingBankAccountInput) GetBsbNumber() *string {
+func (o *AccountingBankAccountInput) GetBsbNumber() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.BsbNumber
 }
 
-func (o *AccountingBankAccountInput) GetBranchIdentifier() *string {
+func (o *AccountingBankAccountInput) GetBranchIdentifier() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.BranchIdentifier
 }
 
-func (o *AccountingBankAccountInput) GetBankCode() *string {
+func (o *AccountingBankAccountInput) GetBankCode() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.BankCode
 }
 
-func (o *AccountingBankAccountInput) GetCountry() *string {
+func (o *AccountingBankAccountInput) GetCountry() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Country
 }
 
-func (o *AccountingBankAccountInput) GetStatus() *AccountingBankAccountStatus {
+func (o *AccountingBankAccountInput) GetStatus() optionalnullable.OptionalNullable[AccountingBankAccountStatus] {
 	if o == nil {
 		return nil
 	}
 	return o.Status
 }
 
-func (o *AccountingBankAccountInput) GetDescription() *string {
+func (o *AccountingBankAccountInput) GetDescription() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}

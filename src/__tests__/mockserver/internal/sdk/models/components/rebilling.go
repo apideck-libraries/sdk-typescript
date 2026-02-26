@@ -2,6 +2,10 @@
 
 package components
 
+import (
+	"mockserver/internal/sdk/optionalnullable"
+)
+
 // RebillStatus - Status of the rebilling process for this line item.
 type RebillStatus string
 
@@ -20,11 +24,11 @@ type Rebilling struct {
 	// Whether this line item is eligible for rebilling.
 	Rebillable *bool `json:"rebillable,omitempty"`
 	// Status of the rebilling process for this line item.
-	RebillStatus *RebillStatus `json:"rebill_status,omitempty"`
+	RebillStatus optionalnullable.OptionalNullable[RebillStatus] `json:"rebill_status,omitempty"`
 	// The ID of the transaction this line item was rebilled to.
-	LinkedTransactionID *string `json:"linked_transaction_id,omitempty"`
+	LinkedTransactionID optionalnullable.OptionalNullable[string] `json:"linked_transaction_id,omitempty"`
 	// The ID of the line item in the rebilled transaction.
-	LinkedTransactionLineID *string `json:"linked_transaction_line_id,omitempty"`
+	LinkedTransactionLineID optionalnullable.OptionalNullable[string] `json:"linked_transaction_line_id,omitempty"`
 }
 
 func (o *Rebilling) GetRebillable() *bool {
@@ -34,21 +38,21 @@ func (o *Rebilling) GetRebillable() *bool {
 	return o.Rebillable
 }
 
-func (o *Rebilling) GetRebillStatus() *RebillStatus {
+func (o *Rebilling) GetRebillStatus() optionalnullable.OptionalNullable[RebillStatus] {
 	if o == nil {
 		return nil
 	}
 	return o.RebillStatus
 }
 
-func (o *Rebilling) GetLinkedTransactionID() *string {
+func (o *Rebilling) GetLinkedTransactionID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.LinkedTransactionID
 }
 
-func (o *Rebilling) GetLinkedTransactionLineID() *string {
+func (o *Rebilling) GetLinkedTransactionLineID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}

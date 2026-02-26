@@ -2,6 +2,10 @@
 
 package components
 
+import (
+	"mockserver/internal/sdk/optionalnullable"
+)
+
 // WebsiteType - The type of website
 type WebsiteType string
 
@@ -19,14 +23,14 @@ func (e WebsiteType) ToPointer() *WebsiteType {
 
 type Website struct {
 	// Unique identifier for the website
-	ID *string `json:"id,omitempty"`
+	ID optionalnullable.OptionalNullable[string] `json:"id,omitempty"`
 	// The website URL
 	URL string `json:"url"`
 	// The type of website
-	Type *WebsiteType `json:"type,omitempty"`
+	Type optionalnullable.OptionalNullable[WebsiteType] `json:"type,omitempty"`
 }
 
-func (o *Website) GetID() *string {
+func (o *Website) GetID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -40,7 +44,7 @@ func (o *Website) GetURL() string {
 	return o.URL
 }
 
-func (o *Website) GetType() *WebsiteType {
+func (o *Website) GetType() optionalnullable.OptionalNullable[WebsiteType] {
 	if o == nil {
 		return nil
 	}

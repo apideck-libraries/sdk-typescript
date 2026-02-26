@@ -2,11 +2,15 @@
 
 package components
 
+import (
+	"mockserver/internal/sdk/optionalnullable"
+)
+
 type LinkedWorktag struct {
 	// The unique identifier for the worktag.
 	ID *string `json:"id,omitempty"`
 	// The value of the worktag.
-	Value *string `json:"value,omitempty"`
+	Value optionalnullable.OptionalNullable[string] `json:"value,omitempty"`
 }
 
 func (o *LinkedWorktag) GetID() *string {
@@ -16,7 +20,7 @@ func (o *LinkedWorktag) GetID() *string {
 	return o.ID
 }
 
-func (o *LinkedWorktag) GetValue() *string {
+func (o *LinkedWorktag) GetValue() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}

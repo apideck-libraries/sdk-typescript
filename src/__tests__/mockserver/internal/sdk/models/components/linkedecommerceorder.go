@@ -2,14 +2,18 @@
 
 package components
 
+import (
+	"mockserver/internal/sdk/optionalnullable"
+)
+
 // LinkedEcommerceOrder - The order this entity is linked to.
 type LinkedEcommerceOrder struct {
 	// A unique identifier for an object.
 	ID *string `json:"id,omitempty"`
 	// The total amount of the order.
-	Total *string `json:"total,omitempty"`
+	Total optionalnullable.OptionalNullable[string] `json:"total,omitempty"`
 	// Current status of the order.
-	Status *EcommerceOrderStatus `json:"status,omitempty"`
+	Status optionalnullable.OptionalNullable[EcommerceOrderStatus] `json:"status,omitempty"`
 }
 
 func (o *LinkedEcommerceOrder) GetID() *string {
@@ -19,14 +23,14 @@ func (o *LinkedEcommerceOrder) GetID() *string {
 	return o.ID
 }
 
-func (o *LinkedEcommerceOrder) GetTotal() *string {
+func (o *LinkedEcommerceOrder) GetTotal() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Total
 }
 
-func (o *LinkedEcommerceOrder) GetStatus() *EcommerceOrderStatus {
+func (o *LinkedEcommerceOrder) GetStatus() optionalnullable.OptionalNullable[EcommerceOrderStatus] {
 	if o == nil {
 		return nil
 	}

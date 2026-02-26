@@ -4,6 +4,7 @@ package operations
 
 import (
 	"mockserver/internal/sdk/models/components"
+	"mockserver/internal/sdk/optionalnullable"
 	"mockserver/internal/sdk/utils"
 )
 
@@ -42,7 +43,7 @@ type HrisEmployeeSchedulesAllRequest struct {
 	// Optional unmapped key/values that will be passed through to downstream as query parameters. Ie: ?pass_through[search]=leads becomes ?search=leads
 	PassThrough map[string]any `queryParam:"style=deepObject,explode=true,name=pass_through"`
 	// The 'fields' parameter allows API users to specify the fields they want to include in the API response. If this parameter is not present, the API will return all available fields. If this parameter is present, only the fields specified in the comma-separated string will be included in the response. Nested properties can also be requested by using a dot notation. <br /><br />Example: `fields=name,email,addresses.city`<br /><br />In the example above, the response will only include the fields "name", "email" and "addresses.city". If any other fields are available, they will be excluded.
-	Fields *string `queryParam:"style=form,explode=true,name=fields"`
+	Fields optionalnullable.OptionalNullable[string] `queryParam:"style=form,explode=true,name=fields"`
 }
 
 func (h HrisEmployeeSchedulesAllRequest) MarshalJSON() ([]byte, error) {
@@ -98,7 +99,7 @@ func (o *HrisEmployeeSchedulesAllRequest) GetPassThrough() map[string]any {
 	return o.PassThrough
 }
 
-func (o *HrisEmployeeSchedulesAllRequest) GetFields() *string {
+func (o *HrisEmployeeSchedulesAllRequest) GetFields() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}

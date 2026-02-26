@@ -2,6 +2,10 @@
 
 package components
 
+import (
+	"mockserver/internal/sdk/optionalnullable"
+)
+
 // CreateConsumerResponse - Consumer created
 type CreateConsumerResponse struct {
 	// HTTP Response Status Code
@@ -10,7 +14,7 @@ type CreateConsumerResponse struct {
 	Status string   `json:"status"`
 	Data   Consumer `json:"data"`
 	// Raw response from the integration when raw=true query param is provided
-	Raw map[string]any `json:"_raw,omitempty"`
+	Raw optionalnullable.OptionalNullable[map[string]any] `json:"_raw,omitempty"`
 }
 
 func (o *CreateConsumerResponse) GetStatusCode() int64 {
@@ -34,7 +38,7 @@ func (o *CreateConsumerResponse) GetData() Consumer {
 	return o.Data
 }
 
-func (o *CreateConsumerResponse) GetRaw() map[string]any {
+func (o *CreateConsumerResponse) GetRaw() optionalnullable.OptionalNullable[map[string]any] {
 	if o == nil {
 		return nil
 	}

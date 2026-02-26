@@ -2,6 +2,10 @@
 
 package components
 
+import (
+	"mockserver/internal/sdk/optionalnullable"
+)
+
 // GetPurchaseOrderResponse - PurchaseOrders
 type GetPurchaseOrderResponse struct {
 	// HTTP Response Status Code
@@ -16,7 +20,7 @@ type GetPurchaseOrderResponse struct {
 	Operation string        `json:"operation"`
 	Data      PurchaseOrder `json:"data"`
 	// Raw response from the integration when raw=true query param is provided
-	Raw map[string]any `json:"_raw,omitempty"`
+	Raw optionalnullable.OptionalNullable[map[string]any] `json:"_raw,omitempty"`
 }
 
 func (o *GetPurchaseOrderResponse) GetStatusCode() int64 {
@@ -61,7 +65,7 @@ func (o *GetPurchaseOrderResponse) GetData() PurchaseOrder {
 	return o.Data
 }
 
-func (o *GetPurchaseOrderResponse) GetRaw() map[string]any {
+func (o *GetPurchaseOrderResponse) GetRaw() optionalnullable.OptionalNullable[map[string]any] {
 	if o == nil {
 		return nil
 	}

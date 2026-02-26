@@ -2,13 +2,17 @@
 
 package components
 
+import (
+	"mockserver/internal/sdk/optionalnullable"
+)
+
 type LinkedLocationInput struct {
 	// The unique identifier for the location.
 	ID *string `json:"id,omitempty"`
 	// Id to be displayed.
-	DisplayID *string `json:"display_id,omitempty"`
+	DisplayID optionalnullable.OptionalNullable[string] `json:"display_id,omitempty"`
 	// The name of the location.
-	Name *string `json:"name,omitempty"`
+	Name optionalnullable.OptionalNullable[string] `json:"name,omitempty"`
 }
 
 func (o *LinkedLocationInput) GetID() *string {
@@ -18,14 +22,14 @@ func (o *LinkedLocationInput) GetID() *string {
 	return o.ID
 }
 
-func (o *LinkedLocationInput) GetDisplayID() *string {
+func (o *LinkedLocationInput) GetDisplayID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.DisplayID
 }
 
-func (o *LinkedLocationInput) GetName() *string {
+func (o *LinkedLocationInput) GetName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}

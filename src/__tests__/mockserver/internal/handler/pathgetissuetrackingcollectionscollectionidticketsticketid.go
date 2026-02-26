@@ -8,6 +8,7 @@ import (
 	"mockserver/internal/handler/assert"
 	"mockserver/internal/logging"
 	"mockserver/internal/sdk/models/components"
+	"mockserver/internal/sdk/optionalnullable"
 	"mockserver/internal/sdk/types"
 	"mockserver/internal/sdk/utils"
 	"mockserver/internal/tracking"
@@ -54,40 +55,40 @@ func testIssueTrackingCollectionTicketsOneIssueTrackingCollectionTicketsOne0(w h
 		Operation:  "one",
 		Data: components.Ticket{
 			ID:           "12345",
-			ParentID:     types.String("12345"),
-			CollectionID: types.String("12345"),
-			Type:         types.String("Technical"),
-			Subject:      types.String("Technical Support Request"),
-			Description:  types.String("I am facing issues with my internet connection"),
-			Status:       types.String("open"),
-			Priority:     components.TicketPriorityHigh.ToPointer(),
+			ParentID:     optionalnullable.From(types.String("12345")),
+			CollectionID: optionalnullable.From(types.String("12345")),
+			Type:         optionalnullable.From(types.String("Technical")),
+			Subject:      optionalnullable.From(types.String("Technical Support Request")),
+			Description:  optionalnullable.From(types.String("I am facing issues with my internet connection")),
+			Status:       optionalnullable.From(types.String("open")),
+			Priority:     optionalnullable.From(components.TicketPriorityHigh.ToPointer()),
 			Assignees: []components.Assignee{
 				components.Assignee{
 					ID:       "12345",
-					Username: types.String("Cocoa"),
+					Username: optionalnullable.From(types.String("Cocoa")),
 				},
 				components.Assignee{
 					ID:       "12345",
-					Username: types.String("Cocoa"),
+					Username: optionalnullable.From(types.String("Cocoa")),
 				},
 				components.Assignee{
 					ID:       "12345",
-					Username: types.String("Cocoa"),
+					Username: optionalnullable.From(types.String("Cocoa")),
 				},
 			},
-			UpdatedAt:   types.MustNewTimeFromString("2020-09-30T07:43:32.000Z"),
-			CreatedAt:   types.MustNewTimeFromString("2020-09-30T07:43:32.000Z"),
-			CreatedBy:   types.String("12345"),
-			DueDate:     types.MustNewTimeFromString("2020-09-30T07:43:32.000Z"),
-			CompletedAt: types.MustNewTimeFromString("2020-09-30T07:43:32.000Z"),
+			UpdatedAt:   optionalnullable.From(types.MustNewTimeFromString("2020-09-30T07:43:32.000Z")),
+			CreatedAt:   optionalnullable.From(types.MustNewTimeFromString("2020-09-30T07:43:32.000Z")),
+			CreatedBy:   optionalnullable.From(types.String("12345")),
+			DueDate:     optionalnullable.From(types.MustNewTimeFromString("2020-09-30T07:43:32.000Z")),
+			CompletedAt: optionalnullable.From(types.MustNewTimeFromString("2020-09-30T07:43:32.000Z")),
 			Tags: []components.CollectionTag{
 				components.CollectionTag{
 					ID:   types.String("12345"),
-					Name: types.String("User Experience"),
+					Name: optionalnullable.From(types.String("User Experience")),
 				},
 				components.CollectionTag{
 					ID:   types.String("12345"),
-					Name: types.String("User Experience"),
+					Name: optionalnullable.From(types.String("User Experience")),
 				},
 			},
 			PassThrough: []components.PassThroughBody{

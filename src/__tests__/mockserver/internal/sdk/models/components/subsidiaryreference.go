@@ -2,11 +2,15 @@
 
 package components
 
+import (
+	"mockserver/internal/sdk/optionalnullable"
+)
+
 type SubsidiaryReference struct {
 	// A unique identifier for an object.
 	ID *string `json:"id,omitempty"`
 	// The name of the company.
-	Name *string `json:"name,omitempty"`
+	Name optionalnullable.OptionalNullable[string] `json:"name,omitempty"`
 }
 
 func (o *SubsidiaryReference) GetID() *string {
@@ -16,7 +20,7 @@ func (o *SubsidiaryReference) GetID() *string {
 	return o.ID
 }
 
-func (o *SubsidiaryReference) GetName() *string {
+func (o *SubsidiaryReference) GetName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}

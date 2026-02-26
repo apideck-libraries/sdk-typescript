@@ -4,6 +4,7 @@ package operations
 
 import (
 	"mockserver/internal/sdk/models/components"
+	"mockserver/internal/sdk/optionalnullable"
 	"mockserver/internal/sdk/utils"
 )
 
@@ -40,7 +41,7 @@ type CrmCompaniesOneRequest struct {
 	// Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
 	ServiceID *string `header:"style=simple,explode=false,name=x-apideck-service-id"`
 	// The 'fields' parameter allows API users to specify the fields they want to include in the API response. If this parameter is not present, the API will return all available fields. If this parameter is present, only the fields specified in the comma-separated string will be included in the response. Nested properties can also be requested by using a dot notation. <br /><br />Example: `fields=name,email,addresses.city`<br /><br />In the example above, the response will only include the fields "name", "email" and "addresses.city". If any other fields are available, they will be excluded.
-	Fields *string `queryParam:"style=form,explode=true,name=fields"`
+	Fields optionalnullable.OptionalNullable[string] `queryParam:"style=form,explode=true,name=fields"`
 }
 
 func (c CrmCompaniesOneRequest) MarshalJSON() ([]byte, error) {
@@ -89,7 +90,7 @@ func (o *CrmCompaniesOneRequest) GetServiceID() *string {
 	return o.ServiceID
 }
 
-func (o *CrmCompaniesOneRequest) GetFields() *string {
+func (o *CrmCompaniesOneRequest) GetFields() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}

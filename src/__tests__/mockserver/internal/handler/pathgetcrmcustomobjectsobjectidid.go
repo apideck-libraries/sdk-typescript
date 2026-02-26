@@ -8,6 +8,7 @@ import (
 	"mockserver/internal/handler/assert"
 	"mockserver/internal/logging"
 	"mockserver/internal/sdk/models/components"
+	"mockserver/internal/sdk/optionalnullable"
 	"mockserver/internal/sdk/types"
 	"mockserver/internal/sdk/utils"
 	"mockserver/internal/tracking"
@@ -55,7 +56,7 @@ func testCrmCustomObjectsOneCrmCustomObjectsOne0(w http.ResponseWriter, req *htt
 		Data: components.CustomObject{
 			ID:      types.String("co_12345"),
 			OwnerID: types.String("user_12345"),
-			Name:    types.String("project"),
+			Name:    optionalnullable.From(types.String("project")),
 			Fields: []components.CustomObjectField{
 				components.CustomObjectField{
 					Name:  types.String("name"),
@@ -72,8 +73,8 @@ func testCrmCustomObjectsOneCrmCustomObjectsOne0(w http.ResponseWriter, req *htt
 			},
 			UpdatedBy: types.String("user_12345"),
 			CreatedBy: types.String("user_12345"),
-			UpdatedAt: types.String("2020-09-30T07:43:32.000Z"),
-			CreatedAt: types.String("2020-09-30T07:43:32.000Z"),
+			UpdatedAt: optionalnullable.From(types.String("2020-09-30T07:43:32.000Z")),
+			CreatedAt: optionalnullable.From(types.String("2020-09-30T07:43:32.000Z")),
 			PassThrough: []components.PassThroughBody{
 				components.PassThroughBody{
 					ServiceID: "<id>",

@@ -3,6 +3,7 @@
 package components
 
 import (
+	"mockserver/internal/sdk/optionalnullable"
 	"mockserver/internal/sdk/utils"
 	"time"
 )
@@ -46,32 +47,32 @@ type EcommerceOrder struct {
 	// A unique identifier for an object.
 	ID string `json:"id"`
 	// Order number, if any.
-	OrderNumber *string `json:"order_number,omitempty"`
+	OrderNumber optionalnullable.OptionalNullable[string] `json:"order_number,omitempty"`
 	// Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
-	Currency  *Currency           `json:"currency,omitempty"`
-	Discounts []EcommerceDiscount `json:"discounts,omitempty"`
+	Currency  optionalnullable.OptionalNullable[Currency] `json:"currency,omitempty"`
+	Discounts []EcommerceDiscount                         `json:"discounts,omitempty"`
 	// Sub-total amount, normally before tax.
-	SubTotal *string `json:"sub_total,omitempty"`
+	SubTotal optionalnullable.OptionalNullable[string] `json:"sub_total,omitempty"`
 	// Shipping cost, if any.
-	ShippingCost *string `json:"shipping_cost,omitempty"`
+	ShippingCost optionalnullable.OptionalNullable[string] `json:"shipping_cost,omitempty"`
 	// Coupon discount, if any.
-	CouponDiscount *string `json:"coupon_discount,omitempty"`
+	CouponDiscount optionalnullable.OptionalNullable[string] `json:"coupon_discount,omitempty"`
 	// Total discount, if any.
-	TotalDiscount *string `json:"total_discount,omitempty"`
+	TotalDiscount optionalnullable.OptionalNullable[string] `json:"total_discount,omitempty"`
 	// Total tax, if any.
-	TotalTax *string `json:"total_tax,omitempty"`
+	TotalTax optionalnullable.OptionalNullable[string] `json:"total_tax,omitempty"`
 	// Total amount due.
-	TotalAmount *string `json:"total_amount,omitempty"`
+	TotalAmount optionalnullable.OptionalNullable[string] `json:"total_amount,omitempty"`
 	// Refunded amount, if any.
-	RefundedAmount *string `json:"refunded_amount,omitempty"`
+	RefundedAmount optionalnullable.OptionalNullable[string] `json:"refunded_amount,omitempty"`
 	// Current status of the order.
-	Status *EcommerceOrderStatus `json:"status,omitempty"`
+	Status optionalnullable.OptionalNullable[EcommerceOrderStatus] `json:"status,omitempty"`
 	// Current payment status of the order.
-	PaymentStatus *EcommerceOrderPaymentStatus `json:"payment_status,omitempty"`
+	PaymentStatus optionalnullable.OptionalNullable[EcommerceOrderPaymentStatus] `json:"payment_status,omitempty"`
 	// Current fulfillment status of the order.
-	FulfillmentStatus *FulfillmentStatus `json:"fulfillment_status,omitempty"`
+	FulfillmentStatus optionalnullable.OptionalNullable[FulfillmentStatus] `json:"fulfillment_status,omitempty"`
 	// Payment method used for this order.
-	PaymentMethod *string `json:"payment_method,omitempty"`
+	PaymentMethod optionalnullable.OptionalNullable[string] `json:"payment_method,omitempty"`
 	// The customer this entity is linked to.
 	Customer *LinkedEcommerceCustomer `json:"customer,omitempty"`
 	// An object representing a shipping or billing address.
@@ -81,14 +82,14 @@ type EcommerceOrder struct {
 	Tracking        []TrackingItem           `json:"tracking,omitempty"`
 	LineItems       []EcommerceOrderLineItem `json:"line_items,omitempty"`
 	// Note for the order.
-	Note    *string                `json:"note,omitempty"`
-	Refunds []EcommerceOrderRefund `json:"refunds,omitempty"`
+	Note    optionalnullable.OptionalNullable[string] `json:"note,omitempty"`
+	Refunds []EcommerceOrderRefund                    `json:"refunds,omitempty"`
 	// When custom mappings are configured on the resource, the result is included here.
-	CustomMappings map[string]any `json:"custom_mappings,omitempty"`
+	CustomMappings optionalnullable.OptionalNullable[map[string]any] `json:"custom_mappings,omitempty"`
 	// The date and time when the object was created.
-	CreatedAt *time.Time `json:"created_at,omitempty"`
+	CreatedAt optionalnullable.OptionalNullable[time.Time] `json:"created_at,omitempty"`
 	// The date and time when the object was last updated.
-	UpdatedAt *time.Time `json:"updated_at,omitempty"`
+	UpdatedAt optionalnullable.OptionalNullable[time.Time] `json:"updated_at,omitempty"`
 }
 
 func (e EcommerceOrder) MarshalJSON() ([]byte, error) {
@@ -109,14 +110,14 @@ func (o *EcommerceOrder) GetID() string {
 	return o.ID
 }
 
-func (o *EcommerceOrder) GetOrderNumber() *string {
+func (o *EcommerceOrder) GetOrderNumber() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.OrderNumber
 }
 
-func (o *EcommerceOrder) GetCurrency() *Currency {
+func (o *EcommerceOrder) GetCurrency() optionalnullable.OptionalNullable[Currency] {
 	if o == nil {
 		return nil
 	}
@@ -130,77 +131,77 @@ func (o *EcommerceOrder) GetDiscounts() []EcommerceDiscount {
 	return o.Discounts
 }
 
-func (o *EcommerceOrder) GetSubTotal() *string {
+func (o *EcommerceOrder) GetSubTotal() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.SubTotal
 }
 
-func (o *EcommerceOrder) GetShippingCost() *string {
+func (o *EcommerceOrder) GetShippingCost() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.ShippingCost
 }
 
-func (o *EcommerceOrder) GetCouponDiscount() *string {
+func (o *EcommerceOrder) GetCouponDiscount() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.CouponDiscount
 }
 
-func (o *EcommerceOrder) GetTotalDiscount() *string {
+func (o *EcommerceOrder) GetTotalDiscount() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.TotalDiscount
 }
 
-func (o *EcommerceOrder) GetTotalTax() *string {
+func (o *EcommerceOrder) GetTotalTax() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.TotalTax
 }
 
-func (o *EcommerceOrder) GetTotalAmount() *string {
+func (o *EcommerceOrder) GetTotalAmount() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.TotalAmount
 }
 
-func (o *EcommerceOrder) GetRefundedAmount() *string {
+func (o *EcommerceOrder) GetRefundedAmount() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.RefundedAmount
 }
 
-func (o *EcommerceOrder) GetStatus() *EcommerceOrderStatus {
+func (o *EcommerceOrder) GetStatus() optionalnullable.OptionalNullable[EcommerceOrderStatus] {
 	if o == nil {
 		return nil
 	}
 	return o.Status
 }
 
-func (o *EcommerceOrder) GetPaymentStatus() *EcommerceOrderPaymentStatus {
+func (o *EcommerceOrder) GetPaymentStatus() optionalnullable.OptionalNullable[EcommerceOrderPaymentStatus] {
 	if o == nil {
 		return nil
 	}
 	return o.PaymentStatus
 }
 
-func (o *EcommerceOrder) GetFulfillmentStatus() *FulfillmentStatus {
+func (o *EcommerceOrder) GetFulfillmentStatus() optionalnullable.OptionalNullable[FulfillmentStatus] {
 	if o == nil {
 		return nil
 	}
 	return o.FulfillmentStatus
 }
 
-func (o *EcommerceOrder) GetPaymentMethod() *string {
+func (o *EcommerceOrder) GetPaymentMethod() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -242,7 +243,7 @@ func (o *EcommerceOrder) GetLineItems() []EcommerceOrderLineItem {
 	return o.LineItems
 }
 
-func (o *EcommerceOrder) GetNote() *string {
+func (o *EcommerceOrder) GetNote() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -256,21 +257,21 @@ func (o *EcommerceOrder) GetRefunds() []EcommerceOrderRefund {
 	return o.Refunds
 }
 
-func (o *EcommerceOrder) GetCustomMappings() map[string]any {
+func (o *EcommerceOrder) GetCustomMappings() optionalnullable.OptionalNullable[map[string]any] {
 	if o == nil {
 		return nil
 	}
 	return o.CustomMappings
 }
 
-func (o *EcommerceOrder) GetCreatedAt() *time.Time {
+func (o *EcommerceOrder) GetCreatedAt() optionalnullable.OptionalNullable[time.Time] {
 	if o == nil {
 		return nil
 	}
 	return o.CreatedAt
 }
 
-func (o *EcommerceOrder) GetUpdatedAt() *time.Time {
+func (o *EcommerceOrder) GetUpdatedAt() optionalnullable.OptionalNullable[time.Time] {
 	if o == nil {
 		return nil
 	}

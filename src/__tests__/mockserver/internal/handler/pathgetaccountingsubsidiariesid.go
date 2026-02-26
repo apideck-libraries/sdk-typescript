@@ -8,6 +8,7 @@ import (
 	"mockserver/internal/handler/assert"
 	"mockserver/internal/logging"
 	"mockserver/internal/sdk/models/components"
+	"mockserver/internal/sdk/optionalnullable"
 	"mockserver/internal/sdk/types"
 	"mockserver/internal/sdk/utils"
 	"mockserver/internal/tracking"
@@ -54,14 +55,14 @@ func testAccountingSubsidiariesOneAccountingSubsidiariesOne0(w http.ResponseWrit
 		Operation:  "one",
 		Data: components.Subsidiary{
 			ID:         types.String("12345"),
-			ParentID:   types.String("12345"),
-			Name:       types.String("SpaceX"),
+			ParentID:   optionalnullable.From(types.String("12345")),
+			Name:       optionalnullable.From(types.String("SpaceX")),
 			Status:     components.SubsidiaryStatusActive.ToPointer(),
-			RowVersion: types.String("1-12345"),
-			UpdatedBy:  types.String("12345"),
-			CreatedBy:  types.String("12345"),
-			UpdatedAt:  types.MustNewTimeFromString("2020-09-30T07:43:32.000Z"),
-			CreatedAt:  types.MustNewTimeFromString("2020-09-30T07:43:32.000Z"),
+			RowVersion: optionalnullable.From(types.String("1-12345")),
+			UpdatedBy:  optionalnullable.From(types.String("12345")),
+			CreatedBy:  optionalnullable.From(types.String("12345")),
+			UpdatedAt:  optionalnullable.From(types.MustNewTimeFromString("2020-09-30T07:43:32.000Z")),
+			CreatedAt:  optionalnullable.From(types.MustNewTimeFromString("2020-09-30T07:43:32.000Z")),
 			PassThrough: []components.PassThroughBody{
 				components.PassThroughBody{
 					ServiceID: "<id>",

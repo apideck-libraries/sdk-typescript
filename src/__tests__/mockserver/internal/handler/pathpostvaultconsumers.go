@@ -8,6 +8,7 @@ import (
 	"mockserver/internal/handler/assert"
 	"mockserver/internal/logging"
 	"mockserver/internal/sdk/models/components"
+	"mockserver/internal/sdk/optionalnullable"
 	"mockserver/internal/sdk/types"
 	"mockserver/internal/sdk/utils"
 	"mockserver/internal/tracking"
@@ -76,18 +77,18 @@ func testVaultConsumersAddVaultConsumersAdd0(w http.ResponseWriter, req *http.Re
 					ConsumerID: types.String("test_user_id"),
 					AuthType:   components.AuthTypeOauth2.ToPointer(),
 					Enabled:    types.Bool(true),
-					Settings: map[string]any{
+					Settings: optionalnullable.From(types.Pointer(map[string]any{
 						"instance_url": "https://eu28.salesforce.com",
-					},
-					Metadata: map[string]any{
+					})),
+					Metadata: optionalnullable.From(types.Pointer(map[string]any{
 						"account": map[string]any{
 							"name": "My Company",
 							"id":   "c01458a5-7276-41ce-bc19-639906b0450a",
 						},
 						"plan": "enterprise",
-					},
+					})),
 					CreatedAt: types.String("2020-09-19T12:18:37.071Z"),
-					UpdatedAt: types.String("2020-09-19T12:18:37.071Z"),
+					UpdatedAt: optionalnullable.From(types.String("2020-09-19T12:18:37.071Z")),
 					State:     components.ConnectionStateAuthorized.ToPointer(),
 				},
 				components.ConsumerConnection{
@@ -102,18 +103,18 @@ func testVaultConsumersAddVaultConsumersAdd0(w http.ResponseWriter, req *http.Re
 					ConsumerID: types.String("test_user_id"),
 					AuthType:   components.AuthTypeOauth2.ToPointer(),
 					Enabled:    types.Bool(true),
-					Settings: map[string]any{
+					Settings: optionalnullable.From(types.Pointer(map[string]any{
 						"instance_url": "https://eu28.salesforce.com",
-					},
-					Metadata: map[string]any{
+					})),
+					Metadata: optionalnullable.From(types.Pointer(map[string]any{
 						"account": map[string]any{
 							"name": "My Company",
 							"id":   "c01458a5-7276-41ce-bc19-639906b0450a",
 						},
 						"plan": "enterprise",
-					},
+					})),
 					CreatedAt: types.String("2020-09-19T12:18:37.071Z"),
-					UpdatedAt: types.String("2020-09-19T12:18:37.071Z"),
+					UpdatedAt: optionalnullable.From(types.String("2020-09-19T12:18:37.071Z")),
 					State:     components.ConnectionStateAuthorized.ToPointer(),
 				},
 			},

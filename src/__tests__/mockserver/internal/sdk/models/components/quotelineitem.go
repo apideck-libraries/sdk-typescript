@@ -3,6 +3,7 @@
 package components
 
 import (
+	"mockserver/internal/sdk/optionalnullable"
 	"mockserver/internal/sdk/types"
 	"mockserver/internal/sdk/utils"
 	"time"
@@ -26,53 +27,53 @@ func (e QuoteLineItemType) ToPointer() *QuoteLineItemType {
 
 type QuoteLineItem struct {
 	// A unique identifier for an object.
-	ID *string `json:"id,omitempty"`
+	ID optionalnullable.OptionalNullable[string] `json:"id,omitempty"`
 	// Row ID
 	RowID *string `json:"row_id,omitempty"`
 	// User defined item code
-	Code *string `json:"code,omitempty"`
+	Code optionalnullable.OptionalNullable[string] `json:"code,omitempty"`
 	// Line number of the resource
-	LineNumber *int64 `json:"line_number,omitempty"`
+	LineNumber optionalnullable.OptionalNullable[int64] `json:"line_number,omitempty"`
 	// User defined description
-	Description *string `json:"description,omitempty"`
+	Description optionalnullable.OptionalNullable[string] `json:"description,omitempty"`
 	// Item type
-	Type *QuoteLineItemType `json:"type,omitempty"`
+	Type optionalnullable.OptionalNullable[QuoteLineItemType] `json:"type,omitempty"`
 	// Tax amount
-	TaxAmount *float64 `json:"tax_amount,omitempty"`
+	TaxAmount optionalnullable.OptionalNullable[float64] `json:"tax_amount,omitempty"`
 	// Total amount of the line item
-	TotalAmount *float64 `json:"total_amount,omitempty"`
-	Quantity    *float64 `json:"quantity,omitempty"`
-	UnitPrice   *float64 `json:"unit_price,omitempty"`
+	TotalAmount optionalnullable.OptionalNullable[float64] `json:"total_amount,omitempty"`
+	Quantity    optionalnullable.OptionalNullable[float64] `json:"quantity,omitempty"`
+	UnitPrice   optionalnullable.OptionalNullable[float64] `json:"unit_price,omitempty"`
 	// Description of the unit type the item is sold as, ie: kg, hour.
-	UnitOfMeasure *string `json:"unit_of_measure,omitempty"`
+	UnitOfMeasure optionalnullable.OptionalNullable[string] `json:"unit_of_measure,omitempty"`
 	// Discount percentage applied to the line item when supported downstream.
-	DiscountPercentage *float64 `json:"discount_percentage,omitempty"`
+	DiscountPercentage optionalnullable.OptionalNullable[float64] `json:"discount_percentage,omitempty"`
 	// Discount amount applied to the line item when supported downstream.
-	DiscountAmount *float64 `json:"discount_amount,omitempty"`
+	DiscountAmount optionalnullable.OptionalNullable[float64] `json:"discount_amount,omitempty"`
 	// Date on which the service was provided or performed - YYYY-MM-DD.
-	ServiceDate *types.Date `json:"service_date,omitempty"`
+	ServiceDate optionalnullable.OptionalNullable[types.Date] `json:"service_date,omitempty"`
 	// ID of the category of the line item
-	CategoryID *string `json:"category_id,omitempty"`
+	CategoryID optionalnullable.OptionalNullable[string] `json:"category_id,omitempty"`
 	// The ID of the location
-	LocationID *string `json:"location_id,omitempty"`
+	LocationID optionalnullable.OptionalNullable[string] `json:"location_id,omitempty"`
 	// The ID of the department
-	DepartmentID *string            `json:"department_id,omitempty"`
-	Item         *LinkedInvoiceItem `json:"item,omitempty"`
-	TaxRate      *LinkedTaxRate     `json:"tax_rate,omitempty"`
+	DepartmentID optionalnullable.OptionalNullable[string] `json:"department_id,omitempty"`
+	Item         *LinkedInvoiceItem                        `json:"item,omitempty"`
+	TaxRate      *LinkedTaxRate                            `json:"tax_rate,omitempty"`
 	// A list of linked tracking categories.
-	TrackingCategories []*LinkedTrackingCategory `json:"tracking_categories,omitempty"`
-	LedgerAccount      *LinkedLedgerAccount      `json:"ledger_account,omitempty"`
-	CustomFields       []CustomFieldUnion        `json:"custom_fields,omitempty"`
+	TrackingCategories optionalnullable.OptionalNullable[[]*LinkedTrackingCategory] `json:"tracking_categories,omitempty"`
+	LedgerAccount      optionalnullable.OptionalNullable[LinkedLedgerAccount]       `json:"ledger_account,omitempty"`
+	CustomFields       []CustomFieldUnion                                           `json:"custom_fields,omitempty"`
 	// A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
-	RowVersion *string `json:"row_version,omitempty"`
+	RowVersion optionalnullable.OptionalNullable[string] `json:"row_version,omitempty"`
 	// The user who last updated the object.
-	UpdatedBy *string `json:"updated_by,omitempty"`
+	UpdatedBy optionalnullable.OptionalNullable[string] `json:"updated_by,omitempty"`
 	// The user who created the object.
-	CreatedBy *string `json:"created_by,omitempty"`
+	CreatedBy optionalnullable.OptionalNullable[string] `json:"created_by,omitempty"`
 	// The date and time when the object was created.
-	CreatedAt *time.Time `json:"created_at,omitempty"`
+	CreatedAt optionalnullable.OptionalNullable[time.Time] `json:"created_at,omitempty"`
 	// The date and time when the object was last updated.
-	UpdatedAt *time.Time `json:"updated_at,omitempty"`
+	UpdatedAt optionalnullable.OptionalNullable[time.Time] `json:"updated_at,omitempty"`
 }
 
 func (q QuoteLineItem) MarshalJSON() ([]byte, error) {
@@ -86,7 +87,7 @@ func (q *QuoteLineItem) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *QuoteLineItem) GetID() *string {
+func (o *QuoteLineItem) GetID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -100,105 +101,105 @@ func (o *QuoteLineItem) GetRowID() *string {
 	return o.RowID
 }
 
-func (o *QuoteLineItem) GetCode() *string {
+func (o *QuoteLineItem) GetCode() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Code
 }
 
-func (o *QuoteLineItem) GetLineNumber() *int64 {
+func (o *QuoteLineItem) GetLineNumber() optionalnullable.OptionalNullable[int64] {
 	if o == nil {
 		return nil
 	}
 	return o.LineNumber
 }
 
-func (o *QuoteLineItem) GetDescription() *string {
+func (o *QuoteLineItem) GetDescription() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Description
 }
 
-func (o *QuoteLineItem) GetType() *QuoteLineItemType {
+func (o *QuoteLineItem) GetType() optionalnullable.OptionalNullable[QuoteLineItemType] {
 	if o == nil {
 		return nil
 	}
 	return o.Type
 }
 
-func (o *QuoteLineItem) GetTaxAmount() *float64 {
+func (o *QuoteLineItem) GetTaxAmount() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}
 	return o.TaxAmount
 }
 
-func (o *QuoteLineItem) GetTotalAmount() *float64 {
+func (o *QuoteLineItem) GetTotalAmount() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}
 	return o.TotalAmount
 }
 
-func (o *QuoteLineItem) GetQuantity() *float64 {
+func (o *QuoteLineItem) GetQuantity() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}
 	return o.Quantity
 }
 
-func (o *QuoteLineItem) GetUnitPrice() *float64 {
+func (o *QuoteLineItem) GetUnitPrice() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}
 	return o.UnitPrice
 }
 
-func (o *QuoteLineItem) GetUnitOfMeasure() *string {
+func (o *QuoteLineItem) GetUnitOfMeasure() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.UnitOfMeasure
 }
 
-func (o *QuoteLineItem) GetDiscountPercentage() *float64 {
+func (o *QuoteLineItem) GetDiscountPercentage() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}
 	return o.DiscountPercentage
 }
 
-func (o *QuoteLineItem) GetDiscountAmount() *float64 {
+func (o *QuoteLineItem) GetDiscountAmount() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}
 	return o.DiscountAmount
 }
 
-func (o *QuoteLineItem) GetServiceDate() *types.Date {
+func (o *QuoteLineItem) GetServiceDate() optionalnullable.OptionalNullable[types.Date] {
 	if o == nil {
 		return nil
 	}
 	return o.ServiceDate
 }
 
-func (o *QuoteLineItem) GetCategoryID() *string {
+func (o *QuoteLineItem) GetCategoryID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.CategoryID
 }
 
-func (o *QuoteLineItem) GetLocationID() *string {
+func (o *QuoteLineItem) GetLocationID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.LocationID
 }
 
-func (o *QuoteLineItem) GetDepartmentID() *string {
+func (o *QuoteLineItem) GetDepartmentID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -219,14 +220,14 @@ func (o *QuoteLineItem) GetTaxRate() *LinkedTaxRate {
 	return o.TaxRate
 }
 
-func (o *QuoteLineItem) GetTrackingCategories() []*LinkedTrackingCategory {
+func (o *QuoteLineItem) GetTrackingCategories() optionalnullable.OptionalNullable[[]*LinkedTrackingCategory] {
 	if o == nil {
 		return nil
 	}
 	return o.TrackingCategories
 }
 
-func (o *QuoteLineItem) GetLedgerAccount() *LinkedLedgerAccount {
+func (o *QuoteLineItem) GetLedgerAccount() optionalnullable.OptionalNullable[LinkedLedgerAccount] {
 	if o == nil {
 		return nil
 	}
@@ -240,35 +241,35 @@ func (o *QuoteLineItem) GetCustomFields() []CustomFieldUnion {
 	return o.CustomFields
 }
 
-func (o *QuoteLineItem) GetRowVersion() *string {
+func (o *QuoteLineItem) GetRowVersion() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.RowVersion
 }
 
-func (o *QuoteLineItem) GetUpdatedBy() *string {
+func (o *QuoteLineItem) GetUpdatedBy() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.UpdatedBy
 }
 
-func (o *QuoteLineItem) GetCreatedBy() *string {
+func (o *QuoteLineItem) GetCreatedBy() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.CreatedBy
 }
 
-func (o *QuoteLineItem) GetCreatedAt() *time.Time {
+func (o *QuoteLineItem) GetCreatedAt() optionalnullable.OptionalNullable[time.Time] {
 	if o == nil {
 		return nil
 	}
 	return o.CreatedAt
 }
 
-func (o *QuoteLineItem) GetUpdatedAt() *time.Time {
+func (o *QuoteLineItem) GetUpdatedAt() optionalnullable.OptionalNullable[time.Time] {
 	if o == nil {
 		return nil
 	}
@@ -277,45 +278,45 @@ func (o *QuoteLineItem) GetUpdatedAt() *time.Time {
 
 type QuoteLineItemInput struct {
 	// A unique identifier for an object.
-	ID *string `json:"id,omitempty"`
+	ID optionalnullable.OptionalNullable[string] `json:"id,omitempty"`
 	// Row ID
 	RowID *string `json:"row_id,omitempty"`
 	// User defined item code
-	Code *string `json:"code,omitempty"`
+	Code optionalnullable.OptionalNullable[string] `json:"code,omitempty"`
 	// Line number of the resource
-	LineNumber *int64 `json:"line_number,omitempty"`
+	LineNumber optionalnullable.OptionalNullable[int64] `json:"line_number,omitempty"`
 	// User defined description
-	Description *string `json:"description,omitempty"`
+	Description optionalnullable.OptionalNullable[string] `json:"description,omitempty"`
 	// Item type
-	Type *QuoteLineItemType `json:"type,omitempty"`
+	Type optionalnullable.OptionalNullable[QuoteLineItemType] `json:"type,omitempty"`
 	// Tax amount
-	TaxAmount *float64 `json:"tax_amount,omitempty"`
+	TaxAmount optionalnullable.OptionalNullable[float64] `json:"tax_amount,omitempty"`
 	// Total amount of the line item
-	TotalAmount *float64 `json:"total_amount,omitempty"`
-	Quantity    *float64 `json:"quantity,omitempty"`
-	UnitPrice   *float64 `json:"unit_price,omitempty"`
+	TotalAmount optionalnullable.OptionalNullable[float64] `json:"total_amount,omitempty"`
+	Quantity    optionalnullable.OptionalNullable[float64] `json:"quantity,omitempty"`
+	UnitPrice   optionalnullable.OptionalNullable[float64] `json:"unit_price,omitempty"`
 	// Description of the unit type the item is sold as, ie: kg, hour.
-	UnitOfMeasure *string `json:"unit_of_measure,omitempty"`
+	UnitOfMeasure optionalnullable.OptionalNullable[string] `json:"unit_of_measure,omitempty"`
 	// Discount percentage applied to the line item when supported downstream.
-	DiscountPercentage *float64 `json:"discount_percentage,omitempty"`
+	DiscountPercentage optionalnullable.OptionalNullable[float64] `json:"discount_percentage,omitempty"`
 	// Discount amount applied to the line item when supported downstream.
-	DiscountAmount *float64 `json:"discount_amount,omitempty"`
+	DiscountAmount optionalnullable.OptionalNullable[float64] `json:"discount_amount,omitempty"`
 	// Date on which the service was provided or performed - YYYY-MM-DD.
-	ServiceDate *types.Date `json:"service_date,omitempty"`
+	ServiceDate optionalnullable.OptionalNullable[types.Date] `json:"service_date,omitempty"`
 	// ID of the category of the line item
-	CategoryID *string `json:"category_id,omitempty"`
+	CategoryID optionalnullable.OptionalNullable[string] `json:"category_id,omitempty"`
 	// The ID of the location
-	LocationID *string `json:"location_id,omitempty"`
+	LocationID optionalnullable.OptionalNullable[string] `json:"location_id,omitempty"`
 	// The ID of the department
-	DepartmentID *string             `json:"department_id,omitempty"`
-	Item         *LinkedInvoiceItem  `json:"item,omitempty"`
-	TaxRate      *LinkedTaxRateInput `json:"tax_rate,omitempty"`
+	DepartmentID optionalnullable.OptionalNullable[string] `json:"department_id,omitempty"`
+	Item         *LinkedInvoiceItem                        `json:"item,omitempty"`
+	TaxRate      *LinkedTaxRateInput                       `json:"tax_rate,omitempty"`
 	// A list of linked tracking categories.
-	TrackingCategories []*LinkedTrackingCategory `json:"tracking_categories,omitempty"`
-	LedgerAccount      *LinkedLedgerAccount      `json:"ledger_account,omitempty"`
-	CustomFields       []CustomFieldUnion        `json:"custom_fields,omitempty"`
+	TrackingCategories optionalnullable.OptionalNullable[[]*LinkedTrackingCategory] `json:"tracking_categories,omitempty"`
+	LedgerAccount      optionalnullable.OptionalNullable[LinkedLedgerAccount]       `json:"ledger_account,omitempty"`
+	CustomFields       []CustomFieldUnion                                           `json:"custom_fields,omitempty"`
 	// A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
-	RowVersion *string `json:"row_version,omitempty"`
+	RowVersion optionalnullable.OptionalNullable[string] `json:"row_version,omitempty"`
 }
 
 func (q QuoteLineItemInput) MarshalJSON() ([]byte, error) {
@@ -329,7 +330,7 @@ func (q *QuoteLineItemInput) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *QuoteLineItemInput) GetID() *string {
+func (o *QuoteLineItemInput) GetID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -343,105 +344,105 @@ func (o *QuoteLineItemInput) GetRowID() *string {
 	return o.RowID
 }
 
-func (o *QuoteLineItemInput) GetCode() *string {
+func (o *QuoteLineItemInput) GetCode() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Code
 }
 
-func (o *QuoteLineItemInput) GetLineNumber() *int64 {
+func (o *QuoteLineItemInput) GetLineNumber() optionalnullable.OptionalNullable[int64] {
 	if o == nil {
 		return nil
 	}
 	return o.LineNumber
 }
 
-func (o *QuoteLineItemInput) GetDescription() *string {
+func (o *QuoteLineItemInput) GetDescription() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Description
 }
 
-func (o *QuoteLineItemInput) GetType() *QuoteLineItemType {
+func (o *QuoteLineItemInput) GetType() optionalnullable.OptionalNullable[QuoteLineItemType] {
 	if o == nil {
 		return nil
 	}
 	return o.Type
 }
 
-func (o *QuoteLineItemInput) GetTaxAmount() *float64 {
+func (o *QuoteLineItemInput) GetTaxAmount() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}
 	return o.TaxAmount
 }
 
-func (o *QuoteLineItemInput) GetTotalAmount() *float64 {
+func (o *QuoteLineItemInput) GetTotalAmount() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}
 	return o.TotalAmount
 }
 
-func (o *QuoteLineItemInput) GetQuantity() *float64 {
+func (o *QuoteLineItemInput) GetQuantity() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}
 	return o.Quantity
 }
 
-func (o *QuoteLineItemInput) GetUnitPrice() *float64 {
+func (o *QuoteLineItemInput) GetUnitPrice() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}
 	return o.UnitPrice
 }
 
-func (o *QuoteLineItemInput) GetUnitOfMeasure() *string {
+func (o *QuoteLineItemInput) GetUnitOfMeasure() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.UnitOfMeasure
 }
 
-func (o *QuoteLineItemInput) GetDiscountPercentage() *float64 {
+func (o *QuoteLineItemInput) GetDiscountPercentage() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}
 	return o.DiscountPercentage
 }
 
-func (o *QuoteLineItemInput) GetDiscountAmount() *float64 {
+func (o *QuoteLineItemInput) GetDiscountAmount() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}
 	return o.DiscountAmount
 }
 
-func (o *QuoteLineItemInput) GetServiceDate() *types.Date {
+func (o *QuoteLineItemInput) GetServiceDate() optionalnullable.OptionalNullable[types.Date] {
 	if o == nil {
 		return nil
 	}
 	return o.ServiceDate
 }
 
-func (o *QuoteLineItemInput) GetCategoryID() *string {
+func (o *QuoteLineItemInput) GetCategoryID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.CategoryID
 }
 
-func (o *QuoteLineItemInput) GetLocationID() *string {
+func (o *QuoteLineItemInput) GetLocationID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.LocationID
 }
 
-func (o *QuoteLineItemInput) GetDepartmentID() *string {
+func (o *QuoteLineItemInput) GetDepartmentID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -462,14 +463,14 @@ func (o *QuoteLineItemInput) GetTaxRate() *LinkedTaxRateInput {
 	return o.TaxRate
 }
 
-func (o *QuoteLineItemInput) GetTrackingCategories() []*LinkedTrackingCategory {
+func (o *QuoteLineItemInput) GetTrackingCategories() optionalnullable.OptionalNullable[[]*LinkedTrackingCategory] {
 	if o == nil {
 		return nil
 	}
 	return o.TrackingCategories
 }
 
-func (o *QuoteLineItemInput) GetLedgerAccount() *LinkedLedgerAccount {
+func (o *QuoteLineItemInput) GetLedgerAccount() optionalnullable.OptionalNullable[LinkedLedgerAccount] {
 	if o == nil {
 		return nil
 	}
@@ -483,7 +484,7 @@ func (o *QuoteLineItemInput) GetCustomFields() []CustomFieldUnion {
 	return o.CustomFields
 }
 
-func (o *QuoteLineItemInput) GetRowVersion() *string {
+func (o *QuoteLineItemInput) GetRowVersion() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}

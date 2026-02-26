@@ -3,6 +3,7 @@
 package components
 
 import (
+	"mockserver/internal/sdk/optionalnullable"
 	"mockserver/internal/sdk/utils"
 	"time"
 )
@@ -17,8 +18,8 @@ type UploadSession struct {
 	// Indicates if parts of the file can uploaded in parallel.
 	ParallelUploadSupported *bool `json:"parallel_upload_supported,omitempty"`
 	// The range of bytes that was successfully uploaded.
-	UploadedByteRange *string    `json:"uploaded_byte_range,omitempty"`
-	ExpiresAt         *time.Time `json:"expires_at,omitempty"`
+	UploadedByteRange *string                                      `json:"uploaded_byte_range,omitempty"`
+	ExpiresAt         optionalnullable.OptionalNullable[time.Time] `json:"expires_at,omitempty"`
 }
 
 func (u UploadSession) MarshalJSON() ([]byte, error) {
@@ -67,7 +68,7 @@ func (o *UploadSession) GetUploadedByteRange() *string {
 	return o.UploadedByteRange
 }
 
-func (o *UploadSession) GetExpiresAt() *time.Time {
+func (o *UploadSession) GetExpiresAt() optionalnullable.OptionalNullable[time.Time] {
 	if o == nil {
 		return nil
 	}

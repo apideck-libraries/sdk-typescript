@@ -3,6 +3,7 @@
 package components
 
 import (
+	"mockserver/internal/sdk/optionalnullable"
 	"mockserver/internal/sdk/utils"
 	"time"
 )
@@ -26,67 +27,67 @@ type Customer struct {
 	// A unique identifier for an object.
 	ID string `json:"id"`
 	// The third-party API ID of original entity
-	DownstreamID *string `json:"downstream_id,omitempty"`
+	DownstreamID optionalnullable.OptionalNullable[string] `json:"downstream_id,omitempty"`
 	// Display ID
-	DisplayID *string `json:"display_id,omitempty"`
+	DisplayID optionalnullable.OptionalNullable[string] `json:"display_id,omitempty"`
 	// Display name
-	DisplayName *string `json:"display_name,omitempty"`
+	DisplayName optionalnullable.OptionalNullable[string] `json:"display_name,omitempty"`
 	// The name of the company.
-	CompanyName *string `json:"company_name,omitempty"`
+	CompanyName optionalnullable.OptionalNullable[string] `json:"company_name,omitempty"`
 	// The company ID the transaction belongs to
-	CompanyID *string `json:"company_id,omitempty"`
+	CompanyID optionalnullable.OptionalNullable[string] `json:"company_id,omitempty"`
 	// The category/type of the customer
-	CustomerCategory *string `json:"customer_category,omitempty"`
+	CustomerCategory optionalnullable.OptionalNullable[string] `json:"customer_category,omitempty"`
 	// The job title of the person.
-	Title *string `json:"title,omitempty"`
+	Title optionalnullable.OptionalNullable[string] `json:"title,omitempty"`
 	// The first name of the person.
-	FirstName *string `json:"first_name,omitempty"`
+	FirstName optionalnullable.OptionalNullable[string] `json:"first_name,omitempty"`
 	// Middle name of the person.
-	MiddleName *string `json:"middle_name,omitempty"`
+	MiddleName optionalnullable.OptionalNullable[string] `json:"middle_name,omitempty"`
 	// The last name of the person.
-	LastName *string `json:"last_name,omitempty"`
-	Suffix   *string `json:"suffix,omitempty"`
+	LastName optionalnullable.OptionalNullable[string] `json:"last_name,omitempty"`
+	Suffix   optionalnullable.OptionalNullable[string] `json:"suffix,omitempty"`
 	// Is this an individual or business customer
-	Individual *bool `json:"individual,omitempty"`
+	Individual optionalnullable.OptionalNullable[bool] `json:"individual,omitempty"`
 	// If true, indicates this is a Project.
-	Project      *bool         `json:"project,omitempty"`
-	Addresses    []Address     `json:"addresses,omitempty"`
-	PhoneNumbers []PhoneNumber `json:"phone_numbers,omitempty"`
-	Emails       []Email       `json:"emails,omitempty"`
-	Websites     []Website     `json:"websites,omitempty"`
-	BankAccounts []BankAccount `json:"bank_accounts,omitempty"`
+	Project      optionalnullable.OptionalNullable[bool] `json:"project,omitempty"`
+	Addresses    []Address                               `json:"addresses,omitempty"`
+	PhoneNumbers []PhoneNumber                           `json:"phone_numbers,omitempty"`
+	Emails       []Email                                 `json:"emails,omitempty"`
+	Websites     []Website                               `json:"websites,omitempty"`
+	BankAccounts []BankAccount                           `json:"bank_accounts,omitempty"`
 	// Some notes about this customer
-	Notes     *string        `json:"notes,omitempty"`
-	TaxRate   *LinkedTaxRate `json:"tax_rate,omitempty"`
-	TaxNumber *string        `json:"tax_number,omitempty"`
+	Notes     optionalnullable.OptionalNullable[string] `json:"notes,omitempty"`
+	TaxRate   *LinkedTaxRate                            `json:"tax_rate,omitempty"`
+	TaxNumber optionalnullable.OptionalNullable[string] `json:"tax_number,omitempty"`
 	// Whether the entity is subject to taxation
-	Taxable *bool `json:"taxable,omitempty"`
+	Taxable optionalnullable.OptionalNullable[bool] `json:"taxable,omitempty"`
 	// Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
-	Currency *Currency            `json:"currency,omitempty"`
-	Account  *LinkedLedgerAccount `json:"account,omitempty"`
+	Currency optionalnullable.OptionalNullable[Currency]            `json:"currency,omitempty"`
+	Account  optionalnullable.OptionalNullable[LinkedLedgerAccount] `json:"account,omitempty"`
 	// The parent customer this entity is linked to.
-	Parent *LinkedParentCustomer `json:"parent,omitempty"`
+	Parent optionalnullable.OptionalNullable[LinkedParentCustomer] `json:"parent,omitempty"`
 	// Customer status
-	Status *CustomerStatus `json:"status,omitempty"`
+	Status optionalnullable.OptionalNullable[CustomerStatus] `json:"status,omitempty"`
 	// Payment method used for the transaction, such as cash, credit card, bank transfer, or check
-	PaymentMethod *string `json:"payment_method,omitempty"`
+	PaymentMethod optionalnullable.OptionalNullable[string] `json:"payment_method,omitempty"`
 	// Terms of payment.
-	Terms *string `json:"terms,omitempty"`
+	Terms optionalnullable.OptionalNullable[string] `json:"terms,omitempty"`
 	// The channel through which the transaction is processed.
-	Channel      *string            `json:"channel,omitempty"`
-	CustomFields []CustomFieldUnion `json:"custom_fields,omitempty"`
+	Channel      optionalnullable.OptionalNullable[string] `json:"channel,omitempty"`
+	CustomFields []CustomFieldUnion                        `json:"custom_fields,omitempty"`
 	// When custom mappings are configured on the resource, the result is included here.
-	CustomMappings map[string]any `json:"custom_mappings,omitempty"`
+	CustomMappings optionalnullable.OptionalNullable[map[string]any] `json:"custom_mappings,omitempty"`
 	// The user who last updated the object.
-	UpdatedBy *string `json:"updated_by,omitempty"`
+	UpdatedBy optionalnullable.OptionalNullable[string] `json:"updated_by,omitempty"`
 	// The user who created the object.
-	CreatedBy *string `json:"created_by,omitempty"`
+	CreatedBy optionalnullable.OptionalNullable[string] `json:"created_by,omitempty"`
 	// The date and time when the object was last updated.
-	UpdatedAt *time.Time `json:"updated_at,omitempty"`
+	UpdatedAt optionalnullable.OptionalNullable[time.Time] `json:"updated_at,omitempty"`
 	// The date and time when the object was created.
-	CreatedAt *time.Time `json:"created_at,omitempty"`
+	CreatedAt optionalnullable.OptionalNullable[time.Time] `json:"created_at,omitempty"`
 	// A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
-	RowVersion *string `json:"row_version,omitempty"`
+	RowVersion optionalnullable.OptionalNullable[string] `json:"row_version,omitempty"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
 	PassThrough []PassThroughBody `json:"pass_through,omitempty"`
 }
@@ -109,91 +110,91 @@ func (o *Customer) GetID() string {
 	return o.ID
 }
 
-func (o *Customer) GetDownstreamID() *string {
+func (o *Customer) GetDownstreamID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.DownstreamID
 }
 
-func (o *Customer) GetDisplayID() *string {
+func (o *Customer) GetDisplayID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.DisplayID
 }
 
-func (o *Customer) GetDisplayName() *string {
+func (o *Customer) GetDisplayName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.DisplayName
 }
 
-func (o *Customer) GetCompanyName() *string {
+func (o *Customer) GetCompanyName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.CompanyName
 }
 
-func (o *Customer) GetCompanyID() *string {
+func (o *Customer) GetCompanyID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.CompanyID
 }
 
-func (o *Customer) GetCustomerCategory() *string {
+func (o *Customer) GetCustomerCategory() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.CustomerCategory
 }
 
-func (o *Customer) GetTitle() *string {
+func (o *Customer) GetTitle() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Title
 }
 
-func (o *Customer) GetFirstName() *string {
+func (o *Customer) GetFirstName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.FirstName
 }
 
-func (o *Customer) GetMiddleName() *string {
+func (o *Customer) GetMiddleName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.MiddleName
 }
 
-func (o *Customer) GetLastName() *string {
+func (o *Customer) GetLastName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.LastName
 }
 
-func (o *Customer) GetSuffix() *string {
+func (o *Customer) GetSuffix() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Suffix
 }
 
-func (o *Customer) GetIndividual() *bool {
+func (o *Customer) GetIndividual() optionalnullable.OptionalNullable[bool] {
 	if o == nil {
 		return nil
 	}
 	return o.Individual
 }
 
-func (o *Customer) GetProject() *bool {
+func (o *Customer) GetProject() optionalnullable.OptionalNullable[bool] {
 	if o == nil {
 		return nil
 	}
@@ -235,7 +236,7 @@ func (o *Customer) GetBankAccounts() []BankAccount {
 	return o.BankAccounts
 }
 
-func (o *Customer) GetNotes() *string {
+func (o *Customer) GetNotes() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -249,63 +250,63 @@ func (o *Customer) GetTaxRate() *LinkedTaxRate {
 	return o.TaxRate
 }
 
-func (o *Customer) GetTaxNumber() *string {
+func (o *Customer) GetTaxNumber() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.TaxNumber
 }
 
-func (o *Customer) GetTaxable() *bool {
+func (o *Customer) GetTaxable() optionalnullable.OptionalNullable[bool] {
 	if o == nil {
 		return nil
 	}
 	return o.Taxable
 }
 
-func (o *Customer) GetCurrency() *Currency {
+func (o *Customer) GetCurrency() optionalnullable.OptionalNullable[Currency] {
 	if o == nil {
 		return nil
 	}
 	return o.Currency
 }
 
-func (o *Customer) GetAccount() *LinkedLedgerAccount {
+func (o *Customer) GetAccount() optionalnullable.OptionalNullable[LinkedLedgerAccount] {
 	if o == nil {
 		return nil
 	}
 	return o.Account
 }
 
-func (o *Customer) GetParent() *LinkedParentCustomer {
+func (o *Customer) GetParent() optionalnullable.OptionalNullable[LinkedParentCustomer] {
 	if o == nil {
 		return nil
 	}
 	return o.Parent
 }
 
-func (o *Customer) GetStatus() *CustomerStatus {
+func (o *Customer) GetStatus() optionalnullable.OptionalNullable[CustomerStatus] {
 	if o == nil {
 		return nil
 	}
 	return o.Status
 }
 
-func (o *Customer) GetPaymentMethod() *string {
+func (o *Customer) GetPaymentMethod() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.PaymentMethod
 }
 
-func (o *Customer) GetTerms() *string {
+func (o *Customer) GetTerms() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Terms
 }
 
-func (o *Customer) GetChannel() *string {
+func (o *Customer) GetChannel() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -319,42 +320,42 @@ func (o *Customer) GetCustomFields() []CustomFieldUnion {
 	return o.CustomFields
 }
 
-func (o *Customer) GetCustomMappings() map[string]any {
+func (o *Customer) GetCustomMappings() optionalnullable.OptionalNullable[map[string]any] {
 	if o == nil {
 		return nil
 	}
 	return o.CustomMappings
 }
 
-func (o *Customer) GetUpdatedBy() *string {
+func (o *Customer) GetUpdatedBy() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.UpdatedBy
 }
 
-func (o *Customer) GetCreatedBy() *string {
+func (o *Customer) GetCreatedBy() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.CreatedBy
 }
 
-func (o *Customer) GetUpdatedAt() *time.Time {
+func (o *Customer) GetUpdatedAt() optionalnullable.OptionalNullable[time.Time] {
 	if o == nil {
 		return nil
 	}
 	return o.UpdatedAt
 }
 
-func (o *Customer) GetCreatedAt() *time.Time {
+func (o *Customer) GetCreatedAt() optionalnullable.OptionalNullable[time.Time] {
 	if o == nil {
 		return nil
 	}
 	return o.CreatedAt
 }
 
-func (o *Customer) GetRowVersion() *string {
+func (o *Customer) GetRowVersion() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -370,137 +371,137 @@ func (o *Customer) GetPassThrough() []PassThroughBody {
 
 type CustomerInput struct {
 	// Display ID
-	DisplayID *string `json:"display_id,omitempty"`
+	DisplayID optionalnullable.OptionalNullable[string] `json:"display_id,omitempty"`
 	// Display name
-	DisplayName *string `json:"display_name,omitempty"`
+	DisplayName optionalnullable.OptionalNullable[string] `json:"display_name,omitempty"`
 	// The name of the company.
-	CompanyName *string `json:"company_name,omitempty"`
+	CompanyName optionalnullable.OptionalNullable[string] `json:"company_name,omitempty"`
 	// The company ID the transaction belongs to
-	CompanyID *string `json:"company_id,omitempty"`
+	CompanyID optionalnullable.OptionalNullable[string] `json:"company_id,omitempty"`
 	// The category/type of the customer
-	CustomerCategory *string `json:"customer_category,omitempty"`
+	CustomerCategory optionalnullable.OptionalNullable[string] `json:"customer_category,omitempty"`
 	// The job title of the person.
-	Title *string `json:"title,omitempty"`
+	Title optionalnullable.OptionalNullable[string] `json:"title,omitempty"`
 	// The first name of the person.
-	FirstName *string `json:"first_name,omitempty"`
+	FirstName optionalnullable.OptionalNullable[string] `json:"first_name,omitempty"`
 	// Middle name of the person.
-	MiddleName *string `json:"middle_name,omitempty"`
+	MiddleName optionalnullable.OptionalNullable[string] `json:"middle_name,omitempty"`
 	// The last name of the person.
-	LastName *string `json:"last_name,omitempty"`
-	Suffix   *string `json:"suffix,omitempty"`
+	LastName optionalnullable.OptionalNullable[string] `json:"last_name,omitempty"`
+	Suffix   optionalnullable.OptionalNullable[string] `json:"suffix,omitempty"`
 	// Is this an individual or business customer
-	Individual *bool `json:"individual,omitempty"`
+	Individual optionalnullable.OptionalNullable[bool] `json:"individual,omitempty"`
 	// If true, indicates this is a Project.
-	Project      *bool         `json:"project,omitempty"`
-	Addresses    []Address     `json:"addresses,omitempty"`
-	PhoneNumbers []PhoneNumber `json:"phone_numbers,omitempty"`
-	Emails       []Email       `json:"emails,omitempty"`
-	Websites     []Website     `json:"websites,omitempty"`
-	BankAccounts []BankAccount `json:"bank_accounts,omitempty"`
+	Project      optionalnullable.OptionalNullable[bool] `json:"project,omitempty"`
+	Addresses    []Address                               `json:"addresses,omitempty"`
+	PhoneNumbers []PhoneNumber                           `json:"phone_numbers,omitempty"`
+	Emails       []Email                                 `json:"emails,omitempty"`
+	Websites     []Website                               `json:"websites,omitempty"`
+	BankAccounts []BankAccount                           `json:"bank_accounts,omitempty"`
 	// Some notes about this customer
-	Notes     *string             `json:"notes,omitempty"`
-	TaxRate   *LinkedTaxRateInput `json:"tax_rate,omitempty"`
-	TaxNumber *string             `json:"tax_number,omitempty"`
+	Notes     optionalnullable.OptionalNullable[string] `json:"notes,omitempty"`
+	TaxRate   *LinkedTaxRateInput                       `json:"tax_rate,omitempty"`
+	TaxNumber optionalnullable.OptionalNullable[string] `json:"tax_number,omitempty"`
 	// Whether the entity is subject to taxation
-	Taxable *bool `json:"taxable,omitempty"`
+	Taxable optionalnullable.OptionalNullable[bool] `json:"taxable,omitempty"`
 	// Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
-	Currency *Currency            `json:"currency,omitempty"`
-	Account  *LinkedLedgerAccount `json:"account,omitempty"`
+	Currency optionalnullable.OptionalNullable[Currency]            `json:"currency,omitempty"`
+	Account  optionalnullable.OptionalNullable[LinkedLedgerAccount] `json:"account,omitempty"`
 	// The parent customer this entity is linked to.
-	Parent *LinkedParentCustomer `json:"parent,omitempty"`
+	Parent optionalnullable.OptionalNullable[LinkedParentCustomer] `json:"parent,omitempty"`
 	// Customer status
-	Status *CustomerStatus `json:"status,omitempty"`
+	Status optionalnullable.OptionalNullable[CustomerStatus] `json:"status,omitempty"`
 	// Payment method used for the transaction, such as cash, credit card, bank transfer, or check
-	PaymentMethod *string `json:"payment_method,omitempty"`
+	PaymentMethod optionalnullable.OptionalNullable[string] `json:"payment_method,omitempty"`
 	// Terms of payment.
-	Terms *string `json:"terms,omitempty"`
+	Terms optionalnullable.OptionalNullable[string] `json:"terms,omitempty"`
 	// The channel through which the transaction is processed.
-	Channel      *string            `json:"channel,omitempty"`
-	CustomFields []CustomFieldUnion `json:"custom_fields,omitempty"`
+	Channel      optionalnullable.OptionalNullable[string] `json:"channel,omitempty"`
+	CustomFields []CustomFieldUnion                        `json:"custom_fields,omitempty"`
 	// A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
-	RowVersion *string `json:"row_version,omitempty"`
+	RowVersion optionalnullable.OptionalNullable[string] `json:"row_version,omitempty"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
 	PassThrough []PassThroughBody `json:"pass_through,omitempty"`
 }
 
-func (o *CustomerInput) GetDisplayID() *string {
+func (o *CustomerInput) GetDisplayID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.DisplayID
 }
 
-func (o *CustomerInput) GetDisplayName() *string {
+func (o *CustomerInput) GetDisplayName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.DisplayName
 }
 
-func (o *CustomerInput) GetCompanyName() *string {
+func (o *CustomerInput) GetCompanyName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.CompanyName
 }
 
-func (o *CustomerInput) GetCompanyID() *string {
+func (o *CustomerInput) GetCompanyID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.CompanyID
 }
 
-func (o *CustomerInput) GetCustomerCategory() *string {
+func (o *CustomerInput) GetCustomerCategory() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.CustomerCategory
 }
 
-func (o *CustomerInput) GetTitle() *string {
+func (o *CustomerInput) GetTitle() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Title
 }
 
-func (o *CustomerInput) GetFirstName() *string {
+func (o *CustomerInput) GetFirstName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.FirstName
 }
 
-func (o *CustomerInput) GetMiddleName() *string {
+func (o *CustomerInput) GetMiddleName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.MiddleName
 }
 
-func (o *CustomerInput) GetLastName() *string {
+func (o *CustomerInput) GetLastName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.LastName
 }
 
-func (o *CustomerInput) GetSuffix() *string {
+func (o *CustomerInput) GetSuffix() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Suffix
 }
 
-func (o *CustomerInput) GetIndividual() *bool {
+func (o *CustomerInput) GetIndividual() optionalnullable.OptionalNullable[bool] {
 	if o == nil {
 		return nil
 	}
 	return o.Individual
 }
 
-func (o *CustomerInput) GetProject() *bool {
+func (o *CustomerInput) GetProject() optionalnullable.OptionalNullable[bool] {
 	if o == nil {
 		return nil
 	}
@@ -542,7 +543,7 @@ func (o *CustomerInput) GetBankAccounts() []BankAccount {
 	return o.BankAccounts
 }
 
-func (o *CustomerInput) GetNotes() *string {
+func (o *CustomerInput) GetNotes() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -556,63 +557,63 @@ func (o *CustomerInput) GetTaxRate() *LinkedTaxRateInput {
 	return o.TaxRate
 }
 
-func (o *CustomerInput) GetTaxNumber() *string {
+func (o *CustomerInput) GetTaxNumber() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.TaxNumber
 }
 
-func (o *CustomerInput) GetTaxable() *bool {
+func (o *CustomerInput) GetTaxable() optionalnullable.OptionalNullable[bool] {
 	if o == nil {
 		return nil
 	}
 	return o.Taxable
 }
 
-func (o *CustomerInput) GetCurrency() *Currency {
+func (o *CustomerInput) GetCurrency() optionalnullable.OptionalNullable[Currency] {
 	if o == nil {
 		return nil
 	}
 	return o.Currency
 }
 
-func (o *CustomerInput) GetAccount() *LinkedLedgerAccount {
+func (o *CustomerInput) GetAccount() optionalnullable.OptionalNullable[LinkedLedgerAccount] {
 	if o == nil {
 		return nil
 	}
 	return o.Account
 }
 
-func (o *CustomerInput) GetParent() *LinkedParentCustomer {
+func (o *CustomerInput) GetParent() optionalnullable.OptionalNullable[LinkedParentCustomer] {
 	if o == nil {
 		return nil
 	}
 	return o.Parent
 }
 
-func (o *CustomerInput) GetStatus() *CustomerStatus {
+func (o *CustomerInput) GetStatus() optionalnullable.OptionalNullable[CustomerStatus] {
 	if o == nil {
 		return nil
 	}
 	return o.Status
 }
 
-func (o *CustomerInput) GetPaymentMethod() *string {
+func (o *CustomerInput) GetPaymentMethod() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.PaymentMethod
 }
 
-func (o *CustomerInput) GetTerms() *string {
+func (o *CustomerInput) GetTerms() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Terms
 }
 
-func (o *CustomerInput) GetChannel() *string {
+func (o *CustomerInput) GetChannel() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -626,7 +627,7 @@ func (o *CustomerInput) GetCustomFields() []CustomFieldUnion {
 	return o.CustomFields
 }
 
-func (o *CustomerInput) GetRowVersion() *string {
+func (o *CustomerInput) GetRowVersion() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}

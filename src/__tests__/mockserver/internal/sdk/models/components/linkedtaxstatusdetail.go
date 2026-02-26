@@ -2,11 +2,15 @@
 
 package components
 
+import (
+	"mockserver/internal/sdk/optionalnullable"
+)
+
 type LinkedTaxStatusDetail struct {
 	// The country of the tax status.
 	Country *string `json:"country,omitempty"`
 	// The transaction tax status.
-	TransactionTaxStatus *string `json:"transaction_tax_status,omitempty"`
+	TransactionTaxStatus optionalnullable.OptionalNullable[string] `json:"transaction_tax_status,omitempty"`
 }
 
 func (o *LinkedTaxStatusDetail) GetCountry() *string {
@@ -16,7 +20,7 @@ func (o *LinkedTaxStatusDetail) GetCountry() *string {
 	return o.Country
 }
 
-func (o *LinkedTaxStatusDetail) GetTransactionTaxStatus() *string {
+func (o *LinkedTaxStatusDetail) GetTransactionTaxStatus() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}

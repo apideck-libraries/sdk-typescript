@@ -3,6 +3,7 @@
 package components
 
 import (
+	"mockserver/internal/sdk/optionalnullable"
 	"mockserver/internal/sdk/utils"
 	"time"
 )
@@ -38,73 +39,73 @@ type Contact struct {
 	// Unique identifier for the contact.
 	ID *string `json:"id,omitempty"`
 	// Full name of the contact.
-	Name *string `json:"name,omitempty"`
+	Name optionalnullable.OptionalNullable[string] `json:"name,omitempty"`
 	// The owner of the contact.
-	OwnerID *string `json:"owner_id,omitempty"`
+	OwnerID optionalnullable.OptionalNullable[string] `json:"owner_id,omitempty"`
 	// The type of the contact.
-	Type *ContactType `json:"type,omitempty"`
+	Type optionalnullable.OptionalNullable[ContactType] `json:"type,omitempty"`
 	// The company the contact is associated with.
-	CompanyID *string `json:"company_id,omitempty"`
+	CompanyID optionalnullable.OptionalNullable[string] `json:"company_id,omitempty"`
 	// The name of the company the contact is associated with.
-	CompanyName *string `json:"company_name,omitempty"`
+	CompanyName optionalnullable.OptionalNullable[string] `json:"company_name,omitempty"`
 	// The lead the contact is associated with.
-	LeadID *string `json:"lead_id,omitempty"`
+	LeadID optionalnullable.OptionalNullable[string] `json:"lead_id,omitempty"`
 	// The first name of the contact.
-	FirstName *string `json:"first_name,omitempty"`
+	FirstName optionalnullable.OptionalNullable[string] `json:"first_name,omitempty"`
 	// The middle name of the contact.
-	MiddleName *string `json:"middle_name,omitempty"`
+	MiddleName optionalnullable.OptionalNullable[string] `json:"middle_name,omitempty"`
 	// The last name of the contact.
-	LastName *string `json:"last_name,omitempty"`
+	LastName optionalnullable.OptionalNullable[string] `json:"last_name,omitempty"`
 	// The prefix of the contact.
-	Prefix *string `json:"prefix,omitempty"`
+	Prefix optionalnullable.OptionalNullable[string] `json:"prefix,omitempty"`
 	// The suffix of the contact.
-	Suffix *string `json:"suffix,omitempty"`
+	Suffix optionalnullable.OptionalNullable[string] `json:"suffix,omitempty"`
 	// The job title of the contact.
-	Title *string `json:"title,omitempty"`
+	Title optionalnullable.OptionalNullable[string] `json:"title,omitempty"`
 	// The department of the contact.
-	Department *string `json:"department,omitempty"`
+	Department optionalnullable.OptionalNullable[string] `json:"department,omitempty"`
 	// language code according to ISO 639-1. For the United States - EN
-	Language *string `json:"language,omitempty"`
+	Language optionalnullable.OptionalNullable[string] `json:"language,omitempty"`
 	// The gender of the contact.
-	Gender *ContactGender `json:"gender,omitempty"`
+	Gender optionalnullable.OptionalNullable[ContactGender] `json:"gender,omitempty"`
 	// The birthday of the contact.
-	Birthday *string `json:"birthday,omitempty"`
+	Birthday optionalnullable.OptionalNullable[string] `json:"birthday,omitempty"`
 	// Deprecated: This field is deprecated and may be removed in a future version..
-	Image *string `json:"image,omitempty"`
+	Image optionalnullable.OptionalNullable[string] `json:"image,omitempty"`
 	// The URL of the photo of a person.
-	PhotoURL *string `json:"photo_url,omitempty"`
+	PhotoURL optionalnullable.OptionalNullable[string] `json:"photo_url,omitempty"`
 	// The lead source of the contact.
-	LeadSource *string `json:"lead_source,omitempty"`
+	LeadSource optionalnullable.OptionalNullable[string] `json:"lead_source,omitempty"`
 	// The fax number of the contact.
-	Fax *string `json:"fax,omitempty"`
+	Fax optionalnullable.OptionalNullable[string] `json:"fax,omitempty"`
 	// The description of the contact.
-	Description *string `json:"description,omitempty"`
+	Description optionalnullable.OptionalNullable[string] `json:"description,omitempty"`
 	// The current balance of the contact.
-	CurrentBalance *float64 `json:"current_balance,omitempty"`
+	CurrentBalance optionalnullable.OptionalNullable[float64] `json:"current_balance,omitempty"`
 	// The status of the contact.
-	Status *string `json:"status,omitempty"`
+	Status optionalnullable.OptionalNullable[string] `json:"status,omitempty"`
 	// The active status of the contact.
-	Active       *bool              `json:"active,omitempty"`
-	Websites     []Website          `json:"websites,omitempty"`
-	Addresses    []Address          `json:"addresses,omitempty"`
-	SocialLinks  []SocialLink       `json:"social_links,omitempty"`
-	PhoneNumbers []PhoneNumber      `json:"phone_numbers,omitempty"`
-	Emails       []Email            `json:"emails,omitempty"`
-	EmailDomain  *string            `json:"email_domain,omitempty"`
-	CustomFields []CustomFieldUnion `json:"custom_fields,omitempty"`
-	Tags         []string           `json:"tags,omitempty"`
+	Active       optionalnullable.OptionalNullable[bool]               `json:"active,omitempty"`
+	Websites     []Website                                             `json:"websites,omitempty"`
+	Addresses    []Address                                             `json:"addresses,omitempty"`
+	SocialLinks  []SocialLink                                          `json:"social_links,omitempty"`
+	PhoneNumbers []PhoneNumber                                         `json:"phone_numbers,omitempty"`
+	Emails       []Email                                               `json:"emails,omitempty"`
+	EmailDomain  optionalnullable.OptionalNullable[string]             `json:"email_domain,omitempty"`
+	CustomFields optionalnullable.OptionalNullable[[]CustomFieldUnion] `json:"custom_fields,omitempty"`
+	Tags         optionalnullable.OptionalNullable[[]string]           `json:"tags,omitempty"`
 	// The first call date of the contact.
-	FirstCallAt *time.Time `json:"first_call_at,omitempty"`
+	FirstCallAt optionalnullable.OptionalNullable[time.Time] `json:"first_call_at,omitempty"`
 	// The first email date of the contact.
-	FirstEmailAt *time.Time `json:"first_email_at,omitempty"`
+	FirstEmailAt optionalnullable.OptionalNullable[time.Time] `json:"first_email_at,omitempty"`
 	// The last activity date of the contact.
-	LastActivityAt *time.Time `json:"last_activity_at,omitempty"`
+	LastActivityAt optionalnullable.OptionalNullable[time.Time] `json:"last_activity_at,omitempty"`
 	// When custom mappings are configured on the resource, the result is included here.
-	CustomMappings map[string]any `json:"custom_mappings,omitempty"`
+	CustomMappings optionalnullable.OptionalNullable[map[string]any] `json:"custom_mappings,omitempty"`
 	// The last update date of the contact.
-	UpdatedAt *time.Time `json:"updated_at,omitempty"`
+	UpdatedAt optionalnullable.OptionalNullable[time.Time] `json:"updated_at,omitempty"`
 	// The creation date of the contact.
-	CreatedAt *time.Time `json:"created_at,omitempty"`
+	CreatedAt optionalnullable.OptionalNullable[time.Time] `json:"created_at,omitempty"`
 	// The opportunity ids of the contact.
 	OpportunityIds []string `json:"opportunity_ids,omitempty"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
@@ -129,168 +130,168 @@ func (o *Contact) GetID() *string {
 	return o.ID
 }
 
-func (o *Contact) GetName() *string {
+func (o *Contact) GetName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-func (o *Contact) GetOwnerID() *string {
+func (o *Contact) GetOwnerID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.OwnerID
 }
 
-func (o *Contact) GetType() *ContactType {
+func (o *Contact) GetType() optionalnullable.OptionalNullable[ContactType] {
 	if o == nil {
 		return nil
 	}
 	return o.Type
 }
 
-func (o *Contact) GetCompanyID() *string {
+func (o *Contact) GetCompanyID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.CompanyID
 }
 
-func (o *Contact) GetCompanyName() *string {
+func (o *Contact) GetCompanyName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.CompanyName
 }
 
-func (o *Contact) GetLeadID() *string {
+func (o *Contact) GetLeadID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.LeadID
 }
 
-func (o *Contact) GetFirstName() *string {
+func (o *Contact) GetFirstName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.FirstName
 }
 
-func (o *Contact) GetMiddleName() *string {
+func (o *Contact) GetMiddleName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.MiddleName
 }
 
-func (o *Contact) GetLastName() *string {
+func (o *Contact) GetLastName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.LastName
 }
 
-func (o *Contact) GetPrefix() *string {
+func (o *Contact) GetPrefix() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Prefix
 }
 
-func (o *Contact) GetSuffix() *string {
+func (o *Contact) GetSuffix() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Suffix
 }
 
-func (o *Contact) GetTitle() *string {
+func (o *Contact) GetTitle() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Title
 }
 
-func (o *Contact) GetDepartment() *string {
+func (o *Contact) GetDepartment() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Department
 }
 
-func (o *Contact) GetLanguage() *string {
+func (o *Contact) GetLanguage() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Language
 }
 
-func (o *Contact) GetGender() *ContactGender {
+func (o *Contact) GetGender() optionalnullable.OptionalNullable[ContactGender] {
 	if o == nil {
 		return nil
 	}
 	return o.Gender
 }
 
-func (o *Contact) GetBirthday() *string {
+func (o *Contact) GetBirthday() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Birthday
 }
 
-func (o *Contact) GetImage() *string {
+func (o *Contact) GetImage() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Image
 }
 
-func (o *Contact) GetPhotoURL() *string {
+func (o *Contact) GetPhotoURL() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.PhotoURL
 }
 
-func (o *Contact) GetLeadSource() *string {
+func (o *Contact) GetLeadSource() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.LeadSource
 }
 
-func (o *Contact) GetFax() *string {
+func (o *Contact) GetFax() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Fax
 }
 
-func (o *Contact) GetDescription() *string {
+func (o *Contact) GetDescription() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Description
 }
 
-func (o *Contact) GetCurrentBalance() *float64 {
+func (o *Contact) GetCurrentBalance() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}
 	return o.CurrentBalance
 }
 
-func (o *Contact) GetStatus() *string {
+func (o *Contact) GetStatus() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Status
 }
 
-func (o *Contact) GetActive() *bool {
+func (o *Contact) GetActive() optionalnullable.OptionalNullable[bool] {
 	if o == nil {
 		return nil
 	}
@@ -332,63 +333,63 @@ func (o *Contact) GetEmails() []Email {
 	return o.Emails
 }
 
-func (o *Contact) GetEmailDomain() *string {
+func (o *Contact) GetEmailDomain() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.EmailDomain
 }
 
-func (o *Contact) GetCustomFields() []CustomFieldUnion {
+func (o *Contact) GetCustomFields() optionalnullable.OptionalNullable[[]CustomFieldUnion] {
 	if o == nil {
 		return nil
 	}
 	return o.CustomFields
 }
 
-func (o *Contact) GetTags() []string {
+func (o *Contact) GetTags() optionalnullable.OptionalNullable[[]string] {
 	if o == nil {
 		return nil
 	}
 	return o.Tags
 }
 
-func (o *Contact) GetFirstCallAt() *time.Time {
+func (o *Contact) GetFirstCallAt() optionalnullable.OptionalNullable[time.Time] {
 	if o == nil {
 		return nil
 	}
 	return o.FirstCallAt
 }
 
-func (o *Contact) GetFirstEmailAt() *time.Time {
+func (o *Contact) GetFirstEmailAt() optionalnullable.OptionalNullable[time.Time] {
 	if o == nil {
 		return nil
 	}
 	return o.FirstEmailAt
 }
 
-func (o *Contact) GetLastActivityAt() *time.Time {
+func (o *Contact) GetLastActivityAt() optionalnullable.OptionalNullable[time.Time] {
 	if o == nil {
 		return nil
 	}
 	return o.LastActivityAt
 }
 
-func (o *Contact) GetCustomMappings() map[string]any {
+func (o *Contact) GetCustomMappings() optionalnullable.OptionalNullable[map[string]any] {
 	if o == nil {
 		return nil
 	}
 	return o.CustomMappings
 }
 
-func (o *Contact) GetUpdatedAt() *time.Time {
+func (o *Contact) GetUpdatedAt() optionalnullable.OptionalNullable[time.Time] {
 	if o == nil {
 		return nil
 	}
 	return o.UpdatedAt
 }
 
-func (o *Contact) GetCreatedAt() *time.Time {
+func (o *Contact) GetCreatedAt() optionalnullable.OptionalNullable[time.Time] {
 	if o == nil {
 		return nil
 	}
@@ -411,229 +412,229 @@ func (o *Contact) GetPassThrough() []PassThroughBody {
 
 type ContactInput struct {
 	// Full name of the contact.
-	Name *string `json:"name,omitempty"`
+	Name optionalnullable.OptionalNullable[string] `json:"name,omitempty"`
 	// The owner of the contact.
-	OwnerID *string `json:"owner_id,omitempty"`
+	OwnerID optionalnullable.OptionalNullable[string] `json:"owner_id,omitempty"`
 	// The type of the contact.
-	Type *ContactType `json:"type,omitempty"`
+	Type optionalnullable.OptionalNullable[ContactType] `json:"type,omitempty"`
 	// The company the contact is associated with.
-	CompanyID *string `json:"company_id,omitempty"`
+	CompanyID optionalnullable.OptionalNullable[string] `json:"company_id,omitempty"`
 	// The name of the company the contact is associated with.
-	CompanyName *string `json:"company_name,omitempty"`
+	CompanyName optionalnullable.OptionalNullable[string] `json:"company_name,omitempty"`
 	// The lead the contact is associated with.
-	LeadID *string `json:"lead_id,omitempty"`
+	LeadID optionalnullable.OptionalNullable[string] `json:"lead_id,omitempty"`
 	// The first name of the contact.
-	FirstName *string `json:"first_name,omitempty"`
+	FirstName optionalnullable.OptionalNullable[string] `json:"first_name,omitempty"`
 	// The middle name of the contact.
-	MiddleName *string `json:"middle_name,omitempty"`
+	MiddleName optionalnullable.OptionalNullable[string] `json:"middle_name,omitempty"`
 	// The last name of the contact.
-	LastName *string `json:"last_name,omitempty"`
+	LastName optionalnullable.OptionalNullable[string] `json:"last_name,omitempty"`
 	// The prefix of the contact.
-	Prefix *string `json:"prefix,omitempty"`
+	Prefix optionalnullable.OptionalNullable[string] `json:"prefix,omitempty"`
 	// The suffix of the contact.
-	Suffix *string `json:"suffix,omitempty"`
+	Suffix optionalnullable.OptionalNullable[string] `json:"suffix,omitempty"`
 	// The job title of the contact.
-	Title *string `json:"title,omitempty"`
+	Title optionalnullable.OptionalNullable[string] `json:"title,omitempty"`
 	// The department of the contact.
-	Department *string `json:"department,omitempty"`
+	Department optionalnullable.OptionalNullable[string] `json:"department,omitempty"`
 	// language code according to ISO 639-1. For the United States - EN
-	Language *string `json:"language,omitempty"`
+	Language optionalnullable.OptionalNullable[string] `json:"language,omitempty"`
 	// The gender of the contact.
-	Gender *ContactGender `json:"gender,omitempty"`
+	Gender optionalnullable.OptionalNullable[ContactGender] `json:"gender,omitempty"`
 	// The birthday of the contact.
-	Birthday *string `json:"birthday,omitempty"`
+	Birthday optionalnullable.OptionalNullable[string] `json:"birthday,omitempty"`
 	// Deprecated: This field is deprecated and may be removed in a future version..
-	Image *string `json:"image,omitempty"`
+	Image optionalnullable.OptionalNullable[string] `json:"image,omitempty"`
 	// The URL of the photo of a person.
-	PhotoURL *string `json:"photo_url,omitempty"`
+	PhotoURL optionalnullable.OptionalNullable[string] `json:"photo_url,omitempty"`
 	// The lead source of the contact.
-	LeadSource *string `json:"lead_source,omitempty"`
+	LeadSource optionalnullable.OptionalNullable[string] `json:"lead_source,omitempty"`
 	// The fax number of the contact.
-	Fax *string `json:"fax,omitempty"`
+	Fax optionalnullable.OptionalNullable[string] `json:"fax,omitempty"`
 	// The description of the contact.
-	Description *string `json:"description,omitempty"`
+	Description optionalnullable.OptionalNullable[string] `json:"description,omitempty"`
 	// The current balance of the contact.
-	CurrentBalance *float64 `json:"current_balance,omitempty"`
+	CurrentBalance optionalnullable.OptionalNullable[float64] `json:"current_balance,omitempty"`
 	// The status of the contact.
-	Status *string `json:"status,omitempty"`
+	Status optionalnullable.OptionalNullable[string] `json:"status,omitempty"`
 	// The active status of the contact.
-	Active       *bool              `json:"active,omitempty"`
-	Websites     []Website          `json:"websites,omitempty"`
-	Addresses    []Address          `json:"addresses,omitempty"`
-	SocialLinks  []SocialLink       `json:"social_links,omitempty"`
-	PhoneNumbers []PhoneNumber      `json:"phone_numbers,omitempty"`
-	Emails       []Email            `json:"emails,omitempty"`
-	EmailDomain  *string            `json:"email_domain,omitempty"`
-	CustomFields []CustomFieldUnion `json:"custom_fields,omitempty"`
-	Tags         []string           `json:"tags,omitempty"`
+	Active       optionalnullable.OptionalNullable[bool]               `json:"active,omitempty"`
+	Websites     []Website                                             `json:"websites,omitempty"`
+	Addresses    []Address                                             `json:"addresses,omitempty"`
+	SocialLinks  []SocialLink                                          `json:"social_links,omitempty"`
+	PhoneNumbers []PhoneNumber                                         `json:"phone_numbers,omitempty"`
+	Emails       []Email                                               `json:"emails,omitempty"`
+	EmailDomain  optionalnullable.OptionalNullable[string]             `json:"email_domain,omitempty"`
+	CustomFields optionalnullable.OptionalNullable[[]CustomFieldUnion] `json:"custom_fields,omitempty"`
+	Tags         optionalnullable.OptionalNullable[[]string]           `json:"tags,omitempty"`
 	// The opportunity ids of the contact.
 	OpportunityIds []string `json:"opportunity_ids,omitempty"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
 	PassThrough []PassThroughBody `json:"pass_through,omitempty"`
 }
 
-func (o *ContactInput) GetName() *string {
+func (o *ContactInput) GetName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-func (o *ContactInput) GetOwnerID() *string {
+func (o *ContactInput) GetOwnerID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.OwnerID
 }
 
-func (o *ContactInput) GetType() *ContactType {
+func (o *ContactInput) GetType() optionalnullable.OptionalNullable[ContactType] {
 	if o == nil {
 		return nil
 	}
 	return o.Type
 }
 
-func (o *ContactInput) GetCompanyID() *string {
+func (o *ContactInput) GetCompanyID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.CompanyID
 }
 
-func (o *ContactInput) GetCompanyName() *string {
+func (o *ContactInput) GetCompanyName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.CompanyName
 }
 
-func (o *ContactInput) GetLeadID() *string {
+func (o *ContactInput) GetLeadID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.LeadID
 }
 
-func (o *ContactInput) GetFirstName() *string {
+func (o *ContactInput) GetFirstName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.FirstName
 }
 
-func (o *ContactInput) GetMiddleName() *string {
+func (o *ContactInput) GetMiddleName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.MiddleName
 }
 
-func (o *ContactInput) GetLastName() *string {
+func (o *ContactInput) GetLastName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.LastName
 }
 
-func (o *ContactInput) GetPrefix() *string {
+func (o *ContactInput) GetPrefix() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Prefix
 }
 
-func (o *ContactInput) GetSuffix() *string {
+func (o *ContactInput) GetSuffix() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Suffix
 }
 
-func (o *ContactInput) GetTitle() *string {
+func (o *ContactInput) GetTitle() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Title
 }
 
-func (o *ContactInput) GetDepartment() *string {
+func (o *ContactInput) GetDepartment() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Department
 }
 
-func (o *ContactInput) GetLanguage() *string {
+func (o *ContactInput) GetLanguage() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Language
 }
 
-func (o *ContactInput) GetGender() *ContactGender {
+func (o *ContactInput) GetGender() optionalnullable.OptionalNullable[ContactGender] {
 	if o == nil {
 		return nil
 	}
 	return o.Gender
 }
 
-func (o *ContactInput) GetBirthday() *string {
+func (o *ContactInput) GetBirthday() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Birthday
 }
 
-func (o *ContactInput) GetImage() *string {
+func (o *ContactInput) GetImage() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Image
 }
 
-func (o *ContactInput) GetPhotoURL() *string {
+func (o *ContactInput) GetPhotoURL() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.PhotoURL
 }
 
-func (o *ContactInput) GetLeadSource() *string {
+func (o *ContactInput) GetLeadSource() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.LeadSource
 }
 
-func (o *ContactInput) GetFax() *string {
+func (o *ContactInput) GetFax() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Fax
 }
 
-func (o *ContactInput) GetDescription() *string {
+func (o *ContactInput) GetDescription() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Description
 }
 
-func (o *ContactInput) GetCurrentBalance() *float64 {
+func (o *ContactInput) GetCurrentBalance() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}
 	return o.CurrentBalance
 }
 
-func (o *ContactInput) GetStatus() *string {
+func (o *ContactInput) GetStatus() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Status
 }
 
-func (o *ContactInput) GetActive() *bool {
+func (o *ContactInput) GetActive() optionalnullable.OptionalNullable[bool] {
 	if o == nil {
 		return nil
 	}
@@ -675,21 +676,21 @@ func (o *ContactInput) GetEmails() []Email {
 	return o.Emails
 }
 
-func (o *ContactInput) GetEmailDomain() *string {
+func (o *ContactInput) GetEmailDomain() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.EmailDomain
 }
 
-func (o *ContactInput) GetCustomFields() []CustomFieldUnion {
+func (o *ContactInput) GetCustomFields() optionalnullable.OptionalNullable[[]CustomFieldUnion] {
 	if o == nil {
 		return nil
 	}
 	return o.CustomFields
 }
 
-func (o *ContactInput) GetTags() []string {
+func (o *ContactInput) GetTags() optionalnullable.OptionalNullable[[]string] {
 	if o == nil {
 		return nil
 	}

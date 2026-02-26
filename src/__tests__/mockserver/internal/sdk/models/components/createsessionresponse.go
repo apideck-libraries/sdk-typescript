@@ -2,6 +2,10 @@
 
 package components
 
+import (
+	"mockserver/internal/sdk/optionalnullable"
+)
+
 type CreateSessionResponseData struct {
 	SessionURI   string `json:"session_uri"`
 	SessionToken string `json:"session_token"`
@@ -29,7 +33,7 @@ type CreateSessionResponse struct {
 	Status string                    `json:"status"`
 	Data   CreateSessionResponseData `json:"data"`
 	// Raw response from the integration when raw=true query param is provided
-	Raw map[string]any `json:"_raw,omitempty"`
+	Raw optionalnullable.OptionalNullable[map[string]any] `json:"_raw,omitempty"`
 }
 
 func (o *CreateSessionResponse) GetStatusCode() int64 {
@@ -53,7 +57,7 @@ func (o *CreateSessionResponse) GetData() CreateSessionResponseData {
 	return o.Data
 }
 
-func (o *CreateSessionResponse) GetRaw() map[string]any {
+func (o *CreateSessionResponse) GetRaw() optionalnullable.OptionalNullable[map[string]any] {
 	if o == nil {
 		return nil
 	}

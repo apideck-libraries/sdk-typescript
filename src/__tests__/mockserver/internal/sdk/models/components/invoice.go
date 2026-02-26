@@ -3,6 +3,7 @@
 package components
 
 import (
+	"mockserver/internal/sdk/optionalnullable"
 	"mockserver/internal/sdk/types"
 	"mockserver/internal/sdk/utils"
 	"time"
@@ -48,9 +49,9 @@ type PaymentAllocation struct {
 	// ID of the payment
 	ID *string `json:"id,omitempty"`
 	// Amount of the payment allocated to the invoice
-	AllocatedAmount *float64 `json:"allocated_amount,omitempty"`
+	AllocatedAmount optionalnullable.OptionalNullable[float64] `json:"allocated_amount,omitempty"`
 	// Date of the payment
-	Date *time.Time `json:"date,omitempty"`
+	Date optionalnullable.OptionalNullable[time.Time] `json:"date,omitempty"`
 }
 
 func (p PaymentAllocation) MarshalJSON() ([]byte, error) {
@@ -71,14 +72,14 @@ func (o *PaymentAllocation) GetID() *string {
 	return o.ID
 }
 
-func (o *PaymentAllocation) GetAllocatedAmount() *float64 {
+func (o *PaymentAllocation) GetAllocatedAmount() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}
 	return o.AllocatedAmount
 }
 
-func (o *PaymentAllocation) GetDate() *time.Time {
+func (o *PaymentAllocation) GetDate() optionalnullable.OptionalNullable[time.Time] {
 	if o == nil {
 		return nil
 	}
@@ -89,95 +90,95 @@ type Invoice struct {
 	// A unique identifier for an object.
 	ID *string `json:"id,omitempty"`
 	// The third-party API ID of original entity
-	DownstreamID *string `json:"downstream_id,omitempty"`
+	DownstreamID optionalnullable.OptionalNullable[string] `json:"downstream_id,omitempty"`
 	// Id to be displayed.
-	DisplayID *string `json:"display_id,omitempty"`
+	DisplayID optionalnullable.OptionalNullable[string] `json:"display_id,omitempty"`
 	// Invoice type
-	Type *InvoiceType `json:"type,omitempty"`
+	Type optionalnullable.OptionalNullable[InvoiceType] `json:"type,omitempty"`
 	// Invoice number.
-	Number *string `json:"number,omitempty"`
+	Number optionalnullable.OptionalNullable[string] `json:"number,omitempty"`
 	// The customer this entity is linked to.
-	Customer *LinkedCustomer `json:"customer,omitempty"`
+	Customer optionalnullable.OptionalNullable[LinkedCustomer] `json:"customer,omitempty"`
 	// The company ID the transaction belongs to
-	CompanyID *string `json:"company_id,omitempty"`
+	CompanyID optionalnullable.OptionalNullable[string] `json:"company_id,omitempty"`
 	// The ID of the location
-	LocationID *string `json:"location_id,omitempty"`
+	LocationID optionalnullable.OptionalNullable[string] `json:"location_id,omitempty"`
 	// The ID of the department
-	DepartmentID *string `json:"department_id,omitempty"`
+	DepartmentID optionalnullable.OptionalNullable[string] `json:"department_id,omitempty"`
 	// Date invoice was issued - YYYY-MM-DD.
-	InvoiceDate *types.Date `json:"invoice_date,omitempty"`
+	InvoiceDate optionalnullable.OptionalNullable[types.Date] `json:"invoice_date,omitempty"`
 	// The invoice due date is the date on which a payment or invoice is scheduled to be received by the seller - YYYY-MM-DD.
-	DueDate *types.Date `json:"due_date,omitempty"`
+	DueDate optionalnullable.OptionalNullable[types.Date] `json:"due_date,omitempty"`
 	// Terms of payment.
-	Terms *string `json:"terms,omitempty"`
+	Terms optionalnullable.OptionalNullable[string] `json:"terms,omitempty"`
 	// A PO Number uniquely identifies a purchase order and is generally defined by the buyer. The buyer will match the PO number in the invoice to the Purchase Order.
-	PoNumber *string `json:"po_number,omitempty"`
+	PoNumber optionalnullable.OptionalNullable[string] `json:"po_number,omitempty"`
 	// Optional reference identifier for the transaction.
-	Reference *string `json:"reference,omitempty"`
+	Reference optionalnullable.OptionalNullable[string] `json:"reference,omitempty"`
 	// Invoice status
-	Status *InvoiceStatus `json:"status,omitempty"`
+	Status optionalnullable.OptionalNullable[InvoiceStatus] `json:"status,omitempty"`
 	// Invoice sent to contact/customer.
 	InvoiceSent *bool `json:"invoice_sent,omitempty"`
 	// Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
-	Currency *Currency `json:"currency,omitempty"`
+	Currency optionalnullable.OptionalNullable[Currency] `json:"currency,omitempty"`
 	// Currency Exchange Rate at the time entity was recorded/generated.
-	CurrencyRate *float64 `json:"currency_rate,omitempty"`
+	CurrencyRate optionalnullable.OptionalNullable[float64] `json:"currency_rate,omitempty"`
 	// Amounts are including tax
-	TaxInclusive *bool `json:"tax_inclusive,omitempty"`
+	TaxInclusive optionalnullable.OptionalNullable[bool] `json:"tax_inclusive,omitempty"`
 	// Sub-total amount, normally before tax.
-	SubTotal *float64 `json:"sub_total,omitempty"`
+	SubTotal optionalnullable.OptionalNullable[float64] `json:"sub_total,omitempty"`
 	// Total tax amount applied to this invoice.
-	TotalTax *float64 `json:"total_tax,omitempty"`
+	TotalTax optionalnullable.OptionalNullable[float64] `json:"total_tax,omitempty"`
 	// Applicable tax id/code override if tax is not supplied on a line item basis.
-	TaxCode *string `json:"tax_code,omitempty"`
+	TaxCode optionalnullable.OptionalNullable[string] `json:"tax_code,omitempty"`
 	// Discount percentage applied to this invoice.
-	DiscountPercentage *float64 `json:"discount_percentage,omitempty"`
+	DiscountPercentage optionalnullable.OptionalNullable[float64] `json:"discount_percentage,omitempty"`
 	// Discount amount applied to this invoice.
-	DiscountAmount *float64 `json:"discount_amount,omitempty"`
+	DiscountAmount optionalnullable.OptionalNullable[float64] `json:"discount_amount,omitempty"`
 	// Total amount of invoice, including tax.
-	Total *float64 `json:"total,omitempty"`
+	Total optionalnullable.OptionalNullable[float64] `json:"total,omitempty"`
 	// Balance of invoice due.
-	Balance *float64 `json:"balance,omitempty"`
+	Balance optionalnullable.OptionalNullable[float64] `json:"balance,omitempty"`
 	// Amount of deposit made to this invoice.
-	Deposit *float64 `json:"deposit,omitempty"`
+	Deposit optionalnullable.OptionalNullable[float64] `json:"deposit,omitempty"`
 	// Customer memo
-	CustomerMemo *string `json:"customer_memo,omitempty"`
+	CustomerMemo optionalnullable.OptionalNullable[string] `json:"customer_memo,omitempty"`
 	// Deprecated: This field is deprecated and may be removed in a future version..
-	TrackingCategory *DeprecatedLinkedTrackingCategory `json:"tracking_category,omitempty"`
+	TrackingCategory optionalnullable.OptionalNullable[DeprecatedLinkedTrackingCategory] `json:"tracking_category,omitempty"`
 	// A list of linked tracking categories.
-	TrackingCategories []*LinkedTrackingCategory `json:"tracking_categories,omitempty"`
-	LineItems          []InvoiceLineItem         `json:"line_items,omitempty"`
-	BillingAddress     *Address                  `json:"billing_address,omitempty"`
-	ShippingAddress    *Address                  `json:"shipping_address,omitempty"`
+	TrackingCategories optionalnullable.OptionalNullable[[]*LinkedTrackingCategory] `json:"tracking_categories,omitempty"`
+	LineItems          []InvoiceLineItem                                            `json:"line_items,omitempty"`
+	BillingAddress     *Address                                                     `json:"billing_address,omitempty"`
+	ShippingAddress    *Address                                                     `json:"shipping_address,omitempty"`
 	// Optional invoice template
-	TemplateID *string `json:"template_id,omitempty"`
+	TemplateID optionalnullable.OptionalNullable[string] `json:"template_id,omitempty"`
 	// URL link to a source document - shown as 'Go to [appName]' in the downstream app. Currently only supported for Xero.
-	SourceDocumentURL *string `json:"source_document_url,omitempty"`
+	SourceDocumentURL optionalnullable.OptionalNullable[string] `json:"source_document_url,omitempty"`
 	// IDs of payments made on the invoice
-	PaymentAllocations []PaymentAllocation `json:"payment_allocations,omitempty"`
+	PaymentAllocations optionalnullable.OptionalNullable[[]PaymentAllocation] `json:"payment_allocations,omitempty"`
 	// Payment method used for the transaction, such as cash, credit card, bank transfer, or check
-	PaymentMethod *string `json:"payment_method,omitempty"`
+	PaymentMethod optionalnullable.OptionalNullable[string] `json:"payment_method,omitempty"`
 	// The channel through which the transaction is processed.
-	Channel *string `json:"channel,omitempty"`
+	Channel optionalnullable.OptionalNullable[string] `json:"channel,omitempty"`
 	// language code according to ISO 639-1. For the United States - EN
-	Language *string `json:"language,omitempty"`
+	Language optionalnullable.OptionalNullable[string] `json:"language,omitempty"`
 	// Indicates if accounting by row is used (true) or not (false). Accounting by row means that a separate ledger transaction is created for each row.
-	AccountingByRow *bool                `json:"accounting_by_row,omitempty"`
-	BankAccount     *BankAccount         `json:"bank_account,omitempty"`
-	LedgerAccount   *LinkedLedgerAccount `json:"ledger_account,omitempty"`
+	AccountingByRow optionalnullable.OptionalNullable[bool]                `json:"accounting_by_row,omitempty"`
+	BankAccount     *BankAccount                                           `json:"bank_account,omitempty"`
+	LedgerAccount   optionalnullable.OptionalNullable[LinkedLedgerAccount] `json:"ledger_account,omitempty"`
 	// When custom mappings are configured on the resource, the result is included here.
-	CustomMappings map[string]any     `json:"custom_mappings,omitempty"`
-	CustomFields   []CustomFieldUnion `json:"custom_fields,omitempty"`
+	CustomMappings optionalnullable.OptionalNullable[map[string]any] `json:"custom_mappings,omitempty"`
+	CustomFields   []CustomFieldUnion                                `json:"custom_fields,omitempty"`
 	// A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
-	RowVersion *string `json:"row_version,omitempty"`
+	RowVersion optionalnullable.OptionalNullable[string] `json:"row_version,omitempty"`
 	// The user who last updated the object.
-	UpdatedBy *string `json:"updated_by,omitempty"`
+	UpdatedBy optionalnullable.OptionalNullable[string] `json:"updated_by,omitempty"`
 	// The user who created the object.
-	CreatedBy *string `json:"created_by,omitempty"`
+	CreatedBy optionalnullable.OptionalNullable[string] `json:"created_by,omitempty"`
 	// The date and time when the object was last updated.
-	UpdatedAt *time.Time `json:"updated_at,omitempty"`
+	UpdatedAt optionalnullable.OptionalNullable[time.Time] `json:"updated_at,omitempty"`
 	// The date and time when the object was created.
-	CreatedAt *time.Time `json:"created_at,omitempty"`
+	CreatedAt optionalnullable.OptionalNullable[time.Time] `json:"created_at,omitempty"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
 	PassThrough []PassThroughBody `json:"pass_through,omitempty"`
 }
@@ -200,98 +201,98 @@ func (o *Invoice) GetID() *string {
 	return o.ID
 }
 
-func (o *Invoice) GetDownstreamID() *string {
+func (o *Invoice) GetDownstreamID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.DownstreamID
 }
 
-func (o *Invoice) GetDisplayID() *string {
+func (o *Invoice) GetDisplayID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.DisplayID
 }
 
-func (o *Invoice) GetType() *InvoiceType {
+func (o *Invoice) GetType() optionalnullable.OptionalNullable[InvoiceType] {
 	if o == nil {
 		return nil
 	}
 	return o.Type
 }
 
-func (o *Invoice) GetNumber() *string {
+func (o *Invoice) GetNumber() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Number
 }
 
-func (o *Invoice) GetCustomer() *LinkedCustomer {
+func (o *Invoice) GetCustomer() optionalnullable.OptionalNullable[LinkedCustomer] {
 	if o == nil {
 		return nil
 	}
 	return o.Customer
 }
 
-func (o *Invoice) GetCompanyID() *string {
+func (o *Invoice) GetCompanyID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.CompanyID
 }
 
-func (o *Invoice) GetLocationID() *string {
+func (o *Invoice) GetLocationID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.LocationID
 }
 
-func (o *Invoice) GetDepartmentID() *string {
+func (o *Invoice) GetDepartmentID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.DepartmentID
 }
 
-func (o *Invoice) GetInvoiceDate() *types.Date {
+func (o *Invoice) GetInvoiceDate() optionalnullable.OptionalNullable[types.Date] {
 	if o == nil {
 		return nil
 	}
 	return o.InvoiceDate
 }
 
-func (o *Invoice) GetDueDate() *types.Date {
+func (o *Invoice) GetDueDate() optionalnullable.OptionalNullable[types.Date] {
 	if o == nil {
 		return nil
 	}
 	return o.DueDate
 }
 
-func (o *Invoice) GetTerms() *string {
+func (o *Invoice) GetTerms() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Terms
 }
 
-func (o *Invoice) GetPoNumber() *string {
+func (o *Invoice) GetPoNumber() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.PoNumber
 }
 
-func (o *Invoice) GetReference() *string {
+func (o *Invoice) GetReference() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Reference
 }
 
-func (o *Invoice) GetStatus() *InvoiceStatus {
+func (o *Invoice) GetStatus() optionalnullable.OptionalNullable[InvoiceStatus] {
 	if o == nil {
 		return nil
 	}
@@ -305,98 +306,98 @@ func (o *Invoice) GetInvoiceSent() *bool {
 	return o.InvoiceSent
 }
 
-func (o *Invoice) GetCurrency() *Currency {
+func (o *Invoice) GetCurrency() optionalnullable.OptionalNullable[Currency] {
 	if o == nil {
 		return nil
 	}
 	return o.Currency
 }
 
-func (o *Invoice) GetCurrencyRate() *float64 {
+func (o *Invoice) GetCurrencyRate() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}
 	return o.CurrencyRate
 }
 
-func (o *Invoice) GetTaxInclusive() *bool {
+func (o *Invoice) GetTaxInclusive() optionalnullable.OptionalNullable[bool] {
 	if o == nil {
 		return nil
 	}
 	return o.TaxInclusive
 }
 
-func (o *Invoice) GetSubTotal() *float64 {
+func (o *Invoice) GetSubTotal() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}
 	return o.SubTotal
 }
 
-func (o *Invoice) GetTotalTax() *float64 {
+func (o *Invoice) GetTotalTax() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}
 	return o.TotalTax
 }
 
-func (o *Invoice) GetTaxCode() *string {
+func (o *Invoice) GetTaxCode() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.TaxCode
 }
 
-func (o *Invoice) GetDiscountPercentage() *float64 {
+func (o *Invoice) GetDiscountPercentage() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}
 	return o.DiscountPercentage
 }
 
-func (o *Invoice) GetDiscountAmount() *float64 {
+func (o *Invoice) GetDiscountAmount() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}
 	return o.DiscountAmount
 }
 
-func (o *Invoice) GetTotal() *float64 {
+func (o *Invoice) GetTotal() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}
 	return o.Total
 }
 
-func (o *Invoice) GetBalance() *float64 {
+func (o *Invoice) GetBalance() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}
 	return o.Balance
 }
 
-func (o *Invoice) GetDeposit() *float64 {
+func (o *Invoice) GetDeposit() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}
 	return o.Deposit
 }
 
-func (o *Invoice) GetCustomerMemo() *string {
+func (o *Invoice) GetCustomerMemo() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.CustomerMemo
 }
 
-func (o *Invoice) GetTrackingCategory() *DeprecatedLinkedTrackingCategory {
+func (o *Invoice) GetTrackingCategory() optionalnullable.OptionalNullable[DeprecatedLinkedTrackingCategory] {
 	if o == nil {
 		return nil
 	}
 	return o.TrackingCategory
 }
 
-func (o *Invoice) GetTrackingCategories() []*LinkedTrackingCategory {
+func (o *Invoice) GetTrackingCategories() optionalnullable.OptionalNullable[[]*LinkedTrackingCategory] {
 	if o == nil {
 		return nil
 	}
@@ -424,49 +425,49 @@ func (o *Invoice) GetShippingAddress() *Address {
 	return o.ShippingAddress
 }
 
-func (o *Invoice) GetTemplateID() *string {
+func (o *Invoice) GetTemplateID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.TemplateID
 }
 
-func (o *Invoice) GetSourceDocumentURL() *string {
+func (o *Invoice) GetSourceDocumentURL() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.SourceDocumentURL
 }
 
-func (o *Invoice) GetPaymentAllocations() []PaymentAllocation {
+func (o *Invoice) GetPaymentAllocations() optionalnullable.OptionalNullable[[]PaymentAllocation] {
 	if o == nil {
 		return nil
 	}
 	return o.PaymentAllocations
 }
 
-func (o *Invoice) GetPaymentMethod() *string {
+func (o *Invoice) GetPaymentMethod() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.PaymentMethod
 }
 
-func (o *Invoice) GetChannel() *string {
+func (o *Invoice) GetChannel() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Channel
 }
 
-func (o *Invoice) GetLanguage() *string {
+func (o *Invoice) GetLanguage() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Language
 }
 
-func (o *Invoice) GetAccountingByRow() *bool {
+func (o *Invoice) GetAccountingByRow() optionalnullable.OptionalNullable[bool] {
 	if o == nil {
 		return nil
 	}
@@ -480,14 +481,14 @@ func (o *Invoice) GetBankAccount() *BankAccount {
 	return o.BankAccount
 }
 
-func (o *Invoice) GetLedgerAccount() *LinkedLedgerAccount {
+func (o *Invoice) GetLedgerAccount() optionalnullable.OptionalNullable[LinkedLedgerAccount] {
 	if o == nil {
 		return nil
 	}
 	return o.LedgerAccount
 }
 
-func (o *Invoice) GetCustomMappings() map[string]any {
+func (o *Invoice) GetCustomMappings() optionalnullable.OptionalNullable[map[string]any] {
 	if o == nil {
 		return nil
 	}
@@ -501,35 +502,35 @@ func (o *Invoice) GetCustomFields() []CustomFieldUnion {
 	return o.CustomFields
 }
 
-func (o *Invoice) GetRowVersion() *string {
+func (o *Invoice) GetRowVersion() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.RowVersion
 }
 
-func (o *Invoice) GetUpdatedBy() *string {
+func (o *Invoice) GetUpdatedBy() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.UpdatedBy
 }
 
-func (o *Invoice) GetCreatedBy() *string {
+func (o *Invoice) GetCreatedBy() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.CreatedBy
 }
 
-func (o *Invoice) GetUpdatedAt() *time.Time {
+func (o *Invoice) GetUpdatedAt() optionalnullable.OptionalNullable[time.Time] {
 	if o == nil {
 		return nil
 	}
 	return o.UpdatedAt
 }
 
-func (o *Invoice) GetCreatedAt() *time.Time {
+func (o *Invoice) GetCreatedAt() optionalnullable.OptionalNullable[time.Time] {
 	if o == nil {
 		return nil
 	}
@@ -545,83 +546,83 @@ func (o *Invoice) GetPassThrough() []PassThroughBody {
 
 type InvoiceInput struct {
 	// Id to be displayed.
-	DisplayID *string `json:"display_id,omitempty"`
+	DisplayID optionalnullable.OptionalNullable[string] `json:"display_id,omitempty"`
 	// Invoice type
-	Type *InvoiceType `json:"type,omitempty"`
+	Type optionalnullable.OptionalNullable[InvoiceType] `json:"type,omitempty"`
 	// Invoice number.
-	Number *string `json:"number,omitempty"`
+	Number optionalnullable.OptionalNullable[string] `json:"number,omitempty"`
 	// The customer this entity is linked to.
-	Customer *LinkedCustomerInput `json:"customer,omitempty"`
+	Customer optionalnullable.OptionalNullable[LinkedCustomerInput] `json:"customer,omitempty"`
 	// The company ID the transaction belongs to
-	CompanyID *string `json:"company_id,omitempty"`
+	CompanyID optionalnullable.OptionalNullable[string] `json:"company_id,omitempty"`
 	// The ID of the location
-	LocationID *string `json:"location_id,omitempty"`
+	LocationID optionalnullable.OptionalNullable[string] `json:"location_id,omitempty"`
 	// The ID of the department
-	DepartmentID *string `json:"department_id,omitempty"`
+	DepartmentID optionalnullable.OptionalNullable[string] `json:"department_id,omitempty"`
 	// Date invoice was issued - YYYY-MM-DD.
-	InvoiceDate *types.Date `json:"invoice_date,omitempty"`
+	InvoiceDate optionalnullable.OptionalNullable[types.Date] `json:"invoice_date,omitempty"`
 	// The invoice due date is the date on which a payment or invoice is scheduled to be received by the seller - YYYY-MM-DD.
-	DueDate *types.Date `json:"due_date,omitempty"`
+	DueDate optionalnullable.OptionalNullable[types.Date] `json:"due_date,omitempty"`
 	// Terms of payment.
-	Terms *string `json:"terms,omitempty"`
+	Terms optionalnullable.OptionalNullable[string] `json:"terms,omitempty"`
 	// A PO Number uniquely identifies a purchase order and is generally defined by the buyer. The buyer will match the PO number in the invoice to the Purchase Order.
-	PoNumber *string `json:"po_number,omitempty"`
+	PoNumber optionalnullable.OptionalNullable[string] `json:"po_number,omitempty"`
 	// Optional reference identifier for the transaction.
-	Reference *string `json:"reference,omitempty"`
+	Reference optionalnullable.OptionalNullable[string] `json:"reference,omitempty"`
 	// Invoice status
-	Status *InvoiceStatus `json:"status,omitempty"`
+	Status optionalnullable.OptionalNullable[InvoiceStatus] `json:"status,omitempty"`
 	// Invoice sent to contact/customer.
 	InvoiceSent *bool `json:"invoice_sent,omitempty"`
 	// Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
-	Currency *Currency `json:"currency,omitempty"`
+	Currency optionalnullable.OptionalNullable[Currency] `json:"currency,omitempty"`
 	// Currency Exchange Rate at the time entity was recorded/generated.
-	CurrencyRate *float64 `json:"currency_rate,omitempty"`
+	CurrencyRate optionalnullable.OptionalNullable[float64] `json:"currency_rate,omitempty"`
 	// Amounts are including tax
-	TaxInclusive *bool `json:"tax_inclusive,omitempty"`
+	TaxInclusive optionalnullable.OptionalNullable[bool] `json:"tax_inclusive,omitempty"`
 	// Sub-total amount, normally before tax.
-	SubTotal *float64 `json:"sub_total,omitempty"`
+	SubTotal optionalnullable.OptionalNullable[float64] `json:"sub_total,omitempty"`
 	// Total tax amount applied to this invoice.
-	TotalTax *float64 `json:"total_tax,omitempty"`
+	TotalTax optionalnullable.OptionalNullable[float64] `json:"total_tax,omitempty"`
 	// Applicable tax id/code override if tax is not supplied on a line item basis.
-	TaxCode *string `json:"tax_code,omitempty"`
+	TaxCode optionalnullable.OptionalNullable[string] `json:"tax_code,omitempty"`
 	// Discount percentage applied to this invoice.
-	DiscountPercentage *float64 `json:"discount_percentage,omitempty"`
+	DiscountPercentage optionalnullable.OptionalNullable[float64] `json:"discount_percentage,omitempty"`
 	// Discount amount applied to this invoice.
-	DiscountAmount *float64 `json:"discount_amount,omitempty"`
+	DiscountAmount optionalnullable.OptionalNullable[float64] `json:"discount_amount,omitempty"`
 	// Total amount of invoice, including tax.
-	Total *float64 `json:"total,omitempty"`
+	Total optionalnullable.OptionalNullable[float64] `json:"total,omitempty"`
 	// Balance of invoice due.
-	Balance *float64 `json:"balance,omitempty"`
+	Balance optionalnullable.OptionalNullable[float64] `json:"balance,omitempty"`
 	// Amount of deposit made to this invoice.
-	Deposit *float64 `json:"deposit,omitempty"`
+	Deposit optionalnullable.OptionalNullable[float64] `json:"deposit,omitempty"`
 	// Customer memo
-	CustomerMemo *string `json:"customer_memo,omitempty"`
+	CustomerMemo optionalnullable.OptionalNullable[string] `json:"customer_memo,omitempty"`
 	// Deprecated: This field is deprecated and may be removed in a future version..
-	TrackingCategory *DeprecatedLinkedTrackingCategory `json:"tracking_category,omitempty"`
+	TrackingCategory optionalnullable.OptionalNullable[DeprecatedLinkedTrackingCategory] `json:"tracking_category,omitempty"`
 	// A list of linked tracking categories.
-	TrackingCategories []*LinkedTrackingCategory `json:"tracking_categories,omitempty"`
-	LineItems          []InvoiceLineItemInput    `json:"line_items,omitempty"`
-	BillingAddress     *Address                  `json:"billing_address,omitempty"`
-	ShippingAddress    *Address                  `json:"shipping_address,omitempty"`
+	TrackingCategories optionalnullable.OptionalNullable[[]*LinkedTrackingCategory] `json:"tracking_categories,omitempty"`
+	LineItems          []InvoiceLineItemInput                                       `json:"line_items,omitempty"`
+	BillingAddress     *Address                                                     `json:"billing_address,omitempty"`
+	ShippingAddress    *Address                                                     `json:"shipping_address,omitempty"`
 	// Optional invoice template
-	TemplateID *string `json:"template_id,omitempty"`
+	TemplateID optionalnullable.OptionalNullable[string] `json:"template_id,omitempty"`
 	// URL link to a source document - shown as 'Go to [appName]' in the downstream app. Currently only supported for Xero.
-	SourceDocumentURL *string `json:"source_document_url,omitempty"`
+	SourceDocumentURL optionalnullable.OptionalNullable[string] `json:"source_document_url,omitempty"`
 	// IDs of payments made on the invoice
-	PaymentAllocations []PaymentAllocation `json:"payment_allocations,omitempty"`
+	PaymentAllocations optionalnullable.OptionalNullable[[]PaymentAllocation] `json:"payment_allocations,omitempty"`
 	// Payment method used for the transaction, such as cash, credit card, bank transfer, or check
-	PaymentMethod *string `json:"payment_method,omitempty"`
+	PaymentMethod optionalnullable.OptionalNullable[string] `json:"payment_method,omitempty"`
 	// The channel through which the transaction is processed.
-	Channel *string `json:"channel,omitempty"`
+	Channel optionalnullable.OptionalNullable[string] `json:"channel,omitempty"`
 	// language code according to ISO 639-1. For the United States - EN
-	Language *string `json:"language,omitempty"`
+	Language optionalnullable.OptionalNullable[string] `json:"language,omitempty"`
 	// Indicates if accounting by row is used (true) or not (false). Accounting by row means that a separate ledger transaction is created for each row.
-	AccountingByRow *bool                `json:"accounting_by_row,omitempty"`
-	BankAccount     *BankAccount         `json:"bank_account,omitempty"`
-	LedgerAccount   *LinkedLedgerAccount `json:"ledger_account,omitempty"`
-	CustomFields    []CustomFieldUnion   `json:"custom_fields,omitempty"`
+	AccountingByRow optionalnullable.OptionalNullable[bool]                `json:"accounting_by_row,omitempty"`
+	BankAccount     *BankAccount                                           `json:"bank_account,omitempty"`
+	LedgerAccount   optionalnullable.OptionalNullable[LinkedLedgerAccount] `json:"ledger_account,omitempty"`
+	CustomFields    []CustomFieldUnion                                     `json:"custom_fields,omitempty"`
 	// A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
-	RowVersion *string `json:"row_version,omitempty"`
+	RowVersion optionalnullable.OptionalNullable[string] `json:"row_version,omitempty"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
 	PassThrough []PassThroughBody `json:"pass_through,omitempty"`
 }
@@ -637,91 +638,91 @@ func (i *InvoiceInput) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *InvoiceInput) GetDisplayID() *string {
+func (o *InvoiceInput) GetDisplayID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.DisplayID
 }
 
-func (o *InvoiceInput) GetType() *InvoiceType {
+func (o *InvoiceInput) GetType() optionalnullable.OptionalNullable[InvoiceType] {
 	if o == nil {
 		return nil
 	}
 	return o.Type
 }
 
-func (o *InvoiceInput) GetNumber() *string {
+func (o *InvoiceInput) GetNumber() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Number
 }
 
-func (o *InvoiceInput) GetCustomer() *LinkedCustomerInput {
+func (o *InvoiceInput) GetCustomer() optionalnullable.OptionalNullable[LinkedCustomerInput] {
 	if o == nil {
 		return nil
 	}
 	return o.Customer
 }
 
-func (o *InvoiceInput) GetCompanyID() *string {
+func (o *InvoiceInput) GetCompanyID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.CompanyID
 }
 
-func (o *InvoiceInput) GetLocationID() *string {
+func (o *InvoiceInput) GetLocationID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.LocationID
 }
 
-func (o *InvoiceInput) GetDepartmentID() *string {
+func (o *InvoiceInput) GetDepartmentID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.DepartmentID
 }
 
-func (o *InvoiceInput) GetInvoiceDate() *types.Date {
+func (o *InvoiceInput) GetInvoiceDate() optionalnullable.OptionalNullable[types.Date] {
 	if o == nil {
 		return nil
 	}
 	return o.InvoiceDate
 }
 
-func (o *InvoiceInput) GetDueDate() *types.Date {
+func (o *InvoiceInput) GetDueDate() optionalnullable.OptionalNullable[types.Date] {
 	if o == nil {
 		return nil
 	}
 	return o.DueDate
 }
 
-func (o *InvoiceInput) GetTerms() *string {
+func (o *InvoiceInput) GetTerms() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Terms
 }
 
-func (o *InvoiceInput) GetPoNumber() *string {
+func (o *InvoiceInput) GetPoNumber() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.PoNumber
 }
 
-func (o *InvoiceInput) GetReference() *string {
+func (o *InvoiceInput) GetReference() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Reference
 }
 
-func (o *InvoiceInput) GetStatus() *InvoiceStatus {
+func (o *InvoiceInput) GetStatus() optionalnullable.OptionalNullable[InvoiceStatus] {
 	if o == nil {
 		return nil
 	}
@@ -735,98 +736,98 @@ func (o *InvoiceInput) GetInvoiceSent() *bool {
 	return o.InvoiceSent
 }
 
-func (o *InvoiceInput) GetCurrency() *Currency {
+func (o *InvoiceInput) GetCurrency() optionalnullable.OptionalNullable[Currency] {
 	if o == nil {
 		return nil
 	}
 	return o.Currency
 }
 
-func (o *InvoiceInput) GetCurrencyRate() *float64 {
+func (o *InvoiceInput) GetCurrencyRate() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}
 	return o.CurrencyRate
 }
 
-func (o *InvoiceInput) GetTaxInclusive() *bool {
+func (o *InvoiceInput) GetTaxInclusive() optionalnullable.OptionalNullable[bool] {
 	if o == nil {
 		return nil
 	}
 	return o.TaxInclusive
 }
 
-func (o *InvoiceInput) GetSubTotal() *float64 {
+func (o *InvoiceInput) GetSubTotal() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}
 	return o.SubTotal
 }
 
-func (o *InvoiceInput) GetTotalTax() *float64 {
+func (o *InvoiceInput) GetTotalTax() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}
 	return o.TotalTax
 }
 
-func (o *InvoiceInput) GetTaxCode() *string {
+func (o *InvoiceInput) GetTaxCode() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.TaxCode
 }
 
-func (o *InvoiceInput) GetDiscountPercentage() *float64 {
+func (o *InvoiceInput) GetDiscountPercentage() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}
 	return o.DiscountPercentage
 }
 
-func (o *InvoiceInput) GetDiscountAmount() *float64 {
+func (o *InvoiceInput) GetDiscountAmount() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}
 	return o.DiscountAmount
 }
 
-func (o *InvoiceInput) GetTotal() *float64 {
+func (o *InvoiceInput) GetTotal() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}
 	return o.Total
 }
 
-func (o *InvoiceInput) GetBalance() *float64 {
+func (o *InvoiceInput) GetBalance() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}
 	return o.Balance
 }
 
-func (o *InvoiceInput) GetDeposit() *float64 {
+func (o *InvoiceInput) GetDeposit() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}
 	return o.Deposit
 }
 
-func (o *InvoiceInput) GetCustomerMemo() *string {
+func (o *InvoiceInput) GetCustomerMemo() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.CustomerMemo
 }
 
-func (o *InvoiceInput) GetTrackingCategory() *DeprecatedLinkedTrackingCategory {
+func (o *InvoiceInput) GetTrackingCategory() optionalnullable.OptionalNullable[DeprecatedLinkedTrackingCategory] {
 	if o == nil {
 		return nil
 	}
 	return o.TrackingCategory
 }
 
-func (o *InvoiceInput) GetTrackingCategories() []*LinkedTrackingCategory {
+func (o *InvoiceInput) GetTrackingCategories() optionalnullable.OptionalNullable[[]*LinkedTrackingCategory] {
 	if o == nil {
 		return nil
 	}
@@ -854,49 +855,49 @@ func (o *InvoiceInput) GetShippingAddress() *Address {
 	return o.ShippingAddress
 }
 
-func (o *InvoiceInput) GetTemplateID() *string {
+func (o *InvoiceInput) GetTemplateID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.TemplateID
 }
 
-func (o *InvoiceInput) GetSourceDocumentURL() *string {
+func (o *InvoiceInput) GetSourceDocumentURL() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.SourceDocumentURL
 }
 
-func (o *InvoiceInput) GetPaymentAllocations() []PaymentAllocation {
+func (o *InvoiceInput) GetPaymentAllocations() optionalnullable.OptionalNullable[[]PaymentAllocation] {
 	if o == nil {
 		return nil
 	}
 	return o.PaymentAllocations
 }
 
-func (o *InvoiceInput) GetPaymentMethod() *string {
+func (o *InvoiceInput) GetPaymentMethod() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.PaymentMethod
 }
 
-func (o *InvoiceInput) GetChannel() *string {
+func (o *InvoiceInput) GetChannel() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Channel
 }
 
-func (o *InvoiceInput) GetLanguage() *string {
+func (o *InvoiceInput) GetLanguage() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Language
 }
 
-func (o *InvoiceInput) GetAccountingByRow() *bool {
+func (o *InvoiceInput) GetAccountingByRow() optionalnullable.OptionalNullable[bool] {
 	if o == nil {
 		return nil
 	}
@@ -910,7 +911,7 @@ func (o *InvoiceInput) GetBankAccount() *BankAccount {
 	return o.BankAccount
 }
 
-func (o *InvoiceInput) GetLedgerAccount() *LinkedLedgerAccount {
+func (o *InvoiceInput) GetLedgerAccount() optionalnullable.OptionalNullable[LinkedLedgerAccount] {
 	if o == nil {
 		return nil
 	}
@@ -924,7 +925,7 @@ func (o *InvoiceInput) GetCustomFields() []CustomFieldUnion {
 	return o.CustomFields
 }
 
-func (o *InvoiceInput) GetRowVersion() *string {
+func (o *InvoiceInput) GetRowVersion() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}

@@ -2,19 +2,23 @@
 
 package components
 
+import (
+	"mockserver/internal/sdk/optionalnullable"
+)
+
 type Compensation struct {
 	// A unique identifier for an object.
 	EmployeeID *string `json:"employee_id"`
 	// The employee's net pay. Only available when payroll has been processed
-	NetPay *float64 `json:"net_pay,omitempty"`
+	NetPay optionalnullable.OptionalNullable[float64] `json:"net_pay,omitempty"`
 	// The employee's gross pay. Only available when payroll has been processed
-	GrossPay *float64 `json:"gross_pay,omitempty"`
+	GrossPay optionalnullable.OptionalNullable[float64] `json:"gross_pay,omitempty"`
 	// An array of employer and employee taxes for the pay period.
-	Taxes []Tax `json:"taxes,omitempty"`
+	Taxes optionalnullable.OptionalNullable[[]Tax] `json:"taxes,omitempty"`
 	// An array of employee deductions for the pay period.
-	Deductions []Deduction `json:"deductions,omitempty"`
+	Deductions optionalnullable.OptionalNullable[[]Deduction] `json:"deductions,omitempty"`
 	// An array of employee benefits for the pay period.
-	Benefits []Benefit `json:"benefits,omitempty"`
+	Benefits optionalnullable.OptionalNullable[[]Benefit] `json:"benefits,omitempty"`
 }
 
 func (o *Compensation) GetEmployeeID() *string {
@@ -24,35 +28,35 @@ func (o *Compensation) GetEmployeeID() *string {
 	return o.EmployeeID
 }
 
-func (o *Compensation) GetNetPay() *float64 {
+func (o *Compensation) GetNetPay() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}
 	return o.NetPay
 }
 
-func (o *Compensation) GetGrossPay() *float64 {
+func (o *Compensation) GetGrossPay() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}
 	return o.GrossPay
 }
 
-func (o *Compensation) GetTaxes() []Tax {
+func (o *Compensation) GetTaxes() optionalnullable.OptionalNullable[[]Tax] {
 	if o == nil {
 		return nil
 	}
 	return o.Taxes
 }
 
-func (o *Compensation) GetDeductions() []Deduction {
+func (o *Compensation) GetDeductions() optionalnullable.OptionalNullable[[]Deduction] {
 	if o == nil {
 		return nil
 	}
 	return o.Deductions
 }
 
-func (o *Compensation) GetBenefits() []Benefit {
+func (o *Compensation) GetBenefits() optionalnullable.OptionalNullable[[]Benefit] {
 	if o == nil {
 		return nil
 	}

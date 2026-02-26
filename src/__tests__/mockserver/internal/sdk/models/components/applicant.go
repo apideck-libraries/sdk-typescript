@@ -3,6 +3,7 @@
 package components
 
 import (
+	"mockserver/internal/sdk/optionalnullable"
 	"mockserver/internal/sdk/types"
 	"mockserver/internal/sdk/utils"
 	"time"
@@ -40,14 +41,14 @@ func (e ApplicantType) ToPointer() *ApplicantType {
 
 type ApplicantWebsite struct {
 	// Unique identifier for the website
-	ID *string `json:"id,omitempty"`
+	ID optionalnullable.OptionalNullable[string] `json:"id,omitempty"`
 	// The website URL
 	URL string `json:"url"`
 	// The type of website
-	Type *ApplicantType `json:"type,omitempty"`
+	Type optionalnullable.OptionalNullable[ApplicantType] `json:"type,omitempty"`
 }
 
-func (o *ApplicantWebsite) GetID() *string {
+func (o *ApplicantWebsite) GetID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -61,7 +62,7 @@ func (o *ApplicantWebsite) GetURL() string {
 	return o.URL
 }
 
-func (o *ApplicantWebsite) GetType() *ApplicantType {
+func (o *ApplicantWebsite) GetType() optionalnullable.OptionalNullable[ApplicantType] {
 	if o == nil {
 		return nil
 	}
@@ -70,14 +71,14 @@ func (o *ApplicantWebsite) GetType() *ApplicantType {
 
 type ApplicantSocialLink struct {
 	// Unique identifier of the social link
-	ID *string `json:"id,omitempty"`
+	ID optionalnullable.OptionalNullable[string] `json:"id,omitempty"`
 	// URL of the social link, e.g. https://www.twitter.com/apideck
 	URL string `json:"url"`
 	// Type of the social link, e.g. twitter
-	Type *string `json:"type,omitempty"`
+	Type optionalnullable.OptionalNullable[string] `json:"type,omitempty"`
 }
 
-func (o *ApplicantSocialLink) GetID() *string {
+func (o *ApplicantSocialLink) GetID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -91,7 +92,7 @@ func (o *ApplicantSocialLink) GetURL() string {
 	return o.URL
 }
 
-func (o *ApplicantSocialLink) GetType() *string {
+func (o *ApplicantSocialLink) GetType() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -104,73 +105,73 @@ type Applicant struct {
 	// The name of an applicant.
 	Name *string `json:"name,omitempty"`
 	// A formal salutation for the person. For example, 'Mr', 'Mrs'
-	Salutation *string `json:"salutation,omitempty"`
+	Salutation optionalnullable.OptionalNullable[string] `json:"salutation,omitempty"`
 	// The first name of the person.
-	FirstName *string `json:"first_name,omitempty"`
+	FirstName optionalnullable.OptionalNullable[string] `json:"first_name,omitempty"`
 	// The last name of the person.
-	LastName *string `json:"last_name,omitempty"`
+	LastName optionalnullable.OptionalNullable[string] `json:"last_name,omitempty"`
 	// Middle name of the person.
-	MiddleName *string `json:"middle_name,omitempty"`
+	MiddleName optionalnullable.OptionalNullable[string] `json:"middle_name,omitempty"`
 	// The initials of the person, usually derived from their first, middle, and last names.
-	Initials *string `json:"initials,omitempty"`
+	Initials optionalnullable.OptionalNullable[string] `json:"initials,omitempty"`
 	// The date of birth of the person.
-	Birthday *types.Date `json:"birthday,omitempty"`
+	Birthday optionalnullable.OptionalNullable[types.Date] `json:"birthday,omitempty"`
 	// The gender represents the gender identity of a person.
-	Gender *ApplicantGender `json:"gender,omitempty"`
+	Gender optionalnullable.OptionalNullable[ApplicantGender] `json:"gender,omitempty"`
 	// A unique identifier assigned by the government. This field is considered sensitive information and may be subject to special security and privacy restrictions.
-	SocialSecurityNumber *string `json:"social_security_number,omitempty"`
-	Type                 *string `json:"type,omitempty"`
-	CoverLetter          *string `json:"cover_letter,omitempty"`
-	JobURL               *string `json:"job_url,omitempty"`
+	SocialSecurityNumber optionalnullable.OptionalNullable[string] `json:"social_security_number,omitempty"`
+	Type                 *string                                   `json:"type,omitempty"`
+	CoverLetter          *string                                   `json:"cover_letter,omitempty"`
+	JobURL               optionalnullable.OptionalNullable[string] `json:"job_url,omitempty"`
 	// The URL of the photo of a person.
-	PhotoURL *string `json:"photo_url,omitempty"`
+	PhotoURL optionalnullable.OptionalNullable[string] `json:"photo_url,omitempty"`
 	// Typically a list of previous companies where the contact has worked or schools that the contact has attended
 	Headline *string `json:"headline,omitempty"`
 	// The job title of the person.
-	Title          *string               `json:"title,omitempty"`
-	Emails         []Email               `json:"emails,omitempty"`
-	CustomFields   []CustomFieldUnion    `json:"custom_fields,omitempty"`
-	PhoneNumbers   []PhoneNumber         `json:"phone_numbers,omitempty"`
-	Addresses      []Address             `json:"addresses,omitempty"`
-	Websites       []ApplicantWebsite    `json:"websites,omitempty"`
-	SocialLinks    []ApplicantSocialLink `json:"social_links,omitempty"`
-	StageID        *string               `json:"stage_id,omitempty"`
-	RecruiterID    *string               `json:"recruiter_id,omitempty"`
-	CoordinatorID  *string               `json:"coordinator_id,omitempty"`
-	ApplicationIds []string              `json:"application_ids,omitempty"`
+	Title          optionalnullable.OptionalNullable[string]   `json:"title,omitempty"`
+	Emails         []Email                                     `json:"emails,omitempty"`
+	CustomFields   []CustomFieldUnion                          `json:"custom_fields,omitempty"`
+	PhoneNumbers   []PhoneNumber                               `json:"phone_numbers,omitempty"`
+	Addresses      []Address                                   `json:"addresses,omitempty"`
+	Websites       []ApplicantWebsite                          `json:"websites,omitempty"`
+	SocialLinks    []ApplicantSocialLink                       `json:"social_links,omitempty"`
+	StageID        *string                                     `json:"stage_id,omitempty"`
+	RecruiterID    *string                                     `json:"recruiter_id,omitempty"`
+	CoordinatorID  *string                                     `json:"coordinator_id,omitempty"`
+	ApplicationIds optionalnullable.OptionalNullable[[]string] `json:"application_ids,omitempty"`
 	// Deprecated: Use application_ids instead. Array of application IDs associated with the applicant.
 	//
 	// Deprecated: Deprecated. Use application_ids instead..
-	Applications      []string   `json:"applications,omitempty"`
-	Followers         []string   `json:"followers,omitempty"`
-	Sources           []string   `json:"sources,omitempty"`
-	SourceID          *string    `json:"source_id,omitempty"`
-	Confidential      *bool      `json:"confidential,omitempty"`
-	Anonymized        *bool      `json:"anonymized,omitempty"`
-	Tags              []string   `json:"tags,omitempty"`
-	Archived          *bool      `json:"archived,omitempty"`
-	LastInteractionAt *time.Time `json:"last_interaction_at,omitempty"`
-	OwnerID           *string    `json:"owner_id,omitempty"`
-	SourcedBy         *string    `json:"sourced_by,omitempty"`
-	CvURL             *string    `json:"cv_url,omitempty"`
-	RecordURL         *string    `json:"record_url,omitempty"`
-	RejectedAt        *time.Time `json:"rejected_at,omitempty"`
+	Applications      optionalnullable.OptionalNullable[[]string]  `json:"applications,omitempty"`
+	Followers         optionalnullable.OptionalNullable[[]string]  `json:"followers,omitempty"`
+	Sources           optionalnullable.OptionalNullable[[]string]  `json:"sources,omitempty"`
+	SourceID          *string                                      `json:"source_id,omitempty"`
+	Confidential      *bool                                        `json:"confidential,omitempty"`
+	Anonymized        *bool                                        `json:"anonymized,omitempty"`
+	Tags              optionalnullable.OptionalNullable[[]string]  `json:"tags,omitempty"`
+	Archived          optionalnullable.OptionalNullable[bool]      `json:"archived,omitempty"`
+	LastInteractionAt optionalnullable.OptionalNullable[time.Time] `json:"last_interaction_at,omitempty"`
+	OwnerID           optionalnullable.OptionalNullable[string]    `json:"owner_id,omitempty"`
+	SourcedBy         optionalnullable.OptionalNullable[string]    `json:"sourced_by,omitempty"`
+	CvURL             *string                                      `json:"cv_url,omitempty"`
+	RecordURL         optionalnullable.OptionalNullable[string]    `json:"record_url,omitempty"`
+	RejectedAt        optionalnullable.OptionalNullable[time.Time] `json:"rejected_at,omitempty"`
 	// When custom mappings are configured on the resource, the result is included here.
-	CustomMappings map[string]any `json:"custom_mappings,omitempty"`
+	CustomMappings optionalnullable.OptionalNullable[map[string]any] `json:"custom_mappings,omitempty"`
 	// Flag to indicate if the object is deleted.
-	Deleted *bool `json:"deleted,omitempty"`
+	Deleted optionalnullable.OptionalNullable[bool] `json:"deleted,omitempty"`
 	// The user who deleted the object.
-	DeletedBy *string `json:"deleted_by,omitempty"`
+	DeletedBy optionalnullable.OptionalNullable[string] `json:"deleted_by,omitempty"`
 	// The time at which the object was deleted.
-	DeletedAt *time.Time `json:"deleted_at,omitempty"`
+	DeletedAt optionalnullable.OptionalNullable[time.Time] `json:"deleted_at,omitempty"`
 	// The user who last updated the object.
-	UpdatedBy *string `json:"updated_by,omitempty"`
+	UpdatedBy optionalnullable.OptionalNullable[string] `json:"updated_by,omitempty"`
 	// The user who created the object.
-	CreatedBy *string `json:"created_by,omitempty"`
+	CreatedBy optionalnullable.OptionalNullable[string] `json:"created_by,omitempty"`
 	// The date and time when the object was last updated.
-	UpdatedAt *time.Time `json:"updated_at,omitempty"`
+	UpdatedAt optionalnullable.OptionalNullable[time.Time] `json:"updated_at,omitempty"`
 	// The date and time when the object was created.
-	CreatedAt *time.Time `json:"created_at,omitempty"`
+	CreatedAt optionalnullable.OptionalNullable[time.Time] `json:"created_at,omitempty"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
 	PassThrough []PassThroughBody `json:"pass_through,omitempty"`
 }
@@ -200,56 +201,56 @@ func (o *Applicant) GetName() *string {
 	return o.Name
 }
 
-func (o *Applicant) GetSalutation() *string {
+func (o *Applicant) GetSalutation() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Salutation
 }
 
-func (o *Applicant) GetFirstName() *string {
+func (o *Applicant) GetFirstName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.FirstName
 }
 
-func (o *Applicant) GetLastName() *string {
+func (o *Applicant) GetLastName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.LastName
 }
 
-func (o *Applicant) GetMiddleName() *string {
+func (o *Applicant) GetMiddleName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.MiddleName
 }
 
-func (o *Applicant) GetInitials() *string {
+func (o *Applicant) GetInitials() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Initials
 }
 
-func (o *Applicant) GetBirthday() *types.Date {
+func (o *Applicant) GetBirthday() optionalnullable.OptionalNullable[types.Date] {
 	if o == nil {
 		return nil
 	}
 	return o.Birthday
 }
 
-func (o *Applicant) GetGender() *ApplicantGender {
+func (o *Applicant) GetGender() optionalnullable.OptionalNullable[ApplicantGender] {
 	if o == nil {
 		return nil
 	}
 	return o.Gender
 }
 
-func (o *Applicant) GetSocialSecurityNumber() *string {
+func (o *Applicant) GetSocialSecurityNumber() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -270,14 +271,14 @@ func (o *Applicant) GetCoverLetter() *string {
 	return o.CoverLetter
 }
 
-func (o *Applicant) GetJobURL() *string {
+func (o *Applicant) GetJobURL() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.JobURL
 }
 
-func (o *Applicant) GetPhotoURL() *string {
+func (o *Applicant) GetPhotoURL() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -291,7 +292,7 @@ func (o *Applicant) GetHeadline() *string {
 	return o.Headline
 }
 
-func (o *Applicant) GetTitle() *string {
+func (o *Applicant) GetTitle() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -361,28 +362,28 @@ func (o *Applicant) GetCoordinatorID() *string {
 	return o.CoordinatorID
 }
 
-func (o *Applicant) GetApplicationIds() []string {
+func (o *Applicant) GetApplicationIds() optionalnullable.OptionalNullable[[]string] {
 	if o == nil {
 		return nil
 	}
 	return o.ApplicationIds
 }
 
-func (o *Applicant) GetApplications() []string {
+func (o *Applicant) GetApplications() optionalnullable.OptionalNullable[[]string] {
 	if o == nil {
 		return nil
 	}
 	return o.Applications
 }
 
-func (o *Applicant) GetFollowers() []string {
+func (o *Applicant) GetFollowers() optionalnullable.OptionalNullable[[]string] {
 	if o == nil {
 		return nil
 	}
 	return o.Followers
 }
 
-func (o *Applicant) GetSources() []string {
+func (o *Applicant) GetSources() optionalnullable.OptionalNullable[[]string] {
 	if o == nil {
 		return nil
 	}
@@ -410,35 +411,35 @@ func (o *Applicant) GetAnonymized() *bool {
 	return o.Anonymized
 }
 
-func (o *Applicant) GetTags() []string {
+func (o *Applicant) GetTags() optionalnullable.OptionalNullable[[]string] {
 	if o == nil {
 		return nil
 	}
 	return o.Tags
 }
 
-func (o *Applicant) GetArchived() *bool {
+func (o *Applicant) GetArchived() optionalnullable.OptionalNullable[bool] {
 	if o == nil {
 		return nil
 	}
 	return o.Archived
 }
 
-func (o *Applicant) GetLastInteractionAt() *time.Time {
+func (o *Applicant) GetLastInteractionAt() optionalnullable.OptionalNullable[time.Time] {
 	if o == nil {
 		return nil
 	}
 	return o.LastInteractionAt
 }
 
-func (o *Applicant) GetOwnerID() *string {
+func (o *Applicant) GetOwnerID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.OwnerID
 }
 
-func (o *Applicant) GetSourcedBy() *string {
+func (o *Applicant) GetSourcedBy() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -452,70 +453,70 @@ func (o *Applicant) GetCvURL() *string {
 	return o.CvURL
 }
 
-func (o *Applicant) GetRecordURL() *string {
+func (o *Applicant) GetRecordURL() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.RecordURL
 }
 
-func (o *Applicant) GetRejectedAt() *time.Time {
+func (o *Applicant) GetRejectedAt() optionalnullable.OptionalNullable[time.Time] {
 	if o == nil {
 		return nil
 	}
 	return o.RejectedAt
 }
 
-func (o *Applicant) GetCustomMappings() map[string]any {
+func (o *Applicant) GetCustomMappings() optionalnullable.OptionalNullable[map[string]any] {
 	if o == nil {
 		return nil
 	}
 	return o.CustomMappings
 }
 
-func (o *Applicant) GetDeleted() *bool {
+func (o *Applicant) GetDeleted() optionalnullable.OptionalNullable[bool] {
 	if o == nil {
 		return nil
 	}
 	return o.Deleted
 }
 
-func (o *Applicant) GetDeletedBy() *string {
+func (o *Applicant) GetDeletedBy() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.DeletedBy
 }
 
-func (o *Applicant) GetDeletedAt() *time.Time {
+func (o *Applicant) GetDeletedAt() optionalnullable.OptionalNullable[time.Time] {
 	if o == nil {
 		return nil
 	}
 	return o.DeletedAt
 }
 
-func (o *Applicant) GetUpdatedBy() *string {
+func (o *Applicant) GetUpdatedBy() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.UpdatedBy
 }
 
-func (o *Applicant) GetCreatedBy() *string {
+func (o *Applicant) GetCreatedBy() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.CreatedBy
 }
 
-func (o *Applicant) GetUpdatedAt() *time.Time {
+func (o *Applicant) GetUpdatedAt() optionalnullable.OptionalNullable[time.Time] {
 	if o == nil {
 		return nil
 	}
 	return o.UpdatedAt
 }
 
-func (o *Applicant) GetCreatedAt() *time.Time {
+func (o *Applicant) GetCreatedAt() optionalnullable.OptionalNullable[time.Time] {
 	if o == nil {
 		return nil
 	}
@@ -533,53 +534,53 @@ type ApplicantInput struct {
 	// The name of an applicant.
 	Name *string `json:"name,omitempty"`
 	// A formal salutation for the person. For example, 'Mr', 'Mrs'
-	Salutation *string `json:"salutation,omitempty"`
+	Salutation optionalnullable.OptionalNullable[string] `json:"salutation,omitempty"`
 	// The first name of the person.
-	FirstName *string `json:"first_name,omitempty"`
+	FirstName optionalnullable.OptionalNullable[string] `json:"first_name,omitempty"`
 	// The last name of the person.
-	LastName *string `json:"last_name,omitempty"`
+	LastName optionalnullable.OptionalNullable[string] `json:"last_name,omitempty"`
 	// Middle name of the person.
-	MiddleName *string `json:"middle_name,omitempty"`
+	MiddleName optionalnullable.OptionalNullable[string] `json:"middle_name,omitempty"`
 	// The initials of the person, usually derived from their first, middle, and last names.
-	Initials *string `json:"initials,omitempty"`
+	Initials optionalnullable.OptionalNullable[string] `json:"initials,omitempty"`
 	// The date of birth of the person.
-	Birthday *types.Date `json:"birthday,omitempty"`
+	Birthday optionalnullable.OptionalNullable[types.Date] `json:"birthday,omitempty"`
 	// The gender represents the gender identity of a person.
-	Gender *ApplicantGender `json:"gender,omitempty"`
+	Gender optionalnullable.OptionalNullable[ApplicantGender] `json:"gender,omitempty"`
 	// A unique identifier assigned by the government. This field is considered sensitive information and may be subject to special security and privacy restrictions.
-	SocialSecurityNumber *string `json:"social_security_number,omitempty"`
-	Type                 *string `json:"type,omitempty"`
-	CoverLetter          *string `json:"cover_letter,omitempty"`
+	SocialSecurityNumber optionalnullable.OptionalNullable[string] `json:"social_security_number,omitempty"`
+	Type                 *string                                   `json:"type,omitempty"`
+	CoverLetter          *string                                   `json:"cover_letter,omitempty"`
 	// The URL of the photo of a person.
-	PhotoURL *string `json:"photo_url,omitempty"`
+	PhotoURL optionalnullable.OptionalNullable[string] `json:"photo_url,omitempty"`
 	// Typically a list of previous companies where the contact has worked or schools that the contact has attended
 	Headline *string `json:"headline,omitempty"`
 	// The job title of the person.
-	Title          *string               `json:"title,omitempty"`
-	Emails         []Email               `json:"emails,omitempty"`
-	CustomFields   []CustomFieldUnion    `json:"custom_fields,omitempty"`
-	PhoneNumbers   []PhoneNumber         `json:"phone_numbers,omitempty"`
-	Addresses      []Address             `json:"addresses,omitempty"`
-	Websites       []ApplicantWebsite    `json:"websites,omitempty"`
-	SocialLinks    []ApplicantSocialLink `json:"social_links,omitempty"`
-	StageID        *string               `json:"stage_id,omitempty"`
-	RecruiterID    *string               `json:"recruiter_id,omitempty"`
-	CoordinatorID  *string               `json:"coordinator_id,omitempty"`
-	ApplicationIds []string              `json:"application_ids,omitempty"`
+	Title          optionalnullable.OptionalNullable[string]   `json:"title,omitempty"`
+	Emails         []Email                                     `json:"emails,omitempty"`
+	CustomFields   []CustomFieldUnion                          `json:"custom_fields,omitempty"`
+	PhoneNumbers   []PhoneNumber                               `json:"phone_numbers,omitempty"`
+	Addresses      []Address                                   `json:"addresses,omitempty"`
+	Websites       []ApplicantWebsite                          `json:"websites,omitempty"`
+	SocialLinks    []ApplicantSocialLink                       `json:"social_links,omitempty"`
+	StageID        *string                                     `json:"stage_id,omitempty"`
+	RecruiterID    *string                                     `json:"recruiter_id,omitempty"`
+	CoordinatorID  *string                                     `json:"coordinator_id,omitempty"`
+	ApplicationIds optionalnullable.OptionalNullable[[]string] `json:"application_ids,omitempty"`
 	// Deprecated: Use application_ids instead. Array of application IDs associated with the applicant.
 	//
 	// Deprecated: Deprecated. Use application_ids instead..
-	Applications []string `json:"applications,omitempty"`
-	Followers    []string `json:"followers,omitempty"`
-	Sources      []string `json:"sources,omitempty"`
-	Confidential *bool    `json:"confidential,omitempty"`
-	Anonymized   *bool    `json:"anonymized,omitempty"`
-	Tags         []string `json:"tags,omitempty"`
-	Archived     *bool    `json:"archived,omitempty"`
-	OwnerID      *string  `json:"owner_id,omitempty"`
-	RecordURL    *string  `json:"record_url,omitempty"`
+	Applications optionalnullable.OptionalNullable[[]string] `json:"applications,omitempty"`
+	Followers    optionalnullable.OptionalNullable[[]string] `json:"followers,omitempty"`
+	Sources      optionalnullable.OptionalNullable[[]string] `json:"sources,omitempty"`
+	Confidential *bool                                       `json:"confidential,omitempty"`
+	Anonymized   *bool                                       `json:"anonymized,omitempty"`
+	Tags         optionalnullable.OptionalNullable[[]string] `json:"tags,omitempty"`
+	Archived     optionalnullable.OptionalNullable[bool]     `json:"archived,omitempty"`
+	OwnerID      optionalnullable.OptionalNullable[string]   `json:"owner_id,omitempty"`
+	RecordURL    optionalnullable.OptionalNullable[string]   `json:"record_url,omitempty"`
 	// Flag to indicate if the object is deleted.
-	Deleted *bool `json:"deleted,omitempty"`
+	Deleted optionalnullable.OptionalNullable[bool] `json:"deleted,omitempty"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
 	PassThrough []PassThroughBody `json:"pass_through,omitempty"`
 }
@@ -602,56 +603,56 @@ func (o *ApplicantInput) GetName() *string {
 	return o.Name
 }
 
-func (o *ApplicantInput) GetSalutation() *string {
+func (o *ApplicantInput) GetSalutation() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Salutation
 }
 
-func (o *ApplicantInput) GetFirstName() *string {
+func (o *ApplicantInput) GetFirstName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.FirstName
 }
 
-func (o *ApplicantInput) GetLastName() *string {
+func (o *ApplicantInput) GetLastName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.LastName
 }
 
-func (o *ApplicantInput) GetMiddleName() *string {
+func (o *ApplicantInput) GetMiddleName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.MiddleName
 }
 
-func (o *ApplicantInput) GetInitials() *string {
+func (o *ApplicantInput) GetInitials() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Initials
 }
 
-func (o *ApplicantInput) GetBirthday() *types.Date {
+func (o *ApplicantInput) GetBirthday() optionalnullable.OptionalNullable[types.Date] {
 	if o == nil {
 		return nil
 	}
 	return o.Birthday
 }
 
-func (o *ApplicantInput) GetGender() *ApplicantGender {
+func (o *ApplicantInput) GetGender() optionalnullable.OptionalNullable[ApplicantGender] {
 	if o == nil {
 		return nil
 	}
 	return o.Gender
 }
 
-func (o *ApplicantInput) GetSocialSecurityNumber() *string {
+func (o *ApplicantInput) GetSocialSecurityNumber() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -672,7 +673,7 @@ func (o *ApplicantInput) GetCoverLetter() *string {
 	return o.CoverLetter
 }
 
-func (o *ApplicantInput) GetPhotoURL() *string {
+func (o *ApplicantInput) GetPhotoURL() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -686,7 +687,7 @@ func (o *ApplicantInput) GetHeadline() *string {
 	return o.Headline
 }
 
-func (o *ApplicantInput) GetTitle() *string {
+func (o *ApplicantInput) GetTitle() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -756,28 +757,28 @@ func (o *ApplicantInput) GetCoordinatorID() *string {
 	return o.CoordinatorID
 }
 
-func (o *ApplicantInput) GetApplicationIds() []string {
+func (o *ApplicantInput) GetApplicationIds() optionalnullable.OptionalNullable[[]string] {
 	if o == nil {
 		return nil
 	}
 	return o.ApplicationIds
 }
 
-func (o *ApplicantInput) GetApplications() []string {
+func (o *ApplicantInput) GetApplications() optionalnullable.OptionalNullable[[]string] {
 	if o == nil {
 		return nil
 	}
 	return o.Applications
 }
 
-func (o *ApplicantInput) GetFollowers() []string {
+func (o *ApplicantInput) GetFollowers() optionalnullable.OptionalNullable[[]string] {
 	if o == nil {
 		return nil
 	}
 	return o.Followers
 }
 
-func (o *ApplicantInput) GetSources() []string {
+func (o *ApplicantInput) GetSources() optionalnullable.OptionalNullable[[]string] {
 	if o == nil {
 		return nil
 	}
@@ -798,35 +799,35 @@ func (o *ApplicantInput) GetAnonymized() *bool {
 	return o.Anonymized
 }
 
-func (o *ApplicantInput) GetTags() []string {
+func (o *ApplicantInput) GetTags() optionalnullable.OptionalNullable[[]string] {
 	if o == nil {
 		return nil
 	}
 	return o.Tags
 }
 
-func (o *ApplicantInput) GetArchived() *bool {
+func (o *ApplicantInput) GetArchived() optionalnullable.OptionalNullable[bool] {
 	if o == nil {
 		return nil
 	}
 	return o.Archived
 }
 
-func (o *ApplicantInput) GetOwnerID() *string {
+func (o *ApplicantInput) GetOwnerID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.OwnerID
 }
 
-func (o *ApplicantInput) GetRecordURL() *string {
+func (o *ApplicantInput) GetRecordURL() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.RecordURL
 }
 
-func (o *ApplicantInput) GetDeleted() *bool {
+func (o *ApplicantInput) GetDeleted() optionalnullable.OptionalNullable[bool] {
 	if o == nil {
 		return nil
 	}

@@ -2,85 +2,89 @@
 
 package components
 
+import (
+	"mockserver/internal/sdk/optionalnullable"
+)
+
 // PayrollTotals - The overview of the payroll totals.
 type PayrollTotals struct {
 	// The total company debit for the payroll.
-	CompanyDebit *float64 `json:"company_debit,omitempty"`
+	CompanyDebit optionalnullable.OptionalNullable[float64] `json:"company_debit,omitempty"`
 	// The total tax debit for the payroll.
-	TaxDebit *float64 `json:"tax_debit,omitempty"`
+	TaxDebit optionalnullable.OptionalNullable[float64] `json:"tax_debit,omitempty"`
 	// The total check amount for the payroll.
-	CheckAmount *float64 `json:"check_amount,omitempty"`
+	CheckAmount optionalnullable.OptionalNullable[float64] `json:"check_amount,omitempty"`
 	// The net pay amount for the payroll.
-	NetPay *float64 `json:"net_pay,omitempty"`
+	NetPay optionalnullable.OptionalNullable[float64] `json:"net_pay,omitempty"`
 	// The gross pay amount for the payroll.
-	GrossPay *float64 `json:"gross_pay,omitempty"`
+	GrossPay optionalnullable.OptionalNullable[float64] `json:"gross_pay,omitempty"`
 	// The total amount of employer paid taxes for the payroll.
-	EmployerTaxes *float64 `json:"employer_taxes,omitempty"`
+	EmployerTaxes optionalnullable.OptionalNullable[float64] `json:"employer_taxes,omitempty"`
 	// The total amount of employee paid taxes for the payroll.
-	EmployeeTaxes *float64 `json:"employee_taxes,omitempty"`
+	EmployeeTaxes optionalnullable.OptionalNullable[float64] `json:"employee_taxes,omitempty"`
 	// The total amount of company contributed benefits for the payroll.
-	EmployerBenefitContributions *float64 `json:"employer_benefit_contributions,omitempty"`
+	EmployerBenefitContributions optionalnullable.OptionalNullable[float64] `json:"employer_benefit_contributions,omitempty"`
 	// The total amount of employee deducted benefits for the payroll.
-	EmployeeBenefitDeductions *float64 `json:"employee_benefit_deductions,omitempty"`
+	EmployeeBenefitDeductions optionalnullable.OptionalNullable[float64] `json:"employee_benefit_deductions,omitempty"`
 }
 
-func (o *PayrollTotals) GetCompanyDebit() *float64 {
+func (o *PayrollTotals) GetCompanyDebit() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}
 	return o.CompanyDebit
 }
 
-func (o *PayrollTotals) GetTaxDebit() *float64 {
+func (o *PayrollTotals) GetTaxDebit() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}
 	return o.TaxDebit
 }
 
-func (o *PayrollTotals) GetCheckAmount() *float64 {
+func (o *PayrollTotals) GetCheckAmount() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}
 	return o.CheckAmount
 }
 
-func (o *PayrollTotals) GetNetPay() *float64 {
+func (o *PayrollTotals) GetNetPay() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}
 	return o.NetPay
 }
 
-func (o *PayrollTotals) GetGrossPay() *float64 {
+func (o *PayrollTotals) GetGrossPay() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}
 	return o.GrossPay
 }
 
-func (o *PayrollTotals) GetEmployerTaxes() *float64 {
+func (o *PayrollTotals) GetEmployerTaxes() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}
 	return o.EmployerTaxes
 }
 
-func (o *PayrollTotals) GetEmployeeTaxes() *float64 {
+func (o *PayrollTotals) GetEmployeeTaxes() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}
 	return o.EmployeeTaxes
 }
 
-func (o *PayrollTotals) GetEmployerBenefitContributions() *float64 {
+func (o *PayrollTotals) GetEmployerBenefitContributions() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}
 	return o.EmployerBenefitContributions
 }
 
-func (o *PayrollTotals) GetEmployeeBenefitDeductions() *float64 {
+func (o *PayrollTotals) GetEmployeeBenefitDeductions() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}

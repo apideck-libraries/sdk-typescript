@@ -2,13 +2,17 @@
 
 package components
 
+import (
+	"mockserver/internal/sdk/optionalnullable"
+)
+
 type CustomFieldFinder struct {
 	// Custom Field ID
 	ID *string `json:"id,omitempty"`
 	// Custom Field name to use as a label if provided
-	Name *string `json:"name,omitempty"`
+	Name optionalnullable.OptionalNullable[string] `json:"name,omitempty"`
 	// More information about the custom field
-	Description *string `json:"description,omitempty"`
+	Description optionalnullable.OptionalNullable[string] `json:"description,omitempty"`
 	// Custom Field value
 	Value any `json:"value,omitempty"`
 	// JSONPath finder for retrieving this value when mapping a response payload from downstream
@@ -22,14 +26,14 @@ func (o *CustomFieldFinder) GetID() *string {
 	return o.ID
 }
 
-func (o *CustomFieldFinder) GetName() *string {
+func (o *CustomFieldFinder) GetName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-func (o *CustomFieldFinder) GetDescription() *string {
+func (o *CustomFieldFinder) GetDescription() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}

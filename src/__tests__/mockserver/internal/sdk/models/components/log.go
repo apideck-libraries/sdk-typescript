@@ -2,6 +2,10 @@
 
 package components
 
+import (
+	"mockserver/internal/sdk/optionalnullable"
+)
+
 // Operation - The request as defined in OpenApi Spec.
 type Operation struct {
 	// The OpenApi Operation Id associated with the request
@@ -80,7 +84,7 @@ type Log struct {
 	// The entire execution time in milliseconds it took to call the Apideck service provider.
 	Duration float64 `json:"duration"`
 	// If error occurred, this is brief explanation
-	ErrorMessage *string `json:"error_message,omitempty"`
+	ErrorMessage optionalnullable.OptionalNullable[string] `json:"error_message,omitempty"`
 	// The entire execution time in milliseconds it took to make the request.
 	Execution int64 `json:"execution"`
 	// When request is a parent request, this indicates if there are child requests associated.
@@ -102,7 +106,7 @@ type Log struct {
 	// Apideck service provider associated with request.
 	Service LogService `json:"service"`
 	// The IP address of the source of the request.
-	SourceIP *string `json:"source_ip,omitempty"`
+	SourceIP optionalnullable.OptionalNullable[string] `json:"source_ip,omitempty"`
 	// HTTP Status code that was returned.
 	StatusCode int64 `json:"status_code"`
 	// Whether or not the request was successful.
@@ -148,7 +152,7 @@ func (o *Log) GetDuration() float64 {
 	return o.Duration
 }
 
-func (o *Log) GetErrorMessage() *string {
+func (o *Log) GetErrorMessage() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -225,7 +229,7 @@ func (o *Log) GetService() LogService {
 	return o.Service
 }
 
-func (o *Log) GetSourceIP() *string {
+func (o *Log) GetSourceIP() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}

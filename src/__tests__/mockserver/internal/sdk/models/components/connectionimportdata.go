@@ -3,19 +3,20 @@
 package components
 
 import (
+	"mockserver/internal/sdk/optionalnullable"
 	"mockserver/internal/sdk/utils"
 	"time"
 )
 
 type Credentials struct {
 	// The refresh token can be used to obtain a new access token.
-	RefreshToken *string `json:"refresh_token,omitempty"`
+	RefreshToken optionalnullable.OptionalNullable[string] `json:"refresh_token,omitempty"`
 	// Access token
 	AccessToken *string `json:"access_token,omitempty"`
 	// The datetime at which the token was issued. If omitted the token will be queued for refresh.
-	IssuedAt *time.Time `json:"issued_at,omitempty"`
+	IssuedAt optionalnullable.OptionalNullable[time.Time] `json:"issued_at,omitempty"`
 	// The number of seconds until the token expires. If omitted the token will be queued for refresh.
-	ExpiresIn *int64 `json:"expires_in,omitempty"`
+	ExpiresIn optionalnullable.OptionalNullable[int64] `json:"expires_in,omitempty"`
 }
 
 func (c Credentials) MarshalJSON() ([]byte, error) {
@@ -29,7 +30,7 @@ func (c *Credentials) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *Credentials) GetRefreshToken() *string {
+func (o *Credentials) GetRefreshToken() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -43,14 +44,14 @@ func (o *Credentials) GetAccessToken() *string {
 	return o.AccessToken
 }
 
-func (o *Credentials) GetIssuedAt() *time.Time {
+func (o *Credentials) GetIssuedAt() optionalnullable.OptionalNullable[time.Time] {
 	if o == nil {
 		return nil
 	}
 	return o.IssuedAt
 }
 
-func (o *Credentials) GetExpiresIn() *int64 {
+func (o *Credentials) GetExpiresIn() optionalnullable.OptionalNullable[int64] {
 	if o == nil {
 		return nil
 	}
@@ -60,9 +61,9 @@ func (o *Credentials) GetExpiresIn() *int64 {
 type ConnectionImportData struct {
 	Credentials *Credentials `json:"credentials,omitempty"`
 	// Connection settings. Values will persist to `form_fields` with corresponding id
-	Settings map[string]any `json:"settings,omitempty"`
+	Settings optionalnullable.OptionalNullable[map[string]any] `json:"settings,omitempty"`
 	// Attach your own consumer specific metadata
-	Metadata map[string]any `json:"metadata,omitempty"`
+	Metadata optionalnullable.OptionalNullable[map[string]any] `json:"metadata,omitempty"`
 }
 
 func (o *ConnectionImportData) GetCredentials() *Credentials {
@@ -72,14 +73,14 @@ func (o *ConnectionImportData) GetCredentials() *Credentials {
 	return o.Credentials
 }
 
-func (o *ConnectionImportData) GetSettings() map[string]any {
+func (o *ConnectionImportData) GetSettings() optionalnullable.OptionalNullable[map[string]any] {
 	if o == nil {
 		return nil
 	}
 	return o.Settings
 }
 
-func (o *ConnectionImportData) GetMetadata() map[string]any {
+func (o *ConnectionImportData) GetMetadata() optionalnullable.OptionalNullable[map[string]any] {
 	if o == nil {
 		return nil
 	}

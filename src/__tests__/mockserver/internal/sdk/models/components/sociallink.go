@@ -2,16 +2,20 @@
 
 package components
 
+import (
+	"mockserver/internal/sdk/optionalnullable"
+)
+
 type SocialLink struct {
 	// Unique identifier of the social link
-	ID *string `json:"id,omitempty"`
+	ID optionalnullable.OptionalNullable[string] `json:"id,omitempty"`
 	// URL of the social link, e.g. https://www.twitter.com/apideck
 	URL string `json:"url"`
 	// Type of the social link, e.g. twitter
-	Type *string `json:"type,omitempty"`
+	Type optionalnullable.OptionalNullable[string] `json:"type,omitempty"`
 }
 
-func (o *SocialLink) GetID() *string {
+func (o *SocialLink) GetID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -25,7 +29,7 @@ func (o *SocialLink) GetURL() string {
 	return o.URL
 }
 
-func (o *SocialLink) GetType() *string {
+func (o *SocialLink) GetType() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}

@@ -2,30 +2,34 @@
 
 package components
 
+import (
+	"mockserver/internal/sdk/optionalnullable"
+)
+
 type Tax struct {
 	// The name of the tax.
-	Name *string `json:"name,omitempty"`
+	Name optionalnullable.OptionalNullable[string] `json:"name,omitempty"`
 	// Paid by employer.
-	Employer *bool `json:"employer,omitempty"`
+	Employer optionalnullable.OptionalNullable[bool] `json:"employer,omitempty"`
 	// The amount of the tax.
-	Amount *float64 `json:"amount,omitempty"`
+	Amount optionalnullable.OptionalNullable[float64] `json:"amount,omitempty"`
 }
 
-func (o *Tax) GetName() *string {
+func (o *Tax) GetName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-func (o *Tax) GetEmployer() *bool {
+func (o *Tax) GetEmployer() optionalnullable.OptionalNullable[bool] {
 	if o == nil {
 		return nil
 	}
 	return o.Employer
 }
 
-func (o *Tax) GetAmount() *float64 {
+func (o *Tax) GetAmount() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}

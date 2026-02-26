@@ -8,6 +8,7 @@ import (
 	"mockserver/internal/handler/assert"
 	"mockserver/internal/logging"
 	"mockserver/internal/sdk/models/components"
+	"mockserver/internal/sdk/optionalnullable"
 	"mockserver/internal/sdk/types"
 	"mockserver/internal/sdk/utils"
 	"mockserver/internal/tracking"
@@ -59,44 +60,44 @@ func testCrmCustomObjectSchemasAddCrmCustomObjectSchemasAdd0(w http.ResponseWrit
 		Operation:  "add",
 		Data: components.CustomObjectSchema{
 			ID:          types.String("cos_12345"),
-			Name:        types.String("project"),
-			Description: types.String("This schema defines a project custom object"),
+			Name:        optionalnullable.From(types.String("project")),
+			Description: optionalnullable.From(types.String("This schema defines a project custom object")),
 			Fields: []components.CustomObjectSchemaField{
 				components.CustomObjectSchemaField{
 					ID:          types.String("field_123"),
 					Name:        types.String("project_name"),
-					Description: types.String("Name of the project"),
+					Description: optionalnullable.From(types.String("Name of the project")),
 					Type:        components.CustomObjectSchemaTypeString.ToPointer(),
 					Required:    types.Bool(true),
-					Options: []components.CustomObjectSchemaOption{
+					Options: optionalnullable.From(types.Pointer([]components.CustomObjectSchemaOption{
 						components.CustomObjectSchemaOption{
 							Value: types.String("option1"),
 							Label: types.String("Option 1"),
 						},
-					},
-					DefaultValue: types.String("New Project"),
+					})),
+					DefaultValue: optionalnullable.From(types.String("New Project")),
 				},
 				components.CustomObjectSchemaField{
 					ID:          types.String("field_123"),
 					Name:        types.String("project_name"),
-					Description: types.String("Name of the project"),
+					Description: optionalnullable.From(types.String("Name of the project")),
 					Type:        components.CustomObjectSchemaTypeString.ToPointer(),
 					Required:    types.Bool(true),
-					Options: []components.CustomObjectSchemaOption{
+					Options: optionalnullable.From(types.Pointer([]components.CustomObjectSchemaOption{
 						components.CustomObjectSchemaOption{
 							Value: types.String("option1"),
 							Label: types.String("Option 1"),
 						},
-					},
-					DefaultValue: types.String("New Project"),
+					})),
+					DefaultValue: optionalnullable.From(types.String("New Project")),
 				},
 			},
-			Visible:   types.Bool(true),
-			Active:    types.Bool(true),
-			CreatedBy: types.String("12345"),
-			UpdatedBy: types.String("12345"),
-			UpdatedAt: types.String("2020-09-30T07:43:32.000Z"),
-			CreatedAt: types.String("2020-09-30T07:43:32.000Z"),
+			Visible:   optionalnullable.From(types.Bool(true)),
+			Active:    optionalnullable.From(types.Bool(true)),
+			CreatedBy: optionalnullable.From(types.String("12345")),
+			UpdatedBy: optionalnullable.From(types.String("12345")),
+			UpdatedAt: optionalnullable.From(types.String("2020-09-30T07:43:32.000Z")),
+			CreatedAt: optionalnullable.From(types.String("2020-09-30T07:43:32.000Z")),
 			PassThrough: []components.PassThroughBody{
 				components.PassThroughBody{
 					ServiceID: "<id>",

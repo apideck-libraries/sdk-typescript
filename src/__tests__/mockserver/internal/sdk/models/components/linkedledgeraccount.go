@@ -2,19 +2,23 @@
 
 package components
 
+import (
+	"mockserver/internal/sdk/optionalnullable"
+)
+
 type LinkedLedgerAccount struct {
 	// The unique identifier for the account.
 	ID *string `json:"id,omitempty"`
 	// The name of the account.
-	Name *string `json:"name,omitempty"`
+	Name optionalnullable.OptionalNullable[string] `json:"name,omitempty"`
 	// The nominal code of the account.
-	NominalCode *string `json:"nominal_code,omitempty"`
+	NominalCode optionalnullable.OptionalNullable[string] `json:"nominal_code,omitempty"`
 	// The code assigned to the account.
-	Code *string `json:"code,omitempty"`
+	Code optionalnullable.OptionalNullable[string] `json:"code,omitempty"`
 	// The parent ID of the account.
-	ParentID *string `json:"parent_id,omitempty"`
+	ParentID optionalnullable.OptionalNullable[string] `json:"parent_id,omitempty"`
 	// The display ID of the account.
-	DisplayID *string `json:"display_id,omitempty"`
+	DisplayID optionalnullable.OptionalNullable[string] `json:"display_id,omitempty"`
 }
 
 func (o *LinkedLedgerAccount) GetID() *string {
@@ -24,35 +28,35 @@ func (o *LinkedLedgerAccount) GetID() *string {
 	return o.ID
 }
 
-func (o *LinkedLedgerAccount) GetName() *string {
+func (o *LinkedLedgerAccount) GetName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-func (o *LinkedLedgerAccount) GetNominalCode() *string {
+func (o *LinkedLedgerAccount) GetNominalCode() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.NominalCode
 }
 
-func (o *LinkedLedgerAccount) GetCode() *string {
+func (o *LinkedLedgerAccount) GetCode() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Code
 }
 
-func (o *LinkedLedgerAccount) GetParentID() *string {
+func (o *LinkedLedgerAccount) GetParentID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.ParentID
 }
 
-func (o *LinkedLedgerAccount) GetDisplayID() *string {
+func (o *LinkedLedgerAccount) GetDisplayID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}

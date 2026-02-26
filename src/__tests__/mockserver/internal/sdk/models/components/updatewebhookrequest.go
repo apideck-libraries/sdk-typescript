@@ -2,9 +2,13 @@
 
 package components
 
+import (
+	"mockserver/internal/sdk/optionalnullable"
+)
+
 type UpdateWebhookRequest struct {
 	// A description of the object.
-	Description *string `json:"description,omitempty"`
+	Description optionalnullable.OptionalNullable[string] `json:"description,omitempty"`
 	// The status of the webhook.
 	Status *Status `json:"status,omitempty"`
 	// The delivery url of the webhook endpoint.
@@ -13,7 +17,7 @@ type UpdateWebhookRequest struct {
 	Events []WebhookEventType `json:"events,omitempty"`
 }
 
-func (o *UpdateWebhookRequest) GetDescription() *string {
+func (o *UpdateWebhookRequest) GetDescription() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}

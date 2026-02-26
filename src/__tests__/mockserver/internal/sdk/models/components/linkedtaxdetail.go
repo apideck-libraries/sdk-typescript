@@ -2,11 +2,15 @@
 
 package components
 
+import (
+	"mockserver/internal/sdk/optionalnullable"
+)
+
 type LinkedTaxDetail struct {
 	// The type of tax.
 	Type *string `json:"type,omitempty"`
 	// The number of the tax.
-	Number *string `json:"number,omitempty"`
+	Number optionalnullable.OptionalNullable[string] `json:"number,omitempty"`
 	// Whether the tax is a transaction tax.
 	IsTransactionTax *bool `json:"is_transaction_tax,omitempty"`
 	// Whether the tax is a primary tax.
@@ -20,7 +24,7 @@ func (o *LinkedTaxDetail) GetType() *string {
 	return o.Type
 }
 
-func (o *LinkedTaxDetail) GetNumber() *string {
+func (o *LinkedTaxDetail) GetNumber() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}

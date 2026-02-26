@@ -2,17 +2,21 @@
 
 package components
 
+import (
+	"mockserver/internal/sdk/optionalnullable"
+)
+
 type EmployeePayroll struct {
 	// A unique identifier for an object.
 	ID *string `json:"id"`
 	// ID of the employee
-	EmployeeID *string `json:"employee_id,omitempty"`
+	EmployeeID optionalnullable.OptionalNullable[string] `json:"employee_id,omitempty"`
 	// The unique identifier of the company.
-	CompanyID *string `json:"company_id,omitempty"`
+	CompanyID optionalnullable.OptionalNullable[string] `json:"company_id,omitempty"`
 	// Whether or not the payroll has been successfully processed. Note that processed payrolls cannot be updated.
 	Processed *bool `json:"processed"`
 	// The date the payroll was processed.
-	ProcessedDate *string `json:"processed_date,omitempty"`
+	ProcessedDate optionalnullable.OptionalNullable[string] `json:"processed_date,omitempty"`
 	// The date on which employees will be paid for the payroll.
 	CheckDate *string `json:"check_date"`
 	// The start date, inclusive, of the pay period.
@@ -32,14 +36,14 @@ func (o *EmployeePayroll) GetID() *string {
 	return o.ID
 }
 
-func (o *EmployeePayroll) GetEmployeeID() *string {
+func (o *EmployeePayroll) GetEmployeeID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.EmployeeID
 }
 
-func (o *EmployeePayroll) GetCompanyID() *string {
+func (o *EmployeePayroll) GetCompanyID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -53,7 +57,7 @@ func (o *EmployeePayroll) GetProcessed() *bool {
 	return o.Processed
 }
 
-func (o *EmployeePayroll) GetProcessedDate() *string {
+func (o *EmployeePayroll) GetProcessedDate() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
