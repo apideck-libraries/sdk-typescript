@@ -8,6 +8,7 @@ import (
 	"mockserver/internal/handler/assert"
 	"mockserver/internal/logging"
 	"mockserver/internal/sdk/models/components"
+	"mockserver/internal/sdk/optionalnullable"
 	"mockserver/internal/sdk/types"
 	"mockserver/internal/sdk/utils"
 	"mockserver/internal/tracking"
@@ -54,26 +55,26 @@ func testHrisTimeOffRequestsOneHrisTimeOffRequestsOne0(w http.ResponseWriter, re
 		Operation:  "one",
 		Data: components.TimeOffRequest{
 			ID:           types.String("12345"),
-			EmployeeID:   types.String("12345"),
-			PolicyID:     types.String("12345"),
-			Status:       components.TimeOffRequestStatusApproved.ToPointer(),
-			Description:  types.String("Enjoying some sun."),
-			StartDate:    types.String("2022-04-01"),
-			EndDate:      types.String("2022-04-01"),
-			RequestDate:  types.String("2022-03-21"),
-			RequestType:  components.RequestTypeVacation.ToPointer(),
-			ApprovalDate: types.String("2022-03-21"),
-			Units:        components.UnitsHours.ToPointer(),
-			Amount:       types.Float64(3.5),
-			DayPart:      types.String("morning"),
+			EmployeeID:   optionalnullable.From(types.String("12345")),
+			PolicyID:     optionalnullable.From(types.String("12345")),
+			Status:       optionalnullable.From(components.TimeOffRequestStatusApproved.ToPointer()),
+			Description:  optionalnullable.From(types.String("Enjoying some sun.")),
+			StartDate:    optionalnullable.From(types.String("2022-04-01")),
+			EndDate:      optionalnullable.From(types.String("2022-04-01")),
+			RequestDate:  optionalnullable.From(types.String("2022-03-21")),
+			RequestType:  optionalnullable.From(components.RequestTypeVacation.ToPointer()),
+			ApprovalDate: optionalnullable.From(types.String("2022-03-21")),
+			Units:        optionalnullable.From(components.UnitsHours.ToPointer()),
+			Amount:       optionalnullable.From(types.Float64(3.5)),
+			DayPart:      optionalnullable.From(types.String("morning")),
 			Notes: &components.Notes{
-				Employee: types.String("Relaxing on the beach for a few hours."),
-				Manager:  types.String("Enjoy!"),
+				Employee: optionalnullable.From(types.String("Relaxing on the beach for a few hours.")),
+				Manager:  optionalnullable.From(types.String("Enjoy!")),
 			},
-			UpdatedBy: types.String("12345"),
-			CreatedBy: types.String("12345"),
-			UpdatedAt: types.MustNewTimeFromString("2020-09-30T07:43:32.000Z"),
-			CreatedAt: types.MustNewTimeFromString("2020-09-30T07:43:32.000Z"),
+			UpdatedBy: optionalnullable.From(types.String("12345")),
+			CreatedBy: optionalnullable.From(types.String("12345")),
+			UpdatedAt: optionalnullable.From(types.MustNewTimeFromString("2020-09-30T07:43:32.000Z")),
+			CreatedAt: optionalnullable.From(types.MustNewTimeFromString("2020-09-30T07:43:32.000Z")),
 			PassThrough: []components.PassThroughBody{
 				components.PassThroughBody{
 					ServiceID: "<id>",

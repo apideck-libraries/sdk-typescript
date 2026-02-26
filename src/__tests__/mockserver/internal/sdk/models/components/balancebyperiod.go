@@ -3,15 +3,16 @@
 package components
 
 import (
+	"mockserver/internal/sdk/optionalnullable"
 	"mockserver/internal/sdk/types"
 	"mockserver/internal/sdk/utils"
 )
 
 type BalanceByPeriod struct {
 	// The starting date of the period. If not provided, it represents the oldest period, where all transactions due before the specified `end_date` are included.
-	StartDate *types.Date `json:"start_date,omitempty"`
+	StartDate optionalnullable.OptionalNullable[types.Date] `json:"start_date,omitempty"`
 	// The ending date of the period. If not provided, it represents an open-ended period starting from the `start_date`, typically capturing future-dated transactions that are not yet aged.
-	EndDate *types.Date `json:"end_date,omitempty"`
+	EndDate optionalnullable.OptionalNullable[types.Date] `json:"end_date,omitempty"`
 	// Total amount of the period.
 	TotalAmount           *float64               `json:"total_amount,omitempty"`
 	BalancesByTransaction []BalanceByTransaction `json:"balances_by_transaction,omitempty"`
@@ -28,14 +29,14 @@ func (b *BalanceByPeriod) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *BalanceByPeriod) GetStartDate() *types.Date {
+func (o *BalanceByPeriod) GetStartDate() optionalnullable.OptionalNullable[types.Date] {
 	if o == nil {
 		return nil
 	}
 	return o.StartDate
 }
 
-func (o *BalanceByPeriod) GetEndDate() *types.Date {
+func (o *BalanceByPeriod) GetEndDate() optionalnullable.OptionalNullable[types.Date] {
 	if o == nil {
 		return nil
 	}

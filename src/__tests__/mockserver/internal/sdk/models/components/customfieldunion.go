@@ -5,6 +5,7 @@ package components
 import (
 	"errors"
 	"fmt"
+	"mockserver/internal/sdk/optionalnullable"
 	"mockserver/internal/sdk/utils"
 )
 
@@ -246,12 +247,12 @@ func (u CustomFieldValue4) MarshalJSON() ([]byte, error) {
 
 type CustomField2 struct {
 	// Unique identifier for the custom field.
-	ID *string `json:"id,omitempty"`
+	ID optionalnullable.OptionalNullable[string] `json:"id,omitempty"`
 	// Name of the custom field.
 	Name *string `json:"name"`
 	// More information about the custom field
-	Description *string            `json:"description,omitempty"`
-	Value       *CustomFieldValue4 `json:"value,omitempty"`
+	Description optionalnullable.OptionalNullable[string]            `json:"description,omitempty"`
+	Value       optionalnullable.OptionalNullable[CustomFieldValue4] `json:"value,omitempty"`
 }
 
 func (c CustomField2) MarshalJSON() ([]byte, error) {
@@ -265,7 +266,7 @@ func (c *CustomField2) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *CustomField2) GetID() *string {
+func (o *CustomField2) GetID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -279,14 +280,14 @@ func (o *CustomField2) GetName() *string {
 	return o.Name
 }
 
-func (o *CustomField2) GetDescription() *string {
+func (o *CustomField2) GetDescription() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Description
 }
 
-func (o *CustomField2) GetValue() *CustomFieldValue4 {
+func (o *CustomField2) GetValue() optionalnullable.OptionalNullable[CustomFieldValue4] {
 	if o == nil {
 		return nil
 	}
@@ -533,10 +534,10 @@ type CustomField1 struct {
 	// Unique identifier for the custom field.
 	ID *string `json:"id"`
 	// Name of the custom field.
-	Name *string `json:"name,omitempty"`
+	Name optionalnullable.OptionalNullable[string] `json:"name,omitempty"`
 	// More information about the custom field
-	Description *string            `json:"description,omitempty"`
-	Value       *CustomFieldValue2 `json:"value,omitempty"`
+	Description optionalnullable.OptionalNullable[string]            `json:"description,omitempty"`
+	Value       optionalnullable.OptionalNullable[CustomFieldValue2] `json:"value,omitempty"`
 }
 
 func (c CustomField1) MarshalJSON() ([]byte, error) {
@@ -557,21 +558,21 @@ func (o *CustomField1) GetID() *string {
 	return o.ID
 }
 
-func (o *CustomField1) GetName() *string {
+func (o *CustomField1) GetName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-func (o *CustomField1) GetDescription() *string {
+func (o *CustomField1) GetDescription() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Description
 }
 
-func (o *CustomField1) GetValue() *CustomFieldValue2 {
+func (o *CustomField1) GetValue() optionalnullable.OptionalNullable[CustomFieldValue2] {
 	if o == nil {
 		return nil
 	}

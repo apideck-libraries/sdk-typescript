@@ -3,6 +3,7 @@
 package components
 
 import (
+	"mockserver/internal/sdk/optionalnullable"
 	"mockserver/internal/sdk/utils"
 	"time"
 )
@@ -10,15 +11,15 @@ import (
 // EcommerceOrderRefund - A refund for an ecommerce order.
 type EcommerceOrderRefund struct {
 	// A unique identifier for an object.
-	ID *string `json:"id,omitempty"`
+	ID optionalnullable.OptionalNullable[string] `json:"id,omitempty"`
 	// The amount of the refund.
 	Amount *string `json:"amount,omitempty"`
 	// Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
-	Currency *Currency `json:"currency,omitempty"`
+	Currency optionalnullable.OptionalNullable[Currency] `json:"currency,omitempty"`
 	// The reason for the refund.
 	Reason *string `json:"reason,omitempty"`
 	// The date and time when the object was created.
-	CreatedAt *time.Time `json:"created_at,omitempty"`
+	CreatedAt optionalnullable.OptionalNullable[time.Time] `json:"created_at,omitempty"`
 }
 
 func (e EcommerceOrderRefund) MarshalJSON() ([]byte, error) {
@@ -32,7 +33,7 @@ func (e *EcommerceOrderRefund) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *EcommerceOrderRefund) GetID() *string {
+func (o *EcommerceOrderRefund) GetID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -46,7 +47,7 @@ func (o *EcommerceOrderRefund) GetAmount() *string {
 	return o.Amount
 }
 
-func (o *EcommerceOrderRefund) GetCurrency() *Currency {
+func (o *EcommerceOrderRefund) GetCurrency() optionalnullable.OptionalNullable[Currency] {
 	if o == nil {
 		return nil
 	}
@@ -60,7 +61,7 @@ func (o *EcommerceOrderRefund) GetReason() *string {
 	return o.Reason
 }
 
-func (o *EcommerceOrderRefund) GetCreatedAt() *time.Time {
+func (o *EcommerceOrderRefund) GetCreatedAt() optionalnullable.OptionalNullable[time.Time] {
 	if o == nil {
 		return nil
 	}

@@ -2,65 +2,69 @@
 
 package components
 
+import (
+	"mockserver/internal/sdk/optionalnullable"
+)
+
 // LinkedEcommerceCustomer - The customer this entity is linked to.
 type LinkedEcommerceCustomer struct {
 	// The ID of the customer this entity is linked to.
-	ID *string `json:"id,omitempty"`
+	ID optionalnullable.OptionalNullable[string] `json:"id,omitempty"`
 	// Full name of the customer
-	Name *string `json:"name,omitempty"`
+	Name optionalnullable.OptionalNullable[string] `json:"name,omitempty"`
 	// First name of the customer
-	FirstName *string `json:"first_name,omitempty"`
+	FirstName optionalnullable.OptionalNullable[string] `json:"first_name,omitempty"`
 	// Last name of the customer
-	LastName *string `json:"last_name,omitempty"`
+	LastName optionalnullable.OptionalNullable[string] `json:"last_name,omitempty"`
 	// Company name of the customer
-	CompanyName  *string       `json:"company_name,omitempty"`
-	PhoneNumbers []PhoneNumber `json:"phone_numbers,omitempty"`
-	Emails       []Email       `json:"emails,omitempty"`
+	CompanyName  optionalnullable.OptionalNullable[string]        `json:"company_name,omitempty"`
+	PhoneNumbers optionalnullable.OptionalNullable[[]PhoneNumber] `json:"phone_numbers,omitempty"`
+	Emails       optionalnullable.OptionalNullable[[]Email]       `json:"emails,omitempty"`
 }
 
-func (o *LinkedEcommerceCustomer) GetID() *string {
+func (o *LinkedEcommerceCustomer) GetID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *LinkedEcommerceCustomer) GetName() *string {
+func (o *LinkedEcommerceCustomer) GetName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-func (o *LinkedEcommerceCustomer) GetFirstName() *string {
+func (o *LinkedEcommerceCustomer) GetFirstName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.FirstName
 }
 
-func (o *LinkedEcommerceCustomer) GetLastName() *string {
+func (o *LinkedEcommerceCustomer) GetLastName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.LastName
 }
 
-func (o *LinkedEcommerceCustomer) GetCompanyName() *string {
+func (o *LinkedEcommerceCustomer) GetCompanyName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.CompanyName
 }
 
-func (o *LinkedEcommerceCustomer) GetPhoneNumbers() []PhoneNumber {
+func (o *LinkedEcommerceCustomer) GetPhoneNumbers() optionalnullable.OptionalNullable[[]PhoneNumber] {
 	if o == nil {
 		return nil
 	}
 	return o.PhoneNumbers
 }
 
-func (o *LinkedEcommerceCustomer) GetEmails() []Email {
+func (o *LinkedEcommerceCustomer) GetEmails() optionalnullable.OptionalNullable[[]Email] {
 	if o == nil {
 		return nil
 	}

@@ -2,6 +2,10 @@
 
 package components
 
+import (
+	"mockserver/internal/sdk/optionalnullable"
+)
+
 // ActivityType - The type of the activity
 type ActivityType string
 
@@ -36,102 +40,102 @@ type Activity struct {
 	// The unique identifier of the activity
 	ID *string `json:"id,omitempty"`
 	// The third-party API ID of original entity
-	DownstreamID *string `json:"downstream_id,omitempty"`
+	DownstreamID optionalnullable.OptionalNullable[string] `json:"downstream_id,omitempty"`
 	// The date and time of the activity
-	ActivityDatetime *string `json:"activity_datetime,omitempty"`
+	ActivityDatetime optionalnullable.OptionalNullable[string] `json:"activity_datetime,omitempty"`
 	// The duration of the activity in seconds
-	DurationSeconds *int64 `json:"duration_seconds,omitempty"`
+	DurationSeconds optionalnullable.OptionalNullable[int64] `json:"duration_seconds,omitempty"`
 	// The user related to the activity
-	UserID *string `json:"user_id,omitempty"`
+	UserID optionalnullable.OptionalNullable[string] `json:"user_id,omitempty"`
 	// The account related to the activity
-	AccountID *string `json:"account_id,omitempty"`
+	AccountID optionalnullable.OptionalNullable[string] `json:"account_id,omitempty"`
 	// The contact related to the activity
-	ContactID *string `json:"contact_id,omitempty"`
+	ContactID optionalnullable.OptionalNullable[string] `json:"contact_id,omitempty"`
 	// The company related to the activity
-	CompanyID *string `json:"company_id,omitempty"`
+	CompanyID optionalnullable.OptionalNullable[string] `json:"company_id,omitempty"`
 	// The opportunity related to the activity
-	OpportunityID *string `json:"opportunity_id,omitempty"`
+	OpportunityID optionalnullable.OptionalNullable[string] `json:"opportunity_id,omitempty"`
 	// The lead related to the activity
-	LeadID *string `json:"lead_id,omitempty"`
+	LeadID optionalnullable.OptionalNullable[string] `json:"lead_id,omitempty"`
 	// The owner of the activity
-	OwnerID *string `json:"owner_id,omitempty"`
+	OwnerID optionalnullable.OptionalNullable[string] `json:"owner_id,omitempty"`
 	// The campaign related to the activity
-	CampaignID *string `json:"campaign_id,omitempty"`
+	CampaignID optionalnullable.OptionalNullable[string] `json:"campaign_id,omitempty"`
 	// The case related to the activity
-	CaseID *string `json:"case_id,omitempty"`
+	CaseID optionalnullable.OptionalNullable[string] `json:"case_id,omitempty"`
 	// The asset related to the activity
-	AssetID *string `json:"asset_id,omitempty"`
+	AssetID optionalnullable.OptionalNullable[string] `json:"asset_id,omitempty"`
 	// The contract related to the activity
-	ContractID *string `json:"contract_id,omitempty"`
+	ContractID optionalnullable.OptionalNullable[string] `json:"contract_id,omitempty"`
 	// The product related to the activity
-	ProductID *string `json:"product_id,omitempty"`
+	ProductID optionalnullable.OptionalNullable[string] `json:"product_id,omitempty"`
 	// The solution related to the activity
-	SolutionID *string `json:"solution_id,omitempty"`
+	SolutionID optionalnullable.OptionalNullable[string] `json:"solution_id,omitempty"`
 	// The custom object related to the activity
-	CustomObjectID *string `json:"custom_object_id,omitempty"`
+	CustomObjectID optionalnullable.OptionalNullable[string] `json:"custom_object_id,omitempty"`
 	// The type of the activity
 	Type *ActivityType `json:"type"`
 	// The title of the activity
-	Title *string `json:"title,omitempty"`
+	Title optionalnullable.OptionalNullable[string] `json:"title,omitempty"`
 	// A description of the activity
-	Description *string `json:"description,omitempty"`
+	Description optionalnullable.OptionalNullable[string] `json:"description,omitempty"`
 	// An internal note about the activity
-	Note *string `json:"note,omitempty"`
+	Note optionalnullable.OptionalNullable[string] `json:"note,omitempty"`
 	// The location of the activity
-	Location        *string  `json:"location,omitempty"`
-	LocationAddress *Address `json:"location_address,omitempty"`
+	Location        optionalnullable.OptionalNullable[string] `json:"location,omitempty"`
+	LocationAddress *Address                                  `json:"location_address,omitempty"`
 	// Whether the Activity is an all day event or not
-	AllDayEvent *bool `json:"all_day_event,omitempty"`
+	AllDayEvent optionalnullable.OptionalNullable[bool] `json:"all_day_event,omitempty"`
 	// Whether the Activity is private or not
-	Private *bool `json:"private,omitempty"`
+	Private optionalnullable.OptionalNullable[bool] `json:"private,omitempty"`
 	// Whether the Activity is a group event or not
-	GroupEvent *bool `json:"group_event,omitempty"`
+	GroupEvent optionalnullable.OptionalNullable[bool] `json:"group_event,omitempty"`
 	// The sub type of the group event
-	EventSubType *string `json:"event_sub_type,omitempty"`
+	EventSubType optionalnullable.OptionalNullable[string] `json:"event_sub_type,omitempty"`
 	// The type of the group event
-	GroupEventType *string `json:"group_event_type,omitempty"`
+	GroupEventType optionalnullable.OptionalNullable[string] `json:"group_event_type,omitempty"`
 	// Whether the activity is a child of another activity or not
-	Child *bool `json:"child,omitempty"`
+	Child optionalnullable.OptionalNullable[bool] `json:"child,omitempty"`
 	// Whether the activity is archived or not
-	Archived *bool `json:"archived,omitempty"`
+	Archived optionalnullable.OptionalNullable[bool] `json:"archived,omitempty"`
 	// Whether the activity is deleted or not
-	Deleted *bool   `json:"deleted,omitempty"`
-	ShowAs  *ShowAs `json:"show_as,omitempty"`
+	Deleted optionalnullable.OptionalNullable[bool]   `json:"deleted,omitempty"`
+	ShowAs  optionalnullable.OptionalNullable[ShowAs] `json:"show_as,omitempty"`
 	// Whether the Activity is done or not
-	Done *bool `json:"done,omitempty"`
+	Done optionalnullable.OptionalNullable[bool] `json:"done,omitempty"`
 	// The start date and time of the activity
-	StartDatetime *string `json:"start_datetime,omitempty"`
+	StartDatetime optionalnullable.OptionalNullable[string] `json:"start_datetime,omitempty"`
 	// The end date and time of the activity
-	EndDatetime *string `json:"end_datetime,omitempty"`
+	EndDatetime optionalnullable.OptionalNullable[string] `json:"end_datetime,omitempty"`
 	// The duration of the activity in minutes
-	DurationMinutes *int64 `json:"duration_minutes,omitempty"`
+	DurationMinutes optionalnullable.OptionalNullable[int64] `json:"duration_minutes,omitempty"`
 	// The date of the activity
-	ActivityDate *string `json:"activity_date,omitempty"`
+	ActivityDate optionalnullable.OptionalNullable[string] `json:"activity_date,omitempty"`
 	// The end date of the activity
-	EndDate *string `json:"end_date,omitempty"`
+	EndDate optionalnullable.OptionalNullable[string] `json:"end_date,omitempty"`
 	// Whether the activity is recurrent or not
 	Recurrent *bool `json:"recurrent,omitempty"`
 	// The date and time of the reminder
-	ReminderDatetime *string `json:"reminder_datetime,omitempty"`
+	ReminderDatetime optionalnullable.OptionalNullable[string] `json:"reminder_datetime,omitempty"`
 	// Whether the reminder is set or not
-	ReminderSet *bool `json:"reminder_set,omitempty"`
+	ReminderSet optionalnullable.OptionalNullable[bool] `json:"reminder_set,omitempty"`
 	// The URL of the video conference
-	VideoConferenceURL *string `json:"video_conference_url,omitempty"`
+	VideoConferenceURL optionalnullable.OptionalNullable[string] `json:"video_conference_url,omitempty"`
 	// The ID of the video conference
-	VideoConferenceID *string `json:"video_conference_id,omitempty"`
+	VideoConferenceID optionalnullable.OptionalNullable[string] `json:"video_conference_id,omitempty"`
 	// Custom fields of the activity
 	CustomFields []CustomFieldUnion `json:"custom_fields,omitempty"`
 	Attendees    []ActivityAttendee `json:"attendees,omitempty"`
 	// When custom mappings are configured on the resource, the result is included here.
-	CustomMappings map[string]any `json:"custom_mappings,omitempty"`
+	CustomMappings optionalnullable.OptionalNullable[map[string]any] `json:"custom_mappings,omitempty"`
 	// The user who last updated the activity
-	UpdatedBy *string `json:"updated_by,omitempty"`
+	UpdatedBy optionalnullable.OptionalNullable[string] `json:"updated_by,omitempty"`
 	// The user who created the activity
-	CreatedBy *string `json:"created_by,omitempty"`
+	CreatedBy optionalnullable.OptionalNullable[string] `json:"created_by,omitempty"`
 	// The date and time when the activity was last updated
-	UpdatedAt *string `json:"updated_at,omitempty"`
+	UpdatedAt optionalnullable.OptionalNullable[string] `json:"updated_at,omitempty"`
 	// The date and time when the activity was created
-	CreatedAt *string `json:"created_at,omitempty"`
+	CreatedAt optionalnullable.OptionalNullable[string] `json:"created_at,omitempty"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
 	PassThrough []PassThroughBody `json:"pass_through,omitempty"`
 }
@@ -143,119 +147,119 @@ func (o *Activity) GetID() *string {
 	return o.ID
 }
 
-func (o *Activity) GetDownstreamID() *string {
+func (o *Activity) GetDownstreamID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.DownstreamID
 }
 
-func (o *Activity) GetActivityDatetime() *string {
+func (o *Activity) GetActivityDatetime() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.ActivityDatetime
 }
 
-func (o *Activity) GetDurationSeconds() *int64 {
+func (o *Activity) GetDurationSeconds() optionalnullable.OptionalNullable[int64] {
 	if o == nil {
 		return nil
 	}
 	return o.DurationSeconds
 }
 
-func (o *Activity) GetUserID() *string {
+func (o *Activity) GetUserID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.UserID
 }
 
-func (o *Activity) GetAccountID() *string {
+func (o *Activity) GetAccountID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.AccountID
 }
 
-func (o *Activity) GetContactID() *string {
+func (o *Activity) GetContactID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.ContactID
 }
 
-func (o *Activity) GetCompanyID() *string {
+func (o *Activity) GetCompanyID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.CompanyID
 }
 
-func (o *Activity) GetOpportunityID() *string {
+func (o *Activity) GetOpportunityID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.OpportunityID
 }
 
-func (o *Activity) GetLeadID() *string {
+func (o *Activity) GetLeadID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.LeadID
 }
 
-func (o *Activity) GetOwnerID() *string {
+func (o *Activity) GetOwnerID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.OwnerID
 }
 
-func (o *Activity) GetCampaignID() *string {
+func (o *Activity) GetCampaignID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.CampaignID
 }
 
-func (o *Activity) GetCaseID() *string {
+func (o *Activity) GetCaseID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.CaseID
 }
 
-func (o *Activity) GetAssetID() *string {
+func (o *Activity) GetAssetID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.AssetID
 }
 
-func (o *Activity) GetContractID() *string {
+func (o *Activity) GetContractID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.ContractID
 }
 
-func (o *Activity) GetProductID() *string {
+func (o *Activity) GetProductID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.ProductID
 }
 
-func (o *Activity) GetSolutionID() *string {
+func (o *Activity) GetSolutionID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.SolutionID
 }
 
-func (o *Activity) GetCustomObjectID() *string {
+func (o *Activity) GetCustomObjectID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -269,28 +273,28 @@ func (o *Activity) GetType() *ActivityType {
 	return o.Type
 }
 
-func (o *Activity) GetTitle() *string {
+func (o *Activity) GetTitle() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Title
 }
 
-func (o *Activity) GetDescription() *string {
+func (o *Activity) GetDescription() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Description
 }
 
-func (o *Activity) GetNote() *string {
+func (o *Activity) GetNote() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Note
 }
 
-func (o *Activity) GetLocation() *string {
+func (o *Activity) GetLocation() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -304,105 +308,105 @@ func (o *Activity) GetLocationAddress() *Address {
 	return o.LocationAddress
 }
 
-func (o *Activity) GetAllDayEvent() *bool {
+func (o *Activity) GetAllDayEvent() optionalnullable.OptionalNullable[bool] {
 	if o == nil {
 		return nil
 	}
 	return o.AllDayEvent
 }
 
-func (o *Activity) GetPrivate() *bool {
+func (o *Activity) GetPrivate() optionalnullable.OptionalNullable[bool] {
 	if o == nil {
 		return nil
 	}
 	return o.Private
 }
 
-func (o *Activity) GetGroupEvent() *bool {
+func (o *Activity) GetGroupEvent() optionalnullable.OptionalNullable[bool] {
 	if o == nil {
 		return nil
 	}
 	return o.GroupEvent
 }
 
-func (o *Activity) GetEventSubType() *string {
+func (o *Activity) GetEventSubType() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.EventSubType
 }
 
-func (o *Activity) GetGroupEventType() *string {
+func (o *Activity) GetGroupEventType() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.GroupEventType
 }
 
-func (o *Activity) GetChild() *bool {
+func (o *Activity) GetChild() optionalnullable.OptionalNullable[bool] {
 	if o == nil {
 		return nil
 	}
 	return o.Child
 }
 
-func (o *Activity) GetArchived() *bool {
+func (o *Activity) GetArchived() optionalnullable.OptionalNullable[bool] {
 	if o == nil {
 		return nil
 	}
 	return o.Archived
 }
 
-func (o *Activity) GetDeleted() *bool {
+func (o *Activity) GetDeleted() optionalnullable.OptionalNullable[bool] {
 	if o == nil {
 		return nil
 	}
 	return o.Deleted
 }
 
-func (o *Activity) GetShowAs() *ShowAs {
+func (o *Activity) GetShowAs() optionalnullable.OptionalNullable[ShowAs] {
 	if o == nil {
 		return nil
 	}
 	return o.ShowAs
 }
 
-func (o *Activity) GetDone() *bool {
+func (o *Activity) GetDone() optionalnullable.OptionalNullable[bool] {
 	if o == nil {
 		return nil
 	}
 	return o.Done
 }
 
-func (o *Activity) GetStartDatetime() *string {
+func (o *Activity) GetStartDatetime() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.StartDatetime
 }
 
-func (o *Activity) GetEndDatetime() *string {
+func (o *Activity) GetEndDatetime() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.EndDatetime
 }
 
-func (o *Activity) GetDurationMinutes() *int64 {
+func (o *Activity) GetDurationMinutes() optionalnullable.OptionalNullable[int64] {
 	if o == nil {
 		return nil
 	}
 	return o.DurationMinutes
 }
 
-func (o *Activity) GetActivityDate() *string {
+func (o *Activity) GetActivityDate() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.ActivityDate
 }
 
-func (o *Activity) GetEndDate() *string {
+func (o *Activity) GetEndDate() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -416,28 +420,28 @@ func (o *Activity) GetRecurrent() *bool {
 	return o.Recurrent
 }
 
-func (o *Activity) GetReminderDatetime() *string {
+func (o *Activity) GetReminderDatetime() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.ReminderDatetime
 }
 
-func (o *Activity) GetReminderSet() *bool {
+func (o *Activity) GetReminderSet() optionalnullable.OptionalNullable[bool] {
 	if o == nil {
 		return nil
 	}
 	return o.ReminderSet
 }
 
-func (o *Activity) GetVideoConferenceURL() *string {
+func (o *Activity) GetVideoConferenceURL() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.VideoConferenceURL
 }
 
-func (o *Activity) GetVideoConferenceID() *string {
+func (o *Activity) GetVideoConferenceID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -458,35 +462,35 @@ func (o *Activity) GetAttendees() []ActivityAttendee {
 	return o.Attendees
 }
 
-func (o *Activity) GetCustomMappings() map[string]any {
+func (o *Activity) GetCustomMappings() optionalnullable.OptionalNullable[map[string]any] {
 	if o == nil {
 		return nil
 	}
 	return o.CustomMappings
 }
 
-func (o *Activity) GetUpdatedBy() *string {
+func (o *Activity) GetUpdatedBy() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.UpdatedBy
 }
 
-func (o *Activity) GetCreatedBy() *string {
+func (o *Activity) GetCreatedBy() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.CreatedBy
 }
 
-func (o *Activity) GetUpdatedAt() *string {
+func (o *Activity) GetUpdatedAt() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.UpdatedAt
 }
 
-func (o *Activity) GetCreatedAt() *string {
+func (o *Activity) GetCreatedAt() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -502,85 +506,85 @@ func (o *Activity) GetPassThrough() []PassThroughBody {
 
 type ActivityInput struct {
 	// The date and time of the activity
-	ActivityDatetime *string `json:"activity_datetime,omitempty"`
+	ActivityDatetime optionalnullable.OptionalNullable[string] `json:"activity_datetime,omitempty"`
 	// The duration of the activity in seconds
-	DurationSeconds *int64 `json:"duration_seconds,omitempty"`
+	DurationSeconds optionalnullable.OptionalNullable[int64] `json:"duration_seconds,omitempty"`
 	// The user related to the activity
-	UserID *string `json:"user_id,omitempty"`
+	UserID optionalnullable.OptionalNullable[string] `json:"user_id,omitempty"`
 	// The account related to the activity
-	AccountID *string `json:"account_id,omitempty"`
+	AccountID optionalnullable.OptionalNullable[string] `json:"account_id,omitempty"`
 	// The contact related to the activity
-	ContactID *string `json:"contact_id,omitempty"`
+	ContactID optionalnullable.OptionalNullable[string] `json:"contact_id,omitempty"`
 	// The company related to the activity
-	CompanyID *string `json:"company_id,omitempty"`
+	CompanyID optionalnullable.OptionalNullable[string] `json:"company_id,omitempty"`
 	// The opportunity related to the activity
-	OpportunityID *string `json:"opportunity_id,omitempty"`
+	OpportunityID optionalnullable.OptionalNullable[string] `json:"opportunity_id,omitempty"`
 	// The lead related to the activity
-	LeadID *string `json:"lead_id,omitempty"`
+	LeadID optionalnullable.OptionalNullable[string] `json:"lead_id,omitempty"`
 	// The owner of the activity
-	OwnerID *string `json:"owner_id,omitempty"`
+	OwnerID optionalnullable.OptionalNullable[string] `json:"owner_id,omitempty"`
 	// The campaign related to the activity
-	CampaignID *string `json:"campaign_id,omitempty"`
+	CampaignID optionalnullable.OptionalNullable[string] `json:"campaign_id,omitempty"`
 	// The case related to the activity
-	CaseID *string `json:"case_id,omitempty"`
+	CaseID optionalnullable.OptionalNullable[string] `json:"case_id,omitempty"`
 	// The asset related to the activity
-	AssetID *string `json:"asset_id,omitempty"`
+	AssetID optionalnullable.OptionalNullable[string] `json:"asset_id,omitempty"`
 	// The contract related to the activity
-	ContractID *string `json:"contract_id,omitempty"`
+	ContractID optionalnullable.OptionalNullable[string] `json:"contract_id,omitempty"`
 	// The product related to the activity
-	ProductID *string `json:"product_id,omitempty"`
+	ProductID optionalnullable.OptionalNullable[string] `json:"product_id,omitempty"`
 	// The solution related to the activity
-	SolutionID *string `json:"solution_id,omitempty"`
+	SolutionID optionalnullable.OptionalNullable[string] `json:"solution_id,omitempty"`
 	// The custom object related to the activity
-	CustomObjectID *string `json:"custom_object_id,omitempty"`
+	CustomObjectID optionalnullable.OptionalNullable[string] `json:"custom_object_id,omitempty"`
 	// The type of the activity
 	Type *ActivityType `json:"type"`
 	// The title of the activity
-	Title *string `json:"title,omitempty"`
+	Title optionalnullable.OptionalNullable[string] `json:"title,omitempty"`
 	// A description of the activity
-	Description *string `json:"description,omitempty"`
+	Description optionalnullable.OptionalNullable[string] `json:"description,omitempty"`
 	// An internal note about the activity
-	Note *string `json:"note,omitempty"`
+	Note optionalnullable.OptionalNullable[string] `json:"note,omitempty"`
 	// The location of the activity
-	Location        *string  `json:"location,omitempty"`
-	LocationAddress *Address `json:"location_address,omitempty"`
+	Location        optionalnullable.OptionalNullable[string] `json:"location,omitempty"`
+	LocationAddress *Address                                  `json:"location_address,omitempty"`
 	// Whether the Activity is an all day event or not
-	AllDayEvent *bool `json:"all_day_event,omitempty"`
+	AllDayEvent optionalnullable.OptionalNullable[bool] `json:"all_day_event,omitempty"`
 	// Whether the Activity is private or not
-	Private *bool `json:"private,omitempty"`
+	Private optionalnullable.OptionalNullable[bool] `json:"private,omitempty"`
 	// Whether the Activity is a group event or not
-	GroupEvent *bool `json:"group_event,omitempty"`
+	GroupEvent optionalnullable.OptionalNullable[bool] `json:"group_event,omitempty"`
 	// The sub type of the group event
-	EventSubType *string `json:"event_sub_type,omitempty"`
+	EventSubType optionalnullable.OptionalNullable[string] `json:"event_sub_type,omitempty"`
 	// The type of the group event
-	GroupEventType *string `json:"group_event_type,omitempty"`
+	GroupEventType optionalnullable.OptionalNullable[string] `json:"group_event_type,omitempty"`
 	// Whether the activity is a child of another activity or not
-	Child *bool `json:"child,omitempty"`
+	Child optionalnullable.OptionalNullable[bool] `json:"child,omitempty"`
 	// Whether the activity is archived or not
-	Archived *bool `json:"archived,omitempty"`
+	Archived optionalnullable.OptionalNullable[bool] `json:"archived,omitempty"`
 	// Whether the activity is deleted or not
-	Deleted *bool   `json:"deleted,omitempty"`
-	ShowAs  *ShowAs `json:"show_as,omitempty"`
+	Deleted optionalnullable.OptionalNullable[bool]   `json:"deleted,omitempty"`
+	ShowAs  optionalnullable.OptionalNullable[ShowAs] `json:"show_as,omitempty"`
 	// Whether the Activity is done or not
-	Done *bool `json:"done,omitempty"`
+	Done optionalnullable.OptionalNullable[bool] `json:"done,omitempty"`
 	// The start date and time of the activity
-	StartDatetime *string `json:"start_datetime,omitempty"`
+	StartDatetime optionalnullable.OptionalNullable[string] `json:"start_datetime,omitempty"`
 	// The end date and time of the activity
-	EndDatetime *string `json:"end_datetime,omitempty"`
+	EndDatetime optionalnullable.OptionalNullable[string] `json:"end_datetime,omitempty"`
 	// The date of the activity
-	ActivityDate *string `json:"activity_date,omitempty"`
+	ActivityDate optionalnullable.OptionalNullable[string] `json:"activity_date,omitempty"`
 	// The end date of the activity
-	EndDate *string `json:"end_date,omitempty"`
+	EndDate optionalnullable.OptionalNullable[string] `json:"end_date,omitempty"`
 	// Whether the activity is recurrent or not
 	Recurrent *bool `json:"recurrent,omitempty"`
 	// The date and time of the reminder
-	ReminderDatetime *string `json:"reminder_datetime,omitempty"`
+	ReminderDatetime optionalnullable.OptionalNullable[string] `json:"reminder_datetime,omitempty"`
 	// Whether the reminder is set or not
-	ReminderSet *bool `json:"reminder_set,omitempty"`
+	ReminderSet optionalnullable.OptionalNullable[bool] `json:"reminder_set,omitempty"`
 	// The URL of the video conference
-	VideoConferenceURL *string `json:"video_conference_url,omitempty"`
+	VideoConferenceURL optionalnullable.OptionalNullable[string] `json:"video_conference_url,omitempty"`
 	// The ID of the video conference
-	VideoConferenceID *string `json:"video_conference_id,omitempty"`
+	VideoConferenceID optionalnullable.OptionalNullable[string] `json:"video_conference_id,omitempty"`
 	// Custom fields of the activity
 	CustomFields []CustomFieldUnion      `json:"custom_fields,omitempty"`
 	Attendees    []ActivityAttendeeInput `json:"attendees,omitempty"`
@@ -588,112 +592,112 @@ type ActivityInput struct {
 	PassThrough []PassThroughBody `json:"pass_through,omitempty"`
 }
 
-func (o *ActivityInput) GetActivityDatetime() *string {
+func (o *ActivityInput) GetActivityDatetime() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.ActivityDatetime
 }
 
-func (o *ActivityInput) GetDurationSeconds() *int64 {
+func (o *ActivityInput) GetDurationSeconds() optionalnullable.OptionalNullable[int64] {
 	if o == nil {
 		return nil
 	}
 	return o.DurationSeconds
 }
 
-func (o *ActivityInput) GetUserID() *string {
+func (o *ActivityInput) GetUserID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.UserID
 }
 
-func (o *ActivityInput) GetAccountID() *string {
+func (o *ActivityInput) GetAccountID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.AccountID
 }
 
-func (o *ActivityInput) GetContactID() *string {
+func (o *ActivityInput) GetContactID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.ContactID
 }
 
-func (o *ActivityInput) GetCompanyID() *string {
+func (o *ActivityInput) GetCompanyID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.CompanyID
 }
 
-func (o *ActivityInput) GetOpportunityID() *string {
+func (o *ActivityInput) GetOpportunityID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.OpportunityID
 }
 
-func (o *ActivityInput) GetLeadID() *string {
+func (o *ActivityInput) GetLeadID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.LeadID
 }
 
-func (o *ActivityInput) GetOwnerID() *string {
+func (o *ActivityInput) GetOwnerID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.OwnerID
 }
 
-func (o *ActivityInput) GetCampaignID() *string {
+func (o *ActivityInput) GetCampaignID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.CampaignID
 }
 
-func (o *ActivityInput) GetCaseID() *string {
+func (o *ActivityInput) GetCaseID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.CaseID
 }
 
-func (o *ActivityInput) GetAssetID() *string {
+func (o *ActivityInput) GetAssetID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.AssetID
 }
 
-func (o *ActivityInput) GetContractID() *string {
+func (o *ActivityInput) GetContractID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.ContractID
 }
 
-func (o *ActivityInput) GetProductID() *string {
+func (o *ActivityInput) GetProductID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.ProductID
 }
 
-func (o *ActivityInput) GetSolutionID() *string {
+func (o *ActivityInput) GetSolutionID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.SolutionID
 }
 
-func (o *ActivityInput) GetCustomObjectID() *string {
+func (o *ActivityInput) GetCustomObjectID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -707,28 +711,28 @@ func (o *ActivityInput) GetType() *ActivityType {
 	return o.Type
 }
 
-func (o *ActivityInput) GetTitle() *string {
+func (o *ActivityInput) GetTitle() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Title
 }
 
-func (o *ActivityInput) GetDescription() *string {
+func (o *ActivityInput) GetDescription() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Description
 }
 
-func (o *ActivityInput) GetNote() *string {
+func (o *ActivityInput) GetNote() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Note
 }
 
-func (o *ActivityInput) GetLocation() *string {
+func (o *ActivityInput) GetLocation() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -742,98 +746,98 @@ func (o *ActivityInput) GetLocationAddress() *Address {
 	return o.LocationAddress
 }
 
-func (o *ActivityInput) GetAllDayEvent() *bool {
+func (o *ActivityInput) GetAllDayEvent() optionalnullable.OptionalNullable[bool] {
 	if o == nil {
 		return nil
 	}
 	return o.AllDayEvent
 }
 
-func (o *ActivityInput) GetPrivate() *bool {
+func (o *ActivityInput) GetPrivate() optionalnullable.OptionalNullable[bool] {
 	if o == nil {
 		return nil
 	}
 	return o.Private
 }
 
-func (o *ActivityInput) GetGroupEvent() *bool {
+func (o *ActivityInput) GetGroupEvent() optionalnullable.OptionalNullable[bool] {
 	if o == nil {
 		return nil
 	}
 	return o.GroupEvent
 }
 
-func (o *ActivityInput) GetEventSubType() *string {
+func (o *ActivityInput) GetEventSubType() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.EventSubType
 }
 
-func (o *ActivityInput) GetGroupEventType() *string {
+func (o *ActivityInput) GetGroupEventType() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.GroupEventType
 }
 
-func (o *ActivityInput) GetChild() *bool {
+func (o *ActivityInput) GetChild() optionalnullable.OptionalNullable[bool] {
 	if o == nil {
 		return nil
 	}
 	return o.Child
 }
 
-func (o *ActivityInput) GetArchived() *bool {
+func (o *ActivityInput) GetArchived() optionalnullable.OptionalNullable[bool] {
 	if o == nil {
 		return nil
 	}
 	return o.Archived
 }
 
-func (o *ActivityInput) GetDeleted() *bool {
+func (o *ActivityInput) GetDeleted() optionalnullable.OptionalNullable[bool] {
 	if o == nil {
 		return nil
 	}
 	return o.Deleted
 }
 
-func (o *ActivityInput) GetShowAs() *ShowAs {
+func (o *ActivityInput) GetShowAs() optionalnullable.OptionalNullable[ShowAs] {
 	if o == nil {
 		return nil
 	}
 	return o.ShowAs
 }
 
-func (o *ActivityInput) GetDone() *bool {
+func (o *ActivityInput) GetDone() optionalnullable.OptionalNullable[bool] {
 	if o == nil {
 		return nil
 	}
 	return o.Done
 }
 
-func (o *ActivityInput) GetStartDatetime() *string {
+func (o *ActivityInput) GetStartDatetime() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.StartDatetime
 }
 
-func (o *ActivityInput) GetEndDatetime() *string {
+func (o *ActivityInput) GetEndDatetime() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.EndDatetime
 }
 
-func (o *ActivityInput) GetActivityDate() *string {
+func (o *ActivityInput) GetActivityDate() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.ActivityDate
 }
 
-func (o *ActivityInput) GetEndDate() *string {
+func (o *ActivityInput) GetEndDate() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -847,28 +851,28 @@ func (o *ActivityInput) GetRecurrent() *bool {
 	return o.Recurrent
 }
 
-func (o *ActivityInput) GetReminderDatetime() *string {
+func (o *ActivityInput) GetReminderDatetime() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.ReminderDatetime
 }
 
-func (o *ActivityInput) GetReminderSet() *bool {
+func (o *ActivityInput) GetReminderSet() optionalnullable.OptionalNullable[bool] {
 	if o == nil {
 		return nil
 	}
 	return o.ReminderSet
 }
 
-func (o *ActivityInput) GetVideoConferenceURL() *string {
+func (o *ActivityInput) GetVideoConferenceURL() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.VideoConferenceURL
 }
 
-func (o *ActivityInput) GetVideoConferenceID() *string {
+func (o *ActivityInput) GetVideoConferenceID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}

@@ -3,6 +3,7 @@
 package components
 
 import (
+	"mockserver/internal/sdk/optionalnullable"
 	"mockserver/internal/sdk/utils"
 	"time"
 )
@@ -49,9 +50,9 @@ type Expense struct {
 	// A unique identifier for an object.
 	ID *string `json:"id,omitempty"`
 	// Id to be displayed.
-	DisplayID *string `json:"display_id,omitempty"`
+	DisplayID optionalnullable.OptionalNullable[string] `json:"display_id,omitempty"`
 	// Number.
-	Number *string `json:"number,omitempty"`
+	Number optionalnullable.OptionalNullable[string] `json:"number,omitempty"`
 	// The date of the transaction - YYYY:MM::DDThh:mm:ss.sTZD
 	TransactionDate *time.Time `json:"transaction_date"`
 	// The unique identifier for the ledger account that this expense should be credited to. Deprecated, use account instead.
@@ -59,61 +60,61 @@ type Expense struct {
 	// Deprecated: Deprecated. Use account instead..
 	AccountID *string `json:"account_id,omitempty"`
 	// A flexible account reference that can represent either a ledger account (GL account) or a bank account, depending on the connector's requirements.
-	Account *LinkedFinancialAccount `json:"account,omitempty"`
+	Account optionalnullable.OptionalNullable[LinkedFinancialAccount] `json:"account,omitempty"`
 	// The ID of the supplier this entity is linked to. Deprecated, use supplier instead.
 	//
 	// Deprecated: Deprecated. Use supplier instead..
 	SupplierID *string `json:"supplier_id,omitempty"`
 	// The supplier this entity is linked to.
-	Supplier *LinkedSupplier `json:"supplier,omitempty"`
+	Supplier optionalnullable.OptionalNullable[LinkedSupplier] `json:"supplier,omitempty"`
 	// The company ID the transaction belongs to
-	CompanyID *string         `json:"company_id,omitempty"`
-	Location  *LinkedLocation `json:"location,omitempty"`
+	CompanyID optionalnullable.OptionalNullable[string]         `json:"company_id,omitempty"`
+	Location  optionalnullable.OptionalNullable[LinkedLocation] `json:"location,omitempty"`
 	// The ID of the department
-	DepartmentID *string           `json:"department_id,omitempty"`
-	Department   *LinkedDepartment `json:"department,omitempty"`
+	DepartmentID optionalnullable.OptionalNullable[string]           `json:"department_id,omitempty"`
+	Department   optionalnullable.OptionalNullable[LinkedDepartment] `json:"department,omitempty"`
 	// The type of payment for the expense.
-	PaymentType *ExpensePaymentType `json:"payment_type,omitempty"`
+	PaymentType optionalnullable.OptionalNullable[ExpensePaymentType] `json:"payment_type,omitempty"`
 	// Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
-	Currency *Currency `json:"currency,omitempty"`
+	Currency optionalnullable.OptionalNullable[Currency] `json:"currency,omitempty"`
 	// Currency Exchange Rate at the time entity was recorded/generated.
-	CurrencyRate *float64 `json:"currency_rate,omitempty"`
+	CurrencyRate optionalnullable.OptionalNullable[float64] `json:"currency_rate,omitempty"`
 	// The type of expense.
-	Type *ExpenseType `json:"type,omitempty"`
+	Type optionalnullable.OptionalNullable[ExpenseType] `json:"type,omitempty"`
 	// The memo of the expense.
-	Memo    *string        `json:"memo,omitempty"`
-	TaxRate *LinkedTaxRate `json:"tax_rate,omitempty"`
+	Memo    optionalnullable.OptionalNullable[string] `json:"memo,omitempty"`
+	TaxRate *LinkedTaxRate                            `json:"tax_rate,omitempty"`
 	// Amounts are including tax
-	TaxInclusive *bool `json:"tax_inclusive,omitempty"`
+	TaxInclusive optionalnullable.OptionalNullable[bool] `json:"tax_inclusive,omitempty"`
 	// Subtotal amount, normally before tax.
-	SubTotal *float64 `json:"sub_total,omitempty"`
+	SubTotal optionalnullable.OptionalNullable[float64] `json:"sub_total,omitempty"`
 	// Total tax amount applied to this transaction.
-	TotalTax *float64 `json:"total_tax,omitempty"`
+	TotalTax optionalnullable.OptionalNullable[float64] `json:"total_tax,omitempty"`
 	// The total amount of the expense line item.
-	TotalAmount *float64 `json:"total_amount,omitempty"`
+	TotalAmount optionalnullable.OptionalNullable[float64] `json:"total_amount,omitempty"`
 	// A list of linked tracking categories.
-	TrackingCategories []*LinkedTrackingCategory `json:"tracking_categories,omitempty"`
+	TrackingCategories optionalnullable.OptionalNullable[[]*LinkedTrackingCategory] `json:"tracking_categories,omitempty"`
 	// Expense line items linked to this expense.
 	LineItems []ExpenseLineItem `json:"line_items"`
 	// Optional reference identifier for the transaction.
-	Reference *string `json:"reference,omitempty"`
+	Reference optionalnullable.OptionalNullable[string] `json:"reference,omitempty"`
 	// URL link to a source document - shown as 'Go to [appName]' in the downstream app. Currently only supported for Xero.
-	SourceDocumentURL *string            `json:"source_document_url,omitempty"`
-	CustomFields      []CustomFieldUnion `json:"custom_fields,omitempty"`
+	SourceDocumentURL optionalnullable.OptionalNullable[string] `json:"source_document_url,omitempty"`
+	CustomFields      []CustomFieldUnion                        `json:"custom_fields,omitempty"`
 	// When custom mappings are configured on the resource, the result is included here.
-	CustomMappings map[string]any `json:"custom_mappings,omitempty"`
+	CustomMappings optionalnullable.OptionalNullable[map[string]any] `json:"custom_mappings,omitempty"`
 	// Expense status
-	Status *ExpenseStatus `json:"status,omitempty"`
+	Status optionalnullable.OptionalNullable[ExpenseStatus] `json:"status,omitempty"`
 	// The date and time when the object was last updated.
-	UpdatedAt *time.Time `json:"updated_at,omitempty"`
+	UpdatedAt optionalnullable.OptionalNullable[time.Time] `json:"updated_at,omitempty"`
 	// The date and time when the object was created.
-	CreatedAt *time.Time `json:"created_at,omitempty"`
+	CreatedAt optionalnullable.OptionalNullable[time.Time] `json:"created_at,omitempty"`
 	// A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
-	RowVersion *string `json:"row_version,omitempty"`
+	RowVersion optionalnullable.OptionalNullable[string] `json:"row_version,omitempty"`
 	// The user who last updated the object.
-	UpdatedBy *string `json:"updated_by,omitempty"`
+	UpdatedBy optionalnullable.OptionalNullable[string] `json:"updated_by,omitempty"`
 	// The user who created the object.
-	CreatedBy *string `json:"created_by,omitempty"`
+	CreatedBy optionalnullable.OptionalNullable[string] `json:"created_by,omitempty"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
 	PassThrough []PassThroughBody `json:"pass_through,omitempty"`
 }
@@ -136,14 +137,14 @@ func (o *Expense) GetID() *string {
 	return o.ID
 }
 
-func (o *Expense) GetDisplayID() *string {
+func (o *Expense) GetDisplayID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.DisplayID
 }
 
-func (o *Expense) GetNumber() *string {
+func (o *Expense) GetNumber() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -164,7 +165,7 @@ func (o *Expense) GetAccountID() *string {
 	return o.AccountID
 }
 
-func (o *Expense) GetAccount() *LinkedFinancialAccount {
+func (o *Expense) GetAccount() optionalnullable.OptionalNullable[LinkedFinancialAccount] {
 	if o == nil {
 		return nil
 	}
@@ -178,70 +179,70 @@ func (o *Expense) GetSupplierID() *string {
 	return o.SupplierID
 }
 
-func (o *Expense) GetSupplier() *LinkedSupplier {
+func (o *Expense) GetSupplier() optionalnullable.OptionalNullable[LinkedSupplier] {
 	if o == nil {
 		return nil
 	}
 	return o.Supplier
 }
 
-func (o *Expense) GetCompanyID() *string {
+func (o *Expense) GetCompanyID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.CompanyID
 }
 
-func (o *Expense) GetLocation() *LinkedLocation {
+func (o *Expense) GetLocation() optionalnullable.OptionalNullable[LinkedLocation] {
 	if o == nil {
 		return nil
 	}
 	return o.Location
 }
 
-func (o *Expense) GetDepartmentID() *string {
+func (o *Expense) GetDepartmentID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.DepartmentID
 }
 
-func (o *Expense) GetDepartment() *LinkedDepartment {
+func (o *Expense) GetDepartment() optionalnullable.OptionalNullable[LinkedDepartment] {
 	if o == nil {
 		return nil
 	}
 	return o.Department
 }
 
-func (o *Expense) GetPaymentType() *ExpensePaymentType {
+func (o *Expense) GetPaymentType() optionalnullable.OptionalNullable[ExpensePaymentType] {
 	if o == nil {
 		return nil
 	}
 	return o.PaymentType
 }
 
-func (o *Expense) GetCurrency() *Currency {
+func (o *Expense) GetCurrency() optionalnullable.OptionalNullable[Currency] {
 	if o == nil {
 		return nil
 	}
 	return o.Currency
 }
 
-func (o *Expense) GetCurrencyRate() *float64 {
+func (o *Expense) GetCurrencyRate() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}
 	return o.CurrencyRate
 }
 
-func (o *Expense) GetType() *ExpenseType {
+func (o *Expense) GetType() optionalnullable.OptionalNullable[ExpenseType] {
 	if o == nil {
 		return nil
 	}
 	return o.Type
 }
 
-func (o *Expense) GetMemo() *string {
+func (o *Expense) GetMemo() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -255,35 +256,35 @@ func (o *Expense) GetTaxRate() *LinkedTaxRate {
 	return o.TaxRate
 }
 
-func (o *Expense) GetTaxInclusive() *bool {
+func (o *Expense) GetTaxInclusive() optionalnullable.OptionalNullable[bool] {
 	if o == nil {
 		return nil
 	}
 	return o.TaxInclusive
 }
 
-func (o *Expense) GetSubTotal() *float64 {
+func (o *Expense) GetSubTotal() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}
 	return o.SubTotal
 }
 
-func (o *Expense) GetTotalTax() *float64 {
+func (o *Expense) GetTotalTax() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}
 	return o.TotalTax
 }
 
-func (o *Expense) GetTotalAmount() *float64 {
+func (o *Expense) GetTotalAmount() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}
 	return o.TotalAmount
 }
 
-func (o *Expense) GetTrackingCategories() []*LinkedTrackingCategory {
+func (o *Expense) GetTrackingCategories() optionalnullable.OptionalNullable[[]*LinkedTrackingCategory] {
 	if o == nil {
 		return nil
 	}
@@ -297,14 +298,14 @@ func (o *Expense) GetLineItems() []ExpenseLineItem {
 	return o.LineItems
 }
 
-func (o *Expense) GetReference() *string {
+func (o *Expense) GetReference() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Reference
 }
 
-func (o *Expense) GetSourceDocumentURL() *string {
+func (o *Expense) GetSourceDocumentURL() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -318,49 +319,49 @@ func (o *Expense) GetCustomFields() []CustomFieldUnion {
 	return o.CustomFields
 }
 
-func (o *Expense) GetCustomMappings() map[string]any {
+func (o *Expense) GetCustomMappings() optionalnullable.OptionalNullable[map[string]any] {
 	if o == nil {
 		return nil
 	}
 	return o.CustomMappings
 }
 
-func (o *Expense) GetStatus() *ExpenseStatus {
+func (o *Expense) GetStatus() optionalnullable.OptionalNullable[ExpenseStatus] {
 	if o == nil {
 		return nil
 	}
 	return o.Status
 }
 
-func (o *Expense) GetUpdatedAt() *time.Time {
+func (o *Expense) GetUpdatedAt() optionalnullable.OptionalNullable[time.Time] {
 	if o == nil {
 		return nil
 	}
 	return o.UpdatedAt
 }
 
-func (o *Expense) GetCreatedAt() *time.Time {
+func (o *Expense) GetCreatedAt() optionalnullable.OptionalNullable[time.Time] {
 	if o == nil {
 		return nil
 	}
 	return o.CreatedAt
 }
 
-func (o *Expense) GetRowVersion() *string {
+func (o *Expense) GetRowVersion() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.RowVersion
 }
 
-func (o *Expense) GetUpdatedBy() *string {
+func (o *Expense) GetUpdatedBy() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.UpdatedBy
 }
 
-func (o *Expense) GetCreatedBy() *string {
+func (o *Expense) GetCreatedBy() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -376,9 +377,9 @@ func (o *Expense) GetPassThrough() []PassThroughBody {
 
 type ExpenseInput struct {
 	// Id to be displayed.
-	DisplayID *string `json:"display_id,omitempty"`
+	DisplayID optionalnullable.OptionalNullable[string] `json:"display_id,omitempty"`
 	// Number.
-	Number *string `json:"number,omitempty"`
+	Number optionalnullable.OptionalNullable[string] `json:"number,omitempty"`
 	// The date of the transaction - YYYY:MM::DDThh:mm:ss.sTZD
 	TransactionDate *time.Time `json:"transaction_date"`
 	// The unique identifier for the ledger account that this expense should be credited to. Deprecated, use account instead.
@@ -386,51 +387,51 @@ type ExpenseInput struct {
 	// Deprecated: Deprecated. Use account instead..
 	AccountID *string `json:"account_id,omitempty"`
 	// A flexible account reference that can represent either a ledger account (GL account) or a bank account, depending on the connector's requirements.
-	Account *LinkedFinancialAccountInput `json:"account,omitempty"`
+	Account optionalnullable.OptionalNullable[LinkedFinancialAccountInput] `json:"account,omitempty"`
 	// The ID of the supplier this entity is linked to. Deprecated, use supplier instead.
 	//
 	// Deprecated: Deprecated. Use supplier instead..
 	SupplierID *string `json:"supplier_id,omitempty"`
 	// The supplier this entity is linked to.
-	Supplier *LinkedSupplierInput `json:"supplier,omitempty"`
+	Supplier optionalnullable.OptionalNullable[LinkedSupplierInput] `json:"supplier,omitempty"`
 	// The company ID the transaction belongs to
-	CompanyID *string              `json:"company_id,omitempty"`
-	Location  *LinkedLocationInput `json:"location,omitempty"`
+	CompanyID optionalnullable.OptionalNullable[string]              `json:"company_id,omitempty"`
+	Location  optionalnullable.OptionalNullable[LinkedLocationInput] `json:"location,omitempty"`
 	// The ID of the department
-	DepartmentID *string                `json:"department_id,omitempty"`
-	Department   *LinkedDepartmentInput `json:"department,omitempty"`
+	DepartmentID optionalnullable.OptionalNullable[string]                `json:"department_id,omitempty"`
+	Department   optionalnullable.OptionalNullable[LinkedDepartmentInput] `json:"department,omitempty"`
 	// The type of payment for the expense.
-	PaymentType *ExpensePaymentType `json:"payment_type,omitempty"`
+	PaymentType optionalnullable.OptionalNullable[ExpensePaymentType] `json:"payment_type,omitempty"`
 	// Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
-	Currency *Currency `json:"currency,omitempty"`
+	Currency optionalnullable.OptionalNullable[Currency] `json:"currency,omitempty"`
 	// Currency Exchange Rate at the time entity was recorded/generated.
-	CurrencyRate *float64 `json:"currency_rate,omitempty"`
+	CurrencyRate optionalnullable.OptionalNullable[float64] `json:"currency_rate,omitempty"`
 	// The type of expense.
-	Type *ExpenseType `json:"type,omitempty"`
+	Type optionalnullable.OptionalNullable[ExpenseType] `json:"type,omitempty"`
 	// The memo of the expense.
-	Memo    *string             `json:"memo,omitempty"`
-	TaxRate *LinkedTaxRateInput `json:"tax_rate,omitempty"`
+	Memo    optionalnullable.OptionalNullable[string] `json:"memo,omitempty"`
+	TaxRate *LinkedTaxRateInput                       `json:"tax_rate,omitempty"`
 	// Amounts are including tax
-	TaxInclusive *bool `json:"tax_inclusive,omitempty"`
+	TaxInclusive optionalnullable.OptionalNullable[bool] `json:"tax_inclusive,omitempty"`
 	// Subtotal amount, normally before tax.
-	SubTotal *float64 `json:"sub_total,omitempty"`
+	SubTotal optionalnullable.OptionalNullable[float64] `json:"sub_total,omitempty"`
 	// Total tax amount applied to this transaction.
-	TotalTax *float64 `json:"total_tax,omitempty"`
+	TotalTax optionalnullable.OptionalNullable[float64] `json:"total_tax,omitempty"`
 	// The total amount of the expense line item.
-	TotalAmount *float64 `json:"total_amount,omitempty"`
+	TotalAmount optionalnullable.OptionalNullable[float64] `json:"total_amount,omitempty"`
 	// A list of linked tracking categories.
-	TrackingCategories []*LinkedTrackingCategory `json:"tracking_categories,omitempty"`
+	TrackingCategories optionalnullable.OptionalNullable[[]*LinkedTrackingCategory] `json:"tracking_categories,omitempty"`
 	// Expense line items linked to this expense.
 	LineItems []ExpenseLineItemInput `json:"line_items"`
 	// Optional reference identifier for the transaction.
-	Reference *string `json:"reference,omitempty"`
+	Reference optionalnullable.OptionalNullable[string] `json:"reference,omitempty"`
 	// URL link to a source document - shown as 'Go to [appName]' in the downstream app. Currently only supported for Xero.
-	SourceDocumentURL *string            `json:"source_document_url,omitempty"`
-	CustomFields      []CustomFieldUnion `json:"custom_fields,omitempty"`
+	SourceDocumentURL optionalnullable.OptionalNullable[string] `json:"source_document_url,omitempty"`
+	CustomFields      []CustomFieldUnion                        `json:"custom_fields,omitempty"`
 	// Expense status
-	Status *ExpenseStatus `json:"status,omitempty"`
+	Status optionalnullable.OptionalNullable[ExpenseStatus] `json:"status,omitempty"`
 	// A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
-	RowVersion *string `json:"row_version,omitempty"`
+	RowVersion optionalnullable.OptionalNullable[string] `json:"row_version,omitempty"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
 	PassThrough []PassThroughBody `json:"pass_through,omitempty"`
 }
@@ -446,14 +447,14 @@ func (e *ExpenseInput) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *ExpenseInput) GetDisplayID() *string {
+func (o *ExpenseInput) GetDisplayID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.DisplayID
 }
 
-func (o *ExpenseInput) GetNumber() *string {
+func (o *ExpenseInput) GetNumber() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -474,7 +475,7 @@ func (o *ExpenseInput) GetAccountID() *string {
 	return o.AccountID
 }
 
-func (o *ExpenseInput) GetAccount() *LinkedFinancialAccountInput {
+func (o *ExpenseInput) GetAccount() optionalnullable.OptionalNullable[LinkedFinancialAccountInput] {
 	if o == nil {
 		return nil
 	}
@@ -488,70 +489,70 @@ func (o *ExpenseInput) GetSupplierID() *string {
 	return o.SupplierID
 }
 
-func (o *ExpenseInput) GetSupplier() *LinkedSupplierInput {
+func (o *ExpenseInput) GetSupplier() optionalnullable.OptionalNullable[LinkedSupplierInput] {
 	if o == nil {
 		return nil
 	}
 	return o.Supplier
 }
 
-func (o *ExpenseInput) GetCompanyID() *string {
+func (o *ExpenseInput) GetCompanyID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.CompanyID
 }
 
-func (o *ExpenseInput) GetLocation() *LinkedLocationInput {
+func (o *ExpenseInput) GetLocation() optionalnullable.OptionalNullable[LinkedLocationInput] {
 	if o == nil {
 		return nil
 	}
 	return o.Location
 }
 
-func (o *ExpenseInput) GetDepartmentID() *string {
+func (o *ExpenseInput) GetDepartmentID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.DepartmentID
 }
 
-func (o *ExpenseInput) GetDepartment() *LinkedDepartmentInput {
+func (o *ExpenseInput) GetDepartment() optionalnullable.OptionalNullable[LinkedDepartmentInput] {
 	if o == nil {
 		return nil
 	}
 	return o.Department
 }
 
-func (o *ExpenseInput) GetPaymentType() *ExpensePaymentType {
+func (o *ExpenseInput) GetPaymentType() optionalnullable.OptionalNullable[ExpensePaymentType] {
 	if o == nil {
 		return nil
 	}
 	return o.PaymentType
 }
 
-func (o *ExpenseInput) GetCurrency() *Currency {
+func (o *ExpenseInput) GetCurrency() optionalnullable.OptionalNullable[Currency] {
 	if o == nil {
 		return nil
 	}
 	return o.Currency
 }
 
-func (o *ExpenseInput) GetCurrencyRate() *float64 {
+func (o *ExpenseInput) GetCurrencyRate() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}
 	return o.CurrencyRate
 }
 
-func (o *ExpenseInput) GetType() *ExpenseType {
+func (o *ExpenseInput) GetType() optionalnullable.OptionalNullable[ExpenseType] {
 	if o == nil {
 		return nil
 	}
 	return o.Type
 }
 
-func (o *ExpenseInput) GetMemo() *string {
+func (o *ExpenseInput) GetMemo() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -565,35 +566,35 @@ func (o *ExpenseInput) GetTaxRate() *LinkedTaxRateInput {
 	return o.TaxRate
 }
 
-func (o *ExpenseInput) GetTaxInclusive() *bool {
+func (o *ExpenseInput) GetTaxInclusive() optionalnullable.OptionalNullable[bool] {
 	if o == nil {
 		return nil
 	}
 	return o.TaxInclusive
 }
 
-func (o *ExpenseInput) GetSubTotal() *float64 {
+func (o *ExpenseInput) GetSubTotal() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}
 	return o.SubTotal
 }
 
-func (o *ExpenseInput) GetTotalTax() *float64 {
+func (o *ExpenseInput) GetTotalTax() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}
 	return o.TotalTax
 }
 
-func (o *ExpenseInput) GetTotalAmount() *float64 {
+func (o *ExpenseInput) GetTotalAmount() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}
 	return o.TotalAmount
 }
 
-func (o *ExpenseInput) GetTrackingCategories() []*LinkedTrackingCategory {
+func (o *ExpenseInput) GetTrackingCategories() optionalnullable.OptionalNullable[[]*LinkedTrackingCategory] {
 	if o == nil {
 		return nil
 	}
@@ -607,14 +608,14 @@ func (o *ExpenseInput) GetLineItems() []ExpenseLineItemInput {
 	return o.LineItems
 }
 
-func (o *ExpenseInput) GetReference() *string {
+func (o *ExpenseInput) GetReference() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Reference
 }
 
-func (o *ExpenseInput) GetSourceDocumentURL() *string {
+func (o *ExpenseInput) GetSourceDocumentURL() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -628,14 +629,14 @@ func (o *ExpenseInput) GetCustomFields() []CustomFieldUnion {
 	return o.CustomFields
 }
 
-func (o *ExpenseInput) GetStatus() *ExpenseStatus {
+func (o *ExpenseInput) GetStatus() optionalnullable.OptionalNullable[ExpenseStatus] {
 	if o == nil {
 		return nil
 	}
 	return o.Status
 }
 
-func (o *ExpenseInput) GetRowVersion() *string {
+func (o *ExpenseInput) GetRowVersion() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}

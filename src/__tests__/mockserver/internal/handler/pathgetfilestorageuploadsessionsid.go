@@ -8,6 +8,7 @@ import (
 	"mockserver/internal/handler/assert"
 	"mockserver/internal/logging"
 	"mockserver/internal/sdk/models/components"
+	"mockserver/internal/sdk/optionalnullable"
 	"mockserver/internal/sdk/types"
 	"mockserver/internal/sdk/utils"
 	"mockserver/internal/tracking"
@@ -58,7 +59,7 @@ func testFileStorageUploadSessionsOneFileStorageUploadSessionsOne0(w http.Respon
 			PartSize:                types.Float64(1000000),
 			ParallelUploadSupported: types.Bool(true),
 			UploadedByteRange:       types.String("0-42"),
-			ExpiresAt:               types.MustNewTimeFromString("2022-09-30T07:43:32.000Z"),
+			ExpiresAt:               optionalnullable.From(types.MustNewTimeFromString("2022-09-30T07:43:32.000Z")),
 		},
 	}
 	respBodyBytes, err := utils.MarshalJSON(respBody, "", true)

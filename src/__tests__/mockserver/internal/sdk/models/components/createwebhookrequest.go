@@ -2,9 +2,13 @@
 
 package components
 
+import (
+	"mockserver/internal/sdk/optionalnullable"
+)
+
 type CreateWebhookRequest struct {
 	// A description of the object.
-	Description *string `json:"description,omitempty"`
+	Description optionalnullable.OptionalNullable[string] `json:"description,omitempty"`
 	// Name of Apideck Unified API
 	UnifiedAPI UnifiedAPIID `json:"unified_api"`
 	// The status of the webhook.
@@ -15,7 +19,7 @@ type CreateWebhookRequest struct {
 	Events []WebhookEventType `json:"events"`
 }
 
-func (o *CreateWebhookRequest) GetDescription() *string {
+func (o *CreateWebhookRequest) GetDescription() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}

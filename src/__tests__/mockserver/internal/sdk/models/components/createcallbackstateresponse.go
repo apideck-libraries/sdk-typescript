@@ -2,6 +2,10 @@
 
 package components
 
+import (
+	"mockserver/internal/sdk/optionalnullable"
+)
+
 type CreateCallbackStateResponseData struct {
 	// Callback state
 	State *string `json:"state,omitempty"`
@@ -22,7 +26,7 @@ type CreateCallbackStateResponse struct {
 	Status string                          `json:"status"`
 	Data   CreateCallbackStateResponseData `json:"data"`
 	// Raw response from the integration when raw=true query param is provided
-	Raw map[string]any `json:"_raw,omitempty"`
+	Raw optionalnullable.OptionalNullable[map[string]any] `json:"_raw,omitempty"`
 }
 
 func (o *CreateCallbackStateResponse) GetStatusCode() int64 {
@@ -46,7 +50,7 @@ func (o *CreateCallbackStateResponse) GetData() CreateCallbackStateResponseData 
 	return o.Data
 }
 
-func (o *CreateCallbackStateResponse) GetRaw() map[string]any {
+func (o *CreateCallbackStateResponse) GetRaw() optionalnullable.OptionalNullable[map[string]any] {
 	if o == nil {
 		return nil
 	}

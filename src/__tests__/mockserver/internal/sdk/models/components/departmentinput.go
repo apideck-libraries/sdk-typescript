@@ -2,30 +2,34 @@
 
 package components
 
+import (
+	"mockserver/internal/sdk/optionalnullable"
+)
+
 type DepartmentInput struct {
 	// Department name
-	Name        *string `json:"name,omitempty"`
-	Code        *string `json:"code,omitempty"`
-	Description *string `json:"description,omitempty"`
+	Name        optionalnullable.OptionalNullable[string] `json:"name,omitempty"`
+	Code        optionalnullable.OptionalNullable[string] `json:"code,omitempty"`
+	Description optionalnullable.OptionalNullable[string] `json:"description,omitempty"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
 	PassThrough []PassThroughBody `json:"pass_through,omitempty"`
 }
 
-func (o *DepartmentInput) GetName() *string {
+func (o *DepartmentInput) GetName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-func (o *DepartmentInput) GetCode() *string {
+func (o *DepartmentInput) GetCode() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Code
 }
 
-func (o *DepartmentInput) GetDescription() *string {
+func (o *DepartmentInput) GetDescription() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}

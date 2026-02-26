@@ -8,6 +8,7 @@ import (
 	"mockserver/internal/handler/assert"
 	"mockserver/internal/logging"
 	"mockserver/internal/sdk/models/components"
+	"mockserver/internal/sdk/optionalnullable"
 	"mockserver/internal/sdk/types"
 	"mockserver/internal/sdk/utils"
 	"mockserver/internal/tracking"
@@ -59,7 +60,7 @@ func testAccountingBalanceSheetOneAccountingBalanceSheetOne0(w http.ResponseWrit
 					ReportName: types.String("BalanceSheet"),
 					StartDate:  types.String("2017-01-01"),
 					EndDate:    "2017-01-31",
-					Currency:   components.CurrencyUsd.ToPointer(),
+					Currency:   optionalnullable.From(components.CurrencyUsd.ToPointer()),
 					Assets: components.BalanceSheetAssetsAccount{
 						AccountID: types.String("1"),
 						Code:      types.String("1000"),
@@ -239,10 +240,10 @@ func testAccountingBalanceSheetOneAccountingBalanceSheetOne0(w http.ResponseWrit
 						},
 					},
 					NetAssets: types.Float64(1000),
-					UpdatedBy: types.String("12345"),
-					CreatedBy: types.String("12345"),
-					UpdatedAt: types.MustNewTimeFromString("2020-09-30T07:43:32.000Z"),
-					CreatedAt: types.MustNewTimeFromString("2020-09-30T07:43:32.000Z"),
+					UpdatedBy: optionalnullable.From(types.String("12345")),
+					CreatedBy: optionalnullable.From(types.String("12345")),
+					UpdatedAt: optionalnullable.From(types.MustNewTimeFromString("2020-09-30T07:43:32.000Z")),
+					CreatedAt: optionalnullable.From(types.MustNewTimeFromString("2020-09-30T07:43:32.000Z")),
 					UncategorizedItems: &components.BalanceSheetUncategorizedItemsAccount{
 						AccountID: types.String("3"),
 						Code:      types.String("3000"),
@@ -263,7 +264,7 @@ func testAccountingBalanceSheetOneAccountingBalanceSheetOne0(w http.ResponseWrit
 					ReportName: types.String("BalanceSheet"),
 					StartDate:  types.String("2017-01-01"),
 					EndDate:    "2017-01-31",
-					Currency:   components.CurrencyUsd.ToPointer(),
+					Currency:   optionalnullable.From(components.CurrencyUsd.ToPointer()),
 					Assets: components.BalanceSheetAssetsAccount{
 						AccountID: types.String("1"),
 						Code:      types.String("1000"),
@@ -443,10 +444,10 @@ func testAccountingBalanceSheetOneAccountingBalanceSheetOne0(w http.ResponseWrit
 						},
 					},
 					NetAssets: types.Float64(1000),
-					UpdatedBy: types.String("12345"),
-					CreatedBy: types.String("12345"),
-					UpdatedAt: types.MustNewTimeFromString("2020-09-30T07:43:32.000Z"),
-					CreatedAt: types.MustNewTimeFromString("2020-09-30T07:43:32.000Z"),
+					UpdatedBy: optionalnullable.From(types.String("12345")),
+					CreatedBy: optionalnullable.From(types.String("12345")),
+					UpdatedAt: optionalnullable.From(types.MustNewTimeFromString("2020-09-30T07:43:32.000Z")),
+					CreatedAt: optionalnullable.From(types.MustNewTimeFromString("2020-09-30T07:43:32.000Z")),
 					UncategorizedItems: &components.BalanceSheetUncategorizedItemsAccount{
 						AccountID: types.String("3"),
 						Code:      types.String("3000"),

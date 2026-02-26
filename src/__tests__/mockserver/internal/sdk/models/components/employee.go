@@ -3,6 +3,7 @@
 package components
 
 import (
+	"mockserver/internal/sdk/optionalnullable"
 	"mockserver/internal/sdk/types"
 	"mockserver/internal/sdk/utils"
 	"time"
@@ -56,76 +57,76 @@ func (e EmploymentSubType) ToPointer() *EmploymentSubType {
 
 type EmploymentRole struct {
 	// The type of employment relationship the employee has with the organization.
-	Type *EmploymentType `json:"type,omitempty"`
+	Type optionalnullable.OptionalNullable[EmploymentType] `json:"type,omitempty"`
 	// The work schedule of the employee.
-	SubType *EmploymentSubType `json:"sub_type,omitempty"`
+	SubType optionalnullable.OptionalNullable[EmploymentSubType] `json:"sub_type,omitempty"`
 }
 
-func (o *EmploymentRole) GetType() *EmploymentType {
+func (o *EmploymentRole) GetType() optionalnullable.OptionalNullable[EmploymentType] {
 	if o == nil {
 		return nil
 	}
 	return o.Type
 }
 
-func (o *EmploymentRole) GetSubType() *EmploymentSubType {
+func (o *EmploymentRole) GetSubType() optionalnullable.OptionalNullable[EmploymentSubType] {
 	if o == nil {
 		return nil
 	}
 	return o.SubType
 }
 
-type Manager struct {
+type EmployeeManager struct {
 	// A unique identifier for an object.
-	ID *string `json:"id,omitempty"`
+	ID optionalnullable.OptionalNullable[string] `json:"id,omitempty"`
 	// The name of the manager, often a combination of their first and last names.
-	Name *string `json:"name,omitempty"`
+	Name optionalnullable.OptionalNullable[string] `json:"name,omitempty"`
 	// The first name of the person.
-	FirstName *string `json:"first_name,omitempty"`
+	FirstName optionalnullable.OptionalNullable[string] `json:"first_name,omitempty"`
 	// The last name of the person.
-	LastName *string `json:"last_name,omitempty"`
+	LastName optionalnullable.OptionalNullable[string] `json:"last_name,omitempty"`
 	// The email address of the manager.
-	Email *string `json:"email,omitempty"`
+	Email optionalnullable.OptionalNullable[string] `json:"email,omitempty"`
 	// The employment status of the employee, indicating whether they are currently employed, inactive, terminated, or in another status.
-	EmploymentStatus *EmploymentStatus `json:"employment_status,omitempty"`
+	EmploymentStatus optionalnullable.OptionalNullable[EmploymentStatus] `json:"employment_status,omitempty"`
 }
 
-func (o *Manager) GetID() *string {
+func (o *EmployeeManager) GetID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *Manager) GetName() *string {
+func (o *EmployeeManager) GetName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-func (o *Manager) GetFirstName() *string {
+func (o *EmployeeManager) GetFirstName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.FirstName
 }
 
-func (o *Manager) GetLastName() *string {
+func (o *EmployeeManager) GetLastName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.LastName
 }
 
-func (o *Manager) GetEmail() *string {
+func (o *EmployeeManager) GetEmail() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Email
 }
 
-func (o *Manager) GetEmploymentStatus() *EmploymentStatus {
+func (o *EmployeeManager) GetEmploymentStatus() optionalnullable.OptionalNullable[EmploymentStatus] {
 	if o == nil {
 		return nil
 	}
@@ -134,9 +135,9 @@ func (o *Manager) GetEmploymentStatus() *EmploymentStatus {
 
 type ProbationPeriod struct {
 	// The date that the employee started their probation period at the company.
-	StartDate *types.Date `json:"start_date,omitempty"`
+	StartDate optionalnullable.OptionalNullable[types.Date] `json:"start_date,omitempty"`
 	// The date that the employee ended their probation period at the company.
-	EndDate *types.Date `json:"end_date,omitempty"`
+	EndDate optionalnullable.OptionalNullable[types.Date] `json:"end_date,omitempty"`
 }
 
 func (p ProbationPeriod) MarshalJSON() ([]byte, error) {
@@ -150,14 +151,14 @@ func (p *ProbationPeriod) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *ProbationPeriod) GetStartDate() *types.Date {
+func (o *ProbationPeriod) GetStartDate() optionalnullable.OptionalNullable[types.Date] {
 	if o == nil {
 		return nil
 	}
 	return o.StartDate
 }
 
-func (o *ProbationPeriod) GetEndDate() *types.Date {
+func (o *ProbationPeriod) GetEndDate() optionalnullable.OptionalNullable[types.Date] {
 	if o == nil {
 		return nil
 	}
@@ -166,121 +167,121 @@ func (o *ProbationPeriod) GetEndDate() *types.Date {
 
 type Employee struct {
 	// A unique identifier for an object.
-	ID *string `json:"id,omitempty"`
+	ID optionalnullable.OptionalNullable[string] `json:"id,omitempty"`
 	// The third-party API ID of original entity
-	DownstreamID *string `json:"downstream_id,omitempty"`
+	DownstreamID optionalnullable.OptionalNullable[string] `json:"downstream_id,omitempty"`
 	// The first name of the person.
-	FirstName *string `json:"first_name,omitempty"`
+	FirstName optionalnullable.OptionalNullable[string] `json:"first_name,omitempty"`
 	// The last name of the person.
-	LastName *string `json:"last_name,omitempty"`
+	LastName optionalnullable.OptionalNullable[string] `json:"last_name,omitempty"`
 	// Middle name of the person.
-	MiddleName *string `json:"middle_name,omitempty"`
+	MiddleName optionalnullable.OptionalNullable[string] `json:"middle_name,omitempty"`
 	// The name used to display the employee, often a combination of their first and last names.
-	DisplayName *string `json:"display_name,omitempty"`
+	DisplayName optionalnullable.OptionalNullable[string] `json:"display_name,omitempty"`
 	// The name the employee prefers to be addressed by, which may be different from their legal name.
-	PreferredName *string `json:"preferred_name,omitempty"`
+	PreferredName optionalnullable.OptionalNullable[string] `json:"preferred_name,omitempty"`
 	// The initials of the person, usually derived from their first, middle, and last names.
-	Initials *string `json:"initials,omitempty"`
+	Initials optionalnullable.OptionalNullable[string] `json:"initials,omitempty"`
 	// A formal salutation for the person. For example, 'Mr', 'Mrs'
-	Salutation *string `json:"salutation,omitempty"`
+	Salutation optionalnullable.OptionalNullable[string] `json:"salutation,omitempty"`
 	// The job title of the person.
-	Title *string `json:"title,omitempty"`
+	Title optionalnullable.OptionalNullable[string] `json:"title,omitempty"`
 	// The marital status of the employee.
-	MaritalStatus *string `json:"marital_status,omitempty"`
-	Partner       *Person `json:"partner,omitempty"`
+	MaritalStatus optionalnullable.OptionalNullable[string] `json:"marital_status,omitempty"`
+	Partner       *Person                                   `json:"partner,omitempty"`
 	// The division the person is currently in. Usually a collection of departments or teams or regions.
-	Division *string `json:"division,omitempty"`
+	Division optionalnullable.OptionalNullable[string] `json:"division,omitempty"`
 	// Unique identifier of the division this employee belongs to.
-	DivisionID *string `json:"division_id,omitempty"`
+	DivisionID optionalnullable.OptionalNullable[string] `json:"division_id,omitempty"`
 	// The department the person is currently in. [Deprecated](https://developers.apideck.com/changelog) in favor of the dedicated department_id and department_name field.
 	//
 	// Deprecated: Deprecated. Use department_id instead..
-	Department *string `json:"department,omitempty"`
+	Department optionalnullable.OptionalNullable[string] `json:"department,omitempty"`
 	// Unique identifier of the department ID this employee belongs to.
-	DepartmentID *string `json:"department_id,omitempty"`
+	DepartmentID optionalnullable.OptionalNullable[string] `json:"department_id,omitempty"`
 	// Name of the department this employee belongs to.
-	DepartmentName *string `json:"department_name,omitempty"`
+	DepartmentName optionalnullable.OptionalNullable[string] `json:"department_name,omitempty"`
 	// The team the person is currently in.
-	Team *Team `json:"team,omitempty"`
+	Team optionalnullable.OptionalNullable[Team] `json:"team,omitempty"`
 	// The unique identifier of the company.
-	CompanyID *string `json:"company_id,omitempty"`
+	CompanyID optionalnullable.OptionalNullable[string] `json:"company_id,omitempty"`
 	// The name of the company.
-	CompanyName *string `json:"company_name,omitempty"`
+	CompanyName optionalnullable.OptionalNullable[string] `json:"company_name,omitempty"`
 	// A Start Date is the date that the employee started working at the company
-	EmploymentStartDate *string `json:"employment_start_date,omitempty"`
+	EmploymentStartDate optionalnullable.OptionalNullable[string] `json:"employment_start_date,omitempty"`
 	// An End Date is the date that the employee ended working at the company
-	EmploymentEndDate *string `json:"employment_end_date,omitempty"`
+	EmploymentEndDate optionalnullable.OptionalNullable[string] `json:"employment_end_date,omitempty"`
 	// The reason because the employment ended.
-	LeavingReason *LeavingReason `json:"leaving_reason,omitempty"`
+	LeavingReason optionalnullable.OptionalNullable[LeavingReason] `json:"leaving_reason,omitempty"`
 	// An Employee Number, Employee ID or Employee Code, is a unique number that has been assigned to each individual staff member within a company.
-	EmployeeNumber *string `json:"employee_number,omitempty"`
+	EmployeeNumber optionalnullable.OptionalNullable[string] `json:"employee_number,omitempty"`
 	// The employment status of the employee, indicating whether they are currently employed, inactive, terminated, or in another status.
-	EmploymentStatus *EmploymentStatus `json:"employment_status,omitempty"`
-	EmploymentRole   *EmploymentRole   `json:"employment_role,omitempty"`
+	EmploymentStatus optionalnullable.OptionalNullable[EmploymentStatus] `json:"employment_status,omitempty"`
+	EmploymentRole   *EmploymentRole                                     `json:"employment_role,omitempty"`
 	// The ethnicity of the employee
-	Ethnicity *string  `json:"ethnicity,omitempty"`
-	Manager   *Manager `json:"manager,omitempty"`
+	Ethnicity optionalnullable.OptionalNullable[string] `json:"ethnicity,omitempty"`
+	Manager   *EmployeeManager                          `json:"manager,omitempty"`
 	// Direct reports is an array of ids that reflect the individuals in an organizational hierarchy who are directly supervised by this specific employee.
-	DirectReports []string `json:"direct_reports,omitempty"`
+	DirectReports optionalnullable.OptionalNullable[[]string] `json:"direct_reports,omitempty"`
 	// A unique identifier assigned by the government. This field is considered sensitive information and may be subject to special security and privacy restrictions.
-	SocialSecurityNumber *string `json:"social_security_number,omitempty"`
+	SocialSecurityNumber optionalnullable.OptionalNullable[string] `json:"social_security_number,omitempty"`
 	// The date of birth of the person.
-	Birthday *types.Date `json:"birthday,omitempty"`
+	Birthday optionalnullable.OptionalNullable[types.Date] `json:"birthday,omitempty"`
 	// The date the person deceased.
-	DeceasedOn *types.Date `json:"deceased_on,omitempty"`
+	DeceasedOn optionalnullable.OptionalNullable[types.Date] `json:"deceased_on,omitempty"`
 	// Country code according to ISO 3166-1 alpha-2.
-	CountryOfBirth *string `json:"country_of_birth,omitempty"`
+	CountryOfBirth optionalnullable.OptionalNullable[string] `json:"country_of_birth,omitempty"`
 	// A description of the object.
-	Description *string `json:"description,omitempty"`
+	Description optionalnullable.OptionalNullable[string] `json:"description,omitempty"`
 	// The gender represents the gender identity of a person.
-	Gender *Gender `json:"gender,omitempty"`
+	Gender optionalnullable.OptionalNullable[Gender] `json:"gender,omitempty"`
 	// The preferred pronouns of the person.
-	Pronouns *string `json:"pronouns,omitempty"`
+	Pronouns optionalnullable.OptionalNullable[string] `json:"pronouns,omitempty"`
 	// language code according to ISO 639-1. For the United States - EN
-	PreferredLanguage *string   `json:"preferred_language,omitempty"`
-	Languages         []*string `json:"languages,omitempty"`
-	Nationalities     []*string `json:"nationalities,omitempty"`
+	PreferredLanguage optionalnullable.OptionalNullable[string] `json:"preferred_language,omitempty"`
+	Languages         []*string                                 `json:"languages,omitempty"`
+	Nationalities     []*string                                 `json:"nationalities,omitempty"`
 	// The URL of the photo of a person.
-	PhotoURL *string `json:"photo_url,omitempty"`
+	PhotoURL optionalnullable.OptionalNullable[string] `json:"photo_url,omitempty"`
 	// The time zone related to the resource. The value is a string containing a standard time zone identifier, e.g. Europe/London.
-	Timezone *string `json:"timezone,omitempty"`
+	Timezone optionalnullable.OptionalNullable[string] `json:"timezone,omitempty"`
 	// When the employee is imported as a new hire, this field indicates what system (e.g. the name of the ATS) this employee was imported from.
-	Source *string `json:"source,omitempty"`
+	Source optionalnullable.OptionalNullable[string] `json:"source,omitempty"`
 	// Unique identifier of the employee in the system this employee was imported from (e.g. the ID in the ATS).
-	SourceID      *string                `json:"source_id,omitempty"`
-	RecordURL     *string                `json:"record_url,omitempty"`
-	Jobs          []EmployeeJob          `json:"jobs,omitempty"`
-	Compensations []EmployeeCompensation `json:"compensations,omitempty"`
+	SourceID      optionalnullable.OptionalNullable[string]                 `json:"source_id,omitempty"`
+	RecordURL     optionalnullable.OptionalNullable[string]                 `json:"record_url,omitempty"`
+	Jobs          optionalnullable.OptionalNullable[[]EmployeeJob]          `json:"jobs,omitempty"`
+	Compensations optionalnullable.OptionalNullable[[]EmployeeCompensation] `json:"compensations,omitempty"`
 	// Indicates if the employee works from a remote location.
-	WorksRemote  *bool              `json:"works_remote,omitempty"`
-	Addresses    []Address          `json:"addresses,omitempty"`
-	PhoneNumbers []PhoneNumber      `json:"phone_numbers,omitempty"`
-	Emails       []Email            `json:"emails,omitempty"`
-	CustomFields []CustomFieldUnion `json:"custom_fields,omitempty"`
-	SocialLinks  []SocialLink       `json:"social_links,omitempty"`
-	BankAccounts []BankAccount2     `json:"bank_accounts,omitempty"`
-	TaxCode      *string            `json:"tax_code,omitempty"`
-	TaxID        *string            `json:"tax_id,omitempty"`
+	WorksRemote  optionalnullable.OptionalNullable[bool]   `json:"works_remote,omitempty"`
+	Addresses    []Address                                 `json:"addresses,omitempty"`
+	PhoneNumbers []PhoneNumber                             `json:"phone_numbers,omitempty"`
+	Emails       []Email                                   `json:"emails,omitempty"`
+	CustomFields []CustomFieldUnion                        `json:"custom_fields,omitempty"`
+	SocialLinks  []SocialLink                              `json:"social_links,omitempty"`
+	BankAccounts []BankAccount2                            `json:"bank_accounts,omitempty"`
+	TaxCode      optionalnullable.OptionalNullable[string] `json:"tax_code,omitempty"`
+	TaxID        optionalnullable.OptionalNullable[string] `json:"tax_id,omitempty"`
 	// Indicate the employee's dietary preference.
-	DietaryPreference *string `json:"dietary_preference,omitempty"`
+	DietaryPreference optionalnullable.OptionalNullable[string] `json:"dietary_preference,omitempty"`
 	// Indicate the employee's food allergies.
-	FoodAllergies   []string         `json:"food_allergies,omitempty"`
-	ProbationPeriod *ProbationPeriod `json:"probation_period,omitempty"`
-	Tags            []string         `json:"tags,omitempty"`
+	FoodAllergies   optionalnullable.OptionalNullable[[]string] `json:"food_allergies,omitempty"`
+	ProbationPeriod *ProbationPeriod                            `json:"probation_period,omitempty"`
+	Tags            optionalnullable.OptionalNullable[[]string] `json:"tags,omitempty"`
 	// When custom mappings are configured on the resource, the result is included here.
-	CustomMappings map[string]any `json:"custom_mappings,omitempty"`
+	CustomMappings optionalnullable.OptionalNullable[map[string]any] `json:"custom_mappings,omitempty"`
 	// A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
-	RowVersion *string `json:"row_version,omitempty"`
+	RowVersion optionalnullable.OptionalNullable[string] `json:"row_version,omitempty"`
 	// Flag to indicate if the object is deleted.
-	Deleted *bool `json:"deleted,omitempty"`
+	Deleted optionalnullable.OptionalNullable[bool] `json:"deleted,omitempty"`
 	// The user who last updated the object.
-	UpdatedBy *string `json:"updated_by,omitempty"`
+	UpdatedBy optionalnullable.OptionalNullable[string] `json:"updated_by,omitempty"`
 	// The user who created the object.
-	CreatedBy *string `json:"created_by,omitempty"`
+	CreatedBy optionalnullable.OptionalNullable[string] `json:"created_by,omitempty"`
 	// The date and time when the object was last updated.
-	UpdatedAt *time.Time `json:"updated_at,omitempty"`
+	UpdatedAt optionalnullable.OptionalNullable[time.Time] `json:"updated_at,omitempty"`
 	// The date and time when the object was created.
-	CreatedAt *time.Time `json:"created_at,omitempty"`
+	CreatedAt optionalnullable.OptionalNullable[time.Time] `json:"created_at,omitempty"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
 	PassThrough []PassThroughBody `json:"pass_through,omitempty"`
 }
@@ -296,77 +297,77 @@ func (e *Employee) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *Employee) GetID() *string {
+func (o *Employee) GetID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *Employee) GetDownstreamID() *string {
+func (o *Employee) GetDownstreamID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.DownstreamID
 }
 
-func (o *Employee) GetFirstName() *string {
+func (o *Employee) GetFirstName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.FirstName
 }
 
-func (o *Employee) GetLastName() *string {
+func (o *Employee) GetLastName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.LastName
 }
 
-func (o *Employee) GetMiddleName() *string {
+func (o *Employee) GetMiddleName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.MiddleName
 }
 
-func (o *Employee) GetDisplayName() *string {
+func (o *Employee) GetDisplayName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.DisplayName
 }
 
-func (o *Employee) GetPreferredName() *string {
+func (o *Employee) GetPreferredName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.PreferredName
 }
 
-func (o *Employee) GetInitials() *string {
+func (o *Employee) GetInitials() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Initials
 }
 
-func (o *Employee) GetSalutation() *string {
+func (o *Employee) GetSalutation() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Salutation
 }
 
-func (o *Employee) GetTitle() *string {
+func (o *Employee) GetTitle() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Title
 }
 
-func (o *Employee) GetMaritalStatus() *string {
+func (o *Employee) GetMaritalStatus() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -380,91 +381,91 @@ func (o *Employee) GetPartner() *Person {
 	return o.Partner
 }
 
-func (o *Employee) GetDivision() *string {
+func (o *Employee) GetDivision() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Division
 }
 
-func (o *Employee) GetDivisionID() *string {
+func (o *Employee) GetDivisionID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.DivisionID
 }
 
-func (o *Employee) GetDepartment() *string {
+func (o *Employee) GetDepartment() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Department
 }
 
-func (o *Employee) GetDepartmentID() *string {
+func (o *Employee) GetDepartmentID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.DepartmentID
 }
 
-func (o *Employee) GetDepartmentName() *string {
+func (o *Employee) GetDepartmentName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.DepartmentName
 }
 
-func (o *Employee) GetTeam() *Team {
+func (o *Employee) GetTeam() optionalnullable.OptionalNullable[Team] {
 	if o == nil {
 		return nil
 	}
 	return o.Team
 }
 
-func (o *Employee) GetCompanyID() *string {
+func (o *Employee) GetCompanyID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.CompanyID
 }
 
-func (o *Employee) GetCompanyName() *string {
+func (o *Employee) GetCompanyName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.CompanyName
 }
 
-func (o *Employee) GetEmploymentStartDate() *string {
+func (o *Employee) GetEmploymentStartDate() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.EmploymentStartDate
 }
 
-func (o *Employee) GetEmploymentEndDate() *string {
+func (o *Employee) GetEmploymentEndDate() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.EmploymentEndDate
 }
 
-func (o *Employee) GetLeavingReason() *LeavingReason {
+func (o *Employee) GetLeavingReason() optionalnullable.OptionalNullable[LeavingReason] {
 	if o == nil {
 		return nil
 	}
 	return o.LeavingReason
 }
 
-func (o *Employee) GetEmployeeNumber() *string {
+func (o *Employee) GetEmployeeNumber() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.EmployeeNumber
 }
 
-func (o *Employee) GetEmploymentStatus() *EmploymentStatus {
+func (o *Employee) GetEmploymentStatus() optionalnullable.OptionalNullable[EmploymentStatus] {
 	if o == nil {
 		return nil
 	}
@@ -478,77 +479,77 @@ func (o *Employee) GetEmploymentRole() *EmploymentRole {
 	return o.EmploymentRole
 }
 
-func (o *Employee) GetEthnicity() *string {
+func (o *Employee) GetEthnicity() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Ethnicity
 }
 
-func (o *Employee) GetManager() *Manager {
+func (o *Employee) GetManager() *EmployeeManager {
 	if o == nil {
 		return nil
 	}
 	return o.Manager
 }
 
-func (o *Employee) GetDirectReports() []string {
+func (o *Employee) GetDirectReports() optionalnullable.OptionalNullable[[]string] {
 	if o == nil {
 		return nil
 	}
 	return o.DirectReports
 }
 
-func (o *Employee) GetSocialSecurityNumber() *string {
+func (o *Employee) GetSocialSecurityNumber() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.SocialSecurityNumber
 }
 
-func (o *Employee) GetBirthday() *types.Date {
+func (o *Employee) GetBirthday() optionalnullable.OptionalNullable[types.Date] {
 	if o == nil {
 		return nil
 	}
 	return o.Birthday
 }
 
-func (o *Employee) GetDeceasedOn() *types.Date {
+func (o *Employee) GetDeceasedOn() optionalnullable.OptionalNullable[types.Date] {
 	if o == nil {
 		return nil
 	}
 	return o.DeceasedOn
 }
 
-func (o *Employee) GetCountryOfBirth() *string {
+func (o *Employee) GetCountryOfBirth() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.CountryOfBirth
 }
 
-func (o *Employee) GetDescription() *string {
+func (o *Employee) GetDescription() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Description
 }
 
-func (o *Employee) GetGender() *Gender {
+func (o *Employee) GetGender() optionalnullable.OptionalNullable[Gender] {
 	if o == nil {
 		return nil
 	}
 	return o.Gender
 }
 
-func (o *Employee) GetPronouns() *string {
+func (o *Employee) GetPronouns() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Pronouns
 }
 
-func (o *Employee) GetPreferredLanguage() *string {
+func (o *Employee) GetPreferredLanguage() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -569,56 +570,56 @@ func (o *Employee) GetNationalities() []*string {
 	return o.Nationalities
 }
 
-func (o *Employee) GetPhotoURL() *string {
+func (o *Employee) GetPhotoURL() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.PhotoURL
 }
 
-func (o *Employee) GetTimezone() *string {
+func (o *Employee) GetTimezone() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Timezone
 }
 
-func (o *Employee) GetSource() *string {
+func (o *Employee) GetSource() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Source
 }
 
-func (o *Employee) GetSourceID() *string {
+func (o *Employee) GetSourceID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.SourceID
 }
 
-func (o *Employee) GetRecordURL() *string {
+func (o *Employee) GetRecordURL() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.RecordURL
 }
 
-func (o *Employee) GetJobs() []EmployeeJob {
+func (o *Employee) GetJobs() optionalnullable.OptionalNullable[[]EmployeeJob] {
 	if o == nil {
 		return nil
 	}
 	return o.Jobs
 }
 
-func (o *Employee) GetCompensations() []EmployeeCompensation {
+func (o *Employee) GetCompensations() optionalnullable.OptionalNullable[[]EmployeeCompensation] {
 	if o == nil {
 		return nil
 	}
 	return o.Compensations
 }
 
-func (o *Employee) GetWorksRemote() *bool {
+func (o *Employee) GetWorksRemote() optionalnullable.OptionalNullable[bool] {
 	if o == nil {
 		return nil
 	}
@@ -667,28 +668,28 @@ func (o *Employee) GetBankAccounts() []BankAccount2 {
 	return o.BankAccounts
 }
 
-func (o *Employee) GetTaxCode() *string {
+func (o *Employee) GetTaxCode() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.TaxCode
 }
 
-func (o *Employee) GetTaxID() *string {
+func (o *Employee) GetTaxID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.TaxID
 }
 
-func (o *Employee) GetDietaryPreference() *string {
+func (o *Employee) GetDietaryPreference() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.DietaryPreference
 }
 
-func (o *Employee) GetFoodAllergies() []string {
+func (o *Employee) GetFoodAllergies() optionalnullable.OptionalNullable[[]string] {
 	if o == nil {
 		return nil
 	}
@@ -702,56 +703,56 @@ func (o *Employee) GetProbationPeriod() *ProbationPeriod {
 	return o.ProbationPeriod
 }
 
-func (o *Employee) GetTags() []string {
+func (o *Employee) GetTags() optionalnullable.OptionalNullable[[]string] {
 	if o == nil {
 		return nil
 	}
 	return o.Tags
 }
 
-func (o *Employee) GetCustomMappings() map[string]any {
+func (o *Employee) GetCustomMappings() optionalnullable.OptionalNullable[map[string]any] {
 	if o == nil {
 		return nil
 	}
 	return o.CustomMappings
 }
 
-func (o *Employee) GetRowVersion() *string {
+func (o *Employee) GetRowVersion() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.RowVersion
 }
 
-func (o *Employee) GetDeleted() *bool {
+func (o *Employee) GetDeleted() optionalnullable.OptionalNullable[bool] {
 	if o == nil {
 		return nil
 	}
 	return o.Deleted
 }
 
-func (o *Employee) GetUpdatedBy() *string {
+func (o *Employee) GetUpdatedBy() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.UpdatedBy
 }
 
-func (o *Employee) GetCreatedBy() *string {
+func (o *Employee) GetCreatedBy() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.CreatedBy
 }
 
-func (o *Employee) GetUpdatedAt() *time.Time {
+func (o *Employee) GetUpdatedAt() optionalnullable.OptionalNullable[time.Time] {
 	if o == nil {
 		return nil
 	}
 	return o.UpdatedAt
 }
 
-func (o *Employee) GetCreatedAt() *time.Time {
+func (o *Employee) GetCreatedAt() optionalnullable.OptionalNullable[time.Time] {
 	if o == nil {
 		return nil
 	}
@@ -767,109 +768,109 @@ func (o *Employee) GetPassThrough() []PassThroughBody {
 
 type EmployeeInput struct {
 	// A unique identifier for an object.
-	ID *string `json:"id,omitempty"`
+	ID optionalnullable.OptionalNullable[string] `json:"id,omitempty"`
 	// The first name of the person.
-	FirstName *string `json:"first_name,omitempty"`
+	FirstName optionalnullable.OptionalNullable[string] `json:"first_name,omitempty"`
 	// The last name of the person.
-	LastName *string `json:"last_name,omitempty"`
+	LastName optionalnullable.OptionalNullable[string] `json:"last_name,omitempty"`
 	// Middle name of the person.
-	MiddleName *string `json:"middle_name,omitempty"`
+	MiddleName optionalnullable.OptionalNullable[string] `json:"middle_name,omitempty"`
 	// The name used to display the employee, often a combination of their first and last names.
-	DisplayName *string `json:"display_name,omitempty"`
+	DisplayName optionalnullable.OptionalNullable[string] `json:"display_name,omitempty"`
 	// The name the employee prefers to be addressed by, which may be different from their legal name.
-	PreferredName *string `json:"preferred_name,omitempty"`
+	PreferredName optionalnullable.OptionalNullable[string] `json:"preferred_name,omitempty"`
 	// The initials of the person, usually derived from their first, middle, and last names.
-	Initials *string `json:"initials,omitempty"`
+	Initials optionalnullable.OptionalNullable[string] `json:"initials,omitempty"`
 	// A formal salutation for the person. For example, 'Mr', 'Mrs'
-	Salutation *string `json:"salutation,omitempty"`
+	Salutation optionalnullable.OptionalNullable[string] `json:"salutation,omitempty"`
 	// The job title of the person.
-	Title *string `json:"title,omitempty"`
+	Title optionalnullable.OptionalNullable[string] `json:"title,omitempty"`
 	// The marital status of the employee.
-	MaritalStatus *string      `json:"marital_status,omitempty"`
-	Partner       *PersonInput `json:"partner,omitempty"`
+	MaritalStatus optionalnullable.OptionalNullable[string] `json:"marital_status,omitempty"`
+	Partner       *PersonInput                              `json:"partner,omitempty"`
 	// The division the person is currently in. Usually a collection of departments or teams or regions.
-	Division *string `json:"division,omitempty"`
+	Division optionalnullable.OptionalNullable[string] `json:"division,omitempty"`
 	// Unique identifier of the division this employee belongs to.
-	DivisionID *string `json:"division_id,omitempty"`
+	DivisionID optionalnullable.OptionalNullable[string] `json:"division_id,omitempty"`
 	// The department the person is currently in. [Deprecated](https://developers.apideck.com/changelog) in favor of the dedicated department_id and department_name field.
 	//
 	// Deprecated: Deprecated. Use department_id instead..
-	Department *string `json:"department,omitempty"`
+	Department optionalnullable.OptionalNullable[string] `json:"department,omitempty"`
 	// Unique identifier of the department ID this employee belongs to.
-	DepartmentID *string `json:"department_id,omitempty"`
+	DepartmentID optionalnullable.OptionalNullable[string] `json:"department_id,omitempty"`
 	// Name of the department this employee belongs to.
-	DepartmentName *string `json:"department_name,omitempty"`
+	DepartmentName optionalnullable.OptionalNullable[string] `json:"department_name,omitempty"`
 	// The team the person is currently in.
-	Team *Team `json:"team,omitempty"`
+	Team optionalnullable.OptionalNullable[Team] `json:"team,omitempty"`
 	// The unique identifier of the company.
-	CompanyID *string `json:"company_id,omitempty"`
+	CompanyID optionalnullable.OptionalNullable[string] `json:"company_id,omitempty"`
 	// The name of the company.
-	CompanyName *string `json:"company_name,omitempty"`
+	CompanyName optionalnullable.OptionalNullable[string] `json:"company_name,omitempty"`
 	// A Start Date is the date that the employee started working at the company
-	EmploymentStartDate *string `json:"employment_start_date,omitempty"`
+	EmploymentStartDate optionalnullable.OptionalNullable[string] `json:"employment_start_date,omitempty"`
 	// An End Date is the date that the employee ended working at the company
-	EmploymentEndDate *string `json:"employment_end_date,omitempty"`
+	EmploymentEndDate optionalnullable.OptionalNullable[string] `json:"employment_end_date,omitempty"`
 	// The reason because the employment ended.
-	LeavingReason *LeavingReason `json:"leaving_reason,omitempty"`
+	LeavingReason optionalnullable.OptionalNullable[LeavingReason] `json:"leaving_reason,omitempty"`
 	// An Employee Number, Employee ID or Employee Code, is a unique number that has been assigned to each individual staff member within a company.
-	EmployeeNumber *string `json:"employee_number,omitempty"`
+	EmployeeNumber optionalnullable.OptionalNullable[string] `json:"employee_number,omitempty"`
 	// The employment status of the employee, indicating whether they are currently employed, inactive, terminated, or in another status.
-	EmploymentStatus *EmploymentStatus `json:"employment_status,omitempty"`
-	EmploymentRole   *EmploymentRole   `json:"employment_role,omitempty"`
+	EmploymentStatus optionalnullable.OptionalNullable[EmploymentStatus] `json:"employment_status,omitempty"`
+	EmploymentRole   *EmploymentRole                                     `json:"employment_role,omitempty"`
 	// The ethnicity of the employee
-	Ethnicity *string  `json:"ethnicity,omitempty"`
-	Manager   *Manager `json:"manager,omitempty"`
+	Ethnicity optionalnullable.OptionalNullable[string] `json:"ethnicity,omitempty"`
+	Manager   *EmployeeManager                          `json:"manager,omitempty"`
 	// Direct reports is an array of ids that reflect the individuals in an organizational hierarchy who are directly supervised by this specific employee.
-	DirectReports []string `json:"direct_reports,omitempty"`
+	DirectReports optionalnullable.OptionalNullable[[]string] `json:"direct_reports,omitempty"`
 	// A unique identifier assigned by the government. This field is considered sensitive information and may be subject to special security and privacy restrictions.
-	SocialSecurityNumber *string `json:"social_security_number,omitempty"`
+	SocialSecurityNumber optionalnullable.OptionalNullable[string] `json:"social_security_number,omitempty"`
 	// The date of birth of the person.
-	Birthday *types.Date `json:"birthday,omitempty"`
+	Birthday optionalnullable.OptionalNullable[types.Date] `json:"birthday,omitempty"`
 	// The date the person deceased.
-	DeceasedOn *types.Date `json:"deceased_on,omitempty"`
+	DeceasedOn optionalnullable.OptionalNullable[types.Date] `json:"deceased_on,omitempty"`
 	// Country code according to ISO 3166-1 alpha-2.
-	CountryOfBirth *string `json:"country_of_birth,omitempty"`
+	CountryOfBirth optionalnullable.OptionalNullable[string] `json:"country_of_birth,omitempty"`
 	// A description of the object.
-	Description *string `json:"description,omitempty"`
+	Description optionalnullable.OptionalNullable[string] `json:"description,omitempty"`
 	// The gender represents the gender identity of a person.
-	Gender *Gender `json:"gender,omitempty"`
+	Gender optionalnullable.OptionalNullable[Gender] `json:"gender,omitempty"`
 	// The preferred pronouns of the person.
-	Pronouns *string `json:"pronouns,omitempty"`
+	Pronouns optionalnullable.OptionalNullable[string] `json:"pronouns,omitempty"`
 	// language code according to ISO 639-1. For the United States - EN
-	PreferredLanguage *string   `json:"preferred_language,omitempty"`
-	Languages         []*string `json:"languages,omitempty"`
-	Nationalities     []*string `json:"nationalities,omitempty"`
+	PreferredLanguage optionalnullable.OptionalNullable[string] `json:"preferred_language,omitempty"`
+	Languages         []*string                                 `json:"languages,omitempty"`
+	Nationalities     []*string                                 `json:"nationalities,omitempty"`
 	// The URL of the photo of a person.
-	PhotoURL *string `json:"photo_url,omitempty"`
+	PhotoURL optionalnullable.OptionalNullable[string] `json:"photo_url,omitempty"`
 	// The time zone related to the resource. The value is a string containing a standard time zone identifier, e.g. Europe/London.
-	Timezone *string `json:"timezone,omitempty"`
+	Timezone optionalnullable.OptionalNullable[string] `json:"timezone,omitempty"`
 	// When the employee is imported as a new hire, this field indicates what system (e.g. the name of the ATS) this employee was imported from.
-	Source *string `json:"source,omitempty"`
+	Source optionalnullable.OptionalNullable[string] `json:"source,omitempty"`
 	// Unique identifier of the employee in the system this employee was imported from (e.g. the ID in the ATS).
-	SourceID      *string                     `json:"source_id,omitempty"`
-	RecordURL     *string                     `json:"record_url,omitempty"`
-	Jobs          []EmployeeJobInput          `json:"jobs,omitempty"`
-	Compensations []EmployeeCompensationInput `json:"compensations,omitempty"`
+	SourceID      optionalnullable.OptionalNullable[string]                      `json:"source_id,omitempty"`
+	RecordURL     optionalnullable.OptionalNullable[string]                      `json:"record_url,omitempty"`
+	Jobs          optionalnullable.OptionalNullable[[]EmployeeJobInput]          `json:"jobs,omitempty"`
+	Compensations optionalnullable.OptionalNullable[[]EmployeeCompensationInput] `json:"compensations,omitempty"`
 	// Indicates if the employee works from a remote location.
-	WorksRemote  *bool              `json:"works_remote,omitempty"`
-	Addresses    []Address          `json:"addresses,omitempty"`
-	PhoneNumbers []PhoneNumber      `json:"phone_numbers,omitempty"`
-	Emails       []Email            `json:"emails,omitempty"`
-	CustomFields []CustomFieldUnion `json:"custom_fields,omitempty"`
-	SocialLinks  []SocialLink       `json:"social_links,omitempty"`
-	BankAccounts []BankAccount2     `json:"bank_accounts,omitempty"`
-	TaxCode      *string            `json:"tax_code,omitempty"`
-	TaxID        *string            `json:"tax_id,omitempty"`
+	WorksRemote  optionalnullable.OptionalNullable[bool]   `json:"works_remote,omitempty"`
+	Addresses    []Address                                 `json:"addresses,omitempty"`
+	PhoneNumbers []PhoneNumber                             `json:"phone_numbers,omitempty"`
+	Emails       []Email                                   `json:"emails,omitempty"`
+	CustomFields []CustomFieldUnion                        `json:"custom_fields,omitempty"`
+	SocialLinks  []SocialLink                              `json:"social_links,omitempty"`
+	BankAccounts []BankAccount2                            `json:"bank_accounts,omitempty"`
+	TaxCode      optionalnullable.OptionalNullable[string] `json:"tax_code,omitempty"`
+	TaxID        optionalnullable.OptionalNullable[string] `json:"tax_id,omitempty"`
 	// Indicate the employee's dietary preference.
-	DietaryPreference *string `json:"dietary_preference,omitempty"`
+	DietaryPreference optionalnullable.OptionalNullable[string] `json:"dietary_preference,omitempty"`
 	// Indicate the employee's food allergies.
-	FoodAllergies   []string         `json:"food_allergies,omitempty"`
-	ProbationPeriod *ProbationPeriod `json:"probation_period,omitempty"`
-	Tags            []string         `json:"tags,omitempty"`
+	FoodAllergies   optionalnullable.OptionalNullable[[]string] `json:"food_allergies,omitempty"`
+	ProbationPeriod *ProbationPeriod                            `json:"probation_period,omitempty"`
+	Tags            optionalnullable.OptionalNullable[[]string] `json:"tags,omitempty"`
 	// A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
-	RowVersion *string `json:"row_version,omitempty"`
+	RowVersion optionalnullable.OptionalNullable[string] `json:"row_version,omitempty"`
 	// Flag to indicate if the object is deleted.
-	Deleted *bool `json:"deleted,omitempty"`
+	Deleted optionalnullable.OptionalNullable[bool] `json:"deleted,omitempty"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
 	PassThrough []PassThroughBody `json:"pass_through,omitempty"`
 }
@@ -885,70 +886,70 @@ func (e *EmployeeInput) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *EmployeeInput) GetID() *string {
+func (o *EmployeeInput) GetID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *EmployeeInput) GetFirstName() *string {
+func (o *EmployeeInput) GetFirstName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.FirstName
 }
 
-func (o *EmployeeInput) GetLastName() *string {
+func (o *EmployeeInput) GetLastName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.LastName
 }
 
-func (o *EmployeeInput) GetMiddleName() *string {
+func (o *EmployeeInput) GetMiddleName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.MiddleName
 }
 
-func (o *EmployeeInput) GetDisplayName() *string {
+func (o *EmployeeInput) GetDisplayName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.DisplayName
 }
 
-func (o *EmployeeInput) GetPreferredName() *string {
+func (o *EmployeeInput) GetPreferredName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.PreferredName
 }
 
-func (o *EmployeeInput) GetInitials() *string {
+func (o *EmployeeInput) GetInitials() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Initials
 }
 
-func (o *EmployeeInput) GetSalutation() *string {
+func (o *EmployeeInput) GetSalutation() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Salutation
 }
 
-func (o *EmployeeInput) GetTitle() *string {
+func (o *EmployeeInput) GetTitle() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Title
 }
 
-func (o *EmployeeInput) GetMaritalStatus() *string {
+func (o *EmployeeInput) GetMaritalStatus() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -962,91 +963,91 @@ func (o *EmployeeInput) GetPartner() *PersonInput {
 	return o.Partner
 }
 
-func (o *EmployeeInput) GetDivision() *string {
+func (o *EmployeeInput) GetDivision() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Division
 }
 
-func (o *EmployeeInput) GetDivisionID() *string {
+func (o *EmployeeInput) GetDivisionID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.DivisionID
 }
 
-func (o *EmployeeInput) GetDepartment() *string {
+func (o *EmployeeInput) GetDepartment() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Department
 }
 
-func (o *EmployeeInput) GetDepartmentID() *string {
+func (o *EmployeeInput) GetDepartmentID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.DepartmentID
 }
 
-func (o *EmployeeInput) GetDepartmentName() *string {
+func (o *EmployeeInput) GetDepartmentName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.DepartmentName
 }
 
-func (o *EmployeeInput) GetTeam() *Team {
+func (o *EmployeeInput) GetTeam() optionalnullable.OptionalNullable[Team] {
 	if o == nil {
 		return nil
 	}
 	return o.Team
 }
 
-func (o *EmployeeInput) GetCompanyID() *string {
+func (o *EmployeeInput) GetCompanyID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.CompanyID
 }
 
-func (o *EmployeeInput) GetCompanyName() *string {
+func (o *EmployeeInput) GetCompanyName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.CompanyName
 }
 
-func (o *EmployeeInput) GetEmploymentStartDate() *string {
+func (o *EmployeeInput) GetEmploymentStartDate() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.EmploymentStartDate
 }
 
-func (o *EmployeeInput) GetEmploymentEndDate() *string {
+func (o *EmployeeInput) GetEmploymentEndDate() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.EmploymentEndDate
 }
 
-func (o *EmployeeInput) GetLeavingReason() *LeavingReason {
+func (o *EmployeeInput) GetLeavingReason() optionalnullable.OptionalNullable[LeavingReason] {
 	if o == nil {
 		return nil
 	}
 	return o.LeavingReason
 }
 
-func (o *EmployeeInput) GetEmployeeNumber() *string {
+func (o *EmployeeInput) GetEmployeeNumber() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.EmployeeNumber
 }
 
-func (o *EmployeeInput) GetEmploymentStatus() *EmploymentStatus {
+func (o *EmployeeInput) GetEmploymentStatus() optionalnullable.OptionalNullable[EmploymentStatus] {
 	if o == nil {
 		return nil
 	}
@@ -1060,77 +1061,77 @@ func (o *EmployeeInput) GetEmploymentRole() *EmploymentRole {
 	return o.EmploymentRole
 }
 
-func (o *EmployeeInput) GetEthnicity() *string {
+func (o *EmployeeInput) GetEthnicity() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Ethnicity
 }
 
-func (o *EmployeeInput) GetManager() *Manager {
+func (o *EmployeeInput) GetManager() *EmployeeManager {
 	if o == nil {
 		return nil
 	}
 	return o.Manager
 }
 
-func (o *EmployeeInput) GetDirectReports() []string {
+func (o *EmployeeInput) GetDirectReports() optionalnullable.OptionalNullable[[]string] {
 	if o == nil {
 		return nil
 	}
 	return o.DirectReports
 }
 
-func (o *EmployeeInput) GetSocialSecurityNumber() *string {
+func (o *EmployeeInput) GetSocialSecurityNumber() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.SocialSecurityNumber
 }
 
-func (o *EmployeeInput) GetBirthday() *types.Date {
+func (o *EmployeeInput) GetBirthday() optionalnullable.OptionalNullable[types.Date] {
 	if o == nil {
 		return nil
 	}
 	return o.Birthday
 }
 
-func (o *EmployeeInput) GetDeceasedOn() *types.Date {
+func (o *EmployeeInput) GetDeceasedOn() optionalnullable.OptionalNullable[types.Date] {
 	if o == nil {
 		return nil
 	}
 	return o.DeceasedOn
 }
 
-func (o *EmployeeInput) GetCountryOfBirth() *string {
+func (o *EmployeeInput) GetCountryOfBirth() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.CountryOfBirth
 }
 
-func (o *EmployeeInput) GetDescription() *string {
+func (o *EmployeeInput) GetDescription() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Description
 }
 
-func (o *EmployeeInput) GetGender() *Gender {
+func (o *EmployeeInput) GetGender() optionalnullable.OptionalNullable[Gender] {
 	if o == nil {
 		return nil
 	}
 	return o.Gender
 }
 
-func (o *EmployeeInput) GetPronouns() *string {
+func (o *EmployeeInput) GetPronouns() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Pronouns
 }
 
-func (o *EmployeeInput) GetPreferredLanguage() *string {
+func (o *EmployeeInput) GetPreferredLanguage() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -1151,56 +1152,56 @@ func (o *EmployeeInput) GetNationalities() []*string {
 	return o.Nationalities
 }
 
-func (o *EmployeeInput) GetPhotoURL() *string {
+func (o *EmployeeInput) GetPhotoURL() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.PhotoURL
 }
 
-func (o *EmployeeInput) GetTimezone() *string {
+func (o *EmployeeInput) GetTimezone() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Timezone
 }
 
-func (o *EmployeeInput) GetSource() *string {
+func (o *EmployeeInput) GetSource() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Source
 }
 
-func (o *EmployeeInput) GetSourceID() *string {
+func (o *EmployeeInput) GetSourceID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.SourceID
 }
 
-func (o *EmployeeInput) GetRecordURL() *string {
+func (o *EmployeeInput) GetRecordURL() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.RecordURL
 }
 
-func (o *EmployeeInput) GetJobs() []EmployeeJobInput {
+func (o *EmployeeInput) GetJobs() optionalnullable.OptionalNullable[[]EmployeeJobInput] {
 	if o == nil {
 		return nil
 	}
 	return o.Jobs
 }
 
-func (o *EmployeeInput) GetCompensations() []EmployeeCompensationInput {
+func (o *EmployeeInput) GetCompensations() optionalnullable.OptionalNullable[[]EmployeeCompensationInput] {
 	if o == nil {
 		return nil
 	}
 	return o.Compensations
 }
 
-func (o *EmployeeInput) GetWorksRemote() *bool {
+func (o *EmployeeInput) GetWorksRemote() optionalnullable.OptionalNullable[bool] {
 	if o == nil {
 		return nil
 	}
@@ -1249,28 +1250,28 @@ func (o *EmployeeInput) GetBankAccounts() []BankAccount2 {
 	return o.BankAccounts
 }
 
-func (o *EmployeeInput) GetTaxCode() *string {
+func (o *EmployeeInput) GetTaxCode() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.TaxCode
 }
 
-func (o *EmployeeInput) GetTaxID() *string {
+func (o *EmployeeInput) GetTaxID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.TaxID
 }
 
-func (o *EmployeeInput) GetDietaryPreference() *string {
+func (o *EmployeeInput) GetDietaryPreference() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.DietaryPreference
 }
 
-func (o *EmployeeInput) GetFoodAllergies() []string {
+func (o *EmployeeInput) GetFoodAllergies() optionalnullable.OptionalNullable[[]string] {
 	if o == nil {
 		return nil
 	}
@@ -1284,21 +1285,21 @@ func (o *EmployeeInput) GetProbationPeriod() *ProbationPeriod {
 	return o.ProbationPeriod
 }
 
-func (o *EmployeeInput) GetTags() []string {
+func (o *EmployeeInput) GetTags() optionalnullable.OptionalNullable[[]string] {
 	if o == nil {
 		return nil
 	}
 	return o.Tags
 }
 
-func (o *EmployeeInput) GetRowVersion() *string {
+func (o *EmployeeInput) GetRowVersion() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.RowVersion
 }
 
-func (o *EmployeeInput) GetDeleted() *bool {
+func (o *EmployeeInput) GetDeleted() optionalnullable.OptionalNullable[bool] {
 	if o == nil {
 		return nil
 	}

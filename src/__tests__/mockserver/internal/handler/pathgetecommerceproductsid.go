@@ -8,6 +8,7 @@ import (
 	"mockserver/internal/handler/assert"
 	"mockserver/internal/logging"
 	"mockserver/internal/sdk/models/components"
+	"mockserver/internal/sdk/optionalnullable"
 	"mockserver/internal/sdk/types"
 	"mockserver/internal/sdk/utils"
 	"mockserver/internal/tracking"
@@ -54,39 +55,39 @@ func testEcommerceProductsOneEcommerceProductsOne0(w http.ResponseWriter, req *h
 		Operation:  "one",
 		Data: components.EcommerceProduct{
 			ID:                "12345",
-			Name:              types.String("MacBook Pro"),
-			Description:       types.String("Powerful and portable, the MacBook Pro is perfect for professionals and creatives."),
-			Status:            components.ProductStatusActive.ToPointer(),
-			Price:             types.String("1999.99"),
-			Sku:               types.String("MBP123"),
-			InventoryQuantity: types.String("10"),
-			Images: []components.Image{
+			Name:              optionalnullable.From(types.String("MacBook Pro")),
+			Description:       optionalnullable.From(types.String("Powerful and portable, the MacBook Pro is perfect for professionals and creatives.")),
+			Status:            optionalnullable.From(components.ProductStatusActive.ToPointer()),
+			Price:             optionalnullable.From(types.String("1999.99")),
+			Sku:               optionalnullable.From(types.String("MBP123")),
+			InventoryQuantity: optionalnullable.From(types.String("10")),
+			Images: optionalnullable.From(types.Pointer([]components.Image{
 				components.Image{
-					ID:  types.String("12345"),
-					URL: types.String("https://example.com/macbook-pro.jpg"),
+					ID:  optionalnullable.From(types.String("12345")),
+					URL: optionalnullable.From(types.String("https://example.com/macbook-pro.jpg")),
 				},
 				components.Image{
-					ID:  types.String("12345"),
-					URL: types.String("https://example.com/macbook-pro.jpg"),
+					ID:  optionalnullable.From(types.String("12345")),
+					URL: optionalnullable.From(types.String("https://example.com/macbook-pro.jpg")),
 				},
 				components.Image{
-					ID:  types.String("12345"),
-					URL: types.String("https://example.com/macbook-pro.jpg"),
+					ID:  optionalnullable.From(types.String("12345")),
+					URL: optionalnullable.From(types.String("https://example.com/macbook-pro.jpg")),
 				},
-			},
-			Weight:     types.String("1.25"),
-			WeightUnit: types.String("lb"),
+			})),
+			Weight:     optionalnullable.From(types.String("1.25")),
+			WeightUnit: optionalnullable.From(types.String("lb")),
 			Options: []components.EcommerceProductOption{
 				components.EcommerceProductOption{
-					ID:   types.String("1"),
-					Name: types.String("Color"),
+					ID:   optionalnullable.From(types.String("1")),
+					Name: optionalnullable.From(types.String("Color")),
 					Values: []*string{
 						types.String("Red"),
 					},
 				},
 				components.EcommerceProductOption{
-					ID:   types.String("1"),
-					Name: types.String("Color"),
+					ID:   optionalnullable.From(types.String("1")),
+					Name: optionalnullable.From(types.String("Color")),
 					Values: []*string{
 						types.String("Red"),
 					},
@@ -94,68 +95,68 @@ func testEcommerceProductsOneEcommerceProductsOne0(w http.ResponseWriter, req *h
 			},
 			Variants: []components.Variant{
 				components.Variant{
-					ID:                types.String("1"),
-					Name:              types.String("Midnight 16inch MacBook Pro"),
-					Price:             types.String("1999.99"),
-					Sku:               types.String("MBP123-16GB-SILVER-13"),
-					InventoryQuantity: types.String("5"),
-					Weight:            types.String("1.25"),
-					WeightUnit:        types.String("lb"),
+					ID:                optionalnullable.From(types.String("1")),
+					Name:              optionalnullable.From(types.String("Midnight 16inch MacBook Pro")),
+					Price:             optionalnullable.From(types.String("1999.99")),
+					Sku:               optionalnullable.From(types.String("MBP123-16GB-SILVER-13")),
+					InventoryQuantity: optionalnullable.From(types.String("5")),
+					Weight:            optionalnullable.From(types.String("1.25")),
+					WeightUnit:        optionalnullable.From(types.String("lb")),
 					Options: []components.VariantOption{
 						components.VariantOption{
-							ID:    types.String("1"),
-							Name:  types.String("Color"),
-							Value: types.String("Silver"),
+							ID:    optionalnullable.From(types.String("1")),
+							Name:  optionalnullable.From(types.String("Color")),
+							Value: optionalnullable.From(types.String("Silver")),
 						},
 						components.VariantOption{
-							ID:    types.String("1"),
-							Name:  types.String("Color"),
-							Value: types.String("Silver"),
+							ID:    optionalnullable.From(types.String("1")),
+							Name:  optionalnullable.From(types.String("Color")),
+							Value: optionalnullable.From(types.String("Silver")),
 						},
 					},
 					Images: []components.VariantImage{
 						components.VariantImage{
-							ID:  types.String("12345"),
-							URL: types.String("https://example.com/macbook-pro.jpg"),
+							ID:  optionalnullable.From(types.String("12345")),
+							URL: optionalnullable.From(types.String("https://example.com/macbook-pro.jpg")),
 						},
 						components.VariantImage{
-							ID:  types.String("12345"),
-							URL: types.String("https://example.com/macbook-pro.jpg"),
+							ID:  optionalnullable.From(types.String("12345")),
+							URL: optionalnullable.From(types.String("https://example.com/macbook-pro.jpg")),
 						},
 						components.VariantImage{
-							ID:  types.String("12345"),
-							URL: types.String("https://example.com/macbook-pro.jpg"),
+							ID:  optionalnullable.From(types.String("12345")),
+							URL: optionalnullable.From(types.String("https://example.com/macbook-pro.jpg")),
 						},
 					},
 				},
 				components.Variant{
-					ID:                types.String("1"),
-					Name:              types.String("Midnight 16inch MacBook Pro"),
-					Price:             types.String("1999.99"),
-					Sku:               types.String("MBP123-16GB-SILVER-13"),
-					InventoryQuantity: types.String("5"),
-					Weight:            types.String("1.25"),
-					WeightUnit:        types.String("lb"),
+					ID:                optionalnullable.From(types.String("1")),
+					Name:              optionalnullable.From(types.String("Midnight 16inch MacBook Pro")),
+					Price:             optionalnullable.From(types.String("1999.99")),
+					Sku:               optionalnullable.From(types.String("MBP123-16GB-SILVER-13")),
+					InventoryQuantity: optionalnullable.From(types.String("5")),
+					Weight:            optionalnullable.From(types.String("1.25")),
+					WeightUnit:        optionalnullable.From(types.String("lb")),
 					Options: []components.VariantOption{
 						components.VariantOption{
-							ID:    types.String("1"),
-							Name:  types.String("Color"),
-							Value: types.String("Silver"),
+							ID:    optionalnullable.From(types.String("1")),
+							Name:  optionalnullable.From(types.String("Color")),
+							Value: optionalnullable.From(types.String("Silver")),
 						},
 						components.VariantOption{
-							ID:    types.String("1"),
-							Name:  types.String("Color"),
-							Value: types.String("Silver"),
+							ID:    optionalnullable.From(types.String("1")),
+							Name:  optionalnullable.From(types.String("Color")),
+							Value: optionalnullable.From(types.String("Silver")),
 						},
 					},
 					Images: []components.VariantImage{
 						components.VariantImage{
-							ID:  types.String("12345"),
-							URL: types.String("https://example.com/macbook-pro.jpg"),
+							ID:  optionalnullable.From(types.String("12345")),
+							URL: optionalnullable.From(types.String("https://example.com/macbook-pro.jpg")),
 						},
 						components.VariantImage{
-							ID:  types.String("12345"),
-							URL: types.String("https://example.com/macbook-pro.jpg"),
+							ID:  optionalnullable.From(types.String("12345")),
+							URL: optionalnullable.From(types.String("https://example.com/macbook-pro.jpg")),
 						},
 					},
 				},
@@ -165,12 +166,12 @@ func testEcommerceProductsOneEcommerceProductsOne0(w http.ResponseWriter, req *h
 			},
 			Categories: []components.EcommerceProductCategory{
 				components.EcommerceProductCategory{
-					ID:   types.String("12345"),
-					Name: types.String("Laptops"),
+					ID:   optionalnullable.From(types.String("12345")),
+					Name: optionalnullable.From(types.String("Laptops")),
 				},
 			},
-			CreatedAt: types.MustNewTimeFromString("2020-09-30T07:43:32.000Z"),
-			UpdatedAt: types.MustNewTimeFromString("2020-09-30T07:43:32.000Z"),
+			CreatedAt: optionalnullable.From(types.MustNewTimeFromString("2020-09-30T07:43:32.000Z")),
+			UpdatedAt: optionalnullable.From(types.MustNewTimeFromString("2020-09-30T07:43:32.000Z")),
 		},
 	}
 	respBodyBytes, err := utils.MarshalJSON(respBody, "", true)

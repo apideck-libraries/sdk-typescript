@@ -2,12 +2,16 @@
 
 package components
 
+import (
+	"mockserver/internal/sdk/optionalnullable"
+)
+
 // LinkedCustomerInput - The customer this entity is linked to.
 type LinkedCustomerInput struct {
 	// The ID of the customer this entity is linked to.
 	ID *string `json:"id,omitempty"`
 	// The display name of the customer.
-	DisplayName *string `json:"display_name,omitempty"`
+	DisplayName optionalnullable.OptionalNullable[string] `json:"display_name,omitempty"`
 	// The name of the customer. Deprecated, use display_name instead.
 	//
 	// Deprecated: Deprecated. Use display_name instead..
@@ -23,7 +27,7 @@ func (o *LinkedCustomerInput) GetID() *string {
 	return o.ID
 }
 
-func (o *LinkedCustomerInput) GetDisplayName() *string {
+func (o *LinkedCustomerInput) GetDisplayName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}

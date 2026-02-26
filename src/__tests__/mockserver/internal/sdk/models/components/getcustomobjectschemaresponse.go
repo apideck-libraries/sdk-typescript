@@ -2,6 +2,10 @@
 
 package components
 
+import (
+	"mockserver/internal/sdk/optionalnullable"
+)
+
 // GetCustomObjectSchemaResponse - Custom object schema
 type GetCustomObjectSchemaResponse struct {
 	// HTTP Response Status Code
@@ -16,7 +20,7 @@ type GetCustomObjectSchemaResponse struct {
 	Operation string             `json:"operation"`
 	Data      CustomObjectSchema `json:"data"`
 	// Raw response from the integration when raw=true query param is provided
-	Raw map[string]any `json:"_raw,omitempty"`
+	Raw optionalnullable.OptionalNullable[map[string]any] `json:"_raw,omitempty"`
 }
 
 func (o *GetCustomObjectSchemaResponse) GetStatusCode() int64 {
@@ -61,7 +65,7 @@ func (o *GetCustomObjectSchemaResponse) GetData() CustomObjectSchema {
 	return o.Data
 }
 
-func (o *GetCustomObjectSchemaResponse) GetRaw() map[string]any {
+func (o *GetCustomObjectSchemaResponse) GetRaw() optionalnullable.OptionalNullable[map[string]any] {
 	if o == nil {
 		return nil
 	}

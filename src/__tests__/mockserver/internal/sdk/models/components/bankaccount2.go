@@ -2,6 +2,10 @@
 
 package components
 
+import (
+	"mockserver/internal/sdk/optionalnullable"
+)
+
 // BankAccount2AccountType - The type of bank account.
 type BankAccount2AccountType string
 
@@ -17,109 +21,109 @@ func (e BankAccount2AccountType) ToPointer() *BankAccount2AccountType {
 
 type BankAccount2 struct {
 	// The name of the bank or financial institution
-	BankName *string `json:"bank_name,omitempty"`
+	BankName optionalnullable.OptionalNullable[string] `json:"bank_name,omitempty"`
 	// The bank account number
-	AccountNumber *string `json:"account_number,omitempty"`
+	AccountNumber optionalnullable.OptionalNullable[string] `json:"account_number,omitempty"`
 	// The name of the bank account
-	AccountName *string `json:"account_name,omitempty"`
+	AccountName optionalnullable.OptionalNullable[string] `json:"account_name,omitempty"`
 	// The type of bank account.
-	AccountType *BankAccount2AccountType `json:"account_type,omitempty"`
+	AccountType optionalnullable.OptionalNullable[BankAccount2AccountType] `json:"account_type,omitempty"`
 	// International Bank Account Number
-	Iban *string `json:"iban,omitempty"`
+	Iban optionalnullable.OptionalNullable[string] `json:"iban,omitempty"`
 	// Bank Identifier Code / SWIFT Code
-	Bic *string `json:"bic,omitempty"`
+	Bic optionalnullable.OptionalNullable[string] `json:"bic,omitempty"`
 	// Bank routing number (US)
-	RoutingNumber *string `json:"routing_number,omitempty"`
+	RoutingNumber optionalnullable.OptionalNullable[string] `json:"routing_number,omitempty"`
 	// Bank State Branch number (Australia/New Zealand)
-	BsbNumber *string `json:"bsb_number,omitempty"`
+	BsbNumber optionalnullable.OptionalNullable[string] `json:"bsb_number,omitempty"`
 	// Bank branch identifier
-	BranchIdentifier *string `json:"branch_identifier,omitempty"`
+	BranchIdentifier optionalnullable.OptionalNullable[string] `json:"branch_identifier,omitempty"`
 	// Bank code assigned by central bank
-	BankCode *string `json:"bank_code,omitempty"`
+	BankCode optionalnullable.OptionalNullable[string] `json:"bank_code,omitempty"`
 	// Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
-	Currency *Currency `json:"currency,omitempty"`
+	Currency optionalnullable.OptionalNullable[Currency] `json:"currency,omitempty"`
 	// Country code according to ISO 3166-1 alpha-2.
-	Country *string `json:"country,omitempty"`
+	Country optionalnullable.OptionalNullable[string] `json:"country,omitempty"`
 }
 
-func (o *BankAccount2) GetBankName() *string {
+func (o *BankAccount2) GetBankName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.BankName
 }
 
-func (o *BankAccount2) GetAccountNumber() *string {
+func (o *BankAccount2) GetAccountNumber() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.AccountNumber
 }
 
-func (o *BankAccount2) GetAccountName() *string {
+func (o *BankAccount2) GetAccountName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.AccountName
 }
 
-func (o *BankAccount2) GetAccountType() *BankAccount2AccountType {
+func (o *BankAccount2) GetAccountType() optionalnullable.OptionalNullable[BankAccount2AccountType] {
 	if o == nil {
 		return nil
 	}
 	return o.AccountType
 }
 
-func (o *BankAccount2) GetIban() *string {
+func (o *BankAccount2) GetIban() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Iban
 }
 
-func (o *BankAccount2) GetBic() *string {
+func (o *BankAccount2) GetBic() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Bic
 }
 
-func (o *BankAccount2) GetRoutingNumber() *string {
+func (o *BankAccount2) GetRoutingNumber() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.RoutingNumber
 }
 
-func (o *BankAccount2) GetBsbNumber() *string {
+func (o *BankAccount2) GetBsbNumber() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.BsbNumber
 }
 
-func (o *BankAccount2) GetBranchIdentifier() *string {
+func (o *BankAccount2) GetBranchIdentifier() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.BranchIdentifier
 }
 
-func (o *BankAccount2) GetBankCode() *string {
+func (o *BankAccount2) GetBankCode() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.BankCode
 }
 
-func (o *BankAccount2) GetCurrency() *Currency {
+func (o *BankAccount2) GetCurrency() optionalnullable.OptionalNullable[Currency] {
 	if o == nil {
 		return nil
 	}
 	return o.Currency
 }
 
-func (o *BankAccount2) GetCountry() *string {
+func (o *BankAccount2) GetCountry() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}

@@ -2,6 +2,10 @@
 
 package components
 
+import (
+	"mockserver/internal/sdk/optionalnullable"
+)
+
 // GetCategoriesResponse - Categories
 type GetCategoriesResponse struct {
 	// HTTP Response Status Code
@@ -20,7 +24,7 @@ type GetCategoriesResponse struct {
 	// Links to navigate to previous or next pages through the API
 	Links *Links `json:"links,omitempty"`
 	// Raw response from the integration when raw=true query param is provided
-	Raw map[string]any `json:"_raw,omitempty"`
+	Raw optionalnullable.OptionalNullable[map[string]any] `json:"_raw,omitempty"`
 }
 
 func (o *GetCategoriesResponse) GetStatusCode() int64 {
@@ -79,7 +83,7 @@ func (o *GetCategoriesResponse) GetLinks() *Links {
 	return o.Links
 }
 
-func (o *GetCategoriesResponse) GetRaw() map[string]any {
+func (o *GetCategoriesResponse) GetRaw() optionalnullable.OptionalNullable[map[string]any] {
 	if o == nil {
 		return nil
 	}

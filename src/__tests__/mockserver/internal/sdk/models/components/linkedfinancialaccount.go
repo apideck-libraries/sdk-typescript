@@ -2,6 +2,10 @@
 
 package components
 
+import (
+	"mockserver/internal/sdk/optionalnullable"
+)
+
 // LinkedFinancialAccountAccountType - The type of account being referenced. Use `ledger_account` for GL accounts from the chart of accounts, or `bank_account` for bank account entities. When not specified, the connector will use its default behavior.
 type LinkedFinancialAccountAccountType string
 
@@ -19,17 +23,17 @@ type LinkedFinancialAccount struct {
 	// The unique identifier for the account. This can be a ledger account ID or bank account ID depending on the `type` field.
 	ID *string `json:"id,omitempty"`
 	// The type of account being referenced. Use `ledger_account` for GL accounts from the chart of accounts, or `bank_account` for bank account entities. When not specified, the connector will use its default behavior.
-	Type *LinkedFinancialAccountAccountType `json:"type,omitempty"`
+	Type optionalnullable.OptionalNullable[LinkedFinancialAccountAccountType] `json:"type,omitempty"`
 	// The account code of the account
 	Code *string `json:"code,omitempty"`
 	// Id to be displayed.
-	DisplayID *string `json:"display_id,omitempty"`
+	DisplayID optionalnullable.OptionalNullable[string] `json:"display_id,omitempty"`
 	// The bank account number
-	AccountNumber *string `json:"account_number,omitempty"`
+	AccountNumber optionalnullable.OptionalNullable[string] `json:"account_number,omitempty"`
 	// The name of the account.
 	Name *string `json:"name,omitempty"`
 	// The third-party API ID of original entity
-	DownstreamID *string `json:"downstream_id,omitempty"`
+	DownstreamID optionalnullable.OptionalNullable[string] `json:"downstream_id,omitempty"`
 }
 
 func (o *LinkedFinancialAccount) GetID() *string {
@@ -39,7 +43,7 @@ func (o *LinkedFinancialAccount) GetID() *string {
 	return o.ID
 }
 
-func (o *LinkedFinancialAccount) GetType() *LinkedFinancialAccountAccountType {
+func (o *LinkedFinancialAccount) GetType() optionalnullable.OptionalNullable[LinkedFinancialAccountAccountType] {
 	if o == nil {
 		return nil
 	}
@@ -53,14 +57,14 @@ func (o *LinkedFinancialAccount) GetCode() *string {
 	return o.Code
 }
 
-func (o *LinkedFinancialAccount) GetDisplayID() *string {
+func (o *LinkedFinancialAccount) GetDisplayID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.DisplayID
 }
 
-func (o *LinkedFinancialAccount) GetAccountNumber() *string {
+func (o *LinkedFinancialAccount) GetAccountNumber() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -74,7 +78,7 @@ func (o *LinkedFinancialAccount) GetName() *string {
 	return o.Name
 }
 
-func (o *LinkedFinancialAccount) GetDownstreamID() *string {
+func (o *LinkedFinancialAccount) GetDownstreamID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -86,13 +90,13 @@ type LinkedFinancialAccountInput struct {
 	// The unique identifier for the account. This can be a ledger account ID or bank account ID depending on the `type` field.
 	ID *string `json:"id,omitempty"`
 	// The type of account being referenced. Use `ledger_account` for GL accounts from the chart of accounts, or `bank_account` for bank account entities. When not specified, the connector will use its default behavior.
-	Type *LinkedFinancialAccountAccountType `json:"type,omitempty"`
+	Type optionalnullable.OptionalNullable[LinkedFinancialAccountAccountType] `json:"type,omitempty"`
 	// The account code of the account
 	Code *string `json:"code,omitempty"`
 	// Id to be displayed.
-	DisplayID *string `json:"display_id,omitempty"`
+	DisplayID optionalnullable.OptionalNullable[string] `json:"display_id,omitempty"`
 	// The bank account number
-	AccountNumber *string `json:"account_number,omitempty"`
+	AccountNumber optionalnullable.OptionalNullable[string] `json:"account_number,omitempty"`
 }
 
 func (o *LinkedFinancialAccountInput) GetID() *string {
@@ -102,7 +106,7 @@ func (o *LinkedFinancialAccountInput) GetID() *string {
 	return o.ID
 }
 
-func (o *LinkedFinancialAccountInput) GetType() *LinkedFinancialAccountAccountType {
+func (o *LinkedFinancialAccountInput) GetType() optionalnullable.OptionalNullable[LinkedFinancialAccountAccountType] {
 	if o == nil {
 		return nil
 	}
@@ -116,14 +120,14 @@ func (o *LinkedFinancialAccountInput) GetCode() *string {
 	return o.Code
 }
 
-func (o *LinkedFinancialAccountInput) GetDisplayID() *string {
+func (o *LinkedFinancialAccountInput) GetDisplayID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.DisplayID
 }
 
-func (o *LinkedFinancialAccountInput) GetAccountNumber() *string {
+func (o *LinkedFinancialAccountInput) GetAccountNumber() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}

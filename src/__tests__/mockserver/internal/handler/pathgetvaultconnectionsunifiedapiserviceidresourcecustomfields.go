@@ -8,6 +8,7 @@ import (
 	"mockserver/internal/handler/assert"
 	"mockserver/internal/logging"
 	"mockserver/internal/sdk/models/components"
+	"mockserver/internal/sdk/optionalnullable"
 	"mockserver/internal/sdk/types"
 	"mockserver/internal/sdk/utils"
 	"mockserver/internal/tracking"
@@ -52,20 +53,20 @@ func testVaultCustomFieldsAllVaultCustomFieldsAll0(w http.ResponseWriter, req *h
 		Data: []components.CustomFieldFinder{
 			components.CustomFieldFinder{
 				ID:          types.String("123456"),
-				Name:        types.String("SSN"),
-				Description: types.String("Employee Level"),
+				Name:        optionalnullable.From(types.String("SSN")),
+				Description: optionalnullable.From(types.String("Employee Level")),
 				Value:       types.String("495172776"),
 			},
 			components.CustomFieldFinder{
 				ID:          types.String("123456"),
-				Name:        types.String("SSN"),
-				Description: types.String("Employee Level"),
+				Name:        optionalnullable.From(types.String("SSN")),
+				Description: optionalnullable.From(types.String("Employee Level")),
 				Value:       types.String("495172776"),
 			},
 			components.CustomFieldFinder{
 				ID:          types.String("123456"),
-				Name:        types.String("SSN"),
-				Description: types.String("Employee Level"),
+				Name:        optionalnullable.From(types.String("SSN")),
+				Description: optionalnullable.From(types.String("Employee Level")),
 				Value:       types.String("495172776"),
 			},
 		},

@@ -8,6 +8,7 @@ import (
 	"mockserver/internal/handler/assert"
 	"mockserver/internal/logging"
 	"mockserver/internal/sdk/models/components"
+	"mockserver/internal/sdk/optionalnullable"
 	"mockserver/internal/sdk/types"
 	"mockserver/internal/sdk/utils"
 	"mockserver/internal/tracking"
@@ -53,35 +54,35 @@ func testVaultConnectionCustomMappingsAllVaultConnectionCustomMappingsAll0(w htt
 			components.CustomMapping{
 				ID:          types.String("hris+employees+first_aid_training"),
 				Label:       types.String("First Aid Training"),
-				Description: types.String("First Aid Training completed after 2019-01-01"),
+				Description: optionalnullable.From(types.String("First Aid Training completed after 2019-01-01")),
 				Value:       types.String("$.root.training.first_aid"),
 				Key:         types.String("first_aid_training"),
 				Required:    types.Bool(false),
 				CustomField: types.Bool(true),
-				ConsumerID:  types.String("test_user_id"),
-				Example:     types.String("Some value"),
+				ConsumerID:  optionalnullable.From(types.String("test_user_id")),
+				Example:     optionalnullable.From(types.String("Some value")),
 			},
 			components.CustomMapping{
 				ID:          types.String("hris+employees+first_aid_training"),
 				Label:       types.String("First Aid Training"),
-				Description: types.String("First Aid Training completed after 2019-01-01"),
+				Description: optionalnullable.From(types.String("First Aid Training completed after 2019-01-01")),
 				Value:       types.String("$.root.training.first_aid"),
 				Key:         types.String("first_aid_training"),
 				Required:    types.Bool(false),
 				CustomField: types.Bool(true),
-				ConsumerID:  types.String("test_user_id"),
-				Example:     types.String("Some value"),
+				ConsumerID:  optionalnullable.From(types.String("test_user_id")),
+				Example:     optionalnullable.From(types.String("Some value")),
 			},
 			components.CustomMapping{
 				ID:          types.String("hris+employees+first_aid_training"),
 				Label:       types.String("First Aid Training"),
-				Description: types.String("First Aid Training completed after 2019-01-01"),
+				Description: optionalnullable.From(types.String("First Aid Training completed after 2019-01-01")),
 				Value:       types.String("$.root.training.first_aid"),
 				Key:         types.String("first_aid_training"),
 				Required:    types.Bool(false),
 				CustomField: types.Bool(true),
-				ConsumerID:  types.String("test_user_id"),
-				Example:     types.String("Some value"),
+				ConsumerID:  optionalnullable.From(types.String("test_user_id")),
+				Example:     optionalnullable.From(types.String("Some value")),
 			},
 		},
 	}

@@ -2,22 +2,26 @@
 
 package components
 
+import (
+	"mockserver/internal/sdk/optionalnullable"
+)
+
 // Team - The team the person is currently in.
 type Team struct {
 	// The unique identifier of the team.
-	ID *string `json:"id,omitempty"`
+	ID optionalnullable.OptionalNullable[string] `json:"id,omitempty"`
 	// The name of the team.
-	Name *string `json:"name,omitempty"`
+	Name optionalnullable.OptionalNullable[string] `json:"name,omitempty"`
 }
 
-func (o *Team) GetID() *string {
+func (o *Team) GetID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *Team) GetName() *string {
+func (o *Team) GetName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}

@@ -2,6 +2,10 @@
 
 package components
 
+import (
+	"mockserver/internal/sdk/optionalnullable"
+)
+
 // UpdateAccountingLocationResponse - Location
 type UpdateAccountingLocationResponse struct {
 	// HTTP Response Status Code
@@ -17,7 +21,7 @@ type UpdateAccountingLocationResponse struct {
 	// A object containing a unique identifier for the resource that was created, updated, or deleted.
 	Data UnifiedID `json:"data"`
 	// Raw response from the integration when raw=true query param is provided
-	Raw map[string]any `json:"_raw,omitempty"`
+	Raw optionalnullable.OptionalNullable[map[string]any] `json:"_raw,omitempty"`
 }
 
 func (o *UpdateAccountingLocationResponse) GetStatusCode() int64 {
@@ -62,7 +66,7 @@ func (o *UpdateAccountingLocationResponse) GetData() UnifiedID {
 	return o.Data
 }
 
-func (o *UpdateAccountingLocationResponse) GetRaw() map[string]any {
+func (o *UpdateAccountingLocationResponse) GetRaw() optionalnullable.OptionalNullable[map[string]any] {
 	if o == nil {
 		return nil
 	}

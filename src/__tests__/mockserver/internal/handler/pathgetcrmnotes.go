@@ -8,6 +8,7 @@ import (
 	"mockserver/internal/handler/assert"
 	"mockserver/internal/logging"
 	"mockserver/internal/sdk/models/components"
+	"mockserver/internal/sdk/optionalnullable"
 	"mockserver/internal/sdk/types"
 	"mockserver/internal/sdk/utils"
 	"mockserver/internal/tracking"
@@ -55,18 +56,18 @@ func testCrmNotesAllCrmNotesAll0(w http.ResponseWriter, req *http.Request) {
 		Data: []components.Note{
 			components.Note{
 				ID:            types.String("12345"),
-				Title:         types.String("Meeting Notes"),
-				Content:       types.String("Office hours are 9AM-6PM"),
-				OwnerID:       types.String("12345"),
-				ContactID:     types.String("12345"),
-				CompanyID:     types.String("12345"),
-				OpportunityID: types.String("12345"),
-				LeadID:        types.String("12345"),
-				Active:        types.Bool(true),
-				UpdatedBy:     types.String("12345"),
-				CreatedBy:     types.String("12345"),
-				UpdatedAt:     types.String("2020-09-30T07:43:32.000Z"),
-				CreatedAt:     types.String("2020-09-30T07:43:32.000Z"),
+				Title:         optionalnullable.From(types.String("Meeting Notes")),
+				Content:       optionalnullable.From(types.String("Office hours are 9AM-6PM")),
+				OwnerID:       optionalnullable.From(types.String("12345")),
+				ContactID:     optionalnullable.From(types.String("12345")),
+				CompanyID:     optionalnullable.From(types.String("12345")),
+				OpportunityID: optionalnullable.From(types.String("12345")),
+				LeadID:        optionalnullable.From(types.String("12345")),
+				Active:        optionalnullable.From(types.Bool(true)),
+				UpdatedBy:     optionalnullable.From(types.String("12345")),
+				CreatedBy:     optionalnullable.From(types.String("12345")),
+				UpdatedAt:     optionalnullable.From(types.String("2020-09-30T07:43:32.000Z")),
+				CreatedAt:     optionalnullable.From(types.String("2020-09-30T07:43:32.000Z")),
 				PassThrough: []components.PassThroughBody{
 					components.PassThroughBody{
 						ServiceID: "<id>",
@@ -114,18 +115,18 @@ func testCrmNotesAllCrmNotesAll0(w http.ResponseWriter, req *http.Request) {
 			},
 			components.Note{
 				ID:            types.String("12345"),
-				Title:         types.String("Meeting Notes"),
-				Content:       types.String("Office hours are 9AM-6PM"),
-				OwnerID:       types.String("12345"),
-				ContactID:     types.String("12345"),
-				CompanyID:     types.String("12345"),
-				OpportunityID: types.String("12345"),
-				LeadID:        types.String("12345"),
-				Active:        types.Bool(true),
-				UpdatedBy:     types.String("12345"),
-				CreatedBy:     types.String("12345"),
-				UpdatedAt:     types.String("2020-09-30T07:43:32.000Z"),
-				CreatedAt:     types.String("2020-09-30T07:43:32.000Z"),
+				Title:         optionalnullable.From(types.String("Meeting Notes")),
+				Content:       optionalnullable.From(types.String("Office hours are 9AM-6PM")),
+				OwnerID:       optionalnullable.From(types.String("12345")),
+				ContactID:     optionalnullable.From(types.String("12345")),
+				CompanyID:     optionalnullable.From(types.String("12345")),
+				OpportunityID: optionalnullable.From(types.String("12345")),
+				LeadID:        optionalnullable.From(types.String("12345")),
+				Active:        optionalnullable.From(types.Bool(true)),
+				UpdatedBy:     optionalnullable.From(types.String("12345")),
+				CreatedBy:     optionalnullable.From(types.String("12345")),
+				UpdatedAt:     optionalnullable.From(types.String("2020-09-30T07:43:32.000Z")),
+				CreatedAt:     optionalnullable.From(types.String("2020-09-30T07:43:32.000Z")),
 				PassThrough: []components.PassThroughBody{
 					components.PassThroughBody{
 						ServiceID: "<id>",
@@ -144,18 +145,18 @@ func testCrmNotesAllCrmNotesAll0(w http.ResponseWriter, req *http.Request) {
 			},
 			components.Note{
 				ID:            types.String("12345"),
-				Title:         types.String("Meeting Notes"),
-				Content:       types.String("Office hours are 9AM-6PM"),
-				OwnerID:       types.String("12345"),
-				ContactID:     types.String("12345"),
-				CompanyID:     types.String("12345"),
-				OpportunityID: types.String("12345"),
-				LeadID:        types.String("12345"),
-				Active:        types.Bool(true),
-				UpdatedBy:     types.String("12345"),
-				CreatedBy:     types.String("12345"),
-				UpdatedAt:     types.String("2020-09-30T07:43:32.000Z"),
-				CreatedAt:     types.String("2020-09-30T07:43:32.000Z"),
+				Title:         optionalnullable.From(types.String("Meeting Notes")),
+				Content:       optionalnullable.From(types.String("Office hours are 9AM-6PM")),
+				OwnerID:       optionalnullable.From(types.String("12345")),
+				ContactID:     optionalnullable.From(types.String("12345")),
+				CompanyID:     optionalnullable.From(types.String("12345")),
+				OpportunityID: optionalnullable.From(types.String("12345")),
+				LeadID:        optionalnullable.From(types.String("12345")),
+				Active:        optionalnullable.From(types.Bool(true)),
+				UpdatedBy:     optionalnullable.From(types.String("12345")),
+				CreatedBy:     optionalnullable.From(types.String("12345")),
+				UpdatedAt:     optionalnullable.From(types.String("2020-09-30T07:43:32.000Z")),
+				CreatedAt:     optionalnullable.From(types.String("2020-09-30T07:43:32.000Z")),
 				PassThrough: []components.PassThroughBody{
 					components.PassThroughBody{
 						ServiceID: "<id>",
@@ -197,15 +198,15 @@ func testCrmNotesAllCrmNotesAll0(w http.ResponseWriter, req *http.Request) {
 		Meta: &components.Meta{
 			ItemsOnPage: types.Int64(50),
 			Cursors: &components.Cursors{
-				Previous: types.String("em9oby1jcm06OnBhZ2U6OjE="),
-				Current:  types.String("em9oby1jcm06OnBhZ2U6OjI="),
-				Next:     types.String("em9oby1jcm06OnBhZ2U6OjM="),
+				Previous: optionalnullable.From(types.String("em9oby1jcm06OnBhZ2U6OjE=")),
+				Current:  optionalnullable.From(types.String("em9oby1jcm06OnBhZ2U6OjI=")),
+				Next:     optionalnullable.From(types.String("em9oby1jcm06OnBhZ2U6OjM=")),
 			},
 		},
 		Links: &components.Links{
-			Previous: types.String("https://unify.apideck.com/crm/companies?cursor=em9oby1jcm06OnBhZ2U6OjE%3D"),
+			Previous: optionalnullable.From(types.String("https://unify.apideck.com/crm/companies?cursor=em9oby1jcm06OnBhZ2U6OjE%3D")),
 			Current:  types.String("https://unify.apideck.com/crm/companies"),
-			Next:     types.String("https://unify.apideck.com/crm/companies?cursor=em9oby1jcm06OnBhZ2U6OjM"),
+			Next:     optionalnullable.From(types.String("https://unify.apideck.com/crm/companies?cursor=em9oby1jcm06OnBhZ2U6OjM")),
 		},
 	}
 	respBodyBytes, err := utils.MarshalJSON(respBody, "", true)

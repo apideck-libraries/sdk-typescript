@@ -2,6 +2,10 @@
 
 package components
 
+import (
+	"mockserver/internal/sdk/optionalnullable"
+)
+
 type ConsumerRequestCountsInDateRangeResponseData struct {
 	ApplicationID          *string                 `json:"application_id,omitempty"`
 	ConsumerID             *string                 `json:"consumer_id,omitempty"`
@@ -61,7 +65,7 @@ type ConsumerRequestCountsInDateRangeResponse struct {
 	Status string                                       `json:"status"`
 	Data   ConsumerRequestCountsInDateRangeResponseData `json:"data"`
 	// Raw response from the integration when raw=true query param is provided
-	Raw map[string]any `json:"_raw,omitempty"`
+	Raw optionalnullable.OptionalNullable[map[string]any] `json:"_raw,omitempty"`
 }
 
 func (o *ConsumerRequestCountsInDateRangeResponse) GetStatusCode() int64 {
@@ -85,7 +89,7 @@ func (o *ConsumerRequestCountsInDateRangeResponse) GetData() ConsumerRequestCoun
 	return o.Data
 }
 
-func (o *ConsumerRequestCountsInDateRangeResponse) GetRaw() map[string]any {
+func (o *ConsumerRequestCountsInDateRangeResponse) GetRaw() optionalnullable.OptionalNullable[map[string]any] {
 	if o == nil {
 		return nil
 	}

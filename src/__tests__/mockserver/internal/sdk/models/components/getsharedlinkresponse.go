@@ -2,6 +2,10 @@
 
 package components
 
+import (
+	"mockserver/internal/sdk/optionalnullable"
+)
+
 // GetSharedLinkResponse - Shared Link
 type GetSharedLinkResponse struct {
 	// HTTP Response Status Code
@@ -16,7 +20,7 @@ type GetSharedLinkResponse struct {
 	Operation string           `json:"operation"`
 	Data      SharedLinkOutput `json:"data"`
 	// Raw response from the integration when raw=true query param is provided
-	Raw map[string]any `json:"_raw,omitempty"`
+	Raw optionalnullable.OptionalNullable[map[string]any] `json:"_raw,omitempty"`
 }
 
 func (o *GetSharedLinkResponse) GetStatusCode() int64 {
@@ -61,7 +65,7 @@ func (o *GetSharedLinkResponse) GetData() SharedLinkOutput {
 	return o.Data
 }
 
-func (o *GetSharedLinkResponse) GetRaw() map[string]any {
+func (o *GetSharedLinkResponse) GetRaw() optionalnullable.OptionalNullable[map[string]any] {
 	if o == nil {
 		return nil
 	}

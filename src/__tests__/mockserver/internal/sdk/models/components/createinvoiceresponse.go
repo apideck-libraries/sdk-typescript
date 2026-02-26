@@ -2,6 +2,10 @@
 
 package components
 
+import (
+	"mockserver/internal/sdk/optionalnullable"
+)
+
 // CreateInvoiceResponse - Invoice created
 type CreateInvoiceResponse struct {
 	// HTTP Response Status Code
@@ -16,7 +20,7 @@ type CreateInvoiceResponse struct {
 	Operation string          `json:"operation"`
 	Data      InvoiceResponse `json:"data"`
 	// Raw response from the integration when raw=true query param is provided
-	Raw map[string]any `json:"_raw,omitempty"`
+	Raw optionalnullable.OptionalNullable[map[string]any] `json:"_raw,omitempty"`
 }
 
 func (o *CreateInvoiceResponse) GetStatusCode() int64 {
@@ -61,7 +65,7 @@ func (o *CreateInvoiceResponse) GetData() InvoiceResponse {
 	return o.Data
 }
 
-func (o *CreateInvoiceResponse) GetRaw() map[string]any {
+func (o *CreateInvoiceResponse) GetRaw() optionalnullable.OptionalNullable[map[string]any] {
 	if o == nil {
 		return nil
 	}

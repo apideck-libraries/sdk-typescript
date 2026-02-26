@@ -3,6 +3,7 @@
 package components
 
 import (
+	"mockserver/internal/sdk/optionalnullable"
 	"mockserver/internal/sdk/utils"
 	"time"
 )
@@ -37,9 +38,9 @@ type InvoiceItemsFilter struct {
 	// Name of Invoice Items to search for
 	Name *string `queryParam:"name=name"`
 	// The type of invoice item, indicating whether it is an inventory item, a service, or another type.
-	Type *InvoiceItemsFilterInvoiceItemType `queryParam:"name=type"`
+	Type optionalnullable.OptionalNullable[InvoiceItemsFilterInvoiceItemType] `queryParam:"name=type"`
 	// The kind of transaction, indicating whether it is a sales transaction or a purchase transaction.
-	TransactionType *InvoiceItemsFilterTransactionType `queryParam:"name=transaction_type"`
+	TransactionType optionalnullable.OptionalNullable[InvoiceItemsFilterTransactionType] `queryParam:"name=transaction_type"`
 }
 
 func (i InvoiceItemsFilter) MarshalJSON() ([]byte, error) {
@@ -67,14 +68,14 @@ func (o *InvoiceItemsFilter) GetName() *string {
 	return o.Name
 }
 
-func (o *InvoiceItemsFilter) GetType() *InvoiceItemsFilterInvoiceItemType {
+func (o *InvoiceItemsFilter) GetType() optionalnullable.OptionalNullable[InvoiceItemsFilterInvoiceItemType] {
 	if o == nil {
 		return nil
 	}
 	return o.Type
 }
 
-func (o *InvoiceItemsFilter) GetTransactionType() *InvoiceItemsFilterTransactionType {
+func (o *InvoiceItemsFilter) GetTransactionType() optionalnullable.OptionalNullable[InvoiceItemsFilterTransactionType] {
 	if o == nil {
 		return nil
 	}

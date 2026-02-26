@@ -8,6 +8,7 @@ import (
 	"mockserver/internal/handler/assert"
 	"mockserver/internal/logging"
 	"mockserver/internal/sdk/models/components"
+	"mockserver/internal/sdk/optionalnullable"
 	"mockserver/internal/sdk/types"
 	"mockserver/internal/sdk/utils"
 	"mockserver/internal/tracking"
@@ -55,79 +56,79 @@ func testCrmOpportunitiesOneCrmOpportunitiesOne0(w http.ResponseWriter, req *htt
 		Data: components.Opportunity{
 			ID:               types.String("12345"),
 			Title:            "New Rocket",
-			PrimaryContactID: types.String("12345"),
-			Description:      types.String("Opportunities are created for People and Companies that are interested in buying your products or services. Create Opportunities for People and Companies to move them through one of your Pipelines."),
-			Type:             types.String("Existing Customer - Upgrade"),
-			MonetaryAmount:   types.Float64(75000),
-			Currency:         components.CurrencyUsd.ToPointer(),
-			WinProbability:   types.Float64(40),
-			ExpectedRevenue:  types.Float64(75000),
-			CloseDate:        types.MustNewDateFromString("2020-10-30"),
-			LossReasonID:     types.String("12345"),
-			LossReason:       types.String("No budget"),
-			WonReasonID:      types.String("12345"),
-			WonReason:        types.String("Best pitch"),
-			PipelineID:       types.String("12345"),
-			PipelineStageID:  types.String("12345"),
-			SourceID:         types.String("12345"),
-			LeadID:           types.String("12345"),
-			LeadSource:       types.String("Website"),
-			ContactID:        types.String("12345"),
+			PrimaryContactID: optionalnullable.From(types.String("12345")),
+			Description:      optionalnullable.From(types.String("Opportunities are created for People and Companies that are interested in buying your products or services. Create Opportunities for People and Companies to move them through one of your Pipelines.")),
+			Type:             optionalnullable.From(types.String("Existing Customer - Upgrade")),
+			MonetaryAmount:   optionalnullable.From(types.Float64(75000)),
+			Currency:         optionalnullable.From(components.CurrencyUsd.ToPointer()),
+			WinProbability:   optionalnullable.From(types.Float64(40)),
+			ExpectedRevenue:  optionalnullable.From(types.Float64(75000)),
+			CloseDate:        optionalnullable.From(types.MustNewDateFromString("2020-10-30")),
+			LossReasonID:     optionalnullable.From(types.String("12345")),
+			LossReason:       optionalnullable.From(types.String("No budget")),
+			WonReasonID:      optionalnullable.From(types.String("12345")),
+			WonReason:        optionalnullable.From(types.String("Best pitch")),
+			PipelineID:       optionalnullable.From(types.String("12345")),
+			PipelineStageID:  optionalnullable.From(types.String("12345")),
+			SourceID:         optionalnullable.From(types.String("12345")),
+			LeadID:           optionalnullable.From(types.String("12345")),
+			LeadSource:       optionalnullable.From(types.String("Website")),
+			ContactID:        optionalnullable.From(types.String("12345")),
 			ContactIds: []string{
 				"12345",
 			},
-			CompanyID:   types.String("12345"),
-			CompanyName: types.String("Copper"),
-			OwnerID:     types.String("12345"),
-			Priority:    types.String("None"),
-			Status:      types.String("Open"),
-			StatusID:    types.String("12345"),
-			Tags: []string{
+			CompanyID:   optionalnullable.From(types.String("12345")),
+			CompanyName: optionalnullable.From(types.String("Copper")),
+			OwnerID:     optionalnullable.From(types.String("12345")),
+			Priority:    optionalnullable.From(types.String("None")),
+			Status:      optionalnullable.From(types.String("Open")),
+			StatusID:    optionalnullable.From(types.String("12345")),
+			Tags: optionalnullable.From(types.Pointer([]string{
 				"New",
-			},
-			InteractionCount: types.Float64(0),
+			})),
+			InteractionCount: optionalnullable.From(types.Float64(0)),
 			CustomFields: []components.CustomFieldUnion{
 				components.CreateCustomFieldUnionCustomField1(
 					components.CustomField1{
 						ID:          types.String("2389328923893298"),
-						Name:        types.String("employee_level"),
-						Description: types.String("Employee Level"),
-						Value: types.Pointer(components.CreateCustomFieldValue2MapOfAny(
+						Name:        optionalnullable.From(types.String("employee_level")),
+						Description: optionalnullable.From(types.String("Employee Level")),
+						Value: optionalnullable.From(types.Pointer(components.CreateCustomFieldValue2MapOfAny(
 							map[string]any{},
-						)),
+						))),
 					},
 				),
 				components.CreateCustomFieldUnionCustomField1(
 					components.CustomField1{
 						ID:          types.String("2389328923893298"),
-						Name:        types.String("employee_level"),
-						Description: types.String("Employee Level"),
-						Value: types.Pointer(components.CreateCustomFieldValue2MapOfAny(
+						Name:        optionalnullable.From(types.String("employee_level")),
+						Description: optionalnullable.From(types.String("Employee Level")),
+						Value: optionalnullable.From(types.Pointer(components.CreateCustomFieldValue2MapOfAny(
 							map[string]any{},
-						)),
+						))),
 					},
 				),
 				components.CreateCustomFieldUnionCustomField1(
 					components.CustomField1{
 						ID:          types.String("2389328923893298"),
-						Name:        types.String("employee_level"),
-						Description: types.String("Employee Level"),
-						Value: types.Pointer(components.CreateCustomFieldValue2MapOfAny(
+						Name:        optionalnullable.From(types.String("employee_level")),
+						Description: optionalnullable.From(types.String("Employee Level")),
+						Value: optionalnullable.From(types.Pointer(components.CreateCustomFieldValue2MapOfAny(
 							map[string]any{},
-						)),
+						))),
 					},
 				),
 			},
-			StageLastChangedAt: types.MustNewTimeFromString("2020-09-30T07:43:32.000Z"),
-			LastActivityAt:     types.String("2020-09-30T07:43:32.000Z"),
+			StageLastChangedAt: optionalnullable.From(types.MustNewTimeFromString("2020-09-30T07:43:32.000Z")),
+			LastActivityAt:     optionalnullable.From(types.String("2020-09-30T07:43:32.000Z")),
 			Deleted:            types.Bool(false),
-			DateStageChanged:   types.MustNewTimeFromString("2020-09-30T00:00:00.000Z"),
-			DateLastContacted:  types.MustNewTimeFromString("2020-09-30T00:00:00.000Z"),
-			DateLeadCreated:    types.MustNewTimeFromString("2020-09-30T00:00:00.000Z"),
-			UpdatedBy:          types.String("12345"),
-			CreatedBy:          types.String("12345"),
-			UpdatedAt:          types.MustNewTimeFromString("2020-09-30T07:43:32.000Z"),
-			CreatedAt:          types.MustNewTimeFromString("2020-09-30T07:43:32.000Z"),
+			DateStageChanged:   optionalnullable.From(types.MustNewTimeFromString("2020-09-30T00:00:00.000Z")),
+			DateLastContacted:  optionalnullable.From(types.MustNewTimeFromString("2020-09-30T00:00:00.000Z")),
+			DateLeadCreated:    optionalnullable.From(types.MustNewTimeFromString("2020-09-30T00:00:00.000Z")),
+			UpdatedBy:          optionalnullable.From(types.String("12345")),
+			CreatedBy:          optionalnullable.From(types.String("12345")),
+			UpdatedAt:          optionalnullable.From(types.MustNewTimeFromString("2020-09-30T07:43:32.000Z")),
+			CreatedAt:          optionalnullable.From(types.MustNewTimeFromString("2020-09-30T07:43:32.000Z")),
 			PassThrough: []components.PassThroughBody{
 				components.PassThroughBody{
 					ServiceID: "<id>",

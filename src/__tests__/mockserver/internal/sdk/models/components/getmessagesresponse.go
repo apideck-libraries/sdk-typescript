@@ -2,6 +2,10 @@
 
 package components
 
+import (
+	"mockserver/internal/sdk/optionalnullable"
+)
+
 // GetMessagesResponse - Messages
 type GetMessagesResponse struct {
 	// HTTP Response Status Code
@@ -16,7 +20,7 @@ type GetMessagesResponse struct {
 	Operation string    `json:"operation"`
 	Data      []Message `json:"data"`
 	// Raw response from the integration when raw=true query param is provided
-	Raw map[string]any `json:"_raw,omitempty"`
+	Raw optionalnullable.OptionalNullable[map[string]any] `json:"_raw,omitempty"`
 	// Response metadata
 	Meta *Meta `json:"meta,omitempty"`
 	// Links to navigate to previous or next pages through the API
@@ -65,7 +69,7 @@ func (o *GetMessagesResponse) GetData() []Message {
 	return o.Data
 }
 
-func (o *GetMessagesResponse) GetRaw() map[string]any {
+func (o *GetMessagesResponse) GetRaw() optionalnullable.OptionalNullable[map[string]any] {
 	if o == nil {
 		return nil
 	}

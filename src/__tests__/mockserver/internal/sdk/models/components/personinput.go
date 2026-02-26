@@ -3,25 +3,26 @@
 package components
 
 import (
+	"mockserver/internal/sdk/optionalnullable"
 	"mockserver/internal/sdk/types"
 	"mockserver/internal/sdk/utils"
 )
 
 type PersonInput struct {
 	// The first name of the person.
-	FirstName *string `json:"first_name,omitempty"`
+	FirstName optionalnullable.OptionalNullable[string] `json:"first_name,omitempty"`
 	// The last name of the person.
-	LastName *string `json:"last_name,omitempty"`
+	LastName optionalnullable.OptionalNullable[string] `json:"last_name,omitempty"`
 	// Middle name of the person.
-	MiddleName *string `json:"middle_name,omitempty"`
+	MiddleName optionalnullable.OptionalNullable[string] `json:"middle_name,omitempty"`
 	// The gender represents the gender identity of a person.
-	Gender *Gender `json:"gender,omitempty"`
+	Gender optionalnullable.OptionalNullable[Gender] `json:"gender,omitempty"`
 	// Initials of the person
-	Initials *string `json:"initials,omitempty"`
+	Initials optionalnullable.OptionalNullable[string] `json:"initials,omitempty"`
 	// Date of birth
-	Birthday *types.Date `json:"birthday,omitempty"`
+	Birthday optionalnullable.OptionalNullable[types.Date] `json:"birthday,omitempty"`
 	// Date of death
-	DeceasedOn *types.Date `json:"deceased_on,omitempty"`
+	DeceasedOn optionalnullable.OptionalNullable[types.Date] `json:"deceased_on,omitempty"`
 }
 
 func (p PersonInput) MarshalJSON() ([]byte, error) {
@@ -35,49 +36,49 @@ func (p *PersonInput) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *PersonInput) GetFirstName() *string {
+func (o *PersonInput) GetFirstName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.FirstName
 }
 
-func (o *PersonInput) GetLastName() *string {
+func (o *PersonInput) GetLastName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.LastName
 }
 
-func (o *PersonInput) GetMiddleName() *string {
+func (o *PersonInput) GetMiddleName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.MiddleName
 }
 
-func (o *PersonInput) GetGender() *Gender {
+func (o *PersonInput) GetGender() optionalnullable.OptionalNullable[Gender] {
 	if o == nil {
 		return nil
 	}
 	return o.Gender
 }
 
-func (o *PersonInput) GetInitials() *string {
+func (o *PersonInput) GetInitials() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Initials
 }
 
-func (o *PersonInput) GetBirthday() *types.Date {
+func (o *PersonInput) GetBirthday() optionalnullable.OptionalNullable[types.Date] {
 	if o == nil {
 		return nil
 	}
 	return o.Birthday
 }
 
-func (o *PersonInput) GetDeceasedOn() *types.Date {
+func (o *PersonInput) GetDeceasedOn() optionalnullable.OptionalNullable[types.Date] {
 	if o == nil {
 		return nil
 	}

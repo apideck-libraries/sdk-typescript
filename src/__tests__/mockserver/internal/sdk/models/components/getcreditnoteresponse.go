@@ -2,6 +2,10 @@
 
 package components
 
+import (
+	"mockserver/internal/sdk/optionalnullable"
+)
+
 // GetCreditNoteResponse - Credit Note
 type GetCreditNoteResponse struct {
 	// HTTP Response Status Code
@@ -16,7 +20,7 @@ type GetCreditNoteResponse struct {
 	Operation string     `json:"operation"`
 	Data      CreditNote `json:"data"`
 	// Raw response from the integration when raw=true query param is provided
-	Raw map[string]any `json:"_raw,omitempty"`
+	Raw optionalnullable.OptionalNullable[map[string]any] `json:"_raw,omitempty"`
 }
 
 func (o *GetCreditNoteResponse) GetStatusCode() int64 {
@@ -61,7 +65,7 @@ func (o *GetCreditNoteResponse) GetData() CreditNote {
 	return o.Data
 }
 
-func (o *GetCreditNoteResponse) GetRaw() map[string]any {
+func (o *GetCreditNoteResponse) GetRaw() optionalnullable.OptionalNullable[map[string]any] {
 	if o == nil {
 		return nil
 	}

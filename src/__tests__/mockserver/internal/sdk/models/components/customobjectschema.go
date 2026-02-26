@@ -2,6 +2,10 @@
 
 package components
 
+import (
+	"mockserver/internal/sdk/optionalnullable"
+)
+
 type CustomObjectSchemaType string
 
 const (
@@ -43,15 +47,15 @@ func (o *CustomObjectSchemaOption) GetLabel() *string {
 }
 
 type CustomObjectSchemaField struct {
-	ID          *string                 `json:"id,omitempty"`
-	Name        *string                 `json:"name,omitempty"`
-	Description *string                 `json:"description,omitempty"`
-	Type        *CustomObjectSchemaType `json:"type,omitempty"`
-	Required    *bool                   `json:"required,omitempty"`
+	ID          *string                                   `json:"id,omitempty"`
+	Name        *string                                   `json:"name,omitempty"`
+	Description optionalnullable.OptionalNullable[string] `json:"description,omitempty"`
+	Type        *CustomObjectSchemaType                   `json:"type,omitempty"`
+	Required    *bool                                     `json:"required,omitempty"`
 	// Options for select and multiselect types
-	Options []CustomObjectSchemaOption `json:"options,omitempty"`
+	Options optionalnullable.OptionalNullable[[]CustomObjectSchemaOption] `json:"options,omitempty"`
 	// Default value for the field
-	DefaultValue *string `json:"default_value,omitempty"`
+	DefaultValue optionalnullable.OptionalNullable[string] `json:"default_value,omitempty"`
 }
 
 func (o *CustomObjectSchemaField) GetID() *string {
@@ -68,7 +72,7 @@ func (o *CustomObjectSchemaField) GetName() *string {
 	return o.Name
 }
 
-func (o *CustomObjectSchemaField) GetDescription() *string {
+func (o *CustomObjectSchemaField) GetDescription() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -89,14 +93,14 @@ func (o *CustomObjectSchemaField) GetRequired() *bool {
 	return o.Required
 }
 
-func (o *CustomObjectSchemaField) GetOptions() []CustomObjectSchemaOption {
+func (o *CustomObjectSchemaField) GetOptions() optionalnullable.OptionalNullable[[]CustomObjectSchemaOption] {
 	if o == nil {
 		return nil
 	}
 	return o.Options
 }
 
-func (o *CustomObjectSchemaField) GetDefaultValue() *string {
+func (o *CustomObjectSchemaField) GetDefaultValue() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -107,23 +111,23 @@ type CustomObjectSchema struct {
 	// The unique identifier of the custom object schema
 	ID *string `json:"id,omitempty"`
 	// The name of the custom object schema
-	Name *string `json:"name,omitempty"`
+	Name optionalnullable.OptionalNullable[string] `json:"name,omitempty"`
 	// The description of the custom object schema
-	Description *string `json:"description,omitempty"`
+	Description optionalnullable.OptionalNullable[string] `json:"description,omitempty"`
 	// The fields defined in the schema
 	Fields []CustomObjectSchemaField `json:"fields,omitempty"`
 	// Whether the custom object schema is visible in the UI
-	Visible *bool `json:"visible,omitempty"`
+	Visible optionalnullable.OptionalNullable[bool] `json:"visible,omitempty"`
 	// Whether the custom object schema is active
-	Active *bool `json:"active,omitempty"`
+	Active optionalnullable.OptionalNullable[bool] `json:"active,omitempty"`
 	// The ID of the user who created the custom object schema
-	CreatedBy *string `json:"created_by,omitempty"`
+	CreatedBy optionalnullable.OptionalNullable[string] `json:"created_by,omitempty"`
 	// The ID of the user who last updated the custom object schema
-	UpdatedBy *string `json:"updated_by,omitempty"`
+	UpdatedBy optionalnullable.OptionalNullable[string] `json:"updated_by,omitempty"`
 	// The timestamp when the custom object schema was last updated
-	UpdatedAt *string `json:"updated_at,omitempty"`
+	UpdatedAt optionalnullable.OptionalNullable[string] `json:"updated_at,omitempty"`
 	// The timestamp when the custom object schema was created
-	CreatedAt *string `json:"created_at,omitempty"`
+	CreatedAt optionalnullable.OptionalNullable[string] `json:"created_at,omitempty"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
 	PassThrough []PassThroughBody `json:"pass_through,omitempty"`
 }
@@ -135,14 +139,14 @@ func (o *CustomObjectSchema) GetID() *string {
 	return o.ID
 }
 
-func (o *CustomObjectSchema) GetName() *string {
+func (o *CustomObjectSchema) GetName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-func (o *CustomObjectSchema) GetDescription() *string {
+func (o *CustomObjectSchema) GetDescription() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -156,42 +160,42 @@ func (o *CustomObjectSchema) GetFields() []CustomObjectSchemaField {
 	return o.Fields
 }
 
-func (o *CustomObjectSchema) GetVisible() *bool {
+func (o *CustomObjectSchema) GetVisible() optionalnullable.OptionalNullable[bool] {
 	if o == nil {
 		return nil
 	}
 	return o.Visible
 }
 
-func (o *CustomObjectSchema) GetActive() *bool {
+func (o *CustomObjectSchema) GetActive() optionalnullable.OptionalNullable[bool] {
 	if o == nil {
 		return nil
 	}
 	return o.Active
 }
 
-func (o *CustomObjectSchema) GetCreatedBy() *string {
+func (o *CustomObjectSchema) GetCreatedBy() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.CreatedBy
 }
 
-func (o *CustomObjectSchema) GetUpdatedBy() *string {
+func (o *CustomObjectSchema) GetUpdatedBy() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.UpdatedBy
 }
 
-func (o *CustomObjectSchema) GetUpdatedAt() *string {
+func (o *CustomObjectSchema) GetUpdatedAt() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.UpdatedAt
 }
 
-func (o *CustomObjectSchema) GetCreatedAt() *string {
+func (o *CustomObjectSchema) GetCreatedAt() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -207,27 +211,27 @@ func (o *CustomObjectSchema) GetPassThrough() []PassThroughBody {
 
 type CustomObjectSchemaInput struct {
 	// The name of the custom object schema
-	Name *string `json:"name,omitempty"`
+	Name optionalnullable.OptionalNullable[string] `json:"name,omitempty"`
 	// The description of the custom object schema
-	Description *string `json:"description,omitempty"`
+	Description optionalnullable.OptionalNullable[string] `json:"description,omitempty"`
 	// The fields defined in the schema
 	Fields []CustomObjectSchemaField `json:"fields,omitempty"`
 	// Whether the custom object schema is visible in the UI
-	Visible *bool `json:"visible,omitempty"`
+	Visible optionalnullable.OptionalNullable[bool] `json:"visible,omitempty"`
 	// Whether the custom object schema is active
-	Active *bool `json:"active,omitempty"`
+	Active optionalnullable.OptionalNullable[bool] `json:"active,omitempty"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
 	PassThrough []PassThroughBody `json:"pass_through,omitempty"`
 }
 
-func (o *CustomObjectSchemaInput) GetName() *string {
+func (o *CustomObjectSchemaInput) GetName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-func (o *CustomObjectSchemaInput) GetDescription() *string {
+func (o *CustomObjectSchemaInput) GetDescription() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -241,14 +245,14 @@ func (o *CustomObjectSchemaInput) GetFields() []CustomObjectSchemaField {
 	return o.Fields
 }
 
-func (o *CustomObjectSchemaInput) GetVisible() *bool {
+func (o *CustomObjectSchemaInput) GetVisible() optionalnullable.OptionalNullable[bool] {
 	if o == nil {
 		return nil
 	}
 	return o.Visible
 }
 
-func (o *CustomObjectSchemaInput) GetActive() *bool {
+func (o *CustomObjectSchemaInput) GetActive() optionalnullable.OptionalNullable[bool] {
 	if o == nil {
 		return nil
 	}

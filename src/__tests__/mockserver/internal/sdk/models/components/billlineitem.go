@@ -3,6 +3,7 @@
 package components
 
 import (
+	"mockserver/internal/sdk/optionalnullable"
 	"mockserver/internal/sdk/utils"
 	"time"
 )
@@ -13,69 +14,69 @@ type BillLineItem struct {
 	// Row ID
 	RowID *string `json:"row_id,omitempty"`
 	// User defined item code
-	Code *string `json:"code,omitempty"`
-	// Line number in the invoice
-	LineNumber *int64 `json:"line_number,omitempty"`
+	Code optionalnullable.OptionalNullable[string] `json:"code,omitempty"`
+	// Line number of the resource
+	LineNumber optionalnullable.OptionalNullable[int64] `json:"line_number,omitempty"`
 	// User defined description
-	Description *string `json:"description,omitempty"`
+	Description optionalnullable.OptionalNullable[string] `json:"description,omitempty"`
 	// Line Item type
-	Type *LineItemType `json:"type,omitempty"`
+	Type optionalnullable.OptionalNullable[LineItemType] `json:"type,omitempty"`
 	// Tax amount
-	TaxAmount *float64 `json:"tax_amount,omitempty"`
+	TaxAmount optionalnullable.OptionalNullable[float64] `json:"tax_amount,omitempty"`
 	// Total amount of the line item
-	TotalAmount *float64 `json:"total_amount,omitempty"`
-	Quantity    *float64 `json:"quantity,omitempty"`
-	UnitPrice   *float64 `json:"unit_price,omitempty"`
+	TotalAmount optionalnullable.OptionalNullable[float64] `json:"total_amount,omitempty"`
+	Quantity    optionalnullable.OptionalNullable[float64] `json:"quantity,omitempty"`
+	UnitPrice   optionalnullable.OptionalNullable[float64] `json:"unit_price,omitempty"`
 	// Description of the unit type the item is sold as, ie: kg, hour.
-	UnitOfMeasure *string `json:"unit_of_measure,omitempty"`
+	UnitOfMeasure optionalnullable.OptionalNullable[string] `json:"unit_of_measure,omitempty"`
 	// Discount percentage applied to the line item when supported downstream.
-	DiscountPercentage *float64 `json:"discount_percentage,omitempty"`
+	DiscountPercentage optionalnullable.OptionalNullable[float64] `json:"discount_percentage,omitempty"`
 	// Discount amount applied to the line item when supported downstream.
-	DiscountAmount *float64 `json:"discount_amount,omitempty"`
+	DiscountAmount optionalnullable.OptionalNullable[float64] `json:"discount_amount,omitempty"`
 	// The ID of the location
-	LocationID *string `json:"location_id,omitempty"`
+	LocationID optionalnullable.OptionalNullable[string] `json:"location_id,omitempty"`
 	// The ID of the department
-	DepartmentID *string `json:"department_id,omitempty"`
+	DepartmentID optionalnullable.OptionalNullable[string] `json:"department_id,omitempty"`
 	// The ID of the subsidiary
-	SubsidiaryID *string `json:"subsidiary_id,omitempty"`
+	SubsidiaryID optionalnullable.OptionalNullable[string] `json:"subsidiary_id,omitempty"`
 	// ID of the category of the line item
-	CategoryID *string `json:"category_id,omitempty"`
+	CategoryID optionalnullable.OptionalNullable[string] `json:"category_id,omitempty"`
 	// ID of the shipping of the line item
-	ShippingID *string `json:"shipping_id,omitempty"`
+	ShippingID optionalnullable.OptionalNullable[string] `json:"shipping_id,omitempty"`
 	// Memo
-	Memo *string `json:"memo,omitempty"`
+	Memo optionalnullable.OptionalNullable[string] `json:"memo,omitempty"`
 	// Whether the line item is prepaid
-	Prepaid *bool `json:"prepaid,omitempty"`
+	Prepaid optionalnullable.OptionalNullable[bool] `json:"prepaid,omitempty"`
 	// Tax applicable on
-	TaxApplicableOn *string `json:"tax_applicable_on,omitempty"`
+	TaxApplicableOn optionalnullable.OptionalNullable[string] `json:"tax_applicable_on,omitempty"`
 	// Tax recoverability
-	TaxRecoverability *string `json:"tax_recoverability,omitempty"`
+	TaxRecoverability optionalnullable.OptionalNullable[string] `json:"tax_recoverability,omitempty"`
 	// Method of tax calculation
-	TaxMethod *string `json:"tax_method,omitempty"`
+	TaxMethod optionalnullable.OptionalNullable[string] `json:"tax_method,omitempty"`
 	// Retention amount
-	RetentionAmount *float64 `json:"retention_amount,omitempty"`
+	RetentionAmount optionalnullable.OptionalNullable[float64] `json:"retention_amount,omitempty"`
 	// Payment amount
-	PaymentAmount *float64             `json:"payment_amount,omitempty"`
-	Item          *LinkedInvoiceItem   `json:"item,omitempty"`
-	TaxRate       *LinkedTaxRate       `json:"tax_rate,omitempty"`
-	LedgerAccount *LinkedLedgerAccount `json:"ledger_account,omitempty"`
-	PurchaseOrder *LinkedPurchaseOrder `json:"purchase_order,omitempty"`
+	PaymentAmount optionalnullable.OptionalNullable[float64]             `json:"payment_amount,omitempty"`
+	Item          *LinkedInvoiceItem                                     `json:"item,omitempty"`
+	TaxRate       *LinkedTaxRate                                         `json:"tax_rate,omitempty"`
+	LedgerAccount optionalnullable.OptionalNullable[LinkedLedgerAccount] `json:"ledger_account,omitempty"`
+	PurchaseOrder optionalnullable.OptionalNullable[LinkedPurchaseOrder] `json:"purchase_order,omitempty"`
 	// A list of linked tracking categories.
-	TrackingCategories []*LinkedTrackingCategory `json:"tracking_categories,omitempty"`
+	TrackingCategories optionalnullable.OptionalNullable[[]*LinkedTrackingCategory] `json:"tracking_categories,omitempty"`
 	// The customer this entity is linked to.
-	Customer *LinkedCustomer `json:"customer,omitempty"`
+	Customer optionalnullable.OptionalNullable[LinkedCustomer] `json:"customer,omitempty"`
 	// Rebilling metadata for this line item.
-	Rebilling *Rebilling `json:"rebilling,omitempty"`
+	Rebilling optionalnullable.OptionalNullable[Rebilling] `json:"rebilling,omitempty"`
 	// A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
-	RowVersion *string `json:"row_version,omitempty"`
+	RowVersion optionalnullable.OptionalNullable[string] `json:"row_version,omitempty"`
 	// The user who last updated the object.
-	UpdatedBy *string `json:"updated_by,omitempty"`
+	UpdatedBy optionalnullable.OptionalNullable[string] `json:"updated_by,omitempty"`
 	// The user who created the object.
-	CreatedBy *string `json:"created_by,omitempty"`
+	CreatedBy optionalnullable.OptionalNullable[string] `json:"created_by,omitempty"`
 	// The date and time when the object was created.
-	CreatedAt *time.Time `json:"created_at,omitempty"`
+	CreatedAt optionalnullable.OptionalNullable[time.Time] `json:"created_at,omitempty"`
 	// The date and time when the object was last updated.
-	UpdatedAt *time.Time `json:"updated_at,omitempty"`
+	UpdatedAt optionalnullable.OptionalNullable[time.Time] `json:"updated_at,omitempty"`
 	// A list of linked worktags. This is only supported for Workday.
 	Worktags []*LinkedWorktag `json:"worktags,omitempty"`
 }
@@ -105,161 +106,161 @@ func (o *BillLineItem) GetRowID() *string {
 	return o.RowID
 }
 
-func (o *BillLineItem) GetCode() *string {
+func (o *BillLineItem) GetCode() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Code
 }
 
-func (o *BillLineItem) GetLineNumber() *int64 {
+func (o *BillLineItem) GetLineNumber() optionalnullable.OptionalNullable[int64] {
 	if o == nil {
 		return nil
 	}
 	return o.LineNumber
 }
 
-func (o *BillLineItem) GetDescription() *string {
+func (o *BillLineItem) GetDescription() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Description
 }
 
-func (o *BillLineItem) GetType() *LineItemType {
+func (o *BillLineItem) GetType() optionalnullable.OptionalNullable[LineItemType] {
 	if o == nil {
 		return nil
 	}
 	return o.Type
 }
 
-func (o *BillLineItem) GetTaxAmount() *float64 {
+func (o *BillLineItem) GetTaxAmount() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}
 	return o.TaxAmount
 }
 
-func (o *BillLineItem) GetTotalAmount() *float64 {
+func (o *BillLineItem) GetTotalAmount() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}
 	return o.TotalAmount
 }
 
-func (o *BillLineItem) GetQuantity() *float64 {
+func (o *BillLineItem) GetQuantity() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}
 	return o.Quantity
 }
 
-func (o *BillLineItem) GetUnitPrice() *float64 {
+func (o *BillLineItem) GetUnitPrice() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}
 	return o.UnitPrice
 }
 
-func (o *BillLineItem) GetUnitOfMeasure() *string {
+func (o *BillLineItem) GetUnitOfMeasure() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.UnitOfMeasure
 }
 
-func (o *BillLineItem) GetDiscountPercentage() *float64 {
+func (o *BillLineItem) GetDiscountPercentage() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}
 	return o.DiscountPercentage
 }
 
-func (o *BillLineItem) GetDiscountAmount() *float64 {
+func (o *BillLineItem) GetDiscountAmount() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}
 	return o.DiscountAmount
 }
 
-func (o *BillLineItem) GetLocationID() *string {
+func (o *BillLineItem) GetLocationID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.LocationID
 }
 
-func (o *BillLineItem) GetDepartmentID() *string {
+func (o *BillLineItem) GetDepartmentID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.DepartmentID
 }
 
-func (o *BillLineItem) GetSubsidiaryID() *string {
+func (o *BillLineItem) GetSubsidiaryID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.SubsidiaryID
 }
 
-func (o *BillLineItem) GetCategoryID() *string {
+func (o *BillLineItem) GetCategoryID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.CategoryID
 }
 
-func (o *BillLineItem) GetShippingID() *string {
+func (o *BillLineItem) GetShippingID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.ShippingID
 }
 
-func (o *BillLineItem) GetMemo() *string {
+func (o *BillLineItem) GetMemo() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Memo
 }
 
-func (o *BillLineItem) GetPrepaid() *bool {
+func (o *BillLineItem) GetPrepaid() optionalnullable.OptionalNullable[bool] {
 	if o == nil {
 		return nil
 	}
 	return o.Prepaid
 }
 
-func (o *BillLineItem) GetTaxApplicableOn() *string {
+func (o *BillLineItem) GetTaxApplicableOn() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.TaxApplicableOn
 }
 
-func (o *BillLineItem) GetTaxRecoverability() *string {
+func (o *BillLineItem) GetTaxRecoverability() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.TaxRecoverability
 }
 
-func (o *BillLineItem) GetTaxMethod() *string {
+func (o *BillLineItem) GetTaxMethod() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.TaxMethod
 }
 
-func (o *BillLineItem) GetRetentionAmount() *float64 {
+func (o *BillLineItem) GetRetentionAmount() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}
 	return o.RetentionAmount
 }
 
-func (o *BillLineItem) GetPaymentAmount() *float64 {
+func (o *BillLineItem) GetPaymentAmount() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}
@@ -280,70 +281,70 @@ func (o *BillLineItem) GetTaxRate() *LinkedTaxRate {
 	return o.TaxRate
 }
 
-func (o *BillLineItem) GetLedgerAccount() *LinkedLedgerAccount {
+func (o *BillLineItem) GetLedgerAccount() optionalnullable.OptionalNullable[LinkedLedgerAccount] {
 	if o == nil {
 		return nil
 	}
 	return o.LedgerAccount
 }
 
-func (o *BillLineItem) GetPurchaseOrder() *LinkedPurchaseOrder {
+func (o *BillLineItem) GetPurchaseOrder() optionalnullable.OptionalNullable[LinkedPurchaseOrder] {
 	if o == nil {
 		return nil
 	}
 	return o.PurchaseOrder
 }
 
-func (o *BillLineItem) GetTrackingCategories() []*LinkedTrackingCategory {
+func (o *BillLineItem) GetTrackingCategories() optionalnullable.OptionalNullable[[]*LinkedTrackingCategory] {
 	if o == nil {
 		return nil
 	}
 	return o.TrackingCategories
 }
 
-func (o *BillLineItem) GetCustomer() *LinkedCustomer {
+func (o *BillLineItem) GetCustomer() optionalnullable.OptionalNullable[LinkedCustomer] {
 	if o == nil {
 		return nil
 	}
 	return o.Customer
 }
 
-func (o *BillLineItem) GetRebilling() *Rebilling {
+func (o *BillLineItem) GetRebilling() optionalnullable.OptionalNullable[Rebilling] {
 	if o == nil {
 		return nil
 	}
 	return o.Rebilling
 }
 
-func (o *BillLineItem) GetRowVersion() *string {
+func (o *BillLineItem) GetRowVersion() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.RowVersion
 }
 
-func (o *BillLineItem) GetUpdatedBy() *string {
+func (o *BillLineItem) GetUpdatedBy() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.UpdatedBy
 }
 
-func (o *BillLineItem) GetCreatedBy() *string {
+func (o *BillLineItem) GetCreatedBy() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.CreatedBy
 }
 
-func (o *BillLineItem) GetCreatedAt() *time.Time {
+func (o *BillLineItem) GetCreatedAt() optionalnullable.OptionalNullable[time.Time] {
 	if o == nil {
 		return nil
 	}
 	return o.CreatedAt
 }
 
-func (o *BillLineItem) GetUpdatedAt() *time.Time {
+func (o *BillLineItem) GetUpdatedAt() optionalnullable.OptionalNullable[time.Time] {
 	if o == nil {
 		return nil
 	}

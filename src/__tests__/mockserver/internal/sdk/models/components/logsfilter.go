@@ -2,37 +2,41 @@
 
 package components
 
+import (
+	"mockserver/internal/sdk/optionalnullable"
+)
+
 type LogsFilter struct {
-	ConnectorID *string `queryParam:"name=connector_id"`
+	ConnectorID optionalnullable.OptionalNullable[string] `queryParam:"name=connector_id"`
 	// Filter by a single HTTP status code. For backward compatibility - use status_codes for multiple values.
-	StatusCode *float64 `queryParam:"name=status_code"`
+	StatusCode optionalnullable.OptionalNullable[float64] `queryParam:"name=status_code"`
 	// Filter by multiple HTTP status codes. Values must be between 100-599. Maximum 50 status codes allowed.
-	StatusCodes        []float64 `queryParam:"name=status_codes"`
-	ExcludeUnifiedApis *string   `queryParam:"name=exclude_unified_apis"`
+	StatusCodes        optionalnullable.OptionalNullable[[]float64] `queryParam:"name=status_codes"`
+	ExcludeUnifiedApis optionalnullable.OptionalNullable[string]    `queryParam:"name=exclude_unified_apis"`
 }
 
-func (o *LogsFilter) GetConnectorID() *string {
+func (o *LogsFilter) GetConnectorID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.ConnectorID
 }
 
-func (o *LogsFilter) GetStatusCode() *float64 {
+func (o *LogsFilter) GetStatusCode() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}
 	return o.StatusCode
 }
 
-func (o *LogsFilter) GetStatusCodes() []float64 {
+func (o *LogsFilter) GetStatusCodes() optionalnullable.OptionalNullable[[]float64] {
 	if o == nil {
 		return nil
 	}
 	return o.StatusCodes
 }
 
-func (o *LogsFilter) GetExcludeUnifiedApis() *string {
+func (o *LogsFilter) GetExcludeUnifiedApis() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}

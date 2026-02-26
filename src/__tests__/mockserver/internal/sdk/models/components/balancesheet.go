@@ -3,6 +3,7 @@
 package components
 
 import (
+	"mockserver/internal/sdk/optionalnullable"
 	"mockserver/internal/sdk/utils"
 	"time"
 )
@@ -213,7 +214,7 @@ type Report struct {
 	// The start date of the report
 	EndDate string `json:"end_date"`
 	// Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
-	Currency *Currency `json:"currency,omitempty"`
+	Currency optionalnullable.OptionalNullable[Currency] `json:"currency,omitempty"`
 	// A balance sheet assets account represents the financial position of a company at a specific point in time.
 	Assets BalanceSheetAssetsAccount `json:"assets"`
 	// A balance sheet liabilities account represents the financial position of a company at a specific point in time.
@@ -223,15 +224,15 @@ type Report struct {
 	// The net assets of the balance sheet
 	NetAssets *float64 `json:"net_assets,omitempty"`
 	// When custom mappings are configured on the resource, the result is included here.
-	CustomMappings map[string]any `json:"custom_mappings,omitempty"`
+	CustomMappings optionalnullable.OptionalNullable[map[string]any] `json:"custom_mappings,omitempty"`
 	// The user who last updated the object.
-	UpdatedBy *string `json:"updated_by,omitempty"`
+	UpdatedBy optionalnullable.OptionalNullable[string] `json:"updated_by,omitempty"`
 	// The user who created the object.
-	CreatedBy *string `json:"created_by,omitempty"`
+	CreatedBy optionalnullable.OptionalNullable[string] `json:"created_by,omitempty"`
 	// The date and time when the object was last updated.
-	UpdatedAt *time.Time `json:"updated_at,omitempty"`
+	UpdatedAt optionalnullable.OptionalNullable[time.Time] `json:"updated_at,omitempty"`
 	// The date and time when the object was created.
-	CreatedAt *time.Time `json:"created_at,omitempty"`
+	CreatedAt optionalnullable.OptionalNullable[time.Time] `json:"created_at,omitempty"`
 	// A balance sheet uncategorized items account represents the financial position of a company at a specific point in time.
 	UncategorizedItems *BalanceSheetUncategorizedItemsAccount `json:"uncategorized_items,omitempty"`
 }
@@ -275,7 +276,7 @@ func (o *Report) GetEndDate() string {
 	return o.EndDate
 }
 
-func (o *Report) GetCurrency() *Currency {
+func (o *Report) GetCurrency() optionalnullable.OptionalNullable[Currency] {
 	if o == nil {
 		return nil
 	}
@@ -310,35 +311,35 @@ func (o *Report) GetNetAssets() *float64 {
 	return o.NetAssets
 }
 
-func (o *Report) GetCustomMappings() map[string]any {
+func (o *Report) GetCustomMappings() optionalnullable.OptionalNullable[map[string]any] {
 	if o == nil {
 		return nil
 	}
 	return o.CustomMappings
 }
 
-func (o *Report) GetUpdatedBy() *string {
+func (o *Report) GetUpdatedBy() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.UpdatedBy
 }
 
-func (o *Report) GetCreatedBy() *string {
+func (o *Report) GetCreatedBy() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.CreatedBy
 }
 
-func (o *Report) GetUpdatedAt() *time.Time {
+func (o *Report) GetUpdatedAt() optionalnullable.OptionalNullable[time.Time] {
 	if o == nil {
 		return nil
 	}
 	return o.UpdatedAt
 }
 
-func (o *Report) GetCreatedAt() *time.Time {
+func (o *Report) GetCreatedAt() optionalnullable.OptionalNullable[time.Time] {
 	if o == nil {
 		return nil
 	}

@@ -2,20 +2,24 @@
 
 package components
 
+import (
+	"mockserver/internal/sdk/optionalnullable"
+)
+
 // LinkedCustomer - The customer this entity is linked to.
 type LinkedCustomer struct {
 	// The ID of the customer this entity is linked to.
 	ID *string `json:"id,omitempty"`
 	// The display ID of the customer.
-	DisplayID *string `json:"display_id,omitempty"`
+	DisplayID optionalnullable.OptionalNullable[string] `json:"display_id,omitempty"`
 	// The display name of the customer.
-	DisplayName *string `json:"display_name,omitempty"`
+	DisplayName optionalnullable.OptionalNullable[string] `json:"display_name,omitempty"`
 	// The name of the customer. Deprecated, use display_name instead.
 	//
 	// Deprecated: Deprecated. Use display_name instead..
 	Name *string `json:"name,omitempty"`
 	// The company name of the customer.
-	CompanyName *string `json:"company_name,omitempty"`
+	CompanyName optionalnullable.OptionalNullable[string] `json:"company_name,omitempty"`
 	// The email address of the customer.
 	Email *string `json:"email,omitempty"`
 }
@@ -27,14 +31,14 @@ func (o *LinkedCustomer) GetID() *string {
 	return o.ID
 }
 
-func (o *LinkedCustomer) GetDisplayID() *string {
+func (o *LinkedCustomer) GetDisplayID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.DisplayID
 }
 
-func (o *LinkedCustomer) GetDisplayName() *string {
+func (o *LinkedCustomer) GetDisplayName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -48,7 +52,7 @@ func (o *LinkedCustomer) GetName() *string {
 	return o.Name
 }
 
-func (o *LinkedCustomer) GetCompanyName() *string {
+func (o *LinkedCustomer) GetCompanyName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}

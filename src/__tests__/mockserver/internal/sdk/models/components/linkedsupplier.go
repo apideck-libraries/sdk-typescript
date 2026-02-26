@@ -2,17 +2,21 @@
 
 package components
 
+import (
+	"mockserver/internal/sdk/optionalnullable"
+)
+
 // LinkedSupplier - The supplier this entity is linked to.
 type LinkedSupplier struct {
 	// The ID of the supplier this entity is linked to.
 	ID *string `json:"id,omitempty"`
 	// The display ID of the supplier.
-	DisplayID *string `json:"display_id,omitempty"`
+	DisplayID optionalnullable.OptionalNullable[string] `json:"display_id,omitempty"`
 	// The display name of the supplier.
-	DisplayName *string `json:"display_name,omitempty"`
+	DisplayName optionalnullable.OptionalNullable[string] `json:"display_name,omitempty"`
 	// The company name of the supplier.
-	CompanyName *string  `json:"company_name,omitempty"`
-	Address     *Address `json:"address,omitempty"`
+	CompanyName optionalnullable.OptionalNullable[string] `json:"company_name,omitempty"`
+	Address     *Address                                  `json:"address,omitempty"`
 }
 
 func (o *LinkedSupplier) GetID() *string {
@@ -22,21 +26,21 @@ func (o *LinkedSupplier) GetID() *string {
 	return o.ID
 }
 
-func (o *LinkedSupplier) GetDisplayID() *string {
+func (o *LinkedSupplier) GetDisplayID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.DisplayID
 }
 
-func (o *LinkedSupplier) GetDisplayName() *string {
+func (o *LinkedSupplier) GetDisplayName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.DisplayName
 }
 
-func (o *LinkedSupplier) GetCompanyName() *string {
+func (o *LinkedSupplier) GetCompanyName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}

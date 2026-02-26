@@ -2,13 +2,17 @@
 
 package components
 
+import (
+	"mockserver/internal/sdk/optionalnullable"
+)
+
 type CollectionTag struct {
 	// A unique identifier for an object.
 	ID *string `json:"id"`
 	// The name of the tag.
-	Name *string `json:"name,omitempty"`
+	Name optionalnullable.OptionalNullable[string] `json:"name,omitempty"`
 	// When custom mappings are configured on the resource, the result is included here.
-	CustomMappings map[string]any `json:"custom_mappings,omitempty"`
+	CustomMappings optionalnullable.OptionalNullable[map[string]any] `json:"custom_mappings,omitempty"`
 }
 
 func (o *CollectionTag) GetID() *string {
@@ -18,14 +22,14 @@ func (o *CollectionTag) GetID() *string {
 	return o.ID
 }
 
-func (o *CollectionTag) GetName() *string {
+func (o *CollectionTag) GetName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-func (o *CollectionTag) GetCustomMappings() map[string]any {
+func (o *CollectionTag) GetCustomMappings() optionalnullable.OptionalNullable[map[string]any] {
 	if o == nil {
 		return nil
 	}

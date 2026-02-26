@@ -8,6 +8,7 @@ import (
 	"mockserver/internal/handler/assert"
 	"mockserver/internal/logging"
 	"mockserver/internal/sdk/models/components"
+	"mockserver/internal/sdk/optionalnullable"
 	"mockserver/internal/sdk/types"
 	"mockserver/internal/sdk/utils"
 	"mockserver/internal/tracking"
@@ -63,41 +64,41 @@ func testVaultConnectionSettingsAllVaultConnectionSettingsAll0(w http.ResponseWr
 			Website:          types.String("https://www.salesforce.com"),
 			Icon:             types.String("https://res.cloudinary.com/apideck/image/upload/v1529456047/catalog/salesforce/icon128x128.png"),
 			Logo:             types.String("https://c1.sfdcstatic.com/content/dam/web/en_us/www/images/home/logo-salesforce-m.svg"),
-			AuthorizeURL:     types.String("https://unify.apideck.com/vault/authorize/salesforce/<application-id>?state=<state>"),
-			RevokeURL:        types.String("https://unify.apideck.com/vault/revoke/salesforce/<application-id>?state=<state>"),
-			Settings: map[string]any{
+			AuthorizeURL:     optionalnullable.From(types.String("https://unify.apideck.com/vault/authorize/salesforce/<application-id>?state=<state>")),
+			RevokeURL:        optionalnullable.From(types.String("https://unify.apideck.com/vault/revoke/salesforce/<application-id>?state=<state>")),
+			Settings: optionalnullable.From(types.Pointer(map[string]any{
 				"instance_url": "https://eu28.salesforce.com",
 				"api_key":      "12345xxxxxx",
-			},
-			Metadata: map[string]any{
+			})),
+			Metadata: optionalnullable.From(types.Pointer(map[string]any{
 				"account": map[string]any{
 					"name": "My Company",
 					"id":   "c01458a5-7276-41ce-bc19-639906b0450a",
 				},
 				"plan": "enterprise",
-			},
+			})),
 			FormFields: []components.FormField{
 				components.FormField{
 					ID:                types.String("instance_url"),
 					Label:             types.String("Instance url"),
-					Placeholder:       types.String(""),
+					Placeholder:       optionalnullable.From(types.String("")),
 					Type:              components.FormFieldTypeText.ToPointer(),
 					Required:          types.Bool(true),
 					CustomField:       types.Bool(false),
 					AllowCustomValues: types.Bool(false),
-					Disabled:          types.Bool(false),
-					Sensitive:         types.Bool(false),
+					Disabled:          optionalnullable.From(types.Bool(false)),
+					Sensitive:         optionalnullable.From(types.Bool(false)),
 				},
 				components.FormField{
 					ID:                types.String("api_key"),
 					Label:             types.String("API Key"),
-					Placeholder:       types.String(""),
+					Placeholder:       optionalnullable.From(types.String("")),
 					Type:              components.FormFieldTypeText.ToPointer(),
 					Required:          types.Bool(true),
 					CustomField:       types.Bool(false),
 					AllowCustomValues: types.Bool(false),
-					Disabled:          types.Bool(false),
-					Sensitive:         types.Bool(true),
+					Disabled:          optionalnullable.From(types.Bool(false)),
+					Sensitive:         optionalnullable.From(types.Bool(true)),
 				},
 			},
 			Configuration: []components.Configuration{
@@ -322,28 +323,28 @@ func testVaultConnectionSettingsAllVaultConnectionSettingsAll0(w http.ResponseWr
 				components.CustomMapping{
 					ID:          types.String("hris+employees+first_aid_training"),
 					Label:       types.String("First Aid Training"),
-					Description: types.String("First Aid Training completed after 2019-01-01"),
+					Description: optionalnullable.From(types.String("First Aid Training completed after 2019-01-01")),
 					Value:       types.String("$.root.training.first_aid"),
 					Key:         types.String("first_aid_training"),
 					Required:    types.Bool(false),
 					CustomField: types.Bool(true),
-					ConsumerID:  types.String("test_user_id"),
-					Example:     types.String("Some value"),
+					ConsumerID:  optionalnullable.From(types.String("test_user_id")),
+					Example:     optionalnullable.From(types.String("Some value")),
 				},
 				components.CustomMapping{
 					ID:          types.String("hris+employees+first_aid_training"),
 					Label:       types.String("First Aid Training"),
-					Description: types.String("First Aid Training completed after 2019-01-01"),
+					Description: optionalnullable.From(types.String("First Aid Training completed after 2019-01-01")),
 					Value:       types.String("$.root.training.first_aid"),
 					Key:         types.String("first_aid_training"),
 					Required:    types.Bool(false),
 					CustomField: types.Bool(true),
-					ConsumerID:  types.String("test_user_id"),
-					Example:     types.String("Some value"),
+					ConsumerID:  optionalnullable.From(types.String("test_user_id")),
+					Example:     optionalnullable.From(types.String("Some value")),
 				},
 			},
 			CreatedAt: types.Float64(1615563533390),
-			UpdatedAt: types.Float64(1616662325753),
+			UpdatedAt: optionalnullable.From(types.Float64(1616662325753)),
 		},
 	}
 	respBodyBytes, err := utils.MarshalJSON(respBody, "", true)

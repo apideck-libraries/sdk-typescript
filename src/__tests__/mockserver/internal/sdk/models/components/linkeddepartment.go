@@ -2,15 +2,19 @@
 
 package components
 
+import (
+	"mockserver/internal/sdk/optionalnullable"
+)
+
 type LinkedDepartment struct {
 	// A unique identifier for an object.
 	ID *string `json:"id,omitempty"`
 	// Id to be displayed.
-	DisplayID *string `json:"display_id,omitempty"`
+	DisplayID optionalnullable.OptionalNullable[string] `json:"display_id,omitempty"`
 	// The name of the resource.
-	Name *string `json:"name,omitempty"`
+	Name optionalnullable.OptionalNullable[string] `json:"name,omitempty"`
 	// The third-party API ID of original entity
-	DownstreamID *string `json:"downstream_id,omitempty"`
+	DownstreamID optionalnullable.OptionalNullable[string] `json:"downstream_id,omitempty"`
 }
 
 func (o *LinkedDepartment) GetID() *string {
@@ -20,21 +24,21 @@ func (o *LinkedDepartment) GetID() *string {
 	return o.ID
 }
 
-func (o *LinkedDepartment) GetDisplayID() *string {
+func (o *LinkedDepartment) GetDisplayID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.DisplayID
 }
 
-func (o *LinkedDepartment) GetName() *string {
+func (o *LinkedDepartment) GetName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-func (o *LinkedDepartment) GetDownstreamID() *string {
+func (o *LinkedDepartment) GetDownstreamID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}

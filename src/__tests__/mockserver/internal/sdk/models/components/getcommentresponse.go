@@ -2,6 +2,10 @@
 
 package components
 
+import (
+	"mockserver/internal/sdk/optionalnullable"
+)
+
 // GetCommentResponse - Get a Comment
 type GetCommentResponse struct {
 	// HTTP Response Status Code
@@ -16,7 +20,7 @@ type GetCommentResponse struct {
 	Operation string                  `json:"operation"`
 	Data      CollectionTicketComment `json:"data"`
 	// Raw response from the integration when raw=true query param is provided
-	Raw map[string]any `json:"_raw,omitempty"`
+	Raw optionalnullable.OptionalNullable[map[string]any] `json:"_raw,omitempty"`
 }
 
 func (o *GetCommentResponse) GetStatusCode() int64 {
@@ -61,7 +65,7 @@ func (o *GetCommentResponse) GetData() CollectionTicketComment {
 	return o.Data
 }
 
-func (o *GetCommentResponse) GetRaw() map[string]any {
+func (o *GetCommentResponse) GetRaw() optionalnullable.OptionalNullable[map[string]any] {
 	if o == nil {
 		return nil
 	}

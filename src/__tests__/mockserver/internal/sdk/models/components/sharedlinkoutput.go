@@ -3,6 +3,7 @@
 package components
 
 import (
+	"mockserver/internal/sdk/optionalnullable"
 	"mockserver/internal/sdk/utils"
 	"time"
 )
@@ -21,19 +22,19 @@ func (e Scope) ToPointer() *Scope {
 
 type SharedLinkOutput struct {
 	// The URL that can be used to view the file.
-	URL *string `json:"url,omitempty"`
+	URL optionalnullable.OptionalNullable[string] `json:"url,omitempty"`
 	// The URL that can be used to download the file.
-	DownloadURL *string           `json:"download_url,omitempty"`
-	Target      *SharedLinkTarget `json:"target,omitempty"`
+	DownloadURL optionalnullable.OptionalNullable[string] `json:"download_url,omitempty"`
+	Target      *SharedLinkTarget                         `json:"target,omitempty"`
 	// The scope of the shared link.
-	Scope *Scope `json:"scope,omitempty"`
+	Scope optionalnullable.OptionalNullable[Scope] `json:"scope,omitempty"`
 	// Indicated if the shared link is password protected.
-	PasswordProtected *bool      `json:"password_protected,omitempty"`
-	ExpiresAt         *time.Time `json:"expires_at,omitempty"`
+	PasswordProtected optionalnullable.OptionalNullable[bool]      `json:"password_protected,omitempty"`
+	ExpiresAt         optionalnullable.OptionalNullable[time.Time] `json:"expires_at,omitempty"`
 	// The date and time when the object was last updated.
-	UpdatedAt *time.Time `json:"updated_at,omitempty"`
+	UpdatedAt optionalnullable.OptionalNullable[time.Time] `json:"updated_at,omitempty"`
 	// The date and time when the object was created.
-	CreatedAt *time.Time `json:"created_at,omitempty"`
+	CreatedAt optionalnullable.OptionalNullable[time.Time] `json:"created_at,omitempty"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
 	PassThrough []PassThroughBody `json:"pass_through,omitempty"`
 }
@@ -49,14 +50,14 @@ func (s *SharedLinkOutput) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *SharedLinkOutput) GetURL() *string {
+func (o *SharedLinkOutput) GetURL() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.URL
 }
 
-func (o *SharedLinkOutput) GetDownloadURL() *string {
+func (o *SharedLinkOutput) GetDownloadURL() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -70,35 +71,35 @@ func (o *SharedLinkOutput) GetTarget() *SharedLinkTarget {
 	return o.Target
 }
 
-func (o *SharedLinkOutput) GetScope() *Scope {
+func (o *SharedLinkOutput) GetScope() optionalnullable.OptionalNullable[Scope] {
 	if o == nil {
 		return nil
 	}
 	return o.Scope
 }
 
-func (o *SharedLinkOutput) GetPasswordProtected() *bool {
+func (o *SharedLinkOutput) GetPasswordProtected() optionalnullable.OptionalNullable[bool] {
 	if o == nil {
 		return nil
 	}
 	return o.PasswordProtected
 }
 
-func (o *SharedLinkOutput) GetExpiresAt() *time.Time {
+func (o *SharedLinkOutput) GetExpiresAt() optionalnullable.OptionalNullable[time.Time] {
 	if o == nil {
 		return nil
 	}
 	return o.ExpiresAt
 }
 
-func (o *SharedLinkOutput) GetUpdatedAt() *time.Time {
+func (o *SharedLinkOutput) GetUpdatedAt() optionalnullable.OptionalNullable[time.Time] {
 	if o == nil {
 		return nil
 	}
 	return o.UpdatedAt
 }
 
-func (o *SharedLinkOutput) GetCreatedAt() *time.Time {
+func (o *SharedLinkOutput) GetCreatedAt() optionalnullable.OptionalNullable[time.Time] {
 	if o == nil {
 		return nil
 	}
@@ -114,18 +115,18 @@ func (o *SharedLinkOutput) GetPassThrough() []PassThroughBody {
 
 type SharedLinkInput struct {
 	// The URL that can be used to download the file.
-	DownloadURL *string `json:"download_url,omitempty"`
+	DownloadURL optionalnullable.OptionalNullable[string] `json:"download_url,omitempty"`
 	// The ID of the file or folder to link.
 	TargetID *string `json:"target_id"`
 	// The scope of the shared link.
-	Scope *Scope `json:"scope,omitempty"`
+	Scope optionalnullable.OptionalNullable[Scope] `json:"scope,omitempty"`
 	// Optional password for the shared link.
-	Password *string `json:"password,omitempty"`
+	Password optionalnullable.OptionalNullable[string] `json:"password,omitempty"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
 	PassThrough []PassThroughBody `json:"pass_through,omitempty"`
 }
 
-func (o *SharedLinkInput) GetDownloadURL() *string {
+func (o *SharedLinkInput) GetDownloadURL() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -139,14 +140,14 @@ func (o *SharedLinkInput) GetTargetID() *string {
 	return o.TargetID
 }
 
-func (o *SharedLinkInput) GetScope() *Scope {
+func (o *SharedLinkInput) GetScope() optionalnullable.OptionalNullable[Scope] {
 	if o == nil {
 		return nil
 	}
 	return o.Scope
 }
 
-func (o *SharedLinkInput) GetPassword() *string {
+func (o *SharedLinkInput) GetPassword() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}

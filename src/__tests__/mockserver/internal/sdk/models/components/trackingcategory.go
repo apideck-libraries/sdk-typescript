@@ -3,6 +3,7 @@
 package components
 
 import (
+	"mockserver/internal/sdk/optionalnullable"
 	"mockserver/internal/sdk/utils"
 	"time"
 )
@@ -35,27 +36,27 @@ type TrackingCategory struct {
 	// A unique identifier for an object.
 	ID *string `json:"id,omitempty"`
 	// A unique identifier for an object.
-	ParentID *string `json:"parent_id,omitempty"`
+	ParentID optionalnullable.OptionalNullable[string] `json:"parent_id,omitempty"`
 	// The name of the parent tracking category.
-	ParentName *string `json:"parent_name,omitempty"`
+	ParentName optionalnullable.OptionalNullable[string] `json:"parent_name,omitempty"`
 	// The name of the tracking category.
 	Name *string `json:"name,omitempty"`
 	// The code of the tracking category.
-	Code *string `json:"code,omitempty"`
+	Code optionalnullable.OptionalNullable[string] `json:"code,omitempty"`
 	// Based on the status some functionality is enabled or disabled.
 	Status *TrackingCategoryStatus `json:"status,omitempty"`
 	// When custom mappings are configured on the resource, the result is included here.
-	CustomMappings map[string]any `json:"custom_mappings,omitempty"`
+	CustomMappings optionalnullable.OptionalNullable[map[string]any] `json:"custom_mappings,omitempty"`
 	// A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
-	RowVersion *string `json:"row_version,omitempty"`
+	RowVersion optionalnullable.OptionalNullable[string] `json:"row_version,omitempty"`
 	// The user who last updated the object.
-	UpdatedBy *string `json:"updated_by,omitempty"`
+	UpdatedBy optionalnullable.OptionalNullable[string] `json:"updated_by,omitempty"`
 	// The user who created the object.
-	CreatedBy *string `json:"created_by,omitempty"`
+	CreatedBy optionalnullable.OptionalNullable[string] `json:"created_by,omitempty"`
 	// The date and time when the object was last updated.
-	UpdatedAt *time.Time `json:"updated_at,omitempty"`
+	UpdatedAt optionalnullable.OptionalNullable[time.Time] `json:"updated_at,omitempty"`
 	// The date and time when the object was created.
-	CreatedAt *time.Time `json:"created_at,omitempty"`
+	CreatedAt optionalnullable.OptionalNullable[time.Time] `json:"created_at,omitempty"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
 	PassThrough []PassThroughBody `json:"pass_through,omitempty"`
 	// The subsidiaries the account belongs to.
@@ -80,14 +81,14 @@ func (o *TrackingCategory) GetID() *string {
 	return o.ID
 }
 
-func (o *TrackingCategory) GetParentID() *string {
+func (o *TrackingCategory) GetParentID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.ParentID
 }
 
-func (o *TrackingCategory) GetParentName() *string {
+func (o *TrackingCategory) GetParentName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -101,7 +102,7 @@ func (o *TrackingCategory) GetName() *string {
 	return o.Name
 }
 
-func (o *TrackingCategory) GetCode() *string {
+func (o *TrackingCategory) GetCode() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -115,42 +116,42 @@ func (o *TrackingCategory) GetStatus() *TrackingCategoryStatus {
 	return o.Status
 }
 
-func (o *TrackingCategory) GetCustomMappings() map[string]any {
+func (o *TrackingCategory) GetCustomMappings() optionalnullable.OptionalNullable[map[string]any] {
 	if o == nil {
 		return nil
 	}
 	return o.CustomMappings
 }
 
-func (o *TrackingCategory) GetRowVersion() *string {
+func (o *TrackingCategory) GetRowVersion() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.RowVersion
 }
 
-func (o *TrackingCategory) GetUpdatedBy() *string {
+func (o *TrackingCategory) GetUpdatedBy() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.UpdatedBy
 }
 
-func (o *TrackingCategory) GetCreatedBy() *string {
+func (o *TrackingCategory) GetCreatedBy() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.CreatedBy
 }
 
-func (o *TrackingCategory) GetUpdatedAt() *time.Time {
+func (o *TrackingCategory) GetUpdatedAt() optionalnullable.OptionalNullable[time.Time] {
 	if o == nil {
 		return nil
 	}
 	return o.UpdatedAt
 }
 
-func (o *TrackingCategory) GetCreatedAt() *time.Time {
+func (o *TrackingCategory) GetCreatedAt() optionalnullable.OptionalNullable[time.Time] {
 	if o == nil {
 		return nil
 	}
@@ -173,31 +174,31 @@ func (o *TrackingCategory) GetSubsidiaries() []TrackingCategorySubsidiary {
 
 type TrackingCategoryInput struct {
 	// A unique identifier for an object.
-	ParentID *string `json:"parent_id,omitempty"`
+	ParentID optionalnullable.OptionalNullable[string] `json:"parent_id,omitempty"`
 	// The name of the parent tracking category.
-	ParentName *string `json:"parent_name,omitempty"`
+	ParentName optionalnullable.OptionalNullable[string] `json:"parent_name,omitempty"`
 	// The name of the tracking category.
 	Name *string `json:"name,omitempty"`
 	// The code of the tracking category.
-	Code *string `json:"code,omitempty"`
+	Code optionalnullable.OptionalNullable[string] `json:"code,omitempty"`
 	// Based on the status some functionality is enabled or disabled.
 	Status *TrackingCategoryStatus `json:"status,omitempty"`
 	// A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
-	RowVersion *string `json:"row_version,omitempty"`
+	RowVersion optionalnullable.OptionalNullable[string] `json:"row_version,omitempty"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
 	PassThrough []PassThroughBody `json:"pass_through,omitempty"`
 	// The subsidiaries the account belongs to.
 	Subsidiaries []TrackingCategorySubsidiary `json:"subsidiaries,omitempty"`
 }
 
-func (o *TrackingCategoryInput) GetParentID() *string {
+func (o *TrackingCategoryInput) GetParentID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.ParentID
 }
 
-func (o *TrackingCategoryInput) GetParentName() *string {
+func (o *TrackingCategoryInput) GetParentName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -211,7 +212,7 @@ func (o *TrackingCategoryInput) GetName() *string {
 	return o.Name
 }
 
-func (o *TrackingCategoryInput) GetCode() *string {
+func (o *TrackingCategoryInput) GetCode() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -225,7 +226,7 @@ func (o *TrackingCategoryInput) GetStatus() *TrackingCategoryStatus {
 	return o.Status
 }
 
-func (o *TrackingCategoryInput) GetRowVersion() *string {
+func (o *TrackingCategoryInput) GetRowVersion() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}

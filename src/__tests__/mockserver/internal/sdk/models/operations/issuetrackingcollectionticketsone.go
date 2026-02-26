@@ -4,6 +4,7 @@ package operations
 
 import (
 	"mockserver/internal/sdk/models/components"
+	"mockserver/internal/sdk/optionalnullable"
 	"mockserver/internal/sdk/utils"
 )
 
@@ -42,7 +43,7 @@ type IssueTrackingCollectionTicketsOneRequest struct {
 	// The collection ID
 	CollectionID string `pathParam:"style=simple,explode=false,name=collection_id"`
 	// The 'fields' parameter allows API users to specify the fields they want to include in the API response. If this parameter is not present, the API will return all available fields. If this parameter is present, only the fields specified in the comma-separated string will be included in the response. Nested properties can also be requested by using a dot notation. <br /><br />Example: `fields=name,email,addresses.city`<br /><br />In the example above, the response will only include the fields "name", "email" and "addresses.city". If any other fields are available, they will be excluded.
-	Fields *string `queryParam:"style=form,explode=true,name=fields"`
+	Fields optionalnullable.OptionalNullable[string] `queryParam:"style=form,explode=true,name=fields"`
 }
 
 func (i IssueTrackingCollectionTicketsOneRequest) MarshalJSON() ([]byte, error) {
@@ -98,7 +99,7 @@ func (o *IssueTrackingCollectionTicketsOneRequest) GetCollectionID() string {
 	return o.CollectionID
 }
 
-func (o *IssueTrackingCollectionTicketsOneRequest) GetFields() *string {
+func (o *IssueTrackingCollectionTicketsOneRequest) GetFields() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}

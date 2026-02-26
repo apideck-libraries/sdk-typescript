@@ -3,6 +3,7 @@
 package components
 
 import (
+	"mockserver/internal/sdk/optionalnullable"
 	"mockserver/internal/sdk/types"
 	"mockserver/internal/sdk/utils"
 	"time"
@@ -30,71 +31,71 @@ type Quote struct {
 	// A unique identifier for an object.
 	ID *string `json:"id,omitempty"`
 	// The third-party API ID of original entity
-	DownstreamID *string `json:"downstream_id,omitempty"`
+	DownstreamID optionalnullable.OptionalNullable[string] `json:"downstream_id,omitempty"`
 	// Quote number.
-	Number *string `json:"number,omitempty"`
+	Number optionalnullable.OptionalNullable[string] `json:"number,omitempty"`
 	// The customer this entity is linked to.
-	Customer *LinkedCustomer `json:"customer,omitempty"`
+	Customer optionalnullable.OptionalNullable[LinkedCustomer] `json:"customer,omitempty"`
 	// The unique identifier for the invoice.
 	InvoiceID *string `json:"invoice_id,omitempty"`
 	// The unique identifier for the sales order.
-	SalesOrderID *string `json:"sales_order_id,omitempty"`
+	SalesOrderID optionalnullable.OptionalNullable[string] `json:"sales_order_id,omitempty"`
 	// The company ID the transaction belongs to
-	CompanyID *string `json:"company_id,omitempty"`
+	CompanyID optionalnullable.OptionalNullable[string] `json:"company_id,omitempty"`
 	// The ID of the department
-	DepartmentID *string `json:"department_id,omitempty"`
+	DepartmentID optionalnullable.OptionalNullable[string] `json:"department_id,omitempty"`
 	// The unique identifier for the linked project.
 	ProjectID *string `json:"project_id,omitempty"`
 	// Date quote was issued - YYYY-MM-DD.
-	QuoteDate *types.Date `json:"quote_date,omitempty"`
+	QuoteDate optionalnullable.OptionalNullable[types.Date] `json:"quote_date,omitempty"`
 	// The date until which the quote is valid - YYYY-MM-DD.
-	ExpiryDate *types.Date `json:"expiry_date,omitempty"`
+	ExpiryDate optionalnullable.OptionalNullable[types.Date] `json:"expiry_date,omitempty"`
 	// Terms of the quote.
-	Terms *string `json:"terms,omitempty"`
+	Terms optionalnullable.OptionalNullable[string] `json:"terms,omitempty"`
 	// Optional reference identifier for the transaction.
-	Reference *string `json:"reference,omitempty"`
+	Reference optionalnullable.OptionalNullable[string] `json:"reference,omitempty"`
 	// Quote status
-	Status *QuoteStatus `json:"status,omitempty"`
+	Status optionalnullable.OptionalNullable[QuoteStatus] `json:"status,omitempty"`
 	// Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
-	Currency *Currency `json:"currency,omitempty"`
+	Currency optionalnullable.OptionalNullable[Currency] `json:"currency,omitempty"`
 	// Currency Exchange Rate at the time entity was recorded/generated.
-	CurrencyRate *float64 `json:"currency_rate,omitempty"`
+	CurrencyRate optionalnullable.OptionalNullable[float64] `json:"currency_rate,omitempty"`
 	// Amounts are including tax
-	TaxInclusive *bool `json:"tax_inclusive,omitempty"`
+	TaxInclusive optionalnullable.OptionalNullable[bool] `json:"tax_inclusive,omitempty"`
 	// Sub-total amount, normally before tax.
-	SubTotal *float64 `json:"sub_total,omitempty"`
+	SubTotal optionalnullable.OptionalNullable[float64] `json:"sub_total,omitempty"`
 	// Total tax amount applied to this quote.
-	TotalTax *float64 `json:"total_tax,omitempty"`
+	TotalTax optionalnullable.OptionalNullable[float64] `json:"total_tax,omitempty"`
 	// Applicable tax id/code override if tax is not supplied on a line item basis.
-	TaxCode *string `json:"tax_code,omitempty"`
+	TaxCode optionalnullable.OptionalNullable[string] `json:"tax_code,omitempty"`
 	// Discount percentage applied to this quote.
-	DiscountPercentage *float64 `json:"discount_percentage,omitempty"`
+	DiscountPercentage optionalnullable.OptionalNullable[float64] `json:"discount_percentage,omitempty"`
 	// Discount amount applied to this quote.
-	DiscountAmount *float64 `json:"discount_amount,omitempty"`
+	DiscountAmount optionalnullable.OptionalNullable[float64] `json:"discount_amount,omitempty"`
 	// Total amount of quote, including tax.
-	Total *float64 `json:"total,omitempty"`
+	Total optionalnullable.OptionalNullable[float64] `json:"total,omitempty"`
 	// Customer memo
-	CustomerMemo    *string         `json:"customer_memo,omitempty"`
-	LineItems       []QuoteLineItem `json:"line_items,omitempty"`
-	BillingAddress  *Address        `json:"billing_address,omitempty"`
-	ShippingAddress *Address        `json:"shipping_address,omitempty"`
+	CustomerMemo    optionalnullable.OptionalNullable[string] `json:"customer_memo,omitempty"`
+	LineItems       []QuoteLineItem                           `json:"line_items,omitempty"`
+	BillingAddress  *Address                                  `json:"billing_address,omitempty"`
+	ShippingAddress *Address                                  `json:"shipping_address,omitempty"`
 	// A list of linked tracking categories.
-	TrackingCategories []*LinkedTrackingCategory `json:"tracking_categories,omitempty"`
+	TrackingCategories optionalnullable.OptionalNullable[[]*LinkedTrackingCategory] `json:"tracking_categories,omitempty"`
 	// Optional quote template
-	TemplateID *string `json:"template_id,omitempty"`
+	TemplateID optionalnullable.OptionalNullable[string] `json:"template_id,omitempty"`
 	// URL link to a source document - shown as 'Go to [appName]' in the downstream app.
-	SourceDocumentURL *string            `json:"source_document_url,omitempty"`
-	CustomFields      []CustomFieldUnion `json:"custom_fields,omitempty"`
+	SourceDocumentURL optionalnullable.OptionalNullable[string] `json:"source_document_url,omitempty"`
+	CustomFields      []CustomFieldUnion                        `json:"custom_fields,omitempty"`
 	// A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
-	RowVersion *string `json:"row_version,omitempty"`
+	RowVersion optionalnullable.OptionalNullable[string] `json:"row_version,omitempty"`
 	// The user who last updated the object.
-	UpdatedBy *string `json:"updated_by,omitempty"`
+	UpdatedBy optionalnullable.OptionalNullable[string] `json:"updated_by,omitempty"`
 	// The user who created the object.
-	CreatedBy *string `json:"created_by,omitempty"`
+	CreatedBy optionalnullable.OptionalNullable[string] `json:"created_by,omitempty"`
 	// The date and time when the object was last updated.
-	UpdatedAt *time.Time `json:"updated_at,omitempty"`
+	UpdatedAt optionalnullable.OptionalNullable[time.Time] `json:"updated_at,omitempty"`
 	// The date and time when the object was created.
-	CreatedAt *time.Time `json:"created_at,omitempty"`
+	CreatedAt optionalnullable.OptionalNullable[time.Time] `json:"created_at,omitempty"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
 	PassThrough []PassThroughBody `json:"pass_through,omitempty"`
 }
@@ -117,21 +118,21 @@ func (o *Quote) GetID() *string {
 	return o.ID
 }
 
-func (o *Quote) GetDownstreamID() *string {
+func (o *Quote) GetDownstreamID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.DownstreamID
 }
 
-func (o *Quote) GetNumber() *string {
+func (o *Quote) GetNumber() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Number
 }
 
-func (o *Quote) GetCustomer() *LinkedCustomer {
+func (o *Quote) GetCustomer() optionalnullable.OptionalNullable[LinkedCustomer] {
 	if o == nil {
 		return nil
 	}
@@ -145,21 +146,21 @@ func (o *Quote) GetInvoiceID() *string {
 	return o.InvoiceID
 }
 
-func (o *Quote) GetSalesOrderID() *string {
+func (o *Quote) GetSalesOrderID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.SalesOrderID
 }
 
-func (o *Quote) GetCompanyID() *string {
+func (o *Quote) GetCompanyID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.CompanyID
 }
 
-func (o *Quote) GetDepartmentID() *string {
+func (o *Quote) GetDepartmentID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -173,105 +174,105 @@ func (o *Quote) GetProjectID() *string {
 	return o.ProjectID
 }
 
-func (o *Quote) GetQuoteDate() *types.Date {
+func (o *Quote) GetQuoteDate() optionalnullable.OptionalNullable[types.Date] {
 	if o == nil {
 		return nil
 	}
 	return o.QuoteDate
 }
 
-func (o *Quote) GetExpiryDate() *types.Date {
+func (o *Quote) GetExpiryDate() optionalnullable.OptionalNullable[types.Date] {
 	if o == nil {
 		return nil
 	}
 	return o.ExpiryDate
 }
 
-func (o *Quote) GetTerms() *string {
+func (o *Quote) GetTerms() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Terms
 }
 
-func (o *Quote) GetReference() *string {
+func (o *Quote) GetReference() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Reference
 }
 
-func (o *Quote) GetStatus() *QuoteStatus {
+func (o *Quote) GetStatus() optionalnullable.OptionalNullable[QuoteStatus] {
 	if o == nil {
 		return nil
 	}
 	return o.Status
 }
 
-func (o *Quote) GetCurrency() *Currency {
+func (o *Quote) GetCurrency() optionalnullable.OptionalNullable[Currency] {
 	if o == nil {
 		return nil
 	}
 	return o.Currency
 }
 
-func (o *Quote) GetCurrencyRate() *float64 {
+func (o *Quote) GetCurrencyRate() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}
 	return o.CurrencyRate
 }
 
-func (o *Quote) GetTaxInclusive() *bool {
+func (o *Quote) GetTaxInclusive() optionalnullable.OptionalNullable[bool] {
 	if o == nil {
 		return nil
 	}
 	return o.TaxInclusive
 }
 
-func (o *Quote) GetSubTotal() *float64 {
+func (o *Quote) GetSubTotal() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}
 	return o.SubTotal
 }
 
-func (o *Quote) GetTotalTax() *float64 {
+func (o *Quote) GetTotalTax() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}
 	return o.TotalTax
 }
 
-func (o *Quote) GetTaxCode() *string {
+func (o *Quote) GetTaxCode() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.TaxCode
 }
 
-func (o *Quote) GetDiscountPercentage() *float64 {
+func (o *Quote) GetDiscountPercentage() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}
 	return o.DiscountPercentage
 }
 
-func (o *Quote) GetDiscountAmount() *float64 {
+func (o *Quote) GetDiscountAmount() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}
 	return o.DiscountAmount
 }
 
-func (o *Quote) GetTotal() *float64 {
+func (o *Quote) GetTotal() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}
 	return o.Total
 }
 
-func (o *Quote) GetCustomerMemo() *string {
+func (o *Quote) GetCustomerMemo() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -299,21 +300,21 @@ func (o *Quote) GetShippingAddress() *Address {
 	return o.ShippingAddress
 }
 
-func (o *Quote) GetTrackingCategories() []*LinkedTrackingCategory {
+func (o *Quote) GetTrackingCategories() optionalnullable.OptionalNullable[[]*LinkedTrackingCategory] {
 	if o == nil {
 		return nil
 	}
 	return o.TrackingCategories
 }
 
-func (o *Quote) GetTemplateID() *string {
+func (o *Quote) GetTemplateID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.TemplateID
 }
 
-func (o *Quote) GetSourceDocumentURL() *string {
+func (o *Quote) GetSourceDocumentURL() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -327,35 +328,35 @@ func (o *Quote) GetCustomFields() []CustomFieldUnion {
 	return o.CustomFields
 }
 
-func (o *Quote) GetRowVersion() *string {
+func (o *Quote) GetRowVersion() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.RowVersion
 }
 
-func (o *Quote) GetUpdatedBy() *string {
+func (o *Quote) GetUpdatedBy() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.UpdatedBy
 }
 
-func (o *Quote) GetCreatedBy() *string {
+func (o *Quote) GetCreatedBy() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.CreatedBy
 }
 
-func (o *Quote) GetUpdatedAt() *time.Time {
+func (o *Quote) GetUpdatedAt() optionalnullable.OptionalNullable[time.Time] {
 	if o == nil {
 		return nil
 	}
 	return o.UpdatedAt
 }
 
-func (o *Quote) GetCreatedAt() *time.Time {
+func (o *Quote) GetCreatedAt() optionalnullable.OptionalNullable[time.Time] {
 	if o == nil {
 		return nil
 	}
@@ -371,59 +372,59 @@ func (o *Quote) GetPassThrough() []PassThroughBody {
 
 type QuoteInput struct {
 	// Quote number.
-	Number *string `json:"number,omitempty"`
+	Number optionalnullable.OptionalNullable[string] `json:"number,omitempty"`
 	// The customer this entity is linked to.
-	Customer *LinkedCustomerInput `json:"customer,omitempty"`
+	Customer optionalnullable.OptionalNullable[LinkedCustomerInput] `json:"customer,omitempty"`
 	// The unique identifier for the sales order.
-	SalesOrderID *string `json:"sales_order_id,omitempty"`
+	SalesOrderID optionalnullable.OptionalNullable[string] `json:"sales_order_id,omitempty"`
 	// The company ID the transaction belongs to
-	CompanyID *string `json:"company_id,omitempty"`
+	CompanyID optionalnullable.OptionalNullable[string] `json:"company_id,omitempty"`
 	// The ID of the department
-	DepartmentID *string `json:"department_id,omitempty"`
+	DepartmentID optionalnullable.OptionalNullable[string] `json:"department_id,omitempty"`
 	// The unique identifier for the linked project.
 	ProjectID *string `json:"project_id,omitempty"`
 	// Date quote was issued - YYYY-MM-DD.
-	QuoteDate *types.Date `json:"quote_date,omitempty"`
+	QuoteDate optionalnullable.OptionalNullable[types.Date] `json:"quote_date,omitempty"`
 	// The date until which the quote is valid - YYYY-MM-DD.
-	ExpiryDate *types.Date `json:"expiry_date,omitempty"`
+	ExpiryDate optionalnullable.OptionalNullable[types.Date] `json:"expiry_date,omitempty"`
 	// Terms of the quote.
-	Terms *string `json:"terms,omitempty"`
+	Terms optionalnullable.OptionalNullable[string] `json:"terms,omitempty"`
 	// Optional reference identifier for the transaction.
-	Reference *string `json:"reference,omitempty"`
+	Reference optionalnullable.OptionalNullable[string] `json:"reference,omitempty"`
 	// Quote status
-	Status *QuoteStatus `json:"status,omitempty"`
+	Status optionalnullable.OptionalNullable[QuoteStatus] `json:"status,omitempty"`
 	// Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
-	Currency *Currency `json:"currency,omitempty"`
+	Currency optionalnullable.OptionalNullable[Currency] `json:"currency,omitempty"`
 	// Currency Exchange Rate at the time entity was recorded/generated.
-	CurrencyRate *float64 `json:"currency_rate,omitempty"`
+	CurrencyRate optionalnullable.OptionalNullable[float64] `json:"currency_rate,omitempty"`
 	// Amounts are including tax
-	TaxInclusive *bool `json:"tax_inclusive,omitempty"`
+	TaxInclusive optionalnullable.OptionalNullable[bool] `json:"tax_inclusive,omitempty"`
 	// Sub-total amount, normally before tax.
-	SubTotal *float64 `json:"sub_total,omitempty"`
+	SubTotal optionalnullable.OptionalNullable[float64] `json:"sub_total,omitempty"`
 	// Total tax amount applied to this quote.
-	TotalTax *float64 `json:"total_tax,omitempty"`
+	TotalTax optionalnullable.OptionalNullable[float64] `json:"total_tax,omitempty"`
 	// Applicable tax id/code override if tax is not supplied on a line item basis.
-	TaxCode *string `json:"tax_code,omitempty"`
+	TaxCode optionalnullable.OptionalNullable[string] `json:"tax_code,omitempty"`
 	// Discount percentage applied to this quote.
-	DiscountPercentage *float64 `json:"discount_percentage,omitempty"`
+	DiscountPercentage optionalnullable.OptionalNullable[float64] `json:"discount_percentage,omitempty"`
 	// Discount amount applied to this quote.
-	DiscountAmount *float64 `json:"discount_amount,omitempty"`
+	DiscountAmount optionalnullable.OptionalNullable[float64] `json:"discount_amount,omitempty"`
 	// Total amount of quote, including tax.
-	Total *float64 `json:"total,omitempty"`
+	Total optionalnullable.OptionalNullable[float64] `json:"total,omitempty"`
 	// Customer memo
-	CustomerMemo    *string              `json:"customer_memo,omitempty"`
-	LineItems       []QuoteLineItemInput `json:"line_items,omitempty"`
-	BillingAddress  *Address             `json:"billing_address,omitempty"`
-	ShippingAddress *Address             `json:"shipping_address,omitempty"`
+	CustomerMemo    optionalnullable.OptionalNullable[string] `json:"customer_memo,omitempty"`
+	LineItems       []QuoteLineItemInput                      `json:"line_items,omitempty"`
+	BillingAddress  *Address                                  `json:"billing_address,omitempty"`
+	ShippingAddress *Address                                  `json:"shipping_address,omitempty"`
 	// A list of linked tracking categories.
-	TrackingCategories []*LinkedTrackingCategory `json:"tracking_categories,omitempty"`
+	TrackingCategories optionalnullable.OptionalNullable[[]*LinkedTrackingCategory] `json:"tracking_categories,omitempty"`
 	// Optional quote template
-	TemplateID *string `json:"template_id,omitempty"`
+	TemplateID optionalnullable.OptionalNullable[string] `json:"template_id,omitempty"`
 	// URL link to a source document - shown as 'Go to [appName]' in the downstream app.
-	SourceDocumentURL *string            `json:"source_document_url,omitempty"`
-	CustomFields      []CustomFieldUnion `json:"custom_fields,omitempty"`
+	SourceDocumentURL optionalnullable.OptionalNullable[string] `json:"source_document_url,omitempty"`
+	CustomFields      []CustomFieldUnion                        `json:"custom_fields,omitempty"`
 	// A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
-	RowVersion *string `json:"row_version,omitempty"`
+	RowVersion optionalnullable.OptionalNullable[string] `json:"row_version,omitempty"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
 	PassThrough []PassThroughBody `json:"pass_through,omitempty"`
 }
@@ -439,35 +440,35 @@ func (q *QuoteInput) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *QuoteInput) GetNumber() *string {
+func (o *QuoteInput) GetNumber() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Number
 }
 
-func (o *QuoteInput) GetCustomer() *LinkedCustomerInput {
+func (o *QuoteInput) GetCustomer() optionalnullable.OptionalNullable[LinkedCustomerInput] {
 	if o == nil {
 		return nil
 	}
 	return o.Customer
 }
 
-func (o *QuoteInput) GetSalesOrderID() *string {
+func (o *QuoteInput) GetSalesOrderID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.SalesOrderID
 }
 
-func (o *QuoteInput) GetCompanyID() *string {
+func (o *QuoteInput) GetCompanyID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.CompanyID
 }
 
-func (o *QuoteInput) GetDepartmentID() *string {
+func (o *QuoteInput) GetDepartmentID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -481,105 +482,105 @@ func (o *QuoteInput) GetProjectID() *string {
 	return o.ProjectID
 }
 
-func (o *QuoteInput) GetQuoteDate() *types.Date {
+func (o *QuoteInput) GetQuoteDate() optionalnullable.OptionalNullable[types.Date] {
 	if o == nil {
 		return nil
 	}
 	return o.QuoteDate
 }
 
-func (o *QuoteInput) GetExpiryDate() *types.Date {
+func (o *QuoteInput) GetExpiryDate() optionalnullable.OptionalNullable[types.Date] {
 	if o == nil {
 		return nil
 	}
 	return o.ExpiryDate
 }
 
-func (o *QuoteInput) GetTerms() *string {
+func (o *QuoteInput) GetTerms() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Terms
 }
 
-func (o *QuoteInput) GetReference() *string {
+func (o *QuoteInput) GetReference() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Reference
 }
 
-func (o *QuoteInput) GetStatus() *QuoteStatus {
+func (o *QuoteInput) GetStatus() optionalnullable.OptionalNullable[QuoteStatus] {
 	if o == nil {
 		return nil
 	}
 	return o.Status
 }
 
-func (o *QuoteInput) GetCurrency() *Currency {
+func (o *QuoteInput) GetCurrency() optionalnullable.OptionalNullable[Currency] {
 	if o == nil {
 		return nil
 	}
 	return o.Currency
 }
 
-func (o *QuoteInput) GetCurrencyRate() *float64 {
+func (o *QuoteInput) GetCurrencyRate() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}
 	return o.CurrencyRate
 }
 
-func (o *QuoteInput) GetTaxInclusive() *bool {
+func (o *QuoteInput) GetTaxInclusive() optionalnullable.OptionalNullable[bool] {
 	if o == nil {
 		return nil
 	}
 	return o.TaxInclusive
 }
 
-func (o *QuoteInput) GetSubTotal() *float64 {
+func (o *QuoteInput) GetSubTotal() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}
 	return o.SubTotal
 }
 
-func (o *QuoteInput) GetTotalTax() *float64 {
+func (o *QuoteInput) GetTotalTax() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}
 	return o.TotalTax
 }
 
-func (o *QuoteInput) GetTaxCode() *string {
+func (o *QuoteInput) GetTaxCode() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.TaxCode
 }
 
-func (o *QuoteInput) GetDiscountPercentage() *float64 {
+func (o *QuoteInput) GetDiscountPercentage() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}
 	return o.DiscountPercentage
 }
 
-func (o *QuoteInput) GetDiscountAmount() *float64 {
+func (o *QuoteInput) GetDiscountAmount() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}
 	return o.DiscountAmount
 }
 
-func (o *QuoteInput) GetTotal() *float64 {
+func (o *QuoteInput) GetTotal() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}
 	return o.Total
 }
 
-func (o *QuoteInput) GetCustomerMemo() *string {
+func (o *QuoteInput) GetCustomerMemo() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -607,21 +608,21 @@ func (o *QuoteInput) GetShippingAddress() *Address {
 	return o.ShippingAddress
 }
 
-func (o *QuoteInput) GetTrackingCategories() []*LinkedTrackingCategory {
+func (o *QuoteInput) GetTrackingCategories() optionalnullable.OptionalNullable[[]*LinkedTrackingCategory] {
 	if o == nil {
 		return nil
 	}
 	return o.TrackingCategories
 }
 
-func (o *QuoteInput) GetTemplateID() *string {
+func (o *QuoteInput) GetTemplateID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.TemplateID
 }
 
-func (o *QuoteInput) GetSourceDocumentURL() *string {
+func (o *QuoteInput) GetSourceDocumentURL() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -635,7 +636,7 @@ func (o *QuoteInput) GetCustomFields() []CustomFieldUnion {
 	return o.CustomFields
 }
 
-func (o *QuoteInput) GetRowVersion() *string {
+func (o *QuoteInput) GetRowVersion() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}

@@ -2,6 +2,10 @@
 
 package components
 
+import (
+	"mockserver/internal/sdk/optionalnullable"
+)
+
 // PhoneNumberType - The type of phone number
 type PhoneNumberType string
 
@@ -26,34 +30,34 @@ func (e PhoneNumberType) ToPointer() *PhoneNumberType {
 
 type PhoneNumber struct {
 	// Unique identifier of the phone number
-	ID *string `json:"id,omitempty"`
+	ID optionalnullable.OptionalNullable[string] `json:"id,omitempty"`
 	// The country code of the phone number, e.g. +1
-	CountryCode *string `json:"country_code,omitempty"`
+	CountryCode optionalnullable.OptionalNullable[string] `json:"country_code,omitempty"`
 	// The area code of the phone number, e.g. 323
-	AreaCode *string `json:"area_code,omitempty"`
+	AreaCode optionalnullable.OptionalNullable[string] `json:"area_code,omitempty"`
 	// The phone number
 	Number string `json:"number"`
 	// The extension of the phone number
-	Extension *string `json:"extension,omitempty"`
+	Extension optionalnullable.OptionalNullable[string] `json:"extension,omitempty"`
 	// The type of phone number
-	Type *PhoneNumberType `json:"type,omitempty"`
+	Type optionalnullable.OptionalNullable[PhoneNumberType] `json:"type,omitempty"`
 }
 
-func (o *PhoneNumber) GetID() *string {
+func (o *PhoneNumber) GetID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *PhoneNumber) GetCountryCode() *string {
+func (o *PhoneNumber) GetCountryCode() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.CountryCode
 }
 
-func (o *PhoneNumber) GetAreaCode() *string {
+func (o *PhoneNumber) GetAreaCode() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -67,14 +71,14 @@ func (o *PhoneNumber) GetNumber() string {
 	return o.Number
 }
 
-func (o *PhoneNumber) GetExtension() *string {
+func (o *PhoneNumber) GetExtension() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Extension
 }
 
-func (o *PhoneNumber) GetType() *PhoneNumberType {
+func (o *PhoneNumber) GetType() optionalnullable.OptionalNullable[PhoneNumberType] {
 	if o == nil {
 		return nil
 	}

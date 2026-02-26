@@ -2,6 +2,10 @@
 
 package components
 
+import (
+	"mockserver/internal/sdk/optionalnullable"
+)
+
 type WebhookEventLogsFilterService struct {
 	ID *string `queryParam:"name=id"`
 }
@@ -14,42 +18,42 @@ func (o *WebhookEventLogsFilterService) GetID() *string {
 }
 
 type WebhookEventLogsFilter struct {
-	ExcludeApis *string                        `queryParam:"name=exclude_apis"`
-	Service     *WebhookEventLogsFilterService `queryParam:"name=service"`
-	ConsumerID  *string                        `queryParam:"name=consumer_id"`
-	EntityType  *string                        `queryParam:"name=entity_type"`
-	EventType   *string                        `queryParam:"name=event_type"`
+	ExcludeApis optionalnullable.OptionalNullable[string]                        `queryParam:"name=exclude_apis"`
+	Service     optionalnullable.OptionalNullable[WebhookEventLogsFilterService] `queryParam:"name=service"`
+	ConsumerID  optionalnullable.OptionalNullable[string]                        `queryParam:"name=consumer_id"`
+	EntityType  optionalnullable.OptionalNullable[string]                        `queryParam:"name=entity_type"`
+	EventType   optionalnullable.OptionalNullable[string]                        `queryParam:"name=event_type"`
 }
 
-func (o *WebhookEventLogsFilter) GetExcludeApis() *string {
+func (o *WebhookEventLogsFilter) GetExcludeApis() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.ExcludeApis
 }
 
-func (o *WebhookEventLogsFilter) GetService() *WebhookEventLogsFilterService {
+func (o *WebhookEventLogsFilter) GetService() optionalnullable.OptionalNullable[WebhookEventLogsFilterService] {
 	if o == nil {
 		return nil
 	}
 	return o.Service
 }
 
-func (o *WebhookEventLogsFilter) GetConsumerID() *string {
+func (o *WebhookEventLogsFilter) GetConsumerID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.ConsumerID
 }
 
-func (o *WebhookEventLogsFilter) GetEntityType() *string {
+func (o *WebhookEventLogsFilter) GetEntityType() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.EntityType
 }
 
-func (o *WebhookEventLogsFilter) GetEventType() *string {
+func (o *WebhookEventLogsFilter) GetEventType() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}

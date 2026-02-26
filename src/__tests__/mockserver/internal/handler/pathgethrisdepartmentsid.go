@@ -8,6 +8,7 @@ import (
 	"mockserver/internal/handler/assert"
 	"mockserver/internal/logging"
 	"mockserver/internal/sdk/models/components"
+	"mockserver/internal/sdk/optionalnullable"
 	"mockserver/internal/sdk/types"
 	"mockserver/internal/sdk/utils"
 	"mockserver/internal/tracking"
@@ -54,14 +55,14 @@ func testHrisDepartmentsOneHrisDepartmentsOne0(w http.ResponseWriter, req *http.
 		Operation:  "one",
 		Data: components.Department{
 			ID:          types.String("12345"),
-			ParentID:    types.String("22345"),
-			Name:        types.String("R&D"),
-			Code:        types.String("2"),
-			Description: types.String("R&D"),
-			UpdatedBy:   types.String("12345"),
-			CreatedBy:   types.String("12345"),
-			UpdatedAt:   types.MustNewTimeFromString("2020-09-30T07:43:32.000Z"),
-			CreatedAt:   types.MustNewTimeFromString("2020-09-30T07:43:32.000Z"),
+			ParentID:    optionalnullable.From(types.String("22345")),
+			Name:        optionalnullable.From(types.String("R&D")),
+			Code:        optionalnullable.From(types.String("2")),
+			Description: optionalnullable.From(types.String("R&D")),
+			UpdatedBy:   optionalnullable.From(types.String("12345")),
+			CreatedBy:   optionalnullable.From(types.String("12345")),
+			UpdatedAt:   optionalnullable.From(types.MustNewTimeFromString("2020-09-30T07:43:32.000Z")),
+			CreatedAt:   optionalnullable.From(types.MustNewTimeFromString("2020-09-30T07:43:32.000Z")),
 			PassThrough: []components.PassThroughBody{
 				components.PassThroughBody{
 					ServiceID: "<id>",

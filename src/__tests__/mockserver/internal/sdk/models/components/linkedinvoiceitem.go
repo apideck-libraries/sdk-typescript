@@ -2,30 +2,34 @@
 
 package components
 
+import (
+	"mockserver/internal/sdk/optionalnullable"
+)
+
 type LinkedInvoiceItem struct {
 	// ID of the linked item. A reference to the [invoice item](https://developers.apideck.com/apis/accounting/reference#tag/Invoice-Items) that was used to create this line item
-	ID *string `json:"id,omitempty"`
+	ID optionalnullable.OptionalNullable[string] `json:"id,omitempty"`
 	// User defined item code
-	Code *string `json:"code,omitempty"`
+	Code optionalnullable.OptionalNullable[string] `json:"code,omitempty"`
 	// User defined item name
-	Name *string `json:"name,omitempty"`
+	Name optionalnullable.OptionalNullable[string] `json:"name,omitempty"`
 }
 
-func (o *LinkedInvoiceItem) GetID() *string {
+func (o *LinkedInvoiceItem) GetID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *LinkedInvoiceItem) GetCode() *string {
+func (o *LinkedInvoiceItem) GetCode() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Code
 }
 
-func (o *LinkedInvoiceItem) GetName() *string {
+func (o *LinkedInvoiceItem) GetName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}

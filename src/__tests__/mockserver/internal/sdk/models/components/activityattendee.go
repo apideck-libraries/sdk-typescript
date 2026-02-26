@@ -3,6 +3,7 @@
 package components
 
 import (
+	"mockserver/internal/sdk/optionalnullable"
 	"mockserver/internal/sdk/utils"
 	"time"
 )
@@ -22,33 +23,33 @@ func (e ActivityAttendeeStatus) ToPointer() *ActivityAttendeeStatus {
 
 type ActivityAttendee struct {
 	// Unique identifier for the attendee
-	ID *string `json:"id,omitempty"`
+	ID optionalnullable.OptionalNullable[string] `json:"id,omitempty"`
 	// Full name of the attendee
-	Name *string `json:"name,omitempty"`
+	Name optionalnullable.OptionalNullable[string] `json:"name,omitempty"`
 	// First name of the attendee
-	FirstName *string `json:"first_name,omitempty"`
+	FirstName optionalnullable.OptionalNullable[string] `json:"first_name,omitempty"`
 	// Middle name of the attendee
-	MiddleName *string `json:"middle_name,omitempty"`
+	MiddleName optionalnullable.OptionalNullable[string] `json:"middle_name,omitempty"`
 	// Last name of the attendee
-	LastName *string `json:"last_name,omitempty"`
+	LastName optionalnullable.OptionalNullable[string] `json:"last_name,omitempty"`
 	// Prefix of the attendee
-	Prefix *string `json:"prefix,omitempty"`
+	Prefix optionalnullable.OptionalNullable[string] `json:"prefix,omitempty"`
 	// Suffix of the attendee
-	Suffix *string `json:"suffix,omitempty"`
+	Suffix optionalnullable.OptionalNullable[string] `json:"suffix,omitempty"`
 	// Email address of the attendee
-	EmailAddress *string `json:"email_address,omitempty"`
+	EmailAddress optionalnullable.OptionalNullable[string] `json:"email_address,omitempty"`
 	// Whether the attendee is the organizer of the activity
-	IsOrganizer *bool `json:"is_organizer,omitempty"`
+	IsOrganizer optionalnullable.OptionalNullable[bool] `json:"is_organizer,omitempty"`
 	// Status of the attendee
-	Status *ActivityAttendeeStatus `json:"status,omitempty"`
+	Status optionalnullable.OptionalNullable[ActivityAttendeeStatus] `json:"status,omitempty"`
 	// The identifier for a related user
-	UserID *string `json:"user_id,omitempty"`
+	UserID optionalnullable.OptionalNullable[string] `json:"user_id,omitempty"`
 	// The identifier for a related contact
-	ContactID *string `json:"contact_id,omitempty"`
+	ContactID optionalnullable.OptionalNullable[string] `json:"contact_id,omitempty"`
 	// The last time the attendee was updated (ISO 8601)
-	UpdatedAt *time.Time `json:"updated_at,omitempty"`
+	UpdatedAt optionalnullable.OptionalNullable[time.Time] `json:"updated_at,omitempty"`
 	// The time the attendee was created (ISO 8601)
-	CreatedAt *time.Time `json:"created_at,omitempty"`
+	CreatedAt optionalnullable.OptionalNullable[time.Time] `json:"created_at,omitempty"`
 }
 
 func (a ActivityAttendee) MarshalJSON() ([]byte, error) {
@@ -62,98 +63,98 @@ func (a *ActivityAttendee) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *ActivityAttendee) GetID() *string {
+func (o *ActivityAttendee) GetID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *ActivityAttendee) GetName() *string {
+func (o *ActivityAttendee) GetName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-func (o *ActivityAttendee) GetFirstName() *string {
+func (o *ActivityAttendee) GetFirstName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.FirstName
 }
 
-func (o *ActivityAttendee) GetMiddleName() *string {
+func (o *ActivityAttendee) GetMiddleName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.MiddleName
 }
 
-func (o *ActivityAttendee) GetLastName() *string {
+func (o *ActivityAttendee) GetLastName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.LastName
 }
 
-func (o *ActivityAttendee) GetPrefix() *string {
+func (o *ActivityAttendee) GetPrefix() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Prefix
 }
 
-func (o *ActivityAttendee) GetSuffix() *string {
+func (o *ActivityAttendee) GetSuffix() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Suffix
 }
 
-func (o *ActivityAttendee) GetEmailAddress() *string {
+func (o *ActivityAttendee) GetEmailAddress() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.EmailAddress
 }
 
-func (o *ActivityAttendee) GetIsOrganizer() *bool {
+func (o *ActivityAttendee) GetIsOrganizer() optionalnullable.OptionalNullable[bool] {
 	if o == nil {
 		return nil
 	}
 	return o.IsOrganizer
 }
 
-func (o *ActivityAttendee) GetStatus() *ActivityAttendeeStatus {
+func (o *ActivityAttendee) GetStatus() optionalnullable.OptionalNullable[ActivityAttendeeStatus] {
 	if o == nil {
 		return nil
 	}
 	return o.Status
 }
 
-func (o *ActivityAttendee) GetUserID() *string {
+func (o *ActivityAttendee) GetUserID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.UserID
 }
 
-func (o *ActivityAttendee) GetContactID() *string {
+func (o *ActivityAttendee) GetContactID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.ContactID
 }
 
-func (o *ActivityAttendee) GetUpdatedAt() *time.Time {
+func (o *ActivityAttendee) GetUpdatedAt() optionalnullable.OptionalNullable[time.Time] {
 	if o == nil {
 		return nil
 	}
 	return o.UpdatedAt
 }
 
-func (o *ActivityAttendee) GetCreatedAt() *time.Time {
+func (o *ActivityAttendee) GetCreatedAt() optionalnullable.OptionalNullable[time.Time] {
 	if o == nil {
 		return nil
 	}
@@ -162,82 +163,82 @@ func (o *ActivityAttendee) GetCreatedAt() *time.Time {
 
 type ActivityAttendeeInput struct {
 	// Full name of the attendee
-	Name *string `json:"name,omitempty"`
+	Name optionalnullable.OptionalNullable[string] `json:"name,omitempty"`
 	// First name of the attendee
-	FirstName *string `json:"first_name,omitempty"`
+	FirstName optionalnullable.OptionalNullable[string] `json:"first_name,omitempty"`
 	// Middle name of the attendee
-	MiddleName *string `json:"middle_name,omitempty"`
+	MiddleName optionalnullable.OptionalNullable[string] `json:"middle_name,omitempty"`
 	// Last name of the attendee
-	LastName *string `json:"last_name,omitempty"`
+	LastName optionalnullable.OptionalNullable[string] `json:"last_name,omitempty"`
 	// Prefix of the attendee
-	Prefix *string `json:"prefix,omitempty"`
+	Prefix optionalnullable.OptionalNullable[string] `json:"prefix,omitempty"`
 	// Suffix of the attendee
-	Suffix *string `json:"suffix,omitempty"`
+	Suffix optionalnullable.OptionalNullable[string] `json:"suffix,omitempty"`
 	// Email address of the attendee
-	EmailAddress *string `json:"email_address,omitempty"`
+	EmailAddress optionalnullable.OptionalNullable[string] `json:"email_address,omitempty"`
 	// Whether the attendee is the organizer of the activity
-	IsOrganizer *bool `json:"is_organizer,omitempty"`
+	IsOrganizer optionalnullable.OptionalNullable[bool] `json:"is_organizer,omitempty"`
 	// Status of the attendee
-	Status *ActivityAttendeeStatus `json:"status,omitempty"`
+	Status optionalnullable.OptionalNullable[ActivityAttendeeStatus] `json:"status,omitempty"`
 }
 
-func (o *ActivityAttendeeInput) GetName() *string {
+func (o *ActivityAttendeeInput) GetName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-func (o *ActivityAttendeeInput) GetFirstName() *string {
+func (o *ActivityAttendeeInput) GetFirstName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.FirstName
 }
 
-func (o *ActivityAttendeeInput) GetMiddleName() *string {
+func (o *ActivityAttendeeInput) GetMiddleName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.MiddleName
 }
 
-func (o *ActivityAttendeeInput) GetLastName() *string {
+func (o *ActivityAttendeeInput) GetLastName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.LastName
 }
 
-func (o *ActivityAttendeeInput) GetPrefix() *string {
+func (o *ActivityAttendeeInput) GetPrefix() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Prefix
 }
 
-func (o *ActivityAttendeeInput) GetSuffix() *string {
+func (o *ActivityAttendeeInput) GetSuffix() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Suffix
 }
 
-func (o *ActivityAttendeeInput) GetEmailAddress() *string {
+func (o *ActivityAttendeeInput) GetEmailAddress() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.EmailAddress
 }
 
-func (o *ActivityAttendeeInput) GetIsOrganizer() *bool {
+func (o *ActivityAttendeeInput) GetIsOrganizer() optionalnullable.OptionalNullable[bool] {
 	if o == nil {
 		return nil
 	}
 	return o.IsOrganizer
 }
 
-func (o *ActivityAttendeeInput) GetStatus() *ActivityAttendeeStatus {
+func (o *ActivityAttendeeInput) GetStatus() optionalnullable.OptionalNullable[ActivityAttendeeStatus] {
 	if o == nil {
 		return nil
 	}

@@ -2,31 +2,35 @@
 
 package components
 
+import (
+	"mockserver/internal/sdk/optionalnullable"
+)
+
 // EcommerceDiscount - An object representing a discount applied to an ecommerce order or product.
 type EcommerceDiscount struct {
 	// The code used to apply the discount.
-	Code *string `json:"code,omitempty"`
+	Code optionalnullable.OptionalNullable[string] `json:"code,omitempty"`
 	// The fixed amount of the discount.
-	Amount *string `json:"amount,omitempty"`
+	Amount optionalnullable.OptionalNullable[string] `json:"amount,omitempty"`
 	// The percentage of the discount.
-	Percentage *string `json:"percentage,omitempty"`
+	Percentage optionalnullable.OptionalNullable[string] `json:"percentage,omitempty"`
 }
 
-func (o *EcommerceDiscount) GetCode() *string {
+func (o *EcommerceDiscount) GetCode() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Code
 }
 
-func (o *EcommerceDiscount) GetAmount() *string {
+func (o *EcommerceDiscount) GetAmount() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Amount
 }
 
-func (o *EcommerceDiscount) GetPercentage() *string {
+func (o *EcommerceDiscount) GetPercentage() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}

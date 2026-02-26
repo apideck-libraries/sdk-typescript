@@ -3,6 +3,7 @@
 package components
 
 import (
+	"mockserver/internal/sdk/optionalnullable"
 	"mockserver/internal/sdk/utils"
 	"time"
 )
@@ -24,22 +25,22 @@ type UnifiedFile struct {
 	// A unique identifier for an object.
 	ID string `json:"id"`
 	// The third-party API ID of original entity
-	DownstreamID *string `json:"downstream_id,omitempty"`
+	DownstreamID optionalnullable.OptionalNullable[string] `json:"downstream_id,omitempty"`
 	// The name of the file
 	Name *string `json:"name"`
 	// Optional description of the file
-	Description *string `json:"description,omitempty"`
+	Description optionalnullable.OptionalNullable[string] `json:"description,omitempty"`
 	// The type of resource. Could be file, folder or url
 	Type *FileType `json:"type"`
 	// The full path of the file or folder (includes the file name)
-	Path *string `json:"path,omitempty"`
+	Path optionalnullable.OptionalNullable[string] `json:"path,omitempty"`
 	// The MIME type of the file.
-	MimeType *string `json:"mime_type,omitempty"`
+	MimeType optionalnullable.OptionalNullable[string] `json:"mime_type,omitempty"`
 	// Whether the current user can download this file
 	Downloadable *bool `json:"downloadable,omitempty"`
 	// The size of the file in bytes
-	Size  *int64 `json:"size,omitempty"`
-	Owner *Owner `json:"owner,omitempty"`
+	Size  optionalnullable.OptionalNullable[int64] `json:"size,omitempty"`
+	Owner *Owner                                   `json:"owner,omitempty"`
 	// The parent folders of the file, starting from the root
 	ParentFolders []LinkedFolder `json:"parent_folders,omitempty"`
 	// Whether the list of parent folders is complete. Some connectors only return the direct parent of a file
@@ -49,17 +50,17 @@ type UnifiedFile struct {
 	// Whether the current file is exportable to other file formats. This property is relevant for proprietary file formats such as Google Docs or Dropbox Paper.
 	Exportable *bool `json:"exportable,omitempty"`
 	// The available file formats when exporting this file.
-	ExportFormats []string `json:"export_formats,omitempty"`
+	ExportFormats optionalnullable.OptionalNullable[[]string] `json:"export_formats,omitempty"`
 	// When custom mappings are configured on the resource, the result is included here.
-	CustomMappings map[string]any `json:"custom_mappings,omitempty"`
+	CustomMappings optionalnullable.OptionalNullable[map[string]any] `json:"custom_mappings,omitempty"`
 	// The user who last updated the object.
-	UpdatedBy *string `json:"updated_by,omitempty"`
+	UpdatedBy optionalnullable.OptionalNullable[string] `json:"updated_by,omitempty"`
 	// The user who created the object.
-	CreatedBy *string `json:"created_by,omitempty"`
+	CreatedBy optionalnullable.OptionalNullable[string] `json:"created_by,omitempty"`
 	// The date and time when the object was last updated.
-	UpdatedAt *time.Time `json:"updated_at,omitempty"`
+	UpdatedAt optionalnullable.OptionalNullable[time.Time] `json:"updated_at,omitempty"`
 	// The date and time when the object was created.
-	CreatedAt *time.Time `json:"created_at,omitempty"`
+	CreatedAt optionalnullable.OptionalNullable[time.Time] `json:"created_at,omitempty"`
 }
 
 func (u UnifiedFile) MarshalJSON() ([]byte, error) {
@@ -80,7 +81,7 @@ func (o *UnifiedFile) GetID() string {
 	return o.ID
 }
 
-func (o *UnifiedFile) GetDownstreamID() *string {
+func (o *UnifiedFile) GetDownstreamID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -94,7 +95,7 @@ func (o *UnifiedFile) GetName() *string {
 	return o.Name
 }
 
-func (o *UnifiedFile) GetDescription() *string {
+func (o *UnifiedFile) GetDescription() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -108,14 +109,14 @@ func (o *UnifiedFile) GetType() *FileType {
 	return o.Type
 }
 
-func (o *UnifiedFile) GetPath() *string {
+func (o *UnifiedFile) GetPath() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Path
 }
 
-func (o *UnifiedFile) GetMimeType() *string {
+func (o *UnifiedFile) GetMimeType() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -129,7 +130,7 @@ func (o *UnifiedFile) GetDownloadable() *bool {
 	return o.Downloadable
 }
 
-func (o *UnifiedFile) GetSize() *int64 {
+func (o *UnifiedFile) GetSize() optionalnullable.OptionalNullable[int64] {
 	if o == nil {
 		return nil
 	}
@@ -171,42 +172,42 @@ func (o *UnifiedFile) GetExportable() *bool {
 	return o.Exportable
 }
 
-func (o *UnifiedFile) GetExportFormats() []string {
+func (o *UnifiedFile) GetExportFormats() optionalnullable.OptionalNullable[[]string] {
 	if o == nil {
 		return nil
 	}
 	return o.ExportFormats
 }
 
-func (o *UnifiedFile) GetCustomMappings() map[string]any {
+func (o *UnifiedFile) GetCustomMappings() optionalnullable.OptionalNullable[map[string]any] {
 	if o == nil {
 		return nil
 	}
 	return o.CustomMappings
 }
 
-func (o *UnifiedFile) GetUpdatedBy() *string {
+func (o *UnifiedFile) GetUpdatedBy() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.UpdatedBy
 }
 
-func (o *UnifiedFile) GetCreatedBy() *string {
+func (o *UnifiedFile) GetCreatedBy() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.CreatedBy
 }
 
-func (o *UnifiedFile) GetUpdatedAt() *time.Time {
+func (o *UnifiedFile) GetUpdatedAt() optionalnullable.OptionalNullable[time.Time] {
 	if o == nil {
 		return nil
 	}
 	return o.UpdatedAt
 }
 
-func (o *UnifiedFile) GetCreatedAt() *time.Time {
+func (o *UnifiedFile) GetCreatedAt() optionalnullable.OptionalNullable[time.Time] {
 	if o == nil {
 		return nil
 	}

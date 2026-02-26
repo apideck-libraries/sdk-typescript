@@ -8,6 +8,7 @@ import (
 	"mockserver/internal/handler/assert"
 	"mockserver/internal/logging"
 	"mockserver/internal/sdk/models/components"
+	"mockserver/internal/sdk/optionalnullable"
 	"mockserver/internal/sdk/types"
 	"mockserver/internal/sdk/utils"
 	"mockserver/internal/tracking"
@@ -56,11 +57,11 @@ func testAccountingCategoriesOneAccountingCategoriesOne0(w http.ResponseWriter, 
 			ID:         types.String("12345"),
 			Name:       types.String("Insurance"),
 			Status:     components.CategoryStatusActive.ToPointer(),
-			RowVersion: types.String("1-12345"),
-			UpdatedBy:  types.String("12345"),
-			CreatedBy:  types.String("12345"),
-			UpdatedAt:  types.MustNewTimeFromString("2020-09-30T07:43:32.000Z"),
-			CreatedAt:  types.MustNewTimeFromString("2020-09-30T07:43:32.000Z"),
+			RowVersion: optionalnullable.From(types.String("1-12345")),
+			UpdatedBy:  optionalnullable.From(types.String("12345")),
+			CreatedBy:  optionalnullable.From(types.String("12345")),
+			UpdatedAt:  optionalnullable.From(types.MustNewTimeFromString("2020-09-30T07:43:32.000Z")),
+			CreatedAt:  optionalnullable.From(types.MustNewTimeFromString("2020-09-30T07:43:32.000Z")),
 			PassThrough: []components.PassThroughBody{
 				components.PassThroughBody{
 					ServiceID: "<id>",

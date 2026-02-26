@@ -8,6 +8,7 @@ import (
 	"mockserver/internal/handler/assert"
 	"mockserver/internal/logging"
 	"mockserver/internal/sdk/models/components"
+	"mockserver/internal/sdk/optionalnullable"
 	"mockserver/internal/sdk/types"
 	"mockserver/internal/sdk/utils"
 	"mockserver/internal/tracking"
@@ -55,73 +56,73 @@ func testAccountingExpensesAllAccountingExpensesAll0(w http.ResponseWriter, req 
 		Data: []components.Expense{
 			components.Expense{
 				ID:              types.String("12345"),
-				Number:          types.String("OIT00546"),
+				Number:          optionalnullable.From(types.String("OIT00546")),
 				TransactionDate: types.MustNewTimeFromString("2021-05-01T12:00:00.000Z"),
 				AccountID:       types.String("123456"),
 				SupplierID:      types.String("12345"),
-				CompanyID:       types.String("12345"),
-				DepartmentID:    types.String("12345"),
-				PaymentType:     components.ExpensePaymentTypeCash.ToPointer(),
-				Currency:        components.CurrencyUsd.ToPointer(),
-				CurrencyRate:    types.Float64(0.69),
-				Type:            components.ExpenseTypeExpense.ToPointer(),
-				Memo:            types.String("For travel expenses incurred on 2024-05-15"),
+				CompanyID:       optionalnullable.From(types.String("12345")),
+				DepartmentID:    optionalnullable.From(types.String("12345")),
+				PaymentType:     optionalnullable.From(components.ExpensePaymentTypeCash.ToPointer()),
+				Currency:        optionalnullable.From(components.CurrencyUsd.ToPointer()),
+				CurrencyRate:    optionalnullable.From(types.Float64(0.69)),
+				Type:            optionalnullable.From(components.ExpenseTypeExpense.ToPointer()),
+				Memo:            optionalnullable.From(types.String("For travel expenses incurred on 2024-05-15")),
 				TaxRate: &components.LinkedTaxRate{
-					ID:   types.String("123456"),
-					Code: types.String("N-T"),
-					Name: types.String("GST on Purchases"),
-					Rate: types.Float64(10),
+					ID:   optionalnullable.From(types.String("123456")),
+					Code: optionalnullable.From(types.String("N-T")),
+					Name: optionalnullable.From(types.String("GST on Purchases")),
+					Rate: optionalnullable.From(types.Float64(10)),
 				},
-				TotalAmount: types.Float64(275),
+				TotalAmount: optionalnullable.From(types.Float64(275)),
 				LineItems: []components.ExpenseLineItem{
 					components.ExpenseLineItem{
 						ID: types.String("12345"),
-						TrackingCategories: []*components.LinkedTrackingCategory{
+						TrackingCategories: optionalnullable.From(types.Pointer([]*components.LinkedTrackingCategory{
 							&components.LinkedTrackingCategory{
 								ID:   types.String("123456"),
-								Name: types.String("New York"),
+								Name: optionalnullable.From(types.String("New York")),
 							},
 							&components.LinkedTrackingCategory{
 								ID:   types.String("123456"),
-								Name: types.String("New York"),
+								Name: optionalnullable.From(types.String("New York")),
 							},
 							&components.LinkedTrackingCategory{
 								ID:   types.String("123456"),
-								Name: types.String("New York"),
+								Name: optionalnullable.From(types.String("New York")),
 							},
-						},
+						})),
 						AccountID:    types.String("123456"),
 						CustomerID:   types.String("12345"),
-						DepartmentID: types.String("12345"),
-						LocationID:   types.String("12345"),
+						DepartmentID: optionalnullable.From(types.String("12345")),
+						LocationID:   optionalnullable.From(types.String("12345")),
 						TaxRate: &components.LinkedTaxRate{
-							ID:   types.String("123456"),
-							Code: types.String("N-T"),
-							Name: types.String("GST on Purchases"),
-							Rate: types.Float64(10),
+							ID:   optionalnullable.From(types.String("123456")),
+							Code: optionalnullable.From(types.String("N-T")),
+							Name: optionalnullable.From(types.String("GST on Purchases")),
+							Rate: optionalnullable.From(types.Float64(10)),
 						},
-						Description: types.String("Travel US."),
+						Description: optionalnullable.From(types.String("Travel US.")),
 						TotalAmount: types.Float64(275),
 					},
 					components.ExpenseLineItem{
 						ID: types.String("12345"),
-						TrackingCategories: []*components.LinkedTrackingCategory{
+						TrackingCategories: optionalnullable.From(types.Pointer([]*components.LinkedTrackingCategory{
 							&components.LinkedTrackingCategory{
 								ID:   types.String("123456"),
-								Name: types.String("New York"),
+								Name: optionalnullable.From(types.String("New York")),
 							},
-						},
+						})),
 						AccountID:    types.String("123456"),
 						CustomerID:   types.String("12345"),
-						DepartmentID: types.String("12345"),
-						LocationID:   types.String("12345"),
+						DepartmentID: optionalnullable.From(types.String("12345")),
+						LocationID:   optionalnullable.From(types.String("12345")),
 						TaxRate: &components.LinkedTaxRate{
-							ID:   types.String("123456"),
-							Code: types.String("N-T"),
-							Name: types.String("GST on Purchases"),
-							Rate: types.Float64(10),
+							ID:   optionalnullable.From(types.String("123456")),
+							Code: optionalnullable.From(types.String("N-T")),
+							Name: optionalnullable.From(types.String("GST on Purchases")),
+							Rate: optionalnullable.From(types.Float64(10)),
 						},
-						Description: types.String("Travel US."),
+						Description: optionalnullable.From(types.String("Travel US.")),
 						TotalAmount: types.Float64(275),
 					},
 				},
@@ -129,17 +130,17 @@ func testAccountingExpensesAllAccountingExpensesAll0(w http.ResponseWriter, req 
 					components.CreateCustomFieldUnionCustomField1(
 						components.CustomField1{
 							ID:          types.String("2389328923893298"),
-							Name:        types.String("employee_level"),
-							Description: types.String("Employee Level"),
-							Value: types.Pointer(components.CreateCustomFieldValue2Str(
+							Name:        optionalnullable.From(types.String("employee_level")),
+							Description: optionalnullable.From(types.String("Employee Level")),
+							Value: optionalnullable.From(types.Pointer(components.CreateCustomFieldValue2Str(
 								"Uses Salesforce and Marketo",
-							)),
+							))),
 						},
 					),
 				},
-				UpdatedAt:  types.MustNewTimeFromString("2020-09-30T07:43:32.000Z"),
-				CreatedAt:  types.MustNewTimeFromString("2020-09-30T07:43:32.000Z"),
-				RowVersion: types.String("1-12345"),
+				UpdatedAt:  optionalnullable.From(types.MustNewTimeFromString("2020-09-30T07:43:32.000Z")),
+				CreatedAt:  optionalnullable.From(types.MustNewTimeFromString("2020-09-30T07:43:32.000Z")),
+				RowVersion: optionalnullable.From(types.String("1-12345")),
 				PassThrough: []components.PassThroughBody{
 					components.PassThroughBody{
 						ServiceID: "<id>",
@@ -179,65 +180,65 @@ func testAccountingExpensesAllAccountingExpensesAll0(w http.ResponseWriter, req 
 			},
 			components.Expense{
 				ID:              types.String("12345"),
-				Number:          types.String("OIT00546"),
+				Number:          optionalnullable.From(types.String("OIT00546")),
 				TransactionDate: types.MustNewTimeFromString("2021-05-01T12:00:00.000Z"),
 				AccountID:       types.String("123456"),
 				SupplierID:      types.String("12345"),
-				CompanyID:       types.String("12345"),
-				DepartmentID:    types.String("12345"),
-				PaymentType:     components.ExpensePaymentTypeCash.ToPointer(),
-				Currency:        components.CurrencyUsd.ToPointer(),
-				CurrencyRate:    types.Float64(0.69),
-				Type:            components.ExpenseTypeExpense.ToPointer(),
-				Memo:            types.String("For travel expenses incurred on 2024-05-15"),
+				CompanyID:       optionalnullable.From(types.String("12345")),
+				DepartmentID:    optionalnullable.From(types.String("12345")),
+				PaymentType:     optionalnullable.From(components.ExpensePaymentTypeCash.ToPointer()),
+				Currency:        optionalnullable.From(components.CurrencyUsd.ToPointer()),
+				CurrencyRate:    optionalnullable.From(types.Float64(0.69)),
+				Type:            optionalnullable.From(components.ExpenseTypeExpense.ToPointer()),
+				Memo:            optionalnullable.From(types.String("For travel expenses incurred on 2024-05-15")),
 				TaxRate: &components.LinkedTaxRate{
-					ID:   types.String("123456"),
-					Code: types.String("N-T"),
-					Name: types.String("GST on Purchases"),
-					Rate: types.Float64(10),
+					ID:   optionalnullable.From(types.String("123456")),
+					Code: optionalnullable.From(types.String("N-T")),
+					Name: optionalnullable.From(types.String("GST on Purchases")),
+					Rate: optionalnullable.From(types.Float64(10)),
 				},
-				TotalAmount: types.Float64(275),
+				TotalAmount: optionalnullable.From(types.Float64(275)),
 				LineItems: []components.ExpenseLineItem{
 					components.ExpenseLineItem{
 						ID: types.String("12345"),
-						TrackingCategories: []*components.LinkedTrackingCategory{
+						TrackingCategories: optionalnullable.From(types.Pointer([]*components.LinkedTrackingCategory{
 							&components.LinkedTrackingCategory{
 								ID:   types.String("123456"),
-								Name: types.String("New York"),
+								Name: optionalnullable.From(types.String("New York")),
 							},
-						},
+						})),
 						AccountID:    types.String("123456"),
 						CustomerID:   types.String("12345"),
-						DepartmentID: types.String("12345"),
-						LocationID:   types.String("12345"),
+						DepartmentID: optionalnullable.From(types.String("12345")),
+						LocationID:   optionalnullable.From(types.String("12345")),
 						TaxRate: &components.LinkedTaxRate{
-							ID:   types.String("123456"),
-							Code: types.String("N-T"),
-							Name: types.String("GST on Purchases"),
-							Rate: types.Float64(10),
+							ID:   optionalnullable.From(types.String("123456")),
+							Code: optionalnullable.From(types.String("N-T")),
+							Name: optionalnullable.From(types.String("GST on Purchases")),
+							Rate: optionalnullable.From(types.Float64(10)),
 						},
-						Description: types.String("Travel US."),
+						Description: optionalnullable.From(types.String("Travel US.")),
 						TotalAmount: types.Float64(275),
 					},
 					components.ExpenseLineItem{
 						ID: types.String("12345"),
-						TrackingCategories: []*components.LinkedTrackingCategory{
+						TrackingCategories: optionalnullable.From(types.Pointer([]*components.LinkedTrackingCategory{
 							&components.LinkedTrackingCategory{
 								ID:   types.String("123456"),
-								Name: types.String("New York"),
+								Name: optionalnullable.From(types.String("New York")),
 							},
-						},
+						})),
 						AccountID:    types.String("123456"),
 						CustomerID:   types.String("12345"),
-						DepartmentID: types.String("12345"),
-						LocationID:   types.String("12345"),
+						DepartmentID: optionalnullable.From(types.String("12345")),
+						LocationID:   optionalnullable.From(types.String("12345")),
 						TaxRate: &components.LinkedTaxRate{
-							ID:   types.String("123456"),
-							Code: types.String("N-T"),
-							Name: types.String("GST on Purchases"),
-							Rate: types.Float64(10),
+							ID:   optionalnullable.From(types.String("123456")),
+							Code: optionalnullable.From(types.String("N-T")),
+							Name: optionalnullable.From(types.String("GST on Purchases")),
+							Rate: optionalnullable.From(types.Float64(10)),
 						},
-						Description: types.String("Travel US."),
+						Description: optionalnullable.From(types.String("Travel US.")),
 						TotalAmount: types.Float64(275),
 					},
 				},
@@ -245,37 +246,37 @@ func testAccountingExpensesAllAccountingExpensesAll0(w http.ResponseWriter, req 
 					components.CreateCustomFieldUnionCustomField1(
 						components.CustomField1{
 							ID:          types.String("2389328923893298"),
-							Name:        types.String("employee_level"),
-							Description: types.String("Employee Level"),
-							Value: types.Pointer(components.CreateCustomFieldValue2MapOfAny(
+							Name:        optionalnullable.From(types.String("employee_level")),
+							Description: optionalnullable.From(types.String("Employee Level")),
+							Value: optionalnullable.From(types.Pointer(components.CreateCustomFieldValue2MapOfAny(
 								map[string]any{},
-							)),
+							))),
 						},
 					),
 					components.CreateCustomFieldUnionCustomField1(
 						components.CustomField1{
 							ID:          types.String("2389328923893298"),
-							Name:        types.String("employee_level"),
-							Description: types.String("Employee Level"),
-							Value: types.Pointer(components.CreateCustomFieldValue2MapOfAny(
+							Name:        optionalnullable.From(types.String("employee_level")),
+							Description: optionalnullable.From(types.String("Employee Level")),
+							Value: optionalnullable.From(types.Pointer(components.CreateCustomFieldValue2MapOfAny(
 								map[string]any{},
-							)),
+							))),
 						},
 					),
 					components.CreateCustomFieldUnionCustomField1(
 						components.CustomField1{
 							ID:          types.String("2389328923893298"),
-							Name:        types.String("employee_level"),
-							Description: types.String("Employee Level"),
-							Value: types.Pointer(components.CreateCustomFieldValue2Str(
+							Name:        optionalnullable.From(types.String("employee_level")),
+							Description: optionalnullable.From(types.String("Employee Level")),
+							Value: optionalnullable.From(types.Pointer(components.CreateCustomFieldValue2Str(
 								"Uses Salesforce and Marketo",
-							)),
+							))),
 						},
 					),
 				},
-				UpdatedAt:  types.MustNewTimeFromString("2020-09-30T07:43:32.000Z"),
-				CreatedAt:  types.MustNewTimeFromString("2020-09-30T07:43:32.000Z"),
-				RowVersion: types.String("1-12345"),
+				UpdatedAt:  optionalnullable.From(types.MustNewTimeFromString("2020-09-30T07:43:32.000Z")),
+				CreatedAt:  optionalnullable.From(types.MustNewTimeFromString("2020-09-30T07:43:32.000Z")),
+				RowVersion: optionalnullable.From(types.String("1-12345")),
 				PassThrough: []components.PassThroughBody{
 					components.PassThroughBody{
 						ServiceID: "<id>",
@@ -302,44 +303,44 @@ func testAccountingExpensesAllAccountingExpensesAll0(w http.ResponseWriter, req 
 			},
 			components.Expense{
 				ID:              types.String("12345"),
-				Number:          types.String("OIT00546"),
+				Number:          optionalnullable.From(types.String("OIT00546")),
 				TransactionDate: types.MustNewTimeFromString("2021-05-01T12:00:00.000Z"),
 				AccountID:       types.String("123456"),
 				SupplierID:      types.String("12345"),
-				CompanyID:       types.String("12345"),
-				DepartmentID:    types.String("12345"),
-				PaymentType:     components.ExpensePaymentTypeCash.ToPointer(),
-				Currency:        components.CurrencyUsd.ToPointer(),
-				CurrencyRate:    types.Float64(0.69),
-				Type:            components.ExpenseTypeExpense.ToPointer(),
-				Memo:            types.String("For travel expenses incurred on 2024-05-15"),
+				CompanyID:       optionalnullable.From(types.String("12345")),
+				DepartmentID:    optionalnullable.From(types.String("12345")),
+				PaymentType:     optionalnullable.From(components.ExpensePaymentTypeCash.ToPointer()),
+				Currency:        optionalnullable.From(components.CurrencyUsd.ToPointer()),
+				CurrencyRate:    optionalnullable.From(types.Float64(0.69)),
+				Type:            optionalnullable.From(components.ExpenseTypeExpense.ToPointer()),
+				Memo:            optionalnullable.From(types.String("For travel expenses incurred on 2024-05-15")),
 				TaxRate: &components.LinkedTaxRate{
-					ID:   types.String("123456"),
-					Code: types.String("N-T"),
-					Name: types.String("GST on Purchases"),
-					Rate: types.Float64(10),
+					ID:   optionalnullable.From(types.String("123456")),
+					Code: optionalnullable.From(types.String("N-T")),
+					Name: optionalnullable.From(types.String("GST on Purchases")),
+					Rate: optionalnullable.From(types.Float64(10)),
 				},
-				TotalAmount: types.Float64(275),
+				TotalAmount: optionalnullable.From(types.Float64(275)),
 				LineItems: []components.ExpenseLineItem{
 					components.ExpenseLineItem{
 						ID: types.String("12345"),
-						TrackingCategories: []*components.LinkedTrackingCategory{
+						TrackingCategories: optionalnullable.From(types.Pointer([]*components.LinkedTrackingCategory{
 							&components.LinkedTrackingCategory{
 								ID:   types.String("123456"),
-								Name: types.String("New York"),
+								Name: optionalnullable.From(types.String("New York")),
 							},
-						},
+						})),
 						AccountID:    types.String("123456"),
 						CustomerID:   types.String("12345"),
-						DepartmentID: types.String("12345"),
-						LocationID:   types.String("12345"),
+						DepartmentID: optionalnullable.From(types.String("12345")),
+						LocationID:   optionalnullable.From(types.String("12345")),
 						TaxRate: &components.LinkedTaxRate{
-							ID:   types.String("123456"),
-							Code: types.String("N-T"),
-							Name: types.String("GST on Purchases"),
-							Rate: types.Float64(10),
+							ID:   optionalnullable.From(types.String("123456")),
+							Code: optionalnullable.From(types.String("N-T")),
+							Name: optionalnullable.From(types.String("GST on Purchases")),
+							Rate: optionalnullable.From(types.Float64(10)),
 						},
-						Description: types.String("Travel US."),
+						Description: optionalnullable.From(types.String("Travel US.")),
 						TotalAmount: types.Float64(275),
 					},
 				},
@@ -347,39 +348,39 @@ func testAccountingExpensesAllAccountingExpensesAll0(w http.ResponseWriter, req 
 					components.CreateCustomFieldUnionCustomField1(
 						components.CustomField1{
 							ID:          types.String("2389328923893298"),
-							Name:        types.String("employee_level"),
-							Description: types.String("Employee Level"),
-							Value: types.Pointer(components.CreateCustomFieldValue2MapOfAny(
+							Name:        optionalnullable.From(types.String("employee_level")),
+							Description: optionalnullable.From(types.String("Employee Level")),
+							Value: optionalnullable.From(types.Pointer(components.CreateCustomFieldValue2MapOfAny(
 								map[string]any{},
-							)),
+							))),
 						},
 					),
 					components.CreateCustomFieldUnionCustomField1(
 						components.CustomField1{
 							ID:          types.String("2389328923893298"),
-							Name:        types.String("employee_level"),
-							Description: types.String("Employee Level"),
-							Value: types.Pointer(components.CreateCustomFieldValue2MapOfAny(
+							Name:        optionalnullable.From(types.String("employee_level")),
+							Description: optionalnullable.From(types.String("Employee Level")),
+							Value: optionalnullable.From(types.Pointer(components.CreateCustomFieldValue2MapOfAny(
 								map[string]any{
 									"0": map[string]any{},
 								},
-							)),
+							))),
 						},
 					),
 					components.CreateCustomFieldUnionCustomField1(
 						components.CustomField1{
 							ID:          types.String("2389328923893298"),
-							Name:        types.String("employee_level"),
-							Description: types.String("Employee Level"),
-							Value: types.Pointer(components.CreateCustomFieldValue2Str(
+							Name:        optionalnullable.From(types.String("employee_level")),
+							Description: optionalnullable.From(types.String("Employee Level")),
+							Value: optionalnullable.From(types.Pointer(components.CreateCustomFieldValue2Str(
 								"Uses Salesforce and Marketo",
-							)),
+							))),
 						},
 					),
 				},
-				UpdatedAt:  types.MustNewTimeFromString("2020-09-30T07:43:32.000Z"),
-				CreatedAt:  types.MustNewTimeFromString("2020-09-30T07:43:32.000Z"),
-				RowVersion: types.String("1-12345"),
+				UpdatedAt:  optionalnullable.From(types.MustNewTimeFromString("2020-09-30T07:43:32.000Z")),
+				CreatedAt:  optionalnullable.From(types.MustNewTimeFromString("2020-09-30T07:43:32.000Z")),
+				RowVersion: optionalnullable.From(types.String("1-12345")),
 				PassThrough: []components.PassThroughBody{
 					components.PassThroughBody{
 						ServiceID: "<id>",
@@ -416,15 +417,15 @@ func testAccountingExpensesAllAccountingExpensesAll0(w http.ResponseWriter, req 
 		Meta: &components.Meta{
 			ItemsOnPage: types.Int64(50),
 			Cursors: &components.Cursors{
-				Previous: types.String("em9oby1jcm06OnBhZ2U6OjE="),
-				Current:  types.String("em9oby1jcm06OnBhZ2U6OjI="),
-				Next:     types.String("em9oby1jcm06OnBhZ2U6OjM="),
+				Previous: optionalnullable.From(types.String("em9oby1jcm06OnBhZ2U6OjE=")),
+				Current:  optionalnullable.From(types.String("em9oby1jcm06OnBhZ2U6OjI=")),
+				Next:     optionalnullable.From(types.String("em9oby1jcm06OnBhZ2U6OjM=")),
 			},
 		},
 		Links: &components.Links{
-			Previous: types.String("https://unify.apideck.com/crm/companies?cursor=em9oby1jcm06OnBhZ2U6OjE%3D"),
+			Previous: optionalnullable.From(types.String("https://unify.apideck.com/crm/companies?cursor=em9oby1jcm06OnBhZ2U6OjE%3D")),
 			Current:  types.String("https://unify.apideck.com/crm/companies"),
-			Next:     types.String("https://unify.apideck.com/crm/companies?cursor=em9oby1jcm06OnBhZ2U6OjM"),
+			Next:     optionalnullable.From(types.String("https://unify.apideck.com/crm/companies?cursor=em9oby1jcm06OnBhZ2U6OjM")),
 		},
 	}
 	respBodyBytes, err := utils.MarshalJSON(respBody, "", true)

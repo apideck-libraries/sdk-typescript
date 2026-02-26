@@ -2,86 +2,90 @@
 
 package components
 
+import (
+	"mockserver/internal/sdk/optionalnullable"
+)
+
 type NoteInput struct {
 	// The title of the note
-	Title *string `json:"title,omitempty"`
+	Title optionalnullable.OptionalNullable[string] `json:"title,omitempty"`
 	// The content of the note.
-	Content *string `json:"content,omitempty"`
+	Content optionalnullable.OptionalNullable[string] `json:"content,omitempty"`
 	// The user that owns the note.
-	OwnerID *string `json:"owner_id,omitempty"`
+	OwnerID optionalnullable.OptionalNullable[string] `json:"owner_id,omitempty"`
 	// The contact that is related to the note.
-	ContactID *string `json:"contact_id,omitempty"`
+	ContactID optionalnullable.OptionalNullable[string] `json:"contact_id,omitempty"`
 	// The company that is related to the note.
-	CompanyID *string `json:"company_id,omitempty"`
+	CompanyID optionalnullable.OptionalNullable[string] `json:"company_id,omitempty"`
 	// The opportunity that is related to the note.
-	OpportunityID *string `json:"opportunity_id,omitempty"`
+	OpportunityID optionalnullable.OptionalNullable[string] `json:"opportunity_id,omitempty"`
 	// The activity that is related to the note.
-	ActivityID *string `json:"activity_id,omitempty"`
+	ActivityID optionalnullable.OptionalNullable[string] `json:"activity_id,omitempty"`
 	// The lead that is related to the note.
-	LeadID *string `json:"lead_id,omitempty"`
+	LeadID optionalnullable.OptionalNullable[string] `json:"lead_id,omitempty"`
 	// Whether the Note is active or not.
-	Active *bool `json:"active,omitempty"`
+	Active optionalnullable.OptionalNullable[bool] `json:"active,omitempty"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
 	PassThrough []PassThroughBody `json:"pass_through,omitempty"`
 }
 
-func (o *NoteInput) GetTitle() *string {
+func (o *NoteInput) GetTitle() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Title
 }
 
-func (o *NoteInput) GetContent() *string {
+func (o *NoteInput) GetContent() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Content
 }
 
-func (o *NoteInput) GetOwnerID() *string {
+func (o *NoteInput) GetOwnerID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.OwnerID
 }
 
-func (o *NoteInput) GetContactID() *string {
+func (o *NoteInput) GetContactID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.ContactID
 }
 
-func (o *NoteInput) GetCompanyID() *string {
+func (o *NoteInput) GetCompanyID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.CompanyID
 }
 
-func (o *NoteInput) GetOpportunityID() *string {
+func (o *NoteInput) GetOpportunityID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.OpportunityID
 }
 
-func (o *NoteInput) GetActivityID() *string {
+func (o *NoteInput) GetActivityID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.ActivityID
 }
 
-func (o *NoteInput) GetLeadID() *string {
+func (o *NoteInput) GetLeadID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.LeadID
 }
 
-func (o *NoteInput) GetActive() *bool {
+func (o *NoteInput) GetActive() optionalnullable.OptionalNullable[bool] {
 	if o == nil {
 		return nil
 	}

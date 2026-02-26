@@ -8,6 +8,7 @@ import (
 	"mockserver/internal/handler/assert"
 	"mockserver/internal/logging"
 	"mockserver/internal/sdk/models/components"
+	"mockserver/internal/sdk/optionalnullable"
 	"mockserver/internal/sdk/types"
 	"mockserver/internal/sdk/utils"
 	"mockserver/internal/tracking"
@@ -53,14 +54,14 @@ func testIssueTrackingCollectionUsersOneIssueTrackingCollectionUsersOne0(w http.
 		Resource:   "Tickets",
 		Operation:  "one",
 		Data: components.CollectionUser{
-			ID:        types.String("12345"),
-			Name:      types.String("Elon Musk"),
-			FirstName: types.String("Elon"),
-			LastName:  types.String("Musk"),
-			Email:     types.String("elon@musk.com"),
-			PhotoURL:  types.String("https://unavatar.io/elon-musk"),
-			UpdatedAt: types.MustNewTimeFromString("2020-09-30T07:43:32.000Z"),
-			CreatedAt: types.MustNewTimeFromString("2020-09-30T07:43:32.000Z"),
+			ID:        optionalnullable.From(types.String("12345")),
+			Name:      optionalnullable.From(types.String("Elon Musk")),
+			FirstName: optionalnullable.From(types.String("Elon")),
+			LastName:  optionalnullable.From(types.String("Musk")),
+			Email:     optionalnullable.From(types.String("elon@musk.com")),
+			PhotoURL:  optionalnullable.From(types.String("https://unavatar.io/elon-musk")),
+			UpdatedAt: optionalnullable.From(types.MustNewTimeFromString("2020-09-30T07:43:32.000Z")),
+			CreatedAt: optionalnullable.From(types.MustNewTimeFromString("2020-09-30T07:43:32.000Z")),
 		},
 	}
 	respBodyBytes, err := utils.MarshalJSON(respBody, "", true)

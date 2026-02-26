@@ -2,6 +2,10 @@
 
 package components
 
+import (
+	"mockserver/internal/sdk/optionalnullable"
+)
+
 // GetTimeOffRequestResponse - TimeOffRequests
 type GetTimeOffRequestResponse struct {
 	// HTTP Response Status Code
@@ -16,7 +20,7 @@ type GetTimeOffRequestResponse struct {
 	Operation string         `json:"operation"`
 	Data      TimeOffRequest `json:"data"`
 	// Raw response from the integration when raw=true query param is provided
-	Raw map[string]any `json:"_raw,omitempty"`
+	Raw optionalnullable.OptionalNullable[map[string]any] `json:"_raw,omitempty"`
 }
 
 func (o *GetTimeOffRequestResponse) GetStatusCode() int64 {
@@ -61,7 +65,7 @@ func (o *GetTimeOffRequestResponse) GetData() TimeOffRequest {
 	return o.Data
 }
 
-func (o *GetTimeOffRequestResponse) GetRaw() map[string]any {
+func (o *GetTimeOffRequestResponse) GetRaw() optionalnullable.OptionalNullable[map[string]any] {
 	if o == nil {
 		return nil
 	}

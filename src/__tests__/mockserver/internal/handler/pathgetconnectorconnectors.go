@@ -8,6 +8,7 @@ import (
 	"mockserver/internal/handler/assert"
 	"mockserver/internal/logging"
 	"mockserver/internal/sdk/models/components"
+	"mockserver/internal/sdk/optionalnullable"
 	"mockserver/internal/sdk/types"
 	"mockserver/internal/sdk/utils"
 	"mockserver/internal/tracking"
@@ -53,7 +54,7 @@ func testConnectorConnectorsAllConnectorConnectorsAll0(w http.ResponseWriter, re
 			components.Connector{
 				ID:                     types.String("crm+salesforce"),
 				Name:                   types.String("Salesforce"),
-				Description:            types.String("A description"),
+				Description:            optionalnullable.From(types.String("A description")),
 				IconURL:                types.String("https://res.cloudinary.com/apideck/image/upload/v1529456047/catalog/salesforce/icon128x128.png"),
 				LogoURL:                types.String("https://c1.sfdcstatic.com/content/dam/web/en_us/www/images/home/logo-salesforce-m.svg"),
 				WebsiteURL:             types.String("https://www.salesforce.com"),
@@ -192,7 +193,7 @@ func testConnectorConnectorsAllConnectorConnectorsAll0(w http.ResponseWriter, re
 			components.Connector{
 				ID:                     types.String("crm+salesforce"),
 				Name:                   types.String("Salesforce"),
-				Description:            types.String("A description"),
+				Description:            optionalnullable.From(types.String("A description")),
 				IconURL:                types.String("https://res.cloudinary.com/apideck/image/upload/v1529456047/catalog/salesforce/icon128x128.png"),
 				LogoURL:                types.String("https://c1.sfdcstatic.com/content/dam/web/en_us/www/images/home/logo-salesforce-m.svg"),
 				WebsiteURL:             types.String("https://www.salesforce.com"),
@@ -340,7 +341,7 @@ func testConnectorConnectorsAllConnectorConnectorsAll0(w http.ResponseWriter, re
 			components.Connector{
 				ID:                     types.String("crm+salesforce"),
 				Name:                   types.String("Salesforce"),
-				Description:            types.String("A description"),
+				Description:            optionalnullable.From(types.String("A description")),
 				IconURL:                types.String("https://res.cloudinary.com/apideck/image/upload/v1529456047/catalog/salesforce/icon128x128.png"),
 				LogoURL:                types.String("https://c1.sfdcstatic.com/content/dam/web/en_us/www/images/home/logo-salesforce-m.svg"),
 				WebsiteURL:             types.String("https://www.salesforce.com"),
@@ -502,15 +503,15 @@ func testConnectorConnectorsAllConnectorConnectorsAll0(w http.ResponseWriter, re
 		Meta: &components.Meta{
 			ItemsOnPage: types.Int64(50),
 			Cursors: &components.Cursors{
-				Previous: types.String("em9oby1jcm06OnBhZ2U6OjE="),
-				Current:  types.String("em9oby1jcm06OnBhZ2U6OjI="),
-				Next:     types.String("em9oby1jcm06OnBhZ2U6OjM="),
+				Previous: optionalnullable.From(types.String("em9oby1jcm06OnBhZ2U6OjE=")),
+				Current:  optionalnullable.From(types.String("em9oby1jcm06OnBhZ2U6OjI=")),
+				Next:     optionalnullable.From(types.String("em9oby1jcm06OnBhZ2U6OjM=")),
 			},
 		},
 		Links: &components.Links{
-			Previous: types.String("https://unify.apideck.com/crm/companies?cursor=em9oby1jcm06OnBhZ2U6OjE%3D"),
+			Previous: optionalnullable.From(types.String("https://unify.apideck.com/crm/companies?cursor=em9oby1jcm06OnBhZ2U6OjE%3D")),
 			Current:  types.String("https://unify.apideck.com/crm/companies"),
-			Next:     types.String("https://unify.apideck.com/crm/companies?cursor=em9oby1jcm06OnBhZ2U6OjM"),
+			Next:     optionalnullable.From(types.String("https://unify.apideck.com/crm/companies?cursor=em9oby1jcm06OnBhZ2U6OjM")),
 		},
 	}
 	respBodyBytes, err := utils.MarshalJSON(respBody, "", true)

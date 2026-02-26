@@ -8,6 +8,7 @@ import (
 	"mockserver/internal/handler/assert"
 	"mockserver/internal/logging"
 	"mockserver/internal/sdk/models/components"
+	"mockserver/internal/sdk/optionalnullable"
 	"mockserver/internal/sdk/types"
 	"mockserver/internal/sdk/utils"
 	"mockserver/internal/tracking"
@@ -56,7 +57,7 @@ func testVaultLogsAllVaultLogsAll0(w http.ResponseWriter, req *http.Request) {
 				ChildRequest: false,
 				ConsumerID:   "test-consumer",
 				Duration:     2220.379304,
-				ErrorMessage: types.String("Refresh token is invalid"),
+				ErrorMessage: optionalnullable.From(types.String("Refresh token is invalid")),
 				Execution:    2248,
 				HasChildren:  false,
 				HTTPMethod:   "GET",
@@ -73,7 +74,7 @@ func testVaultLogsAllVaultLogsAll0(w http.ResponseWriter, req *http.Request) {
 					ID:   "apideck-vault",
 					Name: "Apideck Vault",
 				},
-				SourceIP:   types.String("94.227.131.238"),
+				SourceIP:   optionalnullable.From(types.String("94.227.131.238")),
 				StatusCode: 200,
 				Success:    true,
 				Timestamp:  "2021-07-12T14:26:17.420Z",
@@ -85,7 +86,7 @@ func testVaultLogsAllVaultLogsAll0(w http.ResponseWriter, req *http.Request) {
 				ChildRequest: false,
 				ConsumerID:   "test-consumer",
 				Duration:     2220.379304,
-				ErrorMessage: types.String("Refresh token is invalid"),
+				ErrorMessage: optionalnullable.From(types.String("Refresh token is invalid")),
 				Execution:    2248,
 				HasChildren:  false,
 				HTTPMethod:   "GET",
@@ -102,7 +103,7 @@ func testVaultLogsAllVaultLogsAll0(w http.ResponseWriter, req *http.Request) {
 					ID:   "apideck-vault",
 					Name: "Apideck Vault",
 				},
-				SourceIP:   types.String("94.227.131.238"),
+				SourceIP:   optionalnullable.From(types.String("94.227.131.238")),
 				StatusCode: 200,
 				Success:    true,
 				Timestamp:  "2021-07-12T14:26:17.420Z",
@@ -114,7 +115,7 @@ func testVaultLogsAllVaultLogsAll0(w http.ResponseWriter, req *http.Request) {
 				ChildRequest: false,
 				ConsumerID:   "test-consumer",
 				Duration:     2220.379304,
-				ErrorMessage: types.String("Refresh token is invalid"),
+				ErrorMessage: optionalnullable.From(types.String("Refresh token is invalid")),
 				Execution:    2248,
 				HasChildren:  false,
 				HTTPMethod:   "GET",
@@ -131,7 +132,7 @@ func testVaultLogsAllVaultLogsAll0(w http.ResponseWriter, req *http.Request) {
 					ID:   "apideck-vault",
 					Name: "Apideck Vault",
 				},
-				SourceIP:   types.String("94.227.131.238"),
+				SourceIP:   optionalnullable.From(types.String("94.227.131.238")),
 				StatusCode: 200,
 				Success:    true,
 				Timestamp:  "2021-07-12T14:26:17.420Z",
@@ -141,15 +142,15 @@ func testVaultLogsAllVaultLogsAll0(w http.ResponseWriter, req *http.Request) {
 		Meta: &components.Meta{
 			ItemsOnPage: types.Int64(50),
 			Cursors: &components.Cursors{
-				Previous: types.String("em9oby1jcm06OnBhZ2U6OjE="),
-				Current:  types.String("em9oby1jcm06OnBhZ2U6OjI="),
-				Next:     types.String("em9oby1jcm06OnBhZ2U6OjM="),
+				Previous: optionalnullable.From(types.String("em9oby1jcm06OnBhZ2U6OjE=")),
+				Current:  optionalnullable.From(types.String("em9oby1jcm06OnBhZ2U6OjI=")),
+				Next:     optionalnullable.From(types.String("em9oby1jcm06OnBhZ2U6OjM=")),
 			},
 		},
 		Links: &components.Links{
-			Previous: types.String("https://unify.apideck.com/crm/companies?cursor=em9oby1jcm06OnBhZ2U6OjE%3D"),
+			Previous: optionalnullable.From(types.String("https://unify.apideck.com/crm/companies?cursor=em9oby1jcm06OnBhZ2U6OjE%3D")),
 			Current:  types.String("https://unify.apideck.com/crm/companies"),
-			Next:     types.String("https://unify.apideck.com/crm/companies?cursor=em9oby1jcm06OnBhZ2U6OjM"),
+			Next:     optionalnullable.From(types.String("https://unify.apideck.com/crm/companies?cursor=em9oby1jcm06OnBhZ2U6OjM")),
 		},
 	}
 	respBodyBytes, err := utils.MarshalJSON(respBody, "", true)

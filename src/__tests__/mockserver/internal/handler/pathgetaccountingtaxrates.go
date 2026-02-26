@@ -8,6 +8,7 @@ import (
 	"mockserver/internal/handler/assert"
 	"mockserver/internal/logging"
 	"mockserver/internal/sdk/models/components"
+	"mockserver/internal/sdk/optionalnullable"
 	"mockserver/internal/sdk/types"
 	"mockserver/internal/sdk/utils"
 	"mockserver/internal/tracking"
@@ -54,37 +55,37 @@ func testAccountingTaxRatesAllAccountingTaxRatesAll0(w http.ResponseWriter, req 
 		Operation:  "all",
 		Data: []components.TaxRate{
 			components.TaxRate{
-				ID:                   types.String("1234"),
+				ID:                   optionalnullable.From(types.String("1234")),
 				Name:                 types.String("GST on Purchases"),
-				Code:                 types.String("ABN"),
-				Description:          types.String("Reduced rate GST Purchases"),
-				EffectiveTaxRate:     types.Float64(10),
-				TotalTaxRate:         types.Float64(10),
-				TaxPayableAccountID:  types.String("123456"),
-				TaxRemittedAccountID: types.String("123456"),
-				Components: []components.Component{
+				Code:                 optionalnullable.From(types.String("ABN")),
+				Description:          optionalnullable.From(types.String("Reduced rate GST Purchases")),
+				EffectiveTaxRate:     optionalnullable.From(types.Float64(10)),
+				TotalTaxRate:         optionalnullable.From(types.Float64(10)),
+				TaxPayableAccountID:  optionalnullable.From(types.String("123456")),
+				TaxRemittedAccountID: optionalnullable.From(types.String("123456")),
+				Components: optionalnullable.From(types.Pointer([]components.Component{
 					components.Component{
-						ID:       types.String("10"),
+						ID:       optionalnullable.From(types.String("10")),
 						Name:     types.String("GST"),
-						Rate:     types.Float64(10),
-						Compound: types.Bool(true),
+						Rate:     optionalnullable.From(types.Float64(10)),
+						Compound: optionalnullable.From(types.Bool(true)),
 					},
 					components.Component{
-						ID:       types.String("10"),
+						ID:       optionalnullable.From(types.String("10")),
 						Name:     types.String("GST"),
-						Rate:     types.Float64(10),
-						Compound: types.Bool(true),
+						Rate:     optionalnullable.From(types.Float64(10)),
+						Compound: optionalnullable.From(types.Bool(true)),
 					},
-				},
-				Type:              types.String("NONE"),
-				ReportTaxType:     types.String("NONE"),
-				OriginalTaxRateID: types.String("12345"),
-				Status:            components.TaxRateStatusActive.ToPointer(),
-				RowVersion:        types.String("1-12345"),
-				UpdatedBy:         types.String("12345"),
-				CreatedBy:         types.String("12345"),
-				UpdatedAt:         types.MustNewTimeFromString("2020-09-30T07:43:32.000Z"),
-				CreatedAt:         types.MustNewTimeFromString("2020-09-30T07:43:32.000Z"),
+				})),
+				Type:              optionalnullable.From(types.String("NONE")),
+				ReportTaxType:     optionalnullable.From(types.String("NONE")),
+				OriginalTaxRateID: optionalnullable.From(types.String("12345")),
+				Status:            optionalnullable.From(components.TaxRateStatusActive.ToPointer()),
+				RowVersion:        optionalnullable.From(types.String("1-12345")),
+				UpdatedBy:         optionalnullable.From(types.String("12345")),
+				CreatedBy:         optionalnullable.From(types.String("12345")),
+				UpdatedAt:         optionalnullable.From(types.MustNewTimeFromString("2020-09-30T07:43:32.000Z")),
+				CreatedAt:         optionalnullable.From(types.MustNewTimeFromString("2020-09-30T07:43:32.000Z")),
 				PassThrough: []components.PassThroughBody{
 					components.PassThroughBody{
 						ServiceID: "<id>",
@@ -130,63 +131,63 @@ func testAccountingTaxRatesAllAccountingTaxRatesAll0(w http.ResponseWriter, req 
 					components.CreateCustomFieldUnionCustomField1(
 						components.CustomField1{
 							ID:          types.String("2389328923893298"),
-							Name:        types.String("employee_level"),
-							Description: types.String("Employee Level"),
-							Value: types.Pointer(components.CreateCustomFieldValue2MapOfAny(
+							Name:        optionalnullable.From(types.String("employee_level")),
+							Description: optionalnullable.From(types.String("Employee Level")),
+							Value: optionalnullable.From(types.Pointer(components.CreateCustomFieldValue2MapOfAny(
 								map[string]any{},
-							)),
+							))),
 						},
 					),
 					components.CreateCustomFieldUnionCustomField1(
 						components.CustomField1{
 							ID:          types.String("2389328923893298"),
-							Name:        types.String("employee_level"),
-							Description: types.String("Employee Level"),
-							Value: types.Pointer(components.CreateCustomFieldValue2Str(
+							Name:        optionalnullable.From(types.String("employee_level")),
+							Description: optionalnullable.From(types.String("Employee Level")),
+							Value: optionalnullable.From(types.Pointer(components.CreateCustomFieldValue2Str(
 								"Uses Salesforce and Marketo",
-							)),
+							))),
 						},
 					),
 				},
 			},
 			components.TaxRate{
-				ID:                   types.String("1234"),
+				ID:                   optionalnullable.From(types.String("1234")),
 				Name:                 types.String("GST on Purchases"),
-				Code:                 types.String("ABN"),
-				Description:          types.String("Reduced rate GST Purchases"),
-				EffectiveTaxRate:     types.Float64(10),
-				TotalTaxRate:         types.Float64(10),
-				TaxPayableAccountID:  types.String("123456"),
-				TaxRemittedAccountID: types.String("123456"),
-				Components: []components.Component{
+				Code:                 optionalnullable.From(types.String("ABN")),
+				Description:          optionalnullable.From(types.String("Reduced rate GST Purchases")),
+				EffectiveTaxRate:     optionalnullable.From(types.Float64(10)),
+				TotalTaxRate:         optionalnullable.From(types.Float64(10)),
+				TaxPayableAccountID:  optionalnullable.From(types.String("123456")),
+				TaxRemittedAccountID: optionalnullable.From(types.String("123456")),
+				Components: optionalnullable.From(types.Pointer([]components.Component{
 					components.Component{
-						ID:       types.String("10"),
+						ID:       optionalnullable.From(types.String("10")),
 						Name:     types.String("GST"),
-						Rate:     types.Float64(10),
-						Compound: types.Bool(true),
+						Rate:     optionalnullable.From(types.Float64(10)),
+						Compound: optionalnullable.From(types.Bool(true)),
 					},
 					components.Component{
-						ID:       types.String("10"),
+						ID:       optionalnullable.From(types.String("10")),
 						Name:     types.String("GST"),
-						Rate:     types.Float64(10),
-						Compound: types.Bool(true),
+						Rate:     optionalnullable.From(types.Float64(10)),
+						Compound: optionalnullable.From(types.Bool(true)),
 					},
 					components.Component{
-						ID:       types.String("10"),
+						ID:       optionalnullable.From(types.String("10")),
 						Name:     types.String("GST"),
-						Rate:     types.Float64(10),
-						Compound: types.Bool(true),
+						Rate:     optionalnullable.From(types.Float64(10)),
+						Compound: optionalnullable.From(types.Bool(true)),
 					},
-				},
-				Type:              types.String("NONE"),
-				ReportTaxType:     types.String("NONE"),
-				OriginalTaxRateID: types.String("12345"),
-				Status:            components.TaxRateStatusActive.ToPointer(),
-				RowVersion:        types.String("1-12345"),
-				UpdatedBy:         types.String("12345"),
-				CreatedBy:         types.String("12345"),
-				UpdatedAt:         types.MustNewTimeFromString("2020-09-30T07:43:32.000Z"),
-				CreatedAt:         types.MustNewTimeFromString("2020-09-30T07:43:32.000Z"),
+				})),
+				Type:              optionalnullable.From(types.String("NONE")),
+				ReportTaxType:     optionalnullable.From(types.String("NONE")),
+				OriginalTaxRateID: optionalnullable.From(types.String("12345")),
+				Status:            optionalnullable.From(components.TaxRateStatusActive.ToPointer()),
+				RowVersion:        optionalnullable.From(types.String("1-12345")),
+				UpdatedBy:         optionalnullable.From(types.String("12345")),
+				CreatedBy:         optionalnullable.From(types.String("12345")),
+				UpdatedAt:         optionalnullable.From(types.MustNewTimeFromString("2020-09-30T07:43:32.000Z")),
+				CreatedAt:         optionalnullable.From(types.MustNewTimeFromString("2020-09-30T07:43:32.000Z")),
 				PassThrough: []components.PassThroughBody{
 					components.PassThroughBody{
 						ServiceID: "<id>",
@@ -206,61 +207,61 @@ func testAccountingTaxRatesAllAccountingTaxRatesAll0(w http.ResponseWriter, req 
 					components.CreateCustomFieldUnionCustomField1(
 						components.CustomField1{
 							ID:          types.String("2389328923893298"),
-							Name:        types.String("employee_level"),
-							Description: types.String("Employee Level"),
-							Value: types.Pointer(components.CreateCustomFieldValue2MapOfAny(
+							Name:        optionalnullable.From(types.String("employee_level")),
+							Description: optionalnullable.From(types.String("Employee Level")),
+							Value: optionalnullable.From(types.Pointer(components.CreateCustomFieldValue2MapOfAny(
 								map[string]any{},
-							)),
+							))),
 						},
 					),
 					components.CreateCustomFieldUnionCustomField1(
 						components.CustomField1{
 							ID:          types.String("2389328923893298"),
-							Name:        types.String("employee_level"),
-							Description: types.String("Employee Level"),
-							Value: types.Pointer(components.CreateCustomFieldValue2MapOfAny(
+							Name:        optionalnullable.From(types.String("employee_level")),
+							Description: optionalnullable.From(types.String("Employee Level")),
+							Value: optionalnullable.From(types.Pointer(components.CreateCustomFieldValue2MapOfAny(
 								map[string]any{},
-							)),
+							))),
 						},
 					),
 					components.CreateCustomFieldUnionCustomField1(
 						components.CustomField1{
 							ID:          types.String("2389328923893298"),
-							Name:        types.String("employee_level"),
-							Description: types.String("Employee Level"),
-							Value: types.Pointer(components.CreateCustomFieldValue2Str(
+							Name:        optionalnullable.From(types.String("employee_level")),
+							Description: optionalnullable.From(types.String("Employee Level")),
+							Value: optionalnullable.From(types.Pointer(components.CreateCustomFieldValue2Str(
 								"Uses Salesforce and Marketo",
-							)),
+							))),
 						},
 					),
 				},
 			},
 			components.TaxRate{
-				ID:                   types.String("1234"),
+				ID:                   optionalnullable.From(types.String("1234")),
 				Name:                 types.String("GST on Purchases"),
-				Code:                 types.String("ABN"),
-				Description:          types.String("Reduced rate GST Purchases"),
-				EffectiveTaxRate:     types.Float64(10),
-				TotalTaxRate:         types.Float64(10),
-				TaxPayableAccountID:  types.String("123456"),
-				TaxRemittedAccountID: types.String("123456"),
-				Components: []components.Component{
+				Code:                 optionalnullable.From(types.String("ABN")),
+				Description:          optionalnullable.From(types.String("Reduced rate GST Purchases")),
+				EffectiveTaxRate:     optionalnullable.From(types.Float64(10)),
+				TotalTaxRate:         optionalnullable.From(types.Float64(10)),
+				TaxPayableAccountID:  optionalnullable.From(types.String("123456")),
+				TaxRemittedAccountID: optionalnullable.From(types.String("123456")),
+				Components: optionalnullable.From(types.Pointer([]components.Component{
 					components.Component{
-						ID:       types.String("10"),
+						ID:       optionalnullable.From(types.String("10")),
 						Name:     types.String("GST"),
-						Rate:     types.Float64(10),
-						Compound: types.Bool(true),
+						Rate:     optionalnullable.From(types.Float64(10)),
+						Compound: optionalnullable.From(types.Bool(true)),
 					},
-				},
-				Type:              types.String("NONE"),
-				ReportTaxType:     types.String("NONE"),
-				OriginalTaxRateID: types.String("12345"),
-				Status:            components.TaxRateStatusActive.ToPointer(),
-				RowVersion:        types.String("1-12345"),
-				UpdatedBy:         types.String("12345"),
-				CreatedBy:         types.String("12345"),
-				UpdatedAt:         types.MustNewTimeFromString("2020-09-30T07:43:32.000Z"),
-				CreatedAt:         types.MustNewTimeFromString("2020-09-30T07:43:32.000Z"),
+				})),
+				Type:              optionalnullable.From(types.String("NONE")),
+				ReportTaxType:     optionalnullable.From(types.String("NONE")),
+				OriginalTaxRateID: optionalnullable.From(types.String("12345")),
+				Status:            optionalnullable.From(components.TaxRateStatusActive.ToPointer()),
+				RowVersion:        optionalnullable.From(types.String("1-12345")),
+				UpdatedBy:         optionalnullable.From(types.String("12345")),
+				CreatedBy:         optionalnullable.From(types.String("12345")),
+				UpdatedAt:         optionalnullable.From(types.MustNewTimeFromString("2020-09-30T07:43:32.000Z")),
+				CreatedAt:         optionalnullable.From(types.MustNewTimeFromString("2020-09-30T07:43:32.000Z")),
 				PassThrough: []components.PassThroughBody{
 					components.PassThroughBody{
 						ServiceID: "<id>",
@@ -301,33 +302,33 @@ func testAccountingTaxRatesAllAccountingTaxRatesAll0(w http.ResponseWriter, req 
 					components.CreateCustomFieldUnionCustomField1(
 						components.CustomField1{
 							ID:          types.String("2389328923893298"),
-							Name:        types.String("employee_level"),
-							Description: types.String("Employee Level"),
-							Value: types.Pointer(components.CreateCustomFieldValue2MapOfAny(
+							Name:        optionalnullable.From(types.String("employee_level")),
+							Description: optionalnullable.From(types.String("Employee Level")),
+							Value: optionalnullable.From(types.Pointer(components.CreateCustomFieldValue2MapOfAny(
 								map[string]any{},
-							)),
+							))),
 						},
 					),
 					components.CreateCustomFieldUnionCustomField1(
 						components.CustomField1{
 							ID:          types.String("2389328923893298"),
-							Name:        types.String("employee_level"),
-							Description: types.String("Employee Level"),
-							Value: types.Pointer(components.CreateCustomFieldValue2MapOfAny(
+							Name:        optionalnullable.From(types.String("employee_level")),
+							Description: optionalnullable.From(types.String("Employee Level")),
+							Value: optionalnullable.From(types.Pointer(components.CreateCustomFieldValue2MapOfAny(
 								map[string]any{
 									"0": map[string]any{},
 								},
-							)),
+							))),
 						},
 					),
 					components.CreateCustomFieldUnionCustomField1(
 						components.CustomField1{
 							ID:          types.String("2389328923893298"),
-							Name:        types.String("employee_level"),
-							Description: types.String("Employee Level"),
-							Value: types.Pointer(components.CreateCustomFieldValue2Str(
+							Name:        optionalnullable.From(types.String("employee_level")),
+							Description: optionalnullable.From(types.String("Employee Level")),
+							Value: optionalnullable.From(types.Pointer(components.CreateCustomFieldValue2Str(
 								"Uses Salesforce and Marketo",
-							)),
+							))),
 						},
 					),
 				},
@@ -336,15 +337,15 @@ func testAccountingTaxRatesAllAccountingTaxRatesAll0(w http.ResponseWriter, req 
 		Meta: &components.Meta{
 			ItemsOnPage: types.Int64(50),
 			Cursors: &components.Cursors{
-				Previous: types.String("em9oby1jcm06OnBhZ2U6OjE="),
-				Current:  types.String("em9oby1jcm06OnBhZ2U6OjI="),
-				Next:     types.String("em9oby1jcm06OnBhZ2U6OjM="),
+				Previous: optionalnullable.From(types.String("em9oby1jcm06OnBhZ2U6OjE=")),
+				Current:  optionalnullable.From(types.String("em9oby1jcm06OnBhZ2U6OjI=")),
+				Next:     optionalnullable.From(types.String("em9oby1jcm06OnBhZ2U6OjM=")),
 			},
 		},
 		Links: &components.Links{
-			Previous: types.String("https://unify.apideck.com/crm/companies?cursor=em9oby1jcm06OnBhZ2U6OjE%3D"),
+			Previous: optionalnullable.From(types.String("https://unify.apideck.com/crm/companies?cursor=em9oby1jcm06OnBhZ2U6OjE%3D")),
 			Current:  types.String("https://unify.apideck.com/crm/companies"),
-			Next:     types.String("https://unify.apideck.com/crm/companies?cursor=em9oby1jcm06OnBhZ2U6OjM"),
+			Next:     optionalnullable.From(types.String("https://unify.apideck.com/crm/companies?cursor=em9oby1jcm06OnBhZ2U6OjM")),
 		},
 	}
 	respBodyBytes, err := utils.MarshalJSON(respBody, "", true)

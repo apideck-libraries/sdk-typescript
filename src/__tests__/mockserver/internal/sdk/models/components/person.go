@@ -3,29 +3,30 @@
 package components
 
 import (
+	"mockserver/internal/sdk/optionalnullable"
 	"mockserver/internal/sdk/types"
 	"mockserver/internal/sdk/utils"
 )
 
 type Person struct {
 	// A unique identifier for an object.
-	ID *string `json:"id,omitempty"`
+	ID optionalnullable.OptionalNullable[string] `json:"id,omitempty"`
 	// The first name of the person.
-	FirstName *string `json:"first_name,omitempty"`
+	FirstName optionalnullable.OptionalNullable[string] `json:"first_name,omitempty"`
 	// The last name of the person.
-	LastName *string `json:"last_name,omitempty"`
+	LastName optionalnullable.OptionalNullable[string] `json:"last_name,omitempty"`
 	// Middle name of the person.
-	MiddleName *string `json:"middle_name,omitempty"`
+	MiddleName optionalnullable.OptionalNullable[string] `json:"middle_name,omitempty"`
 	// The gender represents the gender identity of a person.
-	Gender *Gender `json:"gender,omitempty"`
+	Gender optionalnullable.OptionalNullable[Gender] `json:"gender,omitempty"`
 	// Initials of the person
-	Initials *string `json:"initials,omitempty"`
+	Initials optionalnullable.OptionalNullable[string] `json:"initials,omitempty"`
 	// Date of birth
-	Birthday *types.Date `json:"birthday,omitempty"`
+	Birthday optionalnullable.OptionalNullable[types.Date] `json:"birthday,omitempty"`
 	// Date of death
-	DeceasedOn *types.Date `json:"deceased_on,omitempty"`
+	DeceasedOn optionalnullable.OptionalNullable[types.Date] `json:"deceased_on,omitempty"`
 	// When custom mappings are configured on the resource, the result is included here.
-	CustomMappings map[string]any `json:"custom_mappings,omitempty"`
+	CustomMappings optionalnullable.OptionalNullable[map[string]any] `json:"custom_mappings,omitempty"`
 }
 
 func (p Person) MarshalJSON() ([]byte, error) {
@@ -39,63 +40,63 @@ func (p *Person) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *Person) GetID() *string {
+func (o *Person) GetID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *Person) GetFirstName() *string {
+func (o *Person) GetFirstName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.FirstName
 }
 
-func (o *Person) GetLastName() *string {
+func (o *Person) GetLastName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.LastName
 }
 
-func (o *Person) GetMiddleName() *string {
+func (o *Person) GetMiddleName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.MiddleName
 }
 
-func (o *Person) GetGender() *Gender {
+func (o *Person) GetGender() optionalnullable.OptionalNullable[Gender] {
 	if o == nil {
 		return nil
 	}
 	return o.Gender
 }
 
-func (o *Person) GetInitials() *string {
+func (o *Person) GetInitials() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Initials
 }
 
-func (o *Person) GetBirthday() *types.Date {
+func (o *Person) GetBirthday() optionalnullable.OptionalNullable[types.Date] {
 	if o == nil {
 		return nil
 	}
 	return o.Birthday
 }
 
-func (o *Person) GetDeceasedOn() *types.Date {
+func (o *Person) GetDeceasedOn() optionalnullable.OptionalNullable[types.Date] {
 	if o == nil {
 		return nil
 	}
 	return o.DeceasedOn
 }
 
-func (o *Person) GetCustomMappings() map[string]any {
+func (o *Person) GetCustomMappings() optionalnullable.OptionalNullable[map[string]any] {
 	if o == nil {
 		return nil
 	}

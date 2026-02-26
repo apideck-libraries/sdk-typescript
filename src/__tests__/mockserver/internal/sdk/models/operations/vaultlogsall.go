@@ -4,6 +4,7 @@ package operations
 
 import (
 	"mockserver/internal/sdk/models/components"
+	"mockserver/internal/sdk/optionalnullable"
 	"mockserver/internal/sdk/utils"
 )
 
@@ -36,7 +37,7 @@ type VaultLogsAllRequest struct {
 	// Filter results
 	Filter *components.LogsFilter `queryParam:"style=deepObject,explode=true,name=filter"`
 	// Cursor to start from. You can find cursors for next/previous pages in the meta.cursors property of the response.
-	Cursor *string `queryParam:"style=form,explode=true,name=cursor"`
+	Cursor optionalnullable.OptionalNullable[string] `queryParam:"style=form,explode=true,name=cursor"`
 	// Number of results to return. Minimum 1, Maximum 200, Default 20
 	Limit *int64 `default:"20" queryParam:"style=form,explode=true,name=limit"`
 }
@@ -73,7 +74,7 @@ func (o *VaultLogsAllRequest) GetFilter() *components.LogsFilter {
 	return o.Filter
 }
 
-func (o *VaultLogsAllRequest) GetCursor() *string {
+func (o *VaultLogsAllRequest) GetCursor() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}

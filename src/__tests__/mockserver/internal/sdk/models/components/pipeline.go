@@ -3,27 +3,28 @@
 package components
 
 import (
+	"mockserver/internal/sdk/optionalnullable"
 	"mockserver/internal/sdk/utils"
 	"time"
 )
 
 type PipelineStage struct {
 	// The unique identifier of the Pipeline Stage.
-	ID *string `json:"id,omitempty"`
+	ID optionalnullable.OptionalNullable[string] `json:"id,omitempty"`
 	// The name of the Pipeline Stage.
-	Name *string `json:"name,omitempty"`
+	Name optionalnullable.OptionalNullable[string] `json:"name,omitempty"`
 	// The value of the Pipeline Stage.
-	Value *string `json:"value,omitempty"`
+	Value optionalnullable.OptionalNullable[string] `json:"value,omitempty"`
 	// The expected probability of winning an Opportunity in this Pipeline Stage. Valid values are [0-100].
-	WinProbability *int64 `json:"win_probability,omitempty"`
+	WinProbability optionalnullable.OptionalNullable[int64] `json:"win_probability,omitempty"`
 	// The order in which the Pipeline Stage is displayed in the UI.
-	DisplayOrder *int64 `json:"display_order,omitempty"`
+	DisplayOrder optionalnullable.OptionalNullable[int64] `json:"display_order,omitempty"`
 	// Whether the Pipeline Stage is archived or not.
-	Archived *bool `json:"archived,omitempty"`
+	Archived optionalnullable.OptionalNullable[bool] `json:"archived,omitempty"`
 	// The date and time when the Pipeline Stage was created.
-	CreatedAt *time.Time `json:"created_at,omitempty"`
+	CreatedAt optionalnullable.OptionalNullable[time.Time] `json:"created_at,omitempty"`
 	// The date and time when the Pipeline Stage was last updated.
-	UpdatedAt *time.Time `json:"updated_at,omitempty"`
+	UpdatedAt optionalnullable.OptionalNullable[time.Time] `json:"updated_at,omitempty"`
 }
 
 func (p PipelineStage) MarshalJSON() ([]byte, error) {
@@ -37,56 +38,56 @@ func (p *PipelineStage) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *PipelineStage) GetID() *string {
+func (o *PipelineStage) GetID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *PipelineStage) GetName() *string {
+func (o *PipelineStage) GetName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-func (o *PipelineStage) GetValue() *string {
+func (o *PipelineStage) GetValue() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Value
 }
 
-func (o *PipelineStage) GetWinProbability() *int64 {
+func (o *PipelineStage) GetWinProbability() optionalnullable.OptionalNullable[int64] {
 	if o == nil {
 		return nil
 	}
 	return o.WinProbability
 }
 
-func (o *PipelineStage) GetDisplayOrder() *int64 {
+func (o *PipelineStage) GetDisplayOrder() optionalnullable.OptionalNullable[int64] {
 	if o == nil {
 		return nil
 	}
 	return o.DisplayOrder
 }
 
-func (o *PipelineStage) GetArchived() *bool {
+func (o *PipelineStage) GetArchived() optionalnullable.OptionalNullable[bool] {
 	if o == nil {
 		return nil
 	}
 	return o.Archived
 }
 
-func (o *PipelineStage) GetCreatedAt() *time.Time {
+func (o *PipelineStage) GetCreatedAt() optionalnullable.OptionalNullable[time.Time] {
 	if o == nil {
 		return nil
 	}
 	return o.CreatedAt
 }
 
-func (o *PipelineStage) GetUpdatedAt() *time.Time {
+func (o *PipelineStage) GetUpdatedAt() optionalnullable.OptionalNullable[time.Time] {
 	if o == nil {
 		return nil
 	}
@@ -99,21 +100,21 @@ type Pipeline struct {
 	// The name of the Pipeline.
 	Name string `json:"name"`
 	// Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
-	Currency *Currency `json:"currency,omitempty"`
+	Currency optionalnullable.OptionalNullable[Currency] `json:"currency,omitempty"`
 	// Whether the Pipeline is archived or not.
 	Archived *bool `json:"archived,omitempty"`
 	// Whether the Pipeline is active or not.
 	Active *bool `json:"active,omitempty"`
 	// The order in which the Pipeline is displayed in the UI.
-	DisplayOrder *int64 `json:"display_order,omitempty"`
+	DisplayOrder optionalnullable.OptionalNullable[int64] `json:"display_order,omitempty"`
 	// Whether the Pipeline has win probability enabled or not.
 	WinProbabilityEnabled *bool `json:"win_probability_enabled,omitempty"`
 	// The Pipeline Stages.
 	Stages []PipelineStage `json:"stages,omitempty"`
 	// The date and time when the object was last updated.
-	UpdatedAt *time.Time `json:"updated_at,omitempty"`
+	UpdatedAt optionalnullable.OptionalNullable[time.Time] `json:"updated_at,omitempty"`
 	// The date and time when the object was created.
-	CreatedAt *time.Time `json:"created_at,omitempty"`
+	CreatedAt optionalnullable.OptionalNullable[time.Time] `json:"created_at,omitempty"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
 	PassThrough []PassThroughBody `json:"pass_through,omitempty"`
 }
@@ -143,7 +144,7 @@ func (o *Pipeline) GetName() string {
 	return o.Name
 }
 
-func (o *Pipeline) GetCurrency() *Currency {
+func (o *Pipeline) GetCurrency() optionalnullable.OptionalNullable[Currency] {
 	if o == nil {
 		return nil
 	}
@@ -164,7 +165,7 @@ func (o *Pipeline) GetActive() *bool {
 	return o.Active
 }
 
-func (o *Pipeline) GetDisplayOrder() *int64 {
+func (o *Pipeline) GetDisplayOrder() optionalnullable.OptionalNullable[int64] {
 	if o == nil {
 		return nil
 	}
@@ -185,14 +186,14 @@ func (o *Pipeline) GetStages() []PipelineStage {
 	return o.Stages
 }
 
-func (o *Pipeline) GetUpdatedAt() *time.Time {
+func (o *Pipeline) GetUpdatedAt() optionalnullable.OptionalNullable[time.Time] {
 	if o == nil {
 		return nil
 	}
 	return o.UpdatedAt
 }
 
-func (o *Pipeline) GetCreatedAt() *time.Time {
+func (o *Pipeline) GetCreatedAt() optionalnullable.OptionalNullable[time.Time] {
 	if o == nil {
 		return nil
 	}

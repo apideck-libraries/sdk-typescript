@@ -2,6 +2,10 @@
 
 package components
 
+import (
+	"mockserver/internal/sdk/optionalnullable"
+)
+
 type CustomObjectField struct {
 	Name  *string `json:"name,omitempty"`
 	Value *string `json:"value,omitempty"`
@@ -27,16 +31,16 @@ type CustomObject struct {
 	// The unique identifier of the owner of the custom object
 	OwnerID *string `json:"owner_id,omitempty"`
 	// The name of the custom object
-	Name   *string             `json:"name,omitempty"`
-	Fields []CustomObjectField `json:"fields,omitempty"`
+	Name   optionalnullable.OptionalNullable[string] `json:"name,omitempty"`
+	Fields []CustomObjectField                       `json:"fields,omitempty"`
 	// The unique identifier of the user who last updated the custom object
 	UpdatedBy *string `json:"updated_by,omitempty"`
 	// The unique identifier of the user who created the custom object
 	CreatedBy *string `json:"created_by,omitempty"`
 	// The timestamp when the custom object was last updated
-	UpdatedAt *string `json:"updated_at,omitempty"`
+	UpdatedAt optionalnullable.OptionalNullable[string] `json:"updated_at,omitempty"`
 	// The timestamp when the custom object was created
-	CreatedAt *string `json:"created_at,omitempty"`
+	CreatedAt optionalnullable.OptionalNullable[string] `json:"created_at,omitempty"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
 	PassThrough []PassThroughBody `json:"pass_through,omitempty"`
 }
@@ -55,7 +59,7 @@ func (o *CustomObject) GetOwnerID() *string {
 	return o.OwnerID
 }
 
-func (o *CustomObject) GetName() *string {
+func (o *CustomObject) GetName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -83,14 +87,14 @@ func (o *CustomObject) GetCreatedBy() *string {
 	return o.CreatedBy
 }
 
-func (o *CustomObject) GetUpdatedAt() *string {
+func (o *CustomObject) GetUpdatedAt() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.UpdatedAt
 }
 
-func (o *CustomObject) GetCreatedAt() *string {
+func (o *CustomObject) GetCreatedAt() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -106,13 +110,13 @@ func (o *CustomObject) GetPassThrough() []PassThroughBody {
 
 type CustomObjectInput struct {
 	// The name of the custom object
-	Name   *string             `json:"name,omitempty"`
-	Fields []CustomObjectField `json:"fields,omitempty"`
+	Name   optionalnullable.OptionalNullable[string] `json:"name,omitempty"`
+	Fields []CustomObjectField                       `json:"fields,omitempty"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
 	PassThrough []PassThroughBody `json:"pass_through,omitempty"`
 }
 
-func (o *CustomObjectInput) GetName() *string {
+func (o *CustomObjectInput) GetName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}

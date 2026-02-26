@@ -2,30 +2,34 @@
 
 package components
 
+import (
+	"mockserver/internal/sdk/optionalnullable"
+)
+
 type Benefit struct {
 	// The name of the benefit.
-	Name *string `json:"name,omitempty"`
+	Name optionalnullable.OptionalNullable[string] `json:"name,omitempty"`
 	// The amount deducted for benefit.
-	EmployeeDeduction *float64 `json:"employee_deduction,omitempty"`
+	EmployeeDeduction optionalnullable.OptionalNullable[float64] `json:"employee_deduction,omitempty"`
 	// The amount of employer contribution.
-	EmployerContribution *float64 `json:"employer_contribution,omitempty"`
+	EmployerContribution optionalnullable.OptionalNullable[float64] `json:"employer_contribution,omitempty"`
 }
 
-func (o *Benefit) GetName() *string {
+func (o *Benefit) GetName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-func (o *Benefit) GetEmployeeDeduction() *float64 {
+func (o *Benefit) GetEmployeeDeduction() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}
 	return o.EmployeeDeduction
 }
 
-func (o *Benefit) GetEmployerContribution() *float64 {
+func (o *Benefit) GetEmployerContribution() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}

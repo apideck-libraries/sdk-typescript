@@ -3,6 +3,7 @@
 package components
 
 import (
+	"mockserver/internal/sdk/optionalnullable"
 	"mockserver/internal/sdk/types"
 	"mockserver/internal/sdk/utils"
 	"time"
@@ -149,89 +150,89 @@ type Project struct {
 	// A unique identifier for an object.
 	ID *string `json:"id,omitempty"`
 	// The third-party API ID of original entity
-	DownstreamID *string `json:"downstream_id,omitempty"`
+	DownstreamID optionalnullable.OptionalNullable[string] `json:"downstream_id,omitempty"`
 	// Name of the project
 	Name string `json:"name"`
 	// User-friendly project identifier
-	DisplayID *string `json:"display_id,omitempty"`
+	DisplayID optionalnullable.OptionalNullable[string] `json:"display_id,omitempty"`
 	// External reference identifier for the project
-	ReferenceID *string `json:"reference_id,omitempty"`
+	ReferenceID optionalnullable.OptionalNullable[string] `json:"reference_id,omitempty"`
 	// Detailed description of the project
-	Description *string `json:"description,omitempty"`
+	Description optionalnullable.OptionalNullable[string] `json:"description,omitempty"`
 	// Current status of the project
-	Status *ProjectProjectStatus `json:"status,omitempty"`
+	Status optionalnullable.OptionalNullable[ProjectProjectStatus] `json:"status,omitempty"`
 	// Indicates whether the project is currently active or inactive
-	Active *bool `json:"active,omitempty"`
+	Active optionalnullable.OptionalNullable[bool] `json:"active,omitempty"`
 	// Type or category of the project
-	ProjectType *ProjectType `json:"project_type,omitempty"`
+	ProjectType optionalnullable.OptionalNullable[ProjectType] `json:"project_type,omitempty"`
 	// Priority level of the project
-	Priority *ProjectPriority `json:"priority,omitempty"`
+	Priority optionalnullable.OptionalNullable[ProjectPriority] `json:"priority,omitempty"`
 	// Percentage of project completion (0-100)
-	CompletionPercentage *float64 `json:"completion_percentage,omitempty"`
+	CompletionPercentage optionalnullable.OptionalNullable[float64] `json:"completion_percentage,omitempty"`
 	// Start date of the project
-	StartDate *types.Date `json:"start_date,omitempty"`
+	StartDate optionalnullable.OptionalNullable[types.Date] `json:"start_date,omitempty"`
 	// Expected or planned end date of the project
-	EndDate *types.Date `json:"end_date,omitempty"`
+	EndDate optionalnullable.OptionalNullable[types.Date] `json:"end_date,omitempty"`
 	// Actual end date of the project
-	CompletionDate *types.Date `json:"completion_date,omitempty"`
+	CompletionDate optionalnullable.OptionalNullable[types.Date] `json:"completion_date,omitempty"`
 	// The customer this entity is linked to.
-	Customer *LinkedCustomer `json:"customer,omitempty"`
+	Customer optionalnullable.OptionalNullable[LinkedCustomer] `json:"customer,omitempty"`
 	// Department or organizational unit associated with the project
-	Department *ProjectDepartment `json:"department,omitempty"`
+	Department optionalnullable.OptionalNullable[ProjectDepartment] `json:"department,omitempty"`
 	// The company ID the transaction belongs to
-	CompanyID *string `json:"company_id,omitempty"`
+	CompanyID optionalnullable.OptionalNullable[string] `json:"company_id,omitempty"`
 	// ID of the user who owns/manages this project
-	OwnerID *string `json:"owner_id,omitempty"`
+	OwnerID optionalnullable.OptionalNullable[string] `json:"owner_id,omitempty"`
 	// Parent project if this is a subproject
-	ParentProject *ParentProject `json:"parent_project,omitempty"`
+	ParentProject optionalnullable.OptionalNullable[ParentProject] `json:"parent_project,omitempty"`
 	// Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
-	Currency *Currency `json:"currency,omitempty"`
+	Currency optionalnullable.OptionalNullable[Currency] `json:"currency,omitempty"`
 	// Total budgeted amount for the project
-	BudgetAmount *float64 `json:"budget_amount,omitempty"`
+	BudgetAmount optionalnullable.OptionalNullable[float64] `json:"budget_amount,omitempty"`
 	// Approved budget amount for the project
-	ApprovedAmount *float64 `json:"approved_amount,omitempty"`
+	ApprovedAmount optionalnullable.OptionalNullable[float64] `json:"approved_amount,omitempty"`
 	// Total actual amount spent on the project
-	ActualAmount *float64 `json:"actual_amount,omitempty"`
+	ActualAmount optionalnullable.OptionalNullable[float64] `json:"actual_amount,omitempty"`
 	// Total budgeted hours for the project
-	BudgetHours *float64 `json:"budget_hours,omitempty"`
+	BudgetHours optionalnullable.OptionalNullable[float64] `json:"budget_hours,omitempty"`
 	// Total actual hours worked on the project
-	ActualHours *float64 `json:"actual_hours,omitempty"`
+	ActualHours optionalnullable.OptionalNullable[float64] `json:"actual_hours,omitempty"`
 	// Default hourly rate for project work
-	HourlyRate *float64 `json:"hourly_rate,omitempty"`
+	HourlyRate optionalnullable.OptionalNullable[float64] `json:"hourly_rate,omitempty"`
 	// Method used for billing this project
-	BillingMethod *BillingMethod `json:"billing_method,omitempty"`
+	BillingMethod optionalnullable.OptionalNullable[BillingMethod] `json:"billing_method,omitempty"`
 	// Indicates if the project is billable to the customer
-	IsBillable *bool `default:"true" json:"is_billable"`
+	IsBillable optionalnullable.OptionalNullable[bool] `default:"true" json:"is_billable"`
 	// Current phase of the project lifecycle
-	Phase   *ProjectPhase  `json:"phase,omitempty"`
-	TaxRate *LinkedTaxRate `json:"tax_rate,omitempty"`
+	Phase   optionalnullable.OptionalNullable[ProjectPhase] `json:"phase,omitempty"`
+	TaxRate *LinkedTaxRate                                  `json:"tax_rate,omitempty"`
 	// A list of linked tracking categories.
-	TrackingCategories []*LinkedTrackingCategory `json:"tracking_categories,omitempty"`
+	TrackingCategories optionalnullable.OptionalNullable[[]*LinkedTrackingCategory] `json:"tracking_categories,omitempty"`
 	// Tags associated with the project
 	Tags []string `json:"tags,omitempty"`
 	// Additional notes about the project
-	Notes *string `json:"notes,omitempty"`
+	Notes optionalnullable.OptionalNullable[string] `json:"notes,omitempty"`
 	// Contract or agreement number associated with the project
-	ContractNumber *string `json:"contract_number,omitempty"`
+	ContractNumber optionalnullable.OptionalNullable[string] `json:"contract_number,omitempty"`
 	// Expected profit margin percentage for the project
-	ProfitMargin *float64 `json:"profit_margin,omitempty"`
+	ProfitMargin optionalnullable.OptionalNullable[float64] `json:"profit_margin,omitempty"`
 	// Current status of project schedule compared to plan
-	ScheduleStatus *ScheduleStatus `json:"schedule_status,omitempty"`
+	ScheduleStatus optionalnullable.OptionalNullable[ScheduleStatus] `json:"schedule_status,omitempty"`
 	// An array of addresses associated with the project (billing, job site, etc.)
 	Addresses []Address `json:"addresses,omitempty"`
 	// Number of team members assigned to the project
-	TeamSize     *int64             `json:"team_size,omitempty"`
-	CustomFields []CustomFieldUnion `json:"custom_fields,omitempty"`
+	TeamSize     optionalnullable.OptionalNullable[int64] `json:"team_size,omitempty"`
+	CustomFields []CustomFieldUnion                       `json:"custom_fields,omitempty"`
 	// A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
-	RowVersion *string `json:"row_version,omitempty"`
+	RowVersion optionalnullable.OptionalNullable[string] `json:"row_version,omitempty"`
 	// The user who last updated the object.
-	UpdatedBy *string `json:"updated_by,omitempty"`
+	UpdatedBy optionalnullable.OptionalNullable[string] `json:"updated_by,omitempty"`
 	// The user who created the object.
-	CreatedBy *string `json:"created_by,omitempty"`
+	CreatedBy optionalnullable.OptionalNullable[string] `json:"created_by,omitempty"`
 	// The date and time when the object was created.
-	CreatedAt *time.Time `json:"created_at,omitempty"`
+	CreatedAt optionalnullable.OptionalNullable[time.Time] `json:"created_at,omitempty"`
 	// The date and time when the object was last updated.
-	UpdatedAt *time.Time `json:"updated_at,omitempty"`
+	UpdatedAt optionalnullable.OptionalNullable[time.Time] `json:"updated_at,omitempty"`
 }
 
 func (p Project) MarshalJSON() ([]byte, error) {
@@ -252,7 +253,7 @@ func (o *Project) GetID() *string {
 	return o.ID
 }
 
-func (o *Project) GetDownstreamID() *string {
+func (o *Project) GetDownstreamID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -266,182 +267,182 @@ func (o *Project) GetName() string {
 	return o.Name
 }
 
-func (o *Project) GetDisplayID() *string {
+func (o *Project) GetDisplayID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.DisplayID
 }
 
-func (o *Project) GetReferenceID() *string {
+func (o *Project) GetReferenceID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.ReferenceID
 }
 
-func (o *Project) GetDescription() *string {
+func (o *Project) GetDescription() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Description
 }
 
-func (o *Project) GetStatus() *ProjectProjectStatus {
+func (o *Project) GetStatus() optionalnullable.OptionalNullable[ProjectProjectStatus] {
 	if o == nil {
 		return nil
 	}
 	return o.Status
 }
 
-func (o *Project) GetActive() *bool {
+func (o *Project) GetActive() optionalnullable.OptionalNullable[bool] {
 	if o == nil {
 		return nil
 	}
 	return o.Active
 }
 
-func (o *Project) GetProjectType() *ProjectType {
+func (o *Project) GetProjectType() optionalnullable.OptionalNullable[ProjectType] {
 	if o == nil {
 		return nil
 	}
 	return o.ProjectType
 }
 
-func (o *Project) GetPriority() *ProjectPriority {
+func (o *Project) GetPriority() optionalnullable.OptionalNullable[ProjectPriority] {
 	if o == nil {
 		return nil
 	}
 	return o.Priority
 }
 
-func (o *Project) GetCompletionPercentage() *float64 {
+func (o *Project) GetCompletionPercentage() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}
 	return o.CompletionPercentage
 }
 
-func (o *Project) GetStartDate() *types.Date {
+func (o *Project) GetStartDate() optionalnullable.OptionalNullable[types.Date] {
 	if o == nil {
 		return nil
 	}
 	return o.StartDate
 }
 
-func (o *Project) GetEndDate() *types.Date {
+func (o *Project) GetEndDate() optionalnullable.OptionalNullable[types.Date] {
 	if o == nil {
 		return nil
 	}
 	return o.EndDate
 }
 
-func (o *Project) GetCompletionDate() *types.Date {
+func (o *Project) GetCompletionDate() optionalnullable.OptionalNullable[types.Date] {
 	if o == nil {
 		return nil
 	}
 	return o.CompletionDate
 }
 
-func (o *Project) GetCustomer() *LinkedCustomer {
+func (o *Project) GetCustomer() optionalnullable.OptionalNullable[LinkedCustomer] {
 	if o == nil {
 		return nil
 	}
 	return o.Customer
 }
 
-func (o *Project) GetDepartment() *ProjectDepartment {
+func (o *Project) GetDepartment() optionalnullable.OptionalNullable[ProjectDepartment] {
 	if o == nil {
 		return nil
 	}
 	return o.Department
 }
 
-func (o *Project) GetCompanyID() *string {
+func (o *Project) GetCompanyID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.CompanyID
 }
 
-func (o *Project) GetOwnerID() *string {
+func (o *Project) GetOwnerID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.OwnerID
 }
 
-func (o *Project) GetParentProject() *ParentProject {
+func (o *Project) GetParentProject() optionalnullable.OptionalNullable[ParentProject] {
 	if o == nil {
 		return nil
 	}
 	return o.ParentProject
 }
 
-func (o *Project) GetCurrency() *Currency {
+func (o *Project) GetCurrency() optionalnullable.OptionalNullable[Currency] {
 	if o == nil {
 		return nil
 	}
 	return o.Currency
 }
 
-func (o *Project) GetBudgetAmount() *float64 {
+func (o *Project) GetBudgetAmount() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}
 	return o.BudgetAmount
 }
 
-func (o *Project) GetApprovedAmount() *float64 {
+func (o *Project) GetApprovedAmount() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}
 	return o.ApprovedAmount
 }
 
-func (o *Project) GetActualAmount() *float64 {
+func (o *Project) GetActualAmount() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}
 	return o.ActualAmount
 }
 
-func (o *Project) GetBudgetHours() *float64 {
+func (o *Project) GetBudgetHours() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}
 	return o.BudgetHours
 }
 
-func (o *Project) GetActualHours() *float64 {
+func (o *Project) GetActualHours() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}
 	return o.ActualHours
 }
 
-func (o *Project) GetHourlyRate() *float64 {
+func (o *Project) GetHourlyRate() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}
 	return o.HourlyRate
 }
 
-func (o *Project) GetBillingMethod() *BillingMethod {
+func (o *Project) GetBillingMethod() optionalnullable.OptionalNullable[BillingMethod] {
 	if o == nil {
 		return nil
 	}
 	return o.BillingMethod
 }
 
-func (o *Project) GetIsBillable() *bool {
+func (o *Project) GetIsBillable() optionalnullable.OptionalNullable[bool] {
 	if o == nil {
 		return nil
 	}
 	return o.IsBillable
 }
 
-func (o *Project) GetPhase() *ProjectPhase {
+func (o *Project) GetPhase() optionalnullable.OptionalNullable[ProjectPhase] {
 	if o == nil {
 		return nil
 	}
@@ -455,7 +456,7 @@ func (o *Project) GetTaxRate() *LinkedTaxRate {
 	return o.TaxRate
 }
 
-func (o *Project) GetTrackingCategories() []*LinkedTrackingCategory {
+func (o *Project) GetTrackingCategories() optionalnullable.OptionalNullable[[]*LinkedTrackingCategory] {
 	if o == nil {
 		return nil
 	}
@@ -469,28 +470,28 @@ func (o *Project) GetTags() []string {
 	return o.Tags
 }
 
-func (o *Project) GetNotes() *string {
+func (o *Project) GetNotes() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Notes
 }
 
-func (o *Project) GetContractNumber() *string {
+func (o *Project) GetContractNumber() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.ContractNumber
 }
 
-func (o *Project) GetProfitMargin() *float64 {
+func (o *Project) GetProfitMargin() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}
 	return o.ProfitMargin
 }
 
-func (o *Project) GetScheduleStatus() *ScheduleStatus {
+func (o *Project) GetScheduleStatus() optionalnullable.OptionalNullable[ScheduleStatus] {
 	if o == nil {
 		return nil
 	}
@@ -504,7 +505,7 @@ func (o *Project) GetAddresses() []Address {
 	return o.Addresses
 }
 
-func (o *Project) GetTeamSize() *int64 {
+func (o *Project) GetTeamSize() optionalnullable.OptionalNullable[int64] {
 	if o == nil {
 		return nil
 	}
@@ -518,35 +519,35 @@ func (o *Project) GetCustomFields() []CustomFieldUnion {
 	return o.CustomFields
 }
 
-func (o *Project) GetRowVersion() *string {
+func (o *Project) GetRowVersion() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.RowVersion
 }
 
-func (o *Project) GetUpdatedBy() *string {
+func (o *Project) GetUpdatedBy() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.UpdatedBy
 }
 
-func (o *Project) GetCreatedBy() *string {
+func (o *Project) GetCreatedBy() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.CreatedBy
 }
 
-func (o *Project) GetCreatedAt() *time.Time {
+func (o *Project) GetCreatedAt() optionalnullable.OptionalNullable[time.Time] {
 	if o == nil {
 		return nil
 	}
 	return o.CreatedAt
 }
 
-func (o *Project) GetUpdatedAt() *time.Time {
+func (o *Project) GetUpdatedAt() optionalnullable.OptionalNullable[time.Time] {
 	if o == nil {
 		return nil
 	}
@@ -557,73 +558,73 @@ type ProjectInput struct {
 	// Name of the project
 	Name string `json:"name"`
 	// User-friendly project identifier
-	DisplayID *string `json:"display_id,omitempty"`
+	DisplayID optionalnullable.OptionalNullable[string] `json:"display_id,omitempty"`
 	// External reference identifier for the project
-	ReferenceID *string `json:"reference_id,omitempty"`
+	ReferenceID optionalnullable.OptionalNullable[string] `json:"reference_id,omitempty"`
 	// Detailed description of the project
-	Description *string `json:"description,omitempty"`
+	Description optionalnullable.OptionalNullable[string] `json:"description,omitempty"`
 	// Current status of the project
-	Status *ProjectProjectStatus `json:"status,omitempty"`
+	Status optionalnullable.OptionalNullable[ProjectProjectStatus] `json:"status,omitempty"`
 	// Indicates whether the project is currently active or inactive
-	Active *bool `json:"active,omitempty"`
+	Active optionalnullable.OptionalNullable[bool] `json:"active,omitempty"`
 	// Type or category of the project
-	ProjectType *ProjectType `json:"project_type,omitempty"`
+	ProjectType optionalnullable.OptionalNullable[ProjectType] `json:"project_type,omitempty"`
 	// Priority level of the project
-	Priority *ProjectPriority `json:"priority,omitempty"`
+	Priority optionalnullable.OptionalNullable[ProjectPriority] `json:"priority,omitempty"`
 	// Percentage of project completion (0-100)
-	CompletionPercentage *float64 `json:"completion_percentage,omitempty"`
+	CompletionPercentage optionalnullable.OptionalNullable[float64] `json:"completion_percentage,omitempty"`
 	// Start date of the project
-	StartDate *types.Date `json:"start_date,omitempty"`
+	StartDate optionalnullable.OptionalNullable[types.Date] `json:"start_date,omitempty"`
 	// Expected or planned end date of the project
-	EndDate *types.Date `json:"end_date,omitempty"`
+	EndDate optionalnullable.OptionalNullable[types.Date] `json:"end_date,omitempty"`
 	// Actual end date of the project
-	CompletionDate *types.Date `json:"completion_date,omitempty"`
+	CompletionDate optionalnullable.OptionalNullable[types.Date] `json:"completion_date,omitempty"`
 	// The customer this entity is linked to.
-	Customer *LinkedCustomerInput `json:"customer,omitempty"`
+	Customer optionalnullable.OptionalNullable[LinkedCustomerInput] `json:"customer,omitempty"`
 	// Department or organizational unit associated with the project
-	Department *ProjectDepartment `json:"department,omitempty"`
+	Department optionalnullable.OptionalNullable[ProjectDepartment] `json:"department,omitempty"`
 	// The company ID the transaction belongs to
-	CompanyID *string `json:"company_id,omitempty"`
+	CompanyID optionalnullable.OptionalNullable[string] `json:"company_id,omitempty"`
 	// ID of the user who owns/manages this project
-	OwnerID *string `json:"owner_id,omitempty"`
+	OwnerID optionalnullable.OptionalNullable[string] `json:"owner_id,omitempty"`
 	// Parent project if this is a subproject
-	ParentProject *ParentProject `json:"parent_project,omitempty"`
+	ParentProject optionalnullable.OptionalNullable[ParentProject] `json:"parent_project,omitempty"`
 	// Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
-	Currency *Currency `json:"currency,omitempty"`
+	Currency optionalnullable.OptionalNullable[Currency] `json:"currency,omitempty"`
 	// Total budgeted amount for the project
-	BudgetAmount *float64 `json:"budget_amount,omitempty"`
+	BudgetAmount optionalnullable.OptionalNullable[float64] `json:"budget_amount,omitempty"`
 	// Approved budget amount for the project
-	ApprovedAmount *float64 `json:"approved_amount,omitempty"`
+	ApprovedAmount optionalnullable.OptionalNullable[float64] `json:"approved_amount,omitempty"`
 	// Total budgeted hours for the project
-	BudgetHours *float64 `json:"budget_hours,omitempty"`
+	BudgetHours optionalnullable.OptionalNullable[float64] `json:"budget_hours,omitempty"`
 	// Default hourly rate for project work
-	HourlyRate *float64 `json:"hourly_rate,omitempty"`
+	HourlyRate optionalnullable.OptionalNullable[float64] `json:"hourly_rate,omitempty"`
 	// Method used for billing this project
-	BillingMethod *BillingMethod `json:"billing_method,omitempty"`
+	BillingMethod optionalnullable.OptionalNullable[BillingMethod] `json:"billing_method,omitempty"`
 	// Indicates if the project is billable to the customer
-	IsBillable *bool `default:"true" json:"is_billable"`
+	IsBillable optionalnullable.OptionalNullable[bool] `default:"true" json:"is_billable"`
 	// Current phase of the project lifecycle
-	Phase   *ProjectPhase       `json:"phase,omitempty"`
-	TaxRate *LinkedTaxRateInput `json:"tax_rate,omitempty"`
+	Phase   optionalnullable.OptionalNullable[ProjectPhase] `json:"phase,omitempty"`
+	TaxRate *LinkedTaxRateInput                             `json:"tax_rate,omitempty"`
 	// A list of linked tracking categories.
-	TrackingCategories []*LinkedTrackingCategory `json:"tracking_categories,omitempty"`
+	TrackingCategories optionalnullable.OptionalNullable[[]*LinkedTrackingCategory] `json:"tracking_categories,omitempty"`
 	// Tags associated with the project
 	Tags []string `json:"tags,omitempty"`
 	// Additional notes about the project
-	Notes *string `json:"notes,omitempty"`
+	Notes optionalnullable.OptionalNullable[string] `json:"notes,omitempty"`
 	// Contract or agreement number associated with the project
-	ContractNumber *string `json:"contract_number,omitempty"`
+	ContractNumber optionalnullable.OptionalNullable[string] `json:"contract_number,omitempty"`
 	// Expected profit margin percentage for the project
-	ProfitMargin *float64 `json:"profit_margin,omitempty"`
+	ProfitMargin optionalnullable.OptionalNullable[float64] `json:"profit_margin,omitempty"`
 	// Current status of project schedule compared to plan
-	ScheduleStatus *ScheduleStatus `json:"schedule_status,omitempty"`
+	ScheduleStatus optionalnullable.OptionalNullable[ScheduleStatus] `json:"schedule_status,omitempty"`
 	// An array of addresses associated with the project (billing, job site, etc.)
 	Addresses []Address `json:"addresses,omitempty"`
 	// Number of team members assigned to the project
-	TeamSize     *int64             `json:"team_size,omitempty"`
-	CustomFields []CustomFieldUnion `json:"custom_fields,omitempty"`
+	TeamSize     optionalnullable.OptionalNullable[int64] `json:"team_size,omitempty"`
+	CustomFields []CustomFieldUnion                       `json:"custom_fields,omitempty"`
 	// A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
-	RowVersion *string `json:"row_version,omitempty"`
+	RowVersion optionalnullable.OptionalNullable[string] `json:"row_version,omitempty"`
 }
 
 func (p ProjectInput) MarshalJSON() ([]byte, error) {
@@ -644,168 +645,168 @@ func (o *ProjectInput) GetName() string {
 	return o.Name
 }
 
-func (o *ProjectInput) GetDisplayID() *string {
+func (o *ProjectInput) GetDisplayID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.DisplayID
 }
 
-func (o *ProjectInput) GetReferenceID() *string {
+func (o *ProjectInput) GetReferenceID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.ReferenceID
 }
 
-func (o *ProjectInput) GetDescription() *string {
+func (o *ProjectInput) GetDescription() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Description
 }
 
-func (o *ProjectInput) GetStatus() *ProjectProjectStatus {
+func (o *ProjectInput) GetStatus() optionalnullable.OptionalNullable[ProjectProjectStatus] {
 	if o == nil {
 		return nil
 	}
 	return o.Status
 }
 
-func (o *ProjectInput) GetActive() *bool {
+func (o *ProjectInput) GetActive() optionalnullable.OptionalNullable[bool] {
 	if o == nil {
 		return nil
 	}
 	return o.Active
 }
 
-func (o *ProjectInput) GetProjectType() *ProjectType {
+func (o *ProjectInput) GetProjectType() optionalnullable.OptionalNullable[ProjectType] {
 	if o == nil {
 		return nil
 	}
 	return o.ProjectType
 }
 
-func (o *ProjectInput) GetPriority() *ProjectPriority {
+func (o *ProjectInput) GetPriority() optionalnullable.OptionalNullable[ProjectPriority] {
 	if o == nil {
 		return nil
 	}
 	return o.Priority
 }
 
-func (o *ProjectInput) GetCompletionPercentage() *float64 {
+func (o *ProjectInput) GetCompletionPercentage() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}
 	return o.CompletionPercentage
 }
 
-func (o *ProjectInput) GetStartDate() *types.Date {
+func (o *ProjectInput) GetStartDate() optionalnullable.OptionalNullable[types.Date] {
 	if o == nil {
 		return nil
 	}
 	return o.StartDate
 }
 
-func (o *ProjectInput) GetEndDate() *types.Date {
+func (o *ProjectInput) GetEndDate() optionalnullable.OptionalNullable[types.Date] {
 	if o == nil {
 		return nil
 	}
 	return o.EndDate
 }
 
-func (o *ProjectInput) GetCompletionDate() *types.Date {
+func (o *ProjectInput) GetCompletionDate() optionalnullable.OptionalNullable[types.Date] {
 	if o == nil {
 		return nil
 	}
 	return o.CompletionDate
 }
 
-func (o *ProjectInput) GetCustomer() *LinkedCustomerInput {
+func (o *ProjectInput) GetCustomer() optionalnullable.OptionalNullable[LinkedCustomerInput] {
 	if o == nil {
 		return nil
 	}
 	return o.Customer
 }
 
-func (o *ProjectInput) GetDepartment() *ProjectDepartment {
+func (o *ProjectInput) GetDepartment() optionalnullable.OptionalNullable[ProjectDepartment] {
 	if o == nil {
 		return nil
 	}
 	return o.Department
 }
 
-func (o *ProjectInput) GetCompanyID() *string {
+func (o *ProjectInput) GetCompanyID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.CompanyID
 }
 
-func (o *ProjectInput) GetOwnerID() *string {
+func (o *ProjectInput) GetOwnerID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.OwnerID
 }
 
-func (o *ProjectInput) GetParentProject() *ParentProject {
+func (o *ProjectInput) GetParentProject() optionalnullable.OptionalNullable[ParentProject] {
 	if o == nil {
 		return nil
 	}
 	return o.ParentProject
 }
 
-func (o *ProjectInput) GetCurrency() *Currency {
+func (o *ProjectInput) GetCurrency() optionalnullable.OptionalNullable[Currency] {
 	if o == nil {
 		return nil
 	}
 	return o.Currency
 }
 
-func (o *ProjectInput) GetBudgetAmount() *float64 {
+func (o *ProjectInput) GetBudgetAmount() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}
 	return o.BudgetAmount
 }
 
-func (o *ProjectInput) GetApprovedAmount() *float64 {
+func (o *ProjectInput) GetApprovedAmount() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}
 	return o.ApprovedAmount
 }
 
-func (o *ProjectInput) GetBudgetHours() *float64 {
+func (o *ProjectInput) GetBudgetHours() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}
 	return o.BudgetHours
 }
 
-func (o *ProjectInput) GetHourlyRate() *float64 {
+func (o *ProjectInput) GetHourlyRate() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}
 	return o.HourlyRate
 }
 
-func (o *ProjectInput) GetBillingMethod() *BillingMethod {
+func (o *ProjectInput) GetBillingMethod() optionalnullable.OptionalNullable[BillingMethod] {
 	if o == nil {
 		return nil
 	}
 	return o.BillingMethod
 }
 
-func (o *ProjectInput) GetIsBillable() *bool {
+func (o *ProjectInput) GetIsBillable() optionalnullable.OptionalNullable[bool] {
 	if o == nil {
 		return nil
 	}
 	return o.IsBillable
 }
 
-func (o *ProjectInput) GetPhase() *ProjectPhase {
+func (o *ProjectInput) GetPhase() optionalnullable.OptionalNullable[ProjectPhase] {
 	if o == nil {
 		return nil
 	}
@@ -819,7 +820,7 @@ func (o *ProjectInput) GetTaxRate() *LinkedTaxRateInput {
 	return o.TaxRate
 }
 
-func (o *ProjectInput) GetTrackingCategories() []*LinkedTrackingCategory {
+func (o *ProjectInput) GetTrackingCategories() optionalnullable.OptionalNullable[[]*LinkedTrackingCategory] {
 	if o == nil {
 		return nil
 	}
@@ -833,28 +834,28 @@ func (o *ProjectInput) GetTags() []string {
 	return o.Tags
 }
 
-func (o *ProjectInput) GetNotes() *string {
+func (o *ProjectInput) GetNotes() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Notes
 }
 
-func (o *ProjectInput) GetContractNumber() *string {
+func (o *ProjectInput) GetContractNumber() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.ContractNumber
 }
 
-func (o *ProjectInput) GetProfitMargin() *float64 {
+func (o *ProjectInput) GetProfitMargin() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}
 	return o.ProfitMargin
 }
 
-func (o *ProjectInput) GetScheduleStatus() *ScheduleStatus {
+func (o *ProjectInput) GetScheduleStatus() optionalnullable.OptionalNullable[ScheduleStatus] {
 	if o == nil {
 		return nil
 	}
@@ -868,7 +869,7 @@ func (o *ProjectInput) GetAddresses() []Address {
 	return o.Addresses
 }
 
-func (o *ProjectInput) GetTeamSize() *int64 {
+func (o *ProjectInput) GetTeamSize() optionalnullable.OptionalNullable[int64] {
 	if o == nil {
 		return nil
 	}
@@ -882,7 +883,7 @@ func (o *ProjectInput) GetCustomFields() []CustomFieldUnion {
 	return o.CustomFields
 }
 
-func (o *ProjectInput) GetRowVersion() *string {
+func (o *ProjectInput) GetRowVersion() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}

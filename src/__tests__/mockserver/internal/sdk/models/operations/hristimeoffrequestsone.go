@@ -4,6 +4,7 @@ package operations
 
 import (
 	"mockserver/internal/sdk/models/components"
+	"mockserver/internal/sdk/optionalnullable"
 	"mockserver/internal/sdk/utils"
 )
 
@@ -40,7 +41,7 @@ type HrisTimeOffRequestsOneRequest struct {
 	// Include raw response. Mostly used for debugging purposes
 	Raw *bool `default:"false" queryParam:"style=form,explode=true,name=raw"`
 	// The 'fields' parameter allows API users to specify the fields they want to include in the API response. If this parameter is not present, the API will return all available fields. If this parameter is present, only the fields specified in the comma-separated string will be included in the response. Nested properties can also be requested by using a dot notation. <br /><br />Example: `fields=name,email,addresses.city`<br /><br />In the example above, the response will only include the fields "name", "email" and "addresses.city". If any other fields are available, they will be excluded.
-	Fields *string `queryParam:"style=form,explode=true,name=fields"`
+	Fields optionalnullable.OptionalNullable[string] `queryParam:"style=form,explode=true,name=fields"`
 	// ID of the employee you are acting upon.
 	EmployeeID string `pathParam:"style=simple,explode=false,name=employee_id"`
 }
@@ -91,7 +92,7 @@ func (o *HrisTimeOffRequestsOneRequest) GetRaw() *bool {
 	return o.Raw
 }
 
-func (o *HrisTimeOffRequestsOneRequest) GetFields() *string {
+func (o *HrisTimeOffRequestsOneRequest) GetFields() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}

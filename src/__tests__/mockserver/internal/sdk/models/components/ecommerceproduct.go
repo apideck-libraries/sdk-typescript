@@ -3,6 +3,7 @@
 package components
 
 import (
+	"mockserver/internal/sdk/optionalnullable"
 	"mockserver/internal/sdk/utils"
 	"time"
 )
@@ -21,19 +22,19 @@ func (e ProductStatus) ToPointer() *ProductStatus {
 
 type Image struct {
 	// A unique identifier for an object.
-	ID *string `json:"id,omitempty"`
+	ID optionalnullable.OptionalNullable[string] `json:"id,omitempty"`
 	// The URL of an image of the product.
-	URL *string `json:"url,omitempty"`
+	URL optionalnullable.OptionalNullable[string] `json:"url,omitempty"`
 }
 
-func (o *Image) GetID() *string {
+func (o *Image) GetID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *Image) GetURL() *string {
+func (o *Image) GetURL() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -42,20 +43,20 @@ func (o *Image) GetURL() *string {
 
 type EcommerceProductOption struct {
 	// A unique identifier for the option of the product.
-	ID *string `json:"id,omitempty"`
+	ID optionalnullable.OptionalNullable[string] `json:"id,omitempty"`
 	// The name of the option for the product.
-	Name   *string   `json:"name,omitempty"`
-	Values []*string `json:"values,omitempty"`
+	Name   optionalnullable.OptionalNullable[string] `json:"name,omitempty"`
+	Values []*string                                 `json:"values,omitempty"`
 }
 
-func (o *EcommerceProductOption) GetID() *string {
+func (o *EcommerceProductOption) GetID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *EcommerceProductOption) GetName() *string {
+func (o *EcommerceProductOption) GetName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -71,28 +72,28 @@ func (o *EcommerceProductOption) GetValues() []*string {
 
 type VariantOption struct {
 	// A unique identifier for the option of the variant.
-	ID *string `json:"id,omitempty"`
+	ID optionalnullable.OptionalNullable[string] `json:"id,omitempty"`
 	// The name of the option for the variant.
-	Name *string `json:"name,omitempty"`
+	Name optionalnullable.OptionalNullable[string] `json:"name,omitempty"`
 	// The value of the option for the variant.
-	Value *string `json:"value,omitempty"`
+	Value optionalnullable.OptionalNullable[string] `json:"value,omitempty"`
 }
 
-func (o *VariantOption) GetID() *string {
+func (o *VariantOption) GetID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *VariantOption) GetName() *string {
+func (o *VariantOption) GetName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-func (o *VariantOption) GetValue() *string {
+func (o *VariantOption) GetValue() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -101,19 +102,19 @@ func (o *VariantOption) GetValue() *string {
 
 type VariantImage struct {
 	// A unique identifier for an object.
-	ID *string `json:"id,omitempty"`
+	ID optionalnullable.OptionalNullable[string] `json:"id,omitempty"`
 	// The URL of an image of the variant.
-	URL *string `json:"url,omitempty"`
+	URL optionalnullable.OptionalNullable[string] `json:"url,omitempty"`
 }
 
-func (o *VariantImage) GetID() *string {
+func (o *VariantImage) GetID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *VariantImage) GetURL() *string {
+func (o *VariantImage) GetURL() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -122,66 +123,66 @@ func (o *VariantImage) GetURL() *string {
 
 type Variant struct {
 	// A unique identifier for the variant of the product.
-	ID *string `json:"id,omitempty"`
+	ID optionalnullable.OptionalNullable[string] `json:"id,omitempty"`
 	// The name for the variant, used for displaying to customers.
-	Name *string `json:"name,omitempty"`
+	Name optionalnullable.OptionalNullable[string] `json:"name,omitempty"`
 	// The price of the variant.
-	Price *string `json:"price,omitempty"`
+	Price optionalnullable.OptionalNullable[string] `json:"price,omitempty"`
 	// The stock keeping unit of the variant.
-	Sku *string `json:"sku,omitempty"`
+	Sku optionalnullable.OptionalNullable[string] `json:"sku,omitempty"`
 	// The quantity of the variant in stock.
-	InventoryQuantity *string `json:"inventory_quantity,omitempty"`
+	InventoryQuantity optionalnullable.OptionalNullable[string] `json:"inventory_quantity,omitempty"`
 	// The weight of the variant.
-	Weight *string `json:"weight,omitempty"`
+	Weight optionalnullable.OptionalNullable[string] `json:"weight,omitempty"`
 	// The unit of measurement for the weight of the variant.
-	WeightUnit *string         `json:"weight_unit,omitempty"`
-	Options    []VariantOption `json:"options,omitempty"`
-	Images     []VariantImage  `json:"images,omitempty"`
+	WeightUnit optionalnullable.OptionalNullable[string] `json:"weight_unit,omitempty"`
+	Options    []VariantOption                           `json:"options,omitempty"`
+	Images     []VariantImage                            `json:"images,omitempty"`
 }
 
-func (o *Variant) GetID() *string {
+func (o *Variant) GetID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *Variant) GetName() *string {
+func (o *Variant) GetName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-func (o *Variant) GetPrice() *string {
+func (o *Variant) GetPrice() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Price
 }
 
-func (o *Variant) GetSku() *string {
+func (o *Variant) GetSku() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Sku
 }
 
-func (o *Variant) GetInventoryQuantity() *string {
+func (o *Variant) GetInventoryQuantity() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.InventoryQuantity
 }
 
-func (o *Variant) GetWeight() *string {
+func (o *Variant) GetWeight() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Weight
 }
 
-func (o *Variant) GetWeightUnit() *string {
+func (o *Variant) GetWeightUnit() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -204,19 +205,19 @@ func (o *Variant) GetImages() []VariantImage {
 
 type EcommerceProductCategory struct {
 	// A unique identifier for an object.
-	ID *string `json:"id,omitempty"`
+	ID optionalnullable.OptionalNullable[string] `json:"id,omitempty"`
 	// The name of the category.
-	Name *string `json:"name,omitempty"`
+	Name optionalnullable.OptionalNullable[string] `json:"name,omitempty"`
 }
 
-func (o *EcommerceProductCategory) GetID() *string {
+func (o *EcommerceProductCategory) GetID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *EcommerceProductCategory) GetName() *string {
+func (o *EcommerceProductCategory) GetName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -227,23 +228,23 @@ type EcommerceProduct struct {
 	// A unique identifier for an object.
 	ID string `json:"id"`
 	// The name of the product as it should be displayed to customers.
-	Name *string `json:"name,omitempty"`
+	Name optionalnullable.OptionalNullable[string] `json:"name,omitempty"`
 	// A detailed description of the product.
-	Description *string `json:"description,omitempty"`
+	Description optionalnullable.OptionalNullable[string] `json:"description,omitempty"`
 	// The current status of the product (active or archived).
-	Status *ProductStatus `json:"status,omitempty"`
+	Status optionalnullable.OptionalNullable[ProductStatus] `json:"status,omitempty"`
 	// The price of the product.
-	Price *string `json:"price,omitempty"`
+	Price optionalnullable.OptionalNullable[string] `json:"price,omitempty"`
 	// The stock keeping unit of the product.
-	Sku *string `json:"sku,omitempty"`
+	Sku optionalnullable.OptionalNullable[string] `json:"sku,omitempty"`
 	// The quantity of the product in stock.
-	InventoryQuantity *string `json:"inventory_quantity,omitempty"`
+	InventoryQuantity optionalnullable.OptionalNullable[string] `json:"inventory_quantity,omitempty"`
 	// An array of image URLs for the product.
-	Images []Image `json:"images,omitempty"`
+	Images optionalnullable.OptionalNullable[[]Image] `json:"images,omitempty"`
 	// The weight of the product.
-	Weight *string `json:"weight,omitempty"`
+	Weight optionalnullable.OptionalNullable[string] `json:"weight,omitempty"`
 	// The unit of measurement for the weight of the product.
-	WeightUnit *string `json:"weight_unit,omitempty"`
+	WeightUnit optionalnullable.OptionalNullable[string] `json:"weight_unit,omitempty"`
 	// An array of options for the product.
 	Options  []EcommerceProductOption `json:"options,omitempty"`
 	Variants []Variant                `json:"variants,omitempty"`
@@ -252,11 +253,11 @@ type EcommerceProduct struct {
 	// An array of categories for the product, used for organization and searching.
 	Categories []EcommerceProductCategory `json:"categories,omitempty"`
 	// When custom mappings are configured on the resource, the result is included here.
-	CustomMappings map[string]any `json:"custom_mappings,omitempty"`
+	CustomMappings optionalnullable.OptionalNullable[map[string]any] `json:"custom_mappings,omitempty"`
 	// The date and time when the object was created.
-	CreatedAt *time.Time `json:"created_at,omitempty"`
+	CreatedAt optionalnullable.OptionalNullable[time.Time] `json:"created_at,omitempty"`
 	// The date and time when the object was last updated.
-	UpdatedAt *time.Time `json:"updated_at,omitempty"`
+	UpdatedAt optionalnullable.OptionalNullable[time.Time] `json:"updated_at,omitempty"`
 }
 
 func (e EcommerceProduct) MarshalJSON() ([]byte, error) {
@@ -277,63 +278,63 @@ func (o *EcommerceProduct) GetID() string {
 	return o.ID
 }
 
-func (o *EcommerceProduct) GetName() *string {
+func (o *EcommerceProduct) GetName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-func (o *EcommerceProduct) GetDescription() *string {
+func (o *EcommerceProduct) GetDescription() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Description
 }
 
-func (o *EcommerceProduct) GetStatus() *ProductStatus {
+func (o *EcommerceProduct) GetStatus() optionalnullable.OptionalNullable[ProductStatus] {
 	if o == nil {
 		return nil
 	}
 	return o.Status
 }
 
-func (o *EcommerceProduct) GetPrice() *string {
+func (o *EcommerceProduct) GetPrice() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Price
 }
 
-func (o *EcommerceProduct) GetSku() *string {
+func (o *EcommerceProduct) GetSku() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Sku
 }
 
-func (o *EcommerceProduct) GetInventoryQuantity() *string {
+func (o *EcommerceProduct) GetInventoryQuantity() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.InventoryQuantity
 }
 
-func (o *EcommerceProduct) GetImages() []Image {
+func (o *EcommerceProduct) GetImages() optionalnullable.OptionalNullable[[]Image] {
 	if o == nil {
 		return nil
 	}
 	return o.Images
 }
 
-func (o *EcommerceProduct) GetWeight() *string {
+func (o *EcommerceProduct) GetWeight() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Weight
 }
 
-func (o *EcommerceProduct) GetWeightUnit() *string {
+func (o *EcommerceProduct) GetWeightUnit() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -368,21 +369,21 @@ func (o *EcommerceProduct) GetCategories() []EcommerceProductCategory {
 	return o.Categories
 }
 
-func (o *EcommerceProduct) GetCustomMappings() map[string]any {
+func (o *EcommerceProduct) GetCustomMappings() optionalnullable.OptionalNullable[map[string]any] {
 	if o == nil {
 		return nil
 	}
 	return o.CustomMappings
 }
 
-func (o *EcommerceProduct) GetCreatedAt() *time.Time {
+func (o *EcommerceProduct) GetCreatedAt() optionalnullable.OptionalNullable[time.Time] {
 	if o == nil {
 		return nil
 	}
 	return o.CreatedAt
 }
 
-func (o *EcommerceProduct) GetUpdatedAt() *time.Time {
+func (o *EcommerceProduct) GetUpdatedAt() optionalnullable.OptionalNullable[time.Time] {
 	if o == nil {
 		return nil
 	}

@@ -3,6 +3,7 @@
 package components
 
 import (
+	"mockserver/internal/sdk/optionalnullable"
 	"mockserver/internal/sdk/utils"
 	"time"
 )
@@ -24,7 +25,7 @@ func (e DisabledReason) ToPointer() *DisabledReason {
 type Webhook struct {
 	ID *string `json:"id,omitempty"`
 	// A description of the object.
-	Description *string `json:"description,omitempty"`
+	Description optionalnullable.OptionalNullable[string] `json:"description,omitempty"`
 	// Name of Apideck Unified API
 	UnifiedAPI UnifiedAPIID `json:"unified_api"`
 	// The status of the webhook.
@@ -38,9 +39,9 @@ type Webhook struct {
 	// The list of subscribed events for this webhook. [`*`] indicates that all events are enabled.
 	Events []WebhookEventType `json:"events"`
 	// The date and time when the object was last updated.
-	UpdatedAt *time.Time `json:"updated_at,omitempty"`
+	UpdatedAt optionalnullable.OptionalNullable[time.Time] `json:"updated_at,omitempty"`
 	// The date and time when the object was created.
-	CreatedAt *time.Time `json:"created_at,omitempty"`
+	CreatedAt optionalnullable.OptionalNullable[time.Time] `json:"created_at,omitempty"`
 }
 
 func (w Webhook) MarshalJSON() ([]byte, error) {
@@ -61,7 +62,7 @@ func (o *Webhook) GetID() *string {
 	return o.ID
 }
 
-func (o *Webhook) GetDescription() *string {
+func (o *Webhook) GetDescription() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -110,14 +111,14 @@ func (o *Webhook) GetEvents() []WebhookEventType {
 	return o.Events
 }
 
-func (o *Webhook) GetUpdatedAt() *time.Time {
+func (o *Webhook) GetUpdatedAt() optionalnullable.OptionalNullable[time.Time] {
 	if o == nil {
 		return nil
 	}
 	return o.UpdatedAt
 }
 
-func (o *Webhook) GetCreatedAt() *time.Time {
+func (o *Webhook) GetCreatedAt() optionalnullable.OptionalNullable[time.Time] {
 	if o == nil {
 		return nil
 	}

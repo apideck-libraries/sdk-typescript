@@ -2,12 +2,16 @@
 
 package components
 
+import (
+	"mockserver/internal/sdk/optionalnullable"
+)
+
 type SubsidiaryReferenceInput struct {
 	// The name of the company.
-	Name *string `json:"name,omitempty"`
+	Name optionalnullable.OptionalNullable[string] `json:"name,omitempty"`
 }
 
-func (o *SubsidiaryReferenceInput) GetName() *string {
+func (o *SubsidiaryReferenceInput) GetName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}

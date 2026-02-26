@@ -3,24 +3,25 @@
 package components
 
 import (
+	"mockserver/internal/sdk/optionalnullable"
 	"mockserver/internal/sdk/types"
 	"mockserver/internal/sdk/utils"
 	"time"
 )
 
 type CompanyRowType struct {
-	ID   *string `json:"id,omitempty"`
-	Name *string `json:"name,omitempty"`
+	ID   optionalnullable.OptionalNullable[string] `json:"id,omitempty"`
+	Name optionalnullable.OptionalNullable[string] `json:"name,omitempty"`
 }
 
-func (o *CompanyRowType) GetID() *string {
+func (o *CompanyRowType) GetID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *CompanyRowType) GetName() *string {
+func (o *CompanyRowType) GetName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -33,74 +34,74 @@ type Company1 struct {
 	// Name of the company
 	Name *string `json:"name"`
 	// Number of interactions
-	InteractionCount *int64 `json:"interaction_count,omitempty"`
+	InteractionCount optionalnullable.OptionalNullable[int64] `json:"interaction_count,omitempty"`
 	// Owner ID
-	OwnerID *string `json:"owner_id,omitempty"`
+	OwnerID optionalnullable.OptionalNullable[string] `json:"owner_id,omitempty"`
 	// The Image URL of the company
-	Image *string `json:"image,omitempty"`
+	Image optionalnullable.OptionalNullable[string] `json:"image,omitempty"`
 	// A description of the company
-	Description *string `json:"description,omitempty"`
+	Description optionalnullable.OptionalNullable[string] `json:"description,omitempty"`
 	// The VAT number of the company
-	VatNumber *string `json:"vat_number,omitempty"`
+	VatNumber optionalnullable.OptionalNullable[string] `json:"vat_number,omitempty"`
 	// Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
-	Currency *Currency `json:"currency,omitempty"`
+	Currency optionalnullable.OptionalNullable[Currency] `json:"currency,omitempty"`
 	// The status of the company
-	Status *string `json:"status,omitempty"`
+	Status optionalnullable.OptionalNullable[string] `json:"status,omitempty"`
 	// The fax number of the company
-	Fax *string `json:"fax,omitempty"`
+	Fax optionalnullable.OptionalNullable[string] `json:"fax,omitempty"`
 	// The annual revenue of the company
-	AnnualRevenue *string `json:"annual_revenue,omitempty"`
+	AnnualRevenue optionalnullable.OptionalNullable[string] `json:"annual_revenue,omitempty"`
 	// Number of employees
-	NumberOfEmployees *string `json:"number_of_employees,omitempty"`
+	NumberOfEmployees optionalnullable.OptionalNullable[string] `json:"number_of_employees,omitempty"`
 	// The industry represents the type of business the company is in.
-	Industry *string `json:"industry,omitempty"`
+	Industry optionalnullable.OptionalNullable[string] `json:"industry,omitempty"`
 	// The ownership indicates the type of ownership of the company.
-	Ownership *string `json:"ownership,omitempty"`
+	Ownership optionalnullable.OptionalNullable[string] `json:"ownership,omitempty"`
 	// A sales tax number is a unique number that identifies a company for tax purposes.
-	SalesTaxNumber *string `json:"sales_tax_number,omitempty"`
+	SalesTaxNumber optionalnullable.OptionalNullable[string] `json:"sales_tax_number,omitempty"`
 	// A payee number is a unique number that identifies a payee for tax purposes.
-	PayeeNumber *string `json:"payee_number,omitempty"`
+	PayeeNumber optionalnullable.OptionalNullable[string] `json:"payee_number,omitempty"`
 	// An ABN is necessary for operating a business, while a TFN (Tax File Number) is required for any person working in Australia.
-	AbnOrTfn *string `json:"abn_or_tfn,omitempty"`
+	AbnOrTfn optionalnullable.OptionalNullable[string] `json:"abn_or_tfn,omitempty"`
 	// An ABN Branch (also known as a GST Branch) is used if part of your business needs to account for GST separately from its parent entity.
-	AbnBranch *string `json:"abn_branch,omitempty"`
+	AbnBranch optionalnullable.OptionalNullable[string] `json:"abn_branch,omitempty"`
 	// The Australian Company Number (ACN) is a nine digit number with the last digit being a check digit calculated using a modified modulus 10 calculation. ASIC has adopted a convention of always printing and displaying the ACN in the format XXX XXX XXX; three blocks of three characters, each block separated by a blank.
-	Acn *string `json:"acn,omitempty"`
+	Acn optionalnullable.OptionalNullable[string] `json:"acn,omitempty"`
 	// The first name of the person.
-	FirstName *string `json:"first_name,omitempty"`
+	FirstName optionalnullable.OptionalNullable[string] `json:"first_name,omitempty"`
 	// The last name of the person.
-	LastName *string `json:"last_name,omitempty"`
+	LastName optionalnullable.OptionalNullable[string] `json:"last_name,omitempty"`
 	// Parent ID
-	ParentID     *string            `json:"parent_id,omitempty"`
-	BankAccounts []BankAccount1     `json:"bank_accounts,omitempty"`
-	Websites     []Website          `json:"websites,omitempty"`
-	Addresses    []Address          `json:"addresses,omitempty"`
-	SocialLinks  []SocialLink       `json:"social_links,omitempty"`
-	PhoneNumbers []PhoneNumber      `json:"phone_numbers,omitempty"`
-	Emails       []Email            `json:"emails,omitempty"`
-	RowType      *CompanyRowType    `json:"row_type,omitempty"`
-	CustomFields []CustomFieldUnion `json:"custom_fields,omitempty"`
-	Tags         []string           `json:"tags,omitempty"`
+	ParentID     optionalnullable.OptionalNullable[string]   `json:"parent_id,omitempty"`
+	BankAccounts []BankAccount1                              `json:"bank_accounts,omitempty"`
+	Websites     []Website                                   `json:"websites,omitempty"`
+	Addresses    []Address                                   `json:"addresses,omitempty"`
+	SocialLinks  []SocialLink                                `json:"social_links,omitempty"`
+	PhoneNumbers []PhoneNumber                               `json:"phone_numbers,omitempty"`
+	Emails       []Email                                     `json:"emails,omitempty"`
+	RowType      *CompanyRowType                             `json:"row_type,omitempty"`
+	CustomFields []CustomFieldUnion                          `json:"custom_fields,omitempty"`
+	Tags         optionalnullable.OptionalNullable[[]string] `json:"tags,omitempty"`
 	// Whether the company is read-only or not
-	ReadOnly *bool `json:"read_only,omitempty"`
+	ReadOnly optionalnullable.OptionalNullable[bool] `json:"read_only,omitempty"`
 	// Last activity date
-	LastActivityAt *time.Time `json:"last_activity_at,omitempty"`
+	LastActivityAt optionalnullable.OptionalNullable[time.Time] `json:"last_activity_at,omitempty"`
 	// Whether the company is deleted or not
 	Deleted *bool `json:"deleted,omitempty"`
 	// A formal salutation for the person. For example, 'Mr', 'Mrs'
-	Salutation *string `json:"salutation,omitempty"`
+	Salutation optionalnullable.OptionalNullable[string] `json:"salutation,omitempty"`
 	// The date of birth of the person.
-	Birthday *types.Date `json:"birthday,omitempty"`
+	Birthday optionalnullable.OptionalNullable[types.Date] `json:"birthday,omitempty"`
 	// When custom mappings are configured on the resource, the result is included here.
-	CustomMappings map[string]any `json:"custom_mappings,omitempty"`
+	CustomMappings optionalnullable.OptionalNullable[map[string]any] `json:"custom_mappings,omitempty"`
 	// Updated by user ID
-	UpdatedBy *string `json:"updated_by,omitempty"`
+	UpdatedBy optionalnullable.OptionalNullable[string] `json:"updated_by,omitempty"`
 	// Created by user ID
-	CreatedBy *string `json:"created_by,omitempty"`
+	CreatedBy optionalnullable.OptionalNullable[string] `json:"created_by,omitempty"`
 	// Last updated date
-	UpdatedAt *time.Time `json:"updated_at,omitempty"`
+	UpdatedAt optionalnullable.OptionalNullable[time.Time] `json:"updated_at,omitempty"`
 	// Creation date
-	CreatedAt *time.Time `json:"created_at,omitempty"`
+	CreatedAt optionalnullable.OptionalNullable[time.Time] `json:"created_at,omitempty"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
 	PassThrough []PassThroughBody `json:"pass_through,omitempty"`
 }
@@ -130,140 +131,140 @@ func (o *Company1) GetName() *string {
 	return o.Name
 }
 
-func (o *Company1) GetInteractionCount() *int64 {
+func (o *Company1) GetInteractionCount() optionalnullable.OptionalNullable[int64] {
 	if o == nil {
 		return nil
 	}
 	return o.InteractionCount
 }
 
-func (o *Company1) GetOwnerID() *string {
+func (o *Company1) GetOwnerID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.OwnerID
 }
 
-func (o *Company1) GetImage() *string {
+func (o *Company1) GetImage() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Image
 }
 
-func (o *Company1) GetDescription() *string {
+func (o *Company1) GetDescription() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Description
 }
 
-func (o *Company1) GetVatNumber() *string {
+func (o *Company1) GetVatNumber() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.VatNumber
 }
 
-func (o *Company1) GetCurrency() *Currency {
+func (o *Company1) GetCurrency() optionalnullable.OptionalNullable[Currency] {
 	if o == nil {
 		return nil
 	}
 	return o.Currency
 }
 
-func (o *Company1) GetStatus() *string {
+func (o *Company1) GetStatus() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Status
 }
 
-func (o *Company1) GetFax() *string {
+func (o *Company1) GetFax() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Fax
 }
 
-func (o *Company1) GetAnnualRevenue() *string {
+func (o *Company1) GetAnnualRevenue() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.AnnualRevenue
 }
 
-func (o *Company1) GetNumberOfEmployees() *string {
+func (o *Company1) GetNumberOfEmployees() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.NumberOfEmployees
 }
 
-func (o *Company1) GetIndustry() *string {
+func (o *Company1) GetIndustry() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Industry
 }
 
-func (o *Company1) GetOwnership() *string {
+func (o *Company1) GetOwnership() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Ownership
 }
 
-func (o *Company1) GetSalesTaxNumber() *string {
+func (o *Company1) GetSalesTaxNumber() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.SalesTaxNumber
 }
 
-func (o *Company1) GetPayeeNumber() *string {
+func (o *Company1) GetPayeeNumber() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.PayeeNumber
 }
 
-func (o *Company1) GetAbnOrTfn() *string {
+func (o *Company1) GetAbnOrTfn() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.AbnOrTfn
 }
 
-func (o *Company1) GetAbnBranch() *string {
+func (o *Company1) GetAbnBranch() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.AbnBranch
 }
 
-func (o *Company1) GetAcn() *string {
+func (o *Company1) GetAcn() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Acn
 }
 
-func (o *Company1) GetFirstName() *string {
+func (o *Company1) GetFirstName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.FirstName
 }
 
-func (o *Company1) GetLastName() *string {
+func (o *Company1) GetLastName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.LastName
 }
 
-func (o *Company1) GetParentID() *string {
+func (o *Company1) GetParentID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -326,21 +327,21 @@ func (o *Company1) GetCustomFields() []CustomFieldUnion {
 	return o.CustomFields
 }
 
-func (o *Company1) GetTags() []string {
+func (o *Company1) GetTags() optionalnullable.OptionalNullable[[]string] {
 	if o == nil {
 		return nil
 	}
 	return o.Tags
 }
 
-func (o *Company1) GetReadOnly() *bool {
+func (o *Company1) GetReadOnly() optionalnullable.OptionalNullable[bool] {
 	if o == nil {
 		return nil
 	}
 	return o.ReadOnly
 }
 
-func (o *Company1) GetLastActivityAt() *time.Time {
+func (o *Company1) GetLastActivityAt() optionalnullable.OptionalNullable[time.Time] {
 	if o == nil {
 		return nil
 	}
@@ -354,49 +355,49 @@ func (o *Company1) GetDeleted() *bool {
 	return o.Deleted
 }
 
-func (o *Company1) GetSalutation() *string {
+func (o *Company1) GetSalutation() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Salutation
 }
 
-func (o *Company1) GetBirthday() *types.Date {
+func (o *Company1) GetBirthday() optionalnullable.OptionalNullable[types.Date] {
 	if o == nil {
 		return nil
 	}
 	return o.Birthday
 }
 
-func (o *Company1) GetCustomMappings() map[string]any {
+func (o *Company1) GetCustomMappings() optionalnullable.OptionalNullable[map[string]any] {
 	if o == nil {
 		return nil
 	}
 	return o.CustomMappings
 }
 
-func (o *Company1) GetUpdatedBy() *string {
+func (o *Company1) GetUpdatedBy() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.UpdatedBy
 }
 
-func (o *Company1) GetCreatedBy() *string {
+func (o *Company1) GetCreatedBy() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.CreatedBy
 }
 
-func (o *Company1) GetUpdatedAt() *time.Time {
+func (o *Company1) GetUpdatedAt() optionalnullable.OptionalNullable[time.Time] {
 	if o == nil {
 		return nil
 	}
 	return o.UpdatedAt
 }
 
-func (o *Company1) GetCreatedAt() *time.Time {
+func (o *Company1) GetCreatedAt() optionalnullable.OptionalNullable[time.Time] {
 	if o == nil {
 		return nil
 	}
@@ -414,56 +415,56 @@ type Company1Input struct {
 	// Name of the company
 	Name *string `json:"name"`
 	// Owner ID
-	OwnerID *string `json:"owner_id,omitempty"`
+	OwnerID optionalnullable.OptionalNullable[string] `json:"owner_id,omitempty"`
 	// The Image URL of the company
-	Image *string `json:"image,omitempty"`
+	Image optionalnullable.OptionalNullable[string] `json:"image,omitempty"`
 	// A description of the company
-	Description *string `json:"description,omitempty"`
+	Description optionalnullable.OptionalNullable[string] `json:"description,omitempty"`
 	// The VAT number of the company
-	VatNumber *string `json:"vat_number,omitempty"`
+	VatNumber optionalnullable.OptionalNullable[string] `json:"vat_number,omitempty"`
 	// Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
-	Currency *Currency `json:"currency,omitempty"`
+	Currency optionalnullable.OptionalNullable[Currency] `json:"currency,omitempty"`
 	// The status of the company
-	Status *string `json:"status,omitempty"`
+	Status optionalnullable.OptionalNullable[string] `json:"status,omitempty"`
 	// The fax number of the company
-	Fax *string `json:"fax,omitempty"`
+	Fax optionalnullable.OptionalNullable[string] `json:"fax,omitempty"`
 	// The annual revenue of the company
-	AnnualRevenue *string `json:"annual_revenue,omitempty"`
+	AnnualRevenue optionalnullable.OptionalNullable[string] `json:"annual_revenue,omitempty"`
 	// Number of employees
-	NumberOfEmployees *string `json:"number_of_employees,omitempty"`
+	NumberOfEmployees optionalnullable.OptionalNullable[string] `json:"number_of_employees,omitempty"`
 	// The industry represents the type of business the company is in.
-	Industry *string `json:"industry,omitempty"`
+	Industry optionalnullable.OptionalNullable[string] `json:"industry,omitempty"`
 	// The ownership indicates the type of ownership of the company.
-	Ownership *string `json:"ownership,omitempty"`
+	Ownership optionalnullable.OptionalNullable[string] `json:"ownership,omitempty"`
 	// A sales tax number is a unique number that identifies a company for tax purposes.
-	SalesTaxNumber *string `json:"sales_tax_number,omitempty"`
+	SalesTaxNumber optionalnullable.OptionalNullable[string] `json:"sales_tax_number,omitempty"`
 	// A payee number is a unique number that identifies a payee for tax purposes.
-	PayeeNumber *string `json:"payee_number,omitempty"`
+	PayeeNumber optionalnullable.OptionalNullable[string] `json:"payee_number,omitempty"`
 	// An ABN is necessary for operating a business, while a TFN (Tax File Number) is required for any person working in Australia.
-	AbnOrTfn *string `json:"abn_or_tfn,omitempty"`
+	AbnOrTfn optionalnullable.OptionalNullable[string] `json:"abn_or_tfn,omitempty"`
 	// An ABN Branch (also known as a GST Branch) is used if part of your business needs to account for GST separately from its parent entity.
-	AbnBranch *string `json:"abn_branch,omitempty"`
+	AbnBranch optionalnullable.OptionalNullable[string] `json:"abn_branch,omitempty"`
 	// The Australian Company Number (ACN) is a nine digit number with the last digit being a check digit calculated using a modified modulus 10 calculation. ASIC has adopted a convention of always printing and displaying the ACN in the format XXX XXX XXX; three blocks of three characters, each block separated by a blank.
-	Acn *string `json:"acn,omitempty"`
+	Acn optionalnullable.OptionalNullable[string] `json:"acn,omitempty"`
 	// The first name of the person.
-	FirstName *string `json:"first_name,omitempty"`
+	FirstName optionalnullable.OptionalNullable[string] `json:"first_name,omitempty"`
 	// The last name of the person.
-	LastName     *string            `json:"last_name,omitempty"`
-	BankAccounts []BankAccount1     `json:"bank_accounts,omitempty"`
-	Websites     []Website          `json:"websites,omitempty"`
-	Addresses    []Address          `json:"addresses,omitempty"`
-	SocialLinks  []SocialLink       `json:"social_links,omitempty"`
-	PhoneNumbers []PhoneNumber      `json:"phone_numbers,omitempty"`
-	Emails       []Email            `json:"emails,omitempty"`
-	RowType      *CompanyRowType    `json:"row_type,omitempty"`
-	CustomFields []CustomFieldUnion `json:"custom_fields,omitempty"`
-	Tags         []string           `json:"tags,omitempty"`
+	LastName     optionalnullable.OptionalNullable[string]   `json:"last_name,omitempty"`
+	BankAccounts []BankAccount1                              `json:"bank_accounts,omitempty"`
+	Websites     []Website                                   `json:"websites,omitempty"`
+	Addresses    []Address                                   `json:"addresses,omitempty"`
+	SocialLinks  []SocialLink                                `json:"social_links,omitempty"`
+	PhoneNumbers []PhoneNumber                               `json:"phone_numbers,omitempty"`
+	Emails       []Email                                     `json:"emails,omitempty"`
+	RowType      *CompanyRowType                             `json:"row_type,omitempty"`
+	CustomFields []CustomFieldUnion                          `json:"custom_fields,omitempty"`
+	Tags         optionalnullable.OptionalNullable[[]string] `json:"tags,omitempty"`
 	// Whether the company is read-only or not
-	ReadOnly *bool `json:"read_only,omitempty"`
+	ReadOnly optionalnullable.OptionalNullable[bool] `json:"read_only,omitempty"`
 	// A formal salutation for the person. For example, 'Mr', 'Mrs'
-	Salutation *string `json:"salutation,omitempty"`
+	Salutation optionalnullable.OptionalNullable[string] `json:"salutation,omitempty"`
 	// The date of birth of the person.
-	Birthday *types.Date `json:"birthday,omitempty"`
+	Birthday optionalnullable.OptionalNullable[types.Date] `json:"birthday,omitempty"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
 	PassThrough []PassThroughBody `json:"pass_through,omitempty"`
 }
@@ -486,126 +487,126 @@ func (o *Company1Input) GetName() *string {
 	return o.Name
 }
 
-func (o *Company1Input) GetOwnerID() *string {
+func (o *Company1Input) GetOwnerID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.OwnerID
 }
 
-func (o *Company1Input) GetImage() *string {
+func (o *Company1Input) GetImage() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Image
 }
 
-func (o *Company1Input) GetDescription() *string {
+func (o *Company1Input) GetDescription() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Description
 }
 
-func (o *Company1Input) GetVatNumber() *string {
+func (o *Company1Input) GetVatNumber() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.VatNumber
 }
 
-func (o *Company1Input) GetCurrency() *Currency {
+func (o *Company1Input) GetCurrency() optionalnullable.OptionalNullable[Currency] {
 	if o == nil {
 		return nil
 	}
 	return o.Currency
 }
 
-func (o *Company1Input) GetStatus() *string {
+func (o *Company1Input) GetStatus() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Status
 }
 
-func (o *Company1Input) GetFax() *string {
+func (o *Company1Input) GetFax() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Fax
 }
 
-func (o *Company1Input) GetAnnualRevenue() *string {
+func (o *Company1Input) GetAnnualRevenue() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.AnnualRevenue
 }
 
-func (o *Company1Input) GetNumberOfEmployees() *string {
+func (o *Company1Input) GetNumberOfEmployees() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.NumberOfEmployees
 }
 
-func (o *Company1Input) GetIndustry() *string {
+func (o *Company1Input) GetIndustry() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Industry
 }
 
-func (o *Company1Input) GetOwnership() *string {
+func (o *Company1Input) GetOwnership() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Ownership
 }
 
-func (o *Company1Input) GetSalesTaxNumber() *string {
+func (o *Company1Input) GetSalesTaxNumber() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.SalesTaxNumber
 }
 
-func (o *Company1Input) GetPayeeNumber() *string {
+func (o *Company1Input) GetPayeeNumber() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.PayeeNumber
 }
 
-func (o *Company1Input) GetAbnOrTfn() *string {
+func (o *Company1Input) GetAbnOrTfn() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.AbnOrTfn
 }
 
-func (o *Company1Input) GetAbnBranch() *string {
+func (o *Company1Input) GetAbnBranch() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.AbnBranch
 }
 
-func (o *Company1Input) GetAcn() *string {
+func (o *Company1Input) GetAcn() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Acn
 }
 
-func (o *Company1Input) GetFirstName() *string {
+func (o *Company1Input) GetFirstName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.FirstName
 }
 
-func (o *Company1Input) GetLastName() *string {
+func (o *Company1Input) GetLastName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -668,28 +669,28 @@ func (o *Company1Input) GetCustomFields() []CustomFieldUnion {
 	return o.CustomFields
 }
 
-func (o *Company1Input) GetTags() []string {
+func (o *Company1Input) GetTags() optionalnullable.OptionalNullable[[]string] {
 	if o == nil {
 		return nil
 	}
 	return o.Tags
 }
 
-func (o *Company1Input) GetReadOnly() *bool {
+func (o *Company1Input) GetReadOnly() optionalnullable.OptionalNullable[bool] {
 	if o == nil {
 		return nil
 	}
 	return o.ReadOnly
 }
 
-func (o *Company1Input) GetSalutation() *string {
+func (o *Company1Input) GetSalutation() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Salutation
 }
 
-func (o *Company1Input) GetBirthday() *types.Date {
+func (o *Company1Input) GetBirthday() optionalnullable.OptionalNullable[types.Date] {
 	if o == nil {
 		return nil
 	}

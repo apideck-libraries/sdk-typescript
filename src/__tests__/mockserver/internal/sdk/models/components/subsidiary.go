@@ -3,6 +3,7 @@
 package components
 
 import (
+	"mockserver/internal/sdk/optionalnullable"
 	"mockserver/internal/sdk/utils"
 	"time"
 )
@@ -23,30 +24,30 @@ type Subsidiary struct {
 	// A unique identifier for an object.
 	ID *string `json:"id,omitempty"`
 	// A unique identifier for an object.
-	ParentID *string `json:"parent_id,omitempty"`
+	ParentID optionalnullable.OptionalNullable[string] `json:"parent_id,omitempty"`
 	// The name of the company.
-	Name *string `json:"name,omitempty"`
+	Name optionalnullable.OptionalNullable[string] `json:"name,omitempty"`
 	// Display ID of the subsidiary
-	DisplayID *string `json:"display_id,omitempty"`
+	DisplayID optionalnullable.OptionalNullable[string] `json:"display_id,omitempty"`
 	// The third-party API ID of original entity
-	DownstreamID *string `json:"downstream_id,omitempty"`
+	DownstreamID optionalnullable.OptionalNullable[string] `json:"downstream_id,omitempty"`
 	// Based on the status some functionality is enabled or disabled.
 	Status  *SubsidiaryStatus `json:"status,omitempty"`
 	Address *Address          `json:"address,omitempty"`
 	// List of currencies supported by this subsidiary
-	Currencies []*Currency `json:"currencies,omitempty"`
+	Currencies optionalnullable.OptionalNullable[[]*Currency] `json:"currencies,omitempty"`
 	// When custom mappings are configured on the resource, the result is included here.
-	CustomMappings map[string]any `json:"custom_mappings,omitempty"`
+	CustomMappings optionalnullable.OptionalNullable[map[string]any] `json:"custom_mappings,omitempty"`
 	// A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
-	RowVersion *string `json:"row_version,omitempty"`
+	RowVersion optionalnullable.OptionalNullable[string] `json:"row_version,omitempty"`
 	// The user who last updated the object.
-	UpdatedBy *string `json:"updated_by,omitempty"`
+	UpdatedBy optionalnullable.OptionalNullable[string] `json:"updated_by,omitempty"`
 	// The user who created the object.
-	CreatedBy *string `json:"created_by,omitempty"`
+	CreatedBy optionalnullable.OptionalNullable[string] `json:"created_by,omitempty"`
 	// The date and time when the object was last updated.
-	UpdatedAt *time.Time `json:"updated_at,omitempty"`
+	UpdatedAt optionalnullable.OptionalNullable[time.Time] `json:"updated_at,omitempty"`
 	// The date and time when the object was created.
-	CreatedAt *time.Time `json:"created_at,omitempty"`
+	CreatedAt optionalnullable.OptionalNullable[time.Time] `json:"created_at,omitempty"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
 	PassThrough []PassThroughBody `json:"pass_through,omitempty"`
 }
@@ -69,28 +70,28 @@ func (o *Subsidiary) GetID() *string {
 	return o.ID
 }
 
-func (o *Subsidiary) GetParentID() *string {
+func (o *Subsidiary) GetParentID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.ParentID
 }
 
-func (o *Subsidiary) GetName() *string {
+func (o *Subsidiary) GetName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-func (o *Subsidiary) GetDisplayID() *string {
+func (o *Subsidiary) GetDisplayID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.DisplayID
 }
 
-func (o *Subsidiary) GetDownstreamID() *string {
+func (o *Subsidiary) GetDownstreamID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -111,49 +112,49 @@ func (o *Subsidiary) GetAddress() *Address {
 	return o.Address
 }
 
-func (o *Subsidiary) GetCurrencies() []*Currency {
+func (o *Subsidiary) GetCurrencies() optionalnullable.OptionalNullable[[]*Currency] {
 	if o == nil {
 		return nil
 	}
 	return o.Currencies
 }
 
-func (o *Subsidiary) GetCustomMappings() map[string]any {
+func (o *Subsidiary) GetCustomMappings() optionalnullable.OptionalNullable[map[string]any] {
 	if o == nil {
 		return nil
 	}
 	return o.CustomMappings
 }
 
-func (o *Subsidiary) GetRowVersion() *string {
+func (o *Subsidiary) GetRowVersion() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.RowVersion
 }
 
-func (o *Subsidiary) GetUpdatedBy() *string {
+func (o *Subsidiary) GetUpdatedBy() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.UpdatedBy
 }
 
-func (o *Subsidiary) GetCreatedBy() *string {
+func (o *Subsidiary) GetCreatedBy() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.CreatedBy
 }
 
-func (o *Subsidiary) GetUpdatedAt() *time.Time {
+func (o *Subsidiary) GetUpdatedAt() optionalnullable.OptionalNullable[time.Time] {
 	if o == nil {
 		return nil
 	}
 	return o.UpdatedAt
 }
 
-func (o *Subsidiary) GetCreatedAt() *time.Time {
+func (o *Subsidiary) GetCreatedAt() optionalnullable.OptionalNullable[time.Time] {
 	if o == nil {
 		return nil
 	}
@@ -169,37 +170,37 @@ func (o *Subsidiary) GetPassThrough() []PassThroughBody {
 
 type SubsidiaryInput struct {
 	// A unique identifier for an object.
-	ParentID *string `json:"parent_id,omitempty"`
+	ParentID optionalnullable.OptionalNullable[string] `json:"parent_id,omitempty"`
 	// The name of the company.
-	Name *string `json:"name,omitempty"`
+	Name optionalnullable.OptionalNullable[string] `json:"name,omitempty"`
 	// Display ID of the subsidiary
-	DisplayID *string `json:"display_id,omitempty"`
+	DisplayID optionalnullable.OptionalNullable[string] `json:"display_id,omitempty"`
 	// Based on the status some functionality is enabled or disabled.
 	Status  *SubsidiaryStatus `json:"status,omitempty"`
 	Address *Address          `json:"address,omitempty"`
 	// List of currencies supported by this subsidiary
-	Currencies []*Currency `json:"currencies,omitempty"`
+	Currencies optionalnullable.OptionalNullable[[]*Currency] `json:"currencies,omitempty"`
 	// A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
-	RowVersion *string `json:"row_version,omitempty"`
+	RowVersion optionalnullable.OptionalNullable[string] `json:"row_version,omitempty"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
 	PassThrough []PassThroughBody `json:"pass_through,omitempty"`
 }
 
-func (o *SubsidiaryInput) GetParentID() *string {
+func (o *SubsidiaryInput) GetParentID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.ParentID
 }
 
-func (o *SubsidiaryInput) GetName() *string {
+func (o *SubsidiaryInput) GetName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-func (o *SubsidiaryInput) GetDisplayID() *string {
+func (o *SubsidiaryInput) GetDisplayID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -220,14 +221,14 @@ func (o *SubsidiaryInput) GetAddress() *Address {
 	return o.Address
 }
 
-func (o *SubsidiaryInput) GetCurrencies() []*Currency {
+func (o *SubsidiaryInput) GetCurrencies() optionalnullable.OptionalNullable[[]*Currency] {
 	if o == nil {
 		return nil
 	}
 	return o.Currencies
 }
 
-func (o *SubsidiaryInput) GetRowVersion() *string {
+func (o *SubsidiaryInput) GetRowVersion() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}

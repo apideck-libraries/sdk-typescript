@@ -2,6 +2,10 @@
 
 package components
 
+import (
+	"mockserver/internal/sdk/optionalnullable"
+)
+
 // GetAttachmentResponse - Attachments
 type GetAttachmentResponse struct {
 	// HTTP Response Status Code
@@ -16,7 +20,7 @@ type GetAttachmentResponse struct {
 	Operation string     `json:"operation"`
 	Data      Attachment `json:"data"`
 	// Raw response from the integration when raw=true query param is provided
-	Raw map[string]any `json:"_raw,omitempty"`
+	Raw optionalnullable.OptionalNullable[map[string]any] `json:"_raw,omitempty"`
 }
 
 func (o *GetAttachmentResponse) GetStatusCode() int64 {
@@ -61,7 +65,7 @@ func (o *GetAttachmentResponse) GetData() Attachment {
 	return o.Data
 }
 
-func (o *GetAttachmentResponse) GetRaw() map[string]any {
+func (o *GetAttachmentResponse) GetRaw() optionalnullable.OptionalNullable[map[string]any] {
 	if o == nil {
 		return nil
 	}

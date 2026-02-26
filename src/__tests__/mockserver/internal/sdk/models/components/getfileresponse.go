@@ -2,6 +2,10 @@
 
 package components
 
+import (
+	"mockserver/internal/sdk/optionalnullable"
+)
+
 // GetFileResponse - File
 type GetFileResponse struct {
 	// HTTP Response Status Code
@@ -16,7 +20,7 @@ type GetFileResponse struct {
 	Operation string      `json:"operation"`
 	Data      UnifiedFile `json:"data"`
 	// Raw response from the integration when raw=true query param is provided
-	Raw map[string]any `json:"_raw,omitempty"`
+	Raw optionalnullable.OptionalNullable[map[string]any] `json:"_raw,omitempty"`
 }
 
 func (o *GetFileResponse) GetStatusCode() int64 {
@@ -61,7 +65,7 @@ func (o *GetFileResponse) GetData() UnifiedFile {
 	return o.Data
 }
 
-func (o *GetFileResponse) GetRaw() map[string]any {
+func (o *GetFileResponse) GetRaw() optionalnullable.OptionalNullable[map[string]any] {
 	if o == nil {
 		return nil
 	}

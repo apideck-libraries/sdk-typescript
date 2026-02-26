@@ -2,14 +2,18 @@
 
 package components
 
+import (
+	"mockserver/internal/sdk/optionalnullable"
+)
+
 type CollectionTicketCommentInput struct {
 	// Body of the comment
-	Body *string `json:"body,omitempty"`
+	Body optionalnullable.OptionalNullable[string] `json:"body,omitempty"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
 	PassThrough []PassThroughBody `json:"pass_through,omitempty"`
 }
 
-func (o *CollectionTicketCommentInput) GetBody() *string {
+func (o *CollectionTicketCommentInput) GetBody() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}

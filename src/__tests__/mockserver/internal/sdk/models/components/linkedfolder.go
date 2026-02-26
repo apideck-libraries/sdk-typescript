@@ -2,11 +2,15 @@
 
 package components
 
+import (
+	"mockserver/internal/sdk/optionalnullable"
+)
+
 type LinkedFolder struct {
 	// A unique identifier for an object.
 	ID string `json:"id"`
 	// The name of the folder
-	Name *string `json:"name,omitempty"`
+	Name optionalnullable.OptionalNullable[string] `json:"name,omitempty"`
 }
 
 func (o *LinkedFolder) GetID() string {
@@ -16,7 +20,7 @@ func (o *LinkedFolder) GetID() string {
 	return o.ID
 }
 
-func (o *LinkedFolder) GetName() *string {
+func (o *LinkedFolder) GetName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}

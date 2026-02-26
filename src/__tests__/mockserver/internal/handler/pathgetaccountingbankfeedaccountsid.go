@@ -8,6 +8,7 @@ import (
 	"mockserver/internal/handler/assert"
 	"mockserver/internal/logging"
 	"mockserver/internal/sdk/models/components"
+	"mockserver/internal/sdk/optionalnullable"
 	"mockserver/internal/sdk/types"
 	"mockserver/internal/sdk/utils"
 	"mockserver/internal/tracking"
@@ -59,45 +60,45 @@ func testAccountingBankFeedAccountsOneAccountingBankFeedAccountsOne0(w http.Resp
 			TargetAccountID:     types.String("tgt_789"),
 			TargetAccountName:   types.String("Main Company Checking"),
 			TargetAccountNumber: types.String("NL91ABNA0417164300"),
-			Currency:            components.CurrencyUsd.ToPointer(),
+			Currency:            optionalnullable.From(components.CurrencyUsd.ToPointer()),
 			FeedStatus:          components.FeedStatusPending.ToPointer(),
-			Country:             types.String("US"),
+			Country:             optionalnullable.From(types.String("US")),
 			CustomFields: []components.CustomFieldUnion{
 				components.CreateCustomFieldUnionCustomField1(
 					components.CustomField1{
 						ID:          types.String("2389328923893298"),
-						Name:        types.String("employee_level"),
-						Description: types.String("Employee Level"),
-						Value: types.Pointer(components.CreateCustomFieldValue2MapOfAny(
+						Name:        optionalnullable.From(types.String("employee_level")),
+						Description: optionalnullable.From(types.String("Employee Level")),
+						Value: optionalnullable.From(types.Pointer(components.CreateCustomFieldValue2MapOfAny(
 							map[string]any{},
-						)),
+						))),
 					},
 				),
 				components.CreateCustomFieldUnionCustomField1(
 					components.CustomField1{
 						ID:          types.String("2389328923893298"),
-						Name:        types.String("employee_level"),
-						Description: types.String("Employee Level"),
-						Value: types.Pointer(components.CreateCustomFieldValue2MapOfAny(
+						Name:        optionalnullable.From(types.String("employee_level")),
+						Description: optionalnullable.From(types.String("Employee Level")),
+						Value: optionalnullable.From(types.Pointer(components.CreateCustomFieldValue2MapOfAny(
 							map[string]any{},
-						)),
+						))),
 					},
 				),
 				components.CreateCustomFieldUnionCustomField1(
 					components.CustomField1{
 						ID:          types.String("2389328923893298"),
-						Name:        types.String("employee_level"),
-						Description: types.String("Employee Level"),
-						Value: types.Pointer(components.CreateCustomFieldValue2MapOfAny(
+						Name:        optionalnullable.From(types.String("employee_level")),
+						Description: optionalnullable.From(types.String("Employee Level")),
+						Value: optionalnullable.From(types.Pointer(components.CreateCustomFieldValue2MapOfAny(
 							map[string]any{},
-						)),
+						))),
 					},
 				),
 			},
-			CreatedAt: types.MustNewTimeFromString("2020-09-30T07:43:32.000Z"),
-			UpdatedAt: types.MustNewTimeFromString("2020-09-30T07:43:32.000Z"),
-			UpdatedBy: types.String("12345"),
-			CreatedBy: types.String("12345"),
+			CreatedAt: optionalnullable.From(types.MustNewTimeFromString("2020-09-30T07:43:32.000Z")),
+			UpdatedAt: optionalnullable.From(types.MustNewTimeFromString("2020-09-30T07:43:32.000Z")),
+			UpdatedBy: optionalnullable.From(types.String("12345")),
+			CreatedBy: optionalnullable.From(types.String("12345")),
 		},
 	}
 	respBodyBytes, err := utils.MarshalJSON(respBody, "", true)

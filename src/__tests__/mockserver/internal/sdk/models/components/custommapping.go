@@ -2,13 +2,17 @@
 
 package components
 
+import (
+	"mockserver/internal/sdk/optionalnullable"
+)
+
 type CustomMapping struct {
 	// Target Field ID
 	ID *string `json:"id,omitempty"`
 	// Target Field name to use as a label
 	Label *string `json:"label,omitempty"`
 	// Target Field description
-	Description *string `json:"description,omitempty"`
+	Description optionalnullable.OptionalNullable[string] `json:"description,omitempty"`
 	// Target Field Mapping value
 	Value *string `json:"value,omitempty"`
 	// Target Field Key
@@ -18,9 +22,9 @@ type CustomMapping struct {
 	// This mapping represents a finder for a custom field
 	CustomField *bool `json:"custom_field,omitempty"`
 	// Consumer ID
-	ConsumerID *string `json:"consumer_id,omitempty"`
+	ConsumerID optionalnullable.OptionalNullable[string] `json:"consumer_id,omitempty"`
 	// Target Field Mapping example value from downstream
-	Example *string `json:"example,omitempty"`
+	Example optionalnullable.OptionalNullable[string] `json:"example,omitempty"`
 }
 
 func (o *CustomMapping) GetID() *string {
@@ -37,7 +41,7 @@ func (o *CustomMapping) GetLabel() *string {
 	return o.Label
 }
 
-func (o *CustomMapping) GetDescription() *string {
+func (o *CustomMapping) GetDescription() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -72,14 +76,14 @@ func (o *CustomMapping) GetCustomField() *bool {
 	return o.CustomField
 }
 
-func (o *CustomMapping) GetConsumerID() *string {
+func (o *CustomMapping) GetConsumerID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.ConsumerID
 }
 
-func (o *CustomMapping) GetExample() *string {
+func (o *CustomMapping) GetExample() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}

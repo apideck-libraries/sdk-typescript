@@ -2,30 +2,34 @@
 
 package components
 
+import (
+	"mockserver/internal/sdk/optionalnullable"
+)
+
 type EcommerceOrderLineItemOption struct {
 	// A unique identifier for the option.
-	ID *string `json:"id,omitempty"`
+	ID optionalnullable.OptionalNullable[string] `json:"id,omitempty"`
 	// The name of the option.
-	Name *string `json:"name,omitempty"`
+	Name optionalnullable.OptionalNullable[string] `json:"name,omitempty"`
 	// The value of the option.
-	Value *string `json:"value,omitempty"`
+	Value optionalnullable.OptionalNullable[string] `json:"value,omitempty"`
 }
 
-func (o *EcommerceOrderLineItemOption) GetID() *string {
+func (o *EcommerceOrderLineItemOption) GetID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *EcommerceOrderLineItemOption) GetName() *string {
+func (o *EcommerceOrderLineItemOption) GetName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-func (o *EcommerceOrderLineItemOption) GetValue() *string {
+func (o *EcommerceOrderLineItemOption) GetValue() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -35,75 +39,75 @@ func (o *EcommerceOrderLineItemOption) GetValue() *string {
 // EcommerceOrderLineItem - A single line item of an ecommerce order, representing a product or variant with associated options, quantity, and pricing information.
 type EcommerceOrderLineItem struct {
 	// A unique identifier for an object.
-	ID *string `json:"id,omitempty"`
+	ID optionalnullable.OptionalNullable[string] `json:"id,omitempty"`
 	// A unique identifier for the product associated with the line item.
-	ProductID *string `json:"product_id,omitempty"`
+	ProductID optionalnullable.OptionalNullable[string] `json:"product_id,omitempty"`
 	// A unique identifier for the variant of the product associated with the line item, if applicable.
-	VariantID *string `json:"variant_id,omitempty"`
+	VariantID optionalnullable.OptionalNullable[string] `json:"variant_id,omitempty"`
 	// The SKU of the product or variant associated with the line item.
-	Sku *string `json:"sku,omitempty"`
+	Sku optionalnullable.OptionalNullable[string] `json:"sku,omitempty"`
 	// The name of the product or variant associated with the line item.
-	Name *string `json:"name,omitempty"`
+	Name optionalnullable.OptionalNullable[string] `json:"name,omitempty"`
 	// The description of the product or variant associated with the line item.
-	Description *string                        `json:"description,omitempty"`
-	Options     []EcommerceOrderLineItemOption `json:"options,omitempty"`
+	Description optionalnullable.OptionalNullable[string] `json:"description,omitempty"`
+	Options     []EcommerceOrderLineItemOption            `json:"options,omitempty"`
 	// The quantity of the product or variant associated with the line item.
 	Quantity *string `json:"quantity"`
 	// The unit price of the product or variant associated with the line item.
-	UnitPrice *string `json:"unit_price,omitempty"`
+	UnitPrice optionalnullable.OptionalNullable[string] `json:"unit_price,omitempty"`
 	// The tax rate applied to the product or variant associated with the line item.
-	TaxRate *string `json:"tax_rate,omitempty"`
+	TaxRate optionalnullable.OptionalNullable[string] `json:"tax_rate,omitempty"`
 	// The total tax amount applied to the product or variant associated with the line item.
-	TaxAmount *string `json:"tax_amount,omitempty"`
+	TaxAmount optionalnullable.OptionalNullable[string] `json:"tax_amount,omitempty"`
 	// Whether the line item has been refunded.
-	IsRefunded *bool `json:"is_refunded,omitempty"`
+	IsRefunded optionalnullable.OptionalNullable[bool] `json:"is_refunded,omitempty"`
 	// The amount of the line item that has been refunded.
-	RefundedAmount *string `json:"refunded_amount,omitempty"`
+	RefundedAmount optionalnullable.OptionalNullable[string] `json:"refunded_amount,omitempty"`
 	// The quantity of the line item that has been refunded.
-	RefundedQuantity *string `json:"refunded_quantity,omitempty"`
+	RefundedQuantity optionalnullable.OptionalNullable[string] `json:"refunded_quantity,omitempty"`
 	// The sub total for the product(s) or variant associated with the line item, excluding taxes and discounts.
-	SubTotal *string `json:"sub_total,omitempty"`
+	SubTotal optionalnullable.OptionalNullable[string] `json:"sub_total,omitempty"`
 	// The total amount for the product(s) or variant associated with the line item, including taxes and discounts.
-	TotalAmount *string             `json:"total_amount,omitempty"`
-	Discounts   []EcommerceDiscount `json:"discounts,omitempty"`
+	TotalAmount optionalnullable.OptionalNullable[string] `json:"total_amount,omitempty"`
+	Discounts   []EcommerceDiscount                       `json:"discounts,omitempty"`
 }
 
-func (o *EcommerceOrderLineItem) GetID() *string {
+func (o *EcommerceOrderLineItem) GetID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *EcommerceOrderLineItem) GetProductID() *string {
+func (o *EcommerceOrderLineItem) GetProductID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.ProductID
 }
 
-func (o *EcommerceOrderLineItem) GetVariantID() *string {
+func (o *EcommerceOrderLineItem) GetVariantID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.VariantID
 }
 
-func (o *EcommerceOrderLineItem) GetSku() *string {
+func (o *EcommerceOrderLineItem) GetSku() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Sku
 }
 
-func (o *EcommerceOrderLineItem) GetName() *string {
+func (o *EcommerceOrderLineItem) GetName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-func (o *EcommerceOrderLineItem) GetDescription() *string {
+func (o *EcommerceOrderLineItem) GetDescription() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -124,56 +128,56 @@ func (o *EcommerceOrderLineItem) GetQuantity() *string {
 	return o.Quantity
 }
 
-func (o *EcommerceOrderLineItem) GetUnitPrice() *string {
+func (o *EcommerceOrderLineItem) GetUnitPrice() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.UnitPrice
 }
 
-func (o *EcommerceOrderLineItem) GetTaxRate() *string {
+func (o *EcommerceOrderLineItem) GetTaxRate() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.TaxRate
 }
 
-func (o *EcommerceOrderLineItem) GetTaxAmount() *string {
+func (o *EcommerceOrderLineItem) GetTaxAmount() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.TaxAmount
 }
 
-func (o *EcommerceOrderLineItem) GetIsRefunded() *bool {
+func (o *EcommerceOrderLineItem) GetIsRefunded() optionalnullable.OptionalNullable[bool] {
 	if o == nil {
 		return nil
 	}
 	return o.IsRefunded
 }
 
-func (o *EcommerceOrderLineItem) GetRefundedAmount() *string {
+func (o *EcommerceOrderLineItem) GetRefundedAmount() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.RefundedAmount
 }
 
-func (o *EcommerceOrderLineItem) GetRefundedQuantity() *string {
+func (o *EcommerceOrderLineItem) GetRefundedQuantity() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.RefundedQuantity
 }
 
-func (o *EcommerceOrderLineItem) GetSubTotal() *string {
+func (o *EcommerceOrderLineItem) GetSubTotal() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.SubTotal
 }
 
-func (o *EcommerceOrderLineItem) GetTotalAmount() *string {
+func (o *EcommerceOrderLineItem) GetTotalAmount() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}

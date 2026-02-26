@@ -2,6 +2,10 @@
 
 package components
 
+import (
+	"mockserver/internal/sdk/optionalnullable"
+)
+
 type ValidateConnectionStateResponseData struct {
 	// The unique identifier of the connection.
 	ID *string `json:"id,omitempty"`
@@ -31,7 +35,7 @@ type ValidateConnectionStateResponse struct {
 	Status string                              `json:"status"`
 	Data   ValidateConnectionStateResponseData `json:"data"`
 	// Raw response from the integration when raw=true query param is provided
-	Raw map[string]any `json:"_raw,omitempty"`
+	Raw optionalnullable.OptionalNullable[map[string]any] `json:"_raw,omitempty"`
 }
 
 func (o *ValidateConnectionStateResponse) GetStatusCode() int64 {
@@ -55,7 +59,7 @@ func (o *ValidateConnectionStateResponse) GetData() ValidateConnectionStateRespo
 	return o.Data
 }
 
-func (o *ValidateConnectionStateResponse) GetRaw() map[string]any {
+func (o *ValidateConnectionStateResponse) GetRaw() optionalnullable.OptionalNullable[map[string]any] {
 	if o == nil {
 		return nil
 	}

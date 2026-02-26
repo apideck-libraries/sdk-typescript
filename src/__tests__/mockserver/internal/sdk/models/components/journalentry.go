@@ -3,6 +3,7 @@
 package components
 
 import (
+	"mockserver/internal/sdk/optionalnullable"
 	"mockserver/internal/sdk/utils"
 	"time"
 )
@@ -29,56 +30,56 @@ type JournalEntry struct {
 	// A unique identifier for an object.
 	ID *string `json:"id,omitempty"`
 	// The third-party API ID of original entity
-	DownstreamID *string `json:"downstream_id,omitempty"`
+	DownstreamID optionalnullable.OptionalNullable[string] `json:"downstream_id,omitempty"`
 	// Display ID of the journal entry
-	DisplayID *string `json:"display_id,omitempty"`
+	DisplayID optionalnullable.OptionalNullable[string] `json:"display_id,omitempty"`
 	// Journal entry title
-	Title *string `json:"title,omitempty"`
+	Title optionalnullable.OptionalNullable[string] `json:"title,omitempty"`
 	// Currency Exchange Rate at the time entity was recorded/generated.
-	CurrencyRate *float64 `json:"currency_rate,omitempty"`
+	CurrencyRate optionalnullable.OptionalNullable[float64] `json:"currency_rate,omitempty"`
 	// Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
-	Currency *Currency `json:"currency,omitempty"`
+	Currency optionalnullable.OptionalNullable[Currency] `json:"currency,omitempty"`
 	// The company ID the transaction belongs to
-	CompanyID *string `json:"company_id,omitempty"`
+	CompanyID optionalnullable.OptionalNullable[string] `json:"company_id,omitempty"`
 	// Requires a minimum of 2 line items that sum to 0
 	LineItems []JournalEntryLineItem `json:"line_items,omitempty"`
 	// Journal entry status
-	Status *JournalEntryStatus `json:"status,omitempty"`
+	Status optionalnullable.OptionalNullable[JournalEntryStatus] `json:"status,omitempty"`
 	// Reference for the journal entry.
-	Memo *string `json:"memo,omitempty"`
+	Memo optionalnullable.OptionalNullable[string] `json:"memo,omitempty"`
 	// This is the date on which the journal entry was added. This can be different from the creation date and can also be backdated.
 	PostedAt *time.Time `json:"posted_at,omitempty"`
 	// Journal symbol of the entry. For example IND for indirect costs
-	JournalSymbol *string `json:"journal_symbol,omitempty"`
+	JournalSymbol optionalnullable.OptionalNullable[string] `json:"journal_symbol,omitempty"`
 	// The specific category of tax associated with a transaction like sales or purchase
-	TaxType *string `json:"tax_type,omitempty"`
+	TaxType optionalnullable.OptionalNullable[string] `json:"tax_type,omitempty"`
 	// Applicable tax id/code override if tax is not supplied on a line item basis.
-	TaxCode *string `json:"tax_code,omitempty"`
+	TaxCode optionalnullable.OptionalNullable[string] `json:"tax_code,omitempty"`
 	// Journal entry number.
-	Number *string `json:"number,omitempty"`
+	Number optionalnullable.OptionalNullable[string] `json:"number,omitempty"`
 	// A list of linked tracking categories.
-	TrackingCategories []*LinkedTrackingCategory `json:"tracking_categories,omitempty"`
+	TrackingCategories optionalnullable.OptionalNullable[[]*LinkedTrackingCategory] `json:"tracking_categories,omitempty"`
 	// Accounting period
-	AccountingPeriod *string `json:"accounting_period,omitempty"`
+	AccountingPeriod optionalnullable.OptionalNullable[string] `json:"accounting_period,omitempty"`
 	// Amounts are including tax
-	TaxInclusive *bool `json:"tax_inclusive,omitempty"`
+	TaxInclusive optionalnullable.OptionalNullable[bool] `json:"tax_inclusive,omitempty"`
 	// The source type of the journal entry
-	SourceType *string `json:"source_type,omitempty"`
+	SourceType optionalnullable.OptionalNullable[string] `json:"source_type,omitempty"`
 	// A unique identifier for the source of the journal entry
-	SourceID *string `json:"source_id,omitempty"`
+	SourceID optionalnullable.OptionalNullable[string] `json:"source_id,omitempty"`
 	// When custom mappings are configured on the resource, the result is included here.
-	CustomMappings map[string]any `json:"custom_mappings,omitempty"`
+	CustomMappings optionalnullable.OptionalNullable[map[string]any] `json:"custom_mappings,omitempty"`
 	// The user who last updated the object.
-	UpdatedBy *string `json:"updated_by,omitempty"`
+	UpdatedBy optionalnullable.OptionalNullable[string] `json:"updated_by,omitempty"`
 	// The user who created the object.
-	CreatedBy *string `json:"created_by,omitempty"`
+	CreatedBy optionalnullable.OptionalNullable[string] `json:"created_by,omitempty"`
 	// The date and time when the object was last updated.
-	UpdatedAt *time.Time `json:"updated_at,omitempty"`
+	UpdatedAt optionalnullable.OptionalNullable[time.Time] `json:"updated_at,omitempty"`
 	// The date and time when the object was created.
-	CreatedAt *time.Time `json:"created_at,omitempty"`
+	CreatedAt optionalnullable.OptionalNullable[time.Time] `json:"created_at,omitempty"`
 	// A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
-	RowVersion   *string            `json:"row_version,omitempty"`
-	CustomFields []CustomFieldUnion `json:"custom_fields,omitempty"`
+	RowVersion   optionalnullable.OptionalNullable[string] `json:"row_version,omitempty"`
+	CustomFields []CustomFieldUnion                        `json:"custom_fields,omitempty"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
 	PassThrough []PassThroughBody `json:"pass_through,omitempty"`
 }
@@ -101,42 +102,42 @@ func (o *JournalEntry) GetID() *string {
 	return o.ID
 }
 
-func (o *JournalEntry) GetDownstreamID() *string {
+func (o *JournalEntry) GetDownstreamID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.DownstreamID
 }
 
-func (o *JournalEntry) GetDisplayID() *string {
+func (o *JournalEntry) GetDisplayID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.DisplayID
 }
 
-func (o *JournalEntry) GetTitle() *string {
+func (o *JournalEntry) GetTitle() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Title
 }
 
-func (o *JournalEntry) GetCurrencyRate() *float64 {
+func (o *JournalEntry) GetCurrencyRate() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}
 	return o.CurrencyRate
 }
 
-func (o *JournalEntry) GetCurrency() *Currency {
+func (o *JournalEntry) GetCurrency() optionalnullable.OptionalNullable[Currency] {
 	if o == nil {
 		return nil
 	}
 	return o.Currency
 }
 
-func (o *JournalEntry) GetCompanyID() *string {
+func (o *JournalEntry) GetCompanyID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -150,14 +151,14 @@ func (o *JournalEntry) GetLineItems() []JournalEntryLineItem {
 	return o.LineItems
 }
 
-func (o *JournalEntry) GetStatus() *JournalEntryStatus {
+func (o *JournalEntry) GetStatus() optionalnullable.OptionalNullable[JournalEntryStatus] {
 	if o == nil {
 		return nil
 	}
 	return o.Status
 }
 
-func (o *JournalEntry) GetMemo() *string {
+func (o *JournalEntry) GetMemo() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -171,105 +172,105 @@ func (o *JournalEntry) GetPostedAt() *time.Time {
 	return o.PostedAt
 }
 
-func (o *JournalEntry) GetJournalSymbol() *string {
+func (o *JournalEntry) GetJournalSymbol() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.JournalSymbol
 }
 
-func (o *JournalEntry) GetTaxType() *string {
+func (o *JournalEntry) GetTaxType() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.TaxType
 }
 
-func (o *JournalEntry) GetTaxCode() *string {
+func (o *JournalEntry) GetTaxCode() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.TaxCode
 }
 
-func (o *JournalEntry) GetNumber() *string {
+func (o *JournalEntry) GetNumber() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Number
 }
 
-func (o *JournalEntry) GetTrackingCategories() []*LinkedTrackingCategory {
+func (o *JournalEntry) GetTrackingCategories() optionalnullable.OptionalNullable[[]*LinkedTrackingCategory] {
 	if o == nil {
 		return nil
 	}
 	return o.TrackingCategories
 }
 
-func (o *JournalEntry) GetAccountingPeriod() *string {
+func (o *JournalEntry) GetAccountingPeriod() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.AccountingPeriod
 }
 
-func (o *JournalEntry) GetTaxInclusive() *bool {
+func (o *JournalEntry) GetTaxInclusive() optionalnullable.OptionalNullable[bool] {
 	if o == nil {
 		return nil
 	}
 	return o.TaxInclusive
 }
 
-func (o *JournalEntry) GetSourceType() *string {
+func (o *JournalEntry) GetSourceType() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.SourceType
 }
 
-func (o *JournalEntry) GetSourceID() *string {
+func (o *JournalEntry) GetSourceID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.SourceID
 }
 
-func (o *JournalEntry) GetCustomMappings() map[string]any {
+func (o *JournalEntry) GetCustomMappings() optionalnullable.OptionalNullable[map[string]any] {
 	if o == nil {
 		return nil
 	}
 	return o.CustomMappings
 }
 
-func (o *JournalEntry) GetUpdatedBy() *string {
+func (o *JournalEntry) GetUpdatedBy() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.UpdatedBy
 }
 
-func (o *JournalEntry) GetCreatedBy() *string {
+func (o *JournalEntry) GetCreatedBy() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.CreatedBy
 }
 
-func (o *JournalEntry) GetUpdatedAt() *time.Time {
+func (o *JournalEntry) GetUpdatedAt() optionalnullable.OptionalNullable[time.Time] {
 	if o == nil {
 		return nil
 	}
 	return o.UpdatedAt
 }
 
-func (o *JournalEntry) GetCreatedAt() *time.Time {
+func (o *JournalEntry) GetCreatedAt() optionalnullable.OptionalNullable[time.Time] {
 	if o == nil {
 		return nil
 	}
 	return o.CreatedAt
 }
 
-func (o *JournalEntry) GetRowVersion() *string {
+func (o *JournalEntry) GetRowVersion() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -292,44 +293,44 @@ func (o *JournalEntry) GetPassThrough() []PassThroughBody {
 
 type JournalEntryInput struct {
 	// Display ID of the journal entry
-	DisplayID *string `json:"display_id,omitempty"`
+	DisplayID optionalnullable.OptionalNullable[string] `json:"display_id,omitempty"`
 	// Journal entry title
-	Title *string `json:"title,omitempty"`
+	Title optionalnullable.OptionalNullable[string] `json:"title,omitempty"`
 	// Currency Exchange Rate at the time entity was recorded/generated.
-	CurrencyRate *float64 `json:"currency_rate,omitempty"`
+	CurrencyRate optionalnullable.OptionalNullable[float64] `json:"currency_rate,omitempty"`
 	// Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
-	Currency *Currency `json:"currency,omitempty"`
+	Currency optionalnullable.OptionalNullable[Currency] `json:"currency,omitempty"`
 	// The company ID the transaction belongs to
-	CompanyID *string `json:"company_id,omitempty"`
+	CompanyID optionalnullable.OptionalNullable[string] `json:"company_id,omitempty"`
 	// Requires a minimum of 2 line items that sum to 0
 	LineItems []JournalEntryLineItemInput `json:"line_items,omitempty"`
 	// Journal entry status
-	Status *JournalEntryStatus `json:"status,omitempty"`
+	Status optionalnullable.OptionalNullable[JournalEntryStatus] `json:"status,omitempty"`
 	// Reference for the journal entry.
-	Memo *string `json:"memo,omitempty"`
+	Memo optionalnullable.OptionalNullable[string] `json:"memo,omitempty"`
 	// This is the date on which the journal entry was added. This can be different from the creation date and can also be backdated.
 	PostedAt *time.Time `json:"posted_at,omitempty"`
 	// Journal symbol of the entry. For example IND for indirect costs
-	JournalSymbol *string `json:"journal_symbol,omitempty"`
+	JournalSymbol optionalnullable.OptionalNullable[string] `json:"journal_symbol,omitempty"`
 	// The specific category of tax associated with a transaction like sales or purchase
-	TaxType *string `json:"tax_type,omitempty"`
+	TaxType optionalnullable.OptionalNullable[string] `json:"tax_type,omitempty"`
 	// Applicable tax id/code override if tax is not supplied on a line item basis.
-	TaxCode *string `json:"tax_code,omitempty"`
+	TaxCode optionalnullable.OptionalNullable[string] `json:"tax_code,omitempty"`
 	// Journal entry number.
-	Number *string `json:"number,omitempty"`
+	Number optionalnullable.OptionalNullable[string] `json:"number,omitempty"`
 	// A list of linked tracking categories.
-	TrackingCategories []*LinkedTrackingCategory `json:"tracking_categories,omitempty"`
+	TrackingCategories optionalnullable.OptionalNullable[[]*LinkedTrackingCategory] `json:"tracking_categories,omitempty"`
 	// Accounting period
-	AccountingPeriod *string `json:"accounting_period,omitempty"`
+	AccountingPeriod optionalnullable.OptionalNullable[string] `json:"accounting_period,omitempty"`
 	// Amounts are including tax
-	TaxInclusive *bool `json:"tax_inclusive,omitempty"`
+	TaxInclusive optionalnullable.OptionalNullable[bool] `json:"tax_inclusive,omitempty"`
 	// The source type of the journal entry
-	SourceType *string `json:"source_type,omitempty"`
+	SourceType optionalnullable.OptionalNullable[string] `json:"source_type,omitempty"`
 	// A unique identifier for the source of the journal entry
-	SourceID *string `json:"source_id,omitempty"`
+	SourceID optionalnullable.OptionalNullable[string] `json:"source_id,omitempty"`
 	// A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
-	RowVersion   *string            `json:"row_version,omitempty"`
-	CustomFields []CustomFieldUnion `json:"custom_fields,omitempty"`
+	RowVersion   optionalnullable.OptionalNullable[string] `json:"row_version,omitempty"`
+	CustomFields []CustomFieldUnion                        `json:"custom_fields,omitempty"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
 	PassThrough []PassThroughBody `json:"pass_through,omitempty"`
 }
@@ -345,35 +346,35 @@ func (j *JournalEntryInput) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *JournalEntryInput) GetDisplayID() *string {
+func (o *JournalEntryInput) GetDisplayID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.DisplayID
 }
 
-func (o *JournalEntryInput) GetTitle() *string {
+func (o *JournalEntryInput) GetTitle() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Title
 }
 
-func (o *JournalEntryInput) GetCurrencyRate() *float64 {
+func (o *JournalEntryInput) GetCurrencyRate() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}
 	return o.CurrencyRate
 }
 
-func (o *JournalEntryInput) GetCurrency() *Currency {
+func (o *JournalEntryInput) GetCurrency() optionalnullable.OptionalNullable[Currency] {
 	if o == nil {
 		return nil
 	}
 	return o.Currency
 }
 
-func (o *JournalEntryInput) GetCompanyID() *string {
+func (o *JournalEntryInput) GetCompanyID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -387,14 +388,14 @@ func (o *JournalEntryInput) GetLineItems() []JournalEntryLineItemInput {
 	return o.LineItems
 }
 
-func (o *JournalEntryInput) GetStatus() *JournalEntryStatus {
+func (o *JournalEntryInput) GetStatus() optionalnullable.OptionalNullable[JournalEntryStatus] {
 	if o == nil {
 		return nil
 	}
 	return o.Status
 }
 
-func (o *JournalEntryInput) GetMemo() *string {
+func (o *JournalEntryInput) GetMemo() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -408,70 +409,70 @@ func (o *JournalEntryInput) GetPostedAt() *time.Time {
 	return o.PostedAt
 }
 
-func (o *JournalEntryInput) GetJournalSymbol() *string {
+func (o *JournalEntryInput) GetJournalSymbol() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.JournalSymbol
 }
 
-func (o *JournalEntryInput) GetTaxType() *string {
+func (o *JournalEntryInput) GetTaxType() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.TaxType
 }
 
-func (o *JournalEntryInput) GetTaxCode() *string {
+func (o *JournalEntryInput) GetTaxCode() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.TaxCode
 }
 
-func (o *JournalEntryInput) GetNumber() *string {
+func (o *JournalEntryInput) GetNumber() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Number
 }
 
-func (o *JournalEntryInput) GetTrackingCategories() []*LinkedTrackingCategory {
+func (o *JournalEntryInput) GetTrackingCategories() optionalnullable.OptionalNullable[[]*LinkedTrackingCategory] {
 	if o == nil {
 		return nil
 	}
 	return o.TrackingCategories
 }
 
-func (o *JournalEntryInput) GetAccountingPeriod() *string {
+func (o *JournalEntryInput) GetAccountingPeriod() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.AccountingPeriod
 }
 
-func (o *JournalEntryInput) GetTaxInclusive() *bool {
+func (o *JournalEntryInput) GetTaxInclusive() optionalnullable.OptionalNullable[bool] {
 	if o == nil {
 		return nil
 	}
 	return o.TaxInclusive
 }
 
-func (o *JournalEntryInput) GetSourceType() *string {
+func (o *JournalEntryInput) GetSourceType() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.SourceType
 }
 
-func (o *JournalEntryInput) GetSourceID() *string {
+func (o *JournalEntryInput) GetSourceID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.SourceID
 }
 
-func (o *JournalEntryInput) GetRowVersion() *string {
+func (o *JournalEntryInput) GetRowVersion() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}

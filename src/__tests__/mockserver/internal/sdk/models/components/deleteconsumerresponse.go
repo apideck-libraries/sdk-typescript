@@ -2,6 +2,10 @@
 
 package components
 
+import (
+	"mockserver/internal/sdk/optionalnullable"
+)
+
 type DeleteConsumerResponseData struct {
 	// Unique consumer identifier. You can freely choose a consumer ID yourself. Most of the time, this is an ID of your internal data model that represents a user or account in your system (for example account:12345). If the consumer doesn't exist yet, Vault will upsert a consumer based on your ID.
 	ConsumerID *string `json:"consumer_id,omitempty"`
@@ -22,7 +26,7 @@ type DeleteConsumerResponse struct {
 	Status string                     `json:"status"`
 	Data   DeleteConsumerResponseData `json:"data"`
 	// Raw response from the integration when raw=true query param is provided
-	Raw map[string]any `json:"_raw,omitempty"`
+	Raw optionalnullable.OptionalNullable[map[string]any] `json:"_raw,omitempty"`
 }
 
 func (o *DeleteConsumerResponse) GetStatusCode() int64 {
@@ -46,7 +50,7 @@ func (o *DeleteConsumerResponse) GetData() DeleteConsumerResponseData {
 	return o.Data
 }
 
-func (o *DeleteConsumerResponse) GetRaw() map[string]any {
+func (o *DeleteConsumerResponse) GetRaw() optionalnullable.OptionalNullable[map[string]any] {
 	if o == nil {
 		return nil
 	}

@@ -8,6 +8,7 @@ import (
 	"mockserver/internal/handler/assert"
 	"mockserver/internal/logging"
 	"mockserver/internal/sdk/models/components"
+	"mockserver/internal/sdk/optionalnullable"
 	"mockserver/internal/sdk/types"
 	"mockserver/internal/sdk/utils"
 	"mockserver/internal/tracking"
@@ -55,44 +56,44 @@ func testIssueTrackingCollectionsAllIssueTrackingCollectionsAll0(w http.Response
 		Data: []components.Collection{
 			components.Collection{
 				ID:          "12345",
-				ParentID:    types.String("12345"),
-				Type:        types.String("Technical"),
-				Name:        types.String("Main IT Issues"),
-				Description: types.String("IT Issues"),
-				UpdatedAt:   types.MustNewTimeFromString("2020-09-30T07:43:32.000Z"),
-				CreatedAt:   types.MustNewTimeFromString("2020-09-30T07:43:32.000Z"),
+				ParentID:    optionalnullable.From(types.String("12345")),
+				Type:        optionalnullable.From(types.String("Technical")),
+				Name:        optionalnullable.From(types.String("Main IT Issues")),
+				Description: optionalnullable.From(types.String("IT Issues")),
+				UpdatedAt:   optionalnullable.From(types.MustNewTimeFromString("2020-09-30T07:43:32.000Z")),
+				CreatedAt:   optionalnullable.From(types.MustNewTimeFromString("2020-09-30T07:43:32.000Z")),
 			},
 			components.Collection{
 				ID:          "12345",
-				ParentID:    types.String("12345"),
-				Type:        types.String("Technical"),
-				Name:        types.String("Main IT Issues"),
-				Description: types.String("IT Issues"),
-				UpdatedAt:   types.MustNewTimeFromString("2020-09-30T07:43:32.000Z"),
-				CreatedAt:   types.MustNewTimeFromString("2020-09-30T07:43:32.000Z"),
+				ParentID:    optionalnullable.From(types.String("12345")),
+				Type:        optionalnullable.From(types.String("Technical")),
+				Name:        optionalnullable.From(types.String("Main IT Issues")),
+				Description: optionalnullable.From(types.String("IT Issues")),
+				UpdatedAt:   optionalnullable.From(types.MustNewTimeFromString("2020-09-30T07:43:32.000Z")),
+				CreatedAt:   optionalnullable.From(types.MustNewTimeFromString("2020-09-30T07:43:32.000Z")),
 			},
 			components.Collection{
 				ID:          "12345",
-				ParentID:    types.String("12345"),
-				Type:        types.String("Technical"),
-				Name:        types.String("Main IT Issues"),
-				Description: types.String("IT Issues"),
-				UpdatedAt:   types.MustNewTimeFromString("2020-09-30T07:43:32.000Z"),
-				CreatedAt:   types.MustNewTimeFromString("2020-09-30T07:43:32.000Z"),
+				ParentID:    optionalnullable.From(types.String("12345")),
+				Type:        optionalnullable.From(types.String("Technical")),
+				Name:        optionalnullable.From(types.String("Main IT Issues")),
+				Description: optionalnullable.From(types.String("IT Issues")),
+				UpdatedAt:   optionalnullable.From(types.MustNewTimeFromString("2020-09-30T07:43:32.000Z")),
+				CreatedAt:   optionalnullable.From(types.MustNewTimeFromString("2020-09-30T07:43:32.000Z")),
 			},
 		},
 		Meta: &components.Meta{
 			ItemsOnPage: types.Int64(50),
 			Cursors: &components.Cursors{
-				Previous: types.String("em9oby1jcm06OnBhZ2U6OjE="),
-				Current:  types.String("em9oby1jcm06OnBhZ2U6OjI="),
-				Next:     types.String("em9oby1jcm06OnBhZ2U6OjM="),
+				Previous: optionalnullable.From(types.String("em9oby1jcm06OnBhZ2U6OjE=")),
+				Current:  optionalnullable.From(types.String("em9oby1jcm06OnBhZ2U6OjI=")),
+				Next:     optionalnullable.From(types.String("em9oby1jcm06OnBhZ2U6OjM=")),
 			},
 		},
 		Links: &components.Links{
-			Previous: types.String("https://unify.apideck.com/crm/companies?cursor=em9oby1jcm06OnBhZ2U6OjE%3D"),
+			Previous: optionalnullable.From(types.String("https://unify.apideck.com/crm/companies?cursor=em9oby1jcm06OnBhZ2U6OjE%3D")),
 			Current:  types.String("https://unify.apideck.com/crm/companies"),
-			Next:     types.String("https://unify.apideck.com/crm/companies?cursor=em9oby1jcm06OnBhZ2U6OjM"),
+			Next:     optionalnullable.From(types.String("https://unify.apideck.com/crm/companies?cursor=em9oby1jcm06OnBhZ2U6OjM")),
 		},
 	}
 	respBodyBytes, err := utils.MarshalJSON(respBody, "", true)

@@ -2421,3 +2421,506 @@ test("Employees Hris Employees Delete", async () => {
     },
   });
 });
+
+test("Employees Accounting Employees All", async () => {
+  const testHttpClient = createTestHTTPClient("accounting.employeesAll");
+
+  const apideck = new Apideck({
+    serverURL: process.env["TEST_SERVER_URL"] ?? "http://localhost:18080",
+    httpClient: testHttpClient,
+    apiKey: process.env["APIDECK_API_KEY"] ?? "value",
+  });
+
+  const result = await apideck.accounting.employees.list({
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
+    serviceId: "salesforce",
+    fields: "id,updated_at",
+    filter: {
+      updatedSince: new Date("2020-09-30T07:43:32.000Z"),
+      status: "active",
+    },
+  });
+  expect(result.httpMeta.response.status).toBe(200);
+  expect(result.getAccountingEmployeesResponse).toBeDefined();
+  expect(result.getAccountingEmployeesResponse).toEqual({
+    statusCode: 200,
+    status: "OK",
+    service: "quickbooks",
+    resource: "Employees",
+    operation: "all",
+    data: [],
+    meta: {
+      itemsOnPage: 50,
+      cursors: {
+        previous: "em9oby1jcm06OnBhZ2U6OjE=",
+        current: "em9oby1jcm06OnBhZ2U6OjI=",
+        next: "em9oby1jcm06OnBhZ2U6OjM=",
+      },
+    },
+    links: {
+      previous:
+        "https://unify.apideck.com/crm/companies?cursor=em9oby1jcm06OnBhZ2U6OjE%3D",
+      current: "https://unify.apideck.com/crm/companies",
+      next:
+        "https://unify.apideck.com/crm/companies?cursor=em9oby1jcm06OnBhZ2U6OjM",
+    },
+  });
+});
+
+test("Employees Accounting Employees Add", async () => {
+  const testHttpClient = createTestHTTPClient("accounting.employeesAdd");
+
+  const apideck = new Apideck({
+    serverURL: process.env["TEST_SERVER_URL"] ?? "http://localhost:18080",
+    httpClient: testHttpClient,
+    apiKey: process.env["APIDECK_API_KEY"] ?? "value",
+  });
+
+  const result = await apideck.accounting.employees.create({
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
+    serviceId: "salesforce",
+    accountingEmployee: {
+      displayId: "123456",
+      firstName: "John",
+      lastName: "Doe",
+      displayName: "John Doe",
+      emails: [
+        {
+          id: "123",
+          email: "elon@musk.com",
+          type: "primary",
+        },
+      ],
+      employeeNumber: "EMP-001",
+      jobTitle: "Senior Accountant",
+      status: "active",
+      isContractor: false,
+      department: {
+        displayId: "123456",
+        name: "Acme Inc.",
+      },
+      location: {
+        id: "123456",
+        displayId: "123456",
+        name: "New York Office",
+      },
+      manager: {
+        id: "12345",
+        name: "Jane Smith",
+      },
+      hireDate: new Date("2020-01-15"),
+      terminationDate: new Date("2025-12-31"),
+      gender: "male",
+      birthDate: new Date("1990-05-20"),
+      subsidiary: {
+        displayId: "123456",
+        name: "Acme Inc.",
+      },
+      trackingCategories: [
+        {
+          id: "123456",
+          code: "100",
+          name: "New York",
+          parentId: "123456",
+          parentName: "New York",
+        },
+      ],
+      currency: "USD",
+      notes: "Some notes about this employee",
+      addresses: [
+        {
+          id: "123",
+          type: "primary",
+          string: "25 Spring Street, Blackburn, VIC 3130",
+          name: "HQ US",
+          line1: "Main street",
+          line2: "apt #",
+          line3: "Suite #",
+          line4: "delivery instructions",
+          line5: "Attention: Finance Dept",
+          streetNumber: "25",
+          city: "San Francisco",
+          state: "CA",
+          postalCode: "94104",
+          country: "US",
+          latitude: "40.759211",
+          longitude: "-73.984638",
+          county: "Santa Clara",
+          contactName: "Elon Musk",
+          salutation: "Mr",
+          phoneNumber: "111-111-1111",
+          fax: "122-111-1111",
+          email: "elon@musk.com",
+          website: "https://elonmusk.com",
+          notes: "Address notes or delivery instructions.",
+          rowVersion: "1-12345",
+        },
+      ],
+      phoneNumbers: [
+        {
+          id: "12345",
+          countryCode: "1",
+          areaCode: "323",
+          number: "111-111-1111",
+          extension: "105",
+          type: "primary",
+        },
+      ],
+      customFields: [
+        {
+          id: "2389328923893298",
+          name: "employee_level",
+          description: "Employee Level",
+          value: "Uses Salesforce and Marketo",
+        },
+      ],
+      rowVersion: "1-12345",
+      passThrough: [
+        {
+          serviceId: "<id>",
+          extendPaths: [
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+          ],
+        },
+      ],
+    },
+  });
+  expect(result.httpMeta.response.status).toBe(201);
+  expect(result.createAccountingEmployeeResponse).toBeDefined();
+  expect(result.createAccountingEmployeeResponse).toEqual({
+    statusCode: 200,
+    status: "OK",
+    service: "quickbooks",
+    resource: "Employees",
+    operation: "add",
+    data: {
+      id: "12345",
+    },
+  });
+});
+
+test("Employees Accounting Employees One", async () => {
+  const testHttpClient = createTestHTTPClient("accounting.employeesOne");
+
+  const apideck = new Apideck({
+    serverURL: process.env["TEST_SERVER_URL"] ?? "http://localhost:18080",
+    httpClient: testHttpClient,
+    apiKey: process.env["APIDECK_API_KEY"] ?? "value",
+  });
+
+  const result = await apideck.accounting.employees.get({
+    id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
+    serviceId: "salesforce",
+    fields: "id,updated_at",
+  });
+  expect(result.httpMeta.response.status).toBe(200);
+  expect(result.getAccountingEmployeeResponse).toBeDefined();
+  expect(result.getAccountingEmployeeResponse).toEqual({
+    statusCode: 200,
+    status: "OK",
+    service: "quickbooks",
+    resource: "Employees",
+    operation: "one",
+    data: {
+      id: "12345",
+      downstreamId: "12345",
+      displayId: "123456",
+      firstName: "John",
+      lastName: "Doe",
+      displayName: "John Doe",
+      emails: [
+        {
+          id: "123",
+          email: "elon@musk.com",
+          type: "primary",
+        },
+      ],
+      employeeNumber: "EMP-001",
+      jobTitle: "Senior Accountant",
+      status: "active",
+      isContractor: false,
+      department: {
+        id: "12345",
+        displayId: "123456",
+        name: "Acme Inc.",
+        downstreamId: "12345",
+      },
+      location: {
+        id: "123456",
+        displayId: "123456",
+        name: "New York Office",
+        downstreamId: "12345",
+      },
+      manager: {
+        id: "12345",
+        name: "Jane Smith",
+      },
+      hireDate: new Date("2020-01-15"),
+      terminationDate: new Date("2025-12-31"),
+      gender: "male",
+      birthDate: new Date("1990-05-20"),
+      subsidiary: {
+        id: "12345",
+        displayId: "123456",
+        name: "Acme Inc.",
+      },
+      trackingCategories: [
+        {
+          id: "123456",
+          code: "100",
+          name: "New York",
+          parentId: "123456",
+          parentName: "New York",
+        },
+      ],
+      currency: "USD",
+      notes: "Some notes about this employee",
+      addresses: [
+        {
+          id: "123",
+          type: "primary",
+          string: "25 Spring Street, Blackburn, VIC 3130",
+          name: "HQ US",
+          line1: "Main street",
+          line2: "apt #",
+          line3: "Suite #",
+          line4: "delivery instructions",
+          line5: "Attention: Finance Dept",
+          streetNumber: "25",
+          city: "San Francisco",
+          state: "CA",
+          postalCode: "94104",
+          country: "US",
+          latitude: "40.759211",
+          longitude: "-73.984638",
+          county: "Santa Clara",
+          contactName: "Elon Musk",
+          salutation: "Mr",
+          phoneNumber: "111-111-1111",
+          fax: "122-111-1111",
+          email: "elon@musk.com",
+          website: "https://elonmusk.com",
+          notes: "Address notes or delivery instructions.",
+          rowVersion: "1-12345",
+        },
+      ],
+      phoneNumbers: [
+        {
+          id: "12345",
+          countryCode: "1",
+          areaCode: "323",
+          number: "111-111-1111",
+          extension: "105",
+          type: "primary",
+        },
+      ],
+      customFields: [
+        {
+          id: "2389328923893298",
+          name: "employee_level",
+          description: "Employee Level",
+          value: "Uses Salesforce and Marketo",
+        },
+      ],
+      rowVersion: "1-12345",
+      updatedAt: new Date("2020-09-30T07:43:32.000Z"),
+      createdAt: new Date("2020-09-30T07:43:32.000Z"),
+      passThrough: [
+        {
+          serviceId: "<id>",
+          extendPaths: [
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+          ],
+        },
+      ],
+    },
+  });
+});
+
+test("Employees Accounting Employees Update", async () => {
+  const testHttpClient = createTestHTTPClient("accounting.employeesUpdate");
+
+  const apideck = new Apideck({
+    serverURL: process.env["TEST_SERVER_URL"] ?? "http://localhost:18080",
+    httpClient: testHttpClient,
+    apiKey: process.env["APIDECK_API_KEY"] ?? "value",
+  });
+
+  const result = await apideck.accounting.employees.update({
+    id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
+    serviceId: "salesforce",
+    accountingEmployee: {
+      displayId: "123456",
+      firstName: "John",
+      lastName: "Doe",
+      displayName: "John Doe",
+      emails: [
+        {
+          id: "123",
+          email: "elon@musk.com",
+          type: "primary",
+        },
+      ],
+      employeeNumber: "EMP-001",
+      jobTitle: "Senior Accountant",
+      status: "active",
+      isContractor: false,
+      department: {
+        displayId: "123456",
+        name: "Acme Inc.",
+      },
+      location: {
+        id: "123456",
+        displayId: "123456",
+        name: "New York Office",
+      },
+      manager: {
+        id: "12345",
+        name: "Jane Smith",
+      },
+      hireDate: new Date("2020-01-15"),
+      terminationDate: new Date("2025-12-31"),
+      gender: "male",
+      birthDate: new Date("1990-05-20"),
+      subsidiary: {
+        displayId: "123456",
+        name: "Acme Inc.",
+      },
+      trackingCategories: [
+        {
+          id: "123456",
+          code: "100",
+          name: "New York",
+          parentId: "123456",
+          parentName: "New York",
+        },
+      ],
+      currency: "USD",
+      notes: "Some notes about this employee",
+      addresses: [
+        {
+          id: "123",
+          type: "primary",
+          string: "25 Spring Street, Blackburn, VIC 3130",
+          name: "HQ US",
+          line1: "Main street",
+          line2: "apt #",
+          line3: "Suite #",
+          line4: "delivery instructions",
+          line5: "Attention: Finance Dept",
+          streetNumber: "25",
+          city: "San Francisco",
+          state: "CA",
+          postalCode: "94104",
+          country: "US",
+          latitude: "40.759211",
+          longitude: "-73.984638",
+          county: "Santa Clara",
+          contactName: "Elon Musk",
+          salutation: "Mr",
+          phoneNumber: "111-111-1111",
+          fax: "122-111-1111",
+          email: "elon@musk.com",
+          website: "https://elonmusk.com",
+          notes: "Address notes or delivery instructions.",
+          rowVersion: "1-12345",
+        },
+      ],
+      phoneNumbers: [
+        {
+          id: "12345",
+          countryCode: "1",
+          areaCode: "323",
+          number: "111-111-1111",
+          extension: "105",
+          type: "primary",
+        },
+      ],
+      customFields: [
+        {
+          id: "2389328923893298",
+          name: "employee_level",
+          description: "Employee Level",
+          value: "Uses Salesforce and Marketo",
+        },
+      ],
+      rowVersion: "1-12345",
+      passThrough: [
+        {
+          serviceId: "<id>",
+          extendPaths: [
+            {
+              path: "$.nested.property",
+              value: {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000",
+                },
+              },
+            },
+          ],
+        },
+      ],
+    },
+  });
+  expect(result.httpMeta.response.status).toBe(200);
+  expect(result.updateAccountingEmployeeResponse).toBeDefined();
+  expect(result.updateAccountingEmployeeResponse).toEqual({
+    statusCode: 200,
+    status: "OK",
+    service: "quickbooks",
+    resource: "Employees",
+    operation: "update",
+    data: {
+      id: "12345",
+    },
+  });
+});
+
+test("Employees Accounting Employees Delete", async () => {
+  const testHttpClient = createTestHTTPClient("accounting.employeesDelete");
+
+  const apideck = new Apideck({
+    serverURL: process.env["TEST_SERVER_URL"] ?? "http://localhost:18080",
+    httpClient: testHttpClient,
+    apiKey: process.env["APIDECK_API_KEY"] ?? "value",
+  });
+
+  const result = await apideck.accounting.employees.delete({
+    id: "<id>",
+    consumerId: "test-consumer",
+    appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
+    serviceId: "salesforce",
+  });
+  expect(result.httpMeta.response.status).toBe(200);
+  expect(result.deleteAccountingEmployeeResponse).toBeDefined();
+  expect(result.deleteAccountingEmployeeResponse).toEqual({
+    statusCode: 200,
+    status: "OK",
+    service: "quickbooks",
+    resource: "Employees",
+    operation: "delete",
+    data: {
+      id: "12345",
+    },
+  });
+});

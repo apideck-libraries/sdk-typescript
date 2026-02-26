@@ -3,6 +3,7 @@
 package components
 
 import (
+	"mockserver/internal/sdk/optionalnullable"
 	"mockserver/internal/sdk/utils"
 	"time"
 )
@@ -23,18 +24,18 @@ func (e ApplicationStatus) ToPointer() *ApplicationStatus {
 
 type ApplicationStage struct {
 	// Stage the candidate should be in. If omitted, the default stage for this job will be used.
-	ID   *string `json:"id,omitempty"`
-	Name *string `json:"name,omitempty"`
+	ID   optionalnullable.OptionalNullable[string] `json:"id,omitempty"`
+	Name optionalnullable.OptionalNullable[string] `json:"name,omitempty"`
 }
 
-func (o *ApplicationStage) GetID() *string {
+func (o *ApplicationStage) GetID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *ApplicationStage) GetName() *string {
+func (o *ApplicationStage) GetName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -43,21 +44,21 @@ func (o *ApplicationStage) GetName() *string {
 
 type Application struct {
 	// A unique identifier for an object.
-	ID          *string            `json:"id,omitempty"`
-	ApplicantID *string            `json:"applicant_id"`
-	JobID       *string            `json:"job_id"`
-	Status      *ApplicationStatus `json:"status,omitempty"`
-	Stage       *ApplicationStage  `json:"stage,omitempty"`
+	ID          *string                                              `json:"id,omitempty"`
+	ApplicantID *string                                              `json:"applicant_id"`
+	JobID       *string                                              `json:"job_id"`
+	Status      optionalnullable.OptionalNullable[ApplicationStatus] `json:"status,omitempty"`
+	Stage       *ApplicationStage                                    `json:"stage,omitempty"`
 	// When custom mappings are configured on the resource, the result is included here.
-	CustomMappings map[string]any `json:"custom_mappings,omitempty"`
+	CustomMappings optionalnullable.OptionalNullable[map[string]any] `json:"custom_mappings,omitempty"`
 	// The user who last updated the object.
-	UpdatedBy *string `json:"updated_by,omitempty"`
+	UpdatedBy optionalnullable.OptionalNullable[string] `json:"updated_by,omitempty"`
 	// The user who created the object.
-	CreatedBy *string `json:"created_by,omitempty"`
+	CreatedBy optionalnullable.OptionalNullable[string] `json:"created_by,omitempty"`
 	// The date and time when the object was last updated.
-	UpdatedAt *time.Time `json:"updated_at,omitempty"`
+	UpdatedAt optionalnullable.OptionalNullable[time.Time] `json:"updated_at,omitempty"`
 	// The date and time when the object was created.
-	CreatedAt *time.Time `json:"created_at,omitempty"`
+	CreatedAt optionalnullable.OptionalNullable[time.Time] `json:"created_at,omitempty"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
 	PassThrough []PassThroughBody `json:"pass_through,omitempty"`
 }
@@ -94,7 +95,7 @@ func (o *Application) GetJobID() *string {
 	return o.JobID
 }
 
-func (o *Application) GetStatus() *ApplicationStatus {
+func (o *Application) GetStatus() optionalnullable.OptionalNullable[ApplicationStatus] {
 	if o == nil {
 		return nil
 	}
@@ -108,35 +109,35 @@ func (o *Application) GetStage() *ApplicationStage {
 	return o.Stage
 }
 
-func (o *Application) GetCustomMappings() map[string]any {
+func (o *Application) GetCustomMappings() optionalnullable.OptionalNullable[map[string]any] {
 	if o == nil {
 		return nil
 	}
 	return o.CustomMappings
 }
 
-func (o *Application) GetUpdatedBy() *string {
+func (o *Application) GetUpdatedBy() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.UpdatedBy
 }
 
-func (o *Application) GetCreatedBy() *string {
+func (o *Application) GetCreatedBy() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.CreatedBy
 }
 
-func (o *Application) GetUpdatedAt() *time.Time {
+func (o *Application) GetUpdatedAt() optionalnullable.OptionalNullable[time.Time] {
 	if o == nil {
 		return nil
 	}
 	return o.UpdatedAt
 }
 
-func (o *Application) GetCreatedAt() *time.Time {
+func (o *Application) GetCreatedAt() optionalnullable.OptionalNullable[time.Time] {
 	if o == nil {
 		return nil
 	}
@@ -151,10 +152,10 @@ func (o *Application) GetPassThrough() []PassThroughBody {
 }
 
 type ApplicationInput struct {
-	ApplicantID *string            `json:"applicant_id"`
-	JobID       *string            `json:"job_id"`
-	Status      *ApplicationStatus `json:"status,omitempty"`
-	Stage       *ApplicationStage  `json:"stage,omitempty"`
+	ApplicantID *string                                              `json:"applicant_id"`
+	JobID       *string                                              `json:"job_id"`
+	Status      optionalnullable.OptionalNullable[ApplicationStatus] `json:"status,omitempty"`
+	Stage       *ApplicationStage                                    `json:"stage,omitempty"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
 	PassThrough []PassThroughBody `json:"pass_through,omitempty"`
 }
@@ -173,7 +174,7 @@ func (o *ApplicationInput) GetJobID() *string {
 	return o.JobID
 }
 
-func (o *ApplicationInput) GetStatus() *ApplicationStatus {
+func (o *ApplicationInput) GetStatus() optionalnullable.OptionalNullable[ApplicationStatus] {
 	if o == nil {
 		return nil
 	}

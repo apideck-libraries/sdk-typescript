@@ -2,6 +2,10 @@
 
 package components
 
+import (
+	"mockserver/internal/sdk/optionalnullable"
+)
+
 // GetUploadSessionResponse - UploadSessions
 type GetUploadSessionResponse struct {
 	// HTTP Response Status Code
@@ -16,7 +20,7 @@ type GetUploadSessionResponse struct {
 	Operation string        `json:"operation"`
 	Data      UploadSession `json:"data"`
 	// Raw response from the integration when raw=true query param is provided
-	Raw map[string]any `json:"_raw,omitempty"`
+	Raw optionalnullable.OptionalNullable[map[string]any] `json:"_raw,omitempty"`
 }
 
 func (o *GetUploadSessionResponse) GetStatusCode() int64 {
@@ -61,7 +65,7 @@ func (o *GetUploadSessionResponse) GetData() UploadSession {
 	return o.Data
 }
 
-func (o *GetUploadSessionResponse) GetRaw() map[string]any {
+func (o *GetUploadSessionResponse) GetRaw() optionalnullable.OptionalNullable[map[string]any] {
 	if o == nil {
 		return nil
 	}

@@ -3,18 +3,19 @@
 package components
 
 import (
+	"mockserver/internal/sdk/optionalnullable"
 	"mockserver/internal/sdk/utils"
 	"time"
 )
 
 type Component struct {
-	ID       *string  `json:"id,omitempty"`
-	Name     *string  `json:"name,omitempty"`
-	Rate     *float64 `json:"rate,omitempty"`
-	Compound *bool    `json:"compound,omitempty"`
+	ID       optionalnullable.OptionalNullable[string]  `json:"id,omitempty"`
+	Name     *string                                    `json:"name,omitempty"`
+	Rate     optionalnullable.OptionalNullable[float64] `json:"rate,omitempty"`
+	Compound optionalnullable.OptionalNullable[bool]    `json:"compound,omitempty"`
 }
 
-func (o *Component) GetID() *string {
+func (o *Component) GetID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -28,14 +29,14 @@ func (o *Component) GetName() *string {
 	return o.Name
 }
 
-func (o *Component) GetRate() *float64 {
+func (o *Component) GetRate() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}
 	return o.Rate
 }
 
-func (o *Component) GetCompound() *bool {
+func (o *Component) GetCompound() optionalnullable.OptionalNullable[bool] {
 	if o == nil {
 		return nil
 	}
@@ -69,46 +70,46 @@ func (o *TaxRateSubsidiary) GetID() *string {
 
 type TaxRate struct {
 	// ID assigned to identify this tax rate.
-	ID *string `json:"id,omitempty"`
+	ID optionalnullable.OptionalNullable[string] `json:"id,omitempty"`
 	// Display ID of the tax rate
-	DisplayID *string `json:"display_id,omitempty"`
+	DisplayID optionalnullable.OptionalNullable[string] `json:"display_id,omitempty"`
 	// Name assigned to identify this tax rate.
 	Name *string `json:"name,omitempty"`
 	// Tax code assigned to identify this tax rate.
-	Code *string `json:"code,omitempty"`
+	Code optionalnullable.OptionalNullable[string] `json:"code,omitempty"`
 	// Description of tax rate
-	Description *string `json:"description,omitempty"`
+	Description optionalnullable.OptionalNullable[string] `json:"description,omitempty"`
 	// Effective tax rate
-	EffectiveTaxRate *float64 `json:"effective_tax_rate,omitempty"`
+	EffectiveTaxRate optionalnullable.OptionalNullable[float64] `json:"effective_tax_rate,omitempty"`
 	// Country code according to ISO 3166-1 alpha-2.
-	Country *string `json:"country,omitempty"`
+	Country optionalnullable.OptionalNullable[string] `json:"country,omitempty"`
 	// Not compounded sum of the components of a tax rate
-	TotalTaxRate *float64 `json:"total_tax_rate,omitempty"`
+	TotalTaxRate optionalnullable.OptionalNullable[float64] `json:"total_tax_rate,omitempty"`
 	// Unique identifier for the account for tax collected.
-	TaxPayableAccountID *string `json:"tax_payable_account_id,omitempty"`
+	TaxPayableAccountID optionalnullable.OptionalNullable[string] `json:"tax_payable_account_id,omitempty"`
 	// Unique identifier for the account for tax remitted.
-	TaxRemittedAccountID *string     `json:"tax_remitted_account_id,omitempty"`
-	Components           []Component `json:"components,omitempty"`
+	TaxRemittedAccountID optionalnullable.OptionalNullable[string]      `json:"tax_remitted_account_id,omitempty"`
+	Components           optionalnullable.OptionalNullable[[]Component] `json:"components,omitempty"`
 	// Tax type used to indicate the source of tax collected or paid
-	Type *string `json:"type,omitempty"`
+	Type optionalnullable.OptionalNullable[string] `json:"type,omitempty"`
 	// Report Tax type to aggregate tax collected or paid for reporting purposes
-	ReportTaxType *string `json:"report_tax_type,omitempty"`
+	ReportTaxType optionalnullable.OptionalNullable[string] `json:"report_tax_type,omitempty"`
 	// ID of the original tax rate from which the new tax rate is derived. Helps to understand the relationship between corresponding tax rate entities.
-	OriginalTaxRateID *string `json:"original_tax_rate_id,omitempty"`
+	OriginalTaxRateID optionalnullable.OptionalNullable[string] `json:"original_tax_rate_id,omitempty"`
 	// Tax rate status
-	Status *TaxRateStatus `json:"status,omitempty"`
+	Status optionalnullable.OptionalNullable[TaxRateStatus] `json:"status,omitempty"`
 	// When custom mappings are configured on the resource, the result is included here.
-	CustomMappings map[string]any `json:"custom_mappings,omitempty"`
+	CustomMappings optionalnullable.OptionalNullable[map[string]any] `json:"custom_mappings,omitempty"`
 	// A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
-	RowVersion *string `json:"row_version,omitempty"`
+	RowVersion optionalnullable.OptionalNullable[string] `json:"row_version,omitempty"`
 	// The user who last updated the object.
-	UpdatedBy *string `json:"updated_by,omitempty"`
+	UpdatedBy optionalnullable.OptionalNullable[string] `json:"updated_by,omitempty"`
 	// The user who created the object.
-	CreatedBy *string `json:"created_by,omitempty"`
+	CreatedBy optionalnullable.OptionalNullable[string] `json:"created_by,omitempty"`
 	// The date and time when the object was last updated.
-	UpdatedAt *time.Time `json:"updated_at,omitempty"`
+	UpdatedAt optionalnullable.OptionalNullable[time.Time] `json:"updated_at,omitempty"`
 	// The date and time when the object was created.
-	CreatedAt *time.Time `json:"created_at,omitempty"`
+	CreatedAt optionalnullable.OptionalNullable[time.Time] `json:"created_at,omitempty"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
 	PassThrough []PassThroughBody `json:"pass_through,omitempty"`
 	// The subsidiaries this belongs to.
@@ -127,14 +128,14 @@ func (t *TaxRate) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *TaxRate) GetID() *string {
+func (o *TaxRate) GetID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *TaxRate) GetDisplayID() *string {
+func (o *TaxRate) GetDisplayID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -148,126 +149,126 @@ func (o *TaxRate) GetName() *string {
 	return o.Name
 }
 
-func (o *TaxRate) GetCode() *string {
+func (o *TaxRate) GetCode() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Code
 }
 
-func (o *TaxRate) GetDescription() *string {
+func (o *TaxRate) GetDescription() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Description
 }
 
-func (o *TaxRate) GetEffectiveTaxRate() *float64 {
+func (o *TaxRate) GetEffectiveTaxRate() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}
 	return o.EffectiveTaxRate
 }
 
-func (o *TaxRate) GetCountry() *string {
+func (o *TaxRate) GetCountry() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Country
 }
 
-func (o *TaxRate) GetTotalTaxRate() *float64 {
+func (o *TaxRate) GetTotalTaxRate() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}
 	return o.TotalTaxRate
 }
 
-func (o *TaxRate) GetTaxPayableAccountID() *string {
+func (o *TaxRate) GetTaxPayableAccountID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.TaxPayableAccountID
 }
 
-func (o *TaxRate) GetTaxRemittedAccountID() *string {
+func (o *TaxRate) GetTaxRemittedAccountID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.TaxRemittedAccountID
 }
 
-func (o *TaxRate) GetComponents() []Component {
+func (o *TaxRate) GetComponents() optionalnullable.OptionalNullable[[]Component] {
 	if o == nil {
 		return nil
 	}
 	return o.Components
 }
 
-func (o *TaxRate) GetType() *string {
+func (o *TaxRate) GetType() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Type
 }
 
-func (o *TaxRate) GetReportTaxType() *string {
+func (o *TaxRate) GetReportTaxType() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.ReportTaxType
 }
 
-func (o *TaxRate) GetOriginalTaxRateID() *string {
+func (o *TaxRate) GetOriginalTaxRateID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.OriginalTaxRateID
 }
 
-func (o *TaxRate) GetStatus() *TaxRateStatus {
+func (o *TaxRate) GetStatus() optionalnullable.OptionalNullable[TaxRateStatus] {
 	if o == nil {
 		return nil
 	}
 	return o.Status
 }
 
-func (o *TaxRate) GetCustomMappings() map[string]any {
+func (o *TaxRate) GetCustomMappings() optionalnullable.OptionalNullable[map[string]any] {
 	if o == nil {
 		return nil
 	}
 	return o.CustomMappings
 }
 
-func (o *TaxRate) GetRowVersion() *string {
+func (o *TaxRate) GetRowVersion() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.RowVersion
 }
 
-func (o *TaxRate) GetUpdatedBy() *string {
+func (o *TaxRate) GetUpdatedBy() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.UpdatedBy
 }
 
-func (o *TaxRate) GetCreatedBy() *string {
+func (o *TaxRate) GetCreatedBy() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.CreatedBy
 }
 
-func (o *TaxRate) GetUpdatedAt() *time.Time {
+func (o *TaxRate) GetUpdatedAt() optionalnullable.OptionalNullable[time.Time] {
 	if o == nil {
 		return nil
 	}
 	return o.UpdatedAt
 }
 
-func (o *TaxRate) GetCreatedAt() *time.Time {
+func (o *TaxRate) GetCreatedAt() optionalnullable.OptionalNullable[time.Time] {
 	if o == nil {
 		return nil
 	}
@@ -297,36 +298,36 @@ func (o *TaxRate) GetCustomFields() []CustomFieldUnion {
 
 type TaxRateInput struct {
 	// ID assigned to identify this tax rate.
-	ID *string `json:"id,omitempty"`
+	ID optionalnullable.OptionalNullable[string] `json:"id,omitempty"`
 	// Display ID of the tax rate
-	DisplayID *string `json:"display_id,omitempty"`
+	DisplayID optionalnullable.OptionalNullable[string] `json:"display_id,omitempty"`
 	// Name assigned to identify this tax rate.
 	Name *string `json:"name,omitempty"`
 	// Tax code assigned to identify this tax rate.
-	Code *string `json:"code,omitempty"`
+	Code optionalnullable.OptionalNullable[string] `json:"code,omitempty"`
 	// Description of tax rate
-	Description *string `json:"description,omitempty"`
+	Description optionalnullable.OptionalNullable[string] `json:"description,omitempty"`
 	// Effective tax rate
-	EffectiveTaxRate *float64 `json:"effective_tax_rate,omitempty"`
+	EffectiveTaxRate optionalnullable.OptionalNullable[float64] `json:"effective_tax_rate,omitempty"`
 	// Country code according to ISO 3166-1 alpha-2.
-	Country *string `json:"country,omitempty"`
+	Country optionalnullable.OptionalNullable[string] `json:"country,omitempty"`
 	// Not compounded sum of the components of a tax rate
-	TotalTaxRate *float64 `json:"total_tax_rate,omitempty"`
+	TotalTaxRate optionalnullable.OptionalNullable[float64] `json:"total_tax_rate,omitempty"`
 	// Unique identifier for the account for tax collected.
-	TaxPayableAccountID *string `json:"tax_payable_account_id,omitempty"`
+	TaxPayableAccountID optionalnullable.OptionalNullable[string] `json:"tax_payable_account_id,omitempty"`
 	// Unique identifier for the account for tax remitted.
-	TaxRemittedAccountID *string     `json:"tax_remitted_account_id,omitempty"`
-	Components           []Component `json:"components,omitempty"`
+	TaxRemittedAccountID optionalnullable.OptionalNullable[string]      `json:"tax_remitted_account_id,omitempty"`
+	Components           optionalnullable.OptionalNullable[[]Component] `json:"components,omitempty"`
 	// Tax type used to indicate the source of tax collected or paid
-	Type *string `json:"type,omitempty"`
+	Type optionalnullable.OptionalNullable[string] `json:"type,omitempty"`
 	// Report Tax type to aggregate tax collected or paid for reporting purposes
-	ReportTaxType *string `json:"report_tax_type,omitempty"`
+	ReportTaxType optionalnullable.OptionalNullable[string] `json:"report_tax_type,omitempty"`
 	// ID of the original tax rate from which the new tax rate is derived. Helps to understand the relationship between corresponding tax rate entities.
-	OriginalTaxRateID *string `json:"original_tax_rate_id,omitempty"`
+	OriginalTaxRateID optionalnullable.OptionalNullable[string] `json:"original_tax_rate_id,omitempty"`
 	// Tax rate status
-	Status *TaxRateStatus `json:"status,omitempty"`
+	Status optionalnullable.OptionalNullable[TaxRateStatus] `json:"status,omitempty"`
 	// A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
-	RowVersion *string `json:"row_version,omitempty"`
+	RowVersion optionalnullable.OptionalNullable[string] `json:"row_version,omitempty"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
 	PassThrough []PassThroughBody `json:"pass_through,omitempty"`
 	// The subsidiaries this belongs to.
@@ -334,14 +335,14 @@ type TaxRateInput struct {
 	CustomFields []CustomFieldUnion  `json:"custom_fields,omitempty"`
 }
 
-func (o *TaxRateInput) GetID() *string {
+func (o *TaxRateInput) GetID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *TaxRateInput) GetDisplayID() *string {
+func (o *TaxRateInput) GetDisplayID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -355,91 +356,91 @@ func (o *TaxRateInput) GetName() *string {
 	return o.Name
 }
 
-func (o *TaxRateInput) GetCode() *string {
+func (o *TaxRateInput) GetCode() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Code
 }
 
-func (o *TaxRateInput) GetDescription() *string {
+func (o *TaxRateInput) GetDescription() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Description
 }
 
-func (o *TaxRateInput) GetEffectiveTaxRate() *float64 {
+func (o *TaxRateInput) GetEffectiveTaxRate() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}
 	return o.EffectiveTaxRate
 }
 
-func (o *TaxRateInput) GetCountry() *string {
+func (o *TaxRateInput) GetCountry() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Country
 }
 
-func (o *TaxRateInput) GetTotalTaxRate() *float64 {
+func (o *TaxRateInput) GetTotalTaxRate() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}
 	return o.TotalTaxRate
 }
 
-func (o *TaxRateInput) GetTaxPayableAccountID() *string {
+func (o *TaxRateInput) GetTaxPayableAccountID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.TaxPayableAccountID
 }
 
-func (o *TaxRateInput) GetTaxRemittedAccountID() *string {
+func (o *TaxRateInput) GetTaxRemittedAccountID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.TaxRemittedAccountID
 }
 
-func (o *TaxRateInput) GetComponents() []Component {
+func (o *TaxRateInput) GetComponents() optionalnullable.OptionalNullable[[]Component] {
 	if o == nil {
 		return nil
 	}
 	return o.Components
 }
 
-func (o *TaxRateInput) GetType() *string {
+func (o *TaxRateInput) GetType() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Type
 }
 
-func (o *TaxRateInput) GetReportTaxType() *string {
+func (o *TaxRateInput) GetReportTaxType() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.ReportTaxType
 }
 
-func (o *TaxRateInput) GetOriginalTaxRateID() *string {
+func (o *TaxRateInput) GetOriginalTaxRateID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.OriginalTaxRateID
 }
 
-func (o *TaxRateInput) GetStatus() *TaxRateStatus {
+func (o *TaxRateInput) GetStatus() optionalnullable.OptionalNullable[TaxRateStatus] {
 	if o == nil {
 		return nil
 	}
 	return o.Status
 }
 
-func (o *TaxRateInput) GetRowVersion() *string {
+func (o *TaxRateInput) GetRowVersion() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}

@@ -8,6 +8,7 @@ import (
 	"mockserver/internal/handler/assert"
 	"mockserver/internal/logging"
 	"mockserver/internal/sdk/models/components"
+	"mockserver/internal/sdk/optionalnullable"
 	"mockserver/internal/sdk/types"
 	"mockserver/internal/sdk/utils"
 	"mockserver/internal/tracking"
@@ -54,142 +55,142 @@ func testHrisEmployeePayrollsOneHrisEmployeePayrollsOne0(w http.ResponseWriter, 
 		Operation:  "one",
 		Data: components.EmployeePayroll{
 			ID:            types.String("12345"),
-			EmployeeID:    types.String("12345"),
-			CompanyID:     types.String("23456"),
+			EmployeeID:    optionalnullable.From(types.String("12345")),
+			CompanyID:     optionalnullable.From(types.String("23456")),
 			Processed:     types.Bool(false),
-			ProcessedDate: types.String("2022-04-08"),
+			ProcessedDate: optionalnullable.From(types.String("2022-04-08")),
 			CheckDate:     types.String("2022-04-08"),
 			StartDate:     types.String("2022-04-08"),
 			EndDate:       types.String("2022-04-21"),
 			Totals: &components.PayrollTotals{
-				CompanyDebit:                 types.Float64(27992.49),
-				TaxDebit:                     types.Float64(8655.32),
-				CheckAmount:                  types.Float64(27966.23),
-				NetPay:                       types.Float64(19337.17),
-				GrossPay:                     types.Float64(27966.23),
-				EmployerTaxes:                types.Float64(2038.93),
-				EmployeeTaxes:                types.Float64(6616.39),
-				EmployerBenefitContributions: types.Float64(0),
-				EmployeeBenefitDeductions:    types.Float64(0),
+				CompanyDebit:                 optionalnullable.From(types.Float64(27992.49)),
+				TaxDebit:                     optionalnullable.From(types.Float64(8655.32)),
+				CheckAmount:                  optionalnullable.From(types.Float64(27966.23)),
+				NetPay:                       optionalnullable.From(types.Float64(19337.17)),
+				GrossPay:                     optionalnullable.From(types.Float64(27966.23)),
+				EmployerTaxes:                optionalnullable.From(types.Float64(2038.93)),
+				EmployeeTaxes:                optionalnullable.From(types.Float64(6616.39)),
+				EmployerBenefitContributions: optionalnullable.From(types.Float64(0)),
+				EmployeeBenefitDeductions:    optionalnullable.From(types.Float64(0)),
 			},
 			Compensations: []components.Compensation{
 				components.Compensation{
 					EmployeeID: types.String("12345"),
-					NetPay:     types.Float64(2199.93),
-					GrossPay:   types.Float64(3000),
-					Taxes: []components.Tax{
+					NetPay:     optionalnullable.From(types.Float64(2199.93)),
+					GrossPay:   optionalnullable.From(types.Float64(3000)),
+					Taxes: optionalnullable.From(types.Pointer([]components.Tax{
 						components.Tax{
-							Name:     types.String("CA State Income Tax"),
-							Employer: types.Bool(false),
-							Amount:   types.Float64(1.97),
+							Name:     optionalnullable.From(types.String("CA State Income Tax")),
+							Employer: optionalnullable.From(types.Bool(false)),
+							Amount:   optionalnullable.From(types.Float64(1.97)),
 						},
 						components.Tax{
-							Name:     types.String("CA State Income Tax"),
-							Employer: types.Bool(false),
-							Amount:   types.Float64(1.97),
+							Name:     optionalnullable.From(types.String("CA State Income Tax")),
+							Employer: optionalnullable.From(types.Bool(false)),
+							Amount:   optionalnullable.From(types.Float64(1.97)),
 						},
-					},
-					Deductions: []components.Deduction{
+					})),
+					Deductions: optionalnullable.From(types.Pointer([]components.Deduction{
 						components.Deduction{
-							Name:   types.String("Company Car"),
-							Amount: types.Float64(10.97),
+							Name:   optionalnullable.From(types.String("Company Car")),
+							Amount: optionalnullable.From(types.Float64(10.97)),
 						},
 						components.Deduction{
-							Name:   types.String("Company Car"),
-							Amount: types.Float64(10.97),
+							Name:   optionalnullable.From(types.String("Company Car")),
+							Amount: optionalnullable.From(types.Float64(10.97)),
 						},
-					},
-					Benefits: []components.Benefit{
+					})),
+					Benefits: optionalnullable.From(types.Pointer([]components.Benefit{
 						components.Benefit{
-							Name:                 types.String("Health Insurance"),
-							EmployeeDeduction:    types.Float64(142.94),
-							EmployerContribution: types.Float64(141.14),
+							Name:                 optionalnullable.From(types.String("Health Insurance")),
+							EmployeeDeduction:    optionalnullable.From(types.Float64(142.94)),
+							EmployerContribution: optionalnullable.From(types.Float64(141.14)),
 						},
 						components.Benefit{
-							Name:                 types.String("Health Insurance"),
-							EmployeeDeduction:    types.Float64(142.94),
-							EmployerContribution: types.Float64(141.14),
+							Name:                 optionalnullable.From(types.String("Health Insurance")),
+							EmployeeDeduction:    optionalnullable.From(types.Float64(142.94)),
+							EmployerContribution: optionalnullable.From(types.Float64(141.14)),
 						},
-					},
+					})),
 				},
 				components.Compensation{
 					EmployeeID: types.String("12345"),
-					NetPay:     types.Float64(2199.93),
-					GrossPay:   types.Float64(3000),
-					Taxes: []components.Tax{
+					NetPay:     optionalnullable.From(types.Float64(2199.93)),
+					GrossPay:   optionalnullable.From(types.Float64(3000)),
+					Taxes: optionalnullable.From(types.Pointer([]components.Tax{
 						components.Tax{
-							Name:     types.String("CA State Income Tax"),
-							Employer: types.Bool(false),
-							Amount:   types.Float64(1.97),
+							Name:     optionalnullable.From(types.String("CA State Income Tax")),
+							Employer: optionalnullable.From(types.Bool(false)),
+							Amount:   optionalnullable.From(types.Float64(1.97)),
 						},
 						components.Tax{
-							Name:     types.String("CA State Income Tax"),
-							Employer: types.Bool(false),
-							Amount:   types.Float64(1.97),
+							Name:     optionalnullable.From(types.String("CA State Income Tax")),
+							Employer: optionalnullable.From(types.Bool(false)),
+							Amount:   optionalnullable.From(types.Float64(1.97)),
 						},
 						components.Tax{
-							Name:     types.String("CA State Income Tax"),
-							Employer: types.Bool(false),
-							Amount:   types.Float64(1.97),
+							Name:     optionalnullable.From(types.String("CA State Income Tax")),
+							Employer: optionalnullable.From(types.Bool(false)),
+							Amount:   optionalnullable.From(types.Float64(1.97)),
 						},
-					},
-					Deductions: []components.Deduction{
+					})),
+					Deductions: optionalnullable.From(types.Pointer([]components.Deduction{
 						components.Deduction{
-							Name:   types.String("Company Car"),
-							Amount: types.Float64(10.97),
+							Name:   optionalnullable.From(types.String("Company Car")),
+							Amount: optionalnullable.From(types.Float64(10.97)),
 						},
 						components.Deduction{
-							Name:   types.String("Company Car"),
-							Amount: types.Float64(10.97),
+							Name:   optionalnullable.From(types.String("Company Car")),
+							Amount: optionalnullable.From(types.Float64(10.97)),
 						},
-					},
-					Benefits: []components.Benefit{
+					})),
+					Benefits: optionalnullable.From(types.Pointer([]components.Benefit{
 						components.Benefit{
-							Name:                 types.String("Health Insurance"),
-							EmployeeDeduction:    types.Float64(142.94),
-							EmployerContribution: types.Float64(141.14),
+							Name:                 optionalnullable.From(types.String("Health Insurance")),
+							EmployeeDeduction:    optionalnullable.From(types.Float64(142.94)),
+							EmployerContribution: optionalnullable.From(types.Float64(141.14)),
 						},
 						components.Benefit{
-							Name:                 types.String("Health Insurance"),
-							EmployeeDeduction:    types.Float64(142.94),
-							EmployerContribution: types.Float64(141.14),
+							Name:                 optionalnullable.From(types.String("Health Insurance")),
+							EmployeeDeduction:    optionalnullable.From(types.Float64(142.94)),
+							EmployerContribution: optionalnullable.From(types.Float64(141.14)),
 						},
-					},
+					})),
 				},
 				components.Compensation{
 					EmployeeID: types.String("12345"),
-					NetPay:     types.Float64(2199.93),
-					GrossPay:   types.Float64(3000),
-					Taxes: []components.Tax{
+					NetPay:     optionalnullable.From(types.Float64(2199.93)),
+					GrossPay:   optionalnullable.From(types.Float64(3000)),
+					Taxes: optionalnullable.From(types.Pointer([]components.Tax{
 						components.Tax{
-							Name:     types.String("CA State Income Tax"),
-							Employer: types.Bool(false),
-							Amount:   types.Float64(1.97),
+							Name:     optionalnullable.From(types.String("CA State Income Tax")),
+							Employer: optionalnullable.From(types.Bool(false)),
+							Amount:   optionalnullable.From(types.Float64(1.97)),
 						},
-					},
-					Deductions: []components.Deduction{
+					})),
+					Deductions: optionalnullable.From(types.Pointer([]components.Deduction{
 						components.Deduction{
-							Name:   types.String("Company Car"),
-							Amount: types.Float64(10.97),
+							Name:   optionalnullable.From(types.String("Company Car")),
+							Amount: optionalnullable.From(types.Float64(10.97)),
 						},
-					},
-					Benefits: []components.Benefit{
+					})),
+					Benefits: optionalnullable.From(types.Pointer([]components.Benefit{
 						components.Benefit{
-							Name:                 types.String("Health Insurance"),
-							EmployeeDeduction:    types.Float64(142.94),
-							EmployerContribution: types.Float64(141.14),
-						},
-						components.Benefit{
-							Name:                 types.String("Health Insurance"),
-							EmployeeDeduction:    types.Float64(142.94),
-							EmployerContribution: types.Float64(141.14),
+							Name:                 optionalnullable.From(types.String("Health Insurance")),
+							EmployeeDeduction:    optionalnullable.From(types.Float64(142.94)),
+							EmployerContribution: optionalnullable.From(types.Float64(141.14)),
 						},
 						components.Benefit{
-							Name:                 types.String("Health Insurance"),
-							EmployeeDeduction:    types.Float64(142.94),
-							EmployerContribution: types.Float64(141.14),
+							Name:                 optionalnullable.From(types.String("Health Insurance")),
+							EmployeeDeduction:    optionalnullable.From(types.Float64(142.94)),
+							EmployerContribution: optionalnullable.From(types.Float64(141.14)),
 						},
-					},
+						components.Benefit{
+							Name:                 optionalnullable.From(types.String("Health Insurance")),
+							EmployeeDeduction:    optionalnullable.From(types.Float64(142.94)),
+							EmployerContribution: optionalnullable.From(types.Float64(141.14)),
+						},
+					})),
 				},
 			},
 		},

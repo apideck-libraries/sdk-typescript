@@ -8,6 +8,7 @@ import (
 	"mockserver/internal/handler/assert"
 	"mockserver/internal/logging"
 	"mockserver/internal/sdk/models/components"
+	"mockserver/internal/sdk/optionalnullable"
 	"mockserver/internal/sdk/types"
 	"mockserver/internal/sdk/utils"
 	"mockserver/internal/tracking"
@@ -56,7 +57,7 @@ func testWebhookWebhooksUpdateWebhookWebhooksUpdate0(w http.ResponseWriter, req 
 		Status:     "OK",
 		Data: components.Webhook{
 			ID:             types.String("1234"),
-			Description:    types.String("A description"),
+			Description:    optionalnullable.From(types.String("A description")),
 			UnifiedAPI:     components.UnifiedAPIIDCrm,
 			Status:         components.StatusEnabled,
 			DisabledReason: components.DisabledReasonRetryLimit.ToPointer(),
@@ -66,8 +67,8 @@ func testWebhookWebhooksUpdateWebhookWebhooksUpdate0(w http.ResponseWriter, req 
 				components.WebhookEventTypeVaultConnectionCreated,
 				components.WebhookEventTypeVaultConnectionUpdated,
 			},
-			UpdatedAt: types.MustNewTimeFromString("2020-09-30T07:43:32.000Z"),
-			CreatedAt: types.MustNewTimeFromString("2020-09-30T07:43:32.000Z"),
+			UpdatedAt: optionalnullable.From(types.MustNewTimeFromString("2020-09-30T07:43:32.000Z")),
+			CreatedAt: optionalnullable.From(types.MustNewTimeFromString("2020-09-30T07:43:32.000Z")),
 		},
 	}
 	respBodyBytes, err := utils.MarshalJSON(respBody, "", true)

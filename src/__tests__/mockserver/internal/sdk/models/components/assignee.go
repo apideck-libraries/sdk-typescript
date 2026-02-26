@@ -2,10 +2,14 @@
 
 package components
 
+import (
+	"mockserver/internal/sdk/optionalnullable"
+)
+
 type Assignee struct {
 	// A unique identifier for an object.
-	ID       string  `json:"id"`
-	Username *string `json:"username,omitempty"`
+	ID       string                                    `json:"id"`
+	Username optionalnullable.OptionalNullable[string] `json:"username,omitempty"`
 }
 
 func (o *Assignee) GetID() string {
@@ -15,7 +19,7 @@ func (o *Assignee) GetID() string {
 	return o.ID
 }
 
-func (o *Assignee) GetUsername() *string {
+func (o *Assignee) GetUsername() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}

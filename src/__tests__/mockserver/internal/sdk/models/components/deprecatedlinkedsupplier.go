@@ -2,6 +2,10 @@
 
 package components
 
+import (
+	"mockserver/internal/sdk/optionalnullable"
+)
+
 // DeprecatedLinkedSupplier - The supplier this entity is linked to.
 //
 // Deprecated: This field is deprecated and may be removed in a future version..
@@ -9,12 +13,12 @@ type DeprecatedLinkedSupplier struct {
 	// A unique identifier for an object.
 	ID *string `json:"id,omitempty"`
 	// The display ID of the supplier.
-	DisplayID *string `json:"display_id,omitempty"`
+	DisplayID optionalnullable.OptionalNullable[string] `json:"display_id,omitempty"`
 	// The display name of the supplier.
-	DisplayName *string `json:"display_name,omitempty"`
+	DisplayName optionalnullable.OptionalNullable[string] `json:"display_name,omitempty"`
 	// The company name of the supplier.
-	CompanyName *string  `json:"company_name,omitempty"`
-	Address     *Address `json:"address,omitempty"`
+	CompanyName optionalnullable.OptionalNullable[string] `json:"company_name,omitempty"`
+	Address     *Address                                  `json:"address,omitempty"`
 }
 
 func (o *DeprecatedLinkedSupplier) GetID() *string {
@@ -24,21 +28,21 @@ func (o *DeprecatedLinkedSupplier) GetID() *string {
 	return o.ID
 }
 
-func (o *DeprecatedLinkedSupplier) GetDisplayID() *string {
+func (o *DeprecatedLinkedSupplier) GetDisplayID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.DisplayID
 }
 
-func (o *DeprecatedLinkedSupplier) GetDisplayName() *string {
+func (o *DeprecatedLinkedSupplier) GetDisplayName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.DisplayName
 }
 
-func (o *DeprecatedLinkedSupplier) GetCompanyName() *string {
+func (o *DeprecatedLinkedSupplier) GetCompanyName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}

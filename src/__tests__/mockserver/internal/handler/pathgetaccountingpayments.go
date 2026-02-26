@@ -8,6 +8,7 @@ import (
 	"mockserver/internal/handler/assert"
 	"mockserver/internal/logging"
 	"mockserver/internal/sdk/models/components"
+	"mockserver/internal/sdk/optionalnullable"
 	"mockserver/internal/sdk/types"
 	"mockserver/internal/sdk/utils"
 	"mockserver/internal/tracking"
@@ -55,80 +56,80 @@ func testAccountingPaymentsAllAccountingPaymentsAll0(w http.ResponseWriter, req 
 		Data: []components.Payment{
 			components.Payment{
 				ID:                     "12345",
-				DownstreamID:           types.String("12345"),
-				Currency:               components.CurrencyUsd.ToPointer(),
-				CurrencyRate:           types.Float64(0.69),
+				DownstreamID:           optionalnullable.From(types.String("12345")),
+				Currency:               optionalnullable.From(components.CurrencyUsd.ToPointer()),
+				CurrencyRate:           optionalnullable.From(types.Float64(0.69)),
 				TotalAmount:            types.Float64(49.99),
-				Reference:              types.String("123456"),
-				PaymentMethod:          types.String("cash"),
-				PaymentMethodReference: types.String("123456"),
-				PaymentMethodID:        types.String("12345"),
-				Account: &components.LinkedLedgerAccount{
+				Reference:              optionalnullable.From(types.String("123456")),
+				PaymentMethod:          optionalnullable.From(types.String("cash")),
+				PaymentMethodReference: optionalnullable.From(types.String("123456")),
+				PaymentMethodID:        optionalnullable.From(types.String("12345")),
+				Account: optionalnullable.From(&components.LinkedLedgerAccount{
 					ID:          types.String("123456"),
-					Name:        types.String("Bank account"),
-					NominalCode: types.String("N091"),
-					Code:        types.String("453"),
-				},
+					Name:        optionalnullable.From(types.String("Bank account")),
+					NominalCode: optionalnullable.From(types.String("N091")),
+					Code:        optionalnullable.From(types.String("453")),
+				}),
 				TransactionDate: types.MustNewTimeFromString("2021-05-01T12:00:00.000Z"),
-				Customer: &components.LinkedCustomer{
+				Customer: optionalnullable.From(&components.LinkedCustomer{
 					ID:          types.String("12345"),
-					DisplayID:   types.String("CUST00101"),
-					DisplayName: types.String("Windsurf Shop"),
-					CompanyName: types.String("The boring company"),
+					DisplayID:   optionalnullable.From(types.String("CUST00101")),
+					DisplayName: optionalnullable.From(types.String("Windsurf Shop")),
+					CompanyName: optionalnullable.From(types.String("The boring company")),
 					Email:       types.String("boring@boring.com"),
-				},
-				CompanyID:  types.String("12345"),
-				Reconciled: types.Bool(true),
+				}),
+				CompanyID:  optionalnullable.From(types.String("12345")),
+				Reconciled: optionalnullable.From(types.Bool(true)),
 				Status:     components.PaymentStatusAuthorised.ToPointer(),
 				Type:       components.PaymentTypeAccountsReceivable.ToPointer(),
 				Allocations: []components.Allocation{
 					components.Allocation{
 						ID:           types.String("123456"),
 						Code:         types.String("N091"),
-						Amount:       types.Float64(49.99),
+						Amount:       optionalnullable.From(types.Float64(49.99)),
 						AllocationID: types.String("123456"),
 					},
 					components.Allocation{
 						ID:           types.String("123456"),
 						Code:         types.String("N091"),
-						Amount:       types.Float64(49.99),
+						Amount:       optionalnullable.From(types.Float64(49.99)),
 						AllocationID: types.String("123456"),
 					},
 				},
-				Note:   types.String("Some notes about this transaction"),
-				Number: types.String("123456"),
-				TrackingCategories: []*components.LinkedTrackingCategory{
+				Note:   optionalnullable.From(types.String("Some notes about this transaction")),
+				Number: optionalnullable.From(types.String("123456")),
+				TrackingCategories: optionalnullable.From(types.Pointer([]*components.LinkedTrackingCategory{
 					&components.LinkedTrackingCategory{
 						ID:   types.String("123456"),
-						Name: types.String("New York"),
+						Name: optionalnullable.From(types.String("New York")),
 					},
 					&components.LinkedTrackingCategory{
 						ID:   types.String("123456"),
-						Name: types.String("New York"),
+						Name: optionalnullable.From(types.String("New York")),
 					},
 					&components.LinkedTrackingCategory{
 						ID:   types.String("123456"),
-						Name: types.String("New York"),
+						Name: optionalnullable.From(types.String("New York")),
 					},
-				},
+				})),
 				CustomFields: []components.CustomFieldUnion{
 					components.CreateCustomFieldUnionCustomField1(
 						components.CustomField1{
 							ID:          types.String("2389328923893298"),
-							Name:        types.String("employee_level"),
-							Description: types.String("Employee Level"),
-							Value: types.Pointer(components.CreateCustomFieldValue2Number(
+							Name:        optionalnullable.From(types.String("employee_level")),
+							Description: optionalnullable.From(types.String("Employee Level")),
+							Value: optionalnullable.From(types.Pointer(components.CreateCustomFieldValue2Number(
 								10,
-							)),
+							))),
 						},
 					),
 				},
-				RowVersion: types.String("1-12345"),
-				DisplayID:  types.String("123456"),
-				UpdatedBy:  types.String("12345"),
-				CreatedBy:  types.String("12345"),
-				CreatedAt:  types.MustNewTimeFromString("2020-09-30T07:43:32.000Z"),
-				UpdatedAt:  types.MustNewTimeFromString("2020-09-30T07:43:32.000Z"),
+				RowVersion: optionalnullable.From(types.String("1-12345")),
+				DisplayID:  optionalnullable.From(types.String("123456")),
+				UpdatedBy:  optionalnullable.From(types.String("12345")),
+				CreatedBy:  optionalnullable.From(types.String("12345")),
+				CreatedAt:  optionalnullable.From(types.MustNewTimeFromString("2020-09-30T07:43:32.000Z")),
+				UpdatedAt:  optionalnullable.From(types.MustNewTimeFromString("2020-09-30T07:43:32.000Z")),
 				PassThrough: []components.PassThroughBody{
 					components.PassThroughBody{
 						ServiceID: "<id>",
@@ -155,95 +156,95 @@ func testAccountingPaymentsAllAccountingPaymentsAll0(w http.ResponseWriter, req 
 			},
 			components.Payment{
 				ID:                     "12345",
-				DownstreamID:           types.String("12345"),
-				Currency:               components.CurrencyUsd.ToPointer(),
-				CurrencyRate:           types.Float64(0.69),
+				DownstreamID:           optionalnullable.From(types.String("12345")),
+				Currency:               optionalnullable.From(components.CurrencyUsd.ToPointer()),
+				CurrencyRate:           optionalnullable.From(types.Float64(0.69)),
 				TotalAmount:            types.Float64(49.99),
-				Reference:              types.String("123456"),
-				PaymentMethod:          types.String("cash"),
-				PaymentMethodReference: types.String("123456"),
-				PaymentMethodID:        types.String("12345"),
-				Account: &components.LinkedLedgerAccount{
+				Reference:              optionalnullable.From(types.String("123456")),
+				PaymentMethod:          optionalnullable.From(types.String("cash")),
+				PaymentMethodReference: optionalnullable.From(types.String("123456")),
+				PaymentMethodID:        optionalnullable.From(types.String("12345")),
+				Account: optionalnullable.From(&components.LinkedLedgerAccount{
 					ID:          types.String("123456"),
-					Name:        types.String("Bank account"),
-					NominalCode: types.String("N091"),
-					Code:        types.String("453"),
-				},
+					Name:        optionalnullable.From(types.String("Bank account")),
+					NominalCode: optionalnullable.From(types.String("N091")),
+					Code:        optionalnullable.From(types.String("453")),
+				}),
 				TransactionDate: types.MustNewTimeFromString("2021-05-01T12:00:00.000Z"),
-				Customer: &components.LinkedCustomer{
+				Customer: optionalnullable.From(&components.LinkedCustomer{
 					ID:          types.String("12345"),
-					DisplayID:   types.String("CUST00101"),
-					DisplayName: types.String("Windsurf Shop"),
-					CompanyName: types.String("The boring company"),
+					DisplayID:   optionalnullable.From(types.String("CUST00101")),
+					DisplayName: optionalnullable.From(types.String("Windsurf Shop")),
+					CompanyName: optionalnullable.From(types.String("The boring company")),
 					Email:       types.String("boring@boring.com"),
-				},
-				CompanyID:  types.String("12345"),
-				Reconciled: types.Bool(true),
+				}),
+				CompanyID:  optionalnullable.From(types.String("12345")),
+				Reconciled: optionalnullable.From(types.Bool(true)),
 				Status:     components.PaymentStatusAuthorised.ToPointer(),
 				Type:       components.PaymentTypeAccountsReceivable.ToPointer(),
 				Allocations: []components.Allocation{
 					components.Allocation{
 						ID:           types.String("123456"),
 						Code:         types.String("N091"),
-						Amount:       types.Float64(49.99),
+						Amount:       optionalnullable.From(types.Float64(49.99)),
 						AllocationID: types.String("123456"),
 					},
 					components.Allocation{
 						ID:           types.String("123456"),
 						Code:         types.String("N091"),
-						Amount:       types.Float64(49.99),
+						Amount:       optionalnullable.From(types.Float64(49.99)),
 						AllocationID: types.String("123456"),
 					},
 				},
-				Note:   types.String("Some notes about this transaction"),
-				Number: types.String("123456"),
-				TrackingCategories: []*components.LinkedTrackingCategory{
+				Note:   optionalnullable.From(types.String("Some notes about this transaction")),
+				Number: optionalnullable.From(types.String("123456")),
+				TrackingCategories: optionalnullable.From(types.Pointer([]*components.LinkedTrackingCategory{
 					&components.LinkedTrackingCategory{
 						ID:   types.String("123456"),
-						Name: types.String("New York"),
+						Name: optionalnullable.From(types.String("New York")),
 					},
-				},
+				})),
 				CustomFields: []components.CustomFieldUnion{
 					components.CreateCustomFieldUnionCustomField1(
 						components.CustomField1{
 							ID:          types.String("2389328923893298"),
-							Name:        types.String("employee_level"),
-							Description: types.String("Employee Level"),
-							Value: types.Pointer(components.CreateCustomFieldValue2Str(
+							Name:        optionalnullable.From(types.String("employee_level")),
+							Description: optionalnullable.From(types.String("Employee Level")),
+							Value: optionalnullable.From(types.Pointer(components.CreateCustomFieldValue2Str(
 								"Uses Salesforce and Marketo",
-							)),
+							))),
 						},
 					),
 					components.CreateCustomFieldUnionCustomField1(
 						components.CustomField1{
 							ID:          types.String("2389328923893298"),
-							Name:        types.String("employee_level"),
-							Description: types.String("Employee Level"),
-							Value: types.Pointer(components.CreateCustomFieldValue2Str(
+							Name:        optionalnullable.From(types.String("employee_level")),
+							Description: optionalnullable.From(types.String("Employee Level")),
+							Value: optionalnullable.From(types.Pointer(components.CreateCustomFieldValue2Str(
 								"Uses Salesforce and Marketo",
-							)),
+							))),
 						},
 					),
 					components.CreateCustomFieldUnionCustomField1(
 						components.CustomField1{
 							ID:          types.String("2389328923893298"),
-							Name:        types.String("employee_level"),
-							Description: types.String("Employee Level"),
-							Value: types.Pointer(components.CreateCustomFieldValue2MapOfAny(
+							Name:        optionalnullable.From(types.String("employee_level")),
+							Description: optionalnullable.From(types.String("Employee Level")),
+							Value: optionalnullable.From(types.Pointer(components.CreateCustomFieldValue2MapOfAny(
 								map[string]any{
 									"0": "<value>",
 									"1": "<value>",
 								},
-							)),
+							))),
 						},
 					),
 				},
-				RowVersion: types.String("1-12345"),
-				DisplayID:  types.String("123456"),
-				UpdatedBy:  types.String("12345"),
-				CreatedBy:  types.String("12345"),
-				CreatedAt:  types.MustNewTimeFromString("2020-09-30T07:43:32.000Z"),
-				UpdatedAt:  types.MustNewTimeFromString("2020-09-30T07:43:32.000Z"),
+				RowVersion: optionalnullable.From(types.String("1-12345")),
+				DisplayID:  optionalnullable.From(types.String("123456")),
+				UpdatedBy:  optionalnullable.From(types.String("12345")),
+				CreatedBy:  optionalnullable.From(types.String("12345")),
+				CreatedAt:  optionalnullable.From(types.MustNewTimeFromString("2020-09-30T07:43:32.000Z")),
+				UpdatedAt:  optionalnullable.From(types.MustNewTimeFromString("2020-09-30T07:43:32.000Z")),
 				PassThrough: []components.PassThroughBody{
 					components.PassThroughBody{
 						ServiceID: "<id>",
@@ -275,79 +276,79 @@ func testAccountingPaymentsAllAccountingPaymentsAll0(w http.ResponseWriter, req 
 			},
 			components.Payment{
 				ID:                     "12345",
-				DownstreamID:           types.String("12345"),
-				Currency:               components.CurrencyUsd.ToPointer(),
-				CurrencyRate:           types.Float64(0.69),
+				DownstreamID:           optionalnullable.From(types.String("12345")),
+				Currency:               optionalnullable.From(components.CurrencyUsd.ToPointer()),
+				CurrencyRate:           optionalnullable.From(types.Float64(0.69)),
 				TotalAmount:            types.Float64(49.99),
-				Reference:              types.String("123456"),
-				PaymentMethod:          types.String("cash"),
-				PaymentMethodReference: types.String("123456"),
-				PaymentMethodID:        types.String("12345"),
-				Account: &components.LinkedLedgerAccount{
+				Reference:              optionalnullable.From(types.String("123456")),
+				PaymentMethod:          optionalnullable.From(types.String("cash")),
+				PaymentMethodReference: optionalnullable.From(types.String("123456")),
+				PaymentMethodID:        optionalnullable.From(types.String("12345")),
+				Account: optionalnullable.From(&components.LinkedLedgerAccount{
 					ID:          types.String("123456"),
-					Name:        types.String("Bank account"),
-					NominalCode: types.String("N091"),
-					Code:        types.String("453"),
-				},
+					Name:        optionalnullable.From(types.String("Bank account")),
+					NominalCode: optionalnullable.From(types.String("N091")),
+					Code:        optionalnullable.From(types.String("453")),
+				}),
 				TransactionDate: types.MustNewTimeFromString("2021-05-01T12:00:00.000Z"),
-				Customer: &components.LinkedCustomer{
+				Customer: optionalnullable.From(&components.LinkedCustomer{
 					ID:          types.String("12345"),
-					DisplayID:   types.String("CUST00101"),
-					DisplayName: types.String("Windsurf Shop"),
-					CompanyName: types.String("The boring company"),
+					DisplayID:   optionalnullable.From(types.String("CUST00101")),
+					DisplayName: optionalnullable.From(types.String("Windsurf Shop")),
+					CompanyName: optionalnullable.From(types.String("The boring company")),
 					Email:       types.String("boring@boring.com"),
-				},
-				CompanyID:  types.String("12345"),
-				Reconciled: types.Bool(true),
+				}),
+				CompanyID:  optionalnullable.From(types.String("12345")),
+				Reconciled: optionalnullable.From(types.Bool(true)),
 				Status:     components.PaymentStatusAuthorised.ToPointer(),
 				Type:       components.PaymentTypeAccountsReceivable.ToPointer(),
 				Allocations: []components.Allocation{
 					components.Allocation{
 						ID:           types.String("123456"),
 						Code:         types.String("N091"),
-						Amount:       types.Float64(49.99),
+						Amount:       optionalnullable.From(types.Float64(49.99)),
 						AllocationID: types.String("123456"),
 					},
 					components.Allocation{
 						ID:           types.String("123456"),
 						Code:         types.String("N091"),
-						Amount:       types.Float64(49.99),
+						Amount:       optionalnullable.From(types.Float64(49.99)),
 						AllocationID: types.String("123456"),
 					},
 				},
-				Note:   types.String("Some notes about this transaction"),
-				Number: types.String("123456"),
-				TrackingCategories: []*components.LinkedTrackingCategory{
+				Note:   optionalnullable.From(types.String("Some notes about this transaction")),
+				Number: optionalnullable.From(types.String("123456")),
+				TrackingCategories: optionalnullable.From(types.Pointer([]*components.LinkedTrackingCategory{
 					&components.LinkedTrackingCategory{
 						ID:   types.String("123456"),
-						Name: types.String("New York"),
+						Name: optionalnullable.From(types.String("New York")),
 					},
 					&components.LinkedTrackingCategory{
 						ID:   types.String("123456"),
-						Name: types.String("New York"),
+						Name: optionalnullable.From(types.String("New York")),
 					},
-				},
+				})),
 				CustomFields: []components.CustomFieldUnion{
 					components.CreateCustomFieldUnionCustomField1(
 						components.CustomField1{
 							ID:          types.String("2389328923893298"),
-							Name:        types.String("employee_level"),
-							Description: types.String("Employee Level"),
-							Value: types.Pointer(components.CreateCustomFieldValue2MapOfAny(
+							Name:        optionalnullable.From(types.String("employee_level")),
+							Description: optionalnullable.From(types.String("Employee Level")),
+							Value: optionalnullable.From(types.Pointer(components.CreateCustomFieldValue2MapOfAny(
 								map[string]any{
 									"0": map[string]any{},
 									"1": map[string]any{},
 								},
-							)),
+							))),
 						},
 					),
 				},
-				RowVersion: types.String("1-12345"),
-				DisplayID:  types.String("123456"),
-				UpdatedBy:  types.String("12345"),
-				CreatedBy:  types.String("12345"),
-				CreatedAt:  types.MustNewTimeFromString("2020-09-30T07:43:32.000Z"),
-				UpdatedAt:  types.MustNewTimeFromString("2020-09-30T07:43:32.000Z"),
+				RowVersion: optionalnullable.From(types.String("1-12345")),
+				DisplayID:  optionalnullable.From(types.String("123456")),
+				UpdatedBy:  optionalnullable.From(types.String("12345")),
+				CreatedBy:  optionalnullable.From(types.String("12345")),
+				CreatedAt:  optionalnullable.From(types.MustNewTimeFromString("2020-09-30T07:43:32.000Z")),
+				UpdatedAt:  optionalnullable.From(types.MustNewTimeFromString("2020-09-30T07:43:32.000Z")),
 				PassThrough: []components.PassThroughBody{
 					components.PassThroughBody{
 						ServiceID: "<id>",
@@ -402,15 +403,15 @@ func testAccountingPaymentsAllAccountingPaymentsAll0(w http.ResponseWriter, req 
 		Meta: &components.Meta{
 			ItemsOnPage: types.Int64(50),
 			Cursors: &components.Cursors{
-				Previous: types.String("em9oby1jcm06OnBhZ2U6OjE="),
-				Current:  types.String("em9oby1jcm06OnBhZ2U6OjI="),
-				Next:     types.String("em9oby1jcm06OnBhZ2U6OjM="),
+				Previous: optionalnullable.From(types.String("em9oby1jcm06OnBhZ2U6OjE=")),
+				Current:  optionalnullable.From(types.String("em9oby1jcm06OnBhZ2U6OjI=")),
+				Next:     optionalnullable.From(types.String("em9oby1jcm06OnBhZ2U6OjM=")),
 			},
 		},
 		Links: &components.Links{
-			Previous: types.String("https://unify.apideck.com/crm/companies?cursor=em9oby1jcm06OnBhZ2U6OjE%3D"),
+			Previous: optionalnullable.From(types.String("https://unify.apideck.com/crm/companies?cursor=em9oby1jcm06OnBhZ2U6OjE%3D")),
 			Current:  types.String("https://unify.apideck.com/crm/companies"),
-			Next:     types.String("https://unify.apideck.com/crm/companies?cursor=em9oby1jcm06OnBhZ2U6OjM"),
+			Next:     optionalnullable.From(types.String("https://unify.apideck.com/crm/companies?cursor=em9oby1jcm06OnBhZ2U6OjM")),
 		},
 	}
 	respBodyBytes, err := utils.MarshalJSON(respBody, "", true)

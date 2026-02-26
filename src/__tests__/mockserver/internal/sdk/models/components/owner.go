@@ -2,13 +2,17 @@
 
 package components
 
+import (
+	"mockserver/internal/sdk/optionalnullable"
+)
+
 type Owner struct {
 	// ID of the owner
 	ID *string `json:"id,omitempty"`
 	// Email of the owner
-	Email *string `json:"email,omitempty"`
+	Email optionalnullable.OptionalNullable[string] `json:"email,omitempty"`
 	// Name of the owner
-	Name *string `json:"name,omitempty"`
+	Name optionalnullable.OptionalNullable[string] `json:"name,omitempty"`
 }
 
 func (o *Owner) GetID() *string {
@@ -18,14 +22,14 @@ func (o *Owner) GetID() *string {
 	return o.ID
 }
 
-func (o *Owner) GetEmail() *string {
+func (o *Owner) GetEmail() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Email
 }
 
-func (o *Owner) GetName() *string {
+func (o *Owner) GetName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}

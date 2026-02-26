@@ -2,48 +2,52 @@
 
 package components
 
+import (
+	"mockserver/internal/sdk/optionalnullable"
+)
+
 type StageInput struct {
 	// The name of the Pipeline Stage.
-	Name *string `json:"name,omitempty"`
+	Name optionalnullable.OptionalNullable[string] `json:"name,omitempty"`
 	// The value of the Pipeline Stage.
-	Value *string `json:"value,omitempty"`
+	Value optionalnullable.OptionalNullable[string] `json:"value,omitempty"`
 	// The expected probability of winning an Opportunity in this Pipeline Stage. Valid values are [0-100].
-	WinProbability *int64 `json:"win_probability,omitempty"`
+	WinProbability optionalnullable.OptionalNullable[int64] `json:"win_probability,omitempty"`
 	// The order in which the Pipeline Stage is displayed in the UI.
-	DisplayOrder *int64 `json:"display_order,omitempty"`
+	DisplayOrder optionalnullable.OptionalNullable[int64] `json:"display_order,omitempty"`
 	// Whether the Pipeline Stage is archived or not.
-	Archived *bool `json:"archived,omitempty"`
+	Archived optionalnullable.OptionalNullable[bool] `json:"archived,omitempty"`
 }
 
-func (o *StageInput) GetName() *string {
+func (o *StageInput) GetName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-func (o *StageInput) GetValue() *string {
+func (o *StageInput) GetValue() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Value
 }
 
-func (o *StageInput) GetWinProbability() *int64 {
+func (o *StageInput) GetWinProbability() optionalnullable.OptionalNullable[int64] {
 	if o == nil {
 		return nil
 	}
 	return o.WinProbability
 }
 
-func (o *StageInput) GetDisplayOrder() *int64 {
+func (o *StageInput) GetDisplayOrder() optionalnullable.OptionalNullable[int64] {
 	if o == nil {
 		return nil
 	}
 	return o.DisplayOrder
 }
 
-func (o *StageInput) GetArchived() *bool {
+func (o *StageInput) GetArchived() optionalnullable.OptionalNullable[bool] {
 	if o == nil {
 		return nil
 	}
@@ -56,13 +60,13 @@ type PipelineInput struct {
 	// The name of the Pipeline.
 	Name string `json:"name"`
 	// Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
-	Currency *Currency `json:"currency,omitempty"`
+	Currency optionalnullable.OptionalNullable[Currency] `json:"currency,omitempty"`
 	// Whether the Pipeline is archived or not.
 	Archived *bool `json:"archived,omitempty"`
 	// Whether the Pipeline is active or not.
 	Active *bool `json:"active,omitempty"`
 	// The order in which the Pipeline is displayed in the UI.
-	DisplayOrder *int64 `json:"display_order,omitempty"`
+	DisplayOrder optionalnullable.OptionalNullable[int64] `json:"display_order,omitempty"`
 	// Whether the Pipeline has win probability enabled or not.
 	WinProbabilityEnabled *bool `json:"win_probability_enabled,omitempty"`
 	// The Pipeline Stages.
@@ -85,7 +89,7 @@ func (o *PipelineInput) GetName() string {
 	return o.Name
 }
 
-func (o *PipelineInput) GetCurrency() *Currency {
+func (o *PipelineInput) GetCurrency() optionalnullable.OptionalNullable[Currency] {
 	if o == nil {
 		return nil
 	}
@@ -106,7 +110,7 @@ func (o *PipelineInput) GetActive() *bool {
 	return o.Active
 }
 
-func (o *PipelineInput) GetDisplayOrder() *int64 {
+func (o *PipelineInput) GetDisplayOrder() optionalnullable.OptionalNullable[int64] {
 	if o == nil {
 		return nil
 	}

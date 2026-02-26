@@ -2,16 +2,20 @@
 
 package components
 
+import (
+	"mockserver/internal/sdk/optionalnullable"
+)
+
 // DeprecatedLinkedSupplierInput - The supplier this entity is linked to.
 //
 // Deprecated: This field is deprecated and may be removed in a future version..
 type DeprecatedLinkedSupplierInput struct {
 	// The display name of the supplier.
-	DisplayName *string  `json:"display_name,omitempty"`
-	Address     *Address `json:"address,omitempty"`
+	DisplayName optionalnullable.OptionalNullable[string] `json:"display_name,omitempty"`
+	Address     *Address                                  `json:"address,omitempty"`
 }
 
-func (o *DeprecatedLinkedSupplierInput) GetDisplayName() *string {
+func (o *DeprecatedLinkedSupplierInput) GetDisplayName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}

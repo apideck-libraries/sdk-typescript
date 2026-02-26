@@ -5,6 +5,7 @@ package components
 import (
 	"encoding/json"
 	"fmt"
+	"mockserver/internal/sdk/optionalnullable"
 	"mockserver/internal/sdk/utils"
 )
 
@@ -76,28 +77,28 @@ type FormField struct {
 	// The label of the field
 	Label *string `json:"label,omitempty"`
 	// The placeholder for the form field
-	Placeholder *string `json:"placeholder,omitempty"`
+	Placeholder optionalnullable.OptionalNullable[string] `json:"placeholder,omitempty"`
 	// The description of the form field
-	Description *string        `json:"description,omitempty"`
-	Type        *FormFieldType `json:"type,omitempty"`
+	Description optionalnullable.OptionalNullable[string] `json:"description,omitempty"`
+	Type        *FormFieldType                            `json:"type,omitempty"`
 	// Indicates if the form field is required, which means it must be filled in before the form can be submitted
 	Required    *bool `json:"required,omitempty"`
 	CustomField *bool `json:"custom_field,omitempty"`
 	// Only applicable to select fields. Allow the user to add a custom value though the option select if the desired value is not in the option select list.
 	AllowCustomValues *bool `default:"false" json:"allow_custom_values"`
 	// Indicates if the form field is displayed in a “read-only” mode.
-	Disabled *bool `json:"disabled,omitempty"`
+	Disabled optionalnullable.OptionalNullable[bool] `json:"disabled,omitempty"`
 	// Indicates if the form field is not displayed but the value that is being stored on the connection.
-	Hidden *bool `json:"hidden,omitempty"`
+	Hidden optionalnullable.OptionalNullable[bool] `json:"hidden,omitempty"`
 	// When the setting is deprecated, it should be hidden from the user interface. The value will still be stored on the connection for the sake of backwards compatibility.
-	Deprecated *bool `json:"deprecated,omitempty"`
+	Deprecated optionalnullable.OptionalNullable[bool] `json:"deprecated,omitempty"`
 	// Indicates if the form field contains sensitive data, which will display the value as a masked input.
-	Sensitive *bool `json:"sensitive,omitempty"`
+	Sensitive optionalnullable.OptionalNullable[bool] `json:"sensitive,omitempty"`
 	// Prefix to display in front of the form field.
-	Prefix *string `json:"prefix,omitempty"`
+	Prefix optionalnullable.OptionalNullable[string] `json:"prefix,omitempty"`
 	// Suffix to display next to the form field.
-	Suffix  *string           `json:"suffix,omitempty"`
-	Options []FormFieldOption `json:"options,omitempty"`
+	Suffix  optionalnullable.OptionalNullable[string] `json:"suffix,omitempty"`
+	Options []FormFieldOption                         `json:"options,omitempty"`
 }
 
 func (f FormField) MarshalJSON() ([]byte, error) {
@@ -125,14 +126,14 @@ func (o *FormField) GetLabel() *string {
 	return o.Label
 }
 
-func (o *FormField) GetPlaceholder() *string {
+func (o *FormField) GetPlaceholder() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Placeholder
 }
 
-func (o *FormField) GetDescription() *string {
+func (o *FormField) GetDescription() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -167,42 +168,42 @@ func (o *FormField) GetAllowCustomValues() *bool {
 	return o.AllowCustomValues
 }
 
-func (o *FormField) GetDisabled() *bool {
+func (o *FormField) GetDisabled() optionalnullable.OptionalNullable[bool] {
 	if o == nil {
 		return nil
 	}
 	return o.Disabled
 }
 
-func (o *FormField) GetHidden() *bool {
+func (o *FormField) GetHidden() optionalnullable.OptionalNullable[bool] {
 	if o == nil {
 		return nil
 	}
 	return o.Hidden
 }
 
-func (o *FormField) GetDeprecated() *bool {
+func (o *FormField) GetDeprecated() optionalnullable.OptionalNullable[bool] {
 	if o == nil {
 		return nil
 	}
 	return o.Deprecated
 }
 
-func (o *FormField) GetSensitive() *bool {
+func (o *FormField) GetSensitive() optionalnullable.OptionalNullable[bool] {
 	if o == nil {
 		return nil
 	}
 	return o.Sensitive
 }
 
-func (o *FormField) GetPrefix() *string {
+func (o *FormField) GetPrefix() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Prefix
 }
 
-func (o *FormField) GetSuffix() *string {
+func (o *FormField) GetSuffix() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}

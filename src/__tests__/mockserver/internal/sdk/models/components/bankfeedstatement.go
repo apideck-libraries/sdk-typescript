@@ -3,6 +3,7 @@
 package components
 
 import (
+	"mockserver/internal/sdk/optionalnullable"
 	"mockserver/internal/sdk/utils"
 	"time"
 )
@@ -144,13 +145,13 @@ type BankFeedStatement struct {
 	// List of transactions in the bank feed statement.
 	Transactions []Transaction `json:"transactions,omitempty"`
 	// The date and time when the object was created.
-	CreatedAt *time.Time `json:"created_at,omitempty"`
+	CreatedAt optionalnullable.OptionalNullable[time.Time] `json:"created_at,omitempty"`
 	// The user who created the object.
-	CreatedBy *string `json:"created_by,omitempty"`
+	CreatedBy optionalnullable.OptionalNullable[string] `json:"created_by,omitempty"`
 	// The date and time when the object was last updated.
-	UpdatedAt *time.Time `json:"updated_at,omitempty"`
+	UpdatedAt optionalnullable.OptionalNullable[time.Time] `json:"updated_at,omitempty"`
 	// The user who last updated the object.
-	UpdatedBy *string `json:"updated_by,omitempty"`
+	UpdatedBy optionalnullable.OptionalNullable[string] `json:"updated_by,omitempty"`
 }
 
 func (b BankFeedStatement) MarshalJSON() ([]byte, error) {
@@ -234,28 +235,28 @@ func (o *BankFeedStatement) GetTransactions() []Transaction {
 	return o.Transactions
 }
 
-func (o *BankFeedStatement) GetCreatedAt() *time.Time {
+func (o *BankFeedStatement) GetCreatedAt() optionalnullable.OptionalNullable[time.Time] {
 	if o == nil {
 		return nil
 	}
 	return o.CreatedAt
 }
 
-func (o *BankFeedStatement) GetCreatedBy() *string {
+func (o *BankFeedStatement) GetCreatedBy() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.CreatedBy
 }
 
-func (o *BankFeedStatement) GetUpdatedAt() *time.Time {
+func (o *BankFeedStatement) GetUpdatedAt() optionalnullable.OptionalNullable[time.Time] {
 	if o == nil {
 		return nil
 	}
 	return o.UpdatedAt
 }
 
-func (o *BankFeedStatement) GetUpdatedBy() *string {
+func (o *BankFeedStatement) GetUpdatedBy() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}

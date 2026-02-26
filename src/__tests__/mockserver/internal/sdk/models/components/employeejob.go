@@ -3,6 +3,7 @@
 package components
 
 import (
+	"mockserver/internal/sdk/optionalnullable"
 	"mockserver/internal/sdk/types"
 	"mockserver/internal/sdk/utils"
 )
@@ -22,32 +23,32 @@ func (e EmployeeJobStatus) ToPointer() *EmployeeJobStatus {
 
 type EmployeeJob struct {
 	// A unique identifier for an object.
-	ID *string `json:"id,omitempty"`
+	ID optionalnullable.OptionalNullable[string] `json:"id,omitempty"`
 	// A unique identifier for an object.
-	EmployeeID *string `json:"employee_id,omitempty"`
+	EmployeeID optionalnullable.OptionalNullable[string] `json:"employee_id,omitempty"`
 	// The job title of the person.
-	Title *string `json:"title,omitempty"`
+	Title optionalnullable.OptionalNullable[string] `json:"title,omitempty"`
 	// The position and responsibilities of the person within the organization.
-	Role *string `json:"role,omitempty"`
+	Role optionalnullable.OptionalNullable[string] `json:"role,omitempty"`
 	// The date on which the employee starts working in their current job role.
-	StartDate *types.Date `json:"start_date,omitempty"`
+	StartDate optionalnullable.OptionalNullable[types.Date] `json:"start_date,omitempty"`
 	// The date on which the employee leaves or is expected to leave their current job role.
-	EndDate *types.Date `json:"end_date,omitempty"`
+	EndDate optionalnullable.OptionalNullable[types.Date] `json:"end_date,omitempty"`
 	// The rate of pay for the employee in their current job role.
-	CompensationRate *float64 `json:"compensation_rate,omitempty"`
+	CompensationRate optionalnullable.OptionalNullable[float64] `json:"compensation_rate,omitempty"`
 	// Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
-	Currency *Currency `json:"currency,omitempty"`
+	Currency optionalnullable.OptionalNullable[Currency] `json:"currency,omitempty"`
 	// Unit of measurement for employee compensation.
-	PaymentUnit *PaymentUnit `json:"payment_unit,omitempty"`
+	PaymentUnit optionalnullable.OptionalNullable[PaymentUnit] `json:"payment_unit,omitempty"`
 	// The date on which the employee was hired by the organization
-	HiredAt *types.Date `json:"hired_at,omitempty"`
+	HiredAt optionalnullable.OptionalNullable[types.Date] `json:"hired_at,omitempty"`
 	// Indicates whether this the employee's primary job.
-	IsPrimary *bool `json:"is_primary,omitempty"`
+	IsPrimary optionalnullable.OptionalNullable[bool] `json:"is_primary,omitempty"`
 	// Indicates whether this the employee has a manager role.
-	IsManager *bool `json:"is_manager,omitempty"`
+	IsManager optionalnullable.OptionalNullable[bool] `json:"is_manager,omitempty"`
 	// Indicates the status of the job.
-	Status   *EmployeeJobStatus `json:"status,omitempty"`
-	Location *Address           `json:"location,omitempty"`
+	Status   optionalnullable.OptionalNullable[EmployeeJobStatus] `json:"status,omitempty"`
+	Location *Address                                             `json:"location,omitempty"`
 }
 
 func (e EmployeeJob) MarshalJSON() ([]byte, error) {
@@ -61,91 +62,91 @@ func (e *EmployeeJob) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *EmployeeJob) GetID() *string {
+func (o *EmployeeJob) GetID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *EmployeeJob) GetEmployeeID() *string {
+func (o *EmployeeJob) GetEmployeeID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.EmployeeID
 }
 
-func (o *EmployeeJob) GetTitle() *string {
+func (o *EmployeeJob) GetTitle() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Title
 }
 
-func (o *EmployeeJob) GetRole() *string {
+func (o *EmployeeJob) GetRole() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Role
 }
 
-func (o *EmployeeJob) GetStartDate() *types.Date {
+func (o *EmployeeJob) GetStartDate() optionalnullable.OptionalNullable[types.Date] {
 	if o == nil {
 		return nil
 	}
 	return o.StartDate
 }
 
-func (o *EmployeeJob) GetEndDate() *types.Date {
+func (o *EmployeeJob) GetEndDate() optionalnullable.OptionalNullable[types.Date] {
 	if o == nil {
 		return nil
 	}
 	return o.EndDate
 }
 
-func (o *EmployeeJob) GetCompensationRate() *float64 {
+func (o *EmployeeJob) GetCompensationRate() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}
 	return o.CompensationRate
 }
 
-func (o *EmployeeJob) GetCurrency() *Currency {
+func (o *EmployeeJob) GetCurrency() optionalnullable.OptionalNullable[Currency] {
 	if o == nil {
 		return nil
 	}
 	return o.Currency
 }
 
-func (o *EmployeeJob) GetPaymentUnit() *PaymentUnit {
+func (o *EmployeeJob) GetPaymentUnit() optionalnullable.OptionalNullable[PaymentUnit] {
 	if o == nil {
 		return nil
 	}
 	return o.PaymentUnit
 }
 
-func (o *EmployeeJob) GetHiredAt() *types.Date {
+func (o *EmployeeJob) GetHiredAt() optionalnullable.OptionalNullable[types.Date] {
 	if o == nil {
 		return nil
 	}
 	return o.HiredAt
 }
 
-func (o *EmployeeJob) GetIsPrimary() *bool {
+func (o *EmployeeJob) GetIsPrimary() optionalnullable.OptionalNullable[bool] {
 	if o == nil {
 		return nil
 	}
 	return o.IsPrimary
 }
 
-func (o *EmployeeJob) GetIsManager() *bool {
+func (o *EmployeeJob) GetIsManager() optionalnullable.OptionalNullable[bool] {
 	if o == nil {
 		return nil
 	}
 	return o.IsManager
 }
 
-func (o *EmployeeJob) GetStatus() *EmployeeJobStatus {
+func (o *EmployeeJob) GetStatus() optionalnullable.OptionalNullable[EmployeeJobStatus] {
 	if o == nil {
 		return nil
 	}
@@ -161,28 +162,28 @@ func (o *EmployeeJob) GetLocation() *Address {
 
 type EmployeeJobInput struct {
 	// The job title of the person.
-	Title *string `json:"title,omitempty"`
+	Title optionalnullable.OptionalNullable[string] `json:"title,omitempty"`
 	// The position and responsibilities of the person within the organization.
-	Role *string `json:"role,omitempty"`
+	Role optionalnullable.OptionalNullable[string] `json:"role,omitempty"`
 	// The date on which the employee starts working in their current job role.
-	StartDate *types.Date `json:"start_date,omitempty"`
+	StartDate optionalnullable.OptionalNullable[types.Date] `json:"start_date,omitempty"`
 	// The date on which the employee leaves or is expected to leave their current job role.
-	EndDate *types.Date `json:"end_date,omitempty"`
+	EndDate optionalnullable.OptionalNullable[types.Date] `json:"end_date,omitempty"`
 	// The rate of pay for the employee in their current job role.
-	CompensationRate *float64 `json:"compensation_rate,omitempty"`
+	CompensationRate optionalnullable.OptionalNullable[float64] `json:"compensation_rate,omitempty"`
 	// Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
-	Currency *Currency `json:"currency,omitempty"`
+	Currency optionalnullable.OptionalNullable[Currency] `json:"currency,omitempty"`
 	// Unit of measurement for employee compensation.
-	PaymentUnit *PaymentUnit `json:"payment_unit,omitempty"`
+	PaymentUnit optionalnullable.OptionalNullable[PaymentUnit] `json:"payment_unit,omitempty"`
 	// The date on which the employee was hired by the organization
-	HiredAt *types.Date `json:"hired_at,omitempty"`
+	HiredAt optionalnullable.OptionalNullable[types.Date] `json:"hired_at,omitempty"`
 	// Indicates whether this the employee's primary job.
-	IsPrimary *bool `json:"is_primary,omitempty"`
+	IsPrimary optionalnullable.OptionalNullable[bool] `json:"is_primary,omitempty"`
 	// Indicates whether this the employee has a manager role.
-	IsManager *bool `json:"is_manager,omitempty"`
+	IsManager optionalnullable.OptionalNullable[bool] `json:"is_manager,omitempty"`
 	// Indicates the status of the job.
-	Status   *EmployeeJobStatus `json:"status,omitempty"`
-	Location *Address           `json:"location,omitempty"`
+	Status   optionalnullable.OptionalNullable[EmployeeJobStatus] `json:"status,omitempty"`
+	Location *Address                                             `json:"location,omitempty"`
 }
 
 func (e EmployeeJobInput) MarshalJSON() ([]byte, error) {
@@ -196,77 +197,77 @@ func (e *EmployeeJobInput) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *EmployeeJobInput) GetTitle() *string {
+func (o *EmployeeJobInput) GetTitle() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Title
 }
 
-func (o *EmployeeJobInput) GetRole() *string {
+func (o *EmployeeJobInput) GetRole() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Role
 }
 
-func (o *EmployeeJobInput) GetStartDate() *types.Date {
+func (o *EmployeeJobInput) GetStartDate() optionalnullable.OptionalNullable[types.Date] {
 	if o == nil {
 		return nil
 	}
 	return o.StartDate
 }
 
-func (o *EmployeeJobInput) GetEndDate() *types.Date {
+func (o *EmployeeJobInput) GetEndDate() optionalnullable.OptionalNullable[types.Date] {
 	if o == nil {
 		return nil
 	}
 	return o.EndDate
 }
 
-func (o *EmployeeJobInput) GetCompensationRate() *float64 {
+func (o *EmployeeJobInput) GetCompensationRate() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}
 	return o.CompensationRate
 }
 
-func (o *EmployeeJobInput) GetCurrency() *Currency {
+func (o *EmployeeJobInput) GetCurrency() optionalnullable.OptionalNullable[Currency] {
 	if o == nil {
 		return nil
 	}
 	return o.Currency
 }
 
-func (o *EmployeeJobInput) GetPaymentUnit() *PaymentUnit {
+func (o *EmployeeJobInput) GetPaymentUnit() optionalnullable.OptionalNullable[PaymentUnit] {
 	if o == nil {
 		return nil
 	}
 	return o.PaymentUnit
 }
 
-func (o *EmployeeJobInput) GetHiredAt() *types.Date {
+func (o *EmployeeJobInput) GetHiredAt() optionalnullable.OptionalNullable[types.Date] {
 	if o == nil {
 		return nil
 	}
 	return o.HiredAt
 }
 
-func (o *EmployeeJobInput) GetIsPrimary() *bool {
+func (o *EmployeeJobInput) GetIsPrimary() optionalnullable.OptionalNullable[bool] {
 	if o == nil {
 		return nil
 	}
 	return o.IsPrimary
 }
 
-func (o *EmployeeJobInput) GetIsManager() *bool {
+func (o *EmployeeJobInput) GetIsManager() optionalnullable.OptionalNullable[bool] {
 	if o == nil {
 		return nil
 	}
 	return o.IsManager
 }
 
-func (o *EmployeeJobInput) GetStatus() *EmployeeJobStatus {
+func (o *EmployeeJobInput) GetStatus() optionalnullable.OptionalNullable[EmployeeJobStatus] {
 	if o == nil {
 		return nil
 	}

@@ -2,13 +2,17 @@
 
 package components
 
+import (
+	"mockserver/internal/sdk/optionalnullable"
+)
+
 type LinkedPurchaseOrder struct {
 	// The unique identifier for the purchase order.
 	ID *string `json:"id,omitempty"`
 	// The unique identifier for the purchase order line.
-	LineID *string `json:"line_id,omitempty"`
+	LineID optionalnullable.OptionalNullable[string] `json:"line_id,omitempty"`
 	// The line number of the purchase order line.
-	LineNumber *string `json:"line_number,omitempty"`
+	LineNumber optionalnullable.OptionalNullable[string] `json:"line_number,omitempty"`
 }
 
 func (o *LinkedPurchaseOrder) GetID() *string {
@@ -18,14 +22,14 @@ func (o *LinkedPurchaseOrder) GetID() *string {
 	return o.ID
 }
 
-func (o *LinkedPurchaseOrder) GetLineID() *string {
+func (o *LinkedPurchaseOrder) GetLineID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.LineID
 }
 
-func (o *LinkedPurchaseOrder) GetLineNumber() *string {
+func (o *LinkedPurchaseOrder) GetLineNumber() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}

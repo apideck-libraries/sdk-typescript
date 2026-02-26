@@ -5,6 +5,7 @@ package components
 import (
 	"errors"
 	"fmt"
+	"mockserver/internal/sdk/optionalnullable"
 	"mockserver/internal/sdk/utils"
 )
 
@@ -345,13 +346,13 @@ type Connection struct {
 	// The logo of the connection, that will be shown in the Vault
 	Logo *string `json:"logo,omitempty"`
 	// The OAuth redirect URI. Redirect your users to this URI to let them authorize your app in the connector's UI. Before you can use this URI, you must add `redirect_uri` as a query parameter to the `authorize_url`. Be sure to URL encode the `redirect_uri` part. Your users will be redirected to this `redirect_uri` after they granted access to your app in the connector's UI.
-	AuthorizeURL *string `json:"authorize_url,omitempty"`
+	AuthorizeURL optionalnullable.OptionalNullable[string] `json:"authorize_url,omitempty"`
 	// The OAuth revoke URI. Redirect your users to this URI to revoke this connection. Before you can use this URI, you must add `redirect_uri` as a query parameter. Your users will be redirected to this `redirect_uri` after they granted access to your app in the connector's UI.
-	RevokeURL *string `json:"revoke_url,omitempty"`
+	RevokeURL optionalnullable.OptionalNullable[string] `json:"revoke_url,omitempty"`
 	// Connection settings. Values will persist to `form_fields` with corresponding id
-	Settings map[string]any `json:"settings,omitempty"`
+	Settings optionalnullable.OptionalNullable[map[string]any] `json:"settings,omitempty"`
 	// Attach your own consumer specific metadata
-	Metadata map[string]any `json:"metadata,omitempty"`
+	Metadata optionalnullable.OptionalNullable[map[string]any] `json:"metadata,omitempty"`
 	// The settings that are wanted to create a connection.
 	FormFields              []FormField     `json:"form_fields,omitempty"`
 	Configuration           []Configuration `json:"configuration,omitempty"`
@@ -378,9 +379,9 @@ type Connection struct {
 	// Unix timestamp in milliseconds when credentials will be deleted if token refresh continues to fail. A value of 0 indicates no active retention window (connection is healthy or not using OAuth token refresh).
 	CredentialsExpireAt *float64 `json:"credentials_expire_at,omitempty"`
 	// Unix timestamp in milliseconds of the last failed token refresh attempt. A value of 0 indicates no recent failures. This field is used internally to enforce cooldown periods between retry attempts.
-	LastRefreshFailedAt *float64 `json:"last_refresh_failed_at,omitempty"`
-	CreatedAt           *float64 `json:"created_at,omitempty"`
-	UpdatedAt           *float64 `json:"updated_at,omitempty"`
+	LastRefreshFailedAt *float64                                   `json:"last_refresh_failed_at,omitempty"`
+	CreatedAt           *float64                                   `json:"created_at,omitempty"`
+	UpdatedAt           optionalnullable.OptionalNullable[float64] `json:"updated_at,omitempty"`
 }
 
 func (o *Connection) GetID() *string {
@@ -481,28 +482,28 @@ func (o *Connection) GetLogo() *string {
 	return o.Logo
 }
 
-func (o *Connection) GetAuthorizeURL() *string {
+func (o *Connection) GetAuthorizeURL() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.AuthorizeURL
 }
 
-func (o *Connection) GetRevokeURL() *string {
+func (o *Connection) GetRevokeURL() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.RevokeURL
 }
 
-func (o *Connection) GetSettings() map[string]any {
+func (o *Connection) GetSettings() optionalnullable.OptionalNullable[map[string]any] {
 	if o == nil {
 		return nil
 	}
 	return o.Settings
 }
 
-func (o *Connection) GetMetadata() map[string]any {
+func (o *Connection) GetMetadata() optionalnullable.OptionalNullable[map[string]any] {
 	if o == nil {
 		return nil
 	}
@@ -642,7 +643,7 @@ func (o *Connection) GetCreatedAt() *float64 {
 	return o.CreatedAt
 }
 
-func (o *Connection) GetUpdatedAt() *float64 {
+func (o *Connection) GetUpdatedAt() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}
@@ -699,10 +700,10 @@ type ConnectionInput struct {
 	// Whether the connection is enabled or not. You can enable or disable a connection using the Update Connection API.
 	Enabled *bool `json:"enabled,omitempty"`
 	// Connection settings. Values will persist to `form_fields` with corresponding id
-	Settings map[string]any `json:"settings,omitempty"`
+	Settings optionalnullable.OptionalNullable[map[string]any] `json:"settings,omitempty"`
 	// Attach your own consumer specific metadata
-	Metadata      map[string]any       `json:"metadata,omitempty"`
-	Configuration []ConfigurationInput `json:"configuration,omitempty"`
+	Metadata      optionalnullable.OptionalNullable[map[string]any] `json:"metadata,omitempty"`
+	Configuration []ConfigurationInput                              `json:"configuration,omitempty"`
 	// List of custom mappings configured for this connection
 	CustomMappings []CustomMappingInput `json:"custom_mappings,omitempty"`
 	// The current consent state of the connection
@@ -718,14 +719,14 @@ func (o *ConnectionInput) GetEnabled() *bool {
 	return o.Enabled
 }
 
-func (o *ConnectionInput) GetSettings() map[string]any {
+func (o *ConnectionInput) GetSettings() optionalnullable.OptionalNullable[map[string]any] {
 	if o == nil {
 		return nil
 	}
 	return o.Settings
 }
 
-func (o *ConnectionInput) GetMetadata() map[string]any {
+func (o *ConnectionInput) GetMetadata() optionalnullable.OptionalNullable[map[string]any] {
 	if o == nil {
 		return nil
 	}

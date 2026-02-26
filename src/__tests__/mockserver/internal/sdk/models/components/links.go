@@ -2,17 +2,21 @@
 
 package components
 
+import (
+	"mockserver/internal/sdk/optionalnullable"
+)
+
 // Links to navigate to previous or next pages through the API
 type Links struct {
 	// Link to navigate to the previous page through the API
-	Previous *string `json:"previous,omitempty"`
+	Previous optionalnullable.OptionalNullable[string] `json:"previous,omitempty"`
 	// Link to navigate to the current page through the API
 	Current *string `json:"current,omitempty"`
 	// Link to navigate to the previous page through the API
-	Next *string `json:"next,omitempty"`
+	Next optionalnullable.OptionalNullable[string] `json:"next,omitempty"`
 }
 
-func (o *Links) GetPrevious() *string {
+func (o *Links) GetPrevious() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -26,7 +30,7 @@ func (o *Links) GetCurrent() *string {
 	return o.Current
 }
 
-func (o *Links) GetNext() *string {
+func (o *Links) GetNext() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}

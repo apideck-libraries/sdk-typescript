@@ -47,7 +47,7 @@ export type BillLineItem = {
    */
   code?: string | null | undefined;
   /**
-   * Line number in the invoice
+   * Line number of the resource
    */
   lineNumber?: number | null | undefined;
   /**

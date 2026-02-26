@@ -2,15 +2,19 @@
 
 package components
 
+import (
+	"mockserver/internal/sdk/optionalnullable"
+)
+
 type Payroll struct {
 	// A unique identifier for an object.
 	ID *string `json:"id"`
 	// The unique identifier of the company.
-	CompanyID *string `json:"company_id,omitempty"`
+	CompanyID optionalnullable.OptionalNullable[string] `json:"company_id,omitempty"`
 	// Whether or not the payroll has been successfully processed. Note that processed payrolls cannot be updated.
 	Processed *bool `json:"processed"`
 	// The date the payroll was processed.
-	ProcessedDate *string `json:"processed_date,omitempty"`
+	ProcessedDate optionalnullable.OptionalNullable[string] `json:"processed_date,omitempty"`
 	// The date on which employees will be paid for the payroll.
 	CheckDate *string `json:"check_date"`
 	// The start date, inclusive, of the pay period.
@@ -22,7 +26,7 @@ type Payroll struct {
 	// An array of compensations for the payroll.
 	Compensations []Compensation `json:"compensations,omitempty"`
 	// When custom mappings are configured on the resource, the result is included here.
-	CustomMappings map[string]any `json:"custom_mappings,omitempty"`
+	CustomMappings optionalnullable.OptionalNullable[map[string]any] `json:"custom_mappings,omitempty"`
 }
 
 func (o *Payroll) GetID() *string {
@@ -32,7 +36,7 @@ func (o *Payroll) GetID() *string {
 	return o.ID
 }
 
-func (o *Payroll) GetCompanyID() *string {
+func (o *Payroll) GetCompanyID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -46,7 +50,7 @@ func (o *Payroll) GetProcessed() *bool {
 	return o.Processed
 }
 
-func (o *Payroll) GetProcessedDate() *string {
+func (o *Payroll) GetProcessedDate() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -88,7 +92,7 @@ func (o *Payroll) GetCompensations() []Compensation {
 	return o.Compensations
 }
 
-func (o *Payroll) GetCustomMappings() map[string]any {
+func (o *Payroll) GetCustomMappings() optionalnullable.OptionalNullable[map[string]any] {
 	if o == nil {
 		return nil
 	}

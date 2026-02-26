@@ -8,6 +8,7 @@ import (
 	"mockserver/internal/handler/assert"
 	"mockserver/internal/logging"
 	"mockserver/internal/sdk/models/components"
+	"mockserver/internal/sdk/optionalnullable"
 	"mockserver/internal/sdk/types"
 	"mockserver/internal/sdk/utils"
 	"mockserver/internal/tracking"
@@ -55,54 +56,54 @@ func testAccountingBankAccountsAllAccountingBankAccountsAll0(w http.ResponseWrit
 		Data: []components.AccountingBankAccount{
 			components.AccountingBankAccount{
 				ID:               "12345",
-				DisplayID:        types.String("BA-001"),
-				Name:             types.String("Main Operating Account"),
-				AccountNumber:    types.String("1234567890"),
+				DisplayID:        optionalnullable.From(types.String("BA-001")),
+				Name:             optionalnullable.From(types.String("Main Operating Account")),
+				AccountNumber:    optionalnullable.From(types.String("1234567890")),
 				AccountType:      components.AccountingBankAccountAccountTypeChecking.ToPointer(),
-				BankName:         types.String("Chase Bank"),
-				Currency:         components.CurrencyUsd.ToPointer(),
-				Balance:          types.Float64(25000),
-				AvailableBalance: types.Float64(24500),
-				OverdraftLimit:   types.Float64(5000),
-				RoutingNumber:    types.String("021000021"),
-				Iban:             types.String("GB33BUKB20201555555555"),
-				Bic:              types.String("CHASUS33"),
-				BsbNumber:        types.String("062-001"),
-				BranchIdentifier: types.String("001"),
-				BankCode:         types.String("BNH"),
-				Country:          types.String("US"),
-				Status:           components.AccountingBankAccountStatusActive.ToPointer(),
-				Description:      types.String("Primary operating account for daily transactions"),
+				BankName:         optionalnullable.From(types.String("Chase Bank")),
+				Currency:         optionalnullable.From(components.CurrencyUsd.ToPointer()),
+				Balance:          optionalnullable.From(types.Float64(25000)),
+				AvailableBalance: optionalnullable.From(types.Float64(24500)),
+				OverdraftLimit:   optionalnullable.From(types.Float64(5000)),
+				RoutingNumber:    optionalnullable.From(types.String("021000021")),
+				Iban:             optionalnullable.From(types.String("GB33BUKB20201555555555")),
+				Bic:              optionalnullable.From(types.String("CHASUS33")),
+				BsbNumber:        optionalnullable.From(types.String("062-001")),
+				BranchIdentifier: optionalnullable.From(types.String("001")),
+				BankCode:         optionalnullable.From(types.String("BNH")),
+				Country:          optionalnullable.From(types.String("US")),
+				Status:           optionalnullable.From(components.AccountingBankAccountStatusActive.ToPointer()),
+				Description:      optionalnullable.From(types.String("Primary operating account for daily transactions")),
 				CustomFields: []components.CustomFieldUnion{
 					components.CreateCustomFieldUnionCustomField1(
 						components.CustomField1{
 							ID:          types.String("2389328923893298"),
-							Name:        types.String("employee_level"),
-							Description: types.String("Employee Level"),
-							Value: types.Pointer(components.CreateCustomFieldValue2Str(
+							Name:        optionalnullable.From(types.String("employee_level")),
+							Description: optionalnullable.From(types.String("Employee Level")),
+							Value: optionalnullable.From(types.Pointer(components.CreateCustomFieldValue2Str(
 								"Uses Salesforce and Marketo",
-							)),
+							))),
 						},
 					),
 				},
-				CreatedAt: types.MustNewTimeFromString("2020-09-30T07:43:32.000Z"),
-				UpdatedAt: types.MustNewTimeFromString("2020-09-30T07:43:32.000Z"),
-				CreatedBy: types.String("12345"),
-				UpdatedBy: types.String("12345"),
+				CreatedAt: optionalnullable.From(types.MustNewTimeFromString("2020-09-30T07:43:32.000Z")),
+				UpdatedAt: optionalnullable.From(types.MustNewTimeFromString("2020-09-30T07:43:32.000Z")),
+				CreatedBy: optionalnullable.From(types.String("12345")),
+				UpdatedBy: optionalnullable.From(types.String("12345")),
 			},
 		},
 		Meta: &components.Meta{
 			ItemsOnPage: types.Int64(50),
 			Cursors: &components.Cursors{
-				Previous: types.String("em9oby1jcm06OnBhZ2U6OjE="),
-				Current:  types.String("em9oby1jcm06OnBhZ2U6OjI="),
-				Next:     types.String("em9oby1jcm06OnBhZ2U6OjM="),
+				Previous: optionalnullable.From(types.String("em9oby1jcm06OnBhZ2U6OjE=")),
+				Current:  optionalnullable.From(types.String("em9oby1jcm06OnBhZ2U6OjI=")),
+				Next:     optionalnullable.From(types.String("em9oby1jcm06OnBhZ2U6OjM=")),
 			},
 		},
 		Links: &components.Links{
-			Previous: types.String("https://unify.apideck.com/crm/companies?cursor=em9oby1jcm06OnBhZ2U6OjE%3D"),
+			Previous: optionalnullable.From(types.String("https://unify.apideck.com/crm/companies?cursor=em9oby1jcm06OnBhZ2U6OjE%3D")),
 			Current:  types.String("https://unify.apideck.com/crm/companies"),
-			Next:     types.String("https://unify.apideck.com/crm/companies?cursor=em9oby1jcm06OnBhZ2U6OjM"),
+			Next:     optionalnullable.From(types.String("https://unify.apideck.com/crm/companies?cursor=em9oby1jcm06OnBhZ2U6OjM")),
 		},
 	}
 	respBodyBytes, err := utils.MarshalJSON(respBody, "", true)

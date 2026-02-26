@@ -4,6 +4,7 @@ package operations
 
 import (
 	"mockserver/internal/sdk/models/components"
+	"mockserver/internal/sdk/optionalnullable"
 	"mockserver/internal/sdk/utils"
 )
 
@@ -38,7 +39,7 @@ type CrmCustomObjectSchemasAllRequest struct {
 	// Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
 	ServiceID *string `header:"style=simple,explode=false,name=x-apideck-service-id"`
 	// Cursor to start from. You can find cursors for next/previous pages in the meta.cursors property of the response.
-	Cursor *string `queryParam:"style=form,explode=true,name=cursor"`
+	Cursor optionalnullable.OptionalNullable[string] `queryParam:"style=form,explode=true,name=cursor"`
 	// Number of results to return. Minimum 1, Maximum 200, Default 20
 	Limit *int64 `default:"20" queryParam:"style=form,explode=true,name=limit"`
 	// Optional unmapped key/values that will be passed through to downstream as query parameters. Ie: ?pass_through[search]=leads becomes ?search=leads
@@ -84,7 +85,7 @@ func (o *CrmCustomObjectSchemasAllRequest) GetServiceID() *string {
 	return o.ServiceID
 }
 
-func (o *CrmCustomObjectSchemasAllRequest) GetCursor() *string {
+func (o *CrmCustomObjectSchemasAllRequest) GetCursor() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}

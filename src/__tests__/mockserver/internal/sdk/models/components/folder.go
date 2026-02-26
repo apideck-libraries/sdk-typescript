@@ -3,6 +3,7 @@
 package components
 
 import (
+	"mockserver/internal/sdk/optionalnullable"
 	"mockserver/internal/sdk/utils"
 	"time"
 )
@@ -11,32 +12,32 @@ type Folder struct {
 	// A unique identifier for an object.
 	ID *string `json:"id,omitempty"`
 	// The third-party API ID of original entity
-	DownstreamID *string `json:"downstream_id,omitempty"`
+	DownstreamID optionalnullable.OptionalNullable[string] `json:"downstream_id,omitempty"`
 	// The name of the folder
 	Name string `json:"name"`
 	// Optional description of the folder
-	Description *string `json:"description,omitempty"`
+	Description optionalnullable.OptionalNullable[string] `json:"description,omitempty"`
 	// The full path of the folder (includes the folder name)
-	Path *string `json:"path,omitempty"`
+	Path optionalnullable.OptionalNullable[string] `json:"path,omitempty"`
 	// The size of the folder in bytes
-	Size *int64 `json:"size,omitempty"`
+	Size optionalnullable.OptionalNullable[int64] `json:"size,omitempty"`
 	// Whether the current user can download the contents of this folder
-	Downloadable *bool  `json:"downloadable,omitempty"`
-	Owner        *Owner `json:"owner,omitempty"`
+	Downloadable optionalnullable.OptionalNullable[bool] `json:"downloadable,omitempty"`
+	Owner        *Owner                                  `json:"owner,omitempty"`
 	// The parent folders of the file, starting from the root
 	ParentFolders []LinkedFolder `json:"parent_folders"`
 	// Whether the list of parent folder is complete. Some connectors only return the direct parent of a folder
 	ParentFoldersComplete *bool `json:"parent_folders_complete,omitempty"`
 	// When custom mappings are configured on the resource, the result is included here.
-	CustomMappings map[string]any `json:"custom_mappings,omitempty"`
+	CustomMappings optionalnullable.OptionalNullable[map[string]any] `json:"custom_mappings,omitempty"`
 	// The user who last updated the object.
-	UpdatedBy *string `json:"updated_by,omitempty"`
+	UpdatedBy optionalnullable.OptionalNullable[string] `json:"updated_by,omitempty"`
 	// The user who created the object.
-	CreatedBy *string `json:"created_by,omitempty"`
+	CreatedBy optionalnullable.OptionalNullable[string] `json:"created_by,omitempty"`
 	// The date and time when the object was last updated.
-	UpdatedAt *time.Time `json:"updated_at,omitempty"`
+	UpdatedAt optionalnullable.OptionalNullable[time.Time] `json:"updated_at,omitempty"`
 	// The date and time when the object was created.
-	CreatedAt *time.Time `json:"created_at,omitempty"`
+	CreatedAt optionalnullable.OptionalNullable[time.Time] `json:"created_at,omitempty"`
 }
 
 func (f Folder) MarshalJSON() ([]byte, error) {
@@ -57,7 +58,7 @@ func (o *Folder) GetID() *string {
 	return o.ID
 }
 
-func (o *Folder) GetDownstreamID() *string {
+func (o *Folder) GetDownstreamID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -71,28 +72,28 @@ func (o *Folder) GetName() string {
 	return o.Name
 }
 
-func (o *Folder) GetDescription() *string {
+func (o *Folder) GetDescription() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Description
 }
 
-func (o *Folder) GetPath() *string {
+func (o *Folder) GetPath() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Path
 }
 
-func (o *Folder) GetSize() *int64 {
+func (o *Folder) GetSize() optionalnullable.OptionalNullable[int64] {
 	if o == nil {
 		return nil
 	}
 	return o.Size
 }
 
-func (o *Folder) GetDownloadable() *bool {
+func (o *Folder) GetDownloadable() optionalnullable.OptionalNullable[bool] {
 	if o == nil {
 		return nil
 	}
@@ -120,35 +121,35 @@ func (o *Folder) GetParentFoldersComplete() *bool {
 	return o.ParentFoldersComplete
 }
 
-func (o *Folder) GetCustomMappings() map[string]any {
+func (o *Folder) GetCustomMappings() optionalnullable.OptionalNullable[map[string]any] {
 	if o == nil {
 		return nil
 	}
 	return o.CustomMappings
 }
 
-func (o *Folder) GetUpdatedBy() *string {
+func (o *Folder) GetUpdatedBy() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.UpdatedBy
 }
 
-func (o *Folder) GetCreatedBy() *string {
+func (o *Folder) GetCreatedBy() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.CreatedBy
 }
 
-func (o *Folder) GetUpdatedAt() *time.Time {
+func (o *Folder) GetUpdatedAt() optionalnullable.OptionalNullable[time.Time] {
 	if o == nil {
 		return nil
 	}
 	return o.UpdatedAt
 }
 
-func (o *Folder) GetCreatedAt() *time.Time {
+func (o *Folder) GetCreatedAt() optionalnullable.OptionalNullable[time.Time] {
 	if o == nil {
 		return nil
 	}

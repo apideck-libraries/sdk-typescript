@@ -3,6 +3,7 @@
 package components
 
 import (
+	"mockserver/internal/sdk/optionalnullable"
 	"mockserver/internal/sdk/types"
 	"mockserver/internal/sdk/utils"
 	"time"
@@ -162,62 +163,62 @@ type LedgerAccount struct {
 	// The nominal code of the ledger account.
 	//
 	// Deprecated: This field is deprecated and may be removed in a future version..
-	NominalCode *string `json:"nominal_code,omitempty"`
+	NominalCode optionalnullable.OptionalNullable[string] `json:"nominal_code,omitempty"`
 	// The code assigned to the account.
-	Code *string `json:"code,omitempty"`
+	Code optionalnullable.OptionalNullable[string] `json:"code,omitempty"`
 	// The classification of account.
-	Classification *LedgerAccountClassification `json:"classification,omitempty"`
+	Classification optionalnullable.OptionalNullable[LedgerAccountClassification] `json:"classification,omitempty"`
 	// The type of account.
 	Type *LedgerAccountType `json:"type,omitempty"`
 	// The sub type of account.
-	SubType *string `json:"sub_type,omitempty"`
+	SubType optionalnullable.OptionalNullable[string] `json:"sub_type,omitempty"`
 	// The name of the account.
-	Name *string `json:"name,omitempty"`
+	Name optionalnullable.OptionalNullable[string] `json:"name,omitempty"`
 	// The fully qualified name of the account.
-	FullyQualifiedName *string `json:"fully_qualified_name,omitempty"`
+	FullyQualifiedName optionalnullable.OptionalNullable[string] `json:"fully_qualified_name,omitempty"`
 	// The description of the account.
-	Description *string `json:"description,omitempty"`
+	Description optionalnullable.OptionalNullable[string] `json:"description,omitempty"`
 	// The opening balance of the account.
-	OpeningBalance *float64 `json:"opening_balance,omitempty"`
+	OpeningBalance optionalnullable.OptionalNullable[float64] `json:"opening_balance,omitempty"`
 	// The current balance of the account.
-	CurrentBalance *float64 `json:"current_balance,omitempty"`
+	CurrentBalance optionalnullable.OptionalNullable[float64] `json:"current_balance,omitempty"`
 	// Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
-	Currency *Currency `json:"currency,omitempty"`
+	Currency optionalnullable.OptionalNullable[Currency] `json:"currency,omitempty"`
 	// The tax type of the account.
-	TaxType *string        `json:"tax_type,omitempty"`
-	TaxRate *LinkedTaxRate `json:"tax_rate,omitempty"`
-	Level   *float64       `json:"level,omitempty"`
+	TaxType optionalnullable.OptionalNullable[string]  `json:"tax_type,omitempty"`
+	TaxRate *LinkedTaxRate                             `json:"tax_rate,omitempty"`
+	Level   optionalnullable.OptionalNullable[float64] `json:"level,omitempty"`
 	// Whether the account is active or not.
-	Active *bool `json:"active,omitempty"`
+	Active optionalnullable.OptionalNullable[bool] `json:"active,omitempty"`
 	// The status of the account.
-	Status *AccountStatus `json:"status,omitempty"`
+	Status optionalnullable.OptionalNullable[AccountStatus] `json:"status,omitempty"`
 	// Whether the account is a header or not.
-	Header      *bool        `json:"header,omitempty"`
-	BankAccount *BankAccount `json:"bank_account,omitempty"`
+	Header      optionalnullable.OptionalNullable[bool] `json:"header,omitempty"`
+	BankAccount *BankAccount                            `json:"bank_account,omitempty"`
 	// The categories of the account.
 	Categories    []LedgerAccountCategory `json:"categories,omitempty"`
 	ParentAccount *ParentAccount          `json:"parent_account,omitempty"`
 	// Whether the account is a sub account or not.
-	SubAccount *bool `json:"sub_account,omitempty"`
+	SubAccount optionalnullable.OptionalNullable[bool] `json:"sub_account,omitempty"`
 	// The sub accounts of the account.
 	SubAccounts []SubAccount `json:"sub_accounts,omitempty"`
 	// Reconciliation Date means the last calendar day of each Reconciliation Period.
-	LastReconciliationDate *types.Date `json:"last_reconciliation_date,omitempty"`
+	LastReconciliationDate optionalnullable.OptionalNullable[types.Date] `json:"last_reconciliation_date,omitempty"`
 	// The subsidiaries the account belongs to.
 	Subsidiaries []LedgerAccountSubsidiary `json:"subsidiaries,omitempty"`
 	// When custom mappings are configured on the resource, the result is included here.
-	CustomMappings map[string]any     `json:"custom_mappings,omitempty"`
-	CustomFields   []CustomFieldUnion `json:"custom_fields,omitempty"`
+	CustomMappings optionalnullable.OptionalNullable[map[string]any] `json:"custom_mappings,omitempty"`
+	CustomFields   []CustomFieldUnion                                `json:"custom_fields,omitempty"`
 	// A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
-	RowVersion *string `json:"row_version,omitempty"`
+	RowVersion optionalnullable.OptionalNullable[string] `json:"row_version,omitempty"`
 	// The user who last updated the object.
-	UpdatedBy *string `json:"updated_by,omitempty"`
+	UpdatedBy optionalnullable.OptionalNullable[string] `json:"updated_by,omitempty"`
 	// The user who created the object.
-	CreatedBy *string `json:"created_by,omitempty"`
+	CreatedBy optionalnullable.OptionalNullable[string] `json:"created_by,omitempty"`
 	// The date and time when the object was last updated.
-	UpdatedAt *time.Time `json:"updated_at,omitempty"`
+	UpdatedAt optionalnullable.OptionalNullable[time.Time] `json:"updated_at,omitempty"`
 	// The date and time when the object was created.
-	CreatedAt *time.Time `json:"created_at,omitempty"`
+	CreatedAt optionalnullable.OptionalNullable[time.Time] `json:"created_at,omitempty"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
 	PassThrough []PassThroughBody `json:"pass_through,omitempty"`
 }
@@ -247,21 +248,21 @@ func (o *LedgerAccount) GetDisplayID() *string {
 	return o.DisplayID
 }
 
-func (o *LedgerAccount) GetNominalCode() *string {
+func (o *LedgerAccount) GetNominalCode() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.NominalCode
 }
 
-func (o *LedgerAccount) GetCode() *string {
+func (o *LedgerAccount) GetCode() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Code
 }
 
-func (o *LedgerAccount) GetClassification() *LedgerAccountClassification {
+func (o *LedgerAccount) GetClassification() optionalnullable.OptionalNullable[LedgerAccountClassification] {
 	if o == nil {
 		return nil
 	}
@@ -275,56 +276,56 @@ func (o *LedgerAccount) GetType() *LedgerAccountType {
 	return o.Type
 }
 
-func (o *LedgerAccount) GetSubType() *string {
+func (o *LedgerAccount) GetSubType() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.SubType
 }
 
-func (o *LedgerAccount) GetName() *string {
+func (o *LedgerAccount) GetName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-func (o *LedgerAccount) GetFullyQualifiedName() *string {
+func (o *LedgerAccount) GetFullyQualifiedName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.FullyQualifiedName
 }
 
-func (o *LedgerAccount) GetDescription() *string {
+func (o *LedgerAccount) GetDescription() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Description
 }
 
-func (o *LedgerAccount) GetOpeningBalance() *float64 {
+func (o *LedgerAccount) GetOpeningBalance() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}
 	return o.OpeningBalance
 }
 
-func (o *LedgerAccount) GetCurrentBalance() *float64 {
+func (o *LedgerAccount) GetCurrentBalance() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}
 	return o.CurrentBalance
 }
 
-func (o *LedgerAccount) GetCurrency() *Currency {
+func (o *LedgerAccount) GetCurrency() optionalnullable.OptionalNullable[Currency] {
 	if o == nil {
 		return nil
 	}
 	return o.Currency
 }
 
-func (o *LedgerAccount) GetTaxType() *string {
+func (o *LedgerAccount) GetTaxType() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -338,28 +339,28 @@ func (o *LedgerAccount) GetTaxRate() *LinkedTaxRate {
 	return o.TaxRate
 }
 
-func (o *LedgerAccount) GetLevel() *float64 {
+func (o *LedgerAccount) GetLevel() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}
 	return o.Level
 }
 
-func (o *LedgerAccount) GetActive() *bool {
+func (o *LedgerAccount) GetActive() optionalnullable.OptionalNullable[bool] {
 	if o == nil {
 		return nil
 	}
 	return o.Active
 }
 
-func (o *LedgerAccount) GetStatus() *AccountStatus {
+func (o *LedgerAccount) GetStatus() optionalnullable.OptionalNullable[AccountStatus] {
 	if o == nil {
 		return nil
 	}
 	return o.Status
 }
 
-func (o *LedgerAccount) GetHeader() *bool {
+func (o *LedgerAccount) GetHeader() optionalnullable.OptionalNullable[bool] {
 	if o == nil {
 		return nil
 	}
@@ -387,7 +388,7 @@ func (o *LedgerAccount) GetParentAccount() *ParentAccount {
 	return o.ParentAccount
 }
 
-func (o *LedgerAccount) GetSubAccount() *bool {
+func (o *LedgerAccount) GetSubAccount() optionalnullable.OptionalNullable[bool] {
 	if o == nil {
 		return nil
 	}
@@ -401,7 +402,7 @@ func (o *LedgerAccount) GetSubAccounts() []SubAccount {
 	return o.SubAccounts
 }
 
-func (o *LedgerAccount) GetLastReconciliationDate() *types.Date {
+func (o *LedgerAccount) GetLastReconciliationDate() optionalnullable.OptionalNullable[types.Date] {
 	if o == nil {
 		return nil
 	}
@@ -415,7 +416,7 @@ func (o *LedgerAccount) GetSubsidiaries() []LedgerAccountSubsidiary {
 	return o.Subsidiaries
 }
 
-func (o *LedgerAccount) GetCustomMappings() map[string]any {
+func (o *LedgerAccount) GetCustomMappings() optionalnullable.OptionalNullable[map[string]any] {
 	if o == nil {
 		return nil
 	}
@@ -429,35 +430,35 @@ func (o *LedgerAccount) GetCustomFields() []CustomFieldUnion {
 	return o.CustomFields
 }
 
-func (o *LedgerAccount) GetRowVersion() *string {
+func (o *LedgerAccount) GetRowVersion() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.RowVersion
 }
 
-func (o *LedgerAccount) GetUpdatedBy() *string {
+func (o *LedgerAccount) GetUpdatedBy() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.UpdatedBy
 }
 
-func (o *LedgerAccount) GetCreatedBy() *string {
+func (o *LedgerAccount) GetCreatedBy() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.CreatedBy
 }
 
-func (o *LedgerAccount) GetUpdatedAt() *time.Time {
+func (o *LedgerAccount) GetUpdatedAt() optionalnullable.OptionalNullable[time.Time] {
 	if o == nil {
 		return nil
 	}
 	return o.UpdatedAt
 }
 
-func (o *LedgerAccount) GetCreatedAt() *time.Time {
+func (o *LedgerAccount) GetCreatedAt() optionalnullable.OptionalNullable[time.Time] {
 	if o == nil {
 		return nil
 	}
@@ -477,48 +478,48 @@ type LedgerAccountInput struct {
 	// The nominal code of the ledger account.
 	//
 	// Deprecated: This field is deprecated and may be removed in a future version..
-	NominalCode *string `json:"nominal_code,omitempty"`
+	NominalCode optionalnullable.OptionalNullable[string] `json:"nominal_code,omitempty"`
 	// The code assigned to the account.
-	Code *string `json:"code,omitempty"`
+	Code optionalnullable.OptionalNullable[string] `json:"code,omitempty"`
 	// The classification of account.
-	Classification *LedgerAccountClassification `json:"classification,omitempty"`
+	Classification optionalnullable.OptionalNullable[LedgerAccountClassification] `json:"classification,omitempty"`
 	// The type of account.
 	Type *LedgerAccountType `json:"type,omitempty"`
 	// The sub type of account.
-	SubType *string `json:"sub_type,omitempty"`
+	SubType optionalnullable.OptionalNullable[string] `json:"sub_type,omitempty"`
 	// The name of the account.
-	Name *string `json:"name,omitempty"`
+	Name optionalnullable.OptionalNullable[string] `json:"name,omitempty"`
 	// The fully qualified name of the account.
-	FullyQualifiedName *string `json:"fully_qualified_name,omitempty"`
+	FullyQualifiedName optionalnullable.OptionalNullable[string] `json:"fully_qualified_name,omitempty"`
 	// The description of the account.
-	Description *string `json:"description,omitempty"`
+	Description optionalnullable.OptionalNullable[string] `json:"description,omitempty"`
 	// The opening balance of the account.
-	OpeningBalance *float64 `json:"opening_balance,omitempty"`
+	OpeningBalance optionalnullable.OptionalNullable[float64] `json:"opening_balance,omitempty"`
 	// The current balance of the account.
-	CurrentBalance *float64 `json:"current_balance,omitempty"`
+	CurrentBalance optionalnullable.OptionalNullable[float64] `json:"current_balance,omitempty"`
 	// Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
-	Currency *Currency `json:"currency,omitempty"`
+	Currency optionalnullable.OptionalNullable[Currency] `json:"currency,omitempty"`
 	// The tax type of the account.
-	TaxType *string             `json:"tax_type,omitempty"`
-	TaxRate *LinkedTaxRateInput `json:"tax_rate,omitempty"`
-	Level   *float64            `json:"level,omitempty"`
+	TaxType optionalnullable.OptionalNullable[string]  `json:"tax_type,omitempty"`
+	TaxRate *LinkedTaxRateInput                        `json:"tax_rate,omitempty"`
+	Level   optionalnullable.OptionalNullable[float64] `json:"level,omitempty"`
 	// Whether the account is active or not.
-	Active *bool `json:"active,omitempty"`
+	Active optionalnullable.OptionalNullable[bool] `json:"active,omitempty"`
 	// The status of the account.
-	Status *AccountStatus `json:"status,omitempty"`
+	Status optionalnullable.OptionalNullable[AccountStatus] `json:"status,omitempty"`
 	// Whether the account is a header or not.
-	Header        *bool          `json:"header,omitempty"`
-	BankAccount   *BankAccount   `json:"bank_account,omitempty"`
-	ParentAccount *ParentAccount `json:"parent_account,omitempty"`
+	Header        optionalnullable.OptionalNullable[bool] `json:"header,omitempty"`
+	BankAccount   *BankAccount                            `json:"bank_account,omitempty"`
+	ParentAccount *ParentAccount                          `json:"parent_account,omitempty"`
 	// Whether the account is a sub account or not.
-	SubAccount *bool `json:"sub_account,omitempty"`
+	SubAccount optionalnullable.OptionalNullable[bool] `json:"sub_account,omitempty"`
 	// Reconciliation Date means the last calendar day of each Reconciliation Period.
-	LastReconciliationDate *types.Date `json:"last_reconciliation_date,omitempty"`
+	LastReconciliationDate optionalnullable.OptionalNullable[types.Date] `json:"last_reconciliation_date,omitempty"`
 	// The subsidiaries the account belongs to.
 	Subsidiaries []LedgerAccountSubsidiary `json:"subsidiaries,omitempty"`
 	CustomFields []CustomFieldUnion        `json:"custom_fields,omitempty"`
 	// A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
-	RowVersion *string `json:"row_version,omitempty"`
+	RowVersion optionalnullable.OptionalNullable[string] `json:"row_version,omitempty"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
 	PassThrough []PassThroughBody `json:"pass_through,omitempty"`
 }
@@ -541,21 +542,21 @@ func (o *LedgerAccountInput) GetDisplayID() *string {
 	return o.DisplayID
 }
 
-func (o *LedgerAccountInput) GetNominalCode() *string {
+func (o *LedgerAccountInput) GetNominalCode() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.NominalCode
 }
 
-func (o *LedgerAccountInput) GetCode() *string {
+func (o *LedgerAccountInput) GetCode() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Code
 }
 
-func (o *LedgerAccountInput) GetClassification() *LedgerAccountClassification {
+func (o *LedgerAccountInput) GetClassification() optionalnullable.OptionalNullable[LedgerAccountClassification] {
 	if o == nil {
 		return nil
 	}
@@ -569,56 +570,56 @@ func (o *LedgerAccountInput) GetType() *LedgerAccountType {
 	return o.Type
 }
 
-func (o *LedgerAccountInput) GetSubType() *string {
+func (o *LedgerAccountInput) GetSubType() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.SubType
 }
 
-func (o *LedgerAccountInput) GetName() *string {
+func (o *LedgerAccountInput) GetName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-func (o *LedgerAccountInput) GetFullyQualifiedName() *string {
+func (o *LedgerAccountInput) GetFullyQualifiedName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.FullyQualifiedName
 }
 
-func (o *LedgerAccountInput) GetDescription() *string {
+func (o *LedgerAccountInput) GetDescription() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Description
 }
 
-func (o *LedgerAccountInput) GetOpeningBalance() *float64 {
+func (o *LedgerAccountInput) GetOpeningBalance() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}
 	return o.OpeningBalance
 }
 
-func (o *LedgerAccountInput) GetCurrentBalance() *float64 {
+func (o *LedgerAccountInput) GetCurrentBalance() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}
 	return o.CurrentBalance
 }
 
-func (o *LedgerAccountInput) GetCurrency() *Currency {
+func (o *LedgerAccountInput) GetCurrency() optionalnullable.OptionalNullable[Currency] {
 	if o == nil {
 		return nil
 	}
 	return o.Currency
 }
 
-func (o *LedgerAccountInput) GetTaxType() *string {
+func (o *LedgerAccountInput) GetTaxType() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -632,28 +633,28 @@ func (o *LedgerAccountInput) GetTaxRate() *LinkedTaxRateInput {
 	return o.TaxRate
 }
 
-func (o *LedgerAccountInput) GetLevel() *float64 {
+func (o *LedgerAccountInput) GetLevel() optionalnullable.OptionalNullable[float64] {
 	if o == nil {
 		return nil
 	}
 	return o.Level
 }
 
-func (o *LedgerAccountInput) GetActive() *bool {
+func (o *LedgerAccountInput) GetActive() optionalnullable.OptionalNullable[bool] {
 	if o == nil {
 		return nil
 	}
 	return o.Active
 }
 
-func (o *LedgerAccountInput) GetStatus() *AccountStatus {
+func (o *LedgerAccountInput) GetStatus() optionalnullable.OptionalNullable[AccountStatus] {
 	if o == nil {
 		return nil
 	}
 	return o.Status
 }
 
-func (o *LedgerAccountInput) GetHeader() *bool {
+func (o *LedgerAccountInput) GetHeader() optionalnullable.OptionalNullable[bool] {
 	if o == nil {
 		return nil
 	}
@@ -674,14 +675,14 @@ func (o *LedgerAccountInput) GetParentAccount() *ParentAccount {
 	return o.ParentAccount
 }
 
-func (o *LedgerAccountInput) GetSubAccount() *bool {
+func (o *LedgerAccountInput) GetSubAccount() optionalnullable.OptionalNullable[bool] {
 	if o == nil {
 		return nil
 	}
 	return o.SubAccount
 }
 
-func (o *LedgerAccountInput) GetLastReconciliationDate() *types.Date {
+func (o *LedgerAccountInput) GetLastReconciliationDate() optionalnullable.OptionalNullable[types.Date] {
 	if o == nil {
 		return nil
 	}
@@ -702,7 +703,7 @@ func (o *LedgerAccountInput) GetCustomFields() []CustomFieldUnion {
 	return o.CustomFields
 }
 
-func (o *LedgerAccountInput) GetRowVersion() *string {
+func (o *LedgerAccountInput) GetRowVersion() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
