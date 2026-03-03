@@ -29,6 +29,7 @@ const apideck = new Apideck({
 async function run() {
   const result = await apideck.accounting.bankFeedAccounts.list({
     serviceId: "salesforce",
+    companyId: "12345",
     passThrough: {
       "search": "San Francisco",
     },
@@ -62,6 +63,7 @@ const apideck = new ApideckCore({
 async function run() {
   const res = await accountingBankFeedAccountsList(apideck, {
     serviceId: "salesforce",
+    companyId: "12345",
     passThrough: {
       "search": "San Francisco",
     },
@@ -266,6 +268,7 @@ async function run() {
   const result = await apideck.accounting.bankFeedAccounts.get({
     id: "<id>",
     serviceId: "salesforce",
+    companyId: "12345",
     fields: "id,updated_at",
   });
 
@@ -295,6 +298,7 @@ async function run() {
   const res = await accountingBankFeedAccountsGet(apideck, {
     id: "<id>",
     serviceId: "salesforce",
+    companyId: "12345",
     fields: "id,updated_at",
   });
   if (res.ok) {

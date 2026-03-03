@@ -13,6 +13,7 @@ import { BankFeedStatements } from "./bankfeedstatements.js";
 import { BillPayments } from "./billpayments.js";
 import { Bills } from "./bills.js";
 import { Categories } from "./categories.js";
+import { Companies } from "./companies.js";
 import { CompanyInfo } from "./companyinfo.js";
 import { CreditNotes } from "./creditnotes.js";
 import { Customers } from "./customers.js";
@@ -85,6 +86,11 @@ export class Accounting extends ClientSDK {
   private _companyInfo?: CompanyInfo;
   get companyInfo(): CompanyInfo {
     return (this._companyInfo ??= new CompanyInfo(this._options));
+  }
+
+  private _companies?: Companies;
+  get companies(): Companies {
+    return (this._companies ??= new Companies(this._options));
   }
 
   private _balanceSheet?: BalanceSheet;

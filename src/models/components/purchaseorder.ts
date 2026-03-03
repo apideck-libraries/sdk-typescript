@@ -202,6 +202,10 @@ export type PurchaseOrder = {
    */
   terms?: string | null | undefined;
   /**
+   * The ID of the payment terms
+   */
+  termsId?: string | null | undefined;
+  /**
    * Type of amortization
    */
   amortizationType?: PurchaseOrderAmortizationType | null | undefined;
@@ -368,6 +372,10 @@ export type PurchaseOrderInput = {
    */
   terms?: string | null | undefined;
   /**
+   * The ID of the payment terms
+   */
+  termsId?: string | null | undefined;
+  /**
    * Type of amortization
    */
   amortizationType?: PurchaseOrderAmortizationType | null | undefined;
@@ -477,6 +485,7 @@ export const PurchaseOrder$inboundSchema: z.ZodType<
   due_date: z.nullable(types.date()).optional(),
   payment_method: z.nullable(types.string()).optional(),
   terms: z.nullable(types.string()).optional(),
+  terms_id: z.nullable(types.string()).optional(),
   amortization_type: z.nullable(PurchaseOrderAmortizationType$inboundSchema)
     .optional(),
   tax_code: z.nullable(types.string()).optional(),
@@ -523,6 +532,7 @@ export const PurchaseOrder$inboundSchema: z.ZodType<
     "accounting_by_row": "accountingByRow",
     "due_date": "dueDate",
     "payment_method": "paymentMethod",
+    "terms_id": "termsId",
     "amortization_type": "amortizationType",
     "tax_code": "taxCode",
     "tax_method": "taxMethod",
@@ -581,6 +591,7 @@ export type PurchaseOrderInput$Outbound = {
   due_date?: string | null | undefined;
   payment_method?: string | null | undefined;
   terms?: string | null | undefined;
+  terms_id?: string | null | undefined;
   amortization_type?: string | null | undefined;
   tax_code?: string | null | undefined;
   tax_method?: string | null | undefined;
@@ -641,6 +652,7 @@ export const PurchaseOrderInput$outboundSchema: z.ZodType<
   ).optional(),
   paymentMethod: z.nullable(z.string()).optional(),
   terms: z.nullable(z.string()).optional(),
+  termsId: z.nullable(z.string()).optional(),
   amortizationType: z.nullable(PurchaseOrderAmortizationType$outboundSchema)
     .optional(),
   taxCode: z.nullable(z.string()).optional(),
@@ -681,6 +693,7 @@ export const PurchaseOrderInput$outboundSchema: z.ZodType<
     accountingByRow: "accounting_by_row",
     dueDate: "due_date",
     paymentMethod: "payment_method",
+    termsId: "terms_id",
     amortizationType: "amortization_type",
     taxCode: "tax_code",
     taxMethod: "tax_method",

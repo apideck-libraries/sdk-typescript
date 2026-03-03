@@ -10,7 +10,7 @@ import * as types from "../../types/primitives.js";
 import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
-export type HrisCompaniesAllGlobals = {
+export type HrisCompaniesAll2Globals = {
   /**
    * ID of the consumer which you want to get or push data from
    */
@@ -21,7 +21,7 @@ export type HrisCompaniesAllGlobals = {
   appId?: string | undefined;
 };
 
-export type HrisCompaniesAllRequest = {
+export type HrisCompaniesAll2Request = {
   /**
    * Include raw response. Mostly used for debugging purposes
    */
@@ -56,7 +56,7 @@ export type HrisCompaniesAllRequest = {
   fields?: string | null | undefined;
 };
 
-export type HrisCompaniesAllResponse = {
+export type HrisCompaniesAll2Response = {
   httpMeta: components.HTTPMetadata;
   /**
    * Companies
@@ -69,7 +69,7 @@ export type HrisCompaniesAllResponse = {
 };
 
 /** @internal */
-export type HrisCompaniesAllRequest$Outbound = {
+export type HrisCompaniesAll2Request$Outbound = {
   raw: boolean;
   consumerId?: string | undefined;
   appId?: string | undefined;
@@ -81,10 +81,10 @@ export type HrisCompaniesAllRequest$Outbound = {
 };
 
 /** @internal */
-export const HrisCompaniesAllRequest$outboundSchema: z.ZodType<
-  HrisCompaniesAllRequest$Outbound,
+export const HrisCompaniesAll2Request$outboundSchema: z.ZodType<
+  HrisCompaniesAll2Request$Outbound,
   z.ZodTypeDef,
-  HrisCompaniesAllRequest
+  HrisCompaniesAll2Request
 > = z.object({
   raw: z.boolean().default(false),
   consumerId: z.string().optional(),
@@ -100,17 +100,17 @@ export const HrisCompaniesAllRequest$outboundSchema: z.ZodType<
   });
 });
 
-export function hrisCompaniesAllRequestToJSON(
-  hrisCompaniesAllRequest: HrisCompaniesAllRequest,
+export function hrisCompaniesAll2RequestToJSON(
+  hrisCompaniesAll2Request: HrisCompaniesAll2Request,
 ): string {
   return JSON.stringify(
-    HrisCompaniesAllRequest$outboundSchema.parse(hrisCompaniesAllRequest),
+    HrisCompaniesAll2Request$outboundSchema.parse(hrisCompaniesAll2Request),
   );
 }
 
 /** @internal */
-export const HrisCompaniesAllResponse$inboundSchema: z.ZodType<
-  HrisCompaniesAllResponse,
+export const HrisCompaniesAll2Response$inboundSchema: z.ZodType<
+  HrisCompaniesAll2Response,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -129,12 +129,12 @@ export const HrisCompaniesAllResponse$inboundSchema: z.ZodType<
   });
 });
 
-export function hrisCompaniesAllResponseFromJSON(
+export function hrisCompaniesAll2ResponseFromJSON(
   jsonString: string,
-): SafeParseResult<HrisCompaniesAllResponse, SDKValidationError> {
+): SafeParseResult<HrisCompaniesAll2Response, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => HrisCompaniesAllResponse$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'HrisCompaniesAllResponse' from JSON`,
+    (x) => HrisCompaniesAll2Response$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'HrisCompaniesAll2Response' from JSON`,
   );
 }

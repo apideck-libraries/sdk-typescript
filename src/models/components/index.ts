@@ -3,6 +3,7 @@
  */
 
 export * from "./accountingbankaccount.js";
+export * from "./accountingconnectioncompany.js";
 export * from "./accountingdepartment.js";
 export * from "./accountingdepartmentsfilter.js";
 export * from "./accountingemployee.js";
@@ -310,6 +311,7 @@ export * from "./getcollectionusersresponse.js";
 export * from "./getcommentresponse.js";
 export * from "./getcommentsresponse.js";
 export * from "./getcompaniesresponse.js";
+export * from "./getcompaniesresponse1.js";
 export * from "./getcompanyinforesponse.js";
 export * from "./getcompanyresponse.js";
 export * from "./getconnectionresponse.js";

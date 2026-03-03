@@ -43,14 +43,14 @@ import {
  * @remarks
  * List Companies
  */
-export function hrisCompaniesList(
+export function hrisCompaniesAll(
   client: ApideckCore,
-  request: operations.HrisCompaniesAllRequest,
+  request: operations.HrisCompaniesAll2Request,
   options?: RequestOptions,
 ): APIPromise<
   PageIterator<
     Result<
-      operations.HrisCompaniesAllResponse,
+      operations.HrisCompaniesAll2Response,
       | errors.BadRequestResponse
       | errors.UnauthorizedResponse
       | errors.PaymentRequiredResponse
@@ -77,13 +77,13 @@ export function hrisCompaniesList(
 
 async function $do(
   client: ApideckCore,
-  request: operations.HrisCompaniesAllRequest,
+  request: operations.HrisCompaniesAll2Request,
   options?: RequestOptions,
 ): Promise<
   [
     PageIterator<
       Result<
-        operations.HrisCompaniesAllResponse,
+        operations.HrisCompaniesAll2Response,
         | errors.BadRequestResponse
         | errors.UnauthorizedResponse
         | errors.PaymentRequiredResponse
@@ -105,7 +105,7 @@ async function $do(
 > {
   const parsed = safeParse(
     request,
-    (value) => operations.HrisCompaniesAllRequest$outboundSchema.parse(value),
+    (value) => operations.HrisCompaniesAll2Request$outboundSchema.parse(value),
     "Input validation failed",
   );
   if (!parsed.ok) {
@@ -154,7 +154,7 @@ async function $do(
   const context = {
     options: client._options,
     baseURL: options?.serverURL ?? client._baseURL ?? "",
-    operationID: "hris.companiesAll",
+    operationID: "hris.companiesAll2",
     oAuth2Scopes: null,
 
     resolvedSecurity: requestSecurity,
@@ -208,7 +208,7 @@ async function $do(
   };
 
   const [result, raw] = await M.match<
-    operations.HrisCompaniesAllResponse,
+    operations.HrisCompaniesAll2Response,
     | errors.BadRequestResponse
     | errors.UnauthorizedResponse
     | errors.PaymentRequiredResponse
@@ -223,7 +223,7 @@ async function $do(
     | UnexpectedClientError
     | SDKValidationError
   >(
-    M.json(200, operations.HrisCompaniesAllResponse$inboundSchema, {
+    M.json(200, operations.HrisCompaniesAll2Response$inboundSchema, {
       key: "GetHrisCompaniesResponse",
     }),
     M.jsonErr(400, errors.BadRequestResponse$inboundSchema),
@@ -233,7 +233,7 @@ async function $do(
     M.jsonErr(422, errors.UnprocessableResponse$inboundSchema),
     M.fail("4XX"),
     M.fail("5XX"),
-    M.json("default", operations.HrisCompaniesAllResponse$inboundSchema, {
+    M.json("default", operations.HrisCompaniesAll2Response$inboundSchema, {
       key: "UnexpectedErrorResponse",
     }),
   )(response, req, { extraFields: responseFields });
@@ -250,7 +250,7 @@ async function $do(
   ): {
     next: Paginator<
       Result<
-        operations.HrisCompaniesAllResponse,
+        operations.HrisCompaniesAll2Response,
         | errors.BadRequestResponse
         | errors.UnauthorizedResponse
         | errors.PaymentRequiredResponse
@@ -277,7 +277,7 @@ async function $do(
     }
 
     const nextVal = () =>
-      hrisCompaniesList(
+      hrisCompaniesAll(
         client,
         {
           ...request,

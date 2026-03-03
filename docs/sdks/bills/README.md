@@ -29,6 +29,7 @@ const apideck = new Apideck({
 async function run() {
   const result = await apideck.accounting.bills.list({
     serviceId: "salesforce",
+    companyId: "12345",
     filter: {
       updatedSince: new Date("2020-09-30T07:43:32.000Z"),
     },
@@ -69,6 +70,7 @@ const apideck = new ApideckCore({
 async function run() {
   const res = await accountingBillsList(apideck, {
     serviceId: "salesforce",
+    companyId: "12345",
     filter: {
       updatedSince: new Date("2020-09-30T07:43:32.000Z"),
     },
@@ -688,6 +690,7 @@ async function run() {
   const result = await apideck.accounting.bills.get({
     id: "<id>",
     serviceId: "salesforce",
+    companyId: "12345",
     fields: "id,updated_at",
   });
 
@@ -717,6 +720,7 @@ async function run() {
   const res = await accountingBillsGet(apideck, {
     id: "<id>",
     serviceId: "salesforce",
+    companyId: "12345",
     fields: "id,updated_at",
   });
   if (res.ok) {

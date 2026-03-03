@@ -1,11 +1,11 @@
-# HrisCompaniesAllResponse
+# HrisCompaniesAll2Response
 
 ## Example Usage
 
 ```typescript
-import { HrisCompaniesAllResponse } from "@apideck/unify/models/operations";
+import { HrisCompaniesAll2Response } from "@apideck/unify/models/operations";
 
-let value: HrisCompaniesAllResponse = {};
+let value: HrisCompaniesAll2Response = {};
 ```
 
 ## Fields

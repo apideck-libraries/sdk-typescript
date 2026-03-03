@@ -1,11 +1,11 @@
-# HrisCompaniesAllGlobals
+# HrisCompaniesAll2Globals
 
 ## Example Usage
 
 ```typescript
-import { HrisCompaniesAllGlobals } from "@apideck/unify/models/operations";
+import { HrisCompaniesAll2Globals } from "@apideck/unify/models/operations";
 
-let value: HrisCompaniesAllGlobals = {
+let value: HrisCompaniesAll2Globals = {
   consumerId: "test-consumer",
   appId: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX",
 };

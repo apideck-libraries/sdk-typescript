@@ -25,6 +25,7 @@ const apideck = new Apideck({
 async function run() {
   const result = await apideck.accounting.balanceSheet.get({
     serviceId: "salesforce",
+    companyId: "12345",
     passThrough: {
       "search": "San Francisco",
     },
@@ -61,6 +62,7 @@ const apideck = new ApideckCore({
 async function run() {
   const res = await accountingBalanceSheetGet(apideck, {
     serviceId: "salesforce",
+    companyId: "12345",
     passThrough: {
       "search": "San Francisco",
     },

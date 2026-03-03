@@ -69,6 +69,8 @@ type Supplier struct {
 	PaymentMethod optionalnullable.OptionalNullable[string] `json:"payment_method,omitempty"`
 	// Terms of payment.
 	Terms optionalnullable.OptionalNullable[string] `json:"terms,omitempty"`
+	// The ID of the payment terms
+	TermsID optionalnullable.OptionalNullable[string] `json:"terms_id,omitempty"`
 	// The channel through which the transaction is processed.
 	Channel optionalnullable.OptionalNullable[string] `json:"channel,omitempty"`
 	// Method of issuance of the purchase order for the supplier
@@ -298,6 +300,13 @@ func (o *Supplier) GetTerms() optionalnullable.OptionalNullable[string] {
 	return o.Terms
 }
 
+func (o *Supplier) GetTermsID() optionalnullable.OptionalNullable[string] {
+	if o == nil {
+		return nil
+	}
+	return o.TermsID
+}
+
 func (o *Supplier) GetChannel() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
@@ -445,6 +454,8 @@ type SupplierInput struct {
 	PaymentMethod optionalnullable.OptionalNullable[string] `json:"payment_method,omitempty"`
 	// Terms of payment.
 	Terms optionalnullable.OptionalNullable[string] `json:"terms,omitempty"`
+	// The ID of the payment terms
+	TermsID optionalnullable.OptionalNullable[string] `json:"terms_id,omitempty"`
 	// The channel through which the transaction is processed.
 	Channel optionalnullable.OptionalNullable[string] `json:"channel,omitempty"`
 	// Method of issuance of the purchase order for the supplier
@@ -637,6 +648,13 @@ func (o *SupplierInput) GetTerms() optionalnullable.OptionalNullable[string] {
 		return nil
 	}
 	return o.Terms
+}
+
+func (o *SupplierInput) GetTermsID() optionalnullable.OptionalNullable[string] {
+	if o == nil {
+		return nil
+	}
+	return o.TermsID
 }
 
 func (o *SupplierInput) GetChannel() optionalnullable.OptionalNullable[string] {

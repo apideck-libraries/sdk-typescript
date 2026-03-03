@@ -124,6 +124,10 @@ export type Quote = {
    */
   terms?: string | null | undefined;
   /**
+   * The ID of the payment terms
+   */
+  termsId?: string | null | undefined;
+  /**
    * Optional reference identifier for the transaction.
    */
   reference?: string | null | undefined;
@@ -251,6 +255,10 @@ export type QuoteInput = {
    */
   terms?: string | null | undefined;
   /**
+   * The ID of the payment terms
+   */
+  termsId?: string | null | undefined;
+  /**
    * Optional reference identifier for the transaction.
    */
   reference?: string | null | undefined;
@@ -352,6 +360,7 @@ export const Quote$inboundSchema: z.ZodType<Quote, z.ZodTypeDef, unknown> = z
     quote_date: z.nullable(types.date()).optional(),
     expiry_date: z.nullable(types.date()).optional(),
     terms: z.nullable(types.string()).optional(),
+    terms_id: z.nullable(types.string()).optional(),
     reference: z.nullable(types.string()).optional(),
     status: z.nullable(QuoteStatus$inboundSchema).optional(),
     currency: z.nullable(Currency$inboundSchema).optional(),
@@ -389,6 +398,7 @@ export const Quote$inboundSchema: z.ZodType<Quote, z.ZodTypeDef, unknown> = z
       "project_id": "projectId",
       "quote_date": "quoteDate",
       "expiry_date": "expiryDate",
+      "terms_id": "termsId",
       "currency_rate": "currencyRate",
       "tax_inclusive": "taxInclusive",
       "sub_total": "subTotal",
@@ -434,6 +444,7 @@ export type QuoteInput$Outbound = {
   quote_date?: string | null | undefined;
   expiry_date?: string | null | undefined;
   terms?: string | null | undefined;
+  terms_id?: string | null | undefined;
   reference?: string | null | undefined;
   status?: string | null | undefined;
   currency?: string | null | undefined;
@@ -479,6 +490,7 @@ export const QuoteInput$outboundSchema: z.ZodType<
     z.date().transform(v => v.toISOString().slice(0, "YYYY-MM-DD".length)),
   ).optional(),
   terms: z.nullable(z.string()).optional(),
+  termsId: z.nullable(z.string()).optional(),
   reference: z.nullable(z.string()).optional(),
   status: z.nullable(QuoteStatus$outboundSchema).optional(),
   currency: z.nullable(Currency$outboundSchema).optional(),
@@ -510,6 +522,7 @@ export const QuoteInput$outboundSchema: z.ZodType<
     projectId: "project_id",
     quoteDate: "quote_date",
     expiryDate: "expiry_date",
+    termsId: "terms_id",
     currencyRate: "currency_rate",
     taxInclusive: "tax_inclusive",
     subTotal: "sub_total",

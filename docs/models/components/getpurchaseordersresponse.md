@@ -225,6 +225,7 @@ let value: GetPurchaseOrdersResponse = {
       dueDate: new Date("2020-10-30"),
       paymentMethod: "cash",
       terms: "Net 30 days",
+      termsId: "12345",
       taxCode: "1234",
       taxMethod: "Due to supplier",
       issuedMethod: "Email",

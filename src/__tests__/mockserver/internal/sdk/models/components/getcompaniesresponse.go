@@ -2,10 +2,6 @@
 
 package components
 
-import (
-	"mockserver/internal/sdk/optionalnullable"
-)
-
 // GetCompaniesResponse - Companies
 type GetCompaniesResponse struct {
 	// HTTP Response Status Code
@@ -17,14 +13,12 @@ type GetCompaniesResponse struct {
 	// Unified API resource name
 	Resource string `json:"resource"`
 	// Operation performed
-	Operation string     `json:"operation"`
-	Data      []Company1 `json:"data"`
+	Operation string                        `json:"operation"`
+	Data      []AccountingConnectionCompany `json:"data"`
 	// Response metadata
 	Meta *Meta `json:"meta,omitempty"`
 	// Links to navigate to previous or next pages through the API
 	Links *Links `json:"links,omitempty"`
-	// Raw response from the integration when raw=true query param is provided
-	Raw optionalnullable.OptionalNullable[map[string]any] `json:"_raw,omitempty"`
 }
 
 func (o *GetCompaniesResponse) GetStatusCode() int64 {
@@ -62,9 +56,9 @@ func (o *GetCompaniesResponse) GetOperation() string {
 	return o.Operation
 }
 
-func (o *GetCompaniesResponse) GetData() []Company1 {
+func (o *GetCompaniesResponse) GetData() []AccountingConnectionCompany {
 	if o == nil {
-		return []Company1{}
+		return []AccountingConnectionCompany{}
 	}
 	return o.Data
 }
@@ -81,11 +75,4 @@ func (o *GetCompaniesResponse) GetLinks() *Links {
 		return nil
 	}
 	return o.Links
-}
-
-func (o *GetCompaniesResponse) GetRaw() optionalnullable.OptionalNullable[map[string]any] {
-	if o == nil {
-		return nil
-	}
-	return o.Raw
 }
