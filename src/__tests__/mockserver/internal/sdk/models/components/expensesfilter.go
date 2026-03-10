@@ -10,14 +10,9 @@ import (
 type ExpensesFilterStatus string
 
 const (
-	ExpensesFilterStatusDraft           ExpensesFilterStatus = "draft"
-	ExpensesFilterStatusPendingApproval ExpensesFilterStatus = "pending_approval"
-	ExpensesFilterStatusApproved        ExpensesFilterStatus = "approved"
-	ExpensesFilterStatusPosted          ExpensesFilterStatus = "posted"
-	ExpensesFilterStatusVoided          ExpensesFilterStatus = "voided"
-	ExpensesFilterStatusRejected        ExpensesFilterStatus = "rejected"
-	ExpensesFilterStatusDeleted         ExpensesFilterStatus = "deleted"
-	ExpensesFilterStatusOther           ExpensesFilterStatus = "other"
+	ExpensesFilterStatusDraft  ExpensesFilterStatus = "draft"
+	ExpensesFilterStatusPosted ExpensesFilterStatus = "posted"
+	ExpensesFilterStatusVoided ExpensesFilterStatus = "voided"
 )
 
 func (e ExpensesFilterStatus) ToPointer() *ExpensesFilterStatus {

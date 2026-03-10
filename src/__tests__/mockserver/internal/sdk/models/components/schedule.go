@@ -2,6 +2,10 @@
 
 package components
 
+import (
+	"mockserver/internal/sdk/utils"
+)
+
 type OddWeeks struct {
 	HoursMonday    *float64 `json:"hours_monday,omitempty"`
 	HoursTuesday   *float64 `json:"hours_tuesday,omitempty"`
@@ -141,38 +145,57 @@ func (o *WorkPattern) GetEvenWeeks() *EvenWeeks {
 
 type Schedule struct {
 	// A unique identifier for an object.
-	ID string `json:"id"`
+	ID *string `json:"id,omitempty"`
 	// The start date, inclusive, of the schedule period.
-	StartDate string `json:"start_date"`
+	StartDate *string `json:"start_date,omitempty"`
 	// The end date, inclusive, of the schedule period.
-	EndDate     string      `json:"end_date"`
-	WorkPattern WorkPattern `json:"work_pattern"`
+	EndDate              *string        `json:"end_date,omitempty"`
+	WorkPattern          *WorkPattern   `json:"work_pattern,omitempty"`
+	AdditionalProperties map[string]any `additionalProperties:"true" json:"-"`
 }
 
-func (o *Schedule) GetID() string {
+func (s Schedule) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(s, "", false)
+}
+
+func (s *Schedule) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &s, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (o *Schedule) GetID() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.ID
 }
 
-func (o *Schedule) GetStartDate() string {
+func (o *Schedule) GetStartDate() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.StartDate
 }
 
-func (o *Schedule) GetEndDate() string {
+func (o *Schedule) GetEndDate() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.EndDate
 }
 
-func (o *Schedule) GetWorkPattern() WorkPattern {
+func (o *Schedule) GetWorkPattern() *WorkPattern {
 	if o == nil {
-		return WorkPattern{}
+		return nil
 	}
 	return o.WorkPattern
+}
+
+func (o *Schedule) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }

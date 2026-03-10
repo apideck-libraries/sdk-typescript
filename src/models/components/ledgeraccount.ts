@@ -4,7 +4,10 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import {
+  collectExtraKeys as collectExtraKeys$,
+  safeParse,
+} from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
@@ -270,6 +273,7 @@ export type LedgerAccount = {
    * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
    */
   passThrough?: Array<PassThroughBody> | undefined;
+  additionalProperties?: { [k: string]: any } | undefined;
 };
 
 export type LedgerAccountInput = {
@@ -364,6 +368,7 @@ export type LedgerAccountInput = {
    * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
    */
   passThrough?: Array<PassThroughBody> | undefined;
+  additionalProperties?: { [k: string]: any } | undefined;
 };
 
 /** @internal */
@@ -542,47 +547,51 @@ export const LedgerAccount$inboundSchema: z.ZodType<
   LedgerAccount,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  id: types.optional(types.string()),
-  display_id: types.optional(types.string()),
-  nominal_code: z.nullable(types.string()).optional(),
-  code: z.nullable(types.string()).optional(),
-  classification: z.nullable(LedgerAccountClassification$inboundSchema)
-    .optional(),
-  type: types.optional(LedgerAccountType$inboundSchema),
-  sub_type: z.nullable(types.string()).optional(),
-  name: z.nullable(types.string()).optional(),
-  fully_qualified_name: z.nullable(types.string()).optional(),
-  description: z.nullable(types.string()).optional(),
-  opening_balance: z.nullable(types.number()).optional(),
-  current_balance: z.nullable(types.number()).optional(),
-  currency: z.nullable(Currency$inboundSchema).optional(),
-  tax_type: z.nullable(types.string()).optional(),
-  tax_rate: types.optional(LinkedTaxRate$inboundSchema),
-  level: z.nullable(types.number()).optional(),
-  active: z.nullable(types.boolean()).optional(),
-  status: z.nullable(AccountStatus$inboundSchema).optional(),
-  header: z.nullable(types.boolean()).optional(),
-  bank_account: types.optional(BankAccount$inboundSchema),
-  categories: types.optional(z.array(z.lazy(() => Categories$inboundSchema))),
-  parent_account: types.optional(z.lazy(() => ParentAccount$inboundSchema)),
-  sub_account: z.nullable(types.boolean()).optional(),
-  sub_accounts: types.optional(
-    z.array(z.lazy(() => SubAccounts$inboundSchema)),
-  ),
-  last_reconciliation_date: z.nullable(types.date()).optional(),
-  subsidiaries: types.optional(
-    z.array(z.lazy(() => LedgerAccountSubsidiaries$inboundSchema)),
-  ),
-  custom_mappings: z.nullable(z.record(z.any())).optional(),
-  custom_fields: types.optional(z.array(CustomField$inboundSchema)),
-  row_version: z.nullable(types.string()).optional(),
-  updated_by: z.nullable(types.string()).optional(),
-  created_by: z.nullable(types.string()).optional(),
-  updated_at: z.nullable(types.date()).optional(),
-  created_at: z.nullable(types.date()).optional(),
-  pass_through: types.optional(z.array(PassThroughBody$inboundSchema)),
-}).transform((v) => {
+> = collectExtraKeys$(
+  z.object({
+    id: types.optional(types.string()),
+    display_id: types.optional(types.string()),
+    nominal_code: z.nullable(types.string()).optional(),
+    code: z.nullable(types.string()).optional(),
+    classification: z.nullable(LedgerAccountClassification$inboundSchema)
+      .optional(),
+    type: types.optional(LedgerAccountType$inboundSchema),
+    sub_type: z.nullable(types.string()).optional(),
+    name: z.nullable(types.string()).optional(),
+    fully_qualified_name: z.nullable(types.string()).optional(),
+    description: z.nullable(types.string()).optional(),
+    opening_balance: z.nullable(types.number()).optional(),
+    current_balance: z.nullable(types.number()).optional(),
+    currency: z.nullable(Currency$inboundSchema).optional(),
+    tax_type: z.nullable(types.string()).optional(),
+    tax_rate: types.optional(LinkedTaxRate$inboundSchema),
+    level: z.nullable(types.number()).optional(),
+    active: z.nullable(types.boolean()).optional(),
+    status: z.nullable(AccountStatus$inboundSchema).optional(),
+    header: z.nullable(types.boolean()).optional(),
+    bank_account: types.optional(BankAccount$inboundSchema),
+    categories: types.optional(z.array(z.lazy(() => Categories$inboundSchema))),
+    parent_account: types.optional(z.lazy(() => ParentAccount$inboundSchema)),
+    sub_account: z.nullable(types.boolean()).optional(),
+    sub_accounts: types.optional(
+      z.array(z.lazy(() => SubAccounts$inboundSchema)),
+    ),
+    last_reconciliation_date: z.nullable(types.date()).optional(),
+    subsidiaries: types.optional(
+      z.array(z.lazy(() => LedgerAccountSubsidiaries$inboundSchema)),
+    ),
+    custom_mappings: z.nullable(z.record(z.any())).optional(),
+    custom_fields: types.optional(z.array(CustomField$inboundSchema)),
+    row_version: z.nullable(types.string()).optional(),
+    updated_by: z.nullable(types.string()).optional(),
+    created_by: z.nullable(types.string()).optional(),
+    updated_at: z.nullable(types.date()).optional(),
+    created_at: z.nullable(types.date()).optional(),
+    pass_through: types.optional(z.array(PassThroughBody$inboundSchema)),
+  }).catchall(z.any()),
+  "additionalProperties",
+  true,
+).transform((v) => {
   return remap$(v, {
     "display_id": "displayId",
     "nominal_code": "nominalCode",
@@ -646,6 +655,7 @@ export type LedgerAccountInput$Outbound = {
   custom_fields?: Array<CustomField$Outbound> | undefined;
   row_version?: string | null | undefined;
   pass_through?: Array<PassThroughBody$Outbound> | undefined;
+  [additionalProperties: string]: unknown;
 };
 
 /** @internal */
@@ -684,24 +694,29 @@ export const LedgerAccountInput$outboundSchema: z.ZodType<
   customFields: z.array(CustomField$outboundSchema).optional(),
   rowVersion: z.nullable(z.string()).optional(),
   passThrough: z.array(PassThroughBody$outboundSchema).optional(),
+  additionalProperties: z.record(z.any()).optional(),
 }).transform((v) => {
-  return remap$(v, {
-    displayId: "display_id",
-    nominalCode: "nominal_code",
-    subType: "sub_type",
-    fullyQualifiedName: "fully_qualified_name",
-    openingBalance: "opening_balance",
-    currentBalance: "current_balance",
-    taxType: "tax_type",
-    taxRate: "tax_rate",
-    bankAccount: "bank_account",
-    parentAccount: "parent_account",
-    subAccount: "sub_account",
-    lastReconciliationDate: "last_reconciliation_date",
-    customFields: "custom_fields",
-    rowVersion: "row_version",
-    passThrough: "pass_through",
-  });
+  return {
+    ...v.additionalProperties,
+    ...remap$(v, {
+      displayId: "display_id",
+      nominalCode: "nominal_code",
+      subType: "sub_type",
+      fullyQualifiedName: "fully_qualified_name",
+      openingBalance: "opening_balance",
+      currentBalance: "current_balance",
+      taxType: "tax_type",
+      taxRate: "tax_rate",
+      bankAccount: "bank_account",
+      parentAccount: "parent_account",
+      subAccount: "sub_account",
+      lastReconciliationDate: "last_reconciliation_date",
+      customFields: "custom_fields",
+      rowVersion: "row_version",
+      passThrough: "pass_through",
+      additionalProperties: null,
+    }),
+  };
 });
 
 export function ledgerAccountInputToJSON(

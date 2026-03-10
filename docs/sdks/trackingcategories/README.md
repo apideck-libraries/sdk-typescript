@@ -29,6 +29,7 @@ const apideck = new Apideck({
 async function run() {
   const result = await apideck.accounting.trackingCategories.list({
     serviceId: "salesforce",
+    companyId: "12345",
     passThrough: {
       "search": "San Francisco",
     },
@@ -62,6 +63,7 @@ const apideck = new ApideckCore({
 async function run() {
   const res = await accountingTrackingCategoriesList(apideck, {
     serviceId: "salesforce",
+    companyId: "12345",
     passThrough: {
       "search": "San Francisco",
     },
@@ -123,6 +125,7 @@ const apideck = new Apideck({
 async function run() {
   const result = await apideck.accounting.trackingCategories.create({
     serviceId: "salesforce",
+    companyId: "12345",
     trackingCategory: {
       parentId: "12345",
       name: "Department",
@@ -217,6 +220,7 @@ const apideck = new ApideckCore({
 async function run() {
   const res = await accountingTrackingCategoriesCreate(apideck, {
     serviceId: "salesforce",
+    companyId: "12345",
     trackingCategory: {
       parentId: "12345",
       name: "Department",
@@ -340,6 +344,7 @@ async function run() {
   const result = await apideck.accounting.trackingCategories.get({
     id: "<id>",
     serviceId: "salesforce",
+    companyId: "12345",
     fields: "id,updated_at",
   });
 
@@ -369,6 +374,7 @@ async function run() {
   const res = await accountingTrackingCategoriesGet(apideck, {
     id: "<id>",
     serviceId: "salesforce",
+    companyId: "12345",
     fields: "id,updated_at",
   });
   if (res.ok) {
@@ -426,6 +432,7 @@ async function run() {
   const result = await apideck.accounting.trackingCategories.update({
     id: "<id>",
     serviceId: "salesforce",
+    companyId: "12345",
     trackingCategory: {
       parentId: "12345",
       name: "Department",
@@ -484,6 +491,7 @@ async function run() {
   const res = await accountingTrackingCategoriesUpdate(apideck, {
     id: "<id>",
     serviceId: "salesforce",
+    companyId: "12345",
     trackingCategory: {
       parentId: "12345",
       name: "Department",
@@ -570,6 +578,7 @@ async function run() {
   const result = await apideck.accounting.trackingCategories.delete({
     id: "<id>",
     serviceId: "salesforce",
+    companyId: "12345",
   });
 
   console.log(result);
@@ -598,6 +607,7 @@ async function run() {
   const res = await accountingTrackingCategoriesDelete(apideck, {
     id: "<id>",
     serviceId: "salesforce",
+    companyId: "12345",
   });
   if (res.ok) {
     const { value: result } = res;

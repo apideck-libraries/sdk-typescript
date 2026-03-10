@@ -4,6 +4,7 @@ package components
 
 import (
 	"mockserver/internal/sdk/optionalnullable"
+	"mockserver/internal/sdk/utils"
 )
 
 type NoteInput struct {
@@ -26,7 +27,19 @@ type NoteInput struct {
 	// Whether the Note is active or not.
 	Active optionalnullable.OptionalNullable[bool] `json:"active,omitempty"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
-	PassThrough []PassThroughBody `json:"pass_through,omitempty"`
+	PassThrough          []PassThroughBody `json:"pass_through,omitempty"`
+	AdditionalProperties map[string]any    `additionalProperties:"true" json:"-"`
+}
+
+func (n NoteInput) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(n, "", false)
+}
+
+func (n *NoteInput) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &n, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *NoteInput) GetTitle() optionalnullable.OptionalNullable[string] {
@@ -97,4 +110,11 @@ func (o *NoteInput) GetPassThrough() []PassThroughBody {
 		return nil
 	}
 	return o.PassThrough
+}
+
+func (o *NoteInput) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }

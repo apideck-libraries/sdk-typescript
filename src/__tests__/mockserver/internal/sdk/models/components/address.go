@@ -4,6 +4,7 @@ package components
 
 import (
 	"mockserver/internal/sdk/optionalnullable"
+	"mockserver/internal/sdk/utils"
 )
 
 // AddressType - The type of address.
@@ -74,7 +75,19 @@ type Address struct {
 	// Additional notes
 	Notes optionalnullable.OptionalNullable[string] `json:"notes,omitempty"`
 	// A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
-	RowVersion optionalnullable.OptionalNullable[string] `json:"row_version,omitempty"`
+	RowVersion           optionalnullable.OptionalNullable[string] `json:"row_version,omitempty"`
+	AdditionalProperties map[string]any                            `additionalProperties:"true" json:"-"`
+}
+
+func (a Address) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(a, "", false)
+}
+
+func (a *Address) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &a, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *Address) GetID() optionalnullable.OptionalNullable[string] {
@@ -250,4 +263,11 @@ func (o *Address) GetRowVersion() optionalnullable.OptionalNullable[string] {
 		return nil
 	}
 	return o.RowVersion
+}
+
+func (o *Address) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }

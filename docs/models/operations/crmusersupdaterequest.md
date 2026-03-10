@@ -61,7 +61,13 @@ let value: CrmUsersUpdateRequest = {
         type: "primary",
       },
     ],
-    emails: [],
+    emails: [
+      {
+        id: "123",
+        email: "elon@musk.com",
+        type: "primary",
+      },
+    ],
     passThrough: [
       {
         serviceId: "<id>",

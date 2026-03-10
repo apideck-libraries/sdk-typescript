@@ -3,17 +3,20 @@
  */
 
 import * as z from "zod/v3";
+import { remap as remap$ } from "../../lib/primitives.js";
 
 export type CollectionTagInput = {
   /**
    * A unique identifier for an object.
    */
-  id: string | null;
+  id?: string | null | undefined;
+  additionalProperties?: { [k: string]: any } | undefined;
 };
 
 /** @internal */
 export type CollectionTagInput$Outbound = {
-  id: string | null;
+  id?: string | null | undefined;
+  [additionalProperties: string]: unknown;
 };
 
 /** @internal */
@@ -22,7 +25,15 @@ export const CollectionTagInput$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   CollectionTagInput
 > = z.object({
-  id: z.nullable(z.string()),
+  id: z.nullable(z.string()).optional(),
+  additionalProperties: z.record(z.any()).optional(),
+}).transform((v) => {
+  return {
+    ...v.additionalProperties,
+    ...remap$(v, {
+      additionalProperties: null,
+    }),
+  };
 });
 
 export function collectionTagInputToJSON(

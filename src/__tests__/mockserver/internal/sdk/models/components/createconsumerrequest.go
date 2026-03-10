@@ -2,11 +2,27 @@
 
 package components
 
+import (
+	"mockserver/internal/sdk/utils"
+)
+
 type CreateConsumerRequest struct {
 	// Unique consumer identifier. You can freely choose a consumer ID yourself. Most of the time, this is an ID of your internal data model that represents a user or account in your system (for example account:12345). If the consumer doesn't exist yet, Vault will upsert a consumer based on your ID.
 	ConsumerID string `json:"consumer_id"`
 	// The metadata of the consumer. This is used to display the consumer in the sidebar. This is optional, but recommended.
-	Metadata *ConsumerMetadata `json:"metadata,omitempty"`
+	Metadata             *ConsumerMetadata `json:"metadata,omitempty"`
+	AdditionalProperties map[string]any    `additionalProperties:"true" json:"-"`
+}
+
+func (c CreateConsumerRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(c, "", false)
+}
+
+func (c *CreateConsumerRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"consumer_id"}); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *CreateConsumerRequest) GetConsumerID() string {
@@ -21,4 +37,11 @@ func (o *CreateConsumerRequest) GetMetadata() *ConsumerMetadata {
 		return nil
 	}
 	return o.Metadata
+}
+
+func (o *CreateConsumerRequest) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }

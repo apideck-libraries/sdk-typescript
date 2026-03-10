@@ -4,7 +4,10 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import {
+  collectExtraKeys as collectExtraKeys$,
+  safeParse,
+} from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
@@ -137,7 +140,7 @@ export type Activity = {
   /**
    * The type of the activity
    */
-  type: ActivityType | null;
+  type?: ActivityType | null | undefined;
   /**
    * The title of the activity
    */
@@ -261,6 +264,7 @@ export type Activity = {
    * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
    */
   passThrough?: Array<PassThroughBody> | undefined;
+  additionalProperties?: { [k: string]: any } | undefined;
 };
 
 export type ActivityInput = {
@@ -331,7 +335,7 @@ export type ActivityInput = {
   /**
    * The type of the activity
    */
-  type: ActivityType | null;
+  type?: ActivityType | null | undefined;
   /**
    * The title of the activity
    */
@@ -431,6 +435,7 @@ export type ActivityInput = {
    * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
    */
   passThrough?: Array<PassThroughBody> | undefined;
+  additionalProperties?: { [k: string]: any } | undefined;
 };
 
 /** @internal */
@@ -458,60 +463,64 @@ export const Activity$inboundSchema: z.ZodType<
   Activity,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  id: types.optional(types.string()),
-  downstream_id: z.nullable(types.string()).optional(),
-  activity_datetime: z.nullable(types.string()).optional(),
-  duration_seconds: z.nullable(types.number()).optional(),
-  user_id: z.nullable(types.string()).optional(),
-  account_id: z.nullable(types.string()).optional(),
-  contact_id: z.nullable(types.string()).optional(),
-  company_id: z.nullable(types.string()).optional(),
-  opportunity_id: z.nullable(types.string()).optional(),
-  lead_id: z.nullable(types.string()).optional(),
-  owner_id: z.nullable(types.string()).optional(),
-  campaign_id: z.nullable(types.string()).optional(),
-  case_id: z.nullable(types.string()).optional(),
-  asset_id: z.nullable(types.string()).optional(),
-  contract_id: z.nullable(types.string()).optional(),
-  product_id: z.nullable(types.string()).optional(),
-  solution_id: z.nullable(types.string()).optional(),
-  custom_object_id: z.nullable(types.string()).optional(),
-  type: types.nullable(ActivityType$inboundSchema),
-  title: z.nullable(types.string()).optional(),
-  description: z.nullable(types.string()).optional(),
-  note: z.nullable(types.string()).optional(),
-  location: z.nullable(types.string()).optional(),
-  location_address: types.optional(Address$inboundSchema),
-  all_day_event: z.nullable(types.boolean()).optional(),
-  private: z.nullable(types.boolean()).optional(),
-  group_event: z.nullable(types.boolean()).optional(),
-  event_sub_type: z.nullable(types.string()).optional(),
-  group_event_type: z.nullable(types.string()).optional(),
-  child: z.nullable(types.boolean()).optional(),
-  archived: z.nullable(types.boolean()).optional(),
-  deleted: z.nullable(types.boolean()).optional(),
-  show_as: z.nullable(ShowAs$inboundSchema).optional(),
-  done: z.nullable(types.boolean()).optional(),
-  start_datetime: z.nullable(types.string()).optional(),
-  end_datetime: z.nullable(types.string()).optional(),
-  duration_minutes: z.nullable(types.number()).optional(),
-  activity_date: z.nullable(types.string()).optional(),
-  end_date: z.nullable(types.string()).optional(),
-  recurrent: types.optional(types.boolean()),
-  reminder_datetime: z.nullable(types.string()).optional(),
-  reminder_set: z.nullable(types.boolean()).optional(),
-  video_conference_url: z.nullable(types.string()).optional(),
-  video_conference_id: z.nullable(types.string()).optional(),
-  custom_fields: types.optional(z.array(CustomField$inboundSchema)),
-  attendees: types.optional(z.array(ActivityAttendee$inboundSchema)),
-  custom_mappings: z.nullable(z.record(z.any())).optional(),
-  updated_by: z.nullable(types.string()).optional(),
-  created_by: z.nullable(types.string()).optional(),
-  updated_at: z.nullable(types.string()).optional(),
-  created_at: z.nullable(types.string()).optional(),
-  pass_through: types.optional(z.array(PassThroughBody$inboundSchema)),
-}).transform((v) => {
+> = collectExtraKeys$(
+  z.object({
+    id: types.optional(types.string()),
+    downstream_id: z.nullable(types.string()).optional(),
+    activity_datetime: z.nullable(types.string()).optional(),
+    duration_seconds: z.nullable(types.number()).optional(),
+    user_id: z.nullable(types.string()).optional(),
+    account_id: z.nullable(types.string()).optional(),
+    contact_id: z.nullable(types.string()).optional(),
+    company_id: z.nullable(types.string()).optional(),
+    opportunity_id: z.nullable(types.string()).optional(),
+    lead_id: z.nullable(types.string()).optional(),
+    owner_id: z.nullable(types.string()).optional(),
+    campaign_id: z.nullable(types.string()).optional(),
+    case_id: z.nullable(types.string()).optional(),
+    asset_id: z.nullable(types.string()).optional(),
+    contract_id: z.nullable(types.string()).optional(),
+    product_id: z.nullable(types.string()).optional(),
+    solution_id: z.nullable(types.string()).optional(),
+    custom_object_id: z.nullable(types.string()).optional(),
+    type: z.nullable(ActivityType$inboundSchema).optional(),
+    title: z.nullable(types.string()).optional(),
+    description: z.nullable(types.string()).optional(),
+    note: z.nullable(types.string()).optional(),
+    location: z.nullable(types.string()).optional(),
+    location_address: types.optional(Address$inboundSchema),
+    all_day_event: z.nullable(types.boolean()).optional(),
+    private: z.nullable(types.boolean()).optional(),
+    group_event: z.nullable(types.boolean()).optional(),
+    event_sub_type: z.nullable(types.string()).optional(),
+    group_event_type: z.nullable(types.string()).optional(),
+    child: z.nullable(types.boolean()).optional(),
+    archived: z.nullable(types.boolean()).optional(),
+    deleted: z.nullable(types.boolean()).optional(),
+    show_as: z.nullable(ShowAs$inboundSchema).optional(),
+    done: z.nullable(types.boolean()).optional(),
+    start_datetime: z.nullable(types.string()).optional(),
+    end_datetime: z.nullable(types.string()).optional(),
+    duration_minutes: z.nullable(types.number()).optional(),
+    activity_date: z.nullable(types.string()).optional(),
+    end_date: z.nullable(types.string()).optional(),
+    recurrent: types.optional(types.boolean()),
+    reminder_datetime: z.nullable(types.string()).optional(),
+    reminder_set: z.nullable(types.boolean()).optional(),
+    video_conference_url: z.nullable(types.string()).optional(),
+    video_conference_id: z.nullable(types.string()).optional(),
+    custom_fields: types.optional(z.array(CustomField$inboundSchema)),
+    attendees: types.optional(z.array(ActivityAttendee$inboundSchema)),
+    custom_mappings: z.nullable(z.record(z.any())).optional(),
+    updated_by: z.nullable(types.string()).optional(),
+    created_by: z.nullable(types.string()).optional(),
+    updated_at: z.nullable(types.string()).optional(),
+    created_at: z.nullable(types.string()).optional(),
+    pass_through: types.optional(z.array(PassThroughBody$inboundSchema)),
+  }).catchall(z.any()),
+  "additionalProperties",
+  true,
+).transform((v) => {
   return remap$(v, {
     "downstream_id": "downstreamId",
     "activity_datetime": "activityDatetime",
@@ -583,7 +592,7 @@ export type ActivityInput$Outbound = {
   product_id?: string | null | undefined;
   solution_id?: string | null | undefined;
   custom_object_id?: string | null | undefined;
-  type: string | null;
+  type?: string | null | undefined;
   title?: string | null | undefined;
   description?: string | null | undefined;
   note?: string | null | undefined;
@@ -611,6 +620,7 @@ export type ActivityInput$Outbound = {
   custom_fields?: Array<CustomField$Outbound> | undefined;
   attendees?: Array<ActivityAttendeeInput$Outbound> | undefined;
   pass_through?: Array<PassThroughBody$Outbound> | undefined;
+  [additionalProperties: string]: unknown;
 };
 
 /** @internal */
@@ -635,7 +645,7 @@ export const ActivityInput$outboundSchema: z.ZodType<
   productId: z.nullable(z.string()).optional(),
   solutionId: z.nullable(z.string()).optional(),
   customObjectId: z.nullable(z.string()).optional(),
-  type: z.nullable(ActivityType$outboundSchema),
+  type: z.nullable(ActivityType$outboundSchema).optional(),
   title: z.nullable(z.string()).optional(),
   description: z.nullable(z.string()).optional(),
   note: z.nullable(z.string()).optional(),
@@ -663,41 +673,46 @@ export const ActivityInput$outboundSchema: z.ZodType<
   customFields: z.array(CustomField$outboundSchema).optional(),
   attendees: z.array(ActivityAttendeeInput$outboundSchema).optional(),
   passThrough: z.array(PassThroughBody$outboundSchema).optional(),
+  additionalProperties: z.record(z.any()).optional(),
 }).transform((v) => {
-  return remap$(v, {
-    activityDatetime: "activity_datetime",
-    durationSeconds: "duration_seconds",
-    userId: "user_id",
-    accountId: "account_id",
-    contactId: "contact_id",
-    companyId: "company_id",
-    opportunityId: "opportunity_id",
-    leadId: "lead_id",
-    ownerId: "owner_id",
-    campaignId: "campaign_id",
-    caseId: "case_id",
-    assetId: "asset_id",
-    contractId: "contract_id",
-    productId: "product_id",
-    solutionId: "solution_id",
-    customObjectId: "custom_object_id",
-    locationAddress: "location_address",
-    allDayEvent: "all_day_event",
-    groupEvent: "group_event",
-    eventSubType: "event_sub_type",
-    groupEventType: "group_event_type",
-    showAs: "show_as",
-    startDatetime: "start_datetime",
-    endDatetime: "end_datetime",
-    activityDate: "activity_date",
-    endDate: "end_date",
-    reminderDatetime: "reminder_datetime",
-    reminderSet: "reminder_set",
-    videoConferenceUrl: "video_conference_url",
-    videoConferenceId: "video_conference_id",
-    customFields: "custom_fields",
-    passThrough: "pass_through",
-  });
+  return {
+    ...v.additionalProperties,
+    ...remap$(v, {
+      activityDatetime: "activity_datetime",
+      durationSeconds: "duration_seconds",
+      userId: "user_id",
+      accountId: "account_id",
+      contactId: "contact_id",
+      companyId: "company_id",
+      opportunityId: "opportunity_id",
+      leadId: "lead_id",
+      ownerId: "owner_id",
+      campaignId: "campaign_id",
+      caseId: "case_id",
+      assetId: "asset_id",
+      contractId: "contract_id",
+      productId: "product_id",
+      solutionId: "solution_id",
+      customObjectId: "custom_object_id",
+      locationAddress: "location_address",
+      allDayEvent: "all_day_event",
+      groupEvent: "group_event",
+      eventSubType: "event_sub_type",
+      groupEventType: "group_event_type",
+      showAs: "show_as",
+      startDatetime: "start_datetime",
+      endDatetime: "end_datetime",
+      activityDate: "activity_date",
+      endDate: "end_date",
+      reminderDatetime: "reminder_datetime",
+      reminderSet: "reminder_set",
+      videoConferenceUrl: "video_conference_url",
+      videoConferenceId: "video_conference_id",
+      customFields: "custom_fields",
+      passThrough: "pass_through",
+      additionalProperties: null,
+    }),
+  };
 });
 
 export function activityInputToJSON(activityInput: ActivityInput): string {

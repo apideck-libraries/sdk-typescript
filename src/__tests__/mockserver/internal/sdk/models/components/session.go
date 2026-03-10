@@ -44,7 +44,8 @@ type Settings struct {
 	// Hide actions from your users in [Vault](/apis/vault/reference#section/Get-Started). Actions in `allow_actions` will be shown on a connection in Vault.
 	// Available actions are: `delete`, `disconnect`, `reauthorize` and `disable`.
 	// Empty array will hide all actions. By default all actions are visible.
-	AllowActions []AllowAction `json:"allow_actions,omitempty"`
+	AllowActions         []AllowAction  `json:"allow_actions,omitempty"`
+	AdditionalProperties map[string]any `additionalProperties:"true" json:"-"`
 }
 
 func (s Settings) MarshalJSON() ([]byte, error) {
@@ -135,6 +136,13 @@ func (o *Settings) GetAllowActions() []AllowAction {
 	return o.AllowActions
 }
 
+func (o *Settings) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
+}
+
 // Theme - Theming options to change the look and feel of Vault.
 type Theme struct {
 	// The URL to the favicon to use for Vault.
@@ -222,6 +230,18 @@ type Session struct {
 	Theme *Theme `json:"theme,omitempty"`
 	// Custom consumer settings that are passed as part of the session.
 	CustomConsumerSettings map[string]any `json:"custom_consumer_settings,omitempty"`
+	AdditionalProperties   map[string]any `additionalProperties:"true" json:"-"`
+}
+
+func (s Session) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(s, "", false)
+}
+
+func (s *Session) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &s, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *Session) GetConsumerMetadata() *ConsumerMetadata {
@@ -257,4 +277,11 @@ func (o *Session) GetCustomConsumerSettings() map[string]any {
 		return nil
 	}
 	return o.CustomConsumerSettings
+}
+
+func (o *Session) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }

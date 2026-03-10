@@ -4,7 +4,10 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import {
+  collectExtraKeys as collectExtraKeys$,
+  safeParse,
+} from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
@@ -182,7 +185,7 @@ export type Project = {
   /**
    * Name of the project
    */
-  name: string;
+  name?: string | undefined;
   /**
    * User-friendly project identifier
    */
@@ -341,13 +344,14 @@ export type Project = {
    * The date and time when the object was last updated.
    */
   updatedAt?: Date | null | undefined;
+  additionalProperties?: { [k: string]: any } | undefined;
 };
 
 export type ProjectInput = {
   /**
    * Name of the project
    */
-  name: string;
+  name?: string | undefined;
   /**
    * User-friendly project identifier
    */
@@ -482,6 +486,7 @@ export type ProjectInput = {
    * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
    */
   rowVersion?: string | null | undefined;
+  additionalProperties?: { [k: string]: any } | undefined;
 };
 
 /** @internal */
@@ -644,56 +649,60 @@ export const ScheduleStatus$outboundSchema: z.ZodType<
 
 /** @internal */
 export const Project$inboundSchema: z.ZodType<Project, z.ZodTypeDef, unknown> =
-  z.object({
-    id: types.optional(types.string()),
-    downstream_id: z.nullable(types.string()).optional(),
-    name: types.string(),
-    display_id: z.nullable(types.string()).optional(),
-    reference_id: z.nullable(types.string()).optional(),
-    description: z.nullable(types.string()).optional(),
-    status: z.nullable(ProjectProjectStatus$inboundSchema).optional(),
-    active: z.nullable(types.boolean()).optional(),
-    project_type: z.nullable(ProjectType$inboundSchema).optional(),
-    priority: z.nullable(Priority$inboundSchema).optional(),
-    completion_percentage: z.nullable(types.number()).optional(),
-    start_date: z.nullable(types.date()).optional(),
-    end_date: z.nullable(types.date()).optional(),
-    completion_date: z.nullable(types.date()).optional(),
-    customer: z.nullable(LinkedCustomer$inboundSchema).optional(),
-    department: z.nullable(z.lazy(() => ProjectDepartment$inboundSchema))
-      .optional(),
-    company_id: z.nullable(types.string()).optional(),
-    owner_id: z.nullable(types.string()).optional(),
-    parent_project: z.nullable(z.lazy(() => ParentProject$inboundSchema))
-      .optional(),
-    currency: z.nullable(Currency$inboundSchema).optional(),
-    budget_amount: z.nullable(types.number()).optional(),
-    approved_amount: z.nullable(types.number()).optional(),
-    actual_amount: z.nullable(types.number()).optional(),
-    budget_hours: z.nullable(types.number()).optional(),
-    actual_hours: z.nullable(types.number()).optional(),
-    hourly_rate: z.nullable(types.number()).optional(),
-    billing_method: z.nullable(BillingMethod$inboundSchema).optional(),
-    is_billable: z.nullable(types.boolean().default(true)),
-    phase: z.nullable(ProjectPhase$inboundSchema).optional(),
-    tax_rate: types.optional(LinkedTaxRate$inboundSchema),
-    tracking_categories: z.nullable(
-      z.array(types.nullable(LinkedTrackingCategory$inboundSchema)),
-    ).optional(),
-    tags: types.optional(z.array(types.string())),
-    notes: z.nullable(types.string()).optional(),
-    contract_number: z.nullable(types.string()).optional(),
-    profit_margin: z.nullable(types.number()).optional(),
-    schedule_status: z.nullable(ScheduleStatus$inboundSchema).optional(),
-    addresses: types.optional(z.array(Address$inboundSchema)),
-    team_size: z.nullable(types.number()).optional(),
-    custom_fields: types.optional(z.array(CustomField$inboundSchema)),
-    row_version: z.nullable(types.string()).optional(),
-    updated_by: z.nullable(types.string()).optional(),
-    created_by: z.nullable(types.string()).optional(),
-    created_at: z.nullable(types.date()).optional(),
-    updated_at: z.nullable(types.date()).optional(),
-  }).transform((v) => {
+  collectExtraKeys$(
+    z.object({
+      id: types.optional(types.string()),
+      downstream_id: z.nullable(types.string()).optional(),
+      name: types.optional(types.string()),
+      display_id: z.nullable(types.string()).optional(),
+      reference_id: z.nullable(types.string()).optional(),
+      description: z.nullable(types.string()).optional(),
+      status: z.nullable(ProjectProjectStatus$inboundSchema).optional(),
+      active: z.nullable(types.boolean()).optional(),
+      project_type: z.nullable(ProjectType$inboundSchema).optional(),
+      priority: z.nullable(Priority$inboundSchema).optional(),
+      completion_percentage: z.nullable(types.number()).optional(),
+      start_date: z.nullable(types.date()).optional(),
+      end_date: z.nullable(types.date()).optional(),
+      completion_date: z.nullable(types.date()).optional(),
+      customer: z.nullable(LinkedCustomer$inboundSchema).optional(),
+      department: z.nullable(z.lazy(() => ProjectDepartment$inboundSchema))
+        .optional(),
+      company_id: z.nullable(types.string()).optional(),
+      owner_id: z.nullable(types.string()).optional(),
+      parent_project: z.nullable(z.lazy(() => ParentProject$inboundSchema))
+        .optional(),
+      currency: z.nullable(Currency$inboundSchema).optional(),
+      budget_amount: z.nullable(types.number()).optional(),
+      approved_amount: z.nullable(types.number()).optional(),
+      actual_amount: z.nullable(types.number()).optional(),
+      budget_hours: z.nullable(types.number()).optional(),
+      actual_hours: z.nullable(types.number()).optional(),
+      hourly_rate: z.nullable(types.number()).optional(),
+      billing_method: z.nullable(BillingMethod$inboundSchema).optional(),
+      is_billable: z.nullable(types.boolean().default(true)),
+      phase: z.nullable(ProjectPhase$inboundSchema).optional(),
+      tax_rate: types.optional(LinkedTaxRate$inboundSchema),
+      tracking_categories: z.nullable(
+        z.array(types.nullable(LinkedTrackingCategory$inboundSchema)),
+      ).optional(),
+      tags: types.optional(z.array(types.string())),
+      notes: z.nullable(types.string()).optional(),
+      contract_number: z.nullable(types.string()).optional(),
+      profit_margin: z.nullable(types.number()).optional(),
+      schedule_status: z.nullable(ScheduleStatus$inboundSchema).optional(),
+      addresses: types.optional(z.array(Address$inboundSchema)),
+      team_size: z.nullable(types.number()).optional(),
+      custom_fields: types.optional(z.array(CustomField$inboundSchema)),
+      row_version: z.nullable(types.string()).optional(),
+      updated_by: z.nullable(types.string()).optional(),
+      created_by: z.nullable(types.string()).optional(),
+      created_at: z.nullable(types.date()).optional(),
+      updated_at: z.nullable(types.date()).optional(),
+    }).catchall(z.any()),
+    "additionalProperties",
+    true,
+  ).transform((v) => {
     return remap$(v, {
       "downstream_id": "downstreamId",
       "display_id": "displayId",
@@ -741,7 +750,7 @@ export function projectFromJSON(
 
 /** @internal */
 export type ProjectInput$Outbound = {
-  name: string;
+  name?: string | undefined;
   display_id?: string | null | undefined;
   reference_id?: string | null | undefined;
   description?: string | null | undefined;
@@ -780,6 +789,7 @@ export type ProjectInput$Outbound = {
   team_size?: number | null | undefined;
   custom_fields?: Array<CustomField$Outbound> | undefined;
   row_version?: string | null | undefined;
+  [additionalProperties: string]: unknown;
 };
 
 /** @internal */
@@ -788,7 +798,7 @@ export const ProjectInput$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   ProjectInput
 > = z.object({
-  name: z.string(),
+  name: z.string().optional(),
   displayId: z.nullable(z.string()).optional(),
   referenceId: z.nullable(z.string()).optional(),
   description: z.nullable(z.string()).optional(),
@@ -834,33 +844,38 @@ export const ProjectInput$outboundSchema: z.ZodType<
   teamSize: z.nullable(z.number().int()).optional(),
   customFields: z.array(CustomField$outboundSchema).optional(),
   rowVersion: z.nullable(z.string()).optional(),
+  additionalProperties: z.record(z.any()).optional(),
 }).transform((v) => {
-  return remap$(v, {
-    displayId: "display_id",
-    referenceId: "reference_id",
-    projectType: "project_type",
-    completionPercentage: "completion_percentage",
-    startDate: "start_date",
-    endDate: "end_date",
-    completionDate: "completion_date",
-    companyId: "company_id",
-    ownerId: "owner_id",
-    parentProject: "parent_project",
-    budgetAmount: "budget_amount",
-    approvedAmount: "approved_amount",
-    budgetHours: "budget_hours",
-    hourlyRate: "hourly_rate",
-    billingMethod: "billing_method",
-    isBillable: "is_billable",
-    taxRate: "tax_rate",
-    trackingCategories: "tracking_categories",
-    contractNumber: "contract_number",
-    profitMargin: "profit_margin",
-    scheduleStatus: "schedule_status",
-    teamSize: "team_size",
-    customFields: "custom_fields",
-    rowVersion: "row_version",
-  });
+  return {
+    ...v.additionalProperties,
+    ...remap$(v, {
+      displayId: "display_id",
+      referenceId: "reference_id",
+      projectType: "project_type",
+      completionPercentage: "completion_percentage",
+      startDate: "start_date",
+      endDate: "end_date",
+      completionDate: "completion_date",
+      companyId: "company_id",
+      ownerId: "owner_id",
+      parentProject: "parent_project",
+      budgetAmount: "budget_amount",
+      approvedAmount: "approved_amount",
+      budgetHours: "budget_hours",
+      hourlyRate: "hourly_rate",
+      billingMethod: "billing_method",
+      isBillable: "is_billable",
+      taxRate: "tax_rate",
+      trackingCategories: "tracking_categories",
+      contractNumber: "contract_number",
+      profitMargin: "profit_margin",
+      scheduleStatus: "schedule_status",
+      teamSize: "team_size",
+      customFields: "custom_fields",
+      rowVersion: "row_version",
+      additionalProperties: null,
+    }),
+  };
 });
 
 export function projectInputToJSON(projectInput: ProjectInput): string {

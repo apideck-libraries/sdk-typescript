@@ -4,7 +4,10 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import {
+  collectExtraKeys as collectExtraKeys$,
+  safeParse,
+} from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
@@ -202,6 +205,10 @@ export type PurchaseOrder = {
    */
   terms?: string | null | undefined;
   /**
+   * The ID of the payment terms
+   */
+  termsId?: string | null | undefined;
+  /**
    * Type of amortization
    */
   amortizationType?: PurchaseOrderAmortizationType | null | undefined;
@@ -266,6 +273,7 @@ export type PurchaseOrder = {
    * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
    */
   passThrough?: Array<PassThroughBody> | undefined;
+  additionalProperties?: { [k: string]: any } | undefined;
 };
 
 export type PurchaseOrderInput = {
@@ -368,6 +376,10 @@ export type PurchaseOrderInput = {
    */
   terms?: string | null | undefined;
   /**
+   * The ID of the payment terms
+   */
+  termsId?: string | null | undefined;
+  /**
    * Type of amortization
    */
   amortizationType?: PurchaseOrderAmortizationType | null | undefined;
@@ -412,6 +424,7 @@ export type PurchaseOrderInput = {
    * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
    */
   passThrough?: Array<PassThroughBody> | undefined;
+  additionalProperties?: { [k: string]: any } | undefined;
 };
 
 /** @internal */
@@ -445,59 +458,64 @@ export const PurchaseOrder$inboundSchema: z.ZodType<
   PurchaseOrder,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  id: types.optional(types.string()),
-  downstream_id: z.nullable(types.string()).optional(),
-  display_id: z.nullable(types.string()).optional(),
-  po_number: z.nullable(types.string()).optional(),
-  reference: z.nullable(types.string()).optional(),
-  supplier: z.nullable(LinkedSupplier$inboundSchema).optional(),
-  subsidiary_id: z.nullable(types.string()).optional(),
-  company_id: z.nullable(types.string()).optional(),
-  location_id: z.nullable(types.string()).optional(),
-  department_id: z.nullable(types.string()).optional(),
-  status: z.nullable(PurchaseOrderStatus$inboundSchema).optional(),
-  issued_date: z.nullable(types.date()).optional(),
-  delivery_date: z.nullable(types.date()).optional(),
-  expected_arrival_date: z.nullable(types.date()).optional(),
-  currency: z.nullable(Currency$inboundSchema).optional(),
-  currency_rate: z.nullable(types.number()).optional(),
-  sub_total: z.nullable(types.number()).optional(),
-  total_tax: z.nullable(types.number()).optional(),
-  total: z.nullable(types.number()).optional(),
-  tax_inclusive: z.nullable(types.boolean()).optional(),
-  line_items: types.optional(z.array(InvoiceLineItem$inboundSchema)),
-  billing_address: types.optional(Address$inboundSchema),
-  shipping_address: types.optional(Address$inboundSchema),
-  ledger_account: z.nullable(LinkedLedgerAccount$inboundSchema).optional(),
-  template_id: z.nullable(types.string()).optional(),
-  discount_percentage: z.nullable(types.number()).optional(),
-  bank_account: types.optional(BankAccount$inboundSchema),
-  accounting_by_row: z.nullable(types.boolean()).optional(),
-  due_date: z.nullable(types.date()).optional(),
-  payment_method: z.nullable(types.string()).optional(),
-  terms: z.nullable(types.string()).optional(),
-  amortization_type: z.nullable(PurchaseOrderAmortizationType$inboundSchema)
-    .optional(),
-  tax_code: z.nullable(types.string()).optional(),
-  tax_method: z.nullable(types.string()).optional(),
-  issued_method: z.nullable(types.string()).optional(),
-  issued_email: z.nullable(types.string()).optional(),
-  channel: z.nullable(types.string()).optional(),
-  memo: z.nullable(types.string()).optional(),
-  notes: z.nullable(types.string()).optional(),
-  tracking_categories: z.nullable(
-    z.array(types.nullable(LinkedTrackingCategory$inboundSchema)),
-  ).optional(),
-  custom_mappings: z.nullable(z.record(z.any())).optional(),
-  custom_fields: types.optional(z.array(CustomField$inboundSchema)),
-  row_version: z.nullable(types.string()).optional(),
-  updated_by: z.nullable(types.string()).optional(),
-  created_by: z.nullable(types.string()).optional(),
-  updated_at: z.nullable(types.date()).optional(),
-  created_at: z.nullable(types.date()).optional(),
-  pass_through: types.optional(z.array(PassThroughBody$inboundSchema)),
-}).transform((v) => {
+> = collectExtraKeys$(
+  z.object({
+    id: types.optional(types.string()),
+    downstream_id: z.nullable(types.string()).optional(),
+    display_id: z.nullable(types.string()).optional(),
+    po_number: z.nullable(types.string()).optional(),
+    reference: z.nullable(types.string()).optional(),
+    supplier: z.nullable(LinkedSupplier$inboundSchema).optional(),
+    subsidiary_id: z.nullable(types.string()).optional(),
+    company_id: z.nullable(types.string()).optional(),
+    location_id: z.nullable(types.string()).optional(),
+    department_id: z.nullable(types.string()).optional(),
+    status: z.nullable(PurchaseOrderStatus$inboundSchema).optional(),
+    issued_date: z.nullable(types.date()).optional(),
+    delivery_date: z.nullable(types.date()).optional(),
+    expected_arrival_date: z.nullable(types.date()).optional(),
+    currency: z.nullable(Currency$inboundSchema).optional(),
+    currency_rate: z.nullable(types.number()).optional(),
+    sub_total: z.nullable(types.number()).optional(),
+    total_tax: z.nullable(types.number()).optional(),
+    total: z.nullable(types.number()).optional(),
+    tax_inclusive: z.nullable(types.boolean()).optional(),
+    line_items: types.optional(z.array(InvoiceLineItem$inboundSchema)),
+    billing_address: types.optional(Address$inboundSchema),
+    shipping_address: types.optional(Address$inboundSchema),
+    ledger_account: z.nullable(LinkedLedgerAccount$inboundSchema).optional(),
+    template_id: z.nullable(types.string()).optional(),
+    discount_percentage: z.nullable(types.number()).optional(),
+    bank_account: types.optional(BankAccount$inboundSchema),
+    accounting_by_row: z.nullable(types.boolean()).optional(),
+    due_date: z.nullable(types.date()).optional(),
+    payment_method: z.nullable(types.string()).optional(),
+    terms: z.nullable(types.string()).optional(),
+    terms_id: z.nullable(types.string()).optional(),
+    amortization_type: z.nullable(PurchaseOrderAmortizationType$inboundSchema)
+      .optional(),
+    tax_code: z.nullable(types.string()).optional(),
+    tax_method: z.nullable(types.string()).optional(),
+    issued_method: z.nullable(types.string()).optional(),
+    issued_email: z.nullable(types.string()).optional(),
+    channel: z.nullable(types.string()).optional(),
+    memo: z.nullable(types.string()).optional(),
+    notes: z.nullable(types.string()).optional(),
+    tracking_categories: z.nullable(
+      z.array(types.nullable(LinkedTrackingCategory$inboundSchema)),
+    ).optional(),
+    custom_mappings: z.nullable(z.record(z.any())).optional(),
+    custom_fields: types.optional(z.array(CustomField$inboundSchema)),
+    row_version: z.nullable(types.string()).optional(),
+    updated_by: z.nullable(types.string()).optional(),
+    created_by: z.nullable(types.string()).optional(),
+    updated_at: z.nullable(types.date()).optional(),
+    created_at: z.nullable(types.date()).optional(),
+    pass_through: types.optional(z.array(PassThroughBody$inboundSchema)),
+  }).catchall(z.any()),
+  "additionalProperties",
+  true,
+).transform((v) => {
   return remap$(v, {
     "downstream_id": "downstreamId",
     "display_id": "displayId",
@@ -523,6 +541,7 @@ export const PurchaseOrder$inboundSchema: z.ZodType<
     "accounting_by_row": "accountingByRow",
     "due_date": "dueDate",
     "payment_method": "paymentMethod",
+    "terms_id": "termsId",
     "amortization_type": "amortizationType",
     "tax_code": "taxCode",
     "tax_method": "taxMethod",
@@ -581,6 +600,7 @@ export type PurchaseOrderInput$Outbound = {
   due_date?: string | null | undefined;
   payment_method?: string | null | undefined;
   terms?: string | null | undefined;
+  terms_id?: string | null | undefined;
   amortization_type?: string | null | undefined;
   tax_code?: string | null | undefined;
   tax_method?: string | null | undefined;
@@ -596,6 +616,7 @@ export type PurchaseOrderInput$Outbound = {
   custom_fields?: Array<CustomField$Outbound> | undefined;
   row_version?: string | null | undefined;
   pass_through?: Array<PassThroughBody$Outbound> | undefined;
+  [additionalProperties: string]: unknown;
 };
 
 /** @internal */
@@ -641,6 +662,7 @@ export const PurchaseOrderInput$outboundSchema: z.ZodType<
   ).optional(),
   paymentMethod: z.nullable(z.string()).optional(),
   terms: z.nullable(z.string()).optional(),
+  termsId: z.nullable(z.string()).optional(),
   amortizationType: z.nullable(PurchaseOrderAmortizationType$outboundSchema)
     .optional(),
   taxCode: z.nullable(z.string()).optional(),
@@ -656,41 +678,47 @@ export const PurchaseOrderInput$outboundSchema: z.ZodType<
   customFields: z.array(CustomField$outboundSchema).optional(),
   rowVersion: z.nullable(z.string()).optional(),
   passThrough: z.array(PassThroughBody$outboundSchema).optional(),
+  additionalProperties: z.record(z.any()).optional(),
 }).transform((v) => {
-  return remap$(v, {
-    displayId: "display_id",
-    poNumber: "po_number",
-    subsidiaryId: "subsidiary_id",
-    companyId: "company_id",
-    locationId: "location_id",
-    departmentId: "department_id",
-    issuedDate: "issued_date",
-    deliveryDate: "delivery_date",
-    expectedArrivalDate: "expected_arrival_date",
-    currencyRate: "currency_rate",
-    subTotal: "sub_total",
-    totalTax: "total_tax",
-    taxInclusive: "tax_inclusive",
-    lineItems: "line_items",
-    billingAddress: "billing_address",
-    shippingAddress: "shipping_address",
-    ledgerAccount: "ledger_account",
-    templateId: "template_id",
-    discountPercentage: "discount_percentage",
-    bankAccount: "bank_account",
-    accountingByRow: "accounting_by_row",
-    dueDate: "due_date",
-    paymentMethod: "payment_method",
-    amortizationType: "amortization_type",
-    taxCode: "tax_code",
-    taxMethod: "tax_method",
-    issuedMethod: "issued_method",
-    issuedEmail: "issued_email",
-    trackingCategories: "tracking_categories",
-    customFields: "custom_fields",
-    rowVersion: "row_version",
-    passThrough: "pass_through",
-  });
+  return {
+    ...v.additionalProperties,
+    ...remap$(v, {
+      displayId: "display_id",
+      poNumber: "po_number",
+      subsidiaryId: "subsidiary_id",
+      companyId: "company_id",
+      locationId: "location_id",
+      departmentId: "department_id",
+      issuedDate: "issued_date",
+      deliveryDate: "delivery_date",
+      expectedArrivalDate: "expected_arrival_date",
+      currencyRate: "currency_rate",
+      subTotal: "sub_total",
+      totalTax: "total_tax",
+      taxInclusive: "tax_inclusive",
+      lineItems: "line_items",
+      billingAddress: "billing_address",
+      shippingAddress: "shipping_address",
+      ledgerAccount: "ledger_account",
+      templateId: "template_id",
+      discountPercentage: "discount_percentage",
+      bankAccount: "bank_account",
+      accountingByRow: "accounting_by_row",
+      dueDate: "due_date",
+      paymentMethod: "payment_method",
+      termsId: "terms_id",
+      amortizationType: "amortization_type",
+      taxCode: "tax_code",
+      taxMethod: "tax_method",
+      issuedMethod: "issued_method",
+      issuedEmail: "issued_email",
+      trackingCategories: "tracking_categories",
+      customFields: "custom_fields",
+      rowVersion: "row_version",
+      passThrough: "pass_through",
+      additionalProperties: null,
+    }),
+  };
 });
 
 export function purchaseOrderInputToJSON(

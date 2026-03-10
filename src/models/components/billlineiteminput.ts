@@ -161,6 +161,7 @@ export type BillLineItemInput = {
    * A list of linked worktags. This is only supported for Workday.
    */
   worktags?: Array<LinkedWorktag | null> | undefined;
+  additionalProperties?: { [k: string]: any } | undefined;
 };
 
 /** @internal */
@@ -201,6 +202,7 @@ export type BillLineItemInput$Outbound = {
   rebilling?: Rebilling$Outbound | null | undefined;
   row_version?: string | null | undefined;
   worktags?: Array<LinkedWorktag$Outbound | null> | undefined;
+  [additionalProperties: string]: unknown;
 };
 
 /** @internal */
@@ -244,32 +246,37 @@ export const BillLineItemInput$outboundSchema: z.ZodType<
   rebilling: z.nullable(Rebilling$outboundSchema).optional(),
   rowVersion: z.nullable(z.string()).optional(),
   worktags: z.array(z.nullable(LinkedWorktag$outboundSchema)).optional(),
+  additionalProperties: z.record(z.any()).optional(),
 }).transform((v) => {
-  return remap$(v, {
-    rowId: "row_id",
-    lineNumber: "line_number",
-    taxAmount: "tax_amount",
-    totalAmount: "total_amount",
-    unitPrice: "unit_price",
-    unitOfMeasure: "unit_of_measure",
-    discountPercentage: "discount_percentage",
-    discountAmount: "discount_amount",
-    locationId: "location_id",
-    departmentId: "department_id",
-    subsidiaryId: "subsidiary_id",
-    categoryId: "category_id",
-    shippingId: "shipping_id",
-    taxApplicableOn: "tax_applicable_on",
-    taxRecoverability: "tax_recoverability",
-    taxMethod: "tax_method",
-    retentionAmount: "retention_amount",
-    paymentAmount: "payment_amount",
-    taxRate: "tax_rate",
-    ledgerAccount: "ledger_account",
-    purchaseOrder: "purchase_order",
-    trackingCategories: "tracking_categories",
-    rowVersion: "row_version",
-  });
+  return {
+    ...v.additionalProperties,
+    ...remap$(v, {
+      rowId: "row_id",
+      lineNumber: "line_number",
+      taxAmount: "tax_amount",
+      totalAmount: "total_amount",
+      unitPrice: "unit_price",
+      unitOfMeasure: "unit_of_measure",
+      discountPercentage: "discount_percentage",
+      discountAmount: "discount_amount",
+      locationId: "location_id",
+      departmentId: "department_id",
+      subsidiaryId: "subsidiary_id",
+      categoryId: "category_id",
+      shippingId: "shipping_id",
+      taxApplicableOn: "tax_applicable_on",
+      taxRecoverability: "tax_recoverability",
+      taxMethod: "tax_method",
+      retentionAmount: "retention_amount",
+      paymentAmount: "payment_amount",
+      taxRate: "tax_rate",
+      ledgerAccount: "ledger_account",
+      purchaseOrder: "purchase_order",
+      trackingCategories: "tracking_categories",
+      rowVersion: "row_version",
+      additionalProperties: null,
+    }),
+  };
 });
 
 export function billLineItemInputToJSON(

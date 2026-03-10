@@ -24,7 +24,8 @@ type PipelineStage struct {
 	// The date and time when the Pipeline Stage was created.
 	CreatedAt optionalnullable.OptionalNullable[time.Time] `json:"created_at,omitempty"`
 	// The date and time when the Pipeline Stage was last updated.
-	UpdatedAt optionalnullable.OptionalNullable[time.Time] `json:"updated_at,omitempty"`
+	UpdatedAt            optionalnullable.OptionalNullable[time.Time] `json:"updated_at,omitempty"`
+	AdditionalProperties map[string]any                               `additionalProperties:"true" json:"-"`
 }
 
 func (p PipelineStage) MarshalJSON() ([]byte, error) {
@@ -94,11 +95,18 @@ func (o *PipelineStage) GetUpdatedAt() optionalnullable.OptionalNullable[time.Ti
 	return o.UpdatedAt
 }
 
+func (o *PipelineStage) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
+}
+
 type Pipeline struct {
 	// The unique identifier of the Pipeline.
 	ID *string `json:"id,omitempty"`
 	// The name of the Pipeline.
-	Name string `json:"name"`
+	Name *string `json:"name,omitempty"`
 	// Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
 	Currency optionalnullable.OptionalNullable[Currency] `json:"currency,omitempty"`
 	// Whether the Pipeline is archived or not.
@@ -116,7 +124,8 @@ type Pipeline struct {
 	// The date and time when the object was created.
 	CreatedAt optionalnullable.OptionalNullable[time.Time] `json:"created_at,omitempty"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
-	PassThrough []PassThroughBody `json:"pass_through,omitempty"`
+	PassThrough          []PassThroughBody `json:"pass_through,omitempty"`
+	AdditionalProperties map[string]any    `additionalProperties:"true" json:"-"`
 }
 
 func (p Pipeline) MarshalJSON() ([]byte, error) {
@@ -124,7 +133,7 @@ func (p Pipeline) MarshalJSON() ([]byte, error) {
 }
 
 func (p *Pipeline) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &p, "", false, []string{"name"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &p, "", false, nil); err != nil {
 		return err
 	}
 	return nil
@@ -137,9 +146,9 @@ func (o *Pipeline) GetID() *string {
 	return o.ID
 }
 
-func (o *Pipeline) GetName() string {
+func (o *Pipeline) GetName() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.Name
 }
@@ -205,4 +214,11 @@ func (o *Pipeline) GetPassThrough() []PassThroughBody {
 		return nil
 	}
 	return o.PassThrough
+}
+
+func (o *Pipeline) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }

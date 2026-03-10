@@ -4,7 +4,10 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import {
+  collectExtraKeys as collectExtraKeys$,
+  safeParse,
+} from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
@@ -66,7 +69,7 @@ export type AccountingBankAccount = {
   /**
    * A unique identifier for an object.
    */
-  id: string;
+  id?: string | undefined;
   /**
    * The third-party API ID of original entity
    */
@@ -165,6 +168,7 @@ export type AccountingBankAccount = {
    * The user who last updated the object.
    */
   updatedBy?: string | null | undefined;
+  additionalProperties?: { [k: string]: any } | undefined;
 };
 
 export type AccountingBankAccountInput = {
@@ -242,6 +246,7 @@ export type AccountingBankAccountInput = {
    */
   description?: string | null | undefined;
   customFields?: Array<CustomField> | undefined;
+  additionalProperties?: { [k: string]: any } | undefined;
 };
 
 /** @internal */
@@ -275,35 +280,41 @@ export const AccountingBankAccount$inboundSchema: z.ZodType<
   AccountingBankAccount,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  id: types.string(),
-  downstream_id: z.nullable(types.string()).optional(),
-  display_id: z.nullable(types.string()).optional(),
-  name: z.nullable(types.string()).optional(),
-  account_number: z.nullable(types.string()).optional(),
-  account_type: types.optional(AccountingBankAccountAccountType$inboundSchema),
-  ledger_account: z.nullable(LinkedLedgerAccount$inboundSchema).optional(),
-  bank_name: z.nullable(types.string()).optional(),
-  currency: z.nullable(Currency$inboundSchema).optional(),
-  balance: z.nullable(types.number()).optional(),
-  available_balance: z.nullable(types.number()).optional(),
-  overdraft_limit: z.nullable(types.number()).optional(),
-  routing_number: z.nullable(types.string()).optional(),
-  iban: z.nullable(types.string()).optional(),
-  bic: z.nullable(types.string()).optional(),
-  bsb_number: z.nullable(types.string()).optional(),
-  branch_identifier: z.nullable(types.string()).optional(),
-  bank_code: z.nullable(types.string()).optional(),
-  country: z.nullable(types.string()).optional(),
-  status: z.nullable(AccountingBankAccountStatus$inboundSchema).optional(),
-  description: z.nullable(types.string()).optional(),
-  custom_fields: types.optional(z.array(CustomField$inboundSchema)),
-  custom_mappings: z.nullable(z.record(z.any())).optional(),
-  created_at: z.nullable(types.date()).optional(),
-  updated_at: z.nullable(types.date()).optional(),
-  created_by: z.nullable(types.string()).optional(),
-  updated_by: z.nullable(types.string()).optional(),
-}).transform((v) => {
+> = collectExtraKeys$(
+  z.object({
+    id: types.optional(types.string()),
+    downstream_id: z.nullable(types.string()).optional(),
+    display_id: z.nullable(types.string()).optional(),
+    name: z.nullable(types.string()).optional(),
+    account_number: z.nullable(types.string()).optional(),
+    account_type: types.optional(
+      AccountingBankAccountAccountType$inboundSchema,
+    ),
+    ledger_account: z.nullable(LinkedLedgerAccount$inboundSchema).optional(),
+    bank_name: z.nullable(types.string()).optional(),
+    currency: z.nullable(Currency$inboundSchema).optional(),
+    balance: z.nullable(types.number()).optional(),
+    available_balance: z.nullable(types.number()).optional(),
+    overdraft_limit: z.nullable(types.number()).optional(),
+    routing_number: z.nullable(types.string()).optional(),
+    iban: z.nullable(types.string()).optional(),
+    bic: z.nullable(types.string()).optional(),
+    bsb_number: z.nullable(types.string()).optional(),
+    branch_identifier: z.nullable(types.string()).optional(),
+    bank_code: z.nullable(types.string()).optional(),
+    country: z.nullable(types.string()).optional(),
+    status: z.nullable(AccountingBankAccountStatus$inboundSchema).optional(),
+    description: z.nullable(types.string()).optional(),
+    custom_fields: types.optional(z.array(CustomField$inboundSchema)),
+    custom_mappings: z.nullable(z.record(z.any())).optional(),
+    created_at: z.nullable(types.date()).optional(),
+    updated_at: z.nullable(types.date()).optional(),
+    created_by: z.nullable(types.string()).optional(),
+    updated_by: z.nullable(types.string()).optional(),
+  }).catchall(z.any()),
+  "additionalProperties",
+  true,
+).transform((v) => {
   return remap$(v, {
     "downstream_id": "downstreamId",
     "display_id": "displayId",
@@ -358,6 +369,7 @@ export type AccountingBankAccountInput$Outbound = {
   status?: string | null | undefined;
   description?: string | null | undefined;
   custom_fields?: Array<CustomField$Outbound> | undefined;
+  [additionalProperties: string]: unknown;
 };
 
 /** @internal */
@@ -386,21 +398,26 @@ export const AccountingBankAccountInput$outboundSchema: z.ZodType<
   status: z.nullable(AccountingBankAccountStatus$outboundSchema).optional(),
   description: z.nullable(z.string()).optional(),
   customFields: z.array(CustomField$outboundSchema).optional(),
+  additionalProperties: z.record(z.any()).optional(),
 }).transform((v) => {
-  return remap$(v, {
-    displayId: "display_id",
-    accountNumber: "account_number",
-    accountType: "account_type",
-    ledgerAccount: "ledger_account",
-    bankName: "bank_name",
-    availableBalance: "available_balance",
-    overdraftLimit: "overdraft_limit",
-    routingNumber: "routing_number",
-    bsbNumber: "bsb_number",
-    branchIdentifier: "branch_identifier",
-    bankCode: "bank_code",
-    customFields: "custom_fields",
-  });
+  return {
+    ...v.additionalProperties,
+    ...remap$(v, {
+      displayId: "display_id",
+      accountNumber: "account_number",
+      accountType: "account_type",
+      ledgerAccount: "ledger_account",
+      bankName: "bank_name",
+      availableBalance: "available_balance",
+      overdraftLimit: "overdraft_limit",
+      routingNumber: "routing_number",
+      bsbNumber: "bsb_number",
+      branchIdentifier: "branch_identifier",
+      bankCode: "bank_code",
+      customFields: "custom_fields",
+      additionalProperties: null,
+    }),
+  };
 });
 
 export function accountingBankAccountInputToJSON(

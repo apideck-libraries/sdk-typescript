@@ -32,7 +32,7 @@ type Company1 struct {
 	// Unique identifier for the company
 	ID *string `json:"id,omitempty"`
 	// Name of the company
-	Name *string `json:"name"`
+	Name optionalnullable.OptionalNullable[string] `json:"name,omitempty"`
 	// Number of interactions
 	InteractionCount optionalnullable.OptionalNullable[int64] `json:"interaction_count,omitempty"`
 	// Owner ID
@@ -80,7 +80,7 @@ type Company1 struct {
 	PhoneNumbers []PhoneNumber                               `json:"phone_numbers,omitempty"`
 	Emails       []Email                                     `json:"emails,omitempty"`
 	RowType      *CompanyRowType                             `json:"row_type,omitempty"`
-	CustomFields []CustomFieldUnion                          `json:"custom_fields,omitempty"`
+	CustomFields []CustomField                               `json:"custom_fields,omitempty"`
 	Tags         optionalnullable.OptionalNullable[[]string] `json:"tags,omitempty"`
 	// Whether the company is read-only or not
 	ReadOnly optionalnullable.OptionalNullable[bool] `json:"read_only,omitempty"`
@@ -103,7 +103,8 @@ type Company1 struct {
 	// Creation date
 	CreatedAt optionalnullable.OptionalNullable[time.Time] `json:"created_at,omitempty"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
-	PassThrough []PassThroughBody `json:"pass_through,omitempty"`
+	PassThrough          []PassThroughBody `json:"pass_through,omitempty"`
+	AdditionalProperties map[string]any    `additionalProperties:"true" json:"-"`
 }
 
 func (c Company1) MarshalJSON() ([]byte, error) {
@@ -111,7 +112,7 @@ func (c Company1) MarshalJSON() ([]byte, error) {
 }
 
 func (c *Company1) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"name"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &c, "", false, nil); err != nil {
 		return err
 	}
 	return nil
@@ -124,7 +125,7 @@ func (o *Company1) GetID() *string {
 	return o.ID
 }
 
-func (o *Company1) GetName() *string {
+func (o *Company1) GetName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -320,7 +321,7 @@ func (o *Company1) GetRowType() *CompanyRowType {
 	return o.RowType
 }
 
-func (o *Company1) GetCustomFields() []CustomFieldUnion {
+func (o *Company1) GetCustomFields() []CustomField {
 	if o == nil {
 		return nil
 	}
@@ -411,9 +412,16 @@ func (o *Company1) GetPassThrough() []PassThroughBody {
 	return o.PassThrough
 }
 
+func (o *Company1) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
+}
+
 type Company1Input struct {
 	// Name of the company
-	Name *string `json:"name"`
+	Name optionalnullable.OptionalNullable[string] `json:"name,omitempty"`
 	// Owner ID
 	OwnerID optionalnullable.OptionalNullable[string] `json:"owner_id,omitempty"`
 	// The Image URL of the company
@@ -457,7 +465,7 @@ type Company1Input struct {
 	PhoneNumbers []PhoneNumber                               `json:"phone_numbers,omitempty"`
 	Emails       []Email                                     `json:"emails,omitempty"`
 	RowType      *CompanyRowType                             `json:"row_type,omitempty"`
-	CustomFields []CustomFieldUnion                          `json:"custom_fields,omitempty"`
+	CustomFields []CustomField                               `json:"custom_fields,omitempty"`
 	Tags         optionalnullable.OptionalNullable[[]string] `json:"tags,omitempty"`
 	// Whether the company is read-only or not
 	ReadOnly optionalnullable.OptionalNullable[bool] `json:"read_only,omitempty"`
@@ -466,7 +474,8 @@ type Company1Input struct {
 	// The date of birth of the person.
 	Birthday optionalnullable.OptionalNullable[types.Date] `json:"birthday,omitempty"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
-	PassThrough []PassThroughBody `json:"pass_through,omitempty"`
+	PassThrough          []PassThroughBody `json:"pass_through,omitempty"`
+	AdditionalProperties map[string]any    `additionalProperties:"true" json:"-"`
 }
 
 func (c Company1Input) MarshalJSON() ([]byte, error) {
@@ -474,13 +483,13 @@ func (c Company1Input) MarshalJSON() ([]byte, error) {
 }
 
 func (c *Company1Input) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"name"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &c, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *Company1Input) GetName() *string {
+func (o *Company1Input) GetName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -662,7 +671,7 @@ func (o *Company1Input) GetRowType() *CompanyRowType {
 	return o.RowType
 }
 
-func (o *Company1Input) GetCustomFields() []CustomFieldUnion {
+func (o *Company1Input) GetCustomFields() []CustomField {
 	if o == nil {
 		return nil
 	}
@@ -702,4 +711,11 @@ func (o *Company1Input) GetPassThrough() []PassThroughBody {
 		return nil
 	}
 	return o.PassThrough
+}
+
+func (o *Company1Input) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }

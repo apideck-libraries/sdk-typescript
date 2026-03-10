@@ -78,7 +78,8 @@ type BillLineItem struct {
 	// The date and time when the object was last updated.
 	UpdatedAt optionalnullable.OptionalNullable[time.Time] `json:"updated_at,omitempty"`
 	// A list of linked worktags. This is only supported for Workday.
-	Worktags []*LinkedWorktag `json:"worktags,omitempty"`
+	Worktags             []*LinkedWorktag `json:"worktags,omitempty"`
+	AdditionalProperties map[string]any   `additionalProperties:"true" json:"-"`
 }
 
 func (b BillLineItem) MarshalJSON() ([]byte, error) {
@@ -356,4 +357,11 @@ func (o *BillLineItem) GetWorktags() []*LinkedWorktag {
 		return nil
 	}
 	return o.Worktags
+}
+
+func (o *BillLineItem) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }

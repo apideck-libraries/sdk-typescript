@@ -4,7 +4,10 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import {
+  collectExtraKeys as collectExtraKeys$,
+  safeParse,
+} from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
@@ -120,7 +123,7 @@ export type EcommerceProduct = {
   /**
    * A unique identifier for an object.
    */
-  id: string;
+  id?: string | undefined;
   /**
    * The name of the product as it should be displayed to customers.
    */
@@ -182,6 +185,7 @@ export type EcommerceProduct = {
    * The date and time when the object was last updated.
    */
   updatedAt?: Date | null | undefined;
+  additionalProperties?: { [k: string]: any } | undefined;
 };
 
 /** @internal */
@@ -331,29 +335,33 @@ export const EcommerceProduct$inboundSchema: z.ZodType<
   EcommerceProduct,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  id: types.string(),
-  name: z.nullable(types.string()).optional(),
-  description: z.nullable(types.string()).optional(),
-  status: z.nullable(ProductStatus$inboundSchema).optional(),
-  price: z.nullable(types.string()).optional(),
-  sku: z.nullable(types.string()).optional(),
-  inventory_quantity: z.nullable(types.string()).optional(),
-  images: z.nullable(z.array(z.lazy(() => Images$inboundSchema))).optional(),
-  weight: z.nullable(types.string()).optional(),
-  weight_unit: z.nullable(types.string()).optional(),
-  options: types.optional(
-    z.array(z.lazy(() => EcommerceProductOptions$inboundSchema)),
-  ),
-  variants: types.optional(z.array(z.lazy(() => Variants$inboundSchema))),
-  tags: types.optional(z.array(types.nullable(types.string()))),
-  categories: types.optional(
-    z.array(z.lazy(() => EcommerceProductCategories$inboundSchema)),
-  ),
-  custom_mappings: z.nullable(z.record(z.any())).optional(),
-  created_at: z.nullable(types.date()).optional(),
-  updated_at: z.nullable(types.date()).optional(),
-}).transform((v) => {
+> = collectExtraKeys$(
+  z.object({
+    id: types.optional(types.string()),
+    name: z.nullable(types.string()).optional(),
+    description: z.nullable(types.string()).optional(),
+    status: z.nullable(ProductStatus$inboundSchema).optional(),
+    price: z.nullable(types.string()).optional(),
+    sku: z.nullable(types.string()).optional(),
+    inventory_quantity: z.nullable(types.string()).optional(),
+    images: z.nullable(z.array(z.lazy(() => Images$inboundSchema))).optional(),
+    weight: z.nullable(types.string()).optional(),
+    weight_unit: z.nullable(types.string()).optional(),
+    options: types.optional(
+      z.array(z.lazy(() => EcommerceProductOptions$inboundSchema)),
+    ),
+    variants: types.optional(z.array(z.lazy(() => Variants$inboundSchema))),
+    tags: types.optional(z.array(types.nullable(types.string()))),
+    categories: types.optional(
+      z.array(z.lazy(() => EcommerceProductCategories$inboundSchema)),
+    ),
+    custom_mappings: z.nullable(z.record(z.any())).optional(),
+    created_at: z.nullable(types.date()).optional(),
+    updated_at: z.nullable(types.date()).optional(),
+  }).catchall(z.any()),
+  "additionalProperties",
+  true,
+).transform((v) => {
   return remap$(v, {
     "inventory_quantity": "inventoryQuantity",
     "weight_unit": "weightUnit",

@@ -152,7 +152,7 @@ func testCrmUsersOneCrmUsersOne0(w http.ResponseWriter, req *http.Request) {
 					ID:          optionalnullable.From(types.String("12345")),
 					CountryCode: optionalnullable.From(types.String("1")),
 					AreaCode:    optionalnullable.From(types.String("323")),
-					Number:      "111-111-1111",
+					Number:      types.String("111-111-1111"),
 					Extension:   optionalnullable.From(types.String("105")),
 					Type:        optionalnullable.From(components.PhoneNumberTypePrimary.ToPointer()),
 				},
@@ -160,7 +160,7 @@ func testCrmUsersOneCrmUsersOne0(w http.ResponseWriter, req *http.Request) {
 					ID:          optionalnullable.From(types.String("12345")),
 					CountryCode: optionalnullable.From(types.String("1")),
 					AreaCode:    optionalnullable.From(types.String("323")),
-					Number:      "111-111-1111",
+					Number:      types.String("111-111-1111"),
 					Extension:   optionalnullable.From(types.String("105")),
 					Type:        optionalnullable.From(components.PhoneNumberTypePrimary.ToPointer()),
 				},
@@ -168,12 +168,12 @@ func testCrmUsersOneCrmUsersOne0(w http.ResponseWriter, req *http.Request) {
 			Emails: []components.Email{
 				components.Email{
 					ID:    optionalnullable.From(types.String("123")),
-					Email: types.String("elon@musk.com"),
+					Email: optionalnullable.From(types.String("elon@musk.com")),
 					Type:  optionalnullable.From(components.EmailTypePrimary.ToPointer()),
 				},
 				components.Email{
 					ID:    optionalnullable.From(types.String("123")),
-					Email: types.String("elon@musk.com"),
+					Email: optionalnullable.From(types.String("elon@musk.com")),
 					Type:  optionalnullable.From(components.EmailTypePrimary.ToPointer()),
 				},
 			},

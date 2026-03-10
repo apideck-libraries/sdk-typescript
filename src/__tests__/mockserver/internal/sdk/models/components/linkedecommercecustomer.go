@@ -4,6 +4,7 @@ package components
 
 import (
 	"mockserver/internal/sdk/optionalnullable"
+	"mockserver/internal/sdk/utils"
 )
 
 // LinkedEcommerceCustomer - The customer this entity is linked to.
@@ -17,9 +18,21 @@ type LinkedEcommerceCustomer struct {
 	// Last name of the customer
 	LastName optionalnullable.OptionalNullable[string] `json:"last_name,omitempty"`
 	// Company name of the customer
-	CompanyName  optionalnullable.OptionalNullable[string]        `json:"company_name,omitempty"`
-	PhoneNumbers optionalnullable.OptionalNullable[[]PhoneNumber] `json:"phone_numbers,omitempty"`
-	Emails       optionalnullable.OptionalNullable[[]Email]       `json:"emails,omitempty"`
+	CompanyName          optionalnullable.OptionalNullable[string]        `json:"company_name,omitempty"`
+	PhoneNumbers         optionalnullable.OptionalNullable[[]PhoneNumber] `json:"phone_numbers,omitempty"`
+	Emails               optionalnullable.OptionalNullable[[]Email]       `json:"emails,omitempty"`
+	AdditionalProperties map[string]any                                   `additionalProperties:"true" json:"-"`
+}
+
+func (l LinkedEcommerceCustomer) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(l, "", false)
+}
+
+func (l *LinkedEcommerceCustomer) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &l, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *LinkedEcommerceCustomer) GetID() optionalnullable.OptionalNullable[string] {
@@ -69,4 +82,11 @@ func (o *LinkedEcommerceCustomer) GetEmails() optionalnullable.OptionalNullable[
 		return nil
 	}
 	return o.Emails
+}
+
+func (o *LinkedEcommerceCustomer) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }

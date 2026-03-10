@@ -2,6 +2,10 @@
 
 package components
 
+import (
+	"mockserver/internal/sdk/utils"
+)
+
 type CreateFolderRequest struct {
 	// The name of the folder.
 	Name string `json:"name"`
@@ -12,7 +16,19 @@ type CreateFolderRequest struct {
 	// ID of the drive to create the folder in.
 	DriveID *string `json:"drive_id,omitempty"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
-	PassThrough []PassThroughBody `json:"pass_through,omitempty"`
+	PassThrough          []PassThroughBody `json:"pass_through,omitempty"`
+	AdditionalProperties map[string]any    `additionalProperties:"true" json:"-"`
+}
+
+func (c CreateFolderRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(c, "", false)
+}
+
+func (c *CreateFolderRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"name", "parent_folder_id"}); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *CreateFolderRequest) GetName() string {
@@ -48,4 +64,11 @@ func (o *CreateFolderRequest) GetPassThrough() []PassThroughBody {
 		return nil
 	}
 	return o.PassThrough
+}
+
+func (o *CreateFolderRequest) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }

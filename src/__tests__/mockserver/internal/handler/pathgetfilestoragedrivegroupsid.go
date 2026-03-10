@@ -54,8 +54,8 @@ func testFileStorageDriveGroupsOneFileStorageDriveGroupsOne0(w http.ResponseWrit
 		Resource:   "DriveGroups",
 		Operation:  "one",
 		Data: components.DriveGroup{
-			ID:          "12345",
-			Name:        "accounting",
+			ID:          types.String("12345"),
+			Name:        types.String("accounting"),
 			DisplayName: optionalnullable.From(types.String("accounting")),
 			Description: optionalnullable.From(types.String("A description")),
 			UpdatedBy:   optionalnullable.From(types.String("12345")),

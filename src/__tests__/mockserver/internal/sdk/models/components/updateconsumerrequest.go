@@ -2,9 +2,25 @@
 
 package components
 
+import (
+	"mockserver/internal/sdk/utils"
+)
+
 type UpdateConsumerRequest struct {
 	// The metadata of the consumer. This is used to display the consumer in the sidebar. This is optional, but recommended.
-	Metadata *ConsumerMetadata `json:"metadata,omitempty"`
+	Metadata             *ConsumerMetadata `json:"metadata,omitempty"`
+	AdditionalProperties map[string]any    `additionalProperties:"true" json:"-"`
+}
+
+func (u UpdateConsumerRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(u, "", false)
+}
+
+func (u *UpdateConsumerRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &u, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *UpdateConsumerRequest) GetMetadata() *ConsumerMetadata {
@@ -12,4 +28,11 @@ func (o *UpdateConsumerRequest) GetMetadata() *ConsumerMetadata {
 		return nil
 	}
 	return o.Metadata
+}
+
+func (o *UpdateConsumerRequest) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }

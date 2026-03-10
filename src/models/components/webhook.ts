@@ -4,7 +4,10 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import {
+  collectExtraKeys as collectExtraKeys$,
+  safeParse,
+} from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
@@ -40,11 +43,11 @@ export type Webhook = {
   /**
    * Name of Apideck Unified API
    */
-  unifiedApi: UnifiedApiId;
+  unifiedApi?: UnifiedApiId | undefined;
   /**
    * The status of the webhook.
    */
-  status: Status;
+  status?: Status | undefined;
   /**
    * Indicates why the webhook has been disabled. `retry_limit`: webhook reached its retry limit. `usage_limit`: account is over its usage limit. `delivery_url_validation_failed`: delivery URL failed validation during webhook creation or update.
    */
@@ -52,15 +55,15 @@ export type Webhook = {
   /**
    * The delivery url of the webhook endpoint.
    */
-  deliveryUrl: string;
+  deliveryUrl?: string | undefined;
   /**
    * The Unify Base URL events from connectors will be sent to after service id is appended.
    */
-  executeBaseUrl: string;
+  executeBaseUrl?: string | undefined;
   /**
    * The list of subscribed events for this webhook. [`*`] indicates that all events are enabled.
    */
-  events: Array<WebhookEventType>;
+  events?: Array<WebhookEventType> | undefined;
   /**
    * The date and time when the object was last updated.
    */
@@ -69,6 +72,7 @@ export type Webhook = {
    * The date and time when the object was created.
    */
   createdAt?: Date | null | undefined;
+  additionalProperties?: { [k: string]: any } | undefined;
 };
 
 /** @internal */
@@ -80,18 +84,22 @@ export const DisabledReason$inboundSchema: z.ZodType<
 
 /** @internal */
 export const Webhook$inboundSchema: z.ZodType<Webhook, z.ZodTypeDef, unknown> =
-  z.object({
-    id: types.optional(types.string()),
-    description: z.nullable(types.string()).optional(),
-    unified_api: UnifiedApiId$inboundSchema,
-    status: Status$inboundSchema,
-    disabled_reason: types.optional(DisabledReason$inboundSchema),
-    delivery_url: types.string(),
-    execute_base_url: types.string(),
-    events: z.array(WebhookEventType$inboundSchema),
-    updated_at: z.nullable(types.date()).optional(),
-    created_at: z.nullable(types.date()).optional(),
-  }).transform((v) => {
+  collectExtraKeys$(
+    z.object({
+      id: types.optional(types.string()),
+      description: z.nullable(types.string()).optional(),
+      unified_api: types.optional(UnifiedApiId$inboundSchema),
+      status: types.optional(Status$inboundSchema),
+      disabled_reason: types.optional(DisabledReason$inboundSchema),
+      delivery_url: types.optional(types.string()),
+      execute_base_url: types.optional(types.string()),
+      events: types.optional(z.array(WebhookEventType$inboundSchema)),
+      updated_at: z.nullable(types.date()).optional(),
+      created_at: z.nullable(types.date()).optional(),
+    }).catchall(z.any()),
+    "additionalProperties",
+    true,
+  ).transform((v) => {
     return remap$(v, {
       "unified_api": "unifiedApi",
       "disabled_reason": "disabledReason",

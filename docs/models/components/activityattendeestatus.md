@@ -8,11 +8,11 @@ Status of the attendee
 import { ActivityAttendeeStatus } from "@apideck/unify/models/components";
 
 let value: ActivityAttendeeStatus = "accepted";
+
+// Open enum: unrecognized values are captured as Unrecognized<string>
 ```
 
 ## Values
-
-This is an open enum. Unrecognized values will be captured as the `Unrecognized<string>` branded type.
 
 ```typescript
 "accepted" | "tentative" | "declined" | Unrecognized<string>

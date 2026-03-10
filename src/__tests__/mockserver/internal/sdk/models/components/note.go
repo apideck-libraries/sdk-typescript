@@ -4,6 +4,7 @@ package components
 
 import (
 	"mockserver/internal/sdk/optionalnullable"
+	"mockserver/internal/sdk/utils"
 )
 
 type Note struct {
@@ -38,7 +39,19 @@ type Note struct {
 	// The timestamp when the note was created
 	CreatedAt optionalnullable.OptionalNullable[string] `json:"created_at,omitempty"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
-	PassThrough []PassThroughBody `json:"pass_through,omitempty"`
+	PassThrough          []PassThroughBody `json:"pass_through,omitempty"`
+	AdditionalProperties map[string]any    `additionalProperties:"true" json:"-"`
+}
+
+func (n Note) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(n, "", false)
+}
+
+func (n *Note) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &n, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *Note) GetID() *string {
@@ -151,4 +164,11 @@ func (o *Note) GetPassThrough() []PassThroughBody {
 		return nil
 	}
 	return o.PassThrough
+}
+
+func (o *Note) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }

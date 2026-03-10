@@ -136,7 +136,7 @@ func (o *CrmCompaniesAllRequest) GetFields() optionalnullable.OptionalNullable[s
 type CrmCompaniesAllResponse struct {
 	HTTPMeta components.HTTPMetadata `json:"-"`
 	// Companies
-	GetCompaniesResponse *components.GetCompaniesResponse
+	GetCompaniesResponse1 *components.GetCompaniesResponse1
 	// Unexpected error
 	UnexpectedErrorResponse *components.UnexpectedErrorResponse
 
@@ -150,11 +150,11 @@ func (o *CrmCompaniesAllResponse) GetHTTPMeta() components.HTTPMetadata {
 	return o.HTTPMeta
 }
 
-func (o *CrmCompaniesAllResponse) GetGetCompaniesResponse() *components.GetCompaniesResponse {
+func (o *CrmCompaniesAllResponse) GetGetCompaniesResponse1() *components.GetCompaniesResponse1 {
 	if o == nil {
 		return nil
 	}
-	return o.GetCompaniesResponse
+	return o.GetCompaniesResponse1
 }
 
 func (o *CrmCompaniesAllResponse) GetUnexpectedErrorResponse() *components.UnexpectedErrorResponse {

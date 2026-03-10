@@ -4,7 +4,10 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import {
+  collectExtraKeys as collectExtraKeys$,
+  safeParse,
+} from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
@@ -81,6 +84,7 @@ export type ActivityAttendee = {
    * The time the attendee was created (ISO 8601)
    */
   createdAt?: Date | null | undefined;
+  additionalProperties?: { [k: string]: any } | undefined;
 };
 
 export type ActivityAttendeeInput = {
@@ -120,6 +124,7 @@ export type ActivityAttendeeInput = {
    * Status of the attendee
    */
   status?: ActivityAttendeeStatus | null | undefined;
+  additionalProperties?: { [k: string]: any } | undefined;
 };
 
 /** @internal */
@@ -140,22 +145,26 @@ export const ActivityAttendee$inboundSchema: z.ZodType<
   ActivityAttendee,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  id: z.nullable(types.string()).optional(),
-  name: z.nullable(types.string()).optional(),
-  first_name: z.nullable(types.string()).optional(),
-  middle_name: z.nullable(types.string()).optional(),
-  last_name: z.nullable(types.string()).optional(),
-  prefix: z.nullable(types.string()).optional(),
-  suffix: z.nullable(types.string()).optional(),
-  email_address: z.nullable(types.string()).optional(),
-  is_organizer: z.nullable(types.boolean()).optional(),
-  status: z.nullable(ActivityAttendeeStatus$inboundSchema).optional(),
-  user_id: z.nullable(types.string()).optional(),
-  contact_id: z.nullable(types.string()).optional(),
-  updated_at: z.nullable(types.date()).optional(),
-  created_at: z.nullable(types.date()).optional(),
-}).transform((v) => {
+> = collectExtraKeys$(
+  z.object({
+    id: z.nullable(types.string()).optional(),
+    name: z.nullable(types.string()).optional(),
+    first_name: z.nullable(types.string()).optional(),
+    middle_name: z.nullable(types.string()).optional(),
+    last_name: z.nullable(types.string()).optional(),
+    prefix: z.nullable(types.string()).optional(),
+    suffix: z.nullable(types.string()).optional(),
+    email_address: z.nullable(types.string()).optional(),
+    is_organizer: z.nullable(types.boolean()).optional(),
+    status: z.nullable(ActivityAttendeeStatus$inboundSchema).optional(),
+    user_id: z.nullable(types.string()).optional(),
+    contact_id: z.nullable(types.string()).optional(),
+    updated_at: z.nullable(types.date()).optional(),
+    created_at: z.nullable(types.date()).optional(),
+  }).catchall(z.any()),
+  "additionalProperties",
+  true,
+).transform((v) => {
   return remap$(v, {
     "first_name": "firstName",
     "middle_name": "middleName",
@@ -190,6 +199,7 @@ export type ActivityAttendeeInput$Outbound = {
   email_address?: string | null | undefined;
   is_organizer?: boolean | null | undefined;
   status?: string | null | undefined;
+  [additionalProperties: string]: unknown;
 };
 
 /** @internal */
@@ -207,14 +217,19 @@ export const ActivityAttendeeInput$outboundSchema: z.ZodType<
   emailAddress: z.nullable(z.string()).optional(),
   isOrganizer: z.nullable(z.boolean()).optional(),
   status: z.nullable(ActivityAttendeeStatus$outboundSchema).optional(),
+  additionalProperties: z.record(z.any()).optional(),
 }).transform((v) => {
-  return remap$(v, {
-    firstName: "first_name",
-    middleName: "middle_name",
-    lastName: "last_name",
-    emailAddress: "email_address",
-    isOrganizer: "is_organizer",
-  });
+  return {
+    ...v.additionalProperties,
+    ...remap$(v, {
+      firstName: "first_name",
+      middleName: "middle_name",
+      lastName: "last_name",
+      emailAddress: "email_address",
+      isOrganizer: "is_organizer",
+      additionalProperties: null,
+    }),
+  };
 });
 
 export function activityAttendeeInputToJSON(

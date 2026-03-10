@@ -8,11 +8,11 @@ Based on the status some functionality is enabled or disabled.
 import { SubsidiaryStatus } from "@apideck/unify/models/components";
 
 let value: SubsidiaryStatus = "active";
+
+// Open enum: unrecognized values are captured as Unrecognized<string>
 ```
 
 ## Values
-
-This is an open enum. Unrecognized values will be captured as the `Unrecognized<string>` branded type.
 
 ```typescript
 "active" | "inactive" | Unrecognized<string>

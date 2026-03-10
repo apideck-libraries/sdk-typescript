@@ -56,8 +56,8 @@ func testAtsApplicationsAllAtsApplicationsAll0(w http.ResponseWriter, req *http.
 		Data: []components.Application{
 			components.Application{
 				ID:          types.String("12345"),
-				ApplicantID: types.String("12345"),
-				JobID:       types.String("12345"),
+				ApplicantID: optionalnullable.From(types.String("12345")),
+				JobID:       optionalnullable.From(types.String("12345")),
 				Status:      optionalnullable.From(components.ApplicationStatusOpen.ToPointer()),
 				Stage: &components.ApplicationStage{
 					ID:   optionalnullable.From(types.String("12345")),
@@ -114,8 +114,8 @@ func testAtsApplicationsAllAtsApplicationsAll0(w http.ResponseWriter, req *http.
 			},
 			components.Application{
 				ID:          types.String("12345"),
-				ApplicantID: types.String("12345"),
-				JobID:       types.String("12345"),
+				ApplicantID: optionalnullable.From(types.String("12345")),
+				JobID:       optionalnullable.From(types.String("12345")),
 				Status:      optionalnullable.From(components.ApplicationStatusOpen.ToPointer()),
 				Stage: &components.ApplicationStage{
 					ID:   optionalnullable.From(types.String("12345")),
@@ -143,8 +143,8 @@ func testAtsApplicationsAllAtsApplicationsAll0(w http.ResponseWriter, req *http.
 			},
 			components.Application{
 				ID:          types.String("12345"),
-				ApplicantID: types.String("12345"),
-				JobID:       types.String("12345"),
+				ApplicantID: optionalnullable.From(types.String("12345")),
+				JobID:       optionalnullable.From(types.String("12345")),
 				Status:      optionalnullable.From(components.ApplicationStatusOpen.ToPointer()),
 				Stage: &components.ApplicationStage{
 					ID:   optionalnullable.From(types.String("12345")),

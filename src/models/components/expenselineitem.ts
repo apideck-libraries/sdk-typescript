@@ -4,7 +4,10 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import {
+  collectExtraKeys as collectExtraKeys$,
+  safeParse,
+} from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -84,7 +87,7 @@ export type ExpenseLineItem = {
   /**
    * The total amount of the expense line item.
    */
-  totalAmount: number | null;
+  totalAmount?: number | null | undefined;
   /**
    * Tax amount
    */
@@ -100,6 +103,7 @@ export type ExpenseLineItem = {
    * Rebilling metadata for this line item.
    */
   rebilling?: Rebilling | null | undefined;
+  additionalProperties?: { [k: string]: any } | undefined;
 };
 
 /** @internal */
@@ -107,30 +111,34 @@ export const ExpenseLineItem$inboundSchema: z.ZodType<
   ExpenseLineItem,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  id: types.optional(types.string()),
-  tracking_categories: z.nullable(
-    z.array(types.nullable(LinkedTrackingCategory$inboundSchema)),
-  ).optional(),
-  account_id: types.optional(types.string()),
-  account: z.nullable(LinkedLedgerAccount$inboundSchema).optional(),
-  customer_id: types.optional(types.string()),
-  customer: z.nullable(LinkedCustomer$inboundSchema).optional(),
-  department_id: z.nullable(types.string()).optional(),
-  department: z.nullable(LinkedDepartment$inboundSchema).optional(),
-  location_id: z.nullable(types.string()).optional(),
-  location: z.nullable(LinkedLocation$inboundSchema).optional(),
-  tax_rate: types.optional(LinkedTaxRate$inboundSchema),
-  description: z.nullable(types.string()).optional(),
-  type: z.nullable(LineItemType$inboundSchema).optional(),
-  total_amount: types.nullable(types.number()),
-  tax_amount: z.nullable(types.number()).optional(),
-  quantity: z.nullable(types.number()).optional(),
-  unit_price: z.nullable(types.number()).optional(),
-  item: types.optional(LinkedInvoiceItem$inboundSchema),
-  line_number: z.nullable(types.number()).optional(),
-  rebilling: z.nullable(Rebilling$inboundSchema).optional(),
-}).transform((v) => {
+> = collectExtraKeys$(
+  z.object({
+    id: types.optional(types.string()),
+    tracking_categories: z.nullable(
+      z.array(types.nullable(LinkedTrackingCategory$inboundSchema)),
+    ).optional(),
+    account_id: types.optional(types.string()),
+    account: z.nullable(LinkedLedgerAccount$inboundSchema).optional(),
+    customer_id: types.optional(types.string()),
+    customer: z.nullable(LinkedCustomer$inboundSchema).optional(),
+    department_id: z.nullable(types.string()).optional(),
+    department: z.nullable(LinkedDepartment$inboundSchema).optional(),
+    location_id: z.nullable(types.string()).optional(),
+    location: z.nullable(LinkedLocation$inboundSchema).optional(),
+    tax_rate: types.optional(LinkedTaxRate$inboundSchema),
+    description: z.nullable(types.string()).optional(),
+    type: z.nullable(LineItemType$inboundSchema).optional(),
+    total_amount: z.nullable(types.number()).optional(),
+    tax_amount: z.nullable(types.number()).optional(),
+    quantity: z.nullable(types.number()).optional(),
+    unit_price: z.nullable(types.number()).optional(),
+    item: types.optional(LinkedInvoiceItem$inboundSchema),
+    line_number: z.nullable(types.number()).optional(),
+    rebilling: z.nullable(Rebilling$inboundSchema).optional(),
+  }).catchall(z.any()),
+  "additionalProperties",
+  true,
+).transform((v) => {
   return remap$(v, {
     "tracking_categories": "trackingCategories",
     "account_id": "accountId",

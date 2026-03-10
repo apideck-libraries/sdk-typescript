@@ -9,13 +9,8 @@ import { OpenEnum } from "../../types/enums.js";
 
 export const ExpensesFilterStatus = {
   Draft: "draft",
-  PendingApproval: "pending_approval",
-  Approved: "approved",
   Posted: "posted",
   Voided: "voided",
-  Rejected: "rejected",
-  Deleted: "deleted",
-  Other: "other",
 } as const;
 export type ExpensesFilterStatus = OpenEnum<typeof ExpensesFilterStatus>;
 

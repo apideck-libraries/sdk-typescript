@@ -29,6 +29,7 @@ const apideck = new Apideck({
 async function run() {
   const result = await apideck.accounting.customers.list({
     serviceId: "salesforce",
+    companyId: "12345",
     filter: {
       companyName: "SpaceX",
       displayName: "Elon Musk",
@@ -76,6 +77,7 @@ const apideck = new ApideckCore({
 async function run() {
   const res = await accountingCustomersList(apideck, {
     serviceId: "salesforce",
+    companyId: "12345",
     filter: {
       companyName: "SpaceX",
       displayName: "Elon Musk",
@@ -151,6 +153,7 @@ const apideck = new Apideck({
 async function run() {
   const result = await apideck.accounting.customers.create({
     serviceId: "salesforce",
+    companyId: "12345",
     customer: {
       displayId: "EMP00101",
       displayName: "Windsurf Shop",
@@ -344,6 +347,7 @@ const apideck = new ApideckCore({
 async function run() {
   const res = await accountingCustomersCreate(apideck, {
     serviceId: "salesforce",
+    companyId: "12345",
     customer: {
       displayId: "EMP00101",
       displayName: "Windsurf Shop",
@@ -566,6 +570,7 @@ async function run() {
   const result = await apideck.accounting.customers.get({
     id: "<id>",
     serviceId: "salesforce",
+    companyId: "12345",
     fields: "id,updated_at",
   });
 
@@ -595,6 +600,7 @@ async function run() {
   const res = await accountingCustomersGet(apideck, {
     id: "<id>",
     serviceId: "salesforce",
+    companyId: "12345",
     fields: "id,updated_at",
   });
   if (res.ok) {

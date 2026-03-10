@@ -55,10 +55,10 @@ func testSmsMessagesOneSmsMessagesOne0(w http.ResponseWriter, req *http.Request)
 		Operation:  "one",
 		Data: components.Message{
 			ID:                 types.String("12345"),
-			From:               "+15017122661",
-			To:                 "+15017122662",
+			From:               types.String("+15017122661"),
+			To:                 types.String("+15017122662"),
 			Subject:            types.String("Picture"),
-			Body:               "Hi! How are you doing?",
+			Body:               types.String("Hi! How are you doing?"),
 			Type:               components.MessageTypeSms.ToPointer(),
 			NumberOfUnits:      types.Int64(1),
 			NumberOfMediaFiles: types.Int64(1),

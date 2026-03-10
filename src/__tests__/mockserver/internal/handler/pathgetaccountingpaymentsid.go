@@ -54,11 +54,11 @@ func testAccountingPaymentsOneAccountingPaymentsOne0(w http.ResponseWriter, req 
 		Resource:   "payments",
 		Operation:  "one",
 		Data: components.Payment{
-			ID:                     "12345",
+			ID:                     types.String("12345"),
 			DownstreamID:           optionalnullable.From(types.String("12345")),
 			Currency:               optionalnullable.From(components.CurrencyUsd.ToPointer()),
 			CurrencyRate:           optionalnullable.From(types.Float64(0.69)),
-			TotalAmount:            types.Float64(49.99),
+			TotalAmount:            optionalnullable.From(types.Float64(49.99)),
 			Reference:              optionalnullable.From(types.String("123456")),
 			PaymentMethod:          optionalnullable.From(types.String("cash")),
 			PaymentMethodReference: optionalnullable.From(types.String("123456")),
@@ -69,7 +69,7 @@ func testAccountingPaymentsOneAccountingPaymentsOne0(w http.ResponseWriter, req 
 				NominalCode: optionalnullable.From(types.String("N091")),
 				Code:        optionalnullable.From(types.String("453")),
 			}),
-			TransactionDate: types.MustNewTimeFromString("2021-05-01T12:00:00.000Z"),
+			TransactionDate: optionalnullable.From(types.MustNewTimeFromString("2021-05-01T12:00:00.000Z")),
 			Customer: optionalnullable.From(&components.LinkedCustomer{
 				ID:          types.String("12345"),
 				DisplayID:   optionalnullable.From(types.String("CUST00101")),
@@ -113,29 +113,25 @@ func testAccountingPaymentsOneAccountingPaymentsOne0(w http.ResponseWriter, req 
 					Name: optionalnullable.From(types.String("New York")),
 				},
 			})),
-			CustomFields: []components.CustomFieldUnion{
-				components.CreateCustomFieldUnionCustomField1(
-					components.CustomField1{
-						ID:          types.String("2389328923893298"),
-						Name:        optionalnullable.From(types.String("employee_level")),
-						Description: optionalnullable.From(types.String("Employee Level")),
-						Value: optionalnullable.From(types.Pointer(components.CreateCustomFieldValue2MapOfAny(
-							map[string]any{},
-						))),
-					},
-				),
-				components.CreateCustomFieldUnionCustomField1(
-					components.CustomField1{
-						ID:          types.String("2389328923893298"),
-						Name:        optionalnullable.From(types.String("employee_level")),
-						Description: optionalnullable.From(types.String("Employee Level")),
-						Value: optionalnullable.From(types.Pointer(components.CreateCustomFieldValue2MapOfAny(
-							map[string]any{
-								"0": map[string]any{},
-							},
-						))),
-					},
-				),
+			CustomFields: []components.CustomField{
+				components.CustomField{
+					ID:          optionalnullable.From(types.String("2389328923893298")),
+					Name:        optionalnullable.From(types.String("employee_level")),
+					Description: optionalnullable.From(types.String("Employee Level")),
+					Value: optionalnullable.From(types.Pointer(components.CreateCustomFieldValue2MapOfAny(
+						map[string]any{},
+					))),
+				},
+				components.CustomField{
+					ID:          optionalnullable.From(types.String("2389328923893298")),
+					Name:        optionalnullable.From(types.String("employee_level")),
+					Description: optionalnullable.From(types.String("Employee Level")),
+					Value: optionalnullable.From(types.Pointer(components.CreateCustomFieldValue2MapOfAny(
+						map[string]any{
+							"0": map[string]any{},
+						},
+					))),
+				},
 			},
 			RowVersion: optionalnullable.From(types.String("1-12345")),
 			DisplayID:  optionalnullable.From(types.String("123456")),

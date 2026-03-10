@@ -4,7 +4,10 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import {
+  collectExtraKeys as collectExtraKeys$,
+  safeParse,
+} from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
@@ -57,6 +60,7 @@ export type BalanceByTransaction = {
    * Transaction number of the transaction.
    */
   transactionNumber?: string | undefined;
+  additionalProperties?: { [k: string]: any } | undefined;
 };
 
 /** @internal */
@@ -71,17 +75,21 @@ export const BalanceByTransaction$inboundSchema: z.ZodType<
   BalanceByTransaction,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  transaction_id: types.optional(types.string()),
-  transaction_date: types.optional(types.date()),
-  transaction_type: types.optional(
-    BalanceByTransactionTransactionType$inboundSchema,
-  ),
-  due_date: types.optional(types.date()),
-  original_amount: types.optional(types.number()),
-  outstanding_balance: types.optional(types.number()),
-  transaction_number: types.optional(types.string()),
-}).transform((v) => {
+> = collectExtraKeys$(
+  z.object({
+    transaction_id: types.optional(types.string()),
+    transaction_date: types.optional(types.date()),
+    transaction_type: types.optional(
+      BalanceByTransactionTransactionType$inboundSchema,
+    ),
+    due_date: types.optional(types.date()),
+    original_amount: types.optional(types.number()),
+    outstanding_balance: types.optional(types.number()),
+    transaction_number: types.optional(types.string()),
+  }).catchall(z.any()),
+  "additionalProperties",
+  true,
+).transform((v) => {
   return remap$(v, {
     "transaction_id": "transactionId",
     "transaction_date": "transactionDate",

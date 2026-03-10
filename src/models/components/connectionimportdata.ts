@@ -22,6 +22,7 @@ export type Credentials = {
    * The number of seconds until the token expires. If omitted the token will be queued for refresh.
    */
   expiresIn?: number | null | undefined;
+  additionalProperties?: { [k: string]: any } | undefined;
 };
 
 export type ConnectionImportData = {
@@ -42,6 +43,7 @@ export type Credentials$Outbound = {
   access_token?: string | undefined;
   issued_at?: string | null | undefined;
   expires_in?: number | null | undefined;
+  [additionalProperties: string]: unknown;
 };
 
 /** @internal */
@@ -54,13 +56,18 @@ export const Credentials$outboundSchema: z.ZodType<
   accessToken: z.string().optional(),
   issuedAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
   expiresIn: z.nullable(z.number().int()).optional(),
+  additionalProperties: z.record(z.any()).optional(),
 }).transform((v) => {
-  return remap$(v, {
-    refreshToken: "refresh_token",
-    accessToken: "access_token",
-    issuedAt: "issued_at",
-    expiresIn: "expires_in",
-  });
+  return {
+    ...v.additionalProperties,
+    ...remap$(v, {
+      refreshToken: "refresh_token",
+      accessToken: "access_token",
+      issuedAt: "issued_at",
+      expiresIn: "expires_in",
+      additionalProperties: null,
+    }),
+  };
 });
 
 export function credentialsToJSON(credentials: Credentials): string {

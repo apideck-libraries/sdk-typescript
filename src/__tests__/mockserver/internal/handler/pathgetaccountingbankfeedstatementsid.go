@@ -54,7 +54,7 @@ func testAccountingBankFeedStatementsOneAccountingBankFeedStatementsOne0(w http.
 		Resource:   "bank-feed-statements",
 		Operation:  "one",
 		Data: components.BankFeedStatement{
-			ID:                        "12345",
+			ID:                        types.String("12345"),
 			BankFeedAccountID:         types.String("acc_456"),
 			Status:                    components.StatementStatusPending.ToPointer(),
 			StartDate:                 types.MustNewTimeFromString("2021-05-01T12:00:00.000Z"),

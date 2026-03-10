@@ -82,7 +82,7 @@ export type UserInput = {
   password?: string | null | undefined;
   addresses?: Array<Address> | undefined;
   phoneNumbers?: Array<PhoneNumber> | undefined;
-  emails: Array<Email>;
+  emails?: Array<Email> | undefined;
   /**
    * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
    */
@@ -107,7 +107,7 @@ export type UserInput$Outbound = {
   password?: string | null | undefined;
   addresses?: Array<Address$Outbound> | undefined;
   phone_numbers?: Array<PhoneNumber$Outbound> | undefined;
-  emails: Array<Email$Outbound>;
+  emails?: Array<Email$Outbound> | undefined;
   pass_through?: Array<PassThroughBody$Outbound> | undefined;
 };
 
@@ -133,7 +133,7 @@ export const UserInput$outboundSchema: z.ZodType<
   password: z.nullable(z.string()).optional(),
   addresses: z.array(Address$outboundSchema).optional(),
   phoneNumbers: z.array(PhoneNumber$outboundSchema).optional(),
-  emails: z.array(Email$outboundSchema),
+  emails: z.array(Email$outboundSchema).optional(),
   passThrough: z.array(PassThroughBody$outboundSchema).optional(),
 }).transform((v) => {
   return remap$(v, {

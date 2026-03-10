@@ -4,32 +4,45 @@ package components
 
 import (
 	"mockserver/internal/sdk/optionalnullable"
+	"mockserver/internal/sdk/utils"
 )
 
 type Payroll struct {
 	// A unique identifier for an object.
-	ID *string `json:"id"`
+	ID optionalnullable.OptionalNullable[string] `json:"id,omitempty"`
 	// The unique identifier of the company.
 	CompanyID optionalnullable.OptionalNullable[string] `json:"company_id,omitempty"`
 	// Whether or not the payroll has been successfully processed. Note that processed payrolls cannot be updated.
-	Processed *bool `json:"processed"`
+	Processed optionalnullable.OptionalNullable[bool] `json:"processed,omitempty"`
 	// The date the payroll was processed.
 	ProcessedDate optionalnullable.OptionalNullable[string] `json:"processed_date,omitempty"`
 	// The date on which employees will be paid for the payroll.
-	CheckDate *string `json:"check_date"`
+	CheckDate optionalnullable.OptionalNullable[string] `json:"check_date,omitempty"`
 	// The start date, inclusive, of the pay period.
-	StartDate *string `json:"start_date"`
+	StartDate optionalnullable.OptionalNullable[string] `json:"start_date,omitempty"`
 	// The end date, inclusive, of the pay period.
-	EndDate *string `json:"end_date"`
+	EndDate optionalnullable.OptionalNullable[string] `json:"end_date,omitempty"`
 	// The overview of the payroll totals.
 	Totals *PayrollTotals `json:"totals,omitempty"`
 	// An array of compensations for the payroll.
 	Compensations []Compensation `json:"compensations,omitempty"`
 	// When custom mappings are configured on the resource, the result is included here.
-	CustomMappings optionalnullable.OptionalNullable[map[string]any] `json:"custom_mappings,omitempty"`
+	CustomMappings       optionalnullable.OptionalNullable[map[string]any] `json:"custom_mappings,omitempty"`
+	AdditionalProperties map[string]any                                    `additionalProperties:"true" json:"-"`
 }
 
-func (o *Payroll) GetID() *string {
+func (p Payroll) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(p, "", false)
+}
+
+func (p *Payroll) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &p, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (o *Payroll) GetID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -43,7 +56,7 @@ func (o *Payroll) GetCompanyID() optionalnullable.OptionalNullable[string] {
 	return o.CompanyID
 }
 
-func (o *Payroll) GetProcessed() *bool {
+func (o *Payroll) GetProcessed() optionalnullable.OptionalNullable[bool] {
 	if o == nil {
 		return nil
 	}
@@ -57,21 +70,21 @@ func (o *Payroll) GetProcessedDate() optionalnullable.OptionalNullable[string] {
 	return o.ProcessedDate
 }
 
-func (o *Payroll) GetCheckDate() *string {
+func (o *Payroll) GetCheckDate() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.CheckDate
 }
 
-func (o *Payroll) GetStartDate() *string {
+func (o *Payroll) GetStartDate() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.StartDate
 }
 
-func (o *Payroll) GetEndDate() *string {
+func (o *Payroll) GetEndDate() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -97,4 +110,11 @@ func (o *Payroll) GetCustomMappings() optionalnullable.OptionalNullable[map[stri
 		return nil
 	}
 	return o.CustomMappings
+}
+
+func (o *Payroll) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }

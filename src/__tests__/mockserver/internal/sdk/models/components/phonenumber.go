@@ -4,6 +4,7 @@ package components
 
 import (
 	"mockserver/internal/sdk/optionalnullable"
+	"mockserver/internal/sdk/utils"
 )
 
 // PhoneNumberType - The type of phone number
@@ -36,11 +37,23 @@ type PhoneNumber struct {
 	// The area code of the phone number, e.g. 323
 	AreaCode optionalnullable.OptionalNullable[string] `json:"area_code,omitempty"`
 	// The phone number
-	Number string `json:"number"`
+	Number *string `json:"number,omitempty"`
 	// The extension of the phone number
 	Extension optionalnullable.OptionalNullable[string] `json:"extension,omitempty"`
 	// The type of phone number
-	Type optionalnullable.OptionalNullable[PhoneNumberType] `json:"type,omitempty"`
+	Type                 optionalnullable.OptionalNullable[PhoneNumberType] `json:"type,omitempty"`
+	AdditionalProperties map[string]any                                     `additionalProperties:"true" json:"-"`
+}
+
+func (p PhoneNumber) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(p, "", false)
+}
+
+func (p *PhoneNumber) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &p, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *PhoneNumber) GetID() optionalnullable.OptionalNullable[string] {
@@ -64,9 +77,9 @@ func (o *PhoneNumber) GetAreaCode() optionalnullable.OptionalNullable[string] {
 	return o.AreaCode
 }
 
-func (o *PhoneNumber) GetNumber() string {
+func (o *PhoneNumber) GetNumber() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.Number
 }
@@ -83,4 +96,11 @@ func (o *PhoneNumber) GetType() optionalnullable.OptionalNullable[PhoneNumberTyp
 		return nil
 	}
 	return o.Type
+}
+
+func (o *PhoneNumber) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }

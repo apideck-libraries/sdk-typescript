@@ -226,7 +226,7 @@ func (o *EcommerceProductCategory) GetName() optionalnullable.OptionalNullable[s
 
 type EcommerceProduct struct {
 	// A unique identifier for an object.
-	ID string `json:"id"`
+	ID *string `json:"id,omitempty"`
 	// The name of the product as it should be displayed to customers.
 	Name optionalnullable.OptionalNullable[string] `json:"name,omitempty"`
 	// A detailed description of the product.
@@ -257,7 +257,8 @@ type EcommerceProduct struct {
 	// The date and time when the object was created.
 	CreatedAt optionalnullable.OptionalNullable[time.Time] `json:"created_at,omitempty"`
 	// The date and time when the object was last updated.
-	UpdatedAt optionalnullable.OptionalNullable[time.Time] `json:"updated_at,omitempty"`
+	UpdatedAt            optionalnullable.OptionalNullable[time.Time] `json:"updated_at,omitempty"`
+	AdditionalProperties map[string]any                               `additionalProperties:"true" json:"-"`
 }
 
 func (e EcommerceProduct) MarshalJSON() ([]byte, error) {
@@ -265,15 +266,15 @@ func (e EcommerceProduct) MarshalJSON() ([]byte, error) {
 }
 
 func (e *EcommerceProduct) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &e, "", false, []string{"id"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &e, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *EcommerceProduct) GetID() string {
+func (o *EcommerceProduct) GetID() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.ID
 }
@@ -388,4 +389,11 @@ func (o *EcommerceProduct) GetUpdatedAt() optionalnullable.OptionalNullable[time
 		return nil
 	}
 	return o.UpdatedAt
+}
+
+func (o *EcommerceProduct) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }

@@ -127,7 +127,6 @@ test("Users Crm Users All", async () => {
             type: "primary",
           },
         ],
-        emails: [],
         updatedAt: "2017-08-12T20:43:21.291Z",
         createdAt: "2017-08-12T20:43:21.291Z",
         passThrough: [
@@ -232,7 +231,6 @@ test("Users Crm Users All", async () => {
             type: "primary",
           },
         ],
-        emails: [],
         updatedAt: "2017-08-12T20:43:21.291Z",
         createdAt: "2017-08-12T20:43:21.291Z",
         passThrough: [
@@ -379,7 +377,6 @@ test("Users Crm Users All", async () => {
             type: "primary",
           },
         ],
-        emails: [],
         updatedAt: "2017-08-12T20:43:21.291Z",
         createdAt: "2017-08-12T20:43:21.291Z",
         passThrough: [

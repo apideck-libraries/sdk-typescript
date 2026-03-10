@@ -25,7 +25,7 @@ func (e SupplierStatus) ToPointer() *SupplierStatus {
 
 type Supplier struct {
 	// A unique identifier for an object.
-	ID string `json:"id"`
+	ID *string `json:"id,omitempty"`
 	// The third-party API ID of original entity
 	DownstreamID optionalnullable.OptionalNullable[string] `json:"downstream_id,omitempty"`
 	// Display ID
@@ -69,6 +69,8 @@ type Supplier struct {
 	PaymentMethod optionalnullable.OptionalNullable[string] `json:"payment_method,omitempty"`
 	// Terms of payment.
 	Terms optionalnullable.OptionalNullable[string] `json:"terms,omitempty"`
+	// The ID of the payment terms
+	TermsID optionalnullable.OptionalNullable[string] `json:"terms_id,omitempty"`
 	// The channel through which the transaction is processed.
 	Channel optionalnullable.OptionalNullable[string] `json:"channel,omitempty"`
 	// Method of issuance of the purchase order for the supplier
@@ -77,7 +79,7 @@ type Supplier struct {
 	IssuedEmail optionalnullable.OptionalNullable[string] `json:"issued_email,omitempty"`
 	// When custom mappings are configured on the resource, the result is included here.
 	CustomMappings   optionalnullable.OptionalNullable[map[string]any] `json:"custom_mappings,omitempty"`
-	CustomFields     []CustomFieldUnion                                `json:"custom_fields,omitempty"`
+	CustomFields     []CustomField                                     `json:"custom_fields,omitempty"`
 	TaxDetails       []*LinkedTaxDetail                                `json:"tax_details,omitempty"`
 	TaxStatusDetails []*LinkedTaxStatusDetail                          `json:"tax_status_details,omitempty"`
 	// The user who last updated the object.
@@ -95,7 +97,8 @@ type Supplier struct {
 	// The subsidiary the supplier belongs to.
 	SubsidiaryID *string `json:"subsidiary_id,omitempty"`
 	// The integration system the supplier belongs to.
-	IntegrationSystemID *string `json:"integration_system_id,omitempty"`
+	IntegrationSystemID  *string        `json:"integration_system_id,omitempty"`
+	AdditionalProperties map[string]any `additionalProperties:"true" json:"-"`
 }
 
 func (s Supplier) MarshalJSON() ([]byte, error) {
@@ -103,15 +106,15 @@ func (s Supplier) MarshalJSON() ([]byte, error) {
 }
 
 func (s *Supplier) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &s, "", false, []string{"id"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &s, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *Supplier) GetID() string {
+func (o *Supplier) GetID() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.ID
 }
@@ -298,6 +301,13 @@ func (o *Supplier) GetTerms() optionalnullable.OptionalNullable[string] {
 	return o.Terms
 }
 
+func (o *Supplier) GetTermsID() optionalnullable.OptionalNullable[string] {
+	if o == nil {
+		return nil
+	}
+	return o.TermsID
+}
+
 func (o *Supplier) GetChannel() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
@@ -326,7 +336,7 @@ func (o *Supplier) GetCustomMappings() optionalnullable.OptionalNullable[map[str
 	return o.CustomMappings
 }
 
-func (o *Supplier) GetCustomFields() []CustomFieldUnion {
+func (o *Supplier) GetCustomFields() []CustomField {
 	if o == nil {
 		return nil
 	}
@@ -403,6 +413,13 @@ func (o *Supplier) GetIntegrationSystemID() *string {
 	return o.IntegrationSystemID
 }
 
+func (o *Supplier) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
+}
+
 type SupplierInput struct {
 	// Display ID
 	DisplayID optionalnullable.OptionalNullable[string] `json:"display_id,omitempty"`
@@ -445,13 +462,15 @@ type SupplierInput struct {
 	PaymentMethod optionalnullable.OptionalNullable[string] `json:"payment_method,omitempty"`
 	// Terms of payment.
 	Terms optionalnullable.OptionalNullable[string] `json:"terms,omitempty"`
+	// The ID of the payment terms
+	TermsID optionalnullable.OptionalNullable[string] `json:"terms_id,omitempty"`
 	// The channel through which the transaction is processed.
 	Channel optionalnullable.OptionalNullable[string] `json:"channel,omitempty"`
 	// Method of issuance of the purchase order for the supplier
 	IssuedMethod optionalnullable.OptionalNullable[string] `json:"issued_method,omitempty"`
 	// Email address of the person who issued the purchase order for the supplier
 	IssuedEmail      optionalnullable.OptionalNullable[string] `json:"issued_email,omitempty"`
-	CustomFields     []CustomFieldUnion                        `json:"custom_fields,omitempty"`
+	CustomFields     []CustomField                             `json:"custom_fields,omitempty"`
 	TaxDetails       []*LinkedTaxDetail                        `json:"tax_details,omitempty"`
 	TaxStatusDetails []*LinkedTaxStatusDetail                  `json:"tax_status_details,omitempty"`
 	// A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
@@ -461,7 +480,19 @@ type SupplierInput struct {
 	// The subsidiary the supplier belongs to.
 	SubsidiaryID *string `json:"subsidiary_id,omitempty"`
 	// The integration system the supplier belongs to.
-	IntegrationSystemID *string `json:"integration_system_id,omitempty"`
+	IntegrationSystemID  *string        `json:"integration_system_id,omitempty"`
+	AdditionalProperties map[string]any `additionalProperties:"true" json:"-"`
+}
+
+func (s SupplierInput) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(s, "", false)
+}
+
+func (s *SupplierInput) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &s, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *SupplierInput) GetDisplayID() optionalnullable.OptionalNullable[string] {
@@ -639,6 +670,13 @@ func (o *SupplierInput) GetTerms() optionalnullable.OptionalNullable[string] {
 	return o.Terms
 }
 
+func (o *SupplierInput) GetTermsID() optionalnullable.OptionalNullable[string] {
+	if o == nil {
+		return nil
+	}
+	return o.TermsID
+}
+
 func (o *SupplierInput) GetChannel() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
@@ -660,7 +698,7 @@ func (o *SupplierInput) GetIssuedEmail() optionalnullable.OptionalNullable[strin
 	return o.IssuedEmail
 }
 
-func (o *SupplierInput) GetCustomFields() []CustomFieldUnion {
+func (o *SupplierInput) GetCustomFields() []CustomField {
 	if o == nil {
 		return nil
 	}
@@ -707,4 +745,11 @@ func (o *SupplierInput) GetIntegrationSystemID() *string {
 		return nil
 	}
 	return o.IntegrationSystemID
+}
+
+func (o *SupplierInput) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }

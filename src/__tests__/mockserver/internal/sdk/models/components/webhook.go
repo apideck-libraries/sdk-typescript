@@ -27,21 +27,22 @@ type Webhook struct {
 	// A description of the object.
 	Description optionalnullable.OptionalNullable[string] `json:"description,omitempty"`
 	// Name of Apideck Unified API
-	UnifiedAPI UnifiedAPIID `json:"unified_api"`
+	UnifiedAPI *UnifiedAPIID `json:"unified_api,omitempty"`
 	// The status of the webhook.
-	Status Status `json:"status"`
+	Status *Status `json:"status,omitempty"`
 	// Indicates why the webhook has been disabled. `retry_limit`: webhook reached its retry limit. `usage_limit`: account is over its usage limit. `delivery_url_validation_failed`: delivery URL failed validation during webhook creation or update.
 	DisabledReason *DisabledReason `json:"disabled_reason,omitempty"`
 	// The delivery url of the webhook endpoint.
-	DeliveryURL string `json:"delivery_url"`
+	DeliveryURL *string `json:"delivery_url,omitempty"`
 	// The Unify Base URL events from connectors will be sent to after service id is appended.
-	ExecuteBaseURL string `json:"execute_base_url"`
+	ExecuteBaseURL *string `json:"execute_base_url,omitempty"`
 	// The list of subscribed events for this webhook. [`*`] indicates that all events are enabled.
-	Events []WebhookEventType `json:"events"`
+	Events []WebhookEventType `json:"events,omitempty"`
 	// The date and time when the object was last updated.
 	UpdatedAt optionalnullable.OptionalNullable[time.Time] `json:"updated_at,omitempty"`
 	// The date and time when the object was created.
-	CreatedAt optionalnullable.OptionalNullable[time.Time] `json:"created_at,omitempty"`
+	CreatedAt            optionalnullable.OptionalNullable[time.Time] `json:"created_at,omitempty"`
+	AdditionalProperties map[string]any                               `additionalProperties:"true" json:"-"`
 }
 
 func (w Webhook) MarshalJSON() ([]byte, error) {
@@ -49,7 +50,7 @@ func (w Webhook) MarshalJSON() ([]byte, error) {
 }
 
 func (w *Webhook) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &w, "", false, []string{"unified_api", "status", "delivery_url", "execute_base_url", "events"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &w, "", false, nil); err != nil {
 		return err
 	}
 	return nil
@@ -69,16 +70,16 @@ func (o *Webhook) GetDescription() optionalnullable.OptionalNullable[string] {
 	return o.Description
 }
 
-func (o *Webhook) GetUnifiedAPI() UnifiedAPIID {
+func (o *Webhook) GetUnifiedAPI() *UnifiedAPIID {
 	if o == nil {
-		return UnifiedAPIID("")
+		return nil
 	}
 	return o.UnifiedAPI
 }
 
-func (o *Webhook) GetStatus() Status {
+func (o *Webhook) GetStatus() *Status {
 	if o == nil {
-		return Status("")
+		return nil
 	}
 	return o.Status
 }
@@ -90,23 +91,23 @@ func (o *Webhook) GetDisabledReason() *DisabledReason {
 	return o.DisabledReason
 }
 
-func (o *Webhook) GetDeliveryURL() string {
+func (o *Webhook) GetDeliveryURL() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.DeliveryURL
 }
 
-func (o *Webhook) GetExecuteBaseURL() string {
+func (o *Webhook) GetExecuteBaseURL() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.ExecuteBaseURL
 }
 
 func (o *Webhook) GetEvents() []WebhookEventType {
 	if o == nil {
-		return []WebhookEventType{}
+		return nil
 	}
 	return o.Events
 }
@@ -123,4 +124,11 @@ func (o *Webhook) GetCreatedAt() optionalnullable.OptionalNullable[time.Time] {
 		return nil
 	}
 	return o.CreatedAt
+}
+
+func (o *Webhook) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }

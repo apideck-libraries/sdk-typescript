@@ -29,6 +29,7 @@ const apideck = new Apideck({
 async function run() {
   const result = await apideck.accounting.creditNotes.list({
     serviceId: "salesforce",
+    companyId: "12345",
     filter: {
       updatedSince: new Date("2020-09-30T07:43:32.000Z"),
     },
@@ -69,6 +70,7 @@ const apideck = new ApideckCore({
 async function run() {
   const res = await accountingCreditNotesList(apideck, {
     serviceId: "salesforce",
+    companyId: "12345",
     filter: {
       updatedSince: new Date("2020-09-30T07:43:32.000Z"),
     },
@@ -137,6 +139,7 @@ const apideck = new Apideck({
 async function run() {
   const result = await apideck.accounting.creditNotes.create({
     serviceId: "salesforce",
+    companyId: "12345",
     creditNote: {
       number: "OIT00546",
       customer: {
@@ -347,6 +350,7 @@ const apideck = new ApideckCore({
 async function run() {
   const res = await accountingCreditNotesCreate(apideck, {
     serviceId: "salesforce",
+    companyId: "12345",
     creditNote: {
       number: "OIT00546",
       customer: {
@@ -586,6 +590,7 @@ async function run() {
   const result = await apideck.accounting.creditNotes.get({
     id: "<id>",
     serviceId: "salesforce",
+    companyId: "12345",
     fields: "id,updated_at",
   });
 
@@ -615,6 +620,7 @@ async function run() {
   const res = await accountingCreditNotesGet(apideck, {
     id: "<id>",
     serviceId: "salesforce",
+    companyId: "12345",
     fields: "id,updated_at",
   });
   if (res.ok) {

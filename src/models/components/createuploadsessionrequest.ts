@@ -31,6 +31,7 @@ export type CreateUploadSessionRequest = {
    * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
    */
   passThrough?: Array<PassThroughBody> | undefined;
+  additionalProperties?: { [k: string]: any } | undefined;
 };
 
 /** @internal */
@@ -40,6 +41,7 @@ export type CreateUploadSessionRequest$Outbound = {
   drive_id?: string | undefined;
   size: number | null;
   pass_through?: Array<PassThroughBody$Outbound> | undefined;
+  [additionalProperties: string]: unknown;
 };
 
 /** @internal */
@@ -53,12 +55,17 @@ export const CreateUploadSessionRequest$outboundSchema: z.ZodType<
   driveId: z.string().optional(),
   size: z.nullable(z.number().int()),
   passThrough: z.array(PassThroughBody$outboundSchema).optional(),
+  additionalProperties: z.record(z.any()).optional(),
 }).transform((v) => {
-  return remap$(v, {
-    parentFolderId: "parent_folder_id",
-    driveId: "drive_id",
-    passThrough: "pass_through",
-  });
+  return {
+    ...v.additionalProperties,
+    ...remap$(v, {
+      parentFolderId: "parent_folder_id",
+      driveId: "drive_id",
+      passThrough: "pass_through",
+      additionalProperties: null,
+    }),
+  };
 });
 
 export function createUploadSessionRequestToJSON(

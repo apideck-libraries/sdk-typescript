@@ -4,7 +4,10 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import {
+  collectExtraKeys as collectExtraKeys$,
+  safeParse,
+} from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
@@ -93,6 +96,7 @@ export type TrackingCategory = {
    * The subsidiaries the account belongs to.
    */
   subsidiaries?: Array<TrackingCategorySubsidiaries> | undefined;
+  additionalProperties?: { [k: string]: any } | undefined;
 };
 
 export type TrackingCategoryInput = {
@@ -128,6 +132,7 @@ export type TrackingCategoryInput = {
    * The subsidiaries the account belongs to.
    */
   subsidiaries?: Array<TrackingCategorySubsidiaries> | undefined;
+  additionalProperties?: { [k: string]: any } | undefined;
 };
 
 /** @internal */
@@ -189,24 +194,28 @@ export const TrackingCategory$inboundSchema: z.ZodType<
   TrackingCategory,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  id: types.optional(types.string()),
-  parent_id: z.nullable(types.string()).optional(),
-  parent_name: z.nullable(types.string()).optional(),
-  name: types.optional(types.string()),
-  code: z.nullable(types.string()).optional(),
-  status: types.optional(TrackingCategoryStatus$inboundSchema),
-  custom_mappings: z.nullable(z.record(z.any())).optional(),
-  row_version: z.nullable(types.string()).optional(),
-  updated_by: z.nullable(types.string()).optional(),
-  created_by: z.nullable(types.string()).optional(),
-  updated_at: z.nullable(types.date()).optional(),
-  created_at: z.nullable(types.date()).optional(),
-  pass_through: types.optional(z.array(PassThroughBody$inboundSchema)),
-  subsidiaries: types.optional(
-    z.array(z.lazy(() => TrackingCategorySubsidiaries$inboundSchema)),
-  ),
-}).transform((v) => {
+> = collectExtraKeys$(
+  z.object({
+    id: types.optional(types.string()),
+    parent_id: z.nullable(types.string()).optional(),
+    parent_name: z.nullable(types.string()).optional(),
+    name: types.optional(types.string()),
+    code: z.nullable(types.string()).optional(),
+    status: types.optional(TrackingCategoryStatus$inboundSchema),
+    custom_mappings: z.nullable(z.record(z.any())).optional(),
+    row_version: z.nullable(types.string()).optional(),
+    updated_by: z.nullable(types.string()).optional(),
+    created_by: z.nullable(types.string()).optional(),
+    updated_at: z.nullable(types.date()).optional(),
+    created_at: z.nullable(types.date()).optional(),
+    pass_through: types.optional(z.array(PassThroughBody$inboundSchema)),
+    subsidiaries: types.optional(
+      z.array(z.lazy(() => TrackingCategorySubsidiaries$inboundSchema)),
+    ),
+  }).catchall(z.any()),
+  "additionalProperties",
+  true,
+).transform((v) => {
   return remap$(v, {
     "parent_id": "parentId",
     "parent_name": "parentName",
@@ -240,6 +249,7 @@ export type TrackingCategoryInput$Outbound = {
   row_version?: string | null | undefined;
   pass_through?: Array<PassThroughBody$Outbound> | undefined;
   subsidiaries?: Array<TrackingCategorySubsidiaries$Outbound> | undefined;
+  [additionalProperties: string]: unknown;
 };
 
 /** @internal */
@@ -258,13 +268,18 @@ export const TrackingCategoryInput$outboundSchema: z.ZodType<
   subsidiaries: z.array(
     z.lazy(() => TrackingCategorySubsidiaries$outboundSchema),
   ).optional(),
+  additionalProperties: z.record(z.any()).optional(),
 }).transform((v) => {
-  return remap$(v, {
-    parentId: "parent_id",
-    parentName: "parent_name",
-    rowVersion: "row_version",
-    passThrough: "pass_through",
-  });
+  return {
+    ...v.additionalProperties,
+    ...remap$(v, {
+      parentId: "parent_id",
+      parentName: "parent_name",
+      rowVersion: "row_version",
+      passThrough: "pass_through",
+      additionalProperties: null,
+    }),
+  };
 });
 
 export function trackingCategoryInputToJSON(

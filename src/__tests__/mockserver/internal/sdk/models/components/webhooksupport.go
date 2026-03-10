@@ -2,6 +2,10 @@
 
 package components
 
+import (
+	"mockserver/internal/sdk/utils"
+)
+
 // WebhookSupportMode - Mode of the webhook support.
 type WebhookSupportMode string
 
@@ -60,7 +64,19 @@ type RequestRate struct {
 	// Size of request window.
 	Size int64 `json:"size"`
 	// The window unit for the rate.
-	Unit Unit `json:"unit"`
+	Unit                 Unit           `json:"unit"`
+	AdditionalProperties map[string]any `additionalProperties:"true" json:"-"`
+}
+
+func (r RequestRate) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(r, "", false)
+}
+
+func (r *RequestRate) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &r, "", false, []string{"rate", "size", "unit"}); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *RequestRate) GetRate() int64 {
@@ -84,6 +100,13 @@ func (o *RequestRate) GetUnit() Unit {
 	return o.Unit
 }
 
+func (o *RequestRate) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
+}
+
 type WebhookSupportResources struct {
 	Events []string `json:"events,omitempty"`
 }
@@ -100,7 +123,19 @@ type VirtualWebhooks struct {
 	// The rate at which requests for resources will be made to downstream.
 	RequestRate RequestRate `json:"request_rate"`
 	// The resources that will be requested from downstream.
-	Resources map[string]WebhookSupportResources `json:"resources,omitempty"`
+	Resources            map[string]WebhookSupportResources `json:"resources,omitempty"`
+	AdditionalProperties map[string]any                     `additionalProperties:"true" json:"-"`
+}
+
+func (v VirtualWebhooks) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(v, "", false)
+}
+
+func (v *VirtualWebhooks) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &v, "", false, []string{"request_rate"}); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *VirtualWebhooks) GetRequestRate() RequestRate {
@@ -115,6 +150,13 @@ func (o *VirtualWebhooks) GetResources() map[string]WebhookSupportResources {
 		return nil
 	}
 	return o.Resources
+}
+
+func (o *VirtualWebhooks) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }
 
 // WebhookSupport - How webhooks are supported for the connector. Sometimes the connector natively supports webhooks, other times Apideck virtualizes them based on polling.

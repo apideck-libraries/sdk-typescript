@@ -4,6 +4,7 @@ package components
 
 import (
 	"mockserver/internal/sdk/optionalnullable"
+	"mockserver/internal/sdk/utils"
 )
 
 // LinkedEcommerceOrder - The order this entity is linked to.
@@ -13,7 +14,19 @@ type LinkedEcommerceOrder struct {
 	// The total amount of the order.
 	Total optionalnullable.OptionalNullable[string] `json:"total,omitempty"`
 	// Current status of the order.
-	Status optionalnullable.OptionalNullable[EcommerceOrderStatus] `json:"status,omitempty"`
+	Status               optionalnullable.OptionalNullable[EcommerceOrderStatus] `json:"status,omitempty"`
+	AdditionalProperties map[string]any                                          `additionalProperties:"true" json:"-"`
+}
+
+func (l LinkedEcommerceOrder) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(l, "", false)
+}
+
+func (l *LinkedEcommerceOrder) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &l, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *LinkedEcommerceOrder) GetID() *string {
@@ -35,4 +48,11 @@ func (o *LinkedEcommerceOrder) GetStatus() optionalnullable.OptionalNullable[Eco
 		return nil
 	}
 	return o.Status
+}
+
+func (o *LinkedEcommerceOrder) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }

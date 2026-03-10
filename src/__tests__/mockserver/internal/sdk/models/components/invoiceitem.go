@@ -158,7 +158,8 @@ type InvoiceItem struct {
 	// The date and time when the object was created.
 	CreatedAt optionalnullable.OptionalNullable[time.Time] `json:"created_at,omitempty"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
-	PassThrough []PassThroughBody `json:"pass_through,omitempty"`
+	PassThrough          []PassThroughBody `json:"pass_through,omitempty"`
+	AdditionalProperties map[string]any    `additionalProperties:"true" json:"-"`
 }
 
 func (i InvoiceItem) MarshalJSON() ([]byte, error) {
@@ -410,6 +411,13 @@ func (o *InvoiceItem) GetPassThrough() []PassThroughBody {
 	return o.PassThrough
 }
 
+func (o *InvoiceItem) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
+}
+
 type SalesDetailsInput struct {
 	UnitPrice optionalnullable.OptionalNullable[float64] `json:"unit_price,omitempty"`
 	// Description of the unit type the item is sold as, ie: kg, hour.
@@ -532,7 +540,8 @@ type InvoiceItemInput struct {
 	// A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
 	RowVersion optionalnullable.OptionalNullable[string] `json:"row_version,omitempty"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
-	PassThrough []PassThroughBody `json:"pass_through,omitempty"`
+	PassThrough          []PassThroughBody `json:"pass_through,omitempty"`
+	AdditionalProperties map[string]any    `additionalProperties:"true" json:"-"`
 }
 
 func (i InvoiceItemInput) MarshalJSON() ([]byte, error) {
@@ -740,4 +749,11 @@ func (o *InvoiceItemInput) GetPassThrough() []PassThroughBody {
 		return nil
 	}
 	return o.PassThrough
+}
+
+func (o *InvoiceItemInput) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }

@@ -55,8 +55,8 @@ func testFileStorageDriveGroupsAllFileStorageDriveGroupsAll0(w http.ResponseWrit
 		Operation:  "all",
 		Data: []components.DriveGroup{
 			components.DriveGroup{
-				ID:          "12345",
-				Name:        "accounting",
+				ID:          types.String("12345"),
+				Name:        types.String("accounting"),
 				DisplayName: optionalnullable.From(types.String("accounting")),
 				Description: optionalnullable.From(types.String("A description")),
 				UpdatedBy:   optionalnullable.From(types.String("12345")),
@@ -109,8 +109,8 @@ func testFileStorageDriveGroupsAllFileStorageDriveGroupsAll0(w http.ResponseWrit
 				},
 			},
 			components.DriveGroup{
-				ID:          "12345",
-				Name:        "accounting",
+				ID:          types.String("12345"),
+				Name:        types.String("accounting"),
 				DisplayName: optionalnullable.From(types.String("accounting")),
 				Description: optionalnullable.From(types.String("A description")),
 				UpdatedBy:   optionalnullable.From(types.String("12345")),
@@ -134,8 +134,8 @@ func testFileStorageDriveGroupsAllFileStorageDriveGroupsAll0(w http.ResponseWrit
 				},
 			},
 			components.DriveGroup{
-				ID:          "12345",
-				Name:        "accounting",
+				ID:          types.String("12345"),
+				Name:        types.String("accounting"),
 				DisplayName: optionalnullable.From(types.String("accounting")),
 				Description: optionalnullable.From(types.String("A description")),
 				UpdatedBy:   optionalnullable.From(types.String("12345")),

@@ -25,7 +25,7 @@ func (e CustomerStatus) ToPointer() *CustomerStatus {
 
 type Customer struct {
 	// A unique identifier for an object.
-	ID string `json:"id"`
+	ID *string `json:"id,omitempty"`
 	// The third-party API ID of original entity
 	DownstreamID optionalnullable.OptionalNullable[string] `json:"downstream_id,omitempty"`
 	// Display ID
@@ -73,9 +73,11 @@ type Customer struct {
 	PaymentMethod optionalnullable.OptionalNullable[string] `json:"payment_method,omitempty"`
 	// Terms of payment.
 	Terms optionalnullable.OptionalNullable[string] `json:"terms,omitempty"`
+	// The ID of the payment terms
+	TermsID optionalnullable.OptionalNullable[string] `json:"terms_id,omitempty"`
 	// The channel through which the transaction is processed.
 	Channel      optionalnullable.OptionalNullable[string] `json:"channel,omitempty"`
-	CustomFields []CustomFieldUnion                        `json:"custom_fields,omitempty"`
+	CustomFields []CustomField                             `json:"custom_fields,omitempty"`
 	// When custom mappings are configured on the resource, the result is included here.
 	CustomMappings optionalnullable.OptionalNullable[map[string]any] `json:"custom_mappings,omitempty"`
 	// The user who last updated the object.
@@ -89,7 +91,8 @@ type Customer struct {
 	// A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
 	RowVersion optionalnullable.OptionalNullable[string] `json:"row_version,omitempty"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
-	PassThrough []PassThroughBody `json:"pass_through,omitempty"`
+	PassThrough          []PassThroughBody `json:"pass_through,omitempty"`
+	AdditionalProperties map[string]any    `additionalProperties:"true" json:"-"`
 }
 
 func (c Customer) MarshalJSON() ([]byte, error) {
@@ -97,15 +100,15 @@ func (c Customer) MarshalJSON() ([]byte, error) {
 }
 
 func (c *Customer) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"id"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &c, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *Customer) GetID() string {
+func (o *Customer) GetID() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.ID
 }
@@ -306,6 +309,13 @@ func (o *Customer) GetTerms() optionalnullable.OptionalNullable[string] {
 	return o.Terms
 }
 
+func (o *Customer) GetTermsID() optionalnullable.OptionalNullable[string] {
+	if o == nil {
+		return nil
+	}
+	return o.TermsID
+}
+
 func (o *Customer) GetChannel() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
@@ -313,7 +323,7 @@ func (o *Customer) GetChannel() optionalnullable.OptionalNullable[string] {
 	return o.Channel
 }
 
-func (o *Customer) GetCustomFields() []CustomFieldUnion {
+func (o *Customer) GetCustomFields() []CustomField {
 	if o == nil {
 		return nil
 	}
@@ -369,6 +379,13 @@ func (o *Customer) GetPassThrough() []PassThroughBody {
 	return o.PassThrough
 }
 
+func (o *Customer) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
+}
+
 type CustomerInput struct {
 	// Display ID
 	DisplayID optionalnullable.OptionalNullable[string] `json:"display_id,omitempty"`
@@ -415,13 +432,27 @@ type CustomerInput struct {
 	PaymentMethod optionalnullable.OptionalNullable[string] `json:"payment_method,omitempty"`
 	// Terms of payment.
 	Terms optionalnullable.OptionalNullable[string] `json:"terms,omitempty"`
+	// The ID of the payment terms
+	TermsID optionalnullable.OptionalNullable[string] `json:"terms_id,omitempty"`
 	// The channel through which the transaction is processed.
 	Channel      optionalnullable.OptionalNullable[string] `json:"channel,omitempty"`
-	CustomFields []CustomFieldUnion                        `json:"custom_fields,omitempty"`
+	CustomFields []CustomField                             `json:"custom_fields,omitempty"`
 	// A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
 	RowVersion optionalnullable.OptionalNullable[string] `json:"row_version,omitempty"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
-	PassThrough []PassThroughBody `json:"pass_through,omitempty"`
+	PassThrough          []PassThroughBody `json:"pass_through,omitempty"`
+	AdditionalProperties map[string]any    `additionalProperties:"true" json:"-"`
+}
+
+func (c CustomerInput) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(c, "", false)
+}
+
+func (c *CustomerInput) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &c, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *CustomerInput) GetDisplayID() optionalnullable.OptionalNullable[string] {
@@ -613,6 +644,13 @@ func (o *CustomerInput) GetTerms() optionalnullable.OptionalNullable[string] {
 	return o.Terms
 }
 
+func (o *CustomerInput) GetTermsID() optionalnullable.OptionalNullable[string] {
+	if o == nil {
+		return nil
+	}
+	return o.TermsID
+}
+
 func (o *CustomerInput) GetChannel() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
@@ -620,7 +658,7 @@ func (o *CustomerInput) GetChannel() optionalnullable.OptionalNullable[string] {
 	return o.Channel
 }
 
-func (o *CustomerInput) GetCustomFields() []CustomFieldUnion {
+func (o *CustomerInput) GetCustomFields() []CustomField {
 	if o == nil {
 		return nil
 	}
@@ -639,4 +677,11 @@ func (o *CustomerInput) GetPassThrough() []PassThroughBody {
 		return nil
 	}
 	return o.PassThrough
+}
+
+func (o *CustomerInput) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }

@@ -4,21 +4,21 @@ package components
 
 type ConsentRecordInput struct {
 	// Whether consent was granted (true) or denied/revoked (false)
-	Granted bool `json:"granted"`
+	Granted *bool `json:"granted,omitempty"`
 	// Data scopes resource configuration that can be either detailed field permissions or a wildcard
-	Resources DataScopesResourcesUnion `json:"resources"`
+	Resources *DataScopesResourcesUnion `json:"resources,omitempty"`
 }
 
-func (o *ConsentRecordInput) GetGranted() bool {
+func (o *ConsentRecordInput) GetGranted() *bool {
 	if o == nil {
-		return false
+		return nil
 	}
 	return o.Granted
 }
 
-func (o *ConsentRecordInput) GetResources() DataScopesResourcesUnion {
+func (o *ConsentRecordInput) GetResources() *DataScopesResourcesUnion {
 	if o == nil {
-		return DataScopesResourcesUnion{}
+		return nil
 	}
 	return o.Resources
 }

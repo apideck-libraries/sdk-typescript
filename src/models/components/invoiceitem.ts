@@ -4,7 +4,10 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import {
+  collectExtraKeys as collectExtraKeys$,
+  safeParse,
+} from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
@@ -200,6 +203,7 @@ export type InvoiceItem = {
    * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
    */
   passThrough?: Array<PassThroughBody> | undefined;
+  additionalProperties?: { [k: string]: any } | undefined;
 };
 
 export type InvoiceItemSalesDetails = {
@@ -317,6 +321,7 @@ export type InvoiceItemInput = {
    * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
    */
   passThrough?: Array<PassThroughBody> | undefined;
+  additionalProperties?: { [k: string]: any } | undefined;
 };
 
 /** @internal */
@@ -395,45 +400,52 @@ export const InvoiceItem$inboundSchema: z.ZodType<
   InvoiceItem,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  id: types.optional(types.string()),
-  name: z.nullable(types.string()).optional(),
-  description: z.nullable(types.string()).optional(),
-  display_id: z.nullable(types.string()).optional(),
-  code: z.nullable(types.string()).optional(),
-  sold: z.nullable(types.boolean()).optional(),
-  purchased: z.nullable(types.boolean()).optional(),
-  tracked: z.nullable(types.boolean()).optional(),
-  taxable: z.nullable(types.boolean()).optional(),
-  inventory_date: z.nullable(types.date()).optional(),
-  type: z.nullable(InvoiceItemTypeType$inboundSchema).optional(),
-  sales_details: types.optional(z.lazy(() => SalesDetails$inboundSchema)),
-  purchase_details: types.optional(z.lazy(() => PurchaseDetails$inboundSchema)),
-  quantity: z.nullable(types.number()).optional(),
-  unit_price: z.nullable(types.number()).optional(),
-  currency: z.nullable(Currency$inboundSchema).optional(),
-  asset_account: z.nullable(LinkedLedgerAccount$inboundSchema).optional(),
-  income_account: z.nullable(LinkedLedgerAccount$inboundSchema).optional(),
-  expense_account: z.nullable(LinkedLedgerAccount$inboundSchema).optional(),
-  tracking_category: z.nullable(DeprecatedLinkedTrackingCategory$inboundSchema)
-    .optional(),
-  tracking_categories: z.nullable(
-    z.array(types.nullable(LinkedTrackingCategory$inboundSchema)),
-  ).optional(),
-  active: z.nullable(types.boolean()).optional(),
-  department_id: z.nullable(types.string()).optional(),
-  location_id: z.nullable(types.string()).optional(),
-  subsidiary_id: z.nullable(types.string()).optional(),
-  category_id: z.nullable(types.string()).optional(),
-  tax_schedule_id: z.nullable(types.string()).optional(),
-  custom_mappings: z.nullable(z.record(z.any())).optional(),
-  row_version: z.nullable(types.string()).optional(),
-  updated_by: z.nullable(types.string()).optional(),
-  created_by: z.nullable(types.string()).optional(),
-  updated_at: z.nullable(types.date()).optional(),
-  created_at: z.nullable(types.date()).optional(),
-  pass_through: types.optional(z.array(PassThroughBody$inboundSchema)),
-}).transform((v) => {
+> = collectExtraKeys$(
+  z.object({
+    id: types.optional(types.string()),
+    name: z.nullable(types.string()).optional(),
+    description: z.nullable(types.string()).optional(),
+    display_id: z.nullable(types.string()).optional(),
+    code: z.nullable(types.string()).optional(),
+    sold: z.nullable(types.boolean()).optional(),
+    purchased: z.nullable(types.boolean()).optional(),
+    tracked: z.nullable(types.boolean()).optional(),
+    taxable: z.nullable(types.boolean()).optional(),
+    inventory_date: z.nullable(types.date()).optional(),
+    type: z.nullable(InvoiceItemTypeType$inboundSchema).optional(),
+    sales_details: types.optional(z.lazy(() => SalesDetails$inboundSchema)),
+    purchase_details: types.optional(
+      z.lazy(() => PurchaseDetails$inboundSchema),
+    ),
+    quantity: z.nullable(types.number()).optional(),
+    unit_price: z.nullable(types.number()).optional(),
+    currency: z.nullable(Currency$inboundSchema).optional(),
+    asset_account: z.nullable(LinkedLedgerAccount$inboundSchema).optional(),
+    income_account: z.nullable(LinkedLedgerAccount$inboundSchema).optional(),
+    expense_account: z.nullable(LinkedLedgerAccount$inboundSchema).optional(),
+    tracking_category: z.nullable(
+      DeprecatedLinkedTrackingCategory$inboundSchema,
+    ).optional(),
+    tracking_categories: z.nullable(
+      z.array(types.nullable(LinkedTrackingCategory$inboundSchema)),
+    ).optional(),
+    active: z.nullable(types.boolean()).optional(),
+    department_id: z.nullable(types.string()).optional(),
+    location_id: z.nullable(types.string()).optional(),
+    subsidiary_id: z.nullable(types.string()).optional(),
+    category_id: z.nullable(types.string()).optional(),
+    tax_schedule_id: z.nullable(types.string()).optional(),
+    custom_mappings: z.nullable(z.record(z.any())).optional(),
+    row_version: z.nullable(types.string()).optional(),
+    updated_by: z.nullable(types.string()).optional(),
+    created_by: z.nullable(types.string()).optional(),
+    updated_at: z.nullable(types.date()).optional(),
+    created_at: z.nullable(types.date()).optional(),
+    pass_through: types.optional(z.array(PassThroughBody$inboundSchema)),
+  }).catchall(z.any()),
+  "additionalProperties",
+  true,
+).transform((v) => {
   return remap$(v, {
     "display_id": "displayId",
     "inventory_date": "inventoryDate",
@@ -576,6 +588,7 @@ export type InvoiceItemInput$Outbound = {
   tax_schedule_id?: string | null | undefined;
   row_version?: string | null | undefined;
   pass_through?: Array<PassThroughBody$Outbound> | undefined;
+  [additionalProperties: string]: unknown;
 };
 
 /** @internal */
@@ -618,26 +631,31 @@ export const InvoiceItemInput$outboundSchema: z.ZodType<
   taxScheduleId: z.nullable(z.string()).optional(),
   rowVersion: z.nullable(z.string()).optional(),
   passThrough: z.array(PassThroughBody$outboundSchema).optional(),
+  additionalProperties: z.record(z.any()).optional(),
 }).transform((v) => {
-  return remap$(v, {
-    displayId: "display_id",
-    inventoryDate: "inventory_date",
-    salesDetails: "sales_details",
-    purchaseDetails: "purchase_details",
-    unitPrice: "unit_price",
-    assetAccount: "asset_account",
-    incomeAccount: "income_account",
-    expenseAccount: "expense_account",
-    trackingCategory: "tracking_category",
-    trackingCategories: "tracking_categories",
-    departmentId: "department_id",
-    locationId: "location_id",
-    subsidiaryId: "subsidiary_id",
-    categoryId: "category_id",
-    taxScheduleId: "tax_schedule_id",
-    rowVersion: "row_version",
-    passThrough: "pass_through",
-  });
+  return {
+    ...v.additionalProperties,
+    ...remap$(v, {
+      displayId: "display_id",
+      inventoryDate: "inventory_date",
+      salesDetails: "sales_details",
+      purchaseDetails: "purchase_details",
+      unitPrice: "unit_price",
+      assetAccount: "asset_account",
+      incomeAccount: "income_account",
+      expenseAccount: "expense_account",
+      trackingCategory: "tracking_category",
+      trackingCategories: "tracking_categories",
+      departmentId: "department_id",
+      locationId: "location_id",
+      subsidiaryId: "subsidiary_id",
+      categoryId: "category_id",
+      taxScheduleId: "tax_schedule_id",
+      rowVersion: "row_version",
+      passThrough: "pass_through",
+      additionalProperties: null,
+    }),
+  };
 });
 
 export function invoiceItemInputToJSON(

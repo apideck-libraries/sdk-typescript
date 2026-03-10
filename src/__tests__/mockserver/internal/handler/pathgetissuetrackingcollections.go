@@ -55,7 +55,7 @@ func testIssueTrackingCollectionsAllIssueTrackingCollectionsAll0(w http.Response
 		Operation:  "all",
 		Data: []components.Collection{
 			components.Collection{
-				ID:          "12345",
+				ID:          types.String("12345"),
 				ParentID:    optionalnullable.From(types.String("12345")),
 				Type:        optionalnullable.From(types.String("Technical")),
 				Name:        optionalnullable.From(types.String("Main IT Issues")),
@@ -64,7 +64,7 @@ func testIssueTrackingCollectionsAllIssueTrackingCollectionsAll0(w http.Response
 				CreatedAt:   optionalnullable.From(types.MustNewTimeFromString("2020-09-30T07:43:32.000Z")),
 			},
 			components.Collection{
-				ID:          "12345",
+				ID:          types.String("12345"),
 				ParentID:    optionalnullable.From(types.String("12345")),
 				Type:        optionalnullable.From(types.String("Technical")),
 				Name:        optionalnullable.From(types.String("Main IT Issues")),
@@ -73,7 +73,7 @@ func testIssueTrackingCollectionsAllIssueTrackingCollectionsAll0(w http.Response
 				CreatedAt:   optionalnullable.From(types.MustNewTimeFromString("2020-09-30T07:43:32.000Z")),
 			},
 			components.Collection{
-				ID:          "12345",
+				ID:          types.String("12345"),
 				ParentID:    optionalnullable.From(types.String("12345")),
 				Type:        optionalnullable.From(types.String("Technical")),
 				Name:        optionalnullable.From(types.String("Main IT Issues")),

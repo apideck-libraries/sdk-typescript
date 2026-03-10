@@ -4,7 +4,10 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import {
+  collectExtraKeys as collectExtraKeys$,
+  safeParse,
+} from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
@@ -141,6 +144,7 @@ export type TaxRate = {
    */
   subsidiaries?: Array<Subsidiaries> | undefined;
   customFields?: Array<CustomField> | undefined;
+  additionalProperties?: { [k: string]: any } | undefined;
 };
 
 export type TaxRateInput = {
@@ -214,6 +218,7 @@ export type TaxRateInput = {
    */
   subsidiaries?: Array<Subsidiaries> | undefined;
   customFields?: Array<CustomField> | undefined;
+  additionalProperties?: { [k: string]: any } | undefined;
 };
 
 /** @internal */
@@ -310,35 +315,39 @@ export function subsidiariesFromJSON(
 
 /** @internal */
 export const TaxRate$inboundSchema: z.ZodType<TaxRate, z.ZodTypeDef, unknown> =
-  z.object({
-    id: z.nullable(types.string()).optional(),
-    display_id: z.nullable(types.string()).optional(),
-    name: types.optional(types.string()),
-    code: z.nullable(types.string()).optional(),
-    description: z.nullable(types.string()).optional(),
-    effective_tax_rate: z.nullable(types.number()).optional(),
-    country: z.nullable(types.string()).optional(),
-    total_tax_rate: z.nullable(types.number()).optional(),
-    tax_payable_account_id: z.nullable(types.string()).optional(),
-    tax_remitted_account_id: z.nullable(types.string()).optional(),
-    components: z.nullable(z.array(z.lazy(() => Components$inboundSchema)))
-      .optional(),
-    type: z.nullable(types.string()).optional(),
-    report_tax_type: z.nullable(types.string()).optional(),
-    original_tax_rate_id: z.nullable(types.string()).optional(),
-    status: z.nullable(TaxRateStatus$inboundSchema).optional(),
-    custom_mappings: z.nullable(z.record(z.any())).optional(),
-    row_version: z.nullable(types.string()).optional(),
-    updated_by: z.nullable(types.string()).optional(),
-    created_by: z.nullable(types.string()).optional(),
-    updated_at: z.nullable(types.date()).optional(),
-    created_at: z.nullable(types.date()).optional(),
-    pass_through: types.optional(z.array(PassThroughBody$inboundSchema)),
-    subsidiaries: types.optional(
-      z.array(z.lazy(() => Subsidiaries$inboundSchema)),
-    ),
-    custom_fields: types.optional(z.array(CustomField$inboundSchema)),
-  }).transform((v) => {
+  collectExtraKeys$(
+    z.object({
+      id: z.nullable(types.string()).optional(),
+      display_id: z.nullable(types.string()).optional(),
+      name: types.optional(types.string()),
+      code: z.nullable(types.string()).optional(),
+      description: z.nullable(types.string()).optional(),
+      effective_tax_rate: z.nullable(types.number()).optional(),
+      country: z.nullable(types.string()).optional(),
+      total_tax_rate: z.nullable(types.number()).optional(),
+      tax_payable_account_id: z.nullable(types.string()).optional(),
+      tax_remitted_account_id: z.nullable(types.string()).optional(),
+      components: z.nullable(z.array(z.lazy(() => Components$inboundSchema)))
+        .optional(),
+      type: z.nullable(types.string()).optional(),
+      report_tax_type: z.nullable(types.string()).optional(),
+      original_tax_rate_id: z.nullable(types.string()).optional(),
+      status: z.nullable(TaxRateStatus$inboundSchema).optional(),
+      custom_mappings: z.nullable(z.record(z.any())).optional(),
+      row_version: z.nullable(types.string()).optional(),
+      updated_by: z.nullable(types.string()).optional(),
+      created_by: z.nullable(types.string()).optional(),
+      updated_at: z.nullable(types.date()).optional(),
+      created_at: z.nullable(types.date()).optional(),
+      pass_through: types.optional(z.array(PassThroughBody$inboundSchema)),
+      subsidiaries: types.optional(
+        z.array(z.lazy(() => Subsidiaries$inboundSchema)),
+      ),
+      custom_fields: types.optional(z.array(CustomField$inboundSchema)),
+    }).catchall(z.any()),
+    "additionalProperties",
+    true,
+  ).transform((v) => {
     return remap$(v, {
       "display_id": "displayId",
       "effective_tax_rate": "effectiveTaxRate",
@@ -389,6 +398,7 @@ export type TaxRateInput$Outbound = {
   pass_through?: Array<PassThroughBody$Outbound> | undefined;
   subsidiaries?: Array<Subsidiaries$Outbound> | undefined;
   custom_fields?: Array<CustomField$Outbound> | undefined;
+  [additionalProperties: string]: unknown;
 };
 
 /** @internal */
@@ -417,19 +427,24 @@ export const TaxRateInput$outboundSchema: z.ZodType<
   passThrough: z.array(PassThroughBody$outboundSchema).optional(),
   subsidiaries: z.array(z.lazy(() => Subsidiaries$outboundSchema)).optional(),
   customFields: z.array(CustomField$outboundSchema).optional(),
+  additionalProperties: z.record(z.any()).optional(),
 }).transform((v) => {
-  return remap$(v, {
-    displayId: "display_id",
-    effectiveTaxRate: "effective_tax_rate",
-    totalTaxRate: "total_tax_rate",
-    taxPayableAccountId: "tax_payable_account_id",
-    taxRemittedAccountId: "tax_remitted_account_id",
-    reportTaxType: "report_tax_type",
-    originalTaxRateId: "original_tax_rate_id",
-    rowVersion: "row_version",
-    passThrough: "pass_through",
-    customFields: "custom_fields",
-  });
+  return {
+    ...v.additionalProperties,
+    ...remap$(v, {
+      displayId: "display_id",
+      effectiveTaxRate: "effective_tax_rate",
+      totalTaxRate: "total_tax_rate",
+      taxPayableAccountId: "tax_payable_account_id",
+      taxRemittedAccountId: "tax_remitted_account_id",
+      reportTaxType: "report_tax_type",
+      originalTaxRateId: "original_tax_rate_id",
+      rowVersion: "row_version",
+      passThrough: "pass_through",
+      customFields: "custom_fields",
+      additionalProperties: null,
+    }),
+  };
 });
 
 export function taxRateInputToJSON(taxRateInput: TaxRateInput): string {

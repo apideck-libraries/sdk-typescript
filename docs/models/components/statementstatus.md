@@ -8,11 +8,11 @@ The current status of the bank feed statement.
 import { StatementStatus } from "@apideck/unify/models/components";
 
 let value: StatementStatus = "pending";
+
+// Open enum: unrecognized values are captured as Unrecognized<string>
 ```
 
 ## Values
-
-This is an open enum. Unrecognized values will be captured as the `Unrecognized<string>` branded type.
 
 ```typescript
 "pending" | "rejected" | "success" | Unrecognized<string>

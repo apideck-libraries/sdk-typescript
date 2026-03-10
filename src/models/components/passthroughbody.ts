@@ -4,7 +4,10 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import {
+  collectExtraKeys as collectExtraKeys$,
+  safeParse,
+} from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -18,6 +21,7 @@ export type ExtendPaths = {
    * The value to set at the specified path, can be any type.
    */
   value?: any | undefined;
+  additionalProperties?: { [k: string]: any } | undefined;
 };
 
 export type PassThroughBody = {
@@ -37,6 +41,7 @@ export type PassThroughBody = {
    * Array of objects for structured data modifications via paths.
    */
   extendPaths?: Array<ExtendPaths> | undefined;
+  additionalProperties?: { [k: string]: any } | undefined;
 };
 
 /** @internal */
@@ -44,14 +49,19 @@ export const ExtendPaths$inboundSchema: z.ZodType<
   ExtendPaths,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  path: types.string(),
-  value: types.optional(z.any()),
-});
+> = collectExtraKeys$(
+  z.object({
+    path: types.string(),
+    value: types.optional(z.any()),
+  }).catchall(z.any()),
+  "additionalProperties",
+  true,
+);
 /** @internal */
 export type ExtendPaths$Outbound = {
   path: string;
   value?: any | undefined;
+  [additionalProperties: string]: unknown;
 };
 
 /** @internal */
@@ -62,6 +72,14 @@ export const ExtendPaths$outboundSchema: z.ZodType<
 > = z.object({
   path: z.string(),
   value: z.any().optional(),
+  additionalProperties: z.record(z.any()).optional(),
+}).transform((v) => {
+  return {
+    ...v.additionalProperties,
+    ...remap$(v, {
+      additionalProperties: null,
+    }),
+  };
 });
 
 export function extendPathsToJSON(extendPaths: ExtendPaths): string {
@@ -82,14 +100,18 @@ export const PassThroughBody$inboundSchema: z.ZodType<
   PassThroughBody,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  service_id: types.string(),
-  operation_id: types.optional(types.string()),
-  extend_object: types.optional(z.record(z.any())),
-  extend_paths: types.optional(
-    z.array(z.lazy(() => ExtendPaths$inboundSchema)),
-  ),
-}).transform((v) => {
+> = collectExtraKeys$(
+  z.object({
+    service_id: types.string(),
+    operation_id: types.optional(types.string()),
+    extend_object: types.optional(z.record(z.any())),
+    extend_paths: types.optional(
+      z.array(z.lazy(() => ExtendPaths$inboundSchema)),
+    ),
+  }).catchall(z.any()),
+  "additionalProperties",
+  true,
+).transform((v) => {
   return remap$(v, {
     "service_id": "serviceId",
     "operation_id": "operationId",
@@ -103,6 +125,7 @@ export type PassThroughBody$Outbound = {
   operation_id?: string | undefined;
   extend_object?: { [k: string]: any } | undefined;
   extend_paths?: Array<ExtendPaths$Outbound> | undefined;
+  [additionalProperties: string]: unknown;
 };
 
 /** @internal */
@@ -115,13 +138,18 @@ export const PassThroughBody$outboundSchema: z.ZodType<
   operationId: z.string().optional(),
   extendObject: z.record(z.any()).optional(),
   extendPaths: z.array(z.lazy(() => ExtendPaths$outboundSchema)).optional(),
+  additionalProperties: z.record(z.any()).optional(),
 }).transform((v) => {
-  return remap$(v, {
-    serviceId: "service_id",
-    operationId: "operation_id",
-    extendObject: "extend_object",
-    extendPaths: "extend_paths",
-  });
+  return {
+    ...v.additionalProperties,
+    ...remap$(v, {
+      serviceId: "service_id",
+      operationId: "operation_id",
+      extendObject: "extend_object",
+      extendPaths: "extend_paths",
+      additionalProperties: null,
+    }),
+  };
 });
 
 export function passThroughBodyToJSON(

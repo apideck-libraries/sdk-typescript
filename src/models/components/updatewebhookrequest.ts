@@ -27,6 +27,7 @@ export type UpdateWebhookRequest = {
    * The list of subscribed events for this webhook. [`*`] indicates that all events are enabled.
    */
   events?: Array<WebhookEventType> | undefined;
+  additionalProperties?: { [k: string]: any } | undefined;
 };
 
 /** @internal */
@@ -35,6 +36,7 @@ export type UpdateWebhookRequest$Outbound = {
   status?: string | undefined;
   delivery_url?: string | undefined;
   events?: Array<string> | undefined;
+  [additionalProperties: string]: unknown;
 };
 
 /** @internal */
@@ -47,10 +49,15 @@ export const UpdateWebhookRequest$outboundSchema: z.ZodType<
   status: Status$outboundSchema.optional(),
   deliveryUrl: z.string().optional(),
   events: z.array(WebhookEventType$outboundSchema).optional(),
+  additionalProperties: z.record(z.any()).optional(),
 }).transform((v) => {
-  return remap$(v, {
-    deliveryUrl: "delivery_url",
-  });
+  return {
+    ...v.additionalProperties,
+    ...remap$(v, {
+      deliveryUrl: "delivery_url",
+      additionalProperties: null,
+    }),
+  };
 });
 
 export function updateWebhookRequestToJSON(

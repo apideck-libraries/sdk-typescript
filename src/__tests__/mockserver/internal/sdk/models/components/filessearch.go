@@ -2,18 +2,34 @@
 
 package components
 
+import (
+	"mockserver/internal/sdk/utils"
+)
+
 type FilesSearch struct {
 	// The query to search for. May match across multiple fields.
-	Query string `json:"query"`
+	Query *string `json:"query,omitempty"`
 	// ID of the drive to filter on
 	DriveID *string `json:"drive_id,omitempty"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
-	PassThrough []PassThroughBody `json:"pass_through,omitempty"`
+	PassThrough          []PassThroughBody `json:"pass_through,omitempty"`
+	AdditionalProperties map[string]any    `additionalProperties:"true" json:"-"`
 }
 
-func (o *FilesSearch) GetQuery() string {
+func (f FilesSearch) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(f, "", false)
+}
+
+func (f *FilesSearch) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &f, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (o *FilesSearch) GetQuery() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.Query
 }
@@ -30,4 +46,11 @@ func (o *FilesSearch) GetPassThrough() []PassThroughBody {
 		return nil
 	}
 	return o.PassThrough
+}
+
+func (o *FilesSearch) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }

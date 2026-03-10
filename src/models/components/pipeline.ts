@@ -4,7 +4,10 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import {
+  collectExtraKeys as collectExtraKeys$,
+  safeParse,
+} from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -47,6 +50,7 @@ export type Stages = {
    * The date and time when the Pipeline Stage was last updated.
    */
   updatedAt?: Date | null | undefined;
+  additionalProperties?: { [k: string]: any } | undefined;
 };
 
 export type Pipeline = {
@@ -57,7 +61,7 @@ export type Pipeline = {
   /**
    * The name of the Pipeline.
    */
-  name: string;
+  name?: string | undefined;
   /**
    * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
    */
@@ -94,20 +98,25 @@ export type Pipeline = {
    * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
    */
   passThrough?: Array<PassThroughBody> | undefined;
+  additionalProperties?: { [k: string]: any } | undefined;
 };
 
 /** @internal */
-export const Stages$inboundSchema: z.ZodType<Stages, z.ZodTypeDef, unknown> = z
-  .object({
-    id: z.nullable(types.string()).optional(),
-    name: z.nullable(types.string()).optional(),
-    value: z.nullable(types.string()).optional(),
-    win_probability: z.nullable(types.number()).optional(),
-    display_order: z.nullable(types.number()).optional(),
-    archived: z.nullable(types.boolean()).optional(),
-    created_at: z.nullable(types.date()).optional(),
-    updated_at: z.nullable(types.date()).optional(),
-  }).transform((v) => {
+export const Stages$inboundSchema: z.ZodType<Stages, z.ZodTypeDef, unknown> =
+  collectExtraKeys$(
+    z.object({
+      id: z.nullable(types.string()).optional(),
+      name: z.nullable(types.string()).optional(),
+      value: z.nullable(types.string()).optional(),
+      win_probability: z.nullable(types.number()).optional(),
+      display_order: z.nullable(types.number()).optional(),
+      archived: z.nullable(types.boolean()).optional(),
+      created_at: z.nullable(types.date()).optional(),
+      updated_at: z.nullable(types.date()).optional(),
+    }).catchall(z.any()),
+    "additionalProperties",
+    true,
+  ).transform((v) => {
     return remap$(v, {
       "win_probability": "winProbability",
       "display_order": "displayOrder",
@@ -131,19 +140,23 @@ export const Pipeline$inboundSchema: z.ZodType<
   Pipeline,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  id: types.optional(types.string()),
-  name: types.string(),
-  currency: z.nullable(Currency$inboundSchema).optional(),
-  archived: types.optional(types.boolean()),
-  active: types.optional(types.boolean()),
-  display_order: z.nullable(types.number()).optional(),
-  win_probability_enabled: types.optional(types.boolean()),
-  stages: types.optional(z.array(z.lazy(() => Stages$inboundSchema))),
-  updated_at: z.nullable(types.date()).optional(),
-  created_at: z.nullable(types.date()).optional(),
-  pass_through: types.optional(z.array(PassThroughBody$inboundSchema)),
-}).transform((v) => {
+> = collectExtraKeys$(
+  z.object({
+    id: types.optional(types.string()),
+    name: types.optional(types.string()),
+    currency: z.nullable(Currency$inboundSchema).optional(),
+    archived: types.optional(types.boolean()),
+    active: types.optional(types.boolean()),
+    display_order: z.nullable(types.number()).optional(),
+    win_probability_enabled: types.optional(types.boolean()),
+    stages: types.optional(z.array(z.lazy(() => Stages$inboundSchema))),
+    updated_at: z.nullable(types.date()).optional(),
+    created_at: z.nullable(types.date()).optional(),
+    pass_through: types.optional(z.array(PassThroughBody$inboundSchema)),
+  }).catchall(z.any()),
+  "additionalProperties",
+  true,
+).transform((v) => {
   return remap$(v, {
     "display_order": "displayOrder",
     "win_probability_enabled": "winProbabilityEnabled",

@@ -4,6 +4,7 @@ package components
 
 import (
 	"mockserver/internal/sdk/optionalnullable"
+	"mockserver/internal/sdk/utils"
 )
 
 type CustomMapping struct {
@@ -24,7 +25,19 @@ type CustomMapping struct {
 	// Consumer ID
 	ConsumerID optionalnullable.OptionalNullable[string] `json:"consumer_id,omitempty"`
 	// Target Field Mapping example value from downstream
-	Example optionalnullable.OptionalNullable[string] `json:"example,omitempty"`
+	Example              optionalnullable.OptionalNullable[string] `json:"example,omitempty"`
+	AdditionalProperties map[string]any                            `additionalProperties:"true" json:"-"`
+}
+
+func (c CustomMapping) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(c, "", false)
+}
+
+func (c *CustomMapping) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &c, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *CustomMapping) GetID() *string {
@@ -88,4 +101,11 @@ func (o *CustomMapping) GetExample() optionalnullable.OptionalNullable[string] {
 		return nil
 	}
 	return o.Example
+}
+
+func (o *CustomMapping) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }

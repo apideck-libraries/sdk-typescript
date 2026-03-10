@@ -4,7 +4,10 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import {
+  collectExtraKeys as collectExtraKeys$,
+  safeParse,
+} from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -58,7 +61,7 @@ export type ExpenseReportLineItem = {
   /**
    * The amount of the expense line item.
    */
-  amount: number;
+  amount?: number | undefined;
   taxRate?: LinkedTaxRate | undefined;
   /**
    * Tax amount
@@ -114,6 +117,7 @@ export type ExpenseReportLineItem = {
    * The date and time when the object was created.
    */
   createdAt?: Date | null | undefined;
+  additionalProperties?: { [k: string]: any } | undefined;
 };
 
 /** @internal */
@@ -121,34 +125,38 @@ export const ExpenseReportLineItem$inboundSchema: z.ZodType<
   ExpenseReportLineItem,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  id: types.optional(types.string()),
-  line_number: z.nullable(types.number()).optional(),
-  expense_category: types.optional(LinkedExpenseCategory$inboundSchema),
-  account: z.nullable(LinkedLedgerAccount$inboundSchema).optional(),
-  description: z.nullable(types.string()).optional(),
-  quantity: z.nullable(types.number()).optional(),
-  unit_price: z.nullable(types.number()).optional(),
-  amount: types.number(),
-  tax_rate: types.optional(LinkedTaxRate$inboundSchema),
-  tax_amount: z.nullable(types.number()).optional(),
-  total_amount: z.nullable(types.number()).optional(),
-  transaction_date: z.nullable(types.date()).optional(),
-  billable: z.nullable(types.boolean()).optional(),
-  reimbursable: z.nullable(types.boolean()).optional(),
-  customer: z.nullable(LinkedCustomer$inboundSchema).optional(),
-  department: z.nullable(LinkedDepartment$inboundSchema).optional(),
-  location: z.nullable(LinkedLocation$inboundSchema).optional(),
-  tracking_categories: z.nullable(
-    z.array(types.nullable(LinkedTrackingCategory$inboundSchema)),
-  ).optional(),
-  receipt_url: z.nullable(types.string()).optional(),
-  currency: z.nullable(Currency$inboundSchema).optional(),
-  updated_by: z.nullable(types.string()).optional(),
-  created_by: z.nullable(types.string()).optional(),
-  updated_at: z.nullable(types.date()).optional(),
-  created_at: z.nullable(types.date()).optional(),
-}).transform((v) => {
+> = collectExtraKeys$(
+  z.object({
+    id: types.optional(types.string()),
+    line_number: z.nullable(types.number()).optional(),
+    expense_category: types.optional(LinkedExpenseCategory$inboundSchema),
+    account: z.nullable(LinkedLedgerAccount$inboundSchema).optional(),
+    description: z.nullable(types.string()).optional(),
+    quantity: z.nullable(types.number()).optional(),
+    unit_price: z.nullable(types.number()).optional(),
+    amount: types.optional(types.number()),
+    tax_rate: types.optional(LinkedTaxRate$inboundSchema),
+    tax_amount: z.nullable(types.number()).optional(),
+    total_amount: z.nullable(types.number()).optional(),
+    transaction_date: z.nullable(types.date()).optional(),
+    billable: z.nullable(types.boolean()).optional(),
+    reimbursable: z.nullable(types.boolean()).optional(),
+    customer: z.nullable(LinkedCustomer$inboundSchema).optional(),
+    department: z.nullable(LinkedDepartment$inboundSchema).optional(),
+    location: z.nullable(LinkedLocation$inboundSchema).optional(),
+    tracking_categories: z.nullable(
+      z.array(types.nullable(LinkedTrackingCategory$inboundSchema)),
+    ).optional(),
+    receipt_url: z.nullable(types.string()).optional(),
+    currency: z.nullable(Currency$inboundSchema).optional(),
+    updated_by: z.nullable(types.string()).optional(),
+    created_by: z.nullable(types.string()).optional(),
+    updated_at: z.nullable(types.date()).optional(),
+    created_at: z.nullable(types.date()).optional(),
+  }).catchall(z.any()),
+  "additionalProperties",
+  true,
+).transform((v) => {
   return remap$(v, {
     "line_number": "lineNumber",
     "expense_category": "expenseCategory",

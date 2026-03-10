@@ -4,7 +4,10 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import {
+  collectExtraKeys as collectExtraKeys$,
+  safeParse,
+} from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
@@ -49,7 +52,7 @@ export type PhoneNumber = {
   /**
    * The phone number
    */
-  number: string;
+  number?: string | undefined;
   /**
    * The extension of the phone number
    */
@@ -58,6 +61,7 @@ export type PhoneNumber = {
    * The type of phone number
    */
   type?: PhoneNumberType | null | undefined;
+  additionalProperties?: { [k: string]: any } | undefined;
 };
 
 /** @internal */
@@ -78,14 +82,18 @@ export const PhoneNumber$inboundSchema: z.ZodType<
   PhoneNumber,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  id: z.nullable(types.string()).optional(),
-  country_code: z.nullable(types.string()).optional(),
-  area_code: z.nullable(types.string()).optional(),
-  number: types.string(),
-  extension: z.nullable(types.string()).optional(),
-  type: z.nullable(PhoneNumberType$inboundSchema).optional(),
-}).transform((v) => {
+> = collectExtraKeys$(
+  z.object({
+    id: z.nullable(types.string()).optional(),
+    country_code: z.nullable(types.string()).optional(),
+    area_code: z.nullable(types.string()).optional(),
+    number: types.optional(types.string()),
+    extension: z.nullable(types.string()).optional(),
+    type: z.nullable(PhoneNumberType$inboundSchema).optional(),
+  }).catchall(z.any()),
+  "additionalProperties",
+  true,
+).transform((v) => {
   return remap$(v, {
     "country_code": "countryCode",
     "area_code": "areaCode",
@@ -96,9 +104,10 @@ export type PhoneNumber$Outbound = {
   id?: string | null | undefined;
   country_code?: string | null | undefined;
   area_code?: string | null | undefined;
-  number: string;
+  number?: string | undefined;
   extension?: string | null | undefined;
   type?: string | null | undefined;
+  [additionalProperties: string]: unknown;
 };
 
 /** @internal */
@@ -110,14 +119,19 @@ export const PhoneNumber$outboundSchema: z.ZodType<
   id: z.nullable(z.string()).optional(),
   countryCode: z.nullable(z.string()).optional(),
   areaCode: z.nullable(z.string()).optional(),
-  number: z.string(),
+  number: z.string().optional(),
   extension: z.nullable(z.string()).optional(),
   type: z.nullable(PhoneNumberType$outboundSchema).optional(),
+  additionalProperties: z.record(z.any()).optional(),
 }).transform((v) => {
-  return remap$(v, {
-    countryCode: "country_code",
-    areaCode: "area_code",
-  });
+  return {
+    ...v.additionalProperties,
+    ...remap$(v, {
+      countryCode: "country_code",
+      areaCode: "area_code",
+      additionalProperties: null,
+    }),
+  };
 });
 
 export function phoneNumberToJSON(phoneNumber: PhoneNumber): string {

@@ -4,39 +4,39 @@ package components
 
 type ConsentRecord struct {
 	// Unique identifier for this consent record
-	ID string `json:"id"`
+	ID *string `json:"id,omitempty"`
 	// ISO timestamp when consent was recorded
-	CreatedAt string `json:"created_at"`
+	CreatedAt *string `json:"created_at,omitempty"`
 	// Whether consent was granted (true) or denied/revoked (false)
-	Granted bool `json:"granted"`
+	Granted *bool `json:"granted,omitempty"`
 	// Data scopes resource configuration that can be either detailed field permissions or a wildcard
-	Resources DataScopesResourcesUnion `json:"resources"`
+	Resources *DataScopesResourcesUnion `json:"resources,omitempty"`
 }
 
-func (o *ConsentRecord) GetID() string {
+func (o *ConsentRecord) GetID() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.ID
 }
 
-func (o *ConsentRecord) GetCreatedAt() string {
+func (o *ConsentRecord) GetCreatedAt() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.CreatedAt
 }
 
-func (o *ConsentRecord) GetGranted() bool {
+func (o *ConsentRecord) GetGranted() *bool {
 	if o == nil {
-		return false
+		return nil
 	}
 	return o.Granted
 }
 
-func (o *ConsentRecord) GetResources() DataScopesResourcesUnion {
+func (o *ConsentRecord) GetResources() *DataScopesResourcesUnion {
 	if o == nil {
-		return DataScopesResourcesUnion{}
+		return nil
 	}
 	return o.Resources
 }

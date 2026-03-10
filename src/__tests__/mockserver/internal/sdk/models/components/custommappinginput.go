@@ -2,9 +2,25 @@
 
 package components
 
+import (
+	"mockserver/internal/sdk/utils"
+)
+
 type CustomMappingInput struct {
 	// Target Field Mapping value
-	Value *string `json:"value,omitempty"`
+	Value                *string        `json:"value,omitempty"`
+	AdditionalProperties map[string]any `additionalProperties:"true" json:"-"`
+}
+
+func (c CustomMappingInput) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(c, "", false)
+}
+
+func (c *CustomMappingInput) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &c, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *CustomMappingInput) GetValue() *string {
@@ -12,4 +28,11 @@ func (o *CustomMappingInput) GetValue() *string {
 		return nil
 	}
 	return o.Value
+}
+
+func (o *CustomMappingInput) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }

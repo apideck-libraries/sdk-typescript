@@ -55,7 +55,7 @@ func testHrisCompaniesOneHrisCompaniesOne0(w http.ResponseWriter, req *http.Requ
 		Operation:  "one",
 		Data: components.HrisCompany{
 			ID:            types.String("12345"),
-			LegalName:     types.String("SpaceX"),
+			LegalName:     optionalnullable.From(types.String("SpaceX")),
 			DisplayName:   optionalnullable.From(types.String("SpaceX")),
 			Subdomain:     optionalnullable.From(types.String("company")),
 			Status:        components.HrisCompanyStatusActive.ToPointer(),
@@ -146,7 +146,7 @@ func testHrisCompaniesOneHrisCompaniesOne0(w http.ResponseWriter, req *http.Requ
 					ID:          optionalnullable.From(types.String("12345")),
 					CountryCode: optionalnullable.From(types.String("1")),
 					AreaCode:    optionalnullable.From(types.String("323")),
-					Number:      "111-111-1111",
+					Number:      types.String("111-111-1111"),
 					Extension:   optionalnullable.From(types.String("105")),
 					Type:        optionalnullable.From(components.PhoneNumberTypePrimary.ToPointer()),
 				},
@@ -154,7 +154,7 @@ func testHrisCompaniesOneHrisCompaniesOne0(w http.ResponseWriter, req *http.Requ
 					ID:          optionalnullable.From(types.String("12345")),
 					CountryCode: optionalnullable.From(types.String("1")),
 					AreaCode:    optionalnullable.From(types.String("323")),
-					Number:      "111-111-1111",
+					Number:      types.String("111-111-1111"),
 					Extension:   optionalnullable.From(types.String("105")),
 					Type:        optionalnullable.From(components.PhoneNumberTypePrimary.ToPointer()),
 				},
@@ -162,24 +162,24 @@ func testHrisCompaniesOneHrisCompaniesOne0(w http.ResponseWriter, req *http.Requ
 			Emails: []components.Email{
 				components.Email{
 					ID:    optionalnullable.From(types.String("123")),
-					Email: types.String("elon@musk.com"),
+					Email: optionalnullable.From(types.String("elon@musk.com")),
 					Type:  optionalnullable.From(components.EmailTypePrimary.ToPointer()),
 				},
 				components.Email{
 					ID:    optionalnullable.From(types.String("123")),
-					Email: types.String("elon@musk.com"),
+					Email: optionalnullable.From(types.String("elon@musk.com")),
 					Type:  optionalnullable.From(components.EmailTypePrimary.ToPointer()),
 				},
 			},
 			Websites: []components.Website{
 				components.Website{
 					ID:   optionalnullable.From(types.String("12345")),
-					URL:  "http://example.com",
+					URL:  types.String("http://example.com"),
 					Type: optionalnullable.From(components.WebsiteTypePrimary.ToPointer()),
 				},
 				components.Website{
 					ID:   optionalnullable.From(types.String("12345")),
-					URL:  "http://example.com",
+					URL:  types.String("http://example.com"),
 					Type: optionalnullable.From(components.WebsiteTypePrimary.ToPointer()),
 				},
 			},

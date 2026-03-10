@@ -4,7 +4,10 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import {
+  collectExtraKeys as collectExtraKeys$,
+  safeParse,
+} from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -23,7 +26,7 @@ export type Opportunity = {
   /**
    * The title or name of the opportunity.
    */
-  title: string;
+  title?: string | undefined;
   /**
    * The unique identifier of the primary contact associated with the opportunity.
    */
@@ -178,6 +181,7 @@ export type Opportunity = {
    * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
    */
   passThrough?: Array<PassThroughBody> | undefined;
+  additionalProperties?: { [k: string]: any } | undefined;
 };
 
 /** @internal */
@@ -185,50 +189,54 @@ export const Opportunity$inboundSchema: z.ZodType<
   Opportunity,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  id: types.optional(types.string()),
-  title: types.string(),
-  primary_contact_id: z.nullable(types.string()).optional(),
-  description: z.nullable(types.string()).optional(),
-  type: z.nullable(types.string()).optional(),
-  monetary_amount: z.nullable(types.number()).optional(),
-  currency: z.nullable(Currency$inboundSchema).optional(),
-  win_probability: z.nullable(types.number()).optional(),
-  expected_revenue: z.nullable(types.number()).optional(),
-  close_date: z.nullable(types.date()).optional(),
-  loss_reason_id: z.nullable(types.string()).optional(),
-  loss_reason: z.nullable(types.string()).optional(),
-  won_reason_id: z.nullable(types.string()).optional(),
-  won_reason: z.nullable(types.string()).optional(),
-  pipeline_id: z.nullable(types.string()).optional(),
-  pipeline_stage_id: z.nullable(types.string()).optional(),
-  source_id: z.nullable(types.string()).optional(),
-  lead_id: z.nullable(types.string()).optional(),
-  lead_source: z.nullable(types.string()).optional(),
-  contact_id: z.nullable(types.string()).optional(),
-  contact_ids: types.optional(z.array(types.string())),
-  company_id: z.nullable(types.string()).optional(),
-  company_name: z.nullable(types.string()).optional(),
-  owner_id: z.nullable(types.string()).optional(),
-  priority: z.nullable(types.string()).optional(),
-  status: z.nullable(types.string()).optional(),
-  status_id: z.nullable(types.string()).optional(),
-  tags: z.nullable(z.array(types.string())).optional(),
-  interaction_count: z.nullable(types.number()).optional(),
-  custom_fields: types.optional(z.array(CustomField$inboundSchema)),
-  stage_last_changed_at: z.nullable(types.date()).optional(),
-  last_activity_at: z.nullable(types.string()).optional(),
-  deleted: types.optional(types.boolean()),
-  date_stage_changed: z.nullable(types.date()).optional(),
-  date_last_contacted: z.nullable(types.date()).optional(),
-  date_lead_created: z.nullable(types.date()).optional(),
-  custom_mappings: z.nullable(z.record(z.any())).optional(),
-  updated_by: z.nullable(types.string()).optional(),
-  created_by: z.nullable(types.string()).optional(),
-  updated_at: z.nullable(types.date()).optional(),
-  created_at: z.nullable(types.date()).optional(),
-  pass_through: types.optional(z.array(PassThroughBody$inboundSchema)),
-}).transform((v) => {
+> = collectExtraKeys$(
+  z.object({
+    id: types.optional(types.string()),
+    title: types.optional(types.string()),
+    primary_contact_id: z.nullable(types.string()).optional(),
+    description: z.nullable(types.string()).optional(),
+    type: z.nullable(types.string()).optional(),
+    monetary_amount: z.nullable(types.number()).optional(),
+    currency: z.nullable(Currency$inboundSchema).optional(),
+    win_probability: z.nullable(types.number()).optional(),
+    expected_revenue: z.nullable(types.number()).optional(),
+    close_date: z.nullable(types.date()).optional(),
+    loss_reason_id: z.nullable(types.string()).optional(),
+    loss_reason: z.nullable(types.string()).optional(),
+    won_reason_id: z.nullable(types.string()).optional(),
+    won_reason: z.nullable(types.string()).optional(),
+    pipeline_id: z.nullable(types.string()).optional(),
+    pipeline_stage_id: z.nullable(types.string()).optional(),
+    source_id: z.nullable(types.string()).optional(),
+    lead_id: z.nullable(types.string()).optional(),
+    lead_source: z.nullable(types.string()).optional(),
+    contact_id: z.nullable(types.string()).optional(),
+    contact_ids: types.optional(z.array(types.string())),
+    company_id: z.nullable(types.string()).optional(),
+    company_name: z.nullable(types.string()).optional(),
+    owner_id: z.nullable(types.string()).optional(),
+    priority: z.nullable(types.string()).optional(),
+    status: z.nullable(types.string()).optional(),
+    status_id: z.nullable(types.string()).optional(),
+    tags: z.nullable(z.array(types.string())).optional(),
+    interaction_count: z.nullable(types.number()).optional(),
+    custom_fields: types.optional(z.array(CustomField$inboundSchema)),
+    stage_last_changed_at: z.nullable(types.date()).optional(),
+    last_activity_at: z.nullable(types.string()).optional(),
+    deleted: types.optional(types.boolean()),
+    date_stage_changed: z.nullable(types.date()).optional(),
+    date_last_contacted: z.nullable(types.date()).optional(),
+    date_lead_created: z.nullable(types.date()).optional(),
+    custom_mappings: z.nullable(z.record(z.any())).optional(),
+    updated_by: z.nullable(types.string()).optional(),
+    created_by: z.nullable(types.string()).optional(),
+    updated_at: z.nullable(types.date()).optional(),
+    created_at: z.nullable(types.date()).optional(),
+    pass_through: types.optional(z.array(PassThroughBody$inboundSchema)),
+  }).catchall(z.any()),
+  "additionalProperties",
+  true,
+).transform((v) => {
   return remap$(v, {
     "primary_contact_id": "primaryContactId",
     "monetary_amount": "monetaryAmount",

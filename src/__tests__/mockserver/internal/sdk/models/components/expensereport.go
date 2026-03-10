@@ -102,11 +102,11 @@ type ExpenseReport struct {
 	// Title or purpose of the expense report.
 	Title optionalnullable.OptionalNullable[string] `json:"title,omitempty"`
 	// The employee who submitted the expense report.
-	Employee ExpenseReportEmployee `json:"employee"`
+	Employee *ExpenseReportEmployee `json:"employee,omitempty"`
 	// The status of the expense report.
 	Status optionalnullable.OptionalNullable[ExpenseReportStatus] `json:"status,omitempty"`
 	// The date of the transaction - YYYY:MM::DDThh:mm:ss.sTZD
-	TransactionDate *time.Time `json:"transaction_date"`
+	TransactionDate optionalnullable.OptionalNullable[time.Time] `json:"transaction_date,omitempty"`
 	// The date the expense report was posted to the general ledger.
 	PostingDate optionalnullable.OptionalNullable[types.Date] `json:"posting_date,omitempty"`
 	// Date when reimbursement is due.
@@ -131,7 +131,7 @@ type ExpenseReport struct {
 	// The accounting period the expense report is posted to.
 	AccountingPeriod optionalnullable.OptionalNullable[AccountingPeriod] `json:"accounting_period,omitempty"`
 	// Expense line items linked to this expense report.
-	LineItems  []ExpenseReportLineItem                             `json:"line_items"`
+	LineItems  []ExpenseReportLineItem                             `json:"line_items,omitempty"`
 	Subsidiary optionalnullable.OptionalNullable[LinkedSubsidiary] `json:"subsidiary,omitempty"`
 	// A list of linked tracking categories.
 	TrackingCategories optionalnullable.OptionalNullable[[]*LinkedTrackingCategory] `json:"tracking_categories,omitempty"`
@@ -139,7 +139,7 @@ type ExpenseReport struct {
 	TaxInclusive optionalnullable.OptionalNullable[bool] `json:"tax_inclusive,omitempty"`
 	// The person who approved the expense report.
 	ApprovedBy   optionalnullable.OptionalNullable[ApprovedBy] `json:"approved_by,omitempty"`
-	CustomFields []CustomFieldUnion                            `json:"custom_fields,omitempty"`
+	CustomFields []CustomField                                 `json:"custom_fields,omitempty"`
 	// When custom mappings are configured on the resource, the result is included here.
 	CustomMappings optionalnullable.OptionalNullable[map[string]any] `json:"custom_mappings,omitempty"`
 	// A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
@@ -153,7 +153,8 @@ type ExpenseReport struct {
 	// The date and time when the object was created.
 	CreatedAt optionalnullable.OptionalNullable[time.Time] `json:"created_at,omitempty"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
-	PassThrough []PassThroughBody `json:"pass_through,omitempty"`
+	PassThrough          []PassThroughBody `json:"pass_through,omitempty"`
+	AdditionalProperties map[string]any    `additionalProperties:"true" json:"-"`
 }
 
 func (e ExpenseReport) MarshalJSON() ([]byte, error) {
@@ -161,7 +162,7 @@ func (e ExpenseReport) MarshalJSON() ([]byte, error) {
 }
 
 func (e *ExpenseReport) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &e, "", false, []string{"employee", "transaction_date", "line_items"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &e, "", false, nil); err != nil {
 		return err
 	}
 	return nil
@@ -195,9 +196,9 @@ func (o *ExpenseReport) GetTitle() optionalnullable.OptionalNullable[string] {
 	return o.Title
 }
 
-func (o *ExpenseReport) GetEmployee() ExpenseReportEmployee {
+func (o *ExpenseReport) GetEmployee() *ExpenseReportEmployee {
 	if o == nil {
-		return ExpenseReportEmployee{}
+		return nil
 	}
 	return o.Employee
 }
@@ -209,7 +210,7 @@ func (o *ExpenseReport) GetStatus() optionalnullable.OptionalNullable[ExpenseRep
 	return o.Status
 }
 
-func (o *ExpenseReport) GetTransactionDate() *time.Time {
+func (o *ExpenseReport) GetTransactionDate() optionalnullable.OptionalNullable[time.Time] {
 	if o == nil {
 		return nil
 	}
@@ -309,7 +310,7 @@ func (o *ExpenseReport) GetAccountingPeriod() optionalnullable.OptionalNullable[
 
 func (o *ExpenseReport) GetLineItems() []ExpenseReportLineItem {
 	if o == nil {
-		return []ExpenseReportLineItem{}
+		return nil
 	}
 	return o.LineItems
 }
@@ -342,7 +343,7 @@ func (o *ExpenseReport) GetApprovedBy() optionalnullable.OptionalNullable[Approv
 	return o.ApprovedBy
 }
 
-func (o *ExpenseReport) GetCustomFields() []CustomFieldUnion {
+func (o *ExpenseReport) GetCustomFields() []CustomField {
 	if o == nil {
 		return nil
 	}
@@ -398,6 +399,13 @@ func (o *ExpenseReport) GetPassThrough() []PassThroughBody {
 	return o.PassThrough
 }
 
+func (o *ExpenseReport) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
+}
+
 type ExpenseReportInput struct {
 	// Id to be displayed.
 	DisplayID optionalnullable.OptionalNullable[string] `json:"display_id,omitempty"`
@@ -406,11 +414,11 @@ type ExpenseReportInput struct {
 	// Title or purpose of the expense report.
 	Title optionalnullable.OptionalNullable[string] `json:"title,omitempty"`
 	// The employee who submitted the expense report.
-	Employee ExpenseReportEmployee `json:"employee"`
+	Employee *ExpenseReportEmployee `json:"employee,omitempty"`
 	// The status of the expense report.
 	Status optionalnullable.OptionalNullable[ExpenseReportStatus] `json:"status,omitempty"`
 	// The date of the transaction - YYYY:MM::DDThh:mm:ss.sTZD
-	TransactionDate *time.Time `json:"transaction_date"`
+	TransactionDate optionalnullable.OptionalNullable[time.Time] `json:"transaction_date,omitempty"`
 	// The date the expense report was posted to the general ledger.
 	PostingDate optionalnullable.OptionalNullable[types.Date] `json:"posting_date,omitempty"`
 	// Date when reimbursement is due.
@@ -435,7 +443,7 @@ type ExpenseReportInput struct {
 	// The accounting period the expense report is posted to.
 	AccountingPeriod optionalnullable.OptionalNullable[AccountingPeriod] `json:"accounting_period,omitempty"`
 	// Expense line items linked to this expense report.
-	LineItems  []ExpenseReportLineItemInput                             `json:"line_items"`
+	LineItems  []ExpenseReportLineItemInput                             `json:"line_items,omitempty"`
 	Subsidiary optionalnullable.OptionalNullable[LinkedSubsidiaryInput] `json:"subsidiary,omitempty"`
 	// A list of linked tracking categories.
 	TrackingCategories optionalnullable.OptionalNullable[[]*LinkedTrackingCategory] `json:"tracking_categories,omitempty"`
@@ -443,11 +451,12 @@ type ExpenseReportInput struct {
 	TaxInclusive optionalnullable.OptionalNullable[bool] `json:"tax_inclusive,omitempty"`
 	// The person who approved the expense report.
 	ApprovedBy   optionalnullable.OptionalNullable[ApprovedBy] `json:"approved_by,omitempty"`
-	CustomFields []CustomFieldUnion                            `json:"custom_fields,omitempty"`
+	CustomFields []CustomField                                 `json:"custom_fields,omitempty"`
 	// A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
 	RowVersion optionalnullable.OptionalNullable[string] `json:"row_version,omitempty"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
-	PassThrough []PassThroughBody `json:"pass_through,omitempty"`
+	PassThrough          []PassThroughBody `json:"pass_through,omitempty"`
+	AdditionalProperties map[string]any    `additionalProperties:"true" json:"-"`
 }
 
 func (e ExpenseReportInput) MarshalJSON() ([]byte, error) {
@@ -455,7 +464,7 @@ func (e ExpenseReportInput) MarshalJSON() ([]byte, error) {
 }
 
 func (e *ExpenseReportInput) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &e, "", false, []string{"employee", "transaction_date", "line_items"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &e, "", false, nil); err != nil {
 		return err
 	}
 	return nil
@@ -482,9 +491,9 @@ func (o *ExpenseReportInput) GetTitle() optionalnullable.OptionalNullable[string
 	return o.Title
 }
 
-func (o *ExpenseReportInput) GetEmployee() ExpenseReportEmployee {
+func (o *ExpenseReportInput) GetEmployee() *ExpenseReportEmployee {
 	if o == nil {
-		return ExpenseReportEmployee{}
+		return nil
 	}
 	return o.Employee
 }
@@ -496,7 +505,7 @@ func (o *ExpenseReportInput) GetStatus() optionalnullable.OptionalNullable[Expen
 	return o.Status
 }
 
-func (o *ExpenseReportInput) GetTransactionDate() *time.Time {
+func (o *ExpenseReportInput) GetTransactionDate() optionalnullable.OptionalNullable[time.Time] {
 	if o == nil {
 		return nil
 	}
@@ -596,7 +605,7 @@ func (o *ExpenseReportInput) GetAccountingPeriod() optionalnullable.OptionalNull
 
 func (o *ExpenseReportInput) GetLineItems() []ExpenseReportLineItemInput {
 	if o == nil {
-		return []ExpenseReportLineItemInput{}
+		return nil
 	}
 	return o.LineItems
 }
@@ -629,7 +638,7 @@ func (o *ExpenseReportInput) GetApprovedBy() optionalnullable.OptionalNullable[A
 	return o.ApprovedBy
 }
 
-func (o *ExpenseReportInput) GetCustomFields() []CustomFieldUnion {
+func (o *ExpenseReportInput) GetCustomFields() []CustomField {
 	if o == nil {
 		return nil
 	}
@@ -648,4 +657,11 @@ func (o *ExpenseReportInput) GetPassThrough() []PassThroughBody {
 		return nil
 	}
 	return o.PassThrough
+}
+
+func (o *ExpenseReportInput) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }

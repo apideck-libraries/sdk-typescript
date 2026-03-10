@@ -4,7 +4,10 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import {
+  collectExtraKeys as collectExtraKeys$,
+  safeParse,
+} from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
@@ -99,6 +102,7 @@ export type CustomObjectSchema = {
    * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
    */
   passThrough?: Array<PassThroughBody> | undefined;
+  additionalProperties?: { [k: string]: any } | undefined;
 };
 
 export type CustomObjectSchemaInput = {
@@ -126,6 +130,7 @@ export type CustomObjectSchemaInput = {
    * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
    */
   passThrough?: Array<PassThroughBody> | undefined;
+  additionalProperties?: { [k: string]: any } | undefined;
 };
 
 /** @internal */
@@ -250,19 +255,23 @@ export const CustomObjectSchema$inboundSchema: z.ZodType<
   CustomObjectSchema,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  id: types.optional(types.string()),
-  name: z.nullable(types.string()).optional(),
-  description: z.nullable(types.string()).optional(),
-  fields: types.optional(z.array(z.lazy(() => Fields$inboundSchema))),
-  visible: z.nullable(types.boolean()).optional(),
-  active: z.nullable(types.boolean()).optional(),
-  created_by: z.nullable(types.string()).optional(),
-  updated_by: z.nullable(types.string()).optional(),
-  updated_at: z.nullable(types.string()).optional(),
-  created_at: z.nullable(types.string()).optional(),
-  pass_through: types.optional(z.array(PassThroughBody$inboundSchema)),
-}).transform((v) => {
+> = collectExtraKeys$(
+  z.object({
+    id: types.optional(types.string()),
+    name: z.nullable(types.string()).optional(),
+    description: z.nullable(types.string()).optional(),
+    fields: types.optional(z.array(z.lazy(() => Fields$inboundSchema))),
+    visible: z.nullable(types.boolean()).optional(),
+    active: z.nullable(types.boolean()).optional(),
+    created_by: z.nullable(types.string()).optional(),
+    updated_by: z.nullable(types.string()).optional(),
+    updated_at: z.nullable(types.string()).optional(),
+    created_at: z.nullable(types.string()).optional(),
+    pass_through: types.optional(z.array(PassThroughBody$inboundSchema)),
+  }).catchall(z.any()),
+  "additionalProperties",
+  true,
+).transform((v) => {
   return remap$(v, {
     "created_by": "createdBy",
     "updated_by": "updatedBy",
@@ -290,6 +299,7 @@ export type CustomObjectSchemaInput$Outbound = {
   visible?: boolean | null | undefined;
   active?: boolean | null | undefined;
   pass_through?: Array<PassThroughBody$Outbound> | undefined;
+  [additionalProperties: string]: unknown;
 };
 
 /** @internal */
@@ -304,10 +314,15 @@ export const CustomObjectSchemaInput$outboundSchema: z.ZodType<
   visible: z.nullable(z.boolean()).optional(),
   active: z.nullable(z.boolean()).optional(),
   passThrough: z.array(PassThroughBody$outboundSchema).optional(),
+  additionalProperties: z.record(z.any()).optional(),
 }).transform((v) => {
-  return remap$(v, {
-    passThrough: "pass_through",
-  });
+  return {
+    ...v.additionalProperties,
+    ...remap$(v, {
+      passThrough: "pass_through",
+      additionalProperties: null,
+    }),
+  };
 });
 
 export function customObjectSchemaInputToJSON(

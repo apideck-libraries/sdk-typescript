@@ -9,7 +9,6 @@ let value: ConnectionDefaults = {
   id: "ProductInterest",
   options: [
     {
-      label: "General Channel",
       optionType: "simple",
     },
   ],

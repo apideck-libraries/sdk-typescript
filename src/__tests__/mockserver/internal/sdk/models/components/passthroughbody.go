@@ -2,11 +2,27 @@
 
 package components
 
+import (
+	"mockserver/internal/sdk/utils"
+)
+
 type ExtendPath struct {
 	// JSONPath string specifying where to apply the value.
 	Path string `json:"path"`
 	// The value to set at the specified path, can be any type.
-	Value any `json:"value"`
+	Value                any            `json:"value"`
+	AdditionalProperties map[string]any `additionalProperties:"true" json:"-"`
+}
+
+func (e ExtendPath) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(e, "", false)
+}
+
+func (e *ExtendPath) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &e, "", false, []string{"path", "value"}); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *ExtendPath) GetPath() string {
@@ -23,6 +39,13 @@ func (o *ExtendPath) GetValue() any {
 	return o.Value
 }
 
+func (o *ExtendPath) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
+}
+
 type PassThroughBody struct {
 	// Identifier for the service to which this pass_through should be applied.
 	ServiceID string `json:"service_id"`
@@ -31,7 +54,19 @@ type PassThroughBody struct {
 	// Simple object allowing any properties for direct extension.
 	ExtendObject map[string]any `json:"extend_object,omitempty"`
 	// Array of objects for structured data modifications via paths.
-	ExtendPaths []ExtendPath `json:"extend_paths,omitempty"`
+	ExtendPaths          []ExtendPath   `json:"extend_paths,omitempty"`
+	AdditionalProperties map[string]any `additionalProperties:"true" json:"-"`
+}
+
+func (p PassThroughBody) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(p, "", false)
+}
+
+func (p *PassThroughBody) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &p, "", false, []string{"service_id"}); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *PassThroughBody) GetServiceID() string {
@@ -60,4 +95,11 @@ func (o *PassThroughBody) GetExtendPaths() []ExtendPath {
 		return nil
 	}
 	return o.ExtendPaths
+}
+
+func (o *PassThroughBody) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }

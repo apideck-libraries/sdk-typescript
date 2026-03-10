@@ -4,6 +4,7 @@ package components
 
 import (
 	"mockserver/internal/sdk/optionalnullable"
+	"mockserver/internal/sdk/utils"
 )
 
 type UpdateWebhookRequest struct {
@@ -14,7 +15,19 @@ type UpdateWebhookRequest struct {
 	// The delivery url of the webhook endpoint.
 	DeliveryURL *string `json:"delivery_url,omitempty"`
 	// The list of subscribed events for this webhook. [`*`] indicates that all events are enabled.
-	Events []WebhookEventType `json:"events,omitempty"`
+	Events               []WebhookEventType `json:"events,omitempty"`
+	AdditionalProperties map[string]any     `additionalProperties:"true" json:"-"`
+}
+
+func (u UpdateWebhookRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(u, "", false)
+}
+
+func (u *UpdateWebhookRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &u, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *UpdateWebhookRequest) GetDescription() optionalnullable.OptionalNullable[string] {
@@ -43,4 +56,11 @@ func (o *UpdateWebhookRequest) GetEvents() []WebhookEventType {
 		return nil
 	}
 	return o.Events
+}
+
+func (o *UpdateWebhookRequest) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }

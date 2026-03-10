@@ -4,6 +4,7 @@ package components
 
 import (
 	"mockserver/internal/sdk/optionalnullable"
+	"mockserver/internal/sdk/utils"
 )
 
 // Income - The operating income accounts
@@ -352,7 +353,7 @@ type ProfitAndLoss struct {
 	// A unique identifier for an object.
 	ID *string `json:"id,omitempty"`
 	// The name of the report
-	ReportName string `json:"report_name"`
+	ReportName *string `json:"report_name,omitempty"`
 	// The start date of the report
 	StartDate *string `json:"start_date,omitempty"`
 	// The end date of the report
@@ -360,11 +361,11 @@ type ProfitAndLoss struct {
 	// Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
 	Currency optionalnullable.OptionalNullable[Currency] `json:"currency,omitempty"`
 	// The operating income accounts
-	Income Income `json:"income"`
+	Income *Income `json:"income,omitempty"`
 	// The cost of goods sold accounts
 	CostOfGoodsSold *CostOfGoodsSold `json:"cost_of_goods_sold,omitempty"`
 	// The operating expenses accounts
-	Expenses Expenses `json:"expenses"`
+	Expenses *Expenses `json:"expenses,omitempty"`
 	// The other income accounts
 	OtherIncome *OtherIncome `json:"other_income,omitempty"`
 	// The other expenses accounts
@@ -377,7 +378,19 @@ type ProfitAndLoss struct {
 	// When custom mappings are configured on the resource, the result is included here.
 	CustomMappings optionalnullable.OptionalNullable[map[string]any] `json:"custom_mappings,omitempty"`
 	// The customer id
-	Customer *string `json:"customer,omitempty"`
+	Customer             *string        `json:"customer,omitempty"`
+	AdditionalProperties map[string]any `additionalProperties:"true" json:"-"`
+}
+
+func (p ProfitAndLoss) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(p, "", false)
+}
+
+func (p *ProfitAndLoss) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &p, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *ProfitAndLoss) GetID() *string {
@@ -387,9 +400,9 @@ func (o *ProfitAndLoss) GetID() *string {
 	return o.ID
 }
 
-func (o *ProfitAndLoss) GetReportName() string {
+func (o *ProfitAndLoss) GetReportName() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.ReportName
 }
@@ -415,9 +428,9 @@ func (o *ProfitAndLoss) GetCurrency() optionalnullable.OptionalNullable[Currency
 	return o.Currency
 }
 
-func (o *ProfitAndLoss) GetIncome() Income {
+func (o *ProfitAndLoss) GetIncome() *Income {
 	if o == nil {
-		return Income{}
+		return nil
 	}
 	return o.Income
 }
@@ -429,9 +442,9 @@ func (o *ProfitAndLoss) GetCostOfGoodsSold() *CostOfGoodsSold {
 	return o.CostOfGoodsSold
 }
 
-func (o *ProfitAndLoss) GetExpenses() Expenses {
+func (o *ProfitAndLoss) GetExpenses() *Expenses {
 	if o == nil {
-		return Expenses{}
+		return nil
 	}
 	return o.Expenses
 }
@@ -490,4 +503,11 @@ func (o *ProfitAndLoss) GetCustomer() *string {
 		return nil
 	}
 	return o.Customer
+}
+
+func (o *ProfitAndLoss) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }

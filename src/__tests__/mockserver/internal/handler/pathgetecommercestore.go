@@ -54,7 +54,7 @@ func testEcommerceStoresOneEcommerceStoresOne0(w http.ResponseWriter, req *http.
 		Resource:   "stores",
 		Operation:  "one",
 		Data: components.EcommerceStore{
-			ID:        "12345",
+			ID:        types.String("12345"),
 			Name:      optionalnullable.From(types.String("My Store")),
 			StoreURL:  optionalnullable.From(types.String("https://mybrand.com/shop")),
 			AdminURL:  optionalnullable.From(types.String("https://mybrand.com/admin")),

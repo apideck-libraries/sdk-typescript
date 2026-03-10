@@ -13,17 +13,17 @@ export type ConsentRecordInput = {
   /**
    * Whether consent was granted (true) or denied/revoked (false)
    */
-  granted: boolean;
+  granted?: boolean | undefined;
   /**
    * Data scopes resource configuration that can be either detailed field permissions or a wildcard
    */
-  resources: DataScopesResources;
+  resources?: DataScopesResources | undefined;
 };
 
 /** @internal */
 export type ConsentRecordInput$Outbound = {
-  granted: boolean;
-  resources: DataScopesResources$Outbound;
+  granted?: boolean | undefined;
+  resources?: DataScopesResources$Outbound | undefined;
 };
 
 /** @internal */
@@ -32,8 +32,8 @@ export const ConsentRecordInput$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   ConsentRecordInput
 > = z.object({
-  granted: z.boolean(),
-  resources: DataScopesResources$outboundSchema,
+  granted: z.boolean().optional(),
+  resources: DataScopesResources$outboundSchema.optional(),
 });
 
 export function consentRecordInputToJSON(

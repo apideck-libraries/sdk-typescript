@@ -8,11 +8,11 @@ Status of the connection.
 import { ConnectionStatus } from "@apideck/unify/models/components";
 
 let value: ConnectionStatus = "live";
+
+// Open enum: unrecognized values are captured as Unrecognized<string>
 ```
 
 ## Values
-
-This is an open enum. Unrecognized values will be captured as the `Unrecognized<string>` branded type.
 
 ```typescript
 "live" | "upcoming" | "requested" | Unrecognized<string>

@@ -26,7 +26,8 @@ type Person struct {
 	// Date of death
 	DeceasedOn optionalnullable.OptionalNullable[types.Date] `json:"deceased_on,omitempty"`
 	// When custom mappings are configured on the resource, the result is included here.
-	CustomMappings optionalnullable.OptionalNullable[map[string]any] `json:"custom_mappings,omitempty"`
+	CustomMappings       optionalnullable.OptionalNullable[map[string]any] `json:"custom_mappings,omitempty"`
+	AdditionalProperties map[string]any                                    `additionalProperties:"true" json:"-"`
 }
 
 func (p Person) MarshalJSON() ([]byte, error) {
@@ -101,4 +102,11 @@ func (o *Person) GetCustomMappings() optionalnullable.OptionalNullable[map[strin
 		return nil
 	}
 	return o.CustomMappings
+}
+
+func (o *Person) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }

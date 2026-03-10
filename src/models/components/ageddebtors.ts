@@ -4,7 +4,10 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import {
+  collectExtraKeys as collectExtraKeys$,
+  safeParse,
+} from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -31,6 +34,7 @@ export type AgedDebtors = {
    */
   periodLength: number;
   outstandingBalances?: Array<OutstandingBalanceByCustomer> | undefined;
+  additionalProperties?: { [k: string]: any } | undefined;
 };
 
 /** @internal */
@@ -38,15 +42,19 @@ export const AgedDebtors$inboundSchema: z.ZodType<
   AgedDebtors,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  report_generated_at: types.optional(types.date()),
-  report_as_of_date: types.optional(types.date()),
-  period_count: types.number().default(4),
-  period_length: types.number().default(30),
-  outstanding_balances: types.optional(
-    z.array(OutstandingBalanceByCustomer$inboundSchema),
-  ),
-}).transform((v) => {
+> = collectExtraKeys$(
+  z.object({
+    report_generated_at: types.optional(types.date()),
+    report_as_of_date: types.optional(types.date()),
+    period_count: types.number().default(4),
+    period_length: types.number().default(30),
+    outstanding_balances: types.optional(
+      z.array(OutstandingBalanceByCustomer$inboundSchema),
+    ),
+  }).catchall(z.any()),
+  "additionalProperties",
+  true,
+).transform((v) => {
   return remap$(v, {
     "report_generated_at": "reportGeneratedAt",
     "report_as_of_date": "reportAsOfDate",

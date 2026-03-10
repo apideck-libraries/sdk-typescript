@@ -11,9 +11,9 @@ import (
 // TrackingItem - Represents the tracking information associated with an ecommerce order.
 type TrackingItem struct {
 	// The name or code of the carrier or shipping company that is handling the shipment.
-	Provider *string `json:"provider"`
+	Provider optionalnullable.OptionalNullable[string] `json:"provider,omitempty"`
 	//  The tracking number associated with the shipment, which can be used to track the progress of the delivery.
-	Number *string `json:"number"`
+	Number optionalnullable.OptionalNullable[string] `json:"number,omitempty"`
 	// The URL of the carrier's tracking page, which can be used to view detailed information about the shipment's progress.
 	URL optionalnullable.OptionalNullable[string] `json:"url,omitempty"`
 	// The date and time when the object was last updated.
@@ -25,20 +25,20 @@ func (t TrackingItem) MarshalJSON() ([]byte, error) {
 }
 
 func (t *TrackingItem) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &t, "", false, []string{"provider", "number"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &t, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *TrackingItem) GetProvider() *string {
+func (o *TrackingItem) GetProvider() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.Provider
 }
 
-func (o *TrackingItem) GetNumber() *string {
+func (o *TrackingItem) GetNumber() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}

@@ -27,7 +27,7 @@ func CreateFormFieldOptionSimple(simple SimpleFormFieldOption) FormFieldOption {
 	typ := FormFieldOptionTypeSimple
 
 	typStr := SimpleFormFieldOptionOptionType(typ)
-	simple.OptionType = typStr
+	simple.OptionType = &typStr
 
 	return FormFieldOption{
 		SimpleFormFieldOption: &simple,
@@ -39,7 +39,7 @@ func CreateFormFieldOptionGroup(group FormFieldOptionGroup) FormFieldOption {
 	typ := FormFieldOptionTypeGroup
 
 	typStr := FormFieldOptionGroupOptionType(typ)
-	group.OptionType = typStr
+	group.OptionType = &typStr
 
 	return FormFieldOption{
 		FormFieldOptionGroup: &group,

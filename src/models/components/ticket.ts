@@ -4,7 +4,10 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import {
+  collectExtraKeys as collectExtraKeys$,
+  safeParse,
+} from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
@@ -47,7 +50,7 @@ export type Ticket = {
   /**
    * A unique identifier for an object.
    */
-  id: string;
+  id?: string | undefined;
   /**
    * The ticket's parent ID
    */
@@ -106,6 +109,7 @@ export type Ticket = {
    * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
    */
   passThrough?: Array<PassThroughBody> | undefined;
+  additionalProperties?: { [k: string]: any } | undefined;
 };
 
 export type TicketInput = {
@@ -143,6 +147,7 @@ export type TicketInput = {
    * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
    */
   passThrough?: Array<PassThroughBody> | undefined;
+  additionalProperties?: { [k: string]: any } | undefined;
 };
 
 /** @internal */
@@ -159,26 +164,30 @@ export const TicketPriority$outboundSchema: z.ZodType<
 > = openEnums.outboundSchema(TicketPriority);
 
 /** @internal */
-export const Ticket$inboundSchema: z.ZodType<Ticket, z.ZodTypeDef, unknown> = z
-  .object({
-    id: types.string(),
-    parent_id: z.nullable(types.string()).optional(),
-    collection_id: z.nullable(types.string()).optional(),
-    type: z.nullable(types.string()).optional(),
-    subject: z.nullable(types.string()).optional(),
-    description: z.nullable(types.string()).optional(),
-    status: z.nullable(types.string()).optional(),
-    priority: z.nullable(TicketPriority$inboundSchema).optional(),
-    assignees: types.optional(z.array(Assignee$inboundSchema)),
-    updated_at: z.nullable(types.date()).optional(),
-    created_at: z.nullable(types.date()).optional(),
-    created_by: z.nullable(types.string()).optional(),
-    due_date: z.nullable(types.date()).optional(),
-    completed_at: z.nullable(types.date()).optional(),
-    tags: types.optional(z.array(CollectionTag$inboundSchema)),
-    custom_mappings: z.nullable(z.record(z.any())).optional(),
-    pass_through: types.optional(z.array(PassThroughBody$inboundSchema)),
-  }).transform((v) => {
+export const Ticket$inboundSchema: z.ZodType<Ticket, z.ZodTypeDef, unknown> =
+  collectExtraKeys$(
+    z.object({
+      id: types.optional(types.string()),
+      parent_id: z.nullable(types.string()).optional(),
+      collection_id: z.nullable(types.string()).optional(),
+      type: z.nullable(types.string()).optional(),
+      subject: z.nullable(types.string()).optional(),
+      description: z.nullable(types.string()).optional(),
+      status: z.nullable(types.string()).optional(),
+      priority: z.nullable(TicketPriority$inboundSchema).optional(),
+      assignees: types.optional(z.array(Assignee$inboundSchema)),
+      updated_at: z.nullable(types.date()).optional(),
+      created_at: z.nullable(types.date()).optional(),
+      created_by: z.nullable(types.string()).optional(),
+      due_date: z.nullable(types.date()).optional(),
+      completed_at: z.nullable(types.date()).optional(),
+      tags: types.optional(z.array(CollectionTag$inboundSchema)),
+      custom_mappings: z.nullable(z.record(z.any())).optional(),
+      pass_through: types.optional(z.array(PassThroughBody$inboundSchema)),
+    }).catchall(z.any()),
+    "additionalProperties",
+    true,
+  ).transform((v) => {
     return remap$(v, {
       "parent_id": "parentId",
       "collection_id": "collectionId",
@@ -214,6 +223,7 @@ export type TicketInput$Outbound = {
   due_date?: string | null | undefined;
   tags?: Array<CollectionTagInput$Outbound> | undefined;
   pass_through?: Array<PassThroughBody$Outbound> | undefined;
+  [additionalProperties: string]: unknown;
 };
 
 /** @internal */
@@ -232,12 +242,17 @@ export const TicketInput$outboundSchema: z.ZodType<
   dueDate: z.nullable(z.date().transform(v => v.toISOString())).optional(),
   tags: z.array(CollectionTagInput$outboundSchema).optional(),
   passThrough: z.array(PassThroughBody$outboundSchema).optional(),
+  additionalProperties: z.record(z.any()).optional(),
 }).transform((v) => {
-  return remap$(v, {
-    parentId: "parent_id",
-    dueDate: "due_date",
-    passThrough: "pass_through",
-  });
+  return {
+    ...v.additionalProperties,
+    ...remap$(v, {
+      parentId: "parent_id",
+      dueDate: "due_date",
+      passThrough: "pass_through",
+      additionalProperties: null,
+    }),
+  };
 });
 
 export function ticketInputToJSON(ticketInput: TicketInput): string {

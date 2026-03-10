@@ -233,9 +233,9 @@ func (e SimpleFormFieldOptionOptionType) ToPointer() *SimpleFormFieldOptionOptio
 }
 
 type SimpleFormFieldOption struct {
-	Label      string                          `json:"label"`
-	Value      *SimpleFormFieldOptionValue2    `json:"value,omitempty"`
-	OptionType SimpleFormFieldOptionOptionType `json:"option_type"`
+	Label      *string                          `json:"label,omitempty"`
+	Value      *SimpleFormFieldOptionValue2     `json:"value,omitempty"`
+	OptionType *SimpleFormFieldOptionOptionType `json:"option_type,omitempty"`
 }
 
 func (s SimpleFormFieldOption) MarshalJSON() ([]byte, error) {
@@ -243,15 +243,15 @@ func (s SimpleFormFieldOption) MarshalJSON() ([]byte, error) {
 }
 
 func (s *SimpleFormFieldOption) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &s, "", false, []string{"label", "option_type"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &s, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *SimpleFormFieldOption) GetLabel() string {
+func (o *SimpleFormFieldOption) GetLabel() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.Label
 }
@@ -263,9 +263,9 @@ func (o *SimpleFormFieldOption) GetValue() *SimpleFormFieldOptionValue2 {
 	return o.Value
 }
 
-func (o *SimpleFormFieldOption) GetOptionType() SimpleFormFieldOptionOptionType {
+func (o *SimpleFormFieldOption) GetOptionType() *SimpleFormFieldOptionOptionType {
 	if o == nil {
-		return SimpleFormFieldOptionOptionType("")
+		return nil
 	}
 	return o.OptionType
 }

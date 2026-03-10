@@ -47,16 +47,16 @@ func testCrmCompaniesAllCrmCompaniesAll0(w http.ResponseWriter, req *http.Reques
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	var respBody *components.GetCompaniesResponse = &components.GetCompaniesResponse{
-		StatusCode: 200,
-		Status:     "OK",
-		Service:    "zoho-crm",
-		Resource:   "companies",
-		Operation:  "all",
+	var respBody *components.GetCompaniesResponse1 = &components.GetCompaniesResponse1{
+		StatusCode: types.Int64(200),
+		Status:     types.String("OK"),
+		Service:    types.String("zoho-crm"),
+		Resource:   types.String("companies"),
+		Operation:  types.String("all"),
 		Data: []components.Company1{
 			components.Company1{
 				ID:                types.String("12345"),
-				Name:              types.String("SpaceX"),
+				Name:              optionalnullable.From(types.String("SpaceX")),
 				InteractionCount:  optionalnullable.From(types.Int64(1)),
 				OwnerID:           optionalnullable.From(types.String("12345")),
 				Image:             optionalnullable.From(types.String("https://www.spacex.com/static/images/share.jpg")),
@@ -108,17 +108,17 @@ func testCrmCompaniesAllCrmCompaniesAll0(w http.ResponseWriter, req *http.Reques
 				Websites: []components.Website{
 					components.Website{
 						ID:   optionalnullable.From(types.String("12345")),
-						URL:  "http://example.com",
+						URL:  types.String("http://example.com"),
 						Type: optionalnullable.From(components.WebsiteTypePrimary.ToPointer()),
 					},
 					components.Website{
 						ID:   optionalnullable.From(types.String("12345")),
-						URL:  "http://example.com",
+						URL:  types.String("http://example.com"),
 						Type: optionalnullable.From(components.WebsiteTypePrimary.ToPointer()),
 					},
 					components.Website{
 						ID:   optionalnullable.From(types.String("12345")),
-						URL:  "http://example.com",
+						URL:  types.String("http://example.com"),
 						Type: optionalnullable.From(components.WebsiteTypePrimary.ToPointer()),
 					},
 				},
@@ -153,7 +153,7 @@ func testCrmCompaniesAllCrmCompaniesAll0(w http.ResponseWriter, req *http.Reques
 				SocialLinks: []components.SocialLink{
 					components.SocialLink{
 						ID:   optionalnullable.From(types.String("12345")),
-						URL:  "https://www.twitter.com/apideck",
+						URL:  types.String("https://www.twitter.com/apideck"),
 						Type: optionalnullable.From(types.String("twitter")),
 					},
 				},
@@ -162,7 +162,7 @@ func testCrmCompaniesAllCrmCompaniesAll0(w http.ResponseWriter, req *http.Reques
 						ID:          optionalnullable.From(types.String("12345")),
 						CountryCode: optionalnullable.From(types.String("1")),
 						AreaCode:    optionalnullable.From(types.String("323")),
-						Number:      "111-111-1111",
+						Number:      types.String("111-111-1111"),
 						Extension:   optionalnullable.From(types.String("105")),
 						Type:        optionalnullable.From(components.PhoneNumberTypePrimary.ToPointer()),
 					},
@@ -170,12 +170,12 @@ func testCrmCompaniesAllCrmCompaniesAll0(w http.ResponseWriter, req *http.Reques
 				Emails: []components.Email{
 					components.Email{
 						ID:    optionalnullable.From(types.String("123")),
-						Email: types.String("elon@musk.com"),
+						Email: optionalnullable.From(types.String("elon@musk.com")),
 						Type:  optionalnullable.From(components.EmailTypePrimary.ToPointer()),
 					},
 					components.Email{
 						ID:    optionalnullable.From(types.String("123")),
-						Email: types.String("elon@musk.com"),
+						Email: optionalnullable.From(types.String("elon@musk.com")),
 						Type:  optionalnullable.From(components.EmailTypePrimary.ToPointer()),
 					},
 				},
@@ -183,27 +183,23 @@ func testCrmCompaniesAllCrmCompaniesAll0(w http.ResponseWriter, req *http.Reques
 					ID:   optionalnullable.From(types.String("12345")),
 					Name: optionalnullable.From(types.String("Customer Account")),
 				},
-				CustomFields: []components.CustomFieldUnion{
-					components.CreateCustomFieldUnionCustomField1(
-						components.CustomField1{
-							ID:          types.String("2389328923893298"),
-							Name:        optionalnullable.From(types.String("employee_level")),
-							Description: optionalnullable.From(types.String("Employee Level")),
-							Value: optionalnullable.From(types.Pointer(components.CreateCustomFieldValue2Str(
-								"Uses Salesforce and Marketo",
-							))),
-						},
-					),
-					components.CreateCustomFieldUnionCustomField1(
-						components.CustomField1{
-							ID:          types.String("2389328923893298"),
-							Name:        optionalnullable.From(types.String("employee_level")),
-							Description: optionalnullable.From(types.String("Employee Level")),
-							Value: optionalnullable.From(types.Pointer(components.CreateCustomFieldValue2MapOfAny(
-								map[string]any{},
-							))),
-						},
-					),
+				CustomFields: []components.CustomField{
+					components.CustomField{
+						ID:          optionalnullable.From(types.String("2389328923893298")),
+						Name:        optionalnullable.From(types.String("employee_level")),
+						Description: optionalnullable.From(types.String("Employee Level")),
+						Value: optionalnullable.From(types.Pointer(components.CreateCustomFieldValue2Str(
+							"Uses Salesforce and Marketo",
+						))),
+					},
+					components.CustomField{
+						ID:          optionalnullable.From(types.String("2389328923893298")),
+						Name:        optionalnullable.From(types.String("employee_level")),
+						Description: optionalnullable.From(types.String("Employee Level")),
+						Value: optionalnullable.From(types.Pointer(components.CreateCustomFieldValue2MapOfAny(
+							map[string]any{},
+						))),
+					},
 				},
 				Tags: optionalnullable.From(types.Pointer([]string{
 					"New",
@@ -251,7 +247,7 @@ func testCrmCompaniesAllCrmCompaniesAll0(w http.ResponseWriter, req *http.Reques
 			},
 			components.Company1{
 				ID:                types.String("12345"),
-				Name:              types.String("SpaceX"),
+				Name:              optionalnullable.From(types.String("SpaceX")),
 				InteractionCount:  optionalnullable.From(types.Int64(1)),
 				OwnerID:           optionalnullable.From(types.String("12345")),
 				Image:             optionalnullable.From(types.String("https://www.spacex.com/static/images/share.jpg")),
@@ -303,12 +299,12 @@ func testCrmCompaniesAllCrmCompaniesAll0(w http.ResponseWriter, req *http.Reques
 				Websites: []components.Website{
 					components.Website{
 						ID:   optionalnullable.From(types.String("12345")),
-						URL:  "http://example.com",
+						URL:  types.String("http://example.com"),
 						Type: optionalnullable.From(components.WebsiteTypePrimary.ToPointer()),
 					},
 					components.Website{
 						ID:   optionalnullable.From(types.String("12345")),
-						URL:  "http://example.com",
+						URL:  types.String("http://example.com"),
 						Type: optionalnullable.From(components.WebsiteTypePrimary.ToPointer()),
 					},
 				},
@@ -343,7 +339,7 @@ func testCrmCompaniesAllCrmCompaniesAll0(w http.ResponseWriter, req *http.Reques
 				SocialLinks: []components.SocialLink{
 					components.SocialLink{
 						ID:   optionalnullable.From(types.String("12345")),
-						URL:  "https://www.twitter.com/apideck",
+						URL:  types.String("https://www.twitter.com/apideck"),
 						Type: optionalnullable.From(types.String("twitter")),
 					},
 				},
@@ -352,7 +348,7 @@ func testCrmCompaniesAllCrmCompaniesAll0(w http.ResponseWriter, req *http.Reques
 						ID:          optionalnullable.From(types.String("12345")),
 						CountryCode: optionalnullable.From(types.String("1")),
 						AreaCode:    optionalnullable.From(types.String("323")),
-						Number:      "111-111-1111",
+						Number:      types.String("111-111-1111"),
 						Extension:   optionalnullable.From(types.String("105")),
 						Type:        optionalnullable.From(components.PhoneNumberTypePrimary.ToPointer()),
 					},
@@ -360,7 +356,7 @@ func testCrmCompaniesAllCrmCompaniesAll0(w http.ResponseWriter, req *http.Reques
 						ID:          optionalnullable.From(types.String("12345")),
 						CountryCode: optionalnullable.From(types.String("1")),
 						AreaCode:    optionalnullable.From(types.String("323")),
-						Number:      "111-111-1111",
+						Number:      types.String("111-111-1111"),
 						Extension:   optionalnullable.From(types.String("105")),
 						Type:        optionalnullable.From(components.PhoneNumberTypePrimary.ToPointer()),
 					},
@@ -368,12 +364,12 @@ func testCrmCompaniesAllCrmCompaniesAll0(w http.ResponseWriter, req *http.Reques
 				Emails: []components.Email{
 					components.Email{
 						ID:    optionalnullable.From(types.String("123")),
-						Email: types.String("elon@musk.com"),
+						Email: optionalnullable.From(types.String("elon@musk.com")),
 						Type:  optionalnullable.From(components.EmailTypePrimary.ToPointer()),
 					},
 					components.Email{
 						ID:    optionalnullable.From(types.String("123")),
-						Email: types.String("elon@musk.com"),
+						Email: optionalnullable.From(types.String("elon@musk.com")),
 						Type:  optionalnullable.From(components.EmailTypePrimary.ToPointer()),
 					},
 				},
@@ -381,20 +377,18 @@ func testCrmCompaniesAllCrmCompaniesAll0(w http.ResponseWriter, req *http.Reques
 					ID:   optionalnullable.From(types.String("12345")),
 					Name: optionalnullable.From(types.String("Customer Account")),
 				},
-				CustomFields: []components.CustomFieldUnion{
-					components.CreateCustomFieldUnionCustomField1(
-						components.CustomField1{
-							ID:          types.String("2389328923893298"),
-							Name:        optionalnullable.From(types.String("employee_level")),
-							Description: optionalnullable.From(types.String("Employee Level")),
-							Value: optionalnullable.From(types.Pointer(components.CreateCustomFieldValue2MapOfAny(
-								map[string]any{
-									"0": map[string]any{},
-									"1": map[string]any{},
-								},
-							))),
-						},
-					),
+				CustomFields: []components.CustomField{
+					components.CustomField{
+						ID:          optionalnullable.From(types.String("2389328923893298")),
+						Name:        optionalnullable.From(types.String("employee_level")),
+						Description: optionalnullable.From(types.String("Employee Level")),
+						Value: optionalnullable.From(types.Pointer(components.CreateCustomFieldValue2MapOfAny(
+							map[string]any{
+								"0": map[string]any{},
+								"1": map[string]any{},
+							},
+						))),
+					},
 				},
 				Tags: optionalnullable.From(types.Pointer([]string{
 					"New",
@@ -460,7 +454,7 @@ func testCrmCompaniesAllCrmCompaniesAll0(w http.ResponseWriter, req *http.Reques
 			},
 			components.Company1{
 				ID:                types.String("12345"),
-				Name:              types.String("SpaceX"),
+				Name:              optionalnullable.From(types.String("SpaceX")),
 				InteractionCount:  optionalnullable.From(types.Int64(1)),
 				OwnerID:           optionalnullable.From(types.String("12345")),
 				Image:             optionalnullable.From(types.String("https://www.spacex.com/static/images/share.jpg")),
@@ -525,7 +519,7 @@ func testCrmCompaniesAllCrmCompaniesAll0(w http.ResponseWriter, req *http.Reques
 				Websites: []components.Website{
 					components.Website{
 						ID:   optionalnullable.From(types.String("12345")),
-						URL:  "http://example.com",
+						URL:  types.String("http://example.com"),
 						Type: optionalnullable.From(components.WebsiteTypePrimary.ToPointer()),
 					},
 				},
@@ -612,12 +606,12 @@ func testCrmCompaniesAllCrmCompaniesAll0(w http.ResponseWriter, req *http.Reques
 				SocialLinks: []components.SocialLink{
 					components.SocialLink{
 						ID:   optionalnullable.From(types.String("12345")),
-						URL:  "https://www.twitter.com/apideck",
+						URL:  types.String("https://www.twitter.com/apideck"),
 						Type: optionalnullable.From(types.String("twitter")),
 					},
 					components.SocialLink{
 						ID:   optionalnullable.From(types.String("12345")),
-						URL:  "https://www.twitter.com/apideck",
+						URL:  types.String("https://www.twitter.com/apideck"),
 						Type: optionalnullable.From(types.String("twitter")),
 					},
 				},
@@ -626,7 +620,7 @@ func testCrmCompaniesAllCrmCompaniesAll0(w http.ResponseWriter, req *http.Reques
 						ID:          optionalnullable.From(types.String("12345")),
 						CountryCode: optionalnullable.From(types.String("1")),
 						AreaCode:    optionalnullable.From(types.String("323")),
-						Number:      "111-111-1111",
+						Number:      types.String("111-111-1111"),
 						Extension:   optionalnullable.From(types.String("105")),
 						Type:        optionalnullable.From(components.PhoneNumberTypePrimary.ToPointer()),
 					},
@@ -634,7 +628,7 @@ func testCrmCompaniesAllCrmCompaniesAll0(w http.ResponseWriter, req *http.Reques
 						ID:          optionalnullable.From(types.String("12345")),
 						CountryCode: optionalnullable.From(types.String("1")),
 						AreaCode:    optionalnullable.From(types.String("323")),
-						Number:      "111-111-1111",
+						Number:      types.String("111-111-1111"),
 						Extension:   optionalnullable.From(types.String("105")),
 						Type:        optionalnullable.From(components.PhoneNumberTypePrimary.ToPointer()),
 					},
@@ -642,7 +636,7 @@ func testCrmCompaniesAllCrmCompaniesAll0(w http.ResponseWriter, req *http.Reques
 						ID:          optionalnullable.From(types.String("12345")),
 						CountryCode: optionalnullable.From(types.String("1")),
 						AreaCode:    optionalnullable.From(types.String("323")),
-						Number:      "111-111-1111",
+						Number:      types.String("111-111-1111"),
 						Extension:   optionalnullable.From(types.String("105")),
 						Type:        optionalnullable.From(components.PhoneNumberTypePrimary.ToPointer()),
 					},
@@ -650,7 +644,7 @@ func testCrmCompaniesAllCrmCompaniesAll0(w http.ResponseWriter, req *http.Reques
 				Emails: []components.Email{
 					components.Email{
 						ID:    optionalnullable.From(types.String("123")),
-						Email: types.String("elon@musk.com"),
+						Email: optionalnullable.From(types.String("elon@musk.com")),
 						Type:  optionalnullable.From(components.EmailTypePrimary.ToPointer()),
 					},
 				},
@@ -658,17 +652,15 @@ func testCrmCompaniesAllCrmCompaniesAll0(w http.ResponseWriter, req *http.Reques
 					ID:   optionalnullable.From(types.String("12345")),
 					Name: optionalnullable.From(types.String("Customer Account")),
 				},
-				CustomFields: []components.CustomFieldUnion{
-					components.CreateCustomFieldUnionCustomField1(
-						components.CustomField1{
-							ID:          types.String("2389328923893298"),
-							Name:        optionalnullable.From(types.String("employee_level")),
-							Description: optionalnullable.From(types.String("Employee Level")),
-							Value: optionalnullable.From(types.Pointer(components.CreateCustomFieldValue2MapOfAny(
-								map[string]any{},
-							))),
-						},
-					),
+				CustomFields: []components.CustomField{
+					components.CustomField{
+						ID:          optionalnullable.From(types.String("2389328923893298")),
+						Name:        optionalnullable.From(types.String("employee_level")),
+						Description: optionalnullable.From(types.String("Employee Level")),
+						Value: optionalnullable.From(types.Pointer(components.CreateCustomFieldValue2MapOfAny(
+							map[string]any{},
+						))),
+					},
 				},
 				Tags: optionalnullable.From(types.Pointer([]string{
 					"New",

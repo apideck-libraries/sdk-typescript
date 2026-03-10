@@ -8,11 +8,11 @@ How the subscription is managed in the downstream.
 import { ManagedVia } from "@apideck/unify/models/components";
 
 let value: ManagedVia = "api";
+
+// Open enum: unrecognized values are captured as Unrecognized<string>
 ```
 
 ## Values
-
-This is an open enum. Unrecognized values will be captured as the `Unrecognized<string>` branded type.
 
 ```typescript
 "manual" | "api" | Unrecognized<string>

@@ -14,8 +14,8 @@ let value: SimpleFormFieldOption = {
 
 ## Fields
 
-| Field              | Type               | Required           | Description        | Example            |
-| ------------------ | ------------------ | ------------------ | ------------------ | ------------------ |
-| `label`            | *string*           | :heavy_check_mark: | N/A                | General Channel    |
-| `value`            | *components.Value* | :heavy_minus_sign: | N/A                |                    |
-| `optionType`       | *"simple"*         | :heavy_check_mark: | N/A                |                    |
+| Field                                   | Type                                    | Required                                | Description                             | Example                                 |
+| --------------------------------------- | --------------------------------------- | --------------------------------------- | --------------------------------------- | --------------------------------------- |
+| `label`                                 | *string*                                | :heavy_minus_sign:                      | N/A                                     | General Channel                         |
+| `value`                                 | *components.SimpleFormFieldOptionValue* | :heavy_minus_sign:                      | N/A                                     |                                         |
+| `optionType`                            | *"simple"*                              | :heavy_check_mark:                      | N/A                                     |                                         |

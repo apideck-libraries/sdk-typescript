@@ -4,15 +4,28 @@ package components
 
 import (
 	"mockserver/internal/sdk/optionalnullable"
+	"mockserver/internal/sdk/utils"
 )
 
 type SocialLink struct {
 	// Unique identifier of the social link
 	ID optionalnullable.OptionalNullable[string] `json:"id,omitempty"`
 	// URL of the social link, e.g. https://www.twitter.com/apideck
-	URL string `json:"url"`
+	URL *string `json:"url,omitempty"`
 	// Type of the social link, e.g. twitter
-	Type optionalnullable.OptionalNullable[string] `json:"type,omitempty"`
+	Type                 optionalnullable.OptionalNullable[string] `json:"type,omitempty"`
+	AdditionalProperties map[string]any                            `additionalProperties:"true" json:"-"`
+}
+
+func (s SocialLink) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(s, "", false)
+}
+
+func (s *SocialLink) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &s, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *SocialLink) GetID() optionalnullable.OptionalNullable[string] {
@@ -22,9 +35,9 @@ func (o *SocialLink) GetID() optionalnullable.OptionalNullable[string] {
 	return o.ID
 }
 
-func (o *SocialLink) GetURL() string {
+func (o *SocialLink) GetURL() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.URL
 }
@@ -34,4 +47,11 @@ func (o *SocialLink) GetType() optionalnullable.OptionalNullable[string] {
 		return nil
 	}
 	return o.Type
+}
+
+func (o *SocialLink) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }

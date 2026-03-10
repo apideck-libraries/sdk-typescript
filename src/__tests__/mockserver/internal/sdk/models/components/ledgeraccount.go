@@ -208,7 +208,7 @@ type LedgerAccount struct {
 	Subsidiaries []LedgerAccountSubsidiary `json:"subsidiaries,omitempty"`
 	// When custom mappings are configured on the resource, the result is included here.
 	CustomMappings optionalnullable.OptionalNullable[map[string]any] `json:"custom_mappings,omitempty"`
-	CustomFields   []CustomFieldUnion                                `json:"custom_fields,omitempty"`
+	CustomFields   []CustomField                                     `json:"custom_fields,omitempty"`
 	// A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
 	RowVersion optionalnullable.OptionalNullable[string] `json:"row_version,omitempty"`
 	// The user who last updated the object.
@@ -220,7 +220,8 @@ type LedgerAccount struct {
 	// The date and time when the object was created.
 	CreatedAt optionalnullable.OptionalNullable[time.Time] `json:"created_at,omitempty"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
-	PassThrough []PassThroughBody `json:"pass_through,omitempty"`
+	PassThrough          []PassThroughBody `json:"pass_through,omitempty"`
+	AdditionalProperties map[string]any    `additionalProperties:"true" json:"-"`
 }
 
 func (l LedgerAccount) MarshalJSON() ([]byte, error) {
@@ -423,7 +424,7 @@ func (o *LedgerAccount) GetCustomMappings() optionalnullable.OptionalNullable[ma
 	return o.CustomMappings
 }
 
-func (o *LedgerAccount) GetCustomFields() []CustomFieldUnion {
+func (o *LedgerAccount) GetCustomFields() []CustomField {
 	if o == nil {
 		return nil
 	}
@@ -472,6 +473,13 @@ func (o *LedgerAccount) GetPassThrough() []PassThroughBody {
 	return o.PassThrough
 }
 
+func (o *LedgerAccount) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
+}
+
 type LedgerAccountInput struct {
 	// The human readable display ID used when displaying the account
 	DisplayID *string `json:"display_id,omitempty"`
@@ -517,11 +525,12 @@ type LedgerAccountInput struct {
 	LastReconciliationDate optionalnullable.OptionalNullable[types.Date] `json:"last_reconciliation_date,omitempty"`
 	// The subsidiaries the account belongs to.
 	Subsidiaries []LedgerAccountSubsidiary `json:"subsidiaries,omitempty"`
-	CustomFields []CustomFieldUnion        `json:"custom_fields,omitempty"`
+	CustomFields []CustomField             `json:"custom_fields,omitempty"`
 	// A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
 	RowVersion optionalnullable.OptionalNullable[string] `json:"row_version,omitempty"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
-	PassThrough []PassThroughBody `json:"pass_through,omitempty"`
+	PassThrough          []PassThroughBody `json:"pass_through,omitempty"`
+	AdditionalProperties map[string]any    `additionalProperties:"true" json:"-"`
 }
 
 func (l LedgerAccountInput) MarshalJSON() ([]byte, error) {
@@ -696,7 +705,7 @@ func (o *LedgerAccountInput) GetSubsidiaries() []LedgerAccountSubsidiary {
 	return o.Subsidiaries
 }
 
-func (o *LedgerAccountInput) GetCustomFields() []CustomFieldUnion {
+func (o *LedgerAccountInput) GetCustomFields() []CustomField {
 	if o == nil {
 		return nil
 	}
@@ -715,4 +724,11 @@ func (o *LedgerAccountInput) GetPassThrough() []PassThroughBody {
 		return nil
 	}
 	return o.PassThrough
+}
+
+func (o *LedgerAccountInput) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }

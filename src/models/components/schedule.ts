@@ -4,7 +4,10 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import {
+  collectExtraKeys as collectExtraKeys$,
+  safeParse,
+} from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -38,16 +41,17 @@ export type Schedule = {
   /**
    * A unique identifier for an object.
    */
-  id: string;
+  id?: string | undefined;
   /**
    * The start date, inclusive, of the schedule period.
    */
-  startDate: string;
+  startDate?: string | undefined;
   /**
    * The end date, inclusive, of the schedule period.
    */
-  endDate: string;
-  workPattern: WorkPattern;
+  endDate?: string | undefined;
+  workPattern?: WorkPattern | undefined;
+  additionalProperties?: { [k: string]: any } | undefined;
 };
 
 /** @internal */
@@ -150,12 +154,16 @@ export const Schedule$inboundSchema: z.ZodType<
   Schedule,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  id: types.string(),
-  start_date: types.string(),
-  end_date: types.string(),
-  work_pattern: z.lazy(() => WorkPattern$inboundSchema),
-}).transform((v) => {
+> = collectExtraKeys$(
+  z.object({
+    id: types.optional(types.string()),
+    start_date: types.optional(types.string()),
+    end_date: types.optional(types.string()),
+    work_pattern: types.optional(z.lazy(() => WorkPattern$inboundSchema)),
+  }).catchall(z.any()),
+  "additionalProperties",
+  true,
+).transform((v) => {
   return remap$(v, {
     "start_date": "startDate",
     "end_date": "endDate",

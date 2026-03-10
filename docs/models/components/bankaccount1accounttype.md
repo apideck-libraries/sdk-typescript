@@ -8,11 +8,11 @@ The type of bank account.
 import { BankAccount1AccountType } from "@apideck/unify/models/components";
 
 let value: BankAccount1AccountType = "credit_card";
+
+// Open enum: unrecognized values are captured as Unrecognized<string>
 ```
 
 ## Values
-
-This is an open enum. Unrecognized values will be captured as the `Unrecognized<string>` branded type.
 
 ```typescript
 "bank_account" | "credit_card" | "other" | Unrecognized<string>

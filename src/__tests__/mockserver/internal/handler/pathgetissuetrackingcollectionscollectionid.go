@@ -54,7 +54,7 @@ func testIssueTrackingCollectionsOneIssueTrackingCollectionsOne0(w http.Response
 		Resource:   "Tickets",
 		Operation:  "one",
 		Data: components.Collection{
-			ID:          "12345",
+			ID:          types.String("12345"),
 			ParentID:    optionalnullable.From(types.String("12345")),
 			Type:        optionalnullable.From(types.String("Technical")),
 			Name:        optionalnullable.From(types.String("Main IT Issues")),

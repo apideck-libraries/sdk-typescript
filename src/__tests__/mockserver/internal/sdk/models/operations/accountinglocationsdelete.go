@@ -37,6 +37,8 @@ type AccountingLocationsDeleteRequest struct {
 	AppID *string `header:"style=simple,explode=false,name=x-apideck-app-id"`
 	// Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
 	ServiceID *string `header:"style=simple,explode=false,name=x-apideck-service-id"`
+	// The ID of the company to scope requests to. For connectors that support multi-company, this overrides the default company configured in connection settings.
+	CompanyID *string `header:"style=simple,explode=false,name=x-apideck-company-id"`
 	// Include raw response. Mostly used for debugging purposes
 	Raw *bool `default:"false" queryParam:"style=form,explode=true,name=raw"`
 }
@@ -78,6 +80,13 @@ func (o *AccountingLocationsDeleteRequest) GetServiceID() *string {
 		return nil
 	}
 	return o.ServiceID
+}
+
+func (o *AccountingLocationsDeleteRequest) GetCompanyID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CompanyID
 }
 
 func (o *AccountingLocationsDeleteRequest) GetRaw() *bool {

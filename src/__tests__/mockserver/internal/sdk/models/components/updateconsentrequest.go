@@ -117,7 +117,19 @@ func (u Resources) MarshalJSON() ([]byte, error) {
 type UpdateConsentRequest struct {
 	Resources Resources `json:"resources"`
 	// Whether consent is being granted (true) or denied/revoked (false)
-	Granted bool `json:"granted"`
+	Granted              bool           `json:"granted"`
+	AdditionalProperties map[string]any `additionalProperties:"true" json:"-"`
+}
+
+func (u UpdateConsentRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(u, "", false)
+}
+
+func (u *UpdateConsentRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &u, "", false, []string{"resources", "granted"}); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *UpdateConsentRequest) GetResources() Resources {
@@ -132,4 +144,11 @@ func (o *UpdateConsentRequest) GetGranted() bool {
 		return false
 	}
 	return o.Granted
+}
+
+func (o *UpdateConsentRequest) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }

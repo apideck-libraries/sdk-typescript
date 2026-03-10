@@ -54,7 +54,7 @@ func testEcommerceCustomersOneEcommerceCustomersOne0(w http.ResponseWriter, req 
 		Resource:   "customers",
 		Operation:  "one",
 		Data: components.EcommerceCustomer{
-			ID:          "12345",
+			ID:          types.String("12345"),
 			Name:        optionalnullable.From(types.String("John Doe")),
 			FirstName:   optionalnullable.From(types.String("John")),
 			LastName:    optionalnullable.From(types.String("Doe")),
@@ -64,17 +64,17 @@ func testEcommerceCustomersOneEcommerceCustomersOne0(w http.ResponseWriter, req 
 			Emails: optionalnullable.From(types.Pointer([]components.Email{
 				components.Email{
 					ID:    optionalnullable.From(types.String("123")),
-					Email: types.String("elon@musk.com"),
+					Email: optionalnullable.From(types.String("elon@musk.com")),
 					Type:  optionalnullable.From(components.EmailTypePrimary.ToPointer()),
 				},
 				components.Email{
 					ID:    optionalnullable.From(types.String("123")),
-					Email: types.String("elon@musk.com"),
+					Email: optionalnullable.From(types.String("elon@musk.com")),
 					Type:  optionalnullable.From(components.EmailTypePrimary.ToPointer()),
 				},
 				components.Email{
 					ID:    optionalnullable.From(types.String("123")),
-					Email: types.String("elon@musk.com"),
+					Email: optionalnullable.From(types.String("elon@musk.com")),
 					Type:  optionalnullable.From(components.EmailTypePrimary.ToPointer()),
 				},
 			})),
@@ -83,7 +83,7 @@ func testEcommerceCustomersOneEcommerceCustomersOne0(w http.ResponseWriter, req 
 					ID:          optionalnullable.From(types.String("12345")),
 					CountryCode: optionalnullable.From(types.String("1")),
 					AreaCode:    optionalnullable.From(types.String("323")),
-					Number:      "111-111-1111",
+					Number:      types.String("111-111-1111"),
 					Extension:   optionalnullable.From(types.String("105")),
 					Type:        optionalnullable.From(components.PhoneNumberTypePrimary.ToPointer()),
 				},
@@ -91,7 +91,7 @@ func testEcommerceCustomersOneEcommerceCustomersOne0(w http.ResponseWriter, req 
 					ID:          optionalnullable.From(types.String("12345")),
 					CountryCode: optionalnullable.From(types.String("1")),
 					AreaCode:    optionalnullable.From(types.String("323")),
-					Number:      "111-111-1111",
+					Number:      types.String("111-111-1111"),
 					Extension:   optionalnullable.From(types.String("105")),
 					Type:        optionalnullable.From(components.PhoneNumberTypePrimary.ToPointer()),
 				},

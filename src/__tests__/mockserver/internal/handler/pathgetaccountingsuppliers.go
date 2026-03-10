@@ -55,7 +55,7 @@ func testAccountingSuppliersAllAccountingSuppliersAll0(w http.ResponseWriter, re
 		Operation:  "all",
 		Data: []components.Supplier{
 			components.Supplier{
-				ID:           "12345",
+				ID:           types.String("12345"),
 				DownstreamID: optionalnullable.From(types.String("12345")),
 				DisplayID:    optionalnullable.From(types.String("EMP00101")),
 				DisplayName:  optionalnullable.From(types.String("Windsurf Shop")),
@@ -126,7 +126,7 @@ func testAccountingSuppliersAllAccountingSuppliersAll0(w http.ResponseWriter, re
 						ID:          optionalnullable.From(types.String("12345")),
 						CountryCode: optionalnullable.From(types.String("1")),
 						AreaCode:    optionalnullable.From(types.String("323")),
-						Number:      "111-111-1111",
+						Number:      types.String("111-111-1111"),
 						Extension:   optionalnullable.From(types.String("105")),
 						Type:        optionalnullable.From(components.PhoneNumberTypePrimary.ToPointer()),
 					},
@@ -134,7 +134,7 @@ func testAccountingSuppliersAllAccountingSuppliersAll0(w http.ResponseWriter, re
 						ID:          optionalnullable.From(types.String("12345")),
 						CountryCode: optionalnullable.From(types.String("1")),
 						AreaCode:    optionalnullable.From(types.String("323")),
-						Number:      "111-111-1111",
+						Number:      types.String("111-111-1111"),
 						Extension:   optionalnullable.From(types.String("105")),
 						Type:        optionalnullable.From(components.PhoneNumberTypePrimary.ToPointer()),
 					},
@@ -142,7 +142,7 @@ func testAccountingSuppliersAllAccountingSuppliersAll0(w http.ResponseWriter, re
 						ID:          optionalnullable.From(types.String("12345")),
 						CountryCode: optionalnullable.From(types.String("1")),
 						AreaCode:    optionalnullable.From(types.String("323")),
-						Number:      "111-111-1111",
+						Number:      types.String("111-111-1111"),
 						Extension:   optionalnullable.From(types.String("105")),
 						Type:        optionalnullable.From(components.PhoneNumberTypePrimary.ToPointer()),
 					},
@@ -150,14 +150,14 @@ func testAccountingSuppliersAllAccountingSuppliersAll0(w http.ResponseWriter, re
 				Emails: []components.Email{
 					components.Email{
 						ID:    optionalnullable.From(types.String("123")),
-						Email: types.String("elon@musk.com"),
+						Email: optionalnullable.From(types.String("elon@musk.com")),
 						Type:  optionalnullable.From(components.EmailTypePrimary.ToPointer()),
 					},
 				},
 				Websites: []components.Website{
 					components.Website{
 						ID:   optionalnullable.From(types.String("12345")),
-						URL:  "http://example.com",
+						URL:  types.String("http://example.com"),
 						Type: optionalnullable.From(components.WebsiteTypePrimary.ToPointer()),
 					},
 				},
@@ -194,27 +194,23 @@ func testAccountingSuppliersAllAccountingSuppliersAll0(w http.ResponseWriter, re
 				Status:        optionalnullable.From(components.SupplierStatusActive.ToPointer()),
 				PaymentMethod: optionalnullable.From(types.String("cash")),
 				Channel:       optionalnullable.From(types.String("email")),
-				CustomFields: []components.CustomFieldUnion{
-					components.CreateCustomFieldUnionCustomField1(
-						components.CustomField1{
-							ID:          types.String("2389328923893298"),
-							Name:        optionalnullable.From(types.String("employee_level")),
-							Description: optionalnullable.From(types.String("Employee Level")),
-							Value: optionalnullable.From(types.Pointer(components.CreateCustomFieldValue2MapOfAny(
-								map[string]any{},
-							))),
-						},
-					),
-					components.CreateCustomFieldUnionCustomField1(
-						components.CustomField1{
-							ID:          types.String("2389328923893298"),
-							Name:        optionalnullable.From(types.String("employee_level")),
-							Description: optionalnullable.From(types.String("Employee Level")),
-							Value: optionalnullable.From(types.Pointer(components.CreateCustomFieldValue2Str(
-								"Uses Salesforce and Marketo",
-							))),
-						},
-					),
+				CustomFields: []components.CustomField{
+					components.CustomField{
+						ID:          optionalnullable.From(types.String("2389328923893298")),
+						Name:        optionalnullable.From(types.String("employee_level")),
+						Description: optionalnullable.From(types.String("Employee Level")),
+						Value: optionalnullable.From(types.Pointer(components.CreateCustomFieldValue2MapOfAny(
+							map[string]any{},
+						))),
+					},
+					components.CustomField{
+						ID:          optionalnullable.From(types.String("2389328923893298")),
+						Name:        optionalnullable.From(types.String("employee_level")),
+						Description: optionalnullable.From(types.String("Employee Level")),
+						Value: optionalnullable.From(types.Pointer(components.CreateCustomFieldValue2Str(
+							"Uses Salesforce and Marketo",
+						))),
+					},
 				},
 				UpdatedBy:  optionalnullable.From(types.String("12345")),
 				CreatedBy:  optionalnullable.From(types.String("12345")),
@@ -281,7 +277,7 @@ func testAccountingSuppliersAllAccountingSuppliersAll0(w http.ResponseWriter, re
 				SubsidiaryID: types.String("12345"),
 			},
 			components.Supplier{
-				ID:           "12345",
+				ID:           types.String("12345"),
 				DownstreamID: optionalnullable.From(types.String("12345")),
 				DisplayID:    optionalnullable.From(types.String("EMP00101")),
 				DisplayName:  optionalnullable.From(types.String("Windsurf Shop")),
@@ -352,7 +348,7 @@ func testAccountingSuppliersAllAccountingSuppliersAll0(w http.ResponseWriter, re
 						ID:          optionalnullable.From(types.String("12345")),
 						CountryCode: optionalnullable.From(types.String("1")),
 						AreaCode:    optionalnullable.From(types.String("323")),
-						Number:      "111-111-1111",
+						Number:      types.String("111-111-1111"),
 						Extension:   optionalnullable.From(types.String("105")),
 						Type:        optionalnullable.From(components.PhoneNumberTypePrimary.ToPointer()),
 					},
@@ -360,7 +356,7 @@ func testAccountingSuppliersAllAccountingSuppliersAll0(w http.ResponseWriter, re
 						ID:          optionalnullable.From(types.String("12345")),
 						CountryCode: optionalnullable.From(types.String("1")),
 						AreaCode:    optionalnullable.From(types.String("323")),
-						Number:      "111-111-1111",
+						Number:      types.String("111-111-1111"),
 						Extension:   optionalnullable.From(types.String("105")),
 						Type:        optionalnullable.From(components.PhoneNumberTypePrimary.ToPointer()),
 					},
@@ -368,14 +364,14 @@ func testAccountingSuppliersAllAccountingSuppliersAll0(w http.ResponseWriter, re
 				Emails: []components.Email{
 					components.Email{
 						ID:    optionalnullable.From(types.String("123")),
-						Email: types.String("elon@musk.com"),
+						Email: optionalnullable.From(types.String("elon@musk.com")),
 						Type:  optionalnullable.From(components.EmailTypePrimary.ToPointer()),
 					},
 				},
 				Websites: []components.Website{
 					components.Website{
 						ID:   optionalnullable.From(types.String("12345")),
-						URL:  "http://example.com",
+						URL:  types.String("http://example.com"),
 						Type: optionalnullable.From(components.WebsiteTypePrimary.ToPointer()),
 					},
 				},
@@ -425,30 +421,26 @@ func testAccountingSuppliersAllAccountingSuppliersAll0(w http.ResponseWriter, re
 				Status:        optionalnullable.From(components.SupplierStatusActive.ToPointer()),
 				PaymentMethod: optionalnullable.From(types.String("cash")),
 				Channel:       optionalnullable.From(types.String("email")),
-				CustomFields: []components.CustomFieldUnion{
-					components.CreateCustomFieldUnionCustomField1(
-						components.CustomField1{
-							ID:          types.String("2389328923893298"),
-							Name:        optionalnullable.From(types.String("employee_level")),
-							Description: optionalnullable.From(types.String("Employee Level")),
-							Value: optionalnullable.From(types.Pointer(components.CreateCustomFieldValue2Str(
-								"Uses Salesforce and Marketo",
-							))),
-						},
-					),
-					components.CreateCustomFieldUnionCustomField1(
-						components.CustomField1{
-							ID:          types.String("2389328923893298"),
-							Name:        optionalnullable.From(types.String("employee_level")),
-							Description: optionalnullable.From(types.String("Employee Level")),
-							Value: optionalnullable.From(types.Pointer(components.CreateCustomFieldValue2MapOfAny(
-								map[string]any{
-									"0": map[string]any{},
-									"1": map[string]any{},
-								},
-							))),
-						},
-					),
+				CustomFields: []components.CustomField{
+					components.CustomField{
+						ID:          optionalnullable.From(types.String("2389328923893298")),
+						Name:        optionalnullable.From(types.String("employee_level")),
+						Description: optionalnullable.From(types.String("Employee Level")),
+						Value: optionalnullable.From(types.Pointer(components.CreateCustomFieldValue2Str(
+							"Uses Salesforce and Marketo",
+						))),
+					},
+					components.CustomField{
+						ID:          optionalnullable.From(types.String("2389328923893298")),
+						Name:        optionalnullable.From(types.String("employee_level")),
+						Description: optionalnullable.From(types.String("Employee Level")),
+						Value: optionalnullable.From(types.Pointer(components.CreateCustomFieldValue2MapOfAny(
+							map[string]any{
+								"0": map[string]any{},
+								"1": map[string]any{},
+							},
+						))),
+					},
 				},
 				UpdatedBy:  optionalnullable.From(types.String("12345")),
 				CreatedBy:  optionalnullable.From(types.String("12345")),
@@ -507,7 +499,7 @@ func testAccountingSuppliersAllAccountingSuppliersAll0(w http.ResponseWriter, re
 				SubsidiaryID: types.String("12345"),
 			},
 			components.Supplier{
-				ID:           "12345",
+				ID:           types.String("12345"),
 				DownstreamID: optionalnullable.From(types.String("12345")),
 				DisplayID:    optionalnullable.From(types.String("EMP00101")),
 				DisplayName:  optionalnullable.From(types.String("Windsurf Shop")),
@@ -604,7 +596,7 @@ func testAccountingSuppliersAllAccountingSuppliersAll0(w http.ResponseWriter, re
 						ID:          optionalnullable.From(types.String("12345")),
 						CountryCode: optionalnullable.From(types.String("1")),
 						AreaCode:    optionalnullable.From(types.String("323")),
-						Number:      "111-111-1111",
+						Number:      types.String("111-111-1111"),
 						Extension:   optionalnullable.From(types.String("105")),
 						Type:        optionalnullable.From(components.PhoneNumberTypePrimary.ToPointer()),
 					},
@@ -612,29 +604,29 @@ func testAccountingSuppliersAllAccountingSuppliersAll0(w http.ResponseWriter, re
 				Emails: []components.Email{
 					components.Email{
 						ID:    optionalnullable.From(types.String("123")),
-						Email: types.String("elon@musk.com"),
+						Email: optionalnullable.From(types.String("elon@musk.com")),
 						Type:  optionalnullable.From(components.EmailTypePrimary.ToPointer()),
 					},
 					components.Email{
 						ID:    optionalnullable.From(types.String("123")),
-						Email: types.String("elon@musk.com"),
+						Email: optionalnullable.From(types.String("elon@musk.com")),
 						Type:  optionalnullable.From(components.EmailTypePrimary.ToPointer()),
 					},
 					components.Email{
 						ID:    optionalnullable.From(types.String("123")),
-						Email: types.String("elon@musk.com"),
+						Email: optionalnullable.From(types.String("elon@musk.com")),
 						Type:  optionalnullable.From(components.EmailTypePrimary.ToPointer()),
 					},
 				},
 				Websites: []components.Website{
 					components.Website{
 						ID:   optionalnullable.From(types.String("12345")),
-						URL:  "http://example.com",
+						URL:  types.String("http://example.com"),
 						Type: optionalnullable.From(components.WebsiteTypePrimary.ToPointer()),
 					},
 					components.Website{
 						ID:   optionalnullable.From(types.String("12345")),
-						URL:  "http://example.com",
+						URL:  types.String("http://example.com"),
 						Type: optionalnullable.From(components.WebsiteTypePrimary.ToPointer()),
 					},
 				},
@@ -697,17 +689,15 @@ func testAccountingSuppliersAllAccountingSuppliersAll0(w http.ResponseWriter, re
 				Status:        optionalnullable.From(components.SupplierStatusActive.ToPointer()),
 				PaymentMethod: optionalnullable.From(types.String("cash")),
 				Channel:       optionalnullable.From(types.String("email")),
-				CustomFields: []components.CustomFieldUnion{
-					components.CreateCustomFieldUnionCustomField1(
-						components.CustomField1{
-							ID:          types.String("2389328923893298"),
-							Name:        optionalnullable.From(types.String("employee_level")),
-							Description: optionalnullable.From(types.String("Employee Level")),
-							Value: optionalnullable.From(types.Pointer(components.CreateCustomFieldValue2Str(
-								"Uses Salesforce and Marketo",
-							))),
-						},
-					),
+				CustomFields: []components.CustomField{
+					components.CustomField{
+						ID:          optionalnullable.From(types.String("2389328923893298")),
+						Name:        optionalnullable.From(types.String("employee_level")),
+						Description: optionalnullable.From(types.String("Employee Level")),
+						Value: optionalnullable.From(types.Pointer(components.CreateCustomFieldValue2Str(
+							"Uses Salesforce and Marketo",
+						))),
+					},
 				},
 				UpdatedBy:  optionalnullable.From(types.String("12345")),
 				CreatedBy:  optionalnullable.From(types.String("12345")),

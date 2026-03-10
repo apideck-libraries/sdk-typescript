@@ -4,6 +4,7 @@ package components
 
 import (
 	"mockserver/internal/sdk/optionalnullable"
+	"mockserver/internal/sdk/utils"
 )
 
 type CustomObjectSchemaType string
@@ -129,7 +130,19 @@ type CustomObjectSchema struct {
 	// The timestamp when the custom object schema was created
 	CreatedAt optionalnullable.OptionalNullable[string] `json:"created_at,omitempty"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
-	PassThrough []PassThroughBody `json:"pass_through,omitempty"`
+	PassThrough          []PassThroughBody `json:"pass_through,omitempty"`
+	AdditionalProperties map[string]any    `additionalProperties:"true" json:"-"`
+}
+
+func (c CustomObjectSchema) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(c, "", false)
+}
+
+func (c *CustomObjectSchema) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &c, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *CustomObjectSchema) GetID() *string {
@@ -209,6 +222,13 @@ func (o *CustomObjectSchema) GetPassThrough() []PassThroughBody {
 	return o.PassThrough
 }
 
+func (o *CustomObjectSchema) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
+}
+
 type CustomObjectSchemaInput struct {
 	// The name of the custom object schema
 	Name optionalnullable.OptionalNullable[string] `json:"name,omitempty"`
@@ -221,7 +241,19 @@ type CustomObjectSchemaInput struct {
 	// Whether the custom object schema is active
 	Active optionalnullable.OptionalNullable[bool] `json:"active,omitempty"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
-	PassThrough []PassThroughBody `json:"pass_through,omitempty"`
+	PassThrough          []PassThroughBody `json:"pass_through,omitempty"`
+	AdditionalProperties map[string]any    `additionalProperties:"true" json:"-"`
+}
+
+func (c CustomObjectSchemaInput) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(c, "", false)
+}
+
+func (c *CustomObjectSchemaInput) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &c, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *CustomObjectSchemaInput) GetName() optionalnullable.OptionalNullable[string] {
@@ -264,4 +296,11 @@ func (o *CustomObjectSchemaInput) GetPassThrough() []PassThroughBody {
 		return nil
 	}
 	return o.PassThrough
+}
+
+func (o *CustomObjectSchemaInput) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }

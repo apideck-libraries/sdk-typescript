@@ -26,7 +26,8 @@ type CollectionUser struct {
 	// The date and time when the object was last updated.
 	UpdatedAt optionalnullable.OptionalNullable[time.Time] `json:"updated_at,omitempty"`
 	// The date and time when the object was created.
-	CreatedAt optionalnullable.OptionalNullable[time.Time] `json:"created_at,omitempty"`
+	CreatedAt            optionalnullable.OptionalNullable[time.Time] `json:"created_at,omitempty"`
+	AdditionalProperties map[string]any                               `additionalProperties:"true" json:"-"`
 }
 
 func (c CollectionUser) MarshalJSON() ([]byte, error) {
@@ -101,4 +102,11 @@ func (o *CollectionUser) GetCreatedAt() optionalnullable.OptionalNullable[time.T
 		return nil
 	}
 	return o.CreatedAt
+}
+
+func (o *CollectionUser) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }

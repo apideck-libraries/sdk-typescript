@@ -16,4 +16,4 @@ let value: UnifiedId = {
 
 | Field                                 | Type                                  | Required                              | Description                           | Example                               |
 | ------------------------------------- | ------------------------------------- | ------------------------------------- | ------------------------------------- | ------------------------------------- |
-| `id`                                  | *string*                              | :heavy_check_mark:                    | The unique identifier of the resource | 12345                                 |
+| `id`                                  | *string*                              | :heavy_minus_sign:                    | The unique identifier of the resource | 12345                                 |

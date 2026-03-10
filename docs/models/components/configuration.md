@@ -13,7 +13,6 @@ let value: Configuration = {
       id: "ProductInterest",
       options: [
         {
-          label: "General Channel",
           optionType: "simple",
         },
       ],

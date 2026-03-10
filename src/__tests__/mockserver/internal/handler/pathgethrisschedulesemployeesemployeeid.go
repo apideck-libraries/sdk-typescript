@@ -318,7 +318,7 @@ func testHrisEmployeeSchedulesAllHrisEmployeeSchedulesAll0(w http.ResponseWriter
 						ID:          optionalnullable.From(types.String("12345")),
 						CountryCode: optionalnullable.From(types.String("1")),
 						AreaCode:    optionalnullable.From(types.String("323")),
-						Number:      "111-111-1111",
+						Number:      types.String("111-111-1111"),
 						Extension:   optionalnullable.From(types.String("105")),
 						Type:        optionalnullable.From(components.PhoneNumberTypePrimary.ToPointer()),
 					},
@@ -326,7 +326,7 @@ func testHrisEmployeeSchedulesAllHrisEmployeeSchedulesAll0(w http.ResponseWriter
 						ID:          optionalnullable.From(types.String("12345")),
 						CountryCode: optionalnullable.From(types.String("1")),
 						AreaCode:    optionalnullable.From(types.String("323")),
-						Number:      "111-111-1111",
+						Number:      types.String("111-111-1111"),
 						Extension:   optionalnullable.From(types.String("105")),
 						Type:        optionalnullable.From(components.PhoneNumberTypePrimary.ToPointer()),
 					},
@@ -334,7 +334,7 @@ func testHrisEmployeeSchedulesAllHrisEmployeeSchedulesAll0(w http.ResponseWriter
 						ID:          optionalnullable.From(types.String("12345")),
 						CountryCode: optionalnullable.From(types.String("1")),
 						AreaCode:    optionalnullable.From(types.String("323")),
-						Number:      "111-111-1111",
+						Number:      types.String("111-111-1111"),
 						Extension:   optionalnullable.From(types.String("105")),
 						Type:        optionalnullable.From(components.PhoneNumberTypePrimary.ToPointer()),
 					},
@@ -342,31 +342,29 @@ func testHrisEmployeeSchedulesAllHrisEmployeeSchedulesAll0(w http.ResponseWriter
 				Emails: []components.Email{
 					components.Email{
 						ID:    optionalnullable.From(types.String("123")),
-						Email: types.String("elon@musk.com"),
+						Email: optionalnullable.From(types.String("elon@musk.com")),
 						Type:  optionalnullable.From(components.EmailTypePrimary.ToPointer()),
 					},
 				},
-				CustomFields: []components.CustomFieldUnion{
-					components.CreateCustomFieldUnionCustomField1(
-						components.CustomField1{
-							ID:          types.String("2389328923893298"),
-							Name:        optionalnullable.From(types.String("employee_level")),
-							Description: optionalnullable.From(types.String("Employee Level")),
-							Value: optionalnullable.From(types.Pointer(components.CreateCustomFieldValue2Str(
-								"Uses Salesforce and Marketo",
-							))),
-						},
-					),
+				CustomFields: []components.CustomField{
+					components.CustomField{
+						ID:          optionalnullable.From(types.String("2389328923893298")),
+						Name:        optionalnullable.From(types.String("employee_level")),
+						Description: optionalnullable.From(types.String("Employee Level")),
+						Value: optionalnullable.From(types.Pointer(components.CreateCustomFieldValue2Str(
+							"Uses Salesforce and Marketo",
+						))),
+					},
 				},
 				SocialLinks: []components.SocialLink{
 					components.SocialLink{
 						ID:   optionalnullable.From(types.String("12345")),
-						URL:  "https://www.twitter.com/apideck",
+						URL:  types.String("https://www.twitter.com/apideck"),
 						Type: optionalnullable.From(types.String("twitter")),
 					},
 					components.SocialLink{
 						ID:   optionalnullable.From(types.String("12345")),
-						URL:  "https://www.twitter.com/apideck",
+						URL:  types.String("https://www.twitter.com/apideck"),
 						Type: optionalnullable.From(types.String("twitter")),
 					},
 				},
@@ -451,10 +449,10 @@ func testHrisEmployeeSchedulesAllHrisEmployeeSchedulesAll0(w http.ResponseWriter
 			},
 			Schedules: optionalnullable.From(types.Pointer([]components.Schedule{
 				components.Schedule{
-					ID:        "12345",
-					StartDate: "2022-04-08",
-					EndDate:   "2022-04-21",
-					WorkPattern: components.WorkPattern{
+					ID:        types.String("12345"),
+					StartDate: types.String("2022-04-08"),
+					EndDate:   types.String("2022-04-21"),
+					WorkPattern: &components.WorkPattern{
 						OddWeeks: &components.OddWeeks{
 							HoursMonday:    types.Float64(8),
 							HoursTuesday:   types.Float64(8),

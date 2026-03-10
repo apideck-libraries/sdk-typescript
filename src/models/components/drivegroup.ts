@@ -4,7 +4,10 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import {
+  collectExtraKeys as collectExtraKeys$,
+  safeParse,
+} from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -17,11 +20,11 @@ export type DriveGroup = {
   /**
    * A unique identifier for an object.
    */
-  id: string;
+  id?: string | undefined;
   /**
    * The name of the drive group
    */
-  name: string;
+  name?: string | undefined;
   /**
    * The display name of the drive group
    */
@@ -54,6 +57,7 @@ export type DriveGroup = {
    * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
    */
   passThrough?: Array<PassThroughBody> | undefined;
+  additionalProperties?: { [k: string]: any } | undefined;
 };
 
 /** @internal */
@@ -61,18 +65,22 @@ export const DriveGroup$inboundSchema: z.ZodType<
   DriveGroup,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  id: types.string(),
-  name: types.string(),
-  display_name: z.nullable(types.string()).optional(),
-  description: z.nullable(types.string()).optional(),
-  custom_mappings: z.nullable(z.record(z.any())).optional(),
-  updated_by: z.nullable(types.string()).optional(),
-  created_by: z.nullable(types.string()).optional(),
-  updated_at: z.nullable(types.date()).optional(),
-  created_at: z.nullable(types.date()).optional(),
-  pass_through: types.optional(z.array(PassThroughBody$inboundSchema)),
-}).transform((v) => {
+> = collectExtraKeys$(
+  z.object({
+    id: types.optional(types.string()),
+    name: types.optional(types.string()),
+    display_name: z.nullable(types.string()).optional(),
+    description: z.nullable(types.string()).optional(),
+    custom_mappings: z.nullable(z.record(z.any())).optional(),
+    updated_by: z.nullable(types.string()).optional(),
+    created_by: z.nullable(types.string()).optional(),
+    updated_at: z.nullable(types.date()).optional(),
+    created_at: z.nullable(types.date()).optional(),
+    pass_through: types.optional(z.array(PassThroughBody$inboundSchema)),
+  }).catchall(z.any()),
+  "additionalProperties",
+  true,
+).transform((v) => {
   return remap$(v, {
     "display_name": "displayName",
     "custom_mappings": "customMappings",

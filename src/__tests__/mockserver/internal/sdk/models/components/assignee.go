@@ -4,17 +4,30 @@ package components
 
 import (
 	"mockserver/internal/sdk/optionalnullable"
+	"mockserver/internal/sdk/utils"
 )
 
 type Assignee struct {
 	// A unique identifier for an object.
-	ID       string                                    `json:"id"`
-	Username optionalnullable.OptionalNullable[string] `json:"username,omitempty"`
+	ID                   *string                                   `json:"id,omitempty"`
+	Username             optionalnullable.OptionalNullable[string] `json:"username,omitempty"`
+	AdditionalProperties map[string]any                            `additionalProperties:"true" json:"-"`
 }
 
-func (o *Assignee) GetID() string {
+func (a Assignee) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(a, "", false)
+}
+
+func (a *Assignee) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &a, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (o *Assignee) GetID() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.ID
 }
@@ -24,4 +37,11 @@ func (o *Assignee) GetUsername() optionalnullable.OptionalNullable[string] {
 		return nil
 	}
 	return o.Username
+}
+
+func (o *Assignee) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }

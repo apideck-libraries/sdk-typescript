@@ -4,7 +4,10 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import {
+  collectExtraKeys as collectExtraKeys$,
+  safeParse,
+} from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
@@ -23,6 +26,7 @@ export type Operation = {
    * The OpenApi Operation name associated with the request
    */
   name: string;
+  additionalProperties?: { [k: string]: any } | undefined;
 };
 
 /**
@@ -37,6 +41,7 @@ export type Service = {
    * Apideck service provider name.
    */
   name: string;
+  additionalProperties?: { [k: string]: any } | undefined;
 };
 
 /**
@@ -65,23 +70,23 @@ export type Log = {
   /**
    * Indicates if the request was made via REST or Graphql endpoint.
    */
-  apiStyle: string;
+  apiStyle?: string | undefined;
   /**
    * The Apideck base URL the request was made to.
    */
-  baseUrl: string;
+  baseUrl?: string | undefined;
   /**
    * Indicates whether or not this is a child or parent request.
    */
-  childRequest: boolean;
+  childRequest?: boolean | undefined;
   /**
    * The consumer Id associated with the request.
    */
-  consumerId: string;
+  consumerId?: string | undefined;
   /**
    * The entire execution time in milliseconds it took to call the Apideck service provider.
    */
-  duration: number;
+  duration?: number | undefined;
   /**
    * If error occurred, this is brief explanation
    */
@@ -89,43 +94,43 @@ export type Log = {
   /**
    * The entire execution time in milliseconds it took to make the request.
    */
-  execution: number;
+  execution?: number | undefined;
   /**
    * When request is a parent request, this indicates if there are child requests associated.
    */
-  hasChildren: boolean;
+  hasChildren?: boolean | undefined;
   /**
    * HTTP Method of request.
    */
-  httpMethod: string;
+  httpMethod?: string | undefined;
   /**
    * UUID acting as Request Identifier.
    */
-  id: string;
+  id?: string | undefined;
   /**
    * Latency added by making this request via Unified Api.
    */
-  latency: number;
+  latency?: number | undefined;
   /**
    * The request as defined in OpenApi Spec.
    */
-  operation: Operation;
+  operation?: Operation | undefined;
   /**
    * When request is a child request, this UUID indicates it's parent request.
    */
-  parentId: string | null;
+  parentId?: string | null | undefined;
   /**
    * The path component of the URI the request was made to.
    */
-  path: string;
+  path?: string | undefined;
   /**
    * Indicates whether the request was made using Apidecks sandbox credentials or not.
    */
-  sandbox: boolean;
+  sandbox?: boolean | undefined;
   /**
    * Apideck service provider associated with request.
    */
-  service: Service;
+  service?: Service | undefined;
   /**
    * The IP address of the source of the request.
    */
@@ -133,19 +138,20 @@ export type Log = {
   /**
    * HTTP Status code that was returned.
    */
-  statusCode: number;
+  statusCode?: number | undefined;
   /**
    * Whether or not the request was successful.
    */
-  success: boolean;
+  success?: boolean | undefined;
   /**
    * ISO Date and time when the request was made.
    */
-  timestamp: string;
+  timestamp?: string | undefined;
   /**
    * Which Unified Api request was made to.
    */
-  unifiedApi: UnifiedApi;
+  unifiedApi?: UnifiedApi | undefined;
+  additionalProperties?: { [k: string]: any } | undefined;
 };
 
 /** @internal */
@@ -153,10 +159,14 @@ export const Operation$inboundSchema: z.ZodType<
   Operation,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  id: types.string(),
-  name: types.string(),
-});
+> = collectExtraKeys$(
+  z.object({
+    id: types.string(),
+    name: types.string(),
+  }).catchall(z.any()),
+  "additionalProperties",
+  true,
+);
 
 export function operationFromJSON(
   jsonString: string,
@@ -170,10 +180,14 @@ export function operationFromJSON(
 
 /** @internal */
 export const Service$inboundSchema: z.ZodType<Service, z.ZodTypeDef, unknown> =
-  z.object({
-    id: types.string(),
-    name: types.string(),
-  });
+  collectExtraKeys$(
+    z.object({
+      id: types.string(),
+      name: types.string(),
+    }).catchall(z.any()),
+    "additionalProperties",
+    true,
+  );
 
 export function serviceFromJSON(
   jsonString: string,
@@ -193,30 +207,34 @@ export const UnifiedApi$inboundSchema: z.ZodType<
 > = openEnums.inboundSchema(UnifiedApi);
 
 /** @internal */
-export const Log$inboundSchema: z.ZodType<Log, z.ZodTypeDef, unknown> = z
-  .object({
-    api_style: types.string(),
-    base_url: types.string(),
-    child_request: types.boolean(),
-    consumer_id: types.string(),
-    duration: types.number(),
-    error_message: z.nullable(types.string()).optional(),
-    execution: types.number(),
-    has_children: types.boolean(),
-    http_method: types.string(),
-    id: types.string(),
-    latency: types.number(),
-    operation: z.lazy(() => Operation$inboundSchema),
-    parent_id: types.nullable(types.string()),
-    path: types.string(),
-    sandbox: types.boolean(),
-    service: z.lazy(() => Service$inboundSchema),
-    source_ip: z.nullable(types.string()).optional(),
-    status_code: types.number(),
-    success: types.boolean(),
-    timestamp: types.string(),
-    unified_api: UnifiedApi$inboundSchema,
-  }).transform((v) => {
+export const Log$inboundSchema: z.ZodType<Log, z.ZodTypeDef, unknown> =
+  collectExtraKeys$(
+    z.object({
+      api_style: types.optional(types.string()),
+      base_url: types.optional(types.string()),
+      child_request: types.optional(types.boolean()),
+      consumer_id: types.optional(types.string()),
+      duration: types.optional(types.number()),
+      error_message: z.nullable(types.string()).optional(),
+      execution: types.optional(types.number()),
+      has_children: types.optional(types.boolean()),
+      http_method: types.optional(types.string()),
+      id: types.optional(types.string()),
+      latency: types.optional(types.number()),
+      operation: types.optional(z.lazy(() => Operation$inboundSchema)),
+      parent_id: z.nullable(types.string()).optional(),
+      path: types.optional(types.string()),
+      sandbox: types.optional(types.boolean()),
+      service: types.optional(z.lazy(() => Service$inboundSchema)),
+      source_ip: z.nullable(types.string()).optional(),
+      status_code: types.optional(types.number()),
+      success: types.optional(types.boolean()),
+      timestamp: types.optional(types.string()),
+      unified_api: types.optional(UnifiedApi$inboundSchema),
+    }).catchall(z.any()),
+    "additionalProperties",
+    true,
+  ).transform((v) => {
     return remap$(v, {
       "api_style": "apiStyle",
       "base_url": "baseUrl",

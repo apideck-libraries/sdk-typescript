@@ -15,7 +15,7 @@ export type UnifiedId = {
   /**
    * The unique identifier of the resource
    */
-  id: string;
+  id?: string | undefined;
 };
 
 /** @internal */
@@ -24,7 +24,7 @@ export const UnifiedId$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  id: types.string(),
+  id: types.optional(types.string()),
 });
 
 export function unifiedIdFromJSON(

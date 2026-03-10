@@ -9,7 +9,6 @@ let value: FileStorageSharedLinksAddRequest = {
   serviceId: "salesforce",
   sharedLink: {
     downloadUrl: "https://www.box.com/shared/static/rh935iit6ewrmw0unyul.jpeg",
-    targetId: "<id>",
     scope: "company",
     passThrough: [
       {

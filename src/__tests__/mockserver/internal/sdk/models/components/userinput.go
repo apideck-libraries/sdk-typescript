@@ -39,7 +39,7 @@ type UserInput struct {
 	Password     optionalnullable.OptionalNullable[string] `json:"password,omitempty"`
 	Addresses    []Address                                 `json:"addresses,omitempty"`
 	PhoneNumbers []PhoneNumber                             `json:"phone_numbers,omitempty"`
-	Emails       []Email                                   `json:"emails"`
+	Emails       []Email                                   `json:"emails,omitempty"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
 	PassThrough []PassThroughBody `json:"pass_through,omitempty"`
 }
@@ -158,7 +158,7 @@ func (o *UserInput) GetPhoneNumbers() []PhoneNumber {
 
 func (o *UserInput) GetEmails() []Email {
 	if o == nil {
-		return []Email{}
+		return nil
 	}
 	return o.Emails
 }

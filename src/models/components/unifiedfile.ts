@@ -4,7 +4,10 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import {
+  collectExtraKeys as collectExtraKeys$,
+  safeParse,
+} from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -26,7 +29,7 @@ export type UnifiedFile = {
   /**
    * A unique identifier for an object.
    */
-  id: string;
+  id?: string | undefined;
   /**
    * The third-party API ID of original entity
    */
@@ -34,7 +37,7 @@ export type UnifiedFile = {
   /**
    * The name of the file
    */
-  name: string | null;
+  name?: string | null | undefined;
   /**
    * Optional description of the file
    */
@@ -42,7 +45,7 @@ export type UnifiedFile = {
   /**
    * The type of resource. Could be file, folder or url
    */
-  type: FileType | null;
+  type?: FileType | null | undefined;
   /**
    * The full path of the file or folder (includes the file name)
    */
@@ -100,6 +103,7 @@ export type UnifiedFile = {
    * The date and time when the object was created.
    */
   createdAt?: Date | null | undefined;
+  additionalProperties?: { [k: string]: any } | undefined;
 };
 
 /** @internal */
@@ -126,28 +130,32 @@ export const UnifiedFile$inboundSchema: z.ZodType<
   UnifiedFile,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  id: types.string(),
-  downstream_id: z.nullable(types.string()).optional(),
-  name: types.nullable(types.string()),
-  description: z.nullable(types.string()).optional(),
-  type: types.nullable(FileType$inboundSchema),
-  path: z.nullable(types.string()).optional(),
-  mime_type: z.nullable(types.string()).optional(),
-  downloadable: types.optional(types.boolean()),
-  size: z.nullable(types.number()).optional(),
-  owner: types.optional(Owner$inboundSchema),
-  parent_folders: types.optional(z.array(LinkedFolder$inboundSchema)),
-  parent_folders_complete: types.optional(types.boolean()),
-  permissions: types.optional(z.lazy(() => Permissions$inboundSchema)),
-  exportable: types.optional(types.boolean()),
-  export_formats: z.nullable(z.array(types.string())).optional(),
-  custom_mappings: z.nullable(z.record(z.any())).optional(),
-  updated_by: z.nullable(types.string()).optional(),
-  created_by: z.nullable(types.string()).optional(),
-  updated_at: z.nullable(types.date()).optional(),
-  created_at: z.nullable(types.date()).optional(),
-}).transform((v) => {
+> = collectExtraKeys$(
+  z.object({
+    id: types.optional(types.string()),
+    downstream_id: z.nullable(types.string()).optional(),
+    name: z.nullable(types.string()).optional(),
+    description: z.nullable(types.string()).optional(),
+    type: z.nullable(FileType$inboundSchema).optional(),
+    path: z.nullable(types.string()).optional(),
+    mime_type: z.nullable(types.string()).optional(),
+    downloadable: types.optional(types.boolean()),
+    size: z.nullable(types.number()).optional(),
+    owner: types.optional(Owner$inboundSchema),
+    parent_folders: types.optional(z.array(LinkedFolder$inboundSchema)),
+    parent_folders_complete: types.optional(types.boolean()),
+    permissions: types.optional(z.lazy(() => Permissions$inboundSchema)),
+    exportable: types.optional(types.boolean()),
+    export_formats: z.nullable(z.array(types.string())).optional(),
+    custom_mappings: z.nullable(z.record(z.any())).optional(),
+    updated_by: z.nullable(types.string()).optional(),
+    created_by: z.nullable(types.string()).optional(),
+    updated_at: z.nullable(types.date()).optional(),
+    created_at: z.nullable(types.date()).optional(),
+  }).catchall(z.any()),
+  "additionalProperties",
+  true,
+).transform((v) => {
   return remap$(v, {
     "downstream_id": "downstreamId",
     "mime_type": "mimeType",

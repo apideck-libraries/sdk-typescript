@@ -55,7 +55,7 @@ func testCrmLeadsOneCrmLeadsOne0(w http.ResponseWriter, req *http.Request) {
 		Operation:  "one",
 		Data: components.Lead{
 			ID:             types.String("12345"),
-			Name:           "Elon Musk",
+			Name:           types.String("Elon Musk"),
 			CompanyName:    optionalnullable.From(types.String("Spacex")),
 			OwnerID:        optionalnullable.From(types.String("54321")),
 			OwnerName:      optionalnullable.From(types.String("John Doe")),
@@ -75,17 +75,17 @@ func testCrmLeadsOneCrmLeadsOne0(w http.ResponseWriter, req *http.Request) {
 			Websites: []components.Website{
 				components.Website{
 					ID:   optionalnullable.From(types.String("12345")),
-					URL:  "http://example.com",
+					URL:  types.String("http://example.com"),
 					Type: optionalnullable.From(components.WebsiteTypePrimary.ToPointer()),
 				},
 				components.Website{
 					ID:   optionalnullable.From(types.String("12345")),
-					URL:  "http://example.com",
+					URL:  types.String("http://example.com"),
 					Type: optionalnullable.From(components.WebsiteTypePrimary.ToPointer()),
 				},
 				components.Website{
 					ID:   optionalnullable.From(types.String("12345")),
-					URL:  "http://example.com",
+					URL:  types.String("http://example.com"),
 					Type: optionalnullable.From(components.WebsiteTypePrimary.ToPointer()),
 				},
 			},
@@ -146,12 +146,12 @@ func testCrmLeadsOneCrmLeadsOne0(w http.ResponseWriter, req *http.Request) {
 			SocialLinks: []components.SocialLink{
 				components.SocialLink{
 					ID:   optionalnullable.From(types.String("12345")),
-					URL:  "https://www.twitter.com/apideck",
+					URL:  types.String("https://www.twitter.com/apideck"),
 					Type: optionalnullable.From(types.String("twitter")),
 				},
 				components.SocialLink{
 					ID:   optionalnullable.From(types.String("12345")),
-					URL:  "https://www.twitter.com/apideck",
+					URL:  types.String("https://www.twitter.com/apideck"),
 					Type: optionalnullable.From(types.String("twitter")),
 				},
 			},
@@ -160,7 +160,7 @@ func testCrmLeadsOneCrmLeadsOne0(w http.ResponseWriter, req *http.Request) {
 					ID:          optionalnullable.From(types.String("12345")),
 					CountryCode: optionalnullable.From(types.String("1")),
 					AreaCode:    optionalnullable.From(types.String("323")),
-					Number:      "111-111-1111",
+					Number:      types.String("111-111-1111"),
 					Extension:   optionalnullable.From(types.String("105")),
 					Type:        optionalnullable.From(components.PhoneNumberTypePrimary.ToPointer()),
 				},
@@ -168,7 +168,7 @@ func testCrmLeadsOneCrmLeadsOne0(w http.ResponseWriter, req *http.Request) {
 					ID:          optionalnullable.From(types.String("12345")),
 					CountryCode: optionalnullable.From(types.String("1")),
 					AreaCode:    optionalnullable.From(types.String("323")),
-					Number:      "111-111-1111",
+					Number:      types.String("111-111-1111"),
 					Extension:   optionalnullable.From(types.String("105")),
 					Type:        optionalnullable.From(components.PhoneNumberTypePrimary.ToPointer()),
 				},
@@ -176,41 +176,37 @@ func testCrmLeadsOneCrmLeadsOne0(w http.ResponseWriter, req *http.Request) {
 			Emails: []components.Email{
 				components.Email{
 					ID:    optionalnullable.From(types.String("123")),
-					Email: types.String("elon@musk.com"),
+					Email: optionalnullable.From(types.String("elon@musk.com")),
 					Type:  optionalnullable.From(components.EmailTypePrimary.ToPointer()),
 				},
 				components.Email{
 					ID:    optionalnullable.From(types.String("123")),
-					Email: types.String("elon@musk.com"),
+					Email: optionalnullable.From(types.String("elon@musk.com")),
 					Type:  optionalnullable.From(components.EmailTypePrimary.ToPointer()),
 				},
 				components.Email{
 					ID:    optionalnullable.From(types.String("123")),
-					Email: types.String("elon@musk.com"),
+					Email: optionalnullable.From(types.String("elon@musk.com")),
 					Type:  optionalnullable.From(components.EmailTypePrimary.ToPointer()),
 				},
 			},
-			CustomFields: optionalnullable.From(types.Pointer([]components.CustomFieldUnion{
-				components.CreateCustomFieldUnionCustomField1(
-					components.CustomField1{
-						ID:          types.String("2389328923893298"),
-						Name:        optionalnullable.From(types.String("employee_level")),
-						Description: optionalnullable.From(types.String("Employee Level")),
-						Value: optionalnullable.From(types.Pointer(components.CreateCustomFieldValue2Boolean(
-							true,
-						))),
-					},
-				),
-				components.CreateCustomFieldUnionCustomField1(
-					components.CustomField1{
-						ID:          types.String("2389328923893298"),
-						Name:        optionalnullable.From(types.String("employee_level")),
-						Description: optionalnullable.From(types.String("Employee Level")),
-						Value: optionalnullable.From(types.Pointer(components.CreateCustomFieldValue2Number(
-							10,
-						))),
-					},
-				),
+			CustomFields: optionalnullable.From(types.Pointer([]components.CustomField{
+				components.CustomField{
+					ID:          optionalnullable.From(types.String("2389328923893298")),
+					Name:        optionalnullable.From(types.String("employee_level")),
+					Description: optionalnullable.From(types.String("Employee Level")),
+					Value: optionalnullable.From(types.Pointer(components.CreateCustomFieldValue2Boolean(
+						true,
+					))),
+				},
+				components.CustomField{
+					ID:          optionalnullable.From(types.String("2389328923893298")),
+					Name:        optionalnullable.From(types.String("employee_level")),
+					Description: optionalnullable.From(types.String("Employee Level")),
+					Value: optionalnullable.From(types.Pointer(components.CreateCustomFieldValue2Number(
+						10,
+					))),
+				},
 			})),
 			Tags: optionalnullable.From(types.Pointer([]string{
 				"New",

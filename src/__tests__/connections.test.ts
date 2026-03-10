@@ -123,7 +123,6 @@ test("Connections Vault Connections All", async () => {
                   {
                     id: "1234",
                     label: "General Channel",
-                    options: [],
                     optionType: "group",
                   },
                   {
@@ -168,7 +167,6 @@ test("Connections Vault Connections All", async () => {
                   {
                     id: "1234",
                     label: "General Channel",
-                    options: [],
                     optionType: "group",
                   },
                   {
@@ -542,7 +540,6 @@ test("Connections Vault Connections All", async () => {
                   {
                     id: "1234",
                     label: "General Channel",
-                    options: [],
                     optionType: "group",
                   },
                   {
@@ -607,7 +604,6 @@ test("Connections Vault Connections All", async () => {
                   {
                     id: "1234",
                     label: "General Channel",
-                    options: [],
                     optionType: "group",
                   },
                 ],
@@ -1807,7 +1803,6 @@ test("Connections Vault Connections Import", async () => {
                 {
                   id: "1234",
                   label: "General Channel",
-                  options: [],
                   optionType: "group",
                 },
               ],

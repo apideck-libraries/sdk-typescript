@@ -4,7 +4,10 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import {
+  collectExtraKeys as collectExtraKeys$,
+  safeParse,
+} from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
@@ -130,6 +133,7 @@ export type Address = {
    * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
    */
   rowVersion?: string | null | undefined;
+  additionalProperties?: { [k: string]: any } | undefined;
 };
 
 /** @internal */
@@ -141,33 +145,37 @@ export const Type$outboundSchema: z.ZodType<string, z.ZodTypeDef, Type> =
 
 /** @internal */
 export const Address$inboundSchema: z.ZodType<Address, z.ZodTypeDef, unknown> =
-  z.object({
-    id: z.nullable(types.string()).optional(),
-    type: z.nullable(Type$inboundSchema).optional(),
-    string: z.nullable(types.string()).optional(),
-    name: z.nullable(types.string()).optional(),
-    line1: z.nullable(types.string()).optional(),
-    line2: z.nullable(types.string()).optional(),
-    line3: z.nullable(types.string()).optional(),
-    line4: z.nullable(types.string()).optional(),
-    line5: z.nullable(types.string()).optional(),
-    street_number: z.nullable(types.string()).optional(),
-    city: z.nullable(types.string()).optional(),
-    state: z.nullable(types.string()).optional(),
-    postal_code: z.nullable(types.string()).optional(),
-    country: z.nullable(types.string()).optional(),
-    latitude: z.nullable(types.string()).optional(),
-    longitude: z.nullable(types.string()).optional(),
-    county: z.nullable(types.string()).optional(),
-    contact_name: z.nullable(types.string()).optional(),
-    salutation: z.nullable(types.string()).optional(),
-    phone_number: z.nullable(types.string()).optional(),
-    fax: z.nullable(types.string()).optional(),
-    email: z.nullable(types.string()).optional(),
-    website: z.nullable(types.string()).optional(),
-    notes: z.nullable(types.string()).optional(),
-    row_version: z.nullable(types.string()).optional(),
-  }).transform((v) => {
+  collectExtraKeys$(
+    z.object({
+      id: z.nullable(types.string()).optional(),
+      type: z.nullable(Type$inboundSchema).optional(),
+      string: z.nullable(types.string()).optional(),
+      name: z.nullable(types.string()).optional(),
+      line1: z.nullable(types.string()).optional(),
+      line2: z.nullable(types.string()).optional(),
+      line3: z.nullable(types.string()).optional(),
+      line4: z.nullable(types.string()).optional(),
+      line5: z.nullable(types.string()).optional(),
+      street_number: z.nullable(types.string()).optional(),
+      city: z.nullable(types.string()).optional(),
+      state: z.nullable(types.string()).optional(),
+      postal_code: z.nullable(types.string()).optional(),
+      country: z.nullable(types.string()).optional(),
+      latitude: z.nullable(types.string()).optional(),
+      longitude: z.nullable(types.string()).optional(),
+      county: z.nullable(types.string()).optional(),
+      contact_name: z.nullable(types.string()).optional(),
+      salutation: z.nullable(types.string()).optional(),
+      phone_number: z.nullable(types.string()).optional(),
+      fax: z.nullable(types.string()).optional(),
+      email: z.nullable(types.string()).optional(),
+      website: z.nullable(types.string()).optional(),
+      notes: z.nullable(types.string()).optional(),
+      row_version: z.nullable(types.string()).optional(),
+    }).catchall(z.any()),
+    "additionalProperties",
+    true,
+  ).transform((v) => {
     return remap$(v, {
       "street_number": "streetNumber",
       "postal_code": "postalCode",
@@ -203,6 +211,7 @@ export type Address$Outbound = {
   website?: string | null | undefined;
   notes?: string | null | undefined;
   row_version?: string | null | undefined;
+  [additionalProperties: string]: unknown;
 };
 
 /** @internal */
@@ -236,14 +245,19 @@ export const Address$outboundSchema: z.ZodType<
   website: z.nullable(z.string()).optional(),
   notes: z.nullable(z.string()).optional(),
   rowVersion: z.nullable(z.string()).optional(),
+  additionalProperties: z.record(z.any()).optional(),
 }).transform((v) => {
-  return remap$(v, {
-    streetNumber: "street_number",
-    postalCode: "postal_code",
-    contactName: "contact_name",
-    phoneNumber: "phone_number",
-    rowVersion: "row_version",
-  });
+  return {
+    ...v.additionalProperties,
+    ...remap$(v, {
+      streetNumber: "street_number",
+      postalCode: "postal_code",
+      contactName: "contact_name",
+      phoneNumber: "phone_number",
+      rowVersion: "row_version",
+      additionalProperties: null,
+    }),
+  };
 });
 
 export function addressToJSON(address: Address): string {

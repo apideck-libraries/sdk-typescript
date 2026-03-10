@@ -4,6 +4,7 @@ package components
 
 import (
 	"mockserver/internal/sdk/optionalnullable"
+	"mockserver/internal/sdk/utils"
 )
 
 type LinkedLedgerAccount struct {
@@ -18,7 +19,19 @@ type LinkedLedgerAccount struct {
 	// The parent ID of the account.
 	ParentID optionalnullable.OptionalNullable[string] `json:"parent_id,omitempty"`
 	// The display ID of the account.
-	DisplayID optionalnullable.OptionalNullable[string] `json:"display_id,omitempty"`
+	DisplayID            optionalnullable.OptionalNullable[string] `json:"display_id,omitempty"`
+	AdditionalProperties map[string]any                            `additionalProperties:"true" json:"-"`
+}
+
+func (l LinkedLedgerAccount) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(l, "", false)
+}
+
+func (l *LinkedLedgerAccount) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &l, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *LinkedLedgerAccount) GetID() *string {
@@ -61,4 +74,11 @@ func (o *LinkedLedgerAccount) GetDisplayID() optionalnullable.OptionalNullable[s
 		return nil
 	}
 	return o.DisplayID
+}
+
+func (o *LinkedLedgerAccount) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }

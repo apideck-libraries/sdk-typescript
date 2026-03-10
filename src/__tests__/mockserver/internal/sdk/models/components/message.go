@@ -111,12 +111,12 @@ type Message struct {
 	// A unique identifier for an object.
 	ID *string `json:"id,omitempty"`
 	// The phone number that initiated the message.
-	From string `json:"from"`
+	From *string `json:"from,omitempty"`
 	// The phone number that received the message.
-	To      string  `json:"to"`
+	To      *string `json:"to,omitempty"`
 	Subject *string `json:"subject,omitempty"`
 	// The message text.
-	Body string `json:"body"`
+	Body *string `json:"body,omitempty"`
 	// Set to sms for SMS messages and mms for MMS messages.
 	Type *MessageType `json:"type,omitempty"`
 	// The number of units that make up the complete message. Messages can be split up due to the constraints of the message size.
@@ -152,7 +152,8 @@ type Message struct {
 	// The date and time when the object was created.
 	CreatedAt optionalnullable.OptionalNullable[time.Time] `json:"created_at,omitempty"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
-	PassThrough []PassThroughBody `json:"pass_through,omitempty"`
+	PassThrough          []PassThroughBody `json:"pass_through,omitempty"`
+	AdditionalProperties map[string]any    `additionalProperties:"true" json:"-"`
 }
 
 func (m Message) MarshalJSON() ([]byte, error) {
@@ -160,7 +161,7 @@ func (m Message) MarshalJSON() ([]byte, error) {
 }
 
 func (m *Message) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &m, "", false, []string{"from", "to", "body"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &m, "", false, nil); err != nil {
 		return err
 	}
 	return nil
@@ -173,16 +174,16 @@ func (o *Message) GetID() *string {
 	return o.ID
 }
 
-func (o *Message) GetFrom() string {
+func (o *Message) GetFrom() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.From
 }
 
-func (o *Message) GetTo() string {
+func (o *Message) GetTo() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.To
 }
@@ -194,9 +195,9 @@ func (o *Message) GetSubject() *string {
 	return o.Subject
 }
 
-func (o *Message) GetBody() string {
+func (o *Message) GetBody() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.Body
 }
@@ -327,14 +328,21 @@ func (o *Message) GetPassThrough() []PassThroughBody {
 	return o.PassThrough
 }
 
+func (o *Message) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
+}
+
 type MessageInput struct {
 	// The phone number that initiated the message.
-	From string `json:"from"`
+	From *string `json:"from,omitempty"`
 	// The phone number that received the message.
-	To      string  `json:"to"`
+	To      *string `json:"to,omitempty"`
 	Subject *string `json:"subject,omitempty"`
 	// The message text.
-	Body string `json:"body"`
+	Body *string `json:"body,omitempty"`
 	// Set to sms for SMS messages and mms for MMS messages.
 	Type *MessageType `json:"type,omitempty"`
 	// The scheduled date and time of the message.
@@ -346,7 +354,8 @@ type MessageInput struct {
 	// The ID of the Messaging Service used with the message. In case of Plivo this links to the Powerpack ID.
 	MessagingServiceID *string `json:"messaging_service_id,omitempty"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
-	PassThrough []PassThroughBody `json:"pass_through,omitempty"`
+	PassThrough          []PassThroughBody `json:"pass_through,omitempty"`
+	AdditionalProperties map[string]any    `additionalProperties:"true" json:"-"`
 }
 
 func (m MessageInput) MarshalJSON() ([]byte, error) {
@@ -354,22 +363,22 @@ func (m MessageInput) MarshalJSON() ([]byte, error) {
 }
 
 func (m *MessageInput) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &m, "", false, []string{"from", "to", "body"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &m, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *MessageInput) GetFrom() string {
+func (o *MessageInput) GetFrom() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.From
 }
 
-func (o *MessageInput) GetTo() string {
+func (o *MessageInput) GetTo() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.To
 }
@@ -381,9 +390,9 @@ func (o *MessageInput) GetSubject() *string {
 	return o.Subject
 }
 
-func (o *MessageInput) GetBody() string {
+func (o *MessageInput) GetBody() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.Body
 }
@@ -428,4 +437,11 @@ func (o *MessageInput) GetPassThrough() []PassThroughBody {
 		return nil
 	}
 	return o.PassThrough
+}
+
+func (o *MessageInput) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }

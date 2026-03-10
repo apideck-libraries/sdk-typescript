@@ -60,7 +60,8 @@ type TrackingCategory struct {
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
 	PassThrough []PassThroughBody `json:"pass_through,omitempty"`
 	// The subsidiaries the account belongs to.
-	Subsidiaries []TrackingCategorySubsidiary `json:"subsidiaries,omitempty"`
+	Subsidiaries         []TrackingCategorySubsidiary `json:"subsidiaries,omitempty"`
+	AdditionalProperties map[string]any               `additionalProperties:"true" json:"-"`
 }
 
 func (t TrackingCategory) MarshalJSON() ([]byte, error) {
@@ -172,6 +173,13 @@ func (o *TrackingCategory) GetSubsidiaries() []TrackingCategorySubsidiary {
 	return o.Subsidiaries
 }
 
+func (o *TrackingCategory) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
+}
+
 type TrackingCategoryInput struct {
 	// A unique identifier for an object.
 	ParentID optionalnullable.OptionalNullable[string] `json:"parent_id,omitempty"`
@@ -188,7 +196,19 @@ type TrackingCategoryInput struct {
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
 	PassThrough []PassThroughBody `json:"pass_through,omitempty"`
 	// The subsidiaries the account belongs to.
-	Subsidiaries []TrackingCategorySubsidiary `json:"subsidiaries,omitempty"`
+	Subsidiaries         []TrackingCategorySubsidiary `json:"subsidiaries,omitempty"`
+	AdditionalProperties map[string]any               `additionalProperties:"true" json:"-"`
+}
+
+func (t TrackingCategoryInput) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(t, "", false)
+}
+
+func (t *TrackingCategoryInput) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &t, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *TrackingCategoryInput) GetParentID() optionalnullable.OptionalNullable[string] {
@@ -245,4 +265,11 @@ func (o *TrackingCategoryInput) GetSubsidiaries() []TrackingCategorySubsidiary {
 		return nil
 	}
 	return o.Subsidiaries
+}
+
+func (o *TrackingCategoryInput) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }

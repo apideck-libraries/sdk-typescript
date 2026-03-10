@@ -4,7 +4,10 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import {
+  collectExtraKeys as collectExtraKeys$,
+  safeParse,
+} from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -25,6 +28,7 @@ export type OutstandingBalanceByCustomer = {
   outstandingBalancesByCurrency?:
     | Array<OutstandingBalanceByCurrency>
     | undefined;
+  additionalProperties?: { [k: string]: any } | undefined;
 };
 
 /** @internal */
@@ -32,13 +36,17 @@ export const OutstandingBalanceByCustomer$inboundSchema: z.ZodType<
   OutstandingBalanceByCustomer,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  customer_id: types.optional(types.string()),
-  customer_name: types.optional(types.string()),
-  outstanding_balances_by_currency: types.optional(
-    z.array(OutstandingBalanceByCurrency$inboundSchema),
-  ),
-}).transform((v) => {
+> = collectExtraKeys$(
+  z.object({
+    customer_id: types.optional(types.string()),
+    customer_name: types.optional(types.string()),
+    outstanding_balances_by_currency: types.optional(
+      z.array(OutstandingBalanceByCurrency$inboundSchema),
+    ),
+  }).catchall(z.any()),
+  "additionalProperties",
+  true,
+).transform((v) => {
   return remap$(v, {
     "customer_id": "customerId",
     "customer_name": "customerName",

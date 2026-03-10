@@ -4,6 +4,7 @@ package components
 
 import (
 	"mockserver/internal/sdk/optionalnullable"
+	"mockserver/internal/sdk/utils"
 )
 
 // GetConsentRecordsResponse - Consent records
@@ -14,7 +15,19 @@ type GetConsentRecordsResponse struct {
 	Status string          `json:"status"`
 	Data   []ConsentRecord `json:"data"`
 	// Raw response from the integration when raw=true query param is provided
-	Raw optionalnullable.OptionalNullable[map[string]any] `json:"_raw,omitempty"`
+	Raw                  optionalnullable.OptionalNullable[map[string]any] `json:"_raw,omitempty"`
+	AdditionalProperties map[string]any                                    `additionalProperties:"true" json:"-"`
+}
+
+func (g GetConsentRecordsResponse) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(g, "", false)
+}
+
+func (g *GetConsentRecordsResponse) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"status_code", "status", "data"}); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *GetConsentRecordsResponse) GetStatusCode() int64 {
@@ -43,4 +56,11 @@ func (o *GetConsentRecordsResponse) GetRaw() optionalnullable.OptionalNullable[m
 		return nil
 	}
 	return o.Raw
+}
+
+func (o *GetConsentRecordsResponse) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }

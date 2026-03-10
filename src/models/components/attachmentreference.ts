@@ -3,7 +3,10 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
+import {
+  collectExtraKeys as collectExtraKeys$,
+  safeParse,
+} from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -18,6 +21,7 @@ export type AttachmentReference = {
    * A unique identifier for an object.
    */
   id?: string | undefined;
+  additionalProperties?: { [k: string]: any } | undefined;
 };
 
 /** @internal */
@@ -25,10 +29,14 @@ export const AttachmentReference$inboundSchema: z.ZodType<
   AttachmentReference,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  type: types.optional(AttachmentReferenceType$inboundSchema),
-  id: types.optional(types.string()),
-});
+> = collectExtraKeys$(
+  z.object({
+    type: types.optional(AttachmentReferenceType$inboundSchema),
+    id: types.optional(types.string()),
+  }).catchall(z.any()),
+  "additionalProperties",
+  true,
+);
 
 export function attachmentReferenceFromJSON(
   jsonString: string,

@@ -102,15 +102,16 @@ let value: GetExpensesResponse = {
       lineItems: [
         {
           id: "12345",
-          trackingCategories: null,
-          account: {
-            id: "123456",
-            name: "Bank account",
-            nominalCode: "N091",
-            code: "453",
-            parentId: "123456",
-            displayId: "123456",
-          },
+          trackingCategories: [
+            {
+              id: "123456",
+              code: "100",
+              name: "New York",
+              parentId: "123456",
+              parentName: "New York",
+            },
+          ],
+          account: null,
           customer: {
             id: "12345",
             displayId: "CUST00101",
@@ -150,7 +151,12 @@ let value: GetExpensesResponse = {
             name: "Model Y",
           },
           lineNumber: 1,
-          rebilling: null,
+          rebilling: {
+            rebillable: true,
+            rebillStatus: "billed",
+            linkedTransactionId: "txn_abc123",
+            linkedTransactionLineId: "line_xyz789",
+          },
         },
       ],
       reference: "INV-2024-001",

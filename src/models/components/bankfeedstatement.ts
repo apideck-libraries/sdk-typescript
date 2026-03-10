@@ -4,7 +4,10 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import {
+  collectExtraKeys as collectExtraKeys$,
+  safeParse,
+} from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
@@ -86,7 +89,7 @@ export type BankFeedStatement = {
   /**
    * A unique identifier for an object.
    */
-  id: string;
+  id?: string | undefined;
   /**
    * The ID of the bank feed account this statement belongs to.
    */
@@ -139,6 +142,7 @@ export type BankFeedStatement = {
    * The user who last updated the object.
    */
   updatedBy?: string | null | undefined;
+  additionalProperties?: { [k: string]: any } | undefined;
 };
 
 export type BankFeedStatementInput = {
@@ -178,6 +182,7 @@ export type BankFeedStatementInput = {
    * List of transactions in the bank feed statement.
    */
   transactions?: Array<Transactions> | undefined;
+  additionalProperties?: { [k: string]: any } | undefined;
 };
 
 /** @internal */
@@ -283,24 +288,28 @@ export const BankFeedStatement$inboundSchema: z.ZodType<
   BankFeedStatement,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  id: types.string(),
-  bank_feed_account_id: types.optional(types.string()),
-  status: types.optional(StatementStatus$inboundSchema),
-  start_date: types.optional(types.date()),
-  end_date: types.optional(types.date()),
-  start_balance: types.optional(types.number()),
-  start_balance_credit_or_debit: types.optional(CreditOrDebit$inboundSchema),
-  end_balance: types.optional(types.number()),
-  end_balance_credit_or_debit: types.optional(CreditOrDebit$inboundSchema),
-  transactions: types.optional(
-    z.array(z.lazy(() => Transactions$inboundSchema)),
-  ),
-  created_at: z.nullable(types.date()).optional(),
-  created_by: z.nullable(types.string()).optional(),
-  updated_at: z.nullable(types.date()).optional(),
-  updated_by: z.nullable(types.string()).optional(),
-}).transform((v) => {
+> = collectExtraKeys$(
+  z.object({
+    id: types.optional(types.string()),
+    bank_feed_account_id: types.optional(types.string()),
+    status: types.optional(StatementStatus$inboundSchema),
+    start_date: types.optional(types.date()),
+    end_date: types.optional(types.date()),
+    start_balance: types.optional(types.number()),
+    start_balance_credit_or_debit: types.optional(CreditOrDebit$inboundSchema),
+    end_balance: types.optional(types.number()),
+    end_balance_credit_or_debit: types.optional(CreditOrDebit$inboundSchema),
+    transactions: types.optional(
+      z.array(z.lazy(() => Transactions$inboundSchema)),
+    ),
+    created_at: z.nullable(types.date()).optional(),
+    created_by: z.nullable(types.string()).optional(),
+    updated_at: z.nullable(types.date()).optional(),
+    updated_by: z.nullable(types.string()).optional(),
+  }).catchall(z.any()),
+  "additionalProperties",
+  true,
+).transform((v) => {
   return remap$(v, {
     "bank_feed_account_id": "bankFeedAccountId",
     "start_date": "startDate",
@@ -337,6 +346,7 @@ export type BankFeedStatementInput$Outbound = {
   end_balance?: number | undefined;
   end_balance_credit_or_debit?: string | undefined;
   transactions?: Array<Transactions$Outbound> | undefined;
+  [additionalProperties: string]: unknown;
 };
 
 /** @internal */
@@ -354,16 +364,21 @@ export const BankFeedStatementInput$outboundSchema: z.ZodType<
   endBalance: z.number().optional(),
   endBalanceCreditOrDebit: CreditOrDebit$outboundSchema.optional(),
   transactions: z.array(z.lazy(() => Transactions$outboundSchema)).optional(),
+  additionalProperties: z.record(z.any()).optional(),
 }).transform((v) => {
-  return remap$(v, {
-    bankFeedAccountId: "bank_feed_account_id",
-    startDate: "start_date",
-    endDate: "end_date",
-    startBalance: "start_balance",
-    startBalanceCreditOrDebit: "start_balance_credit_or_debit",
-    endBalance: "end_balance",
-    endBalanceCreditOrDebit: "end_balance_credit_or_debit",
-  });
+  return {
+    ...v.additionalProperties,
+    ...remap$(v, {
+      bankFeedAccountId: "bank_feed_account_id",
+      startDate: "start_date",
+      endDate: "end_date",
+      startBalance: "start_balance",
+      startBalanceCreditOrDebit: "start_balance_credit_or_debit",
+      endBalance: "end_balance",
+      endBalanceCreditOrDebit: "end_balance_credit_or_debit",
+      additionalProperties: null,
+    }),
+  };
 });
 
 export function bankFeedStatementInputToJSON(

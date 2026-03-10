@@ -8,11 +8,11 @@ Type or category of the project
 import { ProjectType } from "@apideck/unify/models/components";
 
 let value: ProjectType = "client_project";
+
+// Open enum: unrecognized values are captured as Unrecognized<string>
 ```
 
 ## Values
-
-This is an open enum. Unrecognized values will be captured as the `Unrecognized<string>` branded type.
 
 ```typescript
 "client_project" | "internal_project" | "maintenance" | "research_development" | "training" | "other" | Unrecognized<string>

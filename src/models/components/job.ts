@@ -4,7 +4,10 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import {
+  collectExtraKeys as collectExtraKeys$,
+  safeParse,
+} from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
@@ -214,6 +217,7 @@ export type Job = {
    * The date and time when the object was created.
    */
   createdAt?: Date | null | undefined;
+  additionalProperties?: { [k: string]: any } | undefined;
 };
 
 /** @internal */
@@ -308,51 +312,55 @@ export function jobLinksFromJSON(
 }
 
 /** @internal */
-export const Job$inboundSchema: z.ZodType<Job, z.ZodTypeDef, unknown> = z
-  .object({
-    id: types.optional(types.string()),
-    slug: z.nullable(types.string()).optional(),
-    title: z.nullable(types.string()).optional(),
-    sequence: types.optional(types.number()),
-    visibility: types.optional(Visibility$inboundSchema),
-    status: types.optional(JobStatus$inboundSchema),
-    code: types.optional(types.string()),
-    language: z.nullable(types.string()).optional(),
-    employment_terms: z.nullable(EmploymentTerms$inboundSchema).optional(),
-    experience: types.optional(types.string()),
-    location: z.nullable(types.string()).optional(),
-    remote: z.nullable(types.boolean()).optional(),
-    requisition_id: types.optional(types.string()),
-    department: types.optional(Department$inboundSchema),
-    branch: types.optional(z.lazy(() => Branch$inboundSchema)),
-    recruiters: z.nullable(z.array(types.string())).optional(),
-    hiring_managers: types.optional(z.array(types.string())),
-    followers: z.nullable(z.array(types.string())).optional(),
-    description: z.nullable(types.string()).optional(),
-    description_html: z.nullable(types.string()).optional(),
-    blocks: types.optional(z.array(z.lazy(() => Blocks$inboundSchema))),
-    closing: z.nullable(types.string()).optional(),
-    closing_html: z.nullable(types.string()).optional(),
-    closing_date: z.nullable(types.date()).optional(),
-    salary: types.optional(z.lazy(() => Salary$inboundSchema)),
-    url: z.nullable(types.string()).optional(),
-    job_portal_url: z.nullable(types.string()).optional(),
-    record_url: z.nullable(types.string()).optional(),
-    links: types.optional(z.array(z.lazy(() => JobLinks$inboundSchema))),
-    confidential: types.optional(types.boolean()),
-    available_to_employees: types.optional(types.boolean()),
-    tags: z.nullable(z.array(types.string())).optional(),
-    addresses: types.optional(z.array(Address$inboundSchema)),
-    custom_fields: types.optional(z.array(CustomField$inboundSchema)),
-    deleted: z.nullable(types.boolean()).optional(),
-    owner_id: z.nullable(types.string()).optional(),
-    published_at: z.nullable(types.date()).optional(),
-    custom_mappings: z.nullable(z.record(z.any())).optional(),
-    updated_by: z.nullable(types.string()).optional(),
-    created_by: z.nullable(types.string()).optional(),
-    updated_at: z.nullable(types.date()).optional(),
-    created_at: z.nullable(types.date()).optional(),
-  }).transform((v) => {
+export const Job$inboundSchema: z.ZodType<Job, z.ZodTypeDef, unknown> =
+  collectExtraKeys$(
+    z.object({
+      id: types.optional(types.string()),
+      slug: z.nullable(types.string()).optional(),
+      title: z.nullable(types.string()).optional(),
+      sequence: types.optional(types.number()),
+      visibility: types.optional(Visibility$inboundSchema),
+      status: types.optional(JobStatus$inboundSchema),
+      code: types.optional(types.string()),
+      language: z.nullable(types.string()).optional(),
+      employment_terms: z.nullable(EmploymentTerms$inboundSchema).optional(),
+      experience: types.optional(types.string()),
+      location: z.nullable(types.string()).optional(),
+      remote: z.nullable(types.boolean()).optional(),
+      requisition_id: types.optional(types.string()),
+      department: types.optional(Department$inboundSchema),
+      branch: types.optional(z.lazy(() => Branch$inboundSchema)),
+      recruiters: z.nullable(z.array(types.string())).optional(),
+      hiring_managers: types.optional(z.array(types.string())),
+      followers: z.nullable(z.array(types.string())).optional(),
+      description: z.nullable(types.string()).optional(),
+      description_html: z.nullable(types.string()).optional(),
+      blocks: types.optional(z.array(z.lazy(() => Blocks$inboundSchema))),
+      closing: z.nullable(types.string()).optional(),
+      closing_html: z.nullable(types.string()).optional(),
+      closing_date: z.nullable(types.date()).optional(),
+      salary: types.optional(z.lazy(() => Salary$inboundSchema)),
+      url: z.nullable(types.string()).optional(),
+      job_portal_url: z.nullable(types.string()).optional(),
+      record_url: z.nullable(types.string()).optional(),
+      links: types.optional(z.array(z.lazy(() => JobLinks$inboundSchema))),
+      confidential: types.optional(types.boolean()),
+      available_to_employees: types.optional(types.boolean()),
+      tags: z.nullable(z.array(types.string())).optional(),
+      addresses: types.optional(z.array(Address$inboundSchema)),
+      custom_fields: types.optional(z.array(CustomField$inboundSchema)),
+      deleted: z.nullable(types.boolean()).optional(),
+      owner_id: z.nullable(types.string()).optional(),
+      published_at: z.nullable(types.date()).optional(),
+      custom_mappings: z.nullable(z.record(z.any())).optional(),
+      updated_by: z.nullable(types.string()).optional(),
+      created_by: z.nullable(types.string()).optional(),
+      updated_at: z.nullable(types.date()).optional(),
+      created_at: z.nullable(types.date()).optional(),
+    }).catchall(z.any()),
+    "additionalProperties",
+    true,
+  ).transform((v) => {
     return remap$(v, {
       "employment_terms": "employmentTerms",
       "requisition_id": "requisitionId",

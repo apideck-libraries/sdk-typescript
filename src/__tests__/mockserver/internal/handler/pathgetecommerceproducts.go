@@ -55,7 +55,7 @@ func testEcommerceProductsAllEcommerceProductsAll0(w http.ResponseWriter, req *h
 		Operation:  "all",
 		Data: []components.EcommerceProduct{
 			components.EcommerceProduct{
-				ID:                "12345",
+				ID:                types.String("12345"),
 				Name:              optionalnullable.From(types.String("MacBook Pro")),
 				Description:       optionalnullable.From(types.String("Powerful and portable, the MacBook Pro is perfect for professionals and creatives.")),
 				Status:            optionalnullable.From(components.ProductStatusActive.ToPointer()),
@@ -138,7 +138,7 @@ func testEcommerceProductsAllEcommerceProductsAll0(w http.ResponseWriter, req *h
 				UpdatedAt: optionalnullable.From(types.MustNewTimeFromString("2020-09-30T07:43:32.000Z")),
 			},
 			components.EcommerceProduct{
-				ID:                "12345",
+				ID:                types.String("12345"),
 				Name:              optionalnullable.From(types.String("MacBook Pro")),
 				Description:       optionalnullable.From(types.String("Powerful and portable, the MacBook Pro is perfect for professionals and creatives.")),
 				Status:            optionalnullable.From(components.ProductStatusActive.ToPointer()),
@@ -266,7 +266,7 @@ func testEcommerceProductsAllEcommerceProductsAll0(w http.ResponseWriter, req *h
 				UpdatedAt: optionalnullable.From(types.MustNewTimeFromString("2020-09-30T07:43:32.000Z")),
 			},
 			components.EcommerceProduct{
-				ID:                "12345",
+				ID:                types.String("12345"),
 				Name:              optionalnullable.From(types.String("MacBook Pro")),
 				Description:       optionalnullable.From(types.String("Powerful and portable, the MacBook Pro is perfect for professionals and creatives.")),
 				Status:            optionalnullable.From(components.ProductStatusActive.ToPointer()),

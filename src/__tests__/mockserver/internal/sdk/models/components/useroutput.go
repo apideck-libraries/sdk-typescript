@@ -39,7 +39,7 @@ type UserOutput struct {
 	Status       optionalnullable.OptionalNullable[string] `json:"status,omitempty"`
 	Addresses    []Address                                 `json:"addresses,omitempty"`
 	PhoneNumbers []PhoneNumber                             `json:"phone_numbers,omitempty"`
-	Emails       []Email                                   `json:"emails"`
+	Emails       []Email                                   `json:"emails,omitempty"`
 	// When custom mappings are configured on the resource, the result is included here.
 	CustomMappings optionalnullable.OptionalNullable[map[string]any] `json:"custom_mappings,omitempty"`
 	// The date and time when the user was last updated.
@@ -164,7 +164,7 @@ func (o *UserOutput) GetPhoneNumbers() []PhoneNumber {
 
 func (o *UserOutput) GetEmails() []Email {
 	if o == nil {
-		return []Email{}
+		return nil
 	}
 	return o.Emails
 }

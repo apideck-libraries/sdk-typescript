@@ -73,7 +73,6 @@ let value: UpdateConnectionResponse = {
             id: "ProductInterest",
             options: [
               {
-                label: "General Channel",
                 optionType: "simple",
               },
             ],

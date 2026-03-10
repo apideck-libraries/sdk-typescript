@@ -4,11 +4,12 @@ package components
 
 import (
 	"mockserver/internal/sdk/optionalnullable"
+	"mockserver/internal/sdk/utils"
 )
 
 type Compensation struct {
 	// A unique identifier for an object.
-	EmployeeID *string `json:"employee_id"`
+	EmployeeID optionalnullable.OptionalNullable[string] `json:"employee_id,omitempty"`
 	// The employee's net pay. Only available when payroll has been processed
 	NetPay optionalnullable.OptionalNullable[float64] `json:"net_pay,omitempty"`
 	// The employee's gross pay. Only available when payroll has been processed
@@ -18,10 +19,22 @@ type Compensation struct {
 	// An array of employee deductions for the pay period.
 	Deductions optionalnullable.OptionalNullable[[]Deduction] `json:"deductions,omitempty"`
 	// An array of employee benefits for the pay period.
-	Benefits optionalnullable.OptionalNullable[[]Benefit] `json:"benefits,omitempty"`
+	Benefits             optionalnullable.OptionalNullable[[]Benefit] `json:"benefits,omitempty"`
+	AdditionalProperties map[string]any                               `additionalProperties:"true" json:"-"`
 }
 
-func (o *Compensation) GetEmployeeID() *string {
+func (c Compensation) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(c, "", false)
+}
+
+func (c *Compensation) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &c, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (o *Compensation) GetEmployeeID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -61,4 +74,11 @@ func (o *Compensation) GetBenefits() optionalnullable.OptionalNullable[[]Benefit
 		return nil
 	}
 	return o.Benefits
+}
+
+func (o *Compensation) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }

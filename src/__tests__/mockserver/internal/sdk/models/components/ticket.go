@@ -24,7 +24,7 @@ func (e TicketPriority) ToPointer() *TicketPriority {
 
 type Ticket struct {
 	// A unique identifier for an object.
-	ID string `json:"id"`
+	ID *string `json:"id,omitempty"`
 	// The ticket's parent ID
 	ParentID optionalnullable.OptionalNullable[string] `json:"parent_id,omitempty"`
 	// The ticket's collection ID
@@ -54,7 +54,8 @@ type Ticket struct {
 	// When custom mappings are configured on the resource, the result is included here.
 	CustomMappings optionalnullable.OptionalNullable[map[string]any] `json:"custom_mappings,omitempty"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
-	PassThrough []PassThroughBody `json:"pass_through,omitempty"`
+	PassThrough          []PassThroughBody `json:"pass_through,omitempty"`
+	AdditionalProperties map[string]any    `additionalProperties:"true" json:"-"`
 }
 
 func (t Ticket) MarshalJSON() ([]byte, error) {
@@ -62,15 +63,15 @@ func (t Ticket) MarshalJSON() ([]byte, error) {
 }
 
 func (t *Ticket) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &t, "", false, []string{"id"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &t, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *Ticket) GetID() string {
+func (o *Ticket) GetID() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.ID
 }
@@ -187,6 +188,13 @@ func (o *Ticket) GetPassThrough() []PassThroughBody {
 	return o.PassThrough
 }
 
+func (o *Ticket) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
+}
+
 type TicketInput struct {
 	// The ticket's parent ID
 	ParentID optionalnullable.OptionalNullable[string] `json:"parent_id,omitempty"`
@@ -205,7 +213,8 @@ type TicketInput struct {
 	DueDate optionalnullable.OptionalNullable[time.Time] `json:"due_date,omitempty"`
 	Tags    []CollectionTagInput                         `json:"tags,omitempty"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
-	PassThrough []PassThroughBody `json:"pass_through,omitempty"`
+	PassThrough          []PassThroughBody `json:"pass_through,omitempty"`
+	AdditionalProperties map[string]any    `additionalProperties:"true" json:"-"`
 }
 
 func (t TicketInput) MarshalJSON() ([]byte, error) {
@@ -287,4 +296,11 @@ func (o *TicketInput) GetPassThrough() []PassThroughBody {
 		return nil
 	}
 	return o.PassThrough
+}
+
+func (o *TicketInput) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }

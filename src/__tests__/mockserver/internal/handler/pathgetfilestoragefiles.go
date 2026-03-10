@@ -55,11 +55,11 @@ func testFileStorageFilesAllFileStorageFilesAll0(w http.ResponseWriter, req *htt
 		Operation:  "all",
 		Data: []components.UnifiedFile{
 			components.UnifiedFile{
-				ID:           "12345",
+				ID:           types.String("12345"),
 				DownstreamID: optionalnullable.From(types.String("12345")),
-				Name:         types.String("sample.jpg"),
+				Name:         optionalnullable.From(types.String("sample.jpg")),
 				Description:  optionalnullable.From(types.String("A sample image")),
-				Type:         components.FileTypeFile.ToPointer(),
+				Type:         optionalnullable.From(components.FileTypeFile.ToPointer()),
 				Path:         optionalnullable.From(types.String("/Documents/sample.jpg")),
 				MimeType:     optionalnullable.From(types.String("image/jpeg")),
 				Size:         optionalnullable.From(types.Int64(1810673)),
@@ -70,11 +70,11 @@ func testFileStorageFilesAllFileStorageFilesAll0(w http.ResponseWriter, req *htt
 				},
 				ParentFolders: []components.LinkedFolder{
 					components.LinkedFolder{
-						ID:   "12345",
+						ID:   types.String("12345"),
 						Name: optionalnullable.From(types.String("Personal")),
 					},
 					components.LinkedFolder{
-						ID:   "12345",
+						ID:   types.String("12345"),
 						Name: optionalnullable.From(types.String("Personal")),
 					},
 				},
@@ -89,11 +89,11 @@ func testFileStorageFilesAllFileStorageFilesAll0(w http.ResponseWriter, req *htt
 				CreatedAt: optionalnullable.From(types.MustNewTimeFromString("2020-09-30T07:43:32.000Z")),
 			},
 			components.UnifiedFile{
-				ID:           "12345",
+				ID:           types.String("12345"),
 				DownstreamID: optionalnullable.From(types.String("12345")),
-				Name:         types.String("sample.jpg"),
+				Name:         optionalnullable.From(types.String("sample.jpg")),
 				Description:  optionalnullable.From(types.String("A sample image")),
-				Type:         components.FileTypeFile.ToPointer(),
+				Type:         optionalnullable.From(components.FileTypeFile.ToPointer()),
 				Path:         optionalnullable.From(types.String("/Documents/sample.jpg")),
 				MimeType:     optionalnullable.From(types.String("image/jpeg")),
 				Size:         optionalnullable.From(types.Int64(1810673)),
@@ -104,15 +104,15 @@ func testFileStorageFilesAllFileStorageFilesAll0(w http.ResponseWriter, req *htt
 				},
 				ParentFolders: []components.LinkedFolder{
 					components.LinkedFolder{
-						ID:   "12345",
+						ID:   types.String("12345"),
 						Name: optionalnullable.From(types.String("Personal")),
 					},
 					components.LinkedFolder{
-						ID:   "12345",
+						ID:   types.String("12345"),
 						Name: optionalnullable.From(types.String("Personal")),
 					},
 					components.LinkedFolder{
-						ID:   "12345",
+						ID:   types.String("12345"),
 						Name: optionalnullable.From(types.String("Personal")),
 					},
 				},
@@ -127,11 +127,11 @@ func testFileStorageFilesAllFileStorageFilesAll0(w http.ResponseWriter, req *htt
 				CreatedAt: optionalnullable.From(types.MustNewTimeFromString("2020-09-30T07:43:32.000Z")),
 			},
 			components.UnifiedFile{
-				ID:           "12345",
+				ID:           types.String("12345"),
 				DownstreamID: optionalnullable.From(types.String("12345")),
-				Name:         types.String("sample.jpg"),
+				Name:         optionalnullable.From(types.String("sample.jpg")),
 				Description:  optionalnullable.From(types.String("A sample image")),
-				Type:         components.FileTypeFile.ToPointer(),
+				Type:         optionalnullable.From(components.FileTypeFile.ToPointer()),
 				Path:         optionalnullable.From(types.String("/Documents/sample.jpg")),
 				MimeType:     optionalnullable.From(types.String("image/jpeg")),
 				Size:         optionalnullable.From(types.Int64(1810673)),
@@ -142,7 +142,7 @@ func testFileStorageFilesAllFileStorageFilesAll0(w http.ResponseWriter, req *htt
 				},
 				ParentFolders: []components.LinkedFolder{
 					components.LinkedFolder{
-						ID:   "12345",
+						ID:   types.String("12345"),
 						Name: optionalnullable.From(types.String("Personal")),
 					},
 				},

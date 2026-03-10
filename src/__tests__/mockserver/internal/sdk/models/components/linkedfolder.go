@@ -8,14 +8,14 @@ import (
 
 type LinkedFolder struct {
 	// A unique identifier for an object.
-	ID string `json:"id"`
+	ID *string `json:"id,omitempty"`
 	// The name of the folder
 	Name optionalnullable.OptionalNullable[string] `json:"name,omitempty"`
 }
 
-func (o *LinkedFolder) GetID() string {
+func (o *LinkedFolder) GetID() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.ID
 }

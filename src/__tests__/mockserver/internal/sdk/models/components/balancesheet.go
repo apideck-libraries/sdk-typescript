@@ -19,7 +19,19 @@ type BalanceSheetAssetsAccount struct {
 	// The amount or value of the item
 	Value *float64 `json:"value,omitempty"`
 	// A list of balance sheet accounts
-	Items any `json:"items,omitempty"`
+	Items                any            `json:"items,omitempty"`
+	AdditionalProperties map[string]any `additionalProperties:"true" json:"-"`
+}
+
+func (b BalanceSheetAssetsAccount) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(b, "", false)
+}
+
+func (b *BalanceSheetAssetsAccount) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &b, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *BalanceSheetAssetsAccount) GetAccountID() *string {
@@ -57,6 +69,13 @@ func (o *BalanceSheetAssetsAccount) GetItems() any {
 	return o.Items
 }
 
+func (o *BalanceSheetAssetsAccount) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
+}
+
 // BalanceSheetLiabilitiesAccount - A balance sheet liabilities account represents the financial position of a company at a specific point in time.
 type BalanceSheetLiabilitiesAccount struct {
 	// The unique identifier for the account.
@@ -68,7 +87,19 @@ type BalanceSheetLiabilitiesAccount struct {
 	// The amount or value of the item
 	Value *float64 `json:"value,omitempty"`
 	// A list of balance sheet accounts
-	Items any `json:"items,omitempty"`
+	Items                any            `json:"items,omitempty"`
+	AdditionalProperties map[string]any `additionalProperties:"true" json:"-"`
+}
+
+func (b BalanceSheetLiabilitiesAccount) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(b, "", false)
+}
+
+func (b *BalanceSheetLiabilitiesAccount) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &b, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *BalanceSheetLiabilitiesAccount) GetAccountID() *string {
@@ -106,6 +137,13 @@ func (o *BalanceSheetLiabilitiesAccount) GetItems() any {
 	return o.Items
 }
 
+func (o *BalanceSheetLiabilitiesAccount) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
+}
+
 // BalanceSheetEquityAccount - A balance sheet equity account represents the financial position of a company at a specific point in time.
 type BalanceSheetEquityAccount struct {
 	// The unique identifier for the account.
@@ -117,7 +155,19 @@ type BalanceSheetEquityAccount struct {
 	// The amount or value of the item
 	Value *float64 `json:"value,omitempty"`
 	// A list of balance sheet accounts
-	Items any `json:"items,omitempty"`
+	Items                any            `json:"items,omitempty"`
+	AdditionalProperties map[string]any `additionalProperties:"true" json:"-"`
+}
+
+func (b BalanceSheetEquityAccount) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(b, "", false)
+}
+
+func (b *BalanceSheetEquityAccount) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &b, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *BalanceSheetEquityAccount) GetAccountID() *string {
@@ -155,6 +205,13 @@ func (o *BalanceSheetEquityAccount) GetItems() any {
 	return o.Items
 }
 
+func (o *BalanceSheetEquityAccount) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
+}
+
 // BalanceSheetUncategorizedItemsAccount - A balance sheet uncategorized items account represents the financial position of a company at a specific point in time.
 type BalanceSheetUncategorizedItemsAccount struct {
 	// The unique identifier for the account.
@@ -166,7 +223,19 @@ type BalanceSheetUncategorizedItemsAccount struct {
 	// The amount or value of the item
 	Value *float64 `json:"value,omitempty"`
 	// A list of balance sheet accounts
-	Items any `json:"items,omitempty"`
+	Items                any            `json:"items,omitempty"`
+	AdditionalProperties map[string]any `additionalProperties:"true" json:"-"`
+}
+
+func (b BalanceSheetUncategorizedItemsAccount) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(b, "", false)
+}
+
+func (b *BalanceSheetUncategorizedItemsAccount) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &b, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *BalanceSheetUncategorizedItemsAccount) GetAccountID() *string {
@@ -204,6 +273,13 @@ func (o *BalanceSheetUncategorizedItemsAccount) GetItems() any {
 	return o.Items
 }
 
+func (o *BalanceSheetUncategorizedItemsAccount) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
+}
+
 type Report struct {
 	// A unique identifier for an object.
 	ID *string `json:"id,omitempty"`
@@ -234,7 +310,8 @@ type Report struct {
 	// The date and time when the object was created.
 	CreatedAt optionalnullable.OptionalNullable[time.Time] `json:"created_at,omitempty"`
 	// A balance sheet uncategorized items account represents the financial position of a company at a specific point in time.
-	UncategorizedItems *BalanceSheetUncategorizedItemsAccount `json:"uncategorized_items,omitempty"`
+	UncategorizedItems   *BalanceSheetUncategorizedItemsAccount `json:"uncategorized_items,omitempty"`
+	AdditionalProperties map[string]any                         `additionalProperties:"true" json:"-"`
 }
 
 func (r Report) MarshalJSON() ([]byte, error) {
@@ -353,13 +430,39 @@ func (o *Report) GetUncategorizedItems() *BalanceSheetUncategorizedItemsAccount 
 	return o.UncategorizedItems
 }
 
+func (o *Report) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
+}
+
 type BalanceSheet struct {
-	Reports []Report `json:"reports"`
+	Reports              []Report       `json:"reports,omitempty"`
+	AdditionalProperties map[string]any `additionalProperties:"true" json:"-"`
+}
+
+func (b BalanceSheet) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(b, "", false)
+}
+
+func (b *BalanceSheet) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &b, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *BalanceSheet) GetReports() []Report {
 	if o == nil {
-		return []Report{}
+		return nil
 	}
 	return o.Reports
+}
+
+func (o *BalanceSheet) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }

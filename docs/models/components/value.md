@@ -6,19 +6,13 @@
 ### `string`
 
 ```typescript
-const value: string = "general";
+const value: string = "Uses Salesforce and Marketo";
 ```
 
 ### `number`
 
 ```typescript
-const value: number = 123;
-```
-
-### `number`
-
-```typescript
-const value: number = 12.5;
+const value: number = 10;
 ```
 
 ### `boolean`
@@ -27,12 +21,19 @@ const value: number = 12.5;
 const value: boolean = true;
 ```
 
+### `{ [k: string]: any }`
+
+```typescript
+const value: { [k: string]: any } = {
+  "foo": "bar",
+};
+```
+
 ### `components.Five[]`
 
 ```typescript
 const value: components.Five[] = [
-  "team",
-  "general",
+  "Uses Salesforce and Marketo",
 ];
 ```
 

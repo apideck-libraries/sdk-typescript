@@ -4,7 +4,10 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import {
+  collectExtraKeys as collectExtraKeys$,
+  safeParse,
+} from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
@@ -64,6 +67,7 @@ export type SharedLink = {
    * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
    */
   passThrough?: Array<PassThroughBody> | undefined;
+  additionalProperties?: { [k: string]: any } | undefined;
 };
 
 export type SharedLinkInput = {
@@ -74,7 +78,7 @@ export type SharedLinkInput = {
   /**
    * The ID of the file or folder to link.
    */
-  targetId: string | null;
+  targetId?: string | null | undefined;
   /**
    * The scope of the shared link.
    */
@@ -87,6 +91,7 @@ export type SharedLinkInput = {
    * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
    */
   passThrough?: Array<PassThroughBody> | undefined;
+  additionalProperties?: { [k: string]: any } | undefined;
 };
 
 /** @internal */
@@ -101,17 +106,21 @@ export const SharedLink$inboundSchema: z.ZodType<
   SharedLink,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  url: z.nullable(types.string()).optional(),
-  download_url: z.nullable(types.string()).optional(),
-  target: types.optional(SharedLinkTarget$inboundSchema),
-  scope: z.nullable(Scope$inboundSchema).optional(),
-  password_protected: z.nullable(types.boolean()).optional(),
-  expires_at: z.nullable(types.date()).optional(),
-  updated_at: z.nullable(types.date()).optional(),
-  created_at: z.nullable(types.date()).optional(),
-  pass_through: types.optional(z.array(PassThroughBody$inboundSchema)),
-}).transform((v) => {
+> = collectExtraKeys$(
+  z.object({
+    url: z.nullable(types.string()).optional(),
+    download_url: z.nullable(types.string()).optional(),
+    target: types.optional(SharedLinkTarget$inboundSchema),
+    scope: z.nullable(Scope$inboundSchema).optional(),
+    password_protected: z.nullable(types.boolean()).optional(),
+    expires_at: z.nullable(types.date()).optional(),
+    updated_at: z.nullable(types.date()).optional(),
+    created_at: z.nullable(types.date()).optional(),
+    pass_through: types.optional(z.array(PassThroughBody$inboundSchema)),
+  }).catchall(z.any()),
+  "additionalProperties",
+  true,
+).transform((v) => {
   return remap$(v, {
     "download_url": "downloadUrl",
     "password_protected": "passwordProtected",
@@ -135,10 +144,11 @@ export function sharedLinkFromJSON(
 /** @internal */
 export type SharedLinkInput$Outbound = {
   download_url?: string | null | undefined;
-  target_id: string | null;
+  target_id?: string | null | undefined;
   scope?: string | null | undefined;
   password?: string | null | undefined;
   pass_through?: Array<PassThroughBody$Outbound> | undefined;
+  [additionalProperties: string]: unknown;
 };
 
 /** @internal */
@@ -148,16 +158,21 @@ export const SharedLinkInput$outboundSchema: z.ZodType<
   SharedLinkInput
 > = z.object({
   downloadUrl: z.nullable(z.string()).optional(),
-  targetId: z.nullable(z.string()),
+  targetId: z.nullable(z.string()).optional(),
   scope: z.nullable(Scope$outboundSchema).optional(),
   password: z.nullable(z.string()).optional(),
   passThrough: z.array(PassThroughBody$outboundSchema).optional(),
+  additionalProperties: z.record(z.any()).optional(),
 }).transform((v) => {
-  return remap$(v, {
-    downloadUrl: "download_url",
-    targetId: "target_id",
-    passThrough: "pass_through",
-  });
+  return {
+    ...v.additionalProperties,
+    ...remap$(v, {
+      downloadUrl: "download_url",
+      targetId: "target_id",
+      passThrough: "pass_through",
+      additionalProperties: null,
+    }),
+  };
 });
 
 export function sharedLinkInputToJSON(

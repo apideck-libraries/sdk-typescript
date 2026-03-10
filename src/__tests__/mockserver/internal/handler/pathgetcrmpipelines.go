@@ -56,7 +56,7 @@ func testCrmPipelinesAllCrmPipelinesAll0(w http.ResponseWriter, req *http.Reques
 		Data: []components.Pipeline{
 			components.Pipeline{
 				ID:                    types.String("default"),
-				Name:                  "Sales Pipeline",
+				Name:                  types.String("Sales Pipeline"),
 				Currency:              optionalnullable.From(components.CurrencyUsd.ToPointer()),
 				Archived:              types.Bool(false),
 				Active:                types.Bool(false),
@@ -124,7 +124,7 @@ func testCrmPipelinesAllCrmPipelinesAll0(w http.ResponseWriter, req *http.Reques
 			},
 			components.Pipeline{
 				ID:                    types.String("default"),
-				Name:                  "Sales Pipeline",
+				Name:                  types.String("Sales Pipeline"),
 				Currency:              optionalnullable.From(components.CurrencyUsd.ToPointer()),
 				Archived:              types.Bool(false),
 				Active:                types.Bool(false),
@@ -195,7 +195,7 @@ func testCrmPipelinesAllCrmPipelinesAll0(w http.ResponseWriter, req *http.Reques
 			},
 			components.Pipeline{
 				ID:                    types.String("default"),
-				Name:                  "Sales Pipeline",
+				Name:                  types.String("Sales Pipeline"),
 				Currency:              optionalnullable.From(components.CurrencyUsd.ToPointer()),
 				Archived:              types.Bool(false),
 				Active:                types.Bool(false),

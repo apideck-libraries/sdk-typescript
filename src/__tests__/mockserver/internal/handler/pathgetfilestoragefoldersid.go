@@ -55,7 +55,7 @@ func testFileStorageFoldersOneFileStorageFoldersOne0(w http.ResponseWriter, req 
 		Operation:  "one",
 		Data: components.Folder{
 			ID:          types.String("12345"),
-			Name:        "Documents",
+			Name:        types.String("Documents"),
 			Description: optionalnullable.From(types.String("My Personal Documents")),
 			Path:        optionalnullable.From(types.String("/Personal/Documents")),
 			Size:        optionalnullable.From(types.Int64(1810673)),
@@ -66,11 +66,11 @@ func testFileStorageFoldersOneFileStorageFoldersOne0(w http.ResponseWriter, req 
 			},
 			ParentFolders: []components.LinkedFolder{
 				components.LinkedFolder{
-					ID:   "12345",
+					ID:   types.String("12345"),
 					Name: optionalnullable.From(types.String("Personal")),
 				},
 				components.LinkedFolder{
-					ID:   "12345",
+					ID:   types.String("12345"),
 					Name: optionalnullable.From(types.String("Personal")),
 				},
 			},

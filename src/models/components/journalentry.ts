@@ -4,7 +4,10 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import {
+  collectExtraKeys as collectExtraKeys$,
+  safeParse,
+} from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
@@ -169,6 +172,7 @@ export type JournalEntry = {
    * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
    */
   passThrough?: Array<PassThroughBody> | undefined;
+  additionalProperties?: { [k: string]: any } | undefined;
 };
 
 export type JournalEntryInput = {
@@ -253,6 +257,7 @@ export type JournalEntryInput = {
    * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
    */
   passThrough?: Array<PassThroughBody> | undefined;
+  additionalProperties?: { [k: string]: any } | undefined;
 };
 
 /** @internal */
@@ -273,38 +278,42 @@ export const JournalEntry$inboundSchema: z.ZodType<
   JournalEntry,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  id: types.optional(types.string()),
-  downstream_id: z.nullable(types.string()).optional(),
-  display_id: z.nullable(types.string()).optional(),
-  title: z.nullable(types.string()).optional(),
-  currency_rate: z.nullable(types.number()).optional(),
-  currency: z.nullable(Currency$inboundSchema).optional(),
-  company_id: z.nullable(types.string()).optional(),
-  line_items: types.optional(z.array(JournalEntryLineItem$inboundSchema)),
-  status: z.nullable(JournalEntryStatus$inboundSchema).optional(),
-  memo: z.nullable(types.string()).optional(),
-  posted_at: types.optional(types.date()),
-  journal_symbol: z.nullable(types.string()).optional(),
-  tax_type: z.nullable(types.string()).optional(),
-  tax_code: z.nullable(types.string()).optional(),
-  number: z.nullable(types.string()).optional(),
-  tracking_categories: z.nullable(
-    z.array(types.nullable(LinkedTrackingCategory$inboundSchema)),
-  ).optional(),
-  accounting_period: z.nullable(types.string()).optional(),
-  tax_inclusive: z.nullable(types.boolean()).optional(),
-  source_type: z.nullable(types.string()).optional(),
-  source_id: z.nullable(types.string()).optional(),
-  custom_mappings: z.nullable(z.record(z.any())).optional(),
-  updated_by: z.nullable(types.string()).optional(),
-  created_by: z.nullable(types.string()).optional(),
-  updated_at: z.nullable(types.date()).optional(),
-  created_at: z.nullable(types.date()).optional(),
-  row_version: z.nullable(types.string()).optional(),
-  custom_fields: types.optional(z.array(CustomField$inboundSchema)),
-  pass_through: types.optional(z.array(PassThroughBody$inboundSchema)),
-}).transform((v) => {
+> = collectExtraKeys$(
+  z.object({
+    id: types.optional(types.string()),
+    downstream_id: z.nullable(types.string()).optional(),
+    display_id: z.nullable(types.string()).optional(),
+    title: z.nullable(types.string()).optional(),
+    currency_rate: z.nullable(types.number()).optional(),
+    currency: z.nullable(Currency$inboundSchema).optional(),
+    company_id: z.nullable(types.string()).optional(),
+    line_items: types.optional(z.array(JournalEntryLineItem$inboundSchema)),
+    status: z.nullable(JournalEntryStatus$inboundSchema).optional(),
+    memo: z.nullable(types.string()).optional(),
+    posted_at: types.optional(types.date()),
+    journal_symbol: z.nullable(types.string()).optional(),
+    tax_type: z.nullable(types.string()).optional(),
+    tax_code: z.nullable(types.string()).optional(),
+    number: z.nullable(types.string()).optional(),
+    tracking_categories: z.nullable(
+      z.array(types.nullable(LinkedTrackingCategory$inboundSchema)),
+    ).optional(),
+    accounting_period: z.nullable(types.string()).optional(),
+    tax_inclusive: z.nullable(types.boolean()).optional(),
+    source_type: z.nullable(types.string()).optional(),
+    source_id: z.nullable(types.string()).optional(),
+    custom_mappings: z.nullable(z.record(z.any())).optional(),
+    updated_by: z.nullable(types.string()).optional(),
+    created_by: z.nullable(types.string()).optional(),
+    updated_at: z.nullable(types.date()).optional(),
+    created_at: z.nullable(types.date()).optional(),
+    row_version: z.nullable(types.string()).optional(),
+    custom_fields: types.optional(z.array(CustomField$inboundSchema)),
+    pass_through: types.optional(z.array(PassThroughBody$inboundSchema)),
+  }).catchall(z.any()),
+  "additionalProperties",
+  true,
+).transform((v) => {
   return remap$(v, {
     "downstream_id": "downstreamId",
     "display_id": "displayId",
@@ -367,6 +376,7 @@ export type JournalEntryInput$Outbound = {
   row_version?: string | null | undefined;
   custom_fields?: Array<CustomField$Outbound> | undefined;
   pass_through?: Array<PassThroughBody$Outbound> | undefined;
+  [additionalProperties: string]: unknown;
 };
 
 /** @internal */
@@ -398,25 +408,30 @@ export const JournalEntryInput$outboundSchema: z.ZodType<
   rowVersion: z.nullable(z.string()).optional(),
   customFields: z.array(CustomField$outboundSchema).optional(),
   passThrough: z.array(PassThroughBody$outboundSchema).optional(),
+  additionalProperties: z.record(z.any()).optional(),
 }).transform((v) => {
-  return remap$(v, {
-    displayId: "display_id",
-    currencyRate: "currency_rate",
-    companyId: "company_id",
-    lineItems: "line_items",
-    postedAt: "posted_at",
-    journalSymbol: "journal_symbol",
-    taxType: "tax_type",
-    taxCode: "tax_code",
-    trackingCategories: "tracking_categories",
-    accountingPeriod: "accounting_period",
-    taxInclusive: "tax_inclusive",
-    sourceType: "source_type",
-    sourceId: "source_id",
-    rowVersion: "row_version",
-    customFields: "custom_fields",
-    passThrough: "pass_through",
-  });
+  return {
+    ...v.additionalProperties,
+    ...remap$(v, {
+      displayId: "display_id",
+      currencyRate: "currency_rate",
+      companyId: "company_id",
+      lineItems: "line_items",
+      postedAt: "posted_at",
+      journalSymbol: "journal_symbol",
+      taxType: "tax_type",
+      taxCode: "tax_code",
+      trackingCategories: "tracking_categories",
+      accountingPeriod: "accounting_period",
+      taxInclusive: "tax_inclusive",
+      sourceType: "source_type",
+      sourceId: "source_id",
+      rowVersion: "row_version",
+      customFields: "custom_fields",
+      passThrough: "pass_through",
+      additionalProperties: null,
+    }),
+  };
 });
 
 export function journalEntryInputToJSON(

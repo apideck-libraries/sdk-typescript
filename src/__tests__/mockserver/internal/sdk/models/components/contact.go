@@ -85,15 +85,15 @@ type Contact struct {
 	// The status of the contact.
 	Status optionalnullable.OptionalNullable[string] `json:"status,omitempty"`
 	// The active status of the contact.
-	Active       optionalnullable.OptionalNullable[bool]               `json:"active,omitempty"`
-	Websites     []Website                                             `json:"websites,omitempty"`
-	Addresses    []Address                                             `json:"addresses,omitempty"`
-	SocialLinks  []SocialLink                                          `json:"social_links,omitempty"`
-	PhoneNumbers []PhoneNumber                                         `json:"phone_numbers,omitempty"`
-	Emails       []Email                                               `json:"emails,omitempty"`
-	EmailDomain  optionalnullable.OptionalNullable[string]             `json:"email_domain,omitempty"`
-	CustomFields optionalnullable.OptionalNullable[[]CustomFieldUnion] `json:"custom_fields,omitempty"`
-	Tags         optionalnullable.OptionalNullable[[]string]           `json:"tags,omitempty"`
+	Active       optionalnullable.OptionalNullable[bool]          `json:"active,omitempty"`
+	Websites     []Website                                        `json:"websites,omitempty"`
+	Addresses    []Address                                        `json:"addresses,omitempty"`
+	SocialLinks  []SocialLink                                     `json:"social_links,omitempty"`
+	PhoneNumbers []PhoneNumber                                    `json:"phone_numbers,omitempty"`
+	Emails       []Email                                          `json:"emails,omitempty"`
+	EmailDomain  optionalnullable.OptionalNullable[string]        `json:"email_domain,omitempty"`
+	CustomFields optionalnullable.OptionalNullable[[]CustomField] `json:"custom_fields,omitempty"`
+	Tags         optionalnullable.OptionalNullable[[]string]      `json:"tags,omitempty"`
 	// The first call date of the contact.
 	FirstCallAt optionalnullable.OptionalNullable[time.Time] `json:"first_call_at,omitempty"`
 	// The first email date of the contact.
@@ -109,7 +109,8 @@ type Contact struct {
 	// The opportunity ids of the contact.
 	OpportunityIds []string `json:"opportunity_ids,omitempty"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
-	PassThrough []PassThroughBody `json:"pass_through,omitempty"`
+	PassThrough          []PassThroughBody `json:"pass_through,omitempty"`
+	AdditionalProperties map[string]any    `additionalProperties:"true" json:"-"`
 }
 
 func (c Contact) MarshalJSON() ([]byte, error) {
@@ -340,7 +341,7 @@ func (o *Contact) GetEmailDomain() optionalnullable.OptionalNullable[string] {
 	return o.EmailDomain
 }
 
-func (o *Contact) GetCustomFields() optionalnullable.OptionalNullable[[]CustomFieldUnion] {
+func (o *Contact) GetCustomFields() optionalnullable.OptionalNullable[[]CustomField] {
 	if o == nil {
 		return nil
 	}
@@ -410,6 +411,13 @@ func (o *Contact) GetPassThrough() []PassThroughBody {
 	return o.PassThrough
 }
 
+func (o *Contact) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
+}
+
 type ContactInput struct {
 	// Full name of the contact.
 	Name optionalnullable.OptionalNullable[string] `json:"name,omitempty"`
@@ -458,19 +466,31 @@ type ContactInput struct {
 	// The status of the contact.
 	Status optionalnullable.OptionalNullable[string] `json:"status,omitempty"`
 	// The active status of the contact.
-	Active       optionalnullable.OptionalNullable[bool]               `json:"active,omitempty"`
-	Websites     []Website                                             `json:"websites,omitempty"`
-	Addresses    []Address                                             `json:"addresses,omitempty"`
-	SocialLinks  []SocialLink                                          `json:"social_links,omitempty"`
-	PhoneNumbers []PhoneNumber                                         `json:"phone_numbers,omitempty"`
-	Emails       []Email                                               `json:"emails,omitempty"`
-	EmailDomain  optionalnullable.OptionalNullable[string]             `json:"email_domain,omitempty"`
-	CustomFields optionalnullable.OptionalNullable[[]CustomFieldUnion] `json:"custom_fields,omitempty"`
-	Tags         optionalnullable.OptionalNullable[[]string]           `json:"tags,omitempty"`
+	Active       optionalnullable.OptionalNullable[bool]          `json:"active,omitempty"`
+	Websites     []Website                                        `json:"websites,omitempty"`
+	Addresses    []Address                                        `json:"addresses,omitempty"`
+	SocialLinks  []SocialLink                                     `json:"social_links,omitempty"`
+	PhoneNumbers []PhoneNumber                                    `json:"phone_numbers,omitempty"`
+	Emails       []Email                                          `json:"emails,omitempty"`
+	EmailDomain  optionalnullable.OptionalNullable[string]        `json:"email_domain,omitempty"`
+	CustomFields optionalnullable.OptionalNullable[[]CustomField] `json:"custom_fields,omitempty"`
+	Tags         optionalnullable.OptionalNullable[[]string]      `json:"tags,omitempty"`
 	// The opportunity ids of the contact.
 	OpportunityIds []string `json:"opportunity_ids,omitempty"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
-	PassThrough []PassThroughBody `json:"pass_through,omitempty"`
+	PassThrough          []PassThroughBody `json:"pass_through,omitempty"`
+	AdditionalProperties map[string]any    `additionalProperties:"true" json:"-"`
+}
+
+func (c ContactInput) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(c, "", false)
+}
+
+func (c *ContactInput) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &c, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *ContactInput) GetName() optionalnullable.OptionalNullable[string] {
@@ -683,7 +703,7 @@ func (o *ContactInput) GetEmailDomain() optionalnullable.OptionalNullable[string
 	return o.EmailDomain
 }
 
-func (o *ContactInput) GetCustomFields() optionalnullable.OptionalNullable[[]CustomFieldUnion] {
+func (o *ContactInput) GetCustomFields() optionalnullable.OptionalNullable[[]CustomField] {
 	if o == nil {
 		return nil
 	}
@@ -709,4 +729,11 @@ func (o *ContactInput) GetPassThrough() []PassThroughBody {
 		return nil
 	}
 	return o.PassThrough
+}
+
+func (o *ContactInput) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }

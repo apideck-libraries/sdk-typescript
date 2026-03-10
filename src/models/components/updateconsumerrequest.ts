@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { remap as remap$ } from "../../lib/primitives.js";
 import {
   ConsumerMetadata,
   ConsumerMetadata$Outbound,
@@ -14,11 +15,13 @@ export type UpdateConsumerRequest = {
    * The metadata of the consumer. This is used to display the consumer in the sidebar. This is optional, but recommended.
    */
   metadata?: ConsumerMetadata | undefined;
+  additionalProperties?: { [k: string]: any } | undefined;
 };
 
 /** @internal */
 export type UpdateConsumerRequest$Outbound = {
   metadata?: ConsumerMetadata$Outbound | undefined;
+  [additionalProperties: string]: unknown;
 };
 
 /** @internal */
@@ -28,6 +31,14 @@ export const UpdateConsumerRequest$outboundSchema: z.ZodType<
   UpdateConsumerRequest
 > = z.object({
   metadata: ConsumerMetadata$outboundSchema.optional(),
+  additionalProperties: z.record(z.any()).optional(),
+}).transform((v) => {
+  return {
+    ...v.additionalProperties,
+    ...remap$(v, {
+      additionalProperties: null,
+    }),
+  };
 });
 
 export function updateConsumerRequestToJSON(

@@ -19,12 +19,14 @@ export type CreateConsumerRequest = {
    * The metadata of the consumer. This is used to display the consumer in the sidebar. This is optional, but recommended.
    */
   metadata?: ConsumerMetadata | undefined;
+  additionalProperties?: { [k: string]: any } | undefined;
 };
 
 /** @internal */
 export type CreateConsumerRequest$Outbound = {
   consumer_id: string;
   metadata?: ConsumerMetadata$Outbound | undefined;
+  [additionalProperties: string]: unknown;
 };
 
 /** @internal */
@@ -35,10 +37,15 @@ export const CreateConsumerRequest$outboundSchema: z.ZodType<
 > = z.object({
   consumerId: z.string(),
   metadata: ConsumerMetadata$outboundSchema.optional(),
+  additionalProperties: z.record(z.any()).optional(),
 }).transform((v) => {
-  return remap$(v, {
-    consumerId: "consumer_id",
-  });
+  return {
+    ...v.additionalProperties,
+    ...remap$(v, {
+      consumerId: "consumer_id",
+      additionalProperties: null,
+    }),
+  };
 });
 
 export function createConsumerRequestToJSON(

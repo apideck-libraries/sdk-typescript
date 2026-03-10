@@ -4,6 +4,7 @@ package components
 
 import (
 	"mockserver/internal/sdk/optionalnullable"
+	"mockserver/internal/sdk/utils"
 )
 
 // Operation - The request as defined in OpenApi Spec.
@@ -11,7 +12,19 @@ type Operation struct {
 	// The OpenApi Operation Id associated with the request
 	ID string `json:"id"`
 	// The OpenApi Operation name associated with the request
-	Name string `json:"name"`
+	Name                 string         `json:"name"`
+	AdditionalProperties map[string]any `additionalProperties:"true" json:"-"`
+}
+
+func (o Operation) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(o, "", false)
+}
+
+func (o *Operation) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &o, "", false, []string{"id", "name"}); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *Operation) GetID() string {
@@ -28,12 +41,31 @@ func (o *Operation) GetName() string {
 	return o.Name
 }
 
+func (o *Operation) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
+}
+
 // LogService - Apideck service provider associated with request.
 type LogService struct {
 	// Apideck service provider id.
 	ID string `json:"id"`
 	// Apideck service provider name.
-	Name string `json:"name"`
+	Name                 string         `json:"name"`
+	AdditionalProperties map[string]any `additionalProperties:"true" json:"-"`
+}
+
+func (l LogService) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(l, "", false)
+}
+
+func (l *LogService) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &l, "", false, []string{"id", "name"}); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *LogService) GetID() string {
@@ -48,6 +80,13 @@ func (o *LogService) GetName() string {
 		return ""
 	}
 	return o.Name
+}
+
+func (o *LogService) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }
 
 // UnifiedAPIEnum - Which Unified Api request was made to.
@@ -74,80 +113,92 @@ func (e UnifiedAPIEnum) ToPointer() *UnifiedAPIEnum {
 
 type Log struct {
 	// Indicates if the request was made via REST or Graphql endpoint.
-	APIStyle string `json:"api_style"`
+	APIStyle *string `json:"api_style,omitempty"`
 	// The Apideck base URL the request was made to.
-	BaseURL string `json:"base_url"`
+	BaseURL *string `json:"base_url,omitempty"`
 	// Indicates whether or not this is a child or parent request.
-	ChildRequest bool `json:"child_request"`
+	ChildRequest *bool `json:"child_request,omitempty"`
 	// The consumer Id associated with the request.
-	ConsumerID string `json:"consumer_id"`
+	ConsumerID *string `json:"consumer_id,omitempty"`
 	// The entire execution time in milliseconds it took to call the Apideck service provider.
-	Duration float64 `json:"duration"`
+	Duration *float64 `json:"duration,omitempty"`
 	// If error occurred, this is brief explanation
 	ErrorMessage optionalnullable.OptionalNullable[string] `json:"error_message,omitempty"`
 	// The entire execution time in milliseconds it took to make the request.
-	Execution int64 `json:"execution"`
+	Execution *int64 `json:"execution,omitempty"`
 	// When request is a parent request, this indicates if there are child requests associated.
-	HasChildren bool `json:"has_children"`
+	HasChildren *bool `json:"has_children,omitempty"`
 	// HTTP Method of request.
-	HTTPMethod string `json:"http_method"`
+	HTTPMethod *string `json:"http_method,omitempty"`
 	// UUID acting as Request Identifier.
-	ID string `json:"id"`
+	ID *string `json:"id,omitempty"`
 	// Latency added by making this request via Unified Api.
-	Latency float64 `json:"latency"`
+	Latency *float64 `json:"latency,omitempty"`
 	// The request as defined in OpenApi Spec.
-	Operation Operation `json:"operation"`
+	Operation *Operation `json:"operation,omitempty"`
 	// When request is a child request, this UUID indicates it's parent request.
-	ParentID *string `json:"parent_id"`
+	ParentID optionalnullable.OptionalNullable[string] `json:"parent_id,omitempty"`
 	// The path component of the URI the request was made to.
-	Path string `json:"path"`
+	Path *string `json:"path,omitempty"`
 	// Indicates whether the request was made using Apidecks sandbox credentials or not.
-	Sandbox bool `json:"sandbox"`
+	Sandbox *bool `json:"sandbox,omitempty"`
 	// Apideck service provider associated with request.
-	Service LogService `json:"service"`
+	Service *LogService `json:"service,omitempty"`
 	// The IP address of the source of the request.
 	SourceIP optionalnullable.OptionalNullable[string] `json:"source_ip,omitempty"`
 	// HTTP Status code that was returned.
-	StatusCode int64 `json:"status_code"`
+	StatusCode *int64 `json:"status_code,omitempty"`
 	// Whether or not the request was successful.
-	Success bool `json:"success"`
+	Success *bool `json:"success,omitempty"`
 	// ISO Date and time when the request was made.
-	Timestamp string `json:"timestamp"`
+	Timestamp *string `json:"timestamp,omitempty"`
 	// Which Unified Api request was made to.
-	UnifiedAPI UnifiedAPIEnum `json:"unified_api"`
+	UnifiedAPI           *UnifiedAPIEnum `json:"unified_api,omitempty"`
+	AdditionalProperties map[string]any  `additionalProperties:"true" json:"-"`
 }
 
-func (o *Log) GetAPIStyle() string {
+func (l Log) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(l, "", false)
+}
+
+func (l *Log) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &l, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (o *Log) GetAPIStyle() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.APIStyle
 }
 
-func (o *Log) GetBaseURL() string {
+func (o *Log) GetBaseURL() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.BaseURL
 }
 
-func (o *Log) GetChildRequest() bool {
+func (o *Log) GetChildRequest() *bool {
 	if o == nil {
-		return false
+		return nil
 	}
 	return o.ChildRequest
 }
 
-func (o *Log) GetConsumerID() string {
+func (o *Log) GetConsumerID() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.ConsumerID
 }
 
-func (o *Log) GetDuration() float64 {
+func (o *Log) GetDuration() *float64 {
 	if o == nil {
-		return 0.0
+		return nil
 	}
 	return o.Duration
 }
@@ -159,72 +210,72 @@ func (o *Log) GetErrorMessage() optionalnullable.OptionalNullable[string] {
 	return o.ErrorMessage
 }
 
-func (o *Log) GetExecution() int64 {
+func (o *Log) GetExecution() *int64 {
 	if o == nil {
-		return 0
+		return nil
 	}
 	return o.Execution
 }
 
-func (o *Log) GetHasChildren() bool {
+func (o *Log) GetHasChildren() *bool {
 	if o == nil {
-		return false
+		return nil
 	}
 	return o.HasChildren
 }
 
-func (o *Log) GetHTTPMethod() string {
+func (o *Log) GetHTTPMethod() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.HTTPMethod
 }
 
-func (o *Log) GetID() string {
+func (o *Log) GetID() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.ID
 }
 
-func (o *Log) GetLatency() float64 {
+func (o *Log) GetLatency() *float64 {
 	if o == nil {
-		return 0.0
+		return nil
 	}
 	return o.Latency
 }
 
-func (o *Log) GetOperation() Operation {
+func (o *Log) GetOperation() *Operation {
 	if o == nil {
-		return Operation{}
+		return nil
 	}
 	return o.Operation
 }
 
-func (o *Log) GetParentID() *string {
+func (o *Log) GetParentID() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
 	return o.ParentID
 }
 
-func (o *Log) GetPath() string {
+func (o *Log) GetPath() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.Path
 }
 
-func (o *Log) GetSandbox() bool {
+func (o *Log) GetSandbox() *bool {
 	if o == nil {
-		return false
+		return nil
 	}
 	return o.Sandbox
 }
 
-func (o *Log) GetService() LogService {
+func (o *Log) GetService() *LogService {
 	if o == nil {
-		return LogService{}
+		return nil
 	}
 	return o.Service
 }
@@ -236,30 +287,37 @@ func (o *Log) GetSourceIP() optionalnullable.OptionalNullable[string] {
 	return o.SourceIP
 }
 
-func (o *Log) GetStatusCode() int64 {
+func (o *Log) GetStatusCode() *int64 {
 	if o == nil {
-		return 0
+		return nil
 	}
 	return o.StatusCode
 }
 
-func (o *Log) GetSuccess() bool {
+func (o *Log) GetSuccess() *bool {
 	if o == nil {
-		return false
+		return nil
 	}
 	return o.Success
 }
 
-func (o *Log) GetTimestamp() string {
+func (o *Log) GetTimestamp() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.Timestamp
 }
 
-func (o *Log) GetUnifiedAPI() UnifiedAPIEnum {
+func (o *Log) GetUnifiedAPI() *UnifiedAPIEnum {
 	if o == nil {
-		return UnifiedAPIEnum("")
+		return nil
 	}
 	return o.UnifiedAPI
+}
+
+func (o *Log) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }

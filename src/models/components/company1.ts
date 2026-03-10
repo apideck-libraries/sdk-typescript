@@ -4,7 +4,10 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import {
+  collectExtraKeys as collectExtraKeys$,
+  safeParse,
+} from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -75,7 +78,7 @@ export type Company1 = {
   /**
    * Name of the company
    */
-  name: string | null;
+  name?: string | null | undefined;
   /**
    * Number of interactions
    */
@@ -209,13 +212,14 @@ export type Company1 = {
    * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
    */
   passThrough?: Array<PassThroughBody> | undefined;
+  additionalProperties?: { [k: string]: any } | undefined;
 };
 
 export type Company1Input = {
   /**
    * Name of the company
    */
-  name: string | null;
+  name?: string | null | undefined;
   /**
    * Owner ID
    */
@@ -313,6 +317,7 @@ export type Company1Input = {
    * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
    */
   passThrough?: Array<PassThroughBody> | undefined;
+  additionalProperties?: { [k: string]: any } | undefined;
 };
 
 /** @internal */
@@ -358,50 +363,54 @@ export const Company1$inboundSchema: z.ZodType<
   Company1,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  id: types.optional(types.string()),
-  name: types.nullable(types.string()),
-  interaction_count: z.nullable(types.number()).optional(),
-  owner_id: z.nullable(types.string()).optional(),
-  image: z.nullable(types.string()).optional(),
-  description: z.nullable(types.string()).optional(),
-  vat_number: z.nullable(types.string()).optional(),
-  currency: z.nullable(Currency$inboundSchema).optional(),
-  status: z.nullable(types.string()).optional(),
-  fax: z.nullable(types.string()).optional(),
-  annual_revenue: z.nullable(types.string()).optional(),
-  number_of_employees: z.nullable(types.string()).optional(),
-  industry: z.nullable(types.string()).optional(),
-  ownership: z.nullable(types.string()).optional(),
-  sales_tax_number: z.nullable(types.string()).optional(),
-  payee_number: z.nullable(types.string()).optional(),
-  abn_or_tfn: z.nullable(types.string()).optional(),
-  abn_branch: z.nullable(types.string()).optional(),
-  acn: z.nullable(types.string()).optional(),
-  first_name: z.nullable(types.string()).optional(),
-  last_name: z.nullable(types.string()).optional(),
-  parent_id: z.nullable(types.string()).optional(),
-  bank_accounts: types.optional(z.array(BankAccount1$inboundSchema)),
-  websites: types.optional(z.array(Website$inboundSchema)),
-  addresses: types.optional(z.array(Address$inboundSchema)),
-  social_links: types.optional(z.array(SocialLink$inboundSchema)),
-  phone_numbers: types.optional(z.array(PhoneNumber$inboundSchema)),
-  emails: types.optional(z.array(Email$inboundSchema)),
-  row_type: types.optional(z.lazy(() => CompanyRowType$inboundSchema)),
-  custom_fields: types.optional(z.array(CustomField$inboundSchema)),
-  tags: z.nullable(z.array(types.string())).optional(),
-  read_only: z.nullable(types.boolean()).optional(),
-  last_activity_at: z.nullable(types.date()).optional(),
-  deleted: types.optional(types.boolean()),
-  salutation: z.nullable(types.string()).optional(),
-  birthday: z.nullable(types.date()).optional(),
-  custom_mappings: z.nullable(z.record(z.any())).optional(),
-  updated_by: z.nullable(types.string()).optional(),
-  created_by: z.nullable(types.string()).optional(),
-  updated_at: z.nullable(types.date()).optional(),
-  created_at: z.nullable(types.date()).optional(),
-  pass_through: types.optional(z.array(PassThroughBody$inboundSchema)),
-}).transform((v) => {
+> = collectExtraKeys$(
+  z.object({
+    id: types.optional(types.string()),
+    name: z.nullable(types.string()).optional(),
+    interaction_count: z.nullable(types.number()).optional(),
+    owner_id: z.nullable(types.string()).optional(),
+    image: z.nullable(types.string()).optional(),
+    description: z.nullable(types.string()).optional(),
+    vat_number: z.nullable(types.string()).optional(),
+    currency: z.nullable(Currency$inboundSchema).optional(),
+    status: z.nullable(types.string()).optional(),
+    fax: z.nullable(types.string()).optional(),
+    annual_revenue: z.nullable(types.string()).optional(),
+    number_of_employees: z.nullable(types.string()).optional(),
+    industry: z.nullable(types.string()).optional(),
+    ownership: z.nullable(types.string()).optional(),
+    sales_tax_number: z.nullable(types.string()).optional(),
+    payee_number: z.nullable(types.string()).optional(),
+    abn_or_tfn: z.nullable(types.string()).optional(),
+    abn_branch: z.nullable(types.string()).optional(),
+    acn: z.nullable(types.string()).optional(),
+    first_name: z.nullable(types.string()).optional(),
+    last_name: z.nullable(types.string()).optional(),
+    parent_id: z.nullable(types.string()).optional(),
+    bank_accounts: types.optional(z.array(BankAccount1$inboundSchema)),
+    websites: types.optional(z.array(Website$inboundSchema)),
+    addresses: types.optional(z.array(Address$inboundSchema)),
+    social_links: types.optional(z.array(SocialLink$inboundSchema)),
+    phone_numbers: types.optional(z.array(PhoneNumber$inboundSchema)),
+    emails: types.optional(z.array(Email$inboundSchema)),
+    row_type: types.optional(z.lazy(() => CompanyRowType$inboundSchema)),
+    custom_fields: types.optional(z.array(CustomField$inboundSchema)),
+    tags: z.nullable(z.array(types.string())).optional(),
+    read_only: z.nullable(types.boolean()).optional(),
+    last_activity_at: z.nullable(types.date()).optional(),
+    deleted: types.optional(types.boolean()),
+    salutation: z.nullable(types.string()).optional(),
+    birthday: z.nullable(types.date()).optional(),
+    custom_mappings: z.nullable(z.record(z.any())).optional(),
+    updated_by: z.nullable(types.string()).optional(),
+    created_by: z.nullable(types.string()).optional(),
+    updated_at: z.nullable(types.date()).optional(),
+    created_at: z.nullable(types.date()).optional(),
+    pass_through: types.optional(z.array(PassThroughBody$inboundSchema)),
+  }).catchall(z.any()),
+  "additionalProperties",
+  true,
+).transform((v) => {
   return remap$(v, {
     "interaction_count": "interactionCount",
     "owner_id": "ownerId",
@@ -443,7 +452,7 @@ export function company1FromJSON(
 
 /** @internal */
 export type Company1Input$Outbound = {
-  name: string | null;
+  name?: string | null | undefined;
   owner_id?: string | null | undefined;
   image?: string | null | undefined;
   description?: string | null | undefined;
@@ -475,6 +484,7 @@ export type Company1Input$Outbound = {
   salutation?: string | null | undefined;
   birthday?: string | null | undefined;
   pass_through?: Array<PassThroughBody$Outbound> | undefined;
+  [additionalProperties: string]: unknown;
 };
 
 /** @internal */
@@ -483,7 +493,7 @@ export const Company1Input$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   Company1Input
 > = z.object({
-  name: z.nullable(z.string()),
+  name: z.nullable(z.string()).optional(),
   ownerId: z.nullable(z.string()).optional(),
   image: z.nullable(z.string()).optional(),
   description: z.nullable(z.string()).optional(),
@@ -517,26 +527,31 @@ export const Company1Input$outboundSchema: z.ZodType<
     z.date().transform(v => v.toISOString().slice(0, "YYYY-MM-DD".length)),
   ).optional(),
   passThrough: z.array(PassThroughBody$outboundSchema).optional(),
+  additionalProperties: z.record(z.any()).optional(),
 }).transform((v) => {
-  return remap$(v, {
-    ownerId: "owner_id",
-    vatNumber: "vat_number",
-    annualRevenue: "annual_revenue",
-    numberOfEmployees: "number_of_employees",
-    salesTaxNumber: "sales_tax_number",
-    payeeNumber: "payee_number",
-    abnOrTfn: "abn_or_tfn",
-    abnBranch: "abn_branch",
-    firstName: "first_name",
-    lastName: "last_name",
-    bankAccounts: "bank_accounts",
-    socialLinks: "social_links",
-    phoneNumbers: "phone_numbers",
-    rowType: "row_type",
-    customFields: "custom_fields",
-    readOnly: "read_only",
-    passThrough: "pass_through",
-  });
+  return {
+    ...v.additionalProperties,
+    ...remap$(v, {
+      ownerId: "owner_id",
+      vatNumber: "vat_number",
+      annualRevenue: "annual_revenue",
+      numberOfEmployees: "number_of_employees",
+      salesTaxNumber: "sales_tax_number",
+      payeeNumber: "payee_number",
+      abnOrTfn: "abn_or_tfn",
+      abnBranch: "abn_branch",
+      firstName: "first_name",
+      lastName: "last_name",
+      bankAccounts: "bank_accounts",
+      socialLinks: "social_links",
+      phoneNumbers: "phone_numbers",
+      rowType: "row_type",
+      customFields: "custom_fields",
+      readOnly: "read_only",
+      passThrough: "pass_through",
+      additionalProperties: null,
+    }),
+  };
 });
 
 export function company1InputToJSON(company1Input: Company1Input): string {

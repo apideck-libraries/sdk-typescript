@@ -4,7 +4,10 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import {
+  collectExtraKeys as collectExtraKeys$,
+  safeParse,
+} from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -48,6 +51,7 @@ export type GetBankAccountsResponse = {
    * Links to navigate to previous or next pages through the API
    */
   links?: Links | undefined;
+  additionalProperties?: { [k: string]: any } | undefined;
 };
 
 /** @internal */
@@ -55,16 +59,20 @@ export const GetBankAccountsResponse$inboundSchema: z.ZodType<
   GetBankAccountsResponse,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  status_code: types.number(),
-  status: types.string(),
-  service: types.optional(types.string()),
-  resource: types.optional(types.string()),
-  operation: types.optional(types.string()),
-  data: z.array(AccountingBankAccount$inboundSchema),
-  meta: types.optional(Meta$inboundSchema),
-  links: types.optional(Links$inboundSchema),
-}).transform((v) => {
+> = collectExtraKeys$(
+  z.object({
+    status_code: types.number(),
+    status: types.string(),
+    service: types.optional(types.string()),
+    resource: types.optional(types.string()),
+    operation: types.optional(types.string()),
+    data: z.array(AccountingBankAccount$inboundSchema),
+    meta: types.optional(Meta$inboundSchema),
+    links: types.optional(Links$inboundSchema),
+  }).catchall(z.any()),
+  "additionalProperties",
+  true,
+).transform((v) => {
   return remap$(v, {
     "status_code": "statusCode",
   });

@@ -8,6 +8,7 @@ import (
 	"mockserver/internal/handler/assert"
 	"mockserver/internal/logging"
 	"mockserver/internal/sdk/models/components"
+	"mockserver/internal/sdk/types"
 	"mockserver/internal/sdk/utils"
 	"mockserver/internal/tracking"
 	"net/http"
@@ -57,7 +58,7 @@ func testAccountingDepartmentsUpdateAccountingDepartmentsUpdate0(w http.Response
 		Resource:   "departments",
 		Operation:  "update",
 		Data: components.UnifiedID{
-			ID: "12345",
+			ID: types.String("12345"),
 		},
 	}
 	respBodyBytes, err := utils.MarshalJSON(respBody, "", true)

@@ -23,15 +23,15 @@ func (o *Permissions) GetDownload() *bool {
 
 type UnifiedFile struct {
 	// A unique identifier for an object.
-	ID string `json:"id"`
+	ID *string `json:"id,omitempty"`
 	// The third-party API ID of original entity
 	DownstreamID optionalnullable.OptionalNullable[string] `json:"downstream_id,omitempty"`
 	// The name of the file
-	Name *string `json:"name"`
+	Name optionalnullable.OptionalNullable[string] `json:"name,omitempty"`
 	// Optional description of the file
 	Description optionalnullable.OptionalNullable[string] `json:"description,omitempty"`
 	// The type of resource. Could be file, folder or url
-	Type *FileType `json:"type"`
+	Type optionalnullable.OptionalNullable[FileType] `json:"type,omitempty"`
 	// The full path of the file or folder (includes the file name)
 	Path optionalnullable.OptionalNullable[string] `json:"path,omitempty"`
 	// The MIME type of the file.
@@ -60,7 +60,8 @@ type UnifiedFile struct {
 	// The date and time when the object was last updated.
 	UpdatedAt optionalnullable.OptionalNullable[time.Time] `json:"updated_at,omitempty"`
 	// The date and time when the object was created.
-	CreatedAt optionalnullable.OptionalNullable[time.Time] `json:"created_at,omitempty"`
+	CreatedAt            optionalnullable.OptionalNullable[time.Time] `json:"created_at,omitempty"`
+	AdditionalProperties map[string]any                               `additionalProperties:"true" json:"-"`
 }
 
 func (u UnifiedFile) MarshalJSON() ([]byte, error) {
@@ -68,15 +69,15 @@ func (u UnifiedFile) MarshalJSON() ([]byte, error) {
 }
 
 func (u *UnifiedFile) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &u, "", false, []string{"id", "name", "type"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &u, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *UnifiedFile) GetID() string {
+func (o *UnifiedFile) GetID() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.ID
 }
@@ -88,7 +89,7 @@ func (o *UnifiedFile) GetDownstreamID() optionalnullable.OptionalNullable[string
 	return o.DownstreamID
 }
 
-func (o *UnifiedFile) GetName() *string {
+func (o *UnifiedFile) GetName() optionalnullable.OptionalNullable[string] {
 	if o == nil {
 		return nil
 	}
@@ -102,7 +103,7 @@ func (o *UnifiedFile) GetDescription() optionalnullable.OptionalNullable[string]
 	return o.Description
 }
 
-func (o *UnifiedFile) GetType() *FileType {
+func (o *UnifiedFile) GetType() optionalnullable.OptionalNullable[FileType] {
 	if o == nil {
 		return nil
 	}
@@ -212,4 +213,11 @@ func (o *UnifiedFile) GetCreatedAt() optionalnullable.OptionalNullable[time.Time
 		return nil
 	}
 	return o.CreatedAt
+}
+
+func (o *UnifiedFile) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }

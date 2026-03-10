@@ -3,7 +3,11 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
+import { remap as remap$ } from "../../lib/primitives.js";
+import {
+  collectExtraKeys as collectExtraKeys$,
+  safeParse,
+} from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
@@ -34,11 +38,12 @@ export type Email = {
   /**
    * Email address
    */
-  email: string | null;
+  email?: string | null | undefined;
   /**
    * Email type
    */
   type?: EmailType | null | undefined;
+  additionalProperties?: { [k: string]: any } | undefined;
 };
 
 /** @internal */
@@ -55,17 +60,22 @@ export const EmailType$outboundSchema: z.ZodType<
 > = openEnums.outboundSchema(EmailType);
 
 /** @internal */
-export const Email$inboundSchema: z.ZodType<Email, z.ZodTypeDef, unknown> = z
-  .object({
-    id: z.nullable(types.string()).optional(),
-    email: types.nullable(types.string()),
-    type: z.nullable(EmailType$inboundSchema).optional(),
-  });
+export const Email$inboundSchema: z.ZodType<Email, z.ZodTypeDef, unknown> =
+  collectExtraKeys$(
+    z.object({
+      id: z.nullable(types.string()).optional(),
+      email: z.nullable(types.string()).optional(),
+      type: z.nullable(EmailType$inboundSchema).optional(),
+    }).catchall(z.any()),
+    "additionalProperties",
+    true,
+  );
 /** @internal */
 export type Email$Outbound = {
   id?: string | null | undefined;
-  email: string | null;
+  email?: string | null | undefined;
   type?: string | null | undefined;
+  [additionalProperties: string]: unknown;
 };
 
 /** @internal */
@@ -75,8 +85,16 @@ export const Email$outboundSchema: z.ZodType<
   Email
 > = z.object({
   id: z.nullable(z.string()).optional(),
-  email: z.nullable(z.string()),
+  email: z.nullable(z.string()).optional(),
   type: z.nullable(EmailType$outboundSchema).optional(),
+  additionalProperties: z.record(z.any()).optional(),
+}).transform((v) => {
+  return {
+    ...v.additionalProperties,
+    ...remap$(v, {
+      additionalProperties: null,
+    }),
+  };
 });
 
 export function emailToJSON(email: Email): string {

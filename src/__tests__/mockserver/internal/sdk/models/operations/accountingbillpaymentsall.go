@@ -38,6 +38,8 @@ type AccountingBillPaymentsAllRequest struct {
 	AppID *string `header:"style=simple,explode=false,name=x-apideck-app-id"`
 	// Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
 	ServiceID *string `header:"style=simple,explode=false,name=x-apideck-service-id"`
+	// The ID of the company to scope requests to. For connectors that support multi-company, this overrides the default company configured in connection settings.
+	CompanyID *string `header:"style=simple,explode=false,name=x-apideck-company-id"`
 	// Cursor to start from. You can find cursors for next/previous pages in the meta.cursors property of the response.
 	Cursor optionalnullable.OptionalNullable[string] `queryParam:"style=form,explode=true,name=cursor"`
 	// Number of results to return. Minimum 1, Maximum 200, Default 20
@@ -89,6 +91,13 @@ func (o *AccountingBillPaymentsAllRequest) GetServiceID() *string {
 		return nil
 	}
 	return o.ServiceID
+}
+
+func (o *AccountingBillPaymentsAllRequest) GetCompanyID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CompanyID
 }
 
 func (o *AccountingBillPaymentsAllRequest) GetCursor() optionalnullable.OptionalNullable[string] {

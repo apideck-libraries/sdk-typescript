@@ -2,6 +2,10 @@
 
 package components
 
+import (
+	"mockserver/internal/sdk/utils"
+)
+
 type WebhookSubscription struct {
 	// The ID of the downstream service
 	DownstreamID *string `json:"downstream_id,omitempty"`
@@ -12,7 +16,19 @@ type WebhookSubscription struct {
 	// The URL the downstream is sending to when the event is triggered
 	ExecuteURL *string `json:"execute_url,omitempty"`
 	// The date and time the webhook subscription was created downstream
-	CreatedAt *string `json:"created_at,omitempty"`
+	CreatedAt            *string        `json:"created_at,omitempty"`
+	AdditionalProperties map[string]any `additionalProperties:"true" json:"-"`
+}
+
+func (w WebhookSubscription) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(w, "", false)
+}
+
+func (w *WebhookSubscription) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &w, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *WebhookSubscription) GetDownstreamID() *string {
@@ -48,4 +64,11 @@ func (o *WebhookSubscription) GetCreatedAt() *string {
 		return nil
 	}
 	return o.CreatedAt
+}
+
+func (o *WebhookSubscription) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }

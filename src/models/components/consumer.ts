@@ -25,7 +25,7 @@ export type Consumer = {
   /**
    * Unique consumer identifier. You can freely choose a consumer ID yourself. Most of the time, this is an ID of your internal data model that represents a user or account in your system (for example account:12345). If the consumer doesn't exist yet, Vault will upsert a consumer based on your ID.
    */
-  consumerId: string;
+  consumerId?: string | undefined;
   /**
    * ID of your Apideck Application
    */
@@ -49,7 +49,7 @@ export const Consumer$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  consumer_id: types.string(),
+  consumer_id: types.optional(types.string()),
   application_id: types.optional(types.string()),
   metadata: types.optional(ConsumerMetadata$inboundSchema),
   connections: types.optional(z.array(ConsumerConnection$inboundSchema)),

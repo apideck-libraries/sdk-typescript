@@ -16,6 +16,7 @@ type BalanceByPeriod struct {
 	// Total amount of the period.
 	TotalAmount           *float64               `json:"total_amount,omitempty"`
 	BalancesByTransaction []BalanceByTransaction `json:"balances_by_transaction,omitempty"`
+	AdditionalProperties  map[string]any         `additionalProperties:"true" json:"-"`
 }
 
 func (b BalanceByPeriod) MarshalJSON() ([]byte, error) {
@@ -55,4 +56,11 @@ func (o *BalanceByPeriod) GetBalancesByTransaction() []BalanceByTransaction {
 		return nil
 	}
 	return o.BalancesByTransaction
+}
+
+func (o *BalanceByPeriod) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }

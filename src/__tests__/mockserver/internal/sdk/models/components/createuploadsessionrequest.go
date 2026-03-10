@@ -2,6 +2,10 @@
 
 package components
 
+import (
+	"mockserver/internal/sdk/utils"
+)
+
 type CreateUploadSessionRequest struct {
 	// The name of the file.
 	Name string `json:"name"`
@@ -12,7 +16,19 @@ type CreateUploadSessionRequest struct {
 	// The size of the file in bytes
 	Size *int64 `json:"size"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
-	PassThrough []PassThroughBody `json:"pass_through,omitempty"`
+	PassThrough          []PassThroughBody `json:"pass_through,omitempty"`
+	AdditionalProperties map[string]any    `additionalProperties:"true" json:"-"`
+}
+
+func (c CreateUploadSessionRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(c, "", false)
+}
+
+func (c *CreateUploadSessionRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"name", "parent_folder_id", "size"}); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *CreateUploadSessionRequest) GetName() string {
@@ -48,4 +64,11 @@ func (o *CreateUploadSessionRequest) GetPassThrough() []PassThroughBody {
 		return nil
 	}
 	return o.PassThrough
+}
+
+func (o *CreateUploadSessionRequest) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }

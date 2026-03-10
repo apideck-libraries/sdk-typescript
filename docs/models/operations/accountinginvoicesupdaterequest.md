@@ -23,6 +23,7 @@ let value: AccountingInvoicesUpdateRequest = {
     invoiceDate: new Date("2020-09-30"),
     dueDate: new Date("2020-09-30"),
     terms: "Net 30 days",
+    termsId: "12345",
     poNumber: "90000117",
     reference: "INV-2024-001",
     status: "draft",
@@ -192,7 +193,14 @@ let value: AccountingInvoicesUpdateRequest = {
       currency: "USD",
       country: "US",
     },
-    ledgerAccount: null,
+    ledgerAccount: {
+      id: "123456",
+      name: "Bank account",
+      nominalCode: "N091",
+      code: "453",
+      parentId: "123456",
+      displayId: "123456",
+    },
     customFields: [
       {
         id: "2389328923893298",

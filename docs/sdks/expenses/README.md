@@ -29,6 +29,7 @@ const apideck = new Apideck({
 async function run() {
   const result = await apideck.accounting.expenses.list({
     serviceId: "salesforce",
+    companyId: "12345",
     filter: {
       updatedSince: new Date("2020-09-30T07:43:32.000Z"),
       status: "draft",
@@ -63,6 +64,7 @@ const apideck = new ApideckCore({
 async function run() {
   const res = await accountingExpensesList(apideck, {
     serviceId: "salesforce",
+    companyId: "12345",
     filter: {
       updatedSince: new Date("2020-09-30T07:43:32.000Z"),
       status: "draft",
@@ -125,6 +127,7 @@ const apideck = new Apideck({
 async function run() {
   const result = await apideck.accounting.expenses.create({
     serviceId: "salesforce",
+    companyId: "12345",
     expense: {
       number: "OIT00546",
       transactionDate: new Date("2021-05-01T12:00:00.000Z"),
@@ -169,6 +172,10 @@ async function run() {
           description: "Travel US.",
           totalAmount: 275,
           lineNumber: 1,
+          additionalProperties: {
+            "subsidiary_id": "12345",
+            "billable": true,
+          },
         },
       ],
       customFields: [
@@ -252,6 +259,9 @@ async function run() {
           ],
         },
       ],
+      additionalProperties: {
+        "customer_id": "12345",
+      },
     },
   });
 
@@ -280,6 +290,7 @@ const apideck = new ApideckCore({
 async function run() {
   const res = await accountingExpensesCreate(apideck, {
     serviceId: "salesforce",
+    companyId: "12345",
     expense: {
       number: "OIT00546",
       transactionDate: new Date("2021-05-01T12:00:00.000Z"),
@@ -324,6 +335,10 @@ async function run() {
           description: "Travel US.",
           totalAmount: 275,
           lineNumber: 1,
+          additionalProperties: {
+            "subsidiary_id": "12345",
+            "billable": true,
+          },
         },
       ],
       customFields: [
@@ -407,6 +422,9 @@ async function run() {
           ],
         },
       ],
+      additionalProperties: {
+        "customer_id": "12345",
+      },
     },
   });
   if (res.ok) {
@@ -464,6 +482,7 @@ async function run() {
   const result = await apideck.accounting.expenses.get({
     id: "<id>",
     serviceId: "salesforce",
+    companyId: "12345",
   });
 
   console.log(result);
@@ -492,6 +511,7 @@ async function run() {
   const res = await accountingExpensesGet(apideck, {
     id: "<id>",
     serviceId: "salesforce",
+    companyId: "12345",
   });
   if (res.ok) {
     const { value: result } = res;
@@ -592,6 +612,10 @@ async function run() {
           description: "Travel US.",
           totalAmount: 275,
           lineNumber: 1,
+          additionalProperties: {
+            "subsidiary_id": "12345",
+            "billable": true,
+          },
         },
       ],
       customFields: [
@@ -644,6 +668,9 @@ async function run() {
           ],
         },
       ],
+      additionalProperties: {
+        "customer_id": "12345",
+      },
     },
   });
 
@@ -717,6 +744,10 @@ async function run() {
           description: "Travel US.",
           totalAmount: 275,
           lineNumber: 1,
+          additionalProperties: {
+            "subsidiary_id": "12345",
+            "billable": true,
+          },
         },
       ],
       customFields: [
@@ -769,6 +800,9 @@ async function run() {
           ],
         },
       ],
+      additionalProperties: {
+        "customer_id": "12345",
+      },
     },
   });
   if (res.ok) {

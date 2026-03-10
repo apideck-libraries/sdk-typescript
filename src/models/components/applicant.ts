@@ -4,7 +4,10 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import {
+  collectExtraKeys as collectExtraKeys$,
+  safeParse,
+} from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
@@ -84,6 +87,7 @@ export type Websites = {
    * The type of website
    */
   type?: ApplicantType | null | undefined;
+  additionalProperties?: { [k: string]: any } | undefined;
 };
 
 export type SocialLinks = {
@@ -99,6 +103,7 @@ export type SocialLinks = {
    * Type of the social link, e.g. twitter
    */
   type?: string | null | undefined;
+  additionalProperties?: { [k: string]: any } | undefined;
 };
 
 export type Applicant = {
@@ -222,6 +227,7 @@ export type Applicant = {
    * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
    */
   passThrough?: Array<PassThroughBody> | undefined;
+  additionalProperties?: { [k: string]: any } | undefined;
 };
 
 export type ApplicantInput = {
@@ -307,6 +313,7 @@ export type ApplicantInput = {
    * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
    */
   passThrough?: Array<PassThroughBody> | undefined;
+  additionalProperties?: { [k: string]: any } | undefined;
 };
 
 /** @internal */
@@ -340,16 +347,21 @@ export const Websites$inboundSchema: z.ZodType<
   Websites,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  id: z.nullable(types.string()).optional(),
-  url: types.string(),
-  type: z.nullable(ApplicantType$inboundSchema).optional(),
-});
+> = collectExtraKeys$(
+  z.object({
+    id: z.nullable(types.string()).optional(),
+    url: types.string(),
+    type: z.nullable(ApplicantType$inboundSchema).optional(),
+  }).catchall(z.any()),
+  "additionalProperties",
+  true,
+);
 /** @internal */
 export type Websites$Outbound = {
   id?: string | null | undefined;
   url: string;
   type?: string | null | undefined;
+  [additionalProperties: string]: unknown;
 };
 
 /** @internal */
@@ -361,6 +373,14 @@ export const Websites$outboundSchema: z.ZodType<
   id: z.nullable(z.string()).optional(),
   url: z.string(),
   type: z.nullable(ApplicantType$outboundSchema).optional(),
+  additionalProperties: z.record(z.any()).optional(),
+}).transform((v) => {
+  return {
+    ...v.additionalProperties,
+    ...remap$(v, {
+      additionalProperties: null,
+    }),
+  };
 });
 
 export function websitesToJSON(websites: Websites): string {
@@ -381,16 +401,21 @@ export const SocialLinks$inboundSchema: z.ZodType<
   SocialLinks,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  id: z.nullable(types.string()).optional(),
-  url: types.string(),
-  type: z.nullable(types.string()).optional(),
-});
+> = collectExtraKeys$(
+  z.object({
+    id: z.nullable(types.string()).optional(),
+    url: types.string(),
+    type: z.nullable(types.string()).optional(),
+  }).catchall(z.any()),
+  "additionalProperties",
+  true,
+);
 /** @internal */
 export type SocialLinks$Outbound = {
   id?: string | null | undefined;
   url: string;
   type?: string | null | undefined;
+  [additionalProperties: string]: unknown;
 };
 
 /** @internal */
@@ -402,6 +427,14 @@ export const SocialLinks$outboundSchema: z.ZodType<
   id: z.nullable(z.string()).optional(),
   url: z.string(),
   type: z.nullable(z.string()).optional(),
+  additionalProperties: z.record(z.any()).optional(),
+}).transform((v) => {
+  return {
+    ...v.additionalProperties,
+    ...remap$(v, {
+      additionalProperties: null,
+    }),
+  };
 });
 
 export function socialLinksToJSON(socialLinks: SocialLinks): string {
@@ -422,59 +455,63 @@ export const Applicant$inboundSchema: z.ZodType<
   Applicant,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  id: types.optional(types.string()),
-  name: types.optional(types.string()),
-  salutation: z.nullable(types.string()).optional(),
-  first_name: z.nullable(types.string()).optional(),
-  last_name: z.nullable(types.string()).optional(),
-  middle_name: z.nullable(types.string()).optional(),
-  initials: z.nullable(types.string()).optional(),
-  birthday: z.nullable(types.date()).optional(),
-  gender: z.nullable(ApplicantGender$inboundSchema).optional(),
-  social_security_number: z.nullable(types.string()).optional(),
-  type: types.optional(types.string()),
-  cover_letter: types.optional(types.string()),
-  job_url: z.nullable(types.string()).optional(),
-  photo_url: z.nullable(types.string()).optional(),
-  headline: types.optional(types.string()),
-  title: z.nullable(types.string()).optional(),
-  emails: types.optional(z.array(Email$inboundSchema)),
-  custom_fields: types.optional(z.array(CustomField$inboundSchema)),
-  phone_numbers: types.optional(z.array(PhoneNumber$inboundSchema)),
-  addresses: types.optional(z.array(Address$inboundSchema)),
-  websites: types.optional(z.array(z.lazy(() => Websites$inboundSchema))),
-  social_links: types.optional(
-    z.array(z.lazy(() => SocialLinks$inboundSchema)),
-  ),
-  stage_id: types.optional(types.string()),
-  recruiter_id: types.optional(types.string()),
-  coordinator_id: types.optional(types.string()),
-  application_ids: z.nullable(z.array(types.string())).optional(),
-  applications: z.nullable(z.array(types.string())).optional(),
-  followers: z.nullable(z.array(types.string())).optional(),
-  sources: z.nullable(z.array(types.string())).optional(),
-  source_id: types.optional(types.string()),
-  confidential: types.optional(types.boolean()),
-  anonymized: types.optional(types.boolean()),
-  tags: z.nullable(z.array(types.string())).optional(),
-  archived: z.nullable(types.boolean()).optional(),
-  last_interaction_at: z.nullable(types.date()).optional(),
-  owner_id: z.nullable(types.string()).optional(),
-  sourced_by: z.nullable(types.string()).optional(),
-  cv_url: types.optional(types.string()),
-  record_url: z.nullable(types.string()).optional(),
-  rejected_at: z.nullable(types.date()).optional(),
-  custom_mappings: z.nullable(z.record(z.any())).optional(),
-  deleted: z.nullable(types.boolean()).optional(),
-  deleted_by: z.nullable(types.string()).optional(),
-  deleted_at: z.nullable(types.date()).optional(),
-  updated_by: z.nullable(types.string()).optional(),
-  created_by: z.nullable(types.string()).optional(),
-  updated_at: z.nullable(types.date()).optional(),
-  created_at: z.nullable(types.date()).optional(),
-  pass_through: types.optional(z.array(PassThroughBody$inboundSchema)),
-}).transform((v) => {
+> = collectExtraKeys$(
+  z.object({
+    id: types.optional(types.string()),
+    name: types.optional(types.string()),
+    salutation: z.nullable(types.string()).optional(),
+    first_name: z.nullable(types.string()).optional(),
+    last_name: z.nullable(types.string()).optional(),
+    middle_name: z.nullable(types.string()).optional(),
+    initials: z.nullable(types.string()).optional(),
+    birthday: z.nullable(types.date()).optional(),
+    gender: z.nullable(ApplicantGender$inboundSchema).optional(),
+    social_security_number: z.nullable(types.string()).optional(),
+    type: types.optional(types.string()),
+    cover_letter: types.optional(types.string()),
+    job_url: z.nullable(types.string()).optional(),
+    photo_url: z.nullable(types.string()).optional(),
+    headline: types.optional(types.string()),
+    title: z.nullable(types.string()).optional(),
+    emails: types.optional(z.array(Email$inboundSchema)),
+    custom_fields: types.optional(z.array(CustomField$inboundSchema)),
+    phone_numbers: types.optional(z.array(PhoneNumber$inboundSchema)),
+    addresses: types.optional(z.array(Address$inboundSchema)),
+    websites: types.optional(z.array(z.lazy(() => Websites$inboundSchema))),
+    social_links: types.optional(
+      z.array(z.lazy(() => SocialLinks$inboundSchema)),
+    ),
+    stage_id: types.optional(types.string()),
+    recruiter_id: types.optional(types.string()),
+    coordinator_id: types.optional(types.string()),
+    application_ids: z.nullable(z.array(types.string())).optional(),
+    applications: z.nullable(z.array(types.string())).optional(),
+    followers: z.nullable(z.array(types.string())).optional(),
+    sources: z.nullable(z.array(types.string())).optional(),
+    source_id: types.optional(types.string()),
+    confidential: types.optional(types.boolean()),
+    anonymized: types.optional(types.boolean()),
+    tags: z.nullable(z.array(types.string())).optional(),
+    archived: z.nullable(types.boolean()).optional(),
+    last_interaction_at: z.nullable(types.date()).optional(),
+    owner_id: z.nullable(types.string()).optional(),
+    sourced_by: z.nullable(types.string()).optional(),
+    cv_url: types.optional(types.string()),
+    record_url: z.nullable(types.string()).optional(),
+    rejected_at: z.nullable(types.date()).optional(),
+    custom_mappings: z.nullable(z.record(z.any())).optional(),
+    deleted: z.nullable(types.boolean()).optional(),
+    deleted_by: z.nullable(types.string()).optional(),
+    deleted_at: z.nullable(types.date()).optional(),
+    updated_by: z.nullable(types.string()).optional(),
+    created_by: z.nullable(types.string()).optional(),
+    updated_at: z.nullable(types.date()).optional(),
+    created_at: z.nullable(types.date()).optional(),
+    pass_through: types.optional(z.array(PassThroughBody$inboundSchema)),
+  }).catchall(z.any()),
+  "additionalProperties",
+  true,
+).transform((v) => {
   return remap$(v, {
     "first_name": "firstName",
     "last_name": "lastName",
@@ -555,6 +592,7 @@ export type ApplicantInput$Outbound = {
   record_url?: string | null | undefined;
   deleted?: boolean | null | undefined;
   pass_through?: Array<PassThroughBody$Outbound> | undefined;
+  [additionalProperties: string]: unknown;
 };
 
 /** @internal */
@@ -600,25 +638,30 @@ export const ApplicantInput$outboundSchema: z.ZodType<
   recordUrl: z.nullable(z.string()).optional(),
   deleted: z.nullable(z.boolean()).optional(),
   passThrough: z.array(PassThroughBody$outboundSchema).optional(),
+  additionalProperties: z.record(z.any()).optional(),
 }).transform((v) => {
-  return remap$(v, {
-    firstName: "first_name",
-    lastName: "last_name",
-    middleName: "middle_name",
-    socialSecurityNumber: "social_security_number",
-    coverLetter: "cover_letter",
-    photoUrl: "photo_url",
-    customFields: "custom_fields",
-    phoneNumbers: "phone_numbers",
-    socialLinks: "social_links",
-    stageId: "stage_id",
-    recruiterId: "recruiter_id",
-    coordinatorId: "coordinator_id",
-    applicationIds: "application_ids",
-    ownerId: "owner_id",
-    recordUrl: "record_url",
-    passThrough: "pass_through",
-  });
+  return {
+    ...v.additionalProperties,
+    ...remap$(v, {
+      firstName: "first_name",
+      lastName: "last_name",
+      middleName: "middle_name",
+      socialSecurityNumber: "social_security_number",
+      coverLetter: "cover_letter",
+      photoUrl: "photo_url",
+      customFields: "custom_fields",
+      phoneNumbers: "phone_numbers",
+      socialLinks: "social_links",
+      stageId: "stage_id",
+      recruiterId: "recruiter_id",
+      coordinatorId: "coordinator_id",
+      applicationIds: "application_ids",
+      ownerId: "owner_id",
+      recordUrl: "record_url",
+      passThrough: "pass_through",
+      additionalProperties: null,
+    }),
+  };
 });
 
 export function applicantInputToJSON(applicantInput: ApplicantInput): string {

@@ -32,6 +32,7 @@ export type PipelineStages = {
    * Whether the Pipeline Stage is archived or not.
    */
   archived?: boolean | null | undefined;
+  additionalProperties?: { [k: string]: any } | undefined;
 };
 
 export type PipelineInput = {
@@ -42,7 +43,7 @@ export type PipelineInput = {
   /**
    * The name of the Pipeline.
    */
-  name: string;
+  name?: string | undefined;
   /**
    * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
    */
@@ -71,6 +72,7 @@ export type PipelineInput = {
    * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
    */
   passThrough?: Array<PassThroughBody> | undefined;
+  additionalProperties?: { [k: string]: any } | undefined;
 };
 
 /** @internal */
@@ -80,6 +82,7 @@ export type PipelineStages$Outbound = {
   win_probability?: number | null | undefined;
   display_order?: number | null | undefined;
   archived?: boolean | null | undefined;
+  [additionalProperties: string]: unknown;
 };
 
 /** @internal */
@@ -93,11 +96,16 @@ export const PipelineStages$outboundSchema: z.ZodType<
   winProbability: z.nullable(z.number().int()).optional(),
   displayOrder: z.nullable(z.number().int()).optional(),
   archived: z.nullable(z.boolean()).optional(),
+  additionalProperties: z.record(z.any()).optional(),
 }).transform((v) => {
-  return remap$(v, {
-    winProbability: "win_probability",
-    displayOrder: "display_order",
-  });
+  return {
+    ...v.additionalProperties,
+    ...remap$(v, {
+      winProbability: "win_probability",
+      displayOrder: "display_order",
+      additionalProperties: null,
+    }),
+  };
 });
 
 export function pipelineStagesToJSON(pipelineStages: PipelineStages): string {
@@ -107,7 +115,7 @@ export function pipelineStagesToJSON(pipelineStages: PipelineStages): string {
 /** @internal */
 export type PipelineInput$Outbound = {
   id?: string | undefined;
-  name: string;
+  name?: string | undefined;
   currency?: string | null | undefined;
   archived?: boolean | undefined;
   active?: boolean | undefined;
@@ -115,6 +123,7 @@ export type PipelineInput$Outbound = {
   win_probability_enabled?: boolean | undefined;
   stages?: Array<PipelineStages$Outbound> | undefined;
   pass_through?: Array<PassThroughBody$Outbound> | undefined;
+  [additionalProperties: string]: unknown;
 };
 
 /** @internal */
@@ -124,7 +133,7 @@ export const PipelineInput$outboundSchema: z.ZodType<
   PipelineInput
 > = z.object({
   id: z.string().optional(),
-  name: z.string(),
+  name: z.string().optional(),
   currency: z.nullable(Currency$outboundSchema).optional(),
   archived: z.boolean().optional(),
   active: z.boolean().optional(),
@@ -132,12 +141,17 @@ export const PipelineInput$outboundSchema: z.ZodType<
   winProbabilityEnabled: z.boolean().optional(),
   stages: z.array(z.lazy(() => PipelineStages$outboundSchema)).optional(),
   passThrough: z.array(PassThroughBody$outboundSchema).optional(),
+  additionalProperties: z.record(z.any()).optional(),
 }).transform((v) => {
-  return remap$(v, {
-    displayOrder: "display_order",
-    winProbabilityEnabled: "win_probability_enabled",
-    passThrough: "pass_through",
-  });
+  return {
+    ...v.additionalProperties,
+    ...remap$(v, {
+      displayOrder: "display_order",
+      winProbabilityEnabled: "win_probability_enabled",
+      passThrough: "pass_through",
+      additionalProperties: null,
+    }),
+  };
 });
 
 export function pipelineInputToJSON(pipelineInput: PipelineInput): string {

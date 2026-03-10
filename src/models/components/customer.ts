@@ -4,7 +4,10 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import {
+  collectExtraKeys as collectExtraKeys$,
+  safeParse,
+} from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
@@ -95,7 +98,7 @@ export type Customer = {
   /**
    * A unique identifier for an object.
    */
-  id: string;
+  id?: string | undefined;
   /**
    * The third-party API ID of original entity
    */
@@ -182,6 +185,10 @@ export type Customer = {
    */
   terms?: string | null | undefined;
   /**
+   * The ID of the payment terms
+   */
+  termsId?: string | null | undefined;
+  /**
    * The channel through which the transaction is processed.
    */
   channel?: string | null | undefined;
@@ -214,6 +221,7 @@ export type Customer = {
    * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
    */
   passThrough?: Array<PassThroughBody> | undefined;
+  additionalProperties?: { [k: string]: any } | undefined;
 };
 
 export type CustomerInput = {
@@ -299,6 +307,10 @@ export type CustomerInput = {
    */
   terms?: string | null | undefined;
   /**
+   * The ID of the payment terms
+   */
+  termsId?: string | null | undefined;
+  /**
    * The channel through which the transaction is processed.
    */
   channel?: string | null | undefined;
@@ -311,6 +323,7 @@ export type CustomerInput = {
    * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
    */
   passThrough?: Array<PassThroughBody> | undefined;
+  additionalProperties?: { [k: string]: any } | undefined;
 };
 
 /** @internal */
@@ -331,46 +344,51 @@ export const Customer$inboundSchema: z.ZodType<
   Customer,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  id: types.string(),
-  downstream_id: z.nullable(types.string()).optional(),
-  display_id: z.nullable(types.string()).optional(),
-  display_name: z.nullable(types.string()).optional(),
-  company_name: z.nullable(types.string()).optional(),
-  company_id: z.nullable(types.string()).optional(),
-  customer_category: z.nullable(types.string()).optional(),
-  title: z.nullable(types.string()).optional(),
-  first_name: z.nullable(types.string()).optional(),
-  middle_name: z.nullable(types.string()).optional(),
-  last_name: z.nullable(types.string()).optional(),
-  suffix: z.nullable(types.string()).optional(),
-  individual: z.nullable(types.boolean()).optional(),
-  project: z.nullable(types.boolean()).optional(),
-  addresses: types.optional(z.array(Address$inboundSchema)),
-  phone_numbers: types.optional(z.array(PhoneNumber$inboundSchema)),
-  emails: types.optional(z.array(Email$inboundSchema)),
-  websites: types.optional(z.array(Website$inboundSchema)),
-  bank_accounts: types.optional(z.array(BankAccount$inboundSchema)),
-  notes: z.nullable(types.string()).optional(),
-  tax_rate: types.optional(LinkedTaxRate$inboundSchema),
-  tax_number: z.nullable(types.string()).optional(),
-  taxable: z.nullable(types.boolean()).optional(),
-  currency: z.nullable(Currency$inboundSchema).optional(),
-  account: z.nullable(LinkedLedgerAccount$inboundSchema).optional(),
-  parent: z.nullable(LinkedParentCustomer$inboundSchema).optional(),
-  status: z.nullable(CustomerStatusStatus$inboundSchema).optional(),
-  payment_method: z.nullable(types.string()).optional(),
-  terms: z.nullable(types.string()).optional(),
-  channel: z.nullable(types.string()).optional(),
-  custom_fields: types.optional(z.array(CustomField$inboundSchema)),
-  custom_mappings: z.nullable(z.record(z.any())).optional(),
-  updated_by: z.nullable(types.string()).optional(),
-  created_by: z.nullable(types.string()).optional(),
-  updated_at: z.nullable(types.date()).optional(),
-  created_at: z.nullable(types.date()).optional(),
-  row_version: z.nullable(types.string()).optional(),
-  pass_through: types.optional(z.array(PassThroughBody$inboundSchema)),
-}).transform((v) => {
+> = collectExtraKeys$(
+  z.object({
+    id: types.optional(types.string()),
+    downstream_id: z.nullable(types.string()).optional(),
+    display_id: z.nullable(types.string()).optional(),
+    display_name: z.nullable(types.string()).optional(),
+    company_name: z.nullable(types.string()).optional(),
+    company_id: z.nullable(types.string()).optional(),
+    customer_category: z.nullable(types.string()).optional(),
+    title: z.nullable(types.string()).optional(),
+    first_name: z.nullable(types.string()).optional(),
+    middle_name: z.nullable(types.string()).optional(),
+    last_name: z.nullable(types.string()).optional(),
+    suffix: z.nullable(types.string()).optional(),
+    individual: z.nullable(types.boolean()).optional(),
+    project: z.nullable(types.boolean()).optional(),
+    addresses: types.optional(z.array(Address$inboundSchema)),
+    phone_numbers: types.optional(z.array(PhoneNumber$inboundSchema)),
+    emails: types.optional(z.array(Email$inboundSchema)),
+    websites: types.optional(z.array(Website$inboundSchema)),
+    bank_accounts: types.optional(z.array(BankAccount$inboundSchema)),
+    notes: z.nullable(types.string()).optional(),
+    tax_rate: types.optional(LinkedTaxRate$inboundSchema),
+    tax_number: z.nullable(types.string()).optional(),
+    taxable: z.nullable(types.boolean()).optional(),
+    currency: z.nullable(Currency$inboundSchema).optional(),
+    account: z.nullable(LinkedLedgerAccount$inboundSchema).optional(),
+    parent: z.nullable(LinkedParentCustomer$inboundSchema).optional(),
+    status: z.nullable(CustomerStatusStatus$inboundSchema).optional(),
+    payment_method: z.nullable(types.string()).optional(),
+    terms: z.nullable(types.string()).optional(),
+    terms_id: z.nullable(types.string()).optional(),
+    channel: z.nullable(types.string()).optional(),
+    custom_fields: types.optional(z.array(CustomField$inboundSchema)),
+    custom_mappings: z.nullable(z.record(z.any())).optional(),
+    updated_by: z.nullable(types.string()).optional(),
+    created_by: z.nullable(types.string()).optional(),
+    updated_at: z.nullable(types.date()).optional(),
+    created_at: z.nullable(types.date()).optional(),
+    row_version: z.nullable(types.string()).optional(),
+    pass_through: types.optional(z.array(PassThroughBody$inboundSchema)),
+  }).catchall(z.any()),
+  "additionalProperties",
+  true,
+).transform((v) => {
   return remap$(v, {
     "downstream_id": "downstreamId",
     "display_id": "displayId",
@@ -386,6 +404,7 @@ export const Customer$inboundSchema: z.ZodType<
     "tax_rate": "taxRate",
     "tax_number": "taxNumber",
     "payment_method": "paymentMethod",
+    "terms_id": "termsId",
     "custom_fields": "customFields",
     "custom_mappings": "customMappings",
     "updated_by": "updatedBy",
@@ -436,10 +455,12 @@ export type CustomerInput$Outbound = {
   status?: string | null | undefined;
   payment_method?: string | null | undefined;
   terms?: string | null | undefined;
+  terms_id?: string | null | undefined;
   channel?: string | null | undefined;
   custom_fields?: Array<CustomField$Outbound> | undefined;
   row_version?: string | null | undefined;
   pass_through?: Array<PassThroughBody$Outbound> | undefined;
+  [additionalProperties: string]: unknown;
 };
 
 /** @internal */
@@ -475,29 +496,36 @@ export const CustomerInput$outboundSchema: z.ZodType<
   status: z.nullable(CustomerStatusStatus$outboundSchema).optional(),
   paymentMethod: z.nullable(z.string()).optional(),
   terms: z.nullable(z.string()).optional(),
+  termsId: z.nullable(z.string()).optional(),
   channel: z.nullable(z.string()).optional(),
   customFields: z.array(CustomField$outboundSchema).optional(),
   rowVersion: z.nullable(z.string()).optional(),
   passThrough: z.array(PassThroughBody$outboundSchema).optional(),
+  additionalProperties: z.record(z.any()).optional(),
 }).transform((v) => {
-  return remap$(v, {
-    displayId: "display_id",
-    displayName: "display_name",
-    companyName: "company_name",
-    companyId: "company_id",
-    customerCategory: "customer_category",
-    firstName: "first_name",
-    middleName: "middle_name",
-    lastName: "last_name",
-    phoneNumbers: "phone_numbers",
-    bankAccounts: "bank_accounts",
-    taxRate: "tax_rate",
-    taxNumber: "tax_number",
-    paymentMethod: "payment_method",
-    customFields: "custom_fields",
-    rowVersion: "row_version",
-    passThrough: "pass_through",
-  });
+  return {
+    ...v.additionalProperties,
+    ...remap$(v, {
+      displayId: "display_id",
+      displayName: "display_name",
+      companyName: "company_name",
+      companyId: "company_id",
+      customerCategory: "customer_category",
+      firstName: "first_name",
+      middleName: "middle_name",
+      lastName: "last_name",
+      phoneNumbers: "phone_numbers",
+      bankAccounts: "bank_accounts",
+      taxRate: "tax_rate",
+      taxNumber: "tax_number",
+      paymentMethod: "payment_method",
+      termsId: "terms_id",
+      customFields: "custom_fields",
+      rowVersion: "row_version",
+      passThrough: "pass_through",
+      additionalProperties: null,
+    }),
+  };
 });
 
 export function customerInputToJSON(customerInput: CustomerInput): string {

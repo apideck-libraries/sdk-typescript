@@ -4,7 +4,10 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import {
+  collectExtraKeys as collectExtraKeys$,
+  safeParse,
+} from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -13,7 +16,7 @@ export type CollectionTag = {
   /**
    * A unique identifier for an object.
    */
-  id: string | null;
+  id?: string | null | undefined;
   /**
    * The name of the tag.
    */
@@ -22,6 +25,7 @@ export type CollectionTag = {
    * When custom mappings are configured on the resource, the result is included here.
    */
   customMappings?: { [k: string]: any } | null | undefined;
+  additionalProperties?: { [k: string]: any } | undefined;
 };
 
 /** @internal */
@@ -29,11 +33,15 @@ export const CollectionTag$inboundSchema: z.ZodType<
   CollectionTag,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  id: types.nullable(types.string()),
-  name: z.nullable(types.string()).optional(),
-  custom_mappings: z.nullable(z.record(z.any())).optional(),
-}).transform((v) => {
+> = collectExtraKeys$(
+  z.object({
+    id: z.nullable(types.string()).optional(),
+    name: z.nullable(types.string()).optional(),
+    custom_mappings: z.nullable(z.record(z.any())).optional(),
+  }).catchall(z.any()),
+  "additionalProperties",
+  true,
+).transform((v) => {
   return remap$(v, {
     "custom_mappings": "customMappings",
   });

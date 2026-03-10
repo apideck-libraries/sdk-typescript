@@ -95,6 +95,8 @@ type PurchaseOrder struct {
 	PaymentMethod optionalnullable.OptionalNullable[string] `json:"payment_method,omitempty"`
 	// Terms of payment.
 	Terms optionalnullable.OptionalNullable[string] `json:"terms,omitempty"`
+	// The ID of the payment terms
+	TermsID optionalnullable.OptionalNullable[string] `json:"terms_id,omitempty"`
 	// Type of amortization
 	AmortizationType optionalnullable.OptionalNullable[PurchaseOrderAmortizationType] `json:"amortization_type,omitempty"`
 	// Applicable tax id/code override if tax is not supplied on a line item basis.
@@ -115,7 +117,7 @@ type PurchaseOrder struct {
 	TrackingCategories optionalnullable.OptionalNullable[[]*LinkedTrackingCategory] `json:"tracking_categories,omitempty"`
 	// When custom mappings are configured on the resource, the result is included here.
 	CustomMappings optionalnullable.OptionalNullable[map[string]any] `json:"custom_mappings,omitempty"`
-	CustomFields   []CustomFieldUnion                                `json:"custom_fields,omitempty"`
+	CustomFields   []CustomField                                     `json:"custom_fields,omitempty"`
 	// A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
 	RowVersion optionalnullable.OptionalNullable[string] `json:"row_version,omitempty"`
 	// The user who last updated the object.
@@ -127,7 +129,8 @@ type PurchaseOrder struct {
 	// The date and time when the object was created.
 	CreatedAt optionalnullable.OptionalNullable[time.Time] `json:"created_at,omitempty"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
-	PassThrough []PassThroughBody `json:"pass_through,omitempty"`
+	PassThrough          []PassThroughBody `json:"pass_through,omitempty"`
+	AdditionalProperties map[string]any    `additionalProperties:"true" json:"-"`
 }
 
 func (p PurchaseOrder) MarshalJSON() ([]byte, error) {
@@ -358,6 +361,13 @@ func (o *PurchaseOrder) GetTerms() optionalnullable.OptionalNullable[string] {
 	return o.Terms
 }
 
+func (o *PurchaseOrder) GetTermsID() optionalnullable.OptionalNullable[string] {
+	if o == nil {
+		return nil
+	}
+	return o.TermsID
+}
+
 func (o *PurchaseOrder) GetAmortizationType() optionalnullable.OptionalNullable[PurchaseOrderAmortizationType] {
 	if o == nil {
 		return nil
@@ -428,7 +438,7 @@ func (o *PurchaseOrder) GetCustomMappings() optionalnullable.OptionalNullable[ma
 	return o.CustomMappings
 }
 
-func (o *PurchaseOrder) GetCustomFields() []CustomFieldUnion {
+func (o *PurchaseOrder) GetCustomFields() []CustomField {
 	if o == nil {
 		return nil
 	}
@@ -475,6 +485,13 @@ func (o *PurchaseOrder) GetPassThrough() []PassThroughBody {
 		return nil
 	}
 	return o.PassThrough
+}
+
+func (o *PurchaseOrder) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }
 
 type PurchaseOrderInput struct {
@@ -530,6 +547,8 @@ type PurchaseOrderInput struct {
 	PaymentMethod optionalnullable.OptionalNullable[string] `json:"payment_method,omitempty"`
 	// Terms of payment.
 	Terms optionalnullable.OptionalNullable[string] `json:"terms,omitempty"`
+	// The ID of the payment terms
+	TermsID optionalnullable.OptionalNullable[string] `json:"terms_id,omitempty"`
 	// Type of amortization
 	AmortizationType optionalnullable.OptionalNullable[PurchaseOrderAmortizationType] `json:"amortization_type,omitempty"`
 	// Applicable tax id/code override if tax is not supplied on a line item basis.
@@ -548,11 +567,12 @@ type PurchaseOrderInput struct {
 	Notes optionalnullable.OptionalNullable[string] `json:"notes,omitempty"`
 	// A list of linked tracking categories.
 	TrackingCategories optionalnullable.OptionalNullable[[]*LinkedTrackingCategory] `json:"tracking_categories,omitempty"`
-	CustomFields       []CustomFieldUnion                                           `json:"custom_fields,omitempty"`
+	CustomFields       []CustomField                                                `json:"custom_fields,omitempty"`
 	// A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
 	RowVersion optionalnullable.OptionalNullable[string] `json:"row_version,omitempty"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
-	PassThrough []PassThroughBody `json:"pass_through,omitempty"`
+	PassThrough          []PassThroughBody `json:"pass_through,omitempty"`
+	AdditionalProperties map[string]any    `additionalProperties:"true" json:"-"`
 }
 
 func (p PurchaseOrderInput) MarshalJSON() ([]byte, error) {
@@ -769,6 +789,13 @@ func (o *PurchaseOrderInput) GetTerms() optionalnullable.OptionalNullable[string
 	return o.Terms
 }
 
+func (o *PurchaseOrderInput) GetTermsID() optionalnullable.OptionalNullable[string] {
+	if o == nil {
+		return nil
+	}
+	return o.TermsID
+}
+
 func (o *PurchaseOrderInput) GetAmortizationType() optionalnullable.OptionalNullable[PurchaseOrderAmortizationType] {
 	if o == nil {
 		return nil
@@ -832,7 +859,7 @@ func (o *PurchaseOrderInput) GetTrackingCategories() optionalnullable.OptionalNu
 	return o.TrackingCategories
 }
 
-func (o *PurchaseOrderInput) GetCustomFields() []CustomFieldUnion {
+func (o *PurchaseOrderInput) GetCustomFields() []CustomField {
 	if o == nil {
 		return nil
 	}
@@ -851,4 +878,11 @@ func (o *PurchaseOrderInput) GetPassThrough() []PassThroughBody {
 		return nil
 	}
 	return o.PassThrough
+}
+
+func (o *PurchaseOrderInput) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }

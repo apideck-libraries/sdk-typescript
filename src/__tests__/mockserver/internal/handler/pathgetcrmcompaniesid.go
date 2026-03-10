@@ -55,7 +55,7 @@ func testCrmCompaniesOneCrmCompaniesOne0(w http.ResponseWriter, req *http.Reques
 		Operation:  "one",
 		Data: components.Company1{
 			ID:                types.String("12345"),
-			Name:              types.String("SpaceX"),
+			Name:              optionalnullable.From(types.String("SpaceX")),
 			InteractionCount:  optionalnullable.From(types.Int64(1)),
 			OwnerID:           optionalnullable.From(types.String("12345")),
 			Image:             optionalnullable.From(types.String("https://www.spacex.com/static/images/share.jpg")),
@@ -120,12 +120,12 @@ func testCrmCompaniesOneCrmCompaniesOne0(w http.ResponseWriter, req *http.Reques
 			Websites: []components.Website{
 				components.Website{
 					ID:   optionalnullable.From(types.String("12345")),
-					URL:  "http://example.com",
+					URL:  types.String("http://example.com"),
 					Type: optionalnullable.From(components.WebsiteTypePrimary.ToPointer()),
 				},
 				components.Website{
 					ID:   optionalnullable.From(types.String("12345")),
-					URL:  "http://example.com",
+					URL:  types.String("http://example.com"),
 					Type: optionalnullable.From(components.WebsiteTypePrimary.ToPointer()),
 				},
 			},
@@ -186,12 +186,12 @@ func testCrmCompaniesOneCrmCompaniesOne0(w http.ResponseWriter, req *http.Reques
 			SocialLinks: []components.SocialLink{
 				components.SocialLink{
 					ID:   optionalnullable.From(types.String("12345")),
-					URL:  "https://www.twitter.com/apideck",
+					URL:  types.String("https://www.twitter.com/apideck"),
 					Type: optionalnullable.From(types.String("twitter")),
 				},
 				components.SocialLink{
 					ID:   optionalnullable.From(types.String("12345")),
-					URL:  "https://www.twitter.com/apideck",
+					URL:  types.String("https://www.twitter.com/apideck"),
 					Type: optionalnullable.From(types.String("twitter")),
 				},
 			},
@@ -200,7 +200,7 @@ func testCrmCompaniesOneCrmCompaniesOne0(w http.ResponseWriter, req *http.Reques
 					ID:          optionalnullable.From(types.String("12345")),
 					CountryCode: optionalnullable.From(types.String("1")),
 					AreaCode:    optionalnullable.From(types.String("323")),
-					Number:      "111-111-1111",
+					Number:      types.String("111-111-1111"),
 					Extension:   optionalnullable.From(types.String("105")),
 					Type:        optionalnullable.From(components.PhoneNumberTypePrimary.ToPointer()),
 				},
@@ -208,7 +208,7 @@ func testCrmCompaniesOneCrmCompaniesOne0(w http.ResponseWriter, req *http.Reques
 					ID:          optionalnullable.From(types.String("12345")),
 					CountryCode: optionalnullable.From(types.String("1")),
 					AreaCode:    optionalnullable.From(types.String("323")),
-					Number:      "111-111-1111",
+					Number:      types.String("111-111-1111"),
 					Extension:   optionalnullable.From(types.String("105")),
 					Type:        optionalnullable.From(components.PhoneNumberTypePrimary.ToPointer()),
 				},
@@ -216,7 +216,7 @@ func testCrmCompaniesOneCrmCompaniesOne0(w http.ResponseWriter, req *http.Reques
 					ID:          optionalnullable.From(types.String("12345")),
 					CountryCode: optionalnullable.From(types.String("1")),
 					AreaCode:    optionalnullable.From(types.String("323")),
-					Number:      "111-111-1111",
+					Number:      types.String("111-111-1111"),
 					Extension:   optionalnullable.From(types.String("105")),
 					Type:        optionalnullable.From(components.PhoneNumberTypePrimary.ToPointer()),
 				},
@@ -224,12 +224,12 @@ func testCrmCompaniesOneCrmCompaniesOne0(w http.ResponseWriter, req *http.Reques
 			Emails: []components.Email{
 				components.Email{
 					ID:    optionalnullable.From(types.String("123")),
-					Email: types.String("elon@musk.com"),
+					Email: optionalnullable.From(types.String("elon@musk.com")),
 					Type:  optionalnullable.From(components.EmailTypePrimary.ToPointer()),
 				},
 				components.Email{
 					ID:    optionalnullable.From(types.String("123")),
-					Email: types.String("elon@musk.com"),
+					Email: optionalnullable.From(types.String("elon@musk.com")),
 					Type:  optionalnullable.From(components.EmailTypePrimary.ToPointer()),
 				},
 			},
@@ -237,27 +237,23 @@ func testCrmCompaniesOneCrmCompaniesOne0(w http.ResponseWriter, req *http.Reques
 				ID:   optionalnullable.From(types.String("12345")),
 				Name: optionalnullable.From(types.String("Customer Account")),
 			},
-			CustomFields: []components.CustomFieldUnion{
-				components.CreateCustomFieldUnionCustomField1(
-					components.CustomField1{
-						ID:          types.String("2389328923893298"),
-						Name:        optionalnullable.From(types.String("employee_level")),
-						Description: optionalnullable.From(types.String("Employee Level")),
-						Value: optionalnullable.From(types.Pointer(components.CreateCustomFieldValue2Number(
-							10,
-						))),
-					},
-				),
-				components.CreateCustomFieldUnionCustomField1(
-					components.CustomField1{
-						ID:          types.String("2389328923893298"),
-						Name:        optionalnullable.From(types.String("employee_level")),
-						Description: optionalnullable.From(types.String("Employee Level")),
-						Value: optionalnullable.From(types.Pointer(components.CreateCustomFieldValue2Number(
-							10,
-						))),
-					},
-				),
+			CustomFields: []components.CustomField{
+				components.CustomField{
+					ID:          optionalnullable.From(types.String("2389328923893298")),
+					Name:        optionalnullable.From(types.String("employee_level")),
+					Description: optionalnullable.From(types.String("Employee Level")),
+					Value: optionalnullable.From(types.Pointer(components.CreateCustomFieldValue2Number(
+						10,
+					))),
+				},
+				components.CustomField{
+					ID:          optionalnullable.From(types.String("2389328923893298")),
+					Name:        optionalnullable.From(types.String("employee_level")),
+					Description: optionalnullable.From(types.String("Employee Level")),
+					Value: optionalnullable.From(types.Pointer(components.CreateCustomFieldValue2Number(
+						10,
+					))),
+				},
 			},
 			Tags: optionalnullable.From(types.Pointer([]string{
 				"New",

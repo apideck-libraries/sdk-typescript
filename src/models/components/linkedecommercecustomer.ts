@@ -4,7 +4,10 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import {
+  collectExtraKeys as collectExtraKeys$,
+  safeParse,
+} from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as types from "../../types/primitives.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -37,6 +40,7 @@ export type LinkedEcommerceCustomer = {
   companyName?: string | null | undefined;
   phoneNumbers?: Array<PhoneNumber> | null | undefined;
   emails?: Array<Email> | null | undefined;
+  additionalProperties?: { [k: string]: any } | undefined;
 };
 
 /** @internal */
@@ -44,15 +48,19 @@ export const LinkedEcommerceCustomer$inboundSchema: z.ZodType<
   LinkedEcommerceCustomer,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  id: z.nullable(types.string()).optional(),
-  name: z.nullable(types.string()).optional(),
-  first_name: z.nullable(types.string()).optional(),
-  last_name: z.nullable(types.string()).optional(),
-  company_name: z.nullable(types.string()).optional(),
-  phone_numbers: z.nullable(z.array(PhoneNumber$inboundSchema)).optional(),
-  emails: z.nullable(z.array(Email$inboundSchema)).optional(),
-}).transform((v) => {
+> = collectExtraKeys$(
+  z.object({
+    id: z.nullable(types.string()).optional(),
+    name: z.nullable(types.string()).optional(),
+    first_name: z.nullable(types.string()).optional(),
+    last_name: z.nullable(types.string()).optional(),
+    company_name: z.nullable(types.string()).optional(),
+    phone_numbers: z.nullable(z.array(PhoneNumber$inboundSchema)).optional(),
+    emails: z.nullable(z.array(Email$inboundSchema)).optional(),
+  }).catchall(z.any()),
+  "additionalProperties",
+  true,
+).transform((v) => {
   return remap$(v, {
     "first_name": "firstName",
     "last_name": "lastName",

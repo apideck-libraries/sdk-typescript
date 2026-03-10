@@ -60,7 +60,7 @@ export type EcommerceOrderLineItem = {
   /**
    * The quantity of the product or variant associated with the line item.
    */
-  quantity: string | null;
+  quantity?: string | null | undefined;
   /**
    * The unit price of the product or variant associated with the line item.
    */
@@ -127,7 +127,7 @@ export const EcommerceOrderLineItem$inboundSchema: z.ZodType<
   name: z.nullable(types.string()).optional(),
   description: z.nullable(types.string()).optional(),
   options: types.optional(z.array(z.lazy(() => Options$inboundSchema))),
-  quantity: types.nullable(types.string()),
+  quantity: z.nullable(types.string()).optional(),
   unit_price: z.nullable(types.string()).optional(),
   tax_rate: z.nullable(types.string()).optional(),
   tax_amount: z.nullable(types.string()).optional(),

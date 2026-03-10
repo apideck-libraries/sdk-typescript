@@ -94,6 +94,7 @@ const apideck = new Apideck({
 async function run() {
   const result = await apideck.accounting.taxRates.list({
     serviceId: "salesforce",
+    companyId: "12345",
     filter: {
       assets: true,
       equity: true,
@@ -187,6 +188,10 @@ run();
 
 * [list](docs/sdks/categories/README.md#list) - List Categories
 * [get](docs/sdks/categories/README.md#get) - Get Category
+
+### [Accounting.Companies](docs/sdks/companies/README.md)
+
+* [list](docs/sdks/companies/README.md#list) - List companies
 
 ### [Accounting.CompanyInfo](docs/sdks/companyinfo/README.md)
 
@@ -324,6 +329,14 @@ run();
 * [update](docs/sdks/quotes/README.md#update) - Update Quote
 * [delete](docs/sdks/quotes/README.md#delete) - Delete Quote
 
+### [Accounting.Refunds](docs/sdks/refunds/README.md)
+
+* [list](docs/sdks/refunds/README.md#list) - List Refunds
+* [create](docs/sdks/refunds/README.md#create) - Create Refund
+* [get](docs/sdks/refunds/README.md#get) - Get Refund
+* [update](docs/sdks/refunds/README.md#update) - Update Refund
+* [delete](docs/sdks/refunds/README.md#delete) - Delete Refund
+
 ### [Accounting.Subsidiaries](docs/sdks/subsidiaries/README.md)
 
 * [list](docs/sdks/subsidiaries/README.md#list) - List Subsidiaries
@@ -411,13 +424,13 @@ run();
 * [update](docs/sdks/activities/README.md#update) - Update activity
 * [delete](docs/sdks/activities/README.md#delete) - Delete activity
 
-### [Crm.Companies](docs/sdks/companies/README.md)
+### [Crm.Companies](docs/sdks/apideckcompanies/README.md)
 
-* [list](docs/sdks/companies/README.md#list) - List companies
-* [create](docs/sdks/companies/README.md#create) - Create company
-* [get](docs/sdks/companies/README.md#get) - Get company
-* [update](docs/sdks/companies/README.md#update) - Update company
-* [delete](docs/sdks/companies/README.md#delete) - Delete company
+* [list](docs/sdks/apideckcompanies/README.md#list) - List companies
+* [create](docs/sdks/apideckcompanies/README.md#create) - Create company
+* [get](docs/sdks/apideckcompanies/README.md#get) - Get company
+* [update](docs/sdks/apideckcompanies/README.md#update) - Update company
+* [delete](docs/sdks/apideckcompanies/README.md#delete) - Delete company
 
 ### [Crm.Contacts](docs/sdks/contacts/README.md)
 
@@ -552,13 +565,13 @@ run();
 * [delete](docs/sdks/uploadsessions/README.md#delete) - Abort Upload Session
 * [finish](docs/sdks/uploadsessions/README.md#finish) - Finish Upload Session
 
-### [Hris.Companies](docs/sdks/apideckcompanies/README.md)
+### [Hris.Companies](docs/sdks/apideckhriscompanies/README.md)
 
-* [list](docs/sdks/apideckcompanies/README.md#list) - List Companies
-* [create](docs/sdks/apideckcompanies/README.md#create) - Create Company
-* [get](docs/sdks/apideckcompanies/README.md#get) - Get Company
-* [update](docs/sdks/apideckcompanies/README.md#update) - Update Company
-* [delete](docs/sdks/apideckcompanies/README.md#delete) - Delete Company
+* [all](docs/sdks/apideckhriscompanies/README.md#all) - List Companies
+* [create](docs/sdks/apideckhriscompanies/README.md#create) - Create Company
+* [get](docs/sdks/apideckhriscompanies/README.md#get) - Get Company
+* [update](docs/sdks/apideckhriscompanies/README.md#update) - Update Company
+* [delete](docs/sdks/apideckhriscompanies/README.md#delete) - Delete Company
 
 ### [Hris.Departments](docs/sdks/apideckdepartments/README.md)
 
@@ -772,6 +785,7 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`accountingBillsUpdate`](docs/sdks/bills/README.md#update) - Update Bill
 - [`accountingCategoriesGet`](docs/sdks/categories/README.md#get) - Get Category
 - [`accountingCategoriesList`](docs/sdks/categories/README.md#list) - List Categories
+- [`accountingCompaniesList`](docs/sdks/companies/README.md#list) - List companies
 - [`accountingCompanyInfoGet`](docs/sdks/companyinfo/README.md#get) - Get company info
 - [`accountingCreditNotesCreate`](docs/sdks/creditnotes/README.md#create) - Create Credit Note
 - [`accountingCreditNotesDelete`](docs/sdks/creditnotes/README.md#delete) - Delete Credit Note
@@ -854,6 +868,11 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`accountingQuotesGet`](docs/sdks/quotes/README.md#get) - Get Quote
 - [`accountingQuotesList`](docs/sdks/quotes/README.md#list) - List Quotes
 - [`accountingQuotesUpdate`](docs/sdks/quotes/README.md#update) - Update Quote
+- [`accountingRefundsCreate`](docs/sdks/refunds/README.md#create) - Create Refund
+- [`accountingRefundsDelete`](docs/sdks/refunds/README.md#delete) - Delete Refund
+- [`accountingRefundsGet`](docs/sdks/refunds/README.md#get) - Get Refund
+- [`accountingRefundsList`](docs/sdks/refunds/README.md#list) - List Refunds
+- [`accountingRefundsUpdate`](docs/sdks/refunds/README.md#update) - Update Refund
 - [`accountingSubsidiariesCreate`](docs/sdks/subsidiaries/README.md#create) - Create Subsidiary
 - [`accountingSubsidiariesDelete`](docs/sdks/subsidiaries/README.md#delete) - Delete Subsidiary
 - [`accountingSubsidiariesGet`](docs/sdks/subsidiaries/README.md#get) - Get Subsidiary
@@ -899,11 +918,11 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`crmActivitiesGet`](docs/sdks/activities/README.md#get) - Get activity
 - [`crmActivitiesList`](docs/sdks/activities/README.md#list) - List activities
 - [`crmActivitiesUpdate`](docs/sdks/activities/README.md#update) - Update activity
-- [`crmCompaniesCreate`](docs/sdks/companies/README.md#create) - Create company
-- [`crmCompaniesDelete`](docs/sdks/companies/README.md#delete) - Delete company
-- [`crmCompaniesGet`](docs/sdks/companies/README.md#get) - Get company
-- [`crmCompaniesList`](docs/sdks/companies/README.md#list) - List companies
-- [`crmCompaniesUpdate`](docs/sdks/companies/README.md#update) - Update company
+- [`crmCompaniesCreate`](docs/sdks/apideckcompanies/README.md#create) - Create company
+- [`crmCompaniesDelete`](docs/sdks/apideckcompanies/README.md#delete) - Delete company
+- [`crmCompaniesGet`](docs/sdks/apideckcompanies/README.md#get) - Get company
+- [`crmCompaniesList`](docs/sdks/apideckcompanies/README.md#list) - List companies
+- [`crmCompaniesUpdate`](docs/sdks/apideckcompanies/README.md#update) - Update company
 - [`crmContactsCreate`](docs/sdks/contacts/README.md#create) - Create contact
 - [`crmContactsDelete`](docs/sdks/contacts/README.md#delete) - Delete contact
 - [`crmContactsGet`](docs/sdks/contacts/README.md#get) - Get contact
@@ -983,11 +1002,11 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`fileStorageUploadSessionsFinish`](docs/sdks/uploadsessions/README.md#finish) - Finish Upload Session
 - [`fileStorageUploadSessionsGet`](docs/sdks/uploadsessions/README.md#get) - Get Upload Session
 - [`fileStorageUploadSessionsUpload`](docs/sdks/uploadsessions/README.md#upload) - Upload part of File to Upload Session
-- [`hrisCompaniesCreate`](docs/sdks/apideckcompanies/README.md#create) - Create Company
-- [`hrisCompaniesDelete`](docs/sdks/apideckcompanies/README.md#delete) - Delete Company
-- [`hrisCompaniesGet`](docs/sdks/apideckcompanies/README.md#get) - Get Company
-- [`hrisCompaniesList`](docs/sdks/apideckcompanies/README.md#list) - List Companies
-- [`hrisCompaniesUpdate`](docs/sdks/apideckcompanies/README.md#update) - Update Company
+- [`hrisCompaniesAll`](docs/sdks/apideckhriscompanies/README.md#all) - List Companies
+- [`hrisCompaniesCreate`](docs/sdks/apideckhriscompanies/README.md#create) - Create Company
+- [`hrisCompaniesDelete`](docs/sdks/apideckhriscompanies/README.md#delete) - Delete Company
+- [`hrisCompaniesGet`](docs/sdks/apideckhriscompanies/README.md#get) - Get Company
+- [`hrisCompaniesUpdate`](docs/sdks/apideckhriscompanies/README.md#update) - Update Company
 - [`hrisDepartmentsCreate`](docs/sdks/apideckdepartments/README.md#create) - Create Department
 - [`hrisDepartmentsDelete`](docs/sdks/apideckdepartments/README.md#delete) - Delete Department
 - [`hrisDepartmentsGet`](docs/sdks/apideckdepartments/README.md#get) - Get Department
@@ -1091,6 +1110,7 @@ const apideck = new Apideck({
 async function run() {
   const result = await apideck.accounting.taxRates.list({
     serviceId: "salesforce",
+    companyId: "12345",
     filter: {
       assets: true,
       equity: true,
@@ -1174,6 +1194,7 @@ const apideck = new Apideck({
 async function run() {
   const result = await apideck.accounting.taxRates.list({
     serviceId: "salesforce",
+    companyId: "12345",
     filter: {
       assets: true,
       equity: true,
@@ -1230,6 +1251,7 @@ const apideck = new Apideck({
 async function run() {
   const result = await apideck.accounting.taxRates.list({
     serviceId: "salesforce",
+    companyId: "12345",
     filter: {
       assets: true,
       equity: true,
@@ -1280,6 +1302,7 @@ async function run() {
   try {
     const result = await apideck.accounting.taxRates.list({
       serviceId: "salesforce",
+      companyId: "12345",
       filter: {
         assets: true,
         equity: true,
@@ -1342,7 +1365,7 @@ run();
 
 
 **Inherit from [`ApideckError`](./src/models/errors/apideckerror.ts)**:
-* [`Unauthorized`](./src/models/errors/unauthorized.ts): Unauthorized. Status code `401`. Applicable to 6 of 326 methods.*
+* [`Unauthorized`](./src/models/errors/unauthorized.ts): Unauthorized. Status code `401`. Applicable to 6 of 332 methods.*
 * [`ResponseValidationError`](./src/models/errors/responsevalidationerror.ts): Type mismatch between the data returned from the server and the structure expected by the SDK. See `error.rawValue` for the raw value and `error.pretty()` for a nicely formatted multi-line string.
 
 </details>
@@ -1369,6 +1392,7 @@ const apideck = new Apideck({
 async function run() {
   const result = await apideck.accounting.taxRates.list({
     serviceId: "salesforce",
+    companyId: "12345",
     filter: {
       assets: true,
       equity: true,
@@ -1501,6 +1525,7 @@ const apideck = new Apideck({
 async function run() {
   const result = await apideck.accounting.taxRates.list({
     serviceId: "salesforce",
+    companyId: "12345",
     filter: {
       assets: true,
       equity: true,

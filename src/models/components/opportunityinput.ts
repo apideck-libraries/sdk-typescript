@@ -20,7 +20,7 @@ export type OpportunityInput = {
   /**
    * The title or name of the opportunity.
    */
-  title: string;
+  title?: string | undefined;
   /**
    * The unique identifier of the primary contact associated with the opportunity.
    */
@@ -127,11 +127,12 @@ export type OpportunityInput = {
    * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
    */
   passThrough?: Array<PassThroughBody> | undefined;
+  additionalProperties?: { [k: string]: any } | undefined;
 };
 
 /** @internal */
 export type OpportunityInput$Outbound = {
-  title: string;
+  title?: string | undefined;
   primary_contact_id?: string | null | undefined;
   description?: string | null | undefined;
   type?: string | null | undefined;
@@ -160,6 +161,7 @@ export type OpportunityInput$Outbound = {
   custom_fields?: Array<CustomField$Outbound> | undefined;
   stage_last_changed_at?: string | null | undefined;
   pass_through?: Array<PassThroughBody$Outbound> | undefined;
+  [additionalProperties: string]: unknown;
 };
 
 /** @internal */
@@ -168,7 +170,7 @@ export const OpportunityInput$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   OpportunityInput
 > = z.object({
-  title: z.string(),
+  title: z.string().optional(),
   primaryContactId: z.nullable(z.string()).optional(),
   description: z.nullable(z.string()).optional(),
   type: z.nullable(z.string()).optional(),
@@ -200,31 +202,36 @@ export const OpportunityInput$outboundSchema: z.ZodType<
   stageLastChangedAt: z.nullable(z.date().transform(v => v.toISOString()))
     .optional(),
   passThrough: z.array(PassThroughBody$outboundSchema).optional(),
+  additionalProperties: z.record(z.any()).optional(),
 }).transform((v) => {
-  return remap$(v, {
-    primaryContactId: "primary_contact_id",
-    monetaryAmount: "monetary_amount",
-    winProbability: "win_probability",
-    closeDate: "close_date",
-    lossReasonId: "loss_reason_id",
-    lossReason: "loss_reason",
-    wonReasonId: "won_reason_id",
-    wonReason: "won_reason",
-    pipelineId: "pipeline_id",
-    pipelineStageId: "pipeline_stage_id",
-    sourceId: "source_id",
-    leadId: "lead_id",
-    leadSource: "lead_source",
-    contactId: "contact_id",
-    contactIds: "contact_ids",
-    companyId: "company_id",
-    companyName: "company_name",
-    ownerId: "owner_id",
-    statusId: "status_id",
-    customFields: "custom_fields",
-    stageLastChangedAt: "stage_last_changed_at",
-    passThrough: "pass_through",
-  });
+  return {
+    ...v.additionalProperties,
+    ...remap$(v, {
+      primaryContactId: "primary_contact_id",
+      monetaryAmount: "monetary_amount",
+      winProbability: "win_probability",
+      closeDate: "close_date",
+      lossReasonId: "loss_reason_id",
+      lossReason: "loss_reason",
+      wonReasonId: "won_reason_id",
+      wonReason: "won_reason",
+      pipelineId: "pipeline_id",
+      pipelineStageId: "pipeline_stage_id",
+      sourceId: "source_id",
+      leadId: "lead_id",
+      leadSource: "lead_source",
+      contactId: "contact_id",
+      contactIds: "contact_ids",
+      companyId: "company_id",
+      companyName: "company_name",
+      ownerId: "owner_id",
+      statusId: "status_id",
+      customFields: "custom_fields",
+      stageLastChangedAt: "stage_last_changed_at",
+      passThrough: "pass_through",
+      additionalProperties: null,
+    }),
+  };
 });
 
 export function opportunityInputToJSON(

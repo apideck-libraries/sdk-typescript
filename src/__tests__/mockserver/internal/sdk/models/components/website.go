@@ -4,6 +4,7 @@ package components
 
 import (
 	"mockserver/internal/sdk/optionalnullable"
+	"mockserver/internal/sdk/utils"
 )
 
 // WebsiteType - The type of website
@@ -25,9 +26,21 @@ type Website struct {
 	// Unique identifier for the website
 	ID optionalnullable.OptionalNullable[string] `json:"id,omitempty"`
 	// The website URL
-	URL string `json:"url"`
+	URL *string `json:"url,omitempty"`
 	// The type of website
-	Type optionalnullable.OptionalNullable[WebsiteType] `json:"type,omitempty"`
+	Type                 optionalnullable.OptionalNullable[WebsiteType] `json:"type,omitempty"`
+	AdditionalProperties map[string]any                                 `additionalProperties:"true" json:"-"`
+}
+
+func (w Website) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(w, "", false)
+}
+
+func (w *Website) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &w, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *Website) GetID() optionalnullable.OptionalNullable[string] {
@@ -37,9 +50,9 @@ func (o *Website) GetID() optionalnullable.OptionalNullable[string] {
 	return o.ID
 }
 
-func (o *Website) GetURL() string {
+func (o *Website) GetURL() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.URL
 }
@@ -49,4 +62,11 @@ func (o *Website) GetType() optionalnullable.OptionalNullable[WebsiteType] {
 		return nil
 	}
 	return o.Type
+}
+
+func (o *Website) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }

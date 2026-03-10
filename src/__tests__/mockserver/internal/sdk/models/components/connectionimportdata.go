@@ -16,7 +16,8 @@ type Credentials struct {
 	// The datetime at which the token was issued. If omitted the token will be queued for refresh.
 	IssuedAt optionalnullable.OptionalNullable[time.Time] `json:"issued_at,omitempty"`
 	// The number of seconds until the token expires. If omitted the token will be queued for refresh.
-	ExpiresIn optionalnullable.OptionalNullable[int64] `json:"expires_in,omitempty"`
+	ExpiresIn            optionalnullable.OptionalNullable[int64] `json:"expires_in,omitempty"`
+	AdditionalProperties map[string]any                           `additionalProperties:"true" json:"-"`
 }
 
 func (c Credentials) MarshalJSON() ([]byte, error) {
@@ -56,6 +57,13 @@ func (o *Credentials) GetExpiresIn() optionalnullable.OptionalNullable[int64] {
 		return nil
 	}
 	return o.ExpiresIn
+}
+
+func (o *Credentials) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }
 
 type ConnectionImportData struct {

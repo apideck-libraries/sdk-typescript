@@ -4,7 +4,10 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
+import {
+  collectExtraKeys as collectExtraKeys$,
+  safeParse,
+} from "../../lib/schemas.js";
 import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
@@ -220,6 +223,7 @@ export type AccountingEmployee = {
    * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
    */
   passThrough?: Array<PassThroughBody> | undefined;
+  additionalProperties?: { [k: string]: any } | undefined;
 };
 
 export type AccountingEmployeeInput = {
@@ -311,6 +315,7 @@ export type AccountingEmployeeInput = {
    * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
    */
   passThrough?: Array<PassThroughBody> | undefined;
+  additionalProperties?: { [k: string]: any } | undefined;
 };
 
 /** @internal */
@@ -373,42 +378,46 @@ export const AccountingEmployee$inboundSchema: z.ZodType<
   AccountingEmployee,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  id: types.optional(types.string()),
-  downstream_id: z.nullable(types.string()).optional(),
-  display_id: z.nullable(types.string()).optional(),
-  first_name: z.nullable(types.string()).optional(),
-  last_name: z.nullable(types.string()).optional(),
-  display_name: z.nullable(types.string()).optional(),
-  emails: types.optional(z.array(Email$inboundSchema)),
-  employee_number: z.nullable(types.string()).optional(),
-  job_title: z.nullable(types.string()).optional(),
-  status: z.nullable(EmployeeStatus$inboundSchema).optional(),
-  is_contractor: z.nullable(types.boolean()).optional(),
-  department: z.nullable(LinkedDepartment$inboundSchema).optional(),
-  location: z.nullable(LinkedLocation$inboundSchema).optional(),
-  manager: types.optional(
-    z.lazy(() => AccountingEmployeeManager$inboundSchema),
-  ),
-  hire_date: z.nullable(types.date()).optional(),
-  termination_date: z.nullable(types.date()).optional(),
-  gender: z.nullable(Gender$inboundSchema).optional(),
-  birth_date: z.nullable(types.date()).optional(),
-  subsidiary: z.nullable(LinkedSubsidiary$inboundSchema).optional(),
-  tracking_categories: z.nullable(
-    z.array(types.nullable(LinkedTrackingCategory$inboundSchema)),
-  ).optional(),
-  currency: z.nullable(Currency$inboundSchema).optional(),
-  notes: z.nullable(types.string()).optional(),
-  addresses: types.optional(z.array(Address$inboundSchema)),
-  phone_numbers: types.optional(z.array(PhoneNumber$inboundSchema)),
-  custom_fields: types.optional(z.array(CustomField$inboundSchema)),
-  custom_mappings: z.nullable(z.record(z.any())).optional(),
-  row_version: z.nullable(types.string()).optional(),
-  updated_at: z.nullable(types.date()).optional(),
-  created_at: z.nullable(types.date()).optional(),
-  pass_through: types.optional(z.array(PassThroughBody$inboundSchema)),
-}).transform((v) => {
+> = collectExtraKeys$(
+  z.object({
+    id: types.optional(types.string()),
+    downstream_id: z.nullable(types.string()).optional(),
+    display_id: z.nullable(types.string()).optional(),
+    first_name: z.nullable(types.string()).optional(),
+    last_name: z.nullable(types.string()).optional(),
+    display_name: z.nullable(types.string()).optional(),
+    emails: types.optional(z.array(Email$inboundSchema)),
+    employee_number: z.nullable(types.string()).optional(),
+    job_title: z.nullable(types.string()).optional(),
+    status: z.nullable(EmployeeStatus$inboundSchema).optional(),
+    is_contractor: z.nullable(types.boolean()).optional(),
+    department: z.nullable(LinkedDepartment$inboundSchema).optional(),
+    location: z.nullable(LinkedLocation$inboundSchema).optional(),
+    manager: types.optional(
+      z.lazy(() => AccountingEmployeeManager$inboundSchema),
+    ),
+    hire_date: z.nullable(types.date()).optional(),
+    termination_date: z.nullable(types.date()).optional(),
+    gender: z.nullable(Gender$inboundSchema).optional(),
+    birth_date: z.nullable(types.date()).optional(),
+    subsidiary: z.nullable(LinkedSubsidiary$inboundSchema).optional(),
+    tracking_categories: z.nullable(
+      z.array(types.nullable(LinkedTrackingCategory$inboundSchema)),
+    ).optional(),
+    currency: z.nullable(Currency$inboundSchema).optional(),
+    notes: z.nullable(types.string()).optional(),
+    addresses: types.optional(z.array(Address$inboundSchema)),
+    phone_numbers: types.optional(z.array(PhoneNumber$inboundSchema)),
+    custom_fields: types.optional(z.array(CustomField$inboundSchema)),
+    custom_mappings: z.nullable(z.record(z.any())).optional(),
+    row_version: z.nullable(types.string()).optional(),
+    updated_at: z.nullable(types.date()).optional(),
+    created_at: z.nullable(types.date()).optional(),
+    pass_through: types.optional(z.array(PassThroughBody$inboundSchema)),
+  }).catchall(z.any()),
+  "additionalProperties",
+  true,
+).transform((v) => {
   return remap$(v, {
     "downstream_id": "downstreamId",
     "display_id": "displayId",
@@ -472,6 +481,7 @@ export type AccountingEmployeeInput$Outbound = {
   custom_fields?: Array<CustomField$Outbound> | undefined;
   row_version?: string | null | undefined;
   pass_through?: Array<PassThroughBody$Outbound> | undefined;
+  [additionalProperties: string]: unknown;
 };
 
 /** @internal */
@@ -513,24 +523,29 @@ export const AccountingEmployeeInput$outboundSchema: z.ZodType<
   customFields: z.array(CustomField$outboundSchema).optional(),
   rowVersion: z.nullable(z.string()).optional(),
   passThrough: z.array(PassThroughBody$outboundSchema).optional(),
+  additionalProperties: z.record(z.any()).optional(),
 }).transform((v) => {
-  return remap$(v, {
-    displayId: "display_id",
-    firstName: "first_name",
-    lastName: "last_name",
-    displayName: "display_name",
-    employeeNumber: "employee_number",
-    jobTitle: "job_title",
-    isContractor: "is_contractor",
-    hireDate: "hire_date",
-    terminationDate: "termination_date",
-    birthDate: "birth_date",
-    trackingCategories: "tracking_categories",
-    phoneNumbers: "phone_numbers",
-    customFields: "custom_fields",
-    rowVersion: "row_version",
-    passThrough: "pass_through",
-  });
+  return {
+    ...v.additionalProperties,
+    ...remap$(v, {
+      displayId: "display_id",
+      firstName: "first_name",
+      lastName: "last_name",
+      displayName: "display_name",
+      employeeNumber: "employee_number",
+      jobTitle: "job_title",
+      isContractor: "is_contractor",
+      hireDate: "hire_date",
+      terminationDate: "termination_date",
+      birthDate: "birth_date",
+      trackingCategories: "tracking_categories",
+      phoneNumbers: "phone_numbers",
+      customFields: "custom_fields",
+      rowVersion: "row_version",
+      passThrough: "pass_through",
+      additionalProperties: null,
+    }),
+  };
 });
 
 export function accountingEmployeeInputToJSON(

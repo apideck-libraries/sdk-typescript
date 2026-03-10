@@ -54,7 +54,7 @@ func testEcommerceProductsOneEcommerceProductsOne0(w http.ResponseWriter, req *h
 		Resource:   "products",
 		Operation:  "one",
 		Data: components.EcommerceProduct{
-			ID:                "12345",
+			ID:                types.String("12345"),
 			Name:              optionalnullable.From(types.String("MacBook Pro")),
 			Description:       optionalnullable.From(types.String("Powerful and portable, the MacBook Pro is perfect for professionals and creatives.")),
 			Status:            optionalnullable.From(components.ProductStatusActive.ToPointer()),

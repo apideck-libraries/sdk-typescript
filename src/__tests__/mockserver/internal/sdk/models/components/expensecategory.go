@@ -26,7 +26,7 @@ type ExpenseCategory struct {
 	// Id to be displayed.
 	DisplayID optionalnullable.OptionalNullable[string] `json:"display_id,omitempty"`
 	// The name of the expense category.
-	Name string `json:"name"`
+	Name *string `json:"name,omitempty"`
 	// The code or external identifier of the expense category.
 	Code optionalnullable.OptionalNullable[string] `json:"code,omitempty"`
 	// The description of the expense category.
@@ -55,7 +55,8 @@ type ExpenseCategory struct {
 	// The date and time when the object was created.
 	CreatedAt optionalnullable.OptionalNullable[time.Time] `json:"created_at,omitempty"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
-	PassThrough []PassThroughBody `json:"pass_through,omitempty"`
+	PassThrough          []PassThroughBody `json:"pass_through,omitempty"`
+	AdditionalProperties map[string]any    `additionalProperties:"true" json:"-"`
 }
 
 func (e ExpenseCategory) MarshalJSON() ([]byte, error) {
@@ -63,7 +64,7 @@ func (e ExpenseCategory) MarshalJSON() ([]byte, error) {
 }
 
 func (e *ExpenseCategory) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &e, "", false, []string{"name"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &e, "", false, nil); err != nil {
 		return err
 	}
 	return nil
@@ -83,9 +84,9 @@ func (o *ExpenseCategory) GetDisplayID() optionalnullable.OptionalNullable[strin
 	return o.DisplayID
 }
 
-func (o *ExpenseCategory) GetName() string {
+func (o *ExpenseCategory) GetName() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.Name
 }
@@ -202,11 +203,18 @@ func (o *ExpenseCategory) GetPassThrough() []PassThroughBody {
 	return o.PassThrough
 }
 
+func (o *ExpenseCategory) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
+}
+
 type ExpenseCategoryInput struct {
 	// Id to be displayed.
 	DisplayID optionalnullable.OptionalNullable[string] `json:"display_id,omitempty"`
 	// The name of the expense category.
-	Name string `json:"name"`
+	Name *string `json:"name,omitempty"`
 	// The code or external identifier of the expense category.
 	Code optionalnullable.OptionalNullable[string] `json:"code,omitempty"`
 	// The description of the expense category.
@@ -223,7 +231,19 @@ type ExpenseCategoryInput struct {
 	// A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
 	RowVersion optionalnullable.OptionalNullable[string] `json:"row_version,omitempty"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
-	PassThrough []PassThroughBody `json:"pass_through,omitempty"`
+	PassThrough          []PassThroughBody `json:"pass_through,omitempty"`
+	AdditionalProperties map[string]any    `additionalProperties:"true" json:"-"`
+}
+
+func (e ExpenseCategoryInput) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(e, "", false)
+}
+
+func (e *ExpenseCategoryInput) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &e, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *ExpenseCategoryInput) GetDisplayID() optionalnullable.OptionalNullable[string] {
@@ -233,9 +253,9 @@ func (o *ExpenseCategoryInput) GetDisplayID() optionalnullable.OptionalNullable[
 	return o.DisplayID
 }
 
-func (o *ExpenseCategoryInput) GetName() string {
+func (o *ExpenseCategoryInput) GetName() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.Name
 }
@@ -308,4 +328,11 @@ func (o *ExpenseCategoryInput) GetPassThrough() []PassThroughBody {
 		return nil
 	}
 	return o.PassThrough
+}
+
+func (o *ExpenseCategoryInput) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }

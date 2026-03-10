@@ -49,7 +49,8 @@ type AccountingDepartment struct {
 	// The date and time when the object was created.
 	CreatedAt optionalnullable.OptionalNullable[time.Time] `json:"created_at,omitempty"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
-	PassThrough []PassThroughBody `json:"pass_through,omitempty"`
+	PassThrough          []PassThroughBody `json:"pass_through,omitempty"`
+	AdditionalProperties map[string]any    `additionalProperties:"true" json:"-"`
 }
 
 func (a AccountingDepartment) MarshalJSON() ([]byte, error) {
@@ -168,6 +169,13 @@ func (o *AccountingDepartment) GetPassThrough() []PassThroughBody {
 	return o.PassThrough
 }
 
+func (o *AccountingDepartment) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
+}
+
 type AccountingDepartmentInput struct {
 	// A unique identifier for an object.
 	ParentID optionalnullable.OptionalNullable[string] `json:"parent_id,omitempty"`
@@ -183,7 +191,19 @@ type AccountingDepartmentInput struct {
 	// A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
 	RowVersion optionalnullable.OptionalNullable[string] `json:"row_version,omitempty"`
 	// The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
-	PassThrough []PassThroughBody `json:"pass_through,omitempty"`
+	PassThrough          []PassThroughBody `json:"pass_through,omitempty"`
+	AdditionalProperties map[string]any    `additionalProperties:"true" json:"-"`
+}
+
+func (a AccountingDepartmentInput) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(a, "", false)
+}
+
+func (a *AccountingDepartmentInput) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &a, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *AccountingDepartmentInput) GetParentID() optionalnullable.OptionalNullable[string] {
@@ -240,4 +260,11 @@ func (o *AccountingDepartmentInput) GetPassThrough() []PassThroughBody {
 		return nil
 	}
 	return o.PassThrough
+}
+
+func (o *AccountingDepartmentInput) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }

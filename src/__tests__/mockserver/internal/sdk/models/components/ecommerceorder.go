@@ -45,7 +45,7 @@ func (e FulfillmentStatus) ToPointer() *FulfillmentStatus {
 
 type EcommerceOrder struct {
 	// A unique identifier for an object.
-	ID string `json:"id"`
+	ID *string `json:"id,omitempty"`
 	// Order number, if any.
 	OrderNumber optionalnullable.OptionalNullable[string] `json:"order_number,omitempty"`
 	// Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
@@ -89,7 +89,8 @@ type EcommerceOrder struct {
 	// The date and time when the object was created.
 	CreatedAt optionalnullable.OptionalNullable[time.Time] `json:"created_at,omitempty"`
 	// The date and time when the object was last updated.
-	UpdatedAt optionalnullable.OptionalNullable[time.Time] `json:"updated_at,omitempty"`
+	UpdatedAt            optionalnullable.OptionalNullable[time.Time] `json:"updated_at,omitempty"`
+	AdditionalProperties map[string]any                               `additionalProperties:"true" json:"-"`
 }
 
 func (e EcommerceOrder) MarshalJSON() ([]byte, error) {
@@ -97,15 +98,15 @@ func (e EcommerceOrder) MarshalJSON() ([]byte, error) {
 }
 
 func (e *EcommerceOrder) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &e, "", false, []string{"id"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &e, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *EcommerceOrder) GetID() string {
+func (o *EcommerceOrder) GetID() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.ID
 }
@@ -276,4 +277,11 @@ func (o *EcommerceOrder) GetUpdatedAt() optionalnullable.OptionalNullable[time.T
 		return nil
 	}
 	return o.UpdatedAt
+}
+
+func (o *EcommerceOrder) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
 }

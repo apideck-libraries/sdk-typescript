@@ -17,8 +17,8 @@ import {
 
 export type FormFieldOptionGroup = {
   id?: string | undefined;
-  label: string;
-  options: Array<SimpleFormFieldOption>;
+  label?: string | undefined;
+  options?: Array<SimpleFormFieldOption> | undefined;
   optionType: "group";
 };
 
@@ -29,8 +29,8 @@ export const FormFieldOptionGroup$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   id: types.optional(types.string()),
-  label: types.string(),
-  options: z.array(SimpleFormFieldOption$inboundSchema),
+  label: types.optional(types.string()),
+  options: types.optional(z.array(SimpleFormFieldOption$inboundSchema)),
   option_type: types.literal("group"),
 }).transform((v) => {
   return remap$(v, {
@@ -40,8 +40,8 @@ export const FormFieldOptionGroup$inboundSchema: z.ZodType<
 /** @internal */
 export type FormFieldOptionGroup$Outbound = {
   id?: string | undefined;
-  label: string;
-  options: Array<SimpleFormFieldOption$Outbound>;
+  label?: string | undefined;
+  options?: Array<SimpleFormFieldOption$Outbound> | undefined;
   option_type: "group";
 };
 
@@ -52,8 +52,8 @@ export const FormFieldOptionGroup$outboundSchema: z.ZodType<
   FormFieldOptionGroup
 > = z.object({
   id: z.string().optional(),
-  label: z.string(),
-  options: z.array(SimpleFormFieldOption$outboundSchema),
+  label: z.string().optional(),
+  options: z.array(SimpleFormFieldOption$outboundSchema).optional(),
   optionType: z.literal("group"),
 }).transform((v) => {
   return remap$(v, {

@@ -53,11 +53,11 @@ func testWebhookWebhooksOneWebhookWebhooksOne0(w http.ResponseWriter, req *http.
 		Data: components.Webhook{
 			ID:             types.String("1234"),
 			Description:    optionalnullable.From(types.String("A description")),
-			UnifiedAPI:     components.UnifiedAPIIDCrm,
-			Status:         components.StatusEnabled,
+			UnifiedAPI:     components.UnifiedAPIIDCrm.ToPointer(),
+			Status:         components.StatusEnabled.ToPointer(),
 			DisabledReason: components.DisabledReasonRetryLimit.ToPointer(),
-			DeliveryURL:    "https://example.com/my/webhook/endpoint",
-			ExecuteBaseURL: "https://unify.apideck.com/webhook/webhooks/1234/execute",
+			DeliveryURL:    types.String("https://example.com/my/webhook/endpoint"),
+			ExecuteBaseURL: types.String("https://unify.apideck.com/webhook/webhooks/1234/execute"),
 			Events: []components.WebhookEventType{
 				components.WebhookEventTypeVaultConnectionCreated,
 				components.WebhookEventTypeVaultConnectionUpdated,
